@@ -191,6 +191,7 @@ Ts0 f80 actionTable 'out=in;
 Ts0 f80 actionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.bean.TaskActionBean;
 
+ivy.log.info("=============== task is seleted id : {0}", in.task.getId());
 TaskActionBean taskActionBean = ManagedBeans.get("taskActionBean") as TaskActionBean;
 out.canUserResumeTask = taskActionBean.canResume(in.task);' #txt
 Ts0 f80 security system #txt

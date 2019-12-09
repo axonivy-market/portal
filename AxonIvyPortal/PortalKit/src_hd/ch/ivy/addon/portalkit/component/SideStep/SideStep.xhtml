@@ -15,6 +15,8 @@
   <cc:attribute name="rowIndex" default="0" />
   <cc:attribute name="buttonStyleClass" />
   <cc:attribute name="renderedAdditionalAction" shortDescription="Control display adhoc and side steps" />
+  <cc:attribute name="selectedTask" shortDescription="Task is selected for reset or delegate" type="ch.ivyteam.ivy.workflow.ITask"/>
+  <cc:attribute name="loadDelegateData" />
 </cc:interface>
 
 <cc:implementation>
@@ -37,10 +39,11 @@
     </p:commandLink>
 
     <p:commandLink id="task-delegate-command" disabled="#{!taskActionBean.canDelegate(task)}" rendered="#{taskActionBean.showDelegateTask}" styleClass="option-item"
-      actionListener="#{logic.initDataToDelegate(task)}" onstart="event.stopPropagation();" oncomplete="PF('task-delegate-dialog-#{rowIndex}').show()"
-      update="@parent #{cc.attrs.componentToUpdate} @widgetVar(task-delegate-dialog-#{rowIndex}) ">
+      actionListener="#{logic.initDataToDelegate(task)}" onstart="event.stopPropagation();" oncomplete="PF('task-delegate-dialog').show()"
+      update="@parent #{cc.attrs.componentToUpdate} @widgetVar(task-delegate-dialog)">
       <span class="option-action-icon tmi-box-arrow-right" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}" styleClass="option-item-label" />
+      <p:ajax event="click" listener="#{cc.attrs.loadDelegateData}" onstart="#{cc.attrs.selectedTask}" />
     </p:commandLink>
 
     <p:commandLink id="task-reserve-command" disabled="#{!taskActionBean.canPark(task)}" rendered="#{taskActionBean.showReserveTask}" onstart="event.stopPropagation();"
@@ -62,11 +65,5 @@
       </ui:repeat>
     </h:panelGroup>
   </p:overlayPanel>
-
-  <ui:include src="TaskDelegateDialog.xhtml">
-    <ui:param name="rowIndex" value="#{rowIndex}" />
-    <ui:param name="componentToUpdate" value="#{cc.attrs.componentToUpdate}" />
-    <ui:param name="dataModel" value="#{dataModel}" />
-  </ui:include>
 </cc:implementation>
 </html>
