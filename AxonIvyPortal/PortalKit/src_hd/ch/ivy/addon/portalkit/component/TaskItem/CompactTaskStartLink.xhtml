@@ -7,7 +7,7 @@
 
 <ui:composition>
   <p:commandLink id="compact-task-start-link" rendered="#{task.state != 'RESUMED' and taskActionBean.canResume(task)}" actionListener="#{logic.openTask(task, dataModel)}"
-    styleClass="compact-task-start-link" onsuccess="#{cc.attrs.onTaskStartCallback}">
+    styleClass="compact-task-start-link">
     <f:subview id="task-start-item-view">
       <ui:include src="CompactTaskStartItem.xhtml" >
         <ui:param name="dataModel" value="#{dataModel}" />
@@ -16,7 +16,7 @@
   </p:commandLink>
 
   <p:commandLink id="compact-resumed-task-start-link" rendered="#{task.state == 'RESUMED' and taskActionBean.canResume(task)}" styleClass="compact-task-start-link"
-    oncomplete="PF('reset-task-dialog-#{rowIndex}').show()" actionListener="#{logic.setSelectedTaskAndDataModel(task, dataModel)}">
+    oncomplete="PF('reset-task-dialog').show()" actionListener="#{logic.setSelectedTaskAndDataModel(task, dataModel)}" onsuccess="#{selectedTask}">
     <f:subview id="task-start-and-reset-item-view">
       <ui:include src="CompactTaskStartItem.xhtml" >
         <ui:param name="dataModel" value="#{dataModel}" />
