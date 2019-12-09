@@ -84,6 +84,7 @@ private static final long serialVersionUID = -5889375917550618261L;
     
     List<UserProcess> processes = userProcessService.findByUserName(userName);
     processes.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
+    removeDeletedExpressWorkflowFromUserProcesses(processes);
     return processes;
   }
 
@@ -159,7 +160,7 @@ private static final long serialVersionUID = -5889375917550618261L;
             .filter(wf -> !isUserProcess(wf) && !isDefaultUserProcess(wf)).collect(Collectors.toList());
     for (ExpressProcess wf : workflows) {
       if (PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(wf) && StringUtils.containsIgnoreCase(wf.getProcessName(), query)) {
-        workflow.add(new UserProcess(wf.getProcessName(), userName, generateWorkflowStartLink(wf)));
+        workflow.add(new UserProcess(wf.getProcessName(), userName, generateWorkflowStartLink(wf), wf.getId()));
       }
     }
     return workflow;
@@ -282,6 +283,21 @@ private static final long serialVersionUID = -5889375917550618261L;
     }
     editingProcess.setProcessName(StringUtils.EMPTY);
     editingProcess.setLink(StringUtils.EMPTY);
+  }
+  
+  private void removeDeletedExpressWorkflowFromUserProcesses(List<UserProcess> processes) {
+    List<String> executableExpressProcessIds = ExpressServiceRegistry.getProcessService()
+                                      .findReadyToExecuteProcessOrderByName()
+                                      .stream().map(ExpressProcess::getId)
+                                      .collect(Collectors.toList());
+    
+    List<UserProcess> deletedExpressProcesses = processes.stream()
+        .filter(process ->  StringUtils.isNotBlank(process.getWorkflowId()) && !executableExpressProcessIds.contains(process.getWorkflowId()))
+        .collect(Collectors.toList());
+
+    userProcessService.deleteAll(deletedExpressProcesses);
+    processes.removeAll(deletedExpressProcesses);
+    setIndex(processes);
   }
 
   public List<UserProcess> getDefaultUserProcesses() {
