@@ -58,7 +58,7 @@
                   <ui:repeat var="taskFilterData" value="#{data.taskPublicFilters}">
                     <h:panelGroup layout="block" styleClass="user-defined-filter-container">
                       <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
-                        value="#{taskFilterData.filterName}" global="false" actionListener="#{logic.applyFilter(taskFilterData)}"
+                        value="#{taskFilterData.filterName}" actionListener="#{logic.applyFilter(taskFilterData)}"
                         update="#{cc.clientId}:task-filters-container #{cc.clientId}:filter-selection-container #{cc.clientId}:statistic-result-list
                                               #{cc.clientId}:case-filters-container #{cc.clientId}:case-filter-add-container" />
                       <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter" value="#{taskFilterData.filterName}"
@@ -80,7 +80,7 @@
                   <ui:repeat var="taskFilterData" value="#{data.taskPrivateFilters}">
                     <h:panelGroup layout="block" styleClass="user-defined-filter-container">
                       <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
-                        value="#{taskFilterData.filterName}" global="false" actionListener="#{logic.applyFilter(taskFilterData)}"
+                        value="#{taskFilterData.filterName}" actionListener="#{logic.applyFilter(taskFilterData)}"
                         update="#{cc.clientId}:task-filters-container #{cc.clientId}:filter-selection-container #{cc.clientId}:statistic-result-list
                                               #{cc.clientId}:case-filters-container #{cc.clientId}:case-filter-add-container" />
                       <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter" value="#{taskFilterData.filterName}"
