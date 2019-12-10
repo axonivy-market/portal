@@ -1,1 +1,1 @@
-{/value "true"/description "By default, portal will query only tasks and cases which don\'t have hide information (store in either additional property or custom field)\nSet it to false will ingore this feature"/environments * }
+{/value "false"/description "By default, portal will query only tasks and cases which don\'t have hide information (store in either additional property or custom field)\nSet it to false will ingore this feature"/environments * }
