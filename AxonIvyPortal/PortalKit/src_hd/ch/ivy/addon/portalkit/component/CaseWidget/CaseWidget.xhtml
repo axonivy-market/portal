@@ -119,7 +119,8 @@
                     <p:selectManyCheckbox id="filter-selection" layout="pageDirection"
                       valueChangeListener="#{data.dataModel.onFilterChange}" value="#{data.dataModel.selectedFilters}"
                       converter="pojoConverter">
-                      <p:ajax update="#{cc.clientId}:filter-selection-container #{cc.clientId}:advanced-filter-container" global="false"/>
+                      <p:ajax update="#{cc.clientId}:filter-selection-container #{cc.clientId}:advanced-filter-container #{cc.clientId}:case-list"
+                        global="false" oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();" />
                       <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
                         itemValue="#{filter}" />
                     </p:selectManyCheckbox>
