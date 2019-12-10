@@ -21,7 +21,9 @@ public class ErrorHandler {
   }
 
   private static void storeError(String message) {
-    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, message, message));
+	if (FacesContext.getCurrentInstance() != null) {
+      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, message, message));
+	}
   }
 
 }
