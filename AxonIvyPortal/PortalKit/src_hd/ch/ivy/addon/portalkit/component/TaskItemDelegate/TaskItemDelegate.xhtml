@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="task" shortDescription="Task" type="ch.ivyteam.ivy.workflow.ITask" />
+  <cc:attribute name="dataModel" />
+  <cc:attribute name="componentToUpdate" />
+</cc:interface>
+
+<cc:implementation>
+  <p:remoteCommand name="initDataToDelegate" actionListener="#{logic.initDataToDelegate(cc.attrs.task)}" process="@this" immediate="true" global="false"/>
+
+  <p:dialog id="task-delegate-dialog" closeOnEscape="true" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
+    widgetVar="task-delegate-dialog" dynamic="true" modal="true" showEffect="fade" hideEffect="fade" resizable="false" appendTo="@(body)"
+    styleClass="task-delegate-dialog">
+
+    <h:panelGroup rendered="#{data.canDelegateTask != null and data.canDelegateTask}">
+      <h:form id="task-delegate-form">
+        <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateTaskHeaderLabel')}</span>
+        <h:panelGroup id="activator-panel" layout="block" styleClass="delegate-dialog-activator-panel"
+          rendered="#{not empty data.rolesToDelegate or not empty data.usersToDelegate}">
+          <div class="delegate-type-container">
+            <p:selectOneRadio id="activator-type-select" value="#{data.isUserDelegated}">
+              <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toUser')}" itemValue="true"
+                itemDisabled="#{empty data.usersToDelegate}" />
+              <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toGroup')}" itemValue="false"
+                itemDisabled="#{empty data.rolesToDelegate}" />
+              <p:ajax event="change" listener="#{logic.changeAssignType}" update="activator-panel task-delegate-form" />
+            </p:selectOneRadio>
+          </div>
+        </h:panelGroup>
+
+        <h:panelGroup id="select-delegate-panel" layout="block" styleClass="select-delegate-panel">
+          <p:autoComplete id="user-activator-select" rendered="#{data.isUserDelegated}" scrollHeight="400" dropdown="true"
+            value="#{data.delegatedSecurityMember}" completeMethod="#{logic.autoCompleteForUserDelegate}" var="user"
+            itemLabel="#{user.getDisplayName()}" itemValue="#{user}" converter="pojoConverter" cache="true" queryDelay="500" maxResults="100"
+            panelStyleClass="delegation-select-panel"
+            moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
+            <f:event listener="#{logic.autoCompleteForUserDelegate}" type="preRenderComponent" />
+            <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}" update="proceed-task-delegate-command" />
+            <p:column>
+              <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.memberName)}" />
+            </p:column>
+          </p:autoComplete>
+
+          <p:autoComplete id="group-activator-select" rendered="#{!data.isUserDelegated}" scrollHeight="400" dropdown="true"
+            value="#{data.delegatedSecurityMember}" completeMethod="#{logic.autoCompleteForRoleDelegate}" var="role"
+            panelStyleClass="delegation-select-panel" itemLabel="#{role.getDisplayName() != '' ? role.getDisplayName() : role.getMemberName()}"
+            itemValue="#{role}" converter="pojoConverter" cache="true" queryDelay="500" maxResults="100"
+            moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
+            selectLimit="100">
+            <f:event listener="#{logic.autoCompleteForUserDelegate}" type="preRenderComponent" />
+            <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}" update="proceed-task-delegate-command" />
+          </p:autoComplete>
+        </h:panelGroup>
+
+        <div class="ui-dialog-footer u-dialog-footer">
+          <p:commandButton id="proceed-task-delegate-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}"
+            actionListener="#{logic.delegateTask}" process=":#{p:component('activator-panel')}" disabled="#{data.disabledDelegateButton}"
+            update="@(.task-view-container) #{cc.attrs.componentToUpdate}"
+            oncomplete="if (#{not empty cc.attrs.dataModel}){taskWidget.setupScrollbar();}"
+            onsuccess="PF('task-delegate-dialog').hide(); setCookie('delegated','#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/message/delegateSuccess')}');" />
+          <p:spacer width="5px" />
+          <p:commandButton id="cancel-task-delegate-command" styleClass="portal-cancel-button" type="button"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('task-delegate-dialog').hide()" />
+        </div>
+      </h:form>
+    </h:panelGroup>
+    <h:panelGroup rendered="#{data.canDelegateTask == null or !data.canDelegateTask}">
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotDelegateTaskMessage')}" />
+    </h:panelGroup>
+  </p:dialog>
+
+</cc:implementation>
+</html>
