@@ -101,7 +101,7 @@
                   icon="fa fa-random fa-2x" oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()" />
     
                 <p:menuitem id="chat-group" icon="fa fa-comments fa-2x" action="#{chatAssigneeBean.createGroupChatForConfiguredRoleList(task)}"
-                  rendered="#{chatRendererBean.isGroupChatRendered and !(task.state eq 'CREATED') and !chatRendererBean.isExpressCreationTask()}" oncomplete="PF('chat-assignee-dialog').show()"
+                  rendered="#{chatRendererBean.isGroupChatRendered and !(task.state eq 'CREATED') and !chatRendererBean.isExpressCreationTask()}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createProcessChat')}" update="chat-assignee-dialog" />
     
                 <p:separator

@@ -1171,14 +1171,21 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   margin: 2px 3px 5px 2px;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 64.064em) {
   .compact-default-processes-container {
-    max-height: 292px;
+    max-height: 386px;
     padding-right: 0px;
   }
 }
 
-@media screen and (max-width: 1023px) {
+@media screen and (min-width: 40.063em) and (max-width: 64.063em)  {
+  .compact-default-processes-container {
+    max-height: 276px;
+    padding-right: 0px;
+  }
+}
+
+@media screen and (max-width: 40em) , screen and (max-height: 64.063em) {
   .compact-default-processes-container {
     max-height: 165px;
   }
