@@ -48,7 +48,6 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   private static final long serialVersionUID = -6615871274830927272L;
-  private static final String ALL = "All";
 
   protected String taskWidgetComponentId;
   protected String caseName;
@@ -74,6 +73,8 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected boolean isDisableSelectionCheckboxes;
   protected boolean isRelatedTaskDisplayed;
   protected boolean isNotKeepFilter;
+
+  private TaskFilter templeTaskFilter;
 
   public TaskLazyDataModel(String taskWidgetComponentId) {
     super();
@@ -167,6 +168,11 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   @Override
   public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+    if (templeTaskFilter != null && !templeTaskFilter.reloadViewContainer()) {
+      templeTaskFilter = null;
+      return data;
+    }
+
     if (first == 0) {
       initializedDataModel(criteria);
       PrimeFaces.current().executeScript("updateTaskCount()");
@@ -391,9 +397,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   public void removeFilter(TaskFilter filter) {
-    if (reloadViewContainer(filter)) {
-      PrimeFaces.current().executeScript("taskWidget.setupHeader();");
-    }
+    templeTaskFilter = filter;
     filter.resetValues();
     selectedFilters.remove(filter);
     resetFilterData();
@@ -473,19 +477,10 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       toggleFilters = (List<TaskFilter>) CollectionUtils.subtract(oldSelectedFilters, newSelectedFilters);
     }
     if (CollectionUtils.isNotEmpty(toggleFilters)) {
+      templeTaskFilter = toggleFilters.get(0);
       toggleFilters.get(0).resetValues();
-      reloadViewContainer(toggleFilters.get(0));
     }
     resetFilterData();
-  }
-
-  public boolean reloadViewContainer(TaskFilter taskFilter) {
-    if (taskFilter.reloadViewContainer() || !taskFilter.value().equalsIgnoreCase(ALL)) {
-      PrimeFaces.current().ajax().update("task-widget:task-view-container");
-      PrimeFaces.current().executeScript("taskWidget.setupScrollbar();");
-      return true;
-    }
-    return false;
   }
 
   public void onKeywordChange() {
