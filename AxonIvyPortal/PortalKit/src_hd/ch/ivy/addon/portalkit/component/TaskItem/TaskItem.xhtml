@@ -13,7 +13,6 @@
   <cc:facet name="taskHeader" shortDescription="Header content of a task item" />
   <cc:attribute name="dataModel" />
   <cc:attribute name="selectedTask" required="true" shortDescription="Task is selected for reset or delegate" type="ch.ivyteam.ivy.workflow.ITask"/>
-  <cc:attribute name="loadDelegateData" />
 </cc:interface>
 
 <cc:implementation>
@@ -42,7 +41,6 @@
         <ui:include src="TaskAction.xhtml">
           <ui:param name="dataModel" value="#{dataModel}" />
           <ui:param name="selectedTask" value="#{cc.attrs.selectedTask}" />
-          <ui:param name="loadDelegateData" value="#{cc.attrs.loadDelegateData}" />
         </ui:include>
       </f:subview>
     </div>
