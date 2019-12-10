@@ -26,6 +26,10 @@ Ts0 f6 inParameterMapAction 'out.queryAutoComplete=param.query;
 Ts0 f6 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.ISecurityMember> responsibleList> result;' #txt
 Ts0 f6 outActionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
 
+if(in.responsibles.isEmpty()) {
+	in.responsibles = UserUtils.findAllSecurityMembers();
+}
+
 result.responsibleList = UserUtils.filterSecurityMembers(in.responsibles, in.queryAutoComplete);' #txt
 Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

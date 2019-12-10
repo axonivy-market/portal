@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.ArrayUtils;
+import org.apache.commons.lang3.time.StopWatch;
 import org.primefaces.model.CheckboxTreeNode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -25,11 +26,6 @@ public class TaskCategoryFilter extends TaskFilter {
   private CheckboxTreeNode root;
 
   private List<String> categoryPaths = new ArrayList<>();
-
-  public TaskCategoryFilter() {
-    super();
-    root = TaskTreeUtils.buildTaskCategoryCheckboxTreeRoot();
-  }
 
   @Override
   public String label() {
@@ -65,7 +61,9 @@ public class TaskCategoryFilter extends TaskFilter {
   @Override
   public void resetValues() {
     categories = new CheckboxTreeNode[] {};
-    root.setSelected(false);
+    if(root != null) {
+      root.setSelected(false);
+    }
   }
 
   public CheckboxTreeNode[] getCategories() {
@@ -81,6 +79,13 @@ public class TaskCategoryFilter extends TaskFilter {
   }
 
   public CheckboxTreeNode getRoot() {
+    if(root == null) {
+      StopWatch watch = new StopWatch();
+      watch.start();
+      root = TaskTreeUtils.buildTaskCategoryCheckboxTreeRoot();
+      watch.stop();
+      Ivy.log().warn("NAMLE: Get task category root: " + watch.getTime());
+    }
     return root;
   }
 
@@ -90,8 +95,12 @@ public class TaskCategoryFilter extends TaskFilter {
   
   //This method is used for updating Category Tree and Category Paths when having session filter 
   public void updateRootAndCategoryPaths() {
+    StopWatch watch = new StopWatch();
+    watch.start();
     root = TaskTreeUtils.buildTaskCategoryCheckboxTreeRoot();
     setCategoryPaths(this.categoryPaths);
+    watch.stop();
+    Ivy.log().warn("NAMLE: Update task category root: " + watch.getTime());
   }
 
   public List<String> getCategoryPaths() {
