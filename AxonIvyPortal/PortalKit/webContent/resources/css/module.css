@@ -1171,18 +1171,22 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   margin: 2px 3px 5px 2px;
 }
 
-@media screen and (min-width: 1024px) {
-  .compact-processes-container {
-    max-height: 277px;
-  }
+@media screen and (min-width: 64.064em) {
   .compact-default-processes-container {
-    max-height: 292px;
+    max-height: 386px;
     padding-right: 0px;
   }
 }
 
-@media screen and (max-width: 1023px) {
-  .compact-processes-container, .compact-default-processes-container {
+@media screen and (min-width: 40.063em) and (max-width: 64.063em)  {
+  .compact-default-processes-container {
+    max-height: 276px;
+    padding-right: 0px;
+  }
+}
+
+@media screen and (max-width: 40em) , screen and (max-height: 64.063em) {
+  .compact-default-processes-container {
     max-height: 165px;
   }
 }
@@ -3465,10 +3469,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   display: inline !important;
 }
 
-.statistic-case-category-tree .ui-tree-container {
-  max-width: 25.5rem;
-}
-
 .apply-filters-btn {
   float: right;
 }
@@ -3499,6 +3499,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .statistic-case-category-tree .ui-tree-container {
   height: 26rem;
   width: 100%;
+  max-width: 26.5rem;
   overflow: auto !important;
 }
 
@@ -3550,7 +3551,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
     width: 25rem !important;
   }
   .statistic-case-category-tree .ui-tree-container {
-    max-width: 17.5rem;
+    max-width: 18.5rem;
   }
   .edit-statistic-container {
     padding-right: 25rem !important;
@@ -3628,7 +3629,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
     padding: 0.5em !important;
   }
   .statistic-case-category-tree .ui-tree-container {
-    max-width: 19rem !important;
+    max-width: 19.5rem !important;
   }
   .filter-widget-input.case-filter-component {
     padding-right: 35px !important;

@@ -424,7 +424,8 @@ TaskA.NAM=<%\=ivy.cms.co("/Dialogs/Tasks/SaveWorkflow/TaskName")%>\: <%\=in1.pro
 TaskA.PRI=2
 TaskA.ROL=CREATOR
 TaskA.SKIP_TASK_LIST=false
-TaskA.TYPE=0' #txt
+TaskA.TYPE=0
+TaskA.customFields.STRING.isExpressCreationTask="true"' #txt
 ew0 f37 template "" #txt
 ew0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

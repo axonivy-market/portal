@@ -1475,7 +1475,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   background: $chatPanelBackgroundColor;
 }
 
-.contact-card:hover .contact-card-icon, .contact-card.active .contact-card-icon {
+.contact-card:not(.no-group-chat):hover .contact-card-icon, .contact-card.active .contact-card-icon {
   color: $contactCardBackgroundColor;
   background: $chatPanelBackgroundColor;
 }
@@ -1483,9 +1483,10 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .no-group-chat {
   color: $noGroupChatColor;
   font-size: $largeFontSize;
+  cursor: default;
 }
 
-.contact-card:hover {
+.contact-card:not(.no-group-chat):hover {
   background: rgba($contactCardBackgroundColor, 0.85);
 
   .contact-card-name {
@@ -1563,6 +1564,11 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   font-weight: $messageChatHeaderNameFontWeight;
   color: $messageChatHeaderNameColor;
   font-size: $chatContactTypeHeaderFontSize;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  cursor: default;
 }
 
 .show-participants-link:hover {
