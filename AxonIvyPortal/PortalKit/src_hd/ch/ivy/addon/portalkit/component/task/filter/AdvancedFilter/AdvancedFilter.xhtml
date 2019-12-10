@@ -48,7 +48,7 @@
           <p:commandLink id="advanced-filter-remove-command"
             styleClass="fa fa-times-circle advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
             actionListener="#{dataModel.removeFilter(taskFilter)}" global="false"
-            update="@(.advanced-filter-container) @(.filter-add-container) @(.filter-selection-form)"
+            update="@(.advanced-filter-container) @(.filter-add-container) @(.filter-selection-form) @(.task-view-container)"
             oncomplete="#{empty cc.attrs.resultContainerUpdated ? 'taskWidget.setupScrollbar(); taskWidget.setupHeader()' : ''}">
             <f:actionListener binding="#{cc.attrs.removeListener}" />
           </p:commandLink>
