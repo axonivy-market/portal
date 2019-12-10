@@ -40,7 +40,7 @@
 										update="form:applicantFieldSet form:applicantField" />
 								</p:selectOneRadio>
 
-								<h:panelGrid columns="5" cellpadding="5">
+								<h:panelGrid columns="2" cellpadding="5">
 									<p:radioButton id="opt1" for="processApplicant" itemIndex="0" />
 									<h:outputLabel for="opt1" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/inOwnName')}" />
 								</h:panelGrid>
@@ -49,7 +49,7 @@
 							<p:column styleClass="u-no-border" colspan="2">
 
 
-								<h:panelGrid columns="4" cellpadding="5">
+								<h:panelGrid columns="3" cellpadding="5">
 									<p:radioButton id="opt2" for="processApplicant" itemIndex="1" />
 									<h:outputLabel for="opt2" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/WfFirstInputForm/as3rdPerson')} " />
 									<!-- Must be "readonly" with AD, otherwise error! -->

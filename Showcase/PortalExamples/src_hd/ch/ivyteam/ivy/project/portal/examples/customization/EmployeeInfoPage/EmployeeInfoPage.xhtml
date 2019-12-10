@@ -28,11 +28,12 @@
 				
 				<p:outputLabel value="Birthday"/>
 				<p:calendar value="#{data.employeeInfo.birthDay}" />
+				<br/>
 				</h:panelGrid>
 			</p:tab>
 			
 			<p:tab title="Company information" >
-				<h:panelGrid columns="3" id="company-info">
+				<h:panelGrid  columns="3" id="company-info">
 				<p:outputLabel value="City"/>
 				<p:inputText value="#{data.employeeInfo.city}"/>
 				<br/>
@@ -43,6 +44,7 @@
 				
 				<p:outputLabel value="Email"/>
 				<p:inputText value="#{data.employeeInfo.email}"/>
+				<br/>
 				</h:panelGrid>
 			</p:tab>
 		</ui:define>
