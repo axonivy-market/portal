@@ -42,7 +42,9 @@ Cs0 f6 inParameterMapAction 'out.queryAutoComplete=param.query;
 ' #txt
 Cs0 f6 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> creators> result;' #txt
 Cs0 f6 outActionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
-
+if(in.creators.isEmpty()) {
+	in.creators = UserUtils.findAllUserByApplication();
+}
 result.creators = UserUtils.filterUsers(in.creators, in.queryAutoComplete);' #txt
 Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
