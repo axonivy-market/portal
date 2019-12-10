@@ -3,12 +3,10 @@ package ch.ivy.addon.portalkit.casefilter;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -56,14 +54,7 @@ public class CaseCreatorFilter extends CaseFilter {
   }
 
   public List<IUser> getCreators() {
-    if (creators == null) {
-      initUsers();
-    }
     return creators;
-  }
-
-  private void initUsers() {
-    creators = UserUtils.findAllUserByApplication();
   }
 
   public void setCreators(List<IUser> creators) {
@@ -71,12 +62,6 @@ public class CaseCreatorFilter extends CaseFilter {
   }
 
   public IUser getSelectedCreator() {
-    if (selectedCreator == null && CollectionUtils.isNotEmpty(getCreators())) {
-      selectedCreator = creators.stream()
-          .filter(creator -> StringUtils.equals(creator.getMemberName(), selectedCreatorMemberName))
-          .findFirst()
-          .orElse(null);
-    }
     return selectedCreator;
   }
 
