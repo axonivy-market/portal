@@ -26,11 +26,6 @@ public class TaskCategoryFilter extends TaskFilter {
 
   private List<String> categoryPaths = new ArrayList<>();
 
-  public TaskCategoryFilter() {
-    super();
-    root = TaskTreeUtils.buildTaskCategoryCheckboxTreeRoot();
-  }
-
   @Override
   public String label() {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/elapsedTimeChart/taskCategory");
@@ -65,7 +60,9 @@ public class TaskCategoryFilter extends TaskFilter {
   @Override
   public void resetValues() {
     categories = new CheckboxTreeNode[] {};
-    root.setSelected(false);
+    if(root != null) {
+      root.setSelected(false);
+    }
   }
 
   public CheckboxTreeNode[] getCategories() {
@@ -81,6 +78,9 @@ public class TaskCategoryFilter extends TaskFilter {
   }
 
   public CheckboxTreeNode getRoot() {
+    if(root == null) {
+      root = TaskTreeUtils.buildTaskCategoryCheckboxTreeRoot();
+    }
     return root;
   }
 
