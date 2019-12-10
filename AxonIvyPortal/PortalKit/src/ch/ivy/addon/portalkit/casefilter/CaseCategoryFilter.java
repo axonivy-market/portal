@@ -26,11 +26,6 @@ public class CaseCategoryFilter extends CaseFilter {
   // Only using in saving filters, don't use anymore because getter/setter were changed
   private List<String> categoryPaths = new ArrayList<>();
 
-  public CaseCategoryFilter() {
-    super();
-    root = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();
-  }
-
   @Override
   public String label() {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/caseCategory");
@@ -65,7 +60,9 @@ public class CaseCategoryFilter extends CaseFilter {
   @Override
   public void resetValues() {
     categories = new CheckboxTreeNode[] {};
-    root.setSelected(false);
+    if(root != null) {
+      root.setSelected(false);
+    }
   }
 
   public CheckboxTreeNode[] getCategories() {
@@ -81,6 +78,9 @@ public class CaseCategoryFilter extends CaseFilter {
   }
 
   public CheckboxTreeNode getRoot() {
+    if(root == null) {
+      root = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();
+    }
     return root;
   }
 
