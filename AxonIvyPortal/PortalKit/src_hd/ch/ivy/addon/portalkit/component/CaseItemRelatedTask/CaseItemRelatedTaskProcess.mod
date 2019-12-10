@@ -116,7 +116,7 @@ boolean isOwner = in.iCase.#owner != null ? in.iCase.getOwner().isMember(ivy.ses
 boolean ableToSeeAllRelatedTaskOfCase = PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission() || isOwner;
 for (ITask task : in.iCase.getTasks()) {
 	if ((task.getState() == TaskState.SUSPENDED || task.getState() == TaskState.RESUMED || task.getState() == TaskState.UNASSIGNED || task.getState() == TaskState.PARKED || task.getState() == TaskState.CREATED)
-				&& (excludeHiddenTasks ? StringUtils.isEmpty(task.customFields().stringField(AdditionalProperty.HIDE.toString()).getOrNull()) : true)) {
+				&& (excludeHiddenTasks ? StringUtils.isEmpty(task.customFields().stringField(AdditionalProperty.HIDE.toString()).getOrNull()) : true) && task.isPersistent()) {
 		if (ableToSeeAllRelatedTaskOfCase) {
 			in.totalRelatedTasks++;
 			if (count <= 21) {//get only 21 tasks

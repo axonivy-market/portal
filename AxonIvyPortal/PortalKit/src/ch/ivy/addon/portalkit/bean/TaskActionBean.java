@@ -66,7 +66,7 @@ public class TaskActionBean {
       return false;
     }
     
-    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.DONE, TaskState.FAILED, TaskState.DESTROYED);
+    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.DONE, TaskState.FAILED, TaskState.DESTROYED, TaskState.CREATED);
    
     if (taskStates.contains(task.getState())) {
       return false;
@@ -106,8 +106,9 @@ public class TaskActionBean {
   }
 
   public boolean canPark(ITask task) {
-    if (task == null || (task.getState() != TaskState.SUSPENDED && task.getState() != TaskState.CREATED && task.getState() != TaskState.RESUMED) 
-        || !canResume(task)) {
+    if (task == null 
+        || (task.getState() != TaskState.SUSPENDED && task.getState() != TaskState.CREATED && task.getState() != TaskState.RESUMED) 
+        || (!canResume(task) && task.getState() != TaskState.CREATED)) {
       return false;
     }
     
@@ -153,7 +154,7 @@ public class TaskActionBean {
       return false;
     }
     EnumSet<TaskState> taskStates =
-        EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED, TaskState.UNASSIGNED);
+        EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED, TaskState.UNASSIGNED, TaskState.CREATED);
     return taskStates.contains(task.getState());
   }
   
