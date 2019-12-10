@@ -76,7 +76,7 @@
                   <ui:repeat var="taskFilterData" value="#{data.taskPublicFilters}">
                     <h:panelGroup layout="block" styleClass="user-defined-filter-container">
                       <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
-                        value="#{taskFilterData.filterName}" global="false"
+                        value="#{taskFilterData.filterName}"
                         actionListener="#{logic.applyFilter(taskFilterData)}"
                         update="#{cc.clientId}:advanced-filter-container #{cc.clientId}:task-widget-header #{cc.clientId}:filter-add-form #{cc.clientId}:filter-selection-container #{cc.clientId}:task-view-container"
                         oncomplete="taskWidget.setupScrollbar();" />
@@ -99,7 +99,7 @@
                   <ui:repeat var="taskFilterData" value="#{data.taskPrivateFilters}">
                     <div class="user-defined-filter-container">
                       <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
-                        value="#{taskFilterData.filterName}" global="false"
+                        value="#{taskFilterData.filterName}"
                         actionListener="#{logic.applyFilter(taskFilterData)}"
                         update="#{cc.clientId}:advanced-filter-container #{cc.clientId}:task-widget-header #{cc.clientId}:filter-add-form #{cc.clientId}:filter-selection-container #{cc.clientId}:task-view-container"
                         oncomplete="taskWidget.setupScrollbar();" />

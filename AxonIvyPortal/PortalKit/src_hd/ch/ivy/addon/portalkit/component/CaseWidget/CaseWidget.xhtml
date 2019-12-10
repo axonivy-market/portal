@@ -61,7 +61,7 @@
                   <ui:repeat var="filterData" value="#{data.publicFilters}">
                     <div class="user-defined-filter-container">
                       <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
-                        value="#{filterData.filterName}" global="false"
+                        value="#{filterData.filterName}"
                         actionListener="#{logic.applyFilter(filterData)}"
                         update="#{cc.clientId}:filter-selection-container #{cc.clientId}:advanced-filter-container #{cc.clientId}:case-widget-header #{cc.clientId}:case-list #{cc.clientId}:filter-add-form"
                         oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();" />
@@ -84,7 +84,7 @@
                   <ui:repeat var="filterData" value="#{data.privateFilters}">
                     <div class="user-defined-filter-container">
                       <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
-                        value="#{filterData.filterName}" global="false"
+                        value="#{filterData.filterName}"
                         actionListener="#{logic.applyFilter(filterData)}"
                         update="#{cc.clientId}:filter-selection-container #{cc.clientId}:advanced-filter-container #{cc.clientId}:case-widget-header #{cc.clientId}:case-list #{cc.clientId}:filter-add-form"
                         oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader();" />

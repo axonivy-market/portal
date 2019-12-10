@@ -9,7 +9,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <p:remoteCommand name="initDataToDelegate" actionListener="#{logic.initDataToDelegate(cc.attrs.task)}" process="@this" immediate="true" global="false"/>
+  <p:remoteCommand name="initDataToDelegate" actionListener="#{logic.initDataToDelegate(cc.attrs.task)}" global="false"/>
 
   <p:dialog id="task-delegate-dialog" closeOnEscape="true" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
     widgetVar="task-delegate-dialog" dynamic="true" modal="true" showEffect="fade" hideEffect="fade" resizable="false" appendTo="@(body)"
