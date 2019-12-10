@@ -10,19 +10,14 @@
   <cc:attribute name="isAdhocExcluded" default="false" type="java.lang.Boolean" shortDescription="exclude adhoc from side steps" />
   <cc:attribute name="isDisabled" default="false" type="java.lang.Boolean" />
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
-  <cc:attribute name="dataModel" />
   <cc:attribute name="componentToUpdate" default="" />
-  <cc:attribute name="rowIndex" default="0" />
   <cc:attribute name="buttonStyleClass" />
   <cc:attribute name="renderedAdditionalAction" shortDescription="Control display adhoc and side steps" />
   <cc:attribute name="selectedTask" shortDescription="Task is selected for reset or delegate" type="ch.ivyteam.ivy.workflow.ITask"/>
-  <cc:attribute name="loadDelegateData" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
-  <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
-  <c:set var="rowIndex" value="#{cc.attrs.rowIndex}" />
 
   <p:commandButton id="#{cc.attrs.actionLinkId}" onstart="event.stopPropagation();" global="false" disabled="#{cc.attrs.isDisabled}"
     actionListener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId(), cc.attrs.isAdhocExcluded)}" styleClass="action-button task-action-item #{cc.attrs.buttonStyleClass}"
@@ -33,23 +28,23 @@
     styleClass="options-panel" dynamic="true" rendered="#{!cc.attrs.isDisabled}">
 
     <p:commandLink id="task-reset-command" onstart="event.stopPropagation();" rendered="#{taskActionBean.showResetTask}" disabled="#{!taskActionBean.canReset(task)}"
-      styleClass="option-item" actionListener="#{logic.resetTask(task)}" update="@parent #{cc.attrs.componentToUpdate}">
-      <span class="option-action-icon tmi-box-arrow-left" />
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" styleClass="option-item-label" />
+      styleClass="option-item" update="@parent #{cc.attrs.componentToUpdate}">
+      <i class="option-action-icon tmi-box-arrow-left" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}</span>
     </p:commandLink>
 
-    <p:commandLink id="task-delegate-command" disabled="#{!taskActionBean.canDelegate(task)}" rendered="#{taskActionBean.showDelegateTask}" styleClass="option-item"
-      actionListener="#{logic.initDataToDelegate(task)}" onstart="event.stopPropagation();" oncomplete="PF('task-delegate-dialog').show()"
+    <p:commandLink id="task-delegate-command" disabled="#{!taskActionBean.canDelegate(task)}" rendered="#{taskActionBean.showDelegateTask}"
+      styleClass="option-item" onstart="event.stopPropagation();" oncomplete="PF('task-delegate-dialog').show()"
       update="@parent #{cc.attrs.componentToUpdate} @widgetVar(task-delegate-dialog)">
-      <span class="option-action-icon tmi-box-arrow-right" />
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}" styleClass="option-item-label" />
-      <p:ajax event="click" listener="#{cc.attrs.loadDelegateData}" onstart="#{cc.attrs.selectedTask}" />
+      <i class="option-action-icon tmi-box-arrow-right" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}</span>
+      <p:ajax event="click" onstart="#{cc.attrs.selectedTask}" oncomplete="initDataToDelegate();" global="false" process="@this" immediate="true" />
     </p:commandLink>
 
     <p:commandLink id="task-reserve-command" disabled="#{!taskActionBean.canPark(task)}" rendered="#{taskActionBean.showReserveTask}" onstart="event.stopPropagation();"
       styleClass="option-item" actionListener="#{logic.parkTask(task)}" update="@parent #{cc.attrs.componentToUpdate}">
-      <span class="option-action-icon tmi-box-arrow-toinside" />
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}" styleClass="option-item-label" />
+      <i class="option-action-icon tmi-box-arrow-toinside" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}</span>
     </p:commandLink>
     
     <h:panelGroup id="task-additional-actions" layout="block" rendered="#{cc.attrs.renderedAdditionalAction}">

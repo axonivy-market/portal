@@ -311,10 +311,8 @@
     </div>
   </p:confirmDialog>
 
-  <ui:include src="TaskDelegateDialog.xhtml">
-    <ui:param name="componentToUpdate" value="#{p:component('task-start')}" />
-    <ui:param name="dataModel" value="#{dataModel}" />
-  </ui:include>
+  <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate task="#{data.selectedTask}" dataModel="#{data.dataModel}"
+    componentToUpdate="#{p:component('task-start')}" />
 
   <script type="text/javascript">
       var taskWidget = new TaskWidget();
