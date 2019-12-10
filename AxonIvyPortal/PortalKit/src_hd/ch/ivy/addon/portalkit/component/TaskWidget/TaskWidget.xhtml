@@ -126,7 +126,7 @@
               removeListener="#{data.dataModel.hideInProgressFilter()}" displayFooterButtons="false"
               taskFilter="#{data.dataModel.inProgressFilter}" dataModel="#{data.dataModel}"
               rendered="#{!data.dataModel.hasReadAllTasksPermisson() and data.dataModel.inProgressFilterDisplayed}"
-              forceRendered="true" position="100" resultContainerUpdated="#{false}">
+              forceRendered="true" position="100" >
               <p:selectBooleanCheckbox id="in-progress-checkbox" styleClass="in-progress-task-checkbox"
                 value="#{data.dataModel.inProgressFilter.isTaskInProgressByOthersDisplayed}"
                 itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/display')}">
@@ -148,18 +148,17 @@
                     <p:selectManyCheckbox id="filter-selection" layout="pageDirection"
                       valueChangeListener="#{data.dataModel.onFilterChange}" value="#{data.dataModel.selectedFilters}"
                       converter="pojoConverter">
-                      <p:ajax update="#{cc.clientId}:filter-selection-container @(.advanced-filter-component)"
-                        global="false"/>
+                      <p:ajax update="#{cc.clientId}:filter-selection-container @(.advanced-filter-component) #{cc.clientId}:task-view-container"
+                        global="false" oncomplete="taskWidget.setupScrollbar();"/>
                       <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
                         itemValue="#{filter}" />
                     </p:selectManyCheckbox>
                     <p:selectBooleanCheckbox id="in-progress-checkbox" styleClass="in-progress-task-checkbox"
                       rendered="#{!data.dataModel.hasReadAllTasksPermisson()}"
                       value="#{data.dataModel.inProgressFilterDisplayed}"
-                      itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskState/RESUMED')}"
-                      valueChangeListener="#{data.dataModel.reloadViewContainer(data.dataModel.inProgressFilterDisplayed)}">
+                      itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskState/RESUMED')}">
                       <p:ajax global="false"
-                        update="#{cc.clientId}:advanced-filter-container"
+                        update="#{cc.clientId}:advanced-filter-container #{cc.clientId}:task-view-container"
                         oncomplete="taskWidget.setupScrollbar();" />
                     </p:selectBooleanCheckbox>
                     <p:tooltip for="in-progress-checkbox" trackMouse="true"
@@ -228,7 +227,7 @@
             isSelected="#{cc.attrs.selectedTaskId eq task.getId()}"
             compactMode="#{data.dataModel.compactMode}" 
             dataModel="#{data.dataModel}"
-            selectedTask="#{data.setSelectedTask(task)}" loadDelegateData="#{logic.initDataToDelegate(task)}">
+            selectedTask="#{data.setSelectedTask(task)}">
             <cc:insertFacet name="taskHeader" />
           </ic:ch.ivy.addon.portalkit.component.TaskItem>
         </p:dataScroller>

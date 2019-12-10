@@ -28,6 +28,11 @@ public class TaskInProgressByOthersFilter extends TaskFilter {
     isTaskInProgressByOthersDisplayed = false;
   }
 
+  @Override
+  public boolean reloadViewContainer() {
+    return true;
+  }
+
   public boolean getIsTaskInProgressByOthersDisplayed() {
     return isTaskInProgressByOthersDisplayed;
   }
