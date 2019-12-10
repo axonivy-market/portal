@@ -21,6 +21,8 @@ import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
+import ch.ivyteam.ivy.process.call.SubProcessCallResult;
+import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
@@ -238,19 +240,21 @@ public class UserUtils {
   
   @SuppressWarnings("unchecked")
   private static List<IUser> findUsersByCallableProcess() {
-    if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
-      Map<String, List<IUser>> usersByApp = SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
-          .withStartName("findUsersOverAllApplications")
-          .call(Ivy.session().getSessionUserName())
-          .get("usersByApp", Map.class);
-      return usersByApp.values().stream().flatMap(List::stream)
-          .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(IUser::getName))), ArrayList::new));
-    }
-    
-    return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
-        .withStartName("findUsers")
-        .call(Ivy.request().getApplication())
-        .get("users", List.class);
+      return IvyExecutor.executeAsSystem(() -> {
+      if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
+        Map<String, List<IUser>> usersByApp = SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
+            .withStartName("findUsersOverAllApplications")
+            .call(Ivy.session().getSessionUserName())
+            .get("usersByApp", Map.class);
+        return usersByApp.values().stream().flatMap(List::stream)
+            .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(IUser::getName))), ArrayList::new));
+      }
+      
+      return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
+          .withStartName("findUsers")
+          .call(Ivy.request().getApplication())
+          .get("users", List.class);
+      });
   }
   
   public static String getUserName(IUser user) {
@@ -263,5 +267,27 @@ public class UserUtils {
     return IvyExecutor.executeAsSystem(() -> {
       return user.getFullName();
     });
+  }
+  
+  @SuppressWarnings("unchecked")
+  public static List<ISecurityMember> findAllSecurityMembers() {
+    List<ISecurityMember> responsibles = new ArrayList<>();
+    try {
+      SubProcessCallResult result = ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+        if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
+          return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE).withStartName("findSecurityMembersOverAllApplications")
+              .call(Ivy.session().getSessionUserName());
+        }
+        return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE).withStartName("findSecurityMembers")
+            .call(Ivy.request().getApplication());
+      }); 
+      List<IUser> users = result.get("users", List.class);
+      List<IRole> roles = result.get("roles", List.class);
+      responsibles.addAll(users);
+      responsibles.addAll(roles);
+    } catch (Exception e) {
+      Ivy.log().error("Can't get list of security members", e);
+    }
+    return responsibles;
   }
 }
