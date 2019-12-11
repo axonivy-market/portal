@@ -18,8 +18,6 @@
           styleClass="express-assignee-autocomplete" value="#{data.selectedUser}" completeMethod="#{workflowDefinitionBean.populateUserAutoComplete}"
           var="user" itemLabel="#{user.displayName}" itemValue="#{user}" converter="pojoConverter" cache="true" queryDelay="500" maxResults="100"
           moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
-          <f:event listener="#{workflowDefinitionBean.populateUserAutoComplete}" type="preRenderComponent" />
-          <p:ajax event="query" global="false" />
           <p:ajax event="itemSelect" update="add-assignee-button" />
           <p:column>
             <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.memberName.substring(1))}" />
@@ -31,8 +29,6 @@
           var="role" itemLabel="#{role.getDisplayName() != '' ? role.getDisplayName() : role.getMemberName()}" itemValue="#{role}"
           converter="pojoConverter" cache="true" queryDelay="500" maxResults="100" selectLimit="100"
           moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
-          <f:event listener="#{workflowDefinitionBean.populateRoleAutoComplete}" type="preRenderComponent" />
-          <p:ajax event="query" global="false" />
           <p:ajax event="itemSelect" update="add-assignee-button" />
         </p:autoComplete>
         <p:commandButton id="add-assignee-button" styleClass="add-assignee-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"

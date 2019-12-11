@@ -74,7 +74,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected boolean isRelatedTaskDisplayed;
   protected boolean isNotKeepFilter;
 
-  private TaskFilter templeTaskFilter;
+  private TaskFilter selectedTaskFilter;
 
   public TaskLazyDataModel(String taskWidgetComponentId) {
     super();
@@ -168,8 +168,8 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   @Override
   public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-    if (templeTaskFilter != null && !templeTaskFilter.reloadViewContainer()) {
-      templeTaskFilter = null;
+    if (selectedTaskFilter != null && !selectedTaskFilter.reloadViewContainer()) {
+      selectedTaskFilter = null;
       return data;
     }
 
@@ -397,7 +397,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   public void removeFilter(TaskFilter filter) {
-    templeTaskFilter = filter;
+    selectedTaskFilter = filter;
     filter.resetValues();
     selectedFilters.remove(filter);
     resetFilterData();
@@ -477,7 +477,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       toggleFilters = (List<TaskFilter>) CollectionUtils.subtract(oldSelectedFilters, newSelectedFilters);
     }
     if (CollectionUtils.isNotEmpty(toggleFilters)) {
-      templeTaskFilter = toggleFilters.get(0);
+      selectedTaskFilter = toggleFilters.get(0);
       toggleFilters.get(0).resetValues();
     }
     resetFilterData();
