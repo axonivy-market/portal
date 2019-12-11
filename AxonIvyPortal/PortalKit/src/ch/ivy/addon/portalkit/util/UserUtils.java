@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeSet;
-import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -47,9 +46,7 @@ public class UserUtils {
    */
   public static void setLanguague() {
     try {
-      ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Object>() {
-        @Override
-        public Object call() throws Exception {
+      ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
           IUser sessionUser = getIvySession().getSessionUser();
           Locale l = null;
           if (sessionUser.getEMailLanguage() != null) {
@@ -57,13 +54,11 @@ public class UserUtils {
           } else {
             // Application Default
             Locale defaultApplicationLocal = Ivy.request().getApplication().getDefaultEMailLanguage();
-            l = new Locale(defaultApplicationLocal.getLanguage(), defaultApplicationLocal.getCountry(),
-                APPLICATION_DEFAULT);
+            l = new Locale(defaultApplicationLocal.getLanguage(), defaultApplicationLocal.getCountry(), APPLICATION_DEFAULT);
           }
           getIvySession().setContentLocale(l);
           getIvySession().setFormattingLocale(l);
           return null;
-        }
       });
     } catch (Exception e) {
       Ivy.log().error(e);
@@ -82,9 +77,9 @@ public class UserUtils {
     if (StringUtils.isEmpty(fullname)) {
       return username;
     }
-    return fullname + " (" + username + ")";
+    return String.format("%s (%s)", fullname, username);
   }
-
+  
   /**
    * Filter list of users by name based on provided query
    * 
@@ -188,11 +183,7 @@ public class UserUtils {
   }
 
   public static String getSessionTaskKeywordFilterAttribute() {
-    String keyword = (String) Ivy.session().getAttribute(TASK_KEYWORD_FILTER);
-    if (StringUtils.isBlank(keyword)) {
-      return "";
-    }
-    return keyword;
+    return StringUtils.defaultIfBlank((String) Ivy.session().getAttribute(TASK_KEYWORD_FILTER), "");
   }
 
   public static TaskInProgressByOthersFilter getSessionTaskInProgressFilterAttribute() {
@@ -225,11 +216,7 @@ public class UserUtils {
   }
 
   public static String getSessionCaseKeywordFilterAttribute() {
-    String keyword = (String) Ivy.session().getAttribute(CASE_KEYWORD_FILTER);
-    if (StringUtils.isBlank(keyword)) {
-      return "";
-    }
-    return keyword;
+    return StringUtils.defaultIfBlank((String)Ivy.session().getAttribute(CASE_KEYWORD_FILTER), "");
   }
 
   public static List<IUser> findAllUserByApplication() {
