@@ -168,7 +168,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   @Override
   public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-    if (selectedTaskFilter != null && !selectedTaskFilter.reloadViewContainer()) {
+    if (selectedTaskFilter != null && !selectedTaskFilter.reloadView()) {
       selectedTaskFilter = null;
       return data;
     }

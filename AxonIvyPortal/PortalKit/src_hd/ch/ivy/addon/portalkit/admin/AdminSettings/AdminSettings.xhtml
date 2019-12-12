@@ -91,9 +91,9 @@
     <!-- SETTINGS TAB -->
     <p:tab id="settingTab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}">
       <h:form prependId="false" id="settingForm">
-        <p:remoteCommand name="initAdminSettingsData" actionListener="#{logic.initAdminSettingsData}"
+        <p:remoteCommand name="initAdminSettingsData" actionListener="#{logic.initAdminSettingsData}" process="@this" immediate="true"
           update=":#{p:component('settingTable')} :#{p:component('announcement-table')} :#{p:component('action-group')} :#{p:component('announcement-validation-messages')}" />
-        <p:remoteCommand name="clearFilter" actionListener="#{logic.clearSettingTableFilter}" />
+        <p:remoteCommand name="clearFilter" actionListener="#{logic.clearSettingTableFilter}" process="@this" immediate="true" />
         <h:panelGroup layout="block" styleClass="setting-tab-action-buttons">
           <p:commandButton id="restore-all-to-default-button"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreAllToDefault')}"
