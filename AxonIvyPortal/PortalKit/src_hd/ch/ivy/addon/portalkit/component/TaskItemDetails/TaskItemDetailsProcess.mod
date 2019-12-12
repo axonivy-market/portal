@@ -28,22 +28,16 @@ Cs0 @UdProcessEnd f15 '' #zField
 Cs0 @PushWFArc f16 '' #zField
 Cs0 @Alternative f77 '' #zField
 Cs0 @UdProcessEnd f68 '' #zField
-Cs0 @GridStep f56 '' #zField
-Cs0 @GridStep f54 '' #zField
 Cs0 @GridStep f66 '' #zField
 Cs0 @GridStep f49 '' #zField
 Cs0 @Alternative f99 '' #zField
 Cs0 @PushWFArc f71 '' #zField
-Cs0 @PushWFArc f73 '' #zField
-Cs0 @PushWFArc f57 '' #zField
 Cs0 @PushWFArc f67 '' #zField
 Cs0 @PushWFArc f100 '' #zField
-Cs0 @PushWFArc f55 '' #zField
 Cs0 @PushWFArc f20 '' #zField
 Cs0 @UdMethod f30 '' #zField
 Cs0 @GridStep f35 '' #zField
 Cs0 @PushWFArc f64 '' #zField
-Cs0 @PushWFArc f3 '' #zField
 Cs0 @Alternative f79 '' #zField
 Cs0 @UdProcessEnd f98 '' #zField
 Cs0 @UdMethod f97 '' #zField
@@ -53,6 +47,8 @@ Cs0 @PushWFArc f87 '' #zField
 Cs0 @PushWFArc f81 '' #zField
 Cs0 @PushWFArc f4 '' #zField
 Cs0 @PushWFArc f5 '' #zField
+Cs0 @PushWFArc f17 '' #zField
+Cs0 @PushWFArc f3 '' #zField
 >Proto Cs0 Cs0 TaskItemDetailsProcess #zField
 Cs0 f0 guid 16BBB5787F4A8092 #txt
 Cs0 f0 method start(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage) #txt
@@ -159,7 +155,7 @@ Cs0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f45 160 458 128 44 -56 -8 #rect
 Cs0 f45 @|StepIcon #fIcon
-Cs0 f15 883 467 26 26 0 12 #rect
+Cs0 f15 579 467 26 26 0 12 #rect
 Cs0 f15 @|UdProcessEndIcon #fIcon
 Cs0 f16 expr out #txt
 Cs0 f16 109 480 160 480 #arcP
@@ -167,48 +163,6 @@ Cs0 f77 338 466 28 28 14 0 #rect
 Cs0 f77 @|AlternativeIcon #fIcon
 Cs0 f68 595 563 26 26 0 12 #rect
 Cs0 f68 @|UdProcessEndIcon #fIcon
-Cs0 f56 actionTable 'out=in;
-' #txt
-Cs0 f56 actionCode 'import javax.faces.context.FacesContext;
-import ch.ivyteam.ivy.server.ServerFactory;
-import ch.ivyteam.ivy.request.RequestUriFactory;
-import javax.servlet.http.HttpServletRequest;
-import ch.ivy.addon.portalkit.support.UrlDetector;
-import ch.ivyteam.ivy.workflow.IProcessStart;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
-
-ProcessStartCollector collector = new ProcessStartCollector(ivy.wf.getApplication());
-java.util.List<IProcessStart> processStarts = collector.findProcessStartRequestPathContainsKeyword("restorePortalTaskList.ivp");
-UrlDetector urlDetector = new UrlDetector();
-HttpServletRequest request = FacesContext.getCurrentInstance().getExternalContext().getRequest() as HttpServletRequest;
-out.callbackUrl = urlDetector.getBaseURLWithoutContextPath(request) + RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), processStarts.get(0));' #txt
-Cs0 f56 security system #txt
-Cs0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Build callbackUrl</name>
-        <nameStyle>17
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f56 408 458 112 44 -46 -8 #rect
-Cs0 f56 @|StepIcon #fIcon
-Cs0 f54 actionTable 'out=in;
-' #txt
-Cs0 f54 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-
-in.task.customFields().stringField(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString()).set(in.callbackUrl);' #txt
-Cs0 f54 security system #txt
-Cs0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Set additional property</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f54 560 458 128 44 -61 -8 #rect
-Cs0 f54 @|StepIcon #fIcon
 Cs0 f66 actionTable 'out=in;
 ' #txt
 Cs0 f66 actionCode 'import org.primefaces.PrimeFaces;
@@ -276,25 +230,18 @@ Start task</name>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f49 720 458 128 44 -44 -16 #rect
+Cs0 f49 416 458 128 44 -44 -16 #rect
 Cs0 f49 @|StepIcon #fIcon
 Cs0 f99 336 560 32 32 0 16 #rect
 Cs0 f99 @|AlternativeIcon #fIcon
 Cs0 f71 expr out #txt
 Cs0 f71 536 576 595 576 #arcP
-Cs0 f73 expr out #txt
-Cs0 f73 688 480 720 480 #arcP
-Cs0 f57 expr in #txt
-Cs0 f57 outCond in.canUserResumeTask #txt
-Cs0 f57 366 480 408 480 #arcP
 Cs0 f67 expr in #txt
 Cs0 f67 368 576 424 576 #arcP
 Cs0 f67 0 0.1527488616366867 0 0 #arcLabel
 Cs0 f100 expr in #txt
 Cs0 f100 352 494 352 560 #arcP
 Cs0 f100 0 0.6038825846613081 0 0 #arcLabel
-Cs0 f55 expr out #txt
-Cs0 f55 520 480 560 480 #arcP
 Cs0 f20 expr out #txt
 Cs0 f20 288 480 338 480 #arcP
 Cs0 f30 guid 16D4E180956E8D83 #txt
@@ -326,10 +273,6 @@ Cs0 f35 168 346 112 44 -29 -8 #rect
 Cs0 f35 @|StepIcon #fIcon
 Cs0 f64 expr out #txt
 Cs0 f64 109 368 168 368 #arcP
-Cs0 f3 expr out #txt
-Cs0 f3 280 368 464 458 #arcP
-Cs0 f3 1 464 368 #addKink
-Cs0 f3 0 0.7613470524461249 0 0 #arcLabel
 Cs0 f79 336 656 32 32 0 16 #rect
 Cs0 f79 @|AlternativeIcon #fIcon
 Cs0 f98 467 659 26 26 0 12 #rect
@@ -376,7 +319,14 @@ Cs0 f81 expr out #txt
 Cs0 f81 109 672 160 672 #arcP
 Cs0 f4 expr in #txt
 Cs0 f4 352 656 352 592 #arcP
-Cs0 f5 848 480 883 480 #arcP
+Cs0 f5 544 480 579 480 #arcP
+Cs0 f17 expr out #txt
+Cs0 f17 280 368 480 458 #arcP
+Cs0 f17 1 480 368 #addKink
+Cs0 f17 0 0.7613470524461249 0 0 #arcLabel
+Cs0 f3 expr in #txt
+Cs0 f3 outCond in.canUserResumeTask #txt
+Cs0 f3 366 480 416 480 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -391,15 +341,8 @@ Cs0 f8 mainOut f12 tail #connect
 Cs0 f12 head f10 mainIn #connect
 Cs0 f14 mainOut f16 tail #connect
 Cs0 f16 head f45 mainIn #connect
-Cs0 f77 out f57 tail #connect
-Cs0 f57 head f56 mainIn #connect
 Cs0 f66 mainOut f71 tail #connect
 Cs0 f71 head f68 mainIn #connect
-Cs0 f56 mainOut f55 tail #connect
-Cs0 f55 head f54 mainIn #connect
-Cs0 f54 mainOut f73 tail #connect
-Cs0 f73 head f49 mainIn #connect
-Cs0 f77 out f100 tail #connect
 Cs0 f100 head f99 in #connect
 Cs0 f99 out f67 tail #connect
 Cs0 f67 head f66 mainIn #connect
@@ -407,8 +350,6 @@ Cs0 f45 mainOut f20 tail #connect
 Cs0 f20 head f77 in #connect
 Cs0 f30 mainOut f64 tail #connect
 Cs0 f64 head f35 mainIn #connect
-Cs0 f35 mainOut f3 tail #connect
-Cs0 f3 head f56 mainIn #connect
 Cs0 f97 mainOut f81 tail #connect
 Cs0 f81 head f80 mainIn #connect
 Cs0 f80 mainOut f87 tail #connect
@@ -419,3 +360,8 @@ Cs0 f79 out f4 tail #connect
 Cs0 f4 head f99 in #connect
 Cs0 f49 mainOut f5 tail #connect
 Cs0 f5 head f15 mainIn #connect
+Cs0 f35 mainOut f17 tail #connect
+Cs0 f17 head f49 mainIn #connect
+Cs0 f77 out f3 tail #connect
+Cs0 f3 head f49 mainIn #connect
+Cs0 f77 out f100 tail #connect
