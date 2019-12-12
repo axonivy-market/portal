@@ -202,6 +202,7 @@ Pt0 f14 requestEnabled true #txt
 Pt0 f14 triggerEnabled false #txt
 Pt0 f14 callSignature BackFromTaskDetails(Number) #txt
 Pt0 f14 caseData businessCase.attach=true #txt
+Pt0 f14 showInStartList 0 #txt
 Pt0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
