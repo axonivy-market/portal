@@ -48,7 +48,7 @@
           <p:dataTable id="absence-table" styleClass="absence-table" scrollable="true" scrollHeight="300"
             value="#{data.displayedAbsences}" var="absence" sortBy="#{absence.from}" reflow="true"
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" width="150"
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" width="250"
               sortBy="#{absence.fullname}">
               <h:outputText value="#{absenceBean.getDisplayedName(absence)}" />
             </p:column>
