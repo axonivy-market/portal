@@ -1348,29 +1348,26 @@ Bk7 f29 432 170 176 44 -83 -8 #rect
 Bk7 f29 @|StepIcon #fIcon
 Bk7 f28 actionTable 'out=in;
 ' #txt
-Bk7 f28 actionCode 'import java.util.Map;
+Bk7 f28 actionCode 'import ch.ivy.addon.portalkit.constant.CustomFields;
+import java.util.Map;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import java.util.Arrays;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
-import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 
-Map x =  IvyAdapterService.startSubProcess("handleEndPage()", null, Arrays.asList(PortalLibrary.AXON_EXPRESS.getValue()));
+Map x = IvyAdapterService.startSubProcess("handleEndPage()", null, Arrays.asList(PortalLibrary.AXON_EXPRESS.getValue()));
 String callbackUrl = x.get("callbackUrl") as String;
-ivy.task.customFields().stringField(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString()).set(callbackUrl);
+ivy.task.customFields().stringField(CustomFields.EXPRESS_END_PAGE_URL.toString()).set(callbackUrl);
 
 ' #txt
 Bk7 f28 security system #txt
 Bk7 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>set callback Url to 
-task AdditionalProperty</name>
-        <nameStyle>44
-</nameStyle>
+        <name>Set end page</name>
     </language>
 </elementInfo>
 ' #txt
-Bk7 f28 784 170 160 44 -59 -16 #rect
+Bk7 f28 808 170 112 44 -34 -8 #rect
 Bk7 f28 @|StepIcon #fIcon
 Bk7 f7 actionTable 'out=in1;
 ' #txt
@@ -1409,7 +1406,7 @@ Bk7 f32 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk7 f32 704 192 784 192 #arcP
+Bk7 f32 704 192 808 192 #arcP
 Bk7 f32 0 0.3970929020272241 0 -10 #arcLabel
 Bk7 f34 expr out #txt
 Bk7 f34 608 192 672 192 #arcP
@@ -1431,7 +1428,7 @@ Bk7 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Bk7 f24 192 170 112 44 -41 -8 #rect
 Bk7 f24 @|StepIcon #fIcon
 Bk7 f22 expr out #txt
-Bk7 f22 944 192 1008 192 #arcP
+Bk7 f22 920 192 1008 192 #arcP
 Bk7 f19 expr out #txt
 Bk7 f19 type gawfs.ExecutePredefinedWorkflowData #txt
 Bk7 f19 var in1 #txt

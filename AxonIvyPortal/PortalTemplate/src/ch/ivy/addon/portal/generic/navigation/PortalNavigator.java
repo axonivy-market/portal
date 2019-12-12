@@ -27,11 +27,11 @@ import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
 
 public final class PortalNavigator {
-  private static final String PORTAL_PROCESS_START_NAME = "Start Processes/PortalStart/PortalStart.ivp";
-  private static final String PORTAL_PROCESS = "Start Processes/PortalStart/startPortalProcess.ivp";
-  private static final String PORTAL_TASK = "Start Processes/PortalStart/startPortalTask.ivp";
-  private static final String PORTAL_CASE = "Start Processes/PortalStart/startPortalCase.ivp";
-  private static final String PORTAL_STATISTIC = "Start Processes/PortalStart/startPortalStatistic.ivp";
+  private static final String PORTAL_PROCESS_START_NAME = "Start Processes/PortalStart/DefaultApplicationHomePage.ivp";
+  private static final String PORTAL_PROCESS = "Start Processes/PortalPages/DefaultProcessStartListPage.ivp";
+  private static final String PORTAL_TASK = "Start Processes/PortalStart/DefaultTaskListPage.ivp";
+  private static final String PORTAL_CASE = "Start Processes/PortalStart/CaseListPage.ivp";
+  private static final String PORTAL_STATISTIC = "Start Processes/PortalPages/StatisticPage.ivp";
   private static final String SLASH = "/";
 
   public String getPortalStartUrl() throws MalformedURLException {
@@ -139,23 +139,23 @@ public final class PortalNavigator {
   }
 
   public void navigateToPortalProcess() {
-    navigateByKeyword("startPortalProcess.ivp", PORTAL_PROCESS);
+    navigateByKeyword("DefaultProcessStartListPage.ivp", PORTAL_PROCESS);
   }
 
   public void navigateToPortalCase() {
-    navigateByKeyword("startPortalCase.ivp", PORTAL_CASE);
+    navigateByKeyword("CaseListPage.ivp", PORTAL_CASE);
   }
 
   public void navigateToPortalTask() {
-    navigateByKeyword("startPortalTask.ivp", PORTAL_TASK);
+    navigateByKeyword("DefaultTaskListPage.ivp", PORTAL_TASK);
   }
 
   public void navigateToPortalStatistic() {
-    navigateByKeyword("startPortalStatistic.ivp", PORTAL_STATISTIC);
+    navigateByKeyword("StatisticPage.ivp", PORTAL_STATISTIC);
   }
   
   public void navigateToPortalHome() {
-    navigateByKeyword("PortalStart.ivp", PORTAL_PROCESS_START_NAME);
+    navigateByKeyword("DefaultApplicationHomePage.ivp", PORTAL_PROCESS_START_NAME);
   }
 
   private void navigateByKeyword(String keyword, String defaultFriendlyRequestPath) {
