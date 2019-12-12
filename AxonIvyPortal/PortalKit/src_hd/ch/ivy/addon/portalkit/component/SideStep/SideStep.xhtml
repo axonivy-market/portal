@@ -28,7 +28,7 @@
     styleClass="options-panel" dynamic="true" rendered="#{!cc.attrs.isDisabled}">
 
     <p:commandLink id="task-reset-command" onstart="event.stopPropagation();" rendered="#{taskActionBean.showResetTask}" disabled="#{!taskActionBean.canReset(task)}"
-      styleClass="option-item" update="@parent #{cc.attrs.componentToUpdate}">
+      styleClass="option-item" actionListener="#{logic.resetTask(task)}" update="@parent #{cc.attrs.componentToUpdate}">
       <i class="option-action-icon tmi-box-arrow-left" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}</span>
     </p:commandLink>
@@ -38,7 +38,7 @@
       update="@parent #{cc.attrs.componentToUpdate} @widgetVar(task-delegate-dialog)">
       <i class="option-action-icon tmi-box-arrow-right" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}</span>
-      <p:ajax event="click" onstart="#{cc.attrs.selectedTask}" oncomplete="initDataToDelegate();" global="false" process="@this" immediate="true" />
+      <p:ajax event="click" oncomplete="#{cc.attrs.selectedTask}; initDataToDelegate();" global="false" process="@this" immediate="true" />
     </p:commandLink>
 
     <p:commandLink id="task-reserve-command" disabled="#{!taskActionBean.canPark(task)}" rendered="#{taskActionBean.showReserveTask}" onstart="event.stopPropagation();"

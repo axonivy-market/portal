@@ -63,7 +63,7 @@
         <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group"
           rendered="#{(not empty data.taskPrivateFilters or not empty data.taskPublicFilters) and not data.dataModel.compactMode}"> 
           <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container">
-            <h:panelGroup id="filter-selection-panel">
+            <h:panelGroup id="filter-selection-panel" layout="block">
               <p:commandLink id="filter-name" styleClass="filter-name"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/savedFilters')} #{data.dataModel.selectedTaskFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedTaskFilterData.filterName}"
                 global="false" />
