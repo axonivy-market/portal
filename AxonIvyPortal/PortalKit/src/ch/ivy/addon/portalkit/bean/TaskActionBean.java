@@ -37,8 +37,7 @@ public class TaskActionBean {
   private boolean isShowDelegateTask;
   //This variable control display of side step and create adhoc
   private boolean isShowAdditionalOptions;
-  private static final String OPEN_TASK_ITEM_DETAILS = "Start Processes/PortalStart/startPortalTaskDetail.ivp";
-  private static final String OPEN_TASK_LIST = "Start Processes/PortalStart/restorePortalTaskList.ivp";
+  private static final String BACK_FROM_TASK_DETAILS = "Start Processes/PortalStart/BackFromTaskDetails.ivp";
 
   public TaskActionBean() {
     isShowResetTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_RESET_ACTION);
@@ -193,15 +192,6 @@ public class TaskActionBean {
   public void setShowAdditionalOptions(boolean isShowAdditionalOptions) {
     this.isShowAdditionalOptions = isShowAdditionalOptions;
   }
-  
-
-  public void navigateTask(ITask task) {
-    String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("startPortalTaskDetail.ivp");
-    if (StringUtils.isEmpty(customizePortalFriendlyRequestPath)) {
-      customizePortalFriendlyRequestPath = OPEN_TASK_ITEM_DETAILS;
-    }
-    redirect(getProcessStartUriWithTaskParameters(task, customizePortalFriendlyRequestPath));
-  }
 
   public void redirect(String url) {
     try {
@@ -225,9 +215,9 @@ public class TaskActionBean {
   }
   
   public void backToTaskList(ITask task) throws MalformedURLException {
-    String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("restorePortalTaskList.ivp");
+    String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("BackFromTaskDetails.ivp");
     if (StringUtils.isEmpty(friendlyRequestPath)) {
-      friendlyRequestPath = OPEN_TASK_LIST;
+      friendlyRequestPath = BACK_FROM_TASK_DETAILS;
     }
     String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(friendlyRequestPath);
     if (StringUtils.isNotEmpty(requestPath)) {
