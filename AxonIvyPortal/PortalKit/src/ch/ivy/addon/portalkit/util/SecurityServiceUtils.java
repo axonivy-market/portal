@@ -78,7 +78,7 @@ public class SecurityServiceUtils {
         ProcessStartCollector processStartCollector = new ProcessStartCollector(defaultPortalApplication);
         IProcessStart processStart =
             processStartCollector
-                .findProcessStartByUserFriendlyRequestPath("Start Processes/PortalStart/PortalStart.ivp");
+                .findProcessStartByUserFriendlyRequestPath("Start Processes/PortalStart/DefaultApplicationHomePage.ivp");
         if (processStart != null) {
           try {
             return String.format("/%s/pro/%s", RequestUriFactory.getIvyContextName(),

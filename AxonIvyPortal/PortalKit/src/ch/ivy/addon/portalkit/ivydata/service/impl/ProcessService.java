@@ -22,7 +22,7 @@ import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class ProcessService implements IProcessService {
 
-  private static final String PORTAL_START_REQUEST_PATH = "/PortalStart.ivp";
+  private static final String PORTAL_START_REQUEST_PATH = "/DefaultApplicationHomePage.ivp";
 
   private ProcessService() {}
 

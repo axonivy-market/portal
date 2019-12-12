@@ -117,8 +117,8 @@ type either as Ivy application or Third Party application.
    -  ``Portal link`` specifies the link will be redirected when
       selecting the application on the application menu. It could be an
       absolute link (e.g.
-      http://10.123.1.30:8000/ivy/pro/.../PortalStart.ivp) or relative
-      link (e.g. /ivy/pro/.../PortalStart.ivp). If your application
+      http://10.123.1.30:8000/ivy/pro/.../DefaultApplicationHomePage.ivp) or relative
+      link (e.g. /ivy/pro/.../DefaultApplicationHomePage.ivp). If your application
       could be accessed from multiple domains, use relative link so that
       you can access the link from different domains.
 
