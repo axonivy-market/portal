@@ -1,0 +1,4 @@
+PortalPagesData #class
+ch.ivy.addon.portal.generic #namespace
+callbackUrl String #field
+errorCode String #field

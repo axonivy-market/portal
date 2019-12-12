@@ -10,7 +10,7 @@
       <div class="md-inputfield">
         <p:autoComplete scrollHeight="200" dropdown="true" id="username" 
           completeMethod="#{logic.autoCompleteForUser}"
-          value="#{data.selectedUser}"
+          value="#{data.selectedUserDTO}"
           var="user" itemValue="#{user}" itemLabel="#{user.displayName}"
           converter="pojoConverter"
           disabled="#{uneditedUserName ne 'false'}" required="true"
