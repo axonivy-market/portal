@@ -11,20 +11,16 @@ Ts0 @MessageFlowInP-0n messageIn messageIn #zField
 Ts0 @MessageFlowOutP-0n messageOut messageOut #zField
 Ts0 @TextInP .xml .xml #zField
 Ts0 @TextInP .responsibility .responsibility #zField
-Ts0 @UdProcessEnd f94 '' #zField
 Ts0 @UdProcessEnd f46 '' #zField
 Ts0 @Alternative f79 '' #zField
-Ts0 @UdEvent f36 '' #zField
 Ts0 @PushWFArc f92 '' #zField
 Ts0 @UdProcessEnd f98 '' #zField
 Ts0 @UdProcessEnd f17 '' #zField
-Ts0 @UdProcessEnd f70 '' #zField
 Ts0 @GridStep f56 '' #zField
 Ts0 @UdMethod f33 '' #zField
 Ts0 @PushWFArc f55 '' #zField
 Ts0 @GridStep f54 '' #zField
 Ts0 @UdProcessEnd f1 '' #zField
-Ts0 @UdProcessEnd f3 '' #zField
 Ts0 @UdMethod f108 '' #zField
 Ts0 @UdMethod f30 '' #zField
 Ts0 @PushWFArc f87 '' #zField
@@ -38,19 +34,12 @@ Ts0 @PushWFArc f101 '' #zField
 Ts0 @PushWFArc f67 '' #zField
 Ts0 @PushWFArc f100 '' #zField
 Ts0 @Alternative f99 '' #zField
-Ts0 @PushWFArc f95 '' #zField
-Ts0 @UdMethod f76 '' #zField
 Ts0 @PushWFArc f73 '' #zField
 Ts0 @GridStep f49 '' #zField
 Ts0 @PushWFArc f81 '' #zField
 Ts0 @UdMethod f97 '' #zField
 Ts0 @PushWFArc f71 '' #zField
 Ts0 @UdProcessEnd f68 '' #zField
-Ts0 @PushWFArc f21 '' #zField
-Ts0 @PushWFArc f5 '' #zField
-Ts0 @GridStep f4 '' #zField
-Ts0 @PushWFArc f69 '' #zField
-Ts0 @UdMethod f96 '' #zField
 Ts0 @PushWFArc f65 '' #zField
 Ts0 @PushWFArc f64 '' #zField
 Ts0 @GridStep f35 '' #zField
@@ -64,24 +53,10 @@ Ts0 @PushWFArc f8 '' #zField
 Ts0 @PushWFArc f9 '' #zField
 Ts0 @PushWFArc f2 '' #zField
 >Proto Ts0 Ts0 TaskItemProcess #zField
-Ts0 f94 339 883 26 26 0 12 #rect
-Ts0 f94 @|UdProcessEndIcon #fIcon
 Ts0 f46 915 299 26 26 0 12 #rect
 Ts0 f46 @|UdProcessEndIcon #fIcon
 Ts0 f79 336 488 32 32 0 16 #rect
 Ts0 f79 @|AlternativeIcon #fIcon
-Ts0 f36 guid 16816B4C738DA4B0 #txt
-Ts0 f36 actionTable 'out=in;
-' #txt
-Ts0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>changeAssignType</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f36 83 683 26 26 -47 15 #rect
-Ts0 f36 @|UdEventIcon #fIcon
 Ts0 f92 expr in #txt
 Ts0 f92 outCond in.canUserResumeTask #txt
 Ts0 f92 368 504 467 504 #arcP
@@ -89,8 +64,6 @@ Ts0 f98 467 491 26 26 0 12 #rect
 Ts0 f98 @|UdProcessEndIcon #fIcon
 Ts0 f17 -106 1334 20 20 13 0 #rect
 Ts0 f17 @|UdProcessEndIcon #fIcon
-Ts0 f70 339 979 26 26 0 12 #rect
-Ts0 f70 @|UdProcessEndIcon #fIcon
 Ts0 f56 actionTable 'out=in;
 ' #txt
 Ts0 f56 actionCode 'import javax.faces.context.FacesContext;
@@ -153,8 +126,6 @@ Ts0 f54 576 290 128 44 -61 -8 #rect
 Ts0 f54 @|StepIcon #fIcon
 Ts0 f1 339 83 26 26 0 12 #rect
 Ts0 f1 @|UdProcessEndIcon #fIcon
-Ts0 f3 339 683 26 26 0 12 #rect
-Ts0 f3 @|UdProcessEndIcon #fIcon
 Ts0 f108 guid 161932E544273665 #txt
 Ts0 f108 method setSelectedTaskAndDataModel(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel) #txt
 Ts0 f108 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> param;' #txt
@@ -191,7 +162,6 @@ Ts0 f80 actionTable 'out=in;
 Ts0 f80 actionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.bean.TaskActionBean;
 
-ivy.log.info("=============== task is seleted id : {0}", in.task.getId());
 TaskActionBean taskActionBean = ManagedBeans.get("taskActionBean") as TaskActionBean;
 out.canUserResumeTask = taskActionBean.canResume(in.task);' #txt
 Ts0 f80 security system #txt
@@ -263,29 +233,6 @@ Ts0 f100 352 326 352 392 #arcP
 Ts0 f100 0 0.6038825846613081 0 0 #arcLabel
 Ts0 f99 336 392 32 32 0 16 #rect
 Ts0 f99 @|AlternativeIcon #fIcon
-Ts0 f95 expr out #txt
-Ts0 f95 109 992 339 992 #arcP
-Ts0 f76 guid 15F8F5A744248DE3 #txt
-Ts0 f76 method autoCompleteForUserDelegate(String) #txt
-Ts0 f76 inParameterDecl '<String query> param;' #txt
-Ts0 f76 inParameterMapAction 'out.queryAutoComplete=param.query;
-' #txt
-Ts0 f76 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> usersToDelegate> result;' #txt
-Ts0 f76 outActionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
-
-result.usersToDelegate = UserUtils.filterUsers(in.usersToDelegate, in.queryAutoComplete);
-' #txt
-Ts0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>autoCompleteForUserDelegate(String)</name>
-        <nameStyle>35,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f76 83 979 26 26 -52 12 #rect
-Ts0 f76 @|UdMethodIcon #fIcon
 Ts0 f73 expr out #txt
 Ts0 f73 704 312 744 312 #arcP
 Ts0 f49 actionTable 'out=in;
@@ -340,48 +287,6 @@ Ts0 f71 expr out #txt
 Ts0 f71 536 408 595 408 #arcP
 Ts0 f68 595 395 26 26 0 12 #rect
 Ts0 f68 @|UdProcessEndIcon #fIcon
-Ts0 f21 expr out #txt
-Ts0 f21 109 696 152 696 #arcP
-Ts0 f5 expr out #txt
-Ts0 f5 296 696 339 696 #arcP
-Ts0 f4 actionTable 'out=in;
-' #txt
-Ts0 f4 actionCode 'out.delegatedSecurityMember = null;
-out.disabledDelegateButton = true;
-' #txt
-Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Change assignee type&#xD;
-to delegate</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f4 152 674 144 44 -54 -16 #rect
-Ts0 f4 @|StepIcon #fIcon
-Ts0 f69 expr out #txt
-Ts0 f69 109 896 339 896 #arcP
-Ts0 f69 0 0.61063400144005 0 0 #arcLabel
-Ts0 f96 guid 15F940442EBC4F26 #txt
-Ts0 f96 method autoCompleteForRoleDelegate(String) #txt
-Ts0 f96 inParameterDecl '<String query> param;' #txt
-Ts0 f96 inParameterMapAction 'out.queryAutoComplete=param.query;
-' #txt
-Ts0 f96 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.IRole> rolesToDelegate> result;' #txt
-Ts0 f96 outActionCode 'import ch.ivy.addon.portalkit.util.RoleUtils;
-
-result.rolesToDelegate = RoleUtils.filterRoles(in.rolesToDelegate, in.queryAutoComplete);' #txt
-Ts0 f96 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>autoCompleteForRoleDelegate(String)</name>
-        <nameStyle>35,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f96 83 883 26 26 -56 13 #rect
-Ts0 f96 @|UdMethodIcon #fIcon
 Ts0 f65 expr out #txt
 Ts0 f65 280 216 480 290 #arcP
 Ts0 f65 1 480 216 #addKink
@@ -452,7 +357,7 @@ Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f6 83 787 26 26 -70 15 #rect
+Ts0 f6 83 723 26 26 -70 15 #rect
 Ts0 f6 @|UdMethodIcon #fIcon
 Ts0 f7 processCall 'Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)' #txt
 Ts0 f7 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
@@ -472,10 +377,10 @@ Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f7 264 778 144 44 -64 -8 #rect
+Ts0 f7 264 714 144 44 -64 -8 #rect
 Ts0 f7 @|CallSubIcon #fIcon
 Ts0 f8 expr out #txt
-Ts0 f8 109 800 264 800 #arcP
+Ts0 f8 109 736 264 736 #arcP
 Ts0 f9 872 312 915 312 #arcP
 Ts0 f2 109 96 339 96 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
@@ -484,16 +389,8 @@ Ts0 f2 109 96 339 96 #arcP
 >Proto Ts0 '' #fIcon
 Ts0 f77 out f57 tail #connect
 Ts0 f57 head f56 mainIn #connect
-Ts0 f96 mainOut f69 tail #connect
-Ts0 f69 head f94 mainIn #connect
-Ts0 f76 mainOut f95 tail #connect
-Ts0 f95 head f70 mainIn #connect
 Ts0 f108 mainOut f110 tail #connect
 Ts0 f110 head f109 mainIn #connect
-Ts0 f4 mainOut f5 tail #connect
-Ts0 f5 head f3 mainIn #connect
-Ts0 f36 mainOut f21 tail #connect
-Ts0 f21 head f4 mainIn #connect
 Ts0 f30 mainOut f64 tail #connect
 Ts0 f64 head f35 mainIn #connect
 Ts0 f33 mainOut f58 tail #connect
