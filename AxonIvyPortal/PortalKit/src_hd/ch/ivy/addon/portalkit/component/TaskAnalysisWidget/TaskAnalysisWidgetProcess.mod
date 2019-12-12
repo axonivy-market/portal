@@ -411,7 +411,7 @@ Ts0 f5 actionTable 'out=in;
 ' #txt
 Ts0 f5 actionCode 'import javax.faces.context.FacesContext;
 
-String statisticPageUrl = ivy.html.startref("Start Processes/PortalStart/startPortalStatistic.ivp");
+String statisticPageUrl = ivy.html.startref("Start Processes/PortalPages/StatisticPage.ivp");
 FacesContext.getCurrentInstance().getExternalContext().redirect(statisticPageUrl);' #txt
 Ts0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
