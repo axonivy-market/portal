@@ -415,8 +415,7 @@ As0 f6 83 883 26 26 -36 15 #rect
 As0 f6 @|UdEventIcon #fIcon
 As0 f7 actionTable 'out=in;
 ' #txt
-As0 f7 actionCode 'import ch.ivy.addon.portalkit.mapper.UserMapper;
-import ch.ivy.addon.portalkit.util.UserUtils;
+As0 f7 actionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 import java.util.Set;
 import javax.faces.application.FacesMessage;
@@ -1319,7 +1318,7 @@ As0 f14 expr out #txt
 As0 f14 109 800 200 800 #arcP
 As0 f5 actionTable 'out=in;
 ' #txt
-As0 f5 actionCode 'import ch.ivy.addon.portalkit.mapper.UserMapper;
+As0 f5 actionCode 'import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 
 in.selectedAbsence = new IvyAbsence();
@@ -1328,7 +1327,7 @@ in.selectedAbsence.until = new Date();
 in.selectedAbsence.user = ivy.session.getSessionUser();
 
 in.selectedUser = ivy.session.getSessionUser();
-in.selectedUserDTO = UserMapper.convertIUserToUserDTO(ivy.session.getSessionUser());
+in.selectedUserDTO = new UserDTO(in.selectedUser);
 
 in.validationError = false;
 in.isLoadDeputy = false;' #txt

@@ -16,7 +16,6 @@ import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.UserDTO;
-import ch.ivy.addon.portalkit.mapper.UserMapper;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
@@ -111,7 +110,7 @@ public class UserUtils {
     
       if (StringUtils.isEmpty(query)) {
           for (IUser user: users) {
-            filterUsers.add(UserMapper.convertIUserToUserDTO(user));
+            filterUsers.add(new UserDTO(user));
           }
           return filterUsers;
       }
@@ -120,7 +119,7 @@ public class UserUtils {
     return IvyExecutor.executeAsSystem(() -> {
       for (IUser user : users) {
         if (StringUtils.containsIgnoreCase(user.getDisplayName(), query) || StringUtils.containsIgnoreCase(user.getMemberName(), query)) {
-          filterUsers.add(UserMapper.convertIUserToUserDTO(user));
+          filterUsers.add(new UserDTO(user));
         }
       }
 
@@ -301,4 +300,5 @@ public class UserUtils {
     }
     return responsibles;
   }
+  
 }
