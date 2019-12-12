@@ -85,11 +85,25 @@ How to use Basic template
 IFrame Task template
 --------------------
 
-IFrame Task template is used for displaying task functionality and related
-information to support completing the task. It renders the task's content inside :ref:`IFrame in Portal <iframe-in-portal>`.
+IFrame Task Template is used for displaying task functionality (e.g. process chain) and related case information to support completing the task. 
+It renders your task UI inside IFrame (refer to :ref:`IFrame in Portal <iframe-in-portal>`).
 
-.. warning::
-	Only Portal uses this template, DON'T USE, just refer IFrameTaskTemplate.xhtml in PortalTemplate to see how to use some parameters.
+The template is prepared to receive some params passed by javascript. 
+Inside your UI, you can configure these parameters which will be rendered by the template automatically:
+
+::
+
+	<script>
+		window.processSteps = ["Create Investment Request", "Approve Investment Request"];
+		window.currentProcessStep = 0;
+		window.processChainDirection = "VERTICAL";
+		window.processChainShape = "LINE";
+		window.announcementInvisible = false;
+	</script>
+
+.. note::
+	Do not use or refer to this template in your Dialog. This will be done automatically by Portal if you use the mentioned IFrame Approach.
+	You can refer to IFrameTaskTemplate.xhtml in PortalTemplate to see more detailed information about how to use and pass params.
 
 .. _components-layout-templates-task-template:
 
