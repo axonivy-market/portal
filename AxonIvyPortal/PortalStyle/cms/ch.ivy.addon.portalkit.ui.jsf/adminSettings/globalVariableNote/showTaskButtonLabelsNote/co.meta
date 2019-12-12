@@ -1,5 +1,0 @@
-co: name={showTaskButtonLabelsNote} description={} changed={2019-03-25 10:06:47 CET} changedby={lttung} visualorder={0} guid={163FC6F63DAAB91E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={169B41A28A12DF19} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:47 CET} validto={} changed={2019-03-25 10:06:47 CET} changedby={lttung} properties={} id={}
-val: guid={163FC8D170C3F52E} datatype={} isdefault={false} langid={de} description={} validfrom={2018-07-18 10:55:36 CEST} validto={} changed={2018-07-18 10:55:36 CEST} changedby={ldnam} properties={} id={}
-val: guid={163FC6F63E08CF2D} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-14 05:55:48 CEST} validto={} changed={2018-06-14 06:28:15 CEST} changedby={tdnguyen} properties={} id={}
-val: guid={163FC8D180EBF6FE} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-08-27 11:51:11 CEST} validto={} changed={2018-08-27 11:51:11 CEST} changedby={chnam} properties={} id={}
