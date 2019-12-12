@@ -67,6 +67,9 @@ Pt0 @InfoButton f3 '' #zField
 Pt0 @AnnotationArc f8 '' #zField
 Pt0 @PushWFArc f20 '' #zField
 Pt0 @PushWFArc f18 '' #zField
+Pt0 @StartRequest f14 '' #zField
+Pt0 @PushWFArc f23 '' #zField
+Pt0 @PushWFArc f31 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk0 @TextInP .type .type #zField
 Bk0 @TextInP .processKind .processKind #zField
@@ -149,7 +152,6 @@ Bk5 @PushWFArc f1 '' #zField
 Pt0 f10 outLink DefaultEndPage.ivp #txt
 Pt0 f10 inParamDecl '<Number endedTaskId> param;' #txt
 Pt0 f10 inParamTable 'out.endedTaskId=param.endedTaskId;
-out.isTaskFinished=true;
 ' #txt
 Pt0 f10 requestEnabled true #txt
 Pt0 f10 triggerEnabled false #txt
@@ -196,7 +198,7 @@ if  (#task is initialized) {
 		in.dataModel = taskEndInfo.dataModel;
 		in.isTaskStartedInDetails = taskEndInfo.isStartedInTaskDetails;
 		in.portalPage = taskEndInfo.portalPage;
-		if (!in.isTaskStartedInDetails) {
+		if (!in.isTaskStartedInDetails || in.backFromTaskDetails) {
 			SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);
 		}
 		
@@ -455,6 +457,7 @@ not in Portal</name>
 Pt0 f19 392 176 392 118 #arcP
 Pt0 f19 0 0.46551724137931033 -27 0 #arcLabel
 Pt0 f13 expr in #txt
+Pt0 f13 outCond !in.backFromTaskDetails #txt
 Pt0 f13 408 192 456 192 #arcP
 Pt0 f15 expr out #txt
 Pt0 f15 111 480 192 480 #arcP
@@ -520,6 +523,32 @@ Pt0 f20 outCond 'java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPag
 Pt0 f20 672 176 672 112 #arcP
 Pt0 f18 expr in #txt
 Pt0 f18 688 192 744 192 #arcP
+Pt0 f14 outLink BackFromTaskDetails.ivp #txt
+Pt0 f14 inParamDecl '<Number endedTaskId> param;' #txt
+Pt0 f14 inParamTable 'out.backFromTaskDetails=true;
+out.endedTaskId=param.endedTaskId;
+' #txt
+Pt0 f14 requestEnabled true #txt
+Pt0 f14 triggerEnabled false #txt
+Pt0 f14 callSignature BackFromTaskDetails(Number) #txt
+Pt0 f14 caseData businessCase.attach=true #txt
+Pt0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>BackFromTaskDetails.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f14 @C|.responsibility Everybody #txt
+Pt0 f14 81 273 30 30 -44 16 #rect
+Pt0 f14 @|StartRequestIcon #fIcon
+Pt0 f23 111 288 240 215 #arcP
+Pt0 f23 1 240 288 #addKink
+Pt0 f23 0 0.7758746574460319 0 0 #arcLabel
+Pt0 f31 401 199 663 199 #arcP
+Pt0 f31 1 448 240 #addKink
+Pt0 f31 2 608 240 #addKink
+Pt0 f31 1 0.5 0 0 #arcLabel
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1089,6 +1118,10 @@ Pt0 f5 out f20 tail #connect
 Pt0 f20 head f0 in #connect
 Pt0 f5 out f18 tail #connect
 Pt0 f18 head S11 g0 #connect
+Pt0 f14 mainOut f23 tail #connect
+Pt0 f23 head f11 mainIn #connect
+Pt0 f1 out f31 tail #connect
+Pt0 f31 head f5 in #connect
 Bk0 f17 mainOut f26 tail #connect
 Bk0 f26 head f23 mainIn #connect
 Bk0 f19 mainOut f39 tail #connect
