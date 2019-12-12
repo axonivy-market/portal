@@ -29,7 +29,7 @@ public class TaskInProgressByOthersFilter extends TaskFilter {
   }
 
   @Override
-  public boolean reloadViewContainer() {
+  public boolean reloadView() {
     return true;
   }
 
