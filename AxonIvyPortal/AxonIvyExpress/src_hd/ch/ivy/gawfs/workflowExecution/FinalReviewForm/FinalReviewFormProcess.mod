@@ -81,11 +81,9 @@ Fs0 f19 @|UdProcessEndIcon #fIcon
 Fs0 f17 actionTable 'out=in;
 ' #txt
 Fs0 f17 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 
 ivy.task.reset();
-ivy.task.customFields().stringField(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString()).set(StringUtils.EMPTY);
 PortalNavigator navigator = new PortalNavigator();
 navigator.navigateToPortalEndPage();' #txt
 Fs0 f17 security system #txt

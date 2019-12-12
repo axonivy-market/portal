@@ -11,8 +11,6 @@ public class TaskView {
 
     private String pageTitle = StringUtils.EMPTY;
     private TaskLazyDataModel dataModel;
-    private String keyword = StringUtils.EMPTY;
-    private long taskId = -1L;
     private boolean canLinkBackCaseDetail = Boolean.FALSE;
     private String caseName = StringUtils.EMPTY;
     private boolean hideTaskFilter = Boolean.FALSE;
@@ -32,16 +30,6 @@ public class TaskView {
 
     public Builder dataModel(TaskLazyDataModel taskLazyDataModel) {
       this.dataModel = taskLazyDataModel;
-      return this;
-    }
-
-    public Builder keyword(String keyword) {
-      this.keyword = keyword;
-      return this;
-    }
-
-    public Builder taskId(long taskId) {
-      this.taskId = taskId;
       return this;
     }
 
@@ -77,8 +65,6 @@ public class TaskView {
 
   private final String pageTitle;
   private TaskLazyDataModel dataModel;
-  private final String keyword;
-  private final long taskId;
   private final String caseName;
   private final boolean canLinkBackCaseDetail;
   private final boolean hideTaskFilter;
@@ -89,8 +75,6 @@ public class TaskView {
   private TaskView(Builder builder) {
     pageTitle = builder.pageTitle;
     dataModel = builder.dataModel;
-    keyword = builder.keyword;
-    taskId = builder.taskId;
     canLinkBackCaseDetail = builder.canLinkBackCaseDetail;
     caseName = builder.caseName;
     hideTaskFilter = builder.hideTaskFilter;
@@ -117,14 +101,6 @@ public class TaskView {
   
   public void setDataModel(TaskLazyDataModel dataModel) {
     this.dataModel = dataModel;
-  }
-
-  public String getKeyword() {
-    return keyword;
-  }
-
-  public long getTaskId() {
-    return taskId;
   }
 
   public boolean canLinkBackCaseDetail() {
