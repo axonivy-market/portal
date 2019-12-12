@@ -78,7 +78,7 @@ public class CaseStateFilter extends CaseFilter {
  }
 
   @Override
-  public boolean reloadViewContainer() {
+  public boolean reloadView() {
     return true;
   }
 

@@ -72,8 +72,7 @@ if(!param.#statisticChartList is initialized) {
 	out.statisticChartList = service.findStatisticChartsByUserId(ivy.session.getSessionUser().getId());
 } else {	
 	out.statisticChartList = param.statisticChartList;
-}
-StatisticService service = new StatisticService();' #txt
+}' #txt
 Cs0 f0 outParameterDecl '<> result;' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
