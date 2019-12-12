@@ -20,7 +20,7 @@ import ch.ivyteam.ivy.project.portal.guitest.mobile.page.MobileTaskPage;
 public class MobileBaseTest {
   
   private Device device;
-  public final static String PORTAL_HOME_PAGE_URL = "portalTemplate/1549F58C18A6C562/PortalStart.ivp";
+  public final static String PORTAL_HOME_PAGE_URL = "portalTemplate/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
   public final static String CREATE_TESTING_TASK_URL = "internalSupport/14B2FC03D2E87141/CategoriedLeaveRequest.ivp";
   public final static String UPDATE_PERMISSION_TEST_USER_URL = "portalKitTestHelper/14DE09882B540AD5/updatePermissionsOfTestUsers.ivp";
   public final static String DESTROY_ALL_TASK_CASE_URL = "portalKitTestHelper/1511A66AF619A768/cleanupCases.ivp";
