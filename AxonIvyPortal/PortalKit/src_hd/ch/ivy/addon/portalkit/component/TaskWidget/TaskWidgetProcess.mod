@@ -75,8 +75,8 @@ Ts0 @PushWFArc f58 '' #zField
 Ts0 @PushWFArc f70 '' #zField
 >Proto Ts0 Ts0 TaskWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
-Ts0 f0 method start(String,Boolean,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,java.lang.Long) #txt
-Ts0 f0 inParameterDecl '<String keyword,Boolean compactMode,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,Long filterGroupId> param;' #txt
+Ts0 f0 method start(String,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,Long) #txt
+Ts0 f0 inParameterDecl '<String keyword,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,Long filterGroupId> param;' #txt
 Ts0 f0 inParameterMapAction 'out.keyword=param.#keyword;
 out.taskFilterGroupId=param.filterGroupId;
 ' #txt

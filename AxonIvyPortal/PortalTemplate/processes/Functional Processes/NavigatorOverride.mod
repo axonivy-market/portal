@@ -144,7 +144,6 @@ in.taskDataModel.setRelatedTaskDisplayed(true);
 
 in.taskView = TaskView.create()
 											.canLinkBackCaseDetail(true)
-											.taskId(in.taskId)
 											.pageTitle(pageTitle)
 											.showHeaderToolbar(false)
 											.dataModel(in.taskDataModel).createNewTaskView();				
