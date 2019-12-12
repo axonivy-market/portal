@@ -89,7 +89,7 @@ public class TaskStateFilter extends TaskFilter {
   }
 
   @Override
-  public boolean reloadViewContainer() {
+  public boolean reloadView() {
     return true;
   }
 

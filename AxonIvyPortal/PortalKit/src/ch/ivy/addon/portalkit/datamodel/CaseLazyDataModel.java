@@ -82,7 +82,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   @Override
   public List<ICase> load(int first, int pageSize, String sortField, SortOrder sortOrder,
       Map<String, Object> filters) {
-    if (selectedCaseFilter != null && !selectedCaseFilter.reloadViewContainer()) {
+    if (selectedCaseFilter != null && !selectedCaseFilter.reloadView()) {
       selectedCaseFilter = null;
       return data;
     }
