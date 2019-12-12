@@ -281,7 +281,6 @@ Ts0 f82 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
 Ts0 f82 inParameterMapAction 'out.task=param.task;
 ' #txt
 Ts0 f82 outParameterDecl '<> result;' #txt
-Ts0 f82 outActionCode 'ivy.log.info("load data for delegate");' #txt
 Ts0 f82 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
