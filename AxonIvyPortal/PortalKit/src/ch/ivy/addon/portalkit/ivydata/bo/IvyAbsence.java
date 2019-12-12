@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
@@ -17,7 +18,8 @@ public class IvyAbsence {
   private Date from;
   private Date until;
   private String comment;
-
+  private UserDTO userDTO;
+  
   public IUser getUser() {
     return user;
   }
@@ -64,6 +66,14 @@ public class IvyAbsence {
     return StringUtils.EMPTY;
   }
   
+  public UserDTO getUserDTO() {
+    return userDTO;
+  }
+
+  public void setUserDTO(UserDTO userDTO) {
+    this.userDTO = userDTO;
+  }
+
   @Override
   public int hashCode() {
     try {
