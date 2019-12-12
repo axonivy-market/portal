@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeSet;
-import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -21,6 +20,8 @@ import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
+import ch.ivyteam.ivy.process.call.SubProcessCallResult;
+import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
@@ -45,9 +46,7 @@ public class UserUtils {
    */
   public static void setLanguague() {
     try {
-      ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Object>() {
-        @Override
-        public Object call() throws Exception {
+      ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
           IUser sessionUser = getIvySession().getSessionUser();
           Locale l = null;
           if (sessionUser.getEMailLanguage() != null) {
@@ -55,13 +54,11 @@ public class UserUtils {
           } else {
             // Application Default
             Locale defaultApplicationLocal = Ivy.request().getApplication().getDefaultEMailLanguage();
-            l = new Locale(defaultApplicationLocal.getLanguage(), defaultApplicationLocal.getCountry(),
-                APPLICATION_DEFAULT);
+            l = new Locale(defaultApplicationLocal.getLanguage(), defaultApplicationLocal.getCountry(), APPLICATION_DEFAULT);
           }
           getIvySession().setContentLocale(l);
           getIvySession().setFormattingLocale(l);
           return null;
-        }
       });
     } catch (Exception e) {
       Ivy.log().error(e);
@@ -80,9 +77,9 @@ public class UserUtils {
     if (StringUtils.isEmpty(fullname)) {
       return username;
     }
-    return fullname + " (" + username + ")";
+    return String.format("%s (%s)", fullname, username);
   }
-
+  
   /**
    * Filter list of users by name based on provided query
    * 
@@ -186,11 +183,7 @@ public class UserUtils {
   }
 
   public static String getSessionTaskKeywordFilterAttribute() {
-    String keyword = (String) Ivy.session().getAttribute(TASK_KEYWORD_FILTER);
-    if (StringUtils.isBlank(keyword)) {
-      return "";
-    }
-    return keyword;
+    return StringUtils.defaultIfBlank((String) Ivy.session().getAttribute(TASK_KEYWORD_FILTER), "");
   }
 
   public static TaskInProgressByOthersFilter getSessionTaskInProgressFilterAttribute() {
@@ -223,11 +216,7 @@ public class UserUtils {
   }
 
   public static String getSessionCaseKeywordFilterAttribute() {
-    String keyword = (String) Ivy.session().getAttribute(CASE_KEYWORD_FILTER);
-    if (StringUtils.isBlank(keyword)) {
-      return "";
-    }
-    return keyword;
+    return StringUtils.defaultIfBlank((String)Ivy.session().getAttribute(CASE_KEYWORD_FILTER), "");
   }
 
   public static List<IUser> findAllUserByApplication() {
@@ -238,19 +227,21 @@ public class UserUtils {
   
   @SuppressWarnings("unchecked")
   private static List<IUser> findUsersByCallableProcess() {
-    if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
-      Map<String, List<IUser>> usersByApp = SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
-          .withStartName("findUsersOverAllApplications")
-          .call(Ivy.session().getSessionUserName())
-          .get("usersByApp", Map.class);
-      return usersByApp.values().stream().flatMap(List::stream)
-          .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(IUser::getName))), ArrayList::new));
-    }
-    
-    return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
-        .withStartName("findUsers")
-        .call(Ivy.request().getApplication())
-        .get("users", List.class);
+      return IvyExecutor.executeAsSystem(() -> {
+      if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
+        Map<String, List<IUser>> usersByApp = SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
+            .withStartName("findUsersOverAllApplications")
+            .call(Ivy.session().getSessionUserName())
+            .get("usersByApp", Map.class);
+        return usersByApp.values().stream().flatMap(List::stream)
+            .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(IUser::getName))), ArrayList::new));
+      }
+      
+      return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
+          .withStartName("findUsers")
+          .call(Ivy.request().getApplication())
+          .get("users", List.class);
+      });
   }
   
   public static String getUserName(IUser user) {
@@ -263,5 +254,27 @@ public class UserUtils {
     return IvyExecutor.executeAsSystem(() -> {
       return user.getFullName();
     });
+  }
+  
+  @SuppressWarnings("unchecked")
+  public static List<ISecurityMember> findAllSecurityMembers() {
+    List<ISecurityMember> responsibles = new ArrayList<>();
+    try {
+      SubProcessCallResult result = ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+        if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
+          return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE).withStartName("findSecurityMembersOverAllApplications")
+              .call(Ivy.session().getSessionUserName());
+        }
+        return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE).withStartName("findSecurityMembers")
+            .call(Ivy.request().getApplication());
+      }); 
+      List<IUser> users = result.get("users", List.class);
+      List<IRole> roles = result.get("roles", List.class);
+      responsibles.addAll(users);
+      responsibles.addAll(roles);
+    } catch (Exception e) {
+      Ivy.log().error("Can't get list of security members", e);
+    }
+    return responsibles;
   }
 }
