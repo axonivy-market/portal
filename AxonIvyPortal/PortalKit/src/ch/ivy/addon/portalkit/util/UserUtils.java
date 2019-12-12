@@ -15,6 +15,8 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.dto.UserDTO;
+import ch.ivy.addon.portalkit.mapper.UserMapper;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
@@ -100,6 +102,28 @@ public class UserUtils {
         }
       }
   
+      return filterUsers.stream().sorted((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName())).collect(Collectors.toList());
+    });
+  }
+  
+  public static List<UserDTO> filterUsersDTO(List<IUser> users, String query) {
+    List<UserDTO> filterUsers = new ArrayList<>();
+    
+      if (StringUtils.isEmpty(query)) {
+          for (IUser user: users) {
+            filterUsers.add(UserMapper.convertIUserToUserDTO(user));
+          }
+          return filterUsers;
+      }
+     
+
+    return IvyExecutor.executeAsSystem(() -> {
+      for (IUser user : users) {
+        if (StringUtils.containsIgnoreCase(user.getDisplayName(), query) || StringUtils.containsIgnoreCase(user.getMemberName(), query)) {
+          filterUsers.add(UserMapper.convertIUserToUserDTO(user));
+        }
+      }
+
       return filterUsers.stream().sorted((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName())).collect(Collectors.toList());
     });
   }
@@ -249,13 +273,13 @@ public class UserUtils {
       return user.getName();
     });
   }
-  
+
   public static String getFullName(IUser user) {
     return IvyExecutor.executeAsSystem(() -> {
       return user.getFullName();
     });
   }
-  
+
   @SuppressWarnings("unchecked")
   public static List<ISecurityMember> findAllSecurityMembers() {
     List<ISecurityMember> responsibles = new ArrayList<>();
