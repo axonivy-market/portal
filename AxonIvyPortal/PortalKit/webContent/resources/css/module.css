@@ -2369,10 +2369,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
-  .admin-ui-dialog, .deputy-dialog, .absence-settings-dialog {
+  .admin-ui-dialog {
     width: 90vw !important;
   }
-  .dialog-closing-information, .project-info-dialog, .add-new-absence-dialog, .app-dialog {
+  .dialog-closing-information, .project-info-dialog, .app-dialog {
     width: 80vw !important;
   }
   .new-absence-date input {
@@ -2582,8 +2582,9 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   overflow: auto;
 }
 
-.substitute-container-table {
+.substitute-container-table, .deputy-dialog {
   min-width: 750px;
+  max-width: 900px;
 }
 
 .substitute-role {

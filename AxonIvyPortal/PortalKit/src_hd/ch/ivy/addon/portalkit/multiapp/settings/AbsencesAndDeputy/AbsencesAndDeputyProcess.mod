@@ -35,9 +35,6 @@ As0 @UdProcessEnd f23 '' #zField
 As0 @PushWFArc f30 '' #zField
 As0 @UdEvent f31 '' #zField
 As0 @UdProcessEnd f35 '' #zField
-As0 @GridStep f5 '' #zField
-As0 @PushWFArc f14 '' #zField
-As0 @PushWFArc f36 '' #zField
 As0 @UdEvent f6 '' #zField
 As0 @GridStep f7 '' #zField
 As0 @UdProcessEnd f13 '' #zField
@@ -110,7 +107,6 @@ As0 @CallSub f101 '' #zField
 As0 @GridStep f104 '' #zField
 As0 @PushWFArc f103 '' #zField
 As0 @GridStep f106 '' #zField
-As0 @PushWFArc f108 '' #zField
 As0 @PushWFArc f49 '' #zField
 As0 @PushWFArc f76 '' #zField
 As0 @PushWFArc f82 '' #zField
@@ -154,6 +150,10 @@ As0 @Alternative f75 '' #zField
 As0 @PushWFArc f102 '' #zField
 As0 @PushWFArc f20 '' #zField
 As0 @PushWFArc f116 '' #zField
+As0 @PushWFArc f36 '' #zField
+As0 @PushWFArc f14 '' #zField
+As0 @GridStep f5 '' #zField
+As0 @PushWFArc f108 '' #zField
 >Proto As0 As0 AbsencesAndDeputyProcess #zField
 As0 f0 guid 1679C986E063D36E #txt
 As0 f0 method start() #txt
@@ -401,32 +401,6 @@ As0 f31 83 787 26 26 -10 15 #rect
 As0 f31 @|UdEventIcon #fIcon
 As0 f35 403 787 26 26 0 12 #rect
 As0 f35 @|UdProcessEndIcon #fIcon
-As0 f5 actionTable 'out=in;
-' #txt
-As0 f5 actionCode 'import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
-
-in.selectedAbsence = new IvyAbsence();
-in.selectedAbsence.from = new Date();
-in.selectedAbsence.until = new Date();
-in.selectedAbsence.user = ivy.session.getSessionUser();
-
-in.selectedUser = ivy.session.getSessionUser();
-
-in.validationError = false;
-in.isLoadDeputy = false;' #txt
-As0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Init</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f5 200 778 112 44 -8 -8 #rect
-As0 f5 @|StepIcon #fIcon
-As0 f14 expr out #txt
-As0 f14 109 800 200 800 #arcP
-As0 f36 expr out #txt
-As0 f36 312 800 403 800 #arcP
 As0 f6 guid 167A149D01ECA4B9 #txt
 As0 f6 actionTable 'out=in;
 ' #txt
@@ -449,6 +423,7 @@ import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 
 in.validationError = false;
+in.selectedUser = ivy.wf.getSecurityContext().findUser(in.selectedUserDTO.getUsername());
 String username = UserUtils.getUserName(in.selectedUser);
 boolean fromBiggerThanTill = AbsenceAndSubstituteUtils.checkFromBiggerThanTill(in.selectedAbsence);
 in.selectedAbsence.user = in.selectedUser;
@@ -753,15 +728,16 @@ As0 f34 method autoCompleteForUser(String) #txt
 As0 f34 inParameterDecl '<String query> param;' #txt
 As0 f34 inParameterMapAction 'out.queryAutoComplete=param.query;
 ' #txt
-As0 f34 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> users> result;' #txt
-As0 f34 outActionCode 'import org.apache.commons.collections4.CollectionUtils;
+As0 f34 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> users> result;' #txt
+As0 f34 outActionCode 'import org.apache.commons.lang.StringUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 
 if (CollectionUtils.isEmpty(in.users)) {
 	in.users = UserUtils.getNonDuplicatedUsers(in.usersByApp);
 }
 
-result.users = UserUtils.filterUsers(in.users, in.queryAutoComplete);' #txt
+result.users = UserUtils.filterUsersDTO(in.users, in.queryAutoComplete);' #txt
 As0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -784,7 +760,7 @@ As0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f42 83 1459 26 26 -33 15 #rect
 As0 f42 @|UdMethodIcon #fIcon
-As0 f43 627 1459 26 26 0 12 #rect
+As0 f43 755 1459 26 26 0 12 #rect
 As0 f43 @|UdProcessEndIcon #fIcon
 As0 f47 processCall 'Ivy Data Processes/SecurityService:findUsersOverAllApplications(String)' #txt
 As0 f47 requestActionDecl '<String username> param;' #txt
@@ -820,10 +796,10 @@ if have</name>
     </language>
 </elementInfo>
 ' #txt
-As0 f45 376 1450 128 44 -40 -16 #rect
+As0 f45 504 1450 128 44 -40 -16 #rect
 As0 f45 @|StepIcon #fIcon
 As0 f50 expr out #txt
-As0 f50 504 1472 627 1472 #arcP
+As0 f50 632 1472 755 1472 #arcP
 As0 f51 guid 167C062278F2D07A #txt
 As0 f51 method createAbsenceAndLoadDeputy() #txt
 As0 f51 inParameterDecl '<> param;' #txt
@@ -955,6 +931,7 @@ import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 
 in.validationError = false;
+in.selectedUser = ivy.wf.getSecurityContext().findUser(in.selectedUserDTO.getUsername());
 String username = UserUtils.getUserName(in.selectedUser);
 boolean fromBiggerThanTill = AbsenceAndSubstituteUtils.checkFromBiggerThanTill(in.selectedAbsence);
 in.selectedAbsence.user = in.selectedUser;
@@ -1094,8 +1071,6 @@ as current user</name>
 ' #txt
 As0 f106 332 1834 128 44 -44 -16 #rect
 As0 f106 @|StepIcon #fIcon
-As0 f108 expr out #txt
-As0 f108 304 1472 376 1472 #arcP
 As0 f49 expr out #txt
 As0 f49 109 1856 332 1856 #arcP
 As0 f49 0 0.8148191485830323 0 0 #arcLabel
@@ -1337,6 +1312,35 @@ As0 f116 192 336 520 330 #arcP
 As0 f116 1 192 256 #addKink
 As0 f116 2 520 256 #addKink
 As0 f116 1 0.49085365853658536 0 0 #arcLabel
+As0 f36 expr out #txt
+As0 f36 312 800 403 800 #arcP
+As0 f14 expr out #txt
+As0 f14 109 800 200 800 #arcP
+As0 f5 actionTable 'out=in;
+' #txt
+As0 f5 actionCode 'import ch.ivy.addon.portalkit.dto.UserDTO;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
+
+in.selectedAbsence = new IvyAbsence();
+in.selectedAbsence.from = new Date();
+in.selectedAbsence.until = new Date();
+in.selectedAbsence.user = ivy.session.getSessionUser();
+
+in.selectedUser = ivy.session.getSessionUser();
+in.selectedUserDTO = new UserDTO(in.selectedUser);
+
+in.validationError = false;
+in.isLoadDeputy = false;' #txt
+As0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f5 200 778 112 44 -8 -8 #rect
+As0 f5 @|StepIcon #fIcon
+As0 f108 304 1472 504 1472 #arcP
 >Proto As0 .type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1442,8 +1446,6 @@ As0 f92 out f99 tail #connect
 As0 f99 head f97 in #connect
 As0 f104 mainOut f103 tail #connect
 As0 f103 head f100 mainIn #connect
-As0 f47 mainOut f108 tail #connect
-As0 f108 head f45 mainIn #connect
 As0 f73 mainOut f49 tail #connect
 As0 f49 head f106 mainIn #connect
 As0 f106 mainOut f76 tail #connect
@@ -1506,3 +1508,5 @@ As0 f75 out f20 tail #connect
 As0 f20 head f22 mainIn #connect
 As0 f75 out f116 tail #connect
 As0 f116 head f101 mainIn #connect
+As0 f47 mainOut f108 tail #connect
+As0 f108 head f45 mainIn #connect

@@ -30,3 +30,7 @@ usersByApp java.util.Map #field
 usersByApp PERSISTENT #fieldModifier
 isAbsenceBeingCreated Boolean #field
 isAbsenceBeingCreated PERSISTENT #fieldModifier
+selectedUserDTO ch.ivy.addon.portalkit.dto.UserDTO #field
+selectedUserDTO PERSISTENT #fieldModifier
+usersDTO java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> #field
+usersDTO PERSISTENT #fieldModifier
