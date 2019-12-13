@@ -108,15 +108,14 @@ public class UserUtils {
   public static List<UserDTO> filterUsersDTO(List<IUser> users, String query) {
     List<UserDTO> filterUsers = new ArrayList<>();
     
+    return IvyExecutor.executeAsSystem(() -> {
       if (StringUtils.isEmpty(query)) {
           for (IUser user: users) {
             filterUsers.add(new UserDTO(user));
           }
           return filterUsers;
       }
-     
 
-    return IvyExecutor.executeAsSystem(() -> {
       for (IUser user : users) {
         if (StringUtils.containsIgnoreCase(user.getDisplayName(), query) || StringUtils.containsIgnoreCase(user.getMemberName(), query)) {
           filterUsers.add(new UserDTO(user));
