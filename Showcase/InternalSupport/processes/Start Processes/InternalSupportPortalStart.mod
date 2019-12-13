@@ -67,6 +67,18 @@ Pt0 @PushWFArc f13 '' #zField
 Pt0 @PushWFArc f16 '' #zField
 Pt0 @PushWFArc f6 '' #zField
 Pt0 @PushWFArc f15 '' #zField
+Pt0 @UserDialog f32 '' #zField
+Pt0 @EndTask f34 '' #zField
+Pt0 @StartRequest f70 '' #zField
+Pt0 @StartRequest f39 '' #zField
+Pt0 @GridStep f51 '' #zField
+Pt0 @GridStep f37 '' #zField
+Pt0 @UserDialog f53 '' #zField
+Pt0 @PushWFArc f35 '' #zField
+Pt0 @PushWFArc f42 '' #zField
+Pt0 @PushWFArc f41 '' #zField
+Pt0 @PushWFArc f33 '' #zField
+Pt0 @PushWFArc f40 '' #zField
 >Proto Pt0 Pt0 InternalSupportPortalStart #zField
 Bk0 @TextInP .type .type #zField
 Bk0 @TextInP .processKind .processKind #zField
@@ -545,6 +557,139 @@ Pt0 f16 464 96 656 96 #arcP
 Pt0 f6 688 96 728 96 #arcP
 Pt0 f15 expr out #txt
 Pt0 f15 111 480 192 480 #arcP
+Pt0 f32 dialogId ch.ivy.addon.portal.generic.admin.PortalDashBoard #txt
+Pt0 f32 startMethod start() #txt
+Pt0 f32 requestActionDecl '<> param;' #txt
+Pt0 f32 responseMappingAction 'out=in;
+' #txt
+Pt0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>statistic</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f32 192 651 112 44 -21 -8 #rect
+Pt0 f32 @|UserDialogIcon #fIcon
+Pt0 f34 369 657 30 30 0 15 #rect
+Pt0 f34 @|EndIcon #fIcon
+Pt0 f70 outLink StatisticPage.ivp #txt
+Pt0 f70 inParamDecl '<> param;' #txt
+Pt0 f70 requestEnabled true #txt
+Pt0 f70 triggerEnabled false #txt
+Pt0 f70 callSignature StatisticPage() #txt
+Pt0 f70 persist false #txt
+Pt0 f70 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Pt0 f70 caseData businessCase.attach=true #txt
+Pt0 f70 showInStartList 0 #txt
+Pt0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>StatisticPage.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f70 @C|.responsibility Everybody #txt
+Pt0 f70 81 658 30 30 -46 17 #rect
+Pt0 f70 @|StartRequestIcon #fIcon
+Pt0 f39 outLink DefaultLoginPage.ivp #txt
+Pt0 f39 inParamDecl '<String originalUrl> param;' #txt
+Pt0 f39 inParamTable 'out.callbackUrl=param.#originalUrl is initialized ? param.originalUrl : null;
+' #txt
+Pt0 f39 requestEnabled true #txt
+Pt0 f39 triggerEnabled false #txt
+Pt0 f39 callSignature DefaultLoginPage(String) #txt
+Pt0 f39 persist false #txt
+Pt0 f39 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Pt0 f39 caseData businessCase.attach=true #txt
+Pt0 f39 showInStartList 0 #txt
+Pt0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DefaultLoginPage.ivp</name>
+        <nameStyle>20,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f39 @C|.responsibility Everybody #txt
+Pt0 f39 81 753 30 30 -45 18 #rect
+Pt0 f39 @|StartRequestIcon #fIcon
+Pt0 f51 actionTable 'out=in;
+' #txt
+Pt0 f51 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString(), ivy.task.getProcessModelVersion().getId());
+' #txt
+Pt0 f51 security system #txt
+Pt0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>store portal start &#xD;
+pmv </name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f51 192 746 128 44 -43 -16 #rect
+Pt0 f51 @|StepIcon #fIcon
+Pt0 f37 actionTable 'out=in;
+' #txt
+Pt0 f37 actionCode 'import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import org.apache.commons.lang3.StringUtils;
+import ch.ivyteam.ivy.workflow.StandardProcessType;
+
+String library = PortalLibrary.PORTAL_TEMPLATE.getValue();
+
+String defaultEndPage = ivy.wf.getStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES);
+if (StringUtils.isBlank(defaultEndPage)) {
+	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, library);
+}' #txt
+Pt0 f37 security system #txt
+Pt0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Set default end page 
+to Portal</name>
+        <nameStyle>31,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f37 352 746 144 44 -53 -16 #rect
+Pt0 f37 @|StepIcon #fIcon
+Pt0 f53 dialogId ch.ivy.addon.portal.generic.PortalUrlCallback #txt
+Pt0 f53 startMethod start(String) #txt
+Pt0 f53 requestActionDecl '<String callbackUrl> param;' #txt
+Pt0 f53 requestMappingAction 'param.callbackUrl=in.callbackUrl;
+' #txt
+Pt0 f53 responseMappingAction 'out=in;
+' #txt
+Pt0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Redirect to&#13;
+callbackUrl</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f53 552 746 112 44 -30 -16 #rect
+Pt0 f53 @|UserDialogIcon #fIcon
+Pt0 f35 304 673 369 672 #arcP
+Pt0 f42 111 768 192 768 #arcP
+Pt0 f41 expr out #txt
+Pt0 f41 320 768 352 768 #arcP
+Pt0 f33 111 673 192 673 #arcP
+Pt0 f40 496 768 552 768 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1114,6 +1259,16 @@ Pt0 f14 mainOut f23 tail #connect
 Pt0 f23 head f11 mainIn #connect
 Pt0 f1 out f31 tail #connect
 Pt0 f31 head f5 in #connect
+Pt0 f70 mainOut f33 tail #connect
+Pt0 f33 head f32 mainIn #connect
+Pt0 f32 mainOut f35 tail #connect
+Pt0 f35 head f34 mainIn #connect
+Pt0 f51 mainOut f41 tail #connect
+Pt0 f41 head f37 mainIn #connect
+Pt0 f39 mainOut f42 tail #connect
+Pt0 f42 head f51 mainIn #connect
+Pt0 f37 mainOut f40 tail #connect
+Pt0 f40 head f53 mainIn #connect
 Bk0 f106 mainOut f107 tail #connect
 Bk0 f107 head f104 mainIn #connect
 Bk0 g0 m f0 tail #connect
