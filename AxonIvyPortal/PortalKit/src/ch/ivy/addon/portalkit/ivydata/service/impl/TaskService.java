@@ -150,7 +150,7 @@ public class TaskService implements ITaskService {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       try {
         TaskQuery finalQuery = extendQueryWithUserCanWorkOn(criteria);
-        finalQuery.aggregate().countRows().groupBy().priority().orderBy().priority();
+        finalQuery.aggregate().countRows().groupBy().priority();
 
         Recordset recordSet = taskQueryExecutor().getRecordset(finalQuery);
         PriorityStatistic priorityStatistic = createPriorityStatistic(recordSet);

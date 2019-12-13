@@ -94,12 +94,10 @@
           isDrilldownExpiryChart="#{data.isDrilldownExpiryChart}" isBackFromDrilldown="#{data.isBackFromDrilldown}" />
       </h:panelGroup>
 
-      <c:if test="#{!data.compactMode and data.createMode}">
-        <h:panelGroup id="chart-list-container" layout="block" styleClass="chart-list-container ui-g-12 u-padding-0">
-          <ic:ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget id="chart-creation-widget"
-            statisticChartList="#{data.statisticChartList}" />
-        </h:panelGroup>
-      </c:if>
+      <h:panelGroup id="chart-list-container" layout="block" styleClass="chart-list-container ui-g-12 u-padding-0"
+        rendered="#{!data.compactMode and data.createMode}">
+        <ic:ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget id="chart-creation-widget" statisticChartList="#{data.statisticChartList}" />
+      </h:panelGroup>
 
     </h:panelGroup>
   </div>
