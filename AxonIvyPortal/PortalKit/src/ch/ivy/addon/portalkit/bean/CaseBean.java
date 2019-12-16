@@ -21,8 +21,8 @@ import ch.ivyteam.ivy.workflow.ICase;
 public class CaseBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  private static final String OPEN_CASE_ITEM_DETAILS = "Start Processes/PortalStart/startPortalCaseDetails.ivp";
-  private static final String OPEN_CASES_LIST = "Start Processes/PortalStart/startPortalCase.ivp";
+  private static final String OPEN_CASE_ITEM_DETAILS = "Start Processes/PortalStart/CaseDetailsPage.ivp";
+  private static final String OPEN_CASES_LIST = "Start Processes/PortalStart/CaseListPage.ivp";
 
   /**
    * Get the font-awesome class of specified CaseState
@@ -65,7 +65,7 @@ public class CaseBean implements Serializable {
   }
 
   public void navigateToCaseDetails(ICase iCase) {
-    String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("startPortalCaseDetails.ivp");
+    String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("CaseDetailsPage.ivp");
     if (StringUtils.isEmpty(customizePortalFriendlyRequestPath)) {
       customizePortalFriendlyRequestPath = OPEN_CASE_ITEM_DETAILS;
     }
@@ -73,7 +73,7 @@ public class CaseBean implements Serializable {
   }
 
   public void backToCasesList() throws MalformedURLException {
-    String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("startPortalCase.ivp");
+    String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("CaseListPage.ivp");
     if (StringUtils.isEmpty(friendlyRequestPath)) {
       friendlyRequestPath = OPEN_CASES_LIST;
     }

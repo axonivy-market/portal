@@ -146,6 +146,17 @@ In engine
    project.
 4. Follow detailed migration notes for each version below.
 
+Migrate 8.0.0 to 8.0.1
+----------------------
+
+The PortalStart.mod file is changed. If you have
+customized this process in your project, copy the new PortalStart from
+Portal Template to your project and re-apply your customization.
+
+PortalStart.ivp is removed, if you use it to configure the start link in application registration, please change it to DefaultApplicationHomePage.ivp
+
+:ref:`Non-ajax handling <components-error-handling-nonajax-error-handling>` is changed. Please follow the instructions and reconfigure it.
+
 .. _installation-migration-notes-8-0-0:
 
 Migrate 7.x to 8.0.0
