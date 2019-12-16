@@ -261,7 +261,7 @@ Personal task permission
 
    .. important::
       Task state cannot be one of the following values:
-      DONE, DESTROYED, RESUMED, FAILED.
+      CREATED, DONE, DESTROYED, RESUMED, FAILED.
 
    This function will be hidden if session user does not have permission
    ``PortalPermission.TASK_DISPLAY_DELEGATE_ACTION``.
