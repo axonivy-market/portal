@@ -74,6 +74,8 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected boolean isRelatedTaskDisplayed;
   protected boolean isNotKeepFilter;
 
+  private TaskFilter selectedTaskFilter;
+
   public TaskLazyDataModel(String taskWidgetComponentId) {
     super();
     this.taskWidgetComponentId = taskWidgetComponentId;
@@ -166,6 +168,11 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   @Override
   public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+    if (selectedTaskFilter != null && !selectedTaskFilter.reloadView()) {
+      selectedTaskFilter = null;
+      return data;
+    }
+
     if (first == 0) {
       initializedDataModel(criteria);
       PrimeFaces.current().executeScript("updateTaskCount()");
@@ -390,11 +397,11 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   public void removeFilter(TaskFilter filter) {
+    selectedTaskFilter = filter;
     filter.resetValues();
     selectedFilters.remove(filter);
     resetFilterData();
   }
-
 
   public void resetFilters() {
     for (TaskFilter selectedFilter : selectedFilters) {
@@ -463,9 +470,14 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   public void onFilterChange(ValueChangeEvent event) {
     List<TaskFilter> oldSelectedFilters = (List<TaskFilter>) event.getOldValue();
     List<TaskFilter> newSelectedFilters = (List<TaskFilter>) event.getNewValue();
-    List<TaskFilter> toggleFilters =
-        (List<TaskFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
+    List<TaskFilter> toggleFilters = null;
+    if (newSelectedFilters.size() > oldSelectedFilters.size()) {
+      toggleFilters = (List<TaskFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
+    } else {
+      toggleFilters = (List<TaskFilter>) CollectionUtils.subtract(oldSelectedFilters, newSelectedFilters);
+    }
     if (CollectionUtils.isNotEmpty(toggleFilters)) {
+      selectedTaskFilter = toggleFilters.get(0);
       toggleFilters.get(0).resetValues();
     }
     resetFilterData();

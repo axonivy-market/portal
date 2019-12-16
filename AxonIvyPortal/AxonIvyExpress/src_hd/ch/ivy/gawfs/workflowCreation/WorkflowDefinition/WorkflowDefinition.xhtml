@@ -9,27 +9,27 @@
     <ui:param name="processChainShape" value="LINE" />
 
     <ui:define name="title">
-      <h:outputText value="#{ivy.case.name} - #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/WorkflowPropertiesStep')}" />
+      #{ivy.case.name} - #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/WorkflowPropertiesStep')}
     </ui:define>
 
     <ui:define name="content">
       <h:form id="form" styleClass="express-work-flow">
-        <h:panelGroup id="error-container" layout="block" styleClass="ui-widget-content express-error-container">
+        <div id="error-container" class="ui-widget-content express-error-container">
           <p:messages id="error-messages" showDetail="false" closable="true" />
-        </h:panelGroup>
+        </div>
 
         <p:fieldset id="process-setting-fieldset" legend="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdetails')}"
           toggleable="true" styleClass="MarTop5 express-fieldset fieldset-no-border">
 
-          <h:panelGroup styleClass="ui-g-12 card u-padding-0">
-            <h:panelGroup id="process-setting-grid" styleClass="process-property-container u-no-padding-top">
+          <div class="ui-g-12 card u-padding-0">
+            <div id="process-setting-grid" class="process-property-container u-no-padding-top">
               <div class="ui-fluid">
                 <div class="ui-g alignLabelTop">
                   <div class="ui-g-12 u-padding-0">
                     <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
 
                     <!-- PROCESS NAME -->
-                    <h:panelGroup layout="block" styleClass="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 MarTop20">
+                    <div class="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 MarTop20">
                       <div class="md-inputfield">
                         <p:inputText id="process-name" value="#{data.data.processName}" required="true" maxlength="50"
                           disabled="#{data.data.isAdhocProcess}" styleClass="express-workflow-input"
@@ -38,10 +38,10 @@
                         </p:inputText>
                         <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}" for="process-name" />
                       </div>
-                    </h:panelGroup>
+                    </div>
 
                     <!-- PROCESS DESCRIPTION -->
-                    <h:panelGroup layout="block" styleClass="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 MarTop20">
+                    <div class="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 MarTop20">
                       <div class="md-inputfield">
                         <p:inputText id="process-description" value="#{data.data.processDescription}" maxlength="60"
                           styleClass="express-workflow-input"
@@ -51,7 +51,7 @@
                         <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdescription')}"
                           for="process-description" styleClass="express-title-header" />
                       </div>
-                    </h:panelGroup>
+                    </div>
                   </div>
 
                   <div class="ui-g-12 u-padding-0 MarTop10">
@@ -60,18 +60,17 @@
                     <!-- PROCESS TYPE -->
                     <div class="ui-g-5 ui-lg-5 ui-md-6 ui-sm-12 u-no-padding-left">
                       <div class="ui-g-12 u-no-padding-bottom">
-                        <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')}"
-                          styleClass="express-title-header" />
+                        <span class="express-title-header">#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')}</span>
                       </div>
                       <div class="ui-g-12 u-no-padding-top u-no-padding-left">
                         <h:panelGroup id="process-type-group" class="md-inputfiled ui-g-12">
-                          <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcesstypeAdHoc')}" styleClass="#{data.isRepeatable ? '':'switch-active'}" />
+                          <label class="#{data.isRepeatable ? '':'switch-active'}">#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcesstypeAdHoc')}</label>
                           <p:inputSwitch id="process-type" styleClass="express-input-switch-selection"
                             disabled="#{not empty data.data.processID or data.data.isAdhocProcess}" value="#{data.isRepeatable}"
                             requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
                             <p:ajax listener="#{logic.onSwitchProcessType}" update="process-type-group process-type express-button-container process-owner-container defined-tasks-list-container" />
                           </p:inputSwitch>
-                          <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcesstypeRepeating')}" styleClass="#{data.isRepeatable ? 'switch-active':''}" />
+                          <label class="#{data.isRepeatable ? 'switch-active':''}">#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcesstypeRepeating')}</label>
                         </h:panelGroup>
                       </div>
                     </div>
@@ -84,20 +83,19 @@
                       </div>
                       <div class="ui-g-12 u-no-padding-top u-no-padding-left">
                         <h:panelGroup id="user-interface-type-group" class="md-inputfiled ui-g-12">
-                          <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/CreateOwn')}"
-                            styleClass="#{data.data.isUseDefaultUI ? '':'switch-active'}" />
+                          <label class="#{data.data.isUseDefaultUI ? '':'switch-active'}">#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/CreateOwn')}</label>
                           <p:inputSwitch id="user-interface-type" styleClass="express-input-switch-selection"
                             disabled="#{not empty data.data.processID or data.data.isAdhocProcess}" value="#{data.data.isUseDefaultUI}"
                             requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UserInterface')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
                             onchange="PF('delete-all-defined-tasks-warning').show();">
                             <p:ajax update="user-interface-type-group user-interface-type" global="false" />
                           </p:inputSwitch>
-                          <p:outputLabel value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UseDefault')}"
-                            styleClass="#{data.data.isUseDefaultUI ? 'switch-active':''}">
+                          <label class="#{data.data.isUseDefaultUI ? 'switch-active':''}">
+                            #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UseDefault')}
                             <p:commandLink onclick="PF('default-template-dialog').show();">
                               <i class="show-default-ui-icon fa fa-info-circle" />
                             </p:commandLink>
-                          </p:outputLabel>
+                          </label>
                         </h:panelGroup>
                       </div>
                     </div>
@@ -128,8 +126,8 @@
                   </div>
                 </div>
               </div>
-            </h:panelGroup>
-          </h:panelGroup>
+            </div>
+          </div>
         </p:fieldset>
 
         <h:panelGroup id="defined-tasks-list-container">
@@ -215,7 +213,6 @@
 
                         <h:panelGroup styleClass="ui-g-12 u-padding-0" rendered="#{gtask.position gt 1}">
                           <div class="ui-g-1 ui-lg-1 ui-md-hidden ui-sm-hidden" />
-
                           <!-- NUMBER OF VALID DAYS -->
                           <div class="ui-g-5 ui-lg-5 ui-md-6 u-padding-0">
                             <h:panelGroup layout="block" styleClass="ui-g-12" rendered="#{gtask.taskType ne 'EMAIL'}">

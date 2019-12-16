@@ -48,3 +48,10 @@ taskSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCrite
 taskSearchCriteria PERSISTENT #fieldModifier
 totalTasks Long #field
 totalTasks PERSISTENT #fieldModifier
+selectedTask ch.ivyteam.ivy.workflow.ITask #field
+selectedTask 'Task is selected for reset or delegate' #fieldComment
+selectedTask PERSISTENT #fieldModifier
+callbackUrl String #field
+callbackUrl PERSISTENT #fieldModifier
+currentPortalPage String #field
+currentPortalPage PERSISTENT #fieldModifier

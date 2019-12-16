@@ -63,7 +63,7 @@
         <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group"
           rendered="#{(not empty data.taskPrivateFilters or not empty data.taskPublicFilters) and not data.dataModel.compactMode}"> 
           <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container">
-            <h:panelGroup id="filter-selection-panel">
+            <h:panelGroup id="filter-selection-panel" layout="block">
               <p:commandLink id="filter-name" styleClass="filter-name"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/savedFilters')} #{data.dataModel.selectedTaskFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedTaskFilterData.filterName}"
                 global="false" />
@@ -71,13 +71,12 @@
                 hideEffect="fade" my="left top" at="left bottom">
                 <h:panelGroup id="private-filters" rendered="#{not empty data.taskPublicFilters}">
                   <div class="filter-type-label">
-                    <h:outputText
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/publicFilter')}" />
+                    <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/publicFilter')}</span>
                   </div>
                   <ui:repeat var="taskFilterData" value="#{data.taskPublicFilters}">
                     <h:panelGroup layout="block" styleClass="user-defined-filter-container">
                       <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
-                        value="#{taskFilterData.filterName}" global="false"
+                        value="#{taskFilterData.filterName}"
                         actionListener="#{logic.applyFilter(taskFilterData)}"
                         update="#{cc.clientId}:advanced-filter-container #{cc.clientId}:task-widget-header #{cc.clientId}:filter-add-form #{cc.clientId}:filter-selection-container #{cc.clientId}:task-view-container"
                         oncomplete="taskWidget.setupScrollbar();" />
@@ -95,13 +94,12 @@
                   styleClass="filter-separator" />
                 <h:panelGroup id="public-filters" rendered="#{not empty data.taskPrivateFilters}">
                   <div class="filter-type-label">
-                    <h:outputText
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/privateFilter')}" />
+                    <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/privateFilter')}</span>
                   </div>
                   <ui:repeat var="taskFilterData" value="#{data.taskPrivateFilters}">
                     <div class="user-defined-filter-container">
                       <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
-                        value="#{taskFilterData.filterName}" global="false"
+                        value="#{taskFilterData.filterName}"
                         actionListener="#{logic.applyFilter(taskFilterData)}"
                         update="#{cc.clientId}:advanced-filter-container #{cc.clientId}:task-widget-header #{cc.clientId}:filter-add-form #{cc.clientId}:filter-selection-container #{cc.clientId}:task-view-container"
                         oncomplete="taskWidget.setupScrollbar();" />
@@ -128,7 +126,7 @@
               removeListener="#{data.dataModel.hideInProgressFilter()}" displayFooterButtons="false"
               taskFilter="#{data.dataModel.inProgressFilter}" dataModel="#{data.dataModel}"
               rendered="#{!data.dataModel.hasReadAllTasksPermisson() and data.dataModel.inProgressFilterDisplayed}"
-              forceRendered="true" position="100">
+              forceRendered="true" position="100" >
               <p:selectBooleanCheckbox id="in-progress-checkbox" styleClass="in-progress-task-checkbox"
                 value="#{data.dataModel.inProgressFilter.isTaskInProgressByOthersDisplayed}"
                 itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/display')}">
@@ -150,9 +148,8 @@
                     <p:selectManyCheckbox id="filter-selection" layout="pageDirection"
                       valueChangeListener="#{data.dataModel.onFilterChange}" value="#{data.dataModel.selectedFilters}"
                       converter="pojoConverter">
-                      <p:ajax
-                        update="#{cc.clientId}:filter-selection-container @(.advanced-filter-component) #{cc.clientId}:task-view-container"
-                        global="false" oncomplete="taskWidget.setupScrollbar();" />
+                      <p:ajax update="#{cc.clientId}:filter-selection-container @(.advanced-filter-component) #{cc.clientId}:task-view-container"
+                        global="false" oncomplete="taskWidget.setupScrollbar();"/>
                       <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
                         itemValue="#{filter}" />
                     </p:selectManyCheckbox>
@@ -170,7 +167,7 @@
                 </h:form>
               </p:overlayPanel>
             </h:panelGroup>
-            
+
             <!-- Save filter button -->
             <h:panelGroup id="filter-save-container" style="order: 1001" styleClass="u-hidden-sm-down">
               <p:commandButton id="filter-save-action"
@@ -229,8 +226,8 @@
             rowIndex="#{rowIndex}" currentPortalPage="#{cc.attrs.currentPortalPage}"
             isSelected="#{cc.attrs.selectedTaskId eq task.getId()}"
             compactMode="#{data.dataModel.compactMode}" 
-            componentToUpdate="#{p:component('task-details-notes')}"
-            dataModel="#{data.dataModel}">
+            dataModel="#{data.dataModel}"
+            selectedTask="#{data.setSelectedTask(task)}">
             <cc:insertFacet name="taskHeader" />
           </ic:ch.ivy.addon.portalkit.component.TaskItem>
         </p:dataScroller>
@@ -297,6 +294,24 @@
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
       onclick="PF('delete-filter-confirmation-dialog').hide();" type="button" styleClass="portal-cancel-button" />
   </p:confirmDialog>
+
+  <p:confirmDialog id="reset-task-dialog" appendTo="@(body)" widgetVar="reset-task-dialog"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" closeOnEscape="true">
+    <f:facet name="message">
+      <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
+    </f:facet>
+    <div>
+      <h:form id="reset-task-form">
+        <p:commandButton actionListener="#{logic.resetAndOpenTask(cc.attrs.currentPortalPage)}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          onstart="#{cc.attrs.onTaskStartCallback}" />
+        <p:commandButton onclick="PF('reset-task-dialog').hide()" styleClass="portal-cancel-button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
+      </h:form>
+    </div>
+  </p:confirmDialog>
+
+  <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate task="#{data.selectedTask}" dataModel="#{data.dataModel}"
+    componentToUpdate="#{p:component('task-start')}" />
 
   <script type="text/javascript">
       var taskWidget = new TaskWidget();

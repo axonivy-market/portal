@@ -109,4 +109,19 @@ public abstract class AbstractFilter<T extends Query<?>> {
     return false;
   }
 
+  /**
+   * <p>
+   * Override this method if need to reload data list (such as case list, task list) after add/remove new filter
+   * </p>
+   * <p>
+   * <b>Example: </b>
+   * After add/remove Expiry filter, we don't need to reload page because default value of Expiry filter is ALL
+   * After add/remove State filter, we need to reload page because default value of State filter is based on user's permission
+   * </p>
+   * @return is reload view
+   */
+  public boolean reloadView() {
+    return false;
+  }
+
 }
