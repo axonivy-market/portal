@@ -31,7 +31,7 @@ public final class PortalNavigator {
   private static final String PORTAL_PROCESS = "Start Processes/PortalPages/DefaultProcessStartListPage.ivp";
   private static final String PORTAL_TASK = "Start Processes/PortalStart/DefaultTaskListPage.ivp";
   private static final String PORTAL_CASE = "Start Processes/PortalStart/CaseListPage.ivp";
-  private static final String PORTAL_STATISTIC = "Start Processes/PortalPages/StatisticPage.ivp";
+  private static final String PORTAL_STATISTIC = "Start Processes/PortalStart/StatisticPage.ivp";
   private static final String SLASH = "/";
 
   public String getPortalStartUrl() throws MalformedURLException {
