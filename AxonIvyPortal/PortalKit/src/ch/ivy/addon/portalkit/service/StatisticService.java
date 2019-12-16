@@ -1071,8 +1071,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @param statisticChartList
    */
   public void generateChartModelForStatisticCharts(List<StatisticChart> statisticChartList) {
-    for (StatisticChart statisticChart : statisticChartList) {
+    if (!statisticChartList.isEmpty()) {
       fetchStatisticColor();
+    }
+    for (StatisticChart statisticChart : statisticChartList) {
       switch (statisticChart.getType()) {
         case TASK_BY_PRIORITY:
           statisticChart.setDonutChartModel(buildChartModelForTaskPriority(statisticChart));
