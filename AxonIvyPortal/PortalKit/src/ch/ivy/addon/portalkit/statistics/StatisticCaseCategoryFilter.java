@@ -21,6 +21,8 @@ public class StatisticCaseCategoryFilter implements Serializable {
 
   private static final long serialVersionUID = -1200590667880254731L;
 
+  private static final String SELECT_ALL_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll";
+  private static final String NO_CATEGORY_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory";
   @JsonIgnore
   private CheckboxTreeNode[] categories = new CheckboxTreeNode[] {};
   @JsonIgnore
@@ -39,15 +41,13 @@ public class StatisticCaseCategoryFilter implements Serializable {
   public StatisticCaseCategoryFilter() {
     CheckboxTreeNode caseCategoryTree = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();
     if (caseCategoryTree != null && caseCategoryTree.getChildCount() > 0) {
+      String selectAllLabel = Ivy.cms().co(SELECT_ALL_CMS);
       root = CaseTreeUtils.buildRoot();
-      CheckboxTreeNode checkboxTreeNode = buildCaseCategoryCheckBoxTreeNode(root,
-          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll"),
-          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll"));
+      CheckboxTreeNode checkboxTreeNode = buildCaseCategoryCheckBoxTreeNode(root, selectAllLabel, selectAllLabel);
       checkboxTreeNode.getChildren().addAll(caseCategoryTree.getChildren());
 
-      CheckboxTreeNode noCategory = buildCaseCategoryCheckBoxTreeNode(root,
-          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory"),
-          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory"));
+      String noCategoryLabel = Ivy.cms().co(NO_CATEGORY_CMS);
+      CheckboxTreeNode noCategory = buildCaseCategoryCheckBoxTreeNode(root,noCategoryLabel ,noCategoryLabel);
       checkboxTreeNode.getChildren().add(noCategory);
       root.setChildren(new ArrayList<>());
       root.getChildren().add(checkboxTreeNode);
