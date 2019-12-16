@@ -2,19 +2,16 @@ package ch.ivy.addon.portal.generic.navigation;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.extensions.util.json.GsonConverter;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.MenuKind;
-import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
@@ -32,6 +29,7 @@ public final class PortalNavigator {
   private static final String PORTAL_TASK = "Start Processes/PortalStart/DefaultTaskListPage.ivp";
   private static final String PORTAL_CASE = "Start Processes/PortalStart/CaseListPage.ivp";
   private static final String PORTAL_STATISTIC = "Start Processes/PortalStart/StatisticPage.ivp";
+  private static final String PORTAL_CASE_DETAILS = "Start Processes/PortalStart/CaseDetailsPage.ivp";
   private static final String SLASH = "/";
 
   public String getPortalStartUrl() throws MalformedURLException {
@@ -55,20 +53,6 @@ public final class PortalNavigator {
       return serverUrl + requestPath;
     }
     return SLASH + RequestUriFactory.getIvyContextName() + requestPath;
-  }
-
-  public String getPortalStartUrlOf(PortalPage portalPage, Map<String, String> pageParameters)
-          throws MalformedURLException {
-    String baseUrl = getPortalStartUrl();
-    return generatePortalStartUrl(baseUrl, portalPage, pageParameters);
-  }
-
-  private String generatePortalStartUrl(String baseUrl, PortalPage portalPage,
-          Map<String, String> pageParameters) {
-    Map<String, List<String>> parameters = new HashMap<>();
-    parameters.put("portalNavigator", Arrays.asList(portalPage.name()));
-    parameters.put("parameters", Arrays.asList(GsonConverter.getGson().toJson(pageParameters)));
-    return FacesContext.getCurrentInstance().getExternalContext().encodeRedirectURL(baseUrl, parameters);
   }
 
   public void redirect(String url) {
@@ -139,41 +123,50 @@ public final class PortalNavigator {
   }
 
   public void navigateToPortalProcess() {
-    navigateByKeyword("DefaultProcessStartListPage.ivp", PORTAL_PROCESS);
+    navigateByKeyword("DefaultProcessStartListPage.ivp", PORTAL_PROCESS, new HashMap<>());
   }
 
   public void navigateToPortalCase() {
-    navigateByKeyword("CaseListPage.ivp", PORTAL_CASE);
+    navigateByKeyword("CaseListPage.ivp", PORTAL_CASE, new HashMap<>());
   }
 
   public void navigateToPortalTask() {
-    navigateByKeyword("DefaultTaskListPage.ivp", PORTAL_TASK);
+    navigateByKeyword("DefaultTaskListPage.ivp", PORTAL_TASK, new HashMap<>());
   }
 
   public void navigateToPortalStatistic() {
-    navigateByKeyword("StatisticPage.ivp", PORTAL_STATISTIC);
+    navigateByKeyword("StatisticPage.ivp", PORTAL_STATISTIC, new HashMap<>());
   }
   
   public void navigateToPortalHome() {
-    navigateByKeyword("DefaultApplicationHomePage.ivp", PORTAL_PROCESS_START_NAME);
+    navigateByKeyword("DefaultApplicationHomePage.ivp", PORTAL_PROCESS_START_NAME, new HashMap<>());
+  }
+  
+  public void navigateToPortalCaseDetails(Long caseId) {
+    Map<String, String> params = new HashMap<>();
+    params.put("caseId", String.valueOf(caseId));
+    navigateByKeyword("CaseDetailsPage.ivp", PORTAL_CASE_DETAILS, params);
   }
 
-  private void navigateByKeyword(String keyword, String defaultFriendlyRequestPath) {
+  private void navigateByKeyword(String keyword, String defaultFriendlyRequestPath, Map<String, String> param) {
     String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);
     if (StringUtils.isNotEmpty(customizePortalFriendlyRequestPath)) {
-      navigate(customizePortalFriendlyRequestPath, StringUtils.EMPTY);
+      navigate(customizePortalFriendlyRequestPath, param);
     } else {
-      navigate(defaultFriendlyRequestPath, StringUtils.EMPTY);
+      navigate(defaultFriendlyRequestPath, param);
     }
   }
 
-  private void navigate(String friendlyRequestPath, String param) {
+  private void navigate(String friendlyRequestPath, Map<String, String> params) {
     String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(friendlyRequestPath);
     if (StringUtils.isNotEmpty(requestPath)) {
       try {
         String ivyContextName = ServerFactory.getServer().getSecurityManager().executeAsSystem(
             () -> RequestUriFactory.getIvyContextName());
-        redirect(SLASH + ivyContextName + requestPath + param);
+        String paramStr = params.entrySet().stream()
+            .map(e -> e.getKey()+"="+e.getValue())
+            .collect(Collectors.joining("&"));
+        redirect(SLASH + ivyContextName + requestPath + (StringUtils.isNotBlank(paramStr) ? "?" + paramStr : StringUtils.EMPTY));
       } catch (Exception e) {
         Ivy.log().error(e);
       }
