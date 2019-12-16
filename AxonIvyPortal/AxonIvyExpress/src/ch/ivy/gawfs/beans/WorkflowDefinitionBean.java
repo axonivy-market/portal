@@ -23,7 +23,6 @@ public class WorkflowDefinitionBean implements Serializable {
 
   private static final long serialVersionUID = 8119703742579630358L;
   private static final String SYSTEM = "SYSTEM";
-  private static final String HIDE_PROPERTY = "HIDE";
 
   private List<IRole> availableRoles;
   private List<IUser> availableUsers;
@@ -84,7 +83,7 @@ public class WorkflowDefinitionBean implements Serializable {
     availableUsers = new ArrayList<>();
     List<IUser> usersFromSystem = Ivy.wf().getSecurityContext().getUsers();
     usersFromSystem.stream()
-      .filter(user -> (user.getProperty(HIDE_PROPERTY) == null && !user.getName().equals(String.join("#", SYSTEM))))
+      .filter(user -> (!user.getName().equals(String.join("#", SYSTEM))))
       .forEach(user -> availableUsers.add(user));
   }
 
