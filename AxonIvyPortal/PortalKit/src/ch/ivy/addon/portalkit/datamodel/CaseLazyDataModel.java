@@ -63,7 +63,8 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   private boolean isAutoHideColumns;
   private boolean isDisableSelectionCheckboxes;
-  
+  private CaseFilter selectedCaseFilter;
+
   public CaseLazyDataModel() {
     this("case-widget");
   }
@@ -81,6 +82,11 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   @Override
   public List<ICase> load(int first, int pageSize, String sortField, SortOrder sortOrder,
       Map<String, Object> filters) {
+    if (selectedCaseFilter != null && !selectedCaseFilter.reloadView()) {
+      selectedCaseFilter = null;
+      return data;
+    }
+
     if (first == 0) {
       initializedDataModel();
       PrimeFaces.current().executeScript("updateCaseCount()");
@@ -105,9 +111,15 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   public void onFilterChange(ValueChangeEvent event) {
     List<CaseFilter> oldSelectedFilters = (List<CaseFilter>) event.getOldValue();
     List<CaseFilter> newSelectedFilters = (List<CaseFilter>) event.getNewValue();
-    List<CaseFilter> toggleFilters =
-        (List<CaseFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
+    List<CaseFilter> toggleFilters = null;
+    if (newSelectedFilters.size() > oldSelectedFilters.size()) {
+      toggleFilters = (List<CaseFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
+    } else {
+      toggleFilters = (List<CaseFilter>) CollectionUtils.subtract(oldSelectedFilters, newSelectedFilters);
+    }
+
     if (CollectionUtils.isNotEmpty(toggleFilters)) {
+      selectedCaseFilter = toggleFilters.get(0);
       toggleFilters.get(0).resetValues();
     }
     resetFilterData();
@@ -124,6 +136,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   public void removeFilter(CaseFilter filter) {
+    selectedCaseFilter = filter;
     filter.resetValues();
     selectedFilters.remove(filter);
     resetFilterData();
