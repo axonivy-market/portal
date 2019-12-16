@@ -2,14 +2,11 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
 import java.net.MalformedURLException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-import ch.ivy.addon.portalkit.enums.PortalPage;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 
 @ManagedBean
@@ -17,13 +14,9 @@ import ch.ivy.addon.portalkit.enums.MenuKind;
 public class NavigatorBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public void navigateToCaseDetail(String caseName, long caseId) throws MalformedURLException {
+  public void navigateToCaseDetail(long caseId) throws MalformedURLException {
     PortalNavigator portalNavigator = new PortalNavigator();
-    Map<String, String> dialogParameters = new HashMap<>();
-    dialogParameters.put("caseName", caseName);
-    dialogParameters.put("caseId", String.valueOf(caseId));
-    String url = portalNavigator.getPortalStartUrlOf(PortalPage.CASE_DETAIL_FROM_TASK, dialogParameters);
-    portalNavigator.redirect(url);
+    portalNavigator.navigateToPortalCaseDetails(caseId);
   }
   
   public String getProcessPage() {
