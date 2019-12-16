@@ -219,6 +219,10 @@ public class ChatAssigneeBean implements Serializable {
     } else if (!doesGroupChatExist) {
       createGroupChat();
     }
+
+    if (doesGroupChatExist) {
+      PrimeFaces.current().executeScript("PF('chat-assignee-dialog').show()");
+    }
   }
 
   public void createGroupChat() {
