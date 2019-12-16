@@ -77,6 +77,11 @@ public class CaseStateFilter extends CaseFilter {
     return true;
  }
 
+  @Override
+  public boolean reloadView() {
+    return true;
+  }
+
   public String userFriendlyState(CaseState state) {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/" + state);
   }

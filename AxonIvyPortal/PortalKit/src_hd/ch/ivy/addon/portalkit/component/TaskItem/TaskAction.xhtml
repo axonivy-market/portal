@@ -19,15 +19,15 @@
       <p:commandLink id="resume-task-action-component" disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}"
         rendered="#{task.state == 'RESUMED'}" styleClass="task-action-item">
         <p:ajax event="click" listener="#{logic.validate(task, dataModel)}" onstart="event.stopPropagation();"
-          oncomplete="if (args &amp;&amp; !args.validationFailed) PF('reset-task-dialog-#{rowIndex}').show()" />
+          oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('reset-task-dialog').show(); #{selectedTask}}" />
         <i class="tmi-chevorn-right icon-compact-mode" />
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label u-hidden-md-down" />
       </p:commandLink>
 
       <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu"
-        panelWidgetVar="task-side-steps-panel-#{rowIndex}" isAdhocExcluded="false" renderedAdditionalAction="#{taskActionBean.showAdditionalOptions}" task="#{task}"
-        isDisabled="#{!taskActionBean.isNotDone(task)}" dataModel="#{dataModel}" componentToUpdate="#{p:component('task-start')}" buttonStyleClass="u-hidden-md-down"
-        rowIndex="#{rowIndex}" />
+        panelWidgetVar="task-side-steps-panel-#{rowIndex}" isAdhocExcluded="false" renderedAdditionalAction="#{taskActionBean.showAdditionalOptions}"
+        task="#{task}" isDisabled="#{!taskActionBean.isNotDone(task)}" componentToUpdate="#{p:component('task-start')}"
+        buttonStyleClass="u-hidden-md-down" selectedTask="#{selectedTask}" />
     </div>
   </div>
 </ui:composition>
