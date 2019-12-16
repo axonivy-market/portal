@@ -17,26 +17,26 @@
         emptyMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoFormelementsAvailable')}"
         value="#{data.dragAndDropController.availableFormelements}" columns="1">
         <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
-          <h:panelGroup styleClass="TexAlLeft ui-g-12">
+          <div class="TexAlLeft ui-g-12">
             <div class="ui-g">
               <div class="ui-g-12 u-padding-0">
-                <h:panelGroup class="available-elements-image">
+                <div class="available-elements-image">
                   <p:graphicImage library="ivy-cms" name="/Layouts/Icons/#{formelement.type.value}" width="55" />
-                </h:panelGroup>
+                </div>
 
-                <h:panelGroup styleClass="available-elements-action-btn">
+                <div class="available-elements-action-btn">
                   <p:commandButton icon="fa fa-trash-o fa-3x" styleClass="placement-form-element-remove-btn"
                     actionListener="#{data.dragAndDropController.deleteFormelement(formelement)}" process="form:available-form-elements"
                     update="form:available-form-elements">
                   </p:commandButton>
-                </h:panelGroup>
+                </div>
               </div>
 
-              <h:panelGroup styleClass="ui-g-12 available-elements-label-col u-padding-0">
+              <div class="ui-g-12 available-elements-label-col u-padding-0">
                 <p:outputLabel value="#{formelement.label}" styleClass="available-elements-label" />
-              </h:panelGroup>
+              </div>
             </div>
-          </h:panelGroup>
+          </div>
         </p:panel>
         <p:draggable for="pnl" revert="true" stack=".ui-panel" />
       </p:dataGrid>
@@ -55,7 +55,7 @@
             <p:outputPanel id="selected-form-elements-header-panel" styleClass="selected-formelements-panel header-section">
               <p:outputPanel rendered="#{empty data.dragAndDropController.selectedFormelementsHeader}">
                 <br />
-                <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/BroadHeaderArea')}" styleClass="Fs24" />
+                <span class="Fs24">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/BroadHeaderArea')}</span>
                 <br />
                 <br />
               </p:outputPanel>
@@ -65,26 +65,26 @@
                 value="#{data.dragAndDropController.selectedFormelementsHeader}"
                 rendered="#{not empty data.dragAndDropController.selectedFormelementsHeader}" columns="1">
                 <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
-                  <h:panelGroup styleClass="TexAlLeft ui-g-12">
+                  <div class="TexAlLeft ui-g-12">
                     <div class="ui-g">
                       <div class="ui-g-12 u-padding-0">
-                        <h:panelGroup class="available-elements-image">
+                        <div class="available-elements-image">
                           <p:graphicImage library="ivy-cms" name="/Layouts/Icons/#{formelement.type.value}" width="55" />
-                        </h:panelGroup>
+                        </div>
 
-                        <h:panelGroup styleClass="available-elements-action-btn">
+                        <div class="available-elements-action-btn">
                           <p:commandButton icon="fa fa-trash-o fa-3x" styleClass="placement-form-element-remove-btn"
                             actionListener="#{data.dragAndDropController.resetFormelementHeader(formelement)}"
                             process="form:selected-formelements-header" update="form">
                           </p:commandButton>
-                        </h:panelGroup>
+                        </div>
                       </div>
 
-                      <h:panelGroup styleClass="ui-g-12 available-elements-label-col u-padding-0">
-                        <p:outputLabel value="#{formelement.label}" styleClass="available-elements-label" />
-                      </h:panelGroup>
+                      <div class="ui-g-12 available-elements-label-col u-padding-0">
+                        <label class="available-elements-label">#{formelement.label}</label>
+                      </div>
                     </div>
-                  </h:panelGroup>
+                  </div>
                 </p:panel>
               </p:dataGrid>
 
@@ -103,7 +103,7 @@
 
               <p:outputPanel rendered="#{empty data.dragAndDropController.selectedFormelementsLeftPanel}">
                 <br />
-                <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/LeftColumn')}" styleClass="Fs24" />
+                <span class="Fs24">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/LeftColumn')}</span>
                 <br />
                 <br />
               </p:outputPanel>
@@ -115,26 +115,26 @@
                 rendered="#{not empty data.dragAndDropController.selectedFormelementsLeftPanel}">
 
                 <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
-                  <h:panelGroup styleClass="TexAlLeft ui-g-12">
+                  <div class="TexAlLeft ui-g-12">
                     <div class="ui-g">
                       <div class="ui-g-12 u-padding-0">
-                        <h:panelGroup class="available-elements-image">
+                        <div class="available-elements-image">
                           <p:graphicImage library="ivy-cms" name="/Layouts/Icons/#{formelement.type.value}" width="55" />
-                        </h:panelGroup>
+                        </div>
 
-                        <h:panelGroup styleClass="available-elements-action-btn">
+                        <div class="available-elements-action-btn">
                           <p:commandButton icon="fa fa-trash-o fa-3x" styleClass="placement-form-element-remove-btn"
                             actionListener="#{data.dragAndDropController.resetFormelementLeftPanel(formelement)}"
                             process="form:selected-formelements-left-panel" update="form">
                           </p:commandButton>
-                        </h:panelGroup>
+                        </div>
                       </div>
 
-                      <h:panelGroup styleClass="ui-g-12 available-elements-label-col u-padding-0">
-                        <p:outputLabel value="#{formelement.label}" styleClass="available-elements-label" />
-                      </h:panelGroup>
+                      <div class="ui-g-12 available-elements-label-col u-padding-0">
+                        <label class="available-elements-label">#{formelement.label}</label>
+                      </div>
                     </div>
-                  </h:panelGroup>
+                  </div>
                 </p:panel>
               </p:dataGrid>
 
@@ -150,7 +150,7 @@
             <p:outputPanel id="selected-form-elements-rightpanel-panel" styleClass="selected-formelements-panel right-section">
               <p:outputPanel rendered="#{empty data.dragAndDropController.selectedFormelementsRightPanel}">
                 <br />
-                <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/RightColumn')}" styleClass="Fs24" />
+                <span class="Fs24">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/RightColumn')}</span>
                 <br />
                 <br />
               </p:outputPanel>
@@ -163,26 +163,26 @@
                 rendered="#{not empty data.dragAndDropController.selectedFormelementsRightPanel}">
 
                 <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
-                  <h:panelGroup styleClass="TexAlLeft ui-g-12">
+                  <div class="TexAlLeft ui-g-12">
                     <div class="ui-g">
                       <div class="ui-g-12 u-padding-0">
-                        <h:panelGroup class="available-elements-image">
+                        <div class="available-elements-image">
                           <p:graphicImage library="ivy-cms" name="/Layouts/Icons/#{formelement.type.value}" width="55" />
-                        </h:panelGroup>
+                        </div>
 
-                        <h:panelGroup styleClass="available-elements-action-btn">
+                        <div class="available-elements-action-btn">
                           <p:commandButton icon="fa fa-trash-o fa-3x" styleClass="placement-form-element-remove-btn"
                             actionListener="#{data.dragAndDropController.resetFormelementRightPanel(formelement)}"
                             process="form:selected-formelements-right-panel" update="form">
                           </p:commandButton>
-                        </h:panelGroup>
+                        </div>
                       </div>
 
-                      <h:panelGroup styleClass="ui-g-12 available-elements-label-col u-padding-0">
-                        <p:outputLabel value="#{formelement.label}" styleClass="available-elements-label" />
-                      </h:panelGroup>
+                      <div class="ui-g-12 available-elements-label-col u-padding-0">
+                        <label class="available-elements-label">#{formelement.label}</label>
+                      </div>
                     </div>
-                  </h:panelGroup>
+                  </div>
                 </p:panel>
               </p:dataGrid>
 
@@ -202,7 +202,7 @@
 
               <p:outputPanel rendered="#{empty data.dragAndDropController.selectedFormelementsFooter}">
                 <br />
-                <h:outputText value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/BroadFooterArea')}" styleClass="Fs24" />
+                <span class="Fs24">#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/BroadFooterArea')}</span>
                 <br />
                 <br />
               </p:outputPanel>
@@ -214,26 +214,26 @@
                 styleClass="no-border TexAlCenter selected-form-elements-footer" columns="1">
 
                 <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
-                  <h:panelGroup styleClass="TexAlLeft ui-g-12">
+                  <div class="TexAlLeft ui-g-12">
                     <div class="ui-g">
                       <div class="ui-g-12 u-padding-0">
-                        <h:panelGroup class="available-elements-image">
+                        <div class="available-elements-image">
                           <p:graphicImage library="ivy-cms" name="/Layouts/Icons/#{formelement.type.value}" width="55" />
-                        </h:panelGroup>
+                        </div>
 
-                        <h:panelGroup styleClass="available-elements-action-btn">
+                        <div class="available-elements-action-btn">
                           <p:commandButton icon="fa fa-trash-o fa-3x" styleClass="placement-form-element-remove-btn"
                             actionListener="#{data.dragAndDropController.resetFormelementFooter(formelement)}"
                             process="form:selected-formelements-footer" update="form">
                           </p:commandButton>
-                        </h:panelGroup>
+                        </div>
                       </div>
 
-                      <h:panelGroup styleClass="ui-g-12 available-elements-label-col u-padding-0">
-                        <p:outputLabel value="#{formelement.label}" styleClass="available-elements-label" />
-                      </h:panelGroup>
+                      <div class="ui-g-12 available-elements-label-col u-padding-0">
+                        <label class="available-elements-label">#{formelement.label}</label>
+                      </div>
                     </div>
-                  </h:panelGroup>
+                  </div>
                 </p:panel>
               </p:dataGrid>
 
