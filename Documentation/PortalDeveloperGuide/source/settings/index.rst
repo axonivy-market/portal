@@ -284,7 +284,7 @@ Personal task permission
    ``IPermission.TASK_PARK_OWN_WORKING_TASK``.
 
    .. important::
-      Task state has to be one of following values: RESUMED, SUSPENDED.
+      Task state has to be one of following values: CREATED, RESUMED, SUSPENDED.
 
    This function will be hidden if session user does not have permission
    ``PortalPermission.TASK_DISPLAY_RESERVE_ACTION``.
