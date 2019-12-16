@@ -46,9 +46,9 @@ import ch.ivy.addon.portalkit.service.StatisticService;
 StatisticService service = new StatisticService();
 String chartName = "Tasks by Priority";
 StatisticChartType chartType = StatisticChartType.TASK_BY_PRIORITY;
-StatisticFilter statisticFilter = new StatisticFilter().init();
 
 if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName)) {
+  StatisticFilter statisticFilter = new StatisticFilter().init();
   StatisticChart newChart = service.createStatisticChart(statisticFilter, chartName, chartType, ivy.session.getSessionUser().getId(), true);
   in.defaultCharts.add(newChart);
 }
