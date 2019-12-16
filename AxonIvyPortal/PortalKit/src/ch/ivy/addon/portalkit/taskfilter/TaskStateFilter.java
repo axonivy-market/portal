@@ -88,6 +88,11 @@ public class TaskStateFilter extends TaskFilter {
     return true;
   }
 
+  @Override
+  public boolean reloadView() {
+    return true;
+  }
+
   public String userFriendlyState(TaskState state) {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + state);
   }
