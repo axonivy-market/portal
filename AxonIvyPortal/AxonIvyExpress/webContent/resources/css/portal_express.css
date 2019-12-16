@@ -439,6 +439,12 @@ td.email-attachment-text {
 }
 
 /* Form Creation Tab */
+.create-tabs-field {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-left: 0;
+  margin-right: 0;
+}
 .create-tabs-field .ui-fieldset-content {
   width: 100%;
 }

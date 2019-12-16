@@ -49,7 +49,7 @@
           <p:spacer width="3px"/>
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"/>
         </p:commandLink>
-        <p:remoteCommand name="backToCasesList" actionListener="#{caseBean.backToCasesList()}" />
+        <p:remoteCommand name="backToCasesList" actionListener="#{caseBean.backToCasesList()}" process="@this" immediate="true" />
       </h:form>
     </h:panelGroup>
 
