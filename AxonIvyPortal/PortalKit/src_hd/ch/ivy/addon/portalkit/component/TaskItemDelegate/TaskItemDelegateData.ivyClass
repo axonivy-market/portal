@@ -1,0 +1,22 @@
+TaskItemDelegateData #class
+ch.ivy.addon.portalkit.component.TaskItemDelegate #namespace
+canDelegateTask Boolean #field
+canDelegateTask PERSISTENT #fieldModifier
+usersToDelegate java.util.List<ch.ivyteam.ivy.security.IUser> #field
+usersToDelegate PERSISTENT #fieldModifier
+rolesToDelegate java.util.List<ch.ivyteam.ivy.security.IRole> #field
+rolesToDelegate PERSISTENT #fieldModifier
+application ch.ivyteam.ivy.application.IApplication #field
+application PERSISTENT #fieldModifier
+disabledDelegateButton Boolean #field
+disabledDelegateButton PERSISTENT #fieldModifier
+isUserDelegated Boolean #field
+isUserDelegated PERSISTENT #fieldModifier
+delegatedSecurityMember ch.ivyteam.ivy.security.ISecurityMember #field
+delegatedSecurityMember PERSISTENT #fieldModifier
+delegateComment String #field
+delegateComment PERSISTENT #fieldModifier
+queryAutoComplete String #field
+queryAutoComplete PERSISTENT #fieldModifier
+task ch.ivyteam.ivy.workflow.ITask #field
+task PERSISTENT #fieldModifier
