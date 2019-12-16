@@ -9,10 +9,10 @@
   <cc:attribute name="rowIndex" />
   <cc:attribute name="compactMode" type="Boolean" />
   <cc:attribute name="isSelected" type="Boolean" />
-  <cc:attribute name="componentToUpdate" />
   <cc:attribute name="onTaskStartCallback" />
   <cc:facet name="taskHeader" shortDescription="Header content of a task item" />
   <cc:attribute name="dataModel" />
+  <cc:attribute name="selectedTask" required="true" shortDescription="Task is selected for reset or delegate" type="ch.ivyteam.ivy.workflow.ITask"/>
 </cc:interface>
 
 <cc:implementation>
@@ -25,7 +25,7 @@
   <h:panelGroup rendered="#{compactMode}">
     <ui:include src="CompactTaskStartLink.xhtml">
       <ui:param name="dataModel" value="#{dataModel}" />
-      <ui:param name="rowIndex" value="#{rowIndex}" />
+      <ui:param name="selectedTask" value="#{cc.attrs.selectedTask}" />
     </ui:include>
   </h:panelGroup>
 
@@ -40,25 +40,11 @@
       <f:subview id="task-action">
         <ui:include src="TaskAction.xhtml">
           <ui:param name="dataModel" value="#{dataModel}" />
+          <ui:param name="selectedTask" value="#{cc.attrs.selectedTask}" />
         </ui:include>
       </f:subview>
     </div>
   </h:panelGroup>
-
-  <p:confirmDialog id="reset-task-dialog-#{rowIndex}" appendTo="@(body)" widgetVar="reset-task-dialog-#{rowIndex}"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" closeOnEscape="true">
-    <f:facet name="message">
-      <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
-    </f:facet>
-    <div>
-      <h:form id="reset-task-form">
-        <p:commandButton actionListener="#{logic.resetAndOpenTask}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-          onstart="#{cc.attrs.onTaskStartCallback}" />
-        <p:commandButton onclick="PF('reset-task-dialog-#{rowIndex}').hide()" styleClass="portal-cancel-button"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
-      </h:form>
-    </div>
-  </p:confirmDialog>
 
 </cc:implementation>
 </html>

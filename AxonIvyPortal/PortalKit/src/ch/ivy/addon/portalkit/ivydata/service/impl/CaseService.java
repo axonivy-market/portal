@@ -140,7 +140,7 @@ public class CaseService implements ICaseService {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
       try {
         CaseQuery finalQuery = extendQuery(criteria);
-        finalQuery.aggregate().countRows().groupBy().state().orderBy().state();
+        finalQuery.aggregate().countRows().groupBy().state();
 
         Recordset recordSet = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getRecordset(finalQuery);
         CaseStateStatistic caseStateStatistic = createCaseStateStatistic(recordSet);
