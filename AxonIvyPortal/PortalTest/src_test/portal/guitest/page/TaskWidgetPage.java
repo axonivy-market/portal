@@ -272,15 +272,16 @@ public class TaskWidgetPage extends TemplatePage {
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
         .until(() -> findElementByCssSelector("a[id$='task-delegate-command']").isDisplayed());
     clickByCssSelector("a[id$='task-delegate-command']");
+    waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), true);
   }
 
   public boolean isDelegateTypeSelectAvailable() {
     return isElementPresent(By.cssSelector("div[id$=':activator-panel']"));
   }
 
-  public boolean isDelegateTypeDisabled(int taskIndex, int index) {
+  public boolean isDelegateTypeDisabled(int index) {
     WebElement delegateTypeRadioButton = findElementByCssSelector(String.format(
-        "input[id$='%d\\:task-item\\:task-action\\:additional-options\\:task-delegate-form\\:activator-type-select\\:%d']", taskIndex, index));
+        "input[id$='task-widget\\:task-item-delegate-component\\:task-delegate-form\\:activator-type-select\\:%d']", index));
     
     return Optional.ofNullable(delegateTypeRadioButton.getAttribute("disabled")).isPresent();
   }

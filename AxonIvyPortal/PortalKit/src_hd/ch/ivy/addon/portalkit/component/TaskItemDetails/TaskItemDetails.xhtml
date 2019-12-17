@@ -119,7 +119,7 @@
     </h:panelGroup>
   </p:confirmDialog>
 
-  <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate task="#{task}" dataModel="#{data.dataModel}"
+  <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="task-item-delegate-component"  task="#{task}" dataModel="#{data.dataModel}"
     componentToUpdate="#{p:component('task-detail-general-container')} #{p:component('task-detail-note-container')}" />
 
 </cc:implementation>
