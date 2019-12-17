@@ -25,18 +25,18 @@
         <p:commandLink id="name-sort-command" styleClass="name-sort-command"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/sortByName')}"
           actionListener="#{compactProcessWidgetBean.sortUserProcessList(compactProcessWidgetBean.userProcesses)}"
-          rendered="#{not empty compactProcessWidgetBean.userProcesses}" update="#{cc.clientId}:process-list" oncomplete="UserFavouritesProcess.setUpScrollBar()" />
+          rendered="#{not empty compactProcessWidgetBean.userProcesses}" update="#{cc.clientId}:process-list" oncomplete="favouritesProcess.setUpScrollBarUserProcesses()" />
       </h:panelGroup>
 
       <h:panelGroup layout="block" rendered="#{compactProcessWidgetBean.editMode}">
         <p:commandLink id="save-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-          onclick="$('button[id$=\'save-process-button\']').click();"  onstart="UserFavouritesProcess.setUpScrollBar()" global="false"/>
+          onclick="$('button[id$=\'save-process-button\']').click();"  onstart="favouritesProcess.setUpScrollBarUserProcesses()" global="false"/>
         <p:spacer width="10" />
         <p:commandLink id="cancel-editing-process-command"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           actionListener="#{compactProcessWidgetBean.cancelEditingProcess}"
           update="@form #{cc.clientId}:process-list #{cc.clientId}:header"
-          oncomplete="UserFavouritesProcess.setUpScrollBar()" />
+          oncomplete="favouritesProcess.setUpScrollBarUserProcesses()" />
       </h:panelGroup>
     </h:form>
   </h:panelGroup>
