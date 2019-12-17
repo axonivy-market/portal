@@ -1,7 +1,7 @@
 .. _portal-document:
 
-Portal Developer Guide
-**********************
+Developer Guide
+***************
 
 .. toctree::
    :maxdepth: 2
