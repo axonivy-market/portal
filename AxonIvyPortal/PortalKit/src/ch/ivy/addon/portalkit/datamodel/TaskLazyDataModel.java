@@ -397,7 +397,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   public void removeFilter(TaskFilter filter) {
-    selectedTaskFilter = filter;
+    selectedTaskFilter = null;
     filter.resetValues();
     selectedFilters.remove(filter);
     resetFilterData();
