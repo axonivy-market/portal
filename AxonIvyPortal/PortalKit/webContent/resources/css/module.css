@@ -1171,26 +1171,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   margin: 2px 3px 5px 2px;
 }
 
-@media screen and (min-width: 64.064em) {
-  .compact-default-processes-container {
-    max-height: 386px;
-    padding-right: 0px;
-  }
-}
-
-@media screen and (min-width: 40.063em) and (max-width: 64.063em)  {
-  .compact-default-processes-container {
-    max-height: 276px;
-    padding-right: 0px;
-  }
-}
-
-@media screen and (max-width: 40em) , screen and (max-height: 64.063em) {
-  .compact-default-processes-container {
-    max-height: 165px;
-  }
-}
-
 .process-start-list-item-action>div.express-process-logo {
   opacity: 0.3;
   margin: 0 5px;
