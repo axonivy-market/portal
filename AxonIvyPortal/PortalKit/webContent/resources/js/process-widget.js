@@ -196,31 +196,45 @@ function getElementsHaveClassName(displayedFieldSets, invert) {
 }
 
 var maxItems = 7;
-var ProcessItemHeight = 55;
-var favouritesProcessSize = 0;
+var processItemHeight = 55;
 
-var UserFavouritesProcess = {
+var favouritesProcess = {
 
-  init : function(favouritesProcess) {
-	favouritesProcessSize = favouritesProcess;
-	if( window.innerWidth < 1366 &&  window.innerWidth > 640 && window.innerHeight > 640 ) {
+  init : function() {
+	if( window.innerWidth < 1024 &&  window.innerWidth > 640 && window.innerHeight > 640 ) {
 		maxItems = 5;
 	} else if(window.innerWidth <= 640 | window.innerHeight <= 640 ) {
 		maxItems = 3;
 	}
   },
 
-  setUpScrollBar : function() {
-    this.scrollBarForProcesses();
+  setUpScrollBarUserProcesses : function() {
+    this.scrollBarForUserProcesses();
+  },
+  
+  setUpScrollBarApplicationProcesses : function() {
+	this.scrollBarForApplicationProcesses();
   },
 
-  scrollBarForProcesses : function() {
-    var favouritesProcessList = $('[id$="process-widget:user-process-container"]');
-    var favouritesProcessListBody = favouritesProcessList.find('.compact-processes-container.widget-content');
+  scrollBarForUserProcesses : function() {
+    var userProcessList = $('[id$="process-widget:user-process-container"]');
+    var userProcessListBody = userProcessList.find('.compact-processes-container.widget-content');
+    var userProcessSize = userProcessList.find("form").length;
     var scrollHeightForProcess = 0;
-    if (favouritesProcessSize > maxItems) {
-    	scrollHeightForProcess = ProcessItemHeight*maxItems + 2;
-    	favouritesProcessListBody.css("max-height", scrollHeightForProcess);
+    if (userProcessSize > maxItems) {
+    	scrollHeightForProcess = processItemHeight*maxItems + 2;
+    	userProcessListBody.css("max-height", scrollHeightForProcess);
+    }
+  },
+  
+  scrollBarForApplicationProcesses : function() {
+    var appProcessList = $('[id$="process-widget:user-default-process-list"]');
+    var appProcessListBody = appProcessList.find('.compact-default-processes-container');
+    var appProcessSize = appProcessList.find("form").length;
+    var scrollHeightForProcess = 0;
+    if (appProcessSize > maxItems) {
+    	scrollHeightForProcess = processItemHeight*maxItems + 2;
+    	appProcessListBody.css("max-height", scrollHeightForProcess);
     }
   }
 }
