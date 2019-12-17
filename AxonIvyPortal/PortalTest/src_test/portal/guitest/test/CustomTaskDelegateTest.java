@@ -28,12 +28,11 @@ public class CustomTaskDelegateTest extends BaseTest {
     taskWidgetPage.expand();
 
     taskWidgetPage.openTaskDelegateDialog(0);
-    taskWidgetPage.waitAjaxIndicatorDisappear();
     assertTrue(taskWidgetPage.isDelegateTypeSelectAvailable());
     // Radio button "User" is enabled
-    assertTrue(taskWidgetPage.isDelegateTypeDisabled(0,0));
+    assertTrue(taskWidgetPage.isDelegateTypeDisabled(0));
     // Radio button "Group" is disabled
-    assertFalse(taskWidgetPage.isDelegateTypeDisabled(0,1));
+    assertFalse(taskWidgetPage.isDelegateTypeDisabled(1));
     assertTrue(taskWidgetPage.isDelegateListSelectionAvailable());
   }
 
@@ -45,7 +44,6 @@ public class CustomTaskDelegateTest extends BaseTest {
     taskWidgetPage.expand();
 
     taskWidgetPage.openTaskDelegateDialog(1);
-    taskWidgetPage.waitAjaxIndicatorDisappear();
     assertTrue(taskWidgetPage.isDelegateTypeSelectAvailable());
     assertTrue(taskWidgetPage.isDelegateListSelectionAvailable());
   }
@@ -57,7 +55,6 @@ public class CustomTaskDelegateTest extends BaseTest {
     taskWidgetPage.expand();
 
     taskWidgetPage.openTaskDelegateDialog(0);
-    taskWidgetPage.waitAjaxIndicatorDisappear();
     
     assertFalse(taskWidgetPage.isDelegateTypeSelectAvailable());
     assertFalse(taskWidgetPage.isDelegateListSelectionAvailable());
