@@ -20,7 +20,7 @@
           <p:commandLink id="default-process-name-sort-command" styleClass="name-sort-command"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/sortByName')}"
             actionListener="#{compactProcessWidgetBean.sortUserProcessList(compactProcessWidgetBean.defaultUserProcesses)}"
-            update="#{cc.clientId}:user-default-process-list" />
+            update="#{cc.clientId}:user-default-process-list" oncomplete="favouritesProcess.setUpScrollBarApplicationProcesses()" />
         </h:panelGroup>
       </h:form>
     </h:panelGroup>
@@ -39,5 +39,11 @@
       </ui:repeat>
     </h:panelGroup>
   </h:panelGroup>
+  <script type="text/javascript">
+       $(function() {
+          favouritesProcess.init();
+          favouritesProcess.setUpScrollBarApplicationProcesses();
+      });
+  </script>
 </ui:composition>
 </html>
