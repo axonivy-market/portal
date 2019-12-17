@@ -1,0 +1,9 @@
+version: '3.3'
+services:
+  builder:
+    image: axonivy/build-container:read-the-docs-1.2
+    ports:
+     - "8000:8000"
+    volumes:
+     - "./:/portal"
+    entrypoint: "make livehtml BASEDIR=/portal"
