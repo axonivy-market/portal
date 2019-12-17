@@ -76,14 +76,10 @@ Ts0 @PushWFArc f70 '' #zField
 Ts0 @GridStep f6 '' #zField
 Ts0 @UdMethod f61 '' #zField
 Ts0 @GridStep f62 '' #zField
-Ts0 @GridStep f64 '' #zField
 Ts0 @UdProcessEnd f67 '' #zField
-Ts0 @GridStep f68 '' #zField
-Ts0 @PushWFArc f75 '' #zField
-Ts0 @PushWFArc f78 '' #zField
-Ts0 @PushWFArc f83 '' #zField
 Ts0 @PushWFArc f84 '' #zField
 Ts0 @PushWFArc f85 '' #zField
+Ts0 @PushWFArc f4 '' #zField
 >Proto Ts0 Ts0 TaskWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 method start(String,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,Long) #txt
@@ -683,7 +679,7 @@ Start task</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f6 744 1066 128 44 -44 -16 #rect
+Ts0 f6 416 1066 128 44 -44 -16 #rect
 Ts0 f6 @|StepIcon #fIcon
 Ts0 f61 guid 16ECEC605F7E9ECE #txt
 Ts0 f61 method resetAndOpenTask(String) #txt
@@ -714,60 +710,12 @@ Ts0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f62 192 1066 112 44 -29 -8 #rect
 Ts0 f62 @|StepIcon #fIcon
-Ts0 f64 actionTable 'out=in;
-' #txt
-Ts0 f64 actionCode 'import javax.faces.context.FacesContext;
-import ch.ivyteam.ivy.server.ServerFactory;
-import ch.ivyteam.ivy.request.RequestUriFactory;
-import javax.servlet.http.HttpServletRequest;
-import ch.ivy.addon.portalkit.support.UrlDetector;
-import ch.ivyteam.ivy.workflow.IProcessStart;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
-
-ProcessStartCollector collector = new ProcessStartCollector(ivy.wf.getApplication());
-java.util.List<IProcessStart> processStarts = collector.findProcessStartRequestPathContainsKeyword("restorePortalTaskList.ivp");
-UrlDetector urlDetector = new UrlDetector();
-HttpServletRequest request = FacesContext.getCurrentInstance().getExternalContext().getRequest() as HttpServletRequest;
-out.callbackUrl = urlDetector.getBaseURLWithoutContextPath(request) + RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), processStarts.get(0));' #txt
-Ts0 f64 security system #txt
-Ts0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Build callbackUrl</name>
-        <nameStyle>17
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f64 392 1066 112 44 -46 -8 #rect
-Ts0 f64 @|StepIcon #fIcon
-Ts0 f67 915 1075 26 26 0 12 #rect
+Ts0 f67 587 1075 26 26 0 12 #rect
 Ts0 f67 @|UdProcessEndIcon #fIcon
-Ts0 f68 actionTable 'out=in;
-' #txt
-Ts0 f68 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-
-in.selectedTask.customFields().stringField(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString()).set(in.callbackUrl);' #txt
-Ts0 f68 security system #txt
-Ts0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Set additional property</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f68 568 1066 128 44 -61 -8 #rect
-Ts0 f68 @|StepIcon #fIcon
-Ts0 f75 expr out #txt
-Ts0 f75 504 1088 568 1088 #arcP
-Ts0 f78 expr out #txt
-Ts0 f78 696 1088 744 1088 #arcP
-Ts0 f83 expr out #txt
-Ts0 f83 304 1088 392 1088 #arcP
-Ts0 f83 0 0.7169454532752354 0 0 #arcLabel
-Ts0 f84 872 1088 915 1088 #arcP
+Ts0 f84 544 1088 587 1088 #arcP
 Ts0 f85 expr out #txt
 Ts0 f85 109 1088 192 1088 #arcP
+Ts0 f4 304 1088 416 1088 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -828,11 +776,7 @@ Ts0 f21 mainOut f70 tail #connect
 Ts0 f70 head f54 in #connect
 Ts0 f61 mainOut f85 tail #connect
 Ts0 f85 head f62 mainIn #connect
-Ts0 f62 mainOut f83 tail #connect
-Ts0 f83 head f64 mainIn #connect
-Ts0 f64 mainOut f75 tail #connect
-Ts0 f75 head f68 mainIn #connect
-Ts0 f68 mainOut f78 tail #connect
-Ts0 f78 head f6 mainIn #connect
 Ts0 f6 mainOut f84 tail #connect
 Ts0 f84 head f67 mainIn #connect
+Ts0 f62 mainOut f4 tail #connect
+Ts0 f4 head f6 mainIn #connect
