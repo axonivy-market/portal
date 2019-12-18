@@ -234,6 +234,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void uploadDocumentWithoutError(String pathToFile) {
     openAddDocumentDialogAndUploadDocument(pathToFile);
+    waitForElementDisplayed(By.cssSelector("button[id$='case-item-details:document:document-upload-close-command']"), true);
     click(By.cssSelector("button[id$='case-item-details:document:document-upload-close-command']"));
   }
 
