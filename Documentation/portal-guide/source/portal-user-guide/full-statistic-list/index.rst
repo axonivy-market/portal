@@ -69,7 +69,7 @@ HowTo: Create chart
 +-----------------------+-----------------------+-----------------------+
 | Name                  | Type                  | Description           |
 +=======================+=======================+=======================+
-| Tasks by priority     | Pie chart             | Displays all tasks    |
+| Tasks by priority     | Donut chart           | Displays all tasks    |
 |                       |                       | assigned to a user or |
 |                       |                       | a belonged role       |
 |                       |                       | categorized by their  |
@@ -79,7 +79,7 @@ HowTo: Create chart
 |                       |                       | values are shown in   |
 |                       |                       | percentages.          |
 +-----------------------+-----------------------+-----------------------+
-| Case by state         | Pie chart             | Displays all cases    |
+| Case by state         | Donut chart           | Displays all cases    |
 |                       |                       | belonging to a user   |
 |                       |                       | or a role categorized |
 |                       |                       | by their state (In    |
@@ -107,7 +107,7 @@ HowTo: Create chart
 |                       |                       | values are shown in   |
 |                       |                       | percentages.          |
 +-----------------------+-----------------------+-----------------------+
-| Processed cases in    | Pie chart             | Displays all cases    |
+| Processed cases in    | Donut chart           | Displays all cases    |
 | time period           |                       | belonging to a user   |
 |                       |                       | or a role, where at   |
 |                       |                       | least one task was    |
@@ -121,7 +121,7 @@ HowTo: Create chart
 |                       |                       | values are shown in   |
 |                       |                       | percentages.          |
 +-----------------------+-----------------------+-----------------------+
-| Done cases in time    | Pie chart             | Displays all cases    |
+| Done cases in time    | Donut chart           | Displays all cases    |
 | period                |                       | belonging to a user   |
 |                       |                       | or a role, which were |
 |                       |                       | done during the       |
