@@ -29,7 +29,9 @@
       <h:panelGroup id="case-widget-header" styleClass="widget-header ui-g-12 ui-g" layout="block">
         <div class="case-widget-top-header ui-g-8 ui-sm-4">
           <h:panelGroup id="case-widget-title">
-            <span class="case-widget-top-header-main-title">#{cc.attrs.title} (#{data.dataModel.rowCount})</span>
+            <span class="case-widget-top-header-main-title">
+              #{cc.attrs.title} <h:outputText value="#{data.dataModel.rowCount})" rendered="#{!data.dataModel.disableCaseCount}" />
+            </span>
           </h:panelGroup>
         </div>
         <h:panelGroup styleClass="widget-header-content-filter ui-g-4 ui-sm-8" id="expanded-mode-filter-view">
@@ -154,7 +156,7 @@
     <h:panelGroup id="case-view" layout="block" class="ui-g-12 u-no-padding-left">
       <h:panelGroup id="case-list" layout="block" styleClass="case-list">
         <p:dataScroller id="case-list-scroller" value="#{data.dataModel}" var="case" chunkSize="#{cc.attrs.chunkSize}"
-          lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list">
+          lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list" widgetVar="case-list-scroller">
           <ic:ch.ivy.addon.portalkit.component.CaseItem case="#{case}" id="case-item"
             onDestroyComplete="PF('destroy-case-dialog').show()" rowIndex="#{rowIndex}"
             itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}">

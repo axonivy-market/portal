@@ -21,9 +21,11 @@ import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.FilterType;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.service.TaskColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
@@ -73,6 +75,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected boolean isDisableSelectionCheckboxes;
   protected boolean isRelatedTaskDisplayed;
   protected boolean isNotKeepFilter;
+  protected boolean disableTaskCount;
 
   private TaskFilter selectedTaskFilter;
 
@@ -91,6 +94,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
         inProgressFilter = new TaskInProgressByOthersFilter();
       }
     }
+    disableTaskCount = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_TASK_COUNT.toString());
   }
 
   public TaskLazyDataModel() {
@@ -175,13 +179,25 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
     if (first == 0) {
       initializedDataModel(criteria);
-      PrimeFaces.current().executeScript("updateTaskCount()");
+      if (!disableTaskCount) {
+        PrimeFaces.current().executeScript("updateTaskCount()");
+      }
       criteria.setFirstTimeLazyLoad(true);
     } else {
       criteria.setFirstTimeLazyLoad(false);
     }
 
     List<ITask> foundTasks = findTasks(criteria, first, pageSize);
+    if (disableTaskCount) {
+      int rowCount = 0;
+      if (foundTasks.size() >= pageSize) {
+        rowCount = first + pageSize + 1;
+      } else {
+        rowCount = first + foundTasks.size();
+      }
+      setRowCount(rowCount);
+      PrimeFaces.current().executeScript("PF('task-list-scroller').cfg.totalSize = " + rowCount);
+    }
     data.addAll(foundTasks);
     return foundTasks;
   }
@@ -211,7 +227,11 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     setInvolvedApplications();
     data.clear();
     buildQueryToSearchCriteria();
-    setRowCount(getTaskCount(criteria));
+    if (disableTaskCount) {
+      setRowCount(0);
+    } else {
+      setRowCount(getTaskCount(criteria));
+    }
   }
 
   /**
@@ -798,6 +818,14 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
         setSortField(sortColumn, !asc);
       }
     }
+  }
+
+  public boolean getDisableTaskCount() {
+    return disableTaskCount;
+  }
+
+  public void setDisableTaskCount(boolean disableTaskCount) {
+    this.disableTaskCount = disableTaskCount;
   }
   
 }
