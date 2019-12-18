@@ -35,9 +35,10 @@
         <div class="#{data.dataModel.compactMode? 'widget-header-main': 'widget-tasklist-header'} ui-g-8 ui-sm-4">
           <h:panelGroup id="task-widget-title" styleClass="widget-header-main-title task-widget-header-content-title #{data.dataModel.compactMode ? 'compact-mod-title' : ''}">
             <cc:renderFacet name="title" />
-            <h:outputText rendered="#{empty cc.facets.title}" value="#{cc.attrs.title} (#{data.dataModel.rowCount})" styleClass="ui-sm-hidden" />
+            <h:outputText rendered="#{empty cc.facets.title}" 
+              value="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}" styleClass="ui-sm-hidden" />
             <p:commandLink id="toggle-tasks-link" rendered="#{empty cc.facets.title or data.dataModel.compactMode}" styleClass="fa-minus compact-toggle-tasks-link ui-lg-hidden ui-xl-hidden ui-md-hidden"
-                value="#{cc.attrs.title} (#{data.dataModel.rowCount})" global="false" oncomplete="toggleShowTaskList();" />
+              value="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}" global="false" oncomplete="toggleShowTaskList();" />
           </h:panelGroup>
 
           <h:panelGroup styleClass="widget-header-main-menu"
@@ -213,7 +214,7 @@
 
     <h:panelGroup layout="block" id="task-view" styleClass="ui-g-12 #{data.dataModel.compactMode ? '' : 'u-no-padding-left'} js-task-view">
       <h:panelGroup id="task-view-container" layout="block" styleClass="task-view-container">
-        <p:dataScroller id="task-list-scroller" 
+        <p:dataScroller id="task-list-scroller" widgetVar="task-list-scroller"
           value="#{data.dataModel}" 
           var="task" 
           chunkSize="#{cc.attrs.chunkSize}"
