@@ -41,7 +41,7 @@ public class ShowTaskNoteHistoryTest extends BaseTest {
     public void testShowTaskNoteHistory() {
         TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
         TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-        taskTemplatePage.openStatusTab();
+        taskTemplatePage.openCaseInfo();
         taskTemplatePage.addNewNote(noteContent);
         taskTemplatePage.clickCancelButton();
         MainMenuPage mainMenuPage = new MainMenuPage();

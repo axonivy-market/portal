@@ -14,19 +14,18 @@ Ct0 @UserTask f3 '' #zField
 Ct0 @PushWFArc f2 '' #zField
 Ct0 @GridStep f5 '' #zField
 Ct0 @PushWFArc f6 '' #zField
-Ct0 @UserDialog f7 '' #zField
-Ct0 @PushWFArc f4 '' #zField
-Ct0 @PushWFArc f8 '' #zField
+Ct0 @TkArc f9 '' #zField
 >Proto Ct0 Ct0 CaseMapCreateLeaveRequest #zField
 Ct0 f0 outLink newLeaveRequest.ivp #txt
 Ct0 f0 inParamDecl '<> param;' #txt
 Ct0 f0 requestEnabled true #txt
 Ct0 f0 triggerEnabled false #txt
 Ct0 f0 callSignature newLeaveRequest() #txt
-Ct0 f0 taskData 'TaskTriggered.NAM=Start Case Map\: Create Leave Request' #txt
+Ct0 f0 taskData 'TaskTriggered.NAM=Start Case Map\: Create Leave Request 1' #txt
 Ct0 f0 caseData 'businessCase.attach=true
 case.description=Case Map\: Leave Request
-case.name=Case Map\: Leave Request' #txt
+case.name=Case Map\: Leave Request
+customFields.STRING.embedInFrame="false"' #txt
 Ct0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -59,7 +58,7 @@ Ct0 f3 @|UserTaskIcon #fIcon
 Ct0 f2 440 64 497 64 #arcP
 Ct0 f5 actionTable 'out=in;
 ' #txt
-Ct0 f5 actionCode 'ivy.case.getBusinessCase().setName("Case Map: Leave Request");' #txt
+Ct0 f5 actionCode 'ivy.case.getBusinessCase().setName("Business Case Map: Leave Request");' #txt
 Ct0 f5 security system #txt
 Ct0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -71,22 +70,7 @@ Ct0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ct0 f5 168 42 112 44 -41 -8 #rect
 Ct0 f5 @|StepIcon #fIcon
 Ct0 f6 111 64 168 64 #arcP
-Ct0 f7 dialogId internaltest.ui.NewLeaveRequest #txt
-Ct0 f7 startMethod start() #txt
-Ct0 f7 requestActionDecl '<> param;' #txt
-Ct0 f7 responseMappingAction 'out=in;
-' #txt
-Ct0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>NewLeaveRequest</name>
-    </language>
-</elementInfo>
-' #txt
-Ct0 f7 328 138 112 44 -49 -8 #rect
-Ct0 f7 @|UserDialogIcon #fIcon
-Ct0 f4 384 138 500 73 #arcP
-Ct0 f8 261 86 384 138 #arcP
+Ct0 f9 280 64 328 64 #arcP
 >Proto Ct0 .type internaltest.CaseMapCreateLeaveRequestData #txt
 >Proto Ct0 .processKind NORMAL #txt
 >Proto Ct0 0 0 32 24 18 0 #rect
@@ -95,7 +79,5 @@ Ct0 f3 out f2 tail #connect
 Ct0 f2 head f1 mainIn #connect
 Ct0 f0 mainOut f6 tail #connect
 Ct0 f6 head f5 mainIn #connect
-Ct0 f7 mainOut f4 tail #connect
-Ct0 f4 head f1 mainIn #connect
-Ct0 f5 mainOut f8 tail #connect
-Ct0 f8 head f7 mainIn #connect
+Ct0 f5 mainOut f9 tail #connect
+Ct0 f9 head f3 in #connect
