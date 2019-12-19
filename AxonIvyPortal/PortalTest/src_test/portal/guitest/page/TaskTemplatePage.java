@@ -13,7 +13,7 @@ public class TaskTemplatePage extends TemplatePage {
     return "id('horizontal-task-actions')";
   }
 
-  public void openStatusTab() {
+  public void openCaseInfo() {
     clickByCssSelector("#horizontal-case-info");
   }
 
