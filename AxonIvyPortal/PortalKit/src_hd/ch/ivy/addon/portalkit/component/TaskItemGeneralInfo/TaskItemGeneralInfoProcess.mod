@@ -107,9 +107,13 @@ Ts0 f11 499 179 26 26 0 12 #rect
 Ts0 f11 @|UdProcessEndIcon #fIcon
 Ts0 f7 actionTable 'out=in;
 ' #txt
-Ts0 f7 actionCode 'import ch.ivy.addon.portalkit.dto.GlobalCaseId;
+Ts0 f7 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivy.addon.portalkit.dto.GlobalCaseId;
+import org.primefaces.component.commandlink.CommandLink;
 
+out.selectedCase = out.commandLink.getAttributes().get("caseView") as ICase;
 in.globalCaseId = GlobalCaseId.caseId(in.selectedCase.getId()).build();' #txt
+Ts0 f7 security system #txt
 Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -146,8 +150,7 @@ Ts0 f6 actionTable 'out=in;
 Ts0 f6 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
 import org.primefaces.component.commandlink.CommandLink;
 
-CommandLink commandLink = event.getSource() as CommandLink;
-out.selectedCase = commandLink.getAttributes().get("caseView") as ICase;' #txt
+out.commandLink = event.getSource() as CommandLink;' #txt
 Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
