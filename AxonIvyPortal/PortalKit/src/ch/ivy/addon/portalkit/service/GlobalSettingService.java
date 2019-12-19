@@ -10,6 +10,7 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.persistence.dao.GlobalSettingDao;
 import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
 
 public class GlobalSettingService extends AbstractService<GlobalSetting> {
 
@@ -29,7 +30,6 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
           .filter(globalSetting -> StringUtils.equals(globalSetting.getKey(), variableName))
           .findFirst()
           .orElse(new GlobalSetting());
-       IvyCacheService.newInstance().cacheGlobalSetting(variableName, StringUtils.defaultString(setting.getValue()));
        return StringUtils.defaultString(setting.getValue());
     }
     return String.valueOf(atttributeValue);
@@ -51,13 +51,18 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
     Object atttributeValue = IvyCacheService.newInstance().getGlobalSettingFromCache(variableName);
     if (atttributeValue == null){
       String findGlobalSettingValue = getDao().findGlobalSettingValue(variableName);
-      IvyCacheService.newInstance().cacheGlobalSetting(variableName, StringUtils.defaultString(findGlobalSettingValue));
       return Boolean.valueOf(findGlobalSettingValue);
     }
     return Boolean.valueOf((String)atttributeValue);
   }
 
   public List<GlobalSetting> findAllGlobalSetting() {
+    List<IDataCacheEntry> allGlobalSettingsFromCache = IvyCacheService.newInstance().getAllGlobalSettingsFromCache();
+    if (allGlobalSettingsFromCache != null) {
+      return allGlobalSettingsFromCache.stream()
+          .map(cacheEntry -> new GlobalSetting(cacheEntry.getIdentifier(), String.valueOf(cacheEntry.getValue())))
+          .collect(Collectors.toList());
+    } 
     List<GlobalSetting> globalSettings = super.findAll();
     globalSettings = globalSettings.stream()
         .filter(setting -> EnumUtils.isValidEnum(GlobalVariable.class, setting.getKey()))
@@ -73,6 +78,7 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
       }
     }
     
+    globalSettings.forEach(setting -> IvyCacheService.newInstance().cacheGlobalSetting(setting.getKey(), StringUtils.defaultString(setting.getValue())));
     globalSettings.sort((setting1, setting2) -> StringUtils.compareIgnoreCase(setting1.getKey(), setting2.getKey()));
     return globalSettings;
   }
@@ -92,10 +98,9 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
   @Override
   public GlobalSetting save(GlobalSetting entity) {
     GlobalSetting persistedGlobalSetting = getDao().findGlobalSetting(entity.getKey());
-    if (persistedGlobalSetting != null) {
-      entity.setId(persistedGlobalSetting.getId());
-    }
-    IvyCacheService.newInstance().cacheGlobalSetting(entity.getKey(), StringUtils.defaultString(entity.getValue()));
+      if (persistedGlobalSetting != null) {
+        entity.setId(persistedGlobalSetting.getId());
+      }
     return super.save(entity);
   }
 }
