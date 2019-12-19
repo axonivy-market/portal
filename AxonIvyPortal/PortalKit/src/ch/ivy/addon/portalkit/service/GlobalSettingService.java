@@ -46,6 +46,15 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
     }
     return StringUtils.isNotBlank(String.valueOf(atttributeValue));
   }
+  
+  public Boolean findGlobalSettingValueAsBoolean(String variableName) {
+    Object atttributeValue = IvyCacheService.newInstance().getGlobalSettingFromCache(variableName);
+    if (atttributeValue == null){
+      String findGlobalSettingValue = getDao().findGlobalSettingValue(variableName);
+      return Boolean.valueOf(findGlobalSettingValue);
+    }
+    return Boolean.valueOf((String)atttributeValue);
+  }
 
   public List<GlobalSetting> findAllGlobalSetting() {
     List<IDataCacheEntry> allGlobalSettingsFromCache = IvyCacheService.newInstance().getAllGlobalSettingsFromCache();

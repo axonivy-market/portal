@@ -455,13 +455,14 @@ public class TaskWidgetPage extends TemplatePage {
     }
   }
 
-  public int getTaskCount() {
+  public Integer getTaskCount() {
     WebElement taskTitleElement = findElementById("task-widget:task-widget-title");
     String title = taskTitleElement.getText();
-    return Integer.parseInt(title.substring(title.lastIndexOf("(") + 1, title.length() - 1));
+    String count = StringUtils.substringBetween(title, "(", ")");
+    return StringUtils.isNotBlank(count) ? Integer.parseInt(count) : null;
   }
 
-  public boolean isTaskStateDone(int index) {
+  public boolean isTaskStateOpen(int index) {
     try {
       findElementById(String.format(TASK_STATE_OPEN_ID, index));
     } catch (NoSuchElementException e) {
