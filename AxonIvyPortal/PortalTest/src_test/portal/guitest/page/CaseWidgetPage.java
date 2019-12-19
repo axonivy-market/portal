@@ -3,6 +3,7 @@ package portal.guitest.page;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
@@ -197,10 +198,11 @@ public class CaseWidgetPage extends TemplatePage {
         "div[id$=':0\\:case-item\\:case-item-container'] span.customized-case-header-column").getText();
   }
 
-  public int getCaseCount() {
+  public Integer getCaseCount() {
     WebElement caseTitleElement = findElementById("case-widget:case-widget-title");
     String title = caseTitleElement.getText();
-    return Integer.parseInt(title.substring(title.lastIndexOf("(") + 1, title.length() - 1));
+    String count = StringUtils.substringBetween(title, "(", ")");
+    return StringUtils.isNotBlank(count) ? Integer.parseInt(count) : null;
   }
 
   public void clickColumnsButton() {
