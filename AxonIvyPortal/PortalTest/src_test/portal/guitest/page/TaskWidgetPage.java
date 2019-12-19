@@ -461,7 +461,7 @@ public class TaskWidgetPage extends TemplatePage {
     return Integer.parseInt(title.substring(title.lastIndexOf("(") + 1, title.length() - 1));
   }
 
-  public boolean isTaskStateDone(int index) {
+  public boolean isTaskStateOpen(int index) {
     try {
       findElementById(String.format(TASK_STATE_OPEN_ID, index));
     } catch (NoSuchElementException e) {
