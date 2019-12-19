@@ -77,6 +77,14 @@ public class TaskTemplatePage extends TemplatePage {
     waitForElementDisplayed(By.id(sideStepId), true);
     click(findElementById(sideStepId));
   }
+  
+  public void startSideStep() {
+    String sideStepPanelId = "side-steps-panel";
+    waitForElementDisplayed(By.id(sideStepPanelId), true);
+    click(findElementByClassName("side-step-item"));
+    waitForElementDisplayed(By.id("sidestep-task-reset-confirmation-dialog"), true);
+    click(findElementById("side-step-start-ok"));
+  }
 
   public int countSideSteps() {
     String sideStepPanelId = "side-steps-panel";

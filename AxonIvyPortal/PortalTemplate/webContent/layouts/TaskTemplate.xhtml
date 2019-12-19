@@ -126,7 +126,7 @@
         <f:facet name="footer">
           <h:form prependId="false">
             <h:panelGroup styleClass="Fs14 ui-dialog-buttonpane">
-              <p:commandButton actionListener="#{taskTemplateBean.startAdhoc()}" process="@this" update="@none"
+              <p:commandButton actionListener="#{taskTemplateBean.startAdhoc(task)}" process="@this" update="@none"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
               <p:commandButton onclick="PF('adhoc-task-reset-confirmation-dialog').hide()" styleClass="portal-cancel-button"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
@@ -143,9 +143,9 @@
         <f:facet name="footer">
           <h:form prependId="false">
             <h:panelGroup styleClass="Fs14 ui-dialog-buttonpane">
-              <p:commandButton actionListener="#{taskTemplateBean.startSideStep()}" process="@this" update="@none"
+              <p:commandButton id="side-step-start-ok" actionListener="#{taskTemplateBean.startSideStep(task)}" process="@this" update="@none"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
-              <p:commandButton onclick="PF('sidestep-task-reset-confirmation-dialog').hide()" styleClass="portal-cancel-button" 
+              <p:commandButton id="side-step-start-cancel" onclick="PF('sidestep-task-reset-confirmation-dialog').hide()" styleClass="portal-cancel-button" 
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
             </h:panelGroup>
           </h:form>

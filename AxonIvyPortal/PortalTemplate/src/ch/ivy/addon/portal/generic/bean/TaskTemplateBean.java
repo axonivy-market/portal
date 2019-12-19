@@ -11,12 +11,14 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.ICaseMap;
 import ch.ivyteam.ivy.casemap.runtime.model.IStage;
 import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
 @ViewScoped
@@ -34,16 +36,16 @@ public class TaskTemplateBean implements Serializable{
     this.selectedSideStep = selectedSideStep;
   }
 
-  public void startAdhoc() throws Exception {
+  public void startAdhoc(ITask task) throws Exception {
     PortalNavigator portalNavigator = new PortalNavigator();
     ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
     String url = processStartCollector.findACMLink();
-    Ivy.log().error("ACM Link is {0}", url);
-    url = url + "?originalTaskId=" + Ivy.wfTask().getId();
+    url = url + "?originalTaskId=" + task.getId();
     portalNavigator.redirect(url);
   }
 
-  public void startSideStep() throws Exception {
+  public void startSideStep(ITask task) throws Exception {
+    TaskUtils.resetTask(task);
     PortalNavigator portalNavigator = new PortalNavigator();
     portalNavigator.redirect(selectedSideStep.getStartLink().getAbsoluteEncoded());
   }

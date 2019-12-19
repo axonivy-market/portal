@@ -7,6 +7,8 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
+import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.WorkingTaskDialogPage;
@@ -81,6 +83,21 @@ public class TaskTemplateTest extends BaseTest {
     TaskWidgetPage taskWidget = homePage.getTaskWidget();
     String state = taskWidget.getStateInCompactMode(0);
     assertEquals("RESERVED", state);
+  }
+  
+  @Test
+  public void testResetTaskWhenStartSideStep() {
+    HomePage homePage = new HomePage();
+    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    ProcessWidgetPage processWidgetPage = mainMenuPage.selectProcessesMenu();
+    processWidgetPage.enterSearchKeyword("case map");
+    processWidgetPage.startProcess("Case Map Leave");
+    TaskTemplatePage taskTemplatePage = startATask();
+    taskTemplatePage.openSideStepMenu();
+    taskTemplatePage.startSideStep();
+    TaskWidgetPage taskWidget = new TaskWidgetPage();
+    String state = taskWidget.getStateInCompactMode(0);
+    assertEquals("OPEN", state);
   }
 
   private TaskTemplatePage startATask() {
