@@ -26,9 +26,11 @@ import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.FilterType;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.service.CaseColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -64,6 +66,8 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   private boolean isAutoHideColumns;
   private boolean isDisableSelectionCheckboxes;
   private CaseFilter selectedCaseFilter;
+  
+  protected boolean disableCaseCount;
 
   public CaseLazyDataModel() {
     this("case-widget");
@@ -77,6 +81,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     buildCriteria();
     setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
     selectedFilterData = UserUtils.getSessionSelectedCaseFilterSetAttribute();
+    disableCaseCount = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_CASE_COUNT.toString());
   }
 
   @Override
@@ -89,10 +94,22 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
     if (first == 0) {
       initializedDataModel();
-      PrimeFaces.current().executeScript("updateCaseCount()");
+      if (!disableCaseCount) {
+        PrimeFaces.current().executeScript("updateCaseCount()");
+      }
     }
     
     List<ICase> foundCases = findCases(criteria, first, pageSize);
+    if (disableCaseCount) {
+      int rowCount = 0;
+      if (foundCases.size() >= pageSize) {
+        rowCount = first + pageSize + 1;
+      } else {
+        rowCount = first + foundCases.size();
+      }
+      setRowCount(rowCount);
+      PrimeFaces.current().executeScript("PF('case-list-scroller').cfg.totalSize = " + rowCount);
+    }
     data.addAll(foundCases);
     return foundCases;
   }
@@ -312,7 +329,11 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     setInvolvedApplications();
     data.clear();
     buildQueryToSearchCriteria();
-    setRowCount(getCaseCount(criteria));
+    if (disableCaseCount) {
+      setRowCount(0);
+    } else {
+      setRowCount(getCaseCount(criteria));
+    }
   }
 
   private int getCaseCount(CaseSearchCriteria criteria) {
@@ -579,5 +600,13 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
       return false;
     }
     return rowIndex >= 0 && rowIndex < data.size();
+  }
+  
+  public boolean getDisableCaseCount() {
+    return disableCaseCount;
+  }
+
+  public void setDisableCaseCount(boolean disableCaseCount) {
+    this.disableCaseCount = disableCaseCount;
   }
 }
