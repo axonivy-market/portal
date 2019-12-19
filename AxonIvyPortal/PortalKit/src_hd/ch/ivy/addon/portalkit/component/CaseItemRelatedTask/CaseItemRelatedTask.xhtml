@@ -19,14 +19,6 @@
     </div>
     <div class="Separator" />
 
-    <h:panelGroup rendered="#{empty data.relatedTasks and empty data.technicalCases and cc.attrs.case.state ne 'DONE'}" styleClass="ui-g-12 u-padding-0">
-      <h:panelGroup layout="block" styleClass="u-truncate-text">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noRunningTasksAndCasesPermission')}"
-          styleClass="no-related-task-and-case-permission" />
-      </h:panelGroup>
-    </h:panelGroup>
-
-    <h:panelGroup  rendered="#{not (empty data.relatedTasks and empty data.technicalCases and cc.attrs.case.state ne 'DONE')}">
     <div class="ui-g-12 u-padding-0 case-detail-related-table">
       <h:panelGroup styleClass="ui-g-12 u-padding-0 case-related-running">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/runningTasks')} (#{data.totalRelatedTasks})" styleClass="Fleft" />
@@ -53,7 +45,11 @@
           </h:panelGroup>
           <p:tooltip for="task" value="#{taskBean.displayRelatedTaskToolTip(task)}" trackMouse="true" />
         </p:dataScroller>
-        <h:outputText rendered="#{empty data.relatedTasks}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noRunningTask')}" styleClass="ui-g-12 no-running-task-case"/>
+
+        <h:outputText rendered="#{empty data.relatedTasks}" styleClass="ui-g-12 no-running-task-case"
+          value="#{cc.attrs.case.state eq 'DONE' 
+          ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noRunningTask') 
+          : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noRunningTasksAndCasesPermission')}" />
 
       </div>
     </div>
@@ -88,7 +84,6 @@
         </p:dataScroller>
       </div>
     </div>
-    </h:panelGroup>
 
   </div>
   
