@@ -1,0 +1,5 @@
+co: name={runningTasks} description={} changed={2019-12-19 04:42:51 CET} changedby={lttung} visualorder={0} guid={16F1C3FECAC43B2C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16F1C3FECCEE0ED7} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:04 CEST} validto={} changed={2019-12-19 04:42:51 CET} changedby={lttung} properties={} id={}
+val: guid={16F1C3FECB187A33} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:33 CET} validto={} changed={2019-12-19 04:42:51 CET} changedby={lttung} properties={} id={}
+val: guid={16F1C3FECC5D90D4} datatype={} isdefault={false} langid={de} description={} validfrom={2015-10-23 08:36:27 CEST} validto={} changed={2019-12-19 04:42:51 CET} changedby={lttung} properties={} id={}
+val: guid={16F1C3FECBAD49FB} datatype={} isdefault={true} langid={en} description={} validfrom={2015-10-23 08:36:14 CEST} validto={} changed={2019-12-19 04:42:51 CET} changedby={lttung} properties={} id={}
