@@ -73,7 +73,7 @@ public class ShowCaseNoteHistoryTest extends BaseTest {
     public void testShowCaseNoteHistoryInTask() {
         TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
         TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-        taskTemplatePage.openStatusTab();
+        taskTemplatePage.openCaseInfo();
         taskTemplatePage.addNewNote(NOTE_CONTENT);
         taskTemplatePage.showNoteHistory();
         String caseName = taskTemplatePage.getCaseName();
