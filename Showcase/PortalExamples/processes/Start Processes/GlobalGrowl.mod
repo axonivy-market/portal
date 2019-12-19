@@ -16,8 +16,8 @@ Gl0 @EndTask f1 '' #zField
 Gl0 @TaskSwitch f3 '' #zField
 Gl0 @TkArc f4 '' #zField
 Gl0 @UserDialog f5 '' #zField
-Gl0 @PushWFArc f2 '' #zField
 Gl0 @PushWFArc f6 '' #zField
+Gl0 @PushWFArc f2 '' #zField
 >Proto Gl0 Gl0 GlobalGrowl #zField
 Gl0 f0 outLink start.ivp #txt
 Gl0 f0 inParamDecl '<> param;' #txt
@@ -41,7 +41,7 @@ Gl0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Gl0 f0 @C|.responsibility Everybody #txt
 Gl0 f0 81 49 30 30 -21 17 #rect
 Gl0 f0 @|StartRequestIcon #fIcon
-Gl0 f1 449 49 30 30 0 15 #rect
+Gl0 f1 465 49 30 30 0 15 #rect
 Gl0 f1 @|EndIcon #fIcon
 Gl0 f3 actionTable 'out=in1;
 ' #txt
@@ -61,20 +61,20 @@ Gl0 f5 responseActionDecl 'ch.ivyteam.ivy.project.portal.examples.GlobalGrowlDat
 ' #txt
 Gl0 f5 responseMappingAction 'out=in;
 ' #txt
-Gl0 f5 280 42 112 44 0 -8 #rect
+Gl0 f5 296 42 112 44 0 -8 #rect
 Gl0 f5 @|UserDialogIcon #fIcon
-Gl0 f2 expr out #txt
-Gl0 f2 392 64 449 64 #arcP
 Gl0 f6 expr data #txt
 Gl0 f6 outCond ivp=="TaskA.ivp" #txt
-Gl0 f6 240 64 280 64 #arcP
+Gl0 f6 240 64 296 64 #arcP
+Gl0 f2 expr out #txt
+Gl0 f2 408 64 465 64 #arcP
 >Proto Gl0 .type ch.ivyteam.ivy.project.portal.examples.GlobalGrowlData #txt
 >Proto Gl0 .processKind NORMAL #txt
 >Proto Gl0 0 0 32 24 18 0 #rect
 >Proto Gl0 @|BIcon #fIcon
 Gl0 f0 mainOut f4 tail #connect
 Gl0 f4 head f3 in #connect
-Gl0 f5 mainOut f2 tail #connect
-Gl0 f2 head f1 mainIn #connect
 Gl0 f3 out f6 tail #connect
 Gl0 f6 head f5 mainIn #connect
+Gl0 f5 mainOut f2 tail #connect
+Gl0 f2 head f1 mainIn #connect
