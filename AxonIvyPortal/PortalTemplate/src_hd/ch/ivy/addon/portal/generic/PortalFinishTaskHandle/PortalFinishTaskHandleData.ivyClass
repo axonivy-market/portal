@@ -1,4 +1,2 @@
 PortalFinishTaskHandleData #class
 ch.ivy.addon.portal.generic.PortalFinishTaskHandle #namespace
-isTaskFinished Boolean #field
-isTaskFinished PERSISTENT #fieldModifier
