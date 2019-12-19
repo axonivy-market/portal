@@ -27,7 +27,7 @@
               #{taskView.dataModel.caseName} (#{taskView.dataModel.rowCount})
             </h:form>
               <h:outputText rendered="#{!taskView.canLinkBackCaseDetail()}"
-                value="#{taskView.pageTitle == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks') : taskView.pageTitle}  (#{taskView.dataModel.rowCount})" />
+                value="#{taskView.pageTitle == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks') : taskView.pageTitle}  #{taskView.dataModel.disableTaskCount ? '' : '('.concat(taskView.dataModel.rowCount).concat(')')}" />
             </f:facet>
 
             <f:facet name="taskListHeader">

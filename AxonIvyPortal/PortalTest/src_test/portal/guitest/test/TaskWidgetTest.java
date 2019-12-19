@@ -18,6 +18,7 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
+import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskWidgetPage;
@@ -143,5 +144,18 @@ public class TaskWidgetTest extends BaseTest {
     Assert.assertEquals("In Dashboard, Task Count != 3", 3, taskWidgetPage.getTaskCount());
     taskWidgetPage.openTaskList();
     Assert.assertEquals("In Task list, Task Count != 3", 3, taskWidgetPage.getTaskCount());
+  }
+  
+  @Test
+  public void testDisableTaskCount() {
+    login(TestAccount.ADMIN_USER);
+    HomePage homePage = new HomePage();
+    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+    adminSettingsPage.setDisabledTaskCount();
+
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    Assert.assertEquals("In Dashboard, Task Count is not disabled", null, taskWidgetPage.getTaskCount());
+    taskWidgetPage.openTaskList();
+    Assert.assertEquals("In Task list, Task Count is not disabled", null, taskWidgetPage.getTaskCount());
   }
 }
