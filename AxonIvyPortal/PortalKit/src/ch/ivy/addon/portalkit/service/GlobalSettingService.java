@@ -92,9 +92,10 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
   @Override
   public GlobalSetting save(GlobalSetting entity) {
     GlobalSetting persistedGlobalSetting = getDao().findGlobalSetting(entity.getKey());
-      if (persistedGlobalSetting != null) {
-        entity.setId(persistedGlobalSetting.getId());
-      }
+    if (persistedGlobalSetting != null) {
+      entity.setId(persistedGlobalSetting.getId());
+    }
+    IvyCacheService.newInstance().cacheGlobalSetting(entity.getKey(), StringUtils.defaultString(entity.getValue()));
     return super.save(entity);
   }
 }
