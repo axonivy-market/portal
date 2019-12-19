@@ -126,7 +126,7 @@ public class TaskAnalysisExporter {
         }
         return userFormatBean.formatWithTip(task.getActivator().getDisplayName(), task.getActivatorName());
       case TASK_WORKER:
-        if (task.getWorkerUserName() == null) {
+        if (task.getWorkerUser() == null) {
           return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
         }
         return userFormatBean.formatWithTip(task.getWorkerUser().getFullName(), task.getWorkerUserName());
