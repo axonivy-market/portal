@@ -30,7 +30,7 @@
         <div class="case-widget-top-header ui-g-8 ui-sm-4">
           <h:panelGroup id="case-widget-title">
             <span class="case-widget-top-header-main-title">
-              #{cc.attrs.title} <h:outputText value="#{data.dataModel.rowCount})" rendered="#{!data.dataModel.disableCaseCount}" />
+              #{cc.attrs.title} <h:outputText value="(#{data.dataModel.rowCount})" rendered="#{!data.dataModel.disableCaseCount}" />
             </span>
           </h:panelGroup>
         </div>
