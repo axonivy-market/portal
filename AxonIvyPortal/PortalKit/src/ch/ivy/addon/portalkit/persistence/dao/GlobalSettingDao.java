@@ -3,7 +3,6 @@ package ch.ivy.addon.portalkit.persistence.dao;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
-import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivyteam.ivy.application.IApplication;
 
 public class GlobalSettingDao extends AbstractDao<GlobalSetting> {
@@ -39,7 +38,6 @@ public class GlobalSettingDao extends AbstractDao<GlobalSetting> {
     if (globalSetting == null) {
       return;
     }
-    IvyCacheService.newInstance().cacheGlobalSetting(variableName, StringUtils.defaultString(globalSetting.getDefaultValue()));
     delete(globalSetting);
   }
 }
