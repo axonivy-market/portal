@@ -463,8 +463,8 @@ Pt0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f36 888 74 112 44 -50 -8 #rect
 Pt0 f36 @|UserDialogIcon #fIcon
 Pt0 f12 dialogId ch.ivy.addon.portal.generic.PortalFinishTaskHandle #txt
-Pt0 f12 startMethod start(Boolean) #txt
-Pt0 f12 requestActionDecl '<Boolean isTaskFinished> param;' #txt
+Pt0 f12 startMethod start() #txt
+Pt0 f12 requestActionDecl '<> param;' #txt
 Pt0 f12 responseMappingAction 'out=in;
 ' #txt
 Pt0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
