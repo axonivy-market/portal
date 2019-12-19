@@ -21,16 +21,14 @@ Ps0 @UdMethod f3 '' #zField
 Ps0 @PushWFArc f6 '' #zField
 >Proto Ps0 Ps0 PortalFinishTaskHandleProcess #zField
 Ps0 f0 guid 15C67E57F20669EF #txt
-Ps0 f0 method start(Boolean) #txt
-Ps0 f0 inParameterDecl '<Boolean isTaskFinished> param;' #txt
-Ps0 f0 inParameterMapAction 'out.isTaskFinished=param.isTaskFinished;
-' #txt
+Ps0 f0 method start() #txt
+Ps0 f0 inParameterDecl '<> param;' #txt
 Ps0 f0 outParameterDecl '<> result;' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(isTaskFinished)</name>
-        <nameStyle>21,5
+        <name>start()</name>
+        <nameStyle>7,5,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -55,13 +53,12 @@ boolean displayMessageAfterFinishTask = StringUtils.isNotBlank(displayMessageAft
 if (displayMessageAfterFinishTask) {
 	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 	if (!flash.containsKey("overridePortalGrowl")) {
-		FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
+		FacesMessage message = new FacesMessage(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskLeftSuccessful"));
 		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
 	}
 	flash.setRedirect(true);
 	flash.setKeepMessages(true);
 }' #txt
-Ps0 f8 security system #txt
 Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
