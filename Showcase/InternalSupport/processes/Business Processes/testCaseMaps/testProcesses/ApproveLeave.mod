@@ -75,7 +75,8 @@ TaskTriggered.NAM=Approve Leave Request
 TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
-Ae0 f0 caseData businessCase.attach=true #txt
+Ae0 f0 caseData 'businessCase.attach=true
+customFields.STRING.embedInFrame="false"' #txt
 Ae0 f0 showInStartList 1 #txt
 Ae0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -119,7 +120,8 @@ TaskTriggered.PRI=2
 TaskTriggered.ROL=SYSTEM
 TaskTriggered.TYPE=0' #txt
 Ae0 f8 caseData 'businessCase.attach=true
-case.name=Fix Hardware' #txt
+case.name=Fix Hardware
+customFields.STRING.embedInFrame="false"' #txt
 Ae0 f8 showInStartList 1 #txt
 Ae0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -147,7 +149,8 @@ TaskTriggered.PRI=2
 TaskTriggered.ROL=SYSTEM
 TaskTriggered.TYPE=0' #txt
 Ae0 f13 caseData 'businessCase.attach=true
-case.name=Install Operation System' #txt
+case.name=Install Operation System
+customFields.STRING.embedInFrame="false"' #txt
 Ae0 f13 showInStartList 1 #txt
 Ae0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -242,7 +245,8 @@ TaskTriggered.EXTYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
-Ae0 f27 caseData businessCase.attach=true #txt
+Ae0 f27 caseData 'businessCase.attach=true
+customFields.STRING.embedInFrame="false"' #txt
 Ae0 f27 showInStartList 1 #txt
 Ae0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -289,7 +293,8 @@ TaskTriggered.EXTYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.ROL=SYSTEM
 TaskTriggered.TYPE=0' #txt
-Ae0 f32 caseData businessCase.attach=true #txt
+Ae0 f32 caseData 'businessCase.attach=true
+customFields.STRING.embedInFrame="false"' #txt
 Ae0 f32 showInStartList 1 #txt
 Ae0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -392,7 +397,8 @@ TaskTriggered.EXTYPE=0
 TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
-Ae0 f41 caseData businessCase.attach=true #txt
+Ae0 f41 caseData 'businessCase.attach=true
+customFields.STRING.embedInFrame="false"' #txt
 Ae0 f41 showInStartList 1 #txt
 Ae0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
