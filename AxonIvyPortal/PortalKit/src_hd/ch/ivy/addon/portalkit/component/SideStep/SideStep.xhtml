@@ -35,7 +35,7 @@
 
     <p:commandLink id="task-delegate-command" disabled="#{!taskActionBean.canDelegate(task)}" rendered="#{taskActionBean.showDelegateTask}"
       styleClass="option-item" onstart="event.stopPropagation();" oncomplete="PF('task-delegate-dialog').show()"
-      update="@parent #{cc.attrs.componentToUpdate} @widgetVar(task-delegate-dialog)">
+      update="@parent #{cc.attrs.componentToUpdate} @widgetVar(task-delegate-dialog)" global="false">
       <i class="option-action-icon tmi-box-arrow-right" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}</span>
       <p:ajax event="click" oncomplete="#{cc.attrs.selectedTask}; initDataToDelegate();" global="false" process="@this" immediate="true" />
