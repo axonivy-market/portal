@@ -90,7 +90,7 @@ public class TaskTemplateTest extends BaseTest {
     dialogPage.leaveTask();
     TaskWidgetPage taskWidget = new TaskWidgetPage();
     taskWidget.expand();
-    assertTrue(taskWidget.isTaskStateDone(0));
+    assertTrue(taskWidget.isTaskStateOpen(0));
   }
   
   @Test
@@ -103,11 +103,20 @@ public class TaskTemplateTest extends BaseTest {
     taskWidget.expand();
     Assert.assertTrue(taskWidget.isTaskStateReserved(0));
   }
+  
+  @Test
+  public void testResetTaskWhenStartSideStep() {
+    TaskTemplatePage taskTemplatePage = startATask();
+    taskTemplatePage.openSideStepMenu();
+    TaskWidgetPage taskWidget = new TaskWidgetPage();
+    taskWidget.expand();
+    Assert.assertTrue(taskWidget.isTaskStateOpen(0));
+  }
 
   private TaskTemplatePage startATask() {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    taskTemplatePage.openStatusTab();
+    taskTemplatePage.openCaseInfo();
     return taskTemplatePage;
   }
 }

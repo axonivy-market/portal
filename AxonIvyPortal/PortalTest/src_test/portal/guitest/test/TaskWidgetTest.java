@@ -141,9 +141,9 @@ public class TaskWidgetTest extends BaseTest {
   public void testShowTaskCount() { 
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    Assert.assertEquals("In Dashboard, Task Count != 3", 3, taskWidgetPage.getTaskCount());
+    assertEquals("In Dashboard, Task Count != 3", 3, taskWidgetPage.getTaskCount().intValue());
     taskWidgetPage.openTaskList();
-    Assert.assertEquals("In Task list, Task Count != 3", 3, taskWidgetPage.getTaskCount());
+    assertEquals("In Task list, Task Count != 3", 3, taskWidgetPage.getTaskCount().intValue());
   }
   
   @Test
@@ -154,8 +154,7 @@ public class TaskWidgetTest extends BaseTest {
     adminSettingsPage.setDisabledTaskCount();
 
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    Assert.assertEquals("In Dashboard, Task Count is not disabled", null, taskWidgetPage.getTaskCount());
     taskWidgetPage.openTaskList();
-    Assert.assertEquals("In Task list, Task Count is not disabled", null, taskWidgetPage.getTaskCount());
+    assertEquals("In Task list, Task Count is not disabled", null, taskWidgetPage.getTaskCount());
   }
 }

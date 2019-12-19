@@ -16,6 +16,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.SystemProperties;
 import portal.guitest.common.UrlHelpers;
 import vn.wawa.guitest.base.page.AbstractPage;
@@ -246,6 +247,7 @@ public abstract class TemplatePage extends AbstractPage {
   public TaskWidgetPage openTaskList() {
     openMainMenu();
     clickByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu");
+    Sleeper.sleep(5000);
     return new TaskWidgetPage();
   }
 
