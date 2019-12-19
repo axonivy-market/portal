@@ -136,7 +136,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   public void removeFilter(CaseFilter filter) {
-    selectedCaseFilter = filter;
+    selectedCaseFilter = null;
     filter.resetValues();
     selectedFilters.remove(filter);
     resetFilterData();
