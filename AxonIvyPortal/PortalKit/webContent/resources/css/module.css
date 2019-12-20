@@ -1836,7 +1836,7 @@ _:-ms-input-placeholder, :root .case-details>* {
 }
 
 .show-more-technical-cases-container {
-  width: calc(100% - 120px);
+  width: calc(100% - 148px);
   text-align: right;
 }
 
