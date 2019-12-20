@@ -68,10 +68,18 @@ public class TaskTemplatePage extends TemplatePage {
     return findListElementsByCssSelector("a[id$='task-name']").size();
   }
 
-  public void openSideStepMenu() {
-    String sideStepId = "side-steps-menu";
-    waitForElementDisplayed(By.id(sideStepId), true);
-    click(findElementById(sideStepId));
+  public void openActionMenu() {
+    String actionButtonId = "horizontal-task-actions";
+    waitForElementDisplayed(By.id(actionButtonId), true);
+    click(findElementById(actionButtonId));
+  }
+  
+  public void startSideStep() {
+    String actionPanelId = "horizontal-task-action-form:horizontal-task-action-menu";
+    waitForElementDisplayed(By.id(actionPanelId), true);
+    click(findElementByClassName("side-step-item"));
+    waitForElementDisplayed(By.id("sidestep-task-reset-confirmation-dialog"), true);
+    click(findElementById("side-step-start-ok"));
   }
 
   public int countSideSteps() {
