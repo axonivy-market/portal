@@ -104,6 +104,7 @@ public class TaskTemplateTest extends BaseTest {
     Assert.assertTrue(taskWidget.isTaskStateReserved(0));
   }
   
+  @Ignore
   @Test
   public void testResetTaskWhenStartSideStep() {
     TaskTemplatePage taskTemplatePage = startATask();
