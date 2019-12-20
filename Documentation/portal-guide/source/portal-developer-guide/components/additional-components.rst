@@ -185,18 +185,33 @@ use it to display your messages in Portal.
 
     <p:growl id="portal-global-growl" widgetVar="portal-global-growl" for="portal-global-growl-message" />
 
-|example-global-growl|
 
-.. _components-additional-component-global-growl-growl-after-finish-task:
-
-Display growl after finish task
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Display growl after finishing a task
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 After a task is finished, growl message appears as default via the
-``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable.
+``DISPLAY_MESSAGE_AFTER_FINISH_OR_CANCEL_TASK`` Portal variable.
+
+|example-global-growl-finished-task|
+
+.. _components-additional-component-global-growl-display-growl-after-finish-task:
+
+
+Display growl after cancelling a task
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Otherwise after a task is cancelled and left successfully, growl message appears as default via the
+``DISPLAY_MESSAGE_AFTER_FINISH_OR_CANCEL_TASK`` Portal variable.
+
+|example-global-growl-cancelled-task|
+
+.. _components-additional-component-global-growl-display-growl-after-cancel-task:
+
+Customization global growl message
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 For each task, you can turn it off or override it. Firstly, when you
-submit form to finish task, you need to put the ``overridePortalGrowl``
+submit form to interact task, you need to put the ``overridePortalGrowl``
 key to flash object with any value
 
 ::
@@ -206,7 +221,7 @@ key to flash object with any value
    flash.setRedirect(true);
 
 It's enough if you want to turn it off. To override the message, add
-``facesMessage`` to this component
+``facesMessage`` to this component. You can customize for each action as finish or cancellation a task.
 
 ::
 
@@ -215,6 +230,20 @@ It's enough if you want to turn it off. To override the message, add
    import javax.faces.application.FacesMessage;
 
    FacesMessage message = new FacesMessage("Task is done successfully");
+   FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
+
+   Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+   flash.put("overridePortalGrowl", true);
+   flash.setRedirect(true);
+   flash.setKeepMessages(true);
+
+::
+
+   import javax.faces.context.Flash;
+   import javax.faces.context.FacesContext;
+   import javax.faces.application.FacesMessage;
+
+   FacesMessage message = new FacesMessage("You have cancelled and left the task successfully");
    FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
 
    Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
@@ -243,6 +272,7 @@ project
 .. |set-business-entity-id-sub-process| image:: images/additional-component/set-business-entity-id-sub-process.png
 .. |task-analysis| image:: images/additional-component/task-analysis.png
 .. |process-chain| image:: images/additional-component/process-chain.png
-.. |example-global-growl| image:: images/additional-component/example-global-growl.png
+.. |example-global-growl-finished-task| image:: images/additional-component/example-global-growl-finished-task.png
+.. |example-global-growl-cancelled-task| image:: images/additional-component/example-global-growl-cancelled-task.png
 .. |document-table| image:: images/additional-component/document-table.png
 
