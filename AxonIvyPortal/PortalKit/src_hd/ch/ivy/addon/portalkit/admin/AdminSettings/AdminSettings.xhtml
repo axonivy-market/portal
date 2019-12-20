@@ -273,7 +273,7 @@
             <div class="ui-g-12">
               <h:panelGroup styleClass="admin-application md-inputfield">
                 <p:selectBooleanCheckbox id="embedInIFrameChkbox" value="#{data.selectedApp.embedInFrame}" 
-                  itemLabel="Start a process/task in IFrame mode" />
+                  itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/embedInFrame')}" />
               </h:panelGroup>
             </div>
           </h:panelGroup>
