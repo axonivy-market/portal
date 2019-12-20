@@ -1699,5 +1699,9 @@ ul.participants-list li {
 .upload-container .ui-widget.ui-fileupload .ui-fileupload-content {
   border: none;
   padding-right: 0;
+  padding-bottom: 0;
+}
+
+.upload-container .ui-widget.ui-fileupload .ui-fileupload-content .ui-fileupload-messages {
   margin-top: 30px;
 }
