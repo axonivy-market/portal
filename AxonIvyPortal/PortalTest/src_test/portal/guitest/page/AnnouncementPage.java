@@ -1,6 +1,7 @@
 package portal.guitest.page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 public class AnnouncementPage extends TemplatePage {
 
@@ -25,6 +26,13 @@ public class AnnouncementPage extends TemplatePage {
 
   public void setAnnoucement(int Language, String content) {
     findElementByCssSelector("input[id$='" + Language + ":announcement-input']").sendKeys(content);
+  }
+
+  public boolean isPublish() {
+    String startCommandButton =
+        String.format("adminui:adminTabView:publish-announcement");
+    WebElement element = findElementById(startCommandButton);
+    return !element.getAttribute("class").contains("ui-state-disabled");
   }
 
 }
