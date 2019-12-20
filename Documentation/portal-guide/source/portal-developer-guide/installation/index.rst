@@ -149,20 +149,20 @@ In engine
 Migrate 8.0.0 to 8.0.1
 ----------------------
 
-The PortalStart.mod file is changed. If you have
-customized this process in your project, copy the new PortalStart from
+PortalStart.mod file is changed. If you have
+customized this process in your project, copy new PortalStart from
 Portal Template to your project and re-apply your customization.
 
-PortalStart.ivp is removed, if you use it to configure the start link in application registration, please change it to DefaultApplicationHomePage.ivp
+PortalStart.ivp is removed, if you use it to configure the start link in application registration, change it to DefaultApplicationHomePage.ivp
 
-:ref:`Non-ajax handling <components-error-handling-nonajax-error-handling>` is changed. Please follow the instructions and reconfigure it.
+:ref:`Non-ajax handling <components-error-handling-nonajax-error-handling>` is changed. Follow the instructions and reconfigure it.
 
 .. _installation-migration-notes-8-0-0:
 
 Migrate 7.x to 8.0.0
 --------------------
 
-Please following these migration guides.
+Follow these migration guides.
 
 .. toctree::
    :maxdepth: 2
@@ -172,12 +172,14 @@ Please following these migration guides.
    migration-notes/8-0-0/installation-migration-notes-8-0-0-migrate-templates
    migration-notes/8-0-0/installation-migration-notes-8-0-0-task-body
    migration-notes/8-0-0/installation-migration-notes-8-0-0-case-body
+   migration-notes/8-0-0/installation-migration-notes-8-0-0-hidden-task-case
+   
 
 Migrate 7.3.x to 7.4.0
 ----------------------
 
 From 7.4.0, CaseTemplate is deprecated and we don't support it anymore.
-If you are using CaseTemplate, please do consider to migrate to
+If you are using CaseTemplate, then consider to migrate to
 TaskTemplate manually.
 
 Migrate 7.2.x to 7.3.0
@@ -221,11 +223,12 @@ Other versions of Portal store these info in additional property.
 
 If you use hide task/case feature, you need to follow these steps:
 
-1. Deploy this project :download:`MigrateHiddenTaskCase.iar <documents/MigrateHiddenTaskCase.iar>` 
+1. Back up your Ivy system database so you can restore if something goes wrong.
+2. Deploy this project :download:`MigrateHiddenTaskCase.iar <documents/MigrateHiddenTaskCase.iar>` 
    to all your portal applications.
-2. In each application, run start process
+3. In each application, run start process
    ``MigrateHiddenTaskCase``  to migrate.
-3. It's optional to clean up redundant data. After migration finishes
+4. It's optional to clean up redundant data. After migration finishes
    successfully, run start process  ``RemoveHideAdditionalProperty``  in each
    application to clean up HIDE additional property. It will delete HIDE
    additional property of all tasks and cases in current application, so be
