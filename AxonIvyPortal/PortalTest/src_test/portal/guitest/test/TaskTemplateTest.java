@@ -16,7 +16,9 @@ import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.page.HomePage;
+import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NoteHistoryPage;
+import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
@@ -107,11 +109,18 @@ public class TaskTemplateTest extends BaseTest {
   @Ignore
   @Test
   public void testResetTaskWhenStartSideStep() {
-    TaskTemplatePage taskTemplatePage = startATask();
-    taskTemplatePage.openSideStepMenu();
+    HomePage homePage = new HomePage();
+    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    ProcessWidgetPage processWidgetPage = mainMenuPage.selectProcessesMenu();
+    processWidgetPage.enterSearchKeyword("case map");
+    processWidgetPage.startProcess("Case Map: Leave Request");
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    taskTemplatePage.openActionMenu();
+    taskTemplatePage.startSideStep();
     TaskWidgetPage taskWidget = new TaskWidgetPage();
     taskWidget.expand();
-    Assert.assertTrue(taskWidget.isTaskStateOpen(0));
+    assertTrue(taskWidget.isTaskStateOpen(0));
   }
 
   private TaskTemplatePage startATask() {
