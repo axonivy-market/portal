@@ -48,9 +48,9 @@ import javax.faces.context.Flash;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 
-String displayMessageAfterFinishTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
-boolean displayMessageAfterFinishTask = StringUtils.isNotBlank(displayMessageAfterFinishTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishTaskVariable) : true;
-if (displayMessageAfterFinishTask) {
+String displayMessageAfterFinishOrCancelTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_OR_CANCEL_TASK.toString());
+boolean displayMessageAfterFinishOrCancelTask = StringUtils.isNotBlank(displayMessageAfterFinishOrCancelTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrCancelTaskVariable) : true;
+if (displayMessageAfterFinishOrCancelTask) {
 	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 	if (!flash.containsKey("overridePortalGrowl")) {
 		FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
@@ -62,8 +62,8 @@ if (displayMessageAfterFinishTask) {
 Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Display message after&#xD;
-finish task</name>
+        <name>Display message after&#13;
+finish or cancel task</name>
     </language>
 </elementInfo>
 ' #txt
