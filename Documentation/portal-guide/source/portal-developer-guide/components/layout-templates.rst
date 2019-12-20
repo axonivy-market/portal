@@ -94,8 +94,21 @@ Inside your UI, you can configure these parameters which will be rendered by the
 ::
 
 	<script>
+		// Follow one of these formats to set process steps:
 		window.processSteps = ["Create Investment Request", "Approve Investment Request"];
+		window.processSteps = "Create Investment Request,Approve Investment Request";
+
+		// If process steps are set in HTML dialog logic or java code, convert it to one of above formats by jstl (following code) or java code
+		// Include this namespace xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions" to the "html" tag
+		// Use this code if process steps are a java String list
+		window.processSteps = "#{fn:join(data.steps.toArray(), ',')}";
+		// Use this code if process steps are a java String array
+		window.processSteps = "#{fn:join(data.steps, ',')}";
+
+		// Current process step could be a number or String:
 		window.currentProcessStep = 0;
+		window.currentProcessStep = #{data.currentProcessStep};
+		window.currentProcessStep = "#{data.currentProcessStep}";
 		window.processChainDirection = "VERTICAL";
 		window.processChainShape = "LINE";
 		window.announcementInvisible = false;
