@@ -1,6 +1,6 @@
 .. _installation-migration-notes-8-0-0-case-body:
 
-How to migrate CaseBody to :ref:`customization-case-item-details`  component
+Migrate CaseBody to :ref:`customization-case-item-details`  component
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 On Portal version 8.0.0, we removed ``caseBody`` in CaseWidget. Instead
