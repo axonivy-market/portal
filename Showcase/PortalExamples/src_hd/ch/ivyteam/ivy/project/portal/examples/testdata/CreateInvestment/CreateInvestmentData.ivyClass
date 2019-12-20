@@ -2,3 +2,5 @@ CreateInvestmentData #class
 ch.ivyteam.ivy.project.portal.examples.testdata.CreateInvestment #namespace
 selectedInvestment ch.ivyteam.ivy.project.portal.examples.Investment #field
 selectedInvestment PERSISTENT #fieldModifier
+steps java.util.List<String> #field
+steps PERSISTENT #fieldModifier
