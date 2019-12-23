@@ -16,17 +16,16 @@
 </cc:interface>
 
 <cc:implementation>
-  <f:event
-    listener="#{logic.initialize(cc.attrs.statisticChartList,cc.attrs.showTaskListImmediately, cc.attrs.isBackFromDrilldown, cc.attrs.compactMode)}"
+  <f:event listener="#{logic.initialize(cc.attrs.statisticChartList,cc.attrs.showTaskListImmediately, cc.attrs.isBackFromDrilldown, cc.attrs.compactMode, cc.attrs.isDrilldownExpiryChart)}"
     type="preRenderComponent" />
   <h:panelGroup id="statistic-container" layout="block" styleClass="ui-g-12 u-padding-0">
     <h:panelGroup id="statistic-dashboard-expand-mode" layout="block"
       styleClass="statistic-dashboard-expand-mode #{cc.attrs.isDrilldownExpiryChart ? 'task-by-expiry-drilldown-mode' : ''}"
-      rendered="#{!cc.attrs.compactMode and data.hasStatistic and !cc.attrs.isDrilldownElapsedTime}">
+      rendered="#{!cc.attrs.compactMode and !cc.attrs.isDrilldownElapsedTime}">
       <div class="ui-g">
         <div class="ui-g-12 u-padding-0">
 
-          <div class="ui-g">
+          <h:panelGroup id="statistic-chart-repeater-container" layout="block" styleClass="ui-g">
             <ui:repeat id="statistic-chart-repeater" var="chart" value="#{data.statisticChartList}" varStatus="chartStatus">
               <!--  Statistic card -->
               <div class="ui-g-4 ui-xl-4 ui-lg-6 ui-md-6 ui-sm-12 u-padding-0">
@@ -44,7 +43,7 @@
                         <p:commandLink styleClass="fa fa-arrow-left chart-action ui-sm-hidden" actionListener="#{logic.moveLeft(chart)}"
                           update="@([id$='statistic-container'])" rendered="#{chartStatus.index != 0}" />
                         <p:commandLink styleClass="fa fa-arrow-right chart-action ui-sm-hidden" actionListener="#{logic.moveRight(chart)}"
-                          update="@([id$='statistic-container'])" rendered="#{chartStatus.index != data.statisticChartList.size() -1}" />
+                          update="@([id$='statistic-container'])" rendered="#{chartStatus.index != data.statisticChartList.size() -1 and data.isFinishLoadCharts}" />
 
                         <p:commandLink id="delete-chart-link" styleClass="fa fa-close chart-action" rendered="#{chart.defaultChart == 'false'}">
                           <p:ajax event="click" listener="#{logic.selectChart(chart)}" oncomplete="PF('delete-confirmation-dialog').show();" />
@@ -54,6 +53,7 @@
 
                     <!-- Chart Content -->
                     <div class="ui-g-12 u-padding-0">
+
                       <p:donutChart id="task-by-priority-chart" model="#{chart.donutChartModel}"
                         rendered="#{statisticDashboardBean.isTaskByPriority(chart)}" style="width: 100%; height:340px;"
                         styleClass="statistic-chart">
@@ -76,7 +76,7 @@
                         <p:commandLink id="expiry-chart-drill-down" styleClass="js-expiry-chart-drill-down option-item"
                           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuDrilldown')}"
                           action="#{cc.attrs.drillDownExpiryChartListener}" actionListener="#{logic.drilldownTaskByExpiry}"
-                          update="@([id$='create-chart-header']) #{p:component('widget-container')}" />
+                          update="@([id$='create-chart-header']) #{p:component('widget-container')}"/>
                         <p:commandLink id="expiry-chart-task-list" styleClass="js-expiry-chart-task-list option-item"
                           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/contextMenuToTaskList')}"
                           actionListener="#{logic.toTaskByExpiryTaskList}" />
@@ -112,13 +112,13 @@
                 </h:panelGroup>
               </div>
             </ui:repeat>
-          </div>
+          </h:panelGroup>
         </div>
       </div>
     </h:panelGroup>
 
     <!-- Statistics Chart for home page -->
-    <h:panelGroup id="statistic-carousel-container">
+    <h:panelGroup id="statistic-carousel-container" rendered="#{cc.attrs.compactMode}">
       <ui:include src="StatisticCarousel.xhtml" />
     </h:panelGroup>
 
@@ -129,9 +129,13 @@
   </h:panelGroup>
 
   <h:form id="statistic-form" styleClass="u-hidden">
-    <p:remoteCommand id="init-chart-command" name="initCharts" autoRun="true" update="@([id$='statistic-carousel-container'])"
-      rendered="#{cc.attrs.compactMode}" action="#{logic.initializeCompactMode}" async="true" />
-    <p:remoteCommand name="updateStatisticCarousel" update="@([id$='statistic-carousel-container'])" global="false"/>
+    <p:remoteCommand id="init-chart-command" name="initCharts" autoRun="true"
+      update="#{data.isReloadChartContent ? p:component(data.isCompactMode ? 'statistic-carousel-container':'statistic-chart-repeater-container'):'' }"
+      global="false" action="#{logic.generateChartModel}" async="true"
+      immediate="true" process="@this" partialSubmit="true"/>
+
+    <p:remoteCommand rendered="#{cc.attrs.compactMode}" name="updateStatisticCarousel" update="@([id$='statistic-carousel-container'])" 
+      global="false" immediate="true" process="@this" partialSubmit="true"/>
   </h:form>
 
   <p:dialog id="chart-details-dialog" widgetVar="chart-details-dialog" appendTo="@(body)"
