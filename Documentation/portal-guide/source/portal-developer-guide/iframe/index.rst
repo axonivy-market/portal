@@ -14,7 +14,7 @@ your html dialog independent from Portal, it is rendered inside IFrame in order 
 How to configure
 ================
 
-There are 3 levels:
+There are 4 levels:
 
 - Task level: in Task custom fields, set the ``embedInFrame`` String field to
 
@@ -35,7 +35,12 @@ There are 3 levels:
 - Application level:
 
 	- Portal Administrator could :ref:`register an application <settings-admin-settings>` and choose the option that all of the tasks in this application are started inside IFrame
+	- Don't register an application to check engine level
 
+- Engine level:
+
+	- Portal Administrator could choose the option that all of the tasks in whole engine are started inside IFrame or not via the ``EMBED_IN_FRAME`` Portal variable in :ref:`Global settings <settings-admin-settings-global-settings>`
+	
 .. important::
 	If there is no configuration, a process/task is started inside IFrame as default.
 
