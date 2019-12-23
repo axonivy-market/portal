@@ -28,9 +28,9 @@ public class AnnouncementPage extends TemplatePage {
     findElementByCssSelector("input[id$='" + Language + ":announcement-input']").sendKeys(content);
   }
 
-  public boolean isPublish() {
+  public boolean canDePublish() {
     String startCommandButton =
-        String.format("adminui:adminTabView:publish-announcement");
+        String.format("adminui:adminTabView:delete-announcement");
     WebElement element = findElementById(startCommandButton);
     return !element.getAttribute("class").contains("ui-state-disabled");
   }
