@@ -141,7 +141,7 @@
             <div class="ui-g-9 ui-sm-12">
               <h:panelGroup layout="block" styleClass="md-inputfield">
                 <p:inputText id="external-process-name" value="#{compactProcessWidgetBean.editingProcess.processName}"
-                  required="true" styleClass="favorite-process-input-field"
+                  required="true"
                   requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} 
                         #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
                 <p:message for="external-process-name" />
@@ -157,7 +157,6 @@
           <div class="ui-g-9 ui-sm-12">
             <h:panelGroup layout="block" styleClass="md-inputfield">
               <p:inputText id="process-start-link" value="#{compactProcessWidgetBean.editingProcess.link}" required="true"
-                styleClass="favorite-process-input-field"
                 requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')} 
                         #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
                 placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/webLinkExample')}"
