@@ -1207,6 +1207,12 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   margin: 0;
 }
 
+.add-external-link-icon {
+  width: 1.6rem;
+  height: 1.6rem;
+  margin: 2px 4px 0 10px;
+}
+
 /********************************** END PROCESSES **********************************/
 /******************START DELEGATE DIALOG********************/
 .ui-autocomplete-panel .ui-autocomplete-table.ui-autocomplete-items {
