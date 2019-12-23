@@ -81,6 +81,11 @@ public class DeprecatedChatAssignee7Bean implements Serializable {
     }
   }
 
+  private void checkCaseHasGroupChat() {
+    CaseQuery caseQuery = queryCaseHasGroupChat();
+    doesGroupChatExist = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getFirstResult(caseQuery) != null;
+  }
+
   public void handleConfiguredRoleList() {
     List<ISecurityMember> configuredRoles = getConfiguredRoles();
 
@@ -157,10 +162,6 @@ public class DeprecatedChatAssignee7Bean implements Serializable {
   }
 
   public boolean doesGroupChatExist() {
-    if (!doesGroupChatExist) {
-      CaseQuery caseQuery = queryCaseHasGroupChat();
-      doesGroupChatExist = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getFirstResult(caseQuery) != null;
-    }
     return doesGroupChatExist;
   }
 
@@ -214,6 +215,7 @@ public class DeprecatedChatAssignee7Bean implements Serializable {
   }
 
   public void createGroupChatForConfiguredRoleList() {
+    checkCaseHasGroupChat();
     if (!isShowCreateGroupChatDialog && !doesGroupChatExist) {
       createGroupChat();
     } else {
