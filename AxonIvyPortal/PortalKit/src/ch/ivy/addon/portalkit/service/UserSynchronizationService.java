@@ -51,45 +51,38 @@ public class UserSynchronizationService {
   public static void addUserToCacheAndUserService(String username) {
     // check user available
     UserService userService = new UserService();
-    List<User> usersCheck = userService.findByUserName(username);
 
-    List<Application> apps = new ApplicationService().findAllIvyApplications();
-    List<User> users = new ArrayList<>();
     UserDao userDao = new UserDao();
-    
-    CollectionUtils.emptyIfNull(apps).forEach(app -> {
-      String applicationName = app.getName();
-      boolean userExists = CollectionUtils
-          .emptyIfNull(usersCheck)
-          .stream()
-          .filter(userchk -> userchk.getApplicationName().equals(applicationName)
-              && userchk.getServerId() != -1L )
-              .findAny().isPresent();
-      if (!userExists){
-        User user = new User();
-        user.setUserName(Ivy.session().getSessionUserName());
-        user.setFullUserName(Ivy.session().getSessionUser().getDisplayName());
-        user.setApplicationName(applicationName);
-        
-        users.add(user);
-      }
-    });
-    if (CollectionUtils.isNotEmpty(users)){
-      List<User> cachedUsers = DataCache.getAllUsersFromCache();
+    String applicationName = Ivy.wf().getApplication().getName();
+    Ivy.log().info("Check user " + Ivy.session().getSessionUserName() + " is in cache for app:" + applicationName);
+    if (!isUserExistedInCurrentApp(userService.findByUserName(username))){
+      User user = new User();
+      user.setUserName(Ivy.session().getSessionUserName());
+      user.setFullUserName(Ivy.session().getSessionUser().getDisplayName());
+      user.setApplicationName(applicationName);
+      Ivy.log().warn("User not found in cache:" + user.getUserName() + " " + user.getFullUserName() + " -> Add and REBUILD CACHE!");
       //Reload users from database to to check whether user is saved or not
       DataCache.invalidateUsersCache(Ivy.wf().getApplication().getName());
       List<User> usersLoadedFromDB = userService.findByUserName(username); // cache & find
-      boolean userExists = CollectionUtils.emptyIfNull(usersLoadedFromDB).stream()
-              .filter(userchk -> userchk.getApplicationName().equals(Ivy.wf().getApplication().getName())
-                      && userchk.getServerId() != -1L)
-              .findAny().isPresent();
-      if (!userExists) {
-        userService.saveAll(users);
-        users.addAll(cachedUsers);
+      if (!isUserExistedInCurrentApp(usersLoadedFromDB)) {
+        userService.save(user);
+        List<User> users = new ArrayList<>(DataCache.getAllUsersFromCache());
+        users.add(user);
         Repo<Long, User> repo = userDao.buildRepoIndexedByUserName(users);
         refreshUserAppCache(Ivy.wf().getApplication().getName(), users, repo);
       }
+    } else {
+      Ivy.log().info("User found in cache:" + Ivy.session().getSessionUserName() + " " + Ivy.session().getSessionUser().getDisplayName()); 
     }
+  }
+
+  private static boolean isUserExistedInCurrentApp(List<User> usersCheck) {
+    return CollectionUtils
+        .emptyIfNull(usersCheck)
+        .stream()
+        .filter(userchk -> userchk.getApplicationName().equals(Ivy.wf().getApplication().getName())
+            && userchk.getServerId() != -1L )
+            .findAny().isPresent();
   }
 
   private static void refreshUserAppCache(String appName, List<User> users, Repo<Long, User> repo) {
