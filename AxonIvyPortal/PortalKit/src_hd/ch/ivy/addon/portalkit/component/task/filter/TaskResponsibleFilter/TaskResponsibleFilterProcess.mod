@@ -23,14 +23,14 @@ Ts0 f6 method autoCompleteForResponsible(String) #txt
 Ts0 f6 inParameterDecl '<String query> param;' #txt
 Ts0 f6 inParameterMapAction 'out.queryAutoComplete=param.query;
 ' #txt
-Ts0 f6 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.ISecurityMember> responsibleList> result;' #txt
-Ts0 f6 outActionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
+Ts0 f6 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.dto.SecurityMemberDTO> responsibleList> result;' #txt
+Ts0 f6 outActionCode 'import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 
 if(in.responsibles.isEmpty()) {
-	in.responsibles = UserUtils.findAllSecurityMembers();
+	in.responsibles = SecurityMemberUtils.findAllSecurityMembers();
 }
 
-result.responsibleList = UserUtils.filterSecurityMembers(in.responsibles, in.queryAutoComplete);' #txt
+result.responsibleList = SecurityMemberUtils.filterSecurityMembers(in.responsibles, in.queryAutoComplete);' #txt
 Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

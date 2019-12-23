@@ -431,12 +431,12 @@
     styleClass="user-list-dialog" appendTo="@(body)">
     <h:form>
       <p:dataTable value="#{data.usersApplicationList}" var="user"
-        sortBy="#{userFormatBean.formatWithTip(user.fullName, user.name)}" scrollable="true"
+        sortBy="#{userFormatBean.formatWithTip(user.displayName, user.name)}" scrollable="true"
         filteredValue="#{data.filteredUsers}" scrollHeight="300" styleClass="preview-users-datatable"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}"
-          filterBy="#{userFormatBean.formatWithTip(user.fullName, user.name)}" filterMatchMode="contains">
-          <h:outputText value="#{userFormatBean.formatWithTip(user.fullName, user.name)}" />
+          filterBy="#{userFormatBean.formatWithTip(user.displayName, user.name)}" filterMatchMode="contains">
+          <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.name)}" />
         </p:column>
       </p:dataTable>
     </h:form>

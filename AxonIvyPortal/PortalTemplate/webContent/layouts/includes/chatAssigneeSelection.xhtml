@@ -26,10 +26,9 @@
         itemValue="#{user}" converter="pojoConverter" cache="true" queryDelay="500" maxResults="100" panelStyleClass="chat-select-assignee-panel"
         moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
         <f:event listener="#{chatAssigneeBean.populateUserAutoComplete}" type="preRenderComponent" />
-        <p:ajax event="query" global="false" />
         <p:ajax event="itemSelect" update="chat-add-assignee-button" />
         <p:column>
-          <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.memberName.substring(1))}" />
+          <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.name)}" />
         </p:column>
       </p:autoComplete>
 
