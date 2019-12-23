@@ -33,10 +33,8 @@ import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
 import ch.ivy.addon.portalkit.util.Dates;
-import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
@@ -261,37 +259,47 @@ public class StatisticChartQueryUtils {
     TaskQuery taskQuery = TaskQuery.create();
 
     // Filter by created date
-    taskQuery.where().and(generateTaskQueryForStartTimestamp(filter));
-    
+    if (!isStartTimeFilterEmpty(filter)) {
+      taskQuery.where().and(generateTaskQueryForStartTimestamp(filter));
+    }
+
     // Filter by roles
-    taskQuery.where().and(generateTaskQueryForRoles(filter));
+    if (!filter.getIsAllRolesSelected()) {
+      taskQuery.where().and(generateTaskQueryForRoles(filter));
+    }
 
-    taskQuery.where().and(generateTaskQueryForTaskPriority(filter));
+    if (!filter.getIsAllTaskPrioritiesSelected()) {
+      taskQuery.where().and(generateTaskQueryForTaskPriority(filter));
+    }
 
-    taskQuery.where().and().cases(generateCaseQuery(filter, false));
+    if (isGenerateCaseQuery(filter)) {
+      taskQuery.where().and().cases(generateCaseQuery(filter, false));
+    }
     
     return taskQuery;
   }
 
+  private static boolean isStartTimeFilterEmpty(StatisticFilter filter) {
+    return filter.getTimePeriodSelection() != null
+        && filter.getTimePeriodSelection() == StatisticTimePeriodSelection.CUSTOM
+        && filter.getCreatedDateFrom() == null && filter.getCreatedDateTo() == null;
+  }
+
+  private static boolean isGenerateCaseQuery(StatisticFilter filter) {
+    return !isStartTimeFilterEmpty(filter) || !filter.getIsAllCaseStatesSelected()
+        || !filter.getIsAllCategoriesSelected() || isCustomFieldFilterNotEmpty(filter);
+  }
+
   private static TaskQuery generateTaskQueryForRoles(StatisticFilter filter) {
     TaskQuery subTaskQueryForRoles = TaskQuery.create();
-    if (filter.getIsAllRolesSelected()) {
-      subTaskQueryForRoles.where().or().activatorName().isEqual(Ivy.session().getSessionUser().getMemberName()); //include current user
-      subTaskQueryForRoles.where().or().activatorName().isNotLike("#%%"); //include roles only, activatorName start with # is user
-      ISecurityContext securityContext = Ivy.request().getApplication().getSecurityContext();
-      List<String> technicalRolesName = securityContext.getRoles().stream().filter(role -> role.getProperty(RoleUtils.HIDE) != null).map(IRole::getMemberName).collect(Collectors.toList());
-      if (!CollectionUtils.isEmpty(technicalRolesName)) {
-        technicalRolesName.forEach(roleName -> subTaskQueryForRoles.where().and().activatorName().isNotEqual(roleName)); //exclude technical role
-      }
+    if (CollectionUtils.isNotEmpty(filter.getSelectedRoles())) {
+      filter.getSelectedRoles().forEach(role -> subTaskQueryForRoles.where().or().activatorName().isEqual(role));
     } else {
-      if (CollectionUtils.isNotEmpty(filter.getSelectedRoles())) {
-        filter.getSelectedRoles().forEach(role -> subTaskQueryForRoles.where().or().activatorName().isEqual(role));
-      } else {
-        subTaskQueryForRoles.where().and().activatorName().isNotLike("#%%"); //exclude other users
-        List<IRole> roles = CollectionUtils.emptyIfNull(filter.getRoles()).stream().filter(role -> role instanceof IRole).map(role -> (IRole)role).collect(Collectors.toList());
-        roles.forEach(role -> subTaskQueryForRoles.where().and().activatorName().isNotEqual(role.getMemberName())); //exclude role
-      }
+      subTaskQueryForRoles.where().and().activatorUserId().isNull(); //exclude other users
+      List<IRole> roles = CollectionUtils.emptyIfNull(filter.getRoles()).stream().filter(role -> role instanceof IRole).map(role -> (IRole)role).collect(Collectors.toList());
+      roles.forEach(role -> subTaskQueryForRoles.where().and().activatorName().isNotEqual(role.getMemberName())); //exclude role
     }
+
     return subTaskQueryForRoles;
   }
 
@@ -346,20 +354,28 @@ public class StatisticChartQueryUtils {
     CaseQuery caseQuery = CaseQuery.create();
 
     // Filter by created date
-    caseQuery.where().and(generateCaseQueryForStartTimestamp(filter));
-    
+    if (!isStartTimeFilterEmpty(filter)) {
+      caseQuery.where().and(generateCaseQueryForStartTimestamp(filter));
+    }
+
     // Filter by case state
-    caseQuery.where().and(generateCaseQueryForCaseState(filter, isElapsedStatistic));
-    
+    if (!filter.getIsAllCaseStatesSelected()) {
+      caseQuery.where().and(generateCaseQueryForCaseState(filter, isElapsedStatistic));
+    }
     // Filter by case category
     if (!filter.getIsAllCategoriesSelected() && isCaseCategoriesNotEmpty(filter)) {
       caseQuery.where().and(generateCaseQueryForCaseCategory(filter));
     }
     
     // Filter by custom field
-    generateCaseQueryForCustomField(filter, caseQuery);
-    
+    if (isCustomFieldFilterNotEmpty(filter)) {
+      generateCaseQueryForCustomField(filter, caseQuery);
+    }
     return caseQuery;
+  }
+
+  private static boolean isCustomFieldFilterNotEmpty(StatisticFilter filter) {
+    return filter.getCustomFieldFilters() != null && !filter.getCustomFieldFilters().values().isEmpty();
   }
 
   private static boolean isCaseCategoriesNotEmpty(StatisticFilter filter) {
@@ -502,8 +518,13 @@ public class StatisticChartQueryUtils {
    * @return case query for case by state
    */
   public static CaseQuery generateCaseQueryForCaseState(StatisticFilter filter) {
-    CaseQuery caseQuery = StatisticChartQueryUtils.generateCaseQuery(filter, false);
-    generateCaseQueryForRole(filter, caseQuery);
+    CaseQuery caseQuery = CaseQuery.create();
+    if (isGenerateCaseQuery(filter)) {
+      caseQuery = StatisticChartQueryUtils.generateCaseQuery(filter, false);
+    }
+    if (!filter.getIsAllRolesSelected()) {
+      generateCaseQueryForRole(filter, caseQuery);
+    }
     return caseQuery;
   }
 
