@@ -74,6 +74,11 @@ public class ChatAssigneeBean implements Serializable {
     task = Ivy.wfTask();
   }
 
+  private void checkCaseHasGroupChat() {
+    CaseQuery caseQuery = queryCaseHasGroupChat();
+    doesGroupChatExist = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getFirstResult(caseQuery) != null;
+  }
+
   public void handleConfiguredRoleList() {
     List<ISecurityMember> configuredRoles = getConfiguredRoles();
 
@@ -150,10 +155,6 @@ public class ChatAssigneeBean implements Serializable {
   }
 
   public boolean doesGroupChatExist() {
-    if (!doesGroupChatExist) {
-      CaseQuery caseQuery = queryCaseHasGroupChat();
-      doesGroupChatExist = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getFirstResult(caseQuery) != null;
-    }
     return doesGroupChatExist;
   }
 
@@ -208,6 +209,7 @@ public class ChatAssigneeBean implements Serializable {
 
   public void createGroupChatForConfiguredRoleList(ITask task) {
     this.task = task;
+    checkCaseHasGroupChat();
     handleConfiguredRoleList();
 
     if (isShowCreateGroupChatDialog) {
