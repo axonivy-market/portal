@@ -91,7 +91,7 @@ public class AnnouncementTest extends BaseTest {
     announcementPage.setAnnoucement(2, "Readme2");
     announcementPage.setAnnoucement(3, "Readme3");
     announcementPage.publish();
-    Awaitility.waitAtMost(5, TimeUnit.SECONDS).until(() -> announcementPage.isPublish());
+    Awaitility.waitAtMost(5, TimeUnit.SECONDS).until(() -> announcementPage.canDePublish());
     announcementPage.dePublish();
     assertTrue("Announcement is not display ", homePage.isAnnouncementMessageNotDisplayed());
   }
