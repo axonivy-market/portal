@@ -1,359 +1,332 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:ic="http://ivyteam.ch/jsf/component"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions"
-	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
-	<br />
-	<div class="ui-fluid">
-		<p:outputLabel styleClass="task-template-title">Demo Primefaces Elements</p:outputLabel>
-		<br />
+  <br />
+  <div class="ui-fluid">
+    <p:outputLabel styleClass="task-template-title">Demo Primefaces Elements</p:outputLabel>
+    <br />
+    <h:form>
+      <div class="card card-w-title">
+        <h4>Input component</h4>
+        <div class="ui-g">
+          <div class="ui-g-12 ui-md-3 ui-lg-2">
+            <p:outputLabel for="input" value="Input" />
+          </div>
+          <div class="ui-g-12 ui-md-9 ui-lg-4">
+            <p:inputText id="input" />
+          </div>
+          <div class="ui-g-12 ui-md-3 ui-lg-2">
+            <p:outputLabel for="input2" value="More Input" />
+          </div>
+          <div class="ui-g-12 ui-md-9 ui-lg-4">
+            <p:inputText id="input2" />
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-12 ui-md-3 ui-lg-2">
+            <p:outputLabel for="calendar" value="Calendar" />
+          </div>
+          <div class="ui-g-12 ui-md-9 ui-lg-4">
+            <p:calendar id="calendar" pattern="dd/MM/yyyy" />
+          </div>
+          <div class="ui-g-12 ui-md-3 ui-lg-2">
+            <p:outputLabel for="ac" value="AutoComplete" />
+          </div>
+          <div class="ui-g-12 ui-md-9 ui-lg-4">
+            <p:autoComplete id="ac" />
+          </div>
+        </div>
+        <div class="ui-g">
+          <div class="ui-g-12 ui-md-3 ui-lg-2">
+            <p:outputLabel for="area" value="Comment" styleClass="alignTop" />
+          </div>
+          <div class="ui-g-12 ui-md-9 ui-lg-10">
+            <p:inputTextarea id="area" style="" />
+          </div>
+        </div>
+      </div>
 
-		<div class="card card-w-title">
-			<h4>Input component</h4>
-			<div class="ui-g">
-				<div class="ui-g-12 ui-md-3 ui-lg-2">
-					<p:outputLabel for="input" value="Input" />
-				</div>
-				<div class="ui-g-12 ui-md-9 ui-lg-4">
-					<p:inputText id="input" />
-				</div>
-				<div class="ui-g-12 ui-md-3 ui-lg-2">
-					<p:outputLabel for="input2" value="More Input" />
-				</div>
-				<div class="ui-g-12 ui-md-9 ui-lg-4">
-					<p:inputText id="input2" />
-				</div>
-			</div>
-			<div class="ui-g">
-				<div class="ui-g-12 ui-md-3 ui-lg-2">
-					<p:outputLabel for="calendar" value="Calendar" />
-				</div>
-				<div class="ui-g-12 ui-md-9 ui-lg-4">
-					<p:calendar id="calendar" pattern="dd/MM/yyyy" />
-				</div>
-				<div class="ui-g-12 ui-md-3 ui-lg-2">
-					<p:outputLabel for="ac" value="AutoComplete" />
-				</div>
-				<div class="ui-g-12 ui-md-9 ui-lg-4">
-					<p:autoComplete id="ac" />
-				</div>
-			</div>
-			<div class="ui-g">
-				<div class="ui-g-12 ui-md-3 ui-lg-2">
-					<p:outputLabel for="area" value="Comment" styleClass="alignTop" />
-				</div>
-				<div class="ui-g-12 ui-md-9 ui-lg-10">
-					<p:inputTextarea id="area" style="" />
-				</div>
-			</div>
-		</div>
+      <div class="card card-w-title">
+        <h4>Input Animations</h4>
+        <div class="ui-g" style="height: 100px;">
+          <div class="ui-panelgrid-cell ui-g-12 ui-md-4">
+            <h:panelGroup styleClass="md-inputfield" style="margin-top:5px;">
+              <p:inputText id="textAnimationsName" required="true" />
+              <p:outputLabel for="textAnimationsName" value="Name" />
+            </h:panelGroup>
+          </div>
+          <div class="ui-panelgrid-cell ui-g-12 ui-md-4">
+            <h:panelGroup styleClass="md-inputfield" style="margin-top:5px;">
+              <p:inputText id="textAnimationsEmail" type="email" required="true" />
+              <p:outputLabel for="textAnimationsEmail" value="Email" />
+            </h:panelGroup>
+          </div>
+          <div class="ui-panelgrid-cell ui-g-12 ui-md-4">
+            <h:panelGroup styleClass="md-inputfield" style="margin-top:5px;">
+              <p:inputText id="textAnimationsPhone" type="number" />
+              <p:outputLabel for="textAnimationsPhone" value="Phone" />
+            </h:panelGroup>
+          </div>
+        </div>
+      </div>
 
-		<div class="card card-w-title">
-			<h4>Input Animations</h4>
-			<div class="ui-g" style="height: 100px;">
-				<div class="ui-panelgrid-cell ui-g-12 ui-md-4">
-					<h:panelGroup styleClass="md-inputfield" style="margin-top:5px;">
-						<p:inputText id="textAnimationsName" required="true" />
-						<p:outputLabel for="textAnimationsName" value="Name" />
-					</h:panelGroup>
-				</div>
-				<div class="ui-panelgrid-cell ui-g-12 ui-md-4">
-					<h:panelGroup styleClass="md-inputfield" style="margin-top:5px;">
-						<p:inputText id="textAnimationsEmail" type="email" required="true" />
-						<p:outputLabel for="textAnimationsEmail" value="Email" />
-					</h:panelGroup>
-				</div>
-				<div class="ui-panelgrid-cell ui-g-12 ui-md-4">
-					<h:panelGroup styleClass="md-inputfield" style="margin-top:5px;">
-						<p:inputText id="textAnimationsPhone" type="number" />
-						<p:outputLabel for="textAnimationsPhone" value="Phone" />
-					</h:panelGroup>
-				</div>
-			</div>
-		</div>
+      <div class="card card-w-title">
+        <h4>Fieldset component</h4>
+        <p:fieldset legend="More options" toggleable="true" collapsed="true">
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel for="onemenu" value="OneMenu" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-4">
+              <p:selectOneMenu id="onemenu">
+                <f:selectItem itemLabel="Select One" itemValue="" />
+                <f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+                <f:selectItem itemLabel="PS4" itemValue="PS4" />
+                <f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+              </p:selectOneMenu>
+            </div>
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel for="console" value="Basic" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-4">
+              <p:selectOneMenu id="console" value="#{selectOneMenuView.console}">
+                <f:selectItem itemLabel="Select One" itemValue="" />
+                <f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+                <f:selectItem itemLabel="PS4" itemValue="PS4" />
+                <f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+              </p:selectOneMenu>
+            </div>
+          </div>
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel for="spinner" value="Spinner" style="" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-4">
+              <p:spinner id="spinner" style="" />
+            </div>
+          </div>
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel for="radio" value="Radio" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-4">
+              <p:selectOneRadio id="radio" value="#{radioView.console}">
+                <f:selectItem itemLabel="Opt one" itemValue="Xbox One" />
+                <f:selectItem itemLabel="Opt two" itemValue="PS4" />
+                <f:selectItem itemLabel="Opt three" itemValue="Wii U" />
+              </p:selectOneRadio>
+            </div>
+          </div>
+          <div class="ui-g">
+            <div class="ui-g-12 ui-md-3 ui-lg-2">
+              <p:outputLabel for="chkbox" value="Checkbox" style="" />
+            </div>
+            <div class="ui-g-12 ui-md-9 ui-lg-4">
+              <p:selectManyCheckbox id="chkbox" layout="grid" columns="3" value="#{checkboxView.selectedConsoles}">
+                <f:selectItem itemLabel="Opt one" itemValue="Opt One" />
+                <f:selectItem itemLabel="Opt two" itemValue="Opt two" />
+                <f:selectItem itemLabel="Opt three" itemValue="Opt three" />
+                <f:selectItem itemLabel="Opt four" itemValue="Opt four" />
+                <f:selectItem itemLabel="Opt five" itemValue="Opt five" />
+                <f:selectItem itemLabel="Opt six" itemValue="Opt six" />
+              </p:selectManyCheckbox>
+            </div>
+          </div>
+        </p:fieldset>
+      </div>
 
-		<div class="card card-w-title">
-			<h4>Fieldset component</h4>
-			<p:fieldset legend="More options" toggleable="true" collapsed="true">
-				<div class="ui-g">
-					<div class="ui-g-12 ui-md-3 ui-lg-2">
-						<p:outputLabel for="onemenu" value="OneMenu" />
-					</div>
-					<div class="ui-g-12 ui-md-9 ui-lg-4">
-						<p:selectOneMenu id="onemenu">
-							<f:selectItem itemLabel="Select One" itemValue="" />
-							<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-							<f:selectItem itemLabel="PS4" itemValue="PS4" />
-							<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
-						</p:selectOneMenu>
-					</div>
-					<div class="ui-g-12 ui-md-3 ui-lg-2">
-						<p:outputLabel for="console" value="Basic" />
-					</div>
-					<div class="ui-g-12 ui-md-9 ui-lg-4">
-						<p:selectOneMenu id="console" value="#{selectOneMenuView.console}">
-							<f:selectItem itemLabel="Select One" itemValue="" />
-							<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-							<f:selectItem itemLabel="PS4" itemValue="PS4" />
-							<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
-						</p:selectOneMenu>
-					</div>
-				</div>
-				<div class="ui-g">
-					<div class="ui-g-12 ui-md-3 ui-lg-2">
-						<p:outputLabel for="spinner" value="Spinner" style="" />
-					</div>
-					<div class="ui-g-12 ui-md-9 ui-lg-4">
-						<p:spinner id="spinner" style="" />
-					</div>
-				</div>
-				<div class="ui-g">
-					<div class="ui-g-12 ui-md-3 ui-lg-2">
-						<p:outputLabel for="radio" value="Radio" />
-					</div>
-					<div class="ui-g-12 ui-md-9 ui-lg-4">
-						<p:selectOneRadio id="radio" value="#{radioView.console}">
-							<f:selectItem itemLabel="Opt one" itemValue="Xbox One" />
-							<f:selectItem itemLabel="Opt two" itemValue="PS4" />
-							<f:selectItem itemLabel="Opt three" itemValue="Wii U" />
-						</p:selectOneRadio>
-					</div>
-				</div>
-				<div class="ui-g">
-					<div class="ui-g-12 ui-md-3 ui-lg-2">
-						<p:outputLabel for="chkbox" value="Checkbox" style="" />
-					</div>
-					<div class="ui-g-12 ui-md-9 ui-lg-4">
-						<p:selectManyCheckbox id="chkbox" layout="grid"
-							columns="3" value="#{checkboxView.selectedConsoles}">
-							<f:selectItem itemLabel="Opt one" itemValue="Opt One" />
-							<f:selectItem itemLabel="Opt two" itemValue="Opt two" />
-							<f:selectItem itemLabel="Opt three" itemValue="Opt three" />
-							<f:selectItem itemLabel="Opt four" itemValue="Opt four" />
-							<f:selectItem itemLabel="Opt five" itemValue="Opt five" />
-							<f:selectItem itemLabel="Opt six" itemValue="Opt six" />
-						</p:selectManyCheckbox>
-					</div>
-				</div>
-			</p:fieldset>
-		</div>
+      <p:dialog header="Login" widgetVar="dlg" resizable="false" responsive="true">
+        <p:panelGrid columns="2" layout="grid" styleClass="ui-panelgrid-blank"
+          columnClasses="ui-grid-col-4,ui-grid-col-8">
+          <h:outputLabel for="username" value="Username:" />
+          <p:inputText id="username" />
 
-		<p:dialog header="Login" widgetVar="dlg" resizable="false"
-			responsive="true">
-			<p:panelGrid columns="2" layout="grid"
-				styleClass="ui-panelgrid-blank"
-				columnClasses="ui-grid-col-4,ui-grid-col-8">
-				<h:outputLabel for="username" value="Username:" />
-				<p:inputText id="username" />
+          <h:outputLabel for="password" value="Password:" />
+          <p:password id="password" />
 
-				<h:outputLabel for="password" value="Password:" />
-				<p:password id="password" />
+          <f:facet name="footer">
+            <p:commandButton value="Login" type="button" onclick="PF('dlg').hide()" />
+          </f:facet>
+        </p:panelGrid>
+      </p:dialog>
 
-				<f:facet name="footer">
-					<p:commandButton value="Login" type="button"
-						onclick="PF('dlg').hide()" />
-				</f:facet>
-			</p:panelGrid>
-		</p:dialog>
+      <div class="card card-w-title">
+        <h4>Accordion panel</h4>
+        <p:accordionPanel activeIndex="null">
+          <p:tab title="Filter table">
+            <div class="ui-g">
+              <div class="ui-g-12 ui-md-3 ui-lg-2">
+                <p:outputLabel for="input6" value="Surname" />
+              </div>
+              <div class="ui-g-12 ui-md-9 ui-lg-4">
+                <p:inputText id="input6" />
+              </div>
+              <div class="ui-g-12 ui-md-3 ui-lg-2">
+                <p:outputLabel for="input7" value="First name" />
+              </div>
+              <div class="ui-g-12 ui-md-9 ui-lg-4">
+                <p:inputText id="input7" />
+              </div>
+            </div>
+            <div class="ui-g">
+              <div class="ui-g-12 ui-md-3 ui-lg-2">
+                <p:outputLabel for="console4" value="Profession" />
+              </div>
+              <div class="ui-g-12 ui-md-9 ui-lg-4">
+                <p:selectOneMenu id="console4" value="#{selectOneMenuView.console}">
+                  <f:selectItem itemLabel="Select One" itemValue="" />
+                  <f:selectItem itemLabel="Filter Xy" itemValue="Xbox One" />
+                  <f:selectItem itemLabel="Filter Xy" itemValue="PS4" />
+                  <f:selectItem itemLabel="Filter Xy" itemValue="Wii U" />
+                </p:selectOneMenu>
+              </div>
+              <div class="ui-g-12 ui-md-3 ui-lg-2">
+                <p:outputLabel for="console5" value="ID" />
+              </div>
+              <div class="ui-g-12 ui-md-9 ui-lg-4">
+                <p:selectOneMenu id="console5" value="#{selectOneMenuView.console}">
+                  <f:selectItem itemLabel="Select One" itemValue="" />
+                  <f:selectItem itemLabel="Filter Xy" itemValue="Xbox One" />
+                  <f:selectItem itemLabel="Filter Xy" itemValue="PS4" />
+                  <f:selectItem itemLabel="Filter Xy" itemValue="Wii U" />
+                </p:selectOneMenu>
+              </div>
+            </div>
+          </p:tab>
+        </p:accordionPanel>
+      </div>
 
-		<div class="card card-w-title">
-			<h4>Accordion panel</h4>
-			<p:accordionPanel activeIndex="null">
-				<p:tab title="Filter table">
-					<div class="ui-g">
-						<div class="ui-g-12 ui-md-3 ui-lg-2">
-							<p:outputLabel for="input6" value="Surname" />
-						</div>
-						<div class="ui-g-12 ui-md-9 ui-lg-4">
-							<p:inputText id="input6" />
-						</div>
-						<div class="ui-g-12 ui-md-3 ui-lg-2">
-							<p:outputLabel for="input7" value="First name" />
-						</div>
-						<div class="ui-g-12 ui-md-9 ui-lg-4">
-							<p:inputText id="input7" />
-						</div>
-					</div>
-					<div class="ui-g">
-						<div class="ui-g-12 ui-md-3 ui-lg-2">
-							<p:outputLabel for="console4" value="Profession" />
-						</div>
-						<div class="ui-g-12 ui-md-9 ui-lg-4">
-							<p:selectOneMenu id="console4"
-								value="#{selectOneMenuView.console}">
-								<f:selectItem itemLabel="Select One" itemValue="" />
-								<f:selectItem itemLabel="Filter Xy" itemValue="Xbox One" />
-								<f:selectItem itemLabel="Filter Xy" itemValue="PS4" />
-								<f:selectItem itemLabel="Filter Xy" itemValue="Wii U" />
-							</p:selectOneMenu>
-						</div>
-						<div class="ui-g-12 ui-md-3 ui-lg-2">
-							<p:outputLabel for="console5" value="ID" />
-						</div>
-						<div class="ui-g-12 ui-md-9 ui-lg-4">
-							<p:selectOneMenu id="console5"
-								value="#{selectOneMenuView.console}">
-								<f:selectItem itemLabel="Select One" itemValue="" />
-								<f:selectItem itemLabel="Filter Xy" itemValue="Xbox One" />
-								<f:selectItem itemLabel="Filter Xy" itemValue="PS4" />
-								<f:selectItem itemLabel="Filter Xy" itemValue="Wii U" />
-							</p:selectOneMenu>
-						</div>
-					</div>
-				</p:tab>
-			</p:accordionPanel>
-		</div>
+      <div class="card card-w-title">
+        <h4>Toolbar component</h4>
+        <p:toolbar style="border:none">
+          <f:facet name="right">
+            <p:commandButton value="Add new row" style="margin-right:0px" styleClass="portal-cancel-button"
+              process="@this" update="theTable" />
+          </f:facet>
+        </p:toolbar>
+      </div>
 
-		<div class="card card-w-title">
-			<h4>Toolbar component</h4>
-			<p:toolbar style="border:none">
-				<f:facet name="right">
-					<p:commandButton value="Add new row" style="margin-right:0px"
-						styleClass="portal-cancel-button" process="@this"
-						update="theTable" />
-				</f:facet>
-			</p:toolbar>
-		</div>
+      <div class="card card-w-title">
+        <h4>Table with sort</h4>
+        <p:dataTable id="theTable" widgetVar="theTable" editable="true" scrollable="true" scrollHeight="250"
+          value="#{data.scores}" var="score" rows="8" selection="#{data.selectedScore}" selectionMode="single"
+          rowKey="#{score.id}" draggableColumns="true" draggableRows="true" style="width:100%">
+          <p:ajax event="rowSelect" update="#{p:component('detailDialog')}" oncomplete="PF('detailDialog').show()" />
+          <p:rowExpansion>
+            <p:panelGrid columns="2" style="width:400px">
+              <p:outputLabel>No</p:outputLabel>
+              <p:inputText value="#{score.id}" disabled="true" />
+              <p:outputLabel for="name">Name</p:outputLabel>
+              <p:inputText id="name" value="#{score.name}" required="true" />
+              <p:outputLabel for="points">Points</p:outputLabel>
+              <p:inputText id="points" value="#{score.points}" required="true" />
+              <br />
+              <p:commandButton value="Save" update="theTable" actionListener="#{logic.save}" id="saveButton" />
+            </p:panelGrid>
+          </p:rowExpansion>
 
-		<div class="card card-w-title">
-			<h4>Table with sort</h4>
-			<p:dataTable id="theTable" widgetVar="theTable" editable="true"
-				scrollable="true" scrollHeight="250" value="#{data.scores}"
-				var="score" rows="8" selection="#{data.selectedScore}"
-				selectionMode="single" rowKey="#{score.id}" draggableColumns="true"
-				draggableRows="true" style="width:100%">
-				<p:ajax event="rowSelect" update="#{p:component('detailDialog')}"
-					oncomplete="PF('detailDialog').show()" />
-				<p:rowExpansion>
-					<p:panelGrid columns="2" style="width:400px">
-						<p:outputLabel>No</p:outputLabel>
-						<p:inputText value="#{score.id}" disabled="true" />
-						<p:outputLabel for="name">Name</p:outputLabel>
-						<p:inputText id="name" value="#{score.name}" required="true" />
-						<p:outputLabel for="points">Points</p:outputLabel>
-						<p:inputText id="points" value="#{score.points}" required="true" />
-						<br />
-						<p:commandButton value="Save" update="theTable"
-							actionListener="#{logic.save}" id="saveButton" />
-					</p:panelGrid>
-				</p:rowExpansion>
+          <p:column headerText="No" sortBy="#{score.id}" style="width:60px" id="scoreId">
+            <p:outputLabel value="#{score.id}" />
+          </p:column>
 
-				<p:column headerText="No" sortBy="#{score.id}" style="width:60px"
-					id="scoreId">
-					<p:outputLabel value="#{score.id}" />
-				</p:column>
+          <p:column headerText="Name" filterMatchMode="exact" filterBy="#{score.name}" styleClass="filterColumn"
+            style="width:200px">
+            <f:facet name="filter">
+              <p:selectOneMenu onchange="PF('theTable').filter()" id="nameFilter">
+                <f:selectItem itemLabel="All" itemValue="#{null}" noSelectionOption="true" />
+                <f:selectItems value="#{data.names}" />
+              </p:selectOneMenu>
+            </f:facet>
+            <p:outputLabel id="colName" value="#{score.name}" />
+          </p:column>
 
-				<p:column headerText="Name" filterMatchMode="exact"
-					filterBy="#{score.name}" styleClass="filterColumn"
-					style="width:200px">
-					<f:facet name="filter">
-						<p:selectOneMenu onchange="PF('theTable').filter()"
-							id="nameFilter">
-							<f:selectItem itemLabel="All" itemValue="#{null}"
-								noSelectionOption="true" />
-							<f:selectItems value="#{data.names}" />
-						</p:selectOneMenu>
-					</f:facet>
-					<p:outputLabel id="colName" value="#{score.name}" />
-				</p:column>
+          <p:column headerText="Points" filterMatchMode="startsWith" filterBy="#{score.points}" style="width:180px"
+            styleClass="filterColumn" id="scorePointFilter">
+            <p:outputLabel value="#{score.points}" />
+          </p:column>
 
-				<p:column headerText="Points" filterMatchMode="startsWith"
-					filterBy="#{score.points}" style="width:180px"
-					styleClass="filterColumn" id="scorePointFilter">
-					<p:outputLabel value="#{score.points}" />
-				</p:column>
+          <p:column headerText="Date" filterBy="#{score.date}" style="width:200px">
+            <f:facet name="filter">
+              <p:calendar onchange="PF('theTable').filter()" pattern="dd.MM.yyyy">
+                <p:ajax event="dateSelect" oncomplete="PF('theTable').filter()" update="theTable" />
+              </p:calendar>
+            </f:facet>
+            <p:outputLabel value="#{score.date}">
+              <f:convertDateTime pattern="dd.MM.yyyy" />
+            </p:outputLabel>
+          </p:column>
 
-				<p:column headerText="Date" filterBy="#{score.date}"
-					style="width:200px">
-					<f:facet name="filter">
-						<p:calendar onchange="PF('theTable').filter()"
-							pattern="dd.MM.yyyy">
-							<p:ajax event="dateSelect" oncomplete="PF('theTable').filter()"
-								update="theTable" />
-						</p:calendar>
-					</f:facet>
-					<p:outputLabel value="#{score.date}">
-						<f:convertDateTime pattern="dd.MM.yyyy" />
-					</p:outputLabel>
-				</p:column>
+          <p:column style="width:65px;text-align: center">
+            <p:commandLink update="#{p:component('detailDialog')}" styleClass="fa fa-edit"
+              oncomplete="PF('detailDialog').show()" title="Edit" style="height:20px;" id="dialogEditButton">
+              <f:setPropertyActionListener value="#{score}" target="#{data.selectedScore}" />
+            </p:commandLink>
+            <p:commandLink update="#{p:component('detailDialog')}" styleClass="fa fa-trash"
+              oncomplete="PF('detailDialog').show()" title="Delete" style="height:20px;margin-left:10px"
+              id="dialogDeleteButton">
+              <f:setPropertyActionListener value="#{score}" target="#{data.selectedScore}" />
+            </p:commandLink>
+          </p:column>
 
-				<p:column style="width:65px;text-align: center">
-					<p:commandLink update="#{p:component('detailDialog')}"
-						styleClass="fa fa-edit" oncomplete="PF('detailDialog').show()"
-						title="Edit" style="height:20px;" id="dialogEditButton">
-						<f:setPropertyActionListener value="#{score}"
-							target="#{data.selectedScore}" />
-					</p:commandLink>
-					<p:commandLink update="#{p:component('detailDialog')}"
-						styleClass="fa fa-trash" oncomplete="PF('detailDialog').show()"
-						title="Delete" style="height:20px;margin-left:10px"
-						id="dialogDeleteButton">
-						<f:setPropertyActionListener value="#{score}"
-							target="#{data.selectedScore}" />
-					</p:commandLink>
-				</p:column>
+        </p:dataTable>
+      </div>
 
-			</p:dataTable>
-		</div>
+      <div class="card card-w-title">
+        <h4>Cell Editing with Click</h4>
+        <p:dataTable value="#{data.scoresList}" var="tableData" id="theEditData" editable="true" editMode="cell"
+          widgetVar="editCell" draggableRows="true" draggableColumns="true" rows="5" rowsPerPageTemplate="5,10,15"
+          paginator="true"
+          paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
 
-		<div class="card card-w-title">
-			<h4>Cell Editing with Click</h4>
-			<p:dataTable value="#{data.scoresList}" var="tableData"
-				id="theEditData" editable="true" editMode="cell"
-				widgetVar="editCell" draggableRows="true" draggableColumns="true"
-				rows="5" rowsPerPageTemplate="5,10,15" paginator="true"
-				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}">
+          <p:column headerText="No" sortBy="#{tableData.id}">
+            <p:cellEditor>
+              <f:facet name="output">
+                <h:outputText value="#{tableData.id}" />
+              </f:facet>
+              <f:facet name="input">
+                <p:inputText id="modelInput" value="#{tableData.id}" />
+              </f:facet>
+            </p:cellEditor>
+          </p:column>
 
-				<p:column headerText="No" sortBy="#{tableData.id}">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{tableData.id}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText id="modelInput" value="#{tableData.id}" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
+          <p:column headerText="Name">
+            <p:cellEditor>
+              <f:facet name="output">
+                <h:outputText value="#{tableData.name}" />
+              </f:facet>
+              <f:facet name="input">
+                <p:inputText value="#{tableData.name}" label="Name" />
+              </f:facet>
+            </p:cellEditor>
+          </p:column>
 
-				<p:column headerText="Name">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{tableData.name}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{tableData.name}" label="Name" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
+          <p:column headerText="Points">
+            <p:cellEditor>
+              <f:facet name="output">
+                <h:outputText value="#{tableData.points}" />
+              </f:facet>
+              <f:facet name="input">
+                <p:inputText value="#{tableData.points}" />
+              </f:facet>
+            </p:cellEditor>
+          </p:column>
 
-				<p:column headerText="Points">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{tableData.points}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:inputText value="#{tableData.points}" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-
-				<p:column headerText="Date">
-					<p:cellEditor>
-						<f:facet name="output">
-							<h:outputText value="#{tableData.date}" />
-						</f:facet>
-						<f:facet name="input">
-							<p:calendar value="#{tableData.date}" pattern="dd.MM.yyyy" />
-						</f:facet>
-					</p:cellEditor>
-				</p:column>
-			</p:dataTable>
-		</div>
-	</div>
-	<ui:include src="DetailsDialog.xhtml" />
+          <p:column headerText="Date">
+            <p:cellEditor>
+              <f:facet name="output">
+                <h:outputText value="#{tableData.date}" />
+              </f:facet>
+              <f:facet name="input">
+                <p:calendar value="#{tableData.date}" pattern="dd.MM.yyyy" />
+              </f:facet>
+            </p:cellEditor>
+          </p:column>
+        </p:dataTable>
+      </div>
+    </h:form>
+  </div>
+  <ui:include src="DetailsDialog.xhtml" />
 </h:body>
 </html>
