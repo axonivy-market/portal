@@ -29,8 +29,6 @@ topbar, if your page using layout of ``PortalTemplate`` .
    If your application does not use templates of PortalTemplate project, you
    have to create a page and use AdminSettings component inside.
 
-.. _settings-admin-settings-global-settings:
-
 Global settings
 ---------------
 
