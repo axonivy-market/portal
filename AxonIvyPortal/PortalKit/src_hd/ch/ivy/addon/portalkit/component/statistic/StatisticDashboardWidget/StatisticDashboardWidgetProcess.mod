@@ -335,7 +335,6 @@ import ch.ivy.addon.portalkit.service.StatisticService;
 
 StatisticService service = new StatisticService();
 if (in.isBackFromDrilldown) {
-		ivy.log.warn("in.isBackFromDrilldown as true");
 	in.statisticChartList = service.findStatisticChartsByUserId(ivy.session.getSessionUser().getId());
 	in.selectedItemOfDrilldown = null;
 }
