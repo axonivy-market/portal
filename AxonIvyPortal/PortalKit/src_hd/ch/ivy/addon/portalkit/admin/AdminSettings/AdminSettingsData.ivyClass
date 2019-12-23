@@ -28,9 +28,9 @@ tabIndexActive java.lang.Integer #field
 tabIndexActive PERSISTENT #fieldModifier
 type ch.ivy.addon.portalkit.enums.ApplicationType #field
 type PERSISTENT #fieldModifier
-usersApplicationList java.util.List<ch.ivyteam.ivy.security.IUser> #field
+usersApplicationList java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> #field
 usersApplicationList PERSISTENT #fieldModifier
-filteredUsers java.util.List<ch.ivyteam.ivy.security.IUser> #field
+filteredUsers java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> #field
 filteredUsers PERSISTENT #fieldModifier
 resetAllSettings Boolean #field
 resetAllSettings PERSISTENT #fieldModifier
