@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<ui:composition>
+
+  <p:dialog id="add-external-link-dialog" widgetVar="add-external-link-dialog"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewExternalLinkHeader')}" 
+    closeOnEscape="true" modal="true" appendTo="@(body)" resizable="false"
+    width="600px" >
+    <h:form id="add-external-link-form" >
+        <div class="field-group ui-g">
+            <div class="ui-g-3 ui-sm-12 field-group-label">
+              <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
+                styleClass="ui-line-height-2" for="external-process-name" />
+            </div>
+            <div class="ui-g-9 ui-sm-12">
+              <h:panelGroup layout="block" styleClass="md-inputfield">
+                <p:inputText id="external-process-name" value="#{externalLinkBean.externalLink.name}"
+                  required="true"
+                  requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} 
+                        #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
+                <p:message for="external-process-name" />
+              </h:panelGroup>
+            </div>
+          </div>
+        <div class="field-group ui-g">
+          <div class="ui-g-3 ui-sm-12 field-group-label">
+            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')}"
+             styleClass="ui-line-height-2" for="process-start-link" />
+            </div>
+          <div class="ui-g-9 ui-sm-12">
+            <h:panelGroup layout="block" styleClass="md-inputfield">
+              <p:inputText id="process-start-link" value="#{externalLinkBean.externalLink.link}" required="true"
+                requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')} 
+                        #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
+                placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/webLinkExample')}" />
+              <p:message for="process-start-link" />
+            </h:panelGroup>
+          </div>
+        </div>
+        <div class="ui-dialog-footer u-dialog-footer">
+        <p:commandButton id="add-external-link-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
+          process="@form" actionListener="#{externalLinkBean.saveNewExternalLink}"
+          update="@form #{p:component('process-list')}"
+          oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide();}" />
+        <p:spacer width="5" />
+        <p:commandButton id="cancel-adding-external-link-command" global="false" styleClass="portal-cancel-button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@none"
+          update="@form"
+          onclick="PF('add-external-link-dialog').hide()">
+          </p:commandButton>
+      </div>
+    </h:form>
+  </p:dialog>
+
+ <!--  <p:dialog id="remove-external-link-dialog" widgetVar="remove-external-link-dialog"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowHeader')}" closeOnEscape="true" modal="true"
+    dynamic="true" appendTo="@(body)" resizable="false">
+    <h:form id="delete-workflow-form">
+      <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowConfirmation')}" />
+      <br />
+      <h:outputText value="#{processWidgetBean.deletedExpressProcess.getName()}" styleClass="FontBold" />
+      <div class="ui-dialog-footer u-dialog-footer">
+        <p:commandButton global="false" process="@this" update="#{cc.clientId}:process-list"
+          actionListener="#{processWidgetBean.deleteExpressWorkflow}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          oncomplete="PF('remove-express-workflow-dialog').hide();" />
+        <p:spacer width="5" />
+        <p:commandButton onclick="PF('remove-express-workflow-dialog').hide()" styleClass="portal-cancel-button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
+      </div>
+    </h:form>
+  </p:dialog> -->
+</ui:composition>
+</html>
