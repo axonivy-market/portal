@@ -38,9 +38,10 @@
           class="user-name">#{userMenuBean.userName}</span>
       	</a>
         <ul id="user-setting-container">
-          <li><p:commandLink id="adminui-menu-item" resetValues="true" rendered="#{permissionBean.hasAdminPermission()}"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}" update="admin-ui-dialog"
-              oncomplete="PF('adminUI').show(); $('#user-setting-container').click()" /></li>
+          <li>
+            <p:link id="adminui-menu-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}"  
+              onclick="PF('adminUI').show(); $('#user-setting-container').click()" rendered="#{permissionBean.hasAdminPermission()}" />
+          </li>
 
           <li><p:link id="absence-menu-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
               onclick="PF('absenceSetting').show(); $('#user-setting-container').click()" rendered="#{absenceBean.ownAbsencesReadable}" /></li>
