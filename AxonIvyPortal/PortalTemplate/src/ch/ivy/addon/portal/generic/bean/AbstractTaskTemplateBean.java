@@ -14,6 +14,7 @@ import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.service.AdhocHistoryService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.ICaseMap;
@@ -47,7 +48,8 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
     portalNavigator.redirect(url);
   }
 
-  public void startSideStep() {
+  public void startSideStep(ITask task) {
+    TaskUtils.resetTask(task);
     PortalNavigator portalNavigator = new PortalNavigator();
     portalNavigator.redirect(selectedSideStep.getStartLink().getAbsoluteEncoded());
   }

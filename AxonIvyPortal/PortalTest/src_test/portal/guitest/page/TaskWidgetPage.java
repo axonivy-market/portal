@@ -462,7 +462,7 @@ public class TaskWidgetPage extends TemplatePage {
     return StringUtils.isNotBlank(count) ? Integer.parseInt(count) : null;
   }
 
-  public boolean isTaskStateDone(int index) {
+  public boolean isTaskStateOpen(int index) {
     try {
       findElementById(String.format(TASK_STATE_OPEN_ID, index));
     } catch (NoSuchElementException e) {
