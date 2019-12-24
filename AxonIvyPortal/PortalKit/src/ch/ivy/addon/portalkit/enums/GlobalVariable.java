@@ -31,7 +31,8 @@ public enum GlobalVariable {
   CHAT_RESPONSE_TIMEOUT("chatResponseTimeout"),
   ENABLE_CASE_OWNER(Boolean.FALSE.toString(), "enableCaseOwner"),
   DISABLE_CASE_COUNT(Boolean.FALSE.toString(), "disableCaseCount"),
-  DISABLE_TASK_COUNT(Boolean.FALSE.toString(), "disableTaskCount");
+  DISABLE_TASK_COUNT(Boolean.FALSE.toString(), "disableTaskCount"),
+  EMBED_IN_FRAME(Boolean.TRUE.toString(), "embedInFrame");
 
   private String defaultValue;
   private String noteCMS;
@@ -60,7 +61,7 @@ public enum GlobalVariable {
     return Arrays.asList(HIDE_LOGOUT_BUTTON, SHOW_ENVIRONMENT_INFO, HIDE_CHANGE_PASSWORD_BUTTON,
             HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE, ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT, HIDE_TIME, EXPRESS_END_PAGE, HIDE_SYSTEM_TASKS_FROM_HISTORY, 
             HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR, ENABLE_USER_FAVORITES, HIDE_STATISTIC_WIDGET, DISPLAY_MESSAGE_AFTER_FINISH_OR_CANCEL_TASK, ENABLE_GROUP_CHAT, ENABLE_PRIVATE_CHAT,
-            ENABLE_CASE_OWNER, DISABLE_CASE_COUNT, DISABLE_TASK_COUNT);
+            ENABLE_CASE_OWNER, DISABLE_CASE_COUNT, DISABLE_TASK_COUNT, EMBED_IN_FRAME);
   }
 
   public static List<GlobalVariable> getNumberType() {

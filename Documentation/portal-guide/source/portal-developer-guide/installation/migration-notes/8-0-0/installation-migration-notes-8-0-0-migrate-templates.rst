@@ -1,6 +1,6 @@
 .. _installation-migration-notes-8-0-0-migrate-templates:
 
-How to migrate TaskTemplate
+Migrate TaskTemplate
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Since Portal 8, we introduce :ref:`IFrame <iframe-in-portal>` so that customer project could be decoupled from Portal in order to reduce migration effort.
@@ -32,7 +32,7 @@ If your project has the ``<ui:insert name="content">`` tag, rename ``content`` t
 
 .. _installation-migration-notes-8-0-0-basic-template:
 
-How to migrate BasicTemplate
+Migrate BasicTemplate
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 There are some changes in BasicTemplate. In the past, if you overwritten BasicTemplate ``footer`` section and copied responsive js in old BasicTemplate,
