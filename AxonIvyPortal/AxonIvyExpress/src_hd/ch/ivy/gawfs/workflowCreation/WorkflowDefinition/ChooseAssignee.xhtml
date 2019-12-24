@@ -20,7 +20,7 @@
           moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
           <p:ajax event="itemSelect" update="add-assignee-button" />
           <p:column>
-            <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.memberName.substring(1))}" />
+            <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.name)}" />
           </p:column>
         </p:autoComplete>
 
