@@ -60,7 +60,9 @@ company1.description = "Our Agile software development process is designed based
 
 
 in.selectedInvestment.id = "00001";
-in.selectedInvestment.company = company1;' #txt
+in.selectedInvestment.company = company1;
+
+in.steps = ["Create Investment Request", "Approve Investment Request"];' #txt
 Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
