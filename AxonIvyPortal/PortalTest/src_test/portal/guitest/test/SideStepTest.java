@@ -30,7 +30,7 @@ public class SideStepTest extends BaseTest {
   @Ignore
   public void testSideSteps() {
     TaskTemplatePage taskTemplatePage = startATask();
-    taskTemplatePage.openSideStepMenu();
+    taskTemplatePage.openActionMenu();
     assertEquals(2, taskTemplatePage.countSideSteps());
   }
 

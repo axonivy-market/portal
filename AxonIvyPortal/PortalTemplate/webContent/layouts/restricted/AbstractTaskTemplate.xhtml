@@ -200,9 +200,9 @@
           <f:facet name="footer">
             <h:form prependId="false">
               <h:panelGroup styleClass="ui-dialog-buttonpane">
-                <p:commandButton actionListener="#{abstractTaskTemplateBean.startSideStep()}" process="@this" update="@none"
+                <p:commandButton id="side-step-start-ok" actionListener="#{abstractTaskTemplateBean.startSideStep(task)}" process="@this" update="@none"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
-                <p:commandButton onclick="PF('sidestep-task-reset-confirmation-dialog').hide()"
+                <p:commandButton id="side-step-start-cancel" onclick="PF('sidestep-task-reset-confirmation-dialog').hide()"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
                   styleClass="portal-cancel-button" />
               </h:panelGroup>

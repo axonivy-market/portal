@@ -19,43 +19,9 @@
     </div>
     <div class="Separator" />
 
-    <h:panelGroup rendered="#{empty data.relatedTasks and empty data.technicalCases}" styleClass="ui-g-12 u-padding-0">
-      <h:panelGroup layout="block" styleClass="u-truncate-text">
-        <h:panelGroup rendered="#{cc.attrs.case.state eq 'DONE'}">
-          <h:panelGroup styleClass="ui-g-12 case-related-running u-padding-0">
-            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" styleClass="Fleft" />
-            <h:panelGroup layout="block" styleClass="Fright show-more-technical-cases-container u-truncate-text">
-              <p:commandLink actionListener="#{logic.openPortalTasks}" styleClass="case-related-command-link"
-                rendered="#{caseWidgetBean.showAllTasksOfCase}">
-                <span class="fa fa-external-link-square note-show-more-link-icon" />
-                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTasks')}" />
-              </p:commandLink>
-            </h:panelGroup>
-          </h:panelGroup>
-          <h:outputText rendered="#{cc.attrs.case.state eq 'DONE'}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noRunningTask')}" styleClass="ui-g-12 no-running-task-case"/>
-
-          <h:panelGroup styleClass="case-related-running ui-g-12 u-padding-0">
-            <h:outputText styleClass="Fleft" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}" />
-            <h:panelGroup layout="block" styleClass="Fright show-more-technical-cases-container u-truncate-text">
-              <p:commandLink actionListener="#{logic.navigateToTechnicalCasesOfBusinessCase}"
-                styleClass="case-related-command-link" rendered="#{not empty data.technicalCases}">
-                <span class="fa fa-external-link-square note-show-more-link-icon" />
-                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTechnicalCases')}" />
-                <f:attribute name="selectedCase" value="#{cc.attrs.case}" />
-              </p:commandLink>
-            </h:panelGroup>
-          </h:panelGroup>
-          <h:outputText rendered="#{cc.attrs.case.state eq 'DONE'}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noRunningCase')}" styleClass="ui-g-12 no-running-task-case"/>
-        </h:panelGroup>
-
-        <h:outputText rendered="#{cc.attrs.case.state ne 'DONE'}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noRunningTasksAndCasesPermission')}"
-          styleClass="no-related-task-and-case-permission" />
-      </h:panelGroup>
-    </h:panelGroup>
-
     <div class="ui-g-12 u-padding-0 case-detail-related-table">
-      <h:panelGroup rendered="#{not empty data.relatedTasks}" styleClass="ui-g-12 u-padding-0 case-related-running">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')} (#{data.totalRelatedTasks})" styleClass="Fleft" />
+      <h:panelGroup styleClass="ui-g-12 u-padding-0 case-related-running">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/runningTasks')} (#{data.totalRelatedTasks})" styleClass="Fleft" />
         <h:panelGroup id="more-related-tasks" layout="block" styleClass="Fright show-more-technical-cases-container u-truncate-text">
           <p:commandLink id="show-more-related-tasks" actionListener="#{logic.openPortalTasks}" styleClass="case-related-command-link" rendered="#{caseWidgetBean.showAllTasksOfCase}">
             <span class="fa fa-external-link-square note-show-more-link-icon" />
@@ -79,6 +45,12 @@
           </h:panelGroup>
           <p:tooltip for="task" value="#{taskBean.displayRelatedTaskToolTip(task)}" trackMouse="true" />
         </p:dataScroller>
+
+        <h:outputText rendered="#{empty data.relatedTasks}" styleClass="ui-g-12 no-running-task-case"
+          value="#{cc.attrs.case.state eq 'DONE' 
+          ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noRunningTask') 
+          : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noRunningTasksAndCasesPermission')}" />
+
       </div>
     </div>
 
