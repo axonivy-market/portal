@@ -22,6 +22,7 @@ import ch.ivy.addon.portalkit.casefilter.CaseCategoryFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
+import ch.ivy.addon.portalkit.casefilter.CaseStateFilter;
 import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
@@ -87,7 +88,8 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   @Override
   public List<ICase> load(int first, int pageSize, String sortField, SortOrder sortOrder,
       Map<String, Object> filters) {
-    if (selectedCaseFilter != null && !selectedCaseFilter.reloadView()) {
+    if (selectedCaseFilter != null && !selectedCaseFilter.reloadView()
+        || validateStateFilter(selectedCaseFilter)) {
       selectedCaseFilter = null;
       return data;
     }
@@ -112,6 +114,25 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     }
     data.addAll(foundCases);
     return foundCases;
+  }
+
+  /**
+   * This method validates the State filter's value in current CaseSearchCriteria with new State filter which is added
+   * new on UI If selectedCaseFilter is State filter and has the same value in CaseSearchCriteria, we will not execute
+   * query again to database
+   * 
+   * @param selectedCaseFilter
+   * @return state's value is same or not
+   */
+  private boolean validateStateFilter(CaseFilter selectedCaseFilter) {
+    if (selectedCaseFilter != null && selectedCaseFilter instanceof CaseStateFilter) {
+      CaseStateFilter caseStateFilter = (CaseStateFilter) selectedCaseFilter;
+      if (CollectionUtils.isNotEmpty(criteria.getIncludedStates())
+          && criteria.getIncludedStates().equals(caseStateFilter.getSelectedFilteredStates())) {
+        return true;
+      }
+    }
+    return false;
   }
 
   public void initFilters() throws ReflectiveOperationException {
