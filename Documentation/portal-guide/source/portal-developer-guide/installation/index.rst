@@ -146,6 +146,11 @@ In engine
    project.
 4. Follow detailed migration notes for each version below.
 
+Migrate 8.0.1 to 8.0.2
+----------------------
+
+From 8.0.2, Global growl setting changes Portal variable from ``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` to ``DISPLAY_MESSAGE_AFTER_FINISH_OR_CANCEL_TASK``
+
 Migrate 8.0.0 to 8.0.1
 ----------------------
 
