@@ -10,7 +10,7 @@ errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataExce
 errors PERSISTENT #fieldModifier
 isLoadDeputy Boolean #field
 isSupervisor Boolean #field
-users java.util.List<ch.ivyteam.ivy.security.IUser> #field
+users java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> #field
 users PERSISTENT #fieldModifier
 queryAutoComplete String #field
 selectedAbsence ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence #field
@@ -22,7 +22,7 @@ substitutesByApp PERSISTENT #fieldModifier
 validationError Boolean #field
 absenceInThePastShown Boolean #field
 absenceInThePastShown PERSISTENT #fieldModifier
-selectedUser ch.ivyteam.ivy.security.IUser #field
+selectedUser ch.ivy.addon.portalkit.dto.UserDTO #field
 selectedUser PERSISTENT #fieldModifier
 displayedAbsences java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence> #field
 displayedAbsences PERSISTENT #fieldModifier
@@ -30,7 +30,3 @@ usersByApp java.util.Map #field
 usersByApp PERSISTENT #fieldModifier
 isAbsenceBeingCreated Boolean #field
 isAbsenceBeingCreated PERSISTENT #fieldModifier
-selectedUserDTO ch.ivy.addon.portalkit.dto.UserDTO #field
-selectedUserDTO PERSISTENT #fieldModifier
-usersDTO java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> #field
-usersDTO PERSISTENT #fieldModifier
