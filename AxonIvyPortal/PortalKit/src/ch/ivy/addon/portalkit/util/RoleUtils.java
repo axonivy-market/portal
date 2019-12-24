@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.dto.RoleDTO;
 import ch.ivyteam.api.PublicAPI;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
@@ -345,4 +346,20 @@ public final class RoleUtils {
 
     return filterRoles;
   }
+  
+  public static List<RoleDTO> filterRoleDTO(List<RoleDTO> roles, String query) {
+    if (StringUtils.isEmpty(query)) {
+      return roles;
+    }
+
+    List<RoleDTO> filterRoles = new ArrayList<>();
+    for (RoleDTO role : roles) {
+      if (StringUtils.containsIgnoreCase(role.getDisplayName(), query) || StringUtils.containsIgnoreCase(role.getMemberName(), query)) {
+        filterRoles.add(role);
+      }
+    }
+
+    return filterRoles;
+  }
+  
 }
