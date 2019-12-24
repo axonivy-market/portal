@@ -48,7 +48,7 @@ import javax.faces.context.Flash;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 
-String displayMessageAfterFinishOrCancelTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_OR_CANCEL_TASK.toString());
+String displayMessageAfterFinishOrCancelTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
 boolean displayMessageAfterFinishOrCancelTask = StringUtils.isNotBlank(displayMessageAfterFinishOrCancelTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrCancelTaskVariable) : true;
 if (displayMessageAfterFinishOrCancelTask) {
 	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
