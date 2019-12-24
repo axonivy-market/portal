@@ -51,7 +51,6 @@ public class UserSynchronizationService {
   public static void addUserToCacheAndUserService(String username) {
     // check user available
     UserService userService = new UserService();
-
     UserDao userDao = new UserDao();
     String applicationName = Ivy.wf().getApplication().getName();
     Ivy.log().info("Check user " + Ivy.session().getSessionUserName() + " is in cache for app:" + applicationName);
