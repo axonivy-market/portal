@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyAbsenceResultDTO;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
@@ -18,6 +19,7 @@ import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.service.IAbsenceService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
@@ -46,7 +48,7 @@ public class AbsenceService implements IAbsenceService {
         try {
           IApplication application = ServiceUtilities.findApp(app);
           if (StringUtils.isBlank(username)) {
-            application.getSecurityContext().getUsers().forEach(user -> {
+              ServiceUtilities.findAllUsers(application).forEach(user -> {
               if (ivyAbsencesByUser.containsKey(user.getName())) {
                 ivyAbsencesByUser.get(user.getName()).addAll(getAbsences(user));
               } else {
@@ -75,14 +77,15 @@ public class AbsenceService implements IAbsenceService {
   }
 
   private Set<IvyAbsence> getAbsences(IUser user) {
-    Set<IUserAbsence> userAbsences = new HashSet<>(user.getAbsences());
+    Set<IUserAbsence> userAbsences = new HashSet<>(UserUtils.findAbsenceOfUser(user));
     if (CollectionUtils.isNotEmpty(userAbsences)) {
-      return userAbsences.stream().map(userAbsence -> getAbsence(user, userAbsence)).collect(Collectors.toSet());
+      UserDTO userDTO = new UserDTO(user);
+      return userAbsences.stream().map(userAbsence -> getAbsence(userDTO, userAbsence)).collect(Collectors.toSet());
     }
     return new HashSet<>();
   }
   
-  private IvyAbsence getAbsence(IUser user, IUserAbsence userAbsence) {
+  private IvyAbsence getAbsence(UserDTO user, IUserAbsence userAbsence) {
     IvyAbsence ivyAbsence = new IvyAbsence();
     ivyAbsence.setUser(user);
     ivyAbsence.setFrom(userAbsence.getStartTimestamp());
