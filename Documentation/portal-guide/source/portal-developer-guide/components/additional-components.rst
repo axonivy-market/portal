@@ -190,7 +190,7 @@ Display growl after finishing a task
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 After a task is finished, growl message appears as default via the
-``DISPLAY_MESSAGE_AFTER_FINISH_OR_CANCEL_TASK`` Portal variable.
+``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable.
 
 |example-global-growl-finished-task|
 
@@ -201,7 +201,7 @@ Display growl after cancelling a task
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Otherwise after a task is cancelled and left successfully, growl message appears as default via the
-``DISPLAY_MESSAGE_AFTER_FINISH_OR_CANCEL_TASK`` Portal variable.
+``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable.
 
 |example-global-growl-cancelled-task|
 
