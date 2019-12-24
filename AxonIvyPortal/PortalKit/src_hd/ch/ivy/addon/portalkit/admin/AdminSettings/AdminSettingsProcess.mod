@@ -28,8 +28,6 @@ As0 @GridStep f54 '' #zField
 As0 @UdMethod f47 '' #zField
 As0 @UdProcessEnd f58 '' #zField
 As0 @PushWFArc f59 '' #zField
-As0 @UdMethod f61 '' #zField
-As0 @UdProcessEnd f62 '' #zField
 As0 @UdMethod f69 '' #zField
 As0 @GridStep f72 '' #zField
 As0 @PushWFArc f73 '' #zField
@@ -116,9 +114,6 @@ As0 @UdProcessEnd f144 '' #zField
 As0 @UdMethod f143 '' #zField
 As0 @PushWFArc f145 '' #zField
 As0 @UdProcessEnd f48 '' #zField
-As0 @UdMethod f2 '' #zField
-As0 @UdProcessEnd f99 '' #zField
-As0 @PushWFArc f153 '' #zField
 As0 @PushWFArc f263 '' #zField
 As0 @PushWFArc f41 '' #zField
 As0 @PushWFArc f265 '' #zField
@@ -136,7 +131,6 @@ As0 @UdEvent f278 '' #zField
 As0 @PushWFArc f279 '' #zField
 As0 @PushWFArc f281 '' #zField
 As0 @PushWFArc f29 '' #zField
-As0 @PushWFArc f8 '' #zField
 As0 @UdEvent f9 '' #zField
 As0 @GridStep f10 '' #zField
 As0 @PushWFArc f66 '' #zField
@@ -394,36 +388,6 @@ As0 f58 @|UdProcessEndIcon #fIcon
 As0 f59 expr out #txt
 As0 f59 2016 170 2016 246 #arcP
 As0 f59 0 0.5000000000000001 0 0 #arcLabel
-As0 f61 guid 14B76C9713AD988C #txt
-As0 f61 method onTabChange(org.primefaces.event.TabChangeEvent) #txt
-As0 f61 inParameterDecl '<org.primefaces.event.TabChangeEvent tabEvent> param;' #txt
-As0 f61 inActionCode 'import org.primefaces.PrimeFaces;
-import ch.ivy.addon.portalkit.service.AnnouncementService;
-import org.primefaces.component.tabview.TabView;
-import org.primefaces.event.TabChangeEvent;
-
-TabChangeEvent tabChangeEvent = param.tabEvent;
-TabView tabView = tabChangeEvent.getComponent() as TabView;
-out.tabIndexActive = tabView.getChildren().indexOf(tabChangeEvent.getTab());
-if (out.tabIndexActive == 1) {
-	out.settingTabOpened = true;
-	PrimeFaces.current().executeScript("PF(''settingTable'').filter()");
-}
-' #txt
-As0 f61 outParameterDecl '<> result;' #txt
-As0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>onTabChange(TabChangeEvent)</name>
-        <nameStyle>27,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f61 1166 390 20 20 13 0 #rect
-As0 f61 @|UdMethodIcon #fIcon
-As0 f62 1166 510 20 20 13 0 #rect
-As0 f62 @|UdProcessEndIcon #fIcon
 As0 f69 guid 14B77FA478FB87A1 #txt
 As0 f69 method editSetting(ch.ivy.addon.portalkit.persistence.domain.GlobalSetting) #txt
 As0 f69 inParameterDecl '<ch.ivy.addon.portalkit.persistence.domain.GlobalSetting setting> param;' #txt
@@ -1303,35 +1267,6 @@ As0 f145 expr out #txt
 As0 f145 1248 171 1248 245 #arcP
 As0 f48 190 454 20 20 13 0 #rect
 As0 f48 @|UdProcessEndIcon #fIcon
-As0 f2 guid 151E78971722E279 #txt
-As0 f2 method findAllApplication() #txt
-As0 f2 inParameterDecl '<> param;' #txt
-As0 f2 outParameterDecl '<List<ch.ivy.addon.portalkit.persistence.domain.Application> applications> result;' #txt
-As0 f2 outParameterMapAction 'result.applications=in.applicationList;
-' #txt
-As0 f2 outActionCode 'import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
-import java.util.Collections;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
-
-RegisteredApplicationService applicationService = new RegisteredApplicationService();
-in.applicationList  = applicationService.findAll();
-Collections.sort(in.applicationList, new ApplicationIndexAscendingComparator());
-result.applications = in.applicationList;' #txt
-As0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>findAllApplication()</name>
-        <nameStyle>20,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f2 1669 645 22 22 14 0 #rect
-As0 f2 @|UdMethodIcon #fIcon
-As0 f99 1669 757 22 22 14 0 #rect
-As0 f99 @|UdProcessEndIcon #fIcon
-As0 f153 expr out #txt
-As0 f153 1680 667 1680 757 #arcP
 As0 f263 expr out #txt
 As0 f263 896 162 896 212 #arcP
 As0 f41 expr out #txt
@@ -1449,8 +1384,6 @@ As0 f281 expr out #txt
 As0 f281 296 1501 296 1554 #arcP
 As0 f29 expr out #txt
 As0 f29 1072 1498 1072 1556 #arcP
-As0 f8 expr out #txt
-As0 f8 1176 410 1176 510 #arcP
 As0 f9 guid 1640186953392B88 #txt
 As0 f9 actionTable 'out=in;
 ' #txt
@@ -1472,12 +1405,22 @@ import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
 import org.apache.commons.collections.CollectionUtils;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
+import java.util.Collections;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
+// Application tab
+RegisteredApplicationService applicationService = new RegisteredApplicationService();
+in.applicationList  = applicationService.findAll();
+Collections.sort(in.applicationList, new ApplicationIndexAscendingComparator());	
+
+// Setting tab
 in.settingTabOpened = false;
 GlobalSettingService globalSettingService = new GlobalSettingService();
 in.settingList = globalSettingService.findAllGlobalSetting();
 in.filteredSettingList = in.settingList;
 
+// Announcement tab
 in.announcements = AnnouncementService.getInstance().getAnnouncements();
 in.isAnnouncementActivated = AnnouncementService.getInstance().isAnnouncementActivated();
 FacesContext.getCurrentInstance().addMessage("adminui:adminTabView:announcement-table", new FacesMessage(FacesMessage.SEVERITY_INFO, 
@@ -1993,8 +1936,6 @@ As0 f124 head f142 mainIn #connect
 As0 f133 head f88 mainIn #connect
 As0 f143 mainOut f145 tail #connect
 As0 f145 head f144 mainIn #connect
-As0 f2 mainOut f153 tail #connect
-As0 f153 head f99 mainIn #connect
 As0 f44 mainOut f263 tail #connect
 As0 f263 head f54 mainIn #connect
 As0 f40 mainOut f41 tail #connect
@@ -2011,8 +1952,6 @@ As0 f278 mainOut f279 tail #connect
 As0 f279 head f276 mainIn #connect
 As0 f80 mainOut f29 tail #connect
 As0 f29 head f15 mainIn #connect
-As0 f61 mainOut f8 tail #connect
-As0 f8 head f62 mainIn #connect
 As0 f9 mainOut f66 tail #connect
 As0 f66 head f10 mainIn #connect
 As0 f10 mainOut f97 tail #connect
