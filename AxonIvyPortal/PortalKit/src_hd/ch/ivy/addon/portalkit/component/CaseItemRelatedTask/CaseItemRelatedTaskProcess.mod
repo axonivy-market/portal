@@ -153,7 +153,10 @@ Cs0 f13 var in1 #txt
 Cs0 f13 448 192 632 192 #arcP
 Cs0 f17 actionTable 'out=in;
 ' #txt
-Cs0 f17 actionCode 'out.caseSearchCriteria.businessCaseId = in.iCase.getId();
+Cs0 f17 actionCode 'import ch.ivyteam.ivy.workflow.CaseState;
+import java.util.Arrays;
+out.caseSearchCriteria.businessCaseId = in.iCase.getId();
+out.caseSearchCriteria.setIncludedStates(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE));
 out.caseSearchCriteria.technicalCase = true;' #txt
 Cs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

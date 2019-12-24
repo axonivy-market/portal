@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" >
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
 <h:body>
   <ui:composition template="/layouts/basic.xhtml">
     <ui:define name="title">Create Investment</ui:define>
@@ -61,7 +61,9 @@
         </div>
       </h:form>
       <script>
-        window.processSteps = ["Create Investment Request", "Approve Investment Request"];
+        window.processSteps = "#{fn:join(data.steps.toArray(), ',')}";
+        //window.processSteps = "Create Investment Request1,Approve Investment Request";
+        //window.processSteps = ["Create Investment Request","Approve Investment Request"];
         window.currentProcessStep = 0;
         window.processChainDirection = "VERTICAL";
         window.processChainShape = "LINE";

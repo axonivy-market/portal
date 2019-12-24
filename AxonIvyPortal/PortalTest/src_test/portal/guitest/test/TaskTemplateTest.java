@@ -16,7 +16,9 @@ import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.page.HomePage;
+import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NoteHistoryPage;
+import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
@@ -90,7 +92,7 @@ public class TaskTemplateTest extends BaseTest {
     dialogPage.leaveTask();
     TaskWidgetPage taskWidget = new TaskWidgetPage();
     taskWidget.expand();
-    assertTrue(taskWidget.isTaskStateDone(0));
+    assertTrue(taskWidget.isTaskStateOpen(0));
   }
   
   @Test
@@ -103,11 +105,27 @@ public class TaskTemplateTest extends BaseTest {
     taskWidget.expand();
     Assert.assertTrue(taskWidget.isTaskStateReserved(0));
   }
+  
+  @Test
+  public void testResetTaskWhenStartSideStep() {
+    HomePage homePage = new HomePage();
+    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    ProcessWidgetPage processWidgetPage = mainMenuPage.selectProcessesMenu();
+    processWidgetPage.enterSearchKeyword("case map");
+    processWidgetPage.startProcess("Case Map: Leave Request");
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    taskTemplatePage.openActionMenu();
+    taskTemplatePage.startSideStep();
+    TaskWidgetPage taskWidget = new TaskWidgetPage();
+    taskWidget.expand();
+    assertTrue(taskWidget.isTaskStateOpen(0));
+  }
 
   private TaskTemplatePage startATask() {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    taskTemplatePage.openStatusTab();
+    taskTemplatePage.openCaseInfo();
     return taskTemplatePage;
   }
 }
