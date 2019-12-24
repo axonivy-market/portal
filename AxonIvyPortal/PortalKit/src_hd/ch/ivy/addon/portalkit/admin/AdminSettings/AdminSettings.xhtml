@@ -17,7 +17,6 @@
 
   <!-- TAB VIEW -->
   <p:tabView id="adminTabView" rendered="#{permissionBean.hasAdminPermission()}">
-    <p:ajax event="tabChange" listener="#{logic.onTabChange}" />
 
     <!-- APPLICATION TAB -->
     <p:tab id="applicationTab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applications')}">
@@ -39,7 +38,7 @@
         <!-- Applications Table -->
         <h:panelGroup id="applicationPanel" layout="block">
           <p:messages id="applicationMsg" showDetail="true" escape="false" closable="true" />
-          <p:dataTable value="#{logic.findAllApplication()}" var="app" id="applicationTable" draggableRows="true"
+          <p:dataTable value="#{data.applicationList}" var="app" id="applicationTable" draggableRows="true"
             reflow="true" styleClass="admin-table application-table"
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
             scrollHeight="150">
@@ -47,10 +46,8 @@
 
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/type')}"
               styleClass="application-table-type-column">
-              <h:outputText rendered="#{not empty app.serverId}"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationtype/ivyApplication')}" />
-              <h:outputText rendered="#{empty app.serverId}"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationtype/thirdPartyApplication')}" />
+              <h:outputText value="#{ivy.cms.co(empty app.serverId ? '/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationtype/thirdPartyApplication' : 
+                                                          '/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationtype/ivyApplication')}" />
             </p:column>
 
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}">
@@ -92,7 +89,7 @@
     <p:tab id="settingTab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/setting')}">
       <h:form prependId="false" id="settingForm">
         <p:remoteCommand name="initAdminSettingsData" actionListener="#{logic.initAdminSettingsData}" process="@this" immediate="true"
-          update=":#{p:component('settingTable')} :#{p:component('announcement-table')} :#{p:component('action-group')} :#{p:component('announcement-validation-messages')}" />
+          update=":#{p:component('applicationTable')} :#{p:component('settingTable')} :#{p:component('announcement-table')} :#{p:component('action-group')} :#{p:component('announcement-validation-messages')}" />
         <p:remoteCommand name="clearFilter" actionListener="#{logic.clearSettingTableFilter}" process="@this" immediate="true" />
         <h:panelGroup layout="block" styleClass="setting-tab-action-buttons">
           <p:commandButton id="restore-all-to-default-button"
