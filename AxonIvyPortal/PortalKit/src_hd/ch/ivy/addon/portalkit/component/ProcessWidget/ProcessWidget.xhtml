@@ -78,7 +78,7 @@
                   <div class="ui-g-4 ui-lg-4 ui-md-6 ui-sm-12 u-no-padding-top u-no-padding-left js-process-start-list-item">
                     <h:form id="process-item-form"
                       styleClass="process-start-list-item #{processWidgetBean.isExpressProcess(process) ? 'express-workflow' : ''}
-                      #{processWidgetBean.isExternalLink(process) ? 'external-link-process-item' : ''}">
+                      #{processWidgetBean.isExternalLink(process) ? 'js-external-link-process-item' : ''}">
                       <ui:include src="ProcessItemLink.xhtml">
                         <ui:param name="process" value="#{process}" />
                       </ui:include>
