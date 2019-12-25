@@ -97,7 +97,7 @@ function ProcessWidget() {
         }
         
         var externalLinkKeyToSearch = "external link";
-        if (contain(externalLinkKeyToSearch, keyword.trim()) && $(this.children).hasClass("external-link-process-item")) {
+        if (contain(externalLinkKeyToSearch, keyword.trim()) && $(this.children).hasClass("js-external-link-process-item")) {
         	$(this).show();
         }
       });
