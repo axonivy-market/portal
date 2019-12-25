@@ -1,7 +1,11 @@
 package portal.guitest.page;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import com.jayway.awaitility.Awaitility;
 
 public class AnnouncementPage extends TemplatePage {
 
@@ -20,6 +24,7 @@ public class AnnouncementPage extends TemplatePage {
   }
 
   public void dePublish() {
+    Awaitility.waitAtMost(10, TimeUnit.SECONDS).until(() -> canDePublish());
     clickByCssSelector("button[id$='delete-announcement']");
     waitForElementDisplayed(By.cssSelector("div[id$='messages'] span[class$='summary']"), true);
   }
