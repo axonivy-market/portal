@@ -19,9 +19,15 @@ public class ExternalLinkDao extends AbstractDao<ExternalLink> {
   }
 
   @ExecuteAsSystem
-  public List<ExternalLink> findByUsername(String userName) {
+  public List<ExternalLink> findStartableLink(String userName) {
     return findAll().stream()
-        .filter(externalLink -> StringUtils.equals(externalLink.getUsername(), userName))
+        .filter(externalLink -> StringUtils.equals(externalLink.getUsername(), userName) || externalLink.isPublic())
         .collect(Collectors.toList());
   }
+
+  public void delete(long id) {
+    ExternalLink persistedExternalLink = findById(id);
+    delete(persistedExternalLink);
+  }
+
 }

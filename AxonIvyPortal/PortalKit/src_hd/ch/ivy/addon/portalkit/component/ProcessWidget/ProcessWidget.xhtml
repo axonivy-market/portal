@@ -23,7 +23,8 @@
           <h:panelGroup layout="block" styleClass="ui-g-8 ui-md-6 ui-sm-4">
             <div class="process-header-title-container">
               <span class="process-header-title">#{cc.attrs.title}</span>
-              <h:panelGroup styleClass="add-external-link-container Fright u-hidden-md-down"  >
+              <h:panelGroup styleClass="add-external-link-container Fright u-hidden-md-down" >
+              	
               	<p:commandLink id="add-external-link" actionListener="#{externalLinkBean.addNewExternalLink(cc.clientId)}"
               		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addExternalLink')}"
               		update="#{cc.clientId}:add-external-link-dialog"
@@ -31,13 +32,14 @@
 					<i class="fa fa-external-link Fleft add-external-link-icon" aria-hidden="true"></i>
               	</p:commandLink>
               	<ui:include src="ExternalLinkDialog.xhtml" />
+              	
              	</h:panelGroup>
               <h:panelGroup rendered="#{!cc.attrs.hideExpressCreation}"
                 styleClass="process-button-position process-action-button action-create-experss-workflow u-hidden-md-down Fright">
-                <h:form id="axon-express-form">
+                <h:form id="create-express-form">
                   <h:panelGroup styleClass="create-express-link" layout="block" rendered="#{processWidgetBean.canCreateExpessWorkflow()}">
                     <p:commandLink id="create-express-workflow" value="#{processWidgetBean.createExpressWorkflowProcessStart.name}"
-                      actionListener="#{processWidgetBean.startProcess(processWidgetBean.getCreateExpessWorkflowLink(), true)}">
+                      actionListener="#{processWidgetBean.startProcess(processWidgetBean.getCreateExpessWorkflowLink(), 'EXPRESS_PROCESS')}">
                       <i class="create-express-workflow-icon Fleft" />
                     </p:commandLink>
                   </h:panelGroup>
@@ -80,8 +82,11 @@
                       styleClass="process-start-list-item #{processWidgetBean.isExpressProcess(process) ? 'express-workflow' : ''}">
                       <ui:include src="ProcessItemLink.xhtml">
                         <ui:param name="processName" value="#{process.name}" />
+                        <ui:param name="processType" value="#{process.getTypeName()}" />
                         <ui:param name="processLink" value="#{process.getStartLink()}" />
+                        <ui:param name="target" value="#{processWidgetBean.targetToStartProcess(process)}" />
                         <ui:param name="isExpress" value="#{processWidgetBean.isExpressProcess(process)}" />
+                        <ui:param name="isExternalLink" value="#{processWidgetBean.isExternalLink(process)}" />
                         <ui:param name="processDescription" value="#{process.getDescription()}" />
                       </ui:include>
                     </h:form>
@@ -106,10 +111,10 @@
   </div>
 
   <p:dialog id="remove-express-workflow-dialog" widgetVar="remove-express-workflow-dialog"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowHeader')}" closeOnEscape="true" modal="true"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemHeader')}" closeOnEscape="true" modal="true"
     dynamic="true" appendTo="@(body)" resizable="false">
     <h:form id="delete-workflow-form">
-      <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowConfirmation')}" />
+      <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemConfirmation')}" />
       <br />
       <h:outputText value="#{processWidgetBean.deletedExpressProcess.getName()}" styleClass="FontBold" />
       <div class="ui-dialog-footer u-dialog-footer">
