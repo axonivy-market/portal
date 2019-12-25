@@ -21,15 +21,15 @@ Ps0 @UdMethod f3 '' #zField
 Ps0 @PushWFArc f6 '' #zField
 >Proto Ps0 Ps0 PortalFinishTaskHandleProcess #zField
 Ps0 f0 guid 15C67E57F20669EF #txt
-Ps0 f0 method start() #txt
-Ps0 f0 inParameterDecl '<> param;' #txt
+Ps0 f0 method start(Boolean) #txt
+Ps0 f0 inParameterDecl '<Boolean isTaskFinished> param;' #txt
+Ps0 f0 inParameterMapAction 'out.isTaskFinished=param.isTaskFinished;
+' #txt
 Ps0 f0 outParameterDecl '<> result;' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start()</name>
-        <nameStyle>7,5,7
-</nameStyle>
+        <name>start(Boolean)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -48,12 +48,12 @@ import javax.faces.context.Flash;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 
-String displayMessageAfterFinishTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
-boolean displayMessageAfterFinishTask = StringUtils.isNotBlank(displayMessageAfterFinishTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishTaskVariable) : true;
-if (displayMessageAfterFinishTask) {
+String displayMessageAfterFinishOrCancelTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
+boolean displayMessageAfterFinishOrCancelTask = StringUtils.isNotBlank(displayMessageAfterFinishOrCancelTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrCancelTaskVariable) : true;
+if (displayMessageAfterFinishOrCancelTask) {
 	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 	if (!flash.containsKey("overridePortalGrowl")) {
-		FacesMessage message = new FacesMessage(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskLeftSuccessful"));
+		FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
 		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
 	}
 	flash.setRedirect(true);
@@ -62,8 +62,8 @@ if (displayMessageAfterFinishTask) {
 Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Display message after&#xD;
-finish task</name>
+        <name>Display message after&#13;
+finish or cancel task</name>
     </language>
 </elementInfo>
 ' #txt
