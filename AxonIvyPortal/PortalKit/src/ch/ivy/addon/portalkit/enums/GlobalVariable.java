@@ -25,7 +25,7 @@ public enum GlobalVariable {
   HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR(Boolean.FALSE.toString(), "hideSystemTasksFromHistoryAdministrator"),
   ENABLE_USER_FAVORITES(Boolean.TRUE.toString(), "enableUserFavorites"),
   HIDE_STATISTIC_WIDGET(Boolean.FALSE.toString(), "hideStatisticWidget"),
-  DISPLAY_MESSAGE_AFTER_FINISH_TASK(Boolean.TRUE.toString(), "displayMessageAfterFinishTask"),
+  DISPLAY_MESSAGE_AFTER_FINISH_TASK(Boolean.TRUE.toString(), "displayMessageAfterFinishOrCancelTask"),
   ENABLE_GROUP_CHAT(Boolean.FALSE.toString(), "enableGroupChat"),
   ENABLE_PRIVATE_CHAT(Boolean.FALSE.toString(), "enablePrivateChat"),
   CHAT_RESPONSE_TIMEOUT("chatResponseTimeout"),
