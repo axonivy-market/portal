@@ -18,7 +18,7 @@
     <h:panelGroup id="header" layout="block" styleClass="widget-header">
       <div class="widget-header-main #{data.createMode ? 'creation-mode':''}">
         <h:outputText styleClass="widget-header-main-title" 
-          value="#{!data.createMode ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statistics'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/createNewStatistic')}" />
+          value="#{ivy.cms.co(!data.createMode ? '/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statistics' : '/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/createNewStatistic')}" />
         <h:panelGroup id="statistic-widget-header" layout="block" rendered="#{data.isDisplayShowAllChartLink and cc.attrs.compactMode}"
           styleClass="widget-header-main-menu">
           <cc:renderFacet name="headerToolbar" />

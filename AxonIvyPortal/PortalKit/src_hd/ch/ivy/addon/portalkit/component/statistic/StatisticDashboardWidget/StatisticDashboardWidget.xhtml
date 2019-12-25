@@ -130,7 +130,7 @@
 
   <h:form id="statistic-form" styleClass="u-hidden">
     <p:remoteCommand id="init-chart-command" name="initCharts" autoRun="true"
-      update="#{data.isReloadChartContent ? p:component(data.isCompactMode ? 'statistic-carousel-container':'statistic-chart-repeater-container'):'' }"
+      update="#{data.isReloadChartContent ? p:component(data.isCompactMode ? 'statistic-carousel-container':'statistic-chart-repeater-container') : '' }"
       global="false" action="#{logic.generateChartModel}" async="true"
       immediate="true" process="@this" partialSubmit="true"/>
 

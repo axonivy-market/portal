@@ -280,8 +280,7 @@ public class StatisticChartQueryUtils {
   }
 
   private static boolean isStartTimeFilterEmpty(StatisticFilter filter) {
-    return filter.getTimePeriodSelection() != null
-        && filter.getTimePeriodSelection() == StatisticTimePeriodSelection.CUSTOM
+    return filter.getTimePeriodSelection() == StatisticTimePeriodSelection.CUSTOM
         && filter.getCreatedDateFrom() == null && filter.getCreatedDateTo() == null;
   }
 

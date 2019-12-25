@@ -813,12 +813,21 @@ import ch.ivy.addon.portalkit.bean.StatisticDashboardBean;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
+/* isReloadChartContent is a flag to reload the ChartJS canvas on UI 
+	 If isFinishLoadCharts is true, we will reload the ChartJS canvas to draw new canva based on new data
+	 If statisticChartList is changed, we need to reload ChartJS canvas due to we have to rebuild chart
+ 	 Always set new value for isReloadChartContent when re-rendering component
+*/
 in.isReloadChartContent = !in.isFinishLoadCharts || in.prevStatisticListSize != null && in.prevStatisticListSize != in.statisticChartList.size();
 
 if (in.isReloadChartContent && StringUtils.isEmpty(in.selectedItemOfDrilldown)) {
+	// In case, isReloadChartContent indicator is true and not drilldown to expiry chart, we need to generate a placeholder chart to show on UI
+	// It will make comfortable when user is waiting for drawing canvas
 	StatisticDashboardBean statisticDashboardBean = ManagedBeans.get("statisticDashboardBean") as StatisticDashboardBean;
 	statisticDashboardBean.generatePlaceholderForChart(in.statisticChartList);
 } else if (!in.isCompactMode && StringUtils.isNotEmpty(in.selectedItemOfDrilldown)) {
+	// Drilldown to expiry chart, no need to build placeholder chart because we don''t call database
+	// Directly generate ChartJS canva, so we dont need to reload page
 	StatisticService service = new StatisticService();
 	StatisticChart newChart = service.drilldownExpiryChart(in.selectedItemOfDrilldown,in.selectedStatisticChart,in.previousSelectedMonth, in.previousSelectedWeek);
 	service.drilldownExpiryChart(in.selectedItemOfDrilldown,in.selectedStatisticChart,in.previousSelectedMonth, in.previousSelectedWeek);
@@ -845,9 +854,17 @@ Ss0 f5 @|StepIcon #fIcon
 Ss0 f78 984 64 1024 64 #arcP
 Ss0 f61 1152 64 1219 64 #arcP
 Ss0 f79 expr in #txt
+Ss0 f79 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>compact mode</name>
+    </language>
+</elementInfo>
+' #txt
 Ss0 f79 800 80 1088 86 #arcP
 Ss0 f79 1 800 112 #addKink
 Ss0 f79 2 1088 112 #addKink
+Ss0 f79 1 0.3888888888888889 0 11 #arcLabel
 Ss0 f74 expr in #txt
 Ss0 f74 outCond in.isFinishLoadCharts #txt
 Ss0 f74 784 240 1004 244 #arcP
@@ -896,9 +913,17 @@ Ss0 f77 1 1360 256 #addKink
 Ss0 f77 1 0.03169410789709737 0 0 #arcLabel
 Ss0 f12 expr in #txt
 Ss0 f12 outCond 'in.isFinishLoadCharts && in.prevStatisticListSize == in.statisticChartList.size()' #txt
+Ss0 f12 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>haven''t data changed in Statistics</name>
+    </language>
+</elementInfo>
+' #txt
 Ss0 f12 1011 269 1472 269 #arcP
 Ss0 f12 1 1024 320 #addKink
 Ss0 f12 2 1472 320 #addKink
+Ss0 f12 1 0.43526785714285715 0 14 #arcLabel
 Ss0 f76 expr in #txt
 Ss0 f76 outCond !in.isCompactMode #txt
 Ss0 f76 1024 256 1056 256 #arcP
