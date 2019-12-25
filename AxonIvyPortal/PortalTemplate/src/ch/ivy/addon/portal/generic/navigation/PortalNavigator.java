@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.extensions.util.json.GsonConverter;
 
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
@@ -89,6 +90,7 @@ public final class PortalNavigator {
     } else {
       navigate(PORTAL_END_PAGE, param);
     }
+    Ivy.session().setAttribute(SessionAttribute.IS_TASK_NOT_FINISHED.toString(), true);
   }
 
   public void navigateToPortalProcess() throws Exception {

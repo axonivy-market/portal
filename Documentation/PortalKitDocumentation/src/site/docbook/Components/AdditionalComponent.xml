@@ -185,46 +185,77 @@
 				<imagedata fileref="images/AdditionalComponent/globalGrowl.png" />
 			</imageobject>
 		</mediaobject>
-		<mediaobject>
-			<imageobject>
-				<imagedata fileref="images/AdditionalComponent/exampleGlobalGrowl.png" />
-			</imageobject>
-		</mediaobject>
 	</sect3>
 	<sect3 xml:id="axonivyportal.components.additionalcomponent.globalgrowl.growlafterfinishtask">
-		<title>Display growl after finish task</title>
+		<title>Display growl after finishing a task</title>
 		<para>
 			To make growl message appears as default after a task is finished, administrator could set the <code>DISPLAY_MESSAGE_AFTER_FINISH_TASK</code> Portal variable to true.
 		</para>
-		<para>
-			After that, for each task, you can turn it off or override it. Firstly, when you submit form to finish task, you need to put
-			the
-			<code>overridePortalGrowl</code>
-			key to flash object with any value
-		</para>
-<screen>
-Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-flash.put("overridePortalGrowl", true);
-flash.setRedirect(true);
-</screen>
-		<para>
-			It's enough if you want to turn it off. To override the message, add
-			<code>facesMessage</code>
-			to this component
-		</para>
-<screen>
-import javax.faces.context.Flash;
-import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
-
-FacesMessage message = new FacesMessage("Task is done successfully");
-FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-
-Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-flash.put("overridePortalGrowl", true);
-flash.setRedirect(true);
-flash.setKeepMessages(true);
-</screen>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="images/AdditionalComponent/exampleGlobalGrowlAfterFinishTask.png" />
+            </imageobject>
+        </mediaobject>
 	</sect3>
+    <sect3 xml:id="axonivyportal.components.additionalcomponent.globalgrowl.growlaftercanceltask">
+        <title>Display growl after cancelling a task</title>
+        <para>
+            Otherwise after a task is cancelled and left successfully, administrator could set the <code>DISPLAY_MESSAGE_AFTER_FINISH_TASK</code> Portal variable to true.
+        </para>
+        <mediaobject>
+            <imageobject>
+                <imagedata fileref="images/AdditionalComponent/exampleGlobalGrowlAfterCancelTask.png" />
+            </imageobject>
+        </mediaobject>
+    </sect3>
+    <sect3 xml:id="axonivyportal.components.additionalcomponent.globalgrowl.growlcustomiztion">
+        <title>Customization global growl message</title>
+        <para>
+            After that, for each task, you can turn it off or override it. Firstly, when you submit form to interact task, you need to put
+            the
+            <code>overridePortalGrowl</code>
+            key to flash object with any value
+        </para>
+		<screen>
+		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+		flash.put("overridePortalGrowl", true);
+		flash.setRedirect(true);
+		</screen>
+		        <para>
+		            It's enough if you want to turn it off. To override the message, add
+		            <code>facesMessage</code>
+		            to this component
+		        </para>
+		<screen>
+		import javax.faces.context.Flash;
+		import javax.faces.context.FacesContext;
+		import javax.faces.application.FacesMessage;
+		
+		FacesMessage message = new FacesMessage("Task is done successfully");
+		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message",
+		message);
+		
+		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+		flash.put("overridePortalGrowl", true);
+		flash.setRedirect(true);
+		flash.setKeepMessages(true);
+		</screen>
+		
+	<screen>
+	 import javax.faces.context.Flash;
+	 import javax.faces.context.FacesContext;
+	 import javax.faces.application.FacesMessage;
+	 
+	 FacesMessage message = new FacesMessage("You have cancelled and left the 
+	 task successfully");
+	 FacesContext.getCurrentInstance().addMessage("portal-global-growl-message",
+	 message);
+	 
+	 Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+	 flash.put("overridePortalGrowl", true);
+	 flash.setRedirect(true);
+	 flash.setKeepMessages(true);
+	 </screen>
+    </sect3>
 </sect2>
 </sect1>

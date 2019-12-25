@@ -138,6 +138,7 @@ Pt0 f0 @|StartRequestIcon #fIcon
 Pt0 f20 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f20 actionTable 'out=in;
+out.isTaskFinished=in.isTaskFinished;
 ' #txt
 Pt0 f20 actionCode 'import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import org.apache.commons.lang3.StringUtils;
@@ -149,7 +150,10 @@ String defaultEndPage = ivy.wf.getStandardProcessImplementationLibrary(StandardP
 
 if (StringUtils.isBlank(defaultEndPage)) {
 	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, PortalLibrary.PORTAL_TEMPLATE.getValue());
-}' #txt
+}
+
+in.isTaskFinished = !SecurityServiceUtils.getSessionAttribute(SessionAttribute.IS_TASK_NOT_FINISHED.toString()).toBoolean();
+SecurityServiceUtils.removeSessionAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_NOT_FINISHED.toString());' #txt
 Pt0 f20 security system #txt
 Pt0 f20 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -158,7 +162,7 @@ Pt0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <name>Set default end page 
 to Portal and store the 
 last page to session</name>
-        <nameStyle>67
+        <nameStyle>67,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -274,10 +278,11 @@ Pt0 f30 @|AlternativeIcon #fIcon
 Pt0 f33 targetWindow NEW #txt
 Pt0 f33 targetDisplay TOP #txt
 Pt0 f33 richDialogId ch.ivy.addon.portal.generic.PortalTaskListCallback #txt
-Pt0 f33 startMethod start(String) #txt
+Pt0 f33 startMethod start(String,Boolean) #txt
 Pt0 f33 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f33 requestActionDecl '<String callbackUrl> param;' #txt
+Pt0 f33 requestActionDecl '<String callbackUrl, Boolean isTaskFinished> param;' #txt
 Pt0 f33 requestMappingAction 'param.callbackUrl=in.callbackUrl;
+param.isTaskFinished=in.isTaskFinished;
 ' #txt
 Pt0 f33 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
@@ -291,7 +296,7 @@ Pt0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Redirect to
 callbackUrl</name>
-        <nameStyle>23
+        <nameStyle>23,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -333,8 +338,10 @@ Pt0 f10 @|StartRequestIcon #fIcon
 Pt0 f11 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
 Pt0 f11 actionTable 'out=in;
+out.isTaskFinished=in.isTaskFinished;
 ' #txt
-Pt0 f11 actionCode 'import ch.ivy.addon.portalkit.service.StickyTaskListService;
+Pt0 f11 actionCode 'import ch.ivyteam.ivy.workflow.internal.SessionAdapterFactory;
+import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalPage;
@@ -357,14 +364,17 @@ if (isTaskStarted && StringUtils.isNotBlank(callbackUrl)) {
 	out.callbackUrl = callbackUrl + "?endedTaskId=" + taskWithTaskEndInfo.getId();
 } else {
 	out.portalPage = PortalPage.HOME_PAGE;
-}' #txt
+}
+
+in.isTaskFinished = !SecurityServiceUtils.getSessionAttribute(SessionAttribute.IS_TASK_NOT_FINISHED.toString()).toBoolean();
+SecurityServiceUtils.removeSessionAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_NOT_FINISHED.toString());' #txt
 Pt0 f11 security system #txt
 Pt0 f11 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Handle end page</name>
-        <nameStyle>15
+        <nameStyle>15,7
 </nameStyle>
     </language>
 </elementInfo>

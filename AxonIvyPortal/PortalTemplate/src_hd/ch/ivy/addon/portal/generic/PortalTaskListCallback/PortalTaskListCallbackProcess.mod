@@ -27,12 +27,13 @@ Ps0 @PushWFArc f5 '' #zField
 >Proto Ps0 Ps0 PortalTaskListCallbackProcess #zField
 Ps0 f0 guid 15C67E57F20669EF #txt
 Ps0 f0 type ch.ivy.addon.portal.generic.PortalTaskListCallback.PortalTaskListCallbackData #txt
-Ps0 f0 method start(String) #txt
+Ps0 f0 method start(String,Boolean) #txt
 Ps0 f0 disableUIEvents true #txt
 Ps0 f0 inParameterDecl 'ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent methodEvent = event as ch.ivyteam.ivy.richdialog.exec.RdMethodCallEvent;
-<java.lang.String callbackUrl> param = methodEvent.getInputArguments();
+<java.lang.String callbackUrl,java.lang.Boolean isTaskFinished> param = methodEvent.getInputArguments();
 ' #txt
 Ps0 f0 inParameterMapAction 'out.callbackUrl=param.callbackUrl;
+out.isTaskFinished=param.isTaskFinished;
 ' #txt
 Ps0 f0 outParameterDecl '<> result;
 ' #txt
@@ -123,11 +124,11 @@ import javax.faces.context.Flash;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 
-boolean displayMessageAfterFinishTask = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK);
-if (displayMessageAfterFinishTask) {
+boolean displayMessageAfterFinishOrCancelTask = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK);
+if (displayMessageAfterFinishOrCancelTask) {
 	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 	if (!flash.containsKey("overridePortalGrowl")) {
-		FacesMessage message = new FacesMessage(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskLeftSuccessful"));
+		FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
 		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
 	}
 	flash.setRedirect(true);
@@ -138,8 +139,8 @@ Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Display message after
-finish task</name>
-        <nameStyle>33,7
+finish or cancel a task</name>
+        <nameStyle>45,7
 </nameStyle>
     </language>
 </elementInfo>

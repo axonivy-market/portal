@@ -268,10 +268,11 @@ Pt0 f30 @|AlternativeIcon #fIcon
 Pt0 f33 targetWindow NEW #txt
 Pt0 f33 targetDisplay TOP #txt
 Pt0 f33 richDialogId ch.ivy.addon.portal.generic.PortalTaskListCallback #txt
-Pt0 f33 startMethod start(String) #txt
+Pt0 f33 startMethod start(String,Boolean) #txt
 Pt0 f33 type ch.ivy.addon.portal.generic.PortalStartData #txt
-Pt0 f33 requestActionDecl '<String callbackUrl> param;' #txt
+Pt0 f33 requestActionDecl '<String callbackUrl, Boolean isTaskFinished> param;' #txt
 Pt0 f33 requestMappingAction 'param.callbackUrl=in.callbackUrl;
+param.isTaskFinished=in.isTaskFinished;
 ' #txt
 Pt0 f33 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
@@ -285,7 +286,7 @@ Pt0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Redirect to
 callbackUrl</name>
-        <nameStyle>23
+        <nameStyle>23,7
 </nameStyle>
     </language>
 </elementInfo>

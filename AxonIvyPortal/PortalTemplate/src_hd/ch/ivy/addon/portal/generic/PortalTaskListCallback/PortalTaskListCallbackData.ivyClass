@@ -2,3 +2,5 @@ PortalTaskListCallbackData #class
 ch.ivy.addon.portal.generic.PortalTaskListCallback #namespace
 callbackUrl String #field
 callbackUrl PERSISTENT #fieldModifier
+isTaskFinished Boolean #field
+isTaskFinished PERSISTENT #fieldModifier

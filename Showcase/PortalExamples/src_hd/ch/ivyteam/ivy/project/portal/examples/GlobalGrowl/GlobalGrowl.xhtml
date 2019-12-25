@@ -21,6 +21,9 @@
         <h:panelGroup styleClass="MarTop5 DispBlock" id="command-group">
           <p:commandButton value="Send" styleClass="" icon="fa fa-send-o" partialSubmit="true" id="button-submit"
             actionListener="#{logic.close}" process=":request" update=":request" />
+          <p:spacer width="10"/>
+          <p:commandButton value="Cancel" styleClass="mod-cancel-button portal-cancel-button" icon="fa fa-ban" partialSubmit="true" id="button-cancel"
+            actionListener="#{logic.cancel}" process=":request" update=":request" />
         </h:panelGroup>
       </h:form>
     </ui:define>

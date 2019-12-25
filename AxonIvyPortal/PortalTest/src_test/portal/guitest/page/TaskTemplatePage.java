@@ -106,6 +106,12 @@ public class TaskTemplatePage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
   
+  public void clickCancelAndLeftButton() {
+    String cancelButton = "button[id$='command-form:button-cancel']";
+    findElementByCssSelector(cancelButton).click();
+    waitAjaxIndicatorDisappear();
+  }
+  
   public void inputFields(String employee, String from, String to, String representation) {
     type(By.id("leave-request:fullname"), employee);
     type(By.id("leave-request:from_input"), from);

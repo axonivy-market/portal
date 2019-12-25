@@ -957,6 +957,15 @@
 		
 		<para>
 			This part lists all relevant changes since the last official product releases of Axon.ivy.
+            <sect2>
+                <title>Changes in 7.0.15</title>
+                <itemizedlist>
+                    <listitem>
+                        <para>Portal variable for Global growl setting <code>DISPLAY_MESSAGE_AFTER_FINISH_TASK</code> displays growl message for positive path and negative path.</para>
+                    </listitem>
+
+                </itemizedlist>
+            </sect2>
 			<sect2>
 				<title>Changes in 7.0.10</title>
 				<itemizedlist>
