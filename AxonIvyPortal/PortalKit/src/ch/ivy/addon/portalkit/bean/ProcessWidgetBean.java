@@ -63,6 +63,7 @@ public class ProcessWidgetBean implements Serializable {
     portalProcesses = findProcesses();
     portalProcesses.addAll(findExpressProcesses());
     portalProcesses.addAll(findExternalLink());
+    sortProcesses(portalProcesses);
     groupProcessesByAlphabetIndex(portalProcesses);
   }
 
@@ -107,7 +108,6 @@ public class ProcessWidgetBean implements Serializable {
     IvyComponentLogicCaller<List<IWebStartable>> ivyComponentLogicCaller = new IvyComponentLogicCaller<>();
     List<IWebStartable> processes = ivyComponentLogicCaller.invokeComponentLogic(processWidgetComponentId,
         "#{logic.collectProcesses}", new Object[] {});
-    sortProcesses(processes);
     List<Process> defaultPortalProcesses = new ArrayList<>();
     processes.forEach(process -> defaultPortalProcesses.add(new IvyProcess(process)));
     return defaultPortalProcesses;
@@ -125,7 +125,6 @@ public class ProcessWidgetBean implements Serializable {
         }
       }
     }
-    sortExpressProcesses(processes);
     List<Process> defaultPortalProcesses = new ArrayList<>();
     processes.forEach(process -> defaultPortalProcesses.add(new PortalExpressProcess(process)));
     return defaultPortalProcesses;
@@ -138,13 +137,8 @@ public class ProcessWidgetBean implements Serializable {
     return defaultPortalProcesses;
   }
   
-  private void sortProcesses(List<IWebStartable> processes) {
+  private void sortProcesses(List<Process> processes) {
     processes.sort((process1, process2) -> StringUtils.compareIgnoreCase(process1.getName(), process2.getName()));
-  }
-
-  private void sortExpressProcesses(List<ExpressProcess> expressProcesses) {
-    expressProcesses.sort(
-        (process1, process2) -> StringUtils.compareIgnoreCase(process1.getProcessName(), process2.getProcessName()));
   }
 
   public void editExpressWorkflow(ExpressProcess process) throws IOException {
@@ -169,6 +163,7 @@ public class ProcessWidgetBean implements Serializable {
         .getValue(FacesContext.getCurrentInstance().getELContext(), null, "externalLinkBean");
     externalLinkBean.saveNewExternalLink();
     portalProcesses.add(new ExternalLinkProcessItem(externalLinkBean.getExternalLink()));
+    sortProcesses(portalProcesses);
     groupProcessesByAlphabetIndex(portalProcesses);
   }
   
