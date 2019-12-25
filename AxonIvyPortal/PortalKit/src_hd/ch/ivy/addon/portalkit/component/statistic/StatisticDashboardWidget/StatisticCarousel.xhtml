@@ -5,10 +5,9 @@
 
 <h:outputScript name="chart-carousel.js" library="js" rendered="#{cc.attrs.compactMode}"/>
 
-<c:set var="chartCarousel" value="#{data.hasStatistic ? data.statisticChartList : data.chartsPlaceholder}" />
-<p:carousel id="statistic-carousel" styleClass="statistic-carousel card #{chartCarousel.size() == 1 ? 'one-statistic':''}" circular="true"
-  numVisible="1" value="#{chartCarousel}" var="chart" binding="#{carouselStatistic}" itemStyleClass="statistic-carousel-item"
-  rendered="#{cc.attrs.compactMode and !cc.attrs.isDrilldownElapsedTime}" widgetVar="carouselChart" pageLinks="0" responsive="true">
+<p:carousel id="statistic-carousel" styleClass="statistic-carousel card #{data.statisticChartList.size() == 1 ? 'one-statistic':''}" circular="true"
+  numVisible="1" value="#{data.statisticChartList}" var="chart" binding="#{carouselStatistic}" itemStyleClass="statistic-carousel-item"
+  rendered="#{!cc.attrs.isDrilldownElapsedTime}" widgetVar="carouselChart" pageLinks="0" responsive="true">
 
   <h:panelGroup styleClass="statistic-carousel-content">
     <h:panelGroup styleClass="hidden-carousel-title">
@@ -21,8 +20,6 @@
       <h:outputText id="carousel-effect-duration" value="#{carouselStatistic.effectDuration}" />
     </h:panelGroup>
     <h:panelGroup layout="block" id="statistic-chart-carousel">
-      <p:donutChart styleClass="statistic-chart ui-g-12" model="#{chart.donutChartModel}" rendered="#{!data.hasStatistic}"
-        style="width: 100%; height:200px;" />
 
       <p:donutChart styleClass="statistic-chart ui-g-12" model="#{chart.donutChartModel}" rendered="#{statisticDashboardBean.isTaskByPriority(chart)}"
         style="width: 100%; height:200px;">

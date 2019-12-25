@@ -38,6 +38,26 @@ public class GlobalGrowlTest extends BaseTest {
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.inputFields("Employee", "1.1.2019", "1.1.2019", "Representation");
     HomePage homePage = taskTemplatePage.clickSubmitButton();
-    assertEquals("Task left successfully", homePage.getGlobalGrowlMessage());
+    assertEquals("You have finished the task successfully", homePage.getGlobalGrowlMessage());
+  }
+  
+  @Test
+  public void testDisplayDefaultGrowlAfterCancelTask() {
+    redirectToRelativeLink(createTestingTasksUrl);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    HomePage homePage = taskTemplatePage.clickCancelAndLeftButton();
+    assertEquals("You have cancelled and left the task successfully. You can find the task in the dashboard or your task list", homePage.getGlobalGrowlMessage());
+  }
+  
+  @Test
+  public void testDisplayCustomGrowlAfterCancelTask() {
+    redirectToRelativeLink(CUSTOM_GROWL_URL);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    HomePage homePage = taskTemplatePage.clickCancelAndLeftButton();
+    assertEquals("You have cancelled and left the task successfully", homePage.getGlobalGrowlMessage());
   }
 }
