@@ -7,8 +7,17 @@ import ch.ivy.addon.portalkit.persistence.dao.ExternalLinkDao;
 
 public class ExternalLinkService extends AbstractService<ExternalLink> {
 
+  private static ExternalLinkService externalLinkServiceInstance;
+  
   public ExternalLinkService() {
     super(ExternalLinkDao.class);
+  }
+  
+  public static ExternalLinkService getInstance() {
+    if (externalLinkServiceInstance == null) {
+      externalLinkServiceInstance = new ExternalLinkService();
+    }
+    return externalLinkServiceInstance;
   }
   
   @Override
@@ -16,7 +25,12 @@ public class ExternalLinkService extends AbstractService<ExternalLink> {
     return (ExternalLinkDao) super.getDao();
   }
   
-  public List<ExternalLink> findByUserName(String userName) {
-    return getDao().findByUsername(userName);
+  public List<ExternalLink> findStartableLink(String userName) {
+    return getDao().findStartableLink(userName);
   }
+  
+  public void delete(long id) {
+    getDao().delete(id);
+  }
+
 }

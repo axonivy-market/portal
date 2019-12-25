@@ -44,8 +44,8 @@
         </div>
         <div class="ui-dialog-footer u-dialog-footer">
         <p:commandButton id="add-external-link-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
-          process="@form" actionListener="#{externalLinkBean.saveNewExternalLink}"
-          update="@form #{p:component('process-list')}"
+          process="@form" actionListener="#{processWidgetBean.createNewExternalLink}"
+          update="@form #{cc.clientId}:process-list"
           oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide();}" />
         <p:spacer width="5" />
         <p:commandButton id="cancel-adding-external-link-command" global="false" styleClass="portal-cancel-button"
@@ -57,22 +57,22 @@
     </h:form>
   </p:dialog>
 
- <!--  <p:dialog id="remove-external-link-dialog" widgetVar="remove-external-link-dialog"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowHeader')}" closeOnEscape="true" modal="true"
+ <p:dialog id="remove-external-link-dialog" widgetVar="remove-external-link-dialog"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemHeader')}" closeOnEscape="true" modal="true"
     dynamic="true" appendTo="@(body)" resizable="false">
-    <h:form id="delete-workflow-form">
-      <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExpressWorkflowConfirmation')}" />
+    <h:form id="delete-external-link-form">
+      <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemConfirmation')}" />
       <br />
-      <h:outputText value="#{processWidgetBean.deletedExpressProcess.getName()}" styleClass="FontBold" />
+      <h:outputText value="#{processWidgetBean.deletedExternalLink.getName()}" styleClass="FontBold" />
       <div class="ui-dialog-footer u-dialog-footer">
         <p:commandButton global="false" process="@this" update="#{cc.clientId}:process-list"
-          actionListener="#{processWidgetBean.deleteExpressWorkflow}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-          oncomplete="PF('remove-express-workflow-dialog').hide();" />
+          actionListener="#{processWidgetBean.deleteExternalLink}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          oncomplete="PF('remove-external-link-dialog').hide();" />
         <p:spacer width="5" />
-        <p:commandButton onclick="PF('remove-express-workflow-dialog').hide()" styleClass="portal-cancel-button"
+        <p:commandButton onclick="PF('remove-external-link-dialog').hide()" styleClass="portal-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
       </div>
     </h:form>
-  </p:dialog> -->
+  </p:dialog>
 </ui:composition>
 </html>

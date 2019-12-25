@@ -1,31 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
-  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <ui:composition>
-  <div class="process-start-list-item-name #{isExpress ? 'is-express' : ''}">
-    <h:outputText id="process-name-#{processType}" value="#{processName}"
-      styleClass="process-start-list-item-name-text u-truncate-text js-process-start-list-item-name" />
-    <p:tooltip for="process-name-#{processType}" value="#{processName}" />
-  </div>
-  <div class="process-item-action-container">
-    <h:panelGroup styleClass="process-start-list-item-action #{isExpress ? 'is-express' : ''} u-padding-0" rendered="#{isExpress}" layout="block">
-      <p:panel id="express-process-logo" styleClass="express-process-logo" />
-      <p:tooltip id="express-process-logo-tooltip" for="express-process-logo" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expressWorkflow')}" position="top"/>
-      <ui:fragment rendered="#{process.getProcess().ableToEdit}">
-        <ui:include src="ProcessItemExpressActions.xhtml">
-          <ui:param name="processType" value="process" />
-        </ui:include>
-      </ui:fragment>
-    </h:panelGroup>
-    <h:panelGroup styleClass="process-start-list-item-action u-hidden-md-down">
-      <h:outputText id="info-workflow" styleClass="fa fa-info-circle process-description process-item" />
-      <p:tooltip id="info-workflow-tooltip" for="info-workflow" value="#{processDescription}" position="top" styleClass="js-process-start-list-item-description" />
-    </h:panelGroup>
-    <span id="open-process-start" class="tmi-chevorn-right open-icon" />
-  </div>
+	<div class="process-start-list-item-name #{isExpress ? 'is-express' : ''}">
+		<h:outputText id="process-name" value="#{processName}"
+			styleClass="process-start-list-item-name-text u-truncate-text js-process-start-list-item-name" />
+		<p:tooltip for="process-name" value="#{processName}" />
+	</div>
+	<div class="process-item-action-container">
+		<h:panelGroup
+			styleClass="process-start-list-item-action #{isExpress ? 'is-express' : ''} u-padding-0"
+			rendered="#{isExpress}" layout="block">
+			<p:panel id="express-process-logo" styleClass="express-process-logo" />
+			<p:tooltip id="express-process-logo-tooltip"
+				for="express-process-logo"
+				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expressWorkflow')}"
+				position="top" />
+			<ui:fragment rendered="#{process.getProcess().ableToEdit}">
+				<ui:include src="ProcessItemExpressActions.xhtml">
+					<ui:param name="processType" value="process" />
+				</ui:include>
+			</ui:fragment>
+		</h:panelGroup>
+		<h:panelGroup
+			styleClass="process-start-list-item-action #{isExternalLink ? 'is-external-link' : ''} u-padding-0"
+			rendered="#{isExternalLink}" layout="block">
+			<h:panelGroup id="external-link-icon" styleClass="fa fa-external-link external-link-icon"  />
+			<p:tooltip id="external-link-icon-tooltip"
+				for="external-link-icon"
+				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/externalLink')}"
+				position="top" />
+			<p:commandLink id="delete-external-link"
+				styleClass="fa fa-trash process-item"
+				actionListener="#{processWidgetBean.setDeletedExternalLink(process)}"
+				oncomplete="PF('remove-external-link-dialog').show();"
+				update=":#{p:component('remove-external-link-dialog')}" 
+				rendered="#{process.getProcess().ableToEdit}" />
+			<p:tooltip id="delete-external-link-tooltip"
+				for="delete-external-link" position="top" 
+				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExternalLinkTooltip')}"
+				rendered="#{process.getProcess().ableToEdit}"/>
+		</h:panelGroup> 
+		<h:panelGroup
+			styleClass="process-start-list-item-action u-hidden-md-down">
+			<h:outputText id="info-workflow"
+				styleClass="fa fa-info-circle process-description process-item" />
+			<p:tooltip id="info-workflow-tooltip" for="info-workflow"
+				value="#{processDescription}" position="top"
+				styleClass="js-process-start-list-item-description" />
+		</h:panelGroup>
+		<span id="open-process-start" class="tmi-chevorn-right open-icon" />
+	</div>
 </ui:composition>
 </html>
