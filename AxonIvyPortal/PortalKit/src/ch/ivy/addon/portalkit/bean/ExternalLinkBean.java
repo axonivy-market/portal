@@ -29,9 +29,10 @@ public class ExternalLinkBean {
     PrimeFaces.current().resetInputs(clientId + ":add-external-link-form");
   }
   
-  public void saveNewExternalLink() {
+  public ExternalLink saveNewExternalLink() {
     externalLink.setUsername(Ivy.session().getSessionUser().getName());
     externaLinkService.save(externalLink);
+    return externalLink;
   }
   
   public void startExternalLink(ExternalLink selectedExternalLink) throws IOException {
