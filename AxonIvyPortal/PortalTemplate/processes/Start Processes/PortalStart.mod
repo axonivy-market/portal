@@ -439,8 +439,10 @@ Pt0 f0 @|AlternativeIcon #fIcon
 Pt0 f16 464 96 656 96 #arcP
 Pt0 f6 688 96 728 96 #arcP
 Pt0 f12 dialogId ch.ivy.addon.portal.generic.PortalFinishTaskHandle #txt
-Pt0 f12 startMethod start() #txt
-Pt0 f12 requestActionDecl '<> param;' #txt
+Pt0 f12 startMethod start(Boolean) #txt
+Pt0 f12 requestActionDecl '<Boolean isTaskFinished> param;' #txt
+Pt0 f12 requestMappingAction 'param.isTaskFinished=in.isTaskFinished;
+' #txt
 Pt0 f12 responseMappingAction 'out=in;
 ' #txt
 Pt0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

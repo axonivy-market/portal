@@ -3,12 +3,8 @@ package portal.guitest.test;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
-import java.util.concurrent.TimeUnit;
-
 import org.junit.Before;
 import org.junit.Test;
-
-import com.jayway.awaitility.Awaitility;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
@@ -91,7 +87,6 @@ public class AnnouncementTest extends BaseTest {
     announcementPage.setAnnoucement(2, "Readme2");
     announcementPage.setAnnoucement(3, "Readme3");
     announcementPage.publish();
-    Awaitility.waitAtMost(5, TimeUnit.SECONDS).until(() -> announcementPage.canDePublish());
     announcementPage.dePublish();
     assertTrue("Announcement is not display ", homePage.isAnnouncementMessageNotDisplayed());
   }
