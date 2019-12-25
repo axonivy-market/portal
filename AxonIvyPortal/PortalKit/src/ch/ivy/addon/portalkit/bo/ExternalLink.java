@@ -2,7 +2,10 @@ package ch.ivy.addon.portalkit.bo;
 
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ch.ivy.addon.portalkit.persistence.domain.BusinessEntity;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class ExternalLink extends BusinessEntity{
 
@@ -41,6 +44,11 @@ public class ExternalLink extends BusinessEntity{
 
   public void setUsername(String username) {
     this.username = username;
+  }
+  
+  @JsonIgnore
+  public boolean isAbleToEdit() {
+    return this.username.equalsIgnoreCase(Ivy.session().getSessionUserName());
   }
   
   @Override
