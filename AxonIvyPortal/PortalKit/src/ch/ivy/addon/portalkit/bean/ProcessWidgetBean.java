@@ -20,6 +20,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
+import ch.ivy.addon.portalkit.bo.ExternalLink;
+import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.bo.IvyProcess;
 import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
@@ -27,6 +29,7 @@ import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -44,6 +47,8 @@ public class ProcessWidgetBean implements Serializable {
 
   private String processWidgetComponentId;
   private Process deletedExpressProcess;
+  private Process deletedExternalLink;
+
   private IProcessStart createExpressWorkflowProcessStart;
   private Map<String, List<Process>> processesByAlphabet;
   List<Process> portalProcesses;
@@ -57,6 +62,7 @@ public class ProcessWidgetBean implements Serializable {
 
     portalProcesses = findProcesses();
     portalProcesses.addAll(findExpressProcesses());
+    portalProcesses.addAll(findExternalLink());
     groupProcessesByAlphabetIndex(portalProcesses);
   }
 
@@ -125,6 +131,13 @@ public class ProcessWidgetBean implements Serializable {
     return defaultPortalProcesses;
   }
   
+  private List<Process> findExternalLink() {
+    List<ExternalLink> externalLinks = ExternalLinkService.getInstance().findStartableLink(Ivy.session().getSessionUser().getName());
+    List<Process> defaultPortalProcesses = new ArrayList<>();
+    externalLinks.forEach(externalLink -> defaultPortalProcesses.add(new ExternalLinkProcessItem(externalLink)));
+    return defaultPortalProcesses;
+  }
+  
   private void sortProcesses(List<IWebStartable> processes) {
     processes.sort((process1, process2) -> StringUtils.compareIgnoreCase(process1.getName(), process2.getName()));
   }
@@ -148,6 +161,25 @@ public class ProcessWidgetBean implements Serializable {
      portalProcesses.remove(portalProcesses.stream().filter(process -> process.getId().equals(deletedExpressProcess.getId())).findFirst().get());
      groupProcessesByAlphabetIndex(portalProcesses);
   }
+  
+  public void createNewExternalLink() {
+    ExternalLinkBean externalLinkBean = (ExternalLinkBean) FacesContext.getCurrentInstance()
+        .getApplication()
+        .getELResolver()
+        .getValue(FacesContext.getCurrentInstance().getELContext(), null, "externalLinkBean");
+    externalLinkBean.saveNewExternalLink();
+    portalProcesses.add(new ExternalLinkProcessItem(externalLinkBean.getExternalLink()));
+    groupProcessesByAlphabetIndex(portalProcesses);
+  }
+  
+  public void deleteExternalLink() {
+    ExternalLinkService.getInstance().delete(Long.parseLong(deletedExternalLink.getId()));
+    portalProcesses.remove(portalProcesses.stream()
+        .filter(process -> process.getId().equals(deletedExternalLink.getId()))
+        .findFirst()
+        .get());
+    groupProcessesByAlphabetIndex(portalProcesses);
+  }
 
   public String getCreateExpessWorkflowLink() {
     return IvyExecutor.executeAsSystem(() -> {
@@ -163,12 +195,13 @@ public class ProcessWidgetBean implements Serializable {
         && PermissionUtils.hasPortalPermission(PortalPermission.EXPRESS_CREATE_WORKFLOW);
   }
 
-  public void startProcess(String link, boolean isExpress) throws IOException {
-    if (isExpress) {
+  public void startProcess(String link, String type) throws IOException {
+    ProcessType processType = ProcessType.valueOf(type);
+    if (processType == ProcessType.EXPRESS_PROCESS || processType == ProcessType.EXTERNAL_LINK) {
       FacesContext.getCurrentInstance().getExternalContext().redirect(link);
       return;
     }
-    
+     
     link += link.contains("?") ? "&" : "?";
     // Put the "embedInIFrame" param to the task start link to open it in the DefaultFramePage process
     // Then this process will open task in IFrame or not based on its "embedInIFrame" String custom field
@@ -181,6 +214,14 @@ public class ProcessWidgetBean implements Serializable {
 
   public void setDeletedExpressProcess(Process deletedExpressProcess) {
     this.deletedExpressProcess = deletedExpressProcess;
+  }
+  
+  public Process getDeletedExternalLink() {
+    return deletedExternalLink;
+  }
+
+  public void setDeletedExternalLink(Process deletedExternalLink) {
+    this.deletedExternalLink = deletedExternalLink;
   }
 
   public Map<String, List<Process>> getProcessesByAlphabet() {
@@ -210,5 +251,17 @@ public class ProcessWidgetBean implements Serializable {
 
   public boolean isExpressProcess (Process process) {
     return process.getType() == ProcessType.EXPRESS_PROCESS;
+  }
+  
+  public boolean isExternalLink(Process process) {
+    return process.getType() == ProcessType.EXTERNAL_LINK;
+  }
+  
+  public String targetToStartProcess(Process process) {
+    String target="_self";
+    if (process.getType() == ProcessType.EXTERNAL_LINK) {
+      target="_blank";
+    }
+    return target;
   }
 }

@@ -1189,7 +1189,8 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   background-image: url("#{resource['ivy-webcontent:images/expressLogo/icon_express_process_120x120.png']}");
 }
 
-.express-process-logo .ui-panel-content {
+.express-process-logo .ui-panel-content,
+.is-external-link .ui-panel-content {
   width: 0.4rem;
   height: 0.4rem;
   margin: 0 5px 3px 5px;
@@ -1211,6 +1212,20 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   width: 1.6rem;
   height: 1.6rem;
   margin: 2px 4px 0 10px;
+}
+
+.external-link-icon {
+  height: auto;
+  width: auto;
+  cursor: default;
+  border: none !important;
+  background-color: transparent !important;
+  margin-top: 2px;
+}
+
+.process-start-list-item-action.is-external-link {
+  right: 50px;
+  flex: 1 0 auto;
 }
 
 /********************************** END PROCESSES **********************************/
