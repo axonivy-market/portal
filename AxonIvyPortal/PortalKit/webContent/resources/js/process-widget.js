@@ -95,6 +95,11 @@ function ProcessWidget() {
         if (contain(expressKeyToSearch, keyword.trim()) && $(this.children).hasClass("express-workflow")) {
         	$(this).show();
         }
+        
+        var externalLinkKeyToSearch = "external link";
+        if (contain(externalLinkKeyToSearch, keyword.trim()) && $(this.children).hasClass("external-link-process-item")) {
+        	$(this).show();
+        }
       });
       
       var processAlphabetGroups = $('.js-process-index-group');
