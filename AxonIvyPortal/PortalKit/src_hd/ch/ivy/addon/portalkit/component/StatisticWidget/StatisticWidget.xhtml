@@ -17,8 +17,8 @@
   <div id="#{cc.clientId}" class="widget statistic-widget-container #{!cc.attrs.compactMode ? '':'statistic-widget-compact-mode-container'}">
     <h:panelGroup id="header" layout="block" styleClass="widget-header">
       <div class="widget-header-main #{data.createMode ? 'creation-mode':''}">
-        <h:outputText styleClass="widget-header-main-title" rendered="#{!data.createMode}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statistics')}" />
-        <h:outputText styleClass="widget-header-main-title" rendered="#{data.createMode}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/createNewStatistic')}" />
+        <h:outputText styleClass="widget-header-main-title" 
+          value="#{ivy.cms.co(!data.createMode ? '/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statistics' : '/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/createNewStatistic')}" />
         <h:panelGroup id="statistic-widget-header" layout="block" rendered="#{data.isDisplayShowAllChartLink and cc.attrs.compactMode}"
           styleClass="widget-header-main-menu">
           <cc:renderFacet name="headerToolbar" />
@@ -69,9 +69,9 @@
         </h:panelGroup>
         <h:panelGroup layout="block" rendered="#{data.createMode}">
           <div class="ui-g-12 u-padding-0">
-            <p:commandLink id="back-from-chart-creation"
+            <p:commandLink id="back-from-chart-creation" action="#{statisticChartCreationBean.clearChartModels()}"
               styleClass="back-button Fright" actionListener="#{logic.switchCreateMode}"
-              update="widget-container create-chart-header header" oncomplete="clearChartModels();">
+              update="create-chart-header header widget-container" global="false">
               <i class="fa fa-reply-all" />
               <p:spacer width="3px" />
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"/>
