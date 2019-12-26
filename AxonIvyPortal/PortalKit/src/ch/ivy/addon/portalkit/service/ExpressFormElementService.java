@@ -3,6 +3,8 @@ package ch.ivy.addon.portalkit.service;
 import java.util.List;
 
 import ch.ivy.addon.portalkit.bo.ExpressFormElement;
+import ch.ivyteam.ivy.business.data.store.search.Filter;
+import ch.ivyteam.ivy.business.data.store.search.Result;
 
 public class ExpressFormElementService extends BusinessDataService<ExpressFormElement> {
 
@@ -14,7 +16,14 @@ public class ExpressFormElementService extends BusinessDataService<ExpressFormEl
   }
 
   public List<ExpressFormElement> findByProcessId(String processId) {
-    return repo().search(ExpressFormElement.class).textField("processID").isEqualToIgnoringCase(processId).limit(100).execute().getAll();
+    Filter<ExpressFormElement> query =
+        repo().search(ExpressFormElement.class).textField("processID").isEqualToIgnoringCase(processId);
+    Result<ExpressFormElement> queryResult = query.limit(LIMIT_100).execute();
+    long totalCount = queryResult.totalCount();
+    if (totalCount > LIMIT_100) {
+      queryResult = query.limit(Math.toIntExact(totalCount)).execute();
+    }
+    return queryResult.getAll();
   }
 
   @Override

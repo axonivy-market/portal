@@ -107,6 +107,7 @@ import ch.ivy.ws.addon.ExpiryStatistic;
 import ch.ivy.ws.addon.PriorityStatistic;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
+import ch.ivyteam.ivy.business.data.store.search.Result;
 import ch.ivyteam.ivy.environment.Ivy;
 
 import com.google.gson.Gson;
@@ -136,8 +137,15 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     List<StatisticChart> result = new ArrayList<>();
     try {
       Filter<StatisticChart> statisticChartQuery = repo().search(getType()).numberField(USER_ID).isEqualTo(userId);
-      result = statisticChartQuery.orderBy().textField(NAME).ascending().execute().getAll();
-      result = result.stream().sorted(Comparator.comparing(StatisticChart::getPosition)).collect(Collectors.toList());
+      Result<StatisticChart> queryResult = statisticChartQuery.orderBy().textField(NAME).ascending().execute();
+      long totalCount = queryResult.totalCount();
+      if (totalCount > LIMIT_10) {
+        queryResult =
+            statisticChartQuery.orderBy().textField(NAME).ascending().limit(Math.toIntExact(totalCount)).execute();
+      }
+      result =
+          queryResult.getAll().stream().sorted(Comparator.comparing(StatisticChart::getPosition))
+              .collect(Collectors.toList());
       return result;
     } catch (Exception e) {
       Ivy.log().error(e);
@@ -169,7 +177,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   public long countStatisticChartsByUserId(long userId) {
     try {
       Filter<StatisticChart> statisticChartQuery = repo().search(getType()).numberField(USER_ID).isEqualTo(userId);
-      return statisticChartQuery.orderBy().textField(NAME).ascending().execute().count();
+      return statisticChartQuery.orderBy().textField(NAME).ascending().execute().totalCount();
     } catch (Exception e) {
       Ivy.log().error(e);
       return -1;

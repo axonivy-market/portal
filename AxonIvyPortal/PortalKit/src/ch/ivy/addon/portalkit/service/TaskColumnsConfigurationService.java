@@ -4,6 +4,7 @@ import java.util.List;
 
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfigurationData;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
+import ch.ivyteam.ivy.business.data.store.search.Result;
 
 public class TaskColumnsConfigurationService extends BusinessDataService<TaskColumnsConfigurationData> {
 
@@ -28,7 +29,7 @@ public class TaskColumnsConfigurationService extends BusinessDataService<TaskCol
           .and().numberField("userId").isEqualTo(userId)
           .and().numberField("taskColumnsConfigDataId").isEqualTo(taskColumnsConfigDataId);
     }
-    return query.execute().getFirst();
+    return query.limit(1).execute().getFirst();
   }
 
   public List<TaskColumnsConfigurationData> getAllConfiguration(Long serverId, Long applicationId) {
@@ -43,6 +44,11 @@ public class TaskColumnsConfigurationService extends BusinessDataService<TaskCol
           repo().search(getType())
           .numberField("applicationId").isEqualTo(applicationId);
     }
-    return query.execute().getAll();
+    Result<TaskColumnsConfigurationData> queryResult = query.limit(LIMIT_100).execute();
+    long totalCount = queryResult.totalCount();
+    if(totalCount > LIMIT_100) {
+      queryResult = query.limit(Math.toIntExact(totalCount)).execute();
+    }
+    return queryResult.getAll();
   }
 }
