@@ -46,7 +46,17 @@ You can edit value for a specific setting
 
 You can also get back the default value for each setting by clicking
 reset button on each row, or reset all values of all settings by
-clicking ``Restore All To Defaults`` button
+clicking ``Restore All To Defaults`` button.
+
+Setup Global settings by configuration file
+"""""""""""""""""""""""""""""""""""""""""""
+.. important:: 
+   This feature only support Designer.
+
+Process developer can setup global settings of Portal in file ``portal_config.properties`` which put under project ``PortalTemplate``.
+|portal-global-setting|
+
+This file already contains list of settings with their default values. Simply modify setting value and restart Portal, these settings will apply immediately.
 
 .. _settings-admin-settings-setup-multi-portals:
 
@@ -529,5 +539,5 @@ Global variables
 .. |add-new-language| image:: images/settings/add-new-language.png
 .. |multi-portal-open-settings| image:: images/settings/multi-portal-open-settings.png
 .. |multi-portal-add-application| image:: images/settings/multi-portal-add-application.png
-
+.. |portal-global-setting| image:: images/settings/portal-global-setting.png
 
