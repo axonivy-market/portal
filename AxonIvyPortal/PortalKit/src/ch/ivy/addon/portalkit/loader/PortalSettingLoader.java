@@ -1,13 +1,12 @@
 package ch.ivy.addon.portalkit.loader;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.Optional;
 import java.util.Properties;
-import java.util.Map.Entry;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -19,15 +18,17 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.restricted.EngineMode;
 
 public class PortalSettingLoader {
-  private static final String PORTAL_CONFIG = "/resources/portal_config.properties";
+  private static final String PORTAL_CONFIG = "/portal_config.properties";
 
   public void loadPortalSettings() {
     if (EngineMode.isEmbeddedInDesigner()) {
       Properties properties = new Properties();
-      ResourceLoader loader = new ResourceLoader(Ivy.request().getProcessModelVersion());
 
       try {
-        InputStream inputStream = new FileInputStream(loader.findResource(PORTAL_CONFIG).get().toString());
+        InputStream inputStream = PortalSettingLoader.class.getResourceAsStream(PORTAL_CONFIG);
+        if (inputStream == null) {
+          return;
+        }
         properties.load(inputStream);
       } catch (FileNotFoundException e) {
         Ivy.log().error("Error when load property file", e);
