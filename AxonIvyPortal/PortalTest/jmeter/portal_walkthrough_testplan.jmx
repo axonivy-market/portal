@@ -290,7 +290,7 @@
               </elementProp>
               <elementProp name="javax.faces.partial.execute" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">@all</stringProp>
+                <stringProp name="Argument.value">statistics-widget:statistic-dashboard-widget:statistic-form:init-chart-command</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
