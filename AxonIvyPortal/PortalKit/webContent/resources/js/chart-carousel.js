@@ -18,7 +18,7 @@ $(document).ready(function() {
   // Set default chart header titles
   var itemsContainer = $('.ui-carousel-items');
   var charSize = $('.ui-carousel-viewport').children(".ui-carousel-items").children("li").length;
-  headerTitle.append($('[id$="0:chart-name-container"]').clone());
+  headerTitle.append($('[id$=":0:chart-name-container"]').clone());
 
   // On click event of Carousel-nav
   // * Select current chart header
@@ -71,7 +71,7 @@ $(document).ready(function() {
   function updateHeaderTitle(curentIndex) {
     validateTitleLength(index);
     var dir = headerTitle.get(0).innerHTML = "";
-    headerTitle.append($('[id$="' + curentIndex + ':chart-name-container"]').clone());
+    headerTitle.append($('[id$=":' + curentIndex + ':chart-name-container"]').clone());
   }
   
   function validateTitleLength(index) {
