@@ -158,6 +158,11 @@ public class TaskTemplatePage extends TemplatePage {
     return new HomePage();
   }
   
+  public HomePage clickCancelAndLeftButton() {
+    String cancelButton = "button[id$='button-cancel']";
+    clickByCssSelector(cancelButton);
+    return new HomePage();
+  }
   public void clickTaskActionMenu() {
 	    String taskAction = "button[id$='horizontal-task-actions']";
 	    clickByCssSelector(taskAction);
