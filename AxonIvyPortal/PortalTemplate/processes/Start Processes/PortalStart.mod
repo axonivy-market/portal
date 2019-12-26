@@ -159,6 +159,8 @@ Bk5 @PushWFArc f14 '' #zField
 Bk5 @PushTrueWFInG-01 g0 '' #zField
 Bk5 @PushWFArc f0 '' #zField
 Bk5 @PushTrueWFOutG-01 g1 '' #zField
+Bk5 @GridStep f2 '' #zField
+Bk5 @PushWFArc f3 '' #zField
 Bk5 @PushWFArc f1 '' #zField
 >Proto Bk5 Bk4 BpmnServiceTask #zField
 Pt0 f10 outLink DefaultEndPage.ivp #txt
@@ -1219,9 +1221,24 @@ Bk5 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk5 g1 499 147 26 26 0 5 #rect
+Bk5 g1 835 147 26 26 0 5 #rect
 Bk5 g1 @|MOGIcon #fIcon
-Bk5 f1 440 160 499 160 #arcP
+Bk5 f2 actionTable 'out=in;
+' #txt
+Bk5 f2 actionCode 'import ch.ivy.addon.portalkit.loader.PortalSettingLoader;
+PortalSettingLoader loader = new PortalSettingLoader();
+loader.loadPortalSettings();' #txt
+Bk5 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Load global settings</name>
+    </language>
+</elementInfo>
+' #txt
+Bk5 f2 528 138 128 44 -56 -8 #rect
+Bk5 f2 @|StepIcon #fIcon
+Bk5 f3 440 160 528 160 #arcP
+Bk5 f1 656 160 835 160 #arcP
 >Proto Bk4 0 0 32 24 18 0 #rect
 >Proto Bk4 @|BIcon #fIcon
 Pt0 f10 mainOut f48 tail #connect
@@ -1330,6 +1347,8 @@ Bk5 f51 mainOut f14 tail #connect
 Bk5 f14 head f20 mainIn #connect
 Bk5 g0 m f0 tail #connect
 Bk5 f0 head f51 mainIn #connect
+Bk5 f20 mainOut f3 tail #connect
+Bk5 f3 head f2 mainIn #connect
+Bk5 f2 mainOut f1 tail #connect
 Bk5 f1 head g1 m #connect
-Bk5 f20 mainOut f1 tail #connect
-Bk5 0 0 576 320 0 #ivRect
+Bk5 0 0 904 328 0 #ivRect
