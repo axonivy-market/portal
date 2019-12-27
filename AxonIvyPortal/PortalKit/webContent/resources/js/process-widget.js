@@ -18,13 +18,15 @@ function ProcessWidget() {
       var error = 0;
       var globalSearchInput = $('.js-global-search');
       var globalSearchTabHeader = $('.ui-tabs-nav');
+      var globalSearchBottom = 30;
       if (globalSearchTabHeader.length > 0) {
+    	globalSearchBottom = 0;
         error = 55; // included margin, padding in search page
       }
       var announcementMessageContainer = $('.js-announcement-message');
-      var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight() - excludeMarginBottom;
+      var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight() - globalSearchBottom;
       var availableHeight = mainScreenHeight - (announcementMessageContainer.outerHeight(true)||0)
-                              - (processsHeader.outerHeight(true)||0) - (globalSearchInput.outerHeight(true)||0)
+                              - (processsHeader.outerHeight(true)||0) - (globalSearchInput.is(":visible") ? globalSearchInput.outerHeight(true) : 0)
                               - (globalSearchTabHeader.outerHeight(true)||0) - error;
       if (!!availableHeight) {
         processStartListContainer.css("max-height", availableHeight + "px");
