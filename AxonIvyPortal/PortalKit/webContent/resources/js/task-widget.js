@@ -38,7 +38,7 @@ function TaskWidget() {
         var mainScreenHeight = ($('body').outerHeight(true)||0) - ($('.layout-topbar').outerHeight(true)||0);
         var availableHeight = mainScreenHeight - (taskWidgetHeaderContainer.outerHeight(true)||0) - (announcementMessageContainer.outerHeight(true)||0)
             - (taskWidgetSortMenuContainer.outerHeight(true)||0) - (taskWidgetFilterContainer.outerHeight(true)||0)
-            - customWidgetContainer - (globalSearchInput.outerHeight(true)||0) - (globalSearchTabHeader.outerHeight(true)||0) - error
+            - customWidgetContainer - (globalSearchInput.is(":visible") ? globalSearchInput.outerHeight(true) : 0) - (globalSearchTabHeader.outerHeight(true)||0) - error
             - compactProcessWidgetHeight - taskViewPaddingValue;
         if (!!availableHeight) {
           container.height(availableHeight);

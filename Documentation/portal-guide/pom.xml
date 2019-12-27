@@ -8,9 +8,9 @@
 		<relativePath>../maven</relativePath>
 	</parent>
 
-	<artifactId>portal</artifactId>
+	<artifactId>portal-guide</artifactId>
 	<packaging>pom</packaging>
-	<name>Portal</name>
+	<name>Portal Guide</name>
 
 	<build>
 		<plugins>
