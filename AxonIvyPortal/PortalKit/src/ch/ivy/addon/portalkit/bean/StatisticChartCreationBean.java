@@ -81,7 +81,7 @@ public class StatisticChartCreationBean implements Serializable {
       filter.setCreatedDateTo(null);
     }
     if (oldFilter != null) {
-      setOldFiltersToCurrentValues(filter, oldFilter);
+      setOldFiltersFromCurrentValues(filter, oldFilter);
     }
   }
 
@@ -89,7 +89,7 @@ public class StatisticChartCreationBean implements Serializable {
     initStatisticChart();
   }
   
-  private void setOldFiltersToCurrentValues(StatisticFilter filter, StatisticFilter oldFilter) {
+  private void setOldFiltersFromCurrentValues(StatisticFilter filter, StatisticFilter oldFilter) {
     oldFilter.setTimePeriodSelection(filter.getTimePeriodSelection());
     Date createdDateFrom = filter.getCreatedDateFrom();
     Date createdDateTo = filter.getCreatedDateTo();
@@ -102,25 +102,20 @@ public class StatisticChartCreationBean implements Serializable {
     updateCaseCategory(filter, oldFilter);
 
     if (!filter.getIsAllRolesSelected()) {
-      updateOldListToNewList(oldFilter.getSelectedRoles(), filter.getSelectedRoles());
+      updateOldListFromNewList(oldFilter.getSelectedRoles(), filter.getSelectedRoles());
     }
     if (!filter.getIsAllCaseStatesSelected()) {
-      updateOldListToNewList(oldFilter.getSelectedCaseStates(), filter.getSelectedCaseStates());
+      updateOldListFromNewList(oldFilter.getSelectedCaseStates(), filter.getSelectedCaseStates());
     }
     if (!filter.getIsAllTaskPrioritiesSelected()) {
-      updateOldListToNewList(oldFilter.getSelectedTaskPriorities(), filter.getSelectedTaskPriorities());
+      updateOldListFromNewList(oldFilter.getSelectedTaskPriorities(), filter.getSelectedTaskPriorities());
     }
     oldFilter.setCustomFieldFilters(filter.getCustomFieldFilters());
   }
 
   private void updateCaseCategory(StatisticFilter filter, StatisticFilter oldFilter) {
-    filter.setIsAllCategoriesSelected(filter.getCaseCategories().getRoot().isSelected());
     filter.setSelectedCaseCategories(filter.getCaseCategories().getCategoryPaths());
-
-    oldFilter.setIsAllCategoriesSelected(filter.getIsAllCategoriesSelected());
-    updateOldListToNewList(oldFilter.getCaseCategories().getCategoryPaths(),
-        filter.getCaseCategories().getCategoryPaths());
-    updateOldListToNewList(oldFilter.getSelectedCaseCategories(), filter.getSelectedCaseCategories());
+    oldFilter.setSelectedCaseCategories(filter.getSelectedCaseCategories());
   }
 
   public boolean checkIfAnyFilterChanges(StatisticFilter filter, StatisticFilter oldFilter) {
@@ -167,12 +162,7 @@ public class StatisticChartCreationBean implements Serializable {
   }
 
   private boolean checkIfAnyCaseCategoryChanged(StatisticFilter filter, StatisticFilter oldFilter) {
-    //compare check box select all of case categories
-    if (oldFilter.getIsAllCategoriesSelected() != filter.getIsAllCategoriesSelected()) {
-      return true;
-    }
-    //compare other check box of case categories if select all is not checked
-    return !filter.getIsAllCategoriesSelected() && !oldFilter.getCaseCategories().getCategories().equals(filter.getCaseCategories().getCategories());
+    return !oldFilter.getCaseCategories().getCategoryPaths().equals(filter.getCaseCategories().getCategoryPaths());
   }
 
   private boolean checkIfAnyRoleChanged(StatisticFilter filter, StatisticFilter oldFilter) {
@@ -243,7 +233,7 @@ public class StatisticChartCreationBean implements Serializable {
     }
   }
 
-  private <T> void updateOldListToNewList(List<T> oldList, List<T> newList) {
+  private <T> void updateOldListFromNewList(List<T> oldList, List<T> newList) {
     oldList.clear();
     if (!newList.isEmpty()) {
       oldList.addAll(newList);

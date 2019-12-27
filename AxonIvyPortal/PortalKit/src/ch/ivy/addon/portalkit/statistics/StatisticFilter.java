@@ -33,9 +33,9 @@ public class StatisticFilter implements Cloneable {
   private Date createdDateTo;
 
   @JsonIgnore
-  private StatisticCaseCategoryFilter caseCategories;
+  private StatisticCaseCategoryFilter caseCategories = new StatisticCaseCategoryFilter();
   private List<String> selectedCaseCategories = new ArrayList<>();
-  private boolean isAllCategoriesSelected = true;
+  private boolean isAllCategoriesSelected;
 
   @JsonIgnore
   private List<Object> roles = new ArrayList<>();
@@ -82,8 +82,6 @@ public class StatisticFilter implements Cloneable {
 
     // Initialize list of case categories
     caseCategories = new StatisticCaseCategoryFilter();
-    caseCategories.getRoot().setSelected(isAllCategoriesSelected);
-    this.selectedCaseCategories.add(StringUtils.EMPTY);
 
     this.timePeriodSelection = StatisticTimePeriodSelection.CUSTOM;
     this.allTimePeriodSelection = Arrays.asList(StatisticTimePeriodSelection.CUSTOM, StatisticTimePeriodSelection.LAST_WEEK, StatisticTimePeriodSelection.LAST_MONTH, StatisticTimePeriodSelection.LAST_6_MONTH);
@@ -205,12 +203,18 @@ public class StatisticFilter implements Cloneable {
     this.allTimePeriodSelection = allTimePeriodSelection;
   }
 
+  @Deprecated
   public boolean getIsAllCategoriesSelected() {
     return isAllCategoriesSelected;
   }
 
+  @Deprecated
   public void setIsAllCategoriesSelected(boolean isAllCategoriesSelected) {
     this.isAllCategoriesSelected = isAllCategoriesSelected;
+    // For migration
+    if (isAllCategoriesSelected && this.caseCategories != null) {
+      this.caseCategories.setCategoryPaths(new ArrayList<>());
+    }
   }
 
   public List<String> getSelectedCaseCategories() {
@@ -219,6 +223,9 @@ public class StatisticFilter implements Cloneable {
 
   public void setSelectedCaseCategories(List<String> selectedCaseCategories) {
     this.selectedCaseCategories = selectedCaseCategories;
+    if (this.caseCategories != null) {
+      this.caseCategories.setCategoryPaths(selectedCaseCategories);
+    }
   }
 
   public boolean getIsAllRolesSelected() {
