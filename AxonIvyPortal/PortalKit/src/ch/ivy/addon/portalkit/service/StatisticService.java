@@ -704,11 +704,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     statisticChart.setName(Optional.ofNullable(chartName).orElse("New chart"));
     statisticChart.setPosition(countStatisticChartsByUserId(creatorId));
     statisticChart.setDefaultChart(String.valueOf(isDefault));
-    if (filter.getIsAllCaseStatesSelected() || filter.getIsAllCategoriesSelected()) {
+    if (filter.getIsAllCaseStatesSelected()) {
       StatisticFilter newFilter = ObjectUtils.clone(filter);
-      if (filter.getIsAllCategoriesSelected()) {
-          newFilter.setSelectedCaseCategories(new ArrayList<>());
-      }
       if (filter.getIsAllRolesSelected()) {
         newFilter.setSelectedRoles(new ArrayList<>());
       }
