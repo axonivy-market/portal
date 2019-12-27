@@ -12,7 +12,7 @@ import org.primefaces.model.CheckboxTreeNode;
 import org.primefaces.model.TreeNode;
 import org.primefaces.util.TreeUtils;
 
-import ch.ivy.addon.portalkit.bo.CaseNode;
+import ch.ivy.addon.portalkit.bo.CategoryNode;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
@@ -23,9 +23,6 @@ import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
-/**
- * Utilities for case tree.
- */
 public class CaseTreeUtils {
 
   public static final String DELIMITER = "/";
@@ -33,7 +30,6 @@ public class CaseTreeUtils {
   private CaseTreeUtils() {}
 
   public static CheckboxTreeNode buildCaseCategoryCheckboxTreeRoot() {
-
     CheckboxTreeNode root = buildRoot();
     RegisteredApplicationService service = new RegisteredApplicationService();
     List<String> involvedApplications =
@@ -43,7 +39,7 @@ public class CaseTreeUtils {
           .call().get("caseQuery", CaseQuery.class);
     });
     CategoryTree allCaseCategories = findAllCaseCategoryTree(involvedApplications, caseQuery);
-    convertToCheckboxTreeNode(root, allCaseCategories);
+    convertToCheckboxTreeNode((CheckboxTreeNode) root.getChildren().get(0), allCaseCategories);
     sortNode(root);
     return root;
   }
@@ -61,11 +57,10 @@ public class CaseTreeUtils {
   }
 
   private static void convertToCheckboxTreeNode(CheckboxTreeNode root, CategoryTree categoryTree) {
-    String nodeType = "default";
     for (CategoryTree category : categoryTree.getChildren()) {
       String name = category.getCategory().getName();
       String categoryRawPath = category.getRawPath();
-      CheckboxTreeNode childNode = buildCaseCategoryCheckBoxTreeNode(root, name, nodeType, categoryRawPath);
+      CheckboxTreeNode childNode = buildCaseCategoryCheckBoxTreeNode(root, name, categoryRawPath);
       root.getChildren().add(childNode);
       if (CollectionUtils.isNotEmpty(category.getChildren())) {
         convertToCheckboxTreeNode(childNode, category);
@@ -75,48 +70,62 @@ public class CaseTreeUtils {
   
   public static void sortNode(TreeNode node) {
     Comparator<TreeNode> comparator = (firstNode, secondNode) -> {
-      CaseNode firstNodeData = (CaseNode) firstNode.getData();
-      CaseNode secondNodeData = (CaseNode) secondNode.getData();
+      CategoryNode firstNodeData = (CategoryNode) firstNode.getData();
+      CategoryNode secondNodeData = (CategoryNode) secondNode.getData();
       return firstNodeData.getValue().compareToIgnoreCase(secondNodeData.getValue());
     };
     TreeUtils.sortNode(node, comparator);
   }
   
-  private static CheckboxTreeNode buildCaseCategoryCheckBoxTreeNode(CheckboxTreeNode parentNode, String newNodeName, String nodeType, String category) {
+  private static CheckboxTreeNode buildCaseCategoryCheckBoxTreeNode(CheckboxTreeNode parentNode, String newNodeName, String category) {
     List<TreeNode> childNodes = parentNode.getChildren();
     for (TreeNode childNode : childNodes) {
-      CaseNode childNodeData = (CaseNode) childNode.getData();
+      CategoryNode childNodeData = (CategoryNode) childNode.getData();
       if (category.equalsIgnoreCase(childNodeData.getValue())) {
         return (CheckboxTreeNode) childNode;
       }
     }
 
-    CaseNode nodeData = buildCaseNodeFrom(newNodeName, category);
-    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(nodeType, nodeData, parentNode);
+    CategoryNode nodeData = buildCaseNodeFrom(newNodeName, category);
+    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(nodeData, parentNode);
     checkboxTreeNode.setExpanded(true);
-    checkboxTreeNode.setSelected(false);
+    checkboxTreeNode.setSelected(true);
     return checkboxTreeNode;
   }
   
-  public static CaseNode buildCaseNodeFrom(String name, String category) {
-    CaseNode nodeData = new CaseNode();
+  public static CategoryNode buildCaseNodeFrom(String name, String category) {
+    CategoryNode nodeData = new CategoryNode();
     nodeData.setValue(name);
     nodeData.setCategory(category);
-    nodeData.setRootNodeAllCase(false);
-    nodeData.setFirstCategoryNode(false);
     return nodeData;
   }
   
   public static CheckboxTreeNode buildRoot() {
-    CaseNode nodeData = new CaseNode();
+    CategoryNode nodeData = new CategoryNode();
     nodeData.setValue(StringUtils.EMPTY);
     nodeData.setCategory(StringUtils.EMPTY);
-    nodeData.setRootNodeAllCase(true);
-    nodeData.setFirstCategoryNode(true);
     CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(StringUtils.EMPTY, nodeData, null);
     checkboxTreeNode.setExpanded(true);
-    checkboxTreeNode.setSelected(false);
+    checkboxTreeNode.setSelected(true);
+    buildAllCategoriesNode(checkboxTreeNode);
     return checkboxTreeNode;
   }
 
+  private static void buildAllCategoriesNode(CheckboxTreeNode parent) {
+    CategoryNode nodeData = new CategoryNode();
+    nodeData.setValue(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/allCategories"));
+    nodeData.setCategory(StringUtils.EMPTY);
+    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(nodeData, parent);
+    checkboxTreeNode.setExpanded(true);
+    checkboxTreeNode.setSelected(true);
+    buildNoCategoryNode(checkboxTreeNode);
+  }
+  
+  private static void buildNoCategoryNode(CheckboxTreeNode parent) {
+    CategoryNode nodeData = new CategoryNode();
+    nodeData.setValue(Ivy.cms().co(CategoryUtils.NO_CATEGORY_CMS));
+    nodeData.setCategory(CategoryUtils.NO_CATEGORY);
+    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(nodeData, parent);
+    checkboxTreeNode.setSelected(true);
+  }
 }
