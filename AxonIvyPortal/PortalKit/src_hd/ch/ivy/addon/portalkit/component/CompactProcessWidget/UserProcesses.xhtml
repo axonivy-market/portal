@@ -14,7 +14,6 @@
   <ui:include src="UserProcessAction.xhtml" />
 
 <h:panelGroup id="user-process-container" layout="block" styleClass="user-process-container" rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}">
-
   <h:panelGroup id="process-list" layout="block" styleClass="compact-processes-container widget-content">
     <h:panelGroup styleClass="process-empty-container" layout="block"
       rendered="#{empty compactProcessWidgetBean.userProcesses and compactProcessWidgetBean.isUserFavoritesEnabled and compactProcessWidgetBean.displayShowAllProcessesLink}">
@@ -25,14 +24,9 @@
     </h:panelGroup>
     <ui:fragment id="user-favorite-process-list" rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled and compactProcessWidgetBean.displayShowAllProcessesLink}">
       <ui:repeat varStatus="status" var="process" value="#{compactProcessWidgetBean.userProcesses}">
-        <c:set var="isExternalProcess"
-          value="#{!(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}" />
         <h:form id="process-item-form" styleClass="process-start-list-item"
           rendered="#{!compactProcessWidgetBean.editMode}">
-          <ui:include src="ProcessItemLink.xhtml">
-            <ui:param name="processLink" value="#{process.link}" />
-            <ui:param name="isExternalProcess" value="isExternalProcess" />
-          </ui:include>
+          <ui:include src="ProcessItemLink.xhtml" />
         </h:form>
       </ui:repeat>
       <h:form id="edit-process-item-form" rendered="#{compactProcessWidgetBean.editMode}">
@@ -45,8 +39,8 @@
                 <span class="fa #{process.icon} fa-fw" />
               </div>
               <div class="process-start-list-item-name order-list-item-name">
-                <span class="u-truncate-text"> <h:outputText value="#{process.processName}"
-                    title="#{process.processName}" />
+                <span class="u-truncate-text"> 
+                	<h:outputText value="#{process.processName}" title="#{process.processName}" />
                 </span>
               </div>
               <div class="process-start-list-item-action">
@@ -78,27 +72,10 @@
   <p:dialog id="add-new-process-dialog" styleClass="new-process-dialog" closeOnEscape="true"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewProcessDialogHeader')}" width="600"
     widgetVar="add-new-process-dialog" modal="true" dynamic="true" appendTo="@(body)" resizable="false"
-    rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}">
-    <h:form prependId="false">
-      <div class="field-group ui-g">
-        <div class="ui-g-3 ui-sm-12 field-group-label">
-          <p:outputLabel id="process-type-label" styleClass="ui-line-height-2"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processType')}" for="process-type" />
-        </div>
-        <div class="ui-g-7 ui-sm-12">
-          <p:selectOneRadio id="process-type" value="#{compactProcessWidgetBean.editingProcess.externalLink}"
-            styleClass="process-type">
-            <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processStartLink')}"
-              itemValue="false" />
-            <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/externalLink')}"
-              itemValue="true" />
-            <p:ajax event="change" update="process-specific-input-container"
-              listener="#{compactProcessWidgetBean.resetEditingProcess}" resetValues="true" />
-          </p:selectOneRadio>
-        </div>
-      </div>
+    rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}" >
+    <h:form prependId="false" >
       <h:panelGroup id="process-specific-input-container">
-        <h:panelGroup id="ivy-process-container" rendered="#{!compactProcessWidgetBean.editingProcess.externalLink}">
+        <h:panelGroup id="ivy-process-container">
           <div class="field-group ui-g">
             <div class="ui-g-3 ui-sm-12 field-group-label">
               <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
@@ -115,37 +92,11 @@
                   var="userProcess" itemValue="#{userProcess}" itemLabel="#{userProcess.processName}" scrollHeight="300"
                   queryDelay="500" itemtipAtPosition="right top" converter="userProcessAutoCompleteConverter"
                   forceSelection="true">
-                    <f:event
-                      listener="#{compactProcessWidgetBean.preRenderProcessAutoComplete(logic.collectProcesses())}"
-                      type="preRenderComponent" />
                     <p:ajax event="query" global="false" />
                     <p:ajax event="itemSelect" update="@form" resetValues="true" />
-                    <p:column>
-                      <h:outputText styleClass="autocomplete-tooltip" value="#{userProcess.processName}"
-                        title="#{compactProcessWidgetBean.getProcessDescription(userProcess.processName)}" />
-                    </p:column>
                   </p:autoComplete>
-                  <p:tooltip globalSelector=".autocomplete-tooltip" />
                   <p:message for="new-process-name" />
                 </h:panelGroup>
-            </div>
-          </div>
-        </h:panelGroup>
-        <h:panelGroup id="external-start-link-container"
-          rendered="#{compactProcessWidgetBean.editingProcess.externalLink}">
-          <div class="field-group ui-g">
-            <div class="ui-g-3 ui-sm-12 field-group-label">
-              <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
-                styleClass="ui-line-height-2" for="external-process-name" />
-            </div>
-            <div class="ui-g-9 ui-sm-12">
-              <h:panelGroup layout="block" styleClass="md-inputfield">
-                <p:inputText id="external-process-name" value="#{compactProcessWidgetBean.editingProcess.processName}"
-                  required="true"
-                  requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} 
-                        #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
-                <p:message for="external-process-name" />
-              </h:panelGroup>
             </div>
           </div>
         </h:panelGroup>
@@ -160,7 +111,7 @@
                 requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')} 
                         #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
                 placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/webLinkExample')}"
-                disabled="#{!compactProcessWidgetBean.editingProcess.externalLink}" />
+                disabled="#{true}" />
               <p:message for="process-start-link" />
             </h:panelGroup>
           </div>

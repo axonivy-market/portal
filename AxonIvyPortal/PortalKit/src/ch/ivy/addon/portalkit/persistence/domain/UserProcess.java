@@ -9,7 +9,6 @@ public class UserProcess extends BusinessEntity {
   private String icon;
   private String link;
   private String workflowId;
-  private String description;
   private Integer index;
   private boolean defaultProcess;
   private boolean isExternalLink;
@@ -22,13 +21,6 @@ public class UserProcess extends BusinessEntity {
     this.processName = processName;
     this.userName = userName;
     this.link = link;
-  }
-  
-  public UserProcess(String processName, String userName, String link, String workflowId) {
-    this.processName = processName;
-    this.userName = userName;
-    this.link = link;
-    this.workflowId = workflowId;
   }
 
   public String getUserName() {
@@ -77,14 +69,6 @@ public class UserProcess extends BusinessEntity {
 
   public void setWorkflowId(String workflowId) {
     this.workflowId = workflowId;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public void setDescription(String description) {
-    this.description = description;
   }
   
   public boolean isExternalLink() {

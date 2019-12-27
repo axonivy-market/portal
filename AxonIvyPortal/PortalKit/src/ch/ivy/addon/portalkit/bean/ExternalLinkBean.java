@@ -10,6 +10,7 @@ import javax.faces.context.FacesContext;
 import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portalkit.bo.ExternalLink;
+import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -31,9 +32,25 @@ public class ExternalLinkBean {
   
   public ExternalLink saveNewExternalLink() {
     externalLink.setUsername(Ivy.session().getSessionUser().getName());
+    correctLink();
     externaLinkService.save(externalLink);
     return externalLink;
   }
+  
+  private void correctLink() {
+    String processLink = externalLink.getLink().trim();
+    if (!isValidProcessLink(processLink)) {
+      processLink = Protocol.HTTP.getValue() + processLink;
+      externalLink.setLink(processLink);
+    }
+  }
+
+  private boolean isValidProcessLink(String processLink) {
+    String linkInLowerCase = processLink.toLowerCase();
+    return linkInLowerCase.startsWith(Protocol.HTTP.getValue())
+        || linkInLowerCase.startsWith(Protocol.HTTPS.getValue()) || linkInLowerCase.startsWith("/");
+  }
+
   
   public void startExternalLink(ExternalLink selectedExternalLink) throws IOException {
     FacesContext.getCurrentInstance().getExternalContext().redirect(selectedExternalLink.getLink());
