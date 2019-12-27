@@ -74,10 +74,12 @@ public class StatisticCaseCategoryFilter implements Serializable {
     for (CheckboxTreeNode node : categories) {
       if (node.getParent() != null && !Arrays.asList(categories).contains(node.getParent())) {
         String category = ((CaseNode) node.getData()).getCategory();
-        filterQuery.or().category().isEqualIgnoreCase(category);
-        if (!node.isLeaf()) {
+        if (node.isLeaf()) {
+          filterQuery.or().category().isEqualIgnoreCase(category);
+        } else {
+          filterQuery.or().category().isEqualIgnoreCase(category);
           filterQuery.or().category().isLikeIgnoreCase(String.format("%s%%", category + CaseTreeUtils.DELIMITER));
-        } 
+        }
       }
     }
     return caseQuery;
@@ -88,7 +90,11 @@ public class StatisticCaseCategoryFilter implements Serializable {
   }
 
   public void setCategories(CheckboxTreeNode[] categories) {
-    this.categories = (CheckboxTreeNode[]) ArrayUtils.nullToEmpty(categories); 
+    if (ArrayUtils.isEmpty(categories)) {
+      this.categories = new CheckboxTreeNode[] {};
+    } else {
+      this.categories = categories;
+    }
   }
 
   public CheckboxTreeNode getRoot() {
@@ -128,7 +134,8 @@ public class StatisticCaseCategoryFilter implements Serializable {
     categories = selectedCategories.toArray(new CheckboxTreeNode[selectedCategories.size()]);
   }
 
-  private void checkCategoryTreeNode(CheckboxTreeNode node, List<CheckboxTreeNode> selectedCategories, List<String> paths) {
+  private void checkCategoryTreeNode(CheckboxTreeNode node, List<CheckboxTreeNode> selectedCategories,
+      List<String> paths) {
     if (node == null) {
       return;
     }
