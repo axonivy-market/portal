@@ -6,14 +6,15 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 
 <ui:composition>
-  <p:link id="external-process-item" href="#{process.link}" target="_blank"
-    rendered="#{not compactProcessWidgetBean.editMode and isExternalProcess}" styleClass="external-process-item">
+  <p:commandLink id="external-process-item" actionListener="#{compactProcessWidgetBean.startProcess(process)}" 
+    target="_blank" ajax="false" styleClass="process-item"
+    rendered="#{not compactProcessWidgetBean.editMode and process.isExternalLink()}" >
     <ui:include src="ProcessItem.xhtml">
       <ui:param name="processType" value="external-process-item" />
     </ui:include>
-  </p:link>
+  </p:commandLink>
   <p:commandLink id="process-item" actionListener="#{compactProcessWidgetBean.startProcess(process)}"
-    styleClass="process-item" rendered="#{not compactProcessWidgetBean.editMode and !isExternalProcess}">
+    styleClass="process-item" rendered="#{not compactProcessWidgetBean.editMode and !process.isExternalLink()}">
     <ui:include src="ProcessItem.xhtml">
       <ui:param name="processType" value="process-item" />
     </ui:include>
