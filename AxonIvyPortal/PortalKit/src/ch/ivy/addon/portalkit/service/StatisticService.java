@@ -1305,6 +1305,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   public boolean hasDefaultChart(long userId) {
     List<StatisticChart> findStatisticChartsByUserId = findStatisticChartsByUserId(userId);
+    return isDefaultChart(findStatisticChartsByUserId);
+  }
+  
+  public boolean isDefaultChart(List<StatisticChart> findStatisticChartsByUserId) {
     return findStatisticChartsByUserId.stream().anyMatch(chart -> StringUtils.equalsIgnoreCase("true", chart.getDefaultChart()));
   }
   

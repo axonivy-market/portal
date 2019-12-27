@@ -11,6 +11,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.model.charts.bar.BarChartModel;
+import org.primefaces.model.charts.donut.DonutChartModel;
 
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
@@ -93,6 +95,28 @@ public class StatisticDashboardBean implements Serializable {
     return StringUtils.EMPTY;
   }
 
+  public List<StatisticChart> generatePlaceholderForChart(List<StatisticChart> statisticChartList) {
+    DonutChartModel donutChartModel = statisticService.createDonutChartPlaceholder();
+    BarChartModel barChartModel = statisticService.createBarChartPlaceholder();
+    for (StatisticChart statisticChart : statisticChartList) {
+      switch (statisticChart.getType()) {
+        case TASK_BY_PRIORITY:
+        case CASES_BY_STATE:
+        case CASES_BY_FINISHED_TASK:
+        case CASES_BY_FINISHED_TIME:
+          statisticChart.setDonutChartModel(donutChartModel);
+          break;
+        case TASK_BY_EXPIRY:
+        case ELAPSED_TIME_BY_CASE_CATEGORY:
+          statisticChart.setBarChartModel(barChartModel);
+          break;
+        default:
+          break;
+      }
+    }
+
+    return statisticChartList;
+  }
 
   public boolean isTaskByPriority(StatisticChart statisticChart) {
     if (statisticChart == null) {
