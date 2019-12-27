@@ -30,7 +30,6 @@ import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.service.TaskColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.taskfilter.DefaultTaskFilterContainer;
-import ch.ivy.addon.portalkit.taskfilter.TaskCategoryFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
@@ -157,9 +156,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       throws IllegalAccessException, InvocationTargetException {
     if (sessionTaskFilter.getClass() == filter.getClass()) {
       BeanUtils.copyProperties(filter, sessionTaskFilter);
-      if (filter instanceof TaskCategoryFilter) {
-        ((TaskCategoryFilter) filter).updateRootAndCategoryPaths();
-      }
       selectedFilters.add(filter);
     }
   }
