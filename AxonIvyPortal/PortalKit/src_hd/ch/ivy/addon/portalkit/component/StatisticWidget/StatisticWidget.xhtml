@@ -14,11 +14,11 @@
   <h:outputScript library="chartjs-plugin" name="chartjs-plugin-datalabels.min.js"/>
 
   <f:event listener="#{logic.setCompactMode(cc.attrs.compactMode)}" type="preRenderComponent" />
-  <div id="#{cc.clientId}" class="widget statistic-widget-container #{cc.attrs.compactMode ? 'statistic-widget-compact-mode-container' : ''}">
+  <div id="#{cc.clientId}" class="widget statistic-widget-container #{!cc.attrs.compactMode ? '':'statistic-widget-compact-mode-container'}">
     <h:panelGroup id="header" layout="block" styleClass="widget-header">
       <div class="widget-header-main #{data.createMode ? 'creation-mode':''}">
         <h:outputText styleClass="widget-header-main-title" 
-          value="#{ivy.cms.co(data.createMode ? '/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/createNewStatistic' : '/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statistics')}" />
+          value="#{ivy.cms.co(!data.createMode ? '/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statistics' : '/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/createNewStatistic')}" />
         <h:panelGroup id="statistic-widget-header" layout="block" rendered="#{data.isDisplayShowAllChartLink and cc.attrs.compactMode}"
           styleClass="widget-header-main-menu">
           <cc:renderFacet name="headerToolbar" />
@@ -36,7 +36,8 @@
             <p:spacer width="10px" />
           </p:commandLink>
           <p:commandLink id="restore-default-chart-link" onclick="PF('restore-confirmation-dialog').show();"
-            rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart and data.hasDefaultChart and data.canCreateNewCharts}">
+            rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart 
+          and data.hasDefaultChart and data.canCreateNewCharts}">
             <i class="fa fa-refresh" />
             <p:spacer width="3px" />
             <h:outputText id="restore-default-chart-link-label"
