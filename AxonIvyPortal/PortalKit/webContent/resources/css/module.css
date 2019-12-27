@@ -77,7 +77,6 @@
 
 .widget-header-sub {
   flex: 1 0 auto;
-  margin-left: 25px;
   align-self: flex-end;
 }
 
@@ -793,9 +792,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   .process-start-list-item-name-text {
     width: calc(100vw - 100px) !important;
   }
-  .process-widget .widget-header-sub {
-    margin-left: 0 !important;
-  }
 }
 
 /* Small screen */
@@ -1088,14 +1084,7 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 
 .process-start-list-item .ui-commandlink.process-item {
   margin: 0 5px;
-}
-
-.process-start-list-item .ui-commandlink.process-item, .process-start-list-item .ui-link.external-process-item {
   width: 100%;
-}
-
-.process-start-list-item .ui-link.external-process-item {
-  min-width: 60%;
 }
 
 .process-start-list-item:hover,
