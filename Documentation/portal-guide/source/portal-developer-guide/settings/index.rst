@@ -54,6 +54,7 @@ Setup Global settings by configuration file
    This feature only support Designer.
 
 Process developer can setup global settings of Portal in file ``portal_config.properties`` which put under project ``PortalTemplate``.
+
 |portal-global-setting|
 
 This file already contains list of settings with their default values. Simply modify setting value and restart Portal, these settings will apply immediately.
