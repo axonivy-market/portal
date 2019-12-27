@@ -56,7 +56,6 @@ public class ProcessWidgetBean implements Serializable {
   @PostConstruct
   public void init() {
     processWidgetComponentId = Attrs.currentContext().getBuildInAttribute("clientId");
-
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
     createExpressWorkflowProcessStart = collector.findExpressCreationProcess();
 
