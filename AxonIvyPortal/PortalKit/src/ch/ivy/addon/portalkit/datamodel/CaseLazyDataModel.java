@@ -18,7 +18,6 @@ import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.CaseColumnsConfiguration;
-import ch.ivy.addon.portalkit.casefilter.CaseCategoryFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
@@ -376,9 +375,6 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
       throws IllegalAccessException, InvocationTargetException {
     if (sessionCaseFilter.getClass() == filter.getClass()) {
       BeanUtils.copyProperties(filter, sessionCaseFilter);
-      if (filter instanceof CaseCategoryFilter) {
-        ((CaseCategoryFilter) filter).updateRootAndCategoryPaths();
-      }
       selectedFilters.add(filter);
     }
   }
