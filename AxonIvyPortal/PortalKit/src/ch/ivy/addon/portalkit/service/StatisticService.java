@@ -142,16 +142,28 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @param userId user id
    * @return all statistic charts created by user id
    */
+  @SuppressWarnings("unchecked")
   public List<StatisticChart> findStatisticChartsByUserId(long userId) {
     List<StatisticChart> result = new ArrayList<>();
     try {
+      Object attribute = Ivy.session().getAttribute(String.valueOf(userId));
+      if (attribute != null) {
+        return (List<StatisticChart>)attribute;
+      }
+      
       Filter<StatisticChart> statisticChartQuery = repo().search(getType()).numberField(USER_ID).isEqualTo(userId);
       Result<StatisticChart> queryResult = statisticChartQuery.execute();
       long totalCount = queryResult.totalCount();
       if(totalCount > LIMIT_10) {
         queryResult = statisticChartQuery.limit(Math.toIntExact(totalCount)).execute();
       }
-      result = queryResult.getAll().stream().sorted(Comparator.comparing(StatisticChart::getPosition)).collect(Collectors.toList());
+      result = queryResult
+          .getAll()
+          .stream()
+          .sorted(Comparator.comparing(StatisticChart::getPosition))
+          .collect(Collectors.toList());
+      
+      Ivy.session().setAttribute(String.valueOf(userId), result);
       return result;
     } catch (Exception e) {
       Ivy.log().error(e);
@@ -715,6 +727,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       statisticChart.setFilter(filter);
     }
     BusinessDataInfo<StatisticChart> info = save(statisticChart);
+    Ivy.session().removeAttribute(String.valueOf(creatorId));
     return findById(info.getId());
   }
 
@@ -1301,6 +1314,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   public void removeStatisticChartsByUserId(long userId) {
     List<StatisticChart> result = findStatisticChartsByUserId(userId);
     result.stream().forEach(item -> repo().delete(item));
+    Ivy.session().removeAttribute(String.valueOf(userId));
   }
 
   public boolean hasDefaultChart(long userId) {
