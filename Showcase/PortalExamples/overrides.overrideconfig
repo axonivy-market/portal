@@ -1,5 +1,4 @@
 {
-  /HTML_DIALOG *
   /PROCESS {
     /Functional-Processes.DefaultChart "Functional Processes/DefaultChartOverride"
     /Functional-Processes.CalculateTaskDelegate "Functional Processes/CalculateTaskDelegateOverride"
@@ -21,4 +20,5 @@
     /Functional-Processes.DefaultStatisticCustomField "Functional Processes/DefaultStatisticCustomFieldOverride"
     /Functional-Processes.OpenPortalCases "Functional Processes/OpenPortalCasesOverride"
   }
+  /HTML_DIALOG *
 }
