@@ -34,15 +34,17 @@ public class AnnouncementTest extends BaseTest {
     adminSettingsPage.closeAdminSettingDialog();
     adminSettingsPage.closeInformConfigDialog();
 
+    homePage = new HomePage();
     LanguagePage languagePage = homePage.openLanguagePage();
     languagePage.selectLanguage(0);
     languagePage.save();
+    homePage = new HomePage();
     assertEquals("lies mich", homePage.getAnnouncementMessage());
 
-    homePage = new HomePage();
     languagePage = homePage.openLanguagePage();
     languagePage.selectLanguage(1);
     languagePage.save();
+    homePage = new HomePage();
     assertEquals("Readme1", homePage.getAnnouncementMessage());
 
   }
