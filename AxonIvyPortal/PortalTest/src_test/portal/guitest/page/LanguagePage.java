@@ -19,6 +19,5 @@ public class LanguagePage extends TemplatePage {
   public void save() {
     WebElement save = findElementById("language-settings-form:language-settings:save-settings");
     save.click();
-    waitAjaxIndicatorDisappear();
   }
 }
