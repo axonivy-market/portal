@@ -101,7 +101,6 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
       if (persistedGlobalSetting != null) {
         entity.setId(persistedGlobalSetting.getId());
       }
-    IvyCacheService.newInstance().cacheGlobalSetting(entity.getKey(), StringUtils.defaultString(entity.getValue()));
     return super.save(entity);
   }
 }
