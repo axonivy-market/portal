@@ -380,6 +380,7 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.AbsenceService;
 IvyAbsenceResultDTO dto = AbsenceService.newInstance().findAbsences(null, in.apps);
 out.absencesByUser = dto.getIvyAbsencesByUser();
 out.errors = dto.errors;' #txt
+Se0 f28 security system #txt
 Se0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

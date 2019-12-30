@@ -1,63 +1,49 @@
 package ch.ivy.addon.portalkit.dto;
 
-import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.IRole;
 
-public class UserDTO {
+public class RoleDTO {
   
   private long id;
   private String name;
   private String displayName;
   private String memberName;
-  private String email;
   
-  public UserDTO() {}
-
-  public UserDTO(IUser user) {
-    this.name = user.getName();
-    this.memberName = user.getMemberName();
-    this.displayName = user.getDisplayName();
-    this.email = user.getEMailAddress();
-    this.id = user.getId();
+  public RoleDTO() {
+    super();
   }
-
-  public String getName() {
-    return name;
+  
+  public RoleDTO(IRole iRole) {
+    id = iRole.getId();
+    name = iRole.getName();
+    displayName = iRole.getDisplayName();
+    memberName = iRole.getMemberName();
   }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public String getDisplayName() {
-    return displayName;
-  }
-
-  public void setDisplayName(String displayName) {
-    this.displayName = displayName;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
-  }
-
+  
   public long getId() {
     return id;
   }
-
   public void setId(long id) {
     this.id = id;
   }
-
+  public String getName() {
+    return name;
+  }
+  public void setName(String name) {
+    this.name = name;
+  }
+  public String getDisplayName() {
+    return displayName;
+  }
+  public void setDisplayName(String displayName) {
+    this.displayName = displayName;
+  }
   public String getMemberName() {
     return memberName;
   }
-
   public void setMemberName(String memberName) {
     this.memberName = memberName;
   }
-
+  
+  
 }
