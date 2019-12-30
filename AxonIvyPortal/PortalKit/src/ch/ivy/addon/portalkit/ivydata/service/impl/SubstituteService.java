@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;
@@ -23,7 +24,9 @@ import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserSubstitute;
@@ -117,7 +120,7 @@ public class SubstituteService implements ISubstituteService {
       ivySubstitute.setSubstitionRole(userSubstitute.getSubstitutionRole());
       ivySubstitute.setSubstitionRoleDisplayName(userSubstitute.getSubstitutionRole().getDisplayName());
     }
-    ivySubstitute.setSubstituteUser(userSubstitute.getSubstituteUser());
+    ivySubstitute.setSubstituteUser(new UserDTO(userSubstitute.getSubstituteUser()));
     ivySubstitute.setDescription(userSubstitute.getDescription());
     return ivySubstitute;
   }
@@ -149,10 +152,11 @@ public class SubstituteService implements ISubstituteService {
     });
   }
 
-  private void createSubstitutes(List<IvySubstitute> substitutes, IUser user) {
+  private void createSubstitutes(List<IvySubstitute> substitutes, IUser user) throws PersistencyException, EnvironmentNotAvailableException, PortalIvyDataException {
     for (IvySubstitute ivySubstitute : substitutes) {
       if (ivySubstitute.getSubstituteUser() != null) {
-        user.createSubstitute(ivySubstitute.getSubstituteUser(), ivySubstitute.getSubstitionRole(), ivySubstitute.getDescription());
+        IUser iUser = ServiceUtilities.findUser(ivySubstitute.getSubstituteUser().getName(), Ivy.request().getApplication());
+        user.createSubstitute(iUser, ivySubstitute.getSubstitionRole(), ivySubstitute.getDescription());
       }
     }
   }
