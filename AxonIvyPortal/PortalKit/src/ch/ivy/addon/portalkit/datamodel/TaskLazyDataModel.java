@@ -168,7 +168,8 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   @Override
   public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-    if (selectedTaskFilter != null && !selectedTaskFilter.reloadView()) {
+    if (selectedTaskFilter != null && !selectedTaskFilter.reloadView()
+        || validateStateFilter(selectedTaskFilter)) {
       selectedTaskFilter = null;
       return data;
     }
@@ -196,6 +197,25 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     }
     data.addAll(foundTasks);
     return foundTasks;
+  }
+
+  /**
+   * This method validates the State filter's value in current TaskSearchCriteria with new State filter which is added
+   * new on UI If selectedTaskFilter is State filter and has the same value in TaskSearchCriteria, we will not execute
+   * query again to database
+   * 
+   * @param selectedTaskFilter
+   * @return state's value is same or not
+   */
+  private boolean validateStateFilter(TaskFilter selectedTaskFilter) {
+    if (selectedTaskFilter != null && selectedTaskFilter instanceof TaskStateFilter) {
+      TaskStateFilter caseStateFilter = (TaskStateFilter) selectedTaskFilter;
+      if (CollectionUtils.isNotEmpty(criteria.getIncludedStates())
+          && criteria.getIncludedStates().equals(caseStateFilter.getSelectedFilteredStates())) {
+        return true;
+      }
+    }
+    return false;
   }
 
   /**
