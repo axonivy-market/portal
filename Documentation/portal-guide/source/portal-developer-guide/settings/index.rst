@@ -51,13 +51,57 @@ clicking ``Restore All To Defaults`` button.
 Setup Global settings by configuration file
 """""""""""""""""""""""""""""""""""""""""""
 .. important:: 
-   This feature only support Designer.
+   This feature only support modification of Portal settings in Designer.
 
-Process developer can setup global settings of Portal in file ``portal_config.properties`` which put under project ``PortalTemplate``.
+Process developer can setup global settings of Portal in file ``portal_settings_config.properties`` which put under project ``PortalKit``.
 
-|portal-global-setting|
+   .. code-block:: Python
 
-This file already contains list of settings with their default values. Simply modify setting value and restart Portal, these settings will apply immediately.
+      # This file is for developer configure values for Portal settings.
+      # As developer, you only need to remove comment mark of corresponding settings and modify their value.
+      # Portal will apply setting values once you start designer.
+
+      # System tasks visibility
+      #HIDE_SYSTEM_TASKS_FROM_HISTORY = true
+      #HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR = false
+
+      # Portal chat settings
+      #ENABLE_GROUP_CHAT = false
+      #ENABLE_PRIVATE_CHAT = false
+      #CHAT_RESPONSE_TIMEOUT =
+
+      # Documents security settings
+      #ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT = false
+      #UPLOAD_DOCUMENT_WHITELIST_EXTENSION = doc, docx, xls, xlsx, xlsm, csv, pdf, ppt, pptx, txt, zip, jpg, jpeg, bmp, png
+
+      # Time settings
+      #HIDE_TIME = false
+      #CLIENT_SIDE_TIMEOUT =
+      #REFRESH_TASK_LIST_INTERVAL = 10000
+
+      # Task/case counting functions
+      #DISABLE_CASE_COUNT = false
+      #DISABLE_TASK_COUNT = false
+
+      # IFrame setting
+      #EMBED_IN_FRAME = true
+
+      # Others
+      #HOMEPAGE_URL =
+      #SHOW_ENVIRONMENT_INFO = false
+      #ENABLE_CASE_OWNER = false
+      #EXPRESS_END_PAGE = true
+      #HIDE_CHANGE_PASSWORD_BUTTON = false
+      #HIDE_LOGOUT_BUTTON = false
+      #HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE = false
+      #HIDE_STATISTIC_WIDGET = false
+      #ENABLE_USER_FAVORITES = true
+      #DISPLAY_MESSAGE_AFTER_FINISH_TASK = true
+
+This file already contains list of settings with their default values.
+These settings will applied once you start Portal.
+
+If you change configuration file while coding, please stop engine in designer and start engine again for changes take effect.
 
 .. _settings-admin-settings-setup-multi-portals:
 
@@ -540,5 +584,4 @@ Global variables
 .. |add-new-language| image:: images/settings/add-new-language.png
 .. |multi-portal-open-settings| image:: images/settings/multi-portal-open-settings.png
 .. |multi-portal-add-application| image:: images/settings/multi-portal-add-application.png
-.. |portal-global-setting| image:: images/settings/portal-global-setting.png
 
