@@ -18,6 +18,7 @@
   <!-- TAB VIEW -->
   <p:tabView id="adminTabView" rendered="#{permissionBean.hasAdminPermission()}">
 
+    <p:ajax event="tabChange" listener="#{logic.onTabChange}" />	
     <!-- APPLICATION TAB -->
     <p:tab id="applicationTab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applications')}">
       <h:form prependId="false" id="applicationForm">
