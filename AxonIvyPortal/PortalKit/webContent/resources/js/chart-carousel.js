@@ -73,7 +73,7 @@ $(document).ready(function() {
 
   function updateHeaderTitle(curentIndex, statisticCarousel) {
     headerTitle.get(0).innerHTML = "";
-    headerTitle.append(statisticCarousel.find('[id$="' + curentIndex + ':chart-name-container"]').clone());
+    headerTitle.append(statisticCarousel.find('[id$=":' + curentIndex + ':chart-name-container"]').clone());
   }
 
 });
