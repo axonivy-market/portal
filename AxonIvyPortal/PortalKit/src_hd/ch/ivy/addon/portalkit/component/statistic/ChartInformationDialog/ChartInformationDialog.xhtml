@@ -91,11 +91,10 @@
         </p:column>
         <p:column>
           <h:panelGroup id="selected-case-categories" layout="block" styleClass="list-container">
-            <h:outputText rendered="#{filter.isAllCategoriesSelected}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/allSelected')}"/>
-            <ui:repeat rendered="#{!filter.isAllCategoriesSelected}" var="category" value="#{filter.selectedCaseCategories}">
-              <h:outputText value="#{category == '' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noCategory') : category}" styleClass="display-block" />
+            <h:outputText rendered="#{empty filter.selectedCaseCategories}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/allSelected')}"/>
+            <ui:repeat rendered="#{not empty filter.selectedCaseCategories}" var="category" value="#{filter.selectedCaseCategories}">
+              <h:outputText value="#{category eq '[No Category]' ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noCategory') : category}" styleClass="display-block" />
             </ui:repeat>
-            <h:outputText rendered="#{filter.selectedCaseCategories.isEmpty() and !filter.isAllCategoriesSelected}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/noneSelected')}" />
           </h:panelGroup>
         </p:column>
       </p:row>
