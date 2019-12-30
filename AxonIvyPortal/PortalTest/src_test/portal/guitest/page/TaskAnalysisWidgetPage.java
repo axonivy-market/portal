@@ -106,7 +106,11 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   public void filterByTaskCategory(String selectedCategory) {
     click(By.cssSelector("button[id$='task-category-filter:filter-open-form:advanced-filter-command']"));
     WebElement selectionElement = findElementByCssSelector("[id$='task-category-filter:filter-input-form:advanced-filter-panel-content']");
-    for (WebElement labelElement : findChildElementsByClassName(selectionElement, "ui-treenode-label")) {
+    List<WebElement> categoryTreeLabels = findChildElementsByClassName(selectionElement, "ui-treenode-label");
+    //Find parent node of tree first and uncheck it
+    WebElement parentNodeOfTree = categoryTreeLabels.stream().findFirst().get();
+    parentNodeOfTree.click();
+    for (WebElement labelElement : categoryTreeLabels) {
       if (selectedCategory.contains(labelElement.getText())) {
         labelElement.click();
         break;
@@ -140,7 +144,12 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   public void filterByCaseCategory(String selectedCategory) {
     click(By.cssSelector("button[id$='case-category-filter:filter-open-form:advanced-filter-command']"));
     WebElement selectionElement = findElementByCssSelector("[id$='case-category-filter:filter-input-form:advanced-filter-panel-content']");
-    for (WebElement labelElement : findChildElementsByClassName(selectionElement, "ui-treenode-label")) {
+    List<WebElement> categoryTreeLabels = findChildElementsByClassName(selectionElement, "ui-treenode-label");
+    //Find parent node of tree first and uncheck it
+    WebElement parentNodeOfTree = categoryTreeLabels.stream().findFirst().get();
+    parentNodeOfTree.click();
+    
+    for (WebElement labelElement : categoryTreeLabels) {
       if (selectedCategory.contains(labelElement.getText())) {
         labelElement.click();
         break;
