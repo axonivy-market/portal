@@ -12,7 +12,7 @@ import org.primefaces.model.CheckboxTreeNode;
 import org.primefaces.model.TreeNode;
 import org.primefaces.util.TreeUtils;
 
-import ch.ivy.addon.portalkit.bo.TaskNode;
+import ch.ivy.addon.portalkit.bo.CategoryNode;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
@@ -30,7 +30,6 @@ public class TaskTreeUtils {
   private TaskTreeUtils() {}
   
   public static CheckboxTreeNode buildTaskCategoryCheckboxTreeRoot() {
-
     CheckboxTreeNode root = buildRoot();
     RegisteredApplicationService service = new RegisteredApplicationService();
     List<String> involvedApplications =
@@ -40,7 +39,7 @@ public class TaskTreeUtils {
           .call().get("taskQuery", TaskQuery.class);
     });
     CategoryTree allTaskCategoryTree = findAllTaskCategoryTree(involvedApplications, taskQuery);
-    convertToCheckboxTreeNode(root, allTaskCategoryTree);
+    convertToCheckboxTreeNode((CheckboxTreeNode) root.getChildren().get(0), allTaskCategoryTree);
     sortNode(root);
     return root;
   }
@@ -58,11 +57,10 @@ public class TaskTreeUtils {
   }
   
   private static void convertToCheckboxTreeNode(CheckboxTreeNode root, CategoryTree categoryTree) {
-    String nodeType = "default";
     for (CategoryTree category : categoryTree.getChildren()) {
       String name = category.getCategory().getName();
       String categoryRawPath = category.getRawPath();
-      CheckboxTreeNode childNode = buildTaskCategoryCheckBoxTreeNode(root, name, nodeType, categoryRawPath);
+      CheckboxTreeNode childNode = buildTaskCategoryCheckBoxTreeNode(root, name, categoryRawPath);
       root.getChildren().add(childNode);
       if (CollectionUtils.isNotEmpty(category.getChildren())) {
         convertToCheckboxTreeNode(childNode, category);
@@ -72,48 +70,62 @@ public class TaskTreeUtils {
   
   public static void sortNode(TreeNode node) {
     Comparator<TreeNode> comparator = (firstNode, secondNode) -> {
-      TaskNode firstNodeData = (TaskNode) firstNode.getData();
-      TaskNode secondNodeData = (TaskNode) secondNode.getData();
+      CategoryNode firstNodeData = (CategoryNode) firstNode.getData();
+      CategoryNode secondNodeData = (CategoryNode) secondNode.getData();
       return firstNodeData.getValue().compareToIgnoreCase(secondNodeData.getValue());
     };
     TreeUtils.sortNode(node, comparator);
   }
   
-  private static CheckboxTreeNode buildTaskCategoryCheckBoxTreeNode(CheckboxTreeNode parentNode, String newNodeName, String nodeType, String category) {
+  private static CheckboxTreeNode buildTaskCategoryCheckBoxTreeNode(CheckboxTreeNode parentNode, String newNodeName, String category) {
     List<TreeNode> childNodes = parentNode.getChildren();
     for (TreeNode childNode : childNodes) {
-      TaskNode childNodeData = (TaskNode) childNode.getData();
+      CategoryNode childNodeData = (CategoryNode) childNode.getData();
       if (category.equalsIgnoreCase(childNodeData.getValue())) {
         return (CheckboxTreeNode) childNode;
       }
     }
 
-    TaskNode nodeData = buildTaskNodeFrom(newNodeName, category);
-    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(nodeType, nodeData, parentNode);
+    CategoryNode nodeData = buildTaskNodeFrom(newNodeName, category);
+    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(nodeData, parentNode);
     checkboxTreeNode.setExpanded(true);
-    checkboxTreeNode.setSelected(false);
+    checkboxTreeNode.setSelected(true);
     return checkboxTreeNode;
   }
 
-  private static TaskNode buildTaskNodeFrom(String name, String category) {
-    TaskNode nodeData = new TaskNode();
+  private static CategoryNode buildTaskNodeFrom(String name, String category) {
+    CategoryNode nodeData = new CategoryNode();
     nodeData.setValue(name);
     nodeData.setCategory(category);
-    nodeData.setRootNodeAllTask(false);
-    nodeData.setFirstCategoryNode(false);
     return nodeData;
   }
   
   private static CheckboxTreeNode buildRoot() {
-    TaskNode nodeData = new TaskNode();
+    CategoryNode nodeData = new CategoryNode();
     nodeData.setValue(StringUtils.EMPTY);
     nodeData.setCategory(StringUtils.EMPTY);
-    nodeData.setRootNodeAllTask(true);
-    nodeData.setFirstCategoryNode(true);
     CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(StringUtils.EMPTY, nodeData, null);
     checkboxTreeNode.setExpanded(true);
-    checkboxTreeNode.setSelected(false);
+    checkboxTreeNode.setSelected(true);
+    buildAllCategoriesNode(checkboxTreeNode);
     return checkboxTreeNode;
   }
 
+  private static void buildAllCategoriesNode(CheckboxTreeNode root) {
+    CategoryNode nodeData = new CategoryNode();
+    nodeData.setValue(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/allCategories"));
+    nodeData.setCategory(StringUtils.EMPTY);
+    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(nodeData, root);
+    checkboxTreeNode.setExpanded(true);
+    checkboxTreeNode.setSelected(true);
+    buildNoCategoryNode(checkboxTreeNode);
+  }
+
+  private static void buildNoCategoryNode(CheckboxTreeNode parent) {
+    CategoryNode nodeData = new CategoryNode();
+    nodeData.setValue(Ivy.cms().co(CategoryUtils.NO_CATEGORY_CMS));
+    nodeData.setCategory(CategoryUtils.NO_CATEGORY);
+    CheckboxTreeNode checkboxTreeNode = new CheckboxTreeNode(nodeData, parent);
+    checkboxTreeNode.setSelected(true);
+  }
 }
