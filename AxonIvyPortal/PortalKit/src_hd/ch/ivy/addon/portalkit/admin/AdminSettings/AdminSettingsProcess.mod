@@ -188,6 +188,9 @@ As0 @PushWFArc f79 '' #zField
 As0 @UdMethod f87 '' #zField
 As0 @UdProcessEnd f89 '' #zField
 As0 @PushWFArc f90 '' #zField
+As0 @UdMethod f2 '' #zField
+As0 @UdProcessEnd f8 '' #zField
+As0 @PushWFArc f61 '' #zField
 >Proto As0 As0 AdminUIProcess #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
@@ -1776,6 +1779,34 @@ As0 f89 587 2099 26 26 0 12 #rect
 As0 f89 @|UdProcessEndIcon #fIcon
 As0 f90 expr out #txt
 As0 f90 600 1957 600 2099 #arcP
+As0 f2 guid 16F55D573C483035 #txt
+As0 f2 method onTabChange(org.primefaces.event.TabChangeEvent) #txt
+As0 f2 inParameterDecl '<org.primefaces.event.TabChangeEvent tabEvent> param;' #txt
+As0 f2 inActionCode 'import org.primefaces.PrimeFaces;
+import ch.ivy.addon.portalkit.service.AnnouncementService;
+import org.primefaces.component.tabview.TabView;
+import org.primefaces.event.TabChangeEvent;
+
+TabChangeEvent tabChangeEvent = param.tabEvent;
+TabView tabView = tabChangeEvent.getComponent() as TabView;
+out.tabIndexActive = tabView.getChildren().indexOf(tabChangeEvent.getTab());
+if (out.tabIndexActive == 1) {
+	out.settingTabOpened = true;
+	PrimeFaces.current().executeScript("PF(''settingTable'').filter()");
+}' #txt
+As0 f2 outParameterDecl '<> result;' #txt
+As0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>onTabChange(TabChangeEvent)</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f2 883 627 26 26 -27 -39 #rect
+As0 f2 @|UdMethodIcon #fIcon
+As0 f8 883 755 26 26 0 12 #rect
+As0 f8 @|UdProcessEndIcon #fIcon
+As0 f61 896 653 896 755 #arcP
 >Proto As0 .type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -2025,6 +2056,8 @@ As0 f85 mainOut f79 tail #connect
 As0 f79 head f77 mainIn #connect
 As0 f87 mainOut f90 tail #connect
 As0 f90 head f89 mainIn #connect
+As0 f2 mainOut f61 tail #connect
+As0 f61 head f8 mainIn #connect
 Ct0 g0 m f0 tail #connect
 Ct0 f0 head f51 mainIn #connect
 Ct0 f1 head g1 m #connect
