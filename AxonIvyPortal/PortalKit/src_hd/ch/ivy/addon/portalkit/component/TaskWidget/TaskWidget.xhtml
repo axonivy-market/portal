@@ -261,10 +261,10 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterVisibility')}" />
         <p:selectOneRadio id="save-filter-type-radio" value="#{data.filterType}">
           <f:selectItem id="only-me"
-            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterTypeOnlyMe')}"
+            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeOnlyMe')}"
             itemValue="ONLY_ME" />
           <f:selectItem id="all-users" itemDisabled="#{!permissionBean.hasAdminPermission()}"
-            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterTypeAllUsers')}"
+            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeAllUsers')}"
             itemValue="ALL_USERS" />
         </p:selectOneRadio>
       </h:panelGrid>
