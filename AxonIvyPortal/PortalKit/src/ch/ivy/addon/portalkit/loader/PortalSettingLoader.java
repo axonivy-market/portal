@@ -39,12 +39,7 @@ public class PortalSettingLoader {
 
     GlobalSettingService globalSettingService = new GlobalSettingService();
     List<GlobalSetting> globalSettings = globalSettingService.findAllGlobalSetting();
-    
-    //Delete saved value in iwa_applicationproperty
-    for (GlobalVariable globalVariable : GlobalVariable.values()) {
-      globalSettingService.resetGlobalSetting(globalVariable.toString());
-    }
-    
+
     List<GlobalSetting> globalSettingsForSave = new ArrayList<>();
     
     //read properties from configuration file and write to iwa_applicationproperty
