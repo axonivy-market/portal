@@ -44,18 +44,18 @@ import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
 StatisticService service = new StatisticService();
+StatisticFilter statisticFilter = new StatisticFilter();
 String chartName1 = "My default chart 1";
 String chartName2 = "My default chart 2";
-StatisticChartType chartType = StatisticChartType.TASK_BY_PRIORITY;
-StatisticFilter statisticFilter = new StatisticFilter().init();
+long sessionUserId = ivy.session.getSessionUser().getId();
 
 if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName1)) {
-  StatisticChart newChart1 = service.createStatisticChart(statisticFilter, chartName1, chartType, ivy.session.getSessionUser().getId(), true);
+  StatisticChart newChart1 = service.createStatisticChart(statisticFilter, chartName1, StatisticChartType.TASK_BY_EXPIRY, sessionUserId, true);
   in.defaultCharts.add(newChart1);		
 }
 
 if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName2)) {
-  StatisticChart newChart2 = service.createStatisticChart(statisticFilter, chartName2, chartType, ivy.session.getSessionUser().getId(), true);
+  StatisticChart newChart2 = service.createStatisticChart(statisticFilter, chartName2, StatisticChartType.CASES_BY_STATE, sessionUserId, true);
   in.defaultCharts.add(newChart2);		
 }' #txt
 Dt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

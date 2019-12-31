@@ -108,6 +108,7 @@ import ch.ivy.addon.portalkit.bo.PriorityStatistic;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria;
 import ch.ivy.addon.portalkit.statistics.Colors;
@@ -146,7 +147,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   public List<StatisticChart> findStatisticChartsByUserId(long userId) {
     List<StatisticChart> result = new ArrayList<>();
     try {
-      Object attribute = Ivy.session().getAttribute(String.valueOf(userId));
+      Object attribute = Ivy.session().getAttribute(SessionAttribute.USER_CHART.toString());
       if (attribute != null) {
         return (List<StatisticChart>)attribute;
       }
@@ -163,7 +164,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
           .sorted(Comparator.comparing(StatisticChart::getPosition))
           .collect(Collectors.toList());
       
-      Ivy.session().setAttribute(String.valueOf(userId), result);
+      Ivy.session().setAttribute(SessionAttribute.USER_CHART.toString(), result);
       return result;
     } catch (Exception e) {
       Ivy.log().error(e);
@@ -727,7 +728,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       statisticChart.setFilter(filter);
     }
     BusinessDataInfo<StatisticChart> info = save(statisticChart);
-    Ivy.session().removeAttribute(String.valueOf(creatorId));
+    Ivy.session().removeAttribute(SessionAttribute.USER_CHART.toString());
     return findById(info.getId());
   }
 
@@ -1314,7 +1315,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   public void removeStatisticChartsByUserId(long userId) {
     List<StatisticChart> result = findStatisticChartsByUserId(userId);
     result.stream().forEach(item -> repo().delete(item));
-    Ivy.session().removeAttribute(String.valueOf(userId));
+    Ivy.session().removeAttribute(SessionAttribute.USER_CHART.toString());
   }
 
   public boolean hasDefaultChart(long userId) {
