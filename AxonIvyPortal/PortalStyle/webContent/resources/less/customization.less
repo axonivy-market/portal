@@ -1,22 +1,23 @@
-/* Empty file, you can put your own styles.
-   You should take a look at theme.less file to see how many variables that Portal supports for customizing.
-   E.g. @body-background-color: #ffffff;
-   After customizing, you should run a maven command ("mvn lesscss:compile") to compile these LESS files.
-   And then, refresh PortalStyle project to see the changing 
+/*  Empty file, you can put your own styles e.g. @body-background-color: #ffffff;
+    You can check variables.less for current default styles.
+    List of variables
+    
+    @body-background-color: Portal background color.
+    @menu-color: application menu color, color of texts and icons on the menu will be calculated based on brightness of menu color.
+    @process-chain-menu-color: process chain component color.
+    @cancel-button-background-color: cancel button background color.
+    @login-logo-height: login logo height.
+    @home-logo-height: home logo height.
+    @task-priority-low-color, @task-priority-normal-color, @task-priority-high-color, @task-priority-exception-color: task priority color.
+    @task-state-open-color, @task-state-in-progress-color, @task-state-done-color, @task-state-zombie-destroyed-color, @task-state-reserved-color, @task-state-system-color: task state color.
+    @action-button-color: Portal action button color e.g: close, add, next ...
+    @action-button-border-radius: action button shape, it's rectangle when set @action-button-border-radius:0px;
+    @circle-step-number-color: circle process chain number step color.
+    
+    Color and border radius of context button, it only affects when button has attribute styleClass="context-button"
+    @context-button-color: context button background color.
+    @context-button-border-radius: context button shape, it's rectangle when set @context-button-border-radius:0px;
    
-@body-background-color: Portal background color.
-@menu-color: application menu color, color of texts and icons on the menu will be calculated based on brightness of menu color.
-@process-chain-menu-color: process chain component color.
-@cancel-button-background-color: cancel button background color.
-@login-logo-height: login logo height.
-@home-logo-height: home logo height.
-@task-priority-low-color, @task-priority-normal-color, @task-priority-high-color, @task-priority-exception-color: task priority color.
-@task-state-open-color, @task-state-in-progress-color, @task-state-done-color, @task-state-zombie-destroyed-color, @task-state-reserved-color, @task-state-system-color: task state color.
-@action-button-color: Portal action button color e.g: close, add, next ...
-@action-button-border-radius: action button shape, it's rectangle when set @action-button-border-radius:0px;
-@circle-step-number-color: circle process chain number step color.
-
-//Color and border radius of context button, it only affects when button has attribute styleClass="context-button"
-@context-button-color: context button background color.
-@context-button-border-radius: context button shape, it's rectangle when set @context-button-border-radius:0px;
+    After customizing, run maven command "mvn lesscss:compile" to compile LESS files.
+    After that, refresh PortalStyle project to see the changing.
 */
