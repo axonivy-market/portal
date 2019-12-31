@@ -24,7 +24,8 @@ public class AnnouncementTest extends BaseTest {
   }
 
   @Test
-  public void notificationCanBeChangeLanguage() {
+  //This test hard to run on local, don't know why
+  public void testNotificationLocalizationWhenChangingLanguageSetting() {
     HomePage homePage = new HomePage();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
     AnnouncementPage announcementPage = adminSettingsPage.openAnnouncementTab();
@@ -48,7 +49,7 @@ public class AnnouncementTest extends BaseTest {
   }
 
   @Test
-  public void validationDefaultLanguage() {
+  public void testValidationForDefaultLanguage() {
     HomePage homePage = new HomePage();
 
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
@@ -59,13 +60,12 @@ public class AnnouncementTest extends BaseTest {
   }
 
   @Test
-  public void shouldNotification() {
+  public void testShouldDisplayNotification() {
     HomePage homePage = new HomePage();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
     AnnouncementPage announcementPage = adminSettingsPage.openAnnouncementTab();
     assertTrue("Admin Settings dialog is displayed", announcementPage.isDisplayed());
     
-    adminSettingsPage.openAnnouncementTab();
     announcementPage.setAnnoucement(1, "Readme1");
     announcementPage.publish();
     adminSettingsPage.closeAdminSettingDialog();
@@ -75,12 +75,11 @@ public class AnnouncementTest extends BaseTest {
   }
 
   @Test
-  public void depulishNotification() {
+  public void testDepulishNotification() {
     HomePage homePage = new HomePage();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
     AnnouncementPage announcementPage = adminSettingsPage.openAnnouncementTab();
-    assertTrue("Admin Settings dialog is displayed", announcementPage.isDisplayed());
-    adminSettingsPage.openAnnouncementTab();
+    assertTrue("Admin Settings dialog is not displayed", announcementPage.isDisplayed());
 
     announcementPage.setAnnoucement(0, "Readme");
     announcementPage.setAnnoucement(1, "Readme1");
@@ -88,6 +87,6 @@ public class AnnouncementTest extends BaseTest {
     announcementPage.setAnnoucement(3, "Readme3");
     announcementPage.publish();
     announcementPage.dePublish();
-    assertTrue("Announcement is not display ", homePage.isAnnouncementMessageNotDisplayed());
+    assertTrue("Announcement is displaying ", homePage.isAnnouncementMessageNotDisplayed());
   }
 }
