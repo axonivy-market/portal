@@ -2,14 +2,14 @@ package ch.ivy.addon.portalkit.ivydata.bo;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.IUser;
 
 public class IvySubstitute {
 
   private IRole substitionRole;
   private String substitionRoleDisplayName;
-  private IUser substituteUser;
+  private UserDTO substituteUser;
   private String description;
 
   public IRole getSubstitionRole() {
@@ -31,11 +31,11 @@ public class IvySubstitute {
     this.substitionRoleDisplayName = substitionRoleDisplayName;
   }
 
-  public IUser getSubstituteUser() {
+  public UserDTO getSubstituteUser() {
     return substituteUser;
   }
 
-  public void setSubstituteUser(IUser substituteUser) {
+  public void setSubstituteUser(UserDTO substituteUser) {
     this.substituteUser = substituteUser;
   }
 

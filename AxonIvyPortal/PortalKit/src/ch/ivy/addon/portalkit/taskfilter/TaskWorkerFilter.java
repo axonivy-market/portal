@@ -8,17 +8,17 @@ import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class TaskWorkerFilter extends TaskFilter {
 
   @JsonIgnore
-  private List<IUser> workers;
+  private List<UserDTO> workers;
   @JsonIgnore
-  private IUser selectedWorker;
+  private UserDTO selectedWorker;
   private String selectedWorkerMemberName;
 
   @Override
@@ -49,14 +49,14 @@ public class TaskWorkerFilter extends TaskFilter {
     selectedWorkerMemberName = null;
   }
 
-  public String formatName(IUser worker) {
-    if (StringUtils.isBlank(worker.getFullName())) {
+  public String formatName(UserDTO worker) {
+    if (StringUtils.isBlank(worker.getDisplayName())) {
       return worker.getName();
     }
-    return worker.getFullName() + " (" + worker.getName() + ")";
+    return worker.getDisplayName() + " (" + worker.getName() + ")";
   }
 
-  public List<IUser> getWorkers() {
+  public List<UserDTO> getWorkers() {
     if (workers == null) {
       initWorkers();
     }
@@ -64,14 +64,14 @@ public class TaskWorkerFilter extends TaskFilter {
   }
 
   private void initWorkers() {
-    workers = UserUtils.findAllUserByApplication();
+    workers = UserUtils.findAllUserDTOByApplication();
   }
 
-  public void setWorkers(List<IUser> workers) {
+  public void setWorkers(List<UserDTO> workers) {
     this.workers = workers;
   }
 
-  public IUser getSelectedWorker() {
+  public UserDTO getSelectedWorker() {
     if (selectedWorker == null && CollectionUtils.isNotEmpty(getWorkers())) {
       selectedWorker = workers.stream()
           .filter(worker -> StringUtils.equals(worker.getMemberName(), selectedWorkerMemberName))
@@ -81,9 +81,9 @@ public class TaskWorkerFilter extends TaskFilter {
     return selectedWorker;
   }
 
-  public void setSelectedWorker(IUser selectedWorker) {
+  public void setSelectedWorker(UserDTO selectedWorker) {
     this.selectedWorker = selectedWorker;
-    this.selectedWorkerMemberName = Optional.ofNullable(selectedWorker).map(IUser::getMemberName).orElse(StringUtils.EMPTY);
+    this.selectedWorkerMemberName = Optional.ofNullable(selectedWorker).map(UserDTO::getMemberName).orElse(StringUtils.EMPTY);
   }
 
   public String getSelectedWorkerMemberName() {

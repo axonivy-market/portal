@@ -1,5 +1,5 @@
 [Ivy]
-16ADE4B013B466A6 7.5.0 #module
+16F3229F28D3A455 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ce0 CalculateTaskDelegate Big #zClass
 Ce0 B #cInfo
@@ -19,17 +19,17 @@ Ce0 @AnnotationArc f2 '' #zField
 Ce0 @EndSub f3 '' #zField
 Ce0 @PushWFArc f4 '' #zField
 >Proto Ce0 Ce0 CalculateTaskDelegate #zField
-Ce0 f0 inParamDecl '<java.util.List<ch.ivyteam.ivy.security.IRole> roles,java.util.List<ch.ivyteam.ivy.security.IUser> users,ch.ivyteam.ivy.security.ISecurityMember currentUser,ch.ivyteam.ivy.workflow.ITask task> param;' #txt
+Ce0 f0 inParamDecl '<java.util.List<ch.ivy.addon.portalkit.dto.RoleDTO> roles,java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> users,ch.ivy.addon.portalkit.dto.SecurityMemberDTO currentUser,ch.ivyteam.ivy.workflow.ITask task> param;' #txt
 Ce0 f0 inParamTable 'out.currentUser=param.currentUser;
 out.roles=param.roles;
 out.task=param.task;
 out.users=param.users;
 ' #txt
-Ce0 f0 outParamDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> users,java.util.List<ch.ivyteam.ivy.security.IRole> roles> result;' #txt
+Ce0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> users,java.util.List<ch.ivy.addon.portalkit.dto.RoleDTO> roles> result;' #txt
 Ce0 f0 outParamTable 'result.users=in.users;
 result.roles=in.roles;
 ' #txt
-Ce0 f0 callSignature call(List<ch.ivyteam.ivy.security.IRole>,List<ch.ivyteam.ivy.security.IUser>,ch.ivyteam.ivy.security.ISecurityMember,ch.ivyteam.ivy.workflow.ITask) #txt
+Ce0 f0 callSignature call(java.util.List<ch.ivy.addon.portalkit.dto.RoleDTO>,java.util.List<ch.ivy.addon.portalkit.dto.UserDTO>,ch.ivy.addon.portalkit.dto.SecurityMemberDTO,ch.ivyteam.ivy.workflow.ITask) #txt
 Ce0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -57,8 +57,7 @@ Ce0 f7 120 151 688 108 -335 -48 #rect
 Ce0 f7 @|IBIcon #fIcon
 Ce0 f6 actionTable 'out=in;
 ' #txt
-Ce0 f6 actionCode 'import ch.ivyteam.ivy.security.IUser;
-import java.util.ArrayList;
+Ce0 f6 actionCode 'import java.util.ArrayList;
 if ("#admin".equalsIgnoreCase(in.currentUser.getMemberName())) {
 	if ("Maternity Leave Request".equalsIgnoreCase(in.task.getName())) {
 		in.users = new ArrayList();
