@@ -119,7 +119,8 @@ private static final long serialVersionUID = -5889375917550618261L;
   public List<UserProcess> completeUserProcess(String query) {
     return processesToAdd.stream()
         .filter(processToAdd -> StringUtils.containsIgnoreCase(processToAdd.getProcessName(), query)
-            && !isUserProcess(processToAdd) && !isDefaultUserProcess(processToAdd))
+            && !isUserProcess(processToAdd) && !isExternalLinkUserProcess(processToAdd) 
+            && !isDefaultUserProcess(processToAdd))
         .collect(Collectors.toList());
   }
 
@@ -142,7 +143,13 @@ private static final long serialVersionUID = -5889375917550618261L;
   }
 
   private boolean isUserProcess(UserProcess processToAdd) {
-    return userProcesses.stream().anyMatch(userProcess -> StringUtils.equalsIgnoreCase(userProcess.getLink(), processToAdd.getLink()));
+    return userProcesses.stream().anyMatch(userProcess -> !processToAdd.isExternalLink()
+        && StringUtils.equalsIgnoreCase(userProcess.getLink(), processToAdd.getLink()));
+  }
+  
+  private boolean isExternalLinkUserProcess(UserProcess processToAdd) {
+    return userProcesses.stream().anyMatch(userProcess -> userProcess.isExternalLink() && processToAdd.isExternalLink()
+        && StringUtils.equalsIgnoreCase(userProcess.getWorkflowId(), processToAdd.getWorkflowId()));
   }
 
   private boolean isDefaultUserProcess(UserProcess processToAdd) {

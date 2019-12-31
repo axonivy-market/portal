@@ -12,6 +12,7 @@ import org.primefaces.PrimeFaces;
 import ch.ivy.addon.portalkit.bo.ExternalLink;
 import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -35,6 +36,10 @@ public class ExternalLinkBean {
     correctLink();
     externaLinkService.save(externalLink);
     return externalLink;
+  }
+  
+  public boolean hasPublicLinkCreationPermission() {
+    return PermissionUtils.checkPublicLinkCreationPermission();
   }
   
   private void correctLink() {
@@ -63,5 +68,4 @@ public class ExternalLinkBean {
   public void setExternalLink(ExternalLink externalLink) {
     this.externalLink = externalLink;
   }
-  
 }
