@@ -33,7 +33,6 @@ Ts0 @GridStep f89 '' #zField
 Ts0 @UdProcessEnd f69 '' #zField
 Ts0 @GridStep f77 '' #zField
 Ts0 @PushWFArc f100 '' #zField
-Ts0 @PushWFArc f96 '' #zField
 Ts0 @PushWFArc f103 '' #zField
 Ts0 @PushWFArc f110 '' #zField
 Ts0 @PushWFArc f99 '' #zField
@@ -49,6 +48,9 @@ Ts0 @PushWFArc f95 '' #zField
 Ts0 @PushWFArc f91 '' #zField
 Ts0 @PushWFArc f3 '' #zField
 Ts0 @PushWFArc f4 '' #zField
+Ts0 @CallSub f5 '' #zField
+Ts0 @PushWFArc f6 '' #zField
+Ts0 @PushWFArc f7 '' #zField
 >Proto Ts0 Ts0 TaskItemDelegateProcess #zField
 Ts0 f0 guid 16EE8CACE694620C #txt
 Ts0 f0 method start() #txt
@@ -80,7 +82,7 @@ Ts0 f108 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f108 83 643 26 26 -47 15 #rect
 Ts0 f108 @|UdEventIcon #fIcon
-Ts0 f90 955 155 26 26 0 12 #rect
+Ts0 f90 1339 155 26 26 0 12 #rect
 Ts0 f90 @|UdProcessEndIcon #fIcon
 Ts0 f79 819 515 26 26 0 12 #rect
 Ts0 f79 @|UdProcessEndIcon #fIcon
@@ -99,34 +101,33 @@ Ts0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f93 184 506 112 44 -29 -8 #rect
 Ts0 f93 @|StepIcon #fIcon
-Ts0 f86 processCall 'Ivy Data Processes/SecurityService:findSecurityMembers(ch.ivyteam.ivy.application.IApplication)' #txt
+Ts0 f86 processCall 'Ivy Data Processes/SecurityService:findUsers(ch.ivyteam.ivy.application.IApplication)' #txt
 Ts0 f86 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application> param;' #txt
 Ts0 f86 requestMappingAction 'param.application=in.application;
 ' #txt
 Ts0 f86 responseActionDecl 'ch.ivy.addon.portalkit.component.SideStep.SideStepData out;
 ' #txt
 Ts0 f86 responseMappingAction 'out=in;
-out.rolesToDelegate=result.roles;
 out.usersToDelegate=result.users;
 ' #txt
 Ts0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>SecurityService</name>
+        <name>SecurityService - Find Users</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f86 464 146 112 44 -41 -8 #rect
+Ts0 f86 464 146 160 44 -77 -8 #rect
 Ts0 f86 @|CallSubIcon #fIcon
 Ts0 f73 guid 16EE8CC091943071 #txt
 Ts0 f73 method autoCompleteForUserDelegate(String) #txt
 Ts0 f73 inParameterDecl '<String query> param;' #txt
 Ts0 f73 inParameterMapAction 'out.queryAutoComplete=param.query;
 ' #txt
-Ts0 f73 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.IUser> usersToDelegate> result;' #txt
+Ts0 f73 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> usersToDelegate> result;' #txt
 Ts0 f73 outActionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
 
-result.usersToDelegate = UserUtils.filterUsers(in.usersToDelegate, in.queryAutoComplete);
+result.usersToDelegate = UserUtils.filterUsersDTO(in.usersToDelegate, in.queryAutoComplete);
 ' #txt
 Ts0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -141,9 +142,19 @@ Ts0 f73 83 419 26 26 -52 12 #rect
 Ts0 f73 @|UdMethodIcon #fIcon
 Ts0 f80 actionTable 'out=in;
 ' #txt
-Ts0 f80 actionCode 'import org.apache.commons.lang.StringUtils;
+Ts0 f80 actionCode 'import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
+import org.apache.commons.lang.StringUtils;
 
-String newResponsibleName = in.delegatedSecurityMember.getDisplayName();
+String newResponsibleName = "";
+
+if (in.#selectedUser != null) {
+	newResponsibleName = in.#selectedUser.#displayName;
+	in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromUserDTO(in.selectedUser);
+} else if (in.#selectedRole != null) {
+	newResponsibleName = in.#selectedRole.#displayName;
+	in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(in.selectedRole);
+}
+
 String oldResponsibleName = in.task.getActivator() != null? in.task.getActivator().getDisplayName() : StringUtils.stripStart(in.task.getActivatorName(), "#");
 
 in.delegateComment = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateComment", [in.task.getId(), oldResponsibleName, newResponsibleName]);' #txt
@@ -163,6 +174,8 @@ Ts0 f87 actionCode 'in.disabledDelegateButton = true;
 in.isUserDelegated = true;
 in.delegatedSecurityMember = null;
 in.application = in.task.getApplication();
+in.selectedRole = null;
+in.selectedUser = null;
 
 ' #txt
 Ts0 f87 security system #txt
@@ -210,10 +223,10 @@ Ts0 f74 method autoCompleteForRoleDelegate(String) #txt
 Ts0 f74 inParameterDecl '<String query> param;' #txt
 Ts0 f74 inParameterMapAction 'out.queryAutoComplete=param.query;
 ' #txt
-Ts0 f74 outParameterDecl '<java.util.List<ch.ivyteam.ivy.security.IRole> rolesToDelegate> result;' #txt
+Ts0 f74 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.dto.RoleDTO> rolesToDelegate> result;' #txt
 Ts0 f74 outActionCode 'import ch.ivy.addon.portalkit.util.RoleUtils;
 
-result.rolesToDelegate = RoleUtils.filterRoles(in.rolesToDelegate, in.queryAutoComplete);' #txt
+result.rolesToDelegate = RoleUtils.filterRoleDTO(in.rolesToDelegate, in.queryAutoComplete);' #txt
 Ts0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -225,11 +238,11 @@ Ts0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f74 83 323 26 26 -56 13 #rect
 Ts0 f74 @|UdMethodIcon #fIcon
-Ts0 f81 processCall 'Functional Processes/CalculateTaskDelegate:call(List<ch.ivyteam.ivy.security.IRole>,List<ch.ivyteam.ivy.security.IUser>,ch.ivyteam.ivy.security.ISecurityMember,ch.ivyteam.ivy.workflow.ITask)' #txt
-Ts0 f81 requestActionDecl '<java.util.List<ch.ivyteam.ivy.security.IRole> roles,java.util.List<ch.ivyteam.ivy.security.IUser> users,ch.ivyteam.ivy.security.ISecurityMember currentUser,ch.ivyteam.ivy.workflow.ITask task> param;' #txt
+Ts0 f81 processCall 'Functional Processes/CalculateTaskDelegate:call(java.util.List<ch.ivy.addon.portalkit.dto.RoleDTO>,java.util.List<ch.ivy.addon.portalkit.dto.UserDTO>,ch.ivy.addon.portalkit.dto.SecurityMemberDTO,ch.ivyteam.ivy.workflow.ITask)' #txt
+Ts0 f81 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.dto.RoleDTO> roles,java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> users,ch.ivy.addon.portalkit.dto.SecurityMemberDTO currentUser,ch.ivyteam.ivy.workflow.ITask task> param;' #txt
 Ts0 f81 requestMappingAction 'param.roles=in.rolesToDelegate;
 param.users=in.usersToDelegate;
-param.currentUser=ivy.session.getSessionUser();
+param.currentUser=ch.ivy.addon.portalkit.util.SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO();
 param.task=in.task;
 ' #txt
 Ts0 f81 responseActionDecl 'ch.ivy.addon.portalkit.component.SideStep.SideStepData out;
@@ -245,13 +258,14 @@ Ts0 f81 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f81 608 146 144 44 -64 -8 #rect
+Ts0 f81 928 146 144 44 -64 -8 #rect
 Ts0 f81 @|CallSubIcon #fIcon
 Ts0 f92 actionTable 'out=in;
 ' #txt
 Ts0 f92 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 
 TaskUtils.delegateTask(in.task, in.delegatedSecurityMember);' #txt
+Ts0 f92 security system #txt
 Ts0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -311,7 +325,7 @@ delegate task</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f89 784 146 112 44 -37 -16 #rect
+Ts0 f89 1168 146 112 44 -37 -16 #rect
 Ts0 f89 @|StepIcon #fIcon
 Ts0 f69 339 419 26 26 0 12 #rect
 Ts0 f69 @|UdProcessEndIcon #fIcon
@@ -330,8 +344,6 @@ Ts0 f77 648 506 112 44 -24 -8 #rect
 Ts0 f77 @|StepIcon #fIcon
 Ts0 f100 expr out #txt
 Ts0 f100 448 528 488 528 #arcP
-Ts0 f96 expr out #txt
-Ts0 f96 576 168 608 168 #arcP
 Ts0 f103 expr out #txt
 Ts0 f103 600 528 648 528 #arcP
 Ts0 f110 expr out #txt
@@ -349,14 +361,14 @@ Ts0 f105 760 528 819 528 #arcP
 Ts0 f104 expr out #txt
 Ts0 f104 109 432 339 432 #arcP
 Ts0 f97 expr out #txt
-Ts0 f97 896 168 955 168 #arcP
+Ts0 f97 1280 168 1339 168 #arcP
 Ts0 f98 expr out #txt
-Ts0 f98 752 168 784 168 #arcP
+Ts0 f98 1072 168 1168 168 #arcP
 Ts0 f101 expr out #txt
 Ts0 f101 109 336 339 336 #arcP
 Ts0 f101 0 0.61063400144005 0 0 #arcLabel
-Ts0 f95 616 264 968 181 #arcP
-Ts0 f95 1 968 264 #addKink
+Ts0 f95 616 264 1352 181 #arcP
+Ts0 f95 1 1352 264 #addKink
 Ts0 f95 0 0.7300842237076132 0 0 #arcLabel
 Ts0 f91 expr out #txt
 Ts0 f91 416 168 464 168 #arcP
@@ -366,6 +378,25 @@ Ts0 f3 224 184 488 264 #arcP
 Ts0 f3 1 224 264 #addKink
 Ts0 f4 expr in #txt
 Ts0 f4 240 168 304 168 #arcP
+Ts0 f5 processCall 'Ivy Data Processes/SecurityService:findRolesDTO(ch.ivyteam.ivy.application.IApplication)' #txt
+Ts0 f5 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application> param;' #txt
+Ts0 f5 requestMappingAction 'param.application=in.application;
+' #txt
+Ts0 f5 responseMappingAction 'out=in;
+out.rolesToDelegate=result.roles;
+' #txt
+Ts0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>SecurityService - find roles</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f5 704 146 160 44 -72 -8 #rect
+Ts0 f5 @|CallSubIcon #fIcon
+Ts0 f6 expr out #txt
+Ts0 f6 624 168 704 168 #arcP
+Ts0 f7 864 168 928 168 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItemDelegate.TaskItemDelegateData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -374,8 +405,6 @@ Ts0 f0 mainOut f2 tail #connect
 Ts0 f2 head f1 mainIn #connect
 Ts0 f87 mainOut f91 tail #connect
 Ts0 f91 head f86 mainIn #connect
-Ts0 f86 mainOut f96 tail #connect
-Ts0 f96 head f81 mainIn #connect
 Ts0 f81 mainOut f98 tail #connect
 Ts0 f98 head f89 mainIn #connect
 Ts0 f89 mainOut f97 tail #connect
@@ -406,3 +435,7 @@ Ts0 f88 out f3 tail #connect
 Ts0 f3 head f76 mainIn #connect
 Ts0 f88 out f4 tail #connect
 Ts0 f4 head f87 mainIn #connect
+Ts0 f86 mainOut f6 tail #connect
+Ts0 f6 head f5 mainIn #connect
+Ts0 f5 mainOut f7 tail #connect
+Ts0 f7 head f81 mainIn #connect
