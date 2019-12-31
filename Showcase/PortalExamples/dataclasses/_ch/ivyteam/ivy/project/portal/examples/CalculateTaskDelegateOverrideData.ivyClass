@@ -1,6 +1,6 @@
 CalculateTaskDelegateOverrideData #class
 _ch.ivyteam.ivy.project.portal.examples #namespace
-currentUser ch.ivyteam.ivy.security.ISecurityMember #field
+currentUser ch.ivy.addon.portalkit.dto.SecurityMemberDTO #field
 task ch.ivyteam.ivy.workflow.ITask #field
-users java.util.List<ch.ivyteam.ivy.security.IUser> #field
-roles java.util.List<ch.ivyteam.ivy.security.IRole> #field
+users java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> #field
+roles java.util.List<ch.ivy.addon.portalkit.dto.RoleDTO> #field
