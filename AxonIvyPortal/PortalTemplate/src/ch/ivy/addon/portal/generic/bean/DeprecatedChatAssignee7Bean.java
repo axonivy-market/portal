@@ -30,22 +30,26 @@ import ch.ivy.addon.portal.chat.ChatServiceContainer;
 import ch.ivy.addon.portal.chat.CreateGroupChatStatus;
 import ch.ivy.addon.portal.chat.GroupChat;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.dto.RoleDTO;
+import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
+import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.RoleUtils;
+import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.businesscase.IBusinessCase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 /**
- * Used in DeprecatedTaskTemplate7.xhml for Portal version 7 
+ * Used in Deprecated TaskTemplate-7.xhml for Portal version 7 
  */
 @ManagedBean
 @ViewScoped
@@ -60,11 +64,11 @@ public class DeprecatedChatAssignee7Bean implements Serializable {
   private static final long serialVersionUID = 4691697531600235758L;
 
   private boolean isAssignToUser = true;
-  private List<IUser> availableUsers;
-  private List<IRole> availableRoles;
-  private IUser selectedUser;
-  private IRole selectedRole;
-  private Set<ISecurityMember> selectedAssignees = new HashSet<>();
+  private List<UserDTO> availableUsers;
+  private List<RoleDTO> availableRoles;
+  private UserDTO selectedUser;
+  private RoleDTO selectedRole;
+  private Set<SecurityMemberDTO> selectedAssignees = new HashSet<>();
   private boolean doesGroupChatExist;
   private String groupChatExistMessage;
   private GroupChat existedGroupChat;
@@ -72,7 +76,7 @@ public class DeprecatedChatAssignee7Bean implements Serializable {
 
   @PostConstruct
   public void init() {
-    selectedAssignees.add(Ivy.session().getSessionUser());
+    selectedAssignees.add(SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO());
     handleConfiguredRoleList();
 
     if (isShowCreateGroupChatDialog) {
@@ -81,25 +85,30 @@ public class DeprecatedChatAssignee7Bean implements Serializable {
     }
   }
 
+  private void checkCaseHasGroupChat() {
+    CaseQuery caseQuery = queryCaseHasGroupChat();
+    doesGroupChatExist = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getFirstResult(caseQuery) != null;
+  }
+
   public void handleConfiguredRoleList() {
-    List<ISecurityMember> configuredRoles = getConfiguredRoles();
+    List<IRole> configuredRoles = getConfiguredRoles();
 
     if (CollectionUtils.isEmpty(configuredRoles)) {
       isShowCreateGroupChatDialog = true;
     } else {
-      List<ISecurityMember> memberRoles = hasRole(configuredRoles, Ivy.session().getSessionUser());
+      List<IRole> memberRoles = hasRole(configuredRoles, Ivy.session().getSessionUser());
       if (CollectionUtils.isNotEmpty(memberRoles)) {
         isShowCreateGroupChatDialog = true;
-        selectedAssignees.remove(Ivy.session().getSessionUser());
-        selectedAssignees.addAll(memberRoles);
+        selectedAssignees.remove(SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO());
+        selectedAssignees.addAll(SecurityMemberUtils.convertIRoleToSecurityMemberDTO(memberRoles));
       } else {
-        selectedAssignees.addAll(configuredRoles);
+        selectedAssignees.addAll(SecurityMemberUtils.convertIRoleToSecurityMemberDTO(configuredRoles));
       }
     }
   }
 
-  private List<ISecurityMember> hasRole(List<ISecurityMember> roles, IUser user) {
-    List<ISecurityMember> memberRoles = new ArrayList<>();
+  private List<IRole> hasRole(List<IRole> roles, IUser user) {
+    List<IRole> memberRoles = new ArrayList<>();
     for (int i = 0; i < roles.size(); i++) {
       if (ChatGroupUtils.hasRole(roles.get(i), user)) {
         memberRoles.add(roles.get(i));
@@ -116,22 +125,22 @@ public class DeprecatedChatAssignee7Bean implements Serializable {
     }
   }
 
-  public List<IUser> populateUserAutoComplete(String query) {
-    List<IUser> filteredUsers = UserUtils.filterUsers(getAvailableUsers(), query);
+  public List<UserDTO> populateUserAutoComplete(String query) {
+    List<UserDTO> filteredUsers = UserUtils.filterUsersDTO(getAvailableUsers(), query);
     filteredUsers
         .sort((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
     return filteredUsers;
   }
 
-  public List<IRole> populateRoleAutoComplete(String query) {
-    List<IRole> filteredRoles = RoleUtils.filterRoles(getAvailableRoles(), query);
+  public List<RoleDTO> populateRoleAutoComplete(String query) {
+    List<RoleDTO> filteredRoles = RoleUtils.filterRoleDTO(getAvailableRoles(), query);
     filteredRoles
         .sort((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
     return filteredRoles;
   }
 
   public void addAssignee() {
-    ISecurityMember selectedAssignee = selectedUser != null ? selectedUser : selectedRole;
+    SecurityMemberDTO selectedAssignee = selectedUser != null ? SecurityMemberDTOMapper.mapFromUserDTO(selectedUser) : SecurityMemberDTOMapper.mapFromRoleDTO(selectedRole);
     if (selectedAssignee == null || selectedAssignees.contains(selectedAssignee)) {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "",
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/errorSelectInvalidAssignee")));
@@ -141,7 +150,7 @@ public class DeprecatedChatAssignee7Bean implements Serializable {
     selectedAssignees.add(selectedAssignee);
   }
 
-  public void removeAssignee(ISecurityMember assignee) {
+  public void removeAssignee(SecurityMemberDTO assignee) {
     selectedAssignees.remove(assignee);
   }
 
@@ -157,10 +166,6 @@ public class DeprecatedChatAssignee7Bean implements Serializable {
   }
 
   public boolean doesGroupChatExist() {
-    if (!doesGroupChatExist) {
-      CaseQuery caseQuery = queryCaseHasGroupChat();
-      doesGroupChatExist = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getFirstResult(caseQuery) != null;
-    }
     return doesGroupChatExist;
   }
 
@@ -214,6 +219,7 @@ public class DeprecatedChatAssignee7Bean implements Serializable {
   }
 
   public void createGroupChatForConfiguredRoleList() {
+    checkCaseHasGroupChat();
     if (!isShowCreateGroupChatDialog && !doesGroupChatExist) {
       createGroupChat();
     } else {
@@ -326,7 +332,7 @@ public class DeprecatedChatAssignee7Bean implements Serializable {
   }
 
   @SuppressWarnings("unchecked")
-  private List<ISecurityMember> getConfiguredRoles() {
+  private List<IRole> getConfiguredRoles() {
     Map<String, Object> params = new HashMap<>();
     params.put("task", Ivy.wfTask());
     Map<String, Object> response = IvyAdapterService.startSubProcess(CONFIGURED_ROLES_SUB_PROCESS, params,
@@ -336,11 +342,11 @@ public class DeprecatedChatAssignee7Bean implements Serializable {
   }
 
   private void populateAvailableUsers() {
-    availableUsers = ServiceUtilities.findAllUsersExceptCurrentUser(Ivy.wf().getApplication());
+    availableUsers = ServiceUtilities.findAllUserDTOExceptCurrentUserByApplication(Ivy.wf().getApplication());
   }
 
   private void populateAvailableRoles() {
-    availableRoles = ServiceUtilities.findAllRoles(Ivy.wf().getApplication());
+    availableRoles = ServiceUtilities.findAllRoleDTO(Ivy.wf().getApplication());
   }
 
   public boolean getIsAssignToUser() {
@@ -351,43 +357,43 @@ public class DeprecatedChatAssignee7Bean implements Serializable {
     this.isAssignToUser = isAssignToUser;
   }
 
-  public List<IUser> getAvailableUsers() {
+  public List<UserDTO> getAvailableUsers() {
     return availableUsers;
   }
 
-  public void setAvailableUsers(List<IUser> availableUsers) {
+  public void setAvailableUsers(List<UserDTO> availableUsers) {
     this.availableUsers = availableUsers;
   }
 
-  public List<IRole> getAvailableRoles() {
+  public List<RoleDTO> getAvailableRoles() {
     return availableRoles;
   }
 
-  public void setAvailableRoles(List<IRole> availableRoles) {
+  public void setAvailableRoles(List<RoleDTO> availableRoles) {
     this.availableRoles = availableRoles;
   }
 
-  public IUser getSelectedUser() {
+  public UserDTO getSelectedUser() {
     return selectedUser;
   }
 
-  public void setSelectedUser(IUser selectedUser) {
+  public void setSelectedUser(UserDTO selectedUser) {
     this.selectedUser = selectedUser;
   }
 
-  public IRole getSelectedRole() {
+  public RoleDTO getSelectedRole() {
     return selectedRole;
   }
 
-  public void setSelectedRole(IRole selectedRole) {
+  public void setSelectedRole(RoleDTO selectedRole) {
     this.selectedRole = selectedRole;
   }
 
-  public Set<ISecurityMember> getSelectedAssignees() {
+  public Set<SecurityMemberDTO> getSelectedAssignees() {
     return selectedAssignees;
   }
 
-  public void setSelectedAssignees(Set<ISecurityMember> selectedAssignees) {
+  public void setSelectedAssignees(Set<SecurityMemberDTO> selectedAssignees) {
     this.selectedAssignees = selectedAssignees;
   }
 

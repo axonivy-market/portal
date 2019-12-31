@@ -8,11 +8,11 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.security.ISecurityMember;
-import ch.ivyteam.ivy.server.ServerFactory;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
+import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.server.ServerFactory;
 
 public class GroupChat implements Serializable {
 
@@ -26,7 +26,7 @@ public class GroupChat implements Serializable {
   private Set<String> assigneeNames;
   private Map<String, String> params;
   @JsonIgnore
-  private Set<ISecurityMember> assignees;
+  private Set<SecurityMemberDTO> assignees;
   
   public Long getCaseId() {
     return caseId;
@@ -76,21 +76,22 @@ public class GroupChat implements Serializable {
     this.assigneeNames = assigneeNames;
   }
 
-  public Set<ISecurityMember> getAssignees() {
+  public Set<SecurityMemberDTO> getAssignees() {
     if (CollectionUtils.isEmpty(this.assignees) && CollectionUtils.isNotEmpty(this.assigneeNames)
         && StringUtils.isNotBlank(this.applicationName)) {
       IApplication app = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(this.applicationName);
       this.assignees = assigneeNames.stream()
           .map(assigneeName -> app.getSecurityContext().findSecurityMember(assigneeName))
+          .map(assignee -> new SecurityMemberDTO(assignee))
           .collect(Collectors.toSet());
     }
     return assignees;
   }
 
-  public void setAssignees(Set<ISecurityMember> assignees) {
+  public void setAssignees(Set<SecurityMemberDTO> assignees) {
     this.assignees = assignees;
     if (CollectionUtils.isNotEmpty(assignees)) {
-      this.assigneeNames = assignees.stream().map(ISecurityMember::getMemberName).collect(Collectors.toSet());
+      this.assigneeNames = assignees.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toSet());
     }
   }
   
