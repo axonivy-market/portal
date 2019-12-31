@@ -1,21 +1,18 @@
 package ch.ivy.addon.portalkit.casefilter;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public class CaseCreatorFilter extends CaseFilter {
   @JsonIgnore
-  private List<IUser> creators;
-  @JsonIgnore
-  private IUser selectedCreator;
+  private UserDTO selectedCreator;
   private String selectedCreatorMemberName;
 
   @Override
@@ -46,28 +43,20 @@ public class CaseCreatorFilter extends CaseFilter {
     selectedCreatorMemberName = null;
   }
 
-  public String formatName(IUser creator) {
-    if (StringUtils.isBlank(creator.getFullName())) {
+  public String formatName(UserDTO creator) {
+    if (StringUtils.isBlank(creator.getDisplayName())) {
       return creator.getName();
     }
-    return creator.getFullName() + " (" + creator.getName() + ")";
+    return creator.getDisplayName() + " (" + creator.getName() + ")";
   }
 
-  public List<IUser> getCreators() {
-    return creators;
-  }
-
-  public void setCreators(List<IUser> creators) {
-    this.creators = creators;
-  }
-
-  public IUser getSelectedCreator() {
+  public UserDTO getSelectedCreator() {
     return selectedCreator;
   }
 
-  public void setSelectedCreator(IUser selectedCreator) {
+  public void setSelectedCreator(UserDTO selectedCreator) {
     this.selectedCreator = selectedCreator;
-    this.selectedCreatorMemberName = Optional.ofNullable(selectedCreator).map(IUser::getMemberName).orElse(StringUtils.EMPTY);
+    this.selectedCreatorMemberName = Optional.ofNullable(selectedCreator).map(UserDTO::getName).orElse(StringUtils.EMPTY);
   }
 
   public String getSelectedCreatorMemberName() {

@@ -17,11 +17,11 @@ import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
 import ch.ivy.addon.portalkit.bo.SubstituteNode;
+import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.IUser;
 
 public final class AbsenceAndSubstituteUtils {
 
@@ -40,7 +40,7 @@ public final class AbsenceAndSubstituteUtils {
    * @param usersByApp
    * @return TreeNode
    */
-  public static TreeNode buildSustitute(IUser substitutedUser, Map<IvyApplication, List<IvySubstitute>> ivySubtitutesByApp, Map<String, List<IUser>> usersByApp) {
+  public static TreeNode buildSustitute(UserDTO substitutedUser, Map<IvyApplication, List<IvySubstitute>> ivySubtitutesByApp, Map<String, List<UserDTO>> usersByApp) {
     TreeNode substituteRoot = new DefaultTreeNode(new SubstituteNode(), null);
 
     for (Map.Entry<IvyApplication,List<IvySubstitute>> entry : ivySubtitutesByApp.entrySet()) {
@@ -56,11 +56,11 @@ public final class AbsenceAndSubstituteUtils {
     return substituteRoot;
   }
 
-  private static DefaultTreeNode createSubstituteNode(IUser substitutedUser, TreeNode appNode, List<IUser> users, IvySubstitute ivySubstitute) {
+  private static DefaultTreeNode createSubstituteNode(UserDTO substitutedUser, TreeNode appNode, List<UserDTO> users, IvySubstitute ivySubstitute) {
     String nodeName = ivySubstitute.getSubstitionRoleDisplayName();
     String name = StringUtils.isNotBlank(nodeName) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/taskForRole") + nodeName : Ivy.cms().co(
         "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTask");
-    List<IUser> usersExceptSubstitutedUser = Optional.ofNullable(users).orElse(new ArrayList<>()).stream().filter(user -> !StringUtils.equals(user.getName(), substitutedUser.getName())).collect(Collectors.toList());
+    List<UserDTO> usersExceptSubstitutedUser = Optional.ofNullable(users).orElse(new ArrayList<>()).stream().filter(user -> !StringUtils.equals(user.getName(), substitutedUser.getName())).collect(Collectors.toList());
     return new DefaultTreeNode(new SubstituteNode(name, ivySubstitute, usersExceptSubstitutedUser, true), appNode);
   }
 
