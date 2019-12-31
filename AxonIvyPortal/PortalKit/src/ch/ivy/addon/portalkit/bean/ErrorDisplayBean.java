@@ -29,7 +29,7 @@ public class ErrorDisplayBean {
     setErrors(errors);
     if (CollectionUtils.isNotEmpty(errors)) {
       PrimeFaces.current().ajax().update("application-error-dialog-component:application-error-dialog");
-      String errorLink = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/found") + errors.size() + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/clickToShowDetail");
+      String errorLink = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/found") + " " + errors.size() + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/clickToShowDetail");
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/errorNotification"), "<span style=\"cursor:pointer\"><a onclick=\"PF('application-error-dialog').show(); hideGrowl()\">"+errorLink+"</a></span>"));
       FacesContext.getCurrentInstance().validationFailed();
     }

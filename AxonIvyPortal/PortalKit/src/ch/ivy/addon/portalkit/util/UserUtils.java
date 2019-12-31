@@ -16,15 +16,14 @@ import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.UserDTO;
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
-import ch.ivyteam.ivy.process.call.SubProcessCallResult;
-import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.IUserAbsence;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
@@ -105,24 +104,25 @@ public class UserUtils {
     });
   }
   
-  public static List<UserDTO> filterUsersDTO(List<IUser> users, String query) {
+  public static List<IUserAbsence> findAbsenceOfUser(IUser iUser) {
+    return IvyExecutor.executeAsSystem(() -> iUser.getAbsences());
+  }
+  
+  public static List<UserDTO> filterUsersDTO(List<UserDTO> users, String query) {
     List<UserDTO> filterUsers = new ArrayList<>();
     
     return IvyExecutor.executeAsSystem(() -> {
       if (StringUtils.isEmpty(query)) {
-          for (IUser user: users) {
-            filterUsers.add(new UserDTO(user));
-          }
-          return filterUsers;
+          return users;
       }
 
-      for (IUser user : users) {
+      for (UserDTO user : users) {
         if (StringUtils.containsIgnoreCase(user.getDisplayName(), query) || StringUtils.containsIgnoreCase(user.getMemberName(), query)) {
-          filterUsers.add(new UserDTO(user));
+          filterUsers.add(user);
         }
       }
 
-      return filterUsers.stream().sorted((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName())).collect(Collectors.toList());
+      return filterUsers;
     });
   }
   
@@ -132,7 +132,7 @@ public class UserUtils {
    * @param usersByApp
    * @return non-duplicated list of ivy users
    */
-  public static List<IUser> getNonDuplicatedUsers(Map<String, List<IUser>> usersByApp) {
+  public static List<UserDTO> getNonDuplicatedUsers(Map<String, List<UserDTO>> usersByApp) {
     if (usersByApp == null || usersByApp.isEmpty()) {
       return new ArrayList<>();
     }
@@ -141,34 +141,8 @@ public class UserUtils {
       usersByApp.values()
         .stream()
         .flatMap(List::stream)
-        .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(IUser::getName, String.CASE_INSENSITIVE_ORDER))), ArrayList::new))
+        .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getName, String.CASE_INSENSITIVE_ORDER))), ArrayList::new))
     );
-  }
-
-  /**
-   * Filter list of security member by name based on provided query
-   * 
-   * @param securityMembers security members need to be filtered
-   * @param query provided query
-   * @return Filtered and sorted list of security member
-   */
-  public static java.util.List<ISecurityMember> filterSecurityMembers(java.util.List<ISecurityMember> securityMembers, String query) {
-    if (StringUtils.isEmpty(query)) {
-      return securityMembers;
-    }
-
-    return IvyExecutor.executeAsSystem(() -> {
-      List<ISecurityMember> result = new ArrayList<>();
-      for (ISecurityMember securityMember : securityMembers) {
-        if (StringUtils.containsIgnoreCase(securityMember.getDisplayName(), query)
-            || StringUtils.containsIgnoreCase(securityMember.getName(), query)) {
-          result.add(securityMember);
-        }
-      }
-  
-      result.sort((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
-      return result;
-    });
   }
 
   public static void setSessionAttribute(String key, Object value) {
@@ -241,22 +215,28 @@ public class UserUtils {
     return StringUtils.defaultIfBlank((String)Ivy.session().getAttribute(CASE_KEYWORD_FILTER), "");
   }
 
-  public static List<IUser> findAllUserByApplication() {
-    List<IUser> users = findUsersByCallableProcess();
+  public static List<UserDTO> findAllUserDTOInCurrentApplication() {
+    List<UserDTO> users =  ServiceUtilities.findAllUserDTOByApplication(Ivy.request().getApplication());
+    Collections.sort(users, (first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
+    return users;
+  }
+  
+  public static List<UserDTO> findAllUserDTOByApplication() {
+    List<UserDTO> users = findUsersByCallableProcess();
     Collections.sort(users, (first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
     return users;
   }
   
   @SuppressWarnings("unchecked")
-  private static List<IUser> findUsersByCallableProcess() {
+  private static List<UserDTO> findUsersByCallableProcess() {
       return IvyExecutor.executeAsSystem(() -> {
       if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
-        Map<String, List<IUser>> usersByApp = SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
+        Map<String, List<UserDTO>> usersByApp = SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
             .withStartName("findUsersOverAllApplications")
             .call(Ivy.session().getSessionUserName())
             .get("usersByApp", Map.class);
         return usersByApp.values().stream().flatMap(List::stream)
-            .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(IUser::getName))), ArrayList::new));
+            .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getName))), ArrayList::new));
       }
       
       return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
@@ -278,26 +258,10 @@ public class UserUtils {
     });
   }
 
-  @SuppressWarnings("unchecked")
-  public static List<ISecurityMember> findAllSecurityMembers() {
-    List<ISecurityMember> responsibles = new ArrayList<>();
-    try {
-      SubProcessCallResult result = ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-        if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
-          return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE).withStartName("findSecurityMembersOverAllApplications")
-              .call(Ivy.session().getSessionUserName());
-        }
-        return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE).withStartName("findSecurityMembers")
-            .call(Ivy.request().getApplication());
-      }); 
-      List<IUser> users = result.get("users", List.class);
-      List<IRole> roles = result.get("roles", List.class);
-      responsibles.addAll(users);
-      responsibles.addAll(roles);
-    } catch (Exception e) {
-      Ivy.log().error("Can't get list of security members", e);
-    }
-    return responsibles;
+  public static UserDTO getCurrentSessionUserAsUserDTO() {
+    return IvyExecutor.executeAsSystem(() -> {
+      return new UserDTO(getIvySession().getSessionUser());
+    });
   }
   
 }
