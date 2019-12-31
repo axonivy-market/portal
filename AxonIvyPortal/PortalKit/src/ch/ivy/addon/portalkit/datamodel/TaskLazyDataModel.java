@@ -170,6 +170,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
     if (selectedTaskFilter != null && !selectedTaskFilter.reloadView()
         || validateStateFilter(selectedTaskFilter)) {
+      storeTaskFiltersIntoSession();
       selectedTaskFilter = null;
       return data;
     }
@@ -209,9 +210,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    */
   private boolean validateStateFilter(TaskFilter selectedTaskFilter) {
     if (selectedTaskFilter != null && selectedTaskFilter instanceof TaskStateFilter) {
-      TaskStateFilter caseStateFilter = (TaskStateFilter) selectedTaskFilter;
+      TaskStateFilter taskStateFilter = (TaskStateFilter) selectedTaskFilter;
       if (CollectionUtils.isNotEmpty(criteria.getIncludedStates())
-          && criteria.getIncludedStates().equals(caseStateFilter.getSelectedFilteredStates())) {
+          && criteria.getIncludedStates().equals(taskStateFilter.getSelectedFilteredStates())) {
         return true;
       }
     }
@@ -590,6 +591,11 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
         filterQuery.and(subQuery);
       }
     });
+    storeTaskFiltersIntoSession();
+    return taskQuery;
+  }
+
+  private void storeTaskFiltersIntoSession() {
     if (shouldSaveAndLoadSessionFilters()) {
       UserUtils.setSessionSelectedTaskFilterSetAttribute(selectedTaskFilterData);
       UserUtils.setSessionTaskKeywordFilterAttribute(criteria.getKeyword());
@@ -602,7 +608,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
         }
       }
     }
-    return taskQuery;
   }
 
 
