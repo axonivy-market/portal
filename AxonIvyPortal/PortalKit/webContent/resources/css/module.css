@@ -1229,9 +1229,17 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   line-height: 1.7;
 }
 
+_:-ms-input-placeholder, :root .field-group .external-link-dialog-field {
+  line-height: 1;
+}
+
 .process-start-list-item-action.is-external-link {
   right: 50px;
   flex: 1 0 auto;
+}
+
+_:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel {
+  line-height: 1.3;
 }
 
 /********************************** END PROCESSES **********************************/
