@@ -987,6 +987,10 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   width: calc(100% - 130px);
 }
 
+.process-start-list-item-name.is-external-link {
+   width: calc(100% - 100px);
+}
+
 .process-start-list-item:hover .process-start-list-item-icon,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-icon {
   opacity: 1;
@@ -1036,7 +1040,8 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   flex: 1 0 auto;
 }
 
-.process-start-list-item-action .process-item {
+.process-start-list-item-action .process-item,
+.process-start-list-item-action .public-external-link {
   opacity: 0.3;
 }
 
@@ -1213,7 +1218,15 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   cursor: default;
   border: none !important;
   background-color: transparent !important;
-  margin-top: 2px;
+  margin-top: 2px !important;
+}
+
+.field-group .external-link-type {
+  line-height: 1.6;
+}
+
+.field-group .external-link-dialog-field {
+  line-height: 1.7;
 }
 
 .process-start-list-item-action.is-external-link {

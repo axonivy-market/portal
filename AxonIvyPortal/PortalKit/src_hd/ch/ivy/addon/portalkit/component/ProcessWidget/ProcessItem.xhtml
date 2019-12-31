@@ -14,7 +14,7 @@
 	<c:set var="isExpress" value="#{processWidgetBean.isExpressProcess(process)}" />
 	<c:set var="isExternalLink" value="#{processWidgetBean.isExternalLink(process)}" />
 	
-	<div class="process-start-list-item-name #{isExpress ? 'is-express' : ''}">
+	<div class="process-start-list-item-name #{isExpress ? 'is-express' : ''} #{isExternalLink ? 'is-external-link' : ''}" >
 		<h:outputText id="process-name" value="#{process.name}"
 			styleClass="process-start-list-item-name-text u-truncate-text js-process-start-list-item-name" />
 		<p:tooltip for="process-name" value="#{process.name}" />
@@ -34,10 +34,10 @@
 				</ui:include>
 			</ui:fragment>
 		</h:panelGroup>
-		<h:panelGroup
-			styleClass="process-start-list-item-action #{isExternalLink ? 'is-external-link' : ''} u-padding-0"
-			rendered="#{isExternalLink}" layout="block">
-			<h:panelGroup id="external-link-icon" styleClass="fa fa-external-link external-link-icon"  />
+		<h:panelGroup rendered="#{isExternalLink}" layout="block"
+			styleClass="process-start-list-item-action #{isExternalLink ? 'is-external-link' : ''} u-padding-0" >
+			<h:panelGroup id="external-link-icon" 
+				styleClass="fa fa-external-link external-link-icon #{!process.getProcess().ableToEdit ? 'public-external-link' : ''}" />
 			<p:tooltip id="external-link-icon-tooltip"
 				for="external-link-icon"
 				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/externalLink')}"
