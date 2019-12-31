@@ -21,7 +21,6 @@
       moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
       styleClass="responsible-list-filter">
       <f:event listener="#{data.setWorkers(cc.attrs.filter.workers)}" type="preRenderComponent" />
-      <p:ajax event="query" global="false" />
       <p:column>
         <i class="fa fa-user u-mar-right-5" />
         <h:outputText value="#{cc.attrs.filter.formatName(worker)}" />
