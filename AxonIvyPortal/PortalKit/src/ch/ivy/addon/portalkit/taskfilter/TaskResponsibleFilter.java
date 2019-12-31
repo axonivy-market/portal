@@ -1,22 +1,19 @@
 package ch.ivy.addon.portalkit.taskfilter;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class TaskResponsibleFilter extends TaskFilter {
 
   @JsonIgnore
-  private List<ISecurityMember> responsibles;
-  @JsonIgnore
-  private ISecurityMember selectedResponsible;
+  private SecurityMemberDTO selectedResponsible;
   private String selectedResponsibleMemberName;
 
   @Override
@@ -53,28 +50,20 @@ public class TaskResponsibleFilter extends TaskFilter {
     return true;
   }
 
-  public String formatName(ISecurityMember responsible) {
+  public String formatName(SecurityMemberDTO responsible) {
     if (StringUtils.isBlank(responsible.getDisplayName())) {
       return responsible.getName();
     }
     return responsible.getDisplayName() + " (" + responsible.getName() + ")";
   }
 
-  public List<ISecurityMember> getResponsibles() {
-    return responsibles;
-  }
-
-  public void setResponsibles(List<ISecurityMember> responsibles) {
-    this.responsibles = responsibles;
-  }
-
-  public ISecurityMember getSelectedResponsible() {
+  public SecurityMemberDTO getSelectedResponsible() {
     return selectedResponsible;
   }
 
-  public void setSelectedResponsible(ISecurityMember selectedResponsible) {
+  public void setSelectedResponsible(SecurityMemberDTO selectedResponsible) {
     this.selectedResponsible = selectedResponsible;
-    this.selectedResponsibleMemberName = Optional.ofNullable(selectedResponsible).map(ISecurityMember::getMemberName).orElse(StringUtils.EMPTY);
+    this.selectedResponsibleMemberName = Optional.ofNullable(selectedResponsible).map(SecurityMemberDTO::getMemberName).orElse(StringUtils.EMPTY);
   }
 
   public String getSelectedResponsibleMemberName() {
