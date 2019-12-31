@@ -10,17 +10,17 @@ import ch.ivy.addon.portalkit.bo.CaseColumnsConfiguration;
 import ch.ivy.addon.portalkit.bo.ColumnsConfiguration;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.SecurityManagerFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
 
 public class CleanUpObsoletedUserDataService {
 
-  List<IUser> currentUsers;
+  List<UserDTO> currentUsers;
 
   @SuppressWarnings("unchecked")
   public void cleanUpData() {
@@ -42,7 +42,7 @@ public class CleanUpObsoletedUserDataService {
   }
 
   private void cleanUpUserFavouriteProcess() {
-    List<String> userNames = currentUsers.stream().map(IUser::getName).distinct().collect(Collectors.toList());
+    List<String> userNames = currentUsers.stream().map(UserDTO::getName).distinct().collect(Collectors.toList());
     UserProcessService userProcessService = new UserProcessService();
     List<UserProcess> userProcesses = userProcessService.findAll();
     List<UserProcess> obsoletedUserProcess = userProcesses
@@ -64,14 +64,14 @@ public class CleanUpObsoletedUserDataService {
   }
 
   private void cleanUpUserTaskColumnsConfigData() {
-    List<Long> userIds = currentUsers.stream().map(IUser::getId).collect(Collectors.toList());
+    List<Long> userIds = currentUsers.stream().map(UserDTO::getId).collect(Collectors.toList());
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
     List<TaskColumnsConfiguration> allColumnConfigs = service.getAllConfiguration(Ivy.request().getApplication().getId());
     cleanRepoColumnConfig(userIds, allColumnConfigs);
   }
   
   private void cleanUpUserCaseColumnsConfigData() {
-    List<Long> userIds = currentUsers.stream().map(IUser::getId).collect(Collectors.toList());
+    List<Long> userIds = currentUsers.stream().map(UserDTO::getId).collect(Collectors.toList());
     CaseColumnsConfigurationService service = new CaseColumnsConfigurationService();
     List<CaseColumnsConfiguration> allColumnConfigs = service.getAllConfiguration(Ivy.request().getApplication().getId());
     cleanRepoColumnConfig(userIds, allColumnConfigs);
@@ -85,7 +85,7 @@ public class CleanUpObsoletedUserDataService {
   }
 
   private void cleanUpUserStatisticChartData() {
-    List<Long> userIds = currentUsers.stream().map(IUser::getId).collect(Collectors.toList());
+    List<Long> userIds = currentUsers.stream().map(UserDTO::getId).collect(Collectors.toList());
     StatisticService statisticService = new StatisticService();
     List<StatisticChart> allStatisticCharts = statisticService.findAllStatisticCharts();
     
