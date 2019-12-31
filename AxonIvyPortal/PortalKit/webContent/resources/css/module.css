@@ -987,6 +987,10 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   padding-right: 120px;
 }
 
+.process-start-list-item-name.is-express {
+  width: calc(100% - 130px);
+}
+
 .process-start-list-item:hover .process-start-list-item-icon,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-icon {
   opacity: 1;
@@ -1783,7 +1787,7 @@ _:-ms-input-placeholder, :root .case-details>* {
 
 .case-description-2nd-column {
   width: calc(100% - 175px);
-  height: 130px;
+  height: 110px;
   margin-left: 2px;
   overflow-y: auto;
   overflow-x: hidden;

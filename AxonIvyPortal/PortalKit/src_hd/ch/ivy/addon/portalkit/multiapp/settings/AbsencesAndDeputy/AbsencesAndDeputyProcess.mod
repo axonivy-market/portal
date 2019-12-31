@@ -423,8 +423,7 @@ import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 
 in.validationError = false;
-in.selectedUser = ivy.wf.getSecurityContext().findUser(in.selectedUserDTO.getUsername());
-String username = UserUtils.getUserName(in.selectedUser);
+String username = in.selectedUser.getName();
 boolean fromBiggerThanTill = AbsenceAndSubstituteUtils.checkFromBiggerThanTill(in.selectedAbsence);
 in.selectedAbsence.user = in.selectedUser;
 
@@ -607,8 +606,8 @@ As0 f32 83 499 26 26 -47 15 #rect
 As0 f32 @|UdEventIcon #fIcon
 As0 f111 processCall 'Ivy Data Processes/AbsenceService:updateAbsences(String,java.util.Set)' #txt
 As0 f111 requestActionDecl '<String username,java.util.Set ivyAbsences> param;' #txt
-As0 f111 requestMappingAction 'param.username=ch.ivy.addon.portalkit.util.UserUtils.getUserName(in.selectedUser);
-param.ivyAbsences=in.absencesByUser.get(ch.ivy.addon.portalkit.util.UserUtils.getUserName(in.selectedUser)) as java.util.Set;
+As0 f111 requestMappingAction 'param.username=in.selectedUser.getName();
+param.ivyAbsences=in.absencesByUser.get(in.selectedUser.getName()) as java.util.Set;
 ' #txt
 As0 f111 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
 ' #txt
@@ -681,7 +680,7 @@ import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import java.util.Set;
 
 out.displayedAbsences.remove(in.selectedAbsence);
-Set<IvyAbsence> ivyAbsences = out.absencesByUser.get(UserUtils.getUserName(in.selectedAbsence.user)) as Set;
+Set<IvyAbsence> ivyAbsences = out.absencesByUser.get(in.selectedAbsence.user.getName()) as Set;
 ivyAbsences.remove(in.selectedAbsence);' #txt
 As0 f9 security system #txt
 As0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -817,7 +816,7 @@ As0 f59 1651 1747 26 26 0 12 #rect
 As0 f59 @|UdProcessEndIcon #fIcon
 As0 f62 processCall 'Ivy Data Processes/SubstituteService:findSubstitutes(String)' #txt
 As0 f62 requestActionDecl '<String username> param;' #txt
-As0 f62 requestMappingAction 'param.username=ch.ivy.addon.portalkit.util.UserUtils.getUserName(in.selectedUser);
+As0 f62 requestMappingAction 'param.username=in.selectedUser.getName();
 ' #txt
 As0 f62 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
 ' #txt
@@ -931,8 +930,7 @@ import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 
 in.validationError = false;
-in.selectedUser = ivy.wf.getSecurityContext().findUser(in.selectedUserDTO.getUsername());
-String username = UserUtils.getUserName(in.selectedUser);
+String username = in.selectedUser.getName();
 boolean fromBiggerThanTill = AbsenceAndSubstituteUtils.checkFromBiggerThanTill(in.selectedAbsence);
 in.selectedAbsence.user = in.selectedUser;
 
@@ -1025,7 +1023,7 @@ As0 f100 915 339 26 26 0 12 #rect
 As0 f100 @|UdProcessEndIcon #fIcon
 As0 f101 processCall 'Ivy Data Processes/SubstituteService:saveSubstitutes(String,java.util.Map)' #txt
 As0 f101 requestActionDecl '<String username,java.util.Map substitutesByApp> param;' #txt
-As0 f101 requestMappingAction 'param.username=ch.ivy.addon.portalkit.util.UserUtils.getUserName(in.selectedUser);
+As0 f101 requestMappingAction 'param.username=in.selectedUser.getName();
 param.substitutesByApp=in.substitutesByApp;
 ' #txt
 As0 f101 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
@@ -1060,7 +1058,10 @@ As0 f103 expr out #txt
 As0 f103 840 352 915 352 #arcP
 As0 f106 actionTable 'out=in;
 ' #txt
-As0 f106 actionCode 'out.selectedUser = ivy.session.getSessionUser();' #txt
+As0 f106 actionCode 'import ch.ivy.addon.portalkit.dto.UserDTO;
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+out.selectedUser = new UserDTO(ivy.session.getSessionUser());' #txt
+As0 f106 security system #txt
 As0 f106 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1318,19 +1319,22 @@ As0 f14 expr out #txt
 As0 f14 109 800 200 800 #arcP
 As0 f5 actionTable 'out=in;
 ' #txt
-As0 f5 actionCode 'import ch.ivy.addon.portalkit.dto.UserDTO;
+As0 f5 actionCode 'import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
+
+UserDTO currentUserDTO = new UserDTO(ivy.session.getSessionUser());
 
 in.selectedAbsence = new IvyAbsence();
 in.selectedAbsence.from = new Date();
 in.selectedAbsence.until = new Date();
-in.selectedAbsence.user = ivy.session.getSessionUser();
+in.selectedAbsence.user = currentUserDTO;
 
-in.selectedUser = ivy.session.getSessionUser();
-in.selectedUserDTO = new UserDTO(in.selectedUser);
+in.selectedUser = currentUserDTO;
 
 in.validationError = false;
 in.isLoadDeputy = false;' #txt
+As0 f5 security system #txt
 As0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
