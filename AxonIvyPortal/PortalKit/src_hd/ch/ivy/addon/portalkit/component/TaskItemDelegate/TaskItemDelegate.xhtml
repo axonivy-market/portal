@@ -33,7 +33,7 @@
 
         <h:panelGroup id="select-delegate-panel" layout="block" styleClass="select-delegate-panel">
           <p:autoComplete id="user-activator-select" rendered="#{data.isUserDelegated}" scrollHeight="400" dropdown="true"
-            value="#{data.delegatedSecurityMember}" completeMethod="#{logic.autoCompleteForUserDelegate}" var="user"
+            value="#{data.selectedUser}" completeMethod="#{logic.autoCompleteForUserDelegate}" var="user"
             itemLabel="#{user.getDisplayName()}" itemValue="#{user}" converter="pojoConverter" cache="true" queryDelay="500" maxResults="100"
             panelStyleClass="delegation-select-panel"
             moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
@@ -45,7 +45,7 @@
           </p:autoComplete>
 
           <p:autoComplete id="group-activator-select" rendered="#{!data.isUserDelegated}" scrollHeight="400" dropdown="true"
-            value="#{data.delegatedSecurityMember}" completeMethod="#{logic.autoCompleteForRoleDelegate}" var="role"
+            value="#{data.selectedRole}" completeMethod="#{logic.autoCompleteForRoleDelegate}" var="role"
             panelStyleClass="delegation-select-panel" itemLabel="#{role.getDisplayName() != '' ? role.getDisplayName() : role.getMemberName()}"
             itemValue="#{role}" converter="pojoConverter" cache="true" queryDelay="500" maxResults="100"
             moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
