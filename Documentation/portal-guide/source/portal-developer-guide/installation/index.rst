@@ -146,6 +146,12 @@ In engine
    project.
 4. Follow detailed migration notes for each version below.
 
+Migrate 8.0.1 to 8.0.2
+----------------------
+
+Callable process ``CalculateTaskDelegate.mod`` have changed its signature. If you overriden this callable process before, remove old implementation and adapt it accordingly.
+We changed ``IUser`` to ``UserDTO``, ``IRole`` to ``RoleDTO`` and ``ISecurityMember`` to ``SecurityMemberDTO``.
+
 Migrate 8.0.0 to 8.0.1
 ----------------------
 
