@@ -32,6 +32,9 @@
           rendered="#{substituteNode.isLeaf()}" completeMethod="#{substituteNode.autoCompleteUser}" var="user"
           converter="pojoConverter" cache="true" dropdown="true" scrollHeight="200" maxResults="100"
           itemLabel="#{not empty user ? user.displayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}" itemValue="#{user}"
+          onfocus="clearSubtitute(this, '#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}');"
+          onblur="updateSubtitute(this);"
+          onchange="updateSubtitute(this);"
           moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
           <p:column>
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}" rendered="#{empty user}" />
@@ -46,5 +49,23 @@
       </p:column>
     </p:treeTable>
   </h:panelGroup>
+  <script type="text/javascript">
+    var defaultSubtituteName = "";
+    var selectedSubtituteName = "";
+    function clearSubtitute(target, defaultValue) {
+      selectedSubtituteName = target.value;
+      defaultSubtituteName = defaultValue;
+      if (target.defaultValue == defaultValue || target.value == defaultValue) { 
+        target.defaultValue = "";
+        target.value = "";
+      }
+    }
+
+    function updateSubtitute(target) {
+      if (target.value == "") {
+        selectedSubtituteName == "" ? target.value = defaultSubtituteName : target.value = selectedSubtituteName;
+      } 
+    }
+  </script>
 </ui:composition>
 </html>
