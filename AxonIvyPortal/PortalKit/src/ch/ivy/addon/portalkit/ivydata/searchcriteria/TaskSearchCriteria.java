@@ -31,10 +31,8 @@ public class TaskSearchCriteria {
   private boolean isQueryByTaskId;
   private boolean isQueryByBusinessCaseId;
   private boolean isQueryForUnassignedTask;
-  private boolean isMobile;
   private String sortField;
   private boolean sortDescending;
-  private boolean isFirstTimeLazyLoad = true;
   private boolean isSorted = true;
   private TaskQuery customTaskQuery;
 
@@ -120,7 +118,7 @@ public class TaskSearchCriteria {
 
   private void addKeywordQuery(TaskQuery finalQuery) {
     if (hasKeyword()) {
-      finalQuery.where().and(queryForKeyword(getKeyword(), isMobile()));
+      finalQuery.where().and(queryForKeyword(getKeyword()));
     }
   }
 
@@ -138,20 +136,18 @@ public class TaskSearchCriteria {
     return TaskQuery.create().where().category().isLike(startingWithCategory);
   }
   
-  private TaskQuery queryForKeyword(String keyword, boolean isMobile) {
+  private TaskQuery queryForKeyword(String keyword) {
     String containingKeyword = String.format("%%%s%%", keyword);
     TaskQuery filterByKeywordQuery =
         TaskQuery.create().where().or().name().isLikeIgnoreCase(containingKeyword).or().description()
             .isLikeIgnoreCase(containingKeyword);
 
-    if (!isMobile) {
-      try {
+    try {
         long idKeyword = Long.parseLong(keyword);
         String containingIdKeyword = String.format("%%%d%%", idKeyword);
         filterByKeywordQuery.where().or().taskId().isLike(containingIdKeyword);
       } catch (NumberFormatException e) {
         // do nothing
-      }
     }
     return filterByKeywordQuery;
   }
@@ -383,14 +379,6 @@ public class TaskSearchCriteria {
     this.isQueryForUnassignedTask = isQueryForUnassignedTask;
   }
 
-  public boolean isMobile() {
-    return isMobile;
-  }
-
-  public void setMobile(boolean isMobile) {
-    this.isMobile = isMobile;
-  }
-
   public TaskQuery getCustomTaskQuery() {
     return customTaskQuery;
   }
@@ -452,14 +440,6 @@ public class TaskSearchCriteria {
 
   public void setFinalTaskQuery(TaskQuery finalTaskQuery) {
     this.finalTaskQuery = finalTaskQuery;
-  }
-
-  public boolean isFirstTimeLazyLoad() {
-    return isFirstTimeLazyLoad;
-  }
-
-  public void setFirstTimeLazyLoad(boolean isFirstTimeLazyLoad) {
-    this.isFirstTimeLazyLoad = isFirstTimeLazyLoad;
   }
 
 }
