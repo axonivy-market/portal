@@ -54,8 +54,11 @@ public class PortalSettingLoader {
       }
     }
 
-    globalSettingService.saveAll(globalSettingsForSave);
-    
+    // Save each global setting
+    for (GlobalSetting setting : globalSettingsForSave) {
+      globalSettingService.save(setting);
+    }
+
     //Invalidate application cache to make new properties effects
     IvyCacheService.newInstance().invalidateGlobalSettingOnApp(Ivy.request().getApplication().getName());
   }
