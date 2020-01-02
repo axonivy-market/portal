@@ -507,6 +507,13 @@ Portal general permission
    This button will be hidden if session user does not have permission
    ``PortalPermission.TASK_CASE_SHOW_MORE_NOTE``.
 
+-  CREATE PUBLIC EXTERNAL LINK FOR ALL USERS
+
+   Everyone can add a new external link privately by default.
+   If a user is granted ``PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK``, 
+   he can set an external link as public so that all other users can see this link in full process list
+   and other users can also add it to User Favorites.
+
 Administrator permission can see all tasks/cases in the application
 -------------------------------------------------------------------
 
