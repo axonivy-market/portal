@@ -1219,9 +1219,9 @@ Bk5 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk5 g1 499 147 26 26 0 5 #rect
+Bk5 g1 531 147 26 26 0 5 #rect
 Bk5 g1 @|MOGIcon #fIcon
-Bk5 f1 440 160 499 160 #arcP
+Bk5 f1 440 160 531 160 #arcP
 >Proto Bk4 0 0 32 24 18 0 #rect
 >Proto Bk4 @|BIcon #fIcon
 Pt0 f10 mainOut f48 tail #connect
@@ -1330,6 +1330,6 @@ Bk5 f51 mainOut f14 tail #connect
 Bk5 f14 head f20 mainIn #connect
 Bk5 g0 m f0 tail #connect
 Bk5 f0 head f51 mainIn #connect
-Bk5 f1 head g1 m #connect
 Bk5 f20 mainOut f1 tail #connect
-Bk5 0 0 576 320 0 #ivRect
+Bk5 f1 head g1 m #connect
+Bk5 0 0 704 288 0 #ivRect
