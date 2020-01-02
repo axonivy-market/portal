@@ -738,13 +738,13 @@ Pt0 f44 0 0.7641087129602482 0 0 #arcLabel
 Pt0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>PortalStart.ivp: Deprecated, will be removed in 9.0</name>
+        <name>PortalStart.ivp: Deprecated, will be removed in v9.0</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f45 256 17 272 30 -129 -8 #rect
+Pt0 f45 264 17 272 30 -132 -8 #rect
 Pt0 f45 @|IBIcon #fIcon
-Pt0 f46 256 32 111 32 #arcP
+Pt0 f46 264 32 111 32 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1267,14 +1267,14 @@ Bk5 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk5 g1 499 147 26 26 0 5 #rect
+Bk5 g1 531 147 26 26 0 5 #rect
 Bk5 g1 @|MOGIcon #fIcon
-Bk5 f1 440 160 499 160 #arcP
+Bk5 f1 440 160 531 160 #arcP
 Bk5 g2 51 51 26 26 0 5 #rect
 Bk5 g2 @|MIGIcon #fIcon
 Bk5 f2 77 64 200 138 #arcP
 Bk5 f2 1 200 64 #addKink
-Bk5 f2 1 0.4530166116645099 0 0 #arcLabel
+Bk5 f2 0 0.9337349397590361 0 0 #arcLabel
 >Proto Bk4 0 0 32 24 18 0 #rect
 >Proto Bk4 @|BIcon #fIcon
 Pt0 f10 mainOut f48 tail #connect
@@ -1387,8 +1387,8 @@ Bk5 f51 mainOut f14 tail #connect
 Bk5 f14 head f20 mainIn #connect
 Bk5 g0 m f0 tail #connect
 Bk5 f0 head f51 mainIn #connect
-Bk5 f1 head g1 m #connect
 Bk5 f20 mainOut f1 tail #connect
+Bk5 f1 head g1 m #connect
 Bk5 g2 m f2 tail #connect
 Bk5 f2 head f51 mainIn #connect
-Bk5 0 0 576 320 0 #ivRect
+Bk5 0 0 704 288 0 #ivRect
