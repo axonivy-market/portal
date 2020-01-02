@@ -109,6 +109,12 @@ public class ProcessWidgetPage extends TemplatePage {
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     return new AddNewProcessDialog();
   }
+  
+  public AddNewExternalLinkDialog openNewExternalLinkDialog() {
+    waitForElementDisplayed(By.id(processWidgetId + ":add-external-link-command"), true);
+    click(By.id("process-widget:add-external-link-command"));
+    return new AddNewExternalLinkDialog();
+  }
 
   private List<WebElement> findDeleteIcons() {
     waitForElementDisplayed(By.id(processWidgetId + ":process-list"), true);
@@ -151,7 +157,6 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public boolean isExpandedMode() {
-    waitForElementDisplayed(By.id(processWidgetId + ":process-search:non-ajax-keyword-filter"), true, DEFAULT_TIMEOUT);
     loadLiveSearchTextField();
     return liveSearchTextField.isDisplayed();
   }
@@ -164,6 +169,7 @@ public class ProcessWidgetPage extends TemplatePage {
   public void expand() {
     loadSwitchModeButton();
     switchModeButton.click();
+    waitForElementDisplayed(By.id(processWidgetId + ":process-search:non-ajax-keyword-filter"), true, DEFAULT_TIMEOUT);
   }
 
   private void loadSwitchModeButton() {
@@ -201,25 +207,15 @@ public class ProcessWidgetPage extends TemplatePage {
       processDialog = findElementById(PROCESS_DIALOG_ID);
     }
 
-    public void inputDataForExternalProcess(String processName, String processURL) {
-      String processLinkId = processWidgetId + ":process-start-link";
-      waitForElementDisplayed(By.id(processLinkId), true);
-      String processNameId = processWidgetId + ":external-process-name";
-      WebElement processNameInput = findElementById(processNameId);
-      type(processNameInput, processName);
-      WebElement processURLInput = findElementById(processLinkId);
-      type(processURLInput, processURL);
-    }
-
     public void submitForm() {
       WebElement submitButton = findChildElementById(processDialog, processWidgetId + ":add-process-command");
       submitButton.click();
       waitAjaxIndicatorDisappear();
     }
 
-    public void selectIvyProcessByName(String ivyProcessName) {
+    public void selectProcessByName(String ivyProcessName) {
       findElementByClassName("ui-autocomplete-dropdown").click();
-      String processSelector = "tr[data-item-label='" + ivyProcessName + "']";
+      String processSelector = "li[data-item-label='" + ivyProcessName + "']";
       waitForElementDisplayed(By.cssSelector(processSelector), true);
       clickByCssSelector(processSelector);
       waitAjaxIndicatorDisappear();
@@ -231,7 +227,7 @@ public class ProcessWidgetPage extends TemplatePage {
       waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
       return isElementPresent(By.cssSelector(processSelector));
     }
-    
+
     public void clickChangeIconButton() {
       waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
       clickByCssSelector("a[class*='select-awesome-icon-button']");
@@ -254,11 +250,42 @@ public class ProcessWidgetPage extends TemplatePage {
     	return element.getAttribute("class").contains(AwesomeIcon.DEFAULT_ICON);
     }
   }
+  
+  public class AddNewExternalLinkDialog {
+    private final String EXTERNAL_LINK_NAME_INPUT_CSS_SELECTOR = "input[id$='external-link-name']";
+    private final String EXTERNAL_LINK_INPUT_CSS_SELECTOR = "input[id$='external-link']";
+    private final String ADD_EXTERNAL_LINK_BUTTON_INPUT_CSS_SELECTOR = "button[id$='adding-new-external-link-command']";
+    
+    private AddNewExternalLinkDialog() {}
 
-  public void selectProcessTypeExternal() {
-    WebElement externalCheckboxLabel = findElementByXpath("//label[@for='" + processWidgetId + ":process-type:1']");
-    externalCheckboxLabel.click();
-    waitAjaxIndicatorDisappear();
+    public void inputDataForExternalLink(String processName, String processLink, boolean isPublic) {
+      inputExternalLinkName(processName);
+      inputExternalLink(processLink);
+      selectExternalLinkType(isPublic);
+    }
+    
+    public void inputExternalLinkName(String name) {
+      WebElement externalLinkInputField = findDisplayedElementByCssSelector(EXTERNAL_LINK_NAME_INPUT_CSS_SELECTOR);
+      externalLinkInputField.sendKeys(name);
+    }
+
+    public void inputExternalLink(String link) {
+      WebElement externalLinkInputField = findDisplayedElementByCssSelector(EXTERNAL_LINK_INPUT_CSS_SELECTOR);
+      externalLinkInputField.sendKeys(link);
+    }
+    
+    public void selectExternalLinkType(boolean isPublic) {
+      if (isPublic) {
+        WebElement externalCheckboxLabel = findElementByXpath("//label[@for='" + processWidgetId + ":external-link-type-radio:1']");
+        externalCheckboxLabel.click();
+      }
+    }
+
+    public void submitForm() {
+      WebElement submitButton = findElementByCssSelector(ADD_EXTERNAL_LINK_BUTTON_INPUT_CSS_SELECTOR);
+      submitButton.click();
+      waitAjaxIndicatorDisappear();
+    }
   }
   
   public void openExpressPage() {
@@ -273,4 +300,15 @@ public class ProcessWidgetPage extends TemplatePage {
   public boolean hasCreateNewExpressWorkflowLink() {
     return isElementPresent(By.id("process-widget:create-express-form:create-express-workflow"));
   }
+  
+  public void deleteExternalLinkByFieldsetIndexAndIndex(int fieldsetIndex, int index) {
+    String deleteExternalLinkIconCssSelector = String.format("a[id$='%d:processes:%d:process-item-form:delete-external-link']", fieldsetIndex, index);
+    WebElement deleteExternalIcon = findElementByCssSelector(deleteExternalLinkIconCssSelector);
+    deleteExternalIcon.click();
+    waitAjaxIndicatorDisappear();
+    findElementByCssSelector("button[id$='delete-external-link-btn']").click();
+    waitAjaxIndicatorDisappear();
+  }
+
+  
 }
