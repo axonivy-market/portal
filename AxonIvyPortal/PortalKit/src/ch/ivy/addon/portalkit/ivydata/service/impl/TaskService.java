@@ -34,6 +34,7 @@ import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.ITaskQueryExecutor;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
@@ -51,10 +52,7 @@ public class TaskService implements ITaskService {
     return IvyExecutor.executeAsSystem(() -> {
       IvyTaskResultDTO result = new IvyTaskResultDTO();
       try {
-        TaskQuery finalQuery = criteria.getFinalTaskQuery();
-        if (criteria.isFirstTimeLazyLoad()) {
-          finalQuery = extendQueryWithInvolvedUser(criteria);
-        }
+        TaskQuery finalQuery = extendQueryWithInvolvedUser(criteria);
         result.setTasks(executeTaskQuery(finalQuery, startIndex, count));
       } catch (Exception ex) {
         Ivy.log().error("Error in getting tasks", ex);
@@ -259,17 +257,18 @@ public class TaskService implements ITaskService {
 
   private TaskQuery extendQueryWithInvolvedUser(TaskSearchCriteria criteria) {
     TaskQuery finalQuery = criteria.getFinalTaskQuery();
+    TaskQuery clonedQuery = TaskQuery.fromJson(finalQuery.asJson()); // clone to keep the final query in TaskSearchCriteria
     if (criteria.hasApps()) {
       if (criteria.hasInvolvedUsername() && !criteria.isAdminQuery()) {
-        finalQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps()));
+        clonedQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps()));
       } else {
-        finalQuery.where().and(queryForApplications(criteria.getApps()));
+        clonedQuery.where().and(queryForApplications(criteria.getApps()));
       }
     }
     if (isHiddenTasksCasesExcluded(criteria.getApps())) {
-      finalQuery.where().and(queryExcludeHiddenTasks());
+      clonedQuery.where().and(queryExcludeHiddenTasks());
     }
-    return finalQuery;
+    return clonedQuery;
   }
   
   private TaskQuery extendQueryWithUserCanWorkOn(TaskSearchCriteria criteria) {
