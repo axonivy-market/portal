@@ -501,4 +501,30 @@ public class TaskWidgetPage extends TemplatePage {
     return isElementDisplayed(By.cssSelector("a[id$='adhoc-side-step-item']"));
   }
 
+  public boolean isAllCategoriesSelected() {
+    return isElementDisplayed(By.cssSelector(".filter-category-checkbox-tree .ui-treenode-selected"));
+  }
+  
+  public boolean isAllCategoriesUnselected() {
+    return isElementDisplayed(By.cssSelector(".filter-category-checkbox-tree .ui-treenode-hasselected"));
+  }
+  
+  public void openCategoryFilter() {
+    click(By.cssSelector("button[id$='task-category-filter:filter-open-form:advanced-filter-command']"));
+  }
+  
+  public void toggleNoCategory() {
+    List<WebElement> categories = findListElementsByCssSelector(".filter-category-checkbox-tree .ui-tree-selectable");
+    for (WebElement category : categories) {
+      if (category.getText().equals("[No Category]")) {
+        click(category);
+        return;
+      }
+    }
+  }
+  
+  public void applyCategoryFilter() {
+    click(By.cssSelector("button[id$='task-category-filter:filter-input-form:update-command']"));
+    waitAjaxIndicatorDisappear();
+  }
 }
