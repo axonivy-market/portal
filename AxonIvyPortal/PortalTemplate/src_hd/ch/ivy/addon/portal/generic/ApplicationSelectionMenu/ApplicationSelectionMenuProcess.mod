@@ -125,7 +125,7 @@ As0 f83 actionTable 'out=in;
 ' #txt
 As0 f83 actionCode 'import org.primefaces.PrimeFaces;
 
-PrimeFaces.current().executeScript("PF(''task-losing-confirmation-dialog'').show()");' #txt
+PrimeFaces.current().executeScript("removeHighlightedMenuItem(); PF(''task-losing-confirmation-dialog'').show()");' #txt
 As0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
