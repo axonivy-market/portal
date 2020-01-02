@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+        
     <wb-module deploy-name="PortalKit">
+                
         <wb-resource deploy-path="/" source-path="/webContent" tag="defaultRootSource"/>
+                
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+                
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_hd"/>
+                
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src_dataClasses"/>
+                
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/js"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/resources"/>
+                
         <property name="java-output-path" value="/PortalKit/classes"/>
+                
         <property name="context-root" value="PortalKit"/>
+            
     </wb-module>
+    
 </project-modules>

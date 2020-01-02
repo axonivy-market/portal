@@ -105,9 +105,7 @@ public class UserUtils {
   }
   
   public static List<IUserAbsence> findAbsenceOfUser(IUser iUser) {
-    return IvyExecutor.executeAsSystem(() -> {
-      return iUser.getAbsences();
-    });
+    return IvyExecutor.executeAsSystem(() -> iUser.getAbsences());
   }
   
   public static List<UserDTO> filterUsersDTO(List<UserDTO> users, String query) {
