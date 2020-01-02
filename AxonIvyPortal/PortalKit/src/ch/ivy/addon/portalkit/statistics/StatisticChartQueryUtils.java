@@ -539,11 +539,15 @@ public class StatisticChartQueryUtils {
     taskQuery.where().and().state().isEqual(TaskState.DONE);
     
     //Filter by role which finished task
-    taskQuery.where().and(generateTaskQueryForRoles(filter));
-
-    // Filter by task priority
-    taskQuery.where().and(generateTaskQueryForTaskPriority(filter));
+    if(!filter.getIsAllRolesSelected()) {
+      taskQuery.where().and(generateTaskQueryForRoles(filter));
+    }
     
+    // Filter by task priority
+    if(!filter.getIsAllTaskPrioritiesSelected()) {
+      taskQuery.where().and(generateTaskQueryForTaskPriority(filter));
+    }
+   
     return taskQuery;
   }
   
