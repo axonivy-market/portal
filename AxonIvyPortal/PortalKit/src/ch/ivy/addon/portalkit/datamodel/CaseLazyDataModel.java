@@ -89,6 +89,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
       Map<String, Object> filters) {
     if (selectedCaseFilter != null && !selectedCaseFilter.reloadView()
         || validateStateFilter(selectedCaseFilter)) {
+      storeCaseFiltersIntoSession();
       selectedCaseFilter = null;
       return data;
     }
@@ -317,12 +318,16 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
         filterQuery.and(subQuery);
       }
     });
+    storeCaseFiltersIntoSession();
+    return caseQuery;
+  }
+
+  private void storeCaseFiltersIntoSession() {
     if (!isNotKeepFilter) {
       UserUtils.setSessionSelectedCaseFilterSetAttribute(selectedFilterData);
       UserUtils.setSessionCaseKeywordFilterAttribute(criteria.getKeyword());
       UserUtils.setSessionCaseAdvancedFilterAttribute(selectedFilters);
     }
-    return caseQuery;
   }
 
   private void setValuesForCaseStateFilter(CaseSearchCriteria criteria) {
