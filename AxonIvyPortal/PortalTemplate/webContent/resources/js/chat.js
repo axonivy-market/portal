@@ -577,7 +577,7 @@ function View(uri)
          }
        }, 0);
       }
-      if (!$(cloneTemplate).hasClass("my-message") && isIphone) {
+      if ($(cloneTemplate).hasClass("my-message") && isIphone) {
     	  var $chatMessages = $(".js-chat-panel.active").find(".js-message-list").find(".chat-message");
     	  $messageList.animate({
               scrollTop: $messageList.scrollTop() + $chatMessages.last().offset().top}
