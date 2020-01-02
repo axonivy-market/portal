@@ -6,6 +6,7 @@ import static junit.framework.Assert.assertTrue;
 
 import java.util.Arrays;
 
+import org.apache.commons.codec.binary.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -141,6 +142,23 @@ public class TaskFilterTest extends BaseTest {
     assertEquals(3, taskWidgetPage.countTasks());
     taskWidgetPage.openStateFilterOverlayPanel();
     assertEquals("Created,Suspended,In progress,Reserved,Done", taskWidgetPage.getDisplayStateInStateFilter());
+  }
+  
+  @Test
+  public void testCategory() {
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
     
+    String taskCategoryId = "task-category";
+    taskWidgetPage.openAdvancedFilter("Task category", taskCategoryId);
+    assertEquals("Task category: All", taskWidgetPage.getFilterValue(taskCategoryId + "-filter"));
+    taskWidgetPage.openCategoryFilter();
+    assertTrue(taskWidgetPage.isAllCategoriesSelected());
+    
+    taskWidgetPage.toggleNoCategory();
+    assertTrue(taskWidgetPage.isAllCategoriesUnselected());
+    
+    taskWidgetPage.applyCategoryFilter();
+    assertFalse(StringUtils.equals("Task category: All", taskWidgetPage.getFilterValue(taskCategoryId + "-filter")));
   }
 }
