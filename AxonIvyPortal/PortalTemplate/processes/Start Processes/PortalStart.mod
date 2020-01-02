@@ -82,6 +82,10 @@ Pt0 @GridStep f51 '' #zField
 Pt0 @PushWFArc f40 '' #zField
 Pt0 @PushWFArc f41 '' #zField
 Pt0 @PushWFArc f42 '' #zField
+Pt0 @StartRequest f43 '' #zField
+Pt0 @PushWFArc f44 '' #zField
+Pt0 @InfoButton f45 '' #zField
+Pt0 @AnnotationArc f46 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk0 @TextInP .type .type #zField
 Bk0 @TextInP .processKind .processKind #zField
@@ -160,6 +164,8 @@ Bk5 @PushTrueWFInG-01 g0 '' #zField
 Bk5 @PushWFArc f0 '' #zField
 Bk5 @PushTrueWFOutG-01 g1 '' #zField
 Bk5 @PushWFArc f1 '' #zField
+Bk5 @PushTrueWFInG-01 g2 '' #zField
+Bk5 @PushWFArc f2 '' #zField
 >Proto Bk5 Bk4 BpmnServiceTask #zField
 Pt0 f10 outLink DefaultEndPage.ivp #txt
 Pt0 f10 inParamDecl '<Number endedTaskId> param;' #txt
@@ -247,13 +253,19 @@ Pt0 f28 requestEnabled true #txt
 Pt0 f28 triggerEnabled false #txt
 Pt0 f28 callSignature DefaultApplicationHomePage() #txt
 Pt0 f28 persist false #txt
-Pt0 f28 taskData 'TaskTriggered.EXPRI=2
+Pt0 f28 taskData 'TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
+TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription")%>
+TaskTriggered.EXPRI=2
 TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/portalSettingSaved")%>
 TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
-Pt0 f28 caseData businessCase.attach=true #txt
+Pt0 f28 caseData 'businessCase.attach=true
+case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
+case.description=<%\=ivy.cms.co("/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription")%>
+case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/portalSettingSaved")%>' #txt
 Pt0 f28 showInStartList 1 #txt
 Pt0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -697,6 +709,42 @@ Pt0 f40 496 768 552 768 #arcP
 Pt0 f41 expr out #txt
 Pt0 f41 320 768 352 768 #arcP
 Pt0 f42 111 768 192 768 #arcP
+Pt0 f43 outLink PortalStart.ivp #txt
+Pt0 f43 inParamDecl '<> param;' #txt
+Pt0 f43 requestEnabled true #txt
+Pt0 f43 triggerEnabled false #txt
+Pt0 f43 callSignature PortalStart() #txt
+Pt0 f43 taskData 'TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
+TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription")%>
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/portalSettingSaved")%>' #txt
+Pt0 f43 caseData 'businessCase.attach=true
+case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
+case.description=<%\=ivy.cms.co("/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription")%>
+case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/portalSettingSaved")%>' #txt
+Pt0 f43 showInStartList 0 #txt
+Pt0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>PortalStart.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f43 @C|.responsibility Everybody #txt
+Pt0 f43 81 17 30 30 -20 17 #rect
+Pt0 f43 @|StartRequestIcon #fIcon
+Pt0 f44 111 32 224 74 #arcP
+Pt0 f44 1 224 32 #addKink
+Pt0 f44 0 0.7641087129602482 0 0 #arcLabel
+Pt0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>PortalStart.ivp: Deprecated, will be removed in 9.0</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f45 256 17 272 30 -129 -8 #rect
+Pt0 f45 @|IBIcon #fIcon
+Pt0 f46 256 32 111 32 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1222,6 +1270,11 @@ Bk5 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Bk5 g1 499 147 26 26 0 5 #rect
 Bk5 g1 @|MOGIcon #fIcon
 Bk5 f1 440 160 499 160 #arcP
+Bk5 g2 51 51 26 26 0 5 #rect
+Bk5 g2 @|MIGIcon #fIcon
+Bk5 f2 77 64 200 138 #arcP
+Bk5 f2 1 200 64 #addKink
+Bk5 f2 1 0.4530166116645099 0 0 #arcLabel
 >Proto Bk4 0 0 32 24 18 0 #rect
 >Proto Bk4 @|BIcon #fIcon
 Pt0 f10 mainOut f48 tail #connect
@@ -1280,6 +1333,10 @@ Pt0 f39 mainOut f42 tail #connect
 Pt0 f42 head f51 mainIn #connect
 Pt0 f37 mainOut f40 tail #connect
 Pt0 f40 head f53 mainIn #connect
+Pt0 f43 mainOut f44 tail #connect
+Pt0 f44 head S51 g2 #connect
+Pt0 f45 ao f46 tail #connect
+Pt0 f46 head f43 @CG|ai #connect
 Bk0 f17 mainOut f26 tail #connect
 Bk0 f26 head f23 mainIn #connect
 Bk0 f19 mainOut f39 tail #connect
@@ -1332,4 +1389,6 @@ Bk5 g0 m f0 tail #connect
 Bk5 f0 head f51 mainIn #connect
 Bk5 f1 head g1 m #connect
 Bk5 f20 mainOut f1 tail #connect
+Bk5 g2 m f2 tail #connect
+Bk5 f2 head f51 mainIn #connect
 Bk5 0 0 576 320 0 #ivRect
