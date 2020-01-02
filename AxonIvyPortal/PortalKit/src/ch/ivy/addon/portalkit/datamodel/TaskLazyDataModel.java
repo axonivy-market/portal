@@ -180,11 +180,8 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       if (!disableTaskCount) {
         PrimeFaces.current().executeScript("updateTaskCount()");
       }
-      criteria.setFirstTimeLazyLoad(true);
-    } else {
-      criteria.setFirstTimeLazyLoad(false);
-    }
-
+    } 
+    
     List<ITask> foundTasks = findTasks(criteria, first, pageSize);
     if (disableTaskCount) {
       int rowCount = 0;
