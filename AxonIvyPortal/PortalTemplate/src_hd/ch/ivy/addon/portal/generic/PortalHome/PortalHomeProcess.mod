@@ -18,11 +18,11 @@ Ps0 @RichDialogInitStart f0 '' #zField
 Ps0 @RichDialogProcessEnd f10 '' #zField
 Ps0 @PushWFArc f11 '' #zField
 Ps0 @RichDialogMethodStart f1 '' #zField
-Ps0 @RichDialogProcessEnd f2 '' #zField
-Ps0 @PushWFArc f3 '' #zField
 Ps0 @RichDialogProcessEnd f4 '' #zField
 Ps0 @RichDialogMethodStart f5 '' #zField
 Ps0 @PushWFArc f6 '' #zField
+Ps0 @PushWFArc f3 '' #zField
+Ps0 @RichDialogProcessEnd f2 '' #zField
 >Proto Ps0 Ps0 PortalHomeProcess #zField
 Ps0 f0 guid 14BEF201D4239EF7 #txt
 Ps0 f0 type ch.ivy.addon.portal.generic.PortalHome.PortalHomeData #txt
@@ -82,11 +82,6 @@ Ps0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ps0 f1 85 149 22 22 14 0 #rect
 Ps0 f1 @|RichDialogMethodStartIcon #fIcon
-Ps0 f2 type ch.ivy.addon.portal.generic.PortalHome.PortalHomeData #txt
-Ps0 f2 213 149 22 22 14 0 #rect
-Ps0 f2 @|RichDialogProcessEndIcon #fIcon
-Ps0 f3 expr out #txt
-Ps0 f3 107 160 213 160 #arcP
 Ps0 f4 type ch.ivy.addon.portal.generic.PortalHome.PortalHomeData #txt
 Ps0 f4 210 210 22 22 14 0 #rect
 Ps0 f4 @|RichDialogProcessEndIcon #fIcon
@@ -118,6 +113,11 @@ Ps0 f5 82 210 22 22 14 0 #rect
 Ps0 f5 @|RichDialogMethodStartIcon #fIcon
 Ps0 f6 expr out #txt
 Ps0 f6 104 221 210 221 #arcP
+Ps0 f3 expr out #txt
+Ps0 f3 107 160 213 160 #arcP
+Ps0 f2 type ch.ivy.addon.portal.generic.PortalHome.PortalHomeData #txt
+Ps0 f2 213 149 22 22 14 0 #rect
+Ps0 f2 @|RichDialogProcessEndIcon #fIcon
 >Proto Ps0 .type ch.ivy.addon.portal.generic.PortalHome.PortalHomeData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
