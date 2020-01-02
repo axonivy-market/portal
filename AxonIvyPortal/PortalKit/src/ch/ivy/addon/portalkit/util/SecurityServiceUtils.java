@@ -13,6 +13,7 @@ import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpRequest;
 import ch.ivyteam.ivy.request.RequestUriFactory;
+import ch.ivyteam.ivy.server.restricted.EngineMode;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 
 /**
@@ -125,5 +126,14 @@ public class SecurityServiceUtils {
       Object portalStartPmvId = getSessionAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString());
       return collector.findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId);
     });
+  }
+
+  /**
+   * Check current engine is designer or not.
+   * 
+   * @return check result
+   */
+  public static boolean isDesigner() {
+    return EngineMode.isEmbeddedInDesigner();
   }
 }
