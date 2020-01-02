@@ -178,6 +178,12 @@ public class CaseWidgetPage extends TemplatePage {
 
     return descriptionInput.getText();
   }
+  
+  public String getFilterValue(String filterId) {
+    WebElement filterElement =
+        findElementByCssSelector("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']");
+    return filterElement.getText();
+  }
 
   public boolean isFilterSelectionVisible() {
     return isElementPresent(By.id(caseWidgetId + ":filter-selection-form:filter-selection-panel"));
@@ -225,4 +231,30 @@ public class CaseWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
+  public boolean isAllCategoriesSelected() {
+    return isElementDisplayed(By.cssSelector(".filter-category-checkbox-tree .ui-treenode-selected"));
+  }
+  
+  public boolean isAllCategoriesUnselected() {
+    return isElementDisplayed(By.cssSelector(".filter-category-checkbox-tree .ui-treenode-hasselected"));
+  }
+  
+  public void openCategoryFilter() {
+    click(By.cssSelector("button[id$='case-category-filter:filter-open-form:advanced-filter-command']"));
+  }
+  
+  public void toggleNoCategory() {
+    List<WebElement> categories = findListElementsByCssSelector(".filter-category-checkbox-tree .ui-tree-selectable");
+    for (WebElement category : categories) {
+      if (category.getText().equals("[No Category]")) {
+        click(category);
+        return;
+      }
+    }
+  }
+  
+  public void applyCategoryFilter() {
+    click(By.cssSelector("button[id$='case-category-filter:filter-input-form:update-command']"));
+    waitAjaxIndicatorDisappear();
+  }
 }
