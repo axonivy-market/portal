@@ -10,7 +10,9 @@ import java.util.stream.Stream;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.PortalPermissionGroup;
+import ch.ivy.addon.portalkit.loader.PortalSettingLoader;
 import ch.ivy.addon.portalkit.security.PortalSecurity;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.eventstart.AbstractProcessStartEventBean;
 import ch.ivyteam.ivy.process.eventstart.IProcessStartEventBeanRuntime;
@@ -32,12 +34,20 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
     super.initialize(eventRuntime, configuration);
     getEventBeanRuntime().setPollTimeInterval(0);
     initPermissions();
+
+    if (SecurityServiceUtils.isDesigner()) {
+      initPortalSettings();
+    }
   }
 
   private void initPermissions() {
     recreateAndGrantPermissions();
     PortalSecurity.INSTANCE.assignPermissionsToDefaultUsers();
+  }
 
+  private void initPortalSettings() {
+    PortalSettingLoader loader = new PortalSettingLoader();
+    loader.loadPortalSettings();
   }
 
   private void recreateAndGrantPermissions() {
