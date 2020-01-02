@@ -2,7 +2,9 @@ package portal.guitest.test;
 
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertFalse;
+import static junit.framework.Assert.assertTrue;
 
+import org.apache.commons.codec.binary.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -74,5 +76,23 @@ public class CaseFilterTest extends BaseTest {
     mainMenuPage.selectTaskMenu();
     casePage = mainMenuPage.openCaseList();
     assertEquals(filterName, casePage.getFilterName());
+  }
+  
+  @Test
+  public void testCategory() {
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    CaseWidgetPage casePage = mainMenuPage.openCaseList();
+    
+    String caseCategoryId = "case-category";
+    casePage.openAdvancedFilter("Case category", caseCategoryId);
+    assertEquals("Case category: All", casePage.getFilterValue(caseCategoryId + "-filter"));
+    casePage.openCategoryFilter();
+    assertTrue(casePage.isAllCategoriesSelected());
+    
+    casePage.toggleNoCategory();
+    assertTrue(casePage.isAllCategoriesUnselected());
+    
+    casePage.applyCategoryFilter();
+    assertFalse(StringUtils.equals("Case category: All", casePage.getFilterValue(caseCategoryId + "-filter")));
   }
 }
