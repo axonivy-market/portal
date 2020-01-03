@@ -295,7 +295,6 @@ public class StatisticChartQueryUtils {
     if (CollectionUtils.isNotEmpty(filter.getSelectedRoles())) {
       filter.getSelectedRoles().forEach(role -> subTaskQueryForRoles.where().or().activatorName().isEqual(role));
     } else {
-      filter.initRoles();
       subTaskQueryForRoles.where().and().activatorUserId().isNull(); //exclude other users
       List<IRole> roles = CollectionUtils.emptyIfNull(filter.getRoles()).stream().filter(role -> role instanceof IRole).map(role -> (IRole)role).collect(Collectors.toList());
       roles.forEach(role -> subTaskQueryForRoles.where().and().activatorName().isNotEqual(role.getMemberName())); //exclude role
