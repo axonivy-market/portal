@@ -190,6 +190,10 @@
   color: $statisticCarouselHeaderButtonColor !important;
 }
 
+_::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .ui-carousel-prev-button {
+  margin-top: 3px;
+}
+
 .statistic-carousel .ui-carousel-header .ui-carousel-next-button:hover,
 .statistic-carousel .ui-carousel-header .ui-carousel-prev-button:hover {
   color: $statisticCarouselHeaderButtonHoverColor !important;
