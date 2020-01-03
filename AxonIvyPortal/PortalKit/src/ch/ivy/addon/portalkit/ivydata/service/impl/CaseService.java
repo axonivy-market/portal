@@ -83,7 +83,7 @@ public class CaseService implements ICaseService {
   }
   
   private CaseQuery queryForUsers(String involvedUsername, List<String> apps) {
-    CaseQuery caseQuery = CaseQuery.create();
+    CaseQuery caseQuery = CaseQuery.businessCases();
     if (isCaseOwnerEnabled()) {
       apps.forEach(app -> caseQuery.where().or().userIsInvolved(involvedUsername, app).or().isOwner("#" + involvedUsername, app));
     } else {
@@ -97,7 +97,7 @@ public class CaseService implements ICaseService {
   }
 
   private CaseQuery queryForApplications(List<String> apps) {
-    CaseQuery caseQuery = CaseQuery.create();
+    CaseQuery caseQuery = CaseQuery.businessCases();
     apps.forEach(app -> {
       IApplication application = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(app);
       if (application != null && application.getActivityState() == ActivityState.ACTIVE) {
@@ -232,7 +232,7 @@ public class CaseService implements ICaseService {
   }
 
   private CaseQuery queryExcludeHiddenCases() {
-    return CaseQuery.create().where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
+    return CaseQuery.businessCases().where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
   }
   
   private CaseQuery extendQuery(CaseSearchCriteria criteria) {
