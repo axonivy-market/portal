@@ -32,7 +32,7 @@ public class ExternalLinkBean {
   }
   
   public ExternalLink saveNewExternalLink() {
-    externalLink.setUsername(Ivy.session().getSessionUser().getName());
+    externalLink.setCreator(Ivy.session().getSessionUserName());
     correctLink();
     externaLinkService.save(externalLink);
     return externalLink;

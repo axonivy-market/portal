@@ -94,7 +94,12 @@
                   forceSelection="true">
                     <p:ajax event="query" global="false" />
                     <p:ajax event="itemSelect" update="@form" resetValues="true" />
+                    <p:column>
+                      <h:outputText styleClass="autocomplete-tooltip" value="#{userProcess.processName}"
+                        title="#{userProcess.description}" />
+                    </p:column>
                   </p:autoComplete>
+                  <p:tooltip globalSelector=".autocomplete-tooltip" />
                   <p:message for="new-process-name" />
                 </h:panelGroup>
             </div>
