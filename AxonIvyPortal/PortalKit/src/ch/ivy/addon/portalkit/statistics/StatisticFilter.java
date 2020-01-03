@@ -1,5 +1,17 @@
 package ch.ivy.addon.portalkit.statistics;
 
+import static ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection.CUSTOM;
+import static ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection.LAST_6_MONTH;
+import static ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection.LAST_MONTH;
+import static ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection.LAST_WEEK;
+import static ch.ivyteam.ivy.workflow.CaseState.CREATED;
+import static ch.ivyteam.ivy.workflow.CaseState.DONE;
+import static ch.ivyteam.ivy.workflow.CaseState.RUNNING;
+import static ch.ivyteam.ivy.workflow.WorkflowPriority.EXCEPTION;
+import static ch.ivyteam.ivy.workflow.WorkflowPriority.HIGH;
+import static ch.ivyteam.ivy.workflow.WorkflowPriority.LOW;
+import static ch.ivyteam.ivy.workflow.WorkflowPriority.NORMAL;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
@@ -17,25 +29,12 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
-
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
-
-import static ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection.CUSTOM;
-import static ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection.LAST_WEEK;
-import static ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection.LAST_MONTH;
-import static ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection.LAST_6_MONTH;
-import static ch.ivyteam.ivy.workflow.WorkflowPriority.EXCEPTION;
-import static ch.ivyteam.ivy.workflow.WorkflowPriority.HIGH;
-import static ch.ivyteam.ivy.workflow.WorkflowPriority.NORMAL;
-import static ch.ivyteam.ivy.workflow.WorkflowPriority.LOW;
-import static ch.ivyteam.ivy.workflow.CaseState.CREATED;
-import static ch.ivyteam.ivy.workflow.CaseState.RUNNING;
-import static ch.ivyteam.ivy.workflow.CaseState.DONE;
 
 public class StatisticFilter implements Cloneable {
   
@@ -74,10 +73,7 @@ public class StatisticFilter implements Cloneable {
   
   public void init() {
     initCustomFieldFromDeprecatedCustomVarChar();
-    List<IRole> distinctRoles = findRolesByCallableProcess().stream()
-        .filter(role -> role != null && Ivy.session().hasRole(role, false))
-        .sorted((r1, r2) -> StringUtils.compareIgnoreCase(r1.getDisplayName(), r2.getDisplayName()))
-        .collect(Collectors.toList());
+    List<IRole> distinctRoles = findDistinctRoles();
 
     this.roles.add(Ivy.session().getSessionUser());
     this.roles.addAll(distinctRoles);
@@ -94,17 +90,20 @@ public class StatisticFilter implements Cloneable {
     // Initialize list of case categories
     caseCategories = new StatisticCaseCategoryFilter();
 
-    this.timePeriodSelection = StatisticTimePeriodSelection.CUSTOM;
+      this.timePeriodSelection = StatisticTimePeriodSelection.CUSTOM;
   }
-  
-  public void initRoles() {
+
+  private List<IRole> findDistinctRoles() {
     List<IRole> distinctRoles = findRolesByCallableProcess().stream()
         .filter(role -> role != null && Ivy.session().hasRole(role, false))
         .sorted((r1, r2) -> StringUtils.compareIgnoreCase(r1.getDisplayName(), r2.getDisplayName()))
         .collect(Collectors.toList());
-
+    return distinctRoles;
+  }
+  
+  public void initRoles() {
     this.roles.add(Ivy.session().getSessionUser());
-    this.roles.addAll(distinctRoles);
+    this.roles.addAll(findDistinctRoles());
   }
   
   @SuppressWarnings("unchecked")
