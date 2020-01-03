@@ -166,9 +166,9 @@ function jumpToProcessGroupByCharacter(event) {
   $(".process-nav-item.selected").removeClass("selected");
   var selectedItem = document.getElementById(event.target.id);
   var processGroupSeleted = document.getElementsByClassName("js-process-group-" + clickedCharacter)[0];
-
+  
   processGroupSeleted.parentNode.scrollTop = processGroupSeleted.offsetTop - processGroupSeleted.parentNode.offsetTop;
-  setTimeout(function(){ selectedItem.classList.add("selected"); }, 1);
+  setTimeout(function(){ selectedItem.classList.add("selected"); }, 100);
 }
 
 function getClassNameStartsWith(classList, prefix) {
