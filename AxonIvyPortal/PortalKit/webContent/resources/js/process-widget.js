@@ -92,12 +92,14 @@ function ProcessWidget() {
           $(this).hide();
         }
         var expressKeyToSearch = "express";
-        if (contain(expressKeyToSearch, keyword.trim()) && $(this.children).hasClass("express-workflow")) {
+        if (expressKeyToSearch.toLowerCase() === keyword.trim().toLowerCase()
+        		&& $(this.children).hasClass("express-workflow")) {
         	$(this).show();
         }
         
-        var externalLinkKeyToSearch = "external link";
-        if (contain(externalLinkKeyToSearch, keyword.trim()) && $(this.children).hasClass("js-external-link-process-item")) {
+        var externalLinkKeyToSearch = "link";
+        if (externalLinkKeyToSearch.toLowerCase() === keyword.trim().toLowerCase()
+        		&& $(this.children).hasClass("js-external-link-process-item")) {
         	$(this).show();
         }
       });

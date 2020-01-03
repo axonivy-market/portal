@@ -17,32 +17,39 @@ public class UserProcessMapper {
     return webStartables.stream().map(UserProcessMapper::toUserProcess).collect(Collectors.toList());
   }
 
-  public static List<UserProcess> externalLinkstoUserProcesses(List<ExternalLink> externalLinks) {
+  public static List<UserProcess> externalLinksToUserProcesses(List<ExternalLink> externalLinks) {
     return externalLinks.stream().map(UserProcessMapper::toUserProcess).collect(Collectors.toList());
   }
 
   public static UserProcess toUserProcess(IWebStartable webStartable) {
     UserProcess userProcess = new UserProcess();
-    userProcess.setProcessName(webStartable.getDisplayName());
+    userProcess.setProcessName(stripHtmlTags(webStartable.getDisplayName()));
     userProcess.setLink(webStartable.getLink().getRelativeEncoded());
+    userProcess.setDescription(webStartable.getDescription());
     return userProcess;
   }
 
   public static UserProcess toUserProcess(ExpressProcess expressProcess, String expressStartLink) {
     String startLink = expressStartLink + "?workflowID=" + expressProcess.getId();
     UserProcess userProcess = new UserProcess();
-    userProcess.setProcessName(expressProcess.getProcessName());
+    userProcess.setProcessName(stripHtmlTags(expressProcess.getProcessName()));
     userProcess.setLink(startLink);
     userProcess.setWorkflowId(expressProcess.getId());
+    userProcess.setDescription(expressProcess.getProcessDescription());
     return userProcess;
   }
 
   public static UserProcess toUserProcess(ExternalLink externalLink) {
     UserProcess userProcess = new UserProcess();
-    userProcess.setProcessName(externalLink.getName());
+    userProcess.setProcessName(stripHtmlTags(externalLink.getName()));
     userProcess.setLink(externalLink.getLink());
     userProcess.setExternalLink(true);
     userProcess.setWorkflowId(externalLink.getId().toString());
+    userProcess.setDescription(externalLink.getLink());
     return userProcess;
+  }
+
+  private static String stripHtmlTags(String text) {
+    return text.replaceAll("\\<.*?>", "");
   }
 }

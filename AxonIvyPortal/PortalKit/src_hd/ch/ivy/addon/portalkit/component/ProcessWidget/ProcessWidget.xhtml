@@ -37,7 +37,7 @@
                 <h:form id="create-express-form">
                   <h:panelGroup styleClass="create-express-link" layout="block" rendered="#{processWidgetBean.canCreateExpessWorkflow()}">
                     <p:commandLink id="create-express-workflow" value="#{processWidgetBean.createExpressWorkflowProcessStart.name}"
-                      actionListener="#{processWidgetBean.startProcess(processWidgetBean.getCreateExpessWorkflowLink(), 'EXPRESS_PROCESS')}">
+                      actionListener="#{processWidgetBean.startExpressWorkflowCreationLink()}">
                       <i class="create-express-workflow-icon Fleft" />
                     </p:commandLink>
                   </h:panelGroup>

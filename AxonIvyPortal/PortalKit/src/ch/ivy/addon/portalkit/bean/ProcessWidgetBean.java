@@ -183,15 +183,20 @@ public class ProcessWidgetBean implements Serializable {
       return StringUtils.EMPTY;
     });
   }
+  
+  public void startExpressWorkflowCreationLink() throws IOException {
+    FacesContext.getCurrentInstance().getExternalContext().redirect(getCreateExpessWorkflowLink());
+    return;
+  }
 
   public boolean canCreateExpessWorkflow() {
     return createExpressWorkflowProcessStart != null
         && PermissionUtils.hasPortalPermission(PortalPermission.EXPRESS_CREATE_WORKFLOW);
   }
 
-  public void startProcess(String link, String type) throws IOException {
-    ProcessType processType = ProcessType.valueOf(type);
-    if (processType == ProcessType.EXPRESS_PROCESS || processType == ProcessType.EXTERNAL_LINK) {
+  public void startProcess(Process process) throws IOException {
+    String link = process.getStartLink();
+    if (process.getType() == ProcessType.EXPRESS_PROCESS || process.getType() == ProcessType.EXTERNAL_LINK) {
       FacesContext.getCurrentInstance().getExternalContext().redirect(link);
       return;
     }

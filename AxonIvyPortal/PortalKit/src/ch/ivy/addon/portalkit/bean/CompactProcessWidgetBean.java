@@ -110,7 +110,7 @@ private static final long serialVersionUID = -5889375917550618261L;
 
 
   public void saveNewUserProcess() {
-    editingProcess.setUserName(Ivy.session().getSessionUser().getName());
+    editingProcess.setUserName(Ivy.session().getSessionUserName());
     editingProcess.setIndex(userProcesses.size());
     editingProcess = userProcessService.save(editingProcess);
     userProcesses.add(editingProcess);
@@ -154,10 +154,6 @@ private static final long serialVersionUID = -5889375917550618261L;
 
   private boolean isDefaultUserProcess(UserProcess processToAdd) {
     return defaultProcesses.stream().anyMatch(userProcess -> StringUtils.equalsIgnoreCase(userProcess.getLink(), processToAdd.getLink()));
-  }
-
-  public String stripHtmlTags(String text) {
-    return text.replaceAll("\\<.*?>", "");
   }
 
   public UserProcess getEditingProcess() {
@@ -247,7 +243,7 @@ private static final long serialVersionUID = -5889375917550618261L;
   
   private void removeDeletedExternalLinkFromUserProcesses(List<UserProcess> processes) {
     List<String> startableExternalLinkIds = ExternalLinkService.getInstance()
-        .findStartableLink(Ivy.session().getSessionUser().getName())
+        .findStartableLink(Ivy.session().getSessionUserName())
         .stream()
         .map(link -> link.getId().toString())
         .collect(Collectors.toList());
@@ -303,4 +299,11 @@ private static final long serialVersionUID = -5889375917550618261L;
     this.isDisplayShowAllProcessesLink = isDisplayShowAllProcessesLink;
   }
   
+  public String targetToStartProcess(UserProcess process) {
+    String target="_self";
+    if (process.isExternalLink()) {
+      target="_blank";
+    }
+    return target;
+  }
 }
