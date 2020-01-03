@@ -51,14 +51,14 @@ clicking ``Restore All To Defaults`` button.
 Setup Global settings by configuration file
 """""""""""""""""""""""""""""""""""""""""""
 .. important:: 
-   This feature only support modification of Portal settings in Designer.
+   This feature only supports modification of Portal settings in Designer.
 
-Process developer can setup global settings of Portal in file ``portal_settings_config.properties`` which put under project ``PortalKit``.
+Process developer can set up global settings of Portal in file ``portal_settings_config.properties`` which put in ``PortalKit``.
 
    .. code-block:: Python
 
       # This file is for developer configure values for Portal settings.
-      # As developer, you only need to remove comment mark of corresponding settings and modify their value.
+      # As developer, you only need to remove comment mark of corresponding settings and modify their values.
       # Portal will apply setting values once you start designer.
 
       # System tasks visibility
@@ -99,9 +99,9 @@ Process developer can setup global settings of Portal in file ``portal_settings_
       #DISPLAY_MESSAGE_AFTER_FINISH_TASK = true
 
 This file already contains list of settings with their default values.
-These settings will applied once you start Portal.
+These settings will be applied once you start Portal.
 
-If you change configuration file while coding, please stop engine in designer and start engine again for changes take effect.
+If you change configuration file while coding, please stop engine in designer and start engine again to apply changes.
 
 .. _settings-admin-settings-setup-multi-portals:
 
