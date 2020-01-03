@@ -140,7 +140,7 @@
 
   <p:dialog id="chart-details-dialog" widgetVar="chart-details-dialog" appendTo="@(body)"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartInfo/chartDetailsHeader')}" modal="true" closable="true" closeOnEscape="true"
-    dynamic="true" styleClass="statistic-details-dialog" resizable="false" fitViewport="true">
+    dynamic="true" styleClass="statistic-details-dialog" resizable="false" fitViewport="true" width="500">
     <ic:ch.ivy.addon.portalkit.component.statistic.ChartInformationDialog selectedStatisticChart="#{data.selectedStatisticChart}" />
     <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
       <p:commandButton type="button" styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
