@@ -11,6 +11,10 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.LOW_PRIO
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NORMAL_PRIORITY_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.RUNNING_CASE_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TODAY_EXPIRY_KEY;
+import static ch.ivyteam.ivy.workflow.WorkflowPriority.EXCEPTION;
+import static ch.ivyteam.ivy.workflow.WorkflowPriority.HIGH;
+import static ch.ivyteam.ivy.workflow.WorkflowPriority.NORMAL;
+import static ch.ivyteam.ivy.workflow.WorkflowPriority.LOW;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -58,18 +62,18 @@ public class StatisticChartQueryUtils {
   public static TaskQuery getQueryForSelectedItemOfTaskByPriorityChart(ItemSelectEvent event, StatisticChart statisticChart) {
     TaskQuery query = StatisticChartQueryUtils.generateTaskQuery(statisticChart.getFilter());
     String selectedValue = StatisticService.getSelectedValueOfDonutChart(event);
-
+    WorkflowPriority priority = null;
+    
     if (selectedValue.equals(Ivy.cms().co(EXCEPTION_PRIORITY_KEY))) {
-      query.where().and().priority().isEqual(WorkflowPriority.EXCEPTION);
+      priority = EXCEPTION;
     } else if (selectedValue.equals(Ivy.cms().co(HIGH_PRIORITY_KEY))) {
-      query.where().and().priority().isEqual(WorkflowPriority.HIGH);
+      priority = HIGH;
     } else if (selectedValue.equals(Ivy.cms().co(NORMAL_PRIORITY_KEY))) {
-      query.where().and().priority().isEqual(WorkflowPriority.NORMAL);
+      priority = NORMAL;
     } else if (selectedValue.equals(Ivy.cms().co(LOW_PRIORITY_KEY))) {
-      query.where().and().priority().isEqual(WorkflowPriority.LOW);
+      priority = LOW;
     }
-
-    return query;
+    return priority != null ? query.where().and().priority().isEqual(priority) : query;
   }
 
   /**
@@ -291,6 +295,7 @@ public class StatisticChartQueryUtils {
     if (CollectionUtils.isNotEmpty(filter.getSelectedRoles())) {
       filter.getSelectedRoles().forEach(role -> subTaskQueryForRoles.where().or().activatorName().isEqual(role));
     } else {
+      filter.initRoles();
       subTaskQueryForRoles.where().and().activatorUserId().isNull(); //exclude other users
       List<IRole> roles = CollectionUtils.emptyIfNull(filter.getRoles()).stream().filter(role -> role instanceof IRole).map(role -> (IRole)role).collect(Collectors.toList());
       roles.forEach(role -> subTaskQueryForRoles.where().and().activatorName().isNotEqual(role.getMemberName())); //exclude role
@@ -312,16 +317,13 @@ public class StatisticChartQueryUtils {
           subTaskQueryForCreatedDate.where().startTimestamp().isLowerOrEqualThan(createdDateTo);
         }
       }
-    }
-    else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_WEEK){
+    } else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_WEEK){
       subTaskQueryForCreatedDate.where().startTimestamp().isGreaterOrEqualThan(Dates.getMondayOfLastWeek());
       subTaskQueryForCreatedDate.where().startTimestamp().isLowerOrEqualThan(Dates.getSundayOfLastWeek());
-    }
-    else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_MONTH) {
+    } else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_MONTH) {
       subTaskQueryForCreatedDate.where().startTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLastMonth());
       subTaskQueryForCreatedDate.where().startTimestamp().isLowerOrEqualThan(Dates.getLastDayOfLastMonth());
-    }
-    else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_6_MONTH){
+    } else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_6_MONTH){
       subTaskQueryForCreatedDate.where().startTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLast6Month());
     }
     return subTaskQueryForCreatedDate;
