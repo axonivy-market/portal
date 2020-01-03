@@ -141,7 +141,7 @@ import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import java.util.ArrayList;
 import ch.ivy.addon.portalkit.bo.ExternalLink;
 
-in.userProcesses.addAll(UserProcessMapper.externalLinkstoUserProcesses(ExternalLinkService.getInstance().findStartableLink(ivy.session.getSessionUser().getName())));' #txt
+in.userProcesses.addAll(UserProcessMapper.externalLinksToUserProcesses(ExternalLinkService.getInstance().findStartableLink(ivy.session.getSessionUserName())));' #txt
 Ps0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
