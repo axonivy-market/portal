@@ -418,7 +418,7 @@ public class StatisticChartQueryUtils {
       subCaseQueryForCreatedDate.where().startTimestamp().isLowerOrEqualThan(Dates.getLastDayOfLastMonth());
     }
     else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_6_MONTH) {
-      subCaseQueryForCreatedDate.where().startTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLastMonth());
+      subCaseQueryForCreatedDate.where().startTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLast6Month());
     }
     return subCaseQueryForCreatedDate;
   }
@@ -524,7 +524,7 @@ public class StatisticChartQueryUtils {
       caseQuery.where().and(subCaseQueryForCreatedDate);
     }
     else if (filter.getTimePeriodSelection() == StatisticTimePeriodSelection.LAST_6_MONTH) {
-      subCaseFilterForCreatedDate.endTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLastMonth());
+      subCaseFilterForCreatedDate.endTimestamp().isGreaterOrEqualThan(Dates.getFirstDayOfLast6Month());
       caseQuery.where().and(subCaseQueryForCreatedDate);
     }
     caseQuery.where().and().endTimestamp().isNotNull();
