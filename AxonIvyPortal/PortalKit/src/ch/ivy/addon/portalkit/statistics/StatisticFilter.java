@@ -17,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
+
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
@@ -24,11 +25,23 @@ import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
+import static ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection.CUSTOM;
+import static ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection.LAST_WEEK;
+import static ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection.LAST_MONTH;
+import static ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection.LAST_6_MONTH;
+import static ch.ivyteam.ivy.workflow.WorkflowPriority.EXCEPTION;
+import static ch.ivyteam.ivy.workflow.WorkflowPriority.HIGH;
+import static ch.ivyteam.ivy.workflow.WorkflowPriority.NORMAL;
+import static ch.ivyteam.ivy.workflow.WorkflowPriority.LOW;
+import static ch.ivyteam.ivy.workflow.CaseState.CREATED;
+import static ch.ivyteam.ivy.workflow.CaseState.RUNNING;
+import static ch.ivyteam.ivy.workflow.CaseState.DONE;
+
 public class StatisticFilter implements Cloneable {
   
   private StatisticTimePeriodSelection timePeriodSelection;
   @JsonIgnore
-  private List<StatisticTimePeriodSelection> allTimePeriodSelection;
+  private List<StatisticTimePeriodSelection> allTimePeriodSelection = Arrays.asList(CUSTOM, LAST_WEEK, LAST_MONTH, LAST_6_MONTH);;
   private Date createdDateFrom;
   private Date createdDateTo;
 
@@ -43,12 +56,12 @@ public class StatisticFilter implements Cloneable {
   private boolean isAllRolesSelected = true;
 
   @JsonIgnore
-  private List<CaseState> caseStates = new ArrayList<>();
+  private List<CaseState> caseStates = Arrays.asList(CREATED, RUNNING, DONE);;
   private List<CaseState> selectedCaseStates = new ArrayList<>();
   private boolean isAllCaseStatesSelected = true;
   
   @JsonIgnore
-  private List<WorkflowPriority> taskPriorities = new ArrayList<>();
+  private List<WorkflowPriority> taskPriorities = Arrays.asList(EXCEPTION, HIGH, NORMAL, LOW);
   private List<WorkflowPriority> selectedTaskPriorities = new ArrayList<>();
   private boolean isAllTaskPrioritiesSelected = true;
   private Map<String, List<String>> customFieldFilters;
@@ -73,18 +86,25 @@ public class StatisticFilter implements Cloneable {
     this.selectedRoles.add(0, Ivy.session().getSessionUser().getMemberName());
 
     // Initialize list of case states
-    this.caseStates = Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE);
     this.selectedCaseStates = new ArrayList<>(this.caseStates);
 
     // Initialize list of task priorities
-    this.taskPriorities = Arrays.asList(WorkflowPriority.EXCEPTION, WorkflowPriority.HIGH, WorkflowPriority.NORMAL, WorkflowPriority.LOW);
     this.selectedTaskPriorities = new ArrayList<>(this.taskPriorities);
 
     // Initialize list of case categories
     caseCategories = new StatisticCaseCategoryFilter();
 
     this.timePeriodSelection = StatisticTimePeriodSelection.CUSTOM;
-    this.allTimePeriodSelection = Arrays.asList(StatisticTimePeriodSelection.CUSTOM, StatisticTimePeriodSelection.LAST_WEEK, StatisticTimePeriodSelection.LAST_MONTH, StatisticTimePeriodSelection.LAST_6_MONTH);
+  }
+  
+  public void initRoles() {
+    List<IRole> distinctRoles = findRolesByCallableProcess().stream()
+        .filter(role -> role != null && Ivy.session().hasRole(role, false))
+        .sorted((r1, r2) -> StringUtils.compareIgnoreCase(r1.getDisplayName(), r2.getDisplayName()))
+        .collect(Collectors.toList());
+
+    this.roles.add(Ivy.session().getSessionUser());
+    this.roles.addAll(distinctRoles);
   }
   
   @SuppressWarnings("unchecked")
