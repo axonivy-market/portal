@@ -1,0 +1,14 @@
+ExpressHelperData #class
+ch.ivy.gawfs.workflowCreation.ExpressHelper #namespace
+expressData gawfs.Data #field
+expressData PERSISTENT #fieldModifier
+exportExpressFile org.primefaces.model.StreamedContent #field
+exportExpressFile PERSISTENT #fieldModifier
+importExpressFile org.primefaces.event.FileUploadEvent #field
+importExpressFile PERSISTENT #fieldModifier
+selectedExpresses java.util.List<ch.ivy.addon.portalkit.bo.ExpressProcess> #field
+selectedExpresses PERSISTENT #fieldModifier
+expressWorkflows java.util.List<ch.ivy.addon.portalkit.bo.ExpressProcess> #field
+expressWorkflows PERSISTENT #fieldModifier
+importOutput String #field
+importOutput PERSISTENT #fieldModifier
