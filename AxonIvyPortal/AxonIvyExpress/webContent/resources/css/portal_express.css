@@ -768,11 +768,6 @@ body .task-template-content .ui-fieldset .ui-fieldset-legend {
   width: calc(50% - 5px);
 }
 
-.form-definition-table tr:nth-child(2) td.ui-panelgrid-cell:last-child {
-  margin-left: 5px !important;
-  width: calc(50% - 5px);
-}
-
 /*Edge support*/
 @supports (-ms-ime-align: auto) {
   .form-definition-table tr:nth-child(2) td.ui-panelgrid-cell:last-child {
