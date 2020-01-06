@@ -1709,3 +1709,17 @@ ul.participants-list li {
 .upload-container .ui-widget.ui-fileupload .ui-fileupload-content .ui-fileupload-messages {
   margin-top: 30px;
 }
+
+/* Express Helper */
+.import-express-dialog .import-status {
+  &.Success {
+    color: $expressImportStatusSuccess;
+  }
+  &.Warning {
+    color: $expressImportStatusWarning;
+  }
+  &.Failed {
+    color: $expressImportStatusFailed;
+  }
+  font-weight: $expressImportStatusFontWeight;
+}

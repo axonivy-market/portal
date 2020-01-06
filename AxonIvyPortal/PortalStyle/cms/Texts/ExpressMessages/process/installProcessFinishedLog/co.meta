@@ -1,0 +1,5 @@
+co: name={installProcessFinishedLog} description={} changed={2020-01-06 05:27:12 CET} changedby={nqhoan} visualorder={0} guid={16F78FBBFFFD8C74} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16F78FBC003E1630} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-06 04:34:54 CET} validto={} changed={2020-01-06 04:52:42 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F791B58662E7A4} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-06 05:26:55 CET} validto={} changed={2020-01-06 05:27:12 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F791B5859BEB1E} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-06 05:26:51 CET} validto={} changed={2020-01-06 05:27:12 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F791B586DE055F} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-06 05:26:48 CET} validto={} changed={2020-01-06 05:27:12 CET} changedby={nqhoan} properties={} id={}

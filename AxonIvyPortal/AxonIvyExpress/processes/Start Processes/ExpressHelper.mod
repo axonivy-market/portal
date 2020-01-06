@@ -19,7 +19,14 @@ Er0 f3 inParamDecl '<> param;' #txt
 Er0 f3 requestEnabled true #txt
 Er0 f3 triggerEnabled false #txt
 Er0 f3 callSignature expressHelper() #txt
-Er0 f3 caseData businessCase.attach=true #txt
+Er0 f3 startName 'Express Helper' #txt
+Er0 f3 startDescription 'Express Helper' #txt
+Er0 f3 taskData 'TaskTriggered.DESC=Express Helper
+TaskTriggered.NAM=Express Helper
+TaskTriggered.customFields.STRING.embedInFrame="false"' #txt
+Er0 f3 caseData 'businessCase.attach=true
+case.description=Express Helper
+case.name=Express Helper' #txt
 Er0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

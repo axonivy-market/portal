@@ -3,29 +3,31 @@ package ch.ivy.gawfs;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
-
 import javax.ws.rs.core.MediaType;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.time.StopWatch;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
@@ -39,7 +41,10 @@ import ch.ivy.addon.portalkit.bo.ExpressTaskDefinition;
 import ch.ivy.addon.portalkit.bo.ExpressUserEmail;
 import ch.ivy.addon.portalkit.bo.ExpressWorkFlow;
 import ch.ivy.addon.portalkit.dto.ExpressAttachment;
+import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.enums.ExpressEmailAttachmentStatus;
+import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
+import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.gawfs.enums.FormElementType;
@@ -65,9 +70,13 @@ public class ExpressProcessUtils {
   private static final String LEFT_PANEL = "LEFTPANEL";
   private static final String RIGHT_PANEL = "RIGHTPANEL";
 
+  private static final char INFO = 'I';
+  private static final char WARNING = 'W';
+  private static final char ERROR = 'E';
   private static final String VERSION = "version";
   private static final String EXPRESS_WORKFLOW = "expressWorkflow";
-  private static final List<Integer> Valid_Versions = Arrays.asList(0,1);
+  private static final String pattern =  Ivy.cms().findContentObjectValue("/patterns/dateTimePattern", Locale.ENGLISH).getContentAsString();
+  private static final List<Integer> Valid_Versions = Arrays.asList(1);
   @SuppressWarnings("serial")
   private static final Type Express_List_Convert_Type = new TypeToken<List<ExpressWorkFlow>>() {}.getType();
 
@@ -503,136 +512,230 @@ public class ExpressProcessUtils {
     return dataProvider;
   }
 
-  /** Fetch all of Express process which is ready to execute in the Business data 
-   * Just return the process which can start by current user
+  /**
+   * Fetch all Express processes in the Business data, which is ready to execute and can start
+   * by current user
+   * 
    * @return List of Express process
    */
   public List<ExpressProcess> findExpressProcesses() {
-    List<ExpressProcess> processes = new ArrayList<>();
+    List<ExpressProcess> expressProcesses = new ArrayList<>();
     List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessOrderByName();
     for (ExpressProcess wf : workflows) {
       if (PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(wf)) {
-        processes.add(wf);
+        expressProcesses.add(wf);
       }
     }
-    return processes;
+    return expressProcesses;
   }
 
   /**
-   * Import the Express process to Business data
+   * Import the Express processes from a JSON file to Business data
    *
-   * @param expressData should have Content type as JSon file
+   * @param expressData should have Content type as JSON file
    * @return a message of import process
-   * @throws JsonParseException
-   * @throws JsonMappingException
-   * @throws IOException
    */
   @SuppressWarnings("unchecked")
-  public String importExpressProcess(UploadedFile expressData)
-      throws JsonParseException, JsonMappingException, IOException {
+  public List<String> importExpressProcesses(UploadedFile expressData) {
+    List<String> outputMessages = new ArrayList<>(Arrays.asList(Ivy.cms().co("/Texts/ExpressMessages/status/failed"), StringUtils.EMPTY));
     StringBuilder importExpressResult = new StringBuilder();
-    if (expressData == null) {
-      importExpressResult.append("Data is empty");
-      importExpressResult.append("\n");
-      return importExpressResult.toString();
+    StopWatch stopWatch = new StopWatch();
+    stopWatch.start();
+
+    if (expressData == null || !expressData.getContentType().equals(MediaType.APPLICATION_JSON)) {
+      if (expressData == null) {
+        outputMessages.set(1, addResultLog(importExpressResult, Ivy.cms().co("/Dialogs/ExpressHelper/fileEmptyMessage"), ERROR));
+      } else {
+        outputMessages.set(1, addResultLog(importExpressResult, Ivy.cms().co("/Dialogs/components/CaseDocument/invalidFileMessage"), ERROR));
+      }
+      return outputMessages;
     }
 
-    if (!expressData.getContentType().equals(MediaType.APPLICATION_JSON)) {
-      importExpressResult.append("File type is invalid");
-      importExpressResult.append("\n");
-      return importExpressResult.toString();
-    }
+    addResultLog(importExpressResult, Ivy.cms().co("/Texts/ExpressMessages/startDeployLog", Arrays.asList(expressData.getFileName())), INFO);
 
-    ObjectMapper mapper = new ObjectMapper();
-    Map<String, Object> jsonMap = mapper.readValue(expressData.getInputstream(), Map.class);
-    if (jsonMap != null) {
-      for (Object object : jsonMap.keySet()) {
-        // validate
-        switch (object.toString()) {
-          case VERSION:
-            if (Valid_Versions.contains(jsonMap.get(object))) {
-              addResultMessage(importExpressResult, "Version of express" + object);
-            } else {
-              addResultMessage(importExpressResult, "Non support version of express" + object);
-              return importExpressResult.toString();
-            }
-            break;
-          case EXPRESS_WORKFLOW:
-            // convert to JSon
-            Reader reader = new java.io.InputStreamReader(expressData.getInputstream());
-            // Map<String, Object> jsonMap2 = mapper.readValue(jsonMap.get(object).toString(), Map.class);
+    try {
+      ObjectMapper mapper = new ObjectMapper();
+      Map<String, Object> jsonMap = mapper.readValue(expressData.getInputstream(), Map.class);
+      if (jsonMap != null) {
+        // Fetch all users for express users validation 
+        IvySecurityResultDTO ivySecurityResultDTO = SecurityService.newInstance().findUsers(Ivy.request().getApplication());
+        List<UserDTO> userList = ivySecurityResultDTO.getUsers();
+        List<String> memberList = userList.stream().map(UserDTO::getMemberName).collect(Collectors.toList());
 
-            Gson gson = new GsonBuilder().serializeNulls().create();
-            JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
-            JsonElement jsonElement = jsonObject.get("expressWorkflow");
-
-            List<ExpressWorkFlow> expressWorkFlowsList = new ArrayList<>();
-            expressWorkFlowsList = gson.fromJson(jsonElement, Express_List_Convert_Type);
-            if (expressWorkFlowsList != null) {
-              // save to DB
-              for (ExpressWorkFlow expressWorkFlow : expressWorkFlowsList) {
-                ExpressProcess expressProcess = expressWorkFlow.getExpressProcess();
-
-                ExpressProcess processRepository = ExpressServiceRegistry.getProcessService()
-                    .findExpressProcessByName(expressProcess.getProcessName());
-                if (processRepository != null) {
-                  addResultMessage(importExpressResult, "Duplicate process: " + expressProcess.getProcessName());
-                  addResultMessage(importExpressResult, "Please edit the process name: " + expressProcess.getProcessName() + " to other");
-                  addResultMessage(importExpressResult, "Installed process: " + expressProcess.getProcessName() + " failed");
-                  break;
-                }
-
-                addResultMessage(importExpressResult, "Installed process: " + expressProcess.getProcessName());
-
-                // Save process
-                expressProcess.setId(null);
-                BusinessDataInfo<ExpressProcess> info =
-                    ExpressServiceRegistry.getProcessService().save(expressProcess);
-                String processId = info.getId();
-
-                // Save Task Definition
-                List<ExpressTaskDefinition> expressTaskDefinitionList = expressWorkFlow.getExpressTaskDefinitions();
-                addResultMessage(importExpressResult, "Installing task defination for process: " + expressProcess.getProcessName());
-                expressTaskDefinitionList.forEach(taskDefinition -> {
-                  taskDefinition.setId(null);
-                  taskDefinition.setProcessID(processId);
-                  ExpressServiceRegistry.getTaskDefinitionService().save(taskDefinition);
-                });
-
-                addResultMessage(importExpressResult, "Installed task defination for process: " + expressProcess.getProcessName() + "sucessfull");
-                // Save Form Elements
-                List<ExpressFormElement> expressFormElementList = expressWorkFlow.getExpressFormElements();
-                addResultMessage(importExpressResult, "Installing Form element for process: " + expressProcess.getProcessName());
-                expressFormElementList.forEach(formElement -> {
-                  formElement.setId(null);
-                  formElement.setProcessID(processId);
-                  ExpressServiceRegistry.getFormElementService().save(formElement);
-                });
-                importExpressResult
-                    .append("Installing Form element for process: " + expressProcess.getProcessName() + "sucessfull");
-                importExpressResult.append("\n");
-                addResultMessage(importExpressResult, "Installing Form element for process: " + expressProcess.getProcessName() + "sucessfull");
-
-                addResultMessage(importExpressResult, "Installing process: "  + expressProcess.getProcessName() + "sucessfull");
+        for (Object object : jsonMap.keySet()) {
+          switch (object.toString()) {
+            case VERSION:
+              // Validate version of express JSON file
+              if (Valid_Versions.contains(jsonMap.get(object))) {
+                addResultLog(importExpressResult, Ivy.cms().co("/Texts/ExpressMessages/versionLog", Arrays.asList(jsonMap.get(object))), INFO);
+                importExpressResult.append(StringUtils.LF);
+              } else {
+                addResultLog(importExpressResult, Ivy.cms().co("/Texts/ExpressMessages/invalidVersionLog", Arrays.asList(jsonMap.get(object))), ERROR);
+                importExpressResult.append(StringUtils.LF);
+                outputMessages.set(1, importExpressResult.toString());
+                return outputMessages;
               }
-            }
+              break;
+            case EXPRESS_WORKFLOW:
+              // Convert inputData to JSON
+              Reader reader = new InputStreamReader(expressData.getInputstream());
+              Gson gson = new GsonBuilder().serializeNulls().create();
+
+              JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
+              JsonElement jsonElement = jsonObject.get(EXPRESS_WORKFLOW);
+              List<ExpressWorkFlow> expressWorkFlowsList = gson.fromJson(jsonElement, Express_List_Convert_Type);
+              if (expressWorkFlowsList != null) {
+                int errorCounts = deployExpressWorkflows(importExpressResult, memberList, expressWorkFlowsList);
+                if (errorCounts == 0) {
+                  outputMessages.set(0, Ivy.cms().co("/Texts/ExpressMessages/status/Success"));
+                } else if (errorCounts < expressWorkFlowsList.size()) {
+                  outputMessages.set(0, Ivy.cms().co("/Texts/ExpressMessages/status/warning"));
+                }
+              }
+          }
         }
+
+        importExpressResult.append(StringUtils.LF);
+        addResultLog(importExpressResult, Ivy.cms().co("/Texts/ExpressMessages/endDeployLog"), INFO);
+      }
+    } catch (IOException e) {
+      addResultLog(importExpressResult, Ivy.cms().co("/Texts/ExpressMessages/deployErrorLog",Arrays.asList(expressData.getFileName())), ERROR);
+    }
+
+    stopWatch.stop();
+    addResultLog(importExpressResult, Ivy.cms().co("/Texts/ExpressMessages/deploymentFinishedLog", Arrays.asList(expressData.getFileName(),stopWatch.getTime())), INFO);
+    importExpressResult.append(StringUtils.LF);
+    outputMessages.set(1, importExpressResult.toString());
+    return outputMessages;
+  }
+
+  private int deployExpressWorkflows(StringBuilder importExpressResult, List<String> memberList,
+      List<ExpressWorkFlow> expressWorkFlowsList) {
+    int errorCounts = 0;
+    // Save to BusinessData
+    for (ExpressWorkFlow expressWorkFlow : expressWorkFlowsList) {
+      ExpressProcess expressProcess = expressWorkFlow.getExpressProcess();
+      importExpressResult.append(StringUtils.LF);
+      addResultLog(importExpressResult, Ivy.cms().co("/Texts/ExpressMessages/process/startDeployProcessLog", Arrays.asList(expressProcess.getProcessName())), INFO);
+
+      ExpressProcess processRepository =
+          ExpressServiceRegistry.getProcessService().findExpressProcessByName(expressProcess.getProcessName());
+      if (processRepository != null) {
+        errorCounts++;
+        addResultLog(importExpressResult, Ivy.cms().co("/Texts/ExpressMessages/process/duplicateProcessNameLog", Arrays.asList(expressProcess.getProcessName())), WARNING);
+        addResultLog(importExpressResult, Ivy.cms().co("/Texts/ExpressMessages/process/editProcessNameLog", Arrays.asList(expressProcess.getProcessName())), WARNING);
+        addResultLog(importExpressResult, Ivy.cms().co("/Texts/ExpressMessages/process/installProcessFailedLog", Arrays.asList(expressProcess.getProcessName())), WARNING);
+        continue;
       }
 
-      addResultMessage(importExpressResult, "Installation Express finished");
+      addResultLog(importExpressResult, Ivy.cms().co("/Texts/ExpressMessages/process/installedProcessLog", Arrays.asList( expressProcess.getProcessName())), INFO);
+      importExpressResult.append(StringUtils.LF);
+
+      // Validate user
+      validateUsersForProcess(importExpressResult, memberList, expressProcess);
+      // Save process
+      expressProcess.setId(null);
+      BusinessDataInfo<ExpressProcess> info = ExpressServiceRegistry.getProcessService().save(expressProcess);
+      String processId = info.getId();
+
+      // Save Task Definition
+      deployTaskDefForProcess(importExpressResult, memberList, expressWorkFlow, expressProcess, processId);
+
+      // Save Form Elements
+      deployFormElementForProcess(importExpressResult, expressWorkFlow, expressProcess, processId);
+
+      addResultLog(importExpressResult, Ivy.cms().co("/Texts/ExpressMessages/process/installedProcessLog", Arrays.asList(expressProcess.getProcessName())), INFO);
+      importExpressResult.append(StringUtils.LF);
     }
 
+    return errorCounts;
+  }
+
+  private List<ExpressFormElement> deployFormElementForProcess(StringBuilder importExpressResult,
+      ExpressWorkFlow expressWorkFlow, ExpressProcess expressProcess, String processId) {
+    List<ExpressFormElement> expressFormElementList = expressWorkFlow.getExpressFormElements();
+    addResultLog(importExpressResult, Ivy.cms().co("/Texts/ExpressMessages/formElement/installFormElement", Arrays.asList(expressProcess.getProcessName())), INFO);
+    expressFormElementList.forEach(formElement -> {
+      formElement.setId(null);
+      formElement.setProcessID(processId);
+      ExpressServiceRegistry.getFormElementService().save(formElement);
+    });
+    addResultLog(importExpressResult, Ivy.cms().co("/Texts/ExpressMessages/formElement/finishedInstallationFormElementLog", Arrays.asList(expressProcess.getProcessName())), INFO);
+    return expressFormElementList;
+  }
+
+  private List<ExpressTaskDefinition> deployTaskDefForProcess(StringBuilder importExpressResult,
+      List<String> memberList, ExpressWorkFlow expressWorkFlow, ExpressProcess expressProcess, String processId) {
+    List<ExpressTaskDefinition> expressTaskDefinitionList = expressWorkFlow.getExpressTaskDefinitions();
+    addResultLog(importExpressResult, Ivy.cms().co("/Texts/ExpressMessages/taskDef/installTaskDefLog", Arrays.asList(expressProcess.getProcessName())), INFO);
+    expressTaskDefinitionList.forEach(taskDefinition -> {
+      // Validate Users
+      validateUserForTaskDef(importExpressResult, memberList, expressProcess, taskDefinition);
+
+      taskDefinition.setId(null);
+      taskDefinition.setProcessID(processId);
+      ExpressServiceRegistry.getTaskDefinitionService().save(taskDefinition);
+    });
+
+    addResultLog(importExpressResult, Ivy.cms().co("/Texts/ExpressMessages/taskDef/finishedInstallationTaskDef", Arrays.asList(expressProcess.getProcessName())), INFO);
+    return expressTaskDefinitionList;
+  }
+
+  private void validateUserForTaskDef(StringBuilder importExpressResult, List<String> memberList,
+      ExpressProcess expressProcess, ExpressTaskDefinition taskDefinition) {
+    taskDefinition.getResponsibles().forEach(userName -> {
+      if (!memberList.contains(userName)) {
+        addResultLog(importExpressResult, Ivy.cms().co("/Texts/ExpressMessages/validate/validateTaskDefUserLog", Arrays.asList(expressProcess.getProcessName(), userName)), WARNING);
+      }
+    });
+  }
+
+  private void validateUsersForProcess(StringBuilder importExpressResult, List<String> memberList,
+      ExpressProcess expressProcess) {
+    expressProcess.getProcessPermissions().forEach(userName -> {
+      if (!memberList.contains(userName)) {
+        addResultLog(importExpressResult, Ivy.cms().co("/Texts/ExpressMessages/validate/validateProcessPermissionLog", Arrays.asList(expressProcess.getProcessName(), userName)), WARNING);
+      }
+    });
+
+    expressProcess.getProcessCoOwners().forEach(userName -> {
+      if (!memberList.contains(userName)) {
+        addResultLog(importExpressResult, Ivy.cms().co("/Texts/ExpressMessages/validate/validateProcessCoOwnerLog", Arrays.asList( expressProcess.getProcessName(), userName)), WARNING);
+      }
+    });
+
+    if (!memberList.contains(expressProcess.getProcessOwner())) {
+      addResultLog(importExpressResult, Ivy.cms().co("/Texts/ExpressMessages/validate/validateProcessOwnerLog", Arrays.asList(expressProcess.getProcessName(), expressProcess.getProcessOwner())), WARNING);
+    }
+  }
+
+  private String addResultLog(StringBuilder importExpressResult, String message, char messageType) {
+    String curentDate = new SimpleDateFormat(pattern).format(new Date());
+    importExpressResult.append(curentDate).append(StringUtils.SPACE);
+
+    switch (messageType) {
+      case INFO:
+        importExpressResult.append(Ivy.cms().co("/Texts/ExpressMessages/status/info")).append(":").append(StringUtils.SPACE);
+        break;
+      case ERROR:
+        importExpressResult.append(Ivy.cms().co("/Texts/ExpressMessages/status/error")).append(":").append(StringUtils.SPACE);
+        break;
+      case WARNING:
+        importExpressResult.append(Ivy.cms().co("/Texts/ExpressMessages/status/warning")).append(":").append(StringUtils.SPACE);
+        break;
+      default:
+        break;
+    }
+    importExpressResult.append(message);
+    importExpressResult.append(StringUtils.LF);
     return importExpressResult.toString();
   }
 
-  private void addResultMessage(StringBuilder importExpressResult, String message) {
-    importExpressResult.append(message);
-    importExpressResult.append("\n");
-  }
-
-  /** Export Express process to JSon file.
+  /**
+   * Export Express process to JSON file.
+   * 
    * @param selectedExpressProcesses
-   * @return a StreamedContent with content type as a JSon file
+   * @return a StreamedContent with content type as a JSON file
    */
   public StreamedContent exportExpressProcess(List<ExpressProcess> selectedExpressProcesses) {
     List<ExpressWorkFlow> expressWorkFlowsList = new ArrayList<>();
@@ -660,7 +763,12 @@ public class ExpressProcessUtils {
     jsonObject.add(EXPRESS_WORKFLOW, jsonElement);
 
     InputStream inputStream = new ByteArrayInputStream(jsonObject.toString().getBytes());
-    return new DefaultStreamedContent(inputStream, MediaType.APPLICATION_JSON, "express-test.json");
+    return new DefaultStreamedContent(inputStream, MediaType.APPLICATION_JSON, getExportFileName());
+  }
+
+  private String getExportFileName() {
+    String curentDate = new SimpleDateFormat(pattern).format(new Date());
+    return Ivy.cms().co("/Dialogs/ExpressHelper/expressExportName", Arrays.asList(curentDate));
   }
 
 }

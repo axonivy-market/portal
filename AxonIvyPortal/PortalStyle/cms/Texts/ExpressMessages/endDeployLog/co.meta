@@ -1,0 +1,5 @@
+co: name={endDeployLog} description={} changed={2020-01-06 05:27:15 CET} changedby={nqhoan} visualorder={0} guid={16F78D595B7F29BF} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16F791B63B7E1B2F} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-06 05:22:03 CET} validto={} changed={2020-01-06 05:27:15 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F791B63C57BD9F} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-06 05:21:59 CET} validto={} changed={2020-01-06 05:27:15 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F78D595BA9CCC0} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-06 04:11:01 CET} validto={} changed={2020-01-06 04:11:01 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F791B63BDAF77D} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-06 05:22:06 CET} validto={} changed={2020-01-06 05:27:15 CET} changedby={nqhoan} properties={} id={}

@@ -12,3 +12,9 @@ expressWorkflows java.util.List<ch.ivy.addon.portalkit.bo.ExpressProcess> #field
 expressWorkflows PERSISTENT #fieldModifier
 importOutput String #field
 importOutput PERSISTENT #fieldModifier
+importStatus String #field
+importStatus PERSISTENT #fieldModifier
+validateMessage javax.faces.application.FacesMessage #field
+validateMessage PERSISTENT #fieldModifier
+isError Boolean #field
+isError PERSISTENT #fieldModifier

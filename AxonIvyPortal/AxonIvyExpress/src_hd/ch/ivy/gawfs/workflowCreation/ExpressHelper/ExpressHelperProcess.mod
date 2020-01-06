@@ -14,7 +14,6 @@ Es0 @UdMethod f90 '' #zField
 Es0 @GridStep f96 '' #zField
 Es0 @GridStep f94 '' #zField
 Es0 @UdMethod f89 '' #zField
-Es0 @PushWFArc f95 '' #zField
 Es0 @PushWFArc f97 '' #zField
 Es0 @GridStep f6 '' #zField
 Es0 @PushWFArc f7 '' #zField
@@ -22,6 +21,16 @@ Es0 @PushWFArc f2 '' #zField
 Es0 @UdProcessEnd f3 '' #zField
 Es0 @PushWFArc f4 '' #zField
 Es0 @PushWFArc f9 '' #zField
+Es0 @UdMethod f5 '' #zField
+Es0 @PushWFArc f8 '' #zField
+Es0 @GridStep f10 '' #zField
+Es0 @PushWFArc f11 '' #zField
+Es0 @Alternative f13 '' #zField
+Es0 @PushWFArc f14 '' #zField
+Es0 @PushWFArc f12 '' #zField
+Es0 @GridStep f16 '' #zField
+Es0 @PushWFArc f17 '' #zField
+Es0 @PushWFArc f15 '' #zField
 >Proto Es0 Es0 ExpressHelperProcess #zField
 Es0 f0 guid 16F404B50BFCCFFB #txt
 Es0 f0 method start() #txt
@@ -36,7 +45,7 @@ Es0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Es0 f0 83 115 26 26 -16 15 #rect
 Es0 f0 @|UdInitIcon #fIcon
-Es0 f1 339 115 26 26 0 12 #rect
+Es0 f1 371 115 26 26 0 12 #rect
 Es0 f1 @|UdProcessEndIcon #fIcon
 Es0 f90 guid 16F404C71BD53E2F #txt
 Es0 f90 method exportExpress() #txt
@@ -51,24 +60,16 @@ Es0 f90 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Es0 f90 83 339 26 26 -39 23 #rect
+Es0 f90 83 435 26 26 -39 23 #rect
 Es0 f90 @|UdMethodIcon #fIcon
 Es0 f96 actionTable 'out=in;
 ' #txt
-Es0 f96 actionCode 'import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
-import ch.ivy.gawfs.ExpressProcessUtils;
+Es0 f96 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
 
-if (in.selectedExpresses == null || in.selectedExpresses.isEmpty()) {
-ivy.log.info("== huhu");
-	  FacesMessage message = new FacesMessage("Process Unselected");
-    FacesContext.getCurrentInstance().addMessage("express-helper-messages", message);
-} else {
-ivy.log.info("== haha");
+if (in.selectedExpresses != null && !in.selectedExpresses.isEmpty()) {
   ExpressProcessUtils utils = new ExpressProcessUtils();	
   in.exportExpressFile = utils.exportExpressProcess(in.selectedExpresses);
 }
-
 
 ' #txt
 Es0 f96 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -78,24 +79,16 @@ Es0 f96 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Es0 f96 248 330 144 44 -64 -8 #rect
+Es0 f96 288 426 144 44 -64 -8 #rect
 Es0 f96 @|StepIcon #fIcon
 Es0 f94 actionTable 'out=in;
 ' #txt
-Es0 f94 actionCode 'import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
-import ch.ivy.gawfs.ExpressProcessUtils;
+Es0 f94 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
 
-if (in.importExpressFile == null) {
-ivy.log.info("== huhu");
-in.importOutput = "Null File";
-	  FacesMessage message = new FacesMessage("Process Unselected");
-    FacesContext.getCurrentInstance().addMessage("express-helper-messages", message);
-} else {
-ivy.log.info("== haha");
-  ExpressProcessUtils utils = new ExpressProcessUtils();	
-  in.importOutput = utils.importExpressProcess(in.importExpressFile.getFile());
-}
+ExpressProcessUtils utils = new ExpressProcessUtils();	
+List<String> results = utils.importExpressProcesses(in.importExpressFile.getFile());
+in.importStatus = results.get(0);
+in.importOutput = results.get(1);
 
 
 ' #txt
@@ -106,7 +99,7 @@ Es0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Es0 f94 248 234 144 44 -65 -8 #rect
+Es0 f94 440 330 144 44 -65 -8 #rect
 Es0 f94 @|StepIcon #fIcon
 Es0 f89 guid 16F404C71BD56412 #txt
 Es0 f89 method importExpress(org.primefaces.event.FileUploadEvent) #txt
@@ -121,10 +114,9 @@ Es0 f89 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Es0 f89 83 243 26 26 -40 21 #rect
+Es0 f89 83 339 26 26 -61 26 #rect
 Es0 f89 @|UdMethodIcon #fIcon
-Es0 f95 109 256 248 256 #arcP
-Es0 f97 109 352 248 352 #arcP
+Es0 f97 109 448 288 448 #arcP
 Es0 f6 actionTable 'out=in;
 ' #txt
 Es0 f6 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
@@ -138,23 +130,94 @@ Es0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Es0 f6 160 106 128 44 -60 -8 #rect
+Es0 f6 160 104 144 48 -60 -8 #rect
 Es0 f6 @|StepIcon #fIcon
 Es0 f7 109 128 160 128 #arcP
-Es0 f2 288 128 339 128 #arcP
-Es0 f3 563 243 26 26 0 12 #rect
+Es0 f2 304 128 371 128 #arcP
+Es0 f3 667 339 26 26 0 12 #rect
 Es0 f3 @|UdProcessEndIcon #fIcon
-Es0 f4 392 256 563 256 #arcP
+Es0 f4 584 352 667 352 #arcP
 Es0 f4 0 0.43627200676149086 0 0 #arcLabel
-Es0 f9 392 352 576 269 #arcP
-Es0 f9 1 576 352 #addKink
+Es0 f9 432 448 680 365 #arcP
+Es0 f9 1 680 448 #addKink
 Es0 f9 0 0.7789202822539795 0 0 #arcLabel
+Es0 f5 guid 16F69AE46CDD542F #txt
+Es0 f5 method refreshExpress() #txt
+Es0 f5 inParameterDecl '<> param;' #txt
+Es0 f5 outParameterDecl '<> result;' #txt
+Es0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>refreshExpress()</name>
+    </language>
+</elementInfo>
+' #txt
+Es0 f5 83 211 26 26 -25 15 #rect
+Es0 f5 @|UdMethodIcon #fIcon
+Es0 f8 109 224 232 152 #arcP
+Es0 f8 1 232 224 #addKink
+Es0 f8 0 0.7596059785840372 0 0 #arcLabel
+Es0 f10 actionTable 'out=in;
+' #txt
+Es0 f10 actionCode 'import javax.faces.application.FacesMessage;
+import javax.ws.rs.core.MediaType;
+
+if (in.importExpressFile == null || in.importExpressFile.getFile().getSize() == 0) {
+  in.isError = true;
+  in.validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/Dialogs/ExpressHelper/fileEmptyMessage"), null);
+} else if (!in.importExpressFile.getFile().getContentType().equals(MediaType.APPLICATION_JSON)) {
+  in.isError = true;
+  in.validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/Dialogs/components/CaseDocument/invalidFileMessage"), null);
+}' #txt
+Es0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>validate</name>
+    </language>
+</elementInfo>
+' #txt
+Es0 f10 168 330 112 44 -21 -8 #rect
+Es0 f10 @|StepIcon #fIcon
+Es0 f11 109 352 168 352 #arcP
+Es0 f13 336 336 32 32 0 16 #rect
+Es0 f13 @|AlternativeIcon #fIcon
+Es0 f14 280 352 336 352 #arcP
+Es0 f12 expr in #txt
+Es0 f12 outCond !in.isError #txt
+Es0 f12 368 352 440 352 #arcP
+Es0 f16 actionTable 'out=in;
+' #txt
+Es0 f16 actionCode 'import javax.faces.context.FacesContext;
+
+FacesContext.getCurrentInstance().addMessage("import-express-form:import-express-dialog-message", in.validateMessage);
+in.isError = false;' #txt
+Es0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>throw messages</name>
+    </language>
+</elementInfo>
+' #txt
+Es0 f16 456 234 112 44 -46 -8 #rect
+Es0 f16 @|StepIcon #fIcon
+Es0 f17 expr in #txt
+Es0 f17 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>validation failed</name>
+    </language>
+</elementInfo>
+' #txt
+Es0 f17 352 336 456 256 #arcP
+Es0 f17 1 352 256 #addKink
+Es0 f17 1 0.23780487804878048 0 -21 #arcLabel
+Es0 f15 568 256 680 339 #arcP
+Es0 f15 1 680 256 #addKink
+Es0 f15 1 0.23780487804878048 0 -21 #arcLabel
 >Proto Es0 .type ch.ivy.gawfs.workflowCreation.ExpressHelper.ExpressHelperData #txt
 >Proto Es0 .processKind HTML_DIALOG #txt
 >Proto Es0 -8 -8 16 16 16 26 #rect
 >Proto Es0 '' #fIcon
-Es0 f89 mainOut f95 tail #connect
-Es0 f95 head f94 mainIn #connect
 Es0 f90 mainOut f97 tail #connect
 Es0 f97 head f96 mainIn #connect
 Es0 f0 mainOut f7 tail #connect
@@ -165,3 +228,15 @@ Es0 f94 mainOut f4 tail #connect
 Es0 f4 head f3 mainIn #connect
 Es0 f96 mainOut f9 tail #connect
 Es0 f9 head f3 mainIn #connect
+Es0 f5 mainOut f8 tail #connect
+Es0 f8 head f6 mainIn #connect
+Es0 f89 mainOut f11 tail #connect
+Es0 f11 head f10 mainIn #connect
+Es0 f10 mainOut f14 tail #connect
+Es0 f14 head f13 in #connect
+Es0 f13 out f12 tail #connect
+Es0 f12 head f94 mainIn #connect
+Es0 f13 out f17 tail #connect
+Es0 f17 head f16 mainIn #connect
+Es0 f16 mainOut f15 tail #connect
+Es0 f15 head f3 mainIn #connect

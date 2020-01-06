@@ -1,0 +1,5 @@
+co: name={waitingMessage} description={} changed={2020-01-06 05:16:17 CET} changedby={nqhoan} visualorder={0} guid={16F78B153EF9BCAD} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16F791156993280E} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-06 05:16:08 CET} validto={} changed={2020-01-06 05:16:17 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F78B153F3CA911} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-06 03:31:24 CET} validto={} changed={2020-01-06 03:31:24 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F79115710F4CAD} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-06 05:16:12 CET} validto={} changed={2020-01-06 05:16:17 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F7911574EA6C83} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-06 05:16:04 CET} validto={} changed={2020-01-06 05:16:17 CET} changedby={nqhoan} properties={} id={}
