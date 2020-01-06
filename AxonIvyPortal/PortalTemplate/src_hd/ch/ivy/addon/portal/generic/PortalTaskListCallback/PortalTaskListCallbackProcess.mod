@@ -102,7 +102,7 @@ Ps0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>check url and redirect</name>
-        <nameStyle>22
+        <nameStyle>22,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -125,7 +125,7 @@ import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 
 boolean displayMessageAfterFinishOrCancelTask = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK);
-if (displayMessageAfterFinishOrCancelTask) {
+if (displayMessageAfterFinishOrCancelTask && !ivy.session.isSessionUserUnknown()) {
 	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 	if (!flash.containsKey("overridePortalGrowl")) {
 		FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));

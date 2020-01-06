@@ -95,7 +95,8 @@ Ws0 f24 actionDecl 'ch.ivy.gawfs.workflowExecution.WfFinalReview.WfFinalReviewDa
 ' #txt
 Ws0 f24 actionTable 'out=in;
 ' #txt
-Ws0 f24 actionCode 'import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+Ws0 f24 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -121,6 +122,7 @@ if (ivy.case.getState().equals(CaseState.ZOMBIE)) {
 }
 
 //redirect to portal
+ivy.session.setAttribute(SessionAttribute.IS_TASK_NOT_FINISHED.toString(), true);
 FacesContext.getCurrentInstance().getExternalContext().redirect(link);
 ' #txt
 Ws0 f24 security system #txt

@@ -9,3 +9,5 @@ availUsers List<ch.ivyteam.ivy.security.IUser> #field
 availUsers PERSISTENT #fieldModifier
 autoCompleteQuery String #field
 autoCompleteQuery PERSISTENT #fieldModifier
+isTaskFinished Boolean #field
+isTaskFinished PERSISTENT #fieldModifier

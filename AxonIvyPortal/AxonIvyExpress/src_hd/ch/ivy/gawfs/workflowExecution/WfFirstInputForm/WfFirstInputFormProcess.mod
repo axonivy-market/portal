@@ -280,7 +280,9 @@ Ws0 f24 actionDecl 'ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInput
 ' #txt
 Ws0 f24 actionTable 'out=in;
 ' #txt
-Ws0 f24 actionCode 'import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+Ws0 f24 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -288,7 +290,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.faces.context.FacesContext;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.richdialog.exec.ProcessStartConfiguration;
- 
+
+
 ivy.task.destroy();
 
 String processStartLink = "Start Processes/PortalStart/DefaultEndPage.ivp";
@@ -308,6 +311,9 @@ if (ivy.case.getState().equals(CaseState.ZOMBIE)) {
 
 //redirect to portal
 //ivy.log.debug("Link to Portal found:"+link);
+
+ivy.session.setAttribute(SessionAttribute.IS_TASK_NOT_FINISHED.toString(), true);
+
 FacesContext.getCurrentInstance().getExternalContext().redirect(link);' #txt
 Ws0 f24 security system #txt
 Ws0 f24 type ch.ivy.gawfs.workflowExecution.WfFirstInputForm.WfFirstInputFormData #txt

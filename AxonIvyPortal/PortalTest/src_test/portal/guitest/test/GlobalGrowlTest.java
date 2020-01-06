@@ -14,6 +14,7 @@ import portal.guitest.page.TaskWidgetPage;
 public class GlobalGrowlTest extends BaseTest {
 
   private static final String CUSTOM_GROWL_URL = "portalExamples/16A8BFE42F8A31EF/start.ivp";
+  private static final String SKIP_TASK_LIST_URL = "internalSupport/16F6A8B4F0A715CB/start.ivp";
   
   @Override
   @Before
@@ -61,6 +62,22 @@ public class GlobalGrowlTest extends BaseTest {
   }
   
   @Test
+  public void testDisplayDefaultGrowlAfterFinishFirstTask() {
+    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
+    loginPage.login();
+    
+    HomePage homePage = new HomePage();
+    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+    adminSettingsPage.setDisplayMessageAfterFinishTaskVariable();
+	redirectToRelativeLink(SKIP_TASK_LIST_URL);
+    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
+    taskTemplatePage.inputFields("Employee", "1.1.2019", "1.1.2019", "Representation");
+    taskTemplatePage.clickSubmitButton();
+    homePage = new HomePage();
+    assertEquals("You have finished the task successfully", homePage.getGlobalGrowlMessage());
+  }
+  
+  @Test
   public void testDisplayCustomGrowlAfterCancelTask() {
     navigateToUrl(CUSTOM_GROWL_URL);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
@@ -97,4 +114,20 @@ public class GlobalGrowlTest extends BaseTest {
     homePage = new HomePage();
     assertEquals("You have cancelled and left the task successfully. You can find the task in the dashboard or your task list", homePage.getGlobalGrowlMessage());
   }
+  
+  @Test
+  public void testDisplayDefaultGrowlAfterCancelFirstTask() {
+    LoginPage loginPage = new LoginPage(TestAccount.ADMIN_USER);
+    loginPage.login();
+    
+    HomePage homePage = new HomePage();
+    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+    adminSettingsPage.setDisplayMessageAfterFinishTaskVariable();
+	redirectToRelativeLink(SKIP_TASK_LIST_URL);
+    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
+    taskTemplatePage.clickCancelAndLeftButton();
+    homePage = new HomePage();
+    assertEquals("You have cancelled and left the task successfully. You can find the task in the dashboard or your task list", homePage.getGlobalGrowlMessage());
+  }
+  
 }
