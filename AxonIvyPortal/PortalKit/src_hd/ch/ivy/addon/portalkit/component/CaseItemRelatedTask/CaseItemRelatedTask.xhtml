@@ -25,7 +25,7 @@
         <h:panelGroup id="more-related-tasks" layout="block" styleClass="Fright show-more-technical-cases-container u-truncate-text">
           <p:commandLink id="show-more-related-tasks" actionListener="#{logic.openPortalTasks}" styleClass="case-related-command-link" rendered="#{caseWidgetBean.showAllTasksOfCase}">
             <span class="fa fa-external-link-square note-show-more-link-icon" />
-            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTasks')}" />
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTasks')}" styleClass="ui-sm-hidden" />
           </p:commandLink>
           <p:tooltip for="more-related-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTasks')}" trackMouse="true" />
         </h:panelGroup>
@@ -60,7 +60,7 @@
         <h:panelGroup id="more-related-cases" layout="block" styleClass="Fright show-more-technical-cases-container u-truncate-text">
           <p:commandLink id="show-more-related-cases" actionListener="#{logic.navigateToTechnicalCasesOfBusinessCase}" styleClass="case-related-command-link" rendered="#{not empty data.technicalCases}">
             <span class="fa fa-external-link-square note-show-more-link-icon" />
-            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTechnicalCases')}" />
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTechnicalCases')}" styleClass="ui-sm-hidden" />
             <f:attribute name="selectedCase" value="#{cc.attrs.case}" />
           </p:commandLink>
         </h:panelGroup>
