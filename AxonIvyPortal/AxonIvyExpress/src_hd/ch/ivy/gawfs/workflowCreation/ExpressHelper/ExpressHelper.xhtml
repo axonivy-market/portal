@@ -1,46 +1,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
-    <ui:define name="title">ExpressHelper</ui:define>
+    <ui:define name="title">#{ivy.cms.co('/Dialogs/ExpressHelper/expressHelper')}</ui:define>
     <ui:define name="pageContent">
 
-      <h:form id="form">
+      <h:form id="express-helper-form">
         <div class="ui-g">
           <div class="ui-g-12">
-            <p:messages id="express-helper-messages"></p:messages>
-          </div>
-          <div class="ui-g-12">
-
-            <p:commandButton id="import-express-btn" value="Import Express" partialSubmit="true" oncomplete="PF('import-express-dialog').show()"
-              update="#{p:component('import-express-dialog')}">
-            </p:commandButton>
+            <p:commandButton id="import-express-btn" value="#{ivy.cms.co('/Dialogs/ExpressHelper/importExpress')}" partialSubmit="true" oncomplete="PF('import-express-dialog').show()" />
             <p:spacer width="10px" />
-            <p:commandButton id="export-express-btn" value="Export Express" process="express-workflow-summary-table" partialSubmit="true"
-              oncomplete="PF('export-express-dialog').show()" update="#{p:component('export-express-dialog')}">
-            </p:commandButton>
+            <p:commandButton id="export-express-btn" value="#{ivy.cms.co('/Dialogs/ExpressHelper/exportExpress')}" process="express-workflow-summary-table" partialSubmit="true"
+              oncomplete="PF('export-express-dialog').show()" update="#{p:component('export-express-dialog')}" />
           </div>
 
           <div class="ui-g-12">
-            <p:dataTable id="express-workflow-summary-table" var="express" value="#{data.expressWorkflows}" selection="#{data.selectedExpresses}"
-              rowKey="#{express.processName}">
+            <p:dataTable id="express-workflow-summary-table" var="express" value="#{data.expressWorkflows}" 
+              selection="#{data.selectedExpresses}" rowKey="#{express.processName}" styleClass="express-workflow-summary-table"
+              rows="10" paginator="true"
+              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+              rowsPerPageTemplate="5,10,15" paginatorAlwaysVisible="false">
               <f:facet name="header">
-                <span>Express Workflow</span>
+                <span>#{ivy.cms.co('/Categories/ExpressWorkflow/name')}</span>
               </f:facet>
 
-              <p:column selectionMode="multiple" style="width:50px;text-align:center"></p:column>
+              <p:column selectionMode="multiple" styleClass="express-selection-column" />
 
-              <p:column headerText="processName">
+              <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}">
                 <h:outputText value="#{express.processName}" />
               </p:column>
-              <p:column headerText="processDescription">
+
+              <p:column headerText="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdescription')}">
                 <h:outputText value="#{express.processDescription}" />
               </p:column>
-              <p:column headerText="processType">
+
+              <p:column headerText="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processtype')}" width="200" styleClass="u-hidden-md-down">
                 <h:outputText value="#{express.processType}" />
               </p:column>
-              <p:column headerText="processOwner">
+
+              <p:column headerText="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcessOwner')}" width="200" styleClass="u-hidden-md-down">
                 <h:outputText value="#{express.processOwner}" />
               </p:column>
             </p:dataTable>
@@ -49,106 +48,117 @@
       </h:form>
 
       <p:dialog id="export-express-dialog" widgetVar="export-express-dialog" modal="true" draggable="false" closable="true" resizable="false"
-        header="Export Express process" appendTo="@(body)" width="40vw">
+        header="#{ivy.cms.co('/Dialogs/ExpressHelper/exportExpressProcessTitle')}" appendTo="@(body)" width="40vw" styleClass="export-express-dialog"
+        fitViewport="true" position="center center" onShow="PF('export-express-dialog').initPosition();" closeOnEscape="true">
         <h:form id="express-export-form">
           <h:panelGroup rendered="#{not empty data.selectedExpresses}" layout="block" class="ui-g">
-            <div class="ui-g-6">
-              <h4>Express process will be exported:</h4>
-            </div>
-            <div class="ui-g-6">
-              <p:commandButton id="export-express-dowload" value="Export Express" icon="fa fa-download" ajax="false"
-                onclick="PrimeFaces.monitorDownload(start, stop);">
-                <p:fileDownload value="#{logic.exportExpress()}" />
-              </p:commandButton>
-            </div>
-
             <div class="ui-g-12">
-              <span id="express-export-loading"  style="display: none"><i class="fa fa-circle-o-notch fa-spin ajax-loader"/> ... Data is collecting </span>
+              <h4 class="import-header-title">#{ivy.cms.co('/Dialogs/ExpressHelper/importHeaderTitle')} #{data.selectedExpresses.size()} #{ivy.cms.co('/Dialogs/ExpressHelper/processCount')}</h4>
             </div>
 
-            <div style="height: 200px" class="ui-g-12">
+            <div id="express-helper-loading-container" class="ui-g-12 express-helper-loading-container">
+              <div class="express-helper-loading">
+                <i class="fa fa-circle-o-notch fa-spin ajax-loader MarRight10" /> <span>#{ivy.cms.co('/Dialogs/ExpressHelper/waitingMessage')} ... </span>
+              </div>
+            </div>
+
+            <div jsf:id="express-export-selected" class="ui-g-12 express-export-selected">
               <ui:repeat var="process" value="#{data.selectedExpresses}">
-                <li><span>#{process.processName}</span></li>
+                <li class="MarTop5"><span>#{process.processName} - #{process.processType}</span></li>
               </ui:repeat>
             </div>
           </h:panelGroup>
 
-          <h:panelGroup rendered="#{empty data.selectedExpresses}">
-            <span>No process is selected, please select process before exporting</span>
+          <h:panelGroup rendered="#{empty data.selectedExpresses}" layout="block" styleClass="ui-g">
+            <div class="ui-g-12">
+              <span class="MarTop20">#{ivy.cms.co('/Dialogs/ExpressHelper/noExpressSelected')}</span>
+            </div>
           </h:panelGroup>
         </h:form>
 
-      </p:dialog>
-
-      <p:dialog id="import-express-dialog" modal="true" widgetVar="import-express-dialog" draggable="false" closable="true" resizable="false"
-        appendTo="@(body)" header="Import Express process" width="40vw" onHide="PF('import-express-dialog').reset()">
-        <h:form id="import-express-form">
-          <h:panelGroup id="express-process-upload-panel" layout="block" styleClass="ui-g">
-            <div class="ui-g-12">
-            <h4>Only access json file</h4>
-            </div>
-            
-            <div class="ui-g-12">
-            <p:fileUpload id="express-process-upload" mode="advanced" chooseIcon="fa fa-upload" dragDropSupport="true"
-              update="import-express-form #{p:component('import-express-result')} impress-export-output"
-              invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
-              label="Select"
-              uploadLabel="Install" 
-              cancelLabel="Cancel"
-              sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
-              fileUploadListener="#{logic.importExpress}"
-              value="#{data.importExpressFile}"
-              fileLimit="3"
-              onstart="start();" oncomplete="stop();">
-            </p:fileUpload>
-            </div>
-
-            <div class="ui-g-12">
-              <span id="express-export-loading" style="display: none"><i class="fa fa-circle-o-notch fa-spin ajax-loader" /> ... Data is
-                collecting </span>
-            </div>
-            
-            <div class="ui-g-12">
-              <p:messages id="impress-export-message"></p:messages>
-              
-<!--               <PRE jsf:id="impress-export-output" style="overflow: auto; height: 50px; width: 100%;"> -->
-<!--               #{data.importOutput} -->
-<!--               </PRE> -->
-              <p:inputTextarea id="impress-export-output" value="#{data.importOutput}" readonly="true" rows="5" styleClass="ui-g-12"></p:inputTextarea>
-            </div>
-            <h:panelGroup id="import-express-result">
-            </h:panelGroup>
-          </h:panelGroup>
-          <h:panelGroup rendered="#{showImportConsole}">
-        haha
-        </h:panelGroup>
-<!-- <p:commandButton value="Install" process="import-express-form" partialSubmit="true"  -->
-<!--                 update="import-express-form #{p:component('express-workflow-summary-table')} #{p:component('express-process-upload-panel')}" -->
-<!--                 actionListener="#{logic.importExpress}" onclick="$('#express-process-upload-panel').hide();"></p:commandButton> -->
-        </h:form>
-        
         <f:facet name="footer">
-          <div>
-            <h:form>
-<!--               <p:commandButton value="Install" process="import-express-form" partialSubmit="true"  -->
-<!--                 update="import-express-form #{p:component('express-workflow-summary-table')} #{p:component('express-process-upload-panel')}" -->
-<!--                 actionListener="#{logic.importExpress}" onclick="$('#express-process-upload-panel').hide();"></p:commandButton> -->
-              <p:commandButton value="Close" update="#{p:component('express-workflow-summary-table')} import-express-dialog" resetValues="true" process="import-express-form"></p:commandButton>
-            </h:form>
-          </div>
+          <h:form styleClass="ui-g">
+            <div class="ui-g-12">
+              <p:commandButton id="export-express-dowload" rendered="#{not empty data.selectedExpresses}"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}" icon="fa fa-download"
+                ajax="false" onclick="PrimeFaces.monitorDownload(start, stop); PF('export-express-dialog').initPosition();">
+                <p:fileDownload value="#{logic.exportExpress()}" />
+              </p:commandButton>
+              <p:spacer width="10px" />
+              <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" update="express-export-form export-express-dialog" />
+            </div>
+          </h:form>
         </f:facet>
       </p:dialog>
 
+      <p:dialog id="import-express-dialog" modal="true" widgetVar="import-express-dialog" draggable="false" closable="true" resizable="false"
+        onShow="PF('import-express-dialog').initPosition();emptyMessage();" position="center center" appendTo="@(body)"
+        header="#{ivy.cms.co('/Dialogs/ExpressHelper/importExpressProcessTitle')}" width="40vw" fitViewport="true" closeOnEscape="true" styleClass="import-express-dialog">
+        <h:form id="import-express-form">
+          <h:panelGroup id="express-process-upload-panel" layout="block" styleClass="ui-g">
+            <div class="ui-g-12">
+              <h4 class="import-header-title">#{ivy.cms.co('/Dialogs/ExpressHelper/importDialogHeaderTitle')}</h4>
+            </div>
+            
+            <div class="ui-g-12">
+              <p:messages id="import-express-dialog-message" />
+            </div>
+
+            <div class="ui-g-12">
+              <p:fileUpload id="express-process-upload" mode="advanced" chooseIcon="fa fa-upload" dragDropSupport="true"
+                update="import-express-form impress-export-output import-express-form:import-express-dialog-message" 
+                invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}" sizeLimit="#{masterDataBean.fileUploadSizeLimit}"
+                label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" uploadLabel="#{ivy.cms.co('/Dialogs/ExpressHelper/deployButton')}" uploadIcon="fa fa-cogs" cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                fileUploadListener="#{logic.importExpress}" value="#{data.importExpressFile}" fileLimit="1" 
+                onstart="start(); emptyMessage();" oncomplete="stop(); PF('import-express-dialog').initPosition();"
+                styleClass="express-process-upload">
+              </p:fileUpload>
+            </div>
+
+            <div id="express-helper-loading-container" class="ui-g-12 express-helper-loading-container">
+              <div class="express-helper-loading">
+                <i class="fa fa-circle-o-notch fa-spin ajax-loader MarRight10" /> <span>#{ivy.cms.co('/Dialogs/ExpressHelper/deployMessage')} ... </span>
+              </div>
+            </div>
+
+            <div jsf:id="impress-export-output" class="ui-g-12">
+              <div jsf:id="import-status" class="import-status #{data.importStatus}">#{data.importStatus}</div>
+
+              <pre class="express-import-result">#{data.importOutput}</pre>
+            </div>
+          </h:panelGroup>
+        </h:form>
+
+        <f:facet name="footer">
+          <h:form>
+            <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" update="import-express-form import-express-dialog"
+              oncomplete="refreshExpressTable();" global="false" />
+          </h:form>
+        </f:facet>
+      </p:dialog>
+
+      <h:form>
+        <p:remoteCommand name="refreshExpressTable" actionListener="#{logic.refreshExpress}" immediate="true" partialSubmit="true" process="@this"
+          update="#{p:component('express-workflow-summary-table')}" />
+      </h:form>
+
       <script type="text/javascript">
-              function start() {
-                $('#express-export-loading').show();
-              }
+         function start() {
+           $('.express-helper-loading-container').show();
+         }
 
-              function stop() {
-                $('#express-export-loading').hide();
-              }
-            </script>
+         function stop() {
+           $('.express-helper-loading-container').hide();
+         }
+         
+         function emptyMessage() {
+           $('[id$=":impress-export-output"]').empty();
+         }
+       </script>
+    </ui:define>
 
+    <ui:define name="css">
+      <h:outputStylesheet library="css" name="portal_express.css" />
     </ui:define>
   </ui:composition>
 </h:body>
