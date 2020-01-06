@@ -3,6 +3,7 @@ package portal.guitest.test;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
@@ -36,6 +37,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
 		return taskTemplateIFramePage;
 	}
 
+	@Ignore
 	@Test
 	public void testDeprecatedModenaTaskTemplate() {
 		createIFrameTaskLevel();
@@ -47,6 +49,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
 		taskTemplateIFramePage.proceedDeprecateModenaTaskTemplate();
 	}
 
+	@Ignore
 	@Test
 	public void testDeprecatedTaskTemplate() {
 		createIFrameTaskLevel();
@@ -56,7 +59,8 @@ public class TaskTemplateIFrameTest extends BaseTest {
 		assertTrue("Verify no iframe tag created", taskTemplateIFramePage.isIFrameTagDisplayed() == false);
 		taskTemplateIFramePage.proceedDeprecatedTaskTemplate();
 	}
-
+	
+	@Ignore
 	@Test
 	public void testSerenityTaskTemplate() {
 		createIFrameTaskLevel();
@@ -66,7 +70,8 @@ public class TaskTemplateIFrameTest extends BaseTest {
 		assertTrue("Verify no iframe tag created", taskTemplateIFramePage.isIFrameTagDisplayed() == false);
 		taskTemplateIFramePage.proceedSerenityTaskTemplate();
 	}
-
+	
+	@Ignore
 	@Test
 	public void testTaskInIFrame() {
 		createIFrameTaskLevel();
@@ -78,6 +83,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
 		taskTemplateIFramePage.approveInvestmentTask();
 	}
 
+	@Ignore
 	@Test
 	public void testCaseLevelInIFrame() {
 		redirectToRelativeLink("internalSupport/14B2FC03D2E87141/IFrameInCaseLevel.ivp");
