@@ -1,0 +1,5 @@
+co: name={importDialogHeaderTitle} description={} changed={2020-01-06 05:16:22 CET} changedby={nqhoan} visualorder={0} guid={16F78B4102F636AF} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16F79116DB2A1A65} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-06 05:14:30 CET} validto={} changed={2020-01-06 05:16:22 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F78B4103331DFB} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-06 03:34:24 CET} validto={} changed={2020-01-06 03:34:24 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F79116D989D082} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-06 05:14:34 CET} validto={} changed={2020-01-06 05:16:22 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F79116DA9BCA72} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-06 05:14:39 CET} validto={} changed={2020-01-06 05:16:22 CET} changedby={nqhoan} properties={} id={}

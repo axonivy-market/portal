@@ -1,0 +1,5 @@
+co: name={duplicateProcessNameLog} description={} changed={2020-01-06 05:27:13 CET} changedby={nqhoan} visualorder={0} guid={16F78FBBFD9C20E9} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16F791B5A8B34004} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-06 05:26:02 CET} validto={} changed={2020-01-06 05:27:13 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F78FBBFDCCB25C} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-06 04:21:13 CET} validto={} changed={2020-01-06 04:52:42 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F791B5A70C4B34} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-06 05:25:59 CET} validto={} changed={2020-01-06 05:27:13 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F791B5A92717D3} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-06 05:25:55 CET} validto={} changed={2020-01-06 05:27:13 CET} changedby={nqhoan} properties={} id={}
