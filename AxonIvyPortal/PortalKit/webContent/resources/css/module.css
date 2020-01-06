@@ -1840,7 +1840,6 @@ _:-ms-input-placeholder, :root .case-details>* {
 }
 
 .show-more-technical-cases-container {
-  width: calc(100% - 148px);
   text-align: right;
 }
 
@@ -3117,6 +3116,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .chart-info-container, .chart-info-container.ui-panelgrid tbody tr td {
   vertical-align: top;
+  word-break: break-all;
 }
 
 .chart-info-container .label-column {
