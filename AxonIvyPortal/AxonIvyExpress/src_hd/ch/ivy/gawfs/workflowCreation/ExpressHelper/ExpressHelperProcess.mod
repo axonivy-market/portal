@@ -14,7 +14,6 @@ Es0 @UdMethod f90 '' #zField
 Es0 @GridStep f96 '' #zField
 Es0 @GridStep f94 '' #zField
 Es0 @UdMethod f89 '' #zField
-Es0 @PushWFArc f97 '' #zField
 Es0 @GridStep f6 '' #zField
 Es0 @PushWFArc f7 '' #zField
 Es0 @PushWFArc f2 '' #zField
@@ -31,6 +30,7 @@ Es0 @PushWFArc f12 '' #zField
 Es0 @GridStep f16 '' #zField
 Es0 @PushWFArc f17 '' #zField
 Es0 @PushWFArc f15 '' #zField
+Es0 @PushWFArc f18 '' #zField
 >Proto Es0 Es0 ExpressHelperProcess #zField
 Es0 f0 guid 16F404B50BFCCFFB #txt
 Es0 f0 method start() #txt
@@ -79,7 +79,7 @@ Es0 f96 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Es0 f96 288 426 144 44 -64 -8 #rect
+Es0 f96 376 426 144 44 -64 -8 #rect
 Es0 f96 @|StepIcon #fIcon
 Es0 f94 actionTable 'out=in;
 ' #txt
@@ -116,7 +116,6 @@ Es0 f89 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Es0 f89 83 339 26 26 -61 26 #rect
 Es0 f89 @|UdMethodIcon #fIcon
-Es0 f97 109 448 288 448 #arcP
 Es0 f6 actionTable 'out=in;
 ' #txt
 Es0 f6 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
@@ -134,12 +133,12 @@ Es0 f6 160 104 144 48 -60 -8 #rect
 Es0 f6 @|StepIcon #fIcon
 Es0 f7 109 128 160 128 #arcP
 Es0 f2 304 128 371 128 #arcP
-Es0 f3 667 339 26 26 0 12 #rect
+Es0 f3 755 339 26 26 0 12 #rect
 Es0 f3 @|UdProcessEndIcon #fIcon
-Es0 f4 584 352 667 352 #arcP
+Es0 f4 584 352 755 352 #arcP
 Es0 f4 0 0.43627200676149086 0 0 #arcLabel
-Es0 f9 432 448 680 365 #arcP
-Es0 f9 1 680 448 #addKink
+Es0 f9 520 448 768 365 #arcP
+Es0 f9 1 768 448 #addKink
 Es0 f9 0 0.7789202822539795 0 0 #arcLabel
 Es0 f5 guid 16F69AE46CDD542F #txt
 Es0 f5 method refreshExpress() #txt
@@ -211,15 +210,14 @@ Es0 f17 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Es0 f17 352 336 456 256 #arcP
 Es0 f17 1 352 256 #addKink
 Es0 f17 1 0.23780487804878048 0 -21 #arcLabel
-Es0 f15 568 256 680 339 #arcP
-Es0 f15 1 680 256 #addKink
+Es0 f15 568 256 768 339 #arcP
+Es0 f15 1 768 256 #addKink
 Es0 f15 1 0.23780487804878048 0 -21 #arcLabel
+Es0 f18 109 448 376 448 #arcP
 >Proto Es0 .type ch.ivy.gawfs.workflowCreation.ExpressHelper.ExpressHelperData #txt
 >Proto Es0 .processKind HTML_DIALOG #txt
 >Proto Es0 -8 -8 16 16 16 26 #rect
 >Proto Es0 '' #fIcon
-Es0 f90 mainOut f97 tail #connect
-Es0 f97 head f96 mainIn #connect
 Es0 f0 mainOut f7 tail #connect
 Es0 f7 head f6 mainIn #connect
 Es0 f6 mainOut f2 tail #connect
@@ -240,3 +238,5 @@ Es0 f13 out f17 tail #connect
 Es0 f17 head f16 mainIn #connect
 Es0 f16 mainOut f15 tail #connect
 Es0 f15 head f3 mainIn #connect
+Es0 f90 mainOut f18 tail #connect
+Es0 f18 head f96 mainIn #connect
