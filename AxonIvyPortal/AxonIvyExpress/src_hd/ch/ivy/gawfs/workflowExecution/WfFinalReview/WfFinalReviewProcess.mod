@@ -122,7 +122,7 @@ if (ivy.case.getState().equals(CaseState.ZOMBIE)) {
 }
 
 //redirect to portal
-ivy.session.setAttribute(SessionAttribute.IS_TASK_NOT_FINISHED.toString(), true);
+ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);
 FacesContext.getCurrentInstance().getExternalContext().redirect(link);
 ' #txt
 Ws0 f24 security system #txt
