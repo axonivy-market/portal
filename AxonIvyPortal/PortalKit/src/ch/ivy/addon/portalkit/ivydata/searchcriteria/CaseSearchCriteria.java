@@ -7,6 +7,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.CaseSortField;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
@@ -34,11 +35,13 @@ public class CaseSearchCriteria {
   private CaseQuery finalCaseQuery;
 
   public CaseQuery createQuery() {
-    CaseQuery finalQuery = CaseQuery.create();
+    CaseQuery finalQuery;
     if (isBusinessCase) {
       finalQuery = CaseQuery.businessCases();
     } else if (isTechnicalCase) {
       finalQuery = CaseQuery.subCases().where().and().businessCaseId().isEqual(businessCaseId);
+    } else {
+      finalQuery = CaseQuery.create();
     }
 
     setNewQueryCreated(isNewQueryCreated() || customCaseQuery == null || hasCaseId());
@@ -70,7 +73,7 @@ public class CaseSearchCriteria {
   }
   
   private CaseQuery queryForStates(List<CaseState> states) {
-    CaseQuery stateFieldQuery = CaseQuery.create();
+    CaseQuery stateFieldQuery = newCaseQuery();
     IFilterQuery filterQuery = stateFieldQuery.where();
     for (CaseState state : states) {
       filterQuery.or().state().isEqual(state);
@@ -81,7 +84,7 @@ public class CaseSearchCriteria {
   private CaseQuery queryForKeyword(String keyword) {
     String containingKeyword = String.format("%%%s%%", keyword);
 
-    CaseQuery filterByKeywordQuery = CaseQuery.create().where().or().name().isLikeIgnoreCase(containingKeyword).or()
+    CaseQuery filterByKeywordQuery = newCaseQuery().where().or().name().isLikeIgnoreCase(containingKeyword).or()
         .description().isLikeIgnoreCase(containingKeyword).or().customField().anyStringField().isLikeIgnoreCase(containingKeyword);
 
     try {
@@ -96,7 +99,18 @@ public class CaseSearchCriteria {
 
   private CaseQuery queryForCategory(String keyword) {
       String startingWithCategory = String.format("%s%%", keyword);
-      return CaseQuery.create().where().category().isLike(startingWithCategory);
+      return newCaseQuery().where().category().isLike(startingWithCategory);
+  }
+
+  private CaseQuery newCaseQuery() {
+    if (isBusinessCase) {
+      return CaseQuery.businessCases();
+    } else if (isTechnicalCase) {
+      return CaseQuery.subCases();
+    } else {
+      return CaseQuery.create();
+    }
+
   }
 
   private static final class CaseSortingQueryAppender {
