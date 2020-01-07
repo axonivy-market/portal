@@ -172,20 +172,21 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       Ivy.session().setAttribute(SessionAttribute.USER_CHART.toString(), result);
       List<StatisticChartType> arrs = Arrays.asList(TASK_BY_PRIORITY, CASES_BY_STATE, TASK_BY_EXPIRY, CASES_BY_FINISHED_TASK);
       List<Object> roles = null;
-      StatisticChart firstChartNeedAllRoles = result
+      // Find first chart which unselect all roles, when all roles are unselected, getRoles() from filter return empty
+      StatisticChart firstChartUnselectAllRoles = result
           .stream()
           .filter(chart -> arrs.contains(chart.getType()) && CollectionUtils.isEmpty(chart.getFilter().getSelectedRoles()))
           .findFirst()
           .orElseGet(null);
       
-      if (firstChartNeedAllRoles != null) {
-        StatisticFilter filter = firstChartNeedAllRoles.getFilter();
+      if (firstChartUnselectAllRoles != null) {
+        StatisticFilter filter = firstChartUnselectAllRoles.getFilter();
         filter.initRoles();
         roles = filter.getRoles();
         
         // set all roles for other charts which unselect all roles
         for (StatisticChart chart : result) {
-          if (arrs.contains(chart.getType()) && CollectionUtils.isEmpty(chart.getFilter().getSelectedRoles()) && !chart.getId().equals(firstChartNeedAllRoles.getId())){
+          if (arrs.contains(chart.getType()) && CollectionUtils.isEmpty(chart.getFilter().getSelectedRoles()) && !chart.getId().equals(firstChartUnselectAllRoles.getId())){
             chart.getFilter().setRoles(roles);
           }
         }

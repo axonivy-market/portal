@@ -434,13 +434,13 @@ Cs0 f29 1096 160 1176 160 #arcP
 Cs0 f2 expr out #txt
 Cs0 f2 1288 160 1363 160 #arcP
 Cs0 f30 guid 16F47038B424968C #txt
-Cs0 f30 method initFilter() #txt
+Cs0 f30 method loadDataToFilter() #txt
 Cs0 f30 inParameterDecl '<> param;' #txt
 Cs0 f30 outParameterDecl '<> result;' #txt
 Cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>initFilter()</name>
+        <name>loadDataToFilter()</name>
     </language>
 </elementInfo>
 ' #txt
