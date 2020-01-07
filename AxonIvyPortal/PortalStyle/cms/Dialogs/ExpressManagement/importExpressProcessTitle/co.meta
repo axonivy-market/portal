@@ -1,0 +1,5 @@
+co: name={importExpressProcessTitle} description={} changed={2020-01-07 09:23:56 CET} changedby={nqhoan} visualorder={0} guid={16F78AB56B075795} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16F791159B5E548D} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-06 05:15:07 CET} validto={} changed={2020-01-06 05:16:22 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F79116CBAE4C29} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-06 05:15:00 CET} validto={} changed={2020-01-06 05:16:22 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F79116CB3BE68B} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-06 05:15:11 CET} validto={} changed={2020-01-06 05:16:22 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F78AB56B279351} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-06 03:24:52 CET} validto={} changed={2020-01-06 03:24:52 CET} changedby={nqhoan} properties={} id={}

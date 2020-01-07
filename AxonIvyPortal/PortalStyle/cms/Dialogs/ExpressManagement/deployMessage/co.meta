@@ -1,0 +1,5 @@
+co: name={deployMessage} description={} changed={2020-01-07 09:23:56 CET} changedby={nqhoan} visualorder={0} guid={16F78B5B9078E52B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16F7911AADE74679} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-06 05:13:16 CET} validto={} changed={2020-01-06 12:13:09 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F78B5B90A8C6B3} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-06 03:36:12 CET} validto={} changed={2020-01-06 12:13:09 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F791198BBD6AEA} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-06 05:13:12 CET} validto={} changed={2020-01-06 12:13:09 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F7911AB0499498} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-06 05:13:07 CET} validto={} changed={2020-01-06 12:13:09 CET} changedby={nqhoan} properties={} id={}
