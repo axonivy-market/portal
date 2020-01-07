@@ -961,7 +961,7 @@
                 <title>Changes in 7.0.15</title>
                 <itemizedlist>
                     <listitem>
-                        <para>Portal variable for Global growl setting <code>DISPLAY_MESSAGE_AFTER_FINISH_TASK</code> displays growl message for positive path and negative path.</para>
+                        <para>Portal variable for Global growl setting <code>DISPLAY_MESSAGE_AFTER_FINISH_TASK</code> displays growl mesage for two situations: finish task and leave task.</para>
                     </listitem>
 
                 </itemizedlist>

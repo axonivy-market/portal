@@ -8,5 +8,5 @@ public enum SessionAttribute {
   TASK_CATEGORY,
   TASK_END_INFO, 
   PORTAL_START_PMV_ID,
-  IS_TASK_FINISHED; // task status for after leave (for sticky task list feature)
+  IS_TASK_FINISHED; // task status after leave (for sticky task list feature)
 }

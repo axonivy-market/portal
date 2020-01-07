@@ -198,9 +198,9 @@
         </mediaobject>
 	</sect3>
     <sect3 xml:id="axonivyportal.components.additionalcomponent.globalgrowl.growlaftercanceltask">
-        <title>Display growl after cancelling a task</title>
+        <title>Display growl after leaving a task</title>
         <para>
-            Otherwise after a task is cancelled and left successfully, administrator could set the <code>DISPLAY_MESSAGE_AFTER_FINISH_TASK</code> Portal variable to true.
+            If <code>DISPLAY_MESSAGE_AFTER_FINISH_TASK</code> Portal variable is true, growl message will be displayed after a task is left.
         </para>
         <mediaobject>
             <imageobject>
@@ -232,30 +232,16 @@
 		import javax.faces.application.FacesMessage;
 		
 		FacesMessage message = new FacesMessage("Task is done successfully");
-		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message",
-		message);
+		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
 		
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		flash.put("overridePortalGrowl", true);
 		flash.setRedirect(true);
 		flash.setKeepMessages(true);
 		</screen>
-		
-	<screen>
-	 import javax.faces.context.Flash;
-	 import javax.faces.context.FacesContext;
-	 import javax.faces.application.FacesMessage;
-	 
-	 FacesMessage message = new FacesMessage("You have cancelled and left the 
-	 task successfully");
-	 FacesContext.getCurrentInstance().addMessage("portal-global-growl-message",
-	 message);
-	 
-	 Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-	 flash.put("overridePortalGrowl", true);
-	 flash.setRedirect(true);
-	 flash.setKeepMessages(true);
-	 </screen>
+		<para>
+		Please refer to GlobalGrowl dialog in PortalExamples project for more details.
+		</para>
     </sect3>
 </sect2>
 </sect1>
