@@ -90,7 +90,7 @@ public final class PortalNavigator {
     } else {
       navigate(PORTAL_END_PAGE, param);
     }
-    Ivy.session().setAttribute(SessionAttribute.IS_TASK_NOT_FINISHED.toString(), true);
+    Ivy.session().setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);
   }
 
   public void navigateToPortalProcess() throws Exception {

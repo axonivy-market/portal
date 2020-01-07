@@ -152,8 +152,8 @@ if (StringUtils.isBlank(defaultEndPage)) {
 	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, PortalLibrary.PORTAL_TEMPLATE.getValue());
 }
 
-in.isTaskFinished = !SecurityServiceUtils.getSessionAttribute(SessionAttribute.IS_TASK_NOT_FINISHED.toString()).toBoolean();
-SecurityServiceUtils.removeSessionAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_NOT_FINISHED.toString());' #txt
+in.isTaskFinished = SecurityServiceUtils.getSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString()).toBoolean();
+SecurityServiceUtils.removeSessionAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_FINISHED.toString());' #txt
 Pt0 f20 security system #txt
 Pt0 f20 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -353,6 +353,7 @@ ITask task = ivy.wf.findTask(in.endedTaskId);
 ITask taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
 boolean isTaskStarted = false;
 String callbackUrl;
+String IS_TASK_FINISHED = SessionAttribute.IS_TASK_FINISHED.toString();
 if  (#task is initialized) {
 	isTaskStarted = task.getStartProcessData() is initialized;
 	if(#taskWithTaskEndInfo is initialized) {
@@ -366,8 +367,8 @@ if (isTaskStarted && StringUtils.isNotBlank(callbackUrl)) {
 	out.portalPage = PortalPage.HOME_PAGE;
 }
 
-in.isTaskFinished = !SecurityServiceUtils.getSessionAttribute(SessionAttribute.IS_TASK_NOT_FINISHED.toString()).toBoolean();
-SecurityServiceUtils.removeSessionAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_NOT_FINISHED.toString());' #txt
+in.isTaskFinished = SecurityServiceUtils.getSessionAttribute(IS_TASK_FINISHED).toBoolean();
+ivy.session.setAttribute(IS_TASK_FINISHED, true);' #txt
 Pt0 f11 security system #txt
 Pt0 f11 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

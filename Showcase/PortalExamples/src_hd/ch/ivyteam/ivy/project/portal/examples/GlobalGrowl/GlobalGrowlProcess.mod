@@ -26,8 +26,6 @@ Gs0 @RichDialogProcessStart f8 '' #zField
 Gs0 @GridStep f10 '' #zField
 Gs0 @PushWFArc f11 '' #zField
 Gs0 @GridStep f9 '' #zField
-Gs0 @RichDialogProcessEnd f12 '' #zField
-Gs0 @PushWFArc f13 '' #zField
 Gs0 @PushWFArc f14 '' #zField
 >Proto Gs0 Gs0 GlobalGrowlProcess #zField
 Gs0 f0 guid 16A8BFFA48B394D4 #txt
@@ -163,17 +161,14 @@ Gs0 f9 type ch.ivyteam.ivy.project.portal.examples.GlobalGrowl.GlobalGrowlData #
 Gs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>back to task list</name>
+        <name>Go to End Page</name>
+        <nameStyle>14,5,7
+</nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Gs0 f9 472 242 112 44 -42 -8 #rect
+Gs0 f9 472 242 112 44 -43 -8 #rect
 Gs0 f9 @|StepIcon #fIcon
-Gs0 f12 type ch.ivyteam.ivy.project.portal.examples.GlobalGrowl.GlobalGrowlData #txt
-Gs0 f12 651 251 26 26 0 12 #rect
-Gs0 f12 @|RichDialogProcessEndIcon #fIcon
-Gs0 f13 expr out #txt
-Gs0 f13 584 264 651 264 #arcP
 Gs0 f14 expr out #txt
 Gs0 f14 376 264 472 264 #arcP
 >Proto Gs0 .type ch.ivyteam.ivy.project.portal.examples.GlobalGrowl.GlobalGrowlData #txt
@@ -188,7 +183,5 @@ Gs0 f6 mainOut f5 tail #connect
 Gs0 f5 head f4 mainIn #connect
 Gs0 f8 mainOut f11 tail #connect
 Gs0 f11 head f10 mainIn #connect
-Gs0 f9 mainOut f13 tail #connect
-Gs0 f13 head f12 mainIn #connect
 Gs0 f10 mainOut f14 tail #connect
 Gs0 f14 head f9 mainIn #connect
