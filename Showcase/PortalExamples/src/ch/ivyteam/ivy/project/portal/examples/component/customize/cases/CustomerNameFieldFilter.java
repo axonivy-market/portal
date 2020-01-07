@@ -5,6 +5,7 @@ import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_VARCHAR_FIELD1
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public class CustomerNameFieldFilter extends CaseFilter {
@@ -27,7 +28,7 @@ public class CustomerNameFieldFilter extends CaseFilter {
 		}
 
 		String containingKeyword = String.format("%%%s%%", customerNameField.trim());
-		return CaseQuery.create().where().customField().stringField(CUSTOM_VARCHAR_FIELD1).isLikeIgnoreCase(containingKeyword);
+		return CaseUtils.createBusinessCaseQuery().where().customField().stringField(CUSTOM_VARCHAR_FIELD1).isLikeIgnoreCase(containingKeyword);
 	}
 
 	@Override
