@@ -11,12 +11,12 @@ import org.junit.Test;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
-import portal.guitest.page.ExpressHelperPage;
+import portal.guitest.page.ExpressManagementPage;
 import portal.guitest.page.ExpressTaskPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.ProcessWidgetPage;
 
-public class ExpressHelperTest extends BaseTest {
+public class ExpressManagementTest extends BaseTest {
 
   private HomePage homePage;
   private ProcessWidgetPage processWidget;
@@ -32,17 +32,17 @@ public class ExpressHelperTest extends BaseTest {
 
   @Test
   public void testImportUnsupportedExtension() {
-    startExpressHelperProcess("Express Helper");
-    ExpressHelperPage expressHelperPage = new ExpressHelperPage();
-    expressHelperPage.openImportDialog();
-    String message = expressHelperPage.selectJSONFile("unsupportedExtension.abc");
+    startExpressHelperProcess("Express Management");
+    ExpressManagementPage expressManagementPage = new ExpressManagementPage();
+    expressManagementPage.openImportDialog();
+    String message = expressManagementPage.selectJSONFile("unsupportedExtension.abc");
     assertEquals("This file type is not accepted!", message);
   }
 
   @Test
   public void testImportExpressProcess() {
-    startExpressHelperProcess("Express Helper");
-    ExpressHelperPage expressHelperPage = new ExpressHelperPage();
+    startExpressHelperProcess("Express Management");
+    ExpressManagementPage expressHelperPage = new ExpressManagementPage();
     expressHelperPage.openImportDialog();
     expressHelperPage.selectJSONFile("express-test.json");
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);

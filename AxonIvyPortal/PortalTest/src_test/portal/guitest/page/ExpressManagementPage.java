@@ -22,7 +22,7 @@ import com.jayway.awaitility.Duration;
 import ch.ivyteam.ivy.environment.Ivy;
 import portal.guitest.common.Sleeper;
 
-public class ExpressHelperPage extends TemplatePage {
+public class ExpressManagementPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
