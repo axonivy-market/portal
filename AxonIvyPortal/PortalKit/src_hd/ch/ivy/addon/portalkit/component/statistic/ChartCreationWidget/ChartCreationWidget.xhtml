@@ -8,7 +8,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{logic.initFilter}" type="preRenderComponent" />
+  <f:event listener="#{logic.loadDataToFilter}" type="preRenderComponent" />
   <h:form id="chart-management-form">
     <!-- Init Data for chart - auto run -->
     <p:remoteCommand id="init-filter-command" name="initFilter" autoRun="true" update="statistic-filter" global="false" immediate="true"
