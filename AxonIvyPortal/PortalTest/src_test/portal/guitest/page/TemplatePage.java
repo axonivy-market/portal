@@ -179,8 +179,6 @@ public abstract class TemplatePage extends AbstractPage {
       return false;
     }
   }
-  
-  
 
   @Override
   public <T> boolean isElementDisplayed(T locator) {
