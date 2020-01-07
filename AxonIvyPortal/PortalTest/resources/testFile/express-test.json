@@ -1,0 +1,45 @@
+{
+	"version": 1,
+	"expressWorkflow": [{
+			"expressProcess": {
+				"id": "6ecd85675c7646178587c8e4b798dbc5",
+				"processName": "Express Test 22",
+				"processDescription": "Express Test 1",
+				"processType": "AHWF",
+				"processPermissions": ["#admin"],
+				"processOwner": "#admin",
+				"isUseDefaultUI": false,
+				"processFolder": "e172808e-edd2-4457-8169-f6a48c70bc43",
+				"readyToExecute": true,
+				"processCoOwners": ["#admin"],
+				"isAbleToEdit": true
+			},
+			"expressTaskDefinitions": [{
+					"id": "a3244980fb2c42cc94adedabc82a16e5",
+					"processID": "6ecd85675c7646178587c8e4b798dbc5",
+					"type": "USER_TASK",
+					"responsibles": ["#admin"],
+					"subject": "Express Task 1",
+					"description": "",
+					"taskPosition": 1,
+					"untilDays": 1
+				}
+			],
+			"expressFormElements": [{
+					"id": "3bfd76e6c75248bcb406aa8ef524359f",
+					"processID": "6ecd85675c7646178587c8e4b798dbc5",
+					"elementID": "Test label2019-12-27 11:08:16",
+					"taskPosition": 1,
+					"label": "Test Label",
+					"required": false,
+					"intSetting": 0,
+					"elementType": "InputFieldText",
+					"optionStrs": [""],
+					"elementPosition": "HEADER",
+					"indexInPanel": 0,
+					"counter": 0
+				}
+			]
+		}
+	]
+}

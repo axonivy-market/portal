@@ -48,6 +48,7 @@ import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.gawfs.enums.FormElementType;
+import ch.ivy.gawfs.enums.ProcessType;
 import ch.ivy.gawfs.enums.TaskType;
 import ch.ivy.gawfs.mail.MailAttachment;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
@@ -513,8 +514,7 @@ public class ExpressProcessUtils {
   }
 
   /**
-   * Fetch all Express processes in the Business data, which is ready to execute and can start
-   * by current user
+   * Find express repeat workflows which is ready to execute and start by current user
    * 
    * @return List of Express process
    */
@@ -522,7 +522,8 @@ public class ExpressProcessUtils {
     List<ExpressProcess> expressProcesses = new ArrayList<>();
     List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessOrderByName();
     for (ExpressProcess wf : workflows) {
-      if (PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(wf)) {
+      if (PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(wf)
+          && wf.getProcessType().equalsIgnoreCase(ProcessType.REPEAT.getValue())) {
         expressProcesses.add(wf);
       }
     }
@@ -530,10 +531,10 @@ public class ExpressProcessUtils {
   }
 
   /**
-   * Import the Express processes from a JSON file to Business data
+   * Import Express workflows from JSON file.
    *
-   * @param expressData should have Content type as JSON file
-   * @return a message of import process
+   * @param expressData file contains express workflows
+   * @return output messages after run import process
    */
   @SuppressWarnings("unchecked")
   public List<String> importExpressProcesses(UploadedFile expressData) {
@@ -543,11 +544,8 @@ public class ExpressProcessUtils {
     stopWatch.start();
 
     if (expressData == null || !expressData.getContentType().equals(MediaType.APPLICATION_JSON)) {
-      if (expressData == null) {
-        outputMessages.set(1, addResultLog(importExpressResult, Ivy.cms().co("/Dialogs/ExpressHelper/fileEmptyMessage"), ERROR));
-      } else {
-        outputMessages.set(1, addResultLog(importExpressResult, Ivy.cms().co("/Dialogs/components/CaseDocument/invalidFileMessage"), ERROR));
-      }
+      outputMessages.set(1, addResultLog(importExpressResult,
+              Ivy.cms().co(expressData != null ? "/Dialogs/components/CaseDocument/invalidFileMessage" : "/Dialogs/ExpressHelper/fileEmptyMessage"), ERROR));
       return outputMessages;
     }
 
