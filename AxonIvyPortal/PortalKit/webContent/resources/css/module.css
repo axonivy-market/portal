@@ -1812,12 +1812,12 @@ _:-ms-input-placeholder, :root .case-details>* {
 .case-details-data-1st-column {
   padding-right: 10px;
   text-align: left;
-  width: 170px;
+  width: 200px;
   line-height: 2.2rem;
 }
 
 .case-description-2nd-column {
-  width: calc(100% - 175px);
+  width: calc(100% - 210px);
   height: 110px;
   margin-left: 2px;
   overflow-y: auto;
@@ -3010,6 +3010,15 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding-top: 15px !important;
 }
 
+.statistic-filter-item {
+  height: 18rem;
+  padding-top: 0 !important;
+}
+
+.statistic-filter-item.ui-scrollpanel {
+  border: none;
+}
+
 .custom-field-panel.statistic-filter-container {
   height: auto;
   max-height: 18rem;
@@ -4020,6 +4029,21 @@ _:-ms-fullscreen, :root .content-link-history {
   .adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
     margin: 0 !important;
     width: calc(100vw - 40px) !important;
+  }
+  .case-details-data-1st-column {
+    padding-right: 10px;
+    text-align: left;
+    width: 170px;
+    line-height: 2.2rem;
+  }
+  .case-description-2nd-column {
+    width: calc(100% - 175px);
+    height: 85px;
+    margin-left: 2px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-break: break-all;
+    margin-top: 0.2em;
   }
 }
 
