@@ -2552,6 +2552,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   margin-top: 5px;
 }
 
+.absence-table-container {
+  height: 330px;
+}
+
 .absence-reset-float {
   clear: both;
   margin-bottom: 10px;
@@ -2559,11 +2563,26 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .absence-date-field {
   text-align: center;
+  width: 150px;
 }
 
 .absences-table-action-column {
   text-align: center;
   width: 130px;
+}
+
+@media (max-width: 768px) {
+  .absences-table-action-column {
+    width: 80px !important;
+  }
+  
+  .absences-table-action-column-icon-button {
+    margin: 0 5px !important;
+  }
+  
+  .absence-date-field {
+    width: 100px !important;
+  }
 }
 
 .absence-panel-grid {
