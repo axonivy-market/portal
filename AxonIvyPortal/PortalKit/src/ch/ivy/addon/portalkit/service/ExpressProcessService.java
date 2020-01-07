@@ -28,4 +28,14 @@ public class ExpressProcessService extends BusinessDataService<ExpressProcess> {
   public Class<ExpressProcess> getType() {
     return ExpressProcess.class;
   }
+
+  public long totalCounts() {
+    return repo().search(getType()).execute().totalCount();
+  }
+  
+  public List<ExpressProcess> findReadyToExecuteProcessOrderByName(int first, int pageSize) {
+    Result<ExpressProcess> queryResult =
+        repo().search(getType()).orderBy().textField("processName").ascending().limit(first, pageSize).execute();
+    return queryResult.getAll().stream().filter(ExpressProcess::isReadyToExecute).collect(Collectors.toList());
+  }
 }

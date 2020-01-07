@@ -1,5 +1,5 @@
-ExpressHelperData #class
-ch.ivy.gawfs.workflowCreation.ExpressHelper #namespace
+ExpressManagementData #class
+ch.ivy.gawfs.workflowCreation.ExpressManagement #namespace
 expressData gawfs.Data #field
 expressData PERSISTENT #fieldModifier
 exportExpressFile org.primefaces.model.StreamedContent #field
@@ -18,3 +18,5 @@ validateMessage javax.faces.application.FacesMessage #field
 validateMessage PERSISTENT #fieldModifier
 isError Boolean #field
 isError PERSISTENT #fieldModifier
+dataModel ch.ivy.addon.portalkit.datamodel.ExpressProcessLazyDataModel #field
+dataModel PERSISTENT #fieldModifier
