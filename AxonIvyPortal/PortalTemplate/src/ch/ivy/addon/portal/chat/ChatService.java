@@ -37,6 +37,7 @@ import com.google.gson.GsonBuilder;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
@@ -354,11 +355,10 @@ public class ChatService {
   }
 
   private CaseQuery buildCaseQuery() {
-    return CaseQuery.create().where()
+    return CaseUtils.createBusinessCaseQuery().where()
         .customField().stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).isNotNull()
         .and().state().isNotEqual(CaseState.DONE)
-        .and().state().isNotEqual(CaseState.DESTROYED)
-        .and().isBusinessCase();
+        .and().state().isNotEqual(CaseState.DESTROYED);
   }
   
   private boolean isUserInvolvedInGroup(long caseId, String userName) {

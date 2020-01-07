@@ -42,13 +42,16 @@ Cs0 @UdMethod f22 '' #zField
 Cs0 @PushWFArc f23 '' #zField
 Cs0 @UdMethod f24 '' #zField
 Cs0 @PushWFArc f25 '' #zField
-Cs0 @PushWFArc f26 '' #zField
 Cs0 @PushWFArc f8 '' #zField
 Cs0 @CallSub f9 '' #zField
 Cs0 @PushWFArc f27 '' #zField
 Cs0 @GridStep f28 '' #zField
 Cs0 @PushWFArc f29 '' #zField
 Cs0 @PushWFArc f2 '' #zField
+Cs0 @UdMethod f30 '' #zField
+Cs0 @UdProcessEnd f31 '' #zField
+Cs0 @PushWFArc f32 '' #zField
+Cs0 @PushWFArc f26 '' #zField
 >Proto Cs0 Cs0 ChartCreationWidgetProcess #zField
 Cs0 f0 guid 15FFC669CAD8BE32 #txt
 Cs0 f0 method start() #txt
@@ -63,9 +66,9 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f0 115 51 26 26 -16 15 #rect
+Cs0 f0 99 51 26 26 -16 15 #rect
 Cs0 f0 @|UdInitIcon #fIcon
-Cs0 f1 803 51 26 26 0 12 #rect
+Cs0 f1 1363 147 26 26 0 12 #rect
 Cs0 f1 @|UdProcessEndIcon #fIcon
 Cs0 f3 guid 15FFC669CBAE4804 #txt
 Cs0 f3 actionTable 'out=in;
@@ -77,12 +80,12 @@ Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f3 115 147 26 26 -15 12 #rect
+Cs0 f3 99 147 26 26 -15 12 #rect
 Cs0 f3 @|UdEventIcon #fIcon
 Cs0 f4 435 147 26 26 0 12 #rect
 Cs0 f4 @|UdExitEndIcon #fIcon
 Cs0 f5 expr out #txt
-Cs0 f5 141 160 435 160 #arcP
+Cs0 f5 125 160 435 160 #arcP
 Cs0 f35 guid 1601F664C9C78C71 #txt
 Cs0 f35 method createStatisticChart(java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>) #txt
 Cs0 f35 inParameterDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList> param;' #txt
@@ -124,7 +127,7 @@ Cs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f35 115 859 26 26 -111 15 #rect
+Cs0 f35 99 915 26 26 -111 15 #rect
 Cs0 f35 @|UdMethodIcon #fIcon
 Cs0 f40 guid 1601F9BADD2EC1C0 #txt
 Cs0 f40 method updateBeforeAddCaseByState() #txt
@@ -150,7 +153,7 @@ Cs0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f40 115 435 26 26 -87 15 #rect
+Cs0 f40 99 435 26 26 -87 15 #rect
 Cs0 f40 @|UdMethodIcon #fIcon
 Cs0 f42 guid 1601F9BBC3E25AD8 #txt
 Cs0 f42 method updateBeforeAddTaskByExpiry() #txt
@@ -176,16 +179,16 @@ Cs0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f42 115 531 26 26 -87 15 #rect
+Cs0 f42 99 531 26 26 -87 15 #rect
 Cs0 f42 @|UdMethodIcon #fIcon
 Cs0 f43 435 483 26 26 0 12 #rect
 Cs0 f43 @|UdProcessEndIcon #fIcon
 Cs0 f45 expr out #txt
-Cs0 f45 141 448 448 483 #arcP
+Cs0 f45 125 448 448 483 #arcP
 Cs0 f45 1 448 448 #addKink
 Cs0 f45 0 0.577599710494189 0 0 #arcLabel
 Cs0 f46 expr out #txt
-Cs0 f46 141 544 448 509 #arcP
+Cs0 f46 125 544 448 509 #arcP
 Cs0 f46 1 448 544 #addKink
 Cs0 f46 0 0.7534182567993608 0 0 #arcLabel
 Cs0 f6 guid 160358C7FBCD2AE2 #txt
@@ -201,7 +204,7 @@ Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f6 115 243 26 26 -26 15 #rect
+Cs0 f6 99 243 26 26 -26 15 #rect
 Cs0 f6 @|UdMethodIcon #fIcon
 Cs0 f15 actionTable 'out=in;
 ' #txt
@@ -226,14 +229,14 @@ Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f15 222 42 112 44 -22 -8 #rect
+Cs0 f15 782 138 112 44 -22 -8 #rect
 Cs0 f15 @|StepIcon #fIcon
 Cs0 f7 435 243 26 26 0 12 #rect
 Cs0 f7 @|UdProcessEndIcon #fIcon
-Cs0 f11 435 955 26 26 0 12 #rect
+Cs0 f11 435 1011 26 26 0 12 #rect
 Cs0 f11 @|UdProcessEndIcon #fIcon
 Cs0 f44 expr out #txt
-Cs0 f44 141 352 448 483 #arcP
+Cs0 f44 125 352 448 483 #arcP
 Cs0 f44 1 448 352 #addKink
 Cs0 f44 0 0.7890617926546363 0 0 #arcLabel
 Cs0 f41 guid 1601F9BB6832261A #txt
@@ -262,7 +265,7 @@ Cs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f41 115 339 26 26 -90 15 #rect
+Cs0 f41 99 339 26 26 -90 15 #rect
 Cs0 f41 @|UdMethodIcon #fIcon
 Cs0 f13 actionTable 'out=in;
 ' #txt
@@ -276,10 +279,10 @@ Cs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f13 232 946 112 44 -47 -8 #rect
+Cs0 f13 232 1002 112 44 -47 -8 #rect
 Cs0 f13 @|StepIcon #fIcon
 Cs0 f12 expr out #txt
-Cs0 f12 344 968 435 968 #arcP
+Cs0 f12 344 1024 435 1024 #arcP
 Cs0 f17 guid 160485D2143D0001 #txt
 Cs0 f17 method updateBeforeAddElapsedTime() #txt
 Cs0 f17 inParameterDecl '<> param;' #txt
@@ -304,25 +307,25 @@ Cs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f17 115 627 26 26 -88 15 #rect
+Cs0 f17 99 627 26 26 -88 15 #rect
 Cs0 f17 @|UdMethodIcon #fIcon
 Cs0 f18 expr out #txt
-Cs0 f18 141 640 448 509 #arcP
+Cs0 f18 125 640 448 509 #arcP
 Cs0 f18 1 448 640 #addKink
 Cs0 f18 0 0.8015192349629681 0 0 #arcLabel
-Cs0 f21 272 856 32 32 0 16 #rect
+Cs0 f21 272 912 32 32 0 16 #rect
 Cs0 f21 @|AlternativeIcon #fIcon
 Cs0 f16 expr out #txt
-Cs0 f16 141 872 272 872 #arcP
+Cs0 f16 125 928 272 928 #arcP
 Cs0 f19 expr in #txt
 Cs0 f19 outCond !in.isChartNameExisted #txt
-Cs0 f19 288 888 288 946 #arcP
+Cs0 f19 288 944 288 1002 #arcP
 Cs0 f20 expr in #txt
-Cs0 f20 304 872 448 955 #arcP
-Cs0 f20 1 448 872 #addKink
+Cs0 f20 304 928 448 1011 #arcP
+Cs0 f20 1 448 928 #addKink
 Cs0 f20 0 0.7991119562493567 0 0 #arcLabel
 Cs0 f14 expr out #txt
-Cs0 f14 141 968 232 968 #arcP
+Cs0 f14 125 1024 232 1024 #arcP
 Cs0 f10 guid 160911F3882D9937 #txt
 Cs0 f10 actionTable 'out=in;
 ' #txt
@@ -335,7 +338,7 @@ Cs0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f10 115 955 26 26 -42 15 #rect
+Cs0 f10 99 1011 26 26 -42 15 #rect
 Cs0 f10 @|UdEventIcon #fIcon
 Cs0 f22 guid 1621EDBADBEB0978 #txt
 Cs0 f22 method updateBeforeAddCaseByFinishedTask() #txt
@@ -391,16 +394,14 @@ Cs0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f24 99 795 26 26 -111 15 #rect
+Cs0 f24 99 819 26 26 -111 15 #rect
 Cs0 f24 @|UdMethodIcon #fIcon
 Cs0 f25 expr out #txt
-Cs0 f25 125 808 448 509 #arcP
-Cs0 f25 1 448 808 #addKink
+Cs0 f25 125 832 448 509 #arcP
+Cs0 f25 1 448 832 #addKink
 Cs0 f25 0 0.9649071720549873 0 0 #arcLabel
-Cs0 f26 expr out #txt
-Cs0 f26 141 64 222 64 #arcP
 Cs0 f8 expr out #txt
-Cs0 f8 141 256 435 256 #arcP
+Cs0 f8 125 256 435 256 #arcP
 Cs0 f9 processCall 'Functional Processes/DefaultStatisticCustomField:createDefaultStatisticCustomFields()' #txt
 Cs0 f9 requestActionDecl '<> param;' #txt
 Cs0 f9 responseActionDecl 'ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData out;
@@ -415,10 +416,10 @@ Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f9 424 42 112 44 -47 -8 #rect
+Cs0 f9 984 138 112 44 -47 -8 #rect
 Cs0 f9 @|CallSubIcon #fIcon
 Cs0 f27 expr out #txt
-Cs0 f27 334 64 424 64 #arcP
+Cs0 f27 894 160 984 160 #arcP
 Cs0 f28 actionTable 'out=in;
 ' #txt
 Cs0 f28 actionCode 'import java.util.ArrayList;
@@ -426,12 +427,30 @@ for (String field : in.customFields){
 	in.statisticFilter.customFieldFilters.put(field, new ArrayList());	
 }
 ' #txt
-Cs0 f28 616 42 112 44 0 -8 #rect
+Cs0 f28 1176 138 112 44 0 -8 #rect
 Cs0 f28 @|StepIcon #fIcon
 Cs0 f29 expr out #txt
-Cs0 f29 536 64 616 64 #arcP
+Cs0 f29 1096 160 1176 160 #arcP
 Cs0 f2 expr out #txt
-Cs0 f2 728 64 803 64 #arcP
+Cs0 f2 1288 160 1363 160 #arcP
+Cs0 f30 guid 16F47038B424968C #txt
+Cs0 f30 method initFilter() #txt
+Cs0 f30 inParameterDecl '<> param;' #txt
+Cs0 f30 outParameterDecl '<> result;' #txt
+Cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>initFilter()</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f30 659 147 26 26 -25 15 #rect
+Cs0 f30 @|UdMethodIcon #fIcon
+Cs0 f31 435 51 26 26 0 12 #rect
+Cs0 f31 @|UdProcessEndIcon #fIcon
+Cs0 f32 expr out #txt
+Cs0 f32 125 64 435 64 #arcP
+Cs0 f26 685 160 782 160 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -466,8 +485,6 @@ Cs0 f22 mainOut f23 tail #connect
 Cs0 f23 head f43 mainIn #connect
 Cs0 f24 mainOut f25 tail #connect
 Cs0 f25 head f43 mainIn #connect
-Cs0 f0 mainOut f26 tail #connect
-Cs0 f26 head f15 mainIn #connect
 Cs0 f6 mainOut f8 tail #connect
 Cs0 f8 head f7 mainIn #connect
 Cs0 f15 mainOut f27 tail #connect
@@ -476,3 +493,7 @@ Cs0 f9 mainOut f29 tail #connect
 Cs0 f29 head f28 mainIn #connect
 Cs0 f28 mainOut f2 tail #connect
 Cs0 f2 head f1 mainIn #connect
+Cs0 f0 mainOut f32 tail #connect
+Cs0 f32 head f31 mainIn #connect
+Cs0 f30 mainOut f26 tail #connect
+Cs0 f26 head f15 mainIn #connect
