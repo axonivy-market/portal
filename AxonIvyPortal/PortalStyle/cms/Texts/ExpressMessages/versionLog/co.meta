@@ -1,5 +1,5 @@
-co: name={versionLog} description={} changed={2020-01-06 05:27:16 CET} changedby={nqhoan} visualorder={0} guid={16F78D028CE2725F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16F791B655B9C6F6} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-06 05:21:18 CET} validto={} changed={2020-01-06 05:27:16 CET} changedby={nqhoan} properties={} id={}
-val: guid={16F791B65683B572} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-06 05:21:13 CET} validto={} changed={2020-01-06 05:27:16 CET} changedby={nqhoan} properties={} id={}
-val: guid={16F791B6561720FD} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-06 05:21:22 CET} validto={} changed={2020-01-06 05:27:16 CET} changedby={nqhoan} properties={} id={}
-val: guid={16F78D028D173247} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-06 04:05:05 CET} validto={} changed={2020-01-06 04:05:05 CET} changedby={nqhoan} properties={} id={}
+co: name={versionLog} description={} changed={2020-01-07 11:25:46 CET} changedby={nqhoan} visualorder={0} guid={16F78D028CE2725F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16F791B655B9C6F6} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-06 05:21:18 CET} validto={} changed={2020-01-07 11:25:46 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F791B65683B572} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-06 05:21:13 CET} validto={} changed={2020-01-07 11:25:46 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F791B6561720FD} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-06 05:21:22 CET} validto={} changed={2020-01-07 11:25:46 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F78D028D173247} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-06 04:05:05 CET} validto={} changed={2020-01-07 11:25:46 CET} changedby={nqhoan} properties={} id={}

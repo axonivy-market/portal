@@ -1,5 +1,0 @@
-co: name={fileEmptyMessage} description={} changed={2020-01-06 05:16:27 CET} changedby={nqhoan} visualorder={0} guid={16F78BA699E4F063} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16F79117103F5F8E} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-06 05:14:19 CET} validto={} changed={2020-01-06 05:16:27 CET} changedby={nqhoan} properties={} id={}
-val: guid={16F7911812045DA6} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-06 05:14:23 CET} validto={} changed={2020-01-06 05:16:27 CET} changedby={nqhoan} properties={} id={}
-val: guid={16F78BA69A26449F} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-06 03:41:20 CET} validto={} changed={2020-01-06 03:41:20 CET} changedby={nqhoan} properties={} id={}
-val: guid={16F79118127FC0DB} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-06 05:14:15 CET} validto={} changed={2020-01-06 05:16:27 CET} changedby={nqhoan} properties={} id={}
