@@ -26,8 +26,9 @@ public class BaseTest {
 
   private String designerLogoutUrl = "http://localhost:8081/ivy/wf/logout.jsp";
   private final static String LOGIN_URL_PATTERN = "portalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
-  private BrowserType browserType = BrowserType.IE;
+  private BrowserType browserType = BrowserType.FIREFOX;
   private String ieDriverPath = getInternetExprorerDriverPath();
+  private String fireFoxDriverPath = getFireFoxDriverPath();
 
   public Browser getBrowser() {
     return browser;
@@ -52,6 +53,23 @@ public class BaseTest {
     }
     return "./resources/IEDriverServer.exe";
   }
+  
+  public String getFireFoxPath() {
+    return fireFoxDriverPath;
+  }
+
+  public void setFireFoxDriverPath(String fireFoxDriverPath) {
+    this.fireFoxDriverPath = fireFoxDriverPath;
+  }
+
+  private String getFireFoxDriverPath() {
+    String vmArgPath = System.getProperty("fireFoxDriverPath");
+    if (vmArgPath != null) {
+      return vmArgPath;
+    }
+    return "./resources/GeckoFireFoxDriver.exe";
+  }
+  
   protected String createTestingTasksUrl = "portalExamples/162511D2577DBA88/CategoriedLeaveRequest.ivp";
   protected String businessCaseUrl = "internalSupport/15B1EA24CCF377E8/updateCheckInTime.ivp";
   protected String hideCaseUrl = "portalExamples/16583F0F73864543/createHiddenTechnicalCase.ivp";
@@ -72,7 +90,7 @@ public class BaseTest {
 
   public void launchBrowserAndGotoRelativeLink(String relativeProcessStartLink) {
     try {
-      browser.launch(browserType, UrlHelpers.generateAbsoluteProcessStartLink(relativeProcessStartLink), ieDriverPath);
+      browser.launch(browserType, UrlHelpers.generateAbsoluteProcessStartLink(relativeProcessStartLink), fireFoxDriverPath);
     } catch (Exception e) {
       throw new PortalGUITestException(e);
     }
@@ -97,6 +115,7 @@ public class BaseTest {
   protected void logoutDesigner() {
     try {
       browser.goHome(designerLogoutUrl);
+      redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     } catch (Exception e) {
       throw new PortalGUITestException(e);
     }
