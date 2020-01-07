@@ -1,0 +1,5 @@
+co: name={addNewExternalLinkHeader} description={} changed={2019-12-23 04:18:13 CET} changedby={ttthai} visualorder={0} guid={16F30C223824309C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16F30C2C31799D49} datatype={} isdefault={false} langid={de} description={} validfrom={2019-12-23 04:17:21 CET} validto={} changed={2019-12-23 04:18:13 CET} changedby={ttthai} properties={} id={}
+val: guid={16F30C326B72519A} datatype={} isdefault={false} langid={es} description={} validfrom={2019-12-23 04:18:04 CET} validto={} changed={2019-12-23 04:18:13 CET} changedby={ttthai} properties={} id={}
+val: guid={16F30C2238FDCD7C} datatype={} isdefault={true} langid={en} description={} validfrom={2019-12-23 04:17:07 CET} validto={} changed={2019-12-23 04:17:53 CET} changedby={ttthai} properties={} id={}
+val: guid={16F30C32745A6E70} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-12-23 04:18:02 CET} validto={} changed={2019-12-23 04:18:13 CET} changedby={ttthai} properties={} id={}
