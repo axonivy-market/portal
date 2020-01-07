@@ -153,6 +153,11 @@ Tt0 @PushWFArc f15 '' #zField
 Tt0 @PushWFArc f14 '' #zField
 Tt0 @PushWFArc f13 '' #zField
 Tt0 @TaskSwitch f7 '' #zField
+Tt0 @StartRequest f52 '' #zField
+Tt0 @EndTask f54 '' #zField
+Tt0 @PushWFArc f56 '' #zField
+Tt0 @UserTask f53 '' #zField
+Tt0 @TkArc f55 '' #zField
 >Proto Tt0 Tt0 TestTaskFlow #zField
 Tt0 f0 outLink CreateSupportTicket.ivp #txt
 Tt0 f0 inParamDecl '<> param;' #txt
@@ -1784,6 +1789,55 @@ Tt0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f7 186 178 28 28 9 -21 #rect
 Tt0 f7 @|TaskSwitchIcon #fIcon
+Tt0 f52 outLink IFrameInCaseLevel.ivp #txt
+Tt0 f52 inParamDecl '<> param;' #txt
+Tt0 f52 requestEnabled true #txt
+Tt0 f52 triggerEnabled false #txt
+Tt0 f52 callSignature IFrameInCaseLevel() #txt
+Tt0 f52 persist false #txt
+Tt0 f52 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Tt0 f52 caseData 'businessCase.attach=true
+case.description=Sale Information  In Iframe
+case.name=Sale Information In Iframe
+customFields.STRING.embedInFrame="true"' #txt
+Tt0 f52 showInStartList 1 #txt
+Tt0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>IFrameInCaseLevel.ivp</name>
+        <desc>IFrame in Case level</desc>
+    </language>
+</elementInfo>
+' #txt
+Tt0 f52 @C|.responsibility Everybody #txt
+Tt0 f52 1377 521 30 30 -21 17 #rect
+Tt0 f52 @|StartRequestIcon #fIcon
+Tt0 f54 1377 745 30 30 0 15 #rect
+Tt0 f54 @|EndIcon #fIcon
+Tt0 f56 1392 686 1392 745 #arcP
+Tt0 f53 dialogId internaltest.ui.SaleDepartment #txt
+Tt0 f53 startMethod start() #txt
+Tt0 f53 requestActionDecl '<> param;' #txt
+Tt0 f53 responseActionDecl 'internaltest.Data out;
+' #txt
+Tt0 f53 responseMappingAction 'out=in;
+' #txt
+Tt0 f53 taskData 'TaskA.EXPRI=2
+TaskA.EXROL=Everybody
+TaskA.EXTYPE=0
+TaskA.NAM=Sale Department Info
+TaskA.PRI=2
+TaskA.ROL=Everybody
+TaskA.SKIP_TASK_LIST=false
+TaskA.TYPE=0' #txt
+Tt0 f53 1336 642 112 44 0 -8 #rect
+Tt0 f53 @|UserTaskIcon #fIcon
+Tt0 f55 1392 551 1392 642 #arcP
 >Proto Tt0 .type internaltest.Data #txt
 >Proto Tt0 .processKind NORMAL #txt
 >Proto Tt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1939,3 +1993,7 @@ Tt0 f177 mainOut f180 tail #connect
 Tt0 f180 head f179 mainIn #connect
 Tt0 f179 mainOut f173 tail #connect
 Tt0 f173 head f169 mainIn #connect
+Tt0 f52 mainOut f55 tail #connect
+Tt0 f55 head f53 in #connect
+Tt0 f53 out f56 tail #connect
+Tt0 f56 head f54 mainIn #connect

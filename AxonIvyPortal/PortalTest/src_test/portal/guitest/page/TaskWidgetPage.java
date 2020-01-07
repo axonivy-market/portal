@@ -91,6 +91,11 @@ public class TaskWidgetPage extends TemplatePage {
 		waitForElementPresent(By.id(TASK_ACTION), true);
 		return new TaskTemplatePage();
 	}
+	
+	public void startDeprecatedTaskTemplate(int index) {
+	  waitTaskAppearThenClick(index);
+		waitForElementPresent(By.id("task-actions"), true);
+	}
 
   public boolean isTaskDelegateOptionDisable(int index) {
     sideStepMenuOnMoreButton(index);
