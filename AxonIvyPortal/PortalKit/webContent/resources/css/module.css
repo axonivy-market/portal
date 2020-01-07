@@ -77,7 +77,6 @@
 
 .widget-header-sub {
   flex: 1 0 auto;
-  margin-left: 25px;
   align-self: flex-end;
 }
 
@@ -793,9 +792,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   .process-start-list-item-name-text {
     width: calc(100vw - 100px) !important;
   }
-  .process-widget .widget-header-sub {
-    margin-left: 0 !important;
-  }
 }
 
 /* Small screen */
@@ -991,6 +987,10 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   width: calc(100% - 130px);
 }
 
+.process-start-list-item-name.is-external-link {
+   width: calc(100% - 100px);
+}
+
 .process-start-list-item:hover .process-start-list-item-icon,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-icon {
   opacity: 1;
@@ -1040,7 +1040,8 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   flex: 1 0 auto;
 }
 
-.process-start-list-item-action .process-item {
+.process-start-list-item-action .process-item,
+.process-start-list-item-action .public-external-link {
   opacity: 0.3;
 }
 
@@ -1092,14 +1093,7 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 
 .process-start-list-item .ui-commandlink.process-item {
   margin: 0 5px;
-}
-
-.process-start-list-item .ui-commandlink.process-item, .process-start-list-item .ui-link.external-process-item {
   width: 100%;
-}
-
-.process-start-list-item .ui-link.external-process-item {
-  min-width: 60%;
 }
 
 .process-start-list-item:hover,
@@ -1193,7 +1187,8 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   background-image: url("#{resource['ivy-webcontent:images/expressLogo/icon_express_process_120x120.png']}");
 }
 
-.express-process-logo .ui-panel-content {
+.express-process-logo .ui-panel-content,
+.is-external-link .ui-panel-content {
   width: 0.4rem;
   height: 0.4rem;
   margin: 0 5px 3px 5px;
@@ -1209,6 +1204,42 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   width: auto;
   height: auto;
   margin: 0;
+}
+
+.add-external-link-icon {
+  width: 1.6rem;
+  height: 1.6rem;
+  margin: 2px 4px 0 10px;
+}
+
+.external-link-icon {
+  height: auto;
+  width: auto;
+  cursor: default;
+  border: none !important;
+  background-color: transparent !important;
+  margin-top: 2px !important;
+}
+
+.field-group .external-link-type {
+  line-height: 1.6;
+}
+
+.field-group .external-link-dialog-field {
+  line-height: 1.7;
+}
+
+_:-ms-input-placeholder, :root .field-group .external-link-dialog-field {
+  line-height: 1;
+}
+
+.process-start-list-item-action.is-external-link {
+  right: 50px;
+  flex: 1 0 auto;
+}
+
+_:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not(.external-link-type-label) {
+  line-height: 1.4;
 }
 
 /********************************** END PROCESSES **********************************/
