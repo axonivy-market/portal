@@ -47,6 +47,11 @@
   }
 }
 
+.layout-wrapper .layout-sidebar .layout-menu .submenu-container[id*='thirdparty-menu-item'] a,
+.layout-wrapper .layout-sidebar .layout-menu .submenu-container[id*='thirdparty-menu-item'] i {
+    color: $primaryTextColor !important;
+}
+
 /*Style for Top bar -------------------------------------------------------------------------------------- */
 @media (max-width: 1365px) {
     .app-dialog {
