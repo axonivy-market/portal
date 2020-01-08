@@ -3063,6 +3063,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .elapsed-time-detail-container-width {
   width: 100% !important;
+  overflow-x: auto;
 }
 
 .dashboard-chart-panel {
@@ -3746,9 +3747,8 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 .elapsed-time-detail-form {
-  width: 80%;
+  width: 100%;
 }
-
 .elapsed-time-result-list .case-table .case-id, .elapsed-time-result-list .case-table .case-creator,
   .elapsed-time-result-list .case-table .case-created, .elapsed-time-result-list .case-table .case-finished {
   width: 10%;
@@ -3768,6 +3768,11 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 .ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-close {
   display: none;
+}
+@media screen and (min-width : 64.063em) {
+  .elapsed-time-detail-toggle-column {
+    display: none !important;
+  }
 }
 
 /*********** SEARCH ICON ***********/
@@ -3795,6 +3800,19 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 @media screen and (min-width: 64.063em) {
   .search-item {
     width: 400px;
+  }
+}
+
+@media screen and (max-width: 40em) {
+  .elapsed-time-result-list .case-table {
+    padding-right: 5px;
+    
+  }
+}
+
+@media screen and (max-width: 64.063em) {
+  .elapsed-time-result-list .case-table {
+    display: inline-block !important;
   }
 }
 
