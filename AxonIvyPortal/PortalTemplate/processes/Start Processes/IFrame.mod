@@ -17,9 +17,7 @@ Ie0 @PushWFArc f8 '' #zField
 Ie0 @GridStep f4 '' #zField
 Ie0 @PushWFArc f10 '' #zField
 Ie0 @InfoButton f1 '' #zField
-Ie0 @GridStep f2 '' #zField
-Ie0 @PushWFArc f11 '' #zField
-Ie0 @PushWFArc f9 '' #zField
+Ie0 @PushWFArc f12 '' #zField
 >Proto Ie0 Ie0 IFrame #zField
 Ie0 f0 outLink DefaultFramePage.ivp #txt
 Ie0 f0 inParamDecl '<String relativeUrl,Number runningTaskId> param;' #txt
@@ -62,7 +60,7 @@ Ie0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ie0 f3 576 42 128 44 -55 -8 #rect
+Ie0 f3 424 42 128 44 -55 -8 #rect
 Ie0 f3 @|UserDialogIcon #fIcon
 Ie0 f5 actionTable 'out=in;
 ' #txt
@@ -108,27 +106,9 @@ DefaultFramePage process will run</name>
 ' #txt
 Ie0 f1 56 202 464 44 -228 -16 #rect
 Ie0 f1 @|IBIcon #fIcon
-Ie0 f2 actionTable 'out=in;
-' #txt
-Ie0 f2 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-import ch.ivy.addon.portalkit.service.StickyTaskListService;
-
-String iframeAttr = StickyTaskListService.service().getIFrameSessionAttributeKey(in.taskId);
-SecurityServiceUtils.setSessionAttribute(iframeAttr, true);' #txt
-Ie0 f2 security system #txt
-Ie0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Set IFrame attribute</name>
-    </language>
-</elementInfo>
-' #txt
-Ie0 f2 424 42 112 44 -51 -8 #rect
-Ie0 f2 @|StepIcon #fIcon
-Ie0 f11 expr in #txt
-Ie0 f11 outCond in.embedInIFrame #txt
-Ie0 f11 368 64 424 64 #arcP
-Ie0 f9 536 64 576 64 #arcP
+Ie0 f12 expr in #txt
+Ie0 f12 outCond in.embedInIFrame #txt
+Ie0 f12 368 64 424 64 #arcP
 >Proto Ie0 .type ch.ivy.addon.portal.generic.IFrameData #txt
 >Proto Ie0 .processKind NORMAL #txt
 >Proto Ie0 0 0 32 24 18 0 #rect
@@ -138,8 +118,6 @@ Ie0 f6 head f5 mainIn #connect
 Ie0 f5 mainOut f8 tail #connect
 Ie0 f8 head f7 in #connect
 Ie0 f10 head f4 mainIn #connect
-Ie0 f7 out f11 tail #connect
-Ie0 f11 head f2 mainIn #connect
+Ie0 f7 out f12 tail #connect
+Ie0 f12 head f3 mainIn #connect
 Ie0 f7 out f10 tail #connect
-Ie0 f2 mainOut f9 tail #connect
-Ie0 f9 head f3 mainIn #connect
