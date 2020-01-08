@@ -206,10 +206,22 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivyteam.ivy.workflow.ITask;
 
+in.isTaskFinished = !SecurityServiceUtils.getSessionAttribute(SessionAttribute.IS_TASK_NOT_FINISHED.toString()).toBoolean();
+SecurityServiceUtils.removeSessionAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_NOT_FINISHED.toString());
+
 ITask task = ivy.wf.findTask(in.endedTaskId);
 ITask taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
-if  (#task is initialized) {
-	if(#taskWithTaskEndInfo is initialized) {
+if (#task is initialized) {
+	// If task is finished in IFrame, DefaultEndPage will run twice, first is for the task in IFrame, second is in Portal
+	// To prevent nested Portal (Portal in IFrame), first time will open a blank page in IFrame
+	// Second time will redirect as usual.
+	String iframeAttr = StickyTaskListService.service().getIFrameSessionAttributeKey(task.getId());
+	in.isInIFrame = SecurityServiceUtils.getSessionAttribute(iframeAttr).toBoolean() && in.isTaskFinished;
+	if (in.isInIFrame || !in.isTaskFinished) {
+		SecurityServiceUtils.removeSessionAttribute(iframeAttr);
+	}
+	
+	if (#taskWithTaskEndInfo is initialized && !in.isInIFrame) {
 		String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(taskWithTaskEndInfo.getId());
 		TaskEndInfo taskEndInfo = SecurityServiceUtils.getSessionAttribute(taskEndInfoSessionAttributeKey) as TaskEndInfo;
 		
@@ -222,19 +234,7 @@ if  (#task is initialized) {
 		
 		in.callbackUrl = taskWithTaskEndInfo.customFields().stringField(CustomFields.EXPRESS_END_PAGE_URL.toString()).getOrDefault("");
 	}
-	
-	// If task is finished in IFrame, DefaultEndPage will run twice, first is for the task in IFrame, second is in Portal
-	// To prevent nested Portal (Portal in IFrame), first time will open a blank page in IFrame
-	// Second time will redirect as usual.
-	String iframeAttr = StickyTaskListService.service().getIFrameSessionAttributeKey(task.getId());
-	boolean isCancelInFrame = SecurityServiceUtils.getSessionAttribute(SessionAttribute.IS_TASK_NOT_FINISHED.toString()).toBoolean();
-	in.isInIFrame = SecurityServiceUtils.getSessionAttribute(iframeAttr).toBoolean() && !isCancelInFrame;
-	if (in.isInIFrame || isCancelInFrame) {
-		SecurityServiceUtils.removeSessionAttribute(iframeAttr);
-	}
-}
-in.isTaskFinished = !SecurityServiceUtils.getSessionAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_NOT_FINISHED.toString()).toBoolean();
-SecurityServiceUtils.removeSessionAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_NOT_FINISHED.toString());' #txt
+}' #txt
 Pt0 f11 security system #txt
 Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -253,6 +253,7 @@ Pt0 f28 requestEnabled true #txt
 Pt0 f28 triggerEnabled false #txt
 Pt0 f28 callSignature DefaultApplicationHomePage() #txt
 Pt0 f28 persist false #txt
+Pt0 f28 startName <%=ivy.cms.co("/Processes/portalHome")%> #txt
 Pt0 f28 taskData 'TaskTriggered.CATEGORY=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
 TaskTriggered.DESC=<%\=ivy.cms.co("/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription")%>
 TaskTriggered.EXPRI=2
