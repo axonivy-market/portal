@@ -1,0 +1,5 @@
+co: name={finishedInstallationTaskDef} description={} changed={2020-01-08 04:07:25 CET} changedby={nqhoan} visualorder={0} guid={16F831F04E07C11A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16F831F04E9E6AE9} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-06 05:24:01 CET} validto={} changed={2020-01-08 04:07:25 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831F04F690BBB} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-06 04:59:40 CET} validto={} changed={2020-01-08 04:07:25 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831F04E2F4F97} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-06 05:23:53 CET} validto={} changed={2020-01-08 04:07:25 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831F04EFE9FB8} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-06 05:23:56 CET} validto={} changed={2020-01-08 04:07:25 CET} changedby={nqhoan} properties={} id={}

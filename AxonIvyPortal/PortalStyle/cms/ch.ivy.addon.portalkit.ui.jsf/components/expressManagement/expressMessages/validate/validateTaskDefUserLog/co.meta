@@ -1,0 +1,5 @@
+co: name={validateTaskDefUserLog} description={} changed={2020-01-08 04:07:26 CET} changedby={nqhoan} visualorder={0} guid={16F831F05A2871D9} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16F831F066D4C44B} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-06 04:48:47 CET} validto={} changed={2020-01-08 04:07:26 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831F06748F91E} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-06 05:22:51 CET} validto={} changed={2020-01-08 04:07:26 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831F066762B19} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-06 05:22:42 CET} validto={} changed={2020-01-08 04:07:26 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831F067BB17B7} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-06 05:22:47 CET} validto={} changed={2020-01-08 04:07:26 CET} changedby={nqhoan} properties={} id={}

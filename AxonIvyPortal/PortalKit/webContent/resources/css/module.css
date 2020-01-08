@@ -4023,3 +4023,72 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   right: 7px;
 }
 /**************Override END*******************/
+
+
+/*=================== EXPRESS MANAGEMENT START ===================*/
+.express-process-upload.ui-fileupload {
+  padding: 0 !important;
+}
+
+.express-process-upload.ui-fileupload .ui-fileupload-progress {
+  vertical-align: middle;
+}
+
+.import-express-dialog {
+  min-width: 450px;
+}
+
+.import-express-dialog .express-import-result {
+  overflow: auto;
+  max-height: 400px;
+  width: 100%;
+}
+
+.import-express-dialog .import-header-title,
+.export-express-dialog .import-header-title {
+  margin: 0;
+}
+
+.export-express-dialog .express-export-selected {
+  max-height: 250px;
+  overflow: auto;
+  width: 100%;
+}
+
+.express-helper-loading-container {
+  display: none;
+}
+
+.express-helper-loading {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.express-workflow-summary-table {
+  line-height: 1;
+}
+
+.express-workflow-summary-table .ui-paginator.ui-paginator-top {
+  padding: 4px 10px;
+}
+
+.express-workflow-summary-table tbody tr td {
+  padding: 4px 10px !important;
+}
+
+.express-workflow-summary-table .ui-selection-column.express-selection-column {
+  text-align: center;
+}
+
+.express-workflow-summary-table td.ui-selection-column.express-selection-column .ui-chkbox.ui-widget {
+  margin: auto;
+  margin-top: 4px;
+}
+
+.express-workflow-summary-table .express-selection-column {
+  width: 50px;
+  text-align:center"; 
+}
+
+/*=================== EXPRESS MANAGEMENT END ===================*/
