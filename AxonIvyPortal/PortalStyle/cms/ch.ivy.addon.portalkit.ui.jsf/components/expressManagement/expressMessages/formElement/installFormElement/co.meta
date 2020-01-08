@@ -1,0 +1,5 @@
+co: name={installFormElement} description={} changed={2020-01-08 04:07:25 CET} changedby={nqhoan} visualorder={0} guid={16F831F0342C3A50} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16F831F035B18117} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-06 05:25:42 CET} validto={} changed={2020-01-08 04:07:25 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831F035335E3B} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-06 05:25:49 CET} validto={} changed={2020-01-08 04:07:25 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831F0344AFDCC} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-06 04:54:32 CET} validto={} changed={2020-01-08 04:07:25 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831F034BA34B1} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-06 05:25:46 CET} validto={} changed={2020-01-08 04:07:25 CET} changedby={nqhoan} properties={} id={}

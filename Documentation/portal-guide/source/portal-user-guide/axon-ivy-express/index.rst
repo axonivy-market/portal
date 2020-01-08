@@ -226,3 +226,37 @@ Define an information email
 
 Axon Express Management
 -----------------------
+
+Axon Express provides a function to help import/export express process to Portal System.
+
+Export Express
+^^^^^^^^^^^^^^
+Export express is a function to help Administrator can export the Express process in the Portal system to a JSON file for backup or deploy to another enviroment
+
+How to:
+"""""""
+Go to the Admin Setting, switch to Express Management tab.
+Look at on the summary table of express process, choose a process which we want to export to JSON file.
+Or click on the Checkbox ALL to export many processes.
+
+After selected process, click on Export button, a dialog will be shown on.
+After the Export Dialog is displayed, we will see list of process will be exported to file.
+After review and make sure all information are collectly, press on Download button, another dialog will be shown on.
+Select a local to store this backup file, and save. Done
+
+Note: the export file is a JSON file, it contains version of express and express process data. Don't edit this file by manually.
+
+
+Import Express
+^^^^^^^^^^^^^^
+Import express is a function to help Administrator can import the Express process in the Portal system form a backup file to enviroment
+
+How to:
+"""""""
+
+Go to the Admin Setting, switch to Express Management tab.
+Select Import button, a dialog will show on.
+After Import Express dialog is open, select the Select button and choose the Express JSON file which we export above.
+Then press Deploy button, and wait for process is fisnished.
+After deploy process is finised, one output pannel will be show all of log which collect during the process is deploy to system.
+You can check the log data for more information.
