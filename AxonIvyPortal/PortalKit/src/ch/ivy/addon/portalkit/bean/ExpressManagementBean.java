@@ -1,4 +1,4 @@
-package ch.ivy.gawfs.beans;
+package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 import java.util.List;
@@ -9,12 +9,11 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.datamodel.ExpressProcessLazyDataModel;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
-import ch.ivy.gawfs.enums.ProcessType;
+import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
@@ -25,17 +24,20 @@ public class ExpressManagementBean implements Serializable {
   private static final long serialVersionUID = -6072339110563610370L;
 
   private List<UserDTO> activeUserList;
-  private ExpressProcessLazyDataModel expressProcessLazyDataModel;
 
   @PostConstruct
-  public void initHelper() {
-    expressProcessLazyDataModel = new ExpressProcessLazyDataModel();
+  public void initManagement() {
     activeUserList = findAllActiveUser();
   }
 
   private List<UserDTO> findAllActiveUser() {
     IvySecurityResultDTO ivySecurityResultDTO = SecurityService.newInstance().findUsers(Ivy.request().getApplication());
     return ivySecurityResultDTO.getUsers();
+  }
+  
+  public boolean isShowExpressManagementTab() {
+    ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
+    return collector.findExpressCreationProcess() != null;
   }
 
   /**
@@ -63,23 +65,6 @@ public class ExpressManagementBean implements Serializable {
       }
     }
     return displayName;
-  }
-
-  public String getProcessTypeDescription(String processType) {
-    for (ProcessType type : ProcessType.values()) {
-      if (type.getValue().equalsIgnoreCase(processType)) {
-        return type.getLabel();
-      }
-    }
-    return processType;
-  }
-
-  public ExpressProcessLazyDataModel getExpressProcessLazyDataModel() {
-    return expressProcessLazyDataModel;
-  }
-
-  public void setExpressProcessLazyDataModel(ExpressProcessLazyDataModel expressProcessLazyDataModel) {
-    this.expressProcessLazyDataModel = expressProcessLazyDataModel;
   }
 
   public List<UserDTO> getActiveUserList() {

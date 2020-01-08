@@ -1710,7 +1710,7 @@ ul.participants-list li {
   margin-top: 30px;
 }
 
-/* Express Helper */
+/* Express Management */
 .import-express-dialog .import-status {
   &.Success {
     color: $expressImportStatusSuccess;
@@ -1722,4 +1722,42 @@ ul.participants-list li {
     color: $expressImportStatusFailed;
   }
   font-weight: $expressImportStatusFontWeight;
+}
+
+.express-workflow-summary-table {
+  .ui-paginator.ui-paginator-top {
+    background-color: $expressImportPaginatorBackgroundColor;
+    border-color: $expressImportPaginatorBackgroundColor;
+    color: $expressImportPaginatorTextColor;
+    
+    a {
+      color: $expressImportPaginatorTextColor;
+      
+      &.ui-state-hover {
+          background-color: $expressImportPaginatorHoverButtonBackgroundColor;
+      }
+    }
+    
+    .ui-paginator-pages {
+      color: $expressImportPaginatorTextColor;
+      
+      a.ui-paginator-page {
+        &.ui-state-active {
+          background-color: $expressImportPaginatorHoverButtonBackgroundColor;
+        }
+        &.ui-state-hover {
+          background-color: $expressImportPaginatorHoverButtonBackgroundColor;
+        }
+      }
+    }
+  }
+  
+  tr.ui-datatable-selectable.ui-state-highlight {
+    td {
+      border-bottom-color: $mediumGrey !important;
+    }
+    th:not(:last-child), td:not(:last-child) {
+      border-right-color: $mediumGrey !important;
+    }
+  }
 }
