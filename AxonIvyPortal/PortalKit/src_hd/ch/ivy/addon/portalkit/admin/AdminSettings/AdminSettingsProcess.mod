@@ -1793,7 +1793,9 @@ out.tabIndexActive = tabView.getChildren().indexOf(tabChangeEvent.getTab());
 if (out.tabIndexActive == 1) {
 	out.settingTabOpened = true;
 	PrimeFaces.current().executeScript("PF(''settingTable'').filter()");
-}' #txt
+}
+
+' #txt
 As0 f2 outParameterDecl '<> result;' #txt
 As0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

@@ -21,17 +21,31 @@ public class ExpressProcessLazyDataModel extends LazyDataModel<ExpressProcess> {
     super();
     data = new ArrayList<ExpressProcess>();
     expressProcessService = new ExpressProcessService();
-    this.setRowCount((int) expressProcessService.totalCounts());
   }
 
+  public ExpressProcessLazyDataModel(List<ExpressProcess> data) {
+    this.data = data;
+  }
 
   @Override
   public List<ExpressProcess> load(int first, int pageSize, String sortField, SortOrder sortOrder,
       Map<String, Object> filters) {
-    List<ExpressProcess> expressProcessesList = new ArrayList<>();
-    data = expressProcessService.findReadyToExecuteProcessOrderByName(first, pageSize);
-    expressProcessesList.addAll(data);
+    if (first == 0) {
+      updateRowCount();
+    }
+
+    List<ExpressProcess> expressProcessesList = expressProcessService.findReadyToExecuteProcessOrderByName(first, pageSize);
+    expressProcessesList.forEach(express -> {
+      if (!data.contains(express)) {
+        data.add(express);
+      }
+    });
+
     return expressProcessesList;
+  }
+  
+  public void updateRowCount() {
+    this.setRowCount((int) expressProcessService.totalCounts());
   }
 
   @Override
@@ -45,7 +59,6 @@ public class ExpressProcessLazyDataModel extends LazyDataModel<ExpressProcess> {
       if (expressProcess.getProcessName().equals(rowKey))
         return expressProcess;
     }
-
     return null;
   }
 

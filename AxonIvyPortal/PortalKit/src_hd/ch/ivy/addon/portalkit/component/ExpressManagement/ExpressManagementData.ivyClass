@@ -1,15 +1,11 @@
 ExpressManagementData #class
-ch.ivy.gawfs.workflowCreation.ExpressManagement #namespace
-expressData gawfs.Data #field
-expressData PERSISTENT #fieldModifier
+ch.ivy.addon.portalkit.component.ExpressManagement #namespace
 exportExpressFile org.primefaces.model.StreamedContent #field
 exportExpressFile PERSISTENT #fieldModifier
 importExpressFile org.primefaces.event.FileUploadEvent #field
 importExpressFile PERSISTENT #fieldModifier
-selectedExpresses java.util.List<ch.ivy.addon.portalkit.bo.ExpressProcess> #field
-selectedExpresses PERSISTENT #fieldModifier
-expressWorkflows java.util.List<ch.ivy.addon.portalkit.bo.ExpressProcess> #field
-expressWorkflows PERSISTENT #fieldModifier
+selectedExpressProcessList java.util.List<ch.ivy.addon.portalkit.bo.ExpressProcess> #field
+selectedExpressProcessList PERSISTENT #fieldModifier
 importOutput String #field
 importOutput PERSISTENT #fieldModifier
 importStatus String #field

@@ -1,4 +1,0 @@
-ExpressHelperData #class
-gawfs #namespace
-dataModel ch.ivy.addon.portalkit.datamodel.ExpressProcessLazyDataModel #field
-dataModel PERSISTENT #fieldModifier
