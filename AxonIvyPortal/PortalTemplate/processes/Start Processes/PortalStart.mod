@@ -26,9 +26,6 @@ Pt0 @StartRequest f10 '' #zField
 Pt0 @GridStep f11 '' #zField
 Pt0 @StartRequest f28 '' #zField
 Pt0 @PushWFArc f48 '' #zField
-Pt0 @UserDialog f7 '' #zField
-Pt0 @InfoButton f83 '' #zField
-Pt0 @AnnotationArc f86 '' #zField
 Pt0 @EndTask f57 '' #zField
 Pt0 @StartRequest f58 '' #zField
 Pt0 @StartRequest f103 '' #zField
@@ -41,7 +38,6 @@ Pt0 @UserDialog f36 '' #zField
 Pt0 @PushWFArc f38 '' #zField
 Pt0 @Alternative f1 '' #zField
 Pt0 @PushWFArc f2 '' #zField
-Pt0 @PushWFArc f4 '' #zField
 Pt0 Bk0 S11 'Sub 1' #zField
 Pt0 @Alternative f0 '' #zField
 Pt0 @PushWFArc f16 '' #zField
@@ -212,16 +208,7 @@ SecurityServiceUtils.removeSessionAttribute(ch.ivy.addon.portalkit.enums.Session
 ITask task = ivy.wf.findTask(in.endedTaskId);
 ITask taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
 if (#task is initialized) {
-	// If task is finished in IFrame, DefaultEndPage will run twice, first is for the task in IFrame, second is in Portal
-	// To prevent nested Portal (Portal in IFrame), first time will open a blank page in IFrame
-	// Second time will redirect as usual.
-	String iframeAttr = StickyTaskListService.service().getIFrameSessionAttributeKey(task.getId());
-	in.isInIFrame = SecurityServiceUtils.getSessionAttribute(iframeAttr).toBoolean() && in.isTaskFinished;
-	if (in.isInIFrame || !in.isTaskFinished) {
-		SecurityServiceUtils.removeSessionAttribute(iframeAttr);
-	}
-	
-	if (#taskWithTaskEndInfo is initialized && !in.isInIFrame) {
+	if (#taskWithTaskEndInfo is initialized) {
 		String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(taskWithTaskEndInfo.getId());
 		TaskEndInfo taskEndInfo = SecurityServiceUtils.getSessionAttribute(taskEndInfoSessionAttributeKey) as TaskEndInfo;
 		
@@ -280,32 +267,6 @@ Pt0 f28 81 81 30 30 -81 19 #rect
 Pt0 f28 @|StartRequestIcon #fIcon
 Pt0 f48 expr out #txt
 Pt0 f48 109 193 184 193 #arcP
-Pt0 f7 dialogId ch.ivy.addon.portal.generic.iframe.BlankPageForIFrame #txt
-Pt0 f7 startMethod start() #txt
-Pt0 f7 requestActionDecl '<> param;' #txt
-Pt0 f7 responseMappingAction 'out=in;
-' #txt
-Pt0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>BlankPageForIFrame</name>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f7 328 266 128 44 -55 -8 #rect
-Pt0 f7 @|UserDialogIcon #fIcon
-Pt0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>When finish a task in IFrame,&#13;
-display a blank page in IFrame&#13;
-before the outside page redirects</name>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f83 520 258 176 60 -85 -24 #rect
-Pt0 f83 @|IBIcon #fIcon
-Pt0 f86 520 288 456 288 #arcP
 Pt0 f57 369 370 30 30 0 15 #rect
 Pt0 f57 @|EndIcon #fIcon
 Pt0 f58 outLink CaseListPage.ivp #txt
@@ -434,9 +395,6 @@ Pt0 f38 840 96 888 96 #arcP
 Pt0 f1 376 176 32 32 0 16 #rect
 Pt0 f1 @|AlternativeIcon #fIcon
 Pt0 f2 296 193 376 192 #arcP
-Pt0 f4 expr in #txt
-Pt0 f4 outCond in.isInIFrame #txt
-Pt0 f4 392 208 392 266 #arcP
 Pt0 S11 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -1280,14 +1238,10 @@ Bk5 f2 0 0.9337349397590361 0 0 #arcLabel
 >Proto Bk4 @|BIcon #fIcon
 Pt0 f10 mainOut f48 tail #connect
 Pt0 f48 head f11 mainIn #connect
-Pt0 f83 ao f86 tail #connect
-Pt0 f86 head f7 @CG|ai #connect
 Pt0 f22 mainOut f38 tail #connect
 Pt0 f38 head f36 mainIn #connect
 Pt0 f11 mainOut f2 tail #connect
 Pt0 f2 head f1 in #connect
-Pt0 f1 out f4 tail #connect
-Pt0 f4 head f7 mainIn #connect
 Pt0 f9 mainOut f16 tail #connect
 Pt0 f16 head f0 in #connect
 Pt0 f0 out f6 tail #connect
