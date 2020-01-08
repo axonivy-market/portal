@@ -14,6 +14,10 @@ public class GlobalSetting extends BusinessEntity {
     this.value = value;
   }
   
+  public GlobalSetting(String key) {
+    this.key = key;
+  }
+  
   public GlobalSetting() {
     
   }
