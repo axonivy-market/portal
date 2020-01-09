@@ -97,7 +97,6 @@ public class Server extends BusinessEntity {
 
   @Override
   public String toString() {
-    return "Server {isOnline=" + isOnline + ", path=" + path + ", name=" + name + ", id=" + getId() + "}";
+    return String.format("Server {isOnline=%s, path=%s, name=%s, id=%d}", isOnline, path, name, getId());
   }
-
 }

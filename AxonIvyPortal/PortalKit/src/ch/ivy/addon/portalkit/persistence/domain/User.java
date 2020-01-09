@@ -1,7 +1,4 @@
 package ch.ivy.addon.portalkit.persistence.domain;
-
-
-
 public class User extends BusinessEntity {
   private String userName;
   private String fullUserName;
@@ -42,7 +39,6 @@ public class User extends BusinessEntity {
   
   @Override
   public String toString() {
-    return "User {userName=" + userName + ", fullUserName=" + fullUserName + ", serverId=" + serverId
-        + ", applicationName=" + applicationName + ", id=" + getId() + "}";
+    return String.format("User {userName=%s, fullUserName=%s, serverId=%d, applicationName=%s, id=%d}", userName, fullUserName, serverId, applicationName, getId());
   }
 }

@@ -13,16 +13,11 @@ public class ServerWorkingOnDetector {
 
   public Server getServerWorkingOn() {
     Long myServerId = getMyServerId();
-    if (myServerId == null) {
-      return getDefaultServer();
-    } else {
-      return getServerWorkingOn(myServerId);
-    }
+    return myServerId == null ? getDefaultServer() : getServerWorkingOn(myServerId);  
   }
 
   private Server getDefaultServer() {
-    List<Server> servers = getActiveServers();
-    return servers.get(0);
+    return getActiveServers().get(0);
   }
 
   private Server getServerWorkingOn(Long myServerId) {
@@ -37,9 +32,7 @@ public class ServerWorkingOnDetector {
   }
 
   private List<Server> getActiveServers() {
-    ServerService service = new ServerService();
-    List<Server> servers = service.findActiveServers();
-    return servers;
+    return new ServerService().findActiveServers();
   }
 
   private Long getMyServerId() {
@@ -47,15 +40,10 @@ public class ServerWorkingOnDetector {
     try {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
         ICustomProperty prop = app.customProperties().property(MY_SERVER_ID_KEY);
-        if (prop.hasValue()) {
-          return Long.valueOf(prop.getValue());
-        } else {
-          return null;
-        }
-
+        return prop.hasValue() ? prop.getLongValue() : null;
       });
     } catch (Exception e) {
-      throw new PortalException("Error when getting application property " + MY_SERVER_ID_KEY, e);
+      throw new PortalException(String.format("Error when getting application property %s",MY_SERVER_ID_KEY), e);
     }
   }
 }

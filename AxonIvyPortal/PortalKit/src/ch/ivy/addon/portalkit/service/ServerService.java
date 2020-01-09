@@ -3,6 +3,8 @@ package ch.ivy.addon.portalkit.service;
 import java.util.Arrays;
 import java.util.List;
 
+import org.apache.commons.collections4.CollectionUtils;
+
 import ch.ivy.addon.portalkit.enums.WSAuthenticationType;
 import ch.ivy.addon.portalkit.persistence.dao.ServerDao;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
@@ -31,14 +33,11 @@ public class ServerService extends AbstractService<Server> {
 
   public List<Server> findActiveServers() {
     List<Server> servers = getDao().findActiveServers();
-    if (servers.isEmpty()) {
-      Server localServer = localhost();
-      DataCache.cacheEntry(PortalCacheConstants.IS_MULTI_SERVERS_CACHE_GROUP_NAME, PortalCacheConstants.IS_MULTI_SERVERS_CACHE_ENTRY_NAME, "false");
-      return Arrays.asList(localServer);
-    }
-    boolean isMultiServers = servers.size() > 1;
-    DataCache.cacheEntry(PortalCacheConstants.IS_MULTI_SERVERS_CACHE_GROUP_NAME, PortalCacheConstants.IS_MULTI_SERVERS_CACHE_ENTRY_NAME, String.valueOf(isMultiServers));
-    return servers;
+    boolean isMultiServer = CollectionUtils.emptyIfNull(servers).size() > 1;
+    DataCache.cacheEntry(PortalCacheConstants.IS_MULTI_SERVERS_CACHE_GROUP_NAME, 
+        PortalCacheConstants.IS_MULTI_SERVERS_CACHE_ENTRY_NAME, String.valueOf(isMultiServer));
+    
+    return CollectionUtils.isEmpty(servers) ? Arrays.asList(localhost()) : servers;
   }
   
   public List<Server> findActiveServersNotLocalhost() {
@@ -52,12 +51,7 @@ public class ServerService extends AbstractService<Server> {
 
   @Override
   public Server findById(long id) {
-    if(id == LOCAL_SERVER_ID) {
-      return localhost();
-    } else {
-      Server server = super.findById(id);
-      return server;
-    }
+    return id == LOCAL_SERVER_ID ? localhost() : super.findById(id); 
   }
 
   private Server localhost() {

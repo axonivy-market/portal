@@ -59,6 +59,9 @@ public class UserSynchronizationService {
       user.setUserName(Ivy.session().getSessionUserName());
       user.setFullUserName(Ivy.session().getSessionUser().getDisplayName());
       user.setApplicationName(applicationName);
+      List<Server> activeServers = new ServerService().findActiveServers();
+      // no need check empty, only at least 1 element
+      user.setServerId(activeServers.get(0).getId());
       Ivy.log().warn("User not found in cache: {0} {1} -> Add and REBUILD CACHE!", user.getUserName(), user.getFullUserName());
       //Reload users from database to to check whether user is saved or not
       DataCache.invalidateUsersCache(Ivy.wf().getApplication().getName());
