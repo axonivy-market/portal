@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.casefilter;
 
 import org.apache.commons.lang.StringUtils;
 
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
@@ -25,7 +26,7 @@ public class CaseDescriptionFilter extends CaseFilter {
     }
 
     String containingKeyword = String.format("%%%s%%", description.trim());
-    return CaseQuery.create().where().description().isLikeIgnoreCase(containingKeyword);
+    return CaseUtils.createBusinessCaseQuery().where().description().isLikeIgnoreCase(containingKeyword);
   }
 
   @Override

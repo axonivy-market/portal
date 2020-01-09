@@ -100,7 +100,7 @@
           </p:tooltip>
         </f:facet>
   
-        <p:scrollPanel mode="native" rendered="#{not empty filter.roles}" styleClass="statistic-filter-container scrollable">
+        <p:scrollPanel mode="native" rendered="#{not empty filter.roles}" styleClass="statistic-filter-item scrollable">
           <p:selectBooleanCheckbox id="roles-select-all" styleClass="select-all-checkbox"
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}" value="#{filter.isAllRolesSelected}" >
             <p:ajax global="false" listener="#{statisticChartCreationBean.updateRolesCheckboxes(filter)}" update="roles" />
@@ -128,7 +128,7 @@
           </p:tooltip>
         </f:facet>
   
-        <p:scrollPanel mode="native" styleClass="statistic-filter-container">
+        <p:scrollPanel mode="native" styleClass="statistic-filter-item">
           <p:selectBooleanCheckbox id="case-states-select-all" styleClass="select-all-checkbox"
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}" value="#{filter.isAllCaseStatesSelected}" >
             <p:ajax global="false" listener="#{statisticChartCreationBean.updateCaseStatesCheckboxes(filter)}" update="case-states" />
@@ -155,7 +155,7 @@
           </p:tooltip>
         </f:facet>
   
-        <p:scrollPanel mode="native" styleClass="statistic-filter-container">
+        <p:scrollPanel mode="native" styleClass="statistic-filter-item">
           <p:selectBooleanCheckbox id="task-priorities-select-all" styleClass="select-all-checkbox"
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/selectAll')}" value="#{filter.isAllTaskPrioritiesSelected}" >
             <p:ajax global="false" listener="#{statisticChartCreationBean.updateTaskPrioritiesCheckboxes(filter)}" update="task-priorities" />

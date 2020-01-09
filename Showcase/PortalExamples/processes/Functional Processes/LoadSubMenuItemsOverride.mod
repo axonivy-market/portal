@@ -75,19 +75,7 @@ google.setIcon("fa fa-google");
 google.setLabel("Google");
 google.setMenuKind(MenuKind.CUSTOM);
 google.setLink("www.google.com");
-in.subMenuItems.add(google);
-
-SubMenuItem selfService = new SubMenuItem();
-selfService.setIcon("fa fa-flag");
-selfService.setLabel("Self Service");
-selfService.setMenuKind(MenuKind.CUSTOM);
-ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
-IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath("BusinessProcesses/AdHocWF/start.ivp");
-if(process != null) {
-	selfService.setLink(RequestUriFactory.createProcessStartUri(ServerFactory.getServer().getApplicationConfigurationManager(), process).toString());
-	selfService.getViews().add("define_WF.xhtml");
-	in.subMenuItems.add(selfService);
-}' #txt
+in.subMenuItems.add(google);' #txt
 Ls0 f3 security system #txt
 Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -107,15 +95,14 @@ Ls0 f2 96 270 96 361 #arcP
 Ls0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>This process overrides LoadSubMenuItems process in Portal Template. and add 2 menu items:
-1/ Google: open external link www.google.com.
-2/ Self Service: open Self Service process.</name>
-        <nameStyle>179,7
+        <name>This process overrides LoadSubMenuItems process in Portal Template and add 1 menu item:
+Google: open external link www.google.com.</name>
+        <nameStyle>130,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ls0 f5 248 218 528 60 -261 -24 #rect
+Ls0 f5 248 226 528 44 -257 -16 #rect
 Ls0 f5 @|IBIcon #fIcon
 Ls0 f6 248 248 152 248 #arcP
 >Proto Ls0 .type _ch.ivyteam.ivy.project.portal.examples.LoadSubMenuItemsOverrideData #txt
