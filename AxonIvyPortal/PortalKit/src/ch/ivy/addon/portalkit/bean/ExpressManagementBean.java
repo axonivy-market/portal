@@ -10,11 +10,10 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.dto.UserDTO;
-import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
-import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
+import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
@@ -24,18 +23,23 @@ public class ExpressManagementBean implements Serializable {
 
   private static final long serialVersionUID = -6072339110563610370L;
 
-  private List<UserDTO> activeUserList;
+  private List<SecurityMemberDTO> activeMemberList;
 
   @PostConstruct
   public void initManagement() {
-    activeUserList = findAllActiveUser();
+    activeMemberList = findAllActiveUser();
   }
 
-  private List<UserDTO> findAllActiveUser() {
-    IvySecurityResultDTO ivySecurityResultDTO = SecurityService.newInstance().findUsers(Ivy.request().getApplication());
-    return ivySecurityResultDTO.getUsers();
+  private List<SecurityMemberDTO> findAllActiveUser() {
+    if (activeMemberList == null) {
+      return SecurityMemberUtils.findAllSecurityMembers();
+    }
+    return activeMemberList;
   }
-  
+
+  /** Check Axon Express is deploy to current application
+   * @return Express is present or not
+   */
   public boolean isShowExpressManagementTab() {
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
     return collector.findExpressCreationProcess() != null;
@@ -53,8 +57,8 @@ public class ExpressManagementBean implements Serializable {
     }
 
     String displayName = activatorName;
-    if (activeUserList != null && !activeUserList.isEmpty()) {
-      Optional<UserDTO> activeUser = activeUserList.stream().filter(user -> user.getMemberName().equalsIgnoreCase(activatorName))
+    if (activeMemberList != null && !activeMemberList.isEmpty()) {
+      Optional<SecurityMemberDTO> activeUser = activeMemberList.stream().filter(user -> user.getMemberName().equalsIgnoreCase(activatorName))
           .findFirst();
       if (activeUser.isPresent()) {
         displayName = activeUser.get().getDisplayName();
@@ -70,14 +74,6 @@ public class ExpressManagementBean implements Serializable {
       }
     }
     return displayName;
-  }
-
-  public List<UserDTO> getActiveUserList() {
-    return activeUserList;
-  }
-
-  public void setActiveUserList(List<UserDTO> activeUserList) {
-    this.activeUserList = activeUserList;
   }
 
 }

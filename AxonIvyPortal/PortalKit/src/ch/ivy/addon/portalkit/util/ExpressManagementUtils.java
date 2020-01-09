@@ -34,14 +34,10 @@ import ch.ivy.addon.portalkit.bo.ExpressFormElement;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExpressTaskDefinition;
 import ch.ivy.addon.portalkit.bo.ExpressWorkFlow;
-import ch.ivy.addon.portalkit.dto.RoleDTO;
-import ch.ivy.addon.portalkit.dto.UserDTO;
+import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.enums.ExpressManagementProperty;
-import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
-import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -117,7 +113,7 @@ public class ExpressManagementUtils {
               if (expressWorkFlowsList != null) {
                 int errorCounts = deployExpressWorkflows(importExpressResult, memberList, expressWorkFlowsList);
                 if (errorCounts == 0) {
-                  outputMessages.set(0, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/Success"));
+                  outputMessages.set(0, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/success"));
                 } else if (errorCounts < expressWorkFlowsList.size()) {
                   outputMessages.set(0, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/warning"));
                 }
@@ -139,12 +135,12 @@ public class ExpressManagementUtils {
     return outputMessages;
   }
 
-  private boolean validateExpressVersion(Object object) {
+  private boolean validateExpressVersion(Object expressVersion) {
     String invalidVersion = Ivy.var().get(EXPRESS_INVALID_VERSION);
     if (!StringUtils.isBlank(invalidVersion)) {
       String[] invalidList = invalidVersion.split(";");
       for (String version : invalidList) {
-        if (version.equalsIgnoreCase(object.toString())) {
+        if (version.equalsIgnoreCase(expressVersion.toString())) {
           return false;
         }
       }
@@ -156,13 +152,8 @@ public class ExpressManagementUtils {
 
   private List<String> getExpressMember() {
     List<String> memberList = new ArrayList<>();
-    
-    IApplication currentApplication = Ivy.request().getApplication();
-    IvySecurityResultDTO ivySecurityResultDTO = SecurityService.newInstance().findUsers(currentApplication);
-    memberList.addAll(ivySecurityResultDTO.getUsers().stream().map(UserDTO::getMemberName).collect(Collectors.toList()));
-
-    ivySecurityResultDTO = SecurityService.newInstance().findRoleDTOs(currentApplication);
-    memberList.addAll(ivySecurityResultDTO.getRoleDTOs().stream().map(RoleDTO::getMemberName).collect(Collectors.toList()));
+    List<SecurityMemberDTO> securityResultDTOList = SecurityMemberUtils.findAllSecurityMembers();
+    memberList.addAll(securityResultDTOList.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList()));
     return memberList;
   }
 
