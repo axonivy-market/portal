@@ -76,7 +76,7 @@
       <h:form id="export-express-dowload-form" styleClass="ui-g">
         <div class="ui-g-12">
           <p:commandButton id="export-express-dowload" rendered="#{not empty data.selectedExpressProcessList}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}" icon="fa fa-download" ajax="false"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}" ajax="false"
             onclick="PrimeFaces.monitorDownload(showLoadingIndicator, hideLoadingIndicator); PF('export-express-dialog').initPosition();">
             <p:fileDownload value="#{logic.exportExpress()}" />
           </p:commandButton>
