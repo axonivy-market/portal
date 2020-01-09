@@ -24,8 +24,9 @@
           <p:commandLink id="add-document-command" styleClass="task-details-document-add-link"
             rendered="#{data.businessCase.state ne 'DONE' and data.isShowUploadDocumentButton and taskActionBean.canWriteDocument(data.task)}"
             actionListener="#{data.setTask(task)}" oncomplete="PF('document-upload-dialog').show()">
-            <span class="fa fa-plus-circle task-details-document-add-link-icon" />
-            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}" />
+            <span class="fa fa-plus-circle" />
+            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}</span>
+            <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
           </p:commandLink>
         </h:panelGroup>
       </div>
