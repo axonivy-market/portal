@@ -34,17 +34,15 @@ import ch.ivy.addon.portalkit.bo.ExpressFormElement;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExpressTaskDefinition;
 import ch.ivy.addon.portalkit.bo.ExpressWorkFlow;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
-import ch.ivy.addon.portalkit.enums.ExpressManagementProperty;
+import ch.ivy.addon.portalkit.enums.ExpressMessageType;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
-import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class ExpressManagementUtils {
 
-  private static final String EXPRESS_INVALID_VERSION = "ExpressInvalidVersion";
-  private static final String EXPRESS_VERSION = "ExpressVersion";
   private static final String VERSION = "version";
   private static final String EXPRESS_WORKFLOW = "expressWorkflow";
   private static final String PATTERN =  Ivy.cms().findContentObjectValue("/patterns/dateTimePattern", Locale.ENGLISH).getContentAsString();
@@ -75,11 +73,11 @@ public class ExpressManagementUtils {
 
     if (expressData == null || !expressData.getContentType().equals(MediaType.APPLICATION_JSON)) {
       outputMessages.set(1, addResultLog(importExpressResult,
-              Ivy.cms().co(expressData != null ? "/Dialogs/components/CaseDocument/invalidFileMessage" : "/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/fileEmptyMessage"), ExpressManagementProperty.ERROR));
+              Ivy.cms().co(expressData != null ? "/Dialogs/components/CaseDocument/invalidFileMessage" : "/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/fileEmptyMessage"), ExpressMessageType.ERROR));
       return outputMessages;
     }
 
-    addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/startDeployLog", Arrays.asList(expressData.getFileName())), ExpressManagementProperty.INFO);
+    addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/startDeployLog", Arrays.asList(expressData.getFileName())), ExpressMessageType.INFO);
 
     try {
       ObjectMapper mapper = new ObjectMapper();
@@ -92,11 +90,11 @@ public class ExpressManagementUtils {
           switch (object.toString()) {
             case VERSION:
               // Validate version of express JSON file
-              if (validateExpressVersion(jsonMap.get(object))) {
-                addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/versionLog", Arrays.asList(jsonMap.get(object))), ExpressManagementProperty.INFO);
+              if (validateExpressVersion(Integer.valueOf(jsonMap.get(object).toString()))) {
+                addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/versionLog", Arrays.asList(jsonMap.get(object))), ExpressMessageType.INFO);
                 importExpressResult.append(StringUtils.LF);
               } else {
-                addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/invalidVersionLog", Arrays.asList(jsonMap.get(object))), ExpressManagementProperty.ERROR);
+                addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/invalidVersionLog", Arrays.asList(jsonMap.get(object))), ExpressMessageType.ERROR);
                 importExpressResult.append(StringUtils.LF);
                 outputMessages.set(1, importExpressResult.toString());
                 return outputMessages;
@@ -122,30 +120,24 @@ public class ExpressManagementUtils {
         }
 
         importExpressResult.append(StringUtils.LF);
-        addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/endDeployLog"), ExpressManagementProperty.INFO);
+        addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/endDeployLog"), ExpressMessageType.INFO);
       }
     } catch (IOException e) {
-      addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/deployErrorLog",Arrays.asList(expressData.getFileName())), ExpressManagementProperty.ERROR);
+      addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/deployErrorLog",Arrays.asList(expressData.getFileName())), ExpressMessageType.ERROR);
     }
 
     stopWatch.stop();
-    addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/deploymentFinishedLog", Arrays.asList(expressData.getFileName(),stopWatch.getTime())), ExpressManagementProperty.INFO);
+    addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/deploymentFinishedLog", Arrays.asList(expressData.getFileName(),stopWatch.getTime())), ExpressMessageType.INFO);
     importExpressResult.append(StringUtils.LF);
     outputMessages.set(1, importExpressResult.toString());
     return outputMessages;
   }
 
-  private boolean validateExpressVersion(Object expressVersion) {
-    String invalidVersion = Ivy.var().get(EXPRESS_INVALID_VERSION);
-    if (!StringUtils.isBlank(invalidVersion)) {
-      String[] invalidList = invalidVersion.split(";");
-      for (String version : invalidList) {
-        if (version.equalsIgnoreCase(expressVersion.toString())) {
-          return false;
-        }
+  private boolean validateExpressVersion(Integer expressVersion) {
+    for (Integer version : PortalConstants.EXPRESS_INVALID_VERSION) {
+      if (version == expressVersion) {
+        return false;
       }
-    } else {
-      return false;
     }
     return true;
   }
@@ -164,16 +156,16 @@ public class ExpressManagementUtils {
     for (ExpressWorkFlow expressWorkFlow : expressWorkFlowsList) {
       ExpressProcess expressProcess = expressWorkFlow.getExpressProcess();
       importExpressResult.append(StringUtils.LF);
-      addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/process/startDeployProcessLog", Arrays.asList(expressProcess.getProcessName())), ExpressManagementProperty.INFO);
+      addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/process/startDeployProcessLog", Arrays.asList(expressProcess.getProcessName())), ExpressMessageType.INFO);
 
       if (isProcessNameDuplicated(expressProcess.getProcessName())) {
         errorCounts++;
-        addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/process/duplicateProcessNameLog", Arrays.asList(expressProcess.getProcessName())), ExpressManagementProperty.ERROR);
-        addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/process/installProcessFailedLog", Arrays.asList(expressProcess.getProcessName())), ExpressManagementProperty.ERROR);
+        addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/process/duplicateProcessNameLog", Arrays.asList(expressProcess.getProcessName())), ExpressMessageType.ERROR);
+        addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/process/installProcessFailedLog", Arrays.asList(expressProcess.getProcessName())), ExpressMessageType.ERROR);
         continue;
       }
 
-      addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/process/installedProcessLog", Arrays.asList( expressProcess.getProcessName())), ExpressManagementProperty.INFO);
+      addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/process/installedProcessLog", Arrays.asList( expressProcess.getProcessName())), ExpressMessageType.INFO);
       importExpressResult.append(StringUtils.LF);
 
       // Validate user
@@ -189,7 +181,7 @@ public class ExpressManagementUtils {
       // Save Form Elements
       deployFormElementForProcess(importExpressResult, expressWorkFlow, expressProcess, processId);
 
-      addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/process/installedProcessLog", Arrays.asList(expressProcess.getProcessName())), ExpressManagementProperty.INFO);
+      addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/process/installedProcessLog", Arrays.asList(expressProcess.getProcessName())), ExpressMessageType.INFO);
       importExpressResult.append(StringUtils.LF);
     }
 
@@ -199,20 +191,20 @@ public class ExpressManagementUtils {
   private List<ExpressFormElement> deployFormElementForProcess(StringBuilder importExpressResult,
       ExpressWorkFlow expressWorkFlow, ExpressProcess expressProcess, String processId) {
     List<ExpressFormElement> expressFormElementList = expressWorkFlow.getExpressFormElements();
-    addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/formElement/installFormElement", Arrays.asList(expressProcess.getProcessName())), ExpressManagementProperty.INFO);
+    addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/formElement/installFormElement", Arrays.asList(expressProcess.getProcessName())), ExpressMessageType.INFO);
     expressFormElementList.forEach(formElement -> {
       formElement.setId(null);
       formElement.setProcessID(processId);
       ExpressServiceRegistry.getFormElementService().save(formElement);
     });
-    addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/formElement/finishedInstallationFormElementLog", Arrays.asList(expressProcess.getProcessName())), ExpressManagementProperty.INFO);
+    addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/formElement/finishedInstallationFormElementLog", Arrays.asList(expressProcess.getProcessName())), ExpressMessageType.INFO);
     return expressFormElementList;
   }
 
   private List<ExpressTaskDefinition> deployTaskDefForProcess(StringBuilder importExpressResult,
       List<String> memberList, ExpressWorkFlow expressWorkFlow, ExpressProcess expressProcess, String processId) {
     List<ExpressTaskDefinition> expressTaskDefinitionList = expressWorkFlow.getExpressTaskDefinitions();
-    addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/taskDef/installTaskDefLog", Arrays.asList(expressProcess.getProcessName())), ExpressManagementProperty.INFO);
+    addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/taskDef/installTaskDefLog", Arrays.asList(expressProcess.getProcessName())), ExpressMessageType.INFO);
     expressTaskDefinitionList.forEach(taskDefinition -> {
       // Validate Users
       validateUserForTaskDef(importExpressResult, memberList, expressProcess, taskDefinition);
@@ -222,7 +214,7 @@ public class ExpressManagementUtils {
       ExpressServiceRegistry.getTaskDefinitionService().save(taskDefinition);
     });
 
-    addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/taskDef/finishedInstallationTaskDef", Arrays.asList(expressProcess.getProcessName())), ExpressManagementProperty.INFO);
+    addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/taskDef/finishedInstallationTaskDef", Arrays.asList(expressProcess.getProcessName())), ExpressMessageType.INFO);
     return expressTaskDefinitionList;
   }
 
@@ -230,7 +222,7 @@ public class ExpressManagementUtils {
       ExpressProcess expressProcess, ExpressTaskDefinition taskDefinition) {
     taskDefinition.getResponsibles().forEach(userName -> {
       if (!memberList.contains(userName)) {
-        addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/validate/validateTaskDefUserLog", Arrays.asList(expressProcess.getProcessName(), userName)), ExpressManagementProperty.WARNING);
+        addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/validate/validateTaskDefUserLog", Arrays.asList(expressProcess.getProcessName(), userName)), ExpressMessageType.WARNING);
       }
     });
   }
@@ -239,34 +231,34 @@ public class ExpressManagementUtils {
       ExpressProcess expressProcess) {
     expressProcess.getProcessPermissions().forEach(userName -> {
       if (!memberList.contains(userName)) {
-        addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/validate/validateProcessPermissionLog", Arrays.asList(expressProcess.getProcessName(), userName)), ExpressManagementProperty.WARNING);
+        addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/validate/validateProcessPermissionLog", Arrays.asList(expressProcess.getProcessName(), userName)), ExpressMessageType.WARNING);
       }
     });
 
     expressProcess.getProcessCoOwners().forEach(userName -> {
       if (!memberList.contains(userName)) {
-        addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/validate/validateProcessCoOwnerLog", Arrays.asList( expressProcess.getProcessName(), userName)), ExpressManagementProperty.WARNING);
+        addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/validate/validateProcessCoOwnerLog", Arrays.asList( expressProcess.getProcessName(), userName)), ExpressMessageType.WARNING);
       }
     });
 
     if (!memberList.contains(expressProcess.getProcessOwner())) {
-      addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/validate/validateProcessOwnerLog", Arrays.asList(expressProcess.getProcessName(), expressProcess.getProcessOwner())), ExpressManagementProperty.WARNING);
+      addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/validate/validateProcessOwnerLog", Arrays.asList(expressProcess.getProcessName(), expressProcess.getProcessOwner())), ExpressMessageType.WARNING);
     }
   }
 
-  private String addResultLog(StringBuilder importExpressResult, String message, ExpressManagementProperty messageType) {
+  private String addResultLog(StringBuilder importExpressResult, String message, ExpressMessageType messageType) {
     String curentDate = new SimpleDateFormat(PATTERN).format(new Date());
     importExpressResult.append(curentDate).append(StringUtils.SPACE);
 
     switch (messageType) {
       case INFO:
-        importExpressResult.append(ExpressManagementProperty.INFO.getLabel()).append(":").append(StringUtils.SPACE);
+        importExpressResult.append(ExpressMessageType.INFO.getLabel()).append(":").append(StringUtils.SPACE);
         break;
       case ERROR:
-        importExpressResult.append(ExpressManagementProperty.ERROR.getLabel()).append(":").append(StringUtils.SPACE);
+        importExpressResult.append(ExpressMessageType.ERROR.getLabel()).append(":").append(StringUtils.SPACE);
         break;
       case WARNING:
-        importExpressResult.append(ExpressManagementProperty.WARNING.getLabel()).append(":").append(StringUtils.SPACE);
+        importExpressResult.append(ExpressMessageType.WARNING.getLabel()).append(":").append(StringUtils.SPACE);
         break;
       default:
         break;
@@ -304,19 +296,11 @@ public class ExpressManagementUtils {
     JsonElement jsonElement = gson.toJsonTree(expressWorkFlowsList, EXPRESS_LIST_CONVERT_TYPE);
 
     JsonObject jsonObject = new JsonObject();
-    jsonObject.addProperty(VERSION, getLatestExpressVersion());
+    jsonObject.addProperty(VERSION, PortalConstants.EXPRESS_VERSION);
     jsonObject.add(EXPRESS_WORKFLOW, jsonElement);
 
     InputStream inputStream = new ByteArrayInputStream(jsonObject.toString().getBytes());
     return new DefaultStreamedContent(inputStream, MediaType.APPLICATION_JSON, getExportFileName());
-  }
-
-  private String getLatestExpressVersion() {
-    String latestExpressVersion = Ivy.var().get(EXPRESS_VERSION);
-    if (StringUtils.isBlank(latestExpressVersion)) {
-      throw new PortalException(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/validate/validateExpressVersion"));
-    }
-    return latestExpressVersion.trim();
   }
 
   private String getExportFileName() {
