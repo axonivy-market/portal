@@ -13,6 +13,7 @@ import ch.ivy.addon.portalkit.service.ExpressProcessService;
 public class ExpressProcessLazyDataModel extends LazyDataModel<ExpressProcess> {
 
   private static final long serialVersionUID = 1727177020671848233L;
+  private static final String EXPRESS_TYPE = "AHWF";
 
   protected List<ExpressProcess> data;
   private ExpressProcessService expressProcessService;
@@ -34,7 +35,7 @@ public class ExpressProcessLazyDataModel extends LazyDataModel<ExpressProcess> {
       updateRowCount();
     }
 
-    List<ExpressProcess> expressProcessesList = expressProcessService.findReadyToExecuteProcessOrderByName(first, pageSize);
+    List<ExpressProcess> expressProcessesList = expressProcessService.findReadyToExecuteProcessOrderByName(first, pageSize, EXPRESS_TYPE);
     expressProcessesList.forEach(express -> {
       if (!data.contains(express)) {
         data.add(express);
