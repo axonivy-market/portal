@@ -224,39 +224,66 @@ Define an information email
 .. include:: ../includes/_common-icon.rst
 
 
+|
+|
+
 Axon Express Management
 -----------------------
 
-Axon Express provides a function to help import/export express process to Portal System.
+Axon Express provides a function to help import/export the express process to Portal System.
+
+.. figure:: images/express-management-tab.png
+
 
 Export Express
 ^^^^^^^^^^^^^^
-Export express is a function to help Administrator can export the Express process in the Portal system to a JSON file for backup or deploy to another enviroment
 
-How to:
-"""""""
-Go to the Admin Setting, switch to Express Management tab.
-Look at on the summary table of express process, choose a process which we want to export to JSON file.
-Or click on the Checkbox ALL to export many processes.
+Export Express is a function to help Administrator can export the Express process in the Portal system to a JSON file for backup/restore or deploy to another environment.
 
-After selected process, click on Export button, a dialog will be shown on.
-After the Export Dialog is displayed, we will see list of process will be exported to file.
-After review and make sure all information are collectly, press on Download button, another dialog will be shown on.
-Select a local to store this backup file, and save. Done
+How to export:
+""""""""""""""
+The first, you need to login by an admin user. Go to the :guilabel:`Admin Setting`, switch to the :guilabel:`Express Management` tab.
 
-Note: the export file is a JSON file, it contains version of express and express process data. Don't edit this file by manually.
+Look at the summary table of the express process, choose a process that you want to export to the JSON file.
+Or click on the :guilabel:`Checkbox ALL` to export many processes.
 
+.. figure:: images/express-export-tab.png
+
+After selected the process, :guilabel:`Export Express` button will be enabled to click, so click on this button, a dialog will be shown on.
+
+When the :guilabel:`Export Dialog` is displayed, you will see a list of the process will be exported to file.
+
+.. figure:: images/export-list-summary.png
+
+After reviewed and make sure all information is collected, press on the :guilabel:`Download` button, another dialog will be shown on. 
+Select a local to store this backup file, and press the :guilabel:`Save` button.
+
+
+.. important:: 
+
+  The export file is a JSON file, it contains a version of express and express process data. Don’t edit this file manually.
+..
 
 Import Express
 ^^^^^^^^^^^^^^
-Import express is a function to help Administrator can import the Express process in the Portal system form a backup file to enviroment
+Import Express is a function to help Administrator can import the Express process into the Portal system from a backup file.
 
-How to:
-"""""""
+How to import:
+""""""""""""""
 
-Go to the Admin Setting, switch to Express Management tab.
-Select Import button, a dialog will show on.
-After Import Express dialog is open, select the Select button and choose the Express JSON file which we export above.
-Then press Deploy button, and wait for process is fisnished.
-After deploy process is finised, one output pannel will be show all of log which collect during the process is deploy to system.
+Login by an admin user, go to the :guilabel:`Admin Setting` and switch to :guilabel:`Express Management` tab.
+
+Select :guilabel:`Import Express` button, a dialog will be shown on.
+Once :guilabel:`Import Express` dialog is open, select the :guilabel:`Select` button and choose the Express JSON file which we exported above.
+
+.. figure:: images/import-selection.png
+
+Then press the :guilabel:`Deploy` button and wait for the process is finished.
+
+.. figure:: images/import-deployment.png
+
+When the deploy process is finished, an output pannel will be shown. All of the logs which is collectted during the deployment to the system.
+
 You can check the log data for more information.
+
+.. figure:: images/deployment-result.png
