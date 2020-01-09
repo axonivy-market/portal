@@ -43,13 +43,13 @@ By0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <name>HINT: build your case query
 
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
-out.caseQuery = CaseQuery.create().where().customField().stringField("CustomVarCharField5").isLike("%HELLO WORLD%");</name>
-        <nameStyle>193,5
+out.caseQuery = CaseQuery.businessCases().where().customField().stringField("CustomVarCharField5").isLike("%HELLO WORLD%");</name>
+        <nameStyle>200,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-By0 f5 12 148 704 76 -344 -32 #rect
+By0 f5 28 148 752 76 -371 -32 #rect
 By0 f5 @|IBIcon #fIcon
 By0 f2 actionTable 'out=in;
 ' #txt
@@ -66,7 +66,7 @@ By0 f3 expr out #txt
 By0 f3 107 64 232 64 #arcP
 By0 f4 expr out #txt
 By0 f4 344 64 469 64 #arcP
-By0 f6 364 148 238 86 #arcP
+By0 f6 404 148 241 86 #arcP
 >Proto By0 .type ch.ivy.add.portalkit.BuildCaseQueryData #txt
 >Proto By0 .processKind CALLABLE_SUB #txt
 >Proto By0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

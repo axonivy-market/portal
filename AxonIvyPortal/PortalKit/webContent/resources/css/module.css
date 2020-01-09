@@ -77,7 +77,6 @@
 
 .widget-header-sub {
   flex: 1 0 auto;
-  margin-left: 25px;
   align-self: flex-end;
 }
 
@@ -461,10 +460,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   float: right;
 }
 
-.case-details-document-add-link-icon, .task-details-document-add-link-icon {
-  margin-right: 5px;
-}
-
 .related-task-list-item-status {
   margin-right: 5px;
   display: block;
@@ -793,9 +788,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   .process-start-list-item-name-text {
     width: calc(100vw - 100px) !important;
   }
-  .process-widget .widget-header-sub {
-    margin-left: 0 !important;
-  }
 }
 
 /* Small screen */
@@ -991,6 +983,10 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   width: calc(100% - 130px);
 }
 
+.process-start-list-item-name.is-external-link {
+   width: calc(100% - 100px);
+}
+
 .process-start-list-item:hover .process-start-list-item-icon,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-icon {
   opacity: 1;
@@ -1040,7 +1036,8 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   flex: 1 0 auto;
 }
 
-.process-start-list-item-action .process-item {
+.process-start-list-item-action .process-item,
+.process-start-list-item-action .public-external-link {
   opacity: 0.3;
 }
 
@@ -1092,14 +1089,7 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 
 .process-start-list-item .ui-commandlink.process-item {
   margin: 0 5px;
-}
-
-.process-start-list-item .ui-commandlink.process-item, .process-start-list-item .ui-link.external-process-item {
   width: 100%;
-}
-
-.process-start-list-item .ui-link.external-process-item {
-  min-width: 60%;
 }
 
 .process-start-list-item:hover,
@@ -1193,7 +1183,8 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   background-image: url("#{resource['ivy-webcontent:images/expressLogo/icon_express_process_120x120.png']}");
 }
 
-.express-process-logo .ui-panel-content {
+.express-process-logo .ui-panel-content,
+.is-external-link .ui-panel-content {
   width: 0.4rem;
   height: 0.4rem;
   margin: 0 5px 3px 5px;
@@ -1209,6 +1200,42 @@ _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
   width: auto;
   height: auto;
   margin: 0;
+}
+
+.add-external-link-icon {
+  width: 1.6rem;
+  height: 1.6rem;
+  margin: 2px 4px 0 10px;
+}
+
+.external-link-icon {
+  height: auto;
+  width: auto;
+  cursor: default;
+  border: none !important;
+  background-color: transparent !important;
+  margin-top: 2px !important;
+}
+
+.field-group .external-link-type {
+  line-height: 1.6;
+}
+
+.field-group .external-link-dialog-field {
+  line-height: 1.7;
+}
+
+_:-ms-input-placeholder, :root .field-group .external-link-dialog-field {
+  line-height: 1;
+}
+
+.process-start-list-item-action.is-external-link {
+  right: 50px;
+  flex: 1 0 auto;
+}
+
+_:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not(.external-link-type-label) {
+  line-height: 1.4;
 }
 
 /********************************** END PROCESSES **********************************/
@@ -1728,10 +1755,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   list-style-type: inherit;
 }
 
-.task-details-note-add-link-icon {
-  margin-right: 5px;
-}
-
 .no-document-text {
   display: inline-block;
   padding: 15px;
@@ -1781,12 +1804,12 @@ _:-ms-input-placeholder, :root .case-details>* {
 .case-details-data-1st-column {
   padding-right: 10px;
   text-align: left;
-  width: 170px;
+  width: 200px;
   line-height: 2.2rem;
 }
 
 .case-description-2nd-column {
-  width: calc(100% - 175px);
+  width: calc(100% - 210px);
   height: 110px;
   margin-left: 2px;
   overflow-y: auto;
@@ -1847,10 +1870,6 @@ _:-ms-input-placeholder, :root .case-details>* {
   word-break: normal;
   word-wrap: break-word;
   white-space: normal;
-}
-
-.case-details-note-add-link-icon {
-  margin-right: 5px;
 }
 
 .case-description-column {
@@ -2521,6 +2540,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   margin-top: 5px;
 }
 
+.absence-table-container {
+  height: 330px;
+}
+
 .absence-reset-float {
   clear: both;
   margin-bottom: 10px;
@@ -2528,11 +2551,26 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .absence-date-field {
   text-align: center;
+  width: 150px;
 }
 
 .absences-table-action-column {
   text-align: center;
   width: 130px;
+}
+
+@media (max-width: 768px) {
+  .absences-table-action-column {
+    width: 80px !important;
+  }
+  
+  .absences-table-action-column-icon-button {
+    margin: 0 5px !important;
+  }
+  
+  .absence-date-field {
+    width: 100px !important;
+  }
 }
 
 .absence-panel-grid {
@@ -2979,6 +3017,15 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding-top: 15px !important;
 }
 
+.statistic-filter-item {
+  height: 18rem;
+  padding-top: 0 !important;
+}
+
+.statistic-filter-item.ui-scrollpanel {
+  border: none;
+}
+
 .custom-field-panel.statistic-filter-container {
   height: auto;
   max-height: 18rem;
@@ -3004,6 +3051,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .elapsed-time-detail-container-width {
   width: 100% !important;
+  overflow-x: auto;
 }
 
 .dashboard-chart-panel {
@@ -3687,9 +3735,8 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 .elapsed-time-detail-form {
-  width: 80%;
+  width: 100%;
 }
-
 .elapsed-time-result-list .case-table .case-id, .elapsed-time-result-list .case-table .case-creator,
   .elapsed-time-result-list .case-table .case-created, .elapsed-time-result-list .case-table .case-finished {
   width: 10%;
@@ -3709,6 +3756,11 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 .ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-close {
   display: none;
+}
+@media screen and (min-width : 64.063em) {
+  .elapsed-time-detail-toggle-column {
+    display: none !important;
+  }
 }
 
 /*********** SEARCH ICON ***********/
@@ -3736,6 +3788,19 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 @media screen and (min-width: 64.063em) {
   .search-item {
     width: 400px;
+  }
+}
+
+@media screen and (max-width: 40em) {
+  .elapsed-time-result-list .case-table {
+    padding-right: 5px;
+    
+  }
+}
+
+@media screen and (max-width: 64.063em) {
+  .elapsed-time-result-list .case-table {
+    display: inline-block !important;
   }
 }
 
@@ -3938,10 +4003,6 @@ _:-ms-fullscreen, :root .content-link-history {
   text-overflow: ellipsis;
 }
 
-.task-note-show-more-link-icon {
-  margin-right: 5px;
-}
-
 .task-name-edit {
   width: 100%;
 }
@@ -3982,13 +4043,25 @@ _:-ms-fullscreen, :root .content-link-history {
   .case-upload-dialog, .case-view-note-dialog, .task-upload-dialog, .document-upload-dialog, .task-note-dialog {
     width: 80% !important;
   }
-  .note-show-more-link {
-    float: left !important;
-    margin-left: 0 !important;
-  }
+
   .adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
     margin: 0 !important;
     width: calc(100vw - 40px) !important;
+  }
+  .case-details-data-1st-column {
+    padding-right: 10px;
+    text-align: left;
+    width: 170px;
+    line-height: 2.2rem;
+  }
+  .case-description-2nd-column {
+    width: calc(100% - 175px);
+    height: 85px;
+    margin-left: 2px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-break: break-all;
+    margin-top: 0.2em;
   }
 }
 
@@ -3998,6 +4071,11 @@ _:-ms-fullscreen, :root .content-link-history {
     width: calc(80vw - 40px) !important;
   }
 }
+
+.note-show-more-link-icon, .note-show-more-link {
+  margin-left: 5px;
+}
+
 /*  =================== END TASK TEMPLATE PAGE ========================= */
 
 /*====================FIX FOR SERENITY 2.0 STYLE========================*/
@@ -4022,8 +4100,17 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   bottom: 5px;
   right: 7px;
 }
-/**************Override END*******************/
+@media screen and (max-width: 40em) {
+  .display-full-text {
+    display: none !important;
+  }
+}
 
+@media screen and (min-width: 40.063em) {
+  .display-short-text {
+    display: none !important;
+  }
+}
 
 /*=================== EXPRESS MANAGEMENT START ===================*/
 .express-process-upload.ui-fileupload {

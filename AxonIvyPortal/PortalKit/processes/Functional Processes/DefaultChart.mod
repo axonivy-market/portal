@@ -48,7 +48,7 @@ String chartName = "Tasks by Priority";
 StatisticChartType chartType = StatisticChartType.TASK_BY_PRIORITY;
 
 if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName)) {
-  StatisticFilter statisticFilter = new StatisticFilter().init();
+  StatisticFilter statisticFilter = new StatisticFilter();
   StatisticChart newChart = service.createStatisticChart(statisticFilter, chartName, chartType, ivy.session.getSessionUser().getId(), true);
   in.defaultCharts.add(newChart);
 }
@@ -79,13 +79,13 @@ import ch.ivy.addon.portalkit.service.StatisticService;
 StatisticService service = new StatisticService();
 String chartName = "My default chart";
 StatisticChartType chartType = StatisticChartType.TASK_BY_PRIORITY;
-StatisticFilter statisticFilter = new StatisticFilter().init();
+StatisticFilter statisticFilter = new StatisticFilter();
 
 if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName)) {
   StatisticChart newChart = service.createStatisticChart(statisticFilter, chartName, chartType, ivy.session.getSessionUser().getId(), true);
   in.defaultCharts.add(newChart);		
 }</name>
-        <nameStyle>784,5
+        <nameStyle>777,5
 </nameStyle>
     </language>
 </elementInfo>
