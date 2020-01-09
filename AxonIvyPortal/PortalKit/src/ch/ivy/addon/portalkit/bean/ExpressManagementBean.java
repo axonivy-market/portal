@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -53,9 +54,13 @@ public class ExpressManagementBean implements Serializable {
 
     String displayName = activatorName;
     if (activeUserList != null && !activeUserList.isEmpty()) {
-      UserDTO activeUser = activeUserList.stream().filter(user -> user.getMemberName().equalsIgnoreCase(activatorName))
-          .findFirst().get();
-      displayName = activeUser.getDisplayName();
+      Optional<UserDTO> activeUser = activeUserList.stream().filter(user -> user.getMemberName().equalsIgnoreCase(activatorName))
+          .findFirst();
+      if (activeUser.isPresent()) {
+        displayName = activeUser.get().getDisplayName();
+      } else {
+        displayName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
+      }
     } else {
       try {
         IUser user = ServiceUtilities.findUser(activatorName, Ivy.request().getApplication());

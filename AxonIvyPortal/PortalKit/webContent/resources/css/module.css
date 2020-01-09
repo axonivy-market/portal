@@ -4031,7 +4031,7 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
 }
 
 .express-process-upload.ui-fileupload .ui-fileupload-progress {
-  vertical-align: middle;
+  display: none;
 }
 
 .import-express-dialog {
@@ -4087,8 +4087,11 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
 }
 
 .express-workflow-summary-table .express-selection-column {
-  width: 50px;
+  width: 50px !important;
   text-align:center"; 
 }
 
+.express-workflow-summary-table tbody tr td {
+  word-break: break-all;
+}
 /*=================== EXPRESS MANAGEMENT END ===================*/
