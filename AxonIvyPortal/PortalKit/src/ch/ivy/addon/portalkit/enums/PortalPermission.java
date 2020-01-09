@@ -19,7 +19,8 @@ public enum PortalPermission {
   TASK_CASE_SHOW_MORE_NOTE("TaskCaseShowMoreNote", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP),
   TASK_DISPLAY_RESET_ACTION("TaskDisplayResetAction", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
   TASK_DISPLAY_RESERVE_ACTION("TaskDisplayReserveAction", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
-  TASK_DISPLAY_DELEGATE_ACTION("TaskDisplayDelegateAction", PortalPermissionGroup.TASK_PERMISSIONS_GROUP);
+  TASK_DISPLAY_DELEGATE_ACTION("TaskDisplayDelegateAction", PortalPermissionGroup.TASK_PERMISSIONS_GROUP),
+  CREATE_PUBLIC_EXTERNAL_LINK("CreatePublicExternalLink", PortalPermissionGroup.GENERAL_PERMISSIONS_GROUP);
 
   private String value;
   private PortalPermissionGroup group;

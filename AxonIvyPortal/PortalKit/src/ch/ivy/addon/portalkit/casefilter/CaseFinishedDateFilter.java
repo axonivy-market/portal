@@ -8,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
@@ -52,7 +53,7 @@ public class CaseFinishedDateFilter extends CaseFilter {
       return null;
     }
 
-    CaseQuery query = CaseQuery.create();
+    CaseQuery query = CaseUtils.createBusinessCaseQuery();
     if (fromFinishedDate != null) {
       query.where().endTimestamp().isGreaterOrEqualThan(fromFinishedDate);
     }
