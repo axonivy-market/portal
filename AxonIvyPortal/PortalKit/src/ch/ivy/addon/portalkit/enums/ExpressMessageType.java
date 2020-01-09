@@ -2,7 +2,7 @@ package ch.ivy.addon.portalkit.enums;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
-public enum ExpressManagementProperty {
+public enum ExpressMessageType {
   INFO("INFO", "/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/info"),
   WARNING("WARNING", "/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/warning"),
   ERROR("WARNING", "/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/error"),
@@ -11,7 +11,7 @@ public enum ExpressManagementProperty {
   private final String value;
   private final String label;
 
-  ExpressManagementProperty(String value, String label) {
+  ExpressMessageType(String value, String label) {
     this.value = value;
     this.label = label;
   }
