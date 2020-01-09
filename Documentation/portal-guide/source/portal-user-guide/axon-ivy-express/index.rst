@@ -234,6 +234,9 @@ Axon Express provides a function to help import/export the express process to Po
 
 .. figure:: images/express-management-tab.png
 
+.. note:: 
+  Because this feature is a part of Admin Setting, user needs to have role AXONIVY_PORTAL_ADMIN to use it.
+  
 
 Export Express
 ^^^^^^^^^^^^^^
