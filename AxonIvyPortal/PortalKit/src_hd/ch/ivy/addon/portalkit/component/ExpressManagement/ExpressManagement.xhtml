@@ -81,8 +81,8 @@
             <p:fileDownload value="#{logic.exportExpress()}" />
           </p:commandButton>
           <p:spacer width="10px" />
-          <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" onclick="PF('export-express-dialog').hide()"
-            global="false" />
+          <p:commandButton styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            onclick="PF('export-express-dialog').hide()" global="false" />
         </div>
       </h:form>
     </f:facet>
