@@ -40,6 +40,7 @@ import ch.ivy.addon.portalkit.enums.ExpressMessageType;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IUser;
 
 public class ExpressManagementUtils {
 
@@ -242,7 +243,9 @@ public class ExpressManagementUtils {
     });
 
     if (!memberList.contains(expressProcess.getProcessOwner())) {
-      addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/validate/validateProcessOwnerLog", Arrays.asList(expressProcess.getProcessName(), expressProcess.getProcessOwner())), ExpressMessageType.WARNING);
+      IUser importUser = Ivy.request().getSession().getSessionUser();
+      String importUserName = importUser.getDisplayName() != null ? importUser.getDisplayName() : importUser.getName();
+      addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/validate/validateProcessOwnerLog", Arrays.asList(expressProcess.getProcessName(), expressProcess.getProcessOwner(), importUserName)), ExpressMessageType.WARNING);
     }
   }
 
