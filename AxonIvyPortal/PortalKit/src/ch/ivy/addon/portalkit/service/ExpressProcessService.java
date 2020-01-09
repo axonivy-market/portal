@@ -1,14 +1,18 @@
 package ch.ivy.addon.portalkit.service;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
 import ch.ivyteam.ivy.business.data.store.search.Result;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class ExpressProcessService extends BusinessDataService<ExpressProcess> {
+  
+  private static final String PROCESS_TYPE = "processType";
 
   public List<ExpressProcess> findReadyToExecuteProcessOrderByName() {
     Result<ExpressProcess> queryResult = repo().search(getType()).orderBy().textField("processName").ascending().limit(LIMIT_20).execute();
@@ -32,10 +36,18 @@ public class ExpressProcessService extends BusinessDataService<ExpressProcess> {
   public long totalCounts() {
     return repo().search(getType()).execute().totalCount();
   }
-  
-  public List<ExpressProcess> findReadyToExecuteProcessOrderByName(int first, int pageSize) {
-    Result<ExpressProcess> queryResult =
-        repo().search(getType()).orderBy().textField("processName").ascending().limit(first, pageSize).execute();
-    return queryResult.getAll().stream().filter(ExpressProcess::isReadyToExecute).collect(Collectors.toList());
+
+  public List<ExpressProcess> findReadyToExecuteProcessOrderByName(int first, int pageSize, String processType) {
+    try {
+      Filter<ExpressProcess> publicFilterQuery =
+          repo().search(getType()).textField(PROCESS_TYPE).isEqualToIgnoringCase(processType);
+      Result<ExpressProcess> queryResult =
+          publicFilterQuery.orderBy().textField("processName").ascending().limit(first, pageSize).execute();
+      return queryResult.getAll().stream().filter(ExpressProcess::isReadyToExecute).collect(Collectors.toList());
+    } catch (Exception e) {
+      Ivy.log().error(e);
+    }
+    return new ArrayList<>();
   }
+
 }

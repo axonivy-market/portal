@@ -22,7 +22,6 @@ Es0 @PushWFArc f15 '' #zField
 Es0 @PushWFArc f11 '' #zField
 Es0 @PushWFArc f4 '' #zField
 Es0 @PushWFArc f14 '' #zField
-Es0 @PushWFArc f12 '' #zField
 Es0 @PushWFArc f17 '' #zField
 Es0 @PushWFArc f18 '' #zField
 Es0 @PushWFArc f9 '' #zField
@@ -32,6 +31,7 @@ Es0 @GridStep f20 '' #zField
 Es0 @PushWFArc f21 '' #zField
 Es0 @PushWFArc f2 '' #zField
 Es0 @PushWFArc f7 '' #zField
+Es0 @PushWFArc f8 '' #zField
 >Proto Es0 Es0 ExpressManagementProcess #zField
 Es0 f1 339 83 26 26 0 12 #rect
 Es0 f1 @|UdProcessEndIcon #fIcon
@@ -123,8 +123,7 @@ in.importOutput = results.get(1);
 
 if (in.importStatus.equalsIgnoreCase(ExpressManagementProperty.FAILED.getLabel())) {
   in.isError = true;
-}
-' #txt
+}' #txt
 Es0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -172,10 +171,8 @@ Es0 f11 109 320 168 320 #arcP
 Es0 f4 584 320 755 320 #arcP
 Es0 f4 0 0.43627200676149086 0 0 #arcLabel
 Es0 f14 280 320 336 320 #arcP
-Es0 f12 expr in #txt
-Es0 f12 outCond !in.isError #txt
-Es0 f12 368 320 440 320 #arcP
 Es0 f17 expr in #txt
+Es0 f17 outCond in.isError #txt
 Es0 f17 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -225,6 +222,8 @@ Es0 f20 @|StepIcon #fIcon
 Es0 f21 109 96 168 96 #arcP
 Es0 f2 280 96 339 96 #arcP
 Es0 f7 109 544 403 544 #arcP
+Es0 f8 expr in #txt
+Es0 f8 368 320 440 320 #arcP
 >Proto Es0 .type ch.ivy.addon.portalkit.component.ExpressManagement.ExpressManagementData #txt
 >Proto Es0 .processKind HTML_DIALOG #txt
 >Proto Es0 -8 -8 16 16 16 26 #rect
@@ -237,9 +236,6 @@ Es0 f89 mainOut f11 tail #connect
 Es0 f11 head f10 mainIn #connect
 Es0 f10 mainOut f14 tail #connect
 Es0 f14 head f13 in #connect
-Es0 f13 out f12 tail #connect
-Es0 f12 head f94 mainIn #connect
-Es0 f13 out f17 tail #connect
 Es0 f17 head f16 mainIn #connect
 Es0 f16 mainOut f15 tail #connect
 Es0 f15 head f3 mainIn #connect
@@ -251,3 +247,6 @@ Es0 f20 mainOut f2 tail #connect
 Es0 f2 head f1 mainIn #connect
 Es0 f5 mainOut f7 tail #connect
 Es0 f7 head f6 mainIn #connect
+Es0 f13 out f17 tail #connect
+Es0 f13 out f8 tail #connect
+Es0 f8 head f94 mainIn #connect
