@@ -785,10 +785,6 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
   margin-bottom: 10px;
 }
 
-.case-details-note-add-link-icon {
-  font-size: $largeFontSize;
-}
-
 /**Style for Absences and Debuty  --------------------------------------*/
 .substituted-user-text {
   font-size: $largeFontSize;
@@ -932,7 +928,6 @@ a.case-details-document-add-link,
 a.task-details-document-add-link,
 span.case-details-document-add-link,
 span.task-details-document-add-link {
-  font-size: $largeFontSize ;
   font-weight: $detailsDocumentAddLinkFontWeight;
 }
 
@@ -943,7 +938,6 @@ span.task-details-document-add-link {
 
 .case-detail-section-title, .case-history-button-container,
 .task-history-button-container {
-  font-size: $largeFontSize ;
   font-weight: $historyButtonContainerFontWeight;
 }
 
