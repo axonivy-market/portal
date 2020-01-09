@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
@@ -24,10 +25,13 @@ public class ExpressManagementBean implements Serializable {
   private static final long serialVersionUID = -6072339110563610370L;
 
   private List<SecurityMemberDTO> activeMemberList;
+  private boolean isShowExpressManagementTab;
 
   @PostConstruct
   public void initManagement() {
     activeMemberList = findAllActiveUser();
+    ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
+    isShowExpressManagementTab = collector.findExpressCreationProcess() != null;
   }
 
   private List<SecurityMemberDTO> findAllActiveUser() {
@@ -35,14 +39,6 @@ public class ExpressManagementBean implements Serializable {
       return SecurityMemberUtils.findAllSecurityMembers();
     }
     return activeMemberList;
-  }
-
-  /** Check Axon Express is deploy to current application
-   * @return Express is present or not
-   */
-  public boolean isShowExpressManagementTab() {
-    ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
-    return collector.findExpressCreationProcess() != null;
   }
 
   /**
@@ -57,23 +53,31 @@ public class ExpressManagementBean implements Serializable {
     }
 
     String displayName = activatorName;
-    if (activeMemberList != null && !activeMemberList.isEmpty()) {
+    if (CollectionUtils.isNotEmpty(activeMemberList)) {
       Optional<SecurityMemberDTO> activeUser = activeMemberList.stream().filter(user -> user.getMemberName().equalsIgnoreCase(activatorName))
           .findFirst();
       if (activeUser.isPresent()) {
-        displayName = activeUser.get().getDisplayName();
+        displayName = StringUtils.isBlank(activeUser.get().getDisplayName()) ? activeUser.get().getName() : activeUser.get().getDisplayName();
       } else {
         displayName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
       }
     } else {
       try {
         IUser user = ServiceUtilities.findUser(activatorName, Ivy.request().getApplication());
-        displayName = user.getFullName();
+        displayName = StringUtils.isBlank(user.getDisplayName()) ? user.getName() : user.getDisplayName();
       } catch (Exception ex) {
         Ivy.log().error("Error in getting users within app {0}", ex, Ivy.request().getApplication());
       }
     }
     return displayName;
+  }
+
+  public boolean isShowExpressManagementTab() {
+    return isShowExpressManagementTab;
+  }
+
+  public void setShowExpressManagementTab(boolean isShowExpressManagementTab) {
+    this.isShowExpressManagementTab = isShowExpressManagementTab;
   }
 
 }

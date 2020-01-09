@@ -113,7 +113,7 @@ Es0 f96 376 394 144 44 -64 -8 #rect
 Es0 f96 @|StepIcon #fIcon
 Es0 f94 actionTable 'out=in;
 ' #txt
-Es0 f94 actionCode 'import ch.ivy.addon.portalkit.enums.ExpressManagementProperty;
+Es0 f94 actionCode 'import ch.ivy.addon.portalkit.enums.ExpressMessageType;
 import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
 
 ExpressManagementUtils utils = new ExpressManagementUtils();
@@ -121,7 +121,7 @@ List<String> results = utils.importExpressProcesses(in.importExpressFile.getFile
 in.importStatus = results.get(0);
 in.importOutput = results.get(1);
 
-if (in.importStatus.equalsIgnoreCase(ExpressManagementProperty.FAILED.getLabel())) {
+if (in.importStatus.equalsIgnoreCase(ExpressMessageType.FAILED.getLabel())) {
   in.isError = true;
 }' #txt
 Es0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -150,11 +150,11 @@ Es0 f89 83 307 26 26 -61 26 #rect
 Es0 f89 @|UdMethodIcon #fIcon
 Es0 f16 actionTable 'out=in;
 ' #txt
-Es0 f16 actionCode 'import ch.ivy.addon.portalkit.enums.ExpressManagementProperty;
+Es0 f16 actionCode 'import ch.ivy.addon.portalkit.enums.ExpressMessageType;
 import javax.faces.context.FacesContext;
 
 FacesContext.getCurrentInstance().addMessage("import-express-form:import-express-dialog-message", in.validateMessage);
-in.importStatus = ExpressManagementProperty.FAILED.getLabel();' #txt
+in.importStatus = ExpressMessageType.FAILED.getLabel();' #txt
 Es0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
