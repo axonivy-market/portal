@@ -4030,6 +4030,7 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   padding: 0 !important;
 }
 
+.express-helper-loading-container,
 .express-process-upload.ui-fileupload .ui-fileupload-progress {
   display: none;
 }
@@ -4055,10 +4056,6 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   width: 100%;
 }
 
-.express-helper-loading-container {
-  display: none;
-}
-
 .express-helper-loading {
   display: flex;
   justify-content: flex-start;
@@ -4069,10 +4066,7 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   line-height: 1;
 }
 
-.express-workflow-summary-table .ui-paginator.ui-paginator-top {
-  padding: 4px 10px;
-}
-
+.express-workflow-summary-table .ui-paginator.ui-paginator-top,
 .express-workflow-summary-table tbody tr td {
   padding: 4px 10px !important;
 }
@@ -4091,7 +4085,9 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   text-align:center"; 
 }
 
-.express-workflow-summary-table tbody tr td {
+.express-workflow-summary-table tbody tr td,
+.express-process-upload .ui-fileupload-row>div {
   word-break: break-all;
 }
+
 /*=================== EXPRESS MANAGEMENT END ===================*/
