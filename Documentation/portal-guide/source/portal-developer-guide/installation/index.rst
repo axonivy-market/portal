@@ -488,7 +488,7 @@ Changes in 8.0
 
 -  Start link ivp can not start outside Portal.
 
--  Portal variable for Global growl setting ``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` displays growl message for positive path and negative path.
+-  Portal variable for Global growl setting ``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` displays growl message for two situations: finish task and leave task.
 
 Changes in 7.4
 --------------

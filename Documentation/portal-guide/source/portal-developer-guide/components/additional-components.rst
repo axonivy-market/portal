@@ -197,11 +197,10 @@ After a task is finished, growl message appears as default via the
 .. _components-additional-component-global-growl-display-growl-after-finish-task:
 
 
-Display growl after cancelling a task
+Display growl after leaving a task
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Otherwise after a task is cancelled and left successfully, growl message appears as default via the
-``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable.
+If ``DISPLAY_MESSAGE_AFTER_FINISH_TASK`` Portal variable is true, growl message will be displayed after a task is left.
 
 |example-global-growl-cancelled-task|
 
@@ -237,19 +236,7 @@ It's enough if you want to turn it off. To override the message, add
    flash.setRedirect(true);
    flash.setKeepMessages(true);
 
-::
-
-   import javax.faces.context.Flash;
-   import javax.faces.context.FacesContext;
-   import javax.faces.application.FacesMessage;
-
-   FacesMessage message = new FacesMessage("You have cancelled and left the task successfully");
-   FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-
-   Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-   flash.put("overridePortalGrowl", true);
-   flash.setRedirect(true);
-   flash.setKeepMessages(true);
+Please refer to GlobalGrowl dialog in PortalExamples project for more details.
 
 .. _components-additional-component-document-table:
 

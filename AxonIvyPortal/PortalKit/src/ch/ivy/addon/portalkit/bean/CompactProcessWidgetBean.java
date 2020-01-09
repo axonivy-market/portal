@@ -15,18 +15,17 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.comparator.UserProcessIndexComparator;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.enums.Protocol;
+import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.UserProcessService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -37,7 +36,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class CompactProcessWidgetBean implements Serializable, Converter {
 
 private static final long serialVersionUID = -5889375917550618261L;
-  private static final String EXPRESS_WORKFLOW_ID_PARAM = "?workflowID=";
   
   private List<UserProcess> userProcesses;
   private List<UserProcess> defaultProcesses;
@@ -71,12 +69,6 @@ private static final long serialVersionUID = -5889375917550618261L;
     return processes;
   }
 
-  public void preRenderProcessAutoComplete(List<UserProcess> processesToAdd) {
-    if (this.processesToAdd == null) {
-      this.processesToAdd = processesToAdd;
-    }
-  }
-
   private List<UserProcess> findUserProcesses() {
     if (!isUserFavoritesEnabled) {
       return new ArrayList<>();
@@ -85,6 +77,7 @@ private static final long serialVersionUID = -5889375917550618261L;
     List<UserProcess> processes = userProcessService.findByUserName(userName);
     processes.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
     removeDeletedExpressWorkflowFromUserProcesses(processes);
+    removeDeletedExternalLinkFromUserProcesses(processes);
     return processes;
   }
 
@@ -99,40 +92,36 @@ private static final long serialVersionUID = -5889375917550618261L;
   public void addNewUserProcess(String clientId) {
     this.editingProcess = new UserProcess();
     PrimeFaces.current().resetInputs(clientId + ":add-new-process-dialog");
+    initDataForProcessAutoComplete();
+  }
+  
+  public void initDataForProcessAutoComplete() {
+    this.processesToAdd = collectProcesses();
+    sortUserProcessList(processesToAdd);
+  }
+  
+  private List<UserProcess> collectProcesses() {
+    String processWidgetComponentId = Attrs.currentContext().getBuildInAttribute("clientId");
+    IvyComponentLogicCaller<List<UserProcess>> ivyComponentLogicCaller = new IvyComponentLogicCaller<>();
+    List<UserProcess> processes = ivyComponentLogicCaller.invokeComponentLogic(processWidgetComponentId,
+        "#{logic.collectProcesses}", new Object[] {});
+    return processes;
   }
 
+
   public void saveNewUserProcess() {
-    correctProcessLink();
+    editingProcess.setUserName(Ivy.session().getSessionUserName());
     editingProcess.setIndex(userProcesses.size());
     editingProcess = userProcessService.save(editingProcess);
     userProcesses.add(editingProcess);
   }
 
-  private void correctProcessLink() {
-    String processLink = editingProcess.getLink().trim();
-    if (!isValidProcessLink(processLink)) {
-      processLink = Protocol.HTTP.getValue() + processLink;
-      editingProcess.setLink(processLink);
-    }
-  }
-
-  private boolean isValidProcessLink(String processLink) {
-    String linkInLowerCase = processLink.toLowerCase();
-    return linkInLowerCase.startsWith(Protocol.HTTP.getValue())
-        || linkInLowerCase.startsWith(Protocol.HTTPS.getValue()) || linkInLowerCase.startsWith("/");
-  }
-
   public List<UserProcess> completeUserProcess(String query) {
-    List<UserProcess> filteredUserProcesses =
-        processesToAdd
-            .stream()
-            .filter(processToAdd -> StringUtils.containsIgnoreCase(processToAdd.getProcessName(), query)
-                    && !isUserProcess(processToAdd) && !isDefaultUserProcess(processToAdd))
-            .map(processToAdd -> new UserProcess(stripHtmlTags(processToAdd.getProcessName()), userName, processToAdd.getLink()))
-            .collect(Collectors.toList());
-    filteredUserProcesses.addAll(getFilteredExpressWorkflows(query));
-    sortUserProcessList(filteredUserProcesses);
-    return filteredUserProcesses;
+    return processesToAdd.stream()
+        .filter(processToAdd -> StringUtils.containsIgnoreCase(processToAdd.getProcessName(), query)
+            && !isUserProcess(processToAdd) && !isExternalLinkUserProcess(processToAdd) 
+            && !isDefaultUserProcess(processToAdd))
+        .collect(Collectors.toList());
   }
 
   public void sortUserProcessList(List<UserProcess> processes) {
@@ -153,56 +142,18 @@ private static final long serialVersionUID = -5889375917550618261L;
     FacesContext.getCurrentInstance().getExternalContext().redirect(link + "embedInFrame");
   }
 
-  private List<UserProcess> getFilteredExpressWorkflows(String query) {
-    List<UserProcess> workflow = new ArrayList<>();
-    List<ExpressProcess> workflows =
-        ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessOrderByName().stream()
-            .filter(wf -> !isUserProcess(wf) && !isDefaultUserProcess(wf)).collect(Collectors.toList());
-    for (ExpressProcess wf : workflows) {
-      if (PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(wf) && StringUtils.containsIgnoreCase(wf.getProcessName(), query)) {
-        workflow.add(new UserProcess(wf.getProcessName(), userName, generateWorkflowStartLink(wf), wf.getId()));
-      }
-    }
-    return workflow;
-  }
-
-  private String generateWorkflowStartLink(ExpressProcess wf) {
-    ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.request().getApplication());
-    try {
-      return processStartCollector.findExpressWorkflowStartLink() + EXPRESS_WORKFLOW_ID_PARAM + wf.getId();
-    } catch (Exception e) {
-      Ivy.log().error(e);
-      return "";
-    }
-  }
-
   private boolean isUserProcess(UserProcess processToAdd) {
-    return userProcesses.stream().anyMatch(userProcess -> StringUtils.containsIgnoreCase(userProcess.getLink(), processToAdd.getLink()));
+    return userProcesses.stream().anyMatch(userProcess -> !processToAdd.isExternalLink()
+        && StringUtils.equalsIgnoreCase(userProcess.getLink(), processToAdd.getLink()));
+  }
+  
+  private boolean isExternalLinkUserProcess(UserProcess processToAdd) {
+    return userProcesses.stream().anyMatch(userProcess -> userProcess.isExternalLink() && processToAdd.isExternalLink()
+        && StringUtils.equalsIgnoreCase(userProcess.getWorkflowId(), processToAdd.getWorkflowId()));
   }
 
   private boolean isDefaultUserProcess(UserProcess processToAdd) {
-    return defaultProcesses.stream().anyMatch(userProcess -> StringUtils.containsIgnoreCase(userProcess.getLink(), processToAdd.getLink()));
-  }
-
-  private boolean isUserProcess(ExpressProcess workflow) { 
-    return userProcesses.stream().anyMatch(userProcess -> StringUtils.containsIgnoreCase(userProcess.getLink(), generateWorkflowStartLink(workflow)));
-  }
-
-  private boolean isDefaultUserProcess(ExpressProcess workflow) { 
-    return defaultProcesses.stream().anyMatch(userProcess -> StringUtils.containsIgnoreCase(userProcess.getLink(), generateWorkflowStartLink(workflow)));
-  }
-
-  public String stripHtmlTags(String text) {
-    return text.replaceAll("\\<.*?>", "");
-  }
-
-  public String getProcessDescription(String userProcessName) {
-    return CollectionUtils.emptyIfNull(processesToAdd)
-      .stream()
-      .filter(item -> StringUtils.equals(item.getProcessName(), userProcessName))
-      .findFirst()
-      .map(UserProcess::getDescription)
-      .orElse(StringUtils.EMPTY);
+    return defaultProcesses.stream().anyMatch(userProcess -> StringUtils.equalsIgnoreCase(userProcess.getLink(), processToAdd.getLink()));
   }
 
   public UserProcess getEditingProcess() {
@@ -272,18 +223,6 @@ private static final long serialVersionUID = -5889375917550618261L;
   public void setSelectedUserProcesses(List<UserProcess> selectedUserProcesses) {
     this.selectedUserProcesses = selectedUserProcesses;
   }
-
-  public boolean isExpressWorkflow(UserProcess process) {
-    return !StringUtils.isBlank(process.getWorkflowId());
-  }
-
-  public void resetEditingProcess() {
-    if (editingProcess.isExternalLink()) {
-      editingProcess.setUserName(userName);
-    }
-    editingProcess.setProcessName(StringUtils.EMPTY);
-    editingProcess.setLink(StringUtils.EMPTY);
-  }
   
   private void removeDeletedExpressWorkflowFromUserProcesses(List<UserProcess> processes) {
     List<String> executableExpressProcessIds = ExpressServiceRegistry.getProcessService()
@@ -292,11 +231,29 @@ private static final long serialVersionUID = -5889375917550618261L;
                                       .collect(Collectors.toList());
     
     List<UserProcess> deletedExpressProcesses = processes.stream()
-        .filter(process ->  StringUtils.isNotBlank(process.getWorkflowId()) && !executableExpressProcessIds.contains(process.getWorkflowId()))
+        .filter(process ->  StringUtils.isNotBlank(process.getWorkflowId()) 
+            && !executableExpressProcessIds.contains(process.getWorkflowId())
+            && !process.isExternalLink())
         .collect(Collectors.toList());
 
     userProcessService.deleteAll(deletedExpressProcesses);
     processes.removeAll(deletedExpressProcesses);
+    setIndex(processes);
+  }
+  
+  private void removeDeletedExternalLinkFromUserProcesses(List<UserProcess> processes) {
+    List<String> startableExternalLinkIds = ExternalLinkService.getInstance()
+        .findStartableLink(Ivy.session().getSessionUserName())
+        .stream()
+        .map(link -> link.getId().toString())
+        .collect(Collectors.toList());
+    
+    List<UserProcess> deletedExternalLinks = processes.stream()
+        .filter(process ->  process.isExternalLink() && StringUtils.isNotBlank(process.getWorkflowId()) && !startableExternalLinkIds.contains(process.getWorkflowId().toString()))
+        .collect(Collectors.toList());
+
+    userProcessService.deleteAll(deletedExternalLinks);
+    processes.removeAll(deletedExternalLinks);
     setIndex(processes);
   }
 
@@ -342,4 +299,11 @@ private static final long serialVersionUID = -5889375917550618261L;
     this.isDisplayShowAllProcessesLink = isDisplayShowAllProcessesLink;
   }
   
+  public String targetToStartProcess(UserProcess process) {
+    String target="_self";
+    if (process.isExternalLink()) {
+      target="_blank";
+    }
+    return target;
+  }
 }

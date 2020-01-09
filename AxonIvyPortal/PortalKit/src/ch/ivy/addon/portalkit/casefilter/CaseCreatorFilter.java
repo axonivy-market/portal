@@ -7,6 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.dto.UserDTO;
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
@@ -34,7 +35,7 @@ public class CaseCreatorFilter extends CaseFilter {
       return null;
     }
 
-    return CaseQuery.create().where().creatorUserName().isEqual(selectedCreator.getName());
+    return CaseUtils.createBusinessCaseQuery().where().creatorUserName().isEqual(selectedCreator.getName());
   }
 
   @Override
