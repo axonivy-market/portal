@@ -460,10 +460,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   float: right;
 }
 
-.case-details-document-add-link-icon, .task-details-document-add-link-icon {
-  margin-right: 5px;
-}
-
 .related-task-list-item-status {
   margin-right: 5px;
   display: block;
@@ -1759,10 +1755,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   list-style-type: inherit;
 }
 
-.task-details-note-add-link-icon {
-  margin-right: 5px;
-}
-
 .no-document-text {
   display: inline-block;
   padding: 15px;
@@ -1878,10 +1870,6 @@ _:-ms-input-placeholder, :root .case-details>* {
   word-break: normal;
   word-wrap: break-word;
   white-space: normal;
-}
-
-.case-details-note-add-link-icon {
-  margin-right: 5px;
 }
 
 .case-description-column {
@@ -4015,10 +4003,6 @@ _:-ms-fullscreen, :root .content-link-history {
   text-overflow: ellipsis;
 }
 
-.task-note-show-more-link-icon {
-  margin-right: 5px;
-}
-
 .task-name-edit {
   width: 100%;
 }
@@ -4059,10 +4043,7 @@ _:-ms-fullscreen, :root .content-link-history {
   .case-upload-dialog, .case-view-note-dialog, .task-upload-dialog, .document-upload-dialog, .task-note-dialog {
     width: 80% !important;
   }
-  .note-show-more-link {
-    float: left !important;
-    margin-left: 0 !important;
-  }
+
   .adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
     margin: 0 !important;
     width: calc(100vw - 40px) !important;
@@ -4090,6 +4071,11 @@ _:-ms-fullscreen, :root .content-link-history {
     width: calc(80vw - 40px) !important;
   }
 }
+
+.note-show-more-link-icon, .note-show-more-link {
+  margin-left: 5px;
+}
+
 /*  =================== END TASK TEMPLATE PAGE ========================= */
 
 /*====================FIX FOR SERENITY 2.0 STYLE========================*/
@@ -4115,3 +4101,15 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   right: 7px;
 }
 /**************Override END*******************/
+
+@media screen and (max-width: 40em) {
+  .display-full-text {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 40.063em) {
+  .display-short-text {
+    display: none !important;
+  }
+}
