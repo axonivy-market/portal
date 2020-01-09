@@ -7,7 +7,7 @@
 
 <cc:implementation>
 
-  <h:form id="express-helper-form">
+  <h:form id="express-management-form">
     <div class="ui-g">
       <div class="ui-g-12 TexAlRight u-padding-0">
         <p:commandButton id="import-express-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/importExpress')}" partialSubmit="true"
@@ -23,7 +23,8 @@
           var="express" value="#{data.dataModel}" selection="#{data.selectedExpressProcessList}"
           styleClass="express-workflow-summary-table" rowKey="#{express.processName}" rows="8" paginator="true"
           paginatorPosition="top" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-          lazy="true" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
+          lazy="true" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+          paginatorAlwaysVisible="false" scrollable="true" scrollHeight="340">
 
           <p:ajax event="toggleSelect" update="#{p:component('export-express-btn')}" />
           <p:ajax event="rowSelectCheckbox" update="#{p:component('export-express-btn')}" global="false" />
@@ -39,7 +40,7 @@
             <h:outputText value="#{express.processDescription}" />
           </p:column>
 
-          <p:column headerText="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ProcessOwner')}" width="200" styleClass="u-hidden-md-down">
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/ProcessCreator')}" width="200" styleClass="u-hidden-md-down">
             <h:outputText value="#{expressManagementBean.getUserDisplayName(express.processOwner)}" />
           </p:column>
         </p:dataTable>
@@ -110,7 +111,8 @@
             value="#{data.importExpressFile}" fileLimit="1"
             onstart="showLoadingIndicator(); cleanExportMessage(); PF('close-import-express').disable();"
             oncomplete="hideLoadingIndicator(); PF('import-express-dialog').initPosition(); refreshExpressTable(); PF('close-import-express').enable();"
-            styleClass="express-process-upload">
+            styleClass="express-process-upload"
+            allowTypes="/(\.|\/)(json)$/" multiple="false" skinSimple="true">
           </p:fileUpload>
         </div>
 

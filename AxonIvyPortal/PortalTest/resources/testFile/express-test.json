@@ -3,7 +3,7 @@
 	"expressWorkflow": [{
 			"expressProcess": {
 				"id": "6ecd85675c7646178587c8e4b798dbc5",
-				"processName": "Express Test 22",
+				"processName": "Express Test 1",
 				"processDescription": "Express Test 1",
 				"processType": "AHWF",
 				"processPermissions": ["#admin"],
