@@ -1,0 +1,5 @@
+co: name={installTaskDefLog} description={} changed={2020-01-09 03:32:06 CET} changedby={nqhoan} visualorder={0} guid={16F831F04FEDABCF} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16F831F050666508} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-06 04:58:10 CET} validto={} changed={2020-01-09 03:32:06 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831F050040A3E} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-06 05:23:47 CET} validto={} changed={2020-01-09 03:32:06 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831F050EA4E43} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-06 05:23:39 CET} validto={} changed={2020-01-09 03:32:06 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831F051419FC0} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-06 05:23:43 CET} validto={} changed={2020-01-09 03:32:06 CET} changedby={nqhoan} properties={} id={}
