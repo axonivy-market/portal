@@ -71,8 +71,9 @@
                 <p:link id="show-additional-case-details-link" styleClass="additional-case-details-link" target="_blank"
                   href="#{caseWidgetBean.getAdditionalCaseDetailsPageUri(case)}"
                   rendered="#{caseWidgetBean.showCaseDetails}">
-                  <i class="fa fa-external-link-square case-details-note-add-link-icon" />
-                  <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAdditionalPage')}" styleClass="ui-sm-hidden" />
+                  <i class="fa fa-external-link-square" />
+                  <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAdditionalPage')}</span>
+                  <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
                 </p:link>
                 <p:tooltip for="show-additional-case-details-link"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAdditionalPage')}"

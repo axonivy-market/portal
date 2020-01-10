@@ -38,9 +38,9 @@ import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
 public class StatisticFilter implements Cloneable {
   
-  private StatisticTimePeriodSelection timePeriodSelection;
+  private StatisticTimePeriodSelection timePeriodSelection = StatisticTimePeriodSelection.CUSTOM;
   @JsonIgnore
-  private List<StatisticTimePeriodSelection> allTimePeriodSelection = Arrays.asList(CUSTOM, LAST_WEEK, LAST_MONTH, LAST_6_MONTH);;
+  private List<StatisticTimePeriodSelection> allTimePeriodSelection = Arrays.asList(CUSTOM, LAST_WEEK, LAST_MONTH, LAST_6_MONTH);
   private Date createdDateFrom;
   private Date createdDateTo;
 
@@ -55,7 +55,7 @@ public class StatisticFilter implements Cloneable {
   private boolean isAllRolesSelected = true;
 
   @JsonIgnore
-  private List<CaseState> caseStates = Arrays.asList(CREATED, RUNNING, DONE);;
+  private List<CaseState> caseStates = Arrays.asList(CREATED, RUNNING, DONE);
   private List<CaseState> selectedCaseStates = new ArrayList<>();
   private boolean isAllCaseStatesSelected = true;
   
@@ -90,7 +90,6 @@ public class StatisticFilter implements Cloneable {
     // Initialize list of case categories
     caseCategories = new StatisticCaseCategoryFilter();
 
-      this.timePeriodSelection = StatisticTimePeriodSelection.CUSTOM;
   }
 
   private List<IRole> findDistinctRoles() {

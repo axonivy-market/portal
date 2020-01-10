@@ -64,7 +64,7 @@ public class StatisticDashboardBean implements Serializable {
 
   public String concatCreatedDate(StatisticFilter filter) {
     StatisticTimePeriodSelection timeSelection = filter.getTimePeriodSelection();
-    if (!timeSelection.equals(StatisticTimePeriodSelection.CUSTOM)) {
+    if (timeSelection != StatisticTimePeriodSelection.CUSTOM) {
       return timeSelection.getLabel();
     }
 
