@@ -65,7 +65,7 @@ public class CaseWidgetPage extends TemplatePage {
   
   public void clickDestroyButton() {
     WebElement destroyButton = getDestroyButtonOfCaseItem();
-    destroyButton.click();
+    click(destroyButton);
   }
 
   public boolean isDestroyButtonVisible() {
@@ -82,7 +82,7 @@ public class CaseWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id(destroyCaseDialogId), true);
     WebElement destroyConfirmationDialog = findElementById(destroyCaseDialogId);
     WebElement confirmButton = findChildElementById(destroyConfirmationDialog, caseWidgetId + ":confirm-destruction");
-    confirmButton.click();
+    click(confirmButton);
   }
 
   public CaseDetailsPage openDetailsOfCaseHasName(String caseName) {
@@ -145,7 +145,7 @@ public class CaseWidgetPage extends TemplatePage {
     List<WebElement> elements = findChildElementsByTagName(filterSelectionElement, "LABEL");
     for (WebElement element : elements) {
       if (element.getText().equals(filterName)) {
-        element.click();
+        click(element);
         break;
       }
     }
@@ -195,7 +195,7 @@ public class CaseWidgetPage extends TemplatePage {
 
   public void sortCaseListByColumn(String columnId) {
     WebElement columnHeader = findElementById(columnId);
-    columnHeader.click();
+    click(columnHeader);
     waitAjaxIndicatorDisappear();
   }
 
@@ -217,12 +217,12 @@ public class CaseWidgetPage extends TemplatePage {
 
   public void clickColumnCheckbox(int columnIndex) {
     WebElement columnCheckbox = findElementByXpath(String.format(SELECT_ITEM_XPATH, columnIndex));
-    columnCheckbox.click();
+    click(columnCheckbox);
   }
 
   public void clickDefaultCheckbox() {
     WebElement columnCheckbox = findElementByXpath(DEFAULT_COLUMNS_XPATH);
-    columnCheckbox.click();
+    click(columnCheckbox);
     waitAjaxIndicatorDisappear();
   }
 

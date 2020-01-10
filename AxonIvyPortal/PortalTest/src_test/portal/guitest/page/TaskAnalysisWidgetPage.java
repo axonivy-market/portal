@@ -25,7 +25,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id(backButtonId), true, DEFAULT_TIMEOUT);
     WebElement backButton = findElementById(backButtonId);
 
-    backButton.click();
+    click(backButton);
     waitForElementDisplayed(By.id("statistics-widget"), true, DEFAULT_TIMEOUT);
     return new StatisticWidgetPage();
   }
@@ -55,11 +55,11 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
 
   public void openAdvancedTaskFilter(String filterName, String filterIdName) {
-    findTaskFilterButton().click();
+    click(findTaskFilterButton());
     WebElement filterSelectionElement = findElementById("task-widget:task-filter-add-form:task-filter-selection");
     for (WebElement filterElement : findChildElementsByTagName(filterSelectionElement, "LABEL")) {
       if (filterName.equals(filterElement.getText())) {
-        filterElement.click();
+        click(filterElement);
         break;
       }
     }
@@ -69,11 +69,11 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
 
   public void openAdvancedCaseFilter(String filterName, String filterIdName) {
-    findCaseFilterButton().click();
+    click(findCaseFilterButton());
     WebElement filterSelectionElement = findElementById("task-widget:case-filter-add-form:case-filter-selection");
     for (WebElement filterElement : findChildElementsByTagName(filterSelectionElement, "LABEL")) {
       if (filterName.equals(filterElement.getText())) {
-        filterElement.click();
+        click(filterElement);
         break;
       }
     }
@@ -96,7 +96,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     WebElement selectionElement = findElementByCssSelector("[id$='priority-filter:filter-input-form:advanced-filter-panel-content']");
     for (WebElement labelElement : findChildElementsByTagName(selectionElement, "LABEL")) {
       if (!selectedPriorities.contains(labelElement.getText())) {
-        labelElement.click();
+        click(labelElement);
       }
     }
     click(By.cssSelector("button[id$='priority-filter:filter-input-form:update-command']"));
@@ -109,10 +109,10 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     List<WebElement> categoryTreeLabels = findChildElementsByClassName(selectionElement, "ui-treenode-label");
     //Find parent node of tree first and uncheck it
     WebElement parentNodeOfTree = categoryTreeLabels.stream().findFirst().get();
-    parentNodeOfTree.click();
+    click(parentNodeOfTree);
     for (WebElement labelElement : categoryTreeLabels) {
       if (selectedCategory.contains(labelElement.getText())) {
-        labelElement.click();
+        click(labelElement);
         break;
       }
     }
@@ -134,7 +134,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     WebElement selectionElement = findElementByCssSelector("[id$='state-filter:filter-input-form:advanced-filter-panel-content']");
     for (WebElement labelElement : findChildElementsByTagName(selectionElement, "LABEL")) {
       if (!selectedPriorities.contains(labelElement.getText())) {
-        labelElement.click();
+        click(labelElement);
       }
     }
     click(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"));
@@ -147,11 +147,11 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     List<WebElement> categoryTreeLabels = findChildElementsByClassName(selectionElement, "ui-treenode-label");
     //Find parent node of tree first and uncheck it
     WebElement parentNodeOfTree = categoryTreeLabels.stream().findFirst().get();
-    parentNodeOfTree.click();
+    click(parentNodeOfTree);
     
     for (WebElement labelElement : categoryTreeLabels) {
       if (selectedCategory.contains(labelElement.getText())) {
-        labelElement.click();
+        click(labelElement);
         break;
       }
     }
@@ -168,9 +168,9 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
 
     WebElement filterVisibilityContainer = findElementById("task-widget:filter-save-form:save-filter-type-radio");
     if (isPersonalFilter) {
-      filterVisibilityContainer.findElements(By.tagName("LABEL")).get(0).click();
+      click(filterVisibilityContainer.findElements(By.tagName("LABEL")).get(0));
     } else {
-      filterVisibilityContainer.findElements(By.tagName("LABEL")).get(1).click();
+      click(filterVisibilityContainer.findElements(By.tagName("LABEL")).get(1));
     }
 
     click(By.id("task-widget:filter-save-form:filter-save-command"));
@@ -186,7 +186,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     } else {
       filterContainer = findElementById("task-widget:filter-selection-form:public-filters");
     }
-    filterContainer.findElement(By.linkText(filterSetName)).click();
+    click(filterContainer.findElement(By.linkText(filterSetName)));
     Sleeper.sleep(1000);
   }
 }

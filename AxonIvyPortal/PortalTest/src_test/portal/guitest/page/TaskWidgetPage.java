@@ -53,7 +53,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void expand() {
     WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
-    fullModeButton.click();
+    click(fullModeButton);
     ensureNoBackgroundRequest();
     waitForLocatorDisplayed("id('" + taskWidgetId + ":filter-save-action')");
   }
@@ -64,7 +64,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void clickBackButtonFromTaskDetails() {
-    findElementById("task-detail-template:task-detail-title-form:back-to-previous-page").click();
+    click(findElementById("task-detail-template:task-detail-title-form:back-to-previous-page"));
   }
 
   public void showNoteHistory() {
@@ -203,7 +203,7 @@ public class TaskWidgetPage extends TemplatePage {
 
     WebElement editor = findElementById("task-detail-template:general-information:expiry-form:edit-inplace_editor");
     WebElement saveButton = findChildElementByClassName(editor, UI_INPLACE_SAVE);
-    saveButton.click();
+    click(saveButton);
   }
 
   public String getExpiryOfTaskAt() {
@@ -260,7 +260,7 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement taskListHeader = findElementById(taskWidgetId + ":task-widget-sort-menu");
     for (WebElement column : taskListHeader.findElements(By.tagName("a"))) {
       if (columnHeaderText.equals(column.getText())) {
-        column.click();
+        click(column);
         break;
       }
     }
@@ -339,7 +339,7 @@ public class TaskWidgetPage extends TemplatePage {
     List<WebElement> elements = findChildElementsByTagName(filterSelectionElement, "LABEL");
     for (WebElement element : elements) {
       if (element.getText().equals(filterName)) {
-        element.click();
+        click(element);
         break;
       }
     }
@@ -405,7 +405,7 @@ public class TaskWidgetPage extends TemplatePage {
     for(String state : states) {
       for(WebElement ele : elements){
         if (state.equals(ele.getText())) {
-          ele.click();
+          click(ele);
           break;
         }
       }

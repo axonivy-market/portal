@@ -61,7 +61,7 @@ public class CaseDetailsPage extends TemplatePage {
     WebElement addNoteDialog = findElementByCssSelector("div.ui-dialog[aria-hidden='false']");
     waitForElementDisplayed(addNoteDialog, true);
     addNoteDialog.findElement(By.cssSelector("textarea[id$='note-content']")).sendKeys(content);
-    addNoteDialog.findElement(By.cssSelector("button[id$='save-add-note-command']")).click();
+    click(addNoteDialog.findElement(By.cssSelector("button[id$='save-add-note-command']")));
     waitAjaxIndicatorDisappear();
   }
 
@@ -121,7 +121,7 @@ public class CaseDetailsPage extends TemplatePage {
   public String openDoneTask(int index) {
     WebElement showTaskNoteLink = caseItem.findElements(By.cssSelector("a[id$='show-task-note-link']")).get(index);
     String taskName = showTaskNoteLink.getText();
-    showTaskNoteLink.click();
+    click(showTaskNoteLink);
     return taskName;
   }
 
@@ -192,7 +192,7 @@ public class CaseDetailsPage extends TemplatePage {
   private void onSubmitDescriptionInplaceEditor() {
     WebElement editor = findElementById("case-item-details:description:case-description-form:case-description-inplace_editor");
     WebElement saveButton = findChildElementByClassName(editor, "ui-inplace-save");
-    saveButton.click();
+    click(saveButton);
     waitAjaxIndicatorDisappear();
   }
 
@@ -208,7 +208,7 @@ public class CaseDetailsPage extends TemplatePage {
   private void onClickDescriptionInplace() {
     WebElement caseDescriptionInplace = findElementById("case-item-details:description:case-description-form:case-description-output");
     waitForElementDisplayed(caseDescriptionInplace, true);
-    caseDescriptionInplace.click();
+    click(caseDescriptionInplace);
   }
 
   private void onClickDescriptionEditIcon() {
@@ -216,7 +216,7 @@ public class CaseDetailsPage extends TemplatePage {
       WebElement caseIcons = caseItem.findElement(By.cssSelector(CASE_ICONS_CONTAINER_COMPONENT_CSS_SELECTOR));
       WebElement descriptionIcon = caseIcons.findElement(By.cssSelector("a[class*='fa fa-clipboard']"));
       if (descriptionIcon != null) {
-        descriptionIcon.click();
+        click(descriptionIcon);
       }
     } catch (Exception e) {
       return;
@@ -224,11 +224,11 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void onClickHistoryIcon() {
-    findElementById("case-item-details:case-histories:add-note-command").click();
+    click(findElementById("case-item-details:case-histories:add-note-command"));
   }
 
   public TaskWidgetPage clickShowAllTasks() {
-    caseItem.findElement(By.cssSelector("a[id$='show-more-related-tasks']")).click();
+    click(caseItem.findElement(By.cssSelector("a[id$='show-more-related-tasks']")));
     return new TaskWidgetPage();
   }
 

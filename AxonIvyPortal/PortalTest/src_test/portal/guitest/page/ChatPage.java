@@ -32,12 +32,12 @@ public class ChatPage extends TemplatePage {
 	}
 	
 	public void selectChatUser(String name) {
-		findElementByXpath("//span[text()='" + name + "']").click();
+	  click(findElementByXpath("//span[text()='" + name + "']"));
 	}
 
 	public void selectChatGroup() {
 		waitForElementDisplayed(By.xpath("//span[contains(text(),'Leave Request')]"), true);
-		findElementByXpath("//span[contains(text(),'Leave Request')]").click();
+		click(findElementByXpath("//span[contains(text(),'Leave Request')]"));
 	}
 
 	public void sendMessage(String chatMessage) {
@@ -81,7 +81,7 @@ public class ChatPage extends TemplatePage {
 
 	private void selectCheckbox(String forAttribute) {
 		WebElement checkboxLabel = findElementByXpath(String.format("//label[@for='%s']", forAttribute));
-		checkboxLabel.click();
+		click(checkboxLabel);
 		waitAjaxIndicatorDisappear();
 		waitForElementDisplayed(By.cssSelector("input[id$='selection_input']"), true);
 	}
