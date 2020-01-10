@@ -64,18 +64,20 @@
       <cc:insertChildren />
       <p:column styleClass="align-center-column" rendered="#{cc.attrs.functionColumnRendered}"
         headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileFunctions')}">
-        <p:commandLink id="document-download" styleClass="fa #{cc.attrs.downloadIcon} #{cc.attrs.downloadStyleClass}"
+        <p:commandLink id="document-download" styleClass="#{cc.attrs.downloadStyleClass}"
           immediate="true" ajax="false" process="@none" title="#{cc.attrs.downloadTitle}"
           rendered="#{cc.attrs.downloadRendered}">
+          <i class="fa #{cc.attrs.downloadIcon}" />
           <p:fileDownload value="#{logic.download(document)}" />
         </p:commandLink>
 
         <p:spacer width="10px" />
 
-        <p:commandLink id="document-delete" styleClass="fa fa-trash-o"
+        <p:commandLink id="document-delete" styleClass="#{cc.attrs.deleteStyleClass}"
           actionListener="#{data.setSelectedDocument(document)}" rendered="#{cc.attrs.deleteRendered}"
           update="#{cc.attrs.updatedComponentAfterDeleted}" immediate="true" title="#{cc.attrs.deleteTitle}"
           oncomplete="PF('document-delete-dialog').show()">
+          <i class="fa #{cc.attrs.deleteIcon}" />
         </p:commandLink>
       </p:column>
     </p:dataTable>
