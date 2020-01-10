@@ -90,7 +90,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public void clickCancelButton() {
-    driver.findElement(By.className("portal-cancel-button")).click();
+    click(driver.findElement(By.className("portal-cancel-button")));
   }
   
   public void showNoteHistory() {
