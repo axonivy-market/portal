@@ -244,6 +244,7 @@ public class ExpressManagementUtils {
 
     if (!memberList.contains(expressProcess.getProcessOwner())) {
       IUser importUser = Ivy.request().getSession().getSessionUser();
+      expressProcess.setProcessOwner(importUser.getMemberName());
       String importUserName = importUser.getDisplayName() != null ? importUser.getDisplayName() : importUser.getName();
       addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/validate/validateProcessOwnerLog", Arrays.asList(expressProcess.getProcessName(), expressProcess.getProcessOwner(), importUserName)), ExpressMessageType.WARNING);
     }
