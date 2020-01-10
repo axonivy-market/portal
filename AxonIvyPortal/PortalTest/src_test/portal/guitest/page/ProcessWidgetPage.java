@@ -163,7 +163,7 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public void expand() {
     loadSwitchModeButton();
-    switchModeButton.click();
+    click(switchModeButton);
   }
 
   private void loadSwitchModeButton() {
@@ -213,12 +213,12 @@ public class ProcessWidgetPage extends TemplatePage {
 
     public void submitForm() {
       WebElement submitButton = findChildElementById(processDialog, processWidgetId + ":add-process-command");
-      submitButton.click();
+      click(submitButton);
       waitAjaxIndicatorDisappear();
     }
 
     public void selectIvyProcessByName(String ivyProcessName) {
-      findElementByClassName("ui-autocomplete-dropdown").click();
+      click(findElementByClassName("ui-autocomplete-dropdown"));
       String processSelector = "tr[data-item-label='" + ivyProcessName + "']";
       waitForElementDisplayed(By.cssSelector(processSelector), true);
       clickByCssSelector(processSelector);
@@ -226,7 +226,7 @@ public class ProcessWidgetPage extends TemplatePage {
     }
 
     public boolean isIvyProcessByNameSearchable(String ivyProcessName) {
-      findElementByClassName("ui-autocomplete-dropdown").click();
+      click(findElementByClassName("ui-autocomplete-dropdown"));
       String processSelector = "tr[data-item-label='" + ivyProcessName + "']";
       waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
       return isElementPresent(By.cssSelector(processSelector));
@@ -257,7 +257,7 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public void selectProcessTypeExternal() {
     WebElement externalCheckboxLabel = findElementByXpath("//label[@for='" + processWidgetId + ":process-type:1']");
-    externalCheckboxLabel.click();
+    click(externalCheckboxLabel);
     waitAjaxIndicatorDisappear();
   }
   
