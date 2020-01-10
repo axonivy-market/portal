@@ -112,7 +112,7 @@ public class ExpressManagementUtils {
               if (expressWorkFlowsList != null) {
                 int errorCounts = deployExpressWorkflows(importExpressResult, memberList, expressWorkFlowsList);
                 if (errorCounts == 0) {
-                  outputMessages.set(0, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/success"));
+                  outputMessages.set(0, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/successful"));
                 } else if (errorCounts < expressWorkFlowsList.size()) {
                   outputMessages.set(0, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/warning"));
                 }
