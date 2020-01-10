@@ -228,7 +228,7 @@ Axon Express Management
 -----------------------
 
 With Axon Express Management, administrator can import/export Express workflows in JSON format.
-Tthis feature is put in :ref:`Admin Settings <settings-admin-settings>`.
+This feature is put in :ref:`Admin Settings <settings-admin-settings>`.
 
 .. figure:: images/express-management-tab.png
 
@@ -239,7 +239,7 @@ Tthis feature is put in :ref:`Admin Settings <settings-admin-settings>`.
 How to export:
 """"""""""""""
 
-First, you need to choose workflows in Express workflows table , selected workflows will be export to the JSON file.
+First, you need to choose workflows in Express workflows table, selected workflows will be export to the JSON file.
 You can select multi workflows by click checkbox :guilabel:`ALL`.
 
 .. figure:: images/express-export-tab.png
@@ -274,6 +274,6 @@ Then press the :guilabel:`Deploy` button and wait for the deployment process.
 
 After the deploy process is finished, an output log panel will be displayed, you can see all information which collected during the deployment process.
 
-Now, if deployment process is success, your workflows are imported and administrator can check, edit them before they are ready to use by user.
+Now, if the deployment process is success, your workflows are imported and administrator can check, edit them before they are ready to use by user.
 
 .. figure:: images/deployment-result.png
