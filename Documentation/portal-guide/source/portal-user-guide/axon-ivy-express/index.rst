@@ -224,42 +224,31 @@ Define an information email
 .. include:: ../includes/_common-icon.rst
 
 
-|
-|
-
 Axon Express Management
 -----------------------
 
-Axon Express provides a function to help import/export the express process to Portal System.
+With Axon Express Management, administrator can import/export Express workflows in JSON format.
+Tthis feature is put in :ref:`Admin Settings <settings-admin-settings>`.
 
 .. figure:: images/express-management-tab.png
 
 .. note:: 
-  Because this feature is a part of Admin Setting, user needs to have role AXONIVY_PORTAL_ADMIN to use it.
+  To use this feature, user needs to have role AXONIVY_PORTAL_ADMIN.
   
-
-Export Express
-^^^^^^^^^^^^^^
-
-Export Express is a function to help Administrator can export the Express process in the Portal system to a JSON file for backup/restore or deploy to another environment.
 
 How to export:
 """"""""""""""
-The first, you need to login by an admin user. Go to the :guilabel:`Admin Setting`, switch to the :guilabel:`Express Management` tab.
 
-Look at the summary table of the express process, choose a process that you want to export to the JSON file.
-Or click on the :guilabel:`Checkbox ALL` to export many processes.
+First, you need to choose workflows in Express workflows table , selected workflows will be export to the JSON file.
+You can select multi workflows by click checkbox :guilabel:`ALL`.
 
 .. figure:: images/express-export-tab.png
 
-After selected the process, :guilabel:`Export Express` button will be enabled to click, so click on this button, a dialog will be shown on.
-
-When the :guilabel:`Export Dialog` is displayed, you will see a list of the process will be exported to file.
+After selected workflows, click :guilabel:`Export Express` button, export dialog will display and you can see workflows list will be exported.
 
 .. figure:: images/export-list-summary.png
 
-After reviewed and make sure all information is collected, press on the :guilabel:`Download` button, another dialog will be shown on. 
-Select a local to store this backup file, and press the :guilabel:`Save` button.
+After reviewed and make sure workflows are collected, press :guilabel:`Download` button to download these workflows.
 
 
 .. important:: 
@@ -274,19 +263,17 @@ Import Express is a function to help Administrator can import the Express proces
 How to import:
 """"""""""""""
 
-Login by an admin user, go to the :guilabel:`Admin Setting` and switch to :guilabel:`Express Management` tab.
-
-Select :guilabel:`Import Express` button, a dialog will be shown on.
-Once :guilabel:`Import Express` dialog is open, select the :guilabel:`Select` button and choose the Express JSON file which we exported above.
+Press :guilabel:`Import Express` button, Import Express dialog will display.
+Once :guilabel:`Import Express` dialog is open, press :guilabel:`Select` button and choose the Express JSON file which store workflows you want to import.
 
 .. figure:: images/import-selection.png
 
-Then press the :guilabel:`Deploy` button and wait for the process is finished.
+Then press the :guilabel:`Deploy` button and wait for the deployment process.
 
 .. figure:: images/import-deployment.png
 
-When the deploy process is finished, an output pannel will be shown. All of the logs which is collectted during the deployment to the system.
+After the deploy process is finished, an output log panel will be displayed, you can see all information which collected during the deployment process.
 
-You can check the log data for more information.
+Now, if deployment process is success, your workflows are imported and administrator can check, edit them before they are ready to use by user.
 
 .. figure:: images/deployment-result.png
