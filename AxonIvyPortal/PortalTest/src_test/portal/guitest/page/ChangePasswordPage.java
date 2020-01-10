@@ -15,7 +15,7 @@ public class ChangePasswordPage extends TemplatePage {
     inputConfirmNewPassword(newPassword);
     inputNewPassword(newPassword);
     WebElement changeButton = findElementById("change-password-form:password-setting:save-password-setting");
-    changeButton.click();
+    click(changeButton);
     waitAjaxIndicatorDisappear();
   }
   

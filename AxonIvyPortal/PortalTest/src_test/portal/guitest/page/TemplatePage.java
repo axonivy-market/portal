@@ -161,9 +161,9 @@ public abstract class TemplatePage extends AbstractPage {
 
   private void clickUserMenuItem(String menuItemSelector) {
     waitForElementDisplayed(By.id("user-settings-menu"), true);
-    findElementById("user-settings-menu").click();
+    click(findElementById("user-settings-menu"));
     waitForElementDisplayed(By.id(menuItemSelector), true);
-    findElementById(menuItemSelector).click();
+    click(findElementById(menuItemSelector));
     waitAjaxIndicatorDisappear();
   }
 
