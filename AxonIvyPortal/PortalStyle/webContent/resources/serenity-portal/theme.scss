@@ -785,10 +785,6 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
   margin-bottom: 10px;
 }
 
-.case-details-note-add-link-icon {
-  font-size: $largeFontSize;
-}
-
 /**Style for Absences and Debuty  --------------------------------------*/
 .substituted-user-text {
   font-size: $largeFontSize;
@@ -932,7 +928,6 @@ a.case-details-document-add-link,
 a.task-details-document-add-link,
 span.case-details-document-add-link,
 span.task-details-document-add-link {
-  font-size: $largeFontSize ;
   font-weight: $detailsDocumentAddLinkFontWeight;
 }
 
@@ -943,7 +938,6 @@ span.task-details-document-add-link {
 
 .case-detail-section-title, .case-history-button-container,
 .task-history-button-container {
-  font-size: $largeFontSize ;
   font-weight: $historyButtonContainerFontWeight;
 }
 
@@ -1714,4 +1708,56 @@ ul.participants-list li {
 
 .upload-container .ui-widget.ui-fileupload .ui-fileupload-content .ui-fileupload-messages {
   margin-top: 30px;
+}
+
+/* Express Management */
+.import-express-dialog .import-status {
+  &.Success {
+    color: $expressImportStatusSuccess;
+  }
+  &.Warning {
+    color: $expressImportStatusWarning;
+  }
+  &.Failed {
+    color: $expressImportStatusFailed;
+  }
+  font-weight: $expressImportStatusFontWeight;
+}
+
+.express-workflow-summary-table {
+  .ui-paginator.ui-paginator-top {
+    background-color: $expressImportPaginatorBackgroundColor;
+    border-color: $expressImportPaginatorBackgroundColor;
+    color: $expressImportPaginatorTextColor;
+    
+    a {
+      color: $expressImportPaginatorTextColor;
+      
+      &.ui-state-hover {
+          background-color: $expressImportPaginatorHoverButtonBackgroundColor;
+      }
+    }
+    
+    .ui-paginator-pages {
+      color: $expressImportPaginatorTextColor;
+      
+      a.ui-paginator-page {
+        &.ui-state-active {
+          background-color: $expressImportPaginatorHoverButtonBackgroundColor;
+        }
+        &.ui-state-hover {
+          background-color: $expressImportPaginatorHoverButtonBackgroundColor;
+        }
+      }
+    }
+  }
+  
+  tr.ui-datatable-selectable.ui-state-highlight {
+    td {
+      border-bottom-color: $mediumGrey !important;
+    }
+    th:not(:last-child), td:not(:last-child) {
+      border-right-color: $mediumGrey !important;
+    }
+  }
 }

@@ -342,6 +342,13 @@ $collapseButtonBackgroundColor: $paleGrey !default;
 $collapseButtonHoverBackgroundColor: $lightGrey  !default;
 $expressAssigneeIconColor: $primaryTextColor !default;
 $expressReviewContentTitleBorderColor: rgba($mediumGrey, 0.5) !default;
+$expressImportStatusSuccess: #008000;
+$expressImportStatusWarning: #ffc107;
+$expressImportStatusFailed: $red;
+$expressImportStatusFontWeight: bold;
+$expressImportPaginatorBackgroundColor: rgba($lightGrey,0.5) !default;
+$expressImportPaginatorHoverButtonBackgroundColor: rgba($lightGrey,0.5) !default;
+$expressImportPaginatorTextColor: $black;
 
 /* Chat */
 $chatPanelBackgroundColor: $darkGrey !default;

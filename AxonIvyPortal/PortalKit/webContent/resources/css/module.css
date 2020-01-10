@@ -460,10 +460,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   float: right;
 }
 
-.case-details-document-add-link-icon, .task-details-document-add-link-icon {
-  margin-right: 5px;
-}
-
 .related-task-list-item-status {
   margin-right: 5px;
   display: block;
@@ -1759,10 +1755,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   list-style-type: inherit;
 }
 
-.task-details-note-add-link-icon {
-  margin-right: 5px;
-}
-
 .no-document-text {
   display: inline-block;
   padding: 15px;
@@ -1878,10 +1870,6 @@ _:-ms-input-placeholder, :root .case-details>* {
   word-break: normal;
   word-wrap: break-word;
   white-space: normal;
-}
-
-.case-details-note-add-link-icon {
-  margin-right: 5px;
 }
 
 .case-description-column {
@@ -3063,6 +3051,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .elapsed-time-detail-container-width {
   width: 100% !important;
+  overflow-x: auto;
 }
 
 .dashboard-chart-panel {
@@ -3746,9 +3735,8 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 .elapsed-time-detail-form {
-  width: 80%;
+  width: 100%;
 }
-
 .elapsed-time-result-list .case-table .case-id, .elapsed-time-result-list .case-table .case-creator,
   .elapsed-time-result-list .case-table .case-created, .elapsed-time-result-list .case-table .case-finished {
   width: 10%;
@@ -3768,6 +3756,11 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 .ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-close {
   display: none;
+}
+@media screen and (min-width : 64.063em) {
+  .elapsed-time-detail-toggle-column {
+    display: none !important;
+  }
 }
 
 /*********** SEARCH ICON ***********/
@@ -3795,6 +3788,19 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 @media screen and (min-width: 64.063em) {
   .search-item {
     width: 400px;
+  }
+}
+
+@media screen and (max-width: 40em) {
+  .elapsed-time-result-list .case-table {
+    padding-right: 5px;
+    
+  }
+}
+
+@media screen and (max-width: 64.063em) {
+  .elapsed-time-result-list .case-table {
+    display: inline-block !important;
   }
 }
 
@@ -3997,10 +4003,6 @@ _:-ms-fullscreen, :root .content-link-history {
   text-overflow: ellipsis;
 }
 
-.task-note-show-more-link-icon {
-  margin-right: 5px;
-}
-
 .task-name-edit {
   width: 100%;
 }
@@ -4041,10 +4043,7 @@ _:-ms-fullscreen, :root .content-link-history {
   .case-upload-dialog, .case-view-note-dialog, .task-upload-dialog, .document-upload-dialog, .task-note-dialog {
     width: 80% !important;
   }
-  .note-show-more-link {
-    float: left !important;
-    margin-left: 0 !important;
-  }
+
   .adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
     margin: 0 !important;
     width: calc(100vw - 40px) !important;
@@ -4072,6 +4071,11 @@ _:-ms-fullscreen, :root .content-link-history {
     width: calc(80vw - 40px) !important;
   }
 }
+
+.note-show-more-link-icon, .note-show-more-link {
+  margin-left: 5px;
+}
+
 /*  =================== END TASK TEMPLATE PAGE ========================= */
 
 /*====================FIX FOR SERENITY 2.0 STYLE========================*/
@@ -4096,4 +4100,81 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   bottom: 5px;
   right: 7px;
 }
-/**************Override END*******************/
+@media screen and (max-width: 40em) {
+  .display-full-text {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 40.063em) {
+  .display-short-text {
+    display: none !important;
+  }
+}
+
+/*=================== EXPRESS MANAGEMENT START ===================*/
+.express-process-upload.ui-fileupload {
+  padding: 0 !important;
+}
+
+.express-helper-loading-container,
+.express-process-upload.ui-fileupload .ui-fileupload-progress {
+  display: none;
+}
+
+.import-express-dialog {
+  min-width: 450px;
+}
+
+.import-express-dialog .express-import-result {
+  overflow: auto;
+  max-height: 400px;
+  width: 100%;
+}
+
+.import-express-dialog .import-header-title,
+.export-express-dialog .import-header-title {
+  margin: 0;
+}
+
+.export-express-dialog .express-export-selected {
+  max-height: 250px;
+  overflow: auto;
+  width: 100%;
+}
+
+.express-helper-loading {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.express-workflow-summary-table {
+  line-height: 1;
+}
+
+.express-workflow-summary-table .ui-paginator.ui-paginator-top,
+.express-workflow-summary-table tbody tr td {
+  padding: 4px 10px !important;
+}
+
+.express-workflow-summary-table .ui-selection-column.express-selection-column {
+  text-align: center;
+}
+
+.express-workflow-summary-table td.ui-selection-column.express-selection-column .ui-chkbox.ui-widget {
+  margin: auto;
+  margin-top: 4px;
+}
+
+.express-workflow-summary-table .express-selection-column {
+  width: 50px !important;
+  text-align:center"; 
+}
+
+.express-workflow-summary-table tbody tr td,
+.express-process-upload .ui-fileupload-row>div {
+  word-break: break-all;
+}
+
+/*=================== EXPRESS MANAGEMENT END ===================*/
