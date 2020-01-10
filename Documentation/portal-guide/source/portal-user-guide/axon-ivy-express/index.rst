@@ -222,3 +222,58 @@ Define an information email
 .. figure:: images/express-workflow-email-editor.png
 
 .. include:: ../includes/_common-icon.rst
+
+
+Axon Express Management
+-----------------------
+
+With Axon Express Management, administrator can import/export Express workflows in JSON format.
+This feature is put in :ref:`Admin Settings <settings-admin-settings>`.
+
+.. figure:: images/express-management-tab.png
+
+.. note:: 
+  To use this feature, user needs to have role AXONIVY_PORTAL_ADMIN.
+  
+
+How to export:
+""""""""""""""
+
+First, you need to choose workflows in Express workflows table, selected workflows will be export to the JSON file.
+You can select multi workflows by click checkbox :guilabel:`ALL`.
+
+.. figure:: images/express-export-tab.png
+
+After selected workflows, click :guilabel:`Export Express` button, export dialog will display and you can see workflows list will be exported.
+
+.. figure:: images/export-list-summary.png
+
+After reviewed and make sure workflows are collected, press :guilabel:`Download` button to download these workflows.
+
+
+.. important:: 
+
+  The export file is a JSON file, it contains a version of express and express process data. Don’t edit this file manually.
+..
+
+Import Express
+^^^^^^^^^^^^^^
+Import Express is a function to help Administrator can import the Express process into the Portal system from a backup file.
+
+How to import:
+""""""""""""""
+
+Press :guilabel:`Import Express` button, Import Express dialog will display.
+Once :guilabel:`Import Express` dialog is open, press :guilabel:`Select` button and choose the Express JSON file which store workflows you want to import.
+
+.. figure:: images/import-selection.png
+
+Then press the :guilabel:`Deploy` button and wait for the deployment process.
+
+.. figure:: images/import-deployment.png
+
+After the deploy process is finished, an output log panel will be displayed, you can see all information which collected during the deployment process.
+
+Now, if the deployment process is success, your workflows are imported and administrator can check, edit them before they are ready to use by user.
+
+.. figure:: images/deployment-result.png
