@@ -1,0 +1,5 @@
+co: name={installProcessFailedLog} description={} changed={2020-01-09 03:32:06 CET} changedby={nqhoan} visualorder={0} guid={16F831F03A8BD691} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16F831F03B0488B1} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-06 05:26:34 CET} validto={} changed={2020-01-09 03:32:06 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831F03B6BF8DA} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-06 05:26:39 CET} validto={} changed={2020-01-09 03:32:06 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831F03BD92150} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-06 05:26:43 CET} validto={} changed={2020-01-09 03:32:06 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831F03AA418DE} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-06 04:31:22 CET} validto={} changed={2020-01-09 03:32:06 CET} changedby={nqhoan} properties={} id={}
