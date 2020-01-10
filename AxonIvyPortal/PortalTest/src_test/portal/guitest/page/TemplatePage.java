@@ -287,7 +287,7 @@ public abstract class TemplatePage extends AbstractPage {
   
   public void clickByCssSelector(String cssSelector) {
     waitForElementDisplayed(By.cssSelector(cssSelector), true);
-    findElementByCssSelector(cssSelector).click();
+    click(By.cssSelector(cssSelector));
   }
 
   protected void refreshAndWaitElement(String cssSelector) {
