@@ -15,6 +15,7 @@ public class TaskTemplatePage extends TemplatePage {
 
   public void openCaseInfo() {
     clickByCssSelector("#horizontal-case-info");
+    waitForElementDisplayed(By.cssSelector("span[id$='case-info-dialog_title']"), true);
   }
 
   public boolean containsCaseDetails() {
@@ -32,7 +33,7 @@ public class TaskTemplatePage extends TemplatePage {
 
   public void openDocumentUploadingDialog() {
     clickByCssSelector("a[id$='add-document-command']");
-    waitForElementDisplayed(By.cssSelector("a[id$='add-document-command']"), true);
+    waitForElementDisplayed(By.cssSelector("div[id$='document-upload-dialog']"), true);
   }
 
   public Boolean isDocumentUploadingDialogDisplayed() {
