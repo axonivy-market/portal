@@ -2924,9 +2924,16 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   display: none;
 }
 
-.statistic-carousel.one-statistic .ui-carousel-header .ui-carousel-next-button, .statistic-carousel.one-statistic .ui-carousel-header .ui-carousel-prev-button
+.statistic-carousel .ui-carousel-header .ui-carousel-next-button,
+.statistic-carousel .ui-carousel-header .ui-carousel-prev-button
   {
   display: none;
+}
+
+.statistic-carousel.many-statistics .ui-carousel-header .ui-carousel-next-button,
+.statistic-carousel.many-statistics .ui-carousel-header .ui-carousel-prev-button
+  {
+  display: block;
 }
 
 .statistic-carousel-content {
