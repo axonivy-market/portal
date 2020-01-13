@@ -29,6 +29,8 @@
           <p:ajax event="toggleSelect" update="#{p:component('export-express-btn')}" />
           <p:ajax event="rowSelectCheckbox" update="#{p:component('export-express-btn')}" global="false" />
           <p:ajax event="rowUnselectCheckbox" update="#{p:component('export-express-btn')}" global="false" />
+          <p:ajax event="rowSelect" update="#{p:component('export-express-btn')}" global="false" />
+          <p:ajax event="rowUnselect" update="#{p:component('export-express-btn')}" global="false" />
 
           <p:column selectionMode="multiple" styleClass="express-selection-column" />
 
