@@ -40,7 +40,7 @@ public class IvyProcess implements Process{
   
   @Override
   public String getTypeName() {
-    return ProcessType.IVY_PROCESS.getType();
+    return ProcessType.IVY_PROCESS.name();
   }
 
   @Override

@@ -1,0 +1,5 @@
+co: name={expressExportName} description={} changed={2020-01-08 04:05:52 CET} changedby={nqhoan} visualorder={0} guid={16F831D9992F1020} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16F831D999CB989C} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-03 05:03:56 CET} validto={} changed={2020-01-08 04:05:52 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831D99A4878F6} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-03 05:04:06 CET} validto={} changed={2020-01-08 04:05:52 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831D99ACDCA5C} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-03 05:04:03 CET} validto={} changed={2020-01-08 04:05:52 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831D999636A56} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-03 05:02:50 CET} validto={} changed={2020-01-08 04:05:52 CET} changedby={nqhoan} properties={} id={}

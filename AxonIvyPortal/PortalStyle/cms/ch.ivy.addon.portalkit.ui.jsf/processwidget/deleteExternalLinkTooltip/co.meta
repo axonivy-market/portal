@@ -1,0 +1,5 @@
+co: name={deleteExternalLinkTooltip} description={} changed={2019-12-24 07:39:50 CET} changedby={ttthai} visualorder={0} guid={16F36A08E61AE4C3} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16F36A2174B9DA03} datatype={} isdefault={false} langid={es} description={} validfrom={2019-12-24 07:39:37 CET} validto={} changed={2019-12-24 07:39:50 CET} changedby={ttthai} properties={} id={}
+val: guid={16F36A08E71AC3D1} datatype={} isdefault={true} langid={en} description={} validfrom={2019-12-24 07:38:09 CET} validto={} changed={2019-12-24 07:39:50 CET} changedby={ttthai} properties={} id={}
+val: guid={16F36A215AE90F3A} datatype={} isdefault={false} langid={de} description={} validfrom={2019-12-24 07:39:09 CET} validto={} changed={2019-12-24 07:39:50 CET} changedby={ttthai} properties={} id={}
+val: guid={16F36A2175A15758} datatype={} isdefault={false} langid={fr} description={} validfrom={2019-12-24 07:39:27 CET} validto={} changed={2019-12-24 07:39:50 CET} changedby={ttthai} properties={} id={}

@@ -1,0 +1,5 @@
+co: name={deployButton} description={} changed={2020-01-08 04:05:52 CET} changedby={nqhoan} visualorder={0} guid={16F831D990E53188} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16F831D9911C7080} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-06 05:12:40 CET} validto={} changed={2020-01-08 04:05:52 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831D9928D76F3} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-06 05:12:56 CET} validto={} changed={2020-01-08 04:05:52 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831D992016313} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-06 05:12:51 CET} validto={} changed={2020-01-08 04:05:52 CET} changedby={nqhoan} properties={} id={}
+val: guid={16F831D9918EE9E2} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-06 03:38:16 CET} validto={} changed={2020-01-08 04:05:52 CET} changedby={nqhoan} properties={} id={}

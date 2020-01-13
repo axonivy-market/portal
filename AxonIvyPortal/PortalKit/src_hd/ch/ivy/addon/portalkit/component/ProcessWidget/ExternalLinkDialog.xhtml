@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<ui:composition>
+
+  <p:dialog id="add-external-link-dialog" widgetVar="add-external-link-dialog"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewExternalLinkHeader')}" 
+    closeOnEscape="true" modal="true" appendTo="@(body)" resizable="false"
+    width="600px" >
+    <h:form id="add-external-link-form" styleClass="add-external-link-form">
+        <div class="field-group ui-g">
+            <div class="ui-g-4 ui-sm-12 field-group-label">
+              <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}"
+              	 styleClass="ui-line-height-2" for="external-link-name" />
+            </div>
+            <div class="ui-g-8 ui-sm-12">
+              <div class="external-link-dialog-field md-inputfield">
+                <p:inputText id="external-link-name" value="#{externalLinkBean.externalLink.name}" required="true"
+                  styleClass="external-link-dialog-field"
+                  requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} 
+                        #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
+                <p:message for="external-link-name" />
+              </div>
+            </div>
+          </div>
+        <div class="field-group ui-g">
+          <div class="ui-g-4 ui-sm-12 field-group-label">
+            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')}"
+             styleClass="ui-line-height-2" for="external-link" />
+            </div>
+          <div class="ui-g-8 ui-sm-12">
+            <div class="md-inputfield">
+              <p:inputText id="external-link" value="#{externalLinkBean.externalLink.link}" required="true"
+                styleClass="external-link-dialog-field"
+                requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/startLink')} 
+                        #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
+                placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/webLinkExample')}" />
+              <p:message for="external-link" />
+            </div>
+          </div>
+        </div>
+        <div class="field-group ui-g" jsf:rendered="#{externalLinkBean.hasPublicLinkCreationPermission()}">
+          <div class="ui-g-4 ui-sm-12 field-group-label">
+            <p:outputLabel id="external-link-type-label" for="external-link-type-radio" styleClass="ui-line-height-2 external-link-type-label"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/externalLinkVisibility')}" />
+          </div>
+          <div class="ui-g-8 ui-sm-12 external-link-type">
+            <p:selectOneRadio id="external-link-type-radio" value="#{externalLinkBean.externalLink.public}" >
+              <f:selectItem id="only-me" itemValue="false"
+                itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeOnlyMe')}" />
+              <f:selectItem id="all-users" itemValue="true" 
+                itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeAllUsers')}" />
+            </p:selectOneRadio>
+          </div>
+        </div>
+        <div class="ui-dialog-footer u-dialog-footer">
+        <p:commandButton id="adding-new-external-link-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
+          process="add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink}"
+          update="add-external-link-form #{cc.clientId}:process-list"
+          oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide();}" />
+        <p:spacer width="5" />
+        <p:commandButton id="cancel-adding-external-link-command" global="false" styleClass="portal-cancel-button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@none"
+          update="@form"
+          onclick="PF('add-external-link-dialog').hide()">
+          </p:commandButton>
+      </div>
+    </h:form>
+  </p:dialog>
+
+ <p:dialog id="remove-external-link-dialog" widgetVar="remove-external-link-dialog"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemHeader')}" closeOnEscape="true" modal="true"
+    dynamic="true" appendTo="@(body)" resizable="false">
+    <h:form id="delete-external-link-form">
+      <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemConfirmation')}" />
+      <br />
+      <h:outputText value="#{processWidgetBean.deletedExternalLink.getName()}" styleClass="FontBold" />
+      <div class="ui-dialog-footer u-dialog-footer">
+        <p:commandButton id="delete-external-link-btn" global="false" process="@this" update="#{cc.clientId}:process-list"
+          actionListener="#{processWidgetBean.deleteExternalLink}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          oncomplete="PF('remove-external-link-dialog').hide();" />
+        <p:spacer width="5" />
+        <p:commandButton id="cancel-deleting-external-link" onclick="PF('remove-external-link-dialog').hide()" styleClass="portal-cancel-button"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
+      </div>
+    </h:form>
+  </p:dialog>
+</ui:composition>
+</html>

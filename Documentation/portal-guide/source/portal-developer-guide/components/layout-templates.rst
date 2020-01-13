@@ -117,6 +117,12 @@ Inside your UI, you can configure these parameters which will be rendered by the
 .. note::
 	Do not use or refer to this template in your Dialog. This will be done automatically by Portal if you use the mentioned IFrame Approach.
 	You can refer to IFrameTaskTemplate.xhtml in PortalTemplate to see more detailed information about how to use and pass params.
+	
+In case your project has navigation button without finishing a task, e.g Cancel, to 
+
+-  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrame``.
+-  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame``.
+-  A specific url: call ``navigateToUrl(String url)`` from class ``PortalNavigatorInFrame``.
 
 .. _components-layout-templates-task-template:
 

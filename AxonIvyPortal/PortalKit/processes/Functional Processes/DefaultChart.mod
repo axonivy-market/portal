@@ -14,9 +14,9 @@ Dt0 @TextInP .responsibility .responsibility #zField
 Dt0 @StartSub f0 '' #zField
 Dt0 @EndSub f1 '' #zField
 Dt0 @GridStep f3 '' #zField
-Dt0 @PushWFArc f4 '' #zField
 Dt0 @PushWFArc f2 '' #zField
 Dt0 @InfoButton f5 '' #zField
+Dt0 @PushWFArc f4 '' #zField
 >Proto Dt0 Dt0 DefaultChart #zField
 Dt0 f0 inParamDecl '<> param;' #txt
 Dt0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> charts> result;' #txt
@@ -48,7 +48,7 @@ String chartName = "Tasks by Priority";
 StatisticChartType chartType = StatisticChartType.TASK_BY_PRIORITY;
 
 if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName)) {
-  StatisticFilter statisticFilter = new StatisticFilter().init();
+  StatisticFilter statisticFilter = new StatisticFilter();
   StatisticChart newChart = service.createStatisticChart(statisticFilter, chartName, chartType, ivy.session.getSessionUser().getId(), true);
   in.defaultCharts.add(newChart);
 }
@@ -62,8 +62,6 @@ Dt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f3 40 138 112 44 -52 -8 #rect
 Dt0 f3 @|StepIcon #fIcon
-Dt0 f4 expr out #txt
-Dt0 f4 96 79 96 138 #arcP
 Dt0 f2 expr out #txt
 Dt0 f2 96 182 96 241 #arcP
 Dt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -79,24 +77,25 @@ import ch.ivy.addon.portalkit.service.StatisticService;
 StatisticService service = new StatisticService();
 String chartName = "My default chart";
 StatisticChartType chartType = StatisticChartType.TASK_BY_PRIORITY;
-StatisticFilter statisticFilter = new StatisticFilter().init();
+StatisticFilter statisticFilter = new StatisticFilter();
 
 if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName)) {
   StatisticChart newChart = service.createStatisticChart(statisticFilter, chartName, chartType, ivy.session.getSessionUser().getId(), true);
   in.defaultCharts.add(newChart);		
 }</name>
-        <nameStyle>784,5
+        <nameStyle>777,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
 Dt0 f5 288 34 752 268 -368 -128 #rect
 Dt0 f5 @|IBIcon #fIcon
+Dt0 f4 96 79 96 138 #arcP
 >Proto Dt0 .type ch.ivy.addon.portalkit.DefaultChartData #txt
 >Proto Dt0 .processKind CALLABLE_SUB #txt
 >Proto Dt0 0 0 32 24 18 0 #rect
 >Proto Dt0 @|BIcon #fIcon
-Dt0 f0 mainOut f4 tail #connect
-Dt0 f4 head f3 mainIn #connect
 Dt0 f3 mainOut f2 tail #connect
 Dt0 f2 head f1 mainIn #connect
+Dt0 f0 mainOut f4 tail #connect
+Dt0 f4 head f3 mainIn #connect
