@@ -1112,8 +1112,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   public void generateChartModelForStatisticCharts(List<StatisticChart> statisticChartList) {
     if (!statisticChartList.isEmpty()) {
       fetchStatisticColor();
+      initRolesForSavedChart(statisticChartList);
     }
-    initRolesForSavedChart(statisticChartList);
+    
     for (StatisticChart statisticChart : statisticChartList) {
       switch (statisticChart.getType()) {
         case TASK_BY_PRIORITY:
