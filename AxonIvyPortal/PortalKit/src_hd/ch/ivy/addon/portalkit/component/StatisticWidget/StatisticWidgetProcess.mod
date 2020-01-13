@@ -327,8 +327,9 @@ Cs0 f36 actionTable 'out=in;
 Cs0 f36 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
 
 StatisticService service = new StatisticService();
-if(!in.#statisticChartList is initialized || !in.statisticChartList.isEmpty()) {
-	in.hasDefaultChart = service.hasDefaultChart(ivy.session.getSessionUser().getId());
+if(!in.#statisticChartList is initialized || in.statisticChartList.isEmpty()) {
+	in.statisticChartList = service.findStatisticChartsByUserId(ivy.session.getSessionUser().getId());
+	in.hasDefaultChart = service.isDefaultChart(in.statisticChartList);
 } else {
 	in.hasDefaultChart = service.isDefaultChart(in.statisticChartList);
 }' #txt
