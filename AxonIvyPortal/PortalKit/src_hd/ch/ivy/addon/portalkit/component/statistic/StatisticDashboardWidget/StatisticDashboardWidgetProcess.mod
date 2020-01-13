@@ -71,28 +71,29 @@ Ss0 @UdMethod f63 '' #zField
 Ss0 @GridStep f65 '' #zField
 Ss0 @UdProcessEnd f66 '' #zField
 Ss0 @UdMethod f70 '' #zField
-Ss0 @GridStep f31 '' #zField
 Ss0 @Alternative f62 '' #zField
-Ss0 @PushWFArc f69 '' #zField
-Ss0 @PushWFArc f71 '' #zField
 Ss0 @Alternative f3 '' #zField
 Ss0 @PushWFArc f1 '' #zField
 Ss0 @Alternative f60 '' #zField
 Ss0 @PushWFArc f73 '' #zField
 Ss0 @PushWFArc f75 '' #zField
 Ss0 @GridStep f5 '' #zField
-Ss0 @PushWFArc f78 '' #zField
 Ss0 @PushWFArc f61 '' #zField
-Ss0 @PushWFArc f79 '' #zField
 Ss0 @PushWFArc f74 '' #zField
 Ss0 @PushWFArc f0 '' #zField
 Ss0 @GridStep f4 '' #zField
-Ss0 @PushWFArc f68 '' #zField
 Ss0 @PushWFArc f64 '' #zField
+Ss0 @PushWFArc f80 '' #zField
 Ss0 @PushWFArc f77 '' #zField
-Ss0 @PushWFArc f12 '' #zField
-Ss0 @PushWFArc f76 '' #zField
+Ss0 @PushWFArc f69 '' #zField
+Ss0 @GridStep f72 '' #zField
+Ss0 @PushWFArc f79 '' #zField
+Ss0 @PushWFArc f81 '' #zField
+Ss0 @PushWFArc f31 '' #zField
+Ss0 @PushWFArc f71 '' #zField
 Ss0 @PushWFArc f67 '' #zField
+Ss0 @PushWFArc f76 '' #zField
+Ss0 @PushWFArc f12 '' #zField
 >Proto Ss0 Ss0 StatisticDashboardWidgetProcess #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
@@ -115,7 +116,7 @@ Ss0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 S10 832 234 128 44 -56 -8 #rect
+Ss0 S10 832 266 128 44 -56 -8 #rect
 Ss0 S10 @|BIcon #fIcon
 Ss0 S10 g0 -64 0 #fFoot
 Ss0 f8 actionTable 'out=in;
@@ -154,7 +155,7 @@ Ss0 f11 123 51 26 26 -16 15 #rect
 Ss0 f11 @|UdInitIcon #fIcon
 Ss0 f14 275 51 26 26 0 12 #rect
 Ss0 f14 @|UdProcessEndIcon #fIcon
-Ss0 f2 1459 243 26 26 0 12 #rect
+Ss0 f2 1395 275 26 26 0 12 #rect
 Ss0 f2 @|UdProcessEndIcon #fIcon
 Ss0 f13 guid 16052B0A98BF3B09 #txt
 Ss0 f13 method moveUp(ch.ivy.addon.portalkit.statistics.StatisticChart) #txt
@@ -334,11 +335,6 @@ Ss0 f30 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
 StatisticService service = new StatisticService();
-if (in.isBackFromDrilldown) {
-	in.statisticChartList = service.findStatisticChartsByUserId(ivy.session.getSessionUser().getId());
-	in.selectedItemOfDrilldown = null;
-}
-
 if (in.statisticChartList.size() != 0) {
 	in.hasStatistic = true;
 	if(in.selectedItemOfDrilldown.isEmpty()){
@@ -349,18 +345,19 @@ if (in.statisticChartList.size() != 0) {
 }
 
 in.isFinishLoadCharts = true;
-in.prevStatisticListSize = in.statisticChartList.size();' #txt
+in.prevStatisticListSize = in.statisticChartList.size();
+' #txt
 Ss0 f30 security system #txt
 Ss0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Generate dashboard chart models</name>
-        <nameStyle>31,5
+        <name>Generate dashboard chart</name>
+        <nameStyle>24,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f30 1056 234 208 44 -94 -8 #rect
+Ss0 f30 1136 264 144 48 -72 -8 #rect
 Ss0 f30 @|StepIcon #fIcon
 Ss0 f7 processCall 'Functional Processes/Navigator:viewTaskForAnalytic(String,ch.ivyteam.ivy.workflow.query.TaskQuery)' #txt
 Ss0 f7 requestActionDecl '<String chartName,ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
@@ -621,9 +618,9 @@ Ss0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f51 699 451 26 26 -61 15 #rect
+Ss0 f51 699 483 26 26 -61 15 #rect
 Ss0 f51 @|UdEventIcon #fIcon
-Ss0 f52 1107 451 26 26 0 12 #rect
+Ss0 f52 1107 483 26 26 0 12 #rect
 Ss0 f52 @|UdProcessEndIcon #fIcon
 Ss0 f53 actionTable 'out=in;
 ' #txt
@@ -657,12 +654,13 @@ Ss0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f53 832 442 112 44 -22 -8 #rect
+Ss0 f53 832 474 112 44 -22 -8 #rect
 Ss0 f53 @|StepIcon #fIcon
 Ss0 f54 expr out #txt
-Ss0 f54 725 464 832 464 #arcP
+Ss0 f54 725 496 832 496 #arcP
+Ss0 f54 0 0.49999999999999994 0 0 #arcLabel
 Ss0 f55 expr out #txt
-Ss0 f55 944 464 1107 464 #arcP
+Ss0 f55 944 496 1107 496 #arcP
 Ss0 f56 guid 163DD43587A98693 #txt
 Ss0 f56 actionTable 'out=in;
 ' #txt
@@ -720,7 +718,7 @@ Ss0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f63 699 243 26 26 -58 21 #rect
+Ss0 f63 699 275 26 26 -58 21 #rect
 Ss0 f63 @|UdMethodIcon #fIcon
 Ss0 f65 actionTable 'out=in;
 ' #txt
@@ -742,11 +740,11 @@ in.isFinishLoadCharts = true;
 Ss0 f65 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Generate compact chart models</name>
+        <name>Generate compact chart</name>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f65 1056 152 192 48 -88 -8 #rect
+Ss0 f65 1136 200 144 48 -67 -8 #rect
 Ss0 f65 @|StepIcon #fIcon
 Ss0 f66 1219 51 26 26 0 12 #rect
 Ss0 f66 @|UdProcessEndIcon #fIcon
@@ -770,48 +768,36 @@ Ss0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ss0 f70 699 51 26 26 -27 16 #rect
 Ss0 f70 @|UdMethodIcon #fIcon
-Ss0 f31 actionTable 'out=in;
+Ss0 f62 784 48 32 32 0 16 #rect
+Ss0 f62 @|AlternativeIcon #fIcon
+Ss0 f3 992 272 32 32 0 16 #rect
+Ss0 f3 @|AlternativeIcon #fIcon
+Ss0 f1 960 288 992 288 #arcP
+Ss0 f60 768 272 32 32 0 16 #rect
+Ss0 f60 @|AlternativeIcon #fIcon
+Ss0 f73 725 288 768 288 #arcP
+Ss0 f75 expr in #txt
+Ss0 f75 800 288 832 288 #arcP
+Ss0 f5 actionTable 'out=in;
 ' #txt
-Ss0 f31 actionCode 'if (in.isBackFromDrilldown) {
+Ss0 f5 actionCode 'import org.primefaces.PrimeFaces;
+import org.apache.commons.lang3.StringUtils;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.bean.StatisticDashboardBean;
+import ch.ivy.addon.portalkit.statistics.StatisticChart;
+import ch.ivy.addon.portalkit.service.StatisticService;
+
+if (in.isBackFromDrilldown) {
 	in.selectedItemOfDrilldown = null;
+	in.isFinishLoadCharts = false;
+	
+	StatisticService service = new StatisticService();
+	in.statisticChartList = service.findStatisticChartsByUserId(ivy.session.getSessionUser().getId());
 }
 
 if (!in.isDrilldownExpiryChart) {
 	in.hasStatistic = false;
 }
-
-' #txt
-Ss0 f31 security system #txt
-Ss0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>init data</name>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f31 872 42 112 44 -21 -8 #rect
-Ss0 f31 @|StepIcon #fIcon
-Ss0 f62 784 48 32 32 0 16 #rect
-Ss0 f62 @|AlternativeIcon #fIcon
-Ss0 f69 725 64 784 64 #arcP
-Ss0 f71 expr in #txt
-Ss0 f71 outCond !in.isCompactMode #txt
-Ss0 f71 816 64 872 64 #arcP
-Ss0 f3 992 240 32 32 0 16 #rect
-Ss0 f3 @|AlternativeIcon #fIcon
-Ss0 f1 960 256 992 256 #arcP
-Ss0 f60 768 240 32 32 0 16 #rect
-Ss0 f60 @|AlternativeIcon #fIcon
-Ss0 f73 725 256 768 256 #arcP
-Ss0 f75 expr in #txt
-Ss0 f75 800 256 832 256 #arcP
-Ss0 f5 actionTable 'out=in;
-' #txt
-Ss0 f5 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.jsf.ManagedBeans;
-import ch.ivy.addon.portalkit.bean.StatisticDashboardBean;
-import ch.ivy.addon.portalkit.statistics.StatisticChart;
-import ch.ivy.addon.portalkit.service.StatisticService;
 
 /* isReloadChartContent is a flag to reload the ChartJS canvas on UI 
 	 If isFinishLoadCharts is true, we will reload the ChartJS canvas to draw new canva based on new data
@@ -825,7 +811,7 @@ if (in.isReloadChartContent && StringUtils.isEmpty(in.selectedItemOfDrilldown)) 
 	// It will make comfortable when user is waiting for drawing canvas
 	StatisticDashboardBean statisticDashboardBean = ManagedBeans.get("statisticDashboardBean") as StatisticDashboardBean;
 	statisticDashboardBean.generatePlaceholderForChart(in.statisticChartList);
-} else if (!in.isCompactMode && StringUtils.isNotEmpty(in.selectedItemOfDrilldown)) {
+} else if (StringUtils.isNotEmpty(in.selectedItemOfDrilldown)) {
 	// Drilldown to expiry chart, no need to build placeholder chart because we don''t call database
 	// Directly generate ChartJS canva, so we dont need to reload page
 	StatisticService service = new StatisticService();
@@ -845,45 +831,34 @@ if (in.isReloadChartContent && StringUtils.isEmpty(in.selectedItemOfDrilldown)) 
 Ss0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Create a placeholder</name>
+        <name>Create a placeholder for dashboard</name>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f5 1024 42 128 44 -57 -8 #rect
+Ss0 f5 888 42 208 44 -97 -8 #rect
 Ss0 f5 @|StepIcon #fIcon
-Ss0 f78 984 64 1024 64 #arcP
-Ss0 f61 1152 64 1219 64 #arcP
-Ss0 f79 expr in #txt
-Ss0 f79 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>compact mode</name>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f79 800 80 1088 86 #arcP
-Ss0 f79 1 800 112 #addKink
-Ss0 f79 2 1088 112 #addKink
-Ss0 f79 1 0.3888888888888889 0 11 #arcLabel
+Ss0 f61 1096 64 1219 64 #arcP
 Ss0 f74 expr in #txt
 Ss0 f74 outCond in.isFinishLoadCharts #txt
-Ss0 f74 784 240 1004 244 #arcP
-Ss0 f74 1 784 208 #addKink
-Ss0 f74 2 992 208 #addKink
+Ss0 f74 784 272 1004 276 #arcP
+Ss0 f74 1 784 240 #addKink
+Ss0 f74 2 992 240 #addKink
 Ss0 f0 149 64 275 64 #arcP
 Ss0 f4 actionTable 'out=in;
 ' #txt
-Ss0 f4 actionCode 'import org.primefaces.model.charts.donut.DonutChartModel;
+Ss0 f4 actionCode 'import ch.ivy.addon.portalkit.enums.StatisticChartType;
+import org.primefaces.model.charts.donut.DonutChartModel;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import java.util.ArrayList;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.bean.StatisticDashboardBean;
 
-if (in.isFinishLoadCharts && !in.hasStatistic) {
+if (in.statisticChartList.isEmpty()) {
 	StatisticService service = new StatisticService();
 	StatisticChart emptyChart = new StatisticChart();
 	emptyChart.name = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statistics");
+	emptyChart.type = StatisticChartType.TASK_BY_PRIORITY;
 
 	DonutChartModel model = service.createDonutChartPlaceholder();
 	model.options.title.text = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/emptystate/defaultEmptyMessages");
@@ -899,37 +874,90 @@ Ss0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f4 1296 194 128 44 -61 -8 #rect
+Ss0 f4 1136 360 144 48 -61 -8 #rect
 Ss0 f4 @|StepIcon #fIcon
-Ss0 f68 1248 176 1360 194 #arcP
-Ss0 f68 1 1360 176 #addKink
-Ss0 f68 0 0.05614676741636741 0 0 #arcLabel
-Ss0 f64 1424 216 1472 243 #arcP
-Ss0 f64 1 1472 216 #addKink
+Ss0 f64 1280 384 1408 301 #arcP
+Ss0 f64 1 1408 384 #addKink
 Ss0 f64 1 0.03651860630634248 0 0 #arcLabel
-Ss0 f77 expr out #txt
-Ss0 f77 1264 256 1360 238 #arcP
-Ss0 f77 1 1360 256 #addKink
-Ss0 f77 1 0.03169410789709737 0 0 #arcLabel
-Ss0 f12 expr in #txt
-Ss0 f12 outCond 'in.isFinishLoadCharts && in.prevStatisticListSize == in.statisticChartList.size()' #txt
-Ss0 f12 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+Ss0 f80 expr out #txt
+Ss0 f80 1280 288 1395 288 #arcP
+Ss0 f80 0 0.8471095959837521 0 0 #arcLabel
+Ss0 f77 1280 224 1408 275 #arcP
+Ss0 f77 1 1408 224 #addKink
+Ss0 f77 0 0.05614676741636741 0 0 #arcLabel
+Ss0 f69 725 64 784 64 #arcP
+Ss0 f72 actionTable 'out=in;
+' #txt
+Ss0 f72 actionCode 'import org.primefaces.PrimeFaces;
+import org.apache.commons.lang3.StringUtils;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.bean.StatisticDashboardBean;
+import ch.ivy.addon.portalkit.statistics.StatisticChart;
+import ch.ivy.addon.portalkit.service.StatisticService;
+
+/* isReloadChartContent is a flag to reload the ChartJS canvas on UI 
+	 If isFinishLoadCharts is true, we will reload the ChartJS canvas to draw new canva based on new data
+	 If statisticChartList is changed, we need to reload ChartJS canvas due to we have to rebuild chart
+ 	 Always set new value for isReloadChartContent when re-rendering component
+*/
+in.isReloadChartContent = !in.isFinishLoadCharts || in.prevStatisticListSize != null && in.prevStatisticListSize != in.statisticChartList.size();
+
+if (in.isReloadChartContent) {
+	// In case, isReloadChartContent indicator is true and not drilldown to expiry chart, we need to generate a placeholder chart to show on UI
+	// It will make comfortable when user is waiting for drawing canvas
+	StatisticDashboardBean statisticDashboardBean = ManagedBeans.get("statisticDashboardBean") as StatisticDashboardBean;
+	statisticDashboardBean.generatePlaceholderForChart(in.statisticChartList);
+}
+' #txt
+Ss0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Create a placeholder for carousel</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f72 888 112 208 48 -91 -8 #rect
+Ss0 f72 @|StepIcon #fIcon
+Ss0 f79 expr in #txt
+Ss0 f79 outCond in.isCompactMode #txt
+Ss0 f79 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>compact mode</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f79 800 80 888 136 #arcP
+Ss0 f79 1 800 136 #addKink
+Ss0 f79 0 1.0 35 17 #arcLabel
+Ss0 f81 1096 136 1232 77 #arcP
+Ss0 f81 1 1232 136 #addKink
+Ss0 f81 0 0.6983191969457467 0 0 #arcLabel
+Ss0 f31 expr in #txt
+Ss0 f31 816 64 888 64 #arcP
+Ss0 f71 expr in #txt
+Ss0 f71 outCond in.statisticChartList.isEmpty() #txt
+Ss0 f71 1010 302 1136 384 #arcP
+Ss0 f71 1 1024 384 #addKink
+Ss0 f67 expr in #txt
+Ss0 f67 outCond 'in.isFinishLoadCharts && in.prevStatisticListSize == in.statisticChartList.size()' #txt
+Ss0 f67 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>haven''t data changed in Statistics</name>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f12 1011 269 1472 269 #arcP
-Ss0 f12 1 1024 320 #addKink
-Ss0 f12 2 1472 320 #addKink
-Ss0 f12 1 0.43526785714285715 0 14 #arcLabel
+Ss0 f67 1012 300 1408 301 #arcP
+Ss0 f67 1 1024 336 #addKink
+Ss0 f67 2 1408 336 #addKink
+Ss0 f67 1 0.4713541666666667 0 -11 #arcLabel
 Ss0 f76 expr in #txt
-Ss0 f76 outCond !in.isCompactMode #txt
-Ss0 f76 1024 256 1056 256 #arcP
-Ss0 f67 expr in #txt
-Ss0 f67 1011 243 1056 176 #arcP
-Ss0 f67 1 1024 176 #addKink
+Ss0 f76 outCond in.isCompactMode #txt
+Ss0 f76 1011 275 1136 224 #arcP
+Ss0 f76 1 1024 224 #addKink
+Ss0 f12 expr in #txt
+Ss0 f12 1024 288 1136 288 #arcP
 >Proto Ss0 .type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 >Proto Ss0 .processKind HTML_DIALOG #txt
 >Proto Ss0 -8 -8 16 16 16 26 #rect
@@ -1037,38 +1065,40 @@ Ss0 f39 out f47 tail #connect
 Ss0 f47 head f46 mainIn #connect
 Ss0 f58 mainOut f59 tail #connect
 Ss0 f59 head f36 mainIn #connect
-Ss0 f70 mainOut f69 tail #connect
-Ss0 f69 head f62 in #connect
-Ss0 f62 out f71 tail #connect
-Ss0 f71 head f31 mainIn #connect
 Ss0 S10 g2 f1 tail #connect
 Ss0 f1 head f3 in #connect
 Ss0 f63 mainOut f73 tail #connect
 Ss0 f73 head f60 in #connect
 Ss0 f75 head S10 g0 #connect
-Ss0 f31 mainOut f78 tail #connect
-Ss0 f78 head f5 mainIn #connect
 Ss0 f5 mainOut f61 tail #connect
 Ss0 f61 head f66 mainIn #connect
-Ss0 f62 out f79 tail #connect
-Ss0 f79 head f5 mainIn #connect
 Ss0 f60 out f74 tail #connect
 Ss0 f74 head f3 in #connect
 Ss0 f60 out f75 tail #connect
 Ss0 f11 mainOut f0 tail #connect
 Ss0 f0 head f14 mainIn #connect
-Ss0 f65 mainOut f68 tail #connect
-Ss0 f68 head f4 mainIn #connect
 Ss0 f4 mainOut f64 tail #connect
 Ss0 f64 head f2 mainIn #connect
-Ss0 f30 mainOut f77 tail #connect
-Ss0 f77 head f4 mainIn #connect
-Ss0 f3 out f12 tail #connect
-Ss0 f12 head f2 mainIn #connect
-Ss0 f3 out f76 tail #connect
-Ss0 f76 head f30 mainIn #connect
+Ss0 f30 mainOut f80 tail #connect
+Ss0 f80 head f2 mainIn #connect
+Ss0 f65 mainOut f77 tail #connect
+Ss0 f77 head f2 mainIn #connect
+Ss0 f70 mainOut f69 tail #connect
+Ss0 f69 head f62 in #connect
+Ss0 f62 out f79 tail #connect
+Ss0 f79 head f72 mainIn #connect
+Ss0 f72 mainOut f81 tail #connect
+Ss0 f81 head f66 mainIn #connect
+Ss0 f62 out f31 tail #connect
+Ss0 f31 head f5 mainIn #connect
+Ss0 f3 out f71 tail #connect
+Ss0 f71 head f4 mainIn #connect
 Ss0 f3 out f67 tail #connect
-Ss0 f67 head f65 mainIn #connect
+Ss0 f67 head f2 mainIn #connect
+Ss0 f3 out f76 tail #connect
+Ss0 f76 head f65 mainIn #connect
+Ss0 f3 out f12 tail #connect
+Ss0 f12 head f30 mainIn #connect
 Ct0 f60 mainOut f76 tail #connect
 Ct0 f76 head f73 mainIn #connect
 Ct0 f74 mainOut f75 tail #connect
