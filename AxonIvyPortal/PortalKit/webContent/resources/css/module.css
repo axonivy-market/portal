@@ -4184,4 +4184,9 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   word-break: break-all;
 }
 
+.express-management-form {
+  position: relative;
+  overflow: hidden;
+}
+
 /*=================== EXPRESS MANAGEMENT END ===================*/

@@ -110,13 +110,23 @@ Es0 f96 376 394 144 44 -64 -8 #rect
 Es0 f96 @|StepIcon #fIcon
 Es0 f94 actionTable 'out=in;
 ' #txt
-Es0 f94 actionCode 'import ch.ivy.addon.portalkit.enums.ExpressMessageType;
+Es0 f94 actionCode 'import ch.ivy.addon.portalkit.bo.ExpressProcess;
+import ch.ivy.addon.portalkit.enums.ExpressMessageType;
 import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
 
 ExpressManagementUtils utils = new ExpressManagementUtils();
 List<String> results = utils.importExpressProcesses(in.importExpressFile.getFile());
-in.importStatus = results.get(0);
-in.importOutput = results.get(1);
+try {
+	in.importStatus = results.get(0).toString();
+	in.importOutput = results.get(1).toString();
+	if (!in.importStatus.equalsIgnoreCase(ExpressMessageType.FAILED.getLabel())) {
+    in.expressProcessList.addAll(results.get(2) as List<ch.ivy.addon.portalkit.bo.ExpressProcess>);
+  }
+} catch (Exception e) {
+  in.importStatus = ExpressMessageType.FAILED.getLabel();
+  in.importOutput = e.getMessage();
+}
+
 
 if (in.importStatus.equalsIgnoreCase(ExpressMessageType.FAILED.getLabel())) {
   in.isError = true;

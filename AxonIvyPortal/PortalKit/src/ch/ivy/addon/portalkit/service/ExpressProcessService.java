@@ -33,11 +33,15 @@ public class ExpressProcessService extends BusinessDataService<ExpressProcess> {
     return ExpressProcess.class;
   }
 
-  public List<ExpressProcess> findReadyToExecuteProcessOrderByName(String processType) {
+  public List<ExpressProcess> findReadyToExecuteProcessByProcessType(String processType) {
     try {
       Filter<ExpressProcess> publicFilterQuery =
           repo().search(getType()).textField(PROCESS_TYPE).isEqualToIgnoringCase(processType);
-      Result<ExpressProcess> queryResult = publicFilterQuery.orderBy().textField("processName").ascending().execute();
+      Result<ExpressProcess> queryResult = publicFilterQuery.orderBy().textField("processName").ascending().limit(LIMIT_20).execute();
+      long totalCount = queryResult.totalCount();
+      if(totalCount > LIMIT_20) {
+        queryResult = publicFilterQuery.orderBy().textField("processName").ascending().limit(Math.toIntExact(totalCount)).execute();
+      }
       return queryResult.getAll().stream().filter(ExpressProcess::isReadyToExecute).collect(Collectors.toList());
     } catch (Exception e) {
       Ivy.log().error(e);
