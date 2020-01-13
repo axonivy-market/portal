@@ -42,7 +42,7 @@
             <h:outputText value="#{express.processDescription}" />
           </p:column>
 
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/ProcessCreator')}" width="200" styleClass="u-hidden-md-down">
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" width="200" styleClass="u-hidden-md-down">
             <h:outputText value="#{expressManagementBean.getUserDisplayName(express.processOwner)}" />
           </p:column>
         </p:dataTable>
@@ -79,7 +79,7 @@
         <div class="ui-g-12">
           <p:commandButton id="export-express-dowload" rendered="#{not empty data.selectedExpressProcessList}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}" ajax="false"
-            onclick="PrimeFaces.monitorDownload(showLoadingIndicator, hideLoadingIndicator); PF('export-express-dialog').initPosition();">
+            onclick="PrimeFaces.monitorDownload(showLoadingIndicator, hideLoadingAndCloseExportDialog); PF('export-express-dialog').initPosition();">
             <p:fileDownload value="#{logic.exportExpress()}" />
           </p:commandButton>
           <p:spacer width="10px" />
@@ -151,6 +151,11 @@
 
          function hideLoadingIndicator() {
            $('.express-helper-loading-container').hide();
+         }
+
+         function hideLoadingAndCloseExportDialog() {
+           $('.express-helper-loading-container').hide();
+           setTimeout(function(){ PF('export-express-dialog').hide(); }, 1000);
          }
          
          function cleanExportMessage() {
