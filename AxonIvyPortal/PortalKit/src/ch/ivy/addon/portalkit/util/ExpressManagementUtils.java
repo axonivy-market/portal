@@ -128,11 +128,15 @@ public class ExpressManagementUtils {
               JsonElement jsonElement = jsonObject.get(EXPRESS_WORKFLOW);
               List<ExpressWorkFlow> expressWorkFlowsList = gson.fromJson(jsonElement, EXPRESS_LIST_CONVERT_TYPE);
               if (expressWorkFlowsList != null) {
-                int errorCounts = deployExpressWorkflows(importExpressResult, memberList, expressWorkFlowsList, outputExpressProcessList);
-                if (errorCounts == 0) {
-                  outputMessages.set(0, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/successful"));
-                } else if (errorCounts < expressWorkFlowsList.size()) {
-                  outputMessages.set(0, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/warning"));
+                try {
+                  int errorCounts = deployExpressWorkflows(importExpressResult, memberList, expressWorkFlowsList, outputExpressProcessList);
+                  if (errorCounts == 0) {
+                    outputMessages.set(0, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/successful"));
+                  } else if (errorCounts < expressWorkFlowsList.size()) {
+                    outputMessages.set(0, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/warning"));
+                  }
+                } catch (Exception e) {
+                  addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/deployErrorLog",Arrays.asList(expressData.getFileName())), ExpressMessageType.ERROR);
                 }
               }
           }
