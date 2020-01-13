@@ -101,6 +101,7 @@ public class StatisticFilter implements Cloneable {
   }
   
   public void initRoles() {
+    this.roles.clear();
     this.roles.add(Ivy.session().getSessionUser());
     this.roles.addAll(findDistinctRoles());
   }
