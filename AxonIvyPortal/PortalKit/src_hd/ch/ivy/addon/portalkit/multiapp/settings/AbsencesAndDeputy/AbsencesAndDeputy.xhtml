@@ -44,50 +44,52 @@
           </h:panelGroup>
 
           <div class="absence-reset-float" />
-
-          <p:dataTable id="absence-table" styleClass="absence-table" scrollable="true" scrollHeight="300"
-            value="#{data.displayedAbsences}" var="absence" sortBy="#{absence.from}" reflow="true"
-            emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" width="250"
-              sortBy="#{absence.fullname}">
-              <h:outputText value="#{absenceBean.getDisplayedName(absence)}" />
-            </p:column>
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/from')}" width="100"
-              styleClass="absence-date-field" sortBy="#{absence.from}">
-              <h:outputText value="#{absence.from}">
-                <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
-              </h:outputText>
-            </p:column>
-
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/till')}" width="100"
-              styleClass="absence-date-field" sortBy="#{absence.until}">
-              <h:outputText value="#{absence.until}">
-                <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
-              </h:outputText>
-            </p:column>
-
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}"
-              sortBy="#{absence.comment}">
-              <h:outputText value="#{absence.comment}" />
-            </p:column>
-
-            <p:column styleClass="absences-table-action-column">
-              <p:commandLink id="edit-absence" process="absence-table"
-                styleClass="absences-table-action-column-icon-button" actionListener="#{logic.editAbsence(absence)}"
-                oncomplete="PF('editAbsenceDialog').show()" update="@widgetVar(editAbsenceDialog)"
-                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
-                rendered="#{absenceBean.isAbsenceEditable(absence) }">
-                <span class="fa fa-edit fa-lg" />
-              </p:commandLink>
-              <p:commandLink id="delete-absence" process="@this" actionListener="#{logic.preDelete(absence)}"
-                oncomplete="PF('deleteAbsenceConfirmation').show();"
-                styleClass="absences-table-action-column-icon-button"
-                rendered="#{absenceBean.isAbsenceDeletable(absence)}"
-                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
-                <span class="fa fa-close fa-lg" />
-              </p:commandLink>
-            </p:column>
-          </p:dataTable>
+          
+          <div class="absence-table-container">
+            <p:dataTable id="absence-table" styleClass="absence-table" scrollable="true" scrollHeight="100%"
+              value="#{data.displayedAbsences}" var="absence" sortBy="#{absence.from}" reflow="true"
+              emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
+              <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}"
+                sortBy="#{absence.fullname}">
+                <h:outputText value="#{absenceBean.getDisplayedName(absence)}" />
+              </p:column>
+              <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/from')}"
+                styleClass="absence-date-field" sortBy="#{absence.from}">
+                <h:outputText value="#{absence.from}">
+                  <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
+                </h:outputText>
+              </p:column>
+  
+              <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/till')}"
+                styleClass="absence-date-field" sortBy="#{absence.until}">
+                <h:outputText value="#{absence.until}">
+                  <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
+                </h:outputText>
+              </p:column>
+  
+              <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}"
+                sortBy="#{absence.comment}">
+                <h:outputText value="#{absence.comment}" />
+              </p:column>
+  
+              <p:column styleClass="absences-table-action-column">
+                <p:commandLink id="edit-absence" process="absence-table"
+                  styleClass="absences-table-action-column-icon-button" actionListener="#{logic.editAbsence(absence)}"
+                  oncomplete="PF('editAbsenceDialog').show()" update="@widgetVar(editAbsenceDialog)"
+                  title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
+                  rendered="#{absenceBean.isAbsenceEditable(absence) }">
+                  <span class="fa fa-edit fa-lg" />
+                </p:commandLink>
+                <p:commandLink id="delete-absence" process="@this" actionListener="#{logic.preDelete(absence)}"
+                  oncomplete="PF('deleteAbsenceConfirmation').show();"
+                  styleClass="absences-table-action-column-icon-button"
+                  rendered="#{absenceBean.isAbsenceDeletable(absence)}"
+                  title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
+                  <span class="fa fa-close fa-lg" />
+                </p:commandLink>
+              </p:column>
+            </p:dataTable>
+          </div>
         </h:panelGroup>
       </h:form>
     </h:panelGroup>

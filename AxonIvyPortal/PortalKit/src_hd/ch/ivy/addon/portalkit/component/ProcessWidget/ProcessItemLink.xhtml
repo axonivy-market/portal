@@ -6,13 +6,11 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 
 <ui:composition>
-  <p:commandLink id="process-item" actionListener="#{processWidgetBean.startProcess(processLink, isExpress)}"
-    styleClass="process-item">
+  <p:commandLink id="process-item" actionListener="#{processWidgetBean.startProcess(process)}"
+    styleClass="process-item" target="#{processWidgetBean.targetToStartProcess(process)}"
+    ajax="#{!processWidgetBean.isExternalLink(process)}" >
     <ui:include src="ProcessItem.xhtml">
-      <ui:param name="processName" value="#{processName}" />
-      <ui:param name="processType" value="process-item" />
-      <ui:param name="isExpress" value="#{isExpress}" />
-      <ui:param name="processDescription" value="#{processDescription}" />
+      <ui:param name="process" value="#{process}" />
     </ui:include>
   </p:commandLink>
 </ui:composition>

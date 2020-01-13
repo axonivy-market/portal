@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -61,7 +62,7 @@ public class CaseStateFilter extends CaseFilter {
       selectedFilteredStates = new ArrayList<>(filteredStates);
     }
 
-    CaseQuery query = CaseQuery.create();
+    CaseQuery query = CaseUtils.createBusinessCaseQuery();
     IFilterQuery filterQuery = query.where();
     selectedFilteredStates.forEach(state -> filterQuery.or().state().isEqual(state));
     return query;
