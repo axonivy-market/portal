@@ -38,6 +38,7 @@ import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -202,7 +203,7 @@ public class ChatAssigneeBean implements Serializable {
   }
 
   private CaseQuery queryCaseHasGroupChat() {
-    CaseQuery caseQuery = CaseQuery.create();
+    CaseQuery caseQuery = CaseUtils.createBusinessCaseQuery();
     caseQuery.where().caseId().isEqual(task.getCase().getBusinessCase().getId()).and().customField()
         .stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).isNotNull();
     return caseQuery;

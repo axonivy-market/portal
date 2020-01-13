@@ -1,5 +1,9 @@
 package ch.ivy.addon.portalkit.service;
 
+import static ch.ivy.addon.portalkit.enums.StatisticChartType.CASES_BY_FINISHED_TASK;
+import static ch.ivy.addon.portalkit.enums.StatisticChartType.CASES_BY_STATE;
+import static ch.ivy.addon.portalkit.enums.StatisticChartType.TASK_BY_EXPIRY;
+import static ch.ivy.addon.portalkit.enums.StatisticChartType.TASK_BY_PRIORITY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.AFTER_18;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.APRIL_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.AUGUST_CMS;
@@ -79,6 +83,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -126,6 +131,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class StatisticService extends BusinessDataService<StatisticChart> {
 
+  private static final String CHART_NAME = "name";
   private static final String CHART_LEGEND_POSITION_LEFT = "left";
   private static final String CHART_LEGEND_POSITION_BOTTOM = "bottom";
   private static StatisticColors statisticColors;
@@ -145,17 +151,52 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   public List<StatisticChart> findStatisticChartsByUserId(long userId) {
     List<StatisticChart> result = new ArrayList<>();
     try {
+      
       Filter<StatisticChart> statisticChartQuery = repo().search(getType()).numberField(USER_ID).isEqualTo(userId);
       Result<StatisticChart> queryResult = statisticChartQuery.execute();
       long totalCount = queryResult.totalCount();
       if(totalCount > LIMIT_10) {
         queryResult = statisticChartQuery.limit(Math.toIntExact(totalCount)).execute();
       }
-      result = queryResult.getAll().stream().sorted(Comparator.comparing(StatisticChart::getPosition)).collect(Collectors.toList());
+      result = queryResult
+          .getAll()
+          .stream()
+          .sorted(Comparator.comparing(StatisticChart::getPosition))
+          .collect(Collectors.toList());
+      
       return result;
     } catch (Exception e) {
       Ivy.log().error(e);
       return result;
+    }
+  }
+
+  /**
+   * Charts load from business data don't have list roles for current user
+   * This method initialize role list for charts load from business data
+   * @param result
+   */
+  private void initRolesForSavedChart(List<StatisticChart> result) {
+    List<StatisticChartType> arrs = Arrays.asList(TASK_BY_PRIORITY, CASES_BY_STATE, TASK_BY_EXPIRY, CASES_BY_FINISHED_TASK);
+    List<Object> roles = null;
+    // Find first chart which unselect all roles, when all roles are unselected, getRoles() from filter return empty
+    StatisticChart firstChartUnselectAllRoles = result
+        .stream()
+        .filter(chart -> arrs.contains(chart.getType()) && CollectionUtils.isEmpty(chart.getFilter().getSelectedRoles()))
+        .findFirst()
+        .orElseGet(null);
+    
+    if (firstChartUnselectAllRoles != null) {
+      StatisticFilter filter = firstChartUnselectAllRoles.getFilter();
+      filter.initRoles();
+      roles = filter.getRoles();
+      
+      // set all roles for other charts which unselect all roles
+      for (StatisticChart chart : result) {
+        if (arrs.contains(chart.getType()) && CollectionUtils.isEmpty(chart.getFilter().getSelectedRoles()) && !chart.getId().equals(firstChartUnselectAllRoles.getId())){
+          chart.getFilter().setRoles(roles);
+        }
+      }
     }
   }
 
@@ -704,17 +745,18 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     statisticChart.setName(Optional.ofNullable(chartName).orElse("New chart"));
     statisticChart.setPosition(countStatisticChartsByUserId(creatorId));
     statisticChart.setDefaultChart(String.valueOf(isDefault));
+    
     if (filter.getIsAllCaseStatesSelected()) {
       StatisticFilter newFilter = ObjectUtils.clone(filter);
       if (filter.getIsAllRolesSelected()) {
         newFilter.setSelectedRoles(new ArrayList<>());
       }
-
       statisticChart.setFilter(newFilter);
     } else {
       statisticChart.setFilter(filter);
     }
     BusinessDataInfo<StatisticChart> info = save(statisticChart);
+    
     return findById(info.getId());
   }
 
@@ -1070,7 +1112,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   public void generateChartModelForStatisticCharts(List<StatisticChart> statisticChartList) {
     if (!statisticChartList.isEmpty()) {
       fetchStatisticColor();
+      initRolesForSavedChart(statisticChartList);
     }
+    
     for (StatisticChart statisticChart : statisticChartList) {
       switch (statisticChart.getType()) {
         case TASK_BY_PRIORITY:
@@ -1293,9 +1337,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   public boolean checkStatisticChartNameExisted(long userId, String chartName) {
-    List<StatisticChart> statisticChartList = findStatisticChartsByUserId(userId);
-    return statisticChartList.stream().filter(chart -> StringUtils.equals(chart.getName(), chartName)).findFirst()
-        .isPresent();
+   return repo().search(getType()).numberField(USER_ID).isEqualTo(userId)
+       .and().textField(CHART_NAME).isEqualToIgnoringCase(chartName).limit(1).execute().count() > 0;
   }
 
   public void removeStatisticChartsByUserId(long userId) {
@@ -1303,20 +1346,16 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     result.stream().forEach(item -> repo().delete(item));
   }
 
-  public boolean hasDefaultChart(long userId) {
-    List<StatisticChart> findStatisticChartsByUserId = findStatisticChartsByUserId(userId);
-    return isDefaultChart(findStatisticChartsByUserId);
-  }
-  
-  public boolean isDefaultChart(List<StatisticChart> findStatisticChartsByUserId) {
-    return findStatisticChartsByUserId.stream().anyMatch(chart -> StringUtils.equalsIgnoreCase("true", chart.getDefaultChart()));
+  public boolean isDefaultChart(List<StatisticChart> statisticCharts) {
+    return statisticCharts.stream().anyMatch(chart -> StringUtils.equalsIgnoreCase("true", chart.getDefaultChart()));
   }
   
   public boolean checkDefaultStatisticChartNameExisted(long userId, String chartName) {
-    List<StatisticChart> statisticChartList = findStatisticChartsByUserId(userId);
-    return statisticChartList.stream().filter(
-        chart -> StringUtils.equals(chart.getName(), chartName) && 
-        StringUtils.equalsIgnoreCase("true", chart.getDefaultChart()))
-        .findFirst().isPresent();
+   return checkStatisticChartNameExisted(userId, chartName);
+  }
+  
+  public StatisticChart findStatisticChartByUserIdAndChartName(long userId, String chartName) {
+    return repo().search(getType()).numberField(USER_ID).isEqualTo(userId)
+        .and().textField(CHART_NAME).isEqualToIgnoringCase(chartName).limit(1).execute().getFirst();
   }
 }

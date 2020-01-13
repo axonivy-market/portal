@@ -10,6 +10,7 @@ import org.primefaces.model.CheckboxTreeNode;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -39,7 +40,7 @@ public class CaseCategoryFilter extends CaseFilter {
     if (CollectionUtils.isEmpty(categoryPaths)) {
       return null;
     }
-    CaseQuery caseQuery = CaseQuery.create();
+    CaseQuery caseQuery = CaseUtils.createBusinessCaseQuery();
     IFilterQuery filterQuery = caseQuery.where();
     for (String category : categoryPaths) {
       if (StringUtils.equals(category, CategoryUtils.NO_CATEGORY)) {

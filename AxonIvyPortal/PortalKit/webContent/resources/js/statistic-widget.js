@@ -146,3 +146,60 @@ function donutExtender() {
   // merge all options into the main chart options
   jQuery.extend(true, this.cfg.config.options, options);
 }
+
+var toggleColumn = document.getElementsByClassName("elapsed-time-detail-toggle-column");
+var hiddenColumn =  document.getElementsByClassName("js-elapsed-case");
+var caseTable = document.getElementsByClassName("case-table");
+
+var elapsedTimeChartDetail = {
+
+	setupHeader: function() {
+		if(window.innerWidth < 1024) {
+			this.hideColumnWhenResizeScreen(hiddenColumn);
+			this.toggleIcon();
+		} else {
+			this.displayColumnWhenResizeScreen(hiddenColumn);
+			this.toggleIcon();
+		}
+	},
+	
+	toggleColumn: function() {
+		if($(hiddenColumn).hasClass("ui-hidden")) {
+			this.displayColumnWhenResizeScreen(hiddenColumn);
+			this.toggleIcon();
+			$(caseTable).css("min-width", "900px");
+		} else {
+			this.hideColumnWhenResizeScreen(hiddenColumn);
+			this.toggleIcon();
+			$(caseTable).css("min-width", "0");
+		}
+	},
+	
+	toggleIcon: function() {
+		if($(toggleColumn).hasClass("fa fa-plus")) {
+			$(toggleColumn).removeClass("fa fa-plus");
+			$(toggleColumn).addClass("fa fa-minus");
+		} else {
+			$(toggleColumn).removeClass("fa fa-minus");
+			$(toggleColumn).addClass("fa fa-plus");
+		}
+	},
+	
+	displayColumnWhenSort: function() {
+		if(window.innerWidth < 1024) {
+			this.displayColumnWhenResizeScreen(hiddenColumn);
+			$(toggleColumn).removeClass("fa fa-plus");
+			$(toggleColumn).addClass("fa fa-minus");
+			$(caseTable).css("min-width", "900px");
+		}
+	},
+
+	hideColumnWhenResizeScreen: function(column) {
+		$(column).addClass("ui-hidden");
+	},
+	
+	displayColumnWhenResizeScreen: function(column) {
+		$(column).removeClass("ui-hidden");
+	}
+}
+

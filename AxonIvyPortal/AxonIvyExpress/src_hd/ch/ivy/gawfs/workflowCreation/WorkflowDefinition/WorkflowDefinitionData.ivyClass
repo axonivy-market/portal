@@ -32,3 +32,7 @@ isDisplayProcessOwner Boolean #field
 isDisplayProcessOwner PERSISTENT #fieldModifier
 isSelectProcessOwnerResponsibles Boolean #field
 isSelectProcessOwnerResponsibles PERSISTENT #fieldModifier
+importExpressFile org.primefaces.model.UploadedFile #field
+importExpressFile PERSISTENT #fieldModifier
+exportExpressFile org.primefaces.model.StreamedContent #field
+exportExpressFile PERSISTENT #fieldModifier

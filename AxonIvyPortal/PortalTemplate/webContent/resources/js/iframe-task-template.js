@@ -34,6 +34,7 @@ function checkUrl(iFrame) {
   if (path.match("/default/end.xhtml$") || path.match("/default/end.jsp$")) {
     var href = iFrame.contentWindow.location.href;
     var taskId = href.substring(href.lastIndexOf("=") + 1);
+    iFrame.src = "about:blank";
     redirectToEndPageCommand([{
       name : 'taskId',
       value : taskId

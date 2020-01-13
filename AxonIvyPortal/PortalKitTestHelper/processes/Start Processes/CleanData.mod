@@ -416,7 +416,10 @@ Ca0 f35 51 547 26 26 14 0 #rect
 Ca0 f35 @|EndIcon #fIcon
 Ca0 f36 actionTable 'out=in;
 ' #txt
-Ca0 f36 actionCode 'import ch.ivy.addon.portalkit.test.util.BusinessDataUtils;
+Ca0 f36 actionCode 'import org.apache.commons.collections4.CollectionUtils;
+import ch.ivy.addon.portalkit.bo.ExternalLink;
+import ch.ivy.addon.portalkit.service.ExternalLinkService;
+import ch.ivy.addon.portalkit.test.util.BusinessDataUtils;
 import ch.ivy.addon.portalkit.test.util.CaseUtils;
 import ch.ivy.addon.portalkit.service.UserProcessService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -434,7 +437,17 @@ SecurityUtils.updatePermissionsOfTestUsers();
 GlobalSettingService globalSettingService = new GlobalSettingService();
 globalSettingService.deleteAll(globalSettingService.findAll());
 
-' #txt
+
+List<ExternalLink> privateExternalLinks = ExternalLinkService.getInstance().findStartableLink("demo");
+if (CollectionUtils.isNotEmpty(privateExternalLinks)) {
+  for (int i = 0; i < privateExternalLinks.size(); i++) {
+    if (privateExternalLinks.get(i).isPublic()) {
+      privateExternalLinks.remove(privateExternalLinks.get(i));
+    }
+  }
+}
+
+ExternalLinkService.getInstance().deleteAll(privateExternalLinks);' #txt
 Ca0 f36 security system #txt
 Ca0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
