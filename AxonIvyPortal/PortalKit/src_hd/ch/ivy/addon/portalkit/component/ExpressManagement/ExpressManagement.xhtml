@@ -7,7 +7,7 @@
 
 <cc:implementation>
 
-  <h:form id="express-management-form">
+  <h:form id="express-management-form" styleClass="express-management-form">
     <div class="ui-g">
       <div class="ui-g-12 TexAlRight u-padding-0">
         <p:commandButton id="import-express-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/importExpress')}" partialSubmit="true"
@@ -21,9 +21,9 @@
       <div class="ui-g-12 u-padding-0 MarTop5">
         <p:dataTable id="express-workflow-summary-table" widgetVar="express-workflow-summary-table"
           var="express" value="#{data.expressProcessList}" selection="#{data.selectedExpressProcessList}"
-          styleClass="express-workflow-summary-table" rowKey="#{express.processName}"
+          styleClass="express-workflow-summary-table admin-table" rowKey="#{express.processName}"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-          scrollable="true" scrollHeight="340">
+          scrollable="true" scrollHeight="240">
 
           <p:ajax event="toggleSelect" update="#{p:component('export-express-btn')}" />
           <p:ajax event="rowSelectCheckbox" update="#{p:component('export-express-btn')}" global="false" />
@@ -33,7 +33,7 @@
 
           <p:column selectionMode="multiple" styleClass="express-selection-column" />
 
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}">
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}" filterBy="#{express.processName}">
             <h:outputText value="#{express.processName}" />
           </p:column>
 

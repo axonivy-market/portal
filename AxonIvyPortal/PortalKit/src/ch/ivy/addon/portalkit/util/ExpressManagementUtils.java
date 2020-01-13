@@ -49,16 +49,16 @@ public class ExpressManagementUtils {
   private static final String PATTERN =  Ivy.cms().findContentObjectValue("/patterns/dateTimePattern", Locale.ENGLISH).getContentAsString();
   @SuppressWarnings("serial")
   private static final Type EXPRESS_LIST_CONVERT_TYPE = new TypeToken<List<ExpressWorkFlow>>() {}.getType();
-  private static final String EXPRESS_TYPE = "AHWF";
+  private static final String EXPRESS_TYPE = "AHWF"; // this variable is equal to process type REPEAT in ch.ivy.gawfs.enums.ProcessType
 
   /**
-   * Find express repeat workflow which is ready to execute and start by current user
+   * Find express repeat workflow list which are ready to execute and start
    * 
-   * @return List of Express process
+   * @return List of Express workflow
    */
   public List<ExpressProcess> findExpressProcesses() {
     List<ExpressProcess> expressProcesses = new ArrayList<>();
-    List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessOrderByName(EXPRESS_TYPE);
+    List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessByProcessType(EXPRESS_TYPE);
     for (ExpressProcess wf : workflows) {
       if (PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(wf)) {
         expressProcesses.add(wf);
@@ -83,8 +83,9 @@ public class ExpressManagementUtils {
    * @return output messages after run import process
    */
   @SuppressWarnings("unchecked")
-  public List<String> importExpressProcesses(UploadedFile expressData) {
-    List<String> outputMessages = new ArrayList<>(Arrays.asList(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/failed"), StringUtils.EMPTY));
+  public List<Object> importExpressProcesses(UploadedFile expressData) {
+    List<ExpressProcess> outputExpressProcessList = new ArrayList<>();
+    List<Object> outputMessages = new ArrayList<>(Arrays.asList(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/failed"), StringUtils.EMPTY, outputExpressProcessList));
     StringBuilder importExpressResult = new StringBuilder();
     StopWatch stopWatch = new StopWatch();
     stopWatch.start();
@@ -127,7 +128,7 @@ public class ExpressManagementUtils {
               JsonElement jsonElement = jsonObject.get(EXPRESS_WORKFLOW);
               List<ExpressWorkFlow> expressWorkFlowsList = gson.fromJson(jsonElement, EXPRESS_LIST_CONVERT_TYPE);
               if (expressWorkFlowsList != null) {
-                int errorCounts = deployExpressWorkflows(importExpressResult, memberList, expressWorkFlowsList);
+                int errorCounts = deployExpressWorkflows(importExpressResult, memberList, expressWorkFlowsList, outputExpressProcessList);
                 if (errorCounts == 0) {
                   outputMessages.set(0, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/successful"));
                 } else if (errorCounts < expressWorkFlowsList.size()) {
@@ -168,7 +169,7 @@ public class ExpressManagementUtils {
   }
 
   private int deployExpressWorkflows(StringBuilder importExpressResult, List<String> memberList,
-      List<ExpressWorkFlow> expressWorkFlowsList) {
+      List<ExpressWorkFlow> expressWorkFlowsList, List<ExpressProcess> outputExpressProcessList) {
     int errorCounts = 0;
     // Save to BusinessData
     for (ExpressWorkFlow expressWorkFlow : expressWorkFlowsList) {
@@ -201,6 +202,9 @@ public class ExpressManagementUtils {
 
       addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/process/installedProcessLog", Arrays.asList(expressProcess.getProcessName())), ExpressMessageType.INFO);
       importExpressResult.append(StringUtils.LF);
+
+      // Update output process
+      outputExpressProcessList.add(expressProcess);
     }
 
     return errorCounts;
