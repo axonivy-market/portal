@@ -233,11 +233,11 @@ This feature is put in :ref:`Admin Settings <settings-admin-settings>`.
 .. figure:: images/express-management-tab.png
 
 .. note:: 
-  To use this feature, user needs to have role AXONIVY_PORTAL_ADMIN.
+  To use this feature, user needs to have role :guilabel:`AXONIVY_PORTAL_ADMIN`.
   
 
-How to export:
-""""""""""""""
+HowTo: Export Express process
+"""""""""""""""""""""""""""""
 
 First, you need to choose workflows in Express workflows table, selected workflows will be export to the JSON file.
 You can select multi workflows by click checkbox :guilabel:`ALL`.
@@ -256,12 +256,11 @@ After reviewed and make sure workflows are collected, press :guilabel:`Download`
   The export file is a JSON file, it contains a version of express and express process data. Don’t edit this file manually.
 ..
 
-Import Express
-^^^^^^^^^^^^^^
-Import Express is a function to help Administrator can import the Express process into the Portal system from a backup file.
 
-How to import:
-""""""""""""""
+HowTo: Import Express process
+"""""""""""""""""""""""""""""
+
+Import Express is a function to help Administrator can import the Express process into the Portal system from a backup file.
 
 Press :guilabel:`Import Express` button, Import Express dialog will display.
 Once :guilabel:`Import Express` dialog is open, press :guilabel:`Select` button and choose the Express JSON file which store workflows you want to import.
