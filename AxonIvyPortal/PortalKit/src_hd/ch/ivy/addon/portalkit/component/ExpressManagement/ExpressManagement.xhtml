@@ -6,6 +6,7 @@
 </cc:interface>
 
 <cc:implementation>
+  <f:event listener="#{logic.initialize}" type="preRenderComponent" />
 
   <h:form id="express-management-form" styleClass="express-management-form">
     <div class="ui-g">
@@ -67,7 +68,7 @@
 
         <div jsf:id="express-export-selected" class="ui-g-12 express-export-selected">
           <ui:repeat var="process" value="#{data.selectedExpressProcessList}">
-            <li class="MarTop5"><span>#{process.processName} - #{process.processType}</span></li>
+            <li class="MarTop5"><span>#{process.processName}</span></li>
           </ui:repeat>
         </div>
       </h:panelGroup>
