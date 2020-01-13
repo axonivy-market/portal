@@ -14,21 +14,23 @@
   <f:event listener="#{logic.initData(task)}" type="preRenderComponent" />
   <div class="task-details-item-note ui-g">
 
-    <div class="task-detail-section-title ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12">
-      <div class="ui-g-4 ui-xl-4 ui-lg-4 ui-md-4 ui-sm-6 u-truncate-text u-padding-0">
+    <div class="task-detail-section-title ui-g-12">
+      <div class="ui-g-4 u-truncate-text u-padding-0">
         <i class="fa fa-history" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskNotes')}
       </div>
-      <div class="task-history-button-container ui-g-8 ui-sm-12 u-padding-0">
+      <div class="task-history-button-container ui-g-8 u-padding-0">
         <h:panelGroup layout="block">
           <p:link id="show-more-note-link" styleClass="task-details-document-add-link note-show-more-link ui-commandlink" target="_blank"
             href="#{caseTaskNoteHistoryBean.getTaskNoteHistoryLink(task)}" rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
-            <span class="fa fa-external-link-square task-note-show-more-link-icon" />
-            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}" />
+            <span class="fa fa-external-link-square note-show-more-link-icon" />
+            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
+            <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:link>
           <p:commandLink id="add-note-command" styleClass="task-details-document-add-link" rendered="#{caseTaskNoteHistoryBean.showAddNote}"
             oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()" actionListener="#{data.setTask(task)}">
-            <span class="fa fa-plus-circle task-details-note-add-link-icon" />
-            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" />
+            <span class="fa fa-plus-circle" />
+            <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}</span>
+            <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
           </p:commandLink>
         </h:panelGroup>
       </div>

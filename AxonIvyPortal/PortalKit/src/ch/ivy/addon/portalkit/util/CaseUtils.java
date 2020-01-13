@@ -15,6 +15,7 @@ import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.IProcessStart;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.util.Pair;
 
 public final class CaseUtils {
@@ -64,5 +65,9 @@ public final class CaseUtils {
           .collect(Collectors.toList());
     }
     return new ArrayList<>(notes);
+  }
+
+  public static CaseQuery createBusinessCaseQuery() {
+    return CaseQuery.businessCases();
   }
 }

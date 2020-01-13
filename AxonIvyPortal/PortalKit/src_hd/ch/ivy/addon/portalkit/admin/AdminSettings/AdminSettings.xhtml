@@ -18,7 +18,7 @@
   <!-- TAB VIEW -->
   <p:tabView id="adminTabView" rendered="#{permissionBean.hasAdminPermission()}">
 
-    <p:ajax event="tabChange" listener="#{logic.onTabChange}" />	
+    <p:ajax event="tabChange" listener="#{logic.onTabChange}" onstart="refreshExpressManagement();"/>	
     <!-- APPLICATION TAB -->
     <p:tab id="applicationTab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applications')}">
       <h:form prependId="false" id="applicationForm">
@@ -172,7 +172,27 @@
         </p:dataTable>
       </h:form>
     </p:tab>
+
+    <!-- EXPRESS MANAGEMENT  -->
+    <p:tab id="express-management-tab" rendered="#{expressManagementBean.isShowExpressManagementTab()}"
+      title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressManagement')}">
+      <ic:ch.ivy.addon.portalkit.component.ExpressManagement id="express-management-component" />
+    </p:tab>
   </p:tabView>
+  
+  <!-- Clean selection on Express table when change tab -->
+  <script type="text/javascript">
+      function refreshExpressManagement() {
+        var expressTab = $('[id$=":express-management-tab"]');
+        if (expressTab.length > 0) {
+          var expressManagementTable = $('[id$=":express-workflow-summary-table"');
+          if (expressManagementTable.length > 0) {
+            PF('express-workflow-summary-table').unselectAllRows();
+            PF('export-express-btn').disable();
+          }
+        }
+      }
+  </script>
 
   <!-- APPLICATION DIALOG-->
   <p:dialog header="#{data.dialogTitle}" id="appDialog" onShow="$('body').css({overflow:'hidden'})"

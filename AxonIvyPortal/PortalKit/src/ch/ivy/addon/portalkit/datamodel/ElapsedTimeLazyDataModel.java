@@ -42,7 +42,7 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
   public List<ICase> load(int first, int pageSize, String sortField, SortOrder sortOrder,
       Map<String, Object> filters) {
     criteria.setSortField(sortField);
-    criteria.setSortDescending(sortOrder == SortOrder.ASCENDING);
+    criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
     if (first == 0) {
       initializedDataModel();
     }
