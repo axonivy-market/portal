@@ -9,16 +9,19 @@
 </cc:interface>
 
 <cc:implementation>
+  <h:outputScript library="js" name="statistic-widget.js" />
   <f:event listener="#{elapsedTimeDetailsBean.initialize(cc.attrs.caseCategory, cc.attrs.statisticChart)}" type="preRenderComponent" />
   <f:event listener="#{logic.initialize(cc.attrs.caseCategory)}" type="preRenderComponent" />
-  <h:panelGroup id="elapsed-time-details-category" layout="block" styleClass="elapsed-time-result-list MarTop10">
+  <h:panelGroup id="elapsed-time-details-category" layout="block" styleClass="elapsed-time-result-list MarTop10" >
     <h:form id="elapsed-time-detail-form" styleClass="elapsed-time-detail-form">
 
       <p:commandButton id="export-button" ajax="false" styleClass="export-excel Fright"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
         <p:dataExporter type="xlsx" target="case-table" fileName="#{elapsedTimeDetailsBean.getExcelFileName()}" />
       </p:commandButton>
-
+      
+      <p:commandLink id="elapsed-time-detail-toggle-column" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/ExpandOrCollapseColumn')}" onclick="elapsedTimeChartDetail.toggleColumn()"
+        styleClass="elapsed-time-detail-toggle-column"/>
       <p:dataTable id="case-table" widgetVar="case-table" var="elapsedTimeDetail" value="#{data.dataModel}" sortBy="ID" sortField="ID"
         rowKey="#{elapsedTimeDetail.getId()}" sortMode="single" lazy="true" scrollable="true" liveScroll="true" rows="20" scrollRows="20"
         styleClass="case-table">
@@ -35,19 +38,19 @@
           <h:outputText value="#{elapsedTimeDetail.getName()}" />
         </p:column>
 
-        <p:column id="case-creator" styleClass="case-creator"
+        <p:column id="case-creator" styleClass="case-creator js-elapsed-case"
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" sortable="false">
-          <h:outputText value="#{userFormatBean.format(elapsedTimeDetail.getCreatorUser().getFullName(), elapsedTimeDetail.getCreatorUserName())}" />
+          <h:outputText value="#{userFormatBean.format(elapsedTimeDetail.getCreatorUser().getFullName(), elapsedTimeDetail.getCreatorUserName())}"/>
         </p:column>
 
-        <p:column id="case-created" styleClass="case-created"
+        <p:column id="case-created" styleClass="case-created js-elapsed-case" 
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME')}" sortBy="false">
           <h:outputText value="#{elapsedTimeDetail.getStartTimestamp()}">
             <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
           </h:outputText>
         </p:column>
 
-        <p:column id="case-finished" styleClass="case-finished"
+        <p:column id="case-finished" styleClass="case-finished js-elapsed-case"
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME')}" sortBy="false">
           <h:outputText value="#{elapsedTimeDetail.getEndTimestamp()}">
             <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
@@ -80,6 +83,20 @@
             $caseTable.find(".ui-datatable-scrollable-header").css("width", "calc(100% - " + scrollbarWidth + "px)" );
           }
         };
+        
+        $(function(){
+          elapsedTimeChartDetail.setupHeader();
+        });
+        
+        $(document).ready(function() {
+        $("[id$='case-id']").click(function() {
+            elapsedTimeChartDetail.displayColumnWhenSort();
+        });
+        
+        $("[id$='case-elapsed-time']").click(function() {
+            elapsedTimeChartDetail.displayColumnWhenSort();
+        });
+	});
     </script>
   </h:panelGroup>
 </cc:implementation>

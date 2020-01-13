@@ -67,7 +67,7 @@ public class PortalExpressProcess implements Process {
 
   @Override
   public String getTypeName() {
-    return ProcessType.EXPRESS_PROCESS.getType();
+    return ProcessType.EXPRESS_PROCESS.name();
   }
 
   public String getProcessOwnerDisplayName() {

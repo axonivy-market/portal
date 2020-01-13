@@ -60,8 +60,9 @@
 
               <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}" rendered="#{not empty menuItem.getAttributes().get('isThirdPartyApp')}"
                 update="main-menu" process="main-menu" actionListener="#{logic.openApp(menuItem.href, task)}" ajax="false" target="_blank"
-                onclick="event.stopPropagation(); location.reload();" disabled="#{menuItem.disabled}" icon="#{menuItem.icon}"
-                value="#{menuItem.value}" iconPos="right" containerStyleClass="#{menuItem.styleClass}" />
+                disabled="#{menuItem.disabled}" icon="#{menuItem.icon}"
+                value="#{menuItem.value}" iconPos="right" containerStyleClass="#{menuItem.styleClass}"
+                onclick="restoreHighlightStateOfPreviousMenu();" />
 
               <!-- Loop sub-menu based on application -->
               <!-- Only show submenu for current application -->
@@ -86,7 +87,8 @@
                   <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}"
                     rendered="#{isThirdPartyApp and !isIvyLink}" target="_blank" url="#{subMenuItem.externalLink}" value="#{subMenuItem.label}"
                     styleClass="submenu" icon="#{subMenuItem.icon}" update="main-menu" process="main-menu"
-                    containerStyleClass="submenu-container #{firstSubItem} #{lastSubItem}" onclick="location.reload();" />
+                    containerStyleClass="submenu-container #{firstSubItem} #{lastSubItem}"
+                    onclick="restoreHighlightStateOfPreviousMenu();" />
 
                 </c:forEach>
               </c:if>
@@ -128,8 +130,17 @@
   </p:confirmDialog>
   <script type="text/javascript">
     function removeHighlightedMenuItem() {
+      console.log('nam');
       PF('main-menu').clearMenuState();
-      $(".active-menuitem.submenu-container").removeClass("active-menuitem");
+      $(".active-menuitem.submenu-container").removeClass('active-menuitem');
+    }
+    function restoreHighlightStateOfPreviousMenu () {
+      var $highlightedItem = $('.active-menuitem.submenu-container');
+      setTimeout(function() {
+        if ($highlightedItem.length) {
+          $highlightedItem.addClass('active-menuitem');
+        }
+      }, 1);
     }
   </script>
 </cc:implementation>

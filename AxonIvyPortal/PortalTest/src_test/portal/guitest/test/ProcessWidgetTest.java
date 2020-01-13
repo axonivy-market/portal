@@ -16,11 +16,14 @@ import com.jayway.awaitility.Duration;
 import portal.guitest.common.BaseTest;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.ProcessWidgetPage;
+import portal.guitest.page.ProcessWidgetPage.AddNewExternalLinkDialog;
 import portal.guitest.page.ProcessWidgetPage.AddNewProcessDialog;
 public class ProcessWidgetTest extends BaseTest {
 
   private static final String CLEAN_ALL_FAVORITE_PROCESSES = "(For autotest) Clean all favorite processes";
   private static final String CASE_MAP_LEAVES = "Case Map: Leave Request";
+  private static final String AGOOGLE_LINK = "AGoogle";
+  private static final String AAGOOGLE_LINK = "AAGoogle";
 
   private HomePage homePage;
   ProcessWidgetPage processWidget;
@@ -29,7 +32,6 @@ public class ProcessWidgetTest extends BaseTest {
   @Override
   public void setup() {
     super.setup();
-
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
   }
@@ -37,11 +39,8 @@ public class ProcessWidgetTest extends BaseTest {
   @Test
   public void testCanExpandCollapse() {
     processWidget = homePage.getProcessWidget();
-
     assertTrue(processWidget.isCompactMode());
-
     processWidget.expand();
-
     assertTrue(processWidget.isExpandedMode());
   }
 
@@ -56,10 +55,25 @@ public class ProcessWidgetTest extends BaseTest {
 
   @Test
   public void testDeleteProcess() {
-    String processName = "Google";
+    String processName = "AGoogle";
     String processLink = "google.com";
     processWidget = homePage.getProcessWidget();
-    createExternalTestProcess(processName, processLink);
+    processWidget.expand();
+    createExternalTestProcess(processName, processLink, false);
+    
+    processName = "AAGoogle";
+    processLink = "google.com";
+    createExternalTestProcess(processName, processLink, false);
+    
+    backToCompactProcessWidget();
+    AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
+    addNewProcessDialog.selectProcessByName(AAGOOGLE_LINK);
+    addNewProcessDialog.submitForm();
+    
+    addNewProcessDialog = processWidget.openNewProcessDialog();
+    addNewProcessDialog.selectProcessByName(AGOOGLE_LINK);
+    addNewProcessDialog.submitForm();
+    
     int numberOfProcesses = processWidget.getNumberOfFavoriteUserProcesses();
     processWidget.clickEditSwitchLink();
     int indexOfProcess = numberOfProcesses - 1;
@@ -67,24 +81,36 @@ public class ProcessWidgetTest extends BaseTest {
     assertTrue(processWidget.isDeleteProcessItemSelected(indexOfProcess));
     processWidget.clickSaveProcess();
     assertEquals(numberOfProcesses - 1, processWidget.getNumberOfFavoriteUserProcesses());
+    
+    processWidget = homePage.getProcessWidget();
+    processWidget.expand();
+    processWidget.deleteExternalLinkByFieldsetIndexAndIndex(0, 0);
+    backToCompactProcessWidget();
+    
+    assertEquals(0, processWidget.getNumberOfFavoriteUserProcesses());
   }
 
   @Test
   public void testSortFavoriteProcessByName() {
     processWidget = homePage.getProcessWidget();
-    String processName = "Google";
+    String processName = "AGoogle";
     String processLink = "google.com";
-    createExternalTestProcess(processName, processLink);
+    processWidget.expand();
+    createExternalTestProcess(processName, processLink, false);
+    backToCompactProcessWidget();
     AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.selectIvyProcessByName(CASE_MAP_LEAVES);
+    addNewProcessDialog.selectProcessByName(CASE_MAP_LEAVES);
     addNewProcessDialog.submitForm();
     addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.selectIvyProcessByName(CLEAN_ALL_FAVORITE_PROCESSES);
+    addNewProcessDialog.selectProcessByName(CLEAN_ALL_FAVORITE_PROCESSES);
+    addNewProcessDialog.submitForm();
+    addNewProcessDialog = processWidget.openNewProcessDialog();
+    addNewProcessDialog.selectProcessByName(processName);
     addNewProcessDialog.submitForm();
     processWidget.clickSortFavoriteProcessByName();
     assertEquals(CLEAN_ALL_FAVORITE_PROCESSES, processWidget.getProcessNameFromFavoriteProcessList(0));
-    assertEquals(CASE_MAP_LEAVES, processWidget.getProcessNameFromFavoriteProcessList(1));
-    assertEquals(processName, processWidget.getProcessNameFromFavoriteProcessList(2));
+    assertEquals(processName, processWidget.getProcessNameFromFavoriteProcessList(1));
+    assertEquals(CASE_MAP_LEAVES, processWidget.getProcessNameFromFavoriteProcessList(2));
   }
 
   @Test
@@ -117,38 +143,57 @@ public class ProcessWidgetTest extends BaseTest {
   @Test
   public void testReorderFavoriteProcess() {
     processWidget = homePage.getProcessWidget();
-    String processName = "Google";
+    processWidget.expand();
+    String processName = "AGoogle";
     String processLink = "google.com";
-    createExternalTestProcess(processName, processLink);
+    createExternalTestProcess(processName, processLink,false);
+    processName = "AAGoogle";
+    processLink = "google.com";
+    createExternalTestProcess(processName, processLink, false);
+    
+    backToCompactProcessWidget();
     AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.selectIvyProcessByName(CASE_MAP_LEAVES);
+    addNewProcessDialog.selectProcessByName(AGOOGLE_LINK);
     addNewProcessDialog.submitForm();
+    
     addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.selectIvyProcessByName(CLEAN_ALL_FAVORITE_PROCESSES);
+    addNewProcessDialog.selectProcessByName(CASE_MAP_LEAVES);
     addNewProcessDialog.submitForm();
+
+    addNewProcessDialog = processWidget.openNewProcessDialog();
+    addNewProcessDialog.selectProcessByName(CLEAN_ALL_FAVORITE_PROCESSES);
+    addNewProcessDialog.submitForm();
+
     processWidget.clickEditSwitchLink();
     processWidget.moveFavoriteProcess(1, 3);
     processWidget.clickSaveProcess();
+
     assertEquals(CASE_MAP_LEAVES, processWidget.getProcessNameFromFavoriteProcessList(0));
     assertEquals(CLEAN_ALL_FAVORITE_PROCESSES, processWidget.getProcessNameFromFavoriteProcessList(1));
-    processName = "AGoogle";
-    processLink = "google.com";
-    createExternalTestProcess(processName, processLink);
+
+    addNewProcessDialog = processWidget.openNewProcessDialog();
+    addNewProcessDialog.selectProcessByName(AAGOOGLE_LINK);
+    addNewProcessDialog.submitForm();
     assertEquals(processName, processWidget.getProcessNameFromFavoriteProcessList(3));
   }
 
   @Test
   // May not run on IE version 11.0.20 or later due to Selenium.
   public void testOpenExternalProcessInNewTab() {
-    String processName = "Google";
+    String processName = "AGoogle";
     String processLink = "google.com";
     processWidget = homePage.getProcessWidget();
-    if (processWidget.getProcess(processName) == null) {
-      createExternalTestProcess(processName, processLink);
-    }
+    processWidget.expand();
+    createExternalTestProcess(processName, processLink, false);
+    
+    backToCompactProcessWidget();
+    AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
+    addNewProcessDialog.selectProcessByName(AGOOGLE_LINK);
+    addNewProcessDialog.submitForm();
+    
     assertEquals(1, homePage.countBrowserTab());
 
-    processWidget.startProcess(processName);
+    processWidget.startProcess(AGOOGLE_LINK);
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
     homePage.switchLastBrowserTab();
     assertEquals("Google", homePage.getPageTitle());
@@ -158,7 +203,7 @@ public class ProcessWidgetTest extends BaseTest {
   public void testAddProcessBySelectingIvyProcess() {
     processWidget = homePage.getProcessWidget();
     AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.selectIvyProcessByName(CLEAN_ALL_FAVORITE_PROCESSES);
+    addNewProcessDialog.selectProcessByName(CLEAN_ALL_FAVORITE_PROCESSES);
     addNewProcessDialog.submitForm();
     assertNotNull(processWidget.getProcess(CLEAN_ALL_FAVORITE_PROCESSES));
   }
@@ -175,7 +220,7 @@ public class ProcessWidgetTest extends BaseTest {
   public void testAddCaseMapBySelectingCaseMap() {
     processWidget = homePage.getProcessWidget();
     AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
-    addNewProcessDialog.selectIvyProcessByName(CASE_MAP_LEAVES);
+    addNewProcessDialog.selectProcessByName(CASE_MAP_LEAVES);
     addNewProcessDialog.submitForm();
     assertNotNull(processWidget.getProcess(CASE_MAP_LEAVES));
   }
@@ -185,7 +230,6 @@ public class ProcessWidgetTest extends BaseTest {
     processWidget = homePage.getProcessWidget();
     AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
     assertTrue(addNewProcessDialog.isDefaultIcon());
-
   }
 
   @Test
@@ -195,7 +239,6 @@ public class ProcessWidgetTest extends BaseTest {
     addNewProcessDialog.clickChangeIconButton();
     addNewProcessDialog.inputSearchedIconName("area chart");
     assertEquals(1, addNewProcessDialog.getDisplayedIconAmount());
-
   }
 
   @Test
@@ -205,13 +248,17 @@ public class ProcessWidgetTest extends BaseTest {
     addNewProcessDialog.clickChangeIconButton();
     addNewProcessDialog.inputSearchedIconName("chart1");
     assertEquals(0, addNewProcessDialog.getDisplayedIconAmount());
-
   }
 
-  private void createExternalTestProcess(String processName, String processLink) {
-    AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
-    processWidget.selectProcessTypeExternal();
-    addNewProcessDialog.inputDataForExternalProcess(processName, processLink);
-    addNewProcessDialog.submitForm();
+  private void createExternalTestProcess(String processName, String processLink, boolean isPublic) {
+    AddNewExternalLinkDialog addNewExternalLinkDialog = processWidget.openNewExternalLinkDialog();
+    addNewExternalLinkDialog.inputDataForExternalLink(processName, processLink, isPublic);
+    addNewExternalLinkDialog.submitForm();
+  }
+
+  public void backToCompactProcessWidget() {
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    homePage = new HomePage();
+    processWidget = homePage.getProcessWidget();
   }
 }

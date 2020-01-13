@@ -14,9 +14,9 @@ Dt0 @TextInP .responsibility .responsibility #zField
 Dt0 @StartSub f0 '' #zField
 Dt0 @EndSub f1 '' #zField
 Dt0 @GridStep f3 '' #zField
-Dt0 @PushWFArc f4 '' #zField
 Dt0 @PushWFArc f2 '' #zField
 Dt0 @InfoButton f5 '' #zField
+Dt0 @PushWFArc f4 '' #zField
 >Proto Dt0 Dt0 DefaultChart #zField
 Dt0 f0 inParamDecl '<> param;' #txt
 Dt0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> charts> result;' #txt
@@ -44,18 +44,18 @@ import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
 StatisticService service = new StatisticService();
+StatisticFilter statisticFilter = new StatisticFilter();
 String chartName1 = "My default chart 1";
 String chartName2 = "My default chart 2";
-StatisticChartType chartType = StatisticChartType.TASK_BY_PRIORITY;
-StatisticFilter statisticFilter = new StatisticFilter().init();
+long sessionUserId = ivy.session.getSessionUser().getId();
 
 if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName1)) {
-  StatisticChart newChart1 = service.createStatisticChart(statisticFilter, chartName1, chartType, ivy.session.getSessionUser().getId(), true);
+  StatisticChart newChart1 = service.createStatisticChart(statisticFilter, chartName1, StatisticChartType.TASK_BY_EXPIRY, sessionUserId, true);
   in.defaultCharts.add(newChart1);		
 }
 
 if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName2)) {
-  StatisticChart newChart2 = service.createStatisticChart(statisticFilter, chartName2, chartType, ivy.session.getSessionUser().getId(), true);
+  StatisticChart newChart2 = service.createStatisticChart(statisticFilter, chartName2, StatisticChartType.CASES_BY_STATE, sessionUserId, true);
   in.defaultCharts.add(newChart2);		
 }' #txt
 Dt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -67,8 +67,6 @@ Dt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f3 40 138 112 44 -52 -8 #rect
 Dt0 f3 @|StepIcon #fIcon
-Dt0 f4 expr out #txt
-Dt0 f4 96 79 96 138 #arcP
 Dt0 f2 expr out #txt
 Dt0 f2 96 182 96 241 #arcP
 Dt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -82,11 +80,12 @@ Dt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Dt0 f5 224 105 480 30 -237 -8 #rect
 Dt0 f5 @|IBIcon #fIcon
+Dt0 f4 96 79 96 138 #arcP
 >Proto Dt0 .type _ch.ivyteam.ivy.project.portal.examples.DefaultChartOverrideData #txt
 >Proto Dt0 .processKind CALLABLE_SUB #txt
 >Proto Dt0 0 0 32 24 18 0 #rect
 >Proto Dt0 @|BIcon #fIcon
-Dt0 f0 mainOut f4 tail #connect
-Dt0 f4 head f3 mainIn #connect
 Dt0 f3 mainOut f2 tail #connect
 Dt0 f2 head f1 mainIn #connect
+Dt0 f0 mainOut f4 tail #connect
+Dt0 f4 head f3 mainIn #connect

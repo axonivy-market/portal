@@ -1,0 +1,5 @@
+co: name={ExpandOrCollapseColumn} description={} changed={2020-01-08 12:17:31 CET} changedby={ntminh01} visualorder={0} guid={16F84DC5493B83C3} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16F84DC54CBC65F1} datatype={} isdefault={false} langid={de} description={} validfrom={2018-01-11 11:19:13 CET} validto={} changed={2020-01-08 12:17:21 CET} changedby={ntminh01} properties={} id={}
+val: guid={16F84DC54A340EE8} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-01-11 11:19:14 CET} validto={} changed={2020-01-08 12:17:21 CET} changedby={ntminh01} properties={} id={}
+val: guid={16F84DC54B39211D} datatype={} isdefault={true} langid={en} description={} validfrom={2017-12-12 02:03:30 CET} validto={} changed={2020-01-08 12:17:02 CET} changedby={ntminh01} properties={} id={}
+val: guid={16F84DC54BF44B85} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:35 CET} validto={} changed={2020-01-08 12:17:21 CET} changedby={ntminh01} properties={} id={}

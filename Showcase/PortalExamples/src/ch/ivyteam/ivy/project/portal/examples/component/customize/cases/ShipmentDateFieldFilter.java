@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
+import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
@@ -55,7 +56,7 @@ public class ShipmentDateFieldFilter extends CaseFilter {
       return null;
     }
 
-    CaseQuery query = CaseQuery.create();
+    CaseQuery query = CaseUtils.createBusinessCaseQuery();
     if (fromFinishedDate != null) {
       query.where().customField().timestampField(CUSTOM_TIMESTAMP_FIELD1).isGreaterOrEqualThan(fromFinishedDate);
     }

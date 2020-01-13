@@ -79,7 +79,8 @@ public enum PortalSecurity {
           portalApplication.getSecurityDescriptor().grantPermission(permission, adminUser);
         }
         grantPermissionsToForSecurityMember(Arrays.asList(
-            PortalPermission.STATISTIC_ANALYZE_TASK, PortalPermission.SHOW_CASE_DETAILS), adminUser);
+            PortalPermission.STATISTIC_ANALYZE_TASK, PortalPermission.SHOW_CASE_DETAILS, 
+            PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK), adminUser);
       }
 
       IUser demoUser = securityContext.findUser(Username.DEMO);
