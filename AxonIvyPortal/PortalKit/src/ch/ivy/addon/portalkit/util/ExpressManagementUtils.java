@@ -49,7 +49,24 @@ public class ExpressManagementUtils {
   private static final String PATTERN =  Ivy.cms().findContentObjectValue("/patterns/dateTimePattern", Locale.ENGLISH).getContentAsString();
   @SuppressWarnings("serial")
   private static final Type EXPRESS_LIST_CONVERT_TYPE = new TypeToken<List<ExpressWorkFlow>>() {}.getType();
-  
+  private static final String EXPRESS_TYPE = "AHWF";
+
+  /**
+   * Find express repeat workflow which is ready to execute and start by current user
+   * 
+   * @return List of Express process
+   */
+  public List<ExpressProcess> findExpressProcesses() {
+    List<ExpressProcess> expressProcesses = new ArrayList<>();
+    List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessOrderByName(EXPRESS_TYPE);
+    for (ExpressProcess wf : workflows) {
+      if (PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(wf)) {
+        expressProcesses.add(wf);
+      }
+    }
+    return expressProcesses;
+  }
+
   /**
    * Check if process name is existed or not
    * @param processName
