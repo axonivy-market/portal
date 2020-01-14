@@ -1,1 +1,1 @@
-Set to true to disable counting task in task list
+Set to true to disable counting task in task list to improve performance in case of a huge amount of tasks.
