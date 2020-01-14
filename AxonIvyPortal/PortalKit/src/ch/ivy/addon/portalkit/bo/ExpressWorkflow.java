@@ -3,7 +3,7 @@ package ch.ivy.addon.portalkit.bo;
 import java.io.Serializable;
 import java.util.List;
 
-public class ExpressWorkFlow implements Serializable {
+public class ExpressWorkflow implements Serializable {
 
   private static final long serialVersionUID = -3913837967758293604L;
   private ExpressProcess expressProcess;
