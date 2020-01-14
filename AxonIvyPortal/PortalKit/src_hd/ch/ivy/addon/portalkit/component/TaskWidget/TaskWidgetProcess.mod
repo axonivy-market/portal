@@ -80,6 +80,9 @@ Ts0 @UdProcessEnd f67 '' #zField
 Ts0 @PushWFArc f84 '' #zField
 Ts0 @PushWFArc f85 '' #zField
 Ts0 @PushWFArc f4 '' #zField
+Ts0 @UdMethod f5 '' #zField
+Ts0 @GridStep f64 '' #zField
+Ts0 @PushWFArc f66 '' #zField
 >Proto Ts0 Ts0 TaskWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 method start(String,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,Long) #txt
@@ -716,6 +719,32 @@ Ts0 f84 544 1088 587 1088 #arcP
 Ts0 f85 expr out #txt
 Ts0 f85 109 1088 192 1088 #arcP
 Ts0 f4 304 1088 416 1088 #arcP
+Ts0 f5 guid 16FA1BF8E993ECE2 #txt
+Ts0 f5 method preRenderTitle() #txt
+Ts0 f5 inParameterDecl '<> param;' #txt
+Ts0 f5 outParameterDecl '<> result;' #txt
+Ts0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>preRenderTitle()</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f5 83 1171 26 26 -23 15 #rect
+Ts0 f5 @|UdMethodIcon #fIcon
+Ts0 f64 actionTable 'out=in;
+' #txt
+Ts0 f64 actionCode in.dataModel.updateDisableTaskCount(); #txt
+Ts0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>update disableTaskCount</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f64 192 1162 144 44 -66 -8 #rect
+Ts0 f64 @|StepIcon #fIcon
+Ts0 f66 109 1184 192 1184 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -780,3 +809,5 @@ Ts0 f6 mainOut f84 tail #connect
 Ts0 f84 head f67 mainIn #connect
 Ts0 f62 mainOut f4 tail #connect
 Ts0 f4 head f6 mainIn #connect
+Ts0 f5 mainOut f66 tail #connect
+Ts0 f66 head f64 mainIn #connect
