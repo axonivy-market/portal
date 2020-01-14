@@ -246,7 +246,8 @@ Cs0 f24 592 138 112 44 -34 -8 #rect
 Cs0 f24 @|CallSubIcon #fIcon
 Cs0 f26 actionTable 'out=in;
 ' #txt
-Cs0 f26 actionCode in.statisticChartList.addAll(in.defaultCharts); #txt
+Cs0 f26 actionCode 'in.statisticChartList.addAll(in.defaultCharts);
+Thread.sleep(1000);' #txt
 Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

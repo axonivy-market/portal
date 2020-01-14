@@ -33,7 +33,7 @@ import com.google.gson.JsonObject;
 import ch.ivy.addon.portalkit.bo.ExpressFormElement;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExpressTaskDefinition;
-import ch.ivy.addon.portalkit.bo.ExpressWorkFlow;
+import ch.ivy.addon.portalkit.bo.ExpressWorkflow;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.enums.ExpressMessageType;
@@ -48,7 +48,7 @@ public class ExpressManagementUtils {
   private static final String EXPRESS_WORKFLOW = "expressWorkflow";
   private static final String PATTERN =  Ivy.cms().findContentObjectValue("/patterns/dateTimePattern", Locale.ENGLISH).getContentAsString();
   @SuppressWarnings("serial")
-  private static final Type EXPRESS_LIST_CONVERT_TYPE = new TypeToken<List<ExpressWorkFlow>>() {}.getType();
+  private static final Type EXPRESS_LIST_CONVERT_TYPE = new TypeToken<List<ExpressWorkflow>>() {}.getType();
   private static final String EXPRESS_TYPE = "AHWF"; // this variable is equal to process type REPEAT in ch.ivy.gawfs.enums.ProcessType
 
   /**
@@ -126,13 +126,13 @@ public class ExpressManagementUtils {
 
               JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
               JsonElement jsonElement = jsonObject.get(EXPRESS_WORKFLOW);
-              List<ExpressWorkFlow> expressWorkFlowsList = gson.fromJson(jsonElement, EXPRESS_LIST_CONVERT_TYPE);
-              if (expressWorkFlowsList != null) {
+              List<ExpressWorkflow> expressWorkflowsList = gson.fromJson(jsonElement, EXPRESS_LIST_CONVERT_TYPE);
+              if (expressWorkflowsList != null) {
                 try {
-                  int errorCounts = deployExpressWorkflows(importExpressResult, memberList, expressWorkFlowsList, outputExpressProcessList);
+                  int errorCounts = deployExpressWorkflows(importExpressResult, memberList, expressWorkflowsList, outputExpressProcessList);
                   if (errorCounts == 0) {
                     outputMessages.set(0, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/successful"));
-                  } else if (errorCounts < expressWorkFlowsList.size()) {
+                  } else if (errorCounts < expressWorkflowsList.size()) {
                     outputMessages.set(0, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/warning"));
                   }
                 } catch (Exception e) {
@@ -173,11 +173,11 @@ public class ExpressManagementUtils {
   }
 
   private int deployExpressWorkflows(StringBuilder importExpressResult, List<String> memberList,
-      List<ExpressWorkFlow> expressWorkFlowsList, List<ExpressProcess> outputExpressProcessList) {
+      List<ExpressWorkflow> expressWorkflowsList, List<ExpressProcess> outputExpressProcessList) {
     int errorCounts = 0;
     // Save to BusinessData
-    for (ExpressWorkFlow expressWorkFlow : expressWorkFlowsList) {
-      ExpressProcess expressProcess = expressWorkFlow.getExpressProcess();
+    for (ExpressWorkflow expressWorkflow : expressWorkflowsList) {
+      ExpressProcess expressProcess = expressWorkflow.getExpressProcess();
       importExpressResult.append(StringUtils.LF);
       addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/process/startDeployProcessLog", Arrays.asList(expressProcess.getProcessName())), ExpressMessageType.INFO);
 
@@ -199,10 +199,10 @@ public class ExpressManagementUtils {
       String processId = info.getId();
 
       // Save Task Definition
-      deployTaskDefForProcess(importExpressResult, memberList, expressWorkFlow, expressProcess, processId);
+      deployTaskDefForProcess(importExpressResult, memberList, expressWorkflow, expressProcess, processId);
 
       // Save Form Elements
-      deployFormElementForProcess(importExpressResult, expressWorkFlow, expressProcess, processId);
+      deployFormElementForProcess(importExpressResult, expressWorkflow, expressProcess, processId);
 
       addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/process/installedProcessLog", Arrays.asList(expressProcess.getProcessName())), ExpressMessageType.INFO);
       importExpressResult.append(StringUtils.LF);
@@ -215,8 +215,8 @@ public class ExpressManagementUtils {
   }
 
   private List<ExpressFormElement> deployFormElementForProcess(StringBuilder importExpressResult,
-      ExpressWorkFlow expressWorkFlow, ExpressProcess expressProcess, String processId) {
-    List<ExpressFormElement> expressFormElementList = expressWorkFlow.getExpressFormElements();
+      ExpressWorkflow expressWorkflow, ExpressProcess expressProcess, String processId) {
+    List<ExpressFormElement> expressFormElementList = expressWorkflow.getExpressFormElements();
     addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/formElement/installFormElement", Arrays.asList(expressProcess.getProcessName())), ExpressMessageType.INFO);
     expressFormElementList.forEach(formElement -> {
       formElement.setId(null);
@@ -228,8 +228,8 @@ public class ExpressManagementUtils {
   }
 
   private List<ExpressTaskDefinition> deployTaskDefForProcess(StringBuilder importExpressResult,
-      List<String> memberList, ExpressWorkFlow expressWorkFlow, ExpressProcess expressProcess, String processId) {
-    List<ExpressTaskDefinition> expressTaskDefinitionList = expressWorkFlow.getExpressTaskDefinitions();
+      List<String> memberList, ExpressWorkflow expressWorkflow, ExpressProcess expressProcess, String processId) {
+    List<ExpressTaskDefinition> expressTaskDefinitionList = expressWorkflow.getExpressTaskDefinitions();
     addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/taskDef/installTaskDefLog", Arrays.asList(expressProcess.getProcessName())), ExpressMessageType.INFO);
     expressTaskDefinitionList.forEach(taskDefinition -> {
       // Validate Users
@@ -304,9 +304,9 @@ public class ExpressManagementUtils {
    * @return a StreamedContent with content type as a JSON file
    */
   public StreamedContent exportExpressProcess(List<ExpressProcess> selectedExpressProcesses) {
-    List<ExpressWorkFlow> expressWorkFlowsList = new ArrayList<>();
+    List<ExpressWorkflow> expressWorkflowsList = new ArrayList<>();
     for (ExpressProcess expressProcess : selectedExpressProcesses) {
-      ExpressWorkFlow expressWorkFlow = new ExpressWorkFlow();
+      ExpressWorkflow expressWorkflow = new ExpressWorkflow();
       String processId = expressProcess.getId();
 
       List<ExpressTaskDefinition> expressTaskDefinitionsList =
@@ -315,14 +315,14 @@ public class ExpressManagementUtils {
       List<ExpressFormElement> expressFormElementsList =
           ExpressServiceRegistry.getFormElementService().findByProcessId(processId);
 
-      expressWorkFlow.setExpressProcess(expressProcess);
-      expressWorkFlow.setExpressTaskDefinitions(expressTaskDefinitionsList);
-      expressWorkFlow.setExpressFormElements(expressFormElementsList);
+      expressWorkflow.setExpressProcess(expressProcess);
+      expressWorkflow.setExpressTaskDefinitions(expressTaskDefinitionsList);
+      expressWorkflow.setExpressFormElements(expressFormElementsList);
 
-      expressWorkFlowsList.add(expressWorkFlow);
+      expressWorkflowsList.add(expressWorkflow);
     }
     Gson gson = new Gson();
-    JsonElement jsonElement = gson.toJsonTree(expressWorkFlowsList, EXPRESS_LIST_CONVERT_TYPE);
+    JsonElement jsonElement = gson.toJsonTree(expressWorkflowsList, EXPRESS_LIST_CONVERT_TYPE);
 
     JsonObject jsonObject = new JsonObject();
     jsonObject.addProperty(VERSION, PortalConstants.EXPRESS_VERSION);
