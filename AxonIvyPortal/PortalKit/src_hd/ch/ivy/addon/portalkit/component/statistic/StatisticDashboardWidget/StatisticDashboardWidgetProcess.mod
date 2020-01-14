@@ -804,13 +804,14 @@ if (!in.isDrilldownExpiryChart) {
 	 If statisticChartList is changed, we need to reload ChartJS canvas due to we have to rebuild chart
  	 Always set new value for isReloadChartContent when re-rendering component
 */
-in.isReloadChartContent = !in.isFinishLoadCharts || in.prevStatisticListSize != null && in.prevStatisticListSize != in.statisticChartList.size();
+StatisticDashboardBean statisticDashboardBean = ManagedBeans.get("statisticDashboardBean") as StatisticDashboardBean;
+in.isReloadChartContent = !in.isFinishLoadCharts || in.prevStatisticListSize != in.statisticChartList.size()  || statisticDashboardBean.isChartModelNotInitialized(in.statisticChartList);
 
 if (in.isReloadChartContent && StringUtils.isEmpty(in.selectedItemOfDrilldown)) {
 	// In case, isReloadChartContent indicator is true and not drilldown to expiry chart, we need to generate a placeholder chart to show on UI
 	// It will make comfortable when user is waiting for drawing canvas
-	StatisticDashboardBean statisticDashboardBean = ManagedBeans.get("statisticDashboardBean") as StatisticDashboardBean;
 	statisticDashboardBean.generatePlaceholderForChart(in.statisticChartList);
+	in.isFinishLoadCharts = false;
 } else if (StringUtils.isNotEmpty(in.selectedItemOfDrilldown)) {
 	// Drilldown to expiry chart, no need to build placeholder chart because we don''t call database
 	// Directly generate ChartJS canva, so we dont need to reload page
