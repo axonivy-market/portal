@@ -984,7 +984,13 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 }
 
 .process-start-list-item-name.is-external-link {
-   width: calc(100% - 100px);
+   width: calc(100% - 105px);
+}
+
+@media screen and (max-width: 40em) {
+  .process-start-list-item-name.is-external-link {
+    width: calc(100% - 80px);
+  }
 }
 
 .process-start-list-item:hover .process-start-list-item-icon,
@@ -1029,6 +1035,10 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 .compact-process-widget .toggle-processes-link.fa-minus:before, .compact-toggle-tasks-link.fa-minus:before {
   padding-right: 4px;
   content: '\f068';
+}
+
+.add-external-link-command {
+  margin-left: 10px;
 }
 
 .process-start-list-item-action.is-express {
