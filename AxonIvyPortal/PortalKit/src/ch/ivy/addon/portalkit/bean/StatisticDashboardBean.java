@@ -110,6 +110,15 @@ public class StatisticDashboardBean implements Serializable {
 
     return statisticChartList;
   }
+  
+  public boolean isChartModelNotInitialized(List<StatisticChart> statisticChartList) {
+    for (StatisticChart statisticChart : statisticChartList) {
+      if (statisticChart.getBarChartModel() == null && statisticChart.getDonutChartModel() == null) {
+        return true;
+      }
+    }
+    return false;
+  }
 
   public boolean isTaskByPriority(StatisticChart statisticChart) {
     if (statisticChart == null) {
