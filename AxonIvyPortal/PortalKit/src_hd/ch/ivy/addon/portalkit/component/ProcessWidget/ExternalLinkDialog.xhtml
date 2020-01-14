@@ -20,7 +20,7 @@
             <div class="ui-g-8 ui-sm-12">
               <div class="external-link-dialog-field md-inputfield">
                 <p:inputText id="external-link-name" value="#{externalLinkBean.externalLink.name}" required="true"
-                  styleClass="external-link-dialog-field"
+                  styleClass="external-link-dialog-field" maxlength="85"
                   requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} 
                         #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
                 <p:message for="external-link-name" />
