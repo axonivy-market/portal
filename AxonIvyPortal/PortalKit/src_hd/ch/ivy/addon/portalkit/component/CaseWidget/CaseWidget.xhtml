@@ -29,6 +29,7 @@
       <h:panelGroup id="case-widget-header" styleClass="widget-header ui-g-12 ui-g" layout="block">
         <div class="case-widget-top-header ui-g-8 ui-sm-4">
           <h:panelGroup id="case-widget-title">
+            <f:event listener="#{logic.preRenderTitle()}" type="preRenderComponent" />
             <span class="case-widget-top-header-main-title">
               #{cc.attrs.title} <h:outputText value="(#{data.dataModel.rowCount})" rendered="#{!data.dataModel.disableCaseCount}" />
             </span>
