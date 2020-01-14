@@ -1,1 +1,1 @@
-Cambiar a "true" para desactivar la función contar tareas en la lista de tareas
+TODO Set to true to disable counting task in task list to improve performance in case of a huge amount of tasks.

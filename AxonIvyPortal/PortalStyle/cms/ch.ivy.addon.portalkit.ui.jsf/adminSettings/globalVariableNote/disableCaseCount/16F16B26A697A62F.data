@@ -1,1 +1,1 @@
-Mettre à true pour désactiver le cas de comptage dans la liste des cas
+TODO Set to true to disable counting case in case list to improve performance in case of a huge amount of cases.

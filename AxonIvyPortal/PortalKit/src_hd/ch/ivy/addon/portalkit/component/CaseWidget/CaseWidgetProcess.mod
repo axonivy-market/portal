@@ -52,6 +52,9 @@ Cs0 @PushWFArc f22 '' #zField
 Cs0 @UdMethod f23 '' #zField
 Cs0 @UdProcessEnd f27 '' #zField
 Cs0 @PushWFArc f32 '' #zField
+Cs0 @UdMethod f33 '' #zField
+Cs0 @GridStep f64 '' #zField
+Cs0 @PushWFArc f34 '' #zField
 >Proto Cs0 Cs0 CaseWidgetProcess #zField
 Cs0 f0 guid 152E8EDB3E3A6957 #txt
 Cs0 f0 method start(ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel,java.lang.Long) #txt
@@ -416,6 +419,32 @@ Cs0 f27 339 755 26 26 0 12 #rect
 Cs0 f27 @|UdProcessEndIcon #fIcon
 Cs0 f32 expr out #txt
 Cs0 f32 77 768 339 768 #arcP
+Cs0 f33 guid 16FA1C4BE95D211D #txt
+Cs0 f33 method preRenderTitle() #txt
+Cs0 f33 inParameterDecl '<> param;' #txt
+Cs0 f33 outParameterDecl '<> result;' #txt
+Cs0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>preRenderTitle()</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f33 51 851 26 26 -23 15 #rect
+Cs0 f33 @|UdMethodIcon #fIcon
+Cs0 f64 actionTable 'out=in;
+' #txt
+Cs0 f64 actionCode in.dataModel.updateDisableCaseCount(); #txt
+Cs0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>update disableCaseCount</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f64 160 842 144 44 -67 -8 #rect
+Cs0 f64 @|StepIcon #fIcon
+Cs0 f34 77 864 160 864 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -454,3 +483,5 @@ Cs0 f16 mainOut f22 tail #connect
 Cs0 f22 head f17 mainIn #connect
 Cs0 f23 mainOut f32 tail #connect
 Cs0 f32 head f27 mainIn #connect
+Cs0 f33 mainOut f34 tail #connect
+Cs0 f34 head f64 mainIn #connect

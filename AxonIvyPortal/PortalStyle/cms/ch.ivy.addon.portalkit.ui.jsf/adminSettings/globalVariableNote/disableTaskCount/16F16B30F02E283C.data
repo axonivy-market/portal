@@ -1,1 +1,1 @@
-Auf "true" setzen, um das zählen der Aufgaben in der Aufgabenliste zu deaktivieren
+TODO Set to true to disable counting task in task list to improve performance in case of a huge amount of tasks.
