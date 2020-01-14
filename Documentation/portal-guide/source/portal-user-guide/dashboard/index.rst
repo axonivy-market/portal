@@ -60,18 +60,15 @@ HowTo: Add a process as a user favorite
 
 2. The dialog :guilabel:`Add new user process` is opened.
 
-3. For the **Process type** keep the initial setting *Process start
-   link*.
-
-4. For the **Process name** use the dropdown menu to select the process
+3. For the **Process name** use the dropdown menu to select the process
    you want to add.
 
-5. The **Start link** is automatically filled by the Axon.ivy Portal.
+4. The **Start link** is automatically filled by the Axon.ivy Portal.
 
-6. You may change the **Icon** for the process by using the link
+5. You may change the **Icon** for the process by using the link
    |change-icon| **Change** and selecting your preferred icon.
 
-7. Confirm your configuration with the button **Add**.
+6. Confirm your configuration with the button **Add**.
 
 .. figure:: images/how-to-add-process-favorite.png
 
@@ -127,32 +124,6 @@ II. Edit processes
 
 
 .. figure:: images/how-to-order-process-favorites-individually-2.png
-
-
-
-HowTo: Add an external link as user favorite
---------------------------------------------
-
-1. Select the link **Add new process** which you find next to the
-   heading **User Favorites**.
-
-2. The dialog :guilabel:`Add new user process` is opened.
-
-3. For the **Process type** change the initial setting to *External
-   link*.
-
-4. For the **Process name** you can choose a name which best describes
-   the external link.
-
-5. For the **Start link** add the URL of your external link.
-
-6. You may change the **Icon** for the process by using the link
-   |change-icon| **Change** and selecting your preferred icon.
-
-7. Confirm your configuration with the button **Add**.
-
-.. figure:: images/how-to-add-external-link-as-process-favorite.png
-
 
 Personal Tasks
 --------------
