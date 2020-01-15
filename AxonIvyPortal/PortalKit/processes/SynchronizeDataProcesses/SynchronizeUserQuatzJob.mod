@@ -17,14 +17,10 @@ Sb0 @CallSub f3 '' #zField
 Sb0 @StartEvent f5 '' #zField
 Sb0 @EndTask f6 '' #zField
 Sb0 @PushWFArc f11 '' #zField
-Sb0 @Alternative f0 '' #zField
-Sb0 @PushWFArc f1 '' #zField
-Sb0 @PushWFArc f2 '' #zField
-Sb0 @EndTask f4 '' #zField
-Sb0 @PushWFArc f9 '' #zField
 Sb0 @CallSub f10 '' #zField
 Sb0 @PushWFArc f12 '' #zField
 Sb0 @PushWFArc f8 '' #zField
+Sb0 @PushWFArc f0 '' #zField
 >Proto Sb0 Sb0 SynchronizeUserQuatzJob #zField
 Sb0 f7 actionDecl 'ch.ivy.add.portalkit.Data out;
 ' #txt
@@ -41,7 +37,7 @@ Sb0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Sb0 f7 174 236 36 24 20 -2 #rect
+Sb0 f7 174 116 36 24 20 -2 #rect
 Sb0 f7 @|StepIcon #fIcon
 Sb0 f3 type ch.ivy.add.portalkit.Data #txt
 Sb0 f3 processCall 'Business Processes/SynchronizeApplicationUser:synchronizeApplicationUsers()' #txt
@@ -61,7 +57,7 @@ Sb0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Sb0 f3 174 308 36 24 25 -9 #rect
+Sb0 f3 174 188 36 24 25 -9 #rect
 Sb0 f3 @|CallSubIcon #fIcon
 Sb0 f5 outerBean "ch.ivy.addon.portalkit.util.CronByGlobalVariableTriggerStartEventBean" #txt
 Sb0 f5 beanConfig "PortalStartTimeSynchUserExpression" #txt
@@ -81,52 +77,10 @@ Sb0 f5 @C|.responsibility Everybody #txt
 Sb0 f5 179 43 26 26 14 0 #rect
 Sb0 f5 @|StartEventIcon #fIcon
 Sb0 f6 type ch.ivy.add.portalkit.Data #txt
-Sb0 f6 179 435 26 26 14 0 #rect
+Sb0 f6 179 315 26 26 14 0 #rect
 Sb0 f6 @|EndIcon #fIcon
 Sb0 f11 expr out #txt
-Sb0 f11 192 260 192 308 #arcP
-Sb0 f0 type ch.ivy.add.portalkit.Data #txt
-Sb0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Can Synchronize ?</name>
-        <nameStyle>17,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Sb0 f0 176 120 32 32 -124 -8 #rect
-Sb0 f0 @|AlternativeIcon #fIcon
-Sb0 f1 expr out #txt
-Sb0 f1 192 69 192 120 #arcP
-Sb0 f2 expr in #txt
-Sb0 f2 outCond ch.ivy.addon.portalkit.service.UserSynchronizationService.isCurrentApplicationAllowedToSynchUser() #txt
-Sb0 f2 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>yes</name>
-        <nameStyle>3,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Sb0 f2 192 152 192 236 #arcP
-Sb0 f2 0 0.5238095238095238 -12 0 #arcLabel
-Sb0 f4 type ch.ivy.add.portalkit.Data #txt
-Sb0 f4 329 121 30 30 0 15 #rect
-Sb0 f4 @|EndIcon #fIcon
-Sb0 f9 expr in #txt
-Sb0 f9 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>no</name>
-        <nameStyle>2,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Sb0 f9 208 136 329 136 #arcP
-Sb0 f9 0 0.5702479338842975 0 -10 #arcLabel
+Sb0 f11 192 140 192 188 #arcP
 Sb0 f10 type ch.ivy.add.portalkit.Data #txt
 Sb0 f10 processCall 'Functional Processes/HideSystemCase:call(Boolean)' #txt
 Sb0 f10 doCall true #txt
@@ -147,25 +101,23 @@ Sb0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Sb0 f10 136 362 112 44 -48 -8 #rect
+Sb0 f10 136 242 112 44 -48 -8 #rect
 Sb0 f10 @|CallSubIcon #fIcon
 Sb0 f12 expr out #txt
-Sb0 f12 192 332 192 362 #arcP
+Sb0 f12 192 212 192 242 #arcP
 Sb0 f8 expr out #txt
-Sb0 f8 192 406 192 435 #arcP
+Sb0 f8 192 286 192 315 #arcP
+Sb0 f0 expr out #txt
+Sb0 f0 192 69 192 116 #arcP
 >Proto Sb0 .type ch.ivy.add.portalkit.Data #txt
 >Proto Sb0 .processKind NORMAL #txt
 >Proto Sb0 0 0 32 24 18 0 #rect
 >Proto Sb0 @|BIcon #fIcon
 Sb0 f7 mainOut f11 tail #connect
 Sb0 f11 head f3 mainIn #connect
-Sb0 f5 mainOut f1 tail #connect
-Sb0 f1 head f0 in #connect
-Sb0 f0 out f2 tail #connect
-Sb0 f2 head f7 mainIn #connect
-Sb0 f0 out f9 tail #connect
-Sb0 f9 head f4 mainIn #connect
 Sb0 f3 mainOut f12 tail #connect
 Sb0 f12 head f10 mainIn #connect
 Sb0 f10 mainOut f8 tail #connect
 Sb0 f8 head f6 mainIn #connect
+Sb0 f5 mainOut f0 tail #connect
+Sb0 f0 head f7 mainIn #connect

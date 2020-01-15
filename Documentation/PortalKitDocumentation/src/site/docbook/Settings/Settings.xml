@@ -539,12 +539,7 @@
 							</tip>
 							<para>
 								By default, Portal will automatically synchronize user settings to registered servers at 5AM everyday.
-								This
-								synchronization process is needed to run at only one application for each server. If there are
-								multiple
-								applications registered for one server, the first application in alphabetical order will run
-								the synchronization
-								process. You can change the time when the synchronization start by going to AdminUI
+								You can change the time when the synchronization start by going to AdminUI
 								and change the value of the
 								global variable
 								<code class="code"> PortalStartTimeSynchUserExpression</code>
@@ -555,6 +550,12 @@
 									</imageobject>
 								</mediaobject>
 							</para>
+							<important>
+								<para>Synchronization process is needed to run on one application each server. If there are
+								multiple applications registered per server, only one application needs to run this
+								process. Select one application as you wish and set value for global variable <code class="code"> PortalStartTimeSynchUserExpression</code>. On other applications, set this value empty.
+								</para>
+							</important>
 						</para>
 					</listitem>
 				</orderedlist>
