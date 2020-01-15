@@ -4,8 +4,13 @@ package portal.guitest.test;
 import static junit.framework.Assert.assertEquals;
 import static junit.framework.Assert.assertTrue;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.Before;
 import org.junit.Test;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.Sleeper;
@@ -67,7 +72,7 @@ public class ExpressManagementTest extends BaseTest {
     processWidget.expand();
     assertTrue(processWidget.isExpandedMode());
     processWidget.enterSearchKeyword(processName);
-    assertTrue(processWidget.isProcessDisplay(processName));
+    Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> processWidget.isProcessDisplay(processName));
     processWidget.startProcess(processName);
   }
 
