@@ -40,8 +40,12 @@ Cs0 @PushWFArc f29 '' #zField
 Cs0 @SJArc f21 '' #zField
 Cs0 @CallSub f31 '' #zField
 Cs0 @UdEvent f30 '' #zField
-Cs0 @PushWFArc f32 '' #zField
+Cs0 @GridStep f11 '' #zField
 Cs0 @PushWFArc f2 '' #zField
+Cs0 @PushWFArc f16 '' #zField
+Cs0 @GridStep f33 '' #zField
+Cs0 @PushWFArc f32 '' #zField
+Cs0 @PushWFArc f34 '' #zField
 >Proto Cs0 Cs0 CaseItemRelatedTaskProcess #zField
 Cs0 f0 guid 167E9A75EF3D0909 #txt
 Cs0 f0 method start() #txt
@@ -199,7 +203,8 @@ Cs0 f5 actionTable 'out=in;
 ' #txt
 Cs0 f5 actionCode 'import org.primefaces.component.commandlink.CommandLink;
 CommandLink commandLink = event.getSource() as CommandLink;
-in.taskId = commandLink.getAttributes().get("taskId") as Long;' #txt
+in.taskId = commandLink.getAttributes().get("taskId") as Long;
+out.isCaseInfoDialog = commandLink.getAttributes().get("isCaseInfoDialog") as Boolean;' #txt
 Cs0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -226,7 +231,7 @@ Cs0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f4 328 362 112 44 -50 -8 #rect
+Cs0 f4 384 362 112 44 -50 -8 #rect
 Cs0 f4 @|CallSubIcon #fIcon
 Cs0 f22 guid 1682B96F9503687C #txt
 Cs0 f22 actionTable 'out=in;
@@ -341,7 +346,7 @@ Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f31 312 466 144 44 -66 -8 #rect
+Cs0 f31 384 466 144 44 -66 -8 #rect
 Cs0 f31 @|CallSubIcon #fIcon
 Cs0 f30 guid 16D8A8E9B8ABB666 #txt
 Cs0 f30 actionTable 'out=in;
@@ -350,7 +355,8 @@ Cs0 f30 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
 import org.primefaces.component.commandlink.CommandLink;
 
 CommandLink commandLink = event.getSource() as CommandLink;
-out.taskId = commandLink.getAttributes().get("taskId") as Long;' #txt
+out.taskId = commandLink.getAttributes().get("taskId") as Long;
+out.isCaseInfoDialog = commandLink.getAttributes().get("isCaseInfoDialog") as Boolean;' #txt
 Cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -360,8 +366,74 @@ Cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f30 83 475 26 26 -72 20 #rect
 Cs0 f30 @|UdEventIcon #fIcon
-Cs0 f32 109 488 312 488 #arcP
-Cs0 f2 109 384 328 384 #arcP
+Cs0 f11 actionTable 'out=in;
+' #txt
+Cs0 f11 actionCode 'import org.apache.commons.lang3.StringUtils;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import javax.faces.context.Flash;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
+
+if(in.isCaseInfoDialog) {
+	String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
+	boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
+	if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
+		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+		if (!flash.containsKey("overridePortalGrowl")) {
+			FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
+			FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
+		}
+		flash.setRedirect(true);
+		flash.setKeepMessages(true);
+	}
+}' #txt
+Cs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Display message after&#13;
+finish or leave task</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f11 176 362 144 44 -54 -16 #rect
+Cs0 f11 @|StepIcon #fIcon
+Cs0 f2 109 384 176 384 #arcP
+Cs0 f16 320 384 384 384 #arcP
+Cs0 f33 actionTable 'out=in;
+' #txt
+Cs0 f33 actionCode 'import org.apache.commons.lang3.StringUtils;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import javax.faces.context.Flash;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
+
+if(in.isCaseInfoDialog) {
+	String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
+	boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
+	if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
+		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+		if (!flash.containsKey("overridePortalGrowl")) {
+			FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
+			FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
+		}
+		flash.setRedirect(true);
+		flash.setKeepMessages(true);
+	}
+}' #txt
+Cs0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Display message after&#13;
+finish or leave task</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f33 176 466 144 44 -54 -16 #rect
+Cs0 f33 @|StepIcon #fIcon
+Cs0 f32 109 488 176 488 #arcP
+Cs0 f34 320 488 384 488 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -388,7 +460,11 @@ Cs0 f19 mainOut f29 tail #connect
 Cs0 f29 head f28 mainIn #connect
 Cs0 f28 mainOut f21 tail #connect
 Cs0 f21 head f9 in #connect
-Cs0 f30 mainOut f32 tail #connect
-Cs0 f32 head f31 mainIn #connect
 Cs0 f5 mainOut f2 tail #connect
-Cs0 f2 head f4 mainIn #connect
+Cs0 f2 head f11 mainIn #connect
+Cs0 f11 mainOut f16 tail #connect
+Cs0 f16 head f4 mainIn #connect
+Cs0 f30 mainOut f32 tail #connect
+Cs0 f32 head f33 mainIn #connect
+Cs0 f33 mainOut f34 tail #connect
+Cs0 f34 head f31 mainIn #connect

@@ -16,3 +16,7 @@ totalRelatedCases Integer #field
 totalRelatedCases PERSISTENT #fieldModifier
 totalRelatedTasks Integer #field
 totalRelatedTasks PERSISTENT #fieldModifier
+isTaskFinished Boolean #field
+isTaskFinished PERSISTENT #fieldModifier
+isCaseInfoDialog Boolean #field
+isCaseInfoDialog PERSISTENT #fieldModifier

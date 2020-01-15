@@ -20,3 +20,5 @@ menuModel org.primefaces.model.menu.MenuModel #field
 menuModel PERSISTENT #fieldModifier
 workingTask ch.ivyteam.ivy.workflow.ITask #field
 workingTask PERSISTENT #fieldModifier
+isTaskFinished Boolean #field
+isTaskFinished PERSISTENT #fieldModifier

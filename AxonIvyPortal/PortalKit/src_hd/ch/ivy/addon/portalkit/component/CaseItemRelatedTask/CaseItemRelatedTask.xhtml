@@ -7,6 +7,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
   <cc:attribute name="styleClass" />
+  <cc:attribute name="isCaseInfoDialog" type="java.lang.Boolean"/>
 </cc:interface>
 
 <cc:implementation>
@@ -28,6 +29,7 @@
             <span class="fa fa-external-link-square" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTasks')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
+            <f:attribute name="isCaseInfoDialog" value="#{cc.attrs.isCaseInfoDialog}" />
           </p:commandLink>
           <p:tooltip for="more-related-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTasks')}" trackMouse="true" />
         </h:panelGroup>
@@ -43,6 +45,7 @@
               value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}"
               styleClass="related-task" actionListener="#{logic.navigateToRelatedTaskDetails}">
               <f:attribute name="taskId" value="#{task.getId()}" />
+              <f:attribute name="isCaseInfoDialog" value="#{cc.attrs.isCaseInfoDialog}" />
             </p:commandLink>
           </h:panelGroup>
           <p:tooltip for="task" value="#{taskBean.displayRelatedTaskToolTip(task)}" trackMouse="true" />
