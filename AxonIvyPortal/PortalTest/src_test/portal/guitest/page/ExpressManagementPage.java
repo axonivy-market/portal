@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
 import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
 
@@ -82,8 +83,7 @@ public class ExpressManagementPage extends TemplatePage {
 
   public String getUploadMessage() {
     Sleeper.sleep(1000);
-    WebElement message = findElementByCssSelector(".ui-messages.ui-fileupload-messages .ui-messages-error-summary");
-    return message.getText();
+    return driver.findElement(By.cssSelector("div[class$='ui-fileupload-messages'] span[class$='ui-messages-error-summary']")).getText();
   }
 
 }
