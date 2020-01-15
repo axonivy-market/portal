@@ -115,7 +115,7 @@ public final class PortalNavigator {
   public void navigateToPortalEndPage() {
     String defaultEndPage = getDefaultEndPage(); 
     redirect(defaultEndPage + "?endedTaskId=" + Ivy.wfTask().getId());
-    Ivy.session().setAttribute(SessionAttribute.IS_TASK_NOT_FINISHED.toString(), true);
+    Ivy.session().setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);
   }
   
   private String getDefaultEndPage() {
