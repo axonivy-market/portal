@@ -2,8 +2,10 @@ package portal.guitest.test;
 
 import static junit.framework.Assert.assertTrue;
 
+import java.io.IOException;
 import java.util.Arrays;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -171,5 +173,14 @@ public class ChatTest extends BaseTest {
 		new HomePage().getChat();
 		return new ChatPage();
 	}
-
+	
+	@After
+	public void killIE() {
+	  try {
+	    System.out.println("Kill all open IE");
+	    Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
+  	} catch (IOException e) {
+  	  e.printStackTrace();
+  	}
+	}
 }
