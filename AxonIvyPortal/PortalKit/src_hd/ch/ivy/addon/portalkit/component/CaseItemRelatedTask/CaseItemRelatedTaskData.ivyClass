@@ -18,5 +18,5 @@ totalRelatedTasks Integer #field
 totalRelatedTasks PERSISTENT #fieldModifier
 isTaskFinished Boolean #field
 isTaskFinished PERSISTENT #fieldModifier
-isCaseInfoDialog Boolean #field
-isCaseInfoDialog PERSISTENT #fieldModifier
+isWorkingOnTask Boolean #field
+isWorkingOnTask PERSISTENT #fieldModifier
