@@ -96,7 +96,7 @@ public class CleanUpObsoletedUserDataService {
   private void cleanUpUserTaskFilter() {
     AbstractFilterService<TaskFilterData> taskFilterService = new TaskFilterService();
     List<BusinessDataInfo<TaskFilterData>> allPrivateTaskFilters = new ArrayList<>();
-    long totalCount = taskFilterService.getTotalFilterCounts();
+    long totalCount = taskFilterService.getTotalFilterCount();
     if (totalCount > PAGE_SIZE) {
       int currentIndex = 0;
       do {
@@ -115,7 +115,7 @@ public class CleanUpObsoletedUserDataService {
   private void cleanUpUserCaseFilter() {
     AbstractFilterService<CaseFilterData> caseFilterService = new CaseFilterService();
     List<BusinessDataInfo<CaseFilterData>> allPrivateCaseFilters = new ArrayList<>();
-    long totalCount = caseFilterService.getTotalFilterCounts();
+    long totalCount = caseFilterService.getTotalFilterCount();
     if (totalCount > PAGE_SIZE) {
       int currentIndex = 0;
       do {
@@ -169,17 +169,17 @@ public class CleanUpObsoletedUserDataService {
   private void cleanUpUserTaskColumnsConfigData() {
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
     List<TaskColumnsConfiguration> allColumnConfigs = new ArrayList<>();
-    long totalCounts = service.getTotalCounts(applicationId);
-    if (totalCounts > PAGE_SIZE) {
+    long totalCount = service.getTotalCount(applicationId);
+    if (totalCount > PAGE_SIZE) {
       int currentIndex = 0;
       do {
         allColumnConfigs = service.getAllConfiguration(applicationId, 0, PAGE_SIZE);
         cleanRepoColumnConfig(userIds, allColumnConfigs);
         currentIndex += PAGE_SIZE;
 
-      } while (currentIndex <= totalCounts);
+      } while (currentIndex <= totalCount);
     } else {
-      allColumnConfigs = service.getAllConfiguration(applicationId, 0, (int) totalCounts);
+      allColumnConfigs = service.getAllConfiguration(applicationId, 0, (int) totalCount);
       cleanRepoColumnConfig(userIds, allColumnConfigs);
     }
   }
@@ -188,17 +188,17 @@ public class CleanUpObsoletedUserDataService {
     CaseColumnsConfigurationService service = new CaseColumnsConfigurationService();
     List<CaseColumnsConfiguration> allColumnConfigs = new ArrayList<>();
     cleanRepoColumnConfig(userIds, allColumnConfigs);
-    long totalCounts = service.getTotalCounts(applicationId);
-    if (totalCounts > PAGE_SIZE) {
+    long totalCount = service.getTotalCount(applicationId);
+    if (totalCount > PAGE_SIZE) {
       int currentIndex = 0;
       do {
         allColumnConfigs = service.getAllConfiguration(applicationId, 0, PAGE_SIZE);
         cleanRepoColumnConfig(userIds, allColumnConfigs);
         currentIndex += PAGE_SIZE;
 
-      } while (currentIndex <= totalCounts);
+      } while (currentIndex <= totalCount);
     } else {
-      allColumnConfigs = service.getAllConfiguration(applicationId, 0, (int) totalCounts);
+      allColumnConfigs = service.getAllConfiguration(applicationId, 0, (int) totalCount);
       cleanRepoColumnConfig(userIds, allColumnConfigs);
     }
   }
@@ -216,18 +216,18 @@ public class CleanUpObsoletedUserDataService {
   private void cleanUpUserStatisticChartData() {
     StatisticService statisticService = new StatisticService();
     List<StatisticChart> allStatisticCharts = new ArrayList<>();
-    long totalCounts = statisticService.getTotalCounts();
-    if (totalCounts > PAGE_SIZE) {
+    long totalCount = statisticService.getTotalCount();
+    if (totalCount > PAGE_SIZE) {
       int currentIndex = 0;
       do {
         allStatisticCharts = statisticService.findAllStatisticCharts(currentIndex, PAGE_SIZE);
         removeStatisticCharts(statisticService, allStatisticCharts);
 
         currentIndex += PAGE_SIZE;
-      } while (currentIndex <= totalCounts);
+      } while (currentIndex <= totalCount);
 
     } else {
-      allStatisticCharts = statisticService.findAllStatisticCharts(0, (int) totalCounts);
+      allStatisticCharts = statisticService.findAllStatisticCharts(0, (int) totalCount);
       removeStatisticCharts(statisticService, allStatisticCharts);
     }
   }
