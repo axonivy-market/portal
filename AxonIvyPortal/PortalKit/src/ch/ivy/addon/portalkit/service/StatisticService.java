@@ -217,7 +217,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return result;
   }
   
-  public long getTotalCounts() {
+  public long getTotalCount() {
     try {
       Result<StatisticChart> queryResult = repo().search(getType()).execute();
       return queryResult.totalCount();

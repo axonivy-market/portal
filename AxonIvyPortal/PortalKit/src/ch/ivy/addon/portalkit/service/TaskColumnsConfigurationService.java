@@ -20,7 +20,7 @@ public class TaskColumnsConfigurationService extends BusinessDataService<TaskCol
     return query.limit(1).execute().getFirst();
   }
 
-  public long getTotalCounts(Long applicationId) {
+  public long getTotalCount(Long applicationId) {
     Filter<TaskColumnsConfiguration> query =
         repo().search(getType()).numberField("applicationId").isEqualTo(applicationId);
     return query.limit(LIMIT_10).execute().totalCount();
