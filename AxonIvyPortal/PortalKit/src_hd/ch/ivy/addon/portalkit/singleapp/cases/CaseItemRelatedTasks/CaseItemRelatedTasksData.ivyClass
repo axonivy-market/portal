@@ -10,3 +10,7 @@ internalCase ch.ivyteam.ivy.workflow.ICase #field
 internalCase PERSISTENT #fieldModifier
 taskId Long #field
 taskId PERSISTENT #fieldModifier
+isTaskFinished Boolean #field
+isTaskFinished PERSISTENT #fieldModifier
+isWorkingOnTask Boolean #field
+isWorkingOnTask PERSISTENT #fieldModifier
