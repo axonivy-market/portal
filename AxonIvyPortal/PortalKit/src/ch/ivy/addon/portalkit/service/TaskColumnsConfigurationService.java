@@ -20,14 +20,16 @@ public class TaskColumnsConfigurationService extends BusinessDataService<TaskCol
     return query.limit(1).execute().getFirst();
   }
 
-  public List<TaskColumnsConfiguration> getAllConfiguration(Long applicationId) {
+  public long getTotalCounts(Long applicationId) {
     Filter<TaskColumnsConfiguration> query =
         repo().search(getType()).numberField("applicationId").isEqualTo(applicationId);
-    Result<TaskColumnsConfiguration> queryResult = query.limit(LIMIT_100).execute();
-    long totalCount = queryResult.totalCount();
-    if(totalCount > LIMIT_100) {
-      queryResult = query.limit(Math.toIntExact(totalCount)).execute();
-    }
+    return query.limit(LIMIT_10).execute().totalCount();
+  }
+
+  public List<TaskColumnsConfiguration> getAllConfiguration(Long applicationId, int limitFrom, int limitSize) {
+    Filter<TaskColumnsConfiguration> query =
+        repo().search(getType()).numberField("applicationId").isEqualTo(applicationId);
+    Result<TaskColumnsConfiguration> queryResult = query.limit(limitFrom, limitSize).execute();
     return queryResult.getAll();
   }
 }
