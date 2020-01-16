@@ -89,8 +89,6 @@ Pt0 @Alternative f47 '' #zField
 Pt0 @PushWFArc f52 '' #zField
 Pt0 @PushWFArc f49 '' #zField
 Pt0 @PushWFArc f55 '' #zField
-Pt0 @InfoButton f54 '' #zField
-Pt0 @AnnotationArc f56 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk0 @TextInP .type .type #zField
 Bk0 @TextInP .processKind .processKind #zField
@@ -749,32 +747,44 @@ not in Portal</name>
 Pt0 f50 392 176 392 118 #arcP
 Pt0 f50 0 0.43103448275862066 13 0 #arcLabel
 Pt0 f19 expr in #txt
-Pt0 f19 398 202 1232 200 #arcP
-Pt0 f19 1 448 288 #addKink
-Pt0 f19 2 1136 288 #addKink
-Pt0 f47 472 176 32 32 0 16 #rect
+Pt0 f19 392 208 1240 208 #arcP
+Pt0 f19 1 392 288 #addKink
+Pt0 f19 2 1240 288 #addKink
+Pt0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Is first task?</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f47 472 176 32 32 -25 -43 #rect
 Pt0 f47 @|AlternativeIcon #fIcon
 Pt0 f52 expr in #txt
 Pt0 f52 outCond !in.backFromTaskDetails #txt
 Pt0 f52 408 192 472 192 #arcP
 Pt0 f49 expr in #txt
 Pt0 f49 outCond in.isFirstTask #txt
-Pt0 f49 504 192 576 192 #arcP
-Pt0 f55 expr in #txt
-Pt0 f55 488 208 840 214 #arcP
-Pt0 f55 1 488 240 #addKink
-Pt0 f55 2 840 240 #addKink
-Pt0 f55 1 0.49464285714285716 0 0 #arcLabel
-Pt0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+Pt0 f49 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Create DataModel for first task</name>
+        <name>Yes</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f54 496 121 176 30 -82 -8 #rect
-Pt0 f54 @|IBIcon #fIcon
-Pt0 f56 496 136 490 178 #arcP
+Pt0 f49 504 192 576 192 #arcP
+Pt0 f49 0 0.4861111111111111 0 -13 #arcLabel
+Pt0 f55 expr in #txt
+Pt0 f55 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>No</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f55 488 208 840 214 #arcP
+Pt0 f55 1 488 240 #addKink
+Pt0 f55 2 840 240 #addKink
+Pt0 f55 1 0.45170454545454547 0 10 #arcLabel
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1371,8 +1381,6 @@ Pt0 f47 out f49 tail #connect
 Pt0 f49 head f4 mainIn #connect
 Pt0 f47 out f55 tail #connect
 Pt0 f55 head f7 mainIn #connect
-Pt0 f54 ao f56 tail #connect
-Pt0 f56 head f47 @CG|ai #connect
 Bk0 f17 mainOut f26 tail #connect
 Bk0 f26 head f23 mainIn #connect
 Bk0 f19 mainOut f39 tail #connect

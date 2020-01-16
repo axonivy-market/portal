@@ -12,7 +12,7 @@
   <cc:attribute name="showItemDetailDocuments" />
   <cc:attribute name="showItemBackButton" />
   <cc:attribute name="descriptionComponentToUpdate" />
-  <cc:attribute name="isCaseInfoDialog" />
+  <cc:attribute name="isWorkingOnTask" />
 </cc:interface>
 
 <cc:implementation>
@@ -106,7 +106,7 @@
         <!-- Related running box -->
         <h:panelGroup rendered="#{showItemDetailRelated}" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card card-w-title case-detail-card">
-            <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" isCaseInfoDialog="#{cc.attrs.isCaseInfoDialog}"/>
+            <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" isWorkingOnTask="#{cc.attrs.isWorkingOnTask}"/>
           </div>
         </h:panelGroup>
 
