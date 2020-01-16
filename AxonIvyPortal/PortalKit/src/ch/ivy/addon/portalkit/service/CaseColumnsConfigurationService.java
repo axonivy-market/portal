@@ -22,14 +22,16 @@ public class CaseColumnsConfigurationService extends BusinessDataService<CaseCol
     return query.limit(1).execute().getFirst();
   }
 
-  public List<CaseColumnsConfiguration> getAllConfiguration(Long applicationId) {
+  public long getTotalCounts(Long applicationId) {
     Filter<CaseColumnsConfiguration> query =
         repo().search(getType()).numberField("applicationId").isEqualTo(applicationId);
-    Result<CaseColumnsConfiguration> queryResult = query.limit(LIMIT_100).execute();
-    long totalCount = queryResult.totalCount();
-    if(totalCount > LIMIT_100) {
-      queryResult = query.limit(Math.toIntExact(totalCount)).execute();
-    }
+    return query.limit(LIMIT_100).execute().totalCount();
+  }
+
+  public List<CaseColumnsConfiguration> getAllConfiguration(Long applicationId, int limitFrom, int limitSize) {
+    Filter<CaseColumnsConfiguration> query =
+        repo().search(getType()).numberField("applicationId").isEqualTo(applicationId);
+    Result<CaseColumnsConfiguration> queryResult = query.limit(limitFrom, limitSize).execute();
     return queryResult.getAll();
   }
 }

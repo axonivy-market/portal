@@ -202,17 +202,29 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   /**
    * Find all statistic charts
+   * @param limitFrom current index of next data
+   * @param limitSize max size of DataSet will be return
    * 
    * @return all statistic charts
    */
-  public List<StatisticChart> findAllStatisticCharts() {
+  public List<StatisticChart> findAllStatisticCharts(int limitFrom, int limitSize) {
     List<StatisticChart> result = new ArrayList<>();
     try {
-      result = repo().search(getType()).execute().getAll();
+      result = repo().search(getType()).limit(limitFrom, limitSize).execute().getAll();
     } catch (Exception e) {
       Ivy.log().error(e);
     }
     return result;
+  }
+  
+  public long getTotalCounts() {
+    try {
+      Result<StatisticChart> queryResult = repo().search(getType()).execute();
+      return queryResult.totalCount();
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      return 0;
+    }
   }
 
   /**
