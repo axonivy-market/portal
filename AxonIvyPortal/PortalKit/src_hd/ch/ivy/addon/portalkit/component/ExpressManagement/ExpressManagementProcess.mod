@@ -39,9 +39,10 @@ Es0 f13 336 368 32 32 0 16 #rect
 Es0 f13 @|AlternativeIcon #fIcon
 Es0 f10 actionTable 'out=in;
 ' #txt
-Es0 f10 actionCode 'import org.apache.commons.lang3.StringUtils;
+Es0 f10 actionCode 'import org.apache.commons.io.FilenameUtils;
+
+import org.apache.commons.lang3.StringUtils;
 import javax.faces.application.FacesMessage;
-import javax.ws.rs.core.MediaType;
 
 in.isError = false;
 in.importOutput = StringUtils.EMPTY;
@@ -49,7 +50,7 @@ in.importOutput = StringUtils.EMPTY;
 if (in.importExpressFile == null || in.importExpressFile.getFile().getSize() == 0) {
   in.isError = true;
   in.validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/fileEmptyMessage"), null);
-} else if (!in.importExpressFile.getFile().getContentType().equals(MediaType.APPLICATION_JSON)) {
+} else if (!FilenameUtils.isExtension(in.importExpressFile.getFile().getFileName(), "json")) {
   in.isError = true;
   in.validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/Dialogs/components/CaseDocument/invalidFileMessage"), null);
 }' #txt
