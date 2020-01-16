@@ -84,8 +84,13 @@ Pt0 @GridStep f7 '' #zField
 Pt0 @PushWFArc f13 '' #zField
 Pt0 @PushWFArc f31 '' #zField
 Pt0 @PushWFArc f50 '' #zField
-Pt0 @PushWFArc f49 '' #zField
 Pt0 @PushWFArc f19 '' #zField
+Pt0 @Alternative f47 '' #zField
+Pt0 @PushWFArc f52 '' #zField
+Pt0 @PushWFArc f49 '' #zField
+Pt0 @PushWFArc f55 '' #zField
+Pt0 @InfoButton f54 '' #zField
+Pt0 @AnnotationArc f56 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk0 @TextInP .type .type #zField
 Bk0 @TextInP .processKind .processKind #zField
@@ -381,7 +386,7 @@ Pt0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f22 1208 74 112 44 -38 -8 #rect
+Pt0 f22 1296 74 112 44 -38 -8 #rect
 Pt0 f22 @|StepIcon #fIcon
 Pt0 f36 dialogId ch.ivy.addon.portal.generic.PortalHome #txt
 Pt0 f36 startMethod start(ch.ivy.addon.portal.generic.view.TaskView) #txt
@@ -397,9 +402,9 @@ Pt0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f36 1368 74 112 44 -50 -8 #rect
+Pt0 f36 1456 74 112 44 -50 -8 #rect
 Pt0 f36 @|UserDialogIcon #fIcon
-Pt0 f38 1320 96 1368 96 #arcP
+Pt0 f38 1408 96 1456 96 #arcP
 Pt0 f1 376 176 32 32 0 16 #rect
 Pt0 f1 @|AlternativeIcon #fIcon
 Pt0 f2 296 193 376 192 #arcP
@@ -411,12 +416,12 @@ page before finish task</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 S11 1224 168 160 48 -58 -20 #rect
+Pt0 S11 1312 168 160 48 -58 -20 #rect
 Pt0 S11 @|BpmnUserTaskIcon #fIcon
-Pt0 f0 1136 80 32 32 0 16 #rect
+Pt0 f0 1224 80 32 32 0 16 #rect
 Pt0 f0 @|AlternativeIcon #fIcon
-Pt0 f16 464 96 1136 96 #arcP
-Pt0 f6 1168 96 1208 96 #arcP
+Pt0 f16 464 96 1224 96 #arcP
+Pt0 f6 1256 96 1296 96 #arcP
 Pt0 f12 dialogId ch.ivy.addon.portal.generic.PortalFinishTaskHandle #txt
 Pt0 f12 startMethod start(Boolean) #txt
 Pt0 f12 requestActionDecl '<Boolean isTaskFinished> param;' #txt
@@ -432,11 +437,11 @@ after finish task</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f12 888 170 144 44 -54 -16 #rect
+Pt0 f12 976 170 144 44 -54 -16 #rect
 Pt0 f12 @|UserDialogIcon #fIcon
-Pt0 f5 1136 176 32 32 0 16 #rect
+Pt0 f5 1224 176 32 32 0 16 #rect
 Pt0 f5 @|AlternativeIcon #fIcon
-Pt0 f21 1032 192 1136 192 #arcP
+Pt0 f21 1120 192 1224 192 #arcP
 Pt0 f15 expr out #txt
 Pt0 f15 111 480 192 480 #arcP
 Pt0 f17 304 480 369 480 #arcP
@@ -493,14 +498,14 @@ home page if you have</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f3 1520 74 144 44 -63 -16 #rect
+Pt0 f3 1608 74 144 44 -63 -16 #rect
 Pt0 f3 @|IBIcon #fIcon
-Pt0 f8 1520 96 1480 96 #arcP
+Pt0 f8 1608 96 1568 96 #arcP
 Pt0 f20 expr in #txt
 Pt0 f20 outCond 'java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.HOME_PAGE, in.#portalPage) && org.apache.commons.lang3.StringUtils.isBlank(in.#callbackUrl)' #txt
-Pt0 f20 1152 176 1152 112 #arcP
+Pt0 f20 1240 176 1240 112 #arcP
 Pt0 f18 expr in #txt
-Pt0 f18 1168 192 1224 192 #arcP
+Pt0 f18 1256 192 1312 192 #arcP
 Pt0 f14 outLink BackFromTaskDetails.ivp #txt
 Pt0 f14 inParamDecl '<Number endedTaskId> param;' #txt
 Pt0 f14 inParamTable 'out.backFromTaskDetails=true;
@@ -709,7 +714,7 @@ Pt0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f4 488 170 144 44 -65 -8 #rect
+Pt0 f4 576 170 144 44 -65 -8 #rect
 Pt0 f4 @|CallSubIcon #fIcon
 Pt0 f7 actionTable 'out=in;
 ' #txt
@@ -727,10 +732,10 @@ DataModel</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f7 688 170 128 44 -44 -16 #rect
+Pt0 f7 776 170 128 44 -44 -16 #rect
 Pt0 f7 @|StepIcon #fIcon
-Pt0 f13 816 192 888 192 #arcP
-Pt0 f31 632 192 688 192 #arcP
+Pt0 f13 904 192 976 192 #arcP
+Pt0 f31 720 192 776 192 #arcP
 Pt0 f50 expr in #txt
 Pt0 f50 outCond 'in.#portalPage == null' #txt
 Pt0 f50 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -742,13 +747,34 @@ not in Portal</name>
 </elementInfo>
 ' #txt
 Pt0 f50 392 176 392 118 #arcP
-Pt0 f49 expr in #txt
-Pt0 f49 outCond !in.backFromTaskDetails #txt
-Pt0 f49 408 192 488 192 #arcP
+Pt0 f50 0 0.43103448275862066 13 0 #arcLabel
 Pt0 f19 expr in #txt
-Pt0 f19 401 199 1141 197 #arcP
-Pt0 f19 1 448 240 #addKink
-Pt0 f19 2 1032 240 #addKink
+Pt0 f19 398 202 1232 200 #arcP
+Pt0 f19 1 448 288 #addKink
+Pt0 f19 2 1136 288 #addKink
+Pt0 f47 472 176 32 32 0 16 #rect
+Pt0 f47 @|AlternativeIcon #fIcon
+Pt0 f52 expr in #txt
+Pt0 f52 outCond !in.backFromTaskDetails #txt
+Pt0 f52 408 192 472 192 #arcP
+Pt0 f49 expr in #txt
+Pt0 f49 outCond in.isFirstTask #txt
+Pt0 f49 504 192 576 192 #arcP
+Pt0 f55 expr in #txt
+Pt0 f55 488 208 840 214 #arcP
+Pt0 f55 1 488 240 #addKink
+Pt0 f55 2 840 240 #addKink
+Pt0 f55 1 0.49464285714285716 0 0 #arcLabel
+Pt0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Create DataModel for first task</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f54 496 121 176 30 -82 -8 #rect
+Pt0 f54 @|IBIcon #fIcon
+Pt0 f56 496 136 490 178 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1337,10 +1363,16 @@ Pt0 f4 mainOut f31 tail #connect
 Pt0 f31 head f7 mainIn #connect
 Pt0 f1 out f50 tail #connect
 Pt0 f50 head f9 mainIn #connect
-Pt0 f1 out f49 tail #connect
-Pt0 f49 head f4 mainIn #connect
-Pt0 f1 out f19 tail #connect
 Pt0 f19 head f5 in #connect
+Pt0 f1 out f52 tail #connect
+Pt0 f52 head f47 in #connect
+Pt0 f1 out f19 tail #connect
+Pt0 f47 out f49 tail #connect
+Pt0 f49 head f4 mainIn #connect
+Pt0 f47 out f55 tail #connect
+Pt0 f55 head f7 mainIn #connect
+Pt0 f54 ao f56 tail #connect
+Pt0 f56 head f47 @CG|ai #connect
 Bk0 f17 mainOut f26 tail #connect
 Bk0 f26 head f23 mainIn #connect
 Bk0 f19 mainOut f39 tail #connect
