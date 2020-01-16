@@ -82,8 +82,13 @@ Pt0 @GridStep f7 '' #zField
 Pt0 @PushWFArc f13 '' #zField
 Pt0 @PushWFArc f46 '' #zField
 Pt0 @PushWFArc f47 '' #zField
-Pt0 @PushWFArc f19 '' #zField
 Pt0 @PushWFArc f8 '' #zField
+Pt0 @Alternative f31 '' #zField
+Pt0 @PushWFArc f49 '' #zField
+Pt0 @PushWFArc f19 '' #zField
+Pt0 @PushWFArc f50 '' #zField
+Pt0 @InfoButton f52 '' #zField
+Pt0 @AnnotationArc f54 '' #zField
 >Proto Pt0 Pt0 ExamplePortalStart #zField
 Bk2 @TextInP .type .type #zField
 Bk2 @TextInP .processKind .processKind #zField
@@ -239,7 +244,7 @@ Pt0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f28 @C|.responsibility Everybody #txt
 Pt0 f28 81 113 30 30 -81 19 #rect
 Pt0 f28 @|StartRequestIcon #fIcon
-Pt0 f0 1120 112 32 32 0 16 #rect
+Pt0 f0 1208 112 32 32 0 16 #rect
 Pt0 f0 @|AlternativeIcon #fIcon
 Pt0 f32 dialogId ch.ivy.addon.portal.generic.admin.PortalDashBoard #txt
 Pt0 f32 startMethod start() #txt
@@ -387,7 +392,7 @@ page before finish task</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 S11 1208 200 160 48 -58 -20 #rect
+Pt0 S11 1296 200 160 48 -58 -20 #rect
 Pt0 S11 @|BpmnUserTaskIcon #fIcon
 Pt0 f103 outLink CaseDetailsPage.ivp #txt
 Pt0 f103 inParamDecl '<Long caseId> param;' #txt
@@ -498,7 +503,7 @@ Pt0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f36 1352 106 112 44 -50 -8 #rect
+Pt0 f36 1440 106 112 44 -50 -8 #rect
 Pt0 f36 @|UserDialogIcon #fIcon
 Pt0 f12 dialogId ch.ivy.addon.portal.generic.PortalFinishTaskHandle #txt
 Pt0 f12 startMethod start(Boolean) #txt
@@ -515,7 +520,7 @@ after finish task</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f12 880 202 144 44 -54 -16 #rect
+Pt0 f12 1000 202 144 44 -54 -16 #rect
 Pt0 f12 @|UserDialogIcon #fIcon
 Pt0 f1 376 208 32 32 0 16 #rect
 Pt0 f1 @|AlternativeIcon #fIcon
@@ -541,11 +546,11 @@ Pt0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f22 1192 106 112 44 -38 -8 #rect
+Pt0 f22 1280 106 112 44 -38 -8 #rect
 Pt0 f22 @|StepIcon #fIcon
 Pt0 f34 369 689 30 30 0 15 #rect
 Pt0 f34 @|EndIcon #fIcon
-Pt0 f5 1120 208 32 32 0 16 #rect
+Pt0 f5 1208 208 32 32 0 16 #rect
 Pt0 f5 @|AlternativeIcon #fIcon
 Pt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -555,7 +560,7 @@ home page if you have</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f3 1504 106 144 44 -63 -16 #rect
+Pt0 f3 1592 106 144 44 -63 -16 #rect
 Pt0 f3 @|IBIcon #fIcon
 Pt0 f58 outLink CaseListPage.ivp #txt
 Pt0 f58 inParamDecl '<> param;' #txt
@@ -654,24 +659,24 @@ Pt0 f63 @C|.responsibility Everybody #txt
 Pt0 f63 81 497 30 30 -50 17 #rect
 Pt0 f63 @|StartRequestIcon #fIcon
 Pt0 f40 496 800 552 800 #arcP
-Pt0 f38 1304 128 1352 128 #arcP
+Pt0 f38 1392 128 1440 128 #arcP
 Pt0 f24 expr out #txt
 Pt0 f24 110 416 192 416 #arcP
 Pt0 f27 304 608 369 608 #arcP
 Pt0 f48 expr out #txt
 Pt0 f48 109 225 184 225 #arcP
-Pt0 f21 1024 224 1120 224 #arcP
+Pt0 f21 1144 224 1208 224 #arcP
 Pt0 f33 111 705 192 705 #arcP
 Pt0 f20 expr in #txt
 Pt0 f20 outCond 'java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.HOME_PAGE, in.#portalPage) && org.apache.commons.lang3.StringUtils.isBlank(in.#callbackUrl)' #txt
-Pt0 f20 1136 208 1136 144 #arcP
+Pt0 f20 1224 208 1224 144 #arcP
 Pt0 f44 111 64 224 106 #arcP
 Pt0 f44 1 224 64 #addKink
 Pt0 f44 0 0.7641087129602482 0 0 #arcLabel
 Pt0 f2 296 225 376 224 #arcP
-Pt0 f16 464 128 1120 128 #arcP
+Pt0 f16 464 128 1208 128 #arcP
 Pt0 f18 expr in #txt
-Pt0 f18 1152 224 1208 224 #arcP
+Pt0 f18 1240 224 1296 224 #arcP
 Pt0 f15 expr out #txt
 Pt0 f15 111 512 192 512 #arcP
 Pt0 f29 expr out #txt
@@ -680,7 +685,7 @@ Pt0 f26 expr out #txt
 Pt0 f26 111 608 192 608 #arcP
 Pt0 f30 288 128 320 128 #arcP
 Pt0 f25 304 416 369 416 #arcP
-Pt0 f6 1152 128 1192 128 #arcP
+Pt0 f6 1240 128 1280 128 #arcP
 Pt0 f35 304 705 369 704 #arcP
 Pt0 f17 304 512 369 512 #arcP
 Pt0 f41 expr out #txt
@@ -705,7 +710,7 @@ Pt0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f4 472 202 144 44 -65 -8 #rect
+Pt0 f4 592 202 144 44 -65 -8 #rect
 Pt0 f4 @|CallSubIcon #fIcon
 Pt0 f7 actionTable 'out=in;
 ' #txt
@@ -723,10 +728,10 @@ DataModel</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f7 688 202 128 44 -44 -16 #rect
+Pt0 f7 808 202 128 44 -44 -16 #rect
 Pt0 f7 @|StepIcon #fIcon
-Pt0 f13 616 224 688 224 #arcP
-Pt0 f46 816 224 880 224 #arcP
+Pt0 f13 736 224 808 224 #arcP
+Pt0 f46 936 224 1000 224 #arcP
 Pt0 f47 expr in #txt
 Pt0 f47 outCond 'in.#portalPage == null' #txt
 Pt0 f47 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -738,13 +743,33 @@ not in Portal</name>
 </elementInfo>
 ' #txt
 Pt0 f47 392 208 392 150 #arcP
-Pt0 f19 expr in #txt
-Pt0 f19 outCond !in.backFromTaskDetails #txt
-Pt0 f19 408 224 472 224 #arcP
 Pt0 f8 expr in #txt
-Pt0 f8 401 231 1125 229 #arcP
-Pt0 f8 1 448 272 #addKink
-Pt0 f8 2 1016 272 #addKink
+Pt0 f8 398 234 1215 231 #arcP
+Pt0 f8 1 456 320 #addKink
+Pt0 f8 2 1112 320 #addKink
+Pt0 f31 472 208 32 32 0 16 #rect
+Pt0 f31 @|AlternativeIcon #fIcon
+Pt0 f49 expr in #txt
+Pt0 f49 outCond !in.backFromTaskDetails #txt
+Pt0 f49 408 224 472 224 #arcP
+Pt0 f19 expr in #txt
+Pt0 f19 outCond in.isFirstTask #txt
+Pt0 f19 504 224 592 224 #arcP
+Pt0 f50 expr in #txt
+Pt0 f50 488 240 872 246 #arcP
+Pt0 f50 1 488 272 #addKink
+Pt0 f50 2 872 272 #addKink
+Pt0 f50 1 0.4921875 0 0 #arcLabel
+Pt0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Create DataModel for first task</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f52 504 161 176 30 -82 -8 #rect
+Pt0 f52 @|IBIcon #fIcon
+Pt0 f54 504 176 492 212 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1329,10 +1354,16 @@ Pt0 f7 mainOut f46 tail #connect
 Pt0 f46 head f12 mainIn #connect
 Pt0 f1 out f47 tail #connect
 Pt0 f47 head f9 mainIn #connect
-Pt0 f1 out f19 tail #connect
-Pt0 f19 head f4 mainIn #connect
-Pt0 f1 out f8 tail #connect
 Pt0 f8 head f5 in #connect
+Pt0 f1 out f49 tail #connect
+Pt0 f49 head f31 in #connect
+Pt0 f1 out f8 tail #connect
+Pt0 f31 out f19 tail #connect
+Pt0 f19 head f4 mainIn #connect
+Pt0 f31 out f50 tail #connect
+Pt0 f50 head f7 mainIn #connect
+Pt0 f52 ao f54 tail #connect
+Pt0 f54 head f31 @CG|ai #connect
 Bk2 f106 mainOut f107 tail #connect
 Bk2 f107 head f104 mainIn #connect
 Bk2 g0 m f0 tail #connect
