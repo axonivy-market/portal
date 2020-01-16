@@ -204,7 +204,7 @@ Cs0 f5 actionTable 'out=in;
 Cs0 f5 actionCode 'import org.primefaces.component.commandlink.CommandLink;
 CommandLink commandLink = event.getSource() as CommandLink;
 in.taskId = commandLink.getAttributes().get("taskId") as Long;
-out.isCaseInfoDialog = commandLink.getAttributes().get("isCaseInfoDialog") as Boolean;' #txt
+out.isWorkingOnTask = commandLink.getAttributes().get("isWorkingOnTask") as Boolean;' #txt
 Cs0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -356,7 +356,7 @@ import org.primefaces.component.commandlink.CommandLink;
 
 CommandLink commandLink = event.getSource() as CommandLink;
 out.taskId = commandLink.getAttributes().get("taskId") as Long;
-out.isCaseInfoDialog = commandLink.getAttributes().get("isCaseInfoDialog") as Boolean;' #txt
+out.isWorkingOnTask = commandLink.getAttributes().get("isWorkingOnTask") as Boolean;' #txt
 Cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -375,7 +375,7 @@ import javax.faces.context.Flash;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 
-if(in.isCaseInfoDialog) {
+if(in.isWorkingOnTask) {
 	String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
 	boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
 	if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
@@ -409,7 +409,7 @@ import javax.faces.context.Flash;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 
-if(in.isCaseInfoDialog) {
+if(in.isWorkingOnTask) {
 	String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
 	boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
 	if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
