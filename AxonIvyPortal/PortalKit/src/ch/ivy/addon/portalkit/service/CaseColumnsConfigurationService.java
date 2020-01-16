@@ -22,7 +22,7 @@ public class CaseColumnsConfigurationService extends BusinessDataService<CaseCol
     return query.limit(1).execute().getFirst();
   }
 
-  public long getTotalCounts(Long applicationId) {
+  public long getTotalCount(Long applicationId) {
     Filter<CaseColumnsConfiguration> query =
         repo().search(getType()).numberField("applicationId").isEqualTo(applicationId);
     return query.limit(LIMIT_100).execute().totalCount();
