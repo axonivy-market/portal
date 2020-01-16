@@ -4,29 +4,25 @@ package ch.ivy.addon.portalkit.service;
 import static ch.ivy.addon.portalkit.enums.FilterType.ALL_USERS;
 import static ch.ivy.addon.portalkit.enums.FilterType.ONLY_ME;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ch.ivy.addon.portalkit.bean.PermissionBean;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.filter.AbstractFilter;
 import ch.ivy.addon.portalkit.filter.AbstractFilterData;
-import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
 import ch.ivyteam.ivy.business.data.store.search.Result;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 public abstract class AbstractFilterService<T extends AbstractFilterData<?>> extends BusinessDataService<T> {
 
@@ -116,7 +112,7 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
     return privateFilterQuery.limit(limitFrom, limitSize).execute().getAllInfos();
   }
 
-  public long getTotalFilterCounts() {
+  public long getTotalFilterCount() {
     try {
       Filter<T> privateFilterQuery =
           repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name());
