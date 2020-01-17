@@ -7,6 +7,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.Before;
 import org.junit.Rule;
+import org.junit.rules.MethodRule;
+import org.junit.rules.TestWatchman;
+import org.junit.runners.model.FrameworkMethod;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
@@ -63,7 +66,15 @@ public class BaseTest {
 
   @Rule
   public ScreenshotFailedTestRule screenshotTestRule = new ScreenshotFailedTestRule();
-
+  
+  @Rule
+  public MethodRule watchman = new TestWatchman() {
+    @Override
+    public void starting(FrameworkMethod method) {
+        System.out.println("Starting test: " + method.getName());
+    }
+  };
+  
   @Before
   public void setup() {
     browser = Browser.getBrowser();
