@@ -7,7 +7,9 @@ import static junit.framework.Assert.assertTrue;
 
 import java.util.concurrent.TimeUnit;
 
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.jayway.awaitility.Awaitility;
@@ -260,5 +262,11 @@ public class ProcessWidgetTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
     processWidget = homePage.getProcessWidget();
+  }
+  
+  @AfterClass
+  @BeforeClass
+  public static void cleanUpIEAndDriver() {
+    killIEAndIEDriver();
   }
 }
