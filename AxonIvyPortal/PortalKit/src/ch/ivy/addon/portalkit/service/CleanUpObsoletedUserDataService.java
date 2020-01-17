@@ -28,8 +28,7 @@ import ch.ivyteam.ivy.server.ServerFactory;
 
 public class CleanUpObsoletedUserDataService {
 
-  public static final int PAGE_SIZE = 100;
-
+  private static final int PAGE_SIZE = 100;
   private List<UserDTO> currentUsers;
   private List<Long> userIds;
   private List<String> userNames;
