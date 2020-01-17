@@ -1,5 +1,6 @@
 package portal.guitest.common;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.concurrent.TimeUnit;
@@ -195,4 +196,13 @@ public class BaseTest {
     }
   }
   
+  public static void killIEAndIEDriver() {
+    try {
+      System.out.println("Kill all open IE and IEDriverServer");
+      Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
+      Runtime.getRuntime().exec("taskkill /F /IM IEDriverServer.exe");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 }
