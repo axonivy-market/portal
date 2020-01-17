@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 import javax.ws.rs.core.MediaType;
 
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.StopWatch;
 import org.primefaces.model.DefaultStreamedContent;
@@ -50,7 +51,8 @@ public class ExpressManagementUtils {
   @SuppressWarnings("serial")
   private static final Type EXPRESS_LIST_CONVERT_TYPE = new TypeToken<List<ExpressWorkflow>>() {}.getType();
   private static final String EXPRESS_TYPE = "AHWF"; // this variable is equal to process type REPEAT in ch.ivy.gawfs.enums.ProcessType
-
+  private static final String JSON_EXTENSION = "json";
+  
   /**
    * Find express repeat workflow list which are ready to execute and start
    * 
@@ -90,7 +92,7 @@ public class ExpressManagementUtils {
     StopWatch stopWatch = new StopWatch();
     stopWatch.start();
 
-    if (expressData == null || !expressData.getContentType().equals(MediaType.APPLICATION_JSON)) {
+    if (expressData == null || !FilenameUtils.isExtension(expressData.getFileName(), JSON_EXTENSION)) {
       outputMessages.set(1, addResultLog(importExpressResult,
               Ivy.cms().co(expressData != null ? "/Dialogs/components/CaseDocument/invalidFileMessage" : "/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/fileEmptyMessage"), ExpressMessageType.ERROR));
       return outputMessages;
