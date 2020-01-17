@@ -26,7 +26,8 @@ Sb0 f7 actionDecl 'ch.ivy.add.portalkit.Data out;
 ' #txt
 Sb0 f7 actionTable 'out=in;
 ' #txt
-Sb0 f7 actionCode 'ivy.log.info("Start to synchronize Application User Cache by user " + ivy.session.getSessionUserName());' #txt
+Sb0 f7 actionCode 'ivy.log.info("START TO SYNCHRONIZE APPLICATION USER CACHE FOR APPLICATION : {0} BY USER : {1} ", ivy.wf.getApplication().getName(), ivy.session.getSessionUserName());' #txt
+Sb0 f7 security system #txt
 Sb0 f7 type ch.ivy.add.portalkit.Data #txt
 Sb0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
