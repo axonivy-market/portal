@@ -82,7 +82,7 @@ Below is the list of some Portal elements which are using primary colors of Sere
    |                       |                             | - Bottom border of active tab                                  |
    |                       |                             | - Border color of datepicker-today                             |
    +-----------------------+-----------------------------+----------------------------------------------------------------+
-   | $accentTextColor      | white                      | - Text of active items                                         |
+   | $accentTextColor      | white                       | - Text of active items                                         |
    |                       |                             | - Text of active page number in datatable                      |
    |                       |                             | - Text of panel header and calenda header                      |
    +-----------------------+-----------------------------+----------------------------------------------------------------+
