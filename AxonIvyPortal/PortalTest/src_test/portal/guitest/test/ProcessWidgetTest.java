@@ -5,8 +5,10 @@ import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -260,5 +262,15 @@ public class ProcessWidgetTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
     processWidget = homePage.getProcessWidget();
+  }
+  
+  @After
+  public void killIE() {
+    try {
+      System.out.println("Kill all open IE");
+      Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
   }
 }
