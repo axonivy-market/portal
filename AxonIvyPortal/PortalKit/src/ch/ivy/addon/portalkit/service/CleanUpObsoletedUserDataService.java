@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.service;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -40,7 +39,7 @@ public class CleanUpObsoletedUserDataService {
   public void cleanUpData() {
     StopWatch stopWatch = new StopWatch();
     stopWatch.start();
-    Ivy.log().info("*****Started clean up data");
+    Ivy.log().info("***** Started Clean up data");
     try {
       currentUsers = ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
         return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE).withStartName("findUsers")
@@ -55,20 +54,20 @@ public class CleanUpObsoletedUserDataService {
     userNames = currentUsers.stream().map(UserDTO::getName).distinct().collect(Collectors.toList());
     userIds = currentUsers.stream().map(UserDTO::getId).collect(Collectors.toList());
 
-    Ivy.log().info("Started clean up User favourite process");
+    Ivy.log().info("Started clean up UserFavourite process");
     cleanUpUserFavouriteProcess();
-    Ivy.log().info("Started clean up User task filter");
+    Ivy.log().info("Started clean up UserTask filter");
     cleanUpUserTaskFilter();
-    Ivy.log().info("Started clean up User case filter");
+    Ivy.log().info("Started clean up UserCase filter");
     cleanUpUserCaseFilter();
-    Ivy.log().info("Started clean up User task ColumnsConfig");
+    Ivy.log().info("Started clean up UserTask ColumnsConfig");
     cleanUpUserTaskColumnsConfigData();
-    Ivy.log().info("Started clean up User case ColumnsConfig");
+    Ivy.log().info("Started clean up UserCase ColumnsConfig");
     cleanUpUserCaseColumnsConfigData();
-    Ivy.log().info("Started clean up User statistic chart");
+    Ivy.log().info("Started clean up UserStatistic chart");
     cleanUpUserStatisticChartData();
     stopWatch.stop();
-    Ivy.log().info("*****Clean up data finished in {0}ms", stopWatch.getTime());
+    Ivy.log().info("***** Finished Clean up data  in {0}ms", stopWatch.getTime());
   }
 
   private void cleanUpUserFavouriteProcess() {
@@ -95,7 +94,7 @@ public class CleanUpObsoletedUserDataService {
 
   private void cleanUpUserTaskFilter() {
     AbstractFilterService<TaskFilterData> taskFilterService = new TaskFilterService();
-    List<BusinessDataInfo<TaskFilterData>> allPrivateTaskFilters = new ArrayList<>();
+    List<BusinessDataInfo<TaskFilterData>> allPrivateTaskFilters;
     long totalCount = taskFilterService.getTotalFilterCount();
     if (totalCount > PAGE_SIZE) {
       int currentIndex = 0;
@@ -114,7 +113,7 @@ public class CleanUpObsoletedUserDataService {
 
   private void cleanUpUserCaseFilter() {
     AbstractFilterService<CaseFilterData> caseFilterService = new CaseFilterService();
-    List<BusinessDataInfo<CaseFilterData>> allPrivateCaseFilters = new ArrayList<>();
+    List<BusinessDataInfo<CaseFilterData>> allPrivateCaseFilters;
     long totalCount = caseFilterService.getTotalFilterCount();
     if (totalCount > PAGE_SIZE) {
       int currentIndex = 0;
@@ -168,12 +167,12 @@ public class CleanUpObsoletedUserDataService {
 
   private void cleanUpUserTaskColumnsConfigData() {
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
-    List<TaskColumnsConfiguration> allColumnConfigs = new ArrayList<>();
+    List<TaskColumnsConfiguration> allColumnConfigs;
     long totalCount = service.getTotalCount(applicationId);
     if (totalCount > PAGE_SIZE) {
       int currentIndex = 0;
       do {
-        allColumnConfigs = service.getAllConfiguration(applicationId, 0, PAGE_SIZE);
+        allColumnConfigs = service.getAllConfiguration(applicationId, currentIndex, PAGE_SIZE);
         cleanRepoColumnConfig(userIds, allColumnConfigs);
         currentIndex += PAGE_SIZE;
 
@@ -186,13 +185,12 @@ public class CleanUpObsoletedUserDataService {
 
   private void cleanUpUserCaseColumnsConfigData() {
     CaseColumnsConfigurationService service = new CaseColumnsConfigurationService();
-    List<CaseColumnsConfiguration> allColumnConfigs = new ArrayList<>();
-    cleanRepoColumnConfig(userIds, allColumnConfigs);
+    List<CaseColumnsConfiguration> allColumnConfigs;
     long totalCount = service.getTotalCount(applicationId);
     if (totalCount > PAGE_SIZE) {
       int currentIndex = 0;
       do {
-        allColumnConfigs = service.getAllConfiguration(applicationId, 0, PAGE_SIZE);
+        allColumnConfigs = service.getAllConfiguration(applicationId, currentIndex, PAGE_SIZE);
         cleanRepoColumnConfig(userIds, allColumnConfigs);
         currentIndex += PAGE_SIZE;
 
@@ -215,7 +213,7 @@ public class CleanUpObsoletedUserDataService {
 
   private void cleanUpUserStatisticChartData() {
     StatisticService statisticService = new StatisticService();
-    List<StatisticChart> allStatisticCharts = new ArrayList<>();
+    List<StatisticChart> allStatisticCharts;
     long totalCount = statisticService.getTotalCount();
     if (totalCount > PAGE_SIZE) {
       int currentIndex = 0;
