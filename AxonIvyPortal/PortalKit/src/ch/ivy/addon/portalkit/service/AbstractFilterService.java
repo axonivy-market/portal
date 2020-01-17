@@ -107,17 +107,21 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
   }
 
   public List<BusinessDataInfo<T>> getAllPrivateFilters(int limitFrom, int limitSize) {
-    Filter<T> privateFilterQuery =
-        repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name());
-    return privateFilterQuery.limit(limitFrom, limitSize).execute().getAllInfos();
+    try {
+      Filter<T> privateFilterQuery =
+          repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name());
+      return privateFilterQuery.limit(limitFrom, limitSize).execute().getAllInfos();
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      return new ArrayList<>();
+    }
   }
 
   public long getTotalFilterCount() {
     try {
       Filter<T> privateFilterQuery =
           repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name());
-      Result<T> queryResult = privateFilterQuery.orderBy().textField(FILTER_NAME).ascending().execute();
-      return queryResult.totalCount();
+      return privateFilterQuery.execute().totalCount();
     } catch (Exception e) {
       Ivy.log().error(e);
       return 0;
