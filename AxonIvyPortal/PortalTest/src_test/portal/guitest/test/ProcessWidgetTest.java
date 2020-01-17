@@ -5,11 +5,11 @@ import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 
-import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.jayway.awaitility.Awaitility;
@@ -264,13 +264,9 @@ public class ProcessWidgetTest extends BaseTest {
     processWidget = homePage.getProcessWidget();
   }
   
-  @After
-  public void killIE() {
-    try {
-      System.out.println("Kill all open IE");
-      Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
-    } catch (IOException e) {
-      e.printStackTrace();
-    }
+  @AfterClass
+  @BeforeClass
+  public static void cleanUpIEAndDriver() {
+    killIEAndIEDriver();
   }
 }
