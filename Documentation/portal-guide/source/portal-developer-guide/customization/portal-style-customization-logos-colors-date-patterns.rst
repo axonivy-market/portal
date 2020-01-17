@@ -53,7 +53,7 @@ Below is the list of some Portal elements which are using primary colors of Sere
    +-----------------------+-----------------------------+----------------------------------------------------------------+
    | Variable              | Default value               | Description                                                    |
    +=======================+=============================+================================================================+
-   | $primaryColor         | $primaryGreen: #c7d426      | - Background color of button (except Cancel button)            |
+   | $primaryColor         | $darkBlue: #007095          | - Background color of button (except Cancel button)            |
    |                       |                             | - Background color of Titlebar panel/selectcheckboxmenu header |
    |                       |                             | - Background color of selected checkbox/radio button           |
    |                       |                             | - Background color of process chain (except waiting state)     |
@@ -63,15 +63,14 @@ Below is the list of some Portal elements which are using primary colors of Sere
    |                       |                             | - Sidebar anchor                                               |
    |                       |                             | - Text color of active tab                                     |
    +-----------------------+-----------------------------+----------------------------------------------------------------+
-   | $primaryDarkColor     | $primaryGreen: #c7d426      | - Background color of toolbar                                  |
+   | $primaryDarkColor     | $darkBlue: #007095          | - Background color of toolbar                                  |
    |                       |                             | - Background color of datatable pagination                     |
    |                       |                             |   (except table in Case/Task detail)                           |
    +-----------------------+-----------------------------+----------------------------------------------------------------+
-   | $primaryLightColor    | $primaryLightGreen: #d7e52c | - Background color of hovered button                           |
+   | $primaryLightColor    | $mediumBlue: #49bad6        | - Background color of hovered button                           |
    +-----------------------+-----------------------------+----------------------------------------------------------------+
    | $primaryLightestColor | white                       | - Active checkbox icon                                         |
    |                       |                             | - Background color of active sidebar menu item                 |
-   |                       |                             | - Topbar background color                                      |
    +-----------------------+-----------------------------+----------------------------------------------------------------+
    | $primaryTextColor     | black                       | - For almost texts in Portal (except some specific styles      |
    |                       |                             |   like Case/Task Description in Case/Task list)                |
@@ -83,6 +82,10 @@ Below is the list of some Portal elements which are using primary colors of Sere
    |                       |                             | - Bottom border of active tab                                  |
    |                       |                             | - Border color of datepicker-today                             |
    +-----------------------+-----------------------------+----------------------------------------------------------------+
+   | $accentTextColor      | white                      | - Text of active items                                         |
+   |                       |                             | - Text of active page number in datatable                      |
+   |                       |                             | - Text of panel header and calenda header                      |
+   +-----------------------+-----------------------------+----------------------------------------------------------------+
 
 You can customize in:
 
@@ -91,8 +94,11 @@ You can customize in:
 - ``customization.scss``: to change styles of Portal. E.g. Portal's component styles.
 
 .. tip::
-   For ``font-size``, Portal uses ``rem``. 
-   Font size of all elements are calculated based on font-size of ``html`` element. 
+   - For ``font-size``, Portal uses ``rem``. 
+     Font size of all elements are calculated based on font-size of ``html`` element.
+
+   - If ``$primaryColor`` is a bright tone color (such as yellow or light blue), you may want to change ``$accentTextColor`` to ``black``. 
+     It helps text of buttons and other components easier to recognize.
 
 .. warning::
    - Do not change ``font-family`` property values.
