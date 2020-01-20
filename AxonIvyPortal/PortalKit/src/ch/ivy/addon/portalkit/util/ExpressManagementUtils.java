@@ -1,11 +1,11 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -123,7 +123,7 @@ public class ExpressManagementUtils {
               break;
             case EXPRESS_WORKFLOW:
               // Convert inputData to JSON
-              Reader reader = new InputStreamReader(expressData.getInputstream());
+              Reader reader = new InputStreamReader(expressData.getInputstream(), StandardCharsets.UTF_8);
               Gson gson = new GsonBuilder().serializeNulls().create();
 
               JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
@@ -326,7 +326,7 @@ public class ExpressManagementUtils {
     jsonObject.addProperty(VERSION, PortalConstants.EXPRESS_VERSION);
     jsonObject.add(EXPRESS_WORKFLOW, jsonElement);
 
-    InputStream inputStream = new ByteArrayInputStream(jsonObject.toString().getBytes());
+    InputStream inputStream = new ByteArrayInputStream(jsonObject.toString().getBytes(StandardCharsets.UTF_8));
     return new DefaultStreamedContent(inputStream, MediaType.APPLICATION_JSON, getExportFileName());
   }
 
