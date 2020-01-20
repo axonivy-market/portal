@@ -5,6 +5,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <cc:interface componentType="IvyComponent">
+  <cc:attribute name="isWorkingOnATask" />
 </cc:interface>
 <cc:implementation>
   <div id="global-search-container-in-page" class="search-item">
@@ -15,6 +16,6 @@
     <i class="global-search-icon fa fa-search" />
   </h:panelGroup>
   </div>
-  <p:remoteCommand id="global-search-remote-cmd" name="portalGlobalSearch" actionListener="#{logic.search}" />
+  <p:remoteCommand id="global-search-remote-cmd" name="portalGlobalSearch" actionListener="#{logic.search(cc.attrs.isWorkingOnATask)}" />
 </cc:implementation>
 </html>
