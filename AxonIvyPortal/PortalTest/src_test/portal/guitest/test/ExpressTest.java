@@ -44,7 +44,7 @@ public class ExpressTest extends BaseTest{
   public void testAdhocMultiApprovalWhenMultiTask() {
     goToCreateExpressProcess();
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
-    expressProcessPage.fillProcessProperties(false, true, "Test approval", "Test description");
+    expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
     ExpressFormDefinitionPage formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
     formDefinition.executeWorkflow();
     executeExpressProcessWhenMultiApproval();
