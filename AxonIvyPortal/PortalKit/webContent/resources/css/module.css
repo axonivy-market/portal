@@ -1931,6 +1931,10 @@ _:-ms-fullscreen, :root .additional-case-details-link {
   width: 100%;
 }
 
+.case-view-note-dialog, .task-note-dialog {
+  white-space: pre-wrap;
+}
+
 /********************************** END CASE DETAIL **********************************/
 .ui-panelmenu .ui-menu-parent .ui-menuitem-link-hasicon {
   padding-left: 2.8em !important;
