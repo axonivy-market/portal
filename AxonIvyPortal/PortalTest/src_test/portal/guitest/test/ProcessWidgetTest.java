@@ -267,6 +267,6 @@ public class ProcessWidgetTest extends BaseTest {
   @AfterClass
   @BeforeClass
   public static void cleanUpIEAndDriver() {
-    killIEAndIEDriver();
+    killIE();
   }
 }
