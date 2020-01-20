@@ -25,7 +25,6 @@ Pt0 @Alternative f30 '' #zField
 Pt0 @RichDialog f33 '' #zField
 Pt0 @StartRequest f10 '' #zField
 Pt0 @GridStep f11 '' #zField
-Pt0 @PushWFArc f34 '' #zField
 Pt0 @PushWFArc f15 '' #zField
 Pt0 @CallSub f12 '' #zField
 Pt0 @GridStep f22 '' #zField
@@ -94,6 +93,7 @@ Pt0 @GridStep f78 '' #zField
 Pt0 @PushWFArc f79 '' #zField
 Pt0 @PushWFArc f80 '' #zField
 Pt0 @PushWFArc f76 '' #zField
+Pt0 @PushWFArc f34 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Pt0 f0 outLink PortalStart.ivp #txt
 Pt0 f0 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -147,13 +147,13 @@ import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
 
 String defaultEndPage = ivy.wf.getStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES);
-
+String IS_TASK_FINISHED = SessionAttribute.IS_TASK_FINISHED.toString();
 if (StringUtils.isBlank(defaultEndPage)) {
 	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, PortalLibrary.PORTAL_TEMPLATE.getValue());
 }
 
-in.isTaskFinished = SecurityServiceUtils.getSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString()).toBoolean();
-SecurityServiceUtils.removeSessionAttribute(ch.ivy.addon.portalkit.enums.SessionAttribute.IS_TASK_FINISHED.toString());' #txt
+in.isTaskFinished = SecurityServiceUtils.getSessionAttribute(IS_TASK_FINISHED).toBoolean();
+ivy.session.setAttribute(IS_TASK_FINISHED, true);' #txt
 Pt0 f20 security system #txt
 Pt0 f20 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -268,7 +268,7 @@ Pt0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>is there callbackUrl?</name>
-        <nameStyle>21
+        <nameStyle>21,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -358,7 +358,11 @@ if  (#task is initialized) {
 	isTaskStarted = task.getStartProcessData() is initialized;
 	if(#taskWithTaskEndInfo is initialized) {
 		callbackUrl = taskWithTaskEndInfo.getAdditionalProperty(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString());
+	} else {
+		in.isFirstTask = !#taskWithTaskEndInfo is initialized;
 	}
+} else {
+	in.isFirstTask = !#task is initialized;
 }
 
 if (isTaskStarted && StringUtils.isNotBlank(callbackUrl)) {
@@ -382,19 +386,6 @@ Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f11 156 427 112 44 -47 -8 #rect
 Pt0 f11 @|StepIcon #fIcon
-Pt0 f34 expr in #txt
-Pt0 f34 outCond 'org.apache.commons.lang3.StringUtils.isNotBlank(in.#callbackUrl)' #txt
-Pt0 f34 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>YES</name>
-        <nameStyle>3
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f34 560 465 560 523 #arcP
-Pt0 f34 0 0.3793103448275862 13 -1 #arcLabel
 Pt0 f15 expr in #txt
 Pt0 f15 560 433 560 176 #arcP
 Pt0 f15 0 0.4763694877411137 0 0 #arcLabel
@@ -1278,6 +1269,19 @@ Pt0 f76 expr out #txt
 Pt0 f76 488 368 556 437 #arcP
 Pt0 f76 1 536 368 #addKink
 Pt0 f76 1 0.018911144529487032 0 0 #arcLabel
+Pt0 f34 expr in #txt
+Pt0 f34 outCond '(org.apache.commons.lang3.StringUtils.isNotBlank(in.#callbackUrl) || in.isFirstTask) &&  !ivy.session.isSessionUserUnknown()' #txt
+Pt0 f34 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>YES</name>
+        <nameStyle>3
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f34 560 465 560 523 #arcP
+Pt0 f34 0 0.3793103448275862 13 -1 #arcLabel
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect

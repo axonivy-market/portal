@@ -258,7 +258,7 @@ Pt0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>is there callbackUrl?</name>
-        <nameStyle>21
+        <nameStyle>21,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -348,7 +348,11 @@ if  (#task is initialized) {
 	isTaskStarted = task.getStartProcessData() is initialized;
 	if(#taskWithTaskEndInfo is initialized) {
 		callbackUrl = taskWithTaskEndInfo.getAdditionalProperty(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString());
+	} else {
+		in.isFirstTask = !#taskWithTaskEndInfo is initialized;
 	}
+} else {
+	in.isFirstTask = !#task is initialized;
 }
 
 if (isTaskStarted && StringUtils.isNotBlank(callbackUrl)) {
@@ -362,7 +366,7 @@ Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Handle end page</name>
-        <nameStyle>15
+        <nameStyle>15,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -370,7 +374,7 @@ Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f11 156 395 112 44 -47 -8 #rect
 Pt0 f11 @|StepIcon #fIcon
 Pt0 f34 expr in #txt
-Pt0 f34 outCond 'org.apache.commons.lang3.StringUtils.isNotBlank(in.#callbackUrl)' #txt
+Pt0 f34 outCond 'org.apache.commons.lang3.StringUtils.isNotBlank(in.#callbackUrl) || in.isFirstTask' #txt
 Pt0 f34 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

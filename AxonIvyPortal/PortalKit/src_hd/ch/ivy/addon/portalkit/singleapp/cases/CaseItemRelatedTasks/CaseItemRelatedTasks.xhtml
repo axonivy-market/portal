@@ -21,6 +21,7 @@
             <i class="fa #{taskBean.getStateIcon(task.state)} related-task-list-item-status" />
              <p:commandLink id="task-name" value="#{task.name}" actionListener="#{logic.openPortalTask}">
              	<f:attribute name="taskId" value="#{task.id}"/>
+             	<f:attribute name="isWorkingOnTask" value="true"/>
              </p:commandLink>
           </h:panelGroup>
           <p:tooltip for="task" value="#{taskBean.displayRelatedTaskToolTipSingleApp(task)}" trackMouse="true" />

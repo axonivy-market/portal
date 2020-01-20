@@ -16,6 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.context.RequestContext;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.bo.RemoteWebStartable;
@@ -34,6 +35,7 @@ import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.process.call.SubProcessCallResult;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.system.ISystemProperty;
+import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
 @ViewScoped
@@ -144,8 +146,22 @@ public class UserMenuBean implements Serializable {
     TaskUtils.resetTask(Ivy.wfTask());
     navigateToHomePage();
   }
+  
+  public void resetTaskAndNavigateToHomePageWithGrowl() throws Exception {
+    IvyComponentLogicCaller<ITask> leaveTask = new IvyComponentLogicCaller<>();
+    leaveTask.invokeComponentLogic("task-leave-warning-component", "#{logic.leave}", new Object[] {});
+    TaskUtils.resetTask(Ivy.wfTask());
+    navigateToHomePage();
+  }
 
   public void reserveTaskAndNavigateToHomePage() throws Exception {
+    TaskUtils.parkTask(Ivy.wfTask());
+    navigateToHomePage();
+  }
+
+  public void reserveTaskAndNavigateToHomePageWithGrowl() throws Exception {
+    IvyComponentLogicCaller<ITask> leaveTask = new IvyComponentLogicCaller<>();
+    leaveTask.invokeComponentLogic("task-leave-warning-component", "#{logic.reserve}", new Object[] {});
     TaskUtils.parkTask(Ivy.wfTask());
     navigateToHomePage();
   }

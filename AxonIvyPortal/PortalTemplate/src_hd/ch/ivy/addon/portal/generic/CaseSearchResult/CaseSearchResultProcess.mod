@@ -23,7 +23,9 @@ Cs0 @CallSub f3 '' #zField
 Cs0 @PushWFArc f4 '' #zField
 Cs0 @GridStep f7 '' #zField
 Cs0 @PushWFArc f9 '' #zField
+Cs0 @GridStep f10 '' #zField
 Cs0 @PushWFArc f5 '' #zField
+Cs0 @PushWFArc f11 '' #zField
 >Proto Cs0 Cs0 CaseSearchResultProcess #zField
 Cs0 f0 guid 15438977A9CA76C0 #txt
 Cs0 f0 type ch.ivy.addon.portal.generic.CaseSearchResult.CaseSearchResultData #txt
@@ -66,7 +68,7 @@ Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f6 494 180 36 24 20 -2 #rect
+Cs0 f6 702 180 36 24 20 -2 #rect
 Cs0 f6 @|CallSubIcon #fIcon
 Cs0 f8 guid 1543BE219788553F #txt
 Cs0 f8 type ch.ivy.addon.portal.generic.CaseSearchResult.CaseSearchResultData #txt
@@ -140,8 +142,45 @@ Cs0 f7 328 170 112 44 -35 -8 #rect
 Cs0 f7 @|StepIcon #fIcon
 Cs0 f9 expr out #txt
 Cs0 f9 264 192 328 192 #arcP
+Cs0 f10 actionDecl 'ch.ivy.addon.portal.generic.CaseSearchResult.CaseSearchResultData out;
+' #txt
+Cs0 f10 actionTable 'out=in;
+' #txt
+Cs0 f10 actionCode 'import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
+import javax.faces.context.Flash;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
+
+if(in.isWorkingOnTask) {
+	boolean displayMessageAfterFinishOrLeaveTask = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK);
+	if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
+		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+		if (!flash.containsKey("overridePortalGrowl")) {
+			FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
+			FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
+		}
+		flash.setRedirect(true);
+		flash.setKeepMessages(true);
+	}
+}' #txt
+Cs0 f10 type ch.ivy.addon.portal.generic.CaseSearchResult.CaseSearchResultData #txt
+Cs0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Display message after
+finish or leave a task</name>
+        <nameStyle>44,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f10 496 170 144 44 -54 -16 #rect
+Cs0 f10 @|StepIcon #fIcon
 Cs0 f5 expr out #txt
-Cs0 f5 440 192 494 192 #arcP
+Cs0 f5 440 192 496 192 #arcP
+Cs0 f11 expr out #txt
+Cs0 f11 640 192 702 192 #arcP
 >Proto Cs0 .type ch.ivy.addon.portal.generic.CaseSearchResult.CaseSearchResultData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -153,4 +192,6 @@ Cs0 f4 head f3 mainIn #connect
 Cs0 f3 mainOut f9 tail #connect
 Cs0 f9 head f7 mainIn #connect
 Cs0 f7 mainOut f5 tail #connect
-Cs0 f5 head f6 mainIn #connect
+Cs0 f5 head f10 mainIn #connect
+Cs0 f10 mainOut f11 tail #connect
+Cs0 f11 head f6 mainIn #connect

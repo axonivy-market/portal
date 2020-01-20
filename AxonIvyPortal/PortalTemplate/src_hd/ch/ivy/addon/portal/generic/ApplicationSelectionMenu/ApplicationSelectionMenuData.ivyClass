@@ -16,3 +16,5 @@ subMenuItems List<ch.addon.portal.generic.menu.SubMenuItem> #field
 subMenuItems PERSISTENT #fieldModifier
 selectedSubMenuItem ch.addon.portal.generic.menu.SubMenuItem #field
 selectedSubMenuItem PERSISTENT #fieldModifier
+isTaskFinished Boolean #field
+isTaskFinished PERSISTENT #fieldModifier

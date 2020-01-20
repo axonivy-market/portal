@@ -14,8 +14,8 @@
         alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
     </p:commandLink>
     <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="task-leave-warning-component"
-      rendered="#{isWorkingOnATask}" leaveActionListener="#{userMenuBean.resetTaskAndNavigateToHomePage()}"
-      reserveActionListener="#{userMenuBean.reserveTaskAndNavigateToHomePage()}"
+      rendered="#{isWorkingOnATask}" leaveActionListener="#{userMenuBean.resetTaskAndNavigateToHomePageWithGrowl()}"
+      reserveActionListener="#{userMenuBean.reserveTaskAndNavigateToHomePageWithGrowl()}"
       componentId="logo-task-losing-confirmation-dialog" widgetVar="logo-task-losing-confirmation-dialog" />
     <c:if test="#{!isNotRequiredLogin}">
       <ic:ch.ivy.addon.portalkit.singleapp.general.SetLanguage />
