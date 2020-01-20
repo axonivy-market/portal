@@ -196,11 +196,11 @@ public class BaseTest {
     }
   }
   
-  public static void killIEAndIEDriver() {
+  public static void killIE() {
     try {
-      System.out.println("Kill all open IE and IEDriverServer");
+      System.out.println("Kill all open IE");
       Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
-      Runtime.getRuntime().exec("taskkill /F /IM IEDriverServer.exe");
+      Sleeper.sleep(5000);
     } catch (IOException e) {
       e.printStackTrace();
     }
