@@ -40,7 +40,8 @@ Gt0 f3 actionTable 'out=in1;
 ' #txt
 Gt0 f3 outLinks "TaskA.ivp" #txt
 Gt0 f3 taskData 'TaskA.NAM=Global Growl Skip Task List
-TaskA.SKIP_TASK_LIST=true' #txt
+TaskA.SKIP_TASK_LIST=true
+TaskA.customFields.STRING.embedInFrame="false"' #txt
 Gt0 f3 176 48 32 32 0 16 #rect
 Gt0 f3 @|TaskSwitchIcon #fIcon
 Gt0 f4 var in1 #txt
