@@ -175,6 +175,6 @@ public class ChatTest extends BaseTest {
 	
 	@AfterClass
 	public static void cleanUpAllIEAndDriver() {
-	  killIEAndIEDriver();
+	  killIE();
 	}
 }
