@@ -2134,9 +2134,9 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   position: absolute;
   top: 15px;
   content: "";
-  width: 88px;
+  width: 102px;
   margin: 0 10px;
-  transform: translate(10px, 0);
+  transform: translate(4px, 0);
 }
 
 _:-ms-fullscreen, :root .circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
