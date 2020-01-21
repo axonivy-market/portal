@@ -44,9 +44,16 @@
 							cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
 							emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription')}"
 							disabled="#{!data.canChangeCaseDescription}">
-							<p:inputTextarea rows="4" styleClass="case-description-input" value="#{data.internalCase.description}"
-								autoResize="false" />
 							<p:ajax event="save" listener="#{data.internalCase.setDescription(data.internalCase.description.trim())}" />
+							<f:facet name="input">
+								<p:inputTextarea id="case-description-input" rows="4"
+									styleClass="case-description-input"
+									value="#{data.internalCase.description}" autoResize="false" />
+							</f:facet>
+							<f:facet name="output">
+								<h:outputText id="case-description-output" escape="false"
+									value="#{caseWidgetBean.sanitizeHTML(data.internalCase.description)}" />
+							</f:facet>
 						</p:inplace>
 					</h:panelGroup>
 				</div>

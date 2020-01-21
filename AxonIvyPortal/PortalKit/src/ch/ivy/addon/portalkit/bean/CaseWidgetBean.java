@@ -101,7 +101,7 @@ public class CaseWidgetBean implements Serializable {
     return sanitizedText;
   }
   
-  public String createTaskDescriptionInCaseList(String text) {
+  public String formatCaseDescription(String text) {
     String extractedText = extractTextFromHtml(text);
     if (StringUtils.isBlank(extractedText)) {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription");
