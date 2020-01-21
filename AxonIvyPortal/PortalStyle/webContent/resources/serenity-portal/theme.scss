@@ -427,7 +427,8 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
   font-weight: $currentLineVerticalStepTitleFontWeight;
 }
 
-.current .cicrle-step-container, .visited .cicrle-step-container {
+.current .cicrle-step-container, .visited .cicrle-step-container,
+.process-chain-mobile-container .circle-horizontal-process-step {
     color: $circleStepNumberColor;
 }
 
@@ -449,6 +450,10 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 
 .circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
   border-top: 3px solid $circleHorizontalStepNumberContainerBorderTop;
+}
+
+.circle-horizontal-process-step.visited .circle-horizontal-step-container .step-number-container:after {
+  color: $circleHorizontalStepNumberContainerBorderTopColor;
 }
 
 .circle-process-chain .circle-horizontal-process-step,
@@ -1408,6 +1413,15 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   background-color: $definedTaskButtonBackgroundColor;
 }
 
+.ui-widget.ui-button.defined-task-button span {
+  color: $definedTaskButtonTextColor !important;
+}
+
+.ui-widget.ui-button.defined-task-button.ui-state-hover span,
+.ui-widget.ui-button.defined-task-button.active span {
+  color: $activeDefinedTaskButtonTextColor !important;
+}
+
 .express-work-flow .express-input-switch-selection,
 .ui-inputswitch.ui-widget.ui-widget-content.express-input-switch-selection.ui-inputswitch-checked {
   background-color: $expressInputSwitchSelectionBackgroundColor;
@@ -1453,12 +1467,23 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .defined-task-label label {
   font-size: $smallFontSize;
+  color: $definedTaskLabelTextColor;
+}
+
+.defined-task-label.active label {
+  color: $definedTaskLabelTextColor;
 }
 
 .defined-task-button-container .ui-state-hover ~ span.defined-task-label,
 .defined-task-button-container .active ~ span.defined-task-label,
 .defined-task-button-container .visited ~ span.defined-task-label {
   background: $definedTaskButtonContainerBackgroundColor;
+}
+
+.defined-task-button-container .ui-state-hover ~ span.defined-task-label label,
+.defined-task-button-container .active ~ span.defined-task-label label,
+.defined-task-button-container .visited ~ span.defined-task-label label {
+  color: $activeDefinedTaskLabelTextColor;
 }
 
 .form-definition-table .ui-state-highlight,
@@ -1620,6 +1645,10 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   background: $chatFormBackgroundColor;
 }
 
+.chat-send-form .ui-widget.ui-button .ui-icon {
+  color: $chatSendFormIconColor !important;
+}
+
 .notification-badge[data-badge]:after {
   background-color: $notificationBadgeBackgroundColor;
   color: $notificationBadgeColor;
@@ -1675,7 +1704,10 @@ ul.participants-list li {
       font-size: $closeChatFontSize !important;
     }
     &.ui-button.ui-button-icon-only {
-      background: $lightGrey;
+      background: $closeChatButtonBackgroundColor;
+      .ui-icon {
+        color: $closeChatButtonColor !important;
+      }
     }
   }
 }
@@ -1789,7 +1821,8 @@ ul.participants-list li {
     }
   }
   
-  tr.ui-datatable-selectable.ui-state-highlight {
+  tr.ui-datatable-selectable.ui-state-highlight,
+  tr.ui-datatable-selectable.ui-state-hover {
     td {
       border-bottom-color: $mediumGrey !important;
     }
@@ -1850,7 +1883,7 @@ body .ui-datatable thead th.ui-state-highlight .ui-sortable-column-icon.ui-icon,
 
 /* Auto complete */
 body .ui-autocomplete .ui-autocomplete-dropdown.ui-button.ui-button-icon-only .ui-icon {
-  color: $accentTextColor !important;
+  color: $textSecondaryColor !important;
 }
 body .ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table tr.ui-state-highlight:not(:hover) {
   color: $accentTextColor !important;
