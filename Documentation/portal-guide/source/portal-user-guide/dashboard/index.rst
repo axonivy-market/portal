@@ -120,10 +120,10 @@ II. Edit processes
 3. Confirm the reorder with the link **Save** next to the heading **User
    Favorites**.
 
-.. figure:: images/how-to-order-process-favorites-individually-1.png
+.. figure:: images/how-to-delete-process-favorites-1.png
 
 
-.. figure:: images/how-to-order-process-favorites-individually-2.png
+.. figure:: images/how-to-order-process-favorites-individually.png
 
 Personal Tasks
 --------------
