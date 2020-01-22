@@ -1,0 +1,32 @@
+AbsenceManagementData #class
+ch.ivy.addon.portalkit.multiapp.settings.AbsenceManagement #namespace
+absencesByUser java.util.Map #field
+absencesByUser PERSISTENT #fieldModifier
+backupAbsence ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence #field
+backupAbsence PERSISTENT #fieldModifier
+errorLink String #field
+errorLink PERSISTENT #fieldModifier
+errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
+errors PERSISTENT #fieldModifier
+isLoadDeputy Boolean #field
+isSupervisor Boolean #field
+users java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> #field
+users PERSISTENT #fieldModifier
+queryAutoComplete String #field
+selectedAbsence ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence #field
+selectedAbsence PERSISTENT #fieldModifier
+substituteRoot org.primefaces.model.TreeNode #field
+substituteRoot PERSISTENT #fieldModifier
+substitutesByApp java.util.Map #field
+substitutesByApp PERSISTENT #fieldModifier
+validationError Boolean #field
+absenceInThePastShown Boolean #field
+absenceInThePastShown PERSISTENT #fieldModifier
+selectedUser ch.ivy.addon.portalkit.dto.UserDTO #field
+selectedUser PERSISTENT #fieldModifier
+displayedAbsences java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence> #field
+displayedAbsences PERSISTENT #fieldModifier
+usersByApp java.util.Map #field
+usersByApp PERSISTENT #fieldModifier
+isAbsenceBeingCreated Boolean #field
+isAbsenceBeingCreated PERSISTENT #fieldModifier
