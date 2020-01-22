@@ -2372,7 +2372,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
   .dialog-closing-information, .admin-ui-dialog, .app-dialog, .select-icon-dialog, .application-selection-dialog,
   .setting-dialog, .project-info-dialog, .change-password-dialog, .language-setting-dialog, .deputy-dialog,
-  .absence-settings-dialog, .add-new-absence-dialog {
+  .absence-settings-dialog, .add-absence-dialog {
     width: 96vw !important;
   }
   .task-template-container, .task-template-button {
