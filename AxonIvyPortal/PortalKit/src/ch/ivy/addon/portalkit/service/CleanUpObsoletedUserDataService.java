@@ -28,7 +28,7 @@ import ch.ivyteam.ivy.server.ServerFactory;
 
 public class CleanUpObsoletedUserDataService {
 
-  private static final int PAGE_SIZE = 100;
+  private static final int OFFSET_SIZE = 100;
   private List<UserDTO> currentUsers;
   private List<Long> userIds;
   private List<String> userNames;
@@ -38,7 +38,7 @@ public class CleanUpObsoletedUserDataService {
   public void cleanUpData() {
     StopWatch stopWatch = new StopWatch();
     stopWatch.start();
-    Ivy.log().info("***** Started Clean up data");
+    Ivy.log().info("***** CLEAN_UP_JOB: Started Clean up data");
     try {
       currentUsers = ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
         return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE).withStartName("findUsers")
@@ -46,27 +46,27 @@ public class CleanUpObsoletedUserDataService {
       });
 
     } catch (Exception e) {
-      Ivy.log().error("Can't get list of users", e);
+      Ivy.log().error("CLEAN_UP_JOB: Can't get list of users", e);
       return;
     }
     applicationId = Ivy.request().getApplication().getId();
     userNames = currentUsers.stream().map(UserDTO::getName).distinct().collect(Collectors.toList());
     userIds = currentUsers.stream().map(UserDTO::getId).collect(Collectors.toList());
 
-    Ivy.log().info("Started clean up UserFavourite process");
+    Ivy.log().info("CLEAN_UP_JOB: Started clean up UserFavourite process");
     cleanUpUserFavouriteProcess();
-    Ivy.log().info("Started clean up UserTask filter");
+    Ivy.log().info("CLEAN_UP_JOB: Started clean up UserTask filter");
     cleanUpUserTaskFilter();
-    Ivy.log().info("Started clean up UserCase filter");
+    Ivy.log().info("CLEAN_UP_JOB: Started clean up UserCase filter");
     cleanUpUserCaseFilter();
-    Ivy.log().info("Started clean up UserTask ColumnsConfig");
+    Ivy.log().info("CLEAN_UP_JOB: Started clean up UserTask ColumnsConfig");
     cleanUpUserTaskColumnsConfigData();
-    Ivy.log().info("Started clean up UserCase ColumnsConfig");
+    Ivy.log().info("CLEAN_UP_JOB: Started clean up UserCase ColumnsConfig");
     cleanUpUserCaseColumnsConfigData();
-    Ivy.log().info("Started clean up UserStatistic chart");
+    Ivy.log().info("CLEAN_UP_JOB: Started clean up UserStatistic chart");
     cleanUpUserStatisticChartData();
     stopWatch.stop();
-    Ivy.log().info("***** Finished Clean up data  in {0}ms", stopWatch.getTime());
+    Ivy.log().info("***** CLEAN_UP_JOB: Finished Clean up data  in {0} ms", stopWatch.getTime());
   }
 
   private void cleanUpUserFavouriteProcess() {
@@ -75,7 +75,7 @@ public class CleanUpObsoletedUserDataService {
     CollectionUtils.emptyIfNull(userProcesses).stream()
         .filter(userProcess -> StringUtils.isBlank(userProcess.getUserName()) || (!checkIfUserBelongToCurrentApp(userProcess.getUserName()) && !userNames.contains(userProcess.getUserName())))
         .forEach(userProcess -> {
-          Ivy.log().info("Delete UserFavourite {0} of user {1}", userProcess.getProcessName(), userProcess.getUserName());
+          Ivy.log().info("CLEAN_UP_JOB: Delete UserFavourite {0} of user {1}", userProcess.getProcessName(), userProcess.getUserName());
           userProcessService.delete(userProcess);
         });
   }
@@ -86,125 +86,125 @@ public class CleanUpObsoletedUserDataService {
         return Ivy.request().getApplication().getSecurityContext().findUser(userName) != null;
       });
     } catch (Exception e) {
-      Ivy.log().error("Check user belongs to current app failed ", e);
+      Ivy.log().error("CLEAN_UP_JOB: Check user belongs to current app failed ", e);
       return false;
     }
   }
 
   private void cleanUpUserTaskFilter() {
     AbstractFilterService<TaskFilterData> taskFilterService = new TaskFilterService();
-    List<BusinessDataInfo<TaskFilterData>> allPrivateTaskFilters;
-    long totalCount = taskFilterService.getTotalFilterCount();
-    if (totalCount > PAGE_SIZE) {
+    List<BusinessDataInfo<TaskFilterData>> privateTaskFilters;
+    long totalCount = taskFilterService.getTotalPrivateFilterCount();
+    if (totalCount > OFFSET_SIZE) {
       int currentIndex = 0;
       do {
-        allPrivateTaskFilters = taskFilterService.getAllPrivateFilters(currentIndex, PAGE_SIZE);
-        cleanUpTaskFiltersData(allPrivateTaskFilters);
+        privateTaskFilters = taskFilterService.getPrivateFiltersWithOffset(currentIndex, OFFSET_SIZE);
+        cleanUpTaskFiltersData(privateTaskFilters);
 
-        currentIndex += PAGE_SIZE;
-      } while (currentIndex <= totalCount);
+        currentIndex += OFFSET_SIZE;
+      } while (currentIndex < totalCount);
 
     } else {
-      allPrivateTaskFilters = taskFilterService.getAllPrivateFilters(0, (int) totalCount);
-      cleanUpTaskFiltersData(allPrivateTaskFilters);
+      privateTaskFilters = taskFilterService.getPrivateFiltersWithOffset(0, (int) totalCount);
+      cleanUpTaskFiltersData(privateTaskFilters);
     }
   }
 
   private void cleanUpUserCaseFilter() {
     AbstractFilterService<CaseFilterData> caseFilterService = new CaseFilterService();
-    List<BusinessDataInfo<CaseFilterData>> allPrivateCaseFilters;
-    long totalCount = caseFilterService.getTotalFilterCount();
-    if (totalCount > PAGE_SIZE) {
+    List<BusinessDataInfo<CaseFilterData>> privateCaseFilters;
+    long totalCount = caseFilterService.getTotalPrivateFilterCount();
+    if (totalCount > OFFSET_SIZE) {
       int currentIndex = 0;
       do {
-        allPrivateCaseFilters = caseFilterService.getAllPrivateFilters(currentIndex, PAGE_SIZE);
-        cleanUpCaseFiltersData(allPrivateCaseFilters);
+        privateCaseFilters = caseFilterService.getPrivateFiltersWithOffset(currentIndex, OFFSET_SIZE);
+        cleanUpCaseFiltersData(privateCaseFilters);
 
-        currentIndex += PAGE_SIZE;
-      } while (currentIndex <= totalCount);
+        currentIndex += OFFSET_SIZE;
+      } while (currentIndex < totalCount);
     } else {
-      allPrivateCaseFilters = caseFilterService.getAllPrivateFilters(0, (int) totalCount);
-      cleanUpCaseFiltersData(allPrivateCaseFilters);
+      privateCaseFilters = caseFilterService.getPrivateFiltersWithOffset(0, (int) totalCount);
+      cleanUpCaseFiltersData(privateCaseFilters);
     }
   }
 
-  private void cleanUpCaseFiltersData(List<BusinessDataInfo<CaseFilterData>> allPrivateCaseFilters) {
-    CollectionUtils.emptyIfNull(allPrivateCaseFilters).stream()
-        .filter(caseFilter -> caseFilter.getCreatedByAppId() == applicationId && !userIds.contains(getUserIdByJsonObject(caseFilter.getRawValue())))
+  private void cleanUpCaseFiltersData(List<BusinessDataInfo<CaseFilterData>> privateCaseFilters) {
+    CollectionUtils.emptyIfNull(privateCaseFilters).stream()
+        .filter(caseFilter -> caseFilter.getCreatedByAppId() == applicationId && !userIds.contains(getUserIdFromJsonString(caseFilter.getRawValue())))
         .forEach(caseFilter -> {
-          Ivy.log().info("Delete private case filter id {0} of user {1}", caseFilter.getId(),
+          Ivy.log().info("CLEAN_UP_JOB: Delete private case filter id {0} of user {1}", caseFilter.getId(),
               caseFilter.getCreatedByUserName());
           Ivy.repo().deleteById(caseFilter.getId());
         });
   }
 
-  private void cleanUpTaskFiltersData(List<BusinessDataInfo<TaskFilterData>> allPrivateTaskFilters) {
-    CollectionUtils.emptyIfNull(allPrivateTaskFilters).stream()
-        .filter(taskFilter -> taskFilter.getCreatedByAppId() == applicationId && !userIds.contains(getUserIdByJsonObject(taskFilter.getRawValue())))
+  private void cleanUpTaskFiltersData(List<BusinessDataInfo<TaskFilterData>> privateTaskFilters) {
+    CollectionUtils.emptyIfNull(privateTaskFilters).stream()
+        .filter(taskFilter -> taskFilter.getCreatedByAppId() == applicationId && !userIds.contains(getUserIdFromJsonString(taskFilter.getRawValue())))
         .forEach(taskFilter -> {
-          Ivy.log().info("Delete private task filter id {0} of user {1}", taskFilter.getId(),
+          Ivy.log().info("CLEAN_UP_JOB: Delete private task filter id {0} of user {1}", taskFilter.getId(),
               taskFilter.getCreatedByUserName());
           Ivy.repo().deleteById(taskFilter.getId());
         });
   }
 
   @SuppressWarnings("unchecked")
-  private Long getUserIdByJsonObject(String jsonObject) {
+  private Long getUserIdFromJsonString(String jsonString) {
     Long userId = null;
     ObjectMapper mapper = new ObjectMapper();
     Map<String, Object> jsonMap = null;
     try {
-      jsonMap = mapper.readValue(jsonObject, Map.class);
+      jsonMap = mapper.readValue(jsonString, Map.class);
       if (jsonMap != null) {
         userId = Long.valueOf(jsonMap.get("userId").toString());
       }
     } catch (IOException e) {
-      Ivy.log().error("Cannot parse RawValue of FilterData: " + e);
+      Ivy.log().error("CLEAN_UP_JOB: Cannot parse RawValue of FilterData: " + e);
     }
     return userId;
   }
 
   private void cleanUpUserTaskColumnsConfigData() {
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
-    List<TaskColumnsConfiguration> allColumnConfigs;
-    long totalCount = service.getTotalCount(applicationId);
-    if (totalCount > PAGE_SIZE) {
+    List<TaskColumnsConfiguration> columnConfigs;
+    long totalCount = service.getTotalTaskConfigCountByAppId(applicationId);
+    if (totalCount > OFFSET_SIZE) {
       int currentIndex = 0;
       do {
-        allColumnConfigs = service.getAllConfiguration(applicationId, currentIndex, PAGE_SIZE);
-        cleanRepoColumnConfig(userIds, allColumnConfigs);
-        currentIndex += PAGE_SIZE;
+        columnConfigs = service.getTaskConfigurationWithOffset(applicationId, currentIndex, OFFSET_SIZE);
+        cleanRepoColumnConfig(userIds, columnConfigs);
+        currentIndex += OFFSET_SIZE;
 
-      } while (currentIndex <= totalCount);
+      } while (currentIndex < totalCount);
     } else {
-      allColumnConfigs = service.getAllConfiguration(applicationId, 0, (int) totalCount);
-      cleanRepoColumnConfig(userIds, allColumnConfigs);
+      columnConfigs = service.getTaskConfigurationWithOffset(applicationId, 0, (int) totalCount);
+      cleanRepoColumnConfig(userIds, columnConfigs);
     }
   }
 
   private void cleanUpUserCaseColumnsConfigData() {
     CaseColumnsConfigurationService service = new CaseColumnsConfigurationService();
-    List<CaseColumnsConfiguration> allColumnConfigs;
-    long totalCount = service.getTotalCount(applicationId);
-    if (totalCount > PAGE_SIZE) {
+    List<CaseColumnsConfiguration> columnConfigs;
+    long totalCount = service.getTotalCaseConfigCountByAppId(applicationId);
+    if (totalCount > OFFSET_SIZE) {
       int currentIndex = 0;
       do {
-        allColumnConfigs = service.getAllConfiguration(applicationId, currentIndex, PAGE_SIZE);
-        cleanRepoColumnConfig(userIds, allColumnConfigs);
-        currentIndex += PAGE_SIZE;
+        columnConfigs = service.getCaseConfigurationWithOffset(applicationId, currentIndex, OFFSET_SIZE);
+        cleanRepoColumnConfig(userIds, columnConfigs);
+        currentIndex += OFFSET_SIZE;
 
-      } while (currentIndex <= totalCount);
+      } while (currentIndex < totalCount);
     } else {
-      allColumnConfigs = service.getAllConfiguration(applicationId, 0, (int) totalCount);
-      cleanRepoColumnConfig(userIds, allColumnConfigs);
+      columnConfigs = service.getCaseConfigurationWithOffset(applicationId, 0, (int) totalCount);
+      cleanRepoColumnConfig(userIds, columnConfigs);
     }
   }
 
-  private void cleanRepoColumnConfig(List<Long> userIds, List<? extends ColumnsConfiguration> allColumnConfigs) {
-    CollectionUtils.emptyIfNull(allColumnConfigs).stream()
+  private void cleanRepoColumnConfig(List<Long> userIds, List<? extends ColumnsConfiguration> columnConfigs) {
+    CollectionUtils.emptyIfNull(columnConfigs).stream()
         .filter(columnConfig -> !userIds.contains(columnConfig.getUserId()))
         .forEach(columnConfig -> {
-          Ivy.log().info("Delete ColumnConfigID {0} of userID {1}", columnConfig.getProcessModelId(), columnConfig.getUserId());
+          Ivy.log().info("CLEAN_UP_JOB: Delete ColumnConfigID {0} of userID {1}", columnConfig.getProcessModelId(), columnConfig.getUserId());
           Ivy.repo().delete(columnConfig);
           }
         );
@@ -212,28 +212,28 @@ public class CleanUpObsoletedUserDataService {
 
   private void cleanUpUserStatisticChartData() {
     StatisticService statisticService = new StatisticService();
-    List<StatisticChart> allStatisticCharts;
-    long totalCount = statisticService.getTotalCount();
-    if (totalCount > PAGE_SIZE) {
+    List<StatisticChart> statisticCharts;
+    long totalCount = statisticService.getTotalStatisticCount();
+    if (totalCount > OFFSET_SIZE) {
       int currentIndex = 0;
       do {
-        allStatisticCharts = statisticService.findAllStatisticCharts(currentIndex, PAGE_SIZE);
-        removeStatisticCharts(statisticService, allStatisticCharts);
+        statisticCharts = statisticService.findStatisticChartsWithOffset(currentIndex, OFFSET_SIZE);
+        removeStatisticCharts(statisticService, statisticCharts);
 
-        currentIndex += PAGE_SIZE;
-      } while (currentIndex <= totalCount);
+        currentIndex += OFFSET_SIZE;
+      } while (currentIndex < totalCount);
 
     } else {
-      allStatisticCharts = statisticService.findAllStatisticCharts(0, (int) totalCount);
-      removeStatisticCharts(statisticService, allStatisticCharts);
+      statisticCharts = statisticService.findStatisticChartsWithOffset(0, (int) totalCount);
+      removeStatisticCharts(statisticService, statisticCharts);
     }
   }
 
-  private void removeStatisticCharts(StatisticService statisticService, List<StatisticChart> allStatisticCharts) {
-    CollectionUtils.emptyIfNull(allStatisticCharts).stream()
+  private void removeStatisticCharts(StatisticService statisticService, List<StatisticChart> statisticCharts) {
+    CollectionUtils.emptyIfNull(statisticCharts).stream()
         .filter(chart -> Ivy.repo().getInfo(chart).getCreatedByAppId() == applicationId && !userIds.contains(chart.getUserId()))
         .forEach(chart -> {
-          Ivy.log().info("Delete Statistic chart {0} of userID {1}", chart.getName(), chart.getUserId());
+          Ivy.log().info("CLEAN_UP_JOB: Delete Statistic chart {0} of userID {1}", chart.getName(), chart.getUserId());
           statisticService.delete(chart.getId());
         });
   }

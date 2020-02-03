@@ -9,6 +9,8 @@ import ch.ivyteam.ivy.business.data.store.search.Result;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class TaskColumnsConfigurationService extends BusinessDataService<TaskColumnsConfiguration> {
+  
+  private static final String APP_ID = "applicationId";
 
   @Override
   public Class<TaskColumnsConfiguration> getType() {
@@ -17,15 +19,20 @@ public class TaskColumnsConfigurationService extends BusinessDataService<TaskCol
 
   public TaskColumnsConfiguration getConfiguration(Long applicationId, Long userId, Long processModelId) {
     Filter<TaskColumnsConfiguration> query =
-        repo().search(getType()).numberField("applicationId").isEqualTo(applicationId).and().numberField("userId")
+        repo().search(getType()).numberField(APP_ID).isEqualTo(applicationId).and().numberField("userId")
             .isEqualTo(userId).and().numberField("processModelId").isEqualTo(processModelId);
     return query.limit(1).execute().getFirst();
   }
 
-  public long getTotalCount(Long applicationId) {
+  /**
+   * Get total count of Task configuration by application id
+   * @param applicationId
+   * @return totalCount
+   */
+  public long getTotalTaskConfigCountByAppId(Long applicationId) {
     try {
       Filter<TaskColumnsConfiguration> query =
-          repo().search(getType()).numberField("applicationId").isEqualTo(applicationId);
+          repo().search(getType()).numberField(APP_ID).isEqualTo(applicationId);
       return query.execute().totalCount();
     } catch (Exception e) {
       Ivy.log().error(e);
@@ -33,11 +40,18 @@ public class TaskColumnsConfigurationService extends BusinessDataService<TaskCol
     }
   }
 
-  public List<TaskColumnsConfiguration> getAllConfiguration(Long applicationId, int limitFrom, int limitSize) {
+  /**
+   * Get list of Task configuration by application id 
+   * @param applicationId
+   * @param firstIndex is first entity
+   * @param offset is size of return list
+   * @return list of task configuration
+   */
+  public List<TaskColumnsConfiguration> getTaskConfigurationWithOffset(Long applicationId, int firstIndex, int offset) {
     try {
       Filter<TaskColumnsConfiguration> query =
-          repo().search(getType()).numberField("applicationId").isEqualTo(applicationId);
-      Result<TaskColumnsConfiguration> queryResult = query.limit(limitFrom, limitSize).execute();
+          repo().search(getType()).numberField(APP_ID).isEqualTo(applicationId);
+      Result<TaskColumnsConfiguration> queryResult = query.limit(firstIndex, offset).execute();
       return queryResult.getAll();
     } catch (Exception e) {
       Ivy.log().error(e);
