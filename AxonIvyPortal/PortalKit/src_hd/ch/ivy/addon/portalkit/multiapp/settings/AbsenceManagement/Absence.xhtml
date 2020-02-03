@@ -25,10 +25,17 @@
       </div>
     </h:panelGroup>
     
+    <!-- <h:panelGroup layout="block" styleClass="ui-g-12">
+      <div class="md-inputfield">
+        <p:inputText value="#{data.selectedAbsence.name}" id="name" styleClass="add-absences-dialog-input-comment" />
+        <p:outputLabel for="name" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/absenceName')}:" />
+      </div>
+    </h:panelGroup> -->
+    
     <div class="ui-g-5 ui-sm-12">
       <div class="md-inputfield">
         <p:calendar id="absence-start-date" value="#{data.selectedAbsence.from}" locale="#{localeBean.locale}"
-          showOn="button"
+          showOn="button" 
           converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
           pattern="#{dateTimePatternBean.datePattern}" required="true"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
