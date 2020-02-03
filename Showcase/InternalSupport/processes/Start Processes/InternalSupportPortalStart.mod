@@ -493,6 +493,8 @@ Pt0 f36 requestMappingAction 'param.taskView=in.taskView;
 ' #txt
 Pt0 f36 responseMappingAction 'out=in;
 ' #txt
+Pt0 f36 responseActionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), true);' #txt
 Pt0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
