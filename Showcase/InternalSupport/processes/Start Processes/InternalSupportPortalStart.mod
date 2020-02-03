@@ -54,7 +54,6 @@ Pt0 @StartRequest f14 '' #zField
 Pt0 @StartRequest f39 '' #zField
 Pt0 @StartRequest f63 '' #zField
 Pt0 @PushWFArc f40 '' #zField
-Pt0 @PushWFArc f38 '' #zField
 Pt0 @PushWFArc f24 '' #zField
 Pt0 @PushWFArc f27 '' #zField
 Pt0 @PushWFArc f48 '' #zField
@@ -86,6 +85,9 @@ Pt0 @Alternative f31 '' #zField
 Pt0 @PushWFArc f49 '' #zField
 Pt0 @PushWFArc f19 '' #zField
 Pt0 @PushWFArc f52 '' #zField
+Pt0 @GridStep f54 '' #zField
+Pt0 @PushWFArc f38 '' #zField
+Pt0 @PushWFArc f50 '' #zField
 >Proto Pt0 Pt0 InternalSupportPortalStart #zField
 Bk1 @TextInP .type .type #zField
 Bk1 @TextInP .processKind .processKind #zField
@@ -500,7 +502,7 @@ Pt0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f36 1400 106 112 44 -50 -8 #rect
+Pt0 f36 1672 106 112 44 -50 -8 #rect
 Pt0 f36 @|UserDialogIcon #fIcon
 Pt0 f12 dialogId ch.ivy.addon.portal.generic.PortalFinishTaskHandle #txt
 Pt0 f12 startMethod start(Boolean) #txt
@@ -557,7 +559,7 @@ home page if you have</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f3 1544 106 144 44 -63 -16 #rect
+Pt0 f3 1816 106 144 44 -63 -16 #rect
 Pt0 f3 @|IBIcon #fIcon
 Pt0 f58 outLink CaseListPage.ivp #txt
 Pt0 f58 inParamDecl '<> param;' #txt
@@ -656,7 +658,6 @@ Pt0 f63 @C|.responsibility Everybody #txt
 Pt0 f63 81 497 30 30 -50 17 #rect
 Pt0 f63 @|StartRequestIcon #fIcon
 Pt0 f40 496 800 552 800 #arcP
-Pt0 f38 1352 128 1400 128 #arcP
 Pt0 f24 expr out #txt
 Pt0 f24 110 416 192 416 #arcP
 Pt0 f27 304 608 369 608 #arcP
@@ -780,6 +781,22 @@ Pt0 f52 488 240 824 246 #arcP
 Pt0 f52 1 488 272 #addKink
 Pt0 f52 2 824 272 #addKink
 Pt0 f52 1 0.49107142857142855 0 13 #arcLabel
+Pt0 f54 actionTable 'out=in;
+' #txt
+Pt0 f54 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+
+ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), true);' #txt
+Pt0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init SessionAttribute</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f54 1432 106 128 44 -54 -8 #rect
+Pt0 f54 @|StepIcon #fIcon
+Pt0 f38 1352 128 1432 128 #arcP
+Pt0 f50 1560 128 1672 128 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1314,8 +1331,6 @@ Bk5 f2 0 0.9337349397590361 0 0 #arcLabel
 >Proto Bk4 @|BIcon #fIcon
 Pt0 f10 mainOut f48 tail #connect
 Pt0 f48 head f11 mainIn #connect
-Pt0 f22 mainOut f38 tail #connect
-Pt0 f38 head f36 mainIn #connect
 Pt0 f11 mainOut f2 tail #connect
 Pt0 f2 head f1 in #connect
 Pt0 f9 mainOut f16 tail #connect
@@ -1372,6 +1387,10 @@ Pt0 f31 out f19 tail #connect
 Pt0 f19 head f4 mainIn #connect
 Pt0 f31 out f52 tail #connect
 Pt0 f52 head f7 mainIn #connect
+Pt0 f22 mainOut f38 tail #connect
+Pt0 f38 head f54 mainIn #connect
+Pt0 f54 mainOut f50 tail #connect
+Pt0 f50 head f36 mainIn #connect
 Bk1 f106 mainOut f107 tail #connect
 Bk1 f107 head f104 mainIn #connect
 Bk1 g0 m f0 tail #connect
