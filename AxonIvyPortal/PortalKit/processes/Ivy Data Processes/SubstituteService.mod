@@ -25,6 +25,15 @@ Se0 @CallSub f9 '' #zField
 Se0 @PushWFArc f11 '' #zField
 Se0 @PushWFArc f6 '' #zField
 Se0 @PushWFArc f7 '' #zField
+Se0 @GridStep f10 '' #zField
+Se0 @StartSub f12 '' #zField
+Se0 @CallSub f13 '' #zField
+Se0 @GridStep f14 '' #zField
+Se0 @EndSub f15 '' #zField
+Se0 @PushWFArc f16 '' #zField
+Se0 @PushWFArc f17 '' #zField
+Se0 @PushWFArc f18 '' #zField
+Se0 @PushWFArc f19 '' #zField
 >Proto Se0 Se0 SubstituteService #zField
 Se0 f0 inParamDecl '<String username> param;' #txt
 Se0 f0 inParamTable 'out.username=param.username;
@@ -161,6 +170,83 @@ Se0 f6 expr out #txt
 Se0 f6 570 192 721 192 #arcP
 Se0 f7 expr out #txt
 Se0 f7 111 192 232 192 #arcP
+Se0 f10 actionTable 'out=in;
+' #txt
+Se0 f10 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+
+RegisteredApplicationService service = new RegisteredApplicationService();
+out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
+' #txt
+Se0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find applications can work on</name>
+    </language>
+</elementInfo>
+' #txt
+Se0 f10 192 290 176 44 -81 -8 #rect
+Se0 f10 @|StepIcon #fIcon
+Se0 f12 inParamDecl '<String username> param;' #txt
+Se0 f12 inParamTable 'out.username=param.username;
+' #txt
+Se0 f12 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.Map substitutesByApp> result;' #txt
+Se0 f12 outParamTable 'result.errors=in.errors;
+result.substitutesByApp=in.substitutesByApp;
+' #txt
+Se0 f12 callSignature findSubstitutions(String) #txt
+Se0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findSubstitutions(String)</name>
+    </language>
+</elementInfo>
+' #txt
+Se0 f12 81 297 30 30 -61 17 #rect
+Se0 f12 @|StartSubIcon #fIcon
+Se0 f13 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
+Se0 f13 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
+Se0 f13 requestMappingAction 'param.exceptions=in.errors;
+' #txt
+Se0 f13 responseActionDecl 'ch.ivyteam.wf.processes.SubstituteServiceData out;
+' #txt
+Se0 f13 responseMappingAction 'out=in;
+' #txt
+Se0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ErrorHandler</name>
+    </language>
+</elementInfo>
+' #txt
+Se0 f13 562 290 112 44 -35 -8 #rect
+Se0 f13 @|CallSubIcon #fIcon
+Se0 f14 actionTable 'out=in;
+' #txt
+Se0 f14 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;
+import ch.ivy.addon.portalkit.ivydata.service.impl.SubstituteService;
+
+IvySubstituteResultDTO dto = SubstituteService.newInstance().findSubstitutions(in.username, in.apps);
+out.substitutesByApp = dto.getIvySubstitutesByApp();
+out.errors = dto.errors;' #txt
+Se0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find substitutions</name>
+    </language>
+</elementInfo>
+' #txt
+Se0 f14 402 290 112 44 -49 -8 #rect
+Se0 f14 @|StepIcon #fIcon
+Se0 f15 753 297 30 30 0 15 #rect
+Se0 f15 @|EndSubIcon #fIcon
+Se0 f16 expr out #txt
+Se0 f16 368 312 402 312 #arcP
+Se0 f17 expr out #txt
+Se0 f17 514 312 562 312 #arcP
+Se0 f18 expr out #txt
+Se0 f18 674 312 753 312 #arcP
+Se0 f19 expr out #txt
+Se0 f19 111 312 192 312 #arcP
 >Proto Se0 .type ch.ivyteam.wf.processes.SubstituteServiceData #txt
 >Proto Se0 .processKind CALLABLE_SUB #txt
 >Proto Se0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -195,3 +281,11 @@ Se0 f9 mainOut f6 tail #connect
 Se0 f6 head f5 mainIn #connect
 Se0 f4 mainOut f7 tail #connect
 Se0 f7 head f8 mainIn #connect
+Se0 f10 mainOut f16 tail #connect
+Se0 f16 head f14 mainIn #connect
+Se0 f14 mainOut f17 tail #connect
+Se0 f17 head f13 mainIn #connect
+Se0 f12 mainOut f19 tail #connect
+Se0 f19 head f10 mainIn #connect
+Se0 f13 mainOut f18 tail #connect
+Se0 f18 head f15 mainIn #connect
