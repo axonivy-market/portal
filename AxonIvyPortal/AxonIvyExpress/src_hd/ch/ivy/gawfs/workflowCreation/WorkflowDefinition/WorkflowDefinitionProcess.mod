@@ -21,10 +21,8 @@ Fs0 @UdMethod f9 '' #zField
 Fs0 @UdMethod f8 '' #zField
 Fs0 @GridStep f10 '' #zField
 Fs0 @PushWFArc f11 '' #zField
-Fs0 @PushWFArc f12 '' #zField
 Fs0 @GridStep f13 '' #zField
 Fs0 @PushWFArc f14 '' #zField
-Fs0 @PushWFArc f15 '' #zField
 Fs0 @UdMethod f16 '' #zField
 Fs0 @UdProcessEnd f20 '' #zField
 Fs0 @UdMethod f19 '' #zField
@@ -55,7 +53,6 @@ Fs0 @PushWFArc f44 '' #zField
 Fs0 @PushWFArc f26 '' #zField
 Fs0 @GridStep f45 '' #zField
 Fs0 @PushWFArc f46 '' #zField
-Fs0 @PushWFArc f2 '' #zField
 Fs0 @UdMethod f47 '' #zField
 Fs0 @UdProcessEnd f48 '' #zField
 Fs0 @GridStep f49 '' #zField
@@ -85,11 +82,6 @@ Fs0 @PushWFArc f71 '' #zField
 Fs0 @GridStep f72 '' #zField
 Fs0 @PushWFArc f73 '' #zField
 Fs0 @PushWFArc f32 '' #zField
-Fs0 @UdMethod f74 '' #zField
-Fs0 @UdProcessEnd f75 '' #zField
-Fs0 @GridStep f77 '' #zField
-Fs0 @PushWFArc f78 '' #zField
-Fs0 @PushWFArc f76 '' #zField
 Fs0 @UdEvent f79 '' #zField
 Fs0 @UdProcessEnd f80 '' #zField
 Fs0 @GridStep f82 '' #zField
@@ -100,6 +92,16 @@ Fs0 @UdProcessEnd f85 '' #zField
 Fs0 @GridStep f87 '' #zField
 Fs0 @PushWFArc f88 '' #zField
 Fs0 @PushWFArc f86 '' #zField
+Fs0 @UdMethod f74 '' #zField
+Fs0 @GridStep f77 '' #zField
+Fs0 @UdProcessEnd f89 '' #zField
+Fs0 @PushWFArc f90 '' #zField
+Fs0 @PushWFArc f15 '' #zField
+Fs0 @PushWFArc f12 '' #zField
+Fs0 @PushWFArc f2 '' #zField
+Fs0 @GridStep f76 '' #zField
+Fs0 @PushWFArc f78 '' #zField
+Fs0 @PushWFArc f75 '' #zField
 >Proto Fs0 Fs0 WorkflowDefinitionProcess #zField
 Fs0 f0 guid 1576FA61C9D81A51 #txt
 Fs0 f0 method start(gawfs.Data) #txt
@@ -121,7 +123,7 @@ Fs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Fs0 f0 83 51 26 26 -29 15 #rect
 Fs0 f0 @|UdInitIcon #fIcon
-Fs0 f1 531 51 26 26 0 12 #rect
+Fs0 f1 651 51 26 26 0 12 #rect
 Fs0 f1 @|UdProcessEndIcon #fIcon
 Fs0 f3 guid 1576FA61CAF25C4A #txt
 Fs0 f3 actionTable 'out=in;
@@ -133,9 +135,9 @@ Fs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f3 747 579 26 26 -15 12 #rect
+Fs0 f3 747 515 26 26 -15 12 #rect
 Fs0 f3 @|UdEventIcon #fIcon
-Fs0 f4 1379 579 26 26 0 12 #rect
+Fs0 f4 1379 515 26 26 0 12 #rect
 Fs0 f4 @|UdExitEndIcon #fIcon
 Fs0 f6 actionTable 'out=in;
 ' #txt
@@ -162,7 +164,6 @@ if(in.data.definedTasks.size()<1){
 	in.data.definedTasks.add(task);
 }else{
 	in.data.definedTasks = Helper.sortTasks(in.data.definedTasks);
-	
 }
 
 in.isAssignToUser = true;
@@ -171,9 +172,7 @@ if (!in.data.#isUseDefaultUI is initialized) {
 }
 
 if (!in.data.#processType is initialized) {
-	in.data.processType = ProcessType.AD_HOC;
-} else if(in.data.#processType is initialized && in.data.processType == ProcessType.REPEAT) {
-	in.isDisplayProcessOwner = true;
+  in.data.processType = ProcessType.REPEAT;
 }
 in.isRepeatable = in.data.processType != ProcessType.AD_HOC;
 ' #txt
@@ -187,10 +186,10 @@ Fs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f6 200 44 112 40 -32 -8 #rect
+Fs0 f6 168 44 112 40 -32 -8 #rect
 Fs0 f6 @|StepIcon #fIcon
 Fs0 f7 expr out #txt
-Fs0 f7 109 64 200 64 #arcP
+Fs0 f7 109 64 168 64 #arcP
 Fs0 f9 guid 157748D911FE549A #txt
 Fs0 f9 method addProcessStep() #txt
 Fs0 f9 inParameterDecl '<> param;' #txt
@@ -202,7 +201,7 @@ Fs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f9 83 147 26 26 -50 15 #rect
+Fs0 f9 819 51 26 26 -50 15 #rect
 Fs0 f9 @|UdMethodIcon #fIcon
 Fs0 f8 guid 157748DA5B03C33F #txt
 Fs0 f8 method deleteProcessStep() #txt
@@ -215,7 +214,7 @@ Fs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f8 83 243 26 26 -56 15 #rect
+Fs0 f8 819 131 26 26 -56 15 #rect
 Fs0 f8 @|UdMethodIcon #fIcon
 Fs0 f10 actionTable 'out=in;
 ' #txt
@@ -241,14 +240,10 @@ Fs0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f10 192 138 128 44 -60 -8 #rect
+Fs0 f10 920 42 128 44 -60 -8 #rect
 Fs0 f10 @|StepIcon #fIcon
 Fs0 f11 expr out #txt
-Fs0 f11 109 160 192 160 #arcP
-Fs0 f12 expr out #txt
-Fs0 f12 320 160 544 77 #arcP
-Fs0 f12 1 544 160 #addKink
-Fs0 f12 0 0.768395079364037 0 0 #arcLabel
+Fs0 f11 845 64 920 64 #arcP
 Fs0 f13 actionTable 'out=in;
 ' #txt
 Fs0 f13 actionCode 'import gawfs.TaskDef;
@@ -271,14 +266,10 @@ Fs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f13 184 234 144 44 -65 -8 #rect
+Fs0 f13 920 122 144 44 -65 -8 #rect
 Fs0 f13 @|StepIcon #fIcon
 Fs0 f14 expr out #txt
-Fs0 f14 109 256 184 256 #arcP
-Fs0 f15 expr out #txt
-Fs0 f15 328 256 544 77 #arcP
-Fs0 f15 1 544 256 #addKink
-Fs0 f15 0 0.9835526315789473 0 0 #arcLabel
+Fs0 f14 845 144 920 144 #arcP
 Fs0 f16 guid 157930AFEEC5B0A0 #txt
 Fs0 f16 method initAssginement(gawfs.TaskDef) #txt
 Fs0 f16 inParameterDecl '<gawfs.TaskDef taskDefinition> param;' #txt
@@ -301,9 +292,9 @@ Fs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f16 83 339 26 26 -70 15 #rect
+Fs0 f16 83 275 26 26 -70 15 #rect
 Fs0 f16 @|UdMethodIcon #fIcon
-Fs0 f20 659 339 26 26 0 12 #rect
+Fs0 f20 651 275 26 26 0 12 #rect
 Fs0 f20 @|UdProcessEndIcon #fIcon
 Fs0 f19 guid 1579333111525F97 #txt
 Fs0 f19 method updateResponsibles() #txt
@@ -318,7 +309,7 @@ Fs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f19 83 435 26 26 -62 15 #rect
+Fs0 f19 83 371 26 26 -62 15 #rect
 Fs0 f19 @|UdMethodIcon #fIcon
 Fs0 f23 actionTable 'out=in;
 ' #txt
@@ -355,10 +346,10 @@ Fs0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f23 192 426 128 44 -57 -8 #rect
+Fs0 f23 192 362 128 44 -57 -8 #rect
 Fs0 f23 @|StepIcon #fIcon
 Fs0 f24 expr out #txt
-Fs0 f24 109 448 192 448 #arcP
+Fs0 f24 109 384 192 384 #arcP
 Fs0 f24 0 0.6592264889893998 0 0 #arcLabel
 Fs0 f25 guid 1589422E488B03CA #txt
 Fs0 f25 method cancel() #txt
@@ -373,9 +364,9 @@ Fs0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f25 83 595 26 26 -18 15 #rect
+Fs0 f25 83 531 26 26 -18 15 #rect
 Fs0 f25 @|UdMethodIcon #fIcon
-Fs0 f30 499 675 26 26 0 12 #rect
+Fs0 f30 499 611 26 26 0 12 #rect
 Fs0 f30 @|UdExitEndIcon #fIcon
 Fs0 f28 actionTable 'out=in;
 ' #txt
@@ -388,10 +379,10 @@ Fs0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f28 248 666 128 44 -54 -8 #rect
+Fs0 f28 248 602 128 44 -54 -8 #rect
 Fs0 f28 @|StepIcon #fIcon
 Fs0 f31 expr out #txt
-Fs0 f31 376 688 499 688 #arcP
+Fs0 f31 376 624 499 624 #arcP
 Fs0 f31 0 0.7464020996890814 0 0 #arcLabel
 Fs0 f17 guid 1628E5D94C6FDB31 #txt
 Fs0 f17 method addAssignee() #txt
@@ -406,9 +397,9 @@ Fs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f17 83 827 26 26 -40 15 #rect
+Fs0 f17 83 763 26 26 -40 15 #rect
 Fs0 f17 @|UdMethodIcon #fIcon
-Fs0 f18 659 827 26 26 0 12 #rect
+Fs0 f18 659 763 26 26 0 12 #rect
 Fs0 f18 @|UdProcessEndIcon #fIcon
 Fs0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -419,7 +410,7 @@ Fs0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f36 360 824 32 32 -27 -37 #rect
+Fs0 f36 360 760 32 32 -27 -37 #rect
 Fs0 f36 @|AlternativeIcon #fIcon
 Fs0 f38 actionTable 'out=in;
 ' #txt
@@ -434,7 +425,7 @@ Fs0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f38 472 818 112 44 -38 -8 #rect
+Fs0 f38 472 754 112 44 -38 -8 #rect
 Fs0 f38 @|StepIcon #fIcon
 Fs0 f39 expr in #txt
 Fs0 f39 outCond in.isValidAssignee #txt
@@ -447,10 +438,10 @@ Fs0 f39 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f39 392 840 472 840 #arcP
+Fs0 f39 392 776 472 776 #arcP
 Fs0 f39 0 0.425 0 -11 #arcLabel
 Fs0 f21 expr out #txt
-Fs0 f21 584 840 659 840 #arcP
+Fs0 f21 584 776 659 776 #arcP
 Fs0 f40 expr in #txt
 Fs0 f40 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -461,9 +452,9 @@ Fs0 f40 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f40 376 856 672 853 #arcP
-Fs0 f40 1 376 896 #addKink
-Fs0 f40 2 672 896 #addKink
+Fs0 f40 376 792 672 789 #arcP
+Fs0 f40 1 376 832 #addKink
+Fs0 f40 2 672 832 #addKink
 Fs0 f40 1 0.17229729729729729 0 -10 #arcLabel
 Fs0 f34 actionTable 'out=in;
 ' #txt
@@ -487,12 +478,12 @@ Fs0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f34 192 818 112 44 -22 -8 #rect
+Fs0 f34 192 754 112 44 -22 -8 #rect
 Fs0 f34 @|StepIcon #fIcon
 Fs0 f35 expr out #txt
-Fs0 f35 109 840 192 840 #arcP
+Fs0 f35 109 776 192 776 #arcP
 Fs0 f37 expr out #txt
-Fs0 f37 304 840 360 840 #arcP
+Fs0 f37 304 776 360 776 #arcP
 Fs0 f41 guid 1628EC1A853E57B8 #txt
 Fs0 f41 actionTable 'out=in;
 ' #txt
@@ -510,12 +501,12 @@ Fs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f41 83 731 26 26 -59 15 #rect
+Fs0 f41 83 667 26 26 -59 15 #rect
 Fs0 f41 @|UdEventIcon #fIcon
-Fs0 f42 435 731 26 26 0 12 #rect
+Fs0 f42 435 667 26 26 0 12 #rect
 Fs0 f42 @|UdProcessEndIcon #fIcon
 Fs0 f43 expr out #txt
-Fs0 f43 109 744 435 744 #arcP
+Fs0 f43 109 680 435 680 #arcP
 Fs0 f27 actionTable 'out=in;
 ' #txt
 Fs0 f27 actionCode 'import java.util.ArrayList;
@@ -532,14 +523,14 @@ Fs0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f27 384 426 112 44 -53 -8 #rect
+Fs0 f27 384 362 112 44 -53 -8 #rect
 Fs0 f27 @|StepIcon #fIcon
 Fs0 f29 expr out #txt
-Fs0 f29 320 448 384 448 #arcP
+Fs0 f29 320 384 384 384 #arcP
 Fs0 f29 0 0.6592264889893998 0 0 #arcLabel
 Fs0 f22 expr out #txt
-Fs0 f22 496 448 672 365 #arcP
-Fs0 f22 1 672 448 #addKink
+Fs0 f22 496 384 664 301 #arcP
+Fs0 f22 1 664 384 #addKink
 Fs0 f22 0 0.6592264889893998 0 0 #arcLabel
 Fs0 f33 actionTable 'out=in;
 ' #txt
@@ -561,12 +552,12 @@ Fs0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f33 192 330 112 44 -40 -8 #rect
+Fs0 f33 192 266 112 44 -40 -8 #rect
 Fs0 f33 @|StepIcon #fIcon
 Fs0 f44 expr out #txt
-Fs0 f44 109 352 192 352 #arcP
+Fs0 f44 109 288 192 288 #arcP
 Fs0 f26 expr out #txt
-Fs0 f26 304 352 659 352 #arcP
+Fs0 f26 304 288 651 288 #arcP
 Fs0 f45 actionTable 'out=in;
 ' #txt
 Fs0 f45 actionCode 'import ch.ivy.gawfs.DragAndDropController;
@@ -582,12 +573,10 @@ Fs0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f45 360 42 112 44 -49 -8 #rect
+Fs0 f45 328 42 112 44 -49 -8 #rect
 Fs0 f45 @|StepIcon #fIcon
 Fs0 f46 expr out #txt
-Fs0 f46 312 64 360 64 #arcP
-Fs0 f2 expr out #txt
-Fs0 f2 472 64 531 64 #arcP
+Fs0 f46 280 64 328 64 #arcP
 Fs0 f47 guid 16347C45756F58EB #txt
 Fs0 f47 method changeUISetting(Boolean) #txt
 Fs0 f47 inParameterDecl '<Boolean isAgreed> param;' #txt
@@ -602,9 +591,9 @@ Fs0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f47 819 339 26 26 -49 15 #rect
+Fs0 f47 819 275 26 26 -49 15 #rect
 Fs0 f47 @|UdMethodIcon #fIcon
-Fs0 f48 1171 339 26 26 0 12 #rect
+Fs0 f48 1171 275 26 26 0 12 #rect
 Fs0 f48 @|UdProcessEndIcon #fIcon
 Fs0 f49 actionTable 'out=in;
 ' #txt
@@ -630,10 +619,10 @@ Fs0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f49 992 330 128 44 -55 -8 #rect
+Fs0 f49 992 266 128 44 -55 -8 #rect
 Fs0 f49 @|StepIcon #fIcon
 Fs0 f51 expr out #txt
-Fs0 f51 1120 352 1171 352 #arcP
+Fs0 f51 1120 288 1171 288 #arcP
 Fs0 f52 actionTable 'out=in;
 ' #txt
 Fs0 f52 actionCode 'import ch.ivy.gawfs.enums.TaskType;
@@ -656,10 +645,10 @@ use default template</name>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f52 1136 570 144 44 -52 -16 #rect
+Fs0 f52 1136 506 144 44 -52 -16 #rect
 Fs0 f52 @|StepIcon #fIcon
 Fs0 f5 expr out #txt
-Fs0 f5 1280 592 1379 592 #arcP
+Fs0 f5 1280 528 1379 528 #arcP
 Fs0 f54 guid 163497DDEE05D6E5 #txt
 Fs0 f54 actionTable 'out=in;
 ' #txt
@@ -672,13 +661,13 @@ Fs0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f54 83 499 26 26 -33 15 #rect
+Fs0 f54 83 435 26 26 -33 15 #rect
 Fs0 f54 @|UdEventIcon #fIcon
 Fs0 f55 expr out #txt
-Fs0 f55 109 512 440 470 #arcP
-Fs0 f55 1 440 512 #addKink
+Fs0 f55 109 448 440 406 #arcP
+Fs0 f55 1 440 448 #addKink
 Fs0 f55 0 0.8593296567373708 0 0 #arcLabel
-Fs0 f57 1171 467 26 26 0 12 #rect
+Fs0 f57 1171 403 26 26 0 12 #rect
 Fs0 f57 @|UdProcessEndIcon #fIcon
 Fs0 f56 guid 1634EB11643305EE #txt
 Fs0 f56 method removeSelectedAssignee(ch.ivyteam.ivy.security.ISecurityMember) #txt
@@ -694,10 +683,10 @@ Fs0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f56 819 467 26 26 -120 15 #rect
+Fs0 f56 819 403 26 26 -120 15 #rect
 Fs0 f56 @|UdMethodIcon #fIcon
 Fs0 f58 expr out #txt
-Fs0 f58 845 480 1171 480 #arcP
+Fs0 f58 845 416 1171 416 #arcP
 Fs0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -707,17 +696,17 @@ Fs0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f59 912 336 32 32 -33 -43 #rect
+Fs0 f59 912 272 32 32 -33 -43 #rect
 Fs0 f59 @|AlternativeIcon #fIcon
 Fs0 f60 expr out #txt
-Fs0 f60 845 352 912 352 #arcP
+Fs0 f60 845 288 912 288 #arcP
 Fs0 f50 expr in #txt
 Fs0 f50 outCond in.resetData #txt
-Fs0 f50 944 352 992 352 #arcP
+Fs0 f50 944 288 992 288 #arcP
 Fs0 f61 expr in #txt
-Fs0 f61 928 368 1184 365 #arcP
-Fs0 f61 1 928 400 #addKink
-Fs0 f61 2 1184 400 #addKink
+Fs0 f61 928 304 1184 301 #arcP
+Fs0 f61 1 928 336 #addKink
+Fs0 f61 2 1184 336 #addKink
 Fs0 f61 1 0.505859375 0 0 #arcLabel
 Fs0 f62 actionTable 'out=in;
 ' #txt
@@ -741,17 +730,17 @@ process name exists</name>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f62 816 570 144 44 -52 -16 #rect
+Fs0 f62 816 506 144 44 -52 -16 #rect
 Fs0 f62 @|StepIcon #fIcon
 Fs0 f63 expr out #txt
-Fs0 f63 773 592 816 592 #arcP
-Fs0 f64 1032 576 32 32 0 16 #rect
+Fs0 f63 773 528 816 528 #arcP
+Fs0 f64 1032 512 32 32 0 16 #rect
 Fs0 f64 @|AlternativeIcon #fIcon
 Fs0 f65 expr out #txt
-Fs0 f65 960 592 1032 592 #arcP
+Fs0 f65 960 528 1032 528 #arcP
 Fs0 f53 expr in #txt
 Fs0 f53 outCond in.isValidated #txt
-Fs0 f53 1064 592 1136 592 #arcP
+Fs0 f53 1064 528 1136 528 #arcP
 Fs0 f66 actionTable 'out=in;
 ' #txt
 Fs0 f66 actionCode 'import javax.faces.context.FacesContext;
@@ -768,16 +757,16 @@ Fs0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f66 1152 650 128 44 -55 -8 #rect
+Fs0 f66 1152 586 128 44 -55 -8 #rect
 Fs0 f66 @|StepIcon #fIcon
 Fs0 f67 expr in #txt
-Fs0 f67 1048 608 1152 672 #arcP
-Fs0 f67 1 1048 672 #addKink
+Fs0 f67 1048 544 1152 608 #arcP
+Fs0 f67 1 1048 608 #addKink
 Fs0 f67 1 0.1942657177753309 0 0 #arcLabel
-Fs0 f68 1379 659 26 26 0 12 #rect
+Fs0 f68 1379 595 26 26 0 12 #rect
 Fs0 f68 @|UdProcessEndIcon #fIcon
 Fs0 f69 expr out #txt
-Fs0 f69 1280 672 1379 672 #arcP
+Fs0 f69 1280 608 1379 608 #arcP
 Fs0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -785,10 +774,10 @@ Fs0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f70 176 592 32 32 -36 -42 #rect
+Fs0 f70 176 528 32 32 -36 -42 #rect
 Fs0 f70 @|AlternativeIcon #fIcon
 Fs0 f71 expr out #txt
-Fs0 f71 109 608 176 608 #arcP
+Fs0 f71 109 544 176 544 #arcP
 Fs0 f72 actionTable 'out=in;
 ' #txt
 Fs0 f72 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -805,60 +794,15 @@ Fs0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f72 248 586 176 44 -80 -8 #rect
+Fs0 f72 248 522 176 44 -80 -8 #rect
 Fs0 f72 @|StepIcon #fIcon
 Fs0 f73 expr in #txt
 Fs0 f73 outCond in.data.savedFlag #txt
-Fs0 f73 208 608 248 608 #arcP
+Fs0 f73 208 544 248 544 #arcP
 Fs0 f32 expr in #txt
-Fs0 f32 192 624 248 688 #arcP
-Fs0 f32 1 192 688 #addKink
+Fs0 f32 192 560 248 624 #arcP
+Fs0 f32 1 192 624 #addKink
 Fs0 f32 1 0.19396467700664802 0 0 #arcLabel
-Fs0 f74 guid 16D18F9A37BFB86F #txt
-Fs0 f74 method onSwitchProcessType() #txt
-Fs0 f74 inParameterDecl '<> param;' #txt
-Fs0 f74 outParameterDecl '<> result;' #txt
-Fs0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>onSwitchProcessType()</name>
-    </language>
-</elementInfo>
-' #txt
-Fs0 f74 819 819 26 26 -65 15 #rect
-Fs0 f74 @|UdMethodIcon #fIcon
-Fs0 f75 1139 819 26 26 0 12 #rect
-Fs0 f75 @|UdProcessEndIcon #fIcon
-Fs0 f77 actionTable 'out=in;
-' #txt
-Fs0 f77 actionCode 'import ch.ivy.gawfs.enums.ProcessType;
-import ch.ivy.gawfs.ExpressProcessUtils;
-import ch.ivy.gawfs.enums.ProcessType;
-import java.util.ArrayList;
-
-in.data.processType = in.isRepeatable ? ProcessType.REPEAT:ProcessType.AD_HOC;
-in.isDisplayProcessOwner = false;
-in.data.processCoOwnersDisplayName = null;
-in.data.processCoOwners = new ArrayList();
-if(in.data.#processType == ProcessType.REPEAT) {
-	in.data.processCoOwners.add(ivy.session.getSessionUser().getMemberName());
-	ExpressProcessUtils util = new ExpressProcessUtils();
-	in.data.processCoOwnersDisplayName = util.generateResponsibleDisplayName(in.data.processCoOwners);
-	in.isDisplayProcessOwner = true;
-}' #txt
-Fs0 f77 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Update process type</name>
-    </language>
-</elementInfo>
-' #txt
-Fs0 f77 912 810 128 44 -56 -8 #rect
-Fs0 f77 @|StepIcon #fIcon
-Fs0 f78 expr out #txt
-Fs0 f78 845 832 912 832 #arcP
-Fs0 f76 expr out #txt
-Fs0 f76 1040 832 1139 832 #arcP
 Fs0 f79 guid 16D850B9F2D5844D #txt
 Fs0 f79 actionTable 'out=in;
 ' #txt
@@ -869,9 +813,9 @@ Fs0 f79 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f79 83 1107 26 26 -69 19 #rect
+Fs0 f79 83 1043 26 26 -69 19 #rect
 Fs0 f79 @|UdEventIcon #fIcon
-Fs0 f80 435 1107 26 26 0 12 #rect
+Fs0 f80 435 1043 26 26 0 12 #rect
 Fs0 f80 @|UdProcessEndIcon #fIcon
 Fs0 f82 actionTable 'out=in;
 ' #txt
@@ -897,10 +841,10 @@ change process type</name>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f82 192 1098 144 44 -52 -16 #rect
+Fs0 f82 192 1034 144 44 -52 -16 #rect
 Fs0 f82 @|StepIcon #fIcon
-Fs0 f83 109 1120 192 1120 #arcP
-Fs0 f81 336 1120 435 1120 #arcP
+Fs0 f83 109 1056 192 1056 #arcP
+Fs0 f81 336 1056 435 1056 #arcP
 Fs0 f84 guid 16D8516BA7070FC4 #txt
 Fs0 f84 method initProcessStartResponsibles() #txt
 Fs0 f84 inParameterDecl '<> param;' #txt
@@ -915,9 +859,9 @@ Fs0 f84 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f84 83 979 26 26 -80 20 #rect
+Fs0 f84 83 915 26 26 -80 20 #rect
 Fs0 f84 @|UdMethodIcon #fIcon
-Fs0 f85 435 979 26 26 0 12 #rect
+Fs0 f85 435 915 26 26 0 12 #rect
 Fs0 f85 @|UdProcessEndIcon #fIcon
 Fs0 f87 actionTable 'out=in;
 ' #txt
@@ -939,10 +883,84 @@ Fs0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Fs0 f87 192 970 144 44 -69 -8 #rect
+Fs0 f87 192 906 144 44 -69 -8 #rect
 Fs0 f87 @|StepIcon #fIcon
-Fs0 f88 109 992 192 992 #arcP
-Fs0 f86 336 992 435 992 #arcP
+Fs0 f88 109 928 192 928 #arcP
+Fs0 f86 336 928 435 928 #arcP
+Fs0 f74 guid 16FA7081E6A4B0E2 #txt
+Fs0 f74 method onSwitchProcessType() #txt
+Fs0 f74 inParameterDecl '<> param;' #txt
+Fs0 f74 outParameterDecl '<> result;' #txt
+Fs0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>onSwitchProcessType()</name>
+    </language>
+</elementInfo>
+' #txt
+Fs0 f74 83 147 26 26 -65 15 #rect
+Fs0 f74 @|UdMethodIcon #fIcon
+Fs0 f77 actionTable 'out=in;
+' #txt
+Fs0 f77 actionCode 'import ch.ivy.gawfs.enums.ProcessType;
+import ch.ivy.gawfs.ExpressProcessUtils;
+
+if(in.data.#processType == ProcessType.REPEAT) {
+	in.isDisplayProcessOwner = true;
+
+	if (!in.data.#processCoOwners is initialized || in.data.#processCoOwners.isEmpty()) {
+	  in.data.processCoOwners.add(ivy.session.getSessionUser().getMemberName());
+		ExpressProcessUtils util = new ExpressProcessUtils();
+		in.data.processCoOwnersDisplayName = util.generateResponsibleDisplayName(in.data.processCoOwners);
+	}
+}' #txt
+Fs0 f77 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Update processOwner</name>
+    </language>
+</elementInfo>
+' #txt
+Fs0 f77 488 42 128 44 -61 -8 #rect
+Fs0 f77 @|StepIcon #fIcon
+Fs0 f89 1171 91 26 26 0 12 #rect
+Fs0 f89 @|UdProcessEndIcon #fIcon
+Fs0 f90 expr out #txt
+Fs0 f90 1064 144 1184 117 #arcP
+Fs0 f90 1 1184 144 #addKink
+Fs0 f90 0 0.9835526315789473 0 0 #arcLabel
+Fs0 f15 expr out #txt
+Fs0 f15 1048 64 1184 91 #arcP
+Fs0 f15 1 1184 64 #addKink
+Fs0 f15 0 0.8185198217350211 0 0 #arcLabel
+Fs0 f12 expr out #txt
+Fs0 f12 440 64 488 64 #arcP
+Fs0 f2 616 64 651 64 #arcP
+Fs0 f76 actionTable 'out=in;
+' #txt
+Fs0 f76 actionCode 'import ch.ivy.gawfs.enums.ProcessType;
+import ch.ivy.gawfs.ExpressProcessUtils;
+import java.util.ArrayList;
+
+in.data.processType = in.isRepeatable ? ProcessType.REPEAT:ProcessType.AD_HOC;
+in.isDisplayProcessOwner = false;
+in.data.processCoOwnersDisplayName = null;
+in.data.processCoOwners = new ArrayList();
+' #txt
+Fs0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Update process type</name>
+    </language>
+</elementInfo>
+' #txt
+Fs0 f76 200 138 128 44 -56 -8 #rect
+Fs0 f76 @|StepIcon #fIcon
+Fs0 f78 109 160 200 160 #arcP
+Fs0 f78 0 0.3973656425622029 0 0 #arcLabel
+Fs0 f75 328 160 552 86 #arcP
+Fs0 f75 1 552 160 #addKink
+Fs0 f75 0 0.7191176064037719 0 0 #arcLabel
 >Proto Fs0 .type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 >Proto Fs0 .processKind HTML_DIALOG #txt
 >Proto Fs0 -8 -8 16 16 16 26 #rect
@@ -951,12 +969,8 @@ Fs0 f0 mainOut f7 tail #connect
 Fs0 f7 head f6 mainIn #connect
 Fs0 f9 mainOut f11 tail #connect
 Fs0 f11 head f10 mainIn #connect
-Fs0 f10 mainOut f12 tail #connect
-Fs0 f12 head f1 mainIn #connect
 Fs0 f8 mainOut f14 tail #connect
 Fs0 f14 head f13 mainIn #connect
-Fs0 f13 mainOut f15 tail #connect
-Fs0 f15 head f1 mainIn #connect
 Fs0 f19 mainOut f24 tail #connect
 Fs0 f24 head f23 mainIn #connect
 Fs0 f28 mainOut f31 tail #connect
@@ -983,8 +997,6 @@ Fs0 f33 mainOut f26 tail #connect
 Fs0 f26 head f20 mainIn #connect
 Fs0 f6 mainOut f46 tail #connect
 Fs0 f46 head f45 mainIn #connect
-Fs0 f45 mainOut f2 tail #connect
-Fs0 f2 head f1 mainIn #connect
 Fs0 f49 mainOut f51 tail #connect
 Fs0 f51 head f48 mainIn #connect
 Fs0 f52 mainOut f5 tail #connect
@@ -1015,10 +1027,6 @@ Fs0 f70 out f73 tail #connect
 Fs0 f73 head f72 mainIn #connect
 Fs0 f70 out f32 tail #connect
 Fs0 f32 head f28 mainIn #connect
-Fs0 f74 mainOut f78 tail #connect
-Fs0 f78 head f77 mainIn #connect
-Fs0 f77 mainOut f76 tail #connect
-Fs0 f76 head f75 mainIn #connect
 Fs0 f79 mainOut f83 tail #connect
 Fs0 f83 head f82 mainIn #connect
 Fs0 f82 mainOut f81 tail #connect
@@ -1027,3 +1035,15 @@ Fs0 f84 mainOut f88 tail #connect
 Fs0 f88 head f87 mainIn #connect
 Fs0 f87 mainOut f86 tail #connect
 Fs0 f86 head f85 mainIn #connect
+Fs0 f13 mainOut f90 tail #connect
+Fs0 f90 head f89 mainIn #connect
+Fs0 f10 mainOut f15 tail #connect
+Fs0 f15 head f89 mainIn #connect
+Fs0 f45 mainOut f12 tail #connect
+Fs0 f12 head f77 mainIn #connect
+Fs0 f77 mainOut f2 tail #connect
+Fs0 f2 head f1 mainIn #connect
+Fs0 f74 mainOut f78 tail #connect
+Fs0 f78 head f76 mainIn #connect
+Fs0 f76 mainOut f75 tail #connect
+Fs0 f75 head f77 mainIn #connect
