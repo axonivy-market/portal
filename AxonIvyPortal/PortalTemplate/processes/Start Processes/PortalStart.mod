@@ -35,7 +35,6 @@ Pt0 @EndTask f64 '' #zField
 Pt0 @CallSub f9 '' #zField
 Pt0 @GridStep f22 '' #zField
 Pt0 @UserDialog f36 '' #zField
-Pt0 @PushWFArc f38 '' #zField
 Pt0 @Alternative f1 '' #zField
 Pt0 @PushWFArc f2 '' #zField
 Pt0 Bk0 S11 'Sub 1' #zField
@@ -89,6 +88,9 @@ Pt0 @Alternative f47 '' #zField
 Pt0 @PushWFArc f52 '' #zField
 Pt0 @PushWFArc f49 '' #zField
 Pt0 @PushWFArc f55 '' #zField
+Pt0 @GridStep f54 '' #zField
+Pt0 @PushWFArc f56 '' #zField
+Pt0 @PushWFArc f38 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk0 @TextInP .type .type #zField
 Bk0 @TextInP .processKind .processKind #zField
@@ -393,6 +395,8 @@ Pt0 f36 requestMappingAction 'param.taskView=in.taskView;
 ' #txt
 Pt0 f36 responseMappingAction 'out=in;
 ' #txt
+Pt0 f36 responseActionCode '
+' #txt
 Pt0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -400,9 +404,8 @@ Pt0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f36 1456 74 112 44 -50 -8 #rect
+Pt0 f36 1680 74 112 44 -50 -8 #rect
 Pt0 f36 @|UserDialogIcon #fIcon
-Pt0 f38 1408 96 1456 96 #arcP
 Pt0 f1 376 176 32 32 0 16 #rect
 Pt0 f1 @|AlternativeIcon #fIcon
 Pt0 f2 296 193 376 192 #arcP
@@ -496,9 +499,9 @@ home page if you have</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f3 1608 74 144 44 -63 -16 #rect
+Pt0 f3 1872 74 144 44 -63 -16 #rect
 Pt0 f3 @|IBIcon #fIcon
-Pt0 f8 1608 96 1568 96 #arcP
+Pt0 f8 1872 96 1792 96 #arcP
 Pt0 f20 expr in #txt
 Pt0 f20 outCond 'java.util.Objects.equals(ch.ivy.addon.portalkit.enums.PortalPage.HOME_PAGE, in.#portalPage) && org.apache.commons.lang3.StringUtils.isBlank(in.#callbackUrl)' #txt
 Pt0 f20 1240 176 1240 112 #arcP
@@ -785,6 +788,22 @@ Pt0 f55 488 208 840 214 #arcP
 Pt0 f55 1 488 240 #addKink
 Pt0 f55 2 840 240 #addKink
 Pt0 f55 1 0.45170454545454547 0 10 #arcLabel
+Pt0 f54 actionTable 'out=in;
+' #txt
+Pt0 f54 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+
+ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), true);' #txt
+Pt0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init SessionAttribute</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f54 1472 74 128 44 -54 -8 #rect
+Pt0 f54 @|StepIcon #fIcon
+Pt0 f56 1408 96 1472 96 #arcP
+Pt0 f38 1600 96 1680 96 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1319,8 +1338,6 @@ Bk5 f2 0 0.9337349397590361 0 0 #arcLabel
 >Proto Bk4 @|BIcon #fIcon
 Pt0 f10 mainOut f48 tail #connect
 Pt0 f48 head f11 mainIn #connect
-Pt0 f22 mainOut f38 tail #connect
-Pt0 f38 head f36 mainIn #connect
 Pt0 f11 mainOut f2 tail #connect
 Pt0 f2 head f1 in #connect
 Pt0 f9 mainOut f16 tail #connect
@@ -1381,6 +1398,10 @@ Pt0 f47 out f49 tail #connect
 Pt0 f49 head f4 mainIn #connect
 Pt0 f47 out f55 tail #connect
 Pt0 f55 head f7 mainIn #connect
+Pt0 f22 mainOut f56 tail #connect
+Pt0 f56 head f54 mainIn #connect
+Pt0 f54 mainOut f38 tail #connect
+Pt0 f38 head f36 mainIn #connect
 Bk0 f17 mainOut f26 tail #connect
 Bk0 f26 head f23 mainIn #connect
 Bk0 f19 mainOut f39 tail #connect
