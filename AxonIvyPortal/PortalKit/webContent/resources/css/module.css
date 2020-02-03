@@ -2886,7 +2886,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
     width: 78rem;
   }
   .statistic-details-dialog {
-    width: 500px;
+    width: 100% !important;
   }
   .statistic-carousel .ui-carousel .ui-carousel-header .ui-carousel-header-title {
     max-width: 70% !important;
@@ -2912,7 +2912,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
     width: 85%;
   }
   .statistic-details-dialog {
-    width: 500px;
+    width: 500px !important;
   }
   .statistic-carousel .statistic-carousel-item {
     max-height: 40rem;
@@ -3050,10 +3050,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .custom-field-panel.statistic-filter-container {
   height: auto;
   max-height: 18rem;
-}
-
-.statistic-details-dialog {
-  width: 80vw;
 }
 
 .statistic-dashboard-container {
