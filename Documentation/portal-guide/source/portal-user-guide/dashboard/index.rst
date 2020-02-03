@@ -77,7 +77,7 @@ HowTo: Add a process as a user favorite
    accessible to you depending on your roles.     
                                  
    Furthermore, the list shows only processes which are not added to your user
-   favourites so far. You cannot add a process multiple time.
+   favorites so far. You cannot add a process multiple time.
 
 HowTo: Delete a process as a user favorite
 ------------------------------------------
