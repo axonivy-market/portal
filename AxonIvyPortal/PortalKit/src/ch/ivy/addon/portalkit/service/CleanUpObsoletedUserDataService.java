@@ -204,7 +204,7 @@ public class CleanUpObsoletedUserDataService {
     CollectionUtils.emptyIfNull(columnConfigs).stream()
         .filter(columnConfig -> !userIds.contains(columnConfig.getUserId()))
         .forEach(columnConfig -> {
-          Ivy.log().info("CLEAN_UP_JOB: Delete ColumnConfigID {0} of userID {1}", columnConfig.getProcessModelId(), columnConfig.getUserId());
+          Ivy.log().info("CLEAN_UP_JOB: Delete ColumnConfig of userID {0} in applicationID {1}", columnConfig.getUserId(), columnConfig.getApplicationId());
           Ivy.repo().delete(columnConfig);
           }
         );
