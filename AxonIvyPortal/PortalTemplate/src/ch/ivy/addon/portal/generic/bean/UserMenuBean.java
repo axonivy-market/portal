@@ -20,6 +20,7 @@ import org.apache.commons.lang3.time.DateUtils;
 import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
@@ -134,7 +135,21 @@ public class UserMenuBean implements Serializable {
     navigateToHomePage();
   }
 
+  public void resetTaskAndNavigateToHomePageWithGrowl(ITask task) throws IOException {
+    IvyComponentLogicCaller<ITask> leaveTask = new IvyComponentLogicCaller<>();
+    leaveTask.invokeComponentLogic("task-leave-warning-component", "#{logic.leave}", new Object[] {});
+    TaskUtils.resetTask(task != null ? task : Ivy.wfTask());
+    navigateToHomePage();
+  }
+
   public void reserveTaskAndNavigateToHomePage(ITask task) throws IOException {
+    TaskUtils.parkTask(task != null ? task : Ivy.wfTask());
+    navigateToHomePage();
+  }
+  
+  public void reserveTaskAndNavigateToHomePageWithGrowl(ITask task) throws IOException {
+    IvyComponentLogicCaller<ITask> reserveTask = new IvyComponentLogicCaller<>();
+    reserveTask.invokeComponentLogic("task-leave-warning-component", "#{logic.reserve}", new Object[] {});
     TaskUtils.parkTask(task != null ? task : Ivy.wfTask());
     navigateToHomePage();
   }
