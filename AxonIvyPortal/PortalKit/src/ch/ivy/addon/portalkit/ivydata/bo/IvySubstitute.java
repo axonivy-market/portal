@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.SubstitutionType;
 
 public class IvySubstitute {
 
@@ -11,6 +12,8 @@ public class IvySubstitute {
   private String substitionRoleDisplayName;
   private UserDTO substituteUser;
   private String description;
+  private SubstitutionType substitutionType;
+  private UserDTO ownerUser;
 
   public IRole getSubstitionRole() {
     return substitionRole;
@@ -45,6 +48,22 @@ public class IvySubstitute {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public SubstitutionType getSubstitutionType() {
+    return substitutionType;
+  }
+
+  public void setSubstitutionType(SubstitutionType substitutionType) {
+    this.substitutionType = substitutionType;
+  }
+
+  public UserDTO getOwnerUser() {
+    return ownerUser;
+  }
+
+  public void setOwnerUser(UserDTO ownerUser) {
+    this.ownerUser = ownerUser;
   }
 
 }

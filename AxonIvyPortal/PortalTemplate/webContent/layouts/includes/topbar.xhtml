@@ -44,7 +44,7 @@
           </li>
 
           <li><p:link id="absence-menu-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
-              onclick="PF('absenceSetting').show(); $('#user-setting-container').click()" rendered="#{absenceBean.ownAbsencesReadable}" /></li>
+              onclick="PF('absenceManagement').show(); $('#user-setting-container').click()" rendered="#{absenceBean.ownAbsencesReadable}" /></li>
 
           <li><p:commandLink id="email-setting-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}"
               oncomplete="PF('emailSetting').show(); $('#user-settings-menu').click()" resetValues="true" update="applications-email-setting-form">
@@ -104,24 +104,20 @@
       </f:facet>
     </p:dialog>
 
-    <!-- <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}" styleClass="absence-settings-dialog" width="80%"
-      height="420" closeOnEscape="true" widgetVar="absenceSetting" id="absence-settings-dialog" resizable="false" modal="true" draggable="true"
-      appendTo="@(body)" dynamic="true" responsive="true">
-      <ic:ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy id="absence-settings" dialogName="absenceSetting" />
-      <f:facet name="footer">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="cancel-absences-command" type="button"
-          onclick="PF('absenceSetting').hide();" styleClass="cancel-absences-command" />
-      </f:facet>
-    </p:dialog> -->
-    
-    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/absenceAndDeputy')}" styleClass="absence-settings-dialog" width="80%"
-      height="420" closeOnEscape="true" widgetVar="absenceSetting" id="absence-settings-dialog" resizable="false" modal="true" draggable="true"
-      appendTo="@(body)" dynamic="true" responsive="true">
-      <ic:ch.ivy.addon.portalkit.multiapp.settings.AbsenceManagement id="absence-management" dialogName="absenceSetting" />
-      <f:facet name="footer">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="cancel-absences-command" type="button"
-          onclick="PF('absenceSetting').hide();" styleClass="cancel-absences-command" />
-      </f:facet>
+    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/absenceAndDeputy')}" 
+      styleClass="absence-settings-dialog"  
+      height="900"
+      width="80%"
+      closeOnEscape="true" 
+      widgetVar="absenceManagement" 
+      id="absence-settings-dialog" 
+      resizable="false" 
+      modal="true" 
+      draggable="true"
+      appendTo="@(body)" 
+      dynamic="true" 
+      responsive="true">
+      <ic:ch.ivy.addon.portalkit.multiapp.settings.AbsenceManagement id="absence-management" dialogName="absenceManagement" />
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}" styleClass="applications-email-setting-dialog"

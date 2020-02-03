@@ -10,7 +10,6 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
-import ch.ivyteam.ivy.config.internal.format.StringFormatMetaInformation;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.ServerFactory;
 
@@ -19,7 +18,7 @@ public class IvyAbsence {
   private UserDTO user;
   private Date from;
   private Date until;
-  private String period;
+  private String absenceName;
   private String comment;
   
   public UserDTO getUser() {
@@ -68,10 +67,14 @@ public class IvyAbsence {
     return String.format("%s - %s", formatter.format(from), formatter.format(until));
   }
   
-  public void setPeriod(String period) {
-    this.period = period;
+  public String getAbsenceName() {
+    return absenceName;
   }
   
+  public void setAbsenceName(String absenceName) {
+    this.absenceName = absenceName;
+  }
+
   @Override
   public int hashCode() {
     try {
@@ -99,9 +102,7 @@ public class IvyAbsence {
           .append(from, other.from)
           .append(until, other.until)
           .isEquals();
-  } else{
-      return false;
+    } 
+    return false;
   }
-  }
-
 }
