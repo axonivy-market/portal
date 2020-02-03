@@ -106,18 +106,28 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
     }
   }
 
-  public List<BusinessDataInfo<T>> getAllPrivateFilters(int limitFrom, int limitSize) {
+  /**
+   * Get list of private filter by filter type 
+   * @param firstIndex index of first entity
+   * @param offset size of return list 
+   * @return private filters
+   */
+  public List<BusinessDataInfo<T>> getPrivateFiltersWithOffset(int firstIndex, int offset) {
     try {
       Filter<T> privateFilterQuery =
           repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name());
-      return privateFilterQuery.limit(limitFrom, limitSize).execute().getAllInfos();
+      return privateFilterQuery.limit(firstIndex, offset).execute().getAllInfos();
     } catch (Exception e) {
       Ivy.log().error(e);
       return new ArrayList<>();
     }
   }
 
-  public long getTotalFilterCount() {
+  /**
+   * Get total count of private filter
+   * @return totalCount
+   */
+  public long getTotalPrivateFilterCount() {
     try {
       Filter<T> privateFilterQuery =
           repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name());

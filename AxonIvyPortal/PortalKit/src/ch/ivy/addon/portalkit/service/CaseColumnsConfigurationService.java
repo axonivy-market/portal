@@ -9,6 +9,8 @@ import ch.ivyteam.ivy.business.data.store.search.Result;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class CaseColumnsConfigurationService extends BusinessDataService<CaseColumnsConfiguration> {
+  
+  private static final String APP_ID = "applicationId";
 
   @Override
   public Class<CaseColumnsConfiguration> getType() {
@@ -18,16 +20,21 @@ public class CaseColumnsConfigurationService extends BusinessDataService<CaseCol
   public CaseColumnsConfiguration getConfiguration(Long applicationId, Long userId, Long processModelId) {
     Filter<CaseColumnsConfiguration> query =
         repo().search(getType())
-              .numberField("applicationId").isEqualTo(applicationId)
+              .numberField(APP_ID).isEqualTo(applicationId)
               .and().numberField("userId").isEqualTo(userId)
               .and().numberField("processModelId").isEqualTo(processModelId);
     return query.limit(1).execute().getFirst();
   }
 
-  public long getTotalCount(Long applicationId) {
+  /**
+   * Get total count of Case configuration by application id
+   * @param applicationId
+   * @return totalCount
+   */
+  public long getTotalCaseConfigCountByAppId(Long applicationId) {
     try {
       Filter<CaseColumnsConfiguration> query =
-          repo().search(getType()).numberField("applicationId").isEqualTo(applicationId);
+          repo().search(getType()).numberField(APP_ID).isEqualTo(applicationId);
       return query.execute().totalCount();
     } catch (Exception e) {
       Ivy.log().error(e);
@@ -35,11 +42,18 @@ public class CaseColumnsConfigurationService extends BusinessDataService<CaseCol
     }
   }
 
-  public List<CaseColumnsConfiguration> getAllConfiguration(Long applicationId, int limitFrom, int limitSize) {
+  /**
+   * Get list of Case configuration by application id
+   * @param applicationId
+   * @param firstIndex is first entity
+   * @param offset is size of return list
+   * @return list of Case configuration
+   */
+  public List<CaseColumnsConfiguration> getCaseConfigurationWithOffset(Long applicationId, int firstIndex, int offset) {
     try {
       Filter<CaseColumnsConfiguration> query =
-          repo().search(getType()).numberField("applicationId").isEqualTo(applicationId);
-      Result<CaseColumnsConfiguration> queryResult = query.limit(limitFrom, limitSize).execute();
+          repo().search(getType()).numberField(APP_ID).isEqualTo(applicationId);
+      Result<CaseColumnsConfiguration> queryResult = query.limit(firstIndex, offset).execute();
       return queryResult.getAll();
     } catch (Exception e) {
       Ivy.log().error(e);
