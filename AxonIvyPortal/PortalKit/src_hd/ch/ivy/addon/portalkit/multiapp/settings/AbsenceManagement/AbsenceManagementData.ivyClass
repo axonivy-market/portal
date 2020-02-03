@@ -30,3 +30,9 @@ usersByApp java.util.Map #field
 usersByApp PERSISTENT #fieldModifier
 isAbsenceBeingCreated Boolean #field
 isAbsenceBeingCreated PERSISTENT #fieldModifier
+showAllAbsences Boolean #field
+showAllAbsences PERSISTENT #fieldModifier
+substitutionRoot org.primefaces.model.TreeNode #field
+substitutionRoot PERSISTENT #fieldModifier
+substitutionsByApp java.util.Map #field
+substitutionsByApp PERSISTENT #fieldModifier
