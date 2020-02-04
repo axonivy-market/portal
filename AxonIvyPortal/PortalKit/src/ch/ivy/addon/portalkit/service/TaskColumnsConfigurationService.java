@@ -1,12 +1,19 @@
 package ch.ivy.addon.portalkit.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfigurationData;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
 import ch.ivyteam.ivy.business.data.store.search.Result;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class TaskColumnsConfigurationService extends BusinessDataService<TaskColumnsConfigurationData> {
+  
+  private static final String SERVER_ID = "serverId";
+  private static final String APP_ID = "applicationId";
+  private static final String USER_ID = "userId";
+  private static final String TASK_COLUMN_CONFIG_ID = "taskColumnsConfigDataId";
 
   @Override
   public Class<TaskColumnsConfigurationData> getType() {
@@ -18,37 +25,72 @@ public class TaskColumnsConfigurationService extends BusinessDataService<TaskCol
     if(serverId != null){
       query =
           repo().search(getType())
-          .numberField("serverId").isEqualTo(serverId)
-          .and().numberField("applicationId").isEqualTo(applicationId)
-          .and().numberField("userId").isEqualTo(userId)
-          .and().numberField("taskColumnsConfigDataId").isEqualTo(taskColumnsConfigDataId);
+          .numberField(SERVER_ID).isEqualTo(serverId)
+          .and().numberField(APP_ID).isEqualTo(applicationId)
+          .and().numberField(USER_ID).isEqualTo(userId)
+          .and().numberField(TASK_COLUMN_CONFIG_ID).isEqualTo(taskColumnsConfigDataId);
     } else {
       query =
           repo().search(getType())
-          .numberField("applicationId").isEqualTo(applicationId)
-          .and().numberField("userId").isEqualTo(userId)
-          .and().numberField("taskColumnsConfigDataId").isEqualTo(taskColumnsConfigDataId);
+          .numberField(APP_ID).isEqualTo(applicationId)
+          .and().numberField(USER_ID).isEqualTo(userId)
+          .and().numberField(TASK_COLUMN_CONFIG_ID).isEqualTo(taskColumnsConfigDataId);
     }
     return query.limit(1).execute().getFirst();
   }
 
-  public List<TaskColumnsConfigurationData> getAllConfiguration(Long serverId, Long applicationId) {
-    Filter<TaskColumnsConfigurationData> query;
-    if(serverId != null){
-      query =
-          repo().search(getType())
-          .numberField("serverId").isEqualTo(serverId)
-          .and().numberField("applicationId").isEqualTo(applicationId);
-    } else {
-      query =
-          repo().search(getType())
-          .numberField("applicationId").isEqualTo(applicationId);
+  /**
+   * Get total count of Task configuration by server id
+   * @param serverId
+   * @param applicationId
+   * @return totalCount
+   */
+  public long getTotalTaskConfigCountByAppId(Long serverId, Long applicationId) {
+    try {
+      Filter<TaskColumnsConfigurationData> query;
+      if(serverId != null){
+        query =
+            repo().search(getType())
+            .numberField(SERVER_ID).isEqualTo(serverId)
+            .and().numberField(APP_ID).isEqualTo(applicationId);
+      } else {
+        query =
+            repo().search(getType())
+            .numberField(APP_ID).isEqualTo(applicationId);
+      }
+      return query.execute().totalCount();
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      return 0;
     }
-    Result<TaskColumnsConfigurationData> queryResult = query.limit(LIMIT_100).execute();
-    long totalCount = queryResult.totalCount();
-    if(totalCount > LIMIT_100) {
-      queryResult = query.limit(Math.toIntExact(totalCount)).execute();
+  }
+
+  /**
+   * Get list of Task configuration by application id 
+   * @param serverId
+   * @param applicationId
+   * @param firstIndex is first entity
+   * @param offset is size of return list
+   * @return list of task configuration
+   */
+  public List<TaskColumnsConfigurationData> getTaskConfigurationWithOffset(Long serverId, Long applicationId, int firstIndex, int offset) {
+    try {
+      Filter<TaskColumnsConfigurationData> query;
+      if(serverId != null){
+        query =
+            repo().search(getType())
+            .numberField(SERVER_ID).isEqualTo(serverId)
+            .and().numberField(APP_ID).isEqualTo(applicationId);
+      } else {
+        query =
+            repo().search(getType())
+            .numberField(APP_ID).isEqualTo(applicationId);
+      }
+      Result<TaskColumnsConfigurationData> queryResult = query.limit(firstIndex, offset).execute();
+      return queryResult.getAll();
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      return new ArrayList<>();
     }
-    return queryResult.getAll();
   }
 }

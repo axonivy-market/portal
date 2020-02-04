@@ -17,6 +17,7 @@ import ch.ivy.addon.portalkit.bean.PermissionBean;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.filter.AbstractFilter;
 import ch.ivy.addon.portalkit.filter.AbstractFilterData;
+import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
 import ch.ivyteam.ivy.business.data.store.search.Result;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -111,11 +112,36 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
     }
   }
 
-  public List<T> getAllPrivateFilters() {
-    Filter<T> privateFilterQuery =
-            repo().search(getType())
-                .textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name());
-    return privateFilterQuery.execute().getAll();
+  /**
+   * Get total count of private filter
+   * @return totalCount
+   */
+  public long getTotalPrivateFilterCount() {
+    try {
+      Filter<T> privateFilterQuery =
+         repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name());
+      return privateFilterQuery.execute().totalCount();
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      return 0;
+    }
+  }
+
+  /**
+   * Get list of private filter by filter type 
+   * @param firstIndex index of first entity
+   * @param offset size of return list 
+   * @return private filters
+   */
+  public List<BusinessDataInfo<T>> getPrivateFiltersWithOffset(int firstIndex, int offset) {
+    try {
+      Filter<T> privateFilterQuery =
+          repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name());
+      return privateFilterQuery.limit(firstIndex, offset).execute().getAllInfos();
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      return new ArrayList<>();
+    }
   }
 
 }
