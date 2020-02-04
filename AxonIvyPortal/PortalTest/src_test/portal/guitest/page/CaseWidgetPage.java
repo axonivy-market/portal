@@ -89,9 +89,8 @@ public class CaseWidgetPage extends TemplatePage {
     List<WebElement> caseItems = findListElementsByCssSelector(CASE_ITEM_LIST_SELECTOR);
     for (WebElement caseItem : caseItems) {
       if (caseItem.findElement(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
-        clickByCssSelector("a[id*='case-item']");
-        CaseDetailsPage detailsPage = new CaseDetailsPage();
-        return detailsPage;
+        clickByCssSelector("span[id*='case-info-row']");
+        return new CaseDetailsPage();
       }
     }
     throw new NoSuchElementException("Cannot find details of case that has name " + caseName);

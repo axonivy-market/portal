@@ -38,7 +38,7 @@ public class TaskWidgetTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
-  @Test // obsolete testShowHideTaskDetailOnExpandedMode update by testShowTaskDetailAndBackFromTaskDetail
+  @Test
   public void testShowTaskDetailAndBackFromTaskDetail() {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
 
@@ -77,11 +77,11 @@ public class TaskWidgetTest extends BaseTest {
   public void testReserveTask() {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
-    taskWidgetPage.sideStepMenuOnMoreButton(0);
+    taskWidgetPage.sideStepMenuOnActionButton(0);
     taskWidgetPage.reserveTask(0);
     taskWidgetPage.waitAjaxIndicatorDisappear();
     assertEquals(TaskState.RESERVED, taskWidgetPage.getTaskState(0));
-    taskWidgetPage.sideStepMenuOnMoreButton(0);
+    taskWidgetPage.sideStepMenuOnActionButton(0);
     taskWidgetPage.resetTask(0);
     taskWidgetPage.waitAjaxIndicatorDisappear();
     assertEquals(TaskState.OPEN, taskWidgetPage.getTaskState(0));
