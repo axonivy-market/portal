@@ -4108,6 +4108,10 @@ _:-ms-fullscreen, :root .content-link-history {
   padding-right: 20px;
 }
 
+.ui-fileupload.ui-widget .ui-fileupload-content .ui-fileupload-row>div {
+  vertical-align: middle;
+}
+
 /**************DATA TABLE START*******************/
 .column-header-top-alignment {
   vertical-align: baseline;
