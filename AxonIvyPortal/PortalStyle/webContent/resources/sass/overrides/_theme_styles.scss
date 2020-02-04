@@ -341,6 +341,10 @@ body .ui-datatable.ui-datatable-scrollable thead tr th {
   font-size: $largeFontSize;
 }
 
+body .ui-datatable.ui-datatable-scrollable thead tr th.ui-state-active {
+  color: $accentTextColor;
+}
+
 @media (max-width: 640px) {
   .ui-datatable-reflow .ui-reflow-dropdown {
     font-size: $largeFontSize !important;
