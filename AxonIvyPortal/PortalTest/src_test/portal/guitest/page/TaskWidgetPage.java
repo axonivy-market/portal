@@ -98,7 +98,7 @@ public class TaskWidgetPage extends TemplatePage {
 	}
 
   public boolean isTaskDelegateOptionDisable(int index) {
-    sideStepMenuOnMoreButton(index);
+    sideStepMenuOnActionButton(index);
     waitForElementDisplayed(By.id(taskWidgetId + ":task-list-scroller:" + index + ":task-item:task-action:additional-options:task-delegate-command"), true);
     WebElement delegateButton =
         findElementById(taskWidgetId + ":task-list-scroller:" + index + ":task-item:task-action:additional-options:task-delegate-command");
@@ -137,13 +137,13 @@ public class TaskWidgetPage extends TemplatePage {
     return relatedCaseLink.getText();
   }
 
-  public void sideStepMenuOnMoreButton(int taskId) {
-    String moreButton = String.format("button[id$='%d\\:task-item\\:task-action\\:additional-options\\:task-side-steps-menu'] span.fa-ellipsis-v", taskId);
-    waitForElementDisplayed(By.cssSelector(moreButton), true);
-    // Unstable step, after go to task list, click immediately to More button, Portal opens task detail.
+  public void sideStepMenuOnActionButton(int taskId) {
+    String actionButton = String.format("button[id$='%d\\:task-item\\:task-action\\:additional-options\\:task-side-steps-menu']", taskId);
+    waitForElementDisplayed(By.cssSelector(actionButton), true);
+    // Unstable step, after go to task list, click immediately to Action button, Portal opens task detail.
     // could be related to Javascript running when loading page. Try to wait page ready before clicking More button. 
     Sleeper.sleep(2000);
-    clickByCssSelector(moreButton);
+    clickByCssSelector(actionButton);
     ensureNoBackgroundRequest();
     waitForElementDisplayed(By.cssSelector("div[id$='side-steps-panel'].ui-overlay-visible a[id$='adhoc-side-step-item']"), true);
   }
@@ -273,7 +273,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void openTaskDelegateDialog(int index) {
-    sideStepMenuOnMoreButton(index);
+    sideStepMenuOnActionButton(index);
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
         .until(() -> findElementByCssSelector("a[id$='task-delegate-command']").isDisplayed());
     clickByCssSelector("a[id$='task-delegate-command']");
