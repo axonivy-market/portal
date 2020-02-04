@@ -132,8 +132,7 @@ public class CleanUpObsoletedUserDataService {
     CollectionUtils.emptyIfNull(privateCaseFilters).stream()
         .filter(caseFilter -> caseFilter.getCreatedByAppId() == applicationId && !userIds.contains(getUserIdFromJsonString(caseFilter.getRawValue())))
         .forEach(caseFilter -> {
-          Ivy.log().info("CLEAN_UP_JOB: Delete private case filter id {0} of user {1}", caseFilter.getId(),
-              caseFilter.getCreatedByUserName());
+          Ivy.log().info("CLEAN_UP_JOB: Delete private case filter id {0}", caseFilter.getId());
           Ivy.repo().deleteById(caseFilter.getId());
         });
   }
@@ -142,8 +141,7 @@ public class CleanUpObsoletedUserDataService {
     CollectionUtils.emptyIfNull(privateTaskFilters).stream()
         .filter(taskFilter -> taskFilter.getCreatedByAppId() == applicationId && !userIds.contains(getUserIdFromJsonString(taskFilter.getRawValue())))
         .forEach(taskFilter -> {
-          Ivy.log().info("CLEAN_UP_JOB: Delete private task filter id {0} of user {1}", taskFilter.getId(),
-              taskFilter.getCreatedByUserName());
+          Ivy.log().info("CLEAN_UP_JOB: Delete private task filter id {0}", taskFilter.getId());
           Ivy.repo().deleteById(taskFilter.getId());
         });
   }
