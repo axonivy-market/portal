@@ -773,6 +773,9 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   margin-bottom: 60px !important;
 }
 
+.case-task-note-histories {
+  white-space: pre-wrap;
+}
 /********************************** END CASE ITEM **********************************/
 
 /********************************** START PROCESSES **********************************/
