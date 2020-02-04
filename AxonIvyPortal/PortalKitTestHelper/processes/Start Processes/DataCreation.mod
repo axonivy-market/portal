@@ -125,6 +125,15 @@ Dt0 @PushWFArc f69 '' #zField
 Dt0 @TaskSwitch f112 '' #zField
 Dt0 @TkArc f113 '' #zField
 Dt0 @PushWFArc f75 '' #zField
+Dt0 @StartRequest f114 '' #zField
+Dt0 @EndTask f115 '' #zField
+Dt0 @GridStep f117 '' #zField
+Dt0 @GridStep f125 '' #zField
+Dt0 @PushWFArc f126 '' #zField
+Dt0 @GridStep f124 '' #zField
+Dt0 @PushWFArc f116 '' #zField
+Dt0 @PushWFArc f118 '' #zField
+Dt0 @PushWFArc f119 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Dt0 f0 outLink createTasks.ivp #txt
 Dt0 f0 inParamDecl '<String taskStructureInfo> param;' #txt
@@ -1065,6 +1074,165 @@ Dt0 f113 1472 112 1472 176 #arcP
 Dt0 f75 expr data #txt
 Dt0 f75 outCond ivp=="TaskA.ivp" #txt
 Dt0 f75 1472 208 1472 273 #arcP
+Dt0 f114 outLink createDataForObsoletedData.ivp #txt
+Dt0 f114 inParamDecl '<> param;' #txt
+Dt0 f114 requestEnabled true #txt
+Dt0 f114 triggerEnabled false #txt
+Dt0 f114 callSignature createDataForObsoletedData() #txt
+Dt0 f114 startName 'Create Data For Obsoleted Data' #txt
+Dt0 f114 caseData businessCase.attach=true #txt
+Dt0 f114 wfuser 1 #txt
+Dt0 f114 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createDataForObsoletedData.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f114 @C|.responsibility AXONIVY_PORTAL_ADMIN #txt
+Dt0 f114 49 1193 30 30 -51 25 #rect
+Dt0 f114 @|StartRequestIcon #fIcon
+Dt0 f115 881 1193 30 30 0 15 #rect
+Dt0 f115 @|EndIcon #fIcon
+Dt0 f117 actionTable 'out=in;
+' #txt
+Dt0 f117 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
+import ch.ivy.addon.portalkit.service.TaskColumnsConfigurationService;
+import ch.ivy.addon.portalkit.service.CaseColumnsConfigurationService;
+import ch.ivy.addon.portalkit.service.TaskFilterService;
+import ch.ivy.addon.portalkit.service.UserProcessService;
+import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
+import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
+import ch.ivy.addon.portalkit.enums.FilterType;
+import ch.ivy.addon.portalkit.casefilter.CaseFilter;
+import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
+import ch.ivy.addon.portalkit.service.CaseFilterService;
+import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
+import ch.ivy.addon.portalkit.bo.CaseColumnsConfiguration;
+import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
+import ch.ivy.addon.portalkit.enums.StatisticChartType;
+import ch.ivy.addon.portalkit.statistics.StatisticFilter;
+import ch.ivy.addon.portalkit.statistics.StatisticChart;
+
+in.testObsoleteUser = ivy.wf.getSecurityContext().findUser("test_obsolete_data_user");
+
+// Create user process
+UserProcessService userProcessService = new UserProcessService();
+for (int i = 0; i < 100; i++) {
+	UserProcess userProcess = new UserProcess();
+	userProcess.setUserName(in.testObsoleteUser.getName());
+	userProcess.setIndex(i);
+	userProcess.setDescription("Test user process - " + i);
+	userProcess.setProcessName("Test user process - " + i);
+	userProcessService.save(userProcess);
+}
+
+// Create task filter
+TaskFilterService taskFilterService = new TaskFilterService();
+for (int i = 0; i < 100; i++) {
+    TaskFilterData filterData = new TaskFilterData();
+    filterData.setKeyword("Test task filter-" + i);
+    filterData.setUserId(in.testObsoleteUser.getId());
+    filterData.setFilterGroupId(1);
+    filterData.setFilterName("Test task filter-" + i);
+    filterData.setType(FilterType.ONLY_ME);
+    taskFilterService.save(filterData);
+}
+
+// Create case filter
+CaseFilterService caseFilterService = new CaseFilterService();
+for (int i = 0; i < 100; i++) {
+    CaseFilterData filterData = new CaseFilterData();
+    filterData.setKeyword("Test case filter-" + i);
+    filterData.setUserId(in.testObsoleteUser.getId());
+    filterData.setFilterGroupId(1);
+    filterData.setFilterName("Test case filter-" + i);
+    filterData.setType(FilterType.ONLY_ME);
+    caseFilterService.save(filterData);
+}
+
+// Create for task config
+Long applicationId = ivy.request.getApplication().getId();
+TaskColumnsConfiguration taskConfig = new TaskColumnsConfiguration();
+taskConfig.setApplicationId(applicationId);
+taskConfig.setUserId(in.testObsoleteUser.getId());
+taskConfig.setAutoHideColumns(false);
+taskConfig.setProcessModelId(ivy.request.getProcessModel().getId());
+TaskColumnsConfigurationService taskService = new TaskColumnsConfigurationService();
+taskService.save(taskConfig);
+
+// Create for case config
+CaseColumnsConfiguration caseConfig = new CaseColumnsConfiguration();
+caseConfig.setApplicationId(applicationId);
+caseConfig.setUserId(in.testObsoleteUser.getId());
+caseConfig.setAutoHideColumns(false);
+caseConfig.setProcessModelId(ivy.request.getProcessModel().getId());
+CaseColumnsConfigurationService caseService = new CaseColumnsConfigurationService();
+caseService.save(caseConfig);
+
+// Create statistic chart
+StatisticService statisticService = new StatisticService();
+for (int i = 0; i < 100; i++) {
+	StatisticChart chart = new StatisticChart();
+	chart.setDefaultChart("false");
+	chart.setFilter(new StatisticFilter());
+	chart.setType(StatisticChartType.TASK_BY_PRIORITY);
+	chart.setName("Test chart-" + i);
+	chart.setPosition(i);
+	chart.setUserId(in.testObsoleteUser.getId());
+	statisticService.save(chart);
+}
+' #txt
+Dt0 f117 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Create Data</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f117 432 1186 112 44 -33 -8 #rect
+Dt0 f117 @|StepIcon #fIcon
+Dt0 f125 actionTable 'out=in;
+' #txt
+Dt0 f125 actionCode 'import java.util.Locale;
+if (ivy.wf.getSecurityContext().findUser("test_obsolete_data_user") != null) {
+	ivy.wf.getSecurityContext().deleteUser("test_obsolete_data_user");
+}
+ivy.wf.getSecurityContext().createUser("test_obsolete_data_user", "Elton", "123", Locale.ENGLISH, "", "");
+
+' #txt
+Dt0 f125 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Create test user data</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f125 184 1186 128 44 -57 -8 #rect
+Dt0 f125 @|StepIcon #fIcon
+Dt0 f126 79 1208 184 1208 #arcP
+Dt0 f124 actionTable 'out=in;
+' #txt
+Dt0 f124 actionCode 'import ch.ivyteam.ivy.security.IUser;
+import java.util.Locale;
+
+if (ivy.wf.getSecurityContext().findUser("test_obsolete_data_user") != null) {
+	ivy.wf.getSecurityContext().deleteUser("test_obsolete_data_user");
+}
+
+' #txt
+Dt0 f124 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>remove test user</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f124 656 1186 112 44 -46 -8 #rect
+Dt0 f124 @|StepIcon #fIcon
+Dt0 f116 768 1208 881 1208 #arcP
+Dt0 f118 312 1208 432 1208 #arcP
+Dt0 f119 544 1208 656 1208 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1182,3 +1350,11 @@ Dt0 f70 out f113 tail #connect
 Dt0 f113 head f112 in #connect
 Dt0 f112 out f75 tail #connect
 Dt0 f75 head f74 mainIn #connect
+Dt0 f114 mainOut f126 tail #connect
+Dt0 f126 head f125 mainIn #connect
+Dt0 f124 mainOut f116 tail #connect
+Dt0 f116 head f115 mainIn #connect
+Dt0 f125 mainOut f118 tail #connect
+Dt0 f118 head f117 mainIn #connect
+Dt0 f117 mainOut f119 tail #connect
+Dt0 f119 head f124 mainIn #connect
