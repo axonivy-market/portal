@@ -106,6 +106,9 @@ HowTo: Create an Express Workflow
 
 .. figure:: images/define-express-workflow-process-steps.png
 
+
+.. centered:: _`Express Workflow task types`
+
 +-----------------------------------+-----------------------------------+
 | Task type                         | Description                       |
 +===================================+===================================+
@@ -127,7 +130,7 @@ HowTo: Create an Express Workflow
 |                                   | approval task                     |
 +-----------------------------------+-----------------------------------+
 
-.. centered:: _`Express Workflow task types`
+
 
 17. Depending on the task type of the first process step a different
     editor is opened. For user task / task with email the dialog editor
@@ -164,6 +167,9 @@ HowTo: Create an Express Workflow
    The results of all previous tasks are included in follow-on tasks in a
    read-only view, so that the user sees the whole history.     
 
+
+.. centered:: Express Workflow input elements
+
 +-----------------------------------+-----------------------------------+
 | Input element                     | Description and options           |
 +===================================+===================================+
@@ -193,7 +199,7 @@ HowTo: Create an Express Workflow
 |                                   | -  Number of allowed attachments  |
 +-----------------------------------+-----------------------------------+
 
-.. centered:: Express Workflow input elements
+
 
 29. For process steps with the task type user task with email /
     information email the email editor is opened.
