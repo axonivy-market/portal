@@ -594,6 +594,13 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   padding-right: 10px;
 }
 
+.case-info-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  cursor: pointer;
+}
+
 .case-header-action-cell, .task-header-action-cell {
   text-align: right;
   padding: 0 10px;
@@ -3936,9 +3943,8 @@ _:-ms-fullscreen, :root .content-link-history {
 }
 
 .action-button.task-action-item {
-  padding: 0 20px !important;
-  margin-left: 10px;
   height: 28px;
+  border: none !important;
 }
 
 .action-button.task-action-item .ui-button-icon-left.ui-icon {
