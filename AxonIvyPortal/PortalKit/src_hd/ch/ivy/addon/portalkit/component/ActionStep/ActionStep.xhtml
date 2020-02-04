@@ -12,6 +12,7 @@
   <cc:attribute name="update" default="" required="false" />
   <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
   <cc:attribute name="onDestroyComplete" />
+  <cc:attribute name="renderShowDetailAction" default="true"  />
 </cc:interface>
 
 <cc:implementation>
@@ -24,7 +25,7 @@
     dynamic="true">
     
     <p:commandLink id="case-item-open-detail-link" styleClass="case-command action-step-item"
-          actionListener="#{logic.openDetails(case)}" disabled="#{alwaysShowDetails}">
+          actionListener="#{logic.openDetails(case)}" rendered="#{cc.attrs.renderShowDetailAction}">
       <span class="action-icon fa fa-info-circle" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" />
     </p:commandLink>
@@ -40,7 +41,7 @@
       <span class="action-icon fa fa-remove" />
       <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Destroy')}" />
     </p:commandLink>
-    <p:separator styleClass="case-action-separator" rendered="#{cc.attrs.renderDestroyAction}" />
+    <p:separator styleClass="case-action-separator" rendered="#{cc.attrs.renderDestroyAction or caseWidgetBean.showCaseDetails or cc.attrs.renderShowDetailAction}" />
     <p:commandLink rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" styleClass="action-step-item" />
     <ui:repeat var="sideStep" value="#{sideStepBean.currentSideSteps}">
       <p:commandLink id="adhoc-side-step-item" styleClass="action-step-item" value="#{sideStep.name}" global="false" rendered="#{sideStep.isAdhoc()}"
