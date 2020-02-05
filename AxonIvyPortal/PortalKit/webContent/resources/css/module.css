@@ -594,6 +594,13 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   padding-right: 10px;
 }
 
+.case-info-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  cursor: pointer;
+}
+
 .case-header-action-cell, .task-header-action-cell {
   text-align: right;
   padding: 0 10px;
@@ -773,6 +780,9 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   margin-bottom: 60px !important;
 }
 
+.case-task-note-histories {
+  white-space: pre-wrap;
+}
 /********************************** END CASE ITEM **********************************/
 
 /********************************** START PROCESSES **********************************/
@@ -3933,9 +3943,8 @@ _:-ms-fullscreen, :root .content-link-history {
 }
 
 .action-button.task-action-item {
-  padding: 0 20px !important;
-  margin-left: 10px;
   height: 28px;
+  border: none !important;
 }
 
 .action-button.task-action-item .ui-button-icon-left.ui-icon {
@@ -4103,6 +4112,10 @@ _:-ms-fullscreen, :root .content-link-history {
 .favorite-process-title {
   display: inline-block;
   padding-right: 20px;
+}
+
+.ui-fileupload.ui-widget .ui-fileupload-content .ui-fileupload-row>div {
+  vertical-align: middle;
 }
 
 /**************DATA TABLE START*******************/

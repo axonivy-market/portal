@@ -12,16 +12,17 @@ import java.util.Optional;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.beanutils.PropertyUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ch.ivy.addon.portalkit.bean.PermissionBean;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.filter.AbstractFilter;
 import ch.ivy.addon.portalkit.filter.AbstractFilterData;
+import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
 import ch.ivyteam.ivy.business.data.store.search.Result;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public abstract class AbstractFilterService<T extends AbstractFilterData<?>> extends BusinessDataService<T> {
 
@@ -105,10 +106,36 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
     }
   }
 
-  public List<T> getAllPrivateFilters() {
-    Filter<T> privateFilterQuery =
-        repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name());
-    return privateFilterQuery.execute().getAll();
+  /**
+   * Get list of private filter by filter type 
+   * @param firstIndex index of first entity
+   * @param offset size of return list 
+   * @return private filters
+   */
+  public List<BusinessDataInfo<T>> getPrivateFiltersWithOffset(int firstIndex, int offset) {
+    try {
+      Filter<T> privateFilterQuery =
+          repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name());
+      return privateFilterQuery.limit(firstIndex, offset).execute().getAllInfos();
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      return new ArrayList<>();
+    }
+  }
+
+  /**
+   * Get total count of private filter
+   * @return totalCount
+   */
+  public long getTotalPrivateFilterCount() {
+    try {
+      Filter<T> privateFilterQuery =
+          repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name());
+      return privateFilterQuery.execute().totalCount();
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      return 0;
+    }
   }
 
 }
