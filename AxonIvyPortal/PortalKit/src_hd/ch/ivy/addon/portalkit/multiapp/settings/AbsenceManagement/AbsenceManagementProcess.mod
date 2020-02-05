@@ -8,8 +8,6 @@ As0 @TextInP .type .type #zField
 As0 @TextInP .processKind .processKind #zField
 As0 @TextInP .xml .xml #zField
 As0 @TextInP .responsibility .responsibility #zField
-As0 @UdProcessEnd f52 '' #zField
-As0 @GridStep f106 '' #zField
 As0 @UdProcessEnd f13 '' #zField
 As0 @Alternative f68 '' #zField
 As0 @UdInit f0 '' #zField
@@ -20,7 +18,6 @@ As0 @GridStep f37 '' #zField
 As0 @UdMethod f42 '' #zField
 As0 @UdProcessEnd f40 '' #zField
 As0 @UdEvent f81 '' #zField
-As0 @UdMethod f73 '' #zField
 As0 @GridStep f104 '' #zField
 As0 @UdProcessEnd f23 '' #zField
 As0 @UdProcessEnd f80 '' #zField
@@ -29,7 +26,6 @@ As0 @CallSub f145 '' #zField
 As0 @CallSub f39 '' #zField
 As0 @Alternative f149 '' #zField
 As0 @GridStep f113 '' #zField
-As0 @UdEvent f33 '' #zField
 As0 @UdMethod f12 '' #zField
 As0 @Alternative f90 '' #zField
 As0 @Alternative f92 '' #zField
@@ -42,11 +38,9 @@ As0 @UdProcessEnd f18 '' #zField
 As0 @UdEvent f96 '' #zField
 As0 @GridStep f5 '' #zField
 As0 @GridStep f7 '' #zField
-As0 @GridStep f44 '' #zField
 As0 @Alternative f97 '' #zField
 As0 @Alternative f24 '' #zField
 As0 @UdEvent f157 '' #zField
-As0 @Alternative f74 '' #zField
 As0 @CallSub f101 '' #zField
 As0 @GridStep f152 '' #zField
 As0 @UdProcessEnd f100 '' #zField
@@ -68,14 +62,12 @@ As0 @UdEvent f38 '' #zField
 As0 @UdEvent f54 '' #zField
 As0 @CallSub f47 '' #zField
 As0 @GridStep f70 '' #zField
-As0 @GridStep f60 '' #zField
 As0 @Alternative f83 '' #zField
 As0 @UdProcessEnd f59 '' #zField
 As0 @GridStep f55 '' #zField
 As0 @PushWFArc f71 '' #zField
 As0 @PushWFArc f63 '' #zField
 As0 @PushWFArc f156 '' #zField
-As0 @PushWFArc f49 '' #zField
 As0 @PushWFArc f119 '' #zField
 As0 @PushWFArc f133 '' #zField
 As0 @PushWFArc f41 '' #zField
@@ -83,18 +75,14 @@ As0 @PushWFArc f78 '' #zField
 As0 @PushWFArc f50 '' #zField
 As0 @PushWFArc f72 '' #zField
 As0 @PushWFArc f103 '' #zField
-As0 @PushWFArc f46 '' #zField
 As0 @PushWFArc f147 '' #zField
 As0 @PushWFArc f134 '' #zField
-As0 @PushWFArc f66 '' #zField
 As0 @PushWFArc f131 '' #zField
 As0 @PushWFArc f29 '' #zField
 As0 @PushWFArc f143 '' #zField
-As0 @PushWFArc f65 '' #zField
 As0 @PushWFArc f48 '' #zField
 As0 @PushWFArc f99 '' #zField
 As0 @PushWFArc f132 '' #zField
-As0 @PushWFArc f82 '' #zField
 As0 @PushWFArc f8 '' #zField
 As0 @PushWFArc f114 '' #zField
 As0 @PushWFArc f121 '' #zField
@@ -104,7 +92,6 @@ As0 @PushWFArc f58 '' #zField
 As0 @PushWFArc f91 '' #zField
 As0 @PushWFArc f126 '' #zField
 As0 @PushWFArc f122 '' #zField
-As0 @PushWFArc f76 '' #zField
 As0 @PushWFArc f16 '' #zField
 As0 @PushWFArc f148 '' #zField
 As0 @PushWFArc f10 '' #zField
@@ -112,10 +99,7 @@ As0 @PushWFArc f128 '' #zField
 As0 @PushWFArc f15 '' #zField
 As0 @PushWFArc f98 '' #zField
 As0 @PushWFArc f14 '' #zField
-As0 @PushWFArc f67 '' #zField
 As0 @PushWFArc f84 '' #zField
-As0 @PushWFArc f108 '' #zField
-As0 @PushWFArc f53 '' #zField
 As0 @PushWFArc f118 '' #zField
 As0 @PushWFArc f25 '' #zField
 As0 @PushWFArc f36 '' #zField
@@ -146,30 +130,52 @@ As0 @GridStep f86 '' #zField
 As0 @PushWFArc f89 '' #zField
 As0 @PushWFArc f3 '' #zField
 As0 @PushWFArc f20 '' #zField
-As0 @PushWFArc f22 '' #zField
 As0 @PushWFArc f26 '' #zField
-As0 @CallSub f17 '' #zField
-As0 @PushWFArc f19 '' #zField
+As0 @UdMethod f27 '' #zField
+As0 @GridStep f28 '' #zField
+As0 @PushWFArc f69 '' #zField
+As0 @GridStep f102 '' #zField
+As0 @CallSub f105 '' #zField
+As0 @Alternative f107 '' #zField
+As0 @GridStep f109 '' #zField
+As0 @Alternative f112 '' #zField
+As0 @CallSub f115 '' #zField
+As0 @Alternative f116 '' #zField
+As0 @UdProcessEnd f117 '' #zField
+As0 @CallSub f124 '' #zField
+As0 @GridStep f127 '' #zField
+As0 @PushWFArc f159 '' #zField
+As0 @PushWFArc f161 '' #zField
+As0 @PushWFArc f162 '' #zField
+As0 @PushWFArc f163 '' #zField
+As0 @PushWFArc f167 '' #zField
+As0 @PushWFArc f168 '' #zField
+As0 @PushWFArc f169 '' #zField
+As0 @PushWFArc f170 '' #zField
+As0 @PushWFArc f171 '' #zField
+As0 @PushWFArc f93 '' #zField
+As0 @UdMethod f75 '' #zField
+As0 @UdProcessEnd f110 '' #zField
+As0 @PushWFArc f160 '' #zField
+As0 @CallSub f172 '' #zField
+As0 @PushWFArc f22 '' #zField
+As0 @PushWFArc f175 '' #zField
+As0 @PushWFArc f60 '' #zField
+As0 @PushWFArc f17 '' #zField
+As0 @Alternative f19 '' #zField
 As0 @PushWFArc f21 '' #zField
+As0 @PushWFArc f49 '' #zField
+As0 @PushWFArc f65 '' #zField
+As0 @Alternative f66 '' #zField
+As0 @PushWFArc f67 '' #zField
+As0 @PushWFArc f73 '' #zField
+As0 @PushWFArc f74 '' #zField
+As0 @Alternative f76 '' #zField
+As0 @PushWFArc f82 '' #zField
+As0 @PushWFArc f108 '' #zField
+As0 @PushWFArc f106 '' #zField
+As0 @PushWFArc f165 '' #zField
 >Proto As0 As0 AbsenceManagementProcess #zField
-As0 f52 347 1059 26 26 0 12 #rect
-As0 f52 @|UdProcessEndIcon #fIcon
-As0 f106 actionTable 'out=in;
-' #txt
-As0 f106 actionCode 'import ch.ivy.addon.portalkit.dto.UserDTO;
-import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
-out.selectedUser = new UserDTO(ivy.session.getSessionUser());' #txt
-As0 f106 security system #txt
-As0 f106 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Set selected user&#xD;
-as current user</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f106 172 1722 128 44 -44 -16 #rect
-As0 f106 @|StepIcon #fIcon
 As0 f13 379 867 26 26 0 12 #rect
 As0 f13 @|UdProcessEndIcon #fIcon
 As0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -179,7 +185,7 @@ As0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f68 1280 1728 32 32 -32 -37 #rect
+As0 f68 776 1728 32 32 -32 -37 #rect
 As0 f68 @|AlternativeIcon #fIcon
 As0 f0 guid 16FCC0CDEBBE65FA #txt
 As0 f0 method start() #txt
@@ -194,7 +200,7 @@ As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f0 59 35 26 26 -16 15 #rect
 As0 f0 @|UdInitIcon #fIcon
-As0 f35 379 771 26 26 0 12 #rect
+As0 f35 1187 1115 26 26 0 12 #rect
 As0 f35 @|UdProcessEndIcon #fIcon
 As0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -218,7 +224,7 @@ if have</name>
     </language>
 </elementInfo>
 ' #txt
-As0 f120 304 474 128 44 -40 -16 #rect
+As0 f120 1112 818 128 44 -40 -16 #rect
 As0 f120 @|StepIcon #fIcon
 As0 f37 actionTable 'out=in;
 ' #txt
@@ -235,7 +241,7 @@ As0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f37 176 570 112 44 -46 -8 #rect
+As0 f37 984 914 112 44 -46 -8 #rect
 As0 f37 @|StepIcon #fIcon
 As0 f42 guid 16FCC0CDEBB92256 #txt
 As0 f42 method loadUsers() #txt
@@ -248,7 +254,7 @@ As0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f42 59 1443 26 26 -33 15 #rect
+As0 f42 59 1427 26 26 -33 15 #rect
 As0 f42 @|UdMethodIcon #fIcon
 As0 f40 603 1539 26 26 0 12 #rect
 As0 f40 @|UdProcessEndIcon #fIcon
@@ -262,21 +268,8 @@ As0 f81 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f81 59 1811 26 26 -47 15 #rect
+As0 f81 59 1731 26 26 -47 15 #rect
 As0 f81 @|UdEventIcon #fIcon
-As0 f73 guid 16FCC0CDEBB46279 #txt
-As0 f73 method editDeputy() #txt
-As0 f73 inParameterDecl '<> param;' #txt
-As0 f73 outParameterDecl '<> result;' #txt
-As0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>editDeputy()</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f73 59 1731 26 26 -33 15 #rect
-As0 f73 @|UdMethodIcon #fIcon
 As0 f104 actionTable 'out=in;
 ' #txt
 As0 f104 actionCode 'import ch.ivy.addon.portalkit.util.BeanUtils;
@@ -289,7 +282,7 @@ As0 f104 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f104 424 362 112 44 -38 -8 #rect
+As0 f104 544 394 112 44 -38 -8 #rect
 As0 f104 @|StepIcon #fIcon
 As0 f23 347 1155 26 26 0 12 #rect
 As0 f23 @|UdProcessEndIcon #fIcon
@@ -380,18 +373,6 @@ of all users</name>
 ' #txt
 As0 f113 728 122 128 44 -44 -16 #rect
 As0 f113 @|StepIcon #fIcon
-As0 f33 guid 16FCC0CDEBC650FC #txt
-As0 f33 actionTable 'out=in;
-' #txt
-As0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>updateGrowlAbsence</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f33 59 1059 26 26 -47 15 #rect
-As0 f33 @|UdEventIcon #fIcon
 As0 f12 guid 16FCC0CDEBC7E549 #txt
 As0 f12 method preDelete(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence) #txt
 As0 f12 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence selectedAbsence> param;' #txt
@@ -416,7 +397,7 @@ As0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f92 936 1728 32 32 -55 -36 #rect
+As0 f92 432 1728 32 32 -55 -36 #rect
 As0 f92 @|AlternativeIcon #fIcon
 As0 f34 guid 16FCC0CDEBC59501 #txt
 As0 f34 method autoCompleteForUser(String) #txt
@@ -442,7 +423,7 @@ As0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f34 67 1539 26 26 -81 15 #rect
 As0 f34 @|UdMethodIcon #fIcon
-As0 f43 731 1443 26 26 0 12 #rect
+As0 f43 731 1427 26 26 0 12 #rect
 As0 f43 @|UdProcessEndIcon #fIcon
 As0 f154 actionTable 'out=in;
 ' #txt
@@ -476,7 +457,7 @@ As0 f111 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f111 144 474 112 44 -44 -8 #rect
+As0 f111 952 818 112 44 -44 -8 #rect
 As0 f111 @|CallSubIcon #fIcon
 As0 f11 guid 16FCC0CDEBCF45F4 #txt
 As0 f11 method editAbsence(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence) #txt
@@ -493,7 +474,7 @@ As0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f11 59 579 26 26 -68 15 #rect
+As0 f11 867 923 26 26 -68 15 #rect
 As0 f11 @|UdMethodIcon #fIcon
 As0 f18 253 35 26 26 0 12 #rect
 As0 f18 @|UdProcessEndIcon #fIcon
@@ -507,7 +488,7 @@ As0 f96 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f96 59 371 26 26 -47 15 #rect
+As0 f96 59 403 26 26 -47 15 #rect
 As0 f96 @|UdEventIcon #fIcon
 As0 f5 actionTable 'out=in;
 ' #txt
@@ -534,7 +515,7 @@ As0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f5 176 762 112 44 -8 -8 #rect
+As0 f5 984 1106 112 44 -8 -8 #rect
 As0 f5 @|StepIcon #fIcon
 As0 f7 actionTable 'out=in;
 ' #txt
@@ -572,23 +553,7 @@ As0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f7 224 858 112 44 -27 -8 #rect
 As0 f7 @|StepIcon #fIcon
-As0 f44 actionTable 'out=in;
-' #txt
-As0 f44 actionCode 'import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
-FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/information"), ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/saveSuccessfully")));' #txt
-As0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Inform the sucessful &#xD;
-save message</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f44 136 1050 144 44 -52 -16 #rect
-As0 f44 @|StepIcon #fIcon
-As0 f97 1184 1728 32 32 0 16 #rect
+As0 f97 680 1728 32 32 0 16 #rect
 As0 f97 @|AlternativeIcon #fIcon
 As0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -597,7 +562,7 @@ As0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f24 320 368 32 32 -38 16 #rect
+As0 f24 320 400 32 32 -38 16 #rect
 As0 f24 @|AlternativeIcon #fIcon
 As0 f157 guid 16FCC0CDEBC66FE9 #txt
 As0 f157 actionTable 'out=in;
@@ -609,10 +574,8 @@ As0 f157 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f157 59 963 26 26 -48 14 #rect
+As0 f157 59 947 26 26 -48 14 #rect
 As0 f157 @|UdEventIcon #fIcon
-As0 f74 392 1728 32 32 0 16 #rect
-As0 f74 @|AlternativeIcon #fIcon
 As0 f101 processCall 'Ivy Data Processes/SubstituteService:saveSubstitutes(String,java.util.Map)' #txt
 As0 f101 requestActionDecl '<String username,java.util.Map substitutesByApp> param;' #txt
 As0 f101 requestMappingAction 'param.username=in.selectedUser.getName();
@@ -630,7 +593,7 @@ As0 f101 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f101 160 362 112 44 -47 -8 #rect
+As0 f101 160 394 112 44 -47 -8 #rect
 As0 f101 @|CallSubIcon #fIcon
 As0 f152 actionTable 'out=in;
 ' #txt
@@ -660,7 +623,7 @@ of current user</name>
 ' #txt
 As0 f152 728 202 128 44 -44 -16 #rect
 As0 f152 @|StepIcon #fIcon
-As0 f100 611 371 26 26 0 12 #rect
+As0 f100 891 403 26 26 0 12 #rect
 As0 f100 @|UdProcessEndIcon #fIcon
 As0 f88 actionTable 'out=in;
 ' #txt
@@ -694,7 +657,7 @@ As0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f62 472 1722 112 44 -47 -8 #rect
+As0 f62 208 1722 112 44 -47 -8 #rect
 As0 f62 @|CallSubIcon #fIcon
 As0 f6 guid 16FCC0CDEBC9A56B #txt
 As0 f6 actionTable 'out=in;
@@ -738,7 +701,7 @@ As0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f94 1016 1722 112 44 -41 -8 #rect
+As0 f94 512 1722 112 44 -41 -8 #rect
 As0 f94 @|CallSubIcon #fIcon
 As0 f146 processCall 'Ivy Data Processes/AbsenceService:findAbsences(String)' #txt
 As0 f146 requestActionDecl '<String username> param;' #txt
@@ -773,7 +736,7 @@ if have</name>
     </language>
 </elementInfo>
 ' #txt
-As0 f45 480 1434 128 44 -40 -16 #rect
+As0 f45 512 1466 128 44 -40 -16 #rect
 As0 f45 @|StepIcon #fIcon
 As0 f32 guid 16FCC0CDEBC190E7 #txt
 As0 f32 actionTable 'out=in;
@@ -785,7 +748,7 @@ As0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f32 59 483 26 26 -47 15 #rect
+As0 f32 867 827 26 26 -47 15 #rect
 As0 f32 @|UdEventIcon #fIcon
 As0 f31 guid 16FCC0CDEBC98603 #txt
 As0 f31 actionTable 'out=in;
@@ -797,9 +760,9 @@ As0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f31 59 771 26 26 -10 15 #rect
+As0 f31 867 1115 26 26 -10 15 #rect
 As0 f31 @|UdEventIcon #fIcon
-As0 f57 347 675 26 26 0 12 #rect
+As0 f57 1155 1019 26 26 0 12 #rect
 As0 f57 @|UdProcessEndIcon #fIcon
 As0 f61 603 1251 26 26 0 12 #rect
 As0 f61 @|UdProcessEndIcon #fIcon
@@ -823,9 +786,9 @@ As0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f9 416 1242 112 44 -46 -8 #rect
 As0 f9 @|StepIcon #fIcon
-As0 f130 379 579 26 26 0 12 #rect
+As0 f130 1187 923 26 26 0 12 #rect
 As0 f130 @|UdProcessEndIcon #fIcon
-As0 f125 507 483 26 26 0 12 #rect
+As0 f125 1315 827 26 26 0 12 #rect
 As0 f125 @|UdProcessEndIcon #fIcon
 As0 f38 guid 16FCC0CDEBC953C7 #txt
 As0 f38 actionTable 'out=in;
@@ -849,7 +812,7 @@ As0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f54 59 675 26 26 -19 16 #rect
+As0 f54 867 1019 26 26 -19 16 #rect
 As0 f54 @|UdEventIcon #fIcon
 As0 f47 processCall 'Ivy Data Processes/SecurityService:findUsersOverAllApplications(String)' #txt
 As0 f47 requestActionDecl '<String username> param;' #txt
@@ -868,7 +831,7 @@ As0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f47 168 1434 112 44 -41 -8 #rect
+As0 f47 168 1418 112 44 -41 -8 #rect
 As0 f47 @|CallSubIcon #fIcon
 As0 f70 actionTable 'out=in;
 ' #txt
@@ -883,24 +846,8 @@ if have</name>
     </language>
 </elementInfo>
 ' #txt
-As0 f70 1400 1818 112 44 -38 -16 #rect
+As0 f70 896 1818 112 44 -38 -16 #rect
 As0 f70 @|StepIcon #fIcon
-As0 f60 actionTable 'out=in;
-' #txt
-As0 f60 actionCode 'import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
-
-out.substituteRoot = AbsenceAndSubstituteUtils.buildSustitute(in.selectedUser, in.substitutesByApp, in.usersByApp);
-out.substitutionRoot = AbsenceAndSubstituteUtils.buildSustitute(in.selectedUser, in.substitutionsByApp, in.usersByApp);' #txt
-As0 f60 security system #txt
-As0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Build the substitute tree</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f60 1384 1722 144 44 -64 -8 #rect
-As0 f60 @|StepIcon #fIcon
 As0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -910,7 +857,7 @@ As0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f83 464 128 32 32 -37 -33 #rect
 As0 f83 @|AlternativeIcon #fIcon
-As0 f59 1595 1731 26 26 0 12 #rect
+As0 f59 1091 1731 26 26 0 12 #rect
 As0 f59 @|UdProcessEndIcon #fIcon
 As0 f55 actionTable 'out=in;
 ' #txt
@@ -926,7 +873,7 @@ As0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f55 144 666 112 44 -16 -8 #rect
+As0 f55 952 1010 112 44 -16 -8 #rect
 As0 f55 @|StepIcon #fIcon
 As0 f71 expr in #txt
 As0 f71 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -938,35 +885,32 @@ As0 f71 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f71 1296 1760 1400 1840 #arcP
-As0 f71 1 1296 1840 #addKink
+As0 f71 792 1760 896 1840 #arcP
+As0 f71 1 792 1840 #addKink
 As0 f71 1 0.2727272727272727 0 -9 #arcLabel
 As0 f63 expr out #txt
 As0 f63 85 1264 160 1264 #arcP
 As0 f156 expr out #txt
 As0 f156 1096 144 1139 144 #arcP
-As0 f49 expr out #txt
-As0 f49 85 1744 172 1744 #arcP
-As0 f49 0 0.8148191485830323 0 0 #arcLabel
 As0 f119 expr out #txt
-As0 f119 85 496 144 496 #arcP
+As0 f119 893 840 952 840 #arcP
 As0 f133 expr in #txt
-As0 f133 1216 1744 1280 1744 #arcP
+As0 f133 712 1744 776 1744 #arcP
 As0 f41 expr out #txt
 As0 f41 93 1552 603 1552 #arcP
 As0 f78 expr out #txt
 As0 f78 688 224 728 224 #arcP
 As0 f78 0 0.6865900143900335 0 0 #arcLabel
 As0 f50 expr out #txt
-As0 f50 608 1456 731 1456 #arcP
+As0 f50 640 1488 744 1453 #arcP
+As0 f50 1 744 1488 #addKink
+As0 f50 0 0.7251930467044302 0 0 #arcLabel
 As0 f72 expr out #txt
-As0 f72 1512 1840 1608 1757 #arcP
-As0 f72 1 1608 1840 #addKink
+As0 f72 1008 1840 1104 1757 #arcP
+As0 f72 1 1104 1840 #addKink
 As0 f72 0 0.3118477277014128 0 0 #arcLabel
 As0 f103 expr out #txt
-As0 f103 536 384 611 384 #arcP
-As0 f46 expr out #txt
-As0 f46 85 1072 136 1072 #arcP
+As0 f103 656 416 891 416 #arcP
 As0 f147 expr in #txt
 As0 f147 outCond in.showAllAbsences #txt
 As0 f147 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -982,21 +926,8 @@ As0 f147 496 144 576 144 #arcP
 As0 f147 0 0.5 0 -8 #arcLabel
 As0 f134 expr out #txt
 As0 f134 336 880 379 880 #arcP
-As0 f66 expr in #txt
-As0 f66 outCond in.errors.isEmpty() #txt
-As0 f66 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>YES</name>
-        <nameStyle>3
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f66 1312 1744 1384 1744 #arcP
-As0 f66 0 0.4431818181818182 0 -9 #arcLabel
 As0 f131 expr out #txt
-As0 f131 85 592 176 592 #arcP
+As0 f131 893 936 984 936 #arcP
 As0 f29 expr in #txt
 As0 f29 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1007,48 +938,39 @@ As0 f29 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f29 352 384 424 384 #arcP
+As0 f29 352 416 544 416 #arcP
 As0 f29 0 0.4642857142857143 0 -11 #arcLabel
 As0 f143 expr out #txt
 As0 f143 85 144 152 144 #arcP
-As0 f65 expr in #txt
-As0 f65 424 1744 472 1744 #arcP
 As0 f48 expr out #txt
-As0 f48 85 1456 168 1456 #arcP
+As0 f48 85 1440 168 1440 #arcP
 As0 f99 expr in #txt
-As0 f99 952 1760 1200 1760 #arcP
-As0 f99 1 952 1840 #addKink
-As0 f99 2 1200 1840 #addKink
+As0 f99 448 1760 696 1760 #arcP
+As0 f99 1 448 1840 #addKink
+As0 f99 2 696 1840 #addKink
 As0 f99 1 0.5 0 0 #arcLabel
 As0 f132 expr out #txt
-As0 f132 288 592 379 592 #arcP
-As0 f82 expr out #txt
-As0 f82 85 1824 408 1760 #arcP
-As0 f82 1 408 1824 #addKink
-As0 f82 0 0.714693032890162 0 0 #arcLabel
+As0 f132 1096 936 1187 936 #arcP
 As0 f8 expr out #txt
 As0 f8 272 1264 320 1264 #arcP
 As0 f114 expr out #txt
 As0 f114 688 144 728 144 #arcP
 As0 f121 expr out #txt
-As0 f121 256 496 304 496 #arcP
+As0 f121 1064 840 1112 840 #arcP
 As0 f95 expr in #txt
 As0 f95 outCond 'in.usersByApp == null || in.usersByApp.isEmpty()' #txt
-As0 f95 968 1744 1016 1744 #arcP
+As0 f95 464 1744 512 1744 #arcP
 As0 f56 expr out #txt
-As0 f56 85 688 144 688 #arcP
+As0 f56 893 1032 952 1032 #arcP
 As0 f58 expr out #txt
 As0 f58 85 48 253 48 #arcP
 As0 f91 expr out #txt
 As0 f91 85 880 152 880 #arcP
 As0 f126 expr out #txt
-As0 f126 432 496 507 496 #arcP
+As0 f126 1240 840 1315 840 #arcP
 As0 f126 0 0.41717001380558716 0 0 #arcLabel
 As0 f122 expr in #txt
 As0 f122 912 144 968 144 #arcP
-As0 f76 expr out #txt
-As0 f76 300 1744 392 1744 #arcP
-As0 f76 0 0.7927141382389294 0 0 #arcLabel
 As0 f16 expr in #txt
 As0 f16 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1093,24 +1015,19 @@ As0 f128 184 880 224 880 #arcP
 As0 f15 expr out #txt
 As0 f15 528 1264 603 1264 #arcP
 As0 f98 expr out #txt
-As0 f98 1128 1744 1184 1744 #arcP
+As0 f98 624 1744 680 1744 #arcP
 As0 f14 expr out #txt
-As0 f14 85 784 176 784 #arcP
-As0 f67 expr out #txt
-As0 f67 1528 1744 1595 1744 #arcP
+As0 f14 893 1128 984 1128 #arcP
 As0 f84 expr out #txt
-As0 f84 85 976 168 896 #arcP
-As0 f84 1 168 976 #addKink
+As0 f84 85 960 168 896 #arcP
+As0 f84 1 168 960 #addKink
 As0 f84 0 0.7150846925125054 0 0 #arcLabel
-As0 f108 280 1456 480 1456 #arcP
-As0 f53 expr out #txt
-As0 f53 280 1072 347 1072 #arcP
 As0 f118 expr out #txt
 As0 f118 856 144 880 144 #arcP
 As0 f25 expr out #txt
-As0 f25 272 384 320 384 #arcP
+As0 f25 272 416 320 416 #arcP
 As0 f36 expr out #txt
-As0 f36 288 784 379 784 #arcP
+As0 f36 1096 1128 1187 1128 #arcP
 As0 f123 expr out #txt
 As0 f123 856 224 896 160 #arcP
 As0 f123 1 896 224 #addKink
@@ -1122,7 +1039,7 @@ As0 f64 0 0.7951798915758104 0 0 #arcLabel
 As0 f30 expr out #txt
 As0 f30 85 1168 347 1168 #arcP
 As0 f87 expr out #txt
-As0 f87 256 688 347 688 #arcP
+As0 f87 1064 1032 1155 1032 #arcP
 As0 f129 processCall 'Ivy Data Processes/AbsenceService:createAbsence(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence)' #txt
 As0 f129 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence absence> param;' #txt
 As0 f129 requestMappingAction 'param.absence=in.selectedAbsence;
@@ -1139,7 +1056,7 @@ As0 f129 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f129 808 2074 112 44 -44 -8 #rect
+As0 f129 808 2026 112 44 -44 -8 #rect
 As0 f129 @|CallSubIcon #fIcon
 As0 f135 guid 16FCC699D22BDD3C #txt
 As0 f135 method createAbsence() #txt
@@ -1152,9 +1069,9 @@ As0 f135 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f135 67 2083 26 26 -25 15 #rect
+As0 f135 67 2035 26 26 -25 15 #rect
 As0 f135 @|UdMethodIcon #fIcon
-As0 f136 707 1987 26 26 0 12 #rect
+As0 f136 707 1939 26 26 0 12 #rect
 As0 f136 @|UdProcessEndIcon #fIcon
 As0 f137 actionTable 'out=in;
 ' #txt
@@ -1173,7 +1090,7 @@ to selected absence</name>
     </language>
 </elementInfo>
 ' #txt
-As0 f137 224 2074 144 44 -51 -16 #rect
+As0 f137 224 2026 144 44 -51 -16 #rect
 As0 f137 @|StepIcon #fIcon
 As0 f138 actionTable 'out=in;
 ' #txt
@@ -1208,7 +1125,7 @@ As0 f138 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f138 412 2074 112 44 -27 -8 #rect
+As0 f138 412 2026 112 44 -27 -8 #rect
 As0 f138 @|StepIcon #fIcon
 As0 f139 actionTable 'out=in;
 ' #txt
@@ -1222,7 +1139,7 @@ As0 f139 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f139 536 1978 112 44 -53 -8 #rect
+As0 f139 536 1930 112 44 -53 -8 #rect
 As0 f139 @|StepIcon #fIcon
 As0 f140 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1231,23 +1148,23 @@ As0 f140 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f140 576 2080 32 32 0 16 #rect
+As0 f140 576 2032 32 32 0 16 #rect
 As0 f140 @|AlternativeIcon #fIcon
 As0 f144 expr out #txt
-As0 f144 648 2000 707 2000 #arcP
+As0 f144 648 1952 707 1952 #arcP
 As0 f144 0 0.9892871299061556 0 0 #arcLabel
 As0 f151 expr out #txt
-As0 f151 368 2096 412 2096 #arcP
+As0 f151 368 2048 412 2048 #arcP
 As0 f153 expr in #txt
-As0 f153 592 2080 592 2022 #arcP
+As0 f153 592 2032 592 1974 #arcP
 As0 f153 0 0.9651581755182006 0 0 #arcLabel
 As0 f155 expr out #txt
-As0 f155 524 2096 576 2096 #arcP
+As0 f155 524 2048 576 2048 #arcP
 As0 f158 expr in #txt
 As0 f158 outCond !in.validationError #txt
-As0 f158 608 2096 808 2096 #arcP
-As0 f141 93 2096 224 2096 #arcP
-As0 f150 1347 2083 26 26 0 12 #rect
+As0 f158 608 2048 808 2048 #arcP
+As0 f141 93 2048 224 2048 #arcP
+As0 f150 1347 2035 26 26 0 12 #rect
 As0 f150 @|UdProcessEndIcon #fIcon
 As0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1256,9 +1173,9 @@ As0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f1 1008 2080 32 32 -20 -44 #rect
+As0 f1 1008 2032 32 32 -20 -44 #rect
 As0 f1 @|AlternativeIcon #fIcon
-As0 f2 920 2096 1008 2096 #arcP
+As0 f2 920 2048 1008 2048 #arcP
 As0 f51 actionTable 'out=in;
 ' #txt
 As0 f51 actionCode 'import ch.ivy.addon.portalkit.util.BeanUtils;
@@ -1271,14 +1188,14 @@ As0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f51 1128 2194 112 44 -38 -8 #rect
+As0 f51 1128 2146 112 44 -38 -8 #rect
 As0 f51 @|StepIcon #fIcon
 As0 f77 expr in #txt
-As0 f77 1024 2112 1128 2216 #arcP
-As0 f77 1 1024 2216 #addKink
+As0 f77 1024 2064 1128 2168 #arcP
+As0 f77 1 1024 2168 #addKink
 As0 f77 1 0.14905870655759218 0 0 #arcLabel
-As0 f85 1240 2216 1360 2109 #arcP
-As0 f85 1 1360 2216 #addKink
+As0 f85 1240 2168 1360 2061 #arcP
+As0 f85 1 1360 2168 #addKink
 As0 f85 0 0.8200494637549657 0 0 #arcLabel
 As0 f86 actionTable 'out=in;
 ' #txt
@@ -1290,7 +1207,7 @@ As0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f86 1160 2074 112 44 -32 -8 #rect
+As0 f86 1160 2026 112 44 -32 -8 #rect
 As0 f86 @|StepIcon #fIcon
 As0 f89 expr in #txt
 As0 f89 outCond in.errors.isEmpty() #txt
@@ -1301,15 +1218,182 @@ As0 f89 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f89 1040 2096 1160 2096 #arcP
+As0 f89 1040 2048 1160 2048 #arcP
 As0 f89 0 0.48063036947240817 0 -11 #arcLabel
-As0 f3 1272 2096 1347 2096 #arcP
+As0 f3 1272 2048 1347 2048 #arcP
 As0 f3 0 0.48063036947240817 0 -11 #arcLabel
 As0 f20 expr out #txt
-As0 f20 85 384 160 384 #arcP
-As0 f22 expr in #txt
-As0 f22 outCond in.errors.isEmpty() #txt
-As0 f22 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+As0 f20 85 416 160 416 #arcP
+As0 f26 expr out #txt
+As0 f26 376 144 464 144 #arcP
+As0 f27 guid 1700AB23B2C65876 #txt
+As0 f27 method loadData() #txt
+As0 f27 inParameterDecl '<> param;' #txt
+As0 f27 outParameterDecl '<> result;' #txt
+As0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>loadData</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f27 67 579 26 26 -25 15 #rect
+As0 f27 @|UdMethodIcon #fIcon
+As0 f28 actionTable 'out=in;
+' #txt
+As0 f28 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService;
+/*import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+
+RegisteredApplicationService service = new RegisteredApplicationService();
+in.applications= service.findActiveIvyAppsUserCanWorkOn(ivy.session.getSessionUserName());*/
+
+in.applications = ApplicationService.newInstance().findActiveAllInvolvedUser(ivy.session.getSessionUserName());
+
+' #txt
+As0 f28 security system #txt
+As0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>find applications</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f28 152 570 112 44 -45 -8 #rect
+As0 f28 @|StepIcon #fIcon
+As0 f69 93 592 152 592 #arcP
+As0 f102 actionTable 'out=in;
+' #txt
+As0 f102 actionCode 'import ch.ivy.addon.portalkit.dto.UserDTO;
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+in.selectedUser = new UserDTO(ivy.session.getSessionUser());' #txt
+As0 f102 security system #txt
+As0 f102 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Set current user</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f102 340 570 112 44 -43 -8 #rect
+As0 f102 @|StepIcon #fIcon
+As0 f105 processCall 'Ivy Data Processes/SubstituteService:findSubstitutions(String)' #txt
+As0 f105 requestActionDecl '<String username> param;' #txt
+As0 f105 requestMappingAction 'param.username=ivy.session.getSessionUserName();
+' #txt
+As0 f105 responseMappingAction 'out=in;
+out.errors=result.errors;
+out.substitutionsByApp=result.substitutesByApp;
+' #txt
+As0 f105 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>SubstituteService</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f105 824 570 112 44 -47 -8 #rect
+As0 f105 @|CallSubIcon #fIcon
+As0 f107 1400 576 32 32 0 16 #rect
+As0 f107 @|AlternativeIcon #fIcon
+As0 f109 actionTable 'out=in;
+' #txt
+As0 f109 actionCode 'import ch.ivy.addon.portalkit.util.BeanUtils;
+
+BeanUtils.invokeBeanMethodViaMethodExpression("#{errorDisplayBean.displayErrors}", in.errors);' #txt
+As0 f109 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Display errors&#xD;
+if have</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f109 1616 650 112 44 -38 -16 #rect
+As0 f109 @|StepIcon #fIcon
+As0 f112 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>sucessful?</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f112 1496 576 32 32 -32 -37 #rect
+As0 f112 @|AlternativeIcon #fIcon
+As0 f115 processCall 'Ivy Data Processes/SubstituteService:findSubstitutes(String)' #txt
+As0 f115 requestActionDecl '<String username> param;' #txt
+As0 f115 requestMappingAction 'param.username=in.selectedUser.getName();
+' #txt
+As0 f115 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
+' #txt
+As0 f115 responseMappingAction 'out=in;
+out.errors=result.errors;
+out.substitutesByApp=result.substitutesByApp;
+' #txt
+As0 f115 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>SubstituteService</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f115 504 570 112 44 -47 -8 #rect
+As0 f115 @|CallSubIcon #fIcon
+As0 f116 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>empty usersByApp?</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f116 1152 576 32 32 -55 -36 #rect
+As0 f116 @|AlternativeIcon #fIcon
+As0 f117 1811 579 26 26 0 12 #rect
+As0 f117 @|UdProcessEndIcon #fIcon
+As0 f124 processCall 'Ivy Data Processes/SecurityService:findUsersOverAllApplications(String)' #txt
+As0 f124 requestActionDecl '<String username> param;' #txt
+As0 f124 requestMappingAction 'param.username=ivy.session.getSessionUserName();
+' #txt
+As0 f124 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
+' #txt
+As0 f124 responseMappingAction 'out=in;
+out.errors=result.errors;
+out.usersByApp=result.usersByApp;
+' #txt
+As0 f124 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>SecurityService</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f124 1232 570 112 44 -41 -8 #rect
+As0 f124 @|CallSubIcon #fIcon
+As0 f127 actionTable 'out=in;
+' #txt
+As0 f127 actionCode 'import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
+import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
+
+//out.substituteRoot = AbsenceAndSubstituteUtils.buildSustitute(in.selectedUser, in.substitutesByApp, in.usersByApp);
+//in.substitutionRoot = AbsenceAndSubstituteUtils.buildSustitute(in.selectedUser, in.substitutionsByApp, in.usersByApp);
+
+
+
+
+
+' #txt
+As0 f127 security system #txt
+As0 f127 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Build the substitute tree</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f127 1600 570 144 44 -64 -8 #rect
+As0 f127 @|StepIcon #fIcon
+As0 f159 expr in #txt
+As0 f159 outCond in.errors.isEmpty() #txt
+As0 f159 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>YES</name>
@@ -1318,32 +1402,196 @@ As0 f22 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f22 336 368 624 371 #arcP
-As0 f22 1 336 304 #addKink
-As0 f22 2 624 304 #addKink
-As0 f22 0 0.7229039911779322 -19 -1 #arcLabel
-As0 f26 expr out #txt
-As0 f26 376 144 464 144 #arcP
-As0 f17 processCall 'Ivy Data Processes/SubstituteService:findSubstitutions(String)' #txt
-As0 f17 requestActionDecl '<String username> param;' #txt
-As0 f17 requestMappingAction 'param.username=in.selectedUser.getName();
+As0 f159 1528 592 1600 592 #arcP
+As0 f159 0 0.4431818181818182 0 -9 #arcLabel
+As0 f161 expr out #txt
+As0 f161 1344 592 1400 592 #arcP
+As0 f162 expr in #txt
+As0 f162 1432 592 1496 592 #arcP
+As0 f163 expr in #txt
+As0 f163 1168 608 1416 608 #arcP
+As0 f163 1 1168 672 #addKink
+As0 f163 2 1416 672 #addKink
+As0 f163 1 0.5 0 0 #arcLabel
+As0 f167 expr in #txt
+As0 f167 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NO</name>
+        <nameStyle>2
+</nameStyle>
+    </language>
+</elementInfo>
 ' #txt
-As0 f17 responseMappingAction 'out=in;
+As0 f167 1512 608 1616 672 #arcP
+As0 f167 1 1512 672 #addKink
+As0 f167 1 0.2727272727272727 0 -9 #arcLabel
+As0 f168 expr in #txt
+As0 f168 outCond 'in.usersByApp == null || in.usersByApp.isEmpty()' #txt
+As0 f168 1184 592 1232 592 #arcP
+As0 f169 expr out #txt
+As0 f169 1728 672 1824 605 #arcP
+As0 f169 1 1824 672 #addKink
+As0 f169 0 0.26598440291586734 0 0 #arcLabel
+As0 f170 expr out #txt
+As0 f170 1744 592 1811 592 #arcP
+As0 f171 264 592 340 592 #arcP
+As0 f93 expr out #txt
+As0 f93 452 592 504 592 #arcP
+As0 f93 0 0.7927141382389294 0 0 #arcLabel
+As0 f75 guid 170135F31D613670 #txt
+As0 f75 method autoCompleteForSubstitute(String) #txt
+As0 f75 inParameterDecl '<String query> param;' #txt
+As0 f75 inParameterMapAction 'out.queryAutoComplete=param.query;
+' #txt
+As0 f75 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> users> result;' #txt
+As0 f75 outActionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
+
+
+in.users = UserUtils.getNonDuplicatedUsersWithIgnoreUser(in.usersByApp, in.selectedUser.name);
+
+result.users = UserUtils.filterUsersDTO(in.users, in.queryAutoComplete);' #txt
+As0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>autoCompleteForSubstitute(String)</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f75 75 1627 26 26 -81 15 #rect
+As0 f75 @|UdMethodIcon #fIcon
+As0 f110 611 1627 26 26 0 12 #rect
+As0 f110 @|UdProcessEndIcon #fIcon
+As0 f160 expr out #txt
+As0 f160 101 1640 611 1640 #arcP
+As0 f172 processCall 'Ivy Data Processes/SubstituteService:findSubstitutions(String)' #txt
+As0 f172 requestActionDecl '<String username> param;' #txt
+As0 f172 requestMappingAction 'param.username=ivy.session.getSessionUserName();
+' #txt
+As0 f172 responseMappingAction 'out=in;
 out.errors=result.errors;
 out.substitutionsByApp=result.substitutesByApp;
 ' #txt
-As0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+As0 f172 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Ivy Data Processes/SubstituteService</name>
     </language>
 </elementInfo>
 ' #txt
-As0 f17 632 1722 208 44 -101 -8 #rect
-As0 f17 @|CallSubIcon #fIcon
-As0 f19 expr out #txt
-As0 f19 584 1744 632 1744 #arcP
-As0 f21 840 1744 936 1744 #arcP
+As0 f172 496 314 208 44 -101 -8 #rect
+As0 f172 @|CallSubIcon #fIcon
+As0 f22 704 336 904 403 #arcP
+As0 f22 1 904 336 #addKink
+As0 f22 0 0.6819617680515845 0 0 #arcLabel
+As0 f175 expr in #txt
+As0 f175 outCond in.errors.isEmpty() #txt
+As0 f175 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>YES</name>
+        <nameStyle>3
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f175 808 1744 1091 1744 #arcP
+As0 f175 0 0.4431818181818182 0 -9 #arcLabel
+As0 f60 expr out #txt
+As0 f60 320 1744 432 1744 #arcP
+As0 f17 expr out #txt
+As0 f17 85 1744 208 1744 #arcP
+As0 f17 0 0.6989161447468913 0 0 #arcLabel
+As0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>successful ?</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f19 672 576 32 32 -42 -34 #rect
+As0 f19 @|AlternativeIcon #fIcon
+As0 f21 expr out #txt
+As0 f21 616 592 672 592 #arcP
+As0 f49 expr in #txt
+As0 f49 outCond in.errors.isEmpty() #txt
+As0 f49 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f49 704 592 824 592 #arcP
+As0 f65 expr in #txt
+As0 f65 688 608 1672 694 #arcP
+As0 f65 1 688 768 #addKink
+As0 f65 2 1672 768 #addKink
+As0 f65 1 0.5316792664489914 0 0 #arcLabel
+As0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>successful ?</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f66 1056 576 32 32 -50 -40 #rect
+As0 f66 @|AlternativeIcon #fIcon
+As0 f67 936 592 1056 592 #arcP
+As0 f73 expr in #txt
+As0 f73 outCond in.errors.isEmpty() #txt
+As0 f73 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f73 1088 592 1152 592 #arcP
+As0 f73 0 0.3987818526628043 0 0 #arcLabel
+As0 f74 expr in #txt
+As0 f74 1072 608 1672 694 #arcP
+As0 f74 1 1072 736 #addKink
+As0 f74 2 1600 736 #addKink
+As0 f74 1 0.2635895976583159 0 0 #arcLabel
+As0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>successful?</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f76 368 1424 32 32 0 16 #rect
+As0 f76 @|AlternativeIcon #fIcon
+As0 f82 280 1440 368 1440 #arcP
+As0 f108 expr in #txt
+As0 f108 outCond in.errors.isEmpty() #txt
+As0 f108 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f108 400 1440 731 1440 #arcP
+As0 f106 expr in #txt
+As0 f106 384 1456 512 1488 #arcP
+As0 f106 1 384 1488 #addKink
+As0 f106 1 0.3153917968256955 0 0 #arcLabel
+As0 f165 expr in #txt
+As0 f165 outCond in.errors.isEmpty() #txt
+As0 f165 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>YES</name>
+        <nameStyle>3
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f165 336 400 496 336 #arcP
+As0 f165 1 336 336 #addKink
+As0 f165 0 0.7229039911779322 -19 -1 #arcLabel
 >Proto As0 .type ch.ivy.addon.portalkit.multiapp.settings.AbsenceManagement.AbsenceManagementData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 -8 -8 16 16 16 26 #rect
@@ -1370,10 +1618,6 @@ As0 f5 mainOut f36 tail #connect
 As0 f36 head f35 mainIn #connect
 As0 f7 mainOut f134 tail #connect
 As0 f134 head f13 mainIn #connect
-As0 f33 mainOut f46 tail #connect
-As0 f46 head f44 mainIn #connect
-As0 f44 mainOut f53 tail #connect
-As0 f53 head f52 mainIn #connect
 As0 f54 mainOut f56 tail #connect
 As0 f56 head f55 mainIn #connect
 As0 f55 mainOut f87 tail #connect
@@ -1402,16 +1646,11 @@ As0 f42 mainOut f48 tail #connect
 As0 f48 head f47 mainIn #connect
 As0 f45 mainOut f50 tail #connect
 As0 f50 head f43 mainIn #connect
-As0 f68 out f66 tail #connect
-As0 f66 head f60 mainIn #connect
-As0 f68 out f71 tail #connect
 As0 f71 head f70 mainIn #connect
 As0 f70 mainOut f72 tail #connect
 As0 f72 head f59 mainIn #connect
 As0 f34 mainOut f41 tail #connect
 As0 f41 head f40 mainIn #connect
-As0 f74 out f65 tail #connect
-As0 f65 head f62 mainIn #connect
 As0 f92 out f95 tail #connect
 As0 f95 head f94 mainIn #connect
 As0 f94 mainOut f98 tail #connect
@@ -1420,12 +1659,6 @@ As0 f92 out f99 tail #connect
 As0 f99 head f97 in #connect
 As0 f104 mainOut f103 tail #connect
 As0 f103 head f100 mainIn #connect
-As0 f73 mainOut f49 tail #connect
-As0 f49 head f106 mainIn #connect
-As0 f106 mainOut f76 tail #connect
-As0 f76 head f74 in #connect
-As0 f81 mainOut f82 tail #connect
-As0 f82 head f74 in #connect
 As0 f157 mainOut f84 tail #connect
 As0 f84 head f90 in #connect
 As0 f146 mainOut f78 tail #connect
@@ -1445,10 +1678,6 @@ As0 f25 head f24 in #connect
 As0 f29 head f104 mainIn #connect
 As0 f97 out f133 tail #connect
 As0 f133 head f68 in #connect
-As0 f60 mainOut f67 tail #connect
-As0 f67 head f59 mainIn #connect
-As0 f47 mainOut f108 tail #connect
-As0 f108 head f45 mainIn #connect
 As0 f138 mainOut f155 tail #connect
 As0 f155 head f140 in #connect
 As0 f153 head f139 mainIn #connect
@@ -1473,12 +1702,59 @@ As0 f86 mainOut f3 tail #connect
 As0 f3 head f150 mainIn #connect
 As0 f96 mainOut f20 tail #connect
 As0 f20 head f101 mainIn #connect
-As0 f24 out f22 tail #connect
-As0 f22 head f100 mainIn #connect
-As0 f24 out f29 tail #connect
 As0 f142 mainOut f26 tail #connect
 As0 f26 head f83 in #connect
-As0 f62 mainOut f19 tail #connect
-As0 f19 head f17 mainIn #connect
-As0 f17 mainOut f21 tail #connect
-As0 f21 head f92 in #connect
+As0 f27 mainOut f69 tail #connect
+As0 f69 head f28 mainIn #connect
+As0 f112 out f159 tail #connect
+As0 f159 head f127 mainIn #connect
+As0 f112 out f167 tail #connect
+As0 f167 head f109 mainIn #connect
+As0 f109 mainOut f169 tail #connect
+As0 f169 head f117 mainIn #connect
+As0 f116 out f168 tail #connect
+As0 f168 head f124 mainIn #connect
+As0 f124 mainOut f161 tail #connect
+As0 f161 head f107 in #connect
+As0 f116 out f163 tail #connect
+As0 f163 head f107 in #connect
+As0 f107 out f162 tail #connect
+As0 f162 head f112 in #connect
+As0 f127 mainOut f170 tail #connect
+As0 f170 head f117 mainIn #connect
+As0 f28 mainOut f171 tail #connect
+As0 f171 head f102 mainIn #connect
+As0 f102 mainOut f93 tail #connect
+As0 f93 head f115 mainIn #connect
+As0 f75 mainOut f160 tail #connect
+As0 f160 head f110 mainIn #connect
+As0 f172 mainOut f22 tail #connect
+As0 f22 head f100 mainIn #connect
+As0 f68 out f175 tail #connect
+As0 f175 head f59 mainIn #connect
+As0 f68 out f71 tail #connect
+As0 f62 mainOut f60 tail #connect
+As0 f60 head f92 in #connect
+As0 f81 mainOut f17 tail #connect
+As0 f17 head f62 mainIn #connect
+As0 f115 mainOut f21 tail #connect
+As0 f21 head f19 in #connect
+As0 f19 out f49 tail #connect
+As0 f49 head f105 mainIn #connect
+As0 f19 out f65 tail #connect
+As0 f65 head f109 mainIn #connect
+As0 f105 mainOut f67 tail #connect
+As0 f67 head f66 in #connect
+As0 f66 out f73 tail #connect
+As0 f73 head f116 in #connect
+As0 f66 out f74 tail #connect
+As0 f74 head f109 mainIn #connect
+As0 f47 mainOut f82 tail #connect
+As0 f82 head f76 in #connect
+As0 f76 out f108 tail #connect
+As0 f108 head f43 mainIn #connect
+As0 f76 out f106 tail #connect
+As0 f106 head f45 mainIn #connect
+As0 f24 out f165 tail #connect
+As0 f165 head f172 mainIn #connect
+As0 f24 out f29 tail #connect
