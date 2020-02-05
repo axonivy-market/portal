@@ -60,6 +60,11 @@ Cs0 @PushWFArc f48 '' #zField
 Cs0 @PushWFArc f8 '' #zField
 Cs0 @UdProcessEnd f47 '' #zField
 Cs0 @PushWFArc f49 '' #zField
+Cs0 @UdMethod f43 '' #zField
+Cs0 @UdProcessEnd f50 '' #zField
+Cs0 @GridStep f52 '' #zField
+Cs0 @PushWFArc f53 '' #zField
+Cs0 @PushWFArc f51 '' #zField
 >Proto Cs0 Cs0 StatisticWidgetProcess #zField
 Cs0 f0 guid 16034D800DC77D9C #txt
 Cs0 f0 method start(java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart>) #txt
@@ -447,6 +452,41 @@ Cs0 f47 @|UdProcessEndIcon #fIcon
 Cs0 f49 expr out #txt
 Cs0 f49 107 64 251 64 #arcP
 Cs0 f49 0 0.5808494517759799 0 0 #arcLabel
+Cs0 f43 guid 17009F1C28815D6B #txt
+Cs0 f43 method reloadStatisticList() #txt
+Cs0 f43 inParameterDecl '<> param;' #txt
+Cs0 f43 outParameterDecl '<> result;' #txt
+Cs0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>reloadStatisticList()</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f43 83 851 26 26 -25 15 #rect
+Cs0 f43 @|UdMethodIcon #fIcon
+Cs0 f50 467 851 26 26 0 12 #rect
+Cs0 f50 @|UdProcessEndIcon #fIcon
+Cs0 f52 actionTable 'out=in;
+' #txt
+Cs0 f52 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
+
+StatisticService service = new StatisticService();
+in.statisticChartList.clear();
+in.statisticChartList = service.findStatisticChartsByUserId(ivy.session.getSessionUser().getId());
+
+' #txt
+Cs0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find Statistic Charts</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f52 216 842 128 44 -55 -8 #rect
+Cs0 f52 @|StepIcon #fIcon
+Cs0 f53 109 864 216 864 #arcP
+Cs0 f51 344 864 467 864 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -491,3 +531,7 @@ Cs0 f46 mainOut f8 tail #connect
 Cs0 f8 head f24 mainIn #connect
 Cs0 f0 mainOut f49 tail #connect
 Cs0 f49 head f47 mainIn #connect
+Cs0 f43 mainOut f53 tail #connect
+Cs0 f53 head f52 mainIn #connect
+Cs0 f52 mainOut f51 tail #connect
+Cs0 f51 head f50 mainIn #connect

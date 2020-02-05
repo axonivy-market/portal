@@ -66,6 +66,8 @@ HowTo: Create chart
 
 .. figure:: images/full-statistics-page.png
 
+.. centered:: Chart types
+
 +-----------------------+-----------------------+-----------------------+
 | Name                  | Type                  | Description           |
 +=======================+=======================+=======================+
@@ -131,6 +133,7 @@ HowTo: Create chart
 +-----------------------+-----------------------+-----------------------+
 
 
+.. centered:: Chart filter criterias
 
 +-----------------------------------+-----------------------------------+
 | Filter                            | Description                       |
@@ -169,6 +172,6 @@ HowTo: Create chart
 |                                   | filtering.                        |
 +-----------------------------------+-----------------------------------+
 
-.. centered:: Chart filter criterias
+
 
 .. include:: ../includes/_common-icon.rst

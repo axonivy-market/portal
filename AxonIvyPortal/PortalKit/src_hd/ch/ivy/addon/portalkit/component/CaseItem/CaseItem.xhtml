@@ -22,20 +22,20 @@
   <c:set var="renderDestroyAction" value="#{caseActionBean.canDestroy(case) and case.state ne 'DONE' and cc.attrs.canDestroyCase}" />
 
   <div id="#{cc.clientId}" class="js-case-item case-list-item #{cc.attrs.itemStyleClass}">
-    <h:panelGroup id="case-item-container" styleClass="case-header-container case-header-data js-case-item-header" layout="block">
-    
-     <cc:renderFacet name="caseHeader" />
+    <h:panelGroup id="case-item-container" styleClass="case-header-container case-header-data" layout="block">
+      <h:panelGroup id="case-info-row" styleClass="case-info-row js-case-start-link">
+        <p:ajax event="click" listener="#{logic.openDetails(case)}" />
+        <cc:renderFacet name="caseHeader" />
+      </h:panelGroup>
 
-     <h:form id="case-item-action-form" styleClass="case-header-action-cell">
-        <p:commandLink id="case-item-open-detail-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" styleClass="action-item"
-          actionListener="#{logic.openDetails(case)}" disabled="#{alwaysShowDetails}" />
-        <h:panelGroup styleClass="u-hidden-md-down" rendered="#{cc.attrs.enableCaseAction}">
+      <h:form id="case-item-action-form" styleClass="case-header-action-cell">
+        <h:panelGroup styleClass="u-hidden-sm-down" rendered="#{cc.attrs.enableCaseAction}">
           <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" actionLinkId="action-steps-menu"
             actionLinkStyleClass="ui-button-text-only" panelWidgetVar="case-action-steps-panel-#{rowIndex}" isAdhocExcluded="true"
             renderDestroyAction="#{renderDestroyAction}" update="#{cc.attrs.update}" onDestroyComplete="#{cc.attrs.onDestroyComplete}"
             case="#{cc.attrs.case}" />
         </h:panelGroup>
-      </h:form>
+       </h:form>
 
     </h:panelGroup>
 
