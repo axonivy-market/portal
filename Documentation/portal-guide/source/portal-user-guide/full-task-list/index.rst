@@ -117,6 +117,9 @@ HowTo: Create new filter
 
 .. figure:: images/how-to-create-task-filter.png
 
+
+.. centered:: _`Task filter criterias`
+
 +-----------------------------------+-----------------------------------+
 | Criteria                          | Description                       |
 +===================================+===================================+
@@ -144,7 +147,6 @@ HowTo: Create new filter
 |                                   | task state.                       |
 +-----------------------------------+-----------------------------------+
 
-.. centered:: _`Task filter criterias`
 
 .. hint:: 
    You may also start the creation
