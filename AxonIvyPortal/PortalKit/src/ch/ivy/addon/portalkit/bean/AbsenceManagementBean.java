@@ -11,15 +11,21 @@ import static ch.ivyteam.ivy.security.IPermission.USER_READ_OWN_ABSENCES;
 import static ch.ivyteam.ivy.security.IPermission.USER_READ_SUBSTITUTES;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
+import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
 import ch.ivy.addon.portalkit.service.PermissionCheckerService;
 import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IUser;
 
 @ManagedBean
 @ViewScoped
@@ -34,6 +40,9 @@ public class AbsenceManagementBean implements Serializable{
   private boolean absencesInThePastDeletable;
   private boolean ownSubstituteCreatable;
   private boolean substitutionManagementCapable;
+  
+  private List<IvySubstitute> substitutes;
+  private List<IvySubstitute> substitutions;
 
   @PostConstruct
   public void init() {
@@ -91,6 +100,40 @@ public class AbsenceManagementBean implements Serializable{
 
   public String getDisplayedName(IvyAbsence absence) {
     return UserUtils.getDisplayedName(absence.getFullname(), absence.getUsername());
+  }
+  
+  public String findNextAbsence(IUser iUser) {
+    return iUser != null ? UserUtils.findNextAbsenceOfUser(iUser) : "";
+  }
+  
+  public List<IvySubstitute> loadSubstitutesForApp(Map<IvyApplication, List<IvySubstitute>> ivySubtitutesByApp, String application){
+    for (Map.Entry<IvyApplication,List<IvySubstitute>> entry : ivySubtitutesByApp.entrySet()) {
+      IvyApplication ivyApplication = entry.getKey();
+      Ivy.log().error("LOADSUBSTITUTESFORAPP : " + ivyApplication.getName());
+      if (ivyApplication.getName().equals(application)) {
+        return ivySubtitutesByApp.get(ivyApplication);
+      }
+    }
+    return null;
+  }
+  
+  public List<IvySubstitute> loadSubstitutionsForApp(Map<IvyApplication, List<IvySubstitute>> ivySubtitutionsByApp, String application){
+    for (Map.Entry<IvyApplication,List<IvySubstitute>> entry : ivySubtitutionsByApp.entrySet()) {
+      IvyApplication ivyApplication = entry.getKey();
+      Ivy.log().error("LOADSUBSTITUTIONSFORAPP : " + ivyApplication.getName());
+      if (ivyApplication.getName().equals(application)) {
+        return ivySubtitutionsByApp.get(ivyApplication);
+      }
+    }
+    return null;
+  }
+
+  public List<IvySubstitute> getSubstitutes() {
+    return substitutes;
+  }
+
+  public List<IvySubstitute> getSubstitutions() {
+    return substitutions;
   }
 }
 

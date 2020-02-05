@@ -144,10 +144,6 @@ public class SubstituteService implements ISubstituteService {
         .filter(role -> !existRoles.contains(role))
         .collect(Collectors.toList());
 
-    boolean doesPersonalSubstituteExist = substitutes.stream().anyMatch(substitute -> substitute.getSubstitionRole() == null);
-    if (!doesPersonalSubstituteExist) {
-      substitutes.add(createPersonalSubstitute());
-    }
     substitutes.addAll(iRoles.stream().map(this::newIvySubtitute).collect(Collectors.toList()));
     
     return substitutes;
@@ -181,7 +177,7 @@ public class SubstituteService implements ISubstituteService {
     ivySubstitute.setSubstituteUser(new UserDTO(userSubstitute.getSubstituteUser()));
     ivySubstitute.setDescription(userSubstitute.getDescription());
     ivySubstitute.setSubstitutionType(userSubstitute.getSubstitutionType());
-    ivySubstitute.setOwnerUser(new UserDTO(userSubstitute.getUser()));
+    ivySubstitute.setOwnerUser(userSubstitute.getUser());
     return ivySubstitute;
   }
 

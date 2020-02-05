@@ -1,8 +1,11 @@
 package ch.ivy.addon.portalkit.util;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
@@ -17,6 +20,7 @@ import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
@@ -108,6 +112,28 @@ public class UserUtils {
     return IvyExecutor.executeAsSystem(() -> iUser.getAbsences());
   }
   
+  public static String findNextAbsenceOfUser(IUser iUser) {
+    DateTimeGlobalSettingService service = new DateTimeGlobalSettingService();
+    DateFormat formatter = new SimpleDateFormat(service.getDatePattern());
+    
+    List<IUserAbsence> findAbsenceOfUser = findAbsenceOfUser(iUser);
+    String returnString = "";
+    Date foundDate = null;
+    for (IUserAbsence item : findAbsenceOfUser) {
+      if (item.getStartTimestamp().after(new Date())) {
+        if (foundDate == null) {
+          foundDate = item.getStartTimestamp();
+          returnString = String.format("%s - %s", formatter.format(item.getStartTimestamp()), formatter.format(item.getStopTimestamp())); 
+        } else if (item.getStartTimestamp().before(foundDate)){
+          foundDate = item.getStartTimestamp();
+          returnString = String.format("%s - %s", formatter.format(item.getStartTimestamp()), formatter.format(item.getStopTimestamp())); 
+        }
+      }
+    }
+     
+    return returnString;
+  }
+  
   public static List<UserDTO> filterUsersDTO(List<UserDTO> users, String query) {
     List<UserDTO> filterUsers = new ArrayList<>();
     
@@ -141,6 +167,26 @@ public class UserUtils {
       usersByApp.values()
         .stream()
         .flatMap(List::stream)
+        .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getName, String.CASE_INSENSITIVE_ORDER))), ArrayList::new))
+    );
+  }
+  
+  /**
+   * Gets non-duplicated all of users from map usersByApp with ignore user 
+   * 
+   * @param usersByApp
+   * @return non-duplicated list of ivy users
+   */
+  public static List<UserDTO> getNonDuplicatedUsersWithIgnoreUser(Map<String, List<UserDTO>> usersByApp, String ignoreUser) {
+    if (usersByApp == null || usersByApp.isEmpty()) {
+      return new ArrayList<>();
+    }
+
+    return IvyExecutor.executeAsSystem(() ->
+      usersByApp.values()
+        .stream()
+        .flatMap(List::stream)
+        .filter(x -> !StringUtils.equals(x.getName(), ignoreUser))
         .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getName, String.CASE_INSENSITIVE_ORDER))), ArrayList::new))
     );
   }
