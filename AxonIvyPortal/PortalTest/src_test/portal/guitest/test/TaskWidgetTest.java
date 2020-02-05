@@ -21,6 +21,7 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.HomePage;
+import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class TaskWidgetTest extends BaseTest {
@@ -30,6 +31,8 @@ public class TaskWidgetTest extends BaseTest {
   private static final String DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =
       "portalKitTestHelper/14DE09882B540AD5/undoOnlyDelegateOwnTasksPermission.ivp";
 
+  private TaskDetailsPage taskDetailsPage;
+  
   @Override
   @Before
   public void setup() {
@@ -39,15 +42,27 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testShowTaskDetailAndBackFromTaskDetail() {
+  public void testEnterTaskDetailWhenClickOnTaskRowAndGoBack() {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
 
     taskWidgetPage.expand();
-    taskWidgetPage.openTaskDetails(0);
-    assertTrue(taskWidgetPage.isTaskShowDetails());
+    taskDetailsPage = taskWidgetPage.openTaskDetails(0);
+    assertEquals("Task Details", taskDetailsPage.getPageTitle());
 
-    taskWidgetPage.clickBackButtonFromTaskDetails();
-    assertFalse(taskWidgetPage.isTaskShowDetails());
+    taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
+    assertEquals("Tasks", taskWidgetPage.getPageTitle());
+  }
+  
+  @Test
+  public void testEnterTaskDetailFromTaskActionAndGoBack() {
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+
+    taskWidgetPage.expand();
+    taskDetailsPage = taskWidgetPage.openTaskDetailsFromActionMenu(0);
+    assertEquals("Task Details", taskDetailsPage.getPageTitle());
+
+    taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
+    assertEquals("Tasks", taskWidgetPage.getPageTitle());
   }
 
   @Test
