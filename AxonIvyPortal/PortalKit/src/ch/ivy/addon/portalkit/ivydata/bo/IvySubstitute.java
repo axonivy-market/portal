@@ -3,7 +3,9 @@ package ch.ivy.addon.portalkit.ivydata.bo;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.dto.UserDTO;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.SubstitutionType;
 
 public class IvySubstitute {
@@ -13,7 +15,7 @@ public class IvySubstitute {
   private UserDTO substituteUser;
   private String description;
   private SubstitutionType substitutionType;
-  private UserDTO ownerUser;
+  private IUser ownerUser;
 
   public IRole getSubstitionRole() {
     return substitionRole;
@@ -27,6 +29,8 @@ public class IvySubstitute {
     if (StringUtils.isBlank(substitionRoleDisplayName) && substitionRole != null) {
       substitionRoleDisplayName = substitionRole.getDisplayName();
     }
+    substitionRoleDisplayName = substitionRole != null ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/taskForRole").concat(substitionRole.getDisplayName()) : 
+        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTask");
     return substitionRoleDisplayName;
   }
 
@@ -58,12 +62,11 @@ public class IvySubstitute {
     this.substitutionType = substitutionType;
   }
 
-  public UserDTO getOwnerUser() {
+  public IUser getOwnerUser() {
     return ownerUser;
   }
 
-  public void setOwnerUser(UserDTO ownerUser) {
+  public void setOwnerUser(IUser ownerUser) {
     this.ownerUser = ownerUser;
   }
-
 }

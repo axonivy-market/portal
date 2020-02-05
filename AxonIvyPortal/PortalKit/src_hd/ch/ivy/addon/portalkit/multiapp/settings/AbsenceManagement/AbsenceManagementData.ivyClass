@@ -15,8 +15,6 @@ users PERSISTENT #fieldModifier
 queryAutoComplete String #field
 selectedAbsence ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence #field
 selectedAbsence PERSISTENT #fieldModifier
-substituteRoot org.primefaces.model.TreeNode #field
-substituteRoot PERSISTENT #fieldModifier
 substitutesByApp java.util.Map #field
 substitutesByApp PERSISTENT #fieldModifier
 validationError Boolean #field
@@ -32,7 +30,7 @@ isAbsenceBeingCreated Boolean #field
 isAbsenceBeingCreated PERSISTENT #fieldModifier
 showAllAbsences Boolean #field
 showAllAbsences PERSISTENT #fieldModifier
-substitutionRoot org.primefaces.model.TreeNode #field
-substitutionRoot PERSISTENT #fieldModifier
 substitutionsByApp java.util.Map #field
 substitutionsByApp PERSISTENT #fieldModifier
+applications java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyApplication> #field
+applications PERSISTENT #fieldModifier
