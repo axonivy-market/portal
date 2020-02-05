@@ -34,3 +34,10 @@ columnsVisibility java.util.Map #field
 columnsVisibility PERSISTENT #fieldModifier
 collectedTasksForExporting java.util.List<ch.ivyteam.ivy.workflow.ITask> #field
 collectedTasksForExporting PERSISTENT #fieldModifier
+loopCounter Integer #field
+loopCounter PERSISTENT #fieldModifier
+maxResultNumberPerQuery Integer #field
+maxResultNumberPerQuery 'max number of records when querying task for exporting' #fieldComment
+maxResultNumberPerQuery PERSISTENT #fieldModifier
+stopWatch org.apache.commons.lang3.time.StopWatch #field
+stopWatch PERSISTENT #fieldModifier
