@@ -25,6 +25,9 @@ Ts0 @GridStep f16 '' #zField
 Ts0 @PushWFArc f18 '' #zField
 Ts0 @PushWFArc f22 '' #zField
 Ts0 @PushWFArc f2 '' #zField
+Ts0 @UdMethod f3 '' #zField
+Ts0 @CallSub f7 '' #zField
+Ts0 @PushWFArc f8 '' #zField
 >Proto Ts0 Ts0 SideStepProcess #zField
 Ts0 f17 -106 1334 20 20 13 0 #rect
 Ts0 f17 @|UdProcessEndIcon #fIcon
@@ -116,6 +119,44 @@ Ts0 f22 expr out #txt
 Ts0 f22 280 192 339 192 #arcP
 Ts0 f2 expr out #txt
 Ts0 f2 109 96 339 96 #arcP
+Ts0 f3 guid 1700E48002A4D237 #txt
+Ts0 f3 method openDetails(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel) #txt
+Ts0 f3 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> param;' #txt
+Ts0 f3 inParameterMapAction 'out.dataModel=param.dataModel;
+out.task=param.task;
+' #txt
+Ts0 f3 outParameterDecl '<> result;' #txt
+Ts0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>openDetails(ITask,TaskLazyDataModel)</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f3 75 387 26 26 -70 15 #rect
+Ts0 f3 @|UdMethodIcon #fIcon
+Ts0 f7 processCall 'Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)' #txt
+Ts0 f7 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
+Ts0 f7 requestMappingAction 'param.task=in.task;
+param.dataModel=in.dataModel;
+param.portalPage=ch.ivy.addon.portalkit.enums.PortalPage.valueOf(in.currentPortalPage);
+param.isFromTaskList=true;
+' #txt
+Ts0 f7 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
+' #txt
+Ts0 f7 responseMappingAction 'out=in;
+' #txt
+Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>OpenPortalTaskDetails</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f7 256 378 144 44 -64 -8 #rect
+Ts0 f7 @|CallSubIcon #fIcon
+Ts0 f8 expr out #txt
+Ts0 f8 101 400 256 400 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.SideStep.SideStepData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -130,3 +171,5 @@ Ts0 f16 mainOut f22 tail #connect
 Ts0 f22 head f9 mainIn #connect
 Ts0 f0 mainOut f2 tail #connect
 Ts0 f2 head f1 mainIn #connect
+Ts0 f3 mainOut f8 tail #connect
+Ts0 f8 head f7 mainIn #connect
