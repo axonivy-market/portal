@@ -74,9 +74,7 @@ Ts0 @PushWFArc f61 '' #zField
 Ts0 @PushWFArc f54 '' #zField
 Ts0 @PushWFArc f21 '' #zField
 Ts0 @PushWFArc f62 '' #zField
-Ts0 @GridStep f63 '' #zField
-Ts0 @PushWFArc f64 '' #zField
-Ts0 @PushWFArc f55 '' #zField
+Ts0 @PushWFArc f65 '' #zField
 >Proto Ts0 Ts0 TaskAnalysisWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 method start(ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel,java.lang.Long) #txt
@@ -456,13 +454,11 @@ Ts0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f13 67 979 26 26 -46 15 #rect
 Ts0 f13 @|UdMethodIcon #fIcon
-Ts0 f14 915 979 26 26 0 12 #rect
+Ts0 f14 763 979 26 26 0 12 #rect
 Ts0 f14 @|UdProcessEndIcon #fIcon
 Ts0 f37 actionTable 'out=in;
 ' #txt
 Ts0 f37 actionCode 'import ch.ivy.addon.portalkit.util.TaskAnalysisExporter;
-in.stopWatch.stop();
-ivy.log.warn("=== find tasks {0}", in.stopWatch.getTime());
 TaskAnalysisExporter exporter = new TaskAnalysisExporter(in.columnsVisibility);
 in.exportedFile = exporter.getStreamedContent(in.collectedTasksForExporting);
 ' #txt
@@ -474,10 +470,10 @@ Ts0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f37 712 970 112 44 -32 -8 #rect
+Ts0 f37 560 970 112 44 -32 -8 #rect
 Ts0 f37 @|StepIcon #fIcon
 Ts0 f56 expr out #txt
-Ts0 f56 824 992 915 992 #arcP
+Ts0 f56 672 992 763 992 #arcP
 Ts0 f56 0 0.9184538480715879 0 0 #arcLabel
 Ts0 f15 processCall 'Ivy Data Processes/TaskService:findTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria,Integer,Integer)' #txt
 Ts0 f15 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria,Integer startIndex,Integer count> param;' #txt
@@ -498,7 +494,7 @@ Ts0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f15 560 1098 112 44 -26 -8 #rect
+Ts0 f15 408 1098 112 44 -26 -8 #rect
 Ts0 f15 @|CallSubIcon #fIcon
 Ts0 f9 processCall 'Ivy Data Processes/TaskService:findTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria,Integer,Integer)' #txt
 Ts0 f9 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria,Integer startIndex,Integer count> param;' #txt
@@ -586,7 +582,7 @@ Ts0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f52 312 970 112 44 -31 -8 #rect
+Ts0 f52 160 970 112 44 -31 -8 #rect
 Ts0 f52 @|CallSubIcon #fIcon
 Ts0 f53 actionTable 'out=in;
 ' #txt
@@ -598,21 +594,16 @@ Ts0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f53 712 1098 112 44 -27 -8 #rect
+Ts0 f53 560 1098 112 44 -27 -8 #rect
 Ts0 f53 @|StepIcon #fIcon
-Ts0 f18 600 976 32 32 0 16 #rect
+Ts0 f18 448 976 32 32 0 16 #rect
 Ts0 f18 @|AlternativeIcon #fIcon
 Ts0 f59 actionTable 'out=in;
 ' #txt
 Ts0 f59 actionCode 'import java.util.ArrayList;
 in.loopCounter = 0;
 in.maxResultNumberPerQuery = 100000;
-in.collectedTasksForExporting = new ArrayList();
-
-in.stopWatch.stop();
-ivy.log.warn("=== count task {0}", in.stopWatch.getTime());
-in.stopWatch.reset();
-in.stopWatch.start();' #txt
+in.collectedTasksForExporting = new ArrayList();' #txt
 Ts0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -620,35 +611,20 @@ Ts0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f59 456 970 112 44 -21 -8 #rect
+Ts0 f59 304 970 112 44 -21 -8 #rect
 Ts0 f59 @|StepIcon #fIcon
-Ts0 f60 424 992 456 992 #arcP
-Ts0 f58 568 992 600 992 #arcP
+Ts0 f60 272 992 304 992 #arcP
+Ts0 f58 416 992 448 992 #arcP
 Ts0 f61 expr in #txt
 Ts0 f61 outCond 'in.loopCounter <= in.totalTasks / in.maxResultNumberPerQuery' #txt
-Ts0 f61 616 1008 616 1098 #arcP
+Ts0 f61 464 1008 464 1098 #arcP
 Ts0 f54 expr out #txt
-Ts0 f54 672 1120 712 1120 #arcP
-Ts0 f21 768 1098 625 999 #arcP
+Ts0 f54 520 1120 560 1120 #arcP
+Ts0 f21 616 1098 473 999 #arcP
 Ts0 f62 expr in #txt
-Ts0 f62 632 992 712 992 #arcP
-Ts0 f63 actionTable 'out=in;
-' #txt
-Ts0 f63 actionCode 'import org.apache.commons.lang3.time.StopWatch;
-in.stopWatch = StopWatch.createStarted();
-' #txt
-Ts0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>start stopWatch</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f63 152 970 112 44 -42 -8 #rect
-Ts0 f63 @|StepIcon #fIcon
-Ts0 f64 expr out #txt
-Ts0 f64 93 992 152 992 #arcP
-Ts0 f55 264 992 312 992 #arcP
+Ts0 f62 480 992 560 992 #arcP
+Ts0 f65 expr out #txt
+Ts0 f65 93 992 160 992 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -707,7 +683,5 @@ Ts0 f53 mainOut f21 tail #connect
 Ts0 f21 head f18 in #connect
 Ts0 f18 out f62 tail #connect
 Ts0 f62 head f37 mainIn #connect
-Ts0 f13 mainOut f64 tail #connect
-Ts0 f64 head f63 mainIn #connect
-Ts0 f63 mainOut f55 tail #connect
-Ts0 f55 head f52 mainIn #connect
+Ts0 f13 mainOut f65 tail #connect
+Ts0 f65 head f52 mainIn #connect
