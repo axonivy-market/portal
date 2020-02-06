@@ -39,5 +39,3 @@ loopCounter PERSISTENT #fieldModifier
 maxResultNumberPerQuery Integer #field
 maxResultNumberPerQuery 'max number of records when querying task for exporting' #fieldComment
 maxResultNumberPerQuery PERSISTENT #fieldModifier
-stopWatch org.apache.commons.lang3.time.StopWatch #field
-stopWatch PERSISTENT #fieldModifier
