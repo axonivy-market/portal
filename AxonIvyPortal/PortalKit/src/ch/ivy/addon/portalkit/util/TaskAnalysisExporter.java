@@ -15,7 +15,6 @@ import java.util.zip.ZipOutputStream;
 
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.time.StopWatch;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
@@ -52,7 +51,6 @@ public class TaskAnalysisExporter {
   }
 
   private byte[] generateZipContent(List<ITask> tasks, Date creationDate) throws IOException {
-    StopWatch stopWatch = StopWatch.createStarted();
     try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream)) {
       List<List<ITask>> tasksInFiles = ListUtils.partition(tasks, MAX_TASKS_IN_EXCEL);
@@ -68,27 +66,18 @@ public class TaskAnalysisExporter {
         }
       }
       zipOutputStream.close();
-      stopWatch.stop();
-      Ivy.log().warn("=== generate zip Content {0}", stopWatch.getTime());
       return outputStream.toByteArray();
     }
   }
 
   private byte[] generateExcelContent(List<ITask> tasks) throws IOException {
-    StopWatch stopWatch = StopWatch.createStarted();
     List<List<Object>> rows = generateData(tasks);
-    stopWatch.stop();
-    Ivy.log().warn("=== generate data {0}", stopWatch.getTime());
-    stopWatch.reset();
-    stopWatch.start();
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
     ExcelExportSheet sheet = new ExcelExportSheet();
     sheet.setHeaders(generateHeaders());
     sheet.setRows(rows);
     List<ExcelExportSheet> sheets = Arrays.asList(sheet);
     ExcelExport.exportListAsExcel(sheets, outputStream);
-    stopWatch.stop();
-    Ivy.log().warn("=== export to excel {0}", stopWatch.getTime());
     return outputStream.toByteArray();
   }
 
