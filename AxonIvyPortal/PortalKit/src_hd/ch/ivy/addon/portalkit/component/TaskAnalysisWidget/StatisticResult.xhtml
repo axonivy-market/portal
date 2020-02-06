@@ -29,6 +29,11 @@
           <h:outputText value="#{task.case.description}" />
         </p:column>
 
+        <p:column id="business-case-id" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/businessCaseID')}" sortable="false" width="120"
+          visible="#{taskAnalysisWidgetBean.columns['BUSINESS_CASE_ID']}" exportable="#{taskAnalysisWidgetBean.columns['BUSINESS_CASE_ID']}">
+          <h:outputText value="#{task.case.getBusinessCase().getId()}" />
+        </p:column>
+
         <p:column id="case-id" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseID')}" sortable="false" width="120"
           visible="#{taskAnalysisWidgetBean.columns['CASE_ID']}" exportable="#{taskAnalysisWidgetBean.columns['CASE_ID']}">
           <h:outputText value="#{task.case.getId()}" />
