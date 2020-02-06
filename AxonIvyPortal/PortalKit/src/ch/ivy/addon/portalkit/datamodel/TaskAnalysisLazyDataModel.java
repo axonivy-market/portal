@@ -370,6 +370,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
 
   protected void buildCaseCriteria() {
     caseCriteria = new CaseSearchCriteria();
+    caseCriteria.setBusinessCase(true);
     caseCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
     caseCriteria.setSortField(CaseSortField.ID.toString());
     caseCriteria.setSortDescending(true);

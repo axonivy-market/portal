@@ -4,6 +4,7 @@ package ch.ivy.addon.portalkit.enums;
 public enum TaskAndCaseAnalysisColumn {
   CASE_NAME(false, true),
   CASE_DESCRIPTION(false, false),
+  BUSINESS_CASE_ID(false, false),
   CASE_ID(false, false),
   CASE_CATEGORY(false, false),
   CASE_CREATOR(false, false),
