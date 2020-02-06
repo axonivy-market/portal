@@ -102,29 +102,34 @@ public class CleanUpObsoletedUserDataService {
 
   private void cleanUpUserTaskFilter() {
     AbstractFilterService<TaskFilterData> taskFilterService = new TaskFilterService();
-    List<BusinessDataInfo<TaskFilterData>> privateTaskFilters;
+    List<String> privateTaskFilterIds = new ArrayList<>();
     long totalCount = taskFilterService.getTotalPrivateFilterCount();
     if (totalCount > OFFSET_SIZE) {
       int currentIndex = 0;
       do {
-        privateTaskFilters = taskFilterService.getPrivateFiltersWithOffset(currentIndex, OFFSET_SIZE);
-        cleanUpTaskFiltersData(privateTaskFilters);
-
+        List<BusinessDataInfo<TaskFilterData>> queryResult = taskFilterService.getPrivateFiltersWithOffset(currentIndex, OFFSET_SIZE);
+        privateTaskFilterIds.addAll(checkIfTaskFilterIsObsoleted(queryResult));
         currentIndex += OFFSET_SIZE;
       } while (currentIndex < totalCount);
 
     } else {
-      privateTaskFilters = taskFilterService.getPrivateFiltersWithOffset(0, (int) totalCount);
-      cleanUpTaskFiltersData(privateTaskFilters);
+      List<BusinessDataInfo<TaskFilterData>> queryResult = taskFilterService.getPrivateFiltersWithOffset(0, (int) totalCount);
+      privateTaskFilterIds.addAll(checkIfTaskFilterIsObsoleted(queryResult));
     }
+    
+    cleanUpTaskFiltersData(privateTaskFilterIds);
   }
 
-  private void cleanUpTaskFiltersData(List<BusinessDataInfo<TaskFilterData>> privateTaskFilters) {
-    CollectionUtils.emptyIfNull(privateTaskFilters).stream()
+  private List<String> checkIfTaskFilterIsObsoleted(List<BusinessDataInfo<TaskFilterData>> privateTaskFilters) {
+    return CollectionUtils.emptyIfNull(privateTaskFilters).stream()
         .filter(taskFilter -> taskFilter.getCreatedByAppId() == applicationId && !userIds.contains(getUserIdFromJsonString(taskFilter.getRawValue())))
-        .forEach(taskFilter -> {
-          Ivy.log().info("CLEAN_UP_JOB: Delete private task filter id {0}", taskFilter.getId());
-          Ivy.repo().deleteById(taskFilter.getId());
+        .map(BusinessDataInfo::getId).collect(Collectors.toList());
+  }
+
+  private void cleanUpTaskFiltersData(List<String> privateTaskFilterIds) {
+    CollectionUtils.emptyIfNull(privateTaskFilterIds).forEach(taskFilterId -> {
+          Ivy.log().info("CLEAN_UP_JOB: Delete private task filter id {0}", taskFilterId);
+          Ivy.repo().deleteById(taskFilterId);
         });
   }
 
@@ -147,86 +152,101 @@ public class CleanUpObsoletedUserDataService {
   
   private void cleanUpUserCaseFilter() {
     AbstractFilterService<CaseFilterData> caseFilterService = new CaseFilterService();
-    List<BusinessDataInfo<CaseFilterData>> privateCaseFilters;
+    List<String> privateCaseFilterIds = new ArrayList<>();
     long totalCount = caseFilterService.getTotalPrivateFilterCount();
     if (totalCount > OFFSET_SIZE) {
       int currentIndex = 0;
       do {
-        privateCaseFilters = caseFilterService.getPrivateFiltersWithOffset(currentIndex, OFFSET_SIZE);
-        cleanUpCaseFiltersData(privateCaseFilters);
-
+        List<BusinessDataInfo<CaseFilterData>> queryResult = caseFilterService.getPrivateFiltersWithOffset(currentIndex, OFFSET_SIZE);
+        privateCaseFilterIds.addAll(checkIfCaseFilterIsObsoleted(queryResult));
         currentIndex += OFFSET_SIZE;
       } while (currentIndex < totalCount);
     } else {
-      privateCaseFilters = caseFilterService.getPrivateFiltersWithOffset(0, (int) totalCount);
-      cleanUpCaseFiltersData(privateCaseFilters);
+      List<BusinessDataInfo<CaseFilterData>> queryResult = caseFilterService.getPrivateFiltersWithOffset(0, (int) totalCount);
+      privateCaseFilterIds.addAll(checkIfCaseFilterIsObsoleted(queryResult));
     }
+    
+    cleanUpCaseFiltersData(privateCaseFilterIds);
+  }
+  
+  private List<String> checkIfCaseFilterIsObsoleted(List<BusinessDataInfo<CaseFilterData>> privateCaseFilters) {
+    return CollectionUtils.emptyIfNull(privateCaseFilters).stream()
+        .filter(caseFilter -> caseFilter.getCreatedByAppId() == applicationId && !userIds.contains(getUserIdFromJsonString(caseFilter.getRawValue())))
+        .map(BusinessDataInfo::getId).collect(Collectors.toList());
   }
 
-  private void cleanUpCaseFiltersData(List<BusinessDataInfo<CaseFilterData>> privateCaseFilters) {
-    CollectionUtils.emptyIfNull(privateCaseFilters).stream()
-        .filter(caseFilter -> caseFilter.getCreatedByAppId() == applicationId && !userIds.contains(getUserIdFromJsonString(caseFilter.getRawValue())))
-        .forEach(caseFilter -> {
-          Ivy.log().info("CLEAN_UP_JOB: Delete private case filter id {0}", caseFilter.getId());
-          Ivy.repo().deleteById(caseFilter.getId());
+  private void cleanUpCaseFiltersData(List<String> privateCaseFilterIds) {
+    CollectionUtils.emptyIfNull(privateCaseFilterIds).forEach(caseFilterId -> {
+          Ivy.log().info("CLEAN_UP_JOB: Delete private case filter id {0}", caseFilterId);
+          Ivy.repo().deleteById(caseFilterId);
         });
   }
 
   private void cleanUpUserTaskColumnsConfigData() {
     Long serverId = SecurityServiceUtils.getServerIdFromSession();
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
-    List<TaskColumnsConfigurationData> columnConfigs;
+    List<TaskColumnsConfigurationData> columnConfigs = new ArrayList<>();
     long totalCount = service.getTotalTaskConfigCountByAppId(serverId, applicationId);
     if (totalCount > OFFSET_SIZE) {
       int currentIndex = 0;
       do {
-        columnConfigs = service.getTaskConfigurationWithOffset(serverId, applicationId, currentIndex, OFFSET_SIZE);
-        cleanRepoColumnConfig(columnConfigs);
-
+        List<TaskColumnsConfigurationData> queryResult = service.getTaskConfigurationWithOffset(serverId, applicationId, currentIndex, OFFSET_SIZE);
+        columnConfigs.addAll(checkIfTaskColumnConfigIsObsoleted(queryResult));
         currentIndex += OFFSET_SIZE;
       } while (currentIndex < totalCount);
     } else {
       columnConfigs = service.getTaskConfigurationWithOffset(serverId, applicationId, 0, (int) totalCount);
-      cleanRepoColumnConfig(columnConfigs);
+      columnConfigs.addAll(checkIfTaskColumnConfigIsObsoleted(columnConfigs));
     }
+    
+    cleanRepoColumnConfig(columnConfigs);
+  }
+  
+  private List<TaskColumnsConfigurationData> checkIfTaskColumnConfigIsObsoleted(List<TaskColumnsConfigurationData> columnConfigs) {
+    return CollectionUtils.emptyIfNull(columnConfigs).stream()
+        .filter(columnConfig -> !userIds.contains(columnConfig.getUserId()))
+        .collect(Collectors.toList());
   }
 
   private void cleanRepoColumnConfig(List<TaskColumnsConfigurationData> columnConfigs) {
-    if (columnConfigs != null) {
-      for (TaskColumnsConfigurationData columnConfig : columnConfigs) {
-        if (!userIds.contains(columnConfig.getUserId())) {
-          Ivy.log().info("CLEAN_UP_JOB: Delete TaskColumnConfigID {0} of userID {1}", columnConfig.getTaskColumnsConfigDataId(), columnConfig.getUserId());
-          Ivy.repo().delete(columnConfig);
-        }
+    CollectionUtils.emptyIfNull(columnConfigs).forEach(columnConfig -> {
+        Ivy.log().info("CLEAN_UP_JOB: Delete TaskColumnConfigID {0} of userID {1}", columnConfig.getTaskColumnsConfigDataId(), columnConfig.getUserId());
+        Ivy.repo().delete(columnConfig);
       }
-    }
+    );
   }
 
   private void cleanUpUserStatisticChartData() {
     StatisticService statisticService = new StatisticService();
-    List<StatisticChart> allStatisticCharts;
+    List<String> statisticChartIds = new ArrayList<>();
     long totalCount = statisticService.getTotalStatisticCount();
     if (totalCount > OFFSET_SIZE) {
       int currentIndex = 0;
       do {
-        allStatisticCharts = statisticService.findStatisticChartsWithOffset(currentIndex, OFFSET_SIZE);
-        removeStatisticCharts(statisticService, allStatisticCharts);
+        List<StatisticChart> queryResult = statisticService.findStatisticChartsWithOffset(currentIndex, OFFSET_SIZE);
+        statisticChartIds.addAll(checkIfStatisticChartIsObsoleted(queryResult));
 
         currentIndex += OFFSET_SIZE;
       } while (currentIndex < totalCount);
 
     } else {
-      allStatisticCharts = statisticService.findStatisticChartsWithOffset(0, (int) totalCount);
-      removeStatisticCharts(statisticService, allStatisticCharts);
+      List<StatisticChart> queryResult = statisticService.findStatisticChartsWithOffset(0, (int) totalCount);
+      statisticChartIds.addAll(checkIfStatisticChartIsObsoleted(queryResult));
     }
+    
+    removeStatisticCharts(statisticService, statisticChartIds);
   }
-
-  private void removeStatisticCharts(StatisticService statisticService, List<StatisticChart> allStatisticCharts) {
-    CollectionUtils.emptyIfNull(allStatisticCharts).stream()
-        .filter(chart -> Ivy.repo().getInfo(chart).getCreatedByAppId() == applicationId && !userIds.contains(chart.getUserId()))
-        .forEach(chart -> {
-          Ivy.log().info("CLEAN_UP_JOB: Delete Statistic chart {0} of userID {1}", chart.getName(), chart.getUserId());
-          statisticService.delete(chart.getId());
+  
+  private List<String> checkIfStatisticChartIsObsoleted(List<StatisticChart> statisticCharts) {
+    return CollectionUtils.emptyIfNull(statisticCharts).stream()
+    .filter(chart -> Ivy.repo().getInfo(chart).getCreatedByAppId() == applicationId && !userIds.contains(chart.getUserId()))
+    .map(StatisticChart::getId).collect(Collectors.toList());
+  }
+  
+  private void removeStatisticCharts(StatisticService statisticService, List<String> allStatisticCharts) {
+    CollectionUtils.emptyIfNull(allStatisticCharts).forEach(chartId -> {
+          Ivy.log().info("CLEAN_UP_JOB: Delete Statistic chart with chartId {0}", chartId);
+          statisticService.delete(chartId);
         });
   }
 

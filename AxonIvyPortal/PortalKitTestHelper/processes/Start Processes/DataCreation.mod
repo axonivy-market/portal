@@ -126,13 +126,9 @@ Dt0 @EndTask f105 '' #zField
 Dt0 @PushWFArc f106 '' #zField
 Dt0 @StartRequest f107 '' #zField
 Dt0 @EndTask f108 '' #zField
-Dt0 @GridStep f110 '' #zField
-Dt0 @PushWFArc f116 '' #zField
 Dt0 @GridStep f117 '' #zField
-Dt0 @PushWFArc f118 '' #zField
-Dt0 @GridStep f119 '' #zField
-Dt0 @PushWFArc f120 '' #zField
 Dt0 @PushWFArc f109 '' #zField
+Dt0 @PushWFArc f110 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Dt0 f0 outLink createTasks.ivp #txt
 Dt0 f0 type portalKit_test.DataCreationData #txt
@@ -1282,7 +1278,7 @@ Dt0 f107 requestEnabled true #txt
 Dt0 f107 triggerEnabled false #txt
 Dt0 f107 callSignature createDataForObsoletedData() #txt
 Dt0 f107 persist false #txt
-Dt0 f107 startName 'Create Data For Obsoleted Data' #txt
+Dt0 f107 startName 'Create obsoleted data to test clean up job' #txt
 Dt0 f107 taskData 'TaskTriggered.ROL=Everybody
 TaskTriggered.EXTYPE=0
 TaskTriggered.EXPRI=2
@@ -1295,39 +1291,17 @@ Dt0 f107 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>createDataForObsoletedData.ivp</name>
-    </language>
-</elementInfo>
-' #txt
-Dt0 f107 @C|.responsibility AXONIVY_PORTAL_ADMIN #txt
-Dt0 f107 49 1233 30 30 -56 34 #rect
-Dt0 f107 @|StartRequestIcon #fIcon
-Dt0 f108 type portalKit_test.DataCreationData #txt
-Dt0 f108 753 1233 30 30 0 15 #rect
-Dt0 f108 @|EndIcon #fIcon
-Dt0 f110 actionDecl 'portalKit_test.DataCreationData out;
-' #txt
-Dt0 f110 actionTable 'out=in;
-' #txt
-Dt0 f110 actionCode 'import java.util.Locale;
-if (ivy.wf.getSecurityContext().findUser("test_obsolete_data_user") != null) {
-	ivy.wf.getSecurityContext().deleteUser("test_obsolete_data_user");
-}
-ivy.wf.getSecurityContext().createUser("test_obsolete_data_user", "Elton", "123", Locale.ENGLISH, "", "");
-' #txt
-Dt0 f110 type portalKit_test.DataCreationData #txt
-Dt0 f110 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Create test user data</name>
-        <nameStyle>21,7
+        <nameStyle>30,5,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f110 136 1226 128 44 -57 -8 #rect
-Dt0 f110 @|StepIcon #fIcon
-Dt0 f116 expr out #txt
-Dt0 f116 79 1248 136 1248 #arcP
+Dt0 f107 @C|.responsibility Everybody #txt
+Dt0 f107 49 1233 30 30 -56 34 #rect
+Dt0 f107 @|StartRequestIcon #fIcon
+Dt0 f108 type portalKit_test.DataCreationData #txt
+Dt0 f108 417 1233 30 30 0 15 #rect
+Dt0 f108 @|EndIcon #fIcon
 Dt0 f117 actionDecl 'portalKit_test.DataCreationData out;
 ' #txt
 Dt0 f117 actionTable 'out=in;
@@ -1350,13 +1324,14 @@ import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 
-in.testObsoleteUser = ivy.wf.getSecurityContext().findUser("test_obsolete_data_user");
+String testUsername = "test_obsolete_data_user";
+long testUserId = -1;
 
 // Create user process
 UserProcessService userProcessService = new UserProcessService();
-for (int i = 0; i < 100; i++) {
+for (int i = 0; i < 450; i++) {
 	UserProcess userProcess = new UserProcess();
-	userProcess.setUserName(in.testObsoleteUser.getName());
+	userProcess.setUserName(testUsername);
 	userProcess.setIndex(i);
 	userProcess.setDescription("Test user process - " + i);
 	userProcess.setProcessName("Test user process - " + i);
@@ -1365,10 +1340,10 @@ for (int i = 0; i < 100; i++) {
 
 // Create task filter
 TaskFilterService taskFilterService = new TaskFilterService();
-for (int i = 0; i < 100; i++) {
+for (int i = 0; i < 200; i++) {
     TaskFilterData filterData = new TaskFilterData();
     filterData.setKeyword("Test task filter-" + i);
-    filterData.setUserId(in.testObsoleteUser.getId());
+    filterData.setUserId(testUserId);
     filterData.setFilterGroupId(1);
     filterData.setFilterName("Test task filter-" + i);
     filterData.setType(FilterType.ONLY_ME);
@@ -1377,10 +1352,10 @@ for (int i = 0; i < 100; i++) {
 
 // Create case filter
 CaseFilterService caseFilterService = new CaseFilterService();
-for (int i = 0; i < 100; i++) {
+for (int i = 0; i < 390; i++) {
     CaseFilterData filterData = new CaseFilterData();
     filterData.setKeyword("Test case filter-" + i);
-    filterData.setUserId(in.testObsoleteUser.getId());
+    filterData.setUserId(testUserId);
     filterData.setFilterGroupId(1);
     filterData.setFilterName("Test case filter-" + i);
     filterData.setType(FilterType.ONLY_ME);
@@ -1392,7 +1367,7 @@ Long applicationId = ivy.request.getApplication().getId();
 Long serverId = SecurityServiceUtils.getServerIdFromSession();
 TaskColumnsConfigurationData taskConfig = new TaskColumnsConfigurationData();
 taskConfig.setApplicationId(applicationId);
-taskConfig.setUserId(in.testObsoleteUser.getId());
+taskConfig.setUserId(testUserId);
 taskConfig.setAutoHideColumns(false);
 taskConfig.setServerId(serverId);
 TaskColumnsConfigurationService taskService = new TaskColumnsConfigurationService();
@@ -1400,13 +1375,13 @@ taskService.save(taskConfig);
 
 // Create statistic chart
 StatisticService statisticService = new StatisticService();
-for (int i = 0; i < 100; i++) {
+for (int i = 0; i < 450; i++) {
 	StatisticChart chart = new StatisticChart();
 	chart.setFilter(new StatisticFilter());
 	chart.setType(StatisticChartType.TASK_BY_PRIORITY);
 	chart.setName("Test chart-" + i);
 	chart.setPosition(i);
-	chart.setUserId(in.testObsoleteUser.getId());
+	chart.setUserId(testUserId);
 	statisticService.save(chart);
 }
 ' #txt
@@ -1420,36 +1395,12 @@ Dt0 f117 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f117 344 1226 112 44 -33 -8 #rect
+Dt0 f117 192 1226 112 44 -33 -8 #rect
 Dt0 f117 @|StepIcon #fIcon
-Dt0 f118 expr out #txt
-Dt0 f118 264 1248 344 1248 #arcP
-Dt0 f119 actionDecl 'portalKit_test.DataCreationData out;
-' #txt
-Dt0 f119 actionTable 'out=in;
-' #txt
-Dt0 f119 actionCode 'import ch.ivyteam.ivy.security.IUser;
-import java.util.Locale;
-
-if (ivy.wf.getSecurityContext().findUser("test_obsolete_data_user") != null) {
-	ivy.wf.getSecurityContext().deleteUser("test_obsolete_data_user");
-}' #txt
-Dt0 f119 type portalKit_test.DataCreationData #txt
-Dt0 f119 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>remove test user</name>
-        <nameStyle>16,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Dt0 f119 520 1226 112 44 -46 -8 #rect
-Dt0 f119 @|StepIcon #fIcon
-Dt0 f120 expr out #txt
-Dt0 f120 456 1248 520 1248 #arcP
 Dt0 f109 expr out #txt
-Dt0 f109 632 1248 753 1248 #arcP
+Dt0 f109 79 1248 192 1248 #arcP
+Dt0 f110 expr out #txt
+Dt0 f110 304 1248 417 1248 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1565,11 +1516,7 @@ Dt0 f102 out f104 tail #connect
 Dt0 f104 head f96 in #connect
 Dt0 f96 out f106 tail #connect
 Dt0 f106 head f105 mainIn #connect
-Dt0 f107 mainOut f116 tail #connect
-Dt0 f116 head f110 mainIn #connect
-Dt0 f110 mainOut f118 tail #connect
-Dt0 f118 head f117 mainIn #connect
-Dt0 f117 mainOut f120 tail #connect
-Dt0 f120 head f119 mainIn #connect
-Dt0 f119 mainOut f109 tail #connect
-Dt0 f109 head f108 mainIn #connect
+Dt0 f107 mainOut f109 tail #connect
+Dt0 f109 head f117 mainIn #connect
+Dt0 f117 mainOut f110 tail #connect
+Dt0 f110 head f108 mainIn #connect
