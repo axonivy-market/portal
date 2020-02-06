@@ -3337,14 +3337,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   overflow: auto;
 }
 
-.ui-fileupload-content .ui-progressbar {
-  top: 0px !important;
-}
-
-.ui-fileupload-preview {
-  vertical-align: middle;
-}
-
 .ui-tooltip {
   padding: 0px !important;
   border-top-right-radius: 5px;
@@ -4112,10 +4104,6 @@ _:-ms-fullscreen, :root .content-link-history {
 .favorite-process-title {
   display: inline-block;
   padding-right: 20px;
-}
-
-.ui-fileupload.ui-widget .ui-fileupload-content .ui-fileupload-row>div {
-  vertical-align: middle;
 }
 
 /**************DATA TABLE START*******************/
