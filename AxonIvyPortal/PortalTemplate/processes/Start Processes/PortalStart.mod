@@ -229,7 +229,7 @@ if (#task is initialized) {
 		
 		in.callbackUrl = taskWithTaskEndInfo.customFields().stringField(CustomFields.EXPRESS_END_PAGE_URL.toString()).getOrDefault("");
 	} else {
-		in.isFirstTask = !#taskWithTaskEndInfo is initialized;
+		in.isFirstTask = true;
 		in.portalPage = PortalPage.HOME_PAGE;
 	}
 }
@@ -796,14 +796,14 @@ ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), true);' #
 Pt0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Init SessionAttribute</name>
+        <name>Set task is finished</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f54 1472 74 128 44 -54 -8 #rect
+Pt0 f54 1480 74 112 44 -52 -8 #rect
 Pt0 f54 @|StepIcon #fIcon
-Pt0 f56 1408 96 1472 96 #arcP
-Pt0 f38 1600 96 1680 96 #arcP
+Pt0 f56 1408 96 1480 96 #arcP
+Pt0 f38 1592 96 1680 96 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
