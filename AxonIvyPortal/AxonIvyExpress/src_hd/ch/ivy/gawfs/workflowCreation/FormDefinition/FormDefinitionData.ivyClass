@@ -30,3 +30,5 @@ selectedDataProvider gawfs.ExternalDataProvider #field
 selectedDataProvider PERSISTENT #fieldModifier
 dataProviders List<gawfs.ExternalDataProvider> #field
 dataProviders PERSISTENT #fieldModifier
+isTaskFinished Boolean #field
+isTaskFinished PERSISTENT #fieldModifier

@@ -36,3 +36,5 @@ importExpressFile org.primefaces.model.UploadedFile #field
 importExpressFile PERSISTENT #fieldModifier
 exportExpressFile org.primefaces.model.StreamedContent #field
 exportExpressFile PERSISTENT #fieldModifier
+isTaskFinished Boolean #field
+isTaskFinished PERSISTENT #fieldModifier
