@@ -40,11 +40,13 @@ Fs0 @RichDialogMethodStart f25 '' #zField
 Fs0 @RichDialogEnd f30 '' #zField
 Fs0 @GridStep f28 '' #zField
 Fs0 @PushWFArc f32 '' #zField
-Fs0 @PushWFArc f31 '' #zField
 Fs0 @PushWFArc f26 '' #zField
 Fs0 @RichDialogMethodStart f17 '' #zField
 Fs0 @RichDialogProcessEnd f18 '' #zField
 Fs0 @PushWFArc f21 '' #zField
+Fs0 @GridStep f27 '' #zField
+Fs0 @PushWFArc f29 '' #zField
+Fs0 @PushWFArc f31 '' #zField
 >Proto Fs0 Fs0 WorkflowDefinitionProcess #zField
 Fs0 f0 guid 1576FA61C9D81A51 #txt
 Fs0 f0 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
@@ -356,13 +358,14 @@ Fs0 f25 83 563 26 26 -18 15 #rect
 Fs0 f25 @|RichDialogMethodStartIcon #fIcon
 Fs0 f30 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f30 guid 15AF77AA5D3C3910 #txt
-Fs0 f30 435 563 26 26 0 12 #rect
+Fs0 f30 555 563 26 26 0 12 #rect
 Fs0 f30 @|RichDialogEndIcon #fIcon
 Fs0 f28 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
 ' #txt
 Fs0 f28 actionTable 'out=in;
 ' #txt
-Fs0 f28 actionCode 'in.data.discard = true;' #txt
+Fs0 f28 actionCode 'in.data.discard = true;
+' #txt
 Fs0 f28 security system #txt
 Fs0 f28 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -378,8 +381,6 @@ Fs0 f28 200 554 112 44 -37 -8 #rect
 Fs0 f28 @|StepIcon #fIcon
 Fs0 f32 expr out #txt
 Fs0 f32 109 576 200 576 #arcP
-Fs0 f31 expr out #txt
-Fs0 f31 312 576 435 576 #arcP
 Fs0 f26 expr out #txt
 Fs0 f26 109 352 435 352 #arcP
 Fs0 f17 guid 15F94B0886B676AB #txt
@@ -412,6 +413,29 @@ Fs0 f18 435 659 26 26 0 12 #rect
 Fs0 f18 @|RichDialogProcessEndIcon #fIcon
 Fs0 f21 expr out #txt
 Fs0 f21 109 672 435 672 #arcP
+Fs0 f27 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
+' #txt
+Fs0 f27 actionTable 'out=in;
+' #txt
+Fs0 f27 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+
+ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);' #txt
+Fs0 f27 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Set task is finished</name>
+        <nameStyle>20,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Fs0 f27 384 554 112 44 -52 -8 #rect
+Fs0 f27 @|StepIcon #fIcon
+Fs0 f29 expr out #txt
+Fs0 f29 312 576 384 576 #arcP
+Fs0 f31 expr out #txt
+Fs0 f31 496 576 555 576 #arcP
 >Proto Fs0 .type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 >Proto Fs0 .processKind HTML_DIALOG #txt
 >Proto Fs0 -8 -8 16 16 16 26 #rect
@@ -436,9 +460,11 @@ Fs0 f23 mainOut f22 tail #connect
 Fs0 f22 head f20 mainIn #connect
 Fs0 f25 mainOut f32 tail #connect
 Fs0 f32 head f28 mainIn #connect
-Fs0 f28 mainOut f31 tail #connect
-Fs0 f31 head f30 mainIn #connect
 Fs0 f16 mainOut f26 tail #connect
 Fs0 f26 head f20 mainIn #connect
 Fs0 f17 mainOut f21 tail #connect
 Fs0 f21 head f18 mainIn #connect
+Fs0 f28 mainOut f29 tail #connect
+Fs0 f29 head f27 mainIn #connect
+Fs0 f27 mainOut f31 tail #connect
+Fs0 f31 head f30 mainIn #connect

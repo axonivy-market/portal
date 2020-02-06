@@ -1,5 +1,4 @@
 [Ivy]
-[>Created: Wed Aug 23 10:10:13 ICT 2017]
 1574EBDBE9576CED 3.20 #module
 >Proto >Proto Collection #zClass
 Ds0 FormDefinitionProcess Big #zClass
@@ -64,8 +63,10 @@ Ds0 @RichDialogProcessStart f3 '' #zField
 Ds0 @PushWFArc f5 '' #zField
 Ds0 @GridStep f48 '' #zField
 Ds0 @RichDialogEnd f50 '' #zField
-Ds0 @PushWFArc f53 '' #zField
 Ds0 @PushWFArc f54 '' #zField
+Ds0 @GridStep f46 '' #zField
+Ds0 @PushWFArc f47 '' #zField
+Ds0 @PushWFArc f49 '' #zField
 >Proto Ds0 Ds0 FormDefinitionProcess #zField
 Ds0 f0 guid 156E35E680453115 #txt
 Ds0 f0 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
@@ -605,13 +606,34 @@ Ds0 f48 216 906 112 44 -37 -8 #rect
 Ds0 f48 @|StepIcon #fIcon
 Ds0 f50 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 Ds0 f50 guid 15AF77AA5D3C3910 #txt
-Ds0 f50 387 915 26 26 0 12 #rect
+Ds0 f50 587 915 26 26 0 12 #rect
 Ds0 f50 @|RichDialogEndIcon #fIcon
-Ds0 f53 expr out #txt
-Ds0 f53 328 928 387 928 #arcP
 Ds0 f54 expr out #txt
 Ds0 f54 109 928 216 928 #arcP
 Ds0 f54 0 0.20328842452716808 0 0 #arcLabel
+Ds0 f46 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData out;
+' #txt
+Ds0 f46 actionTable 'out=in;
+' #txt
+Ds0 f46 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+
+ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);' #txt
+Ds0 f46 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
+Ds0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Set task is finished</name>
+        <nameStyle>20,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f46 416 906 112 44 -52 -8 #rect
+Ds0 f46 @|StepIcon #fIcon
+Ds0 f47 expr out #txt
+Ds0 f47 328 928 416 928 #arcP
+Ds0 f49 expr out #txt
+Ds0 f49 528 928 587 928 #arcP
 >Proto Ds0 .type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 >Proto Ds0 .processKind HTML_DIALOG #txt
 >Proto Ds0 -8 -8 16 16 16 26 #rect
@@ -658,7 +680,9 @@ Ds0 f42 mainOut f43 tail #connect
 Ds0 f43 head f4 mainIn #connect
 Ds0 f3 mainOut f5 tail #connect
 Ds0 f5 head f4 mainIn #connect
-Ds0 f48 mainOut f53 tail #connect
-Ds0 f53 head f50 mainIn #connect
 Ds0 f51 mainOut f54 tail #connect
 Ds0 f54 head f48 mainIn #connect
+Ds0 f48 mainOut f47 tail #connect
+Ds0 f47 head f46 mainIn #connect
+Ds0 f46 mainOut f49 tail #connect
+Ds0 f49 head f50 mainIn #connect
