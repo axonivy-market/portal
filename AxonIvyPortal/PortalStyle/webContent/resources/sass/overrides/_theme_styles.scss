@@ -949,14 +949,6 @@ body .ui-accordion .ui-accordion-header.ui-state-active {
 }
 
 /* File upload */
-.ui-fileupload-content .ui-progressbar {
-  top: 0px !important;
-}
-
-.ui-fileupload-preview {
-  vertical-align: middle;
-}
-
 @media (max-width: 1024px) {
   .ui-fileupload-files .ui-fileupload-row > div {
     display: block !important;
