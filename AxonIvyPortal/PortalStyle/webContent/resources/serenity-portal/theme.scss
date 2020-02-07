@@ -18,6 +18,10 @@
 }
 
 /*Style For Color Header --------------------------------------------------------------------------------------*/
+.layout-wrapper .layout-main .layout-topbar {
+  background-color: $bodyBgColor;
+}
+
 .first-header-bar {
     width: 70%;
     background-color: $firstHeaderBarColor;
@@ -100,7 +104,7 @@
 }
 
 .application-email-setting .ui-widget-header{
-    color: $emailSettingWidgetHeader !important;
+    color: $emailSettingWidgetHeader;
 }
 
 .applications-email-setting-dialog .ui-dialog-content.ui-widget-content {
@@ -279,6 +283,15 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
     background-color: $cancelButtonBackgroundColor !important;
 }
 
+.portal-cancel-button.ui-widget.ui-button .ui-button-text,
+.portal-cancel-button.ui-widget.ui-button .ui-icon,
+.ui-inplace-cancel.ui-widget.ui-button .ui-button-text,
+.ui-inplace-cancel.ui-widget.ui-button .ui-icon,
+.ui-fileupload-cancel.ui-widget.ui-button .ui-button-text,
+.ui-fileupload-cancel.ui-widget.ui-button .ui-icon {
+    color: $cancelButtonTextColor !important;
+}
+
 .portal-cancel-button.ui-widget.ui-button.ui-state-hover,
 .portal-cancel-button.ui-widget.ui-buttonset .ui-state-hover,
 .ui-inplace-cancel.ui-widget.ui-button.ui-state-hover,
@@ -295,6 +308,11 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 .ui-widget.ui-button.context-button {
     border-radius: $contextButtonBorderRadius !important;
     background-color: $contextButtonBackgroundColor !important;
+}
+
+.ui-widget.ui-button.context-button .ui-button-text,
+.ui-widget.ui-button.context-button .ui-icon {
+    color: contextButtonTextColor !important;
 }
 
 .ui-widget.ui-button.context-button.ui-state-hover,
@@ -409,7 +427,8 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
   font-weight: $currentLineVerticalStepTitleFontWeight;
 }
 
-.current .cicrle-step-container, .visited .cicrle-step-container {
+.current .cicrle-step-container, .visited .cicrle-step-container,
+.process-chain-mobile-container .circle-horizontal-process-step {
     color: $circleStepNumberColor;
 }
 
@@ -431,6 +450,10 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 
 .circle-horizontal-process-step:not(:last-child) .circle-horizontal-step-container .step-number-container:after {
   border-top: 3px solid $circleHorizontalStepNumberContainerBorderTop;
+}
+
+.circle-horizontal-process-step.visited .circle-horizontal-step-container .step-number-container:after {
+  color: $circleHorizontalStepNumberContainerBorderTopColor;
 }
 
 .circle-process-chain .circle-horizontal-process-step,
@@ -504,6 +527,20 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 
 .task-action-item:hover {
   background-color: $taskDetailActionItemHoverBackgroundColor !important;
+}
+
+.ui-widget.ui-button.action-button.task-action-item .ui-button-text,
+.case-header-container .ui-widget.ui-button.action-button .ui-button-text,
+.ui-widget.ui-button.action-button.task-action-item .ui-icon,
+.case-header-container .ui-widget.ui-button.action-button .ui-icon {
+  color: $commandLinkTextColor !important;
+}
+
+.ui-widget.ui-button.action-button.task-action-item.ui-state-hover .ui-button-text,
+.case-header-container .ui-widget.ui-button.action-button.ui-state-hover .ui-button-text,
+.ui-widget.ui-button.action-button.task-action-item.ui-state-hover .ui-icon,
+.case-header-container .ui-widget.ui-button.action-button.ui-state-hover .ui-icon {
+  color: $commandLinkHoverTextColor !important;
 }
 
 .action-button.task-action-item,
@@ -593,6 +630,11 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 
 .widget-sort-menu a.ui-widget.ui-commandlink.is-selected {
   color: $taskWidgetSortMenuLinkIsSelectedColor !important;
+}
+
+.task-widget .advanced-filter .ui-button-text-only .ui-button-text,
+.case-widget-container .advanced-filter .ui-button-text-only .ui-button-text {
+  color: $widgetHeaderFilterColor !important;
 }
 
 .task-widget .ui-widget.ui-button.advanced-filter-command:after, 
@@ -1371,6 +1413,15 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   background-color: $definedTaskButtonBackgroundColor;
 }
 
+.ui-widget.ui-button.defined-task-button span {
+  color: $definedTaskButtonTextColor !important;
+}
+
+.ui-widget.ui-button.defined-task-button.ui-state-hover span,
+.ui-widget.ui-button.defined-task-button.active span {
+  color: $activeDefinedTaskButtonTextColor !important;
+}
+
 .express-work-flow .express-input-switch-selection,
 .ui-inputswitch.ui-widget.ui-widget-content.express-input-switch-selection.ui-inputswitch-checked {
   background-color: $expressInputSwitchSelectionBackgroundColor;
@@ -1416,6 +1467,11 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .defined-task-label label {
   font-size: $smallFontSize;
+  color: $definedTaskLabelTextColor;
+}
+
+.defined-task-label.active label {
+  color: $definedTaskLabelTextColor;
 }
 
 .defined-task-button-container .ui-state-hover ~ span.defined-task-label,
@@ -1424,9 +1480,15 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   background: $definedTaskButtonContainerBackgroundColor;
 }
 
+.defined-task-button-container .ui-state-hover ~ span.defined-task-label label,
+.defined-task-button-container .active ~ span.defined-task-label label,
+.defined-task-button-container .visited ~ span.defined-task-label label {
+  color: $activeDefinedTaskLabelTextColor;
+}
+
 .form-definition-table .ui-state-highlight,
 .form-definition-table .hover-drop-section {
-  color: $formElementsPanelHoverDropSectionLabelColor;
+  color: $formElementsPanelHoverDropSectionLabelColor !important;
 }
 
 .form-definition-table {
@@ -1467,7 +1529,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight,
 .ui-autocomplete-panel .ui-autocomplete-items .ui-autocomplete-moretext.ui-state-highlight td {
- background-color: $autocompleteMoreTextStateHighlightBackgroundColor;
+  background-color: $autocompleteMoreTextStateHighlightBackgroundColor;
 }
 
 /* Chat*/
@@ -1583,6 +1645,10 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   background: $chatFormBackgroundColor;
 }
 
+.chat-send-form .ui-widget.ui-button .ui-icon {
+  color: $chatSendFormIconColor !important;
+}
+
 .notification-badge[data-badge]:after {
   background-color: $notificationBadgeBackgroundColor;
   color: $notificationBadgeColor;
@@ -1638,7 +1704,10 @@ ul.participants-list li {
       font-size: $closeChatFontSize !important;
     }
     &.ui-button.ui-button-icon-only {
-      background: $lightGrey;
+      background: $closeChatButtonBackgroundColor;
+      .ui-icon {
+        color: $closeChatButtonColor !important;
+      }
     }
   }
 }
@@ -1752,7 +1821,8 @@ ul.participants-list li {
     }
   }
   
-  tr.ui-datatable-selectable.ui-state-highlight {
+  tr.ui-datatable-selectable.ui-state-highlight,
+  tr.ui-datatable-selectable.ui-state-hover {
     td {
       border-bottom-color: $mediumGrey !important;
     }
