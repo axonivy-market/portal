@@ -4,6 +4,7 @@ import static junit.framework.Assert.assertTrue;
 
 import java.util.Arrays;
 
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -171,5 +172,9 @@ public class ChatTest extends BaseTest {
 		new HomePage().getChat();
 		return new ChatPage();
 	}
-
+	
+	@AfterClass
+	public static void cleanUpAllIEAndDriver() {
+	  killIE();
+	}
 }

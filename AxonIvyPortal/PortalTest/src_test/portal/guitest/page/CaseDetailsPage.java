@@ -189,6 +189,11 @@ public class CaseDetailsPage extends TemplatePage {
         .id(String.format("case-widget:case-list-scroller:%d:case-item:case-body:case-description-input", caseIndex)));
   }
 
+  public CaseWidgetPage goBackToCaseListFromCaseDetails() {
+    findElementById("case-item-details:case-detail-title-form:back-to-cases").click();
+    return new CaseWidgetPage();
+  }
+  
   private void onSubmitDescriptionInplaceEditor() {
     WebElement editor = findElementById("case-item-details:description:case-description-form:case-description-inplace_editor");
     WebElement saveButton = findChildElementByClassName(editor, "ui-inplace-save");

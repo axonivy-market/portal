@@ -1,5 +1,6 @@
 package portal.guitest.common;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.concurrent.TimeUnit;
@@ -7,6 +8,9 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.Before;
 import org.junit.Rule;
+import org.junit.rules.MethodRule;
+import org.junit.rules.TestWatchman;
+import org.junit.runners.model.FrameworkMethod;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
@@ -63,7 +67,15 @@ public class BaseTest {
 
   @Rule
   public ScreenshotFailedTestRule screenshotTestRule = new ScreenshotFailedTestRule();
-
+  
+  @Rule
+  public MethodRule watchman = new TestWatchman() {
+    @Override
+    public void starting(FrameworkMethod method) {
+        System.out.println("Starting test: " + method.getName());
+    }
+  };
+  
   @Before
   public void setup() {
     browser = Browser.getBrowser();
@@ -184,4 +196,13 @@ public class BaseTest {
     }
   }
   
+  public static void killIE() {
+    try {
+      System.out.println("Kill all open IE");
+      Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
+      Sleeper.sleep(5000);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 }
