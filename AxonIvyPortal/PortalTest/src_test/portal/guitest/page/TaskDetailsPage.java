@@ -70,4 +70,9 @@ public class TaskDetailsPage extends TemplatePage {
   public boolean isAddDocumentLinkDisplayed() {
     return isElementDisplayedById("task-detail-template:task-documents:add-document-command");
   }
+  
+  public TaskWidgetPage goBackToTaskListFromTaskDetails() {
+    findElementById("task-detail-template:task-detail-title-form:back-to-previous-page").click();
+    return new TaskWidgetPage();
+  }
 }
