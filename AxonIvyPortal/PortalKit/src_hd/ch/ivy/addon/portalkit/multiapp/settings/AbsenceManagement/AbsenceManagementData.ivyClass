@@ -8,7 +8,6 @@ errorLink String #field
 errorLink PERSISTENT #fieldModifier
 errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
 errors PERSISTENT #fieldModifier
-isLoadDeputy Boolean #field
 isSupervisor Boolean #field
 users java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> #field
 users PERSISTENT #fieldModifier

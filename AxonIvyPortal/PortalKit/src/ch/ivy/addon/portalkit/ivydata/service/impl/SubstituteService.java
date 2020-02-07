@@ -133,20 +133,10 @@ public class SubstituteService implements ISubstituteService {
   }
   
   private List<IvySubstitute> getIvySubstitutions(IUser user) {
-    List<IvySubstitute> substitutes = user.getSubstitutions().stream()
+    return user.getSubstitutions()
+        .stream()
         .map(this::getIvySubstitute)
         .collect(Collectors.toList());
-    Set<IRole> existRoles = substitutes.stream()
-        .map(IvySubstitute::getSubstitionRole)
-        .collect(Collectors.toSet());
-    
-    List<IRole> iRoles = getAllRoles(user).stream()
-        .filter(role -> !existRoles.contains(role))
-        .collect(Collectors.toList());
-
-    substitutes.addAll(iRoles.stream().map(this::newIvySubtitute).collect(Collectors.toList()));
-    
-    return substitutes;
   }
   
   private IvySubstitute createPersonalSubstitute() {

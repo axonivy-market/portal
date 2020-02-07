@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.ivydata.bo;
 
-import org.apache.commons.lang3.StringUtils;
-
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
@@ -26,9 +24,6 @@ public class IvySubstitute {
   }
 
   public String getSubstitionRoleDisplayName() {
-    if (StringUtils.isBlank(substitionRoleDisplayName) && substitionRole != null) {
-      substitionRoleDisplayName = substitionRole.getDisplayName();
-    }
     substitionRoleDisplayName = substitionRole != null ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/taskForRole").concat(substitionRole.getDisplayName()) : 
         Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTask");
     return substitionRoleDisplayName;
