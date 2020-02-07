@@ -615,6 +615,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   margin-top: 3px;
 }
 
+@media (max-width : 767px) {
+  .case-widget-top-header-main-title {
+    word-break: break-all;
+  }
+}
+
 @media (max-width: 991px) {
   .case-header-action-cell, .task-header-action-cell {
     border-left: none;
@@ -1738,7 +1744,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   .task-widget .ui-widget.ui-button.advanced-filter-command span,
   .case-widget-container .ui-widget.ui-button.advanced-filter-command span {
     width: 100%;
-    float: left;
     padding-right: 12px !important;
     white-space: nowrap;
     text-overflow: ellipsis;

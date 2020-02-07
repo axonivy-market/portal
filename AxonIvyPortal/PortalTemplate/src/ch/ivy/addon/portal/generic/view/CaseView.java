@@ -11,6 +11,7 @@ public class CaseView {
     private String keyword = "";
     private GlobalCaseId autoSelectCaseId = GlobalCaseId.createDefaultInstance();
     private String title = "";
+    // The alternativeTitle is a short title using for mobile screen
     private String alternativeTitle = "";
     private boolean hideCaseFilter = false;
 
@@ -53,6 +54,7 @@ public class CaseView {
   private final String keyword;
   private final GlobalCaseId autoSelectCaseId;
   private final String title;
+  // The alternativeTitle is a short title using for mobile screen
   private String alternativeTitle = "";
   private String caseName = "";
   private boolean hideCaseFilter = false;
