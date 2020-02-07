@@ -44,6 +44,8 @@ public class UserMenuBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public static final long TIME_BEFORE_LOST_SESSION = 3 * DateUtils.MILLIS_PER_MINUTE; // 3 minutes
+  public static final String TASK_LEAVE_WARNING_COMPONENT = "task-leave-warning-component";
+
   
   private String userName;
   GlobalSettingService globalSettingService;
@@ -137,7 +139,7 @@ public class UserMenuBean implements Serializable {
 
   public void resetTaskAndNavigateToHomePageWithGrowl(ITask task) throws IOException {
     IvyComponentLogicCaller<ITask> leaveTask = new IvyComponentLogicCaller<>();
-    leaveTask.invokeComponentLogic("task-leave-warning-component", "#{logic.leave}", new Object[] {});
+    leaveTask.invokeComponentLogic(TASK_LEAVE_WARNING_COMPONENT, "#{logic.leave}", new Object[] {});
     TaskUtils.resetTask(task != null ? task : Ivy.wfTask());
     navigateToHomePage();
   }
@@ -149,7 +151,7 @@ public class UserMenuBean implements Serializable {
   
   public void reserveTaskAndNavigateToHomePageWithGrowl(ITask task) throws IOException {
     IvyComponentLogicCaller<ITask> reserveTask = new IvyComponentLogicCaller<>();
-    reserveTask.invokeComponentLogic("task-leave-warning-component", "#{logic.reserve}", new Object[] {});
+    reserveTask.invokeComponentLogic(TASK_LEAVE_WARNING_COMPONENT, "#{logic.reserve}", new Object[] {});
     TaskUtils.parkTask(task != null ? task : Ivy.wfTask());
     navigateToHomePage();
   }
