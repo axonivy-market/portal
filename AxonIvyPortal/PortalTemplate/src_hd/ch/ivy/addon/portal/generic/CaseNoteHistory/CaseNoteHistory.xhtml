@@ -47,13 +47,13 @@
           </p:column>
           <p:column width="15%" sortBy="#{userFormatBean.format(history.involvedFullname, history.involvedUsername)}" 
             filterBy="#{userFormatBean.format(history.involvedFullname, history.involvedUsername)}"
-            filterMatchMode="contains">
+            filterMatchMode="contains" styleClass="note-history-fullname-column">
             <f:facet name="header">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}" />
             </f:facet>
             <h:outputText value="#{userFormatBean.format(history.involvedFullname, history.involvedUsername)}" />
           </p:column>
-          <p:column width="20%" sortBy="#{history.timestamp}">
+          <p:column width="20%" sortBy="#{history.timestamp}" styleClass="u-hidden-sm-down">
             <f:facet name="header">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" />
             </f:facet>

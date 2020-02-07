@@ -291,7 +291,7 @@ if (#task is initialized) {
 		
 		in.callbackUrl = taskWithTaskEndInfo.customFields().stringField(CustomFields.EXPRESS_END_PAGE_URL.toString()).getOrDefault("");
 	}  else {
-		in.isFirstTask = !#taskWithTaskEndInfo is initialized;
+		in.isFirstTask = true;
 		in.portalPage = PortalPage.HOME_PAGE;
 	}
 }
