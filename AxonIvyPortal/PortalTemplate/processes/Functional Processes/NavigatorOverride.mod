@@ -486,6 +486,7 @@ import ch.ivy.addon.portal.generic.view.CaseView;
 import org.apache.commons.lang3.StringUtils;
 
 String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCasesOfBusinessCaseTitle", Arrays.asList(in.caseId.id().toString(), in.caseName));
+// Add a short title for mobile screen
 String alternativeTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle", Arrays.asList(in.caseId.id().toString()));
 
 in.caseDataModel.getCriteria().setKeyword(StringUtils.EMPTY);
