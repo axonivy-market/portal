@@ -128,6 +128,17 @@ public class CaseWidgetTest extends BaseTest {
     assertFalse(casePage.isCaseListColumnExist(STATE_COLUMN_HEADER));
   }
   
+  @Test
+  public void testEnterCaseDetailFromActionMenuAndGoBack() {
+    initHomePage(TestAccount.DEMO_USER);
+    mainMenuPage = homePage.openMainMenu();
+    casePage = mainMenuPage.selectCaseMenu();
+    caseDetailsPage = casePage.openCaseDetailsFromActionMenuByCaseName(LEAVE_REQUEST_CASE_NAME);
+    assertEquals("Case Details", caseDetailsPage.getPageTitle());
+    casePage = caseDetailsPage.goBackToCaseListFromCaseDetails();
+    assertEquals("Cases", casePage.getPageTitle());
+  }
+  
   private void openAdditionalCaseDetailsPage(String initDataUrl, String caseName){
     redirectToRelativeLink(initDataUrl);
     initHomePage(TestAccount.ADMIN_USER);
@@ -175,4 +186,5 @@ public class CaseWidgetTest extends BaseTest {
     casePage = mainMenuPage.selectCaseMenu();
     assertEquals("Case count is not disabled", null, casePage.getCaseCount());
   }
+  
 }

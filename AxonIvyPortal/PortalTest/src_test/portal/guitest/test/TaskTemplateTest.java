@@ -36,13 +36,13 @@ public class TaskTemplateTest extends BaseTest {
 
   @Test
   public void testCaseDetailsTabDisplayed() {
-    TaskTemplatePage taskTemplatePage = startATask();
+    TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     assertTrue("Case details is not displayed", taskTemplatePage.containsCaseDetails());
   }
 
   @Test
   public void testAddingANote() {
-    TaskTemplatePage taskTemplatePage = startATask();
+    TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     assertEquals(1, taskTemplatePage.countHistoryItems());
     taskTemplatePage.addNewNote("Sample note message");
     assertEquals(1, taskTemplatePage.countNoteItems());
@@ -52,7 +52,7 @@ public class TaskTemplateTest extends BaseTest {
   @Test
   @Ignore
   public void testOpeningFinishedTaskInHistoryArea() {
-    TaskTemplatePage taskTemplatePage = startATask();
+    TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     taskTemplatePage.openFinishedTaskInHistoryArea();
 
     NoteHistoryPage caseHistoryPage = new NoteHistoryPage();
@@ -71,7 +71,7 @@ public class TaskTemplateTest extends BaseTest {
 
   @Test
   public void testOpeningRelatedTask() {
-    TaskTemplatePage taskTemplatePage = startATask();
+    TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     assertTrue(taskTemplatePage.countRelatedTasks() > 0);
     TaskDetailsPage taskDetailsPage = taskTemplatePage.openFirstRelatedTaskInHistoryArea();
     assertEquals("Task Details", taskDetailsPage.getPageTitle());
@@ -79,14 +79,14 @@ public class TaskTemplateTest extends BaseTest {
 
   @Test
   public void testOpeningDocumentUploading() {
-    TaskTemplatePage taskTemplatePage = startATask();
+    TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     taskTemplatePage.openDocumentUploadingDialog();
     assertTrue(taskTemplatePage.isDocumentUploadingDialogDisplayed());
   }
   
   @Test
   public void testLeaveWorkingTaskByClickingOnLogo() {
-    TaskTemplatePage taskTemplatePage = startATask();
+    TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.leaveTask();
@@ -97,7 +97,7 @@ public class TaskTemplateTest extends BaseTest {
   
   @Test
   public void testReserveWorkingTaskByClickingOnLogo() {
-    TaskTemplatePage taskTemplatePage = startATask();
+    TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
     dialogPage.reserveTask();
@@ -122,7 +122,7 @@ public class TaskTemplateTest extends BaseTest {
     assertTrue(taskWidget.isTaskStateOpen(0));
   }
 
-  private TaskTemplatePage startATask() {
+  private TaskTemplatePage startATaskAndOpenCaseInfo() {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.openCaseInfo();

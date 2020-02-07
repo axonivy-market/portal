@@ -7,6 +7,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
   <cc:attribute name="styleClass" />
+  <cc:attribute name="isWorkingOnTask" type="java.lang.Boolean"/>
 </cc:interface>
 
 <cc:implementation>
@@ -28,6 +29,7 @@
             <span class="fa fa-external-link-square" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTasks')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
+            <f:attribute name="isWorkingOnTask" value="#{cc.attrs.isWorkingOnTask}" />
           </p:commandLink>
           <p:tooltip for="more-related-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTasks')}" trackMouse="true" />
         </h:panelGroup>
@@ -43,6 +45,7 @@
               value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}"
               styleClass="related-task" actionListener="#{logic.navigateToRelatedTaskDetails}">
               <f:attribute name="taskId" value="#{task.getId()}" />
+              <f:attribute name="isWorkingOnTask" value="#{cc.attrs.isWorkingOnTask}" />
             </p:commandLink>
           </h:panelGroup>
           <p:tooltip for="task" value="#{taskBean.displayRelatedTaskToolTip(task)}" trackMouse="true" />
@@ -65,6 +68,7 @@
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTechnicalCases')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
             <f:attribute name="selectedCase" value="#{cc.attrs.case}" />
+            <f:attribute name="isWorkingOnTask" value="#{cc.attrs.isWorkingOnTask}" />
           </p:commandLink>
         </h:panelGroup>
         <p:tooltip for="more-related-cases" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTechnicalCases')}" trackMouse="true" />
@@ -79,6 +83,7 @@
             <p:commandLink id="case-name" value="#{empty technicalCase.name ? technicalCase.id : technicalCase.name}"
               actionListener="#{logic.navigateToRelatedCaseDetails}" styleClass="related-task">
               <f:attribute name="selectedCase" value="#{technicalCase}" />
+              <f:attribute name="isWorkingOnTask" value="#{cc.attrs.isWorkingOnTask}" />
             </p:commandLink>
           </h:panelGroup>
           <p:tooltip for="technicalCase"

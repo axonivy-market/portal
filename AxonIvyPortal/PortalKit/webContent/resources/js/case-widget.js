@@ -48,7 +48,7 @@ function CaseListToolKit() {
   return {
     setupHeader : function() {
       var caseSortMenu = $('.js-case-widget-column-header');
-      var caseEntry = $('.js-case-item-header').first();
+      var caseEntry = $('.js-case-start-link').first();
       var noEntry = caseEntry.length == 0;
       this.showHideColumnWhenMenuToggle();
       if (noEntry) {

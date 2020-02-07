@@ -117,6 +117,9 @@ HowTo: Create new filter
 
 .. figure:: images/how-to-create-case-filter.png
 
+
+.. centered:: Case filter criterias
+
 +-----------------------------------+-----------------------------------+
 | Criteria                          | Description                       |
 +===================================+===================================+
@@ -139,7 +142,7 @@ HowTo: Create new filter
 |                                   | case state                        |
 +-----------------------------------+-----------------------------------+
 
-.. centered:: Case filter criterias
+
 
 .. hint:: 
    1. You may also start the creation of a new filter by selecting an existing

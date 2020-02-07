@@ -55,7 +55,6 @@ Ds0 @PushWFArc f55 '' #zField
 Ds0 @UdMethod f58 '' #zField
 Ds0 @PushWFArc f61 '' #zField
 Ds0 @PushWFArc f57 '' #zField
-Ds0 @PushWFArc f30 '' #zField
 Ds0 @Alternative f26 '' #zField
 Ds0 @PushWFArc f25 '' #zField
 Ds0 @PushWFArc f31 '' #zField
@@ -66,7 +65,6 @@ Ds0 @GridStep f53 '' #zField
 Ds0 @UdEvent f60 '' #zField
 Ds0 @UdEvent f62 '' #zField
 Ds0 @GridStep f63 '' #zField
-Ds0 @PushWFArc f64 '' #zField
 Ds0 @PushWFArc f66 '' #zField
 Ds0 @UdExitEnd f3 '' #zField
 Ds0 @PushWFArc f5 '' #zField
@@ -82,6 +80,14 @@ Ds0 @PushWFArc f68 '' #zField
 Ds0 @GridStep f69 '' #zField
 Ds0 @PushWFArc f70 '' #zField
 Ds0 @PushWFArc f54 '' #zField
+Ds0 @GridStep f91 '' #zField
+Ds0 @PushWFArc f71 '' #zField
+Ds0 @GridStep f64 '' #zField
+Ds0 @PushWFArc f72 '' #zField
+Ds0 @PushWFArc f73 '' #zField
+Ds0 @GridStep f74 '' #zField
+Ds0 @PushWFArc f75 '' #zField
+Ds0 @PushWFArc f30 '' #zField
 >Proto Ds0 Ds0 FormDefinitionProcess #zField
 Ds0 f0 guid 156E35E680453115 #txt
 Ds0 f0 method start(gawfs.Data) #txt
@@ -104,7 +110,7 @@ Ds0 f0 83 51 26 26 -28 33 #rect
 Ds0 f0 @|UdInitIcon #fIcon
 Ds0 f1 819 51 26 26 0 12 #rect
 Ds0 f1 @|UdProcessEndIcon #fIcon
-Ds0 f4 643 595 26 26 0 12 #rect
+Ds0 f4 707 595 26 26 0 12 #rect
 Ds0 f4 @|UdExitEndIcon #fIcon
 Ds0 f6 actionTable 'out=in;
 ' #txt
@@ -391,8 +397,8 @@ Ds0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ds0 f44 83 659 26 26 -13 15 #rect
 Ds0 f44 @|UdEventIcon #fIcon
 Ds0 f45 expr out #txt
-Ds0 f45 109 672 656 621 #arcP
-Ds0 f45 1 656 672 #addKink
+Ds0 f45 109 672 720 621 #arcP
+Ds0 f45 1 720 672 #addKink
 Ds0 f45 0 0.5699203045049207 0 0 #arcLabel
 Ds0 f42 guid 15798472F333F271 #txt
 Ds0 f42 actionTable 'out=in;
@@ -424,7 +430,8 @@ Ds0 f51 83 723 26 26 -18 15 #rect
 Ds0 f51 @|UdEventIcon #fIcon
 Ds0 f48 actionTable 'out=in;
 ' #txt
-Ds0 f48 actionCode 'in.data.discard = true;' #txt
+Ds0 f48 actionCode 'in.data.discard = true;
+' #txt
 Ds0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -434,7 +441,7 @@ Ds0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f48 280 794 112 44 -37 -8 #rect
+Ds0 f48 216 794 112 44 -37 -8 #rect
 Ds0 f48 @|StepIcon #fIcon
 Ds0 f46 actionTable 'out=in;
 ' #txt
@@ -539,15 +546,11 @@ Ds0 f61 1 248 544 #addKink
 Ds0 f61 0 0.6714985851425087 0 0 #arcLabel
 Ds0 f57 expr out #txt
 Ds0 f57 109 480 192 480 #arcP
-Ds0 f30 expr out #txt
-Ds0 f30 392 816 656 621 #arcP
-Ds0 f30 1 656 816 #addKink
-Ds0 f30 0 0.8290441176470589 0 0 #arcLabel
 Ds0 f26 400 592 32 32 0 16 #rect
 Ds0 f26 @|AlternativeIcon #fIcon
 Ds0 f25 expr in #txt
 Ds0 f25 outCond in.isAbleToExecute #txt
-Ds0 f25 432 608 643 608 #arcP
+Ds0 f25 432 608 707 608 #arcP
 Ds0 f25 0 0.5649178034353388 0 0 #arcLabel
 Ds0 f31 expr in #txt
 Ds0 f31 416 592 563 480 #arcP
@@ -625,6 +628,7 @@ Ds0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ds0 f62 82 955 26 26 -15 15 #rect
 Ds0 f62 @|UdEventIcon #fIcon
 Ds0 f63 actionTable 'out=in;
+out.isTaskFinished=true;
 ' #txt
 Ds0 f63 actionCode 'in.data.readyToExecute = true;' #txt
 Ds0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -636,10 +640,6 @@ Ds0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ds0 f63 480 946 112 44 -52 -8 #rect
 Ds0 f63 @|StepIcon #fIcon
-Ds0 f64 expr out #txt
-Ds0 f64 592 968 720 926 #arcP
-Ds0 f64 1 720 968 #addKink
-Ds0 f64 0 0.7915839930188887 0 0 #arcLabel
 Ds0 f66 expr out #txt
 Ds0 f66 108 904 640 904 #arcP
 Ds0 f3 851 891 26 26 0 12 #rect
@@ -748,9 +748,90 @@ Ds0 f70 outCond in.data.savedFlag #txt
 Ds0 f70 208 736 280 736 #arcP
 Ds0 f70 0 0.20328842452716808 0 0 #arcLabel
 Ds0 f54 expr in #txt
-Ds0 f54 192 752 280 816 #arcP
+Ds0 f54 192 752 216 816 #arcP
 Ds0 f54 1 192 816 #addKink
 Ds0 f54 1 0.1487695459411198 0 0 #arcLabel
+Ds0 f91 actionTable 'out=in;
+' #txt
+Ds0 f91 actionCode 'import org.apache.commons.lang3.StringUtils;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import javax.faces.context.Flash;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
+
+String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
+boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
+if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
+	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+	if (!flash.containsKey("overridePortalGrowl")) {
+		FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
+		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
+	}
+	flash.setRedirect(true);
+	flash.setKeepMessages(true);
+}' #txt
+Ds0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Display message after&#13;
+finish or leave task</name>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f91 552 794 144 44 -54 -16 #rect
+Ds0 f91 @|StepIcon #fIcon
+Ds0 f71 696 816 720 621 #arcP
+Ds0 f71 1 720 816 #addKink
+Ds0 f71 1 0.17953158540422498 0 0 #arcLabel
+Ds0 f64 actionTable 'out=in;
+' #txt
+Ds0 f64 actionCode 'import org.apache.commons.lang3.StringUtils;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import javax.faces.context.Flash;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
+
+String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
+boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
+if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
+	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+	if (!flash.containsKey("overridePortalGrowl")) {
+		FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
+		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
+	}
+	flash.setRedirect(true);
+	flash.setKeepMessages(true);
+}' #txt
+Ds0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Display message after&#13;
+finish or leave task</name>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f64 648 946 144 44 -54 -16 #rect
+Ds0 f64 @|StepIcon #fIcon
+Ds0 f72 592 968 648 968 #arcP
+Ds0 f73 720 946 720 926 #arcP
+Ds0 f74 actionTable 'out=in;
+' #txt
+Ds0 f74 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+
+ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);' #txt
+Ds0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Set task is finished</name>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f74 376 794 112 44 -52 -8 #rect
+Ds0 f74 @|StepIcon #fIcon
+Ds0 f75 328 816 376 816 #arcP
+Ds0 f30 488 816 552 816 #arcP
 >Proto Ds0 .type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 >Proto Ds0 .processKind HTML_DIALOG #txt
 >Proto Ds0 -8 -8 16 16 16 26 #rect
@@ -793,8 +874,6 @@ Ds0 f58 mainOut f61 tail #connect
 Ds0 f61 head f56 mainIn #connect
 Ds0 f49 mainOut f57 tail #connect
 Ds0 f57 head f56 mainIn #connect
-Ds0 f48 mainOut f30 tail #connect
-Ds0 f30 head f4 mainIn #connect
 Ds0 f26 out f25 tail #connect
 Ds0 f25 head f4 mainIn #connect
 Ds0 f26 out f31 tail #connect
@@ -805,8 +884,6 @@ Ds0 f23 mainOut f27 tail #connect
 Ds0 f27 head f26 in #connect
 Ds0 f60 mainOut f66 tail #connect
 Ds0 f66 head f53 mainIn #connect
-Ds0 f63 mainOut f64 tail #connect
-Ds0 f64 head f53 mainIn #connect
 Ds0 f53 mainOut f5 tail #connect
 Ds0 f5 head f3 mainIn #connect
 Ds0 f28 out f32 tail #connect
@@ -823,3 +900,13 @@ Ds0 f67 out f70 tail #connect
 Ds0 f70 head f69 mainIn #connect
 Ds0 f67 out f54 tail #connect
 Ds0 f54 head f48 mainIn #connect
+Ds0 f91 mainOut f71 tail #connect
+Ds0 f71 head f4 mainIn #connect
+Ds0 f63 mainOut f72 tail #connect
+Ds0 f72 head f64 mainIn #connect
+Ds0 f64 mainOut f73 tail #connect
+Ds0 f73 head f53 mainIn #connect
+Ds0 f48 mainOut f75 tail #connect
+Ds0 f75 head f74 mainIn #connect
+Ds0 f74 mainOut f30 tail #connect
+Ds0 f30 head f91 mainIn #connect
