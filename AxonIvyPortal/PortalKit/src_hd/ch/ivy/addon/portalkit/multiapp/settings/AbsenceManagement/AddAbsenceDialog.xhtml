@@ -11,7 +11,7 @@
 
     <h:form id="absence-form" styleClass="ui-g-12">
       <p:messages widgetVar="growl" showDetail="true" closable="true" id="absence-messages" escape="false" styleClass="new-absence-messages"/>
-      <h:panelGroup id="input-adsence-data-section" layout="block" rendered="#{not data.isLoadDeputy}">
+      <h:panelGroup id="input-adsence-data-section" layout="block" >
         <ui:include src="Absence.xhtml">
           <ui:param name="updateComponent" value="absence-messages" />
           <ui:param name="uneditedUserName" value="false" />
