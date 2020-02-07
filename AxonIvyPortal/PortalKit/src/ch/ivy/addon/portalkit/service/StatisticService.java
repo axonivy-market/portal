@@ -201,18 +201,34 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   /**
-   * Find all statistic charts
+   * Find list of statistic charts
+   * @param firstIndex current index of next data
+   * @param offset max size of DataSet will be return
    * 
-   * @return all statistic charts
+   * @return list of statistic charts
    */
-  public List<StatisticChart> findAllStatisticCharts() {
+  public List<StatisticChart> findStatisticChartsWithOffset(int firstIndex, int offset) {
     List<StatisticChart> result = new ArrayList<>();
     try {
-      result = repo().search(getType()).execute().getAll();
+      result = repo().search(getType()).limit(firstIndex, offset).execute().getAll();
     } catch (Exception e) {
       Ivy.log().error(e);
     }
     return result;
+  }
+  
+  /**
+   * Get total count of Statistic charts
+   * @return totalCount
+   */
+  public long getTotalStatisticCount() {
+    try {
+      Result<StatisticChart> queryResult = repo().search(getType()).execute();
+      return queryResult.totalCount();
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      return 0;
+    }
   }
 
   /**
@@ -1152,6 +1168,33 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (chartColor.isPresent()) {
       statisticColors = (StatisticColors) chartColor.get();
     }
+  }
+
+  /**
+   * Create placeholder chart for Statistic
+   * @param statisticChartList
+   * @return list of statisticChart with placeholder chart
+   */
+  public List<StatisticChart> generatePlaceholderForChart(List<StatisticChart> statisticChartList) {
+    DonutChartModel donutChartModel = createDonutChartPlaceholder();
+    BarChartModel barChartModel = createBarChartPlaceholder();
+    for (StatisticChart statisticChart : statisticChartList) {
+      switch (statisticChart.getType()) {
+        case TASK_BY_PRIORITY:
+        case CASES_BY_STATE:
+        case CASES_BY_FINISHED_TASK:
+        case CASES_BY_FINISHED_TIME:
+          statisticChart.setDonutChartModel(donutChartModel);
+          break;
+        case TASK_BY_EXPIRY:
+        case ELAPSED_TIME_BY_CASE_CATEGORY:
+          statisticChart.setBarChartModel(barChartModel);
+          break;
+        default:
+          break;
+      }
+    }
+    return statisticChartList;
   }
 
   /**

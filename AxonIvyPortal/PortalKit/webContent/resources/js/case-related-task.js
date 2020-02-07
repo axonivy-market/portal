@@ -15,9 +15,9 @@ var spaceToExpandCasesList = 0;
 var CaseRelatedTask = {
 
   init : function(relatedTask, technicalCase) {
-    relatedTaskSize = relatedTask || 0;
+    relatedTaskSize = relatedTask || 1;
     technicalCaseSize = technicalCase || 0;
-    isShowScrollBar = relatedTaskSize + technicalCaseSize > 6 ? true:false;
+    isShowScrollBar = relatedTaskSize + technicalCaseSize > 5 ? true:false;
 
     taskItemHeight = this.getHeightOfRelatedTaskRow();
     caseItemHeight = this.getHeightOfTechnicalRow();

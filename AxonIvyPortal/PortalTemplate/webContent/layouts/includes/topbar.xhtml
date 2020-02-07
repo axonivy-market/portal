@@ -10,8 +10,8 @@
   <div class="TexAlCenter logo-container">
 
     <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="task-leave-warning-component" rendered="#{isWorkingOnATask}"
-      leaveActionListener="#{userMenuBean.resetTaskAndNavigateToHomePage(task)}" 
-      reserveActionListener="#{userMenuBean.reserveTaskAndNavigateToHomePage(task)}"
+      leaveActionListener="#{userMenuBean.resetTaskAndNavigateToHomePageWithGrowl(task)}" 
+      reserveActionListener="#{userMenuBean.reserveTaskAndNavigateToHomePageWithGrowl(task)}"
       componentId="logo-task-losing-confirmation-dialog" widgetVar="logo-task-losing-confirmation-dialog"
       taskState="#{task.state}" />
     <c:if test="#{!isNotRequiredLogin}">
@@ -72,7 +72,7 @@
         </ul></li>
 
       <li class="ui-sm-hidden ui-md-hidden"><h:form id="global-search-form" prependId="false" rendered="#{showGlobalSearch}">
-          <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component" />
+          <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component" isWorkingOnATask="#{isWorkingOnATask}" />
         </h:form></li>
     </ul>
 

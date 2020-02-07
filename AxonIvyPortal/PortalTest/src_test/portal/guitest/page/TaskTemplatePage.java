@@ -15,6 +15,7 @@ public class TaskTemplatePage extends TemplatePage {
 
   public void openCaseInfo() {
     clickByCssSelector("#horizontal-case-info");
+    waitAjaxIndicatorDisappear();
   }
 
   public boolean containsCaseDetails() {
