@@ -1,30 +1,49 @@
 /* Defined colors */
-$red: #ff0000 !default;
 $white: #fff !default;
 $black: #000 !default;
 
-/*Consolidate grey*/
+/* Ivy green colors */
+$ivyGreen: #c7d426 !default;
+$ivyLightGreen: #d7e52c !default;
+
+/* Grey colors */
 $basicGrey: #f9fafa !default;
 $paleGrey: #f4f5f5 !default;
 $lightGrey: #d9dada !default; 
 $mediumGrey: #9c9d9d !default;
 $darkGrey: #575656 !default;
 
-/* Consolidate green */
-$primaryGreen: #c7d426 !default;
-$primaryLightGreen: #d7e52c !default;
-$caseTaskStateDoneOrResumeGreen: #4eb41c !default;
+/* Blue colors */
+$darkBlue: #007095 !default;
+$mediumBlue: #49bad6 !default;
+$lightBlue: #90dde9 !default;
+
+/* Red colors*/
+$lightRed: #fcc3c3 !default;
+$mediumRed: #ee4a52 !default;
+$darkRed: #d23636 !default;
+
+/* Green colors */
+$darkGreen: #2aa483 !default;
+$mediumGreen: #48c46b !default;
+$lightGreen: #d4eba2 !default;
+
+/* Yellow colors */
+$lightYellow: #ffe896 !default;
+$mediumYellow: #fede4b !default;
+$darkYellow: #ffce29 !default;
 
 /* Theme Colors */
-$primaryColor: $primaryGreen !default;
-$primaryDarkColor: $primaryGreen !default;
-$primaryLightColor: $primaryLightGreen !default;
+$primaryColor: $darkBlue !default;
+$primaryDarkColor: $darkBlue !default;
+$primaryLightColor: $mediumBlue !default;
 $primaryLightestColor: $white !default;
 $primaryTextColor: $black !default;
 $accentColor: $primaryColor !default;
 $accentDarkColor: $primaryDarkColor !default;
 $accentLightColor: $primaryLightColor !default;
-$accentTextColor: $primaryTextColor !default;
+$accentTextColor: $white !default;
+$bodyBgColor: $white !default;
 
 /* Default Portal styles */
 $defaultFontSize: 10px !default;
@@ -42,6 +61,7 @@ $borderColor: $lightGrey !default;
 $bodyBackgroundColor: $white !default;
 $accordionHeaderActiveBackgroundColor: $lightGrey !default;
 $accordionHeaderBackgroundColor: $lightGrey !default;
+$caseTaskStateDoneOrResumeGreen: #4eb41c !default;
 
 /* 3 colors of header bar */
 $firstHeaderBarColor: $primaryColor !default;
@@ -65,13 +85,17 @@ $taskStateZombieDestroyedColor: #ff6464 !default;
 /* Color and border radius of Portal button e.g Add, Close, New, Save, OK .. */
 $cancelButtonBackgroundColor: $lightGrey !default;
 $actionButtonBorderRadius: 0px !default;
-$textButtonColor: $black !default;
 
 /* Color and border radius of context button, 
 it only affects when button has attribute styleClass="context-button" */
 $contextButtonBorderRadius: $actionButtonBorderRadius !default;
 $contextButtonBackgroundColor: $lightGrey !default;
 $contextButtonStateHoverOrFocusBackgroundColor: $mediumGrey !default;
+
+/* Text color of buttons */
+$textButtonColor: $accentTextColor !default;
+$cancelButtonTextColor: $primaryTextColor !default;
+$contextButtonTextColor: $primaryTextColor !default;
 
 /* Link */
 $commandLinkTextColor: $mediumGrey !default;
@@ -93,13 +117,13 @@ $widgetHeaderInputFieldBackgroundColor: transparent !default;
 $widgetHeaderInputHoverBackgroundColor: transparent !default;
 
 /* Announcement panel color */
-$announcementBackgroundColor: #ffff80 !default;
-$announcementBorderColor: $red !default;
+$announcementBackgroundColor: $lightYellow !default;
+$announcementBorderColor: $mediumRed !default;
 
 /* Process chain */
 $processChainMenuColor: $primaryColor !default;
 $lineWaitingStepBackgroundColor: $lightGrey !default;
-$circleStepNumberColor: $primaryTextColor !default;
+$circleStepNumberColor: $accentTextColor !default;
 $circleHorizontalStepNumberContainerBorderTopColor: $primaryColor !default;
 $circleHorizontalStepNumberContainerBorderTop: $lightGrey !default;
 $circleHorizontalLastStepNumberContainerBorderTop: $primaryColor !default;
@@ -139,7 +163,7 @@ $submenuBgColor: rgba($white, 0.6) !default;
 $subMenuItemLinkHoverBackgroundColor: $lightGrey !default;
 
 /* Filter Widget */
-$advancedFilterErrorColor: $red !default;
+$advancedFilterErrorColor: $mediumRed !default;
 $widgetHeaderFilterColor: $primaryTextColor !default;
 $widgetAdvancedFilterBorder: transparent !default;
 $widgetAdvancedFilterHoverBorder: $lightGrey !default;
@@ -267,7 +291,7 @@ $userSettingContainerLinkHoverColor: $commandLinkHoverTextColor !default;
 $userSettingContainerLinkColor: $commandLinkTextColor !default;
 $userSettingContainerActiveMenuBorder: rgba(43, 59, 93, 0.2) !default;
 $userSettingContainerBoxShadow: rgba(43, 59, 93, 0.6) !default;
-$emailSettingWidgetHeader: $primaryTextColor !default;
+$emailSettingWidgetHeader: $accentTextColor !default;
 $usernameShowEnvironmentInfoFontWeight: bold !default;
 
 /* Absences and Deputy */
@@ -276,11 +300,11 @@ $dialogFooterButtonBoxShadowColor: black !default;
 
 /* Awesome Icon Selection */
 $linkChangeAwesomeIconColor: $primaryTextColor !default;
-$contentLinkChangeAwesomeIconColor: #337ab7 !default;
+$contentLinkChangeAwesomeIconColor: $darkBlue !default;
 $selectAwesomeIconButtonFontWeight: bold !default;
 
 /* Start Notification */
-$notificationContentBackgroundColor: rgb(230, 113, 99) !default;
+$notificationContentBackgroundColor: $darkRed !default;
 $notificationContentActionColor: $white !default;
 $notificationContentActionHoverBackgroundColor: $black !default;
 
@@ -318,8 +342,12 @@ $definedTaskButtonContainerBackgroundColor: $white !default;
 $definedTaskButtonActivedOrHoverBackgroundColor: $primaryColor !default;
 $definedTaskButtonActivedBorderColor: $primaryColor !default;
 $definedTaskButtonBorderColor: $primaryColor !default;
+$definedTaskButtonTextColor: $primaryTextColor !default;
+$activeDefinedTaskButtonTextColor: $accentTextColor !default;
+$definedTaskLabelTextColor: $accentTextColor !default;
+$activeDefinedTaskLabelTextColor: $primaryTextColor !default;
 
-$formElementsPanelHoverDropSectionLabelColor: $primaryTextColor !default;
+$formElementsPanelHoverDropSectionLabelColor: $accentTextColor !default;
 $selectManyCheckboxLabelColor: $primaryTextColor !default;
 $autocompleteMoreTextStateHighlightBackgroundColor: white !default;
 $expressInputSwitchSelectionBorder: $primaryColor !default;
@@ -342,9 +370,9 @@ $collapseButtonBackgroundColor: $paleGrey !default;
 $collapseButtonHoverBackgroundColor: $lightGrey  !default;
 $expressAssigneeIconColor: $primaryTextColor !default;
 $expressReviewContentTitleBorderColor: rgba($mediumGrey, 0.5) !default;
-$expressImportStatusSuccess: #008000;
-$expressImportStatusWarning: #ffc107;
-$expressImportStatusFailed: $red;
+$expressImportStatusSuccess: $mediumGreen;
+$expressImportStatusWarning: $mediumYellow;
+$expressImportStatusFailed: $mediumRed;
 $expressImportStatusFontWeight: bold;
 $expressImportPaginatorBackgroundColor: rgba($lightGrey,0.5) !default;
 $expressImportPaginatorHoverButtonBackgroundColor: rgba($lightGrey,0.5) !default;
@@ -359,17 +387,17 @@ $contactCardIconOfflineColor: $lightGrey !default;
 $contactCardBackgroundColor: $white !default;
 $contactCardIconUnreadMessageColor: $white !default;
 $contactCardIconUnreadMessageBackgroundColor: #ff6d6e !default;
-$contactCardStatusBackgroundColor: #4eb41c !default;
+$contactCardStatusBackgroundColor: $mediumGreen !default;
 $contactCardNameColor: $white !default;
 $contactNotificationColor: $white !default;
-$contactNotificationBackgroundColor: $red !default;
+$contactNotificationBackgroundColor: $mediumRed !default;
 $contactCardName: $black !default; 
 $messageListBackgroundColor: $paleGrey !default;
 $messageListHeaderBackgroundColor: $darkGrey !default;
 $messageListHeaderCloseIconHoverBackgroundColor: $darkGrey !default;
 $messageListHeaderCloseIconBackgroundColor: $lightGrey !default;
-$chatMessageBackgroundColor: #def4fd !default;
-$chatMyMessageBackgroundColor: $primaryLightColor !default;
+$chatMessageBackgroundColor: $lightBlue !default;
+$chatMyMessageBackgroundColor: $ivyLightGreen !default;
 $messageChatHeaderNameColor: $white !default;
 $showParticipantsLinkColor: $white !default;
 $chatFormBackgroundColor: $white !default;
@@ -393,6 +421,9 @@ $notificationBadgeFontSize: $smallFontSize !default;
 $notificationBadgeIconFontSize: $headerFontSize !default;
 $chatBoxShadow: 0 2px 4px 0 rgba($black, 0.2), 0 1px 10px 0 rgba($black, 0.12), 0 4px 5px 0 rgba($black, 0.14) !default;
 $chatContactsBoxShadow: 3px 0 6px rgba($black, 0.3) !default;
+$closeChatButtonBackgroundColor: $lightGrey !default;
+$closeChatButtonColor: $primaryTextColor !default;
+$chatSendFormIconColor: $primaryTextColor !default;
 
 /* Icon */
 $iconFontFamily: "FontAwesome" !default;
