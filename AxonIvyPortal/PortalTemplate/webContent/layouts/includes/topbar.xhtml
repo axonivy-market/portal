@@ -44,7 +44,7 @@
           </li>
 
           <li><p:link id="absence-menu-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
-              onclick="PF('absenceManagement').show(); $('#user-setting-container').click()" rendered="#{absenceBean.ownAbsencesReadable}" /></li>
+              onclick="rcAbsenceManagement(); $('#user-setting-container').click()" rendered="#{absenceBean.ownAbsencesReadable}" /></li>
 
           <li><p:commandLink id="email-setting-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}"
               oncomplete="PF('emailSetting').show(); $('#user-settings-menu').click()" resetValues="true" update="applications-email-setting-form">
@@ -106,11 +106,10 @@
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/absenceAndDeputy')}" 
       styleClass="absence-settings-dialog"  
-      height="900"
       width="80%"
       closeOnEscape="true" 
       widgetVar="absenceManagement" 
-      id="absence-settings-dialog" 
+      id="absence-management-dialog" 
       resizable="false" 
       modal="true" 
       draggable="true"
@@ -157,6 +156,12 @@
     <h:form>
       <p:remoteCommand name="rcProjectInfo" actionListener="#{projectVersionBean.loadProjectVesion}" oncomplete="PF('project-info-dialog').show()"
         update="project-info-dialog" />
+      <!-- <p:remoteCommand name="rcAbsenceManagement" actionListener="#{absenceManagementBean.loadSubstitutes}" oncomplete="PF('absenceManagement').show()"
+        update="absence-management-dialog" />  --> 
+    </h:form>
+    <h:form>
+      <p:remoteCommand name="rcAbsenceManagement" actionListener="#{absenceManagementBean.loadSubstitutes}" oncomplete="PF('absenceManagement').show()"
+        update="absence-management-dialog" />
     </h:form>
   </ui:insert>
   <c:if test="#{chatRendererBean.isChatRendered}">
