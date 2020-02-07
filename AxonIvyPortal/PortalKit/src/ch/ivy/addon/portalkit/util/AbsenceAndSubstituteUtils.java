@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
@@ -157,13 +158,16 @@ public final class AbsenceAndSubstituteUtils {
   }
 
   public static boolean doesNewAbsenceOverlap(Set<IvyAbsence> absences, IvyAbsence newAbsence) {
-    for (IvyAbsence absence : absences) {
-      boolean isTwoAbsenceOverlaped = isTwoAbsenceOverlaped(newAbsence, absence);
-      if (isTwoAbsenceOverlaped) {
-        return true;
-      }
-    }
-    return false;
+    return CollectionUtils.emptyIfNull(absences)
+        .stream()
+        .anyMatch(absence -> isTwoAbsenceOverlaped(newAbsence, absence));
+//    for (IvyAbsence absence : absences) {
+//      boolean isTwoAbsenceOverlaped = isTwoAbsenceOverlaped(newAbsence, absence);
+//      if (isTwoAbsenceOverlaped) {
+//        return true;
+//      }
+//    }
+//    return false;
   }
 
   private static boolean isTwoAbsenceOverlaped(IvyAbsence firstAbsence, IvyAbsence secondAbsence) {

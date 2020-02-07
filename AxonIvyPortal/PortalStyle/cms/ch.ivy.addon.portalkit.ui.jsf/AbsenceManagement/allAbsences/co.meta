@@ -1,5 +1,5 @@
-co: name={allAbsences} description={} changed={2020-01-30 10:42:35 CET} changedby={chnam} visualorder={0} guid={16FF5D43C4614880} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16FF5D43C53CA55F} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-30 10:42:04 CET} validto={} changed={2020-01-30 10:42:04 CET} changedby={chnam} properties={} id={}
-val: guid={16FF5D4B67519F0A} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-30 10:42:14 CET} validto={} changed={2020-01-30 10:42:35 CET} changedby={chnam} properties={} id={}
-val: guid={16FF5D4B5A078002} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-30 10:42:19 CET} validto={} changed={2020-01-30 10:42:35 CET} changedby={chnam} properties={} id={}
-val: guid={16FF5D4B66AF4A82} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-30 10:42:22 CET} validto={} changed={2020-01-30 10:42:35 CET} changedby={chnam} properties={} id={}
+co: name={allAbsences} description={} changed={2020-02-06 09:56:09 CET} changedby={chnam} visualorder={0} guid={16FF5D43C4614880} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16FF5D43C53CA55F} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-30 10:42:04 CET} validto={} changed={2020-02-06 09:56:09 CET} changedby={chnam} properties={} id={}
+val: guid={16FF5D4B67519F0A} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-30 10:42:14 CET} validto={} changed={2020-02-06 09:56:09 CET} changedby={chnam} properties={} id={}
+val: guid={16FF5D4B5A078002} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-30 10:42:19 CET} validto={} changed={2020-02-06 09:56:08 CET} changedby={chnam} properties={} id={}
+val: guid={16FF5D4B66AF4A82} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-30 10:42:22 CET} validto={} changed={2020-02-06 09:56:08 CET} changedby={chnam} properties={} id={}

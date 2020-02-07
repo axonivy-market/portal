@@ -26,6 +26,7 @@ import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
 @ViewScoped
@@ -41,9 +42,6 @@ public class AbsenceManagementBean implements Serializable{
   private boolean ownSubstituteCreatable;
   private boolean substitutionManagementCapable;
   
-  private List<IvySubstitute> substitutes;
-  private List<IvySubstitute> substitutions;
-
   @PostConstruct
   public void init() {
     permissionCheckerService = new PermissionCheckerService();
@@ -84,18 +82,12 @@ public class AbsenceManagementBean implements Serializable{
 
   public boolean isAbsenceEditable(IvyAbsence absence) {
     boolean absenceInThePast = AbsenceAndSubstituteUtils.isInThePast(absence);
-    if (absenceInThePast) {
-      return absencesInThePastCreatable;
-    }
-    return ownAbsencesCreatable;
+    return absenceInThePast ? absencesInThePastCreatable : ownAbsencesCreatable;
   }
 
   public boolean isAbsenceDeletable(IvyAbsence absence) {
     boolean absenceInThePast = AbsenceAndSubstituteUtils.isInThePast(absence);
-    if (absenceInThePast) {
-      return absencesInThePastDeletable;
-    }
-    return ownAbsencesDeletable;
+    return absenceInThePast ? absencesInThePastDeletable : ownAbsencesDeletable;
   }
 
   public String getDisplayedName(IvyAbsence absence) {
@@ -107,33 +99,29 @@ public class AbsenceManagementBean implements Serializable{
   }
   
   public List<IvySubstitute> loadSubstitutesForApp(Map<IvyApplication, List<IvySubstitute>> ivySubtitutesByApp, String application){
-    for (Map.Entry<IvyApplication,List<IvySubstitute>> entry : ivySubtitutesByApp.entrySet()) {
-      IvyApplication ivyApplication = entry.getKey();
-      Ivy.log().error("LOADSUBSTITUTESFORAPP : " + ivyApplication.getName());
-      if (ivyApplication.getName().equals(application)) {
-        return ivySubtitutesByApp.get(ivyApplication);
-      }
-    }
-    return null;
+//    Ivy.log().error("LOADSUBSTITUTESFORAPP : " + application);
+    return getSubstituteForApp(ivySubtitutesByApp, application);
   }
   
   public List<IvySubstitute> loadSubstitutionsForApp(Map<IvyApplication, List<IvySubstitute>> ivySubtitutionsByApp, String application){
+//    Ivy.log().error("LOADSUBSTITUTIONSFORAPP : " + application);
+    return getSubstituteForApp(ivySubtitutionsByApp, application);
+  }
+
+  private List<IvySubstitute> getSubstituteForApp(Map<IvyApplication, List<IvySubstitute>> ivySubtitutionsByApp, String application) {
     for (Map.Entry<IvyApplication,List<IvySubstitute>> entry : ivySubtitutionsByApp.entrySet()) {
       IvyApplication ivyApplication = entry.getKey();
-      Ivy.log().error("LOADSUBSTITUTIONSFORAPP : " + ivyApplication.getName());
       if (ivyApplication.getName().equals(application)) {
         return ivySubtitutionsByApp.get(ivyApplication);
       }
     }
     return null;
   }
-
-  public List<IvySubstitute> getSubstitutes() {
-    return substitutes;
-  }
-
-  public List<IvySubstitute> getSubstitutions() {
-    return substitutions;
+  
+  public void loadSubstitutes() {
+    Ivy.log().error("reload data");
+    IvyComponentLogicCaller<String> reserveTask = new IvyComponentLogicCaller<>();
+    reserveTask.invokeComponentLogic("absence-management", "#{logic.loadData}", new Object[] {});
   }
 }
 
