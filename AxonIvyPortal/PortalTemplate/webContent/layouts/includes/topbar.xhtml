@@ -29,14 +29,10 @@
       </li>
 
       <li class="setting-container" >
-      	<a href="#" jsf:rendered="#{userMenuBean.showServerInformation}" class="show-environment-info-link">
-      		<span jsf:id="server-infor" class="TexAlLeft DispBlock show-environment-info"> Host: #{serverInformationBean.host}
-            Env:#{serverInformationBean.environment} </span>
-            <span class="TexAlLeft DispBlock user-name-show-environment-info">#{userMenuBean.userName}</span>
-      	</a>
-     	 <a href="#" jsf:rendered="#{not userMenuBean.showServerInformation}" id="user-settings-menu"> <span
+        <ic:ch.ivy.addon.portalkit.feature.UserWithEnvironmentInfo />
+        <a href="#" jsf:rendered="#{not userMenuBean.showServerInformation}" id="user-settings-menu"> <span
           class="user-name">#{userMenuBean.userName}</span>
-      	</a>
+        </a>
         <ul id="user-setting-container">
           <li>
             <p:link id="adminui-menu-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}"  
