@@ -50,7 +50,7 @@ public class IvySubstitute {
   }
 
   public SubstitutionType getSubstitutionType() {
-    return substitutionType;
+    return substitutionType == null ? SubstitutionType.ON_ABSENCE : substitutionType;
   }
 
   public void setSubstitutionType(SubstitutionType substitutionType) {

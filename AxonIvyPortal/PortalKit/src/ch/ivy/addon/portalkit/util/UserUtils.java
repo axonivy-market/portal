@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
@@ -152,6 +152,29 @@ public class UserUtils {
     });
   }
   
+  public static List<UserDTO> findUsersInApp(Map<String, List<UserDTO>> usersByApp, String application){
+	  if (usersByApp == null || usersByApp.isEmpty()) {
+		  return new ArrayList<>();
+	  }
+	
+	  return usersByApp
+	      	.get(application)
+	        .stream()
+	        .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getName, String.CASE_INSENSITIVE_ORDER))), ArrayList::new));
+  }
+  
+  public static List<UserDTO> findUsersInAppWithIgnoreUser(Map<String, List<UserDTO>> usersByApp, String application, String ignoreUser){
+	  if (usersByApp == null || usersByApp.isEmpty()) {
+		  return new ArrayList<>();
+	  }
+	
+	  return usersByApp
+	      	.get(application)
+	        .stream()
+	        .filter(item -> !StringUtils.equals(item.getName(), ignoreUser))
+	        .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getName, String.CASE_INSENSITIVE_ORDER))), ArrayList::new));
+  }
+  
   /**
    * Gets non-duplicated all of users from map usersByApp 
    * 
@@ -167,26 +190,6 @@ public class UserUtils {
       usersByApp.values()
         .stream()
         .flatMap(List::stream)
-        .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getName, String.CASE_INSENSITIVE_ORDER))), ArrayList::new))
-    );
-  }
-  
-  /**
-   * Gets non-duplicated all of users from map usersByApp with ignore user 
-   * 
-   * @param usersByApp
-   * @return non-duplicated list of ivy users
-   */
-  public static List<UserDTO> getNonDuplicatedUsersWithIgnoreUser(Map<String, List<UserDTO>> usersByApp, String ignoreUser) {
-    if (usersByApp == null || usersByApp.isEmpty()) {
-      return new ArrayList<>();
-    }
-
-    return IvyExecutor.executeAsSystem(() ->
-      usersByApp.values()
-        .stream()
-        .flatMap(List::stream)
-        .filter(x -> !StringUtils.equals(x.getName(), ignoreUser))
         .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getName, String.CASE_INSENSITIVE_ORDER))), ArrayList::new))
     );
   }
