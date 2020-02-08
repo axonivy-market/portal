@@ -24,9 +24,7 @@ import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
 import ch.ivy.addon.portalkit.service.PermissionCheckerService;
 import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
-import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
 @ViewScoped
@@ -99,12 +97,10 @@ public class AbsenceManagementBean implements Serializable{
   }
   
   public List<IvySubstitute> loadSubstitutesForApp(Map<IvyApplication, List<IvySubstitute>> ivySubtitutesByApp, String application){
-//    Ivy.log().error("LOADSUBSTITUTESFORAPP : " + application);
     return getSubstituteForApp(ivySubtitutesByApp, application);
   }
   
   public List<IvySubstitute> loadSubstitutionsForApp(Map<IvyApplication, List<IvySubstitute>> ivySubtitutionsByApp, String application){
-//    Ivy.log().error("LOADSUBSTITUTIONSFORAPP : " + application);
     return getSubstituteForApp(ivySubtitutionsByApp, application);
   }
 
@@ -119,7 +115,6 @@ public class AbsenceManagementBean implements Serializable{
   }
   
   public void loadSubstitutes() {
-    Ivy.log().error("reload data");
     IvyComponentLogicCaller<String> reserveTask = new IvyComponentLogicCaller<>();
     reserveTask.invokeComponentLogic("absence-management", "#{logic.loadData}", new Object[] {});
   }
