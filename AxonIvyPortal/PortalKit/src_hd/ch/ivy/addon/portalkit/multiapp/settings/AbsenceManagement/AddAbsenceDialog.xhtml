@@ -22,7 +22,7 @@
       <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
         <p:commandButton process="@form" id="add-absence" oncomplete="if (args &amp;&amp; !args.validationFailed)PF('addAbsence').hide();"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" actionListener="#{logic.createAbsence}"
-          update=":#{p:component('absence-table')} absence-messages" />
+          update=":#{p:component('absence-table')} absence-messages :#{p:component('substitue-tab')}" />
 
         <p:spacer width="5px"/>
         <p:commandButton id="close-add-absence-dialog" type="button" styleClass="portal-cancel-button"

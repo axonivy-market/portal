@@ -161,13 +161,6 @@ public final class AbsenceAndSubstituteUtils {
     return CollectionUtils.emptyIfNull(absences)
         .stream()
         .anyMatch(absence -> isTwoAbsenceOverlaped(newAbsence, absence));
-//    for (IvyAbsence absence : absences) {
-//      boolean isTwoAbsenceOverlaped = isTwoAbsenceOverlaped(newAbsence, absence);
-//      if (isTwoAbsenceOverlaped) {
-//        return true;
-//      }
-//    }
-//    return false;
   }
 
   private static boolean isTwoAbsenceOverlaped(IvyAbsence firstAbsence, IvyAbsence secondAbsence) {

@@ -70,7 +70,7 @@
     </div>
   </div>  
   
-  <p:tabView id="substitue-tab" value="#{data.applications}" var="app" >
+  <p:tabView id="substitue-tab" value="#{data.applications}" var="app" onTabChange="#{logic.updateCurrentApp(app)}">
     <p:tab title="#{app.displayName}">
     
       <!-- MY DEPUTY -->
@@ -82,7 +82,7 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/substitutedUser')}:" />
           <p:spacer styleClass="u-buttons-spacer" />
           <p:autoComplete id="substituted-user" scrollHeight="200" dropdown="true" size="35" value="#{data.selectedUser}"
-            required="true" completeMethod="#{logic.autoCompleteForUser}" var="user" itemLabel="#{user.displayName}"
+            required="true" completeMethod="#{logic.autoCompleteForUserOnApp}" var="user" itemLabel="#{user.displayName}"
             itemValue="#{user}" converter="pojoConverter" maxResults="100"
             requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/userNameRequired')}"
             moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
@@ -96,7 +96,6 @@
           </p:autoComplete>
         </h:panelGroup>
         
-        
         <div class="ui-g-12 ">
           <p:dataTable id="substitute-table" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" 
             scrollHeight="150" scrollable="true" 
@@ -106,7 +105,7 @@
            </p:column>
            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/deputy')}"  sortBy="#{substitute.substituteUser}">
               <p:autoComplete id="subsitute-username" value="#{substitute.substituteUser}"
-                completeMethod="#{logic.autoCompleteForSubstitute}" var="user"
+                completeMethod="#{logic.autoCompleteForSubstituteOnApp}" var="user"
                 converter="pojoConverter" cache="true" dropdown="true" scrollHeight="200" maxResults="100"
                 itemLabel="#{not empty user ? user.displayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
                 itemValue="#{user}" 
@@ -121,8 +120,6 @@
             </p:column>
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/activePeriod')}" >
               <p:selectOneRadio id="active-period" value="#{substitute.substitutionType}"
-                required="#{substitute.substituteUser ne ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}" 
-                requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/Messages/activePeriodRequired')}"
                 rendered="#{empty substitute.substitionRole}" layout="responsive" columns="2" >
                 <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/always')}" itemValue="PERMANENT"/>
                 <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/duringMyAbsence')}" itemValue="ON_ABSENCE" />
@@ -176,7 +173,7 @@
   </div>
   <h:panelGroup layout="block" styleClass="ui-dialog-footer">
     <p:commandButton id="save-substitute" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" 
-      actionListener="#{logic.saveSubstitutes}" process=":#{p:component('substitue-tab')}" partialSubmit="true" update="errors-message :#{p:component('substitue-tab')}"
+      actionListener="#{logic.saveSubstitutes}" process=":#{p:component('substitue-tab')}" partialSubmit="true" update="errors-message"
       oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.attrs.dialogName}').hide();}" />
    
     <p:spacer width="5px" />
