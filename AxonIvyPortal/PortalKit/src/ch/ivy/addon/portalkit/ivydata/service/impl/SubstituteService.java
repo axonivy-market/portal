@@ -30,6 +30,7 @@ import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserSubstitute;
+import ch.ivyteam.ivy.security.SubstitutionType;
 
 public class SubstituteService implements ISubstituteService {
 
@@ -202,7 +203,6 @@ public class SubstituteService implements ISubstituteService {
     for (IvySubstitute ivySubstitute : substitutes) {
       if (ivySubstitute.getSubstituteUser() != null) {
         IUser iUser = ServiceUtilities.findUser(ivySubstitute.getSubstituteUser().getName(), Ivy.request().getApplication());
-        Ivy.log().error("{0} - {1} - {2}", iUser.getName(), ivySubstitute.getSubstitionRole(), ivySubstitute.getSubstitutionType());
         if (ivySubstitute.getSubstitionRole() == null) {
           user.createSubstitute(iUser, "", ivySubstitute.getSubstitutionType());
         } else {
