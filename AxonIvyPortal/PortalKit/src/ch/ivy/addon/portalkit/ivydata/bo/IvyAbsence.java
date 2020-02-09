@@ -18,7 +18,6 @@ public class IvyAbsence {
   private UserDTO user;
   private Date from;
   private Date until;
-  private String absenceName;
   private String comment;
   
   public UserDTO getUser() {
@@ -67,14 +66,6 @@ public class IvyAbsence {
     return String.format("%s - %s", formatter.format(from), formatter.format(until));
   }
   
-  public String getAbsenceName() {
-    return absenceName;
-  }
-  
-  public void setAbsenceName(String absenceName) {
-    this.absenceName = absenceName;
-  }
-
   @Override
   public int hashCode() {
     try {
