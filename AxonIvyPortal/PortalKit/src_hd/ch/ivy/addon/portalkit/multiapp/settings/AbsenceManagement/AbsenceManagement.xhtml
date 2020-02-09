@@ -10,7 +10,6 @@
 <cc:implementation>
   <f:event listener="#{logic.findAbsences}" type="preRenderComponent" />
   <f:event listener="#{logic.loadUsers}" type="preRenderComponent" />
-  <!-- <f:event listener="#{logic.loadData}" type="preRenderComponent" /> -->
   <!-- MY ABSENCE -->
   <div id="#{cc.clientId}">
   
@@ -37,9 +36,16 @@
     </div> 
 
     <div class="ui-g-12">
-      <p:dataTable id="absence-table" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+      <p:dataTable id="absence-table" 
+      	emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
         scrollable="true" scrollHeight="150" 
-        reflow="true" value="#{data.displayedAbsences}" var="absence" sortBy="#{absence.from}">
+        paginator="#{data.showAllAbsences}" rows="#{data.showAllAbsences ? 4 : 0}"
+        lazy="#{data.showAllAbsences}"
+        paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+        reflow="true" 
+        value="#{data.showAllAbsences ? absenceManagementBean.lazyModel : data.displayedAbsences}" 
+        var="absence" 
+        sortBy="#{absence.from}">
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" sortBy="#{absence.fullname}" rendered="#{data.showAllAbsences}">
           <h:outputText value="#{absenceManagementBean.getDisplayedName(absence)}" />
         </p:column>
