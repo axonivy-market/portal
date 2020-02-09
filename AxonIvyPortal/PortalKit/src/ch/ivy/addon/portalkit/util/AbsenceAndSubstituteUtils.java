@@ -5,7 +5,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -14,14 +13,8 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
-import org.primefaces.model.DefaultTreeNode;
-import org.primefaces.model.TreeNode;
 
-import ch.ivy.addon.portalkit.bo.SubstituteNode;
-import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
-import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
-import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public final class AbsenceAndSubstituteUtils {
@@ -33,38 +26,6 @@ public final class AbsenceAndSubstituteUtils {
     return ivyAbsencesByUser.values().stream().flatMap(Set::stream).collect(Collectors.toSet());
   }
   
-  /**
-   * Build Substitute treeNode for applications
-   * 
-   * @param substitutedUser selected user to set substitutes
-   * @param ivySubtitutesByApp
-   * @param usersByApp
-   * @return TreeNode
-   */
-  public static TreeNode buildSustitute(UserDTO substitutedUser, Map<IvyApplication, List<IvySubstitute>> ivySubtitutesByApp, Map<String, List<UserDTO>> usersByApp) {
-    TreeNode substituteRoot = new DefaultTreeNode(new SubstituteNode(), null);
-
-    for (Map.Entry<IvyApplication,List<IvySubstitute>> entry : ivySubtitutesByApp.entrySet()) {
-      IvyApplication ivyApplication = entry.getKey();
-      TreeNode appNode =
-          new DefaultTreeNode(new SubstituteNode(ivyApplication.getDisplayName(), null, null, false), substituteRoot);
-      appNode.setExpanded(true);
-
-      for (IvySubstitute ivySubstitute : entry.getValue()) {
-        createSubstituteNode(substitutedUser, appNode, usersByApp.get(ivyApplication.getName()), ivySubstitute);
-      }
-    }
-    return substituteRoot;
-  }
-
-  private static DefaultTreeNode createSubstituteNode(UserDTO substitutedUser, TreeNode appNode, List<UserDTO> users, IvySubstitute ivySubstitute) {
-    String nodeName = ivySubstitute.getSubstitionRoleDisplayName();
-    String name = StringUtils.isNotBlank(nodeName) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/taskForRole") + nodeName : Ivy.cms().co(
-        "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTask");
-    List<UserDTO> usersExceptSubstitutedUser = Optional.ofNullable(users).orElse(new ArrayList<>()).stream().filter(user -> !StringUtils.equals(user.getName(), substitutedUser.getName())).collect(Collectors.toList());
-    return new DefaultTreeNode(new SubstituteNode(name, ivySubstitute, usersExceptSubstitutedUser, true), appNode);
-  }
-
   /**
    * Check validation if from bigger than till
    * 
@@ -142,19 +103,6 @@ public final class AbsenceAndSubstituteUtils {
    */
   public static boolean isCommentDisabled(String deputyValue) {
     return StringUtils.isEmpty(deputyValue);
-  }
-
-  /**
-   * The description will be set to null when deputy changed to no deputy
-   * 
-   * @param substituteNode substitute node to set description
-   * @param deputyValue deputy to check
-   * 
-   */
-  public static void deputyChanged(SubstituteNode substituteNode, String deputyValue) {
-    if (isCommentDisabled(deputyValue)) {
-      substituteNode.getSubstitute().setDescription(null);
-    }
   }
 
   public static boolean doesNewAbsenceOverlap(Set<IvyAbsence> absences, IvyAbsence newAbsence) {

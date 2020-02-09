@@ -156,10 +156,6 @@
     <h:form>
       <p:remoteCommand name="rcProjectInfo" actionListener="#{projectVersionBean.loadProjectVesion}" oncomplete="PF('project-info-dialog').show()"
         update="project-info-dialog" />
-      <!-- <p:remoteCommand name="rcAbsenceManagement" actionListener="#{absenceManagementBean.loadSubstitutes}" oncomplete="PF('absenceManagement').show()"
-        update="absence-management-dialog" />  --> 
-    </h:form>
-    <h:form>
       <p:remoteCommand name="rcAbsenceManagement" actionListener="#{absenceManagementBean.loadSubstitutes}" oncomplete="PF('absenceManagement').show()"
         update="absence-management-dialog" />
     </h:form>
