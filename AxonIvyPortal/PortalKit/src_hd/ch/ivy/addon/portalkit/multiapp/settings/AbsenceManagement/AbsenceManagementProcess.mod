@@ -366,7 +366,6 @@ String sessionUsername = ivy.session.getSessionUserName();
 in.displayedAbsences.clear();
 
 if (!in.absenceInThePastShown) {
-	//in.displayedAbsences.clear();
 	for (IvyAbsence absence : ivyAbsences) {
 			if (!AbsenceAndSubstituteUtils.isInThePast(absence)) {
 				if (in.showAllAbsences || (!in.showAllAbsences && absence.user.name.equals(sessionUsername))){
@@ -380,7 +379,6 @@ if (!in.absenceInThePastShown) {
 			in.displayedAbsences.add(absence);
 		}
 	}
-//	in.displayedAbsences = new ArrayList(ivyAbsences);
 }' #txt
 As0 f113 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
