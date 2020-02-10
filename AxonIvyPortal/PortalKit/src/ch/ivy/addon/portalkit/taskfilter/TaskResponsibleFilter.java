@@ -1,21 +1,25 @@
 package ch.ivy.addon.portalkit.taskfilter;
 
+import java.util.List;
 import java.util.Optional;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
+import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class TaskResponsibleFilter extends TaskFilter {
-
+  @JsonIgnore
+  private List<SecurityMemberDTO> responsibles;
   @JsonIgnore
   private SecurityMemberDTO selectedResponsible;
   private String selectedResponsibleMemberName;
-
+  
   @Override
   public String label() {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR");
@@ -23,10 +27,17 @@ public class TaskResponsibleFilter extends TaskFilter {
 
   @Override
   public String value() {
-    if (getSelectedResponsible() == null) {
+    if (getSelectedResponsibleMemberName() == null) {
       return ALL;
     }
     return String.format(DOUBLE_QUOTES, formatName(selectedResponsible));
+  }
+
+  private List<SecurityMemberDTO> getResponsibles() {
+    if (CollectionUtils.isEmpty(responsibles)) {
+      responsibles = SecurityMemberUtils.findAllSecurityMembers();
+    }
+    return responsibles;
   }
 
   @Override
@@ -67,6 +78,14 @@ public class TaskResponsibleFilter extends TaskFilter {
   }
 
   public String getSelectedResponsibleMemberName() {
+    if (StringUtils.isEmpty(selectedResponsibleMemberName)) {
+      setSelectedResponsible(null);
+      return null;
+    } else if (selectedResponsible == null || !StringUtils.equals(selectedResponsibleMemberName, selectedResponsible.getMemberName())) {
+      setSelectedResponsible(getResponsibles().stream()
+          .filter(securityMember -> StringUtils.equals(securityMember.getMemberName(), selectedResponsibleMemberName))
+          .findFirst().orElse(null));
+    }
     return selectedResponsibleMemberName;
   }
 
