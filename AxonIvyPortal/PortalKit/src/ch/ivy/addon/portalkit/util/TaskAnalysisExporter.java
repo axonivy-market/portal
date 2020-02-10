@@ -96,8 +96,6 @@ public class TaskAnalysisExporter {
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseName");
       case CASE_DESCRIPTION:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseDescription");
-      case BUSINESS_CASE_ID:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/businessCaseID");
       case CASE_ID:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseID");
       case CASE_CATEGORY:
@@ -139,8 +137,6 @@ public class TaskAnalysisExporter {
         return StringUtils.isEmpty(task.getCase().getName()) ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") : task.getCase().getName();
       case CASE_DESCRIPTION:
         return task.getCase().getDescription();
-      case BUSINESS_CASE_ID:
-        return String.valueOf(task.getCase().getBusinessCase().getId());
       case CASE_ID:
         return String.valueOf(task.getCase().getId());
       case CASE_CATEGORY:
