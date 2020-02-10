@@ -28,7 +28,7 @@ public class TaskWorkerFilter extends TaskFilter {
 
   @Override
   public String value() {
-    if (getSelectedWorker() == null) {
+    if (getSelectedWorkerMemberName() == null) {
       return ALL;
     }
     return String.format(DOUBLE_QUOTES, formatName(selectedWorker));
@@ -64,7 +64,9 @@ public class TaskWorkerFilter extends TaskFilter {
   }
 
   private void initWorkers() {
-    workers = UserUtils.findAllUserDTOByApplication();
+    if (CollectionUtils.isEmpty(workers)) {
+      workers = UserUtils.findAllUserDTOByApplication();
+    }
   }
 
   public void setWorkers(List<UserDTO> workers) {
@@ -72,12 +74,6 @@ public class TaskWorkerFilter extends TaskFilter {
   }
 
   public UserDTO getSelectedWorker() {
-    if (selectedWorker == null && CollectionUtils.isNotEmpty(getWorkers())) {
-      selectedWorker = workers.stream()
-          .filter(worker -> StringUtils.equals(worker.getMemberName(), selectedWorkerMemberName))
-          .findFirst()
-          .orElse(null);
-    }
     return selectedWorker;
   }
 
@@ -87,6 +83,15 @@ public class TaskWorkerFilter extends TaskFilter {
   }
 
   public String getSelectedWorkerMemberName() {
+    if (StringUtils.isEmpty(selectedWorkerMemberName)) {
+      setSelectedWorker(null);
+      return null;
+    } else if (selectedWorker == null || !StringUtils.equals(selectedWorkerMemberName, selectedWorker.getMemberName())) {
+      setSelectedWorker(getWorkers().stream()
+          .filter(worker -> StringUtils.equals(worker.getMemberName(), selectedWorkerMemberName))
+          .findFirst()
+          .orElse(null));
+    }
     return selectedWorkerMemberName;
   }
 
