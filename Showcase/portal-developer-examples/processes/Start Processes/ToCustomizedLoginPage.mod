@@ -73,8 +73,8 @@ Te0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
         <name>This process demonstrates the login page customization of Portal. It simply open a welcome page which when required to login will open a customized login page
 
 HOW TO RUN THIS EXAMPLE:
-Open toPageWithCustomLoginPage.ivp in PortalExamples without a login user in session, the cusomized login page will be opened.</name>
-        <nameStyle>311,7
+Open toPageWithCustomLoginPage.ivp in portal-developer-examples without a login user in session, the cusomized login page will be opened.</name>
+        <nameStyle>322,5
 </nameStyle>
     </language>
 </elementInfo>
