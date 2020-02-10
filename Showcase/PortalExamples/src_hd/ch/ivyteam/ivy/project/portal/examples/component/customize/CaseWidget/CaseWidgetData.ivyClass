@@ -1,4 +1,0 @@
-CaseWidgetData #class
-ch.ivyteam.ivy.project.portal.examples.component.customize.CaseWidget #namespace
-caseView ch.ivy.addon.portal.generic.view.CaseView #field
-caseView PERSISTENT #fieldModifier
