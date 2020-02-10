@@ -77,10 +77,10 @@ Te0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 3. Render a custom widget
 
 HOW TO RUN THIS EXAMPLE:
-Open openCustomizedPortalHome.ivp in PortalExamples to access to the customized home page.
+Open openCustomizedPortalHome.ivp in portal-developer-examples to access to the customized home page.
 
 </name>
-        <nameStyle>337,7
+        <nameStyle>348,5
 </nameStyle>
     </language>
 </elementInfo>
