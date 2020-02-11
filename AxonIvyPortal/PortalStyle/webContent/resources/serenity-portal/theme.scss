@@ -4,13 +4,13 @@
 @import '../sass/theme/_theme';
 
 /*Style For Logos --------------------------------------------------------------------------------------*/
-.portal-home-logo {
-    height: $homeLogoHeight !important;
-    width: calc(100% - 72px);
+body .layout-wrapper .layout-sidebar .sidebar-logo img.portal-home-logo {
+    height: $homeLogoHeight;
+    width: $homeLogoWidth;
 }
 
-.layout-sidebar .sidebar-logo .portal-home-logo-small img {
-    width: 42px !important;
+body .layout-wrapper .layout-sidebar .sidebar-logo .portal-home-logo-small img {
+    width: $smallHomeLogoWidth;
 }
 
 .login-body .login-panel .login-panel-header img {
@@ -45,39 +45,24 @@
 .layout-wrapper .layout-sidebar .layout-menu .submenu-container {
   padding: 4px 0;
   a:hover {
-    background-color: $sidebarMenuListItemLinkHoverBackgroundColor !important;
     color: $sidebarMenuListItemLinkHoverTextColor;
-    border-radius: 0 !important;
+    border-radius: 0;
   }
 }
 
 .layout-wrapper .layout-sidebar .layout-menu .submenu-container[id*='thirdparty-menu-item'] a,
 .layout-wrapper .layout-sidebar .layout-menu .submenu-container[id*='thirdparty-menu-item'] i {
-    color: $primaryTextColor !important;
+    color: $primaryTextColor;
+}
+
+.task-template-container {
+  padding: 0;
 }
 
 /*Style for Top bar -------------------------------------------------------------------------------------- */
-@media (max-width: 1365px) {
-    .app-dialog {
-        top: 150px !important;
-    }
-}
-
-@media (min-width: 1366px) and (max-width: 1919px) {
-    .app-dialog {
-        top: 250px !important;
-    }
-}
-
-@media (min-width: 1920px) {
-    .app-dialog {
-        top: 300px !important;
-    }
-}
-
 @media screen and (max-width: 40em) {
     .task-template-container {
-        padding: 0 10px !important;
+        padding: 0 10px;
     }
 }
 
@@ -87,23 +72,11 @@
 }
 
 /*Style Email Setting --------------------------------------------------------------------------------*/
-@media (min-width: 1024px) and (max-width: 1365px) {
-    .applications-email-setting-dialog {
-        top: 150px !important;
-    }
-}
-
-@media (min-width: 1366px) and (max-width: 1919px) {
-    .applications-email-setting-dialog {
-        top: 200px !important;
-    }
-}
-
 .daily-summary.ui-selectmanycheckbox.ui-widget label {
-    margin-left: 0px !important;
+    margin-left: 0px;
 }
 
-.application-email-setting .ui-widget-header{
+.application-email-setting .ui-widget-header {
     color: $emailSettingWidgetHeader;
 }
 
@@ -124,21 +97,21 @@
     color: $hoveredUserProcessStartListItemIconColor;
 }
 
-.process-group.ui-fieldset .ui-fieldset-legend {
+body .ui-widget.ui-fieldset.process-group.ui-fieldset .ui-fieldset-legend {
     font-size: $largeFontSize;
-    padding: 14px 10px 10px 0 !important;
+    padding: 14px 10px 10px 0;
     margin-left: -1px;
 }
 
 .process-widget .process-group .ui-fieldset-toggler {
-    background-image: none !important;
+    background-image: none;
     text-indent: 0;
 }
 
 /*Style For Task Widget ----------------------------------------------------------------------------------*/
 .filter-selection-form .filter-name:hover,
 .filter-selection-form .filter-name-overlay-panel .user-defined-filter-container .delete-user-defined-filter-command:hover {
-    color: $taskFilterDeleteUserDefinedIconHoverColor !important;
+    color: $taskFilterDeleteUserDefinedIconHoverColor;
 }
 
 .filter-selection-form .filter-name-overlay-panel .user-defined-filter-container .delete-user-defined-filter-command {
@@ -191,12 +164,12 @@
 
 /*Style For Statistic Widget -----------------------------------------------------------------------------*/
 .statistic-carousel .ui-carousel-header {
-    background-color: $statisticPanelHeader !important;
+    background-color: $statisticPanelHeader;
     border-color: $statisticPanelHeaderBorder;
 }
 
 .statistic-carousel .ui-carousel-header .ui-carousel-button.ui-icon {
-  color: $statisticCarouselHeaderButtonColor !important;
+  color: $statisticCarouselHeaderButtonColor;
 }
 
 _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .ui-carousel-prev-button {
@@ -205,20 +178,20 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 
 .statistic-carousel .ui-carousel-header .ui-carousel-next-button:hover,
 .statistic-carousel .ui-carousel-header .ui-carousel-prev-button:hover {
-  color: $statisticCarouselHeaderButtonHoverColor !important;
+  color: $statisticCarouselHeaderButtonHoverColor;
 }
 
 .statistic-carousel .ui-carousel-header .ui-carousel-header-title .chart-info,
 .dashboard-chart-panel .chart-actions-container .chart-action,
 .dashboard-chart-panel .chart-info {
-  color: $statisticCarouselHeaderButtonColor !important;
+  color: $statisticCarouselHeaderButtonColor;
   font-size: 1.5rem;
 }
 
 .statistic-carousel .ui-carousel-header .ui-carousel-header-title .chart-info:hover,
 .dashboard-chart-panel .chart-info:hover,
 .dashboard-chart-panel .chart-actions-container .chart-action:hover {
-  color: $statisticCarouselHeaderButtonHoverColor !important;
+  color: $statisticCarouselHeaderButtonHoverColor;
 }
 
 .statistic-carousel .ui-carousel-header-title .chart-name {
@@ -263,12 +236,12 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 }
 
 .statistic-filter-accordion-panel .ui-accordion-content {
-  border: solid 1px $statisticFilterAccordionPanelBorder !important;
+  border: solid 1px $statisticFilterAccordionPanelBorder;
 }
 
 .statistic-widget-container, .widget.analysis-task-widget {
   .widget-header-main {
-    border-bottom: none !important;
+    border-bottom: none;
   }
 
   .widget-header {
@@ -277,42 +250,40 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 }
 
 /*Style For Buttons --------------------------------------------------------------------------------------*/
-.portal-cancel-button.ui-widget.ui-button,
-.ui-inplace-cancel.ui-widget.ui-button,
-.ui-fileupload-cancel.ui-widget.ui-button {
-    background-color: $cancelButtonBackgroundColor !important;
+body .portal-cancel-button.ui-widget.ui-button,
+body .ui-inplace-cancel.ui-widget.ui-button,
+body .ui-fileupload-cancel.ui-widget.ui-button {
+    background-color: $cancelButtonBackgroundColor;
 }
 
-.portal-cancel-button.ui-widget.ui-button .ui-button-text,
-.portal-cancel-button.ui-widget.ui-button .ui-icon,
+body .portal-cancel-button.ui-widget.ui-button .ui-button-text,
+body .portal-cancel-button.ui-widget.ui-button .ui-icon,
 .ui-inplace-cancel.ui-widget.ui-button .ui-button-text,
 .ui-inplace-cancel.ui-widget.ui-button .ui-icon,
 .ui-fileupload-cancel.ui-widget.ui-button .ui-button-text,
 .ui-fileupload-cancel.ui-widget.ui-button .ui-icon {
-    color: $cancelButtonTextColor !important;
+    color: $cancelButtonTextColor;
 }
 
 .portal-cancel-button.ui-widget.ui-button.ui-state-hover,
 .portal-cancel-button.ui-widget.ui-buttonset .ui-state-hover,
 .ui-inplace-cancel.ui-widget.ui-button.ui-state-hover,
-.ui-fileupload-cancel.ui-widget.ui-button.ui-state-hover {
-    background-color: rgba($cancelButtonBackgroundColor, 0.6) !important;
-}
-
+.ui-fileupload-cancel.ui-widget.ui-button.ui-state-hover,
 .portal-cancel-button.ui-widget.ui-button.ui-state-focus,
+.portal-cancel-button.ui-widget.ui-buttonset .ui-state-focus,
 .ui-inplace-cancel.ui-widget.ui-button.ui-state-focus,
 .ui-fileupload-cancel.ui-widget.ui-button.ui-state-focus {
-    background-color: rgba($cancelButtonBackgroundColor, 0.8) !important;
+    background-color: $cancelButtonStateHoverOrFocusBackgroundColor;
 }
 
 .ui-widget.ui-button.context-button {
-    border-radius: $contextButtonBorderRadius !important;
-    background-color: $contextButtonBackgroundColor !important;
+    border-radius: $contextButtonBorderRadius;
+    background-color: $contextButtonBackgroundColor;
 }
 
 .ui-widget.ui-button.context-button .ui-button-text,
 .ui-widget.ui-button.context-button .ui-icon {
-    color: contextButtonTextColor !important;
+    color: $contextButtonTextColor;
 }
 
 .ui-widget.ui-button.context-button.ui-state-hover,
@@ -321,19 +292,19 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 }
 
 /*Style for table --------------------------------------------------------------------------------------*/
-.express-many-checkbox-options.ui-datatable tbody tr td {
-  border-top: 1px solid $topBorderBodyExpressManyCheckboxTableColor !important;
+.express-many-checkbox-options.ui-datatable tbody tr ui-datatable tbody tr td:last-child {
+  border-top: 1px solid $topBorderBodyExpressManyCheckboxTableColor;
 }
 
 /*Style for express --------------------------------------------------------------------------------------*/
-.process-start-list-item .process-start-list-item-action .express-workflow:hover {
-    color: $hoveredProcessStartListItemIConColor !important;
+.process-start-list-item .process-start-list-item-action .ui-commandlink.express-workflow:hover {
+    color: $hoveredProcessStartListItemIConColor;
 }
 
 .ui-widget.ui-button.defined-task-button.active,
 .ui-widget.ui-button.defined-task-button.visited {
     border: solid 2px $definedTaskButtonActivedBorderColor;
-    background-color: $definedTaskButtonActivedOrHoverBackgroundColor !important;
+    background-color: $definedTaskButtonActivedOrHoverBackgroundColor;
 }
 
 .ui-widget.ui-button.defined-task-button.active:before {
@@ -341,7 +312,7 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 }
 
 .ui-widget.ui-button.defined-task-button.ui-state-hover {
-    background-color: $definedTaskButtonActivedOrHoverBackgroundColor !important;
+    background-color: $definedTaskButtonActivedOrHoverBackgroundColor;
 }
 
 /*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
@@ -433,7 +404,7 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 }
 
 .circle-horizontal-step-container:not(.right-steps) .step-number-container:after {
-  border-top-color: $circleHorizontalStepNumberContainerBorderTop !important;
+  border-top-color: $circleHorizontalStepNumberContainerBorderTop;
 }
   
 .circle-horizontal-step-container:not(.last-step) .step-number-container:after {
@@ -441,7 +412,7 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
   }
 
 .circle-horizontal-step-container.last-step .step-number-container:after {
-  border-top: 3px dashed $circleHorizontalLastStepNumberContainerBorderTop !important;
+  border-top: 3px dashed $circleHorizontalLastStepNumberContainerBorderTop;
 }
   
 .circle-horizontal-step-container .step-number-container:before {
@@ -468,18 +439,18 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
     border: 2px solid $announcementBorderColor;
 }
 
-.action-button {
-  box-shadow: none !important;
-  background-color: transparent !important;
-  border: 1px solid transparent !important;
+body .ui-button.action-button {
+  box-shadow: none;
+  background-color: transparent;
+  border: 1px solid transparent;
 
   .ui-button-text.ui-c, .ui-icon.ui-c {
-    color: $caseTaskActionButtonColor !important;
+    color: $caseTaskActionButtonColor;
   }
 }
 
 .ui-button.ui-widget.action-button.ui-state-hover {
-   background-color: $caseTaskActionButtonHoverBackgroundColor !important;
+   background-color: $caseTaskActionButtonHoverBackgroundColor;
 }
 
 .case-detail-title-header-container, .task-detail-header {
@@ -488,17 +459,18 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 
 /*Style For Task Detail --------------------------------------------------------------------------------------*/
 
-.task-item-body .task-details-item-note, .task-item-body .task-details-item-document {
+body .task-item-body .task-details-item-note, .task-item-body .task-details-item-document {
   .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
-    background-color: $taskDetailPaginatorHeaderCornerTopBackgroundColor !important;
+    background-color: $taskDetailPaginatorHeaderCornerTopBackgroundColor;
     border-color: $taskDetailPaginatorHeaderCornerTopBorderColor;
     padding: 2px 10px;
   }
-  
-  .ui-paginator a, .ui-paginator-current {
-    color: $taskDetailPaginatorColor !important;
+
+  .ui-paginator a, .ui-paginator-current,
+  .ui-paginator a.ui-state-active {
+    color: $taskDetailPaginatorColor;
   }
-  
+
   .ui-paginator a.ui-paginator-page, .ui-paginator a.ui-paginator-page, a.ui-paginator-first, a.ui-paginator-prev, a.ui-paginator-next, a.ui-paginator-last {
     &.ui-state-hover, &.ui-state-active {
         background-color: $taskDetailPaginatorHoveredButtonBackgroundColor;
@@ -509,11 +481,12 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 .task-description-inplace, .edit-priority-inplace, .task-name-inplace, .expiry-edit-inplace{
   .ui-inplace-display.ui-state-highlight {
       background-color: $taskHighlightedInplaceFieldBackgroundColor;
+      color: $taskHighlightedInplaceFieldTextColor;
     }
 }
 
-.task-name-input {
-  font-size: $largeFontSize !important;
+body .ui-inputfield.task-name-input {
+  font-size: $largeFontSize;
   font-weight: $taskNameInputFontWeight;
 }
 
@@ -526,45 +499,30 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 }
 
 .task-action-item:hover {
-  background-color: $taskDetailActionItemHoverBackgroundColor !important;
+  background-color: $taskDetailActionItemHoverBackgroundColor;
 }
-
-.ui-widget.ui-button.action-button.task-action-item .ui-button-text,
-.case-header-container .ui-widget.ui-button.action-button .ui-button-text,
-.ui-widget.ui-button.action-button.task-action-item .ui-icon,
-.case-header-container .ui-widget.ui-button.action-button .ui-icon {
-  color: $commandLinkTextColor !important;
-}
-
-.ui-widget.ui-button.action-button.task-action-item.ui-state-hover .ui-button-text,
-.case-header-container .ui-widget.ui-button.action-button.ui-state-hover .ui-button-text,
-.ui-widget.ui-button.action-button.task-action-item.ui-state-hover .ui-icon,
-.case-header-container .ui-widget.ui-button.action-button.ui-state-hover .ui-icon {
-  color: $commandLinkHoverTextColor !important;
-}
-
-.action-button.task-action-item,
-.case-header-container .action-button {
+body .action-button.task-action-item,
+body .case-header-container .ui-button.action-button {
   &.ui-state-disabled {
     span {
-      color: $commandLinkDisabledTextColor !important;
+      color: $commandLinkDisabledTextColor;
     }
   }
   &.ui-state-hover {
-    span {
-      color: $commandLinkHoverTextColor !important;
+    .ui-button-text.ui-c, .ui-icon {
+      color: $commandLinkHoverTextColor;
     }
   }
   &.ui-state-active, &.ui-state-focus {
-    span {
-      color: $commandLinkActiveTextColor !important;
+    .ui-button-text.ui-c, .ui-icon {
+      color: $commandLinkActiveTextColor;
     }
   }
 }
 
 /*Style For Advance Filter --------------------------------------------------------------------------------------*/
-.ui-datepicker .ui-timepicker-div dl dd {
-  margin-top: 30px !important;
+body .ui-datepicker .ui-timepicker-div dl dd {
+  margin-top: 30px;
   .ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content {
     margin-right: 10px;
   }
@@ -573,12 +531,12 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 /*Style for Fieldset --------------------------------------------------------------------------------------*/
 .fieldset-no-border .ui-fieldset-toggler:before {
   font-size: $largeFontSize;
-  color: $fieldSetTogglerColor !important;
+  color: $fieldSetTogglerColor;
   font-family: $iconFontFamily;
 }
 
-.fieldset-no-border {
-  background-color: $fieldSetNoBorderColor !important;
+body .fieldset-no-border {
+  background-color: $fieldSetNoBorderColor;
 }
 
 /*Style for start Filter Widget--------------------------------------------------------------------------------------*/
@@ -598,7 +556,7 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 }
 
 .filter-category-checkbox-tree .ui-icon.ui-icon-search:before {
-  font-family: $iconFontFamily !important;
+  font-family: $iconFontFamily;
 }
 
 .widget-header-filter-input.ui-inputfield {
@@ -629,12 +587,12 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 }
 
 .widget-sort-menu a.ui-widget.ui-commandlink.is-selected {
-  color: $taskWidgetSortMenuLinkIsSelectedColor !important;
+  color: $taskWidgetSortMenuLinkIsSelectedColor;
 }
 
 .task-widget .advanced-filter .ui-button-text-only .ui-button-text,
 .case-widget-container .advanced-filter .ui-button-text-only .ui-button-text {
-  color: $widgetHeaderFilterColor !important;
+  color: $widgetHeaderFilterColor;
 }
 
 .task-widget .ui-widget.ui-button.advanced-filter-command:after, 
@@ -711,7 +669,7 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 }
 
 .case-details-data-1st-column {
-  font-size: $largeFontSize !important;
+  font-size: $largeFontSize;
 }
 
 .history-author, .history-note > * {
@@ -734,8 +692,9 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
       padding: 2px 10px;
   }
   
-  .ui-paginator a, .ui-paginator-current {
-    color: $caseDetailPaginatorColor !important;
+  .ui-paginator a, .ui-paginator-current,
+  .ui-paginator a.ui-state-active {
+    color: $caseDetailPaginatorColor;
   }
   
   .ui-paginator a.ui-paginator-page, .ui-paginator a.ui-paginator-page, a.ui-paginator-first, a.ui-paginator-prev, a.ui-paginator-next, a.ui-paginator-last {
@@ -747,6 +706,7 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
   .case-description-form .ui-inplace-display.ui-state-highlight {
     background-color: $textboxBgColor;
     border-radius: $borderRadius;
+    color: $caseDescriptionTextColorHightlight;
   }
   
   .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
@@ -761,18 +721,12 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
   .ui-datascroller-content.ui-widget-content.ui-corner-all {
     padding: 0;
     border: none;
-    border-right-color: $caseRelatedTaskContentBorder !important;
-  }
-  
-  .case-related-task-case-running ul li:first-child {
-    .related-task-content {
-      border-top: none !important;
-    }
+    border-right-color: $caseRelatedTaskContentBorder;
   }
 
   .case-related-task-case-running ul li:last-child {
     .related-task-content {
-      border-bottom: 1px solid $caseRelatedTaskContentBorder !important;
+      border-bottom: 1px solid $caseRelatedTaskContentBorder;
     }
   }
 }
@@ -780,6 +734,7 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 .case-detail-name-inplace-edit {
   .ui-inplace-display.ui-state-highlight {
     background-color: $textboxBgColor;
+    color: $caseDetailNameTextColorHightLight;
     padding: 3px;
     border-radius: $borderRadius;
   }
@@ -791,40 +746,42 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 }
 
 .note-show-more-link {
-  color: $noteShowMoreLinkColor !important;
+  color: $noteShowMoreLinkColor;
 }
 
 .note-show-more-link:hover {
-  color: $noteShowMoreLinkHoverColor !important;
+  color: $noteShowMoreLinkHoverColor;
 }
 
 .related-task-content .related-task,
 .case-related-running {
-  color: $caseRelatedTaskColor !important;
+  color: $caseRelatedTaskColor;
 }
 
 .related-task-content .related-task:hover {
-  color: $caseRelatedTaskHoverColor !important;
+  color: $caseRelatedTaskHoverColor;
 }
 
 .additional-case-details-link {
-  color: $additionalCaseDetailLinkColor !important;
+  color: $additionalCaseDetailLinkColor;
   font-weight: $additionalCaseDetailLinkFontWeight;
 }
 
 .additional-case-details-link:hover {
-  color: $additionalCaseDetailLinkHoverColor !important;
+  color: $additionalCaseDetailLinkHoverColor;
 }
 
 .related-task-content,
 .case-related-running,
 .no-running-task-case {
   border: 1px solid $caseRelatedTaskContentBorder;
+  border-bottom: none;
 }
 
 .no-running-task-case {
-  border-top: none !important;
   margin-bottom: 10px;
+  border-bottom: 1px solid $caseRelatedTaskContentBorder;
+  border-top: 1px solid $caseRelatedTaskContentBorder;
 }
 
 /**Style for Absences and Debuty  --------------------------------------*/
@@ -843,7 +800,7 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 }
 
 .ui-outputlabel.task-template-title {
-  font-size: $largeFontSize !important;
+  font-size: $largeFontSize;
   font-weight: $outputLabelTaskTemplateTitleFontWeight;
 }
 
@@ -862,7 +819,7 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 
 .compact-process-widget .toggle-processes-link,
 .compact-toggle-tasks-link {
-  font-size: $largeFontSize !important;
+  font-size: $largeFontSize;
 }
 
 /* Style for Start Menu Item-----------------------------*/
@@ -871,7 +828,7 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 }
 
 .layout-wrapper .layout-sidebar .layout-menu>li:not(.active-menuitem)>a.current-application {
-  border-bottom-color: $sidebarMenuInactiveItemCurrentAppBorderBottomColor !important;
+  border-bottom-color: $sidebarMenuInactiveItemCurrentAppBorderBottomColor;
 }
 
 /* Style for SubMenu Item-----------------------------*/
@@ -879,22 +836,21 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
   background-color: $submenuBgColor;
 }
 
+.submenu-container a,
+.layout-wrapper .layout-sidebar .layout-menu>li.active-menuitem>a {
+  background-color: $subMenuItemLinkBackgroundColor;
+}
+
 .submenu-container.active-menuitem a:hover {
-  background-color: $subMenuItemLinkHoverBackgroundColor !important;
+  background-color: $subMenuItemLinkHoverBackgroundColor;
 }
-
-.submenu-container a {
-  background-color: $subMenuItemLinkBackgroundColor !important;
-}
-
 
 .layout-wrapper .layout-sidebar .layout-menu .submenu-container a:hover {
-  background-color: $subMenuItemLinkHoverBackgroundColor !important;
+  background-color: $subMenuItemLinkHoverBackgroundColor;
 }
-
-.submenu-container.active-menuitem a:not(:hover) i,
-.submenu-container.active-menuitem a:not(:hover) {
-  color: $accentColor !important;
+.layout-wrapper .layout-sidebar .layout-menu>li.active-menuitem.submenu-container>a:not(:hover) i,
+.layout-wrapper .layout-sidebar .layout-menu>li.active-menuitem.submenu-container>a:not(:hover) {
+  color: $accentColor;
 }
 
 /* Style for Filter Widget -----------------------------**/
@@ -918,7 +874,7 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 .case-widget-container .ui-widget.ui-button.advanced-filter-command.ui-state-hover,
 .case-widget-container .ui-widget.ui-button.advanced-filter-command.ui-state-active,
 .case-widget-container .ui-widget.ui-button.advanced-filter-command.ui-state-focus {
-  background: $widgetAdvancedFilterCommandStateFocusBackgroundColor !important;
+  background: $widgetAdvancedFilterCommandStateFocusBackgroundColor;
 }
 
 .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer,
@@ -927,7 +883,7 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 }
 
 .advanced-filter-icon {
-  color: $widgetAdvancedFilterIconColor !important;
+  color: $widgetAdvancedFilterIconColor;
   font-size: 1.8rem;
 }
 
@@ -941,23 +897,19 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 }
 
 .history-note a, .history-note .task-note-link {
-  color: $historyNoteColor !important;
-}
-
-.history-note {
-  border-left: 1px solid $historyNoteBorder !important;
+  color: $historyNoteColor;
 }
 
 .history-note .task-note-link:hover {
-  color: $taskNoteLinkHoverColor !important;
+  color: $taskNoteLinkHoverColor;
 }
 
 .case-document-name a, .task-document-name a {
-  color: $caseTaskDocumentNameColor !important;
+  color: $caseTaskDocumentNameColor;
 }
 
 :-ms-input-placeholder, :root .case-detail-body .history-note a {
-  display: inline !important;
+  display: inline;
 }
 
 /*Style for Case Item --------------------------------------------------------------------------------------*/
@@ -973,21 +925,14 @@ span.task-details-document-add-link {
   font-weight: $detailsDocumentAddLinkFontWeight;
 }
 
-.case-detail-name-input {
-  font-size: $largeFontSize !important;
-  font-weight: $caseDetailNameInputFontWeight !important;
+body .ui-inputfield.case-detail-name-input {
+  font-size: $largeFontSize;
+  font-weight: $caseDetailNameInputFontWeight;
 }
 
 .case-detail-section-title, .case-history-button-container,
 .task-history-button-container {
   font-weight: $historyButtonContainerFontWeight;
-}
-
-.case-header-action-cell .action-item .ui-button.ui-widget.ui-state-hover .ui-button-text,
-.case-header-action-cell .action-item .ui-button.ui-widget.ui-state-hover .ui-button-icon-left.ui-icon.ui-icon-triangle-1-s:before,
-.case-header-action-cell .action-item .ui-button.ui-widget.ui-state-focus .ui-button-text,
-.case-header-action-cell .action-item .ui-button.ui-widget.ui-state-focus .ui-button-icon-left.ui-icon.ui-icon-triangle-1-s:before {
-   color: $primaryTextColor !important; 
 }
 
 .case-header-action-cell .action-item .ui-button {
@@ -1004,15 +949,16 @@ span.task-details-document-add-link {
   background-color: $caseListItemBackgroundColor;
 }
 
-.case-list-item:hover {
-  background-color: $caseListItemHoverBackgroundColor !important;
+.case-list-item:hover,
+.case-list-item.case-odd-row:hover {
+  background-color: $caseListItemHoverBackgroundColor;
 }
 .case-list-item.case-odd-row {
   background-color: $caseOddRowBackgroundColor;
 }
 
 .case-widget-container .widget-column-header .is-selected {
-  color: $caseWidgetColumnHeaderIsSelectedColor !important;
+  color: $caseWidgetColumnHeaderIsSelectedColor;
 }
 
 .case-header-name-desc-cell .case-header-desc-cell {
@@ -1028,20 +974,20 @@ span.task-details-document-add-link {
 }
 
 .action-steps-panel.ui-menu .ui-menu-list li.ui-menuitem .ui-menuitem-link {
-  color: $actionStepTextColor !important;
+  color: $actionStepTextColor;
 }
 
 .action-steps-panel.ui-menu .ui-menu-list li.ui-menuitem .ui-menuitem-link:hover {
-  color: $actionStepHoverTextColor !important;
+  color: $actionStepHoverTextColor;
 }
 
 .action-steps-panel.ui-menu .ui-menu-list li.ui-menuitem .ui-menuitem-link.ui-state-disabled {
-  color: $actionStepDisabledTextColor !important;
+  color: $actionStepDisabledTextColor;
 }
 
 .action-steps-panel .action-step-item:hover {
   background-color: $caseItemActionStepsItemHoverBackgroundColor;
-  color: $caseItemActionStepsItemHoverTextColor !important;
+  color: $caseItemActionStepsItemHoverTextColor;
 }
 
 .case-state-in-progress {
@@ -1076,7 +1022,7 @@ span.task-details-document-add-link {
 
 /*Process --------------------------------------*/
 .expand-collapse-btns .expand-collapse-btn {
-  color: $expandCollapseButtonColor !important;
+  color: $expandCollapseButtonColor;
   background-color: $collapseButtonBackgroundColor;
   font-size: $smallFontSize;
 }
@@ -1086,7 +1032,7 @@ span.task-details-document-add-link {
 }
 
 .process-widget .process-nav .process-nav-item { 
-  color: $processNavigatorItemColor !important;
+  color: $processNavigatorItemColor;
   font-size: $largeFontSize;
 }
 
@@ -1095,7 +1041,7 @@ span.task-details-document-add-link {
 }
 
 .process-widget .process-nav .process-nav-item.disabled {
-  color: $processNavItemDisableColor !important;
+  color: $processNavItemDisableColor;
 }
 
 .process-widget .process-nav {
@@ -1125,7 +1071,7 @@ span.task-details-document-add-link {
   font-weight: $processStartListItemNameFontWeight;
 }
 .process-history-list .ui-widget-content {
-  border: none !important;
+  border: none;
 }
 
 .process-history-list .ui-datascroller {
@@ -1133,7 +1079,7 @@ span.task-details-document-add-link {
 }
 
 .process-history-column-header .is-selected {
-  color: $processHistoryColumnHeaderIsSelectedColor !important;
+  color: $processHistoryColumnHeaderIsSelectedColor;
 }
 
 .process-history-column-header {
@@ -1150,19 +1096,19 @@ span.task-details-document-add-link {
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item .ui-link,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list table tr td,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item.ui-state-hover tr td {
-  color: $processStartListItemColor !important;
+  color: $processStartListItemColor;
 }
 
 .compact-process-widget .toggle-processes-link.fa-plus:before,
 .compact-toggle-tasks-link.fa-plus:before {
-  font-family: $iconFontFamily !important;
-  font-size: $largeFontSize !important;
+  font-family: $iconFontFamily;
+  font-size: $largeFontSize;
 }
 
 .compact-process-widget .toggle-processes-link.fa-minus:before,
 .compact-toggle-tasks-link.fa-minus:before {
-  font-family: $iconFontFamily !important;
-  font-size: $largeFontSize !important;
+  font-family: $iconFontFamily;
+  font-size: $largeFontSize;
 }
 
 .process-header .process-header-title-container {
@@ -1170,8 +1116,8 @@ span.task-details-document-add-link {
 }
 
 .process-header .create-express-workflow-icon,
-.express-process-logo {
-  background-color: $processExpressLogoBackgroundColor !important;
+body .ui-widget-content .express-process-logo {
+  background-color: $processExpressLogoBackgroundColor;
 }
 
 .process-item-action-container {
@@ -1187,8 +1133,8 @@ span.task-details-document-add-link {
 /* Task Widget --------------------------------**/
 .filter-selection-form label,
 .filter-selection-form a.ui-commandlink,
-.filter-selection-form a.ui-commandlink:hover {
-  color: $taskWidgetLinkColor !important;
+.filter-selection-form a.ui-commandlink:not(.delete-user-defined-filter-command):hover {
+  color: $taskWidgetLinkColor;
 }
 
 .filter-selection-form .filter-name-overlay-panel .ui-overlaypanel-content {
@@ -1262,31 +1208,22 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 #user-setting-container li a {
   font-size: $largeFontSize;
-  color: $userSettingContainerLinkColor !important;
+  color: $userSettingContainerLinkColor;
 }
 
 #user-setting-container li a:hover {
-  color: $userSettingContainerLinkHoverColor !important;
+  color: $userSettingContainerLinkHoverColor;
 }
 
 #user-setting-container {
-  border-radius: 0 0 10px 10px $userSettingContainerBoxShadow !important;
-  -webkit-box-shadow: 0px 2px 4px 0px $userSettingContainerBoxShadow !important;
-  -moz-box-shadow: 0px 2px 4px 0px $userSettingContainerBoxShadow !important;
-  box-shadow: 0px 2px 4px 0px $userSettingContainerBoxShadow !important;
-}
-
-#user-setting-container.active-menu {
-  border-top: solid 1px $userSettingContainerActiveMenuBorder !important;
+  border-radius: 0 0 10px 10px $userSettingContainerBoxShadow;
+  -webkit-box-shadow: 0px 2px 4px 0px $userSettingContainerBoxShadow;
+  -moz-box-shadow: 0px 2px 4px 0px $userSettingContainerBoxShadow;
+  box-shadow: 0px 2px 4px 0px $userSettingContainerBoxShadow;
 }
 
 .user-name-show-environment-info {
   font-weight: $usernameShowEnvironmentInfoFontWeight;
-}
-
-.new-app, .ui-dialog-footer button {
-  -webkit-box-shadow: 0 1px 2.5px 0 rgba($dialogFooterButtonBoxShadowColor, 0.26), 0 1px 5px 0 rgba($dialogFooterButtonBoxShadowColor, 0.16) !important;
-  box-shadow: 0 1px 2.5px 0 rgba($dialogFooterButtonBoxShadowColor, 0.26), 0 1px 5px 0 rgba($dialogFooterButtonBoxShadowColor, 0.16) !important;
 }
 
 /* Absences and Debuty -------------------------*/
@@ -1295,8 +1232,8 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 }
 
 /*Awesome Icon Selection--------------------------*/
-.select-awesome-icon-button {
-  color: $linkChangeAwesomeIconColor !important;
+.ui-commandlink.select-awesome-icon-button {
+  color: $linkChangeAwesomeIconColor;
   font-weight: $selectAwesomeIconButtonFontWeight;
   font-size: $smallFontSize;
 }
@@ -1305,9 +1242,9 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   color: $contentLinkChangeAwesomeIconColor;
 }
 
-.chart-filter-info-icon {
+.ui-widget.ui-outputlabel.chart-filter-info-icon {
   opacity: 0.75;
-  font-size: $largeFontSize !important;
+  font-size: $largeFontSize;
 }
 
 .icon-selection-dialog-selecting-icon {
@@ -1368,19 +1305,19 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   color: $primaryTextColor;
 }
 
-.task-actions-menu ul li a {
+.task-actions-menu .ui-menu-list .ui-menuitem .ui-menuitem-link {
   &:hover {
     span {
-      color: $actionStepHoverTextColor !important;
+      color: $actionStepHoverTextColor;
     }
   }
 
   span {
-    color: $actionStepTextColor !important;
+    color: $actionStepTextColor;
   }
 
   &.ui-state-disabled {
-    color: $actionStepDisabledTextColor !important;
+    color: $actionStepDisabledTextColor;
   }
 }
 
@@ -1414,12 +1351,12 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 }
 
 .ui-widget.ui-button.defined-task-button span {
-  color: $definedTaskButtonTextColor !important;
+  color: $definedTaskButtonTextColor;
 }
 
 .ui-widget.ui-button.defined-task-button.ui-state-hover span,
 .ui-widget.ui-button.defined-task-button.active span {
-  color: $activeDefinedTaskButtonTextColor !important;
+  color: $activeDefinedTaskButtonTextColor;
 }
 
 .express-work-flow .express-input-switch-selection,
@@ -1428,14 +1365,13 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   border-color: $expressInputSwitchSelectionBorder;
 }
 
-.express-input-switch-selection .ui-inputswitch.ui-inputswitch-checked .ui-inputswitch-handle, 
-.express-input-switch-selection .ui-inputswitch-handle.ui-state-default {
-  background-color: $expressInputSwitchHandleBackgroundColor !important;
+.available-elements-action-btn button {
+  background-color: $expressAvailableElementsActionButtonBackgroundColor;
+  box-shadow: $expressAvailableElementsActionButtonShadow;
 }
 
-.available-elements-action-btn button {
-  background-color: $expressAvailableElementsActionButtonBackgroundColor !important;
-  box-shadow: $expressAvailableElementsActionButtonShadow !important;
+body .available-elements-action-btn .ui-button.ui-button-icon-only .ui-icon {
+  color: $expressAvailableElementsActionButtonIconColor;
 }
 
 .task-responsible-label.ui-state-error {
@@ -1443,7 +1379,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 }
 
 .assignee-selection-panel .delete-assignee {
-  color: $expressAssigneeIconColor !important;
+  color: $expressAssigneeIconColor;
 }
 
 .selected-formelements-panel.hover-drop-section {
@@ -1488,7 +1424,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .form-definition-table .ui-state-highlight,
 .form-definition-table .hover-drop-section {
-  color: $formElementsPanelHoverDropSectionLabelColor !important;
+  color: $formElementsPanelHoverDropSectionLabelColor;
 }
 
 .form-definition-table {
@@ -1504,7 +1440,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 }
 
 .email-attachment .ui-fileupload-buttonbar.ui-widget-header.ui-corner-top {
-  background-color: $emailFileUploadCornerTopBackgroundColor !important;
+  background-color: $emailFileUploadCornerTopBackgroundColor;
 }
 
 .task-responsible-link {
@@ -1516,7 +1452,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 }
 
 .express-work-flow label.switch-active {
-  font-weight: $expressWorkflowActiveSwitchLabelFontWeight !important;
+  font-weight: $expressWorkflowActiveSwitchLabelFontWeight;
 }
 
 .finished-task-label {
@@ -1533,8 +1469,8 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 }
 
 /* Chat*/
-.notification-badge i.fa.fa-comment {
-  font-size: $notificationBadgeIconFontSize !important;
+.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu > li > a.notification-badge i.fa.fa-comment {
+  font-size: $notificationBadgeIconFontSize;
 }
 
 .chat-panel {
@@ -1610,7 +1546,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .show-participants-link,
 .message-list-header-close {
-  color: $messageListHeaderCloseIconBackgroundColor !important;
+  color: $messageListHeaderCloseIconBackgroundColor;
 }
 
 .message-list-header-close {
@@ -1638,7 +1574,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 }
 
 .show-participants-link:hover {
-  color: $showParticipantsLinkColor !important;
+  color: $showParticipantsLinkColor;
 }
 
 .chat-send-form {
@@ -1646,7 +1582,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 }
 
 .chat-send-form .ui-widget.ui-button .ui-icon {
-  color: $chatSendFormIconColor !important;
+  color: $chatSendFormIconColor;
 }
 
 .notification-badge[data-badge]:after {
@@ -1675,7 +1611,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   background: $chatSendFormButtonBackgroundColor;
   
   .ui-icon {
-    font-size: $chatContactTypeHeaderFontSize !important;
+    font-size: $chatContactTypeHeaderFontSize;
   } 
 }
 
@@ -1691,7 +1627,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 }
 
 ul.users-in-role {
-  border: solid 1px $chatUserInRoleBorder !important;
+  border: solid 1px $chatUserInRoleBorder;
 }
 
 ul.participants-list li {
@@ -1701,12 +1637,12 @@ ul.participants-list li {
 .close-chat {
   button {
     .ui-button-icon-left.ui-icon {
-      font-size: $closeChatFontSize !important;
+      font-size: $closeChatFontSize;
     }
     &.ui-button.ui-button-icon-only {
       background: $closeChatButtonBackgroundColor;
       .ui-icon {
-        color: $closeChatButtonColor !important;
+        color: $closeChatButtonColor;
       }
     }
   }
@@ -1728,7 +1664,7 @@ ul.participants-list li {
 }
 
 .mobile-filter-icon span {
-  font-size: $largeFontSize !important;
+  font-size: $largeFontSize;
 }
 
 .user-name {
@@ -1744,7 +1680,7 @@ ul.participants-list li {
 }
 
 .action-button .ui-button-icon-right.ui-icon.ui-c {
-  font-size: 2rem !important;
+  font-size: 2rem;
 }
 
 /* Portal's File upload component */
@@ -1758,14 +1694,8 @@ ul.participants-list li {
   margin-left: 10px;
 }
 
-.upload-container .ui-widget.ui-fileupload .ui-fileupload-buttonbar {
-  padding: 0;
-  background-color: transparent !important;
-  border: none !important;
-}
-
 .upload-container .ui-widget.ui-fileupload .ui-fileupload-buttonbar .ui-widget.ui-button {
-  float: right !important;
+  float: right;
   margin-right: 0;
 }
 
@@ -1824,10 +1754,10 @@ ul.participants-list li {
   tr.ui-datatable-selectable.ui-state-highlight,
   tr.ui-datatable-selectable.ui-state-hover {
     td {
-      border-bottom-color: $mediumGrey !important;
+      border-bottom-color: $mediumGrey;
     }
     th:not(:last-child), td:not(:last-child) {
-      border-right-color: $mediumGrey !important;
+      border-right-color: $mediumGrey;
     }
   }
 }
