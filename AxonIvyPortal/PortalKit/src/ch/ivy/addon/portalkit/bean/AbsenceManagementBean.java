@@ -18,14 +18,14 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import ch.ivy.addon.portalkit.datamodel.AbsenceLazyDataModel;
+import org.apache.commons.collections4.MapUtils;
+
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
 import ch.ivy.addon.portalkit.service.PermissionCheckerService;
 import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
 @ManagedBean
@@ -41,8 +41,6 @@ public class AbsenceManagementBean implements Serializable{
   private boolean absencesInThePastDeletable;
   private boolean ownSubstituteCreatable;
   private boolean substitutionManagementCapable;
-  
-  private AbsenceLazyDataModel lazyModel;
   
   @PostConstruct
   public void init() {
@@ -60,8 +58,6 @@ public class AbsenceManagementBean implements Serializable{
         permissionCheckerService.hasAtLeaseOnePermission(USER_CREATE_OWN_SUBSTITUTE, USER_CREATE_SUBSTITUTE);
     substitutionManagementCapable =
         permissionCheckerService.hasAllPermissions(USER_CREATE_SUBSTITUTE, USER_READ_SUBSTITUTES);
-    
-    lazyModel = new AbsenceLazyDataModel();
   }
 
   public boolean isOwnAbsencesReadable() {
@@ -111,7 +107,7 @@ public class AbsenceManagementBean implements Serializable{
   }
 
   private List<IvySubstitute> getSubstituteForApp(Map<IvyApplication, List<IvySubstitute>> ivySubtitutionsByApp, String application) {
-    for (Map.Entry<IvyApplication,List<IvySubstitute>> entry : ivySubtitutionsByApp.entrySet()) {
+    for (Map.Entry<IvyApplication,List<IvySubstitute>> entry : MapUtils.emptyIfNull(ivySubtitutionsByApp).entrySet()) {
       IvyApplication ivyApplication = entry.getKey();
       if (ivyApplication.getName().equals(application)) {
         return ivySubtitutionsByApp.get(ivyApplication);
@@ -123,11 +119,6 @@ public class AbsenceManagementBean implements Serializable{
   public void loadSubstitutes() {
     IvyComponentLogicCaller<String> reserveTask = new IvyComponentLogicCaller<>();
     reserveTask.invokeComponentLogic("absence-management", "#{logic.loadData}", new Object[] {});
-  }
-
-  public AbsenceLazyDataModel getLazyModel() {
-    Ivy.log().error("LOAD HERE");
-    return lazyModel;
   }
 }
 
