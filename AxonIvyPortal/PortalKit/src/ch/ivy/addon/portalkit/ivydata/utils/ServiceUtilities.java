@@ -68,7 +68,7 @@ public class ServiceUtilities {
 
     IUser user = app.getSecurityContext().findUser(username);
     if (user == null) {
-      throw new PortalIvyDataException(app.getName(), PortalIvyDataErrorType.USER_NOT_FOUND.toString());
+      throw new PortalIvyDataException(app.getName(), String.format("%s:%s", PortalIvyDataErrorType.USER_NOT_FOUND.toString(), username));
     }
     return user;
   }
