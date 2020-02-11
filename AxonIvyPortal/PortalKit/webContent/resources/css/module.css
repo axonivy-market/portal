@@ -4234,3 +4234,7 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   }
 }
 /*=================== NOTE HISTORY END ===================*/
+
+.ui-tabs .ui-tabs-panel {
+    padding: 0 !important;
+}
