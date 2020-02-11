@@ -149,8 +149,15 @@ In engine
 Migrate 8.0.1 to 8.0.2
 ----------------------
 
-Callable process ``CalculateTaskDelegate.mod`` have changed its signature. If you overriden this callable process before, remove old implementation and adapt it accordingly.
+1. ``CalculateTaskDelegate.mod`` callable process has been changed. If you overrode this callable process before, 
+remove old implementation and adapt it accordingly.
 We changed ``IUser`` to ``UserDTO``, ``IRole`` to ``RoleDTO`` and ``ISecurityMember`` to ``SecurityMemberDTO``.
+
+2. In this Portal version, we introduced ``External link`` as a process item in Full Process List.
+You need to migrate external links for all users in User Favorites to Full Process List. 
+Please deploy :download:`ExternalLinkMigration.iar <documents/ExternalLinkMigration.iar>` project 
+then run ``migrateExternalLinkFromUserFavorites.ivp``
+and wait until it is redirected to another page without error (E.g: Homepage).
 
 Migrate 8.0.0 to 8.0.1
 ----------------------

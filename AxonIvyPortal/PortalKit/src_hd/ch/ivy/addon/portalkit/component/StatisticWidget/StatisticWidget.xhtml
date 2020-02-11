@@ -99,6 +99,10 @@
         <ic:ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget id="chart-creation-widget" statisticChartList="#{data.statisticChartList}" />
       </h:panelGroup>
 
+      <h:form rendered="#{!data.compactMode and data.createMode}">
+        <p:remoteCommand id="reload-chart-list" name="reloadCharts" global="false" async="true" immediate="true"
+          process="@this" partialSubmit="true" action="#{logic.reloadStatisticList()}" />
+      </h:form>
     </h:panelGroup>
   </div>
   <p:confirmDialog id="restore-confirmation-dialog" message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/restoreDefaultChart')}"
