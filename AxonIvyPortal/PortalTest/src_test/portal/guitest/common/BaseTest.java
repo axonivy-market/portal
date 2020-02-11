@@ -215,10 +215,11 @@ public class BaseTest {
     }
   }
   
-  public static void killIE() {
+  public static void killBrowsers() {
     try {
-      System.out.println("Kill all open IE");
+      System.out.println("Kill all open browsers");
       Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
+      Runtime.getRuntime().exec("taskkill /F /IM firefox.exe");
       Sleeper.sleep(5000);
     } catch (IOException e) {
       e.printStackTrace();
