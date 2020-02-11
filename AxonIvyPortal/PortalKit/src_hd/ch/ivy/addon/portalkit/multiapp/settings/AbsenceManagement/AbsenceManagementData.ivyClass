@@ -37,3 +37,5 @@ usersInApp java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> #field
 usersInApp PERSISTENT #fieldModifier
 currentApp String #field
 currentApp PERSISTENT #fieldModifier
+absenceLazyDataModel ch.ivy.addon.portalkit.datamodel.AbsenceLazyDataModel #field
+absenceLazyDataModel PERSISTENT #fieldModifier

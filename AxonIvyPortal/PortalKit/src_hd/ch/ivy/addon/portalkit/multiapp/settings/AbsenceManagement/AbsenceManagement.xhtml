@@ -10,14 +10,16 @@
 <cc:implementation>
   <f:event listener="#{logic.findAbsences}" type="preRenderComponent" />
   <f:event listener="#{logic.loadUsers}" type="preRenderComponent" />
-  <!-- MY ABSENCE -->
   <div id="#{cc.clientId}">
   
   <p:messages id="errors-message" severity="error" showDetail="true" escape="false" closable="true" />
   <div class="ui-g">
-    <h:outputText value="#{ivy.cms.co(data.showAllAbsences ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/allAbsences' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myPlannedAbsences')}" 
-      id="absence" styleClass="FontBold"/>
-    <div class="ui-g-12 TexAlRight ">
+  <!-- MY ABSENCE -->
+    <div class="ui-g-12">
+      <h:outputText value="#{ivy.cms.co(data.showAllAbsences ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/allAbsences' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myPlannedAbsences')}" 
+        id="absence" styleClass="FontBold"/>
+    </div>
+    <div class="ui-g-12 TexAlRight">
       <p:selectBooleanCheckbox styleClass="absence-in-the-past-command" id="show-absence-in-the-past" 
         value="#{data.absenceInThePastShown}"
         itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/showAbsencesInThePast')}">
@@ -35,21 +37,21 @@
         update="@widgetVar(addAbsence)" rendered="#{absenceManagementBean.ownAbsencesCreatable}"/>
     </div> 
 
-    <div class="ui-g-12">
+    <div class="ui-g-12 ">
       <p:dataTable id="absence-table" 
       	emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
         scrollable="true" scrollHeight="150" 
         paginator="#{data.showAllAbsences}" rows="#{data.showAllAbsences ? 4 : 0}"
         lazy="#{data.showAllAbsences}"
-        paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+        paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
         reflow="true" 
-        value="#{data.showAllAbsences ? absenceManagementBean.lazyModel : data.displayedAbsences}" 
+        value="#{data.showAllAbsences ? data.absenceLazyDataModel : data.displayedAbsences}" 
         var="absence" 
         sortBy="#{absence.from}">
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" sortBy="#{absence.fullname}" rendered="#{data.showAllAbsences}">
           <h:outputText value="#{absenceManagementBean.getDisplayedName(absence)}" />
         </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/period')}" sortBy="#{absence.period}">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/period')}">
           <h:outputText value="#{absence.period}" />
         </p:column>
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}" sortBy="#{absence.comment}">
@@ -76,12 +78,15 @@
     </div>
   </div>  
   
-  <p:tabView id="substitue-tab" value="#{data.applications}" var="app" onTabChange="#{logic.updateCurrentApp(app)}">
+  <p:tabView id="substitue-tab" value="#{data.applications}" var="app" >
+    <p:ajax event="tabChange" listener="#{logic.onTabChange}"/>
     <p:tab title="#{app.displayName}">
     
       <!-- MY DEPUTY -->
       <div class="ui-g">
-        <h:outputText value="#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/deputy' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myDeputies')}" styleClass="FontBold"/>
+        <div class="ui-g-12">
+          <h:outputText value="#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/deputy' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myDeputies')}" styleClass="FontBold"/>
+        </div>
         <h:panelGroup id="username-deputy" class=" ui-g-12" layout="block"
           rendered="#{absenceManagementBean.substitutionManagementCapable}">
           <h:outputText styleClass="substituted-user-text"
@@ -136,7 +141,9 @@
       </div>
       
       <!-- DEPUTY FOR -->
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}" styleClass="FontBold" />
+      <div class="ui-g-12">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}" styleClass="FontBold" />
+      </div>
       <div class="ui-g-12 ">
         <p:dataTable id="substitution-table" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           scrollHeight="150" scrollable="true"
@@ -157,9 +164,19 @@
         </p:dataTable>
       </div>
     </p:tab>
-  
   </p:tabView>
 
+  <div class="ui-g-12 ui-dialog-footer">
+    <p:commandButton id="save-substitute" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" 
+      actionListener="#{logic.saveSubstitutes}" process=":#{p:component('substitue-tab')}" partialSubmit="true" update="errors-message"
+      oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.attrs.dialogName}').hide();}" />
+   
+    <p:spacer width="5px" />
+    <p:commandButton id="cancel-subsitute" type="button"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+      onclick="PF('#{cc.attrs.dialogName}').hide();" styleClass="portal-cancel-button" />
+  </div>
+  
   <p:confirmDialog id="delete-absence-confirmation-dialog" styleClass="delete-absence-confirmation-dialog"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}" appendTo="@(body)"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" severity="alert"
@@ -177,15 +194,5 @@
   </c:if>
   
   </div>
-  <h:panelGroup layout="block" styleClass="ui-dialog-footer">
-    <p:commandButton id="save-substitute" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" 
-      actionListener="#{logic.saveSubstitutes}" process=":#{p:component('substitue-tab')}" partialSubmit="true" update="errors-message"
-      oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.attrs.dialogName}').hide();}" />
-   
-    <p:spacer width="5px" />
-    <p:commandButton id="cancel-subsitute" type="button"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-      onclick="PF('#{cc.attrs.dialogName}').hide();" styleClass="portal-cancel-button" />
-  </h:panelGroup>
 </cc:implementation>
 </html>

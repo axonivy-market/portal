@@ -73,10 +73,16 @@ Se0 f88 530 42 112 44 -35 -8 #rect
 Se0 f88 @|CallSubIcon #fIcon
 Se0 f84 actionTable 'out=in;
 ' #txt
-Se0 f84 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+Se0 f84 actionCode 'import org.apache.commons.collections4.CollectionUtils;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
+import ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService;
 
-RegisteredApplicationService service = new RegisteredApplicationService();
-out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
+List<IvyApplication> ivyApplications = ApplicationService.getInstance().findActiveAllInvolvedUser(in.username);
+if (CollectionUtils.isNotEmpty(ivyApplications)){
+	for (IvyApplication item : ivyApplications){
+		in.apps.add(item.name);
+	}
+}
 ' #txt
 Se0 f84 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -172,10 +178,17 @@ Se0 f7 expr out #txt
 Se0 f7 111 192 232 192 #arcP
 Se0 f10 actionTable 'out=in;
 ' #txt
-Se0 f10 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+Se0 f10 actionCode 'import org.apache.commons.collections4.CollectionUtils;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
+import ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService;
 
-RegisteredApplicationService service = new RegisteredApplicationService();
-out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
+List<IvyApplication> ivyApplications = ApplicationService.getInstance().findActiveAllInvolvedUser(in.username);
+if (CollectionUtils.isNotEmpty(ivyApplications)){
+	for (IvyApplication item : ivyApplications){
+		in.apps.add(item.name);
+	}
+}
+
 ' #txt
 Se0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
