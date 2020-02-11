@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <role>
     <identifier>Everybody</identifier>
+    <role>
+        <identifier>Employee</identifier>
+        <roleMembers>
+            <role>Manager</role>
+            <role>Teamleader</role>
+        </roleMembers>
+    </role>
+    <role>
+        <identifier>Manager</identifier>
+    </role>
+    <role>
+        <identifier>Teamleader</identifier>
+    </role>
 </role>
