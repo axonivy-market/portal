@@ -20,7 +20,7 @@
     <ui:define name="simplePageContent">
     <p:growl id="task-template-growl" />
 
-        <div class="task-template-container ui-g-12 u-padding-0">
+        <div class="task-template-container ui-g-12">
           <c:set var="case" value="#{caseWidgetBean.findCase(caseId)}" scope="request" />
           <c:set var="isSideStepDisabled" value="#{!deprecatedTaskTemplate7Bean.checkSideStepsEnabled(caseId)}" scope="request" />
           <ui:insert name="breadCrumb" />
