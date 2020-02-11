@@ -6,8 +6,9 @@
 </cc:interface>
 
 <cc:implementation>
+  <f:event listener="#{logic.initialize}" type="preRenderComponent" />
 
-  <h:form id="express-management-form">
+  <h:form id="express-management-form" styleClass="express-management-form">
     <div class="ui-g">
       <div class="ui-g-12 TexAlRight u-padding-0">
         <p:commandButton id="import-express-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/importExpress')}" partialSubmit="true"
@@ -20,11 +21,10 @@
 
       <div class="ui-g-12 u-padding-0 MarTop5">
         <p:dataTable id="express-workflow-summary-table" widgetVar="express-workflow-summary-table"
-          var="express" value="#{data.dataModel}" selection="#{data.selectedExpressProcessList}"
-          styleClass="express-workflow-summary-table" rowKey="#{express.processName}" rows="8" paginator="true"
-          paginatorPosition="top" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
-          lazy="true" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-          paginatorAlwaysVisible="false" scrollable="true" scrollHeight="340">
+          var="express" value="#{data.expressProcessList}" selection="#{data.selectedExpressProcessList}"
+          styleClass="express-workflow-summary-table admin-table" rowKey="#{express.processName}"
+          emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+          scrollable="true" scrollHeight="240">
 
           <p:ajax event="toggleSelect" update="#{p:component('export-express-btn')}" />
           <p:ajax event="rowSelectCheckbox" update="#{p:component('export-express-btn')}" global="false" />
@@ -34,7 +34,7 @@
 
           <p:column selectionMode="multiple" styleClass="express-selection-column" />
 
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}">
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}" filterBy="#{express.processName}">
             <h:outputText value="#{express.processName}" />
           </p:column>
 
@@ -42,7 +42,7 @@
             <h:outputText value="#{express.processDescription}" />
           </p:column>
 
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/ProcessCreator')}" width="200" styleClass="u-hidden-md-down">
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" width="200" styleClass="u-hidden-md-down">
             <h:outputText value="#{expressManagementBean.getUserDisplayName(express.processOwner)}" />
           </p:column>
         </p:dataTable>
@@ -68,7 +68,7 @@
 
         <div jsf:id="express-export-selected" class="ui-g-12 express-export-selected">
           <ui:repeat var="process" value="#{data.selectedExpressProcessList}">
-            <li class="MarTop5"><span>#{process.processName} - #{process.processType}</span></li>
+            <li class="MarTop5"><span>#{process.processName}</span></li>
           </ui:repeat>
         </div>
       </h:panelGroup>
@@ -79,7 +79,7 @@
         <div class="ui-g-12">
           <p:commandButton id="export-express-dowload" rendered="#{not empty data.selectedExpressProcessList}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}" ajax="false"
-            onclick="PrimeFaces.monitorDownload(showLoadingIndicator, hideLoadingIndicator); PF('export-express-dialog').initPosition();">
+            onclick="PrimeFaces.monitorDownload(showLoadingIndicator, hideLoadingAndCloseExportDialog); PF('export-express-dialog').initPosition();">
             <p:fileDownload value="#{logic.exportExpress()}" />
           </p:commandButton>
           <p:spacer width="10px" />
@@ -140,7 +140,7 @@
 
   <h:form>
     <p:remoteCommand name="refreshExpressTable" immediate="true" partialSubmit="true" process="@this" 
-      actionListener="#{logic.updateTableRowCount}" oncomplete="PF('express-workflow-summary-table').unselectAllRows();"
+      oncomplete="PF('express-workflow-summary-table').unselectAllRows();"
       update="#{p:component('express-workflow-summary-table')}" global="false" />
   </h:form>
 
@@ -151,6 +151,11 @@
 
          function hideLoadingIndicator() {
            $('.express-helper-loading-container').hide();
+         }
+
+         function hideLoadingAndCloseExportDialog() {
+           $('.express-helper-loading-container').hide();
+           setTimeout(function(){ PF('export-express-dialog').hide(); }, 1000);
          }
          
          function cleanExportMessage() {

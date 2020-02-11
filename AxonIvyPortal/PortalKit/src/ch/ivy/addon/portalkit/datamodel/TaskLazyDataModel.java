@@ -93,11 +93,14 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
         inProgressFilter = new TaskInProgressByOthersFilter();
       }
     }
-    disableTaskCount = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_TASK_COUNT.toString());
   }
 
   public TaskLazyDataModel() {
     this("task-widget");
+  }
+  
+  public void updateDisableTaskCount() {
+    disableTaskCount = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_TASK_COUNT.toString());
   }
 
   /**

@@ -94,6 +94,9 @@ Ss0 @PushWFArc f71 '' #zField
 Ss0 @PushWFArc f67 '' #zField
 Ss0 @PushWFArc f76 '' #zField
 Ss0 @PushWFArc f12 '' #zField
+Ss0 @UdMethod f68 '' #zField
+Ss0 @UdProcessEnd f78 '' #zField
+Ss0 @PushWFArc f82 '' #zField
 >Proto Ss0 Ss0 StatisticDashboardWidgetProcess #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
@@ -787,11 +790,12 @@ import ch.ivy.addon.portalkit.bean.StatisticDashboardBean;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
+StatisticService service = new StatisticService();
+	
 if (in.isBackFromDrilldown) {
 	in.selectedItemOfDrilldown = null;
 	in.isFinishLoadCharts = false;
 	
-	StatisticService service = new StatisticService();
 	in.statisticChartList = service.findStatisticChartsByUserId(ivy.session.getSessionUser().getId());
 }
 
@@ -804,13 +808,14 @@ if (!in.isDrilldownExpiryChart) {
 	 If statisticChartList is changed, we need to reload ChartJS canvas due to we have to rebuild chart
  	 Always set new value for isReloadChartContent when re-rendering component
 */
-in.isReloadChartContent = !in.isFinishLoadCharts || in.prevStatisticListSize != null && in.prevStatisticListSize != in.statisticChartList.size();
+StatisticDashboardBean statisticDashboardBean = ManagedBeans.get("statisticDashboardBean") as StatisticDashboardBean;
+in.isReloadChartContent = statisticDashboardBean.isChartModelNotInitialized(in.statisticChartList) || !in.isFinishLoadCharts || in.prevStatisticListSize != in.statisticChartList.size();
 
 if (in.isReloadChartContent && StringUtils.isEmpty(in.selectedItemOfDrilldown)) {
 	// In case, isReloadChartContent indicator is true and not drilldown to expiry chart, we need to generate a placeholder chart to show on UI
 	// It will make comfortable when user is waiting for drawing canvas
-	StatisticDashboardBean statisticDashboardBean = ManagedBeans.get("statisticDashboardBean") as StatisticDashboardBean;
-	statisticDashboardBean.generatePlaceholderForChart(in.statisticChartList);
+	service.generatePlaceholderForChart(in.statisticChartList);
+	in.isFinishLoadCharts = false;
 } else if (StringUtils.isNotEmpty(in.selectedItemOfDrilldown)) {
 	// Drilldown to expiry chart, no need to build placeholder chart because we don''t call database
 	// Directly generate ChartJS canva, so we dont need to reload page
@@ -905,8 +910,8 @@ in.isReloadChartContent = !in.isFinishLoadCharts || in.prevStatisticListSize != 
 if (in.isReloadChartContent) {
 	// In case, isReloadChartContent indicator is true and not drilldown to expiry chart, we need to generate a placeholder chart to show on UI
 	// It will make comfortable when user is waiting for drawing canvas
-	StatisticDashboardBean statisticDashboardBean = ManagedBeans.get("statisticDashboardBean") as StatisticDashboardBean;
-	statisticDashboardBean.generatePlaceholderForChart(in.statisticChartList);
+	StatisticService service = new StatisticService();
+	service.generatePlaceholderForChart(in.statisticChartList);
 }
 ' #txt
 Ss0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -958,6 +963,27 @@ Ss0 f76 1011 275 1136 224 #arcP
 Ss0 f76 1 1024 224 #addKink
 Ss0 f12 expr in #txt
 Ss0 f12 1024 288 1136 288 #arcP
+Ss0 f68 guid 1700968EFCD82AA5 #txt
+Ss0 f68 method reinitializeWidgetIndicator() #txt
+Ss0 f68 inParameterDecl '<> param;' #txt
+Ss0 f68 inParameterMapAction 'out.isFinishLoadCharts=false;
+out.isReloadChartContent=true;
+out.prevStatisticListSize=null;
+' #txt
+Ss0 f68 inActionCode 'ivy.log.info("reset indicator");' #txt
+Ss0 f68 outParameterDecl '<> result;' #txt
+Ss0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>reinitializeWidgetIndicator()</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f68 691 659 26 26 -25 15 #rect
+Ss0 f68 @|UdMethodIcon #fIcon
+Ss0 f78 1011 659 26 26 0 12 #rect
+Ss0 f78 @|UdProcessEndIcon #fIcon
+Ss0 f82 717 672 1011 672 #arcP
 >Proto Ss0 .type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 >Proto Ss0 .processKind HTML_DIALOG #txt
 >Proto Ss0 -8 -8 16 16 16 26 #rect
@@ -1099,6 +1125,8 @@ Ss0 f3 out f76 tail #connect
 Ss0 f76 head f65 mainIn #connect
 Ss0 f3 out f12 tail #connect
 Ss0 f12 head f30 mainIn #connect
+Ss0 f68 mainOut f82 tail #connect
+Ss0 f82 head f78 mainIn #connect
 Ct0 f60 mainOut f76 tail #connect
 Ct0 f76 head f73 mainIn #connect
 Ct0 f74 mainOut f75 tail #connect
