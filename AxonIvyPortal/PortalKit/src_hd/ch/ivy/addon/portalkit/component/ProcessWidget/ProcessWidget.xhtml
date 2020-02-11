@@ -23,7 +23,7 @@
           <h:panelGroup layout="block" styleClass="ui-g-8 ui-sm-4">
             <div class="process-header-title-container">
               <span class="process-header-title">#{cc.attrs.title}</span>
-              <h:panelGroup styleClass="add-external-link-container Fright u-hidden-md-down" >
+              <h:panelGroup styleClass="Fright u-hidden-md-down add-external-link-command" >
               	<p:commandLink id="add-external-link-command" actionListener="#{externalLinkBean.addNewExternalLink(cc.clientId)}"
               		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addExternalLink')}"
               		update="#{cc.clientId}:add-external-link-dialog"

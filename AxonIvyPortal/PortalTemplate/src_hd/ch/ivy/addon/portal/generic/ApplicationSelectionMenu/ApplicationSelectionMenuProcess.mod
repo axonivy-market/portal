@@ -27,11 +27,9 @@ As0 @PushWFArc f110 '' #zField
 As0 @PushWFArc f111 '' #zField
 As0 @PushWFArc f112 '' #zField
 As0 @PushWFArc f114 '' #zField
-As0 @PushWFArc f122 '' #zField
 As0 @PushWFArc f125 '' #zField
 As0 @PushWFArc f129 '' #zField
 As0 @GridStep f14 '' #zField
-As0 @PushWFArc f13 '' #zField
 As0 @PushWFArc f16 '' #zField
 As0 @GridStep f10 '' #zField
 As0 @PushWFArc f11 '' #zField
@@ -64,6 +62,10 @@ As0 @UdMethod f12 '' #zField
 As0 @PushWFArc f18 '' #zField
 As0 @PushWFArc f2 '' #zField
 As0 @UdEvent f1 '' #zField
+As0 @GridStep f19 '' #zField
+As0 @PushWFArc f13 '' #zField
+As0 @PushWFArc f20 '' #zField
+As0 @PushWFArc f30 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f67 actionTable 'out=in;
 ' #txt
@@ -167,7 +169,7 @@ As0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f91 816 92 96 40 -29 -6 #rect
+As0 f91 816 68 96 40 -29 -6 #rect
 As0 f91 @|StepIcon #fIcon
 As0 f94 actionTable 'out=in;
 ' #txt
@@ -252,8 +254,6 @@ As0 f112 0 0.8119251469460217 0 0 #arcLabel
 As0 f114 expr out #txt
 As0 f114 1088 288 1171 288 #arcP
 As0 f114 0 0.2964491651298413 0 0 #arcLabel
-As0 f122 expr out #txt
-As0 f122 864 132 864 178 #arcP
 As0 f125 expr in #txt
 As0 f125 1008 192 878 192 #arcP
 As0 f129 expr out #txt
@@ -272,12 +272,8 @@ reset task</name>
     </language>
 </elementInfo>
 ' #txt
-As0 f14 648 92 112 40 -30 -16 #rect
+As0 f14 648 68 112 40 -30 -16 #rect
 As0 f14 @|StepIcon #fIcon
-As0 f13 expr out #txt
-As0 f13 704 132 850 192 #arcP
-As0 f13 1 704 192 #addKink
-As0 f13 1 0.302020000020303 0 0 #arcLabel
 As0 f16 expr in #txt
 As0 f16 864 206 864 368 #arcP
 As0 f10 actionTable 'out=in;
@@ -454,7 +450,7 @@ As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f3 691 19 26 26 5 11 #rect
 As0 f3 @|UdMethodIcon #fIcon
-As0 f8 704 45 704 92 #arcP
+As0 f8 704 45 704 68 #arcP
 As0 f12 guid 16E3A985548930F5 #txt
 As0 f12 method reserveTask(ITask) #txt
 As0 f12 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask workingTask> param;' #txt
@@ -470,7 +466,7 @@ As0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f12 851 19 26 26 5 14 #rect
 As0 f12 @|UdMethodIcon #fIcon
-As0 f18 864 45 864 92 #arcP
+As0 f18 864 45 864 68 #arcP
 As0 f2 expr out #txt
 As0 f2 1184 45 1040 192 #arcP
 As0 f2 1 1184 192 #addKink
@@ -496,6 +492,43 @@ As0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f1 1171 19 26 26 16 -3 #rect
 As0 f1 @|UdEventIcon #fIcon
+As0 f19 actionTable 'out=in;
+' #txt
+As0 f19 actionCode 'import org.apache.commons.lang3.StringUtils;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import javax.faces.context.Flash;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
+
+String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
+boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
+if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
+	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
+	if (!flash.containsKey("overridePortalGrowl")) {
+		FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
+		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
+	}
+	flash.setRedirect(true);
+	flash.setKeepMessages(true);
+}' #txt
+As0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Display message after&#13;
+finish or leave task</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f19 632 130 144 44 -54 -16 #rect
+As0 f19 @|StepIcon #fIcon
+As0 f13 704 108 704 130 #arcP
+As0 f20 864 108 776 152 #arcP
+As0 f20 1 864 152 #addKink
+As0 f20 1 0.25 0 0 #arcLabel
+As0 f30 704 174 850 192 #arcP
+As0 f30 1 704 192 #addKink
+As0 f30 1 0.24741320293901495 0 0 #arcLabel
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -520,8 +553,6 @@ As0 f1 @|UdEventIcon #fIcon
 >Proto As0 '' #fIcon
 As0 f97 mainOut f129 tail #connect
 As0 f129 head f94 mainIn #connect
-As0 f91 mainOut f122 tail #connect
-As0 f122 head f98 in #connect
 As0 f72 mainOut f111 tail #connect
 As0 f111 head f76 in #connect
 As0 f76 out f109 tail #connect
@@ -535,8 +566,6 @@ As0 f114 head f81 mainIn #connect
 As0 f110 head f67 mainIn #connect
 As0 f1 mainOut f2 tail #connect
 As0 f2 head f76 in #connect
-As0 f14 mainOut f13 tail #connect
-As0 f13 head f98 in #connect
 As0 f98 out f16 tail #connect
 As0 f16 head f70 in #connect
 As0 f70 out f11 tail #connect
@@ -576,3 +605,9 @@ As0 f3 mainOut f8 tail #connect
 As0 f8 head f14 mainIn #connect
 As0 f12 mainOut f18 tail #connect
 As0 f18 head f91 mainIn #connect
+As0 f14 mainOut f13 tail #connect
+As0 f13 head f19 mainIn #connect
+As0 f91 mainOut f20 tail #connect
+As0 f20 head f19 mainIn #connect
+As0 f19 mainOut f30 tail #connect
+As0 f30 head f98 in #connect

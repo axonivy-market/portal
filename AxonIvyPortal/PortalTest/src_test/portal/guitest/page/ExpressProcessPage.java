@@ -17,7 +17,7 @@ public class ExpressProcessPage extends TemplatePage {
 
 	public void fillProcessProperties(boolean isAdhocWF, boolean isCreateOwn, String processName,
 			String processDescription) {
-		if (!isAdhocWF) {
+		if (isAdhocWF) {
 		  click(By.cssSelector("div[id='form:process-type']"));
 		}
 		

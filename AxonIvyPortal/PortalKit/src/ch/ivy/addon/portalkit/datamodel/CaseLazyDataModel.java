@@ -81,6 +81,9 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     buildCriteria();
     setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
     selectedFilterData = UserUtils.getSessionSelectedCaseFilterSetAttribute();
+  }
+  
+  public void updateDisableCaseCount() {
     disableCaseCount = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_CASE_COUNT.toString());
   }
 

@@ -34,6 +34,7 @@
         layout="block">
         <div class="#{data.dataModel.compactMode? 'widget-header-main': 'widget-tasklist-header'} ui-g-8 ui-sm-4">
           <h:panelGroup id="task-widget-title" styleClass="widget-header-main-title task-widget-header-content-title #{data.dataModel.compactMode ? 'compact-mod-title' : ''}">
+            <f:event listener="#{logic.preRenderTitle()}" type="preRenderComponent" />
             <cc:renderFacet name="title" />
             <h:outputText rendered="#{empty cc.facets.title}" 
               value="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}" styleClass="ui-sm-hidden" />
