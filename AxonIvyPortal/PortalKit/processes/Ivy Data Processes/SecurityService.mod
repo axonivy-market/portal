@@ -64,6 +64,15 @@ Pt0 @StartSub f51 '' #zField
 Pt0 @PushWFArc f52 '' #zField
 Pt0 @PushWFArc f53 '' #zField
 Pt0 @PushWFArc f54 '' #zField
+Pt0 @GridStep f55 '' #zField
+Pt0 @StartSub f56 '' #zField
+Pt0 @CallSub f57 '' #zField
+Pt0 @GridStep f58 '' #zField
+Pt0 @EndSub f59 '' #zField
+Pt0 @PushWFArc f60 '' #zField
+Pt0 @PushWFArc f61 '' #zField
+Pt0 @PushWFArc f62 '' #zField
+Pt0 @PushWFArc f63 '' #zField
 >Proto Pt0 Pt0 SecurityService #zField
 Pt0 f0 inParamDecl '<String username> param;' #txt
 Pt0 f0 inParamTable 'out.username=param.username;
@@ -542,6 +551,90 @@ Pt0 f53 expr out #txt
 Pt0 f53 352 664 400 664 #arcP
 Pt0 f54 expr out #txt
 Pt0 f54 512 664 577 664 #arcP
+Pt0 f55 actionTable 'out=in;
+' #txt
+Pt0 f55 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
+import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
+
+IvySecurityResultDTO dto = SecurityService.newInstance().findUsers(in.apps);
+out.usersByApp = dto.usersByApp;
+out.errors = dto.errors;
+' #txt
+Pt0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find users</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f55 488 746 112 44 -29 -8 #rect
+Pt0 f55 @|StepIcon #fIcon
+Pt0 f56 inParamDecl '<String username> param;' #txt
+Pt0 f56 inParamTable 'out.username=param.username;
+' #txt
+Pt0 f56 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.Map usersByApp> result;' #txt
+Pt0 f56 outParamTable 'result.errors=in.errors;
+result.usersByApp=in.usersByApp;
+' #txt
+Pt0 f56 callSignature findUsersOverIvyApplications(String) #txt
+Pt0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findUsersOverIvyApplications(String)</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f56 73 753 30 30 -87 22 #rect
+Pt0 f56 @|StartSubIcon #fIcon
+Pt0 f57 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
+Pt0 f57 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
+Pt0 f57 requestMappingAction 'param.exceptions=in.errors;
+' #txt
+Pt0 f57 responseActionDecl 'ch.ivyteam.wf.processes.SecurityServiceData out;
+' #txt
+Pt0 f57 responseMappingAction 'out=in;
+' #txt
+Pt0 f57 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ErrorHandler</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f57 648 746 112 44 -35 -8 #rect
+Pt0 f57 @|CallSubIcon #fIcon
+Pt0 f58 actionTable 'out=in;
+' #txt
+Pt0 f58 actionCode 'import org.apache.commons.collections4.CollectionUtils;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
+import ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService;
+
+List<IvyApplication> ivyApplications = ApplicationService.getInstance().findActiveAllInvolvedUser(in.username);
+if (CollectionUtils.isNotEmpty(ivyApplications)){
+	for (IvyApplication item : ivyApplications){
+		in.apps.add(item.name);
+	}
+}
+' #txt
+Pt0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find ivy applications related to user</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f58 248 746 208 44 -96 -8 #rect
+Pt0 f58 @|StepIcon #fIcon
+Pt0 f59 825 753 30 30 0 15 #rect
+Pt0 f59 @|EndSubIcon #fIcon
+Pt0 f60 expr out #txt
+Pt0 f60 456 768 488 768 #arcP
+Pt0 f61 expr out #txt
+Pt0 f61 600 768 648 768 #arcP
+Pt0 f62 expr out #txt
+Pt0 f62 760 768 825 768 #arcP
+Pt0 f63 expr out #txt
+Pt0 f63 103 768 248 768 #arcP
 >Proto Pt0 .type ch.ivyteam.wf.processes.SecurityServiceData #txt
 >Proto Pt0 .processKind CALLABLE_SUB #txt
 >Proto Pt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -616,3 +709,11 @@ Pt0 f49 mainOut f54 tail #connect
 Pt0 f54 head f50 mainIn #connect
 Pt0 f51 mainOut f52 tail #connect
 Pt0 f52 head f48 mainIn #connect
+Pt0 f58 mainOut f60 tail #connect
+Pt0 f60 head f55 mainIn #connect
+Pt0 f55 mainOut f61 tail #connect
+Pt0 f61 head f57 mainIn #connect
+Pt0 f56 mainOut f63 tail #connect
+Pt0 f63 head f58 mainIn #connect
+Pt0 f57 mainOut f62 tail #connect
+Pt0 f62 head f59 mainIn #connect

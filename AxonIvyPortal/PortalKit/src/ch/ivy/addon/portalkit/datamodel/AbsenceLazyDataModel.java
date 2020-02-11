@@ -1,56 +1,75 @@
 package ch.ivy.addon.portalkit.datamodel;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import org.primefaces.model.LazyDataModel;
-import org.primefaces.model.SortMeta;
 import org.primefaces.model.SortOrder;
 
-import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
-import ch.ivyteam.ivy.environment.Ivy;
 
 public class AbsenceLazyDataModel extends LazyDataModel<IvyAbsence> {
   private static final long serialVersionUID = 1L;
   private List<IvyAbsence> datasource;
 
-  public AbsenceLazyDataModel() {
-    datasource = new ArrayList<>();
-    for (int i = 0; i < 10000; i++) {
-      IvyAbsence x = new IvyAbsence();
-      x.setUser(new UserDTO(Ivy.session().getSessionUser()));
-      x.setFrom(new Date());
-      x.setUntil(new Date());
-      x.setComment("Test");
-      datasource.add(x);
-    }
-    
-    Ivy.log().error("SIZE OF DATASOURCE {0}", datasource.size());
+  public AbsenceLazyDataModel(List<IvyAbsence> allAbcenses) {
+    this.datasource = allAbcenses;
   }
 
   @Override
-  public List<IvyAbsence> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-//    List<IvyAbsence> data = new ArrayList<>();
+  public List<IvyAbsence> load(int first, int pageSize, String sortField, SortOrder sortOrder,
+      Map<String, Object> filters) {
+    /*
+    List<IvyAbsence> data = new ArrayList<>();
 
-    Ivy.log().error("load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters)");
+    // filter
+    for (IvyAbsence absence : datasource) {
+      boolean match = true;
+
+      if (filters != null) {
+        for (Object object : filters.values()) {
+          Ivy.log().error("object type : {0}", object.getClass().getTypeName());
+          try {
+            if (object instanceof FilterMeta) {
+              FilterMeta meta = (FilterMeta)object;
+              String filterField = meta.getColumn().getField();
+              Object filterValue = meta.getFilterValue();
+              Ivy.log().error("GO HERE WITH field {0}, value {1}", filterField, filterValue);
+              String fieldValue = String.valueOf(absence.getClass().getField(filterField).get(absence));
+
+              if (filterValue == null || fieldValue.startsWith(filterValue.toString())) {
+                match = true;
+              } else {
+                match = false;
+                break;
+              }
+            }
+          } catch (Exception e) {
+            match = false;
+          }
+        }
+      }
+
+      if (match) {
+        data.add(absence);
+      }
+    }
+    */
+
     // rowCount
     int dataSize = datasource.size();
+    this.setRowCount(dataSize);
 
     // paginate
     if (dataSize > pageSize) {
       try {
-        Ivy.log().error("RETURN HERE WITH FIRST {0} AND PAGE SIZE {1}", first, pageSize);
         return datasource.subList(first, first + pageSize);
       } catch (IndexOutOfBoundsException e) {
         return datasource.subList(first, first + (dataSize % pageSize));
       }
     } else {
-      Ivy.log().error("RETURN ALL");
       return datasource;
     }
   }
- 
+
 }
