@@ -48,7 +48,7 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
   margin: 0;
   padding: 0;
   background-attachment: fixed;
-  background-position: center center !important;
+  background-position: center center;
   z-index: -1;
 }
 
@@ -72,13 +72,13 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 
 .login-body .login-panel .login-panel-header img {
     vertical-align: middle;
-    width: auto !important;
+    width: auto;
     max-width: 100%;
 }
 
 /* Icon */
 .fa:before {
-  font-family: $iconFontFamily !important;
+  font-family: $iconFontFamily;
 }
 
 .ui-outputlabel .ui-outputlabel-rfi {
@@ -90,11 +90,11 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 }
 
 body .ui-menu .ui-menu-list li.ui-menuitem .ui-menuitem-link {
-  color: $menuItemLinkColor !important;
+  color: $menuItemLinkColor;
 }
 
 body .ui-menu .ui-menu-list li.ui-menuitem .ui-menuitem-link:hover {
-  background-color: $menuItemLinkHoverBackgroundColor !important;
+  background-color: $menuItemLinkHoverBackgroundColor;
 }
 
 body .ui-menu .ui-menu-list li.ui-menuitem .ui-menuitem-link .ui-menuitem-icon {
@@ -102,19 +102,19 @@ body .ui-menu .ui-menu-list li.ui-menuitem .ui-menuitem-link .ui-menuitem-icon {
 }
 
 body .ui-icon {
-  font-size: 2rem !important;
+  font-size: 2rem;
 }
 
 [data-icon]:before {
-  font-family: $dataIconFontFamily !important;
-  font-style: $dataIconFontStyle !important;
-  font-weight: $dataIconFontWeight !important;
-  font-variant: $dataIconFontVariant !important;
+  font-family: $dataIconFontFamily;
+  font-style: $dataIconFontStyle;
+  font-weight: $dataIconFontWeight;
+  font-variant: $dataIconFontVariant;
 }
 
 [data-icon]:before {
   content: attr(data-icon);
-  text-transform: none !important;
+  text-transform: none;
   speak: none;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
@@ -123,11 +123,11 @@ body .ui-icon {
 
 [class^="tmi-"]:before,
 [class*=" tmi-"]:before {
-  font-family: $trueMinimalisticIconFontFamily !important;
-  font-style: $trueMinimalisticIconFontStyle !important;
-  font-weight: $trueMinimalisticIconFontWeight !important;
-  font-variant: $trueMinimalisticIconFontVariant !important;
-  text-transform: none !important;
+  font-family: $trueMinimalisticIconFontFamily;
+  font-style: $trueMinimalisticIconFontStyle;
+  font-weight: $trueMinimalisticIconFontWeight;
+  font-variant: $trueMinimalisticIconFontVariant;
+  text-transform: none;
   speak: none;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
@@ -170,20 +170,20 @@ body .ui-datepicker .ui-timepicker-div .ui_tpicker_time input {
 
 body .ui-datepicker .ui-datepicker-header .ui-datepicker-next,
 body .ui-datepicker .ui-datepicker-header .ui-datepicker-prev {
-  font-size: 2.4rem !important;
+  font-size: 2.4rem;
 }
 
 .ui-datepicker .ui-datepicker-title {
   color: $uiDataPickerTitleColor;
 }
 
-.ui-datepicker .ui-datepicker-header {
-  border-color: $uiDataPickerTitleBorderColor !important;
-  background-color: $uiDataPickerTitleBackgroundColor !important;
+body .ui-datepicker .ui-datepicker-header {
+  border-color: $uiDataPickerTitleBorderColor;
+  background-color: $uiDataPickerTitleBackgroundColor;
 }
 
-.ui-datepicker thead tr {
-  background-color: $uiDataPickerHeaderColor !important;
+body .ui-datepicker thead tr {
+  background-color: $uiDataPickerHeaderColor;
 }
 
 body .ui-datepicker .ui-datepicker-header .ui-datepicker-next.ui-datepicker-next-hover,
@@ -193,7 +193,7 @@ body .ui-datepicker .ui-datepicker-header .ui-datepicker-prev.ui-datepicker-prev
 
 /* Checkbox */
 body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
-    color: $primaryLightestColor !important;
+    color: $primaryLightestColor;
 }
 
 .ui-chkbox.ui-widget {
@@ -202,34 +202,34 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
 }
 
 .ui-chkbox .ui-widget.ui-chkbox-box.ui-state-active:before {
-  left: 0.5em !important;
-  top: 0.5em !important;
-  height: 0.14em !important;
-  width: 0.2em !important;
+  left: 0.5em;
+  top: 0.5em;
+  height: 0.14em;
+  width: 0.2em;
 }
 
 
 /* Radio button */
 .ui-radiobutton .ui-radiobutton-box.ui-state-active:before {
-  top: 0.6em !important;
-  height: 0.12em !important;
+  top: 0.6em;
+  height: 0.12em;
 }
 
 /* Command link */
 .ui-commandlink {
-  color: $commandLinkTextColor !important;
+  color: $commandLinkTextColor;
 }
 
 .ui-commandlink:hover {
-  color: $commandLinkHoverTextColor !important;
+  color: $commandLinkHoverTextColor;
 }
 
 .ui-commandlink:active {
-  color: $commandLinkActiveTextColor !important;
+  color: $commandLinkActiveTextColor;
 }
 
 .ui-commandlink.ui-state-disabled {
-  color: rgba($commandLinkDisabledTextColor,1) !important;
+  color: rgba($commandLinkDisabledTextColor,1);
   font-size: $largeFontSize;
 }
 
@@ -239,14 +239,6 @@ a.ui-widget:focus {
 }
 
 /* Data table */
-.ui-datatable table tbody tr.ui-datatable-selectable.ui-state-highlight td {
-    background-color: $highlightedTdDataTableBackgroundColor;
-}
-
-.ui-datatable table tbody tr.ui-datatable-selectable.ui-state-hover td {
-    background-color: $hoveredTdDataTableBackGroundColor;
-}
-
 .ui-datatable table thead tr td:not(:last-child),
 .ui-datatable table tbody tr td:not(:last-child) {
     border-right: 1px solid $rightBorderInsideDataTable;
@@ -258,6 +250,14 @@ a.ui-widget:focus {
             th {
               border-top: 1px solid $topBorderOutsideDataTableColor;
               border-bottom: 1px solid $bottomBorderHeaderDataTableColor;
+                .ui-column-title {
+                    color: $primaryTextColor;
+                }
+
+                .ui-sortable-column-icon.ui-icon {
+                    color: $primaryTextColor;
+                }
+
                 &:not(:last-child) {
                     border-right: 1px solid $rightBorderInsideDataTable;
                 }
@@ -267,11 +267,11 @@ a.ui-widget:focus {
                 }
                 
                 &:first-child {
-                    border-left: 1px solid $leftBorderOutsideDataTableColor !important;
+                    border-left: 1px solid $leftBorderOutsideDataTableColor;
                 }
                 
                 &:last-child {
-                    border-right: 1px solid $rightBorderOutsideDataTableColor !important;
+                    border-right: 1px solid $rightBorderOutsideDataTableColor;
                 }
             }
         }
@@ -286,9 +286,6 @@ a.ui-widget:focus {
     tbody {
         tr {
             td {
-              border-top: 1px solid $topBorderBodyDataTableColor !important;
-              border-bottom: 1px solid $bottomBorderOutsideDataTableColor !important;
-                
                 .ui-inputfield {
                     color: $uiInputFieldTdTextColor;
                 }
@@ -320,17 +317,8 @@ a.ui-widget:focus {
     }
 
     .ui-inputfield.ui-widget.ui-state-default.ui-corner-all.hasDatepicker {
-        background-image: linear-gradient(to bottom, $primaryColor, $primaryColor), linear-gradient(to bottom, $inputBorderColor, $inputBorderColor) !important;
+        background-image: linear-gradient(to bottom, $primaryColor, $primaryColor), linear-gradient(to bottom, $inputBorderColor, $inputBorderColor);
     }
-}
-
-.ui-datatable table tbody tr.ui-datatable-even {
-  background-color: $dataTableRowBackgroundColorEven;
-}
-
-.ui-datatable table tbody tr.ui-datatable-odd,
-.ui-datatable table tbody tr.ui-datatable-odd td {
-  background-color: $dataTableRowBackgroundColorOdd;
 }
 
 .ui-state-default.ui-sortable-column {
@@ -341,65 +329,60 @@ body .ui-datatable.ui-datatable-scrollable thead tr th {
   font-size: $largeFontSize;
 }
 
-body .ui-datatable.ui-datatable-scrollable thead tr th.ui-state-active {
+body .ui-datatable thead tr th.ui-state-active .ui-column-title,
+body .ui-datatable thead tr th.ui-state-active .ui-icon,
+body .ui-datatable thead tr th.ui-state-highlight .ui-column-title,
+body .ui-datatable thead tr th.ui-state-highlight .ui-icon {
   color: $accentTextColor;
 }
 
 @media (max-width: 640px) {
   .ui-datatable-reflow .ui-reflow-dropdown {
-    font-size: $largeFontSize !important;
+    font-size: $largeFontSize;
   }
 }
 
 /* Tree table */
 .ui-treetable table {
-  border-collapse: separate !important;
+  border-collapse: separate;
   border: none;
   border-spacing: 0;
 }
 
-.ui-treetable table thead tr th {
+body .ui-widget.ui-treetable table thead tr th {
   border: none;
   padding-left: 10px;
   padding-right: 10px;
   height: 25px;
   text-align: left;
   color: $dataTableRowHeaderColor;
-  background-color: $dataTableRowHeaderBgColor !important;
+  background-color: $dataTableRowHeaderBgColor;
   border-bottom: 1px solid $topBorderOutsideTreeTableColor;
   border-top: 1px solid $bottomBorderOutsideTreeTableColor;
-  border-right: 1px solid $rightBorderOutsideTreeTableColor !important;
-}
-
-.ui-treetable-data tr:nth-child(odd) {
-  background-color: $dataTableRowBackgroundColorEven;
-}
-
-.ui-treetable-data tr:nth-child(even) {
-  background-color: $dataTableRowBackgroundColorOdd;
+  border-right: 1px solid $rightBorderOutsideTreeTableColor;
 }
 
 .ui-treetable table tbody tr td {
     border-right: 1px solid $rightBorderInsideTreeTableColor;
-    border-bottom: 1px solid $bottomBoderBodyTreeTableColor !important;
+    border-bottom: 1px solid $bottomBoderBodyTreeTableColor;
 }
 
-.ui-treetable table tbody tr td:first-child,
-.ui-treetable thead th:first-child {
-  border-left: 1px solid $leftBorderOutsideTreeTableColor !important;
+body .ui-widget.ui-treetable table tbody tr td:first-child,
+body .ui-widget.ui-treetable table thead tr th:first-child {
+  border-left: 1px solid $leftBorderOutsideTreeTableColor;
 }
 
 /* Tree node */
 .ui-tree-container .ui-treenode-content {
   .ui-treenode-label.ui-state-highlight {
-    background-color: transparent !important;
+    background-color: transparent;
   }
   .ui-treenode-label.ui-treenode-outline {
-    outline: 0 solid transparent !important;
+    outline: 0 solid transparent;
   }
   .ui-chkbox.ui-widget.ui-selection {
     .ui-chkbox-icon.ui-icon.ui-icon-check, .ui-chkbox-icon.ui-icon.ui-icon-minus {
-      color: $primaryLightestColor !important;
+      color: $primaryLightestColor;
     }
   }
 }
@@ -412,30 +395,25 @@ body .ui-tree .ui-treenode-content .ui-treenode-label.ui-state-highlight {
 
 .ui-treenode.ui-treenode-parent.ui-treenode-selected,
 .ui-treenode.ui-treenode-parent.ui-treenode-hasselected span.ui-treenode-content.ui-tree-selectable:first-child div.ui-chkbox.ui-widget.ui-selection,
-li.ui-treenode.ui-treenode-selected .ui-chkbox.ui-widget.ui-selection,
-li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child .ui-chkbox.ui-widget.ui-selection,
-li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child .ui-chkbox.ui-widget.ui-selection {
+li.ui-treenode.ui-treenode-selected .ui-chkbox.ui-widget.ui-selection {
   div.ui-chkbox-box.ui-widget.ui-state-default {
     border-color: $primaryColor;
     background-color: $primaryColor;
   }
 }
 
-li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child {
-  .ui-chkbox.ui-widget.ui-selection .ui-chkbox-box.ui-widget.ui-state-default {
-    border-color: $checkboxBorderColor !important;
-    background-color: transparent !important;
-  }
+.ui-treenode.ui-treenode-parent.ui-treenode-hasselected li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child .ui-chkbox.ui-widget.ui-selection .ui-chkbox-box.ui-widget.ui-state-default,
+li.ui-treenode.ui-treenode-unselected span.ui-treenode-content.ui-tree-selectable:first-child .ui-chkbox.ui-widget.ui-selection .ui-chkbox-box.ui-widget.ui-state-default {
+  border-color: $checkboxBorderColor;
+  background-color: transparent;
 }
 
 /* Dialog */
 body {
     .ui-dialog {
-        padding: 0 !important;
-
         .ui-dialog-titlebar {
             border-bottom: 1px solid $lightGrey;
-            padding: 8px 20px !important;
+            padding: 8px 20px;
             color: $uiDialogTitleBarTextColor;
 
             .ui-dialog-title {
@@ -444,7 +422,7 @@ body {
             }
 
             .ui-dialog-content {
-                font-size: $largeFontSize !important;
+                font-size: $largeFontSize;
                 padding: 1rem 2rem 2rem;
             }
         }
@@ -455,36 +433,30 @@ body {
   font-size: 2rem;
 }
 
-.ui-dialog-footer.u-dialog-footer.u-email-dialog-footer {
-  margin-top: 35px !important;
-}
-
 /* Fieldset */
 .ui-fieldset-content table {
   width: 100%;
 }
 
-.ui-fieldset-legend {
-  padding: 0 10px !important;
+body .ui-widget.ui-fieldset .ui-fieldset-legend {
+  padding: 0 10px;
 }
 
 .ui-fieldset-legend.ui-state-hover {
   background-color: $fieldSetLegendHoverColor;
 }
 
-.ui-fieldset-toggler:hover {
-  background-color: $fieldsetToggerHoverBackgroundColor !important;
+body .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler:hover {
+  background-color: $fieldsetToggerHoverBackgroundColor;
 }
 
-.ui-fieldset {
+body .ui-fieldset {
     .ui-fieldset-legend {
-        color: $uiFiedsetLegendTextColor !important;
+        color: $uiFiedsetLegendTextColor;
 
         .ui-fieldset-toggler {
-            background-color: $fieldSetTogglerBackgroundColor !important;
-            color: $uiFieldSetTogglerColor !important;
-            width: 20px;
-            height: 20px;
+            background-color: $fieldSetTogglerBackgroundColor;
+            color: $uiFieldSetTogglerColor;
         }
     }
 }
@@ -542,7 +514,7 @@ body .ui-tabs .ui-tabs-nav>li.ui-state-default:not(.ui-state-active) a {
 /* Layout sidebar*/
 .layout-wrapper .layout-sidebar,
 .layout-main-mask {
-  z-index: 1000 !important;
+  z-index: 1000;
 }
 
 .layout-wrapper .layout-sidebar .layout-menu li > a {
@@ -593,8 +565,8 @@ body .ui-tabs .ui-tabs-nav>li.ui-state-default:not(.ui-state-active) a {
 }
 
 /*Layout topbar*/
-.layout-wrapper .layout-topbar {
-  z-index: 997 !important;
+.layout-wrapper .layout-main .layout-topbar {
+  z-index: 997;
 }
 
 .topbar-container {
@@ -645,25 +617,25 @@ body .ui-tabs .ui-tabs-nav>li.ui-state-default:not(.ui-state-active) a {
 }
 
 .layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu > li > ul {
-    top: 54px !important;
-    border-top: 3px solid $primaryColor !important;
+    top: 54px;
+    border-top: 3px solid $primaryColor;
 }
 
 .layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu > li > ul:before {
-    border-bottom: 15px solid $primaryColor !important;
+    border-bottom: 15px solid $primaryColor;
 }
 
 /* Panels */
 body .ui-panelgrid tbody tr.ui-widget-content {
-    border: none !important;
+    border: none;
 }
 
-.ui-panel .ui-panel-content {
-    padding: 8px !important;
+body .ui-panel .ui-panel-content {
+    padding: 8px;
 }
 
-.ui-panel .ui-panel-titlebar {
-  padding: .3em .3em .3em .5em !important;
+body .ui-panel .ui-panel-titlebar {
+  padding: .3em .3em .3em .5em;
 }
 
 /* Select one list box */
@@ -674,7 +646,7 @@ body .ui-selectonelistbox .ui-selectlistbox-item.ui-state-hover {
 /* Messages */
 .ui-growl-item .ui-growl-message {
   .ui-growl-title {
-    padding: 10px 0px 0px 0px !important;
+    padding: 10px 0px 0px 0px;
   }
 }
 
@@ -726,13 +698,13 @@ body .ui-button .ui-button-text {
   color: $textButtonColor;
 }
 
-.ui-widget.ui-button.ui-state-hover:not(.ui-spinner-button),
+.ui-widget.ui-button.ui-state-hover,
 .ui-widget.ui-buttonset .ui-state-hover,
 body .ui-buttonset .ui-state-active {
-    background-color: $uiButtonHoverBackgroundColor !important;
+    background-color: $uiButtonHoverBackgroundColor;
 }
 
-.ui-widget.ui-button:not(.ui-autocomplete-dropdown):not(.ui-spinner-button) {
+.ui-widget.ui-button {
     .ui-button-text {
         color: $textButtonColor;
     }
@@ -750,21 +722,15 @@ body .ui-buttonset .ui-state-active {
     }
 }
 
+.ui-widget.ui-button.ui-spinner-button.ui-state-hover,
+.ui-widget.ui-button.ui-datepicker-trigger {
+  background-color: $uiTransparentButtonHoverBackgroundColor;
+}
+
 .ui-autocomplete {
     .ui-autocomplete-dropdown {
-        min-width: 18px !important;
+        min-width: 18px;
     }
-}
-
-body .ui-dialog .ui-dialog-footer .ui-button {
-    background-color: $primaryColor;
-}
-
-.ui-widget.ui-datepicker-trigger.ui-button.ui-state-hover,
-.ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-hover,
-.ui-widget.ui-datepicker-trigger.ui-button.ui-state-focus,
-.ui-widget.ui-autocomplete-dropdown.ui-button.ui-state-focus {
-  background-color: $autoCompleteDropdownFocusBackgroundColor !important;
 }
 
 /* Inputs */
@@ -804,21 +770,21 @@ body .ui-inputfield {
 }
 
 body .md-inputfield label:not(.ui-selectonemenu-label) {
-  font-size: $largeFontSize !important;
+  font-size: $largeFontSize;
 }
 
 body .md-inputfield input.ui-state-filled ~ label,
 body .md-inputfield input:focus ~ label{
-  font-size: $smallFontSize !important;
+  font-size: $smallFontSize;
 }
 
 span.ui-inputnumber.ui-widget.ui-state-error {
-  border: 0 !important;
+  border: none;
 }
 
 /* Select Checkbox Menu & Picklist */
 body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-close.ui-state-hover {
-  background: $selectCheckBoxCloseHoverColor !important;
+  background: $selectCheckBoxCloseHoverColor;
   border-radius: 50%;
 }
 .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search,
@@ -871,7 +837,7 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
 }
 
 .ui-autocomplete-input.ui-autocomplete-dd-input {
-  padding-right: 3.4rem !important;
+  padding-right: 3.4rem;
 }
 
 .ui-autocomplete {
@@ -901,65 +867,65 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
 .ui-inplace-content .ui-inplace-editor {
     .ui-button.ui-button-icon-only {
         .ui-icon {
-           font-family: $iconFontFamily !important;
-           font-size: $inplaceEditIconFontSize !important;
-           margin-top: -9px !important;
+           font-family: $iconFontFamily;
+           font-size: $inplaceEditIconFontSize;
+           margin-top: -9px;
         }
     }
 }
 
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check,
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close {
-  background: none repeat scroll 0 0 $uiInplaceBackgroundColor !important;
-  font-size: inherit;
+  background: none repeat scroll 0 0 $uiInplaceBackgroundColor;
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-indent: 0 !important;
 }
 
 /* Accordion */
-.ui-accordion {
+body .ui-accordion {
     .ui-accordion-header {
 
-        &.ui-state-active,
+        &.ui-state-active {
+          color: $primaryTextColor;
+          .ui-icon-triangle-1-e,
+          .ui-icon-triangle-1-s {
+            color: $primaryTextColor;
+          }
+        }
+
         .ui-icon-triangle-1-e,
         .ui-icon-triangle-1-s {
-            color: $primaryTextColor !important;
+            color: $primaryTextColor;
         }
     }
 }
 
 body .ui-accordion .ui-accordion-header {
-  font-size: $largeFontSize !important;
-  background-color: $accordionHeaderBackgroundColor !important;
+  font-size: $largeFontSize;
+  background-color: $accordionHeaderBackgroundColor;
 }
 
-body .ui-accordion .ui-accordion-header.ui-state-active {
-  background-color: $accordionHeaderActiveBackgroundColor !important;
-}
-
-/* Spinner */
-.ui-spinner {
-    .ui-spinner-input {
-        padding-right: 30px !important;
-    }
-
-    .ui-spinner-button {
-        min-width: auto;
-    }
+body .ui-accordion .ui-accordion-header.ui-tabs-outline,
+body .ui-accordion .ui-accordion-header.ui-tabs-outline.ui-state-active,
+body .ui-accordion .ui-accordion-header.ui-tabs-outline.ui-state-focus,
+body .ui-accordion .ui-accordion-header.ui-tabs-outline.ui-state-hover,
+body .ui-accordion .ui-accordion-header.ui-state-active,
+body .ui-accordion .ui-accordion-header.ui-state-focus,
+body .ui-accordion .ui-accordion-header.ui-state-hover {
+  background-color: $accordionHeaderActiveBackgroundColor;
 }
 
 /* File upload */
 @media (max-width: 1024px) {
   .ui-fileupload-files .ui-fileupload-row > div {
-    display: block !important;
+    display: block;
   }
 }
 
 @media screen and (max-width: 40em) {
-  .ui-fileupload-buttonbar .ui-button {
-    padding: 0 14px 0 28px !important;
+  body .ui-fileupload .ui-fileupload-buttonbar .ui-button {
+    padding: 0 14px 0 28px;
   }
 }
 
@@ -973,7 +939,7 @@ body .ui-accordion .ui-accordion-header.ui-state-active {
 }
 
 body .ui-fileupload .ui-fileupload-buttonbar {
-  background-color: $uiFileuploadButtonbarBackgroundColor !important;
+  background-color: $uiFileuploadButtonbarBackgroundColor;
   border: 1px solid $uiFileuploadButtonbarBackgroundColor;
 }
 
@@ -988,7 +954,7 @@ body .ui-inputswitch.ui-inputswitch-checked .ui-inputswitch-handle {
 
 /* Tooltip */
 .ui-tooltip {
-  padding: 0px !important;
+  padding: 0px;
   border-top-right-radius: 5px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
@@ -996,7 +962,7 @@ body .ui-inputswitch.ui-inputswitch-checked .ui-inputswitch-handle {
 
 /* Placeholder */
 :-ms-input-placeholder {
-  color: $placeHolderTextColor !important;
+  color: $placeHolderTextColor;
 }
 
 ::placeholder {
