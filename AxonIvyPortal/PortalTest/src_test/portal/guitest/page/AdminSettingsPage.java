@@ -26,7 +26,7 @@ public class AdminSettingsPage extends TemplatePage {
 
   private void openSettingTab() {
     WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:settingTab']");
-    settingTabLink.click();
+    click(settingTabLink);
     waitForElementPresent(By.id("adminui:adminTabView:settingForm"), true);
     waitAjaxIndicatorDisappear();
   }
@@ -41,7 +41,7 @@ public class AdminSettingsPage extends TemplatePage {
         WebElement keyColumn = columns.get(0);
         if (keyColumn.getText().equals(variableName)) {
           WebElement editButton = row.findElement(By.id("adminui:adminTabView:settingTable:" + (index - 3) + ":edit"));
-          editButton.click();
+          click(editButton);
           waitForElementPresent(By.id("adminui:settingDialogForm"), true);
           saveGlobalVariable(variableValue, isBooleanType);
           return;
@@ -64,18 +64,18 @@ public class AdminSettingsPage extends TemplatePage {
       click(By.id(String.format("adminui:valueSetting_%d", index)));
     }
     WebElement saveButton = findElementById("adminui:save-setting");
-    saveButton.click();
+    click(saveButton);
   }
 
   public void closeAdminSettingDialog() {
     WebElement closeButton = findElementById("close-button");
-    closeButton.click();
+    click(closeButton);
     waitForElementDisplayed(By.id("dialog-closing-information"), true);
   }
 
   public void closeInformConfigDialog() {
     WebElement closeButton = findElementById("close-dialog-button");
-    closeButton.click();
+    click(closeButton);
   }
 
   public void setClientSideTimeout(String timeout) {
@@ -153,7 +153,7 @@ public class AdminSettingsPage extends TemplatePage {
 
   public AnnouncementPage openAnnouncementTab() {
     WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:announcement-tab']");
-    settingTabLink.click();
+    click(settingTabLink);
     waitForElementPresent(By.id("adminui:adminTabView:announcement-tab"), true);
     waitAjaxIndicatorDisappear();
     return new AnnouncementPage();
