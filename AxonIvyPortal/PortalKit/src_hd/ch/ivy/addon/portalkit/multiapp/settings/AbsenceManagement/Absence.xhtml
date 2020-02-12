@@ -8,7 +8,7 @@
   <div id="absence-panel-grid" class="ui-fluid ui-g absence-panel-grid">
     <h:panelGroup layout="block" styleClass="ui-g-12" rendered="#{data.isSupervisor}">
       <div class="md-inputfield">
-        <p:autoComplete scrollHeight="200" dropdown="true" id="username" 
+        <p:autoComplete scrollHeight="200" dropdown="true" id="absence-username" 
           completeMethod="#{logic.autoCompleteForUser}"
           value="#{data.selectedUser}"
           var="user" itemValue="#{user}" itemLabel="#{user.displayName}"
@@ -23,7 +23,7 @@
           <p:ajax event="itemSelect" listener="#{logic.userSelectInAbsence}"
             process="@this comment absence-start-date absence-end-date" update="#{updateComponent}" />
         </p:autoComplete>
-        <p:outputLabel for="username" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}" />
+        <p:outputLabel for="absence-username" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}" />
       </div>
     </h:panelGroup>
     
@@ -34,7 +34,7 @@
           converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
           pattern="#{dateTimePatternBean.datePattern}" required="true"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
-          <p:ajax event="dateSelect" listener="#{logic.dateChange}" process="@this username absence-start-date comment"
+          <p:ajax event="dateSelect" listener="#{logic.dateChange}" process="@this absence-username absence-start-date comment"
             update="#{updateComponent}" />
         </p:calendar>
         <h:outputLabel for="absence-start-date" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/from')}:" />
@@ -47,7 +47,7 @@
           converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
           pattern="#{dateTimePatternBean.datePattern}" required="true"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
-          <p:ajax event="dateSelect" listener="#{logic.dateChange}" process="@this username comment absence-start-date"
+          <p:ajax event="dateSelect" listener="#{logic.dateChange}" process="@this absence-username comment absence-start-date"
             update="#{updateComponent}" />
         </p:calendar>
         <h:outputLabel for="absence-end-date" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/till')}:" />
