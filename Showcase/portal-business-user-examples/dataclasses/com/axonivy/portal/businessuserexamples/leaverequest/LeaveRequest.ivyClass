@@ -1,6 +1,6 @@
-LeaveRequestData #class
+LeaveRequest #class
 ch.ivyteam.ivy.business.data.store.context.BusinessCaseData #classAnnotation
-com.axonivy.portal.businessuserexamples #namespace
+com.axonivy.portal.businessuserexamples.leaverequest #namespace
 approverComment String #field
 approverComment PERSISTENT #fieldModifier
 approverUsername String #field
