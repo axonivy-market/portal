@@ -245,6 +245,9 @@
 
 .task-widget .in-progress-task-checkbox, .case-widget-container .in-progress-task-checkbox {
   padding-left: 2.4px;
+}
+
+_:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-widget-container .in-progress-task-checkbox {
   margin-left: .1rem;
 }
 
@@ -348,7 +351,9 @@
 }
 
 .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer,
-.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer {
+.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer,
+.task-widget .filter-add-panel .ui-overlaypanel-footer,
+.case-widget-container .filter-add-panel .ui-overlaypanel-footer {
   padding: 10px;
   text-align: right;
 }
@@ -363,16 +368,21 @@
   transition: none;
 }
 
+.task-widget .ui-overlaypanel.filter-add-panel.ui-widget-content,
+.case-widget-container .ui-overlaypanel.filter-add-panel.ui-widget-content {
+  padding: 0;
+}
+
 .task-widget .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content,
 .case-widget-container .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content {
   min-width: 140px;
-  padding: 10px !important;
+  padding: 0 !important;
 }
 
 .task-widget .ui-overlaypanel.filter-add-panel .ui-scrollpanel,
 .case-widget-container .ui-overlaypanel.filter-add-panel .ui-scrollpanel {
   border: none;
-  padding: 0px !important;
+  padding: 0.857em 1.5em;
   border-radius: 0;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
