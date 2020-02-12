@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -22,10 +20,6 @@ public final class AbsenceAndSubstituteUtils {
   private AbsenceAndSubstituteUtils() {
   }
 
-  public static Set<IvyAbsence> flatIvyAbsenceMap(Map<String, Set<IvyAbsence>> ivyAbsencesByUser) {
-    return ivyAbsencesByUser.values().stream().flatMap(Set::stream).collect(Collectors.toSet());
-  }
-  
   /**
    * Check validation if from bigger than till
    * 

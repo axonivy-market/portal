@@ -7,7 +7,7 @@ public class AbsencePage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('absence-settings-dialog_title')";
+    return "id('absence-management-dialog_title')";
   }
 
   public NewAbsencePage openNewAbsenceDialog() {
@@ -31,11 +31,4 @@ public class AbsencePage extends TemplatePage {
       waitAjaxIndicatorDisappear();
     }
   }
-
-  public SettingDeputyPage openDeputyDialog() {
-    clickByCssSelector("button[id*='edit-deputy']");
-    waitAjaxIndicatorDisappear();
-    return new SettingDeputyPage();
-  }
-
 }
