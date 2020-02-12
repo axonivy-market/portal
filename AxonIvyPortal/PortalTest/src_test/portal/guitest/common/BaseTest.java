@@ -37,7 +37,7 @@ public class BaseTest {
     if (vmArgPath != null) {
       browserType = BrowserType.valueOf(vmArgPath);
     } else {
-      browserType = BrowserType.IE;
+      browserType = BrowserType.valueOf(PropertyLoader.getBrowserType());
     }
   }
   
