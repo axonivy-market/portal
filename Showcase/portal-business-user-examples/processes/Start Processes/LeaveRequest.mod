@@ -15,10 +15,18 @@ Lt0 @TkArc f4 '' #zField
 Lt0 @UserDialog f2 '' #zField
 Lt0 @PushWFArc f5 '' #zField
 Lt0 @TaskSwitchSimple f7 '' #zField
-Lt0 @TkArc f8 '' #zField
 Lt0 @UserDialog f9 '' #zField
-Lt0 @PushWFArc f10 '' #zField
+Lt0 @TaskSwitchSimple f11 '' #zField
+Lt0 @UserDialog f13 '' #zField
+Lt0 @PushWFArc f14 '' #zField
 Lt0 @PushWFArc f6 '' #zField
+Lt0 @GridStep f15 '' #zField
+Lt0 @PushWFArc f16 '' #zField
+Lt0 @TkArc f12 '' #zField
+Lt0 @GridStep f17 '' #zField
+Lt0 @PushWFArc f19 '' #zField
+Lt0 @TkArc f8 '' #zField
+Lt0 @PushWFArc f10 '' #zField
 >Proto Lt0 Lt0 LeaveRequest #zField
 Lt0 f0 outLink start.ivp #txt
 Lt0 f0 inParamDecl '<> param;' #txt
@@ -40,7 +48,7 @@ Lt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Lt0 f0 @C|.responsibility Everybody #txt
 Lt0 f0 81 49 30 30 -21 17 #rect
 Lt0 f0 @|StartRequestIcon #fIcon
-Lt0 f1 817 49 30 30 0 15 #rect
+Lt0 f1 1369 49 30 30 0 15 #rect
 Lt0 f1 @|EndIcon #fIcon
 Lt0 f3 actionTable 'out=in1;
 ' #txt
@@ -53,6 +61,7 @@ Lt0 f2 dialogId com.axonivy.portal.businessuserexamples.leaverequest.LeaveReques
 Lt0 f2 startMethod start() #txt
 Lt0 f2 requestActionDecl '<> param;' #txt
 Lt0 f2 responseMappingAction 'out=in;
+out.approver=result.approverName;
 ' #txt
 Lt0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -61,32 +70,90 @@ Lt0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Lt0 f2 272 42 144 44 -63 -8 #rect
+Lt0 f2 264 42 144 44 -63 -8 #rect
 Lt0 f2 @|UserDialogIcon #fIcon
-Lt0 f5 207 64 272 64 #arcP
+Lt0 f5 207 64 264 64 #arcP
 Lt0 f7 actionTable 'out=in1;
 ' #txt
-Lt0 f7 taskData 'TaskA.NAM=Leave Request Approval' #txt
-Lt0 f7 473 49 30 30 0 16 #rect
+Lt0 f7 taskData 'TaskA.NAM=<%\=in1.taskName%>
+TaskA.ROL=in1.approver
+TaskA.TYPE=3' #txt
+Lt0 f7 649 49 30 30 0 16 #rect
 Lt0 f7 @|TaskSwitchSimpleIcon #fIcon
-Lt0 f8 416 64 473 64 #arcP
 Lt0 f9 dialogId com.axonivy.portal.businessuserexamples.leaverequest.LeaveRequestApproval #txt
 Lt0 f9 startMethod start() #txt
 Lt0 f9 requestActionDecl '<> param;' #txt
 Lt0 f9 responseMappingAction 'out=in;
+out.isApproved=result.isApproved;
 ' #txt
 Lt0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>LeaveRequestApproval</name>
+        <name>Leave Request Approval</name>
     </language>
 </elementInfo>
 ' #txt
-Lt0 f9 584 42 144 44 -63 -8 #rect
+Lt0 f9 736 42 144 44 -66 -8 #rect
 Lt0 f9 @|UserDialogIcon #fIcon
-Lt0 f10 503 64 584 64 #arcP
-Lt0 f6 728 64 817 64 #arcP
->Proto Lt0 .type com.axonivy.portal.businessuserexamples.LeaveRequestData #txt
+Lt0 f11 actionTable 'out=in1;
+' #txt
+Lt0 f11 taskData 'TaskA.DESC=Approval decision for your leave request.
+TaskA.NAM=<%\=in1.taskName%>' #txt
+Lt0 f11 1113 49 30 30 0 16 #rect
+Lt0 f11 @|TaskSwitchSimpleIcon #fIcon
+Lt0 f13 dialogId com.axonivy.portal.businessuserexamples.leaverequest.LeaveRequestSummary #txt
+Lt0 f13 startMethod start() #txt
+Lt0 f13 requestActionDecl '<> param;' #txt
+Lt0 f13 responseMappingAction 'out=in;
+' #txt
+Lt0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Leave Request Summary</name>
+    </language>
+</elementInfo>
+' #txt
+Lt0 f13 1184 42 144 44 -69 -8 #rect
+Lt0 f13 @|UserDialogIcon #fIcon
+Lt0 f14 1143 64 1184 64 #arcP
+Lt0 f6 1328 64 1369 64 #arcP
+Lt0 f15 actionTable 'out=in;
+' #txt
+Lt0 f15 actionCode 'if(in.isApproved) {
+	in.taskName = "Your leave request is approved";
+}
+else {
+	in.taskName = "Your leave request is rejected";
+}' #txt
+Lt0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Define name for &#13;
+summary task</name>
+    </language>
+</elementInfo>
+' #txt
+Lt0 f15 936 42 128 44 -42 -16 #rect
+Lt0 f15 @|StepIcon #fIcon
+Lt0 f16 880 64 936 64 #arcP
+Lt0 f12 1064 64 1113 64 #arcP
+Lt0 f17 actionTable 'out=in;
+' #txt
+Lt0 f17 actionCode 'in.taskName = "Approval for leave request of " + ivy.session.getSessionUser().getDisplayName();' #txt
+Lt0 f17 security system #txt
+Lt0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Define name for approval task</name>
+    </language>
+</elementInfo>
+' #txt
+Lt0 f17 448 42 176 44 -82 -8 #rect
+Lt0 f17 @|StepIcon #fIcon
+Lt0 f19 408 64 448 64 #arcP
+Lt0 f8 624 64 649 64 #arcP
+Lt0 f10 679 64 736 64 #arcP
+>Proto Lt0 .type com.axonivy.portal.businessuserexamples.leaverequest.LeaveRequestProcessData #txt
 >Proto Lt0 .processKind NORMAL #txt
 >Proto Lt0 0 0 32 24 18 0 #rect
 >Proto Lt0 @|BIcon #fIcon
@@ -94,9 +161,17 @@ Lt0 f0 mainOut f4 tail #connect
 Lt0 f4 head f3 in #connect
 Lt0 f3 out f5 tail #connect
 Lt0 f5 head f2 mainIn #connect
-Lt0 f2 mainOut f8 tail #connect
+Lt0 f11 out f14 tail #connect
+Lt0 f14 head f13 mainIn #connect
+Lt0 f13 mainOut f6 tail #connect
+Lt0 f6 head f1 mainIn #connect
+Lt0 f9 mainOut f16 tail #connect
+Lt0 f16 head f15 mainIn #connect
+Lt0 f15 mainOut f12 tail #connect
+Lt0 f12 head f11 in #connect
+Lt0 f2 mainOut f19 tail #connect
+Lt0 f19 head f17 mainIn #connect
+Lt0 f17 mainOut f8 tail #connect
 Lt0 f8 head f7 in #connect
 Lt0 f7 out f10 tail #connect
 Lt0 f10 head f9 mainIn #connect
-Lt0 f9 mainOut f6 tail #connect
-Lt0 f6 head f1 mainIn #connect
