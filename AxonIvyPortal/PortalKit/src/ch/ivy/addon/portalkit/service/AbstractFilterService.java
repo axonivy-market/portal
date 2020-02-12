@@ -95,7 +95,9 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
   }
 
   public boolean isDeleteFilterEnabledFor(T filterData) {
-    if (FilterType.ONLY_ME.equals(filterData.getType())) {
+    if (FilterType.DEFAULT.equals(filterData.getType())) {
+      return false;
+    } else if (FilterType.ONLY_ME.equals(filterData.getType())) {
       return true;
     } else {
       boolean isOwnerOfFilter =

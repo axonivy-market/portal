@@ -56,6 +56,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   protected List<CaseFilter> selectedFilters;
   protected CaseFilterContainer filterContainer;
   protected CaseFilterData selectedFilterData;
+  protected CaseFilterData defaultCaseFilterData;
   protected boolean isNotKeepFilter = false;
 
   protected List<String> allColumns = new ArrayList<>();
@@ -68,6 +69,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   private CaseFilter selectedCaseFilter;
   
   protected boolean disableCaseCount;
+  protected Boolean isSelectedDefaultFilter;
 
   public CaseLazyDataModel() {
     this("case-widget");
@@ -81,8 +83,25 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     buildCriteria();
     setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
     selectedFilterData = UserUtils.getSessionSelectedCaseFilterSetAttribute();
+    isSelectedDefaultFilter = UserUtils.getSessionSelectedDefaultCaseFilterSetAttribute();
+    if (isSelectedDefaultFilter == null) {
+      buildDefaultCaseFilterData();
+    }
   }
   
+  public CaseFilterData buildDefaultCaseFilterData() {
+    if (defaultCaseFilterData == null) {
+      defaultCaseFilterData = new CaseFilterData();
+      DefaultCaseFilterContainer filterContainer = new DefaultCaseFilterContainer();
+      defaultCaseFilterData.setFilterName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultFilter"));
+      defaultCaseFilterData.setType(FilterType.DEFAULT);
+      defaultCaseFilterData.setFilters(
+          filterContainer.getFilters().stream().filter(CaseFilter::defaultFilter).collect(Collectors.toList()));
+    }
+    isSelectedDefaultFilter = isSelectedDefaultFilter == null ? true : isSelectedDefaultFilter;
+    return defaultCaseFilterData;
+  }
+
   public void updateDisableCaseCount() {
     disableCaseCount = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_CASE_COUNT.toString());
   }
@@ -165,6 +184,15 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     }
     resetFilterData();
   }
+  
+  public void updateSelectedFilter() {
+    resetFilterData();
+    storeCaseFiltersIntoSession();
+  }
+  
+  public void onFilterApply() {
+    resetFilterData();
+  }
 
   public void onKeywordChange() {
     resetFilterData();
@@ -174,6 +202,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     if (this.selectedFilterData != null) {
       this.selectedFilterData = null;
     }
+    this.isSelectedDefaultFilter = false;
   }
 
   public void removeFilter(CaseFilter filter) {
@@ -219,6 +248,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
    * @return saved CaseFilterData
    */
   public CaseFilterData saveFilter(String filterName, FilterType filterType, Long filterGroupId) {
+    isSelectedDefaultFilter = false;
     CaseFilterData filterData = new CaseFilterData();
     List<CaseFilter> filtersToSave = new ArrayList<>(selectedFilters);
     filterData.setFilters(filtersToSave);
@@ -241,6 +271,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
    * @throws ReflectiveOperationException
    */
   public void applyFilter(CaseFilterData caseFilterData) throws ReflectiveOperationException {
+    isSelectedDefaultFilter = FilterType.DEFAULT.equals(caseFilterData.getType());
     selectedFilterData = caseFilterData;
     new CaseFilterService().applyFilter(this, caseFilterData);
     applyCustomSettings(caseFilterData);
@@ -327,6 +358,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   private void storeCaseFiltersIntoSession() {
     if (!isNotKeepFilter) {
+      UserUtils.setSessionSelectedDefaultCaseFilterSetAttribute(isSelectedDefaultFilter);
       UserUtils.setSessionSelectedCaseFilterSetAttribute(selectedFilterData);
       UserUtils.setSessionCaseKeywordFilterAttribute(criteria.getKeyword());
       UserUtils.setSessionCaseAdvancedFilterAttribute(selectedFilters);
@@ -397,6 +429,8 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
           }
         }
       }
+    } else if (defaultCaseFilterData != null) {
+      selectedFilters.addAll(defaultCaseFilterData.getFilters());
     }
   }
 
@@ -634,4 +668,21 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   public void setDisableCaseCount(boolean disableCaseCount) {
     this.disableCaseCount = disableCaseCount;
   }
+
+  public CaseFilterData getDefaultCaseFilterData() {
+    return defaultCaseFilterData;
+  }
+
+  public void setDefaultCaseFilterData(CaseFilterData defaultCaseFilterData) {
+    this.defaultCaseFilterData = defaultCaseFilterData;
+  }
+
+  public boolean isSelectedDefaultFilter() {
+    return isSelectedDefaultFilter;
+  }
+
+  public void setSelectedDefaultFilter(boolean isSelectedDefaultFilter) {
+    this.isSelectedDefaultFilter = isSelectedDefaultFilter;
+  }
+
 }
