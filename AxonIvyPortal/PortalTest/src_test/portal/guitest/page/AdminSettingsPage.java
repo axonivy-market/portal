@@ -74,8 +74,9 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   public void closeInformConfigDialog() {
-    WebElement closeButton = findElementById("close-dialog-button");
-    click(closeButton);
+    String closeButtonId = "close-dialog-button";
+    click(findElementById(closeButtonId));
+    waitForElementDisplayed(By.id(closeButtonId), false);
   }
 
   public void setClientSideTimeout(String timeout) {
