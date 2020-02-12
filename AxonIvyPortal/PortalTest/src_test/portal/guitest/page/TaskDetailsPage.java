@@ -26,14 +26,14 @@ public class TaskDetailsPage extends TemplatePage {
 
 
   public void changePriorityOfTask(int priorityValue) {
-    findElementById("task-detail-template:general-information:priority-form:edit-priority-inplace_display").click();
+    click(findElementById("task-detail-template:general-information:priority-form:edit-priority-inplace_display"));
     waitForElementDisplayed(By.id("task-detail-template:general-information:priority-form:priority-select-menu_label"),
         true);
-    findElementById("task-detail-template:general-information:priority-form:priority-select-menu_label").click();
+    click(findElementById("task-detail-template:general-information:priority-form:priority-select-menu_label"));
     WebElement prioritySelectElement = findElementById(
         String.format("task-detail-template:general-information:priority-form:priority-select-menu_%d", priorityValue));
     waitForElementDisplayed(prioritySelectElement, true);
-    prioritySelectElement.click();
+    click(prioritySelectElement);
     clickByCssSelector(
         "#task-detail-template\\:general-information\\:priority-form\\:edit-priority-inplace_editor .ui-inplace-save");
     waitAjaxIndicatorDisappear();
