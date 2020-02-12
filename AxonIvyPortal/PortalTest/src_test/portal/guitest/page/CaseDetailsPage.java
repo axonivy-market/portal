@@ -272,6 +272,7 @@ public class CaseDetailsPage extends TemplatePage {
       robot.keyPress(KeyEvent.VK_V);
       robot.keyRelease(KeyEvent.VK_V);
       robot.keyRelease(KeyEvent.VK_CONTROL);
+      robot.delay(1000); //Firefox driver needs this, IE does not need it
       robot.keyPress(KeyEvent.VK_ENTER);
       robot.keyRelease(KeyEvent.VK_ENTER);
     } catch (AWTException e) {
