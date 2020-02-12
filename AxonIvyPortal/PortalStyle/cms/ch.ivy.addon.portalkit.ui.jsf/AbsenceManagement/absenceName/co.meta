@@ -1,5 +1,0 @@
-co: name={absenceName} description={} changed={2020-01-22 05:30:34 CET} changedby={chnam} visualorder={0} guid={16FCB83AD735EE01} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={16FCB842A3E6D716} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-22 05:30:23 CET} validto={} changed={2020-01-22 05:30:34 CET} changedby={chnam} properties={} id={}
-val: guid={16FCB842975C3AC8} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-22 05:30:19 CET} validto={} changed={2020-01-22 05:30:33 CET} changedby={chnam} properties={} id={}
-val: guid={16FCB83AD77676DD} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-22 05:30:02 CET} validto={} changed={2020-01-22 05:30:02 CET} changedby={chnam} properties={} id={}
-val: guid={16FCB842A49E42BC} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-22 05:30:15 CET} validto={} changed={2020-01-22 05:30:34 CET} changedby={chnam} properties={} id={}
