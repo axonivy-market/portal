@@ -24,7 +24,9 @@ Ls0 @PushWFArc f12 '' #zField
 Ls0 f0 guid 1703362EB2862C15 #txt
 Ls0 f0 method start() #txt
 Ls0 f0 inParameterDecl '<> param;' #txt
-Ls0 f0 outParameterDecl '<> result;' #txt
+Ls0 f0 outParameterDecl '<Boolean isApproved> result;' #txt
+Ls0 f0 outParameterMapAction 'result.isApproved=in.leaveRequestData.isApproved;
+' #txt
 Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -38,6 +40,7 @@ Ls0 f1 339 51 26 26 0 12 #rect
 Ls0 f1 @|UdProcessEndIcon #fIcon
 Ls0 f3 guid 1703362EB326CA89 #txt
 Ls0 f3 actionTable 'out=in;
+out.leaveRequestData.isApproved=true;
 ' #txt
 Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -53,8 +56,8 @@ Ls0 f4 @|UdExitEndIcon #fIcon
 Ls0 f6 actionTable 'out=in;
 ' #txt
 Ls0 f6 actionCode 'import ch.ivy.addon.portalkit.dto.UserDTO;
-import com.axonivy.portal.businessuserexamples.LeaveRequestData;
-in.leaveRequestData = ivy.repo.get(LeaveRequestData.class) as LeaveRequestData;
+import com.axonivy.portal.businessuserexamples.leaverequest.LeaveRequest;
+in.leaveRequestData = ivy.repo.get(LeaveRequest.class) as LeaveRequest;
 
 in.requester = new UserDTO(ivy.session.getSecurityContext().findUser(in.leaveRequestData.requesterUsername));
 in.approver = new UserDTO(ivy.session.getSecurityContext().findUser(in.leaveRequestData.approverUsername));' #txt
@@ -72,6 +75,7 @@ Ls0 f7 109 64 168 64 #arcP
 Ls0 f2 280 64 339 64 #arcP
 Ls0 f8 guid 1703877F503D6F8C #txt
 Ls0 f8 actionTable 'out=in;
+out.leaveRequestData.isApproved=false;
 ' #txt
 Ls0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
