@@ -30,48 +30,23 @@ public class BaseTest {
 
   private String designerLogoutUrl = "http://localhost:8081/ivy/wf/logout.jsp";
   private final static String LOGIN_URL_PATTERN = "portalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
-  private BrowserType browserType = BrowserType.FIREFOX;
-  private String ieDriverPath = getInternetExprorerDriverPath();
-  private String fireFoxDriverPath = getFireFoxDriverPath();
+  private BrowserType browserType;
 
+  public BaseTest() {
+    String vmArgPath = System.getProperty("browserType");
+    if (vmArgPath != null) {
+      browserType = BrowserType.valueOf(vmArgPath);
+    } else {
+      browserType = BrowserType.IE;
+    }
+  }
+  
   public Browser getBrowser() {
     return browser;
   }
   
   public void setBrowser(Browser browser) {
     this.browser = browser;
-  }
-  
-  public String getIeDriverPath() {
-    return ieDriverPath;
-  }
-
-  public void setIeDriverPath(String ieDriverPath) {
-    this.ieDriverPath = ieDriverPath;
-  }
-
-  private String getInternetExprorerDriverPath() {
-    String vmArgPath = System.getProperty("ieDriverPath");
-    if (vmArgPath != null) {
-      return vmArgPath;
-    }
-    return "./resources/IEDriverServer.exe";
-  }
-  
-  public String getFireFoxPath() {
-    return fireFoxDriverPath;
-  }
-
-  public void setFireFoxDriverPath(String fireFoxDriverPath) {
-    this.fireFoxDriverPath = fireFoxDriverPath;
-  }
-
-  private String getFireFoxDriverPath() {
-    String vmArgPath = System.getProperty("fireFoxDriverPath");
-    if (vmArgPath != null) {
-      return vmArgPath;
-    }
-    return "./resources/GeckoFireFoxDriver.exe";
   }
   
   protected String createTestingTasksUrl = "portalExamples/162511D2577DBA88/CategoriedLeaveRequest.ivp";
@@ -102,7 +77,7 @@ public class BaseTest {
 
   public void launchBrowserAndGotoRelativeLink(String relativeProcessStartLink) {
     try {
-      browser.launch(browserType, UrlHelpers.generateAbsoluteProcessStartLink(relativeProcessStartLink), fireFoxDriverPath);
+      browser.launch(browserType, UrlHelpers.generateAbsoluteProcessStartLink(relativeProcessStartLink), getDriverPath());
     } catch (Exception e) {
       throw new PortalGUITestException(e);
     }
@@ -118,7 +93,7 @@ public class BaseTest {
 
   public void launchBrowserAndLogoutInDesigner() {
     try {
-      browser.launch(browserType, designerLogoutUrl, ieDriverPath);
+      browser.launch(browserType, designerLogoutUrl, getDriverPath());
     } catch (Exception e) {
       throw new PortalGUITestException(e);
     }
@@ -225,4 +200,9 @@ public class BaseTest {
       e.printStackTrace();
     }
   }
+  
+  private String getDriverPath() {
+    return browserType.getConfiguration().getDriverPath();
+  }
+
 }
