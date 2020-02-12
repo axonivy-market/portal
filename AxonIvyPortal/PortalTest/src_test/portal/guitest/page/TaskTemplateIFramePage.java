@@ -30,7 +30,7 @@ public class TaskTemplateIFramePage extends TemplatePage {
 
 	public void approveInvestmentTask() {
 		waitForElementDisplayed(By.xpath("//label[contains(text(),'Approve')]"), true);
-		findElementByXpath("//label[contains(text(),'Approve')]").click();
+		click(findElementByXpath("//label[contains(text(),'Approve')]"));
 		type(By.cssSelector("textarea[id$='approval-note']"), "text");
 		clickByCssSelector("button[id$='approve-btn']");
 		switchOutIFrame();
@@ -39,7 +39,7 @@ public class TaskTemplateIFramePage extends TemplatePage {
 
 	public void proceedTaskInCaseLevelIFrame() {
 		waitForElementDisplayed(By.xpath("//span[contains(text(),'Proceed')]"), true);
-		findElementByXpath("//span[contains(text(),'Proceed')]").click();
+		click(findElementByXpath("//span[contains(text(),'Proceed')]"));
 		switchOutIFrame();
 		waitAjaxIndicatorDisappear();
 	}
@@ -55,7 +55,7 @@ public class TaskTemplateIFramePage extends TemplatePage {
 		waitForElementDisplayed(By.xpath("//span[contains(text(),'Proceed')]"), true);
 		type(By.cssSelector("input[id$='form:input']"), "input text");
 		type(By.cssSelector("textarea[id$='form:comment-area']"), "comment");
-		findElementByXpath("//span[contains(text(),'Proceed')]").click();
+		click(findElementByXpath("//span[contains(text(),'Proceed')]"));
 		switchOutIFrame();
 		waitAjaxIndicatorDisappear();
 	}
@@ -64,7 +64,7 @@ public class TaskTemplateIFramePage extends TemplatePage {
 		waitForElementDisplayed(By.xpath("//span[contains(text(),'Proceed')]"), true);
 		type(By.cssSelector("input[id$='form:input']"), "input text");
 		type(By.cssSelector("textarea[id$='form:comment-area']"), "comment");
-		findElementByXpath("//span[contains(text(),'Proceed')]").click();
+		click(findElementByXpath("//span[contains(text(),'Proceed')]"));
 		switchOutIFrame();
 		waitAjaxIndicatorDisappear();
 	}
