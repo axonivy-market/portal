@@ -1,0 +1,8 @@
+ApproveData #class
+com.axonivy.portal.developerexamples.testdata.Approve #namespace
+selectedInvestment com.axonivy.portal.developerexamples.Investment #field
+selectedInvestment PERSISTENT #fieldModifier
+isApproved Boolean #field
+isApproved PERSISTENT #fieldModifier
+note String #field
+note PERSISTENT #fieldModifier

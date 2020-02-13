@@ -11,12 +11,12 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.ProcessHistoryPage;
 
 public class ProcessHistoryTest extends BaseTest {
-  private static final String CREATE_ALPHA_COMPANY_CASE_LINK = "portalExamples/1624C1C79661758C/createAlphaCompany.ivp";
-  private static final String CREATE_BETA_COMPANY_CASE_LINK = "portalExamples/1624C1C79661758C/createBetaCompany.ivp";
+  private static final String CREATE_ALPHA_COMPANY_CASE_LINK = "portal-developer-examples/1624C1C79661758C/createAlphaCompany.ivp";
+  private static final String CREATE_BETA_COMPANY_CASE_LINK = "portal-developer-examples/1624C1C79661758C/createBetaCompany.ivp";
   private static final String DISPLAY_PROCESS_HISTORY_ALPHA_COMPANY_PAGE =
-      "portalExamples/1624C1C79661758C/viewProcessHistoryOfAlphaCompany.ivp";
+      "portal-developer-examples/1624C1C79661758C/viewProcessHistoryOfAlphaCompany.ivp";
   private static final String DISPLAY_PROCESS_HISTORY_BETA_COMPANY_PAGE =
-      "portalExamples/1624C1C79661758C/viewProcessHistoryOfBetaCompany.ivp";
+      "portal-developer-examples/1624C1C79661758C/viewProcessHistoryOfBetaCompany.ivp";
 
   @Override
   @Before
