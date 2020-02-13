@@ -30,6 +30,7 @@ import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserSubstitute;
+import ch.ivyteam.ivy.security.SubstitutionType;
 
 public class SubstituteService implements ISubstituteService {
 
@@ -56,8 +57,11 @@ public class SubstituteService implements ISubstituteService {
       List<Application> applications = new ApplicationDao().findByNames(apps);
       apps.stream().forEach(appName -> {
         try {
-          String appDisplayName = applications.stream().filter(app -> StringUtils.equals(app.getName(), appName))
-              .map(ApplicationMultiLanguage::getDisplayNameInCurrentLocale).findFirst().orElse(appName);
+          String appDisplayName = applications.stream()
+              .filter(app -> StringUtils.equals(app.getName(), appName))
+              .map(ApplicationMultiLanguage::getDisplayNameInCurrentLocale)
+              .findFirst()
+              .orElse(appName);
           IApplication application = ServiceUtilities.findApp(appName);
           IUser user = ServiceUtilities.findUser(username, application);
           ivySubstitutesByApp.put(ServiceUtilities.toIvyApplication(appName, appDisplayName), getIvySubstitutes(user));
@@ -65,6 +69,40 @@ public class SubstituteService implements ISubstituteService {
           errors.add(e);
         } catch (Exception ex) {
           Ivy.log().error("Error in getting substitutes of user {0} within app {1}", ex, username, appName);
+          errors.add(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_SUBSTITUTE.toString()));
+        }
+      });
+      result.setErrors(errors);
+      result.setIvySubstitutesByApp(ivySubstitutesByApp);
+      return result;
+    });
+  }
+  
+  @Override
+  public IvySubstituteResultDTO findSubstitutions(String username, List<String> apps) {
+    return IvyExecutor.executeAsSystem(() -> { 
+      IvySubstituteResultDTO result = new IvySubstituteResultDTO();
+      if (CollectionUtils.isEmpty(apps)) {
+        return result;
+      }
+
+      List<PortalIvyDataException> errors = new ArrayList<>();
+      Map<IvyApplication, List<IvySubstitute>> ivySubstitutesByApp = new HashMap<>();
+      List<Application> applications = new ApplicationDao().findByNames(apps);
+      apps.stream().forEach(appName -> {
+        try {
+          String appDisplayName = applications.stream()
+              .filter(app -> StringUtils.equals(app.getName(), appName))
+              .map(ApplicationMultiLanguage::getDisplayNameInCurrentLocale)
+              .findFirst()
+              .orElse(appName);
+          IApplication application = ServiceUtilities.findApp(appName);
+          IUser user = ServiceUtilities.findUser(username, application);
+          ivySubstitutesByApp.put(ServiceUtilities.toIvyApplication(appName, appDisplayName), getIvySubstitutions(user));
+        } catch (PortalIvyDataException e) {
+          errors.add(e);
+        } catch (Exception ex) {
+          Ivy.log().error("Error in getting substitutions of user {0} within app {1}", ex, username, appName);
           errors.add(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_SUBSTITUTE.toString()));
         }
       });
@@ -95,6 +133,13 @@ public class SubstituteService implements ISubstituteService {
     return substitutes;
   }
   
+  private List<IvySubstitute> getIvySubstitutions(IUser user) {
+    return user.getSubstitutions()
+        .stream()
+        .map(this::getIvySubstitute)
+        .collect(Collectors.toList());
+  }
+  
   private IvySubstitute createPersonalSubstitute() {
     return new IvySubstitute();
   }
@@ -122,6 +167,8 @@ public class SubstituteService implements ISubstituteService {
     }
     ivySubstitute.setSubstituteUser(new UserDTO(userSubstitute.getSubstituteUser()));
     ivySubstitute.setDescription(userSubstitute.getDescription());
+    ivySubstitute.setSubstitutionType(userSubstitute.getSubstitutionType());
+    ivySubstitute.setOwnerUser(userSubstitute.getUser());
     return ivySubstitute;
   }
 
@@ -156,7 +203,11 @@ public class SubstituteService implements ISubstituteService {
     for (IvySubstitute ivySubstitute : substitutes) {
       if (ivySubstitute.getSubstituteUser() != null) {
         IUser iUser = ServiceUtilities.findUser(ivySubstitute.getSubstituteUser().getName(), Ivy.request().getApplication());
-        user.createSubstitute(iUser, ivySubstitute.getSubstitionRole(), ivySubstitute.getDescription());
+        if (ivySubstitute.getSubstitionRole() == null) {
+          user.createSubstitute(iUser, "", ivySubstitute.getSubstitutionType());
+        } else {
+          user.createSubstitute(iUser, ivySubstitute.getSubstitionRole(), "");
+        }
       }
     }
   }
@@ -166,5 +217,4 @@ public class SubstituteService implements ISubstituteService {
       user.deleteSubstitute(userSubstitute);
     }
   }
-
 }
