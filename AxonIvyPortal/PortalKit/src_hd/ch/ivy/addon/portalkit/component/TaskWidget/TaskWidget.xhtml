@@ -67,7 +67,7 @@
           <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container">
             <h:panelGroup id="filter-selection-panel" layout="block">
               <p:commandLink id="filter-name" styleClass="filter-name" global="false">
-                <span>#{data.dataModel.isSelectedDefaultFilter() ? '' : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/savedFilters')} </span>
+                <span>#{ivy.cms.co(data.dataModel.isSelectedDefaultFilter() or data.dataModel.selectedTaskFilterData == null ? '/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter' : '/ch.ivy.addon.portalkit.ui.jsf/components/taskView/savedFilters')} </span>
                 <span>#{data.dataModel.isSelectedDefaultFilter() ? data.dataModel.defaultTaskFilterData.filterName : data.dataModel.selectedTaskFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedTaskFilterData.filterName}</span>
               </p:commandLink>
               <p:overlayPanel id="filter-name-overlay-panel" styleClass="filter-name-overlay-panel" for="filter-name"
@@ -150,7 +150,8 @@
                   <p:scrollPanel styleClass="filter-selector-container" mode="native">
                     <p:selectManyCheckbox id="filter-selection" layout="pageDirection"
                       value="#{data.dataModel.selectedFilters}"
-                      converter="pojoConverter">
+                      converter="pojoConverter"
+                      valueChangeListener="#{data.dataModel.onFilterChange}">
                       <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
                         itemValue="#{filter}" />
                     </p:selectManyCheckbox>
@@ -166,7 +167,7 @@
                   <h:panelGroup id="add-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer">
                     <p:commandButton id="update-filter-selected-command"
                       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-                      update="@(.advanced-filter-container) @(.filter-selection-form)"
+                      update="@(.advanced-filter-container) @(.filter-selection-form) @(.task-view-container)"
                       oncomplete="taskWidget.setupScrollbar();"
                       process="@(filter-add-form)"
                       actionListener="#{data.dataModel.updateSelectedFilter}">
@@ -183,7 +184,8 @@
             </h:panelGroup>
 
             <!-- Reset filter button -->
-            <h:panelGroup id="filter-reset-container" style="order: 1001" rendered="#{data.dataModel.selectedTaskFilterData == null and !data.dataModel.isSelectedDefaultFilter()}">
+            <h:panelGroup id="filter-reset-container" style="order: 1001" rendered="#{data.dataModel.selectedTaskFilterData == null and !data.dataModel.isSelectedDefaultFilter()}" 
+              styleClass="filter-buttons-container">
               <p:commandButton id="filter-reset-action"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" styleClass="filter-add-button"
                 icon="fa fa-refresh" iconPos="right" oncomplete="PF('reset-filter-set-dialog').show();" />
@@ -270,7 +272,7 @@
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/restoreDefaultFilterMessage')}">
       <p:commandButton id="filter-reset-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
         partialSubmit="true" immediate="true"
-        actionListener="#{logic.restoreDefaultFilterSet}" update="@(.advanced-filter-container) @(.filter-add-container) @(.filter-selection-form) @(.task-view-container)"
+        actionListener="#{logic.restoreDefaultFilterSet}" update="@(.advanced-filter-container) @(.filter-selection-form) @(.task-view-container)"
         oncomplete="PF('reset-filter-set-dialog').hide()">
       </p:commandButton>
       <p:spacer width="5px" />

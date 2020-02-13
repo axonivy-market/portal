@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import javax.faces.event.ValueChangeEvent;
 
@@ -28,6 +29,7 @@ import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisTaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
+import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
@@ -48,11 +50,13 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   private static final String TASK_COLUMN_PREFIX = "TASK_";
 
   private TaskAnalysisFilterData selectedTaskAnalysisFilterData;
+  private TaskAnalysisFilterData defaultTaskAnalysisFilterData;
 
   private CaseSearchCriteria caseCriteria;
-  protected List<CaseFilter> caseFilters;
-  protected List<CaseFilter> selectedCaseFilters;
-  protected CaseFilterContainer caseFilterContainer;
+  private List<CaseFilter> caseFilters;
+  private List<CaseFilter> selectedCaseFilters;
+  private List<CaseFilter> oldSelectedCaseFilters;
+  private CaseFilterContainer caseFilterContainer;
 
   public TaskAnalysisLazyDataModel() {
     super();
@@ -60,8 +64,26 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     selectedCaseFilters = new ArrayList<>();
     buildCaseCriteria();
     setInvolvedApplicationsForCaseCriteria();
+    if (isSelectedDefaultFilter == null) {
+      buildDefaultTaskAnalysisFilterData();
+    }
   }
-  
+
+  public TaskAnalysisFilterData buildDefaultTaskAnalysisFilterData() {
+    if (defaultTaskAnalysisFilterData == null) {
+      defaultTaskAnalysisFilterData = new TaskAnalysisFilterData();
+      defaultTaskAnalysisFilterData.setFilterName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultFilter"));
+      defaultTaskAnalysisFilterData.setType(FilterType.DEFAULT);
+    }
+    isSelectedDefaultFilter = isSelectedDefaultFilter == null ? true : isSelectedDefaultFilter;
+    return defaultTaskAnalysisFilterData;
+  }
+
+  @Override
+  public TaskFilterData buildDefaultTaskFilterData() {
+    return null;
+  }
+
   @Override
   protected void initFilterContainer() {
     filterContainer = new TaskAnalysisTaskFilterContainer();
@@ -126,18 +148,23 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   public void setSelectedTaskAnalysisFilterData(TaskAnalysisFilterData selectedTaskAnalysisFilterData) {
     this.selectedTaskAnalysisFilterData = selectedTaskAnalysisFilterData;
   }
-
+  
+  @Override
+  public void onFilterApply() {
+    updateSelectedFilter();
+  }
   @Override
   public void removeFilter(TaskFilter filter) {
     filter.resetValues();
     selectedFilters.remove(filter);
+    updateSelectedFilter();
   }
 
   public void removeFilter(CaseFilter filter) {
     filter.resetValues();
     selectedCaseFilters.remove(filter);
+    updateSelectedFilter();
   }
-  
 
   @Override
   public void resetFilters() {
@@ -184,6 +211,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
    * @throws ReflectiveOperationException
    */
   public void applyFilter(TaskAnalysisFilterData taskAnalysisFilterData) throws ReflectiveOperationException {
+    isSelectedDefaultFilter = FilterType.DEFAULT.equals(taskAnalysisFilterData.getType());
     selectedTaskAnalysisFilterData = taskAnalysisFilterData;
     new TaskAnalysisFilterService().applyFilter(this, taskAnalysisFilterData);
     applyCustomSettings(taskAnalysisFilterData);
@@ -326,24 +354,58 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   public void initFilters() throws ReflectiveOperationException {
     super.initFilters();
     initCaseFilters();
+    if (isNotKeepFilter) {
+      applyFilter(defaultTaskAnalysisFilterData);
+    }
+  }
+
+  @Override
+  public void collectFiltersForDefaultFilterSet() {
+    if (defaultTaskAnalysisFilterData != null) {
+      if (CollectionUtils.isEmpty(defaultTaskAnalysisFilterData.getTaskFilters())) {
+        TaskAnalysisTaskFilterContainer taskFilterContainer = new TaskAnalysisTaskFilterContainer();
+        defaultTaskAnalysisFilterData.setTaskFilters(taskFilterContainer.getFilters().stream().filter(TaskFilter::defaultFilter).collect(Collectors.toList()));
+      }
+  
+      if (CollectionUtils.isEmpty(defaultTaskAnalysisFilterData.getCaseFilters())) {
+        TaskAnalysisCaseFilterContainer caseFilterContainer = new TaskAnalysisCaseFilterContainer();
+        defaultTaskAnalysisFilterData.setCaseFilters(caseFilterContainer.getFilters().stream().filter(CaseFilter::defaultFilter).collect(Collectors.toList()));
+      }
+    }
   }
   
+  @Override
+  public void checkToApplyDefaultSet() {
+    if (isNotKeepFilter && defaultTaskAnalysisFilterData != null) {
+      selectedFilters.addAll(defaultTaskAnalysisFilterData.getTaskFilters());
+    }
+  }
+
   private void setValuesForCaseStateFilter(CaseSearchCriteria criteria) {
     if (caseFilterContainer != null) {
       caseFilterContainer.getStateFilter().setFilteredStates(new ArrayList<>(criteria.getIncludedStates()));
       caseFilterContainer.getStateFilter().setSelectedFilteredStates(criteria.getIncludedStates());
     }
   }
-  
+
   @SuppressWarnings("unchecked")
   public void onCaseFilterChange(ValueChangeEvent event) {
-    List<CaseFilter> oldSelectedFilters = (List<CaseFilter>) event.getOldValue();
-    List<CaseFilter> newSelectedFilters = (List<CaseFilter>) event.getNewValue();
+    oldSelectedCaseFilters = (List<CaseFilter>) event.getOldValue();
+  }
+
+  @SuppressWarnings("unchecked")
+  @Override
+  public void updateSelectedFilter() {
+    super.updateSelectedFilter();
     List<CaseFilter> toggleFilters =
-        (List<CaseFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
+        (List<CaseFilter>) CollectionUtils.subtract(selectedCaseFilters, oldSelectedCaseFilters);
     if (CollectionUtils.isNotEmpty(toggleFilters)) {
-      toggleFilters.get(0).resetValues();
+      toggleFilters.forEach(filter -> filter.resetValues());
     }
+    if (selectedTaskAnalysisFilterData != null) {
+      selectedTaskAnalysisFilterData = null;
+    }
+    this.isSelectedDefaultFilter = false;
   }
 
   public List<CaseFilter> getSelectedCaseFilters() {
@@ -381,6 +443,8 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
           copyProperties(sessionCaseFilter, filter);
         }
       }
+    } else if (defaultTaskAnalysisFilterData != null) {
+      selectedCaseFilters.addAll(defaultTaskAnalysisFilterData.getCaseFilters());
     }
   }
 
@@ -404,4 +468,13 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
       restoreSessionAdvancedCaseFilters();
     }
   }
+
+  public TaskAnalysisFilterData getDefaultTaskAnalysisFilterData() {
+    return defaultTaskAnalysisFilterData;
+  }
+
+  public void setDefaultTaskAnalysisFilterData(TaskAnalysisFilterData defaultTaskAnalysisFilterData) {
+    this.defaultTaskAnalysisFilterData = defaultTaskAnalysisFilterData;
+  }
+
 }
