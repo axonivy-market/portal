@@ -16,13 +16,13 @@
         <h4>Request</h4>
 
         <h:panelGrid columns="2" width="250">
-          <p:outputLabel value="Amount" />
+          <p:outputLabel value="#{ivy.cms.co('/Labels/CaseMap/Credit/approvalAmount')}" />
           <h:outputText value="#{data.dossier.request.amount}" />
-          <p:outputLabel value="Yearly salary" />
+          <p:outputLabel value="#{ivy.cms.co('/Labels/CaseMap/Credit/salary')}" />
           <h:outputText value="#{data.dossier.request.salary}" />
-          <p:outputLabel value="Reason" />
+          <p:outputLabel value="#{ivy.cms.co('/Labels/CaseMap/Credit/approvalReason')}" />
           <h:outputText value="#{data.dossier.request.reason}" />
-          <p:outputLabel value="Other Credits" />
+          <p:outputLabel value="#{ivy.cms.co('/Labels/CaseMap/Credit/otherCredits')}" />
           <h:outputText value="#{data.dossier.request.amountOfOtherCredits}" />
         </h:panelGrid>
         <h4>Decision</h4>
@@ -30,10 +30,10 @@
           <f:facet name="header">
             <p:messages></p:messages>
           </f:facet>
-          <p:outputLabel for="reason" value="Reject Reason" />
+          <p:outputLabel for="reason" value="#{ivy.cms.co('/Labels/CaseMap/Credit/rejectedReason')}" />
           <p:inputTextarea id="reason" value="#{data.dossier.decision.rejectReason}" />
-          <p:commandButton actionListener="#{logic.approved}" value="Approve" update="form" icon="ui-icon-check" />
-          <p:commandButton actionListener="#{logic.rejected}" value="Reject" update="form" icon="ui-icon-circle-close" />
+          <p:commandButton actionListener="#{logic.approved}" value="#{ivy.cms.co('/Dialog/Common/approve')}" update="form" icon="ui-icon-check" />
+          <p:commandButton actionListener="#{logic.rejected}" value="#{ivy.cms.co('/Dialog/Common/reject')}" update="form" icon="ui-icon-circle-close" />
         </h:panelGrid>
       </h:form>
 

@@ -24,7 +24,7 @@ Ek0 f0 persist false #txt
 Ek0 f0 taskData 'TaskTriggered.EXPRI=2
 TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.NAM=External Solvency Check
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/CaseMap/externalSolvencyCheck")%>
 TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
