@@ -1,0 +1,6 @@
+AcceptRequestData #class
+com.axonivy.portal.businessuserexamples.humantask.AcceptRequest #namespace
+ok Boolean #field
+procurementRequest com.axonivy.portal.businessuserexamples.humantask.ProcurementRequest #field
+logEntry com.axonivy.portal.businessuserexamples.humantask.LogEntry #field
+logEntry PERSISTENT #fieldModifier

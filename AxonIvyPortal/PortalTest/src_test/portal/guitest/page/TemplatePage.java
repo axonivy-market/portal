@@ -230,7 +230,7 @@ public abstract class TemplatePage extends AbstractPage {
     String newPageHandle = ((String) newWindows.toArray()[0]);
 
     String createTestingTasksUrl =
-        UrlHelpers.generateAbsoluteProcessStartLink("portalExamples/162511D2577DBA88/CategoriedLeaveRequest.ivp");
+        UrlHelpers.generateAbsoluteProcessStartLink("portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp");
     driver.switchTo().window(newPageHandle);
     driver.get(createTestingTasksUrl);
 
