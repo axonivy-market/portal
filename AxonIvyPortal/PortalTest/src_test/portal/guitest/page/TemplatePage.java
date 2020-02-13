@@ -161,9 +161,9 @@ public abstract class TemplatePage extends AbstractPage {
 
   private void clickUserMenuItem(String menuItemSelector) {
     waitForElementDisplayed(By.id("user-settings-menu"), true);
-    findElementById("user-settings-menu").click();
+    click(findElementById("user-settings-menu"));
     waitForElementDisplayed(By.id(menuItemSelector), true);
-    findElementById(menuItemSelector).click();
+    click(findElementById(menuItemSelector));
     waitAjaxIndicatorDisappear();
   }
 
@@ -230,7 +230,7 @@ public abstract class TemplatePage extends AbstractPage {
     String newPageHandle = ((String) newWindows.toArray()[0]);
 
     String createTestingTasksUrl =
-        UrlHelpers.generateAbsoluteProcessStartLink("portalExamples/162511D2577DBA88/CategoriedLeaveRequest.ivp");
+        UrlHelpers.generateAbsoluteProcessStartLink("portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp");
     driver.switchTo().window(newPageHandle);
     driver.get(createTestingTasksUrl);
 
@@ -285,7 +285,7 @@ public abstract class TemplatePage extends AbstractPage {
   
   public void clickByCssSelector(String cssSelector) {
     waitForElementDisplayed(By.cssSelector(cssSelector), true);
-    findElementByCssSelector(cssSelector).click();
+    click(By.cssSelector(cssSelector));
   }
 
   protected void refreshAndWaitElement(String cssSelector) {
