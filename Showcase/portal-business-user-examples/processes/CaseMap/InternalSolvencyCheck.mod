@@ -28,7 +28,7 @@ Ik0 f0 taskData 'TaskTriggered.EXP=new Duration("20h")
 TaskTriggered.EXPRI=2
 TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.NAM=Internal Solvency Check
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/CaseMap/internalSolvencyCheck")%>
 TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
