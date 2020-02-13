@@ -21,7 +21,6 @@ import ch.ivy.addon.portalkit.bo.CaseColumnsConfiguration;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
-import ch.ivy.addon.portalkit.casefilter.CaseStateFilter;
 import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
@@ -54,10 +53,12 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   protected List<CaseFilter> filters;
   protected List<CaseFilter> selectedFilters;
+  protected List<CaseFilter> oldSelectedFilters;
   protected CaseFilterContainer filterContainer;
   protected CaseFilterData selectedFilterData;
   protected CaseFilterData defaultCaseFilterData;
   protected boolean isNotKeepFilter = false;
+  protected Long filterGroupId;
 
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
@@ -66,7 +67,6 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   private boolean isAutoHideColumns;
   private boolean isDisableSelectionCheckboxes;
-  private CaseFilter selectedCaseFilter;
   
   protected boolean disableCaseCount;
   protected Boolean isSelectedDefaultFilter;
@@ -82,21 +82,32 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     this.caseWidgetComponentId = caseWidgetComponentId;
     buildCriteria();
     setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
-    selectedFilterData = UserUtils.getSessionSelectedCaseFilterSetAttribute();
-    isSelectedDefaultFilter = UserUtils.getSessionSelectedDefaultCaseFilterSetAttribute();
-    if (isSelectedDefaultFilter == null) {
-      buildDefaultCaseFilterData();
+    loadSessionCaseFiltersAttribute();
+  }
+
+  private void loadSessionCaseFiltersAttribute() {
+    if (isSameFilterGroupId()) {
+      selectedFilterData = UserUtils.getSessionSelectedCaseFilterSetAttribute();
+      isSelectedDefaultFilter = UserUtils.getSessionSelectedDefaultCaseFilterSetAttribute();
+      if (isSelectedDefaultFilter == null) {
+        buildDefaultCaseFilterData();
+      }
+    } else {
+      selectedFilterData = null;
+      isSelectedDefaultFilter = true;
     }
   }
   
+  private boolean isSameFilterGroupId() {
+    filterGroupId = UserUtils.getSessionFilterGroupIdAttribute();
+    return filterGroupId == null || filterGroupId == Ivy.request().getProcessModel().getId();
+  }
+
   public CaseFilterData buildDefaultCaseFilterData() {
     if (defaultCaseFilterData == null) {
       defaultCaseFilterData = new CaseFilterData();
-      DefaultCaseFilterContainer filterContainer = new DefaultCaseFilterContainer();
       defaultCaseFilterData.setFilterName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultFilter"));
       defaultCaseFilterData.setType(FilterType.DEFAULT);
-      defaultCaseFilterData.setFilters(
-          filterContainer.getFilters().stream().filter(CaseFilter::defaultFilter).collect(Collectors.toList()));
     }
     isSelectedDefaultFilter = isSelectedDefaultFilter == null ? true : isSelectedDefaultFilter;
     return defaultCaseFilterData;
@@ -109,13 +120,6 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   @Override
   public List<ICase> load(int first, int pageSize, String sortField, SortOrder sortOrder,
       Map<String, Object> filters) {
-    if (selectedCaseFilter != null && !selectedCaseFilter.reloadView()
-        || validateStateFilter(selectedCaseFilter)) {
-      storeCaseFiltersIntoSession();
-      selectedCaseFilter = null;
-      return data;
-    }
-
     if (first == 0) {
       initializedDataModel();
       if (!disableCaseCount) {
@@ -138,54 +142,46 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     return foundCases;
   }
 
-  /**
-   * This method validates the State filter's value in current CaseSearchCriteria with new State filter which is added
-   * new on UI If selectedCaseFilter is State filter and has the same value in CaseSearchCriteria, we will not execute
-   * query again to database
-   * 
-   * @param selectedCaseFilter
-   * @return state's value is same or not
-   */
-  private boolean validateStateFilter(CaseFilter selectedCaseFilter) {
-    if (selectedCaseFilter != null && selectedCaseFilter instanceof CaseStateFilter) {
-      CaseStateFilter caseStateFilter = (CaseStateFilter) selectedCaseFilter;
-      if (CollectionUtils.isNotEmpty(criteria.getIncludedStates())
-          && criteria.getIncludedStates().equals(caseStateFilter.getSelectedFilteredStates())) {
-        return true;
-      }
-    }
-    return false;
-  }
-
   public void initFilters() throws ReflectiveOperationException {
     if (filterContainer == null) {
       initColumnsConfiguration();
       initFilterContainer();
+      collectFiltersForDefaultFilterSet();
       filters = filterContainer.getFilters();
       setValuesForCaseStateFilter(criteria);
       restoreSessionAdvancedFilters();
     }
   }
 
+  private void collectFiltersForDefaultFilterSet() {
+    if (defaultCaseFilterData != null && CollectionUtils.isEmpty(defaultCaseFilterData.getFilters())) {
+      CaseFilterContainer filterContainer = null;
+      if (this.filterContainer == null) {
+        filterContainer = new DefaultCaseFilterContainer();
+      } else {
+        filterContainer = this.filterContainer;
+      }
+      defaultCaseFilterData.setFilters(filterContainer.getFilters().stream().filter(CaseFilter::defaultFilter).collect(Collectors.toList()));
+    }
+  }
+
   @SuppressWarnings("unchecked")
   public void onFilterChange(ValueChangeEvent event) {
-    List<CaseFilter> oldSelectedFilters = (List<CaseFilter>) event.getOldValue();
-    List<CaseFilter> newSelectedFilters = (List<CaseFilter>) event.getNewValue();
-    List<CaseFilter> toggleFilters = null;
-    if (newSelectedFilters.size() > oldSelectedFilters.size()) {
-      toggleFilters = (List<CaseFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
+    oldSelectedFilters = (List<CaseFilter>) event.getOldValue();
+  }
+
+  @SuppressWarnings("unchecked")
+  public void updateSelectedFilter() {
+    List<CaseFilter> toggleFilters;
+    if (selectedFilters.size() > oldSelectedFilters.size()) {
+      toggleFilters = (List<CaseFilter>) CollectionUtils.subtract(selectedFilters, oldSelectedFilters);
     } else {
-      toggleFilters = (List<CaseFilter>) CollectionUtils.subtract(oldSelectedFilters, newSelectedFilters);
+      toggleFilters = (List<CaseFilter>) CollectionUtils.subtract(oldSelectedFilters, selectedFilters);
     }
 
     if (CollectionUtils.isNotEmpty(toggleFilters)) {
-      selectedCaseFilter = toggleFilters.get(0);
-      toggleFilters.get(0).resetValues();
+      toggleFilters.forEach(filter -> filter.resetValues());
     }
-    resetFilterData();
-  }
-  
-  public void updateSelectedFilter() {
     resetFilterData();
     storeCaseFiltersIntoSession();
   }
@@ -206,7 +202,6 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   public void removeFilter(CaseFilter filter) {
-    selectedCaseFilter = null;
     filter.resetValues();
     selectedFilters.remove(filter);
     resetFilterData();
@@ -261,6 +256,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     BusinessDataInfo<CaseFilterData> info = filterService.save(filterData);
     filterData = filterService.findById(info.getId());
     UserUtils.setSessionSelectedCaseFilterSetAttribute(filterData);
+    UserUtils.setSessionSelectedDefaultCaseFilterSetAttribute(isSelectedDefaultFilter);
     return filterData;
   }
 
@@ -358,6 +354,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   private void storeCaseFiltersIntoSession() {
     if (!isNotKeepFilter) {
+      UserUtils.setSessionFilterGroupIdAttribute(Ivy.request().getProcessModel().getId());
       UserUtils.setSessionSelectedDefaultCaseFilterSetAttribute(isSelectedDefaultFilter);
       UserUtils.setSessionSelectedCaseFilterSetAttribute(selectedFilterData);
       UserUtils.setSessionCaseKeywordFilterAttribute(criteria.getKeyword());
@@ -561,6 +558,8 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   public void setNotKeepFilter(boolean isNotKeepFilter) {
     this.isNotKeepFilter = isNotKeepFilter;
+    this.selectedFilterData = null;
+    this.isSelectedDefaultFilter = false;
   }
 
   public List<CaseFilter> getFilters() {
