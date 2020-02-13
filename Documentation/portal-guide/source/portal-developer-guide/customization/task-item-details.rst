@@ -28,7 +28,7 @@ Each TaskItemDetails contains
 How to custom Task item details UI
 ----------------------------------
 
-Refer to ``PortalExamples`` project for examples.
+Refer to ``portal-developer-examples`` project for examples.
 
 1. Introduce an Axon.ivy project which has ``PortalTemplate`` as a
    required library.
