@@ -33,9 +33,9 @@ Lt0 f0 inParamDecl '<> param;' #txt
 Lt0 f0 requestEnabled true #txt
 Lt0 f0 triggerEnabled false #txt
 Lt0 f0 callSignature start() #txt
-Lt0 f0 startName <%=ivy.cms.co("/Processes/LeaveRequest")%> #txt
-Lt0 f0 startDescription <%=ivy.cms.co("/Processes/LeaveRequest")%> #txt
-Lt0 f0 taskData 'TaskTriggered.NAM=Start create new leave request' #txt
+Lt0 f0 startName <%=ivy.cms.co("/Processes/LeaveRequest/leaveRequest")%> #txt
+Lt0 f0 startDescription <%=ivy.cms.co("/Processes/LeaveRequest/leaveRequest")%> #txt
+Lt0 f0 taskData TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/LeaveRequest/createNewLeaveRequest")%> #txt
 Lt0 f0 caseData 'businessCase.attach=true
 customFields.STRING.embedInFrame="false"' #txt
 Lt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -120,10 +120,10 @@ Lt0 f6 1328 64 1369 64 #arcP
 Lt0 f15 actionTable 'out=in;
 ' #txt
 Lt0 f15 actionCode 'if(in.isApproved) {
-	in.taskName = "Your leave request is approved";
+	in.taskName = ivy.cms.co("/Processes/LeaveRequest/approvalTask");
 }
 else {
-	in.taskName = "Your leave request is rejected";
+	in.taskName = ivy.cms.co("/Processes/LeaveRequest/rejectedTask");
 }' #txt
 Lt0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -139,7 +139,7 @@ Lt0 f16 880 64 936 64 #arcP
 Lt0 f12 1064 64 1113 64 #arcP
 Lt0 f17 actionTable 'out=in;
 ' #txt
-Lt0 f17 actionCode 'in.taskName = "Approval for leave request of " + ivy.session.getSessionUser().getDisplayName();' #txt
+Lt0 f17 actionCode 'in.taskName = ivy.cms.co("/Processes/LeaveRequest/prefixApprovalTask") + ivy.session.getSessionUser().getDisplayName();' #txt
 Lt0 f17 security system #txt
 Lt0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
