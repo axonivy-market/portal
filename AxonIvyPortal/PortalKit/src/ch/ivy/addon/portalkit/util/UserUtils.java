@@ -1,7 +1,6 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
@@ -16,7 +15,6 @@ import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.UserDTO;
-import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
@@ -214,26 +212,18 @@ public class UserUtils {
   public static String getSessionCaseKeywordFilterAttribute() {
     return StringUtils.defaultIfBlank((String)Ivy.session().getAttribute(CASE_KEYWORD_FILTER), "");
   }
-
-  public static List<UserDTO> findAllUserDTOInCurrentApplication() {
-    List<UserDTO> users =  ServiceUtilities.findAllUserDTOByApplication(Ivy.request().getApplication());
-    Collections.sort(users, (first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
-    return users;
-  }
-  
-  public static List<UserDTO> findAllUserDTOByApplication() {
-    List<UserDTO> users = findUsersByCallableProcess();
-    Collections.sort(users, (first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
-    return users;
-  }
   
   @SuppressWarnings("unchecked")
-  private static List<UserDTO> findUsersByCallableProcess() {
-      return IvyExecutor.executeAsSystem(() -> {
+  public static List<UserDTO> findUsers(String query, int startIndex, int  count) {
+    return IvyExecutor.executeAsSystem(() -> {
       if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
         Map<String, List<UserDTO>> usersByApp = SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
             .withStartName("findUsersOverAllApplications")
-            .call(Ivy.session().getSessionUserName())
+            .withParam("username", getSessionUserName())
+            .withParam("query", query)
+            .withParam("startIndex", startIndex)
+            .withParam("count", count)
+            .call()
             .get("usersByApp", Map.class);
         return usersByApp.values().stream().flatMap(List::stream)
             .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getName))), ArrayList::new));
@@ -241,9 +231,13 @@ public class UserUtils {
       
       return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
           .withStartName("findUsers")
-          .call(Ivy.request().getApplication())
+          .withParam("application", Ivy.request().getApplication())
+          .withParam("query", query)
+          .withParam("startIndex", startIndex)
+          .withParam("count", count)
+          .call()
           .get("users", List.class);
-      });
+    });
   }
   
   public static String getUserName(IUser user) {
@@ -258,10 +252,4 @@ public class UserUtils {
     });
   }
 
-  public static UserDTO getCurrentSessionUserAsUserDTO() {
-    return IvyExecutor.executeAsSystem(() -> {
-      return new UserDTO(getIvySession().getSessionUser());
-    });
-  }
-  
 }

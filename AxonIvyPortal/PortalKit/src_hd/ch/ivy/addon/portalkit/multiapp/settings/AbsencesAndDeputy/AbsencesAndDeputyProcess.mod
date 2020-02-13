@@ -761,9 +761,11 @@ As0 f42 83 1459 26 26 -33 15 #rect
 As0 f42 @|UdMethodIcon #fIcon
 As0 f43 755 1459 26 26 0 12 #rect
 As0 f43 @|UdProcessEndIcon #fIcon
-As0 f47 processCall 'Ivy Data Processes/SecurityService:findUsersOverAllApplications(String)' #txt
-As0 f47 requestActionDecl '<String username> param;' #txt
+As0 f47 processCall 'Ivy Data Processes/SecurityService:findUsersOverAllApplications(String,String,Integer,Integer)' #txt
+As0 f47 requestActionDecl '<String username,String query,Integer startIndex,Integer count> param;' #txt
 As0 f47 requestMappingAction 'param.username=ivy.session.getSessionUserName();
+param.startIndex=0;
+param.count=-1;
 ' #txt
 As0 f47 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
 ' #txt
@@ -976,9 +978,11 @@ As0 f92 992 1744 32 32 -55 -36 #rect
 As0 f92 @|AlternativeIcon #fIcon
 As0 f93 expr out #txt
 As0 f93 944 1760 992 1760 #arcP
-As0 f94 processCall 'Ivy Data Processes/SecurityService:findUsersOverAllApplications(String)' #txt
-As0 f94 requestActionDecl '<String username> param;' #txt
+As0 f94 processCall 'Ivy Data Processes/SecurityService:findUsersOverAllApplications(String,String,Integer,Integer)' #txt
+As0 f94 requestActionDecl '<String username,String query,Integer startIndex,Integer count> param;' #txt
 As0 f94 requestMappingAction 'param.username=ivy.session.getSessionUserName();
+param.startIndex=0;
+param.count=-1;
 ' #txt
 As0 f94 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
 ' #txt

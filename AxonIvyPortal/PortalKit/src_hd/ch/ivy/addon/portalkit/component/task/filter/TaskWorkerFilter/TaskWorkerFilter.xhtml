@@ -18,9 +18,8 @@
       completeMethod="#{logic.autoCompleteForWorker}" value="#{cc.attrs.filter.selectedWorker}"
       var="worker" itemValue="#{worker}" itemLabel="#{worker.displayName}"
       converter="pojoConverter" cache="true" maxResults="100"
-      moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
+      moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
       styleClass="responsible-list-filter">
-      <f:event listener="#{data.setWorkers(cc.attrs.filter.workers)}" type="preRenderComponent" />
       <p:column>
         <i class="fa fa-user u-mar-right-5" />
         <h:outputText value="#{cc.attrs.filter.formatName(worker)}" />
