@@ -1,7 +1,7 @@
 {
   "uuid" : "70765b37-a3e8-418a-a8d5-c2b3a539408e",
   "id" : "lending",
-  "name" : "Lending (Case Map)MINH",
+  "name" : "Lending (Case Map)",
   "description" : "Case Map Demo. Starts a lending case map.",
   "stages" : [ {
     "id" : "identification",

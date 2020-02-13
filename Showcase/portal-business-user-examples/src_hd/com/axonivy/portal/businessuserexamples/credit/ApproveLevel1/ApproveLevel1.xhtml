@@ -8,13 +8,13 @@
       <h3>Credit Request Approval Level 1&#160;</h3>
 
       <h:form id="form">
-        <h4>Person</h4>
+        <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/person')}</h4>
         <h:outputText value="#{data.dossier.customer.isMale?'Mister':'Madame'} #{data.dossier.customer.firstName} #{data.dossier.customer.name}" />
         <br />
         <h:outputText value="#{data.dossier.customer.birthDate}" />
         <br />
         <h:outputText value="#{data.dossier.customer.address.country}" />
-        <h4>Request</h4>
+        <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/request')}</h4>
 
         <h:panelGrid columns="2" width="250">
           <p:outputLabel value="#{ivy.cms.co('/Labels/CaseMap/Credit/approvalAmount')}" />
@@ -26,7 +26,7 @@
           <p:outputLabel value="#{ivy.cms.co('/Labels/CaseMap/Credit/otherCredits')}" />
           <h:outputText value="#{data.dossier.request.amountOfOtherCredits}" />
         </h:panelGrid>
-        <h4>Decision</h4>
+        <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/decision')}</h4>
         <h:panelGrid columns="2">
           <f:facet name="header">
             <p:messages></p:messages>
