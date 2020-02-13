@@ -1,20 +1,24 @@
 package ch.ivy.addon.portalkit.util;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.UserDTO;
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
@@ -106,6 +110,28 @@ public class UserUtils {
     return IvyExecutor.executeAsSystem(() -> iUser.getAbsences());
   }
   
+  public static String findNextAbsenceOfUser(IUser iUser) {
+    DateTimeGlobalSettingService service = new DateTimeGlobalSettingService();
+    DateFormat formatter = new SimpleDateFormat(service.getDatePattern());
+    
+    List<IUserAbsence> findAbsenceOfUser = findAbsenceOfUser(iUser);
+    String returnString = "";
+    Date foundDate = null;
+    for (IUserAbsence item : findAbsenceOfUser) {
+      if (item.getStartTimestamp().after(new Date())) {
+        if (foundDate == null) {
+          foundDate = item.getStartTimestamp();
+          returnString = String.format("%s - %s", formatter.format(item.getStartTimestamp()), formatter.format(item.getStopTimestamp())); 
+        } else if (item.getStartTimestamp().before(foundDate)){
+          foundDate = item.getStartTimestamp();
+          returnString = String.format("%s - %s", formatter.format(item.getStartTimestamp()), formatter.format(item.getStopTimestamp())); 
+        }
+      }
+    }
+     
+    return returnString;
+  }
+  
   public static List<UserDTO> filterUsersDTO(List<UserDTO> users, String query) {
     List<UserDTO> filterUsers = new ArrayList<>();
     
@@ -122,6 +148,29 @@ public class UserUtils {
 
       return filterUsers;
     });
+  }
+  
+  public static List<UserDTO> findUsersInApp(Map<String, List<UserDTO>> usersByApp, String application){
+	  if (usersByApp == null || usersByApp.isEmpty()) {
+		  return new ArrayList<>();
+	  }
+	
+	  return usersByApp
+	      	.get(application)
+	        .stream()
+	        .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getName, String.CASE_INSENSITIVE_ORDER))), ArrayList::new));
+  }
+  
+  public static List<UserDTO> findUsersInAppWithIgnoreUser(Map<String, List<UserDTO>> usersByApp, String application, String ignoreUser){
+	  if (usersByApp == null || usersByApp.isEmpty()) {
+		  return new ArrayList<>();
+	  }
+	
+	  return usersByApp
+	      	.get(application)
+	        .stream()
+	        .filter(item -> !StringUtils.equals(item.getName(), ignoreUser))
+	        .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getName, String.CASE_INSENSITIVE_ORDER))), ArrayList::new));
   }
   
   /**
