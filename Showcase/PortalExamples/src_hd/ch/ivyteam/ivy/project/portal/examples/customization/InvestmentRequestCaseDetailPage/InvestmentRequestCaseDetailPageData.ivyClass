@@ -1,4 +1,0 @@
-InvestmentRequestCaseDetailPageData #class
-ch.ivyteam.ivy.project.portal.examples.customization.InvestmentRequestCaseDetailPage #namespace
-ivyCase ch.ivyteam.ivy.workflow.ICase #field
-ivyCase PERSISTENT #fieldModifier
