@@ -29,14 +29,14 @@ public class LoginPage extends AbstractPage {
   public void login() {
     usernameTextField.sendKeys(testAccount.getUsername());
     passwordField.sendKeys(testAccount.getPassword());
-    loginButton.click();
+    click(loginButton);
     waitForElementDisplayed(By.id("left-menu"), true, LOGIN_TIMEOUT);
   }
   
   public void login(String username, String password) {
     usernameTextField.sendKeys(username);
     passwordField.sendKeys(password);
-    loginButton.click();
+    click(loginButton);
     waitForElementDisplayed(By.id("left-menu"), true, LOGIN_TIMEOUT);
   }
 
