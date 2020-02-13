@@ -23,11 +23,11 @@ Cr0 f0 requestEnabled true #txt
 Cr0 f0 triggerEnabled true #txt
 Cr0 f0 callSignature start() #txt
 Cr0 f0 persist false #txt
-Cr0 f0 startName 'Check company register' #txt
+Cr0 f0 startName 'Check Company Register' #txt
 Cr0 f0 taskData 'TaskTriggered.EXPRI=2
 TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.NAM=Check Company Register
+TaskTriggered.NAM=System task \: <%\=ivy.cms.co("/Processes/CaseMap/checkCompanyRegister")%>
 TaskTriggered.PRI=2
 TaskTriggered.ROL=SYSTEM
 TaskTriggered.TYPE=0' #txt
@@ -36,9 +36,8 @@ Cr0 f0 showInStartList 0 #txt
 Cr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start()
-start.ivp</name>
-        <nameStyle>17,5,7
+        <name>start.ivp</name>
+        <nameStyle>9,5
 </nameStyle>
     </language>
 </elementInfo>
