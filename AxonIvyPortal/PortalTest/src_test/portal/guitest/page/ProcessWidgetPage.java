@@ -168,7 +168,7 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public void expand() {
     loadSwitchModeButton();
-    switchModeButton.click();
+    click(switchModeButton);
     waitForElementDisplayed(By.id(processWidgetId + ":process-search:non-ajax-keyword-filter"), true, DEFAULT_TIMEOUT);
   }
 
@@ -209,12 +209,12 @@ public class ProcessWidgetPage extends TemplatePage {
 
     public void submitForm() {
       WebElement submitButton = findChildElementById(processDialog, processWidgetId + ":add-process-command");
-      submitButton.click();
+      click(submitButton);
       waitAjaxIndicatorDisappear();
     }
 
     public void selectProcessByName(String ivyProcessName) {
-      findElementByClassName("ui-autocomplete-dropdown").click();
+      click(findElementByClassName("ui-autocomplete-dropdown"));
       String processSelector = "tr[data-item-label='" + ivyProcessName + "']";
       waitForElementDisplayed(By.cssSelector(processSelector), true);
       clickByCssSelector(processSelector);
@@ -222,7 +222,7 @@ public class ProcessWidgetPage extends TemplatePage {
     }
 
     public boolean isIvyProcessByNameSearchable(String ivyProcessName) {
-      findElementByClassName("ui-autocomplete-dropdown").click();
+      click(findElementByClassName("ui-autocomplete-dropdown"));
       String processSelector = "tr[data-item-label='" + ivyProcessName + "']";
       waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
       return isElementPresent(By.cssSelector(processSelector));
@@ -277,13 +277,13 @@ public class ProcessWidgetPage extends TemplatePage {
     public void selectExternalLinkType(boolean isPublic) {
       if (isPublic) {
         WebElement externalCheckboxLabel = findElementByXpath("//label[@for='" + processWidgetId + ":external-link-type-radio:1']");
-        externalCheckboxLabel.click();
+        click(externalCheckboxLabel);
       }
     }
 
     public void submitForm() {
       WebElement submitButton = findElementByCssSelector(ADD_EXTERNAL_LINK_BUTTON_INPUT_CSS_SELECTOR);
-      submitButton.click();
+      click(submitButton);
       waitAjaxIndicatorDisappear();
     }
   }
@@ -304,9 +304,9 @@ public class ProcessWidgetPage extends TemplatePage {
   public void deleteExternalLinkByFieldsetIndexAndIndex(int fieldsetIndex, int index) {
     String deleteExternalLinkIconCssSelector = String.format("a[id$='%d:processes:%d:process-item-form:delete-external-link']", fieldsetIndex, index);
     WebElement deleteExternalIcon = findElementByCssSelector(deleteExternalLinkIconCssSelector);
-    deleteExternalIcon.click();
+    click(deleteExternalIcon);
     waitAjaxIndicatorDisappear();
-    findElementByCssSelector("button[id$='delete-external-link-btn']").click();
+    click(findElementByCssSelector("button[id$='delete-external-link-btn']"));
     waitAjaxIndicatorDisappear();
   }
 
