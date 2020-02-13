@@ -8,7 +8,7 @@
 <ui:composition>
 	<p:commandLink id="#{id}"
 		styleClass="#{styleClass} #{processHistoryBean.dataModel.sortField eq sortedField ? 'is-selected' : ''}"
-		update="widget-column-header case-list-scroller" rendered="#{sortable eq true}">
+		update="widget-column-header case-list-scroller" rendered="#{sortable eq true}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader()">
 		<f:actionListener
 			binding="#{processHistoryBean.dataModel.setSorting(sortedField,processHistoryBean.dataModel.sortField eq sortedField and !processHistoryBean.dataModel.isSortDescending())}" />
 		<f:actionListener binding="#{caseWidgetBean.setExpandedCaseId(0,false)}" />
