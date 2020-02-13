@@ -17,7 +17,7 @@ public class TaskWidgetCustomizationTest extends BaseTest {
   private static final String CUSTOMER_NAME_COLUMN_ID = "customer-name";
   private static final String STATE_COLUMN_NAME = "State";
   private static final String CUSTOMER_NAME_COLUMN_HEADER = "Customer name";
-  private static final String CREATE_TESTING_TASK_FOR_CUSTOMIZATION_URL = "portalExamples/162511D2577DBA88/createTasksForTaskListCustomization.ivp";
+  private static final String CREATE_TESTING_TASK_FOR_CUSTOMIZATION_URL = "portal-developer-examples/162511D2577DBA88/createTasksForTaskListCustomization.ivp";
 
   @Override
   @Before

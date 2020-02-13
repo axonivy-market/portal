@@ -1,0 +1,12 @@
+Address #class
+com.axonivy.portal.businessuserexamples.credit #namespace
+street String #field
+street PERSISTENT #fieldModifier
+zip String #field
+zip PERSISTENT #fieldModifier
+city String #field
+city PERSISTENT #fieldModifier
+state String #field
+state PERSISTENT #fieldModifier
+country String #field
+country PERSISTENT #fieldModifier

@@ -1,0 +1,3 @@
+DataProviderForPortalExpressData #class
+com.axonivy.portal.developerexamples #namespace
+items List<String> #field
