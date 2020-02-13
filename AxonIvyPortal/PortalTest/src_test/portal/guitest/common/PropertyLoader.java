@@ -10,6 +10,7 @@ public class PropertyLoader {
   private static final String IVY_ENGINE_PORT = "ivy.engine.port";
   private static final String IVY_CONTEXT_PATH = "ivy.context.path";
   private static final String APPLICATION_NAME = "application.name";
+  private static final String BROWSER_TYPE = "browser.type";
   private static final String CONFIG_WINDOWS_SERVER = "resources/config_windows_server.properties";
   private static final String CONFIG_DESIGNER = "resources/config_designer.properties";
 
@@ -52,4 +53,8 @@ public class PropertyLoader {
     return properties.getProperty(APPLICATION_NAME);
   }
 
+  public static String getBrowserType() {
+    return properties.getProperty(BROWSER_TYPE);
+  }
+  
 }
