@@ -21,6 +21,7 @@ public class UserLazyDataModel extends LazyDataModel<UserDTO> {
   public List<UserDTO> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
     @SuppressWarnings("unchecked")
     var users = (List<UserDTO>) SubProcessCall.withPath("Ivy Data Processes/SecurityService")
+                  .withStartName("findUsers")
                   .withParam("application", application)
                   .withParam("query", filters.getOrDefault("name", ""))
                   .withParam("startIndex", first)
