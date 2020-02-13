@@ -1,4 +1,0 @@
-AdditionalCaseDetailPage #class
-ch.ivyteam.ivy.project.portal.examples.customization #namespace
-iCase ch.ivyteam.ivy.workflow.ICase #field
-caseId Long #field
