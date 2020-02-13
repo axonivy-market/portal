@@ -58,7 +58,7 @@ public class HomePage extends TemplatePage {
 
 	public  ChatPage getChat() {
 		waitForElementDisplayed(By.id("toggle-chat-panel-command"), true, 5);
-		findElementById("toggle-chat-panel-command").click();
+		click(findElementById("toggle-chat-panel-command"));
 		return new ChatPage();
 	}
 
