@@ -18,6 +18,14 @@ public interface ISubstituteService {
   IvySubstituteResultDTO findSubstitutes(String username, List<String> apps);
   
   /**
+   * Finds the substitutions of the given user.
+   * @param username
+   * @param apps
+   * @return IvySubstituteResultDTO
+   */
+  IvySubstituteResultDTO findSubstitutions(String username, List<String> apps);
+  
+  /**
    * Updates the substitutes of the given user
    * @param username
    * @param ivySubstitutesByApp
