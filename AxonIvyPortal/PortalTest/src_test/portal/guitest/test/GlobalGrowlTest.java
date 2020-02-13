@@ -58,7 +58,7 @@ public class GlobalGrowlTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     HomePage homePage = taskTemplatePage.clickCancelAndLeftButton();
-    assertEquals("You have cancelled and left the task successfully. You can find the task in the dashboard or your task list", homePage.getGlobalGrowlMessage());
+    assertEquals("You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.", homePage.getGlobalGrowlMessage());
   }
   
   @Test
@@ -76,6 +76,6 @@ public class GlobalGrowlTest extends BaseTest {
     redirectToRelativeLink(SKIP_TASK_LIST_URL);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     HomePage homePage = taskTemplatePage.clickCancelAndLeftButton();
-    assertEquals("You have cancelled and left the task successfully. You can find the task in the dashboard or your task list", homePage.getGlobalGrowlMessage());
+    assertEquals("You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.", homePage.getGlobalGrowlMessage());
   }
 }

@@ -266,7 +266,7 @@ public class ProcessWidgetTest extends BaseTest {
   
   @AfterClass
   @BeforeClass
-  public static void cleanUpIEAndDriver() {
-    killIE();
+  public static void cleanUpBrowsers() {
+    killBrowsers();
   }
 }
