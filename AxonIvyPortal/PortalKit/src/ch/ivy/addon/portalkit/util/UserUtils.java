@@ -37,6 +37,7 @@ public class UserUtils {
   private static final String SELECTED_CASE_FILTER_SET = "SELECTED_CASE_FILTER_SET";
   private static final String SELECTED_CASE_FILTER = "SELECTED_CASE_FILTER";
   private static final String CASE_KEYWORD_FILTER = "CASE_KEYWORD_FILTER";
+  private static final String FILTER_GROUP_ID = "FILTER_GROUP_ID";
   private static final String SELECTED_DEFAULT_TASK_FILTER_SET = "SELECTED_DEFAULT_TASK_FILTER_SET";
   private static final String SELECTED_DEFAULT_CASE_FILTER_SET = "SELECTED_DEFAULT_CASE_FILTER_SET";
 
@@ -175,6 +176,10 @@ public class UserUtils {
     return (TaskFilterData) Ivy.session().getAttribute(SELECTED_TASK_FILTER_SET);
   }
   
+  public static Long getSessionFilterGroupIdAttribute() {
+    return (Long) Ivy.session().getAttribute(FILTER_GROUP_ID);
+  }
+  
   public static Boolean getSessionSelectedDefaultTaskFilterSetAttribute() {
     return (Boolean) Ivy.session().getAttribute(SELECTED_DEFAULT_TASK_FILTER_SET);
   }
@@ -206,6 +211,10 @@ public class UserUtils {
 
   public static void setSessionCaseKeywordFilterAttribute(String keyword) {
     setSessionAttribute(CASE_KEYWORD_FILTER, keyword);
+  }
+  
+  public static void setSessionFilterGroupIdAttribute(Long value) {
+    setSessionAttribute(FILTER_GROUP_ID, value);
   }
 
   public static void setSessionSelectedDefaultCaseFilterSetAttribute(Boolean value) {

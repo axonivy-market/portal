@@ -138,7 +138,8 @@ if(FilterType.ONLY_ME == taskFilterData.type) {
 	in.taskPublicFilters.add(taskFilterData);
 	in.taskPublicFilters = taskFilterService.sortFilters(in.taskPublicFilters) as List;
 }
-in.dataModel.selectedTaskFilterData = taskFilterData;' #txt
+in.dataModel.selectedTaskFilterData = taskFilterData;
+' #txt
 Ts0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
