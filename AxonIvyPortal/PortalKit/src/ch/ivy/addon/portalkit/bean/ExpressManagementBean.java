@@ -36,7 +36,7 @@ public class ExpressManagementBean implements Serializable {
 
   private List<SecurityMemberDTO> findAllActiveUser() {
     if (activeMemberList == null) {
-      return SecurityMemberUtils.findAllSecurityMembers();
+      return SecurityMemberUtils.findSecurityMembers("", 0, -1);
     }
     return activeMemberList;
   }
