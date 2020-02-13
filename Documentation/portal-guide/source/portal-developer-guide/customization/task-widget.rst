@@ -27,7 +27,7 @@ contains 2 parts:
 How to override task widget's UI
 --------------------------------
 
-Refer to ``PortalExamples`` project for examples
+Refer to ``portal-developer-examples`` project for examples
 
 1. Introduce an Axon.ivy project which has ``PortalTemplate`` as a
    required library.
@@ -238,7 +238,7 @@ How to make responsive task list
 If you have customized task list and want it responsive on different
 screen sizes, please follow below steps.
 
-You can refer to ``PortalExamples`` project for examples
+You can refer to ``portal-developer-examples`` project for examples
 
 1. Add responsiveStyleClass param (in case you're using Portal
    component), or styleClass (in case you're using Primefaces or JSF
