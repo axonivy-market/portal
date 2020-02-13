@@ -26,7 +26,7 @@ Cn0 f0 taskData 'TaskTriggered.EXP=new Duration("4h")
 TaskTriggered.EXPRI=2
 TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.NAM=Create Contract
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/CaseMap/createContract")%>
 TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
