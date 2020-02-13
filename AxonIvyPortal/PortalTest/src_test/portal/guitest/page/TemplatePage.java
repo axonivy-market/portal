@@ -62,6 +62,18 @@ public abstract class TemplatePage extends AbstractPage {
     });
   }
 
+  public void waitForElementExisted(String cssSelector, boolean expected, long timeout) {
+    Awaitility.await().atMost(new Duration(timeout, TimeUnit.SECONDS)).until(() -> {
+      try {
+        return (findListElementsByCssSelector(cssSelector).size() != 0) == expected;
+      } catch (WebDriverException e) {
+        System.out.println("Exception when waiting for element existed, try again.");
+        e.printStackTrace();
+      }
+      return false;
+    });
+  }
+  
   protected boolean isIntegrationTestRun() {
     String engineUrl = System.getProperty("engineUrl");
     return ENGINE_URL_LOCAL.equals(engineUrl);
