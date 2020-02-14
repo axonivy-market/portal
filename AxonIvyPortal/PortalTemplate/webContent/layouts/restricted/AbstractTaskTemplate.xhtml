@@ -43,13 +43,13 @@
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistoryTooltip')}" />
 
                 <p:menuitem id="start-adhoc"
-                  rendered="#{empty isShowStartAdhocButton? abstractTaskTemplateBean.hasExpressAdhocWF(): isShowStartAdhocButton}"
+                  rendered="#{empty isShowStartAdhocButton? (abstractTaskTemplateBean.hasExpressAdhocWF() and task.isPersistent()) : isShowStartAdhocButton}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHoc')}"
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}"
                   icon="fa fa-random fa-2x" oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()" />
 
                 <p:separator
-                  rendered="#{abstractTaskTemplateBean.hasAdhocTasks(task) or (empty isShowStartAdhocButton? abstractTaskTemplateBean.hasExpressAdhocWF(): isShowStartAdhocButton)}" />
+                  rendered="#{abstractTaskTemplateBean.hasAdhocTasks(task) or (empty isShowStartAdhocButton? (abstractTaskTemplateBean.hasExpressAdhocWF() and task.isPersistent()) : isShowStartAdhocButton)}" />
 
                 <p:menuitem id="side-steps-menu" styleClass="empty-side-steps" global="false"
                   disabled="#{empty abstractTaskTemplateBean.sideStepList}" rendered="#{isSideStepDisabled}"
@@ -95,7 +95,7 @@
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistoryTooltip')}" />
     
                 <p:menuitem id="start-adhoc"
-                  rendered="#{empty isShowStartAdhocButton? abstractTaskTemplateBean.hasExpressAdhocWF(): isShowStartAdhocButton}"
+                  rendered="#{empty isShowStartAdhocButton? (abstractTaskTemplateBean.hasExpressAdhocWF() and task.isPersistent()) : isShowStartAdhocButton}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHoc')}"
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}"
                   icon="fa fa-random fa-2x" oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()" />
@@ -105,7 +105,7 @@
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createProcessChat')}" update="chat-assignee-dialog" />
     
                 <p:separator
-                    rendered="#{abstractTaskTemplateBean.hasAdhocTasks(task) or (empty isShowStartAdhocButton? abstractTaskTemplateBean.hasExpressAdhocWF(): isShowStartAdhocButton)}" />
+                    rendered="#{abstractTaskTemplateBean.hasAdhocTasks(task) or (empty isShowStartAdhocButton? (abstractTaskTemplateBean.hasExpressAdhocWF() and task.isPersistent()) : isShowStartAdhocButton)}" />
     
                 <p:menuitem id="side-steps-menu" styleClass="empty-side-steps" global="false"
                   disabled="#{empty abstractTaskTemplateBean.sideStepList}" rendered="#{isSideStepDisabled}"
