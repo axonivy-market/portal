@@ -116,7 +116,7 @@ public class AbsenceManagementBean implements Serializable{
     return null;
   }
   
-  public void loadSubstitutes() {
+  public void loadData() {
     IvyComponentLogicCaller<String> reserveTask = new IvyComponentLogicCaller<>();
     reserveTask.invokeComponentLogic("absence-management", "#{logic.loadData}", new Object[] {});
   }
