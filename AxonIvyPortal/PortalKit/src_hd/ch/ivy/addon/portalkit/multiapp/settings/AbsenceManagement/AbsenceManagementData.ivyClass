@@ -19,16 +19,14 @@ substitutesByApp PERSISTENT #fieldModifier
 validationError Boolean #field
 absenceInThePastShown Boolean #field
 absenceInThePastShown PERSISTENT #fieldModifier
-selectedUser ch.ivy.addon.portalkit.dto.UserDTO #field
-selectedUser PERSISTENT #fieldModifier
+selectedSubstituteUser ch.ivy.addon.portalkit.dto.UserDTO #field
+selectedSubstituteUser PERSISTENT #fieldModifier
 displayedAbsences java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence> #field
 displayedAbsences PERSISTENT #fieldModifier
 usersByApp java.util.Map #field
 usersByApp PERSISTENT #fieldModifier
 isAbsenceBeingCreated Boolean #field
 isAbsenceBeingCreated PERSISTENT #fieldModifier
-showAllAbsences Boolean #field
-showAllAbsences PERSISTENT #fieldModifier
 substitutionsByApp java.util.Map #field
 substitutionsByApp PERSISTENT #fieldModifier
 applications java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyApplication> #field
@@ -37,3 +35,7 @@ usersInApp java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> #field
 usersInApp PERSISTENT #fieldModifier
 currentApp String #field
 currentApp PERSISTENT #fieldModifier
+selectedAbsenceUser ch.ivy.addon.portalkit.dto.UserDTO #field
+selectedAbsenceUser PERSISTENT #fieldModifier
+selectedUser ch.ivy.addon.portalkit.dto.UserDTO #field
+selectedUser PERSISTENT #fieldModifier

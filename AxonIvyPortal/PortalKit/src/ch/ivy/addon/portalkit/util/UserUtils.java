@@ -154,9 +154,7 @@ public class UserUtils {
 	  if (usersByApp == null || usersByApp.isEmpty()) {
 		  return new ArrayList<>();
 	  }
-	
-	  return usersByApp
-	      	.get(application)
+	  return CollectionUtils.emptyIfNull(usersByApp.get(application))
 	        .stream()
 	        .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getName, String.CASE_INSENSITIVE_ORDER))), ArrayList::new));
   }
@@ -166,8 +164,7 @@ public class UserUtils {
 		  return new ArrayList<>();
 	  }
 	
-	  return usersByApp
-	      	.get(application)
+	  return CollectionUtils.emptyIfNull(usersByApp.get(application))
 	        .stream()
 	        .filter(item -> !StringUtils.equals(item.getName(), ignoreUser))
 	        .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getName, String.CASE_INSENSITIVE_ORDER))), ArrayList::new));
