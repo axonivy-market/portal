@@ -62,6 +62,18 @@ public abstract class TemplatePage extends AbstractPage {
     });
   }
 
+  public void waitForElementExisted(String cssSelector, boolean expected, long timeout) {
+    Awaitility.await().atMost(new Duration(timeout, TimeUnit.SECONDS)).until(() -> {
+      try {
+        return (findListElementsByCssSelector(cssSelector).size() != 0) == expected;
+      } catch (WebDriverException e) {
+        System.out.println("Exception when waiting for element existed, try again.");
+        e.printStackTrace();
+      }
+      return false;
+    });
+  }
+  
   protected boolean isIntegrationTestRun() {
     String engineUrl = System.getProperty("engineUrl");
     return ENGINE_URL_LOCAL.equals(engineUrl);
@@ -161,9 +173,9 @@ public abstract class TemplatePage extends AbstractPage {
 
   private void clickUserMenuItem(String menuItemSelector) {
     waitForElementDisplayed(By.id("user-settings-menu"), true);
-    findElementById("user-settings-menu").click();
+    click(findElementById("user-settings-menu"));
     waitForElementDisplayed(By.id(menuItemSelector), true);
-    findElementById(menuItemSelector).click();
+    click(findElementById(menuItemSelector));
     waitAjaxIndicatorDisappear();
   }
 
@@ -230,7 +242,7 @@ public abstract class TemplatePage extends AbstractPage {
     String newPageHandle = ((String) newWindows.toArray()[0]);
 
     String createTestingTasksUrl =
-        UrlHelpers.generateAbsoluteProcessStartLink("portalExamples/162511D2577DBA88/CategoriedLeaveRequest.ivp");
+        UrlHelpers.generateAbsoluteProcessStartLink("portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp");
     driver.switchTo().window(newPageHandle);
     driver.get(createTestingTasksUrl);
 
@@ -285,7 +297,7 @@ public abstract class TemplatePage extends AbstractPage {
   
   public void clickByCssSelector(String cssSelector) {
     waitForElementDisplayed(By.cssSelector(cssSelector), true);
-    findElementByCssSelector(cssSelector).click();
+    click(By.cssSelector(cssSelector));
   }
 
   protected void refreshAndWaitElement(String cssSelector) {

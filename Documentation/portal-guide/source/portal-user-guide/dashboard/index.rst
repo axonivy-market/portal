@@ -120,10 +120,10 @@ II. Edit processes
 3. Confirm the reorder with the link **Save** next to the heading **User
    Favorites**.
 
-.. figure:: images/how-to-order-process-favorites-individually-1.png
+.. figure:: images/how-to-delete-process-favorites-1.png
 
 
-.. figure:: images/how-to-order-process-favorites-individually-2.png
+.. figure:: images/how-to-order-process-favorites-individually.png
 
 Personal Tasks
 --------------
@@ -189,7 +189,7 @@ Next to the heading you find a link **Show all charts**. This quick link
 routes you the :guilabel:`Statistics` page of the Axon.ivy Portal. Please refer
 to :ref:`full-statistic-list`  for more detailed information.
 
-Within the green header of the chart, you find two navigation buttons
+Within header of the chart, you find two navigation buttons
 (|pre-icon|, |next-icon|) allowing you to toggle between the available
 charts. Each chart then provides you with the following information:
 

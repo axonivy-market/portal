@@ -16,7 +16,7 @@ import portal.guitest.page.MainMenuPage;
 public class CaseWidgetCustomizationTest extends BaseTest {
 
 	private static final String CREATE_CASES_FOR_CASE_LIST_CUSTOMIZATION =
-			"portalExamples/162511D2577DBA88/createCasesForCaseListCustomization.ivp";
+			"portal-developer-examples/162511D2577DBA88/createCasesForCaseListCustomization.ivp";
 	private static final String CUSTOMER_NAME_CASE_LIST_HEADER_ID = 
 	    "case-widget:customVarCharField1-column-header:customVarCharField1-column-header";
 	private static final String STATE_COLUMN_HEADER = "State";
