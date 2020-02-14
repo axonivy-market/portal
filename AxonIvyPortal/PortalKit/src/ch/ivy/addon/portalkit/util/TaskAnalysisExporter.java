@@ -27,7 +27,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 public class TaskAnalysisExporter {
   private static final String ZIP = "zip";
   private static final String XLSX = "xlsx";
-  private static final int MAX_TASKS_IN_EXCEL = 1048575; // = MAX ROWS (1048576) - 1 (for header row)
+  public static final int MAX_TASK_NUMBER_IN_EXCEL = 1048575; // = MAX ROWS (1048576) - 1 (for header row)
   private static final String FILE_NAME_SUFFIX_FOR_EXCEL_IN_ZIP = "_%s";
   private Map<String, Boolean> columnsVisibility;
   private UserFormatBean userFormatBean;
@@ -40,7 +40,7 @@ public class TaskAnalysisExporter {
   public StreamedContent getStreamedContent(List<ITask> tasks) throws IOException {
     Date creationDate = new Date();
     StreamedContent file;
-    if (tasks.size() > MAX_TASKS_IN_EXCEL) {
+    if (tasks.size() > MAX_TASK_NUMBER_IN_EXCEL) {
       ByteArrayInputStream inputStream = new ByteArrayInputStream(generateZipContent(tasks, creationDate));
       file = new DefaultStreamedContent(inputStream, "application/zip", getFileName(creationDate, ZIP));
     } else {
@@ -53,7 +53,7 @@ public class TaskAnalysisExporter {
   private byte[] generateZipContent(List<ITask> tasks, Date creationDate) throws IOException {
     try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream)) {
-      List<List<ITask>> tasksInFiles = ListUtils.partition(tasks, MAX_TASKS_IN_EXCEL);
+      List<List<ITask>> tasksInFiles = ListUtils.partition(tasks, MAX_TASK_NUMBER_IN_EXCEL);
       for (int i = 0; i < tasksInFiles.size(); i++) {
         String excelFileName = getFileName(creationDate, XLSX, String.format(FILE_NAME_SUFFIX_FOR_EXCEL_IN_ZIP, i + 1));
         try {
@@ -192,7 +192,6 @@ public class TaskAnalysisExporter {
     return rows;
 
   }
-
 
   private String getFileName(Date creationDate, String extension) {
     return getFileName(creationDate, extension, null);
