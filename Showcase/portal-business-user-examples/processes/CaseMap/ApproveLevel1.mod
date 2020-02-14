@@ -30,7 +30,7 @@ A10 f0 taskData 'TaskTriggered.EXP=new Duration("24h")
 TaskTriggered.EXPRI=2
 TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.NAM=Approve Level 1
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/CaseMap/approveLevel1")%>
 TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt

@@ -22,8 +22,9 @@ Ls0 @PushWFArc f5 '' #zField
 Ls0 f0 guid 1703359FD639EAC8 #txt
 Ls0 f0 method start() #txt
 Ls0 f0 inParameterDecl '<> param;' #txt
-Ls0 f0 outParameterDecl '<String approverName> result;' #txt
+Ls0 f0 outParameterDecl '<String approverName,String requesterName> result;' #txt
 Ls0 f0 outParameterMapAction 'result.approverName=in.leaveRequestData.approverUsername;
+result.requesterName=in.leaveRequestData.requesterUsername;
 ' #txt
 Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -62,6 +63,7 @@ import com.axonivy.portal.businessuserexamples.leaverequest.LeaveRequest;
 in.leaveRequestData = ivy.repo.get(LeaveRequest.class) as LeaveRequest;
 if(StringUtils.isEmpty(in.leaveRequestData.requesterUsername)) {
 	in.leaveRequestData.setRequesterUsername(ivy.session.getSessionUserName());
+	ivy.repo.save(in.leaveRequestData);
 }
 
 
