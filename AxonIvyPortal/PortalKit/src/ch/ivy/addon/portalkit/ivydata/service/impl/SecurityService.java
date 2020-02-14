@@ -36,7 +36,7 @@ public class SecurityService implements ISecurityService {
   }
 
   @Override
-  public IvySecurityResultDTO findUsers(String query, List<String> apps, int first, int pageSize) {
+  public IvySecurityResultDTO findUsers(String query, List<String> apps, int startIndex, int count) {
     return IvyExecutor.executeAsSystem(() -> { 
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
@@ -47,7 +47,7 @@ public class SecurityService implements ISecurityService {
       for (String appName : apps) {
         try {
           IApplication app = ServiceUtilities.findApp(appName);
-          List<UserDTO> userDTOs = queryUsers(query, app, first, pageSize);
+          List<UserDTO> userDTOs = queryUsers(query, app, startIndex, count);
           usersByApp.put(appName, userDTOs);
         } catch (PortalIvyDataException e) {
           errors.add(e);
@@ -62,7 +62,7 @@ public class SecurityService implements ISecurityService {
   }
 
   @Override
-  public IvySecurityResultDTO findUsers(String query, IApplication app, int first, int pageSize) {
+  public IvySecurityResultDTO findUsers(String query, IApplication app, int startIndex, int count) {
     return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       List<PortalIvyDataException> errors = new ArrayList<>();
@@ -72,7 +72,7 @@ public class SecurityService implements ISecurityService {
       }
 
       try {
-        List<UserDTO> userDTOs = queryUsers(query, app, first, pageSize);
+        List<UserDTO> userDTOs = queryUsers(query, app, startIndex, count);
         result.setUsers(userDTOs);
       } catch (Exception ex) {
         Ivy.log().error("Error in getting users within app {0}", ex, app.getName());
@@ -211,14 +211,14 @@ public class SecurityService implements ISecurityService {
     });
   }
   
-  private List<UserDTO> queryUsers(String query, IApplication app, int first, int pageSize) {
+  private List<UserDTO> queryUsers(String query, IApplication app, int startIndex, int count) {
     query = "%"+ query +"%";
     List<IUser> users = UserQuery.create().where()
         .fullName().isLikeIgnoreCase(query)
         .or().name().isLikeIgnoreCase(query)
         .andOverall().applicationId().isEqual(app.getId())
         .orderBy().fullName().name()
-        .executor().results(first, pageSize);
+        .executor().results(startIndex, count);
     return users.stream().map(UserDTO::new).collect(Collectors.toList());
   }
 }
