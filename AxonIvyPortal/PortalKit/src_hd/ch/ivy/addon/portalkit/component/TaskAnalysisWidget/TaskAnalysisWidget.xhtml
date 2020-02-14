@@ -198,7 +198,7 @@
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
                     update="@(.filter-selection-form) #{cc.clientId}:case-filters-container"
                     process="@(case-filter-add-form)"
-                    actionListener="#{data.dataModel.updateSelectedFilter}">
+                    actionListener="#{data.dataModel.updateSelectedCaseFilter}">
                   </p:commandButton>
                   <p:spacer width="5" />
                   <p:commandButton id="cancel-add-case-filter-command" styleClass="portal-cancel-button"
