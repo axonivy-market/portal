@@ -762,10 +762,6 @@ body .task-template-content .ui-fieldset .ui-fieldset-legend {
   line-height: 0.3rem;
 }
 
-.express-assignee-autocomplete .ui-autocomplete-input {
-  padding-right: 20px !important;
-}
-
 .form-definition-table tr:nth-child(2) td.ui-panelgrid-cell:first-child {
   margin-right: 5px !important;
   width: calc(50% - 5px);

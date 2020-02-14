@@ -66,4 +66,11 @@ public class Attrs {
     T attributeValue = (T) fc.getApplication().evaluateExpressionGet(fc, attributeExpression , Object.class);
     return attributeValue;
   }
+  
+  @SuppressWarnings({"unchecked"})
+  public <T> T getAttribute(String attributeExpression, Class<? extends Object> expectedType){
+    FacesContext fc = FacesContext.getCurrentInstance();
+    T attributeValue = (T) fc.getApplication().evaluateExpressionGet(fc, attributeExpression , expectedType);
+    return attributeValue;
+  }
 }

@@ -808,9 +808,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 
 /* Small screen */
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
-  .delegation-select-panel {
-    max-width: 36% !important;
-  }
   .process-widget .process-nav .process-nav-item {
     padding: 0 15px !important;
   }
@@ -818,18 +815,8 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 
 /* Medium screen */
 @media screen and (min-width: 64.063em) and (max-width: 90.062em) {
-  .delegation-select-panel {
-    max-width: 32% !important;
-  }
   .process-widget .process-nav .process-nav-item {
     padding: 0 20px !important;
-  }
-}
-
-/* Large screen */
-@media screen and (min-width: 90.063em) {
-  .delegation-select-panel {
-    max-width: 23% !important;
   }
 }
 

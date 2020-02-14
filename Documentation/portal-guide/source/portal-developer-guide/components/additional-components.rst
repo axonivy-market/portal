@@ -254,6 +254,62 @@ features, and add more columns, remove default columns in document
 table. Refer to the ``DocumentTableComponent`` process in PortalExamples
 project
 
+.. _components-additional-components-user-selection:
+
+User Selection
+--------------
+
+Introduction
+^^^^^^^^^^^^
+
+This component is used for choosing a user from a user list defined by a role name list or all users.
+It includes 1 label, 1 autocomplete and 1 message element to display message related to that autocomplete element.
+
+|user-selection|
+
+How to use
+^^^^^^^^^^
+
+You can include this component to any page. Below is an example code for 2 labels style:
+
+.. code-block:: html
+
+      <ic:ch.ivy.addon.portalkit.component.UserSelection 
+            componentId="user-by-role-autocomplete"
+            roleNames="#{data.definedRoleNames}"
+            selectedUser="#{data.selectedUserForDefinedRoles}"
+            isRequired="true"
+            autoCompleteStyleClass="width-100"
+            label="Users from defined rolenames"
+            labelPanelStyleClass="ui-g-3 ui-xl-2 ui-md-4 ui-sm-12" 
+            autoCompletePanelStyleClass="ui-g-5 ui-md-4 ui-sm-12"
+            messageStyleClass="message-error-background-color" />
+
+      <ic:ch.ivy.addon.portalkit.component.UserSelection 
+            componentId="all-user-autocomplete"
+            hightlight="false" selectedUser="#{data.selectedUser}"
+            label="Loading with all users"
+            labelPanelStyleClass="ui-g-3 ui-xl-2 ui-md-4 ui-sm-12"
+            autoCompleteStyleClass="width-100"
+            autoCompletePanelStyleClass="ui-g-5 ui-md-4 ui-sm-12 margin-top-40"
+            isRequired="true" floatingLabel="true" />
+
+
+.. important::
+   If you use User Selection component more than twice in 1 page, 
+   please create a managedBean for each of them and extends ``UserSelectionBean``.
+   Otherwise, these components will use the same bean, you could not retrieve data separately.
+
+   Please refer to ``UserSelectionComponent.xhtml`` in ``PortalExamples``.
+
+Attributes of this component:
+
+.. csv-table::
+  :file: documents/additional-components/user_selection_component_attributes.csv
+  :header-rows: 1
+  :class: longtable
+  :widths: 1 1 1 3
+
 .. |process-history-example| image:: images/additional-component/process-history-example.png
 .. |process-history-dialog-example| image:: images/additional-component/process-history-dialog-example.png
 .. |set-business-entity-id-sub-process| image:: images/additional-component/set-business-entity-id-sub-process.png
@@ -262,4 +318,4 @@ project
 .. |example-global-growl-finished-task| image:: images/additional-component/example-global-growl-finished-task.png
 .. |example-global-growl-cancelled-task| image:: images/additional-component/example-global-growl-cancelled-task.png
 .. |document-table| image:: images/additional-component/document-table.png
-
+.. |user-selection| image:: images/additional-component/user-selection-component.png

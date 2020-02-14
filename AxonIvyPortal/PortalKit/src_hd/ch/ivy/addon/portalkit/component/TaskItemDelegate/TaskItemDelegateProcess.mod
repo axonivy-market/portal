@@ -17,7 +17,6 @@ Ts0 @UdProcessEnd f90 '' #zField
 Ts0 @UdProcessEnd f79 '' #zField
 Ts0 @GridStep f93 '' #zField
 Ts0 @CallSub f86 '' #zField
-Ts0 @UdMethod f73 '' #zField
 Ts0 @GridStep f80 '' #zField
 Ts0 @GridStep f87 '' #zField
 Ts0 @UdProcessEnd f106 '' #zField
@@ -30,7 +29,6 @@ Ts0 @GridStep f76 '' #zField
 Ts0 @Alternative f88 '' #zField
 Ts0 @UdMethod f82 '' #zField
 Ts0 @GridStep f89 '' #zField
-Ts0 @UdProcessEnd f69 '' #zField
 Ts0 @GridStep f77 '' #zField
 Ts0 @PushWFArc f100 '' #zField
 Ts0 @PushWFArc f103 '' #zField
@@ -40,7 +38,6 @@ Ts0 @PushWFArc f102 '' #zField
 Ts0 @PushWFArc f94 '' #zField
 Ts0 @PushWFArc f109 '' #zField
 Ts0 @PushWFArc f105 '' #zField
-Ts0 @PushWFArc f104 '' #zField
 Ts0 @PushWFArc f97 '' #zField
 Ts0 @PushWFArc f98 '' #zField
 Ts0 @PushWFArc f101 '' #zField
@@ -80,11 +77,11 @@ Ts0 f108 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f108 83 643 26 26 -47 15 #rect
+Ts0 f108 83 507 26 26 -47 15 #rect
 Ts0 f108 @|UdEventIcon #fIcon
 Ts0 f90 1339 155 26 26 0 12 #rect
 Ts0 f90 @|UdProcessEndIcon #fIcon
-Ts0 f79 819 515 26 26 0 12 #rect
+Ts0 f79 819 419 26 26 0 12 #rect
 Ts0 f79 @|UdProcessEndIcon #fIcon
 Ts0 f93 actionTable 'out=in;
 ' #txt
@@ -99,7 +96,7 @@ Ts0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f93 184 506 112 44 -29 -8 #rect
+Ts0 f93 184 410 112 44 -29 -8 #rect
 Ts0 f93 @|StepIcon #fIcon
 Ts0 f86 processCall 'Ivy Data Processes/SecurityService:findUsers(ch.ivyteam.ivy.application.IApplication)' #txt
 Ts0 f86 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application> param;' #txt
@@ -119,27 +116,6 @@ Ts0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f86 464 146 160 44 -77 -8 #rect
 Ts0 f86 @|CallSubIcon #fIcon
-Ts0 f73 guid 16EE8CC091943071 #txt
-Ts0 f73 method autoCompleteForUserDelegate(String) #txt
-Ts0 f73 inParameterDecl '<String query> param;' #txt
-Ts0 f73 inParameterMapAction 'out.queryAutoComplete=param.query;
-' #txt
-Ts0 f73 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> usersToDelegate> result;' #txt
-Ts0 f73 outActionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
-
-result.usersToDelegate = UserUtils.filterUsersDTO(in.usersToDelegate, in.queryAutoComplete);
-' #txt
-Ts0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>autoCompleteForUserDelegate(String)</name>
-        <nameStyle>35,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f73 83 419 26 26 -52 12 #rect
-Ts0 f73 @|UdMethodIcon #fIcon
 Ts0 f80 actionTable 'out=in;
 ' #txt
 Ts0 f80 actionCode 'import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
@@ -166,7 +142,7 @@ Ts0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f80 336 506 112 44 -32 -8 #rect
+Ts0 f80 336 410 112 44 -32 -8 #rect
 Ts0 f80 @|StepIcon #fIcon
 Ts0 f87 actionTable 'out=in;
 ' #txt
@@ -188,7 +164,7 @@ Ts0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f87 304 146 112 44 -21 -8 #rect
 Ts0 f87 @|StepIcon #fIcon
-Ts0 f106 339 643 26 26 0 12 #rect
+Ts0 f106 339 507 26 26 0 12 #rect
 Ts0 f106 @|UdProcessEndIcon #fIcon
 Ts0 f107 actionTable 'out=in;
 ' #txt
@@ -203,7 +179,7 @@ to delegate</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f107 152 634 144 44 -54 -16 #rect
+Ts0 f107 152 498 144 44 -54 -16 #rect
 Ts0 f107 @|StepIcon #fIcon
 Ts0 f71 guid 16EE8CC091941043 #txt
 Ts0 f71 method delegateTask() #txt
@@ -216,7 +192,7 @@ Ts0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f71 83 515 26 26 -41 15 #rect
+Ts0 f71 83 419 26 26 -41 15 #rect
 Ts0 f71 @|UdMethodIcon #fIcon
 Ts0 f74 guid 16EE8CC09192B441 #txt
 Ts0 f74 method autoCompleteForRoleDelegate(String) #txt
@@ -273,7 +249,7 @@ Ts0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f92 488 506 112 44 -38 -8 #rect
+Ts0 f92 488 410 112 44 -38 -8 #rect
 Ts0 f92 @|StepIcon #fIcon
 Ts0 f76 actionTable 'out=in;
 ' #txt
@@ -327,8 +303,6 @@ delegate task</name>
 ' #txt
 Ts0 f89 1168 146 112 44 -37 -16 #rect
 Ts0 f89 @|StepIcon #fIcon
-Ts0 f69 339 419 26 26 0 12 #rect
-Ts0 f69 @|UdProcessEndIcon #fIcon
 Ts0 f77 actionTable 'out=in;
 ' #txt
 Ts0 f77 actionCode 'in.task.getCase().getBusinessCase().createNote(ivy.session, in.delegateComment);' #txt
@@ -340,26 +314,24 @@ Ts0 f77 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f77 648 506 112 44 -24 -8 #rect
+Ts0 f77 648 410 112 44 -24 -8 #rect
 Ts0 f77 @|StepIcon #fIcon
 Ts0 f100 expr out #txt
-Ts0 f100 448 528 488 528 #arcP
+Ts0 f100 448 432 488 432 #arcP
 Ts0 f103 expr out #txt
-Ts0 f103 600 528 648 528 #arcP
+Ts0 f103 600 432 648 432 #arcP
 Ts0 f110 expr out #txt
-Ts0 f110 109 656 152 656 #arcP
+Ts0 f110 109 520 152 520 #arcP
 Ts0 f99 expr out #txt
-Ts0 f99 296 528 336 528 #arcP
+Ts0 f99 296 432 336 432 #arcP
 Ts0 f102 expr out #txt
-Ts0 f102 109 528 184 528 #arcP
+Ts0 f102 109 432 184 432 #arcP
 Ts0 f94 expr out #txt
 Ts0 f94 109 168 208 168 #arcP
 Ts0 f109 expr out #txt
-Ts0 f109 296 656 339 656 #arcP
+Ts0 f109 296 520 339 520 #arcP
 Ts0 f105 expr out #txt
-Ts0 f105 760 528 819 528 #arcP
-Ts0 f104 expr out #txt
-Ts0 f104 109 432 339 432 #arcP
+Ts0 f105 760 432 819 432 #arcP
 Ts0 f97 expr out #txt
 Ts0 f97 1280 168 1339 168 #arcP
 Ts0 f98 expr out #txt
@@ -415,8 +387,6 @@ Ts0 f76 mainOut f95 tail #connect
 Ts0 f95 head f90 mainIn #connect
 Ts0 f74 mainOut f101 tail #connect
 Ts0 f101 head f66 mainIn #connect
-Ts0 f73 mainOut f104 tail #connect
-Ts0 f104 head f69 mainIn #connect
 Ts0 f71 mainOut f102 tail #connect
 Ts0 f102 head f93 mainIn #connect
 Ts0 f93 mainOut f99 tail #connect

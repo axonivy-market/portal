@@ -343,7 +343,7 @@ public class DeprecatedChatAssignee7Bean implements Serializable {
   }
 
   private void populateAvailableUsers() {
-    availableUsers = ServiceUtilities.findAllUserDTOExceptCurrentUserByApplication(Ivy.wf().getApplication());
+    availableUsers = ServiceUtilities.findAllUserDTOsExceptCurrentUserByApplication(Ivy.wf().getApplication());
   }
 
   private void populateAvailableRoles() {
