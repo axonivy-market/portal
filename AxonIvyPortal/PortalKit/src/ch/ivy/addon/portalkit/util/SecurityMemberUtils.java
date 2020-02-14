@@ -3,7 +3,6 @@ package ch.ivy.addon.portalkit.util;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
@@ -28,15 +27,15 @@ public class SecurityMemberUtils {
   public static List<SecurityMemberDTO> findSecurityMembers(String query, int startIndex, int count) {
     return IvyExecutor.executeAsSystem(() -> {
       if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
-        Map<String, List<SecurityMemberDTO>> usersByApp = SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
+        List<SecurityMemberDTO> users = SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
             .withStartName("findSecurityMembersOverAllApplications")
             .withParam("username", Ivy.session().getSessionUserName())
             .withParam("query", query)
             .withParam("startIndex", startIndex)
             .withParam("count", count)
             .call()
-            .get("members", Map.class);
-        return usersByApp.values().stream().flatMap(List::stream)
+            .get("members", List.class);
+        return users.stream()
             .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(SecurityMemberDTO::getName))), ArrayList::new));
       }
       
