@@ -44,7 +44,7 @@
           </li>
 
           <li><p:link id="absence-menu-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
-              onclick="rcAbsenceManagement(); $('#user-setting-container').click()" rendered="#{absenceBean.ownAbsencesReadable}" /></li>
+              onclick="rcAbsenceManagement(); $('#user-setting-container').click()" rendered="#{absenceManagementBean.ownAbsencesReadable}" /></li>
 
           <li><p:commandLink id="email-setting-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}"
               oncomplete="PF('emailSetting').show(); $('#user-settings-menu').click()" resetValues="true" update="applications-email-setting-form">
@@ -156,7 +156,7 @@
     <h:form>
       <p:remoteCommand name="rcProjectInfo" actionListener="#{projectVersionBean.loadProjectVesion}" oncomplete="PF('project-info-dialog').show()"
         update="project-info-dialog" />
-      <p:remoteCommand name="rcAbsenceManagement" actionListener="#{absenceManagementBean.loadSubstitutes}" oncomplete="PF('absenceManagement').show()"
+      <p:remoteCommand name="rcAbsenceManagement" actionListener="#{absenceManagementBean.loadData}" oncomplete="PF('absenceManagement').show()"
         update="absence-management-dialog" />
     </h:form>
   </ui:insert>
