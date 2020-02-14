@@ -39,6 +39,7 @@ Lt0 f0 startName <%=ivy.cms.co("/Processes/LeaveRequest/leaveRequest")%> #txt
 Lt0 f0 startDescription <%=ivy.cms.co("/Processes/LeaveRequest/leaveRequest")%> #txt
 Lt0 f0 taskData TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/LeaveRequest/createNewLeaveRequest")%> #txt
 Lt0 f0 caseData 'businessCase.attach=true
+case.name=<%\=ivy.cms.co("/Processes/LeaveRequest/leaveRequest")%>
 customFields.STRING.embedInFrame="false"' #txt
 Lt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -145,7 +146,7 @@ Lt0 f16 1040 64 1096 64 #arcP
 Lt0 f12 1224 64 1273 64 #arcP
 Lt0 f17 actionTable 'out=in;
 ' #txt
-Lt0 f17 actionCode 'in.taskName = ivy.cms.co("/Processes/LeaveRequest/prefixApprovalTask") + ivy.session.getSessionUser().getDisplayName();' #txt
+Lt0 f17 actionCode 'in.taskName = ivy.cms.co("/Processes/LeaveRequest/approvalTaskName", [ivy.session.getSessionUser().getDisplayName()]);' #txt
 Lt0 f17 security system #txt
 Lt0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -161,7 +162,7 @@ Lt0 f8 784 64 809 64 #arcP
 Lt0 f10 839 64 896 64 #arcP
 Lt0 f18 actionTable 'out=in;
 ' #txt
-Lt0 f18 actionCode 'in.taskName = "Create leave request for: " + ivy.session.getSessionUser().getDisplayName();' #txt
+Lt0 f18 actionCode 'in.taskName = ivy.cms.co("/Processes/LeaveRequest/createLeaveRequest", [ivy.session.getSessionUser().getDisplayName()]);' #txt
 Lt0 f18 security system #txt
 Lt0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
