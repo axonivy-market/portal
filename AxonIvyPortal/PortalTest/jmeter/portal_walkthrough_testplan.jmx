@@ -1537,31 +1537,45 @@
               </elementProp>
               <elementProp name="javax.faces.source" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-widget:case-list-scroller:0:case-item:case-item-action-form:case-item-open-detail-link</stringProp>
+                <stringProp name="Argument.value">case-widget:case-list-scroller:0:case-item:case-info-row</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.source</stringProp>
               </elementProp>
               <elementProp name="javax.faces.partial.execute" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">@all</stringProp>
+                <stringProp name="Argument.value">case-widget:case-list-scroller:0:case-item:case-info-row</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.execute</stringProp>
               </elementProp>
-              <elementProp name="case-widget:case-list-scroller:0:case-item:case-item-action-form:case-item-open-detail-link" elementType="HTTPArgument">
+              <elementProp name="javax.faces.behavior.event" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">case-widget:case-list-scroller:0:case-item:case-item-action-form:case-item-open-detail-link</stringProp>
+                <stringProp name="Argument.value">click</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">case-widget:case-list-scroller:0:case-item:case-item-action-form:case-item-open-detail-link</stringProp>
+                <stringProp name="Argument.name">javax.faces.behavior.event</stringProp>
               </elementProp>
-              <elementProp name="case-widget:case-list-scroller:0:case-item:case-item-action-form_SUBMIT" elementType="HTTPArgument">
+              <elementProp name="javax.faces.partial.event" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">click</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">javax.faces.partial.event</stringProp>
+              </elementProp>
+              <elementProp name="user-menu-required-login:global-search-component-mobile:global-search-data" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">user-menu-required-login:global-search-component-mobile:global-search-data</stringProp>
+              </elementProp>
+              <elementProp name="user-menu-required-login:global-search-component-mobile-form_SUBMIT" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
                 <stringProp name="Argument.value">1</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">case-widget:case-list-scroller:0:case-item:case-item-action-form_SUBMIT</stringProp>
+                <stringProp name="Argument.name">user-menu-required-login:global-search-component-mobile-form_SUBMIT</stringProp>
               </elementProp>
               <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>

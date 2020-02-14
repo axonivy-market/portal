@@ -68,6 +68,7 @@
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTechnicalCases')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
             <f:attribute name="selectedCase" value="#{cc.attrs.case}" />
+            <f:attribute name="isWorkingOnTask" value="#{cc.attrs.isWorkingOnTask}" />
           </p:commandLink>
         </h:panelGroup>
         <p:tooltip for="more-related-cases" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTechnicalCases')}" trackMouse="true" />
@@ -82,6 +83,7 @@
             <p:commandLink id="case-name" value="#{empty technicalCase.name ? technicalCase.id : technicalCase.name}"
               actionListener="#{logic.navigateToRelatedCaseDetails}" styleClass="related-task">
               <f:attribute name="selectedCase" value="#{technicalCase}" />
+              <f:attribute name="isWorkingOnTask" value="#{cc.attrs.isWorkingOnTask}" />
             </p:commandLink>
           </h:panelGroup>
           <p:tooltip for="technicalCase"
