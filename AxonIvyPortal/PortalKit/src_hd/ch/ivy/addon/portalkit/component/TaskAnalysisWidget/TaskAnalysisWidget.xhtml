@@ -199,7 +199,7 @@
 
         <!-- FILTER BUTTONS -->
         <div id="filter-buttons-container" class="MarTop20 filter-buttons-container">
-          <p:commandButton id="apply-filter" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}" process="@(.statistic-result-list)" update="@(.statistic-result-list)" />
+          <p:commandButton id="apply-filter" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}" process="@(.statistic-result-list)" update="@(.statistic-result-list) status-dialog" />
           <p:commandButton id="filter-save-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}"
             icon="fa fa-save" update="save-filter-set-dialog #{cc.clientId}:filter-selection-container" resetValues="true"
             oncomplete="PF('save-filter-set-dialog').show();" />
