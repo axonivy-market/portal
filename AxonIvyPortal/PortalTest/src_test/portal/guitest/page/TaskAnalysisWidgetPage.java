@@ -187,6 +187,5 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
       filterContainer = findElementById("task-widget:filter-selection-form:public-filters");
     }
     click(filterContainer.findElement(By.linkText(filterSetName)));
-    Sleeper.sleep(1000);
   }
 }
