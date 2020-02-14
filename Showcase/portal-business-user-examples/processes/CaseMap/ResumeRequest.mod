@@ -24,7 +24,7 @@ Rt0 f0 persist false #txt
 Rt0 f0 taskData 'TaskTriggered.EXPRI=2
 TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.NAM=Resume Request
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/CaseMap/resumeRequest")%>
 TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt
