@@ -107,6 +107,7 @@ public class TaskWidgetPage extends TemplatePage {
   public void filterTasksBy(String keyword) {
     WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
     keywordFilter.clear();
+    keywordFilter.click(); // To make Firefox more stable
     keywordFilter.sendKeys(keyword);
     Sleeper.sleep(2000);
     waitAjaxIndicatorDisappear();
