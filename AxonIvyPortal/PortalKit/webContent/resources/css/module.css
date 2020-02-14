@@ -615,6 +615,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   margin-top: 3px;
 }
 
+@media (max-width : 767px) {
+  .case-widget-top-header-main-title {
+    word-break: break-all;
+  }
+}
+
 @media (max-width: 991px) {
   .case-header-action-cell, .task-header-action-cell {
     border-left: none;
@@ -1285,12 +1291,17 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
   .task-delegate-dialog {
     width: 300px !important;
   }
+  
+  .task-delegate-dialog .ui-dialog-footer {
+    padding: 0 !important;
+  }
 }
 
 /* Small screen */
 @media (min-width: 641px) and (max-width: 1365px) {
   .task-delegate-dialog {
     width: 40% !important;
+    min-width: 500px;
   }
 }
 
@@ -1728,6 +1739,20 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   .task-widget .ui-widget.ui-button.advanced-filter-command,
   .case-widget-container .ui-widget.ui-button.advanced-filter-command {
     max-width: 350px;
+    text-align: left;
+  }
+  .task-widget .ui-widget.ui-button.advanced-filter-command span,
+  .case-widget-container .ui-widget.ui-button.advanced-filter-command span {
+    width: 100%;
+    padding-right: 12px !important;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  .task-widget .ui-widget.ui-button.advanced-filter-command:after,
+  .case-widget-container .ui-widget.ui-button.advanced-filter-command:after {
+    position: absolute;
+    right: 25px;
   }
   .task-start-list-item.full-mode .task-start-link, .case-header-container {
     height: 50px;
@@ -2382,7 +2407,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
   .dialog-closing-information, .admin-ui-dialog, .app-dialog, .select-icon-dialog, .application-selection-dialog,
   .setting-dialog, .project-info-dialog, .change-password-dialog, .language-setting-dialog, .deputy-dialog,
-  .absence-settings-dialog, .add-new-absence-dialog {
+  .absence-settings-dialog, .add-absence-dialog {
     width: 96vw !important;
   }
   .task-template-container, .task-template-button {
@@ -2555,29 +2580,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 /********************************** ABSENCES AND DEPUTY **********************************/
-.absences-view-command-buttons {
-  float: right;
-}
-
-.absence-in-the-past-command {
-  float: left;
-  margin-top: 5px;
-}
-
-.absence-table-container {
-  height: 330px;
-}
-
-.absence-reset-float {
-  clear: both;
-  margin-bottom: 10px;
-}
-
-.absence-date-field {
-  text-align: center;
-  width: 150px;
-}
-
 .absences-table-action-column {
   text-align: center;
   width: 130px;
@@ -2587,14 +2589,9 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   .absences-table-action-column {
     width: 80px !important;
   }
-  
   .absences-table-action-column-icon-button {
     margin: 0 5px !important;
-  }
-  
-  .absence-date-field {
-    width: 100px !important;
-  }
+  }  
 }
 
 .absence-panel-grid {
@@ -2613,44 +2610,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   width: calc(100% - 20px);
 }
 
-.substitution-user-selection-container {
-  margin-bottom: 10px;
+.ui-tabs .ui-tabs-panel {
+    padding: 0 !important;
 }
-
-.deputy-data-section {
-  width: 100%;
-}
-
-.substitute-container {
-  height: 350px;
-  width: 100%;
-  overflow: auto;
-}
-
-.substitute-container-table, .deputy-dialog {
-  min-width: 750px;
-  max-width: 900px;
-}
-
-.substitute-role {
-  width: 40%;
-  height: 30px !important;
-}
-
-.substitute-deputy {
-  width: 30%;
-  height: 29px !important;
-}
-
-.substitute-comment {
-  width: 30%;
-  height: 29px !important;
-}
-
-.substitute-comment input {
-  width: calc(100% - 20px);
-}
-
+/**********************************END ABSENCES AND DEPUTY **********************************/
 .application-language-header {
   width: 20%;
 }
@@ -3335,14 +3298,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .container {
   flex-shrink: 1;
   overflow: auto;
-}
-
-.ui-fileupload-content .ui-progressbar {
-  top: 0px !important;
-}
-
-.ui-fileupload-preview {
-  vertical-align: middle;
 }
 
 .ui-tooltip {
@@ -4114,10 +4069,6 @@ _:-ms-fullscreen, :root .content-link-history {
   padding-right: 20px;
 }
 
-.ui-fileupload.ui-widget .ui-fileupload-content .ui-fileupload-row>div {
-  vertical-align: middle;
-}
-
 /**************DATA TABLE START*******************/
 .column-header-top-alignment {
   vertical-align: baseline;
@@ -4213,3 +4164,12 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
 }
 
 /*=================== EXPRESS MANAGEMENT END ===================*/
+
+/*=================== NOTE HISTORY START ===================*/
+@media screen and (max-width: 40em) {
+  .note-history-fullname-column {
+    width: 40% !important;
+  }
+}
+/*=================== NOTE HISTORY END ===================*/
+
