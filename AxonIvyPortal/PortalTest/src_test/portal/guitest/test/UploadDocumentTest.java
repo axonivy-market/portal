@@ -1,6 +1,7 @@
 package portal.guitest.test;
 
 import static junit.framework.Assert.assertEquals;
+import static portal.guitest.common.FileHelper.getAbsolutePathToTestFile;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -84,10 +85,6 @@ public class UploadDocumentTest extends BaseTest{
   private void initHomePage(TestAccount account) {
     login(account);
     homePage = new HomePage();
-  }
-  
-  private String getAbsolutePathToTestFile(String fileName){
-    return System.getProperty("user.dir") + "\\resources\\testFile\\" + fileName;
   }
   
 }
