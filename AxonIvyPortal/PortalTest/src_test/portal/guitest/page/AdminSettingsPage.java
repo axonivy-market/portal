@@ -160,7 +160,7 @@ public class AdminSettingsPage extends TemplatePage {
 
   public void openExpressManagementTab() {
     WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:express-management-tab']");
-    click(settingTabLink);
+    settingTabLink.click();
     waitForElementPresent(By.id("adminui:adminTabView:express-management-tab"), true);
     waitAjaxIndicatorDisappear();
   }
