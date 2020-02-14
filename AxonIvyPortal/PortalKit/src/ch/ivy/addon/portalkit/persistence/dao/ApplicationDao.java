@@ -20,16 +20,12 @@ public class ApplicationDao extends AbstractDao<Application> {
 
   @ExecuteAsSystem
   public List<Application> findAllThirdPartyApplications() {
-    return findAll().stream()
-        .filter(application -> application.getServerId() == null)
-        .collect(Collectors.toList());
+    return findAll().stream() .filter(application -> application.getServerId() == null) .collect(Collectors.toList());
   }
 
   @ExecuteAsSystem
   public List<Application> findAllIvyApplications() {
-    return findAll().stream()
-        .filter(application -> application.getServerId() != null)
-        .collect(Collectors.toList());
+    return findAll().stream() .filter(application -> application.getServerId() != null) .collect(Collectors.toList());
   }
 
   @ExecuteAsSystem
