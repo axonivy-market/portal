@@ -180,20 +180,6 @@ public class ServiceUtilities {
     }
     return apps;
   }
-
-  /**
-   * find all users, exclude SYSTEM user in application and convert them to {@link UserDTO}
-   * @param app {@link IApplication}
-   * 
-   * @return all users in application, exclude SYSTEM user
-   */
-  public static List<UserDTO> findAllUserDTOByApplication(IApplication app) {
-    return IvyExecutor.executeAsSystem(() -> {
-      return app.getSecurityContext().getUsers().stream().map(user -> new UserDTO(user))
-          .filter(userDTO -> !StringUtils.equals(ISecurityConstants.SYSTEM_USER_NAME, userDTO.getName()))
-          .collect(Collectors.toList());
-    });
-  }
   
   /**
    *  find all users, exclude SYSTEM user and current user in application and convert them to {@link UserDTO}
