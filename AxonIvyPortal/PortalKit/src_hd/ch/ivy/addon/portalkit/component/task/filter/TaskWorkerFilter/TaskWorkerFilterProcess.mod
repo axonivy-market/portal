@@ -24,9 +24,10 @@ Ts0 f6 inParameterDecl '<String query> param;' #txt
 Ts0 f6 inParameterMapAction 'out.queryAutoComplete=param.query;
 ' #txt
 Ts0 f6 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> workers> result;' #txt
-Ts0 f6 outActionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
+Ts0 f6 outActionCode 'import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.util.UserUtils;
 
-result.workers = UserUtils.findUsers(in.queryAutoComplete, 0, 101);' #txt
+result.workers = UserUtils.findUsers(in.queryAutoComplete, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);' #txt
 Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
