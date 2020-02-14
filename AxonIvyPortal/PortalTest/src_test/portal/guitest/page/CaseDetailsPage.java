@@ -190,7 +190,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public CaseWidgetPage goBackToCaseListFromCaseDetails() {
-    click(findElementById("case-item-details:case-detail-title-form:back-to-cases"));
+    findElementById("case-item-details:case-detail-title-form:back-to-cases").click();
     return new CaseWidgetPage();
   }
   
