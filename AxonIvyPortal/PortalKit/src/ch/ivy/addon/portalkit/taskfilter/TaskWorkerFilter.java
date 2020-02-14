@@ -64,7 +64,7 @@ public class TaskWorkerFilter extends TaskFilter {
   }
 
   private void initWorkers() {
-    workers = UserUtils.findAllUserDTOByApplication();
+    workers = UserUtils.findAllUserDTOsByApplication();
   }
 
   public void setWorkers(List<UserDTO> workers) {

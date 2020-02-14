@@ -1,0 +1,10 @@
+UserSelectionData #class
+ch.ivy.addon.portalkit.component.UserSelection #namespace
+isRequired Boolean #field
+isRequired PERSISTENT #fieldModifier
+users List<ch.ivy.addon.portalkit.dto.UserDTO> #field
+users PERSISTENT #fieldModifier
+roleNames java.util.List<String> #field
+roleNames PERSISTENT #fieldModifier
+query String #field
+query PERSISTENT #fieldModifier

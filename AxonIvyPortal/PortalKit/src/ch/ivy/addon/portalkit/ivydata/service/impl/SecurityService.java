@@ -45,7 +45,7 @@ public class SecurityService implements ISecurityService {
       for (String appName : apps) {
         try {
           IApplication app = ServiceUtilities.findApp(appName);
-          usersByApp.put(appName, ServiceUtilities.findAllUserDTOByApplication(app));
+          usersByApp.put(appName, ServiceUtilities.findAllUserDTOsByApplication(app));
         } catch (PortalIvyDataException e) {
           errors.add(e);
         } catch (Exception ex) {
@@ -69,7 +69,7 @@ public class SecurityService implements ISecurityService {
       }
 
       try {
-        List<UserDTO> users = ServiceUtilities.findAllUserDTOByApplication(app);
+        List<UserDTO> users = ServiceUtilities.findAllUserDTOsByApplication(app);
         users.sort((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName()));
         result.setUsers(users);
       } catch (Exception ex) {
@@ -163,7 +163,7 @@ public class SecurityService implements ISecurityService {
         List<RoleDTO> roles = ServiceUtilities.findAllRoleDTO(app);
         roles.sort((r1, r2) -> StringUtils.compareIgnoreCase(r1.getDisplayName(), r2.getDisplayName()));
         
-        List<UserDTO> users = ServiceUtilities.findAllUserDTOByApplication(app);
+        List<UserDTO> users = ServiceUtilities.findAllUserDTOsByApplication(app);
         users.sort((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName()));
         
         List<SecurityMemberDTO> members = SecurityMemberDTOMapper.mapFromUserDTOs(users);
@@ -189,7 +189,7 @@ public class SecurityService implements ISecurityService {
         try {
           IApplication app = ServiceUtilities.findApp(appName);
           ServiceUtilities.findAllRoleDTO(app).forEach(role -> roleByName.put(role.getName() + " - " + role.getMemberName(), role));
-          ServiceUtilities.findAllUserDTOByApplication(app).forEach(user -> userByName.put(user.getName() + " - " + user.getMemberName(), user));
+          ServiceUtilities.findAllUserDTOsByApplication(app).forEach(user -> userByName.put(user.getName() + " - " + user.getMemberName(), user));
         } catch (Exception ex) {
           Ivy.log().error("Error in getting security members within app {0}", ex, appName);
         }

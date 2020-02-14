@@ -215,13 +215,13 @@ public class UserUtils {
     return StringUtils.defaultIfBlank((String)Ivy.session().getAttribute(CASE_KEYWORD_FILTER), "");
   }
 
-  public static List<UserDTO> findAllUserDTOInCurrentApplication() {
-    List<UserDTO> users =  ServiceUtilities.findAllUserDTOByApplication(Ivy.request().getApplication());
+  public static List<UserDTO> findAllUserDTOsInCurrentApplication() {
+    List<UserDTO> users =  ServiceUtilities.findAllUserDTOsByApplication(Ivy.request().getApplication());
     Collections.sort(users, (first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
     return users;
   }
   
-  public static List<UserDTO> findAllUserDTOByApplication() {
+  public static List<UserDTO> findAllUserDTOsByApplication() {
     List<UserDTO> users = findUsersByCallableProcess();
     Collections.sort(users, (first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
     return users;

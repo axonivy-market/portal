@@ -1,0 +1,10 @@
+UserSelectionComponentData #class
+ch.ivyteam.ivy.project.portal.examples.UserSelectionComponent #namespace
+definedRoleNames List<String> #field
+definedRoleNames PERSISTENT #fieldModifier
+selectedUserForDefinedRoles ch.ivy.addon.portalkit.dto.UserDTO #field
+selectedUserForDefinedRoles PERSISTENT #fieldModifier
+selectedUser ch.ivy.addon.portalkit.dto.UserDTO #field
+selectedUser PERSISTENT #fieldModifier
+selectedUserForReadOnlyField ch.ivy.addon.portalkit.dto.UserDTO #field
+selectedUserForReadOnlyField PERSISTENT #fieldModifier

@@ -10,7 +10,7 @@ selectedAssigneeList java.util.List<ch.ivyteam.ivy.security.ISecurityMember> #fi
 selectedAssigneeList PERSISTENT #fieldModifier
 isAssignToUser Boolean #field
 isAssignToUser PERSISTENT #fieldModifier
-selectedUser ch.ivyteam.ivy.security.IUser #field
+selectedUser ch.ivy.addon.portalkit.dto.UserDTO #field
 selectedUser PERSISTENT #fieldModifier
 selectedRole ch.ivyteam.ivy.security.IRole #field
 selectedRole PERSISTENT #fieldModifier

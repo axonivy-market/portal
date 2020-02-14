@@ -452,6 +452,11 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of Axon.ivy.
 
+Changes in 8.0.3
+----------------
+-  User Selection Component is introduced, refer to :ref:`User 
+   Selection <components-additional-components-user-selection>` for more details.
+
 Changes in 8.0
 --------------
 
