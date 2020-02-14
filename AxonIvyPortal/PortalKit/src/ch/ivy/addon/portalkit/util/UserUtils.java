@@ -82,30 +82,6 @@ public class UserUtils {
     return String.format("%s (%s)", fullname, username);
   }
   
-  /**
-   * Filter list of users by name based on provided query
-   * 
-   * @param users users need to be filtered
-   * @param query provided query
-   * @return Filtered list of ivy users
-   */
-  public static List<IUser> filterUsers(List<IUser> users, String query) {
-    if (StringUtils.isEmpty(query)) {
-      return users;
-    }
-
-    return IvyExecutor.executeAsSystem(() -> {
-      List<IUser> filterUsers = new ArrayList<>();
-      for (IUser user : users) {
-        if (StringUtils.containsIgnoreCase(user.getDisplayName(), query) || StringUtils.containsIgnoreCase(user.getMemberName(), query)) {
-          filterUsers.add(user);
-        }
-      }
-  
-      return filterUsers.stream().sorted((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName())).collect(Collectors.toList());
-    });
-  }
-  
   public static List<IUserAbsence> findAbsenceOfUser(IUser iUser) {
     return IvyExecutor.executeAsSystem(() -> iUser.getAbsences());
   }
@@ -132,63 +108,6 @@ public class UserUtils {
     return returnString;
   }
   
-  public static List<UserDTO> filterUsersDTO(List<UserDTO> users, String query) {
-    List<UserDTO> filterUsers = new ArrayList<>();
-    
-    return IvyExecutor.executeAsSystem(() -> {
-      if (StringUtils.isEmpty(query)) {
-          return users;
-      }
-
-      for (UserDTO user : users) {
-        if (StringUtils.containsIgnoreCase(user.getDisplayName(), query) || StringUtils.containsIgnoreCase(user.getMemberName(), query)) {
-          filterUsers.add(user);
-        }
-      }
-
-      return filterUsers;
-    });
-  }
-  
-  public static List<UserDTO> findUsersInApp(Map<String, List<UserDTO>> usersByApp, String application){
-	  if (usersByApp == null || usersByApp.isEmpty()) {
-		  return new ArrayList<>();
-	  }
-	  return CollectionUtils.emptyIfNull(usersByApp.get(application))
-	        .stream()
-	        .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getName, String.CASE_INSENSITIVE_ORDER))), ArrayList::new));
-  }
-  
-  public static List<UserDTO> findUsersInAppWithIgnoreUser(Map<String, List<UserDTO>> usersByApp, String application, String ignoreUser){
-	  if (usersByApp == null || usersByApp.isEmpty()) {
-		  return new ArrayList<>();
-	  }
-	
-	  return CollectionUtils.emptyIfNull(usersByApp.get(application))
-	        .stream()
-	        .filter(item -> !StringUtils.equals(item.getName(), ignoreUser))
-	        .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getName, String.CASE_INSENSITIVE_ORDER))), ArrayList::new));
-  }
-  
-  /**
-   * Gets non-duplicated all of users from map usersByApp 
-   * 
-   * @param usersByApp
-   * @return non-duplicated list of ivy users
-   */
-  public static List<UserDTO> getNonDuplicatedUsers(Map<String, List<UserDTO>> usersByApp) {
-    if (usersByApp == null || usersByApp.isEmpty()) {
-      return new ArrayList<>();
-    }
-
-    return IvyExecutor.executeAsSystem(() ->
-      usersByApp.values()
-        .stream()
-        .flatMap(List::stream)
-        .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getName, String.CASE_INSENSITIVE_ORDER))), ArrayList::new))
-    );
-  }
-
   public static void setSessionAttribute(String key, Object value) {
     Ivy.session().setAttribute(key, value);
   }
@@ -284,6 +203,10 @@ public class UserUtils {
           .call()
           .get("users", List.class);
     });
+  }
+  
+  public static List<UserDTO> filterOut(List<UserDTO> users, UserDTO excludedUser) {
+    return users.stream().filter(user -> !StringUtils.equals(user.getName(), excludedUser.getName())).collect(Collectors.toList());
   }
   
   public static String getUserName(IUser user) {
