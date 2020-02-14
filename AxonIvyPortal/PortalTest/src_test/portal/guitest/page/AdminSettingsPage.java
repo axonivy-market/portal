@@ -34,20 +34,18 @@ public class AdminSettingsPage extends TemplatePage {
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
     WebElement table = findElementById("adminui:adminTabView:settingTable");
     List<WebElement> tableRows = table.findElements(By.tagName("tr"));
-    int index = 0;
     for (WebElement row : tableRows) {
       List<WebElement> columns = row.findElements(By.tagName("td"));
       if (!CollectionUtils.isEmpty(columns)) {
         WebElement keyColumn = columns.get(0);
         if (keyColumn.getText().equals(variableName)) {
-          WebElement editButton = row.findElement(By.id("adminui:adminTabView:settingTable:" + (index - 3) + ":edit"));
+          WebElement editButton = row.findElement(By.cssSelector("a[id$=edit]"));
           click(editButton);
           waitForElementPresent(By.id("adminui:settingDialogForm"), true);
           saveGlobalVariable(variableValue, isBooleanType);
           return;
         }
       }
-      index++;
     }
   }
 

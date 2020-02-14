@@ -10,7 +10,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
+import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -22,6 +25,10 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 
 public class TaskAnalysisExporter {
+  private static final String ZIP = "zip";
+  private static final String XLSX = "xlsx";
+  public static final int MAX_TASK_NUMBER_IN_EXCEL = 1048575; // = MAX ROWS (1048576) - 1 (for header row)
+  private static final String FILE_NAME_SUFFIX_FOR_EXCEL_IN_ZIP = "_%s";
   private Map<String, Boolean> columnsVisibility;
   private UserFormatBean userFormatBean;
   
@@ -30,22 +37,48 @@ public class TaskAnalysisExporter {
     this.userFormatBean = new UserFormatBean();
   }
 
-  public StreamedContent getStreamedContent(List<ITask> tasks) {
+  public StreamedContent getStreamedContent(List<ITask> tasks) throws IOException {
+    Date creationDate = new Date();
+    StreamedContent file;
+    if (tasks.size() > MAX_TASK_NUMBER_IN_EXCEL) {
+      ByteArrayInputStream inputStream = new ByteArrayInputStream(generateZipContent(tasks, creationDate));
+      file = new DefaultStreamedContent(inputStream, "application/zip", getFileName(creationDate, ZIP));
+    } else {
+      ByteArrayInputStream inputStream = new ByteArrayInputStream(generateExcelContent(tasks));
+      file = new DefaultStreamedContent(inputStream, "application/xlsx", getFileName(creationDate, XLSX));
+    }
+    return file;
+  }
+
+  private byte[] generateZipContent(List<ITask> tasks, Date creationDate) throws IOException {
+    try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream)) {
+      List<List<ITask>> tasksInFiles = ListUtils.partition(tasks, MAX_TASK_NUMBER_IN_EXCEL);
+      for (int i = 0; i < tasksInFiles.size(); i++) {
+        String excelFileName = getFileName(creationDate, XLSX, String.format(FILE_NAME_SUFFIX_FOR_EXCEL_IN_ZIP, i + 1));
+        try {
+          byte[] content = generateExcelContent(tasksInFiles.get(i));
+          zipOutputStream.putNextEntry(new ZipEntry(excelFileName));
+          zipOutputStream.write(content);
+          zipOutputStream.closeEntry();
+        } catch (IOException e) {
+          Ivy.log().error("The " + excelFileName + " file can't be exported", e);
+        }
+      }
+      zipOutputStream.close();
+      return outputStream.toByteArray();
+    }
+  }
+
+  private byte[] generateExcelContent(List<ITask> tasks) throws IOException {
     List<List<Object>> rows = generateData(tasks);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-
-    try {
-      ExcelExportSheet sheet = new ExcelExportSheet();
-      sheet.setHeaders(generateHeaders());
-      sheet.setRows(rows);
-      List<ExcelExportSheet> sheets = Arrays.asList(sheet);
-      ExcelExport.exportListAsExcel(sheets, outputStream);
-    } catch (IOException e) {
-      Ivy.log().error(e);
-    }
-    ByteArrayInputStream inputStream = new ByteArrayInputStream(outputStream.toByteArray());
-    return new DefaultStreamedContent(inputStream, "application/xlsx", getFileName());
-
+    ExcelExportSheet sheet = new ExcelExportSheet();
+    sheet.setHeaders(generateHeaders());
+    sheet.setRows(rows);
+    List<ExcelExportSheet> sheets = Arrays.asList(sheet);
+    ExcelExport.exportListAsExcel(sheets, outputStream);
+    return outputStream.toByteArray();
   }
 
   private List<String> generateHeaders() {
@@ -160,11 +193,16 @@ public class TaskAnalysisExporter {
 
   }
 
-  public String getFileName() {
+  private String getFileName(Date creationDate, String extension) {
+    return getFileName(creationDate, extension, null);
+  }
+
+  private String getFileName(Date creationDate, String extension, String suffix) {
     SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy_HHmm");
-    Date createdFileTime = new Date();
+    Date createdFileTime = creationDate != null ? creationDate : new Date();
+    String fileNameSuffix = suffix == null ? dateFormat.format(createdFileTime) : dateFormat.format(createdFileTime) + suffix; 
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/exportedTasksCasesFileName",
-        Arrays.asList(dateFormat.format(createdFileTime)));
+        Arrays.asList(fileNameSuffix, extension));
   }
   
   private boolean isColumnVisible(TaskAndCaseAnalysisColumn column) {
