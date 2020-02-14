@@ -3,17 +3,12 @@
     <autoScreenshot>true</autoScreenshot>
     <property>
         <name>guid</name>
-        <value>14C3006646080642</value>
+        <value>16FCB335E6A3A4C0</value>
         <readOnly>true</readOnly>
     </property>
     <property>
         <name>version</name>
         <value>1</value>
-        <readOnly>true</readOnly>
-    </property>
-    <property>
-        <name>binary</name>
-        <value>false</value>
         <readOnly>true</readOnly>
     </property>
     <property>

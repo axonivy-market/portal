@@ -1,7 +1,5 @@
 package ch.ivy.gawfs.beans;
 
-import gawfs.TaskDef;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +14,7 @@ import ch.ivy.gawfs.enums.TaskType;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
+import gawfs.TaskDef;
 
 @ManagedBean
 @RequestScoped
@@ -25,12 +24,10 @@ public class WorkflowDefinitionBean implements Serializable {
   private static final String SYSTEM = "SYSTEM";
 
   private List<IRole> availableRoles;
-  private List<IUser> availableUsers;
 
   @PostConstruct
   public void init() {
     populateAvailableRoles();
-    populateAvailableUsers();
   }
 
   public TaskType[] getTaskTypesForFirstWorkflowTask() {
@@ -77,24 +74,13 @@ public class WorkflowDefinitionBean implements Serializable {
   }
 
   /**
-   * Populate available users
-   */
-  private void populateAvailableUsers() {
-    availableUsers = new ArrayList<>();
-    List<IUser> usersFromSystem = Ivy.wf().getSecurityContext().getUsers();
-    usersFromSystem.stream()
-      .filter(user -> (!user.getName().equals(String.join("#", SYSTEM))))
-      .forEach(user -> availableUsers.add(user));
-  }
-
-  /**
    * Populate values for Auto Complete of responsible based on given query
    * 
    * @param query
    * @return values of available responsible
    */
   public List<IUser> populateUserAutoComplete(String query) {
-    return Helper.filterUsers(getAvailableUsers(), query);
+    return new ArrayList<>(Helper.filterUsers(query));
   }
 
   /**
@@ -113,13 +99,5 @@ public class WorkflowDefinitionBean implements Serializable {
 
   public void setAvailableRoles(List<IRole> availableRoles) {
     this.availableRoles = availableRoles;
-  }
-
-  public List<IUser> getAvailableUsers() {
-    return availableUsers;
-  }
-
-  public void setAvailableUsers(List<IUser> availableUsers) {
-    this.availableUsers = availableUsers;
   }
 }
