@@ -55,7 +55,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   private CaseSearchCriteria caseCriteria;
   private List<CaseFilter> caseFilters;
   private List<CaseFilter> selectedCaseFilters;
-  private List<CaseFilter> oldSelectedCaseFilters;
+  private List<CaseFilter> oldSelectedCaseFilters = new ArrayList<>();
   private CaseFilterContainer caseFilterContainer;
 
   public TaskAnalysisLazyDataModel() {
@@ -151,7 +151,8 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   
   @Override
   public void onFilterApply() {
-    updateSelectedFilter();
+    selectedTaskAnalysisFilterData = null;
+    isSelectedDefaultFilter = false;
   }
   @Override
   public void removeFilter(TaskFilter filter) {
@@ -177,6 +178,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     selectedFilters = new ArrayList<>();
     selectedCaseFilters = new ArrayList<>();
     selectedTaskAnalysisFilterData = null;
+    isSelectedDefaultFilter = false;
   }
 
   /**
@@ -394,9 +396,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   }
 
   @SuppressWarnings("unchecked")
-  @Override
-  public void updateSelectedFilter() {
-    super.updateSelectedFilter();
+  public void updateSelectedCaseFilter() {
     List<CaseFilter> toggleFilters =
         (List<CaseFilter>) CollectionUtils.subtract(selectedCaseFilters, oldSelectedCaseFilters);
     if (CollectionUtils.isNotEmpty(toggleFilters)) {
