@@ -30,7 +30,6 @@ import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserSubstitute;
-import ch.ivyteam.ivy.security.SubstitutionType;
 
 public class SubstituteService implements ISubstituteService {
 
@@ -186,7 +185,7 @@ public class SubstituteService implements ISubstituteService {
           IApplication application = ServiceUtilities.findApp(entry.getKey().getName());
           IUser user = ServiceUtilities.findUser(username, application);
           deleteSubstitutes(user);
-          createSubstitutes(entry.getValue(), user);
+          createSubstitutes(entry.getValue(), user, application);
         } catch (PortalIvyDataException e) {
           errors.add(e);
         } catch (Exception ex) {
@@ -199,10 +198,10 @@ public class SubstituteService implements ISubstituteService {
     });
   }
 
-  private void createSubstitutes(List<IvySubstitute> substitutes, IUser user) throws PersistencyException, EnvironmentNotAvailableException, PortalIvyDataException {
+  private void createSubstitutes(List<IvySubstitute> substitutes, IUser user, IApplication application) throws PersistencyException, EnvironmentNotAvailableException, PortalIvyDataException {
     for (IvySubstitute ivySubstitute : substitutes) {
       if (ivySubstitute.getSubstituteUser() != null) {
-        IUser iUser = ServiceUtilities.findUser(ivySubstitute.getSubstituteUser().getName(), Ivy.request().getApplication());
+        IUser iUser = ServiceUtilities.findUser(ivySubstitute.getSubstituteUser().getName(), application);
         if (ivySubstitute.getSubstitionRole() == null) {
           user.createSubstitute(iUser, "", ivySubstitute.getSubstitutionType());
         } else {
