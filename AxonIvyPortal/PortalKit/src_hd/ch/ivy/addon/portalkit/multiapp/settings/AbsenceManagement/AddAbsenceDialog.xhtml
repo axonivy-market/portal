@@ -17,10 +17,9 @@
           <ui:param name="uneditedUserName" value="false" />
         </ui:include>
       </h:panelGroup>
-
       
       <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
-        <p:commandButton process="@form" id="add-absence" oncomplete="if (args &amp;&amp; !args.validationFailed)PF('addAbsence').hide();"
+        <p:commandButton process="@form" id="create-absence" oncomplete="if (args &amp;&amp; !args.validationFailed)PF('addAbsence').hide();"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" actionListener="#{logic.createAbsence}"
           update=":#{p:component('absence-table')} absence-messages :#{p:component('substitue-tab')}" />
 
