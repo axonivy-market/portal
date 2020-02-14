@@ -51,12 +51,12 @@
         <p:dataTable id="absence-table"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
           scrollHeight="150" reflow="true" value="#{data.displayedAbsences}" var="absence" sortBy="#{absence.from}">
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/period')}">
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/period')}" sortBy="#{absence.period}">
             <h:outputText value="#{absence.period}" />
           </p:column>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}"
-            sortBy="#{absence.comment}">
-            <h:outputText value="#{absence.comment}" />
+            sortBy="#{absence.comment}" styleClass="u-truncate-text" >
+            <h:outputText value="#{absence.comment}" title="#{absence.comment}"/>
           </p:column>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
             styleClass="absences-table-action-column">
@@ -158,7 +158,7 @@
             <h:outputText value="#{ivy.cms.co(substitution.substitutionType eq 'PERMANENT' ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/always' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/duringMyAbsence')}" 
             rendered="#{empty substitution.substitionRole}"/>
           </p:column>
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/nextAbsence')}" >
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/nextAbsence')}" sortBy="#{absenceManagementBean.findNextAbsence(substitution.ownerUser)}">
             <h:outputText value="#{absenceManagementBean.findNextAbsence(substitution.ownerUser)}" />
           </p:column>
         </p:dataTable>
