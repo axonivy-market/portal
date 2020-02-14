@@ -28,10 +28,6 @@ body {
   font-size: $defaultBodyFontSize;
   color: $primaryTextColor;
 }
- 
-body .ui-state-active, body .ui-state-highlight {
-  color: $bodyStateActiveColor !important;
-}
 
 input, body .ui-widget, body .ui-widget .ui-widget,
 body .ui-selectonemenu .ui-selectonemenu-label.ui-inputfield {
@@ -190,6 +186,11 @@ body .ui-datepicker .ui-datepicker-header .ui-datepicker-prev {
   background-color: $uiDataPickerHeaderColor !important;
 }
 
+body .ui-datepicker .ui-datepicker-header .ui-datepicker-next.ui-datepicker-next-hover,
+body .ui-datepicker .ui-datepicker-header .ui-datepicker-prev.ui-datepicker-prev-hover {
+  color: $accentTextColor;
+}
+
 /* Checkbox */
 body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
     color: $primaryLightestColor !important;
@@ -238,10 +239,6 @@ a.ui-widget:focus {
 }
 
 /* Data table */
-.ui-datatable:not(.express-table-no-header) table tbody tr td span {
-  color: $dataTableRowSpanColor !important;
-}
-
 .ui-datatable table tbody tr.ui-datatable-selectable.ui-state-highlight td {
     background-color: $highlightedTdDataTableBackgroundColor;
 }
@@ -261,14 +258,6 @@ a.ui-widget:focus {
             th {
               border-top: 1px solid $topBorderOutsideDataTableColor;
               border-bottom: 1px solid $bottomBorderHeaderDataTableColor;
-                .ui-column-title {
-                    color: $primaryTextColor;
-                }
-
-                .ui-sortable-column-icon.ui-icon {
-                    color: $primaryTextColor;
-                }
-
                 &:not(:last-child) {
                     border-right: 1px solid $rightBorderInsideDataTable;
                 }
@@ -352,6 +341,10 @@ body .ui-datatable.ui-datatable-scrollable thead tr th {
   font-size: $largeFontSize;
 }
 
+body .ui-datatable.ui-datatable-scrollable thead tr th.ui-state-active {
+  color: $accentTextColor;
+}
+
 @media (max-width: 640px) {
   .ui-datatable-reflow .ui-reflow-dropdown {
     font-size: $largeFontSize !important;
@@ -409,6 +402,11 @@ body .ui-datatable.ui-datatable-scrollable thead tr th {
       color: $primaryLightestColor !important;
     }
   }
+}
+
+body .ui-tree .ui-treenode-content .ui-treenode-label.ui-state-active,
+body .ui-tree .ui-treenode-content .ui-treenode-label.ui-state-highlight {
+  color: $primaryTextColor;
 }
 
 
@@ -734,17 +732,21 @@ body .ui-buttonset .ui-state-active {
     background-color: $uiButtonHoverBackgroundColor !important;
 }
 
-.ui-widget.ui-button {
+.ui-widget.ui-button:not(.ui-autocomplete-dropdown):not(.ui-spinner-button) {
     .ui-button-text {
-        color: $textButtonColor !important;
+        color: $textButtonColor;
     }
 
     .ui-icon {
-        color: $primaryTextColor !important;
+        color: $textButtonColor;
     }
 
     ui-button-icon-left.ui-icon {
-        color: $primaryTextColor !important;
+        color: $textButtonColor;
+    }
+
+    .ui-icon-calendar {
+        color: $primaryTextColor;
     }
 }
 
@@ -949,14 +951,6 @@ body .ui-accordion .ui-accordion-header.ui-state-active {
 }
 
 /* File upload */
-.ui-fileupload-content .ui-progressbar {
-  top: 0px !important;
-}
-
-.ui-fileupload-preview {
-  vertical-align: middle;
-}
-
 @media (max-width: 1024px) {
   .ui-fileupload-files .ui-fileupload-row > div {
     display: block !important;
@@ -1007,4 +1001,18 @@ body .ui-inputswitch.ui-inputswitch-checked .ui-inputswitch-handle {
 
 ::placeholder {
   color: $placeHolderTextColor;
+}
+
+/* Keypad */
+body .keypad-popup .keypad-special,
+body .keypad-popup .keypad-special.ui-state-hover,
+body .keypad-popup .keypad-special.ui-state-active {
+  color: $accentTextColor;
+}
+
+/* Disable click effect of checkbox and radio button because it cause a bug that make checkbox/radio button uncheckable */
+body .ui-radiobutton .ui-radiobutton-box.ui-state-active:before,
+body .ui-chkbox .ui-chkbox-box.ui-state-active:before {
+  animation: none;
+  -webkit-animation: none;
 }
