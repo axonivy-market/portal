@@ -70,7 +70,7 @@
                 <span class="fa fa-trash-o" />
               </p:commandLink>
               <p:commandLink id="previewUsers" process="@this" rendered="#{not empty app.serverId}"
-                actionListener="#{logic.getApplicationUserList(app)}" update=":#{p:component('previewUsersDialog')}"
+                update=":#{p:component('previewUsersDialog')}" actionListener="#{logic.usersInApp(app)}"
                 oncomplete="PF('previewUsersDialog').show()" styleClass="action-column-icon-button"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/previewUsers')}">
                 <span class="fa fa-users" />
@@ -448,12 +448,12 @@
     id="previewUsersDialog" widgetVar="previewUsersDialog" dynamic="true" modal="true" resizable="false"
     styleClass="user-list-dialog" appendTo="@(body)">
     <h:form>
-      <p:dataTable value="#{data.usersApplicationList}" var="user"
-        sortBy="#{userFormatBean.formatWithTip(user.displayName, user.name)}" scrollable="true"
-        filteredValue="#{data.filteredUsers}" scrollHeight="300" styleClass="preview-users-datatable"
+      <p:dataTable value="#{data.userLazyDataModel}" var="user" lazy="true" scrollRows="20"
+        scrollable="true" scrollHeight="500" widgetVar="user-in-app" id="user-in-app"
+        styleClass="preview-users-datatable" liveScroll="true"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}"
-          filterBy="#{userFormatBean.formatWithTip(user.displayName, user.name)}" filterMatchMode="contains">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}" field="name" 
+          filterBy="#{userFormatBean.formatWithTip(user.displayName, user.name)}">
           <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.name)}" />
         </p:column>
       </p:dataTable>
