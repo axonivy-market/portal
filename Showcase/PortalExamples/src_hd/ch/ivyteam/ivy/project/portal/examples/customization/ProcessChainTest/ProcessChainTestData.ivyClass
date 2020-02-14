@@ -1,4 +1,0 @@
-ProcessChainTestData #class
-ch.ivyteam.ivy.project.portal.examples.customization.ProcessChainTest #namespace
-actualCurrentIndex Integer #field
-actualCurrentIndex PERSISTENT #fieldModifier

@@ -102,6 +102,8 @@
 	<!-- Responsive Case list -->
 	<h:outputScript name="case-widget.js" library="js" />
 	<script type="text/javascript">
+		var caseWidget = new CaseWidget();
+
 		$(function() {
 			var simpleScreen = new CaseListScreenHandler();
 			var responsiveToolkit = ResponsiveToolkit(simpleScreen);

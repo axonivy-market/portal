@@ -296,7 +296,7 @@ Tt0 f16 expr out #txt
 Tt0 f16 type internaltest.Data #txt
 Tt0 f16 var in1 #txt
 Tt0 f16 1072 77 1072 155 #arcP
-Tt0 f24 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Tt0 f24 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f24 startMethod start() #txt
 Tt0 f24 requestActionDecl '<> param;' #txt
 Tt0 f24 responseActionDecl 'internaltest.Data out;
@@ -315,7 +315,7 @@ Task Form</name>
 ' #txt
 Tt0 f24 1628 272 36 24 20 -2 #rect
 Tt0 f24 @|UserDialogIcon #fIcon
-Tt0 f26 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Tt0 f26 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f26 startMethod start() #txt
 Tt0 f26 requestActionDecl '<> param;' #txt
 Tt0 f26 responseActionDecl 'internaltest.Data out;
@@ -396,7 +396,7 @@ Tt0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f27 1496 166 28 28 9 -21 #rect
 Tt0 f27 @|TaskSwitchIcon #fIcon
-Tt0 f28 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Tt0 f28 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f28 startMethod start() #txt
 Tt0 f28 requestActionDecl '<> param;' #txt
 Tt0 f28 responseActionDecl 'internaltest.Data out;
@@ -671,7 +671,7 @@ Tt0 f70 expr out #txt
 Tt0 f70 752 519 752 560 #arcP
 Tt0 f68 expr out #txt
 Tt0 f68 752 608 752 649 #arcP
-Tt0 f86 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Tt0 f86 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f86 startMethod start() #txt
 Tt0 f86 requestActionDecl '<> param;' #txt
 Tt0 f86 responseActionDecl 'internaltest.Data out;
@@ -690,7 +690,7 @@ Task Form</name>
 ' #txt
 Tt0 f86 992 672 36 24 20 -2 #rect
 Tt0 f86 @|UserDialogIcon #fIcon
-Tt0 f87 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Tt0 f87 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f87 startMethod start() #txt
 Tt0 f87 requestActionDecl '<> param;' #txt
 Tt0 f87 responseActionDecl 'internaltest.Data out;
@@ -769,7 +769,7 @@ Tt0 f90 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f90 996 614 28 28 9 -21 #rect
 Tt0 f90 @|TaskSwitchIcon #fIcon
-Tt0 f91 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Tt0 f91 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f91 startMethod start() #txt
 Tt0 f91 requestActionDecl '<> param;' #txt
 Tt0 f91 responseActionDecl 'internaltest.Data out;
@@ -973,7 +973,7 @@ Tt0 f100 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Tt0 f100 @C|.responsibility Everybody #txt
 Tt0 f100 178 759 26 26 14 0 #rect
 Tt0 f100 @|StartRequestIcon #fIcon
-Tt0 f101 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Tt0 f101 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f101 startMethod start() #txt
 Tt0 f101 requestActionDecl '<> param;' #txt
 Tt0 f101 responseActionDecl 'internaltest.Data out;
@@ -992,7 +992,7 @@ Task Form</name>
 ' #txt
 Tt0 f101 309 947 36 24 20 -2 #rect
 Tt0 f101 @|UserDialogIcon #fIcon
-Tt0 f103 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Tt0 f103 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f103 startMethod start() #txt
 Tt0 f103 requestActionDecl '<> param;' #txt
 Tt0 f103 responseActionDecl 'internaltest.Data out;
@@ -1012,7 +1012,7 @@ Task Form</name>
 ' #txt
 Tt0 f103 45 947 36 24 20 -2 #rect
 Tt0 f103 @|UserDialogIcon #fIcon
-Tt0 f104 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Tt0 f104 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f104 startMethod start() #txt
 Tt0 f104 requestActionDecl '<> param;' #txt
 Tt0 f104 responseActionDecl 'internaltest.Data out;
@@ -1060,7 +1060,7 @@ Tt0 f102 expr out #txt
 Tt0 f102 type internaltest.Data #txt
 Tt0 f102 var in1 #txt
 Tt0 f102 191 785 191 889 #arcP
-Tt0 f106 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Tt0 f106 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f106 startMethod start() #txt
 Tt0 f106 requestActionDecl '<> param;' #txt
 Tt0 f106 responseActionDecl 'internaltest.Data out;
@@ -1510,7 +1510,7 @@ Tt0 f177 @|StepIcon #fIcon
 Tt0 f178 expr data #txt
 Tt0 f178 outCond ivp=="TaskA.ivp" #txt
 Tt0 f178 1304 920 1360 920 #arcP
-Tt0 f179 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Tt0 f179 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f179 startMethod start() #txt
 Tt0 f179 requestActionDecl '<> param;' #txt
 Tt0 f179 responseActionDecl 'internaltest.Data out;
@@ -1574,7 +1574,7 @@ Tt0 f61 expr out #txt
 Tt0 f61 type internaltest.Data #txt
 Tt0 f61 var in1 #txt
 Tt0 f61 544 602 544 642 #arcP
-Tt0 f60 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Tt0 f60 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f60 startMethod start() #txt
 Tt0 f60 requestActionDecl '<> param;' #txt
 Tt0 f60 responseActionDecl 'internaltest.Data out;
@@ -1600,7 +1600,7 @@ Tt0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Tt0 f60 480 642 128 44 -58 -8 #rect
 Tt0 f60 @|UserTaskIcon #fIcon
-Tt0 f9 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Tt0 f9 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f9 startMethod start() #txt
 Tt0 f9 requestActionDecl '<> param;' #txt
 Tt0 f9 responseActionDecl 'internaltest.Data out;
@@ -1620,7 +1620,7 @@ Task Form</name>
 ' #txt
 Tt0 f9 54 284 36 24 20 -2 #rect
 Tt0 f9 @|UserDialogIcon #fIcon
-Tt0 f11 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Tt0 f11 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f11 startMethod start() #txt
 Tt0 f11 requestActionDecl '<> param;' #txt
 Tt0 f11 responseActionDecl 'internaltest.Data out;
@@ -1675,7 +1675,7 @@ Tt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Tt0 f5 @C|.responsibility Everybody #txt
 Tt0 f5 187 51 26 26 14 0 #rect
 Tt0 f5 @|StartRequestIcon #fIcon
-Tt0 f12 dialogId ch.ivyteam.ivy.project.portal.examples.testdata.LeaveRequestForm #txt
+Tt0 f12 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
 Tt0 f12 startMethod start() #txt
 Tt0 f12 requestActionDecl '<> param;' #txt
 Tt0 f12 responseActionDecl 'internaltest.Data out;

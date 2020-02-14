@@ -10,3 +10,6 @@ username String #field
 users java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> #field
 usersByApp java.util.Map #field
 roleDTOs java.util.List<ch.ivy.addon.portalkit.dto.RoleDTO> #field
+query String #field
+startIndex Integer #field
+count Integer #field
