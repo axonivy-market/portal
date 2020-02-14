@@ -43,12 +43,11 @@ public class SecurityService implements ISecurityService {
         return result;
       }
       List<PortalIvyDataException> errors = new ArrayList<>();
-      Map<String, List<UserDTO>> usersByApp = new HashMap<>();
+      List<UserDTO> users = new ArrayList<>();
       for (String appName : apps) {
         try {
           IApplication app = ServiceUtilities.findApp(appName);
-          List<UserDTO> userDTOs = queryUsers(query, app, startIndex, count);
-          usersByApp.put(appName, userDTOs);
+          users.addAll(queryUsers(query, app, startIndex, count));
         } catch (PortalIvyDataException e) {
           errors.add(e);
         } catch (Exception ex) {
@@ -56,7 +55,7 @@ public class SecurityService implements ISecurityService {
         }
       }
       result.setErrors(errors);
-      result.setUsersByApp(usersByApp);
+      result.setUsers(users);
       return result;
     });
   }
@@ -90,11 +89,11 @@ public class SecurityService implements ISecurityService {
         return result;
       }
       List<PortalIvyDataException> errors = new ArrayList<>();
-      Map<String, List<IRole>> rolesByApp = new HashMap<>();
+      List<IRole> roles = new ArrayList<>();
       for (String appName : apps) {
         try {
           IApplication app = ServiceUtilities.findApp(appName);
-          rolesByApp.put(appName, ServiceUtilities.findAllRoles(app));
+          roles.addAll(ServiceUtilities.findAllRoles(app));
         } catch (PortalIvyDataException e) {
           errors.add(e);
         } catch (Exception ex) {
@@ -102,7 +101,7 @@ public class SecurityService implements ISecurityService {
         }
       }
       result.setErrors(errors);
-      result.setRolesByApp(rolesByApp);
+      result.setRoles(roles);
       return result;
     });
   }
@@ -171,7 +170,11 @@ public class SecurityService implements ISecurityService {
         
         List<SecurityMemberDTO> members = SecurityMemberDTOMapper.mapFromUserDTOs(users);
         members.addAll(SecurityMemberDTOMapper.mapFromRoleDTOs(roles));
-        result.setSecurityMembers(members.subList(startIndex, Math.min(count, members.size())));
+        int size = count;
+        if (count <= 0) {
+          size = members.size();
+        }
+        result.setSecurityMembers(members.subList(startIndex, Math.min(size, members.size())));
       } catch (Exception ex) {
         Ivy.log().error("Error in getting security members within app {0}", ex, app.getName());
       }
@@ -205,7 +208,11 @@ public class SecurityService implements ISecurityService {
       
       List<SecurityMemberDTO> members = SecurityMemberDTOMapper.mapFromUserDTOs(users);
       members.addAll(SecurityMemberDTOMapper.mapFromRoleDTOs(roles));
-      result.setSecurityMembers(members.subList(startIndex, Math.min(count, members.size())));
+      int size = count;
+      if (count <= 0) {
+        size = members.size();
+      }
+      result.setSecurityMembers(members.subList(startIndex, Math.min(size, members.size())));
       result.setErrors(errors);
       return result;
     });
