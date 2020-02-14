@@ -26,7 +26,7 @@
                 itemDisabled="#{empty data.usersToDelegate}" />
               <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toGroup')}" itemValue="false"
                 itemDisabled="#{empty data.rolesToDelegate}" />
-              <p:ajax event="change" listener="#{logic.changeAssignType}" update="activator-panel task-delegate-form" />
+              <p:ajax event="change" listener="#{logic.changeAssignType}" update="select-delegate-panel" />
             </p:selectOneRadio>
           </div>
         </h:panelGroup>
@@ -34,10 +34,9 @@
         <h:panelGroup id="select-delegate-panel" layout="block" styleClass="select-delegate-panel">
           <p:autoComplete id="user-activator-select" rendered="#{data.isUserDelegated}" scrollHeight="400" dropdown="true"
             value="#{data.selectedUser}" completeMethod="#{logic.autoCompleteForUserDelegate}" var="user"
-            itemLabel="#{user.getDisplayName()}" itemValue="#{user}" converter="pojoConverter" cache="true" queryDelay="500" maxResults="100"
-            panelStyleClass="delegation-select-panel"
-            moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
-            <f:event listener="#{logic.autoCompleteForUserDelegate}" type="preRenderComponent" />
+            itemLabel="#{user.getDisplayName()}" itemValue="#{user}" converter="pojoConverter" queryDelay="500" maxResults="100"
+            panelStyleClass="delegation-select-panel" forceSelection="true"
+            moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
             <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}" update="proceed-task-delegate-command" />
             <p:column>
               <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.memberName)}" />
@@ -48,9 +47,8 @@
             value="#{data.selectedRole}" completeMethod="#{logic.autoCompleteForRoleDelegate}" var="role"
             panelStyleClass="delegation-select-panel" itemLabel="#{role.getDisplayName() != '' ? role.getDisplayName() : role.getMemberName()}"
             itemValue="#{role}" converter="pojoConverter" cache="true" queryDelay="500" maxResults="100"
-            moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
-            selectLimit="100">
-            <f:event listener="#{logic.autoCompleteForUserDelegate}" type="preRenderComponent" />
+            moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
+            forceSelection="true">
             <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}" update="proceed-task-delegate-command" />
           </p:autoComplete>
         </h:panelGroup>
