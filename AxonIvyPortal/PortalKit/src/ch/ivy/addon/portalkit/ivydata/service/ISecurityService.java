@@ -11,7 +11,7 @@ public interface ISecurityService {
    * Gets users of the given application names
    * @param query
    * @param apps
-   * @param first
+   * @param startIndex
    * @param count
    * @return {@link IvySecurityResultDTO}
    */
@@ -55,7 +55,7 @@ public interface ISecurityService {
    * Finds the users and roles by the list of application names
    * @param query
    * @param apps
-   * @param first
+   * @param startIndex
    * @param count
    * @return {@link IvySecurityResultDTO}
    */
