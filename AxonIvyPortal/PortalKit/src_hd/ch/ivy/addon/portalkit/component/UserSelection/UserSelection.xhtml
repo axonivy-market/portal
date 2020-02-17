@@ -5,23 +5,21 @@
 	xmlns:cc="http://xmlns.jcp.org/jsf/composite"
 	xmlns:ic="http://ivyteam.ch/jsf/component"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions">
-<cc:interface componentType="IvyComponent">
-</cc:interface>
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" >
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="hasRoleNames" type="java.util.List" />
   <cc:attribute name="componentId" default="user-selection" />
   <cc:attribute name="selectedUser" type="ch.ivy.addon.portalkit.dto.UserDTO" required="true" />
-  <cc:attribute name="requiredMessage" default="Value is required." />
+  <cc:attribute name="requiredMessage" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
   <cc:attribute name="forceSelection" default="true" />
   <cc:attribute name="minQueryLength" default="1" />
+  <cc:attribute name="completeMethod" method-signature="java.util.List completeMethod(java.lang.String)"/>
   <cc:attribute name="isDisabled" />
   <cc:attribute name="isRequired" />
   <cc:attribute name="isReadOnly" />
-  <cc:attribute name="isRenderedAutoComplete" default="true" />
   <cc:attribute name="isRenderedMessage" default="true" />
-  <cc:attribute name="isRenderedLabel" default="true" />
   <cc:attribute name="hightlight" default="true" />
   <cc:attribute name="floatingLabel" />
   <cc:attribute name="autoCompleteStyleClass" />
@@ -38,22 +36,25 @@
 </cc:interface>
 
 <cc:implementation>
-  <h:panelGroup id="#{cc.attrs.componentId}-label-panel" layout="block" rendered="#{cc.attrs.isRenderedLabel and !cc.attrs.floatingLabel}"
+  <f:event listener="#{logic.init}" type="preRenderComponent" />
+  <h:panelGroup id="#{cc.attrs.componentId}-label-panel" layout="block" rendered="#{not empty cc.attrs.label and !cc.attrs.floatingLabel}"
     styleClass="#{cc.attrs.labelPanelStyleClass}">
     <p:outputLabel id="#{cc.attrs.componentId}-label" value="#{cc.attrs.label}" for="#{cc.attrs.componentId}"
       styleClass="#{cc.attrs.labelStyleClass}" />
   </h:panelGroup>
 
+  <c:set var="completeMethod" value="#{not empty cc.attrs.completeMethod ? cc.attrs.completeMethod : data.completeMethod}" />
   <h:panelGroup id="#{cc.attrs.componentId}-autocomplete-panel" layout="block"
-    rendered="#{cc.attrs.isRenderedAutoComplete}" styleClass="#{cc.attrs.autoCompletePanelStyleClass} md-inputfield">
+    styleClass="#{cc.attrs.autoCompletePanelStyleClass} md-inputfield">
     <p:autoComplete id="#{cc.attrs.componentId}" value="#{cc.attrs.selectedUser}" scrollHeight="#{cc.attrs.scrollHeight}"
-      completeMethod="#{logic.completeUser}" required="#{cc.attrs.isRequired}" var="user"
+      completeMethod="#{completeMethod}" required="#{cc.attrs.isRequired}" var="user"
       itemValue="#{user}" itemLabel="#{cc.attrs.formatToDisplay}" forceSelection="#{cc.attrs.forceSelection}"
       minQueryLength="#{cc.attrs.minQueryLength}" styleClass="#{cc.attrs.autoCompleteStyleClass}"
       autoHighlight="#{cc.attrs.hightlight}" converter="pojoConverter" cache="true" dynamic="true" dropdown="true"
       disabled="#{cc.attrs.isDisabled}" readonly="#{cc.attrs.isReadOnly}" requiredMessage="#{cc.attrs.requiredMessage}"
       moreText="#{cc.attrs.moreText}" queryDelay="#{cc.attrs.queryDelay}" maxResults="#{cc.attrs.maxResults}">
-      <cc:insertFacet name="additionalFacet" />
+      <cc:insertFacet name="event" />
+      <cc:insertChildren />
     </p:autoComplete>
     <p:outputLabel id="#{cc.attrs.componentId}-label-by" value="#{cc.attrs.label}" for="#{cc.attrs.componentId}"
       styleClass="#{cc.attrs.labelStyleClass}" rendered="#{cc.attrs.floatingLabel}" />
