@@ -57,6 +57,8 @@ $defaultFontWeight: 400 !default;
 $inplaceEditIconFontSize: 1.8rem !default;
 $loginLogoHeight: 50px !default;
 $homeLogoHeight: 42px !default;
+$homeLogoWidth: calc(100% - 72px) !default;
+$smallHomeLogoWidth: 42px !default;
 $borderColor: $lightGrey !default;
 $bodyBackgroundColor: $white !default;
 $accordionHeaderActiveBackgroundColor: $lightGrey !default;
@@ -84,13 +86,14 @@ $taskStateZombieDestroyedColor: #ff6464 !default;
 
 /* Color and border radius of Portal button e.g Add, Close, New, Save, OK .. */
 $cancelButtonBackgroundColor: $lightGrey !default;
+$cancelButtonStateHoverOrFocusBackgroundColor: $paleGrey !default;
 $actionButtonBorderRadius: 0px !default;
 
 /* Color and border radius of context button, 
 it only affects when button has attribute styleClass="context-button" */
 $contextButtonBorderRadius: $actionButtonBorderRadius !default;
 $contextButtonBackgroundColor: $lightGrey !default;
-$contextButtonStateHoverOrFocusBackgroundColor: $mediumGrey !default;
+$contextButtonStateHoverOrFocusBackgroundColor: $paleGrey !default;
 
 /* Text color of buttons */
 $textButtonColor: $accentTextColor !default;
@@ -210,6 +213,8 @@ $caseDetailHeaderFontWeight: bold !default;
 $historyButtonContainerFontWeight: bold !default;
 $caseDetailPaginatorHeaderCornerTopBackgroundColor: rgba($lightGrey,0.5) !default;
 $caseDetailPaginatorHoverButtonBackgroundColor: rgba($lightGrey,0.5) !default;
+$caseDescriptionTextColorHightlight: $primaryTextColor !default;
+$caseDetailNameTextColorHightLight: $primaryTextColor !default;
 
 /* Case List */
 $caseOddRowBackgroundColor: $paleGrey !default;
@@ -275,6 +280,7 @@ $taskStartInfoHeaderFontWeight: bold !default;
 $taskStartInfoTaskIdFontWeight: normal !default;
 $taskNameInputFontWeight: bold !default;
 $taskHighlightedInplaceFieldBackgroundColor: $paleGrey !default;
+$taskHighlightedInplaceFieldTextColor: $primaryTextColor !default;
 
 /* Task Action Item */
 $taskActionItemWidgetHeaderColor: $white !default;
@@ -331,8 +337,6 @@ $selectCheckboxMenuIconFontSize: 1.8rem !default;
  
  /* Express */
 $expressInputSwitchSelectionBackgroundColor: $accentColor !default;
-$expressInputSwitchHandleBackgroundColor: $white !default;
-
 $taskResponsibleLabelStateErrorColor: #e62a10 !default;
 $definedTaskButtonBackgroundColor: $white !default;
 $formElementsPanelHoverDropSectionBackgroundColor: $primaryLightColor !default;
@@ -353,6 +357,7 @@ $autocompleteMoreTextStateHighlightBackgroundColor: white !default;
 $expressInputSwitchSelectionBorder: $primaryColor !default;
 $expressAvailableElementsActionButtonBackgroundColor: transparent !default;
 $expressAvailableElementsActionButtonShadow: none !default;
+$expressAvailableElementsActionButtonIconColor: $primaryTextColor !default;
 $formDefinitionTableBorder: $lightGrey !default;
 $formDefinitionTableSelectedPanelBorder: $lightGrey !default;
 $formDefinitionTableSelectedPanelBackgroundColor: transparent !default;
@@ -431,7 +436,6 @@ $checkboxMenuIconBackgroundColor: transparent !default;
 $fieldsetToggerHoverBackgroundColor: transparent !default;
 $iconSelectionDialogBorder: transparent !default;
 $iconSelectionDialogBorderHover: $black !default;
-$autoCompleteDropdownFocusBackgroundColor: transparent !default;
 $uiInplaceBackgroundColor: transparent !default;
 $dataIconFontFamily: "true-minimalistic-icons" !default;
 $dataIconFontStyle: normal !default;
@@ -448,18 +452,13 @@ $sidebarMenuListItemLinkTextColor: $primaryTextColor !default;
 $sidebarMenuListItemIconColor: $primaryTextColor !default;
 $sidebarMenuListItemLinkHoverTextColor: $primaryTextColor !default;
 $sidebarMenuListItemHoverIconColor: $primaryTextColor !default;
-$sidebarMenuListItemLinkHoverBackgroundColor: rgba($mediumGrey, 0.5) !default;
 $sidebarMenuListActiveIconColor: $primaryTextColor !default;
 $sidebarMenuInactiveItemCurrentAppBorderBottomColor: rgba($mediumGrey, 0.5) !default;
 
 /*Table */
-$dataTableRowBackgroundColorEven: $white !default;
-$dataTableRowBackgroundColorOdd: $paleGrey !default;
 $dataTableRowHeaderColor: $primaryTextColor !default;
 $dataTableRowHeaderBgColor: rgba($lightGrey, 0.5) !default;
-$dataTableRowSpanColor: $primaryTextColor !default;
-$highlightedTdDataTableBackgroundColor: $primaryColor !default;
-$hoveredTdDataTableBackGroundColor: $primaryColor !default;
+
 $tableBorderColor: rgba($mediumGrey, 0.5) !default;
 $rightBorderInsideDataTable: $tableBorderColor !default;
 $leftBorderInsideDataTable: transparent !default;
@@ -503,6 +502,7 @@ $uiDataPickerTitleBackgroundColor: $paleGrey !default;
 $uiFileuploadButtonbarBackgroundColor: $lightGrey !default;
 $uiFileuploadButtonbarBorder: $lightGrey !default;
 $uiButtonHoverBackgroundColor: $primaryLightColor !default;
+$uiTransparentButtonHoverBackgroundColor: transparent !default;
 $menuItemLinkColor: $primaryTextColor !default;
 $menuItemLinkHoverBackgroundColor: $paleGrey !default;
 $actionStepTextColor: $commandLinkTextColor !default;
