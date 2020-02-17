@@ -1,0 +1,4 @@
+UserSelectionExampleData #class
+com.axonivy.portal.developerexamples #namespace
+selectedUser ch.ivy.addon.portalkit.dto.UserDTO #field
+selectedUser PERSISTENT #fieldModifier
