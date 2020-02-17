@@ -1,0 +1,5 @@
+co: name={deputyFor} description={} changed={2020-01-22 04:57:38 CET} changedby={chnam} visualorder={0} guid={16FCB64F90B29A29} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16FCB66061A8D354} datatype={} isdefault={false} langid={es} description={} validfrom={2020-01-22 04:57:34 CET} validto={} changed={2020-01-22 04:57:38 CET} changedby={chnam} properties={} id={}
+val: guid={16FCB66054A55DCB} datatype={} isdefault={false} langid={de} description={} validfrom={2020-01-22 04:57:28 CET} validto={} changed={2020-01-22 04:57:38 CET} changedby={chnam} properties={} id={}
+val: guid={16FCB64F9102DED5} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-22 04:56:29 CET} validto={} changed={2020-01-22 04:56:29 CET} changedby={chnam} properties={} id={}
+val: guid={16FCB6606255061A} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-01-22 04:57:22 CET} validto={} changed={2020-01-22 04:57:38 CET} changedby={chnam} properties={} id={}

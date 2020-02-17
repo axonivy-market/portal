@@ -1,0 +1,3 @@
+HandleEndPageData #class
+com.axonivy.portal.developerexamples #namespace
+callbackUrl String #field
