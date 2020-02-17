@@ -43,7 +43,7 @@ public class StatisticWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id(taskAnalysisLinkString), true, DEFAULT_TIMEOUT);
     WebElement taskAnalysisLink = findElementById(taskAnalysisLinkString);
 
-    taskAnalysisLink.click();
+    click(taskAnalysisLink);
     waitForElementDisplayed(By.id("task-widget"), true, DEFAULT_TIMEOUT);
 
     return new TaskAnalysisWidgetPage();
@@ -76,7 +76,7 @@ public class StatisticWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
     waitForElementDisplayed(By.id("statistics-widget:restore-confirmation-dialog"), true, 30);
     WebElement okButton = findElementById("statistics-widget:confirm-restore");
-    okButton.click();
+    click(okButton);
     waitAjaxIndicatorDisappear();
   }
 
@@ -84,7 +84,7 @@ public class StatisticWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-task-by-priority-link"), true, 30);
     WebElement createTaskByPriorityLink
       = findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-task-by-priority-link");
-    createTaskByPriorityLink.click();
+    click(createTaskByPriorityLink);
     waitAjaxIndicatorDisappear();
 
     waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
@@ -97,7 +97,7 @@ public class StatisticWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-state-link"), true, 30);
     WebElement createCaseByStateLink
       = findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-state-link");
-    createCaseByStateLink.click();
+    click(createCaseByStateLink);
     waitAjaxIndicatorDisappear();
 
     waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
@@ -111,7 +111,7 @@ public class StatisticWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-task-by-expiry-link"), true, 30);
     WebElement createTaskByExpiryLink
       = findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-task-by-expiry-link");
-    createTaskByExpiryLink.click();
+    click(createTaskByExpiryLink);
     waitAjaxIndicatorDisappear();
 
     waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
@@ -125,7 +125,7 @@ public class StatisticWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-elapsed-time-link"), true, 30);
     WebElement createElapsedTimeLink
       = findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-elapsed-time-link");
-    createElapsedTimeLink.click();
+    click(createElapsedTimeLink);
     waitAjaxIndicatorDisappear();
 
     waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
@@ -139,7 +139,7 @@ public class StatisticWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-task-link"), true, 30);
     WebElement createCaseByFinishedTaskLink
       = findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-task-link");
-    createCaseByFinishedTaskLink.click();
+    click(createCaseByFinishedTaskLink);
     waitAjaxIndicatorDisappear();
 
     waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
@@ -153,7 +153,7 @@ public class StatisticWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-time-link"), true, 30);
     WebElement createCaseByFinishedTaskLink
       = findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-time-link");
-    createCaseByFinishedTaskLink.click();
+    click(createCaseByFinishedTaskLink);
     waitAjaxIndicatorDisappear();
 
     waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
