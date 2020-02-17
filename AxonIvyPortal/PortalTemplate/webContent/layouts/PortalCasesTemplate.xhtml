@@ -16,7 +16,7 @@
         <div class="case-main-container">
           <ic:ch.ivy.addon.portalkit.component.CaseWidget id="case-widget"
             title="#{caseView.getTitle() != '' ? caseView.getTitle() : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}"
-            alternativeTitle="#{caseView.getAlternativeTitle() != '' ? caseView.getAlternativeTitle() : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}"
+            titleOnMobile="#{caseView.getTitleOnMobile() != '' ? caseView.getTitleOnMobile() : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}"
             dataModel="#{caseView.getDataModel()}"
             hideCaseFilter="#{caseView.hideCaseFilter or not empty caseView.getKeyword()}"
             autoSelectCaseId="#{caseView.getAutoSelectCaseId()}" filterGroupId="#{filterGroupId}"
