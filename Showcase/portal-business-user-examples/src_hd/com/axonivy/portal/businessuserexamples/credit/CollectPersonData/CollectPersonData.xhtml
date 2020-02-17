@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/TaskTemplate-8.xhtml">
+    <ui:define name="title">CollectPersonData</ui:define>
+    <ui:define name="css">
+      <h:outputStylesheet library="styles" name="ivy-common-8.css" />
+    </ui:define>
+    <ui:define name="content">
+      <h3>#{ivy.cms.co('/Labels/CaseMap/Credit/creditRequest')}</h3>
+      <br />
+      <br />
+
+      <h:form id="form">
+
+        <p:messages></p:messages>
+        <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/person')}</h4>
+        <h:panelGrid columns="2">
+          <p:outputLabel for="name" value="#{ivy.cms.co('/Labels/CaseMap/Credit/name')}" />
+          <p:inputText required="true" id="name" value="#{data.dossier.customer.name}" />
+
+          <p:outputLabel for="firstName" value="#{ivy.cms.co('/Labels/CaseMap/Credit/firstName')}" />
+          <p:inputText id="firstName" value="#{data.dossier.customer.firstName}" />
+
+          <p:outputLabel for="birthdate" value="#{ivy.cms.co('/Labels/CaseMap/Credit/birthDate')}" />
+          <p:calendar id="birthdate" value="#{data.dossier.customer.birthDate}" navigator="true" yearRange="c-50:c+10" pattern="dd.MM.yyyy">
+            <f:convertDateTime pattern="dd.MM.yyyy" />
+          </p:calendar>
+
+          <p:outputLabel for="gender" value="#{ivy.cms.co('/Labels/CaseMap/Credit/gender')}" />
+          <p:selectOneRadio id="gender" value="#{data.dossier.customer.isMale}">
+            <f:selectItem itemLabel="#{ivy.cms.co('/Labels/CaseMap/Credit/male')}" itemValue="true" />
+            <f:selectItem itemLabel="#{ivy.cms.co('/Labels/CaseMap/Credit/female')}" itemValue="false" />
+          </p:selectOneRadio>
+        </h:panelGrid>
+
+        <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/address')}</h4>
+
+        <h:panelGrid columns="2">
+          <p:outputLabel for="country" value="#{ivy.cms.co('/Labels/CaseMap/Credit/country')}" />
+          <p:inputText required="true" id="country" value="#{data.dossier.customer.address.country}" />
+        </h:panelGrid>
+
+        <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/credit')}</h4>
+
+        <h:panelGrid columns="2">
+
+          <p:outputLabel for="amount" value="#{ivy.cms.co('/Labels/CaseMap/Credit/amount')}" />
+          <p:inputText required="true" id="amount" value="#{data.dossier.request.amount}" />
+
+          <p:outputLabel for="reason" value="#{ivy.cms.co('/Labels/CaseMap/Credit/collectedReason')}" />
+          <p:inputText id="reason" value="#{data.dossier.request.reason}" />
+
+          <p:outputLabel for="salary" value="#{ivy.cms.co('/Labels/CaseMap/Credit/salary')}" />
+          <p:inputText required="true" id="salary" value="#{data.dossier.request.salary}" />
+
+          <p:outputLabel for="amountOfOtherCredits" value="#{ivy.cms.co('/Labels/CaseMap/Credit/amountOfOtherCredits')}" />
+          <p:inputText required="true" id="amountOfOtherCredits" value="#{data.dossier.request.amountOfOtherCredits}" />
+        </h:panelGrid>
+
+        <p:commandButton actionListener="#{logic.close}" value="#{ivy.cms.co('/Labels/CaseMap/Credit/submitRequest')}" update="form" icon="ui-icon-check" />
+      </h:form>
+
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

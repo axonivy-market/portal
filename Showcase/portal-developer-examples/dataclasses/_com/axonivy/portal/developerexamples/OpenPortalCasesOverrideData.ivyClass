@@ -1,0 +1,3 @@
+OpenPortalCasesOverrideData #class
+_com.axonivy.portal.developerexamples #namespace
+view ch.ivy.addon.portal.generic.view.CaseView #field

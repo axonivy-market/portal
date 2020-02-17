@@ -1,0 +1,3 @@
+LogoutPageOverrideData #class
+_com.axonivy.portal.developerexamples #namespace
+logoutPage String #field
