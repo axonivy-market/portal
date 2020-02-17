@@ -717,10 +717,13 @@ body .fieldset-no-border {
       margin-left: 0;
     }
   }
-  
-  .ui-datascroller-content.ui-widget-content.ui-corner-all.has-scrollbar {
+
+  .ui-datascroller-content.ui-widget-content.ui-corner-all {
     padding: 0;
     border: none;
+  }
+
+  .ui-datascroller-content.ui-widget-content.ui-corner-all.has-scrollbar {
     border-right: solid 1px $caseRelatedTaskContentBorder;
   }
 
