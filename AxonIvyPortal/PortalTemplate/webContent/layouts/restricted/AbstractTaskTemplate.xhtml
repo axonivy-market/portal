@@ -12,7 +12,7 @@
     <ui:define name="simplePageContent">
       <p:growl id="task-template-growl" />
   
-      <div class="task-template-container ui-g-12 u-padding-0 #{taskTemplateContainerStyleClass}">
+      <div class="task-template-container ui-g-12 #{taskTemplateContainerStyleClass}">
         <c:set var="case" value="#{task.getCase().getBusinessCase()}" scope="request" />
         <c:set var="isSideStepDisabled" value="#{!abstractTaskTemplateBean.checkSideStepsEnabled(case)}" scope="request" />
         <ui:insert name="breadCrumb" />
