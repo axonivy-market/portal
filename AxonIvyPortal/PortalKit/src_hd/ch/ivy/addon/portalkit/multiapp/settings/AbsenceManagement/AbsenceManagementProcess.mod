@@ -1011,11 +1011,12 @@ As0 f27 59 427 26 26 -25 15 #rect
 As0 f27 @|UdMethodIcon #fIcon
 As0 f28 actionTable 'out=in;
 ' #txt
-As0 f28 actionCode 'import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+As0 f28 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import org.apache.commons.collections4.CollectionUtils;
-import ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService;
 
-in.applications = ApplicationService.newInstance().findActiveAllInvolvedUser(ivy.session.getSessionUserName());
+RegisteredApplicationService service = new RegisteredApplicationService();
+in.applications = service.findActiveIvyAppsUserCanWork(ivy.session.getSessionUserName());
 
 if (CollectionUtils.isNotEmpty(in.applications)) {
 	String appName = in.applications.get(0).name;

@@ -71,7 +71,7 @@
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistoryTooltip')}" />
 
                 <p:menuitem id="start-adhoc"
-                  rendered="#{empty isShowStartAdhocButton? (deprecatedTaskTemplate7Bean.hasExpressAdhocWF() and task.isPersistent())) : isShowStartAdhocButton}"
+                  rendered="#{empty isShowStartAdhocButton? (deprecatedTaskTemplate7Bean.hasExpressAdhocWF() and task.isPersistent()) : isShowStartAdhocButton}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHoc')}"
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}"
                   icon="fa fa-random fa-2x" oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()" />
