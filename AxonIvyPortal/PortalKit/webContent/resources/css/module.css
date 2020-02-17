@@ -1292,8 +1292,8 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
     width: 300px !important;
   }
   
-  .task-delegate-dialog .ui-dialog-footer {
-    padding: 0 !important;
+  body .task-delegate-dialog.ui-dialog .ui-dialog-footer {
+    padding: 0;
   }
 }
 
