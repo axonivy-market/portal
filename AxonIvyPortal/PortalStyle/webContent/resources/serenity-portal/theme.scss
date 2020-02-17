@@ -718,10 +718,10 @@ body .fieldset-no-border {
     }
   }
   
-  .ui-datascroller-content.ui-widget-content.ui-corner-all {
+  .ui-datascroller-content.ui-widget-content.ui-corner-all.has-scrollbar {
     padding: 0;
     border: none;
-    border-right-color: $caseRelatedTaskContentBorder;
+    border-right: solid 1px $caseRelatedTaskContentBorder;
   }
 
   .case-related-task-case-running ul li:last-child {
@@ -772,16 +772,18 @@ body .fieldset-no-border {
 }
 
 .related-task-content,
-.case-related-running,
 .no-running-task-case {
   border: 1px solid $caseRelatedTaskContentBorder;
-  border-bottom: none;
+  border-top: none;
+}
+
+.case-related-running {
+  border: 1px solid $caseRelatedTaskContentBorder;
 }
 
 .no-running-task-case {
   margin-bottom: 10px;
   border-bottom: 1px solid $caseRelatedTaskContentBorder;
-  border-top: 1px solid $caseRelatedTaskContentBorder;
 }
 
 /**Style for Absences and Debuty  --------------------------------------*/
