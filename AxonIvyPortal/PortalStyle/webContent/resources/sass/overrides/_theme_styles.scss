@@ -192,7 +192,8 @@ body .ui-datepicker .ui-datepicker-header .ui-datepicker-prev.ui-datepicker-prev
 }
 
 /* Checkbox */
-body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon {
+body .ui-chkbox .ui-chkbox-box.ui-state-active .ui-chkbox-icon,
+body .ui-chkbox .ui-chkbox-box.ui-state-active.ui-state-focus .ui-chkbox-icon {
     color: $primaryLightestColor;
 }
 
