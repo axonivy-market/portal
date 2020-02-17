@@ -1,8 +1,7 @@
 package portal.guitest.test;
 
 import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
 
@@ -12,14 +11,13 @@ import org.junit.Test;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AbsencePage;
-import portal.guitest.page.AddAbsencePage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.NewAbsencePage;
-import portal.guitest.page.SettingDeputyPage;
 
 public class AbsenceTest extends BaseTest {
   private static final LocalDate TODAY = LocalDate.now();
   private static final LocalDate YESTERDAY = TODAY.minusDays(1);
+  private static final LocalDate TOMORROW = TODAY.plusDays(1);
 
   @Override
   @Before
@@ -33,33 +31,23 @@ public class AbsenceTest extends BaseTest {
   @Test
   public void whenLoginAsNormalUserThenManageAbsencesOfThatUser() {
     AbsencePage absencePage = openAbsencePage();
-    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel");
-    createAbsenceForCurrentUser(TODAY, TODAY, "For party");
+    createAbsenceForCurrentUser(YESTERDAY, YESTERDAY, "For travel", absencePage);
+    createAbsenceForCurrentUser(TODAY, TODAY, "For party", absencePage);
     assertEquals(1, absencePage.countAbsences());
     absencePage.showAbsencesInThePast(true);
     assertEquals(2, absencePage.countAbsences());
-    SettingDeputyPage deputySettingPage = absencePage.openDeputyDialog();
-    assertFalse(deputySettingPage.isSubstitutedUserInputElementDisplayed());
-    deputySettingPage.proceedWhenSettingDeputy();
-    assertEquals(2, absencePage.countAbsences());
   }
+
 
   @Test
   public void whenLoginAsAdminUserThenManageAbsencesOfAllUsers() {
     login(TestAccount.ADMIN_USER);
     AbsencePage absencePage = openAbsencePage();
-    createAbsenceForCurrentUser(TODAY, TODAY, "For party");
-    String demoUserName = TestAccount.DEMO_USER.getFullName();
-    createAbsence(demoUserName, YESTERDAY, YESTERDAY, "For travel of another user");
-    createAbsence(demoUserName, TODAY, TODAY, "For party of another user");
-    assertEquals(2, absencePage.countAbsences());
-    absencePage.showAbsencesInThePast(true);
-    assertEquals(3, absencePage.countAbsences());
-    SettingDeputyPage deputySettingPage = absencePage.openDeputyDialog();
-    assertTrue(deputySettingPage.isSubstitutedUserInputElementDisplayed());
-    deputySettingPage.proceedWhenSettingDeputy();
-    assertEquals(3, absencePage.countAbsences());
-
+    createAbsenceForCurrentUser(TODAY, TODAY, "For party", absencePage);
+    String demoFullName = TestAccount.DEMO_USER.getFullName();
+    createAbsence(demoFullName, YESTERDAY, YESTERDAY, "For travel of another user", absencePage);
+    createAbsence(demoFullName, TODAY, TODAY, "For party of another user", absencePage);
+    assertEquals(1, absencePage.countAbsences());
   }
 
   @Test
@@ -67,7 +55,7 @@ public class AbsenceTest extends BaseTest {
     LocalDate chosenDay = LocalDate.now();
     LocalDate theNextDayOfChosenDay = chosenDay.plusDays(1);
     AbsencePage absencePage = openAbsencePage();
-    createAbsenceForCurrentUser(chosenDay, theNextDayOfChosenDay, "Just day off");
+    createAbsenceForCurrentUser(chosenDay, theNextDayOfChosenDay, "Just day off", absencePage);
     assertEquals(1, absencePage.countAbsences());
 
     NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
@@ -76,23 +64,54 @@ public class AbsenceTest extends BaseTest {
 
     assertTrue(newAbsencePage.isErrorMessageDisplayed());
     assertEquals("The absence is overlapping with another absence.", newAbsencePage.getErrorMessage());
+  }
 
+  @Test
+  public void testDeputyAsNormalUser() {
+    AbsencePage absencePage = openAbsencePage();
+    absencePage.setDeputy("caseOwnerUser");
+    absencePage.saveSubstitute();
+    absencePage.openAbsencePage();
+    assertEquals("caseOwnerUser", absencePage.getMyDeputy());
+  }
+
+  @Test
+  public void testDeputyAsAdminUser() {
+    login(TestAccount.ADMIN_USER);
+    AbsencePage absencePage = openAbsencePage();
+    absencePage.setSubstitutedByAdmin("Portal Demo User");
+    absencePage.setDeputy("caseOwnerUser");
+    absencePage.saveSubstitute();
+    absencePage.openAbsencePage();
+    absencePage.setSubstitutedByAdmin("Portal Demo User");
+    assertEquals("caseOwnerUser", absencePage.getMyDeputy());
+  }
+
+  @Test
+  public void testIAmDeputyFor() {
+    login(TestAccount.HR_ROLE_USER);
+    AbsencePage absencePage = openAbsencePage();
+    createAbsenceForCurrentUser(TOMORROW, TOMORROW, "For Family", absencePage);
+
+    absencePage.setDeputy("Demo");
+    absencePage.saveSubstitute();
+    login(TestAccount.DEMO_USER);
+    absencePage.openAbsencePage();
+    assertTrue(absencePage.getIAMDeputyFor().contains(TestAccount.HR_ROLE_USER.getUsername()));
   }
 
   private AbsencePage openAbsencePage() {
     return new HomePage().openAbsencePage();
   }
 
-  private void createAbsenceForCurrentUser(LocalDate from, LocalDate till, String comment) {
-    createAbsence("", from, till, comment);
+  private void createAbsenceForCurrentUser(LocalDate from, LocalDate till, String comment, AbsencePage absencePage) {
+    createAbsence("", from, till, comment, absencePage);
   }
 
-  private void createAbsence(String username, LocalDate from, LocalDate till, String comment) {
-    AbsencePage absencePage = new AbsencePage();
+  private void createAbsence(String fullname, LocalDate from, LocalDate till, String comment, AbsencePage absencePage) {
     NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
-    newAbsencePage.input(username, from, till, comment);
-    AddAbsencePage addAbsencePage = newAbsencePage.proceed();
-    addAbsencePage.proceedWhenCreatingAbsence();
+    newAbsencePage.input(fullname, from, till, comment);
+    newAbsencePage.proceed();
   }
 
 }
