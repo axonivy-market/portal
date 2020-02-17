@@ -1875,7 +1875,7 @@ _:-ms-input-placeholder, :root .case-details>* {
 .related-task-content {
   border-collapse: collapse;
   line-height: 2.2rem;
-  border-bottom: none !important;
+  border-bottom: none;
 }
 
 .related-task-content .related-task {
