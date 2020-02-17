@@ -178,7 +178,7 @@ public class UserUtils {
   }
   
   @SuppressWarnings("unchecked")
-  public static List<UserDTO> findUsers(String query, int startIndex, int  count) {
+  public static List<UserDTO> findUsers(String query, int startIndex, int  count, List<String> hasRoleNames) {
     return IvyExecutor.executeAsSystem(() -> {
       if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
         List<UserDTO> users = SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
@@ -187,6 +187,7 @@ public class UserUtils {
             .withParam("query", query)
             .withParam("startIndex", startIndex)
             .withParam("count", count)
+            .withParam("hasRoleNames", hasRoleNames)
             .call()
             .get("users", List.class);
         return users.stream()
@@ -199,6 +200,7 @@ public class UserUtils {
           .withParam("query", query)
           .withParam("startIndex", startIndex)
           .withParam("count", count)
+          .withParam("hasRoleNames", hasRoleNames)
           .call()
           .get("users", List.class);
     });
