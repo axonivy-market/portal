@@ -171,3 +171,18 @@
 	width: 600px !important;
 }
 
+.margin-top-15 {
+	margin-top: 15px;
+}
+
+.margin-top-40 {
+	margin-top: 40px;
+}
+body .md-inputfield .message-error-background-color.ui-message.ui-message-error,
+body .md-inputfield .message-error-background-color.ui-message.ui-message-error .ui-message-error-icon {
+	color: blue;
+}
+
+.width-100, .width-100 .ui-autocomplete-input{
+	width: 100%;
+}
