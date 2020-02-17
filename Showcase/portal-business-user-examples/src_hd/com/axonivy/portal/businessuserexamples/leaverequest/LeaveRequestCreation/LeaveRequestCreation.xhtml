@@ -5,6 +5,9 @@
 <h:body>
   <ui:composition template="/layouts/TaskTemplate-8.xhtml">
     <ui:define name="title">Create Leave Request</ui:define>
+    <ui:param name="actualStepIndex" value="0" />
+    <ui:param name="steps" value="#{[ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/creation'),ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/approval'), ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/approvalResult')]}" />
+    
     <ui:define name="content">
 
       <h:form id="leave-request">
@@ -43,7 +46,7 @@
             <h:panelGroup class="md-inputfield MarTop20">
               <p:calendar id="to" value="#{data.leaveRequestData.to}" locale="#{localeBean.locale}"
                 pattern="#{dateTimePatternBean.datePattern}" required="true"
-                requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/to')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
+                requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/to')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
                 <f:convertDateTime pattern="#{dateTimePatternBean.datePattern}" />
               </p:calendar>
               <p:outputLabel for="to" value="#{ivy.cms.co('/Labels/LeaveRequest/to')} " />
@@ -52,7 +55,7 @@
             
             <h:panelGroup class="md-inputfield MarTop20">
               <p:selectOneMenu id="approver" value="#{data.approver}" converter="pojoConverter" required="true"
-              requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/approver')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
+              requiredMessage="#{ivy.cms.co('/Labels/LeaveRequest/approver')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
                 <f:selectItem itemLabel="" itemValue="#{null}" noSelectionOption="true" />
                 <f:selectItems value="#{data.approvers}" var="approver" itemLabel="#{approver.getDisplayName()}"
                   itemValue="#{approver}" />
