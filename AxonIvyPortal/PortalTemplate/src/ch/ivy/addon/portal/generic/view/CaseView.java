@@ -11,8 +11,8 @@ public class CaseView {
     private String keyword = "";
     private GlobalCaseId autoSelectCaseId = GlobalCaseId.createDefaultInstance();
     private String title = "";
-    // The alternativeTitle is a short title using for mobile screen
-    private String alternativeTitle = "";
+    // The titleOnMobile is a short title using for mobile screen
+    private String titleOnMobile = "";
     private boolean hideCaseFilter = false;
 
     public Builder dataModel(CaseLazyDataModel dataModel) {
@@ -35,8 +35,8 @@ public class CaseView {
       return this;
     }
     
-    public Builder withAlternativeTitle(String alternativeTitle) {
-      this.alternativeTitle = alternativeTitle;
+    public Builder withTitleOnMobile(String titleOnMobile) {
+      this.titleOnMobile = titleOnMobile;
       return this;
     }
     
@@ -54,8 +54,8 @@ public class CaseView {
   private final String keyword;
   private final GlobalCaseId autoSelectCaseId;
   private final String title;
-  // The alternativeTitle is a short title using for mobile screen
-  private String alternativeTitle = "";
+  // The titleOnMobile is a short title using for mobile screen
+  private String titleOnMobile = "";
   private String caseName = "";
   private boolean hideCaseFilter = false;
 
@@ -64,7 +64,7 @@ public class CaseView {
     keyword = builder.keyword;
     autoSelectCaseId = builder.autoSelectCaseId;
     title = builder.title;
-    alternativeTitle = builder.alternativeTitle;
+    titleOnMobile = builder.titleOnMobile;
     this.hideCaseFilter = builder.hideCaseFilter;
   }
 
@@ -88,8 +88,8 @@ public class CaseView {
     return title;
   }
 
-  public String getAlternativeTitle() {
-    return alternativeTitle;
+  public String getTitleOnMobile() {
+    return titleOnMobile;
   }
 
   public String getCaseName() {
