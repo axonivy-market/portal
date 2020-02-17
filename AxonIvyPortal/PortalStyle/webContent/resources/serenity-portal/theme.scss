@@ -987,7 +987,7 @@ body .ui-inputfield.case-detail-name-input {
   color: $actionStepDisabledTextColor;
 }
 
-.action-steps-panel .action-step-item:hover {
+.action-steps-panel a.action-step-item:hover {
   background-color: $caseItemActionStepsItemHoverBackgroundColor;
   color: $caseItemActionStepsItemHoverTextColor;
 }
