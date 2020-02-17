@@ -51,7 +51,7 @@ var CaseRelatedTask = {
     if (relatedTaskSize > maxItems) {
       scrollHeightForTasks = tasksPanel + spaceToExpandTasksList;
       if (isShowScrollBar) {
-        taskListBody.css("border-right", ".1em solid");
+        taskListBody.addClass("has-scrollbar");
       } else {
         scrollHeightForTasks += 8;
       }
@@ -74,7 +74,7 @@ var CaseRelatedTask = {
     if (technicalCaseSize > maxItems) {
       scrollHeightForCases = casesPanel + spaceToExpandCasesList;
       if (isShowScrollBar) {
-        caseListBody.css("border-right", ".1em solid");
+        caseListBody.addClass("has-scrollbar");
       } else {
         scrollHeightForCases += 8;
       }
