@@ -487,7 +487,7 @@ import org.apache.commons.lang3.StringUtils;
 
 String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCasesOfBusinessCaseTitle", Arrays.asList(in.caseId.id().toString(), in.caseName));
 // Add a short title for mobile screen
-String alternativeTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle", Arrays.asList(in.caseId.id().toString()));
+String titleOnMobile = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle", Arrays.asList(in.caseId.id().toString()));
 
 in.caseDataModel.getCriteria().setKeyword(StringUtils.EMPTY);
 in.caseDataModel.getCriteria().setBusinessCase(false);
@@ -495,7 +495,7 @@ in.caseDataModel.getCriteria().setBusinessCaseId(in.caseId.id());
 in.caseDataModel.getCriteria().setTechnicalCase(true);
 in.caseDataModel.getCriteria().sortField = CaseSortField.NAME.toString();
 in.caseDataModel.setNotKeepFilter(true);
-in.caseView = CaseView.create().dataModel(in.caseDataModel).hideCaseFilter(true).withTitle(title).withAlternativeTitle(alternativeTitle).buildNewView();' #txt
+in.caseView = CaseView.create().dataModel(in.caseDataModel).hideCaseFilter(true).withTitle(title).withTitleOnMobile(titleOnMobile).buildNewView();' #txt
 Nr0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
