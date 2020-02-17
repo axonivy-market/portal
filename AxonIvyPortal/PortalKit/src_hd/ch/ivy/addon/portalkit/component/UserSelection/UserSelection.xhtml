@@ -10,7 +10,7 @@
 </cc:interface>
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="roleNames" />
+  <cc:attribute name="hasRoleNames" type="java.util.List" />
   <cc:attribute name="componentId" default="user-selection" />
   <cc:attribute name="selectedUser" type="ch.ivy.addon.portalkit.dto.UserDTO" required="true" />
   <cc:attribute name="requiredMessage" default="Value is required." />
@@ -33,12 +33,11 @@
   <cc:attribute name="formatToDisplay" default="#{user.getDisplayName()}"/>
   <cc:attribute name="moreText" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."/>
   <cc:attribute name="queryDelay" default="300"/>
-  <cc:attribute name="maxResults" default="100" />
+  <cc:attribute name="maxResults" default="100" type="java.lang.Integer" />
   <cc:attribute name="scrollHeight" default="400"/>
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{logic.initUsers(cc.attrs.maxResults)}" type="preRenderComponent" />
   <h:panelGroup id="#{cc.attrs.componentId}-label-panel" layout="block" rendered="#{cc.attrs.isRenderedLabel and !cc.attrs.floatingLabel}"
     styleClass="#{cc.attrs.labelPanelStyleClass}">
     <p:outputLabel id="#{cc.attrs.componentId}-label" value="#{cc.attrs.label}" for="#{cc.attrs.componentId}"
