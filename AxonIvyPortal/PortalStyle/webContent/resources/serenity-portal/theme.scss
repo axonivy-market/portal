@@ -1039,7 +1039,7 @@ span.task-details-document-add-link {
   color: $actionStepDisabledTextColor !important;
 }
 
-.action-steps-panel .action-step-item:hover {
+.action-steps-panel a.action-step-item:hover {
   background-color: $caseItemActionStepsItemHoverBackgroundColor;
   color: $caseItemActionStepsItemHoverTextColor !important;
 }
