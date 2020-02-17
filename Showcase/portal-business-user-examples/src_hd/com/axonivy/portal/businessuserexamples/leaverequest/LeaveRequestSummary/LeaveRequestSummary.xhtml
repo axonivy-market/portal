@@ -5,6 +5,8 @@
 <h:body>
   <ui:composition template="/layouts/TaskTemplate-8.xhtml">
     <ui:define name="title">Leave Request Approval Result</ui:define>
+    <ui:param name="actualStepIndex" value="2" />
+    <ui:param name="steps" value="#{[ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/creation'),ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/approval'), ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/approvalResult')]}" />
     <ui:define name="content">
 
       <h:form id="leave-request">
