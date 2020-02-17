@@ -15,7 +15,7 @@
   <cc:attribute name="hideCaseFilter" default="false" shortDescription="Case filter text field is hidden or not"
     type="java.lang.Boolean" />
   <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}" />
-  <cc:attribute name="alternativeTitle" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}" />
+  <cc:attribute name="titleOnMobile" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}" />
   <cc:attribute name="autoSelectCaseId" />
   <cc:attribute name="filterGroupId" />
   <cc:attribute name="hideWidgetHeader" default="false" type="java.lang.Boolean" />
@@ -37,7 +37,7 @@
               </h:panelGroup>
               <h:panelGroup rendered="#{data.dataModel.criteria.technicalCase}">
                 <span class="u-hidden-sm-down">#{cc.attrs.title} </span>
-                <span class="u-hidden-md-up">#{cc.attrs.alternativeTitle} </span>
+                <span class="u-hidden-md-up">#{cc.attrs.titleOnMobile} </span>
                 <h:outputText value="(#{data.dataModel.rowCount})" rendered="#{!data.dataModel.disableCaseCount}" />
               </h:panelGroup>
             </span>
