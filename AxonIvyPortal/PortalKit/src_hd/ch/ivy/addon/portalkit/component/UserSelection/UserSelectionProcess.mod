@@ -11,8 +11,10 @@ Us0 @TextInP .responsibility .responsibility #zField
 Us0 @UdInit f0 '' #zField
 Us0 @UdProcessEnd f1 '' #zField
 Us0 @PushWFArc f2 '' #zField
-Us0 @UdProcessEnd f3 '' #zField
-Us0 @UdMethod f4 '' #zField
+Us0 @UdMethod f5 '' #zField
+Us0 @UdProcessEnd f6 '' #zField
+Us0 @GridStep f3 '' #zField
+Us0 @PushWFArc f4 '' #zField
 Us0 @PushWFArc f7 '' #zField
 >Proto Us0 Us0 UserSelectionProcess #zField
 Us0 f0 guid 1705118A1557E73F #txt
@@ -34,32 +36,47 @@ Us0 f0 @|UdInitIcon #fIcon
 Us0 f1 211 51 26 26 0 12 #rect
 Us0 f1 @|UdProcessEndIcon #fIcon
 Us0 f2 109 64 211 64 #arcP
-Us0 f3 211 115 26 26 0 12 #rect
-Us0 f3 @|UdProcessEndIcon #fIcon
-Us0 f4 guid 170511AAD5664FE0 #txt
-Us0 f4 method completeUser(String) #txt
-Us0 f4 inParameterDecl '<String query> param;' #txt
-Us0 f4 inParameterMapAction 'out.query=param.query;
-' #txt
-Us0 f4 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> users> result;' #txt
-Us0 f4 outActionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
-
-result.users = UserUtils.findUsers(in.query, 0, in.maxResults + 1, in.roleNames);' #txt
-Us0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+Us0 f5 guid 170529BDDCA3B071 #txt
+Us0 f5 method init() #txt
+Us0 f5 inParameterDecl '<> param;' #txt
+Us0 f5 outParameterDecl '<> result;' #txt
+Us0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>completeUser(String)</name>
+        <name>init()</name>
     </language>
 </elementInfo>
 ' #txt
-Us0 f4 83 115 26 26 -25 15 #rect
-Us0 f4 @|UdMethodIcon #fIcon
-Us0 f7 109 128 211 128 #arcP
+Us0 f5 83 131 26 26 -11 16 #rect
+Us0 f5 @|UdMethodIcon #fIcon
+Us0 f6 339 131 26 26 0 12 #rect
+Us0 f6 @|UdProcessEndIcon #fIcon
+Us0 f3 actionTable 'out=in;
+' #txt
+Us0 f3 actionCode 'import ch.ivy.addon.portalkit.bean.UserSelectionBean;
+import ch.ivy.addon.portalkit.util.BeanUtils;
+
+BeanUtils.invokeBeanMethodViaMethodExpression("#{userSelectionBean.setMaxResults}", in.maxResults);
+BeanUtils.invokeBeanMethodViaMethodExpression("#{userSelectionBean.setRoleNames}", in.roleNames);
+in.completeMethod = BeanUtils.createCompleteMethod("#{userSelectionBean.completeUser}");' #txt
+Us0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Create complete method</name>
+    </language>
+</elementInfo>
+' #txt
+Us0 f3 152 122 144 44 -68 -8 #rect
+Us0 f3 @|StepIcon #fIcon
+Us0 f4 109 144 152 144 #arcP
+Us0 f7 296 144 339 144 #arcP
 >Proto Us0 .type ch.ivy.addon.portalkit.component.UserSelection.UserSelectionData #txt
 >Proto Us0 .processKind HTML_DIALOG #txt
 >Proto Us0 -8 -8 16 16 16 26 #rect
 >Proto Us0 '' #fIcon
 Us0 f0 mainOut f2 tail #connect
 Us0 f2 head f1 mainIn #connect
-Us0 f4 mainOut f7 tail #connect
-Us0 f7 head f3 mainIn #connect
+Us0 f5 mainOut f4 tail #connect
+Us0 f4 head f3 mainIn #connect
+Us0 f3 mainOut f7 tail #connect
+Us0 f7 head f6 mainIn #connect
