@@ -8,3 +8,5 @@ query String #field
 query PERSISTENT #fieldModifier
 maxResults Integer #field
 maxResults PERSISTENT #fieldModifier
+completeMethod javax.el.MethodExpression #field
+completeMethod PERSISTENT #fieldModifier
