@@ -8,24 +8,26 @@ import ch.ivyteam.ivy.application.IApplication;
 public interface ISecurityService {
 
   /**
-   * Gets users of the given application names
+   * Finds the users which has the given roles and in the given applications
    * @param query
    * @param apps
    * @param startIndex
    * @param count
+   * @param roleNames
    * @return {@link IvySecurityResultDTO}
    */
-  IvySecurityResultDTO findUsers(String query, List<String> apps, int startIndex, int count);
+  IvySecurityResultDTO findUsers(String query, List<String> apps, int startIndex, int count, List<String> roleNames);
   
   /**
-   * Finds the users by the given application
+   * Finds the users which has the given roles and in the given application
    * @param query
    * @param app
    * @param startIndex
    * @param count
+   * @param roleNames
    * @return {@link IvySecurityResultDTO}
    */
-  IvySecurityResultDTO findUsers(String query, IApplication app, int startIndex, int count);
+  IvySecurityResultDTO findUsers(String query, IApplication app, int startIndex, int count, List<String> roleNames);
   
   /**
    * Gets roles of the given application name
