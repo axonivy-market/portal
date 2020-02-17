@@ -164,10 +164,8 @@ public class ExpressManagementUtils {
   }
 
   private List<String> getExpressMember() {
-    List<String> memberList = new ArrayList<>();
-    List<SecurityMemberDTO> securityResultDTOList = SecurityMemberUtils.findAllSecurityMembers();
-    memberList.addAll(securityResultDTOList.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList()));
-    return memberList;
+    List<SecurityMemberDTO> securityResultDTOList = SecurityMemberUtils.findSecurityMembers("", 0, -1);
+    return securityResultDTOList.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList());
   }
 
   private int deployExpressWorkflows(StringBuilder importExpressResult, List<String> memberList,
