@@ -36,7 +36,7 @@
             componentId="user-activator-select" selectedUser="#{data.selectedUser}"
             formatToDisplay="#{userFormatBean.formatWithTip(user.displayName, user.memberName)}" rendered="#{data.isUserDelegated}"
             completeMethod="#{logic.autoCompleteForUserDelegate}">
-            <f:facet name="additionalFacet">
+            <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}" update="#{p:component('proceed-task-delegate-command')}" />
            </f:facet>
           </ic:ch.ivy.addon.portalkit.component.UserSelection>
