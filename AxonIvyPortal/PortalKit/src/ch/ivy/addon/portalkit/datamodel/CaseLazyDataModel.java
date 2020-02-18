@@ -147,9 +147,8 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     if (filterContainer == null) {
       initColumnsConfiguration();
       initFilterContainer();
-      collectFiltersForDefaultFilterSet();
       filters = filterContainer.getFilters();
-      setValuesForCaseStateFilter(criteria);
+      setValuesForCaseStateFilter(criteria, filterContainer);
       restoreSessionAdvancedFilters();
     }
   }
@@ -162,6 +161,8 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
       } else {
         tempFilterContainer = this.filterContainer;
       }
+      setValuesForCaseStateFilter(criteria, tempFilterContainer);
+
       defaultCaseFilterData.setFilters(tempFilterContainer.getFilters().stream().filter(CaseFilter::defaultFilter).collect(Collectors.toList()));
     }
   }
@@ -225,14 +226,14 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     criteria.setAdminQuery(isAdminQuery);
     if (isAdminQuery && !criteria.getIncludedStates().contains(CaseState.DONE)) {
       criteria.addIncludedStates(Arrays.asList(CaseState.DONE));
-      setValuesForCaseStateFilter(criteria);
+      setValuesForCaseStateFilter(criteria, filterContainer);
     }
   }
 
   public void setCaseId(Long caseId) {
     criteria.setCaseId(caseId);
     criteria.setIncludedStates(new ArrayList<>());
-    setValuesForCaseStateFilter(criteria);
+    setValuesForCaseStateFilter(criteria, filterContainer);
   }
 
   /**
@@ -363,7 +364,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     }
   }
 
-  private void setValuesForCaseStateFilter(CaseSearchCriteria criteria) {
+  private void setValuesForCaseStateFilter(CaseSearchCriteria criteria, CaseFilterContainer filterContainer) {
     if (filterContainer != null) {
       filterContainer.getStateFilter().setFilteredStates(new ArrayList<>(criteria.getIncludedStates()));
       filterContainer.getStateFilter().setSelectedFilteredStates(criteria.getIncludedStates());

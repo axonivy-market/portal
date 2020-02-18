@@ -367,11 +367,16 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     if (defaultTaskAnalysisFilterData != null) {
       if (CollectionUtils.isEmpty(defaultTaskAnalysisFilterData.getTaskFilters())) {
         TaskAnalysisTaskFilterContainer taskFilterContainer = new TaskAnalysisTaskFilterContainer();
+        updateStateForTaskCriteria();
+        setValuesForStateFilter(criteria, taskFilterContainer);
+        buildTaskStateFilter(taskFilterContainer);
         defaultTaskAnalysisFilterData.setTaskFilters(taskFilterContainer.getFilters().stream().filter(TaskFilter::defaultFilter).collect(Collectors.toList()));
       }
   
       if (CollectionUtils.isEmpty(defaultTaskAnalysisFilterData.getCaseFilters())) {
         TaskAnalysisCaseFilterContainer caseFilterContainer = new TaskAnalysisCaseFilterContainer();
+        caseFilterContainer.getStateFilter().setFilteredStates(new ArrayList<>(caseCriteria.getIncludedStates()));
+        caseFilterContainer.getStateFilter().setSelectedFilteredStates(caseCriteria.getIncludedStates());
         defaultTaskAnalysisFilterData.setCaseFilters(caseFilterContainer.getFilters().stream().filter(CaseFilter::defaultFilter).collect(Collectors.toList()));
       }
     }

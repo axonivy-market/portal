@@ -151,27 +151,34 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   public void initFilters() throws ReflectiveOperationException {
     if (filterContainer == null) {
-      if (isRelatedTaskDisplayed) {
-        if (!criteria.getIncludedStates().contains(TaskState.DONE)) {
-          criteria.addIncludedStates(Arrays.asList(TaskState.DONE));
-        }
-        if (!criteria.getIncludedStates().contains(TaskState.UNASSIGNED)) {
-          criteria.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
-        }
-      }
+      updateStateForTaskCriteria();
       initFilterContainer();
-      collectFiltersForDefaultFilterSet();
       filters = filterContainer.getFilters();
-      setValuesForStateFilter(criteria);
-      TaskStateFilter stateFilter = filterContainer.getStateFilter();
-      if (criteria.isAdminQuery() && !isRelatedTaskDisplayed) {
-        stateFilter.setSelectedFilteredStatesAtBeginning(new ArrayList<>(stateFilter.getSelectedFilteredStates()));
-      } else if (!stateFilter.getFilteredStates().contains(TaskState.DONE)) {
-        stateFilter.addFilteredState(TaskState.DONE);
-      }
+      setValuesForStateFilter(criteria, filterContainer);
+      buildTaskStateFilter(filterContainer);
       restoreSessionAdvancedFilters();
     }
     checkToApplyDefaultSet();
+  }
+
+  protected void buildTaskStateFilter(TaskFilterContainer filterContainer) {
+    TaskStateFilter stateFilter = filterContainer.getStateFilter();
+    if (criteria.isAdminQuery() && !isRelatedTaskDisplayed) {
+      stateFilter.setSelectedFilteredStatesAtBeginning(new ArrayList<>(stateFilter.getSelectedFilteredStates()));
+    } else if (!stateFilter.getFilteredStates().contains(TaskState.DONE)) {
+      stateFilter.addFilteredState(TaskState.DONE);
+    }
+  }
+
+  protected void updateStateForTaskCriteria() {
+    if (isRelatedTaskDisplayed) {
+      if (!criteria.getIncludedStates().contains(TaskState.DONE)) {
+        criteria.addIncludedStates(Arrays.asList(TaskState.DONE));
+      }
+      if (!criteria.getIncludedStates().contains(TaskState.UNASSIGNED)) {
+        criteria.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
+      }
+    }
   }
 
   public void collectFiltersForDefaultFilterSet() {
@@ -182,6 +189,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       } else {
         tempFilterContainer = this.filterContainer;
       }
+      updateStateForTaskCriteria();
+      setValuesForStateFilter(criteria, tempFilterContainer);
+      buildTaskStateFilter(tempFilterContainer);
       defaultTaskFilterData.setFilters(tempFilterContainer.getFilters().stream().filter(TaskFilter::defaultFilter).collect(Collectors.toList()));
     }
   }
@@ -347,7 +357,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
         .collect(Collectors.toList());
     if (isAdminQuery && !adminStateNotIncluded.isEmpty()) {
       criteria.addIncludedStates(adminStateNotIncluded);
-      setValuesForStateFilter(criteria);
+      setValuesForStateFilter(criteria, this.filterContainer);
     }
     criteria.setAdminQuery(isAdminQuery);
   }
@@ -384,12 +394,12 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   public void setIncludedStates(List<TaskState> includedStates) {
     this.criteria.setIncludedStates(includedStates);
-    setValuesForStateFilter(this.criteria);
+    setValuesForStateFilter(this.criteria, this.filterContainer);
   }
 
   public void addIncludedStates(List<TaskState> includedStates) {
     this.criteria.addIncludedStates(includedStates);
-    setValuesForStateFilter(this.criteria);
+    setValuesForStateFilter(this.criteria, this.filterContainer);
   }
 
   public void setCriteria(TaskSearchCriteria criteria) {
@@ -615,7 +625,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     criteria.setApps(service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName()));
   }
 
-  protected void setValuesForStateFilter(TaskSearchCriteria criteria) {
+  protected void setValuesForStateFilter(TaskSearchCriteria criteria, TaskFilterContainer filterContainer) {
     if (filterContainer != null) {
       filterContainer.getStateFilter().setFilteredStates(new ArrayList<>(criteria.getIncludedStates()));
       filterContainer.getStateFilter().setSelectedFilteredStates(criteria.getIncludedStates());
