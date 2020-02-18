@@ -1,5 +1,5 @@
-UserSelectionComponentData #class
-ch.ivyteam.ivy.project.portal.examples.UserSelectionComponent #namespace
+UserSelectionExampleData #class
+ch.ivyteam.ivy.project.portal.examples.UserSelectionExample #namespace
 definedRoleNames List<String> #field
 definedRoleNames PERSISTENT #fieldModifier
 selectedUserForDefinedRoles ch.ivy.addon.portalkit.dto.UserDTO #field

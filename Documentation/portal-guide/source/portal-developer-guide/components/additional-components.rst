@@ -276,7 +276,7 @@ You can include this component to any page. Below is an example code for 2 label
 
       <ic:ch.ivy.addon.portalkit.component.UserSelection 
             componentId="user-by-role-autocomplete"
-            roleNames="#{data.definedRoleNames}"
+            hasRoleNames="#{data.definedRoleNames}"
             selectedUser="#{data.selectedUserForDefinedRoles}"
             isRequired="true"
             autoCompleteStyleClass="width-100"
@@ -294,13 +294,7 @@ You can include this component to any page. Below is an example code for 2 label
             autoCompletePanelStyleClass="ui-g-5 ui-md-4 ui-sm-12 margin-top-40"
             isRequired="true" floatingLabel="true" />
 
-
-.. important::
-   If you use User Selection component more than twice in 1 page, 
-   please create a managedBean for each of them and extends ``UserSelectionBean``.
-   Otherwise, these components will use the same bean, you could not retrieve data separately.
-
-   Please refer to ``UserSelectionComponent.xhtml`` in ``PortalExamples``.
+Please refer to ``UserSelectionExample.xhtml`` in ``PortalExamples`` for more details.
 
 Attributes of this component:
 

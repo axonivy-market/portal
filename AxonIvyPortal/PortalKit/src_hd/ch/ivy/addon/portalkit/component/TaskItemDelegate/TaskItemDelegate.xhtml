@@ -34,11 +34,11 @@
         <h:panelGroup id="select-delegate-panel" layout="block" styleClass="select-delegate-panel">
           <ic:ch.ivy.addon.portalkit.component.UserSelection 
             componentId="user-activator-select" selectedUser="#{data.selectedUser}"
-            managedBean="#{taskDelegateUserBean}" isRenderedLabel="false" scrollHeight="400"
+            managedBean="#{taskDelegateUserBean}" scrollHeight="400"
             formatToDisplay="#{userFormatBean.formatWithTip(user.displayName, user.memberName)}"
             queryDelay="500" rendered="#{data.isUserDelegated}"
             moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}">
-            <f:facet name="additionalFacet">
+            <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}" update="#{p:component('proceed-task-delegate-command')}" />
            </f:facet>
           </ic:ch.ivy.addon.portalkit.component.UserSelection>
