@@ -79,8 +79,8 @@ public class TaskResponsibleFilter extends TaskFilter {
   }
 
   /**
-   * SelectedResponsibleMemberName checks selectedResponsibleMemberName which is saved in BusinessData 
-   * And find a SecurityMemberDTO base on this selectedResponsibleMemberName
+   * Checks selectedResponsibleMemberName which is saved on BusinessData
+   * then find correspond SecurityMemberDTO of selectedResponsibleMemberName
    * @return Member name of SecurityMemberDTO
    */
   public String getSelectedResponsibleMemberName() {

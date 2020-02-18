@@ -176,13 +176,13 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   public void collectFiltersForDefaultFilterSet() {
     if (defaultTaskFilterData != null && CollectionUtils.isEmpty(defaultTaskFilterData.getFilters())) {
-      TaskFilterContainer filterContainer = null;
+      TaskFilterContainer tempFilterContainer = null;
       if (this.filterContainer == null) {
-        filterContainer = new DefaultTaskFilterContainer();
+        tempFilterContainer = new DefaultTaskFilterContainer();
       } else {
-        filterContainer = this.filterContainer;
+        tempFilterContainer = this.filterContainer;
       }
-      defaultTaskFilterData.setFilters(filterContainer.getFilters().stream().filter(TaskFilter::defaultFilter).collect(Collectors.toList()));
+      defaultTaskFilterData.setFilters(tempFilterContainer.getFilters().stream().filter(TaskFilter::defaultFilter).collect(Collectors.toList()));
     }
   }
   
