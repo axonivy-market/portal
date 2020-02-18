@@ -214,9 +214,9 @@
       </h:panelGroup>
     </p:fieldset>
 
-    <!-- FILTER BUTTONS -->
-    <h:panelGroup layout="block" id="filter-buttons-container" class="MarTop20 filter-buttons-container">
-      <p:commandButton id="apply-filter" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}" process="@(.statistic-result-list)" update="@(.statistic-result-list)" />
+        <!-- FILTER BUTTONS -->
+        <div id="filter-buttons-container" class="MarTop20 filter-buttons-container">
+          <p:commandButton id="apply-filter" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}" process="@(.statistic-result-list)" update="@(.statistic-result-list) status-dialog" />
       <p:commandButton id="filter-reset-action"
         rendered="#{data.dataModel.selectedTaskAnalysisFilterData == null and !data.dataModel.isSelectedDefaultFilter()}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" styleClass="filter-add-button"

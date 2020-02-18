@@ -41,11 +41,9 @@ Cs0 f6 inParameterDecl '<String query> param;' #txt
 Cs0 f6 inParameterMapAction 'out.queryAutoComplete=param.query;
 ' #txt
 Cs0 f6 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> creators> result;' #txt
-Cs0 f6 outActionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
-if(in.creators.isEmpty()) {
-	in.creators = UserUtils.findAllUserDTOInCurrentApplication();
-}
-result.creators = UserUtils.filterUsersDTO(in.creators, in.queryAutoComplete);' #txt
+Cs0 f6 outActionCode 'import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.util.UserUtils;
+result.creators = UserUtils.findUsers(in.queryAutoComplete, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);' #txt
 Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

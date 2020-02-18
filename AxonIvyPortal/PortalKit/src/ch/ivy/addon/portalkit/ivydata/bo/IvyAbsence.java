@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.ivydata.bo;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.apache.commons.lang3.StringUtils;
@@ -7,6 +9,7 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import ch.ivy.addon.portalkit.dto.UserDTO;
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.ServerFactory;
 
@@ -57,6 +60,12 @@ public class IvyAbsence {
     return user != null ? user.getDisplayName() : StringUtils.EMPTY;
   }
   
+  public String getPeriod() {
+    DateTimeGlobalSettingService service = new DateTimeGlobalSettingService();
+    DateFormat formatter = new SimpleDateFormat(service.getDatePattern());
+    return String.format("%s - %s", formatter.format(from), formatter.format(until));
+  }
+  
   @Override
   public int hashCode() {
     try {
@@ -84,8 +93,7 @@ public class IvyAbsence {
           .append(from, other.from)
           .append(until, other.until)
           .isEquals();
-  } else{
-      return false;
-  }
+    } 
+    return false;
   }
 }
