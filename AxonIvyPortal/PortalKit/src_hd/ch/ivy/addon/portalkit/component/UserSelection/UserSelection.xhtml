@@ -11,7 +11,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="hasRoleNames" type="java.util.List" />
   <cc:attribute name="componentId" default="user-selection" />
-  <cc:attribute name="selectedUser" type="ch.ivy.addon.portalkit.dto.UserDTO" required="true" />
+  <cc:attribute name="selectedUser" required="true" />
   <cc:attribute name="requiredMessage" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
   <cc:attribute name="forceSelection" default="true" />
   <cc:attribute name="minQueryLength" default="1" />
@@ -36,14 +36,13 @@
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{logic.init}" type="preRenderComponent" />
   <h:panelGroup id="#{cc.attrs.componentId}-label-panel" layout="block" rendered="#{not empty cc.attrs.label and !cc.attrs.floatingLabel}"
     styleClass="#{cc.attrs.labelPanelStyleClass}">
     <p:outputLabel id="#{cc.attrs.componentId}-label" value="#{cc.attrs.label}" for="#{cc.attrs.componentId}"
       styleClass="#{cc.attrs.labelStyleClass}" />
   </h:panelGroup>
 
-  <c:set var="completeMethod" value="#{not empty cc.attrs.completeMethod ? cc.attrs.completeMethod : data.completeMethod}" />
+  <c:set var="completeMethod" value="#{not empty cc.attrs.completeMethod ? cc.attrs.completeMethod : userSelectionBean.completeUserMethod}" />
   <h:panelGroup id="#{cc.attrs.componentId}-autocomplete-panel" layout="block"
     styleClass="#{cc.attrs.autoCompletePanelStyleClass} md-inputfield">
     <p:autoComplete id="#{cc.attrs.componentId}" value="#{cc.attrs.selectedUser}" scrollHeight="#{cc.attrs.scrollHeight}"
