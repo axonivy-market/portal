@@ -15,7 +15,7 @@ public class TaskTemplatePage extends TemplatePage {
 
   public void openCaseInfo() {
     clickByCssSelector("#horizontal-case-info");
-    waitAjaxIndicatorDisappear();
+    waitForElementDisplayed(By.cssSelector("span[id$='case-info-dialog_title']"), true);
   }
 
   public boolean containsCaseDetails() {
@@ -33,7 +33,7 @@ public class TaskTemplatePage extends TemplatePage {
 
   public void openDocumentUploadingDialog() {
     clickByCssSelector("a[id$='add-document-command']");
-    waitForElementDisplayed(By.cssSelector("a[id$='add-document-command']"), true);
+    waitForElementDisplayed(By.cssSelector("div[id$='document-upload-dialog']"), true);
   }
 
   public Boolean isDocumentUploadingDialogDisplayed() {
@@ -90,7 +90,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public void clickCancelButton() {
-    driver.findElement(By.className("portal-cancel-button")).click();
+    click(driver.findElement(By.className("portal-cancel-button")));
   }
   
   public void showNoteHistory() {
@@ -116,7 +116,12 @@ public class TaskTemplatePage extends TemplatePage {
     String adhocHistoryBtnCSSSelection = "a[id$='show-adhoc-history']";
     return driver.findElements(By.cssSelector(adhocHistoryBtnCSSSelection)).isEmpty();
   }
-  
+
+  public boolean isStartAdhocBtnNotExist() {
+    String startAdhocBtnCSSSelection = "a[id$='start-adhoc']";
+    return driver.findElements(By.cssSelector(startAdhocBtnCSSSelection)).isEmpty();
+  }
+
   public boolean isAdhocHistoryDialogExistWhenOpenTaskFirstTime() {
     waitAjaxIndicatorDisappear();
     return findElementByCssSelector("div[id$='adhoc-task-history-dialog']").isDisplayed();

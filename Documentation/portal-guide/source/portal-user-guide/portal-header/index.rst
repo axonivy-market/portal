@@ -57,29 +57,21 @@ HowTo: Add absence
 
 5. You may provide an explanatory comment
 
-6. Confirm your absence with the button **Next**
-
-7. You are forwarded to the :guilabel:`Set deputies`  dialog (see `HowTo:
-   Set deputies`_).
+6. Confirm your absence with the button **OK**
 
 .. figure:: images/how-to-add-an-absence.png
 
 HowTo: Set deputies
 ^^^^^^^^^^^^^^^^^^^
 
-1. Click on the button **Set deputies**. Alternatively, you’re forwarded
-   to this dialog after you added an absence.
-
-2. The :guilabel:`Set deputies` dialog is opened.
-
-3. You see a list with an entry for your personal tasks and for each
+1. You see a list with an entry for your personal tasks and for each
    role you hold.
 
-4. Specify a deputy by selecting him from the list.
+2. Specify a deputy by selecting user from the list.
 
-5. You may add a comment
+3. With personal task, you can choose **Always** or **During my absence**
 
-6. Confirm your deputies with the button **OK**.
+4. Confirm your deputies with the button **Save**.
 
 .. figure:: images/how-to-set-absence-deputies.png
 

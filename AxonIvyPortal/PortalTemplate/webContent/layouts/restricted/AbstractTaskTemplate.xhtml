@@ -12,7 +12,7 @@
     <ui:define name="simplePageContent">
       <p:growl id="task-template-growl" />
   
-      <div class="task-template-container ui-g-12 u-padding-0 #{taskTemplateContainerStyleClass}">
+      <div class="task-template-container ui-g-12 #{taskTemplateContainerStyleClass}">
         <c:set var="case" value="#{task.getCase().getBusinessCase()}" scope="request" />
         <c:set var="isSideStepDisabled" value="#{!abstractTaskTemplateBean.checkSideStepsEnabled(case)}" scope="request" />
         <ui:insert name="breadCrumb" />
@@ -37,19 +37,19 @@
             <h:form id="vertical-task-action-form" rendered="#{processChainDirection eq 'VERTICAL'}">
               <p:menu id="vertical-task-action-menu" overlay="true" trigger="vertical-task-actions" my="right top" at="right bottom"
                 styleClass="action-steps-panel task-actions-menu">
-                <p:menuitem id="show-adhoc-history" rendered="#{abstractTaskTemplateBean.hasAdhocTasks(task)}"
+                <p:menuitem id="show-adhoc-history" rendered="#{abstractTaskTemplateBean.hasAdhocTasks(task) }"
                   icon="fa fa-history fa-2x" oncomplete="PF('adhoc-task-history-dialog').show()"
                   value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistory')}"
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistoryTooltip')}" />
 
                 <p:menuitem id="start-adhoc"
-                  rendered="#{empty isShowStartAdhocButton? abstractTaskTemplateBean.hasExpressAdhocWF(): isShowStartAdhocButton}"
+                  rendered="#{empty isShowStartAdhocButton? (abstractTaskTemplateBean.hasExpressAdhocWF() and task.isPersistent()) : isShowStartAdhocButton}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHoc')}"
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}"
                   icon="fa fa-random fa-2x" oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()" />
 
                 <p:separator
-                  rendered="#{abstractTaskTemplateBean.hasAdhocTasks(task) or (empty isShowStartAdhocButton? abstractTaskTemplateBean.hasExpressAdhocWF(): isShowStartAdhocButton)}" />
+                  rendered="#{abstractTaskTemplateBean.hasAdhocTasks(task) or (empty isShowStartAdhocButton? (abstractTaskTemplateBean.hasExpressAdhocWF() and task.isPersistent()) : isShowStartAdhocButton)}" />
 
                 <p:menuitem id="side-steps-menu" styleClass="empty-side-steps" global="false"
                   disabled="#{empty abstractTaskTemplateBean.sideStepList}" rendered="#{isSideStepDisabled}"
@@ -95,7 +95,7 @@
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistoryTooltip')}" />
     
                 <p:menuitem id="start-adhoc"
-                  rendered="#{empty isShowStartAdhocButton? abstractTaskTemplateBean.hasExpressAdhocWF(): isShowStartAdhocButton}"
+                  rendered="#{empty isShowStartAdhocButton? (abstractTaskTemplateBean.hasExpressAdhocWF() and task.isPersistent()) : isShowStartAdhocButton}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHoc')}"
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}"
                   icon="fa fa-random fa-2x" oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()" />
@@ -105,7 +105,7 @@
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createProcessChat')}" update="chat-assignee-dialog" />
     
                 <p:separator
-                    rendered="#{abstractTaskTemplateBean.hasAdhocTasks(task) or (empty isShowStartAdhocButton? abstractTaskTemplateBean.hasExpressAdhocWF(): isShowStartAdhocButton)}" />
+                    rendered="#{abstractTaskTemplateBean.hasAdhocTasks(task) or (empty isShowStartAdhocButton? (abstractTaskTemplateBean.hasExpressAdhocWF() and task.isPersistent()) : isShowStartAdhocButton)}" />
     
                 <p:menuitem id="side-steps-menu" styleClass="empty-side-steps" global="false"
                   disabled="#{empty abstractTaskTemplateBean.sideStepList}" rendered="#{isSideStepDisabled}"
