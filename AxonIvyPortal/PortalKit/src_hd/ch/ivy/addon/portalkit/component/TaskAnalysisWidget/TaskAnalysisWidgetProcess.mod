@@ -207,6 +207,7 @@ import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
 TaskAnalysisFilterService taskFilterService = new TaskAnalysisFilterService();
 in.taskPrivateFilters = taskFilterService.getPrivateFilterForCurrentUser(in.taskFilterGroupId) as List;
 in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId) as List;
+in.taskPublicFilters.add(in.dataModel.buildDefaultTaskAnalysisFilterData());
 in.filterType = FilterType.ONLY_ME;' #txt
 Ts0 f27 security system #txt
 Ts0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -218,7 +219,7 @@ Ts0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f27 366 52 36 24 20 -2 #rect
+Ts0 f27 336 40 96 48 -38 -7 #rect
 Ts0 f27 @|StepIcon #fIcon
 Ts0 f3 467 51 26 26 0 12 #rect
 Ts0 f3 @|UdProcessEndIcon #fIcon
@@ -375,7 +376,7 @@ Ts0 f17 387 755 26 26 0 12 #rect
 Ts0 f17 @|UdProcessEndIcon #fIcon
 Ts0 f20 93 768 387 768 #arcP
 Ts0 f57 expr out #txt
-Ts0 f57 402 64 467 64 #arcP
+Ts0 f57 432 64 467 64 #arcP
 Ts0 f8 actionTable 'out=in;
 ' #txt
 Ts0 f8 actionCode 'import ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel;
@@ -404,7 +405,7 @@ Ts0 f8 @|StepIcon #fIcon
 Ts0 f10 expr out #txt
 Ts0 f10 107 64 184 64 #arcP
 Ts0 f1 expr out #txt
-Ts0 f1 296 64 366 64 #arcP
+Ts0 f1 296 64 336 64 #arcP
 Ts0 f11 guid 1645924828285975 #txt
 Ts0 f11 actionTable 'out=in;
 ' #txt
