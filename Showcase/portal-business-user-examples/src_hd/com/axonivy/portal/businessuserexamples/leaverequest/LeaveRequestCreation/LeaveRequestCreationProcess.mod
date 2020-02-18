@@ -16,8 +16,14 @@ Ls0 @GridStep f6 '' #zField
 Ls0 @PushWFArc f7 '' #zField
 Ls0 @PushWFArc f2 '' #zField
 Ls0 @GridStep f8 '' #zField
-Ls0 @PushWFArc f9 '' #zField
 Ls0 @PushWFArc f5 '' #zField
+Ls0 @GridStep f10 '' #zField
+Ls0 @PushWFArc f11 '' #zField
+Ls0 @Alternative f12 '' #zField
+Ls0 @PushWFArc f13 '' #zField
+Ls0 @PushWFArc f9 '' #zField
+Ls0 @UdProcessEnd f14 '' #zField
+Ls0 @PushWFArc f15 '' #zField
 >Proto Ls0 Ls0 LeaveRequestCreationProcess #zField
 Ls0 f0 guid 1703359FD639EAC8 #txt
 Ls0 f0 method start() #txt
@@ -49,11 +55,13 @@ Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ls0 f3 83 147 26 26 -15 15 #rect
 Ls0 f3 @|UdEventIcon #fIcon
-Ls0 f4 339 147 26 26 0 12 #rect
+Ls0 f4 595 147 26 26 0 12 #rect
 Ls0 f4 @|UdExitEndIcon #fIcon
 Ls0 f6 actionTable 'out=in;
 ' #txt
-Ls0 f6 actionCode 'import ch.ivy.addon.portalkit.dto.UserDTO;
+Ls0 f6 actionCode 'import java.util.Arrays;
+
+import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import com.axonivy.portal.businessuserexamples.enums.LeaveType;
 import java.util.Arrays;
@@ -94,10 +102,41 @@ Ls0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ls0 f8 168 138 112 44 -26 -8 #rect
+Ls0 f8 424 138 112 44 -26 -8 #rect
 Ls0 f8 @|StepIcon #fIcon
-Ls0 f9 109 160 168 160 #arcP
-Ls0 f5 280 160 339 160 #arcP
+Ls0 f5 536 160 595 160 #arcP
+Ls0 f10 actionTable 'out=in;
+' #txt
+Ls0 f10 actionCode 'import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+in.isValid = in.leaveRequestData.from.compareTo(in.leaveRequestData.to) > 0? false : true;
+if(!in.isValid) {
+FacesContext.getCurrentInstance().validationFailed();
+FacesContext.getCurrentInstance().addMessage(
+          null,
+          new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co(
+              "/ch.ivy.addon.portalkit.ui.jsf/common/dateFromBiggerThanTo"), null));
+}' #txt
+Ls0 f10 security system #txt
+Ls0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>validation</name>
+    </language>
+</elementInfo>
+' #txt
+Ls0 f10 168 138 112 44 -26 -8 #rect
+Ls0 f10 @|StepIcon #fIcon
+Ls0 f11 109 160 168 160 #arcP
+Ls0 f12 336 144 32 32 0 16 #rect
+Ls0 f12 @|AlternativeIcon #fIcon
+Ls0 f13 280 160 336 160 #arcP
+Ls0 f9 expr in #txt
+Ls0 f9 outCond in.isValid #txt
+Ls0 f9 368 160 424 160 #arcP
+Ls0 f14 339 243 26 26 0 12 #rect
+Ls0 f14 @|UdProcessEndIcon #fIcon
+Ls0 f15 352 176 352 243 #arcP
 >Proto Ls0 .type com.axonivy.portal.businessuserexamples.leaverequest.LeaveRequestCreation.LeaveRequestCreationData #txt
 >Proto Ls0 .processKind HTML_DIALOG #txt
 >Proto Ls0 -8 -8 16 16 16 26 #rect
@@ -106,7 +145,13 @@ Ls0 f0 mainOut f7 tail #connect
 Ls0 f7 head f6 mainIn #connect
 Ls0 f6 mainOut f2 tail #connect
 Ls0 f2 head f1 mainIn #connect
-Ls0 f3 mainOut f9 tail #connect
-Ls0 f9 head f8 mainIn #connect
 Ls0 f8 mainOut f5 tail #connect
 Ls0 f5 head f4 mainIn #connect
+Ls0 f3 mainOut f11 tail #connect
+Ls0 f11 head f10 mainIn #connect
+Ls0 f10 mainOut f13 tail #connect
+Ls0 f13 head f12 in #connect
+Ls0 f12 out f9 tail #connect
+Ls0 f9 head f8 mainIn #connect
+Ls0 f12 out f15 tail #connect
+Ls0 f15 head f14 mainIn #connect
