@@ -27,7 +27,7 @@ Ca0 f0 startName 'Verify Personal Data' #txt
 Ca0 f0 taskData 'TaskTriggered.EXPRI=2
 TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.NAM=Verify Personal Data
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/CaseMap/verifyPersonalData")%>
 TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt

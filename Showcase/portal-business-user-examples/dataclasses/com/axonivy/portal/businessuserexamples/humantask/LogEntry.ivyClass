@@ -1,8 +1,0 @@
-LogEntry #class
-com.axonivy.portal.businessuserexamples.humantask #namespace
-user com.axonivy.portal.businessuserexamples.humantask.User #field
-user PERSISTENT #fieldModifier
-activity String #field
-activity PERSISTENT #fieldModifier
-timestamp DateTime #field
-timestamp PERSISTENT #fieldModifier

@@ -32,8 +32,8 @@ public class UserFormatBean implements Serializable {
     
     String formattedUsername = username.startsWith("#") ? username.substring(1) : username;
     if (StringUtils.isBlank(fullName)) {
-      return "<" + Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/noName") + ">" + " (" + formattedUsername + ")";
+      return String.format("<%s> (%s)", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/noName"), formattedUsername);
     }
-    return fullName + " (" + formattedUsername + ")"; 
+    return String.format("%s (%s)", fullName, formattedUsername); 
   }
 }

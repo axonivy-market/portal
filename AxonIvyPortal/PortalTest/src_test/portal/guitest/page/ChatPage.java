@@ -8,6 +8,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import portal.guitest.bean.ExpressResponsible;
+import portal.guitest.common.Sleeper;
 
 public class ChatPage extends TemplatePage {
 
@@ -59,12 +60,13 @@ public class ChatPage extends TemplatePage {
 			chooseResponsible(responsible.getResponsibleName(), responsible.isGroup());
 		}
 		click(By.id("chat-assignee-selection-form:chat-group-create-button"));
+		waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), false, DEFAULT_TIMEOUT);
 		waitAjaxIndicatorDisappear();
 	}
 
 	private void chooseResponsible(String responsible, boolean isGroup) {
 		if (isGroup) {
-			selectCheckbox("chat-assignee-selection-form:chat-assignee-type:1");
+			selectRoleAssigneeCheckbox();
 			waitAjaxIndicatorDisappear();
 			type(By.cssSelector("input[id$='selection_input']"), responsible);
 			waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-role-selection_panel"), true);
@@ -79,12 +81,12 @@ public class ChatPage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 	}
 
-	private void selectCheckbox(String forAttribute) {
-		WebElement checkboxLabel = findElementByXpath(String.format("//label[@for='%s']", forAttribute));
+	private void selectRoleAssigneeCheckbox() {
+		WebElement checkboxLabel = findElementByXpath(String.format("//label[@for='%s']", "chat-assignee-selection-form:chat-assignee-type:1"));
 		click(checkboxLabel);
 		waitAjaxIndicatorDisappear();
-		waitForElementDisplayed(By.cssSelector("input[id$='selection_input']"), true);
-	}
+		waitForElementDisplayed(By.cssSelector("input[id$='role-selection_input']"), true);
+  }
 
 	public String getAllParticipants() {
 		waitForElementDisplayed(By.cssSelector("a[id$='show-participants-link']"), true);

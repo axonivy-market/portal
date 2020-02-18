@@ -1,8 +1,0 @@
-VerifyRequestData #class
-com.axonivy.portal.businessuserexamples.humantask.VerifyRequest #namespace
-procurementRequest com.axonivy.portal.businessuserexamples.humantask.ProcurementRequest #field
-procurementRequest PERSISTENT #fieldModifier
-ok Boolean #field
-ok PERSISTENT #fieldModifier
-logEntry com.axonivy.portal.businessuserexamples.humantask.LogEntry #field
-logEntry PERSISTENT #fieldModifier

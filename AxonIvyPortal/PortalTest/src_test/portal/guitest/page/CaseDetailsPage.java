@@ -268,12 +268,17 @@ public class CaseDetailsPage extends TemplatePage {
     Robot robot;
     try {
       robot = new Robot();
+      int delayTimeBetweenEachPress = 1000; //Firefox driver needs this, IE does not need it
       robot.keyPress(KeyEvent.VK_CONTROL);
+      robot.delay(delayTimeBetweenEachPress);
       robot.keyPress(KeyEvent.VK_V);
+      robot.delay(delayTimeBetweenEachPress);
       robot.keyRelease(KeyEvent.VK_V);
+      robot.delay(delayTimeBetweenEachPress);
       robot.keyRelease(KeyEvent.VK_CONTROL);
-      robot.delay(1000); //Firefox driver needs this, IE does not need it
+      robot.delay(delayTimeBetweenEachPress);
       robot.keyPress(KeyEvent.VK_ENTER);
+      robot.delay(delayTimeBetweenEachPress);
       robot.keyRelease(KeyEvent.VK_ENTER);
     } catch (AWTException e) {
       e.printStackTrace();
