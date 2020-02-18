@@ -28,10 +28,11 @@ A20 f0 taskData 'TaskTriggered.EXP=new Duration("8h")
 TaskTriggered.EXPRI=2
 TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.NAM=Approve Level 2
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/CaseMap/approveLevel2")%>
 TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
-TaskTriggered.TYPE=0' #txt
+TaskTriggered.TYPE=0
+TaskTriggered.customFields.STRING.embedInFrame="false"' #txt
 A20 f0 caseData businessCase.attach=true #txt
 A20 f0 showInStartList 0 #txt
 A20 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

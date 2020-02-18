@@ -1,4 +1,0 @@
-RequestDetailsData #class
-com.axonivy.portal.businessuserexamples.humantask.RequestDetails #namespace
-procurementRequestData com.axonivy.portal.businessuserexamples.humantask.ProcurementRequest #field
-procurementRequestData PERSISTENT #fieldModifier

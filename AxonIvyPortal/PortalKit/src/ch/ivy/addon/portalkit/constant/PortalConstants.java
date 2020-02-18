@@ -10,6 +10,7 @@ public final class PortalConstants {
   public static final int CUSTOM_STRING_FIELD_MAX_LENGTH = 2000;
   public static final Integer[] EXPRESS_INVALID_VERSION = {0};
   public static final int EXPRESS_VERSION = 1;
+  public static final int MAX_USERS_IN_AUTOCOMPLETE = 101;
   
   private PortalConstants() {}
 }

@@ -20,6 +20,6 @@ public class LanguagePage extends TemplatePage {
   public void save() {
     WebElement save = findElementById("language-settings-form:language-settings:save-settings");
     click(save);
-    waitAjaxIndicatorDisappear();
+    waitForElementExisted("#language-settings-form\\:language-settings\\:save-settings", false, DEFAULT_TIMEOUT);
   }
 }
