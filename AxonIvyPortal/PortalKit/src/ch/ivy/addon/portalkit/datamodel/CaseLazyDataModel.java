@@ -108,6 +108,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
       defaultCaseFilterData = new CaseFilterData();
       defaultCaseFilterData.setFilterName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultFilter"));
       defaultCaseFilterData.setType(FilterType.DEFAULT);
+      collectFiltersForDefaultFilterSet();
     }
     isSelectedDefaultFilter = isSelectedDefaultFilter == null ? true : isSelectedDefaultFilter;
     return defaultCaseFilterData;
@@ -155,13 +156,13 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   private void collectFiltersForDefaultFilterSet() {
     if (defaultCaseFilterData != null && CollectionUtils.isEmpty(defaultCaseFilterData.getFilters())) {
-      CaseFilterContainer filterContainer = null;
+      CaseFilterContainer tempFilterContainer = null;
       if (this.filterContainer == null) {
-        filterContainer = new DefaultCaseFilterContainer();
+    	  tempFilterContainer = new DefaultCaseFilterContainer();
       } else {
-        filterContainer = this.filterContainer;
+    	  tempFilterContainer = this.filterContainer;
       }
-      defaultCaseFilterData.setFilters(filterContainer.getFilters().stream().filter(CaseFilter::defaultFilter).collect(Collectors.toList()));
+      defaultCaseFilterData.setFilters(tempFilterContainer.getFilters().stream().filter(CaseFilter::defaultFilter).collect(Collectors.toList()));
     }
   }
 

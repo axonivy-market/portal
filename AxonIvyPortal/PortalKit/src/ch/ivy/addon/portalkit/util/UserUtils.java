@@ -203,12 +203,6 @@ public class UserUtils {
   public static Boolean getSessionSelectedDefaultCaseFilterSetAttribute() {
     return (Boolean) Ivy.session().getAttribute(SELECTED_DEFAULT_CASE_FILTER_SET);
   }
-
-  public static List<UserDTO> findAllUserDTOInCurrentApplication() {
-    List<UserDTO> users =  ServiceUtilities.findAllUserDTOByApplication(Ivy.request().getApplication());
-    Collections.sort(users, (first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
-    return users;
-  }
   
   @SuppressWarnings("unchecked")
   public static List<UserDTO> findUsers(String query, int startIndex, int  count) {

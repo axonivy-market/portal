@@ -121,6 +121,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       defaultTaskFilterData = new TaskFilterData();
       defaultTaskFilterData.setFilterName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultFilter"));
       defaultTaskFilterData.setType(FilterType.DEFAULT);
+      collectFiltersForDefaultFilterSet();
     }
     isSelectedDefaultFilter = isSelectedDefaultFilter == null ? true: isSelectedDefaultFilter;
     return defaultTaskFilterData;

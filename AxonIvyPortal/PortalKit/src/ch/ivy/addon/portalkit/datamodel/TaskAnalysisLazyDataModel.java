@@ -64,9 +64,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     selectedCaseFilters = new ArrayList<>();
     buildCaseCriteria();
     setInvolvedApplicationsForCaseCriteria();
-    if (isSelectedDefaultFilter == null) {
-      buildDefaultTaskAnalysisFilterData();
-    }
+    buildDefaultTaskAnalysisFilterData();
   }
 
   public TaskAnalysisFilterData buildDefaultTaskAnalysisFilterData() {
@@ -74,6 +72,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
       defaultTaskAnalysisFilterData = new TaskAnalysisFilterData();
       defaultTaskAnalysisFilterData.setFilterName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultFilter"));
       defaultTaskAnalysisFilterData.setType(FilterType.DEFAULT);
+      collectFiltersForDefaultFilterSet();
     }
     isSelectedDefaultFilter = isSelectedDefaultFilter == null ? true : isSelectedDefaultFilter;
     return defaultTaskAnalysisFilterData;
