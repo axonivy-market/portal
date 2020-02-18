@@ -3,35 +3,19 @@ package ch.ivy.addon.portalkit.bean;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 
 import ch.ivy.addon.portalkit.dto.UserDTO;
+import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.UserUtils;
 
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class UserSelectionBean {
 
-  private int maxResults;
-  private List<String> roleNames;
-  
   public List<UserDTO> completeUser(String query) {
+    int maxResults = Attrs.currentContext().getAttribute("#{cc.attrs.maxResults}", Integer.class);
+    List<String> roleNames = Attrs.currentContext().getAttribute("#{cc.attrs.hasRoleNames}", List.class);
     return UserUtils.findUsers(query, 0, maxResults + 1, roleNames);
-  }
-  
-  public int getMaxResults() {
-    return maxResults;
-  }
-
-  public void setMaxResults(int maxResults) {
-    this.maxResults = maxResults;
-  }
-
-  public List<String> getRoleNames() {
-    return roleNames;
-  }
-
-  public void setRoleNames(List<String> roleNames) {
-    this.roleNames = roleNames;
   }
 }
