@@ -107,9 +107,9 @@
 
   <p:confirmDialog id="task-leave-warning-dialog" rendered="#{data.isWorkingOnATask}" 
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
-    widgetVar="task-losing-confirmation-dialog" appendTo="@(body)" closeOnEscape="true">
+    widgetVar="task-losing-confirmation-dialog" appendTo="@(body)" closeOnEscape="true" responsive="true">
     <h:form prependId="false">
-      <h:panelGroup styleClass="Fs14">
+      <h:panelGroup>
         <p:commandButton id="leave-button" actionListener="#{logic.leave(task)}" process="@this" update="@none"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leave')}"
           styleClass="ui-confirmdialog-yes u-mar-right-5" />
@@ -130,7 +130,6 @@
   </p:confirmDialog>
   <script type="text/javascript">
     function removeHighlightedMenuItem() {
-      console.log('nam');
       PF('main-menu').clearMenuState();
       $(".active-menuitem.submenu-container").removeClass('active-menuitem');
     }

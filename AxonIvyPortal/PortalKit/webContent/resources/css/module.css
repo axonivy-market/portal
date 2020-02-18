@@ -792,6 +792,9 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 /********************************** END CASE ITEM **********************************/
 
 /********************************** START PROCESSES **********************************/
+.add-external-link-dialog {
+  min-width: 600px;
+}
 
 /* Mobile screen */
 @media screen and (max-width: 40em) {
@@ -803,6 +806,9 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   }
   .process-start-list-item-name-text {
     width: calc(100vw - 100px) !important;
+  }
+  .add-external-link-dialog {
+    min-width: 96vw;
   }
 }
 
@@ -1320,10 +1326,8 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 
 /******************END DELEGATE DIALOG********************/
 
-/* NEED TO BE REFACTORED */
 .new-process-dialog {
-  min-width: 25% !important;
-  max-width: 90% !important;
+  min-width: 600px;
 }
 
 .field-group {
@@ -1348,6 +1352,9 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 @media screen and (max-width: 40em) {
   .field-group>.field-group-label {
     text-align: left !important;
+  }
+  .new-process-dialog {
+    min-width: 96vw;
   }
 }
 
@@ -1452,6 +1459,10 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 
 .filter-selection-form .filter-name-overlay-panel .user-defined-filter-container:hover .delete-user-defined-filter-command {
   display: inline;
+}
+
+.save-filter-set-dialog {
+  min-width: 575px;
 }
 
 .save-filter-set-dialog .ui-messages-error .ui-messages-error-summary {
@@ -1756,6 +1767,9 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   }
   .task-start-list-item.full-mode .task-start-link, .case-header-container {
     height: 50px;
+  }
+  .save-filter-set-dialog {
+    min-width: 96vw;
   }
 }
 /********************************** END TASK WIDGET **********************************/
@@ -4076,6 +4090,10 @@ _:-ms-fullscreen, :root .content-link-history {
   min-height: 40px;
 }
 
+.case-upload-dialog, .case-view-note-dialog {
+  min-width: 50vw;
+}
+
 @media screen and (max-width: 40em) {
   .ui-fileupload-buttonbar .ui-button {
     padding: 0 14px 0 28px !important;
@@ -4084,7 +4102,7 @@ _:-ms-fullscreen, :root .content-link-history {
     padding: 0 !important;
   }
   .case-upload-dialog, .case-view-note-dialog, .task-upload-dialog, .document-upload-dialog, .task-note-dialog {
-    width: 80% !important;
+    min-width: 96vw;
   }
 
   .adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
@@ -4155,6 +4173,17 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   }
 }
 
+/*=================== RESPONSIVE DIALOG START ===================*/
+@media screen and (max-width: 40em) {
+  body .ui-dialog.ui-widget.import-express-dialog,
+  body .ui-dialog.ui-widget.export-express-dialog,
+  body .ui-dialog.ui-widget.app-dialog {
+    width: 96vw !important;
+    min-width: auto;
+  }
+}
+/*=================== RESPONSIVE DIALOG END ===================*/
+
 /*=================== EXPRESS MANAGEMENT START ===================*/
 .express-process-upload.ui-fileupload {
   padding: 0 !important;
@@ -4165,8 +4194,10 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   display: none;
 }
 
-.import-express-dialog {
+body .ui-dialog.ui-widget.import-express-dialog,
+body .ui-dialog.ui-widget.export-express-dialog {
   min-width: 450px;
+  width: 40vw !important;
 }
 
 .import-express-dialog .express-import-result {
