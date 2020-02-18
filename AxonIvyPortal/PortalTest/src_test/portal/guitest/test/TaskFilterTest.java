@@ -40,7 +40,7 @@ public class TaskFilterTest extends BaseTest {
 	public void testAdvancedFilterTask() {
 		MainMenuPage mainMenuPage = new MainMenuPage();
 		TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
-		assertEquals(4, taskWidgetPage.countTasks());
+		assertEquals(3, taskWidgetPage.countTasks());
 
 		taskWidgetPage.openAdvancedFilter("Description", "description");
 		taskWidgetPage.filterByDescription("Maternity");
@@ -52,7 +52,7 @@ public class TaskFilterTest extends BaseTest {
 	public void testShowDoneStateFilterForNormalUser() {
 		MainMenuPage mainMenuPage = new MainMenuPage();
 		TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
-		assertEquals(4, taskWidgetPage.countTasks());
+		assertEquals(3, taskWidgetPage.countTasks());
 
 		String stateFilterValue = taskWidgetPage.getFilterValue("state-filter");
 		assertEquals("State: Created, Suspended, In progress, Reserved", stateFilterValue);
