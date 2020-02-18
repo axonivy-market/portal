@@ -248,7 +248,7 @@ public class SecurityService implements ISecurityService {
     UserQuery hasRolesQuery = UserQuery.create();
     IFilterQuery hasRolesFilter = hasRolesQuery.where();
     for (IRole role : roles) {
-      hasRolesFilter.and().hasRole(role);
+      hasRolesFilter.or().hasRole(role);
     }
     return hasRolesQuery;
   }
