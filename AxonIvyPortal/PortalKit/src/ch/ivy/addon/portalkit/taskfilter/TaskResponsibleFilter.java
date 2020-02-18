@@ -8,6 +8,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -35,7 +36,7 @@ public class TaskResponsibleFilter extends TaskFilter {
 
   private List<SecurityMemberDTO> getResponsibles() {
     if (CollectionUtils.isEmpty(responsibles)) {
-      responsibles = SecurityMemberUtils.findAllSecurityMembers();
+      responsibles = SecurityMemberUtils.findSecurityMembers(StringUtils.EMPTY, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
     }
     return responsibles;
   }
@@ -77,6 +78,11 @@ public class TaskResponsibleFilter extends TaskFilter {
     this.selectedResponsibleMemberName = Optional.ofNullable(selectedResponsible).map(SecurityMemberDTO::getMemberName).orElse(StringUtils.EMPTY);
   }
 
+  /**
+   * SelectedResponsibleMemberName checks selectedResponsibleMemberName which is saved in BusinessData 
+   * And find a SecurityMemberDTO base on this selectedResponsibleMemberName
+   * @return Member name of SecurityMemberDTO
+   */
   public String getSelectedResponsibleMemberName() {
     if (StringUtils.isEmpty(selectedResponsibleMemberName)) {
       setSelectedResponsible(null);
