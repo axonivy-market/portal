@@ -26,7 +26,7 @@ public class AdminSettingsPage extends TemplatePage {
 
   private void openSettingTab() {
     WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:settingTab']");
-    click(settingTabLink);
+    settingTabLink.click();
     waitForElementPresent(By.id("adminui:adminTabView:settingForm"), true);
     waitAjaxIndicatorDisappear();
   }
@@ -34,18 +34,20 @@ public class AdminSettingsPage extends TemplatePage {
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
     WebElement table = findElementById("adminui:adminTabView:settingTable");
     List<WebElement> tableRows = table.findElements(By.tagName("tr"));
+    int index = 0;
     for (WebElement row : tableRows) {
       List<WebElement> columns = row.findElements(By.tagName("td"));
       if (!CollectionUtils.isEmpty(columns)) {
         WebElement keyColumn = columns.get(0);
         if (keyColumn.getText().equals(variableName)) {
-          WebElement editButton = row.findElement(By.cssSelector("a[id$=edit]"));
-          click(editButton);
+          WebElement editButton = row.findElement(By.id("adminui:adminTabView:settingTable:" + (index - 3) + ":edit"));
+          editButton.click();
           waitForElementPresent(By.id("adminui:settingDialogForm"), true);
           saveGlobalVariable(variableValue, isBooleanType);
           return;
         }
       }
+      index++;
     }
   }
 
@@ -62,82 +64,85 @@ public class AdminSettingsPage extends TemplatePage {
       click(By.id(String.format("adminui:valueSetting_%d", index)));
     }
     WebElement saveButton = findElementById("adminui:save-setting");
-    click(saveButton);
+    saveButton.click();
   }
 
   public void closeAdminSettingDialog() {
     WebElement closeButton = findElementById("close-button");
-    click(closeButton);
+    closeButton.click();
     waitForElementDisplayed(By.id("dialog-closing-information"), true);
   }
 
   public void closeInformConfigDialog() {
-    String closeButtonId = "close-dialog-button";
-    click(findElementById(closeButtonId));
-    waitForElementDisplayed(By.id(closeButtonId), false);
+    WebElement closeButton = findElementById("close-dialog-button");
+    closeButton.click();
+    waitAjaxIndicatorDisappear();
   }
 
   public void setClientSideTimeout(String timeout) {
     openSettingTab();
     editGlobalVariable("CLIENT_SIDE_TIMEOUT", timeout, false);
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
+
+	private void closeConfirmationDialog() {
+		closeAdminSettingDialog();
+    closeInformConfigDialog();
+	}
 
   public void setChatGroup() {
     openSettingTab();
     editGlobalVariable("ENABLE_GROUP_CHAT", "true", true);
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
+  
+  public void setEnviromentInfo() {
+    openSettingTab();
+    editGlobalVariable("SHOW_ENVIRONMENT_INFO", "true", true);
+    closeConfirmationDialog();
+  }
+  
 
   public void setChatPrivate() {
     openSettingTab();
     editGlobalVariable("ENABLE_PRIVATE_CHAT", "true", true);
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
 
   public void setEnableScriptCheckingGlobalVariable() {
     openSettingTab();
     editGlobalVariable("ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT", "true", true);
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
 
   public void setDisableScriptCheckingGlobalVariable() {
     openSettingTab();
     editGlobalVariable("ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT", "false", true);
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
 
   public void setFileExtensionWhiteList() {
     openSettingTab();
     editGlobalVariable("UPLOAD_DOCUMENT_WHITELIST_EXTENSION", ", abc, pdf, doc", false);
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
 
   public void setHideUploadDocumentForDoneCase() {
     openSettingTab();
     editGlobalVariable("HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE", "true", true);
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
 
   public void setDisabledTaskCount() {
     openSettingTab();
     editGlobalVariable("DISABLE_TASK_COUNT", "true", true);
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
   
   public void setDisabledCaseCount() {
     openSettingTab();
     editGlobalVariable("DISABLE_CASE_COUNT", "true", true);
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
 
   public boolean isWarningDialogShowWhenTimeoutIsLosing() {
@@ -152,7 +157,7 @@ public class AdminSettingsPage extends TemplatePage {
 
   public AnnouncementPage openAnnouncementTab() {
     WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:announcement-tab']");
-    click(settingTabLink);
+    settingTabLink.click();
     waitForElementPresent(By.id("adminui:adminTabView:announcement-tab"), true);
     waitAjaxIndicatorDisappear();
     return new AnnouncementPage();
