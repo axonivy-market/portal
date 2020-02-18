@@ -24,7 +24,7 @@ At0 f0 persist false #txt
 At0 f0 taskData 'TaskTriggered.EXPRI=2
 TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.NAM=Abort Request
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/CaseMap/abortRequest")%>
 TaskTriggered.PRI=2
 TaskTriggered.ROL=Everybody
 TaskTriggered.TYPE=0' #txt

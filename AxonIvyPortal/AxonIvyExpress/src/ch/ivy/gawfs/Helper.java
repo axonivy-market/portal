@@ -12,22 +12,11 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.query.UserQuery;
 
 public class Helper {
 
   private Helper() {}
-
-  public static List<IUser> sortUsers(List<IUser> userList) {
-    Collections.sort(userList, (u1, u2) -> {
-      try {
-        return (u1.getDisplayName().toLowerCase().compareTo(u2.getDisplayName().toLowerCase()));
-      } catch (Exception ex) {
-        Ivy.log().error(ex);
-        return 0;
-      }
-    });
-    return userList;
-  }
 
   public static List<IRole> sortRoles(List<IRole> rolesList) {
     Collections.sort(rolesList, (r1, r2) -> {
@@ -109,22 +98,13 @@ public class Helper {
     return result;
   }
 
-  public static java.util.List<IUser> filterUsers(java.util.List<IUser> users, String query) {
-    if (StringUtils.isEmpty(query)) {
-      return sortUsers(users);
-    }
-
-    java.util.List<IUser> result = new ArrayList<>();
-    for (IUser user : users) {
-      if (user.getDisplayName().toLowerCase().contains(query.toLowerCase())
-          || user.getMemberName().toLowerCase().contains(query.toLowerCase())) {
-        result.add(user);
-      }
-    }
-
-    result.sort((first, second) -> first.getDisplayName().toLowerCase()
-        .compareTo(second.getDisplayName().toLowerCase()));
-    return result;
+  public static java.util.List<IUser> filterUsers(String query) {
+    query = "%" + query + "%";
+    return UserQuery.create().where()
+        .fullName().isLikeIgnoreCase(query)
+        .or().name().isLikeIgnoreCase(query)
+        .orderBy().fullName().name()
+        .executor().results(0, 101); // 101 to display 100 records and the "More..." text in autocomplete
   }
 
   public static java.util.List<IRole> filterRoles(java.util.List<IRole> roles, String query) {

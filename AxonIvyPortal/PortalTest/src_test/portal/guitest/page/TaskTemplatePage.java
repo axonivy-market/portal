@@ -116,7 +116,12 @@ public class TaskTemplatePage extends TemplatePage {
     String adhocHistoryBtnCSSSelection = "a[id$='show-adhoc-history']";
     return driver.findElements(By.cssSelector(adhocHistoryBtnCSSSelection)).isEmpty();
   }
-  
+
+  public boolean isStartAdhocBtnNotExist() {
+    String startAdhocBtnCSSSelection = "a[id$='start-adhoc']";
+    return driver.findElements(By.cssSelector(startAdhocBtnCSSSelection)).isEmpty();
+  }
+
   public boolean isAdhocHistoryDialogExistWhenOpenTaskFirstTime() {
     waitAjaxIndicatorDisappear();
     return findElementByCssSelector("div[id$='adhoc-task-history-dialog']").isDisplayed();

@@ -2,39 +2,42 @@
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-  <ui:composition template="/layouts/basic.xhtml">
+  <ui:composition template="/layouts/TaskTemplate-8.xhtml">
     <ui:define name="title">ApproveLevel1</ui:define>
+    <ui:define name="css">
+      <h:outputStylesheet library="styles" name="ivy-common-8.css" />
+    </ui:define>
     <ui:define name="content">
       <h3>Credit Request Approval Level 1&#160;</h3>
 
       <h:form id="form">
-        <h4>Person</h4>
+        <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/person')}</h4>
         <h:outputText value="#{data.dossier.customer.isMale?'Mister':'Madame'} #{data.dossier.customer.firstName} #{data.dossier.customer.name}" />
         <br />
         <h:outputText value="#{data.dossier.customer.birthDate}" />
         <br />
         <h:outputText value="#{data.dossier.customer.address.country}" />
-        <h4>Request</h4>
+        <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/request')}</h4>
 
         <h:panelGrid columns="2" width="250">
-          <p:outputLabel value="Amount" />
+          <p:outputLabel value="#{ivy.cms.co('/Labels/CaseMap/Credit/approvalAmount')}" />
           <h:outputText value="#{data.dossier.request.amount}" />
-          <p:outputLabel value="Yearly salary" />
+          <p:outputLabel value="#{ivy.cms.co('/Labels/CaseMap/Credit/salary')}" />
           <h:outputText value="#{data.dossier.request.salary}" />
-          <p:outputLabel value="Reason" />
+          <p:outputLabel value="#{ivy.cms.co('/Labels/CaseMap/Credit/approvalReason')}" />
           <h:outputText value="#{data.dossier.request.reason}" />
-          <p:outputLabel value="Other Credits" />
+          <p:outputLabel value="#{ivy.cms.co('/Labels/CaseMap/Credit/otherCredits')}" />
           <h:outputText value="#{data.dossier.request.amountOfOtherCredits}" />
         </h:panelGrid>
-        <h4>Decision</h4>
+        <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/decision')}</h4>
         <h:panelGrid columns="2">
           <f:facet name="header">
             <p:messages></p:messages>
           </f:facet>
-          <p:outputLabel for="reason" value="Reject Reason" />
+          <p:outputLabel for="reason" value="#{ivy.cms.co('/Labels/CaseMap/Credit/rejectedReason')}" />
           <p:inputTextarea id="reason" value="#{data.dossier.decision.rejectReason}" />
-          <p:commandButton actionListener="#{logic.approved}" value="Approve" update="form" icon="ui-icon-check" />
-          <p:commandButton actionListener="#{logic.rejected}" value="Reject" update="form" icon="ui-icon-circle-close" />
+          <p:commandButton actionListener="#{logic.approved}" value="#{ivy.cms.co('/Dialog/Common/approve')}" update="form" icon="ui-icon-check" />
+          <p:commandButton actionListener="#{logic.rejected}" value="#{ivy.cms.co('/Dialog/Common/reject')}" update="form" icon="ui-icon-circle-close" />
         </h:panelGrid>
       </h:form>
 

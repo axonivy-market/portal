@@ -6,8 +6,7 @@
     <p:messages id="error-message" showSummary="false" showDetail="true" />
     <p:panelGrid id="assignee-selection-panel" columns="1" styleClass="assignee-selection-panel">
       <p:selectOneRadio id="assignee-type" value="#{data.isAssignToUser}">
-        <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toUser')}" itemValue="true"
-          itemDisabled="#{empty workflowDefinitionBean.availableUsers}" />
+        <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toUser')}" itemValue="true" />
         <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toGroup')}" itemValue="false"
           itemDisabled="#{empty workflowDefinitionBean.availableRoles}" />
         <p:ajax event="change" listener="#{logic.changeAssigneeType}" update="assignee-selection-form" process="@this" />
@@ -16,8 +15,8 @@
       <h:panelGroup id="select-assignee" layout="block" styleClass="select-assignee">
         <p:autoComplete id="user-selection" rendered="#{data.isAssignToUser}" scrollHeight="400" dropdown="true"
           styleClass="express-assignee-autocomplete" value="#{data.selectedUser}" completeMethod="#{workflowDefinitionBean.populateUserAutoComplete}"
-          var="user" itemLabel="#{user.displayName}" itemValue="#{user}" converter="pojoConverter" cache="true" queryDelay="500" maxResults="100"
-          moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
+          var="user" itemLabel="#{user.displayName}" itemValue="#{user}" converter="pojoConverter" queryDelay="500" maxResults="100"
+          moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
           <p:ajax event="itemSelect" update="add-assignee-button" />
           <p:column>
             <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.name)}" />
