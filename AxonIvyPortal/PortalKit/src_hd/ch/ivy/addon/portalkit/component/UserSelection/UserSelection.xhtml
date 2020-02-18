@@ -38,7 +38,6 @@
 </cc:interface>
 
 <cc:implementation>
-  <div id="#{cc.clientId}" class="#{cc.attrs.styleClass}">
     <h:panelGroup id="#{cc.attrs.componentId}-label-panel" layout="block" rendered="#{not empty cc.attrs.label and !cc.attrs.floatingLabel}"
       styleClass="#{cc.attrs.labelPanelStyleClass}">
       <p:outputLabel id="#{cc.attrs.componentId}-label" value="#{cc.attrs.label}" for="#{cc.attrs.componentId}"
@@ -63,6 +62,6 @@
       <p:message id="#{cc.attrs.componentId}-message" for="#{cc.attrs.componentId}"
         rendered="#{cc.attrs.isRenderedMessage}" styleClass="#{cc.attrs.messageStyleClass}" />
     </h:panelGroup>
-  </div>
+
 </cc:implementation>
 </html>
