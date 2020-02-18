@@ -483,6 +483,8 @@ public class TaskWidgetPage extends TemplatePage {
 	}
 
 	public String getFilterName() {
+	  refreshAndWaitElement("a[id$='task-widget:filter-selection-form:filter-name']");
+	  waitForElementDisplayed(By.cssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2) "), true);
 		WebElement filterName =
 				findElementByCssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2) ");
 		return filterName.getText();
@@ -596,5 +598,6 @@ public class TaskWidgetPage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 		click(By.cssSelector("button[id$='task-widget:filter-reset-command']"));
 		waitAjaxIndicatorDisappear();
+		Sleeper.sleep(3000);
 	}
 }
