@@ -3344,7 +3344,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .stages-chain {
   position: relative;
   float: right;
-  top: 20px;
+  top: 30px;
   right: 20px;
   left: -10px;
   clear: both;
@@ -4173,3 +4173,10 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
 }
 /*=================== NOTE HISTORY END ===================*/
 
+.credit-request-column-1 {
+  padding-right: 50px;
+}
+
+.credit-request-column-2 {
+  padding-left: 50px;
+}

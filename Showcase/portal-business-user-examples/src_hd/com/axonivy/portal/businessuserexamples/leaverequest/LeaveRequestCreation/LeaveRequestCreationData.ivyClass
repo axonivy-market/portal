@@ -10,3 +10,5 @@ leaveTypes java.util.List<com.axonivy.portal.businessuserexamples.enums.LeaveTyp
 leaveTypes PERSISTENT #fieldModifier
 approvers java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> #field
 approvers PERSISTENT #fieldModifier
+isValid Boolean #field
+isValid PERSISTENT #fieldModifier
