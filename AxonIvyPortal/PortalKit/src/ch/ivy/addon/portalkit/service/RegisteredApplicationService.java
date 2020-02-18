@@ -154,6 +154,20 @@ public class RegisteredApplicationService extends AbstractService<Application> {
     } else {
       return (List<Application>) sessionCache.getValue();
     }
-    
+  }
+  
+  /**
+   * Finds names of the active applications registered by the admin user; if empty, means there is no
+   * configuration in admin settings, finds all of active applications of the engine.
+   * 
+   * @param username
+   * @return {@link java.util.List} of application names
+   */
+  public List<IvyApplication> findActiveIvyAppsUserCanWork(String username) {
+    IApplicationService applicationService = ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService.newInstance();
+    List<String> registeredApplicationNames = findAllIvyApplications().stream().map(Application::getName).collect(Collectors.toList());
+    return applicationService.findActiveAllInvolvedUser(username).stream()
+        .filter(app -> CollectionUtils.isEmpty(registeredApplicationNames) || CollectionUtils.containsAny(registeredApplicationNames, app.getName()))
+        .collect(Collectors.toList());
   }
 }

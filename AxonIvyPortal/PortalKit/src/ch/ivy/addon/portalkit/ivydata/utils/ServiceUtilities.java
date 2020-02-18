@@ -68,7 +68,7 @@ public class ServiceUtilities {
 
     IUser user = app.getSecurityContext().findUser(username);
     if (user == null) {
-      throw new PortalIvyDataException(app.getName(), PortalIvyDataErrorType.USER_NOT_FOUND.toString());
+      throw new PortalIvyDataException(app.getName(), String.format("%s:%s", PortalIvyDataErrorType.USER_NOT_FOUND.toString(), username));
     }
     return user;
   }
@@ -179,20 +179,6 @@ public class ServiceUtilities {
       }
     }
     return apps;
-  }
-
-  /**
-   * find all users, exclude SYSTEM user in application and convert them to {@link UserDTO}
-   * @param app {@link IApplication}
-   * 
-   * @return all users in application, exclude SYSTEM user
-   */
-  public static List<UserDTO> findAllUserDTOByApplication(IApplication app) {
-    return IvyExecutor.executeAsSystem(() -> {
-      return app.getSecurityContext().getUsers().stream().map(user -> new UserDTO(user))
-          .filter(userDTO -> !StringUtils.equals(ISecurityConstants.SYSTEM_USER_NAME, userDTO.getName()))
-          .collect(Collectors.toList());
-    });
   }
   
   /**
