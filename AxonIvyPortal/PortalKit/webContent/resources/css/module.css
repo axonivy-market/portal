@@ -1302,8 +1302,8 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
     width: 300px !important;
   }
   
-  .task-delegate-dialog .ui-dialog-footer {
-    padding: 0 !important;
+  body .task-delegate-dialog.ui-dialog .ui-dialog-footer {
+    padding: 0;
   }
 }
 
@@ -1885,7 +1885,7 @@ _:-ms-input-placeholder, :root .case-details>* {
 .related-task-content {
   border-collapse: collapse;
   line-height: 2.2rem;
-  border-bottom: none !important;
+  border-bottom: none;
 }
 
 .related-task-content .related-task {
@@ -2417,7 +2417,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
   .dialog-closing-information, .admin-ui-dialog, .app-dialog, .select-icon-dialog, .application-selection-dialog,
   .setting-dialog, .project-info-dialog, .change-password-dialog, .language-setting-dialog, .deputy-dialog,
-  .absence-settings-dialog, .add-new-absence-dialog {
+  .absence-settings-dialog, .add-absence-dialog {
     width: 96vw !important;
   }
   .task-template-container, .task-template-button {
@@ -2590,29 +2590,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 /********************************** ABSENCES AND DEPUTY **********************************/
-.absences-view-command-buttons {
-  float: right;
-}
-
-.absence-in-the-past-command {
-  float: left;
-  margin-top: 5px;
-}
-
-.absence-table-container {
-  height: 330px;
-}
-
-.absence-reset-float {
-  clear: both;
-  margin-bottom: 10px;
-}
-
-.absence-date-field {
-  text-align: center;
-  width: 150px;
-}
-
 .absences-table-action-column {
   text-align: center;
   width: 130px;
@@ -2622,14 +2599,9 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   .absences-table-action-column {
     width: 80px !important;
   }
-  
   .absences-table-action-column-icon-button {
     margin: 0 5px !important;
-  }
-  
-  .absence-date-field {
-    width: 100px !important;
-  }
+  }  
 }
 
 .absence-panel-grid {
@@ -2648,44 +2620,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   width: calc(100% - 20px);
 }
 
-.substitution-user-selection-container {
-  margin-bottom: 10px;
+body .substitue-tab.ui-tabs .ui-tabs-panel {
+padding: 0;
 }
-
-.deputy-data-section {
-  width: 100%;
-}
-
-.substitute-container {
-  height: 350px;
-  width: 100%;
-  overflow: auto;
-}
-
-.substitute-container-table, .deputy-dialog {
-  min-width: 750px;
-  max-width: 900px;
-}
-
-.substitute-role {
-  width: 40%;
-  height: 30px !important;
-}
-
-.substitute-deputy {
-  width: 30%;
-  height: 29px !important;
-}
-
-.substitute-comment {
-  width: 30%;
-  height: 29px !important;
-}
-
-.substitute-comment input {
-  width: calc(100% - 20px);
-}
-
+/**********************************END ABSENCES AND DEPUTY **********************************/
 .application-language-header {
   width: 20%;
 }
@@ -4244,3 +4182,4 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   }
 }
 /*=================== NOTE HISTORY END ===================*/
+

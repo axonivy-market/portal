@@ -120,7 +120,8 @@ public class ChatAssigneeBean implements Serializable {
   }
 
   public List<UserDTO> populateUserAutoComplete(String query) {
-    return UserUtils.filterUsersDTO(getAvailableUsers(), query);
+    return new ArrayList<>();
+//    return UserUtils.filterUsersDTO(getAvailableUsers(), query);
   }
 
   public List<RoleDTO> populateRoleAutoComplete(String query) {

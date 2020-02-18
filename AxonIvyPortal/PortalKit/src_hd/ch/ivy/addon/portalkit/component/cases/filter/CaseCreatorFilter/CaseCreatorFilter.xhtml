@@ -17,8 +17,8 @@
     <p:autoComplete id="creator" scrollHeight="200" dropdown="true" size="35" 
       completeMethod="#{logic.autoCompleteForCreator}" value="#{cc.attrs.filter.selectedCreator}"
       var="creator" itemValue="#{creator}" itemLabel="#{creator.displayName}"
-      converter="pojoConverter" cache="true" maxResults="100"
-      moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
+      converter="pojoConverter" maxResults="100"
+      moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
       styleClass="responsible-list-filter">
       <p:column>
         <i class="fa fa-user u-mar-right-5" />

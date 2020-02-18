@@ -31,10 +31,11 @@ Ca0 f0 taskData 'TaskTriggered.EXP=new Duration("33h")
 TaskTriggered.EXPRI=1
 TaskTriggered.EXROL=Everybody
 TaskTriggered.EXTYPE=0
-TaskTriggered.NAM=Collect Personal Data
+TaskTriggered.NAM=<%\=ivy.cms.co("/Processes/CaseMap/collectPersonalData")%>
 TaskTriggered.PRI=1
 TaskTriggered.ROL=Everybody
-TaskTriggered.TYPE=0' #txt
+TaskTriggered.TYPE=0
+TaskTriggered.customFields.STRING.embedInFrame="false"' #txt
 Ca0 f0 caseData 'businessCase.attach=true
 case.name=Lending' #txt
 Ca0 f0 wfuser 1 #txt

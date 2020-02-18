@@ -105,13 +105,14 @@ public class TaskWidgetPage extends TemplatePage {
 		return taskElements.size();
 	}
 
-	public void filterTasksBy(String keyword) {
-		WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
-		keywordFilter.clear();
-		keywordFilter.sendKeys(keyword);
-		Sleeper.sleep(2000);
-		waitAjaxIndicatorDisappear();
-	}
+  public void filterTasksBy(String keyword) {
+    WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
+    keywordFilter.clear();
+    keywordFilter.click(); // To make Firefox more stable
+    keywordFilter.sendKeys(keyword);
+    Sleeper.sleep(2000);
+    waitAjaxIndicatorDisappear();
+  }
 
 	public void filterTasksInExpendedModeBy(String keyword) {
 		waitForElementDisplayed(By.cssSelector(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE), true);

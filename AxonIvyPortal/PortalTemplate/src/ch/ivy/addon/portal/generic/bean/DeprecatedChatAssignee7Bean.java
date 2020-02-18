@@ -127,10 +127,11 @@ public class DeprecatedChatAssignee7Bean implements Serializable {
   }
 
   public List<UserDTO> populateUserAutoComplete(String query) {
-    List<UserDTO> filteredUsers = UserUtils.filterUsersDTO(getAvailableUsers(), query);
-    filteredUsers
-        .sort((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
-    return filteredUsers;
+    return new ArrayList<>();
+//    List<UserDTO> filteredUsers = UserUtils.filterUsersDTO(getAvailableUsers(), query);
+//    filteredUsers
+//        .sort((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
+//    return filteredUsers;
   }
 
   public List<RoleDTO> populateRoleAutoComplete(String query) {
