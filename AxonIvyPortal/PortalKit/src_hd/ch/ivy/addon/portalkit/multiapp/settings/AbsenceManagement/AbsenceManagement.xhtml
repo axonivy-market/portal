@@ -79,9 +79,9 @@
       </div>
     </div>
 
-    <p:tabView id="substitue-tab" value="#{data.applications}" var="app" >
+    <p:tabView id="substitue-tab" value="#{data.applications}" var="app" styleClass="substitue-tab">
     <p:ajax event="tabChange" listener="#{logic.onTabChange}"/>
-    <p:tab title="#{app.displayName}">
+    <p:tab title="#{app.displayName}" >
     
       <!-- MY DEPUTY -->
       <div class="ui-g">
