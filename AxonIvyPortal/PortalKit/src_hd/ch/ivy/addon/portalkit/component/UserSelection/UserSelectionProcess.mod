@@ -56,8 +56,6 @@ Us0 f3 actionTable 'out=in;
 Us0 f3 actionCode 'import ch.ivy.addon.portalkit.bean.UserSelectionBean;
 import ch.ivy.addon.portalkit.util.BeanUtils;
 
-BeanUtils.invokeBeanMethodViaMethodExpression("#{userSelectionBean.setMaxResults}", in.maxResults);
-BeanUtils.invokeBeanMethodViaMethodExpression("#{userSelectionBean.setRoleNames}", in.roleNames);
 in.completeMethod = BeanUtils.createCompleteMethod("#{userSelectionBean.completeUser}");' #txt
 Us0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
