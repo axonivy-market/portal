@@ -61,6 +61,11 @@ public class CaseCreatorFilter extends CaseFilter {
     this.selectedCreatorMemberName = Optional.ofNullable(selectedCreator).map(UserDTO::getName).orElse(StringUtils.EMPTY);
   }
 
+  /**
+   * SelectedCreatorMemberName checks selectedCreatorMemberName which is saved on BusinessData
+   * And find a UserDTO base on this selectedCreatorMemberName
+   * @return Member name of UserDTO
+   */
   public String getSelectedCreatorMemberName() {
     if (StringUtils.isEmpty(selectedCreatorMemberName)) {
       setSelectedCreator(null);

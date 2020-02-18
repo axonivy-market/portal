@@ -214,13 +214,13 @@
       </h:panelGroup>
     </p:fieldset>
 
-        <!-- FILTER BUTTONS -->
-        <div id="filter-buttons-container" class="MarTop20 filter-buttons-container">
-          <p:commandButton id="apply-filter" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}" process="@(.statistic-result-list)" update="@(.statistic-result-list) status-dialog" />
+    <!-- FILTER BUTTONS -->
+    <h:panelGroup id="filter-buttons-container" class="MarTop20 filter-buttons-container">
+      <p:commandButton id="apply-filter" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}" process="@(.statistic-result-list)" update="@(.statistic-result-list) status-dialog" />
       <p:commandButton id="filter-reset-action"
         rendered="#{data.dataModel.selectedTaskAnalysisFilterData == null and !data.dataModel.isSelectedDefaultFilter()}"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" styleClass="filter-add-button"
-        icon="fa fa-refresh" iconPos="right" oncomplete="PF('reset-filter-set-dialog').show();" />
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" styleClass="filter-add-button MarRight10"
+        icon="fa fa-refresh" iconPos="right" onclick="PF('reset-filter-set-dialog').show();" global="false"/>
       <p:commandButton id="filter-save-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}"
         icon="fa fa-save" update="save-filter-set-dialog #{cc.clientId}:filter-selection-container" resetValues="true"
         oncomplete="PF('save-filter-set-dialog').show();" />
@@ -232,7 +232,7 @@
 
   <!-- Reset filter dialog -->
   <p:confirmDialog id="reset-filter-set-dialog" widgetVar="reset-filter-set-dialog" appendTo="@(body)"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/restoreDefaultChartHeader')}"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/restoreDefaultFilterHeader')}"
     closeOnEscape="true" styleClass="save-filter-set-dialog" severity="alert"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/restoreDefaultFilterMessage')}">
     <p:commandButton id="filter-reset-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
