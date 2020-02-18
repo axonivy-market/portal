@@ -17,7 +17,7 @@ import portal.guitest.page.StatisticWidgetPage;
 public class DefaultChartTest extends BaseTest {
 
   private static final String CREATE_TESTING_TASK_FOR_CUSTOMIZATION_URL 
-    = "portalExamples/162511D2577DBA88/createTasksForTaskListCustomization.ivp";
+    = "portal-developer-examples/162511D2577DBA88/createTasksForTaskListCustomization.ivp";
   private static final String DEFAULT_NAME = "Tasks by Priority";
   private static final String DEFAULT_NAME_1 = "My default chart 1";
   private static final String DEFAULT_NAME_2 = "My default chart 2";
@@ -28,6 +28,7 @@ public class DefaultChartTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
+    Sleeper.sleep(2000); // To make Firefox test more stable, make business data updated correctly 
     redirectToRelativeLink(CREATE_TESTING_TASK_FOR_CUSTOMIZATION_URL);
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);

@@ -175,10 +175,13 @@
 }
 
 /* Choose responsible dialog */
+.choose-responsible-dialog {
+  min-width: 600px;
+}
 
 @media screen and (max-width: 40em) {
   .choose-responsible-dialog {
-    width: 100% !important;
+    min-width: 100%;
   }
 }
 

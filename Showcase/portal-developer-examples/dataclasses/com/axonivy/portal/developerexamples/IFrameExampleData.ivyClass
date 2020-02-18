@@ -1,0 +1,4 @@
+IFrameExampleData #class
+com.axonivy.portal.developerexamples #namespace
+investment com.axonivy.portal.developerexamples.Investment #field
+investment PERSISTENT #fieldModifier
