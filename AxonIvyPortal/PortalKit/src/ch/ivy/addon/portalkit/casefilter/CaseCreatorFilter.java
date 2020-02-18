@@ -62,8 +62,8 @@ public class CaseCreatorFilter extends CaseFilter {
   }
 
   /**
-   * SelectedCreatorMemberName checks selectedCreatorMemberName which is saved on BusinessData
-   * And find a UserDTO base on this selectedCreatorMemberName
+   * Check selectedCreatorMemberName which is saved on BusinessData
+   * Then find correspond UserDTO of selectedCreatorMemberName
    * @return Member name of UserDTO
    */
   public String getSelectedCreatorMemberName() {

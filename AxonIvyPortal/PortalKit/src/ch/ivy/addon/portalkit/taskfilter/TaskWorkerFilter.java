@@ -84,8 +84,8 @@ public class TaskWorkerFilter extends TaskFilter {
   }
 
   /**
-   * SelectedWorkerMemberName checks selectedWorkerMemberName which is saved on BusinessData
-   * And find a UserDTO base on this selectedWorkerMemberName.
+   * Check selectedWorkerMemberName which is saved on BusinessData
+   * Then find correspond UserDTO of selectedWorkerMemberName.
    * @return Member name of UserDTO
    */
   public String getSelectedWorkerMemberName() {
