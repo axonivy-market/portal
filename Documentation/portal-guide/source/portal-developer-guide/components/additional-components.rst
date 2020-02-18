@@ -236,7 +236,7 @@ It's enough if you want to turn it off. To override the message, add
    flash.setRedirect(true);
    flash.setKeepMessages(true);
 
-Please refer to GlobalGrowl dialog in PortalExamples project for more details.
+Please refer to GlobalGrowl dialog in portal-developer-examples project for more details.
 
 .. _components-additional-component-document-table:
 
@@ -251,7 +251,7 @@ download and delete.
 You can override the ``GetDocumentList``, ``UploadDocument``,
 ``DeleteDocument``, ``DownloadDocument`` sub processes to extend these
 features, and add more columns, remove default columns in document
-table. Refer to the ``DocumentTableComponent`` process in PortalExamples
+table. Refer to the ``DocumentTableComponent`` process in portal-developer-examples
 project
 
 .. |process-history-example| image:: images/additional-component/process-history-example.png

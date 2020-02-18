@@ -2,8 +2,8 @@ Customization
 *************
 
 Portal provides an easy way to customize features, user interface, user
-experiences... Besides the documentation, you could refer to project ``PortalExamples`` for customization examples. 
-You could find project ``PortalExamples`` in engine demo mode or import ``Ivy Projects`` in designer.
+experiences... Besides the documentation, you could refer to project ``portal-developer-examples`` for customization examples. 
+You could find project ``portal-developer-examples`` in engine demo mode or import ``Ivy Projects`` in designer.
 
 .. figure:: images/customization/engine-demo-mode.png
 

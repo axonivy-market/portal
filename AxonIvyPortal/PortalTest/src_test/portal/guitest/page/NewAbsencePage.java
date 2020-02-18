@@ -15,33 +15,34 @@ public class NewAbsencePage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('absence-settings:add-new-absence-dialog_title')";
+    return "id('absence-management:add-absence-dialog_title')";
   }
   
   public void input(LocalDate absenceFrom, LocalDate absenceTill, String comment) {
     inputDate(absenceFrom, "input[id*='absence-start-date']");
     inputDate(absenceTill, "input[id*='absence-end-date']");
 
-    WebElement commentInput = findElementByCssSelector("input[id*='comment']");
+    WebElement commentInput = findElementByCssSelector("textarea[id*='comment']");
     commentInput.sendKeys(comment);
   }
 
-  public void input(String username, LocalDate absenceFrom, LocalDate absenceTill, String comment) {
-    if (StringUtils.isNotEmpty(username)) {
-      String usernameSelector = "input[id*='username']";
+  public void input(String fullName, LocalDate absenceFrom, LocalDate absenceTill, String comment) {
+    if (StringUtils.isNotEmpty(fullName)) {
+      String usernameSelector = "input[id*='absence-username']";
       waitForElementDisplayed(By.cssSelector(usernameSelector), true);
       WebElement usernameInput = findElementByCssSelector(usernameSelector);
       usernameInput.clear();
-      usernameInput.sendKeys(username);
+      usernameInput.sendKeys(fullName);
       waitAjaxIndicatorDisappear();
-      String itemSelector = "li[data-item-label*='" + username + "'].ui-state-highlight";
+//      String itemSelector = "li[data-item-label*='" + fullName + " (" + username + ")" + "'].ui-state-highlight";
+      String itemSelector = "tr[data-item-label*='" + fullName  + "'].ui-state-highlight";
       waitForElementDisplayed(By.cssSelector(itemSelector), true);
       clickByCssSelector(itemSelector);
       waitAjaxIndicatorDisappear();
     }
     inputDate(absenceFrom, "input[id*='absence-start-date']");
     inputDate(absenceTill, "input[id*='absence-end-date']");
-    WebElement commentInput = findElementByCssSelector("input[id*='comment']");
+    WebElement commentInput = findElementByCssSelector("textarea[id*='comment']");
     commentInput.sendKeys(comment);
   }
 
@@ -63,9 +64,8 @@ public class NewAbsencePage extends TemplatePage {
     return errorMessage.getText();
   }
 
-  public AddAbsencePage proceed() {
-    clickByCssSelector("button[id*='next-to-deputy']");
-    return new AddAbsencePage();
+  public void proceed() {
+    clickByCssSelector("button[id*='create-absence']");
+    waitAjaxIndicatorDisappear();
   }
-
 }

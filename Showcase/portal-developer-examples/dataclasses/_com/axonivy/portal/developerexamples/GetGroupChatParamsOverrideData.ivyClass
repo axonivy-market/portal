@@ -1,0 +1,3 @@
+GetGroupChatParamsOverrideData #class
+_com.axonivy.portal.developerexamples #namespace
+params java.util.Map #field
