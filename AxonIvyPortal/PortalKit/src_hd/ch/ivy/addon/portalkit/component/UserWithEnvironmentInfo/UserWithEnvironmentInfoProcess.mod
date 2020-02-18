@@ -1,5 +1,5 @@
 [Ivy]
-1701D7DE84624A68 7.5.0 #module
+170572FF534705D0 7.5.0 #module
 >Proto >Proto Collection #zClass
 Ws0 UserWithEnvironmentInfoProcess Big #zClass
 Ws0 RD #cInfo
@@ -30,7 +30,7 @@ Ws0 f1 86 150 20 20 13 0 #rect
 Ws0 f1 @|UdProcessEndIcon #fIcon
 Ws0 f2 expr out #txt
 Ws0 f2 96 74 96 150 #arcP
->Proto Ws0 .type ch.ivy.addon.portalkit.feature.UserWithEnvironmentInfo.UserWithEnvironmentInfoData #txt
+>Proto Ws0 .type ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo.UserWithEnvironmentInfoData #txt
 >Proto Ws0 .processKind HTML_DIALOG #txt
 >Proto Ws0 -8 -8 16 16 16 26 #rect
 >Proto Ws0 '' #fIcon

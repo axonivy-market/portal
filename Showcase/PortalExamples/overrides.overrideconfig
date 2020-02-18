@@ -21,6 +21,6 @@
     /Functional-Processes.OpenPortalCases "Functional Processes/OpenPortalCasesOverride"
   }
   /HTML_DIALOG {
-    /ch.ivy.addon.portalkit.feature.UserWithEnvironmentInfo "ch.ivyteam.ivy.project.portal.examples.component.UserWithEnvironmentInfoOverride"
+    /ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo "ch.ivyteam.ivy.project.portal.examples.component.UserWithEnvironmentInfoOverride"
   }
 }
