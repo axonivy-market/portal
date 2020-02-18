@@ -1,0 +1,5 @@
+cms: description={Default CMS} defaultLanguage={en} defaultPageLayout={/Layouts/Axonivy-8} defaultPageStyleSheet={/Styles/Axonivy-8}
+lang: language={de} id={}
+lang: language={en} id={}
+lang: language={fr} id={}
+lang: language={es} id={}

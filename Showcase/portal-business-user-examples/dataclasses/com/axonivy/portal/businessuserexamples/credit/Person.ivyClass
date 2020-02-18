@@ -1,0 +1,12 @@
+Person #class
+com.axonivy.portal.businessuserexamples.credit #namespace
+name String #field
+name PERSISTENT #fieldModifier
+firstName String #field
+firstName PERSISTENT #fieldModifier
+birthDate Date #field
+birthDate PERSISTENT #fieldModifier
+isMale Boolean #field
+isMale PERSISTENT #fieldModifier
+address com.axonivy.portal.businessuserexamples.credit.Address #field
+address PERSISTENT #fieldModifier

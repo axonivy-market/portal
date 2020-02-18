@@ -230,8 +230,10 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     criteria.setTaskStartedByAnotherDisplayed(inProgressFilter.getIsTaskInProgressByOthersDisplayed());
 
     TaskQuery taskQuery = buildTaskQuery();
-    CaseQuery caseQuery = buildCaseQuery();
-    taskQuery = taskQuery.where().cases(caseQuery);
+    if (CollectionUtils.isNotEmpty(selectedCaseFilters)) {
+      CaseQuery caseQuery = buildCaseQuery();
+      taskQuery = taskQuery.where().cases(caseQuery);
+    }
 
     String sortField = criteria.getSortField();
     if (sortField.startsWith(TASK_COLUMN_PREFIX)) {
@@ -368,6 +370,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
 
   protected void buildCaseCriteria() {
     caseCriteria = new CaseSearchCriteria();
+    caseCriteria.setBusinessCase(true);
     caseCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
     caseCriteria.setSortField(CaseSortField.ID.toString());
     caseCriteria.setSortDescending(true);
