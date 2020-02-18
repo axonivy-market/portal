@@ -335,14 +335,14 @@
 
       <p:dialog id="choose-responsible-dialog" styleClass="choose-responsible-dialog"
         header="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ChooseAssignee/AddUserOrRole')}" widgetVar="choose-responsible-dialog"
-        modal="true" appendTo="@(body)" resizable="false">
+        modal="true" appendTo="@(body)" resizable="false" responsive="true">
         <p:ajax event="close" listener="#{logic.closeDialog}" global="false" immediate="true" />
         <ui:include src="ChooseAssignee.xhtml" />
       </p:dialog>
 
       <p:dialog id="default-template-dialog" styleClass="default-template-dialog"
         header="#{ivy.cms.co('/Dialogs/workflowCreation/DefaultTemplateDialogHeader')}" widgetVar="default-template-dialog" modal="true"
-        appendTo="@(body)" width="700" resizable="false">
+        appendTo="@(body)" resizable="false" responsive="true">
         <ui:include src="DefaultTemplate.xhtml" />
 
         <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
