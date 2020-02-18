@@ -2610,8 +2610,8 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   width: calc(100% - 20px);
 }
 
-.ui-tabs .ui-tabs-panel {
-    padding: 0 !important;
+body .substitue-tab.ui-tabs .ui-tabs-panel {
+padding: 0;
 }
 /**********************************END ABSENCES AND DEPUTY **********************************/
 .application-language-header {
