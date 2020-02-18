@@ -913,10 +913,11 @@ if(in.data.#processType == ProcessType.REPEAT) {
 
 	if (!in.data.#processCoOwners is initialized || in.data.#processCoOwners.isEmpty()) {
 	  in.data.processCoOwners.add(ivy.session.getSessionUser().getMemberName());
-		ExpressProcessUtils util = new ExpressProcessUtils();
-		in.data.processCoOwnersDisplayName = util.generateResponsibleDisplayName(in.data.processCoOwners);
 	}
+	ExpressProcessUtils util = new ExpressProcessUtils();
+	in.data.processCoOwnersDisplayName = util.generateResponsibleDisplayName(in.data.processCoOwners);
 }' #txt
+Fs0 f77 security system #txt
 Fs0 f77 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
