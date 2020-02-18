@@ -198,7 +198,8 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
   
   public String getFilterName() {
-    WebElement filterName = findElementByCssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2) ");
+    waitForElementDisplayed(By.cssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)"), true);
+    WebElement filterName = findElementByCssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)");
     return filterName.getText();
   }
 
