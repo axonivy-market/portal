@@ -1,0 +1,3 @@
+DefaultUserProcessOverrideData #class
+_com.axonivy.portal.userexamples #namespace
+defaultUserProcesses java.util.List<ch.ivy.addon.portalkit.persistence.domain.UserProcess> #field
