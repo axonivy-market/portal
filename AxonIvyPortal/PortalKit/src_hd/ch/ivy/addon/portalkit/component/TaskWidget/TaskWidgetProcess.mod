@@ -687,15 +687,21 @@ Start task</name>
 Ts0 f6 416 1066 128 44 -44 -16 #rect
 Ts0 f6 @|StepIcon #fIcon
 Ts0 f61 guid 16ECEC605F7E9ECE #txt
-Ts0 f61 method resetAndOpenTask(String) #txt
-Ts0 f61 inParameterDecl '<String currentPortalPage> param;' #txt
+Ts0 f61 method resetAndOpenTask(String,Long) #txt
+Ts0 f61 inParameterDecl '<String currentPortalPage,Long selectedTaskItemId> param;' #txt
 Ts0 f61 inParameterMapAction 'out.currentPortalPage=param.currentPortalPage;
+' #txt
+Ts0 f61 inActionCode 'import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivy.addon.portalkit.util.TaskUtils;
+
+ITask selectedTaskItem = TaskUtils.findTaskUserHasPermissionToSee(param.selectedTaskItemId);
+out.selectedTask = selectedTaskItem;
 ' #txt
 Ts0 f61 outParameterDecl '<> result;' #txt
 Ts0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>resetAndOpenTask(String)</name>
+        <name>resetAndOpenTask(String,Long)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -703,18 +709,10 @@ Ts0 f61 83 1075 26 26 -57 15 #rect
 Ts0 f61 @|UdMethodIcon #fIcon
 Ts0 f62 actionTable 'out=in;
 ' #txt
-Ts0 f62 actionCode 'import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
-import ch.ivy.addon.portalkit.jsf.ManagedBeans;
-import ch.ivyteam.ivy.workflow.ITask;
-import javax.faces.context.FacesContext;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+Ts0 f62 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 
-TaskWidgetBean taskWidget = ManagedBeans.get("taskWidgetBean") as TaskWidgetBean;
-if (taskWidget != null) {
-	ITask selectedTaskItem = TaskUtils.findTaskUserHasPermissionToSee(taskWidget.getSelectedTaskItemId());
-	in.selectedTask = selectedTaskItem;
-	TaskUtils.resetTask(in.selectedTask);
-}' #txt
+TaskUtils.resetTask(in.selectedTask);
+' #txt
 Ts0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
