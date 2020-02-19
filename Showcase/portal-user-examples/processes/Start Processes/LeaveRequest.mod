@@ -26,8 +26,6 @@ Lt0 @GridStep f17 '' #zField
 Lt0 @PushWFArc f19 '' #zField
 Lt0 @TkArc f8 '' #zField
 Lt0 @PushWFArc f10 '' #zField
-Lt0 @GridStep f18 '' #zField
-Lt0 @PushWFArc f20 '' #zField
 Lt0 @TkArc f4 '' #zField
 >Proto Lt0 Lt0 LeaveRequest #zField
 Lt0 f0 outLink start.ivp #txt
@@ -55,11 +53,11 @@ Lt0 f1 1529 49 30 30 0 15 #rect
 Lt0 f1 @|EndIcon #fIcon
 Lt0 f3 actionTable 'out=in1;
 ' #txt
-Lt0 f3 taskData 'TaskA.NAM=<%\=in1.taskName%>
+Lt0 f3 taskData 'TaskA.NAM=<%\=ivy.cms.co("/Processes/LeaveRequest/createLeaveRequest", [ivy.session.getSessionUser().getDisplayName()])%>
 TaskA.ROL=SELF
 TaskA.SKIP_TASK_LIST=true
 TaskA.TYPE=0' #txt
-Lt0 f3 337 49 30 30 0 16 #rect
+Lt0 f3 273 49 30 30 0 16 #rect
 Lt0 f3 @|TaskSwitchSimpleIcon #fIcon
 Lt0 f2 dialogId com.axonivy.portal.userexamples.leaverequest.LeaveRequestCreation #txt
 Lt0 f2 startMethod start() #txt
@@ -75,9 +73,9 @@ Lt0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Lt0 f2 424 42 144 44 -63 -8 #rect
+Lt0 f2 376 42 144 44 -63 -8 #rect
 Lt0 f2 @|UserDialogIcon #fIcon
-Lt0 f5 367 64 424 64 #arcP
+Lt0 f5 303 64 376 64 #arcP
 Lt0 f7 actionTable 'out=in1;
 ' #txt
 Lt0 f7 taskData 'TaskA.NAM=<%\=in1.taskName%>
@@ -157,25 +155,10 @@ Lt0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Lt0 f17 608 42 176 44 -82 -8 #rect
 Lt0 f17 @|StepIcon #fIcon
-Lt0 f19 568 64 608 64 #arcP
+Lt0 f19 520 64 608 64 #arcP
 Lt0 f8 784 64 809 64 #arcP
 Lt0 f10 839 64 896 64 #arcP
-Lt0 f18 actionTable 'out=in;
-' #txt
-Lt0 f18 actionCode 'in.taskName = ivy.cms.co("/Processes/LeaveRequest/createLeaveRequest", [ivy.session.getSessionUser().getDisplayName()]);' #txt
-Lt0 f18 security system #txt
-Lt0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Define name for &#13;
-creation task</name>
-    </language>
-</elementInfo>
-' #txt
-Lt0 f18 160 42 128 44 -42 -16 #rect
-Lt0 f18 @|StepIcon #fIcon
-Lt0 f20 111 64 160 64 #arcP
-Lt0 f4 288 64 337 64 #arcP
+Lt0 f4 111 64 273 64 #arcP
 >Proto Lt0 .type com.axonivy.portal.userexamples.leaverequest.LeaveRequestProcessData #txt
 >Proto Lt0 .processKind NORMAL #txt
 >Proto Lt0 0 0 32 24 18 0 #rect
@@ -196,7 +179,5 @@ Lt0 f17 mainOut f8 tail #connect
 Lt0 f8 head f7 in #connect
 Lt0 f7 out f10 tail #connect
 Lt0 f10 head f9 mainIn #connect
-Lt0 f0 mainOut f20 tail #connect
-Lt0 f20 head f18 mainIn #connect
-Lt0 f18 mainOut f4 tail #connect
+Lt0 f0 mainOut f4 tail #connect
 Lt0 f4 head f3 in #connect
