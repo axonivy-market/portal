@@ -13,7 +13,7 @@
       <p:messages widgetVar="growl" showDetail="true" closable="true" id="absence-messages" escape="false" styleClass="new-absence-messages"/>
       <h:panelGroup id="input-adsence-data-section" layout="block" rendered="#{not data.isLoadDeputy}">
         <ui:include src="Absence.xhtml">
-          <ui:param name="updateComponent" value="#{p:component('next-to-deputy')} #{p:component('absence-messages')" />
+          <ui:param name="updateComponent" value="#{p:component('next-to-deputy')} #{p:component('absence-messages')}" />
           <ui:param name="uneditedUserName" value="false" />
         </ui:include>
       </h:panelGroup>
