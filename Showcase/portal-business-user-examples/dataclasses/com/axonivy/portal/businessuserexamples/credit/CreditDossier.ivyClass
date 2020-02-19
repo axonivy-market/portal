@@ -1,9 +1,0 @@
-CreditDossier #class
-ch.ivyteam.ivy.business.data.store.context.BusinessCaseData #classAnnotation
-com.axonivy.portal.businessuserexamples.credit #namespace
-customer com.axonivy.portal.businessuserexamples.credit.Person #field
-customer PERSISTENT #fieldModifier
-request com.axonivy.portal.businessuserexamples.credit.CreditRequest #field
-request PERSISTENT #fieldModifier
-decision com.axonivy.portal.businessuserexamples.credit.Decision #field
-decision PERSISTENT #fieldModifier
