@@ -7,6 +7,7 @@ public class HomePage extends TemplatePage {
 
 	public final static String PORTAL_HOME_PAGE_URL = "portalTemplate/1549F58C18A6C562/DefaultApplicationHomePage.ivp";
 	public final static String PORTAL_EXAMPLES_HOME_PAGE_URL = "portal-developer-examples/164211E97C598DAA/DefaultApplicationHomePage.ivp";
+	public final static String PORTAL_EXAMPLES_PROCESS_CHAIN = "portal-developer-examples/164DB506D12B25CF/showSampleProcessChain.ivp";
 	private final static String TASK_SWITCH_MODE_BTN_LOCATOR = "id('task-widget:task-list-link:task-list-link')";
 	private static final String SHOW_ALL_PROCESSES_LINK_ID = "process-widget:process-link:process-link-label";
 	private static final String SHOW_TASK_LIST_LINK_ID = "task-widget:task-list-link:task-list-link-label";
@@ -58,8 +59,13 @@ public class HomePage extends TemplatePage {
 
 	public  ChatPage getChat() {
 		waitForElementDisplayed(By.id("toggle-chat-panel-command"), true, 5);
-		click(findElementById("toggle-chat-panel-command"));
+		findElementById("toggle-chat-panel-command").click();
 		return new ChatPage();
 	}
-
+	
+	public String getEnviromentInfo() {
+		waitForElementDisplayed(By.cssSelector("span[id$='server-infor']"), true, 5);
+		return findElementByCssSelector("span[id$='server-infor']").getText();
+	}
+	
 }
