@@ -78,6 +78,17 @@
             </goals>
           </execution>
           <execution>
+            <id>portalexamples.deploy</id>
+            <goals>
+              <goal>deploy-to-engine</goal>
+            </goals>
+            <configuration>
+              <deployFile>..\..\Showcase\portal-developer-examples\target\portal-developer-examples-${portal.version}.iar</deployFile>
+              <deployToEngineApplication>demo-portal</deployToEngineApplication>
+            </configuration>
+            <phase>process-test-classes</phase>
+          </execution>
+          <execution>
             <id>portaltesthelper.deploy</id>
             <goals>
               <goal>deploy-to-engine</goal>
@@ -95,17 +106,6 @@
             </goals>
             <configuration>
               <deployFile>..\..\Showcase\InternalSupport\target\internalSupport-${portal.version}.iar</deployFile>
-              <deployToEngineApplication>demo-portal</deployToEngineApplication>
-            </configuration>
-            <phase>process-test-classes</phase>
-          </execution>
-          <execution>
-            <id>portalexamples.deploy</id>
-            <goals>
-              <goal>deploy-to-engine</goal>
-            </goals>
-            <configuration>
-              <deployFile>..\..\Showcase\portal-developer-examples\target\portal-developer-examples-${portal.version}.iar</deployFile>
               <deployToEngineApplication>demo-portal</deployToEngineApplication>
             </configuration>
             <phase>process-test-classes</phase>
