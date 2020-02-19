@@ -16,7 +16,7 @@
     resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dataModel="#{cc.attrs.dataModel}"
     dismissableOverlayPanel="false">
     <ic:ch.ivy.addon.portalkit.component.UserSelection id="creator-component" componentId="creator-select"
-      selectedUser="#{cc.attrs.filter.selectedCreator}" autoCompleteStyleClass="responsible-list-filter">
+      selectedUser="#{cc.attrs.filter.selectedCreator}" autoCompleteStyleClass="responsible-list-filter" size="35">
       <p:column>
         <i class="fa fa-user u-mar-right-5" />
         <h:outputText value="#{cc.attrs.filter.formatName(user)}" />
