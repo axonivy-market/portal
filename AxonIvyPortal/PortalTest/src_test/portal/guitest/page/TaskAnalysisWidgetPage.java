@@ -1,9 +1,13 @@
 package portal.guitest.page;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.Sleeper;
 
@@ -198,7 +202,9 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
   
   public String getFilterName() {
-    waitForElementDisplayed(By.cssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)"), true);
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(
+        () -> findElementByCssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)")
+            .getText().length()>1);
     WebElement filterName = findElementByCssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)");
     return filterName.getText();
   }
@@ -214,5 +220,9 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("button[id$='task-widget:filter-reset-command']"), true);
     click(By.cssSelector("button[id$='task-widget:filter-reset-command']"));
     waitAjaxIndicatorDisappear();
+    refreshAndWaitElement("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)");
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(
+        () -> findElementByCssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)")
+            .getText().contains("Default"));  
   }
 }
