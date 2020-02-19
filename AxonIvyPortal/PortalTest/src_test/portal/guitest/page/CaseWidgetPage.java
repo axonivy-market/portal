@@ -196,6 +196,10 @@ public class CaseWidgetPage extends TemplatePage {
 	}
 
 	public String getFilterValue(String filterId) {
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(
+        () -> findElementByCssSelector("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']")
+            .getText().length()>1);
+	  waitForElementDisplayed(By.cssSelector("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']"), true);
 		WebElement filterElement =
 				findElementByCssSelector("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']");
 		return filterElement.getText();
@@ -273,7 +277,8 @@ public class CaseWidgetPage extends TemplatePage {
 	public void filterByCreator(String text) {
 		click(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
 		WebElement responsible = findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator_input']");
-		enterKeys(responsible, text);
+		type(responsible, text);
+		waitAjaxIndicatorDisappear();
 		waitForElementDisplayedByCssSelector("i[class*='fa-user']", 5);
 		click(By.cssSelector("i[class*='fa-user']"));
 		waitAjaxIndicatorDisappear();
@@ -282,18 +287,22 @@ public class CaseWidgetPage extends TemplatePage {
 		Sleeper.sleep(2000);
 	}
 
-	public void openSavedFilters(String filterName) {
-		refreshAndWaitElement("a[id$='case-widget:filter-selection-form:filter-name']");
-		click(findElementById("case-widget:filter-selection-form:filter-name"));
-		List<WebElement> saveFilters = findListElementsByCssSelector("a[id$='user-defined-filter']");
-		for (WebElement filter : saveFilters) {
-			if (filter.getText().equals(filterName)) {
-				click(filter);
-				waitAjaxIndicatorDisappear();
-				return;
-			}
-		}
-	}
+  public void openSavedFilters(String filterName) {
+    refreshAndWaitElement("a[id$='case-widget:filter-selection-form:filter-name']");
+    click(findElementById("case-widget:filter-selection-form:filter-name"));
+    List<WebElement> saveFilters = findListElementsByCssSelector("a[id$='user-defined-filter']");
+    for (WebElement filter : saveFilters) {
+      if (filter.getText().equals(filterName)) {
+        click(filter);
+        waitAjaxIndicatorDisappear();
+        refreshAndWaitElement("a[id$='case-widget:filter-selection-form:filter-name'] > span:nth-child(2)");
+        Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(
+            () -> findElementByCssSelector("a[id$='case-widget:filter-selection-form:filter-name'] > span:nth-child(2)")
+                .getText().contains(filterName));
+        return;
+      }
+    }
+  }
 
 	public void removeResponsibleFilter() {
 		click(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
@@ -305,7 +314,9 @@ public class CaseWidgetPage extends TemplatePage {
 	}
 
 	public String getCreator() {
+		refreshAndWaitElement("button[id$='creator-filter:filter-open-form:advanced-filter-command']");
 		click(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
+		waitForElementDisplayed(By.cssSelector("input[id$='creator-filter:filter-input-form:creator_input']"),true);
 		return findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator_input']")
 				.getAttribute("value");
 	}
