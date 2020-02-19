@@ -13,17 +13,14 @@
 <cc:implementation>
   <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="#{cc.attrs.componentId}"
     taskFilter="#{cc.attrs.filter}" selectedFilters="#{cc.attrs.selectedFilters}" resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dataModel="#{cc.attrs.dataModel}" dismissableOverlayPanel="false">
-    <p:autoComplete id="responsible" scrollHeight="200" dropdown="true" size="35" 
-      completeMethod="#{logic.autoCompleteForResponsible}" value="#{cc.attrs.filter.selectedResponsible}"
-      var="responsible" itemValue="#{responsible}" itemLabel="#{responsible.displayName}"
-      converter="pojoConverter" cache="true" maxResults="100"
-      moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
-      styleClass="responsible-list-filter">
+    <ic:ch.ivy.addon.portalkit.component.UserSelection id="responsible-component" componentId="responsible-select"
+      selectedUser="#{cc.attrs.filter.selectedResponsible}" autoCompleteStyleClass="responsible-list-filter"
+      completeMethod="#{logic.autoCompleteForResponsible}">
       <p:column>
-        <i class="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-        <h:outputText value="#{cc.attrs.filter.formatName(responsible)}" />
+        <i class="fa #{user.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+        <h:outputText value="#{cc.attrs.filter.formatName(user)}" />
       </p:column>
-    </p:autoComplete>
+    </ic:ch.ivy.addon.portalkit.component.UserSelection>
   </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
 </cc:implementation>
 </html>
