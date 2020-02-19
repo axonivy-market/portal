@@ -198,6 +198,7 @@ public class ProcessWidgetTest extends BaseTest {
     processWidget.startProcess(AGOOGLE_LINK);
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
     homePage.switchLastBrowserTab();
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.getPageTitle().length() > 1);
     assertEquals("Google", homePage.getPageTitle());
   }
 
