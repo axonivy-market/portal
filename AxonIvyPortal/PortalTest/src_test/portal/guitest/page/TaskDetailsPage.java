@@ -75,4 +75,9 @@ public class TaskDetailsPage extends TemplatePage {
     findElementById("task-detail-template:task-detail-title-form:back-to-previous-page").click();
     return new TaskWidgetPage();
   }
+
+  public TaskTemplatePage clickStartTask() {
+    findElementById("task-detail-template:task-detail-start-command").click();
+    return new TaskTemplatePage();
+  }
 }
