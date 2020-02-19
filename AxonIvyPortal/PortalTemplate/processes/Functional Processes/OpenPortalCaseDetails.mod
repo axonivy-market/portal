@@ -18,12 +18,13 @@ Os0 @UserDialog f2 '' #zField
 Os0 @PushWFArc f3 '' #zField
 Os0 @PushWFArc f4 '' #zField
 >Proto Os0 Os0 OpenPortalCaseDetails #zField
-Os0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase caseData,Boolean isShowBackButton> param;' #txt
+Os0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase caseData,Boolean isShowBackButton,Boolean isFromDoneTask> param;' #txt
 Os0 f0 inParamTable 'out.caseView=param.caseData;
+out.isFromDoneTask=param.isFromDoneTask;
 out.isShowBackButton=param.isShowBackButton;
 ' #txt
 Os0 f0 outParamDecl '<> result;' #txt
-Os0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,Boolean) #txt
+Os0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,Boolean,Boolean) #txt
 Os0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -36,10 +37,11 @@ Os0 f0 @|StartSubIcon #fIcon
 Os0 f1 337 49 30 30 0 15 #rect
 Os0 f1 @|EndSubIcon #fIcon
 Os0 f2 dialogId ch.ivy.addon.portal.generic.PortalCaseDetails #txt
-Os0 f2 startMethod start(ch.ivyteam.ivy.workflow.ICase,Boolean) #txt
-Os0 f2 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseInfo,Boolean isShowBackButton> param;' #txt
+Os0 f2 startMethod start(ch.ivyteam.ivy.workflow.ICase,Boolean,Boolean) #txt
+Os0 f2 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseInfo,Boolean isShowBackButton,Boolean isFromDoneTask> param;' #txt
 Os0 f2 requestMappingAction 'param.caseInfo=in.caseView;
 param.isShowBackButton=in.isShowBackButton;
+param.isFromDoneTask=in.isFromDoneTask;
 ' #txt
 Os0 f2 responseMappingAction 'out=in;
 ' #txt
