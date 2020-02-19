@@ -7,7 +7,7 @@
 <ui:composition>
   <div id="absence-panel-grid" class="ui-fluid ui-g absence-panel-grid">
     <h:panelGroup layout="block" styleClass="ui-g-12" rendered="#{data.isSupervisor}">
-      <div class="md-inputfield">
+     <!--  <div class="md-inputfield">
         <p:autoComplete scrollHeight="200" dropdown="true" id="username" 
           completeMethod="#{logic.autoCompleteForUser}"
           value="#{data.selectedUser}"
@@ -22,9 +22,23 @@
             process="@this comment absence-start-date absence-end-date" update="#{updateComponent}" />
         </p:autoComplete>
         <p:outputLabel for="username" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}" />
-      </div>
+      </div> -->
+      <!-- <ic:ch.ivy.addon.portalkit.component.UserSelection 
+        id="absence-selection-component" 
+        componentId="username"
+        selectedUser="#{data.selectedUser}" isRenderedMessage="false"
+        scrollHeight="200" completeMethod="#{logic.autoCompleteForUser}"
+        isDisabled="#{uneditedUserName ne 'false'}" isRequired="true"
+        formatToDisplay="#{userFormatBean.formatWithTip(user.displayName, user.name)}"
+        requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/userNameRequired')}"
+        label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}" floatingLabel="true"
+        autoCompleteStyleClass="absence-user-selection">
+        <f:facet name="event">
+          <f:event listener="#{logic.loadUsers}" type="preRenderComponent" />
+          <p:ajax event="itemSelect" listener="#{logic.userSelectInAbsence}" update="#{updateComponent}" />
+        </f:facet>
+      </ic:ch.ivy.addon.portalkit.component.UserSelection> -->
     </h:panelGroup>
-    
     <div class="ui-g-5 ui-sm-12">
       <div class="md-inputfield">
         <p:calendar id="absence-start-date" value="#{data.selectedAbsence.from}" locale="#{localeBean.locale}"
@@ -32,8 +46,7 @@
           converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
           pattern="#{dateTimePatternBean.datePattern}" required="true"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
-          <p:ajax event="dateSelect" listener="#{logic.dateChange}" process="@this username absence-start-date comment"
-            update="#{updateComponent}" />
+          <p:ajax event="dateSelect" listener="#{logic.dateChange}" update="#{updateComponent}" />
         </p:calendar>
         <h:outputLabel for="absence-start-date" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/from')}:" />
       </div>
@@ -45,8 +58,7 @@
           converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
           pattern="#{dateTimePatternBean.datePattern}" required="true"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
-          <p:ajax event="dateSelect" listener="#{logic.dateChange}" process="@this username comment absence-start-date"
-            update="#{updateComponent}" />
+          <p:ajax event="dateSelect" listener="#{logic.dateChange}" update="#{updateComponent}" />
         </p:calendar>
         <h:outputLabel for="absence-end-date" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/till')}:" />
       </div>

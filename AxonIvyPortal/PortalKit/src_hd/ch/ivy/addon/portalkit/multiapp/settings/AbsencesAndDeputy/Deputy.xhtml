@@ -7,7 +7,7 @@
 
   <h:panelGroup id="username-deputy" class="substitution-user-selection-container ui-g-12" layout="block"
     rendered="#{absenceBean.substitutionManagementCapable and !data.isLoadDeputy}">
-    <h:outputText styleClass="substituted-user-text" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/substitutedUser')}:" />
+    <!-- <h:outputText styleClass="substituted-user-text" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/substitutedUser')}:" />
     <p:spacer styleClass="u-buttons-spacer" />
     <p:autoComplete id="substituted-user" scrollHeight="200" dropdown="true" size="35" value="#{data.selectedUser}"
       required="true" completeMethod="#{logic.autoCompleteForUser}" var="user" itemLabel="#{user.name}"
@@ -16,7 +16,24 @@
       moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
       <f:event listener="#{logic.loadUsers}" type="preRenderComponent" />
       <p:ajax event="itemSelect" listener="#{logic.changeUserSubstitute}" update="substitute-container" />
-    </p:autoComplete>
+    </p:autoComplete> -->
+    
+    <!-- <ic:ch.ivy.addon.portalkit.component.UserSelection
+      id="substituted-user-selection-component"
+      componentId="substituted-user"
+      selectedUser="#{data.selectedUser}"
+      completeMethod="#{logic.autoCompleteForUser}"
+      label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/substitutedUser')}:"
+      labelPanelStyleClass="ui-g-2 ui-xl-1 ui-sm-12"
+      autoCompletePanelStyleClass="ui-g-4 ui-sm-12"
+      formatToDisplay="#{not empty user ? userFormatBean.formatWithTip(user.displayName, user.name) : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
+      scrollHeight="200" size="35" isRenderedMessage="false" styleClass="ui-g-12"
+      requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/userNameRequired')}">
+      <f:facet name="event">
+        <f:event listener="#{logic.loadUsers}" type="preRenderComponent" />
+        <p:ajax event="itemSelect" listener="#{logic.changeUserSubstitute}" update="#{p:component('substitute-container')}" />
+      </f:facet>
+    </ic:ch.ivy.addon.portalkit.component.UserSelection> -->
   </h:panelGroup>
 
   <h:panelGroup layout="block" styleClass="substitute-container">
@@ -41,6 +58,15 @@
             <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.name)}" rendered="#{not empty user}" />
           </p:column>
         </p:autoComplete>
+        <!-- <ic:ch.ivy.addon.portalkit.component.UserSelection 
+                id="subsitute-username-selection-component"
+                componentId="subsitute-username"
+                completeMethod="#{substituteNode.autoCompleteUser}"
+                selectedUser="#{substitute.substituteUser}"
+                scrollHeight="200"
+                isRenderedMessage="false"
+                formatToDisplay="#{not empty user ? userFormatBean.formatWithTip(user.displayName, user.name) : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}">
+              </ic:ch.ivy.addon.portalkit.component.UserSelection> -->
       </p:column>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}"
         styleClass="substitute-comment">
