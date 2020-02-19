@@ -37,7 +37,6 @@ Ts0 @PushWFArc f103 '' #zField
 Ts0 @PushWFArc f110 '' #zField
 Ts0 @PushWFArc f99 '' #zField
 Ts0 @PushWFArc f102 '' #zField
-Ts0 @PushWFArc f94 '' #zField
 Ts0 @PushWFArc f109 '' #zField
 Ts0 @PushWFArc f105 '' #zField
 Ts0 @PushWFArc f104 '' #zField
@@ -51,6 +50,9 @@ Ts0 @PushWFArc f4 '' #zField
 Ts0 @CallSub f5 '' #zField
 Ts0 @PushWFArc f6 '' #zField
 Ts0 @PushWFArc f7 '' #zField
+Ts0 @GridStep f8 '' #zField
+Ts0 @PushWFArc f9 '' #zField
+Ts0 @PushWFArc f10 '' #zField
 >Proto Ts0 Ts0 TaskItemDelegateProcess #zField
 Ts0 f0 guid 16EE8CACE694620C #txt
 Ts0 f0 method start() #txt
@@ -82,7 +84,7 @@ Ts0 f108 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f108 83 643 26 26 -47 15 #rect
 Ts0 f108 @|UdEventIcon #fIcon
-Ts0 f90 1339 155 26 26 0 12 #rect
+Ts0 f90 1467 155 26 26 0 12 #rect
 Ts0 f90 @|UdProcessEndIcon #fIcon
 Ts0 f79 819 515 26 26 0 12 #rect
 Ts0 f79 @|UdProcessEndIcon #fIcon
@@ -117,7 +119,7 @@ Ts0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f86 464 146 160 44 -77 -8 #rect
+Ts0 f86 592 146 160 44 -77 -8 #rect
 Ts0 f86 @|CallSubIcon #fIcon
 Ts0 f73 guid 16EE8CC091943071 #txt
 Ts0 f73 method autoCompleteForUserDelegate(String) #txt
@@ -186,7 +188,7 @@ Ts0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f87 304 146 112 44 -21 -8 #rect
+Ts0 f87 432 146 112 44 -21 -8 #rect
 Ts0 f87 @|StepIcon #fIcon
 Ts0 f106 339 643 26 26 0 12 #rect
 Ts0 f106 @|UdProcessEndIcon #fIcon
@@ -258,7 +260,7 @@ Ts0 f81 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f81 928 146 144 44 -64 -8 #rect
+Ts0 f81 1056 146 144 44 -64 -8 #rect
 Ts0 f81 @|CallSubIcon #fIcon
 Ts0 f92 actionTable 'out=in;
 ' #txt
@@ -285,20 +287,18 @@ Ts0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f76 488 242 128 44 -58 -8 #rect
+Ts0 f76 616 242 128 44 -58 -8 #rect
 Ts0 f76 @|StepIcon #fIcon
-Ts0 f88 208 152 32 32 0 16 #rect
+Ts0 f88 336 152 32 32 0 16 #rect
 Ts0 f88 @|AlternativeIcon #fIcon
 Ts0 f82 guid 16EE8CC0919DC8DC #txt
-Ts0 f82 method initDataToDelegate(ch.ivyteam.ivy.workflow.ITask) #txt
-Ts0 f82 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
-Ts0 f82 inParameterMapAction 'out.task=param.task;
-' #txt
+Ts0 f82 method initDataToDelegate() #txt
+Ts0 f82 inParameterDecl '<> param;' #txt
 Ts0 f82 outParameterDecl '<> result;' #txt
 Ts0 f82 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>initDataToDelegate(ITask)</name>
+        <name>initDataToDelegate()</name>
     </language>
 </elementInfo>
 ' #txt
@@ -325,7 +325,7 @@ delegate task</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f89 1168 146 112 44 -37 -16 #rect
+Ts0 f89 1296 146 112 44 -37 -16 #rect
 Ts0 f89 @|StepIcon #fIcon
 Ts0 f69 339 419 26 26 0 12 #rect
 Ts0 f69 @|UdProcessEndIcon #fIcon
@@ -352,8 +352,6 @@ Ts0 f99 expr out #txt
 Ts0 f99 296 528 336 528 #arcP
 Ts0 f102 expr out #txt
 Ts0 f102 109 528 184 528 #arcP
-Ts0 f94 expr out #txt
-Ts0 f94 109 168 208 168 #arcP
 Ts0 f109 expr out #txt
 Ts0 f109 296 656 339 656 #arcP
 Ts0 f105 expr out #txt
@@ -361,23 +359,23 @@ Ts0 f105 760 528 819 528 #arcP
 Ts0 f104 expr out #txt
 Ts0 f104 109 432 339 432 #arcP
 Ts0 f97 expr out #txt
-Ts0 f97 1280 168 1339 168 #arcP
+Ts0 f97 1408 168 1467 168 #arcP
 Ts0 f98 expr out #txt
-Ts0 f98 1072 168 1168 168 #arcP
+Ts0 f98 1200 168 1296 168 #arcP
 Ts0 f101 expr out #txt
 Ts0 f101 109 336 339 336 #arcP
 Ts0 f101 0 0.61063400144005 0 0 #arcLabel
-Ts0 f95 616 264 1352 181 #arcP
-Ts0 f95 1 1352 264 #addKink
+Ts0 f95 744 264 1480 181 #arcP
+Ts0 f95 1 1480 264 #addKink
 Ts0 f95 0 0.7300842237076132 0 0 #arcLabel
 Ts0 f91 expr out #txt
-Ts0 f91 416 168 464 168 #arcP
+Ts0 f91 544 168 592 168 #arcP
 Ts0 f3 expr in #txt
 Ts0 f3 outCond ch.ivy.addon.portalkit.util.TaskUtils.isTaskCurrentOpeningTask(in.task) #txt
-Ts0 f3 224 184 488 264 #arcP
-Ts0 f3 1 224 264 #addKink
+Ts0 f3 352 184 616 264 #arcP
+Ts0 f3 1 352 264 #addKink
 Ts0 f4 expr in #txt
-Ts0 f4 240 168 304 168 #arcP
+Ts0 f4 368 168 432 168 #arcP
 Ts0 f5 processCall 'Ivy Data Processes/SecurityService:findRolesDTO(ch.ivyteam.ivy.application.IApplication)' #txt
 Ts0 f5 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application> param;' #txt
 Ts0 f5 requestMappingAction 'param.application=in.application;
@@ -392,11 +390,40 @@ Ts0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f5 704 146 160 44 -72 -8 #rect
+Ts0 f5 832 146 160 44 -72 -8 #rect
 Ts0 f5 @|CallSubIcon #fIcon
 Ts0 f6 expr out #txt
-Ts0 f6 624 168 704 168 #arcP
-Ts0 f7 864 168 928 168 #arcP
+Ts0 f6 752 168 832 168 #arcP
+Ts0 f7 992 168 1056 168 #arcP
+Ts0 f8 actionTable 'out=in;
+' #txt
+Ts0 f8 actionCode 'import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
+
+if (in.task == null) {
+	TaskWidgetBean taskWidget = ManagedBeans.get("taskWidgetBean") as TaskWidgetBean;
+	if (taskWidget != null) {
+		ITask selectedTaskItem = TaskUtils.findTaskUserHasPermissionToSee(taskWidget.getSelectedTaskItemId());
+		in.task = selectedTaskItem;
+	}
+}
+
+' #txt
+Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find task</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f8 168 146 112 44 -25 -8 #rect
+Ts0 f8 @|StepIcon #fIcon
+Ts0 f9 expr out #txt
+Ts0 f9 109 168 168 168 #arcP
+Ts0 f10 280 168 336 168 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItemDelegate.TaskItemDelegateData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -409,8 +436,6 @@ Ts0 f81 mainOut f98 tail #connect
 Ts0 f98 head f89 mainIn #connect
 Ts0 f89 mainOut f97 tail #connect
 Ts0 f97 head f90 mainIn #connect
-Ts0 f82 mainOut f94 tail #connect
-Ts0 f94 head f88 in #connect
 Ts0 f76 mainOut f95 tail #connect
 Ts0 f95 head f90 mainIn #connect
 Ts0 f74 mainOut f101 tail #connect
@@ -439,3 +464,7 @@ Ts0 f86 mainOut f6 tail #connect
 Ts0 f6 head f5 mainIn #connect
 Ts0 f5 mainOut f7 tail #connect
 Ts0 f7 head f81 mainIn #connect
+Ts0 f82 mainOut f9 tail #connect
+Ts0 f9 head f8 mainIn #connect
+Ts0 f8 mainOut f10 tail #connect
+Ts0 f10 head f88 in #connect
