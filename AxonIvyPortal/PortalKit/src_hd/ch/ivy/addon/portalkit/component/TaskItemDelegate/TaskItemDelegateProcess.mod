@@ -54,9 +54,7 @@ Ts0 @PushWFArc f11 '' #zField
 Ts0 @CallSub f12 '' #zField
 Ts0 @PushWFArc f13 '' #zField
 Ts0 @PushWFArc f8 '' #zField
-Ts0 @GridStep f14 '' #zField
-Ts0 @PushWFArc f15 '' #zField
-Ts0 @PushWFArc f16 '' #zField
+Ts0 @PushWFArc f14 '' #zField
 >Proto Ts0 Ts0 TaskItemDelegateProcess #zField
 Ts0 f0 guid 16EE8CACE694620C #txt
 Ts0 f0 method start() #txt
@@ -88,7 +86,7 @@ Ts0 f108 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f108 83 643 26 26 -47 15 #rect
 Ts0 f108 @|UdEventIcon #fIcon
-Ts0 f90 1467 155 26 26 0 12 #rect
+Ts0 f90 1339 155 26 26 0 12 #rect
 Ts0 f90 @|UdProcessEndIcon #fIcon
 Ts0 f79 819 515 26 26 0 12 #rect
 Ts0 f79 @|UdProcessEndIcon #fIcon
@@ -195,7 +193,7 @@ Ts0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f87 432 146 112 44 -21 -8 #rect
+Ts0 f87 304 146 112 44 -21 -8 #rect
 Ts0 f87 @|StepIcon #fIcon
 Ts0 f106 339 643 26 26 0 12 #rect
 Ts0 f106 @|UdProcessEndIcon #fIcon
@@ -267,7 +265,7 @@ Ts0 f81 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f81 1056 146 144 44 -64 -8 #rect
+Ts0 f81 928 146 144 44 -64 -8 #rect
 Ts0 f81 @|CallSubIcon #fIcon
 Ts0 f92 actionTable 'out=in;
 ' #txt
@@ -294,18 +292,20 @@ Ts0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f76 616 242 128 44 -58 -8 #rect
+Ts0 f76 488 242 128 44 -58 -8 #rect
 Ts0 f76 @|StepIcon #fIcon
-Ts0 f88 336 152 32 32 0 16 #rect
+Ts0 f88 208 152 32 32 0 16 #rect
 Ts0 f88 @|AlternativeIcon #fIcon
 Ts0 f82 guid 16EE8CC0919DC8DC #txt
-Ts0 f82 method initDataToDelegate() #txt
-Ts0 f82 inParameterDecl '<> param;' #txt
+Ts0 f82 method initDataToDelegate(ch.ivyteam.ivy.workflow.ITask) #txt
+Ts0 f82 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
+Ts0 f82 inParameterMapAction 'out.task=param.task;
+' #txt
 Ts0 f82 outParameterDecl '<> result;' #txt
 Ts0 f82 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>initDataToDelegate()</name>
+        <name>initDataToDelegate(ITask)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -332,7 +332,7 @@ delegate task</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f89 1296 146 112 44 -37 -16 #rect
+Ts0 f89 1168 146 112 44 -37 -16 #rect
 Ts0 f89 @|StepIcon #fIcon
 Ts0 f69 691 419 26 26 0 12 #rect
 Ts0 f69 @|UdProcessEndIcon #fIcon
@@ -364,21 +364,21 @@ Ts0 f109 296 656 339 656 #arcP
 Ts0 f105 expr out #txt
 Ts0 f105 760 528 819 528 #arcP
 Ts0 f97 expr out #txt
-Ts0 f97 1408 168 1467 168 #arcP
+Ts0 f97 1280 168 1339 168 #arcP
 Ts0 f98 expr out #txt
-Ts0 f98 1200 168 1296 168 #arcP
+Ts0 f98 1072 168 1168 168 #arcP
 Ts0 f101 expr out #txt
 Ts0 f101 109 336 339 336 #arcP
 Ts0 f101 0 0.61063400144005 0 0 #arcLabel
-Ts0 f95 744 264 1480 181 #arcP
-Ts0 f95 1 1480 264 #addKink
+Ts0 f95 616 264 1352 181 #arcP
+Ts0 f95 1 1352 264 #addKink
 Ts0 f95 0 0.7300842237076132 0 0 #arcLabel
 Ts0 f3 expr in #txt
 Ts0 f3 outCond ch.ivy.addon.portalkit.util.TaskUtils.isTaskCurrentOpeningTask(in.task) #txt
-Ts0 f3 352 184 616 264 #arcP
-Ts0 f3 1 352 264 #addKink
+Ts0 f3 224 184 488 264 #arcP
+Ts0 f3 1 224 264 #addKink
 Ts0 f4 expr in #txt
-Ts0 f4 368 168 432 168 #arcP
+Ts0 f4 240 168 304 168 #arcP
 Ts0 f5 processCall 'Ivy Data Processes/SecurityService:findRolesDTO(ch.ivyteam.ivy.application.IApplication)' #txt
 Ts0 f5 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application> param;' #txt
 Ts0 f5 requestMappingAction 'param.application=in.application;
@@ -393,9 +393,9 @@ Ts0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f5 832 146 160 44 -72 -8 #rect
+Ts0 f5 704 146 160 44 -72 -8 #rect
 Ts0 f5 @|CallSubIcon #fIcon
-Ts0 f7 992 168 1056 168 #arcP
+Ts0 f7 864 168 928 168 #arcP
 Ts0 f6 expr out #txt
 Ts0 f6 109 432 256 432 #arcP
 Ts0 f9 processCall 'Functional Processes/CalculateTaskDelegate:call(java.util.List<ch.ivy.addon.portalkit.dto.RoleDTO>,java.util.List<ch.ivy.addon.portalkit.dto.UserDTO>,ch.ivy.addon.portalkit.dto.SecurityMemberDTO,ch.ivyteam.ivy.workflow.ITask)' #txt
@@ -440,37 +440,12 @@ Ts0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f12 600 146 160 44 -77 -8 #rect
+Ts0 f12 472 146 160 44 -77 -8 #rect
 Ts0 f12 @|CallSubIcon #fIcon
 Ts0 f13 expr out #txt
-Ts0 f13 544 168 600 168 #arcP
-Ts0 f8 760 168 832 168 #arcP
-Ts0 f14 actionTable 'out=in;
-' #txt
-Ts0 f14 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
-import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivy.addon.portalkit.jsf.ManagedBeans;
-import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
-
-if (in.task == null) {
-	TaskWidgetBean taskWidget = ManagedBeans.get("taskWidgetBean") as TaskWidgetBean;
-	if (taskWidget != null) {
-		ITask selectedTaskItem = TaskUtils.findTaskUserHasPermissionToSee(taskWidget.getSelectedTaskItemId());
-		in.task = selectedTaskItem;
-	}
-}' #txt
-Ts0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Find Task</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f14 168 146 112 44 -27 -8 #rect
-Ts0 f14 @|StepIcon #fIcon
-Ts0 f15 expr out #txt
-Ts0 f15 109 168 168 168 #arcP
-Ts0 f16 280 168 336 168 #arcP
+Ts0 f13 416 168 472 168 #arcP
+Ts0 f8 632 168 704 168 #arcP
+Ts0 f14 109 168 208 168 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItemDelegate.TaskItemDelegateData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -515,7 +490,5 @@ Ts0 f87 mainOut f13 tail #connect
 Ts0 f13 head f12 mainIn #connect
 Ts0 f12 mainOut f8 tail #connect
 Ts0 f8 head f5 mainIn #connect
-Ts0 f82 mainOut f15 tail #connect
-Ts0 f15 head f14 mainIn #connect
-Ts0 f14 mainOut f16 tail #connect
-Ts0 f16 head f88 in #connect
+Ts0 f82 mainOut f14 tail #connect
+Ts0 f14 head f88 in #connect
