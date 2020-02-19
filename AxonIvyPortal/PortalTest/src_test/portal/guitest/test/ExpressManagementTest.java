@@ -42,7 +42,7 @@ public class ExpressManagementTest extends BaseTest {
     adminSettingsPage.openExpressManagementTab();
     ExpressManagementPage expressManagementPage = new ExpressManagementPage();
     expressManagementPage.openImportDialog();
-    expressManagementPage.selectJSONFile("unsupportedExtension.abc");
+    expressManagementPage.selectJSONFile(FileHelper.getAbsolutePathToTestFile("unsupportedExtension.abc"));
     String message = expressManagementPage.getUploadMessage();
     expressManagementPage.clickOnCloseButton();
     assertEquals("Invalid file type", message);
