@@ -2,11 +2,13 @@ SecurityServiceData #class
 ch.ivyteam.wf.processes #namespace
 application ch.ivyteam.ivy.application.IApplication #field
 apps List<String> #field
+count Integer #field
 errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
+query String #field
+roleDTOs java.util.List<ch.ivy.addon.portalkit.dto.RoleDTO> #field
+roleNames java.util.List<String> #field
 roles java.util.List<ch.ivyteam.ivy.security.IRole> #field
-rolesByApp java.util.Map #field
 securityMembers java.util.List<ch.ivy.addon.portalkit.dto.SecurityMemberDTO> #field
+startIndex Integer #field
 username String #field
 users java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> #field
-usersByApp java.util.Map #field
-roleDTOs java.util.List<ch.ivy.addon.portalkit.dto.RoleDTO> #field
