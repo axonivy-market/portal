@@ -26,6 +26,7 @@ public class TaskWidgetBean implements Serializable {
   public static final int DEFAULT_TASK_LIST_REFRESH_INTERVAL = 10000;
   private Long taskListRefreshInterval;
   private Long expandedTaskId;
+  private Long selectedTaskItemId;
   private TaskLazyDataModel dataModel;
   private Boolean isTaskDetailOpenning;
   private boolean isShowFullTaskList;
@@ -107,4 +108,13 @@ public class TaskWidgetBean implements Serializable {
   public void setShowFullTaskList(boolean isShowFullTaskList) {
     this.isShowFullTaskList = isShowFullTaskList;
   }
+
+  public Long getSelectedTaskItemId() {
+    return selectedTaskItemId;
+  }
+
+  public void setSelectedTaskItemId(Long selectedTaskItemId) {
+    this.selectedTaskItemId = selectedTaskItemId;
+  }
+  
 }
