@@ -703,9 +703,18 @@ Ts0 f61 83 1075 26 26 -57 15 #rect
 Ts0 f61 @|UdMethodIcon #fIcon
 Ts0 f62 actionTable 'out=in;
 ' #txt
-Ts0 f62 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+Ts0 f62 actionCode 'import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivyteam.ivy.workflow.ITask;
+import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 
-TaskUtils.resetTask(in.selectedTask);' #txt
+TaskWidgetBean taskWidget = ManagedBeans.get("taskWidgetBean") as TaskWidgetBean;
+if (taskWidget != null) {
+	ITask selectedTaskItem = TaskUtils.findTaskUserHasPermissionToSee(taskWidget.getSelectedTaskItemId());
+	in.selectedTask = selectedTaskItem;
+	TaskUtils.resetTask(in.selectedTask);
+}' #txt
 Ts0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -1,9 +1,0 @@
-package com.axonivy.portal.businessuserexamples.credit
-dialect "mvel"
-
-rule "NeedsLevelApproval"
-  when
-  	  $dossier : CreditDossier(customer.address.country != "Switzerland")
-  then
-      $dossier.decision.needsLevel2Approval = true;
-end
