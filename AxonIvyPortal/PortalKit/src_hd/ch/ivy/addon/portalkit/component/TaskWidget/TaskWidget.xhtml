@@ -228,8 +228,7 @@
             rowIndex="#{rowIndex}" currentPortalPage="#{cc.attrs.currentPortalPage}"
             isSelected="#{cc.attrs.selectedTaskId eq task.getId()}"
             compactMode="#{data.dataModel.compactMode}" 
-            dataModel="#{data.dataModel}"
-            selectedTask="#{data.setSelectedTask(task)}">
+            dataModel="#{data.dataModel}">
             <cc:insertFacet name="taskHeader" />
           </ic:ch.ivy.addon.portalkit.component.TaskItem>
         </p:dataScroller>
@@ -312,7 +311,7 @@
     </div>
   </p:confirmDialog>
 
-  <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="task-item-delegate-component" task="#{data.selectedTask}" dataModel="#{data.dataModel}"
+  <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="task-item-delegate-component" dataModel="#{data.dataModel}"
     componentToUpdate="#{p:component('task-start')}" />
 
   <script type="text/javascript">
