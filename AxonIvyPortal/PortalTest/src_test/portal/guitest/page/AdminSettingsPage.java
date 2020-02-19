@@ -26,7 +26,7 @@ public class AdminSettingsPage extends TemplatePage {
 
   private void openSettingTab() {
     WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:settingTab']");
-    settingTabLink.click();
+    click(settingTabLink);
     waitForElementPresent(By.id("adminui:adminTabView:settingForm"), true);
     waitAjaxIndicatorDisappear();
   }
@@ -34,20 +34,18 @@ public class AdminSettingsPage extends TemplatePage {
   private void editGlobalVariable(String variableName, String variableValue, boolean isBooleanType) {
     WebElement table = findElementById("adminui:adminTabView:settingTable");
     List<WebElement> tableRows = table.findElements(By.tagName("tr"));
-    int index = 0;
     for (WebElement row : tableRows) {
       List<WebElement> columns = row.findElements(By.tagName("td"));
       if (!CollectionUtils.isEmpty(columns)) {
         WebElement keyColumn = columns.get(0);
         if (keyColumn.getText().equals(variableName)) {
-          WebElement editButton = row.findElement(By.id("adminui:adminTabView:settingTable:" + (index - 3) + ":edit"));
-          editButton.click();
+          WebElement editButton = row.findElement(By.cssSelector("a[id$=edit]"));
+          click(editButton);
           waitForElementPresent(By.id("adminui:settingDialogForm"), true);
           saveGlobalVariable(variableValue, isBooleanType);
           return;
         }
       }
-      index++;
     }
   }
 
@@ -64,19 +62,19 @@ public class AdminSettingsPage extends TemplatePage {
       click(By.id(String.format("adminui:valueSetting_%d", index)));
     }
     WebElement saveButton = findElementById("adminui:save-setting");
-    saveButton.click();
+    click(saveButton);
   }
 
   public void closeAdminSettingDialog() {
     WebElement closeButton = findElementById("close-button");
-    closeButton.click();
+    click(closeButton);
     waitForElementDisplayed(By.id("dialog-closing-information"), true);
   }
 
   public void closeInformConfigDialog() {
-    WebElement closeButton = findElementById("close-dialog-button");
-    closeButton.click();
-    waitAjaxIndicatorDisappear();
+    String closeButtonId = "close-dialog-button";
+    click(findElementById(closeButtonId));
+    waitForElementDisplayed(By.id(closeButtonId), false);
   }
 
   public void setClientSideTimeout(String timeout) {
@@ -85,17 +83,17 @@ public class AdminSettingsPage extends TemplatePage {
     closeConfirmationDialog();
   }
 
-	private void closeConfirmationDialog() {
-		closeAdminSettingDialog();
+  private void closeConfirmationDialog() {
+    closeAdminSettingDialog();
     closeInformConfigDialog();
-	}
+  }
 
   public void setChatGroup() {
     openSettingTab();
     editGlobalVariable("ENABLE_GROUP_CHAT", "true", true);
     closeConfirmationDialog();
   }
-  
+
   public void setEnviromentInfo() {
     openSettingTab();
     editGlobalVariable("SHOW_ENVIRONMENT_INFO", "true", true);
@@ -157,7 +155,7 @@ public class AdminSettingsPage extends TemplatePage {
 
   public AnnouncementPage openAnnouncementTab() {
     WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:announcement-tab']");
-    settingTabLink.click();
+    click(settingTabLink);
     waitForElementPresent(By.id("adminui:adminTabView:announcement-tab"), true);
     waitAjaxIndicatorDisappear();
     return new AnnouncementPage();
