@@ -71,10 +71,10 @@ As0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f6 83 147 26 26 -25 15 #rect
 As0 f6 @|UdMethodIcon #fIcon
 As0 f7 processCall 'Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean,Boolean)' #txt
-As0 f7 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData,Boolean isShowBackButton,Boolean isFromTask> param;' #txt
+As0 f7 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData,Boolean isShowBackButton,Boolean isFromDoneTask> param;' #txt
 As0 f7 requestMappingAction 'param.caseData=in.iCase;
 param.isShowBackButton=true;
-param.isFromTask=false;
+param.isFromDoneTask=false;
 ' #txt
 As0 f7 responseMappingAction 'out=in;
 ' #txt
