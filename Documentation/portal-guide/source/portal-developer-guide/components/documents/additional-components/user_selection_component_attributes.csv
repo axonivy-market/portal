@@ -11,7 +11,7 @@ isRequired,false,Boolean,Marks User Selection as required.
 isReadOnly,false,Boolean,Cannot change user when it's enabled.
 isRenderedMessage,true,Boolean,Specify the rendering of message for user field.
 hightlight,true,Boolean,Highlights the first suggested user automatically.
-floatingLabel,false,Boolean,Display label with floating style if it's enabled.
+floatingLabel,false,Boolean,Display label with floating style and labelPanelStyleClass can't be applied if it’s enabled.
 autocompleteStyleClass,null,String,Style class of user autocomplete.
 autoCompletePanelStyleClass,null,String, Style class of user autocomplete panel.
 labelPanelStyleClass,null,String, Style class of label panel.
