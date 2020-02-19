@@ -915,10 +915,11 @@ Bk0 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Bk0 g0 83 83 26 26 0 5 #rect
 Bk0 g0 @|MIGIcon #fIcon
-Bk0 f23 processCall 'Functional Processes/OpenPortalCaseDetailsHook:call(ICase,Boolean)' #txt
-Bk0 f23 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData,Boolean isShowBackButton> param;' #txt
+Bk0 f23 processCall 'Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean,Boolean)' #txt
+Bk0 f23 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData,Boolean isShowBackButton,Boolean isFromDoneTask> param;' #txt
 Bk0 f23 requestMappingAction 'param.caseData=in.caseSelected;
-param.isShowBackButton=false;
+param.isShowBackButton=true;
+param.isFromDoneTask=true;
 ' #txt
 Bk0 f23 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
@@ -1222,10 +1223,11 @@ Bk4 f106 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Bk4 f106 136 138 112 44 -28 -8 #rect
 Bk4 f106 @|StepIcon #fIcon
-Bk4 f104 processCall 'Functional Processes/OpenPortalCaseDetailsHook:call(ICase,Boolean)' #txt
-Bk4 f104 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData,Boolean isShowBackButton> param;' #txt
+Bk4 f104 processCall 'Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean,Boolean)' #txt
+Bk4 f104 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData,Boolean isShowBackButton,Boolean isFromDoneTask> param;' #txt
 Bk4 f104 requestMappingAction 'param.caseData=in.caseSelected;
 param.isShowBackButton=true;
+param.isFromDoneTask=false;
 ' #txt
 Bk4 f104 responseActionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 ' #txt
