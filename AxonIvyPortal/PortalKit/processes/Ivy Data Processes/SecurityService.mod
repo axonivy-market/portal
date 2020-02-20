@@ -65,10 +65,10 @@ Pt0 @PushWFArc f52 '' #zField
 Pt0 @PushWFArc f53 '' #zField
 Pt0 @PushWFArc f54 '' #zField
 >Proto Pt0 Pt0 SecurityService #zField
-Pt0 f0 inParamDecl '<String username,String query,Integer startIndex,Integer count,java.util.List<String> hasRoleNames> param;' #txt
+Pt0 f0 inParamDecl '<String username,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles> param;' #txt
 Pt0 f0 inParamTable 'out.count=param.count;
+out.fromRoles=param.fromRoles;
 out.query=param.query;
-out.roleNames=param.hasRoleNames;
 out.startIndex=param.startIndex;
 out.username=param.username;
 ' #txt
@@ -84,7 +84,7 @@ Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f0 81 81 30 30 -87 22 #rect
+Pt0 f0 80 80 32 32 -87 22 #rect
 Pt0 f0 @|StartSubIcon #fIcon
 Pt0 f1 721 81 30 30 0 15 #rect
 Pt0 f1 @|EndSubIcon #fIcon
@@ -126,7 +126,7 @@ Pt0 f20 actionTable 'out=in;
 Pt0 f20 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
 
-IvySecurityResultDTO dto = SecurityService.newInstance().findUsers(in.query, in.apps, in.startIndex, in.count, in.roleNames);
+IvySecurityResultDTO dto = SecurityService.newInstance().findUsers(in.query, in.apps, in.startIndex, in.count, in.fromRoles);
 out.users = dto.users;
 out.errors = dto.errors;
 ' #txt
@@ -144,7 +144,7 @@ Pt0 f26 336 96 384 96 #arcP
 Pt0 f27 expr out #txt
 Pt0 f27 496 96 544 96 #arcP
 Pt0 f2 expr out #txt
-Pt0 f2 111 96 160 96 #arcP
+Pt0 f2 112 96 160 96 #arcP
 Pt0 f3 expr out #txt
 Pt0 f3 656 96 721 96 #arcP
 Pt0 f4 inParamDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count> param;' #txt
@@ -293,11 +293,11 @@ Pt0 f22 expr out #txt
 Pt0 f22 520 480 552 480 #arcP
 Pt0 f15 expr out #txt
 Pt0 f15 111 480 168 480 #arcP
-Pt0 f19 inParamDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count,java.util.List<String> hasRoleNames> param;' #txt
+Pt0 f19 inParamDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles> param;' #txt
 Pt0 f19 inParamTable 'out.application=param.application;
 out.count=param.count;
+out.fromRoles=param.fromRoles;
 out.query=param.query;
-out.roleNames=param.hasRoleNames;
 out.startIndex=param.startIndex;
 ' #txt
 Pt0 f19 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> users> result;' #txt
@@ -319,7 +319,7 @@ Pt0 f25 actionTable 'out=in;
 Pt0 f25 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
 
-IvySecurityResultDTO dto = SecurityService.newInstance().findUsers(in.query, in.application, in.startIndex, in.count, in.roleNames);
+IvySecurityResultDTO dto = SecurityService.newInstance().findUsers(in.query, in.application, in.startIndex, in.count, in.fromRoles);
 out.users = dto.users;
 out.errors = dto.errors;
 ' #txt

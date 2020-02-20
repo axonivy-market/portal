@@ -25,7 +25,7 @@ public class UserSelectionBean {
   
   public List<UserDTO> completeUser(String query) {
     int maxResults = Attrs.currentContext().getAttribute("#{cc.attrs.maxResults}", Integer.class);
-    List<String> roleNames = Attrs.currentContext().getAttribute("#{cc.attrs.hasRoleNames}", List.class);
+    List<String> roleNames = Attrs.currentContext().getAttribute("#{cc.attrs.fromRoleNames}", List.class);
     return UserUtils.findUsers(query, 0, maxResults + 1, roleNames);
   }
   
