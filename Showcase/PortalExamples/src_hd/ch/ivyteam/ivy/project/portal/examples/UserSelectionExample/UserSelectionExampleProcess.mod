@@ -56,7 +56,7 @@ import java.util.Arrays;
 
 in.definedRoleNames = Arrays.asList("CostObject", "GeneralManager");
 in.selectedUserForReadOnlyField = new UserDTO(ivy.wf.getSecurityContext().findUser("costObject1"));
-' #txt
+in.excludedUsernames= Arrays.asList("gm2");' #txt
 Us0 f6 security system #txt
 Us0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
