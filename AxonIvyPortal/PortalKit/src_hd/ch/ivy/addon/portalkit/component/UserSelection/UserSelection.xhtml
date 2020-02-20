@@ -12,7 +12,8 @@
   <cc:attribute name="fromRoleNames" type="java.util.List" />
   <cc:attribute name="componentId" default="user-selection" />
   <cc:attribute name="selectedUser" type="ch.ivy.addon.portalkit.dto.UserDTO" required="true" />
-  <cc:attribute name="excludedUsernames" type="java.util.List" />
+  <cc:attribute name="excludedUsernames" type="java.util.List" 
+    shortDescription="Users will be excluded from user selection. Do not use if don't use default completeMethod"/>
   <cc:attribute name="requiredMessage" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
   <cc:attribute name="forceSelection" default="true" />
   <cc:attribute name="minQueryLength" default="1" />
