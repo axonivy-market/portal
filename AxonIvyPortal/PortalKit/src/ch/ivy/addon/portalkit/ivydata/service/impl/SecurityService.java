@@ -221,7 +221,11 @@ public class SecurityService implements ISecurityService {
   
   private List<UserDTO> queryUsers(String query, IApplication app, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
     query = "%"+ StringUtils.defaultString(query, StringUtils.EMPTY) +"%";
-    IFilterQuery filterQuery = UserQuery.create().where();
+    UserQuery userQuery = UserQuery.create();
+    IFilterQuery filterQuery = userQuery.where();
+    filterQuery.fullName().isLikeIgnoreCase(query)
+      .or().name().isLikeIgnoreCase(query)
+      .andOverall().applicationId().isEqual(app.getId());
     if (CollectionUtils.isNotEmpty(fromRoles)) {
       UserQuery hasRolesQuery = queryHasRoles(app, fromRoles);
       filterQuery.andOverall(hasRolesQuery);
@@ -230,10 +234,7 @@ public class SecurityService implements ISecurityService {
       UserQuery excludeUsernameQuery = queryExcludeUsernames(excludedUsernames);
       filterQuery.andOverall(excludeUsernameQuery);
     }
-    List<IUser> users = filterQuery
-        .fullName().isLikeIgnoreCase(query)
-        .or().name().isLikeIgnoreCase(query)
-        .andOverall().applicationId().isEqual(app.getId())
+    List<IUser> users = userQuery
         .orderBy().fullName().name()
         .executor().results(startIndex, count);
     return users.stream().map(UserDTO::new).collect(Collectors.toList());
