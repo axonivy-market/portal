@@ -12,10 +12,12 @@
 
 <cc:implementation>
   <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="#{cc.attrs.componentId}"
-    taskFilter="#{cc.attrs.filter}" selectedFilters="#{cc.attrs.selectedFilters}" resultContainerUpdated="#{cc.attrs.resultContainerUpdated}"
+    taskFilter="#{cc.attrs.filter}" selectedFilters="#{cc.attrs.selectedFilters}"
+    resultContainerUpdated="#{cc.attrs.resultContainerUpdated}"
     dataModel="#{cc.attrs.dataModel}" dismissableOverlayPanel="false">
     <ic:ch.ivy.addon.portalkit.component.UserSelection id="worker-component" componentId="worker-select"
-      selectedUser="#{cc.attrs.filter.selectedWorker}" autoCompleteStyleClass="responsible-list-filter">
+      selectedUser="#{cc.attrs.filter.selectedWorker}" size="35"
+      autoCompleteStyleClass="responsible-list-filter">
       <p:column>
         <i class="fa fa-user u-mar-right-5" />
         <h:outputText value="#{cc.attrs.filter.formatName(user)}" />
