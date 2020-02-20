@@ -883,7 +883,9 @@ body .fieldset-no-border {
 }
 
 .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer,
-.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer {
+.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer,
+.task-widget .filter-add-panel .ui-overlaypanel-footer,
+.case-widget-container .filter-add-panel .ui-overlaypanel-footer {
   border-top: solid 1px $widgetAdvancedFilterOverlayPanelFooter;
 }
 
