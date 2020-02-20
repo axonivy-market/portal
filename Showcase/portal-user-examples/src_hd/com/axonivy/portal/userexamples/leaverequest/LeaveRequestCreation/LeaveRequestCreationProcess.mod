@@ -77,7 +77,7 @@ if(StringUtils.isEmpty(in.leaveRequestData.requesterUsername)) {
 
 in.requester = new UserDTO(ivy.session.getSecurityContext().findUser(in.leaveRequestData.getRequesterUsername()));
 in.leaveTypes = LeaveType.class.getEnumConstants();
-in.approvers = UserUtils.findUsers("", 0, -1, []);' #txt
+in.approvers = UserUtils.findUsers("", 0, -1, [], []);' #txt
 Ls0 f6 security system #txt
 Ls0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
