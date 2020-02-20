@@ -7,6 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.dto.UserDTO;
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -23,7 +24,7 @@ public class CaseCreatorFilter extends CaseFilter {
 
   @Override
   public String value() {
-    if (getSelectedCreator() == null) {
+    if (getSelectedCreatorMemberName() == null) {
       return ALL;
     }
     return String.format(DOUBLE_QUOTES, formatName(selectedCreator));
@@ -60,7 +61,18 @@ public class CaseCreatorFilter extends CaseFilter {
     this.selectedCreatorMemberName = Optional.ofNullable(selectedCreator).map(UserDTO::getName).orElse(StringUtils.EMPTY);
   }
 
+  /**
+   * Check selectedCreatorMemberName which is saved on BusinessData
+   * Then find correspond UserDTO of selectedCreatorMemberName
+   * @return Member name of UserDTO
+   */
   public String getSelectedCreatorMemberName() {
+    if (StringUtils.isEmpty(selectedCreatorMemberName)) {
+      setSelectedCreator(null);
+      return null;
+    } else if (selectedCreator == null || !StringUtils.equals(selectedCreatorMemberName, selectedCreator.getName())) {
+      setSelectedCreator(ServiceUtilities.findUserDTO(selectedCreatorMemberName, Ivy.wf().getApplication()));
+    }
     return selectedCreatorMemberName;
   }
 

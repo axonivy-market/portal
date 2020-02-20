@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" shortDescription="Task" type="ch.ivyteam.ivy.workflow.ITask" />
@@ -9,7 +9,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <p:remoteCommand name="initDataToDelegate" actionListener="#{logic.initDataToDelegate(cc.attrs.task)}" global="false"/>
+  <p:remoteCommand name="initDataToDelegate" actionListener="#{logic.initDataToDelegate(cc.attrs.task)}" global="false" oncomplete="PF('task-delegate-dialog').show()"/>
 
   <p:dialog id="task-delegate-dialog" closeOnEscape="true" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
     widgetVar="task-delegate-dialog" dynamic="true" modal="true" showEffect="fade" hideEffect="fade" resizable="false" appendTo="@(body)"
