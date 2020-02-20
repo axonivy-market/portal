@@ -134,7 +134,7 @@ public class HistoryService {
     history.setTaskState(task.getState());
     history.setInvolvedUsername(task.getWorkerUserName());
     history.setInvolvedFullname(task.getWorkerFullName());
-    history.setTimestamp(task.getStartTimestamp());
+    history.setTimestamp(task.getEndTimestamp());
     history.setType(HistoryType.TASK);
     return history;
   }
