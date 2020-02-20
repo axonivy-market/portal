@@ -288,10 +288,11 @@ You can include this component to any page. Below is an example code for 2 label
       <ic:ch.ivy.addon.portalkit.component.UserSelection 
             componentId="all-user-autocomplete"
             hightlight="false" selectedUser="#{data.selectedUser}"
-            label="Loading with all users"
+            label="Loading with all users (exclude gm2)"
             labelPanelStyleClass="ui-g-3 ui-xl-2 ui-md-4 ui-sm-12"
             autoCompleteStyleClass="width-100"
             autoCompletePanelStyleClass="ui-g-5 ui-md-4 ui-sm-12 margin-top-40"
+            excludedUsernames="#{data.excludedUsernames}"
             isRequired="true" floatingLabel="true" />
 
 Please refer to ``UserSelectionExample.xhtml`` in ``PortalExamples`` for more details.
