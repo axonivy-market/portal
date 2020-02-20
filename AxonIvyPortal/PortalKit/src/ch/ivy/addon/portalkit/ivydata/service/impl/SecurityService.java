@@ -37,7 +37,7 @@ public class SecurityService implements ISecurityService {
   }
 
   @Override
-  public IvySecurityResultDTO findUsers(String query, List<String> apps, int startIndex, int count, List<String> roleNames) {
+  public IvySecurityResultDTO findUsers(String query, List<String> apps, int startIndex, int count, List<String> fromRoles) {
     return IvyExecutor.executeAsSystem(() -> { 
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       if (CollectionUtils.isEmpty(apps)) {
@@ -48,7 +48,7 @@ public class SecurityService implements ISecurityService {
       for (String appName : apps) {
         try {
           IApplication app = ServiceUtilities.findApp(appName);
-          users.addAll(CollectionUtils.isEmpty(roleNames) ? queryUsers(query, app, startIndex, count) : queryUsers(query, app, startIndex, count, roleNames));
+          users.addAll(CollectionUtils.isEmpty(fromRoles) ? queryUsers(query, app, startIndex, count) : queryUsers(query, app, startIndex, count, fromRoles));
         } catch (PortalIvyDataException e) {
           errors.add(e);
         } catch (Exception ex) {
@@ -62,7 +62,7 @@ public class SecurityService implements ISecurityService {
   }
 
   @Override
-  public IvySecurityResultDTO findUsers(String query, IApplication app, int startIndex, int count, List<String> roleNames) {
+  public IvySecurityResultDTO findUsers(String query, IApplication app, int startIndex, int count, List<String> fromRoles) {
     return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       List<PortalIvyDataException> errors = new ArrayList<>();
@@ -72,7 +72,7 @@ public class SecurityService implements ISecurityService {
       }
 
       try {
-        List<UserDTO> userDTOs = CollectionUtils.isEmpty(roleNames) ? queryUsers(query, app, startIndex, count) : queryUsers(query, app, startIndex, count, roleNames);
+        List<UserDTO> userDTOs = CollectionUtils.isEmpty(fromRoles) ? queryUsers(query, app, startIndex, count) : queryUsers(query, app, startIndex, count, fromRoles);
         result.setUsers(userDTOs);
       } catch (Exception ex) {
         Ivy.log().error("Error in getting users within app {0}", ex, app.getName());
@@ -220,7 +220,7 @@ public class SecurityService implements ISecurityService {
   }
   
   private List<UserDTO> queryUsers(String query, IApplication app, int startIndex, int count) {
-    query = "%"+ query +"%";
+    query = "%"+ StringUtils.defaultString(query, StringUtils.EMPTY) +"%";
     List<IUser> users = UserQuery.create().where()
         .fullName().isLikeIgnoreCase(query)
         .or().name().isLikeIgnoreCase(query)
@@ -230,9 +230,9 @@ public class SecurityService implements ISecurityService {
     return users.stream().map(UserDTO::new).collect(Collectors.toList());
   }
   
-  private List<UserDTO> queryUsers(String query, IApplication app, int startIndex, int count, List<String> roleNames) {
-    UserQuery hasRolesQuery = queryHasRoles(app, roleNames);
-    query = "%"+ query +"%";
+  private List<UserDTO> queryUsers(String query, IApplication app, int startIndex, int count, List<String> fromRoles) {
+    UserQuery hasRolesQuery = queryHasRoles(app, fromRoles);
+    query = "%"+ StringUtils.defaultString(query, StringUtils.EMPTY) +"%";
     List<IUser> users = UserQuery.create().where()
         .fullName().isLikeIgnoreCase(query)
         .or().name().isLikeIgnoreCase(query)
@@ -243,8 +243,8 @@ public class SecurityService implements ISecurityService {
     return users.stream().map(UserDTO::new).collect(Collectors.toList());
   }
 
-  private UserQuery queryHasRoles(IApplication app, List<String> roleNames) {
-    List<IRole> roles = roleNames.stream().map(roleName -> app.getSecurityContext().findRole(roleName)).collect(Collectors.toList());
+  private UserQuery queryHasRoles(IApplication app, List<String> fromRoles) {
+    List<IRole> roles = fromRoles.stream().map(roleName -> app.getSecurityContext().findRole(roleName)).collect(Collectors.toList());
     UserQuery hasRolesQuery = UserQuery.create();
     IFilterQuery hasRolesFilter = hasRolesQuery.where();
     for (IRole role : roles) {
