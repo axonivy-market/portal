@@ -7,16 +7,18 @@ public class SubstituteNode {
 
   private String name;
   private IvySubstitute substitute;
+  private String applicationName;
   private boolean isLeaf;
 
   public SubstituteNode() {
     this.substitute = new IvySubstitute();
   }
 
-  public SubstituteNode(String name, IvySubstitute substitute, boolean isLeaf) {
+  public SubstituteNode(String name, IvySubstitute substitute, boolean isLeaf, String applicationName) {
     this.name = name;
     this.substitute = substitute;
     this.isLeaf = isLeaf;
+    this.applicationName = applicationName;
   }
 
   public String getName() {
@@ -41,6 +43,14 @@ public class SubstituteNode {
 
   public void setLeaf(boolean isLeaf) {
     this.isLeaf = isLeaf;
+  }
+  
+  public String getApplicationName() {
+    return applicationName;
+  }
+  
+  public void setApplicationName(String applicationName) {
+    this.applicationName = applicationName;
   }
 
   public UserDTO getSubstituteUser() {

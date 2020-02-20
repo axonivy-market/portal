@@ -141,7 +141,18 @@ As0 @UdMethod f40 '' #zField
 As0 @CallSub f41 '' #zField
 As0 @PushWFArc f42 '' #zField
 As0 @UdProcessEnd f43 '' #zField
+As0 @UdMethod f47 '' #zField
+As0 @CallSub f50 '' #zField
+As0 @GridStep f94 '' #zField
+As0 @PushWFArc f95 '' #zField
+As0 @PushWFArc f92 '' #zField
+As0 @GridStep f97 '' #zField
+As0 @Alternative f98 '' #zField
+As0 @PushWFArc f99 '' #zField
 As0 @PushWFArc f45 '' #zField
+As0 @PushWFArc f108 '' #zField
+As0 @PushWFArc f129 '' #zField
+As0 @PushWFArc f48 '' #zField
 >Proto As0 As0 AbsencesAndDeputyProcess #zField
 As0 f0 guid 1679C986E063D36E #txt
 As0 f0 method start() #txt
@@ -1214,7 +1225,9 @@ As0 f40 method completeUserForAbsence(String) #txt
 As0 f40 inParameterDecl '<String query> param;' #txt
 As0 f40 inParameterMapAction 'out.queryAutoComplete=param.query;
 ' #txt
-As0 f40 outParameterDecl '<> result;' #txt
+As0 f40 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> users> result;' #txt
+As0 f40 outParameterMapAction 'result.users=in.users;
+' #txt
 As0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1232,6 +1245,8 @@ param.startIndex=0;
 param.count=ch.ivy.addon.portalkit.constant.PortalConstants.MAX_USERS_IN_AUTOCOMPLETE;
 ' #txt
 As0 f41 responseMappingAction 'out=in;
+out.errors=result.errors;
+out.users=result.users;
 ' #txt
 As0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1243,9 +1258,104 @@ As0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f41 192 1450 192 44 -93 -8 #rect
 As0 f41 @|CallSubIcon #fIcon
 As0 f42 109 1472 192 1472 #arcP
-As0 f43 435 1459 26 26 0 12 #rect
+As0 f43 819 1459 26 26 0 12 #rect
 As0 f43 @|UdProcessEndIcon #fIcon
-As0 f45 384 1472 435 1472 #arcP
+As0 f47 guid 1705CD9446F346A5 #txt
+As0 f47 method completeUserForDeputy(String) #txt
+As0 f47 inParameterDecl '<String query> param;' #txt
+As0 f47 inParameterMapAction 'out.queryAutoComplete=param.query;
+' #txt
+As0 f47 outParameterDecl '<java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> users> result;' #txt
+As0 f47 outParameterMapAction 'result.users=in.users;
+' #txt
+As0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>completeUserForDeputy(String)</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f47 83 1555 26 26 -48 15 #rect
+As0 f47 @|UdMethodIcon #fIcon
+As0 f50 processCall 'Ivy Data Processes/SecurityService:findUsers(ch.ivyteam.ivy.application.IApplication,String,Integer,Integer,java.util.List<String>)' #txt
+As0 f50 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count,java.util.List<String> hasRoleNames> param;' #txt
+As0 f50 requestMappingAction 'param.application=in.application;
+param.query=in.queryAutoComplete;
+param.startIndex=0;
+param.count=ch.ivy.addon.portalkit.constant.PortalConstants.MAX_USERS_IN_AUTOCOMPLETE;
+' #txt
+As0 f50 responseMappingAction 'out=in;
+out.errors=result.errors;
+out.users=in.users.addAll(result.users);
+' #txt
+As0 f50 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Ivy Data Processes/SecurityService</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f50 320 1546 192 44 -93 -8 #rect
+As0 f50 @|CallSubIcon #fIcon
+As0 f94 actionTable 'out=in;
+' #txt
+As0 f94 actionCode 'import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivy.addon.portalkit.bo.SubstituteNode;
+import ch.ivy.addon.portalkit.jsf.Attrs;
+
+SubstituteNode substituteNode = Attrs.currentContext().get("substituteNode") as SubstituteNode;
+out.application = ServiceUtilities.findApp(substituteNode.getApplicationName());
+out.users.clear();
+out.users.add(null);
+' #txt
+As0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Get application&#13;
+and add no deputy</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f94 160 1546 128 44 -43 -16 #rect
+As0 f94 @|StepIcon #fIcon
+As0 f95 109 1568 160 1568 #arcP
+As0 f92 288 1568 320 1568 #arcP
+As0 f97 actionTable 'out=in;
+' #txt
+As0 f97 actionCode 'import ch.ivy.addon.portalkit.util.BeanUtils;
+
+BeanUtils.invokeBeanMethodViaMethodExpression("#{errorDisplayBean.displayErrors}", in.errors);' #txt
+As0 f97 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Display errors &#xD;
+if have</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f97 664 1546 128 44 -40 -16 #rect
+As0 f97 @|StepIcon #fIcon
+As0 f98 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>successful?</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f98 560 1456 32 32 -32 -30 #rect
+As0 f98 @|AlternativeIcon #fIcon
+As0 f99 384 1472 560 1472 #arcP
+As0 f45 expr in #txt
+As0 f45 outCond in.errors.isEmpty() #txt
+As0 f45 592 1472 819 1472 #arcP
+As0 f108 expr in #txt
+As0 f108 576 1488 664 1568 #arcP
+As0 f108 1 576 1568 #addKink
+As0 f108 1 0.20519735823436736 0 0 #arcLabel
+As0 f129 416 1546 565 1477 #arcP
+As0 f48 792 1568 832 1485 #arcP
+As0 f48 1 832 1568 #addKink
+As0 f48 0 0.9165811121604647 0 0 #arcLabel
 >Proto As0 .type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1401,5 +1511,17 @@ As0 f62 mainOut f34 tail #connect
 As0 f34 head f68 in #connect
 As0 f40 mainOut f42 tail #connect
 As0 f42 head f41 mainIn #connect
-As0 f41 mainOut f45 tail #connect
+As0 f47 mainOut f95 tail #connect
+As0 f95 head f94 mainIn #connect
+As0 f94 mainOut f92 tail #connect
+As0 f92 head f50 mainIn #connect
+As0 f41 mainOut f99 tail #connect
+As0 f99 head f98 in #connect
+As0 f98 out f45 tail #connect
 As0 f45 head f43 mainIn #connect
+As0 f98 out f108 tail #connect
+As0 f108 head f97 mainIn #connect
+As0 f50 mainOut f129 tail #connect
+As0 f129 head f98 in #connect
+As0 f97 mainOut f48 tail #connect
+As0 f48 head f43 mainIn #connect
