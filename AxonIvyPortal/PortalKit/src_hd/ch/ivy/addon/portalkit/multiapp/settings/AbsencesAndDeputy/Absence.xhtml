@@ -14,10 +14,12 @@
         scrollHeight="200"
         isDisabled="#{uneditedUserName ne 'false'}" isRequired="true"
         completeMethod="#{logic.completeUserForAbsence}"
-        formatToDisplay="#{userFormatBean.formatWithTip(user.displayName, user.name)}"
         requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/userNameRequired')}"
         label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}" floatingLabel="true"
         autoCompleteStyleClass="absence-user-selection">
+        <p:column>
+          <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.name)}"/>
+        </p:column>
         <f:facet name="event">
           <p:ajax event="itemSelect" listener="#{logic.userSelectInAbsence}" update="#{updateComponent}" />
         </f:facet>
