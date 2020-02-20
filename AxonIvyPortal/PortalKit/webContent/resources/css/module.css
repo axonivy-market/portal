@@ -2791,7 +2791,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 @media screen and (max-width: 40em) {
   .applications-email-setting-dialog {
-    top: 100px !important;
     min-width: 300px;
     height: 365px;
     margin-left: 10px;
