@@ -19,16 +19,17 @@ Ps0 @UdExitEnd f4 '' #zField
 Ps0 @PushWFArc f5 '' #zField
 >Proto Ps0 Ps0 PortalCaseDetailsProcess #zField
 Ps0 f0 guid 16BBB5AA8B6BE5B7 #txt
-Ps0 f0 method start(ch.ivyteam.ivy.workflow.ICase,Boolean) #txt
-Ps0 f0 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase caseInfo,Boolean isShowBackButton> param;' #txt
+Ps0 f0 method start(ch.ivyteam.ivy.workflow.ICase,Boolean,Boolean) #txt
+Ps0 f0 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase caseInfo,Boolean isShowBackButton,Boolean isFromDoneTask> param;' #txt
 Ps0 f0 inParameterMapAction 'out.caseInfo=param.caseInfo;
+out.isFromDoneTask=param.isFromDoneTask;
 out.isShowBackButton=param.isShowBackButton;
 ' #txt
 Ps0 f0 outParameterDecl '<> result;' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(ICase,Boolean)</name>
+        <name>start(ICase,Boolean,Boolean)</name>
     </language>
 </elementInfo>
 ' #txt

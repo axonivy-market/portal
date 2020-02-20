@@ -76,69 +76,73 @@ public class AdminSettingsPage extends TemplatePage {
   public void closeInformConfigDialog() {
     WebElement closeButton = findElementById("close-dialog-button");
     closeButton.click();
+    waitAjaxIndicatorDisappear();
   }
 
   public void setClientSideTimeout(String timeout) {
     openSettingTab();
     editGlobalVariable("CLIENT_SIDE_TIMEOUT", timeout, false);
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
+
+	private void closeConfirmationDialog() {
+		closeAdminSettingDialog();
+    closeInformConfigDialog();
+	}
 
   public void setChatGroup() {
     openSettingTab();
     editGlobalVariable("ENABLE_GROUP_CHAT", "true", true);
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
+  
+  public void setEnviromentInfo() {
+    openSettingTab();
+    editGlobalVariable("SHOW_ENVIRONMENT_INFO", "true", true);
+    closeConfirmationDialog();
+  }
+  
 
   public void setChatPrivate() {
     openSettingTab();
     editGlobalVariable("ENABLE_PRIVATE_CHAT", "true", true);
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
 
   public void setEnableScriptCheckingGlobalVariable() {
     openSettingTab();
     editGlobalVariable("ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT", "true", true);
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
 
   public void setDisableScriptCheckingGlobalVariable() {
     openSettingTab();
     editGlobalVariable("ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT", "false", true);
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
 
   public void setFileExtensionWhiteList() {
     openSettingTab();
     editGlobalVariable("UPLOAD_DOCUMENT_WHITELIST_EXTENSION", ", abc, pdf, doc", false);
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
 
   public void setHideUploadDocumentForDoneCase() {
     openSettingTab();
     editGlobalVariable("HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE", "true", true);
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
 
   public void setDisabledTaskCount() {
     openSettingTab();
     editGlobalVariable("DISABLE_TASK_COUNT", "true", true);
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
   
   public void setDisabledCaseCount() {
     openSettingTab();
     editGlobalVariable("DISABLE_CASE_COUNT", "true", true);
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
 
   public boolean isWarningDialogShowWhenTimeoutIsLosing() {
