@@ -2405,6 +2405,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   .settings-table-action-buttons, .app-icon {
     text-align: left !important;
   }
+  .settings-table-action-buttons .action-column-icon-button:first-of-type {
+    margin-left: 0;
+  }
+
   .dialog-closing-information, .admin-ui-dialog, .app-dialog, .select-icon-dialog, .application-selection-dialog,
   .setting-dialog, .project-info-dialog, .change-password-dialog, .language-setting-dialog, .deputy-dialog,
   .absence-settings-dialog, .add-new-absence-dialog {
@@ -2502,7 +2506,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .settings-table-action-buttons {
-  width: 140px !important;
+  width: 140px;
 }
 
 .global-setting-table .setting-key {
@@ -3517,6 +3521,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .project-version-container {
   max-height: 80vh;
   overflow: auto;
+}
+
+.project-version-container .project-version-table.ui-datatable-reflow .ui-column-title {
+  width: 120px;
 }
 
 /*********** Styles for ui-inplace ***********/
