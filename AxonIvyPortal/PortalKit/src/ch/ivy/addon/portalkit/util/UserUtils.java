@@ -183,9 +183,10 @@ public class UserUtils {
    * @param startIndex 0..n. The index of the first record is 0
    * @param count 0..n. Use -1 to return all beginning from the startIndex
    * @param fromRoles
+   * @param excludedUsers
    */
   @SuppressWarnings("unchecked")
-  public static List<UserDTO> findUsers(String query, int startIndex, int  count, List<String> fromRoles) {
+  public static List<UserDTO> findUsers(String query, int startIndex, int  count, List<String> fromRoles, List<String> excludedUsernames) {
     return IvyExecutor.executeAsSystem(() -> {
       if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
         List<UserDTO> users = SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
@@ -195,6 +196,7 @@ public class UserUtils {
             .withParam("startIndex", startIndex)
             .withParam("count", count)
             .withParam("fromRoles", fromRoles)
+            .withParam("excludedUsernames", excludedUsernames)
             .call()
             .get("users", List.class);
         return users.stream()
@@ -208,6 +210,7 @@ public class UserUtils {
           .withParam("startIndex", startIndex)
           .withParam("count", count)
           .withParam("fromRoles", fromRoles)
+          .withParam("excludedUsernames", excludedUsernames)
           .call()
           .get("users", List.class);
     });

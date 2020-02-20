@@ -12,3 +12,4 @@ securityMembers java.util.List<ch.ivy.addon.portalkit.dto.SecurityMemberDTO> #fi
 startIndex Integer #field
 username String #field
 users java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> #field
+excludedUsernames java.util.List<String> #field
