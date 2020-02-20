@@ -13,41 +13,9 @@
 
     <ui:define name="simplePageContent">
       <ic:ch.ivy.addon.portalkit.component.TaskAnalysisWidget id="task-widget" keyword="#{taskView.dataModel.criteria.keyword}"
-        hideTaskFilter="#{taskView.hideTaskFilter}" dataModel="#{taskView.dataModel}" filterGroupId="#{filterGroupId}"
-        showHeaderToolbar="#{taskView.showHeaderToolbar}" selectedTaskId="#{taskView.taskId}"
-        noTaskFoundMessage="#{taskView.noTaskFoundMessage}" hideWidgetHeader="#{hideWidgetHeader}" chunkSize="#{taskView.chunkSize}">
-  
-          <f:facet name="taskListHeader">
-          </f:facet>
-  
-          <f:facet name="taskHeader">
-            <ui:fragment rendered="#{useOverrideHeader}">
-              <ui:insert name="taskHeader">
-              </ui:insert>
-            </ui:fragment>
-  
-            <ui:fragment rendered="#{not useOverrideHeader}">
-              <ic:ch.ivy.addon.portalkit.component.task.column.TaskPriority id="task-priority-component"
-                priority="#{task.priority}" dataModel="#{taskView.dataModel}" />
-              <div class="task-start-info">
-                <ic:ch.ivy.addon.portalkit.component.task.column.TaskName id="task-name-component" task="#{task}" dataModel="#{taskView.dataModel}"
-                  isSelected="#{taskView.taskId eq task.getId()}" />
-              </div>
-              <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component" dataModel="#{taskView.dataModel}"
-                userName="#{task.getActivatorName()}" fullName="#{task.getActivator().getDisplayName()}" styleClass="activatior-column #{taskView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" />
-              <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.getId()}" dataModel="#{taskView.dataModel}" />
-              <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component" rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}"
-                componentId="creation-time" value="#{task.startTimestamp}" />
-              <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-expiry-date-component" rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}"
-                componentId="expiry-time" value="#{task.expiryTimestamp}" />
-              <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component" dataModel="#{taskView.dataModel}"
-                state="#{task.state}" />
-            </ui:fragment>
-          </f:facet>
-
-          <f:facet name="taskFilter">
-          </f:facet>
-        </ic:ch.ivy.addon.portalkit.component.TaskAnalysisWidget>
+         hideTaskFilter="#{taskView.hideTaskFilter}" dataModel="#{taskView.dataModel}" filterGroupId="#{filterGroupId}"
+         chunkSize="#{taskView.chunkSize}">
+      </ic:ch.ivy.addon.portalkit.component.TaskAnalysisWidget>
     </ui:define>
   </ui:composition>
 </h:body>
