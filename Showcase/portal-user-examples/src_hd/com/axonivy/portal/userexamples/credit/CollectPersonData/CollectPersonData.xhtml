@@ -82,7 +82,7 @@
           </h:panelGrid>
         </h:panelGroup>
 
-        <p:commandButton actionListener="#{logic.close}" value="#{ivy.cms.co('/Labels/CaseMap/Credit/submitRequest')}" update="form" icon="ui-icon-check" styleClass="Fright  "/>
+        <p:commandButton id="submit-request" actionListener="#{logic.close}" value="#{ivy.cms.co('/Labels/CaseMap/Credit/submitRequest')}" update="form" icon="fa fa-send-o" styleClass="Fright"/>
       </h:form>
 
     </ui:define>
