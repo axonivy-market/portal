@@ -509,7 +509,7 @@ public class TaskWidgetPage extends TemplatePage {
 
 	public void startTaskWithoutUI(int index) {
 		waitTaskAppearThenClick(index);
-		new HomePage().isDisplayed();
+		waitAjaxIndicatorDisappear();
 	}
 
 	private void waitTaskAppearThenClick(int index) {
