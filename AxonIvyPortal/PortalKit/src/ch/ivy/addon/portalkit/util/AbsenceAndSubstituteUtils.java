@@ -44,21 +44,21 @@ public final class AbsenceAndSubstituteUtils {
     for (Map.Entry<IvyApplication,List<IvySubstitute>> entry : ivySubtitutesByApp.entrySet()) {
       IvyApplication ivyApplication = entry.getKey();
       TreeNode appNode =
-          new DefaultTreeNode(new SubstituteNode(ivyApplication.getDisplayName(), null, false), substituteRoot);
+          new DefaultTreeNode(new SubstituteNode(ivyApplication.getDisplayName(), null, false, ivyApplication.getName()), substituteRoot);
       appNode.setExpanded(true);
 
-      for (IvySubstitute ivySubstitute : entry.getValue()) {
-        createSubstituteNode(substitutedUser, appNode, ivySubstitute);
+      for (int i = 0; i < entry.getValue().size(); i++) {
+        createSubstituteNode(substitutedUser, appNode, entry.getValue().get(i), ivyApplication.getName()).setRowKey("node_" + i);
       }
     }
     return substituteRoot;
   }
 
-  private static DefaultTreeNode createSubstituteNode(UserDTO substitutedUser, TreeNode appNode, IvySubstitute ivySubstitute) {
+  private static DefaultTreeNode createSubstituteNode(UserDTO substitutedUser, TreeNode appNode, IvySubstitute ivySubstitute, String applicationName) {
     String nodeName = ivySubstitute.getSubstitionRoleDisplayName();
     String name = StringUtils.isNotBlank(nodeName) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/taskForRole") + nodeName : Ivy.cms().co(
         "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTask");
-    return new DefaultTreeNode(new SubstituteNode(name, ivySubstitute, true), appNode);
+    return new DefaultTreeNode(new SubstituteNode(name, ivySubstitute, true, applicationName), appNode);
   }
 
   /**

@@ -25,6 +25,7 @@
     shortDescription="Display label with floating style and labelPanelStyleClass can't be applied if it’s enabled." />
   <cc:attribute name="autoCompleteStyleClass" shortDescription="Style class of user autocomplete." />
   <cc:attribute name="autoCompletePanelStyleClass" shortDescription="Style class of user autocomplete panel." />
+  <cc:attribute name="inputStyleClass" shortDescription="Style class of user autocomplete input." />
   <cc:attribute name="labelPanelStyleClass" shortDescription="Style class of label panel." />
   <cc:attribute name="labelStyleClass" shortDescription="Style class of label." />
   <cc:attribute name="messageStyleClass" shortDescription="Style class of message."/>
@@ -53,7 +54,7 @@
         minQueryLength="#{cc.attrs.minQueryLength}" styleClass="#{cc.attrs.autoCompleteStyleClass}"
         autoHighlight="#{cc.attrs.hightlight}" converter="pojoConverter" cache="true" dynamic="true" dropdown="true"
         disabled="#{cc.attrs.isDisabled}" readonly="#{cc.attrs.isReadOnly}" requiredMessage="#{cc.attrs.requiredMessage}"
-        moreText="#{cc.attrs.moreText}" queryDelay="#{cc.attrs.queryDelay}" maxResults="#{cc.attrs.maxResults}">
+        moreText="#{cc.attrs.moreText}" queryDelay="#{cc.attrs.queryDelay}" maxResults="#{cc.attrs.maxResults}" inputStyleClass="#{cc.attrs.inputStyleClass}">
         <cc:insertFacet name="event" />
         <cc:insertChildren />
       </p:autoComplete>

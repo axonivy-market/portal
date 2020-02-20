@@ -32,28 +32,20 @@
       </p:column>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/deputy')}"
         styleClass="substitute-deputy">
-        <p:autoComplete id="subsitute-username" value="#{substituteNode.substituteUser}"
-          rendered="#{substituteNode.isLeaf()}" completeMethod="#{substituteNode.autoCompleteUser}" var="user"
-          converter="pojoConverter" cache="true" dropdown="true" scrollHeight="200" maxResults="100"
-          itemLabel="#{not empty user ? user.displayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}" itemValue="#{user}"
-          onfocus="clearSubtitute(this, '#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}');"
-          onblur="updateSubtitute(this);"
-          onchange="updateSubtitute(this);"
-          moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
+        <ic:ch.ivy.addon.portalkit.component.UserSelection 
+          id="substitute-username-selection-component"
+          componentId="substitute-username"
+          completeMethod="#{logic.completeUserForDeputy}"
+          selectedUser="#{substituteNode.substituteUser}"
+          isRenderedMessage="false" rendered="#{substituteNode.isLeaf()}"
+          formatToDisplay="#{not empty user ? userFormatBean.formatWithTip(user.displayName, user.name) : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
+          inputStyleClass="js-substitute-input">
+          <f:attribute name="substituteNode" value="#{substituteNode}" />
           <p:column>
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}" rendered="#{empty user}" />
             <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.name)}" rendered="#{not empty user}" />
           </p:column>
-        </p:autoComplete>
-<!--         <ic:ch.ivy.addon.portalkit.component.UserSelection  -->
-<!--           id="subsitute-username-selection-component" -->
-<!--           componentId="subsitute-username" -->
-<!--           completeMethod="#{substituteNode.autoCompleteUser}" -->
-<!--           selectedUser="#{substitute.substituteUser}" -->
-<!--           scrollHeight="200" -->
-<!--           isRenderedMessage="false" -->
-<!--           formatToDisplay="#{not empty user ? userFormatBean.formatWithTip(user.displayName, user.name) : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"> -->
-<!--         </ic:ch.ivy.addon.portalkit.component.UserSelection> -->
+        </ic:ch.ivy.addon.portalkit.component.UserSelection>
       </p:column>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/comment')}"
         styleClass="substitute-comment">
@@ -63,22 +55,15 @@
     </p:treeTable>
   </h:panelGroup>
   <script type="text/javascript">
-    var defaultSubtituteName = "";
-    var selectedSubtituteName = "";
-    function clearSubtitute(target, defaultValue) {
-      selectedSubtituteName = target.value;
-      defaultSubtituteName = defaultValue;
-      if (target.defaultValue == defaultValue || target.value == defaultValue) { 
-        target.defaultValue = "";
-        target.value = "";
+    $('.js-substitute-input').focusout(function() {
+      if ($(this).val() === '') {
+        $(this).val("#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}");
       }
-    }
-
-    function updateSubtitute(target) {
-      if (target.value == "") {
-        selectedSubtituteName == "" ? target.value = defaultSubtituteName : target.value = selectedSubtituteName;
-      } 
-    }
+    }).focusin(function() {
+      if ($(this).val() === "#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}") {
+        $(this).val("");
+      }
+    })
   </script>
 </ui:composition>
 </html>
