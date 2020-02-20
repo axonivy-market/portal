@@ -65,8 +65,9 @@ Pt0 @PushWFArc f52 '' #zField
 Pt0 @PushWFArc f53 '' #zField
 Pt0 @PushWFArc f54 '' #zField
 >Proto Pt0 Pt0 SecurityService #zField
-Pt0 f0 inParamDecl '<String username,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles> param;' #txt
+Pt0 f0 inParamDecl '<String username,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
 Pt0 f0 inParamTable 'out.count=param.count;
+out.excludedUsernames=param.excludedUsernames;
 out.fromRoles=param.fromRoles;
 out.query=param.query;
 out.startIndex=param.startIndex;
@@ -76,11 +77,11 @@ Pt0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.Po
 Pt0 f0 outParamTable 'result.errors=in.errors;
 result.users=in.users;
 ' #txt
-Pt0 f0 callSignature findUsersOverAllApplications(String,String,Integer,Integer,java.util.List<String>) #txt
+Pt0 f0 callSignature findUsersOverAllApplications(String,String,Integer,Integer,java.util.List<String>,java.util.List<String>) #txt
 Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findUsersOverAllApplications(String,String,Integer,Integer,List&lt;String&gt;)</name>
+        <name>findUsersOverAllApplications(String,String,Integer,Integer,List&lt;String&gt;,List&lt;String&gt;)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -126,7 +127,7 @@ Pt0 f20 actionTable 'out=in;
 Pt0 f20 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
 
-IvySecurityResultDTO dto = SecurityService.newInstance().findUsers(in.query, in.apps, in.startIndex, in.count, in.fromRoles);
+IvySecurityResultDTO dto = SecurityService.newInstance().findUsers(in.query, in.apps, in.startIndex, in.count, in.fromRoles, in.excludedUsernames);
 out.users = dto.users;
 out.errors = dto.errors;
 ' #txt
@@ -293,9 +294,10 @@ Pt0 f22 expr out #txt
 Pt0 f22 520 480 552 480 #arcP
 Pt0 f15 expr out #txt
 Pt0 f15 111 480 168 480 #arcP
-Pt0 f19 inParamDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles> param;' #txt
+Pt0 f19 inParamDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
 Pt0 f19 inParamTable 'out.application=param.application;
 out.count=param.count;
+out.excludedUsernames=param.excludedUsernames;
 out.fromRoles=param.fromRoles;
 out.query=param.query;
 out.startIndex=param.startIndex;
@@ -304,11 +306,11 @@ Pt0 f19 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.P
 Pt0 f19 outParamTable 'result.errors=in.errors;
 result.users=in.users;
 ' #txt
-Pt0 f19 callSignature findUsers(ch.ivyteam.ivy.application.IApplication,String,Integer,Integer,java.util.List<String>) #txt
+Pt0 f19 callSignature findUsers(ch.ivyteam.ivy.application.IApplication,String,Integer,Integer,java.util.List<String>,java.util.List<String>) #txt
 Pt0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findUsers(IApplication,String,Integer,Integer,List&lt;String&gt;)</name>
+        <name>findUsers(IApplication,String,Integer,Integer,List&lt;String&gt;,List&lt;String&gt;)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -319,7 +321,7 @@ Pt0 f25 actionTable 'out=in;
 Pt0 f25 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
 
-IvySecurityResultDTO dto = SecurityService.newInstance().findUsers(in.query, in.application, in.startIndex, in.count, in.fromRoles);
+IvySecurityResultDTO dto = SecurityService.newInstance().findUsers(in.query, in.application, in.startIndex, in.count, in.fromRoles, in.excludedUsernames);
 out.users = dto.users;
 out.errors = dto.errors;
 ' #txt

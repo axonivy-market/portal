@@ -14,9 +14,10 @@ public interface ISecurityService {
    * @param startIndex 0..n. The index of the first record is 0
    * @param count 0..n. Use -1 to return all beginning from the startIndex
    * @param fromRoles
+   * @param excludedUsernames
    * @return {@link IvySecurityResultDTO}
    */
-  IvySecurityResultDTO findUsers(String query, List<String> apps, int startIndex, int count, List<String> fromRoles);
+  IvySecurityResultDTO findUsers(String query, List<String> apps, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames);
   
   /**
    * Finds the users who have the given roles and in the given application
@@ -25,9 +26,10 @@ public interface ISecurityService {
    * @param startIndex 0..n. The index of the first record is 0
    * @param count 0..n. Use -1 to return all beginning from the startIndex
    * @param fromRoles
+   * @param excludedUsernames
    * @return {@link IvySecurityResultDTO}
    */
-  IvySecurityResultDTO findUsers(String query, IApplication app, int startIndex, int count, List<String> fromRoles);
+  IvySecurityResultDTO findUsers(String query, IApplication app, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames);
   
   /**
    * Gets roles of the given application name
