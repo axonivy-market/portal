@@ -2418,6 +2418,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
 }
 
+.md-inputfield .absence-user-selection .ui-autocomplete-input.ui-inputfield {
+  width: 100%;
+}
+
 /********************************** ADMIN SETTING **********************************/
 .admin-ui-dialog {
   top: 25vh !important;
