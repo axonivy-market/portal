@@ -121,9 +121,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     List<String> selectedPriorities = new ArrayList<>();
     selectedPriorities.add(prioritySeletion);
     taskAnalysisWidgetPage.filterByTaskPriority(selectedPriorities);
-
-    WebElement applyFilterButton = taskAnalysisWidgetPage.findApplyFilterButton();
-    taskAnalysisWidgetPage.click(applyFilterButton);
+    taskAnalysisWidgetPage.click(By.cssSelector("button[id$='task-widget:apply-filter']"));
     taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
 
     List<WebElement> results =
@@ -147,13 +145,10 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage.openAdvancedCaseFilter("Name", "case-name");
     taskAnalysisWidgetPage.filterByCaseName(keyword);
 
-    taskAnalysisWidgetPage.openAdvancedCaseFilter("State", "state");
     List<String> selectedStates = new ArrayList<>();
     selectedStates.add(stateSeletion);
     taskAnalysisWidgetPage.filterByCaseState(selectedStates);
-
-    WebElement applyFilterButton = taskAnalysisWidgetPage.findApplyFilterButton();
-    taskAnalysisWidgetPage.click(applyFilterButton);
+    taskAnalysisWidgetPage.click(By.cssSelector("button[id$='task-widget:apply-filter']"));
     taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
 
     List<WebElement> results =
@@ -173,11 +168,8 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
     taskAnalysisWidgetPage.openAdvancedTaskFilter("Task category", "task-category");
     taskAnalysisWidgetPage.filterByTaskCategory("Other Leave");
-
-    WebElement applyFilterButton = taskAnalysisWidgetPage.findApplyFilterButton();
-    taskAnalysisWidgetPage.click(applyFilterButton);
+    taskAnalysisWidgetPage.click(By.cssSelector("button[id$='task-widget:apply-filter']"));
     taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
-
     List<WebElement> results =
         getRowsInTaskTable(taskAnalysisWidgetPage);
 
@@ -189,9 +181,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
     taskAnalysisWidgetPage.openAdvancedCaseFilter("Case category", "case-category");
     taskAnalysisWidgetPage.filterByCaseCategory("Leave Request");
-
-    WebElement applyFilterButton = taskAnalysisWidgetPage.findApplyFilterButton();
-    taskAnalysisWidgetPage.click(applyFilterButton);
+    taskAnalysisWidgetPage.click(By.cssSelector("button[id$='task-widget:apply-filter']"));
     taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
 
     List<WebElement> results =
@@ -253,7 +243,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     String taskNameKeyword = "annual";
     String taskCategory = "Annual Leave";
     String caseNameKeyword = "request";
-    String caseCategory = "LeaveRequest";
+    String caseCategory = "Leave Request";
     String caseState = "In progress";
 
     taskAnalysisWidgetPage.openAdvancedTaskFilter("Name", "name");
@@ -268,9 +258,21 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage.openAdvancedCaseFilter("Case category", "case-category");
     taskAnalysisWidgetPage.filterByCaseCategory(caseCategory);
 
-    taskAnalysisWidgetPage.openAdvancedCaseFilter("State", "state");
     List<String> selectedStates = new ArrayList<>();
     selectedStates.add(caseState);
     taskAnalysisWidgetPage.filterByCaseState(selectedStates);
+  }
+  
+  @Test
+  public void testDefaultAndResetFilter() {
+    TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
+    assertTrue(taskAnalysisWidgetPage.getFilterName().contains("Default filter"));
+    
+    taskAnalysisWidgetPage.openAdvancedTaskFilter("Name", "name");
+    taskAnalysisWidgetPage.filterByTaskName("request");
+    assertTrue(taskAnalysisWidgetPage.isResetButtonShown());
+    
+    taskAnalysisWidgetPage.resetFilter();
+    assertTrue(taskAnalysisWidgetPage.getFilterName().contains("Default filter"));
   }
 }
