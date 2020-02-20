@@ -1,7 +1,8 @@
 Name,Default,Type,Description
-hasRoleNames,null,List<String>,User list will be loaded based on this list. All users will be loaded if this attribute is null
+fromRoleNames,null,List<String>,User list will be loaded based on this list. All users will be loaded if this attribute is null
 componentId,user-selection,String,Id of user autocomplete.
 selectedUser,null,UserDTO,Required input and output value for selected user.
+excludedUsernames,null,List<String>,Users will be excluded from user selection. This is applied if you use default completeMethod.
 requiredMessage,This field is required,String,Message to be displayed when user autocomplete validation fails.
 forceSelection,true,Boolean,Only accepts user from the list when it's enabled.
 minQueryLength,1,Boolean,Number of characters to be typed before starting to query.
