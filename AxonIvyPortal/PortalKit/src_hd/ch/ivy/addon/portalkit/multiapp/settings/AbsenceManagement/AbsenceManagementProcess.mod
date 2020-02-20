@@ -1359,8 +1359,8 @@ As0 f42 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f42 432 1464 715 1464 #arcP
 As0 f42 0 0.4431818181818182 0 -9 #arcLabel
-As0 f43 processCall 'Ivy Data Processes/SecurityService:findUsersOverAllApplications(String,String,Integer,Integer,java.util.List<String>)' #txt
-As0 f43 requestActionDecl '<String username,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles> param;' #txt
+As0 f43 processCall 'Ivy Data Processes/SecurityService:findUsersOverAllApplications(String,String,Integer,Integer,java.util.List<String>,java.util.List<String>)' #txt
+As0 f43 requestActionDecl '<String username,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
 As0 f43 requestMappingAction 'param.username=ivy.session.getSessionUserName();
 param.query=in.queryAutoComplete;
 param.startIndex=0;
@@ -1381,8 +1381,8 @@ As0 f43 232 1066 192 44 -93 -8 #rect
 As0 f43 @|CallSubIcon #fIcon
 As0 f44 expr out #txt
 As0 f44 125 1088 232 1088 #arcP
-As0 f45 processCall 'Ivy Data Processes/SecurityService:findUsers(ch.ivyteam.ivy.application.IApplication,String,Integer,Integer,java.util.List<String>)' #txt
-As0 f45 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles> param;' #txt
+As0 f45 processCall 'Ivy Data Processes/SecurityService:findUsers(ch.ivyteam.ivy.application.IApplication,String,Integer,Integer,java.util.List<String>,java.util.List<String>)' #txt
+As0 f45 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
 As0 f45 requestMappingAction 'param.application=in.application;
 param.query=in.queryAutoComplete;
 param.startIndex=0;
@@ -1402,8 +1402,8 @@ As0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f45 224 1162 192 44 -93 -8 #rect
 As0 f45 @|CallSubIcon #fIcon
 As0 f46 125 1184 224 1184 #arcP
-As0 f48 processCall 'Ivy Data Processes/SecurityService:findUsers(ch.ivyteam.ivy.application.IApplication,String,Integer,Integer,java.util.List<String>)' #txt
-As0 f48 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles> param;' #txt
+As0 f48 processCall 'Ivy Data Processes/SecurityService:findUsers(ch.ivyteam.ivy.application.IApplication,String,Integer,Integer,java.util.List<String>,java.util.List<String>)' #txt
+As0 f48 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
 As0 f48 requestMappingAction 'param.application=in.application;
 param.query=in.queryAutoComplete;
 param.startIndex=0;
