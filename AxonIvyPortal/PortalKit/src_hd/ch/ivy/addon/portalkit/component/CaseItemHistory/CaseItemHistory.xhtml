@@ -40,7 +40,7 @@
 
     <div class="Separator" />
 
-    <div class="ui-g-12 u-padding-0">
+    <h:panelGroup id="case-histories-table" class="ui-g-12 u-padding-0">
       <p:dataTable id="case-histories" rendered="#{not empty data.histories}" value="#{data.histories}" var="history"
         paginator="true" rows="5" paginatorAlwaysVisible="false" paginatorPosition="top" pageLinks="3"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
@@ -89,7 +89,7 @@
       <h:outputText styleClass="no-documents-message ui-g-12"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noHistories')}"
         rendered="#{empty data.histories}" />
-    </div>
+    </h:panelGroup>
   </div>
 
   <p:dialog id="view-note-dialog" widgetVar="view-note-dialog" closeOnEscape="true"
@@ -119,8 +119,8 @@
       <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
         <p:commandButton styleClass="add-new-note-save-command" id="save-add-note-command"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" process="note-content"
-          update="note-content create-note-msg :#{cc.clientId}:case-histories" actionListener="#{logic.createNote()}"
-          oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('add-note-dialog-#{case.id}').hide();}" />
+          update="note-content create-note-msg :#{cc.clientId}:case-histories #{p:component('case-histories-table')}" actionListener="#{logic.createNote()}"
+          oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('add-note-dialog-#{case.id}').hide();}" resetValues="true"/>
         <p:commandButton id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
           styleClass="portal-cancel-button" onsuccess="PF('add-note-dialog-#{case.id}').hide()"

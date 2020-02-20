@@ -228,8 +228,7 @@
             rowIndex="#{rowIndex}" currentPortalPage="#{cc.attrs.currentPortalPage}"
             isSelected="#{cc.attrs.selectedTaskId eq task.getId()}"
             compactMode="#{data.dataModel.compactMode}" 
-            dataModel="#{data.dataModel}"
-            selectedTask="#{data.setSelectedTask(task)}">
+            dataModel="#{data.dataModel}">
             <cc:insertFacet name="taskHeader" />
           </ic:ch.ivy.addon.portalkit.component.TaskItem>
         </p:dataScroller>
@@ -304,7 +303,7 @@
     </f:facet>
     <div>
       <h:form id="reset-task-form">
-        <p:commandButton actionListener="#{logic.resetAndOpenTask(cc.attrs.currentPortalPage)}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+        <p:commandButton actionListener="#{logic.resetAndOpenTask(cc.attrs.currentPortalPage, taskWidgetBean.selectedTaskItemId)}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           onstart="#{cc.attrs.onTaskStartCallback}" />
         <p:commandButton onclick="PF('reset-task-dialog').hide()" styleClass="portal-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
@@ -312,7 +311,8 @@
     </div>
   </p:confirmDialog>
 
-  <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="task-item-delegate-component" task="#{data.selectedTask}" dataModel="#{data.dataModel}"
+  <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="task-item-delegate-component" dataModel="#{data.dataModel}"
+    task="#{taskWidgetBean.getSelectedTaskItem()}"
     componentToUpdate="#{p:component('task-start')}" />
 
   <script type="text/javascript">
