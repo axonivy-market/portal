@@ -377,7 +377,7 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
 
 .task-widget .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content,
 .case-widget-container .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content {
-  min-width: 140px;
+  min-width: max-content;
   padding: 0 !important;
 }
 
