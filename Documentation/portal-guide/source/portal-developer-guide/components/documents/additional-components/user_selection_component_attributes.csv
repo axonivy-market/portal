@@ -14,6 +14,7 @@ hightlight,true,Boolean,Highlights the first suggested user automatically.
 floatingLabel,false,Boolean,Display label with floating style and labelPanelStyleClass can't be applied if it’s enabled.
 autocompleteStyleClass,null,String,Style class of user autocomplete.
 autoCompletePanelStyleClass,null,String, Style class of user autocomplete panel.
+inputStyleClass,null,String,Style class of user autocomplete input.
 labelPanelStyleClass,null,String, Style class of label panel.
 labelStyleClass,null,String, Style class of label.
 label,null,String,Text of label.
