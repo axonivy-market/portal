@@ -47,7 +47,7 @@
   
     <c:set var="completeMethod" value="#{not empty cc.attrs.completeMethod ? cc.attrs.completeMethod : userSelectionBean.completeUserMethod}" />
     <h:panelGroup id="#{cc.attrs.componentId}-autocomplete-panel" layout="block"
-      styleClass="#{cc.attrs.autoCompletePanelStyleClass} md-inputfield">
+      styleClass="md-inputfield #{cc.attrs.autoCompletePanelStyleClass}">
       <p:autoComplete id="#{cc.attrs.componentId}" value="#{cc.attrs.selectedUser}" scrollHeight="#{cc.attrs.scrollHeight}"
         completeMethod="#{completeMethod}" required="#{cc.attrs.isRequired}" var="user" size="#{cc.attrs.size}"
         itemValue="#{user}" itemLabel="#{cc.attrs.itemLabel}" forceSelection="#{cc.attrs.forceSelection}"
