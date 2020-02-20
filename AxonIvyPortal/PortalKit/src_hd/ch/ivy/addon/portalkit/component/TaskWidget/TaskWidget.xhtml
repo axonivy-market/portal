@@ -246,8 +246,8 @@
   </div>
 
   <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" appendTo="@(body)" rendered="#{!data.dataModel.compactMode}"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" resizable="false" width="575"
-    modal="true" closeOnEscape="true" styleClass="save-filter-set-dialog">
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" resizable="false"
+    modal="true" closeOnEscape="true" styleClass="save-filter-set-dialog" responsive="true">
     <p:ajax event="close" listener="#{logic.clearSaveFilterDialog}" resetValues="true" />
     <p:messages id="save-task-filter-message">
       <p:autoUpdate />
