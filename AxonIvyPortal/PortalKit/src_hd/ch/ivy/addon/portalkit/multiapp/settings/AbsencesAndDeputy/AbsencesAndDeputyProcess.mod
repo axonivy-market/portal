@@ -1238,7 +1238,7 @@ As0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f40 83 1459 26 26 -52 13 #rect
 As0 f40 @|UdMethodIcon #fIcon
 As0 f41 processCall 'Ivy Data Processes/SecurityService:findUsersOverAllApplications(String,String,Integer,Integer,java.util.List<String>)' #txt
-As0 f41 requestActionDecl '<String username,String query,Integer startIndex,Integer count,java.util.List<String> hasRoleNames> param;' #txt
+As0 f41 requestActionDecl '<String username,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles> param;' #txt
 As0 f41 requestMappingAction 'param.username=ivy.session.getSessionUserName();
 param.query=in.queryAutoComplete;
 param.startIndex=0;
@@ -1278,7 +1278,7 @@ As0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f47 83 1555 26 26 -48 15 #rect
 As0 f47 @|UdMethodIcon #fIcon
 As0 f50 processCall 'Ivy Data Processes/SecurityService:findUsers(ch.ivyteam.ivy.application.IApplication,String,Integer,Integer,java.util.List<String>)' #txt
-As0 f50 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count,java.util.List<String> hasRoleNames> param;' #txt
+As0 f50 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles> param;' #txt
 As0 f50 requestMappingAction 'param.application=in.application;
 param.query=in.queryAutoComplete;
 param.startIndex=0;
