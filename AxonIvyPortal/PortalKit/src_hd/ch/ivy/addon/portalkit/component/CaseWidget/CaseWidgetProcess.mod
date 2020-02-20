@@ -57,6 +57,9 @@ Cs0 @GridStep f64 '' #zField
 Cs0 @PushWFArc f34 '' #zField
 Cs0 @UdProcessEnd f37 '' #zField
 Cs0 @PushWFArc f38 '' #zField
+Cs0 @UdMethod f71 '' #zField
+Cs0 @UdProcessEnd f73 '' #zField
+Cs0 @PushWFArc f74 '' #zField
 >Proto Cs0 Cs0 CaseWidgetProcess #zField
 Cs0 f0 guid 152E8EDB3E3A6957 #txt
 Cs0 f0 method start(ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel,java.lang.Long) #txt
@@ -174,6 +177,7 @@ import ch.ivy.addon.portalkit.enums.FilterType;
 CaseFilterService filterService = new CaseFilterService();
 in.privateFilters = filterService.getPrivateFilterForCurrentUser(in.filterGroupId) as List;
 in.publicFilters = filterService.getPublicFilter(in.filterGroupId) as List;
+in.publicFilters.add(in.dataModel.buildDefaultCaseFilterData());
 in.filterType = FilterType.ONLY_ME;' #txt
 Cs0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -450,6 +454,24 @@ Cs0 f34 77 864 144 864 #arcP
 Cs0 f37 339 851 26 26 0 12 #rect
 Cs0 f37 @|UdProcessEndIcon #fIcon
 Cs0 f38 288 864 339 864 #arcP
+Cs0 f71 guid 17033D428A3BF344 #txt
+Cs0 f71 method restoreDefaultFilterSet() #txt
+Cs0 f71 inParameterDecl '<> param;' #txt
+Cs0 f71 inActionCode 'out.dataModel.selectedFilterData = null;
+out.dataModel.applyFilter(out.dataModel.defaultCaseFilterData);' #txt
+Cs0 f71 outParameterDecl '<> result;' #txt
+Cs0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>restoreDefaultFilterSet()</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f71 51 955 26 26 -25 15 #rect
+Cs0 f71 @|UdMethodIcon #fIcon
+Cs0 f73 339 955 26 26 0 12 #rect
+Cs0 f73 @|UdProcessEndIcon #fIcon
+Cs0 f74 77 968 339 968 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -492,3 +514,5 @@ Cs0 f33 mainOut f34 tail #connect
 Cs0 f34 head f64 mainIn #connect
 Cs0 f64 mainOut f38 tail #connect
 Cs0 f38 head f37 mainIn #connect
+Cs0 f71 mainOut f74 tail #connect
+Cs0 f74 head f73 mainIn #connect
