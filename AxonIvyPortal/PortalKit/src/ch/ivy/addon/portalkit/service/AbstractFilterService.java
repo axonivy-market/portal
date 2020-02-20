@@ -95,15 +95,22 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
   }
 
   public boolean isDeleteFilterEnabledFor(T filterData) {
-    if (FilterType.ONLY_ME.equals(filterData.getType())) {
-      return true;
-    } else {
-      boolean isOwnerOfFilter =
-          Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(-1L)
-              .equals(filterData.getUserId());
-      boolean isAdmin = new PermissionBean().hasAdminPermission();
-      return isOwnerOfFilter || isAdmin;
+    boolean isDeleteFilterEnabled = false;
+    switch (filterData.getType()) {
+      case DEFAULT:
+        isDeleteFilterEnabled = false;
+        break;
+      case ONLY_ME:
+        isDeleteFilterEnabled = true;
+        break;
+      default:
+        boolean isOwnerOfFilter = Optional.ofNullable(Ivy.session().getSessionUser()).map(IUser::getId).orElse(-1L)
+            .equals(filterData.getUserId());
+        boolean isAdmin = new PermissionBean().hasAdminPermission();
+        isDeleteFilterEnabled = isOwnerOfFilter || isAdmin;
+        break;
     }
+    return isDeleteFilterEnabled;
   }
 
   /**
