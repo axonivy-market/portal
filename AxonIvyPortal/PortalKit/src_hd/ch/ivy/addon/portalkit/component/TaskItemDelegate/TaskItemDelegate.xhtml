@@ -34,8 +34,10 @@
         <h:panelGroup id="select-delegate-panel" layout="block" styleClass="select-delegate-panel">
           <ic:ch.ivy.addon.portalkit.component.UserSelection id="user-activator-component" 
             componentId="user-activator-select" selectedUser="#{data.selectedUser}"
-            formatToDisplay="#{userFormatBean.formatWithTip(user.displayName, user.memberName)}" rendered="#{data.isUserDelegated}"
-            completeMethod="#{logic.autoCompleteForUserDelegate}">
+            rendered="#{data.isUserDelegated}" completeMethod="#{logic.autoCompleteForUserDelegate}">
+            <p:column>
+              <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.memberName)}" />
+            </p:column>
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}" update="#{p:component('proceed-task-delegate-command')}" />
            </f:facet>
