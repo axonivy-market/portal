@@ -75,7 +75,7 @@ public class HistoryService {
         history.setInvolvedFullname(worker.getFullName());
       }
     }
-    history.setTimestamp(task.getStartTimestamp());
+    history.setTimestamp(task.getEndTimestamp());
     history.setType(HistoryType.TASK);
     return history;
   }
