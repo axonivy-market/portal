@@ -2410,13 +2410,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 /* Responsive User menu */
 @media screen and (max-width: 40em) {
-  .setting-dialog, .dialog-closing-information {
-    top: 100px !important;
-  }
   .settings-table-action-buttons, .app-icon {
     text-align: left !important;
   }
-  .dialog-closing-information, .admin-ui-dialog, .app-dialog, .select-icon-dialog, .application-selection-dialog,
+  .dialog-closing-information, .app-dialog, .select-icon-dialog, .application-selection-dialog,
   .setting-dialog, .project-info-dialog, .deputy-dialog,
   .absence-settings-dialog, .add-new-absence-dialog {
     min-width: 96vw;
@@ -2426,9 +2423,15 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
 }
 
+/* Override Reflow stype for Application selection */
+@media (max-width: 640px){
+  .application-selection-container.ui-datatable-reflow .ui-datatable-data td[role="gridcell"] .ui-column-title {
+    width: 160px;
+  }
+}
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
   .admin-ui-dialog {
-    min-width: 90vw;
+    max-width: 90vw;
   }
   .dialog-closing-information, .project-info-dialog, .app-dialog {
     min-width: 80vw;
@@ -2460,7 +2463,12 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 /********************************** ADMIN SETTING **********************************/
 .admin-ui-dialog {
-  top: 25vh !important;
+    max-width: 80vw;
+  }
+@media screen and (max-width: 40em) {
+  .admin-ui-dialog {
+    max-width: 96vw;
+  }
 }
 
 @media screen and (max-height: 615px) {
@@ -2760,7 +2768,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 @media (min-width: 1366px) and (max-width: 1919px) {
   .language-setting-dialog {
-    top: 300px !important;
     overflow: auto;
   }
 }
@@ -2973,7 +2980,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
     width: 78rem;
   }
   .statistic-details-dialog {
-    width: 100% !important;
+    min-width: 96vw;
   }
   .statistic-carousel .ui-carousel .ui-carousel-header .ui-carousel-header-title {
     max-width: 70% !important;
@@ -4281,6 +4288,7 @@ body .ui-dialog.ui-widget.export-express-dialog {
   body .ui-dialog.ui-widget.import-express-dialog,
   body .ui-dialog.ui-widget.export-express-dialog {
     min-width: 96vw;
+    max-width: 100%;
   }
 }
 
