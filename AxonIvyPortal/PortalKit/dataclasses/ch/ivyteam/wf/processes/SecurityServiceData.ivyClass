@@ -6,7 +6,7 @@ count Integer #field
 errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
 query String #field
 roleDTOs java.util.List<ch.ivy.addon.portalkit.dto.RoleDTO> #field
-roleNames java.util.List<String> #field
+fromRoles java.util.List<String> #field
 roles java.util.List<ch.ivyteam.ivy.security.IRole> #field
 securityMembers java.util.List<ch.ivy.addon.portalkit.dto.SecurityMemberDTO> #field
 startIndex Integer #field

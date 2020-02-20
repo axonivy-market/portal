@@ -124,14 +124,15 @@
            </p:column>
            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/deputy')}" sortBy="#{substitute.substituteUser}">
               <ic:ch.ivy.addon.portalkit.component.UserSelection 
-                id="subsitute-username-selection-component"
-                componentId="subsitute-username"
+                id="substitute-username-selection-component"
+                componentId="substitute-username"
                 completeMethod="#{logic.autoCompleteForSubstituteOnApp}"
                 selectedUser="#{substitute.substituteUser}"
                 scrollHeight="200" size="30"
                 isRenderedMessage="false"
                 itemLabel="#{not empty user ? user.displayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
-                autoCompletePanelStyleClass="user-selection-autocomplete-panel">
+                autoCompletePanelStyleClass="user-selection-autocomplete-panel"
+                inputStyleClass="js-substitute-input">
                 <p:column>
                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
                     rendered="#{empty user}" />
@@ -139,6 +140,17 @@
                     rendered="#{not empty user}" />
                 </p:column>
               </ic:ch.ivy.addon.portalkit.component.UserSelection>
+              <script type="text/javascript">
+                $('.js-substitute-input').focusout(function() {
+                  if ($(this).val() === '') {
+                    $(this).val("#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}");
+                  }
+                }).focusin(function() {
+                  if ($(this).val() === "#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}") {
+                    $(this).val("");
+                  }
+                })
+              </script>
             </p:column>
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/activePeriod')}" >
               <p:selectOneRadio id="active-period" value="#{substitute.substitutionType}"
