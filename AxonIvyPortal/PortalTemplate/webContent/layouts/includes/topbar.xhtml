@@ -76,9 +76,9 @@
         </h:form></li>
     </ul>
 
-    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" width="500" closeOnEscape="true"
+    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" closeOnEscape="true"
       widgetVar="changePasswordDialog" id="change-password-dialog" resizable="false" modal="true" draggable="false" appendTo="@(body)" dynamic="true"
-      styleClass="change-password-dialog" responsive="true">
+      styleClass="change-password-dialog" responsive="true" fitViewport="true" position="center center" positionType="absolute">
       <h:form id="change-password-form">
         <ic:ch.ivy.addon.portalkit.multiapp.settings.PasswordSetting id="password-setting" dialogName="changePasswordDialog" />
       </h:form>
@@ -121,25 +121,25 @@
       <h:form id="applications-email-setting-form" styleClass="applications-email-setting-form">
         <ic:ch.ivy.addon.portalkit.multiapp.settings.EmailSetting id="applications-email-setting" dialogName="emailSetting" />
       </h:form>
-          <script>
-    function changeWidthDailySummaryPanel() {
-        var dailySummary = $('[id $= ":daily-summary-checkbox"]').get(0);
-        if(dailySummary != null) {
-        $('[id $= ":daily-summary-checkbox_panel"]').width(dailySummary.offsetWidth);
-        }
-    } 
-</script>
+      <script>
+        function changeWidthDailySummaryPanel() {
+            var dailySummary = $('[id $= ":daily-summary-checkbox"]').get(0);
+            if(dailySummary != null) {
+            $('[id $= ":daily-summary-checkbox_panel"]').width(dailySummary.offsetWidth);
+            }
+        } 
+      </script>
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}" styleClass="language-setting-dialog"
-      width="50%" closeOnEscape="true" widgetVar="languageDialogVar" id="language-setting-dialog" resizable="false" modal="true" dynamic="true"
-      appendTo="@(body)" draggable="false" responsive="true">
+      closeOnEscape="true" widgetVar="languageDialogVar" id="language-setting-dialog" resizable="false" modal="true" dynamic="true"
+      appendTo="@(body)" draggable="false" responsive="true" fitViewport="true" position="center" positionType="absolute">
       <h:form id="language-settings-form" styleClass="language-settings-form">
         <ic:ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage id="language-settings" startMethod="start" dialogName="languageDialogVar" />
       </h:form>
     </p:dialog>
 
-    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/header')}" styleClass="project-info-dialog" width="800"
+    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/header')}" styleClass="project-info-dialog"
       closeOnEscape="true" widgetVar="project-info-dialog" id="project-info-dialog" resizable="false" modal="true" draggable="false"
       appendTo="@(body)" dynamic="true" fitViewport="true" responsive="true">
       <ic:ch.ivy.addon.portalkit.component.ProjectVersion id="project-version" />

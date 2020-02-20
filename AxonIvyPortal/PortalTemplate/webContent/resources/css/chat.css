@@ -378,7 +378,7 @@ _:-ms-fullscreen, :root .my-message .chat-meta .tooltip {
 }
 
 .participants-list-dialog {
-  width: 400px !important;
+  min-width: 400px;
 }
 
 .role-name,
