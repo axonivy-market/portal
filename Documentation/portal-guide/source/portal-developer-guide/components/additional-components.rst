@@ -276,7 +276,7 @@ You can include this component to any page. Below is an example code for 2 label
 
       <ic:ch.ivy.addon.portalkit.component.UserSelection 
             componentId="user-by-role-autocomplete"
-            hasRoleNames="#{data.definedRoleNames}"
+            fromRoleNames="#{data.definedRoleNames}"
             selectedUser="#{data.selectedUserForDefinedRoles}"
             isRequired="true"
             autoCompleteStyleClass="width-100"
