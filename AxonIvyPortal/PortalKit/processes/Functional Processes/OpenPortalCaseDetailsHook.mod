@@ -12,17 +12,16 @@ Ok0 @StartSub f0 '' #zField
 Ok0 @EndSub f1 '' #zField
 Ok0 @PushWFArc f2 '' #zField
 >Proto Ok0 Ok0 OpenPortalCaseDetailsHook #zField
-Ok0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase caseData,Boolean isShowBackButton,Boolean isFromDoneTask> param;' #txt
+Ok0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ICase caseData,Boolean isShowBackButton> param;' #txt
 Ok0 f0 inParamTable 'out.caseView=param.caseData;
-out.isFromDoneTask=param.isFromDoneTask;
 out.isShowBackButton=param.isShowBackButton;
 ' #txt
 Ok0 f0 outParamDecl '<> result;' #txt
-Ok0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,Boolean,Boolean) #txt
+Ok0 f0 callSignature call(ch.ivyteam.ivy.workflow.ICase,Boolean) #txt
 Ok0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>call(ICase,Boolean,Boolean)</name>
+        <name>call(ICase,Boolean)</name>
     </language>
 </elementInfo>
 ' #txt
