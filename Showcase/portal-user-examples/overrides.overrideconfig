@@ -1,1 +1,6 @@
-*
+{
+  /PROCESS {
+    /Functional-Processes.DefaultUserProcess "Functional Processes/DefaultUserProcessOverride"
+  }
+  /HTML_DIALOG *
+}
