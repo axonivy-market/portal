@@ -11,7 +11,7 @@
       <h:panelGroup layout="block">
         <ui:include src="Absence.xhtml">
           <ui:param name="uneditedUserName" value="true" />
-          <ui:param name="updateComponent" value="#{p:component('edit-absence-messages')} #{p:component('save-absence')}" />
+          <ui:param name="updateComponent" value="#{p:component('edit-absence-messages')}" />
         </ui:include>
       </h:panelGroup>
 
@@ -21,9 +21,10 @@
           actionListener="#{logic.updateAbsences}" update="@form :#{p:component('absence-table')}"
           oncomplete="if (args &amp;&amp; !args.validationFailed) PF('editAbsenceDialog').hide();" />
         <p:spacer width="5px" />
-        <p:commandButton id="close-edit-absence-dialog" styleClass="portal-cancel-button"
+        <p:commandButton id="close-edit-absence-dialog" actionListener="#{logic.cancel}"
+          styleClass="portal-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onclick="PF('editAbsenceDialog').hide();" type="button" />
+          oncomplete="PF('editAbsenceDialog').hide();"/>
       </h:panelGroup>
     </h:form>
   </p:dialog>

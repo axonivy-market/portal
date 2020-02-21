@@ -29,7 +29,7 @@
           converterMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/wrongDateFormat')}"
           pattern="#{dateTimePatternBean.datePattern}" required="true"
           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dateRequired')}">
-          <p:ajax event="dateSelect" listener="#{logic.dateChange}" update="#{updateComponent}" />
+          <p:ajax event="dateSelect" listener="#{logic.dateChange}" update="#{updateComponent}" resetValues="true" />
         </p:calendar>
         <h:outputLabel for="absence-start-date" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/from')}:" />
       </div>
