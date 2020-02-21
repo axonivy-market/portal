@@ -276,7 +276,7 @@ public class CaseWidgetPage extends TemplatePage {
 
 	public void filterByCreator(String text) {
 		click(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
-		WebElement responsible = findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator_input']");
+		WebElement responsible = findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']");
 		type(responsible, text);
 		waitAjaxIndicatorDisappear();
 		waitForElementDisplayedByCssSelector("i[class*='fa-user']", 5);
