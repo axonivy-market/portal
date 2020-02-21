@@ -160,7 +160,7 @@
 
   <p:dialog id="add-chart-dialog" widgetVar="add-chart-dialog" styleClass="add-chart-dialog"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/addChartDialogHeader')}" modal="true" closeOnEscape="true" width="auto"
-    resizable="false" appendTo="@(body)">
+    resizable="false" appendTo="@(body)" responsive="true">
     <c:if test="#{data == null or data.isAllowedToCreateChart}">
       <h:form id="add-statistic-form">
 

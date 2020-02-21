@@ -14,7 +14,7 @@
   <h:outputScript library="js" name="session-warning.js" />
   <p:confirmDialog id="timeout-warning-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/warningMessage')}"
-    widgetVar="timeout-warning-dialog" appendTo="@(body)" closable="false" width="auto">
+    widgetVar="timeout-warning-dialog" appendTo="@(body)" closable="false" width="auto" responsive="true">
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/extend')}"
       actionListener="#{logic.extendSession}" oncomplete="PortalSessionWarning.hideWarningDialog();PortalSessionWarning.resetCounterAndTimeout();" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
@@ -25,7 +25,7 @@
   <p:confirmDialog id="timeout-dialog"
 		header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
 		message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried')}"
-		widgetVar="timeout-dialog" appendTo="@(body)" closable="false">
+		widgetVar="timeout-dialog" appendTo="@(body)" closable="false" responsive="true">
 		<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="redirectDefaultPage();"
 			type="button" />
 	</p:confirmDialog>
