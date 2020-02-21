@@ -47,7 +47,6 @@
               <p:outputLabel for="request-reason" value="#{ivy.cms.co('/Labels/CaseMap/Credit/salary')}" />
               <p:inputText required="true" id="request-salary" value="#{data.dossier.request.salary}"
                 styleClass="MarTop10" disabled="true" />
-
             </h:panelGroup>
 
             <h:panelGroup class="MarTop20" layout="block">
@@ -74,7 +73,8 @@
           </h:panelGrid>
           <h:panelGroup layout="block" styleClass="MarTop5 ui-g-12" id="command-group">
             <p:commandButton id="rejected-button" actionListener="#{logic.rejected}"
-              value="#{ivy.cms.co('/Dialog/Common/reject')}" update="form" icon="fa fa-ban" styleClass="Fright portal-cancel-button" />
+              value="#{ivy.cms.co('/Dialog/Common/reject')}" update="form" icon="fa fa-ban"
+              styleClass="Fright portal-cancel-button" />
             <p:spacer width="5px" styleClass="Fright" />
             <p:commandButton id="approval-button" actionListener="#{logic.approved}"
               value="#{ivy.cms.co('/Dialog/Common/approve')}" update="form" icon="fa fa-send-o" styleClass="Fright" />

@@ -5,6 +5,7 @@
   <ui:composition template="/layouts/TaskTemplate-8.xhtml">
     <ui:define name="title">CollectPersonData</ui:define>
     <ui:define name="css">
+      <h:outputStylesheet library="css" name="portal-user-examples.css" />
       <h:outputStylesheet library="styles" name="ivy-common-8.css" />
     </ui:define>
     <ui:define name="content">
@@ -13,27 +14,26 @@
       <br />
 
       <h:form id="form">
-
         <h:panelGroup styleClass="ui-g" layout="block">
           <p:messages styleClass="ui-g-4 ui-lg-4 ui-md-12 ui-sm-12" />
           <h:panelGrid columns="2"
             columnClasses="TexAlLeft ui-g-6, TexAlLeft ui-g-6"
             styleClass="ui-g-12 ui-md-12 ui-sm-12">
-            
+
             <h:panelGroup layout="block" styleClass="credit-request-column-1">
-                     <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/person')}</h4>
+              <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/person')}</h4>
               <h:panelGroup class="MarTop20" layout="block">
                 <p:outputLabel for="name" value="#{ivy.cms.co('/Labels/CaseMap/Credit/name')}" />
                 <p:inputText required="true" id="name" value="#{data.dossier.customer.name}" styleClass="MarTop10" />
               </h:panelGroup>
               <h:panelGroup class="MarTop20" layout="block">
-                <p:outputLabel for="firstName" value="#{ivy.cms.co('/Labels/CaseMap/Credit/firstName')}" />
-                <p:inputText id="firstName" value="#{data.dossier.customer.firstName}" styleClass="MarTop10" />
+                <p:outputLabel for="first-name" value="#{ivy.cms.co('/Labels/CaseMap/Credit/firstName')}" />
+                <p:inputText id="first-name" value="#{data.dossier.customer.firstName}" styleClass="MarTop10" />
               </h:panelGroup>
 
               <h:panelGroup class="MarTop20" layout="block">
-                <p:outputLabel for="birthdate" value="#{ivy.cms.co('/Labels/CaseMap/Credit/birthDate')}" />
-                <p:calendar id="birthdate" value="#{data.dossier.customer.birthDate}" navigator="true"
+                <p:outputLabel for="birth-date" value="#{ivy.cms.co('/Labels/CaseMap/Credit/birthDate')}" />
+                <p:calendar id="birth-date" value="#{data.dossier.customer.birthDate}" navigator="true"
                   yearRange="c-50:c+10" pattern="dd.MM.yyyy" styleClass="MarTop10">
                   <f:convertDateTime pattern="dd.MM.yyyy" />
                 </p:calendar>
@@ -72,13 +72,12 @@
               </h:panelGroup>
 
               <h:panelGroup class="MarTop20" layout="block">
-                <p:outputLabel for="amountOfOtherCredits"
+                <p:outputLabel for="amount-of-other-credits"
                   value="#{ivy.cms.co('/Labels/CaseMap/Credit/amountOfOtherCredits')}" />
-                <p:inputText required="true" id="amountOfOtherCredits" styleClass="MarTop10"
+                <p:inputText required="true" id="amount-of-other-credits" styleClass="MarTop10"
                   value="#{data.dossier.request.amountOfOtherCredits}" />
               </h:panelGroup>
             </h:panelGroup>
-
           </h:panelGrid>
         </h:panelGroup>
 
