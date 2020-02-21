@@ -15,9 +15,10 @@
 
 <cc:implementation>
   <p:dialog id="application-error-dialog" header="#{ivy.cms.co('/errors/header')}" dynamic="true" width="70%"
-    styleClass="application-error-dialog" widgetVar="application-error-dialog" modal="true" appendTo="@(body)">
+    styleClass="application-error-dialog" widgetVar="application-error-dialog" modal="true" appendTo="@(body)"
+    responsive="true">
     <h:panelGroup id="errors-container">
-      <p:messages id="errorsMessage" widgetVar="messageInfo" severity="info" escape="false" showDetail="true" closable="true" />
+      <p:messages id="errorsMessage" severity="info" escape="false" showDetail="true" closable="true" />
   
       <ic:ch.ivy.addon.portalkit.multiapp.general.ErrorDisplay errors="#{errorDisplayBean.errors}" />
     </h:panelGroup>
