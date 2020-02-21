@@ -801,6 +801,9 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 /********************************** END CASE ITEM **********************************/
 
 /********************************** START PROCESSES **********************************/
+.add-external-link-dialog {
+  min-width: 600px;
+}
 
 /* Mobile screen */
 @media screen and (max-width: 40em) {
@@ -812,6 +815,9 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   }
   .process-start-list-item-name-text {
     width: calc(100vw - 100px) !important;
+  }
+  .add-external-link-dialog {
+    min-width: 96vw;
   }
 }
 
@@ -1329,10 +1335,8 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 
 /******************END DELEGATE DIALOG********************/
 
-/* NEED TO BE REFACTORED */
 .new-process-dialog {
-  min-width: 25% !important;
-  max-width: 90% !important;
+  min-width: 600px;
 }
 
 .field-group {
@@ -1357,6 +1361,9 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 @media screen and (max-width: 40em) {
   .field-group>.field-group-label {
     text-align: left !important;
+  }
+  .new-process-dialog {
+    min-width: 96vw;
   }
 }
 
@@ -1461,6 +1468,10 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 
 .filter-selection-form .filter-name-overlay-panel .user-defined-filter-container:hover .delete-user-defined-filter-command {
   display: inline;
+}
+
+.save-filter-set-dialog {
+  min-width: 575px;
 }
 
 .save-filter-set-dialog .ui-messages-error .ui-messages-error-summary {
@@ -1765,6 +1776,9 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   }
   .task-start-list-item.full-mode .task-start-link, .case-header-container {
     height: 50px;
+  }
+  .save-filter-set-dialog {
+    min-width: 96vw;
   }
 }
 /********************************** END TASK WIDGET **********************************/
@@ -2405,48 +2419,65 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 /* Responsive User menu */
 @media screen and (max-width: 40em) {
-  .change-password-dialog, .applications-email-setting-dialog {
-    top: 100px !important;
-  }
-  .setting-dialog, .dialog-closing-information {
-    top: 150px !important;
-  }
   .settings-table-action-buttons, .app-icon {
     text-align: left !important;
   }
-  .settings-table-action-buttons .action-column-icon-button:first-of-type {
-    margin-left: 0;
-  }
-
-  .dialog-closing-information, .admin-ui-dialog, .app-dialog, .select-icon-dialog, .application-selection-dialog,
-  .setting-dialog, .project-info-dialog, .change-password-dialog, .language-setting-dialog, .deputy-dialog,
+  .dialog-closing-information, .app-dialog, .select-icon-dialog, .application-selection-dialog,
+  .setting-dialog, .project-info-dialog, .deputy-dialog,
   .absence-settings-dialog, .add-new-absence-dialog {
-    width: 96vw !important;
+    min-width: 96vw;
   }
   .task-template-container, .task-template-button {
     margin-bottom: 5rem !important;
   }
-  .applications-email-setting-dialog .ui-dialog-content.ui-widget-content {
-    padding: 1rem !important;
-    overflow: unset !important;
-  }
 }
 
+/* Override Reflow stype for Application selection */
+@media (max-width: 640px){
+  .application-selection-container.ui-datatable-reflow .ui-datatable-data td[role="gridcell"] .ui-column-title {
+    width: 160px;
+  }
+}
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
   .admin-ui-dialog {
-    width: 90vw !important;
+    max-width: 90vw;
   }
   .dialog-closing-information, .project-info-dialog, .app-dialog {
-    width: 80vw !important;
+    min-width: 80vw;
   }
   .new-absence-date input {
     width: 140px;
   }
 }
 
+
+/******************************** PROJECT INFO DIALOG ******************************/
+.project-info-dialog {
+  max-width: 800px;
+}
+
+@media screen and (max-width: 40em) {
+  .project-info-dialog {
+    max-width: 96vw;
+  }
+}
+
+@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
+  .project-info-dialog, .app-dialog {
+    max-width: 80vw;
+  }
+}
+
+/******************************** END PROJECT INFO DIALOG **************************/
+
 /********************************** ADMIN SETTING **********************************/
 .admin-ui-dialog {
-  top: 25vh !important;
+    max-width: 80vw;
+  }
+@media screen and (max-width: 40em) {
+  .admin-ui-dialog {
+    max-width: 96vw;
+  }
 }
 
 @media screen and (max-height: 615px) {
@@ -2713,18 +2744,40 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   outline: none;
 }
 
+/********************************** CHANGE PASSWORK DIALOG **********************************/
+.change-password-dialog {
+  min-width: 500px;
+}
+
+@media screen and (max-width: 40em) {
+  .change-password-dialog {
+    top: 100px !important;
+    min-width: 96vw;
+  }
+}
+/********************************** END CHANGE PASSWORK DIALOG **********************************/
+
 /********************************** LANGUAGE SETTING DIALOG **********************************/
+.language-setting-dialog {
+   max-width: 600px;
+}
+
+@media screen and (max-width: 40em) {
+  .language-setting-dialog {
+    max-width: 96vw;
+  }
+}
+
 @media (max-width: 1365px) {
   .language-setting-dialog {
-    overflow: auto !important;
+    overflow: auto;
     top: 35% !important;
   }
 }
 
 @media (min-width: 1366px) and (max-width: 1919px) {
   .language-setting-dialog {
-    top: 300px !important;
-    overflow: auto !important;
+    overflow: auto;
   }
 }
 
@@ -2739,8 +2792,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 @media screen and (max-width: 40em) {
   .applications-email-setting-dialog {
-    min-width: 300px !important;
-    height: 365px !important;
+    min-width: 300px;
+    height: 365px;
     margin-left: 10px;
     margin-right: 10px;
   }
@@ -2749,6 +2802,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   }
   .applications-email-setting-dialog .ui-dialog .ui-dialog-content {
     overflow: unset !important;
+    padding: 1rem !important;
   }
   .email-setting-component {
     max-height: 235px;
@@ -2934,7 +2988,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
     width: 78rem;
   }
   .statistic-details-dialog {
-    width: 100% !important;
+    min-width: 96vw;
   }
   .statistic-carousel .ui-carousel .ui-carousel-header .ui-carousel-header-title {
     max-width: 70% !important;
@@ -3485,12 +3539,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .change-password-panel {
   width: 100%;
-}
-
-@media (min-width: 1366px) and (max-width: 1919px) {
-  .change-password-dialog {
-    top: 400px !important;
-  }
 }
 
 .preview-users-datatable {
@@ -4103,6 +4151,11 @@ _:-ms-fullscreen, :root .content-link-history {
   min-height: 40px;
 }
 
+.case-upload-dialog, .case-view-note-dialog, .document-upload-dialog, .task-note-dialog,
+.task-upload-dialog {
+  min-width: 50vw;
+}
+
 @media screen and (max-width: 40em) {
   .ui-fileupload-buttonbar .ui-button {
     padding: 0 14px 0 28px !important;
@@ -4111,7 +4164,7 @@ _:-ms-fullscreen, :root .content-link-history {
     padding: 0 !important;
   }
   .case-upload-dialog, .case-view-note-dialog, .task-upload-dialog, .document-upload-dialog, .task-note-dialog {
-    width: 80% !important;
+    min-width: 96vw;
   }
 
   .adhoc-task-history-dialog .ui-dialog-content.ui-widget-content {
@@ -4192,7 +4245,8 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   display: none;
 }
 
-.import-express-dialog {
+body .ui-dialog.ui-widget.import-express-dialog,
+body .ui-dialog.ui-widget.export-express-dialog {
   min-width: 450px;
 }
 
@@ -4250,6 +4304,14 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
 .express-management-form {
   position: relative;
   overflow: hidden;
+}
+
+@media screen and (max-width: 40em) {
+  body .ui-dialog.ui-widget.import-express-dialog,
+  body .ui-dialog.ui-widget.export-express-dialog {
+    min-width: 96vw;
+    max-width: 100%;
+  }
 }
 
 /*=================== EXPRESS MANAGEMENT END ===================*/
