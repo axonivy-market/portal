@@ -45,14 +45,14 @@
 
             <h:panelGroup class="MarTop20" layout="block">
               <p:outputLabel for="request-reason" value="#{ivy.cms.co('/Labels/CaseMap/Credit/salary')}" />
-              <p:inputText id="request-reason" value="#{data.dossier.request.reason}" styleClass="MarTop10"
-                disabled="true" />
+              <p:inputText required="true" id="request-salary" value="#{data.dossier.request.salary}"
+                styleClass="MarTop10" disabled="true" />
             </h:panelGroup>
 
             <h:panelGroup class="MarTop20" layout="block">
               <p:outputLabel for="request-salary" value="#{ivy.cms.co('/Labels/CaseMap/Credit/approvalReason')}" />
-              <p:inputText required="true" id="request-salary" value="#{data.dossier.request.salary}"
-                styleClass="MarTop10" disabled="true" />
+              <p:inputText id="request-reason" value="#{data.dossier.request.reason}" styleClass="MarTop10"
+                disabled="true" />
             </h:panelGroup>
 
             <h:panelGroup class="MarTop20" layout="block">
@@ -71,11 +71,14 @@
             <p:outputLabel for="rejected-reason" value="#{ivy.cms.co('/Labels/CaseMap/Credit/rejectedReason')}" />
             <p:inputTextarea id="rejected-reason" value="#{data.dossier.decision.rejectReason}" />
           </h:panelGrid>
-          <p:commandButton actionListener="#{logic.approved}" value="#{ivy.cms.co('/Dialog/Common/approve')}"
-            update="form" icon="ui-icon-check" styleClass="Fright" />
-          <p:commandButton actionListener="#{logic.rejected}" value="#{ivy.cms.co('/Dialog/Common/reject')}"
-            update="form" icon="ui-icon-circle-close" styleClass="Fright" />
-
+          <h:panelGroup layout="block" styleClass="MarTop5 ui-g-12" id="command-group">
+            <p:commandButton id="rejected-button" actionListener="#{logic.rejected}"
+              value="#{ivy.cms.co('/Dialog/Common/reject')}" update="form" icon="fa fa-ban"
+              styleClass="Fright portal-cancel-button" />
+            <p:spacer width="5px" styleClass="Fright" />
+            <p:commandButton id="approval-button" actionListener="#{logic.approved}"
+              value="#{ivy.cms.co('/Dialog/Common/approve')}" update="form" icon="fa fa-send-o" styleClass="Fright" />
+          </h:panelGroup>
         </h:panelGroup>
       </h:form>
 
