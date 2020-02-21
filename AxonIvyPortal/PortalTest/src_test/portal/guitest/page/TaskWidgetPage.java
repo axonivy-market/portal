@@ -507,10 +507,24 @@ public class TaskWidgetPage extends TemplatePage {
 		return noTaskMessage.isDisplayed();
 	}
 
-	public void startTaskWithoutUI(int index) {
-		waitTaskAppearThenClick(index);
-		new HomePage().isDisplayed();
-	}
+  public void startTaskWithoutUI(int index) {
+    String taskId = getTaskId(index);
+    waitTaskAppearThenClick(index);
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
+      try {
+        if (!findListElementsByCssSelector(".no-task-message").isEmpty()) {
+          return true;
+        }
+        return !getTaskId(index).equals(taskId);
+      } catch (Exception e) {
+        return false;
+      }
+    });
+  }
+
+  private String getTaskId(int taskIndex) {
+    return findElementByCssSelector("span[id$='" + taskIndex + "\\:task-item\\:task-start-item-view\\:task-start-task-id']").getText();
+  }
 
 	private void waitTaskAppearThenClick(int index) {
 		WebElement taskListElement = findElementById(taskWidgetId + ":task-list-scroller");
