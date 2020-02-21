@@ -2466,6 +2466,11 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
 }
 
+.md-inputfield .absence-user-selection .ui-autocomplete-input.ui-inputfield,
+.substituted-user .ui-autocomplete-input.ui-inputfield {
+  width: 100%;
+}
+
 /********************************** ADMIN SETTING **********************************/
 .admin-ui-dialog {
   top: 25vh !important;
@@ -2621,9 +2626,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 @media (max-width: 768px) {
-  .absences-table-action-column {
-    width: 80px !important;
-  }
   .absences-table-action-column-icon-button {
     margin: 0 5px !important;
   }  
@@ -2648,6 +2650,44 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 body .substitue-tab.ui-tabs .ui-tabs-panel {
 padding: 0;
 }
+
+@media screen and (max-width: 40em) {
+  .absence-settings-dialog.ui-dialog .ui-dialog-content {
+    max-height: 90vh;
+  }
+
+  .absence-management .add-absence-panel {
+    width: 12%;
+  }
+
+  .absence-management .show-absence-in-the-past-panel {
+    width: 72%;
+    padding-right: 0;
+  }
+
+  .absence-management .show-absence-in-the-past-panel .ui-widget.ui-selectbooleancheckbox.ui-chkbox,
+  .absence-management .show-absence-in-the-past-panel .ui-widget.ui-selectbooleancheckbox.ui-chkbox .ui-chkbox-label {
+    margin-right: 0;
+  }
+
+  .substitute-table .substition-role-display-name {
+    display: block;
+  }
+  .substitute-table .user-selection-autocomplete-panel {
+    display: inline-block;
+    width: 100%;
+  }
+
+  .substitute-table .user-selection-autocomplete-panel .ui-inputfield {
+    width: 100%;
+  }
+
+  .substitution-table.ui-datatable-reflow .ui-datatable-data td[role="gridcell"] .ui-column-title {
+    width: 142px;
+    margin-right: 4px;
+  }
+}
+
 /**********************************END ABSENCES AND DEPUTY **********************************/
 .application-language-header {
   width: 20%;
