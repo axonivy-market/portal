@@ -12,9 +12,9 @@
 </cc:interface>
 <cc:implementation>
   <p:confirmDialog id="#{cc.attrs.componentId}" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
-    widgetVar="#{cc.attrs.widgetVar}" appendTo="@(body)" closeOnEscape="true">
+    widgetVar="#{cc.attrs.widgetVar}" appendTo="@(body)" closeOnEscape="true" responsive="true">
     <h:form prependId="false">
-      <h:panelGroup styleClass="Fs14">
+      <h:panelGroup>
         <p:commandButton id="leave-button" actionListener="#{cc.attrs.leaveActionListener}" process="@this" update="@none"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leave')}"
           styleClass="ui-confirmdialog-yes u-mar-right-5" />

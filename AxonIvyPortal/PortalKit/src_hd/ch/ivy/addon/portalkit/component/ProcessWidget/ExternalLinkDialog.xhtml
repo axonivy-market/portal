@@ -10,7 +10,7 @@
   <p:dialog id="add-external-link-dialog" widgetVar="add-external-link-dialog"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewExternalLinkHeader')}" 
     closeOnEscape="true" modal="true" appendTo="@(body)" resizable="false"
-    width="600px" >
+    responsive="true" styleClass="add-external-link-dialog">
     <h:form id="add-external-link-form" styleClass="add-external-link-form">
         <div class="field-group ui-g">
             <div class="ui-g-4 ui-sm-12 field-group-label">
@@ -74,7 +74,7 @@
 
  <p:dialog id="remove-external-link-dialog" widgetVar="remove-external-link-dialog"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemHeader')}" closeOnEscape="true" modal="true"
-    dynamic="true" appendTo="@(body)" resizable="false">
+    dynamic="true" appendTo="@(body)" resizable="false" responsive="true">
     <h:form id="delete-external-link-form">
       <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemConfirmation')}" />
       <br />

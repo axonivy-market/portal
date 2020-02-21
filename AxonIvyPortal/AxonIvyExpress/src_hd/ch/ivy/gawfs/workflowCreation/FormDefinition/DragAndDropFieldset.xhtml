@@ -253,7 +253,7 @@
 
   <p:dialog id="preview-dialog" widgetVar="preview-dialog" styleClass="preview-dialog" width="70%" closable="true" modal="true" draggable="false"
     resizable="false" dynamic="true" fitViewport="true" header="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetPreviewArea')}"
-    position="center" appendTo="@(body)" onShow="ExpressDynaform();">
+    position="center" appendTo="@(body)" onShow="ExpressDynaform();" responsive="true">
     <ui:include src="PreviewFieldset.xhtml" />
     <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
       <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" onclick="PF('preview-dialog').hide();" />

@@ -18,9 +18,9 @@
       rendered="#{!userMenuBean.hiddenLogout}" actionListener="#{logic.logout(task)}" />
 
     <p:confirmDialog id="logout-confirmation-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" 
-      closeOnEscape="true" widgetVar="logoutConfirmation" appendTo="@(body)" rendered="#{cc.attrs.isWorkingOnATask}">
+      closeOnEscape="true" widgetVar="logoutConfirmation" appendTo="@(body)" rendered="#{cc.attrs.isWorkingOnATask}" responsive="true">
       <h:form prependId="false">
-        <h:panelGroup styleClass="Fs14">
+        <h:panelGroup>
           <p:commandButton actionListener="#{logic.logoutInDialog(task)}" process="@this"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
             styleClass="ui-confirmdialog-yes u-mar-right-5" oncomplete="returnHomePage()" />
