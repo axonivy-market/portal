@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import javax.faces.event.ValueChangeEvent;
 
@@ -364,22 +363,8 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
 
   @Override
   public void collectFiltersForDefaultFilterSet() {
-    if (defaultTaskAnalysisFilterData != null) {
-      if (CollectionUtils.isEmpty(defaultTaskAnalysisFilterData.getTaskFilters())) {
-        TaskAnalysisTaskFilterContainer taskFilterContainer = new TaskAnalysisTaskFilterContainer();
-        updateStateForTaskCriteria();
-        setValuesForStateFilter(criteria, taskFilterContainer);
-        buildTaskStateFilter(taskFilterContainer);
-        defaultTaskAnalysisFilterData.setTaskFilters(taskFilterContainer.getFilters().stream().filter(TaskFilter::defaultFilter).collect(Collectors.toList()));
-      }
-  
-      if (CollectionUtils.isEmpty(defaultTaskAnalysisFilterData.getCaseFilters())) {
-        TaskAnalysisCaseFilterContainer caseFilterContainer = new TaskAnalysisCaseFilterContainer();
-        caseFilterContainer.getStateFilter().setFilteredStates(new ArrayList<>(caseCriteria.getIncludedStates()));
-        caseFilterContainer.getStateFilter().setSelectedFilteredStates(caseCriteria.getIncludedStates());
-        defaultTaskAnalysisFilterData.setCaseFilters(caseFilterContainer.getFilters().stream().filter(CaseFilter::defaultFilter).collect(Collectors.toList()));
-      }
-    }
+    defaultTaskAnalysisFilterData.setTaskFilters(new ArrayList<>());
+    defaultTaskAnalysisFilterData.setCaseFilters(new ArrayList<>());
   }
   
   @Override
