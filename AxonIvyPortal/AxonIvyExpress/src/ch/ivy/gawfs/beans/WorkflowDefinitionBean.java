@@ -13,7 +13,6 @@ import ch.ivy.gawfs.enums.ProcessType;
 import ch.ivy.gawfs.enums.TaskType;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.IUser;
 import gawfs.TaskDef;
 
 @ManagedBean
@@ -71,16 +70,6 @@ public class WorkflowDefinitionBean implements Serializable {
     rolesFromSystem.stream()
       .filter(role -> role.getName() != SYSTEM)
       .forEach(role -> availableRoles.add(role));
-  }
-
-  /**
-   * Populate values for Auto Complete of responsible based on given query
-   * 
-   * @param query
-   * @return values of available responsible
-   */
-  public List<IUser> populateUserAutoComplete(String query) {
-    return new ArrayList<>(Helper.filterUsers(query));
   }
 
   /**

@@ -417,7 +417,8 @@ Fs0 f38 actionTable 'out=in;
 ' #txt
 Fs0 f38 actionCode 'import ch.ivyteam.ivy.security.ISecurityMember;
 
-ISecurityMember selectedAssignee = in.#selectedUser is initialized ? in.selectedUser : in.selectedRole;
+ISecurityMember selectedAssignee = in.#selectedUser is initialized 
+	? ivy.wf.getSecurityContext().findSecurityMember(in.selectedUser.getMemberName()) : in.selectedRole;
 in.selectedAssigneeList.add(selectedAssignee);' #txt
 Fs0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -464,7 +465,8 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 
-ISecurityMember selectedAssignee = in.#selectedUser is initialized ? in.selectedUser : in.selectedRole;
+ISecurityMember selectedAssignee = in.#selectedUser is initialized 
+	? ivy.wf.getSecurityContext().findSecurityMember(in.selectedUser.getMemberName()) : in.selectedRole;
 in.isValidAssignee = true;
 
 if (!(#selectedAssignee is initialized) || in.selectedAssigneeList.contains(selectedAssignee)) {
