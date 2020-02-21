@@ -11,7 +11,7 @@
       <h:panelGroup layout="block">
         <ui:include src="Absence.xhtml">
           <ui:param name="uneditedUserName" value="true" />
-          <ui:param name="updateComponent" value="edit-absence-messages save-absence" />
+          <ui:param name="updateComponent" value="#{p:component('edit-absence-messages')} #{p:component('save-absence')}" />
         </ui:include>
       </h:panelGroup>
 
