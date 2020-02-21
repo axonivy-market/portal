@@ -14,7 +14,6 @@ As0 @UdProcessEnd f35 '' #zField
 As0 @Alternative f4 '' #zField
 As0 @GridStep f120 '' #zField
 As0 @GridStep f37 '' #zField
-As0 @UdProcessEnd f40 '' #zField
 As0 @UdEvent f81 '' #zField
 As0 @GridStep f104 '' #zField
 As0 @UdProcessEnd f23 '' #zField
@@ -114,7 +113,6 @@ As0 @PushWFArc f169 '' #zField
 As0 @PushWFArc f171 '' #zField
 As0 @PushWFArc f93 '' #zField
 As0 @UdMethod f75 '' #zField
-As0 @UdProcessEnd f110 '' #zField
 As0 @PushWFArc f17 '' #zField
 As0 @Alternative f19 '' #zField
 As0 @PushWFArc f21 '' #zField
@@ -124,7 +122,6 @@ As0 @Alternative f66 '' #zField
 As0 @PushWFArc f67 '' #zField
 As0 @PushWFArc f74 '' #zField
 As0 @UdMethod f53 '' #zField
-As0 @UdProcessEnd f127 '' #zField
 As0 @UdProcessEnd f175 '' #zField
 As0 @UdMethod f176 '' #zField
 As0 @PushWFArc f177 '' #zField
@@ -148,14 +145,20 @@ As0 @PushWFArc f33 '' #zField
 As0 @PushWFArc f42 '' #zField
 As0 @CallSub f43 '' #zField
 As0 @PushWFArc f44 '' #zField
-As0 @PushWFArc f41 '' #zField
 As0 @CallSub f45 '' #zField
 As0 @PushWFArc f46 '' #zField
-As0 @PushWFArc f47 '' #zField
 As0 @CallSub f48 '' #zField
 As0 @PushWFArc f50 '' #zField
-As0 @PushWFArc f52 '' #zField
 As0 @PushWFArc f69 '' #zField
+As0 @UdProcessEnd f60 '' #zField
+As0 @GridStep f76 '' #zField
+As0 @Alternative f82 '' #zField
+As0 @PushWFArc f92 '' #zField
+As0 @PushWFArc f94 '' #zField
+As0 @PushWFArc f95 '' #zField
+As0 @PushWFArc f97 '' #zField
+As0 @PushWFArc f41 '' #zField
+As0 @PushWFArc f47 '' #zField
 >Proto As0 As0 AbsenceManagementProcess #zField
 As0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -222,8 +225,6 @@ As0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f37 1264 802 112 44 -46 -8 #rect
 As0 f37 @|StepIcon #fIcon
-As0 f40 499 1075 26 26 0 12 #rect
-As0 f40 @|UdProcessEndIcon #fIcon
 As0 f81 guid 16FCC0CDEBB1A481 #txt
 As0 f81 actionTable 'out=in;
 ' #txt
@@ -1131,8 +1132,6 @@ As0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f75 99 1267 26 26 -81 15 #rect
 As0 f75 @|UdMethodIcon #fIcon
-As0 f110 499 1267 26 26 0 12 #rect
-As0 f110 @|UdProcessEndIcon #fIcon
 As0 f17 expr out #txt
 As0 f17 85 1464 208 1464 #arcP
 As0 f17 0 0.6989161447468913 0 0 #arcLabel
@@ -1193,8 +1192,6 @@ As0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f53 99 1171 26 26 -82 22 #rect
 As0 f53 @|UdMethodIcon #fIcon
-As0 f127 499 1171 26 26 0 12 #rect
-As0 f127 @|UdProcessEndIcon #fIcon
 As0 f175 499 1363 26 26 0 12 #rect
 As0 f175 @|UdProcessEndIcon #fIcon
 As0 f176 guid 1702ED96A943696D #txt
@@ -1362,8 +1359,8 @@ As0 f42 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f42 432 1464 715 1464 #arcP
 As0 f42 0 0.4431818181818182 0 -9 #arcLabel
-As0 f43 processCall 'Ivy Data Processes/SecurityService:findUsersOverAllApplications(String,String,Integer,Integer)' #txt
-As0 f43 requestActionDecl '<String username,String query,Integer startIndex,Integer count> param;' #txt
+As0 f43 processCall 'Ivy Data Processes/SecurityService:findUsersOverAllApplications(String,String,Integer,Integer,java.util.List<String>,java.util.List<String>)' #txt
+As0 f43 requestActionDecl '<String username,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
 As0 f43 requestMappingAction 'param.username=ivy.session.getSessionUserName();
 param.query=in.queryAutoComplete;
 param.startIndex=0;
@@ -1384,9 +1381,8 @@ As0 f43 232 1066 192 44 -93 -8 #rect
 As0 f43 @|CallSubIcon #fIcon
 As0 f44 expr out #txt
 As0 f44 125 1088 232 1088 #arcP
-As0 f41 424 1088 499 1088 #arcP
-As0 f45 processCall 'Ivy Data Processes/SecurityService:findUsers(ch.ivyteam.ivy.application.IApplication,String,Integer,Integer)' #txt
-As0 f45 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count> param;' #txt
+As0 f45 processCall 'Ivy Data Processes/SecurityService:findUsers(ch.ivyteam.ivy.application.IApplication,String,Integer,Integer,java.util.List<String>,java.util.List<String>)' #txt
+As0 f45 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
 As0 f45 requestMappingAction 'param.application=in.application;
 param.query=in.queryAutoComplete;
 param.startIndex=0;
@@ -1406,9 +1402,8 @@ As0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f45 224 1162 192 44 -93 -8 #rect
 As0 f45 @|CallSubIcon #fIcon
 As0 f46 125 1184 224 1184 #arcP
-As0 f47 416 1184 499 1184 #arcP
-As0 f48 processCall 'Ivy Data Processes/SecurityService:findUsers(ch.ivyteam.ivy.application.IApplication,String,Integer,Integer)' #txt
-As0 f48 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count> param;' #txt
+As0 f48 processCall 'Ivy Data Processes/SecurityService:findUsers(ch.ivyteam.ivy.application.IApplication,String,Integer,Integer,java.util.List<String>,java.util.List<String>)' #txt
+As0 f48 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
 As0 f48 requestMappingAction 'param.application=in.application;
 param.query=in.queryAutoComplete;
 param.startIndex=0;
@@ -1429,8 +1424,67 @@ As0 f48 264 1258 192 44 -93 -8 #rect
 As0 f48 @|CallSubIcon #fIcon
 As0 f50 expr out #txt
 As0 f50 125 1280 264 1280 #arcP
-As0 f52 456 1280 499 1280 #arcP
 As0 f69 85 440 128 440 #arcP
+As0 f60 755 1171 26 26 0 12 #rect
+As0 f60 @|UdProcessEndIcon #fIcon
+As0 f76 actionTable 'out=in;
+' #txt
+As0 f76 actionCode 'import ch.ivy.addon.portalkit.util.BeanUtils;
+
+BeanUtils.invokeBeanMethodViaMethodExpression("#{errorDisplayBean.displayErrors}", in.errors);' #txt
+As0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Display errors&#xD;
+if have</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f76 600 1258 112 44 -38 -16 #rect
+As0 f76 @|StepIcon #fIcon
+As0 f82 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>sucessful?</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f82 496 1168 32 32 -32 -37 #rect
+As0 f82 @|AlternativeIcon #fIcon
+As0 f92 expr in #txt
+As0 f92 outCond in.errors.isEmpty() #txt
+As0 f92 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>YES</name>
+        <nameStyle>3
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f92 528 1184 755 1184 #arcP
+As0 f92 0 0.4431818181818182 0 -9 #arcLabel
+As0 f94 expr out #txt
+As0 f94 712 1280 768 1197 #arcP
+As0 f94 1 768 1280 #addKink
+As0 f94 0 0.2659844029158675 0 0 #arcLabel
+As0 f95 expr in #txt
+As0 f95 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NO</name>
+        <nameStyle>2
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+As0 f95 512 1200 600 1280 #arcP
+As0 f95 1 512 1280 #addKink
+As0 f95 1 0.35845312300586923 -1 -8 #arcLabel
+As0 f97 328 1110 501 1179 #arcP
+As0 f97 0 0.44125583597231577 0 0 #arcLabel
+As0 f41 416 1184 496 1184 #arcP
+As0 f47 360 1258 502 1190 #arcP
 >Proto As0 .type ch.ivy.addon.portalkit.multiapp.settings.AbsenceManagement.AbsenceManagementData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1570,13 +1624,19 @@ As0 f42 head f59 mainIn #connect
 As0 f68 out f71 tail #connect
 As0 f34 mainOut f44 tail #connect
 As0 f44 head f43 mainIn #connect
-As0 f43 mainOut f41 tail #connect
-As0 f41 head f40 mainIn #connect
 As0 f53 mainOut f46 tail #connect
 As0 f46 head f45 mainIn #connect
-As0 f45 mainOut f47 tail #connect
-As0 f47 head f127 mainIn #connect
 As0 f75 mainOut f50 tail #connect
 As0 f50 head f48 mainIn #connect
-As0 f48 mainOut f52 tail #connect
-As0 f52 head f110 mainIn #connect
+As0 f95 head f76 mainIn #connect
+As0 f76 mainOut f94 tail #connect
+As0 f94 head f60 mainIn #connect
+As0 f82 out f92 tail #connect
+As0 f92 head f60 mainIn #connect
+As0 f82 out f95 tail #connect
+As0 f43 mainOut f97 tail #connect
+As0 f97 head f82 in #connect
+As0 f45 mainOut f41 tail #connect
+As0 f41 head f82 in #connect
+As0 f48 mainOut f47 tail #connect
+As0 f47 head f82 in #connect

@@ -514,7 +514,7 @@ body .ui-tabs .ui-tabs-nav>li.ui-state-default:not(.ui-state-active) a {
 
 /* Layout sidebar*/
 .layout-wrapper .layout-sidebar,
-.layout-main-mask {
+.layout-wrapper.layout-wrapper-active .layout-main-mask {
   z-index: 1000;
 }
 
