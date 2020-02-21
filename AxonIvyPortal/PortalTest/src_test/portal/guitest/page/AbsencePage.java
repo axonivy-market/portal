@@ -36,8 +36,8 @@ public class AbsencePage extends TemplatePage {
 	}
 
 	public String getMyDeputy() {
-		waitForElementDisplayed(By.cssSelector("input[id*='subsitute-username_input']"), true);
-		return findElementByCssSelector("input[id*='subsitute-username_input']").getAttribute("value");
+		waitForElementDisplayed(By.cssSelector("input[id*='substitute-username_input']"), true);
+		return findElementByCssSelector("input[id*='substitute-username_input']").getAttribute("value");
 	}
   
 	public List<String> getIAMDeputyFor() {
@@ -46,7 +46,7 @@ public class AbsencePage extends TemplatePage {
   }
   
 	public void setDeputy(String fullName) {
-		String usernameSelector = "input[id$='subsitute-username_input']";
+		String usernameSelector = "input[id$='substitute-username_input']";
 		waitForElementDisplayed(By.cssSelector(usernameSelector), true);
 		WebElement usernameInput = findElementByCssSelector(usernameSelector);
 		usernameInput.clear();
