@@ -70,9 +70,10 @@
   </h:panelGroup>
 
   <p:dialog id="add-new-process-dialog" styleClass="new-process-dialog" closeOnEscape="true"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewProcessDialogHeader')}" width="600"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addNewProcessDialogHeader')}"
     widgetVar="add-new-process-dialog" modal="true" dynamic="true" appendTo="@(body)" resizable="false"
-    rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}" >
+    rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}" 
+    responsive="true">
     <h:form prependId="false" >
       <h:panelGroup id="process-specific-input-container">
         <h:panelGroup id="ivy-process-container">
