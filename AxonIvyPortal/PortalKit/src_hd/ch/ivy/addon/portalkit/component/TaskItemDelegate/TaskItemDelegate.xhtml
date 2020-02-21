@@ -13,7 +13,7 @@
 
   <p:dialog id="task-delegate-dialog" closeOnEscape="true" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
     widgetVar="task-delegate-dialog" dynamic="true" modal="true" showEffect="fade" hideEffect="fade" resizable="false" appendTo="@(body)"
-    styleClass="task-delegate-dialog">
+    styleClass="task-delegate-dialog" responsive="true">
 
     <h:panelGroup rendered="#{data.canDelegateTask != null and data.canDelegateTask}">
       <h:form id="task-delegate-form">

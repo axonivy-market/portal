@@ -104,7 +104,7 @@
   </div>
 
   <p:confirmDialog id="reset-task-dialog" appendTo="@(body)" widgetVar="reset-task-dialog"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" closeOnEscape="true">
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" closeOnEscape="true" responsive="true">
     <f:facet name="message">
       <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
     </f:facet>

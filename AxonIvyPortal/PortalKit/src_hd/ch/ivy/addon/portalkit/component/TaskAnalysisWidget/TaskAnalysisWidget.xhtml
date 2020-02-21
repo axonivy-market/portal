@@ -211,7 +211,7 @@
 
   <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" appendTo="@(body)"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" resizable="false"
-    width="575" modal="true" closeOnEscape="true" styleClass="save-filter-set-dialog">
+    modal="true" closeOnEscape="true" styleClass="save-filter-set-dialog" responsive="true">
     <p:messages id="save-filter-message">
       <p:autoUpdate />
     </p:messages>
@@ -250,7 +250,7 @@
   <p:confirmDialog id="delete-filter-confirmation-dialog"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterDeletionConfirmation')}"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
-    widgetVar="delete-filter-confirmation-dialog" appendTo="@(body)" severity="alert">
+    widgetVar="delete-filter-confirmation-dialog" appendTo="@(body)" severity="alert" responsive="true">
     <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
       actionListener="#{logic.deleteFilter()}"
       oncomplete="PF('delete-filter-confirmation-dialog').hide();"
