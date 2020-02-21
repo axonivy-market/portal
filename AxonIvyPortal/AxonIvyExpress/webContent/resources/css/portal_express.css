@@ -40,6 +40,10 @@
   width: calc(100% - 45px) !important;
 }
 
+.default-template-dialog {
+  min-width: 700px;
+}
+
 /* Express switch button */
 .express-work-flow .express-input-switch-selection,
 .ui-inputswitch.ui-widget.ui-widget-content.express-input-switch-selection.ui-inputswitch-checked {
@@ -182,6 +186,9 @@
 @media screen and (max-width: 40em) {
   .choose-responsible-dialog {
     min-width: 100%;
+  }
+  .default-template-dialog {
+    min-width: 96vw;
   }
 }
 
@@ -763,10 +770,6 @@ body .task-template-content .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggle
 
 body .task-template-content .ui-fieldset .ui-fieldset-legend {
   line-height: 0.3rem;
-}
-
-.express-assignee-autocomplete .ui-autocomplete-input {
-  padding-right: 20px !important;
 }
 
 .form-definition-table tr:nth-child(2) td.ui-panelgrid-cell:first-child {

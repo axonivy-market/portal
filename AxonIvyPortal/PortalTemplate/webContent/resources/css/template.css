@@ -310,8 +310,8 @@
   list-style-type: circle;
 }
 /******** CHAT ********/
-.ui-autocomplete.chat-user-selection, .ui-autocomplete.chat-role-selection, .ui-autocomplete-input.chat-user-selection-input,
-  .ui-autocomplete-input.chat-role-selection-input {
+.chat-user-selection .ui-autocomplete, .chat-user-selection .ui-autocomplete .ui-autocomplete-input,
+.ui-autocomplete.chat-role-selection, .ui-autocomplete-input.chat-role-selection-input {
   width: 100%;
 }
 
