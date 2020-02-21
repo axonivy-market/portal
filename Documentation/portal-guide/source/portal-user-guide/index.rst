@@ -13,3 +13,4 @@ User Guide
    full-case-list/index
    full-statistic-list/index
    axon-ivy-express/index
+   demo-processes/index
