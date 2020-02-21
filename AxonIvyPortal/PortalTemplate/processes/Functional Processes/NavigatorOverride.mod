@@ -547,11 +547,10 @@ is put in PortalTemplate.</name>
 ' #txt
 Nr0 f53 1920 187 496 172 -238 -84 #rect
 Nr0 f53 @|IBIcon #fIcon
-Nr0 f5 processCall 'Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean,Boolean)' #txt
-Nr0 f5 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData,Boolean isShowBackButton,Boolean isFromDoneTask> param;' #txt
+Nr0 f5 processCall 'Functional Processes/OpenPortalCaseDetailsHook:call(ch.ivyteam.ivy.workflow.ICase,Boolean)' #txt
+Nr0 f5 requestActionDecl '<ch.ivyteam.ivy.workflow.ICase caseData,Boolean isShowBackButton> param;' #txt
 Nr0 f5 requestMappingAction 'param.caseData=in.iCase;
 param.isShowBackButton=true;
-param.isFromDoneTask=false;
 ' #txt
 Nr0 f5 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt
