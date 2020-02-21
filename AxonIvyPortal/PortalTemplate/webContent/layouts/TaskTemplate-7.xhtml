@@ -140,9 +140,9 @@
             </div>
     
     <p:dialog id="chat-assignee-dialog" resizable="false"
-        header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/chatAssigneeDialogHeader')}" width="600"
+        header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/chatAssigneeDialogHeader')}" styleClass="chat-assignee-dialog"
         rendered="#{chatRendererBean.isGroupChatRendered}" widgetVar="chat-assignee-dialog" appendTo="@(body)" modal="true"
-        dynamic="true">
+        dynamic="true" responsive="true">
         <h:panelGroup id="chat-group-join-container" rendered="#{deprecatedChatAssignee7Bean.doesGroupChatExist()}">
           <h:outputText value="#{deprecatedChatAssignee7Bean.groupChatExistMessage}" />
           <br />
@@ -176,7 +176,8 @@
 
           <p:dialog id="adhoc-task-reset-confirmation-dialog" resizable="false"
             header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
-            widgetVar="adhoc-task-reset-confirmation-dialog" appendTo="@(body)" modal="true" dynamic="true">
+            widgetVar="adhoc-task-reset-confirmation-dialog" appendTo="@(body)" modal="true" dynamic="true"
+            responsive="true">
             <h:outputText escape="false" styleClass="ui-confirm-dialog-message" id="adhoc-creation-message"
               value="#{deprecatedTaskTemplate7Bean.getAdhocCreationMessage()}" />
             <f:facet name="footer">
@@ -194,7 +195,8 @@
 
           <p:dialog id="sidestep-task-reset-confirmation-dialog" resizable="false"
             header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
-            widgetVar="sidestep-task-reset-confirmation-dialog" appendTo="@(body)" modal="true" dynamic="true">
+            widgetVar="sidestep-task-reset-confirmation-dialog" appendTo="@(body)" modal="true" dynamic="true"
+            responsive="true">
             <h:outputText escape="false" styleClass="ui-confirm-dialog-message"
               value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/goToSidestepWarning')}" />
             <f:facet name="footer">
@@ -213,7 +215,8 @@
           <p:dialog id="adhoc-task-history-dialog" resizable="false"
             visible="#{deprecatedTaskTemplate7Bean.isFirstTimeOpenOriginalAdhocTask}" styleClass="adhoc-task-history-dialog"
             header="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/resultFromAdhocProcess')}"
-            widgetVar="adhoc-task-history-dialog" appendTo="@(body)" modal="true" dynamic="true">
+            widgetVar="adhoc-task-history-dialog" appendTo="@(body)" modal="true" dynamic="true"
+            responsive="true">
             <p:ajax event="close" listener="#{deprecatedTaskTemplate7Bean.onCloseAdhocTaskHistoryDialog()}" />
             <h:outputText
               value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/noteOfResultFromAdhocProcess')}" />
