@@ -106,7 +106,6 @@ public final class AbsenceAndSubstituteUtils {
   }
 
   private static boolean isTwoAbsenceOverlaped(IvyAbsence firstAbsence, IvyAbsence secondAbsence) {
-    Ivy.log().error("compare firstAbsence {0}, {1}, {2} ====== {3}, {4}, {5}", firstAbsence.getUsername(), firstAbsence.getFrom(), firstAbsence.getUntil(), secondAbsence.getUsername(), secondAbsence.getFrom(), secondAbsence.getUntil());
     if (firstAbsence == secondAbsence || isNotAbsenceOfSameUser(firstAbsence, secondAbsence)) {
       return false;
     }
