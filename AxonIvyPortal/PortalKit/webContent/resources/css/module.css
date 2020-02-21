@@ -377,7 +377,7 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
 
 .task-widget .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content,
 .case-widget-container .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content {
-  min-width: 140px;
+  min-width: max-content;
   padding: 0 !important;
 }
 
@@ -778,8 +778,8 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .case-detail-card, .task-detail-card {
-  display: block !important;
-  float: left !important;
+  display: block;
+  float: left;
 }
 
 .case-detail-body .card {
@@ -800,6 +800,14 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 
 .case-task-note-histories {
   white-space: pre-wrap;
+}
+
+@media screen and (max-width: 40em) {
+  .case-detail-body .card.case-history-component,
+  .case-detail-body .card.case-related-task-component,
+  .case-detail-body .card.case-document-component {
+    height: auto;
+  }
 }
 /********************************** END CASE ITEM **********************************/
 
@@ -2429,6 +2437,9 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   .settings-table-action-buttons, .app-icon {
     text-align: left !important;
   }
+  .settings-table-action-buttons .action-column-icon-button:first-of-type {
+    margin-left: 0;
+  }
   .dialog-closing-information, .admin-ui-dialog, .app-dialog, .select-icon-dialog, .application-selection-dialog,
   .setting-dialog, .project-info-dialog, .change-password-dialog, .language-setting-dialog, .deputy-dialog,
   .absence-settings-dialog, .add-absence-dialog {
@@ -2531,7 +2542,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .settings-table-action-buttons {
-  width: 140px !important;
+  width: 140px;
 }
 
 .global-setting-table .setting-key {
@@ -3521,6 +3532,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   overflow: auto;
 }
 
+.project-version-container .project-version-table.ui-datatable-reflow .ui-column-title {
+  width: 120px;
+}
+
 /*********** Styles for ui-inplace ***********/
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-save .ui-icon-check,
 .ui-inplace .ui-inplace-editor .ui-button.ui-inplace-cancel .ui-icon-close {
@@ -4060,6 +4075,17 @@ _:-ms-fullscreen, :root .content-link-history {
   max-height: 40vh;
 }
 
+
+@media screen and (max-width: 40em) {
+  .task-note-component,
+  .task-document-component {
+    height: auto;
+  }
+  .task-detail-general-card {
+    min-height: 610px;
+  }
+}
+
 /*  =================== END TASK DETAIL PAGE ========================= */
 
 /*  =================== TASK TEMPLATE PAGE ========================= */
@@ -4101,7 +4127,7 @@ _:-ms-fullscreen, :root .content-link-history {
   }
   .case-description-2nd-column {
     width: calc(100% - 175px);
-    height: 85px;
+    height: 95px;
     margin-left: 2px;
     overflow-y: auto;
     overflow-x: hidden;
