@@ -131,11 +131,8 @@ As0 @Alternative f26 '' #zField
 As0 @PushWFArc f83 '' #zField
 As0 @PushWFArc f113 '' #zField
 As0 @PushWFArc f114 '' #zField
-As0 @CallSub f118 '' #zField
 As0 @UdProcessEnd f122 '' #zField
-As0 @PushWFArc f123 '' #zField
 As0 @GridStep f13 '' #zField
-As0 @PushWFArc f145 '' #zField
 As0 @PushWFArc f134 '' #zField
 As0 @CallSub f147 '' #zField
 As0 @PushWFArc f148 '' #zField
@@ -159,6 +156,7 @@ As0 @PushWFArc f95 '' #zField
 As0 @PushWFArc f97 '' #zField
 As0 @PushWFArc f41 '' #zField
 As0 @PushWFArc f47 '' #zField
+As0 @PushWFArc f40 '' #zField
 >Proto As0 As0 AbsenceManagementProcess #zField
 As0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -393,7 +391,7 @@ As0 f5 actionCode 'import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 
-UserDTO currentUserDTO = new UserDTO(ivy.session.getSessionUser());
+UserDTO currentUserDTO = new UserDTO(in.selectedAbsenceUser);
 
 in.selectedAbsence = new IvyAbsence();
 in.selectedAbsence.from = new Date();
@@ -1259,30 +1257,8 @@ As0 f114 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f114 800 160 912 192 #arcP
 As0 f114 1 800 192 #addKink
 As0 f114 1 0.5178571428571429 0 12 #arcLabel
-As0 f118 processCall 'Ivy Data Processes/AbsenceService:findAbsences(String)' #txt
-As0 f118 requestActionDecl '<String username> param;' #txt
-As0 f118 requestMappingAction 'param.username=in.selectedAbsence.getUsername();
-' #txt
-As0 f118 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
-As0 f118 responseMappingAction 'out=in;
-out.absencesByUser=result.absencesByUser;
-out.errors=in.errors;
-' #txt
-As0 f118 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Find current &#xD;
-user''s absences</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f118 416 858 112 44 -46 -20 #rect
-As0 f118 @|CallSubIcon #fIcon
-As0 f122 747 867 26 26 0 12 #rect
+As0 f122 579 867 26 26 0 12 #rect
 As0 f122 @|UdProcessEndIcon #fIcon
-As0 f123 expr out #txt
-As0 f123 336 880 416 880 #arcP
 As0 f13 actionTable 'out=in;
 ' #txt
 As0 f13 actionCode 'import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
@@ -1306,10 +1282,9 @@ As0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f13 576 858 112 44 -47 -8 #rect
+As0 f13 408 858 112 44 -47 -8 #rect
 As0 f13 @|StepIcon #fIcon
-As0 f145 528 880 576 880 #arcP
-As0 f134 688 880 747 880 #arcP
+As0 f134 520 880 579 880 #arcP
 As0 f147 processCall 'Ivy Data Processes/AbsenceService:findAbsences(String)' #txt
 As0 f147 requestActionDecl '<String username> param;' #txt
 As0 f147 requestMappingAction 'param.username=in.selectedAbsence.getUsername();
@@ -1485,6 +1460,8 @@ As0 f97 328 1110 501 1179 #arcP
 As0 f97 0 0.44125583597231577 0 0 #arcLabel
 As0 f41 416 1184 496 1184 #arcP
 As0 f47 360 1258 502 1190 #arcP
+As0 f40 expr out #txt
+As0 f40 336 880 408 880 #arcP
 >Proto As0 .type ch.ivy.addon.portalkit.multiapp.settings.AbsenceManagement.AbsenceManagementData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1604,10 +1581,6 @@ As0 f26 out f113 tail #connect
 As0 f113 head f80 mainIn #connect
 As0 f26 out f114 tail #connect
 As0 f114 head f154 mainIn #connect
-As0 f7 mainOut f123 tail #connect
-As0 f123 head f118 mainIn #connect
-As0 f118 mainOut f145 tail #connect
-As0 f145 head f13 mainIn #connect
 As0 f13 mainOut f134 tail #connect
 As0 f134 head f122 mainIn #connect
 As0 f137 mainOut f148 tail #connect
@@ -1640,3 +1613,5 @@ As0 f45 mainOut f41 tail #connect
 As0 f41 head f82 in #connect
 As0 f48 mainOut f47 tail #connect
 As0 f47 head f82 in #connect
+As0 f7 mainOut f40 tail #connect
+As0 f40 head f13 mainIn #connect
