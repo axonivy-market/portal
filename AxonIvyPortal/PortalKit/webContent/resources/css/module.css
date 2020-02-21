@@ -575,6 +575,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   padding-left: 10px;
   padding-right: 10px;
   min-width: 105px;
+  display: grid;
 }
 
 .case-header-data .case-header-default-cell {
