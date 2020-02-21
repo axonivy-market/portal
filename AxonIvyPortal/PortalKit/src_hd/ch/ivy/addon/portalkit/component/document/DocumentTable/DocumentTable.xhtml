@@ -108,7 +108,8 @@
 
     <p:dialog id="document-delete-dialog" widgetVar="document-delete-dialog" appendTo="@(body)" closable="true"
       closeOnEscape="true" modal="true" draggable="false" rendered="#{cc.attrs.deleteRendered}"
-      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" resizable="false">
+      header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" resizable="false"
+      responsive="true">
       #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}
       <f:facet name="footer">
         <p:commandButton id="document-deletion-yes"

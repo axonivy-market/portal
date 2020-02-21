@@ -71,7 +71,8 @@
   </div>
 
   <p:dialog id="view-note-dialog" widgetVar="#{cc.clientId}:view-note-dialog" closeOnEscape="true" styleClass="task-note-dialog"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}" width="50vw" appendTo="@(body)" modal="true" resizable="false" dynamic="true">
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}" appendTo="@(body)" modal="true" resizable="false" dynamic="true"
+    responsive="true">
     <h:panelGroup layout="block">
       <h:outputText value="#{data.fullNote}" />
     </h:panelGroup>
@@ -81,7 +82,8 @@
   </p:dialog>
 
   <p:dialog id="add-new-note-dialog" widgetVar="#{cc.clientId}:addNewNoteDialog" dynamic="true" closable="false" closeOnEscape="true" styleClass="task-upload-dialog"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" showEffect="fade" resizable="false" modal="true" width="50vw" appendTo="@(body)">
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" showEffect="fade" resizable="false" modal="true" appendTo="@(body)"
+    responsive="true">
     <h:form id="task-add-new-note-form">
       <h:panelGroup layout="block">
         <p:messages id="task-detail-create-note-msg" for="task-detail-note-content" />

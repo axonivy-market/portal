@@ -75,7 +75,7 @@
 
   <p:dialog id="document-upload-dialog" widgetVar="document-upload-dialog" appendTo="@(body)" dynamic="true" styleClass="document-upload-dialog"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}" modal="true" resizable="false" showEffect="fade" hideEffect="fade"
-    width="50vw">
+    responsive="true">
     <h:form id="document-upload-form">
       <p:messages id="upload-messages" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addDocumentHelpText')}" />
@@ -95,7 +95,8 @@
   <p:confirmDialog id="document-deletion-dialog" widgetVar="document-deletion-dialog"
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" appendTo="@(body)" severity="alert"
-    styleClass="document-deletion-dialog">
+    styleClass="document-deletion-dialog"
+    responsive="true">
     <h:panelGroup layout="block" styleClass="document-deletion-command-buttons">
       <p:commandButton id="document-deletion-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
         update="#{p:component('task-document-form')} #{cc.attrs.componentToUpdate} #{p:component('task-document-global-messages')}"
