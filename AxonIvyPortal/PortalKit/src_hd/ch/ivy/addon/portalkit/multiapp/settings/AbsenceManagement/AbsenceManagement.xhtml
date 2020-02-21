@@ -119,7 +119,7 @@
            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/applicationAndRole')}" sortBy="#{substitute.substitionRoleDisplayName}">
               <h:outputText value="#{substitute.substitionRoleDisplayName}" styleClass="substition-role-display-name" />
            </p:column>
-           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/deputy')}" sortBy="#{substitute.substituteUser}">
+           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/deputy')}" >
               <ic:ch.ivy.addon.portalkit.component.UserSelection 
                 id="substitute-username-selection-component"
                 componentId="substitute-username"
