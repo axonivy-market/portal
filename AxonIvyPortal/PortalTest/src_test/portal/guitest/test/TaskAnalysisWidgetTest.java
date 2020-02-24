@@ -142,6 +142,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     String stateSeletion = "In progress";
 
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
+    taskAnalysisWidgetPage.openAdvancedCaseFilter("State", "state");
     taskAnalysisWidgetPage.openAdvancedCaseFilter("Name", "case-name");
     taskAnalysisWidgetPage.filterByCaseName(keyword);
 
@@ -246,6 +247,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     String caseCategory = "Leave Request";
     String caseState = "In progress";
 
+    taskAnalysisWidgetPage.openAdvancedCaseFilter("State", "state");
     taskAnalysisWidgetPage.openAdvancedTaskFilter("Name", "name");
     taskAnalysisWidgetPage.filterByTaskName(taskNameKeyword);
 

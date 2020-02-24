@@ -40,7 +40,6 @@ As0 @CallSub f62 '' #zField
 As0 @UdEvent f6 '' #zField
 As0 @UdMethod f79 '' #zField
 As0 @CallSub f146 '' #zField
-As0 @UdEvent f32 '' #zField
 As0 @UdEvent f31 '' #zField
 As0 @UdProcessEnd f57 '' #zField
 As0 @UdProcessEnd f61 '' #zField
@@ -55,7 +54,6 @@ As0 @GridStep f55 '' #zField
 As0 @PushWFArc f71 '' #zField
 As0 @PushWFArc f63 '' #zField
 As0 @PushWFArc f156 '' #zField
-As0 @PushWFArc f119 '' #zField
 As0 @PushWFArc f78 '' #zField
 As0 @PushWFArc f72 '' #zField
 As0 @PushWFArc f103 '' #zField
@@ -81,7 +79,6 @@ As0 @PushWFArc f64 '' #zField
 As0 @PushWFArc f30 '' #zField
 As0 @PushWFArc f87 '' #zField
 As0 @CallSub f129 '' #zField
-As0 @UdMethod f135 '' #zField
 As0 @UdProcessEnd f136 '' #zField
 As0 @GridStep f137 '' #zField
 As0 @GridStep f138 '' #zField
@@ -91,7 +88,6 @@ As0 @PushWFArc f144 '' #zField
 As0 @PushWFArc f153 '' #zField
 As0 @PushWFArc f155 '' #zField
 As0 @PushWFArc f158 '' #zField
-As0 @PushWFArc f141 '' #zField
 As0 @UdProcessEnd f150 '' #zField
 As0 @Alternative f1 '' #zField
 As0 @PushWFArc f2 '' #zField
@@ -124,18 +120,14 @@ As0 @PushWFArc f74 '' #zField
 As0 @UdMethod f53 '' #zField
 As0 @UdProcessEnd f175 '' #zField
 As0 @UdMethod f176 '' #zField
-As0 @PushWFArc f177 '' #zField
 As0 @PushWFArc f164 '' #zField
 As0 @PushWFArc f22 '' #zField
 As0 @Alternative f26 '' #zField
 As0 @PushWFArc f83 '' #zField
 As0 @PushWFArc f113 '' #zField
 As0 @PushWFArc f114 '' #zField
-As0 @CallSub f118 '' #zField
 As0 @UdProcessEnd f122 '' #zField
-As0 @PushWFArc f123 '' #zField
 As0 @GridStep f13 '' #zField
-As0 @PushWFArc f145 '' #zField
 As0 @PushWFArc f134 '' #zField
 As0 @CallSub f147 '' #zField
 As0 @PushWFArc f148 '' #zField
@@ -159,6 +151,15 @@ As0 @PushWFArc f95 '' #zField
 As0 @PushWFArc f97 '' #zField
 As0 @PushWFArc f41 '' #zField
 As0 @PushWFArc f47 '' #zField
+As0 @PushWFArc f40 '' #zField
+As0 @UdMethod f52 '' #zField
+As0 @Alternative f98 '' #zField
+As0 @PushWFArc f99 '' #zField
+As0 @PushWFArc f106 '' #zField
+As0 @PushWFArc f107 '' #zField
+As0 @GridStep f32 '' #zField
+As0 @PushWFArc f108 '' #zField
+As0 @PushWFArc f110 '' #zField
 >Proto As0 As0 AbsenceManagementProcess #zField
 As0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -206,16 +207,16 @@ if have</name>
     </language>
 </elementInfo>
 ' #txt
-As0 f120 944 698 128 44 -40 -16 #rect
+As0 f120 384 1930 128 44 -40 -16 #rect
 As0 f120 @|StepIcon #fIcon
 As0 f37 actionTable 'out=in;
 ' #txt
-As0 f37 actionCode 'out.backupAbsence.setUser(in.selectedAbsence.getUser());
-out.backupAbsence.setFrom(in.selectedAbsence.getFrom());
-out.backupAbsence.setUntil(in.selectedAbsence.getUntil());
-out.backupAbsence.setComment(in.selectedAbsence.getComment());
-out.selectedUser = in.selectedAbsence.getUser();
-' #txt
+As0 f37 actionCode 'in.backupAbsence.setUser(in.selectedAbsence.getUser());
+in.backupAbsence.setFrom(in.selectedAbsence.getFrom());
+in.backupAbsence.setUntil(in.selectedAbsence.getUntil());
+in.backupAbsence.setComment(in.selectedAbsence.getComment());
+in.selectedUser = in.selectedAbsence.getUser();
+in.isCreateMode = false;' #txt
 As0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -355,7 +356,7 @@ As0 f111 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f111 784 698 112 44 -44 -8 #rect
+As0 f111 224 1930 112 44 -44 -8 #rect
 As0 f111 @|CallSubIcon #fIcon
 As0 f11 guid 16FCC0CDEBCF45F4 #txt
 As0 f11 method editAbsence(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence) #txt
@@ -393,7 +394,7 @@ As0 f5 actionCode 'import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 
-UserDTO currentUserDTO = new UserDTO(ivy.session.getSessionUser());
+UserDTO currentUserDTO = new UserDTO(in.selectedAbsenceUser);
 
 in.selectedAbsence = new IvyAbsence();
 in.selectedAbsence.from = new Date();
@@ -403,6 +404,7 @@ in.selectedAbsence.user = currentUserDTO;
 in.selectedUser = currentUserDTO;
 
 in.validationError = false;
+in.isCreateMode = true;
 ' #txt
 As0 f5 security system #txt
 As0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -593,18 +595,6 @@ user''s absences</name>
 ' #txt
 As0 f146 448 122 112 44 -46 -20 #rect
 As0 f146 @|CallSubIcon #fIcon
-As0 f32 guid 16FCC0CDEBC190E7 #txt
-As0 f32 actionTable 'out=in;
-' #txt
-As0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>updateAbsences</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f32 699 707 26 26 -47 15 #rect
-As0 f32 @|UdEventIcon #fIcon
 As0 f31 guid 16FCC0CDEBC98603 #txt
 As0 f31 actionTable 'out=in;
 ' #txt
@@ -643,7 +633,7 @@ As0 f9 392 658 112 44 -46 -8 #rect
 As0 f9 @|StepIcon #fIcon
 As0 f130 1467 811 26 26 0 12 #rect
 As0 f130 @|UdProcessEndIcon #fIcon
-As0 f125 1147 707 26 26 0 12 #rect
+As0 f125 587 1939 26 26 0 12 #rect
 As0 f125 @|UdProcessEndIcon #fIcon
 As0 f38 guid 16FCC0CDEBC953C7 #txt
 As0 f38 actionTable 'out=in;
@@ -721,8 +711,6 @@ As0 f156 expr out #txt
 As0 f156 1024 192 1152 157 #arcP
 As0 f156 1 1152 192 #addKink
 As0 f156 0 0.7628668518881052 0 0 #arcLabel
-As0 f119 expr out #txt
-As0 f119 725 720 784 720 #arcP
 As0 f78 expr out #txt
 As0 f78 560 144 600 144 #arcP
 As0 f78 0 0.6865900143900335 0 0 #arcLabel
@@ -753,7 +741,7 @@ As0 f132 1376 824 1467 824 #arcP
 As0 f8 expr out #txt
 As0 f8 248 680 296 680 #arcP
 As0 f121 expr out #txt
-As0 f121 896 720 944 720 #arcP
+As0 f121 336 1952 384 1952 #arcP
 As0 f56 expr out #txt
 As0 f56 1173 920 1232 920 #arcP
 As0 f58 expr out #txt
@@ -761,7 +749,7 @@ As0 f58 85 48 253 48 #arcP
 As0 f91 expr out #txt
 As0 f91 85 880 152 880 #arcP
 As0 f126 expr out #txt
-As0 f126 1072 720 1147 720 #arcP
+As0 f126 512 1952 587 1952 #arcP
 As0 f126 0 0.41717001380558716 0 0 #arcLabel
 As0 f16 expr in #txt
 As0 f16 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -829,19 +817,6 @@ As0 f129 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f129 872 1746 112 44 -44 -8 #rect
 As0 f129 @|CallSubIcon #fIcon
-As0 f135 guid 16FCC699D22BDD3C #txt
-As0 f135 method createAbsence() #txt
-As0 f135 inParameterDecl '<> param;' #txt
-As0 f135 outParameterDecl '<> result;' #txt
-As0 f135 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>createAbsence()</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f135 67 1755 26 26 -25 15 #rect
-As0 f135 @|UdMethodIcon #fIcon
 As0 f136 891 1659 26 26 0 12 #rect
 As0 f136 @|UdProcessEndIcon #fIcon
 As0 f137 actionTable 'out=in;
@@ -930,7 +905,6 @@ As0 f155 708 1768 760 1768 #arcP
 As0 f158 expr in #txt
 As0 f158 outCond !in.validationError #txt
 As0 f158 792 1768 872 1768 #arcP
-As0 f141 93 1768 224 1768 #arcP
 As0 f150 1299 1755 26 26 0 12 #rect
 As0 f150 @|UdProcessEndIcon #fIcon
 As0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1197,16 +1171,7 @@ As0 f175 @|UdProcessEndIcon #fIcon
 As0 f176 guid 1702ED96A943696D #txt
 As0 f176 method onTabChange(org.primefaces.event.TabChangeEvent) #txt
 As0 f176 inParameterDecl '<org.primefaces.event.TabChangeEvent tabEvent> param;' #txt
-As0 f176 inActionCode 'import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
-import org.primefaces.component.tabview.TabView;
-import org.primefaces.event.TabChangeEvent;
-
-TabChangeEvent tabChangeEvent = param.tabEvent;
-TabView tabView = param.tabEvent.getComponent() as TabView;
-String name = out.applications.get(tabView.index).name;
-out.application = ServiceUtilities.findApp(name);
-
-
+As0 f176 inParameterMapAction 'out.tabChangeEvent=param.tabEvent;
 ' #txt
 As0 f176 outParameterDecl '<> result;' #txt
 As0 f176 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1218,7 +1183,6 @@ As0 f176 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f176 99 1363 26 26 -63 12 #rect
 As0 f176 @|UdMethodIcon #fIcon
-As0 f177 125 1376 499 1376 #arcP
 As0 f164 expr in #txt
 As0 f164 outCond in.errors.isEmpty() #txt
 As0 f164 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1259,30 +1223,8 @@ As0 f114 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f114 800 160 912 192 #arcP
 As0 f114 1 800 192 #addKink
 As0 f114 1 0.5178571428571429 0 12 #arcLabel
-As0 f118 processCall 'Ivy Data Processes/AbsenceService:findAbsences(String)' #txt
-As0 f118 requestActionDecl '<String username> param;' #txt
-As0 f118 requestMappingAction 'param.username=in.selectedAbsence.getUsername();
-' #txt
-As0 f118 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
-As0 f118 responseMappingAction 'out=in;
-out.absencesByUser=result.absencesByUser;
-out.errors=in.errors;
-' #txt
-As0 f118 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Find current &#xD;
-user''s absences</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f118 416 858 112 44 -46 -20 #rect
-As0 f118 @|CallSubIcon #fIcon
-As0 f122 747 867 26 26 0 12 #rect
+As0 f122 579 867 26 26 0 12 #rect
 As0 f122 @|UdProcessEndIcon #fIcon
-As0 f123 expr out #txt
-As0 f123 336 880 416 880 #arcP
 As0 f13 actionTable 'out=in;
 ' #txt
 As0 f13 actionCode 'import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
@@ -1306,10 +1248,9 @@ As0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f13 576 858 112 44 -47 -8 #rect
+As0 f13 408 858 112 44 -47 -8 #rect
 As0 f13 @|StepIcon #fIcon
-As0 f145 528 880 576 880 #arcP
-As0 f134 688 880 747 880 #arcP
+As0 f134 520 880 579 880 #arcP
 As0 f147 processCall 'Ivy Data Processes/AbsenceService:findAbsences(String)' #txt
 As0 f147 requestActionDecl '<String username> param;' #txt
 As0 f147 requestMappingAction 'param.username=in.selectedAbsence.getUsername();
@@ -1485,6 +1426,66 @@ As0 f97 328 1110 501 1179 #arcP
 As0 f97 0 0.44125583597231577 0 0 #arcLabel
 As0 f41 416 1184 496 1184 #arcP
 As0 f47 360 1258 502 1190 #arcP
+As0 f40 expr out #txt
+As0 f40 336 880 408 880 #arcP
+As0 f52 guid 17066C1514DB8CC7 #txt
+As0 f52 method saveAbsence() #txt
+As0 f52 inParameterDecl '<> param;' #txt
+As0 f52 outParameterDecl '<> result;' #txt
+As0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>saveAbsence()</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f52 67 1843 26 26 -25 15 #rect
+As0 f52 @|UdMethodIcon #fIcon
+As0 f98 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>is create absence?</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f98 176 1840 32 32 0 16 #rect
+As0 f98 @|AlternativeIcon #fIcon
+As0 f99 93 1856 176 1856 #arcP
+As0 f106 expr in #txt
+As0 f106 outCond in.isCreateMode #txt
+As0 f106 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f106 202 1850 296 1790 #arcP
+As0 f107 expr in #txt
+As0 f107 200 1864 280 1930 #arcP
+As0 f32 actionTable 'out=in;
+' #txt
+As0 f32 actionCode 'import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import org.primefaces.component.tabview.TabView;
+
+TabView tabView = in.tabChangeEvent.getComponent() as TabView;
+String name = out.applications.get(tabView.index).name;
+in.application = ServiceUtilities.findApp(name);
+
+
+' #txt
+As0 f32 security system #txt
+As0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>set selected application</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f32 248 1354 144 44 -65 -8 #rect
+As0 f32 @|StepIcon #fIcon
+As0 f108 125 1376 248 1376 #arcP
+As0 f110 392 1376 499 1376 #arcP
 >Proto As0 .type ch.ivy.addon.portalkit.multiapp.settings.AbsenceManagement.AbsenceManagementData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1524,8 +1525,6 @@ As0 f6 mainOut f91 tail #connect
 As0 f91 head f90 in #connect
 As0 f90 out f128 tail #connect
 As0 f128 head f7 mainIn #connect
-As0 f32 mainOut f119 tail #connect
-As0 f119 head f111 mainIn #connect
 As0 f111 mainOut f121 tail #connect
 As0 f121 head f120 mainIn #connect
 As0 f39 mainOut f8 tail #connect
@@ -1558,8 +1557,6 @@ As0 f144 head f136 mainIn #connect
 As0 f140 out f158 tail #connect
 As0 f158 head f129 mainIn #connect
 As0 f140 out f153 tail #connect
-As0 f135 mainOut f141 tail #connect
-As0 f141 head f137 mainIn #connect
 As0 f129 mainOut f2 tail #connect
 As0 f2 head f1 in #connect
 As0 f77 head f51 mainIn #connect
@@ -1591,8 +1588,6 @@ As0 f65 head f109 mainIn #connect
 As0 f105 mainOut f67 tail #connect
 As0 f67 head f66 in #connect
 As0 f74 head f109 mainIn #connect
-As0 f176 mainOut f177 tail #connect
-As0 f177 head f175 mainIn #connect
 As0 f24 out f164 tail #connect
 As0 f164 head f100 mainIn #connect
 As0 f24 out f29 tail #connect
@@ -1604,10 +1599,6 @@ As0 f26 out f113 tail #connect
 As0 f113 head f80 mainIn #connect
 As0 f26 out f114 tail #connect
 As0 f114 head f154 mainIn #connect
-As0 f7 mainOut f123 tail #connect
-As0 f123 head f118 mainIn #connect
-As0 f118 mainOut f145 tail #connect
-As0 f145 head f13 mainIn #connect
 As0 f13 mainOut f134 tail #connect
 As0 f134 head f122 mainIn #connect
 As0 f137 mainOut f148 tail #connect
@@ -1640,3 +1631,15 @@ As0 f45 mainOut f41 tail #connect
 As0 f41 head f82 in #connect
 As0 f48 mainOut f47 tail #connect
 As0 f47 head f82 in #connect
+As0 f7 mainOut f40 tail #connect
+As0 f40 head f13 mainIn #connect
+As0 f52 mainOut f99 tail #connect
+As0 f99 head f98 in #connect
+As0 f98 out f106 tail #connect
+As0 f106 head f137 mainIn #connect
+As0 f98 out f107 tail #connect
+As0 f107 head f111 mainIn #connect
+As0 f176 mainOut f108 tail #connect
+As0 f108 head f32 mainIn #connect
+As0 f32 mainOut f110 tail #connect
+As0 f110 head f175 mainIn #connect

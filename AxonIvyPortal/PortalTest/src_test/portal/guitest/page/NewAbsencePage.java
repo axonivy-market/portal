@@ -15,7 +15,7 @@ public class NewAbsencePage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('absence-management:add-absence-dialog_title')";
+    return "id('absence-management:absence-dialog_title')";
   }
   
   public void input(LocalDate absenceFrom, LocalDate absenceTill, String comment) {
@@ -34,7 +34,6 @@ public class NewAbsencePage extends TemplatePage {
       usernameInput.clear();
       usernameInput.sendKeys(fullName);
       waitAjaxIndicatorDisappear();
-//      String itemSelector = "li[data-item-label*='" + fullName + " (" + username + ")" + "'].ui-state-highlight";
       String itemSelector = "tr[data-item-label*='" + fullName  + "'].ui-state-highlight";
       waitForElementDisplayed(By.cssSelector(itemSelector), true);
       clickByCssSelector(itemSelector);
@@ -65,7 +64,7 @@ public class NewAbsencePage extends TemplatePage {
   }
 
   public void proceed() {
-    clickByCssSelector("button[id*='create-absence']");
+    clickByCssSelector("button[id*='save-absence']");
     waitAjaxIndicatorDisappear();
   }
 }
