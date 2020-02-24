@@ -155,7 +155,7 @@
                 <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/always')}" itemValue="PERMANENT"/>
                 <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/duringMyAbsence')}" itemValue="ON_ABSENCE" />
               </p:selectOneRadio>
-              <div class="ui-g">
+              <div class="ui-g" jsf:rendered="#{empty substitute.substitionRole}">
                 <p:radioButton id="permanent-option" for="active-period" itemIndex="0" />
                 <h:outputLabel for="permanent-option" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/always')}" />
                 <p:spacer width="10" />
