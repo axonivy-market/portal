@@ -37,3 +37,5 @@ application ch.ivyteam.ivy.application.IApplication #field
 application PERSISTENT #fieldModifier
 isCreateMode Boolean #field
 isCreateMode PERSISTENT #fieldModifier
+tabChangeEvent org.primefaces.event.TabChangeEvent #field
+tabChangeEvent PERSISTENT #fieldModifier
