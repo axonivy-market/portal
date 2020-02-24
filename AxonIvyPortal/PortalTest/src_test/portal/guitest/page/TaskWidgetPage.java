@@ -510,7 +510,7 @@ public class TaskWidgetPage extends TemplatePage {
   public void startTaskWithoutUI(int index) {
     String taskId = getTaskId(index);
     waitTaskAppearThenClick(index);
-    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
+    Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> {
       try {
         if (!findListElementsByCssSelector(".no-task-message").isEmpty()) {
           return true;
