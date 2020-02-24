@@ -16,7 +16,9 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
 @ViewScoped
@@ -26,6 +28,7 @@ public class TaskWidgetBean implements Serializable {
   public static final int DEFAULT_TASK_LIST_REFRESH_INTERVAL = 10000;
   private Long taskListRefreshInterval;
   private Long expandedTaskId;
+  private Long selectedTaskItemId;
   private TaskLazyDataModel dataModel;
   private Boolean isTaskDetailOpenning;
   private boolean isShowFullTaskList;
@@ -88,6 +91,14 @@ public class TaskWidgetBean implements Serializable {
     return filterService.isDeleteFilterEnabledFor(filterData);
   }
 
+  /**
+   * Find ITask by selectedTaskItemId
+   * @return task is selected
+   */
+  public ITask getSelectedTaskItem() {
+    return TaskUtils.findTaskUserHasPermissionToSee(this.selectedTaskItemId);
+  }
+  
   public Long getTaskListRefreshInterval() {
     return taskListRefreshInterval;
   }
@@ -107,4 +118,13 @@ public class TaskWidgetBean implements Serializable {
   public void setShowFullTaskList(boolean isShowFullTaskList) {
     this.isShowFullTaskList = isShowFullTaskList;
   }
+
+  public Long getSelectedTaskItemId() {
+    return selectedTaskItemId;
+  }
+
+  public void setSelectedTaskItemId(Long selectedTaskItemId) {
+    this.selectedTaskItemId = selectedTaskItemId;
+  }
+  
 }
