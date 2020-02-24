@@ -3800,6 +3800,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   top: 58% !important;
 }
 
+.filter-reset-action .ui-widget.ui-button.filter-add-button {
+  margin-right: 10px;
+}
+
 .ui-widget.ui-button.filter-add-button.no-icon .ui-button-text {
   padding-right: 10px !important;
 }
