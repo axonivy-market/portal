@@ -49,14 +49,14 @@ public class LeaveRequestPage extends TaskTemplatePage {
   }
   
   private void selectLeaveType(String leaveType) {
-    findElementById("leave-request:leave-type").click();
+    findElementById("leave-request:leave-type_label").click();
     String leaveTypeSelector = "li[data-label='" + leaveType + "']";
     waitForElementDisplayed(By.cssSelector(leaveTypeSelector), true);
     clickByCssSelector(leaveTypeSelector);
   }
   
   private void selectApprover(String approver) {
-    findElementById("leave-request:approver").click();
+    findElementById("leave-request:approver_label").click();
     String approverSelector = "li[data-label='" + approver + "']";
     waitForElementDisplayed(By.cssSelector(approverSelector), true);
     clickByCssSelector(approverSelector);
