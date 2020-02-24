@@ -49,8 +49,8 @@
       </div>
       <div class="ui-g-4 ui-lg-4 ui-md-12 add-absence-panel TexAlRight">
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence')}"
-          id="add-absence" process="@this" oncomplete="PF('addAbsence').show()" actionListener="#{logic.add}"
-          update="@widgetVar(addAbsence)" rendered="#{absenceManagementBean.ownAbsencesCreatable}" />
+          id="add-absence" process="@this" oncomplete="PF('absence').show()" actionListener="#{logic.add}"
+          update="@widgetVar(absence)" rendered="#{absenceManagementBean.ownAbsencesCreatable}" />
       </div>
 
       <div class="ui-g-12 ">
@@ -68,7 +68,7 @@
             styleClass="absences-table-action-column">
             <p:commandLink id="edit-absence" process="absence-table"
               styleClass="absences-table-action-column-icon-button" actionListener="#{logic.editAbsence(absence)}"
-              oncomplete="PF('editAbsenceDialog').show()" update="@widgetVar(editAbsenceDialog)"
+              oncomplete="PF('absence').show()" update="@widgetVar(absence)"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
               rendered="#{absenceManagementBean.isAbsenceEditable(absence) }">
               <span class="fa fa-pencil" />
@@ -119,7 +119,7 @@
            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/applicationAndRole')}" sortBy="#{substitute.substitionRoleDisplayName}">
               <h:outputText value="#{substitute.substitionRoleDisplayName}" styleClass="substition-role-display-name" />
            </p:column>
-           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/deputy')}" sortBy="#{substitute.substituteUser}">
+           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/deputy')}" >
               <ic:ch.ivy.addon.portalkit.component.UserSelection 
                 id="substitute-username-selection-component"
                 componentId="substitute-username"
@@ -155,7 +155,7 @@
                 <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/always')}" itemValue="PERMANENT"/>
                 <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/duringMyAbsence')}" itemValue="ON_ABSENCE" />
               </p:selectOneRadio>
-              <div class="ui-g">
+              <div class="ui-g" jsf:rendered="#{empty substitute.substitionRole}">
                 <p:radioButton id="permanent-option" for="active-period" itemIndex="0" />
                 <h:outputLabel for="permanent-option" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/always')}" />
                 <p:spacer width="10" />
@@ -216,8 +216,7 @@
       onclick="PF('deleteAbsenceConfirmation').hide()" type="button" />
   </p:confirmDialog>
   <c:if test="#{absenceManagementBean.ownAbsencesCreatable}">
-    <ui:include src="AddAbsenceDialog.xhtml" />
-    <ui:include src="EditAbsenceDialog.xhtml" />
+    <ui:include src="Absence.xhtml" />
   </c:if>
   
   </div>
