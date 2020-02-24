@@ -8,18 +8,28 @@ import ch.ivyteam.ivy.application.IApplication;
 public interface ISecurityService {
 
   /**
-   * Gets users of the given application names
+   * Finds the users who have the given roles and in the given applications
+   * @param query
    * @param apps
+   * @param startIndex 0..n. The index of the first record is 0
+   * @param count 0..n. Use -1 to return all beginning from the startIndex
+   * @param fromRoles
+   * @param excludedUsernames
    * @return {@link IvySecurityResultDTO}
    */
-  IvySecurityResultDTO findUsers(List<String> apps);
+  IvySecurityResultDTO findUsers(String query, List<String> apps, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames);
   
   /**
-   * Finds the users by the given application
+   * Finds the users who have the given roles and in the given application
+   * @param query
    * @param app
+   * @param startIndex 0..n. The index of the first record is 0
+   * @param count 0..n. Use -1 to return all beginning from the startIndex
+   * @param fromRoles
+   * @param excludedUsernames
    * @return {@link IvySecurityResultDTO}
    */
-  IvySecurityResultDTO findUsers(IApplication app);
+  IvySecurityResultDTO findUsers(String query, IApplication app, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames);
   
   /**
    * Gets roles of the given application name
@@ -37,17 +47,23 @@ public interface ISecurityService {
   
   /**
    * Finds the users and roles
+   * @param query
    * @param app
+   * @param startIndex 0..n. The index of the first record is 0
+   * @param count 0..n. Use -1 to return all beginning from the startIndex
    * @return {@link IvySecurityResultDTO}
    */
-  IvySecurityResultDTO findSecurityMembers(IApplication app);
+  IvySecurityResultDTO findSecurityMembers(String query, IApplication app, int startIndex, int count);
   
   /**
    * Finds the users and roles by the list of application names
+   * @param query
    * @param apps
+   * @param startIndex 0..n. The index of the first record is 0
+   * @param count 0..n. Use -1 to return all beginning from the startIndex
    * @return {@link IvySecurityResultDTO}
    */
-  IvySecurityResultDTO findSecurityMembers(List<String> apps);
+  IvySecurityResultDTO findSecurityMembers(String query, List<String> apps, int startIndex, int count);
 
   /**
    * Gets roleDTOs of the given application name

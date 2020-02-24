@@ -165,7 +165,7 @@ public class ExpressManagementUtils {
 
   private List<String> getExpressMember() {
     List<String> memberList = new ArrayList<>();
-    List<SecurityMemberDTO> securityResultDTOList = SecurityMemberUtils.findAllSecurityMembers();
+    List<SecurityMemberDTO> securityResultDTOList = SecurityMemberUtils.findSecurityMembers("", 0, -1);
     memberList.addAll(securityResultDTOList.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toList()));
     return memberList;
   }

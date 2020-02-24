@@ -1,0 +1,3 @@
+UserSelectionExampleData #class
+ch.ivyteam.ivy.project.portal.examples #namespace
+selectedUser ch.ivy.addon.portalkit.dto.UserDTO #field

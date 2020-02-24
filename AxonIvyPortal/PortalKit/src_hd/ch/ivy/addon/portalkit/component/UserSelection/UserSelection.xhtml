@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"      
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:cc="http://xmlns.jcp.org/jsf/composite"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" >
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="fromRoleNames" type="java.util.List" />
+  <cc:attribute name="componentId" default="user-selection" />
+  <cc:attribute name="selectedUser" type="ch.ivy.addon.portalkit.dto.UserDTO" required="true" />
+  <cc:attribute name="excludedUsernames" type="java.util.List" 
+    shortDescription="Users will be excluded from user selection. Do not use if don't use default completeMethod"/>
+  <cc:attribute name="requiredMessage" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+  <cc:attribute name="forceSelection" default="true" />
+  <cc:attribute name="minQueryLength" default="1" />
+  <cc:attribute name="completeMethod" method-signature="java.util.List completeMethod(java.lang.String)"/>
+  <cc:attribute name="isDisabled" />
+  <cc:attribute name="isRequired" />
+  <cc:attribute name="isReadOnly" />
+  <cc:attribute name="isRenderedMessage" default="true" />
+  <cc:attribute name="hightlight" default="true" />
+  <cc:attribute name="floatingLabel"
+    shortDescription="Display label with floating style and labelPanelStyleClass can't be applied if it’s enabled." />
+  <cc:attribute name="autoCompleteStyleClass" shortDescription="Style class of user autocomplete." />
+  <cc:attribute name="autoCompletePanelStyleClass" shortDescription="Style class of user autocomplete panel." />
+  <cc:attribute name="inputStyleClass" shortDescription="Style class of user autocomplete input." />
+  <cc:attribute name="labelPanelStyleClass" shortDescription="Style class of label panel." />
+  <cc:attribute name="labelStyleClass" shortDescription="Style class of label." />
+  <cc:attribute name="messageStyleClass" shortDescription="Style class of message."/>
+  <cc:attribute name="label" />
+  <cc:attribute name="size" />
+  <cc:attribute name="itemLabel" default="#{user.getDisplayName()}" shortDescription="Label of user item."/>
+  <cc:attribute name="moreText" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."/>
+  <cc:attribute name="queryDelay" default="300"/>
+  <cc:attribute name="maxResults" default="100" type="java.lang.Integer" />
+  <cc:attribute name="scrollHeight" default="400"/>
+</cc:interface>
+
+<cc:implementation>
+    <h:panelGroup id="#{cc.attrs.componentId}-label-panel" layout="block" rendered="#{not empty cc.attrs.label and !cc.attrs.floatingLabel}"
+      styleClass="#{cc.attrs.labelPanelStyleClass}">
+      <p:outputLabel id="#{cc.attrs.componentId}-label" value="#{cc.attrs.label}" for="#{cc.attrs.componentId}"
+        styleClass="#{cc.attrs.labelStyleClass}" />
+    </h:panelGroup>
+  
+    <c:set var="completeMethod" value="#{not empty cc.attrs.completeMethod ? cc.attrs.completeMethod : userSelectionBean.completeUserMethod}" />
+    <h:panelGroup id="#{cc.attrs.componentId}-autocomplete-panel" layout="block"
+      styleClass="#{cc.attrs.autoCompletePanelStyleClass} md-inputfield">
+      <p:autoComplete id="#{cc.attrs.componentId}" value="#{cc.attrs.selectedUser}" scrollHeight="#{cc.attrs.scrollHeight}"
+        completeMethod="#{completeMethod}" required="#{cc.attrs.isRequired}" var="user" size="#{cc.attrs.size}"
+        itemValue="#{user}" itemLabel="#{cc.attrs.itemLabel}" forceSelection="#{cc.attrs.forceSelection}"
+        minQueryLength="#{cc.attrs.minQueryLength}" styleClass="#{cc.attrs.autoCompleteStyleClass}"
+        autoHighlight="#{cc.attrs.hightlight}" converter="pojoConverter" cache="true" dynamic="true" dropdown="true"
+        disabled="#{cc.attrs.isDisabled}" readonly="#{cc.attrs.isReadOnly}" requiredMessage="#{cc.attrs.requiredMessage}"
+        moreText="#{cc.attrs.moreText}" queryDelay="#{cc.attrs.queryDelay}" maxResults="#{cc.attrs.maxResults}" inputStyleClass="#{cc.attrs.inputStyleClass}">
+        <cc:insertFacet name="event" />
+        <cc:insertChildren />
+      </p:autoComplete>
+      <p:outputLabel id="#{cc.attrs.componentId}-label-by" value="#{cc.attrs.label}" for="#{cc.attrs.componentId}"
+        styleClass="#{cc.attrs.labelStyleClass}" rendered="#{cc.attrs.floatingLabel}" />
+      <p:message id="#{cc.attrs.componentId}-message" for="#{cc.attrs.componentId}"
+        rendered="#{cc.attrs.isRenderedMessage}" styleClass="#{cc.attrs.messageStyleClass}" />
+    </h:panelGroup>
+
+</cc:implementation>
+</html>

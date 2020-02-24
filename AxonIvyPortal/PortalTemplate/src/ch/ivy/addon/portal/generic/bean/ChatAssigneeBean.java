@@ -41,7 +41,6 @@ import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
-import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
@@ -62,7 +61,6 @@ public class ChatAssigneeBean implements Serializable {
   private static final long serialVersionUID = 4691697531600235758L;
 
   private boolean isAssignToUser = true;
-  private List<UserDTO> availableUsers;
   private List<RoleDTO> availableRoles;
   private UserDTO selectedUser;
   private RoleDTO selectedRole;
@@ -117,10 +115,6 @@ public class ChatAssigneeBean implements Serializable {
     } else {
       selectedUser = null;
     }
-  }
-
-  public List<UserDTO> populateUserAutoComplete(String query) {
-    return UserUtils.filterUsersDTO(getAvailableUsers(), query);
   }
 
   public List<RoleDTO> populateRoleAutoComplete(String query) {
@@ -215,9 +209,8 @@ public class ChatAssigneeBean implements Serializable {
     handleConfiguredRoleList();
 
     if (isShowCreateGroupChatDialog) {
-      if (CollectionUtils.isEmpty(availableRoles) || CollectionUtils.isEmpty(availableUsers)) {
+      if (CollectionUtils.isEmpty(availableRoles)) {
         populateAvailableRoles();
-        populateAvailableUsers();
       }
       PrimeFaces.current().executeScript("PF('chat-assignee-dialog').show()");
     } else if (!doesGroupChatExist) {
@@ -343,12 +336,6 @@ public class ChatAssigneeBean implements Serializable {
     return roles.stream().filter(role -> !Objects.isNull(role)).collect(Collectors.toList());
   }
 
-  private void populateAvailableUsers() {
-    if (CollectionUtils.isEmpty(availableUsers)) {
-      availableUsers = ServiceUtilities.findAllUserDTOExceptCurrentUserByApplication(task.getApplication());
-    }
-  }
-
   private void populateAvailableRoles() {
     if (CollectionUtils.isEmpty(availableRoles)) {
       availableRoles = ServiceUtilities.findAllRoleDTO(task.getApplication());
@@ -361,14 +348,6 @@ public class ChatAssigneeBean implements Serializable {
 
   public void setIsAssignToUser(boolean isAssignToUser) {
     this.isAssignToUser = isAssignToUser;
-  }
-
-  public List<UserDTO> getAvailableUsers() {
-    return availableUsers;
-  }
-
-  public void setAvailableUsers(List<UserDTO> availableUsers) {
-    this.availableUsers = availableUsers;
   }
 
   public List<RoleDTO> getAvailableRoles() {

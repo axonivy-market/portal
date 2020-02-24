@@ -65,22 +65,27 @@ Pt0 @PushWFArc f52 '' #zField
 Pt0 @PushWFArc f53 '' #zField
 Pt0 @PushWFArc f54 '' #zField
 >Proto Pt0 Pt0 SecurityService #zField
-Pt0 f0 inParamDecl '<String username> param;' #txt
-Pt0 f0 inParamTable 'out.username=param.username;
+Pt0 f0 inParamDecl '<String username,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
+Pt0 f0 inParamTable 'out.count=param.count;
+out.excludedUsernames=param.excludedUsernames;
+out.fromRoles=param.fromRoles;
+out.query=param.query;
+out.startIndex=param.startIndex;
+out.username=param.username;
 ' #txt
-Pt0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.Map usersByApp> result;' #txt
+Pt0 f0 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> users> result;' #txt
 Pt0 f0 outParamTable 'result.errors=in.errors;
-result.usersByApp=in.usersByApp;
+result.users=in.users;
 ' #txt
-Pt0 f0 callSignature findUsersOverAllApplications(String) #txt
+Pt0 f0 callSignature findUsersOverAllApplications(String,String,Integer,Integer,java.util.List<String>,java.util.List<String>) #txt
 Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findUsersOverAllApplications(String)</name>
+        <name>findUsersOverAllApplications(String,String,Integer,Integer,List&lt;String&gt;,List&lt;String&gt;)</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f0 81 81 30 30 -87 22 #rect
+Pt0 f0 80 80 32 32 -87 22 #rect
 Pt0 f0 @|StartSubIcon #fIcon
 Pt0 f1 721 81 30 30 0 15 #rect
 Pt0 f1 @|EndSubIcon #fIcon
@@ -122,8 +127,8 @@ Pt0 f20 actionTable 'out=in;
 Pt0 f20 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
 
-IvySecurityResultDTO dto = SecurityService.newInstance().findUsers(in.apps);
-out.usersByApp = dto.usersByApp;
+IvySecurityResultDTO dto = SecurityService.newInstance().findUsers(in.query, in.apps, in.startIndex, in.count, in.fromRoles, in.excludedUsernames);
+out.users = dto.users;
 out.errors = dto.errors;
 ' #txt
 Pt0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -140,21 +145,24 @@ Pt0 f26 336 96 384 96 #arcP
 Pt0 f27 expr out #txt
 Pt0 f27 496 96 544 96 #arcP
 Pt0 f2 expr out #txt
-Pt0 f2 111 96 160 96 #arcP
+Pt0 f2 112 96 160 96 #arcP
 Pt0 f3 expr out #txt
 Pt0 f3 656 96 721 96 #arcP
-Pt0 f4 inParamDecl '<ch.ivyteam.ivy.application.IApplication application> param;' #txt
+Pt0 f4 inParamDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count> param;' #txt
 Pt0 f4 inParamTable 'out.application=param.application;
+out.count=param.count;
+out.query=param.query;
+out.startIndex=param.startIndex;
 ' #txt
 Pt0 f4 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.dto.SecurityMemberDTO> members,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
 Pt0 f4 outParamTable 'result.members=in.securityMembers;
 result.errors=in.errors;
 ' #txt
-Pt0 f4 callSignature findSecurityMembers(ch.ivyteam.ivy.application.IApplication) #txt
+Pt0 f4 callSignature findSecurityMembers(ch.ivyteam.ivy.application.IApplication,String,Integer,Integer) #txt
 Pt0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findSecurityMembers(IApplication)</name>
+        <name>findSecurityMembers(IApplication,String,Integer,Integer)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -165,7 +173,7 @@ Pt0 f5 actionTable 'out=in;
 Pt0 f5 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
 
-IvySecurityResultDTO dto = SecurityService.newInstance().findSecurityMembers(in.application);
+IvySecurityResultDTO dto = SecurityService.newInstance().findSecurityMembers(in.query, in.application, in.startIndex, in.count);
 out.securityMembers = dto.securityMembers;
 
 out.errors = dto.errors;
@@ -204,18 +212,21 @@ Pt0 f9 expr out #txt
 Pt0 f9 544 576 593 576 #arcP
 Pt0 f11 expr out #txt
 Pt0 f11 392 576 432 576 #arcP
-Pt0 f12 inParamDecl '<String username> param;' #txt
-Pt0 f12 inParamTable 'out.username=param.username;
+Pt0 f12 inParamDecl '<String username,String query,Integer startIndex,Integer count> param;' #txt
+Pt0 f12 inParamTable 'out.count=param.count;
+out.query=param.query;
+out.startIndex=param.startIndex;
+out.username=param.username;
 ' #txt
 Pt0 f12 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.dto.SecurityMemberDTO> members,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
 Pt0 f12 outParamTable 'result.members=in.securityMembers;
 result.errors=in.errors;
 ' #txt
-Pt0 f12 callSignature findSecurityMembersOverAllApplications(String) #txt
+Pt0 f12 callSignature findSecurityMembersOverAllApplications(String,String,Integer,Integer) #txt
 Pt0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findSecurityMembersOverAllApplications(String)</name>
+        <name>findSecurityMembersOverAllApplications(String,String,Integer,Integer)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -226,7 +237,7 @@ Pt0 f13 actionTable 'out=in;
 Pt0 f13 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
 
-IvySecurityResultDTO dto = SecurityService.newInstance().findSecurityMembers(in.apps);
+IvySecurityResultDTO dto = SecurityService.newInstance().findSecurityMembers(in.query, in.apps, in.startIndex, in.count);
 out.securityMembers = dto.securityMembers;
 
 out.errors = dto.errors;
@@ -283,18 +294,23 @@ Pt0 f22 expr out #txt
 Pt0 f22 520 480 552 480 #arcP
 Pt0 f15 expr out #txt
 Pt0 f15 111 480 168 480 #arcP
-Pt0 f19 inParamDecl '<ch.ivyteam.ivy.application.IApplication application> param;' #txt
+Pt0 f19 inParamDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
 Pt0 f19 inParamTable 'out.application=param.application;
+out.count=param.count;
+out.excludedUsernames=param.excludedUsernames;
+out.fromRoles=param.fromRoles;
+out.query=param.query;
+out.startIndex=param.startIndex;
 ' #txt
 Pt0 f19 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> users> result;' #txt
 Pt0 f19 outParamTable 'result.errors=in.errors;
 result.users=in.users;
 ' #txt
-Pt0 f19 callSignature findUsers(ch.ivyteam.ivy.application.IApplication) #txt
+Pt0 f19 callSignature findUsers(ch.ivyteam.ivy.application.IApplication,String,Integer,Integer,java.util.List<String>,java.util.List<String>) #txt
 Pt0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findUsers(IApplication)</name>
+        <name>findUsers(IApplication,String,Integer,Integer,List&lt;String&gt;,List&lt;String&gt;)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -305,7 +321,7 @@ Pt0 f25 actionTable 'out=in;
 Pt0 f25 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
 
-IvySecurityResultDTO dto = SecurityService.newInstance().findUsers(in.application);
+IvySecurityResultDTO dto = SecurityService.newInstance().findUsers(in.query, in.application, in.startIndex, in.count, in.fromRoles, in.excludedUsernames);
 out.users = dto.users;
 out.errors = dto.errors;
 ' #txt
@@ -349,7 +365,7 @@ Pt0 f31 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityS
 import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
 
 IvySecurityResultDTO dto = SecurityService.newInstance().findRoles(in.apps);
-out.rolesByApp = dto.rolesByApp;
+out.roles = dto.roles;
 out.errors = dto.errors;
 ' #txt
 Pt0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -436,9 +452,9 @@ Pt0 f38 @|EndSubIcon #fIcon
 Pt0 f39 inParamDecl '<String username> param;' #txt
 Pt0 f39 inParamTable 'out.username=param.username;
 ' #txt
-Pt0 f39 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.Map rolesByApp> result;' #txt
+Pt0 f39 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.List<ch.ivyteam.ivy.security.IRole> roles> result;' #txt
 Pt0 f39 outParamTable 'result.errors=in.errors;
-result.rolesByApp=in.rolesByApp;
+result.roles=in.roles;
 ' #txt
 Pt0 f39 callSignature findRolesOverAllApplications(String) #txt
 Pt0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.util;
 
+import java.util.List;
+
 import javax.el.ELContext;
 import javax.el.ELException;
 import javax.el.ExpressionFactory;
@@ -55,5 +57,20 @@ public final class BeanUtils {
       results[i] = params[i].getClass();
     }
     return results;
+  }
+  
+  public static MethodExpression createCompleteMethod(String methodName) {
+    @SuppressWarnings("rawtypes")
+    Class<List> retType = List.class;
+    Class<?>[] paramTypes = { String.class };
+    MethodExpression autocompleteMethod = createMethodExpression(methodName, retType, paramTypes);
+    return autocompleteMethod;
+  }
+
+  private static MethodExpression createMethodExpression(String methodExpression, Class<?> expectedReturnType,
+      Class<?>[] expectedParamTypes) {
+    FacesContext context = FacesContext.getCurrentInstance();
+    return context.getApplication().getExpressionFactory().createMethodExpression(context.getELContext(),
+        methodExpression, expectedReturnType, expectedParamTypes);
   }
 }
