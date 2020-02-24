@@ -675,6 +675,7 @@ function View(uri)
           }
         }
       }
+      PF('participants-list-dialog').initPosition();
     }
 
     function initCloneGroup(groupTemplate, groupId) {

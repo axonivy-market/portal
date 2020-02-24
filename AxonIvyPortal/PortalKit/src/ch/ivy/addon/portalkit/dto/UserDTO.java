@@ -19,6 +19,13 @@ public class UserDTO {
     this.email = user.getEMailAddress();
     this.id = user.getId();
   }
+  
+  public UserDTO(UserDTO user) {
+    this.name = user.getName();
+    this.memberName = user.getMemberName();
+    this.displayName = user.getDisplayName();
+    this.id = user.getId();
+  }
 
   public String getName() {
     return name;
