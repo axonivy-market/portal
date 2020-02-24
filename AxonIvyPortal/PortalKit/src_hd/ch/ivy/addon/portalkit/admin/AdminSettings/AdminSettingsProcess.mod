@@ -40,8 +40,6 @@ As0 @GridStep f117 '' #zField
 As0 @PushWFArc f118 '' #zField
 As0 @UdProcessEnd f119 '' #zField
 As0 @PushWFArc f120 '' #zField
-As0 @UdMethod f20 '' #zField
-As0 @UdProcessEnd f121 '' #zField
 As0 @UdProcessEnd f127 '' #zField
 As0 @UdEvent f138 '' #zField
 As0 @GridStep f156 '' #zField
@@ -106,8 +104,6 @@ As0 @GridStep f231 '' #zField
 As0 @PushWFArc f180 '' #zField
 As0 @PushWFArc f181 '' #zField
 As0 @GridStep f15 '' #zField
-As0 @GridStep f169 '' #zField
-As0 @PushWFArc f122 '' #zField
 As0 @PushWFArc f124 '' #zField
 As0 @PushWFArc f133 '' #zField
 As0 @UdProcessEnd f144 '' #zField
@@ -149,11 +145,6 @@ As0 @GridStep f3 '' #zField
 As0 @PushWFArc f27 '' #zField
 As0 @PushWFArc f39 '' #zField
 As0 @PushWFArc f28 '' #zField
-As0 @CallSub f7 '' #zField
-As0 @PushWFArc f12 '' #zField
-As0 @GridStep f14 '' #zField
-As0 @PushWFArc f16 '' #zField
-As0 @PushWFArc f13 '' #zField
 As0 @PushWFArc f19 '' #zField
 As0 @PushWFArc f22 '' #zField
 As0 @PushWFArc f30 '' #zField
@@ -191,6 +182,9 @@ As0 @PushWFArc f90 '' #zField
 As0 @UdMethod f2 '' #zField
 As0 @UdProcessEnd f8 '' #zField
 As0 @PushWFArc f61 '' #zField
+As0 @UdMethod f7 '' #zField
+As0 @UdProcessEnd f12 '' #zField
+As0 @PushWFArc f13 '' #zField
 >Proto As0 As0 AdminUIProcess #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
@@ -558,25 +552,6 @@ As0 f119 686 606 20 20 13 0 #rect
 As0 f119 @|UdProcessEndIcon #fIcon
 As0 f120 expr out #txt
 As0 f120 696 580 696 606 #arcP
-As0 f20 guid 14CBC65EA2BAB5DF #txt
-As0 f20 method getApplicationUserList(ch.ivy.addon.portalkit.persistence.domain.Application) #txt
-As0 f20 inParameterDecl '<ch.ivy.addon.portalkit.persistence.domain.Application app> param;' #txt
-As0 f20 inParameterMapAction 'out.selectedApp=param.app;
-' #txt
-As0 f20 outParameterDecl '<> result;' #txt
-As0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>getApplicationUserList(Application)</name>
-        <nameStyle>35,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f20 1166 558 20 20 13 0 #rect
-As0 f20 @|UdMethodIcon #fIcon
-As0 f121 1166 958 20 20 13 0 #rect
-As0 f121 @|UdProcessEndIcon #fIcon
 As0 f127 1510 1062 20 20 13 0 #rect
 As0 f127 @|UdProcessEndIcon #fIcon
 As0 f138 guid 14CC094CD70A6996 #txt
@@ -1226,20 +1201,6 @@ As0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f15 1008 1556 128 40 -53 -4 #rect
 As0 f15 @|StepIcon #fIcon
-As0 f169 actionTable 'out=in;
-' #txt
-As0 f169 actionCode 'in.filteredUsers = in.usersApplicationList;' #txt
-As0 f169 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>set filter users</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f169 1158 852 36 24 20 -2 #rect
-As0 f169 @|StepIcon #fIcon
-As0 f122 expr out #txt
-As0 f122 1176 876 1176 958 #arcP
 As0 f124 expr out #txt
 As0 f124 1864 666 1864 734 #arcP
 As0 f133 expr in #txt
@@ -1521,45 +1482,6 @@ As0 f28 expr in #txt
 As0 f28 outCond 'in.type == ch.ivy.addon.portalkit.enums.ApplicationType.IVY_APPLICATION' #txt
 As0 f28 896 310 896 478 #arcP
 As0 f28 0 0.5226032559978508 0 0 #arcLabel
-As0 f7 processCall 'Ivy Data Processes/SecurityService:findUsers(ch.ivyteam.ivy.application.IApplication)' #txt
-As0 f7 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application> param;' #txt
-As0 f7 requestMappingAction 'param.application=in.app;
-' #txt
-As0 f7 responseActionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
-' #txt
-As0 f7 responseMappingAction 'out=in;
-out.errors=result.errors;
-out.usersApplicationList=result.users;
-' #txt
-As0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>SecurityService</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f7 1120 770 112 44 -41 -8 #rect
-As0 f7 @|CallSubIcon #fIcon
-As0 f12 expr out #txt
-As0 f12 1176 814 1176 852 #arcP
-As0 f14 actionTable 'out=in;
-' #txt
-As0 f14 actionCode 'import ch.ivyteam.ivy.server.ServerFactory;
-in.app = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(in.selectedApp.name);' #txt
-As0 f14 security system #txt
-As0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>find app</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f14 1120 650 112 44 -22 -8 #rect
-As0 f14 @|StepIcon #fIcon
-As0 f16 expr out #txt
-As0 f16 1176 578 1176 650 #arcP
-As0 f13 expr out #txt
-As0 f13 1176 694 1176 770 #arcP
 As0 f19 expr in #txt
 As0 f19 outCond '!in.duplicateApp	' #txt
 As0 f19 544 582 544 618 #arcP
@@ -1809,6 +1731,24 @@ As0 f2 @|UdMethodIcon #fIcon
 As0 f8 883 755 26 26 0 12 #rect
 As0 f8 @|UdProcessEndIcon #fIcon
 As0 f61 896 653 896 755 #arcP
+As0 f7 guid 1705C5F107D1D280 #txt
+As0 f7 method usersInApp(ch.ivy.addon.portalkit.persistence.domain.Application) #txt
+As0 f7 inParameterDecl '<ch.ivy.addon.portalkit.persistence.domain.Application application> param;' #txt
+As0 f7 inActionCode 'import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+out.userLazyDataModel.setApplication(ServiceUtilities.findApp(param.application.name));' #txt
+As0 f7 outParameterDecl '<> result;' #txt
+As0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>usersInApp(Application)</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f7 179 851 26 26 -23 15 #rect
+As0 f7 @|UdMethodIcon #fIcon
+As0 f12 179 979 26 26 0 12 #rect
+As0 f12 @|UdProcessEndIcon #fIcon
+As0 f13 192 877 192 979 #arcP
 >Proto As0 .type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1962,8 +1902,6 @@ As0 f225 mainOut f227 tail #connect
 As0 f227 head f216 mainIn #connect
 As0 f179 mainOut f181 tail #connect
 As0 f181 head f231 mainIn #connect
-As0 f169 mainOut f122 tail #connect
-As0 f122 head f121 mainIn #connect
 As0 f141 mainOut f124 tail #connect
 As0 f124 head f142 mainIn #connect
 As0 f133 head f88 mainIn #connect
@@ -2006,12 +1944,6 @@ As0 f39 head f217 mainIn #connect
 As0 f196 out f28 tail #connect
 As0 f28 head f45 mainIn #connect
 As0 f196 out f220 tail #connect
-As0 f7 mainOut f12 tail #connect
-As0 f12 head f169 mainIn #connect
-As0 f20 mainOut f16 tail #connect
-As0 f16 head f14 mainIn #connect
-As0 f14 mainOut f13 tail #connect
-As0 f13 head f7 mainIn #connect
 As0 f115 out f19 tail #connect
 As0 f19 head f209 in #connect
 As0 f115 out f118 tail #connect
@@ -2060,6 +1992,8 @@ As0 f87 mainOut f90 tail #connect
 As0 f90 head f89 mainIn #connect
 As0 f2 mainOut f61 tail #connect
 As0 f61 head f8 mainIn #connect
+As0 f7 mainOut f13 tail #connect
+As0 f13 head f12 mainIn #connect
 Ct0 g0 m f0 tail #connect
 Ct0 f0 head f51 mainIn #connect
 Ct0 f1 head g1 m #connect

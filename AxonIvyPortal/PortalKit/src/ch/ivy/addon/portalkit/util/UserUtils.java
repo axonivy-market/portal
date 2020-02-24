@@ -1,22 +1,23 @@
 package ch.ivy.addon.portalkit.util;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.UserDTO;
-import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
@@ -80,71 +81,32 @@ public class UserUtils {
     return String.format("%s (%s)", fullname, username);
   }
   
-  /**
-   * Filter list of users by name based on provided query
-   * 
-   * @param users users need to be filtered
-   * @param query provided query
-   * @return Filtered list of ivy users
-   */
-  public static List<IUser> filterUsers(List<IUser> users, String query) {
-    if (StringUtils.isEmpty(query)) {
-      return users;
-    }
-
-    return IvyExecutor.executeAsSystem(() -> {
-      List<IUser> filterUsers = new ArrayList<>();
-      for (IUser user : users) {
-        if (StringUtils.containsIgnoreCase(user.getDisplayName(), query) || StringUtils.containsIgnoreCase(user.getMemberName(), query)) {
-          filterUsers.add(user);
-        }
-      }
-  
-      return filterUsers.stream().sorted((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName())).collect(Collectors.toList());
-    });
-  }
-  
   public static List<IUserAbsence> findAbsenceOfUser(IUser iUser) {
     return IvyExecutor.executeAsSystem(() -> iUser.getAbsences());
   }
   
-  public static List<UserDTO> filterUsersDTO(List<UserDTO> users, String query) {
-    List<UserDTO> filterUsers = new ArrayList<>();
+  public static String findNextAbsenceOfUser(IUser iUser) {
+    DateTimeGlobalSettingService service = new DateTimeGlobalSettingService();
+    DateFormat formatter = new SimpleDateFormat(service.getDatePattern());
     
-    return IvyExecutor.executeAsSystem(() -> {
-      if (StringUtils.isEmpty(query)) {
-          return users;
-      }
-
-      for (UserDTO user : users) {
-        if (StringUtils.containsIgnoreCase(user.getDisplayName(), query) || StringUtils.containsIgnoreCase(user.getMemberName(), query)) {
-          filterUsers.add(user);
+    List<IUserAbsence> findAbsenceOfUser = findAbsenceOfUser(iUser);
+    String returnString = "";
+    Date foundDate = null;
+    for (IUserAbsence item : findAbsenceOfUser) {
+      if (item.getStartTimestamp().after(new Date())) {
+        if (foundDate == null) {
+          foundDate = item.getStartTimestamp();
+          returnString = String.format("%s - %s", formatter.format(item.getStartTimestamp()), formatter.format(item.getStopTimestamp())); 
+        } else if (item.getStartTimestamp().before(foundDate)){
+          foundDate = item.getStartTimestamp();
+          returnString = String.format("%s - %s", formatter.format(item.getStartTimestamp()), formatter.format(item.getStopTimestamp())); 
         }
       }
-
-      return filterUsers;
-    });
+    }
+     
+    return returnString;
   }
   
-  /**
-   * Gets non-duplicated all of users from map usersByApp 
-   * 
-   * @param usersByApp
-   * @return non-duplicated list of ivy users
-   */
-  public static List<UserDTO> getNonDuplicatedUsers(Map<String, List<UserDTO>> usersByApp) {
-    if (usersByApp == null || usersByApp.isEmpty()) {
-      return new ArrayList<>();
-    }
-
-    return IvyExecutor.executeAsSystem(() ->
-      usersByApp.values()
-        .stream()
-        .flatMap(List::stream)
-        .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getName, String.CASE_INSENSITIVE_ORDER))), ArrayList::new))
-    );
-  }
-
   public static void setSessionAttribute(String key, Object value) {
     Ivy.session().setAttribute(key, value);
   }
@@ -214,36 +176,48 @@ public class UserUtils {
   public static String getSessionCaseKeywordFilterAttribute() {
     return StringUtils.defaultIfBlank((String)Ivy.session().getAttribute(CASE_KEYWORD_FILTER), "");
   }
-
-  public static List<UserDTO> findAllUserDTOInCurrentApplication() {
-    List<UserDTO> users =  ServiceUtilities.findAllUserDTOByApplication(Ivy.request().getApplication());
-    Collections.sort(users, (first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
-    return users;
-  }
   
-  public static List<UserDTO> findAllUserDTOByApplication() {
-    List<UserDTO> users = findUsersByCallableProcess();
-    Collections.sort(users, (first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
-    return users;
-  }
-  
+  /**
+   * Finds the users who have the given roles. If the current application is Portal, find all users over all applications, otherwise in current application
+   * @param query
+   * @param startIndex 0..n. The index of the first record is 0
+   * @param count 0..n. Use -1 to return all beginning from the startIndex
+   * @param fromRoles
+   * @param excludedUsers
+   */
   @SuppressWarnings("unchecked")
-  private static List<UserDTO> findUsersByCallableProcess() {
-      return IvyExecutor.executeAsSystem(() -> {
+  public static List<UserDTO> findUsers(String query, int startIndex, int  count, List<String> fromRoles, List<String> excludedUsernames) {
+    return IvyExecutor.executeAsSystem(() -> {
       if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
-        Map<String, List<UserDTO>> usersByApp = SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
+        List<UserDTO> users = SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
             .withStartName("findUsersOverAllApplications")
-            .call(Ivy.session().getSessionUserName())
-            .get("usersByApp", Map.class);
-        return usersByApp.values().stream().flatMap(List::stream)
+            .withParam("username", getSessionUserName())
+            .withParam("query", query)
+            .withParam("startIndex", startIndex)
+            .withParam("count", count)
+            .withParam("fromRoles", fromRoles)
+            .withParam("excludedUsernames", excludedUsernames)
+            .call()
+            .get("users", List.class);
+        return users.stream()
             .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getName))), ArrayList::new));
       }
       
       return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
           .withStartName("findUsers")
-          .call(Ivy.request().getApplication())
+          .withParam("application", Ivy.request().getApplication())
+          .withParam("query", query)
+          .withParam("startIndex", startIndex)
+          .withParam("count", count)
+          .withParam("fromRoles", fromRoles)
+          .withParam("excludedUsernames", excludedUsernames)
+          .call()
           .get("users", List.class);
-      });
+    });
+  }
+  
+  public static List<UserDTO> filterOut(List<UserDTO> users, UserDTO excludedUser) {
+    return users.stream().filter(user -> !StringUtils.equals(user.getName(), excludedUser.getName())).collect(Collectors.toList());
   }
   
   public static String getUserName(IUser user) {
@@ -258,10 +232,4 @@ public class UserUtils {
     });
   }
 
-  public static UserDTO getCurrentSessionUserAsUserDTO() {
-    return IvyExecutor.executeAsSystem(() -> {
-      return new UserDTO(getIvySession().getSessionUser());
-    });
-  }
-  
 }

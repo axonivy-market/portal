@@ -1,0 +1,59 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:define name="title"> User Selection Component</ui:define>
+    <ui:define name="simplePageContent">
+      <h1>User Selection Component</h1>
+      <h:form id="form">
+        <div class="ui-g">
+          <ic:ch.ivy.addon.portalkit.component.UserSelection 
+            componentId="read-only-user-autocomplete"
+            selectedUser="#{data.selectedUserForReadOnlyField}" 
+            isRenderedMessage="false"
+            label="Read only user selection" 
+            labelPanelStyleClass="ui-g-3 ui-xl-2 ui-md-4 ui-sm-12" 
+            autoCompleteStyleClass="width-100" 
+            autoCompletePanelStyleClass="ui-g-5 ui-md-4 ui-sm-12" 
+            isReadOnly="true" hightlight="false"/>
+        </div>
+        <div class="ui-g">
+          <ic:ch.ivy.addon.portalkit.component.UserSelection 
+            componentId="user-by-role-autocomplete"
+            fromRoleNames="#{data.definedRoleNames}"
+            selectedUser="#{data.selectedUserForDefinedRoles}"
+            isRequired="true"
+            autoCompleteStyleClass="width-100"
+            label="Users from defined rolenames"
+            labelPanelStyleClass="ui-g-3 ui-xl-2 ui-md-4 ui-sm-12" 
+            autoCompletePanelStyleClass="ui-g-5 ui-md-4 ui-sm-12"
+            messageStyleClass="message-error-background-color" />
+        </div>
+
+        <div class="ui-g">
+          <div class="ui-g-3 ui-xl-2 ui-md-4 ui-sm-12"></div>
+          <ic:ch.ivy.addon.portalkit.component.UserSelection 
+            componentId="all-user-autocomplete"
+            hightlight="false" selectedUser="#{data.selectedUser}"
+            label="Loading with all users (exclude gm2)"
+            labelPanelStyleClass="ui-g-3 ui-xl-2 ui-md-4 ui-sm-12"
+            autoCompleteStyleClass="width-100"
+            autoCompletePanelStyleClass="ui-g-5 ui-md-4 ui-sm-12 margin-top-40"
+            excludedUsernames="#{data.excludedUsernames}"
+            isRequired="true" floatingLabel="true" />
+        </div>
+        <div class="ui-g">
+          <p:commandButton update="@form" value="Assign selected user from defined roles to next task"
+            actionListener="#{logic.finish}" styleClass="margin-top-15" />
+        </div>
+      </h:form>
+
+    </ui:define>
+    <ui:define name="css">
+      <h:outputStylesheet library="css" name="examples.css" />
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

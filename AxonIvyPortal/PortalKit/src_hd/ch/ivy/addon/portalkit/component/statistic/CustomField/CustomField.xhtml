@@ -21,7 +21,7 @@
             value="#{data.selectedCustomValue}" completeMethod="#{cc.attrs.completeMethod}" var="customVal"
             itemLabel="#{customVal}" itemValue="#{customVal}" 
             cache="true" queryDelay="500" maxResults="10" selectLimit="10" converter="pojoConverter"
-            moreText="#{component.suggestions.size() - component.maxResults} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." >
+            moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." >
               <p:ajax event="query" global="false" />
               <p:ajax event="itemSelect" global="false" update="add-custom-val" />
               <f:param name="fieldName" value="#{cc.attrs.fieldName}" />

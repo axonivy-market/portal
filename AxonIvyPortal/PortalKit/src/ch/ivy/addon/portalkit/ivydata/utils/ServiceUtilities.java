@@ -187,7 +187,7 @@ public class ServiceUtilities {
    * 
    * @return all users in application, exclude SYSTEM user
    */
-  public static List<UserDTO> findAllUserDTOByApplication(IApplication app) {
+  public static List<UserDTO> findAllUserDTOsByApplication(IApplication app) {
     return IvyExecutor.executeAsSystem(() -> {
       return app.getSecurityContext().getUsers().stream().map(user -> new UserDTO(user))
           .filter(userDTO -> !StringUtils.equals(ISecurityConstants.SYSTEM_USER_NAME, userDTO.getName()))
@@ -200,7 +200,7 @@ public class ServiceUtilities {
    * @param app {@link IApplication}
    *  @return all users in application, exclude SYSTEM user and current user
    */
-  public static List<UserDTO> findAllUserDTOExceptCurrentUserByApplication(IApplication app) {
+  public static List<UserDTO> findAllUserDTOsExceptCurrentUserByApplication(IApplication app) {
     return IvyExecutor.executeAsSystem(() -> {
       String sessionUsername = Ivy.session().getSessionUserName();
       return app.getSecurityContext().getUsers().stream().map(user -> new UserDTO(user))

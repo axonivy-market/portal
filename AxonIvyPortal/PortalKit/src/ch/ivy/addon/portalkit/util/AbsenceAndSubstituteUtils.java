@@ -5,7 +5,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -37,31 +36,29 @@ public final class AbsenceAndSubstituteUtils {
    * 
    * @param substitutedUser selected user to set substitutes
    * @param ivySubtitutesByApp
-   * @param usersByApp
    * @return TreeNode
    */
-  public static TreeNode buildSustitute(UserDTO substitutedUser, Map<IvyApplication, List<IvySubstitute>> ivySubtitutesByApp, Map<String, List<UserDTO>> usersByApp) {
+  public static TreeNode buildSustitute(UserDTO substitutedUser, Map<IvyApplication, List<IvySubstitute>> ivySubtitutesByApp) {
     TreeNode substituteRoot = new DefaultTreeNode(new SubstituteNode(), null);
 
     for (Map.Entry<IvyApplication,List<IvySubstitute>> entry : ivySubtitutesByApp.entrySet()) {
       IvyApplication ivyApplication = entry.getKey();
       TreeNode appNode =
-          new DefaultTreeNode(new SubstituteNode(ivyApplication.getDisplayName(), null, null, false), substituteRoot);
+          new DefaultTreeNode(new SubstituteNode(ivyApplication.getDisplayName(), null, false, ivyApplication.getName()), substituteRoot);
       appNode.setExpanded(true);
 
-      for (IvySubstitute ivySubstitute : entry.getValue()) {
-        createSubstituteNode(substitutedUser, appNode, usersByApp.get(ivyApplication.getName()), ivySubstitute);
+      for (int i = 0; i < entry.getValue().size(); i++) {
+        createSubstituteNode(substitutedUser, appNode, entry.getValue().get(i), ivyApplication.getName()).setRowKey("node_" + i);
       }
     }
     return substituteRoot;
   }
 
-  private static DefaultTreeNode createSubstituteNode(UserDTO substitutedUser, TreeNode appNode, List<UserDTO> users, IvySubstitute ivySubstitute) {
+  private static DefaultTreeNode createSubstituteNode(UserDTO substitutedUser, TreeNode appNode, IvySubstitute ivySubstitute, String applicationName) {
     String nodeName = ivySubstitute.getSubstitionRoleDisplayName();
     String name = StringUtils.isNotBlank(nodeName) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/taskForRole") + nodeName : Ivy.cms().co(
         "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTask");
-    List<UserDTO> usersExceptSubstitutedUser = Optional.ofNullable(users).orElse(new ArrayList<>()).stream().filter(user -> !StringUtils.equals(user.getName(), substitutedUser.getName())).collect(Collectors.toList());
-    return new DefaultTreeNode(new SubstituteNode(name, ivySubstitute, usersExceptSubstitutedUser, true), appNode);
+    return new DefaultTreeNode(new SubstituteNode(name, ivySubstitute, true, applicationName), appNode);
   }
 
   /**

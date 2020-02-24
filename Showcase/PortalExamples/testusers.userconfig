@@ -1,2 +1,29 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<userConfig/>
+<userConfig>
+    <user>
+        <username>gm1</username>
+        <fullName>General Manager 1</fullName>
+        <role>GeneralManager</role>
+    </user>
+    <user>
+        <username>gm2</username>
+        <fullName>General Manager 2</fullName>
+        <role>GeneralManager</role>
+    </user>
+    <user>
+        <username>gm3</username>
+        <fullName>General Manager 3</fullName>
+        <role>GeneralManager</role>
+        <role>CostObject</role>
+    </user>
+    <user>
+        <username>costObject1</username>
+        <fullName>Cost Object 1</fullName>
+        <role>CostObject</role>
+    </user>
+    <user>
+        <username>costObject2</username>
+        <fullName>Cost Object 2</fullName>
+        <role>CostObject</role>
+    </user>
+</userConfig>
