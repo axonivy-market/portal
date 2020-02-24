@@ -40,6 +40,10 @@
   width: calc(100% - 45px) !important;
 }
 
+.default-template-dialog {
+  min-width: 700px;
+}
+
 /* Express switch button */
 .express-work-flow .express-input-switch-selection,
 .ui-inputswitch.ui-widget.ui-widget-content.express-input-switch-selection.ui-inputswitch-checked {
@@ -175,10 +179,16 @@
 }
 
 /* Choose responsible dialog */
+.choose-responsible-dialog {
+  min-width: 600px;
+}
 
 @media screen and (max-width: 40em) {
   .choose-responsible-dialog {
-    width: 100% !important;
+    min-width: 100%;
+  }
+  .default-template-dialog {
+    min-width: 96vw;
   }
 }
 

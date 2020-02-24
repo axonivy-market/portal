@@ -335,14 +335,14 @@
 
       <p:dialog id="choose-responsible-dialog" styleClass="choose-responsible-dialog"
         header="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/ChooseAssignee/AddUserOrRole')}" widgetVar="choose-responsible-dialog"
-        modal="true" appendTo="@(body)" width="600" resizable="false">
+        modal="true" appendTo="@(body)" resizable="false" responsive="true">
         <p:ajax event="close" listener="#{logic.closeDialog}" global="false" immediate="true" />
         <ui:include src="ChooseAssignee.xhtml" />
       </p:dialog>
 
       <p:dialog id="default-template-dialog" styleClass="default-template-dialog"
         header="#{ivy.cms.co('/Dialogs/workflowCreation/DefaultTemplateDialogHeader')}" widgetVar="default-template-dialog" modal="true"
-        appendTo="@(body)" width="700" resizable="false">
+        appendTo="@(body)" resizable="false" responsive="true">
         <ui:include src="DefaultTemplate.xhtml" />
 
         <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
@@ -353,7 +353,8 @@
 
       <p:confirmDialog id="delete-all-defined-tasks-warning" widgetVar="delete-all-defined-tasks-warning"
         message="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/ChangeSettingWarning')}" appendTo="@(body)"
-        header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" severity="alert" closable="false">
+        header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" severity="alert" closable="false"
+        responsive="true">
         <p:commandButton id="delete-all-defined-tasks-warning-ok" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
           resetValues="true" actionListener="#{logic.changeUISetting(true)}" oncomplete="PF('delete-all-defined-tasks-warning').hide()"
           update="#{p:component('defined-tasks-list-container')} #{p:component('express-button-container')} #{p:component('process-chain-component-id')}" global="false" />

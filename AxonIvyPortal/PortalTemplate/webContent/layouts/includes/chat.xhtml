@@ -49,7 +49,7 @@
               rendered="#{chatRendererBean.isPrivateChatRendered}" />
           </div>
           <div class="close-chat">
-            <p:commandButton id="close-chat-button" icon="fa fa-chevron-right" oncomplete="view.closeChatPanel();" process="@(none)" async="true" global="false" />
+            <p:commandButton id="close-chat-button" icon="fa fa-chevron-right" onclick="view.closeChatPanel();" process="@(this)" partialSubmit="true" immediate="true" global="false" />
           </div>
         </div>
         <div class="message-list js-chat-message-container">
@@ -101,7 +101,8 @@
     </h:form>
 
     <p:dialog id="participants-list-dialog" resizable="false" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/participants')}"
-      widgetVar="participants-list-dialog" appendTo="@(body)" modal="true" styleClass="participants-list-dialog">
+      widgetVar="participants-list-dialog" appendTo="@(body)" modal="true" styleClass="participants-list-dialog"
+      responsive="true" position="center center" fitViewport="true" onShow="PF('participants-list-dialog').initPosition();">
       <h:outputText id="user-participants-list-header" styleClass="participants-list-header js-users-participants-header"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/users')}" />
       <div class="js-users-participants">

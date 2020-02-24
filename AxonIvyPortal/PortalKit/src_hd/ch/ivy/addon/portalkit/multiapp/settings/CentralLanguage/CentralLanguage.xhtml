@@ -17,9 +17,7 @@
     <h:panelGroup id="setting-grid" layout="block">
       <p:messages id="errors-message" severity="error" showDetail="true" escape="false"
         closable="true" />
-      <p:dataTable id="language-setting-table" value="#{data.languages}" var="ivyLanguage"
-        scrollable="true" styleClass="language-table">
-
+      <p:dataTable id="language-setting-table" value="#{data.languages}" var="ivyLanguage" styleClass="language-table" reflow="true">
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/application')}">
           <p:outputLabel id="application-name" styleClass="TexAlLeft" value="#{ivyLanguage.appDisplayName}" />
         </p:column>
