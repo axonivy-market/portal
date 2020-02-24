@@ -387,16 +387,30 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   }
 
   @SuppressWarnings("unchecked")
+  @Override
+  public void updateSelectedFilter() {
+    List<TaskFilter> toggleFilters = (List<TaskFilter>) CollectionUtils.subtract(selectedFilters, oldSelectedFilters);
+    if (CollectionUtils.isNotEmpty(toggleFilters)) {
+      toggleFilters.forEach(filter -> filter.resetValues());
+    }
+    resetFilterData();
+  }
+
+  public void resetFilterData() {
+    if (selectedTaskAnalysisFilterData != null) {
+      selectedTaskAnalysisFilterData = null;
+    }
+    this.isSelectedDefaultFilter = false;
+  }
+
+  @SuppressWarnings("unchecked")
   public void updateSelectedCaseFilter() {
     List<CaseFilter> toggleFilters =
         (List<CaseFilter>) CollectionUtils.subtract(selectedCaseFilters, oldSelectedCaseFilters);
     if (CollectionUtils.isNotEmpty(toggleFilters)) {
       toggleFilters.forEach(filter -> filter.resetValues());
     }
-    if (selectedTaskAnalysisFilterData != null) {
-      selectedTaskAnalysisFilterData = null;
-    }
-    this.isSelectedDefaultFilter = false;
+    resetFilterData();
   }
 
   public List<CaseFilter> getSelectedCaseFilters() {
