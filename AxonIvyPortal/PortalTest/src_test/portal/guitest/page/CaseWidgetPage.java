@@ -306,8 +306,8 @@ public class CaseWidgetPage extends TemplatePage {
 
 	public void removeResponsibleFilter() {
 		click(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
-		waitForElementDisplayed(By.cssSelector("input[id$='creator-filter:filter-input-form:creator_input']"), true);
-		findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator_input']").clear();
+		waitForElementDisplayed(By.cssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']"), true);
+		findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").clear();
 		click(By.cssSelector("button[id$='creator-filter:filter-input-form:update-command']"));
 		waitAjaxIndicatorDisappear();
 		// Sleeper.sleep(2000);
@@ -316,8 +316,8 @@ public class CaseWidgetPage extends TemplatePage {
 	public String getCreator() {
 		refreshAndWaitElement("button[id$='creator-filter:filter-open-form:advanced-filter-command']");
 		click(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
-		waitForElementDisplayed(By.cssSelector("input[id$='creator-filter:filter-input-form:creator_input']"),true);
-		return findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator_input']")
+		waitForElementDisplayed(By.cssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']"),true);
+		return findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']")
 				.getAttribute("value");
 	}
 }
