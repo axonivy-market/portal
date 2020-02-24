@@ -75,7 +75,11 @@ public class HistoryService {
         history.setInvolvedFullname(worker.getFullName());
       }
     }
-    history.setTimestamp(task.getEndTimestamp());
+
+    // If task is done, set end time as history time
+    // Otherwise, set start time as history time
+    Date historyTimeStamp = task.getEndTimestamp() == null ? task.getStartTimestamp() : task.getEndTimestamp();
+    history.setTimestamp(historyTimeStamp);
     history.setType(HistoryType.TASK);
     return history;
   }
