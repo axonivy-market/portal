@@ -73,7 +73,7 @@ public class CaseMapTest extends BaseTest {
     Assert.assertEquals("80000", caseMapPage.getSalary());
     Assert.assertEquals("100000", caseMapPage.getOtherCredits());
   }
-  
+
   @Test
   public void testCollectPersonalDataValidation() {
     redirectToRelativeLink(CASE_MAP_URL);
@@ -89,7 +89,6 @@ public class CaseMapTest extends BaseTest {
     caseMapPage.inputFields("John", "Jack", "1.1.2020", "VN", "20000", "To buy a new car", "80000", "100000");
     caseMapPage.clickSubmitButton();
   }
-
 
   private void startTaskWithoutUI(String taskname) {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
