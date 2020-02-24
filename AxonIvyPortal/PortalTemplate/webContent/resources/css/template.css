@@ -323,8 +323,17 @@
   float: right;
 }
 
+.chat-assignee-selection-panel {
+  max-height: 75vh;
+}
+
 .chat-assignee-selection-panel .ui-selectoneradio.ui-widget td {
   padding-right: 15px;
+}
+
+.chat-assignee-selection-panel .chat-selected-assignee-fieldset .ui-fieldset-content {
+  max-height: 150px;
+  overflow: auto;
 }
 
 /* SERENITY TOP BAR */

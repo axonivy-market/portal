@@ -562,7 +562,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       toggleFilters.forEach(filter -> filter.resetValues());
     }
     resetFilterData();
-    resetFilterData();
     storeTaskFiltersIntoSession();
   }
 
