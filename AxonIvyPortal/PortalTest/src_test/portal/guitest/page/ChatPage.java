@@ -71,8 +71,8 @@ public class ChatPage extends TemplatePage {
 			click(By.xpath("//*[@id='chat-assignee-selection-form:chat-role-selection_panel']/ul/li/span"));
 		} else {
 			type(By.cssSelector("input[id$='selection_input']"), responsible);
-			waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-user-selection_panel"), true);
-			click(By.xpath("//*[@id='chat-assignee-selection-form:chat-user-selection_panel']/table/tbody/tr"));
+			waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-user-selection-component:chat-user-selection_panel"), true);
+			click(By.xpath("//*[@id='chat-assignee-selection-form:chat-user-selection-component:chat-user-selection_panel']/table/tbody/tr"));
 		}
 		waitForElementEnabled(By.id("chat-assignee-selection-form:chat-add-assignee-button"), true, 5);
 		click(By.id("chat-assignee-selection-form:chat-add-assignee-button"));
