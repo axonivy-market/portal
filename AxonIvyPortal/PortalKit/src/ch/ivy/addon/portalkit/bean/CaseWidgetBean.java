@@ -8,19 +8,16 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.safety.Whitelist;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
+import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.NumberUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 
 @ManagedBean
@@ -92,29 +89,11 @@ public class CaseWidgetBean implements Serializable {
   }
 
   public String sanitizeHTML(String text) {
-    String sanitizedText = sanitize(text);
-    if (StringUtils.isBlank(extractTextFromHtml(sanitizedText))) {
-      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription");
-    }
-    return sanitizedText;
+    return HtmlParser.sanitizeHTML(text);
   }
-  
-	public String formatCaseDescription(String text) {
-		String extractedText = extractTextFromHtml(text);
-		if (StringUtils.isBlank(extractedText)) {
-			return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription");
-		}
-		return extractedText;
-	}
-	
-  private String extractTextFromHtml(String text) {
-    String sanitizedText = sanitize(text);
-    Document doc = Jsoup.parse(sanitizedText);
-    return doc.body().text();
-  }
-  
-  private String sanitize(String text) {
-    return Jsoup.clean(text, Whitelist.relaxed().addAttributes(":all", "style"));
+
+  public String formatCaseDescription(String text) {
+    return HtmlParser.extractTextFromHtml(text);
   }
 
   public boolean isShowCaseDetails() {
