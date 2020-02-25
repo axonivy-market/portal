@@ -1309,6 +1309,7 @@ out.application = ServiceUtilities.findApp(substituteNode.getApplicationName());
 out.users.clear();
 out.users.add(null);
 ' #txt
+As0 f94 security system #txt
 As0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
