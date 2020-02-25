@@ -13,6 +13,10 @@ import portal.guitest.userexamples.page.CaseMapPage;
 public class CaseMapTest extends BaseTest {
 
   private static final String CASE_MAP_URL = "/portal-user-examples/70765b37-a3e8-418a-a8d5-c2b3a539408e.icm";
+  private static final String VERIFY_PERSONAL_DATA = "Verify Personal Data";
+  private static final String INTERNAL_SOLVENCY_CHECK = "Internal Solvency Check";
+  private static final String APPROVAL_LEVEL_1 = "Approve Level 1";
+  private static final String APPROVAL_LEVEL_2 = "Approve Level 2";
   private CaseMapPage caseMapPage;
   private TaskWidgetPage taskWidgetPage;
 
@@ -28,21 +32,34 @@ public class CaseMapTest extends BaseTest {
     redirectToRelativeLink(CASE_MAP_URL);
     caseMapPage = new CaseMapPage();
     caseMapPage.inputFields("John", "Jack", "1.1.2019", "VN", "20000", "To buy a new car", "80000", "100000");
+    caseMapPage.clickSubmitRequestButton();
+    login(TestAccount.DEMO_USER);
+    startTaskByTaskName(VERIFY_PERSONAL_DATA);
+    assertInputData();
+    caseMapPage.inputVerifierComment("Ok");
     caseMapPage.clickSubmitButton();
-    startTaskWithoutUI("Verify Personal Data");
-    startTaskWithoutUI("Internal Solvency Check");
     login(TestAccount.DEMO_USER);
-    taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy("Approve Level 1");
-    taskWidgetPage.startTask(0);
+    startTaskByTaskName(INTERNAL_SOLVENCY_CHECK);
     assertInputData();
+    Assert.assertEquals("Ok", caseMapPage.getVerifierComment());
+    caseMapPage.inputInternalCreditComment("Pass");
+    caseMapPage.clickSubmitButton();
+    login(TestAccount.DEMO_USER);
+    startTaskByTaskName(APPROVAL_LEVEL_1);
+    assertInputData();
+    Assert.assertEquals("Ok", caseMapPage.getVerifierComment());
+    Assert.assertEquals("Pass", caseMapPage.getInternalCreditComment());
     caseMapPage.clickApproveButton();
     login(TestAccount.DEMO_USER);
-    taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy("Approve Level 2");
-    taskWidgetPage.startTask(0);
+    startTaskByTaskName(APPROVAL_LEVEL_2);
     assertInputData();
+    Assert.assertEquals("Ok", caseMapPage.getVerifierComment());
+    Assert.assertEquals("Pass", caseMapPage.getInternalCreditComment());
     caseMapPage.clickApproveButton();
+    login(TestAccount.DEMO_USER);
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.filterTasksBy("Create Contract");
+    taskWidgetPage.startTaskWithoutUI(0);
   }
 
   @Test
@@ -50,22 +67,31 @@ public class CaseMapTest extends BaseTest {
     redirectToRelativeLink(CASE_MAP_URL);
     caseMapPage = new CaseMapPage();
     caseMapPage.inputFields("John", "Jack", "1.1.2019", "VN", "20000", "To buy a new car", "80000", "100000");
-    caseMapPage.clickSubmitButton();
-    startTaskWithoutUI("Verify Personal Data");
-    startTaskWithoutUI("Internal Solvency Check");
+    caseMapPage.clickSubmitRequestButton();
     login(TestAccount.DEMO_USER);
-    taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy("Approve Level 1");
-    taskWidgetPage.startTask(0);
+    startTaskByTaskName(VERIFY_PERSONAL_DATA);
     assertInputData();
+    caseMapPage.inputVerifierComment("Ok");
+    caseMapPage.clickSubmitButton();
+    login(TestAccount.DEMO_USER);
+    startTaskByTaskName(INTERNAL_SOLVENCY_CHECK);
+    assertInputData();
+    Assert.assertEquals("Ok", caseMapPage.getVerifierComment());
+    caseMapPage.inputInternalCreditComment("Fail");
+    caseMapPage.clickSubmitButton();
+    login(TestAccount.DEMO_USER);
+    startTaskByTaskName(APPROVAL_LEVEL_1);
+    assertInputData();
+    Assert.assertEquals("Ok", caseMapPage.getVerifierComment());
+    Assert.assertEquals("Fail", caseMapPage.getInternalCreditComment());
     caseMapPage.clickRejectButton();
     taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy("Approve Level 2");
+    taskWidgetPage.filterTasksBy(APPROVAL_LEVEL_2);
     Assert.assertEquals(0, taskWidgetPage.countTasks());
   }
 
   private void assertInputData() {
-    Assert.assertEquals("John", caseMapPage.getCustomerName());
+    Assert.assertEquals("John", caseMapPage.getCustomerLastName());
     Assert.assertEquals("Jack", caseMapPage.getCustomerFirstName());
     Assert.assertEquals("VN", caseMapPage.getCountry());
     Assert.assertEquals("20000", caseMapPage.getAmount());
@@ -80,20 +106,17 @@ public class CaseMapTest extends BaseTest {
     CaseMapPage caseMapPage = new CaseMapPage();
     caseMapPage.inputFields("", "", "", "", "", "", "", "");
     Assert.assertEquals(
-            "Name: Value is required.,"
+            "First name: Value is required.,"
             + "Country: Value is required.,"
             + "Amount (SFr.): Value is required.,"
             + "Yearly salary: Value is required.,"
             + "Amount of other open credits (SFr.)*: Value is required.",
         caseMapPage.clickSubmitAndGetValidationMsg());
-    caseMapPage.inputFields("John", "Jack", "1.1.2020", "VN", "20000", "To buy a new car", "80000", "100000");
-    caseMapPage.clickSubmitButton();
   }
 
-  private void startTaskWithoutUI(String taskname) {
+  private void startTaskByTaskName(String taskname) {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.filterTasksBy(taskname);
-    taskWidgetPage.startTaskWithoutUI(0);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    taskWidgetPage.startTask(0);
   }
 }
