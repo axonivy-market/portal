@@ -75,6 +75,11 @@ Ts0 @PushWFArc f54 '' #zField
 Ts0 @PushWFArc f21 '' #zField
 Ts0 @PushWFArc f62 '' #zField
 Ts0 @PushWFArc f65 '' #zField
+Ts0 @UdMethod f55 '' #zField
+Ts0 @UdProcessEnd f63 '' #zField
+Ts0 @GridStep f66 '' #zField
+Ts0 @PushWFArc f67 '' #zField
+Ts0 @PushWFArc f64 '' #zField
 >Proto Ts0 Ts0 TaskAnalysisWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 method start(ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel,java.lang.Long) #txt
@@ -202,6 +207,7 @@ import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
 TaskAnalysisFilterService taskFilterService = new TaskAnalysisFilterService();
 in.taskPrivateFilters = taskFilterService.getPrivateFilterForCurrentUser(in.taskFilterGroupId) as List;
 in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId) as List;
+in.taskPublicFilters.add(in.dataModel.buildDefaultTaskAnalysisFilterData());
 in.filterType = FilterType.ONLY_ME;' #txt
 Ts0 f27 security system #txt
 Ts0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -213,7 +219,7 @@ Ts0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f27 366 52 36 24 20 -2 #rect
+Ts0 f27 332 40 104 48 -32 -10 #rect
 Ts0 f27 @|StepIcon #fIcon
 Ts0 f3 467 51 26 26 0 12 #rect
 Ts0 f3 @|UdProcessEndIcon #fIcon
@@ -370,7 +376,7 @@ Ts0 f17 387 755 26 26 0 12 #rect
 Ts0 f17 @|UdProcessEndIcon #fIcon
 Ts0 f20 93 768 387 768 #arcP
 Ts0 f57 expr out #txt
-Ts0 f57 402 64 467 64 #arcP
+Ts0 f57 436 64 467 64 #arcP
 Ts0 f8 actionTable 'out=in;
 ' #txt
 Ts0 f8 actionCode 'import ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel;
@@ -399,7 +405,7 @@ Ts0 f8 @|StepIcon #fIcon
 Ts0 f10 expr out #txt
 Ts0 f10 107 64 184 64 #arcP
 Ts0 f1 expr out #txt
-Ts0 f1 296 64 366 64 #arcP
+Ts0 f1 296 64 332 64 #arcP
 Ts0 f11 guid 1645924828285975 #txt
 Ts0 f11 actionTable 'out=in;
 ' #txt
@@ -625,6 +631,36 @@ Ts0 f62 expr in #txt
 Ts0 f62 480 992 560 992 #arcP
 Ts0 f65 expr out #txt
 Ts0 f65 93 992 160 992 #arcP
+Ts0 f55 guid 1706602E26F49269 #txt
+Ts0 f55 method restoreDefaultFilterSet() #txt
+Ts0 f55 inParameterDecl '<> param;' #txt
+Ts0 f55 outParameterDecl '<> result;' #txt
+Ts0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>restoreDefaultFilterSet()</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f55 67 1235 26 26 -58 18 #rect
+Ts0 f55 @|UdMethodIcon #fIcon
+Ts0 f63 387 1235 26 26 0 12 #rect
+Ts0 f63 @|UdProcessEndIcon #fIcon
+Ts0 f66 actionTable 'out=in;
+' #txt
+Ts0 f66 actionCode 'in.dataModel.selectedTaskAnalysisFilterData = null;
+in.dataModel.applyFilter(out.dataModel.defaultTaskAnalysisFilterData);' #txt
+Ts0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Apply default filter</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f66 184 1226 112 44 -47 -8 #rect
+Ts0 f66 @|StepIcon #fIcon
+Ts0 f67 93 1248 184 1248 #arcP
+Ts0 f64 296 1248 387 1248 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -685,3 +721,7 @@ Ts0 f18 out f62 tail #connect
 Ts0 f62 head f37 mainIn #connect
 Ts0 f13 mainOut f65 tail #connect
 Ts0 f65 head f52 mainIn #connect
+Ts0 f55 mainOut f67 tail #connect
+Ts0 f67 head f66 mainIn #connect
+Ts0 f66 mainOut f64 tail #connect
+Ts0 f64 head f63 mainIn #connect

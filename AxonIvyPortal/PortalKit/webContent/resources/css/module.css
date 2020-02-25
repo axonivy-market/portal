@@ -245,6 +245,9 @@
 
 .task-widget .in-progress-task-checkbox, .case-widget-container .in-progress-task-checkbox {
   padding-left: 2.4px;
+}
+
+_:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-widget-container .in-progress-task-checkbox {
   margin-left: .1rem;
 }
 
@@ -254,8 +257,10 @@
   flex-wrap: wrap;
 }
 
+.task-widget .filter-add-container,
 .case-widget-container .filter-add-container {
   margin-right: 10px;
+  order: 1000;
 }
 
 .task-widget .advanced-filter, .case-widget-container .advanced-filter, .case-widget .advanced-filter {
@@ -348,7 +353,9 @@
 }
 
 .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer,
-.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer {
+.case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer,
+.task-widget .filter-add-panel .ui-overlaypanel-footer,
+.case-widget-container .filter-add-panel .ui-overlaypanel-footer {
   padding: 10px;
   text-align: right;
 }
@@ -363,16 +370,21 @@
   transition: none;
 }
 
+.task-widget .ui-overlaypanel.filter-add-panel.ui-widget-content,
+.case-widget-container .ui-overlaypanel.filter-add-panel.ui-widget-content {
+  padding: 0;
+}
+
 .task-widget .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content,
 .case-widget-container .ui-overlaypanel.filter-add-panel .ui-overlaypanel-content {
-  min-width: 140px;
-  padding: 10px !important;
+  min-width: max-content;
+  padding: 0 !important;
 }
 
 .task-widget .ui-overlaypanel.filter-add-panel .ui-scrollpanel,
 .case-widget-container .ui-overlaypanel.filter-add-panel .ui-scrollpanel {
   border: none;
-  padding: 0px !important;
+  padding: 12px 22px;
   border-radius: 0;
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -1321,7 +1333,6 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 }
 
 /******************END DELEGATE DIALOG********************/
-
 .new-process-dialog {
   min-width: 600px;
 }
@@ -1397,10 +1408,6 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
   margin-top: 6px;
 }
 
-.task-widget .filter-add-container {
-  margin-right: 10px;
-}
-
 .filter-container {
   display: flex;
   flex-wrap: wrap;
@@ -1455,6 +1462,14 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 
 .filter-selection-form .filter-name-overlay-panel .user-defined-filter-container:hover .delete-user-defined-filter-command {
   display: inline;
+}
+
+.task-widget .filter-reset-action {
+  order: 1001;
+}
+
+.task-widget .filter-save-container {
+  order: 1002;
 }
 
 .save-filter-set-dialog {
@@ -2071,6 +2086,14 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
 /********************************** CASE VIEW **********************************/
 .case-widget-container .ui-datascroller .ui-datascroller-content {
   padding: 2px;
+}
+
+.case-widget-container .filter-reset-action {
+  order: 1001;
+}
+
+.case-widget-container .filter-save-container {
+  order: 1002;
 }
 
 /********************************** END CASE VIEW **********************************/
@@ -2761,7 +2784,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 @media (max-width: 1365px) {
   .language-setting-dialog {
     overflow: auto;
-    top: 35% !important;
   }
 }
 
@@ -3786,6 +3808,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .mobile-filter-icon span {
   height: 18px !important;
   top: 58% !important;
+}
+
+.filter-reset-action .ui-widget.ui-button.filter-add-button {
+  margin-right: 10px;
 }
 
 .ui-widget.ui-button.filter-add-button.no-icon .ui-button-text {

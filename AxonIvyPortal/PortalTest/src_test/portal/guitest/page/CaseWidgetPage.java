@@ -158,6 +158,8 @@ public class CaseWidgetPage extends TemplatePage {
     for (WebElement element : elements) {
       if (element.getText().equals(filterName)) {
         element.click();
+        click(findElementById("case-widget:filter-add-form:update-filter-selected-command"));
+        waitAjaxIndicatorDisappear();
         break;
       }
     }
@@ -177,28 +179,30 @@ public class CaseWidgetPage extends TemplatePage {
 
   public void saveFilter(String filterName) {
     click(By.id(caseWidgetId + ":filter-save-action"));
+    waitAjaxIndicatorDisappear();
     Sleeper.sleep(2000);
     WebElement filterNameInput = findElementById(caseWidgetId + ":filter-save-form:save-filter-set-name-input");
     enterKeys(filterNameInput, filterName);
     click(findElementById(caseWidgetId + ":filter-save-form:filter-save-command"));
+    waitAjaxIndicatorDisappear();
     Sleeper.sleep(2000);
   }
 
-  public Object getFilterName() {
-    click(findElementById(caseWidgetId + ":filter-selection-form:filter-name"));
-    WebElement descriptionInput = findElementByCssSelector(".user-defined-filter-container");
-
-    return descriptionInput.getText();
+  public String getFilterName() {
+    WebElement filterName =
+        findElementByCssSelector("a[id$='case-widget:filter-selection-form:filter-name'] > span:nth-child(2) ");
+    return filterName.getText();
   }
-  
+
   public String getFilterValue(String filterId) {
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
+        .until(() -> findElementByCssSelector("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']")
+            .getText().length() > 1);
+    waitForElementDisplayed(By.cssSelector("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']"),
+        true);
     WebElement filterElement =
         findElementByCssSelector("button[id$='" + filterId + ":filter-open-form:advanced-filter-command']");
     return filterElement.getText();
-  }
-
-  public boolean isFilterSelectionVisible() {
-    return isElementPresent(By.id(caseWidgetId + ":filter-selection-form:filter-selection-panel"));
   }
 
   public boolean isEmpty() {
@@ -268,5 +272,52 @@ public class CaseWidgetPage extends TemplatePage {
   public void applyCategoryFilter() {
     click(By.cssSelector("button[id$='case-category-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
+  }
+
+  public void filterByCreator(String text) {
+    click(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
+    WebElement responsible = findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator_input']");
+    type(responsible, text);
+    waitAjaxIndicatorDisappear();
+    waitForElementDisplayedByCssSelector("i[class*='fa-user']", 5);
+    click(By.cssSelector("i[class*='fa-user']"));
+    waitAjaxIndicatorDisappear();
+    click(By.cssSelector("button[id$='creator-filter:filter-input-form:update-command']"));
+    waitAjaxIndicatorDisappear();
+    Sleeper.sleep(2000);
+  }
+
+  public void openSavedFilters(String filterName) {
+    refreshAndWaitElement("a[id$='case-widget:filter-selection-form:filter-name']");
+    click(findElementById("case-widget:filter-selection-form:filter-name"));
+    List<WebElement> saveFilters = findListElementsByCssSelector("a[id$='user-defined-filter']");
+    for (WebElement filter : saveFilters) {
+      if (filter.getText().equals(filterName)) {
+        click(filter);
+        waitAjaxIndicatorDisappear();
+        refreshAndWaitElement("a[id$='case-widget:filter-selection-form:filter-name'] > span:nth-child(2)");
+        Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(
+            () -> findElementByCssSelector("a[id$='case-widget:filter-selection-form:filter-name'] > span:nth-child(2)")
+                .getText().contains(filterName));
+        return;
+      }
+    }
+  }
+
+  public void removeResponsibleFilter() {
+    click(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
+    waitForElementDisplayed(By.cssSelector("input[id$='creator-filter:filter-input-form:creator_input']"), true);
+    findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator_input']").clear();
+    click(By.cssSelector("button[id$='creator-filter:filter-input-form:update-command']"));
+    waitAjaxIndicatorDisappear();
+    // Sleeper.sleep(2000);
+  }
+
+  public String getCreator() {
+    refreshAndWaitElement("button[id$='creator-filter:filter-open-form:advanced-filter-command']");
+    click(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
+    waitForElementDisplayed(By.cssSelector("input[id$='creator-filter:filter-input-form:creator_input']"), true);
+    return findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator_input']")
+        .getAttribute("value");
   }
 }

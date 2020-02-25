@@ -80,16 +80,16 @@ public class TaskWidgetPage extends TemplatePage {
     return taskDetailsPage;
   }
 
-	public TaskTemplatePage startTask(int index) {
-	  waitTaskAppearThenClick(index);
-		waitForElementPresent(By.id(TASK_ACTION), true);
-		return new TaskTemplatePage();
-	}
-	
-	public void startDeprecatedTaskTemplate(int index) {
-	  waitTaskAppearThenClick(index);
-		waitForElementPresent(By.id("task-actions"), true);
-	}
+  public TaskTemplatePage startTask(int index) {
+    waitTaskAppearThenClick(index);
+    waitForElementPresent(By.id(TASK_ACTION), true);
+    return new TaskTemplatePage();
+  }
+
+  public void startDeprecatedTaskTemplate(int index) {
+    waitTaskAppearThenClick(index);
+    waitForElementPresent(By.id("task-actions"), true);
+  }
 
   public boolean isTaskDelegateOptionDisable(int index) {
     sideStepMenuOnActionButton(index);
@@ -107,6 +107,7 @@ public class TaskWidgetPage extends TemplatePage {
   public void filterTasksBy(String keyword) {
     WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
     keywordFilter.clear();
+    keywordFilter.click(); // To make Firefox more stable
     keywordFilter.sendKeys(keyword);
     Sleeper.sleep(2000);
     waitAjaxIndicatorDisappear();
@@ -334,6 +335,8 @@ public class TaskWidgetPage extends TemplatePage {
     for (WebElement element : elements) {
       if (element.getText().equals(filterName)) {
         element.click();
+        click(By.cssSelector("button[id$='task-widget:filter-add-form:update-filter-selected-command']"));
+        waitAjaxIndicatorDisappear();
         break;
       }
     }
@@ -381,7 +384,35 @@ public class TaskWidgetPage extends TemplatePage {
     click(By.cssSelector("button[id$='" + taskWidgetId + ":customer-name-filter:filter-input-form:update-command']"));
     Sleeper.sleep(2000);
   }
-  
+
+  public void filterByResponsible(String text) {
+    click(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"));
+    WebElement responsible =
+        findElementByCssSelector("input[id$='responsible-filter:filter-input-form:responsible_input']");
+    // enterKeys(responsible, text);
+    type(responsible, text);
+    waitForElementDisplayedByCssSelector("span[id$='responsible-filter:filter-input-form:responsible_panel']", 5);
+    click(By.cssSelector("i[class*='fa-user']"));
+    waitAjaxIndicatorDisappear();
+    click(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']"));
+    waitAjaxIndicatorDisappear();
+    Sleeper.sleep(2000);
+  }
+
+  public void removeResponsibleFilter() {
+    waitForElementDisplayed(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"),
+        true);
+    click(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"));
+    waitForElementDisplayed(By.cssSelector("input[id$='responsible-filter:filter-input-form:responsible_input']"),
+        true);
+    findElementByCssSelector("input[id$='responsible-filter:filter-input-form:responsible_input']").click();
+    findElementByCssSelector("input[id$='responsible-filter:filter-input-form:responsible_input']").clear();
+    click(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']"));
+    waitAjaxIndicatorDisappear();
+    Sleeper.sleep(2000);
+  }
+
+
   public void openStateFilterOverlayPanel() {
     click(By.cssSelector("button[id$='state-filter:filter-open-form:advanced-filter-command']"));
   }
@@ -396,8 +427,8 @@ public class TaskWidgetPage extends TemplatePage {
   public void clickOnTaskStatesAndApply(List<String> states) {
     WebElement stateFilter = findElementByCssSelector("div[id$='state-filter:filter-input-form:advanced-filter-panel']");
     List<WebElement> elements = findChildElementsByTagName(stateFilter, "LABEL");
-    for(String state : states) {
-      for(WebElement ele : elements){
+    for (String state : states) {
+      for (WebElement ele : elements) {
         if (state.equals(ele.getText())) {
           ele.click();
           break;
@@ -410,18 +441,47 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void saveFilter(String filterName) {
     click(By.id(taskWidgetId + ":filter-save-action"));
+    waitAjaxIndicatorDisappear();
     Sleeper.sleep(2000);
     WebElement filterNameInput = findElementById(taskWidgetId + ":filter-save-form:save-filter-set-name-input");
     enterKeys(filterNameInput, filterName);
     click(findElementById(taskWidgetId + ":filter-save-form:filter-save-command"));
+    waitAjaxIndicatorDisappear();
     Sleeper.sleep(2000);
   }
 
-  public String getFilterName() {
-    click(findElementById(taskWidgetId + ":filter-selection-form:filter-name"));
-    WebElement descriptionInput = findElementByCssSelector(".user-defined-filter-container");
+  public void openSavedFilters(String filterName) {
+    click(findElementById("task-widget:filter-selection-form:filter-name"));
+    List<WebElement> saveFilters = findListElementsByCssSelector("a[id$='user-defined-filter']");
+    for (WebElement filter : saveFilters) {
+      if (filter.getText().equals(filterName)) {
+        click(filter);
+        waitAjaxIndicatorDisappear();
+        refreshAndWaitElement("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2) ");
+        Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
+            .until(() -> findElementByCssSelector(
+                "a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2) ").getText()
+                    .contains(filterName));
+        return;
+      }
+    }
+  }
 
-    return descriptionInput.getText();
+  public String getResponsible() {
+    refreshAndWaitElement("button[id$='responsible-filter:filter-open-form:advanced-filter-command']");
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> findElementByCssSelector(
+        "button[id$='responsible-filter:filter-open-form:advanced-filter-command'] > span").getText().length() > 1);
+    return findElementByCssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command'] > span")
+        .getText();
+  }
+
+  public String getFilterName() {
+    refreshAndWaitElement("a[id$='task-widget:filter-selection-form:filter-name']");
+    waitForElementDisplayed(
+        By.cssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2) "), true);
+    WebElement filterName =
+        findElementByCssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2) ");
+    return filterName.getText();
   }
 
   public String getTaskId() {
@@ -444,7 +504,7 @@ public class TaskWidgetPage extends TemplatePage {
   private void waitTaskAppearThenClick(int index) {
     WebElement taskListElement = findElementById(taskWidgetId + ":task-list-scroller");
     if (taskListElement.getAttribute(CLASS).contains("compact-mode")) {
-      String cssSelector = String.format("a[id$='%d\\:task-item\\:compact-task-start-link']", index) ;
+      String cssSelector = String.format("a[id$='%d\\:task-item\\:compact-task-start-link']", index);
       refreshAndWaitElement(cssSelector);
       clickByCssSelector(cssSelector);
     } else {
@@ -525,5 +585,13 @@ public class TaskWidgetPage extends TemplatePage {
   public void applyCategoryFilter() {
     click(By.cssSelector("button[id$='task-category-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
+  }
+
+  public void resetFilter() {
+    click(By.cssSelector("button[id$='task-widget:filter-reset-action']"));
+    waitAjaxIndicatorDisappear();
+    click(By.cssSelector("button[id$='task-widget:filter-reset-command']"));
+    waitAjaxIndicatorDisappear();
+    Sleeper.sleep(3000);
   }
 }
