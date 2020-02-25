@@ -7,3 +7,9 @@ request com.axonivy.portal.userexamples.credit.CreditRequest #field
 request PERSISTENT #fieldModifier
 decision com.axonivy.portal.userexamples.credit.Decision #field
 decision PERSISTENT #fieldModifier
+verifierComment String #field
+verifierComment PERSISTENT #fieldModifier
+internalCreditComment String #field
+internalCreditComment PERSISTENT #fieldModifier
+externalCreditComment String #field
+externalCreditComment PERSISTENT #fieldModifier
