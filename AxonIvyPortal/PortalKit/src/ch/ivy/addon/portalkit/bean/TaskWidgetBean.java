@@ -6,18 +6,15 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import org.jsoup.safety.Whitelist;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
+import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
@@ -61,29 +58,11 @@ public class TaskWidgetBean implements Serializable {
   }
 
   public String sanitizeHTML(String text) {
-    String sanitizedText = sanitize(text);
-    if (StringUtils.isBlank(extractTextFromHtml(sanitizedText))) {
-      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription");
-    }
-    return sanitizedText;
+    return HtmlParser.sanitizeHTML(text);
   }
 
   public String createTaskDescriptionInTaskStart(String text) {
-    String extractedText = extractTextFromHtml(text);
-    if (StringUtils.isBlank(extractedText)) {
-      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription");
-    }
-    return extractedText;
-  }
-
-  private String extractTextFromHtml(String text) {
-    String sanitizedText = sanitize(text);
-    Document doc = Jsoup.parse(sanitizedText);
-    return doc.body().text();
-  }
-
-  private String sanitize(String text) {
-    return Jsoup.clean(text, Whitelist.relaxed().addAttributes(":all", "style"));
+    return HtmlParser.extractTextFromHtml(text);
   }
 
   public boolean isDeleteFilterEnabledFor(TaskFilterData filterData) {

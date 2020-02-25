@@ -7,6 +7,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskTemplatePage;
 
 public class LeaveRequestPage extends TaskTemplatePage {
@@ -38,14 +39,14 @@ public class LeaveRequestPage extends TaskTemplatePage {
     enterKeys(findElementById("leave-request:approver-comment"), approverComment);
   }
   
-  public void clickApproveBtn() {
+  public HomePage clickApproveBtn() {
     click(By.id("leave-request:approved-btn"));
-    waitAjaxIndicatorDisappear();
+    return new HomePage();
   }
   
-  public void clickRejectBtn() {
+  public HomePage clickRejectBtn() {
     click(By.id("leave-request:rejected-btn"));
-    waitAjaxIndicatorDisappear();
+    return new HomePage();
   }
   
   private void selectLeaveType(String leaveType) {
