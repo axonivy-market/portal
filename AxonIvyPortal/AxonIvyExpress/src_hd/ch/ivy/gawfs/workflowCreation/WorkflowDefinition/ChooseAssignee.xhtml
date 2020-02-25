@@ -13,7 +13,9 @@
       </p:selectOneRadio>
 
       <h:panelGroup id="select-assignee" layout="block" styleClass="select-assignee">
-        <ic:ch.ivy.addon.portalkit.component.UserSelection 
+        <ic:ch.ivy.addon.portalkit.component.UserSelection
+          id="user-selection-component"
+          componentId="user-selection"
           selectedUser="#{data.selectedUser}" queryDelay="500"
           rendered="#{data.isAssignToUser}" isRenderedMessage="false" >
           <p:column>

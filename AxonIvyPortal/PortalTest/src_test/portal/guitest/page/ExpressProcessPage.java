@@ -99,9 +99,9 @@ public class ExpressProcessPage extends TemplatePage {
 			waitForElementDisplayed(By.id("assignee-selection-form:role-selection_panel"), true);
 			click(By.xpath("//*[@id='assignee-selection-form:role-selection_panel']/ul/li/span"));
 		} else {
-			type(By.id("assignee-selection-form:user-selection_input"), responsible);
-			waitForElementDisplayed(By.id("assignee-selection-form:user-selection_panel"), true);
-			click(By.xpath("//*[@id='assignee-selection-form:user-selection_panel']/table/tbody/tr"));
+			type(By.id("assignee-selection-form:user-selection-component:user-selection_input"), responsible);
+			waitForElementDisplayed(By.id("assignee-selection-form:user-selection-component:user-selection_panel"), true);
+			click(By.xpath("//*[@id='assignee-selection-form:user-selection-component:user-selection_panel']/table/tbody/tr"));
 		}
 		waitAjaxIndicatorDisappear();
 		click(By.id("assignee-selection-form:add-assignee-button"));
