@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 

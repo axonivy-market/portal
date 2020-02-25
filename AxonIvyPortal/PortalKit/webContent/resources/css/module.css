@@ -2818,6 +2818,15 @@ a.compact-task-start-link:hover {
   padding: 5px;
 }
 
+.document-upload .ui-fileupload-buttonbar {
+  position: relative;
+  top: 13px;
+}
+
+body .ui-fileupload-buttonbar {
+  padding: 0;
+}
+
 #task-description .scroll-panel {
   height: 200px;
   padding-right: 10px;
@@ -5229,9 +5238,6 @@ margin-top
 	width: 35px !important;
 	height: 35px !important;
 	top: -7px !important;
-}
-.ui-widget.ui-fileupload {
-	margin-top: 5px;
 }
 
 .ui-messages ul {
