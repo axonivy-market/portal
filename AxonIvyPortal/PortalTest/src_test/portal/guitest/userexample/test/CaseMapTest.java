@@ -29,6 +29,7 @@ public class CaseMapTest extends BaseTest {
 
   @Test
   public void testCaseMapApprovalWorkflow() {
+    login(TestAccount.DEMO_USER);
     redirectToRelativeLink(CASE_MAP_URL);
     caseMapPage = new CaseMapPage();
     caseMapPage.inputFields("John", "Jack", "1.1.2019", "VN", "20000", "To buy a new car", "80000", "100000");
@@ -64,6 +65,7 @@ public class CaseMapTest extends BaseTest {
 
   @Test
   public void testCaseMapRejectedWorkflow() {
+    login(TestAccount.DEMO_USER);
     redirectToRelativeLink(CASE_MAP_URL);
     caseMapPage = new CaseMapPage();
     caseMapPage.inputFields("John", "Jack", "1.1.2019", "VN", "20000", "To buy a new car", "80000", "100000");
@@ -102,8 +104,9 @@ public class CaseMapTest extends BaseTest {
 
   @Test
   public void testCollectPersonalDataValidation() {
+    login(TestAccount.DEMO_USER);
     redirectToRelativeLink(CASE_MAP_URL);
-    CaseMapPage caseMapPage = new CaseMapPage();
+    caseMapPage = new CaseMapPage();
     caseMapPage.inputFields("", "", "", "", "", "", "", "");
     Assert.assertEquals(
             "First name: Value is required.,"
