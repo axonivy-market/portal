@@ -1,20 +1,18 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
-  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/TaskTemplate-8.xhtml">
-    <ui:define name="title">ApproveLevel1</ui:define>
+    <ui:define name="title">Verify Personal Data</ui:define>
     <ui:define name="css">
       <h:outputStylesheet library="css" name="portal-user-examples.css" />
       <h:outputStylesheet library="styles" name="ivy-common-8.css" />
     </ui:define>
     <ui:define name="content">
-      <h3>Credit Request Approval Level 1&#160;</h3>
 
       <h:form id="form">
         <h:panelGroup styleClass="ui-g" layout="block">
-          <p:messages styleClass="ui-g-12" />
+          <p:messages styleClass="ui-g-12 ui-lg-12 ui-md-12 ui-sm-12" />
           <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/person')}</h4>
           <h:panelGrid columns="1" columnClasses="TexAlLeft ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12">
             <h:panelGroup class="MarTop20" layout="block">
@@ -66,40 +64,13 @@
 
           <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/verifierComment')}</h4>
           <h:panelGrid columns="1" columnClasses="TexAlLeft ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12">
-            <p:inputTextarea id="verifier-comment" value="#{data.dossier.verifierComment}" disabled="true" />
-          </h:panelGrid>
-
-          <h:panelGroup rendered="#{not empty data.dossier.externalCreditComment}">
-            <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/externalCreditComment')}</h4>
-          </h:panelGroup>
-          <h:panelGrid columns="1" columnClasses="TexAlLeft ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12"
-            rendered="#{not empty data.dossier.externalCreditComment}">
-            <p:inputTextarea id="external-comment" value="#{data.dossier.externalCreditComment}" disabled="true" />
-          </h:panelGrid>
-
-          <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/internalCreditComment')}</h4>
-          <h:panelGrid columns="1" columnClasses="TexAlLeft ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12">
-            <p:inputTextarea id="internal-comment" value="#{data.dossier.internalCreditComment}" disabled="true" />
-          </h:panelGrid>
-
-          <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/decision')}</h4>
-          <h:panelGrid columns="1" columnClasses="TexAlLeft ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12">
             <f:facet name="header">
               <p:messages></p:messages>
             </f:facet>
-            <p:outputLabel for="rejected-reason" value="#{ivy.cms.co('/Labels/CaseMap/Credit/rejectedReason')}" />
-            <p:inputTextarea id="rejected-reason" value="#{data.dossier.decision.rejectReason}" />
+            <p:inputTextarea id="verifier-comment" value="#{data.dossier.verifierComment}" rows="4"/>
           </h:panelGrid>
-
-          <h:panelGroup layout="block" styleClass="MarTop5 ui-g-12" id="command-group">
-            <p:commandButton id="rejected-button" actionListener="#{logic.rejected}"
-              value="#{ivy.cms.co('/Dialog/Common/reject')}" update="form" icon="fa fa-ban"
-              styleClass="Fright portal-cancel-button" />
-            <p:spacer width="5px" styleClass="Fright" />
-            <p:commandButton id="approval-button" actionListener="#{logic.approved}"
-              value="#{ivy.cms.co('/Dialog/Common/approve')}" update="form" icon="fa fa-send-o" styleClass="Fright" />
-          </h:panelGroup>
         </h:panelGroup>
+       <p:commandButton id="submit-button" actionListener="#{logic.close}" value="#{ivy.cms.co('/Labels/CaseMap/Credit/verifierSubmit')}" update="form" icon="fa fa-send-o" styleClass="Fright"/>
       </h:form>
 
     </ui:define>

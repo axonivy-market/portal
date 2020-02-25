@@ -1,7 +1,7 @@
 Person #class
 com.axonivy.portal.userexamples.credit #namespace
-name String #field
-name PERSISTENT #fieldModifier
+lastName String #field
+lastName PERSISTENT #fieldModifier
 firstName String #field
 firstName PERSISTENT #fieldModifier
 birthDate Date #field
