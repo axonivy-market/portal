@@ -117,6 +117,8 @@ public class ProcessWidgetTest extends BaseTest {
 
   @Test
   public void testSortDefaultProcessByName() {
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+    homePage = new HomePage();
     processWidget = homePage.getProcessWidget();
     String alphaHistoryTask = "Alpha Company Task";
     String betaHistoryTask = "Beta Company Task";
@@ -131,6 +133,8 @@ public class ProcessWidgetTest extends BaseTest {
 
   @Test
   public void testSortDefaultProcessByIndex() {
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+    homePage = new HomePage();
     String alphaHistoryTask = "Alpha Company Task";
     String betaHistoryTask = "Beta Company Task";
     String viewAlphaHistory = "View Alpha Process History";
