@@ -96,6 +96,7 @@ Pt0 f10 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationS
 RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
+Pt0 f10 security system #txt
 Pt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -131,6 +132,7 @@ IvySecurityResultDTO dto = SecurityService.newInstance().findUsers(in.query, in.
 out.users = dto.users;
 out.errors = dto.errors;
 ' #txt
+Pt0 f20 security system #txt
 Pt0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -178,6 +180,7 @@ out.securityMembers = dto.securityMembers;
 
 out.errors = dto.errors;
 ' #txt
+Pt0 f5 security system #txt
 Pt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -242,6 +245,7 @@ out.securityMembers = dto.securityMembers;
 
 out.errors = dto.errors;
 ' #txt
+Pt0 f13 security system #txt
 Pt0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -258,6 +262,7 @@ Pt0 f14 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationS
 RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
+Pt0 f14 security system #txt
 Pt0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -325,6 +330,7 @@ IvySecurityResultDTO dto = SecurityService.newInstance().findUsers(in.query, in.
 out.users = dto.users;
 out.errors = dto.errors;
 ' #txt
+Pt0 f25 security system #txt
 Pt0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -368,6 +374,7 @@ IvySecurityResultDTO dto = SecurityService.newInstance().findRoles(in.apps);
 out.roles = dto.roles;
 out.errors = dto.errors;
 ' #txt
+Pt0 f31 security system #txt
 Pt0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -386,6 +393,7 @@ Pt0 f34 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationS
 RegisteredApplicationService service = new RegisteredApplicationService();
 out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
+Pt0 f34 security system #txt
 Pt0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -438,6 +446,7 @@ IvySecurityResultDTO dto = SecurityService.newInstance().findRoles(in.applicatio
 out.roles = dto.roles;
 out.errors = dto.errors;
 ' #txt
+Pt0 f37 security system #txt
 Pt0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
