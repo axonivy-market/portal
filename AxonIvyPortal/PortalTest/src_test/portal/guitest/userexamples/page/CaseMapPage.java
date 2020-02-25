@@ -7,13 +7,14 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import portal.guitest.page.HomePage;
 import portal.guitest.page.TemplatePage;
 
 public class CaseMapPage extends TemplatePage {
 
-  public void inputFields(String name, String firstName, String birthDate, String country, String amount, String reason,
+  public void inputFields(String lastName, String firstName, String birthDate, String country, String amount, String reason,
       String salary, String otherCredit) {
-    type(By.id("form:name"), name);
+    type(By.id("form:last-name"), lastName);
     type(By.id("form:first-name"), firstName);
     type(By.id("form:birth-date_input"), birthDate);
     type(By.id("form:country"), country);
@@ -22,13 +23,25 @@ public class CaseMapPage extends TemplatePage {
     type(By.id("form:salary"), salary);
     type(By.id("form:amount-of-other-credits"), otherCredit);
   }
+  
+  public void inputVerifierComment(String comment) {
+    type(By.id("form:verifier-comment"), comment);
+  }
+  
+  public void inputExternalCreditComment(String comment) {
+    type(By.id("form:external-comment"), comment);
+  }
+  
+  public void inputInternalCreditComment(String comment) {
+    type(By.id("form:internal-comment"), comment);
+  }
 
-  public String getCustomerName() {
-    return findElementByCssSelector("input[id$='customer-name']").getAttribute("value");
+  public String getCustomerLastName() {
+    return findElementByCssSelector("input[id$='last-name']").getAttribute("value");
   }
 
   public String getCustomerFirstName() {
-    return findElementByCssSelector("input[id$='customer-first-name']").getAttribute("value");
+    return findElementByCssSelector("input[id$='first-name']").getAttribute("value");
   }
 
   public String getCountry() {
@@ -51,9 +64,17 @@ public class CaseMapPage extends TemplatePage {
     return findElementByCssSelector("input[id$='request-amount-of-other-credits']").getAttribute("value");
   }
 
+  public String getVerifierComment() {
+    return findElementByCssSelector("textarea[id$='verifier-comment']").getText();
+  }
+
+  public String getInternalCreditComment() {
+    return findElementByCssSelector("textarea[id$='internal-comment']").getText();
+  }
+
   public String clickSubmitAndGetValidationMsg() {
-    clickSubmitButton();
-    waitForElementDisplayed(By.cssSelector(".ui-messages-error-icon"), true);
+    clickByCssSelector("button[id$='submit-request']");
+    waitAjaxIndicatorDisappear();
     return getValidationMsg();
   }
 
@@ -62,19 +83,23 @@ public class CaseMapPage extends TemplatePage {
     return StringUtils.join(messages.stream().map(WebElement::getText).collect(Collectors.toList()), ",");
   }
 
-  public void clickSubmitButton() {
-    String submitButton = "button[id$='submit-request']";
-    clickByCssSelector(submitButton);
-    waitAjaxIndicatorDisappear();
-  }
-
-  public void clickApproveButton() {
-    clickByCssSelector("button[id$='form:approval-button']");
-    waitAjaxIndicatorDisappear();
+  public HomePage clickSubmitButton() {
+    clickByCssSelector("button[id$='submit-button']");
+    return new HomePage();
   }
   
-  public void clickRejectButton() {
+  public HomePage clickSubmitRequestButton() {
+    clickByCssSelector("button[id$='submit-request']");
+    return new HomePage();
+  }
+
+  public HomePage clickApproveButton() {
+    clickByCssSelector("button[id$='form:approval-button']");
+    return new HomePage();
+  }
+  
+  public HomePage clickRejectButton() {
     clickByCssSelector("button[id$='form:rejected-button']");
-    waitAjaxIndicatorDisappear();
+    return new HomePage();
   }
 }
