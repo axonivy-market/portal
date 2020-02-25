@@ -110,12 +110,11 @@ public class StatisticFilter implements Cloneable {
   private List<IRole> findRolesByCallableProcess() {
     return IvyExecutor.executeAsSystem(() -> {
       if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
-        Map<String, List<IRole>> rolesByApp =
+        List<IRole> roles =
             SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE).withStartName("findRolesOverAllApplications")
                 .call(Ivy.session().getSessionUserName())
-                .get("rolesByApp", Map.class);
-        return rolesByApp.values().stream()
-            .flatMap(List::stream)
+                .get("roles", List.class);
+        return roles.stream()
             .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(IRole::getName))), ArrayList::new));
       }
 
@@ -123,7 +122,7 @@ public class StatisticFilter implements Cloneable {
           .withStartName("findRoles")
           .call(Ivy.request().getApplication())
           .get("roles", List.class);
-    });
+      });
   }
 
   public Date getCreatedDateFrom() {
