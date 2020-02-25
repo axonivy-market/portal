@@ -41,7 +41,7 @@
             <i class="fa fa-refresh" />
             <p:spacer width="3px" />
             <h:outputText id="restore-default-chart-link-label"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/restoreDefaultChartHeader')}" />
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/restoreDefaultFilterHeader')}" />
           </p:commandLink>
           <p:commandLink id="back-from-drilldown-link" actionListener="#{logic.switchDrilldownMode}" rendered="#{data.isDrilldownElapsedTime}"
             update="#{p:component('widget-container')} create-chart-header">
@@ -106,7 +106,7 @@
     </h:panelGroup>
   </div>
   <p:confirmDialog id="restore-confirmation-dialog" message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/restoreDefaultChart')}"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/restoreDefaultChartHeader')}" widgetVar="restore-confirmation-dialog"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/restoreDefaultFilterHeader')}" widgetVar="restore-confirmation-dialog"
     appendTo="@(body)" severity="alert" rendered="#{!cc.attrs.compactMode}" responsive="true">
     <p:commandButton id="confirm-restore" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" update="widget-container"
       oncomplete="PF('restore-confirmation-dialog').hide();" actionListener="#{logic.restoreDefault}" />

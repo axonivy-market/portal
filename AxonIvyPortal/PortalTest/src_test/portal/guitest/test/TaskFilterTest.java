@@ -84,9 +84,6 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.openAdvancedFilter("Description", "description");
     taskWidgetPage.filterByDescription(filterName);
     taskWidgetPage.saveFilter(filterName);
-
-    mainMenuPage.selectCaseMenu();
-    taskWidgetPage = mainMenuPage.openTaskList();
     assertEquals(filterName, taskWidgetPage.getFilterName());
   }
 
@@ -104,7 +101,7 @@ public class TaskFilterTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     taskWidgetPage = mainMenuPage.openTaskList();
 
-    assertFalse(taskWidgetPage.isFilterSelectionVisible());
+    assertTrue(taskWidgetPage.getFilterName().contains("Default filter"));
 
     taskWidgetPage.openAdvancedFilter("Customer name", "customer-name");
     taskWidgetPage.filterByCustomerName("Anh");
@@ -160,5 +157,86 @@ public class TaskFilterTest extends BaseTest {
     
     taskWidgetPage.applyCategoryFilter();
     assertFalse(StringUtils.equals("Task category: All", taskWidgetPage.getFilterValue(taskCategoryId + "-filter")));
+  }
+
+  @Test
+  public void testRemoveResponsibleAndSwitchFilter() {
+    // Prepare 2 filter
+    String filterResponsible = "Responsible";
+    String filterMaternity = "Maternity";
+
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    taskWidgetPage.openAdvancedFilter("Description", "description");
+    taskWidgetPage.filterByDescription(filterMaternity);
+    taskWidgetPage.saveFilter(filterMaternity);
+
+    taskWidgetPage = mainMenuPage.openTaskList();
+    taskWidgetPage.filterByResponsible("Everybody");
+    taskWidgetPage.saveFilter(filterResponsible);
+    // Switch filter and remove responsible
+    taskWidgetPage.openSavedFilters(filterMaternity);
+    taskWidgetPage.openSavedFilters(filterResponsible);
+    taskWidgetPage.removeResponsibleFilter();
+    taskWidgetPage.openSavedFilters(filterMaternity);
+    taskWidgetPage.openSavedFilters(filterResponsible);
+
+    assertTrue(taskWidgetPage.getResponsible().contains("Everybody"));
+  }
+
+  @Test
+  public void testResponsibleWithChangeFilter() {
+    // Prepare 2 filter
+    String filterResponsible = "Responsible";
+    String filterMaternity = "Maternity";
+
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    taskWidgetPage.openAdvancedFilter("Description", "description");
+    taskWidgetPage.filterByResponsible("Everybody");
+    taskWidgetPage.filterByDescription(filterMaternity);
+    taskWidgetPage.saveFilter(filterMaternity);
+
+    taskWidgetPage = mainMenuPage.openTaskList();
+    taskWidgetPage.filterByResponsible("Demo");
+    taskWidgetPage.saveFilter(filterResponsible);
+    // Change filter and verify responsible changed
+    taskWidgetPage.openSavedFilters(filterMaternity);
+
+    assertTrue(taskWidgetPage.getResponsible().contains("Everybody"));
+  }
+
+  @Test
+  public void testDefaultFilter() {
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    assertTrue(taskWidgetPage.getFilterName().contains("Default filter"));
+  }
+
+  @Test
+  public void testNoSelectionWhenChangeFilter() {
+    String filterMaternity = "Maternity";
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    taskWidgetPage.openAdvancedFilter("Description", "description");
+    taskWidgetPage.filterByDescription(filterMaternity);
+    taskWidgetPage.saveFilter(filterMaternity);
+    taskWidgetPage.filterByResponsible("Demo");
+
+    assertTrue(taskWidgetPage.getFilterName().contains("No Selection"));
+  }
+
+  @Test
+  public void testResetFilter() {
+    String filterMaternity = "Maternity";
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    taskWidgetPage.openAdvancedFilter("Description", "description");
+    taskWidgetPage.filterByDescription(filterMaternity);
+    taskWidgetPage.saveFilter(filterMaternity);
+    taskWidgetPage.filterByResponsible("Demo");
+    taskWidgetPage.resetFilter();
+
+    assertTrue(taskWidgetPage.getFilterName().contains("Default filter"));
   }
 }

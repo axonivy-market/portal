@@ -63,7 +63,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
 
     WebElement toggler = taskAnalysisWidgetPage.findColumnToggler();
-    toggler.click();
+    taskAnalysisWidgetPage.click(toggler);
 
     WebElement columnContainer = taskAnalysisWidgetPage.getDriver().findElement(By.tagName("body"))
         .findElement(By.cssSelector(".ui-columntoggler"));
@@ -71,7 +71,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     List<WebElement> unselectedColumnCheckboxes =
         columnContainer.findElements(By.cssSelector(".ui-chkbox-box:not(.ui-state-active)"));
 
-    unselectedColumnCheckboxes.forEach(elem -> elem.click());
+    unselectedColumnCheckboxes.forEach(elem -> taskAnalysisWidgetPage.click(elem));
     taskAnalysisWidgetPage.waitForPageLoaded();
 
     int numberOfColumns = taskAnalysisWidgetPage.findElementById("task-widget:statistic-result-form:task-table_head")
@@ -84,15 +84,15 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
 
     WebElement toggler = taskAnalysisWidgetPage.findColumnToggler();
-    toggler.click();
+    taskAnalysisWidgetPage.click(toggler);
 
     WebElement columnContainer = taskAnalysisWidgetPage.getDriver().findElement(By.tagName("body"))
         .findElement(By.cssSelector(".ui-columntoggler"));
     List<WebElement> selectedColumnCheckboxes =
         columnContainer.findElements(By.cssSelector(".ui-chkbox-box.ui-state-active"));
 
-    selectedColumnCheckboxes.get(0).click();
-    selectedColumnCheckboxes.get(1).click();
+    taskAnalysisWidgetPage.click(selectedColumnCheckboxes.get(0));
+    taskAnalysisWidgetPage.click(selectedColumnCheckboxes.get(1));
     selectedColumnCheckboxes.remove(0);
     selectedColumnCheckboxes.remove(1);
 
@@ -117,9 +117,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     List<String> selectedPriorities = new ArrayList<>();
     selectedPriorities.add(prioritySeletion);
     taskAnalysisWidgetPage.filterByTaskPriority(selectedPriorities);
-
-    WebElement applyFilterButton = taskAnalysisWidgetPage.findApplyFilterButton();
-    applyFilterButton.click();
+    taskAnalysisWidgetPage.click(By.cssSelector("button[id$='task-widget:apply-filter']"));
     taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
 
     List<WebElement> results =
@@ -144,13 +142,10 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage.openAdvancedCaseFilter("Name", "case-name");
     taskAnalysisWidgetPage.filterByCaseName(keyword);
 
-    taskAnalysisWidgetPage.openAdvancedCaseFilter("State", "state");
     List<String> selectedStates = new ArrayList<>();
     selectedStates.add(stateSeletion);
     taskAnalysisWidgetPage.filterByCaseState(selectedStates);
-
-    WebElement applyFilterButton = taskAnalysisWidgetPage.findApplyFilterButton();
-    applyFilterButton.click();
+    taskAnalysisWidgetPage.click(By.cssSelector("button[id$='task-widget:apply-filter']"));
     taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
 
     List<WebElement> results =
@@ -171,11 +166,8 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
     taskAnalysisWidgetPage.openAdvancedTaskFilter("Task category", "task-category");
     taskAnalysisWidgetPage.filterByTaskCategory("Other Leave");
-
-    WebElement applyFilterButton = taskAnalysisWidgetPage.findApplyFilterButton();
-    applyFilterButton.click();
+    taskAnalysisWidgetPage.click(By.cssSelector("button[id$='task-widget:apply-filter']"));
     taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
-
     List<WebElement> results =
         taskAnalysisWidgetPage.findElementById("task-widget:statistic-result-form:task-table_data")
             .findElements(By.cssSelector("tr[role='row']"));
@@ -188,9 +180,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
     taskAnalysisWidgetPage.openAdvancedCaseFilter("Case category", "case-category");
     taskAnalysisWidgetPage.filterByCaseCategory("Leave Request");
-
-    WebElement applyFilterButton = taskAnalysisWidgetPage.findApplyFilterButton();
-    applyFilterButton.click();
+    taskAnalysisWidgetPage.click(By.cssSelector("button[id$='task-widget:apply-filter']"));
     taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
 
     List<WebElement> results =
@@ -256,7 +246,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     String taskNameKeyword = "annual";
     String taskCategory = "Annual Leave";
     String caseNameKeyword = "request";
-    String caseCategory = "LeaveRequest";
+    String caseCategory = "Leave Request";
     String caseState = "In progress";
 
     taskAnalysisWidgetPage.openAdvancedTaskFilter("Name", "name");
@@ -271,9 +261,21 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage.openAdvancedCaseFilter("Case category", "case-category");
     taskAnalysisWidgetPage.filterByCaseCategory(caseCategory);
 
-    taskAnalysisWidgetPage.openAdvancedCaseFilter("State", "state");
     List<String> selectedStates = new ArrayList<>();
     selectedStates.add(caseState);
     taskAnalysisWidgetPage.filterByCaseState(selectedStates);
+  }
+  
+  @Test
+  public void testDefaultAndResetFilter() {
+    TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
+    assertTrue(taskAnalysisWidgetPage.getFilterName().contains("Default filter"));
+    
+    taskAnalysisWidgetPage.openAdvancedTaskFilter("Name", "name");
+    taskAnalysisWidgetPage.filterByTaskName("request");
+    assertTrue(taskAnalysisWidgetPage.isResetButtonShown());
+    
+    taskAnalysisWidgetPage.resetFilter();
+    assertTrue(taskAnalysisWidgetPage.getFilterName().contains("Default filter"));
   }
 }

@@ -1,9 +1,13 @@
 package portal.guitest.page;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.Sleeper;
 
@@ -25,7 +29,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.id(backButtonId), true, DEFAULT_TIMEOUT);
     WebElement backButton = findElementById(backButtonId);
 
-    backButton.click();
+    click(backButton);
     waitForElementDisplayed(By.id("statistics-widget"), true, DEFAULT_TIMEOUT);
     return new StatisticWidgetPage();
   }
@@ -37,12 +41,14 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
 
   private WebElement findTaskFilterButton() {
+    refreshAndWaitElement("button[id$='task-widget:task-filter-add-action']");
     String taskFilterButtonId = "task-widget:task-filter-add-action";
     waitForElementDisplayed(By.id(taskFilterButtonId), true);
     return findElementById(taskFilterButtonId);
   }
 
   private WebElement findCaseFilterButton() {
+    refreshAndWaitElement("button[id$='task-widget:case-filter-add-action']");
     String caseFilterButtonId = "task-widget:case-filter-add-action";
     waitForElementDisplayed(By.id(caseFilterButtonId), true);
     return findElementById(caseFilterButtonId);
@@ -55,29 +61,33 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
 
   public void openAdvancedTaskFilter(String filterName, String filterIdName) {
-    findTaskFilterButton().click();
+    click(findTaskFilterButton());
     WebElement filterSelectionElement = findElementById("task-widget:task-filter-add-form:task-filter-selection");
     for (WebElement filterElement : findChildElementsByTagName(filterSelectionElement, "LABEL")) {
       if (filterName.equals(filterElement.getText())) {
-        filterElement.click();
+        click(filterElement);
+        click(By.cssSelector("button[id$='task-widget:task-filter-add-form:update-task-filter-selected-command']"));
+        waitAjaxIndicatorDisappear();
         break;
       }
     }
-
+    refreshAndWaitElement("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']");
     waitForElementDisplayed(
         By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"), true);
   }
 
   public void openAdvancedCaseFilter(String filterName, String filterIdName) {
-    findCaseFilterButton().click();
+    click(findCaseFilterButton());
     WebElement filterSelectionElement = findElementById("task-widget:case-filter-add-form:case-filter-selection");
     for (WebElement filterElement : findChildElementsByTagName(filterSelectionElement, "LABEL")) {
       if (filterName.equals(filterElement.getText())) {
-        filterElement.click();
+        click(filterElement);
+        click(By.cssSelector("button[id$='task-widget:case-filter-add-form:update-task-filter-selected-command']"));
+        waitAjaxIndicatorDisappear();
         break;
       }
     }
-
+    refreshAndWaitElement("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']");
     waitForElementDisplayed(
         By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"), true);
   }
@@ -88,7 +98,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
         findElementByCssSelector("input[id$='task-name-filter:filter-input-form:name']");
     enterKeys(nameInput, text);
     click(By.cssSelector("button[id$='task-name-filter:filter-input-form:update-command']"));
-    waitForPageLoaded();
+    waitAjaxIndicatorDisappear();
   }
 
   public void filterByTaskPriority(List<String> selectedPriorities) {
@@ -96,11 +106,12 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     WebElement selectionElement = findElementByCssSelector("[id$='priority-filter:filter-input-form:advanced-filter-panel-content']");
     for (WebElement labelElement : findChildElementsByTagName(selectionElement, "LABEL")) {
       if (!selectedPriorities.contains(labelElement.getText())) {
-        labelElement.click();
+        click(labelElement);
       }
     }
     click(By.cssSelector("button[id$='priority-filter:filter-input-form:update-command']"));
     waitForPageLoaded();
+    waitAjaxIndicatorDisappear();
   }
 
   public void filterByTaskCategory(String selectedCategory) {
@@ -109,15 +120,15 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     List<WebElement> categoryTreeLabels = findChildElementsByClassName(selectionElement, "ui-treenode-label");
     //Find parent node of tree first and uncheck it
     WebElement parentNodeOfTree = categoryTreeLabels.stream().findFirst().get();
-    parentNodeOfTree.click();
+    click(parentNodeOfTree);
     for (WebElement labelElement : categoryTreeLabels) {
       if (selectedCategory.contains(labelElement.getText())) {
-        labelElement.click();
+        click(labelElement);
         break;
       }
     }
     click(By.cssSelector("button[id$='task-category-filter:filter-input-form:update-command']"));
-    waitForPageLoaded();
+    waitAjaxIndicatorDisappear();
   }
 
   public void filterByCaseName(String text) {
@@ -126,19 +137,20 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
         findElementByCssSelector("input[id$='case-name-filter:filter-input-form:name']");
     enterKeys(nameInput, text);
     click(By.cssSelector("button[id$='case-name-filter:filter-input-form:update-command']"));
-    waitForPageLoaded();
+    waitAjaxIndicatorDisappear();
   }
 
   public void filterByCaseState(List<String> selectedPriorities) {
-    click(By.cssSelector("button[id$='state-filter:filter-open-form:advanced-filter-command']"));
-    WebElement selectionElement = findElementByCssSelector("[id$='state-filter:filter-input-form:advanced-filter-panel-content']");
+    click(By.cssSelector("div[id$='task-widget:case-filters-container'] button[id$='state-filter:filter-open-form:advanced-filter-command']"));
+    WebElement selectionElement = findElementByCssSelector("div[id$='task-widget:case-filters-container'] div[id$='state-filter:filter-input-form:advanced-filter-panel-content']");
     for (WebElement labelElement : findChildElementsByTagName(selectionElement, "LABEL")) {
       if (!selectedPriorities.contains(labelElement.getText())) {
-        labelElement.click();
+        click(labelElement);
+        waitAjaxIndicatorDisappear();
       }
     }
-    click(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"));
-    waitForPageLoaded();
+    click(By.cssSelector("div[id$='task-widget:case-filters-container'] button[id$='state-filter:filter-input-form:update-command']"));
+    waitAjaxIndicatorDisappear();
   }
 
   public void filterByCaseCategory(String selectedCategory) {
@@ -147,16 +159,15 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     List<WebElement> categoryTreeLabels = findChildElementsByClassName(selectionElement, "ui-treenode-label");
     //Find parent node of tree first and uncheck it
     WebElement parentNodeOfTree = categoryTreeLabels.stream().findFirst().get();
-    parentNodeOfTree.click();
-    
+    click(parentNodeOfTree);  
     for (WebElement labelElement : categoryTreeLabels) {
       if (selectedCategory.contains(labelElement.getText())) {
-        labelElement.click();
+        click(labelElement);
         break;
       }
     }
     click(By.cssSelector("button[id$='case-category-filter:filter-input-form:update-command']"));
-    waitForPageLoaded();
+    waitAjaxIndicatorDisappear();
   }
 
   public void saveFilterSet(String filterSetName, boolean isPersonalFilter) {
@@ -168,9 +179,9 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
 
     WebElement filterVisibilityContainer = findElementById("task-widget:filter-save-form:save-filter-type-radio");
     if (isPersonalFilter) {
-      filterVisibilityContainer.findElements(By.tagName("LABEL")).get(0).click();
+      click(filterVisibilityContainer.findElements(By.tagName("LABEL")).get(0));
     } else {
-      filterVisibilityContainer.findElements(By.tagName("LABEL")).get(1).click();
+      click(filterVisibilityContainer.findElements(By.tagName("LABEL")).get(1));
     }
 
     click(By.id("task-widget:filter-save-form:filter-save-command"));
@@ -186,7 +197,32 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     } else {
       filterContainer = findElementById("task-widget:filter-selection-form:public-filters");
     }
-    filterContainer.findElement(By.linkText(filterSetName)).click();
-    Sleeper.sleep(1000);
+    click(filterContainer.findElement(By.linkText(filterSetName)));
+    waitAjaxIndicatorDisappear();
+  }
+  
+  public String getFilterName() {
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(
+        () -> findElementByCssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)")
+            .getText().length()>1);
+    WebElement filterName = findElementByCssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)");
+    return filterName.getText();
+  }
+
+  public boolean isResetButtonShown() {
+    waitForElementDisplayed(By.cssSelector("button[id$='task-widget:filter-reset-action']"), true);
+    return  isElementDisplayed(By.cssSelector("button[id$='task-widget:filter-reset-action']"));
+  }
+
+  public void resetFilter() {
+    click(By.cssSelector("button[id$='task-widget:filter-reset-action']"));
+    waitAjaxIndicatorDisappear();
+    waitForElementDisplayed(By.cssSelector("button[id$='task-widget:filter-reset-command']"), true);
+    click(By.cssSelector("button[id$='task-widget:filter-reset-command']"));
+    waitAjaxIndicatorDisappear();
+    refreshAndWaitElement("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)");
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(
+        () -> findElementByCssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)")
+            .getText().contains("Default"));  
   }
 }

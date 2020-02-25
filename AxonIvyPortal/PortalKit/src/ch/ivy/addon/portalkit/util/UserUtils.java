@@ -38,6 +38,9 @@ public class UserUtils {
   private static final String SELECTED_CASE_FILTER_SET = "SELECTED_CASE_FILTER_SET";
   private static final String SELECTED_CASE_FILTER = "SELECTED_CASE_FILTER";
   private static final String CASE_KEYWORD_FILTER = "CASE_KEYWORD_FILTER";
+  private static final String FILTER_GROUP_ID = "FILTER_GROUP_ID";
+  private static final String SELECTED_DEFAULT_TASK_FILTER_SET = "SELECTED_DEFAULT_TASK_FILTER_SET";
+  private static final String SELECTED_DEFAULT_CASE_FILTER_SET = "SELECTED_DEFAULT_CASE_FILTER_SET";
 
   private UserUtils() {
   }
@@ -111,6 +114,10 @@ public class UserUtils {
     Ivy.session().setAttribute(key, value);
   }
 
+  public static void setSessionSelectedDefaultTaskFilterSetAttribute(Boolean value) {
+    setSessionAttribute(SELECTED_DEFAULT_TASK_FILTER_SET, value);
+  }
+  
   public static void setSessionSelectedTaskFilterSetAttribute(TaskFilterData value) {
     setSessionAttribute(SELECTED_TASK_FILTER_SET, value);
   }
@@ -129,6 +136,14 @@ public class UserUtils {
 
   public static TaskFilterData getSessionSelectedTaskFilterSetAttribute() {
     return (TaskFilterData) Ivy.session().getAttribute(SELECTED_TASK_FILTER_SET);
+  }
+  
+  public static Long getSessionFilterGroupIdAttribute() {
+    return (Long) Ivy.session().getAttribute(FILTER_GROUP_ID);
+  }
+  
+  public static Boolean getSessionSelectedDefaultTaskFilterSetAttribute() {
+    return (Boolean) Ivy.session().getAttribute(SELECTED_DEFAULT_TASK_FILTER_SET);
   }
 
   @SuppressWarnings("unchecked")
@@ -159,7 +174,15 @@ public class UserUtils {
   public static void setSessionCaseKeywordFilterAttribute(String keyword) {
     setSessionAttribute(CASE_KEYWORD_FILTER, keyword);
   }
+  
+  public static void setSessionFilterGroupIdAttribute(Long value) {
+    setSessionAttribute(FILTER_GROUP_ID, value);
+  }
 
+  public static void setSessionSelectedDefaultCaseFilterSetAttribute(Boolean value) {
+    setSessionAttribute(SELECTED_DEFAULT_CASE_FILTER_SET, value);
+  }
+  
   public static CaseFilterData getSessionSelectedCaseFilterSetAttribute() {
     return (CaseFilterData) Ivy.session().getAttribute(SELECTED_CASE_FILTER_SET);
   }
@@ -175,6 +198,10 @@ public class UserUtils {
 
   public static String getSessionCaseKeywordFilterAttribute() {
     return StringUtils.defaultIfBlank((String)Ivy.session().getAttribute(CASE_KEYWORD_FILTER), "");
+  }
+  
+  public static Boolean getSessionSelectedDefaultCaseFilterSetAttribute() {
+    return (Boolean) Ivy.session().getAttribute(SELECTED_DEFAULT_CASE_FILTER_SET);
   }
   
   /**

@@ -59,9 +59,12 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected TaskFilterContainer filterContainer;
   protected TaskInProgressByOthersFilter inProgressFilter;
   protected TaskFilterData selectedTaskFilterData;
+  protected TaskFilterData defaultTaskFilterData;
+  protected Long filterGroupId;
 
   protected List<TaskFilter> filters;
   protected List<TaskFilter> selectedFilters;
+  protected List<TaskFilter> oldSelectedFilters = new ArrayList<>();
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
   protected List<String> portalDefaultColumns =
@@ -75,8 +78,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected boolean isRelatedTaskDisplayed;
   protected boolean isNotKeepFilter;
   protected boolean disableTaskCount;
-
-  private TaskFilter selectedTaskFilter;
+  protected Boolean isSelectedDefaultFilter;
 
   public TaskLazyDataModel(String taskWidgetComponentId) {
     super();
@@ -84,15 +86,45 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     selectedFilters = new ArrayList<>();
     buildCriteria();
     data = new ArrayList<>();
+
+    loadSessionTaskFiltersAttribute();
+    if (inProgressFilter != null) {
+      isInProgressFilterDisplayed = true;
+    } else {
+      inProgressFilter = new TaskInProgressByOthersFilter();
+    }
+    if (isSelectedDefaultFilter == null) {
+      buildDefaultTaskFilterData();
+    }
+  }
+
+  private void loadSessionTaskFiltersAttribute() {
     if (shouldSaveAndLoadSessionFilters()) {
-      selectedTaskFilterData = UserUtils.getSessionSelectedTaskFilterSetAttribute();
-      inProgressFilter = UserUtils.getSessionTaskInProgressFilterAttribute();
-      if (inProgressFilter != null) {
-        isInProgressFilterDisplayed = true;
+      if (isSameFilterGroupId()) {
+        isSelectedDefaultFilter = UserUtils.getSessionSelectedDefaultTaskFilterSetAttribute();
+        selectedTaskFilterData = UserUtils.getSessionSelectedTaskFilterSetAttribute();
+        inProgressFilter = UserUtils.getSessionTaskInProgressFilterAttribute();
       } else {
-        inProgressFilter = new TaskInProgressByOthersFilter();
+        isSelectedDefaultFilter = true;
+        selectedTaskFilterData = null;
       }
     }
+  }
+
+  private boolean isSameFilterGroupId() {
+    filterGroupId = UserUtils.getSessionFilterGroupIdAttribute();
+    return filterGroupId == null || filterGroupId == Ivy.request().getProcessModel().getId();
+  }
+
+  public TaskFilterData buildDefaultTaskFilterData() {
+    if (defaultTaskFilterData == null) {
+      defaultTaskFilterData = new TaskFilterData();
+      defaultTaskFilterData.setFilterName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultFilter"));
+      defaultTaskFilterData.setType(FilterType.DEFAULT);
+      collectFiltersForDefaultFilterSet();
+    }
+    isSelectedDefaultFilter = isSelectedDefaultFilter == null ? true: isSelectedDefaultFilter;
+    return defaultTaskFilterData;
   }
 
   public TaskLazyDataModel() {
@@ -119,27 +151,51 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   public void initFilters() throws ReflectiveOperationException {
     if (filterContainer == null) {
-      if (isRelatedTaskDisplayed) {
-        if (!criteria.getIncludedStates().contains(TaskState.DONE)) {
-          criteria.addIncludedStates(Arrays.asList(TaskState.DONE));
-        }
-        if (!criteria.getIncludedStates().contains(TaskState.UNASSIGNED)) {
-          criteria.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
-        }
-      }
+      updateStateForTaskCriteria();
       initFilterContainer();
       filters = filterContainer.getFilters();
-      setValuesForStateFilter(criteria);
-      TaskStateFilter stateFilter = filterContainer.getStateFilter();
-      if (criteria.isAdminQuery() && !isRelatedTaskDisplayed) {
-        stateFilter.setSelectedFilteredStatesAtBeginning(new ArrayList<>(stateFilter.getSelectedFilteredStates()));
-      } else if (!stateFilter.getFilteredStates().contains(TaskState.DONE)) {
-        stateFilter.addFilteredState(TaskState.DONE);
-      }
+      setValuesForStateFilter(criteria, filterContainer);
+      buildTaskStateFilter(filterContainer);
       restoreSessionAdvancedFilters();
+    }
+    checkToApplyDefaultSet();
+  }
+
+  protected void buildTaskStateFilter(TaskFilterContainer filterContainer) {
+    TaskStateFilter stateFilter = filterContainer.getStateFilter();
+    if (criteria.isAdminQuery() && !isRelatedTaskDisplayed) {
+      stateFilter.setSelectedFilteredStatesAtBeginning(new ArrayList<>(stateFilter.getSelectedFilteredStates()));
+    } else if (!stateFilter.getFilteredStates().contains(TaskState.DONE)) {
+      stateFilter.addFilteredState(TaskState.DONE);
     }
   }
 
+  protected void updateStateForTaskCriteria() {
+    if (isRelatedTaskDisplayed) {
+      if (!criteria.getIncludedStates().contains(TaskState.DONE)) {
+        criteria.addIncludedStates(Arrays.asList(TaskState.DONE));
+      }
+      if (!criteria.getIncludedStates().contains(TaskState.UNASSIGNED)) {
+        criteria.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
+      }
+    }
+  }
+
+  public void collectFiltersForDefaultFilterSet() {
+    if (defaultTaskFilterData != null && CollectionUtils.isEmpty(defaultTaskFilterData.getFilters())) {
+      TaskFilterContainer tempFilterContainer = null;
+      if (this.filterContainer == null) {
+        tempFilterContainer = new DefaultTaskFilterContainer();
+      } else {
+        tempFilterContainer = this.filterContainer;
+      }
+      updateStateForTaskCriteria();
+      setValuesForStateFilter(criteria, tempFilterContainer);
+      buildTaskStateFilter(tempFilterContainer);
+      defaultTaskFilterData.setFilters(tempFilterContainer.getFilters().stream().filter(TaskFilter::defaultFilter).collect(Collectors.toList()));
+    }
+  }
+  
   private void restoreSessionAdvancedFilters() throws IllegalAccessException, InvocationTargetException {
     if (shouldSaveAndLoadSessionFilters()) {
       List<TaskFilter> sessionTaskFilters = UserUtils.getSessionTaskAdvancedFilterAttribute();
@@ -151,6 +207,16 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
             copyProperties(sessionTaskFilter, filter);
           }
         }
+      }
+    }
+  }
+
+  public void checkToApplyDefaultSet() {
+    if (isSelectedDefaultFilter == null || isSelectedDefaultFilter) {
+      try {
+        applyFilter(defaultTaskFilterData);
+      } catch (ReflectiveOperationException e) {
+        Ivy.log().error("Cannot apply DefaultFilter for Task list", e);
       }
     }
   }
@@ -171,13 +237,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   @Override
   public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-    if (selectedTaskFilter != null && !selectedTaskFilter.reloadView()
-        || validateStateFilter(selectedTaskFilter)) {
-      storeTaskFiltersIntoSession();
-      selectedTaskFilter = null;
-      return data;
-    }
-
     if (first == 0) {
       initializedDataModel(criteria);
       if (!disableTaskCount) {
@@ -198,25 +257,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     }
     data.addAll(foundTasks);
     return foundTasks;
-  }
-
-  /**
-   * This method validates the State filter's value in current TaskSearchCriteria with new State filter which is added
-   * new on UI If selectedTaskFilter is State filter and has the same value in TaskSearchCriteria, we will not execute
-   * query again to database
-   * 
-   * @param selectedTaskFilter
-   * @return state's value is same or not
-   */
-  private boolean validateStateFilter(TaskFilter selectedTaskFilter) {
-    if (selectedTaskFilter != null && selectedTaskFilter instanceof TaskStateFilter) {
-      TaskStateFilter taskStateFilter = (TaskStateFilter) selectedTaskFilter;
-      if (CollectionUtils.isNotEmpty(criteria.getIncludedStates())
-          && criteria.getIncludedStates().equals(taskStateFilter.getSelectedFilteredStates())) {
-        return true;
-      }
-    }
-    return false;
   }
 
   /**
@@ -317,7 +357,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
         .collect(Collectors.toList());
     if (isAdminQuery && !adminStateNotIncluded.isEmpty()) {
       criteria.addIncludedStates(adminStateNotIncluded);
-      setValuesForStateFilter(criteria);
+      setValuesForStateFilter(criteria, this.filterContainer);
     }
     criteria.setAdminQuery(isAdminQuery);
   }
@@ -354,12 +394,12 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   public void setIncludedStates(List<TaskState> includedStates) {
     this.criteria.setIncludedStates(includedStates);
-    setValuesForStateFilter(this.criteria);
+    setValuesForStateFilter(this.criteria, this.filterContainer);
   }
 
   public void addIncludedStates(List<TaskState> includedStates) {
     this.criteria.addIncludedStates(includedStates);
-    setValuesForStateFilter(this.criteria);
+    setValuesForStateFilter(this.criteria, this.filterContainer);
   }
 
   public void setCriteria(TaskSearchCriteria criteria) {
@@ -434,7 +474,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   public void removeFilter(TaskFilter filter) {
-    selectedTaskFilter = null;
     filter.resetValues();
     selectedFilters.remove(filter);
     resetFilterData();
@@ -457,6 +496,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * @return TaskFilterData
    */
   public TaskFilterData saveFilter(String filterName, FilterType filterType, Long taskFilterGroupId) {
+    isSelectedDefaultFilter = false;
     TaskFilterData taskFilterData = new TaskFilterData();
     List<TaskFilter> taskFilters = new ArrayList<>(selectedFilters);
     addCustomSettingsToTaskFilters(taskFilters);
@@ -470,6 +510,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     BusinessDataInfo<TaskFilterData> info = taskFilterService.save(taskFilterData);
     taskFilterData = taskFilterService.findById(info.getId());
     UserUtils.setSessionSelectedTaskFilterSetAttribute(taskFilterData);
+    UserUtils.setSessionSelectedDefaultTaskFilterSetAttribute(isSelectedDefaultFilter);
     return taskFilterData;
   }
 
@@ -486,6 +527,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * @throws ReflectiveOperationException
    */
   public void applyFilter(TaskFilterData taskFilterData) throws ReflectiveOperationException {
+    isSelectedDefaultFilter = FilterType.DEFAULT.equals(taskFilterData.getType());
     selectedTaskFilterData = taskFilterData;
     new TaskFilterService().applyFilter(this, taskFilterData);
     applyCustomSettings(taskFilterData);
@@ -505,21 +547,28 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   @SuppressWarnings("unchecked")
   public void onFilterChange(ValueChangeEvent event) {
-    List<TaskFilter> oldSelectedFilters = (List<TaskFilter>) event.getOldValue();
-    List<TaskFilter> newSelectedFilters = (List<TaskFilter>) event.getNewValue();
-    List<TaskFilter> toggleFilters = null;
-    if (newSelectedFilters.size() > oldSelectedFilters.size()) {
-      toggleFilters = (List<TaskFilter>) CollectionUtils.subtract(newSelectedFilters, oldSelectedFilters);
-    } else {
-      toggleFilters = (List<TaskFilter>) CollectionUtils.subtract(oldSelectedFilters, newSelectedFilters);
-    }
-    if (CollectionUtils.isNotEmpty(toggleFilters)) {
-      selectedTaskFilter = toggleFilters.get(0);
-      toggleFilters.get(0).resetValues();
-    }
-    resetFilterData();
+    oldSelectedFilters = (List<TaskFilter>) event.getOldValue();
   }
 
+  @SuppressWarnings("unchecked")
+  public void updateSelectedFilter() {
+    List<TaskFilter> toggleFilters = null;
+    if (selectedFilters.size() > oldSelectedFilters.size()) {
+      toggleFilters = (List<TaskFilter>) CollectionUtils.subtract(selectedFilters, oldSelectedFilters);
+    } else {
+      toggleFilters = (List<TaskFilter>) CollectionUtils.subtract(oldSelectedFilters, selectedFilters);
+    }
+    if (CollectionUtils.isNotEmpty(toggleFilters)) {
+      toggleFilters.forEach(filter -> filter.resetValues());
+    }
+    resetFilterData();
+    storeTaskFiltersIntoSession();
+  }
+
+  public void onFilterApply() {
+    resetFilterData();
+  }
+  
   public void onKeywordChange() {
     resetFilterData();
   }
@@ -528,6 +577,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     if (this.selectedTaskFilterData != null) {
       this.selectedTaskFilterData = null;
     }
+    this.isSelectedDefaultFilter = false;
   }
 
   public boolean hasReadAllTasksPermisson() {
@@ -574,7 +624,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     criteria.setApps(service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName()));
   }
 
-  protected void setValuesForStateFilter(TaskSearchCriteria criteria) {
+  protected void setValuesForStateFilter(TaskSearchCriteria criteria, TaskFilterContainer filterContainer) {
     if (filterContainer != null) {
       filterContainer.getStateFilter().setFilteredStates(new ArrayList<>(criteria.getIncludedStates()));
       filterContainer.getStateFilter().setSelectedFilteredStates(criteria.getIncludedStates());
@@ -597,9 +647,11 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   private void storeTaskFiltersIntoSession() {
     if (shouldSaveAndLoadSessionFilters()) {
+      UserUtils.setSessionSelectedDefaultTaskFilterSetAttribute(isSelectedDefaultFilter);
       UserUtils.setSessionSelectedTaskFilterSetAttribute(selectedTaskFilterData);
       UserUtils.setSessionTaskKeywordFilterAttribute(criteria.getKeyword());
       if (!compactMode) {
+        UserUtils.setSessionFilterGroupIdAttribute(Ivy.request().getProcessModel().getId());
         UserUtils.setSessionTaskAdvancedFilterAttribute(selectedFilters);
         if (isInProgressFilterDisplayed) {
           UserUtils.setSessionTaskInProgressFilterAttribute(inProgressFilter);
@@ -784,6 +836,8 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   public void setNotKeepFilter(boolean isNotKeepFilter) {
     this.isNotKeepFilter = isNotKeepFilter;
+    this.selectedTaskFilterData = null;
+    this.isSelectedDefaultFilter = false;
   }
 
   public void setQueryForUnassignedTask(boolean isQueryForOnlyUnassignedTask) {
@@ -848,5 +902,21 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   public void setDisableTaskCount(boolean disableTaskCount) {
     this.disableTaskCount = disableTaskCount;
   }
-  
+
+  public void setDefaultTaskFilterData(TaskFilterData defaultTaskFilterData) {
+    this.defaultTaskFilterData = defaultTaskFilterData;
+  }
+
+  public TaskFilterData getDefaultTaskFilterData() {
+    return defaultTaskFilterData;
+  }
+
+  public boolean isSelectedDefaultFilter() {
+    return isSelectedDefaultFilter;
+  }
+
+  public void setSelectedDefaultFilter(boolean isSelectedDefaultFilter) {
+    this.isSelectedDefaultFilter = isSelectedDefaultFilter;
+  }
+
 }
