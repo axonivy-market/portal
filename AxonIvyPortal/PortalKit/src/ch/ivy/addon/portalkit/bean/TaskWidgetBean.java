@@ -14,7 +14,7 @@ import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
@@ -26,6 +26,7 @@ public class TaskWidgetBean implements Serializable {
   private Long taskListRefreshInterval;
   private Long expandedTaskId;
   private Long selectedTaskItemId;
+  private ITask selectedTaskItem;
   private TaskLazyDataModel dataModel;
   private Boolean isTaskDetailOpenning;
   private boolean isShowFullTaskList;
@@ -75,7 +76,10 @@ public class TaskWidgetBean implements Serializable {
    * @return task is selected
    */
   public ITask getSelectedTaskItem() {
-    return TaskUtils.findTaskUserHasPermissionToSee(this.selectedTaskItemId);
+    if (selectedTaskItem == null || selectedTaskItemId != selectedTaskItem.getId()) {
+      selectedTaskItem = Ivy.wf().findTask(getSelectedTaskItemId());
+    }
+    return selectedTaskItem;
   }
   
   public Long getTaskListRefreshInterval() {
