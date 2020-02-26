@@ -344,6 +344,7 @@ ITask task = ivy.wf.findTask(in.endedTaskId);
 ITask taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
 boolean isTaskStarted = false;
 String callbackUrl;
+String IS_TASK_FINISHED = SessionAttribute.IS_TASK_FINISHED.toString();
 if  (#task is initialized) {
 	isTaskStarted = task.getStartProcessData() is initialized;
 	if(#taskWithTaskEndInfo is initialized) {
@@ -359,7 +360,10 @@ if (isTaskStarted && StringUtils.isNotBlank(callbackUrl)) {
 	out.callbackUrl = callbackUrl + "?endedTaskId=" + taskWithTaskEndInfo.getId();
 } else {
 	out.portalPage = PortalPage.HOME_PAGE;
-}' #txt
+}
+
+in.isTaskFinished = SecurityServiceUtils.getSessionAttribute(IS_TASK_FINISHED).toBoolean();
+ivy.session.setAttribute(IS_TASK_FINISHED, true);' #txt
 Pt0 f11 security system #txt
 Pt0 f11 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

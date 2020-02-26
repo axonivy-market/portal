@@ -86,7 +86,6 @@ Pt0 @GridStep f68 '' #zField
 Pt0 @PushWFArc f70 '' #zField
 Pt0 @PushWFArc f14 '' #zField
 Pt0 @StartRequest f72 '' #zField
-Pt0 @PushWFArc f74 '' #zField
 Pt0 @StartRequest f75 '' #zField
 Pt0 @GridStep f77 '' #zField
 Pt0 @GridStep f78 '' #zField
@@ -94,6 +93,9 @@ Pt0 @PushWFArc f79 '' #zField
 Pt0 @PushWFArc f80 '' #zField
 Pt0 @PushWFArc f76 '' #zField
 Pt0 @PushWFArc f34 '' #zField
+Pt0 @GridStep f27 '' #zField
+Pt0 @PushWFArc f29 '' #zField
+Pt0 @PushWFArc f74 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Pt0 f0 outLink PortalStart.ivp #txt
 Pt0 f0 type ch.ivy.addon.portal.generic.PortalStartData #txt
@@ -1177,10 +1179,6 @@ Pt0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f72 @C|.responsibility Everybody #txt
 Pt0 f72 49 49 30 30 -51 16 #rect
 Pt0 f72 @|StartRequestIcon #fIcon
-Pt0 f74 expr out #txt
-Pt0 f74 79 64 560 144 #arcP
-Pt0 f74 1 560 64 #addKink
-Pt0 f74 0 0.5831600831600832 0 0 #arcLabel
 Pt0 f75 outLink DefaultLoginPage.ivp #txt
 Pt0 f75 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f75 inParamDecl '<java.lang.String originalUrl> param;' #txt
@@ -1282,6 +1280,31 @@ Pt0 f34 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f34 560 465 560 523 #arcP
 Pt0 f34 0 0.3793103448275862 13 -1 #arcLabel
+Pt0 f27 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
+' #txt
+Pt0 f27 actionTable 'out=in;
+' #txt
+Pt0 f27 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+
+ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), true);' #txt
+Pt0 f27 type ch.ivy.addon.portal.generic.PortalStartData #txt
+Pt0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Set task is finished</name>
+        <nameStyle>20,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f27 360 42 112 44 -52 -8 #rect
+Pt0 f27 @|StepIcon #fIcon
+Pt0 f29 expr out #txt
+Pt0 f29 79 64 360 64 #arcP
+Pt0 f74 expr out #txt
+Pt0 f74 472 64 560 144 #arcP
+Pt0 f74 1 560 64 #addKink
+Pt0 f74 0 0.810816625282994 0 0 #arcLabel
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1356,11 +1379,13 @@ Pt0 f0 mainOut f70 tail #connect
 Pt0 f70 head f68 mainIn #connect
 Pt0 f68 mainOut f14 tail #connect
 Pt0 f14 head f20 mainIn #connect
-Pt0 f72 mainOut f74 tail #connect
-Pt0 f74 head f4 in #connect
 Pt0 f78 mainOut f79 tail #connect
 Pt0 f79 head f77 mainIn #connect
 Pt0 f75 mainOut f80 tail #connect
 Pt0 f80 head f78 mainIn #connect
 Pt0 f77 mainOut f76 tail #connect
 Pt0 f76 head f30 in #connect
+Pt0 f72 mainOut f29 tail #connect
+Pt0 f29 head f27 mainIn #connect
+Pt0 f27 mainOut f74 tail #connect
+Pt0 f74 head f4 in #connect
