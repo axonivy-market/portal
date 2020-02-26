@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -249,7 +250,16 @@ public class SecurityService implements ISecurityService {
   }
 
   private UserQuery queryHasRoles(IApplication app, List<String> fromRoles) {
-    List<IRole> roles = fromRoles.stream().map(roleName -> app.getSecurityContext().findRole(roleName)).collect(Collectors.toList());
+    List<IRole> roles = new ArrayList<>();
+    for (String roleName : fromRoles) {
+		IRole iRole = app.getSecurityContext().findRole(roleName);
+		if (Objects.nonNull(iRole)) {
+		  roles.add(iRole);
+		} else {
+			Ivy.log().warn("Cannot find role name: {0}", roleName);
+		}
+	}
+    
     UserQuery hasRolesQuery = UserQuery.create();
     IFilterQuery hasRolesFilter = hasRolesQuery.where();
     for (IRole role : roles) {
