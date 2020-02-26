@@ -1,3 +1,6 @@
+var prefixProcessGroup ="js-process-group-";
+var prefixProcessStart = "js-process-starts-with-";
+
 function ProcessWidget() {
 
   excludeMarginBottom = 30;
@@ -40,13 +43,17 @@ function ProcessWidget() {
     // setup scroll-bar for process navigator
     setupProcessNav: function(processStartListContainer, availableHeight, announcementMessageContainer) {
       var processNav = $('.js-process-nav');
+      if (!shouldDisplayProcessNav(processNav, availableHeight)) {
+        return;
+      }
+
       var searchTab = $('.search-results-tabview');
       var marginRightProcessWidget = 0;
         // For search form tab
         if (searchTab.length > 0) {
           marginRightProcessWidget = 20;
           if (searchTab.width() > processStartListContainer.width()) {
-            marginRightProcessWidget = ((searchTab.width()||0) - (processStartListContainer.width()||0))/2;
+            marginRightProcessWidget = extractRightOffsetOfElement(searchTab) + extractRightOffsetOfElement(processStartListContainer);
             // if first time call, ignore outer padding
             if (processStartListContainer.css("margin-right") != "0px") {
               marginRightProcessWidget = marginRightProcessWidget + 8;
@@ -56,8 +63,7 @@ function ProcessWidget() {
           // For process list page
           var layoutContent = $('.layout-content');
           var processWidget = $('.process-widget');
-          marginRightProcessWidget = ((layoutContent.outerWidth(true)||0) - (layoutContent.width()||0))/2
-                                       + ((processWidget.outerWidth(true)||0) - (processWidget.width()||0))/2;
+          marginRightProcessWidget = extractRightOffsetOfElement(layoutContent) + extractRightOffsetOfElement(processWidget);
 
           var scrollBarWidth = this.detechScrollBarWidth();
           processNav.css("right", scrollBarWidth + "px");
@@ -134,6 +140,43 @@ function ProcessWidget() {
   }
 }
 
+// Calculate a minimum height for process navigator
+// Then compare with availableHeight of process widget body
+// Return true if enough space to display navigator
+function shouldDisplayProcessNav(processNav, availableHeight) {
+  if (processNav.length) {
+    var processNavElement = processNav[0];
+    if (!processNavElement.childElementCount) {
+      processNav.css("visibility", "hidden");
+      return false;
+    }
+
+    var processNavIndexHeight = $(processNavElement.firstElementChild).outerHeight(true);
+    var minProcessNavHeight = processNavIndexHeight * processNavElement.childElementCount;
+    if (availableHeight < minProcessNavHeight) {
+      processNav.css("visibility", "hidden");
+      return false;
+    }
+
+    processNav.css("visibility", "visible");
+    return true;
+  }
+}
+
+// Finding the offset-right of element
+// Offset-right is total of padding right and margin right of element
+function extractRightOffsetOfElement(containerElement) {
+  var paddingRight = $(containerElement).css('padding-right');
+  if (!!paddingRight) {
+    paddingRight = parseInt(paddingRight);
+  }
+  var marginRight = $(containerElement).css('margin-right');
+  if (!!marginRight) {
+    marginRight = parseInt(marginRight);
+  }
+  return paddingRight + marginRight;
+}
+
 $(document).ready(function() {
   processWidget = ProcessWidget();
   processWidget.filter();
@@ -161,11 +204,10 @@ function expandOrCollapseAllCategories(shouldExpand) {
 }
 
 function jumpToProcessGroupByCharacter(event) {
-  var prefix = "js-process-starts-with-";
-  var clickedCharacter = getClassNameStartsWith(event.target.className, prefix).slice(prefix.length);
+  var clickedCharacter = getClassNameStartsWith(event.target.className, prefixProcessStart).slice(prefixProcessStart.length);
   $(".process-nav-item.selected").removeClass("selected");
   var selectedItem = document.getElementById(event.target.id);
-  var processGroupSeleted = document.getElementsByClassName("js-process-group-" + clickedCharacter)[0];
+  var processGroupSeleted = document.getElementsByClassName(prefixProcessGroup + clickedCharacter)[0];
   
   processGroupSeleted.parentNode.scrollTop = processGroupSeleted.offsetTop - processGroupSeleted.parentNode.offsetTop;
   setTimeout(function(){ selectedItem.classList.add("selected"); }, 100);
@@ -178,20 +220,19 @@ function getClassNameStartsWith(classList, prefix) {
 }
 
 function disableGroupNavigation() {
-  var prefix ="js-process-group-";
   var processIndexGroups = document.getElementsByClassName("js-process-index-group");
 
   var hiddenIndexGroups = getElementsHaveClassName(processIndexGroups, false);
   hiddenIndexGroups.forEach(function(e) {
-    var indexNav = getClassNameStartsWith(e.className, prefix).slice(prefix.length);
-    var hidden = document.getElementsByClassName('js-process-starts-with-' + indexNav)[0];
+    var indexNav = getClassNameStartsWith(e.className, prefixProcessGroup).slice(prefixProcessGroup.length);
+    var hidden = document.getElementsByClassName(prefixProcessStart + indexNav)[0];
     hidden.classList.add('disabled');
   });
 
   var displayedIndexGroups = getElementsHaveClassName(processIndexGroups, true);
   displayedIndexGroups.forEach(function(e) {
-    var indexNav = getClassNameStartsWith(e.className, prefix).slice(prefix.length);
-    var hidden = document.getElementsByClassName('js-process-starts-with-' + indexNav)[0];
+    var indexNav = getClassNameStartsWith(e.className, prefixProcessGroup).slice(prefixProcessGroup.length);
+    var hidden = document.getElementsByClassName(prefixProcessStart + indexNav)[0];
     if ($(hidden).hasClass('disabled')) {
       hidden.classList.remove('disabled');
     }
