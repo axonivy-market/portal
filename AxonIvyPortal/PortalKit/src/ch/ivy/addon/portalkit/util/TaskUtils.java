@@ -158,7 +158,18 @@ public final class TaskUtils {
       }
     });
   }
-  
+
+  /**
+   * Finds a task by its ID
+   * @param taskId
+   * @return {@link ITask}
+   */
+  public static ITask findTaskById(long taskId) {
+    return IvyExecutor.executeAsSystem(() -> {
+      return Ivy.wf().findTask(taskId);
+    });
+  }
+
   public static boolean isTaskCurrentOpeningTask(ITask task){
 	  try {
   		return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
