@@ -3,7 +3,7 @@ dialect "mvel"
 
 rule "NeedsLevelApproval"
   when
-  	  $dossier : CreditDossier(customer.address.country != "Switzerland")
+  	  $dossier : CreditDossier(request.amount / request.salary >= 0.2)
   then
       $dossier.decision.needsLevel2Approval = true;
 end

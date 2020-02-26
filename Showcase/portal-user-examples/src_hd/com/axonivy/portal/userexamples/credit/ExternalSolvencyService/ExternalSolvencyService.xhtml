@@ -43,13 +43,13 @@
             </h:panelGroup>
 
             <h:panelGroup class="MarTop20" layout="block">
-              <p:outputLabel for="request-reason" value="#{ivy.cms.co('/Labels/CaseMap/Credit/salary')}" />
+              <p:outputLabel for="request-salary" value="#{ivy.cms.co('/Labels/CaseMap/Credit/salary')}" />
               <p:inputText required="true" id="request-salary" value="#{data.dossier.request.salary}"
                 styleClass="MarTop10" disabled="true" />
             </h:panelGroup>
 
             <h:panelGroup class="MarTop20" layout="block">
-              <p:outputLabel for="request-salary" value="#{ivy.cms.co('/Labels/CaseMap/Credit/approvalReason')}" />
+              <p:outputLabel for="request-reason" value="#{ivy.cms.co('/Labels/CaseMap/Credit/approvalReason')}" />
               <p:inputText id="request-reason" value="#{data.dossier.request.reason}" styleClass="MarTop10"
                 disabled="true" />
             </h:panelGroup>
