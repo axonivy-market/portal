@@ -62,6 +62,9 @@ out.dossier.request.amountOfOtherCredits=1000000;
 out.dossier.request.reason="To buy a new car";
 out.dossier.request.salary=80000;
 ' #txt
+Cs0 f6 actionCode 'import Date;
+
+in.dossier.customer.birthDate = new Date("1.1.2000");' #txt
 Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
