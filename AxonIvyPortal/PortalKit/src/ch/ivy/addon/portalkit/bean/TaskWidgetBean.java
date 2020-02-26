@@ -14,7 +14,7 @@ import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
@@ -77,7 +77,7 @@ public class TaskWidgetBean implements Serializable {
    */
   public ITask getSelectedTaskItem() {
     if (selectedTaskItem == null || selectedTaskItemId != selectedTaskItem.getId()) {
-      selectedTaskItem = Ivy.wf().findTask(getSelectedTaskItemId());
+      selectedTaskItem = TaskUtils.findTaskById(selectedTaskItemId);
     }
     return selectedTaskItem;
   }
