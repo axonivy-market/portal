@@ -66,14 +66,14 @@
           </p:column>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}"
             styleClass="absences-table-action-column">
-            <p:commandLink id="edit-absence" process="absence-table"
+            <p:commandLink id="edit-absence" 
               styleClass="absences-table-action-column-icon-button" actionListener="#{logic.editAbsence(absence)}"
               oncomplete="PF('absence').show()" update="@widgetVar(absence)"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
               rendered="#{absenceManagementBean.isAbsenceEditable(absence) }">
               <span class="fa fa-pencil" />
             </p:commandLink>
-            <p:commandLink id="delete-absence" process="@this" actionListener="#{logic.preDelete(absence)}"
+            <p:commandLink id="delete-absence" actionListener="#{logic.preDelete(absence)}" 
               oncomplete="PF('deleteAbsenceConfirmation').show();" styleClass="absences-table-action-column-icon-button"
               rendered="#{absenceManagementBean.isAbsenceDeletable(absence)}"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
@@ -210,7 +210,7 @@
     widgetVar="deleteAbsenceConfirmation" rendered="#{absenceManagementBean.ownAbsencesDeletable}">
     <p:commandButton process="@this" id="confirm-action" styleClass="confirm-action"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" actionListener="#{logic.deleteAbsence}"
-      oncomplete="PF('deleteAbsenceConfirmation').hide();" update=":#{p:component('absence-table')}" />
+      oncomplete="PF('deleteAbsenceConfirmation').hide();" update=":#{p:component('absence-table')}  :#{p:component('substitue-tab')}" />
     <p:commandButton id="cancel-confirmation-action" styleClass="portal-cancel-button"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       onclick="PF('deleteAbsenceConfirmation').hide()" type="button" />
