@@ -14,8 +14,8 @@ Us0 @UdEvent f3 '' #zField
 Us0 @UdExitEnd f4 '' #zField
 Us0 @PushWFArc f5 '' #zField
 Us0 @GridStep f6 '' #zField
-Us0 @PushWFArc f7 '' #zField
 Us0 @PushWFArc f2 '' #zField
+Us0 @PushWFArc f7 '' #zField
 >Proto Us0 Us0 UserSelectionExampleProcess #zField
 Us0 f0 guid 1705146891B787A6 #txt
 Us0 f0 method start() #txt
@@ -51,12 +51,19 @@ Us0 f4 @|UdExitEndIcon #fIcon
 Us0 f5 109 160 211 160 #arcP
 Us0 f6 actionTable 'out=in;
 ' #txt
-Us0 f6 actionCode 'import ch.ivy.addon.portalkit.dto.UserDTO;
+Us0 f6 actionCode 'import ch.ivyteam.ivy.security.IUser;
+import ch.ivy.addon.portalkit.dto.UserDTO;
 import java.util.Arrays;
 
 in.definedRoleNames = Arrays.asList("CostObject", "GeneralManager");
-in.selectedUserForReadOnlyField = new UserDTO(ivy.wf.getSecurityContext().findUser("costObject1"));
-in.excludedUsernames = Arrays.asList("gm2");' #txt
+String costObject1UserName = "costObject1";
+IUser costObject1 = ivy.wf.getSecurityContext().findUser(costObject1UserName);
+if (costObject1 == null) {
+  costObject1 = ivy.wf.getSecurityContext().users().create(costObject1UserName, "");
+}
+in.selectedUserForReadOnlyField = new UserDTO(costObject1);
+in.excludedUsernames = Arrays.asList("gm2");
+' #txt
 Us0 f6 security system #txt
 Us0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -67,15 +74,15 @@ Us0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Us0 f6 168 42 112 44 -21 -8 #rect
 Us0 f6 @|StepIcon #fIcon
-Us0 f7 109 64 168 64 #arcP
-Us0 f2 280 64 339 64 #arcP
+Us0 f2 109 64 168 64 #arcP
+Us0 f7 280 64 339 64 #arcP
 >Proto Us0 .type com.axonivy.portal.developerexamples.UserSelectionExample.UserSelectionExampleData #txt
 >Proto Us0 .processKind HTML_DIALOG #txt
 >Proto Us0 -8 -8 16 16 16 26 #rect
 >Proto Us0 '' #fIcon
 Us0 f3 mainOut f5 tail #connect
 Us0 f5 head f4 mainIn #connect
-Us0 f0 mainOut f7 tail #connect
-Us0 f7 head f6 mainIn #connect
-Us0 f6 mainOut f2 tail #connect
-Us0 f2 head f1 mainIn #connect
+Us0 f2 head f6 mainIn #connect
+Us0 f7 head f1 mainIn #connect
+Us0 f0 mainOut f2 tail #connect
+Us0 f6 mainOut f7 tail #connect
