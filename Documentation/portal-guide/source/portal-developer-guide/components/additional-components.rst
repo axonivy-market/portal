@@ -262,15 +262,20 @@ User Selection
 Introduction
 ^^^^^^^^^^^^
 
-This component is used for choosing a user from a user list defined by a role name list or all users.
+This component is used for choosing a user from a user list defined by a role name list.
+If you don't define role name list, all users will be loaded. 
 It includes 1 label, 1 autocomplete and 1 message element to display message related to that autocomplete element.
-
-|user-selection|
 
 How to use
 ^^^^^^^^^^
 
-You can include this component to any page. Below is an example code for 2 labels style:
+You can include this component to any page. This component supports 2 styles of displaying a label.
+
+1. Default style
+
+|user-selection|
+
+Code example:
 
 .. code-block:: html
 
@@ -279,19 +284,19 @@ You can include this component to any page. Below is an example code for 2 label
             fromRoleNames="#{data.definedRoleNames}"
             selectedUser="#{data.selectedUserForDefinedRoles}"
             isRequired="true"
-            autoCompleteStyleClass="width-100"
-            label="Users from defined rolenames"
-            labelPanelStyleClass="ui-g-3 ui-xl-2 ui-md-4 ui-sm-12" 
-            autoCompletePanelStyleClass="ui-g-5 ui-md-4 ui-sm-12"
-            messageStyleClass="message-error-background-color" />
+            label="Users from defined rolenames"/>
+
+2. Floating label
+|user-selection-floating-label|
+
+Code example:
+
+.. code-block:: html
 
       <ic:ch.ivy.addon.portalkit.component.UserSelection 
             componentId="all-user-autocomplete"
-            hightlight="false" selectedUser="#{data.selectedUser}"
+            selectedUser="#{data.selectedUser}"
             label="Loading with all users (exclude gm2)"
-            labelPanelStyleClass="ui-g-3 ui-xl-2 ui-md-4 ui-sm-12"
-            autoCompleteStyleClass="width-100"
-            autoCompletePanelStyleClass="ui-g-5 ui-md-4 ui-sm-12 margin-top-40"
             excludedUsernames="#{data.excludedUsernames}"
             isRequired="true" floatingLabel="true" />
 
@@ -314,3 +319,4 @@ Attributes of this component:
 .. |example-global-growl-cancelled-task| image:: images/additional-component/example-global-growl-cancelled-task.png
 .. |document-table| image:: images/additional-component/document-table.png
 .. |user-selection| image:: images/additional-component/user-selection-component.png
+.. |user-selection-floating-label| image:: images/additional-component/user-selection-component-floating-label.png
