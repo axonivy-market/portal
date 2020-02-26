@@ -62,7 +62,6 @@ As0 @PushWFArc f29 '' #zField
 As0 @PushWFArc f143 '' #zField
 As0 @PushWFArc f132 '' #zField
 As0 @PushWFArc f8 '' #zField
-As0 @PushWFArc f121 '' #zField
 As0 @PushWFArc f56 '' #zField
 As0 @PushWFArc f58 '' #zField
 As0 @PushWFArc f91 '' #zField
@@ -96,7 +95,6 @@ As0 @PushWFArc f77 '' #zField
 As0 @PushWFArc f85 '' #zField
 As0 @GridStep f86 '' #zField
 As0 @PushWFArc f89 '' #zField
-As0 @PushWFArc f3 '' #zField
 As0 @PushWFArc f20 '' #zField
 As0 @UdMethod f27 '' #zField
 As0 @GridStep f28 '' #zField
@@ -160,6 +158,13 @@ As0 @PushWFArc f107 '' #zField
 As0 @GridStep f32 '' #zField
 As0 @PushWFArc f108 '' #zField
 As0 @PushWFArc f110 '' #zField
+As0 @PushWFArc f118 '' #zField
+As0 @Alternative f3 '' #zField
+As0 @PushWFArc f112 '' #zField
+As0 @GridStep f121 '' #zField
+As0 @PushWFArc f119 '' #zField
+As0 @PushWFArc f123 '' #zField
+As0 @PushWFArc f116 '' #zField
 >Proto As0 As0 AbsenceManagementProcess #zField
 As0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -202,12 +207,11 @@ BeanUtils.invokeBeanMethodViaMethodExpression("#{errorDisplayBean.displayErrors}
 As0 f120 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Display errors &#xD;
-if have</name>
+        <name>Display errors </name>
     </language>
 </elementInfo>
 ' #txt
-As0 f120 384 1930 128 44 -40 -16 #rect
+As0 f120 528 2010 112 44 -40 -8 #rect
 As0 f120 @|StepIcon #fIcon
 As0 f37 actionTable 'out=in;
 ' #txt
@@ -633,7 +637,7 @@ As0 f9 392 658 112 44 -46 -8 #rect
 As0 f9 @|StepIcon #fIcon
 As0 f130 1467 811 26 26 0 12 #rect
 As0 f130 @|UdProcessEndIcon #fIcon
-As0 f125 587 1939 26 26 0 12 #rect
+As0 f125 739 1939 26 26 0 12 #rect
 As0 f125 @|UdProcessEndIcon #fIcon
 As0 f38 guid 16FCC0CDEBC953C7 #txt
 As0 f38 actionTable 'out=in;
@@ -740,8 +744,6 @@ As0 f132 expr out #txt
 As0 f132 1376 824 1467 824 #arcP
 As0 f8 expr out #txt
 As0 f8 248 680 296 680 #arcP
-As0 f121 expr out #txt
-As0 f121 336 1952 384 1952 #arcP
 As0 f56 expr out #txt
 As0 f56 1173 920 1232 920 #arcP
 As0 f58 expr out #txt
@@ -749,8 +751,9 @@ As0 f58 85 48 253 48 #arcP
 As0 f91 expr out #txt
 As0 f91 85 880 152 880 #arcP
 As0 f126 expr out #txt
-As0 f126 512 1952 587 1952 #arcP
-As0 f126 0 0.41717001380558716 0 0 #arcLabel
+As0 f126 640 2032 752 1965 #arcP
+As0 f126 1 752 2032 #addKink
+As0 f126 0 0.5800534032988333 0 0 #arcLabel
 As0 f16 expr in #txt
 As0 f16 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -905,7 +908,7 @@ As0 f155 708 1768 760 1768 #arcP
 As0 f158 expr in #txt
 As0 f158 outCond !in.validationError #txt
 As0 f158 792 1768 872 1768 #arcP
-As0 f150 1299 1755 26 26 0 12 #rect
+As0 f150 1347 1755 26 26 0 12 #rect
 As0 f150 @|UdProcessEndIcon #fIcon
 As0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -935,8 +938,8 @@ As0 f77 expr in #txt
 As0 f77 1056 1784 1144 1888 #arcP
 As0 f77 1 1056 1888 #addKink
 As0 f77 1 0.14905870655759218 0 0 #arcLabel
-As0 f85 1256 1888 1312 1781 #arcP
-As0 f85 1 1312 1888 #addKink
+As0 f85 1256 1888 1360 1781 #arcP
+As0 f85 1 1360 1888 #addKink
 As0 f85 1 0.5389202062118148 0 0 #arcLabel
 As0 f86 actionTable 'out=in;
 ' #txt
@@ -967,8 +970,6 @@ As0 f89 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f89 1072 1768 1136 1768 #arcP
 As0 f89 0 0.48063036947240817 0 0 #arcLabel
-As0 f3 1248 1768 1299 1768 #arcP
-As0 f3 0 0.48063036947240817 0 -11 #arcLabel
 As0 f20 expr out #txt
 As0 f20 85 320 160 320 #arcP
 As0 f27 guid 1700AB23B2C65876 #txt
@@ -1486,6 +1487,51 @@ As0 f32 248 1354 144 44 -65 -8 #rect
 As0 f32 @|StepIcon #fIcon
 As0 f108 125 1376 248 1376 #arcP
 As0 f110 392 1376 499 1376 #arcP
+As0 f118 1248 1768 1347 1768 #arcP
+As0 f118 0 0.48063036947240817 0 -11 #arcLabel
+As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>has error</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f3 392 1936 32 32 0 16 #rect
+As0 f3 @|AlternativeIcon #fIcon
+As0 f112 expr out #txt
+As0 f112 336 1952 392 1952 #arcP
+As0 f121 actionTable 'out=in;
+' #txt
+As0 f121 actionCode 'import java.util.Set;
+
+Set<IvyAbsence> absencesFromUser = in.absencesByUser.get(in.selectedUser.getName()) as Set;
+absencesFromUser.add(in.selectedAbsence);
+
+' #txt
+As0 f121 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>update data</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f121 536 1930 112 44 -32 -8 #rect
+As0 f121 @|StepIcon #fIcon
+As0 f119 648 1952 739 1952 #arcP
+As0 f123 expr in #txt
+As0 f123 outCond in.errors.isEmpty() #txt
+As0 f123 424 1952 536 1952 #arcP
+As0 f116 expr in #txt
+As0 f116 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f116 408 1968 528 2032 #arcP
+As0 f116 1 408 2032 #addKink
+As0 f116 1 0.20817599126368178 0 0 #arcLabel
 >Proto As0 .type ch.ivy.addon.portalkit.multiapp.settings.AbsenceManagement.AbsenceManagementData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1525,8 +1571,6 @@ As0 f6 mainOut f91 tail #connect
 As0 f91 head f90 in #connect
 As0 f90 out f128 tail #connect
 As0 f128 head f7 mainIn #connect
-As0 f111 mainOut f121 tail #connect
-As0 f121 head f120 mainIn #connect
 As0 f39 mainOut f8 tail #connect
 As0 f8 head f4 in #connect
 As0 f4 out f10 tail #connect
@@ -1565,8 +1609,6 @@ As0 f85 head f150 mainIn #connect
 As0 f1 out f89 tail #connect
 As0 f89 head f86 mainIn #connect
 As0 f1 out f77 tail #connect
-As0 f86 mainOut f3 tail #connect
-As0 f3 head f150 mainIn #connect
 As0 f96 mainOut f20 tail #connect
 As0 f20 head f101 mainIn #connect
 As0 f27 mainOut f69 tail #connect
@@ -1643,3 +1685,13 @@ As0 f176 mainOut f108 tail #connect
 As0 f108 head f32 mainIn #connect
 As0 f32 mainOut f110 tail #connect
 As0 f110 head f175 mainIn #connect
+As0 f86 mainOut f118 tail #connect
+As0 f118 head f150 mainIn #connect
+As0 f111 mainOut f112 tail #connect
+As0 f112 head f3 in #connect
+As0 f121 mainOut f119 tail #connect
+As0 f119 head f125 mainIn #connect
+As0 f3 out f123 tail #connect
+As0 f123 head f121 mainIn #connect
+As0 f3 out f116 tail #connect
+As0 f116 head f120 mainIn #connect
