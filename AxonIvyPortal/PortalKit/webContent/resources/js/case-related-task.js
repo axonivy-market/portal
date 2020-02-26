@@ -45,7 +45,7 @@ var CaseRelatedTask = {
       return;
     }
 
-    var taskList = $('[id$="case-item-details:related-tasks:tasks"]');
+    var taskList = $('[id$="related-tasks:tasks"]');
     var taskListBody = taskList.find('.ui-datascroller-content.ui-widget-content.ui-corner-all');
     var scrollHeightForTasks = 0;
     if (relatedTaskSize > maxItems) {
@@ -68,7 +68,7 @@ var CaseRelatedTask = {
     if (technicalCaseSize == 0) {
       return;
     }
-    var caseList = $('[id$="case-item-details:related-tasks:cases"]');
+    var caseList = $('[id$="related-tasks:cases"]');
     var caseListBody = caseList.find('.ui-datascroller-content.ui-widget-content.ui-corner-all');
     var scrollHeightForCases = 0;
     if (technicalCaseSize > maxItems) {
