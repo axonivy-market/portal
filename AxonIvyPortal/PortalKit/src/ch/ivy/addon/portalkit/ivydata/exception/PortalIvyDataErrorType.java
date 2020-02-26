@@ -27,6 +27,7 @@ public enum PortalIvyDataErrorType {
   
   // Substitute
   FAIL_TO_LOAD_SUBSTITUTE,
+  FAIL_TO_LOAD_SUBSTITUTION,
   FAIL_TO_SAVE_SUBSTITUTE,
   
   // Side step
