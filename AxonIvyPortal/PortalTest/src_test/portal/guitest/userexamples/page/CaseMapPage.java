@@ -8,9 +8,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import portal.guitest.page.HomePage;
-import portal.guitest.page.TemplatePage;
+import portal.guitest.page.TaskTemplatePage;
 
-public class CaseMapPage extends TemplatePage {
+public class CaseMapPage extends TaskTemplatePage {
 
   public void inputFields(String lastName, String firstName, String birthDate, String country, String amount, String reason,
       String salary, String otherCredit) {
@@ -83,6 +83,7 @@ public class CaseMapPage extends TemplatePage {
     return StringUtils.join(messages.stream().map(WebElement::getText).collect(Collectors.toList()), ",");
   }
 
+  @Override
   public HomePage clickSubmitButton() {
     clickByCssSelector("button[id$='submit-button']");
     return new HomePage();
