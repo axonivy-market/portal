@@ -18,10 +18,11 @@ import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
-import ch.ivyteam.ivy.security.SecurityManagerFactory;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -31,7 +32,6 @@ public class CleanUpObsoletedUserDataService {
   private final static String SECURITY_SERVICE_CALLABLE = "MultiPortal/SecurityService";
   private static final int OFFSET_SIZE = 100;
   private List<RemoteUser> currentUsers;
-  private List<String> userNames;
   private List<Long> userIds;
   private long applicationId;
 
@@ -56,7 +56,6 @@ public class CleanUpObsoletedUserDataService {
       return ;
     }
     applicationId = Ivy.request().getApplication().getId();
-    userNames = currentUsers.stream().map(RemoteUser::getUsername).distinct().collect(Collectors.toList());
     userIds = currentUsers.stream().map(RemoteUser::getId).collect(Collectors.toList());
     
     Ivy.log().info("CLEAN_UP_JOB: Started clean up UserFavourite process");
@@ -76,28 +75,51 @@ public class CleanUpObsoletedUserDataService {
   private void cleanUpUserFavouriteProcess() {
     UserProcessService userProcessService = new UserProcessService();
     List<UserProcess> userProcesses = userProcessService.findAll();
-    List<UserProcess> obsoletedUserProcess = new ArrayList<>();
-    if (userProcesses != null) {
-      for (UserProcess userProcess : userProcesses) {
-        String processUserName = userProcess.getUserName();
-        if (StringUtils.isBlank(processUserName) || (!checkIfUserBelongToCurrentApp(processUserName) && !userNames.contains(processUserName))) {
-          Ivy.log().info("CLEAN_UP_JOB: UserFavourite {0} of user {1} will be deleted", userProcess.getProcessName(), userProcess.getUserName());
-          obsoletedUserProcess.add(userProcess);
-        }
-      }
+
+    List<String> allUserName = new ArrayList<>();
+    if (CollectionUtils.isNotEmpty(userProcesses)) {
+      allUserName.addAll(collectAllUserOnServer());
     }
-    userProcessService.deleteAll(obsoletedUserProcess);
+
+    CollectionUtils.emptyIfNull(userProcesses).stream()
+        .filter(userProcess -> StringUtils.isBlank(userProcess.getUserName()) || (!allUserName.contains(userProcess.getUserName())))
+        .forEach(userProcess -> {
+          Ivy.log().info("CLEAN_UP_JOB: Delete UserFavourite {0} of user {1}", userProcess.getProcessName(), userProcess.getUserName());
+          userProcessService.delete(userProcess);
+        });
   }
 
-  private boolean checkIfUserBelongToCurrentApp(String userName) {
+  private List<String> collectAllUserOnServer() {
+    Ivy.log().info("CLEAN_UP_JOB: Started collecting users overall apps");
+    List<String> allUsers = new ArrayList<>();
+    List<IApplication> allApplications = collectPortalAppOnServer();
+    allApplications.forEach(app -> {
+      allUsers.addAll(findUsersByApp(app));
+    });
+    Ivy.log().info("CLEAN_UP_JOB: Finished collecting users overall apps");
+    return allUsers;
+  }
+
+  private List<String> findUsersByApp(IApplication app) {
     try {
-          return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
-            return Ivy.request().getApplication().getSecurityContext().findUser(userName) != null;
-          });
+      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+        return app.getSecurityContext().getUsers().stream().map(IUser::getName).collect(Collectors.toList());
+      });
     } catch (Exception e) {
-          Ivy.log().error("CLEAN_UP_JOB: Check user belongs to current app failed ", e);
-          return false;
+      Ivy.log().error("CLEAN_UP_JOB: cleanUpUserFavouriteProcess - Cannot get users data", e);
     }
+    return new ArrayList<>();
+  }
+
+  private List<IApplication> collectPortalAppOnServer() {
+    try {
+      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
+        return ServerFactory.getServer().getApplicationConfigurationManager().getApplicationsSortedByName(false);
+      });
+    } catch (Exception e) {
+      Ivy.log().error("CLEAN_UP_JOB: cleanUpUserFavouriteProcess - Cannot get application info", e);
+    }
+    return new ArrayList<>();
   }
 
   private void cleanUpUserTaskFilter() {
