@@ -16,7 +16,7 @@
 
       <h:form id="form">
         <h:panelGroup styleClass="ui-g" layout="block">
-          <p:messages styleClass="ui-g-4 ui-lg-4 ui-md-12 ui-sm-12" />
+          <p:messages styleClass="ui-g-12" />
           <h:panelGrid columns="2" columnClasses="TexAlLeft ui-g-6, TexAlLeft ui-g-6"
             styleClass="ui-g-12 ui-md-12 ui-sm-12">
 
@@ -35,7 +35,7 @@
               <h:panelGroup class="MarTop20" layout="block">
                 <p:outputLabel for="birth-date" value="#{ivy.cms.co('/Labels/CaseMap/Credit/birthDate')}" />
                 <p:calendar id="birth-date" value="#{data.dossier.customer.birthDate}" navigator="true"
-                  yearRange="c-50:c+10" pattern="dd.MM.yyyy" styleClass="MarTop10">
+                  yearRange="c-50:c+10" pattern="dd.MM.yyyy">
                   <f:convertDateTime pattern="dd.MM.yyyy" />
                 </p:calendar>
               </h:panelGroup>
