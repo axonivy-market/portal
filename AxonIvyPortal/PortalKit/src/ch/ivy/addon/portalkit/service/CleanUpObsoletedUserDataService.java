@@ -34,6 +34,7 @@ public class CleanUpObsoletedUserDataService {
   private List<RemoteUser> currentUsers;
   private List<Long> userIds;
   private long applicationId;
+  private boolean isError;
 
   public void cleanUpData() {
     StopWatch stopWatch = new StopWatch();
@@ -76,13 +77,18 @@ public class CleanUpObsoletedUserDataService {
     UserProcessService userProcessService = new UserProcessService();
     List<UserProcess> userProcesses = userProcessService.findAll();
 
-    List<String> allUserName = new ArrayList<>();
+    List<String> userNameOnAllApps = new ArrayList<>();
     if (CollectionUtils.isNotEmpty(userProcesses)) {
-      allUserName.addAll(collectAllUserOnServer());
+      userNameOnAllApps.addAll(collectAllUserOnServer());
+    }
+    // In case we got any errors during Collect data phase
+    // Then skip clean up User Favorites data
+    if (isError) {
+      return;
     }
 
     CollectionUtils.emptyIfNull(userProcesses).stream()
-        .filter(userProcess -> StringUtils.isBlank(userProcess.getUserName()) || (!allUserName.contains(userProcess.getUserName())))
+        .filter(userProcess -> StringUtils.isBlank(userProcess.getUserName()) || (!userNameOnAllApps.contains(userProcess.getUserName())))
         .forEach(userProcess -> {
           Ivy.log().info("CLEAN_UP_JOB: Delete UserFavourite {0} of user {1}", userProcess.getProcessName(), userProcess.getUserName());
           userProcessService.delete(userProcess);
@@ -91,13 +97,13 @@ public class CleanUpObsoletedUserDataService {
 
   private List<String> collectAllUserOnServer() {
     Ivy.log().info("CLEAN_UP_JOB: Started collecting users overall apps");
-    List<String> allUsers = new ArrayList<>();
+    List<String> userNameOnAllApps = new ArrayList<>();
     List<IApplication> allApplications = collectPortalAppOnServer();
-    allApplications.forEach(app -> {
-      allUsers.addAll(findUsersByApp(app));
+    CollectionUtils.emptyIfNull(allApplications).forEach(app -> {
+      userNameOnAllApps.addAll(findUsersByApp(app));
     });
     Ivy.log().info("CLEAN_UP_JOB: Finished collecting users overall apps");
-    return allUsers;
+    return userNameOnAllApps;
   }
 
   private List<String> findUsersByApp(IApplication app) {
@@ -107,6 +113,7 @@ public class CleanUpObsoletedUserDataService {
       });
     } catch (Exception e) {
       Ivy.log().error("CLEAN_UP_JOB: cleanUpUserFavouriteProcess - Cannot get users data", e);
+      isError = true;
     }
     return new ArrayList<>();
   }
@@ -118,6 +125,7 @@ public class CleanUpObsoletedUserDataService {
       });
     } catch (Exception e) {
       Ivy.log().error("CLEAN_UP_JOB: cleanUpUserFavouriteProcess - Cannot get application info", e);
+      isError = true;
     }
     return new ArrayList<>();
   }
