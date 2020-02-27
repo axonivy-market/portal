@@ -10,7 +10,8 @@
 
 <cc:interface componentType="IvyComponent">
   <!-- autocomplete attributes -->
-  <cc:attribute name="fromRoleNames" type="java.util.List" />
+  <cc:attribute name="fromRoleNames" type="java.util.List" 
+  	shortDescription="User list will be loaded based on this list. All users will be loaded if you don't define."/>
   <cc:attribute name="componentId" default="user-selection" />
   <cc:attribute name="selectedUser" type="ch.ivy.addon.portalkit.dto.UserDTO" required="true" />
   <cc:attribute name="excludedUsernames" type="java.util.List" 
@@ -45,7 +46,7 @@
   <cc:attribute name="maxResults" default="100" type="java.lang.Integer" />
 
   <!-- Label attributes -->
-  <cc:attribute name="label" shortDescription="Text of label for User selection component" />
+  <cc:attribute name="label" shortDescription="Text of label for User selection component." />
   <cc:attribute name="floatingLabel"
     shortDescription="Display label with floating style and labelPanelStyleClass can't be applied if it’s enabled." />
   <cc:attribute name="labelPanelStyleClass" shortDescription="Style class of label panel." />
@@ -81,6 +82,5 @@
       <p:message id="#{cc.attrs.componentId}-message" for="#{cc.attrs.componentId}"
         rendered="#{cc.attrs.isRenderedMessage}" styleClass="#{cc.attrs.messageStyleClass}" />
     </h:panelGroup>
-
 </cc:implementation>
 </html>
