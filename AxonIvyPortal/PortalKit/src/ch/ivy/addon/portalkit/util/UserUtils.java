@@ -51,18 +51,19 @@ public class UserUtils {
   public static void setLanguague() {
     try {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-          IUser sessionUser = getIvySession().getSessionUser();
-          Locale l = null;
-          if (sessionUser.getEMailLanguage() != null) {
-            l = sessionUser.getEMailLanguage();
-          } else {
-            // Application Default
-            Locale defaultApplicationLocal = Ivy.request().getApplication().getDefaultEMailLanguage();
-            l = new Locale(defaultApplicationLocal.getLanguage(), defaultApplicationLocal.getCountry(), APPLICATION_DEFAULT);
-          }
-          getIvySession().setContentLocale(l);
-          getIvySession().setFormattingLocale(l);
-          return null;
+        IUser sessionUser = getIvySession().getSessionUser();
+        Locale l = null;
+        if (sessionUser.getEMailLanguage() != null) {
+          l = sessionUser.getEMailLanguage();
+        } else {
+          // Application Default
+          Locale defaultApplicationLocal = Ivy.request().getApplication().getDefaultEMailLanguage();
+          l = new Locale(defaultApplicationLocal.getLanguage(), defaultApplicationLocal.getCountry(),
+              APPLICATION_DEFAULT);
+        }
+        getIvySession().setContentLocale(l);
+        getIvySession().setFormattingLocale(l);
+        return null;
       });
     } catch (Exception e) {
       Ivy.log().error(e);
@@ -96,17 +97,12 @@ public class UserUtils {
     String returnString = "";
     Date foundDate = null;
     for (IUserAbsence item : findAbsenceOfUser) {
-      if (item.getStartTimestamp().after(new Date())) {
-        if (foundDate == null) {
-          foundDate = item.getStartTimestamp();
-          returnString = String.format("%s - %s", formatter.format(item.getStartTimestamp()), formatter.format(item.getStopTimestamp())); 
-        } else if (item.getStartTimestamp().before(foundDate)){
-          foundDate = item.getStartTimestamp();
-          returnString = String.format("%s - %s", formatter.format(item.getStartTimestamp()), formatter.format(item.getStopTimestamp())); 
-        }
-      }
+      Date startTimestamp = item.getStartTimestamp();
+      if (startTimestamp.after(new Date()) && (foundDate == null || startTimestamp.before(foundDate))) {
+        foundDate = startTimestamp;
+        returnString = String.format("%s - %s", formatter.format(startTimestamp), formatter.format(item.getStopTimestamp())); 
+      } 
     }
-     
     return returnString;
   }
   
