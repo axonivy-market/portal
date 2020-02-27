@@ -1286,18 +1286,19 @@ Pt0 f27 actionTable 'out=in;
 ' #txt
 Pt0 f27 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
 
-ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), true);' #txt
+//Default set this to true. Because Growl message feature need this init at true to work correctly.
+ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), true); ' #txt
 Pt0 f27 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Set task is finished</name>
-        <nameStyle>20,7
+        <name>Init session data</name>
+        <nameStyle>17,7
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f27 360 42 112 44 -52 -8 #rect
+Pt0 f27 360 42 112 44 -45 -8 #rect
 Pt0 f27 @|StepIcon #fIcon
 Pt0 f29 expr out #txt
 Pt0 f29 79 64 360 64 #arcP
