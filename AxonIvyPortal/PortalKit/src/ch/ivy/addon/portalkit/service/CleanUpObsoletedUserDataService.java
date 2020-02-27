@@ -114,10 +114,7 @@ public class CleanUpObsoletedUserDataService {
   private List<IApplication> collectPortalAppOnServer() {
     try {
       return IvyExecutor.executeAsSystem(() -> {
-        List<IApplication> applications =
-            ServerFactory.getServer().getApplicationConfigurationManager().getApplicationsSortedByName(false);
-        return applications.stream().filter(app -> app.findReleasedLibrary(PortalLibrary.PORTAL_STYLE.getValue()) != null)
-            .collect(Collectors.toList());
+        return ServerFactory.getServer().getApplicationConfigurationManager().getApplicationsSortedByName(false);
       });
     } catch (Exception e) {
       Ivy.log().error("CLEAN_UP_JOB: cleanUpUserFavouriteProcess - Cannot get application info", e);
