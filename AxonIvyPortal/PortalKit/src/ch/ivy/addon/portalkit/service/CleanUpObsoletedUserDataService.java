@@ -17,7 +17,6 @@ import ch.ivy.addon.portalkit.bo.ColumnsConfiguration;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.dto.UserDTO;
-import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
@@ -36,6 +35,7 @@ public class CleanUpObsoletedUserDataService {
   private List<UserDTO> currentUsers;
   private List<Long> userIds;
   private Long applicationId;
+  private boolean isError;
 
   public void cleanUpData() {
     StopWatch stopWatch = new StopWatch();
@@ -70,13 +70,18 @@ public class CleanUpObsoletedUserDataService {
     UserProcessService userProcessService = new UserProcessService();
     List<UserProcess> userProcesses = userProcessService.findAll();
 
-    List<String> allUserName = new ArrayList<>();
+    List<String> userNameOnAllApps = new ArrayList<>();
     if (CollectionUtils.isNotEmpty(userProcesses)) {
-      allUserName.addAll(collectAllUserOnServer());
+      userNameOnAllApps.addAll(collectAllUserOnServer());
+    }
+    // In case we got any errors during Collect data phase
+    // Then skip clean up User Favorites data
+    if (isError) {
+      return;
     }
 
     CollectionUtils.emptyIfNull(userProcesses).stream()
-        .filter(userProcess -> StringUtils.isBlank(userProcess.getUserName()) || (!allUserName.contains(userProcess.getUserName())))
+        .filter(userProcess -> StringUtils.isBlank(userProcess.getUserName()) || (!userNameOnAllApps.contains(userProcess.getUserName())))
         .forEach(userProcess -> {
           Ivy.log().info("CLEAN_UP_JOB: Delete UserFavourite {0} of user {1}", userProcess.getProcessName(), userProcess.getUserName());
           userProcessService.delete(userProcess);
@@ -85,35 +90,43 @@ public class CleanUpObsoletedUserDataService {
 
   private List<String> collectAllUserOnServer() {
     Ivy.log().info("CLEAN_UP_JOB: Started collecting users overall apps");
-    List<String> allUsers = new ArrayList<>();
+    List<String> userNameOnAllApps = new ArrayList<>();
     List<IApplication> allApplications = collectPortalAppOnServer();
-    allApplications.forEach(app -> {
+    CollectionUtils.emptyIfNull(allApplications).forEach(app -> {
       var userQuery = app.getSecurityContext().users().query();
       var totalCount = userQuery.executor().count();
       int currentIndex = 0;
       do {
-        findUsersByOffset(allUsers, userQuery, currentIndex);
+        findUsersByOffset(userNameOnAllApps, userQuery, currentIndex);
         currentIndex += OFFSET_SIZE;
       } while (currentIndex < totalCount);
     });
     Ivy.log().info("CLEAN_UP_JOB: Finished collecting users overall apps");
-    return allUsers;
+    return userNameOnAllApps;
   }
 
-  private void findUsersByOffset(List<String> allUsers, UserQuery userQuery, int currentIndex) {
-    IvyExecutor.executeAsSystem(() -> {
-      var users = userQuery.executor().results(currentIndex, OFFSET_SIZE);
-      return allUsers.addAll(users.stream().map(IUser::getName).collect(Collectors.toList()));
-    });
+  private void findUsersByOffset(List<String> userNameOnAllApps, UserQuery userQuery, int currentIndex) {
+    try {
+      IvyExecutor.executeAsSystem(() -> {
+        var users = userQuery.executor().results(currentIndex, OFFSET_SIZE);
+        return userNameOnAllApps.addAll(users.stream().map(IUser::getName).collect(Collectors.toList()));
+      });
+    } catch (Exception e) {
+      Ivy.log().error("CLEAN_UP_JOB: findUsersByOffset - cannot find users", e);
+      isError = true;
+    }
   }
 
   private List<IApplication> collectPortalAppOnServer() {
-    return IvyExecutor.executeAsSystem(() -> {
-      List<IApplication> applications =
-          ServerFactory.getServer().getApplicationConfigurationManager().getApplicationsSortedByName(false);
-      return applications.stream().filter(app -> app.findReleasedLibrary(PortalLibrary.PORTAL_STYLE.getValue()) != null)
-          .collect(Collectors.toList());
-    });
+    try {
+      return IvyExecutor.executeAsSystem(() -> {
+        return ServerFactory.getServer().getApplicationConfigurationManager().getApplicationsSortedByName(false);
+      });
+    } catch (Exception e) {
+      Ivy.log().error("CLEAN_UP_JOB: collectAllUserOnServer - cannot find app", e);
+      isError = true;
+    }
+    return new ArrayList<>();
   }
 
   private void cleanUpUserTaskFilter() {
