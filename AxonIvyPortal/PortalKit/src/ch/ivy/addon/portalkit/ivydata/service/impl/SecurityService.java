@@ -44,17 +44,18 @@ public class SecurityService implements ISecurityService {
         return result;
       }
       List<PortalIvyDataException> errors = new ArrayList<>();
-      List<UserDTO> users = new ArrayList<>();
+      Map<String, UserDTO> userByName = new HashMap<>();
       for (String appName : apps) {
         try {
           IApplication app = ServiceUtilities.findApp(appName);
-          users.addAll(queryUsers(query, app, startIndex, count, fromRoles, excludedUsernames));
+          queryUsers(query, app, startIndex, count, fromRoles, excludedUsernames).forEach(user -> userByName.put(user.getName() + " - " + user.getMemberName(), user));
         } catch (PortalIvyDataException e) {
           errors.add(e);
         } catch (Exception ex) {
           Ivy.log().error("Error in getting users within app {0}", ex, appName);
         }
       }
+      List<UserDTO> users = userByName.values().stream().sorted((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName())).collect(Collectors.toList());
       result.setErrors(errors);
       result.setUsers(users);
       return result;
@@ -224,8 +225,7 @@ public class SecurityService implements ISecurityService {
     UserQuery userQuery = UserQuery.create();
     IFilterQuery filterQuery = userQuery.where();
     filterQuery.fullName().isLikeIgnoreCase(query)
-      .or().name().isLikeIgnoreCase(query)
-      .andOverall().applicationId().isEqual(app.getId());
+      .or().name().isLikeIgnoreCase(query);
     if (CollectionUtils.isNotEmpty(fromRoles)) {
       UserQuery hasRolesQuery = queryHasRoles(app, fromRoles);
       filterQuery.andOverall(hasRolesQuery);
@@ -234,9 +234,8 @@ public class SecurityService implements ISecurityService {
       UserQuery excludeUsernameQuery = queryExcludeUsernames(excludedUsernames);
       filterQuery.andOverall(excludeUsernameQuery);
     }
-    List<IUser> users = userQuery
-        .orderBy().fullName().name()
-        .executor().results(startIndex, count);
+    List<IUser> users = app.getSecurityContext()
+        .getUserQueryExecutor().getResults(userQuery.orderBy().fullName().name(), startIndex, count);
     return users.stream().map(UserDTO::new).collect(Collectors.toList());
   }
   
