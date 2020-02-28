@@ -696,11 +696,9 @@ Ts0 f61 method resetAndOpenTask(String,Long) #txt
 Ts0 f61 inParameterDecl '<String currentPortalPage,Long selectedTaskItemId> param;' #txt
 Ts0 f61 inParameterMapAction 'out.currentPortalPage=param.currentPortalPage;
 ' #txt
-Ts0 f61 inActionCode 'import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+Ts0 f61 inActionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 
-ITask selectedTaskItem = TaskUtils.findTaskUserHasPermissionToSee(param.selectedTaskItemId);
-out.selectedTask = selectedTaskItem;
+out.selectedTask = TaskUtils.findTaskUserHasPermissionToSee(param.selectedTaskItemId);
 ' #txt
 Ts0 f61 outParameterDecl '<> result;' #txt
 Ts0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
