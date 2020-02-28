@@ -692,15 +692,18 @@ Start task</name>
 Ts0 f6 416 1066 128 44 -44 -16 #rect
 Ts0 f6 @|StepIcon #fIcon
 Ts0 f61 guid 16ECEC605F7E9ECE #txt
-Ts0 f61 method resetAndOpenTask(String) #txt
-Ts0 f61 inParameterDecl '<String currentPortalPage> param;' #txt
+Ts0 f61 method resetAndOpenTask(String,Long) #txt
+Ts0 f61 inParameterDecl '<String currentPortalPage,Long selectedTaskItemId> param;' #txt
 Ts0 f61 inParameterMapAction 'out.currentPortalPage=param.currentPortalPage;
 ' #txt
+Ts0 f61 inActionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+
+out.selectedTask = TaskUtils.findTaskUserHasPermissionToSee(param.selectedTaskItemId);' #txt
 Ts0 f61 outParameterDecl '<> result;' #txt
 Ts0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>resetAndOpenTask(String)</name>
+        <name>resetAndOpenTask(String,Long)</name>
     </language>
 </elementInfo>
 ' #txt
