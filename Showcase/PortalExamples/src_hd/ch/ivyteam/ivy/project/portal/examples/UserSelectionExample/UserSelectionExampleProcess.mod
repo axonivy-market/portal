@@ -51,12 +51,19 @@ Us0 f4 @|UdExitEndIcon #fIcon
 Us0 f5 109 144 211 144 #arcP
 Us0 f6 actionTable 'out=in;
 ' #txt
-Us0 f6 actionCode 'import ch.ivy.addon.portalkit.dto.UserDTO;
+Us0 f6 actionCode 'import java.util.Locale;
+import ch.ivyteam.ivy.security.IUser;
+import ch.ivy.addon.portalkit.dto.UserDTO;
 import java.util.Arrays;
 
 in.definedRoleNames = Arrays.asList("CostObject", "GeneralManager");
-in.selectedUserForReadOnlyField = new UserDTO(ivy.wf.getSecurityContext().findUser("costObject1"));
-in.excludedUsernames= Arrays.asList("gm2");' #txt
+String costObject1UserName = "costObject1";
+IUser costObject1 = ivy.wf.getSecurityContext().findUser(costObject1UserName);
+if (costObject1 == null) {
+  costObject1 = ivy.wf.getSecurityContext().createUser(costObject1UserName, "Cost Object 1", "", Locale.GERMAN, "", "");
+}
+in.selectedUserForReadOnlyField = new UserDTO(costObject1);
+in.excludedUsernames = Arrays.asList("gm2");' #txt
 Us0 f6 security system #txt
 Us0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
