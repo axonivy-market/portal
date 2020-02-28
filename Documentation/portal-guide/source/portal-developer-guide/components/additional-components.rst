@@ -300,6 +300,35 @@ Code example:
             excludedUsernames="#{data.excludedUsernames}"
             isRequired="true" floatingLabel="true" />
 
+.. tip::
+   Autocomplete element of user selection component allows inserting children and ajax event (Refer to ``UserSelection.xtml``).
+   Any child in UserSelection component will be re-parented into this autocomplete at the point of ``insertChildren`` tag.
+   We introduce a facet named ``event`` for autocomplete so that ajax event can be nested.
+
+For example: 
+
+I want to display user in dropdown list with format <Full name> (<username>) and when I select a user, a message will be displayed.
+
+|user-selection-with-children-and-ajax-event|
+
+.. code-block:: html
+
+      <ic:ch.ivy.addon.portalkit.component.UserSelection 
+         id="item-select-event-component"
+         componentId="item-select-event-for-user-selection"
+         fromRoleNames="#{data.definedRoleNames}"
+         selectedUser="#{data.selectedUserForInsertChildren}"
+         label="Demonstrate facet and children"
+         isRequired="true" floatingLabel="true" >
+         <p:column>
+            <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.name)}" />
+         </p:column>
+         <f:facet name="event">
+            <p:ajax event="itemSelect" listener="#{logic.showSelectedUser}" 
+               update="#{p:component('item-select-event-for-user-selection-message')}"/>
+         </f:facet>
+      </ic:ch.ivy.addon.portalkit.component.UserSelection>
+
 Please refer to ``UserSelectionExample.xhtml`` in ``portal-developer-examples`` for more details.
 
 Attributes of this component:
@@ -320,3 +349,4 @@ Attributes of this component:
 .. |document-table| image:: images/additional-component/document-table.png
 .. |user-selection| image:: images/additional-component/user-selection-component.png
 .. |user-selection-floating-label| image:: images/additional-component/user-selection-component-floating-label.png
+.. |user-selection-with-children-and-ajax-event| image:: images/additional-component/user-selection-component-with-children-and-ajax-event.png
