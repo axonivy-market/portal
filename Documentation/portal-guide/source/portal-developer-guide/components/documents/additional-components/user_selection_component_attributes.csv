@@ -1,5 +1,5 @@
 Name,Default,Type,Description
-fromRoleNames,null,List<String>,User list will be loaded based on this list. All users will be loaded if this attribute is null
+fromRoleNames,null,List<String>,User list will be loaded based on this list. All users will be loaded if you don't define.
 componentId,user-selection,String,Id of user autocomplete.
 selectedUser,null,UserDTO,Required input and output value for selected user.
 excludedUsernames,null,List<String>,Users will be excluded from user selection. This is applied if you use default completeMethod.
@@ -18,10 +18,10 @@ autoCompletePanelStyleClass,null,String, Style class of user autocomplete panel.
 inputStyleClass,null,String,Style class of user autocomplete input.
 labelPanelStyleClass,null,String, Style class of label panel.
 labelStyleClass,null,String, Style class of label.
-label,null,String,Text of label.
+label,null,String,Text of label for User selection component.
 size,null,Integer,Number of characters used to determine the width of the input element.
 messageStyleClass,null,String,Style class of message.
-itemLabel,displayName,String,Label of user item.
+itemLabel,displayName,String,Displayed text of selected user item and users in dropdown list.
 moreText,More...,String,The text shown in panel when the suggested list is greater than maxResults.
 queryDelay,300,Integer,Delay to wait in milliseconds before sending each query to the server.
 maxResults,100,Integer,Maximum number of results to be displayed.
