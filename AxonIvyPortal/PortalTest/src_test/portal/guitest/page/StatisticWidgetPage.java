@@ -41,7 +41,8 @@ public class StatisticWidgetPage extends TemplatePage {
 
   public void backToDashboard() {
     clickByCssSelector("a[id$='back-from-chart-creation']");
-    waitForElementExisted("div[id$='0\\:chart-name-container'] .chart-name",true,5);
+//    Unstable behavior on IE
+    Sleeper.sleep(5000);
   }
   
   public TaskAnalysisWidgetPage navigateToTaskAnalysisPage() {
