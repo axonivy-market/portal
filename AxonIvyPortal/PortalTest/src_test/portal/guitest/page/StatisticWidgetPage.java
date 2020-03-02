@@ -41,9 +41,14 @@ public class StatisticWidgetPage extends TemplatePage {
 
   public void backToDashboard() {
     clickByCssSelector("a[id$='back-from-chart-creation']");
-    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(
-        () -> findElementByCssSelector("div[id$='0\\:chart-name-container'] .chart-name")
-            .getText().contains("Task"));
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
+      if (!findElementByCssSelector("div[id$='0\\:chart-name-container'] .chart-name").getText().contains("Task")) {
+        refresh();
+        return false;
+      } else {
+        return true;
+      }
+    });
   }
   
   public TaskAnalysisWidgetPage navigateToTaskAnalysisPage() {
