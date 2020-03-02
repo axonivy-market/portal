@@ -402,7 +402,7 @@ Ts0 f6 expr out #txt
 Ts0 f6 109 432 256 432 #arcP
 Ts0 f9 processCall 'Functional Processes/CalculateTaskDelegate:call(java.util.List<ch.ivy.addon.portalkit.dto.RoleDTO>,java.util.List<ch.ivy.addon.portalkit.dto.UserDTO>,ch.ivy.addon.portalkit.dto.SecurityMemberDTO,ch.ivyteam.ivy.workflow.ITask)' #txt
 Ts0 f9 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.dto.RoleDTO> roles,java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> users,ch.ivy.addon.portalkit.dto.SecurityMemberDTO currentUser,ch.ivyteam.ivy.workflow.ITask task> param;' #txt
-Ts0 f9 requestMappingAction 'param.roles=[];
+Ts0 f9 requestMappingAction 'param.roles=in.rolesToDelegate;
 param.users=in.usersToDelegate;
 param.currentUser=ch.ivy.addon.portalkit.util.SecurityMemberUtils.getCurrentSessionUserAsSecurityMemberDTO();
 param.task=in.task;
