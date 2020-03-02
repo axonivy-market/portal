@@ -10,3 +10,5 @@ selectedUserForReadOnlyField ch.ivy.addon.portalkit.dto.UserDTO #field
 selectedUserForReadOnlyField PERSISTENT #fieldModifier
 excludedUsernames java.util.List<String> #field
 excludedUsernames PERSISTENT #fieldModifier
+selectedUserForInsertChildren ch.ivy.addon.portalkit.dto.UserDTO #field
+selectedUserForInsertChildren PERSISTENT #fieldModifier
