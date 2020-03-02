@@ -29,6 +29,7 @@ public class ExpressManagementPage extends TemplatePage {
   public void openImportDialog() {
     WebElement importButton = findElementByCssSelector("*[id$=':import-express-btn']");
     click(importButton);
+    refreshAndWaitElement("div[id$=':import-express-dialog']");
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
         .until(() -> assertTrue(findElementByCssSelector("div[id$=':import-express-dialog']").isDisplayed()));
     //assertTrue(isImportDialogDisplayed());
