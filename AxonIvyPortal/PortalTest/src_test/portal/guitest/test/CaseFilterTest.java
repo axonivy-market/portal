@@ -68,7 +68,7 @@ public class CaseFilterTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     casePage = mainMenuPage.selectCaseMenu();
 
-    assertFalse(casePage.isFilterSelectionVisible());
+    assertTrue(casePage.getFilterName().contains("Default filter"));
 
     casePage.filterByDescription("Leave");
     casePage.saveFilter(filterName);

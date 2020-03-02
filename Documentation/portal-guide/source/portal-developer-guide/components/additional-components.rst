@@ -236,7 +236,7 @@ It's enough if you want to turn it off. To override the message, add
    flash.setRedirect(true);
    flash.setKeepMessages(true);
 
-Please refer to GlobalGrowl dialog in PortalExamples project for more details.
+Please refer to GlobalGrowl dialog in portal-developer-examples project for more details.
 
 .. _components-additional-component-document-table:
 
@@ -251,7 +251,7 @@ download and delete.
 You can override the ``GetDocumentList``, ``UploadDocument``,
 ``DeleteDocument``, ``DownloadDocument`` sub processes to extend these
 features, and add more columns, remove default columns in document
-table. Refer to the ``DocumentTableComponent`` process in PortalExamples
+table. Refer to the ``DocumentTableComponent`` process in portal-developer-examples
 project
 
 .. _components-additional-components-user-selection:
@@ -262,15 +262,20 @@ User Selection
 Introduction
 ^^^^^^^^^^^^
 
-This component is used for choosing a user from a user list defined by a role name list or all users.
+This component is used for choosing a user from a user list defined by a role name list.
+If you don't define role name list, all users will be loaded. 
 It includes 1 label, 1 autocomplete and 1 message element to display message related to that autocomplete element.
-
-|user-selection|
 
 How to use
 ^^^^^^^^^^
 
-You can include this component to any page. Below is an example code for 2 labels style:
+You can include this component to any page. This component supports 2 styles of displaying a label.
+
+1. Default style
+
+|user-selection|
+
+Code example:
 
 .. code-block:: html
 
@@ -279,23 +284,52 @@ You can include this component to any page. Below is an example code for 2 label
             fromRoleNames="#{data.definedRoleNames}"
             selectedUser="#{data.selectedUserForDefinedRoles}"
             isRequired="true"
-            autoCompleteStyleClass="width-100"
-            label="Users from defined rolenames"
-            labelPanelStyleClass="ui-g-3 ui-xl-2 ui-md-4 ui-sm-12" 
-            autoCompletePanelStyleClass="ui-g-5 ui-md-4 ui-sm-12"
-            messageStyleClass="message-error-background-color" />
+            label="Users from defined rolenames"/>
+
+2. Floating label
+|user-selection-floating-label|
+
+Code example:
+
+.. code-block:: html
 
       <ic:ch.ivy.addon.portalkit.component.UserSelection 
             componentId="all-user-autocomplete"
-            hightlight="false" selectedUser="#{data.selectedUser}"
+            selectedUser="#{data.selectedUser}"
             label="Loading with all users (exclude gm2)"
-            labelPanelStyleClass="ui-g-3 ui-xl-2 ui-md-4 ui-sm-12"
-            autoCompleteStyleClass="width-100"
-            autoCompletePanelStyleClass="ui-g-5 ui-md-4 ui-sm-12 margin-top-40"
             excludedUsernames="#{data.excludedUsernames}"
             isRequired="true" floatingLabel="true" />
 
-Please refer to ``UserSelectionExample.xhtml`` in ``PortalExamples`` for more details.
+.. tip::
+   Autocomplete element of user selection component allows inserting children and ajax event (Refer to ``UserSelection.xtml``).
+   Any child in UserSelection component will be re-parented into this autocomplete at the point of ``insertChildren`` tag.
+   We introduce a facet named ``event`` for autocomplete so that ajax event can be nested.
+
+For example: 
+
+I want to display user in dropdown list with format <Full name> (<username>) and when I select a user, a message will be displayed.
+
+|user-selection-with-children-and-ajax-event|
+
+.. code-block:: html
+
+      <ic:ch.ivy.addon.portalkit.component.UserSelection 
+         id="item-select-event-component"
+         componentId="item-select-event-for-user-selection"
+         fromRoleNames="#{data.definedRoleNames}"
+         selectedUser="#{data.selectedUserForInsertChildren}"
+         label="Demonstrate facet and children"
+         isRequired="true" floatingLabel="true" >
+         <p:column>
+            <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.name)}" />
+         </p:column>
+         <f:facet name="event">
+            <p:ajax event="itemSelect" listener="#{logic.showSelectedUser}" 
+               update="#{p:component('item-select-event-for-user-selection-message')}"/>
+         </f:facet>
+      </ic:ch.ivy.addon.portalkit.component.UserSelection>
+
+Please refer to ``UserSelectionExample.xhtml`` in ``portal-developer-examples`` for more details.
 
 Attributes of this component:
 
@@ -314,3 +348,5 @@ Attributes of this component:
 .. |example-global-growl-cancelled-task| image:: images/additional-component/example-global-growl-cancelled-task.png
 .. |document-table| image:: images/additional-component/document-table.png
 .. |user-selection| image:: images/additional-component/user-selection-component.png
+.. |user-selection-floating-label| image:: images/additional-component/user-selection-component-floating-label.png
+.. |user-selection-with-children-and-ajax-event| image:: images/additional-component/user-selection-component-with-children-and-ajax-event.png
