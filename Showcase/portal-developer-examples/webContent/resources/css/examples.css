@@ -171,18 +171,23 @@
 	width: 600px !important;
 }
 
-.margin-top-15 {
-	margin-top: 15px;
+.floating-label-margin-top {
+	margin-top: 6px;
 }
 
-.margin-top-40 {
-	margin-top: 40px;
+.assign-task-to-selected-user {
+	margin-top: 15px;
+	float:right;
 }
-body .md-inputfield .message-error-background-color.ui-message.ui-message-error,
-body .md-inputfield .message-error-background-color.ui-message.ui-message-error .ui-message-error-icon {
-	color: blue;
+
+.assign-task-to-selected-user-panel.display-block {
+	display: block;
 }
 
 .width-100, .width-100 .ui-autocomplete-input{
 	width: 100%;
+}
+
+.user-selection-component-header {
+	margin-left: 10px;
 }
