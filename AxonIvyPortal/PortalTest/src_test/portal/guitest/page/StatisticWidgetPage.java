@@ -91,6 +91,7 @@ public class StatisticWidgetPage extends TemplatePage {
     findElementByCssSelector("input[id$='chart-name-input']").sendKeys(TASK_BY_PRIORITY_CHART_NAME);
     clickByCssSelector("button[id$='chart-save-command']");
     waitAjaxIndicatorDisappear();
+    waitForElementExisted("span[class='ui-growl-title']", true, DEFAULT_TIMEOUT);
   }
 
   public void createCaseByStateChart() {
@@ -105,6 +106,7 @@ public class StatisticWidgetPage extends TemplatePage {
     clickByCssSelector("button[id$='chart-save-command']");
 
     waitAjaxIndicatorDisappear();
+    waitForElementExisted("span[class='ui-growl-title']", true, DEFAULT_TIMEOUT);
   }
 
   public void createTaskByExpiryChart() {
@@ -119,6 +121,7 @@ public class StatisticWidgetPage extends TemplatePage {
     clickByCssSelector("button[id$='chart-save-command']");
 
     waitAjaxIndicatorDisappear();
+    waitForElementExisted("span[class='ui-growl-title']", true, DEFAULT_TIMEOUT);
   }
 
   public void createElapsedTimeChart() {
@@ -133,6 +136,7 @@ public class StatisticWidgetPage extends TemplatePage {
     clickByCssSelector("button[id$='chart-save-command']");
 
     waitAjaxIndicatorDisappear();
+    waitForElementExisted("span[class='ui-growl-title']", true, DEFAULT_TIMEOUT);
   }
   
   public void createCaseByFinishedTask() {
@@ -147,6 +151,7 @@ public class StatisticWidgetPage extends TemplatePage {
     clickByCssSelector("button[id$='chart-save-command']");
 
     waitAjaxIndicatorDisappear();
+    waitForElementExisted("span[class='ui-growl-title']", true, DEFAULT_TIMEOUT);
   }
   
   public void createCaseByFinishTime() {
@@ -161,6 +166,7 @@ public class StatisticWidgetPage extends TemplatePage {
     clickByCssSelector("button[id$='chart-save-command']");
 
     waitAjaxIndicatorDisappear();
+    waitForElementExisted("span[class='ui-growl-title']", true, DEFAULT_TIMEOUT);
   }
 
 }

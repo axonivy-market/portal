@@ -52,6 +52,11 @@ public class TaskWidgetPage extends TemplatePage {
 	}
 
 	public void expand() {
+    if (isElementPresent(By.cssSelector("a[class*='notification-content-action-more-details']"))) {
+      Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
+          .until(() -> findElementByCssSelector("a[class*='notification-content-action-more-details']")
+              .isDisplayed() == false);
+    }
 		WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
 		fullModeButton.click();
 		ensureNoBackgroundRequest();
