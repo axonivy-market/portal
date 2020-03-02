@@ -44,6 +44,8 @@ public class StatisticWidgetPage extends TemplatePage {
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
       if (!findElementByCssSelector("div[id$='0\\:chart-name-container'] .chart-name").getText().contains("Task")) {
         refresh();
+        Sleeper.sleep(2000);
+        waitForElementExisted("div[id$='0\\:chart-name-container'] .chart-name",true,5);
         return false;
       } else {
         return true;
