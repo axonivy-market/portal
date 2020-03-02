@@ -52,10 +52,9 @@ public class TaskWidgetPage extends TemplatePage {
 	}
 
 	public void expand() {
-    Awaitility.await().atMost(new Duration(8, TimeUnit.SECONDS)).until(() -> {
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
       if (isElementPresent(By.cssSelector("a[class*='notification-content-action-more-details']"))) {
         refresh();
-        Sleeper.sleep(2000);
         waitForElementExisted("a[id$=':task-list-link:task-list-link']",true,5);
         return false;
       } else {
