@@ -13,7 +13,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
@@ -79,8 +78,7 @@ public class StatisticWidgetTest extends BaseTest {
     statisticWidgetPage.createCaseByFinishTime();
 
     statisticWidgetPage.backToDashboard();
-    statisticWidgetPage.waitForElementDisplayed(By.cssSelector("div[id$='0\\:chart-name-container'] .chart-name"), true);
-    
+    statisticWidgetPage.waitForElementDisplayed(By.cssSelector("div[id$='0\\:chart-name-container'] .chart-name"), true); 
     WebElement taskByPriorityDefaultChartName
     = statisticWidgetPage.findElementByCssSelector("div[id$='0\\:chart-name-container'] .chart-name");
     WebElement taskByPriorityChartName
@@ -95,6 +93,7 @@ public class StatisticWidgetTest extends BaseTest {
       = statisticWidgetPage.findElementByCssSelector("div[id$='5\\:chart-name-container'] .chart-name");
     WebElement caseByFinishedTimeChartName
       = statisticWidgetPage.findElementByCssSelector("div[id$='6\\:chart-name-container'] .chart-name");
+    
 
     assertEquals(TASK_BY_PRIORITY_DEFAULT_CHART_NAME, taskByPriorityDefaultChartName.getText());
     assertEquals(TASK_BY_PRIORITY_CHART_NAME, taskByPriorityChartName.getText());

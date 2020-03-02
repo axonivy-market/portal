@@ -1,7 +1,12 @@
 package portal.guitest.page;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.Sleeper;
 
@@ -36,7 +41,9 @@ public class StatisticWidgetPage extends TemplatePage {
 
   public void backToDashboard() {
     clickByCssSelector("a[id$='back-from-chart-creation']");
-    refreshAndWaitElement("h1[id='chart-name']");
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(
+        () -> findElementByCssSelector("div[id$='0\\:chart-name-container'] .chart-name")
+            .getText().contains("Task"));
   }
   
   public TaskAnalysisWidgetPage navigateToTaskAnalysisPage() {
