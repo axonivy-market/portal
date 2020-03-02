@@ -11,6 +11,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.jayway.awaitility.Awaitility;
@@ -19,6 +20,7 @@ import com.jayway.awaitility.Duration;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.SystemProperties;
 import portal.guitest.common.UrlHelpers;
+import vn.wawa.guitest.base.client.Browser;
 import vn.wawa.guitest.base.page.AbstractPage;
 
 public abstract class TemplatePage extends AbstractPage {
@@ -148,6 +150,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   public AdminSettingsPage openAdminSettings() {
     clickUserMenuItem("adminui-menu-item");
+    waitAjaxIndicatorDisappear();
     return new AdminSettingsPage();
   }
 
@@ -309,6 +312,5 @@ public abstract class TemplatePage extends AbstractPage {
         return true;
       }
     });
-  }
- 
+  } 
 }
