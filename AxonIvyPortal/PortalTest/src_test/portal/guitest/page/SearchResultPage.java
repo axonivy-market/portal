@@ -61,6 +61,7 @@ public class SearchResultPage extends TemplatePage {
 	}
 
 	public int countNumberOfEmployee() {
+	  	waitForElementDisplayed(By.id("search-results-tabview:employee-table"), true);
 		WebElement employeeSearchResult = findElementById("search-results-tabview:employee-table");
 		return employeeSearchResult.findElements(By.cssSelector("tr.ui-widget-content")).size();
 	}
