@@ -1,10 +1,16 @@
 package portal.guitest.page;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
+
+import portal.guitest.common.Sleeper;
 
 public class AdminSettingsPage extends TemplatePage {
 
@@ -162,7 +168,13 @@ public class AdminSettingsPage extends TemplatePage {
   }
 
   public void openExpressManagementTab() {
+    refreshAndWaitElement("a[href$='express-management-tab']");
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(
+        () -> findElementByXpath("//a[@href='#adminui:adminTabView:express-management-tab']").isEnabled()
+            && findElementByXpath("//a[@href='#adminui:adminTabView:express-management-tab']").isDisplayed());
     WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:express-management-tab']");
+    //Unstable click
+    Sleeper.sleep(3000);
     settingTabLink.click();
     waitForElementPresent(By.id("adminui:adminTabView:express-management-tab"), true);
     waitAjaxIndicatorDisappear();

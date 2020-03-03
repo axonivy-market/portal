@@ -52,9 +52,19 @@ public class TaskWidgetPage extends TemplatePage {
 	}
 
 	public void expand() {
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
+      if (isElementPresent(By.cssSelector("a[class*='notification-content-action-more-details']"))) {
+        refresh();
+        waitForElementExisted("a[id$=':task-list-link:task-list-link']",true,5);
+        return false;
+      } else {
+        return true;
+      }
+    });
 		WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
 		fullModeButton.click();
 		ensureNoBackgroundRequest();
+		waitForElementExisted("button[id$=':filter-save-action']",true,5);
 		waitForLocatorDisplayed("id('" + taskWidgetId + ":filter-save-action')");
 	}
 
