@@ -42,6 +42,7 @@ public class ChatPage extends TemplatePage {
 	}
 
 	public void sendMessage(String chatMessage) {
+	    waitForElementExisted("textarea[id='message-input-field']", true, DEFAULT_TIMEOUT);
 		waitForElementEnabled(By.id("message-input-field"), true, DEFAULT_TIMEOUT);
 		WebElement input = findElementById("message-input-field");
 		input.sendKeys(chatMessage);
