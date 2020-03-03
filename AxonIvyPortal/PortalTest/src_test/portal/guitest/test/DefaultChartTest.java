@@ -28,6 +28,7 @@ public class DefaultChartTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
+    Sleeper.sleep(2000); // To make Firefox test more stable, make business data updated correctly 
     redirectToRelativeLink(CREATE_TESTING_TASK_FOR_CUSTOMIZATION_URL);
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
