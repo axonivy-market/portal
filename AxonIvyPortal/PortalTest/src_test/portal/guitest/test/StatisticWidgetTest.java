@@ -78,7 +78,7 @@ public class StatisticWidgetTest extends BaseTest {
     statisticWidgetPage.createCaseByFinishTime();
 
     statisticWidgetPage.backToDashboard();
-    statisticWidgetPage.waitForElementDisplayed(By.cssSelector("div[id$='0\\:chart-name-container'] .chart-name"), true); 
+    statisticWidgetPage.waitForElementDisplayed(By.cssSelector("div[id$='6\\:chart-name-container'] .chart-name"), true); 
     WebElement taskByPriorityDefaultChartName
     = statisticWidgetPage.findElementByCssSelector("div[id$='0\\:chart-name-container'] .chart-name");
     WebElement taskByPriorityChartName
