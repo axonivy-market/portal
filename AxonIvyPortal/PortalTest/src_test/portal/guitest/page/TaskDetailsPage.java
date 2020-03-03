@@ -26,14 +26,14 @@ public class TaskDetailsPage extends TemplatePage {
 
 
   public void changePriorityOfTask(int priorityValue) {
-    findElementById("task-detail-template:general-information:priority-form:edit-priority-inplace_display").click();
+    click(findElementById("task-detail-template:general-information:priority-form:edit-priority-inplace_display"));
     waitForElementDisplayed(By.id("task-detail-template:general-information:priority-form:priority-select-menu_label"),
         true);
-    findElementById("task-detail-template:general-information:priority-form:priority-select-menu_label").click();
+    click(findElementById("task-detail-template:general-information:priority-form:priority-select-menu_label"));
     WebElement prioritySelectElement = findElementById(
         String.format("task-detail-template:general-information:priority-form:priority-select-menu_%d", priorityValue));
     waitForElementDisplayed(prioritySelectElement, true);
-    prioritySelectElement.click();
+    click(prioritySelectElement);
     clickByCssSelector(
         "#task-detail-template\\:general-information\\:priority-form\\:edit-priority-inplace_editor .ui-inplace-save");
     waitAjaxIndicatorDisappear();
@@ -74,5 +74,10 @@ public class TaskDetailsPage extends TemplatePage {
   public TaskWidgetPage goBackToTaskListFromTaskDetails() {
     findElementById("task-detail-template:task-detail-title-form:back-to-previous-page").click();
     return new TaskWidgetPage();
+  }
+
+  public TaskTemplatePage clickStartTask() {
+    findElementById("task-detail-template:task-detail-start-command").click();
+    return new TaskTemplatePage();
   }
 }

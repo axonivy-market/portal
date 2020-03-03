@@ -31,7 +31,7 @@ public class ExpressProcessPage extends TemplatePage {
 
 	private void selectCheckbox(String forAttribute) {
 		WebElement checkboxLabel = findElementByXpath(String.format("//label[@for='%s']", forAttribute));
-		checkboxLabel.click();
+		click(checkboxLabel);
 		waitAjaxIndicatorDisappear();
 	}
 

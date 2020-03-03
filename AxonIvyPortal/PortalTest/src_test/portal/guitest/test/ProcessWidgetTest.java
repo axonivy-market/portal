@@ -117,6 +117,8 @@ public class ProcessWidgetTest extends BaseTest {
 
   @Test
   public void testSortDefaultProcessByName() {
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+    homePage = new HomePage();
     processWidget = homePage.getProcessWidget();
     String alphaHistoryTask = "Alpha Company Task";
     String betaHistoryTask = "Beta Company Task";
@@ -131,6 +133,8 @@ public class ProcessWidgetTest extends BaseTest {
 
   @Test
   public void testSortDefaultProcessByIndex() {
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+    homePage = new HomePage();
     String alphaHistoryTask = "Alpha Company Task";
     String betaHistoryTask = "Beta Company Task";
     String viewAlphaHistory = "View Alpha Process History";
@@ -198,6 +202,7 @@ public class ProcessWidgetTest extends BaseTest {
     processWidget.startProcess(AGOOGLE_LINK);
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
     homePage.switchLastBrowserTab();
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.getPageTitle().length() > 1);
     assertEquals("Google", homePage.getPageTitle());
   }
 
@@ -266,7 +271,7 @@ public class ProcessWidgetTest extends BaseTest {
   
   @AfterClass
   @BeforeClass
-  public static void cleanUpIEAndDriver() {
-    killIE();
+  public static void cleanUpBrowsers() {
+    killBrowsers();
   }
 }
