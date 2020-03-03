@@ -3,6 +3,7 @@ package portal.guitest.page;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriverException;
 import org.openqa.selenium.WebElement;
 
 import com.jayway.awaitility.Awaitility;
@@ -41,9 +42,19 @@ public class StatisticWidgetPage extends TemplatePage {
 
   public void backToDashboard() {
     clickByCssSelector("a[id$='back-from-chart-creation']");
-//    Unstable behavior on IE
-    Sleeper.sleep(5000);
-    waitForElementExisted("div[id$='6\\:chart-name-container'] .chart-name",true,5);
+  }
+  
+  public void waitLastChartCreated() {
+    Awaitility.await().atMost(new Duration(2000, TimeUnit.SECONDS)).until(() -> {
+      try {
+        WebElement lastChart = findElementByCssSelector("div[id$='6\\:chart-name-container'] .chart-name");
+        return lastChart.getText().contains("Case by finished time chart");
+      } catch (WebDriverException e) {
+        System.out.println("Exception when waiting for element existed, try again.");
+        e.printStackTrace();
+      }
+      return false;
+    });
   }
   
   public TaskAnalysisWidgetPage navigateToTaskAnalysisPage() {
@@ -72,7 +83,18 @@ public class StatisticWidgetPage extends TemplatePage {
   }
 
   public String getChartName(int chartIndex) {
-    return findElementByCssSelector(String.format("div[id$='%d:chart-name-container'] #chart-name", chartIndex)).getText();
+    WebElement chartName =
+        findElementByCssSelector(String.format("div[id$='%d:chart-name-container'] #chart-name", chartIndex));
+    Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> {
+      try {
+        return chartName.getText().contains("My default");
+      } catch (WebDriverException e) {
+        System.out.println("Exception when waiting for element existed, try again.");
+        e.printStackTrace();
+      }
+      return false;
+    });
+    return chartName.getText();
   }
   
   public String getRestoreDefaultButtonName() {
@@ -80,6 +102,16 @@ public class StatisticWidgetPage extends TemplatePage {
   }
 
   public void restoreDefaultCharts() {
+    Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> {
+      WebElement restoreDefault = findElementByCssSelector("span[id$='restore-default-chart-link-label']");
+      try {
+        return restoreDefault.getText().contains("Restore default");
+      } catch (WebDriverException e) {
+        System.out.println("Exception when waiting for element existed, try again.");
+        e.printStackTrace();
+      }
+      return false;
+    });
     clickByCssSelector("span[id$='restore-default-chart-link-label']");
     waitAjaxIndicatorDisappear();
     waitForElementDisplayed(By.id("statistics-widget:restore-confirmation-dialog"), true, 30);
