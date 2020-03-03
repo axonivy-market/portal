@@ -34,7 +34,7 @@ public class NewAbsencePage extends TemplatePage {
       usernameInput.clear();
       usernameInput.sendKeys(username);
       waitAjaxIndicatorDisappear();
-      String itemSelector = "li[data-item-label*='" + username + "'].ui-state-highlight";
+      String itemSelector = "tr[data-item-label*='" + username + "'].ui-state-highlight";
       waitForElementDisplayed(By.cssSelector(itemSelector), true);
       clickByCssSelector(itemSelector);
       waitAjaxIndicatorDisappear();

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.ivyteam.ivy.project.portal</groupId>
   <artifactId>portalTest</artifactId>
   <version>8.0.0-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
-	<powermock.version>2.0.2</powermock.version>
-	<ivy.engine.version>8.0.0</ivy.engine.version>
-	<portal.version>${portal.released.version}</portal.version>
-	<build.plugin.version>8.0.0</build.plugin.version>
+    <powermock.version>2.0.2</powermock.version>
+    <ivy.engine.version>8.0.0</ivy.engine.version>
+    <portal.version>${portal.released.version}</portal.version>
+    <build.plugin.version>8.0.0</build.plugin.version>
+    <skip.redeploy>true</skip.redeploy>
   </properties>
   <dependencies>
     <dependency>
@@ -20,53 +21,52 @@
       <type>iar</type>
     </dependency>
     <dependency>
-      <!-- required: test framework used by the maven-surefire-plugin to run 
-      	tests -->
+      <!-- required: test framework used by the maven-surefire-plugin to run tests -->
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.8.2</version>
       <scope>test</scope>
-	</dependency>
-	<dependency>
+    </dependency>
+    <dependency>
       <groupId>org.powermock</groupId>
       <artifactId>powermock-module-junit4</artifactId>
       <version>${powermock.version}</version>
       <scope>test</scope>
-	</dependency>
-	<dependency>
+    </dependency>
+    <dependency>
       <groupId>org.powermock</groupId>
       <artifactId>powermock-api-mockito2</artifactId>
       <version>${powermock.version}</version>
       <scope>test</scope>
-	</dependency>
-	<!-- for GUI test -->
+    </dependency>
+    <!-- for GUI test -->
     <dependency>
       <groupId>com.jayway.awaitility</groupId>
       <artifactId>awaitility</artifactId>
       <version>1.7.0</version>
     </dependency>
-     <dependency>
+    <dependency>
       <groupId>vn.wawa</groupId>
       <artifactId>base_gui_test</artifactId>
       <version>2.0.0-SNAPSHOT</version>
     </dependency>
   </dependencies>
   <build>
-  	<sourceDirectory>${basedir}/src/</sourceDirectory>
-	<directory>${basedir}/target</directory>
-	<outputDirectory>${basedir}/classes</outputDirectory>
-  	<testSourceDirectory>${basedir}/src_test/</testSourceDirectory>
-	<testOutputDirectory>${basedir}/classes/</testOutputDirectory>
+    <sourceDirectory>${basedir}/src/</sourceDirectory>
+    <directory>${basedir}/target</directory>
+    <outputDirectory>${basedir}/classes</outputDirectory>
+    <testSourceDirectory>${basedir}/src_test/</testSourceDirectory>
+    <testOutputDirectory>${basedir}/classes/</testOutputDirectory>
     <plugins>
       <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>
         <artifactId>project-build-plugin</artifactId>
         <version>${build.plugin.version}</version>
         <extensions>true</extensions>
-        <configuration>					
-			<engineDirectory>../../engine</engineDirectory>										
-			<encoding>UTF-8</encoding>
-		</configuration>
+        <configuration>
+          <engineDirectory>../../engine</engineDirectory>
+          <encoding>UTF-8</encoding>
+        </configuration>
         <executions>
           <execution>
             <id>start.test.engine</id>
@@ -74,6 +74,54 @@
             <goals>
               <goal>start-test-engine</goal>
             </goals>
+          </execution>
+          <execution>
+            <id>portalStyle.deploy</id>
+            <goals>
+              <goal>deploy-to-engine</goal>
+            </goals>
+            <configuration>
+              <skipDeploy>${skip.redeploy}</skipDeploy>
+              <deployFile>..\PortalStyle\target\portalStyle-${portal.version}.iar</deployFile>
+              <deployToEngineApplication>demo-portal</deployToEngineApplication>
+            </configuration>
+            <phase>process-test-classes</phase>
+          </execution>
+          <execution>
+            <id>portalKit.deploy</id>
+            <goals>
+              <goal>deploy-to-engine</goal>
+            </goals>
+            <configuration>
+              <skipDeploy>${skip.redeploy}</skipDeploy>
+              <deployFile>..\PortalKit\target\portalKit-${portal.version}.iar</deployFile>
+              <deployToEngineApplication>demo-portal</deployToEngineApplication>
+            </configuration>
+            <phase>process-test-classes</phase>
+          </execution>
+          <execution>
+            <id>portalTemplate.deploy</id>
+            <goals>
+              <goal>deploy-to-engine</goal>
+            </goals>
+            <configuration>
+              <skipDeploy>${skip.redeploy}</skipDeploy>
+              <deployFile>..\PortalTemplate\target\portalTemplate-${portal.version}.iar</deployFile>
+              <deployToEngineApplication>demo-portal</deployToEngineApplication>
+            </configuration>
+            <phase>process-test-classes</phase>
+          </execution>
+          <execution>
+            <id>axonIvyExpress.deploy</id>
+            <goals>
+              <goal>deploy-to-engine</goal>
+            </goals>
+            <configuration>
+              <skipDeploy>${skip.redeploy}</skipDeploy>
+              <deployFile>..\AxonIvyExpress\target\axonIvyExpress-${portal.version}.iar</deployFile>
+              <deployToEngineApplication>demo-portal</deployToEngineApplication>
+            </configuration>
+            <phase>process-test-classes</phase>
           </execution>
           <execution>
             <id>portaltesthelper.deploy</id>
@@ -86,24 +134,24 @@
             </configuration>
             <phase>process-test-classes</phase>
           </execution>
-		  <execution>
-            <id>internalsupport.deploy</id>
-            <goals>
-              <goal>deploy-to-engine</goal>
-            </goals>
-            <configuration>
-              <deployFile>..\..\Showcase\InternalSupport\target\internalSupport-${portal.version}.iar</deployFile>
-              <deployToEngineApplication>demo-portal</deployToEngineApplication>
-            </configuration>
-            <phase>process-test-classes</phase>
-          </execution>
-		  <execution>
+          <execution>
             <id>portalexamples.deploy</id>
             <goals>
               <goal>deploy-to-engine</goal>
             </goals>
             <configuration>
               <deployFile>..\..\Showcase\PortalExamples\target\portalExamples-${portal.version}.iar</deployFile>
+              <deployToEngineApplication>demo-portal</deployToEngineApplication>
+            </configuration>
+            <phase>process-test-classes</phase>
+          </execution>
+          <execution>
+            <id>internalsupport.deploy</id>
+            <goals>
+              <goal>deploy-to-engine</goal>
+            </goals>
+            <configuration>
+              <deployFile>..\..\Showcase\InternalSupport\target\internalSupport-${portal.version}.iar</deployFile>
               <deployToEngineApplication>demo-portal</deployToEngineApplication>
             </configuration>
             <phase>process-test-classes</phase>
