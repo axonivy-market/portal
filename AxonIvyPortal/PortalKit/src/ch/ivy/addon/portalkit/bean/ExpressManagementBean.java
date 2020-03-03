@@ -11,11 +11,13 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
 
 @ManagedBean
@@ -36,7 +38,14 @@ public class ExpressManagementBean implements Serializable {
 
   private List<SecurityMemberDTO> findAllActiveUser() {
     if (activeMemberList == null) {
-      return SecurityMemberUtils.findSecurityMembers("", 0, -1);
+      return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
+          .withStartName("findSecurityMembers")
+          .withParam("application", Ivy.request().getApplication())
+          .withParam("query", "")
+          .withParam("startIndex", 0)
+          .withParam("count", PortalConstants.MAX_USERS_IN_AUTOCOMPLETE)
+          .call()
+          .get("members", List.class);
     }
     return activeMemberList;
   }
