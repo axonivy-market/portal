@@ -30,9 +30,17 @@ public class BaseTest {
 
   private String designerLogoutUrl = "http://localhost:8081/ivy/wf/logout.jsp";
   private final static String LOGIN_URL_PATTERN = "portalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
-  private BrowserType browserType = BrowserType.IE;
-  private String ieDriverPath = getInternetExprorerDriverPath();
+  private BrowserType browserType;
 
+  public BaseTest() {
+    String vmArgPath = System.getProperty("browserType");
+    if (vmArgPath != null) {
+      browserType = BrowserType.valueOf(vmArgPath);
+    } else {
+      browserType = BrowserType.valueOf(PropertyLoader.getBrowserType());
+    }
+  }
+  
   public Browser getBrowser() {
     return browser;
   }
@@ -41,21 +49,6 @@ public class BaseTest {
     this.browser = browser;
   }
   
-  public String getIeDriverPath() {
-    return ieDriverPath;
-  }
-
-  public void setIeDriverPath(String ieDriverPath) {
-    this.ieDriverPath = ieDriverPath;
-  }
-
-  private String getInternetExprorerDriverPath() {
-    String vmArgPath = System.getProperty("ieDriverPath");
-    if (vmArgPath != null) {
-      return vmArgPath;
-    }
-    return "./resources/IEDriverServer.exe";
-  }
   protected String createTestingTasksUrl = "portalExamples/162511D2577DBA88/CategoriedLeaveRequest.ivp";
   protected String businessCaseUrl = "internalSupport/15B1EA24CCF377E8/updateCheckInTime.ivp";
   protected String hideCaseUrl = "portalExamples/16583F0F73864543/createHiddenTechnicalCase.ivp";
@@ -84,7 +77,7 @@ public class BaseTest {
 
   public void launchBrowserAndGotoRelativeLink(String relativeProcessStartLink) {
     try {
-      browser.launch(browserType, UrlHelpers.generateAbsoluteProcessStartLink(relativeProcessStartLink), ieDriverPath);
+      browser.launch(browserType, UrlHelpers.generateAbsoluteProcessStartLink(relativeProcessStartLink), getDriverPath());
     } catch (Exception e) {
       throw new PortalGUITestException(e);
     }
@@ -100,7 +93,7 @@ public class BaseTest {
 
   public void launchBrowserAndLogoutInDesigner() {
     try {
-      browser.launch(browserType, designerLogoutUrl, ieDriverPath);
+      browser.launch(browserType, designerLogoutUrl, getDriverPath());
     } catch (Exception e) {
       throw new PortalGUITestException(e);
     }
@@ -109,6 +102,7 @@ public class BaseTest {
   protected void logoutDesigner() {
     try {
       browser.goHome(designerLogoutUrl);
+      redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     } catch (Exception e) {
       throw new PortalGUITestException(e);
     }
@@ -196,13 +190,19 @@ public class BaseTest {
     }
   }
   
-  public static void killIE() {
+  public static void killBrowsers() {
     try {
-      System.out.println("Kill all open IE");
+      System.out.println("Kill all open browsers");
       Runtime.getRuntime().exec("taskkill /F /IM iexplore.exe");
+      Runtime.getRuntime().exec("taskkill /F /IM firefox.exe");
       Sleeper.sleep(5000);
     } catch (IOException e) {
       e.printStackTrace();
     }
   }
+  
+  private String getDriverPath() {
+    return browserType.getConfiguration().getDriverPath();
+  }
+
 }

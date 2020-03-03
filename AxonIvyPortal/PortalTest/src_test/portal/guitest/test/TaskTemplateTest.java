@@ -26,6 +26,8 @@ import portal.guitest.page.WorkingTaskDialogPage;
 
 public class TaskTemplateTest extends BaseTest {
 
+  private String createImpersistentTaskUrl = "portalExamples/169BDE2F368D6EC4/PrimefacesElements.ivp";
+
   @Override
   @Before
   public void setup() {
@@ -120,6 +122,14 @@ public class TaskTemplateTest extends BaseTest {
     TaskWidgetPage taskWidget = new TaskWidgetPage();
     taskWidget.expand();
     assertTrue(taskWidget.isTaskStateOpen(0));
+  }
+
+  @Test
+  public void testNotShowStartAdhocWhenOpenImpersistedTask() {
+    redirectToRelativeLink(createImpersistentTaskUrl);
+    TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
+    taskTemplatePage.clickTaskActionMenu();
+    assertEquals(true, taskTemplatePage.isStartAdhocBtnNotExist());
   }
 
   private TaskTemplatePage startATaskAndOpenCaseInfo() {

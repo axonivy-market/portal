@@ -29,6 +29,7 @@ public class ExpressManagementPage extends TemplatePage {
   public void openImportDialog() {
     WebElement importButton = findElementByCssSelector("*[id$=':import-express-btn']");
     click(importButton);
+    refreshAndWaitElement("div[id$=':import-express-dialog']");
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
         .until(() -> assertTrue(findElementByCssSelector("div[id$=':import-express-dialog']").isDisplayed()));
     //assertTrue(isImportDialogDisplayed());
@@ -51,12 +52,18 @@ public class ExpressManagementPage extends TemplatePage {
     Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
     Robot robot;
     try {
+      int delayTimeBetweenEachPress = 1000; //Firefox driver needs this, IE does not need it
       robot = new Robot();
       robot.keyPress(KeyEvent.VK_CONTROL);
+      robot.delay(delayTimeBetweenEachPress);
       robot.keyPress(KeyEvent.VK_V);
+      robot.delay(delayTimeBetweenEachPress);
       robot.keyRelease(KeyEvent.VK_V);
+      robot.delay(delayTimeBetweenEachPress);
       robot.keyRelease(KeyEvent.VK_CONTROL);
+      robot.delay(delayTimeBetweenEachPress);
       robot.keyPress(KeyEvent.VK_ENTER);
+      robot.delay(delayTimeBetweenEachPress);
       robot.keyRelease(KeyEvent.VK_ENTER);
     } catch (AWTException e) {
       e.printStackTrace();

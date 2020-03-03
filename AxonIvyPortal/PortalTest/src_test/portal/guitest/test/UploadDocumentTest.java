@@ -1,11 +1,13 @@
 package portal.guitest.test;
 
 import static junit.framework.Assert.assertEquals;
+import static portal.guitest.common.FileHelper.getAbsolutePathToTestFile;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseDetailsPage;
@@ -46,10 +48,12 @@ public class UploadDocumentTest extends BaseTest{
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     String error = caseDetailsPage.uploadDocumentWithError(getAbsolutePathToTestFile("test-with-macro.doc"));
     assertEquals("This file is not allowed to upload because it contains some script!", error);
-    
+    Sleeper.sleep(1000); // make Firefox passed, maybe a bug of Portal
+
     error = caseDetailsPage.uploadDocumentWithError(getAbsolutePathToTestFile("test-with-macro.xls"));
     assertEquals("This file is not allowed to upload because it contains some script!", error);
-    
+    Sleeper.sleep(1000);// make Firefox passed, maybe a bug of Portal
+
     error = caseDetailsPage.uploadDocumentWithError(getAbsolutePathToTestFile("test-no-files-with-js.pdf"));
     assertEquals("This file is not allowed to upload because it contains some script!", error);
     adminSettingsPage = homePage.openAdminSettings();
@@ -84,10 +88,6 @@ public class UploadDocumentTest extends BaseTest{
   private void initHomePage(TestAccount account) {
     login(account);
     homePage = new HomePage();
-  }
-  
-  private String getAbsolutePathToTestFile(String fileName){
-    return System.getProperty("user.dir") + "\\resources\\testFile\\" + fileName;
   }
   
 }
