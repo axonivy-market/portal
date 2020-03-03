@@ -13,6 +13,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.FileHelper;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
@@ -41,7 +42,7 @@ public class ExpressManagementTest extends BaseTest {
     adminSettingsPage.openExpressManagementTab();
     ExpressManagementPage expressManagementPage = new ExpressManagementPage();
     expressManagementPage.openImportDialog();
-    expressManagementPage.selectJSONFile("unsupportedExtension.abc");
+    expressManagementPage.selectJSONFile(FileHelper.getAbsolutePathToTestFile("unsupportedExtension.abc"));
     String message = expressManagementPage.getUploadMessage();
     expressManagementPage.clickOnCloseButton();
     assertEquals("Invalid file type", message);
@@ -54,7 +55,7 @@ public class ExpressManagementTest extends BaseTest {
     adminSettingsPage.openExpressManagementTab();
     ExpressManagementPage expressManagementPage = new ExpressManagementPage();
     expressManagementPage.openImportDialog();
-    expressManagementPage.selectJSONFile("express-test.json");
+    expressManagementPage.selectJSONFile(FileHelper.getAbsolutePathToTestFile("express-test.json"));
     expressManagementPage.clickOnDeployExpress();
     Sleeper.sleep(5000);
     expressManagementPage.clickOnCloseButton();

@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.ChatPage;
@@ -98,6 +99,7 @@ public class ChatTest extends BaseTest {
 		chatPage.addUserToChatGroup(Arrays.asList(chatUser1, chatGroup1));
 
 		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+		Sleeper.sleep(1000); // chat groups are not loading at the beginning, wait a bit for Firefox browser
 		new HomePage().getChat();
 		chatPage.selectChatGroup();
 		chatPage.getAllParticipants();
@@ -174,7 +176,7 @@ public class ChatTest extends BaseTest {
 	}
 	
 	@AfterClass
-	public static void cleanUpAllIEAndDriver() {
-	  killIE();
+	public static void cleanUpBrowsers() {
+	  killBrowsers();
 	}
 }
