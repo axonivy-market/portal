@@ -41,6 +41,7 @@
   <cc:attribute name="autoCompletePanelStyleClass" 
     shortDescription="Style class of user autocomplete panel." />
   <cc:attribute name="completeMethod" method-signature="java.util.List completeMethod(java.lang.String)"/>
+  <cc:attribute name="cache" default="true" shortDescription="Autocomplete caches the searched result list if it's enabled."/>
   <cc:attribute name="moreText" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." />
   <cc:attribute name="queryDelay" default="300" />
   <cc:attribute name="maxResults" default="100" type="java.lang.Integer" />
@@ -71,7 +72,7 @@
         completeMethod="#{completeMethod}" required="#{cc.attrs.isRequired}" var="user" size="#{cc.attrs.size}"
         itemValue="#{user}" itemLabel="#{cc.attrs.itemLabel}" forceSelection="#{cc.attrs.forceSelection}"
         minQueryLength="#{cc.attrs.minQueryLength}" styleClass="#{cc.attrs.autoCompleteStyleClass}"
-        autoHighlight="#{cc.attrs.hightlight}" converter="pojoConverter" cache="true" dynamic="true" dropdown="true"
+        autoHighlight="#{cc.attrs.hightlight}" converter="pojoConverter" cache="#{cc.attrs.cache}" dynamic="true" dropdown="true"
         disabled="#{cc.attrs.isDisabled}" readonly="#{cc.attrs.isReadOnly}" requiredMessage="#{cc.attrs.requiredMessage}"
         moreText="#{cc.attrs.moreText}" queryDelay="#{cc.attrs.queryDelay}" maxResults="#{cc.attrs.maxResults}" inputStyleClass="#{cc.attrs.inputStyleClass}">
         <cc:insertFacet name="event" />
