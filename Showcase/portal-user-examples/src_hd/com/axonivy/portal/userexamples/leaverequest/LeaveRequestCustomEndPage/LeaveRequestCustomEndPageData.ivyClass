@@ -1,0 +1,6 @@
+LeaveRequestCustomEndPageData #class
+com.axonivy.portal.userexamples.leaverequest.LeaveRequestCustomEndPage #namespace
+caseId Long #field
+caseId PERSISTENT #fieldModifier
+caseSelected ch.ivyteam.ivy.workflow.ICase #field
+caseSelected PERSISTENT #fieldModifier
