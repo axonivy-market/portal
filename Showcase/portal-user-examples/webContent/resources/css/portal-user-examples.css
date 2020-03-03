@@ -17,3 +17,18 @@ h3, h4 {
 .hasDatepicker {
   margin-top: 10px;
 }
+
+.credit-label {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.margin-left-16 {
+  margin-left: 16px;
+}
+
+.credit-agreement-label {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: auto;
+}
