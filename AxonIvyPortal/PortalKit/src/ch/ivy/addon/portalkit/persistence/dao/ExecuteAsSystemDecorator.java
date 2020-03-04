@@ -2,12 +2,12 @@ package ch.ivy.addon.portalkit.persistence.dao;
 
 import java.lang.reflect.Method;
 
-import javassist.util.proxy.MethodHandler;
-import javassist.util.proxy.ProxyFactory;
 import ch.ivy.addon.portalkit.persistence.domain.BusinessEntity;
 import ch.ivy.addon.portalkit.persistence.exception.DaoException;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
+import javassist.util.proxy.MethodHandler;
+import javassist.util.proxy.ProxyFactory;
 
 public class ExecuteAsSystemDecorator {
 

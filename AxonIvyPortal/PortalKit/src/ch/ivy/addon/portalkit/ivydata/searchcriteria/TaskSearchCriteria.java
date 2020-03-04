@@ -49,6 +49,7 @@ public class TaskSearchCriteria {
     return taskQuery;
   }
 
+  @SuppressWarnings("deprecation")
   public TaskQuery createQuery() {
     TaskQuery finalQuery = TaskQuery.create();
     setNewQueryCreated(isNewQueryCreated() || customTaskQuery == null || hasTaskId() || hasCaseId());

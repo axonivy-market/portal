@@ -2,12 +2,12 @@ package ch.ivy.addon.portalkit.document;
 
 import java.io.InputStream;
 
-import ch.ivyteam.ivy.environment.Ivy;
-
 import com.itextpdf.text.pdf.PdfArray;
 import com.itextpdf.text.pdf.PdfDictionary;
 import com.itextpdf.text.pdf.PdfName;
 import com.itextpdf.text.pdf.PdfReader;
+
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class PDFDocumentDetector implements DocumentDetector{
   

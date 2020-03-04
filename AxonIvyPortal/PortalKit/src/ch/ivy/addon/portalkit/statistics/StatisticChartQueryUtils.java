@@ -13,8 +13,8 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.RUNNING_
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TODAY_EXPIRY_KEY;
 import static ch.ivyteam.ivy.workflow.WorkflowPriority.EXCEPTION;
 import static ch.ivyteam.ivy.workflow.WorkflowPriority.HIGH;
-import static ch.ivyteam.ivy.workflow.WorkflowPriority.NORMAL;
 import static ch.ivyteam.ivy.workflow.WorkflowPriority.LOW;
+import static ch.ivyteam.ivy.workflow.WorkflowPriority.NORMAL;
 
 import java.util.ArrayList;
 import java.util.Arrays;

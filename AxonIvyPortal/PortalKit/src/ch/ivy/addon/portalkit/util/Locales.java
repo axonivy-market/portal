@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.util;
 
 import java.util.Locale;
 import java.util.concurrent.Callable;
+
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
