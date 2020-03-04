@@ -1,7 +1,5 @@
 package ch.ivy.gawfs.beans;
 
-import gawfs.TaskDef;
-
 import java.io.Serializable;
 import java.util.List;
 
@@ -10,6 +8,7 @@ import javax.faces.bean.RequestScoped;
 
 import ch.ivy.gawfs.enums.FormElementType;
 import ch.ivy.gawfs.enums.TaskType;
+import gawfs.TaskDef;
 
 @ManagedBean
 @RequestScoped

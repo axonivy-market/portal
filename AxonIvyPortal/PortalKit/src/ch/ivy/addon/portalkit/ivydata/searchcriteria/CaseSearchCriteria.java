@@ -33,6 +33,7 @@ public class CaseSearchCriteria {
   
   private CaseQuery finalCaseQuery;
 
+  @SuppressWarnings("deprecation")
   public CaseQuery createQuery() {
     CaseQuery finalQuery;
     if (isBusinessCase) {

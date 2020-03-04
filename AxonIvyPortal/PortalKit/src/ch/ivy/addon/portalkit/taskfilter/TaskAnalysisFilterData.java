@@ -3,10 +3,10 @@ package ch.ivy.addon.portalkit.taskfilter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.filter.AbstractFilterData;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @SuppressWarnings("rawtypes")
 public class TaskAnalysisFilterData extends AbstractFilterData {
