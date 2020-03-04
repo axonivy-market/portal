@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
-
 //import ch.ivy.gdpr.entities.GdprRequest;
 import ch.ivyteam.ivy.cm.IContentObject;
 import ch.ivyteam.ivy.cm.IContentObjectValue;

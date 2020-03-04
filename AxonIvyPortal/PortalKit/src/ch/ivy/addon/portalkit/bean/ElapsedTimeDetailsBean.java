@@ -2,8 +2,10 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
 import ch.ivyteam.ivy.environment.Ivy;

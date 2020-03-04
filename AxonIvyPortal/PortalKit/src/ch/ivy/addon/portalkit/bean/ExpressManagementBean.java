@@ -15,7 +15,6 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
-import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
@@ -36,6 +35,7 @@ public class ExpressManagementBean implements Serializable {
     isShowExpressManagementTab = collector.findExpressCreationProcess() != null;
   }
 
+  @SuppressWarnings("unchecked")
   private List<SecurityMemberDTO> findAllActiveUser() {
     if (activeMemberList == null) {
       return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
