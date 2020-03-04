@@ -18,6 +18,7 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
+@SuppressWarnings("restriction")
 public class ChatTest extends BaseTest {
 	private AdminSettingsPage adminSettingsPage;
 	private static final String CHAT_MESSAGE_USER_DEMO = "Hi i'm demo user";

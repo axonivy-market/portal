@@ -237,6 +237,7 @@ public class CaseService implements ICaseService {
   
   private CaseQuery extendQuery(CaseSearchCriteria criteria) {
     CaseQuery finalQuery = criteria.getFinalCaseQuery();
+    @SuppressWarnings("deprecation")
     CaseQuery clonedQuery = CaseQuery.fromJson(finalQuery.asJson()); // clone to keep the final query in CaseSearchCriteria
 
     if (criteria.hasApps()) {

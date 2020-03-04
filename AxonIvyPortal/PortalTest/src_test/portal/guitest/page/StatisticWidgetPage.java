@@ -1,12 +1,7 @@
 package portal.guitest.page;
 
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import com.jayway.awaitility.Awaitility;
-import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.Sleeper;
 

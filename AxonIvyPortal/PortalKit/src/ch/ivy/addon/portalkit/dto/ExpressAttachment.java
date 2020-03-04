@@ -1,9 +1,9 @@
 package ch.ivy.addon.portalkit.dto;
 
 
-import ch.ivy.addon.portalkit.enums.ExpressEmailAttachmentStatus;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import ch.ivy.addon.portalkit.enums.ExpressEmailAttachmentStatus;
 
 public class ExpressAttachment {
   private String name;

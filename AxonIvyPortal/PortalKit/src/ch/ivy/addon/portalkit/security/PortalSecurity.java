@@ -19,6 +19,7 @@ import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.server.restricted.EngineMode;
 
+@SuppressWarnings("restriction")
 public enum PortalSecurity {
   INSTANCE;
 

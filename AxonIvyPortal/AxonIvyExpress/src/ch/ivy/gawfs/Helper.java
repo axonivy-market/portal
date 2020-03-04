@@ -1,7 +1,5 @@
 package ch.ivy.gawfs;
 
-import gawfs.TaskDef;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,6 +10,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
+import gawfs.TaskDef;
 
 public class Helper {
 

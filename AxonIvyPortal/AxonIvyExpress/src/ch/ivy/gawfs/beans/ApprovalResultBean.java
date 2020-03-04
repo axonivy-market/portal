@@ -1,7 +1,5 @@
 package ch.ivy.gawfs.beans;
 
-import gawfs.ApprovalTaskResult;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +7,8 @@ import java.util.stream.Collectors;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+
+import gawfs.ApprovalTaskResult;
 
 @ManagedBean
 @ViewScoped
