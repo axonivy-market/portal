@@ -2,16 +2,9 @@ package portal.guitest.page;
 
 import static org.junit.Assert.assertTrue;
 
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
 
 import com.jayway.awaitility.Awaitility;
