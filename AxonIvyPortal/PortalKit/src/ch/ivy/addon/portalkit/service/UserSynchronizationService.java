@@ -68,7 +68,7 @@ public class UserSynchronizationService {
       List<User> usersLoadedFromDB = userService.findByUserName(username); // cache & find
       if (!isUserExistedInCurrentApp(usersLoadedFromDB)) {
         userService.save(user);
-        List<User> users = new ArrayList<>(DataCache.getAllUsersFromCache());
+        List<User> users = new ArrayList<>(CollectionUtils.emptyIfNull(DataCache.getAllUsersFromCache()));
         users.add(user);
         Repo<Long, User> repo = userDao.buildRepoIndexedByUserName(users);
         refreshUserAppCache(applicationName, users, repo);
@@ -77,7 +77,6 @@ public class UserSynchronizationService {
       Ivy.log().info("User found in cache. Name: {0}, fullname: {1}", Ivy.session().getSessionUserName(), Ivy.session().getSessionUser().getDisplayName()); 
     }
   }
-
   private static boolean isUserExistedInCurrentApp(List<User> usersCheck) {
     return CollectionUtils
         .emptyIfNull(usersCheck)
