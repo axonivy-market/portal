@@ -143,7 +143,7 @@
         <span class="stage-title"><i class="#{stage.icon.cssClass eq '' ? 'fa fa-square' : stage.icon.cssClass}" /><br /> <span
           class="stage-name">#{stage.name}</span></span>
       </h:panelGroup>
-      <p:tooltip for="stage-info-#{counter.index}" value="#{stage.name}" trackMouse="true" />
+      <p:tooltip for="stage-info-#{counter.index}" value="#{stage.name}" trackMouse="true" hideEvent="mouseleave click"/>
       <c:if test="#{cc.attrs.stages.size() gt counter.index+1}">
         <div class="process-flow">
           <div class="flow-txt">
