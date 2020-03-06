@@ -8,15 +8,12 @@ import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class TaskResponsibleFilter extends TaskFilter {
-  @JsonIgnore
-  private List<SecurityMemberDTO> responsibles;
   @JsonIgnore
   private SecurityMemberDTO selectedResponsible;
   private String selectedResponsibleMemberName;
@@ -28,17 +25,22 @@ public class TaskResponsibleFilter extends TaskFilter {
 
   @Override
   public String value() {
-    if (getSelectedResponsibleMemberName() == null) {
+    if (StringUtils.isEmpty(selectedResponsibleMemberName)) {
+      setSelectedResponsible(null);
       return ALL;
+    } else {
+      findSelectedResponsible();
     }
     return String.format(DOUBLE_QUOTES, formatName(selectedResponsible));
   }
 
-  private List<SecurityMemberDTO> getResponsibles() {
+  private SecurityMemberDTO getResponsibles(String memberName) {
+    String queryParam = memberName.replaceFirst("#", "").trim();
+    List<SecurityMemberDTO> responsibles = SecurityMemberUtils.findSecurityMembers(queryParam, 0, 1);
     if (CollectionUtils.isEmpty(responsibles)) {
-      responsibles = SecurityMemberUtils.findSecurityMembers(StringUtils.EMPTY, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
+      return null;
     }
-    return responsibles;
+    return responsibles.get(0);
   }
 
   @Override
@@ -63,10 +65,15 @@ public class TaskResponsibleFilter extends TaskFilter {
   }
 
   public String formatName(SecurityMemberDTO responsible) {
-    if (StringUtils.isBlank(responsible.getDisplayName())) {
-      return responsible.getName();
+    String responsibleName = ALL;
+    if (responsible != null) {
+      if (StringUtils.isBlank(responsible.getDisplayName())) {
+        responsibleName = responsible.getName();
+      } else {
+        responsibleName = responsible.getDisplayName() + " (" + responsible.getName() + ")";
+      }
     }
-    return responsible.getDisplayName() + " (" + responsible.getName() + ")";
+    return responsibleName;
   }
 
   public SecurityMemberDTO getSelectedResponsible() {
@@ -81,17 +88,14 @@ public class TaskResponsibleFilter extends TaskFilter {
   /**
    * Checks selectedResponsibleMemberName which is saved on BusinessData
    * then find correspond SecurityMemberDTO of selectedResponsibleMemberName
-   * @return Member name of SecurityMemberDTO
    */
-  public String getSelectedResponsibleMemberName() {
-    if (StringUtils.isEmpty(selectedResponsibleMemberName)) {
-      setSelectedResponsible(null);
-      return null;
-    } else if (selectedResponsible == null || !StringUtils.equals(selectedResponsibleMemberName, selectedResponsible.getMemberName())) {
-      setSelectedResponsible(getResponsibles().stream()
-          .filter(securityMember -> StringUtils.equals(securityMember.getMemberName(), selectedResponsibleMemberName))
-          .findFirst().orElse(null));
+  public void findSelectedResponsible() {
+    if (selectedResponsible == null || !StringUtils.equals(selectedResponsibleMemberName, selectedResponsible.getMemberName())) {
+      setSelectedResponsible(getResponsibles(selectedResponsibleMemberName));
     }
+  }
+
+  public String getSelectedResponsibleMemberName() {
     return selectedResponsibleMemberName;
   }
 
