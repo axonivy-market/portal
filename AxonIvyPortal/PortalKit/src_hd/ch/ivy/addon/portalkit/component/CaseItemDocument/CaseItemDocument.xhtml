@@ -51,7 +51,7 @@
                 rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and caseActionBean.canWriteDocument(case)}"
                 styleClass="fa fa-times Fright case-document-download"
                 oncomplete="PF('document-deletion-dialog-#{case.id}').show()">
-                <p:tooltip for="delete-file"
+                <p:tooltip for="delete-file" trackMouse="true" hideEvent="mouseleave click"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/deleteFile')} #{document.name}" />
               </p:commandLink>
             </h:panelGroup>
