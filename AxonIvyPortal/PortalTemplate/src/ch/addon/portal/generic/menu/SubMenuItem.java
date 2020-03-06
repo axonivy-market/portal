@@ -11,6 +11,7 @@ public class SubMenuItem {
   protected String link;
   protected String icon;
   protected String label;
+  @Deprecated
   protected List<String> views; 
   
   public SubMenuItem() {
@@ -53,10 +54,12 @@ public class SubMenuItem {
     return correctProcessLink(link);
   }
 
+  @Deprecated
   public List<String> getViews() {
     return views;
   }
 
+  @Deprecated
   public void setViews(List<String> views) {
     this.views = views;
   }
