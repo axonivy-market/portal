@@ -987,7 +987,8 @@ As0 f27 59 427 26 26 -25 15 #rect
 As0 f27 @|UdMethodIcon #fIcon
 As0 f28 actionTable 'out=in;
 ' #txt
-As0 f28 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+As0 f28 actionCode 'import org.apache.commons.lang.StringUtils;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import org.apache.commons.collections4.CollectionUtils;
 
@@ -997,8 +998,8 @@ in.applications = service.findActiveIvyAppsUserCanWork(ivy.session.getSessionUse
 if (CollectionUtils.isNotEmpty(in.applications)) {
 	String appName = in.applications.get(0).name;
 	in.application = ServiceUtilities.findApp(appName);
-}
-' #txt
+	in.tabIndex = 0;
+}' #txt
 As0 f28 security system #txt
 As0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
