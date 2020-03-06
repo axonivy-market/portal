@@ -39,3 +39,5 @@ isCreateMode Boolean #field
 isCreateMode PERSISTENT #fieldModifier
 tabChangeEvent org.primefaces.event.TabChangeEvent #field
 tabChangeEvent PERSISTENT #fieldModifier
+tabIndex Number #field
+tabIndex PERSISTENT #fieldModifier
