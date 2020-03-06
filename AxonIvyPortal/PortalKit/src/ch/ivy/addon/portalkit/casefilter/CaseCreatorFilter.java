@@ -24,8 +24,11 @@ public class CaseCreatorFilter extends CaseFilter {
 
   @Override
   public String value() {
-    if (getSelectedCreatorMemberName() == null) {
+    if (StringUtils.isEmpty(selectedCreatorMemberName)) {
+      setSelectedCreator(null);
       return ALL;
+    } else {
+      findCreator(selectedCreatorMemberName);
     }
     return String.format(DOUBLE_QUOTES, formatName(selectedCreator));
   }
@@ -61,19 +64,19 @@ public class CaseCreatorFilter extends CaseFilter {
     this.selectedCreatorMemberName = Optional.ofNullable(selectedCreator).map(UserDTO::getName).orElse(StringUtils.EMPTY);
   }
 
+  public String getSelectedCreatorMemberName() {
+    return selectedCreatorMemberName;
+  }
+
   /**
    * Check selectedCreatorMemberName which is saved on BusinessData
    * Then find correspond UserDTO of selectedCreatorMemberName
-   * @return Member name of UserDTO
+   * @param memberName is selectedCreatorMemberName
    */
-  public String getSelectedCreatorMemberName() {
-    if (StringUtils.isEmpty(selectedCreatorMemberName)) {
-      setSelectedCreator(null);
-      return null;
-    } else if (selectedCreator == null || !StringUtils.equals(selectedCreatorMemberName, selectedCreator.getName())) {
-      setSelectedCreator(ServiceUtilities.findUserDTO(selectedCreatorMemberName, Ivy.wf().getApplication()));
+  private void findCreator(String memberName) {
+    if (selectedCreator == null || !StringUtils.equals(memberName, selectedCreator.getName())) {
+      setSelectedCreator(ServiceUtilities.findUserDTO(memberName.replaceFirst("#", ""), Ivy.wf().getApplication()));
     }
-    return selectedCreatorMemberName;
   }
 
   public void setSelectedCreatorMemberName(String selectedCreatorMemberName) {
