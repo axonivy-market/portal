@@ -15,12 +15,12 @@ Cs0 @UdInit f0 '' #zField
 Cs0 @UdProcessEnd f1 '' #zField
 Cs0 @PushWFArc f2 '' #zField
 Cs0 @UdProcessEnd f4 '' #zField
-Cs0 @CallSub f6 '' #zField
-Cs0 @PushWFArc f5 '' #zField
 Cs0 @GridStep f8 '' #zField
-Cs0 @PushWFArc f7 '' #zField
 Cs0 @UdMethod f3 '' #zField
 Cs0 @PushWFArc f9 '' #zField
+Cs0 @GridStep f31 '' #zField
+Cs0 @PushWFArc f5 '' #zField
+Cs0 @PushWFArc f6 '' #zField
 >Proto Cs0 Cs0 GlobalSearchProcess #zField
 Cs0 f0 guid 163AFD8B43132CEB #txt
 Cs0 f0 method start() #txt
@@ -41,27 +41,6 @@ Cs0 f2 expr out #txt
 Cs0 f2 77 96 307 96 #arcP
 Cs0 f4 571 211 26 26 0 12 #rect
 Cs0 f4 @|UdProcessEndIcon #fIcon
-Cs0 f6 processCall 'Functional Processes/OpenPortalSearch:call(String)' #txt
-Cs0 f6 requestActionDecl '<String keyword> param;' #txt
-Cs0 f6 requestMappingAction 'param.keyword=in.keyword;
-' #txt
-Cs0 f6 responseActionDecl 'ch.ivy.addon.portal.generic.GlobalSearch.GlobalSearchData out;
-' #txt
-Cs0 f6 responseMappingAction 'out=in;
-' #txt
-Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>OpenPortalSearch</name>
-        <nameStyle>16,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f6 400 202 112 44 -50 -8 #rect
-Cs0 f6 @|CallSubIcon #fIcon
-Cs0 f5 expr out #txt
-Cs0 f5 512 224 571 224 #arcP
 Cs0 f8 actionTable 'out=in;
 ' #txt
 Cs0 f8 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -94,7 +73,6 @@ finish or leave task</name>
 ' #txt
 Cs0 f8 144 202 144 44 -54 -16 #rect
 Cs0 f8 @|StepIcon #fIcon
-Cs0 f7 288 224 400 224 #arcP
 Cs0 f3 guid 16FA88E321FFCEB1 #txt
 Cs0 f3 method search(Boolean) #txt
 Cs0 f3 inParameterDecl '<Boolean isWorkingOnTask> param;' #txt
@@ -111,15 +89,32 @@ Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f3 51 211 26 26 -25 15 #rect
 Cs0 f3 @|UdMethodIcon #fIcon
 Cs0 f9 77 224 144 224 #arcP
+Cs0 f31 actionTable 'out=in;
+' #txt
+Cs0 f31 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+
+PortalNavigator navigator = new PortalNavigator();
+navigator.navigateToPortalGlobalSearch(in.keyword);' #txt
+Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Navigate to task details</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f31 352 202 128 44 -59 -8 #rect
+Cs0 f31 @|StepIcon #fIcon
+Cs0 f5 288 224 352 224 #arcP
+Cs0 f6 480 224 571 224 #arcP
 >Proto Cs0 .type ch.ivy.addon.portal.generic.GlobalSearch.GlobalSearchData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
 >Proto Cs0 '' #fIcon
 Cs0 f0 mainOut f2 tail #connect
 Cs0 f2 head f1 mainIn #connect
-Cs0 f6 mainOut f5 tail #connect
-Cs0 f5 head f4 mainIn #connect
-Cs0 f8 mainOut f7 tail #connect
-Cs0 f7 head f6 mainIn #connect
 Cs0 f3 mainOut f9 tail #connect
 Cs0 f9 head f8 mainIn #connect
+Cs0 f8 mainOut f5 tail #connect
+Cs0 f5 head f31 mainIn #connect
+Cs0 f31 mainOut f6 tail #connect
+Cs0 f6 head f4 mainIn #connect
