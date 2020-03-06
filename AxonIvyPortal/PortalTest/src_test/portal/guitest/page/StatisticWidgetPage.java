@@ -87,7 +87,7 @@ public class StatisticWidgetPage extends TemplatePage {
         findElementByCssSelector(String.format("div[id$='%d:chart-name-container'] #chart-name", chartIndex));
     Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> {
       try {
-        return chartName.getText().contains("My default");
+        return chartName.getText().length()>1;
       } catch (WebDriverException e) {
         System.out.println("Exception when waiting for element existed, try again.");
         e.printStackTrace();
