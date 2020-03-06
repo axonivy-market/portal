@@ -7,6 +7,7 @@ import org.apache.commons.lang.StringUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.dto.UserDTO;
+import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
@@ -23,8 +24,11 @@ public class TaskWorkerFilter extends TaskFilter {
 
   @Override
   public String value() {
-    if (getSelectedWorkerMemberName() == null) {
+    if (StringUtils.isEmpty(selectedWorkerMemberName)) {
+      setSelectedWorker(null);
       return ALL;
+    } else {
+      findWorker(selectedWorkerMemberName);
     }
     return String.format(DOUBLE_QUOTES, formatName(selectedWorker));
   }
@@ -50,7 +54,7 @@ public class TaskWorkerFilter extends TaskFilter {
     }
     return worker.getDisplayName() + " (" + worker.getName() + ")";
   }
-
+  
   public UserDTO getSelectedWorker() {
     return selectedWorker;
   }
@@ -62,6 +66,17 @@ public class TaskWorkerFilter extends TaskFilter {
 
   public String getSelectedWorkerMemberName() {
     return selectedWorkerMemberName;
+  }
+
+  /**
+   * Check selectedWorkerMemberName which is saved on BusinessData
+   * Then find correspond UserDTO of selectedWorkerMemberName.
+   * @param memberName is selectedWorkerMemberName
+   */
+  private void findWorker(String memberName) {
+    if (selectedWorker == null || !StringUtils.equals(selectedWorkerMemberName, selectedWorker.getMemberName())) {
+      setSelectedWorker(ServiceUtilities.findUserDTO(memberName.replaceFirst("#", ""), Ivy.wf().getApplication()));
+    }
   }
 
   public void setSelectedWorkerMemberName(String selectedWorkerMemberName) {

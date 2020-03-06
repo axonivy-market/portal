@@ -39,7 +39,7 @@
           onclick="updateSelectedIConDisplay('#{icon.iconCode}');PF('select-icon-dialog').hide();return false;">
           <span class="fa #{icon.iconCode} fa-lg" />
         </h:link>
-        <p:tooltip for="awesome-icon" value="#{icon.iconCode}" trackMouse="true"></p:tooltip>
+        <p:tooltip for="awesome-icon" value="#{icon.iconCode}" trackMouse="true" hideEvent="mouseleave click"/>
       </ui:repeat>
     </h:form>
   </p:dialog>
