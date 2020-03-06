@@ -82,62 +82,57 @@ Ls0 f2 96 270 96 361 #arcP
 Ls0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>TO REMOVE A DEFAULT SUB MENU ITEM:
-Remove  one of these lines:
-in.subMenuItems.add(new ProcessSubMenuItem());
-in.subMenuItems.add(new TaskSubMenuItem());
-in.subMenuItems.add(new CaseSubMenuItem());
-in.subMenuItems.add(new DashboardSubMenuItem());
-
-PERMISSION CHECK TO SEE SUB MENU ITEM
-In PermissionUtils we provide some methods to check permission to see sub menu item
-- checkAccessFullProcessListPermission() for Process list sub menu item
-- checkAccessFullTaskListPermission() for Task list sub menu item
-- checkAccessFullCaseListPermission() for Case list sub menu item
-- checkAccessFullStatisticsListPermission() for Statistics sub menu item
-
-
-TO CREATE A SUB MENU ITEM:
-
-SubMenuItem subMenuItem = new SubMenuItem();
-subMenuItem.setMenuKind(MenuKind.CUSTOM);
-subMenuItem.setIcon(&lt;SUB_MENU_ICON&gt;);
-subMenuItem.setLabel(&lt;SUB_MENU_LABEL&gt;);
-subMenuItem.setLink(&lt;SUB_MENU_LINK&gt;);
-
-//add file names of pages where the menu item will be highlighted e.g selfService.getViews().add("PortalHome.xhtml")
-selfService.getViews().add(&lt;PAGE_TO_BE_HIGHLIGHT&gt;);
-
-in.subMenuItems.add(subMenuItem);
-
-OUT: subMenuItems: List&lt;SubMenuItem&gt;
-
-HINT: how to build a menu link
-Axon.Ivy link
-- Absolute path: ivy.html.startref(...)
-- Relative path: RequestUriFactory.createProcessStartUri(...)
-External link: 
-- www.yourexternallink.com
-- http://www.yourexternallink.com&#xD;
-&#xD;
-NOTE:&#xD;
-If you want to hide Statistic widget, please copy these line of code into your overrided process&#xD;
-&#xD;
-GlobalSettingService globalSettingService = new GlobalSettingService();&#xD;
-String isHideStatisticStr = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET.toString());&#xD;
-boolean isHideStatistic = StringUtils.isNotBlank(isHideStatisticStr) ? Boolean.parseBoolean(isHideStatisticStr) : false;&#xD;
-if (!isHideStatistic) {&#xD;
-  in.subMenuItems.add(new DashboardSubMenuItem());&#xD;
+        <name>TO REMOVE A DEFAULT SUB MENU ITEM:&#13;
+Remove  one of these lines:&#13;
+in.subMenuItems.add(new ProcessSubMenuItem());&#13;
+in.subMenuItems.add(new TaskSubMenuItem());&#13;
+in.subMenuItems.add(new CaseSubMenuItem());&#13;
+in.subMenuItems.add(new DashboardSubMenuItem());&#13;
+&#13;
+PERMISSION CHECK TO SEE SUB MENU ITEM&#13;
+In PermissionUtils we provide some methods to check permission to see sub menu item&#13;
+- checkAccessFullProcessListPermission() for Process list sub menu item&#13;
+- checkAccessFullTaskListPermission() for Task list sub menu item&#13;
+- checkAccessFullCaseListPermission() for Case list sub menu item&#13;
+- checkAccessFullStatisticsListPermission() for Statistics sub menu item&#13;
+&#13;
+&#13;
+TO CREATE A SUB MENU ITEM:&#13;
+&#13;
+SubMenuItem subMenuItem = new SubMenuItem();&#13;
+subMenuItem.setMenuKind(MenuKind.CUSTOM);&#13;
+subMenuItem.setIcon(&lt;SUB_MENU_ICON&gt;);&#13;
+subMenuItem.setLabel(&lt;SUB_MENU_LABEL&gt;);&#13;
+subMenuItem.setLink(&lt;SUB_MENU_LINK&gt;);&#13;
+&#13;
+in.subMenuItems.add(subMenuItem);&#13;
+&#13;
+OUT: subMenuItems: List&lt;SubMenuItem&gt;&#13;
+&#13;
+HINT: how to build a menu link&#13;
+Axon.Ivy link&#13;
+- Absolute path: ivy.html.startref(...)&#13;
+- Relative path: RequestUriFactory.createProcessStartUri(...)&#13;
+External link: &#13;
+- www.yourexternallink.com&#13;
+- http://www.yourexternallink.com&#13;
+&#13;
+NOTE:&#13;
+If you want to hide Statistic widget, please copy these line of code into your overrided process&#13;
+&#13;
+GlobalSettingService globalSettingService = new GlobalSettingService();&#13;
+String isHideStatisticStr = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET.toString());&#13;
+boolean isHideStatistic = StringUtils.isNotBlank(isHideStatisticStr) ? Boolean.parseBoolean(isHideStatisticStr) : false;&#13;
+if (!isHideStatistic) {&#13;
+  in.subMenuItems.add(new DashboardSubMenuItem());&#13;
 }</name>
-        <nameStyle>1854,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ls0 f5 280 10 688 764 -339 -376 #rect
+Ls0 f5 296 34 656 716 -323 -352 #rect
 Ls0 f5 @|IBIcon #fIcon
-Ls0 f6 280 392 152 248 #arcP
-Ls0 f6 1 280 248 #addKink
+Ls0 f6 296 392 152 248 #arcP
+Ls0 f6 1 296 248 #addKink
 Ls0 f6 1 0.22725934349270996 0 0 #arcLabel
 >Proto Ls0 .type ch.ivy.addon.portal.generic.LoadSubMenuItemsData #txt
 >Proto Ls0 .processKind CALLABLE_SUB #txt
