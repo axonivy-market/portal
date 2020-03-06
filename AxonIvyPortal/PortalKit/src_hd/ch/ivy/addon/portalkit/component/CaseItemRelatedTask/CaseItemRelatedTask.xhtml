@@ -87,7 +87,7 @@
               <f:attribute name="isWorkingOnTask" value="#{cc.attrs.isWorkingOnTask}" />
             </p:commandLink>
           </h:panelGroup>
-          <p:tooltip for="technicalCase" hideEvent="mouseleave click"
+          <p:tooltip for="technicalCase"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/technicalCase')}: ##{technicalCase.id} #{technicalCase.name} (#{caseBean.getState(technicalCase).toUpperCase()})"
             trackMouse="true" hideEvent="mouseleave click"/>
         </p:dataScroller>
