@@ -32,14 +32,9 @@
           <h:panelGroup id="case-widget-title">
             <f:event listener="#{logic.preRenderTitle()}" type="preRenderComponent" />
             <span class="case-widget-top-header-main-title">
-              <h:panelGroup rendered="#{!data.dataModel.criteria.technicalCase}">
-                #{cc.attrs.title} <h:outputText value="(#{data.dataModel.rowCount})" rendered="#{!data.dataModel.disableCaseCount}" />
-              </h:panelGroup>
-              <h:panelGroup rendered="#{data.dataModel.criteria.technicalCase}">
-                <span class="u-hidden-sm-down">#{cc.attrs.title} </span>
-                <span class="u-hidden-md-up">#{cc.attrs.titleOnMobile} </span>
-                <h:outputText value="(#{data.dataModel.rowCount})" rendered="#{!data.dataModel.disableCaseCount}" />
-              </h:panelGroup>
+              <span class="#{empty cc.attrs.titleOnMobile ? '':'u-hidden-sm-down'} u-padding-right-5">#{cc.attrs.title}</span>
+              <span class="#{empty cc.attrs.titleOnMobile ? 'u-display-none':'u-hidden-md-up'} u-padding-right-5">#{cc.attrs.titleOnMobile}</span>
+              <h:outputText value="(#{data.dataModel.rowCount})" rendered="#{!data.dataModel.disableCaseCount}" />
             </span>
           </h:panelGroup>
         </div>
