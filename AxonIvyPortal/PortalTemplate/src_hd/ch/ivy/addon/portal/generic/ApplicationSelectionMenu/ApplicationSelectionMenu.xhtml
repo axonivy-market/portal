@@ -74,7 +74,7 @@
                   <c:set var="firstSubItem" value="#{subMenuItemStatus.index == 0 ? 'first-sub-item':''}" />
                   <c:set var="lastSubItem" value="#{subMenuItemStatus.index == subMenuItemNumber ? 'last-sub-item':''}" />
                   <c:set var="isIvyLink"
-                    value="#{(fn:contains(process.link, '.ivp?') or fn:endsWith(subMenuItem.link, '.ivp') or fn:endsWith(subMenuItem.link, '.icm')) or subMenuItem.link eq NULL}" />
+                    value="#{(fn:contains(subMenuItem.link, '.ivp?') or fn:endsWith(subMenuItem.link, '.ivp') or fn:endsWith(subMenuItem.link, '.icm')) or subMenuItem.link eq NULL}" />
 
                   <p:menuitem id="menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}" 
                     rendered="#{isThirdPartyApp and isIvyLink}" actionListener="#{logic.onClickSubMenuItem}" value="#{subMenuItem.label}"

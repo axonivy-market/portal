@@ -146,6 +146,11 @@ In engine
    project.
 4. Follow detailed migration notes for each version below.
 
+Migrate 8.x to 9.1
+----------------------
+
+1. Removed the ``views`` field in SubMenuItem.java. Adapt it if you overrode the ``LoadSubMenuItems`` callable process
+
 Migrate 8.0.1 to 8.0.2
 ----------------------
 
