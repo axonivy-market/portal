@@ -47,7 +47,7 @@
       rendered="#{case.state eq 'CREATED' or case.state eq 'RUNNING'}" />
     <h:panelGroup styleClass="fa fa-check-circle case-state-done" rendered="#{case.state eq 'DONE'}" />
   </h:panelGroup>
-  <p:tooltip for="case-state-cell" value="#{caseBean.getState(case)}" />
+  <p:tooltip for="case-state-cell" value="#{caseBean.getState(case)}" trackMouse="true" hideEvent="mouseleave click"/>
 
 </cc:implementation>
 </html>

@@ -97,7 +97,8 @@
     <ic:ch.ivy.gawfs.component.ApprovalResult id="approval-result-component" approvalResults="#{wfTask.approvalResultList}"
       rendered="#{not empty wfTask.approvalResultList}" lastApprovalCollapsed="#{!status.last}" />
 
-    <p:tooltip id="finished-task-fieldset-tooltip" value="#{wfTask.subject}" for="finished-task-fieldset-legend" trackMouse="true" />
+    <p:tooltip id="finished-task-fieldset-tooltip" value="#{wfTask.subject}" for="finished-task-fieldset-legend" trackMouse="true" 
+      hideEvent="mouseleave click"/>
   </ui:repeat>
 </cc:implementation>
 </html>

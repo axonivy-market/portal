@@ -65,7 +65,8 @@
             <p:commandLink id="attachment-note" global="false">
               <i class="fa fa-question-circle" />
             </p:commandLink>
-            <p:tooltip for="attachment-note" value="#{masterDataBean.getFileUploadInvalidSizeMessage()}" trackMouse="true" />
+            <p:tooltip for="attachment-note" value="#{masterDataBean.getFileUploadInvalidSizeMessage()}" trackMouse="true" 
+              hideEvent="mouseleave click"/>
           </p:outputLabel>
 
           <div class="ui-g-8 ui-sm-6 u-padding-0">
