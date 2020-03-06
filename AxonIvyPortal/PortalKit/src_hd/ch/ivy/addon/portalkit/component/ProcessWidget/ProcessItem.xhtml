@@ -17,7 +17,7 @@
 	<div class="process-start-list-item-name #{isExpress ? 'is-express' : ''} #{isExternalLink ? 'is-external-link' : ''}" >
 		<h:outputText id="process-name" value="#{process.name}"
 			styleClass="process-start-list-item-name-text u-truncate-text js-process-start-list-item-name" />
-		<p:tooltip for="process-name" value="#{process.name}" />
+		<p:tooltip for="process-name" value="#{process.name}" trackMouse="true" hideEvent="mouseleave click"/>
 	</div>
 	<div class="process-item-action-container">
 		<h:panelGroup
@@ -27,7 +27,7 @@
 			<p:tooltip id="express-process-logo-tooltip"
 				for="express-process-logo"
 				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expressWorkflow')}"
-				position="top" />
+				position="top" trackMouse="true" hideEvent="mouseleave click"/>
 			<ui:fragment rendered="#{process.getProcess().ableToEdit}">
 				<ui:include src="ProcessItemExpressActions.xhtml">
 					<ui:param name="processType" value="process" />
@@ -41,7 +41,7 @@
 			<p:tooltip id="external-link-icon-tooltip"
 				for="external-link-icon"
 				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/externalLink')}"
-				position="top" />
+				position="top" trackMouse="true" hideEvent="mouseleave click"/>
 			<p:commandLink id="delete-external-link"
 				styleClass="fa fa-trash process-item"
 				actionListener="#{processWidgetBean.setDeletedExternalLink(process)}"
@@ -49,7 +49,7 @@
 				update=":#{p:component('remove-external-link-dialog')}" 
 				rendered="#{process.getProcess().ableToEdit}" />
 			<p:tooltip id="delete-external-link-tooltip"
-				for="delete-external-link" position="top" 
+				for="delete-external-link" position="top" trackMouse="true" hideEvent="mouseleave click"
 				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteExternalLinkTooltip')}"
 				rendered="#{process.getProcess().ableToEdit}"/>
 		</h:panelGroup> 
@@ -58,7 +58,7 @@
 			<h:outputText id="info-workflow"
 				styleClass="fa fa-info-circle process-description process-item" />
 			<p:tooltip id="info-workflow-tooltip" for="info-workflow"
-				value="#{process.description}" position="top"
+				value="#{process.description}" position="top" trackMouse="true" hideEvent="mouseleave click"
 				styleClass="js-process-start-list-item-description" />
 		</h:panelGroup>
 		<span id="open-process-start" class="tmi-chevorn-right open-icon" />
