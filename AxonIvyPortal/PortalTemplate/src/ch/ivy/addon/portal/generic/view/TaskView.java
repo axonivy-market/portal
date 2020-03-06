@@ -10,6 +10,8 @@ public class TaskView {
   public static class Builder {
 
     private String pageTitle = StringUtils.EMPTY;
+    // The titleOnMobile is a short title using for mobile screen
+    private String titleOnMobile = StringUtils.EMPTY;
     private TaskLazyDataModel dataModel;
     private boolean canLinkBackCaseDetail = Boolean.FALSE;
     private String caseName = StringUtils.EMPTY;
@@ -20,6 +22,11 @@ public class TaskView {
 
     public Builder pageTitle(String pageTitle) {
       this.pageTitle = pageTitle;
+      return this;
+    }
+
+    public Builder withTitleOnMobile(String titleOnMobile) {
+      this.titleOnMobile = titleOnMobile;
       return this;
     }
 
@@ -64,6 +71,8 @@ public class TaskView {
   }
 
   private final String pageTitle;
+  // The titleOnMobile is a short title using for mobile screen
+  private String titleOnMobile = StringUtils.EMPTY;
   private TaskLazyDataModel dataModel;
   private final String caseName;
   private final boolean canLinkBackCaseDetail;
@@ -74,6 +83,7 @@ public class TaskView {
 
   private TaskView(Builder builder) {
     pageTitle = builder.pageTitle;
+    titleOnMobile = builder.titleOnMobile;
     dataModel = builder.dataModel;
     canLinkBackCaseDetail = builder.canLinkBackCaseDetail;
     caseName = builder.caseName;
@@ -93,6 +103,14 @@ public class TaskView {
 
   public String getPageTitle() {
     return pageTitle;
+  }
+
+  public String getTitleOnMobile() {
+    return titleOnMobile;
+  }
+
+  public void setTitleOnMobile(String titleOnMobile) {
+    this.titleOnMobile = titleOnMobile;
   }
 
   public TaskLazyDataModel getDataModel() {
