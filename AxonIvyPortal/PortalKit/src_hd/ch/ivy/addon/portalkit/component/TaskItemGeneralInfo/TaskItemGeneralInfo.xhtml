@@ -223,13 +223,13 @@
   <ic:ch.ivy.addon.portalkit.component.TaskItemDescription id="task-detail-description" task="#{task}" />
   </div>
 
-  <p:tooltip for="task-category" value="#{task.categoryPath}" trackMouse="true" />
-  <p:tooltip for="case-category" value="#{task.getCase().getBusinessCase().categoryPath}" trackMouse="true" />
+  <p:tooltip for="task-category" value="#{task.categoryPath}" trackMouse="true" hideEvent="mouseleave click"/>
+  <p:tooltip for="case-category" value="#{task.getCase().getBusinessCase().categoryPath}" trackMouse="true" hideEvent="mouseleave click"/>
   <p:tooltip for="related-case"
     value="##{task.getCase().getBusinessCase().id} #{task.getCase().getBusinessCase().name} (#{caseBean.getState(task.getCase().getBusinessCase()).toUpperCase()})"
-    trackMouse="true" />
-  <p:tooltip for="related-technical-case" value="##{task.getCase().id} #{task.getCase().name} (#{caseBean.getState(task.getCase()).toUpperCase()})" trackMouse="true" />
-  <p:tooltip for="no-expiry-available expiry-task-time" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/taskExpiryDisable')}" trackMouse="true"
+    trackMouse="true" hideEvent="mouseleave click"/>
+  <p:tooltip for="related-technical-case" value="##{task.getCase().id} #{task.getCase().name} (#{caseBean.getState(task.getCase()).toUpperCase()})" trackMouse="true" hideEvent="mouseleave click"/>
+  <p:tooltip for="no-expiry-available expiry-task-time" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/taskExpiryDisable')}" trackMouse="true" hideEvent="mouseleave click"
     rendered="#{taskBean.isNotDone(task) and taskActionBean.notHaveExpiryHandleLogic(task)}" />
 
 </cc:implementation>
