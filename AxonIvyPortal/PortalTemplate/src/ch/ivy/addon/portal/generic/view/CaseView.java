@@ -1,5 +1,7 @@
 package ch.ivy.addon.portal.generic.view;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portalkit.dto.GlobalCaseId;
 
@@ -8,11 +10,11 @@ public class CaseView {
   public static class Builder {
 
     private CaseLazyDataModel dataModel;
-    private String keyword = "";
+    private String keyword = StringUtils.EMPTY;
     private GlobalCaseId autoSelectCaseId = GlobalCaseId.createDefaultInstance();
-    private String title = "";
+    private String title = StringUtils.EMPTY;
     // The titleOnMobile is a short title using for mobile screen
-    private String titleOnMobile = "";
+    private String titleOnMobile = StringUtils.EMPTY;
     private boolean hideCaseFilter = false;
 
     public Builder dataModel(CaseLazyDataModel dataModel) {
@@ -55,8 +57,8 @@ public class CaseView {
   private final GlobalCaseId autoSelectCaseId;
   private final String title;
   // The titleOnMobile is a short title using for mobile screen
-  private String titleOnMobile = "";
-  private String caseName = "";
+  private String titleOnMobile = StringUtils.EMPTY;
+  private String caseName = StringUtils.EMPTY;
   private boolean hideCaseFilter = false;
 
   public CaseView(Builder builder) {
