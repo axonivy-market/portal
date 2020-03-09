@@ -31,7 +31,7 @@
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
             <f:attribute name="isWorkingOnTask" value="#{cc.attrs.isWorkingOnTask}" />
           </p:commandLink>
-          <p:tooltip for="more-related-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTasks')}" trackMouse="true" />
+          <p:tooltip for="more-related-tasks" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTasks')}" trackMouse="true" hideEvent="mouseleave click"/>
         </h:panelGroup>
       </h:panelGroup>
 
@@ -48,7 +48,7 @@
               <f:attribute name="isWorkingOnTask" value="#{cc.attrs.isWorkingOnTask}" />
             </p:commandLink>
           </h:panelGroup>
-          <p:tooltip for="task" value="#{taskBean.displayRelatedTaskToolTip(task)}" trackMouse="true" />
+          <p:tooltip for="task" value="#{taskBean.displayRelatedTaskToolTip(task)}" trackMouse="true" hideEvent="mouseleave click"/>
         </p:dataScroller>
 
         <h:outputText rendered="#{empty data.relatedTasks}" styleClass="ui-g-12 no-running-task-case"
@@ -71,7 +71,8 @@
             <f:attribute name="isWorkingOnTask" value="#{cc.attrs.isWorkingOnTask}" />
           </p:commandLink>
         </h:panelGroup>
-        <p:tooltip for="more-related-cases" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTechnicalCases')}" trackMouse="true" />
+        <p:tooltip for="more-related-cases" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTechnicalCases')}" trackMouse="true" 
+          hideEvent="mouseleave click"/>
       </h:panelGroup>
 
       <div class="ui-g-12 u-padding-0">
@@ -88,7 +89,7 @@
           </h:panelGroup>
           <p:tooltip for="technicalCase"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/technicalCase')}: ##{technicalCase.id} #{technicalCase.name} (#{caseBean.getState(technicalCase).toUpperCase()})"
-            trackMouse="true" />
+            trackMouse="true" hideEvent="mouseleave click"/>
         </p:dataScroller>
       </div>
     </div>
