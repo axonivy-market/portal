@@ -32,7 +32,7 @@
         styleClass="fa fa-cog task-state-system #{cc.attrs.stateIconStyleClass}" />
     </h:panelGroup>
   </h:panelGroup>
-  <p:tooltip id="state-tooltip" for="#{cc.attrs.componentId}"
+  <p:tooltip id="state-tooltip" for="#{cc.attrs.componentId}" hideEvent="mouseleave click"
     value="#{taskBean.getUserFriendlyTaskState(state)} (#{taskBean.getTranslatedState(state)})" styleClass="#{cc.attrs.stateTooltipStyleClass}" trackMouse="true" />
 </cc:implementation>
 </html>

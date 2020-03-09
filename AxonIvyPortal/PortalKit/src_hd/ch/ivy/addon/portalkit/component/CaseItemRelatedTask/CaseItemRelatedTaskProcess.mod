@@ -39,10 +39,8 @@ Cs0 @SJArc f21 '' #zField
 Cs0 @CallSub f31 '' #zField
 Cs0 @UdEvent f30 '' #zField
 Cs0 @GridStep f11 '' #zField
-Cs0 @PushWFArc f2 '' #zField
 Cs0 @PushWFArc f16 '' #zField
 Cs0 @GridStep f33 '' #zField
-Cs0 @PushWFArc f32 '' #zField
 Cs0 @PushWFArc f34 '' #zField
 Cs0 @GridStep f35 '' #zField
 Cs0 @PushWFArc f27 '' #zField
@@ -50,6 +48,8 @@ Cs0 @PushWFArc f36 '' #zField
 Cs0 @GridStep f37 '' #zField
 Cs0 @PushWFArc f24 '' #zField
 Cs0 @PushWFArc f38 '' #zField
+Cs0 @PushWFArc f32 '' #zField
+Cs0 @PushWFArc f2 '' #zField
 >Proto Cs0 Cs0 CaseItemRelatedTaskProcess #zField
 Cs0 f0 guid 167E9A75EF3D0909 #txt
 Cs0 f0 method start() #txt
@@ -400,7 +400,6 @@ finish or leave task</name>
 ' #txt
 Cs0 f11 176 362 144 44 -54 -16 #rect
 Cs0 f11 @|StepIcon #fIcon
-Cs0 f2 109 384 176 384 #arcP
 Cs0 f16 320 384 384 384 #arcP
 Cs0 f33 actionTable 'out=in;
 ' #txt
@@ -434,7 +433,6 @@ finish or leave task</name>
 ' #txt
 Cs0 f33 176 466 144 44 -54 -16 #rect
 Cs0 f33 @|StepIcon #fIcon
-Cs0 f32 109 488 176 488 #arcP
 Cs0 f34 320 488 384 488 #arcP
 Cs0 f35 actionTable 'out=in;
 ' #txt
@@ -504,6 +502,8 @@ Cs0 f37 232 674 144 44 -54 -16 #rect
 Cs0 f37 @|StepIcon #fIcon
 Cs0 f24 109 696 232 696 #arcP
 Cs0 f38 376 696 456 696 #arcP
+Cs0 f32 109 488 176 488 #arcP
+Cs0 f2 109 384 176 384 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
