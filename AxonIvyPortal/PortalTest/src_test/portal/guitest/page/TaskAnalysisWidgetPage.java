@@ -225,4 +225,74 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
         () -> findElementByCssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)")
             .getText().contains("Default"));  
   }
+
+  public void filterUserInCase(String user, String filterName,String filterIdName) {
+    openAdvancedCaseFilter(filterName, filterIdName);
+    filterByUserName(user, filterIdName);
+  }
+  
+  private void filterByUserName(String user, String filterIdName) {
+    click(By.cssSelector("button[id$='"+filterIdName+"-filter:filter-open-form:advanced-filter-command']"));
+    WebElement responsible = findElementByCssSelector("input[id*='"+filterIdName+"-filter:filter-input-form:']");
+    type(responsible, user);
+    waitAjaxIndicatorDisappear();
+    waitForElementExisted("i[class*='fa-user']", true, 5);
+    click(By.cssSelector("tr[class$='ui-state-highlight']"));
+    waitAjaxIndicatorDisappear();
+    click(By.cssSelector("button[id$='"+filterIdName+"-filter:filter-input-form:update-command']"));
+    waitAjaxIndicatorDisappear();
+    Sleeper.sleep(2000);
+  }
+  
+  public void removeUserInFilter() {
+    waitForElementDisplayed(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"),
+        true);
+    click(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
+    waitForElementDisplayed(By.cssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']"),
+        true);
+    findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").click();
+    findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").clear();
+    click(By.cssSelector("button[id$='creator-filter:filter-input-form:update-command']"));
+    waitAjaxIndicatorDisappear();
+    Sleeper.sleep(2000);
+  }
+  
+  public void removeResponsible() {
+    waitForElementDisplayed(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"),
+        true);
+    click(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"));
+    waitForElementDisplayed(By.cssSelector("input[id$='responsible-filter:filter-input-form:responsible_input']"),
+        true);
+    findElementByCssSelector("input[id$='responsible-filter:filter-input-form:responsible_input']").click();
+    findElementByCssSelector("input[id$='responsible-filter:filter-input-form:responsible_input']").clear();
+    click(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']"));
+    waitAjaxIndicatorDisappear();
+    Sleeper.sleep(2000);
+  }
+  
+  public void filterByResponsible(String user, String filterName,String filterIdName) {
+    openAdvancedTaskFilter(filterName, filterIdName);
+    click(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"));
+    WebElement responsible =
+        findElementByCssSelector("input[id$='responsible-filter:filter-input-form:responsible_input']");
+    //enterKeys(responsible, text);
+    type(responsible,user);
+    waitForElementDisplayedByCssSelector("span[id$='responsible-filter:filter-input-form:responsible_panel']", 5);
+    Sleeper.sleep(2000);
+    waitForElementDisplayedByCssSelector("i[class*='fa-user']",5);
+    click(By.cssSelector("i[class*='fa-user']"));
+    waitAjaxIndicatorDisappear();
+    click(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']"));
+    waitAjaxIndicatorDisappear();
+    Sleeper.sleep(2000);
+  }
+  public String getUser(String filterName) {
+    waitForElementDisplayed(By.cssSelector("button[id$='" + filterName + "-filter:filter-open-form:advanced-filter-command']"),true,DEFAULT_TIMEOUT);
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
+        .until(() -> findElementByCssSelector(
+            "button[id$='" + filterName + "-filter:filter-open-form:advanced-filter-command'] > span").getText()
+                .length() > 1);
+    return findElementByCssSelector(
+        "button[id$='" + filterName + "-filter:filter-open-form:advanced-filter-command'] > span").getText();
+  }
 }
