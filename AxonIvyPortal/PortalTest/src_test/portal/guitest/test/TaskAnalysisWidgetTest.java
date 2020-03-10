@@ -277,4 +277,32 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage.resetFilter();
     assertTrue(taskAnalysisWidgetPage.getFilterName().contains("Default filter"));
   }
+  
+  @Test
+  public void testRemoveAndReloadFilter() {
+    //  Task Responsible, Case Creator 
+    String filterSetName = "saveUserFilter";
+    
+    TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
+    taskAnalysisWidgetPage.filterByResponsible("Demo","Responsible","responsible");
+    taskAnalysisWidgetPage.filterUserInCase("Demo","Creator","creator");
+    
+    taskAnalysisWidgetPage.saveFilterSet(filterSetName, false);
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.openCaseList();
+    mainMenuPage.selectStatisticDashboard();
+    statisticWidgetPage.navigateToTaskAnalysisPage();
+    taskAnalysisWidgetPage.loadFilterSet(filterSetName, false);
+    
+    taskAnalysisWidgetPage.removeResponsible();
+    taskAnalysisWidgetPage.removeUserInFilter();
+    
+    mainMenuPage.openCaseList();
+    mainMenuPage.selectStatisticDashboard();
+    statisticWidgetPage.navigateToTaskAnalysisPage();
+    taskAnalysisWidgetPage.loadFilterSet(filterSetName, false);
+    
+    assertTrue(taskAnalysisWidgetPage.getUser("responsible").contains("Demo"));
+    assertTrue(taskAnalysisWidgetPage.getUser("creator").contains("Demo"));
+  }
 }
