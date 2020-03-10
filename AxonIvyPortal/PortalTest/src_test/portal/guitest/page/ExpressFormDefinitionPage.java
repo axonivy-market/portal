@@ -145,9 +145,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		waitForElementDisplayed(By.id(String.format("form:selected-form-elements-%s-panel", position)), true);
 		WebElement panel = findElementById(String.format("form:selected-form-elements-%s-panel", position));
 		Actions builder = new Actions(driver);
-		Action moveProcessSequence =
-				builder.clickAndHold(formElement).moveByOffset(-1, -1).moveToElement(panel).release(formElement).build();
-		moveProcessSequence.perform();
+    	Action moveProcessSequence = builder.dragAndDrop(formElement, panel).build();
+    	moveProcessSequence.perform();
 		waitAjaxIndicatorDisappear();
 	}
 
