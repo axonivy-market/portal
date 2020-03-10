@@ -1,6 +1,7 @@
 package ch.ivy.addon.portal.generic.navigation;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -187,7 +188,15 @@ public final class PortalNavigator {
         String ivyContextName = ServerFactory.getServer().getSecurityManager().executeAsSystem(
             () -> RequestUriFactory.getIvyContextName());
         String paramStr = params.entrySet().stream()
-            .map(e -> e.getKey()+"="+e.getValue())
+            .map(e -> {
+              String param = e.getKey() + "=";
+              try {
+                return param + java.net.URLEncoder.encode(e.getValue(), "ISO-8859-1");
+              } catch (UnsupportedEncodingException e1) {
+                Ivy.log().error("Failed to encode param {0} with value {1}", e1, e.getKey(), e.getValue());
+                return param + e.getValue();
+              }
+            })
             .collect(Collectors.joining("&"));
         redirect(SLASH + ivyContextName + requestPath + (StringUtils.isNotBlank(paramStr) ? "?" + paramStr : StringUtils.EMPTY));
       } catch (Exception e) {
