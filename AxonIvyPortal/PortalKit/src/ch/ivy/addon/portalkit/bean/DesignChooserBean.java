@@ -137,10 +137,10 @@ public class DesignChooserBean implements Serializable {
         
         List<String> lines = lineStream.map(line -> line.replaceAll(LOGIN_LOGO_HEIGHT_PATTERN, newLoginLogoHeight))
                   .map(line -> line.replaceAll(HOME_LOGO_HEIGHT_PATTERN, newHomeLogoHeight)).collect(Collectors.toList());
-        if (!lines.stream().anyMatch(Pattern.compile(LOGIN_LOGO_HEIGHT_PATTERN).asPredicate())) {
+        if (lines.stream().filter(Pattern.compile(LOGIN_LOGO_HEIGHT_PATTERN).asPredicate()).count() == 1) {
           lines.add(newLoginLogoHeight);
         }
-        if (!lines.stream().anyMatch(Pattern.compile(HOME_LOGO_HEIGHT_PATTERN).asPredicate())) {
+        if (lines.stream().filter(Pattern.compile(HOME_LOGO_HEIGHT_PATTERN).asPredicate()).count() == 1) {
           lines.add(newHomeLogoHeight);
         }
         Files.write(path.get(), lines);
@@ -157,7 +157,7 @@ public class DesignChooserBean implements Serializable {
         
         List<String> lines = lineStream.map(line -> line.replaceAll(MAIN_COLOR_PATTERN, newMainColor))
                   .map(line -> line.replaceAll(BACKGROUND_COLOR_PATTERN, newBackgroundColor)).collect(Collectors.toList());
-        if (!lines.stream().anyMatch(Pattern.compile(MAIN_COLOR_PATTERN).asPredicate())) {
+        if (lines.stream().filter(Pattern.compile(MAIN_COLOR_PATTERN).asPredicate()).count() == 1) {
           lines.add(newMainColor);
         }
         if (lines.stream().filter(Pattern.compile(BACKGROUND_COLOR_PATTERN).asPredicate()).count() == 1) {

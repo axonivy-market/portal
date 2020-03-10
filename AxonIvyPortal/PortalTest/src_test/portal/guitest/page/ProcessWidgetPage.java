@@ -179,13 +179,14 @@ public class ProcessWidgetPage extends TemplatePage {
   }
   
   public void moveFavoriteProcess(int processToMoveIndex, int destinationProcessIndex) {
-//    driver.manage().window().setSize(new Dimension(2000, 1000));
     WebElement processToMove = findElementByCssSelector(".ui-orderlist-item:nth-child(" + processToMoveIndex + ")");
     WebElement destinationProcess =
         findElementByCssSelector(".ui-orderlist-item:nth-child(" + destinationProcessIndex + ")");
     Actions builder = new Actions(driver);
+    int x = destinationProcess.getSize().getWidth();
     Action moveProcessSequence =
-        builder.clickAndHold(processToMove).moveToElement(destinationProcess).release(processToMove).build();
+        builder.clickAndHold(processToMove).moveToElement(destinationProcess, x/2, 0)
+        .release(processToMove).build();
     moveProcessSequence.perform();
   }
 
