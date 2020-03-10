@@ -74,6 +74,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		click(By.id("form:create-tabs:DataProvider_label"));
 		Sleeper.sleep(1000);
 		click(By.xpath("//*[@data-label='TestDataProviderForPortalExpress']"));
+		waitAjaxIndicatorDisappear();
 		waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-label"), true, TIME_OUT);
 		type(By.id("form:create-tabs:many-checkbox-label"), label);
 		Sleeper.sleep(1000);
@@ -145,8 +146,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		waitForElementDisplayed(By.id(String.format("form:selected-form-elements-%s-panel", position)), true);
 		WebElement panel = findElementById(String.format("form:selected-form-elements-%s-panel", position));
 		Actions builder = new Actions(driver);
-		Action moveProcessSequence =
-				builder.clickAndHold(formElement).moveByOffset(-1, -1).moveToElement(panel).release(formElement).build();
+		Action moveProcessSequence = builder.dragAndDrop(formElement, panel).build();
 		moveProcessSequence.perform();
 		waitAjaxIndicatorDisappear();
 	}
