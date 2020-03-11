@@ -191,8 +191,7 @@ public class ProcessWidgetPage extends TemplatePage {
     WebElement destinationProcess =
         findElementByCssSelector(".ui-orderlist-item:nth-child(" + destinationProcessIndex + ")");
     Actions builder = new Actions(driver);
-    Action moveProcessSequence =
-        builder.clickAndHold(processToMove).moveToElement(destinationProcess).release(processToMove).build();
+    Action moveProcessSequence = builder.dragAndDrop(processToMove, destinationProcess).build();
     moveProcessSequence.perform();
   }
 
