@@ -74,7 +74,6 @@ public class UploadDocumentTest extends BaseTest{
     int numberOfDocument = countNumberOfDocument();
     caseDetailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile("unsupportedExtension.abc"));
     assertEquals(numberOfDocument + 1, countNumberOfDocument());
-    
   }
   
   private void initHomePage(TestAccount account) {

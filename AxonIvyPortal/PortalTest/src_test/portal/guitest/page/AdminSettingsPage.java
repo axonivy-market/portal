@@ -87,30 +87,31 @@ public class AdminSettingsPage extends TemplatePage {
     openSettingTab();
     clickAddNewGlobalVariable();
     addGlobalVariable("CLIENT_SIDE_TIMEOUT", timeout);
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
   
   public void setEnableScriptCheckingGlobalVariable(){
     openSettingTab();
     clickAddNewGlobalVariable();
     addGlobalVariable("ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT", "true");
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
   
   public void setFileExtensionWhiteList(){
     openSettingTab();
     clickAddNewGlobalVariable();
     addGlobalVariable("UPLOAD_DOCUMENT_WHITELIST_EXTENSION", "abc, pdf, doc");
-    closeAdminSettingDialog();
-    closeInformConfigDialog();
+    closeConfirmationDialog();
   }
   
   public void setDisplayMessageAfterFinishTaskVariable(){
     openSettingTab();
     clickAddNewGlobalVariable();
     addGlobalVariable("DISPLAY_MESSAGE_AFTER_FINISH_TASK", "true");
+    closeConfirmationDialog();
+  }
+
+  private void closeConfirmationDialog() {
     closeAdminSettingDialog();
     closeInformConfigDialog();
   }

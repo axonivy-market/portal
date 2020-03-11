@@ -344,6 +344,8 @@ public class CaseDetailsPage extends TemplatePage {
       robot.keyRelease(KeyEvent.VK_CONTROL);
       robot.keyPress(KeyEvent.VK_ENTER);
       robot.keyRelease(KeyEvent.VK_ENTER);
+      robot.keyPress(KeyEvent.VK_ESCAPE);
+      robot.keyRelease(KeyEvent.VK_ESCAPE);
     } catch (AWTException e) {
       e.printStackTrace();
     }
