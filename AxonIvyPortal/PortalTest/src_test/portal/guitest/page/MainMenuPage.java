@@ -104,7 +104,7 @@ public class MainMenuPage extends TemplatePage {
   }
   
   private void waitForProcessesPageAfterSelectProcessesCategory() {
-    waitForElementDisplayed(By.id("process-widget:process-widget-action"), true);
+    waitForElementDisplayed(By.id("process-widget:process-search"), true);
   }
   
   private void waitForTasksLoadedAfterSelectTaskCategory() {
