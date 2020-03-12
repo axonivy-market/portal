@@ -23,7 +23,7 @@ public abstract class TemplatePage extends AbstractPage {
     if (isIntegrationTestRun()) {
         waitForElementDisplayed(getLoadedLocator(), true, 300L);
     } else {
-        waitForElementDisplayed(getLoadedLocator(), true, 30L);
+        waitForElementDisplayed(getLoadedLocator(), true, 60L);
     }
   }
 
