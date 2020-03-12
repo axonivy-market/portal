@@ -148,33 +148,6 @@ public class SubstituteService implements ISubstituteService {
     return ivySubstitute;
   }
 
-  @Override
-  public IvySubstituteResultDTO saveSubstitutes(String username, Map<IvyApplication, List<IvySubstitute>> ivySubstitutesByApp) {
-    return IvyExecutor.executeAsSystem(() -> { 
-      IvySubstituteResultDTO result = new IvySubstituteResultDTO();
-      if (ivySubstitutesByApp == null || ivySubstitutesByApp.isEmpty()) {
-        return result;
-      }
-
-      List<PortalIvyDataException> errors = new ArrayList<>();
-      ivySubstitutesByApp.entrySet().stream().forEach(entry -> {
-        try {
-          IApplication application = ServiceUtilities.findApp(entry.getKey().getName());
-          IUser user = ServiceUtilities.findUser(username, application);
-          deleteSubstitutes(user);
-          createSubstitutes(entry.getValue(), user, application);
-        } catch (PortalIvyDataException e) {
-          errors.add(e);
-        } catch (Exception ex) {
-          Ivy.log().error("Error in saving substitutes of user {0} within app {1}", ex, username, entry.getKey().getName());
-          errors.add(new PortalIvyDataException(entry.getKey().getName(), PortalIvyDataErrorType.FAIL_TO_SAVE_SUBSTITUTE.toString()));
-        }
-      });
-      result.setErrors(errors);
-      return result;
-    });
-  }
-
   private void createSubstitutes(List<IvySubstitute> substitutes, IUser user, IApplication application) throws PersistencyException, EnvironmentNotAvailableException, PortalIvyDataException {
     for (IvySubstitute ivySubstitute : substitutes) {
       if (ivySubstitute.getSubstituteUser() != null) {
@@ -192,5 +165,61 @@ public class SubstituteService implements ISubstituteService {
     for (IUserSubstitute userSubstitute : user.getSubstitutes()) {
       user.deleteSubstitute(userSubstitute);
     }
+  }
+
+  @Override
+  public IvySubstituteResultDTO saveSubstitutes(Map<String, UserDTO> userPerApplication, Map<IvyApplication, List<IvySubstitute>> ivySubstitutesByApp) {
+    return IvyExecutor.executeAsSystem(() -> { 
+      IvySubstituteResultDTO result = new IvySubstituteResultDTO();
+      if (ivySubstitutesByApp == null || ivySubstitutesByApp == null) {
+        return result;
+      }
+
+      List<PortalIvyDataException> errors = new ArrayList<>();
+      ivySubstitutesByApp.entrySet().stream().forEach(entry -> {
+        String appName = entry.getKey().getName();
+        try {
+          IApplication application = ServiceUtilities.findApp(appName);
+          UserDTO userDTO = userPerApplication.get(appName);
+          IUser user = ServiceUtilities.findUser(userDTO.getName(), application);
+          deleteSubstitutes(user);
+          createSubstitutes(entry.getValue(), user, application);
+        } catch (PortalIvyDataException e) {
+          errors.add(e);
+        } catch (Exception ex) {
+          Ivy.log().error("Error in saving substitutes of user {0} within app {1}", ex, userPerApplication.get(appName), appName);
+          errors.add(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_SAVE_SUBSTITUTE.toString()));
+        }
+      });
+      result.setErrors(errors);
+      return result;
+    });
+  }
+
+  @Override
+  public IvySubstituteResultDTO findSubstitutesOnApp(String username, String app) {
+    return IvyExecutor.executeAsSystem(() -> { 
+      IvySubstituteResultDTO result = new IvySubstituteResultDTO();
+      if (StringUtils.isEmpty(app)) {
+        return result;
+      }
+
+      List<PortalIvyDataException> errors = new ArrayList<>();
+      Map<IvyApplication, List<IvySubstitute>> ivySubstitutesByApp = new HashMap<>();
+      try {
+        IApplication application = ServiceUtilities.findApp(app);
+        IUser user = ServiceUtilities.findUser(username, application);
+        List<IvySubstitute> ivySubstitutes = getIvySubstitutes(user);
+        ivySubstitutesByApp.put(ServiceUtilities.toIvyApplication(app, ""), ivySubstitutes);
+      } catch (PortalIvyDataException e) {
+        errors.add(e);
+      } catch (Exception ex) {
+        Ivy.log().error("Error in getting substitute of user {0} within app {1}", ex, username, app);
+        errors.add(new PortalIvyDataException(app, PortalIvyDataErrorType.FAIL_TO_LOAD_SUBSTITUTE.toString()));
+      }
+      result.setErrors(errors);
+      result.setIvySubstitutesByApp(ivySubstitutesByApp);
+      return result;
+    });
   }
 }
