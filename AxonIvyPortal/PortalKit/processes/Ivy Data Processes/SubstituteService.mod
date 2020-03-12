@@ -18,13 +18,6 @@ Se0 @PushWFArc f89 '' #zField
 Se0 @PushWFArc f87 '' #zField
 Se0 @PushWFArc f2 '' #zField
 Se0 @PushWFArc f3 '' #zField
-Se0 @StartSub f4 '' #zField
-Se0 @EndSub f5 '' #zField
-Se0 @GridStep f8 '' #zField
-Se0 @CallSub f9 '' #zField
-Se0 @PushWFArc f11 '' #zField
-Se0 @PushWFArc f6 '' #zField
-Se0 @PushWFArc f7 '' #zField
 Se0 @GridStep f10 '' #zField
 Se0 @StartSub f12 '' #zField
 Se0 @CallSub f13 '' #zField
@@ -34,6 +27,20 @@ Se0 @PushWFArc f16 '' #zField
 Se0 @PushWFArc f17 '' #zField
 Se0 @PushWFArc f18 '' #zField
 Se0 @PushWFArc f19 '' #zField
+Se0 @StartSub f20 '' #zField
+Se0 @GridStep f21 '' #zField
+Se0 @CallSub f22 '' #zField
+Se0 @EndSub f23 '' #zField
+Se0 @PushWFArc f24 '' #zField
+Se0 @PushWFArc f25 '' #zField
+Se0 @PushWFArc f26 '' #zField
+Se0 @StartSub f27 '' #zField
+Se0 @CallSub f28 '' #zField
+Se0 @EndSub f29 '' #zField
+Se0 @GridStep f30 '' #zField
+Se0 @PushWFArc f32 '' #zField
+Se0 @PushWFArc f34 '' #zField
+Se0 @PushWFArc f31 '' #zField
 >Proto Se0 Se0 SubstituteService #zField
 Se0 f0 inParamDecl '<String username> param;' #txt
 Se0 f0 inParamTable 'out.username=param.username;
@@ -73,16 +80,10 @@ Se0 f88 530 42 112 44 -35 -8 #rect
 Se0 f88 @|CallSubIcon #fIcon
 Se0 f84 actionTable 'out=in;
 ' #txt
-Se0 f84 actionCode 'import org.apache.commons.collections4.CollectionUtils;
-import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
-import ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService;
+Se0 f84 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-List<IvyApplication> ivyApplications = ApplicationService.getInstance().findActiveAllInvolvedUser(in.username);
-if (CollectionUtils.isNotEmpty(ivyApplications)){
-	for (IvyApplication item : ivyApplications){
-		in.apps.add(item.name);
-	}
-}
+RegisteredApplicationService service = new RegisteredApplicationService();
+out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 ' #txt
 Se0 f84 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -118,76 +119,12 @@ Se0 f2 expr out #txt
 Se0 f2 111 64 160 64 #arcP
 Se0 f3 expr out #txt
 Se0 f3 642 64 721 64 #arcP
-Se0 f4 inParamDecl '<String username,java.util.Map substitutesByApp> param;' #txt
-Se0 f4 inParamTable 'out.substitutesByApp=param.substitutesByApp;
-out.username=param.username;
-' #txt
-Se0 f4 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
-Se0 f4 outParamTable 'result.errors=in.errors;
-' #txt
-Se0 f4 callSignature saveSubstitutes(String,java.util.Map) #txt
-Se0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>saveSubstitutes(String,Map)</name>
-    </language>
-</elementInfo>
-' #txt
-Se0 f4 81 177 30 30 -74 20 #rect
-Se0 f4 @|StartSubIcon #fIcon
-Se0 f5 721 177 30 30 0 15 #rect
-Se0 f5 @|EndSubIcon #fIcon
-Se0 f8 actionTable 'out=in;
-' #txt
-Se0 f8 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;
-import ch.ivy.addon.portalkit.ivydata.service.impl.SubstituteService;
-
-IvySubstituteResultDTO dto = SubstituteService.newInstance().saveSubstitutes(in.username, in.substitutesByApp);
-out.errors = dto.errors;' #txt
-Se0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Save substitutes</name>
-    </language>
-</elementInfo>
-' #txt
-Se0 f8 232 170 112 44 -45 -8 #rect
-Se0 f8 @|StepIcon #fIcon
-Se0 f9 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Se0 f9 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
-Se0 f9 requestMappingAction 'param.exceptions=in.errors;
-' #txt
-Se0 f9 responseActionDecl 'ch.ivyteam.wf.processes.SubstituteServiceData out;
-' #txt
-Se0 f9 responseMappingAction 'out=in;
-' #txt
-Se0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>ErrorHandler</name>
-    </language>
-</elementInfo>
-' #txt
-Se0 f9 458 170 112 44 -35 -8 #rect
-Se0 f9 @|CallSubIcon #fIcon
-Se0 f11 expr out #txt
-Se0 f11 344 192 458 192 #arcP
-Se0 f6 expr out #txt
-Se0 f6 570 192 721 192 #arcP
-Se0 f7 expr out #txt
-Se0 f7 111 192 232 192 #arcP
 Se0 f10 actionTable 'out=in;
 ' #txt
-Se0 f10 actionCode 'import org.apache.commons.collections4.CollectionUtils;
-import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
-import ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService;
+Se0 f10 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-List<IvyApplication> ivyApplications = ApplicationService.getInstance().findActiveAllInvolvedUser(in.username);
-if (CollectionUtils.isNotEmpty(ivyApplications)){
-	for (IvyApplication item : ivyApplications){
-		in.apps.add(item.name);
-	}
-}
+RegisteredApplicationService service = new RegisteredApplicationService();
+out.apps = service.findActiveIvyAppsUserCanWorkOn(in.username);
 
 ' #txt
 Se0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -197,7 +134,7 @@ Se0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Se0 f10 192 290 176 44 -81 -8 #rect
+Se0 f10 192 146 176 44 -81 -8 #rect
 Se0 f10 @|StepIcon #fIcon
 Se0 f12 inParamDecl '<String username> param;' #txt
 Se0 f12 inParamTable 'out.username=param.username;
@@ -214,7 +151,7 @@ Se0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Se0 f12 81 297 30 30 -61 17 #rect
+Se0 f12 81 153 30 30 -61 17 #rect
 Se0 f12 @|StartSubIcon #fIcon
 Se0 f13 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
 Se0 f13 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
@@ -231,7 +168,7 @@ Se0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Se0 f13 562 290 112 44 -35 -8 #rect
+Se0 f13 562 146 112 44 -35 -8 #rect
 Se0 f13 @|CallSubIcon #fIcon
 Se0 f14 actionTable 'out=in;
 ' #txt
@@ -248,18 +185,135 @@ Se0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Se0 f14 402 290 112 44 -49 -8 #rect
+Se0 f14 402 146 112 44 -49 -8 #rect
 Se0 f14 @|StepIcon #fIcon
-Se0 f15 753 297 30 30 0 15 #rect
+Se0 f15 753 153 30 30 0 15 #rect
 Se0 f15 @|EndSubIcon #fIcon
 Se0 f16 expr out #txt
-Se0 f16 368 312 402 312 #arcP
+Se0 f16 368 168 402 168 #arcP
 Se0 f17 expr out #txt
-Se0 f17 514 312 562 312 #arcP
+Se0 f17 514 168 562 168 #arcP
 Se0 f18 expr out #txt
-Se0 f18 674 312 753 312 #arcP
+Se0 f18 674 168 753 168 #arcP
 Se0 f19 expr out #txt
-Se0 f19 111 312 192 312 #arcP
+Se0 f19 111 168 192 168 #arcP
+Se0 f20 inParamDecl '<java.util.Map userPerApplication,java.util.Map substitutesByApp> param;' #txt
+Se0 f20 inParamTable 'out.substitutesByApp=param.substitutesByApp;
+out.userPerApp=param.userPerApplication;
+' #txt
+Se0 f20 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
+Se0 f20 outParamTable 'result.errors=in.errors;
+' #txt
+Se0 f20 callSignature saveSubstitutes(java.util.Map,java.util.Map) #txt
+Se0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>saveSubstitutes(Map,Map)</name>
+    </language>
+</elementInfo>
+' #txt
+Se0 f20 89 289 30 30 -74 20 #rect
+Se0 f20 @|StartSubIcon #fIcon
+Se0 f21 actionTable 'out=in;
+' #txt
+Se0 f21 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;
+import ch.ivy.addon.portalkit.ivydata.service.impl.SubstituteService;
+
+IvySubstituteResultDTO dto = SubstituteService.newInstance().saveSubstitutes(in.userPerApp, in.substitutesByApp);
+out.errors = dto.errors;' #txt
+Se0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Save substitutes</name>
+    </language>
+</elementInfo>
+' #txt
+Se0 f21 240 282 112 44 -45 -8 #rect
+Se0 f21 @|StepIcon #fIcon
+Se0 f22 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
+Se0 f22 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
+Se0 f22 requestMappingAction 'param.exceptions=in.errors;
+' #txt
+Se0 f22 responseActionDecl 'ch.ivyteam.wf.processes.SubstituteServiceData out;
+' #txt
+Se0 f22 responseMappingAction 'out=in;
+' #txt
+Se0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ErrorHandler</name>
+    </language>
+</elementInfo>
+' #txt
+Se0 f22 466 282 112 44 -35 -8 #rect
+Se0 f22 @|CallSubIcon #fIcon
+Se0 f23 729 289 30 30 0 15 #rect
+Se0 f23 @|EndSubIcon #fIcon
+Se0 f24 expr out #txt
+Se0 f24 119 304 240 304 #arcP
+Se0 f25 expr out #txt
+Se0 f25 352 304 466 304 #arcP
+Se0 f26 expr out #txt
+Se0 f26 578 304 729 304 #arcP
+Se0 f27 inParamDecl '<String username,String appName> param;' #txt
+Se0 f27 inParamTable 'out.appName=param.appName;
+out.username=param.username;
+' #txt
+Se0 f27 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.Map substitutesByApp> result;' #txt
+Se0 f27 outParamTable 'result.errors=in.errors;
+result.substitutesByApp=in.substitutesByApp;
+' #txt
+Se0 f27 callSignature findSubstitutesOnApp(String,String) #txt
+Se0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findSubstitutesOnApp(String,String)</name>
+    </language>
+</elementInfo>
+' #txt
+Se0 f27 81 417 30 30 -13 17 #rect
+Se0 f27 @|StartSubIcon #fIcon
+Se0 f28 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
+Se0 f28 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
+Se0 f28 requestMappingAction 'param.exceptions=in.errors;
+' #txt
+Se0 f28 responseActionDecl 'ch.ivyteam.wf.processes.SubstituteServiceData out;
+' #txt
+Se0 f28 responseMappingAction 'out=in;
+' #txt
+Se0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ErrorHandler</name>
+    </language>
+</elementInfo>
+' #txt
+Se0 f28 546 410 112 44 -35 -8 #rect
+Se0 f28 @|CallSubIcon #fIcon
+Se0 f29 737 417 30 30 0 15 #rect
+Se0 f29 @|EndSubIcon #fIcon
+Se0 f30 actionTable 'out=in;
+' #txt
+Se0 f30 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;
+import ch.ivy.addon.portalkit.ivydata.service.impl.SubstituteService;
+
+IvySubstituteResultDTO dto = SubstituteService.newInstance().findSubstitutesOnApp(in.username, in.appName);
+out.substitutesByApp = dto.getIvySubstitutesByApp();
+out.errors = dto.errors;' #txt
+Se0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find substitutes</name>
+    </language>
+</elementInfo>
+' #txt
+Se0 f30 386 410 112 44 -44 -8 #rect
+Se0 f30 @|StepIcon #fIcon
+Se0 f32 expr out #txt
+Se0 f32 498 432 546 432 #arcP
+Se0 f34 expr out #txt
+Se0 f34 658 432 737 432 #arcP
+Se0 f31 111 432 386 432 #arcP
 >Proto Se0 .type ch.ivyteam.wf.processes.SubstituteServiceData #txt
 >Proto Se0 .processKind CALLABLE_SUB #txt
 >Proto Se0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -288,12 +342,6 @@ Se0 f0 mainOut f2 tail #connect
 Se0 f2 head f84 mainIn #connect
 Se0 f88 mainOut f3 tail #connect
 Se0 f3 head f1 mainIn #connect
-Se0 f8 mainOut f11 tail #connect
-Se0 f11 head f9 mainIn #connect
-Se0 f9 mainOut f6 tail #connect
-Se0 f6 head f5 mainIn #connect
-Se0 f4 mainOut f7 tail #connect
-Se0 f7 head f8 mainIn #connect
 Se0 f10 mainOut f16 tail #connect
 Se0 f16 head f14 mainIn #connect
 Se0 f14 mainOut f17 tail #connect
@@ -302,3 +350,15 @@ Se0 f12 mainOut f19 tail #connect
 Se0 f19 head f10 mainIn #connect
 Se0 f13 mainOut f18 tail #connect
 Se0 f18 head f15 mainIn #connect
+Se0 f21 mainOut f25 tail #connect
+Se0 f25 head f22 mainIn #connect
+Se0 f22 mainOut f26 tail #connect
+Se0 f26 head f23 mainIn #connect
+Se0 f20 mainOut f24 tail #connect
+Se0 f24 head f21 mainIn #connect
+Se0 f30 mainOut f32 tail #connect
+Se0 f32 head f28 mainIn #connect
+Se0 f28 mainOut f34 tail #connect
+Se0 f34 head f29 mainIn #connect
+Se0 f27 mainOut f31 tail #connect
+Se0 f31 head f30 mainIn #connect

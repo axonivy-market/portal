@@ -15,17 +15,20 @@ queryAutoComplete String #field
 selectedAbsence ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence #field
 selectedAbsence PERSISTENT #fieldModifier
 substitutesByApp java.util.Map #field
+substitutesByApp 'map of <application, substitutes>' #fieldComment
 substitutesByApp PERSISTENT #fieldModifier
 validationError Boolean #field
 absenceInThePastShown Boolean #field
 absenceInThePastShown PERSISTENT #fieldModifier
-selectedSubstituteUser ch.ivy.addon.portalkit.dto.UserDTO #field
-selectedSubstituteUser PERSISTENT #fieldModifier
+selectedSubstituteUserByApp java.util.Map #field
+selectedSubstituteUserByApp 'map of <application, user> in case many applications and admin can change user to set deputy on each app. User is always login user if not admin' #fieldComment
+selectedSubstituteUserByApp PERSISTENT #fieldModifier
 displayedAbsences java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence> #field
 displayedAbsences PERSISTENT #fieldModifier
 isAbsenceBeingCreated Boolean #field
 isAbsenceBeingCreated PERSISTENT #fieldModifier
 substitutionsByApp java.util.Map #field
+substitutionsByApp 'map of <application, substitution>' #fieldComment
 substitutionsByApp PERSISTENT #fieldModifier
 applications java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyApplication> #field
 applications PERSISTENT #fieldModifier
@@ -39,5 +42,10 @@ isCreateMode Boolean #field
 isCreateMode PERSISTENT #fieldModifier
 tabChangeEvent org.primefaces.event.TabChangeEvent #field
 tabChangeEvent PERSISTENT #fieldModifier
-tabIndex Number #field
-tabIndex PERSISTENT #fieldModifier
+substituteUser ch.ivy.addon.portalkit.dto.UserDTO #field
+substituteUser 'user bind to autocomplete in my deputy' #fieldComment
+substituteUser PERSISTENT #fieldModifier
+currentAppName String #field
+currentAppName PERSISTENT #fieldModifier
+substitutesForSelectedApp java.util.Map #field
+substitutesForSelectedApp PERSISTENT #fieldModifier
