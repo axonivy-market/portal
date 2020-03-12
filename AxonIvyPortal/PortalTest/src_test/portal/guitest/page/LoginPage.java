@@ -7,7 +7,7 @@ import portal.guitest.common.TestAccount;
 import ch.xpertline.base.pages.AbstractPage;
 
 public class LoginPage extends AbstractPage {
-  private static final long LOGIN_TIMEOUT = 60;
+  private static final long LOGIN_TIMEOUT = 120;
   private WebElement usernameTextField;
   private WebElement passwordField;
   private WebElement loginButton;
