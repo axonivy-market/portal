@@ -85,7 +85,7 @@
       </div>
     </div>
 
-    <p:tabView id="substitue-tab" value="#{data.applications}" var="app" styleClass="substitue-tab" activeIndex="#{data.tabIndex}">
+    <p:tabView id="substitue-tab" value="#{data.applications}" var="app" styleClass="substitue-tab" >
     <p:ajax event="tabChange" listener="#{logic.onTabChange}"/>
     <p:tab title="#{app.displayName}" >
     
@@ -98,7 +98,7 @@
           <ic:ch.ivy.addon.portalkit.component.UserSelection
             id="substituted-user-selection-component"
             componentId="substituted-user"
-            selectedUser="#{data.selectedSubstituteUser}"
+            selectedUser="#{data.substituteUser}"
             completeMethod="#{logic.autoCompleteForUserOnApp}"
             label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/substitutedUser')}"
             labelPanelStyleClass="ui-g-2 ui-xl-1 ui-sm-4"
