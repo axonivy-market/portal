@@ -83,17 +83,16 @@ public class StatisticWidgetPage extends TemplatePage {
   }
 
   public String getChartName(int chartIndex) {
-    WebElement chartName =
-        findElementByCssSelector(String.format("div[id$='%d:chart-name-container'] #chart-name", chartIndex));
-    Awaitility.await().atMost(new Duration(20, TimeUnit.SECONDS)).until(() -> {
+    Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> {
       try {
-        return chartName.getText().length()>1;
+        return findElementByCssSelector(String.format("div[id$='%d:chart-name-container'] #chart-name", chartIndex)).getText().length()>1;
       } catch (WebDriverException e) {
         System.out.println("Exception when waiting for element existed, try again.");
         e.printStackTrace();
       }
       return false;
     });
+    WebElement chartName = findElementByCssSelector(String.format("div[id$='%d:chart-name-container'] #chart-name", chartIndex));
     return chartName.getText();
   }
   
