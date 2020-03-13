@@ -21,7 +21,7 @@ public abstract class TemplatePage extends AbstractPage {
   public TemplatePage() {
     // instead of using waitForPageLoaded(), wait for displaying instead of waiting for presenting
     if (isIntegrationTestRun()) {
-        waitForElementDisplayed(getLoadedLocator(), true, 300L);
+        waitForElementDisplayed(getLoadedLocator(), true, 600L);
     } else {
         waitForElementDisplayed(getLoadedLocator(), true, 60L);
     }
