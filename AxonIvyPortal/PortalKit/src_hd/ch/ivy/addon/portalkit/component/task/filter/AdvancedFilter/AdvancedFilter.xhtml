@@ -13,6 +13,7 @@
   <cc:attribute name="updateListener" />
   <cc:attribute name="removeListener" />
   <cc:attribute name="containerStyleClass" />
+  <cc:attribute name="contentStyleClass" />
   <cc:attribute name="buttonStyleClass" />
   <cc:attribute name="removeIconStyleClass" />
   <cc:attribute name="displayFooterButtons" default="true" />
@@ -60,7 +61,7 @@
           dismissable="#{cc.attrs.dismissableOverlayPanel}" styleClass="advanced-filter-panel #{widgetVarPanel}"
           for="#{cc.clientId}:filter-open-form:advanced-filter-command" my="left top" at="left bottom"
           onHide="$(this.targetElement).parents('form').siblings('form').find('.portal-cancel-button').click();">
-          <h:panelGroup id="advanced-filter-panel-content" layout="block" styleClass="ui-overlaypanel-filter-content">
+          <h:panelGroup id="advanced-filter-panel-content" layout="block" styleClass="ui-overlaypanel-filter-content #{cc.attrs.contentStyleClass}">
             <p:messages id="filter-error-messages" for="advanced-filter-error-messages" />
             <cc:insertChildren />
           </h:panelGroup>
