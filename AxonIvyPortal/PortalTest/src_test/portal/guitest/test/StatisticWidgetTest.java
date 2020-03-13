@@ -79,22 +79,21 @@ public class StatisticWidgetTest extends BaseTest {
 
     statisticWidgetPage.backToDashboard();
     statisticWidgetPage.waitLastChartCreated();
-    statisticWidgetPage.waitForElementDisplayed(By.cssSelector("div[id$='6\\:chart-name-container'] .chart-name"), true);
+    statisticWidgetPage.waitForElementDisplayed(By.cssSelector("div[id$='6:chart-name-container'] .chart-name"), true);
     WebElement taskByPriorityDefaultChartName
-    = statisticWidgetPage.findElementByCssSelector("div[id$='0\\:chart-name-container'] .chart-name");
+    = statisticWidgetPage.findElementByCssSelector("div[id$='0:chart-name-container'] .chart-name");
     WebElement taskByPriorityChartName
-      = statisticWidgetPage.findElementByCssSelector("div[id$='1\\:chart-name-container'] .chart-name");
+      = statisticWidgetPage.findElementByCssSelector("div[id$='1:chart-name-container'] .chart-name");
     WebElement taskByExpiryChartName
-      = statisticWidgetPage.findElementByCssSelector("div[id$='2\\:chart-name-container'] .chart-name");
+      = statisticWidgetPage.findElementByCssSelector("div[id$='2:chart-name-container'] .chart-name");
     WebElement caseByStateChartName
-      = statisticWidgetPage.findElementByCssSelector("div[id$='3\\:chart-name-container'] .chart-name");
+      = statisticWidgetPage.findElementByCssSelector("div[id$='3:chart-name-container'] .chart-name");
     WebElement elapsedTimeChartName
-      = statisticWidgetPage.findElementByCssSelector("div[id$='4\\:chart-name-container'] .chart-name");
+      = statisticWidgetPage.findElementByCssSelector("div[id$='4:chart-name-container'] .chart-name");
     WebElement caseByFinishedTaskChartName
-      = statisticWidgetPage.findElementByCssSelector("div[id$='5\\:chart-name-container'] .chart-name");
+      = statisticWidgetPage.findElementByCssSelector("div[id$='5:chart-name-container'] .chart-name");
     WebElement caseByFinishedTimeChartName
-      = statisticWidgetPage.findElementByCssSelector("div[id$='6\\:chart-name-container'] .chart-name");
-    
+      = statisticWidgetPage.findElementByCssSelector("div[id$='6:chart-name-container'] .chart-name");
 
     assertEquals(TASK_BY_PRIORITY_DEFAULT_CHART_NAME, taskByPriorityDefaultChartName.getText());
     assertEquals(TASK_BY_PRIORITY_CHART_NAME, taskByPriorityChartName.getText());
