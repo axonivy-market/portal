@@ -10,7 +10,6 @@ import java.util.stream.Stream;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.Announcement;
-import ch.ivy.addon.portalkit.bo.AnnouncementStatus;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
@@ -36,9 +35,15 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
   }
 
   public void saveAll(List<Announcement> announcements) {
+    cleanUpBeforeSave(announcements);
     for (Announcement announcement : announcements) {
-      save(announcement);
+      Announcement announcementUpdate = new Announcement(announcement.getLanguage(), announcement.getValue());
+      save(announcementUpdate);
     }
+  }
+
+  private void cleanUpBeforeSave(List<Announcement> announcements) {
+    announcements.forEach(announcement -> delete(announcement.getId()));
   }
 
   public List<Announcement> getAnnouncements() {
@@ -89,36 +94,46 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
   }
 
   public void activateAnnouncement() throws InterruptedException {
-    AnnouncementStatusService.getInstance().updateFirstProperty(Boolean.toString(true));
-    makeSureAnnouncementStatusUpToDate("true");
+    updateAnnouncementStatusByExpectedValue(true);
   }
 
   public void deactivateAnnouncement() throws InterruptedException {
-    AnnouncementStatusService.getInstance().updateFirstProperty(Boolean.toString(false));
-    makeSureAnnouncementStatusUpToDate("false");
+    updateAnnouncementStatusByExpectedValue(false);
   }
 
-  private void makeSureAnnouncementStatusUpToDate(String expectedValue) throws InterruptedException {
+  private void updateAnnouncementStatusByExpectedValue(boolean expectedValue) throws InterruptedException {
+    AnnouncementStatusService.getInstance().updateAnnouncementStatus(expectedValue);
+
+    // Check AnnouncementStatus is updated on ES
+    boolean isStatusUpToDate = false;
     for (int i = 0; i < 100; i++) {
-      AnnouncementStatus status = AnnouncementStatusService.getInstance().findFirst();
-      if (status == null || !status.getEnabled().equalsIgnoreCase(expectedValue)) {
-        Thread.sleep(20);
+      if (expectedValue) {
+        if (AnnouncementStatusService.getInstance().getAnnouncementStatus()) {
+          isStatusUpToDate = true;
+          break;
+        }
       } else {
-        return;
+        AnnouncementStatusService.getInstance().removeAnnouncementStatus();
+        if (AnnouncementStatusService.getInstance().getCountAnnouncementStatus() == 0 && i <= 2) {
+          isStatusUpToDate = true;
+          break;
+        }
       }
+      Thread.sleep(20);
     }
-    Ivy.log().error("Announcement status is not up to date");
+
+    if (!isStatusUpToDate) {
+      Ivy.log().error("Announcement status is not up to date");
+    }
+    invalidateCache();
+    IvyCacheService.newInstance().cacheAnnouncementSettings(ANNOUNCEMENT_ACTIVATED, expectedValue);
   }
 
   public boolean isAnnouncementActivated() {
     Boolean announcementActivated =
         (Boolean) IvyCacheService.newInstance().getAnnouncementSettingsFromCache(ANNOUNCEMENT_ACTIVATED);
     if (announcementActivated == null) {
-      AnnouncementStatus property = AnnouncementStatusService.getInstance().findFirst();
-      announcementActivated = false;
-      if (property != null) {
-        announcementActivated = Boolean.parseBoolean(property.getEnabled());
-      }
+      announcementActivated = AnnouncementStatusService.getInstance().getAnnouncementStatus();
       IvyCacheService.newInstance().cacheAnnouncementSettings(ANNOUNCEMENT_ACTIVATED, announcementActivated);
     }
     return announcementActivated;
