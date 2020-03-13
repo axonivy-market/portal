@@ -85,7 +85,7 @@ public class StatisticWidgetPage extends TemplatePage {
   public String getChartName(int chartIndex) {
     WebElement chartName =
         findElementByCssSelector(String.format("div[id$='%d:chart-name-container'] #chart-name", chartIndex));
-    Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> {
+    Awaitility.await().atMost(new Duration(20, TimeUnit.SECONDS)).until(() -> {
       try {
         return chartName.getText().length()>1;
       } catch (WebDriverException e) {
