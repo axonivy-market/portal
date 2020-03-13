@@ -47,7 +47,7 @@ public class StatisticWidgetPage extends TemplatePage {
   public void waitLastChartCreated() {
     Awaitility.await().atMost(new Duration(2000, TimeUnit.SECONDS)).until(() -> {
       try {
-        WebElement lastChart = findElementByCssSelector("div[id$='6\\:chart-name-container'] .chart-name");
+        WebElement lastChart = findElementByCssSelector("div[id$='6:chart-name-container'] .chart-name");
         return lastChart.getText().contains("Case by finished time chart");
       } catch (WebDriverException e) {
         System.out.println("Exception when waiting for element existed, try again.");
