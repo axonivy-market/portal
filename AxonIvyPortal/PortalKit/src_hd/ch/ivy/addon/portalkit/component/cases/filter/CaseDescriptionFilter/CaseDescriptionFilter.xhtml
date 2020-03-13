@@ -13,7 +13,8 @@
 
 <cc:implementation>
   <ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter id="#{cc.attrs.componentId}" caseFilter="#{cc.attrs.filter}"
-     selectedFilters="#{cc.attrs.selectedFilters}" resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dataModel="#{cc.attrs.dataModel}">
+     selectedFilters="#{cc.attrs.selectedFilters}" resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dataModel="#{cc.attrs.dataModel}"
+     contentStyleClass="ui-fluid">
     <p:inputText id="description" value="#{cc.attrs.filter.description}" />
   </ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter>
 </cc:implementation>
