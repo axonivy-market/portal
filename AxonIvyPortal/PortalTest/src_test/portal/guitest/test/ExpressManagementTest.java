@@ -57,11 +57,11 @@ public class ExpressManagementTest extends BaseTest {
     expressManagementPage.openImportDialog();
     expressManagementPage.selectJSONFile(FileHelper.getAbsolutePathToTestFile("express-test.json"));
     expressManagementPage.clickOnDeployExpress();
-    Sleeper.sleep(5000);
+    Sleeper.sleep(1000);
     expressManagementPage.clickOnCloseButton();
     adminSettingsPage.closeAdminSettingDialog();
     adminSettingsPage.closeInformConfigDialog();
-    Sleeper.sleep(2000);
+    Sleeper.sleep(1000);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     startExpressHelperProcess("Express Test 1");
     executeUserTask();
