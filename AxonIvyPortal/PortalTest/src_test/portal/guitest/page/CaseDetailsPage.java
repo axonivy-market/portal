@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
@@ -332,7 +334,13 @@ public class CaseDetailsPage extends TemplatePage {
         String.format("case-widget:case-list-scroller:%d:case-item:document:document-upload-dialog-", index);
     waitForElementDisplayed(By.id(uploadDialogId), true);
     waitForElementDisplayed(By.className("ui-fileupload-choose"), true);
-    click(By.className("ui-fileupload-choose"));
+
+    try {
+      click(By.className("ui-fileupload-choose"));
+    } catch (UnhandledAlertException e) {
+      Alert alert = driver.switchTo().alert();
+      alert.accept();
+    }
     StringSelection ss = new StringSelection(pathToFile);
     Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
     Robot robot;
@@ -344,16 +352,18 @@ public class CaseDetailsPage extends TemplatePage {
       robot.keyRelease(KeyEvent.VK_CONTROL);
       robot.keyPress(KeyEvent.VK_ENTER);
       robot.keyRelease(KeyEvent.VK_ENTER);
+
+      // currently haven't found solution to check when the file upload finish, we have to wait
+      if (isIntegrationTestRun()) {
+        Sleeper.sleepTight(10000);
+      } else {
+        Sleeper.sleepTight(5000);
+      }
+
       robot.keyPress(KeyEvent.VK_ESCAPE);
       robot.keyRelease(KeyEvent.VK_ESCAPE);
     } catch (AWTException e) {
       e.printStackTrace();
-    }
-    // currently haven't found solution to check when the file upload finish, we have to wait
-    if (isIntegrationTestRun()) {
-        Sleeper.sleepTight(10000);
-    } else {
-      Sleeper.sleepTight(5000);
     }
   }
 
