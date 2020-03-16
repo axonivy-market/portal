@@ -2,12 +2,16 @@ package portal.guitest.page;
 
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.UrlHelpers;
 import ch.xpertline.base.pages.AbstractPage;
@@ -136,9 +140,9 @@ public abstract class TemplatePage extends AbstractPage {
   }
   
   public void clickOnLogo() {
-    WebElement logo = findElementById("logo");
-    waitForElementDisplayed(logo, true);
-    logo.click();
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
+    .until(() -> findElementById("logo").isDisplayed());
+    findElementById("logo").click();
     waitAjaxIndicatorDisappear();
   }
 
@@ -187,6 +191,8 @@ public abstract class TemplatePage extends AbstractPage {
 
   public TaskWidgetPage openTaskList() {
     openMainMenu();
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
+    .until(() -> findListElementsByCssSelector("a.left-sidebar-sub-menu-item").get(1).isDisplayed());
     WebElement taskListToggle = findListElementsByCssSelector("a.left-sidebar-sub-menu-item").get(1);
     taskListToggle.click();
     waitForElementPresent(By.cssSelector("div.js-task-list-container"), true);
@@ -195,6 +201,8 @@ public abstract class TemplatePage extends AbstractPage {
   
   public CasePage openCaseList() {
     openMainMenu();
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
+    .until(() -> findListElementsByCssSelector("a.left-sidebar-sub-menu-item").get(2).isDisplayed());
     WebElement caseListToggle = findListElementsByCssSelector("a.left-sidebar-sub-menu-item").get(2);
     caseListToggle.click();
     waitForElementPresent(By.cssSelector("div.js-case-default-widget-container"), true);
@@ -202,6 +210,8 @@ public abstract class TemplatePage extends AbstractPage {
   }
   
   public String getGlobalGrowlMessage() {
+	Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
+	.until(() -> findElementById("portal-global-growl_container").getText().length()>1);  
     return findElementById("portal-global-growl_container").getText();
   }
 

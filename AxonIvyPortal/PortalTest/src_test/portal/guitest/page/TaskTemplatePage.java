@@ -102,6 +102,7 @@ public class TaskTemplatePage extends TemplatePage {
   
   public void clickSubmitButton() {
     String submitButton = "button[id$='command-form:button-submit']";
+    waitForElementDisplayed(submitButton, true);
     findElementByCssSelector(submitButton).click();
     waitAjaxIndicatorDisappear();
   }
