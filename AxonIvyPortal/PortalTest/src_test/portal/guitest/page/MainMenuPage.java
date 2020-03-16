@@ -1,10 +1,14 @@
 package portal.guitest.page;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 public class MainMenuPage extends TemplatePage {
 
@@ -104,7 +108,8 @@ public class MainMenuPage extends TemplatePage {
   }
   
   private void waitForProcessesPageAfterSelectProcessesCategory() {
-    waitForElementDisplayed(By.id("process-widget:process-search"), true);
+	Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
+	.until(() -> findElementById("process-widget:process-search").isDisplayed());  
   }
   
   private void waitForTasksLoadedAfterSelectTaskCategory() {

@@ -1,6 +1,11 @@
 package portal.guitest.page;
 
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.support.Color;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 
 public class HomePage extends TemplatePage {
@@ -28,6 +33,8 @@ public class HomePage extends TemplatePage {
   }
   
   public String getMainColor() {
+	Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
+	.until(() -> findElementById("app-menu-panel").getCssValue("background-color").length()>1);  
     return Color.fromString(findElementById("app-menu-panel").getCssValue("background-color")).asHex().substring(1);
   }
 }

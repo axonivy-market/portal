@@ -54,10 +54,15 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   private void clickOnTaskEntryInFullMode(int index, boolean isDetailsShown) {
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
+	 .until(() -> findElementByXpath("//a[contains(@id, '" + index
+	            + ":task-item:resume-task-show-task-detail-link') or contains(@id, '" + index
+	            + ":task-item:show-task-detail-link')]").getTagName().contains("a"));  
     WebElement taskShowHideDetailsLink =
         findElementByXpath("//a[contains(@id, '" + index
             + ":task-item:resume-task-show-task-detail-link') or contains(@id, '" + index
             + ":task-item:show-task-detail-link')]");
+    
     taskShowHideDetailsLink.click();
     waitAjaxIndicatorDisappear();
     waitForElementPresent(By.cssSelector("*[id$='" + index + ":task-item:description:task-description-form"), isDetailsShown,
