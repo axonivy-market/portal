@@ -2,16 +2,9 @@ package portal.guitest.page;
 
 import static org.junit.Assert.assertTrue;
 
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
 
 import com.jayway.awaitility.Awaitility;
@@ -41,33 +34,7 @@ public class ExpressManagementPage extends TemplatePage {
   }
 
   public void selectJSONFile(String pathToFile) {
-    WebElement selectButton = findElementByCssSelector("*[id$=':express-process-upload_label']");
-    try {
-      click(selectButton);
-    } catch (UnhandledAlertException e) {
-      Alert alert = driver.switchTo().alert();
-      alert.accept();
-    }
-    StringSelection ss = new StringSelection(pathToFile);
-    Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
-    Robot robot;
-    try {
-      int delayTimeBetweenEachPress = 1000; //Firefox driver needs this, IE does not need it
-      robot = new Robot();
-      robot.keyPress(KeyEvent.VK_CONTROL);
-      robot.delay(delayTimeBetweenEachPress);
-      robot.keyPress(KeyEvent.VK_V);
-      robot.delay(delayTimeBetweenEachPress);
-      robot.keyRelease(KeyEvent.VK_V);
-      robot.delay(delayTimeBetweenEachPress);
-      robot.keyRelease(KeyEvent.VK_CONTROL);
-      robot.delay(delayTimeBetweenEachPress);
-      robot.keyPress(KeyEvent.VK_ENTER);
-      robot.delay(delayTimeBetweenEachPress);
-      robot.keyRelease(KeyEvent.VK_ENTER);
-    } catch (AWTException e) {
-      e.printStackTrace();
-    }
+    findElementByCssSelector("*[id$=':express-process-upload_input']").sendKeys(pathToFile);
     // currently haven't found solution to check when the file upload finish, we have to wait
     if (isIntegrationTestRun()) {
       Sleeper.sleep(10000);
