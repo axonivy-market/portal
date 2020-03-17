@@ -28,7 +28,7 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public void toggleTaskMenu() {
-    findElementByCssSelector("a.second-level-menu-header").click();
+	clickByCssSelector("a.second-level-menu-header");
     Sleeper.sleepTight(1000);
   }
 

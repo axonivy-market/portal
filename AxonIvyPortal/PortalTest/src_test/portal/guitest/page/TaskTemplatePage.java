@@ -100,17 +100,18 @@ public class TaskTemplatePage extends TemplatePage {
     click(driver.findElement(By.cssSelector("a[id$='show-more-note-link']")));
   }
   
-  public void clickSubmitButton() {
+  public HomePage clickSubmitButton() {
     String submitButton = "button[id$='command-form:button-submit']";
-    waitForElementDisplayed(submitButton, true);
-    findElementByCssSelector(submitButton).click();
+    clickByCssSelector(submitButton);
     waitAjaxIndicatorDisappear();
+    return new HomePage();
   }
   
-  public void clickCancelAndLeftButton() {
+  public HomePage clickCancelAndLeftButton() {
     String cancelButton = "button[id$='command-form:button-cancel']";
-    findElementByCssSelector(cancelButton).click();
+    clickByCssSelector(cancelButton);
     waitAjaxIndicatorDisappear();
+    return new HomePage();
   }
   
   public void inputFields(String employee, String from, String to, String representation) {

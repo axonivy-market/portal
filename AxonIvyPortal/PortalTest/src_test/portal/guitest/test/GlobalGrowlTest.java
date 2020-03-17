@@ -36,8 +36,7 @@ public class GlobalGrowlTest extends BaseTest {
     
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    taskTemplatePage.clickSubmitButton();
-    homePage = new HomePage();
+    homePage = taskTemplatePage.clickSubmitButton();
     assertEquals("Task is done successfully", homePage.getGlobalGrowlMessage());
   }
   
@@ -56,8 +55,7 @@ public class GlobalGrowlTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.inputFields("Employee", "1.1.2019", "1.1.2019", "Representation");
-    taskTemplatePage.clickSubmitButton();
-    homePage = new HomePage();
+    homePage = taskTemplatePage.clickSubmitButton();
     assertEquals("You have finished the task successfully", homePage.getGlobalGrowlMessage());
   }
   
@@ -72,8 +70,7 @@ public class GlobalGrowlTest extends BaseTest {
 	redirectToRelativeLink(SKIP_TASK_LIST_URL);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.inputFields("Employee", "1.1.2019", "1.1.2019", "Representation");
-    taskTemplatePage.clickSubmitButton();
-    homePage = new HomePage();
+    homePage = taskTemplatePage.clickSubmitButton();
     assertEquals("You have finished the task successfully", homePage.getGlobalGrowlMessage());
   }
   
@@ -91,8 +88,7 @@ public class GlobalGrowlTest extends BaseTest {
     
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    taskTemplatePage.clickCancelAndLeftButton();
-    homePage = new HomePage();
+    homePage = taskTemplatePage.clickCancelAndLeftButton();
     assertEquals("You have cancelled and left the task successfully", homePage.getGlobalGrowlMessage());
   }
   
@@ -110,8 +106,7 @@ public class GlobalGrowlTest extends BaseTest {
     
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    taskTemplatePage.clickCancelAndLeftButton();
-    homePage = new HomePage();
+    homePage = taskTemplatePage.clickCancelAndLeftButton();
     assertEquals("You have cancelled and left the task successfully. You can find the task in the dashboard or your task list", homePage.getGlobalGrowlMessage());
   }
   
@@ -125,8 +120,7 @@ public class GlobalGrowlTest extends BaseTest {
     adminSettingsPage.setDisplayMessageAfterFinishTaskVariable();
 	redirectToRelativeLink(SKIP_TASK_LIST_URL);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
-    taskTemplatePage.clickCancelAndLeftButton();
-    homePage = new HomePage();
+    homePage = taskTemplatePage.clickCancelAndLeftButton();
     assertEquals("You have cancelled and left the task successfully. You can find the task in the dashboard or your task list", homePage.getGlobalGrowlMessage());
   }
   

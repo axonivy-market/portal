@@ -132,9 +132,8 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public MainMenuPage openMainMenu() {
-    WebElement mainMenuToggle = findDisplayedElementBySelector(".js-left-sidebar-toggle");
     if (!isMainMenuOpen()) {
-      click(mainMenuToggle);
+      clickByCssSelector(".js-left-sidebar-toggle");
     }
     return new MainMenuPage();
   }
@@ -142,7 +141,7 @@ public abstract class TemplatePage extends AbstractPage {
   public void clickOnLogo() {
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
     .until(() -> findElementById("logo").isDisplayed());
-    findElementById("logo").click();
+    clickByCssSelector("a[id$='logo']");
     waitAjaxIndicatorDisappear();
   }
 
@@ -215,6 +214,11 @@ public abstract class TemplatePage extends AbstractPage {
     return findElementById("portal-global-growl_container").getText();
   }
 
+  public void clickByCssSelector(String cssSelector) {
+      waitForElementDisplayed(By.cssSelector(cssSelector), true);
+      click(By.cssSelector(cssSelector));
+   }
+  
   public GlobalSearch getGlobalSearch() {
     return new GlobalSearch();
   }
