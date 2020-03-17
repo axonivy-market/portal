@@ -103,6 +103,7 @@ public class TaskWidgetPage extends TemplatePage {
   public void filterTasksBy(String keyword) {
     WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
     keywordFilter.clear();
+    keywordFilter.click(); 
     keywordFilter.sendKeys(keyword);
     Sleeper.sleepTight(2000);
     waitAjaxIndicatorDisappear();

@@ -1,18 +1,13 @@
 package portal.guitest.page;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
-import com.jayway.awaitility.Awaitility;
-import com.jayway.awaitility.Duration;
-
 public class MainMenuPage extends TemplatePage {
 
-  private final static String PROCESSES_MENU_ICON_POSITION = "1";
   private final static String TASK_MENU_ICON_POSITION = "2";
   private final static String CASE_MENU_ICON_POSITION = "3";
   private final static String DASHBOARD_MENU_ICON_POSITION = "4";
@@ -45,7 +40,7 @@ public class MainMenuPage extends TemplatePage {
   }
   
   public ProcessWidgetPage selectProcessesMenu() {
-    findElementByCssSelector("a.left-sidebar-sub-menu-item:nth-of-type(" + PROCESSES_MENU_ICON_POSITION + ")").click();
+	clickByCssSelector("span[class*='left-sidebar-sub-menu-item-0-0']");  
     waitForProcessesPageAfterSelectProcessesCategory();
     return new ProcessWidgetPage();
   }
@@ -108,8 +103,7 @@ public class MainMenuPage extends TemplatePage {
   }
   
   private void waitForProcessesPageAfterSelectProcessesCategory() {
-	Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
-	.until(() -> findElementById("process-widget:process-search").isDisplayed());  
+	waitForElementDisplayed(By.id("process-widget:process-search"), true);  
   }
   
   private void waitForTasksLoadedAfterSelectTaskCategory() {

@@ -190,10 +190,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   public TaskWidgetPage openTaskList() {
     openMainMenu();
-    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
-    .until(() -> findListElementsByCssSelector("a.left-sidebar-sub-menu-item").get(1).isDisplayed());
-    WebElement taskListToggle = findListElementsByCssSelector("a.left-sidebar-sub-menu-item").get(1);
-    taskListToggle.click();
+    clickByCssSelector("span[class*='left-sidebar-sub-menu-item-1-0']");
     waitForElementPresent(By.cssSelector("div.js-task-list-container"), true);
     return new TaskWidgetPage();
   }
@@ -218,6 +215,17 @@ public abstract class TemplatePage extends AbstractPage {
       waitForElementDisplayed(By.cssSelector(cssSelector), true);
       click(By.cssSelector(cssSelector));
    }
+  
+  public void refreshAndWaitElement(String cssSelector) {
+	Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
+	  if ((findListElementsByCssSelector(cssSelector).isEmpty())) {
+	     refresh();
+	     return false;
+	    } else {
+	      return true;
+	     }
+	  });
+	}
   
   public GlobalSearch getGlobalSearch() {
     return new GlobalSearch();
