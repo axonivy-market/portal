@@ -80,6 +80,7 @@ public class ExpressManagementTest extends BaseTest {
   private void executeUserTask() {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
+    Sleeper.sleep(1000);
     HomePage home = new HomePage();
     home.waitForPageLoaded();
   }
