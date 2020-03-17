@@ -139,8 +139,6 @@ public abstract class TemplatePage extends AbstractPage {
   }
   
   public void clickOnLogo() {
-    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
-    .until(() -> findElementById("logo").isDisplayed());
     clickByCssSelector("a[id$='logo']");
     waitAjaxIndicatorDisappear();
   }
