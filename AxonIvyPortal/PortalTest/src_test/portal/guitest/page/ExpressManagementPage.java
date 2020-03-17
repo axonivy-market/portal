@@ -56,7 +56,7 @@ public class ExpressManagementPage extends TemplatePage {
   }
 
   public String getUploadMessage() {
-    Sleeper.sleep(1000);
+    waitForElementDisplayed(By.cssSelector("div[class$='ui-fileupload-messages'] span[class$='ui-messages-error-summary']"), true);
     return driver.findElement(By.cssSelector("div[class$='ui-fileupload-messages'] span[class$='ui-messages-error-summary']")).getText();
   }
 
