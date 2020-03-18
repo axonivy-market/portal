@@ -9,6 +9,7 @@ import org.primefaces.model.CheckboxTreeNode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivy.addon.portalkit.bo.CategoryNode;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.TaskTreeUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -77,7 +78,9 @@ public class TaskCategoryFilter extends TaskFilter {
   }
   
   private void initializeRoot() {
-    if (root == null) {
+    String allCategoriesText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/allCategories");
+    // If language is changed, category tree needs to be rebuilt
+    if (root == null || !StringUtils.equals(((CategoryNode)root.getChildren().get(0).getData()).getValue(), allCategoriesText)) {
       root = TaskTreeUtils.buildTaskCategoryCheckboxTreeRoot();
       categories = CategoryUtils.recoverSelectedCategories(root, categoryPaths);
     }
