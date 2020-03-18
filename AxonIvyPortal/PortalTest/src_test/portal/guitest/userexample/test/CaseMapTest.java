@@ -12,6 +12,7 @@ import portal.guitest.userexamples.page.CaseMapPage;
 
 public class CaseMapTest extends BaseTest {
 
+  private static final String CREATE_CONTRACT = "Create Contract";
   private static final String CASE_MAP_URL = "/portal-user-examples/70765b37-a3e8-418a-a8d5-c2b3a539408e.icm";
   private static final String VERIFY_PERSONAL_DATA = "Verify Personal Data";
   private static final String INTERNAL_SOLVENCY_CHECK = "Internal Solvency Check";
@@ -58,9 +59,9 @@ public class CaseMapTest extends BaseTest {
     Assert.assertEquals("Pass", caseMapPage.getInternalCreditComment());
     caseMapPage.clickApproveButton();
     login(TestAccount.DEMO_USER);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy("Create Contract");
-    taskWidgetPage.startTaskWithoutUI(0);
+    startTaskByTaskName(CREATE_CONTRACT);
+    assertInputData();
+    
   }
 
   @Test

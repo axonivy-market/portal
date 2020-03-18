@@ -7,9 +7,8 @@
     <ui:define name="simplePageContent">
       <h:form id="form">
         <h:panelGrid columns="1" styleClass="ui-g-12 TexAlCenter">
-          <h3>Well Done! You have finalized your process. You can find case details going to the case details or
-            clicking here</h3>
-          <p:commandButton actionListener="#{logic.close}" value="Proceed" update="form" icon="ui-icon-check" />
+          <h3>#{ivy.cms.co("/Dialog/Common/endPageMessage")}</h3>
+          <p:commandButton id="go-to-case-detail" actionListener="#{logic.close}" value="#{ivy.cms.co('/Dialog/Common/endPageButton')}" update="form" icon="ui-icon-check" />
         </h:panelGrid>
       </h:form>
     </ui:define>

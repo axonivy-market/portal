@@ -20,12 +20,13 @@ He0 f5 inParamDecl '<> param;' #txt
 He0 f5 outParamDecl '<String callbackUrl> result;' #txt
 He0 f5 outParamTable 'result.callbackUrl=in.callbackUrl;
 ' #txt
-He0 f5 callSignature handleCaseMapEndPage() #txt
+He0 f5 callSignature handleUserExamplesEndPage() #txt
 He0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>handleCaseMapEndPage()</name>
-        <nameStyle>22,5
+        <name>handleUserExamplesEndPage()</name>
+        <nameStyle>25,5
+2,5
 </nameStyle>
     </language>
 </elementInfo>
