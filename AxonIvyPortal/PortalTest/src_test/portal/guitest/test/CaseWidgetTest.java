@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.openqa.selenium.TimeoutException;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdditionalCaseDetailsPage;
 import portal.guitest.page.CaseDetailsPage;
@@ -51,9 +52,12 @@ public class CaseWidgetTest extends BaseTest {
     taskWidgetPage.refreshAndWaitElement("*[id*='" + 0 + ":task-item']");
     taskWidgetPage.clickByCssSelector("*[id*='" + 0 + ":task-item']");
     taskWidgetPage.waitForPageLoaded();
-
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
-    CasePage casePage = mainMenuPage.selectCaseMenu();
+    
+    homePage = new HomePage();
+    Sleeper.sleep(2000);
+    
+    mainMenuPage = homePage.openMainMenu();
+    casePage = mainMenuPage.selectCaseMenu();
     assertFalse(casePage.isCaseDisplayed("Repair Computer"));
   }
 
