@@ -34,7 +34,7 @@ public class AnnouncementStatusService extends BusinessDataService<AnnouncementS
     }
   }
 
-  public long getCountAnnouncementStatus() {
+  private long getCountAnnouncementStatus() {
     return repo().search(getType()).limit(1).execute().totalCount();
   }
 
