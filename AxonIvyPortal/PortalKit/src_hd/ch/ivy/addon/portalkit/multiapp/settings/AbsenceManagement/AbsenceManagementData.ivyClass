@@ -49,3 +49,6 @@ currentAppName String #field
 currentAppName PERSISTENT #fieldModifier
 substitutesForSelectedApp java.util.Map #field
 substitutesForSelectedApp PERSISTENT #fieldModifier
+tabIndex Number #field
+tabIndex 'reopen first tab when open dialog' #fieldComment
+tabIndex PERSISTENT #fieldModifier
