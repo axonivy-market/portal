@@ -110,6 +110,7 @@ private static final long serialVersionUID = -5889375917550618261L;
 
 
   public void saveNewUserProcess() {
+    editingProcess.setApplicationId(Ivy.request().getApplication().getId());
     editingProcess.setUserName(Ivy.session().getSessionUserName());
     editingProcess.setIndex(userProcesses.size());
     editingProcess = userProcessService.save(editingProcess);

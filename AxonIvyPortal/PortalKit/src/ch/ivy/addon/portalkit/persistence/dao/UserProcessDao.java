@@ -24,4 +24,11 @@ public class UserProcessDao extends AbstractDao<UserProcess> {
         .filter(userProcess -> StringUtils.equals(userProcess.getUserName(), userName) && !userProcess.isDefaultProcess())
         .collect(Collectors.toList());
   }
+
+  @ExecuteAsSystem
+  public List<UserProcess> findByApplicationID(long applicationId) {
+    return findAll().stream().filter(userProcess -> userProcess.getApplicationId() == applicationId)
+        .collect(Collectors.toList());
+  }
+
 }
