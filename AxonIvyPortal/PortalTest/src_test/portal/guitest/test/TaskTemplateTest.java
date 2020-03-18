@@ -1,5 +1,8 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -12,7 +15,6 @@ import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.WorkingTaskDialogPage;
-
 public class TaskTemplateTest extends BaseTest {
 
   @Override

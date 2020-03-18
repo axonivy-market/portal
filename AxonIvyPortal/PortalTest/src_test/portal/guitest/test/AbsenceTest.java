@@ -1,5 +1,9 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.time.LocalDate;
 
 import org.junit.Before;
@@ -12,7 +16,6 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.NewAbsencePage;
 import portal.guitest.page.SettingDeputyPage;
-
 public class AbsenceTest extends BaseTest {
   private static final LocalDate TODAY = LocalDate.now();
   private static final LocalDate YESTERDAY = TODAY.minusDays(1);

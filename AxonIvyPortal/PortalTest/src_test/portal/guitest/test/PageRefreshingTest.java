@@ -1,5 +1,7 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,7 +11,6 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskWidgetPage;
-
 public class PageRefreshingTest extends BaseTest {
 
   @Override

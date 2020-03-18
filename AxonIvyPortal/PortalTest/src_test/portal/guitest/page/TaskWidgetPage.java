@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TaskState;
 
 import com.jayway.awaitility.Awaitility;
@@ -35,9 +35,9 @@ public class TaskWidgetPage extends TemplatePage {
     fullModeButton.click();
     String engineUrl = System.getProperty("engineUrl");
     if (ENGINE_URL_LOCAL.equals(engineUrl)) {
-      Sleeper.sleepTight(7000);
+      Sleeper.sleep(7000);
     } else {
-      Sleeper.sleepTight(5000);
+      Sleeper.sleep(5000);
     }
   }
 
@@ -105,14 +105,14 @@ public class TaskWidgetPage extends TemplatePage {
     keywordFilter.clear();
     keywordFilter.click(); 
     keywordFilter.sendKeys(keyword);
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
     waitAjaxIndicatorDisappear();
   }
   
   public void filterTasksInExpendedModeBy(String keyword) {
     WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE);
     keywordFilter.sendKeys(keyword);
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
     waitAjaxIndicatorDisappear();
   }
 
@@ -448,7 +448,7 @@ public class TaskWidgetPage extends TemplatePage {
         findElementByCssSelector("input[id$='description-filter:filter-input-form:description']");
     enterKeys(descriptionInput, text);
     click(By.cssSelector("button[id$='description-filter:filter-input-form:update-command']"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
   }
 
   public void filterByCustomerName(String text) {
@@ -457,7 +457,7 @@ public class TaskWidgetPage extends TemplatePage {
         findElementByCssSelector("input[id$='customer-name-filter:filter-input-form:customVarChar5']");
     enterKeys(customerNameInput, text);
     click(By.cssSelector("button[id$='task-widget:customer-name-filter:filter-input-form:update-command']"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
   }
   
   public void openStateFilterOverlayPanel() {
@@ -483,16 +483,16 @@ public class TaskWidgetPage extends TemplatePage {
       }
     }
     click(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
   }
 
   public void saveFilter(String filterName) {
     click(By.id("task-widget:filter-save-action"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
     WebElement filterNameInput = findElementById("task-widget:filter-save-form:save-filter-set-name-input");
     enterKeys(filterNameInput, filterName);
     click(findElementById("task-widget:filter-save-form:filter-save-command"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
   }
 
   public String getFilterName() {

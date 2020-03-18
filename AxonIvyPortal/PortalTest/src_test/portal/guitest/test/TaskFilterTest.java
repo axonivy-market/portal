@@ -1,5 +1,9 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.util.Arrays;
 
 import org.junit.Before;
@@ -11,7 +15,6 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskWidgetPage;
-
 public class TaskFilterTest extends BaseTest {
 
   @Before

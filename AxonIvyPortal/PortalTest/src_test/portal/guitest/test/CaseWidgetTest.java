@@ -1,5 +1,8 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
@@ -18,7 +21,6 @@ import portal.guitest.page.TaskWidgetPage;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
-
 public class CaseWidgetTest extends BaseTest {
 
   private static final String INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME = "Investment Request";

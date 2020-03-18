@@ -1,5 +1,7 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,7 +12,6 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
-
 public class GlobalGrowlTest extends BaseTest {
 
   private static final String CUSTOM_GROWL_URL = "portalExamples/16A8BFE42F8A31EF/start.ivp";

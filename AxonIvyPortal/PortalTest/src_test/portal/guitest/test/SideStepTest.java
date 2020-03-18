@@ -1,5 +1,8 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -11,7 +14,6 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
-
 public class SideStepTest extends BaseTest {
 
   @Override

@@ -5,7 +5,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import ch.xpertline.base.client.Browser;
+import vn.wawa.guitest.base.client.Browser;
 
 public class AdminSettingsPage extends TemplatePage {
   

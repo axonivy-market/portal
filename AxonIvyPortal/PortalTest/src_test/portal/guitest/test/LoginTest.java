@@ -1,5 +1,7 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -7,7 +9,6 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
-
 public class LoginTest extends BaseTest {
   private LoginPage loginPage;
 

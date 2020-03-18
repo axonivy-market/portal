@@ -1,13 +1,15 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
+
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
@@ -18,7 +20,6 @@ import portal.guitest.page.TaskWidgetPage;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
-
 public class ShowTaskNoteHistoryTest extends BaseTest {
     
     private HomePage homePage;
@@ -46,7 +47,7 @@ public class ShowTaskNoteHistoryTest extends BaseTest {
         taskTemplatePage.addNewNote(noteContent);
         taskTemplatePage.clickCancelButton();
         MainMenuPage mainMenuPage = new MainMenuPage();
-        Sleeper.sleepTight(2000);
+        Sleeper.sleep(2000);
         mainMenuPage.openTaskList();
         taskWidgetPage.openTaskDetails(0);
         taskWidgetPage.showNoteHistory();

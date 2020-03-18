@@ -11,7 +11,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
-import ch.xpertline.base.client.Browser;
+import vn.wawa.guitest.base.client.Browser;
 
 public class ScreenshotFailedTestRule implements MethodRule {
   private static final String SCREENSHOT_FOLDER = "target" + File.separator + "test" + File.separator + "screenshot"

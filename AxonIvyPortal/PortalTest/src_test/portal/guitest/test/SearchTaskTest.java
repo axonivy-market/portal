@@ -1,5 +1,8 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,7 +12,6 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
-
 public class SearchTaskTest extends BaseTest {
   private HomePage homePage;
 

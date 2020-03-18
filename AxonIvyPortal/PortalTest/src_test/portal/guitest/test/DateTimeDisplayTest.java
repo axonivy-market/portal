@@ -12,7 +12,6 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
-
 public class DateTimeDisplayTest extends BaseTest {
   
   private static final String DATE_TIME_REGEX_PATTERN = "\\d{1,2}\\.\\d{1,2}\\.\\d{4} \\d{2}:\\d{2}";

@@ -1,5 +1,8 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,7 +12,6 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskWidgetPage;
-
 public class TaskWidgetCustomizationTest extends BaseTest {
 
   private static final String CUSTOMER_NAME_COLUMN_ID = "customer-name";

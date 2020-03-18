@@ -1,5 +1,7 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -12,7 +14,6 @@ import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CasePage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
-
 public class UploadDocumentTest extends BaseTest{
   
   private HomePage homePage;

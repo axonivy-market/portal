@@ -1,5 +1,9 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,7 +15,6 @@ import portal.guitest.page.LoginPage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
-
 public class BusinessCaseTest extends BaseTest {
 
   private static final String TECHNICAL_CASE_NAME = "TECH: Update checkin time";

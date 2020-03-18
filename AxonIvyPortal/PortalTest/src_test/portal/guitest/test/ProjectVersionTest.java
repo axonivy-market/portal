@@ -1,5 +1,7 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
@@ -7,7 +9,6 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.ProjectVersionPage;
-
 public class ProjectVersionTest extends BaseTest {
 
   @Test

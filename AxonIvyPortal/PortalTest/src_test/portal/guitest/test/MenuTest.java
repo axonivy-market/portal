@@ -1,5 +1,8 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -12,7 +15,6 @@ import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
-
 public class MenuTest extends BaseTest {
 
   @Override

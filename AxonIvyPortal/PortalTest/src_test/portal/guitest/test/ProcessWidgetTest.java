@@ -1,5 +1,10 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertTrue;
+
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
@@ -14,7 +19,6 @@ import portal.guitest.page.ProcessWidgetPage.AddNewProcessDialog;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
-
 public class ProcessWidgetTest extends BaseTest {
 
   private static final String CLEAN_ALL_FAVORITE_PROCESSES = "(For autotest) Clean all favorite processes";
@@ -53,7 +57,7 @@ public class ProcessWidgetTest extends BaseTest {
     assertTrue(processWidget.isCompactMode());
     processWidget.expand();
     assertTrue(processWidget.isExpandedMode());
-    assertNotEquals(processWidget.getProcess(CASE_MAP_LEAVES), null);
+    assertNotSame(processWidget.getProcess(CASE_MAP_LEAVES), null);
   }
 
   @Test
@@ -158,7 +162,7 @@ public class ProcessWidgetTest extends BaseTest {
     AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.selectIvyProcessByName(CLEAN_ALL_FAVORITE_PROCESSES);
     addNewProcessDialog.submitForm();
-    assertNotEquals(processWidget.getProcess(CLEAN_ALL_FAVORITE_PROCESSES), null);
+    assertNotSame(processWidget.getProcess(CLEAN_ALL_FAVORITE_PROCESSES), null);
   }
 
   @Test
@@ -175,7 +179,7 @@ public class ProcessWidgetTest extends BaseTest {
     AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.selectIvyProcessByName(CASE_MAP_LEAVES);
     addNewProcessDialog.submitForm();
-    assertNotEquals(processWidget.getProcess(CASE_MAP_LEAVES), null);
+    assertNotSame(processWidget.getProcess(CASE_MAP_LEAVES), null);
   }
 
   @Test

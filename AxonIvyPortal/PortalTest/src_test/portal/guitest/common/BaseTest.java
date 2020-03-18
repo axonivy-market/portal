@@ -3,17 +3,15 @@ package portal.guitest.common;
 import org.junit.Before;
 import org.junit.Rule;
 
-import ch.xpertline.base.client.Browser;
-import ch.xpertline.base.enums.BrowserType;
-
-import com.thoughtworks.selenium.SeleneseTestBase;
+import vn.wawa.guitest.base.client.Browser;
+import vn.wawa.guitest.base.enums.BrowserType;
 
 /**
  * A base test that other tests extend it. It will test on browser IE by default. It provides feature to take screenshot
  * of failed tests and utility methods.
  *
  */
-public class BaseTest extends SeleneseTestBase {
+public class BaseTest {
   private Browser browser;
 
   private String designerLogoutUrl = "http://localhost:8081/ivy/wf/logout.jsp";

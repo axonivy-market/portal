@@ -5,7 +5,8 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
+
+import portal.guitest.common.Sleeper;
 
 public class CasePage extends TemplatePage {
   private static final String CASE_ITEM_LIST_SELECTOR = "li[class='ui-datascroller-item']";
@@ -109,16 +110,16 @@ public class CasePage extends TemplatePage {
         findElementByCssSelector("input[id$='description-filter:filter-input-form:description']");
     enterKeys(descriptionInput, text);
     click(By.cssSelector("button[id$='description-filter:filter-input-form:update-command']"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
   }
 
   public void saveFilter(String filterName) {
     click(By.id("case-widget:filter-save-action"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
     WebElement filterNameInput = findElementById("case-widget:filter-save-form:save-filter-set-name-input");
     enterKeys(filterNameInput, filterName);
     click(findElementById("case-widget:filter-save-form:filter-save-command"));
-    Sleeper.sleepTight(2000);
+    Sleeper.sleep(2000);
   }
 
   public Object getFilterName() {

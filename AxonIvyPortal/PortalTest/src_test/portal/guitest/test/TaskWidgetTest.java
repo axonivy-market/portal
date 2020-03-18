@@ -1,22 +1,25 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CasePage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.TaskWidgetPage;
-
 public class TaskWidgetTest extends BaseTest {
 
   @Override
@@ -113,7 +116,7 @@ public class TaskWidgetTest extends BaseTest {
       }
     }
     
-    Sleeper.sleepTight(60000);
+    Sleeper.sleep(60000);
     getBrowser().getDriver().switchTo().window(main);
     int taskAfterRefresh = taskWidgetPage.countTasks();
     assertNotEquals(taskBeforeRefresh, taskAfterRefresh);
@@ -124,7 +127,7 @@ public class TaskWidgetTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.openTaskList();
     taskWidgetPage.startAndCancelTask();
-    Sleeper.sleepTight(3000);
+    Sleeper.sleep(3000);
     Assert.assertTrue(taskWidgetPage.isTaskListShown());
   }
   

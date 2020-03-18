@@ -1,5 +1,7 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,7 +10,6 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.page.CasePage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
-
 public class SearchCaseByJsonQueryTest extends BaseTest {
     
     @Before

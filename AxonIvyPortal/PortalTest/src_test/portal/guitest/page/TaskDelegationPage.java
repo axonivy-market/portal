@@ -3,7 +3,7 @@ package portal.guitest.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import ch.xpertline.base.pages.AbstractPage;
+import vn.wawa.guitest.base.page.AbstractPage;
 
 public class TaskDelegationPage extends AbstractPage {
   

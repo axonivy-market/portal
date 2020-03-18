@@ -8,13 +8,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
+
+import portal.guitest.common.Sleeper;
+import portal.guitest.common.UrlHelpers;
+import vn.wawa.guitest.base.page.AbstractPage;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
-
-import portal.guitest.common.UrlHelpers;
-import ch.xpertline.base.pages.AbstractPage;
 
 public abstract class TemplatePage extends AbstractPage {
 
@@ -307,14 +307,14 @@ public abstract class TemplatePage extends AbstractPage {
       WebElement processResult = getProcessResultContainer();
       WebElement webElement = findChildElementByLinkText(processResult, name);
       click(webElement);
-      Sleeper.sleepTight(5000);
+      Sleeper.sleep(5000);
     }
 
     public SearchResultPage startTaskOnGlobalSearch(String name) {
       WebElement taskResult = getTaskResultContainer();
       WebElement webElement = findChildElementByLinkText(taskResult, name);
       click(webElement);
-      Sleeper.sleepTight(5000);
+      Sleeper.sleep(5000);
       return new SearchResultPage("task");
     }
 

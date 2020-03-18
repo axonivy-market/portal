@@ -1,19 +1,13 @@
 package portal.guitest.page;
 
-import java.awt.AWTException;
-import java.awt.Robot;
-import java.awt.Toolkit;
-import java.awt.datatransfer.StringSelection;
-import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.UnhandledAlertException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.server.browserlaunchers.Sleeper;
+
+import portal.guitest.common.Sleeper;
 
 public class CaseDetailsPage extends TemplatePage {
   private static final String DOCUMENT_COMPONENT_ID = "case-widget:case-list-scroller:0:case-item:document";
@@ -63,7 +57,7 @@ public class CaseDetailsPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
     String engineUrl = System.getProperty("engineUrl");
     if (ENGINE_URL_LOCAL.equals(engineUrl)) {
-      Sleeper.sleepTight(2000);
+      Sleeper.sleep(2000);
     }
     WebElement addNoteDialog = findElementByCssSelector("div.ui-dialog[aria-hidden='false']");
     waitForElementDisplayed(addNoteDialog, true);
@@ -329,42 +323,14 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   private void openAddDocumentDialogAndUploadDocument(int index, String pathToFile) {
-    click(By.id(String.format("case-widget:case-list-scroller:%d:case-item:document:add-document-command", index)));
-    String uploadDialogId =
-        String.format("case-widget:case-list-scroller:%d:case-item:document:document-upload-dialog-", index);
-    waitForElementDisplayed(By.id(uploadDialogId), true);
-    waitForElementDisplayed(By.className("ui-fileupload-choose"), true);
-
-    try {
-      click(By.className("ui-fileupload-choose"));
-    } catch (UnhandledAlertException e) {
-      Alert alert = driver.switchTo().alert();
-      alert.accept();
-    }
-    StringSelection ss = new StringSelection(pathToFile);
-    Toolkit.getDefaultToolkit().getSystemClipboard().setContents(ss, null);
-    Robot robot;
-    try {
-      robot = new Robot();
-      robot.keyPress(KeyEvent.VK_CONTROL);
-      robot.keyPress(KeyEvent.VK_V);
-      robot.keyRelease(KeyEvent.VK_V);
-      robot.keyRelease(KeyEvent.VK_CONTROL);
-      robot.keyPress(KeyEvent.VK_ENTER);
-      robot.keyRelease(KeyEvent.VK_ENTER);
-
-      // currently haven't found solution to check when the file upload finish, we have to wait
-      if (isIntegrationTestRun()) {
-        Sleeper.sleepTight(10000);
-      } else {
-        Sleeper.sleepTight(5000);
-      }
-
-      robot.keyPress(KeyEvent.VK_ESCAPE);
-      robot.keyRelease(KeyEvent.VK_ESCAPE);
-    } catch (AWTException e) {
-      e.printStackTrace();
+    clickByCssSelector("a[id$='add-document-command']");
+    waitForElementDisplayed(By.cssSelector("span[id$='document-upload-dialog-_title']"), true);
+    findElementByCssSelector("input[id$='document-upload-panel_input']").sendKeys(pathToFile);
+    // currently haven't found solution to check when the file upload finish, we have to wait
+    if (isIntegrationTestRun()) {
+      Sleeper.sleep(10000);
+    } else {
+      Sleeper.sleep(5000);
     }
   }
-
 }

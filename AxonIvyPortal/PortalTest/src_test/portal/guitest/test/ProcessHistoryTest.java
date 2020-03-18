@@ -1,5 +1,8 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -8,7 +11,6 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import portal.guitest.page.ProcessHistoryPage;
-
 public class ProcessHistoryTest extends BaseTest {
   private static final String CREATE_ALPHA_COMPANY_CASE_LINK = "portalExamples/1624C1C79661758C/createAlphaCompany.ivp";
   private static final String CREATE_BETA_COMPANY_CASE_LINK = "portalExamples/1624C1C79661758C/createBetaCompany.ivp";

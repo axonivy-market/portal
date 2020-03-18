@@ -1,5 +1,9 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
@@ -19,7 +23,6 @@ import portal.guitest.page.TaskWidgetPage;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
-
 public class ShowRelatedTasksTest extends BaseTest {
   
   private CaseDetailsPage detailsPage;

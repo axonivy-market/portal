@@ -1,5 +1,9 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
@@ -7,7 +11,6 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
-
 public class AdminSettingsTest extends BaseTest {
 
   @Test
