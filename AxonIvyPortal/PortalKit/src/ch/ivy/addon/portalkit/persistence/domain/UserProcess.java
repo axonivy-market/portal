@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 public class UserProcess extends BusinessEntity {
+  private long applicationId = Long.MIN_VALUE;
   private String userName;
   private String processName;
   private String icon;
@@ -22,10 +23,19 @@ public class UserProcess extends BusinessEntity {
 
   }
 
-  public UserProcess(String processName, String userName, String link) {
+  public UserProcess(String processName, long applicationId, String userName, String link) {
     this.processName = processName;
+    this.applicationId = applicationId;
     this.userName = userName;
     this.link = link;
+  }
+
+  public long getApplicationId() {
+    return applicationId;
+  }
+
+  public void setApplicationId(long applicationId) {
+    this.applicationId = applicationId;
   }
 
   public String getUserName() {
