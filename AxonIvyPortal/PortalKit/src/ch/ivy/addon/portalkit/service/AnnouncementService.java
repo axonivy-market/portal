@@ -114,7 +114,7 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
         }
       } else {
         AnnouncementStatusService.getInstance().removeAnnouncementStatus();
-        if (AnnouncementStatusService.getInstance().getCountAnnouncementStatus() == 0 && i <= 2) {
+        if (!AnnouncementStatusService.getInstance().getAnnouncementStatus()) {
           isStatusUpToDate = true;
           break;
         }
