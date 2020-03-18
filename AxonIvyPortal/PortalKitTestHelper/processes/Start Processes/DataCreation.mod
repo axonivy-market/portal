@@ -1116,6 +1116,7 @@ long testUserId = -1;
 UserProcessService userProcessService = new UserProcessService();
 for (int i = 0; i < 930; i++) {
 	UserProcess userProcess = new UserProcess();
+	userProcess.setApplicationId(ivy.request.getApplication().getId());
 	userProcess.setUserName(testUsername);
 	userProcess.setIndex(i);
 	userProcess.setDescription("Test user process - " + i);
