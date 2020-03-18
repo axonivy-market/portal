@@ -1,7 +1,7 @@
 [Ivy]
 1709A97D25EAB86E 7.5.0 #module
 >Proto >Proto Collection #zClass
-Ce0 CaseMapEndPage Big #zClass
+Ce0 UserExamplesEndPage Big #zClass
 Ce0 B #cInfo
 Ce0 #process
 Ce0 @TextInP .type .type #zField
@@ -13,7 +13,7 @@ Ce0 @UserDialog f3 '' #zField
 Ce0 @EndTask f1 '' #zField
 Ce0 @PushWFArc f2 '' #zField
 Ce0 @PushWFArc f4 '' #zField
->Proto Ce0 Ce0 CaseMapEndPage #zField
+>Proto Ce0 Ce0 UserExamplesEndPage #zField
 Ce0 f0 outLink start.ivp #txt
 Ce0 f0 inParamDecl '<Long caseId> param;' #txt
 Ce0 f0 inParamTable 'out.caseId=param.caseId;
