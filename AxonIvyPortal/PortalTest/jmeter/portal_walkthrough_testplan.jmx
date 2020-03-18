@@ -5738,7 +5738,7 @@
             </RegexExtractor>
             <hashTree/>
             <RegexExtractor guiclass="RegexExtractorGui" testclass="RegexExtractor" testname="Extract URL" enabled="true">
-              <stringProp name="RegexExtractor.useHeaders">false</stringProp>
+              <stringProp name="RegexExtractor.useHeaders">URL</stringProp>
               <stringProp name="RegexExtractor.refname">url</stringProp>
               <stringProp name="RegexExtractor.regex">(http[\S]+)</stringProp>
               <stringProp name="RegexExtractor.template">$1$</stringProp>

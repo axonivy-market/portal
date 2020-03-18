@@ -12,7 +12,8 @@
 
 <cc:implementation>
   <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="#{cc.attrs.componentId}" taskFilter="#{cc.attrs.filter}"
-    selectedFilters="#{cc.attrs.selectedFilters}" resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dataModel="#{cc.attrs.dataModel}">
+    selectedFilters="#{cc.attrs.selectedFilters}" resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dataModel="#{cc.attrs.dataModel}"
+    contentStyleClass="ui-fluid">
     <p:inputText id="description" value="#{cc.attrs.filter.description}" />
   </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
 </cc:implementation>
