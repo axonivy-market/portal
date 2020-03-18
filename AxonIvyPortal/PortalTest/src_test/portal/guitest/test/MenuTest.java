@@ -40,10 +40,10 @@ public class MenuTest extends BaseTest {
     loginPage.login();
 
     MainMenuPage mainMenuPage = new MainMenuPage();
-    TaskWidgetPage taskWidgetPage = mainMenuPage.selectTaskMenu();
+    mainMenuPage.selectTaskMenu();
     mainMenuPage.openTaskMenu();
 
-    taskWidgetPage.goToHomePage();
+    mainMenuPage.openCaseList();
     mainMenuPage.selectTaskMenu();
 
     assertTrue(mainMenuPage.isTaskMenuOpen());

@@ -49,8 +49,7 @@ public class CaseWidgetTest extends BaseTest {
     taskWidgetPage.refreshAndWaitElement("*[id*='" + 0 + ":task-item']");
     taskWidgetPage.clickByCssSelector("*[id*='" + 0 + ":task-item']");
     taskWidgetPage.waitForPageLoaded();
-    taskWidgetPage.goToHomePage();
-    
+
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CasePage casePage = mainMenuPage.selectCaseMenu();
     assertFalse(casePage.isCaseDisplayed("Repair Computer"));
