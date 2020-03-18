@@ -103,14 +103,12 @@ public class TaskTemplatePage extends TemplatePage {
   public HomePage clickSubmitButton() {
     String submitButton = "button[id$='command-form:button-submit']";
     clickByCssSelector(submitButton);
-    waitAjaxIndicatorDisappear();
     return new HomePage();
   }
   
   public HomePage clickCancelAndLeftButton() {
     String cancelButton = "button[id$='command-form:button-cancel']";
     clickByCssSelector(cancelButton);
-    waitAjaxIndicatorDisappear();
     return new HomePage();
   }
   
