@@ -1642,7 +1642,7 @@ service.activateAnnouncement();
 out.isAnnouncementActivated = true;
 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
 	ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsEnabled"), null));
-service.invalidateCache();' #txt
+' #txt
 As0 f81 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1666,7 +1666,7 @@ service.deactivateAnnouncement();
 out.isAnnouncementActivated = false;
 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, 
 	ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/announcementsDisabled"), null));
-service.invalidateCache();' #txt
+' #txt
 As0 f85 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
