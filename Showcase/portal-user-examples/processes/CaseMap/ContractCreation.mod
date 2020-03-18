@@ -75,7 +75,7 @@ import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import java.util.Arrays;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 
-Map x = IvyAdapterService.startSubProcess("handleCaseMapEndPage()", null, Arrays.asList(PortalLibrary.AXON_EXPRESS.getValue()));
+Map x = IvyAdapterService.startSubProcess("handleUserExamplesEndPage()", null, Arrays.asList(PortalLibrary.AXON_EXPRESS.getValue()));
 String callbackUrl = x.get("callbackUrl") as String;
 ivy.task.customFields().stringField(CustomFields.EXPRESS_END_PAGE_URL.toString()).set(callbackUrl);
 
