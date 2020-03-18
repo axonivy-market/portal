@@ -2,10 +2,12 @@ package ch.ivy.addon.portalkit.taskfilter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.CheckboxTreeNode;
+import org.primefaces.model.TreeNode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -80,7 +82,14 @@ public class TaskCategoryFilter extends TaskFilter {
   private void initializeRoot() {
     String allCategoriesText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/allCategories");
     // If language is changed, category tree needs to be rebuilt
-    if (root == null || !StringUtils.equals(((CategoryNode)root.getChildren().get(0).getData()).getValue(), allCategoriesText)) {
+    String allCategoriesTextInTree = Optional.ofNullable(root)
+        .map(CheckboxTreeNode::getChildren)
+        .filter(CollectionUtils::isNotEmpty)
+        .map(list -> list.get(0))
+        .map(TreeNode::getData)
+        .map(data -> ((CategoryNode) data).getValue())
+        .orElse(StringUtils.EMPTY);
+    if (root == null || !StringUtils.equals(allCategoriesTextInTree, allCategoriesText)) {
       root = TaskTreeUtils.buildTaskCategoryCheckboxTreeRoot();
       categories = CategoryUtils.recoverSelectedCategories(root, categoryPaths);
     }
