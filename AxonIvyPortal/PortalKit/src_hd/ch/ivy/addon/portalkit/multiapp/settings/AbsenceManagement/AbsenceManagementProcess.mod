@@ -1001,7 +1001,7 @@ in.applications = service.findActiveIvyAppsUserCanWork(ivy.session.getSessionUse
 if (CollectionUtils.isNotEmpty(in.applications)) {
 	String appName = in.applications.get(0).name;
 	in.application = ServiceUtilities.findApp(appName);
-//	in.tabIndex = 0;
+	in.tabIndex = 0;
 }' #txt
 As0 f28 security system #txt
 As0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1470,12 +1470,10 @@ As0 f32 actionCode 'import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities
 import org.primefaces.component.tabview.TabView;
 
 TabView tabView = in.tabChangeEvent.getComponent() as TabView;
-//in.tabIndex = tabView.index;
+in.tabIndex = tabView.index;
 String name = out.applications.get(tabView.index).name;
 in.application = ServiceUtilities.findApp(name);
 in.currentAppName = in.application.getName();
-ivy.log.error("NOW APP NAME IS {0} and CURRENT APP NAME IS {1}", in.application.getName(), in.currentAppName);
-//ivy.log.error("TAB INDEX IS {1}", in.tabIndex);
 
 
 
@@ -1563,14 +1561,14 @@ As0 f141 actionCode 'import java.util.Map.Entry;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 
-List list = null;
+List substitutes = [];
 for (IvyApplication entry: in.substitutesForSelectedApp.keySet()){
- 	list = in.substitutesForSelectedApp.get(entry) as List;
+ 	substitutes = in.substitutesForSelectedApp.get(entry) as List;
 }
 
 for (IvyApplication entry: in.substitutesByApp.keySet()){
 	if (entry.getName().equals(in.currentAppName)){
-		in.substitutesByApp.put(entry, list);
+		in.substitutesByApp.put(entry, substitutes);
 	}
 }
 ' #txt

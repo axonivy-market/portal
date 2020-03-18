@@ -27,7 +27,7 @@
           completeMethod="#{logic.autoCompleteForUser}"
           isRenderedMessage="false"
           label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}"
-          labelPanelStyleClass="ui-g-4 ui-xl-2 ui-sm-3"
+          labelPanelStyleClass="ui-g-4 ui-xl-4 ui-sm-3"
           autoCompletePanelStyleClass="ui-g-8 ui-sm-9"
           autoCompleteStyleClass="absence-user-selection"
           scrollHeight="200" size="35">
@@ -85,7 +85,7 @@
       </div>
     </div>
 
-    <p:tabView id="substitue-tab" value="#{data.applications}" var="app" styleClass="substitue-tab" >
+    <p:tabView id="substitue-tab" value="#{data.applications}" var="app" styleClass="substitue-tab" activeIndex="#{data.tabIndex}">
     <p:ajax event="tabChange" listener="#{logic.onTabChange}"/>
     <p:tab title="#{app.displayName}" >
     
@@ -94,14 +94,14 @@
         <div class="ui-g-12">
           <h:outputText value="#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/deputy' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myDeputies')}" styleClass="FontBold"/>
         </div>
-        <div id="username-deputy" class="ui-g-12" jsf:rendered="#{absenceManagementBean.substitutionManagementCapable}">
+        <div id="username-deputy" class="ui-g-8" jsf:rendered="#{absenceManagementBean.substitutionManagementCapable}">
           <ic:ch.ivy.addon.portalkit.component.UserSelection
             id="substituted-user-selection-component"
             componentId="substituted-user"
             selectedUser="#{data.substituteUser}"
             completeMethod="#{logic.autoCompleteForUserOnApp}"
             label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/substitutedUser')}"
-            labelPanelStyleClass="ui-g-2 ui-xl-1 ui-sm-4"
+            labelPanelStyleClass="ui-g-2 ui-xl-2 ui-sm-4"
             autoCompletePanelStyleClass="ui-g-4 ui-sm-8 substituted-user"
             scrollHeight="200" size="35" isRenderedMessage="false" styleClass="ui-g-12">
             <p:column>

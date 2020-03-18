@@ -99,7 +99,7 @@ public class SubstituteService implements ISubstituteService {
     List<IRole> iRoles = getAllRoles(user).stream()
         .filter(role -> !existRoles.contains(role))
         .collect(Collectors.toList());
-
+    
     boolean doesPersonalSubstituteExist = substitutes.stream().anyMatch(substitute -> substitute.getSubstitionRole() == null);
     if (!doesPersonalSubstituteExist) {
       substitutes.add(createPersonalSubstitute());
