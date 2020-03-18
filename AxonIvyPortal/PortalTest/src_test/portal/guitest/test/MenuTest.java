@@ -59,7 +59,7 @@ public class MenuTest extends BaseTest {
     StatisticWidgetPage dashboardPage = mainMenuPage.selectStatisticDashboard();
     dashboardPage.waitForElementDisplayed(By.cssSelector(".js-left-sidebar-toggle"), true, 30);
     dashboardPage.closeMainMenu();
-    homePage = dashboardPage.goToHomePage();
+    mainMenuPage.selectCaseMenu();
     assertFalse(homePage.isMainMenuOpen());
   }
 
