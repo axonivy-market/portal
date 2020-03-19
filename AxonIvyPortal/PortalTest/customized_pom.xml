@@ -78,12 +78,49 @@
             </goals>
           </execution>
           <execution>
-            <id>portalexamples.deploy</id>
+            <id>portalStyle.deploy</id>
             <goals>
               <goal>deploy-to-engine</goal>
             </goals>
             <configuration>
-              <deployFile>..\..\Showcase\portal-developer-examples\target\portal-developer-examples-${portal.version}.iar</deployFile>
+              <skipDeploy>${skip.redeploy}</skipDeploy>
+              <deployFile>..\PortalStyle\target\portalStyle-${portal.version}.iar</deployFile>
+              <deployToEngineApplication>demo-portal</deployToEngineApplication>
+            </configuration>
+            <phase>process-test-classes</phase>
+          </execution>
+          <execution>
+            <id>portalKit.deploy</id>
+            <goals>
+              <goal>deploy-to-engine</goal>
+            </goals>
+            <configuration>
+              <skipDeploy>${skip.redeploy}</skipDeploy>
+              <deployFile>..\PortalKit\target\portalKit-${portal.version}.iar</deployFile>
+              <deployToEngineApplication>demo-portal</deployToEngineApplication>
+            </configuration>
+            <phase>process-test-classes</phase>
+          </execution>
+          <execution>
+            <id>portalTemplate.deploy</id>
+            <goals>
+              <goal>deploy-to-engine</goal>
+            </goals>
+            <configuration>
+              <skipDeploy>${skip.redeploy}</skipDeploy>
+              <deployFile>..\PortalTemplate\target\portalTemplate-${portal.version}.iar</deployFile>
+              <deployToEngineApplication>demo-portal</deployToEngineApplication>
+            </configuration>
+            <phase>process-test-classes</phase>
+          </execution>
+          <execution>
+            <id>axonIvyExpress.deploy</id>
+            <goals>
+              <goal>deploy-to-engine</goal>
+            </goals>
+            <configuration>
+              <skipDeploy>${skip.redeploy}</skipDeploy>
+              <deployFile>..\AxonIvyExpress\target\axonIvyExpress-${portal.version}.iar</deployFile>
               <deployToEngineApplication>demo-portal</deployToEngineApplication>
             </configuration>
             <phase>process-test-classes</phase>
@@ -95,6 +132,28 @@
             </goals>
             <configuration>
               <deployFile>..\PortalKitTestHelper\target\portalKitTestHelper-${portal.version}.iar</deployFile>
+              <deployToEngineApplication>demo-portal</deployToEngineApplication>
+            </configuration>
+            <phase>process-test-classes</phase>
+          </execution>
+          <execution>
+            <id>portal-user-examples.deploy</id>
+            <goals>
+              <goal>deploy-to-engine</goal>
+            </goals>
+            <configuration>
+              <deployFile>..\..\Showcase\portal-user-examples\target\portal-user-examples-${portal.version}.iar</deployFile>
+              <deployToEngineApplication>demo-portal</deployToEngineApplication>
+            </configuration>
+            <phase>process-test-classes</phase>
+          </execution>
+          <execution>
+            <id>portal-developer-examples.deploy</id>
+            <goals>
+              <goal>deploy-to-engine</goal>
+            </goals>
+            <configuration>
+              <deployFile>..\..\Showcase\portal-developer-examples\target\portal-developer-examples-${portal.version}.iar</deployFile>
               <deployToEngineApplication>demo-portal</deployToEngineApplication>
             </configuration>
             <phase>process-test-classes</phase>

@@ -186,13 +186,11 @@ public class ProcessWidgetPage extends TemplatePage {
   }
   
   public void moveFavoriteProcess(int processToMoveIndex, int destinationProcessIndex) {
-    driver.manage().window().setSize(new Dimension(3000, 2000));
     WebElement processToMove = findElementByCssSelector(".ui-orderlist-item:nth-child(" + processToMoveIndex + ")");
     WebElement destinationProcess =
         findElementByCssSelector(".ui-orderlist-item:nth-child(" + destinationProcessIndex + ")");
     Actions builder = new Actions(driver);
-    Action moveProcessSequence =
-        builder.clickAndHold(processToMove).moveToElement(destinationProcess).release(processToMove).build();
+    Action moveProcessSequence = builder.dragAndDrop(processToMove, destinationProcess).build();
     moveProcessSequence.perform();
   }
 
