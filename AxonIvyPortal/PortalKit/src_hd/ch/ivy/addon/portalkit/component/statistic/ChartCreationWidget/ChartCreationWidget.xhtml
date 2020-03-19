@@ -169,7 +169,7 @@
             <p:autoUpdate />
           </p:messages>
           <h:panelGroup styleClass="md-inputfield add-statistic-panel ui-fluid">
-            <p:inputText id="chart-name-input" value="#{data.chartName}" required="true" />
+            <p:inputText id="chart-name-input" value="#{data.chartName}" required="true" maxlength="200" />
             <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" for="chart-name-input" />
           </h:panelGroup>
         </h:panelGrid>

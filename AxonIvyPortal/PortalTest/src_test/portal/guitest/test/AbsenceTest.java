@@ -89,7 +89,7 @@ public class AbsenceTest extends BaseTest {
 
   @Test
   public void testIAmDeputyFor() {
-    login(TestAccount.HR_ROLE_USER);
+    login(TestAccount.ADMIN_USER);
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(TOMORROW, TOMORROW, "For Family", absencePage);
 
