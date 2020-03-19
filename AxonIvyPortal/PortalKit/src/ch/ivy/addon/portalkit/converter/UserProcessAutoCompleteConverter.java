@@ -12,6 +12,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @FacesConverter("userProcessAutoCompleteConverter")
 public class UserProcessAutoCompleteConverter implements Converter {
@@ -50,7 +51,7 @@ public class UserProcessAutoCompleteConverter implements Converter {
 
       Object item = viewMap.get(mapKey);
       if (item == null) {
-        return new UserProcess(selectedvalue, UserUtils.getSessionUserName(), "");
+        return new UserProcess(selectedvalue, Ivy.request().getApplication().getId(), UserUtils.getSessionUserName(), "");
       } else if (isEmptyUserProcess((UserProcess) item)) {
         return null;
       }
