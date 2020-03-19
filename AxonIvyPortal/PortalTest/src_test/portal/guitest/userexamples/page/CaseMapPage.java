@@ -104,7 +104,8 @@ public class CaseMapPage extends TaskTemplatePage {
     return new HomePage();
   }
   
-  public void clickSubmitContractButton() {
+  public UserExamplesEndPage clickSubmitContractButton() {
     clickByCssSelector("button[id$='submit-contract-button']");
+    return new UserExamplesEndPage();
   }
 }

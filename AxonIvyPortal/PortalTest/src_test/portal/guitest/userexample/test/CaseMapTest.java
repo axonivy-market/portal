@@ -6,9 +6,11 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.userexamples.page.CaseMapPage;
+import portal.guitest.userexamples.page.UserExamplesEndPage;
 
 public class CaseMapTest extends BaseTest {
 
@@ -61,7 +63,9 @@ public class CaseMapTest extends BaseTest {
     login(TestAccount.DEMO_USER);
     startTaskByTaskName(CREATE_CONTRACT);
     assertInputData();
-    
+    UserExamplesEndPage userExamplesEndPage = caseMapPage.clickSubmitContractButton();
+    CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
+    Assert.assertEquals("Lending", caseDetailsPage.getCaseName());
   }
 
   @Test
