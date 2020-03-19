@@ -88,6 +88,15 @@ Pt0 @PushWFArc f52 '' #zField
 Pt0 @GridStep f54 '' #zField
 Pt0 @PushWFArc f38 '' #zField
 Pt0 @PushWFArc f50 '' #zField
+Pt0 @StartRequest f68 '' #zField
+Pt0 @CallSub f67 '' #zField
+Pt0 @StartRequest f60 '' #zField
+Pt0 @CallSub f65 '' #zField
+Pt0 @CallSub f59 '' #zField
+Pt0 @StartRequest f62 '' #zField
+Pt0 @PushWFArc f61 '' #zField
+Pt0 @PushWFArc f66 '' #zField
+Pt0 @PushWFArc f69 '' #zField
 >Proto Pt0 Pt0 InternalSupportPortalStart #zField
 Bk1 @TextInP .type .type #zField
 Bk1 @TextInP .processKind .processKind #zField
@@ -797,6 +806,114 @@ Pt0 f54 1432 106 128 44 -54 -8 #rect
 Pt0 f54 @|StepIcon #fIcon
 Pt0 f38 1352 128 1432 128 #arcP
 Pt0 f50 1560 128 1672 128 #arcP
+Pt0 f68 outLink GlobalSearchPage.ivp #txt
+Pt0 f68 inParamDecl '<String keyword> param;' #txt
+Pt0 f68 inParamTable 'out.keyword=param.keyword;
+' #txt
+Pt0 f68 requestEnabled true #txt
+Pt0 f68 triggerEnabled false #txt
+Pt0 f68 callSignature GlobalSearchPage(String) #txt
+Pt0 f68 caseData businessCase.attach=true #txt
+Pt0 f68 showInStartList 0 #txt
+Pt0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>GlobalSearchPage.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f68 @C|.responsibility Everybody #txt
+Pt0 f68 81 1073 30 30 -57 17 #rect
+Pt0 f68 @|StartRequestIcon #fIcon
+Pt0 f67 processCall 'Functional Processes/OpenPortalSearch:call(String)' #txt
+Pt0 f67 requestActionDecl '<String keyword> param;' #txt
+Pt0 f67 requestMappingAction 'param.keyword=in.keyword;
+' #txt
+Pt0 f67 responseMappingAction 'out=in;
+' #txt
+Pt0 f67 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Functional Processes/OpenPortalSearch</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f67 176 1066 224 44 -107 -8 #rect
+Pt0 f67 @|CallSubIcon #fIcon
+Pt0 f60 outLink RelatedTasksOfCasePage.ivp #txt
+Pt0 f60 inParamDecl '<Long caseId,Boolean isBusinessCase,String caseName> param;' #txt
+Pt0 f60 inParamTable 'out.caseId=param.caseId;
+out.caseName=param.caseName;
+out.isBusinessCase=param.isBusinessCase;
+' #txt
+Pt0 f60 requestEnabled true #txt
+Pt0 f60 triggerEnabled false #txt
+Pt0 f60 callSignature RelatedTasksOfCasePage(Long,Boolean,String) #txt
+Pt0 f60 caseData businessCase.attach=true #txt
+Pt0 f60 showInStartList 0 #txt
+Pt0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>RelatedTasksOfCasePage.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f60 @C|.responsibility Everybody #txt
+Pt0 f60 81 881 30 30 -57 17 #rect
+Pt0 f60 @|StartRequestIcon #fIcon
+Pt0 f65 processCall 'Functional Processes/Navigator:viewRelatedTask(Long)' #txt
+Pt0 f65 requestActionDecl '<Long taskId> param;' #txt
+Pt0 f65 requestMappingAction 'param.taskId=in.selectedTaskId;
+' #txt
+Pt0 f65 responseMappingAction 'out=in;
+' #txt
+Pt0 f65 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Functional Processes/Navigator</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f65 168 970 176 44 -83 -8 #rect
+Pt0 f65 @|CallSubIcon #fIcon
+Pt0 f59 processCall 'Functional Processes/Navigator:viewTask(Long,ch.ivy.addon.portalkit.dto.GlobalCaseId,String)' #txt
+Pt0 f59 requestActionDecl '<Long taskId,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId,String caseName> param;' #txt
+Pt0 f59 requestMappingAction 'param.caseId=ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.caseId).isBusinessCase(in.isBusinessCase).build();
+param.caseName=in.caseName;
+' #txt
+Pt0 f59 responseMappingAction 'out=in;
+' #txt
+Pt0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Functional Processes/Navigator</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f59 168 874 176 44 -83 -8 #rect
+Pt0 f59 @|CallSubIcon #fIcon
+Pt0 f62 outLink TaskDetailsPage.ivp #txt
+Pt0 f62 inParamDecl '<Long selectedTaskId> param;' #txt
+Pt0 f62 inParamTable 'out.selectedTaskId=param.selectedTaskId;
+' #txt
+Pt0 f62 requestEnabled true #txt
+Pt0 f62 triggerEnabled false #txt
+Pt0 f62 callSignature TaskDetailsPage(Long) #txt
+Pt0 f62 caseData businessCase.attach=true #txt
+Pt0 f62 showInStartList 0 #txt
+Pt0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>TaskDetailsPage.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f62 @C|.responsibility Everybody #txt
+Pt0 f62 81 977 30 30 -57 17 #rect
+Pt0 f62 @|StartRequestIcon #fIcon
+Pt0 f61 111 896 168 896 #arcP
+Pt0 f66 111 992 168 992 #arcP
+Pt0 f69 111 1088 176 1088 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1391,6 +1508,12 @@ Pt0 f22 mainOut f38 tail #connect
 Pt0 f38 head f54 mainIn #connect
 Pt0 f54 mainOut f50 tail #connect
 Pt0 f50 head f36 mainIn #connect
+Pt0 f60 mainOut f61 tail #connect
+Pt0 f61 head f59 mainIn #connect
+Pt0 f62 mainOut f66 tail #connect
+Pt0 f66 head f65 mainIn #connect
+Pt0 f68 mainOut f69 tail #connect
+Pt0 f69 head f67 mainIn #connect
 Bk1 f106 mainOut f107 tail #connect
 Bk1 f107 head f104 mainIn #connect
 Bk1 g0 m f0 tail #connect

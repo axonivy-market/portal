@@ -1,6 +1,8 @@
 package ch.ivy.addon.portalkit.service;
 
 
+import java.util.List;
+
 import ch.ivy.addon.portalkit.bo.AnnouncementStatus;
 
 public class AnnouncementStatusService extends BusinessDataService<AnnouncementStatus> {
@@ -15,14 +17,30 @@ public class AnnouncementStatusService extends BusinessDataService<AnnouncementS
     return instance;
   }
 
-  public void updateFirstProperty(String value) {
+  public boolean getAnnouncementStatus() {
+    boolean announcementActivated = false;
     AnnouncementStatus property = findFirst();
-    if (property == null) {
-      property = new AnnouncementStatus(value);
-    } else {
-      property.setEnabled(value);
+    if (property != null) {
+      announcementActivated = Boolean.parseBoolean(property.getEnabled());
     }
-    save(property);
+    return announcementActivated;
+  }
+
+  public void updateAnnouncementStatus(boolean status) {
+    removeAnnouncementStatus();
+    if (status) {
+      AnnouncementStatus property = new AnnouncementStatus(String.valueOf(status));
+      save(property);
+    }
+  }
+
+  private long getCountAnnouncementStatus() {
+    return repo().search(getType()).limit(1).execute().totalCount();
+  }
+
+  public void removeAnnouncementStatus() {
+    List<AnnouncementStatus> results = repo().search(getType()).limit((int) getCountAnnouncementStatus()).execute().getAll();
+    results.forEach(announcementStatus -> delete(announcementStatus.getId()));
   }
 
   public AnnouncementStatus findFirst() {

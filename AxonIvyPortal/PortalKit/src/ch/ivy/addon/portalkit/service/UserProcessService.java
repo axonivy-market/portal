@@ -46,4 +46,9 @@ public class UserProcessService extends AbstractService<UserProcess> {
             userProcess -> !processesToSubtract.stream().map(UserProcess::getLink).collect(Collectors.toSet())
                 .contains(userProcess.getLink())).collect(Collectors.toList());
   }
+
+  public List<UserProcess> findByApplicationId(long applicationId) {
+    return getDao().findByApplicationID(applicationId);
+  }
+
 }

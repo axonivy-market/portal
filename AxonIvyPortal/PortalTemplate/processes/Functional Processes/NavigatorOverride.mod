@@ -130,6 +130,7 @@ import java.util.Arrays;
 import org.apache.commons.lang3.StringUtils;
 
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader", Arrays.asList("#" + in.caseId.toString(), in.caseName));
+String titleOnMobile = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle", Arrays.asList("#" + in.caseId.id().toString()));
 
 in.taskDataModel.setCaseId(in.caseId.id());
 in.taskDataModel.setSortField(TaskSortField.ID.toString(), true);
@@ -145,6 +146,7 @@ in.taskDataModel.setRelatedTaskDisplayed(true);
 in.taskView = TaskView.create()
 											.canLinkBackCaseDetail(true)
 											.pageTitle(pageTitle)
+											.withTitleOnMobile(titleOnMobile)
 											.showHeaderToolbar(false)
 											.dataModel(in.taskDataModel).createNewTaskView();				
 											' #txt
@@ -216,6 +218,7 @@ import ch.ivy.addon.portalkit.enums.PortalPage;
 import org.apache.commons.lang3.StringUtils;
 
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedStatisticHeader") + in.chartName;
+String titleOnMobile = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks");
 
 in.taskDataModel.getCriteria().setCustomTaskQuery(in.taskQuery);
 in.taskDataModel.getCriteria().setKeyword(StringUtils.EMPTY);
@@ -225,6 +228,7 @@ in.taskDataModel.setNotKeepFilter(true);
 in.taskView = TaskView
 								.create()
 								.pageTitle(pageTitle)
+								.withTitleOnMobile(titleOnMobile)
 								.showHeaderToolbar(false)
 								.dataModel(in.taskDataModel)
 								.createNewTaskView();' #txt
@@ -306,11 +310,14 @@ Nr0 f30 expr out #txt
 Nr0 f30 865 585 865 631 #arcP
 Nr0 f31 actionTable 'out=in;
 ' #txt
-Nr0 f31 actionCode 'import ch.ivy.addon.portal.generic.view.CaseView;
+Nr0 f31 actionCode 'import java.util.Arrays;
+import ch.ivy.addon.portal.generic.view.CaseView;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/relatedStatisticHeader") + in.chartName;
+// Add a short title for mobile screen
+String titleOnMobile = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/cases");
 
 in.caseDataModel.getCriteria().setBusinessCase(true);
 in.caseDataModel.setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
@@ -321,7 +328,9 @@ in.caseDataModel.setNotKeepFilter(true);
 in.caseView = CaseView.create()
 								.dataModel(in.caseDataModel)
 								.withTitle(pageTitle)
-								.buildNewView();' #txt
+								.withTitleOnMobile(titleOnMobile)
+								.buildNewView();
+' #txt
 Nr0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
