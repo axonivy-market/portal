@@ -2,13 +2,16 @@ package ch.ivy.addon.portalkit.casefilter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.CheckboxTreeNode;
+import org.primefaces.model.TreeNode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivy.addon.portalkit.bo.CategoryNode;
 import ch.ivy.addon.portalkit.util.CaseTreeUtils;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
@@ -78,7 +81,16 @@ public class CaseCategoryFilter extends CaseFilter {
   }
   
   public void initializeRoot() {
-    if (root == null) {
+    String allCategoriesText = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/allCategories");
+    // If language is changed, category tree needs to be rebuilt
+    String allCategoriesTextInTree = Optional.ofNullable(root)
+        .map(CheckboxTreeNode::getChildren)
+        .filter(CollectionUtils::isNotEmpty)
+        .map(list -> list.get(0))
+        .map(TreeNode::getData)
+        .map(data -> ((CategoryNode) data).getValue())
+        .orElse(StringUtils.EMPTY);
+    if (root == null || !StringUtils.equals(allCategoriesTextInTree, allCategoriesText)) {
       root = CaseTreeUtils.buildCaseCategoryCheckboxTreeRoot();
       categories = CategoryUtils.recoverSelectedCategories(root, categoryPaths);
     }
