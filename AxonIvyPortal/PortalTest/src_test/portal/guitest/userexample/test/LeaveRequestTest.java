@@ -6,8 +6,10 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.userexamples.page.LeaveRequestPage;
+import portal.guitest.userexamples.page.UserExamplesEndPage;
 
 public class LeaveRequestTest extends BaseTest {
   private static String LEAVE_REQUEST_START_LINK = "portal-user-examples/170321BD7F5539D6/start.ivp";
@@ -54,6 +56,9 @@ public class LeaveRequestTest extends BaseTest {
     taskWidgetPage.startTask(0);
     leaveRequestPage = new LeaveRequestPage();
     Assert.assertEquals("Approval Result", leaveRequestPage.getPageTitle());
+    UserExamplesEndPage userExamplesEndPage = leaveRequestPage.finishLeaveRequest();
+    CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
+    Assert.assertEquals("Leave Request", caseDetailsPage.getCaseName());
   }
   
   @Test
