@@ -12,35 +12,17 @@ pipeline {
 
   tools { 
       maven 'default' 
-      // jdk 'jdk11' 
+      jdk 'jdk11' 
   }
 
   stages {
-    // stage ('Initialize') {
-    //     steps {
-    //         bat '''
-    //             echo "PATH = ${PATH}"
-    //             echo "M2_HOME = ${M2_HOME}"
-    //         '''
-    //     }
-    // }
     stage('build') {
       steps {
         script {
-          bat 'echo 1'
-          maven cmd: "clean install"
-          bat 'echo 2'
-          maven cmd: "clean install  -f AxonIvyPortal/PortalStyle/pom.xml"
-          bat 'echo 3'
           bat 'mvn clean install -f AxonIvyPortal/PortalStyle/pom.xml'
-          bat 'echo 4'
-
-          //bat 'mvn clean verify -f AxonIvyPortal/PortalStyle/pom.xml'
-          //maven cmd: 'clean verify -f A1213xonIvyPortal/PortalStyle/pom.xml'
         }
       }
     }
-
   }
 }
 
