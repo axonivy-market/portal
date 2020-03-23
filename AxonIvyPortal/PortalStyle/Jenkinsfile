@@ -23,10 +23,7 @@ pipeline {
           def ivyEngineVersion = '9.1.0'
           def portalApplicationName = 'Portal'
           def ivyEngineFolder = 'D:/tools/ivy-server/trunk'
-          bat 'echo ${ivyBuildPluginVersion}'
-          bat 'echo $ivyBuildPluginVersion'
-          bat "echo $ivyBuildPluginVersion a"
-          bat 'mvn com.axonivy.ivy.ci:project-build-plugin:' + ${ivyBuildPluginVersion} + ':deploy-to-engine -f AxonIvyPortal/PortalStyle/pom.xml -Divy.deploy.engine.app=' + ${portalApplicationName} + ' -Divy.deploy.engine.dir=' + ${ivyEngineFolder} + ' -Divy.engine.version=' + ${ivyEngineVersion}
+          bat "mvn com.axonivy.ivy.ci:project-build-plugin:${ivyBuildPluginVersion}:deploy-to-engine -f AxonIvyPortal/PortalStyle/pom.xml -Divy.deploy.engine.app=${portalApplicationName} -Divy.deploy.engine.dir=${ivyEngineFolder} -Divy.engine.version=${ivyEngineVersion}"
           bat 'mvn clean install -f AxonIvyPortal/PortalStyle/pom.xml'
         }
       }
