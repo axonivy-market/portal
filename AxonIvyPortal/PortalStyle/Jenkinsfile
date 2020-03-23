@@ -10,13 +10,18 @@ pipeline {
     cron '@midnight'
   }
 
+  tools { 
+      maven 'Maven 3.6.1' 
+      jdk 'jdk8' 
+  }
+
   stages {
     stage('build') {
       steps {
         script {
           bat 'echo 123'
-          bat 'mvn clean verify -f AxonIvyPortal/PortalStyle/pom.xml'
-          //maven cmd: 'clean verify -f AxonIvyPortal/PortalStyle/pom.xml'
+          //bat 'mvn clean verify -f AxonIvyPortal/PortalStyle/pom.xml'
+          maven cmd: 'clean verify -f AxonIvyPortal/PortalStyle/pom.xml'
         }
       }
     }
