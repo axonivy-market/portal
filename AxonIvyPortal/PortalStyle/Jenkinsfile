@@ -9,6 +9,14 @@ pipeline {
     pollSCM 'H/15 * * * *'
   }
 
+  parameters {
+    string(name: 'ivyBuildPluginVersion', defaultValue: '8.0.0', description: 'ivy build plugin version')
+    string(name: 'ivyEngineVersion', defaultValue: '9.1.0', description: 'ivy engine version')
+    string(name: 'portalApplicationName', defaultValue: 'Portal')
+    string(name: 'ivyEngineFolder', defaultValue: 'D:/tools/ivy-server/trunk')
+    // booleanParam(name: 'deployArtifacts', defaultValue: false, description: 'Deploy new version of cockpit and screenshots')
+  }
+
   tools { 
       maven 'default' 
       jdk 'jdk11' 
@@ -18,7 +26,8 @@ pipeline {
     stage('build') {
       steps {
         script {
-          bat 'mvn clean install -f pom.xml'
+          bat 'mvn clean install -f AxonIvyPortal/PortalStyle/pom.xml'
+          bat 'mvn com.axonivy.ivy.ci:project-build-plugin:' + params.ivyBuildPluginVersion + ':deploy-to-engine -f AxonIvyPortal/PortalStyle/pom.xml -Divy.deploy.engine.app=' + params.portalApplicationName + ' -Divy.deploy.engine.dir=' + params.ivyEngineFolder + ' -Divy.engine.version=' + params.ivyEngineVersion
         }
       }
     }
