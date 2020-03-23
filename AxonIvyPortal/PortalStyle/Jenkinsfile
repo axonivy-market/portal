@@ -19,9 +19,11 @@ pipeline {
     stage('build') {
       steps {
         script {
+          maven cmd: "clean install"
           bat 'echo 123'
+
           //bat 'mvn clean verify -f AxonIvyPortal/PortalStyle/pom.xml'
-          maven cmd: 'clean verify -f A1213xonIvyPortal/PortalStyle/pom.xml'
+          //maven cmd: 'clean verify -f A1213xonIvyPortal/PortalStyle/pom.xml'
         }
       }
     }
