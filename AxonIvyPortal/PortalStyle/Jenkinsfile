@@ -6,8 +6,7 @@ pipeline {
   }
   
   triggers {
-    pollSCM '@hourly'
-    cron '@midnight'
+    pollSCM 'H/15 * * * *'
   }
 
   tools { 
@@ -19,7 +18,7 @@ pipeline {
     stage('build') {
       steps {
         script {
-          bat 'mvn clean install -f AxonIvyPortal/PortalStyle/pom.xml'
+          bat 'mvn clean install -f pom.xml'
         }
       }
     }
