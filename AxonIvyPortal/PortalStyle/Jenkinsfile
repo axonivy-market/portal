@@ -15,7 +15,7 @@ pipeline {
       steps {
         script {
           bat 'echo 123'
-          maven cmd: 'clean verify -f AxonIvyPortal\PortalStyle\pom.xml'
+          maven cmd: 'clean verify -f AxonIvyPortal/PortalStyle/pom.xml'
         }
       }
     }
