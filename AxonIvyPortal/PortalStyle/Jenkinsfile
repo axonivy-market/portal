@@ -25,7 +25,7 @@ pipeline {
           def ivyEngineFolder = 'D:/tools/ivy-server/trunk'
           bat "mvn clean install -f AxonIvyPortal/${projectName}/pom.xml"
           bat "mvn com.axonivy.ivy.ci:project-build-plugin:${ivyBuildPluginVersion}:deploy-to-engine -f AxonIvyPortal/PortalStyle/pom.xml -Divy.deploy.engine.app=${portalApplicationName} -Divy.deploy.engine.dir=${ivyEngineFolder} -Divy.engine.version=${ivyEngineVersion}"
-          archiveArtifacts "AxonIvyPortal/${ivyEngineVersion}/target/*.iar"
+          archiveArtifacts "AxonIvyPortal/${projectName}/target/*.iar"
         }
       }
     }
