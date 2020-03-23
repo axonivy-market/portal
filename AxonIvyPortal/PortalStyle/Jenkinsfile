@@ -1,0 +1,31 @@
+pipeline {
+  agent any
+  
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
+  }
+  
+  triggers {
+    pollSCM '@hourly'
+    cron '@midnight'
+  }
+
+  parameters {
+  }
+
+  environment {
+  }
+
+  stages {
+    stage('build') {
+      steps {
+        script {
+          maven cmd: "clean verify"
+        }
+      }
+    }
+
+  }
+}
+
+
