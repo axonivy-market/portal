@@ -10,12 +10,6 @@ pipeline {
     cron '@midnight'
   }
 
-  parameters {
-  }
-
-  environment {
-  }
-
   stages {
     stage('build') {
       steps {
