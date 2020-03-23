@@ -14,7 +14,9 @@ pipeline {
     stage('build') {
       steps {
         script {
+          bat 'echo 123'
           maven cmd: "clean verify"
+          asd fasdf sadf asdfasfd
         }
       }
     }
