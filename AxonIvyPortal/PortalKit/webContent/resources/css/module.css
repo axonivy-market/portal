@@ -4330,3 +4330,56 @@ body .ui-dialog.ui-widget.export-express-dialog {
   }
 }
 /*=================== NOTE HISTORY END ===================*/
+
+
+/*=================== BREADCRUM ===================*/
+.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li.breadcrumb-container {
+	float: left;
+	margin-left: 0;
+}
+
+body .ui-widget-header.portal-breadcrumb {
+	background-color: transparent;
+	border: none;
+	font-size: 1.4rem;
+	padding-top: 1px;
+}
+
+.mobile-portal-home-link {
+	display: none;
+}
+
+@media screen and (max-width: 40em) {
+	.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li.breadcrumb-container {
+		margin-left: 30px;
+	}
+
+	body .ui-widget-header.portal-breadcrumb {
+		display: none;
+	}
+	.mobile-portal-home-link {
+		display: block;
+		font-size: 2rem;
+		padding-top: 5px;
+	}
+	
+	.mobile-portal-home-link:before {
+		margin-right: 3px;
+	}
+}
+
+body .ui-widget-header.portal-breadcrumb a,
+body .ui-widget-header.portal-breadcrumb .ui-breadcrumb-chevron {
+	color: black;
+}
+
+body .portal-breadcrumb.ui-breadcrumb ul li {
+	line-height: 2rem;
+}
+
+body .portal-breadcrumb.ui-breadcrumb ul li .ui-menuitem-link.ui-state-disabled {
+	opacity: 1;
+	color: #007095;
+}
+
+/*=================== BREADCRUM END ===================*/
