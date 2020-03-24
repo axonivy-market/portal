@@ -26,7 +26,7 @@ pipeline {
           def ivyEngineFolder = 'D:/tools/ivy-server/trunk'
           def changeLog = bat(script: "git diff --name-only ${env.GIT_COMMIT} ${GIT_PREVIOUS_SUCCESSFUL_COMMIT}", returnStdout: true)
           echo changeLog
-          $changes.contains("PortalStyle")
+          changeLog.contains("PortalStyle")
           // if (changeLog.contains("PortalStyle")) {
           //   echo "style"
           // }
