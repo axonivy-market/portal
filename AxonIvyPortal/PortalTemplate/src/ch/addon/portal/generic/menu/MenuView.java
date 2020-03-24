@@ -10,11 +10,17 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.component.button.Button;
+import org.primefaces.model.menu.DefaultMenuItem;
+import org.primefaces.model.menu.DefaultMenuModel;
+import org.primefaces.model.menu.MenuItem;
+import org.primefaces.model.menu.MenuModel;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
@@ -25,6 +31,8 @@ import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.ServerFactory;
+import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
 @ViewScoped
@@ -39,6 +47,8 @@ public class MenuView {
 
   private List<Button> menuItems;
   private List<SubMenuItem> subMenuItems;
+  private MenuModel breadcrumbModel;
+  
 
   @PostConstruct
   public void init() {
@@ -87,7 +97,7 @@ public class MenuView {
         IApplication portal = ServerFactory.getServer().getApplicationConfigurationManager()
             .findApplication(PortalConstants.PORTAL_APPLICATION_NAME);
         if (portal != null && portal.getActivityState() != ch.ivyteam.ivy.application.ActivityState.INACTIVE
-            && portal.getSecurityContext().findUser(Ivy.session().getSessionUserName()) != null) {
+            && portal.getSecurityContext().users().find(Ivy.session().getSessionUserName()) != null) {
           menuItem.setHref(SecurityServiceUtils.getDefaultPortalStartUrl());
           if (PortalConstants.PORTAL_APPLICATION_NAME.equals(Ivy.request().getApplication().getName())) {
             menuItem.setStyleClass(ACTIVE_MENU);
@@ -131,5 +141,144 @@ public class MenuView {
     return subMenuItems;
   }
 
+  public MenuModel getBreadcrumbModel() {
+    return breadcrumbModel;
+  }
 
+  public void setBreadcrumbModel(MenuModel breadcrumbModel) {
+    this.breadcrumbModel = breadcrumbModel;
+  }
+
+  public void loadBreadcrumb(String viewName, ITask userTask, ICase userCase) {
+    breadcrumbModel = new DefaultMenuModel();
+    if (StringUtils.isBlank(viewName)) {
+      return;
+    }
+    BreadCrumbKind breadCrumbKind = BreadCrumbKind.valueOf(viewName);
+    switch (breadCrumbKind) {
+      case TASK:
+        buildBreadCrumbForTaskList();
+        break;
+      case CASE:
+        buildBreadCrumbForCaseList();
+        break;
+      case PROCESS:
+        buildBreadCrumbForProcess();
+        break;
+      case DASHBOARD:
+        buildBreadCrumbForStatistic();
+        break;
+      case TASK_DETAIL:
+        buildBreadCrumbForTaskDetails(userTask);
+        break;
+      case CASE_DETAIL:
+        buildBreadCrumbForCaseDetails(userCase);
+        break;
+      default:
+        break;
+    }
+  }
+
+  private void buildBreadCrumbForTaskList() {
+    breadcrumbModel.getElements().add(buildPortalHomeSubmenuItem());
+
+    DefaultMenuItem taskListSubmenuItem = buildTaskListSubmenuItem();
+    taskListSubmenuItem.setDisabled(true);
+    breadcrumbModel.getElements().add(taskListSubmenuItem);
+  }
+
+  private void buildBreadCrumbForCaseList() {
+    breadcrumbModel.getElements().add(buildPortalHomeSubmenuItem());
+
+    DefaultMenuItem caseListSubmenuItem = buildCaseListSubmenuItem();
+    caseListSubmenuItem.setDisabled(true);
+    breadcrumbModel.getElements().add(caseListSubmenuItem);
+  }
+
+  private void buildBreadCrumbForProcess() {
+    breadcrumbModel.getElements().add(buildPortalHomeSubmenuItem());
+
+    DefaultMenuItem processListSubmenuItem = buildProcessListSubmenuItem();
+    processListSubmenuItem.setDisabled(true);
+    breadcrumbModel.getElements().add(processListSubmenuItem);
+  }
+
+  private void buildBreadCrumbForStatistic() {
+    breadcrumbModel.getElements().add(buildPortalHomeSubmenuItem());
+
+    DefaultMenuItem statisticListSubmenuItem = buildStatisticListSubmenuItem();
+    statisticListSubmenuItem.setDisabled(true);
+    breadcrumbModel.getElements().add(statisticListSubmenuItem);
+  }
+
+  private void buildBreadCrumbForTaskDetails(ITask userTask) {
+    breadcrumbModel.getElements().add(buildPortalHomeSubmenuItem());
+    breadcrumbModel.getElements().add(buildTaskListSubmenuItem());
+    breadcrumbModel.getElements().add(buildTaskDetailsSubmenuItem(userTask));
+  }
+
+  private void buildBreadCrumbForCaseDetails(ICase userCase) {
+    breadcrumbModel.getElements().add(buildPortalHomeSubmenuItem());
+    breadcrumbModel.getElements().add(buildCaseListSubmenuItem());
+    breadcrumbModel.getElements().add(buildCaseDetailsSubmenuItem(userCase));
+  }
+
+  private MenuItem buildPortalHomeSubmenuItem() {
+    DefaultMenuItem menuItem = new DefaultMenuItem();
+    PortalNavigator navigator = new PortalNavigator();
+
+    menuItem.setValue("");
+    menuItem.setIcon("fa fa-home");
+    menuItem.setUrl(navigator.getPortalStartUrlOfCurrentApplication());
+    return menuItem;
+  }
+
+  private DefaultMenuItem buildMenuItemFromPortalSubMenuItem(SubMenuItem subMenuItem) {
+    DefaultMenuItem menuItem = new DefaultMenuItem();
+    menuItem.setValue(subMenuItem.getLabel());
+    menuItem.setUrl(subMenuItem.getLink());
+    return menuItem;
+  }
+
+  private DefaultMenuItem buildTaskListSubmenuItem() {
+    TaskSubMenuItem taskSubMenuItem = new TaskSubMenuItem();
+    return buildMenuItemFromPortalSubMenuItem(taskSubMenuItem);
+  }
+
+  private DefaultMenuItem buildCaseListSubmenuItem() {
+    CaseSubMenuItem caseSubMenuItem = new CaseSubMenuItem();
+    return buildMenuItemFromPortalSubMenuItem(caseSubMenuItem);
+  }
+
+  private DefaultMenuItem buildProcessListSubmenuItem() {
+    ProcessSubMenuItem processSubMenuItem = new ProcessSubMenuItem();
+    return buildMenuItemFromPortalSubMenuItem(processSubMenuItem);
+  }
+
+  private DefaultMenuItem buildStatisticListSubmenuItem() {
+    DashboardSubMenuItem dashboardSubMenuItem = new DashboardSubMenuItem();
+    return buildMenuItemFromPortalSubMenuItem(dashboardSubMenuItem);
+  }
+
+  private MenuItem buildTaskDetailsSubmenuItem(ITask userTask) {
+    DefaultMenuItem menuItem = new DefaultMenuItem();
+    String taskName = StringUtils.isEmpty(userTask.getName()) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable") : userTask.getName();
+    menuItem.setValue(String.join(": ", Ivy.cms().co("/Labels/Task"), taskName));
+    menuItem.setUrl("#");
+    menuItem.setDisabled(true);
+    return menuItem;
+  }
+
+  private MenuItem buildCaseDetailsSubmenuItem(ICase userCase) {
+    DefaultMenuItem menuItem = new DefaultMenuItem();
+    menuItem.setValue(String.join(": ", Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/case"), userCase.getName()));
+    menuItem.setUrl("#");
+    menuItem.setDisabled(true);
+    return menuItem;
+  }
+
+  public String getHomepageLink() {
+    PortalNavigator navigator = new PortalNavigator();
+    return navigator.getPortalStartUrlOfCurrentApplication();
+  }
 }
