@@ -14,11 +14,23 @@ pipeline {
       jdk 'jdk11' 
   }
 
-    parameters {
-        string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: PortalStyle,PortalKit,PortalTemplate,AxonIvyExpress,PortalKitTestHelper,portal-user-examples,portal-developer-examples,InternalSupport. E.g. PortalStyle code is changed, then set this property value PortalKit,PortalTemplate => PortalStyle,PortalKit,PortalTemplate will be built.')
-    }
+  parameters {
+      string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: PortalStyle,PortalKit,PortalTemplate,AxonIvyExpress,PortalKitTestHelper,portal-user-examples,portal-developer-examples,InternalSupport. E.g. PortalStyle code is changed, then set this property value PortalKit,PortalTemplate => PortalStyle,PortalKit,PortalTemplate will be built.')
+  }
+
+builtModules = []
 
   stages {
+    stage('firstinit') {
+      steps {
+        script {
+          echo "init"
+        }
+      }
+    }
+
+
+
     stage('build') {
       steps {
         script {
@@ -32,14 +44,23 @@ pipeline {
           for (module in modules) {
             if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1])) {
               echo module
-              zip(zipFile: 'Build/CI/artifacts.zip', archive: true, glob: "AxonIvyPortal/*/target/*.iar")
-              zip zipFile: 'test.zip', archive: true, dir: 'AxonIvyPortal/PortalStyle'
-
+              builtModules.add(module)
               // bat "mvn clean install -f ${module}/pom.xml -Dbuild.plugin.version=${ivyBuildPluginVersion} -Divy.engine.version=${ivyEngineVersion}"
               // bat "mvn com.axonivy.ivy.ci:project-build-plugin:${ivyBuildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=${portalApplicationName} -Divy.deploy.engine.dir=${ivyEngineFolder} -Divy.engine.version=${ivyEngineVersion}"
             }
           }
-          archiveArtifacts "AxonIvyPortal/*/target/*.iar, *.zip"
+          archiveArtifacts "AxonIvyPortal/*/target/*.iar"
+        }
+      }
+    }
+
+    stage('deploy') {
+      steps {
+        script {
+          for (module in builtModules) {
+            echo module
+            // bat "mvn com.axonivy.ivy.ci:project-build-plugin:${ivyBuildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=${portalApplicationName} -Divy.deploy.engine.dir=${ivyEngineFolder} -Divy.engine.version=${ivyEngineVersion}"
+          }
         }
       }
     }
