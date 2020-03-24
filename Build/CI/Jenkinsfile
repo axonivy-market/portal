@@ -26,6 +26,8 @@ pipeline {
           def ivyEngineFolder = 'D:/tools/ivy-server/trunk'
           def changes = bat(script: "git diff --name-only ${env.GIT_COMMIT} ${GIT_PREVIOUS_SUCCESSFUL_COMMIT}", returnStdout: true)
           echo changes
+          echo "1"
+          echo changes.trim()
           // echo ${changes}
           // echo $changes
 
