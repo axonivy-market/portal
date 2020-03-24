@@ -29,22 +29,13 @@ pipeline {
           def portalApplicationName = 'Portal'
           def ivyEngineFolder = 'D:/tools/ivy-server/trunk'
           def changeLog = bat(script: "git diff --name-only ${env.GIT_COMMIT} ${GIT_PREVIOUS_SUCCESSFUL_COMMIT}", returnStdout: true)
-
-          echo changeLog
-
           for (module in modules) {
             if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1])) {
-              echo module
-              // bat "mvn clean install -f ${module}/pom.xml -Dbuild.plugin.version=${ivyBuildPluginVersion} -Divy.engine.version=${ivyEngineVersion}"
-              // bat "mvn com.axonivy.ivy.ci:project-build-plugin:${ivyBuildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=${portalApplicationName} -Divy.deploy.engine.dir=${ivyEngineFolder} -Divy.engine.version=${ivyEngineVersion}"
-            } 
+              bat "mvn clean install -f ${module}/pom.xml -Dbuild.plugin.version=${ivyBuildPluginVersion} -Divy.engine.version=${ivyEngineVersion}"
+              bat "mvn com.axonivy.ivy.ci:project-build-plugin:${ivyBuildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=${portalApplicationName} -Divy.deploy.engine.dir=${ivyEngineFolder} -Divy.engine.version=${ivyEngineVersion}"
+            }
           }
           archiveArtifacts "AxonIvyPortal/*/target/*.iar"
-
-          
-          // bat "mvn clean install -f AxonIvyPortal/${projectName}/pom.xml"
-          // bat "mvn com.axonivy.ivy.ci:project-build-plugin:${ivyBuildPluginVersion}:deploy-to-engine -f AxonIvyPortal/PortalStyle/pom.xml -Divy.deploy.engine.app=${portalApplicationName} -Divy.deploy.engine.dir=${ivyEngineFolder} -Divy.engine.version=${ivyEngineVersion}"
-          // archiveArtifacts "AxonIvyPortal/${projectName}/target/*.iar"
         }
       }
     }
