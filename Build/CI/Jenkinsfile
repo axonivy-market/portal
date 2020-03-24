@@ -32,12 +32,14 @@ pipeline {
           for (module in modules) {
             if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1])) {
               echo module
-              zip(zipFile: "Build/CI/artifacts.zip", archive: true, glob: "AxonIvyPortal/*/target/*.iar")
+              zip(zipFile: 'Build/CI/artifacts.zip', archive: true, glob: "AxonIvyPortal/*/target/*.iar")
+              zip zipFile: 'test.zip', archive: true, dir: 'AxonIvyPortal/PortalStyle'
+
               // bat "mvn clean install -f ${module}/pom.xml -Dbuild.plugin.version=${ivyBuildPluginVersion} -Divy.engine.version=${ivyEngineVersion}"
               // bat "mvn com.axonivy.ivy.ci:project-build-plugin:${ivyBuildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=${portalApplicationName} -Divy.deploy.engine.dir=${ivyEngineFolder} -Divy.engine.version=${ivyEngineVersion}"
             }
           }
-          archiveArtifacts "AxonIvyPortal/*/target/*.iar"
+          archiveArtifacts "AxonIvyPortal/*/target/*.iar, *.zip"
         }
       }
     }
