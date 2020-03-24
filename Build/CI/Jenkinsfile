@@ -1,4 +1,10 @@
 builtModules = []
+projectName = 'PortalStyle'
+ivyBuildPluginVersion = '8.0.0'
+ivyEngineVersion = '9.1.0'
+portalApplicationName = 'Portal'
+ivyEngineFolder = 'D:/tools/ivy-server/trunk'
+
 pipeline {
   agent any
   
@@ -20,30 +26,15 @@ pipeline {
   }
 
   stages {
-    stage('firstinit') {
-      steps {
-        script {
-          echo "init"
-        }
-      }
-    }
-
     stage('build') {
       steps {
         script {
           def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport']
-          def projectName = 'PortalStyle'
-          def ivyBuildPluginVersion = '8.0.0'
-          def ivyEngineVersion = '9.1.0'
-          def portalApplicationName = 'Portal'
-          def ivyEngineFolder = 'D:/tools/ivy-server/trunk'
           def changeLog = bat(script: "git diff --name-only ${env.GIT_COMMIT} ${GIT_PREVIOUS_SUCCESSFUL_COMMIT}", returnStdout: true)
           for (module in modules) {
             if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1])) {
-              echo module
               builtModules.add(module)
-              // bat "mvn clean install -f ${module}/pom.xml -Dbuild.plugin.version=${ivyBuildPluginVersion} -Divy.engine.version=${ivyEngineVersion}"
-              // bat "mvn com.axonivy.ivy.ci:project-build-plugin:${ivyBuildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=${portalApplicationName} -Divy.deploy.engine.dir=${ivyEngineFolder} -Divy.engine.version=${ivyEngineVersion}"
+              bat "mvn clean install -f ${module}/pom.xml -Dbuild.plugin.version=${ivyBuildPluginVersion} -Divy.engine.version=${ivyEngineVersion}"
             }
           }
           archiveArtifacts "AxonIvyPortal/*/target/*.iar"
@@ -55,8 +46,7 @@ pipeline {
       steps {
         script {
           for (module in builtModules) {
-            echo module
-            // bat "mvn com.axonivy.ivy.ci:project-build-plugin:${ivyBuildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=${portalApplicationName} -Divy.deploy.engine.dir=${ivyEngineFolder} -Divy.engine.version=${ivyEngineVersion}"
+              bat "mvn com.axonivy.ivy.ci:project-build-plugin:${ivyBuildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=${portalApplicationName} -Divy.deploy.engine.dir=${ivyEngineFolder} -Divy.engine.version=${ivyEngineVersion}"
           }
         }
       }
