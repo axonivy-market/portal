@@ -23,7 +23,7 @@ pipeline {
       steps {
         script {
           def modulesBuilt = params.modulesMustBeBuilt.split(",")
-          echo modulesBuilt
+          echo modulesBuilt[0]
           echo modulesBuilt[0].trim()
           def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport']
           def projectName = 'PortalStyle'
