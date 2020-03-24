@@ -14,10 +14,17 @@ pipeline {
       jdk 'jdk11' 
   }
 
+    parameters {
+        string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: PortalStyle, PortalKit, PortalTemplate, AxonIvyExpress, PortalKitTestHelper, portal-user-examples, portal-developer-examples, InternalSupport. E.g. PortalStyle code is changed, then set this property value PortalKit, PortalTemplate => PortalStyle, PortalKit, PortalTemplate will be built.')
+    }
+
   stages {
     stage('build') {
       steps {
         script {
+          def modulesBuilt = params.split(",")
+          echo modulesBuilt
+          echo modulesBuilt[0].trim()
           def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport']
           def projectName = 'PortalStyle'
           def ivyBuildPluginVersion = '8.0.0'
