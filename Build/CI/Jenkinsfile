@@ -25,13 +25,16 @@ pipeline {
           def portalApplicationName = 'Portal'
           def ivyEngineFolder = 'D:/tools/ivy-server/trunk'
           def changeLog = bat(script: "git diff --name-only ${env.GIT_COMMIT} ${GIT_PREVIOUS_SUCCESSFUL_COMMIT}", returnStdout: true)
-          echo ${changes}
-          if (changeLog.contains("PortalStyle")) {
-            echo "style"
-          }
-          if (changeLog.contains("PortalKit")) {
-            echo "kit"
-          }
+          echo $changes
+          // if (changeLog.contains("PortalStyle")) {
+          //   echo "style"
+          // }
+
+
+          // $changeLog.contains("PortalKit")
+          // if (changeLog.contains("PortalKit")) {
+          //   echo "kit"
+          // }
 
           // echo $changes
 
