@@ -1,3 +1,4 @@
+builtModules = []
 pipeline {
   agent any
   
@@ -15,10 +16,8 @@ pipeline {
   }
 
   parameters {
-      string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: PortalStyle,PortalKit,PortalTemplate,AxonIvyExpress,PortalKitTestHelper,portal-user-examples,portal-developer-examples,InternalSupport. E.g. PortalStyle code is changed, then set this property value PortalKit,PortalTemplate => PortalStyle,PortalKit,PortalTemplate will be built.')
+      string(name: 'modulesMustBeBuilt', defaultValue: 'PortalStyle,PortalKit', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: PortalStyle,PortalKit,PortalTemplate,AxonIvyExpress,PortalKitTestHelper,portal-user-examples,portal-developer-examples,InternalSupport. E.g. PortalStyle code is changed, then set this property value PortalKit,PortalTemplate => PortalStyle,PortalKit,PortalTemplate will be built.')
   }
-
-builtModules = []
 
   stages {
     stage('firstinit') {
