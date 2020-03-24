@@ -1,4 +1,4 @@
-builtModules = ['a', 'b']
+builtModules = ['a']
 pipeline {
   agent any
   
@@ -24,7 +24,6 @@ pipeline {
       steps {
         script {
           echo "init"
-          echo builtModules
         }
       }
     }
