@@ -1,4 +1,3 @@
-builtModules = []
 pipeline {
   agent any
   
@@ -20,6 +19,7 @@ pipeline {
   }
 
   stages {
+    def builtModules = ['a', 'b']
     stage('firstinit') {
       steps {
         script {
@@ -27,8 +27,6 @@ pipeline {
         }
       }
     }
-
-
 
     stage('build') {
       steps {
