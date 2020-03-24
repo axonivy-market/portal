@@ -1,3 +1,4 @@
+builtModules = ['a', 'b']
 pipeline {
   agent any
   
@@ -19,11 +20,11 @@ pipeline {
   }
 
   stages {
-    def builtModules = ['a', 'b']
     stage('firstinit') {
       steps {
         script {
           echo "init"
+          echo builtModules
         }
       }
     }
