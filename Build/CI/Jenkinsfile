@@ -37,7 +37,7 @@ pipeline {
               bat "mvn clean install -f ${module}/pom.xml -Dbuild.plugin.version=${ivyBuildPluginVersion} -Divy.engine.version=${ivyEngineVersion}"
             }
           }
-          archiveArtifacts "AxonIvyPortal/*/target/*.iar"
+          archiveArtifacts artifacts: "AxonIvyPortal/*/target/*.iar", allowEmptyArchive: true
         }
       }
     }
