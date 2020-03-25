@@ -33,8 +33,9 @@ pipeline {
           def changeLog = ''
           try {
             changeLog = bat(script: "git diff --name-only ${env.GIT_COMMIT} ${GIT_PREVIOUS_SUCCESSFUL_COMMIT}", returnStdout: true)
-          } catch(error) {
-            echo error
+          } catch(Exception e) {
+            echo "11"
+            echo e
             echo "This could be no successful build before this build. In the next build, this error should not occur anymore."
           }
           for (module in modules) {
