@@ -1,0 +1,65 @@
+builtModules = []
+projectName = 'PortalStyle'
+ivyBuildPluginVersion = '8.0.0'
+ivyEngineVersion = '9.1.0'
+portalApplicationName = 'Portal'
+ivyEngineFolder = 'D:/tools/ivy-server/trunk'
+
+pipeline {
+  agent any
+  
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
+  }
+  
+  triggers {
+    pollSCM 'H/15 * * * *'
+  }
+
+  tools { 
+      maven 'default' 
+      jdk 'jdk11' 
+  }
+
+  parameters {
+      string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: PortalStyle,PortalKit,PortalTemplate,AxonIvyExpress,PortalKitTestHelper,portal-user-examples,portal-developer-examples,InternalSupport. E.g. PortalStyle code is changed, then set this property value PortalKit,PortalTemplate => PortalStyle,PortalKit,PortalTemplate will be built.')
+  }
+
+  stages {
+    stage('build') {
+      steps {
+        script {
+          def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport']
+          def changeLog = ''
+          echo "abc"
+          echo GIT_PREVIOUS_SUCCESSFUL_COMMIT
+          echo "xy"
+          echo env.GIT_PREVIOUS_SUCCESSFUL_COMMIT
+          if (env.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
+            echo "exist"
+            changeLog = bat(script: "git diff --name-only ${env.GIT_COMMIT} ${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}", returnStdout: true)
+          } else {
+            echo "not exist"
+          }
+          for (module in modules) {
+            if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1])) {
+              builtModules.add(module)
+              bat "mvn clean install -f ${module}/pom.xml -Dbuild.plugin.version=${ivyBuildPluginVersion} -Divy.engine.version=${ivyEngineVersion}"
+            }
+          }
+          archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true
+        }
+      }
+    }
+
+    stage('deploy') {
+      steps {
+        script {
+          for (module in builtModules) {
+              bat "mvn com.axonivy.ivy.ci:project-build-plugin:${ivyBuildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=${portalApplicationName} -Divy.deploy.engine.dir=${ivyEngineFolder} -Divy.engine.version=${ivyEngineVersion}"
+          }
+        }
+      }
+    }
+  }
+}
