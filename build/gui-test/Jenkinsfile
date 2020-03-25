@@ -32,9 +32,12 @@ pipeline {
           def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport']
           def changeLog = ''
           echo "abc"
+          echo GIT_PREVIOUS_SUCCESSFUL_COMMIT
+          echo "xy"
+          echo env.GIT_PREVIOUS_SUCCESSFUL_COMMIT
           if (env.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
             echo "exist"
-            // changeLog = bat(script: "git diff --name-only ${env.GIT_COMMIT} ${GIT_PREVIOUS_SUCCESSFUL_COMMIT}", returnStdout: true)
+            changeLog = bat(script: "git diff --name-only ${env.GIT_COMMIT} ${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}", returnStdout: true)
           } else {
             echo "not exist"
           }
