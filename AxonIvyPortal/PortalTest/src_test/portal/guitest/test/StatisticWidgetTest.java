@@ -104,6 +104,21 @@ public class StatisticWidgetTest extends BaseTest {
     assertEquals(CASE_BY_FINISHED_TIME_CHART_NAME, caseByFinishedTimeChartName.getText());
   }
 
+  @Test
+  public void testBreadCrumb() {
+    grantPermissionToCreateChart();
+    mainMenuPage = homePage.openMainMenu();
+    statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
+    assertEquals("Statistics", statisticWidgetPage.getTextOfCurrentBreadcrumb());
+
+    statisticWidgetPage.switchCreateMode();
+    assertEquals("Statistics", statisticWidgetPage.getTextOfCurrentBreadcrumb());
+
+    statisticWidgetPage.clickHomeBreadcrumb();
+    assertEquals(true, homePage.isDisplayed());
+  }
+
   private void grantPermissionToCreateChart() {
     String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
     redirectToRelativeLink(grantAllPermissionsForAdminUserURL);

@@ -26,6 +26,8 @@ public abstract class TemplatePage extends AbstractPage {
   private static final String TEMPLATE_PAGE_LOCATOR = "id('global-search-component:global-search-data')";
   public static final String CLASS_PROPERTY = "class";
   private static final String ENGINE_URL_LOCAL = "http://localhost:8081/ivy";
+  private static final String HOME_BREADCRUMB_SELECTOR = ".portal-breadcrumb .ui-menuitem-link:first-child";
+  private static final String CURRENT_BREADCRUMB_SELECTOR = ".portal-breadcrumb span:last-child .ui-menuitem-text";
 
   public TemplatePage() {
     waitForLocatorDisplayed(getLoadedLocator());
@@ -310,5 +312,15 @@ public abstract class TemplatePage extends AbstractPage {
         return true;
       }
     });
-  } 
+  }
+
+  public void clickHomeBreadcrumb() {
+    waitForElementDisplayed(By.cssSelector(HOME_BREADCRUMB_SELECTOR), true);
+    click(By.cssSelector(HOME_BREADCRUMB_SELECTOR));
+  }
+
+  public String getTextOfCurrentBreadcrumb() {
+    return findElementByCssSelector(CURRENT_BREADCRUMB_SELECTOR)
+        .getAttribute("innerHTML");
+  }
 }
