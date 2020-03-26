@@ -29,6 +29,7 @@ pipeline {
     stage('build') {
       steps {
         script {
+          echo env.JENKINS_URL
           powershell '''
             # Turn off Elasticsearch port from 19200 to 19210
             "=== Try to release Elasticsearch port ==="
@@ -41,7 +42,7 @@ pipeline {
 
             "===Remove Old-Engine folder==="
 
-            #cd $env:WORKSPACE/engine
+            #cd $env:WORKSPACE/AxonIvyPortal/PortalTest/engine
             #rmdir * -recurse -force
           '''
 
