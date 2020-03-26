@@ -47,7 +47,7 @@ pipeline {
 
           powershell '''
             #This script replaces engine port in /resources/config_windows_server.properties from 8000 to 8080
-            (Get-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties) -replace '8000', '8081' | Set-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties
+            (Get-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties) -replace '8000', '8080' | Set-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties
               
             #This script replaces Portal application name in /resources/config_windows_server.properties from Portal to demo-portal
             (Get-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties) -replace 'Portal', 'demo-portal' | Set-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties
@@ -71,7 +71,7 @@ pipeline {
           '''
           def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport']
           for (module in modules) {
-            // bat "mvn clean install -f ${module}/pom.xml -Dbuild.plugin.version=${ivyBuildPluginVersion} -Divy.engine.version=${ivyEngineVersion}"
+            bat "mvn clean install -f ${module}/pom.xml -Dbuild.plugin.version=${ivyBuildPluginVersion} -Divy.engine.version=${ivyEngineVersion}"
           }
 
           bat "mvn com.axonivy.ivy.ci:project-build-plugin:${ivyBuildPluginVersion}:installEngine -Divy.engine.directory=engine -Divy.engine.version=${ivyEngineVersion} ${engineDownloadURL}"
