@@ -98,7 +98,7 @@ pipeline {
 
           '''
 
-          bat "mvn -f AxonIvyPortal/PortalTest/customized_pom.xml clean -Dtest=${params.testPatternToRun} -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.engine.version=${ivyEngineVersion} -Dportal.released.version=9.1.0.0-SNAPSHOT -Divy.deploy.timeout.seconds=60 -DengineUrl=http://localhost:8080/ivy -Divy.compiler.engine.start.timeout=120 -Dskip.redeploy=false test"
+          bat "mvn -U -f AxonIvyPortal/PortalTest/customized_pom.xml clean ${engineDownloadURL} -Dtest=${params.testPatternToRun} -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.engine.version=${ivyEngineVersion} -Dportal.released.version=9.1.0.0-SNAPSHOT -Divy.deploy.timeout.seconds=60 -DengineUrl=http://localhost:8080/ivy -Divy.compiler.engine.start.timeout=120 -Dskip.redeploy=false test"
 
           archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true
         }
