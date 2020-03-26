@@ -22,7 +22,7 @@ pipeline {
   }
 
   parameters {
-      string(name: 'testPatternToRun', defaultValuen: 'portal.guitest.userexample.test.*Test,portal.guitest.test.*Test', description: 'Test pattern to run')
+      string(name: 'testPatternToRun', defaultValue: 'portal.guitest.userexample.test.*Test,portal.guitest.test.*Test', description: 'Test pattern to run.')
   }
 
   stages {
