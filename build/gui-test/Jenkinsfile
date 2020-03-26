@@ -29,7 +29,7 @@ pipeline {
     stage('build') {
       steps {
         script {
-          powerhell '''
+          powershell '''
             #This script replaces engine port in /resources/config_windows_server.properties from 8000 to 8080
             (Get-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties) -replace '8000', '8082' | Set-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties
               
