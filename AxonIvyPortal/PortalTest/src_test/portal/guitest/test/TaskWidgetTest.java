@@ -172,4 +172,30 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.openTaskList();
     assertEquals("In Task list, Task Count is not disabled", null, taskWidgetPage.getTaskCount());
   }
+
+  @Test
+  public void testBreadCrumb() {
+    HomePage homePage = new HomePage();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.openTaskList();
+    assertEquals("Tasks", taskWidgetPage.getTextOfCurrentBreadcrumb());
+    taskWidgetPage.clickHomeBreadcrumb();
+    assertEquals(true, homePage.isDisplayed());
+  }
+
+  @Test
+  public void testBreadCrumbInTaskDetail() {
+    HomePage homePage = new HomePage();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.openTaskList();
+    taskDetailsPage = taskWidgetPage.openTaskDetails(0);
+    assertEquals("Task: Maternity Leave Request", taskDetailsPage.getTextOfCurrentBreadcrumb());
+
+    taskDetailsPage.clickTaskListBreadCrumb();
+    assertEquals(true, taskWidgetPage.isDisplayed());
+
+    taskDetailsPage = taskWidgetPage.openTaskDetails(0);
+    taskDetailsPage.clickHomeBreadcrumb();
+    assertEquals(true, homePage.isDisplayed());
+  }
 }
