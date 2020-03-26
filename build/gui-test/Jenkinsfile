@@ -29,12 +29,28 @@ pipeline {
     stage('build') {
       steps {
         script {
+          powerhell '''
+            #This script replaces engine port in /resources/config_windows_server.properties from 8000 to 8080
+            (Get-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties) -replace '8000', '8082' | Set-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties
+              
+            #This script replaces Portal application name in /resources/config_windows_server.properties from Portal to demo-portal
+            (Get-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties) -replace 'Portal', 'demo-portal' | Set-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties
+
+            #Replace server address	
+            (Get-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties) -replace '192.168.73.8', 'localhost' | Set-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties
+          '''
+
+
+
           def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport']
           for (module in modules) {
-            bat "mvn clean install -f ${module}/pom.xml -Dbuild.plugin.version=${ivyBuildPluginVersion} -Divy.engine.version=${ivyEngineVersion}"
+            // bat "mvn clean install -f ${module}/pom.xml -Dbuild.plugin.version=${ivyBuildPluginVersion} -Divy.engine.version=${ivyEngineVersion}"
           }
 
           bat "mvn com.axonivy.ivy.ci:project-build-plugin:${ivyBuildPluginVersion}:installEngine -Divy.engine.directory=engine -Divy.engine.version=${ivyEngineVersion} ${engineDownloadURL}"
+
+        bat "mvn -f AxonIvyPortal/PortalTest/customized_pom.xml versions:update-property versions:commit -Dproperty=build.plugin.version -DallowSnapshots=true -Dportal.released.version=9.1.0.0-SNAPSHOT"
+        bat "mvn -f AxonIvyPortal/PortalTest/customized_pom.xml clean -Dtest=${params.testPatternToRun} -DtrimStackTrace=false -Divy.engine.directory=${env.WORKSPACE}/engine -Divy.engine.version=${ivyEngineVersion} -Dportal.released.version=9.1.0.0-SNAPSHOT -Divy.deploy.timeout.seconds=60 -DengineUrl=http://localhost:8080/ivy -Divy.compiler.engine.start.timeout=120 -Dskip.redeploy=false test"
 
           archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true
         }
