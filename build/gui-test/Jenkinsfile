@@ -6,7 +6,7 @@ portalApplicationName = 'Portal'
 ivyEngineFolder = 'D:/tools/ivy-server/trunk'
 engineDownloadURL = '-Divy.engine.download.url=file:///c:/wawa/engine/AxonIvyEngine9.1.0.2002130140_Windows_x64.zip'
 pipeline {
-  agent any
+  agent {label 'slave_performance_server'}
   
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
