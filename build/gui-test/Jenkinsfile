@@ -1,10 +1,10 @@
 builtModules = []
 projectName = 'PortalStyle'
-ivyBuildPluginVersion = '8.0.0'
+ivyBuildPluginVersion = '8.0.4'
 ivyEngineVersion = '9.1.0'
 portalApplicationName = 'Portal'
 ivyEngineFolder = 'D:/tools/ivy-server/trunk'
-
+engineDownloadURL = '-Divy.engine.download.url=file:///c:/wawa/engine/AxonIvyEngine9.1.0.2002130140_Windows_x64.zip'
 pipeline {
   agent any
   
@@ -30,36 +30,32 @@ pipeline {
       steps {
         script {
           def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport']
-          def changeLog = ''
-          echo "abc"
-          echo GIT_PREVIOUS_SUCCESSFUL_COMMIT
-          echo "xy"
-          echo env.GIT_PREVIOUS_SUCCESSFUL_COMMIT
-          if (env.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
-            echo "exist"
-            changeLog = bat(script: "git diff --name-only ${env.GIT_COMMIT} ${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}", returnStdout: true)
-          } else {
-            echo "not exist"
-          }
+          // def changeLog = ''
+          // if (env.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
+          //   changeLog = bat(script: "git diff --name-only ${env.GIT_COMMIT} ${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}", returnStdout: true)
+          // }
           for (module in modules) {
             if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1])) {
-              builtModules.add(module)
+              // builtModules.add(module)
               bat "mvn clean install -f ${module}/pom.xml -Dbuild.plugin.version=${ivyBuildPluginVersion} -Divy.engine.version=${ivyEngineVersion}"
             }
           }
+
+          bat "mvn com.axonivy.ivy.ci:project-build-plugin:${ivyBuildPluginVersion}:installEngine -Divy.engine.directory=engine -Divy.engine.version=${ivyEngineVersion} ${engineDownloadURL}"
+
           archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true
         }
       }
     }
 
-    stage('deploy') {
-      steps {
-        script {
-          for (module in builtModules) {
-              bat "mvn com.axonivy.ivy.ci:project-build-plugin:${ivyBuildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=${portalApplicationName} -Divy.deploy.engine.dir=${ivyEngineFolder} -Divy.engine.version=${ivyEngineVersion}"
-          }
-        }
-      }
-    }
+    // stage('deploy') {
+    //   steps {
+    //     script {
+    //       for (module in builtModules) {
+    //           bat "mvn com.axonivy.ivy.ci:project-build-plugin:${ivyBuildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=${portalApplicationName} -Divy.deploy.engine.dir=${ivyEngineFolder} -Divy.engine.version=${ivyEngineVersion}"
+    //       }
+    //     }
+    //   }
+    // }
   }
 }
