@@ -291,6 +291,9 @@ public class CaseDetailsPage extends TemplatePage {
   public int countNumberOfDocument() {
     return findListElementsByCssSelector("a[id$='download']").size();
   }
-  
+
+  public void clickCaseListBreadCrumb() {
+    click(By.cssSelector(".portal-breadcrumb ul li:nth-of-type(3) .ui-menuitem-link"));
+  }
 
 }
