@@ -30,8 +30,24 @@ pipeline {
       steps {
         script {
           powershell '''
+            # Turn off Elasticsearch port from 19200 to 19210
+            "=== Try to release Elasticsearch port ==="
+            for (($port = 19200); $port -lt 19210; ($port++)) {
+              Get-NetTCPConnection -LocalPort $port -erroraction 'silentlycontinue'
+              if ( $LastExitCode -eq 0 ) {
+                Stop-Process -Id (Get-NetTCPConnection -LocalPort $port).OwningProcess -Force
+              }
+            }
+
+            "===Remove Old-Engine folder==="
+
+            #cd $env:WORKSPACE/engine
+            #rmdir * -recurse -force
+          '''
+
+          powershell '''
             #This script replaces engine port in /resources/config_windows_server.properties from 8000 to 8080
-            (Get-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties) -replace '8000', '8082' | Set-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties
+            (Get-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties) -replace '8000', '8081' | Set-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties
               
             #This script replaces Portal application name in /resources/config_windows_server.properties from Portal to demo-portal
             (Get-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties) -replace 'Portal', 'demo-portal' | Set-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties
@@ -39,18 +55,50 @@ pipeline {
             #Replace server address	
             (Get-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties) -replace '192.168.73.8', 'localhost' | Set-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties
           '''
+          bat '''
+            rem stop Axon.ivy Engine - LTS
+            sc query "Axon.ivy Engine - LTS" | find /i "RUNNING"
+            if not "%ERRORLEVEL%"=="1" ( net stop "Axon.ivy Engine - LTS" )
 
+            rem stop Axon.ivyEngine8.0
+            sc query "Axon.ivyEngine8.0" | find /i "RUNNING"
+            if not "%ERRORLEVEL%"=="1" ( net stop Axon.ivyEngine8.0 )
 
-
+            rem stop Axon.ivyEngineTrunk
+            sc query "Axon.ivyEngineTrunk" | find /i "RUNNING"
+            if not "%ERRORLEVEL%"=="1" ( net stop Axon.ivyEngineTrunk )
+            exit 0
+          '''
           def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport']
           for (module in modules) {
-            bat "mvn clean install -f ${module}/pom.xml -Dbuild.plugin.version=${ivyBuildPluginVersion} -Divy.engine.version=${ivyEngineVersion}"
+            // bat "mvn clean install -f ${module}/pom.xml -Dbuild.plugin.version=${ivyBuildPluginVersion} -Divy.engine.version=${ivyEngineVersion}"
           }
 
           bat "mvn com.axonivy.ivy.ci:project-build-plugin:${ivyBuildPluginVersion}:installEngine -Divy.engine.directory=engine -Divy.engine.version=${ivyEngineVersion} ${engineDownloadURL}"
 
-        bat "mvn -f AxonIvyPortal/PortalTest/customized_pom.xml versions:update-property versions:commit -Dproperty=build.plugin.version -DallowSnapshots=true -Dportal.released.version=9.1.0.0-SNAPSHOT"
-        bat "mvn -f AxonIvyPortal/PortalTest/customized_pom.xml clean -Dtest=${params.testPatternToRun} -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.engine.version=${ivyEngineVersion} -Dportal.released.version=9.1.0.0-SNAPSHOT -Divy.deploy.timeout.seconds=60 -DengineUrl=http://localhost:8080/ivy -Divy.compiler.engine.start.timeout=120 -Dskip.redeploy=false test"
+          bat "mvn -f AxonIvyPortal/PortalTest/customized_pom.xml versions:update-property versions:commit -Dproperty=build.plugin.version -DallowSnapshots=true -Dportal.released.version=9.1.0.0-SNAPSHOT"
+
+          bat '''
+            Echo ===Close all remote desktop connections and setup new remote destop to account Wawa===
+            rem java -jar C:/tools/jenkins/jenkins-cli.jar -s http://10.123.1.30:8080/ build RemoteDesktopCloseAll --username tung.le --password SAMPLE_TEXT_1
+            rem java -jar C:/tools/jenkins/jenkins-cli.jar -s http://10.123.1.30:8080/ build RemotePortalPerformanceDesktop --username tung.le --password SAMPLE_TEXT_1
+
+            Echo ===Close opening IE browsers===
+            tasklist /fi "imagename eq IEDriverServer.exe" |find ":" > nul
+            if errorlevel 1 taskkill -im IEDriverServer.exe /fi "USERNAME eq wawa" -F
+            tasklist /fi "imagename eq iexplore.exe" |find ":" > nul
+            if errorlevel 1 taskkill -im iexplore.exe /fi "USERNAME eq wawa" -F
+
+            Echo ===Close opening FireFox browsers===
+            tasklist /fi "imagename eq GeckoFireFoxDriver.exe" |find ":" > nul
+            if errorlevel 1 taskkill -im GeckoFireFoxDriver.exe -F
+            tasklist /fi "imagename eq firefox.exe" |find ":" > nul
+            if errorlevel 1 taskkill -im firefox.exe -F
+
+
+          '''
+
+          bat "mvn -f AxonIvyPortal/PortalTest/customized_pom.xml clean -Dtest=${params.testPatternToRun} -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.engine.version=${ivyEngineVersion} -Dportal.released.version=9.1.0.0-SNAPSHOT -Divy.deploy.timeout.seconds=60 -DengineUrl=http://localhost:8080/ivy -Divy.compiler.engine.start.timeout=120 -Dskip.redeploy=false test"
 
           archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true
         }
