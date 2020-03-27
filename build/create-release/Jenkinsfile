@@ -1,0 +1,87 @@
+builtModules = []
+ivyBuildPluginVersion = '8.0.0'
+ivyEngineVersion = '9.1.0'
+portalApplicationName = 'Portal'
+ivyEngineFolder = 'D:/tools/ivy-server/trunk'
+engineDownloadURL = '-Divy.engine.download.url=file:///c:/wawa/engine/AxonIvyEngine9.1.0.2002130140_Windows_x64.zip'
+engineFolder = '../../engine'
+pipeline {
+  agent {label 'slave_performance_server'}
+  
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
+  }
+  
+  tools { 
+      maven 'default' 
+      jdk 'jdk11' 
+  }
+
+  parameters {
+      string(name: 'allowIvyBuildPluginSnapshots', defaultValue: 'false', description: 'Allow using snapshot version of Axon.Ivy build plugin. For release for LTS or LE, value must be false')
+      string(name: 'releaseVersion', defaultValue: '9.1.0.0', description: 'The release version.')
+      string(name: 'branch', defaultValue: 'master', description: 'Branch to work on')
+  }
+
+  stages {
+    stage('build') {
+      steps {
+        script {
+          powershell """
+            #find all pom file of portal project and change their versions and their portal dependencies to releaseVersion
+            \$utf8WithoutBom = New-Object System.Text.UTF8Encoding(\$false)
+            \$files = get-childitem AxonIvyPortal/*/pom.xml,Showcase/*/pom.xml,AxonIvyPortal/PortalTest/customized_pom.xml
+            foreach(\$file in \$files) {
+              \$xml = new-object xml
+              \$xml.load(\$file)
+              \$xml.project.version = \$env:releaseVersion
+              \$dependencies = \$xml.project.dependencies.ChildNodes
+              foreach(\$dependency in \$dependencies)
+              {
+                if((\$dependency.groupId -eq 'ch.ivyteam.ivy.project.portal') -or (\$dependency.groupId -eq 'com.axonivy.portal'))
+                {
+                  \$dependency.version = \$env:releaseVersion
+                }
+              }
+              \$sw = New-Object System.IO.StreamWriter(\$file, \$false, \$utf8WithoutBom)
+              \$xml.Save(\$sw)
+            }
+          """
+          def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport']
+          for (module in modules) {
+            bat "mvn versions:update-property versions:commit -Dproperty=build.plugin.version -DallowSnapshots=${params.allowIvyBuildPluginSnapshots} -f ${module}/pom.xml"
+            bat "mvn clean install -Divy.engine.directory=${engineFolder} -Divy.engine.version=(7.0.0,] -Divy.compiler.engine.start.timeout=120 ${engineDownloadURL}  -f ${module}/pom.xml"
+            // bat "mvn clean install -f ${module}/pom.xml -Dbuild.plugin.version=${ivyBuildPluginVersion} -Divy.engine.version=${ivyEngineVersion}"
+          }
+
+          bat "mvn clean install -Divy.engine.directory=${engineFolder} -Divy.engine.version=(7.0.0,] -Divy.compiler.engine.start.timeout=120 ${engineDownloadURL} -f AxonIvyPortal/PortalApp/pom.xml"
+
+          bat """
+            rem remove created tag
+            git push --delete origin ${params.releaseVersion}
+            git tag -d ${params.releaseVersion}
+
+            rem Temporary commit version changes to create tag
+            git commit -a -m "update projects version"
+            git push origin ${params.branch}
+
+            rem Create tag for the release
+            git tag -a ${params.releaseVersion} -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}
+            git push origin ${params.releaseVersion}
+
+            rem undo last push
+            git push -f origin HEAD^^:${params.branch}
+          """
+
+
+        }
+      }
+    }
+  }
+
+  post {
+    always {
+      archiveArtifacts artifacts: "**/target/*.iar,AxonIvyPortal/PortalApp/target/*.zip,*/*/pom.xml", fingerprint: true
+    }
+  }
+}

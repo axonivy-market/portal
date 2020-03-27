@@ -1,9 +1,5 @@
-builtModules = []
-projectName = 'PortalStyle'
 ivyBuildPluginVersion = '8.0.0'
 ivyEngineVersion = '9.1.0'
-portalApplicationName = 'Portal'
-ivyEngineFolder = 'D:/tools/ivy-server/trunk'
 engineDownloadURL = '-Divy.engine.download.url=file:///c:/wawa/engine/AxonIvyEngine9.1.0.2002130140_Windows_x64.zip'
 pipeline {
   agent {label 'slave_performance_server'}

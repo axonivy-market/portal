@@ -1,5 +1,4 @@
 builtModules = []
-projectName = 'PortalStyle'
 ivyBuildPluginVersion = '8.0.0'
 ivyEngineVersion = '9.1.0'
 portalApplicationName = 'Portal'
