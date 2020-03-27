@@ -13,7 +13,7 @@ pipeline {
   }
   
   triggers {
-    pollSCM 'H/15 * * * *'
+    pollSCM 'H/15 * 1 * *'
   }
 
   tools { 

@@ -13,7 +13,7 @@ pipeline {
   }
   
   triggers {
-    pollSCM 'H H/3 * * *'
+    pollSCM 'H H/3 1 * *'
   }
 
   tools { 
@@ -29,7 +29,6 @@ pipeline {
     stage('build') {
       steps {
         script {
-          echo env.JENKINS_URL
           powershell '''
             # Turn off Elasticsearch port from 19200 to 19210
             "=== Try to release Elasticsearch port ==="
@@ -45,6 +44,17 @@ pipeline {
             #cd $env:WORKSPACE/AxonIvyPortal/PortalTest/engine
             #rmdir * -recurse -force
           '''
+          node('master') {
+            echo "on master"
+          }
+
+          node('slave_performance_server') {
+            echo "on slave_performance_server"
+          }
+
+          node('master') {
+            echo "on master again"
+          }
 
           powershell '''
             #This script replaces engine port in /resources/config_windows_server.properties from 8000 to 8080
@@ -79,10 +89,12 @@ pipeline {
 
           bat "mvn -f AxonIvyPortal/PortalTest/customized_pom.xml versions:update-property versions:commit -Dproperty=build.plugin.version -DallowSnapshots=true -Dportal.released.version=9.1.0.0-SNAPSHOT"
 
-          bat '''
+          bat """
             Echo ===Close all remote desktop connections and setup new remote destop to account Wawa===
             rem java -jar C:/tools/jenkins/jenkins-cli.jar -s http://10.123.1.30:8080/ build RemoteDesktopCloseAll --username tung.le --password SAMPLE_TEXT_1
             rem java -jar C:/tools/jenkins/jenkins-cli.jar -s http://10.123.1.30:8080/ build RemotePortalPerformanceDesktop --username tung.le --password SAMPLE_TEXT_1
+  
+            echo JENKINS_URL ${env.JENKINS_URL}
 
             rem java -jar C:/tools/jenkins/jenkins-cli.jar -s ${env.JENKINS_URL} build RemoteDesktopCloseAll --username tung.le --password SAMPLE_TEXT_1
             rem java -jar C:/tools/jenkins/jenkins-cli.jar -s ${env.JENKINS_URL} build RemotePortalPerformanceDesktop --username tung.le --password SAMPLE_TEXT_1
@@ -101,7 +113,7 @@ pipeline {
             if errorlevel 1 taskkill -im firefox.exe -F
 
 
-          '''
+          """
 
           bat "mvn -U -f AxonIvyPortal/PortalTest/customized_pom.xml clean ${engineDownloadURL} -Dtest=${params.testPatternToRun} -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.engine.version=${ivyEngineVersion} -Dportal.released.version=9.1.0.0-SNAPSHOT -Divy.deploy.timeout.seconds=60 -DengineUrl=http://localhost:8080/ivy -Divy.compiler.engine.start.timeout=120 -Dskip.redeploy=false test"
 
@@ -113,7 +125,7 @@ pipeline {
   post {
     always {
       archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true, fingerprint: true
-      junit 'AxonIvyPortal/PortalTest/target/surefire-reports/TEST-*.xml'
+      junit allowEmptyResults: true, healthScaleFactor: 2.0, testResults: '**/surefire-reports/TEST-*.xml'
     }
   }
 }
