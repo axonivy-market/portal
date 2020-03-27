@@ -13,7 +13,7 @@ pipeline {
   }
   
   triggers {
-    pollSCM 'H/15 * * * *'
+    pollSCM 'H H/3 * * *'
   }
 
   tools { 
@@ -84,6 +84,10 @@ pipeline {
             rem java -jar C:/tools/jenkins/jenkins-cli.jar -s http://10.123.1.30:8080/ build RemoteDesktopCloseAll --username tung.le --password SAMPLE_TEXT_1
             rem java -jar C:/tools/jenkins/jenkins-cli.jar -s http://10.123.1.30:8080/ build RemotePortalPerformanceDesktop --username tung.le --password SAMPLE_TEXT_1
 
+            rem java -jar C:/tools/jenkins/jenkins-cli.jar -s ${env.JENKINS_URL} build RemoteDesktopCloseAll --username tung.le --password SAMPLE_TEXT_1
+            rem java -jar C:/tools/jenkins/jenkins-cli.jar -s ${env.JENKINS_URL} build RemotePortalPerformanceDesktop --username tung.le --password SAMPLE_TEXT_1
+
+
             Echo ===Close opening IE browsers===
             tasklist /fi "imagename eq IEDriverServer.exe" |find ":" > nul
             if errorlevel 1 taskkill -im IEDriverServer.exe /fi "USERNAME eq wawa" -F
@@ -101,9 +105,15 @@ pipeline {
 
           bat "mvn -U -f AxonIvyPortal/PortalTest/customized_pom.xml clean ${engineDownloadURL} -Dtest=${params.testPatternToRun} -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.engine.version=${ivyEngineVersion} -Dportal.released.version=9.1.0.0-SNAPSHOT -Divy.deploy.timeout.seconds=60 -DengineUrl=http://localhost:8080/ivy -Divy.compiler.engine.start.timeout=120 -Dskip.redeploy=false test"
 
-          archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true
         }
       }
+    }
+  }
+
+  post {
+    always {
+      archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true, fingerprint: true
+      junit 'AxonIvyPortal/PortalTest/target/surefire-reports/TEST-*.xml'
     }
   }
 }
