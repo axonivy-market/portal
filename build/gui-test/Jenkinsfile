@@ -45,15 +45,11 @@ pipeline {
             #rmdir * -recurse -force
           '''
           node('master') {
-            echo "on master"
-          }
-
-          node('slave_performance_server') {
-            echo "on slave_performance_server"
-          }
-
-          node('master') {
-            echo "on master again"
+            echo "Running on master"
+            bat '''
+              taskkill -im mstsc.exe -F
+              D:/tools/remote-desktop-plus/rdp.exe /v:10.123.1.193 /domain:wawa.vn /u:wawa /p:SAMPLE_TEXT_1 /w:2560 /h:1440 /noclose
+            '''
           }
 
           powershell '''
