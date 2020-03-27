@@ -5,7 +5,7 @@ portalApplicationName = 'Portal'
 ivyEngineFolder = 'D:/tools/ivy-server/trunk'
 
 pipeline {
-  agent any
+  agent {label 'master'}
   
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
