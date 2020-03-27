@@ -353,11 +353,8 @@ import ch.ivyteam.ivy.workflow.ITask;
 ITask task = ivy.wf.findTask(in.endedTaskId);
 ITask taskWithTaskEndInfo = null;
 
-// If task does not persist yet, set it as first task
-if (task == null || task.getStartSwitchEvent() == null) {
-	in.isFirstTask = true;
-} else {
-	in.isFirstTask = false;
+// If task does not persist yet, get task end info
+if (#task is initialized && task.getStartSwitchEvent() != null) {
 	ITask taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
 }
 
