@@ -135,9 +135,7 @@ Pt0 f27 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 Pt0 f27 actionTable 'out=in;
 ' #txt
 Pt0 f27 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
-
-//Default set this to true. Because Growl message feature need this init at true to work correctly.
-ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), true); ' #txt
+ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false); ' #txt
 Pt0 f27 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -492,7 +490,7 @@ Pt0 f11 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 Pt0 f11 actionTable 'out=in;
 out.isTaskFinished=in.isTaskFinished;
 ' #txt
-Pt0 f11 actionCode 'import ch.ivyteam.ivy.workflow.internal.SessionAdapterFactory;
+Pt0 f11 actionCode ' import ch.ivyteam.ivy.workflow.internal.SessionAdapterFactory;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
@@ -500,31 +498,41 @@ import ch.ivy.addon.portal.generic.navigation.PortalPage;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivyteam.ivy.workflow.ITask;
-
+ 
 ITask task = ivy.wf.findTask(in.endedTaskId);
-ITask taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
+ITask taskWithTaskEndInfo = null;
+
+// If task does not persist yet, set it as first task
+if (task == null || task.getStartSwitchEvent() == null) {
+	in.isFirstTask = true;
+} else {
+	in.isFirstTask = false;
+	ITask taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
+}
+
 boolean isTaskStarted = false;
 String callbackUrl;
 String IS_TASK_FINISHED = SessionAttribute.IS_TASK_FINISHED.toString();
+in.isFirstTask = false;
 if  (#task is initialized) {
-	isTaskStarted = task.getStartProcessData() is initialized;
-	if(#taskWithTaskEndInfo is initialized) {
-		callbackUrl = taskWithTaskEndInfo.getAdditionalProperty(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString());
-	} else {
-		in.isFirstTask = !#taskWithTaskEndInfo is initialized;
-	}
+    isTaskStarted = task.getStartProcessData() is initialized;
+    if(#taskWithTaskEndInfo is initialized) {
+        callbackUrl = taskWithTaskEndInfo.getAdditionalProperty(AdditionalProperty.PORTAL_TASK_CALLBACK_URI.toString());
+    } else {
+        in.isFirstTask = !#taskWithTaskEndInfo is initialized;
+    }
 } else {
-	in.isFirstTask = !#task is initialized;
+    in.isFirstTask = !#task is initialized;
 }
-
+ 
 if (isTaskStarted && StringUtils.isNotBlank(callbackUrl)) {
-	out.callbackUrl = callbackUrl + "?endedTaskId=" + taskWithTaskEndInfo.getId();
+    out.callbackUrl = callbackUrl + "?endedTaskId=" + taskWithTaskEndInfo.getId();
 } else {
-	out.portalPage = PortalPage.HOME_PAGE;
+    out.portalPage = PortalPage.HOME_PAGE;
 }
-
-in.isTaskFinished = SecurityServiceUtils.getSessionAttribute(IS_TASK_FINISHED).toBoolean();
-ivy.session.setAttribute(IS_TASK_FINISHED, true);' #txt
+ 
+in.isTaskFinished = (#task is initialized && task.getEndTimestamp() is initialized) || !(#task is initialized);
+ivy.session.setAttribute(IS_TASK_FINISHED, in.isTaskFinished);' #txt
 Pt0 f11 security system #txt
 Pt0 f11 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -946,8 +954,7 @@ if (StringUtils.isBlank(defaultEndPage)) {
 	ivy.wf.setStandardProcessImplementationLibrary(StandardProcessType.DEFAULT_PAGES_PROCESS_TYPES, PortalLibrary.PORTAL_TEMPLATE.getValue());
 }
 
-in.isTaskFinished = SecurityServiceUtils.getSessionAttribute(IS_TASK_FINISHED).toBoolean();
-ivy.session.setAttribute(IS_TASK_FINISHED, true);' #txt
+in.isTaskFinished = SecurityServiceUtils.getSessionAttribute(IS_TASK_FINISHED).toBoolean();' #txt
 Pt0 f20 security system #txt
 Pt0 f20 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

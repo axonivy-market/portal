@@ -341,7 +341,7 @@ Pt0 f11 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 Pt0 f11 actionTable 'out=in;
 out.isTaskFinished=in.isTaskFinished;
 ' #txt
-Pt0 f11 actionCode 'import ch.ivyteam.ivy.workflow.internal.SessionAdapterFactory;
+Pt0 f11 actionCode ' import ch.ivyteam.ivy.workflow.internal.SessionAdapterFactory;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
@@ -351,7 +351,16 @@ import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivyteam.ivy.workflow.ITask;
  
 ITask task = ivy.wf.findTask(in.endedTaskId);
-ITask taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
+ITask taskWithTaskEndInfo = null;
+
+// If task does not persist yet, set it as first task
+if (task == null || task.getStartSwitchEvent() == null) {
+	in.isFirstTask = true;
+} else {
+	in.isFirstTask = false;
+	ITask taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
+}
+
 boolean isTaskStarted = false;
 String callbackUrl;
 String IS_TASK_FINISHED = SessionAttribute.IS_TASK_FINISHED.toString();
@@ -1285,8 +1294,6 @@ Pt0 f27 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 Pt0 f27 actionTable 'out=in;
 ' #txt
 Pt0 f27 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
-
-//Default set this to true. Because Growl message feature need this init at true to work correctly.
 ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false); ' #txt
 Pt0 f27 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
