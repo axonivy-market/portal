@@ -14,6 +14,7 @@ pipeline {
   
   triggers {
     pollSCM 'H H/3 1 * *'
+    cron('H 9 * * *')
   }
 
   tools { 
@@ -44,13 +45,6 @@ pipeline {
             #cd $env:WORKSPACE/AxonIvyPortal/PortalTest/engine
             #rmdir * -recurse -force
           '''
-          node('master') {
-            echo "Running on master"
-            bat '''
-              taskkill -im mstsc.exe -F
-              D:/tools/remote-desktop-plus/rdp.exe /v:10.123.1.193 /domain:wawa.vn /u:wawa /p:SAMPLE_TEXT_1 /w:2560 /h:1440 /noclose
-            '''
-          }
 
           powershell '''
             #This script replaces engine port in /resources/config_windows_server.properties from 8000 to 8080
@@ -85,11 +79,16 @@ pipeline {
 
           bat "mvn -f AxonIvyPortal/PortalTest/customized_pom.xml versions:update-property versions:commit -Dproperty=build.plugin.version -DallowSnapshots=true -Dportal.released.version=9.1.0.0-SNAPSHOT"
 
-          bat """
-            Echo ===Close all remote desktop connections and setup new remote destop to account Wawa===
-  
-            echo JENKINS_URL ${env.JENKINS_URL}
+          node('master') {
+            echo '===Close all remote desktop connections and setup new remote destop to account Wawa==='
+            bat '''
+              taskkill -im mstsc.exe -F
+              D:/tools/remote-desktop-plus/rdp.exe /v:10.123.1.193 /domain:wawa.vn /u:wawa /p:SAMPLE_TEXT_1 /w:2560 /h:1440 /noclose
+            '''
+          }
 
+
+          bat '''
             Echo ===Close opening IE browsers===
             tasklist /fi "imagename eq IEDriverServer.exe" |find ":" > nul
             if errorlevel 1 taskkill -im IEDriverServer.exe /fi "USERNAME eq wawa" -F
@@ -101,7 +100,7 @@ pipeline {
             if errorlevel 1 taskkill -im GeckoFireFoxDriver.exe -F
             tasklist /fi "imagename eq firefox.exe" |find ":" > nul
             if errorlevel 1 taskkill -im firefox.exe -F
-          """
+          '''
 
           bat "mvn -U -f AxonIvyPortal/PortalTest/customized_pom.xml clean ${engineDownloadURL} -Dtest=${params.testPatternToRun} -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.engine.version=${ivyEngineVersion} -Dportal.released.version=9.1.0.0-SNAPSHOT -Divy.deploy.timeout.seconds=60 -DengineUrl=http://localhost:8080/ivy -Divy.compiler.engine.start.timeout=120 -Dskip.redeploy=false test"
 
