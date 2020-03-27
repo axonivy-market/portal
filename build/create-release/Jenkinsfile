@@ -56,22 +56,22 @@ pipeline {
 
           bat "mvn clean install -Divy.engine.directory=${engineFolder} -Divy.engine.version=(7.0.0,] -Divy.compiler.engine.start.timeout=120 ${engineDownloadURL} -f AxonIvyPortal/PortalApp/pom.xml"
 
-          bat """
-            rem remove created tag
-            git push --delete origin ${params.releaseVersion}
-            git tag -d ${params.releaseVersion}
+          // bat """
+          //   rem remove created tag
+          //   git push --delete origin ${params.releaseVersion}
+          //   git tag -d ${params.releaseVersion}
 
-            rem Temporary commit version changes to create tag
-            git commit -a -m "update projects version"
-            git push origin ${params.branch}
+          //   rem Temporary commit version changes to create tag
+          //   git commit -a -m "update projects version"
+          //   git push origin ${params.branch}
 
-            rem Create tag for the release
-            git tag -a ${params.releaseVersion} -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}
-            git push origin ${params.releaseVersion}
+          //   rem Create tag for the release
+          //   git tag -a ${params.releaseVersion} -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}
+          //   git push origin ${params.releaseVersion}
 
-            rem undo last push
-            git push -f origin HEAD^^:${params.branch}
-          """
+          //   rem undo last push
+          //   git push -f origin HEAD^^:${params.branch}
+          // """
 
 
         }
