@@ -75,8 +75,6 @@ pipeline {
             // bat "mvn clean install -f ${module}/pom.xml -Dbuild.plugin.version=${ivyBuildPluginVersion} -Divy.engine.version=${ivyEngineVersion}"
           }
 
-          // bat "mvn com.axonivy.ivy.ci:project-build-plugin:${ivyBuildPluginVersion}:installEngine -Divy.engine.directory=engine -Divy.engine.version=${ivyEngineVersion} ${engineDownloadURL}"
-
           bat "mvn -f AxonIvyPortal/PortalTest/customized_pom.xml versions:update-property versions:commit -Dproperty=build.plugin.version -DallowSnapshots=true -Dportal.released.version=9.1.0.0-SNAPSHOT"
 
           node('master') {
