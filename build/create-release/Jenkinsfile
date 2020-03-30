@@ -31,27 +31,27 @@ pipeline {
           bat 'echo abc > 1.txt'
 
           bat """
-          echo ${BRANCH_NAME}
+          echo ${env.BRANCH_NAME}
           echo above
-          exit 1
-            // rem remove created tag
-            // git push --delete origin ${params.releaseVersion}
-            // git tag -d ${params.releaseVersion}
 
-            // rem Temporary commit version changes to create tag
-            // git commit -a -m "update projects version"
-            // git push origin ${params.branch}
+            rem remove created tag
+            git push --delete origin ${params.releaseVersion}
+            git tag -d ${params.releaseVersion}
 
-            // rem Create tag for the release
-            // git tag -a ${params.releaseVersion} -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}
-            // git push origin ${params.releaseVersion}
+            rem Temporary commit version changes to create tag
+            git commit -a -m "update projects version"
+            git push origin ${env.BRANCH_NAME}
 
-            // rem undo last push
-            // git push -f origin HEAD^^:${params.branch}
+            rem Create tag for the release
+            git tag -a ${params.releaseVersion} -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}
+            git push origin ${params.releaseVersion}
+
+            rem undo last push
+            git push -f origin HEAD^^:${env.BRANCH_NAME}
           """
 
           bat 'echo bc > 2.txt'
-          new Exception()
+          bat 'exit 1'
 
           powershell '''
             #find all pom file of portal project and change their versions and their portal dependencies to releaseVersion
