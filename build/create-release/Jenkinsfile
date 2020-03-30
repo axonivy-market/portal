@@ -27,26 +27,26 @@ pipeline {
     stage('build') {
       steps {
         script {
-          powershell """
+          powershell '''
             #find all pom file of portal project and change their versions and their portal dependencies to releaseVersion
-            \$utf8WithoutBom = New-Object System.Text.UTF8Encoding(\$false)
-            \$files = get-childitem AxonIvyPortal/*/pom.xml,Showcase/*/pom.xml,AxonIvyPortal/PortalTest/customized_pom.xml
-            foreach(\$file in \$files) {
-              \$xml = new-object xml
-              \$xml.load(\$file)
-              \$xml.project.version = \$env:releaseVersion
-              \$dependencies = \$xml.project.dependencies.ChildNodes
-              foreach(\$dependency in \$dependencies)
+            $utf8WithoutBom = New-Object System.Text.UTF8Encoding($false)
+            $files = get-childitem AxonIvyPortal/*/pom.xml,Showcase/*/pom.xml,AxonIvyPortal/PortalTest/customized_pom.xml
+            foreach($file in $files) {
+              $xml = new-object xml
+              $xml.load($file)
+              $xml.project.version = $env:releaseVersion
+              $dependencies = $xml.project.dependencies.ChildNodes
+              foreach($dependency in $dependencies)
               {
-                if((\$dependency.groupId -eq 'ch.ivyteam.ivy.project.portal') -or (\$dependency.groupId -eq 'com.axonivy.portal'))
+                if(($dependency.groupId -eq 'ch.ivyteam.ivy.project.portal') -or ($dependency.groupId -eq 'com.axonivy.portal'))
                 {
-                  \$dependency.version = \$env:releaseVersion
+                  $dependency.version = $env:releaseVersion
                 }
               }
-              \$sw = New-Object System.IO.StreamWriter(\$file, \$false, \$utf8WithoutBom)
-              \$xml.Save(\$sw)
+              $sw = New-Object System.IO.StreamWriter($file, $false, $utf8WithoutBom)
+              $xml.Save($sw)
             }
-          """
+          '''
           def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport']
           for (module in modules) {
             bat "mvn versions:update-property versions:commit -Dproperty=build.plugin.version -DallowSnapshots=${params.allowIvyBuildPluginSnapshots} -f ${module}/pom.xml"
