@@ -31,20 +31,23 @@ pipeline {
           bat 'echo abc > 1.txt'
 
           bat """
-            rem remove created tag
-            git push --delete origin ${params.releaseVersion}
-            git tag -d ${params.releaseVersion}
+          echo ${BRANCH_NAME}
+          echo above
+          exit 1
+            // rem remove created tag
+            // git push --delete origin ${params.releaseVersion}
+            // git tag -d ${params.releaseVersion}
 
-            rem Temporary commit version changes to create tag
-            git commit -a -m "update projects version"
-            git push origin ${params.branch}
+            // rem Temporary commit version changes to create tag
+            // git commit -a -m "update projects version"
+            // git push origin ${params.branch}
 
-            rem Create tag for the release
-            git tag -a ${params.releaseVersion} -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}
-            git push origin ${params.releaseVersion}
+            // rem Create tag for the release
+            // git tag -a ${params.releaseVersion} -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}
+            // git push origin ${params.releaseVersion}
 
-            rem undo last push
-            git push -f origin HEAD^^:${params.branch}
+            // rem undo last push
+            // git push -f origin HEAD^^:${params.branch}
           """
 
           bat 'echo bc > 2.txt'
