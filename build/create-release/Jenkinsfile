@@ -27,6 +27,29 @@ pipeline {
     stage('build') {
       steps {
         script {
+
+          bat 'echo abc > 1.txt'
+
+          bat """
+            rem remove created tag
+            git push --delete origin ${params.releaseVersion}
+            git tag -d ${params.releaseVersion}
+
+            rem Temporary commit version changes to create tag
+            git commit -a -m "update projects version"
+            git push origin ${params.branch}
+
+            rem Create tag for the release
+            git tag -a ${params.releaseVersion} -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}
+            git push origin ${params.releaseVersion}
+
+            rem undo last push
+            git push -f origin HEAD^^:${params.branch}
+          """
+
+          bat 'echo bc > 2.txt'
+          new Exception()
+
           powershell '''
             #find all pom file of portal project and change their versions and their portal dependencies to releaseVersion
             $utf8WithoutBom = New-Object System.Text.UTF8Encoding($false)
@@ -51,7 +74,6 @@ pipeline {
           for (module in modules) {
             bat "mvn versions:update-property versions:commit -Dproperty=build.plugin.version -DallowSnapshots=${params.allowIvyBuildPluginSnapshots} -f ${module}/pom.xml"
             bat "mvn clean install -Divy.engine.directory=${engineFolder} -Divy.engine.version=(7.0.0,] -Divy.compiler.engine.start.timeout=120 ${engineDownloadURL}  -f ${module}/pom.xml"
-            // bat "mvn clean install -f ${module}/pom.xml -Dbuild.plugin.version=${ivyBuildPluginVersion} -Divy.engine.version=${ivyEngineVersion}"
           }
 
           bat "mvn clean install -Divy.engine.directory=${engineFolder} -Divy.engine.version=(7.0.0,] -Divy.compiler.engine.start.timeout=120 ${engineDownloadURL} -f AxonIvyPortal/PortalApp/pom.xml"
@@ -72,8 +94,6 @@ pipeline {
           //   rem undo last push
           //   git push -f origin HEAD^^:${params.branch}
           // """
-
-
         }
       }
     }
