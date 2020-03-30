@@ -19,6 +19,8 @@ Es0 @RichDialogProcessEnd f1 '' #zField
 Es0 @PushWFArc f2 '' #zField
 Es0 @RichDialogProcessStart f3 '' #zField
 Es0 @RichDialogEnd f4 '' #zField
+Es0 @GridStep f55 '' #zField
+Es0 @PushWFArc f6 '' #zField
 Es0 @PushWFArc f5 '' #zField
 >Proto Es0 Es0 EndPageProcess #zField
 Es0 f0 guid 1600BE1A79A59456 #txt
@@ -63,15 +65,36 @@ Es0 f3 83 147 26 26 -15 15 #rect
 Es0 f3 @|RichDialogProcessStartIcon #fIcon
 Es0 f4 type ch.ivy.addon.express.generic.EndPage.EndPageData #txt
 Es0 f4 guid 1600BE1A7AA3EC82 #txt
-Es0 f4 211 147 26 26 0 12 #rect
+Es0 f4 531 147 26 26 0 12 #rect
 Es0 f4 @|RichDialogEndIcon #fIcon
+Es0 f55 actionDecl 'ch.ivy.addon.express.generic.EndPage.EndPageData out;
+' #txt
+Es0 f55 actionTable 'out=in;
+' #txt
+Es0 f55 actionCode 'ivy.session.setAttribute("IS_EXPRESS_FINISH", true);' #txt
+Es0 f55 type ch.ivy.addon.express.generic.EndPage.EndPageData #txt
+Es0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>set session attribute IS_EXPRESS_FINISH</name>
+        <nameStyle>39,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Es0 f55 200 138 240 44 -117 -8 #rect
+Es0 f55 @|StepIcon #fIcon
+Es0 f6 expr out #txt
+Es0 f6 109 160 200 160 #arcP
 Es0 f5 expr out #txt
-Es0 f5 109 160 211 160 #arcP
+Es0 f5 440 160 531 160 #arcP
 >Proto Es0 .type ch.ivy.addon.express.generic.EndPage.EndPageData #txt
 >Proto Es0 .processKind HTML_DIALOG #txt
 >Proto Es0 -8 -8 16 16 16 26 #rect
 >Proto Es0 '' #fIcon
 Es0 f0 mainOut f2 tail #connect
 Es0 f2 head f1 mainIn #connect
-Es0 f3 mainOut f5 tail #connect
+Es0 f3 mainOut f6 tail #connect
+Es0 f6 head f55 mainIn #connect
+Es0 f55 mainOut f5 tail #connect
 Es0 f5 head f4 mainIn #connect
