@@ -28,7 +28,7 @@ pipeline {
       steps {
         script {
 
-          bat 'echo abc > 1.txt'
+          bat 'echo abc > AxonIvyPortal/PortalKit/1.txt'
 
           bat """
           echo ${env.BRANCH_NAME}
