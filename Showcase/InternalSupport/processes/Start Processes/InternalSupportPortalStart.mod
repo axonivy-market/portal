@@ -490,7 +490,7 @@ Pt0 f11 actionDecl 'ch.ivy.addon.portal.generic.PortalStartData out;
 Pt0 f11 actionTable 'out=in;
 out.isTaskFinished=in.isTaskFinished;
 ' #txt
-Pt0 f11 actionCode ' import ch.ivyteam.ivy.workflow.internal.SessionAdapterFactory;
+Pt0 f11 actionCode 'import ch.ivyteam.ivy.workflow.internal.SessionAdapterFactory;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
@@ -502,12 +502,11 @@ import ch.ivyteam.ivy.workflow.ITask;
 ITask task = ivy.wf.findTask(in.endedTaskId);
 ITask taskWithTaskEndInfo = null;
 
-// If task does not persist yet, set it as first task
-if (task == null || task.getStartSwitchEvent() == null) {
+if (!(#task is initialized) || !(task.getStartSwitchEvent() is initialized)) {
 	in.isFirstTask = true;
 } else {
 	in.isFirstTask = false;
-	ITask taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
+	taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
 }
 
 boolean isTaskStarted = false;
@@ -530,9 +529,15 @@ if (isTaskStarted && StringUtils.isNotBlank(callbackUrl)) {
 } else {
     out.portalPage = PortalPage.HOME_PAGE;
 }
- 
-in.isTaskFinished = (#task is initialized && task.getEndTimestamp() is initialized) || !(#task is initialized);
-ivy.session.setAttribute(IS_TASK_FINISHED, in.isTaskFinished);' #txt
+
+// Check if this is a finished Express Creation task, then 
+String isExpressFinished = ivy.session.getAttribute("IS_EXPRESS_FINISH").toString();
+
+in.isTaskFinished = (#task is initialized && task.getEndTimestamp() is initialized) || isExpressFinished == "true";
+ivy.session.setAttribute(IS_TASK_FINISHED, in.isTaskFinished);
+
+// reset IS_EXPRESS_FINISH session attribute.
+ivy.session.setAttribute("IS_EXPRESS_FINISH", false);' #txt
 Pt0 f11 security system #txt
 Pt0 f11 type ch.ivy.addon.portal.generic.PortalStartData #txt
 Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
