@@ -141,7 +141,7 @@ Bk5 @PushTrueWFInG-01 g0 '' #zField
 Bk5 @PushWFArc f0 '' #zField
 Bk5 @PushTrueWFOutG-01 g1 '' #zField
 Bk5 @PushWFArc f1 '' #zField
->Proto Bk5 Bk3 BpmnUserTask #zField
+>Proto Bk5 Bk2 BpmnUserTask #zField
 Bk6 @TextInP .type .type #zField
 Bk6 @TextInP .processKind .processKind #zField
 Bk6 @TextInP .xml .xml #zField
@@ -155,7 +155,7 @@ Bk6 @PushTrueWFOutG-01 g1 '' #zField
 Bk6 @PushWFArc f1 '' #zField
 Bk6 @PushTrueWFInG-01 g2 '' #zField
 Bk6 @PushWFArc f2 '' #zField
->Proto Bk6 Bk4 BpmnServiceTask #zField
+>Proto Bk6 Bk3 BpmnServiceTask #zField
 Bk4 @TextInP .type .type #zField
 Bk4 @TextInP .processKind .processKind #zField
 Bk4 @TextInP .xml .xml #zField
@@ -169,7 +169,7 @@ Bk4 @PushTrueWFInG-01 g0 '' #zField
 Bk4 @PushWFArc f0 '' #zField
 Bk4 @PushTrueWFOutG-01 g1 '' #zField
 Bk4 @PushWFArc f1 '' #zField
->Proto Bk4 Bk2 BpmnUserTask #zField
+>Proto Bk4 Bk4 BpmnUserTask #zField
 Pt0 f51 actionTable 'out=in;
 ' #txt
 Pt0 f51 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
@@ -276,7 +276,17 @@ import ch.ivyteam.ivy.workflow.ITask;
 in.isTaskFinished = SecurityServiceUtils.getSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString()).toBoolean();
 
 ITask task = ivy.wf.findTask(in.endedTaskId);
-ITask taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
+ITask taskWithTaskEndInfo = null;
+
+if (#task is initialized && task.getStartSwitchEvent() is initialized) {
+	taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
+}
+
+boolean isTaskStarted = false;
+in.isFirstTask = false;
+String callbackUrl;
+String IS_TASK_FINISHED = SessionAttribute.IS_TASK_FINISHED.toString();
+
 if (#task is initialized) {
 	if (#taskWithTaskEndInfo is initialized) {
 		String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(taskWithTaskEndInfo.getId());
@@ -290,13 +300,14 @@ if (#task is initialized) {
 		}
 		
 		in.callbackUrl = taskWithTaskEndInfo.customFields().stringField(CustomFields.EXPRESS_END_PAGE_URL.toString()).getOrDefault("");
-	}  else {
+	} else {
 		in.isFirstTask = true;
 		in.portalPage = PortalPage.HOME_PAGE;
 	}
 }
 
-ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), true);' #txt
+in.isTaskFinished = #task is initialized && task.getEndTimestamp() is initialized;
+ivy.session.setAttribute(IS_TASK_FINISHED, in.isTaskFinished);' #txt
 Pt0 f11 security system #txt
 Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -747,7 +758,7 @@ Pt0 f54 actionTable 'out=in;
 ' #txt
 Pt0 f54 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
 
-ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), true);' #txt
+ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);' #txt
 Pt0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1168,8 +1179,8 @@ Bk5 g1 659 147 26 26 0 5 #rect
 Bk5 g1 @|MOGIcon #fIcon
 Bk5 f1 expr out #txt
 Bk5 f1 600 160 659 160 #arcP
->Proto Bk3 0 0 32 24 18 0 #rect
->Proto Bk3 @|BIcon #fIcon
+>Proto Bk2 0 0 32 24 18 0 #rect
+>Proto Bk2 @|BIcon #fIcon
 Bk6 f51 actionTable 'out=in;
 ' #txt
 Bk6 f51 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
@@ -1239,8 +1250,8 @@ Bk6 g2 @|MIGIcon #fIcon
 Bk6 f2 77 64 200 138 #arcP
 Bk6 f2 1 200 64 #addKink
 Bk6 f2 0 0.9337349397590361 0 0 #arcLabel
->Proto Bk4 0 0 32 24 18 0 #rect
->Proto Bk4 @|BIcon #fIcon
+>Proto Bk3 0 0 32 24 18 0 #rect
+>Proto Bk3 @|BIcon #fIcon
 Bk4 f69 actionTable 'out=in;
 ' #txt
 Bk4 f69 actionCode 'import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
@@ -1327,8 +1338,8 @@ Bk4 g1 659 147 26 26 0 5 #rect
 Bk4 g1 @|MOGIcon #fIcon
 Bk4 f1 expr out #txt
 Bk4 f1 596 160 659 160 #arcP
->Proto Bk2 0 0 32 24 18 0 #rect
->Proto Bk2 @|BIcon #fIcon
+>Proto Bk4 0 0 32 24 18 0 #rect
+>Proto Bk4 @|BIcon #fIcon
 Pt0 f10 mainOut f48 tail #connect
 Pt0 f48 head f11 mainIn #connect
 Pt0 f11 mainOut f2 tail #connect
