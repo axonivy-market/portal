@@ -214,7 +214,17 @@ import ch.ivyteam.ivy.workflow.ITask;
 in.isTaskFinished = SecurityServiceUtils.getSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString()).toBoolean();
 
 ITask task = ivy.wf.findTask(in.endedTaskId);
-ITask taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
+ITask taskWithTaskEndInfo = null;
+
+if (#task is initialized && task.getStartSwitchEvent() is initialized) {
+	taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
+}
+
+boolean isTaskStarted = false;
+in.isFirstTask = false;
+String callbackUrl;
+String IS_TASK_FINISHED = SessionAttribute.IS_TASK_FINISHED.toString();
+
 if (#task is initialized) {
 	if (#taskWithTaskEndInfo is initialized) {
 		String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(taskWithTaskEndInfo.getId());
@@ -234,7 +244,8 @@ if (#task is initialized) {
 	}
 }
 
-ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), true);' #txt
+in.isTaskFinished = #task is initialized && task.getEndTimestamp() is initialized;
+ivy.session.setAttribute(IS_TASK_FINISHED, in.isTaskFinished);' #txt
 Pt0 f11 security system #txt
 Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -792,7 +803,7 @@ Pt0 f54 actionTable 'out=in;
 ' #txt
 Pt0 f54 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
 
-ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), true);' #txt
+ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);' #txt
 Pt0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
