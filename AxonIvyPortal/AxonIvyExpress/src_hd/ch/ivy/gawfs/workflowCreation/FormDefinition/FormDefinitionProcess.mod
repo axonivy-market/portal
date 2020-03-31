@@ -66,8 +66,6 @@ Ds0 @UdEvent f60 '' #zField
 Ds0 @UdEvent f62 '' #zField
 Ds0 @GridStep f63 '' #zField
 Ds0 @PushWFArc f66 '' #zField
-Ds0 @UdExitEnd f3 '' #zField
-Ds0 @PushWFArc f5 '' #zField
 Ds0 @Alternative f28 '' #zField
 Ds0 @PushWFArc f32 '' #zField
 Ds0 @GridStep f43 '' #zField
@@ -88,6 +86,8 @@ Ds0 @PushWFArc f73 '' #zField
 Ds0 @GridStep f74 '' #zField
 Ds0 @PushWFArc f75 '' #zField
 Ds0 @PushWFArc f30 '' #zField
+Ds0 @UdExitEnd f3 '' #zField
+Ds0 @PushWFArc f5 '' #zField
 >Proto Ds0 Ds0 FormDefinitionProcess #zField
 Ds0 f0 guid 156E35E680453115 #txt
 Ds0 f0 method start(gawfs.Data) #txt
@@ -642,10 +642,6 @@ Ds0 f63 480 946 112 44 -52 -8 #rect
 Ds0 f63 @|StepIcon #fIcon
 Ds0 f66 expr out #txt
 Ds0 f66 108 904 640 904 #arcP
-Ds0 f3 851 891 26 26 0 12 #rect
-Ds0 f3 @|UdExitEndIcon #fIcon
-Ds0 f5 expr out #txt
-Ds0 f5 800 904 851 904 #arcP
 Ds0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -795,7 +791,7 @@ import javax.faces.application.FacesMessage;
 
 String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
 boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
-if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
+if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown() && !ivy.task.isPersistent()) {
 	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 	if (!flash.containsKey("overridePortalGrowl")) {
 		FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
@@ -832,6 +828,9 @@ Ds0 f74 376 794 112 44 -52 -8 #rect
 Ds0 f74 @|StepIcon #fIcon
 Ds0 f75 328 816 376 816 #arcP
 Ds0 f30 488 816 552 816 #arcP
+Ds0 f3 867 891 26 26 0 12 #rect
+Ds0 f3 @|UdExitEndIcon #fIcon
+Ds0 f5 800 904 867 904 #arcP
 >Proto Ds0 .type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 >Proto Ds0 .processKind HTML_DIALOG #txt
 >Proto Ds0 -8 -8 16 16 16 26 #rect
@@ -884,8 +883,6 @@ Ds0 f23 mainOut f27 tail #connect
 Ds0 f27 head f26 in #connect
 Ds0 f60 mainOut f66 tail #connect
 Ds0 f66 head f53 mainIn #connect
-Ds0 f53 mainOut f5 tail #connect
-Ds0 f5 head f3 mainIn #connect
 Ds0 f28 out f32 tail #connect
 Ds0 f32 head f63 mainIn #connect
 Ds0 f62 mainOut f50 tail #connect
@@ -910,3 +907,5 @@ Ds0 f48 mainOut f75 tail #connect
 Ds0 f75 head f74 mainIn #connect
 Ds0 f74 mainOut f30 tail #connect
 Ds0 f30 head f91 mainIn #connect
+Ds0 f53 mainOut f5 tail #connect
+Ds0 f5 head f3 mainIn #connect
