@@ -60,13 +60,17 @@ Ds0 @RichDialogProcessStart f42 '' #zField
 Ds0 @PushWFArc f43 '' #zField
 Ds0 @RichDialogProcessStart f51 '' #zField
 Ds0 @RichDialogProcessStart f3 '' #zField
-Ds0 @PushWFArc f5 '' #zField
 Ds0 @GridStep f48 '' #zField
-Ds0 @RichDialogEnd f50 '' #zField
 Ds0 @PushWFArc f54 '' #zField
 Ds0 @GridStep f46 '' #zField
 Ds0 @PushWFArc f47 '' #zField
-Ds0 @PushWFArc f49 '' #zField
+Ds0 @GridStep f52 '' #zField
+Ds0 @RichDialogProcessEnd f49 '' #zField
+Ds0 @PushWFArc f50 '' #zField
+Ds0 @PushWFArc f53 '' #zField
+Ds0 @GridStep f55 '' #zField
+Ds0 @PushWFArc f56 '' #zField
+Ds0 @PushWFArc f5 '' #zField
 >Proto Ds0 Ds0 FormDefinitionProcess #zField
 Ds0 f0 guid 156E35E680453115 #txt
 Ds0 f0 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
@@ -583,10 +587,6 @@ Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ds0 f3 83 851 26 26 -15 15 #rect
 Ds0 f3 @|RichDialogProcessStartIcon #fIcon
-Ds0 f5 expr out #txt
-Ds0 f5 109 864 576 749 #arcP
-Ds0 f5 1 576 864 #addKink
-Ds0 f5 0 0.6342623844357043 0 0 #arcLabel
 Ds0 f48 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData out;
 ' #txt
 Ds0 f48 actionTable 'out=in;
@@ -604,10 +604,6 @@ Ds0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ds0 f48 216 906 112 44 -37 -8 #rect
 Ds0 f48 @|StepIcon #fIcon
-Ds0 f50 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
-Ds0 f50 guid 15AF77AA5D3C3910 #txt
-Ds0 f50 587 915 26 26 0 12 #rect
-Ds0 f50 @|RichDialogEndIcon #fIcon
 Ds0 f54 expr out #txt
 Ds0 f54 109 928 216 928 #arcP
 Ds0 f54 0 0.20328842452716808 0 0 #arcLabel
@@ -632,8 +628,57 @@ Ds0 f46 416 906 112 44 -52 -8 #rect
 Ds0 f46 @|StepIcon #fIcon
 Ds0 f47 expr out #txt
 Ds0 f47 328 928 416 928 #arcP
-Ds0 f49 expr out #txt
-Ds0 f49 528 928 587 928 #arcP
+Ds0 f52 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData out;
+' #txt
+Ds0 f52 actionTable 'out=in;
+' #txt
+Ds0 f52 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+
+PortalNavigator navigator = new PortalNavigator();
+navigator.navigateToPortalEndPage();' #txt
+Ds0 f52 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
+Ds0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Navigate to Endpage</name>
+        <nameStyle>19,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f52 608 906 128 44 -57 -8 #rect
+Ds0 f52 @|StepIcon #fIcon
+Ds0 f49 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
+Ds0 f49 819 915 26 26 0 12 #rect
+Ds0 f49 @|RichDialogProcessEndIcon #fIcon
+Ds0 f50 expr out #txt
+Ds0 f50 528 928 608 928 #arcP
+Ds0 f53 expr out #txt
+Ds0 f53 736 928 819 928 #arcP
+Ds0 f55 actionDecl 'ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData out;
+' #txt
+Ds0 f55 actionTable 'out=in;
+' #txt
+Ds0 f55 actionCode 'ivy.session.setAttribute("IS_EXPRESS_FINISH", true);' #txt
+Ds0 f55 type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
+Ds0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>set session attribute IS_EXPRESS_FINISH</name>
+        <nameStyle>39,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f55 216 842 240 44 -117 -8 #rect
+Ds0 f55 @|StepIcon #fIcon
+Ds0 f56 expr out #txt
+Ds0 f56 109 864 216 864 #arcP
+Ds0 f56 0 0.6342623844357043 0 0 #arcLabel
+Ds0 f5 expr out #txt
+Ds0 f5 456 864 576 749 #arcP
+Ds0 f5 1 576 864 #addKink
+Ds0 f5 0 0.6342623844357043 0 0 #arcLabel
 >Proto Ds0 .type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 >Proto Ds0 .processKind HTML_DIALOG #txt
 >Proto Ds0 -8 -8 16 16 16 26 #rect
@@ -678,11 +723,15 @@ Ds0 f44 mainOut f45 tail #connect
 Ds0 f45 head f4 mainIn #connect
 Ds0 f42 mainOut f43 tail #connect
 Ds0 f43 head f4 mainIn #connect
-Ds0 f3 mainOut f5 tail #connect
-Ds0 f5 head f4 mainIn #connect
 Ds0 f51 mainOut f54 tail #connect
 Ds0 f54 head f48 mainIn #connect
 Ds0 f48 mainOut f47 tail #connect
 Ds0 f47 head f46 mainIn #connect
-Ds0 f46 mainOut f49 tail #connect
-Ds0 f49 head f50 mainIn #connect
+Ds0 f46 mainOut f50 tail #connect
+Ds0 f50 head f52 mainIn #connect
+Ds0 f52 mainOut f53 tail #connect
+Ds0 f53 head f49 mainIn #connect
+Ds0 f3 mainOut f56 tail #connect
+Ds0 f56 head f55 mainIn #connect
+Ds0 f55 mainOut f5 tail #connect
+Ds0 f5 head f4 mainIn #connect

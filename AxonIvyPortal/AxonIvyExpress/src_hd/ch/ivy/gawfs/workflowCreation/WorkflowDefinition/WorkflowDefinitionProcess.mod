@@ -37,7 +37,6 @@ Fs0 @GridStep f23 '' #zField
 Fs0 @PushWFArc f24 '' #zField
 Fs0 @PushWFArc f22 '' #zField
 Fs0 @RichDialogMethodStart f25 '' #zField
-Fs0 @RichDialogEnd f30 '' #zField
 Fs0 @GridStep f28 '' #zField
 Fs0 @PushWFArc f32 '' #zField
 Fs0 @PushWFArc f26 '' #zField
@@ -46,6 +45,9 @@ Fs0 @RichDialogProcessEnd f18 '' #zField
 Fs0 @PushWFArc f21 '' #zField
 Fs0 @GridStep f27 '' #zField
 Fs0 @PushWFArc f29 '' #zField
+Fs0 @RichDialogProcessEnd f30 '' #zField
+Fs0 @GridStep f33 '' #zField
+Fs0 @PushWFArc f34 '' #zField
 Fs0 @PushWFArc f31 '' #zField
 >Proto Fs0 Fs0 WorkflowDefinitionProcess #zField
 Fs0 f0 guid 1576FA61C9D81A51 #txt
@@ -356,10 +358,6 @@ Fs0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Fs0 f25 83 563 26 26 -18 15 #rect
 Fs0 f25 @|RichDialogMethodStartIcon #fIcon
-Fs0 f30 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
-Fs0 f30 guid 15AF77AA5D3C3910 #txt
-Fs0 f30 555 563 26 26 0 12 #rect
-Fs0 f30 @|RichDialogEndIcon #fIcon
 Fs0 f28 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
 ' #txt
 Fs0 f28 actionTable 'out=in;
@@ -418,7 +416,6 @@ Fs0 f27 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDef
 Fs0 f27 actionTable 'out=in;
 ' #txt
 Fs0 f27 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
-
 ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);' #txt
 Fs0 f27 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 Fs0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -434,8 +431,33 @@ Fs0 f27 384 554 112 44 -52 -8 #rect
 Fs0 f27 @|StepIcon #fIcon
 Fs0 f29 expr out #txt
 Fs0 f29 312 576 384 576 #arcP
+Fs0 f30 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f30 715 563 26 26 0 12 #rect
+Fs0 f30 @|RichDialogProcessEndIcon #fIcon
+Fs0 f33 actionDecl 'ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData out;
+' #txt
+Fs0 f33 actionTable 'out=in;
+' #txt
+Fs0 f33 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+
+PortalNavigator navigator = new PortalNavigator();
+navigator.navigateToPortalEndPage();' #txt
+Fs0 f33 type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
+Fs0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Navigate to Endpage</name>
+        <nameStyle>19,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Fs0 f33 536 554 128 44 -57 -8 #rect
+Fs0 f33 @|StepIcon #fIcon
+Fs0 f34 expr out #txt
+Fs0 f34 496 576 536 576 #arcP
 Fs0 f31 expr out #txt
-Fs0 f31 496 576 555 576 #arcP
+Fs0 f31 664 576 715 576 #arcP
 >Proto Fs0 .type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 >Proto Fs0 .processKind HTML_DIALOG #txt
 >Proto Fs0 -8 -8 16 16 16 26 #rect
@@ -466,5 +488,7 @@ Fs0 f17 mainOut f21 tail #connect
 Fs0 f21 head f18 mainIn #connect
 Fs0 f28 mainOut f29 tail #connect
 Fs0 f29 head f27 mainIn #connect
-Fs0 f27 mainOut f31 tail #connect
+Fs0 f27 mainOut f34 tail #connect
+Fs0 f34 head f33 mainIn #connect
+Fs0 f33 mainOut f31 tail #connect
 Fs0 f31 head f30 mainIn #connect
