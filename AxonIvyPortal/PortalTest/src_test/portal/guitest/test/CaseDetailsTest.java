@@ -19,6 +19,7 @@ import portal.guitest.page.MainMenuPage;
 public class CaseDetailsTest extends BaseTest {
 
   private CaseDetailsPage detailsPage;
+  private HomePage homePage;
 
   @Override
   @Before
@@ -26,15 +27,25 @@ public class CaseDetailsTest extends BaseTest {
     super.setup();
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    login(TestAccount.DEMO_USER);
+    login(TestAccount.ADMIN_USER);
 
-    HomePage homePage = new HomePage();
+    homePage = new HomePage();
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
     detailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
   }
 
+  @Test
+  public void testDestroyCase() {
+    detailsPage.onClickDestroyCase();
+    detailsPage.confimDestruction();
+    detailsPage.waitAjaxIndicatorDisappear();
+    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
+    assertEquals(0, casePage.getNumberOfCases());
+  }
+  
   @Test
   public void testDisplayCaseProperties() {
     assertTrue(StringUtils.equalsIgnoreCase("LeaveRequest", detailsPage.getCaseCategory()));
@@ -60,7 +71,7 @@ public class CaseDetailsTest extends BaseTest {
   @Test
   public void testHistoryAuthorIsUserFullName() {
     detailsPage.addNote("Sample case note");
-    assertEquals(TestAccount.DEMO_USER.getFullName(), detailsPage.getHistoryAuthor());
+    assertEquals(TestAccount.ADMIN_USER.getFullName(), detailsPage.getHistoryAuthor());
   }
 
   @Test
