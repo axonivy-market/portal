@@ -49,6 +49,8 @@ Cs0 @PushWFArc f38 '' #zField
 Cs0 @GridStep f4 '' #zField
 Cs0 @PushWFArc f16 '' #zField
 Cs0 @GridStep f31 '' #zField
+Cs0 @GridStep f39 '' #zField
+Cs0 @PushWFArc f40 '' #zField
 Cs0 @PushWFArc f34 '' #zField
 >Proto Cs0 Cs0 CaseItemRelatedTaskProcess #zField
 Cs0 f0 guid 167E9A75EF3D0909 #txt
@@ -495,9 +497,24 @@ Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f31 384 466 128 44 -59 -8 #rect
+Cs0 f31 608 466 128 44 -59 -8 #rect
 Cs0 f31 @|StepIcon #fIcon
-Cs0 f34 320 488 384 488 #arcP
+Cs0 f39 actionTable 'out=in;
+' #txt
+Cs0 f39 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+
+ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");' #txt
+Cs0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>mark navigate from related list</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f39 352 466 176 44 -82 -8 #rect
+Cs0 f39 @|StepIcon #fIcon
+Cs0 f40 320 488 352 488 #arcP
+Cs0 f34 528 488 608 488 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -534,5 +551,7 @@ Cs0 f37 mainOut f38 tail #connect
 Cs0 f38 head f23 mainIn #connect
 Cs0 f11 mainOut f16 tail #connect
 Cs0 f16 head f4 mainIn #connect
-Cs0 f33 mainOut f34 tail #connect
+Cs0 f33 mainOut f40 tail #connect
+Cs0 f40 head f39 mainIn #connect
+Cs0 f39 mainOut f34 tail #connect
 Cs0 f34 head f31 mainIn #connect
