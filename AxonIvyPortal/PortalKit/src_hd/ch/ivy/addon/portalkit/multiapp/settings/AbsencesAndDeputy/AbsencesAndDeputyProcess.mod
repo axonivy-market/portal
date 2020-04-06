@@ -766,7 +766,7 @@ As0 f60 actionTable 'out=in;
 ' #txt
 As0 f60 actionCode 'import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 
-out.substituteRoot = AbsenceAndSubstituteUtils.buildSustitute(in.selectedUser, in.substitutesByApp);' #txt
+out.substituteRoot = AbsenceAndSubstituteUtils.buildSustitute(in.substitutesByApp);' #txt
 As0 f60 security system #txt
 As0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

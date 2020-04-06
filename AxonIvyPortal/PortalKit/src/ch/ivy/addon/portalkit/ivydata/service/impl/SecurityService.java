@@ -235,7 +235,6 @@ public class SecurityService implements ISecurityService {
       UserQuery excludeUsernameQuery = queryExcludeUsernames(excludedUsernames);
       filterQuery.andOverall(excludeUsernameQuery);
     }
-    @SuppressWarnings("deprecation")
     List<IUser> users = app.getSecurityContext()
         .getUserQueryExecutor().getResults(userQuery.orderBy().fullName().name(), startIndex, count);
     return users.stream().map(UserDTO::new).collect(Collectors.toList());

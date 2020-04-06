@@ -2,7 +2,6 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -39,11 +38,11 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private String processChainShape;
   private PortalNavigator navigator = new PortalNavigator();
 
-  public void navigateToHomePage() throws MalformedURLException {
+  public void navigateToHomePage() {
     navigator.navigateToPortalHome();
   }
   
-  public void navigateToEndPage() throws MalformedURLException {
+  public void navigateToEndPage() {
     Map<String, String> requestParamMap = getRequestParameterMap();
     String taskId = requestParamMap.get(TASK_ID_PARAM);
     

@@ -16,7 +16,6 @@ import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
 import ch.ivy.addon.portalkit.bo.SubstituteNode;
-import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
@@ -34,11 +33,10 @@ public final class AbsenceAndSubstituteUtils {
   /**
    * Build Substitute treeNode for applications
    * 
-   * @param substitutedUser selected user to set substitutes
    * @param ivySubtitutesByApp
    * @return TreeNode
    */
-  public static TreeNode buildSustitute(UserDTO substitutedUser, Map<IvyApplication, List<IvySubstitute>> ivySubtitutesByApp) {
+  public static TreeNode buildSustitute(Map<IvyApplication, List<IvySubstitute>> ivySubtitutesByApp) {
     TreeNode substituteRoot = new DefaultTreeNode(new SubstituteNode(), null);
 
     for (Map.Entry<IvyApplication,List<IvySubstitute>> entry : ivySubtitutesByApp.entrySet()) {
@@ -48,16 +46,16 @@ public final class AbsenceAndSubstituteUtils {
       appNode.setExpanded(true);
 
       for (int i = 0; i < entry.getValue().size(); i++) {
-        createSubstituteNode(substitutedUser, appNode, entry.getValue().get(i), ivyApplication.getName()).setRowKey("node_" + i);
+        createSubstituteNode(appNode, entry.getValue().get(i), ivyApplication.getName()).setRowKey("node_" + i);
       }
     }
     return substituteRoot;
   }
 
-  private static DefaultTreeNode createSubstituteNode(UserDTO substitutedUser, TreeNode appNode, IvySubstitute ivySubstitute, String applicationName) {
+  private static DefaultTreeNode createSubstituteNode(TreeNode appNode, IvySubstitute ivySubstitute, String applicationName) {
     String nodeName = ivySubstitute.getSubstitionRoleDisplayName();
-    String name = StringUtils.isNotBlank(nodeName) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/taskForRole") + nodeName : Ivy.cms().co(
-        "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTask");
+    String name = StringUtils.isNotBlank(nodeName) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/taskForRole") + nodeName : 
+      Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/personalTask");
     return new DefaultTreeNode(new SubstituteNode(name, ivySubstitute, true, applicationName), appNode);
   }
 
@@ -77,8 +75,8 @@ public final class AbsenceAndSubstituteUtils {
 
     if (ivyAbsence.getUntil() != null && ivyAbsence.getFrom() != null && (startDate.compareTo(stopDate) > 0)) {
       FacesContext.getCurrentInstance().addMessage(null,
-          new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co(
-              "/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/fromBiggerThanTill"), ""));
+        new FacesMessage(FacesMessage.SEVERITY_ERROR, 
+        Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/fromBiggerThanTill"), ""));
       return true;
     }
 
@@ -176,7 +174,7 @@ public final class AbsenceAndSubstituteUtils {
 
   private static boolean isNotAbsenceOfSameUser(IvyAbsence firstAbsence, IvyAbsence secondAbsence) {
     return firstAbsence.getUsername() == null
-        || !(firstAbsence.getUsername().equalsIgnoreCase(secondAbsence.getUsername()));
+        || !firstAbsence.getUsername().equalsIgnoreCase(secondAbsence.getUsername());
   }
   
 }

@@ -24,10 +24,11 @@ public class SecurityMemberUtils {
   }
 
   /**
-   * Finds the security members by query. If the current application is Portal, find all users over all applications, otherwise in current application
+   * Finds security members by query. If current application is Portal, find all users over all applications, otherwise in current application
    * @param query
-   * @param startIndex 0..n. The index of the first record is 0
-   * @param count 0..n. Use -1 to return all beginning from the startIndex
+   * @param startIndex index of the first record is 0
+   * @param count use -1 to return all beginning from startIndex
+   * @return security member list
    */
   @SuppressWarnings("unchecked")
   public static List<SecurityMemberDTO> findSecurityMembers(String query, int startIndex, int count) {

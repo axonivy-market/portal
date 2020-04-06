@@ -19,6 +19,7 @@ public class CaseCategorySearchCriteria {
   
   private CaseQuery customCaseQuery;
   
+  @SuppressWarnings("deprecation")
   public CaseQuery createQuery() {
     CaseQuery finalQuery = CaseUtils.createBusinessCaseQuery();
     if (customCaseQuery != null) {

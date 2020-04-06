@@ -130,7 +130,7 @@ public class CaseWidgetBean implements Serializable {
    * navigate after destroy case
    * if destroy case from related technical case -> navigate back
    * otherwise return to case list
-   * @return
+   * @return true: navigate back
    */
   public boolean willNavigateBack() {
     if (Ivy.session().getAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString()) != null) {
