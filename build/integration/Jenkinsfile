@@ -1,5 +1,5 @@
 pipeline {
-  agent {label 'slave_performance_server'}
+  agent {label 'portal-slave'}
   
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
@@ -12,7 +12,8 @@ pipeline {
 
   parameters {
       string(name: 'testPatternToRun', defaultValue: 'portal.guitest.userexample.test.*Test,portal.guitest.test.*Test', description: 'Test pattern to run.')
-      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/sprint/axonivy-engine-windows.zip', description: 'Where to download engine')
+      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/sprint/axonivy-engine-windows.zip', description: 'Where to download engine?')
+      booleanParam(name: 'skipReplacePortal', defaultValue: false, description: 'Should skip replace Portal artifacts in the engine? TRUE: keep built-in Portal of the engine, FALSE: replace built-in Portal of the engine by the latest successful release.')
   }
 
   environment {
@@ -41,20 +42,17 @@ pipeline {
           bat '''
             mvn clean compile -f AxonIvyPortal/PortalTest/pom.xml -Divy.engine.directory=%engineDir% %engineDownloadURL%
           '''
-          echo '====================Replace Portal in engine===================='
-          powershell '''
-            $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
-            rmdir $DEPLOYMENT/* -recurse
-            Copy-Item $env:releaseDir/AxonIvyPortal/PortalApp/target/*zip -Destination $DEPLOYMENT
-            Copy-Item $env:releaseDir/Showcase/portal-developer-examples/target/*iar -Destination $DEPLOYMENT
-            Copy-Item $env:releaseDir/Showcase/portal-user-examples/target/*iar -Destination $DEPLOYMENT
-          '''
 
-          echo '====================Configure config_windows_server.properties, port=8080, app=demo-portal===================='
-          powershell '''
-            (Get-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties) -replace '8000', '8080' | Set-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties
-            (Get-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties) -replace 'Portal', 'demo-portal' | Set-Content AxonIvyPortal/PortalTest/resources/config_windows_server.properties
-          '''
+          if (!params.skipReplacePortal) {
+            echo '====================Replace Portal in engine===================='
+            powershell '''
+              $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
+              rmdir $DEPLOYMENT/* -recurse
+              Copy-Item $env:releaseDir/AxonIvyPortal/PortalApp/target/*zip -Destination $DEPLOYMENT
+              Copy-Item $env:releaseDir/Showcase/portal-developer-examples/target/*iar -Destination $DEPLOYMENT
+              Copy-Item $env:releaseDir/Showcase/portal-user-examples/target/*iar -Destination $DEPLOYMENT
+            '''
+          }
 
           def modules = ['AxonIvyPortal/PortalKitTestHelper', 'Showcase/InternalSupport']
           for (module in modules) {
@@ -66,7 +64,7 @@ pipeline {
             copy -path ../patch/trunk/PortalTest -recurse -force -destination AxonIvyPortal
           '''
           node('master') {
-            echo '====================Close all remote desktop connections and setup new remote destop to account Wawa===================='
+            echo '====================Close all remote desktop connections and setup new remote destop to Portal slave===================='
             bat '''
               taskkill -im mstsc.exe -F
               D:/tools/remote-desktop-plus/rdp.exe /v:10.123.1.193 /domain:wawa.vn /u:wawa /p:SAMPLE_TEXT_1 /w:2560 /h:1440 /noclose
@@ -85,13 +83,14 @@ pipeline {
 
           echo '====================Test Portal===================='
           bat '''
-            mvn clean test -f AxonIvyPortal/PortalTest/customized_pom.xml -Dtest=%testPatternToRun% -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -DengineUrl=http://localhost:8080/ivy -Divy.compiler.engine.start.timeout=120
+            mvn clean test -f AxonIvyPortal/PortalTest/customized_pom.xml -Dtest=%testPatternToRun% -DtrimStackTrace=false -Divy.engine.directory=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120
           '''
 
           node('master') {
             echo '====================Close all remote desktop connections===================='
             bat '''
               taskkill -im mstsc.exe -F
+              exit 0
             '''
           }
         }
@@ -102,14 +101,14 @@ pipeline {
   post {
     always {
       archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/*/*/*.jpg", allowEmptyArchive: true, fingerprint: true
-      junit allowEmptyResults: true, healthScaleFactor: 2.0, testResults: '**/surefire-reports/TEST-*.xml'
+      junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
     }
   }
 }
 
 def downloadPortalRelease() {
   echo '====================Download Portal latest successful release===================='
-  branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
+  def branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
   bat "curl --user wawa:W4w4@CH\$ --output archive.zip ${env.JENKINS_URL}job/PortalRelease/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
   unzip zipFile: 'archive.zip', quiet: true
 }
