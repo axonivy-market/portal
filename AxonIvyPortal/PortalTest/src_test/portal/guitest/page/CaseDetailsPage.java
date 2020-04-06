@@ -224,6 +224,35 @@ public class CaseDetailsPage extends TemplatePage {
   public void onClickHistoryIcon() {
     click(findElementById("case-item-details:case-histories:add-note-command"));
   }
+  
+  public void onClickDestroyCase() {
+    click(findElementById("case-item-details:destroy-case-link"));
+  }
+  
+  public void confimDestruction() {
+    String destroyCaseDialogId = "case-item-details:destroy-case-confirmation-dialog";
+    waitForElementDisplayed(By.id(destroyCaseDialogId), true);
+    WebElement destroyConfirmationDialog = findElementById(destroyCaseDialogId);
+    WebElement confirmButton = findChildElementById(destroyConfirmationDialog, "case-item-details:confirm-destruction");
+    confirmButton.click();
+  }
+  
+  public void waitAjaxIndicatorDisappear() {
+    WebElement ajaxIndicatorStartState = findElementById("ajax-indicator:ajax-indicator-ajax-indicator_start");
+    boolean displayed = false;
+    try {
+      displayed = ajaxIndicatorStartState.isDisplayed();
+    } catch (Exception e) {
+      try {
+        displayed = ajaxIndicatorStartState.isDisplayed();
+      } catch (Exception e1) {
+        System.out.println("Cannot check if ajax indicator is displayed");
+      }
+    }
+    if (displayed) {
+      waitForElementDisplayed(ajaxIndicatorStartState, false);
+    }
+  }
 
   public TaskWidgetPage clickShowAllTasks() {
     click(caseItem.findElement(By.cssSelector("a[id$='show-more-related-tasks']")));
@@ -291,6 +320,4 @@ public class CaseDetailsPage extends TemplatePage {
   public int countNumberOfDocument() {
     return findListElementsByCssSelector("a[id$='download']").size();
   }
-  
-
 }
