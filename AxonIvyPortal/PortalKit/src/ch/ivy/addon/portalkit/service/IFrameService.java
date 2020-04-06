@@ -10,7 +10,7 @@ public class IFrameService {
 
   /**
    * @param taskId
-   * @return
+   * @return whether task embed in IFram
    */
   public static boolean embedInFrame(Long taskId) {
     ITask task = Ivy.wf().findTask(taskId);
