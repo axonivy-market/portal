@@ -1,0 +1,88 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/TaskTemplate-8.xhtml">
+    <ui:define name="title">ContractCreation</ui:define>
+    <ui:define name="css">
+      <h:outputStylesheet library="css" name="portal-user-examples.css" />
+      <h:outputStylesheet library="styles" name="ivy-common-8.css" />
+    </ui:define>
+    <ui:define name="content">
+      <h:form id="form">
+        <h:panelGroup styleClass="ui-g ui-fluid">
+          <p:panel class="card ui-g-12 ui-md-12">
+            <h:panelGroup layout="block" styleClass="ui-g">
+              <h:outputText value="CREDIT AGREEMENT" styleClass="credit-agreement-label" />
+            </h:panelGroup>
+            <h:panelGroup styleClass="ui-g" layout="block">
+              <p:messages styleClass="ui-g-12" />
+              <h:outputText value="#{ivy.cms.co('/Labels/CaseMap/Credit/person')}"
+                styleClass="credit-label margin-left-16" />
+              <h:panelGrid columns="2" columnClasses="TexAlLeft ui-g-2 MarTop10 , TexAlLeft ui-g-10"
+                styleClass="ui-g-12 ui-md-12 ui-sm-12">
+
+                <p:outputLabel for="first-name" value="#{ivy.cms.co('/Labels/CaseMap/Credit/firstName')}" />
+                <p:inputText required="true" id="first-name" value="#{data.dossier.customer.firstName}"
+                  styleClass="MarTop10" disabled="true" />
+
+                <p:outputLabel for="last-name" value="#{ivy.cms.co('/Labels/CaseMap/Credit/lastName')}" />
+                <p:inputText id="last-name" value="#{data.dossier.customer.lastName}" styleClass="MarTop10"
+                  disabled="true" />
+
+                <p:outputLabel for="birth-date" value="#{ivy.cms.co('/Labels/CaseMap/Credit/birthDate')}" />
+                <p:inputText id="birth-date" value="#{data.dossier.customer.birthDate}" styleClass="MarTop10"
+                  disabled="true" />
+
+                <p:outputLabel for="gender" value="#{ivy.cms.co('/Labels/CaseMap/Credit/gender')}" />
+                <p:selectOneRadio id="gender" value="#{data.dossier.customer.isMale}" styleClass="MarTop10"
+                  disabled="true">
+                  <f:selectItem itemLabel="#{ivy.cms.co('/Labels/CaseMap/Credit/male')}" itemValue="true" />
+                  <f:selectItem itemLabel="#{ivy.cms.co('/Labels/CaseMap/Credit/female')}" itemValue="false" />
+                </p:selectOneRadio>
+
+                <p:outputLabel for="customer-country" value="#{ivy.cms.co('/Labels/CaseMap/Credit/country')}" />
+                <p:inputText required="true" id="customer-country" value="#{data.dossier.customer.address.country}"
+                  styleClass="MarTop10" disabled="true" />
+              </h:panelGrid>
+
+              <h:outputText value="#{ivy.cms.co('/Labels/CaseMap/Credit/credit')}"
+                styleClass="credit-label margin-left-16" />
+              <h:panelGrid columns="2" columnClasses="TexAlLeft ui-g-2 MarTop10, TexAlLeft ui-g-10"
+                styleClass="ui-g-12 ui-md-12 ui-sm-12">
+                <p:outputLabel for="request-amount" value="#{ivy.cms.co('/Labels/CaseMap/Credit/approvalAmount')}" />
+                <p:inputText required="true" id="request-amount" value="#{data.dossier.request.amount}"
+                  styleClass="MarTop10" disabled="true" />
+
+
+                <p:outputLabel for="request-salary" value="#{ivy.cms.co('/Labels/CaseMap/Credit/salary')}" />
+                <p:inputText required="true" id="request-salary" value="#{data.dossier.request.salary}"
+                  styleClass="MarTop10" disabled="true" />
+
+                <p:outputLabel for="request-reason" value="#{ivy.cms.co('/Labels/CaseMap/Credit/approvalReason')}" />
+                <p:inputText id="request-reason" value="#{data.dossier.request.reason}" styleClass="MarTop10"
+                  disabled="true" />
+
+                <p:outputLabel for="request-amount-of-other-credits"
+                  value="#{ivy.cms.co('/Labels/CaseMap/Credit/otherCredits')}" />
+                <p:inputText required="true" id="request-amount-of-other-credits" styleClass="MarTop10"
+                  value="#{data.dossier.request.amountOfOtherCredits}" disabled="true" />
+
+                <p:outputLabel for="contract-date" value="#{ivy.cms.co('/Labels/CaseMap/Credit/date')}" />
+                <p:inputText required="true" id="contract-date" styleClass="MarTop10" value="#{data.contractDate}"
+                  disabled="true" />
+              </h:panelGrid>
+
+            </h:panelGroup>
+          </p:panel>
+        </h:panelGroup>
+        <p:commandButton id="submit-contract-button" actionListener="#{logic.close}"
+          value="#{ivy.cms.co('/Dialog/Common/submit')}" update="form" icon="fa fa-send-o"
+          styleClass="Fright" />
+      </h:form>
+
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>
