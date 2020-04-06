@@ -3,6 +3,7 @@ package portal.guitest.common;
 import java.util.Optional;
 
 import org.apache.commons.lang.WordUtils;
+import org.apache.commons.lang3.StringUtils;
 
 public class UrlHelpers {
 
@@ -18,14 +19,17 @@ public class UrlHelpers {
   }
 
   private static String getApplicationName() {
-    String applicationName = System.getProperty("engineApplicationName");
+    String applicationName = System.getProperty("test.engine.app");
     return Optional.ofNullable(applicationName).orElse(PropertyLoader.getApplicationName());
   }
 
   private static String getEngineUrl() {
-    String vmArgUrl = System.getProperty("engineUrl");
-    return Optional.ofNullable(vmArgUrl).orElse(
-        "http://" + PropertyLoader.getServerAddress() + ":" + PropertyLoader.getIvyEnginePort() + "/"
-            + PropertyLoader.getIvyContextPath());
+    String vmArgUrl = System.getProperty("test.engine.url");
+    if (vmArgUrl != null) {
+      return StringUtils.removeEnd(vmArgUrl, "/");
+    } else {
+      return "http://" + PropertyLoader.getServerAddress() + ":" + PropertyLoader.getIvyEnginePort() + "/"
+          + PropertyLoader.getIvyContextPath();
+    }
   }
 }
