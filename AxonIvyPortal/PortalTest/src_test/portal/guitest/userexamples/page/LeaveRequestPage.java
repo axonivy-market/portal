@@ -49,6 +49,11 @@ public class LeaveRequestPage extends TaskTemplatePage {
     return new HomePage();
   }
   
+  public UserExamplesEndPage finishLeaveRequest() {
+    click(By.id("leave-request:finish-btn"));
+    return new UserExamplesEndPage();
+  }
+  
   private void selectLeaveType(String leaveType) {
     findElementById("leave-request:leave-type_label").click();
     String leaveTypeSelector = "li[data-label='" + leaveType + "']";
