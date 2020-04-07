@@ -59,7 +59,7 @@
             actionListener="#{logic.delegateTask}" process=":#{p:component('activator-panel')}" disabled="#{data.disabledDelegateButton}"
             update="@(.task-view-container) #{cc.attrs.componentToUpdate}"
             oncomplete="if (#{not empty cc.attrs.dataModel}){taskWidget.setupScrollbar();}"
-            onsuccess="PF('task-delegate-dialog').hide(); setCookie('delegated','#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/message/delegateSuccess')}');" />
+            onsuccess="PF('task-delegate-dialog').hide();" />
           <p:spacer width="5px" />
           <p:commandButton id="cancel-task-delegate-command" styleClass="portal-cancel-button" type="button"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('task-delegate-dialog').hide()" />
