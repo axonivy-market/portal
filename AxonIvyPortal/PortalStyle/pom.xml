@@ -9,7 +9,7 @@
   <packaging>iar</packaging>
 
   <properties>
-        <ivy.engine.version>7.0.15</ivy.engine.version>
+        <ivy.engine.version>7.0.17</ivy.engine.version>
 		<build.plugin.version>7.0.4</build.plugin.version>
 		<resources.directory.css>${resources.directory}/css</resources.directory.css>
 		<resources.directory.less>${resources.directory}/less/</resources.directory.less>
