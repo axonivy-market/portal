@@ -11,8 +11,9 @@
   <properties>
     <powermock.version>2.0.2</powermock.version>
     <ivy.engine.version>8.0.0</ivy.engine.version>
-    <portal.version>${portal.released.version}</portal.version>
-    <build.plugin.version>9.1.0-SNAPSHOT</build.plugin.version>
+    <portal.version>9.1.0.0-SNAPSHOT</portal.version>
+    <build.plugin.version>8.0.4</build.plugin.version>
+    <ivy.engine.version>9.1.0</ivy.engine.version>
   </properties>
   <dependencies>
     <dependency>
@@ -66,7 +67,6 @@
         <version>${build.plugin.version}</version>
         <extensions>true</extensions>
         <configuration>
-          <engineDirectory>../../engine</engineDirectory>
           <encoding>UTF-8</encoding>
         </configuration>
         <executions>
@@ -174,7 +174,28 @@
             <goals>
               <goal>stop-test-engine</goal>
             </goals>
+            <phase>post-integration-test</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M4</version>
+        <configuration>
+          <testFailureIgnore>true</testFailureIgnore>
+          <argLine>
+            -Dtest.engine.url=${test.engine.url}
+            -Dtest.engine.app=demo-portal
+          </argLine>
+        </configuration>
+        <executions>
+          <execution>
+            <id>selenium.test</id>
             <phase>test</phase>
+            <goals>
+              <goal>test</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>

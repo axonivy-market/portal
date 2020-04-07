@@ -42,14 +42,18 @@ Cs0 @GridStep f33 '' #zField
 Cs0 @PushWFArc f32 '' #zField
 Cs0 @GridStep f35 '' #zField
 Cs0 @PushWFArc f27 '' #zField
-Cs0 @PushWFArc f36 '' #zField
 Cs0 @GridStep f37 '' #zField
 Cs0 @PushWFArc f24 '' #zField
-Cs0 @PushWFArc f38 '' #zField
 Cs0 @GridStep f4 '' #zField
 Cs0 @PushWFArc f16 '' #zField
 Cs0 @GridStep f31 '' #zField
-Cs0 @PushWFArc f34 '' #zField
+Cs0 @GridStep f39 '' #zField
+Cs0 @PushWFArc f41 '' #zField
+Cs0 @PushWFArc f36 '' #zField
+Cs0 @PushWFArc f40 '' #zField
+Cs0 @GridStep f34 '' #zField
+Cs0 @PushWFArc f42 '' #zField
+Cs0 @PushWFArc f38 '' #zField
 >Proto Cs0 Cs0 CaseItemRelatedTaskProcess #zField
 Cs0 f0 guid 167E9A75EF3D0909 #txt
 Cs0 f0 method start() #txt
@@ -250,7 +254,7 @@ Cs0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f23 456 674 128 44 -61 -8 #rect
+Cs0 f23 696 674 128 44 -61 -8 #rect
 Cs0 f23 @|CallSubIcon #fIcon
 Cs0 f25 guid 1690E16A5D3AD46C #txt
 Cs0 f25 actionTable 'out=in;
@@ -286,7 +290,7 @@ Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f26 400 570 128 44 -61 -8 #rect
+Cs0 f26 696 570 128 44 -61 -8 #rect
 Cs0 f26 @|CallSubIcon #fIcon
 Cs0 f28 processCall 'Ivy Data Processes/CaseService:countCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)' #txt
 Cs0 f28 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
@@ -427,10 +431,9 @@ finish or leave task</name>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f35 184 570 144 44 -54 -16 #rect
+Cs0 f35 264 570 144 44 -54 -16 #rect
 Cs0 f35 @|StepIcon #fIcon
-Cs0 f27 109 592 184 592 #arcP
-Cs0 f36 328 592 400 592 #arcP
+Cs0 f27 109 592 264 592 #arcP
 Cs0 f37 actionTable 'out=in;
 ' #txt
 Cs0 f37 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -461,10 +464,9 @@ finish or leave task</name>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f37 232 674 144 44 -54 -16 #rect
+Cs0 f37 264 674 144 44 -54 -16 #rect
 Cs0 f37 @|StepIcon #fIcon
-Cs0 f24 109 696 232 696 #arcP
-Cs0 f38 376 696 456 696 #arcP
+Cs0 f24 109 696 264 696 #arcP
 Cs0 f4 actionTable 'out=in;
 ' #txt
 Cs0 f4 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -495,9 +497,41 @@ Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f31 384 466 128 44 -59 -8 #rect
+Cs0 f31 384 464 176 48 -59 -8 #rect
 Cs0 f31 @|StepIcon #fIcon
-Cs0 f34 320 488 384 488 #arcP
+Cs0 f39 actionTable 'out=in;
+' #txt
+Cs0 f39 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+
+ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");' #txt
+Cs0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>mark navigate from related list</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f39 456 570 176 44 -82 -8 #rect
+Cs0 f39 @|StepIcon #fIcon
+Cs0 f41 408 592 456 592 #arcP
+Cs0 f36 320 488 384 488 #arcP
+Cs0 f40 632 592 696 592 #arcP
+Cs0 f34 actionTable 'out=in;
+' #txt
+Cs0 f34 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+
+ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");' #txt
+Cs0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>mark navigate from related list</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f34 456 674 176 44 -82 -8 #rect
+Cs0 f34 @|StepIcon #fIcon
+Cs0 f42 408 696 456 696 #arcP
+Cs0 f38 632 696 696 696 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -526,13 +560,17 @@ Cs0 f30 mainOut f32 tail #connect
 Cs0 f32 head f33 mainIn #connect
 Cs0 f25 mainOut f27 tail #connect
 Cs0 f27 head f35 mainIn #connect
-Cs0 f35 mainOut f36 tail #connect
-Cs0 f36 head f26 mainIn #connect
 Cs0 f22 mainOut f24 tail #connect
 Cs0 f24 head f37 mainIn #connect
-Cs0 f37 mainOut f38 tail #connect
-Cs0 f38 head f23 mainIn #connect
 Cs0 f11 mainOut f16 tail #connect
 Cs0 f16 head f4 mainIn #connect
-Cs0 f33 mainOut f34 tail #connect
-Cs0 f34 head f31 mainIn #connect
+Cs0 f35 mainOut f41 tail #connect
+Cs0 f41 head f39 mainIn #connect
+Cs0 f33 mainOut f36 tail #connect
+Cs0 f36 head f31 mainIn #connect
+Cs0 f39 mainOut f40 tail #connect
+Cs0 f40 head f26 mainIn #connect
+Cs0 f37 mainOut f42 tail #connect
+Cs0 f42 head f34 mainIn #connect
+Cs0 f34 mainOut f38 tail #connect
+Cs0 f38 head f23 mainIn #connect
