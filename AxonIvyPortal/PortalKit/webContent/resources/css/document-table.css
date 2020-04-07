@@ -57,3 +57,29 @@
 .document-table-component .upload-container .ui-widget.ui-fileupload .ui-fileupload-content .ui-fileupload-messages {
   margin-top: 30px;
 }
+
+.document-table-component .document-action-column {
+  width: 100px;
+} 
+
+.document-table-component .document-size-column {
+  width: 150px;
+}
+
+.document-table-component .document-type-column {
+  width: 200px;
+}
+
+@media ( max-width : 767px) {
+  .document-table-component .document-size-column,
+  .document-table-component .document-type-column {
+    width: auto;
+  } 
+}
+
+@media ( max-width : 575px) {
+  .document-table-component .document-action-column {
+    width: auto;
+  }
+}
+
