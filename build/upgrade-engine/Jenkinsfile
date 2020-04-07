@@ -1,0 +1,110 @@
+pipeline {
+  agent none
+  
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
+  }
+  
+  tools { 
+      maven '3.6' 
+      jdk '11' 
+  }
+
+  parameters {
+      choice(name: 'engine', choices: ['singleAppEngine', 'peformanceTestEngine'], description: 'Which engine to be upgraded?')
+      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/8.0/axonivy-engine-windows.zip', description: 'Where to download engine?')
+
+  }
+
+  environment {
+    portalApplicationName = 'Portal'
+
+  }
+
+  stages {
+    stage('backupDatabase') {
+      agent {label 'master'}
+      steps {
+        script {
+          today = new Date().format('dd-MM-yyyy_HH-mm')
+
+          config = [singleAppEngine: [engineParentDir: 'D:\\tools\\ivy-server\\', engineName: '8.0', databaseBackupDir: 'D:\\backup\\database', databaseName: 'ivy-8.0', serviceName: 'Axon.ivy-8.0']
+          ,peformanceTestEngine: [engineParentDir: 'C:\\tools\\ivy-server\\', engineName: '8.0', databaseBackupDir: 'D:\\backup\\database', databaseName: 'ivy-performance-8.0', serviceName: 'Axon.ivyEngine8.0']]
+
+          engineParentDir = config[params.engine]['engineParentDir']
+          engineName = config[params.engine]['engineName']
+          databaseBackupDir = config[params.engine]['databaseBackupDir']
+          databaseName = config[params.engine]['databaseName']
+          serviceName = config[params.engine]['serviceName']
+          engineDir = engineParentDir  + engineName
+          renamedEngineDir = engineDir + '-bk'
+          engineBackupDir = engineParentDir + 'upgrade-backup'
+          dbBackupFileName = engineName + '-' + today
+
+          bat """
+            rem Backup database
+            pg_dump -U postgres -f ${databaseBackupDir}\\${databaseName}-${today}.backup -F Custom -b ${databaseName}
+          """
+
+          nodeToExecute = (params.engine == 'peformanceTestEngine') ? 'portal-slave' : 'master'
+        }
+      }
+    }
+    stage('replaceEngine') {
+      agent {label nodeToExecute}
+      steps {
+        script {
+          bat """
+            rem backup data to restore in case build fails
+            xcopy /s/y/h/e/k/i ${engineDir} ${engineBackupDir}\\${engineName}-${today}
+          """
+          bat """
+            rem stop engine
+            sc query "${serviceName}" | find /i "RUNNING"
+            if not "%ERRORLEVEL%"=="1" ( net stop ${serviceName} )
+            exit 0
+          """
+          bat """
+            rem backup current engine folder
+            if exist ${renamedEngineDir} rmdir /s /q ${renamedEngineDir}
+            :repeat
+            ren "${engineDir}" "${engineName}-bk" || goto :repeat
+          """
+          bat """
+            mvn com.axonivy.ivy.ci:project-build-plugin:8.0.0:installEngine %engineDownloadURL% -Divy.engine.directory=${engineDir} -Divy.engine.os.arch=Windows_x64 -Divy.engine.version=(7.0.0,]
+          """
+          bat """
+            rem copy license, configuration files
+            copy /D/Y ${renamedEngineDir}\\configuration\\*.lic ${engineDir}\\configuration
+            copy /D/Y ${renamedEngineDir}\\configuration\\*.yaml ${engineDir}\\configuration
+          """
+          powershell """
+            #copy applications, misc/iis (for SSO)
+            copy -path ${renamedEngineDir}\\applications -recurse -force -destination ${engineDir}
+            copy -path ${renamedEngineDir}\\misc\\iis -recurse -force -destination ${engineDir}\\misc
+          """
+          bat """
+            rem start engine
+            net start ${serviceName}
+
+            @echo off
+            echo %time%
+            for /l %%i IN (1,1,150) do (
+              sc query ${serviceName} | findstr STATE | findstr RUNNING
+              if errorlevel 1 (
+                ping 1.1.1.1 -n 1 -w 1000 > nul
+              ) else (
+                echo ${serviceName} started
+              goto :endwaiting
+              )
+            )
+            :endwaiting
+            echo %time%
+
+            echo on
+          """
+        }
+      }
+    }
+  }
+}

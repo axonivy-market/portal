@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -25,7 +26,6 @@ public abstract class TemplatePage extends AbstractPage {
 
   private static final String TEMPLATE_PAGE_LOCATOR = "id('global-search-component:global-search-data')";
   public static final String CLASS_PROPERTY = "class";
-  private static final String ENGINE_URL_LOCAL = "http://localhost:8081/ivy";
 
   public TemplatePage() {
     waitForLocatorDisplayed(getLoadedLocator());
@@ -75,8 +75,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
   
   protected boolean isIntegrationTestRun() {
-    String engineUrl = System.getProperty("engineUrl");
-    return ENGINE_URL_LOCAL.equals(engineUrl);
+    return StringUtils.isNotEmpty(System.getProperty("test.engine.url"));
   }
 
   protected void ensureNoBackgroundRequest() {

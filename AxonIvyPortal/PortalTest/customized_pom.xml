@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-  xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.ivyteam.ivy.project.portal</groupId>
   <artifactId>portalTest</artifactId>
-  <version>8.0.0-SNAPSHOT</version>
+  <version>8.0.0.0-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
     <powermock.version>2.0.2</powermock.version>
     <ivy.engine.version>8.0.0</ivy.engine.version>
-    <portal.version>${portal.released.version}</portal.version>
-    <build.plugin.version>8.0.0</build.plugin.version>
-    <skip.redeploy>true</skip.redeploy>
+    <portal.version>8.0.0.0-SNAPSHOT</portal.version>
+    <build.plugin.version>8.0.4</build.plugin.version>
+    <ivy.engine.version>8.0.4</ivy.engine.version>
   </properties>
   <dependencies>
     <dependency>
@@ -21,7 +23,8 @@
       <type>iar</type>
     </dependency>
     <dependency>
-      <!-- required: test framework used by the maven-surefire-plugin to run tests -->
+      <!-- required: test framework used by the maven-surefire-plugin to 
+        run tests -->
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.8.2</version>
@@ -64,7 +67,6 @@
         <version>${build.plugin.version}</version>
         <extensions>true</extensions>
         <configuration>
-          <engineDirectory>../../engine</engineDirectory>
           <encoding>UTF-8</encoding>
         </configuration>
         <executions>
@@ -135,12 +137,23 @@
             <phase>process-test-classes</phase>
           </execution>
           <execution>
-            <id>portalexamples.deploy</id>
+            <id>portal-user-examples.deploy</id>
             <goals>
               <goal>deploy-to-engine</goal>
             </goals>
             <configuration>
-              <deployFile>..\..\Showcase\PortalExamples\target\portalExamples-${portal.version}.iar</deployFile>
+              <deployFile>..\..\Showcase\portal-user-examples\target\portal-user-examples-${portal.version}.iar</deployFile>
+              <deployToEngineApplication>demo-portal</deployToEngineApplication>
+            </configuration>
+            <phase>process-test-classes</phase>
+          </execution>
+          <execution>
+            <id>portal-developer-examples.deploy</id>
+            <goals>
+              <goal>deploy-to-engine</goal>
+            </goals>
+            <configuration>
+              <deployFile>..\..\Showcase\portal-developer-examples\target\portal-developer-examples-${portal.version}.iar</deployFile>
               <deployToEngineApplication>demo-portal</deployToEngineApplication>
             </configuration>
             <phase>process-test-classes</phase>
@@ -161,7 +174,28 @@
             <goals>
               <goal>stop-test-engine</goal>
             </goals>
+            <phase>post-integration-test</phase>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M4</version>
+        <configuration>
+          <testFailureIgnore>true</testFailureIgnore>
+          <argLine>
+            -Dtest.engine.url=${test.engine.url}
+            -Dtest.engine.app=demo-portal
+          </argLine>
+        </configuration>
+        <executions>
+          <execution>
+            <id>selenium.test</id>
             <phase>test</phase>
+            <goals>
+              <goal>test</goal>
+            </goals>
           </execution>
         </executions>
       </plugin>
