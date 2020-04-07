@@ -25,7 +25,7 @@ pipeline {
       steps {
         script {
           builtModules = []
-          config = [singleAppEngine: [applications: ['Portal'], engineDir : 'D:/tools/ivy-server/trunk']]
+          config = [singleAppEngine: [applications: ['Portal'], engineDir : 'D:/tools/ivy-server/8.0']]
           applications = config[params.engine]['applications']
           engineDir = config[params.engine]['engineDir']
 
