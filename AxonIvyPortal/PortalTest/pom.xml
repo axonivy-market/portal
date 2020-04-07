@@ -7,9 +7,9 @@
   <version>7.0.0.0-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
-    <ivy.engine.version>7.0.13</ivy.engine.version>
-	<powermock.version>1.6.6</powermock.version>
-	<build.plugin.version>7.0.4</build.plugin.version>
+    <ivy.engine.version>7.0.15</ivy.engine.version>
+    <powermock.version>1.6.6</powermock.version>
+    <build.plugin.version>7.0.4</build.plugin.version>
   </properties>
   <dependencies>
     <dependency>
@@ -25,19 +25,19 @@
       <artifactId>junit</artifactId>
       <version>4.8.2</version>
       <scope>test</scope>
-	</dependency>
-	<dependency>
+    </dependency>
+    <dependency>
       <groupId>org.powermock</groupId>
       <artifactId>powermock-module-junit4</artifactId>
       <version>${powermock.version}</version>
       <scope>test</scope>
-	</dependency>
-	<dependency>
+    </dependency>
+    <dependency>
       <groupId>org.powermock</groupId>
       <artifactId>powermock-api-mockito2</artifactId>
       <version>${powermock.version}</version>
       <scope>test</scope>
-	</dependency>
+    </dependency>
 	<!-- for GUI test -->
     <dependency>
       <groupId>vn.wawa</groupId>
@@ -51,11 +51,11 @@
     </dependency>
   </dependencies>
   <build>
-  	<sourceDirectory>${basedir}/src/</sourceDirectory>
+    <sourceDirectory>${basedir}/src/</sourceDirectory>
 	<directory>${basedir}/target</directory>
 	<outputDirectory>${basedir}/classes</outputDirectory>
-  	<testSourceDirectory>${basedir}/src_test/</testSourceDirectory>
-	<testOutputDirectory>${basedir}/classes/</testOutputDirectory>
+    <testSourceDirectory>${basedir}/src_test/</testSourceDirectory>
+    <testOutputDirectory>${basedir}/classes/</testOutputDirectory>
     <plugins>
       <plugin>
         <groupId>com.axonivy.ivy.ci</groupId>

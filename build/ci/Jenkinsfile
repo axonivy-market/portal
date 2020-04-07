@@ -1,0 +1,56 @@
+pipeline {
+  agent {label 'master'}
+  
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
+  }
+  
+  tools { 
+      maven '3.6' 
+      jdk '8' 
+  }
+
+  parameters {
+      string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: PortalStyle,PortalKit,PortalTemplate,AxonIvyExpress,PortalKitTestHelper,PortalExamples,InternalSupport. E.g. PortalStyle code is changed, then set this property value PortalKit,PortalTemplate => PortalStyle,PortalKit,PortalTemplate will be built.')
+      choice(name: 'engine', choices: ['singleAppEngine'], description: 'Which engine to deploy? Currently, only singleAppEngine is set up for 7.0')
+
+  }
+
+  stages {
+    stage('build') {
+      steps {
+        script {
+          builtModules = []
+          config = [singleAppEngine: [applications: ['Portal'], engineDir : 'D:/tools/ivy-server/7.0']]
+          applications = config[params.engine]['applications']
+          engineDir = config[params.engine]['engineDir']
+
+          def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/PortalExamples', 'Showcase/InternalSupport']
+          def changeLog = ''
+          if (env.GIT_PREVIOUS_SUCCESSFUL_COMMIT) {
+            changeLog = bat(script: "git diff --name-only ${env.GIT_COMMIT} ${env.GIT_PREVIOUS_SUCCESSFUL_COMMIT}", returnStdout: true)
+          }
+          for (module in modules) {
+            if (changeLog.contains(module) || params.modulesMustBeBuilt.contains(module.split('/')[1]) || params.engine == 'multiAppsEngine') {
+              builtModules.add(module)
+              bat "mvn clean install -f ${module}/pom.xml"
+            }
+          }
+          archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true
+        }
+      }
+    }
+
+    stage('deploy') {
+      steps {
+        script {
+          for (module in builtModules) {
+            for (application in applications) {
+              bat "mvn com.axonivy.ivy.ci:project-build-plugin:7.0.4:deploy-iar -f ${module}/pom.xml -Divy.deploy.engine.app=${application} -Divy.deploy.engine.dir=${engineDir}"
+            }
+          }
+        }
+      }
+    }
+  }
+}

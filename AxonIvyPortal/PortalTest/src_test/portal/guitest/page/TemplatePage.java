@@ -20,7 +20,6 @@ public abstract class TemplatePage extends AbstractPage {
 
   private static final String TEMPLATE_PAGE_LOCATOR = "id('logo')";
   public static final String CLASS_PROPERTY = "class";
-  protected static final String ENGINE_URL_LOCAL = "http://localhost:8081/ivy";
 
   public TemplatePage() {
     // instead of using waitForPageLoaded(), wait for displaying instead of waiting for presenting
@@ -32,8 +31,8 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   protected boolean isIntegrationTestRun() {
-    String engineUrl = System.getProperty("engineUrl");
-    return ENGINE_URL_LOCAL.equals(engineUrl);
+    String engineUrl = System.getProperty("test.engine.url");
+    return engineUrl != null;
   }
 
   @Override

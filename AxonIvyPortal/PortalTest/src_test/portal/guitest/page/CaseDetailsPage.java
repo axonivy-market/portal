@@ -55,8 +55,8 @@ public class CaseDetailsPage extends TemplatePage {
     onClickHistoryIcon();
     caseItem.findElement(By.cssSelector("a[id$='add-note-command']")).click();
     waitAjaxIndicatorDisappear();
-    String engineUrl = System.getProperty("engineUrl");
-    if (ENGINE_URL_LOCAL.equals(engineUrl)) {
+    String engineUrl = System.getProperty("test.engine.url");
+    if (engineUrl != null) {
       Sleeper.sleep(2000);
     }
     WebElement addNoteDialog = findElementByCssSelector("div.ui-dialog[aria-hidden='false']");
