@@ -6,12 +6,15 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.userexamples.page.CaseMapPage;
+import portal.guitest.userexamples.page.UserExamplesEndPage;
 
 public class CaseMapTest extends BaseTest {
 
+  private static final String CREATE_CONTRACT = "Create Contract";
   private static final String CASE_MAP_URL = "/portal-user-examples/70765b37-a3e8-418a-a8d5-c2b3a539408e.icm";
   private static final String VERIFY_PERSONAL_DATA = "Verify Personal Data";
   private static final String INTERNAL_SOLVENCY_CHECK = "Internal Solvency Check";
@@ -58,9 +61,11 @@ public class CaseMapTest extends BaseTest {
     Assert.assertEquals("Pass", caseMapPage.getInternalCreditComment());
     caseMapPage.clickApproveButton();
     login(TestAccount.DEMO_USER);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy("Create Contract");
-    taskWidgetPage.startTaskWithoutUI(0);
+    startTaskByTaskName(CREATE_CONTRACT);
+    assertInputData();
+    UserExamplesEndPage userExamplesEndPage = caseMapPage.clickSubmitContractButton();
+    CaseDetailsPage caseDetailsPage = userExamplesEndPage.goToCaseDetail();
+    Assert.assertEquals("Lending", caseDetailsPage.getCaseName());
   }
 
   @Test

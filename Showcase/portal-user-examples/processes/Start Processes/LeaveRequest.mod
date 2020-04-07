@@ -9,12 +9,10 @@ Lt0 @TextInP .processKind .processKind #zField
 Lt0 @TextInP .xml .xml #zField
 Lt0 @TextInP .responsibility .responsibility #zField
 Lt0 @StartRequest f0 '' #zField
-Lt0 @EndTask f1 '' #zField
 Lt0 @UserTask f18 '' #zField
 Lt0 @TkArc f20 '' #zField
 Lt0 @UserTask f4 '' #zField
 Lt0 @UserTask f16 '' #zField
-Lt0 @PushWFArc f22 '' #zField
 Lt0 @TkArc f2 '' #zField
 Lt0 @TkArc f3 '' #zField
 Lt0 @InfoButton f5 '' #zField
@@ -25,6 +23,10 @@ Lt0 @InfoButton f9 '' #zField
 Lt0 @AnnotationArc f10 '' #zField
 Lt0 @InfoButton f11 '' #zField
 Lt0 @AnnotationArc f12 '' #zField
+Lt0 @GridStep f28 '' #zField
+Lt0 @PushWFArc f1 '' #zField
+Lt0 @EndTask f13 '' #zField
+Lt0 @PushWFArc f14 '' #zField
 >Proto Lt0 Lt0 LeaveRequest #zField
 Lt0 f0 outLink start.ivp #txt
 Lt0 f0 inParamDecl '<> param;' #txt
@@ -50,8 +52,6 @@ Lt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Lt0 f0 @C|.responsibility Everybody #txt
 Lt0 f0 73 233 30 30 -21 17 #rect
 Lt0 f0 @|StartRequestIcon #fIcon
-Lt0 f1 849 233 30 30 0 15 #rect
-Lt0 f1 @|EndIcon #fIcon
 Lt0 f18 dialogId com.axonivy.portal.userexamples.leaverequest.LeaveRequestCreation #txt
 Lt0 f18 startMethod start() #txt
 Lt0 f18 requestActionDecl '<> param;' #txt
@@ -108,7 +108,6 @@ Lt0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Lt0 f16 648 226 144 44 -66 -8 #rect
 Lt0 f16 @|UserTaskIcon #fIcon
-Lt0 f22 792 248 849 248 #arcP
 Lt0 f2 568 248 648 248 #arcP
 Lt0 f2 0 0.6124600781942752 0 0 #arcLabel
 Lt0 f3 352 248 424 248 #arcP
@@ -159,14 +158,39 @@ After approver finish his task, the approval result will be sent back to request
 Lt0 f11 0 530 608 44 -298 -16 #rect
 Lt0 f11 @|IBIcon #fIcon
 Lt0 f12 304 530 83 262 #arcP
+Lt0 f28 actionTable 'out=in;
+' #txt
+Lt0 f28 actionCode 'import ch.ivy.addon.portalkit.constant.CustomFields;
+import java.util.Map;
+import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import java.util.Arrays;
+import ch.ivy.addon.portalkit.service.IvyAdapterService;
+
+Map x = IvyAdapterService.startSubProcess("handleUserExamplesEndPage()", null, Arrays.asList(PortalLibrary.AXON_EXPRESS.getValue()));
+String callbackUrl = x.get("callbackUrl") as String;
+ivy.task.customFields().stringField(CustomFields.EXPRESS_END_PAGE_URL.toString()).set(callbackUrl);
+
+' #txt
+Lt0 f28 security system #txt
+Lt0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Set end page</name>
+    </language>
+</elementInfo>
+' #txt
+Lt0 f28 864 226 112 44 -34 -8 #rect
+Lt0 f28 @|StepIcon #fIcon
+Lt0 f1 792 248 864 248 #arcP
+Lt0 f13 1041 233 30 30 0 15 #rect
+Lt0 f13 @|EndIcon #fIcon
+Lt0 f14 976 248 1041 248 #arcP
 >Proto Lt0 .type com.axonivy.portal.userexamples.leaverequest.LeaveRequestProcessData #txt
 >Proto Lt0 .processKind NORMAL #txt
 >Proto Lt0 0 0 32 24 18 0 #rect
 >Proto Lt0 @|BIcon #fIcon
 Lt0 f0 mainOut f20 tail #connect
 Lt0 f20 head f18 in #connect
-Lt0 f16 out f22 tail #connect
-Lt0 f22 head f1 mainIn #connect
 Lt0 f4 out f2 tail #connect
 Lt0 f2 head f16 in #connect
 Lt0 f18 out f3 tail #connect
@@ -179,3 +203,7 @@ Lt0 f9 ao f10 tail #connect
 Lt0 f10 head f16 @CG|ai #connect
 Lt0 f11 ao f12 tail #connect
 Lt0 f12 head f0 @CG|ai #connect
+Lt0 f16 out f1 tail #connect
+Lt0 f1 head f28 mainIn #connect
+Lt0 f28 mainOut f14 tail #connect
+Lt0 f14 head f13 mainIn #connect
