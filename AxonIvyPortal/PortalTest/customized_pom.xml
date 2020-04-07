@@ -14,6 +14,7 @@
     <portal.version>8.0.0.0-SNAPSHOT</portal.version>
     <build.plugin.version>8.0.4</build.plugin.version>
     <ivy.engine.version>8.0.4</ivy.engine.version>
+    <skip.redeploy>true</skip.redeploy>
   </properties>
   <dependencies>
     <dependency>
@@ -137,23 +138,12 @@
             <phase>process-test-classes</phase>
           </execution>
           <execution>
-            <id>portal-user-examples.deploy</id>
+            <id>portalexamples.deploy</id>
             <goals>
               <goal>deploy-to-engine</goal>
             </goals>
             <configuration>
-              <deployFile>..\..\Showcase\portal-user-examples\target\portal-user-examples-${portal.version}.iar</deployFile>
-              <deployToEngineApplication>demo-portal</deployToEngineApplication>
-            </configuration>
-            <phase>process-test-classes</phase>
-          </execution>
-          <execution>
-            <id>portal-developer-examples.deploy</id>
-            <goals>
-              <goal>deploy-to-engine</goal>
-            </goals>
-            <configuration>
-              <deployFile>..\..\Showcase\portal-developer-examples\target\portal-developer-examples-${portal.version}.iar</deployFile>
+              <deployFile>..\..\Showcase\PortalExamples\target\portalExamples-${portal.version}.iar</deployFile>
               <deployToEngineApplication>demo-portal</deployToEngineApplication>
             </configuration>
             <phase>process-test-classes</phase>

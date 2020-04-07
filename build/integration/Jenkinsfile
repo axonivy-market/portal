@@ -49,8 +49,7 @@ pipeline {
               $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
               rmdir $DEPLOYMENT/* -recurse
               Copy-Item $env:releaseDir/AxonIvyPortal/PortalApp/target/*zip -Destination $DEPLOYMENT
-              Copy-Item $env:releaseDir/Showcase/portal-developer-examples/target/*iar -Destination $DEPLOYMENT
-              Copy-Item $env:releaseDir/Showcase/portal-user-examples/target/*iar -Destination $DEPLOYMENT
+              Copy-Item $env:releaseDir/Showcase/PortalExamples/target/*iar -Destination $DEPLOYMENT
             '''
           }
 
