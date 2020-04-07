@@ -80,7 +80,9 @@ pipeline {
           """
           powershell """
             #copy applications, misc/iis (for SSO)
-            copy -path ${renamedEngineDir}\\applications -recurse -force -destination ${engineDir}
+            if (Test-Path ${renamedEngineDir}\\applications) {
+              copy -path ${renamedEngineDir}\\applications -recurse -force -destination ${engineDir}
+            }
             copy -path ${renamedEngineDir}\\misc\\iis -recurse -force -destination ${engineDir}\\misc
           """
           bat """
