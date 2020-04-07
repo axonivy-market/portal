@@ -87,7 +87,7 @@ public class MenuView {
         IApplication portal = ServerFactory.getServer().getApplicationConfigurationManager()
             .findApplication(PortalConstants.PORTAL_APPLICATION_NAME);
         if (portal != null && portal.getActivityState() != ch.ivyteam.ivy.application.ActivityState.INACTIVE
-            && portal.getSecurityContext().findUser(Ivy.session().getSessionUserName()) != null) {
+            && portal.getSecurityContext().users().find(Ivy.session().getSessionUserName()) != null) {
           menuItem.setHref(SecurityServiceUtils.getDefaultPortalStartUrl());
           if (PortalConstants.PORTAL_APPLICATION_NAME.equals(Ivy.request().getApplication().getName())) {
             menuItem.setStyleClass(ACTIVE_MENU);

@@ -51,7 +51,7 @@ public class ChatGroupUtils {
     Set<String> userNames = new HashSet<>();
     IRole role = Ivy.wf().getApplication().getSecurityContext().findRole(roleName);
     if (role != null) {
-      userNames.addAll(role.getAllUsers().stream().map(IUser::getName).collect(Collectors.toSet()));
+      userNames.addAll(role.users().allPaged().stream().map(IUser::getName).collect(Collectors.toSet()));
     }
     userNames.removeAll(SYSTEM_USERS);
     return userNames;
@@ -97,7 +97,12 @@ public class ChatGroupUtils {
     for (String roleName : roleNames) {
       IRole role = Ivy.wf().getApplication().getSecurityContext().findRole(roleName);
       if (role != null) {
-        userNames.addAll(role.getAllUsers().stream().map(IUser::getName).collect(Collectors.toSet()));
+        userNames.addAll(role
+            .users()
+            .allPaged()
+            .stream()
+            .map(IUser::getName)
+            .collect(Collectors.toSet()));
       }
     }
     userNames.removeAll(SYSTEM_USERS);
