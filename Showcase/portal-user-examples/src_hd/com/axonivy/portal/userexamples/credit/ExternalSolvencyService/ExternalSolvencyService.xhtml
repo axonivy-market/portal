@@ -1,5 +1,6 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
-  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/TaskTemplate-8.xhtml">
@@ -11,71 +12,83 @@
     <ui:define name="content">
 
       <h:form id="form">
-        <h:panelGroup styleClass="ui-g" layout="block">
-          <p:messages styleClass="ui-g-12 ui-lg-12 ui-md-12 ui-sm-12" />
-          <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/person')}</h4>
-          <h:panelGrid columns="1" columnClasses="TexAlLeft ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12">
-            <h:panelGroup class="MarTop20" layout="block">
-              <p:outputLabel for="first-name" value="#{ivy.cms.co('/Labels/CaseMap/Credit/firstName')}" />
-              <p:inputText required="true" id="first-name" value="#{data.dossier.customer.firstName}"
-                styleClass="MarTop10" disabled="true" />
-            </h:panelGroup>
-            <h:panelGroup class="MarTop20" layout="block">
-              <p:outputLabel for="last-name" value="#{ivy.cms.co('/Labels/CaseMap/Credit/lastName')}" />
-              <p:inputText id="last-name" value="#{data.dossier.customer.lastName}" styleClass="MarTop10"
-                disabled="true" />
-            </h:panelGroup>
+        <h:panelGroup styleClass="ui-g ui-fluid">
+          <p:panel class="card ui-g-12 ui-md-12">
+            <h:panelGroup styleClass="ui-g" layout="block">
+              <p:messages styleClass="ui-g-12 ui-lg-12 ui-md-12 ui-sm-12" />
+              <h:outputText value="#{ivy.cms.co('/Labels/CaseMap/Credit/person')}"
+                styleClass="credit-label margin-left-16" />
+              <h:panelGrid columns="1" columnClasses="TexAlLeft ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12">
+                <h:panelGroup layout="block">
+                  <p:outputLabel for="first-name" value="#{ivy.cms.co('/Labels/CaseMap/Credit/firstName')}" />
+                  <p:inputText required="true" id="first-name" value="#{data.dossier.customer.firstName}"
+                    styleClass="MarTop10" disabled="true" />
+                </h:panelGroup>
+                <h:panelGroup layout="block">
+                  <p:outputLabel for="last-name" value="#{ivy.cms.co('/Labels/CaseMap/Credit/lastName')}" />
+                  <p:inputText id="last-name" value="#{data.dossier.customer.lastName}" styleClass="MarTop10"
+                    disabled="true" />
+                </h:panelGroup>
 
-            <h:panelGroup class="MarTop20" layout="block">
-              <p:outputLabel for="customer-country" value="#{ivy.cms.co('/Labels/CaseMap/Credit/country')}" />
-              <p:inputText required="true" id="customer-country" value="#{data.dossier.customer.address.country}"
-                styleClass="MarTop10" disabled="true" />
+                <h:panelGroup layout="block">
+                  <p:outputLabel for="customer-country" value="#{ivy.cms.co('/Labels/CaseMap/Credit/country')}" />
+                  <p:inputText required="true" id="customer-country" value="#{data.dossier.customer.address.country}"
+                    styleClass="MarTop10" disabled="true" />
+                </h:panelGroup>
+              </h:panelGrid>
+
+              <h:outputText value="#{ivy.cms.co('/Labels/CaseMap/Credit/credit')}"
+                styleClass="credit-label margin-left-16" />
+              <h:panelGrid columns="2" columnClasses="TexAlLeft ui-g-6, TexAlLeft ui-g-6"
+                styleClass="ui-g-12 ui-md-12 ui-sm-12">
+                <h:panelGroup layout="block">
+                  <p:outputLabel for="request-amount" value="#{ivy.cms.co('/Labels/CaseMap/Credit/approvalAmount')}" />
+                  <p:inputText required="true" id="request-amount" value="#{data.dossier.request.amount}"
+                    styleClass="MarTop10" disabled="true" />
+                </h:panelGroup>
+
+                <h:panelGroup layout="block">
+                  <p:outputLabel for="request-salary" value="#{ivy.cms.co('/Labels/CaseMap/Credit/salary')}" />
+                  <p:inputText required="true" id="request-salary" value="#{data.dossier.request.salary}"
+                    styleClass="MarTop10" disabled="true" />
+                </h:panelGroup>
+
+                <h:panelGroup layout="block">
+                  <p:outputLabel for="request-reason" value="#{ivy.cms.co('/Labels/CaseMap/Credit/approvalReason')}" />
+                  <p:inputText id="request-reason" value="#{data.dossier.request.reason}" styleClass="MarTop10"
+                    disabled="true" />
+                </h:panelGroup>
+
+                <h:panelGroup layout="block">
+                  <p:outputLabel for="request-amount-of-other-credits"
+                    value="#{ivy.cms.co('/Labels/CaseMap/Credit/otherCredits')}" />
+                  <p:inputText required="true" id="request-amount-of-other-credits" styleClass="MarTop10"
+                    value="#{data.dossier.request.amountOfOtherCredits}" disabled="true" />
+                </h:panelGroup>
+              </h:panelGrid>
+
+              <h:outputText value="#{ivy.cms.co('/Labels/CaseMap/Credit/verifierComment')}"
+                styleClass="credit-label margin-left-16" />
+              <h:panelGrid columns="1" columnClasses="TexAlLeft ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12">
+                <p:inputTextarea id="verifier-comment" value="#{data.dossier.verifierComment}" disabled="true" />
+              </h:panelGrid>
+
+              <h:panelGroup>
+                <h:outputText value="#{ivy.cms.co('/Labels/CaseMap/Credit/externalCreditComment')}"
+                  styleClass="credit-label margin-left-16" />
+              </h:panelGroup>
+              <h:panelGrid columns="1" columnClasses="TexAlLeft ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12">
+                <f:facet name="header">
+                  <p:messages></p:messages>
+                </f:facet>
+                <p:inputTextarea id="external-comment" value="#{data.dossier.externalCreditComment}" />
+              </h:panelGrid>
             </h:panelGroup>
-          </h:panelGrid>
-
-          <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/credit')}</h4>
-          <h:panelGrid columns="2" columnClasses="TexAlLeft ui-g-6, TexAlLeft ui-g-6"
-            styleClass="ui-g-12 ui-md-12 ui-sm-12">
-            <h:panelGroup class="MarTop20" layout="block">
-              <p:outputLabel for="request-amount" value="#{ivy.cms.co('/Labels/CaseMap/Credit/approvalAmount')}" />
-              <p:inputText required="true" id="request-amount" value="#{data.dossier.request.amount}"
-                styleClass="MarTop10" disabled="true" />
-            </h:panelGroup>
-
-            <h:panelGroup class="MarTop20" layout="block">
-              <p:outputLabel for="request-salary" value="#{ivy.cms.co('/Labels/CaseMap/Credit/salary')}" />
-              <p:inputText required="true" id="request-salary" value="#{data.dossier.request.salary}"
-                styleClass="MarTop10" disabled="true" />
-            </h:panelGroup>
-
-            <h:panelGroup class="MarTop20" layout="block">
-              <p:outputLabel for="request-reason" value="#{ivy.cms.co('/Labels/CaseMap/Credit/approvalReason')}" />
-              <p:inputText id="request-reason" value="#{data.dossier.request.reason}" styleClass="MarTop10"
-                disabled="true" />
-            </h:panelGroup>
-
-            <h:panelGroup class="MarTop20" layout="block">
-              <p:outputLabel for="request-amount-of-other-credits"
-                value="#{ivy.cms.co('/Labels/CaseMap/Credit/otherCredits')}" />
-              <p:inputText required="true" id="request-amount-of-other-credits" styleClass="MarTop10"
-                value="#{data.dossier.request.amountOfOtherCredits}" disabled="true" />
-            </h:panelGroup>
-          </h:panelGrid>
-
-          <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/verifierComment')}</h4>
-          <h:panelGrid columns="1" columnClasses="TexAlLeft ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12">
-            <p:inputTextarea id="verifier-comment" value="#{data.dossier.verifierComment}" disabled="true"/>
-          </h:panelGrid>
-
-          <h4>#{ivy.cms.co('/Labels/CaseMap/Credit/externalCreditComment')}</h4>
-          <h:panelGrid columns="1" columnClasses="TexAlLeft ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12">
-            <f:facet name="header">
-              <p:messages></p:messages>
-            </f:facet>
-            <p:inputTextarea id="external-comment" value="#{data.dossier.externalCreditComment}" />
-          </h:panelGrid>
+          </p:panel>
         </h:panelGroup>
-       <p:commandButton id="submit-button" actionListener="#{logic.close}" value="#{ivy.cms.co('/Dialog/Common/submit')}" update="form" icon="fa fa-send-o" styleClass="Fright"/>
+        <p:commandButton id="submit-button" actionListener="#{logic.close}"
+          value="#{ivy.cms.co('/Dialog/Common/submit')}" update="form" icon="fa fa-send-o"
+          styleClass="Fright" />
       </h:form>
 
     </ui:define>
