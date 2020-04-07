@@ -60,7 +60,7 @@ pipeline {
 
           echo '====================Copy patch to workspace if any. Note: this is in a tag and we cannot change code in git repo===================='
           powershell '''
-            copy -path ../patch/trunk/PortalTest -recurse -force -destination AxonIvyPortal
+            copy -path ../patch/8.0/PortalTest -recurse -force -destination AxonIvyPortal
           '''
           node('master') {
             echo '====================Close all remote desktop connections and setup new remote destop to Portal slave===================='
