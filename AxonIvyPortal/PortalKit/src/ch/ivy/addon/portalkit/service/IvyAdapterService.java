@@ -167,7 +167,7 @@ public class IvyAdapterService {
   
   /**
    * @param task
-   * @return
+   * @return whether task embed in IFrame
    */
   public static Boolean getEmbedInIFrameCustomField(ITask task) {
     String embedInIFrame = task.customFields().stringField(CustomFields.EMBED_IN_FRAME).getOrNull();

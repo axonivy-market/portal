@@ -74,7 +74,7 @@ public class ApplicationService implements IApplicationService {
     return IvyExecutor.executeAsSystem(() -> {
       List<IApplication> applications = getAllPortalAppsOnServer();
       return applications.stream()
-          .filter(app -> app.getSecurityContext().findUser(username) != null)
+          .filter(app -> app.getSecurityContext().users().find(username) != null)
           .map(this::toIvyApplication)
           .filter(IvyApplication::isActive)
           .collect(Collectors.toList());

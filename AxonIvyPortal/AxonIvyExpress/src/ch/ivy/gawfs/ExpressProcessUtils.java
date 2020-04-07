@@ -231,11 +231,11 @@ public class ExpressProcessUtils {
         }
       } else {
         IRole irole = (IRole) securityMember;
-        for (IUser userInRole : irole.getUsers()) {
+        irole.users().allPaged().forEach(userInRole ->{
           if (StringUtils.isNotBlank(userInRole.getEMailAddress())) {
             emailAddresses.add(userInRole.getEMailAddress());
           }
-        }
+        });
       }
     }
     return emailAddresses;

@@ -84,7 +84,7 @@ public class PermissionUtils {
    */
   public static boolean checkAbleToStartAndAbleToEditExpressWorkflow(ExpressProcess workflow) {
     boolean isWorkflowOwner = Ivy.session().canActAsUser(
-        Ivy.request().getApplication().getSecurityContext().findUser(workflow.getProcessOwner().substring(1)));
+        Ivy.request().getApplication().getSecurityContext().users().find(workflow.getProcessOwner().substring(1)));
     boolean hasAdminRole = isSessionUserHasAdminRole();
 
     if (isWorkflowOwner || hasAdminRole) {
@@ -144,7 +144,7 @@ public class PermissionUtils {
   public static boolean hasPermission(IApplication application, String username, IPermission permission) {
     IPermissionAccess permissionAccess = null;
     try {
-      IUser user = application.getSecurityContext().findUser(username);
+      IUser user = application.getSecurityContext().users().find(username);
       ISecurityDescriptor securityDescriptor = application.getSecurityDescriptor();
       if (user != null) {
         permissionAccess = securityDescriptor.getPermissionAccess(permission, user);
