@@ -6,7 +6,7 @@ pipeline {
   }
   
   triggers {
-    cron('H 13 * * *')
+    cron('H 14 * * *')
   }
 
   tools { 
