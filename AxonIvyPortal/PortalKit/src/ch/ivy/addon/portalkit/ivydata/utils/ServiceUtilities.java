@@ -66,7 +66,7 @@ public class ServiceUtilities {
     Objects.requireNonNull(username, "The username must not be null");
     requireNonNull(app);
 
-    IUser user = app.getSecurityContext().findUser(username);
+    IUser user = app.getSecurityContext().users().find(username);
     if (user == null) {
       throw new PortalIvyDataException(app.getName(), String.format("%s:%s", PortalIvyDataErrorType.USER_NOT_FOUND.toString(), username));
     }
@@ -86,10 +86,12 @@ public class ServiceUtilities {
   public static List<IUser> findAllUsers(IApplication app) {
     requireNonNull(app);
 
-    List<IUser> users = new ArrayList<>(app.getSecurityContext().getUsers());
-    users.removeIf(user -> StringUtils.equals(ISecurityConstants.SYSTEM_USER_NAME, user.getName()));
-
-    return users;
+    return app.getSecurityContext()
+      .users()
+      .paged()
+      .stream()
+      .filter(user -> !StringUtils.equals(ISecurityConstants.SYSTEM_USER_NAME, user.getName()))
+      .collect(Collectors.toList());
   }
 
   /**
@@ -137,7 +139,7 @@ public class ServiceUtilities {
         IApplication app = findApp(appName);
         return findUser(username, app);
       } catch (PortalIvyDataException e) {
-        Ivy.log().error("Can't find user " + username, e);
+        Ivy.log().error("Can't find user {0}", e, username);
         return null;
       }
     });
@@ -152,7 +154,7 @@ public class ServiceUtilities {
     ISecurityContext securityContext = app.getSecurityContext();
     return IvyExecutor.executeAsSystem(() -> {
       ISession session = securityContext.createSession();
-      IUser user = securityContext.findUser(username);
+      IUser user = securityContext.users().find(username);
 
       if (user != null) {
         String authenticationMode = "customAuth";
@@ -189,7 +191,11 @@ public class ServiceUtilities {
   public static List<UserDTO> findAllUserDTOExceptCurrentUserByApplication(IApplication app) {
     return IvyExecutor.executeAsSystem(() -> {
       String sessionUsername = Ivy.session().getSessionUserName();
-      return app.getSecurityContext().getUsers().stream().map(user -> new UserDTO(user))
+      return app.getSecurityContext()
+          .users()
+          .paged()
+          .stream()
+          .map(user -> new UserDTO(user))
           .filter(userDTO -> !StringUtils.equals(ISecurityConstants.SYSTEM_USER_NAME, userDTO.getName())
               && !StringUtils.equals(sessionUsername, userDTO.getName()))
           .collect(Collectors.toList());
@@ -200,7 +206,7 @@ public class ServiceUtilities {
     Objects.requireNonNull(username, "The username must not be null");
     requireNonNull(app);
     return IvyExecutor.executeAsSystem(() -> {
-      IUser user = app.getSecurityContext().findUser(username);
+      IUser user = app.getSecurityContext().users().find(username);
       if (user == null) {
         throw new PortalIvyDataException(app.getName(), PortalIvyDataErrorType.USER_NOT_FOUND.toString());
       }
@@ -211,9 +217,11 @@ public class ServiceUtilities {
   public static List<RoleDTO> findAllRoleDTO(IApplication app) {
     requireNonNull(app);
     return IvyExecutor.executeAsSystem(() -> {
-      List<IRole> roles = new ArrayList<>(app.getSecurityContext().getRoles());
-      roles.removeIf(role -> role.getProperty("HIDE") != null);
-      return roles.stream().map(role -> new RoleDTO(role)).collect(Collectors.toList());
+      return CollectionUtils.emptyIfNull(app.getSecurityContext().getRoles())
+          .stream()
+          .filter(role -> role.getProperty("HIDE") == null)
+          .map(role -> new RoleDTO(role))
+          .collect(Collectors.toList());
     });
   }
 
