@@ -26,8 +26,9 @@ public class SecurityMemberUtils {
   /**
    * Finds the security members by query. If the current application is Portal, find all users over all applications, otherwise in current application
    * @param query
-   * @param startIndex 0..n. The index of the first record is 0
-   * @param count 0..n. Use -1 to return all beginning from the startIndex
+   * @param startIndex index of the first record is 0
+   * @param count use -1 to return all beginning from the startIndex
+   * @return user list
    */
   @SuppressWarnings("unchecked")
   public static List<SecurityMemberDTO> findSecurityMembers(String query, int startIndex, int count) {
@@ -64,7 +65,7 @@ public class SecurityMemberUtils {
   
   public static ISecurityMember findISecurityMemberFromUserDTO(UserDTO userDTO) {
     return IvyExecutor.executeAsSystem(() -> {
-        return Ivy.wf().getSecurityContext().findUser(userDTO.getId());
+        return Ivy.wf().getSecurityContext().users().find(userDTO.getId());
     });
   }
   

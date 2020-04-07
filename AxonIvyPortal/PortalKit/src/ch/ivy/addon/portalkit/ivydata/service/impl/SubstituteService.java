@@ -171,7 +171,7 @@ public class SubstituteService implements ISubstituteService {
   public IvySubstituteResultDTO saveSubstitutes(Map<String, UserDTO> userPerApplication, Map<IvyApplication, List<IvySubstitute>> ivySubstitutesByApp) {
     return IvyExecutor.executeAsSystem(() -> { 
       IvySubstituteResultDTO result = new IvySubstituteResultDTO();
-      if (ivySubstitutesByApp == null || ivySubstitutesByApp == null) {
+      if (ivySubstitutesByApp == null) {
         return result;
       }
 
