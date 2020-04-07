@@ -46,7 +46,7 @@
           </p:inplace>
         </h:panelGroup>
 
-        <p:commandLink id="back-to-cases" rendered="#{showItemBackButton}" onclick="backToPrevPage('#{cc.attrs.isFromDoneTask}');" styleClass="case-details-back-btn">
+        <p:commandLink id="back-to-cases" rendered="#{showItemBackButton}" onclick="backToPrevPage(#{cc.attrs.isFromDoneTask});" styleClass="case-details-back-btn">
           <i class="fa fa-reply-all" />
           <p:spacer width="3px"/>
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"/>
@@ -70,7 +70,7 @@
               </div>
 
               <h:panelGroup class="u-padding-0 case-history-button-container u-truncate-text" rendered="#{caseWidgetBean.showCaseDetails}" layout="block">
-                <p:commandLink id="destroy-case-link" rendered="#{caseActionBean.canDestroy(case) and case.state ne 'DONE'}" 
+                <p:commandLink id="destroy-case-link" rendered="#{caseActionBean.canDestroy(case) and case.state ne 'DONE' and case.state ne 'DESTROYED'}" 
                   styleClass="additional-case-details-link" immediate="true"
                   onclick="PF('destroy-case-dialog').show()">
                   <span class="action-icon fa fa-remove" />
@@ -143,7 +143,7 @@
     appendTo="@(body)" severity="alert" responsive="true">
     <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
       actionListener="#{caseWidgetBean.destroyCase(case)}"
-      oncomplete="PF('destroy-case-dialog').hide();backToCasesList();" />
+      oncomplete="PF('destroy-case-dialog').hide();navigateAfterDestroyCase(#{caseWidgetBean.willNavigateBack()});" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
       onclick="PF('destroy-case-dialog').hide();" type="button" styleClass="portal-cancel-button" />
   </p:confirmDialog>
@@ -151,6 +151,14 @@
   <script type="text/javascript">
       function backToPrevPage(isFromDoneTask) {
         if (document.referrer &amp;&amp; !isFromDoneTask) {
+          window.history.back();
+        } else {
+          backToCasesList();
+        }
+      }
+      
+      function navigateAfterDestroyCase(willNavigateBack) {
+        if (document.referrer &amp;&amp; willNavigateBack) {
           window.history.back();
         } else {
           backToCasesList();
