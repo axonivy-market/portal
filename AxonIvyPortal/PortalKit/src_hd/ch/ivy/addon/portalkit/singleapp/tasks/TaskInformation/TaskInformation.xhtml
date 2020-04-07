@@ -29,17 +29,6 @@
   <div id="#{cc.clientId}">
     <c:set var="isTaskAbleToChangeDeadline" value="#{taskBean.isTaskAbleToChangeDeadline(cc.attrs.task)}" scope="view" />
     <c:set var="isTaskAbleToChangePriority" value="#{taskBean.isTaskAbleToChangePriority(cc.attrs.task)}" scope="view" />
-    <script>
-          function openTaskId() {
-            var cookie = getCookie('action');
-            if (cookie == 'gotoProject') {
-              setCookie('last-position', '#{cc.attrs.homeLink}?taskIdentifier=' + '#{cc.attrs.task.id}');
-            }
-          }
-          function openDelegate() {
-            setCookie('last-position', '#{cc.attrs.homeLink}?taskIdentifier=' + '#{cc.attrs.task.id}');
-          }
-        </script>
 
     <h:panelGroup layout="block" id="task-information-container"
       rendered="#{cc.attrs.visible == null ? true : cc.attrs.visible}">
@@ -67,18 +56,18 @@
                 <p:commandButton id="start-non-resumed-task-command"
                   disabled="#{(taskBean.checkStartableTask(cc.attrs.task))}"
                   rendered="#{('DONE' != cc.attrs.task.getState()) &amp;&amp; ('RESUMED' != cc.attrs.task.getState())}"
-                  onclick="openTaskId()" actionListener="#{logic.startTask(cc.attrs.task)}"
+                  actionListener="#{logic.startTask(cc.attrs.task)}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openRequest')}" />
                 <p:spacer width="5px"
                   rendered="#{('DONE' != cc.attrs.task.getState()) &amp;&amp; ('RESUMED' != cc.attrs.task.getState())}" />
                 <p:commandButton id="start-resumed-task-command"
                   disabled="#{(taskBean.checkStartableTask(cc.attrs.task))}"
                   rendered="#{('DONE' != cc.attrs.task.getState()) &amp;&amp; ('RESUMED' == cc.attrs.task.getState())}"
-                  onclick="openTaskId(); PF('reset-task-dialog').show()"
+                  onclick="PF('reset-task-dialog').show()"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/openRequest')}" />
                 <p:spacer width="5px"
                   rendered="#{('DONE' != cc.attrs.task.getState()) &amp;&amp; ('RESUMED' == cc.attrs.task.getState())}" />
-                <p:commandButton id="delegate-task-command" onclick="openDelegate()"
+                <p:commandButton id="delegate-task-command"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}"
                   rendered="#{(taskBean.isDelegatable(cc.attrs.task))}" oncomplete="PF('taskDelegateDialog').show()"
                   actionListener="#{logic.buttonDelegateClicked}" update=":#{p:component('task-information-container')}" />
