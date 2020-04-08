@@ -4334,8 +4334,14 @@ body .ui-dialog.ui-widget.export-express-dialog {
 
 /*=================== BREADCRUMB ===================*/
 .layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li.breadcrumb-container {
+	display: flex;
 	float: left;
 	margin-left: 0;
+	width: calc(100% - 510px);
+}
+
+.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li.breadcrumb-container >form {
+	width: 100%;
 }
 
 body .ui-widget-header.portal-breadcrumb {
@@ -4345,6 +4351,20 @@ body .ui-widget-header.portal-breadcrumb {
 
 .mobile-portal-home-link {
 	display: none;
+}
+
+body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled {
+	width: 100%;
+}
+
+body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled .ui-menuitem-text {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+body .ui-widget-header.portal-breadcrumb ul li:last-child {
+	width: calc(100% - 100px);
 }
 
 @media screen and (max-width: 40em) {
@@ -4361,6 +4381,14 @@ body .ui-widget-header.portal-breadcrumb {
 	.mobile-portal-home-link:before {
 		margin-right: 3px;
 	}
+
+	body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled .ui-menuitem-text {
+		max-width: 20rem;
+	}
+}
+
+@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
+	
 }
 
 body .ui-widget-header.portal-breadcrumb a,
