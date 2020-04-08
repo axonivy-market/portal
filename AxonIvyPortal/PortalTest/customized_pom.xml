@@ -9,14 +9,13 @@
   <properties>
 	<powermock.version>1.6.6</powermock.version>
 	<ivy.engine.version>7.0.17</ivy.engine.version>
-	<portal.version>7.0.0.0-SNAPSHOT</portal.version>
 	<build.plugin.version>7.0.4</build.plugin.version>
   </properties>
   <dependencies>
     <dependency>
       <groupId>ch.ivyteam.ivy.project.portal</groupId>
       <artifactId>portalTemplate</artifactId>
-      <version>${portal.version}</version>
+      <version>7.0.0.0-SNAPSHOT</version>
       <type>iar</type>
     </dependency>
     <dependency>
@@ -73,39 +72,6 @@
             <goals>
               <goal>start-test-engine</goal>
             </goals>
-          </execution>
-          <execution>
-            <id>portaltesthelper.deploy</id>
-            <goals>
-              <goal>deploy-iar</goal>
-            </goals>
-            <configuration>
-              <deployIarFile>..\PortalKitTestHelper\target\portalKitTestHelper-${portal.version}.iar</deployIarFile>
-              <deployToEngineApplication>Portal</deployToEngineApplication>
-            </configuration>
-            <phase>process-test-classes</phase>
-          </execution>
-          <execution>
-            <id>internalsupport.deploy</id>
-            <goals>
-              <goal>deploy-iar</goal>
-            </goals>
-            <configuration>
-              <deployIarFile>..\..\Showcase\InternalSupport\target\internalSupport-${portal.version}.iar</deployIarFile>
-              <deployToEngineApplication>Portal</deployToEngineApplication>
-            </configuration>
-            <phase>process-test-classes</phase>
-          </execution>
-          <execution>
-            <id>portalexamples.deploy</id>
-            <goals>
-              <goal>deploy-iar</goal>
-            </goals>
-            <configuration>
-              <deployIarFile>..\..\Showcase\PortalExamples\target\portalExamples-${portal.version}.iar</deployIarFile>
-              <deployToEngineApplication>Portal</deployToEngineApplication>
-            </configuration>
-            <phase>process-test-classes</phase>
           </execution>
           <execution>
             <id>stop.test.engine</id>
