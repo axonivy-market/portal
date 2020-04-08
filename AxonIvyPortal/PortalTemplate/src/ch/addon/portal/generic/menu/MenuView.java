@@ -183,7 +183,6 @@ public class MenuView {
 
   private void buildBreadCrumbForTaskList() {
     breadcrumbModel.getElements().add(buildPortalHomeMenuItem());
-
     DefaultMenuItem taskListSubmenuItem = buildTaskListMenuItem();
     taskListSubmenuItem.setDisabled(true);
     breadcrumbModel.getElements().add(taskListSubmenuItem);
@@ -215,7 +214,7 @@ public class MenuView {
 
   private void buildBreadCrumbForTaskDetails(ITask userTask) {
     breadcrumbModel.getElements().add(buildPortalHomeMenuItem());
-    breadcrumbModel.getElements().add(buildTaskListMenuItem());
+    breadcrumbModel.getElements().add(buildTaskListMenuItem()); 
     breadcrumbModel.getElements().add(buildTaskDetailsMenuItem(userTask));
   }
 
@@ -232,29 +231,31 @@ public class MenuView {
 
   private MenuItem buildPortalHomeMenuItem() {
     DefaultMenuItem menuItem = new DefaultMenuItem();
-    PortalNavigator navigator = new PortalNavigator();
-
     menuItem.setValue("");
     menuItem.setStyleClass("home-breadcrumb");
-    menuItem.setUrl(navigator.getPortalStartUrlOfCurrentApplication());
+    menuItem.setOnclick("navigateToPortalHome();");
     return menuItem;
   }
 
   private DefaultMenuItem buildMenuItemFromPortalSubMenuItem(SubMenuItem subMenuItem) {
     DefaultMenuItem menuItem = new DefaultMenuItem();
     menuItem.setValue(subMenuItem.getLabel());
-    menuItem.setUrl(subMenuItem.getLink());
+    menuItem.setUrl(null);
     return menuItem;
   }
 
   private DefaultMenuItem buildTaskListMenuItem() {
     TaskSubMenuItem taskSubMenuItem = new TaskSubMenuItem();
-    return buildMenuItemFromPortalSubMenuItem(taskSubMenuItem);
+    DefaultMenuItem taskMenu = buildMenuItemFromPortalSubMenuItem(taskSubMenuItem);
+    taskMenu.setOnclick("navigateToTaskList();");
+    return taskMenu;
   }
 
   private DefaultMenuItem buildCaseListMenuItem() {
     CaseSubMenuItem caseSubMenuItem = new CaseSubMenuItem();
-    return buildMenuItemFromPortalSubMenuItem(caseSubMenuItem);
+    DefaultMenuItem caseMenuItem = buildMenuItemFromPortalSubMenuItem(caseSubMenuItem);
+    caseMenuItem.setOnclick("navigateToCaseList();");
+    return caseMenuItem;
   }
 
   private DefaultMenuItem buildProcessListMenuItem() {
