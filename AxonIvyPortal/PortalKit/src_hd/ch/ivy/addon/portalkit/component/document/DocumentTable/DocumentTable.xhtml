@@ -55,14 +55,15 @@
         <h:outputText id="name" value="#{document.name}" title="#{document.name}" />
       </p:column>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/size')}"
-        rendered="#{cc.attrs.sizeColumnRendered}">
+        rendered="#{cc.attrs.sizeColumnRendered}" styleClass="document-size-column">
         <h:outputText id="size" value="#{document.userFriendlySize}" title="#{document.userFriendlySize}" />
       </p:column>
-      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/type')}" rendered="#{cc.attrs.typeColumnRendered}">
+      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/type')}" rendered="#{cc.attrs.typeColumnRendered}"
+        styleClass="document-type-column">
         <h:outputText id="type" value="#{document.type.toString()}" />
       </p:column>
       <cc:insertChildren />
-      <p:column styleClass="align-center-column" rendered="#{cc.attrs.functionColumnRendered}"
+      <p:column styleClass="align-center-column document-action-column" rendered="#{cc.attrs.functionColumnRendered}"
         headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileFunctions')}">
         <p:commandLink id="document-download" styleClass="#{cc.attrs.downloadStyleClass}"
           immediate="true" ajax="false" process="@none" title="#{cc.attrs.downloadTitle}"
