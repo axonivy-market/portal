@@ -71,6 +71,17 @@ body .layout-wrapper .layout-sidebar .sidebar-logo .portal-home-logo-small img {
     margin-left: 10px;
 }
 
+/*Style for Portal breadcrumb ----------------------------------------------------------------------- */
+body .portal-breadcrumb.ui-breadcrumb ul li .ui-menuitem-link.ui-state-disabled {
+	opacity: $currentStepOpacity;
+	color: $currentStepColor;
+}
+
+body .ui-widget-header.portal-breadcrumb {
+	background-color: $breadcrumbBackgroundColor;
+	font-size: $breadcrumbFontSize;
+}
+
 /*Style Email Setting --------------------------------------------------------------------------------*/
 .daily-summary.ui-selectmanycheckbox.ui-widget label {
     margin-left: 0px;
