@@ -278,7 +278,7 @@ Bs0 f37 actionTable 'out=in;
 ' #txt
 Bs0 f37 actionCode 'import org.primefaces.PrimeFaces;
 
-PrimeFaces.current().executeScript("PF(''task-leave-warning-dialog-breadcrumb'').show()");' #txt
+PrimeFaces.current().executeScript("PF(''task-losing-confirmation-dialog'').show()");' #txt
 Bs0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -331,7 +331,7 @@ Bs0 f9 actionTable 'out=in;
 ' #txt
 Bs0 f9 actionCode 'import org.primefaces.PrimeFaces;
 
-PrimeFaces.current().executeScript("PF(''task-leave-warning-dialog-breadcrumb'').show()");' #txt
+PrimeFaces.current().executeScript("PF(''task-losing-confirmation-dialog'').show()");' #txt
 Bs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
