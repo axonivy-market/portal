@@ -12,6 +12,7 @@
     <!-- AVAILABLE PARAMS in this template: -->
     <!-- currentProcessStep: current process step -->
     <!-- processSteps: list of process steps -->
+    <!-- isShowAllSteps: shows all of steps on large resolution, false (default) or true -->
     <!-- processChainDirection: VERTICAL or HORIZONTAL (default) -->
     <!-- processChainShape: LINE or CIRCLE (default) -->
     <!-- announcementInvisible: false or true (default) -->
@@ -33,6 +34,7 @@
     <!--   window.currentProcessStep = #{data.currentProcessStep}; -->
     <!--   window.currentProcessStep = "#{data.currentProcessStep}"; -->
     
+    <!--   window.isShowAllSteps = true; -->
     <!--   window.processChainDirection = "VERTICAL"; -->
     <!--   window.processChainShape = "LINE"; -->
     <!--   window.announcementInvisible = false; -->
@@ -43,6 +45,7 @@
     <ui:param name="abstractTaskTemplateBean" value="#{iFrameTaskTemplateBean}" />
     <ui:param name="actualStepIndex" value="#{iFrameTaskTemplateBean.currentProcessStep}" />
     <ui:param name="steps" value="#{iFrameTaskTemplateBean.processSteps}" />
+    <ui:param name="isShowAllSteps" value="#{iFrameTaskTemplateBean.isShowAllSteps}" />
     <ui:param name="processChainDirection" value="#{iFrameTaskTemplateBean.processChainDirection}" />
     <ui:param name="processChainShape" value="#{iFrameTaskTemplateBean.processChainShape}" />
     <ui:param name="announcementContainerStyleClass" value="u-hidden" />
