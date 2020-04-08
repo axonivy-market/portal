@@ -118,7 +118,7 @@ public class CaseMapTest extends BaseTest {
             + "Country: Value is required.,"
             + "Amount (SFr.): Value is required.,"
             + "Yearly salary: Value is required.,"
-            + "Amount of other open credits (SFr.)*: Value is required.",
+            + "Amount of other open credits (SFr.): Value is required.",
         caseMapPage.clickSubmitAndGetValidationMsg());
   }
 
