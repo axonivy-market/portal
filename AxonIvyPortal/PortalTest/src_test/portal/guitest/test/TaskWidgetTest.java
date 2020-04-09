@@ -192,10 +192,12 @@ public class TaskWidgetTest extends BaseTest {
     assertEquals("Task: Maternity Leave Request", taskDetailsPage.getTextOfCurrentBreadcrumb());
 
     taskDetailsPage.clickTaskListBreadCrumb();
+    taskWidgetPage = new TaskWidgetPage();
     assertEquals(true, taskWidgetPage.isDisplayed());
 
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
     taskDetailsPage.clickHomeBreadcrumb();
+    homePage = new HomePage();
     assertEquals(true, homePage.isDisplayed());
   }
 }

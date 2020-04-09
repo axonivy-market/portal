@@ -83,5 +83,6 @@ public class TaskDetailsPage extends TemplatePage {
 
   public void clickTaskListBreadCrumb() {
     click(By.cssSelector(".portal-breadcrumb ul li:nth-of-type(3) .ui-menuitem-link"));
+    ensureNoBackgroundRequest();
   }
 }
