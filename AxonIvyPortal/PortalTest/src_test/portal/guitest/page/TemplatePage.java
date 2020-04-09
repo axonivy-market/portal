@@ -316,6 +316,7 @@ public abstract class TemplatePage extends AbstractPage {
   public void clickHomeBreadcrumb() {
     waitForElementDisplayed(By.cssSelector(HOME_BREADCRUMB_SELECTOR), true);
     click(By.cssSelector(HOME_BREADCRUMB_SELECTOR));
+    ensureNoBackgroundRequest();
   }
 
   public String getTextOfCurrentBreadcrumb() {
