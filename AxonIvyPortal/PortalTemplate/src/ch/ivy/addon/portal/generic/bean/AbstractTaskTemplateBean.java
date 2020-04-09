@@ -112,7 +112,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
     }
 
     return IvyExecutor.executeAsSystem(() -> {
-      IUser user = Ivy.wf().getSecurityContext().findUser(username);
+      IUser user = Ivy.wf().getSecurityContext().users().find(username);
       return user == null ? "" : UserUtils.getFullName(user);
     });
   }

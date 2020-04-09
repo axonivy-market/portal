@@ -1,7 +1,6 @@
 package ch.ivy.addon.portal.generic.bean;
 
 import java.io.Serializable;
-import java.net.MalformedURLException;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -14,7 +13,7 @@ import ch.ivy.addon.portalkit.enums.MenuKind;
 public class NavigatorBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  public void navigateToCaseDetail(long caseId) throws MalformedURLException {
+  public void navigateToCaseDetail(long caseId) {
     PortalNavigator portalNavigator = new PortalNavigator();
     portalNavigator.navigateToPortalCaseDetails(caseId);
   }

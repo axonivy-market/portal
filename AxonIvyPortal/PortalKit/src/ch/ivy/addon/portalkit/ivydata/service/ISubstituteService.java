@@ -39,7 +39,7 @@ public interface ISubstituteService {
    * find substitutes for given user on given application
    * @param username
    * @param app
-   * @return
+   * @return substitutes
    */
   IvySubstituteResultDTO findSubstitutesOnApp(String username, String app);
 }
