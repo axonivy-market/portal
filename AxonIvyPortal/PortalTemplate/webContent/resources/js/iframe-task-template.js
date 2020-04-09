@@ -10,6 +10,9 @@ function loadIframe() {
       name : 'processSteps',
       value : window.processSteps
     }, {
+      name : 'isShowAllSteps',
+      value : window.isShowAllSteps
+    }, {
       name : 'processChainDirection',
       value : window.processChainDirection
     }, {

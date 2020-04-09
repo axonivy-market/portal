@@ -1,6 +1,5 @@
 package ch.ivy.addon.portal.chat;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -56,9 +55,14 @@ public final class ChatContactManager {
   }
 
   private static List<IUser> getContextUsers() {
-    List<IUser> users = new ArrayList<>(Ivy.wf().getApplication().getSecurityContext().getUsers());
-    users.sort((first, second) -> first.getName().compareToIgnoreCase(second.getName()));
-    users.removeIf(user -> StringUtils.equals(user.getName(), ISecurityConstants.SYSTEM_USER_NAME) || StringUtils.equals(user.getName(), PORTAL_CONNECTOR));
-    return users;
+    return Ivy.wf()
+        .getApplication()
+        .getSecurityContext()
+        .users()
+        .paged()
+        .stream()
+        .filter(user -> !StringUtils.equals(user.getName(), ISecurityConstants.SYSTEM_USER_NAME) && !StringUtils.equals(user.getName(), PORTAL_CONNECTOR))
+        .sorted((first, second) -> first.getName().compareToIgnoreCase(second.getName()))
+        .collect(Collectors.toList());
   }
 }
