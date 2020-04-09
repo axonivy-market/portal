@@ -19,8 +19,8 @@ public class PortalExpressProcess implements Process {
 
   public PortalExpressProcess(ExpressProcess process) {
     this.process = process;
-    IUser user = Ivy.session().getSecurityContext()
-        .findUser(StringUtils.isNotBlank(process.getProcessOwner()) ? process.getProcessOwner().substring(1) : StringUtils.EMPTY);
+    IUser user = Ivy.session().getSecurityContext().users()
+        .find(StringUtils.isNotBlank(process.getProcessOwner()) ? process.getProcessOwner().substring(1) : StringUtils.EMPTY);
     this.processOwnerDisplayName = Optional.ofNullable(user).map(IUser::getDisplayName).orElse(StringUtils.EMPTY);
   }
 

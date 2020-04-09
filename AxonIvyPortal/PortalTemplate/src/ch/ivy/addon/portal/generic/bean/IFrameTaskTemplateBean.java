@@ -2,7 +2,6 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,6 +14,7 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -28,6 +28,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   
   private static final String TASK_ID_PARAM = "taskId";
   private static final String URL_PARAM = "url";
+  private static final String IS_SHOW_ALL_STEPS_PARAM = "isShowAllSteps";
   private static final String PROCESS_CHAIN_SHAPE_PARAM = "processChainShape";
   private static final String PROCESS_CHAIN_DIRECTION_PARAM = "processChainDirection";
   private static final String PROCESS_STEPS_PARAM = "processSteps";
@@ -35,15 +36,16 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   
   private int currentProcessStep;
   private List<String> processSteps;
+  private boolean isShowAllSteps;
   private String processChainDirection;
   private String processChainShape;
   private PortalNavigator navigator = new PortalNavigator();
 
-  public void navigateToHomePage() throws MalformedURLException {
+  public void navigateToHomePage() {
     navigator.navigateToPortalHome();
   }
   
-  public void navigateToEndPage() throws MalformedURLException {
+  public void navigateToEndPage() {
     Map<String, String> requestParamMap = getRequestParameterMap();
     String taskId = requestParamMap.get(TASK_ID_PARAM);
     
@@ -73,6 +75,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
         .map(Integer::parseInt)
         .orElse(0);
     processSteps = StringUtils.isNotBlank(requestParamMap.get(PROCESS_STEPS_PARAM)) ? Arrays.asList(requestParamMap.get(PROCESS_STEPS_PARAM).split("\\s*,\\s*")) : new ArrayList<>();
+    isShowAllSteps = Optional.ofNullable(requestParamMap.get(IS_SHOW_ALL_STEPS_PARAM)).map(BooleanUtils::toBoolean).orElse(false);
     processChainDirection = Optional.ofNullable(requestParamMap.get(PROCESS_CHAIN_DIRECTION_PARAM)).orElse(StringUtils.EMPTY);
     processChainShape = Optional.ofNullable(requestParamMap.get(PROCESS_CHAIN_SHAPE_PARAM)).map(Object::toString).orElse(StringUtils.EMPTY);
   }
@@ -93,6 +96,14 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
 
   public List<String> getProcessSteps() {
     return processSteps;
+  }
+
+  public boolean getIsShowAllSteps() {
+    return isShowAllSteps;
+  }
+
+  public void setIsShowAllSteps(boolean isShowAllSteps) {
+    this.isShowAllSteps = isShowAllSteps;
   }
 
   public void setProcessSteps(List<String> processSteps) {

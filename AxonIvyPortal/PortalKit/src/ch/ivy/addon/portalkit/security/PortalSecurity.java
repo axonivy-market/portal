@@ -17,8 +17,10 @@ import ch.ivyteam.ivy.security.ISecurityDescriptor;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+import ch.ivyteam.ivy.security.user.IUserRepository;
 import ch.ivyteam.ivy.server.restricted.EngineMode;
 
+@SuppressWarnings("restriction")
 public enum PortalSecurity {
   INSTANCE;
 
@@ -70,34 +72,36 @@ public enum PortalSecurity {
   public void assignPermissionsToDefaultUsers() {
     IApplication portalApplication = Ivy.request().getApplication();
     ISecurityContext securityContext = portalApplication.getSecurityContext();
+    IUserRepository userRepo = securityContext.users();
     boolean isIvySecurity = securityContext.getExternalSecuritySystemName()
         .equals(ISecurityConstants.IVY_ENGINE_SECURITY_SYSTEM_PROVIDER_NAME);
     if ((EngineMode.is(EngineMode.DEMO) || EngineMode.isEmbeddedInDesigner()) && isIvySecurity) {
-      IUser adminUser = securityContext.findUser(Username.ADMIN);
+      IUser adminUser = userRepo.findWithExternalLookup(Username.ADMIN);
+      ISecurityDescriptor securityDescriptor = portalApplication.getSecurityDescriptor();
       if (adminUser != null) {
         for (IPermission permission : Permissions.ADMIN_USER_ADDITIONAL) {
-          portalApplication.getSecurityDescriptor().grantPermission(permission, adminUser);
+          securityDescriptor.grantPermission(permission, adminUser);
         }
         grantPermissionsToForSecurityMember(Arrays.asList(
             PortalPermission.STATISTIC_ANALYZE_TASK, PortalPermission.SHOW_CASE_DETAILS, 
             PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK), adminUser);
       }
 
-      IUser demoUser = securityContext.findUser(Username.DEMO);
+      IUser demoUser = userRepo.findWithExternalLookup(Username.DEMO);
       if (demoUser != null) {
         for (IPermission permission : Permissions.DEMO_USER_ADDITIONAL) {
-          portalApplication.getSecurityDescriptor().grantPermission(permission, demoUser);
+          securityDescriptor.grantPermission(permission, demoUser);
         }
       }
 
-      IUser guestUser = securityContext.findUser(Username.GUEST);
+      IUser guestUser = userRepo.findWithExternalLookup(Username.GUEST);
       if (guestUser != null) {
         for (IPermission permission : Permissions.GUEST_USER_DENIED) {
-          portalApplication.getSecurityDescriptor().denyPermission(permission, guestUser);
+          securityDescriptor.denyPermission(permission, guestUser);
         }
       }
-
-      IUser developerUser = securityContext.findUser(ISecurityConstants.DEVELOPER_USER_NAME);
+      
+      IUser developerUser = userRepo.findWithExternalLookup(ISecurityConstants.DEVELOPER_USER_NAME);
       if (developerUser != null) {
         grantPermissionsToForSecurityMember(Permissions.DEVELOPER_USER_ADDTIONAL, developerUser);
       }
@@ -110,8 +114,14 @@ public enum PortalSecurity {
       return;
     }
     ISecurityDescriptor portalSecurity = Ivy.wf().getApplication().getSecurityDescriptor();
-    List<IPermission> denniedPermission = portalSecurity.getPermissionAccesses(securityMember).stream()
-        .filter(IPermissionAccess::isDenied).map(IPermissionAccess::getPermission).collect(Collectors.toList());
+    
+    List<IPermission> denniedPermission = portalSecurity
+        .getPermissionAccesses(securityMember)
+        .stream()
+        .filter(IPermissionAccess::isDenied)
+        .map(IPermissionAccess::getPermission)
+        .collect(Collectors.toList());
+    
     iPermissions.forEach(iPermission -> {
       IPermission ivyPermission = IPermissionRepository.get().findByName(iPermission.getValue());
       if (!denniedPermission.contains(ivyPermission)) {
