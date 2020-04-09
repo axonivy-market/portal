@@ -176,6 +176,7 @@ public class MenuView {
         break;
       case EXPRESS:
         buildBreadCrumbForExpress();
+        break;
       default:
         break;
     }
