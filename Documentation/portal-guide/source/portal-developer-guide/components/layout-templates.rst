@@ -109,6 +109,7 @@ Inside your UI, you can configure these parameters which will be rendered by the
 		window.currentProcessStep = 0;
 		window.currentProcessStep = #{data.currentProcessStep};
 		window.currentProcessStep = "#{data.currentProcessStep}";
+		window.isShowAllSteps = true;
 		window.processChainDirection = "VERTICAL";
 		window.processChainShape = "LINE";
 		window.announcementInvisible = false;

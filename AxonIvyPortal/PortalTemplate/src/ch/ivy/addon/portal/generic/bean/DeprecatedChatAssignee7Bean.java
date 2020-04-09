@@ -41,7 +41,6 @@ import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
-import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
@@ -128,10 +127,6 @@ public class DeprecatedChatAssignee7Bean implements Serializable {
 
   public List<UserDTO> populateUserAutoComplete(String query) {
     return new ArrayList<>();
-//    List<UserDTO> filteredUsers = UserUtils.filterUsersDTO(getAvailableUsers(), query);
-//    filteredUsers
-//        .sort((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
-//    return filteredUsers;
   }
 
   public List<RoleDTO> populateRoleAutoComplete(String query) {

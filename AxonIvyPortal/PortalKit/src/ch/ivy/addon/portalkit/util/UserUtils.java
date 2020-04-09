@@ -202,12 +202,12 @@ public class UserUtils {
   
   /**
    * Finds the users who have the given roles. If the current application is Portal, find all users over all applications, otherwise in current application
-   * @param query {@link String}
-   * @param startIndex 0..n. The index of the first record is 0
-   * @param count 0..n. Use -1 to return all beginning from the startIndex
-   * @param fromRoles {@link List}
-   * @param excludedUsers {@link List}}
-   * @return user list {@link List} of {@link UserDTO}}
+   * @param query
+   * @param startIndex index of the first record is 0
+   * @param count use -1 to return all beginning from the startIndex
+   * @param fromRoles role list filter
+   * @param excludedUsernames user name list exclude
+   * @return user list
    */
   @SuppressWarnings("unchecked")
   public static List<UserDTO> findUsers(String query, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {

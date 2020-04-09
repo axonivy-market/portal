@@ -22,6 +22,7 @@ import static ch.ivyteam.ivy.security.IPermission.DOCUMENT_OF_INVOLVED_CASE_WRIT
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
+import java.util.stream.Collectors;
 
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
@@ -239,7 +240,7 @@ public class SecurityUtils {
 
               IRole role = Ivy.wf().getSecurityContext().findRole(rolename);
               if (role != null) {
-                result = role.getAllUsers();
+                result = role.users().allPaged().stream().collect(Collectors.toList());
               }
               return result;
             }
@@ -268,7 +269,7 @@ public class SecurityUtils {
             public List<IUser> call() throws Exception {
               List<IUser> result = new ArrayList<IUser>();
 
-              List<IUser> users = Ivy.wf().getSecurityContext().getUsers();
+              List<IUser> users = Ivy.wf().getSecurityContext().users().paged().stream().collect(Collectors.toList());
               for (IUser u : users) {
                 if (u.getId() != Ivy.wf().getSecurityContext().getSystemUser().getId()) {
                   result.add(u);
@@ -285,7 +286,7 @@ public class SecurityUtils {
 
   private static void updatePermissionsOfAdminUser() {
     IApplication application = Ivy.wf().getApplication();
-    IUser admin = application.getSecurityContext().findUser("admin");
+    IUser admin = application.getSecurityContext().users().find("admin");
 
     if (admin != null) {
       for (IPermission permission : ADMIN_PERMISSIONS) {
@@ -301,7 +302,7 @@ public class SecurityUtils {
 
   private static void updatePermissionsOfDemoUser() {
     IApplication application = Ivy.wf().getApplication();
-    IUser demo = application.getSecurityContext().findUser("demo");
+    IUser demo = application.getSecurityContext().users().find("demo");
     for (IPermission iPermission : DEMO_DENIED_PERMISSIONS) {
       application.getSecurityDescriptor().denyPermission(iPermission, demo);
     }
