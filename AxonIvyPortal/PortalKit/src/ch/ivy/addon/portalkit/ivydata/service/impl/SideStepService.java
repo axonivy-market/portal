@@ -84,7 +84,7 @@ public class SideStepService implements ISideStepService {
 
   private List<IStartableSideStep> getSideSteps(String username, ICase iCase) {
     IApplication application = iCase.getApplication();
-    IUser user = application.getSecurityContext().findUser(username);
+    IUser user = application.getSecurityContext().users().find(username);
     ICaseMapService caseMapService =
         ICaseMapService.get().getCaseMapService(iCase.getBusinessCase(), user.getUserToken());
     return caseMapService.findStartableSideSteps();
