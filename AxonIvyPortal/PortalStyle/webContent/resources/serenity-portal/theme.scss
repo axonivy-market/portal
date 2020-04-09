@@ -82,6 +82,10 @@ body .ui-widget-header.portal-breadcrumb {
 	font-size: $breadcrumbFontSize;
 }
 
+.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu .ui-widget-header.portal-breadcrumb  li a.ui-icon-home {
+	font-size: $breadcrumbHomeIconFontSize;
+}
+
 /*Style Email Setting --------------------------------------------------------------------------------*/
 .daily-summary.ui-selectmanycheckbox.ui-widget label {
     margin-left: 0px;
