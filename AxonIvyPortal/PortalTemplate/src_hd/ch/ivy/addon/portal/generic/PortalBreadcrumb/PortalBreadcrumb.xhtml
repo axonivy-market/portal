@@ -20,9 +20,6 @@
   <f:event listener="#{menuView.loadBreadcrumb(cc.attrs.viewName, task, case)}" type="preRenderComponent" />
   <h:form id="breadcrumb-form">
   <p:breadCrumb id="breadcrumb" styleClass="portal-breadcrumb u-hidden-sm-down" model="#{menuView.breadcrumbModel}" rendered="#{not empty cc.attrs.viewName}" />
-  <p:commandLink styleClass="mobile-portal-home-link fa fa-chevron-left u-hidden-md-up" rendered="#{not empty cc.attrs.viewName}"
-    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorPage/backToHomePage')}"
-    actionListener="#{logic.navigateToPortalHome(cc.attrs.isWorkingOnATask)}" />
 
   <p:remoteCommand name="navigateToPortalHome"
     actionListener="#{logic.navigateToPortalHome(cc.attrs.isWorkingOnATask)}"
