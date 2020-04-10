@@ -4363,28 +4363,9 @@ body .ui-widget-header.portal-breadcrumb ul li:last-child {
 	width: calc(100% - 130px);
 }
 
-.mobile-portal-home-link {
-	margin-left: 30px;
-	padding-top: 5px;
-}
-
 @media screen and (min-width: 40em) and (max-width: 64.062em) {
 	.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li.breadcrumb-container {
 		width: calc(100% - 256px);
-	}
-}
-
-@media screen and (max-width: 40em) {
-	.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li.breadcrumb-container {
-		width: auto;
-	}
-
-	.mobile-portal-home-link:before {
-		margin-right: 3px;
-	}
-
-	body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled .ui-menuitem-text {
-		max-width: 20rem;
 	}
 }
 
