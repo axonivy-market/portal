@@ -10,13 +10,17 @@ pipeline {
   }
 
   tools { 
-      maven '3.6' 
+      maven '3.1' 
       jdk '8' 
   }
 
   parameters {
       string(name: 'testPatternToRun', defaultValue: 'portal.guitest.userexample.test.*Test,portal.guitest.test.*Test', description: 'Test pattern to run')
       string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/7.0/axonivy-engine-windows.zip', description: 'Where to download engine?')
+  }
+
+  environment {
+    engineDir = "$env.WORKSPACE/AxonIvyPortal/PortalTest/engine"
   }
 
   stages {
@@ -41,10 +45,28 @@ pipeline {
             """
           }
 
-          echo "====================Build Portal modules===================="
-          def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/PortalExamples', 'Showcase/InternalSupport']
+          echo '====================Extract engine===================='
+          bat """
+            mvn com.axonivy.ivy.ci:project-build-plugin:7.0.4:installEngine %engineDownloadURL% -Divy.engine.directory=${env.engineDir} -Divy.engine.os.arch=Windows_x64 -Divy.engine.version=(7.0.0,]
+          """
+
+          echo "====================Deploy Portal modules===================="
+          def modules = ['AxonIvyPortal/PortalConnector', 'AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/SelfServiceBPM', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/PortalExamples', 'Showcase/InternalSupport']
           for (module in modules) {
             bat "mvn clean install -f ${module}/pom.xml"
+            def moduleName = module.split('/')[1]
+            def deployedApplication = module.contains('PortalConnector') ? 'System' : 'Portal'
+            def deployedModuleDir = "AxonIvyPortal/PortalTest/engine/system/applications/${deployedApplication}/${moduleName}"
+            powershell """
+                if (!(Test-Path ${deployedModuleDir})) {
+                  mkdir ${deployedModuleDir}
+                }
+              cd "${deployedModuleDir}"
+              rmdir * -recurse
+              mkdir 1
+              cd 1
+              jar xf ${env.WORKSPACE}/${module}/target/*.iar
+            """
           }
 
           node('master') {
@@ -65,8 +87,7 @@ pipeline {
           '''
 
           echo '====================Execute maven for testing===================='
-          bat "mvn clean test -f AxonIvyPortal/PortalTest/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120 -Dskip.redeploy=false"
-
+          bat "mvn clean test -f AxonIvyPortal/PortalTest/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120 -DdemoUserName=demo -DdemoUserPassword=demo -DadminUserName=admin -DadminUserPassword=admin -DSelfServicePMName=SelfServiceBpm"
           node('master') {
             echo '====================Close all remote desktop connections===================='
             bat '''

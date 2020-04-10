@@ -1,12 +1,12 @@
 pipeline {
-  agent {label 'master'}
+  agent {label 'portal-slave'}
   
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
   }
   
   tools { 
-      maven '3.6' 
+      maven '3.1' 
       jdk '8' 
   }
 
@@ -33,9 +33,6 @@ pipeline {
               $xml = new-object xml
               $xml.load($file)
               $xml.project.version = $env:releaseVersion
-              if ($file.name -eq 'customized_pom.xml') {
-                $xml.project.properties.'portal.version' = $env:releaseVersion
-              }
               $dependencies = $xml.project.dependencies.ChildNodes
               foreach($dependency in $dependencies) {
                 if(($dependency.groupId -eq 'ch.ivyteam.ivy.project.portal') -or ($dependency.groupId -eq 'com.axonivy.portal')) {
@@ -49,7 +46,7 @@ pipeline {
 
           echo "====================Build all modules===================="
           // module structure [module path, isPossibleToDeploy]
-          def modules = [['AxonIvyPortal/PortalStyle', true], ['AxonIvyPortal/PortalKit', true], ['AxonIvyPortal/PortalTemplate', true], ['AxonIvyPortal/AxonIvyExpress', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/PortalExamples', true], ['Showcase/InternalSupport', false], ['AxonIvyPortal/PortalApp', true]]
+          def modules = [['AxonIvyPortal/PortalConnector', true], ['AxonIvyPortal/PortalStyle', true], ['AxonIvyPortal/PortalKit', true], ['AxonIvyPortal/PortalTemplate', true], ['AxonIvyPortal/AxonIvyExpress', true], ['AxonIvyPortal/SelfServiceBPM', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/PortalExamples', true], ['Showcase/InternalSupport', false]]
           for (module in modules) {
             def mavenGoal = params.deployToRepo && module[1]? 'deploy' : 'install'
             bat "mvn clean ${mavenGoal} -Divy.engine.directory=%engineDir% -Divy.engine.version=(7.0.0,] -Divy.compiler.engine.start.timeout=120 %engineDownloadURL% -f ${module[0]}/pom.xml"
@@ -79,7 +76,7 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: "**/target/*.iar,AxonIvyPortal/PortalApp/target/*.zip,*/*/pom.xml", fingerprint: true
+      archiveArtifacts artifacts: "**/target/*.iar,*/*/pom.xml", fingerprint: true
     }
   }
 }

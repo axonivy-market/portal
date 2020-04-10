@@ -10,7 +10,7 @@ pipeline {
   }
 
   tools { 
-      maven '3.6' 
+      maven '3.1' 
       jdk '8' 
   }
 
@@ -37,7 +37,7 @@ pipeline {
             exit 0
           """
 
-          def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress']
+          def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/SelfServiceBPM']
           for (module in modules) {
             bat "mvn clean install -f ${module}/pom.xml"
             bat "mvn com.axonivy.ivy.ci:project-build-plugin:7.0.4:deploy-iar -f ${module}/pom.xml -Divy.deploy.engine.app=%portalApplicationName% -Divy.deploy.engine.dir=%engineDir%"
@@ -57,7 +57,7 @@ pipeline {
           echo "====================Test one admin user===================="
           updateConfigFile('data/single_admin_user_server.csv', '1')
           bat '''
-            jmeter.bat -n -t AxonIvyPortal/PortalTest/jmeter/portal_walkthrough_testplan.jmx -l temp.jtl
+            jmeter.bat -n -t AxonIvyPortal/PortalTest/jmeter/portal_LTS_walkthrough_testplan.jmx -l temp.jtl
           '''
           executeJMeter('result_1_admin_user.jtl')
 
@@ -77,7 +77,7 @@ pipeline {
     always {
       node('portal-slave') {
         bat """
-          net stop "${engines[1]}"
+          net stop "${engines[0]}"
           exit 0
         """
       }
@@ -98,6 +98,6 @@ def updateConfigFile(acccountFilePath, numberOfUser) {
 
 def executeJMeter(resultFileName) {
   bat """
-    jmeter.bat -n -t AxonIvyPortal/PortalTest/jmeter/portal_walkthrough_testplan.jmx -l D:/PerformanceResult/${today}/${env.engineVersion}/${resultFileName}
+    jmeter.bat -n -t AxonIvyPortal/PortalTest/jmeter/portal_LTS_walkthrough_testplan.jmx -l D:/PerformanceResult/${today}/${env.engineVersion}/${resultFileName}
   """
 }

@@ -6,7 +6,7 @@ pipeline {
   }
   
   tools { 
-      maven '3.6' 
+      maven '3.1' 
       jdk '8' 
   }
 
@@ -28,7 +28,7 @@ pipeline {
         script {
           today = new Date().format('dd-MM-yyyy_HH-mm')
 
-          config = [singleAppEngine: [engineParentDir: 'D:\\tools\\ivy-server\\', engineName: '7.0', databaseBackupDir: 'D:\\backup\\database', databaseName: 'ivy-7.0', serviceName: 'Axon.ivy-7.0']
+          config = [singleAppEngine: [engineParentDir: 'D:\\tools\\ivy-server\\', engineName: '7.0', databaseBackupDir: 'D:\\backup\\database', databaseName: '7.0_AxonIvySystemDatabase', serviceName: 'Axon.ivy-7.0']
           ,peformanceTestEngine: [engineParentDir: 'C:\\tools\\ivy-server\\', engineName: 'LTS', databaseBackupDir: 'D:\\backup\\database', databaseName: 'ivy-performance-7.0', serviceName: 'Axon.ivyEngine - LTS']]
 
           engineParentDir = config[params.engine]['engineParentDir']
@@ -56,7 +56,7 @@ pipeline {
         script {
           bat """
             rem backup data to restore in case build fails
-            xcopy /s/y/h/e/k/i ${engineDir} ${engineBackupDir}\\${engineName}-${today}
+            xcopy /s/y/h/e/k/i/q ${engineDir} ${engineBackupDir}\\${engineName}-${today}
           """
           bat """
             rem stop engine
@@ -76,7 +76,7 @@ pipeline {
           bat """
             rem copy license, configuration files
             copy /D/Y ${renamedEngineDir}\\configuration\\*.lic ${engineDir}\\configuration
-            copy /D/Y ${renamedEngineDir}\\configuration\\*.yaml ${engineDir}\\configuration
+            copy /D/Y ${renamedEngineDir}\\configuration\\serverconfig.xml ${engineDir}\\configuration
           """
           powershell """
             #copy applications, misc/iis (for SSO)
