@@ -8,8 +8,8 @@
   <properties>
     <powermock.version>2.0.2</powermock.version>
     <portal.version>9.1.0.0-SNAPSHOT</portal.version>
-    <build.plugin.version>8.0.1</build.plugin.version>
-    <ivy.engine.version>8.0.2</ivy.engine.version>
+    <build.plugin.version>8.0.4</build.plugin.version>
+    <ivy.engine.version>9.1.0</ivy.engine.version>
     <skip.redeploy>true</skip.redeploy>
   </properties>
   <dependencies>
