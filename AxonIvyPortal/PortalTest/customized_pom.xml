@@ -1,8 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-  xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<?xml version="1.0" encoding="utf-8"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.ivyteam.ivy.project.portal</groupId>
   <artifactId>portalTest</artifactId>
@@ -11,9 +8,9 @@
   <properties>
     <powermock.version>2.0.2</powermock.version>
     <portal.version>9.1.0.0-SNAPSHOT</portal.version>
-    <build.plugin.version>8.0.4</build.plugin.version>
-    <ivy.engine.version>9.1.0</ivy.engine.version>
-	<skip.redeploy>true</skip.redeploy>
+    <build.plugin.version>8.0.1</build.plugin.version>
+    <ivy.engine.version>8.0.2</ivy.engine.version>
+    <skip.redeploy>true</skip.redeploy>
   </properties>
   <dependencies>
     <dependency>
