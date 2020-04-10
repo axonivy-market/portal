@@ -21,8 +21,12 @@ pipeline {
             foreach($file in $files) {
               $xml = new-object xml
               $xml.load($file)
-              $xml.project.properties.'build.plugin.version' = $env:buildPluginVersion
-              $xml.project.properties.'ivy.engine.version' = $env:ivyEngineVersion
+              if ($xml.project.properties.'build.plugin.version') {
+                $xml.project.properties.'build.plugin.version' = $env:buildPluginVersion
+              }
+              if ($xml.project.properties.'ivy.engine.version') {
+                $xml.project.properties.'ivy.engine.version' = $env:ivyEngineVersion
+              }
               $sw = New-Object System.IO.StreamWriter($file, $false, $utf8WithoutBom)
               $xml.Save($sw)
             }
