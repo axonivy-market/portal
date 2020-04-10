@@ -10,7 +10,6 @@
   <packaging>iar</packaging>
   <properties>
     <powermock.version>2.0.2</powermock.version>
-    <ivy.engine.version>8.0.0</ivy.engine.version>
     <portal.version>9.1.0.0-SNAPSHOT</portal.version>
     <build.plugin.version>8.0.4</build.plugin.version>
     <ivy.engine.version>9.1.0</ivy.engine.version>
