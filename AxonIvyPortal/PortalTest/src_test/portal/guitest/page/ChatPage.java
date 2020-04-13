@@ -8,7 +8,6 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import portal.guitest.bean.ExpressResponsible;
-import portal.guitest.common.Sleeper;
 
 public class ChatPage extends TemplatePage {
 
