@@ -42,17 +42,6 @@ public class UrlDetectorTest {
     UrlDetector urlDetector = new UrlDetector();
     urlDetector.getBaseURL(facesContext);
   }
-
-  @Test
-  public void testGetHost() throws MalformedURLException {
-    UrlDetector detector = new UrlDetector();
-    Assert.assertEquals("http://google.com", detector.getHost("http://google.com"));
-    Assert.assertEquals("http://www.google.com", detector.getHost("http://www.google.com/ivy/designer"));
-    Assert.assertEquals("http://google.com:8081", detector.getHost("http://google.com:8081"));
-    Assert.assertEquals("http://google.com:8081", detector.getHost("http://google.com:8081/ivy/designer"));
-    Assert.assertEquals("http://www.google.com", detector.getHost("http://www.google.com:80/ivy/designer"));
-    Assert.assertEquals("https://www.google.com", detector.getHost("https://www.google.com:443/ivy/designer"));
-  }
   
   private FacesContext mockBaseUrl(String scheme, String serverName, int serverPort, String contextPath) {
     HttpServletRequest request = Mockito.mock(HttpServletRequest.class);
