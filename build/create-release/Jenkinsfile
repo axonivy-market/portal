@@ -58,16 +58,10 @@ pipeline {
             git push --delete origin ${params.releaseVersion}
             git tag -d ${params.releaseVersion}
 
-            rem Temporary commit version changes to create tag
-            git commit -a -m "update projects version"
-            git push origin ${env.BRANCH_NAME}
-
             rem Create tag for the release
+            git commit -a -m "update projects version"
             git tag -a ${params.releaseVersion} -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}
             git push origin ${params.releaseVersion}
-
-            rem undo last push
-            git push -f origin HEAD^^:${env.BRANCH_NAME}
           """
         }
       }
