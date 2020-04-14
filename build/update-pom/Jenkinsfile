@@ -1,0 +1,43 @@
+pipeline {
+  agent {label 'master'}
+  
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
+  }
+  
+  parameters {
+      string(name: 'buildPluginVersion', defaultValue: '7.0.4', description: 'Axon.ivy build plugin version of all pom will be updated to.')
+      string(name: 'ivyEngineVersion', defaultValue: '7.0.17', description: 'Axon.ivy engine version of all pom will be updated to.')
+  }
+
+  stages {
+    stage('build') {
+      steps {
+        script {
+          echo "====================Update properties build.plugin.version, ivy.engine.version of all pom===================="
+          powershell '''
+            $utf8WithoutBom = New-Object System.Text.UTF8Encoding($false)
+            $files = get-childitem AxonIvyPortal/*/pom.xml,Showcase/*/pom.xml,AxonIvyPortal/PortalTest/customized_pom.xml
+            foreach($file in $files) {
+              $xml = new-object xml
+              $xml.load($file)
+              if ($xml.project.properties.'build.plugin.version') {
+                $xml.project.properties.'build.plugin.version' = $env:buildPluginVersion
+              }
+              if ($xml.project.properties.'ivy.engine.version') {
+                $xml.project.properties.'ivy.engine.version' = $env:ivyEngineVersion
+              }
+              $sw = New-Object System.IO.StreamWriter($file, $false, $utf8WithoutBom)
+              $xml.Save($sw)
+            }
+          '''
+          echo "====================Commit to GIT===================="
+          bat """
+            git commit -a -m "Updated all pom build.plugin.version=${buildPluginVersion}, ivy.engine.version=${ivyEngineVersion}"
+            git push origin ${env.BRANCH_NAME}
+          """
+        }
+      }
+    }
+  }
+}

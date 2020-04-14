@@ -1,5 +1,5 @@
 pipeline {
-  agent {label 'master'}
+  agent {label 'portal-slave'}
   
   options {
     buildDiscarder(logRotator(numToKeepStr: '200', artifactNumToKeepStr: '5'))
@@ -22,13 +22,12 @@ pipeline {
 
   stages {
     stage('deploy') {
-      agent {label 'portal-slave'}
       steps {
         script {
           engines = ['Axon.ivy Engine - LTS', 'Axon.ivyEngine8.0', 'Axon.ivyEngineTrunk']
           for (engine in engines) {
             bat """
-              net stop \"${engine}\"
+              net stop "${engine}"
               exit 0
             """
           }
@@ -46,6 +45,8 @@ pipeline {
       }
     }
     stage('test') {
+      agent {label 'master'}
+
       tools { 
         jdk '8' 
       }
@@ -75,14 +76,14 @@ pipeline {
 
   post {
     always {
-      node('portal-slave') {
-        bat """
-          net stop "${engines[0]}"
-          exit 0
-        """
+      bat """
+        net stop "${engines[0]}"
+        exit 0
+      """
+      node('master') {
+        archiveArtifacts artifacts: "D:/PerformanceResult/${today}/*/*.jtl", allowEmptyArchive: true, fingerprint: true
+        perfReport sourceDataFiles: "D:/PerformanceResult/${today}/*/*.jtl", compareBuildPrevious :true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true
       }
-      archiveArtifacts artifacts: "D:/PerformanceResult/${today}/*/*.jtl", allowEmptyArchive: true, fingerprint: true
-      perfReport sourceDataFiles: "D:/PerformanceResult/${today}/*/*.jtl", compareBuildPrevious :true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true
     }
   }
 }
@@ -90,8 +91,8 @@ pipeline {
 def updateConfigFile(acccountFilePath, numberOfUser) {
   powershell """
     get-content AxonIvyPortal/PortalTest/jmeter/test.properties | select-string -pattern 'portal.thread.numberOfUser' -notmatch | select-string -pattern 'file.csv' -notmatch | Out-File AxonIvyPortal/PortalTest/jmeter/out.properties -encoding ASCII
-    Add-Content AxonIvyPortal/PortalTest/jmeter/out.properties \"file.csv=${acccountFilePath}\"
-    Add-Content AxonIvyPortal/PortalTest/jmeter/out.properties \"portal.thread.numberOfUser=${numberOfUser}\"
+    Add-Content AxonIvyPortal/PortalTest/jmeter/out.properties "file.csv=${acccountFilePath}"
+    Add-Content AxonIvyPortal/PortalTest/jmeter/out.properties "portal.thread.numberOfUser=${numberOfUser}"
     move AxonIvyPortal/PortalTest/jmeter/out.properties AxonIvyPortal/PortalTest/jmeter/test.properties -Force
   """
 }

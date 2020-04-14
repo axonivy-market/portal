@@ -40,8 +40,8 @@ pipeline {
           def windowsEngineServices = ['Axon.ivy Engine - LTS', 'Axon.ivyEngine8.0', 'Axon.ivyEngineTrunk']
           for (windowsEngineService in windowsEngineServices) {
             bat """
-              sc query \"${windowsEngineService}\" | find /i \"RUNNING\"
-              if not \"%ERRORLEVEL%\"==\"1\" ( net stop \"${windowsEngineService}\")
+              sc query "${windowsEngineService}" | find /i "RUNNING"
+              if not "%ERRORLEVEL%"=="1" ( net stop "${windowsEngineService}")
             """
           }
 

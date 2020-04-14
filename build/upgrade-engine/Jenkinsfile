@@ -61,7 +61,7 @@ pipeline {
           bat """
             rem stop engine
             sc query "${serviceName}" | find /i "RUNNING"
-            if not "%ERRORLEVEL%"=="1" ( net stop ${serviceName} )
+            if not "%ERRORLEVEL%"=="1" ( net stop "${serviceName}" )
             exit 0
           """
           bat """
@@ -87,12 +87,12 @@ pipeline {
           """
           bat """
             rem start engine
-            net start ${serviceName}
+            net start "${serviceName}"
 
             @echo off
             echo %time%
             for /l %%i IN (1,1,150) do (
-              sc query ${serviceName} | findstr STATE | findstr RUNNING
+              sc query "${serviceName}" | findstr STATE | findstr RUNNING
               if errorlevel 1 (
                 ping 1.1.1.1 -n 1 -w 1000 > nul
               ) else (
