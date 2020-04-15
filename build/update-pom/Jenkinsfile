@@ -7,7 +7,7 @@ pipeline {
   
   parameters {
       string(name: 'buildPluginVersion', defaultValue: '8.0.4', description: 'Axon.ivy build plugin version of all pom will be updated to.')
-      string(name: 'ivyEngineVersion', defaultValue: '8.0.8', description: 'Axon.ivy engine version of all pom will be updated to.')
+      string(name: 'ivyEngineVersion', defaultValue: '8.0.4', description: 'Axon.ivy engine version of all pom will be updated to.')
   }
 
   stages {
