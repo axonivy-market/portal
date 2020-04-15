@@ -321,4 +321,20 @@ public class CaseDetailsPage extends TemplatePage {
   public int countNumberOfDocument() {
     return findListElementsByCssSelector("a[id$='download']").size();
   }
+  
+  public List<WebElement> findDocumentItemInCaseDetailsDocumentTable() {
+    return findListElementsByCssSelector("a[id$='download']");
+  }
+  
+  public void onClickDestroyCase() {
+    click(findElementById("case-item-details:destroy-case-link"));
+  }
+  
+  public void confimDestruction() {
+    String destroyCaseDialogId = "case-item-details:destroy-case-confirmation-dialog";
+    waitForElementDisplayed(By.id(destroyCaseDialogId), true);
+    WebElement destroyConfirmationDialog = findElementById(destroyCaseDialogId);
+    WebElement confirmButton = findChildElementById(destroyConfirmationDialog, "case-item-details:confirm-destruction");
+    confirmButton.click();
+  }
 }

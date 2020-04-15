@@ -1,0 +1,5 @@
+Name,Default,Type,Description
+fileName,null,String,The name of document file
+fileNameStyleClass,null,String,Style class of file name
+symbolStyleClass,null,String,Style class of symbol extension
+hideSymbol,FALSE,Boolean,Use to hide symbol of the document name
