@@ -44,8 +44,9 @@
               <p:commandLink ajax="false" id="download"
                 styleClass="download-command case-document-name-text u-truncate-text">
                 <p:fileDownload value="#{logic.downloadDocument(document)}" />
-                <span class="fa fa-file-pdf-o case-details-document-download-icon" />
-                <h:outputText value="#{document.name}" />
+                <ic:ch.ivy.addon.portalkit.component.document.DocumentName fileName="#{document.name}"
+                  symbolStyleClass="case-details-document-download-icon" 
+                  fileNameStyleClass="js-document-name"/>
               </p:commandLink>
               <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}"
                 rendered="#{!(case.state eq 'DONE' and data.isHideUploadDocumentForDoneCase) and caseActionBean.canWriteDocument(case)}"
