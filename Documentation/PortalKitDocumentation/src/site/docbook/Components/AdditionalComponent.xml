@@ -243,5 +243,76 @@
 		Please refer to GlobalGrowl dialog in PortalExamples project for more details.
 		</para>
     </sect3>
-</sect2>
+    </sect2>
+	<sect2 xml:id="axonivyportal.components.additionalcomponent.documentname">
+		<title>Document name</title>
+		<sect3 xml:id="axonivyportal.components.additionalcomponent.documentname.introduce">
+			<title>Introduction</title>
+			<para>
+				This component is used for rendering document file name with the corresponding symbol of extension.
+				It's using Font Awesome 4.7.0 icon.
+			</para>
+			<mediaobject>
+				<imageobject>
+					<imagedata fileref="images/AdditionalComponent/document-name.png" />
+				</imageobject>
+			</mediaobject>
+		</sect3>
+		<sect3 xml:id="axonivyportal.components.additionalcomponent.documentname.knownextensions">
+			<title>Knows extensions</title>
+			<screen>doc, docx, xls, xlsx, xlsm, csv, pdf, ppt, pptx, txt, zip, jpg, jpeg, bmp, png, msg, eml, rar, 7z, gif, xps</screen>
+			<note><para>For unknown or less specific documents, it will show a generic <code>fa-file-o</code> icon as symbol.</para></note>
+		</sect3>
+		<sect3 xml:id="axonivyportal.components.additionalcomponent.documentname.codeexample">
+			<title>Code example</title>
+			<screen>&lt;ic:ch.ivy.addon.portalkit.component.document.DocumentName
+			fileName="#{document.name}"
+			symbolStyleClass="case-details-document-download-icon"
+			fileNameStyleClass="case-name-item"
+			hideSymbol="false" /&gt;</screen>
+		</sect3>
+		<sect3 xml:id="axonivyportal.components.additionalcomponent.documentname.attributes">
+			<title>Attributes of this component</title>
+			<table frame='all'>
+				<title>Document name attributes</title>
+				<tgroup cols='4' align='left'>
+					<thead>
+						<row>
+							<entry align="center">Name</entry>
+							<entry align="center">Default</entry>
+							<entry align="center">Type</entry>
+							<entry align="center">Description</entry>
+						</row>
+					</thead>
+					<tbody>
+						<row>
+							<entry>fileName</entry>
+							<entry>null</entry>
+							<entry>String</entry>
+							<entry>The name of document file</entry>
+						</row>
+						<row>
+							<entry>fileNameStyleClass</entry>
+							<entry>null</entry>
+							<entry>String</entry>
+							<entry>Style class of file name</entry>
+						</row>
+						<row>
+							<entry>symbolStyleClass</entry>
+							<entry>null</entry>
+							<entry>String</entry>
+							<entry>Style class of symbol extension</entry>
+						</row>
+						<row>
+							<entry>hideSymbol</entry>
+							<entry>FALSE</entry>
+							<entry>Boolean</entry>
+							<entry>Use to hide symbol of the document name</entry>
+						</row>
+					</tbody>
+
+				</tgroup>
+			</table>
+		</sect3>
+	</sect2>
 </sect1>
