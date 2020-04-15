@@ -19,6 +19,10 @@ pipeline {
       string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/8.0/axonivy-engine-windows.zip', description: 'Where to download engine?')
   }
 
+  environment {
+    engineDir = "$env.WORKSPACE/AxonIvyPortal/PortalTest/engine"
+  }
+
   stages {
     stage('build') {
       steps {
@@ -36,16 +40,31 @@ pipeline {
           def windowsEngineServices = ['Axon.ivy Engine - LTS', 'Axon.ivyEngine8.0', 'Axon.ivyEngineTrunk']
           for (windowsEngineService in windowsEngineServices) {
             bat """
-              sc query \"${windowsEngineService}\" | find /i \"RUNNING\"
-              if not \"%ERRORLEVEL%\"==\"1\" ( net stop \"${windowsEngineService}\")
+              sc query "${windowsEngineService}" | find /i "RUNNING"
+              if not "%ERRORLEVEL%"=="1" ( net stop "${windowsEngineService}")
             """
           }
 
+          echo '====================Extract engine===================='
+          bat '''
+            mvn clean compile -f AxonIvyPortal/PortalTest/pom.xml -Divy.engine.directory=%engineDir% %engineDownloadURL%
+          '''
+
           echo "====================Build Portal modules===================="
-          def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/PortalExamples', 'Showcase/InternalSupport']
+          def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/PortalExamples', 'Showcase/InternalSupport', 'AxonIvyPortal/PortalApp']
           for (module in modules) {
             bat "mvn clean install -f ${module}/pom.xml"
           }
+
+          echo "====================Deploy Portal modules===================="
+          powershell '''
+            $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
+            rmdir $DEPLOYMENT/* -recurse
+            Copy-Item AxonIvyPortal/PortalApp/target/*zip -Destination $DEPLOYMENT
+            Copy-Item AxonIvyPortal/PortalKitTestHelper/target/*iar -Destination $DEPLOYMENT
+            Copy-Item Showcase/PortalExamples/target/*iar -Destination $DEPLOYMENT
+            Copy-Item Showcase/InternalSupport/target/*iar -Destination $DEPLOYMENT
+          '''
 
           node('master') {
             echo '====================Close all remote desktop connections and setup new remote destop to Portal slave===================='
@@ -65,7 +84,7 @@ pipeline {
           '''
 
           echo '====================Execute maven for testing===================='
-          bat "mvn clean test -f AxonIvyPortal/PortalTest/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120 -Dskip.redeploy=false"
+          bat "mvn clean test -f AxonIvyPortal/PortalTest/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
 
           node('master') {
             echo '====================Close all remote desktop connections===================='
