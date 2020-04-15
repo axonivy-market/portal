@@ -12,7 +12,7 @@ pipeline {
 
   parameters {
       string(name: 'testPatternToRun', defaultValue: 'portal.guitest.userexample.test.*Test,portal.guitest.test.*Test', description: 'Test pattern to run.')
-      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/sprint/axonivy-engine-windows.zip', description: 'Where to download engine?')
+      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip', description: 'Where to download engine?')
       booleanParam(name: 'skipReplacePortal', defaultValue: false, description: 'Should skip replace Portal artifacts in the engine? TRUE: keep built-in Portal of the engine, FALSE: replace built-in Portal of the engine by the latest successful release.')
   }
 
@@ -37,8 +37,16 @@ pipeline {
             git clean -fd
           '''
 
+          echo '====================Copy patch to workspace if any. Note: this is in a tag and we cannot change code in git repo===================='
+          powershell '''
+            if (Test-Path ../patch/master) {
+              copy -path ../patch/master -recurse -force -destination .
+            }
+          '''
+
           downloadPortalRelease()
 
+          echo '====================Extract engine===================='
           bat '''
             mvn clean compile -f AxonIvyPortal/PortalTest/pom.xml -Divy.engine.directory=%engineDir% %engineDownloadURL%
           '''
@@ -54,15 +62,17 @@ pipeline {
             '''
           }
 
-          def modules = ['AxonIvyPortal/PortalKitTestHelper', 'Showcase/InternalSupport']
-          for (module in modules) {
+          echo '====================Deploy PortalKitTestHelper and InternalSupport===================='
+          def extraModules = ['AxonIvyPortal/PortalKitTestHelper', 'Showcase/InternalSupport']
+          for (module in extraModules) {
             bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir% -Divy.compiler.engine.start.timeout=120"
           }
-
-          echo '====================Copy patch to workspace if any. Note: this is in a tag and we cannot change code in git repo===================='
           powershell '''
-            copy -path ../patch/trunk/PortalTest -recurse -force -destination AxonIvyPortal
+            $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
+            Copy-Item AxonIvyPortal/PortalKitTestHelper/target/*iar -Destination $DEPLOYMENT
+            Copy-Item Showcase/InternalSupport/target/*iar -Destination $DEPLOYMENT
           '''
+
           node('master') {
             echo '====================Close all remote desktop connections and setup new remote destop to Portal slave===================='
             bat '''
