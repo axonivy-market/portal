@@ -80,7 +80,7 @@ pipeline {
         net stop "${engines[2]}"
         exit 0
       """
-      node('portal-slave') {
+      node('master') {
         archiveArtifacts artifacts: "D:/PerformanceResult/${today}/*/*.jtl", allowEmptyArchive: true, fingerprint: true
         perfReport sourceDataFiles: "D:/PerformanceResult/${today}/*/*.jtl", compareBuildPrevious :true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true
       }
