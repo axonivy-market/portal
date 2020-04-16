@@ -292,6 +292,10 @@ public class CaseDetailsPage extends TemplatePage {
     return findListElementsByCssSelector("a[id$='download']").size();
   }
   
+  public List<WebElement> findDocumentItemInCaseDetailsDocumentTable() {
+    return findListElementsByCssSelector("a[id$='download']");
+  }
+  
   public void onClickDestroyCase() {
     click(findElementById("case-item-details:destroy-case-link"));
   }
