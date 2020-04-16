@@ -72,8 +72,13 @@ pipeline {
             echo '====================Close all remote desktop connections and setup new remote destop to Portal slave===================='
             bat '''
               taskkill -im mstsc.exe -F
-              D:/tools/remote-desktop-plus/rdp.exe /v:10.123.1.193 /domain:wawa.vn /u:wawa /p:SAMPLE_TEXT_1 /w:2560 /h:1440 /noclose
+              exit 0
             '''
+            configFileProvider(
+                [configFile(fileId: 'properties-config', variable: 'PROPERTIES_CONFIG')]) {
+                def props = readProperties  file: "${env.PROPERTIES_CONFIG}"
+                bat "${props.remoteDesktopCmd}"
+            }
           }
 
           echo '====================Close opening browsers===================='
