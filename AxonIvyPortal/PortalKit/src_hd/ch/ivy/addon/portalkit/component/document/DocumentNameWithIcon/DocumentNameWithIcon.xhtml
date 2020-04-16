@@ -14,7 +14,7 @@
 <cc:implementation>
   <c:set var="name" value="#{cc.attrs.fileName}" />
   
-  <h:outputText class="#{documentSymbolBean.getSymbol(name)} #{cc.attrs.symbolStyleClass}"
+  <h:outputText class="#{documentIconBean.getIconCssClass(name)} #{cc.attrs.symbolStyleClass}"
     rendered="#{empty cc.attrs.hideSymbol or not cc.attrs.hideSymbol}" />
   <h:outputText value="#{document.name}" styleClass="#{cc.attrs.fileNameStyleClass}" />
 </cc:implementation>
