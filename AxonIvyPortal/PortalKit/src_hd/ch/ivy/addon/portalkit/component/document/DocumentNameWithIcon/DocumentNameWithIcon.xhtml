@@ -16,6 +16,6 @@
   
   <h:outputText class="#{documentIconBean.getIconCssClass(name)} #{cc.attrs.symbolStyleClass}"
     rendered="#{empty cc.attrs.hideSymbol or not cc.attrs.hideSymbol}" />
-  <h:outputText value="#{document.name}" styleClass="#{cc.attrs.fileNameStyleClass}" />
+  <h:outputText value="#{name}" styleClass="#{cc.attrs.fileNameStyleClass}" />
 </cc:implementation>
 </html>
