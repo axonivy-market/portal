@@ -1,7 +1,7 @@
 [Ivy]
 1717BB750801C1A7 7.5.0 #module
 >Proto >Proto Collection #zClass
-Ds0 DocumentNameProcess Big #zClass
+Ds0 DocumentNameWithIconProcess Big #zClass
 Ds0 RD #cInfo
 Ds0 #process
 Ds0 @TextInP .type .type #zField
@@ -14,7 +14,7 @@ Ds0 @PushWFArc f2 '' #zField
 Ds0 @UdEvent f3 '' #zField
 Ds0 @UdExitEnd f4 '' #zField
 Ds0 @PushWFArc f5 '' #zField
->Proto Ds0 Ds0 DocumentNameProcess #zField
+>Proto Ds0 Ds0 DocumentNameWithIconProcess #zField
 Ds0 f0 guid 1717BB750D78F89F #txt
 Ds0 f0 method start() #txt
 Ds0 f0 inParameterDecl '<> param;' #txt
@@ -46,7 +46,7 @@ Ds0 f3 @|UdEventIcon #fIcon
 Ds0 f4 211 147 26 26 0 12 #rect
 Ds0 f4 @|UdExitEndIcon #fIcon
 Ds0 f5 109 160 211 160 #arcP
->Proto Ds0 .type ch.ivy.addon.portalkit.component.document.DocumentName.DocumentNameData #txt
+>Proto Ds0 .type ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon.DocumentNameWithIconData #txt
 >Proto Ds0 .processKind HTML_DIALOG #txt
 >Proto Ds0 -8 -8 16 16 16 26 #rect
 >Proto Ds0 '' #fIcon

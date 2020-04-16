@@ -257,7 +257,7 @@ project
 Document name
 -------------
 
-This component is used for rendering document file name with the corresponding symbol of extension.
+This component is used for rendering document file name with the corresponding icon of extension.
 It's using Font Awesome 4.7.0 icon.
 
 |document-name|
@@ -270,19 +270,19 @@ Knows extensions
       7z, gif, xps
 
 .. note::
-      For unknown or less specific documents, it will show a generic ``fa-file-o`` icon as symbol.
+      For unknown or less specific documents, it will show a generic ``fa-file-o`` icon.
 
 Code example
 ^^^^^^^^^^^^
 
 .. code-block:: html
 
-      <ic:ch.ivy.addon.portalkit.component.document.DocumentName
+      <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon
             fileName="#{document.name}"
             symbolStyleClass="case-details-document-download-icon"
             fileNameStyleClass="case-name-item"
             hideSymbol="false"> 
-      <ic:ch.ivy.addon.portalkit.component.document.DocumentName/>
+      <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon/>
 
 Attributes of this component
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
