@@ -23,8 +23,9 @@
           styleClass="#{status.even ? 'document-even-row' : 'document-odd-row'}">
           <p:commandLink ajax="false" id="download" styleClass="download-command js-download-command">
             <p:fileDownload value="#{logic.downloadDocument(document,case)}" />
-            <span class="fa fa-file-pdf-o case-details-document-download-icon" />
-            <h:outputText value="#{document.name}" styleClass="js-document-name" />
+            <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon fileName="#{document.name}"
+              fileNameStyleClass="js-document-name"
+              symbolStyleClass="case-details-document-download-icon"/>
           </p:commandLink>
           <p:commandLink id="delete-file" actionListener="#{logic.setDataToDelete(document, case)}"
             styleClass="fa fa-times Fright" oncomplete="PF('document-deletion-dialog-#{case.id}').show();">
