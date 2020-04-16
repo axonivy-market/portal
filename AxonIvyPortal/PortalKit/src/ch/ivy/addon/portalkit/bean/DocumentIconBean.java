@@ -22,7 +22,7 @@ import org.apache.commons.lang3.StringUtils;
 public class DocumentIconBean {
   /**
    * DocumentIconBean detects icon class base on Font Awesome 4.7.0 library.
-   * In case, Font Awesome library is older or higher, please consider to change prefix and suffix for icon class can be worked
+   * If upgrade to different version, consider to change
    */
 
   // Default format for icon class of Font Awesome 4.7.0
@@ -42,7 +42,7 @@ public class DocumentIconBean {
   private static final String DEFAULT = "fa fa-file-o";
 
   /**
-   * Base on extensions of document, getIconCssClass method detects a corresponding Font Awesome icon.
+   * Base on extension of document, getIconCssClass method detects a corresponding Font Awesome icon.
    * Note: Font Awesome version is 4.7.0
    * 
    * @param documentName is a name of file
