@@ -254,45 +254,6 @@ features, and add more columns, remove default columns in document
 table. Refer to the ``DocumentTableComponent`` process in portal-developer-examples
 project
 
-Document name
--------------
-
-This component is used for rendering document file name with the corresponding icon of extension.
-It's using Font Awesome 4.7.0 icon.
-
-|document-name|
-
-Knows extensions
-^^^^^^^^^^^^^^^^
-.. code-block:: html
-
-      doc, docx, xls, xlsx, xlsm, csv, pdf, ppt, pptx, txt, zip, jpg, jpeg, bmp, png, msg, eml, rar, 
-      7z, gif, xps
-
-.. note::
-      For unknown or less specific documents, it will show a generic ``fa-file-o`` icon.
-
-Code example
-^^^^^^^^^^^^
-
-.. code-block:: html
-
-      <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon
-            fileName="#{document.name}"
-            symbolStyleClass="case-details-document-download-icon"
-            fileNameStyleClass="case-name-item"
-            hideSymbol="false"> 
-      <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon/>
-
-Attributes of this component
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. csv-table::
-  :file: documents/additional-components/document_name_component_attributes.csv
-  :header-rows: 1
-  :class: longtable
-  :widths: 1 1 1 3
-
 .. _components-additional-components-user-selection:
 
 User Selection
@@ -386,7 +347,6 @@ Attributes of this component:
 .. |example-global-growl-finished-task| image:: images/additional-component/example-global-growl-finished-task.png
 .. |example-global-growl-cancelled-task| image:: images/additional-component/example-global-growl-cancelled-task.png
 .. |document-table| image:: images/additional-component/document-table.png
-.. |document-name| image:: images/additional-component/document-name.png
 .. |user-selection| image:: images/additional-component/user-selection-component.png
 .. |user-selection-floating-label| image:: images/additional-component/user-selection-component-floating-label.png
 .. |user-selection-with-children-and-ajax-event| image:: images/additional-component/user-selection-component-with-children-and-ajax-event.png
