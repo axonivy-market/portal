@@ -23,7 +23,7 @@
           styleClass="#{status.even ? 'document-even-row' : 'document-odd-row'}">
           <p:commandLink ajax="false" id="download" styleClass="download-command js-download-command">
             <p:fileDownload value="#{logic.downloadDocument(document,case)}" />
-            <ic:ch.ivy.addon.portalkit.component.document.DocumentName fileName="#{document.name}"
+            <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon fileName="#{document.name}"
               fileNameStyleClass="js-document-name"
               symbolStyleClass="case-details-document-download-icon"/>
           </p:commandLink>

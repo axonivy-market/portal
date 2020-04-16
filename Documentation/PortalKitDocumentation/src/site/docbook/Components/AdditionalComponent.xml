@@ -249,7 +249,7 @@
 		<sect3 xml:id="axonivyportal.components.additionalcomponent.documentname.introduce">
 			<title>Introduction</title>
 			<para>
-				This component is used for rendering document file name with the corresponding symbol of extension.
+				This component is used for rendering document file name with the corresponding icon of extension.
 				It's using Font Awesome 4.7.0 icon.
 			</para>
 			<mediaobject>
@@ -261,11 +261,11 @@
 		<sect3 xml:id="axonivyportal.components.additionalcomponent.documentname.knownextensions">
 			<title>Knows extensions</title>
 			<screen>doc, docx, xls, xlsx, xlsm, csv, pdf, ppt, pptx, txt, zip, jpg, jpeg, bmp, png, msg, eml, rar, 7z, gif, xps</screen>
-			<note><para>For unknown or less specific documents, it will show a generic <code>fa-file-o</code> icon as symbol.</para></note>
+			<note><para>For unknown or less specific documents, it will show a generic <code>fa-file-o</code> icon.</para></note>
 		</sect3>
 		<sect3 xml:id="axonivyportal.components.additionalcomponent.documentname.codeexample">
 			<title>Code example</title>
-			<screen>&lt;ic:ch.ivy.addon.portalkit.component.document.DocumentName
+			<screen>&lt;ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon
 			fileName="#{document.name}"
 			symbolStyleClass="case-details-document-download-icon"
 			fileNameStyleClass="case-name-item"

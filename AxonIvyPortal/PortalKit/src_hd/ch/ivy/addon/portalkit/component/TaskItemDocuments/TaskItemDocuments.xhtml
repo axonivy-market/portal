@@ -19,7 +19,7 @@
         <h:form styleClass="task-details-document-download">
           <h:panelGroup layout="block" rendered="#{document ne null}" styleClass="#{status.even ? 'document-even-row' : 'document-odd-row'}">
             <p:commandLink actionListener="#{logic.downloadDocument(task,document)}" ajax="false" styleClass="download-command js-download-command">
-              <ic:ch.ivy.addon.portalkit.component.document.DocumentName fileName="#{document.name}"
+              <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon fileName="#{document.name}"
                 fileNameStyleClass="js-document-name"
                 symbolStyleClass="task-details-document-download-icon"/>
               <p:fileDownload value="#{data.documentFile}" />
