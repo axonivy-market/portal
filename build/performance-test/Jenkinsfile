@@ -36,10 +36,11 @@ pipeline {
             exit 0
           """
 
+          def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/PortalStyle/pom.xml').getProperties().getProperty("build.plugin.version")
           def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/SelfServiceBPM']
           for (module in modules) {
             bat "mvn clean install -f ${module}/pom.xml"
-            bat "mvn com.axonivy.ivy.ci:project-build-plugin:7.0.4:deploy-iar -f ${module}/pom.xml -Divy.deploy.engine.app=%portalApplicationName% -Divy.deploy.engine.dir=%engineDir%"
+            bat "mvn com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-iar -f ${module}/pom.xml -Divy.deploy.engine.app=%portalApplicationName% -Divy.deploy.engine.dir=%engineDir%"
           }
         }
       }

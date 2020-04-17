@@ -46,9 +46,9 @@ pipeline {
           }
 
           echo '====================Extract engine===================='
-          bat """
-            mvn com.axonivy.ivy.ci:project-build-plugin:7.0.4:installEngine %engineDownloadURL% -Divy.engine.directory=${env.engineDir} -Divy.engine.os.arch=Windows_x64 -Divy.engine.version=(7.0.0,]
-          """
+          bat '''
+            mvn clean compile -f AxonIvyPortal/PortalTest/pom.xml -Divy.engine.directory=%engineDir% %engineDownloadURL%
+          '''
 
           echo "====================Deploy Portal modules===================="
           def modules = ['AxonIvyPortal/PortalConnector', 'AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/SelfServiceBPM', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/PortalExamples', 'Showcase/InternalSupport']
@@ -73,8 +73,14 @@ pipeline {
             echo '====================Close all remote desktop connections and setup new remote destop to Portal slave===================='
             bat '''
               taskkill -im mstsc.exe -F
-              D:/tools/remote-desktop-plus/rdp.exe /v:10.123.1.193 /domain:wawa.vn /u:wawa /p:SAMPLE_TEXT_1 /w:2560 /h:1440 /noclose
+              exit 0
             '''
+            configFileProvider(
+                [configFile(fileId: 'properties-config', variable: 'PROPERTIES_CONFIG')]) {
+                props = readProperties  file: "${env.PROPERTIES_CONFIG}"
+                //e.g. remoteDesktopCmd=D:/tools/remote-desktop-plus/rdp.exe /v:10.123.1.193 /domain:wawa.vn /u:wawa /p:SAMPLE_TEXT_1 /w:2560 /h:1440 /noclose
+                bat "${props.remoteDesktopCmd}"
+            }
           }
 
           echo '====================Close opening browsers===================='
@@ -87,7 +93,7 @@ pipeline {
           '''
 
           echo '====================Execute maven for testing===================='
-          bat "mvn clean test -f AxonIvyPortal/PortalTest/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120 -DdemoUserName=demo -DdemoUserPassword=demo -DadminUserName=admin -DadminUserPassword=admin -DSelfServicePMName=SelfServiceBpm"
+          bat "mvn clean test -f AxonIvyPortal/PortalTest/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=${props.browserType} -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120 -DdemoUserName=demo -DdemoUserPassword=demo -DadminUserName=admin -DadminUserPassword=admin -DSelfServicePMName=SelfServiceBpm"
           node('master') {
             echo '====================Close all remote desktop connections===================='
             bat '''
