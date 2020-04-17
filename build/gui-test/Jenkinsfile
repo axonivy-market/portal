@@ -61,17 +61,21 @@ pipeline {
             $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
             rmdir $DEPLOYMENT/* -recurse
             Copy-Item AxonIvyPortal/PortalApp/target/*zip -Destination $DEPLOYMENT
-            Copy-Item AxonIvyPortal/PortalKitTestHelper/target/*iar -Destination $DEPLOYMENT
             Copy-Item Showcase/PortalExamples/target/*iar -Destination $DEPLOYMENT
-            Copy-Item Showcase/InternalSupport/target/*iar -Destination $DEPLOYMENT
           '''
 
           node('master') {
             echo '====================Close all remote desktop connections and setup new remote destop to Portal slave===================='
             bat '''
               taskkill -im mstsc.exe -F
-              D:/tools/remote-desktop-plus/rdp.exe /v:10.123.1.193 /domain:wawa.vn /u:wawa /p:W4w4@CH$ /w:2560 /h:1440 /noclose
+              exit 0
             '''
+            configFileProvider(
+                [configFile(fileId: 'properties-config', variable: 'PROPERTIES_CONFIG')]) {
+                props = readProperties  file: "${env.PROPERTIES_CONFIG}"
+                //e.g. remoteDesktopCmd=D:/tools/remote-desktop-plus/rdp.exe /v:10.123.1.193 /domain:wawa.vn /u:wawa /p:W4w4@CH$ /w:2560 /h:1440 /noclose
+                bat "${props.remoteDesktopCmd}"
+            }
           }
 
           echo '====================Close opening browsers===================='
@@ -84,7 +88,7 @@ pipeline {
           '''
 
           echo '====================Execute maven for testing===================='
-          bat "mvn clean test -f AxonIvyPortal/PortalTest/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
+          bat "mvn clean test -f AxonIvyPortal/PortalTest/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=${props.browserType} -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
 
           node('master') {
             echo '====================Close all remote desktop connections===================='

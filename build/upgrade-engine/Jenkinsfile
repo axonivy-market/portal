@@ -71,7 +71,7 @@ pipeline {
             ren "${engineDir}" "${engineName}-bk" || goto :repeat
           """
           bat """
-            mvn com.axonivy.ivy.ci:project-build-plugin:8.0.0:installEngine %engineDownloadURL% -Divy.engine.directory=${engineDir} -Divy.engine.os.arch=Windows_x64 -Divy.engine.version=(7.0.0,]
+            mvn clean compile -f AxonIvyPortal/PortalTest/pom.xml -Divy.engine.directory=${engineDir} %engineDownloadURL%
           """
           bat """
             rem copy license, configuration files
