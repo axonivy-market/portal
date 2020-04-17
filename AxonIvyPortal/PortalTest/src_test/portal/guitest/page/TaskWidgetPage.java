@@ -96,6 +96,11 @@ public class TaskWidgetPage extends TemplatePage {
 		return new TaskTemplatePage();
 	}
 
+	public TaskTemplatePage startTaskWithouWaitForTaskActionPresent(int index) {
+    waitTaskAppearThenClick(index);
+    return new TaskTemplatePage();
+  }
+	
 	public void startDeprecatedTaskTemplate(int index) {
 		waitTaskAppearThenClick(index);
 		waitForElementPresent(By.id("task-actions"), true);
