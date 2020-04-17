@@ -82,6 +82,7 @@ pipeline {
             configFileProvider(
                 [configFile(fileId: 'properties-config', variable: 'PROPERTIES_CONFIG')]) {
                 def props = readProperties  file: "${env.PROPERTIES_CONFIG}"
+                //e.g. remoteDesktopCmd=D:/tools/remote-desktop-plus/rdp.exe /v:10.123.1.193 /domain:wawa.vn /u:wawa /p:SAMPLE_TEXT_1 /w:2560 /h:1440 /noclose
                 bat "${props.remoteDesktopCmd}"
             }
           }
