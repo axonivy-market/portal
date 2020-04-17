@@ -61,16 +61,11 @@ pipeline {
             '''
           }
 
-          echo '====================Deploy PortalKitTestHelper and InternalSupport===================='
+          echo '====================Build PortalKitTestHelper and InternalSupport===================='
           def extraModules = ['AxonIvyPortal/PortalKitTestHelper', 'Showcase/InternalSupport']
           for (module in extraModules) {
             bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir% -Divy.compiler.engine.start.timeout=120"
           }
-          powershell '''
-            $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
-            Copy-Item AxonIvyPortal/PortalKitTestHelper/target/*iar -Destination $DEPLOYMENT
-            Copy-Item Showcase/InternalSupport/target/*iar -Destination $DEPLOYMENT
-          '''
 
           node('master') {
             echo '====================Close all remote desktop connections and setup new remote destop to Portal slave===================='
