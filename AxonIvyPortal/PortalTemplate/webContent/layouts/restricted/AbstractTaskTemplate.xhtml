@@ -21,16 +21,18 @@
           <h:panelGroup id="task-template-title" layout="block" rendered="#{task ne null}"
             styleClass="task-template-title #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
             <ui:insert name="taskName">
-              <span class=" fa fa-check-square-o task-template-title-icon" />
-              <h:outputText id="title" title="#{task.name}" value="#{task.name}" styleClass="task-title" />
+              <ui:fragment rendered="#{!isHideTaskName}">
+                <span class=" fa fa-check-square-o task-template-title-icon" />
+                <h:outputText id="title" title="#{task.name}" value="#{task.name}" styleClass="task-title" />
+              </ui:fragment>
             </ui:insert>
             
-            <h:panelGroup id="vertical-task-template-tasks-command" class="task-template-tasks-command" rendered="#{processChainDirection eq 'VERTICAL'}">
+            <h:panelGroup id="vertical-task-template-tasks-command" class="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and processChainDirection eq 'VERTICAL'}">
               <p:commandButton id="vertical-case-info" type="button" 
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="fa fa-info"
-                onclick="PF('case-info-dialog').show()" />
+                onclick="PF('case-info-dialog').show()" rendered="#{!isHideCaseInfo}" />
               <p:spacer width="10" />
-              <p:commandButton id="vertical-task-actions" type="button" 
+              <p:commandButton id="vertical-task-actions" type="button" rendered="#{!isHideTaskAction}"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ui-icon-menu" />
             </h:panelGroup>
             
@@ -79,17 +81,17 @@
             </ui:insert>
           </h:panelGroup>
   
-          <h:panelGroup id="horizontal-task-template-tasks-command" styleClass="task-template-tasks-command" rendered="#{processChainDirection ne 'VERTICAL'}">
+          <h:panelGroup id="horizontal-task-template-tasks-command" styleClass="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and processChainDirection ne 'VERTICAL'}">
             <p:commandButton id="horizontal-case-info" type="button"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="fa fa-info"
-              onclick="PF('case-info-dialog').show()" />
+              onclick="PF('case-info-dialog').show()" rendered="#{!isHideCaseInfo}" />
             <p:spacer width="10" />
-            <p:commandButton id="horizontal-task-actions" type="button" 
+            <p:commandButton id="horizontal-task-actions" type="button" rendered="#{!isHideTaskAction}"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ui-icon-menu" />
           
             <h:form id="horizontal-task-action-form">
               <p:menu id="horizontal-task-action-menu" overlay="true" trigger="horizontal-task-actions" my="right top" at="right bottom"
-                styleClass="action-steps-panel task-actions-menu">
+                styleClass="action-steps-panel task-actions-menu" rendered="#{!isHideTaskAction}">
                 <p:menuitem id="show-adhoc-history" rendered="#{abstractTaskTemplateBean.hasAdhocTasks(task)}"
                   icon="fa fa-history fa-2x" oncomplete="PF('adhoc-task-history-dialog').show()"
                   value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistory')}"
