@@ -24,27 +24,38 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
   }
 
   public String findGlobalSettingValue(String variableName) {
-    Object atttributeValue = IvyCacheService.newInstance().getGlobalSettingFromCache(variableName);
-    if (atttributeValue == null){
-       GlobalSetting setting = findAllGlobalSetting().stream()
-          .filter(globalSetting -> StringUtils.equals(globalSetting.getKey(), variableName))
-          .findFirst()
-          .orElse(new GlobalSetting(variableName));
-       return StringUtils.defaultString(setting.getValue(), setting.getDefaultValue());
-    }
-    return String.valueOf(atttributeValue);
+    GlobalSetting setting = findGlobalSettingByKey(variableName);
+    return StringUtils.defaultString(setting.getValue(), setting.getDefaultValue());
   }
 
   public boolean isGlobalSettingAvailable(String variableName) {
-    Object atttributeValue = IvyCacheService.newInstance().getGlobalSettingFromCache(variableName);
-    if (atttributeValue == null){
-       GlobalSetting setting = findAllGlobalSetting().stream()
-          .filter(globalSetting -> StringUtils.equals(globalSetting.getKey(), variableName))
-          .findFirst()
-          .orElse(new GlobalSetting());
-       return StringUtils.isNotBlank(setting.getValue());
+    GlobalSetting setting = findGlobalSettingByKey(variableName);
+    return setting == null ? false : StringUtils.isNotBlank(setting.getValue());
+  }
+  
+  /** Find a Global Setting with option allowEmptyValue
+   * @param variableName key name of setting
+   * @param allowEmptyValue option to check setting allows empty value
+   * @return Global Setting is available or not
+   */
+  public boolean isGlobalSettingAvailable(String variableName, boolean allowEmptyValue) {
+    GlobalSetting setting = findGlobalSettingByKey(variableName);
+    if (setting != null
+        && (StringUtils.isNotEmpty(setting.getValue()) || StringUtils.isEmpty(setting.getValue()) && allowEmptyValue)) {
+      return true;
     }
-    return StringUtils.isNotBlank(String.valueOf(atttributeValue));
+    return false;
+  }
+  
+  public GlobalSetting findGlobalSettingByKey(String variableName) {
+    Object atttributeValue = IvyCacheService.newInstance().getGlobalSettingFromCache(variableName);
+    if (atttributeValue == null) {
+      GlobalSetting setting = findAllGlobalSetting().stream()
+          .filter(globalSetting -> StringUtils.equals(globalSetting.getKey(), variableName))
+          .findFirst().orElse(new GlobalSetting(variableName));
+      return setting;
+    }
+    return new GlobalSetting(variableName, String.valueOf(atttributeValue));
   }
   
   public Boolean findGlobalSettingValueAsBoolean(String variableName) {
