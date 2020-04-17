@@ -13,6 +13,15 @@ function loadIframe() {
       name : 'isShowAllSteps',
       value : window.isShowAllSteps
     }, {
+      name : 'isHideCaseInfo',
+      value : window.isHideCaseInfo
+    }, {
+      name : 'isHideTaskName',
+      value : window.isHideTaskName
+    }, {
+      name : 'isHideTaskAction',
+      value : window.isHideTaskAction
+    }, {
       name : 'processChainDirection',
       value : window.processChainDirection
     }, {
