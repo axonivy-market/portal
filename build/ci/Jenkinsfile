@@ -6,7 +6,7 @@ pipeline {
   }
   
   triggers {
-    pollSCM 'H/15 * 1 * *'
+    pollSCM 'H/15 * * * *'
   }
 
   tools { 
@@ -49,6 +49,7 @@ pipeline {
       steps {
         script {
           def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/PortalStyle/pom.xml').getProperties().getProperty("build.plugin.version")
+          buildPluginVersion = '8.0.0'
           for (module in builtModules) {
             for (application in applications) {
               bat "mvn com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=${application} -Divy.deploy.engine.dir=${engineDir}"
