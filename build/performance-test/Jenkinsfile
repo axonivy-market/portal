@@ -37,6 +37,7 @@ pipeline {
           """
 
           def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/PortalStyle/pom.xml').getProperties().getProperty("build.plugin.version")
+          buildPluginVersion = '8.0.0'
           def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress']
           for (module in modules) {
             bat "mvn clean install -f ${module}/pom.xml"
