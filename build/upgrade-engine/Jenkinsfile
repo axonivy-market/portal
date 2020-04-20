@@ -42,7 +42,7 @@ pipeline {
           dbBackupFileName = engineName + '-' + today
 
           bat """
-            rem Backup database
+            echo ====================Backup database====================
             pg_dump -U postgres -f ${databaseBackupDir}\\${databaseName}-${today}.backup -F Custom -b ${databaseName}
           """
 
@@ -55,55 +55,33 @@ pipeline {
       steps {
         script {
           bat """
-            rem backup data to restore in case build fails
+            echo ====================Backup data to restore in case build fails====================
             xcopy /s/y/h/e/k/i/q ${engineDir} ${engineBackupDir}\\${engineName}-${today}
-          """
-          bat """
-            rem stop engine
+            echo ====================Stop engine====================
             sc query "${serviceName}" | find /i "RUNNING"
             if not "%ERRORLEVEL%"=="1" ( net stop "${serviceName}" )
-            exit 0
-          """
-          bat """
-            rem backup current engine folder
+            echo ====================Rename current engine folder====================
             if exist ${renamedEngineDir} rmdir /s /q ${renamedEngineDir}
             :repeat
             ren "${engineDir}" "${engineName}-bk" || goto :repeat
-          """
-          bat """
+            echo ====================Extract engine====================
             mvn clean compile -f AxonIvyPortal/PortalTest/pom.xml -Divy.engine.directory=${engineDir} %engineDownloadURL%
           """
           bat """
-            rem copy license, configuration files
+            echo ====================Copy license, configuration files====================
             copy /D/Y ${renamedEngineDir}\\configuration\\*.lic ${engineDir}\\configuration
             copy /D/Y ${renamedEngineDir}\\configuration\\serverconfig.xml ${engineDir}\\configuration
           """
           powershell """
-            #copy applications, misc/iis (for SSO)
+            echo "====================Copy applications, misc/iis (for SSO)===================="
             if (Test-Path ${renamedEngineDir}\\applications) {
               copy -path ${renamedEngineDir}\\applications -recurse -force -destination ${engineDir}
             }
             copy -path ${renamedEngineDir}\\misc\\iis -recurse -force -destination ${engineDir}\\misc
           """
           bat """
-            rem start engine
+            echo ====================Start engine====================
             net start "${serviceName}"
-
-            @echo off
-            echo %time%
-            for /l %%i IN (1,1,150) do (
-              sc query "${serviceName}" | findstr STATE | findstr RUNNING
-              if errorlevel 1 (
-                ping 1.1.1.1 -n 1 -w 1000 > nul
-              ) else (
-                echo ${serviceName} started
-              goto :endwaiting
-              )
-            )
-            :endwaiting
-            echo %time%
-
-            echo on
           """
         }
       }

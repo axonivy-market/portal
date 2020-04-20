@@ -82,7 +82,7 @@ pipeline {
         exit 0
       """
       node('master') {
-        archiveArtifacts artifacts: "D:/PerformanceResult/${today}/*/*.jtl", allowEmptyArchive: true, fingerprint: true
+        archiveArtifacts artifacts: "D:/PerformanceResult/${today}/*/*.jtl", allowEmptyArchive: true
         perfReport sourceDataFiles: "D:/PerformanceResult/${today}/*/*.jtl", compareBuildPrevious :true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true
       }
     }

@@ -52,6 +52,26 @@ pipeline {
             bat "mvn clean ${mavenGoal} -Divy.engine.directory=%engineDir% -Divy.engine.version=(7.0.0,] -Divy.compiler.engine.start.timeout=120 %engineDownloadURL% -f ${module[0]}/pom.xml"
           }
 
+          echo "====================Build documentation===================="
+          def docModules = [['Documentation\\PortalKitDocumentation', 'portalKitDoc'], ['Documentation\\PortalConnectorDocumentation', 'portalConnectorDoc']]
+          def docTypes = ['html', 'pdf', 'eclipse']
+          for (docModule in docModules) {
+            def docModuleDir = docModule[0]
+            def docModuleArtifactId = docModule[1]
+            bat """
+              mvn -f ${docModuleDir}\\pom.xml -DallowSnapshots=true -DparentVersion=(7.0.0,7.1.0-SNAPSHOT) versions:update-parent clean package
+            """
+            if (params.deployToRepo) {
+              for (docType in docTypes) {
+                bat """
+                  for /r %%f in (${docModuleDir}\\target\\${docModuleArtifactId}-*-${docType}.zip) do (
+                    mvn deploy:deploy-file -DgroupId=ch.ivyteam.ivy.project.portal -DartifactId=${docModuleArtifactId} -Dversion=${releaseVersion} -Dclassifier=${docType} -Dfile=%%f -Durl=https://repo.axonivy.io/artifactory/ext-release-local/ -DrepositoryId=repo.axonivy.io
+                  )
+                """
+              }
+            }
+          }
+
           echo "====================Create release tag ${params.releaseVersion}===================="
           bat """
             rem remove created tag
@@ -70,7 +90,7 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: "**/target/*.iar,*/*/pom.xml", fingerprint: true
+      archiveArtifacts artifacts: "**/target/*.iar,**/target/*.zip,*/*/pom.xml"
     }
   }
 }

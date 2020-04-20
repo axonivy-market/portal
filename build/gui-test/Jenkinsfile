@@ -108,7 +108,7 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/*/*/*.jpg", allowEmptyArchive: true, fingerprint: true
+      archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/*/*/*.jpg", allowEmptyArchive: true
       junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
     }
   }
