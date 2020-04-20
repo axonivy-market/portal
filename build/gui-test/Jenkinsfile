@@ -5,10 +5,10 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
   }
   
-  // triggers {
-  //   pollSCM 'H 5 * * *'
-  //   cron('H 17 * * *')
-  // }
+  triggers {
+    pollSCM 'H 5 * * *'
+    cron('H 17 * * *')
+  }
 
   tools { 
       maven '3.6' 
@@ -106,7 +106,7 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/*/*/*.jpg", allowEmptyArchive: true, fingerprint: true
+      archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/*/*/*.jpg", allowEmptyArchive: true
       junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
     }
   }
