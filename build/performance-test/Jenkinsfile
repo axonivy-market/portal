@@ -37,11 +37,10 @@ pipeline {
           """
 
           def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/PortalStyle/pom.xml').getProperties().getProperty("build.plugin.version")
-          buildPluginVersion = '8.0.0'
           def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress']
           for (module in modules) {
             bat "mvn clean install -f ${module}/pom.xml"
-            bat "mvn com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=%portalApplicationName% -Divy.deploy.engine.dir=%engineDir%"
+            bat "mvn com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=%portalApplicationName% -Divy.deploy.engine.dir=%engineDir% -Divy.test.engine=MODIFY_EXISTING"
           }
         }
       }
@@ -83,7 +82,7 @@ pipeline {
         exit 0
       """
       node('master') {
-        archiveArtifacts artifacts: "D:/PerformanceResult/${today}/*/*.jtl", allowEmptyArchive: true,  true
+        archiveArtifacts artifacts: "D:/PerformanceResult/${today}/*/*.jtl", allowEmptyArchive: true
         perfReport sourceDataFiles: "D:/PerformanceResult/${today}/*/*.jtl", compareBuildPrevious :true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true
       }
     }
