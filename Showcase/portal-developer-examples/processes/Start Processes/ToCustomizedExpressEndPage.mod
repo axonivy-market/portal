@@ -15,8 +15,6 @@ Ee0 @StartRequest f0 '' #zField
 Ee0 @EndTask f1 '' #zField
 Ee0 @UserDialog f3 '' #zField
 Ee0 @PushWFArc f2 '' #zField
-Ee0 @GridStep f5 '' #zField
-Ee0 @PushWFArc f6 '' #zField
 Ee0 @PushWFArc f4 '' #zField
 >Proto Ee0 Ee0 ToCustomizedExpressEndPage #zField
 Ee0 f0 outLink start.ivp #txt
@@ -47,7 +45,7 @@ Ee0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ee0 f0 @C|.responsibility Everybody #txt
 Ee0 f0 81 49 30 30 -21 17 #rect
 Ee0 f0 @|StartRequestIcon #fIcon
-Ee0 f1 497 49 30 30 0 15 #rect
+Ee0 f1 321 49 30 30 0 15 #rect
 Ee0 f1 @|EndIcon #fIcon
 Ee0 f3 dialogId com.axonivy.portal.developerexamples.customization.CustomizedExpressEndPage #txt
 Ee0 f3 startMethod start() #txt
@@ -65,24 +63,11 @@ Ee0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ee0 f3 328 42 112 44 -48 -8 #rect
+Ee0 f3 160 42 112 44 -48 -8 #rect
 Ee0 f3 @|UserDialogIcon #fIcon
 Ee0 f2 expr out #txt
-Ee0 f2 440 64 497 64 #arcP
-Ee0 f5 actionTable 'out=in;
-' #txt
-Ee0 f5 actionCode 'import javax.faces.context.FacesContext;
-
-FacesContext context = null;
-ch.ivy.addon.portalkit.support.UrlDetector detector = new ch.ivy.addon.portalkit.support.UrlDetector();
-detector.getBaseURL(context);
-' #txt
-Ee0 f5 168 42 112 44 0 -8 #rect
-Ee0 f5 @|StepIcon #fIcon
-Ee0 f6 expr out #txt
-Ee0 f6 111 64 168 64 #arcP
-Ee0 f4 expr out #txt
-Ee0 f4 280 64 328 64 #arcP
+Ee0 f2 272 64 321 64 #arcP
+Ee0 f4 111 64 160 64 #arcP
 >Proto Ee0 .type com.axonivy.portal.developerexamples.HandleEndPageData #txt
 >Proto Ee0 .processKind NORMAL #txt
 >Proto Ee0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -94,7 +79,5 @@ Ee0 f4 280 64 328 64 #arcP
 >Proto Ee0 @|BIcon #fIcon
 Ee0 f3 mainOut f2 tail #connect
 Ee0 f2 head f1 mainIn #connect
-Ee0 f0 mainOut f6 tail #connect
-Ee0 f6 head f5 mainIn #connect
-Ee0 f5 mainOut f4 tail #connect
+Ee0 f0 mainOut f4 tail #connect
 Ee0 f4 head f3 mainIn #connect

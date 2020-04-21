@@ -1,7 +1,9 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -16,7 +18,6 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
-import ch.ivyteam.util.Pair;
 
 public final class CaseUtils {
   private CaseUtils() {
@@ -52,7 +53,9 @@ public final class CaseUtils {
     } catch (Exception e) {
       Ivy.log().error(e);
       IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
-      return RequestUriFactory.createProcessStartUri(process, new Pair<String, String>("caseId", String.valueOf(iCase.getId()))).toASCIIString();
+      Map<String, String> caseIdParam = new HashMap<>();
+      caseIdParam.put("caseId", String.valueOf(iCase.getId()));
+      return RequestUriFactory.createProcessStartUri(process, caseIdParam).toASCIIString();
     }
   }
   
