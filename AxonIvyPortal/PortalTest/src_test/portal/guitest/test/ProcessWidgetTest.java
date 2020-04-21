@@ -20,6 +20,7 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.ProcessWidgetPage.AddNewExternalLinkDialog;
 import portal.guitest.page.ProcessWidgetPage.AddNewProcessDialog;
+@SuppressWarnings("restriction")
 public class ProcessWidgetTest extends BaseTest {
 
   private static final String CLEAN_ALL_FAVORITE_PROCESSES = "(For autotest) Clean all favorite processes";
