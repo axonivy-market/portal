@@ -22,6 +22,7 @@
               <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon fileName="#{document.name}"
                 fileNameStyleClass="js-document-name"
                 symbolStyleClass="task-details-document-download-icon"/>
+              <span class="js-hidden-document-name">#{document.name}</span>
               <p:fileDownload value="#{data.documentFile}" />
             </p:commandLink>
   

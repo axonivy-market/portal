@@ -3295,6 +3295,11 @@ a.task-details-document-add-link {
 .case-detail-description-input {
   width: 89%;
 }
+
+.js-hidden-document-name {
+  display: none;
+  visibility: hidden;
+}
 /********************************** END CASE DETAIL **********************************/
 .ui-panelmenu .ui-menu-parent .ui-menuitem-link-hasicon {
   padding-left: 2.8em !important;
