@@ -125,7 +125,7 @@ public class DeprecatedChatAssignee7Bean implements Serializable {
     }
   }
 
-  public List<UserDTO> populateUserAutoComplete(String query) {
+  public List<UserDTO> populateUserAutoComplete(@SuppressWarnings("unused") String query) {
     return new ArrayList<>();
   }
 

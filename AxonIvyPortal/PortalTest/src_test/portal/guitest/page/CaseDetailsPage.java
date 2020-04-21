@@ -227,6 +227,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void onClickDestroyCase() {
     click(findElementById("case-item-details:destroy-case-link"));
+    click(findElementById("case-item-details:destroy-case-link"));
   }
   
   public void confimDestruction() {
@@ -237,6 +238,7 @@ public class CaseDetailsPage extends TemplatePage {
     confirmButton.click();
   }
   
+  @Override
   public void waitAjaxIndicatorDisappear() {
     WebElement ajaxIndicatorStartState = findElementById("ajax-indicator:ajax-indicator-ajax-indicator_start");
     boolean displayed = false;
@@ -319,6 +321,10 @@ public class CaseDetailsPage extends TemplatePage {
   
   public int countNumberOfDocument() {
     return findListElementsByCssSelector("a[id$='download']").size();
+  }
+  
+  public List<WebElement> findDocumentItemInCaseDetailsDocumentTable() {
+    return findListElementsByCssSelector("a[id$='download']");
   }
 
   public void clickCaseListBreadCrumb() {

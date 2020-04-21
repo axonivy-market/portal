@@ -10,7 +10,7 @@ public class TaskTemplatePage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('horizontal-task-actions')";
+    return "id('content-container')";
   }
 
   public void openCaseInfo() {
@@ -191,5 +191,17 @@ public class TaskTemplatePage extends TemplatePage {
     type(By.id("leave-request:from_input"), from);
     type(By.id("leave-request:to_input"), to);
     type(By.id("leave-request:substitute"), representation);
+  }
+  
+  public boolean isTaskNameDisplayed() {
+    return isElementDisplayedById("title");
+  }
+  
+  public boolean isCaseInfoButtonDisplayed() {
+    return isElementDisplayedById("horizontal-case-info");
+  }
+  
+  public boolean isTaskActionDisplayed() {
+    return isElementDisplayedById("horizontal-task-actions");
   }
 }
