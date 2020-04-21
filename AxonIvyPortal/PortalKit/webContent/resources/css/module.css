@@ -4365,7 +4365,7 @@ body .ui-widget-header.portal-breadcrumb ul li:last-child {
 
 @media screen and (min-width: 40em) and (max-width: 64.062em) {
 	.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li.breadcrumb-container {
-		width: calc(100% - 256px);
+		width: calc(100% - 300px);
 	}
 }
 
