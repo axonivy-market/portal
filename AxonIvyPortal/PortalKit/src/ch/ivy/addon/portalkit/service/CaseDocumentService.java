@@ -17,6 +17,7 @@ import ch.ivy.addon.portalkit.document.DocumentDetectorFactory;
 import ch.ivy.addon.portalkit.document.DocumentExtensionConstants;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyDocument;
+import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
@@ -140,13 +141,12 @@ public class CaseDocumentService {
 
   private static List<String> getAllowedUploadFileType() {
     GlobalSettingService globalSettingService = new GlobalSettingService();
-    if (globalSettingService.isGlobalSettingAvailable(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION.toString())) {
-      String supportedFileType =
-          globalSettingService.findGlobalSettingValue(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION.toString());
-      if (StringUtils.EMPTY.equals(supportedFileType)) {
+    if (globalSettingService.isGlobalSettingAvailable(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION.toString(), true)) {
+      GlobalSetting documentSetting = globalSettingService.findGlobalSettingByKey(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION.toString());
+      if (StringUtils.EMPTY.equals(documentSetting.getValue())) {
         return new ArrayList<>();
       } else {
-        String[] supportedFileTypeArr = supportedFileType.toLowerCase().split("\\s*,[,\\s]*");
+        String[] supportedFileTypeArr = documentSetting.getValue().toLowerCase().split("\\s*,[,\\s]*");
         return Arrays.asList(supportedFileTypeArr);
       }
     }
