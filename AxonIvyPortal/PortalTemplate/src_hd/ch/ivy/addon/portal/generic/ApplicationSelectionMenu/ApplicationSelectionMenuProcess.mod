@@ -545,7 +545,7 @@ from breadcrumb</name>
 As0 f32 1448 514 128 44 -44 -16 #rect
 As0 f32 @|StepIcon #fIcon
 As0 f36 expr in #txt
-As0 f36 outCond 'in.#destinationBreadcrumbPage == ch.ivy.addon.portalkit.enums.BreadCrumbKind.HOME.name()' #txt
+As0 f36 outCond 'ch.ivy.addon.portalkit.enums.BreadCrumbKind.HOME.name().equals(in.#destinationBreadcrumbPage)' #txt
 As0 f36 880 384 1512 514 #arcP
 As0 f36 1 1512 384 #addKink
 As0 f36 0 0.6017546259697808 0 0 #arcLabel
@@ -553,7 +553,7 @@ As0 f39 1512 558 877 704 #arcP
 As0 f39 1 1512 704 #addKink
 As0 f39 1 0.48910616495972775 0 0 #arcLabel
 As0 f27 expr in #txt
-As0 f27 outCond 'in.#selectedSubMenuItem.#menuKind  == ch.ivy.addon.portalkit.enums.MenuKind.TASK || in.#destinationBreadcrumbPage == ch.ivy.addon.portalkit.enums.BreadCrumbKind.TASK.name()' #txt
+As0 f27 outCond 'in.#selectedSubMenuItem.#menuKind  == ch.ivy.addon.portalkit.enums.MenuKind.TASK || ch.ivy.addon.portalkit.enums.BreadCrumbKind.TASK.name().equals(in.#destinationBreadcrumbPage)' #txt
 As0 f27 880 384 1344 512 #arcP
 As0 f27 1 1344 384 #addKink
 As0 f27 0 0.6567363686648227 0 0 #arcLabel
