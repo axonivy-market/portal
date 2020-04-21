@@ -6,18 +6,6 @@
         <role>CaseOwner</role>
     </user>
     <user>
-        <username>nam</username>
-        <role>RECRUITER</role>
-    </user>
-    <user>
-        <username>long</username>
-        <role>CLEANER</role>
-    </user>
-    <user>
-        <username>hai</username>
-        <role>MANAGER</role>
-    </user>
-    <user>
         <username>david</username>
         <password>david</password>
         <fullName>david</fullName>

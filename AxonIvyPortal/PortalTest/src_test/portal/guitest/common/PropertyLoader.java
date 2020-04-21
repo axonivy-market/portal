@@ -8,7 +8,6 @@ import java.util.Properties;
 public class PropertyLoader {
   private static final String SERVER_ADDRESS = "server.address";
   private static final String IVY_ENGINE_PORT = "ivy.engine.port";
-  private static final String IVY_CONTEXT_PATH = "ivy.context.path";
   private static final String APPLICATION_NAME = "application.name";
   private static final String BROWSER_TYPE = "browser.type";
   private static final String CONFIG_WINDOWS_SERVER = "resources/config_windows_server.properties";
@@ -43,10 +42,6 @@ public class PropertyLoader {
 
   public static String getServerAddress() {
     return properties.getProperty(SERVER_ADDRESS);
-  }
-
-  public static String getIvyContextPath() {
-    return properties.getProperty(IVY_CONTEXT_PATH);
   }
 
   public static String getApplicationName() {
