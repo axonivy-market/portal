@@ -95,6 +95,14 @@
 
             </c:forEach>
           </ps:menu>
+
+        <!-- Remote commands for breadcrumb -->
+        <p:remoteCommand name="navigateToTaskListFromBreadcrumb"
+          actionListener="#{data.setDestinationBreadcrumbPage('TASK')}"
+          oncomplete="PF('task-losing-confirmation-dialog').show();" />
+        <p:remoteCommand name="navigateToHomeFromBreadcrumb"
+          actionListener="#{data.setDestinationBreadcrumbPage('HOME')}"
+          oncomplete="PF('task-losing-confirmation-dialog').show();" />
         </h:form>
       </div>
     </div>
