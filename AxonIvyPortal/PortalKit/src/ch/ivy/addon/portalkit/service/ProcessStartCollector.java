@@ -1,7 +1,9 @@
 package ch.ivy.addon.portalkit.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -19,7 +21,6 @@ import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 import ch.ivyteam.ivy.workflow.WorkflowNavigationUtil;
-import ch.ivyteam.util.Pair;
 
 public class ProcessStartCollector {
   private final IApplication application;
@@ -185,7 +186,8 @@ public class ProcessStartCollector {
       ProcessStartCollector collector = new ProcessStartCollector(application);
       IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(EXPRESS_WORKFLOW_EDIT_REQUEST_PATH);
       if (process != null) {
-        Pair<String, String> workflowIdParam = new Pair<>("workflowID", workflowId);
+        Map<String, String> workflowIdParam = new HashMap<>();
+        workflowIdParam.put("workflowID", workflowId);
         return RequestUriFactory.createProcessStartUri(process, workflowIdParam).toASCIIString();
       }
       return StringUtils.EMPTY;

@@ -21,11 +21,9 @@ function IvyUri() {
 
     var path = window.location.pathname.split("/"); // assume faces uri
 
-    var webAppCtxt = path[1]; // e.g. /ivy
+    var webAppCtxt = path[1]; // app name e.g. /designer
 
-    var app = path[4]; // e.g. /designer
-
-    return baseUri + "/" + webAppCtxt + "/api/" + app;
+    return baseUri + "/" + webAppCtxt+ "/api";
   };
 }
 

@@ -127,8 +127,8 @@ Ts0 f10 expr out #txt
 Ts0 f10 280 272 339 272 #arcP
 Ts0 f21 actionTable 'out=in;
 ' #txt
-Ts0 f21 actionCode 'import javax.faces.context.FacesContext;
-import ch.ivy.addon.portalkit.support.UrlDetector;
+Ts0 f21 actionCode 'import ch.ivy.addon.portalkit.util.RequestUtil;
+import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -139,12 +139,10 @@ if (StringUtils.isEmpty(friendlyRequestPath)) {
 
 String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(friendlyRequestPath);
 if (StringUtils.isNotEmpty(requestPath)) {
-    UrlDetector urlDetector = new UrlDetector();
-    String serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
-
-    FacesContext.getCurrentInstance().getExternalContext().redirect(serverUrl + requestPath);
+    FacesContext.getCurrentInstance().getExternalContext().redirect(RequestUtil.getRelativeUrlByRequestPath(requestPath));
 }
   ' #txt
+Ts0 f21 security system #txt
 Ts0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
