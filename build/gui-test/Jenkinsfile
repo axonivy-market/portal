@@ -15,7 +15,7 @@ pipeline {
   }
 
   parameters {
-      string(name: 'testPatternToRun', defaultValue: 'portal.guitest.userexample.test.*Test,portal.guitest.test.*Test', description: 'Test pattern to run')
+      string(name: 'testPatternToRun', defaultValue: 'portal.guitest.test.*Test', description: 'Test pattern to run')
       string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/7.0/axonivy-engine-windows.zip', description: 'Where to download engine?')
   }
 
