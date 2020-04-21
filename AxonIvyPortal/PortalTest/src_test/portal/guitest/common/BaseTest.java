@@ -28,7 +28,7 @@ import vn.wawa.guitest.base.enums.BrowserType;
 public class BaseTest {
   private Browser browser;
 
-  private String designerLogoutUrl = "http://localhost:8081/ivy/wf/logout.jsp";
+  private String designerLogoutUrl = "http://localhost:8081/wf/logout.jsp";
   private final static String LOGIN_URL_PATTERN = "portalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
   private BrowserType browserType;
 
