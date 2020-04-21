@@ -49,6 +49,22 @@ public class ExpressTest extends BaseTest{
     formDefinition.executeWorkflow();
     executeExpressProcessWhenMultiApproval();
   }
+
+  @Test
+  public void testBreadCrumb() {
+    goToCreateExpressProcess();
+    ExpressProcessPage expressProcessPage = new ExpressProcessPage();
+    assertEquals("Express Workflow", expressProcessPage.getTextOfCurrentBreadcrumb());
+
+    expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
+    ExpressResponsible responsible1 = new ExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
+    expressProcessPage.createTask(0, USER_TASK_INDEX, "Task 1", "Task 1 description", Arrays.asList(responsible1));
+    ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
+    assertEquals("Express Workflow", formDefinition.getTextOfCurrentBreadcrumb());
+
+    formDefinition.clickHomeBreadcrumb();
+    assertEquals(true, homePage.isDisplayed());
+  }
   
   private ExpressFormDefinitionPage configureExpressProcessWhenMultiApproval(ExpressProcessPage expressProcessPage) {
     ExpressResponsible responsible1 = new ExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
