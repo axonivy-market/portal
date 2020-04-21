@@ -150,6 +150,8 @@ Migrate 8.x to 9.1
 ----------------------
 
 1. Removed the ``views`` field in SubMenuItem.java. Adapt it if you overrode the ``LoadSubMenuItems`` callable process
+2. Please add parameter ``<ui:param name="viewName" value="TASK" />`` to your customized ``PortalTasksTemplate`` to displayed breadcrumb of Task list.
+3. Please add parameter ``<ui:param name="viewName" value="CASE" />`` to your customized ``PortalCasesTemplate`` to displayed breadcrumb of Case list.
 
 Migrate 8.0.1 to 8.0.2
 ----------------------
