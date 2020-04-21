@@ -183,14 +183,14 @@ public class MenuView {
   }
 
   private void buildBreadCrumbForTaskList() {
-    breadcrumbModel.getElements().add(buildPortalHomeMenuItem());
+    setPortalHomeMenuToBreadcrumbModel();
     DefaultMenuItem taskListSubmenuItem = buildTaskListMenuItem();
     taskListSubmenuItem.setDisabled(true);
     breadcrumbModel.getElements().add(taskListSubmenuItem);
   }
 
   private void buildBreadCrumbForCaseList() {
-    breadcrumbModel.getElements().add(buildPortalHomeMenuItem());
+    setPortalHomeMenuToBreadcrumbModel();
 
     DefaultMenuItem caseListSubmenuItem = buildCaseListMenuItem();
     caseListSubmenuItem.setDisabled(true);
@@ -198,7 +198,7 @@ public class MenuView {
   }
 
   private void buildBreadCrumbForProcess() {
-    breadcrumbModel.getElements().add(buildPortalHomeMenuItem());
+    setPortalHomeMenuToBreadcrumbModel();
 
     DefaultMenuItem processListSubmenuItem = buildProcessListMenuItem();
     processListSubmenuItem.setDisabled(true);
@@ -206,7 +206,7 @@ public class MenuView {
   }
 
   private void buildBreadCrumbForStatistic() {
-    breadcrumbModel.getElements().add(buildPortalHomeMenuItem());
+    setPortalHomeMenuToBreadcrumbModel();
 
     DefaultMenuItem statisticListSubmenuItem = buildStatisticListMenuItem();
     statisticListSubmenuItem.setDisabled(true);
@@ -214,19 +214,19 @@ public class MenuView {
   }
 
   private void buildBreadCrumbForTaskDetails(ITask userTask) {
-    breadcrumbModel.getElements().add(buildPortalHomeMenuItem());
+    setPortalHomeMenuToBreadcrumbModel();
     breadcrumbModel.getElements().add(buildTaskListMenuItem()); 
     breadcrumbModel.getElements().add(buildTaskDetailsMenuItem(userTask));
   }
 
   private void buildBreadCrumbForCaseDetails(ICase userCase) {
-    breadcrumbModel.getElements().add(buildPortalHomeMenuItem());
+    setPortalHomeMenuToBreadcrumbModel();
     breadcrumbModel.getElements().add(buildCaseListMenuItem());
     breadcrumbModel.getElements().add(buildCaseDetailsMenuItem(userCase));
   }
 
   private void buildBreadCrumbForExpress() {
-    breadcrumbModel.getElements().add(buildPortalHomeMenuItem());
+    setPortalHomeMenuToBreadcrumbModel();
     breadcrumbModel.getElements().add(buildExpressMenuItem());
   }
 
@@ -292,6 +292,10 @@ public class MenuView {
     menuItem.setUrl("#");
     menuItem.setDisabled(true);
     return menuItem;
+  }
+
+  private void setPortalHomeMenuToBreadcrumbModel() {
+    breadcrumbModel.getElements().add(buildPortalHomeMenuItem());
   }
 
   public String getHomepageLink() {
