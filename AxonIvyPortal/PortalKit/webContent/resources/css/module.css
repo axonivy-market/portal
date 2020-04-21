@@ -4337,7 +4337,7 @@ body .ui-dialog.ui-widget.export-express-dialog {
 	display: flex;
 	float: left;
 	margin-left: 0;
-	width: calc(100% - 652px);
+	width: calc(100% - 700px);
 }
 
 .layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li.breadcrumb-container >form {
