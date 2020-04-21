@@ -110,7 +110,7 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/*/*/*.jpg", allowEmptyArchive: true, fingerprint: true
+      archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/*/*/*.jpg", allowEmptyArchive: true
       junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
     }
   }
@@ -119,7 +119,9 @@ pipeline {
 def downloadPortalRelease() {
   echo '====================Download Portal latest successful release===================='
   def branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
-  bat "curl --user wawa:W4w4@CH\$ --output archive.zip ${env.JENKINS_URL}job/PortalRelease/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
+  withCredentials([usernameColonPassword(credentialsId: 'jenkins-guest-cred', variable: 'jenkinsGuestCred')]) {
+    bat "curl --user ${jenkinsGuestCred} --output archive.zip ${env.JENKINS_URL}job/PortalRelease/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
+  }
   unzip zipFile: 'archive.zip', quiet: true
 }
 
