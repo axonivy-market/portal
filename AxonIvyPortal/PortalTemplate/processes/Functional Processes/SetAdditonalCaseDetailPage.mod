@@ -39,7 +39,6 @@ Se0 f3 actionTable 'out=in;
 ' #txt
 Se0 f3 actionCode 'import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivy.addon.portalkit.support.UrlDetector;
 
 ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
 String casePageUrl = collector.findLinkByFriendlyRequestPath(in.linkToAdditonalCaseDetailPage)  

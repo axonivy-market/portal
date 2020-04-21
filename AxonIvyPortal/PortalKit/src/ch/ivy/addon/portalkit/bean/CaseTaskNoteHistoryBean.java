@@ -1,7 +1,9 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 
@@ -20,7 +22,6 @@ import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
-import ch.ivyteam.util.Pair;
 
 @ManagedBean(name = "caseTaskNoteHistoryBean")
 public class CaseTaskNoteHistoryBean implements Serializable {
@@ -38,8 +39,10 @@ public class CaseTaskNoteHistoryBean implements Serializable {
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
     IProcessStart process =
         collector.findProcessStartByUserFriendlyRequestPath("Start Processes/TaskNoteHistory/showTaskNoteHistory.ivp");
+    Map<String, String> selectedTaskIdParam = new HashMap<>();
+    selectedTaskIdParam.put("selectedTaskId", String.valueOf(task.getId()));
     String redirectLink = RequestUriFactory
-        .createProcessStartUri(process, new Pair<String, String>("selectedTaskId", String.valueOf(task.getId())))
+        .createProcessStartUri(process, selectedTaskIdParam)
         .toASCIIString();
     return redirectLink;
   }
@@ -52,8 +55,10 @@ public class CaseTaskNoteHistoryBean implements Serializable {
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
     IProcessStart process =
         collector.findProcessStartByUserFriendlyRequestPath("Start Processes/CaseNoteHistory/showCaseNoteHistory.ivp");
+    Map<String, String> caseIdParam = new HashMap<>();
+    caseIdParam.put("caseId", String.valueOf(caseId));
     String redirectLink = RequestUriFactory
-        .createProcessStartUri(process, new Pair<String, String>("caseId", String.valueOf(caseId))).toASCIIString();
+        .createProcessStartUri(process, caseIdParam).toASCIIString();
     return redirectLink;
   }
 
