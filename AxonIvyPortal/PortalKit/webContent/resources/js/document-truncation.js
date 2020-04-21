@@ -31,7 +31,7 @@ function DocumentTruncation() {
 
         if ($itemColumns.length > 2 && $responsiveButtons.length > 0) {
           var isDisplayMainMenu = $('.js-left-sidebar').hasClass('in');
-          var isDisplaySecondLevelMenu = $('#second-level-menu').hasClass('on') && !$secondLevelMenu.hasClass('hide');
+          var isDisplaySecondLevelMenu = $('#second-level-menu').hasClass('on') && !$('#second-level-menu').hasClass('hide');
           var isDocResponsiveButtonClicked = $('.js-document-column-responsive-button', $selectedItem).hasClass('is-clicked');
           if (viewPort.isSmallScreen() && isDisplayMainMenu && isDisplaySecondLevelMenu && !isDocResponsiveButtonClicked) {
             // 2 menus is open and DocResponsiveButtonClicked is not clicked,
