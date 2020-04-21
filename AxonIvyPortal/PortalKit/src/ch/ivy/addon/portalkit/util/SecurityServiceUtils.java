@@ -21,6 +21,8 @@ import ch.ivyteam.ivy.workflow.IProcessStart;
  */
 @SuppressWarnings("restriction")
 public class SecurityServiceUtils {
+  
+  private static final String REQUEST_PATH_PROCESS = "/pro/";
 
   private SecurityServiceUtils() {}
 
@@ -37,8 +39,7 @@ public class SecurityServiceUtils {
         Set<IProcessStart> processStarts = Ivy.wf().findProcessStartsBySignature(processStartsSignature);
         if (processStarts.iterator() != null && processStarts.iterator().hasNext()) {
           IProcessStart processStart = processStarts.iterator().next();
-          String fullRequestPath = processStart.getFullRequestPath();
-          requestUri = "/pro/" + fullRequestPath;
+          return getProcessRelativeUrl(processStart.getFullRequestPath());
         }
       }
       return requestUri;
@@ -58,7 +59,7 @@ public class SecurityServiceUtils {
           processStartCollector.findProcessStartByUserFriendlyRequestPath(processStartSignature);
       if (processStart != null) {
         try {
-          return "/pro/" + processStart.getFullRequestPath();
+          return getProcessRelativeUrl(processStart.getFullRequestPath());
         } catch (Exception e) {
           Ivy.log().error(e);
           return StringUtils.EMPTY;
@@ -83,8 +84,7 @@ public class SecurityServiceUtils {
                 .findProcessStartByUserFriendlyRequestPath("Start Processes/PortalStart/DefaultApplicationHomePage.ivp");
         if (processStart != null) {
           try {
-            return String.format("/%s/pro/%s", RequestUriFactory.getIvyContextName(),
-                processStart.getFullRequestPath());
+            return RequestUtil.getRelativeUrlByRequestPath(getProcessRelativeUrl(processStart.getFullRequestPath()));
           } catch (Exception e) {
             Ivy.log().error(e);
             return StringUtils.EMPTY;
@@ -127,6 +127,10 @@ public class SecurityServiceUtils {
       Object portalStartPmvId = getSessionAttribute(SessionAttribute.PORTAL_START_PMV_ID.toString());
       return collector.findFriendlyRequestPathContainsKeyword(keyword, portalStartPmvId);
     });
+  }
+  
+  private static String getProcessRelativeUrl(String requestPath) {
+    return REQUEST_PATH_PROCESS + requestPath;
   }
 
   /**

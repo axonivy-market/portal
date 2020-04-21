@@ -2,7 +2,6 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Optional;
@@ -84,7 +83,7 @@ public class UserMenuBean implements Serializable {
     return getDefaultClientSideTimeout();
   }
 
-  public String getLogoutPage() throws MalformedURLException {
+  public String getLogoutPage() {
     IvyCacheService cacheService = IvyCacheService.newInstance();
     String logoutPageUrl = cacheService.getLogoutPageFromCache();
     if (StringUtils.isNotBlank(logoutPageUrl)){
@@ -96,7 +95,7 @@ public class UserMenuBean implements Serializable {
     return logoutPage;
   }
 
-  public String getHomePageURL() throws MalformedURLException {
+  public String getHomePageURL() {
     RegisteredApplicationService applicationService = new RegisteredApplicationService();
     // Special handle since this function is call in javascript: window.location = "${userMenuBean.getHomePageURL()}";
     if (globalSettingService == null) {

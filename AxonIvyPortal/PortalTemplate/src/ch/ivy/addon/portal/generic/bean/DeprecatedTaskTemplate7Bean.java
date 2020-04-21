@@ -44,16 +44,14 @@ public class DeprecatedTaskTemplate7Bean implements Serializable{
   }
 
   public void startAdhoc() {
-    PortalNavigator portalNavigator = new PortalNavigator();
     ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
     String url = processStartCollector.findExpressAdhocWFLink();
     url = url + "?originalTaskId=" + Ivy.wfTask().getId();
-    portalNavigator.redirect(url);
+    PortalNavigator.redirect(url);
   }
 
   public void startSideStep() {
-    PortalNavigator portalNavigator = new PortalNavigator();
-    portalNavigator.redirect(selectedSideStep.getStartLink().getAbsoluteEncoded());
+    PortalNavigator.redirect(selectedSideStep.getStartLink().getAbsoluteEncoded());
   }
 
   public boolean hasExpressAdhocWF() {

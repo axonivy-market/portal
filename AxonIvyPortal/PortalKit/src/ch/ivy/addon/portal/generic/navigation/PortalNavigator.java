@@ -2,7 +2,6 @@ package ch.ivy.addon.portal.generic.navigation;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -16,12 +15,10 @@ import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivy.addon.portalkit.support.UrlDetector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivy.addon.portalkit.util.RequestUtil;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.request.RequestUriFactory;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
 
 public final class PortalNavigator {
@@ -34,14 +31,13 @@ public final class PortalNavigator {
   private static final String PORTAL_RELATED_TASKS_OF_CASE = "Start Processes/PortalStart/RelatedTasksOfCasePage.ivp";
   private static final String PORTAL_TASK_DETAILS = "Start Processes/PortalStart/TaskDetailsPage.ivp";
   private static final String PORTAL_GLOBAL_SEARCH = "Start Processes/PortalStart/GlobalSearchPage.ivp";
-  private static final String SLASH = "/";
 
-  public String getPortalStartUrl() throws MalformedURLException {
+  public String getPortalStartUrl() {
     String homePageURL = getHomePageFromSetting();
     if (StringUtils.isNotEmpty(homePageURL)) {
       return homePageURL;
     }
-    return defaultPortalStartUrl(false);
+    return defaultPortalStartUrl();
   }
 
   private String getHomePageFromSetting() {
@@ -49,17 +45,12 @@ public final class PortalNavigator {
     return globalSettingService.findGlobalSettingValue(GlobalVariable.HOMEPAGE_URL.toString());
   }
 
-  private String defaultPortalStartUrl(boolean isAbsoluteLink) throws MalformedURLException {
+  private String defaultPortalStartUrl() {
     String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(PORTAL_PROCESS_START_NAME);
-    if (isAbsoluteLink) {
-      UrlDetector urlDetector = new UrlDetector();
-      String serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
-      return serverUrl + requestPath;
-    }
-    return SLASH + RequestUriFactory.getIvyContextName() + requestPath;
+    return RequestUtil.getRelativeUrlByRequestPath(requestPath);
   }
 
-  public void redirect(String url) {
+  public static void redirect(String url) {
     try {
       FacesContext.getCurrentInstance().getExternalContext().redirect(url);
     } catch (IOException ex) {
@@ -95,14 +86,7 @@ public final class PortalNavigator {
     }
     String customizePortalFriendlyRequestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(subMenuUrl);
     if (StringUtils.isNotEmpty(customizePortalFriendlyRequestPath)) {
-      UrlDetector urlDetector = new UrlDetector();
-      String serverUrl = StringUtils.EMPTY;
-      try {
-        serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
-      } catch (MalformedURLException e) {
-        Ivy.log().info("Cannot detect server Url" + e.getMessage());
-      }
-      return serverUrl + customizePortalFriendlyRequestPath;
+      return RequestUtil.getRelativeUrlByRequestPath(customizePortalFriendlyRequestPath);
     }
     return Ivy.html().startRef(subMenuUrl);
   }
@@ -185,8 +169,6 @@ public final class PortalNavigator {
     String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(friendlyRequestPath);
     if (StringUtils.isNotEmpty(requestPath)) {
       try {
-        String ivyContextName = ServerFactory.getServer().getSecurityManager().executeAsSystem(
-            () -> RequestUriFactory.getIvyContextName());
         String paramStr = params.entrySet().stream()
             .map(e -> {
               String param = e.getKey() + "=";
@@ -198,7 +180,7 @@ public final class PortalNavigator {
               }
             })
             .collect(Collectors.joining("&"));
-        redirect(SLASH + ivyContextName + requestPath + (StringUtils.isNotBlank(paramStr) ? "?" + paramStr : StringUtils.EMPTY));
+        redirect(RequestUtil.getRelativeUrlByRequestPath(requestPath + (StringUtils.isNotBlank(paramStr) ? "?" + paramStr : StringUtils.EMPTY)));
       } catch (Exception e) {
         Ivy.log().error(e);
       }
