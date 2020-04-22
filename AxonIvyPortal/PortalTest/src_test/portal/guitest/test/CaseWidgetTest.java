@@ -230,10 +230,12 @@ public class CaseWidgetTest extends BaseTest {
     assertEquals("Case: Leave Request", caseDetailsPage.getTextOfCurrentBreadcrumb());
 
     caseDetailsPage.clickCaseListBreadCrumb();
+    casePage = new CaseWidgetPage();
     assertEquals(true, casePage.isDisplayed());
 
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     caseDetailsPage.clickHomeBreadcrumb();
+    homePage = new HomePage();
     assertEquals(true, homePage.isDisplayed());
   }
 }
