@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.persistence.dao;
 
+import static org.powermock.api.mockito.PowerMockito.mockStatic;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -9,12 +11,15 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
+import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.persistence.domain.User;
+import ch.ivyteam.ivy.environment.Ivy;
 
 @RunWith(PowerMockRunner.class)
+@PrepareForTest(Ivy.class)
 public class UserDaoTest {
 
   private UserDao userDao;
@@ -22,6 +27,7 @@ public class UserDaoTest {
   @Before
   public void setup() {
     userDao = PowerMockito.mock(UserDao.class);
+    mockStatic(Ivy.class);
   }
 
   @Test

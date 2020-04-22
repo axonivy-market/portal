@@ -39,12 +39,14 @@ public class ServerServiceTest {
     String expectedPortalConnectorURL = "http://localhost:8081/ivy/portalConnector/PortalConnector";
     when(portalConnectorDetector.getPortalConectorLocalhostURLFromSystemProperty()).thenReturn(
         expectedPortalConnectorURL);
-    serverService = new ServerService(serverDao, portalConnectorDetector);
     PowerMockito.mockStatic(PortalConnectorUser.class);
     when(PortalConnectorUser.getPortalConnectorUser()).thenReturn(portalConnectorUser);
     when(portalConnectorUser.getUserName()).thenReturn("PortalConnector");
     when(portalConnectorUser.getPassword()).thenReturn("sample password");
-    List<Server> servers = serverService.findActiveServers();
+
+    serverService = new ServerService(serverDao, portalConnectorDetector);
+    List<Server> servers = serverService.findActiveServersWithoutCache();
+    
     assertEquals(1, servers.size());
 
     Server server = servers.get(0);

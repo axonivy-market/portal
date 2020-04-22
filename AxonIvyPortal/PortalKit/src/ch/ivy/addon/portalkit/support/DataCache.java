@@ -41,7 +41,10 @@ public final class DataCache {
   }
   
   public static Object getGlobalSettingFromCache(String attributeName){
-    IDataCacheEntry entry = Ivy.datacache().getAppCache().getEntry(PortalCacheConstants.GLOBAL_SETTING_CACHE_GROUP_NAME, attributeName);
+    IDataCacheEntry entry = null;
+    if (Ivy.datacache() != null) {
+      entry = Ivy.datacache().getAppCache().getEntry(PortalCacheConstants.GLOBAL_SETTING_CACHE_GROUP_NAME, attributeName);
+    }
     return entry == null ? null : entry.getValue();
   }
   
@@ -90,7 +93,10 @@ public final class DataCache {
   
   @SuppressWarnings("unchecked")
   public static List<User> getAllUsersFromCache() {
-    IDataCacheEntry cacheEntry = Ivy.datacache().getAppCache().getEntry(PortalCacheConstants.PORTAL_USERS_CACHE_GROUP_NAME, PortalCacheConstants.USERS_LIST_CACHE_ENTRY_NAME);
+    IDataCacheEntry cacheEntry = null;
+    if (Ivy.datacache() != null) {
+      cacheEntry = Ivy.datacache().getAppCache().getEntry(PortalCacheConstants.PORTAL_USERS_CACHE_GROUP_NAME, PortalCacheConstants.USERS_LIST_CACHE_ENTRY_NAME);
+    }
     return cacheEntry != null ? (List<User>) cacheEntry.getValue() : null;
   }
   
@@ -105,9 +111,12 @@ public final class DataCache {
   
   @SuppressWarnings("unchecked")
   public static Repo<Long, User> getUserRepoFromCache() {
-      IDataCacheEntry cacheEntry = Ivy.datacache().getAppCache().getEntry(PortalCacheConstants.PORTAL_USERS_CACHE_GROUP_NAME, PortalCacheConstants.USERS_REPO_CACHE_ENTRY_NAME);
-      return cacheEntry != null ? (Repo<Long, User>) cacheEntry.getValue() : null;
+    IDataCacheEntry cacheEntry = null;
+    if (Ivy.datacache() != null) {
+      cacheEntry = Ivy.datacache().getAppCache().getEntry(PortalCacheConstants.PORTAL_USERS_CACHE_GROUP_NAME, PortalCacheConstants.USERS_REPO_CACHE_ENTRY_NAME);
     }
+    return cacheEntry != null ? (Repo<Long, User>) cacheEntry.getValue() : null;
+  }
   
   public static void cacheUsersRepo(String applicationName, Repo<Long, User> repo) {
     IDataCache cache = getCacheFromApplicationName(applicationName);

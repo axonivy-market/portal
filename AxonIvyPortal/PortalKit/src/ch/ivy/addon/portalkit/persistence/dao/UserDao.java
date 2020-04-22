@@ -31,7 +31,9 @@ public class UserDao extends AbstractDao<User> {
     
     if (repo == null) {
       repo = buildRepoIndexedByUserName(getAllUsers());
-      DataCache.cacheUsersRepo(Ivy.wf().getApplication().getName(), repo);
+      if (Ivy.wf() != null) {
+        DataCache.cacheUsersRepo(Ivy.wf().getApplication().getName(), repo);
+      }
     } 
   }
 
@@ -45,7 +47,9 @@ public class UserDao extends AbstractDao<User> {
     List<User> users = DataCache.getAllUsersFromCache();
     if (users == null) {
       users = findAll();
-      DataCache.cacheAllUsers(Ivy.wf().getApplication().getName(), users);
+      if (Ivy.wf() != null) {
+        DataCache.cacheAllUsers(Ivy.wf().getApplication().getName(), users);
+      }
     }
     return users;
   }
@@ -53,6 +57,10 @@ public class UserDao extends AbstractDao<User> {
   @ExecuteAsSystem
   public List<User> findByUserName(String userName) {
     getRepoIndexedByUserName();
+    if (repo == null) {
+      repo = Repos.builder().primaryKey(EntityProperty.ID.toString()).searchIndex(EntityProperty.USER_NAME.toString())
+          .build(long.class, User.class).init(findAll());
+    }
     return repo.query(ObjectFilter.eq(EntityProperty.USER_NAME.toString(), userName));
   }
 

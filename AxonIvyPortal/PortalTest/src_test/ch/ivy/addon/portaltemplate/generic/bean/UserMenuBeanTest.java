@@ -46,11 +46,11 @@ public class UserMenuBeanTest {
     final String SHOW_ENVIROMENT_INFO = "SHOW_ENVIRONMENT_INFO";
     GlobalSettingService globalSettingService = mock(GlobalSettingService.class);
     whenNew(GlobalSettingService.class).withNoArguments().thenReturn(globalSettingService);
-    when(globalSettingService.findGlobalSettingValue(SHOW_ENVIROMENT_INFO)).thenReturn("true");
+    when(globalSettingService.findGlobalSettingValueAsBoolean(SHOW_ENVIROMENT_INFO)).thenReturn(true);
     assertEquals(Boolean.TRUE, userMenuBean.isShowServerInformation());
 
     verifyNew(GlobalSettingService.class).withNoArguments();
-    Mockito.verify(globalSettingService).findGlobalSettingValue(SHOW_ENVIROMENT_INFO);
+    Mockito.verify(globalSettingService).findGlobalSettingValueAsBoolean(SHOW_ENVIROMENT_INFO);
   }
 
   @Test
@@ -59,11 +59,11 @@ public class UserMenuBeanTest {
     final String HIDE_LOGOUT_BUTTON = "HIDE_LOGOUT_BUTTON";
     GlobalSettingService globalSettingService = mock(GlobalSettingService.class);
     whenNew(GlobalSettingService.class).withNoArguments().thenReturn(globalSettingService);
-    when(globalSettingService.findGlobalSettingValue(HIDE_LOGOUT_BUTTON)).thenReturn("true");
+    when(globalSettingService.findGlobalSettingValueAsBoolean(HIDE_LOGOUT_BUTTON)).thenReturn(true);
     assertEquals(Boolean.TRUE, userMenuBean.isHiddenLogout());
 
     verifyNew(GlobalSettingService.class).withNoArguments();
-    Mockito.verify(globalSettingService).findGlobalSettingValue(HIDE_LOGOUT_BUTTON);
+    Mockito.verify(globalSettingService).findGlobalSettingValueAsBoolean(HIDE_LOGOUT_BUTTON);
   }
 
   @Test

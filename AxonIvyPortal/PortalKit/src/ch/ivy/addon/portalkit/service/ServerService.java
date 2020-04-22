@@ -40,6 +40,11 @@ public class ServerService extends AbstractService<Server> {
     return CollectionUtils.isEmpty(servers) ? Arrays.asList(localhost()) : servers;
   }
   
+  public List<Server> findActiveServersWithoutCache() {
+    List<Server> servers = getDao().findActiveServers();
+    return CollectionUtils.isEmpty(servers) ? Arrays.asList(localhost()) : servers;
+  }
+  
   public List<Server> findActiveServersNotLocalhost() {
     return getDao().findActiveServers();
   }
