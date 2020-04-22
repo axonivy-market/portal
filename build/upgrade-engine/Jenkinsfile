@@ -67,6 +67,8 @@ pipeline {
             ren "${engineDir}" "${engineName}-bk" || goto :repeat
             echo ====================Extract engine====================
             mvn clean compile -f AxonIvyPortal/PortalTest/pom.xml -Divy.engine.directory=${engineDir} %engineDownloadURL%
+          """
+          bat """
             echo ====================Copy license, configuration files====================
             copy /D/Y ${renamedEngineDir}\\configuration\\*.lic ${engineDir}\\configuration
             copy /D/Y ${renamedEngineDir}\\configuration\\*.yaml ${engineDir}\\configuration
@@ -81,22 +83,6 @@ pipeline {
           bat """
             echo ====================Start engine====================
             net start "${serviceName}"
-
-            @echo off
-            echo %time%
-            for /l %%i IN (1,1,150) do (
-              sc query "${serviceName}" | findstr STATE | findstr RUNNING
-              if errorlevel 1 (
-                ping 1.1.1.1 -n 1 -w 1000 > nul
-              ) else (
-                echo ${serviceName} started
-              goto :endwaiting
-              )
-            )
-            :endwaiting
-            echo %time%
-
-            echo on
           """
         }
       }
