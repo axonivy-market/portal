@@ -1,22 +1,17 @@
 package ch.ivy.addon.portalkit.util;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
-import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public final class CaseUtils {
@@ -46,17 +41,8 @@ public final class CaseUtils {
   }
 
   public static String getProcessStartUriWithCaseParameters(ICase iCase, String requestPath) {
-    ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
     String urlParameters = "?caseId=" + iCase.getId();
-    try {
-      return collector.findLinkByFriendlyRequestPath(requestPath) + urlParameters;
-    } catch (Exception e) {
-      Ivy.log().error(e);
-      IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
-      Map<String, String> caseIdParam = new HashMap<>();
-      caseIdParam.put("caseId", String.valueOf(iCase.getId()));
-      return RequestUriFactory.createProcessStartUri(process, caseIdParam).toASCIIString();
-    }
+    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.request().getApplication(), requestPath) + urlParameters;
   }
   
   public static List<INote> findNotes(ICase iCase, boolean excludeSystemNotes) {

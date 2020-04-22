@@ -12,7 +12,6 @@ import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpRequest;
-import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.server.restricted.EngineMode;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 
@@ -47,29 +46,6 @@ public class SecurityServiceUtils {
   }
 
   /**
-   * Finds process url by request path in whole server
-   * 
-   * @param processStartSignature
-   * @return request path
-   */
-  public static String findProcessByUserFriendlyRequestPath(String processStartSignature) {
-    return IvyExecutor.executeAsSystem(() -> {
-      ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
-      IProcessStart processStart =
-          processStartCollector.findProcessStartByUserFriendlyRequestPath(processStartSignature);
-      if (processStart != null) {
-        try {
-          return getProcessRelativeUrl(processStart.getFullRequestPath());
-        } catch (Exception e) {
-          Ivy.log().error(e);
-          return StringUtils.EMPTY;
-        }
-      }
-      return StringUtils.EMPTY;
-    });
-  }
-
-  /**
    * Finds portal home page of the default portal application
    * 
    * @return string
@@ -78,18 +54,7 @@ public class SecurityServiceUtils {
     return IvyExecutor.executeAsSystem(() -> {
       IApplication defaultPortalApplication = getDefaultPortalApplication();
       if (defaultPortalApplication != null) {
-        ProcessStartCollector processStartCollector = new ProcessStartCollector(defaultPortalApplication);
-        IProcessStart processStart =
-            processStartCollector
-                .findProcessStartByUserFriendlyRequestPath("Start Processes/PortalStart/DefaultApplicationHomePage.ivp");
-        if (processStart != null) {
-          try {
-            return RequestUtil.getRelativeUrlByRequestPath(getProcessRelativeUrl(processStart.getFullRequestPath()));
-          } catch (Exception e) {
-            Ivy.log().error(e);
-            return StringUtils.EMPTY;
-          }
-        }
+        return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(defaultPortalApplication, "Start Processes/PortalStart/DefaultApplicationHomePage.ivp");
       }
       return StringUtils.EMPTY;
     });
