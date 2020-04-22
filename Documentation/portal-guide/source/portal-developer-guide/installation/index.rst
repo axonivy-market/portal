@@ -151,6 +151,11 @@ Migrate 8.x to 9.1
 
 1. Removed the ``views`` field in SubMenuItem.java. Adapt it if you overrode the ``LoadSubMenuItems`` callable process
 
+2. Ivy core enhanced the Ivy URI, so Portal needs to make a migration.
+Please deploy :download:`PortalUrlMigration.iar <documents/PortalUrlMigration.iar>` project to any Ivy Application 
+then run ``migratePortalUrl.ivp`` once
+and wait until it is redirected to another page without error (E.g: Homepage). It is recommended to remove it after the migration
+
 Migrate 8.0.1 to 8.0.2
 ----------------------
 
