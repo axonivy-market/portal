@@ -11,17 +11,14 @@ import org.apache.commons.lang.StringUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.RequestUtil;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
-import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
@@ -191,16 +188,8 @@ public class TaskActionBean {
   }
 
   public static String getProcessStartUriWithTaskParameters(ITask iTask, String requestPath) {
-    ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
     String urlParameters = "?TaskId=" + iTask.getId();
-    try {
-      return collector.findLinkByFriendlyRequestPath(requestPath) + urlParameters;
-    } catch (Exception e) {
-      Ivy.log().error(e);
-      IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
-      return RequestUriFactory.createProcessStartUri(process).toASCIIString()
-          + urlParameters;
-    }
+    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.request().getApplication(), requestPath) + urlParameters;
   }
   
   public void backToTaskList(ITask task) {
@@ -208,9 +197,9 @@ public class TaskActionBean {
     if (StringUtils.isEmpty(friendlyRequestPath)) {
       friendlyRequestPath = BACK_FROM_TASK_DETAILS;
     }
-    String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(friendlyRequestPath);
+    String requestPath = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), friendlyRequestPath);
     if (StringUtils.isNotEmpty(requestPath)) {
-      PortalNavigator.redirect(RequestUtil.getRelativeUrlByRequestPath(requestPath + "?endedTaskId=" + task.getId()));
+      PortalNavigator.redirect(requestPath + "?endedTaskId=" + task.getId());
     }
   }
 

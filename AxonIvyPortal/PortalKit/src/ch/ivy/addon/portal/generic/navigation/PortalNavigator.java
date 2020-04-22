@@ -16,7 +16,7 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
-import ch.ivy.addon.portalkit.util.RequestUtil;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
@@ -46,8 +46,7 @@ public final class PortalNavigator {
   }
 
   private String defaultPortalStartUrl() {
-    String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(PORTAL_PROCESS_START_NAME);
-    return RequestUtil.getRelativeUrlByRequestPath(requestPath);
+    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), PORTAL_PROCESS_START_NAME);
   }
 
   public static void redirect(String url) {
@@ -84,9 +83,9 @@ public final class PortalNavigator {
       default:
         break;
     }
-    String customizePortalFriendlyRequestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(subMenuUrl);
+    String customizePortalFriendlyRequestPath = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), subMenuUrl);
     if (StringUtils.isNotEmpty(customizePortalFriendlyRequestPath)) {
-      return RequestUtil.getRelativeUrlByRequestPath(customizePortalFriendlyRequestPath);
+      return customizePortalFriendlyRequestPath;
     }
     return Ivy.html().startRef(subMenuUrl);
   }
@@ -166,7 +165,7 @@ public final class PortalNavigator {
   }
 
   private void navigate(String friendlyRequestPath, Map<String, String> params) {
-    String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(friendlyRequestPath);
+    String requestPath = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), friendlyRequestPath);
     if (StringUtils.isNotEmpty(requestPath)) {
       try {
         String paramStr = params.entrySet().stream()
@@ -180,7 +179,7 @@ public final class PortalNavigator {
               }
             })
             .collect(Collectors.joining("&"));
-        redirect(RequestUtil.getRelativeUrlByRequestPath(requestPath + (StringUtils.isNotBlank(paramStr) ? "?" + paramStr : StringUtils.EMPTY)));
+        redirect(requestPath + (StringUtils.isNotBlank(paramStr) ? "?" + paramStr : StringUtils.EMPTY));
       } catch (Exception e) {
         Ivy.log().error(e);
       }

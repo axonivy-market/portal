@@ -53,7 +53,7 @@ import ch.ivyteam.ivy.request.IRequest;
 import ch.ivy.addon.portalkit.util.RequestUtil;
 import javax.faces.context.FacesContext;
 
-in.logoutPage = "/";' #txt
+in.logoutPage = ivy.html.applicationHomeRef();' #txt
 Le0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
