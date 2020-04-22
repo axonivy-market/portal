@@ -224,7 +224,7 @@ public class CaseDetailsPage extends TemplatePage {
   public void onClickHistoryIcon() {
     click(findElementById("case-item-details:case-histories:add-note-command"));
   }
-  
+
   public void onClickDestroyCase() {
     click(findElementById("case-item-details:destroy-case-link"));
     click(findElementById("case-item-details:destroy-case-link"));
@@ -325,6 +325,10 @@ public class CaseDetailsPage extends TemplatePage {
   
   public List<WebElement> findDocumentItemInCaseDetailsDocumentTable() {
     return findListElementsByCssSelector("a[id$='download']");
+  }
+
+  public void clickCaseListBreadCrumb() {
+    click(By.cssSelector(".portal-breadcrumb ul li:nth-of-type(3) .ui-menuitem-link"));
   }
 
 }

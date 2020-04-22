@@ -37,10 +37,8 @@ As0 @GridStep f15 '' #zField
 As0 @PushWFArc f22 '' #zField
 As0 @UdProcessEnd f34 '' #zField
 As0 @GridStep f17 '' #zField
-As0 @PushWFArc f27 '' #zField
 As0 @PushWFArc f28 '' #zField
 As0 @GridStep f31 '' #zField
-As0 @PushWFArc f35 '' #zField
 As0 @PushWFArc f37 '' #zField
 As0 @PushWFArc f0 '' #zField
 As0 @PushWFArc f21 '' #zField
@@ -66,6 +64,11 @@ As0 @GridStep f19 '' #zField
 As0 @PushWFArc f13 '' #zField
 As0 @PushWFArc f20 '' #zField
 As0 @PushWFArc f30 '' #zField
+As0 @GridStep f32 '' #zField
+As0 @PushWFArc f36 '' #zField
+As0 @PushWFArc f39 '' #zField
+As0 @PushWFArc f27 '' #zField
+As0 @PushWFArc f35 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f67 actionTable 'out=in;
 ' #txt
@@ -247,7 +250,7 @@ As0 f111 expr out #txt
 As0 f111 1024 43 1024 176 #arcP
 As0 f111 0 0.8554291471631579 0 0 #arcLabel
 As0 f112 expr in #txt
-As0 f112 outCond '!in.#selectedSubMenuItem is initialized' #txt
+As0 f112 outCond '(!in.#selectedSubMenuItem is initialized) && (!in.#destinationBreadcrumbPage is initialized)' #txt
 As0 f112 853 389 704 512 #arcP
 As0 f112 1 704 448 #addKink
 As0 f112 0 0.8119251469460217 0 0 #arcLabel
@@ -320,6 +323,9 @@ As0 f34 @|UdProcessEndIcon #fIcon
 As0 f17 actionTable 'out=in;
 ' #txt
 As0 f17 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+
+in.destinationBreadcrumbPage = null;
+
 PortalNavigator navigator = new PortalNavigator();
 navigator.navigateToPortalTask();' #txt
 As0 f17 security system #txt
@@ -332,11 +338,6 @@ As0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f17 1276 512 136 48 -52 -8 #rect
 As0 f17 @|StepIcon #fIcon
-As0 f27 expr in #txt
-As0 f27 outCond 'in.#selectedSubMenuItem.#menuKind == ch.ivy.addon.portalkit.enums.MenuKind.TASK' #txt
-As0 f27 880 384 1344 512 #arcP
-As0 f27 1 1344 384 #addKink
-As0 f27 0 0.5801593067057396 0 0 #arcLabel
 As0 f28 expr out #txt
 As0 f28 1344 560 877 704 #arcP
 As0 f28 1 1344 704 #addKink
@@ -356,10 +357,6 @@ As0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f31 1124 512 120 48 -53 -8 #rect
 As0 f31 @|StepIcon #fIcon
-As0 f35 expr in #txt
-As0 f35 877 387 1184 512 #arcP
-As0 f35 1 1184 448 #addKink
-As0 f35 0 0.751679304478716 0 0 #arcLabel
 As0 f37 expr out #txt
 As0 f37 1184 560 876 701 #arcP
 As0 f37 1 1184 640 #addKink
@@ -529,6 +526,41 @@ As0 f20 1 0.25 0 0 #arcLabel
 As0 f30 704 174 850 192 #arcP
 As0 f30 1 704 192 #addKink
 As0 f30 1 0.24741320293901495 0 0 #arcLabel
+As0 f32 actionTable 'out=in;
+' #txt
+As0 f32 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+
+in.destinationBreadcrumbPage = null;
+
+PortalNavigator navigator = new PortalNavigator();
+navigator.navigateToPortalHome();' #txt
+As0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>navigate to Home&#13;
+from breadcrumb</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f32 1448 514 128 44 -44 -16 #rect
+As0 f32 @|StepIcon #fIcon
+As0 f36 expr in #txt
+As0 f36 outCond 'ch.ivy.addon.portalkit.enums.BreadCrumbKind.HOME.name().equals(in.#destinationBreadcrumbPage)' #txt
+As0 f36 880 384 1512 514 #arcP
+As0 f36 1 1512 384 #addKink
+As0 f36 0 0.6017546259697808 0 0 #arcLabel
+As0 f39 1512 558 877 704 #arcP
+As0 f39 1 1512 704 #addKink
+As0 f39 1 0.48910616495972775 0 0 #arcLabel
+As0 f27 expr in #txt
+As0 f27 outCond 'in.#selectedSubMenuItem.#menuKind  == ch.ivy.addon.portalkit.enums.MenuKind.TASK || ch.ivy.addon.portalkit.enums.BreadCrumbKind.TASK.name().equals(in.#destinationBreadcrumbPage)' #txt
+As0 f27 880 384 1344 512 #arcP
+As0 f27 1 1344 384 #addKink
+As0 f27 0 0.6567363686648227 0 0 #arcLabel
+As0 f35 expr in #txt
+As0 f35 877 387 1184 512 #arcP
+As0 f35 1 1184 448 #addKink
+As0 f35 0 0.6300696351252247 0 0 #arcLabel
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -572,13 +604,9 @@ As0 f70 out f11 tail #connect
 As0 f11 head f10 mainIn #connect
 As0 f70 out f22 tail #connect
 As0 f22 head f15 mainIn #connect
-As0 f70 out f27 tail #connect
-As0 f27 head f17 mainIn #connect
 As0 f70 out f110 tail #connect
 As0 f17 mainOut f28 tail #connect
 As0 f28 head f34 mainIn #connect
-As0 f70 out f35 tail #connect
-As0 f35 head f31 mainIn #connect
 As0 f31 mainOut f37 tail #connect
 As0 f37 head f34 mainIn #connect
 As0 f67 mainOut f0 tail #connect
@@ -611,3 +639,11 @@ As0 f91 mainOut f20 tail #connect
 As0 f20 head f19 mainIn #connect
 As0 f19 mainOut f30 tail #connect
 As0 f30 head f98 in #connect
+As0 f70 out f36 tail #connect
+As0 f36 head f32 mainIn #connect
+As0 f32 mainOut f39 tail #connect
+As0 f39 head f34 mainIn #connect
+As0 f70 out f27 tail #connect
+As0 f27 head f17 mainIn #connect
+As0 f70 out f35 tail #connect
+As0 f35 head f31 mainIn #connect
