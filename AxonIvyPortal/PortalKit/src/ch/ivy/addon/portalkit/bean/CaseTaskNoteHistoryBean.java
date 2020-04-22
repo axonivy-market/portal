@@ -12,20 +12,21 @@ import org.primefaces.model.StreamedContent;
 import ch.ivy.addon.portalkit.bo.History;
 import ch.ivy.addon.portalkit.bo.History.HistoryType;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.NoteHistoryExporter;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
-import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
 @ManagedBean(name = "caseTaskNoteHistoryBean")
 public class CaseTaskNoteHistoryBean implements Serializable {
   private static final long serialVersionUID = 1L;
+  
+  private static final String SHOW_TASK_NOTE_HISTORY_FRIENDLY_REQUEST_PATH = "Start Processes/TaskNoteHistory/showTaskNoteHistory.ivp";
+  private static final String SHOW_CASE_NOTE_HISTORY_FRIENDLY_REQUEST_PATH = "Start Processes/CaseNoteHistory/showCaseNoteHistory.ivp";
   
   public boolean isShowAddNote() {
     return PermissionUtils.hasPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
@@ -36,15 +37,8 @@ public class CaseTaskNoteHistoryBean implements Serializable {
   }
 
   public String getTaskNoteHistoryLink(ITask task) {
-    ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
-    IProcessStart process =
-        collector.findProcessStartByUserFriendlyRequestPath("Start Processes/TaskNoteHistory/showTaskNoteHistory.ivp");
-    Map<String, String> selectedTaskIdParam = new HashMap<>();
-    selectedTaskIdParam.put("selectedTaskId", String.valueOf(task.getId()));
-    String redirectLink = RequestUriFactory
-        .createProcessStartUri(process, selectedTaskIdParam)
-        .toASCIIString();
-    return redirectLink;
+    String url = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.request().getApplication(), SHOW_TASK_NOTE_HISTORY_FRIENDLY_REQUEST_PATH);
+    return url + "?selectedTaskId=" + String.valueOf(task.getId());
   }
 
   public String getCaseNoteHistoryLink(ICase iCase) {
@@ -52,14 +46,14 @@ public class CaseTaskNoteHistoryBean implements Serializable {
   }
   
   public String getCaseNoteHistoryLink(Long caseId) {
-    ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
-    IProcessStart process =
-        collector.findProcessStartByUserFriendlyRequestPath("Start Processes/CaseNoteHistory/showCaseNoteHistory.ivp");
+    String link = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.request().getApplication(), SHOW_CASE_NOTE_HISTORY_FRIENDLY_REQUEST_PATH);
     Map<String, String> caseIdParam = new HashMap<>();
     caseIdParam.put("caseId", String.valueOf(caseId));
-    String redirectLink = RequestUriFactory
-        .createProcessStartUri(process, caseIdParam).toASCIIString();
-    return redirectLink;
+	/*
+	 * return String.format(arg0, arg1) String redirectLink = RequestUriFactory
+	 * .createProcessStartUri(process, caseIdParam).toASCIIString();
+	 */
+    return link;
   }
 
   public String getCaseNoteContent(History history) {
