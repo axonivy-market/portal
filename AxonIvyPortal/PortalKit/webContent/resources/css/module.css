@@ -4330,3 +4330,52 @@ body .ui-dialog.ui-widget.export-express-dialog {
   }
 }
 /*=================== NOTE HISTORY END ===================*/
+
+
+/*=================== BREADCRUMB ===================*/
+.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li.breadcrumb-container {
+	display: flex;
+	float: left;
+	margin-left: 0;
+	width: calc(100% - 700px);
+}
+
+.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li.breadcrumb-container >form {
+	width: 100%;
+}
+
+body .ui-widget-header.portal-breadcrumb {
+	border: none;
+	padding-top: 1px;
+}
+
+body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled {
+	width: 100%;
+}
+
+body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled .ui-menuitem-text {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+body .ui-widget-header.portal-breadcrumb ul li:last-child {
+	width: calc(100% - 130px);
+}
+
+@media screen and (min-width: 40em) and (max-width: 64.062em) {
+	.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li.breadcrumb-container {
+		width: calc(100% - 300px);
+	}
+}
+
+body .ui-widget-header.portal-breadcrumb a,
+body .ui-widget-header.portal-breadcrumb .ui-breadcrumb-chevron {
+	color: black;
+}
+
+body .portal-breadcrumb.ui-breadcrumb ul li {
+	line-height: 2rem;
+}
+
+/*=================== BREADCRUMB END ===================*/
