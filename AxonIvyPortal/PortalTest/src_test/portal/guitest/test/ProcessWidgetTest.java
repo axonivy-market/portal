@@ -258,6 +258,16 @@ public class ProcessWidgetTest extends BaseTest {
     assertEquals(0, addNewProcessDialog.getDisplayedIconAmount());
   }
 
+  @Test
+  public void testBreadCrumb() {
+    processWidget = homePage.getProcessWidget();
+    processWidget.expand();
+    assertEquals("Processes", processWidget.getTextOfCurrentBreadcrumb());
+
+    processWidget.clickHomeBreadcrumb();
+    assertEquals(true, homePage.isDisplayed());
+  }
+
   private void createExternalTestProcess(String processName, String processLink, boolean isPublic) {
     AddNewExternalLinkDialog addNewExternalLinkDialog = processWidget.openNewExternalLinkDialog();
     addNewExternalLinkDialog.inputDataForExternalLink(processName, processLink, isPublic);

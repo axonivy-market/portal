@@ -22,3 +22,5 @@ workingTask ch.ivyteam.ivy.workflow.ITask #field
 workingTask PERSISTENT #fieldModifier
 isTaskFinished Boolean #field
 isTaskFinished PERSISTENT #fieldModifier
+destinationBreadcrumbPage String #field
+destinationBreadcrumbPage PERSISTENT #fieldModifier
