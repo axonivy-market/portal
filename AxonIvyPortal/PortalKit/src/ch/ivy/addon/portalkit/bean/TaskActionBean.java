@@ -187,11 +187,6 @@ public class TaskActionBean {
     this.isShowAdditionalOptions = isShowAdditionalOptions;
   }
 
-  public static String getProcessStartUriWithTaskParameters(ITask iTask, String requestPath) {
-    String urlParameters = "?TaskId=" + iTask.getId();
-    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.request().getApplication(), requestPath) + urlParameters;
-  }
-  
   public void backToTaskList(ITask task) {
     String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("BackFromTaskDetails.ivp");
     if (StringUtils.isEmpty(friendlyRequestPath)) {
