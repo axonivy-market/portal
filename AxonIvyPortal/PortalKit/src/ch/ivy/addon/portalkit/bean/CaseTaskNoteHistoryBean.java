@@ -1,9 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
 
@@ -47,13 +45,7 @@ public class CaseTaskNoteHistoryBean implements Serializable {
   
   public String getCaseNoteHistoryLink(Long caseId) {
     String link = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.request().getApplication(), SHOW_CASE_NOTE_HISTORY_FRIENDLY_REQUEST_PATH);
-    Map<String, String> caseIdParam = new HashMap<>();
-    caseIdParam.put("caseId", String.valueOf(caseId));
-	/*
-	 * return String.format(arg0, arg1) String redirectLink = RequestUriFactory
-	 * .createProcessStartUri(process, caseIdParam).toASCIIString();
-	 */
-    return link;
+    return link + "?caseId=" + String.valueOf(caseId);
   }
 
   public String getCaseNoteContent(History history) {
