@@ -210,5 +210,32 @@ public class CaseWidgetTest extends BaseTest {
     casePage = mainMenuPage.selectCaseMenu();
     assertEquals("Case count is not disabled", null, casePage.getCaseCount());
   }
-  
+
+  @Test
+  public void testBreadCrumb() {
+    initHomePage(TestAccount.DEMO_USER);
+    mainMenuPage = homePage.openMainMenu();
+    casePage = mainMenuPage.selectCaseMenu();
+    assertEquals("Cases", casePage.getTextOfCurrentBreadcrumb());
+    casePage.clickHomeBreadcrumb();
+    assertEquals(true, homePage.isDisplayed());
+  }
+
+  @Test
+  public void testBreadCrumbInCaseDetail() {
+    initHomePage(TestAccount.DEMO_USER);
+    mainMenuPage = homePage.openMainMenu();
+    casePage = mainMenuPage.selectCaseMenu();
+    caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
+    assertEquals("Case: Leave Request", caseDetailsPage.getTextOfCurrentBreadcrumb());
+
+    caseDetailsPage.clickCaseListBreadCrumb();
+    casePage = new CaseWidgetPage();
+    assertEquals(true, casePage.isDisplayed());
+
+    caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
+    caseDetailsPage.clickHomeBreadcrumb();
+    homePage = new HomePage();
+    assertEquals(true, homePage.isDisplayed());
+  }
 }

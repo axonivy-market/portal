@@ -80,4 +80,9 @@ public class TaskDetailsPage extends TemplatePage {
     findElementById("task-detail-template:task-detail-start-command").click();
     return new TaskTemplatePage();
   }
+
+  public void clickTaskListBreadCrumb() {
+    click(By.cssSelector(".portal-breadcrumb ul li:nth-of-type(3) .ui-menuitem-link"));
+    ensureNoBackgroundRequest();
+  }
 }
