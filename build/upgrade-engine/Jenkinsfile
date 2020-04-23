@@ -11,7 +11,7 @@ pipeline {
   }
 
   parameters {
-      choice(name: 'engine', choices: ['singleAppEngine', 'peformanceTestEngine'], description: 'Which engine to be upgraded?')
+      choice(name: 'engine', choices: ['singleAppEngine', 'performanceTestEngine'], description: 'Which engine to be upgraded?')
       string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/8.0/axonivy-engine-windows.zip', description: 'Where to download engine?')
 
   }
@@ -29,7 +29,7 @@ pipeline {
           today = new Date().format('dd-MM-yyyy_HH-mm')
 
           config = [singleAppEngine: [engineParentDir: 'D:\\tools\\ivy-server\\', engineName: '8.0', databaseBackupDir: 'D:\\backup\\database', databaseName: 'ivy-8.0', serviceName: 'Axon.ivy-8.0']
-          ,peformanceTestEngine: [engineParentDir: 'C:\\tools\\ivy-server\\', engineName: '8.0', databaseBackupDir: 'D:\\backup\\database', databaseName: 'ivy-performance-8.0', serviceName: 'Axon.ivyEngine8.0']]
+          ,performanceTestEngine: [engineParentDir: 'C:\\tools\\ivy-server\\', engineName: '8.0', databaseBackupDir: 'D:\\backup\\database', databaseName: 'ivy-performance-8.0', serviceName: 'Axon.ivyEngine8.0']]
 
           engineParentDir = config[params.engine]['engineParentDir']
           engineName = config[params.engine]['engineName']
@@ -46,7 +46,7 @@ pipeline {
             pg_dump -U postgres -f ${databaseBackupDir}\\${databaseName}-${today}.backup -F Custom -b ${databaseName}
           """
 
-          nodeToExecute = (params.engine == 'peformanceTestEngine') ? 'portal-slave' : 'master'
+          nodeToExecute = (params.engine == 'performanceTestEngine') ? 'portal-slave' : 'master'
         }
       }
     }
