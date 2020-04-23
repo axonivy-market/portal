@@ -104,7 +104,7 @@ Ps0 f8 @|UdProcessEndIcon #fIcon
 Ps0 f10 actionTable 'out=in;
 ' #txt
 Ps0 f10 actionCode 'import ch.ivy.addon.portalkit.mapper.UserProcessMapper;
-import ch.ivy.addon.portalkit.util.ProcessStartsUtil;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
@@ -116,7 +116,7 @@ String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
 if (StringUtils.isNotBlank(expressStartLink)) {
 	List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessOrderByName();
 	for(ExpressProcess wf : workflows) {
-		if (PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(wf) && !ProcessStartsUtil.isExpressProcessAdded(wf, in.userProcesses)) {
+		if (PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(wf) && !ProcessStartUtils.isExpressProcessAdded(wf, in.userProcesses)) {
 		  in.userProcesses.add(UserProcessMapper.toUserProcess(wf, expressStartLink));
 		}
 	}
