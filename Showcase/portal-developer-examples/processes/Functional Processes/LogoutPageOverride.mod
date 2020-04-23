@@ -37,14 +37,14 @@ Le0 f1 @|EndSubIcon #fIcon
 Le0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>This process overrides the LogoutPage process of Portal Template. It set the in.logoutPage to the url of the overview page of Axon.Ivy.
-So whenever user logout of Portal, he will be redirected to the overview page.</name>
-        <nameStyle>214,7
+        <name>This process overrides the LogoutPage process of Portal Template. It set the in.logoutPage to the url of application home apge.
+So whenever user logout of Portal, he will be redirected to the application home page.</name>
+        <nameStyle>214,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Le0 f3 456 34 736 44 -361 -16 #rect
+Le0 f3 472 34 704 44 -346 -16 #rect
 Le0 f3 @|IBIcon #fIcon
 Le0 f5 actionTable 'out=in;
 ' #txt
