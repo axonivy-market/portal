@@ -11,7 +11,7 @@ pipeline {
   }
 
   parameters {
-      choice(name: 'engine', choices: ['singleAppEngine', 'multiAppsEngine', 'peformanceTestEngine'], description: 'Which engine to be upgraded?')
+      choice(name: 'engine', choices: ['singleAppEngine', 'multiAppsEngine', 'performanceTestEngine'], description: 'Which engine to be upgraded?')
       string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/sprint/axonivy-engine-windows.zip', description: 'Where to download engine?')
 
   }
@@ -30,7 +30,7 @@ pipeline {
 
           config = [singleAppEngine: [engineParentDir: 'D:\\tools\\ivy-server\\', engineName: 'trunk', databaseBackupDir: 'D:\\backup\\database', databaseName: 'ivy-trunk', serviceName: 'Axon.ivy-trunk']
           ,multiAppsEngine: [engineParentDir: 'D:\\tools\\ivy-server\\', engineName: 'trunk-1', databaseBackupDir: 'D:\\backup\\database', databaseName: 'ivy-trunk-1', serviceName: 'Axon.ivy-trunk-1']
-          ,peformanceTestEngine: [engineParentDir: 'C:\\tools\\ivy-server\\', engineName: 'trunk', databaseBackupDir: 'D:\\backup\\database', databaseName: 'ivy-performance-trunk', serviceName: 'Axon.ivyEngineTrunk']]
+          ,performanceTestEngine: [engineParentDir: 'C:\\tools\\ivy-server\\', engineName: 'trunk', databaseBackupDir: 'D:\\backup\\database', databaseName: 'ivy-performance-trunk', serviceName: 'Axon.ivyEngineTrunk']]
 
           engineParentDir = config[params.engine]['engineParentDir']
           engineName = config[params.engine]['engineName']
@@ -47,7 +47,7 @@ pipeline {
             pg_dump -U postgres -f ${databaseBackupDir}\\${databaseName}-${today}.backup -F Custom -b ${databaseName}
           """
 
-          nodeToExecute = (params.engine == 'peformanceTestEngine') ? 'portal-slave' : 'master'
+          nodeToExecute = (params.engine == 'performanceTestEngine') ? 'portal-slave' : 'master'
         }
       }
     }
