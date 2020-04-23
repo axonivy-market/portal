@@ -208,4 +208,9 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		jse.executeScript(
 				"document.querySelector(\"input[name='form:information-email:email-content_input'\").value='" + content + "';");
 	}
+
+  public HomePage leave() {
+    click(By.id("user-menu-required-login:leave-button"));
+    return new HomePage();
+  }
 }
