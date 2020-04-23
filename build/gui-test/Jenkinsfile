@@ -7,7 +7,7 @@ pipeline {
   
   triggers {
     pollSCM 'H 5 * * *'
-    cron(env.JOB_NAME.contains('Firefox) ? '0 21 * * *' : '0 15 * * *')
+    cron(env.JOB_NAME.contains('Firefox') ? '0 21 * * *' : '0 15 * * *')
   }
 
   tools { 
