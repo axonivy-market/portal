@@ -27,19 +27,6 @@ public class ProcessStartUtils {
     .isPresent();
   }
 
-  private static IWorkflowProcessModelVersion getWorkflowProcessModelVersion(IProcessModelVersion processModelVersion) {
-    if (processModelVersion == null) {
-      return null;
-    }
-    return processModelVersion.getAdapter(IWorkflowProcessModelVersion.class);
-  }
-
-  private static IProcessStart findProcessStartByUserFriendlyRequestPathAndPmv(String requestPath,
-      IProcessModelVersion processModelVersion) {
-    IWorkflowProcessModelVersion workflowPmv = getWorkflowProcessModelVersion(processModelVersion);
-    return workflowPmv.findStartElementByUserFriendlyRequestPath(requestPath);
-  }
-  
   public static IProcessStart findProcessStartByUserFriendlyRequestPath(IApplication application, String requestPath) {
     return IvyExecutor.executeAsSystem(() -> {
       IProcessStart processStart = null;
@@ -68,10 +55,22 @@ public class ProcessStartUtils {
     });
   }
 
-
   public static String findRelativeUrlByProcessStartFriendlyRequestPath(IApplication application, String friendlyRequestPath) {
     IProcessStart processStart = findProcessStartByUserFriendlyRequestPath(application, friendlyRequestPath);
     return processStart != null ? processStart.getLink().getRelative() : StringUtils.EMPTY;
+  }
+
+  private static IWorkflowProcessModelVersion getWorkflowProcessModelVersion(IProcessModelVersion processModelVersion) {
+    if (processModelVersion == null) {
+      return null;
+    }
+    return processModelVersion.getAdapter(IWorkflowProcessModelVersion.class);
+  }
+
+  private static IProcessStart findProcessStartByUserFriendlyRequestPathAndPmv(String requestPath,
+      IProcessModelVersion processModelVersion) {
+    IWorkflowProcessModelVersion workflowPmv = getWorkflowProcessModelVersion(processModelVersion);
+    return workflowPmv.findStartElementByUserFriendlyRequestPath(requestPath);
   }
   
   private static boolean isActive(IProcessModelVersion processModelVersion) {
