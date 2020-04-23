@@ -51,7 +51,7 @@ public class DeprecatedTaskTemplate7Bean implements Serializable{
   }
 
   public void startSideStep() {
-    PortalNavigator.redirect(selectedSideStep.getStartLink().getAbsoluteEncoded());
+    PortalNavigator.redirect(selectedSideStep.getStartLink().getRelativeEncoded());
   }
 
   public boolean hasExpressAdhocWF() {

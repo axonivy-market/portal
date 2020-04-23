@@ -97,7 +97,7 @@ public class ProcessStartCollector {
   private IProcessStart getProcessStart(String requestPath, IProcessModelVersion processModelVersion) {
     IWorkflowProcessModelVersion workflowPmv =
         WorkflowNavigationUtil.getWorkflowProcessModelVersion(processModelVersion);
-    return workflowPmv.findProcessStartByUserFriendlyRequestPath(requestPath);
+    return workflowPmv.findStartElementByUserFriendlyRequestPath(requestPath);
   }
 
   private List<IProcessStart> findProcessStartRequestPathContainsKeywordAndPmv(String keyword,
