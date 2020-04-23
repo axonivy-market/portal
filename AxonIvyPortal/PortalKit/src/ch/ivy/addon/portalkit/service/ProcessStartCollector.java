@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -10,20 +9,18 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 import ch.ivyteam.ivy.workflow.WorkflowNavigationUtil;
-import ch.ivyteam.util.Pair;
 
 public class ProcessStartCollector {
   private final IApplication application;
-  private static final String ACM_FRIENDLY_REQUEST_PATH = "BusinessProcesses/AdHocWF/start.ivp";
   private static final String EXPRESS_CREATE_FRIENDLY_REQUEST_PATH =
       "Start Processes/CreateWorkflow/AxonIvyExpressWF.ivp";
   private static final String EXPRESS_ADHOC_WF_FRIENDLY_REQUEST_PATH =  "Start Processes/CreateWorkflow/AxonIvyExpressAdhocWF.ivp";
@@ -81,32 +78,6 @@ public class ProcessStartCollector {
     return StringUtils.EMPTY;
   }
 
-  public IProcessStart findProcessStartByUserFriendlyRequestPath(String requestPath) {
-    IProcessStart processStart = null;
-    if (isActive(application)) {
-      if (Ivy.request().getApplication().equals(application)) {
-        processStart =
-            findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, Ivy.wfTask().getProcessModelVersion());
-      }
-      if (processStart != null) {
-        return processStart;
-      }
-
-      List<IProcessModel> processModels = application.getProcessModelsSortedByName();
-
-      for (IProcessModel processModel : processModels) {
-        Optional<IProcessStart> processStartOptional =
-            Optional.of(processModel).filter(this::isActive).map(IProcessModel::getReleasedProcessModelVersion)
-                .filter(this::isActive).map(p -> findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, p))
-                .filter(Objects::nonNull);
-        if (processStartOptional.isPresent()) {
-          return processStartOptional.get();
-        }
-      }
-    }
-    return processStart;
-  }
-
   public IProcessStart findStartableProcessStartByUserFriendlyRequestPath(String requestPath) {
     if (isActive(application)) {
       List<IProcessModel> processModels = application.getProcessModelsSortedByName();
@@ -129,13 +100,6 @@ public class ProcessStartCollector {
     return workflowPmv.findProcessStartByUserFriendlyRequestPath(requestPath);
   }
 
-  private IProcessStart findProcessStartByUserFriendlyRequestPathAndPmv(String requestPath,
-      IProcessModelVersion processModelVersion) {
-    IWorkflowProcessModelVersion workflowPmv =
-        WorkflowNavigationUtil.getWorkflowProcessModelVersion(processModelVersion);
-    return workflowPmv.findProcessStartByUserFriendlyRequestPath(requestPath);
-  }
-
   private List<IProcessStart> findProcessStartRequestPathContainsKeywordAndPmv(String keyword,
       IProcessModelVersion processModelVersion) {
     IWorkflowProcessModelVersion workflowPmv =
@@ -144,49 +108,28 @@ public class ProcessStartCollector {
         .filter(processStart -> processStart.getUserFriendlyRequestPath().contains(keyword))
         .collect(Collectors.toList());
   }
-
-  public String findACMLink() {
-    return findLinkByFriendlyRequestPath(ACM_FRIENDLY_REQUEST_PATH);
-  }
   
   public String findExpressAdhocWFLink() {
-    return findLinkByFriendlyRequestPath(EXPRESS_ADHOC_WF_FRIENDLY_REQUEST_PATH);
+    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(application, EXPRESS_ADHOC_WF_FRIENDLY_REQUEST_PATH);
   }
 
   public String findExpressWorkflowStartLink() {
-    return findLinkByFriendlyRequestPath(EXPRESS_WORKFLOW_FRIENDLY_REQUEST_PATH);
+    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(application, EXPRESS_WORKFLOW_FRIENDLY_REQUEST_PATH);
   }
 
   public String findCreateExpressWorkflowStartLink() {
-    return findLinkByFriendlyRequestPath(EXPRESS_CREATE_FRIENDLY_REQUEST_PATH);
+    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(application, EXPRESS_CREATE_FRIENDLY_REQUEST_PATH);
   }
-
-  public String findLinkByFriendlyRequestPath(String friendlyRequestPath) {
-    return IvyExecutor.executeAsSystem(() -> {
-      ProcessStartCollector collector = new ProcessStartCollector(application);
-      IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(friendlyRequestPath);
-      if (process != null) {
-        return RequestUriFactory.createProcessStartUri(process).toASCIIString();
-      }
-      return StringUtils.EMPTY;
-    });
-  }
-
 
   public IProcessStart findExpressCreationProcess() {
-    return IvyExecutor.executeAsSystem(() -> {
-      ProcessStartCollector collector = new ProcessStartCollector(application);
-      return collector.findProcessStartByUserFriendlyRequestPath(EXPRESS_CREATE_FRIENDLY_REQUEST_PATH);
-    });
+    return ProcessStartUtils.findProcessStartByUserFriendlyRequestPath(application, EXPRESS_CREATE_FRIENDLY_REQUEST_PATH);
   }
 
   public String findExpressWorkflowEditLink(String workflowId) {
     return IvyExecutor.executeAsSystem(() -> {
-      ProcessStartCollector collector = new ProcessStartCollector(application);
-      IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(EXPRESS_WORKFLOW_EDIT_REQUEST_PATH);
-      if (process != null) {
-        Pair<String, String> workflowIdParam = new Pair<>("workflowID", workflowId);
-        return RequestUriFactory.createProcessStartUri(process, workflowIdParam).toASCIIString();
+      String url = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(application, EXPRESS_WORKFLOW_EDIT_REQUEST_PATH);
+      if (StringUtils.isNoneBlank(url)) {
+        return url + "?workflowID=" + workflowId;
       }
       return StringUtils.EMPTY;
     });
@@ -195,12 +138,8 @@ public class ProcessStartCollector {
   public String findStartableLinkByUserFriendlyRequestPath(String requestPath) {
     return IvyExecutor.executeAsSystem(() -> {
       IProcessStart processStart = findStartableProcessStartByUserFriendlyRequestPath(requestPath);
-      if (processStart != null) {
-        return RequestUriFactory.createProcessStartUri(processStart).toASCIIString();
-      }
-      return StringUtils.EMPTY;
+    	  return processStart != null ? processStart.getLink().getRelative() : StringUtils.EMPTY; 
     });
-
   }
 
   private boolean isActive(IProcessModelVersion processModelVersion) {
