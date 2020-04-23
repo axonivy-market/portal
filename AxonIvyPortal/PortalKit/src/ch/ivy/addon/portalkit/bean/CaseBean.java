@@ -1,17 +1,14 @@
 package ch.ivy.addon.portalkit.bean;
 
-import java.io.IOException;
 import java.io.Serializable;
-import java.net.MalformedURLException;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivy.addon.portalkit.support.UrlDetector;
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -69,28 +66,18 @@ public class CaseBean implements Serializable {
     if (StringUtils.isEmpty(customizePortalFriendlyRequestPath)) {
       customizePortalFriendlyRequestPath = OPEN_CASE_ITEM_DETAILS;
     }
-    redirect(CaseUtils.getProcessStartUriWithCaseParameters(iCase, customizePortalFriendlyRequestPath));
+    PortalNavigator.redirect(CaseUtils.getProcessStartUriWithCaseParameters(iCase, customizePortalFriendlyRequestPath));
   }
 
-  public void backToCasesList() throws MalformedURLException {
+  public void backToCasesList() {
     String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("CaseListPage.ivp");
     if (StringUtils.isEmpty(friendlyRequestPath)) {
       friendlyRequestPath = OPEN_CASES_LIST;
     }
-    String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(friendlyRequestPath);
+    String requestPath = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), friendlyRequestPath);
     if (StringUtils.isNotEmpty(requestPath)) {
-      UrlDetector urlDetector = new UrlDetector();
-      String serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
-      redirect(serverUrl + requestPath);
+      PortalNavigator.redirect(requestPath);
     }
   }
 
-  public void redirect(String url) {
-    try {
-      FacesContext.getCurrentInstance().getExternalContext().redirect(url);
-    } catch (IOException ex) {
-      throw new PortalException(ex);
-    }
-  }
-  
 }

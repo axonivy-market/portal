@@ -41,17 +41,15 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   }
 
   public void startAdhoc(Long taskId) {
-    PortalNavigator portalNavigator = new PortalNavigator();
     ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
     String url = processStartCollector.findExpressAdhocWFLink();
     url = url + "?originalTaskId=" + taskId;
-    portalNavigator.redirect(url);
+    PortalNavigator.redirect(url);
   }
 
   public void startSideStep(ITask task) {
     TaskUtils.resetTask(task);
-    PortalNavigator portalNavigator = new PortalNavigator();
-    portalNavigator.redirect(selectedSideStep.getStartLink().getAbsoluteEncoded());
+    PortalNavigator.redirect(selectedSideStep.getStartLink().getAbsoluteEncoded());
   }
 
   public boolean hasExpressAdhocWF() {

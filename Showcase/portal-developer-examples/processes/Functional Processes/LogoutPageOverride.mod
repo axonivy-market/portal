@@ -48,10 +48,12 @@ Le0 f3 456 34 736 44 -361 -16 #rect
 Le0 f3 @|IBIcon #fIcon
 Le0 f5 actionTable 'out=in;
 ' #txt
-Le0 f5 actionCode 'import javax.faces.context.FacesContext;
-import ch.ivy.addon.portalkit.support.UrlDetector;
+Le0 f5 actionCode 'import javax.servlet.http.HttpServletRequest;
+import ch.ivyteam.ivy.request.IRequest;
+import ch.ivy.addon.portalkit.util.RequestUtil;
+import javax.faces.context.FacesContext;
 
-in.logoutPage = new UrlDetector().getBaseURL(FacesContext.getCurrentInstance());' #txt
+in.logoutPage = ivy.html.applicationHomeRef();' #txt
 Le0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
