@@ -66,74 +66,57 @@
         listener="#{facesContext.externalContext.response.setHeader('Cache-Control', 'no-cache, no-store')}" />
 
       <div class="layout-wrapper js-layout-wrapper #{guestPreferences.orientationRTL ? 'layout-rtl' : ''}">
-        <ui:fragment>
-           <div class="layout-sidebar #{guestPreferences.darkMenu ? 'layout-sidebar-dark' : ''} #{currentPage} left-sidebar-color js-left-sidebar" id="left-menu">
-              <c:choose>
-                <c:when test="#{isNotRequiredLogin}">
-                  <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu startMethod="StartNotRequiredLogin" id="user-menu-without-login" isWorkingOnATask="#{isWorkingOnATask}" 
-                    showGlobalSearch="#{empty portalValidationBean.errorMessages}" task="#{task}" />
-                </c:when>
-                <c:otherwise>
-                  <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu id="user-menu-required-login" isWorkingOnATask="#{isWorkingOnATask}" 
-                    showGlobalSearch="#{empty portalValidationBean.errorMessages}" task="#{task}" />
-                </c:otherwise>
-              </c:choose>
-          </div>
-        </ui:fragment>
+        <div class="layout-sidebar #{guestPreferences.darkMenu ? 'layout-sidebar-dark' : ''} #{currentPage} left-sidebar-color js-left-sidebar" id="left-menu">
+          <c:choose>
+            <c:when test="#{isNotRequiredLogin}">
+              <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu startMethod="StartNotRequiredLogin" id="user-menu-without-login" isWorkingOnATask="#{isWorkingOnATask}" 
+                  showGlobalSearch="true" task="#{task}" />
+            </c:when>
+            <c:otherwise>
+              <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu id="user-menu-required-login" isWorkingOnATask="#{isWorkingOnATask}" 
+                  showGlobalSearch="true" task="#{task}" />
+            </c:otherwise>
+          </c:choose>
+        </div>
 
         <div class="layout-main">
-          <ui:fragment>
-            <div class="layout-topbar">
-              <a class="menu-btn">
-                <i class="material-icons fa fa-bars left-sidebar-menu-icon left-sidebar-menu-icon-font-size" />
-              </a>
-              <div class="layout-topbar-menu-wrapper">
-                <ui:include src="/layouts/includes/topbar.xhtml">
-                  <ui:param name="task" value="#{task}" />
-                  <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
-                  <ui:param name="isNotRequiredLogin" value="#{isNotRequiredLogin}" />
-                  <ui:param name="hasMainMenu" value="#{empty hasMainMenu ? true : hasMainMenu}" />
-                  <ui:param name="showGlobalSearch" value="#{empty portalValidationBean.errorMessages}" />
-                  <ui:param name="enablesChat" value="#{enablesChat}" />
-                </ui:include>
-                <div class="color-header">
-                  <div class="first-header-bar" />
-                  <div class="second-header-bar" />
-                  <div class="third-header-bar" />
-                </div>
+          <div class="layout-topbar">
+            <a class="menu-btn"> 
+              <i class="material-icons fa fa-bars left-sidebar-menu-icon left-sidebar-menu-icon-font-size" />
+            </a>
+            <div class="layout-topbar-menu-wrapper">
+              <ui:include src="/layouts/includes/topbar.xhtml">
+                <ui:param name="task" value="#{task}" />
+                <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
+                <ui:param name="isNotRequiredLogin" value="#{isNotRequiredLogin}" />
+                <ui:param name="hasMainMenu" value="#{empty hasMainMenu ? true : hasMainMenu}" />
+                <ui:param name="showGlobalSearch" value="true" />
+                <ui:param name="enablesChat" value="#{enablesChat}" />
+              </ui:include>
+              <div class="color-header">
+                <div class="first-header-bar" />
+                <div class="second-header-bar" />
+                <div class="third-header-bar" />
               </div>
             </div>
-          </ui:fragment>
-          <ui:fragment>
-            <!-- If showMainArea indicator is true, the layout content will be rendered by the schedule loading of JS file-->
-            <!-- Otherwise, the layout content will be rendered by once DOM is pasted already -->
-            <div class="layout-content container #{layoutContentStyleClass} #{showMainArea eq true ? '' : 'u-invisibility'}" id="main-area-panel">
-              <h:panelGroup id="announcement-container" layout="block" rendered="#{userMenuBean.isAnnouncementActivated() and announcementInvisible ne 'true'}" styleClass="announcement-message-container #{announcementContainerStyleClass}">
-                <h:panelGroup layout="block" styleClass="announcement-message js-announcement-message announcement-message-customizable">
-                  <h:outputText value="#{userMenuBean.getAnnouncement()}" />
-                </h:panelGroup>
+          </div>
+          <!-- If showMainArea indicator is true, the layout content will be rendered by the schedule loading of JS file-->
+          <!-- Otherwise, the layout content will be rendered by once DOM is pasted already -->
+          <div class="layout-content container #{layoutContentStyleClass} #{showMainArea eq true ? '' : 'u-invisibility'}" id="main-area-panel">
+            <h:panelGroup id="announcement-container" layout="block" rendered="#{userMenuBean.isAnnouncementActivated() and announcementInvisible ne 'true'}" styleClass="announcement-message-container #{announcementContainerStyleClass}">
+              <h:panelGroup layout="block" styleClass="announcement-message js-announcement-message announcement-message-customizable">
+                <h:outputText value="#{userMenuBean.getAnnouncement()}" />
               </h:panelGroup>
-              <ui:insert name="pageContent">
-                <div class="#{simpleContainerClass}">
-                  <div class="#{simpleMainColClass}">
-                    <ui:insert name="simplePageContent" />
-                  </div>
+            </h:panelGroup>
+            <ui:insert name="pageContent">
+              <div class="#{simpleContainerClass}">
+                <div class="#{simpleMainColClass}">
+                  <ui:insert name="simplePageContent" />
                 </div>
-              </ui:insert>
-            </div>
-          </ui:fragment>
-          <ui:fragment rendered="#{not empty portalValidationBean.errorMessages}">
-            <div class="error-container">
-              <ui:repeat var="error" value="#{portalValidationBean.errorMessages}">
-                <div class="message">
-                  <div class="message-container">#{error}</div>
-                </div>
-              </ui:repeat>
-            </div>
-          </ui:fragment>
-          <ui:fragment>
-            <div class="layout-main-mask" />
-          </ui:fragment>
+              </div>
+            </ui:insert>
+          </div>
+          <div class="layout-main-mask" />
         </div>
 
         <ic:ch.ivy.addon.portalkit.component.WarningBeforeLostSession id="warning-before-lost-session"
