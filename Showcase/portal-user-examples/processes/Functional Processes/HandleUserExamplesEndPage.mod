@@ -37,8 +37,9 @@ He0 f4 actionTable 'out=in;
 out.caseId=in.caseId;
 ' #txt
 He0 f4 actionCode 'in.caseId =  ivy.task.getCase().getBusinessCase().getId();
-in.callbackUrl = ivy.html.startref("1709A97D25EAB86E/start.ivp")+"?caseId=" + in.caseId;
+in.callbackUrl = ivy.html.startRef("1709A97D25EAB86E/start.ivp")+"?caseId=" + in.caseId;
 ' #txt
+He0 f4 security system #txt
 He0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
