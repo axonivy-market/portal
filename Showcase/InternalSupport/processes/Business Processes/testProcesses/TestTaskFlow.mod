@@ -229,7 +229,7 @@ Tt0 f25 544 302 544 403 #arcP
 Tt0 f1 actionTable 'out=in;
 ' #txt
 Tt0 f1 actionCode 'import ch.ivyteam.ivy.workflow.WorkflowPriority;
-ivy.case.customFields().stringField("CASE_DETAIL_PROCESS").set(ivy.html.startref("Start Processes/InternalSupportPortalHome/caseDetails.ivp"));
+ivy.case.customFields().stringField("CASE_DETAIL_PROCESS").set(ivy.html.startRef("Start Processes/InternalSupportPortalHome/caseDetails.ivp"));
 
 in.expiredDate = new Duration(1,0,0,0,0,0);
 in.taskPriority = WorkflowPriority.NORMAL;' #txt
@@ -244,7 +244,7 @@ add contactfolder id link</name>
     </language>
 </elementInfo>
 ' #txt
-Tt0 f1 526 180 36 24 20 -2 #rect
+Tt0 f1 524 180 40 24 20 -2 #rect
 Tt0 f1 @|StepIcon #fIcon
 Tt0 f2 expr out #txt
 Tt0 f2 544 77 544 180 #arcP
