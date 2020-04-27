@@ -379,10 +379,12 @@ Cs0 f37 467 771 26 26 0 12 #rect
 Cs0 f37 @|UdProcessEndIcon #fIcon
 Cs0 f41 actionTable 'out=in;
 ' #txt
-Cs0 f41 actionCode 'import javax.faces.context.FacesContext;
+Cs0 f41 actionCode 'import ch.ivy.addon.portalkit.util.ProcessStartUtils;
+import javax.faces.context.FacesContext;
 
-String taskAnalysisUrl = ivy.html.startref("Start Processes/TaskAnalysis/start.ivp");
+String taskAnalysisUrl = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(ivy.wf.getApplication(), "Start Processes/TaskAnalysis/start.ivp");
 FacesContext.getCurrentInstance().getExternalContext().redirect(taskAnalysisUrl);' #txt
+Cs0 f41 security system #txt
 Cs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
