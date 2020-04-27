@@ -424,10 +424,12 @@ Ts0 f4 387 867 26 26 0 12 #rect
 Ts0 f4 @|UdProcessEndIcon #fIcon
 Ts0 f5 actionTable 'out=in;
 ' #txt
-Ts0 f5 actionCode 'import javax.faces.context.FacesContext;
+Ts0 f5 actionCode 'import ch.ivy.addon.portalkit.util.ProcessStartUtils;
+import javax.faces.context.FacesContext;
 
-String statisticPageUrl = ivy.html.startref("Start Processes/PortalStart/StatisticPage.ivp");
+String statisticPageUrl = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(ivy.wf.getApplication(), "Start Processes/PortalStart/StatisticPage.ivp");
 FacesContext.getCurrentInstance().getExternalContext().redirect(statisticPageUrl);' #txt
+Ts0 f5 security system #txt
 Ts0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
