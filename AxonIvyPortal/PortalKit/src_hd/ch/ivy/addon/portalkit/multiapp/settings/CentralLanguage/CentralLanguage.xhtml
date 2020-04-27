@@ -8,10 +8,12 @@
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="dialogName" shortDescription="Name of setting dialog's widget that contains this component" />
+  <cc:attribute name="isWorkingOnATask" />
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{logic.findUserLanguages()}" type="preRenderComponent" />
+  <c:set var="isWorkingOnATask" value="#{empty cc.attrs.isWorkingOnATask ? false : cc.attrs.isWorkingOnATask}" />
+  <f:event listener="#{logic.initLanguageData(isWorkingOnATask)}" type="preRenderComponent" />
 
   <div id="#{cc.clientId}">
     <h:panelGroup id="setting-grid" layout="block">
@@ -30,15 +32,18 @@
       </p:dataTable>
     </h:panelGroup>
     
+    <p:messages id="change-language-warning-message" rendered="#{isWorkingOnATask}" />
+    
     <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
       <p:commandButton id="save-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
         actionListener="#{logic.saveUserLanguages}" update="errors-message"
-        oncomplete="if (args &amp;&amp; !args.validationFailed) { reloadMenuItem();}"/>
+        oncomplete="if (args &amp;&amp; !args.validationFailed) { reloadMenuItem()}"/>
       <p:spacer width="5px" />
       <p:commandButton id="cancel-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         onclick="PF('#{cc.attrs.dialogName}').hide()" type="button" styleClass="portal-cancel-button" />
     </h:panelGroup>
   </div>
+
 </cc:implementation>
 
 </html>
