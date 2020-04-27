@@ -131,7 +131,8 @@
       closeOnEscape="true" widgetVar="languageDialogVar" id="language-setting-dialog" resizable="false" modal="true" dynamic="true"
       appendTo="@(body)" draggable="false" responsive="true" fitViewport="true" position="center center" positionType="absolute">
       <h:form id="language-settings-form" styleClass="language-settings-form">
-        <ic:ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage id="language-settings" startMethod="start" dialogName="languageDialogVar" />
+        <ic:ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage id="language-settings" startMethod="start" dialogName="languageDialogVar" 
+          isWorkingOnATask="#{isWorkingOnATask}"/>
       </h:form>
     </p:dialog>
 
