@@ -679,7 +679,7 @@ SecurityServiceUtils.setSessionAttribute(taskEndInfoSessionAttributeKey, taskEnd
 
 // Put the "embedInIFrame" param to the task start link to open it in the DefaultFramePage process
 // Then this process will open task in IFrame or not based on its "embedInIFrame" String custom field
-FacesContext.getCurrentInstance().getExternalContext().redirect(ivy.html.taskStartInFrameRef(in.selectedTask));' #txt
+FacesContext.getCurrentInstance().getExternalContext().redirect(in.selectedTask.getStartLinkEmbedded().getRelative());' #txt
 Ts0 f6 security system #txt
 Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

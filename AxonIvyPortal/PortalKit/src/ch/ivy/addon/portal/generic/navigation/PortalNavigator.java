@@ -74,11 +74,6 @@ public final class PortalNavigator {
       default:
         break;
     }
-    String customizePortalFriendlyRequestPath =
-        ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), subMenuUrl);
-    if (StringUtils.isNotEmpty(customizePortalFriendlyRequestPath)) {
-      return customizePortalFriendlyRequestPath;
-    }
     return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), subMenuUrl);
   }
 
