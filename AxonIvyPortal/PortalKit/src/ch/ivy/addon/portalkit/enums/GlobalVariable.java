@@ -19,7 +19,6 @@ public enum GlobalVariable {
   EXPRESS_END_PAGE(Boolean.TRUE.toString(), "expressEndPageNote"),
   REFRESH_TASK_LIST_INTERVAL(String.valueOf(TaskWidgetBean.DEFAULT_TASK_LIST_REFRESH_INTERVAL), "refreshTaskListIntervalNote"),
   UPLOAD_DOCUMENT_WHITELIST_EXTENSION(String.join(", ", DocumentExtensionConstants.DEFAULT_WHITELIST_EXTENSION), "uploadDocumentWhiteListExtensionNote"),
-  HOMEPAGE_URL("homePageUrlNote"),
   CLIENT_SIDE_TIMEOUT("clientSideTimeoutNote"),
   HIDE_SYSTEM_TASKS_FROM_HISTORY(Boolean.TRUE.toString(), "hideSystemTasksFromHistory"),
   HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR(Boolean.FALSE.toString(), "hideSystemTasksFromHistoryAdministrator"),

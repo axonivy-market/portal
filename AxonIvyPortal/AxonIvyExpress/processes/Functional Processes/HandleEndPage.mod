@@ -18,13 +18,13 @@ Ce0 @PushWFArc f6 '' #zField
 Ce0 @PushWFArc f7 '' #zField
 Ce0 @InfoButton f0 '' #zField
 >Proto Ce0 Ce0 HandleEndPage #zField
-Ce0 f3 378 233 30 30 0 15 #rect
+Ce0 f3 378 185 30 30 0 15 #rect
 Ce0 f3 @|EndSubIcon #fIcon
 Ce0 f4 actionTable 'out=in;
 ' #txt
-Ce0 f4 actionCode 'in.callbackUrl = ivy.html.startref("1600BDF7CC0AE52F/start.ivp");
-
+Ce0 f4 actionCode 'in.callbackUrl = ivy.html.startRef("1600BDF7CC0AE52F/start.ivp");
 ' #txt
+Ce0 f4 security system #txt
 Ce0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -34,7 +34,7 @@ Ce0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f4 209 226 112 44 -44 -8 #rect
+Ce0 f4 209 178 112 44 -44 -8 #rect
 Ce0 f4 @|StepIcon #fIcon
 Ce0 f5 inParamDecl '<> param;' #txt
 Ce0 f5 outParamDecl '<String callbackUrl> result;' #txt
@@ -50,30 +50,29 @@ Ce0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f5 74 233 30 30 -48 17 #rect
+Ce0 f5 74 185 30 30 -48 17 #rect
 Ce0 f5 @|StartSubIcon #fIcon
 Ce0 f6 expr out #txt
-Ce0 f6 104 248 209 248 #arcP
+Ce0 f6 104 200 209 200 #arcP
 Ce0 f7 expr out #txt
-Ce0 f7 321 248 378 248 #arcP
+Ce0 f7 321 200 378 200 #arcP
 Ce0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>HOW TO CREATE CUSTOM END PAGE FOR EXPRESS PROCESS
 
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
-
-ProcessStartCollector collector = new ProcessStartCollector(ivy.wf.getApplication());
-String ourNewEndPageFriendlyRequestPath = "Start Processes/NewEndPageOfExpress/startCustomEndPage.ivp";
-in.callbackUrl = collector.findLinkByFriendlyRequestPath(ourNewEndPageFriendlyRequestPath);
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;&#13;
+&#13;
+String ourNewEndPageFriendlyRequestPath = "Start Processes/NewEndPageOfExpress/startCustomEndPage.ivp";&#13;
+in.callbackUrl = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(ivy.wf.getApplication(), ourNewEndPageFriendlyRequestPath);
 
 OUT: callbackUrl : String</name>
-        <nameStyle>421
+        <nameStyle>383,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f0 24 18 640 156 -316 -72 #rect
+Ce0 f0 64 18 816 140 -403 -64 #rect
 Ce0 f0 @|IBIcon #fIcon
 >Proto Ce0 .type ch.ivy.addon.express.generic.HandleEndPageData #txt
 >Proto Ce0 .processKind CALLABLE_SUB #txt

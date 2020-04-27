@@ -65,6 +65,7 @@ public class MenuView {
 
     RegisteredApplicationService applicationService = new RegisteredApplicationService();
     int numberOfIvyApplications = (int) applicationService.countIvyApplications(applications);
+    PortalNavigator portalNavigator = new PortalNavigator();
 
     for (Application application : applications) {
       Button menuItem = new Button();
@@ -73,7 +74,7 @@ public class MenuView {
       if (isThirdPartyApp) {
         menuItem.getAttributes().put(THIRD_PARTY, true);
       }
-      menuItem.setHref(application.getLink());
+      menuItem.setHref(portalNavigator.getPortalStartUrl(application.getName()));
       menuItem.getAttributes().put(APP_NAME, application.getName());
       menuItem.setIcon("fa " + application.getMenuIcon());
 
@@ -90,7 +91,7 @@ public class MenuView {
       menuItem.setValue(Ivy.cms().co(DASHBOARD));
       menuItem.setIcon("fa fa-home");
       if (numberOfIvyApplications == 0) {
-        menuItem.setHref(new PortalNavigator().getPortalStartUrlOfCurrentApplication());
+        menuItem.setHref(new PortalNavigator().getPortalStartUrl());
         menuItem.setStyleClass(ACTIVE_MENU);
         menuItems.add(0, menuItem);
       } else {
@@ -298,8 +299,4 @@ public class MenuView {
     breadcrumbModel.getElements().add(buildPortalHomeMenuItem());
   }
 
-  public String getHomepageLink() {
-    PortalNavigator navigator = new PortalNavigator();
-    return navigator.getPortalStartUrlOfCurrentApplication();
-  }
 }
