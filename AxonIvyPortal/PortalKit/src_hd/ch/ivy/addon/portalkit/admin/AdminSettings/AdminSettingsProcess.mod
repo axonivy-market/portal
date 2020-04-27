@@ -467,11 +467,9 @@ As0 f113 actionTable 'out=in;
 ' #txt
 As0 f113 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Application;
 
-in.selectedApp.link = in.selectedApp.link.trim();
-
 in.duplicateApp = false;
 for (Application app : in.applicationList) {
-	if (app.name.equals(in.selectedApp.name)&& app.link.equals(in.selectedApp.link)){
+	if (app.name.equals(in.selectedApp.name)){
 		if (in.isAddMode) {
 			in.duplicateApp = true;
 			break;

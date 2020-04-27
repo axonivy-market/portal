@@ -272,19 +272,6 @@
               </p:commandButton>
             </div>
           </h:panelGroup>
-          <!-- Portal link -->
-          <h:panelGroup id="portalLinkIvyApp" styleClass="ui-g" layout="block"
-            rendered="#{data.type == 'IVY_APPLICATION'}">
-            <div class="ui-g-12">
-              <h:panelGroup styleClass="admin-application md-inputfield">
-                <p:inputText value="#{data.selectedApp.link}" id="portalLink" required="true"
-                  styleClass="admin-settings-form-input"
-                  requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/portalLinkRequiredMsg')}" />
-                <p:outputLabel styleClass="admin-settings-portal-link-label"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/portalLink')}" for="portalLink" />
-              </h:panelGroup>
-            </div>
-          </h:panelGroup>
           <!-- Embed in IFrame -->
           <h:panelGroup id="embedInIFrame" styleClass="ui-g" layout="block"
             rendered="#{data.type == 'IVY_APPLICATION'}">
@@ -321,7 +308,7 @@
             </div>
           </h:panelGroup>
 
-          <!-- Portal link  3rd application view -->
+          <!-- link 3rd application view -->
           <h:panelGroup id="portalLink3rdApp" styleClass="ui-g" layout="block"
             rendered="#{data.type != 'IVY_APPLICATION'}">
             <div class="ui-g-12">

@@ -35,7 +35,6 @@ import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IProcessStart;
-import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
 @ViewScoped
@@ -103,8 +102,8 @@ public class ProcessWidgetBean implements Serializable {
   }
 
   private List<Process> findProcesses() {
-    IvyComponentLogicCaller<List<IWebStartable>> ivyComponentLogicCaller = new IvyComponentLogicCaller<>();
-    List<IWebStartable> processes = ivyComponentLogicCaller.invokeComponentLogic(processWidgetComponentId,
+    IvyComponentLogicCaller<List<IProcessStart>> ivyComponentLogicCaller = new IvyComponentLogicCaller<>();
+    List<IProcessStart> processes = ivyComponentLogicCaller.invokeComponentLogic(processWidgetComponentId,
         "#{logic.collectProcesses}", new Object[] {});
     List<Process> defaultPortalProcesses = new ArrayList<>();
     processes.forEach(process -> defaultPortalProcesses.add(new IvyProcess(process)));
