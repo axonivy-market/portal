@@ -4341,7 +4341,7 @@ body .ui-dialog.ui-widget.export-express-dialog {
 }
 
 .layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li.breadcrumb-container >form {
-	width: 100%;
+	width: auto;
 }
 
 body .ui-widget-header.portal-breadcrumb {
