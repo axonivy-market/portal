@@ -1,11 +1,15 @@
 package ch.ivy.addon.portalkit.persistence.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 public class Application extends BusinessEntity {
 
   private String displayName;
   private String menuIcon;
   private Integer menuOrdinal;
   private String name;
+  @JsonInclude(value = Include.NON_NULL)
   private String link;
   private Long serverId;
   private boolean embedInFrame = true;

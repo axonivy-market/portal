@@ -85,7 +85,7 @@ public class ProcessStartCollector {
         Optional<IProcessStart> processStartOptional =
             Optional.of(processModel).filter(this::isActive).map(IProcessModel::getReleasedProcessModelVersion)
                 .filter(this::isActive).map(p -> getProcessStart(requestPath, p))
-                .filter(processStart -> Ivy.session().getStartableProcessStarts().contains(processStart));
+                .filter(processStart -> isStartableProcessStart(processStart.getFullUserFriendlyRequestPath()));
         if (processStartOptional.isPresent()) {
           return processStartOptional.get();
         }
@@ -98,6 +98,14 @@ public class ProcessStartCollector {
     IWorkflowProcessModelVersion workflowPmv =
         WorkflowNavigationUtil.getWorkflowProcessModelVersion(processModelVersion);
     return workflowPmv.findStartElementByUserFriendlyRequestPath(requestPath);
+  }
+  
+  private boolean isStartableProcessStart(String fullUserFriendlyRequestPath) {
+	  return Ivy.session().getStartableProcessStarts()
+			  .stream()
+			  .map(IProcessStart::getFullUserFriendlyRequestPath)
+			  .filter(startablePorcessRequestPath -> startablePorcessRequestPath.equals(fullUserFriendlyRequestPath))
+			  .findFirst().isPresent();
   }
 
   private List<IProcessStart> findProcessStartRequestPathContainsKeywordAndPmv(String keyword,
