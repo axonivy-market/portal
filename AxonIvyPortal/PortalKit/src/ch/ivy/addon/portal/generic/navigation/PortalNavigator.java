@@ -10,10 +10,8 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
@@ -33,21 +31,21 @@ public final class PortalNavigator {
   private static final String PORTAL_GLOBAL_SEARCH = "Start Processes/PortalStart/GlobalSearchPage.ivp";
 
   public String getPortalStartUrl() {
-    String homePageURL = getHomePageFromSetting();
-    if (StringUtils.isNotEmpty(homePageURL)) {
-      return homePageURL;
+    return getPortalStartUrl(null);
+  }
+  
+  public String getPortalStartUrl(String application) {
+    String homePage = getDefaultApplicationHomePage();
+    if (StringUtils.isBlank(application)) {
+      return homePage;
     }
-    return defaultPortalStartUrl();
+    
+    return homePage.replaceFirst(Ivy.wf().getApplication().getName(), application);
   }
-
-  private String getHomePageFromSetting() {
-    GlobalSettingService globalSettingService = new GlobalSettingService();
-    return globalSettingService.findGlobalSettingValue(GlobalVariable.HOMEPAGE_URL.toString());
-  }
-
-  private String defaultPortalStartUrl() {
-    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(),
-        PORTAL_PROCESS_START_NAME);
+  
+  private String getDefaultApplicationHomePage() {
+    return IvyExecutor.executeAsSystem(() ->
+      Ivy.wf().getStandardProcessImplementation(StandardProcessType.DefaultApplicationHomePage).getLink().getRelative());
   }
 
   public static void redirect(String url) {
@@ -56,15 +54,6 @@ public final class PortalNavigator {
     } catch (IOException ex) {
       throw new PortalException(ex);
     }
-  }
-
-  public String getPortalStartUrlOfCurrentApplication() {
-    String homePageURL = getHomePageFromSetting();
-    if (StringUtils.isNotEmpty(homePageURL)) {
-      return homePageURL;
-    }
-    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(),
-        PORTAL_PROCESS_START_NAME);
   }
 
   public String getSubMenuItemUrlOfCurrentApplication(MenuKind menuKind) {
