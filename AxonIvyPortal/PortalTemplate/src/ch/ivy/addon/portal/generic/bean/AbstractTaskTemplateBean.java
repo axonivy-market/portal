@@ -49,7 +49,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
 
   public void startSideStep(ITask task) {
     TaskUtils.resetTask(task);
-    PortalNavigator.redirect(selectedSideStep.getStartLink().getAbsoluteEncoded());
+    PortalNavigator.redirect(selectedSideStep.getStartLink().getRelativeEncoded());
   }
 
   public boolean hasExpressAdhocWF() {
