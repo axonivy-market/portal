@@ -33,7 +33,7 @@ public class ProcessStartUtils {
       if (isActive(application)) {
         if (Ivy.request().getApplication().equals(application)) {
           processStart =
-              findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, Ivy.wfTask().getProcessModelVersion());
+              findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, Ivy.request().getProcessModelVersion());
         }
         if (processStart != null) {
           return processStart;
