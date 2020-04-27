@@ -112,7 +112,7 @@ with following code:
 .. code-block:: java
 
 		import javax.faces.context.FacesContext;
-		String taskAnalysisUrl = ivy.html.startref("Start Processes/TaskAnalysis/start.ivp");
+		String taskAnalysisUrl = ivy.html.startRef("Start Processes/TaskAnalysis/start.ivp");
 		FacesContext.getCurrentInstance().getExternalContext().redirect(taskAnalysisUrl);
 
 .. _components-additional-component-process-chain:
