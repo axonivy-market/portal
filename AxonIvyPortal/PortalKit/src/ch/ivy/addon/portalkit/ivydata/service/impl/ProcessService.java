@@ -67,7 +67,7 @@ public class ProcessService implements IProcessService {
 
   private List<IProcessStart> findStartablesWithoutPortalHome(IWorkflowSession session) {
     return session.getStartableProcessStarts().stream()
-        .filter(process -> !process.getLink().getAbsoluteEncoded().endsWith(PORTAL_START_REQUEST_PATH))
+        .filter(process -> !process.getLink().getRelativeEncoded().endsWith(PORTAL_START_REQUEST_PATH))
         .collect(Collectors.toList());
   }
 
