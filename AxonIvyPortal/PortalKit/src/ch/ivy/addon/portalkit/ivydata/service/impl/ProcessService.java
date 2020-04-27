@@ -17,8 +17,8 @@ import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityContext;
+import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
-import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class ProcessService implements IProcessService {
 
@@ -39,14 +39,14 @@ public class ProcessService implements IProcessService {
       }
 
       List<PortalIvyDataException> errors = new ArrayList<>();
-      List<IWebStartable> webStartables = new ArrayList<>();
+      List<IProcessStart> processes = new ArrayList<>();
       criteria.getApps().stream().forEach(app -> {
         IWorkflowSession session = null;
         IApplication application = null;
         try {
           application = ServiceUtilities.findApp(app);
           session = ServiceUtilities.findUserWorkflowSession(criteria.getUsername(), application);
-          webStartables.addAll(findStartablesWithoutPortalHome(session));
+          processes.addAll(findStartablesWithoutPortalHome(session));
         } catch (PortalIvyDataException e) {
           errors.add(e);
         } catch (Exception ex) {
@@ -60,13 +60,13 @@ public class ProcessService implements IProcessService {
         }
       });
       result.setErrors(errors);
-      result.setProcesses(webStartables);
+      result.setProcesses(processes);
       return result;
     });
   }
 
-  private List<IWebStartable> findStartablesWithoutPortalHome(IWorkflowSession session) {
-    return session.getStartables().stream()
+  private List<IProcessStart> findStartablesWithoutPortalHome(IWorkflowSession session) {
+    return session.getStartableProcessStarts().stream()
         .filter(process -> !process.getLink().getAbsoluteEncoded().endsWith(PORTAL_START_REQUEST_PATH))
         .collect(Collectors.toList());
   }
