@@ -23,7 +23,6 @@ import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
-import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
@@ -96,18 +95,11 @@ public class UserMenuBean implements Serializable {
   }
 
   public String getHomePageURL() {
+    PortalNavigator navigator = new PortalNavigator();
     RegisteredApplicationService applicationService = new RegisteredApplicationService();
     // Special handle since this function is call in javascript: window.location = "${userMenuBean.getHomePageURL()}";
-    if (globalSettingService == null) {
-      globalSettingService = new GlobalSettingService();
-    }
-    String homePageURL = globalSettingService.findGlobalSettingValue(GlobalVariable.HOMEPAGE_URL.toString());
     if (CollectionUtils.isEmpty(applicationService.findAllIvyApplications())) {
-      if (StringUtils.isNotBlank(homePageURL)) {
-        return homePageURL;
-      } else {
-        return new PortalNavigator().getPortalStartUrl();
-      }
+      return navigator.getPortalStartUrl();
     }
 
     String selectedApp = SecurityServiceUtils.getApplicationNameFromSession();
@@ -117,10 +109,7 @@ public class UserMenuBean implements Serializable {
       return SecurityServiceUtils.getDefaultPortalStartUrl();
     }
 
-    Application selectedApplication = applicationService.findByDisplayNameAndName(selectedAppDisplayName, selectedApp);
-    return Optional.ofNullable(selectedApplication)
-        .map(Application::getLink)
-        .orElse(StringUtils.EMPTY);
+    return Optional.ofNullable(navigator.getPortalStartUrl(selectedApp)).orElse(StringUtils.EMPTY);
   }
 
   public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
