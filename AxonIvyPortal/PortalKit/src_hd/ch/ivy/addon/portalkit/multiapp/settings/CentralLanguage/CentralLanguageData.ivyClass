@@ -8,3 +8,5 @@ languages java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage> #field
 languages PERSISTENT #fieldModifier
 user String #field
 user PERSISTENT #fieldModifier
+isWorkingOnATask Boolean #field
+isWorkingOnATask PERSISTENT #fieldModifier
