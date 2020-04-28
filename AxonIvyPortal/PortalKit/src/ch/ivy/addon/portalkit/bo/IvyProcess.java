@@ -3,13 +3,13 @@ package ch.ivy.addon.portalkit.bo;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.ProcessType;
-import ch.ivyteam.ivy.workflow.IProcessStart;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 public class IvyProcess implements Process {
   
-  private IProcessStart process;
+  private IWebStartable process;
   
-  public IvyProcess(IProcessStart process) {
+  public IvyProcess(IWebStartable process) {
     this.process = process;
   }
 
@@ -29,7 +29,7 @@ public class IvyProcess implements Process {
   }
 
   @Override
-  public IProcessStart getProcess() {
+  public IWebStartable getProcess() {
     return process;
   }
 
