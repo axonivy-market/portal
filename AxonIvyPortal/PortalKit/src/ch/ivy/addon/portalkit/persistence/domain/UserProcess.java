@@ -15,8 +15,6 @@ public class UserProcess extends BusinessEntity {
   private Integer index;
   private boolean defaultProcess;
   private boolean isExternalLink;
-  private String application;
-  private String fullRequestPath;
   
   @JsonIgnore
   private String description;
@@ -111,26 +109,10 @@ public class UserProcess extends BusinessEntity {
     this.description = description;
   }
   
-  public String getApplication() {
-    return application;
-  }
-
-  public void setApplication(String application) {
-    this.application = application;
-  }
-
-  public String getFullRequestPath() {
-    return fullRequestPath;
-  }
-
-  public void setFullRequestPath(String fullRequestPath) {
-    this.fullRequestPath = fullRequestPath;
-  }
-
   @Override
   public String toString() {
     return "UserProcess {userName=" + userName + ", processName=" + processName + ", icon=" + icon + ", link=" + link
-        + ", isDefaultProcess=" + defaultProcess + ", id=" + getId() + ", fullRequestPath=" + fullRequestPath + "}";
+        + ", isDefaultProcess=" + defaultProcess + ", id=" + getId() + "}";
   }
 
   @Override

@@ -42,7 +42,7 @@ Ps0 f4 109 96 307 96 #arcP
 Ps0 f0 guid 167CF9865BEC5C1B #txt
 Ps0 f0 method collectProcesses() #txt
 Ps0 f0 inParameterDecl '<> param;' #txt
-Ps0 f0 outParameterDecl '<java.util.List<ch.ivyteam.ivy.workflow.IProcessStart> processes> result;' #txt
+Ps0 f0 outParameterDecl '<java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable> processes> result;' #txt
 Ps0 f0 outParameterMapAction 'result.processes=in.processes;
 ' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
