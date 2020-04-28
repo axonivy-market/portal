@@ -520,7 +520,7 @@ if(in.type == ApplicationType.IVY_APPLICATION) {
 	ui.valid = false;
 }
 
-FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/duplicatePortalLinkMsg"), null));
+FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/duplicatePortalAppMsg"), null));
 FacesContext.getCurrentInstance().validationFailed();' #txt
 As0 f117 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
