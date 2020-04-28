@@ -141,12 +141,6 @@
         Portal.updateLayoutContent();
         Portal.updateBreadcrumb();
         MainMenu.highlightMenuItem();
-
-        $(window).resize(function() {
-          setTimeout(function() {
-          Portal.updateBreadcrumb();
-          }, 1);
-        });
       });
     </script>
   </ui:insert>
