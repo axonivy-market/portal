@@ -53,7 +53,7 @@ pipeline {
           echo "====================Build Portal modules===================="
           def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/PortalExamples', 'Showcase/InternalSupport', 'AxonIvyPortal/PortalApp']
           for (module in modules) {
-            bat "mvn clean install -f ${module}/pom.xml"
+            bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir%"
           }
 
           echo "====================Deploy Portal modules===================="
