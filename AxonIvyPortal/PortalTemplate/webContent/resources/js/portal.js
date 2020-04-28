@@ -5,6 +5,7 @@ var Portal = {
     }
     // Update menuitem when access page by direct link
     MainMenu.init(responsiveToolkit);
+    this.updateBreadcrumb();
     
     // Update screen when window size is changed
     $(window).resize(function() {
@@ -19,12 +20,42 @@ var Portal = {
     }, 1);
     
     this.updateLayoutContent();
+    this.updateBreadcrumb();
   },
   
   // Remove u-invisibility class when DOM is pasted already
   updateLayoutContent : function() {
     $('#main-area-panel').removeClass('u-invisibility');
     $("[id$='main-navigator-container']").removeClass('u-invisibility');
+  },
+
+  updateBreadcrumb : function() {
+	  var topMenuElements = $("#top-menu").find("> li");
+	  var usedWidthOfTopMenu = 0;
+	  topMenuElements.each(function(i, val) {
+		  if (!val.classList.contains("breadcrumb-container")) {
+			  usedWidthOfTopMenu += val.offsetWidth + 22;
+		  }
+	  });
+
+	  usedWidthOfTopMenu = usedWidthOfTopMenu + 2;
+	  var breadCrumb = $("#top-menu").find("> li.breadcrumb-container");
+	  var breadCrumbWidth = "calc(100% - " + usedWidthOfTopMenu + "px)";
+	  breadCrumb.css({"display": "block", "width" : breadCrumbWidth});
+	  
+
+	  var breadCrumbMembers = breadCrumb.find("li");
+	  var breadcrumbWidthWithoutCurrentStep = 0;
+	  breadCrumbMembers.each(function(i, val) {
+		  if (i != breadCrumbMembers.length - 1) {
+			  breadcrumbWidthWithoutCurrentStep += val.offsetWidth;
+		  }
+	  });
+	  var currentBreadcrumb = $(breadCrumbMembers.get(breadCrumbMembers.length - 1));
+	  currentBreadcrumb.css("max-width", "calc(100% - " + breadcrumbWidthWithoutCurrentStep + "px)");
+	  if (currentBreadcrumb.get(0).offsetWidth == 0) {
+		  breadCrumb.css("display", "none");
+	  }
   }
 }
 
