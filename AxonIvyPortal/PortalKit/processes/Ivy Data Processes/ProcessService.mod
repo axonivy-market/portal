@@ -20,7 +20,7 @@ Pt0 @PushWFArc f0 '' #zField
 Pt0 f15 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.ProcessSearchCriteria processSearchCriteria> param;' #txt
 Pt0 f15 inParamTable 'out.processSearchCriteria=param.processSearchCriteria;
 ' #txt
-Pt0 f15 outParamDecl '<java.util.List<ch.ivyteam.ivy.workflow.IProcessStart> processes,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
+Pt0 f15 outParamDecl '<java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable> processes,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
 Pt0 f15 outParamTable 'result.processes=in.processes;
 result.errors=in.errors;
 ' #txt
