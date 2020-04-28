@@ -4,7 +4,7 @@ errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataExce
 errors PERSISTENT #fieldModifier
 processSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.ProcessSearchCriteria #field
 processSearchCriteria PERSISTENT #fieldModifier
-processes java.util.List<ch.ivyteam.ivy.workflow.IProcessStart> #field
+processes java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable> #field
 processes PERSISTENT #fieldModifier
 expressProcesses java.util.List<ch.ivy.addon.portalkit.bo.ExpressProcess> #field
 expressProcesses PERSISTENT #fieldModifier
