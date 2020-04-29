@@ -30,32 +30,36 @@ var Portal = {
   },
 
   updateBreadcrumb : function() {
-	  var topMenuElements = $("#top-menu").find("> li");
-	  var usedWidthOfTopMenu = 0;
-	  topMenuElements.each(function(i, val) {
-		  if (!val.classList.contains("breadcrumb-container")) {
-			  usedWidthOfTopMenu += val.offsetWidth + 22;
-		  }
-	  });
+    var topMenuElements = $("#top-menu").find("> li");
+    var breadCrumb = $("#top-menu").find("> li.breadcrumb-container");
+    var breadCrumbMembers = breadCrumb.find("li");
 
-	  usedWidthOfTopMenu = usedWidthOfTopMenu + 2;
-	  var breadCrumb = $("#top-menu").find("> li.breadcrumb-container");
-	  var breadCrumbWidth = "calc(100% - " + usedWidthOfTopMenu + "px)";
-	  breadCrumb.css({"display": "block", "width" : breadCrumbWidth});
-	  
+    if (breadCrumbMembers.length == 0) {
+      return;
+    }
 
-	  var breadCrumbMembers = breadCrumb.find("li");
-	  var breadcrumbWidthWithoutCurrentStep = 0;
-	  breadCrumbMembers.each(function(i, val) {
-		  if (i != breadCrumbMembers.length - 1) {
-			  breadcrumbWidthWithoutCurrentStep += val.offsetWidth;
-		  }
-	  });
-	  var currentBreadcrumb = $(breadCrumbMembers.get(breadCrumbMembers.length - 1));
-	  currentBreadcrumb.css("max-width", "calc(100% - " + breadcrumbWidthWithoutCurrentStep + "px)");
-	  if (currentBreadcrumb.get(0).offsetWidth == 0) {
-		  breadCrumb.css("display", "none");
-	  }
+    var usedWidthOfTopMenu = 0;
+    topMenuElements.each(function(i, val) {
+      if (!val.classList.contains("breadcrumb-container")) {
+        usedWidthOfTopMenu += val.offsetWidth + 22;
+      }
+    });
+
+    usedWidthOfTopMenu = usedWidthOfTopMenu + 2;
+    var breadCrumbWidth = "calc(100% - " + usedWidthOfTopMenu + "px)";
+    breadCrumb.css({"display": "block", "width" : breadCrumbWidth});
+
+    var breadcrumbWidthWithoutCurrentStep = 0;
+    breadCrumbMembers.each(function(i, val) {
+      if (i != breadCrumbMembers.length - 1) {
+        breadcrumbWidthWithoutCurrentStep += val.offsetWidth;
+      }
+    });
+    var currentBreadcrumb = $(breadCrumbMembers.get(breadCrumbMembers.length - 1));
+    currentBreadcrumb.css("max-width", "calc(100% - " + breadcrumbWidthWithoutCurrentStep + "px)");
+    if (currentBreadcrumb.get(0).offsetWidth == 0) {
+      breadCrumb.css("display", "none");
+    }
   }
 }
 
@@ -67,7 +71,7 @@ function searchIconByName(element) {
     if (icon.indexOf(keyword) > -1 || icon.split("-").join(" ").indexOf(keyword) > -1) {
       icons[i].style.display= "";
     } else {
-	  icons[i].style.display= "none";
+    icons[i].style.display= "none";
     }
   }
 }
