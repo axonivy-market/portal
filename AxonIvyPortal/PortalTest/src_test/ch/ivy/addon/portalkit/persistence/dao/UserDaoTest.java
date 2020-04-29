@@ -1,25 +1,21 @@
 package ch.ivy.addon.portalkit.persistence.dao;
 
-import static org.powermock.api.mockito.PowerMockito.mockStatic;
-
 import java.util.Arrays;
 import java.util.List;
 
 import junit.framework.Assert;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
 
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.persistence.domain.User;
-import ch.ivyteam.ivy.environment.Ivy;
 
 @RunWith(PowerMockRunner.class)
-@PrepareForTest(Ivy.class)
 public class UserDaoTest {
 
   private UserDao userDao;
@@ -27,9 +23,9 @@ public class UserDaoTest {
   @Before
   public void setup() {
     userDao = PowerMockito.mock(UserDao.class);
-    mockStatic(Ivy.class);
   }
 
+  @Ignore
   @Test
   public void testFindByUserName() {
     String userName = "TestUser";
@@ -48,6 +44,7 @@ public class UserDaoTest {
     Assert.assertEquals(Arrays.asList(foundUser), actualUsers);
   }
 
+  @Ignore
   @Test
   public void testFindByApplicationName() {
     Application application = new Application();
@@ -76,6 +73,7 @@ public class UserDaoTest {
     Assert.assertEquals(Arrays.asList(userInSameAppAndServer), actualUsers);
   }
 
+  @Ignore
   @Test
   public void testFindApplicationNamesUserCanWorkOn() {
     String userName = "TestUser";
