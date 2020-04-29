@@ -23,9 +23,7 @@ Build your own portal using PortalKit
                         path and name in your project as they can override the Portal
                         files.
                     
-   b. Create a new ``Start process`` and connect to ``User Dialog`` for your home page.
-
-      .. figure:: images/build-your-own-portal/new-home-page-connect-process.png
+   b. Create a new ``Start process`` named ``DefaultApplicationHomePage.ivp`` and connect to ``User Dialog`` for your home page.
 
    c. Run your application, start your newly created process and see result.
 

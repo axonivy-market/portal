@@ -87,7 +87,6 @@ Process developer can set up global settings of Portal in file ``portal_settings
       #EMBED_IN_FRAME = true
 
       # Others
-      #HOMEPAGE_URL =
       #SHOW_ENVIRONMENT_INFO = false
       #ENABLE_CASE_OWNER = false
       #EXPRESS_END_PAGE = true
@@ -135,7 +134,7 @@ Multi applications with overview
    for displaying all tasks/cases... from all configured
    applications.
 
--  Dashboard menu is only visible when logged-in user exists in
+-  Dashboard menu item is only visible when logged-in user exists in
    Portal application.
 
 Multi applications (without overview)
@@ -171,18 +170,15 @@ type either as Ivy application or Third Party application.
       create it. ``Display name`` is the name of the application to be
       shown on Portal UI.
 
-   -  ``Portal link`` specifies the link will be redirected when
-      selecting the application on the application menu. It could be an
-      absolute link (e.g.
-      http://10.123.1.30:8000/ivy/pro/.../DefaultApplicationHomePage.ivp) or relative
-      link (e.g. /ivy/pro/.../DefaultApplicationHomePage.ivp). If your application
-      could be accessed from multiple domains, use relative link so that
-      you can access the link from different domains.
-
    -  For multiple languages of application display name, you need to
       create the "AppInfo/SupportedLanguages" CMS which defines how many
       languages your application supports. See the below "Language
       settings" for more details.
+      
+   -  If your application has new homepage, create a new process start named ``DefaultApplicationHomePage.ivp``.
+      It's recommended that you should copy the whole ``PortalStart`` process. To let portal know about your new portal home, 
+      you have to set default pages to your project, follow this chapter to customize standard processes:
+      `Standard Processes <https://developer.axonivy.com/doc/latest/engine-guide/administration/standard-processes.html>`_
 
 .. _settings-language:
 

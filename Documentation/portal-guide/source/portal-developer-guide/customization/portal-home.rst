@@ -45,21 +45,12 @@ Following these steps to have your own Portal Home:
       </ui:define>
       </ui:composition>
 
-2. In case of single Portal: Create a new process start for the new
+2. In case of single Portal: Create a new process start named ``DefaultApplicationHomePage.ivp`` for the new
    home page. Now you will use this process start as the entry point of
-   your portal instead of the default one. **To let portal know about
-   your new portal home, you have to go to the portal settings and set
-   the portal home url to the new one.**
+   your portal instead of the default one. To let portal know about
+   your new portal home, you have to set default pages to your project, follow this chapter to customize standard processes:
+   `Standard Processes <https://developer.axonivy.com/doc/latest/engine-guide/administration/standard-processes.html>`_
    
-   *E.g:*
-   
-   .. code-block:: html
-
-      HOMEPAGE_URL=http://localhost:8081/ivy/pro/designer/CustomizePortalHome/157454FCA39C3844/start.ivp
-   ..
-
-   |set-home-page-url|
-
    *In case of multi Portal:* refer to :ref:`Setup multi portals <settings-admin-settings>` to setup.
 
 
@@ -149,4 +140,3 @@ The default page title is Dashboard. Apply the following code to change it:
 
 
 .. |home-page-template| image:: images/portal-home/home-page-template.png
-.. |set-home-page-url| image:: images/portal-home/set-home-page-url.png
