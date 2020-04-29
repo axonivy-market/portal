@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class LanguagePage extends TemplatePage {
+  
+  private final static String WARN_MESSAGE_ID = "language-settings-form:language-settings:change-language-warning-message";
 
   @Override
   protected String getLoadedLocator() {
@@ -29,9 +31,8 @@ public class LanguagePage extends TemplatePage {
   }
 
   public boolean isWarningMessageShownOn() {
-    final String warnMessageId = "language-settings-form:language-settings:change-language-warning-message";
-    if (isElementDisplayedById(warnMessageId)) {
-      WebElement warnMessage = findElementById(warnMessageId);
+    if (isElementDisplayedById(WARN_MESSAGE_ID)) {
+      WebElement warnMessage = findElementById(WARN_MESSAGE_ID);
       if (warnMessage != null) {
         return StringUtils.isNoneEmpty(warnMessage.getText());
       }
