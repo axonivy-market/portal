@@ -28,7 +28,7 @@
         alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
     </p:commandLink>
 
-    <p:commandLink id="toggle-menu" styleClass="sidebar-anchor" global="false" />
+    <p:commandLink id="toggle-menu" styleClass="sidebar-anchor" global="false" onclick="hideBreadcrumb()" oncomplete="Portal.updateBreadcrumb();" />
   </div>
 
   <!-- APPLICATION MENU -->
@@ -149,6 +149,11 @@
           $highlightedItem.addClass('active-menuitem');
         }
       }, 1);
+    }
+    function hideBreadcrumb() {
+      if ($(".layout-wrapper-static").length == 0) {
+        $("#top-menu").find("> li.breadcrumb-container").css("display", "none");	
+      }
     }
   </script>
 </cc:implementation>
