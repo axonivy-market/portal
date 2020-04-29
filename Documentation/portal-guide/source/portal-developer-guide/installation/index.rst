@@ -150,13 +150,14 @@ Migrate 8.x to 9.1
 ----------------------
 
 1. Removed the ``views`` field in SubMenuItem.java. Adapt it if you overrode the ``LoadSubMenuItems`` callable process
+
 2. Please add parameter ``<ui:param name="viewName" value="TASK" />`` to your customized ``PortalTasksTemplate`` to displayed breadcrumb of Task list.
+
 3. Please add parameter ``<ui:param name="viewName" value="CASE" />`` to your customized ``PortalCasesTemplate`` to displayed breadcrumb of Case list.
 
-2. Ivy core enhanced the Ivy URI, so Portal needs to make a migration.
-Please deploy :download:`PortalUrlMigration.iar <documents/PortalUrlMigration.iar>` project to any Ivy Application 
-then run ``migratePortalUrl.ivp`` once
-and wait until it is redirected to another page without error (E.g: Homepage). It is recommended to remove it after the migration
+4. Ivy core enhanced the Ivy URI, so Portal needs to make a migration. Please deploy :download:`PortalUrlMigration.iar <documents/PortalUrlMigration.iar>` project to any Ivy Application then run ``migratePortalUrl.ivp`` once and wait until it is redirected to another page without error (E.g: Homepage). It is recommended to remove it after the migration.
+
+5. HOMEPAGE_URL (single Portal app mode) and registered application link (multi Portal app mode) are not available anymore. To let portal know about your new portal home, you have to set default pages to your project, follow this chapter to customize standard processes: `Standard Processes <https://developer.axonivy.com/doc/latest/engine-guide/administration/standard-processes.html>`_
 
 Migrate 8.0.1 to 8.0.2
 ----------------------
