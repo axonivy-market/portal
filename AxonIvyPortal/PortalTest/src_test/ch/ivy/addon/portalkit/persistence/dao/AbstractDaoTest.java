@@ -23,7 +23,6 @@ import ch.ivyteam.ivy.application.property.ICustomProperties;
 import ch.ivyteam.ivy.application.property.ICustomProperty;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IWorkflowContext;
-import ch.ivyteam.util.Property;
 
 @SuppressWarnings("unchecked")
 @RunWith(PowerMockRunner.class)
@@ -35,31 +34,6 @@ public class AbstractDaoTest {
   @Before
   public void setup() {
     abstractDao = PowerMockito.mock(AbstractDao.class);
-  }
-
-  @Test
-  public void testGetAllPortalDataProperties() throws Exception {
-    final String PORTAL_PROPERTY_START = "AxonIvyPortal";
-    ICustomProperty customProperty1 = mock(ICustomProperty.class);
-    ICustomProperty customProperty2 = mock(ICustomProperty.class);
-
-    List<ICustomProperty> customProperties = new ArrayList<>();
-    customProperties.add(customProperty1);
-    customProperties.add(customProperty2);
-    when(abstractDao, "findAllStartingWithPrefix", PORTAL_PROPERTY_START).thenReturn(customProperties);
-    when(abstractDao, "getCustomPropertyName", customProperty1).thenReturn("key1");
-    when(abstractDao, "getCustomPropertyName", customProperty2).thenReturn("key2");
-    when(abstractDao, "getCustomPropertyValue", customProperty1).thenReturn("valueOfKey1");
-    when(abstractDao, "getCustomPropertyValue", customProperty2).thenReturn("valueOfKey2");
-    when(abstractDao.getAllPortalDataProperties()).thenCallRealMethod();
-    Property expectedProperty1 = new Property("key1", "valueOfKey1");
-    Property expectedProperty2 = new Property("key2", "valueOfKey2");
-
-    List<Property> actualProperties = abstractDao.getAllPortalDataProperties();
-
-    assertEquals(2, actualProperties.size());
-    assertEquals(expectedProperty1, actualProperties.get(0));
-    assertEquals(expectedProperty2, actualProperties.get(1));
   }
 
   @Test
