@@ -26,6 +26,7 @@ import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.UserProcessService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -135,6 +136,15 @@ private static final long serialVersionUID = -5889375917550618261L;
     if (userProcess.isExternalLink()) {
       FacesContext.getCurrentInstance().getExternalContext().redirect(link);
       return;
+    }
+    
+    if (StringUtils.isNotBlank(userProcess.getWorkflowId())) {
+      ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.request().getApplication());
+      String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
+      if (StringUtils.isNotBlank(expressStartLink)) {
+        FacesContext.getCurrentInstance().getExternalContext().redirect(expressStartLink + "?workflowID=" + userProcess.getWorkflowId());
+        return;
+      }
     }
     
     link += link.contains("?") ? "&" : "?";
