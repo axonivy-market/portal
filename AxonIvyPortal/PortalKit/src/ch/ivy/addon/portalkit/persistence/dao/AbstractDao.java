@@ -7,13 +7,11 @@ import java.util.List;
 
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.persistence.domain.BusinessEntity;
-import ch.ivy.addon.portalkit.persistence.exception.DaoException;
 import ch.ivy.addon.portalkit.persistence.variable.PropertyKey;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.property.ICustomProperties;
 import ch.ivyteam.ivy.application.property.ICustomProperty;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.util.Property;
 
 public abstract class AbstractDao<T extends BusinessEntity> {
 
@@ -26,35 +24,6 @@ public abstract class AbstractDao<T extends BusinessEntity> {
   public AbstractDao() {
     this.ivyApplication = Ivy.wf().getApplication();
   }
-
-  /**
-   * Gets all data in portal database. In case there is no data, it will return empty list.
-   * 
-   * @return {@link List}
-   */
-  @ExecuteAsSystem
-  public List<Property> getAllPortalDataProperties() {
-    List<Property> portalDatas = new ArrayList<>();
-    try {
-      List<ICustomProperty> customProperties = findAllStartingWithPrefix(PropertyKey.PORTAL_PROPERTY_START);
-      for (ICustomProperty customProperty : customProperties) {
-        String customPropertyName = getCustomPropertyName(customProperty);
-        String customPropertyValue = getCustomPropertyValue(customProperty);
-        Property property = new Property(customPropertyName, customPropertyValue);
-        portalDatas.add(property);
-      }
-    } catch (Exception exception) {
-      String message = String.format("Can not get all data of Portal database");
-      Ivy.log().error(message, exception);
-      throw new DaoException(message, exception);
-    }
-    return portalDatas;
-  }
-
-  private String getCustomPropertyName(ICustomProperty customProperty) {
-    return customProperty.getName();
-  }
-
 
   @ExecuteAsSystem
   public T findById(long id) {
