@@ -111,8 +111,8 @@ Inside your UI, you can configure these parameters which will be rendered by the
 		window.currentProcessStep = "#{data.currentProcessStep}";
 		window.isShowAllSteps = true;
 		window.isHideTaskName= false;
-        window.isHideTaskAction = false;
-        window.isHideCaseInfo = false;
+		window.isHideTaskAction = false;
+		window.isHideCaseInfo = false;
 		window.processChainDirection = "VERTICAL";
 		window.processChainShape = "LINE";
 		window.announcementInvisible = false;
