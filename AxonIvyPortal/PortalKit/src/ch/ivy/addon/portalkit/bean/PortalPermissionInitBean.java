@@ -87,7 +87,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
 
   private List<IPermission> getTaskPermissions() {
     List<IPermission> result = getPortalPermissionsByGroup(PortalPermissionGroup.TASK_PERMISSIONS_GROUP);
-    result.addAll(Arrays.asList(IPermission.TASK_READ_ALL, IPermission.TASK_RESET_OWN_WORKING_TASK,
+    result.addAll(Arrays.asList(IPermission.TASK_READ_ALL, IPermission.TASK_READ_ALL_OWN_ROLE_WORKED_ON, IPermission.TASK_RESET_OWN_WORKING_TASK,
         IPermission.TASK_RESET, IPermission.TASK_WRITE_ACTIVATOR, IPermission.TASK_PARK_OWN_WORKING_TASK,
         IPermission.TASK_WRITE_EXPIRY_TIMESTAMP, IPermission.TASK_WRITE_ORIGINAL_PRIORITY,
         IPermission.TASK_WRITE_DESCRIPTION, IPermission.TASK_WRITE_NAME, IPermission.TASK_READ_OWN_CASE_TASKS));
@@ -105,7 +105,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
   private List<IPermission> getCasePermissions() {
     List<IPermission> result = getPortalPermissionsByGroup(PortalPermissionGroup.CASE_PERMISSIONS_GROUP);
     result.addAll(Arrays.asList(IPermission.CASE_DESTROY, IPermission.CASE_WRITE_DESCRIPTION, IPermission.CASE_WRITE_NAME,
-        IPermission.CASE_READ_ALL));
+        IPermission.CASE_READ_ALL, IPermission.CASE_READ_ALL_OWN_ROLE_INVOLVED));
     return result;
   }
 
