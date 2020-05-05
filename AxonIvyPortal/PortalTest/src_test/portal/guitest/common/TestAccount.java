@@ -16,7 +16,11 @@ public enum TestAccount {
 
 	TEST_RELATED_TASKS_USER("test_related_tasks_user", "+d3m0++", "test_related_tasks_user"),
   
-  CASE_OWNER_USER("caseOwnerUser", "caseOwnerUser", "caseOwnerUser");
+  CASE_OWNER_USER("caseOwnerUser", "caseOwnerUser", "caseOwnerUser"),
+  
+  ROLE_INVOLVED_USER_1("roleInvolvedTestUser1", "roleInvolvedTestUser1", "roleInvolvedTestUser1"),
+  
+  ROLE_INVOLVED_USER_2("roleInvolvedTestUser2", "roleInvolvedTestUser2", "roleInvolvedTestUser2");
 
 	private String username;
 	private String password;
