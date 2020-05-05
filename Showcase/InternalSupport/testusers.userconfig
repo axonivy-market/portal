@@ -5,4 +5,14 @@
         <password>caseOwnerUser</password>
         <role>CaseOwner</role>
     </user>
+    <user>
+        <username>roleInvolvedTestUser1</username>
+        <password>roleInvolvedTestUser1</password>
+        <role>TestRoleInvolved</role>
+    </user>
+    <user>
+        <username>roleInvolvedTestUser2</username>
+        <password>roleInvolvedTestUser2</password>
+        <role>TestRoleInvolved</role>
+    </user>
 </userConfig>
