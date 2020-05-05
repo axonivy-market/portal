@@ -125,19 +125,6 @@
           <div class="additional-filter-container">
             <f:event listener="#{data.dataModel.initFilters()}" type="preRenderComponent" />
             <cc:renderFacet name="taskFilter" />
-            <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="in-progress-filter"
-              removeListener="#{data.dataModel.hideInProgressFilter()}" displayFooterButtons="false"
-              taskFilter="#{data.dataModel.inProgressFilter}" dataModel="#{data.dataModel}"
-              rendered="#{!data.dataModel.hasReadAllTasksPermisson() and data.dataModel.inProgressFilterDisplayed}"
-              forceRendered="true" position="100" >
-              <p:selectBooleanCheckbox id="in-progress-checkbox" styleClass="in-progress-task-checkbox"
-                value="#{data.dataModel.inProgressFilter.isTaskInProgressByOthersDisplayed}"
-                itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/display')}">
-                <p:ajax
-                  update="@([id$='in-progress-filter:filter-open-form']) @form #{p:component('task-view-container')}"
-                  global="false" oncomplete="taskWidget.setupScrollbar();" />
-              </p:selectBooleanCheckbox>
-            </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
             
             <!-- Add more filters button -->
             <h:panelGroup id="filter-add-container" styleClass="filter-add-container">
@@ -155,13 +142,6 @@
                       <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
                         itemValue="#{filter}" />
                     </p:selectManyCheckbox>
-                    <p:selectBooleanCheckbox id="in-progress-checkbox" styleClass="in-progress-task-checkbox"
-                      rendered="#{!data.dataModel.hasReadAllTasksPermisson()}"
-                      value="#{data.dataModel.inProgressFilterDisplayed}"
-                      itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskState/RESUMED')}">
-                    </p:selectBooleanCheckbox>
-                    <p:tooltip for="in-progress-checkbox" trackMouse="true"
-                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/DisplayTaskStartedByOtherUsersTooltip')}" />
                   </p:scrollPanel>
 
                   <h:panelGroup id="add-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer">
