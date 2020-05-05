@@ -304,6 +304,11 @@ Substitute
 
 Personal task permission
 ------------------------
+-  SEE THE TASKS WHICH ROLES CAN INVOLVE
+
+   Session user can see the tasks which his roles can involve if he has
+   ``IPermission.TASK_READ_ALL_OWN_ROLE_WORKED_ON``.
+   
 -  ADD NOTE
 
    Refer to :ref:`Display add note button<display-add-note-button>`.
@@ -429,6 +434,11 @@ Personal case permission
 
    Link to show all tasks of case will be hidden if session user does
    not have permission ``PortalPermission.SHOW_ALL_TASKS_OF_CASE`` .
+   
+-  SEE THE CASES WHICH ROLES CAN INVOLVE
+
+   Session user can see the cases which his roles can involve if he has
+   ``IPermission.CASE_READ_ALL_OWN_ROLE_INVOLVED``.
 
 -  DISPLAY SHOW DETAILS LINK
 

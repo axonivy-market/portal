@@ -24,11 +24,14 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ITaskService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Record;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
+import ch.ivyteam.ivy.security.IPermission;
+import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -84,9 +87,21 @@ public class TaskService implements ITaskService {
     return Ivy.wf().getGlobalContext().getTaskQueryExecutor().getCount(query);
   }
   
-  private static TaskQuery queryForUsers(String involvedUsername, List<String> apps) {
+  private static TaskQuery queryForUsers(String involvedUsername, List<String> apps, boolean isQueryForRoleInvolved) {
     TaskQuery taskQuery = TaskQuery.create();
-    apps.forEach(app -> taskQuery.where().or().userIsInvolved(involvedUsername, app));
+    apps.forEach(app -> {
+      taskQuery.where().or().userIsInvolved(involvedUsername, app);
+
+      IApplication application = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(app);
+      boolean hasRoleWorkedOnPermission = PermissionUtils.hasPermission(application, involvedUsername, IPermission.TASK_READ_ALL_OWN_ROLE_WORKED_ON) && isQueryForRoleInvolved;
+      if (hasRoleWorkedOnPermission) {
+        IUser user = application.getSecurityContext().users().find(involvedUsername);
+        List<IRole> roles = user.getAllRoles();
+        for (IRole role : roles) {
+          taskQuery.where().or().roleIsInvolved(role);
+        }
+      }
+    });
     return taskQuery;
   }
   
@@ -123,7 +138,7 @@ public class TaskService implements ITaskService {
         
         if (criteria.hasApps()) {
           if (criteria.hasInvolvedUsername()) {
-            finalQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps()));
+            finalQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps(), true));
           } else {
             finalQuery.where().and(queryForApplications(criteria.getApps()));
           }
@@ -260,7 +275,7 @@ public class TaskService implements ITaskService {
     TaskQuery clonedQuery = TaskQuery.fromJson(finalQuery.asJson()); // clone to keep the final query in TaskSearchCriteria
     if (criteria.hasApps()) {
       if (criteria.hasInvolvedUsername() && !criteria.isAdminQuery()) {
-        clonedQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps()));
+        clonedQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps(), criteria.isQueryForRoleInvolved()));
       } else {
         clonedQuery.where().and(queryForApplications(criteria.getApps()));
       }

@@ -20,7 +20,6 @@ import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
-import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
@@ -34,7 +33,6 @@ public class UserUtils {
   private static final String SELECTED_TASK_FILTER_SET = "SELECTED_TASK_FILTER_SET";
   private static final String SELECTED_TASK_FILTER = "SELECTED_TASK_FILTER";
   private static final String TASK_KEYWORD_FILTER = "TASK_KEYWORD_FILTER";
-  private static final String TASK_IN_PROGRESS_FILTER = "TASK_IN_PROGRESS_FILTER";
   private static final String SELECTED_CASE_FILTER_SET = "SELECTED_CASE_FILTER_SET";
   private static final String SELECTED_CASE_FILTER = "SELECTED_CASE_FILTER";
   private static final String CASE_KEYWORD_FILTER = "CASE_KEYWORD_FILTER";
@@ -130,10 +128,6 @@ public class UserUtils {
     setSessionAttribute(TASK_KEYWORD_FILTER, keyword);
   }
 
-  public static void setSessionTaskInProgressFilterAttribute(TaskInProgressByOthersFilter filter) {
-    setSessionAttribute(TASK_IN_PROGRESS_FILTER, filter);
-  }
-
   public static TaskFilterData getSessionSelectedTaskFilterSetAttribute() {
     return (TaskFilterData) Ivy.session().getAttribute(SELECTED_TASK_FILTER_SET);
   }
@@ -157,10 +151,6 @@ public class UserUtils {
 
   public static String getSessionTaskKeywordFilterAttribute() {
     return StringUtils.defaultIfBlank((String) Ivy.session().getAttribute(TASK_KEYWORD_FILTER), "");
-  }
-
-  public static TaskInProgressByOthersFilter getSessionTaskInProgressFilterAttribute() {
-    return (TaskInProgressByOthersFilter) Ivy.session().getAttribute(TASK_IN_PROGRESS_FILTER);
   }
 
   public static void setSessionSelectedCaseFilterSetAttribute(CaseFilterData value) {
