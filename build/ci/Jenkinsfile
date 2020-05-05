@@ -52,9 +52,9 @@ pipeline {
         script {
           def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/PortalStyle/pom.xml').getProperties().getProperty("build.plugin.version")
           // for (module in builtModules) {
-            for (application in applications) {
-              bat "mvn com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -Divy.deploy.file=AxonIvyPortal/PortalApp/target/portal-app-9.1.0.0-SNAPSHOT.zip -Divy.deploy.engine.app=${application} -Divy.deploy.engine.dir=${engineDir} -Divy.test.engine=MODIFY_EXISTING -Divy.engine.version=9.1.0 -Dbuild.plugin.version=9.1.0-SNAPSHOT"
-            }
+          //   for (application in applications) {
+              bat "mvn com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -Divy.deploy.file=AxonIvyPortal/PortalApp/target/portal-app-9.1.0-SNAPSHOT.zip -Divy.deploy.engine.app=${application} -Divy.deploy.engine.dir=${engineDir} -Divy.test.engine=MODIFY_EXISTING -Divy.engine.version=9.1.0 -Dbuild.plugin.version=9.1.0-SNAPSHOT"
+          //   }
           // }
         }
       }
