@@ -25,8 +25,14 @@ var Portal = {
   
   // Remove u-invisibility class when DOM is pasted already
   updateLayoutContent : function() {
-    $('#main-area-panel').removeClass('u-invisibility');
-    $("[id$='main-navigator-container']").removeClass('u-invisibility');
+    var headerHeight = $('#portal-template-header').outerHeight();
+    var footerHeight = $('#portal-template-footer').outerHeight();
+    var headerFooterHeight = headerHeight + footerHeight;
+    $('.js-left-sidebar').css('top', headerHeight + 'px').css('height', 'calc(100% - ' + headerFooterHeight + 'px)');
+    $('.js-layout-main').css('margin-top', headerHeight + 'px')
+      .css('height', 'calc(100% - ' + headerFooterHeight + 'px)');
+    $('.js-layout-content').css('height', 'calc(100vh - ' + footerHeight + 'px)');
+    $('.js-layout-wrapper').removeClass('u-invisibility');
   },
 
   updateBreadcrumb : function() {
