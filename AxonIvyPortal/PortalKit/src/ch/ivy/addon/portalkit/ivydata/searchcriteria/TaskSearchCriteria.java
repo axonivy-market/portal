@@ -25,12 +25,12 @@ public class TaskSearchCriteria {
   private Long taskId;
   private Long caseId;
   private String category;
-  private boolean isTaskStartedByAnotherDisplayed;
   private TaskAssigneeType taskAssigneeType;
   private boolean isNewQueryCreated;
   private boolean isQueryByTaskId;
   private boolean isQueryByBusinessCaseId;
   private boolean isQueryForUnassignedTask;
+  private boolean isQueryForRoleInvolved = true;
   private String sortField;
   private boolean sortDescending;
   private boolean isSorted = true;
@@ -339,14 +339,6 @@ public class TaskSearchCriteria {
     this.caseId = caseId;
   }
 
-  public boolean isTaskStartedByAnotherDisplayed() {
-    return isTaskStartedByAnotherDisplayed;
-  }
-
-  public void setTaskStartedByAnotherDisplayed(boolean isTaskStartedByAnotherDisplayed) {
-    this.isTaskStartedByAnotherDisplayed = isTaskStartedByAnotherDisplayed;
-  }
-
   public TaskAssigneeType getTaskAssigneeType() {
     return taskAssigneeType;
   }
@@ -377,6 +369,14 @@ public class TaskSearchCriteria {
 
   public void setQueryForUnassignedTask(boolean isQueryForUnassignedTask) {
     this.isQueryForUnassignedTask = isQueryForUnassignedTask;
+  }
+  
+  public boolean isQueryForRoleInvolved() {
+    return isQueryForRoleInvolved;
+  }
+
+  public void setQueryForRoleInvolved(boolean isQueryForRoleInvolved) {
+    this.isQueryForRoleInvolved = isQueryForRoleInvolved;
   }
 
   public TaskQuery getCustomTaskQuery() {
