@@ -33,7 +33,6 @@ import ch.ivy.addon.portalkit.taskfilter.DefaultTaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
-import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskStateFilter;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -57,7 +56,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected List<ITask> data;
   
   protected TaskFilterContainer filterContainer;
-  protected TaskInProgressByOthersFilter inProgressFilter;
   protected TaskFilterData selectedTaskFilterData;
   protected TaskFilterData defaultTaskFilterData;
   protected Long filterGroupId;
@@ -72,7 +70,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected List<String> portalRequiredColumns = Arrays.asList("NAME");
 
   protected boolean compactMode;
-  protected boolean isInProgressFilterDisplayed;
   protected boolean isAutoHideColumns;
   protected boolean isDisableSelectionCheckboxes;
   protected boolean isRelatedTaskDisplayed;
@@ -88,11 +85,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     data = new ArrayList<>();
 
     loadSessionTaskFiltersAttribute();
-    if (inProgressFilter != null) {
-      isInProgressFilterDisplayed = true;
-    } else {
-      inProgressFilter = new TaskInProgressByOthersFilter();
-    }
     if (isSelectedDefaultFilter == null) {
       buildDefaultTaskFilterData();
     }
@@ -103,7 +95,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       if (isSameFilterGroupId()) {
         isSelectedDefaultFilter = UserUtils.getSessionSelectedDefaultTaskFilterSetAttribute();
         selectedTaskFilterData = UserUtils.getSessionSelectedTaskFilterSetAttribute();
-        inProgressFilter = UserUtils.getSessionTaskInProgressFilterAttribute();
       } else {
         isSelectedDefaultFilter = true;
         selectedTaskFilterData = null;
@@ -416,6 +407,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   public void setCompactMode(boolean compactMode) {
     this.compactMode = compactMode;
+    this.criteria.setQueryForRoleInvolved(!compactMode);
     if (compactMode) {
       selectedFilters.clear();
     }
@@ -423,22 +415,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   public String getCaseName() {
     return caseName;
-  }
-
-  public TaskInProgressByOthersFilter getInProgressFilter() {
-    return inProgressFilter;
-  }
-
-  public void setInProgressFilter(TaskInProgressByOthersFilter inProgressFilter) {
-    this.inProgressFilter = inProgressFilter;
-  }
-
-  public boolean isInProgressFilterDisplayed() {
-    return isInProgressFilterDisplayed;
-  }
-
-  public void setInProgressFilterDisplayed(boolean isInProgressFilterDisplayed) {
-    this.isInProgressFilterDisplayed = isInProgressFilterDisplayed;
   }
 
   public void setCaseName(String caseName) {
@@ -499,7 +475,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     isSelectedDefaultFilter = false;
     TaskFilterData taskFilterData = new TaskFilterData();
     List<TaskFilter> taskFilters = new ArrayList<>(selectedFilters);
-    addCustomSettingsToTaskFilters(taskFilters);
     taskFilterData.setFilters(taskFilters);
     taskFilterData.setKeyword(criteria.getKeyword());
     taskFilterData.setUserId(Ivy.session().getSessionUser().getId());
@@ -514,12 +489,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     return taskFilterData;
   }
 
-  public void addCustomSettingsToTaskFilters(List<TaskFilter> taskFilters) {
-    if (isInProgressFilterDisplayed) {
-      taskFilters.add(inProgressFilter);
-    }
-  }
-
   /**
    * Apply filter settings loaded from business data to this {@link #TaskLazyDataModel}
    * 
@@ -530,19 +499,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     isSelectedDefaultFilter = FilterType.DEFAULT.equals(taskFilterData.getType());
     selectedTaskFilterData = taskFilterData;
     new TaskFilterService().applyFilter(this, taskFilterData);
-    applyCustomSettings(taskFilterData);
-  }
-
-  private void applyCustomSettings(TaskFilterData taskFilterData) throws ReflectiveOperationException {
     criteria.setKeyword(taskFilterData.getKeyword());
-    isInProgressFilterDisplayed = false;
-    inProgressFilter = new TaskInProgressByOthersFilter();
-    for (TaskFilter savedTaskFilter : taskFilterData.getFilters()) {
-      if (savedTaskFilter instanceof TaskInProgressByOthersFilter) {
-        new TaskFilterService().copyFilterValues(inProgressFilter, savedTaskFilter);
-        isInProgressFilterDisplayed = true;
-      }
-    }
   }
 
   @SuppressWarnings("unchecked")
@@ -584,11 +541,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     return PermissionUtils.checkReadAllTasksPermission();
   }
 
-  public void hideInProgressFilter() {
-    inProgressFilter.resetValues();
-    isInProgressFilterDisplayed = false;
-  }
-
   /**
    * Builds and converts TaskQuery to JsonQuery and put it into TaskSearchCriteria.
    */
@@ -610,8 +562,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
           criteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
         }
       }
-
-      criteria.setTaskStartedByAnotherDisplayed(inProgressFilter.getIsTaskInProgressByOthersDisplayed());
     }
 
     TaskQuery taskQuery = buildTaskQuery();
@@ -653,11 +603,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       if (!compactMode) {
         UserUtils.setSessionFilterGroupIdAttribute(Ivy.request().getProcessModel().getId());
         UserUtils.setSessionTaskAdvancedFilterAttribute(selectedFilters);
-        if (isInProgressFilterDisplayed) {
-          UserUtils.setSessionTaskInProgressFilterAttribute(inProgressFilter);
-        } else {
-          UserUtils.setSessionTaskInProgressFilterAttribute(null);
-        }
       }
     }
   }
