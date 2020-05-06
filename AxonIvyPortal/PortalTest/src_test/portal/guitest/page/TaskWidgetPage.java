@@ -463,6 +463,7 @@ public class TaskWidgetPage extends TemplatePage {
 			}
 		}
 		click(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"));
+		waitAjaxIndicatorDisappear();
 		Sleeper.sleep(2000);
 	}
 
