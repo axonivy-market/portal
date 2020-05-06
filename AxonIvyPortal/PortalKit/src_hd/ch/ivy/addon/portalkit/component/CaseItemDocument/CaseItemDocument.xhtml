@@ -26,7 +26,7 @@
             <ic:ch.ivy.addon.portalkit.component.document.DocumentNameWithIcon fileName="#{document.name}"
               fileNameStyleClass="js-document-name"
               symbolStyleClass="case-details-document-download-icon"/>
-            <span class="js-hidden-document-name">#{document.name}</span>
+            <span class="js-hidden-document-name u-display-none">#{document.name}</span>
           </p:commandLink>
           <p:commandLink id="delete-file" actionListener="#{logic.setDataToDelete(document, case)}"
             styleClass="fa fa-times Fright" oncomplete="PF('document-deletion-dialog-#{case.id}').show();">
