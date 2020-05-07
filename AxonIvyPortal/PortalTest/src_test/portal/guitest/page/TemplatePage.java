@@ -32,9 +32,9 @@ public abstract class TemplatePage extends AbstractPage {
     waitForLocatorDisplayed(getLoadedLocator());
   }
 
-  //If page load more than 10s, mark it failed by timeout
+  //If page load more than 30s, mark it failed by timeout
   protected long getTimeOutForLocator() {
-    return 10L;
+    return 30L;
   }
 
   protected void waitForLocatorDisplayed(String locator) {
@@ -291,7 +291,6 @@ public abstract class TemplatePage extends AbstractPage {
   public void clickByCssSelector(String cssSelector) {
     waitForElementDisplayed(By.cssSelector(cssSelector), true);
     click(By.cssSelector(cssSelector));
-    waitAjaxIndicatorDisappear();
   }
 
   protected void refreshAndWaitElement(String cssSelector) {
