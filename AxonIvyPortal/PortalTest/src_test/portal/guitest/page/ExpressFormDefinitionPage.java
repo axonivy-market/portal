@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
-import portal.guitest.common.Sleeper;
 import vn.wawa.guitest.base.client.Browser;
 
 public class ExpressFormDefinitionPage extends TemplatePage {
@@ -42,7 +41,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 	public void createTextAreaField(String label, boolean isRequired) {
 		click(By.xpath("//*[@id='form:create-tabs']/ul/li[2]"));
 		ensureNoBackgroundRequest();
-		Sleeper.sleep(3000);
 		waitForElementDisplayed(By.id("form:create-tabs:create-input-area-tab"), true, TIME_OUT);
 		type(By.id("form:create-tabs:input-area-label"), label);
 		if (isRequired) {
@@ -56,11 +54,9 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 	public void createCheckboxField(String label, int numberOfSelection) {
 		click(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"));
 		ensureNoBackgroundRequest();
-		Sleeper.sleep(3000);
 		waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-options"), true, TIME_OUT);
 		type(By.id("form:create-tabs:many-checkbox-label"), label);
 		addCheckboxOptions(numberOfSelection);
-		Sleeper.sleep(1000);
 		click(By.id("form:create-tabs:add-checkbox-btn"));
 		waitAjaxIndicatorDisappear();
 		ensureNoBackgroundRequest();
@@ -69,15 +65,12 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 	public void createCheckboxFieldWithDataProvider(String label) {
 		click(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"));
 		ensureNoBackgroundRequest();
-		Sleeper.sleep(3000);
 		waitForElementDisplayed(By.id("form:create-tabs:create-many-checkbox-tab"), true, TIME_OUT);
 		click(By.id("form:create-tabs:DataProvider_label"));
-		Sleeper.sleep(1000);
 		click(By.xpath("//*[@data-label='TestDataProviderForPortalExpress']"));
 		waitAjaxIndicatorDisappear();
 		waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-label"), true, TIME_OUT);
 		type(By.id("form:create-tabs:many-checkbox-label"), label);
-		Sleeper.sleep(1000);
 		click(By.id("form:create-tabs:add-checkbox-btn"));
 		waitAjaxIndicatorDisappear();
 		ensureNoBackgroundRequest();
@@ -86,10 +79,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 	public void createRadioButtonField(String label, int numberOfOption) {
 		click(By.xpath("//*[@id='form:create-tabs']/ul/li[4]"));
 		ensureNoBackgroundRequest();
-		Sleeper.sleep(3000);
 		waitForElementDisplayed(By.id("form:create-tabs:one-radio-label"), true, TIME_OUT);
 		type(By.id("form:create-tabs:one-radio-label"), label);
-		Sleeper.sleep(2000);
 		addRadioOptions(numberOfOption);
 		click(By.id("form:create-tabs:add-radio-btn"));
 		waitAjaxIndicatorDisappear();
@@ -99,7 +90,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 	public void createUploadComponent(String label) {
 		click(By.xpath("//*[@id='form:create-tabs']/ul/li[5]"));
 		ensureNoBackgroundRequest();
-		Sleeper.sleep(3000);
 		waitForElementDisplayed(By.id("form:create-tabs:create-file-upload-tab"), true, TIME_OUT);
 		type(By.id("form:create-tabs:file-upload-label"), label);
 		click(By.id("form:create-tabs:add-upload-file-btn"));
