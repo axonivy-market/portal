@@ -7,9 +7,9 @@ import static junit.framework.Assert.assertTrue;
 
 import java.util.concurrent.TimeUnit;
 
-import org.junit.AfterClass;
+//import org.junit.AfterClass;
 import org.junit.Before;
-import org.junit.BeforeClass;
+//import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.jayway.awaitility.Awaitility;
@@ -280,9 +280,9 @@ public class ProcessWidgetTest extends BaseTest {
     processWidget = homePage.getProcessWidget();
   }
   
-  @AfterClass
-  @BeforeClass
-  public static void cleanUpBrowsers() {
-    killBrowsers();
-  }
+//  @AfterClass
+//  @BeforeClass
+//  public static void cleanUpBrowsers() {
+//    killBrowsers();
+//  }
 }
