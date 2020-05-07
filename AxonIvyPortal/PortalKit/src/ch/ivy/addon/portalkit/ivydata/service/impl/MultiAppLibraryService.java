@@ -10,6 +10,7 @@ import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.ILibrary;
+import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.server.ServerFactory;
 
 public class MultiAppLibraryService implements ILibraryService {
@@ -24,7 +25,8 @@ public class MultiAppLibraryService implements ILibraryService {
         libraries.put(
             app.getName(),
             ivyApplication.getLibraries().stream()
-              .filter(lib -> !portalLibraryStrings.contains(lib.getId()))
+              .filter(lib -> !portalLibraryStrings.contains(lib.getId())
+                  && (lib.getProcessModelVersion().getReleaseState() == ReleaseState.RELEASED || lib.getProcessModelVersion().getReleaseState() == ReleaseState.DEPRECATED))
               .collect(Collectors.toList()));
       }
     }
