@@ -2458,7 +2458,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 /******************************** PROJECT INFO DIALOG ******************************/
 .project-info-dialog {
-  max-width: 800px;
+  max-width: 1000px;
 }
 
 @media screen and (max-width: 40em) {
