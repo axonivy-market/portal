@@ -18,7 +18,6 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.Sleeper;
-import portal.guitest.common.SystemProperties;
 import portal.guitest.common.UrlHelpers;
 import vn.wawa.guitest.base.page.AbstractPage;
 
@@ -33,21 +32,13 @@ public abstract class TemplatePage extends AbstractPage {
     waitForLocatorDisplayed(getLoadedLocator());
   }
 
+  //If page load more than 10s, mark it failed by timeout
   protected long getTimeOutForLocator() {
-    if (!SystemProperties.isInServerMode()) {
-      return 10L;
-    } else {
-      return 100L;
-    }
+    return 10L;
   }
 
   protected void waitForLocatorDisplayed(String locator) {
-    // instead of using waitForPageLoaded(), wait for displaying instead of waiting for presenting
-    if (isIntegrationTestRun()) {
-      waitForElementDisplayed(locator, true, getTimeOutForLocator() + 200L);
-    } else {
-      waitForElementDisplayed(locator, true, getTimeOutForLocator());
-    }
+    waitForElementDisplayed(locator, true, getTimeOutForLocator());
   }
 
 
@@ -300,6 +291,7 @@ public abstract class TemplatePage extends AbstractPage {
   public void clickByCssSelector(String cssSelector) {
     waitForElementDisplayed(By.cssSelector(cssSelector), true);
     click(By.cssSelector(cssSelector));
+    waitAjaxIndicatorDisappear();
   }
 
   protected void refreshAndWaitElement(String cssSelector) {
