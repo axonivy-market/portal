@@ -33,7 +33,7 @@ public class StatisticWidgetPage extends TemplatePage {
   
   @Override
   protected long getTimeOutForLocator() {
-    return 300L;
+    return 30L;
   }
 
   public void switchCreateMode() {
@@ -42,6 +42,7 @@ public class StatisticWidgetPage extends TemplatePage {
 
   public void backToDashboard() {
     clickByCssSelector("a[id$='back-from-chart-creation']");
+    waitAjaxIndicatorDisappear();
   }
   
   public void waitLastChartCreated() {
