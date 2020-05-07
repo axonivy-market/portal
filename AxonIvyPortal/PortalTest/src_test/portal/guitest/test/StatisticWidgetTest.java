@@ -44,7 +44,6 @@ public class StatisticWidgetTest extends BaseTest {
     grantPermissionToCreateChart();
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    Sleeper.sleep(2000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     assertTrue(statisticWidgetPage.isFullMode());
   }
@@ -55,7 +54,6 @@ public class StatisticWidgetTest extends BaseTest {
     redirectToRelativeLink(denyPortalPermissionsURL);
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    Sleeper.sleep(40000);
     assertEquals(false, statisticWidgetPage.hasCreateChartsLink());
     String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
     redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
@@ -69,7 +67,7 @@ public class StatisticWidgetTest extends BaseTest {
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     statisticWidgetPage.switchCreateMode();
     
-    Sleeper.sleep(20000);
+    Sleeper.sleep(5000);
     statisticWidgetPage.createTaskByPriorityChart();
     statisticWidgetPage.createTaskByExpiryChart();
     statisticWidgetPage.createCaseByStateChart();

@@ -195,7 +195,6 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   private void onChangeDescriptionInput(String newDescription) {
-    Sleeper.sleep(2000);
    // WebElement caseDescriptionInput = findElementById("case-item-details:description:case-description-form:case-description-output");
     WebElement caseDescriptionInput = findElementByCssSelector("textarea[id='case-item-details:description:case-description-form:case-description-input']");
     waitForElementDisplayed(caseDescriptionInput, true);
