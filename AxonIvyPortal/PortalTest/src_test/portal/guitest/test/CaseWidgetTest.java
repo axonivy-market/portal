@@ -14,7 +14,6 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdditionalCaseDetailsPage;
 import portal.guitest.page.AdminSettingsPage;
@@ -57,7 +56,6 @@ public class CaseWidgetTest extends BaseTest {
     taskWidgetPage.filterTasksBy("Report and hide case");
     taskWidgetPage.startTaskWithoutUI(0);
     homePage = new HomePage();
-    Sleeper.sleep(2000);
     
     mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();

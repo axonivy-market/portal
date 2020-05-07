@@ -48,7 +48,7 @@ public class TaskWidgetPage extends TemplatePage {
 
 	@Override
 	protected long getTimeOutForLocator() {
-		return 150L;
+		return 15L;
 	}
 
 	public void expand() {
