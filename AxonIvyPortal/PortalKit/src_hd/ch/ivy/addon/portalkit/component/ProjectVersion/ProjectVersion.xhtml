@@ -30,12 +30,19 @@
           <h:outputText id="application-name" value="#{entry.key}:" />
         </div>
         <div class="ui-g-9 ui-sm-12">
-          <p:dataTable id="application-project-version-table" value="#{entry.value}" var="library" styleClass="project-version-table" reflow="true">
+          <p:dataTable id="application-project-version-table" value="#{entry.value}" var="library" styleClass="project-version-table" reflow="true"
+            sortBy="#{library.getProcessModelVersion().getProcessModel().getName()}">
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/projectName')}">
               <h:outputText id="project-name" value="#{library.getProcessModelVersion().getProcessModel().getName()}" />
             </p:column>
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/version')}">
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/version')}" width="200">
               <h:outputText id="project-version" value="#{library.getQualifiedVersion().toString()}" />
+            </p:column>
+            <p:column headerText="PMV" width="80">
+              <h:outputText id="pmv" value="#{library.getProcessModelVersion().getVersionNumber()}" />
+            </p:column>
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" width="100">
+              <h:outputText id="state" value="#{library.getProcessModelVersion().getReleaseState().toString()}" />
             </p:column>
           </p:dataTable>
         </div>
