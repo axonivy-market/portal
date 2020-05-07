@@ -41,8 +41,8 @@
             <p:column headerText="PMV" width="80">
               <h:outputText id="pmv" value="#{library.getProcessModelVersion().getVersionNumber()}" />
             </p:column>
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" width="120">
-              <h:outputText id="state" value="#{library.getProcessModelVersion().getReleaseState().toString()}" />
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/state')}" width="120">
+              <h:outputText id="state" value="#{projectVersionBean.translateReleaseState(library.getProcessModelVersion().getReleaseState())}" />
             </p:column>
           </p:dataTable>
         </div>
