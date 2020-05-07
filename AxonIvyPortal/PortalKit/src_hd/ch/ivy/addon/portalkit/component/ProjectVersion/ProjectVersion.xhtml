@@ -35,13 +35,13 @@
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/projectName')}">
               <h:outputText id="project-name" value="#{library.getProcessModelVersion().getProcessModel().getName()}" />
             </p:column>
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/version')}" width="200">
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/version')}" width="180">
               <h:outputText id="project-version" value="#{library.getQualifiedVersion().toString()}" />
             </p:column>
             <p:column headerText="PMV" width="80">
               <h:outputText id="pmv" value="#{library.getProcessModelVersion().getVersionNumber()}" />
             </p:column>
-            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" width="100">
+            <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" width="120">
               <h:outputText id="state" value="#{library.getProcessModelVersion().getReleaseState().toString()}" />
             </p:column>
           </p:dataTable>
