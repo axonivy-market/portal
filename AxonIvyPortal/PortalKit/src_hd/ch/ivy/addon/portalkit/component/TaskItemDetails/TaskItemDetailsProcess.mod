@@ -49,6 +49,11 @@ Cs0 @PushWFArc f4 '' #zField
 Cs0 @PushWFArc f5 '' #zField
 Cs0 @PushWFArc f17 '' #zField
 Cs0 @PushWFArc f3 '' #zField
+Cs0 @UdMethod f18 '' #zField
+Cs0 @UdProcessEnd f19 '' #zField
+Cs0 @GridStep f22 '' #zField
+Cs0 @PushWFArc f23 '' #zField
+Cs0 @PushWFArc f21 '' #zField
 >Proto Cs0 Cs0 TaskItemDetailsProcess #zField
 Cs0 f0 guid 16BBB5787F4A8092 #txt
 Cs0 f0 method start(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage) #txt
@@ -327,6 +332,40 @@ Cs0 f17 0 0.7613470524461249 0 0 #arcLabel
 Cs0 f3 expr in #txt
 Cs0 f3 outCond in.canUserResumeTask #txt
 Cs0 f3 366 480 416 480 #arcP
+Cs0 f18 guid 171F37E3B7068238 #txt
+Cs0 f18 method getHideTaskDocumentConfiguration() #txt
+Cs0 f18 inParameterDecl '<> param;' #txt
+Cs0 f18 outParameterDecl '<> result;' #txt
+Cs0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>getHideTaskDocumentConfiguration()</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f18 83 787 26 26 -84 23 #rect
+Cs0 f18 @|UdMethodIcon #fIcon
+Cs0 f19 499 787 26 26 0 12 #rect
+Cs0 f19 @|UdProcessEndIcon #fIcon
+Cs0 f22 actionTable 'out=in;
+' #txt
+Cs0 f22 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+
+// Get the latest configuration of HIDE_TASK_DOCUMENT in GlobalSettingService
+// If null or empty, will return false
+in.isHideTaskDocument = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_TASK_DOCUMENT.toString());' #txt
+Cs0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find HIDE_TASK_DOCUMENT configuration</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f22 192 778 256 44 -121 -8 #rect
+Cs0 f22 @|StepIcon #fIcon
+Cs0 f23 109 800 192 800 #arcP
+Cs0 f21 448 800 499 800 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -365,3 +404,7 @@ Cs0 f17 head f49 mainIn #connect
 Cs0 f77 out f3 tail #connect
 Cs0 f3 head f49 mainIn #connect
 Cs0 f77 out f100 tail #connect
+Cs0 f18 mainOut f23 tail #connect
+Cs0 f23 head f22 mainIn #connect
+Cs0 f22 mainOut f21 tail #connect
+Cs0 f21 head f19 mainIn #connect
