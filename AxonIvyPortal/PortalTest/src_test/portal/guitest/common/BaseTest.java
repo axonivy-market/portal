@@ -8,9 +8,8 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.Before;
 import org.junit.Rule;
-import org.junit.rules.MethodRule;
-import org.junit.rules.TestWatchman;
-import org.junit.runners.model.FrameworkMethod;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
@@ -62,11 +61,14 @@ public class BaseTest {
   public ScreenshotFailedTestRule screenshotTestRule = new ScreenshotFailedTestRule();
   
   @Rule
-  public MethodRule watchman = new TestWatchman() {
+  public TestWatcher watchman= new TestWatcher() {
+
     @Override
-    public void starting(FrameworkMethod method) {
-        System.out.println("Starting test: " + method.getName());
+    protected void starting(Description description) {
+      super.starting(description);
+      System.out.println("Starting test: " + description.getMethodName());
     }
+    
   };
   
   @Before
