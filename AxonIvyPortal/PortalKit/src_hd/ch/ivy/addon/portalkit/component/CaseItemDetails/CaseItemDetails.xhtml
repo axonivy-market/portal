@@ -123,7 +123,8 @@
         </h:panelGroup>
 
         <!-- Documents box -->
-        <h:panelGroup rendered="#{showItemDetailDocuments}"
+        <f:event listener="#{logic.getHideCaseDocumentConfiguration}" type="preRenderComponent" />
+        <h:panelGroup rendered="#{showItemDetailDocuments and !data.isHideCaseDocument}"
           styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card card-w-title case-detail-card case-document-component">
             <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}"
