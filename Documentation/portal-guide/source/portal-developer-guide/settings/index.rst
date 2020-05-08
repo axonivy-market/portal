@@ -101,6 +101,10 @@ Process developer can set up global settings of Portal in file ``portal_settings
       # Logged in user format, available values: USERNAME, DISPLAY_NAME, DISPLAY_NAME_USERNAME, USERNAME_DISPLAYNAME
       #LOGGED_IN_USER_FORMAT = DISPLAY_NAME
 
+      # Task/case detail document component setting
+      #HIDE_TASK_DOCUMENT = false
+      #HIDE_CASE_DOCUMENT = false
+
 This file already contains list of settings with their default values.
 These settings will be applied once you start Portal.
 
