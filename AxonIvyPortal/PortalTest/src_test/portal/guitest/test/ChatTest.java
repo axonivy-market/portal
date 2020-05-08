@@ -1,10 +1,10 @@
 package portal.guitest.test;
 
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 
-//import org.junit.AfterClass;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -18,7 +18,6 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
-@SuppressWarnings("restriction")
 public class ChatTest extends BaseTest {
 	private AdminSettingsPage adminSettingsPage;
 	private static final String CHAT_MESSAGE_USER_DEMO = "Hi i'm demo user";
@@ -176,8 +175,8 @@ public class ChatTest extends BaseTest {
 		return new ChatPage();
 	}
 	
-//	@AfterClass
-//	public static void cleanUpBrowsers() {
-//	  killBrowsers();
-//	}
+	@AfterClass
+	public static void cleanUpBrowsers() {
+	  killBrowsers();
+	}
 }

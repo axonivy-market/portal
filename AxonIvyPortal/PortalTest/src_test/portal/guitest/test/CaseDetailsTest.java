@@ -1,7 +1,7 @@
 package portal.guitest.test;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.After;
