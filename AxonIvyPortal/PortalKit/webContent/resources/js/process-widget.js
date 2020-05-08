@@ -75,8 +75,9 @@ function ProcessWidget() {
 
       processNav.css("height", (availableHeight  - excludeMarginBottom) + "px");
       
+      var headerHeight = $('#portal-template-header').outerHeight();
       var availableHeightProcessNavTop = (($('.js-process-header').outerHeight(true)||0) + ($('.layout-topbar').outerHeight(true)||0)
-                                          + (announcementMessageContainer.outerHeight(true)||0) + excludeMarginBottom);
+                                          + (announcementMessageContainer.outerHeight(true)||0) + excludeMarginBottom + headerHeight);
       processNav.css("top", availableHeightProcessNavTop + "px");
     },
 

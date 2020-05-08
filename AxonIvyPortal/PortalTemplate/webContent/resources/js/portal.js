@@ -32,7 +32,7 @@ var Portal = {
     $('.js-left-sidebar').css('top', headerHeight + 'px').css('height', 'calc(100% - ' + headerFooterHeight + 'px)');
     $('.js-layout-main').css('margin-top', headerHeight + 'px')
       .css('height', 'calc(100% - ' + headerFooterHeight + 'px)');
-    $('.js-layout-content').css('height', 'calc(100vh - ' + footerHeight + 'px)');
+    $('.js-layout-content').css('height', 'calc(100vh - ' + headerFooterHeight + 'px)');
     $('.js-layout-wrapper').removeClass('u-invisibility');
   },
 
