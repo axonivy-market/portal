@@ -1,6 +1,6 @@
 package portal.guitest.test;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 import static portal.guitest.common.FileHelper.getAbsolutePathToTestFile;
 
 import java.util.List;
