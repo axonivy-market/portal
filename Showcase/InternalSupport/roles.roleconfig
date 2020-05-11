@@ -8,7 +8,4 @@
         <identifier>HR</identifier>
         <displayName>Human resources department</displayName>
     </role>
-    <role>
-        <identifier>TestRoleInvolved</identifier>
-    </role>
 </role>

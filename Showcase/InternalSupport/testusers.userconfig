@@ -6,13 +6,9 @@
         <role>CaseOwner</role>
     </user>
     <user>
-        <username>roleInvolvedTestUser1</username>
-        <password>roleInvolvedTestUser1</password>
-        <role>TestRoleInvolved</role>
-    </user>
-    <user>
-        <username>roleInvolvedTestUser2</username>
-        <password>roleInvolvedTestUser2</password>
-        <role>TestRoleInvolved</role>
+        <username>david</username>
+        <password>david</password>
+        <fullName>david</fullName>
+        <role>HR</role>
     </user>
 </userConfig>
