@@ -21,6 +21,8 @@
     /Functional-Processes.OpenPortalCases "Functional Processes/OpenPortalCasesOverride"
   }
   /HTML_DIALOG {
+    /ch.ivy.addon.portalkit.component.PageHeader "ch.ivy.addon.portalkit.component.PageHeaderOverride"
     /ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo "com.axonivy.portal.developerexamples.component.UserWithEnvironmentInfoOverride"
+    /ch.ivy.addon.portalkit.component.PageFooter "ch.ivy.addon.portalkit.component.PageFooterOverride"
   }
 }
