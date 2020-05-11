@@ -45,10 +45,6 @@
 </h:head>
 
 <h:body>
-  <div id="portal-template-header">
-    <ic:ch.ivy.addon.portalkit.component.PageHeader />
-  </div>
-  
   <f:facet name="last">
     <h:outputStylesheet library="serenity-portal" name="theme.css" />
   </f:facet>
@@ -68,6 +64,10 @@
 
       <f:event type="preRenderView"
         listener="#{facesContext.externalContext.response.setHeader('Cache-Control', 'no-cache, no-store')}" />
+        
+      <div id="portal-template-header">
+        <ic:ch.ivy.addon.portalkit.component.PageHeader />
+      </div>
 
       <div class="layout-wrapper js-layout-wrapper #{guestPreferences.orientationRTL ? 'layout-rtl' : ''} #{showMainArea eq true ? '' : 'u-invisibility'}">
         <div class="layout-sidebar #{guestPreferences.darkMenu ? 'layout-sidebar-dark' : ''} #{currentPage} left-sidebar-color js-left-sidebar" id="left-menu">
@@ -126,6 +126,11 @@
         <ic:ch.ivy.addon.portalkit.component.WarningBeforeLostSession id="warning-before-lost-session"
           clientSideTimeOut="#{userMenuBean.clientSideTimeout}" task="#{task}" />
       </div>
+      
+      <div id="portal-template-footer">
+        <ic:ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo />
+        <ic:ch.ivy.addon.portalkit.component.PageFooter />
+      </div>
     </c:otherwise>
   </c:choose>
 
@@ -137,11 +142,6 @@
 
   <ui:insert name="css" />
 
-  <div id="portal-template-footer">
-    <ic:ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo />
-    <ic:ch.ivy.addon.portalkit.component.PageFooter />
-  </div>
-  
   <ui:fragment>
     <ui:insert name="footer">
       <script type="text/javascript">
