@@ -64,8 +64,8 @@ public class HomePage extends TemplatePage {
 	}
 
 	public String getEnviromentInfo() {
-		waitForElementDisplayed(By.cssSelector("span[id$='server-infor']"), true, 5);
-		return findElementByCssSelector("span[id$='server-infor']").getText();
+		waitForElementDisplayed(By.cssSelector("div[id$='server-infor']"), true, 5);
+		return findElementByCssSelector("div[id$='server-infor']").getText();
 	}
 	
 }
