@@ -42,3 +42,5 @@ You could find project ``PortalExamples`` in engine demo mode or import ``Ivy Pr
    group-chat-customization
    change-group-id
    user-with-environment-info
+   page-header-footer
+   
