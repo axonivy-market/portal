@@ -836,7 +836,7 @@ Pt0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f71 192 1130 112 44 -29 -8 #rect
+Pt0 f71 192 842 112 44 -29 -8 #rect
 Pt0 f71 @|UserDialogIcon #fIcon
 Pt0 f72 outLink Error500Page.ivp #txt
 Pt0 f72 inParamDecl '<> param;' #txt
@@ -853,7 +853,7 @@ Pt0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f72 @C|.responsibility Everybody #txt
-Pt0 f72 81 1233 30 30 -44 17 #rect
+Pt0 f72 81 945 30 30 -44 17 #rect
 Pt0 f72 @|StartRequestIcon #fIcon
 Pt0 f73 outLink Error404Page.ivp #txt
 Pt0 f73 inParamDecl '<> param;' #txt
@@ -870,7 +870,7 @@ Pt0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f73 @C|.responsibility Everybody #txt
-Pt0 f73 81 1329 30 30 -39 17 #rect
+Pt0 f73 81 1041 30 30 -39 17 #rect
 Pt0 f73 @|StartRequestIcon #fIcon
 Pt0 f76 outLink DefaultProcessStartListPage.ivp #txt
 Pt0 f76 inParamDecl '<> param;' #txt
@@ -894,7 +894,7 @@ Pt0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f76 @C|.responsibility Everybody #txt
-Pt0 f76 81 1137 30 30 -60 17 #rect
+Pt0 f76 81 849 30 30 -60 17 #rect
 Pt0 f76 @|StartRequestIcon #fIcon
 Pt0 f74 dialogId ch.ivy.addon.portal.error.ErrorPage #txt
 Pt0 f74 startMethod start(String) #txt
@@ -910,7 +910,7 @@ Pt0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f74 192 1226 112 44 -27 -8 #rect
+Pt0 f74 192 938 112 44 -27 -8 #rect
 Pt0 f74 @|UserDialogIcon #fIcon
 Pt0 f75 dialogId ch.ivy.addon.portal.error.ErrorPage #txt
 Pt0 f75 startMethod start(String) #txt
@@ -926,11 +926,11 @@ Pt0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f75 192 1322 112 44 -27 -8 #rect
+Pt0 f75 192 1034 112 44 -27 -8 #rect
 Pt0 f75 @|UserDialogIcon #fIcon
-Pt0 f77 111 1248 192 1248 #arcP
-Pt0 f78 111 1344 192 1344 #arcP
-Pt0 f79 111 1152 192 1152 #arcP
+Pt0 f77 111 960 192 960 #arcP
+Pt0 f78 111 1056 192 1056 #arcP
+Pt0 f79 111 864 192 864 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
