@@ -407,7 +407,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   public void setCompactMode(boolean compactMode) {
     this.compactMode = compactMode;
-    this.criteria.setQueryForRoleInvolved(!compactMode);
     if (compactMode) {
       selectedFilters.clear();
     }
