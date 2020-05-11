@@ -25,14 +25,10 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ICaseService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
-import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
-import ch.ivyteam.ivy.security.IPermission;
-import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -93,16 +89,6 @@ public class CaseService implements ICaseService {
       caseQuery.where().or().userIsInvolved(involvedUsername, app);
       if (isCaseOwnerEnabled) {
         caseQuery.where().or().isOwner("#" + involvedUsername, app);
-      }
-      
-      IApplication application = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(app);
-      boolean hasRoleInvolvedPermission = PermissionUtils.hasPermission(application, involvedUsername, IPermission.CASE_READ_ALL_OWN_ROLE_INVOLVED);
-      if (hasRoleInvolvedPermission) {
-        IUser user = application.getSecurityContext().users().find(involvedUsername);
-        List<IRole> roles = user.getAllRoles();
-        for (IRole role : roles) {
-          caseQuery.where().or().roleIsInvolved(role);
-        }
       }
     });
     
