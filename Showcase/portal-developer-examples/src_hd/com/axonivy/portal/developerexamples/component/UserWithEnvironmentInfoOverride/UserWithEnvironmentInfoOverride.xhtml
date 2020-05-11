@@ -10,9 +10,8 @@
 </cc:interface>
 
 <cc:implementation>
-  <a href="#" jsf:rendered="#{userMenuBean.showServerInformation}" class="show-environment-info-link">
-    <span jsf:id="server-infor" class="TexAlLeft DispBlock show-environment-info"> Dev Team: Wawa, Env: Dev </span>
-    <span class="TexAlLeft DispBlock user-name-show-environment-info">#{userMenuBean.userName}</span>
-  </a>
+  <div id="server-infor" jsf:rendered="#{userMenuBean.showServerInformation}" class="show-environment-info">
+    Dev Team: Wawa, Env: Dev
+  </div>
 </cc:implementation>
 </html>
