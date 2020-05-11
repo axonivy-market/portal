@@ -24,10 +24,13 @@ import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.query.IUserQueryExecutor;
 import ch.ivyteam.ivy.security.query.UserQuery;
 import ch.ivyteam.ivy.security.query.UserQuery.IFilterQuery;
+import ch.ivyteam.ivy.server.ServerFactory;
 
 public class SecurityService implements ISecurityService {
 
@@ -45,22 +48,39 @@ public class SecurityService implements ISecurityService {
         return result;
       }
       List<PortalIvyDataException> errors = new ArrayList<>();
-      Map<String, UserDTO> userByName = new HashMap<>();
-      for (String appName : apps) {
-        try {
-          IApplication app = ServiceUtilities.findApp(appName);
-          queryUsers(query, app, startIndex, count, fromRoles, excludedUsernames).forEach(user -> userByName.put(user.getName() + " - " + user.getMemberName(), user));
-        } catch (PortalIvyDataException e) {
-          errors.add(e);
-        } catch (Exception ex) {
-          Ivy.log().error("Error in getting users within app {0}", ex, appName);
-        }
+      try {
+        result.setUsers(queryUsers(query, apps, startIndex, count, fromRoles, excludedUsernames));
+      } catch (PortalIvyDataException e) {
+        errors.add(e);
+      } catch (Exception ex) {
+        Ivy.log().error("Error in getting users", ex);
       }
-      List<UserDTO> users = userByName.values().stream().sorted((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName())).collect(Collectors.toList());
       result.setErrors(errors);
-      result.setUsers(users);
       return result;
     });
+  }
+  
+  private List<UserDTO> queryUsers(String query, List<String> apps, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) throws PortalIvyDataException {
+    query = "%"+ StringUtils.defaultString(query, StringUtils.EMPTY) +"%";
+    IUserQueryExecutor executor = ServerFactory.getServer().getSecurityManager().getUserQueryExecutor();
+    UserQuery userQuery = executor.createUserQuery().groupBy().name().fullName().orderBy().fullName();
+    IFilterQuery filterQuery = userQuery.where();
+    filterQuery.fullName().isLikeIgnoreCase(query)
+      .or().name().isLikeIgnoreCase(query);
+    if (CollectionUtils.isNotEmpty(fromRoles)) {
+      UserQuery hasRolesQuery = UserQuery.create();
+      for (String appName : apps) {
+        IApplication app = ServiceUtilities.findApp(appName);
+        hasRolesQuery.where().or(queryHasRoles(app, fromRoles));
+      }
+      filterQuery.andOverall(hasRolesQuery);
+    }
+    if (CollectionUtils.isNotEmpty(excludedUsernames)) {
+      UserQuery excludeUsernameQuery = queryExcludeUsernames(excludedUsernames);
+      filterQuery.andOverall(excludeUsernameQuery);
+    }
+    Recordset recordset = executor.getRecordset(userQuery, startIndex, count);
+    return recordset.getRecords().stream().map(UserDTO::new).collect(Collectors.toList());
   }
 
   @Override
