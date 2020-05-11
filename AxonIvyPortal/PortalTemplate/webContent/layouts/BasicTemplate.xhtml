@@ -45,6 +45,10 @@
 </h:head>
 
 <h:body>
+  <div id="portal-template-header">
+    <ic:ch.ivy.addon.portalkit.component.PageHeader />
+  </div>
+  
   <f:facet name="last">
     <h:outputStylesheet library="serenity-portal" name="theme.css" />
   </f:facet>
@@ -65,7 +69,7 @@
       <f:event type="preRenderView"
         listener="#{facesContext.externalContext.response.setHeader('Cache-Control', 'no-cache, no-store')}" />
 
-      <div class="layout-wrapper js-layout-wrapper #{guestPreferences.orientationRTL ? 'layout-rtl' : ''}">
+      <div class="layout-wrapper js-layout-wrapper #{guestPreferences.orientationRTL ? 'layout-rtl' : ''} #{showMainArea eq true ? '' : 'u-invisibility'}">
         <div class="layout-sidebar #{guestPreferences.darkMenu ? 'layout-sidebar-dark' : ''} #{currentPage} left-sidebar-color js-left-sidebar" id="left-menu">
           <c:choose>
             <c:when test="#{isNotRequiredLogin}">
@@ -79,7 +83,7 @@
           </c:choose>
         </div>
 
-        <div class="layout-main">
+        <div class="layout-main js-layout-main">
           <div class="layout-topbar">
             <a class="menu-btn"> 
               <i class="material-icons fa fa-bars left-sidebar-menu-icon left-sidebar-menu-icon-font-size" />
@@ -102,7 +106,7 @@
           </div>
           <!-- If showMainArea indicator is true, the layout content will be rendered by the schedule loading of JS file-->
           <!-- Otherwise, the layout content will be rendered by once DOM is pasted already -->
-          <div class="layout-content container #{layoutContentStyleClass} #{showMainArea eq true ? '' : 'u-invisibility'}" id="main-area-panel">
+          <div class="layout-content js-layout-content container #{layoutContentStyleClass}" id="main-area-panel">
             <h:panelGroup id="announcement-container" layout="block" rendered="#{userMenuBean.isAnnouncementActivated() and announcementInvisible ne 'true'}" styleClass="announcement-message-container #{announcementContainerStyleClass}">
               <h:panelGroup layout="block" styleClass="announcement-message js-announcement-message announcement-message-customizable">
                 <h:outputText value="#{userMenuBean.getAnnouncement()}" />
@@ -132,6 +136,11 @@
   <ic:ch.ivy.addon.portalkit.component.GlobalAjaxStatus id="ajax-indicator" />
 
   <ui:insert name="css" />
+
+  <div id="portal-template-footer">
+    <ic:ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo />
+    <ic:ch.ivy.addon.portalkit.component.PageFooter />
+  </div>
   
   <ui:fragment>
     <ui:insert name="footer">

@@ -25,7 +25,7 @@ import ch.ivyteam.ivy.workflow.StandardProcessType;
 
 public final class PortalNavigator {
   private static final String PORTAL_PROCESS_START_NAME = "Start Processes/PortalStart/DefaultApplicationHomePage.ivp";
-  private static final String PORTAL_PROCESS = "Start Processes/PortalPages/DefaultProcessStartListPage.ivp";
+  private static final String PORTAL_PROCESS = "Start Processes/PortalStart/DefaultProcessStartListPage.ivp";
   private static final String PORTAL_TASK = "Start Processes/PortalStart/DefaultTaskListPage.ivp";
   private static final String PORTAL_CASE = "Start Processes/PortalStart/CaseListPage.ivp";
   private static final String PORTAL_STATISTIC = "Start Processes/PortalStart/StatisticPage.ivp";

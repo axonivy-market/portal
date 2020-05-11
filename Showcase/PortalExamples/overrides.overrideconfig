@@ -22,5 +22,7 @@
   }
   /HTML_DIALOG {
     /ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo "ch.ivyteam.ivy.project.portal.examples.component.UserWithEnvironmentInfoOverride"
+    /ch.ivy.addon.portalkit.component.PageHeader "ch.ivy.addon.portalkit.component.PageHeaderOverride
+    /ch.ivy.addon.portalkit.component.PageFooter "ch.ivy.addon.portalkit.component.PageFooterOverride"
   }
 }

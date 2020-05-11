@@ -1225,10 +1225,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   box-shadow: 0px 2px 4px 0px $userSettingContainerBoxShadow;
 }
 
-.user-name-show-environment-info {
-  font-weight: $usernameShowEnvironmentInfoFontWeight;
-}
-
 /* Absences and Debuty -------------------------*/
 .substituted-user-text {
   color: $substitutedUserTextColor;
@@ -1672,10 +1668,6 @@ ul.participants-list li {
 
 .user-name {
   font-size: $largeFontSize;
-}
-
-.show-environment-info {
-  font-size: 1.1rem;
 }
 
 .global-search-icon {

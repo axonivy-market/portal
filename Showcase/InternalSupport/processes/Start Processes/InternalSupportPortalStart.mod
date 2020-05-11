@@ -88,6 +88,15 @@ Pt0 @PushWFArc f52 '' #zField
 Pt0 @GridStep f54 '' #zField
 Pt0 @PushWFArc f38 '' #zField
 Pt0 @PushWFArc f50 '' #zField
+Pt0 @StartRequest f72 '' #zField
+Pt0 @UserDialog f74 '' #zField
+Pt0 @StartRequest f73 '' #zField
+Pt0 @StartRequest f76 '' #zField
+Pt0 @UserDialog f75 '' #zField
+Pt0 @UserDialog f71 '' #zField
+Pt0 @PushWFArc f77 '' #zField
+Pt0 @PushWFArc f78 '' #zField
+Pt0 @PushWFArc f79 '' #zField
 >Proto Pt0 Pt0 InternalSupportPortalStart #zField
 Bk1 @TextInP .type .type #zField
 Bk1 @TextInP .processKind .processKind #zField
@@ -808,6 +817,113 @@ Pt0 f54 1432 106 128 44 -54 -8 #rect
 Pt0 f54 @|StepIcon #fIcon
 Pt0 f38 1352 128 1432 128 #arcP
 Pt0 f50 1560 128 1672 128 #arcP
+Pt0 f72 outLink Error500Page.ivp #txt
+Pt0 f72 inParamDecl '<> param;' #txt
+Pt0 f72 requestEnabled true #txt
+Pt0 f72 triggerEnabled false #txt
+Pt0 f72 callSignature Error500Page() #txt
+Pt0 f72 caseData businessCase.attach=true #txt
+Pt0 f72 showInStartList 0 #txt
+Pt0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Error500Page.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f72 @C|.responsibility Everybody #txt
+Pt0 f72 81 1265 30 30 -44 17 #rect
+Pt0 f72 @|StartRequestIcon #fIcon
+Pt0 f74 dialogId ch.ivy.addon.portal.error.ErrorPage #txt
+Pt0 f74 startMethod start(String) #txt
+Pt0 f74 requestActionDecl '<String errorCode> param;' #txt
+Pt0 f74 requestMappingAction 'param.errorCode="500";
+' #txt
+Pt0 f74 responseMappingAction 'out=in;
+' #txt
+Pt0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ErrorPage</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f74 192 1258 112 44 -27 -8 #rect
+Pt0 f74 @|UserDialogIcon #fIcon
+Pt0 f73 outLink Error404Page.ivp #txt
+Pt0 f73 inParamDecl '<> param;' #txt
+Pt0 f73 requestEnabled true #txt
+Pt0 f73 triggerEnabled false #txt
+Pt0 f73 callSignature Error404Page() #txt
+Pt0 f73 caseData businessCase.attach=true #txt
+Pt0 f73 showInStartList 0 #txt
+Pt0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Error404Page.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f73 @C|.responsibility Everybody #txt
+Pt0 f73 81 1361 30 30 -39 17 #rect
+Pt0 f73 @|StartRequestIcon #fIcon
+Pt0 f76 outLink DefaultProcessStartListPage.ivp #txt
+Pt0 f76 inParamDecl '<> param;' #txt
+Pt0 f76 requestEnabled true #txt
+Pt0 f76 triggerEnabled false #txt
+Pt0 f76 callSignature DefaultProcessStartListPage() #txt
+Pt0 f76 persist false #txt
+Pt0 f76 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Pt0 f76 caseData businessCase.attach=true #txt
+Pt0 f76 showInStartList 0 #txt
+Pt0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DefaultProcessStartListPage.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f76 @C|.responsibility Everybody #txt
+Pt0 f76 81 1169 30 30 -60 17 #rect
+Pt0 f76 @|StartRequestIcon #fIcon
+Pt0 f75 dialogId ch.ivy.addon.portal.error.ErrorPage #txt
+Pt0 f75 startMethod start(String) #txt
+Pt0 f75 requestActionDecl '<String errorCode> param;' #txt
+Pt0 f75 requestMappingAction 'param.errorCode="404";
+' #txt
+Pt0 f75 responseMappingAction 'out=in;
+' #txt
+Pt0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ErrorPage</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f75 192 1354 112 44 -27 -8 #rect
+Pt0 f75 @|UserDialogIcon #fIcon
+Pt0 f71 dialogId ch.ivy.addon.portal.generic.Processes #txt
+Pt0 f71 startMethod start() #txt
+Pt0 f71 requestActionDecl '<> param;' #txt
+Pt0 f71 responseMappingAction 'out=in;
+' #txt
+Pt0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>processes</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f71 192 1162 112 44 -29 -8 #rect
+Pt0 f71 @|UserDialogIcon #fIcon
+Pt0 f77 111 1280 192 1280 #arcP
+Pt0 f78 111 1376 192 1376 #arcP
+Pt0 f79 111 1184 192 1184 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1402,6 +1518,12 @@ Pt0 f22 mainOut f38 tail #connect
 Pt0 f38 head f54 mainIn #connect
 Pt0 f54 mainOut f50 tail #connect
 Pt0 f50 head f36 mainIn #connect
+Pt0 f76 mainOut f79 tail #connect
+Pt0 f79 head f71 mainIn #connect
+Pt0 f72 mainOut f77 tail #connect
+Pt0 f77 head f74 mainIn #connect
+Pt0 f73 mainOut f78 tail #connect
+Pt0 f78 head f75 mainIn #connect
 Bk1 f106 mainOut f107 tail #connect
 Bk1 f107 head f104 mainIn #connect
 Bk1 g0 m f0 tail #connect
