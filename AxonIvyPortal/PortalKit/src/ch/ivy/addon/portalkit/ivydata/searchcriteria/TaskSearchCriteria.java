@@ -30,7 +30,6 @@ public class TaskSearchCriteria {
   private boolean isQueryByTaskId;
   private boolean isQueryByBusinessCaseId;
   private boolean isQueryForUnassignedTask;
-  private boolean isQueryForRoleInvolved = true;
   private String sortField;
   private boolean sortDescending;
   private boolean isSorted = true;
@@ -372,14 +371,6 @@ public class TaskSearchCriteria {
     this.isQueryForUnassignedTask = isQueryForUnassignedTask;
   }
   
-  public boolean isQueryForRoleInvolved() {
-    return isQueryForRoleInvolved;
-  }
-
-  public void setQueryForRoleInvolved(boolean isQueryForRoleInvolved) {
-    this.isQueryForRoleInvolved = isQueryForRoleInvolved;
-  }
-
   public TaskQuery getCustomTaskQuery() {
     return customTaskQuery;
   }
