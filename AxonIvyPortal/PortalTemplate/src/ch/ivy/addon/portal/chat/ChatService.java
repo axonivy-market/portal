@@ -38,7 +38,6 @@ import com.google.gson.GsonBuilder;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
-import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.ISession;
@@ -345,7 +344,7 @@ public class ChatService {
         .map(iCase -> {
           try {
             return mapper.readValue(iCase.customFields().stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).get().orElse(StringUtils.EMPTY), GroupChat.class);
-          } catch (PersistencyException | EnvironmentNotAvailableException | IOException e) {
+          } catch (PersistencyException | IOException e) {
             Ivy.log().error(e);
             return null;
           }
