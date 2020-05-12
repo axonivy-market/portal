@@ -18,7 +18,6 @@ import portal.guitest.page.ExpressProcessPage;
 import portal.guitest.page.ExpressReviewPage;
 import portal.guitest.page.ExpressTaskPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class ExpressTest extends BaseTest{
@@ -29,7 +28,6 @@ public class ExpressTest extends BaseTest{
   private static final int INPUT_NUMBER_TYPE_INDEX = 1;
   
   private HomePage homePage;
-  private ProcessWidgetPage processWidget;
   private TaskWidgetPage taskWidgetPage;
   ExpressResponsible responsible1 = new ExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
   @Override
@@ -42,7 +40,7 @@ public class ExpressTest extends BaseTest{
 
   @Test
   public void testAdhocMultiApprovalWhenMultiTask() {
-    goToCreateExpressProcess();
+    goToExpressCreationPage();
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
     ExpressFormDefinitionPage formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
@@ -52,7 +50,7 @@ public class ExpressTest extends BaseTest{
 
   @Test
   public void testBreadCrumb() {
-    goToCreateExpressProcess();
+    goToExpressCreationPage();
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     assertEquals("Express Workflow", expressProcessPage.getTextOfCurrentBreadcrumb());
 
@@ -137,9 +135,7 @@ public class ExpressTest extends BaseTest{
     home.waitForPageLoaded();
   }
 
-  private void goToCreateExpressProcess() {
-    processWidget = homePage.getProcessWidget();
-    processWidget.expand();
-    processWidget.openExpressPage();
+  private void goToExpressCreationPage() {
+    redirectToRelativeLink(expressStartLink);
   }
 }
