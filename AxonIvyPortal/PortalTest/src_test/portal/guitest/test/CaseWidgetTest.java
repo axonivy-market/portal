@@ -16,7 +16,6 @@ import com.jayway.awaitility.Duration;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdditionalCaseDetailsPage;
-import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
@@ -27,6 +26,7 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class CaseWidgetTest extends BaseTest {
 
+  private static final String DISABLE_CASE_COUNT_SETTING = "DISABLE_CASE_COUNT";
   private static final String INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME = "Investment Request";
   private static final String LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME = "Leave Request for Default Additional Case Details";
   private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
@@ -199,10 +199,9 @@ public class CaseWidgetTest extends BaseTest {
   }
   
   @Test
-  public void testDisableTaskCount() {
+  public void testDisableCaseCount() {
+    updatePortalSetting(DISABLE_CASE_COUNT_SETTING, "true");
     initHomePage(TestAccount.ADMIN_USER);
-    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
-    adminSettingsPage.setDisabledCaseCount();
 
     mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
