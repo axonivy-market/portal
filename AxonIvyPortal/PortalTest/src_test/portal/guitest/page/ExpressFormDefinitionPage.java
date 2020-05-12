@@ -123,7 +123,13 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 	public void moveAllElementToDragAndDrogPanel() {
 		int size = driver.findElements(By.xpath("//div[@id='form:available-form-elements_content']/table/tbody/tr")).size();
 		for (int i = size - 1; i >= 0; i--) {
-			moveFormElementToPanel(i, getRandomPosition());
+		  if(i == size - 1) {
+		    moveFormElementToPanel(i, LEFT_POSITION);
+		  }
+		  else {
+		    moveFormElementToPanel(i, getRandomPosition());
+		  }
+		
 		}
 	}
 
@@ -134,6 +140,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 			position = FOOTER_POSITION;
 		}
 		waitForElementDisplayed(By.id(String.format("form:selected-form-elements-%s-panel", position)), true);
+		//this click to fix bug can't drag on IE
+		formElement.click();
 		WebElement panel = findElementById(String.format("form:selected-form-elements-%s-panel", position));
 		Actions builder = new Actions(driver);
 		Action moveProcessSequence = builder.dragAndDrop(formElement, panel).build();
