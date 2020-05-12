@@ -57,7 +57,7 @@ public class PageRefreshingTest extends BaseTest {
   }
 
   @AfterClass
-  public void killOpenBrowsers() {
+  public static void killOpenBrowsers() {
     killBrowsers();
   }
 }
