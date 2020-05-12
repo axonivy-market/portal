@@ -188,7 +188,7 @@ if(in.task.getState() == TaskState.DONE){
 }
 
 facesContext.validationFailed();
-facesContext.addMessage("portal-global-growl", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
+facesContext.addMessage("portal-global-growl-message", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
 PrimeFaces.current().ajax().update("portal-global-growl");  
 ' #txt
 Cs0 f66 security system #txt

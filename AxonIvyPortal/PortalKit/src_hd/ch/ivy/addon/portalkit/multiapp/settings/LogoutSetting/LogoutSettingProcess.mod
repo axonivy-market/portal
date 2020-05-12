@@ -143,8 +143,9 @@ Ps0 f9 outCond '!(in.isWorkingOnATask && in.task.getState() != ch.ivyteam.ivy.wo
 Ps0 f9 176 160 232 160 #arcP
 Ps0 f13 actionTable 'out=in;
 ' #txt
-Ps0 f13 actionCode 'import org.primefaces.PrimeFaces;
-PrimeFaces.current().executeScript("PF(''logoutConfirmation'').show()");' #txt
+Ps0 f13 actionCode 'import ch.ivy.addon.portalkit.util.LogoutSettingUtils;
+
+LogoutSettingUtils.showLogoutConfirmation();' #txt
 Ps0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -163,8 +164,9 @@ Ps0 f17 1 576 256 #addKink
 Ps0 f17 0 0.8452393120637643 0 0 #arcLabel
 Ps0 f18 actionTable 'out=in;
 ' #txt
-Ps0 f18 actionCode 'import org.primefaces.PrimeFaces;
-PrimeFaces.current().executeScript("returnHomePage()");' #txt
+Ps0 f18 actionCode 'import ch.ivy.addon.portalkit.util.LogoutSettingUtils;
+
+LogoutSettingUtils.returnToHomepage();' #txt
 Ps0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
