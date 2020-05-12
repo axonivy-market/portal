@@ -2,6 +2,7 @@ package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,6 +16,7 @@ public class PageRefreshingTest extends BaseTest {
   @Override
   @Before
   public void setup() {
+    killBrowsers();
     super.setup();
     createTestingTasks();
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
@@ -25,7 +27,7 @@ public class PageRefreshingTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     assertEquals(3, taskWidgetPage.countTasks());
 
-    taskWidgetPage.createTestingTasksInNewWindow();
+    launchBrowserAndGotoRelativeLink(createTestingTasksUrl);
     taskWidgetPage.refresh();
     assertEquals(6, taskWidgetPage.countTasks());
   }
@@ -39,9 +41,23 @@ public class PageRefreshingTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = mainMenuPage.selectTaskMenu();
     assertEquals(3, taskWidgetPage.countTasks());
 
-    taskWidgetPage.createTestingTasksInNewWindow();
+    launchBrowserAndGotoRelativeLink(createTestingTasksUrl);
     taskWidgetPage.refresh();
     assertEquals(6, taskWidgetPage.countTasks());
   }
+  
+  @Test
+  public void testTasksInPortalHomePageUpdatedAfterExpandToFullMode() {
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    assertEquals(3, taskWidgetPage.countTasks());
 
+    launchBrowserAndGotoRelativeLink(createTestingTasksUrl);
+    taskWidgetPage.expand();
+    assertEquals(6, taskWidgetPage.countTasks());
+  }
+
+  @AfterClass
+  public static void killOpenBrowsers() {
+    killBrowsers();
+  }
 }
