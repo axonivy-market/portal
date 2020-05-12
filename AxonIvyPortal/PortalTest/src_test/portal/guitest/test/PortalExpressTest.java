@@ -71,7 +71,7 @@ public class PortalExpressTest extends BaseTest {
 
 	@Test
 	public void testCreateDocumentElement() {
-		goToCreateExpressProcess();
+	  goToCreateExpressProcess();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(true, true, "Test 1", "Test description");
 
@@ -92,7 +92,7 @@ public class PortalExpressTest extends BaseTest {
 
 	@Test
 	public void createFullElementsOfForm() {
-		goToCreateExpressProcess();
+		goToExpressCreationPage();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(true, true, "Test 1", "Test description");
 
@@ -122,7 +122,7 @@ public class PortalExpressTest extends BaseTest {
 
 	@Test
 	public void createFullTaskType() {
-		goToCreateExpressProcess();
+		goToExpressCreationPage();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(true, true, "Test full task type", "Test description");
 
@@ -148,7 +148,7 @@ public class PortalExpressTest extends BaseTest {
 
 	@Test
 	public void testStartFirstTaskIfCreatorIsAssigned() {
-		goToCreateExpressProcess();
+		goToExpressCreationPage();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(true, true, "Test 1 Process for creator",
 				"Test description Process for creator");
@@ -168,7 +168,7 @@ public class PortalExpressTest extends BaseTest {
 
 	@Test
 	public void createUserDefaultProcess() {
-		goToCreateExpressProcess();
+		goToExpressCreationPage();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.waitForPageLoaded();
 		expressProcessPage.fillProcessProperties(true, false, "Test create default process", "Test description");
@@ -270,7 +270,7 @@ public class PortalExpressTest extends BaseTest {
 	
 	@Test
 	public void testRejectedApprovalWhenMultiTask() {
-		goToCreateExpressProcess();
+		goToExpressCreationPage();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(false, true, "Test approval", "Test description");
 		expressProcessPage.fillProcessOwners(Arrays.asList(responsible1, groupHr));
@@ -282,7 +282,7 @@ public class PortalExpressTest extends BaseTest {
 
 	@Test
 	public void testComplexProcess() {
-		goToCreateExpressProcess();
+		goToExpressCreationPage();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
 		ExpressFormDefinitionPage formDefinition = configureComplexProcess(expressProcessPage);
@@ -293,7 +293,7 @@ public class PortalExpressTest extends BaseTest {
 	private void createAdministratedWorkflow(String expressProcessName, List<ExpressResponsible> processOwners,
 			Boolean isMultiApproved) {
 		ExpressFormDefinitionPage formDefinition;
-		goToCreateExpressProcess();
+		goToExpressCreationPage();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(false, true, expressProcessName, "Test description");
 		expressProcessPage.fillProcessOwners(processOwners);
@@ -472,6 +472,10 @@ public class PortalExpressTest extends BaseTest {
 		ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
 		approvalPage1.comment(comment);
 		approvalPage1.reject();
+	}
+
+	protected void goToExpressCreationPage() {
+	  redirectToRelativeLink(expressStartLink);
 	}
 
 	protected void goToCreateExpressProcess() {
