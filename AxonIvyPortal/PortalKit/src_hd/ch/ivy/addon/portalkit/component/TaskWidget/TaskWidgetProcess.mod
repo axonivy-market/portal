@@ -421,13 +421,14 @@ Ts0 f56 584 842 112 44 -46 -8 #rect
 Ts0 f56 @|StepIcon #fIcon
 Ts0 f59 actionTable 'out=in;
 ' #txt
-Ts0 f59 actionCode 'import org.primefaces.PrimeFaces;
+Ts0 f59 actionCode 'import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
+import org.primefaces.PrimeFaces;
 import javax.faces.context.FacesContext;
 	
 PrimeFaces faces = PrimeFaces.current();
 if(in.scrollPosition == 0 && in.expandedTaskId < 1) {	
 	faces.ajax().update("task-widget:task-view-container");
-	faces.executeScript("taskWidget.setupScrollbar()");
+	PrimeFacesUtils.executeScript("taskWidget.setupScrollbar()");
 }' #txt
 Ts0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
