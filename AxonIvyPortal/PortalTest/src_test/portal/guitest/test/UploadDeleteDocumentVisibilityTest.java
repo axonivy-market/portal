@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
-import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
@@ -13,8 +12,8 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class UploadDeleteDocumentVisibilityTest extends BaseTest {
 
+  private static final String HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE_SETTING = "HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE";
   private HomePage homePage;
-  private AdminSettingsPage adminSettingsPage;
   private CaseWidgetPage casePage;
   private CaseDetailsPage caseDetailsPage;
   private TaskWidgetPage taskWidgetPage;
@@ -45,9 +44,8 @@ public class UploadDeleteDocumentVisibilityTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTaskWithoutUI(0);
+    updatePortalSetting(HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE_SETTING, "true");
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    adminSettingsPage = homePage.openAdminSettings();
-    adminSettingsPage.setHideUploadDocumentForDoneCase();
 
     casePage = homePage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("SupportTicket");
