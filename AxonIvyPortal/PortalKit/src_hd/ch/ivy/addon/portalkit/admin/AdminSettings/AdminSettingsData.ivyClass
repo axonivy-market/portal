@@ -34,10 +34,9 @@ filteredUsers java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> #field
 filteredUsers PERSISTENT #fieldModifier
 resetAllSettings Boolean #field
 resetAllSettings PERSISTENT #fieldModifier
-settingInputType Number #field
-settingInputType '1-Normal text, 2-Dropdown, 3-Number' #fieldComment
+settingInputType ch.ivy.addon.portalkit.enums.GlobalVariableType #field
 settingInputType PERSISTENT #fieldModifier
-dropDownValues List<String> #field
+dropDownValues java.util.List<java.lang.Object> #field
 dropDownValues PERSISTENT #fieldModifier
 filteredSettingList List<ch.ivy.addon.portalkit.persistence.domain.GlobalSetting> #field
 filteredSettingList PERSISTENT #fieldModifier

@@ -3,7 +3,7 @@ package ch.ivy.addon.portalkit.persistence.domain;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-
+import ch.ivy.addon.portalkit.enums.GlobalVariableType;
 
 public class GlobalSetting extends BusinessEntity {
   private String key;
@@ -19,7 +19,6 @@ public class GlobalSetting extends BusinessEntity {
   }
   
   public GlobalSetting() {
-    
   }
   
   public String getKey() {
@@ -37,10 +36,24 @@ public class GlobalSetting extends BusinessEntity {
   public void setValue(String value) {
     this.value = value;
   }
-
+  
   @JsonIgnore
   public String getDefaultValue() {
-    return GlobalVariable.valueOf(key).getDefaultValue();
+    String defaultValue = GlobalVariable.valueOf(key).getDefaultValue();
+    GlobalVariable variable = GlobalVariable.valueOf(key);
+    if (variable.getType() == GlobalVariableType.SELECTION) {
+      return GlobalVariable.Option.valueOf(defaultValue).translate();
+    }
+    return defaultValue;
+  }
+  
+  @JsonIgnore
+  public String getDisplayValue() {
+    GlobalVariable variable = GlobalVariable.valueOf(key);
+    if (variable.getType() == GlobalVariableType.SELECTION) {
+      return GlobalVariable.Option.valueOf(value).translate();
+    }
+    return value;
   }
 
   public void setValueToDefault() {
@@ -56,6 +69,5 @@ public class GlobalSetting extends BusinessEntity {
   public String toString() {
     return "GlobalSetting [key=" + key + ", value=" + value + ", id=" + getId() + "]";
   }
-
 
 }

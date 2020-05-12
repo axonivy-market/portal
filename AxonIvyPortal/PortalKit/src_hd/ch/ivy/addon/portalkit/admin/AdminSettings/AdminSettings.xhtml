@@ -111,8 +111,8 @@
             <h:outputText value="#{setting.defaultValue}" />
           </p:column>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/currentValue')}"
-            filterBy="#{setting.value}" filterMatchMode="contains" styleClass="settings-table-current-value-column">
-            <h:outputText value="#{setting.value}" />
+            filterBy="#{setting.displayValue}" filterMatchMode="contains" styleClass="settings-table-current-value-column">
+            <h:outputText value="#{setting.displayValue}" />
           </p:column>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}"
             filterBy="#{setting.note}" filterMatchMode="contains">
@@ -372,19 +372,25 @@
           <!-- VALUE -->
           <p:outputLabel styleClass="admin-settings-form-input-label"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/value')}" for="valueSetting" />
-          <c:if test="#{data.settingInputType == '1'}">
+          <c:if test="#{data.settingInputType.toString() == 'TEXT'}">
             <p:inputText value="#{data.selectedSetting.value}" id="valueSetting" />
           </c:if>
-
-          <c:if test="#{data.settingInputType == '2'}">
+          
+          <c:if test="#{data.settingInputType.toString() == 'NUMBER'}">
+            <p:inputText value="#{data.selectedSetting.value}" id="valueSetting"
+              onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" />
+          </c:if>
+          
+          <c:if test="#{data.settingInputType.toString() == 'BOOLEAN'}">
             <p:selectOneMenu value="#{data.selectedSetting.value}" id="valueSetting" styleClass="value-setting-dropdown">
               <f:selectItems value="#{data.dropDownValues}" var="value" itemLabel="#{value}" />
             </p:selectOneMenu>
           </c:if>
-
-          <c:if test="#{data.settingInputType == '3'}">
-            <p:inputText value="#{data.selectedSetting.value}" id="valueSetting"
-              onkeypress="if(event.which &lt; 48 || event.which &gt; 57) return false;" />
+          
+          <c:if test="#{data.settingInputType.toString() == 'SELECTION'}">
+            <p:selectOneMenu value="#{data.selectedSetting.value}" id="valueSetting" styleClass="value-setting-dropdown">
+              <f:selectItems value="#{data.dropDownValues}" var="value" itemLabel="#{value.translate()}" />
+            </p:selectOneMenu>
           </c:if>
 
           <!-- NOTE -->
