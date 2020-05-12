@@ -46,18 +46,36 @@ public class UserMenuBean implements Serializable {
   public static final long TIME_BEFORE_LOST_SESSION = 3 * DateUtils.MILLIS_PER_MINUTE; // 3 minutes
   public static final String TASK_LEAVE_WARNING_COMPONENT = "task-leave-warning-component";
 
-  
-  private String userName;
+  private String loggedInUser;
   GlobalSettingService globalSettingService;
 
-  public String getUserName() {
-    return userName;
+  public String getLoggedInUser() {
+    return loggedInUser;
   }
   
   @PostConstruct
   public void init() {
-    userName = Ivy.session().getSessionUserName();
     globalSettingService = new GlobalSettingService();
+    if (!Ivy.session().isSessionUserUnknown()) {
+      String format = globalSettingService.findGlobalSettingValue(GlobalVariable.LOGGED_IN_USER_FORMAT.toString());
+      GlobalVariable.Option option = GlobalVariable.Option.valueOf(format);
+      String fullName = Ivy.session().getSessionUser().getFullName();
+      String userName = Ivy.session().getSessionUserName();
+      switch (option) {
+        case USERNAME:
+          loggedInUser = userName;
+          break;
+        case DISPLAY_NAME:
+          loggedInUser = fullName;
+          break;
+        case DISPLAY_NAME_USERNAME:
+          loggedInUser = String.format("%s (%s)", fullName, userName);
+          break;
+        default:
+          loggedInUser = String.format("%s (%s)", userName, fullName);
+          break;
+      }
+    }
   }
 
   public boolean isShowServerInformation() {

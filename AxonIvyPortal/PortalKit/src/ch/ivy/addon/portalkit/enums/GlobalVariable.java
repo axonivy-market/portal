@@ -1,54 +1,81 @@
-
 package ch.ivy.addon.portalkit.enums;
-
-import java.util.Arrays;
-import java.util.List;
 
 import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
 import ch.ivy.addon.portalkit.document.DocumentExtensionConstants;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public enum GlobalVariable {
+  
+  HIDE_LOGOUT_BUTTON(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideLogoutButtonNote"),
+  SHOW_ENVIRONMENT_INFO(GlobalVariableType.SELECTION, Option.FALSE.toString(), "showEnvironmentInfoNote"),
+  HIDE_CHANGE_PASSWORD_BUTTON(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideChangePasswordButtonNote"), 
+  HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideUploadDocumentForDoneCaseNote"),
+  ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableScriptCheckingForUploadedDocumentNote"),
+  HIDE_TIME(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideTimeNote"),
+  EXPRESS_END_PAGE(GlobalVariableType.SELECTION, Option.TRUE.toString(), "expressEndPageNote"),
+  REFRESH_TASK_LIST_INTERVAL(GlobalVariableType.NUMBER, String.valueOf(TaskWidgetBean.DEFAULT_TASK_LIST_REFRESH_INTERVAL), "refreshTaskListIntervalNote"),
+  UPLOAD_DOCUMENT_WHITELIST_EXTENSION(GlobalVariableType.TEXT, String.join(", ", DocumentExtensionConstants.DEFAULT_WHITELIST_EXTENSION), "uploadDocumentWhiteListExtensionNote"),
+  CLIENT_SIDE_TIMEOUT(GlobalVariableType.NUMBER, "clientSideTimeoutNote"),
+  HIDE_SYSTEM_TASKS_FROM_HISTORY(GlobalVariableType.SELECTION, Option.TRUE.toString(), "hideSystemTasksFromHistory"),
+  HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideSystemTasksFromHistoryAdministrator"),
+  ENABLE_USER_FAVORITES(GlobalVariableType.SELECTION, Option.TRUE.toString(), "enableUserFavorites"),
+  HIDE_STATISTIC_WIDGET(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideStatisticWidget"),
+  DISPLAY_MESSAGE_AFTER_FINISH_TASK(GlobalVariableType.SELECTION, Option.TRUE.toString(), "displayMessageAfterFinishOrLeaveTask"),
+  ENABLE_GROUP_CHAT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableGroupChat"),
+  ENABLE_PRIVATE_CHAT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "enablePrivateChat"),
+  CHAT_RESPONSE_TIMEOUT(GlobalVariableType.NUMBER, "chatResponseTimeout"),
+  ENABLE_CASE_OWNER(GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableCaseOwner"),
+  DISABLE_CASE_COUNT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "disableCaseCount"),
+  DISABLE_TASK_COUNT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "disableTaskCount"),
+  EMBED_IN_FRAME(GlobalVariableType.SELECTION, Option.TRUE.toString(), "embedInFrame"),
+  LOGGED_IN_USER_FORMAT(GlobalVariableType.SELECTION, Option.DISPLAY_NAME.toString(), "loggedInUserFormat", getLoggedInUserFormatOptions());
 
-  HIDE_LOGOUT_BUTTON(Boolean.FALSE.toString(), "hideLogoutButtonNote"),
-  SHOW_ENVIRONMENT_INFO(Boolean.FALSE.toString(), "showEnvironmentInfoNote"),
-  HIDE_CHANGE_PASSWORD_BUTTON(Boolean.FALSE.toString(), "hideChangePasswordButtonNote"), 
-  HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE(Boolean.FALSE.toString(), "hideUploadDocumentForDoneCaseNote"),
-  ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT(Boolean.FALSE.toString(), "enableScriptCheckingForUploadedDocumentNote"),
-  HIDE_TIME(Boolean.FALSE.toString(), "hideTimeNote"),
-  EXPRESS_END_PAGE(Boolean.TRUE.toString(), "expressEndPageNote"),
-  REFRESH_TASK_LIST_INTERVAL(String.valueOf(TaskWidgetBean.DEFAULT_TASK_LIST_REFRESH_INTERVAL), "refreshTaskListIntervalNote"),
-  UPLOAD_DOCUMENT_WHITELIST_EXTENSION(String.join(", ", DocumentExtensionConstants.DEFAULT_WHITELIST_EXTENSION), "uploadDocumentWhiteListExtensionNote"),
-  HOMEPAGE_URL("homePageUrlNote"),
-  CLIENT_SIDE_TIMEOUT("clientSideTimeoutNote"),
-  HIDE_SYSTEM_TASKS_FROM_HISTORY(Boolean.TRUE.toString(), "hideSystemTasksFromHistory"),
-  HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR(Boolean.FALSE.toString(), "hideSystemTasksFromHistoryAdministrator"),
-  ENABLE_USER_FAVORITES(Boolean.TRUE.toString(), "enableUserFavorites"),
-  HIDE_STATISTIC_WIDGET(Boolean.FALSE.toString(), "hideStatisticWidget"),
-  DISPLAY_MESSAGE_AFTER_FINISH_TASK(Boolean.TRUE.toString(), "displayMessageAfterFinishOrLeaveTask"),
-  ENABLE_GROUP_CHAT(Boolean.FALSE.toString(), "enableGroupChat"),
-  ENABLE_PRIVATE_CHAT(Boolean.FALSE.toString(), "enablePrivateChat"),
-  CHAT_RESPONSE_TIMEOUT("chatResponseTimeout"),
-  ENABLE_CASE_OWNER(Boolean.FALSE.toString(), "enableCaseOwner"),
-  DISABLE_CASE_COUNT(Boolean.FALSE.toString(), "disableCaseCount"),
-  DISABLE_TASK_COUNT(Boolean.FALSE.toString(), "disableTaskCount"),
-  EMBED_IN_FRAME(Boolean.TRUE.toString(), "embedInFrame");
-
+  private GlobalVariableType type;
   private String defaultValue;
   private String noteCMS;
+  private Option[] options;
 
+  public enum Option {
+    FALSE,
+    TRUE,
+    USERNAME,
+    DISPLAY_NAME,
+    DISPLAY_NAME_USERNAME,
+    USERNAME_DISPLAY_NAME;
+    
+    public String translate() {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/Enums/GlobalVariable/Option/" + name());
+    }
+  }
+  
   private GlobalVariable() {
   }
 
-  private GlobalVariable(String noteCMS) {
+  private GlobalVariable(GlobalVariableType type, String noteCMS) {
+    this.type = type;
     this.noteCMS = noteCMS;
   }
 
-  private GlobalVariable(String defaultValue, String noteCMS) {
+  private GlobalVariable(GlobalVariableType type, String defaultValue, String noteCMS) {
+    this.type = type;
     this.defaultValue = defaultValue;
     this.noteCMS = noteCMS;
+    if (type == GlobalVariableType.SELECTION) {
+      options = new Option[] {Option.FALSE, Option.TRUE};
+    }
   }
-
+  
+  private GlobalVariable(GlobalVariableType type, String defaultValue, String noteCMS, Option[] options) {
+    this.type = type;
+    this.defaultValue = defaultValue;
+    this.noteCMS = noteCMS;
+    this.options = options;
+  }
+  
+  public GlobalVariableType getType() {
+    return type;
+  }
+  
   public String getDefaultValue() {
     return defaultValue;
   }
@@ -56,15 +83,12 @@ public enum GlobalVariable {
   public String getNote() {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/globalVariableNote/" + noteCMS);
   }
-
-  public static List<GlobalVariable> getBooleanType() {
-    return Arrays.asList(HIDE_LOGOUT_BUTTON, SHOW_ENVIRONMENT_INFO, HIDE_CHANGE_PASSWORD_BUTTON,
-            HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE, ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT, HIDE_TIME, EXPRESS_END_PAGE, HIDE_SYSTEM_TASKS_FROM_HISTORY, 
-            HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR, ENABLE_USER_FAVORITES, HIDE_STATISTIC_WIDGET, DISPLAY_MESSAGE_AFTER_FINISH_TASK, ENABLE_GROUP_CHAT, ENABLE_PRIVATE_CHAT,
-            ENABLE_CASE_OWNER, DISABLE_CASE_COUNT, DISABLE_TASK_COUNT, EMBED_IN_FRAME);
+  
+  public Object[] getOptions() {
+    return options;
   }
-
-  public static List<GlobalVariable> getNumberType() {
-    return Arrays.asList(REFRESH_TASK_LIST_INTERVAL, CLIENT_SIDE_TIMEOUT);
+  
+  private static Option[] getLoggedInUserFormatOptions() {
+    return new Option[] {Option.USERNAME, Option.DISPLAY_NAME, Option.DISPLAY_NAME_USERNAME, Option.USERNAME_DISPLAY_NAME};
   }
 }
