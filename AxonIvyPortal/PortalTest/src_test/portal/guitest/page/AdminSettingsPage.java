@@ -94,61 +94,12 @@ public class AdminSettingsPage extends TemplatePage {
     closeInformConfigDialog();
   }
 
-  public void setChatGroup() {
-    openSettingTab();
-    editGlobalVariable("ENABLE_GROUP_CHAT", "true", true);
-    closeConfirmationDialog();
-  }
-
   public void setEnviromentInfo() {
     openSettingTab();
     editGlobalVariable("SHOW_ENVIRONMENT_INFO", "true", true);
     closeConfirmationDialog();
   }
   
-
-  public void setChatPrivate() {
-    openSettingTab();
-    editGlobalVariable("ENABLE_PRIVATE_CHAT", "true", true);
-    closeConfirmationDialog();
-  }
-
-  public void setEnableScriptCheckingGlobalVariable() {
-    openSettingTab();
-    editGlobalVariable("ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT", "true", true);
-    closeConfirmationDialog();
-  }
-
-  public void setDisableScriptCheckingGlobalVariable() {
-    openSettingTab();
-    editGlobalVariable("ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT", "false", true);
-    closeConfirmationDialog();
-  }
-
-  public void setFileExtensionWhiteList() {
-    openSettingTab();
-    editGlobalVariable("UPLOAD_DOCUMENT_WHITELIST_EXTENSION", ", abc, pdf, doc", false);
-    closeConfirmationDialog();
-  }
-
-  public void setHideUploadDocumentForDoneCase() {
-    openSettingTab();
-    editGlobalVariable("HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE", "true", true);
-    closeConfirmationDialog();
-  }
-
-  public void setDisabledTaskCount() {
-    openSettingTab();
-    editGlobalVariable("DISABLE_TASK_COUNT", "true", true);
-    closeConfirmationDialog();
-  }
-  
-  public void setDisabledCaseCount() {
-    openSettingTab();
-    editGlobalVariable("DISABLE_CASE_COUNT", "true", true);
-    closeConfirmationDialog();
-  }
-
   public boolean isWarningDialogShowWhenTimeoutIsLosing() {
     waitForElementDisplayed(By.id("warning-before-lost-session:timeout-warning-dialog"), true, 120);
     return isElementDisplayed(By.id("warning-before-lost-session:timeout-warning-dialog"));
