@@ -216,6 +216,7 @@ public class CaseWidgetTest extends BaseTest {
     casePage = mainMenuPage.selectCaseMenu();
     assertEquals("Cases", casePage.getTextOfCurrentBreadcrumb());
     casePage.clickHomeBreadcrumb();
+    homePage = new HomePage();
     assertEquals(true, homePage.isDisplayed());
   }
 

@@ -66,16 +66,6 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testTasksInPortalHomePageUpdatedAfterExpandToFullMode() {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    assertEquals(3, taskWidgetPage.countTasks());
-
-    taskWidgetPage.createTestingTasksInNewWindow();
-    taskWidgetPage.expand();
-    assertEquals(6, taskWidgetPage.countTasks());
-  }
-
-  @Test
   public void testOpenRelatedCaseOfTask() {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();
@@ -180,6 +170,7 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.openTaskList();
     assertEquals("Tasks", taskWidgetPage.getTextOfCurrentBreadcrumb());
     taskWidgetPage.clickHomeBreadcrumb();
+    homePage = new HomePage();
     assertEquals(true, homePage.isDisplayed());
   }
 

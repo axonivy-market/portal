@@ -92,8 +92,7 @@ public abstract class TemplatePage extends AbstractPage {
     try {
       wait.until(myFunction);
     } catch (WebDriverException e) {
-      System.out.println("Error when ensuring not background request");
-      e.printStackTrace();
+      System.out.println("ERROR when ensuring not background request");
     }
   }
 
