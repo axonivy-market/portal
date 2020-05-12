@@ -163,7 +163,7 @@ public class PortalExpressTest extends BaseTest {
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
 		HomePage home = new HomePage();
-		home.waitForPageLoaded();
+		assertTrue(home.isDisplayed());
 	}
 
 	@Test
