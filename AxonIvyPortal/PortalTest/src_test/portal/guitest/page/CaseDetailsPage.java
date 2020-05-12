@@ -261,6 +261,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void uploadDocumentWithoutError(String pathToFile) {
+    Sleeper.sleep(2000);//slow down a bit for FF
     openAddDocumentDialogAndUploadDocument(pathToFile);
     waitForElementDisplayed(By.cssSelector("span[class$='ui-messages-info-summary']"), true);
     click(By.cssSelector("button[id$='case-item-details:document:document-upload-close-command']"));
