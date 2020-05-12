@@ -1406,10 +1406,10 @@ As0 f97 expr out #txt
 As0 f97 1400 1638 1400 1691 #arcP
 As0 f55 actionTable 'out=in;
 ' #txt
-As0 f55 actionCode 'import org.primefaces.PrimeFaces;
+As0 f55 actionCode 'import ch.ivy.addon.portalkit.util.AdminSettingUtils;
 
 if (in.settingTabOpened) {
-	PrimeFaces.current().executeScript("PF(''settingTable'').clearFilters()");
+	AdminSettingUtils.clearFiltersForSettingTable();
 }' #txt
 As0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1702,7 +1702,7 @@ As0 f90 600 1957 600 2099 #arcP
 As0 f2 guid 16F55D573C483035 #txt
 As0 f2 method onTabChange(org.primefaces.event.TabChangeEvent) #txt
 As0 f2 inParameterDecl '<org.primefaces.event.TabChangeEvent tabEvent> param;' #txt
-As0 f2 inActionCode 'import org.primefaces.PrimeFaces;
+As0 f2 inActionCode 'import ch.ivy.addon.portalkit.util.AdminSettingUtils;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
 import org.primefaces.component.tabview.TabView;
 import org.primefaces.event.TabChangeEvent;
@@ -1712,7 +1712,7 @@ TabView tabView = tabChangeEvent.getComponent() as TabView;
 out.tabIndexActive = tabView.getChildren().indexOf(tabChangeEvent.getTab());
 if (out.tabIndexActive == 1) {
 	out.settingTabOpened = true;
-	PrimeFaces.current().executeScript("PF(''settingTable'').filter()");
+	AdminSettingUtils.filterForSettingTable();
 }
 
 ' #txt

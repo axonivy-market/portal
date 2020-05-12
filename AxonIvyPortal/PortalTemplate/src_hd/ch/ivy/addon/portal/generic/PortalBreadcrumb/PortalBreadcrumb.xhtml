@@ -22,11 +22,11 @@
   <p:breadCrumb id="breadcrumb" styleClass="portal-breadcrumb u-hidden-sm-down" model="#{menuView.breadcrumbModel}" rendered="#{not empty cc.attrs.viewName}" />
 
   <p:remoteCommand name="navigateToPortalHome"
-    actionListener="#{logic.navigateToPortalHome(cc.attrs.isWorkingOnATask)}"
+    actionListener="#{applicationSelectionMenuBean.navigateFromBreadcrumb(cc.attrs.isWorkingOnATask, 'HOME')}"
     global="false" process="@this" update="@none" />
 
   <p:remoteCommand name="navigateToTaskList"
-    actionListener="#{logic.navigateToTaskList(cc.attrs.isWorkingOnATask)}"
+    actionListener="#{applicationSelectionMenuBean.navigateFromBreadcrumb(cc.attrs.isWorkingOnATask, 'TASK')}"
     global="false" process="@this" update="@none" />
 
   <p:remoteCommand name="navigateToCaseList"
