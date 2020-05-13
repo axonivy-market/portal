@@ -97,6 +97,9 @@ Process developer can set up global settings of Portal in file ``portal_settings
       #HIDE_STATISTIC_WIDGET = false
       #ENABLE_USER_FAVORITES = true
       #DISPLAY_MESSAGE_AFTER_FINISH_TASK = true
+      
+      # Logged in user format, available values: USERNAME, DISPLAY_NAME, DISPLAY_NAME_USERNAME, USERNAME_DISPLAYNAME
+      #LOGGED_IN_USER_FORMAT = DISPLAY_NAME
 
 This file already contains list of settings with their default values.
 These settings will be applied once you start Portal.
