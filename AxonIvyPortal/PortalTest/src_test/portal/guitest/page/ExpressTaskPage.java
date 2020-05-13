@@ -3,6 +3,12 @@ package portal.guitest.page;
 import org.openqa.selenium.By;
 
 public class ExpressTaskPage extends TaskTemplatePage {
+  
+  @Override
+  protected String getLoadedLocator() {
+    return "id('horizontal-case-info')";
+  }
+
   public void finish() {
     click(By.id("form:ok-btn"));
   }
