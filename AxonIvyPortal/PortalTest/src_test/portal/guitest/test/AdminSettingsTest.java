@@ -34,11 +34,12 @@ public class AdminSettingsTest extends BaseTest {
 
 	@Test
 	public void testDefaultEnvironmentInfo() {
-		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-		updatePortalSetting(SHOW_ENVIRONMENT_INFO_SETTING, "true");
-		login(TestAccount.ADMIN_USER);
-		HomePage homePage = new HomePage();
-		assertTrue(homePage.getEnviromentInfo().contains("Host: " + SystemProperties.getServerName() + " Env:Default"));
+	  redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    login(TestAccount.ADMIN_USER);
+    HomePage homePage = new HomePage();
+    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
+    adminSettingsPage.setEnviromentInfo();
+    assertTrue(homePage.getEnviromentInfo().contains("Host: " + SystemProperties.getServerName() + " Env:Default"));
 	}
 	
 	@Test
@@ -46,10 +47,9 @@ public class AdminSettingsTest extends BaseTest {
 	  updatePortalSetting(SHOW_ENVIRONMENT_INFO_SETTING, "true");
 		login(TestAccount.ADMIN_USER);
 		HomePage homePage = new HomePage();
-		AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
-		adminSettingsPage.setEnviromentInfo();
 		//Customize environment info in portal example 
 		redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_PROCESS_CHAIN);
+		
 		assertTrue(homePage.getEnviromentInfo().contains("Dev Team: Wawa, Env: Dev"));
 	}	
 }
