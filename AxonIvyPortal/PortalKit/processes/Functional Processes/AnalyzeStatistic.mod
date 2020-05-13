@@ -317,13 +317,20 @@ ac0 f31 226 330 112 44 -22 -8 #rect
 ac0 f31 @|StepIcon #fIcon
 ac0 f25 actionTable 'out=in;
 ' #txt
-ac0 f25 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+ac0 f25 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
 RegisteredApplicationService service = new RegisteredApplicationService();
 java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
 in.taskSearchCriteria.apps = apps;
 in.taskSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
-in.taskSearchCriteria.sorted = false;' #txt
+in.taskSearchCriteria.sorted = false;
+if (PermissionUtils.checkReadAllTasksPermission()) {
+  in.taskSearchCriteria.adminQuery = true;
+  in.taskSearchCriteria.includedStates = [TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.UNASSIGNED]; // list task list but exclude DONE
+}
+' #txt
 ac0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -337,13 +344,15 @@ ac0 f25 224 234 112 44 -22 -8 #rect
 ac0 f25 @|StepIcon #fIcon
 ac0 f21 actionTable 'out=in;
 ' #txt
-ac0 f21 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+ac0 f21 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
 RegisteredApplicationService service = new RegisteredApplicationService();
 java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
 in.taskSearchCriteria.apps = apps;
 in.taskSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
-in.taskSearchCriteria.sorted = false;' #txt
+in.taskSearchCriteria.sorted = false;
+in.taskSearchCriteria.adminQuery = PermissionUtils.checkReadAllTasksPermission();' #txt
 ac0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -396,12 +405,14 @@ ac0 f45 113 529 30 30 -114 17 #rect
 ac0 f45 @|StartSubIcon #fIcon
 ac0 f46 actionTable 'out=in;
 ' #txt
-ac0 f46 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+ac0 f46 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
 RegisteredApplicationService service = new RegisteredApplicationService();
 java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
 in.taskSearchCriteria.apps = apps;
-in.taskSearchCriteria.sorted = false;' #txt
+in.taskSearchCriteria.sorted = false;
+in.taskSearchCriteria.adminQuery = PermissionUtils.checkReadAllTasksPermission();' #txt
 ac0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

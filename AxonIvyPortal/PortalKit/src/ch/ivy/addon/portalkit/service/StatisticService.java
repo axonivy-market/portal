@@ -416,6 +416,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
             taskExpireIn15, taskExpireIn16, taskExpireIn17};
 
     for (Entry<Date, Long> result : numberOfTasksByExpiryTime.entrySet()) {
+      if (new Date().after(result.getKey())) {
+        continue;
+      }
       Date resultDate = result.getKey();
       Calendar cal = Calendar.getInstance();
       cal.setTime(resultDate);
@@ -486,6 +489,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
             taskExpireOnSaturday, taskExpireOnSunday};
 
     for (Entry<Date, Long> result : numberOfTasksByExpiryTime.entrySet()) {
+      if (new Date().after(result.getKey())) {
+        continue;
+      }
       Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
       Calendar cal = Calendar.getInstance();
       cal.setTime(resultDate);
@@ -535,6 +541,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
         StatisticChartTimeUtils.truncateMinutesPart(DateUtils.addMonths(firstDateOfSelectedMonth, 1));
 
     for (Entry<Date, Long> result : numberOfTasksByExpiryTime.entrySet()) {
+      if (new Date().after(result.getKey())) {
+        continue;
+      }
       Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
       if (checkIfDateBetweenRange(firstDateOfFirstWeek, firstDateOfSecondWeek, resultDate)) {
         taskExpireOnFirstWeek += result.getValue();
@@ -613,6 +622,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
     if (numberOfTasksByExpiryTime != null) {
       for (Entry<Date, Long> result : numberOfTasksByExpiryTime.entrySet()) {
+        if (new Date().after(result.getKey())) {
+          continue;
+        }
         Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
         Calendar cal = Calendar.getInstance();
         cal.setTime(resultDate);
