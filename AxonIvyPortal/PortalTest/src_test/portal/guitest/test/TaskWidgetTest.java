@@ -18,7 +18,6 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
-import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
@@ -26,6 +25,7 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class TaskWidgetTest extends BaseTest {
 
+  private static final String DISABLE_TASK_COUNT_SETTING = "DISABLE_TASK_COUNT";
   private static final String GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =
       "portalKitTestHelper/14DE09882B540AD5/grantOnlyDelegateOwnTasksPermission.ivp";
   private static final String DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =
@@ -153,10 +153,9 @@ public class TaskWidgetTest extends BaseTest {
   
   @Test
   public void testDisableTaskCount() {
+    updatePortalSetting(DISABLE_TASK_COUNT_SETTING, "true");
     login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
-    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
-    adminSettingsPage.setDisabledTaskCount();
 
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.openTaskList();

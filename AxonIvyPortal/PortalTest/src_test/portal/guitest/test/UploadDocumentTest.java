@@ -15,7 +15,6 @@ import org.openqa.selenium.WebElement;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
-import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
@@ -23,7 +22,6 @@ import portal.guitest.page.HomePage;
 public class UploadDocumentTest extends BaseTest{
   
   private HomePage homePage;
-  private AdminSettingsPage adminSettingsPage;
   private CaseWidgetPage casePage;
   private CaseDetailsPage caseDetailsPage;
   
@@ -47,9 +45,8 @@ public class UploadDocumentTest extends BaseTest{
   
   @Test
   public void uploadScriptDocumentAndGetError() {
+    enableScriptCheckingInPortalSetting();
     initHomePage(TestAccount.ADMIN_USER);
-    adminSettingsPage = homePage.openAdminSettings();
-    adminSettingsPage.setEnableScriptCheckingGlobalVariable();
     casePage = homePage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     String error = caseDetailsPage.uploadDocumentWithError(getAbsolutePathToTestFile("test-with-macro.doc"));
@@ -62,28 +59,24 @@ public class UploadDocumentTest extends BaseTest{
 
     error = caseDetailsPage.uploadDocumentWithError(getAbsolutePathToTestFile("test-no-files-with-js.pdf"));
     assertEquals("This file is not allowed to upload because it contains some script!", error);
-    adminSettingsPage = homePage.openAdminSettings();
-    adminSettingsPage.setDisableScriptCheckingGlobalVariable();
+    disableScriptCheckingInPortalSetting();
   }
   
   @Test
   public void uploadUnsupportedFileType(){
+    enableScriptCheckingInPortalSetting();
     initHomePage(TestAccount.ADMIN_USER);
-    adminSettingsPage = homePage.openAdminSettings();
-    adminSettingsPage.setEnableScriptCheckingGlobalVariable();
     casePage = homePage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     String error = caseDetailsPage.uploadDocumentWithError(getAbsolutePathToTestFile("unsupportedExtension.abc"));
     assertEquals("This file type is not accepted!", error);
-    adminSettingsPage = homePage.openAdminSettings();
-    adminSettingsPage.setDisableScriptCheckingGlobalVariable();
+    disableScriptCheckingInPortalSetting();
   }
   
   @Test
   public void addUnspportedFileTypeToSettingAndUploadFile() {
+    updateFileExtensionWhiteListInPortalSetting();
     initHomePage(TestAccount.ADMIN_USER);
-    adminSettingsPage = homePage.openAdminSettings();
-    adminSettingsPage.setFileExtensionWhiteList();
     casePage = homePage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     int numberOfDocument = caseDetailsPage.countNumberOfDocument();
@@ -97,11 +90,10 @@ public class UploadDocumentTest extends BaseTest{
     final String pdfFile = "test-no-files-no-js.pdf";
     final String wordFile = "test-ms-word-extension.doc";
     final String unsupportFile = "unsupportedExtension.abc";
-
+    
+    updateFileExtensionWhiteListInPortalSetting();
     initHomePage(TestAccount.ADMIN_USER);
 
-    adminSettingsPage = homePage.openAdminSettings();
-    adminSettingsPage.setFileExtensionWhiteList();
     casePage = homePage.openCaseList();
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     
@@ -134,4 +126,15 @@ public class UploadDocumentTest extends BaseTest{
     homePage = new HomePage();
   }
   
+  private void updateFileExtensionWhiteListInPortalSetting() {
+    updatePortalSetting("UPLOAD_DOCUMENT_WHITELIST_EXTENSION", ", abc, pdf, doc");
+  }
+  
+  private void disableScriptCheckingInPortalSetting() {
+    updatePortalSetting("ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT", "false");
+  }
+  
+  private void enableScriptCheckingInPortalSetting() {
+    updatePortalSetting("ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT", "true");
+  }
 }
