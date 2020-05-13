@@ -59,7 +59,7 @@ public class GlobalSetting extends BusinessEntity {
   }
 
   public void setValueToDefault() {
-    value = getDefaultValue();
+    value = GlobalVariable.valueOf(key).getDefaultValue();
   }
 
   @JsonIgnore
