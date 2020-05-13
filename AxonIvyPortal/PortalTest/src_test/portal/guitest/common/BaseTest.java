@@ -56,7 +56,7 @@ public class BaseTest {
   protected String createTestingCaseUrlForDefaultAdditionalCaseDetails = "internalSupport/14B2FC03D2E87141/DefaultAdditionalCaseDetails.ivp";
   protected String createTestingCaseContainOneTask = "internalSupport/14B2FC03D2E87141/CreateSupportTicket.ivp";
   protected String createUnassignedTaskUrl = "internalSupport/14B2FC03D2E87141/createUnassignedTask.ivp";
-
+  protected String expressStartLink = "axonIvyExpress/15798655494F25E1/AxonIvyExpressWF.ivp";
   @Rule
   public ScreenshotFailedTestRule screenshotTestRule = new ScreenshotFailedTestRule();
   
@@ -207,4 +207,15 @@ public class BaseTest {
     return browserType.getConfiguration().getDriverPath();
   }
 
+  public void updatePortalSetting(String portalSettingName, String portalSettingValue) {
+    try {
+      String encodeSettingName = URLEncoder.encode(portalSettingName, "UTF-8");
+      String encodeSettingValue = URLEncoder.encode(portalSettingValue, "UTF-8");
+      String updatePortalSettingLink = "portalKitTestHelper/17208192E0AF4185/updatePortalSetting.ivp?settingName=%s&settingValue=%s";
+      redirectToRelativeLink(String.format(updatePortalSettingLink, encodeSettingName, encodeSettingValue));
+    } catch (UnsupportedEncodingException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
 }
