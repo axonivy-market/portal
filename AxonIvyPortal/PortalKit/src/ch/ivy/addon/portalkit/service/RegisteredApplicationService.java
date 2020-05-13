@@ -19,6 +19,7 @@ import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IPermission;
 
 public class RegisteredApplicationService extends AbstractService<Application> {
 
@@ -163,11 +164,19 @@ public class RegisteredApplicationService extends AbstractService<Application> {
    * @param username
    * @return {@link java.util.List} of application names
    */
-  public List<IvyApplication> findActiveIvyAppsUserCanWork(String username) {
+  private List<IvyApplication> findActiveIvyAppsUserCanWork(String username) {
     IApplicationService applicationService = ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService.newInstance();
     List<String> registeredApplicationNames = findAllIvyApplications().stream().map(Application::getName).collect(Collectors.toList());
     return applicationService.findActiveAllInvolvedUser(username).stream()
         .filter(app -> CollectionUtils.isEmpty(registeredApplicationNames) || CollectionUtils.containsAny(registeredApplicationNames, app.getName()))
+        .collect(Collectors.toList());
+  }
+  
+  public List<IvyApplication> findActiveIvyAppsUserCanCreateSubstitute(String username) {
+    List<IvyApplication> activeIvyAppsUserCanWork = findActiveIvyAppsUserCanWork(username);
+    PermissionCheckerService service = new PermissionCheckerService();
+    return activeIvyAppsUserCanWork.stream()
+        .filter(app -> service.hasAtLeaseOnePermissionOnApp(app.getName(), IPermission.USER_CREATE_OWN_SUBSTITUTE, IPermission.USER_CREATE_SUBSTITUTE))
         .collect(Collectors.toList());
   }
 }
