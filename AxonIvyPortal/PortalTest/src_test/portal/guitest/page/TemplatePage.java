@@ -310,4 +310,8 @@ public abstract class TemplatePage extends AbstractPage {
       }
     });
   } 
+  
+  public String getLoggedInUserFormat() {
+    return getText(By.id("user-settings-menu"));
+  }
 }
