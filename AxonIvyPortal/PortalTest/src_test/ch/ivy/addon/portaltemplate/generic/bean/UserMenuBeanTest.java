@@ -17,6 +17,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 import ch.ivy.addon.portal.generic.bean.UserMenuBean;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 @RunWith(PowerMockRunner.class)
@@ -26,6 +27,7 @@ public class UserMenuBeanTest {
   private GlobalSettingService globalSettingService;
   final String SHOW_ENVIROMENT_INFO = "SHOW_ENVIRONMENT_INFO";
   final String HIDE_LOGOUT_BUTTON = "HIDE_LOGOUT_BUTTON";
+  final String LOGGED_IN_USER_FORMAT = "LOGGED_IN_USER_FORMAT";
   String testUsername = "test";
   
 
@@ -35,13 +37,17 @@ public class UserMenuBeanTest {
     
     mockStatic(Ivy.class);
     IWorkflowSession session = mock(IWorkflowSession.class);
+    IUser user = mock(IUser.class);
     when(Ivy.session()).thenReturn(session);
     when(session.getSessionUserName()).thenReturn(testUsername);
+    when(session.getSessionUser()).thenReturn(user);
+    when(user.getFullName()).thenReturn(testUsername);
     
     globalSettingService = mock(GlobalSettingService.class);
     whenNew(GlobalSettingService.class).withNoArguments().thenReturn(globalSettingService);
     when(globalSettingService.findGlobalSettingValue(SHOW_ENVIROMENT_INFO)).thenReturn("true");
     when(globalSettingService.findGlobalSettingValue(HIDE_LOGOUT_BUTTON)).thenReturn("true");
+    when(globalSettingService.findGlobalSettingValue(LOGGED_IN_USER_FORMAT)).thenReturn("USERNAME");
     
     this.userMenuBean.init();
   }
