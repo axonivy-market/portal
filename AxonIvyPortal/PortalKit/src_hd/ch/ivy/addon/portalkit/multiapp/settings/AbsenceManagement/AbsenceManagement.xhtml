@@ -86,7 +86,7 @@
     </div>
 
     <p:tabView id="substitue-tab" value="#{data.applications}" var="app" styleClass="substitue-tab" activeIndex="#{data.tabIndex}">
-    <p:ajax event="tabChange" listener="#{logic.onTabChange}"/>
+    <p:ajax event="tabChange" listener="#{absenceManagementBean.onTabChange}"/>
     <p:tab title="#{app.displayName}" >
     
       <!-- MY DEPUTY -->
