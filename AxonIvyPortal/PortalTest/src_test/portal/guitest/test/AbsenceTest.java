@@ -79,11 +79,11 @@ public class AbsenceTest extends BaseTest {
   public void testDeputyAsAdminUser() {
     login(TestAccount.ADMIN_USER);
     AbsencePage absencePage = openAbsencePage();
-    absencePage.setSubstitutedByAdmin("Portal Demo User");
+    absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     absencePage.setDeputy("caseOwnerUser");
     absencePage.saveSubstitute();
     absencePage.openAbsencePage();
-    absencePage.setSubstitutedByAdmin("Portal Demo User");
+    absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     assertEquals("caseOwnerUser", absencePage.getMyDeputy());
   }
 
@@ -93,7 +93,7 @@ public class AbsenceTest extends BaseTest {
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(TOMORROW, TOMORROW, "For Family", absencePage);
 
-    absencePage.setDeputy("Demo");
+    absencePage.setDeputy(TestAccount.DEMO_USER.getFullName());
     absencePage.saveSubstitute();
     login(TestAccount.DEMO_USER);
     absencePage.openAbsencePage();
