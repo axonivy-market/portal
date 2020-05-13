@@ -58,8 +58,6 @@ As0 @UdMethod f3 '' #zField
 As0 @PushWFArc f8 '' #zField
 As0 @UdMethod f12 '' #zField
 As0 @PushWFArc f18 '' #zField
-As0 @PushWFArc f2 '' #zField
-As0 @UdEvent f1 '' #zField
 As0 @GridStep f19 '' #zField
 As0 @PushWFArc f13 '' #zField
 As0 @PushWFArc f20 '' #zField
@@ -69,6 +67,13 @@ As0 @PushWFArc f36 '' #zField
 As0 @PushWFArc f39 '' #zField
 As0 @PushWFArc f27 '' #zField
 As0 @PushWFArc f35 '' #zField
+As0 @UdMethod f40 '' #zField
+As0 @PushWFArc f1 '' #zField
+As0 @UdMethod f2 '' #zField
+As0 @UdProcessEnd f41 '' #zField
+As0 @GridStep f43 '' #zField
+As0 @PushWFArc f44 '' #zField
+As0 @PushWFArc f42 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f67 actionTable 'out=in;
 ' #txt
@@ -128,9 +133,9 @@ As0 f81 1171 275 26 26 0 12 #rect
 As0 f81 @|UdProcessEndIcon #fIcon
 As0 f83 actionTable 'out=in;
 ' #txt
-As0 f83 actionCode 'import org.primefaces.PrimeFaces;
+As0 f83 actionCode 'import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
 
-PrimeFaces.current().executeScript("removeHighlightedMenuItem(); PF(''task-losing-confirmation-dialog'').show()");' #txt
+PrimeFacesUtils.executeScript("removeHighlightedMenuItem(); PF(''task-losing-confirmation-dialog'').show()");' #txt
 As0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -464,31 +469,6 @@ As0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f12 851 19 26 26 5 14 #rect
 As0 f12 @|UdMethodIcon #fIcon
 As0 f18 864 45 864 68 #arcP
-As0 f2 expr out #txt
-As0 f2 1184 45 1040 192 #arcP
-As0 f2 1 1184 192 #addKink
-As0 f2 1 0.16104556874251277 0 0 #arcLabel
-As0 f1 guid 15FB83C392F10C9D #txt
-As0 f1 actionTable 'out=in;
-' #txt
-As0 f1 actionCode 'import ch.ivyteam.ivy.workflow.ITask;
-import org.primefaces.component.menuitem.UIMenuItem;
-import ch.addon.portal.generic.menu.SubMenuItem;
-
-UIMenuItem menu = event.getSource() as UIMenuItem;
-in.selectedSubMenuItem = menu.getAttributes().get("selectedSubMenuItem") as SubMenuItem;
-in.workingTask = menu.getAttributes().get("task") as ITask;' #txt
-As0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>onClickSubMenuItem</name>
-        <nameStyle>18,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f1 1171 19 26 26 16 -3 #rect
-As0 f1 @|UdEventIcon #fIcon
 As0 f19 actionTable 'out=in;
 ' #txt
 As0 f19 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -561,6 +541,54 @@ As0 f35 expr in #txt
 As0 f35 877 387 1184 512 #arcP
 As0 f35 1 1184 448 #addKink
 As0 f35 0 0.6300696351252247 0 0 #arcLabel
+As0 f40 guid 1720D07F42B8F9E8 #txt
+As0 f40 method onClickSubMenuItem(ch.addon.portal.generic.menu.SubMenuItem,ch.ivyteam.ivy.workflow.ITask) #txt
+As0 f40 inParameterDecl '<ch.addon.portal.generic.menu.SubMenuItem selectedSubMenuItem,ch.ivyteam.ivy.workflow.ITask workingTask> param;' #txt
+As0 f40 inParameterMapAction 'out.selectedSubMenuItem=param.selectedSubMenuItem;
+out.workingTask=param.workingTask;
+' #txt
+As0 f40 outParameterDecl '<> result;' #txt
+As0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>onClickSubMenuItem(SubMenuItem,ITask)</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f40 1187 19 26 26 -25 15 #rect
+As0 f40 @|UdMethodIcon #fIcon
+As0 f1 1200 45 1040 192 #arcP
+As0 f1 1 1200 192 #addKink
+As0 f1 1 0.0471542345010647 0 0 #arcLabel
+As0 f2 guid 1720D1735A9827DD #txt
+As0 f2 method continueWorkingOnTask() #txt
+As0 f2 inParameterDecl '<> param;' #txt
+As0 f2 outParameterDecl '<> result;' #txt
+As0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>continueWorkingOnTask()</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f2 1523 19 26 26 -25 15 #rect
+As0 f2 @|UdMethodIcon #fIcon
+As0 f41 1523 211 26 26 0 12 #rect
+As0 f41 @|UdProcessEndIcon #fIcon
+As0 f43 actionTable 'out=in;
+' #txt
+As0 f43 actionCode 'in.destinationBreadcrumbPage = null;' #txt
+As0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Reset selection</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f43 1480 106 112 44 -43 -8 #rect
+As0 f43 @|StepIcon #fIcon
+As0 f44 1536 45 1536 106 #arcP
+As0 f42 1536 150 1536 211 #arcP
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -596,8 +624,6 @@ As0 f125 head f98 in #connect
 As0 f83 mainOut f114 tail #connect
 As0 f114 head f81 mainIn #connect
 As0 f110 head f67 mainIn #connect
-As0 f1 mainOut f2 tail #connect
-As0 f2 head f76 in #connect
 As0 f98 out f16 tail #connect
 As0 f16 head f70 in #connect
 As0 f70 out f11 tail #connect
@@ -647,3 +673,9 @@ As0 f70 out f27 tail #connect
 As0 f27 head f17 mainIn #connect
 As0 f70 out f35 tail #connect
 As0 f35 head f31 mainIn #connect
+As0 f40 mainOut f1 tail #connect
+As0 f1 head f76 in #connect
+As0 f2 mainOut f44 tail #connect
+As0 f44 head f43 mainIn #connect
+As0 f43 mainOut f42 tail #connect
+As0 f42 head f41 mainIn #connect
