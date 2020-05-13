@@ -28,8 +28,9 @@ public enum GlobalVariable {
   DISABLE_CASE_COUNT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "disableCaseCount"),
   DISABLE_TASK_COUNT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "disableTaskCount"),
   EMBED_IN_FRAME(GlobalVariableType.SELECTION, Option.TRUE.toString(), "embedInFrame"),
-  LOGGED_IN_USER_FORMAT(GlobalVariableType.SELECTION, Option.DISPLAY_NAME.toString(), "loggedInUserFormat", getLoggedInUserFormatOptions());
-
+  LOGGED_IN_USER_FORMAT(GlobalVariableType.SELECTION, Option.DISPLAY_NAME.toString(), "loggedInUserFormat", getLoggedInUserFormatOptions()),
+  HIDE_TASK_DOCUMENT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideTaskDocument"),
+  HIDE_CASE_DOCUMENT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseDocument");
   private GlobalVariableType type;
   private String defaultValue;
   private String noteCMS;
