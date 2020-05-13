@@ -89,8 +89,7 @@ Us0 f9 @|UdProcessEndIcon #fIcon
 Us0 f11 guid 1708567B27C2B686 #txt
 Us0 f11 actionTable 'out=in;
 ' #txt
-Us0 f11 actionCode 'import org.primefaces.PrimeFaces;
-import javax.faces.application.FacesMessage;
+Us0 f11 actionCode 'import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 FacesContext.getCurrentInstance().addMessage("form:item-select-event-component:item-select-event-for-user-selection", new FacesMessage(FacesMessage.SEVERITY_INFO, "You selected " + in.selectedUserForInsertChildren.getDisplayName(), null));' #txt
