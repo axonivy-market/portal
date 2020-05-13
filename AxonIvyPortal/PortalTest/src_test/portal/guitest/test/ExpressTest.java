@@ -86,12 +86,14 @@ public class ExpressTest extends BaseTest{
   private void executeExpressProcessWhenMultiApproval() {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
+    assertEquals(0, new TaskWidgetPage().countTasks());
     login(TestAccount.ADMIN_USER);
     executeUserTask();
     assertEquals(0, new TaskWidgetPage().countTasks());
     login(TestAccount.DEMO_USER);
     executeApproval("Approved at first level");
     executeApproval("Approved at second level");
+    login(TestAccount.DEMO_USER);
     assertEquals(0, new TaskWidgetPage().countTasks());
     login(TestAccount.ADMIN_USER);
     executeApproval("Approved at second level");
@@ -127,6 +129,7 @@ public class ExpressTest extends BaseTest{
   
   private void executeApproval(String comment) {
     taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.filterTasksBy("Task");
     taskWidgetPage.startTask(0);
     ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
     approvalPage1.comment(comment);
