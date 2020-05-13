@@ -49,7 +49,7 @@ public class UserMenuBeanTest {
   @Test
   @PrepareForTest({ Ivy.class, UserMenuBean.class })
   public void testGetUserName() {
-    assertEquals(userMenuBean.getUserName(), testUsername);
+    assertEquals(userMenuBean.getLoggedInUser(), testUsername);
   }
 
   @Test
