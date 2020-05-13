@@ -41,7 +41,6 @@ public class TaskWidgetCustomizationTest extends BaseTest {
   public void testShowHideCustomColumnsInTaskListPage() {
     MainMenuPage mainMenuPage = new MainMenuPage();
     TaskWidgetPage taskWidgetPage = mainMenuPage.selectTaskMenu();
-    taskWidgetPage.waitAjaxIndicatorDisappear();
     assertFalse(taskWidgetPage.isTaskListColumnExist(STATE_COLUMN_NAME));
     assertTrue(taskWidgetPage.isTaskListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
     assertTrue("Florian".equals(taskWidgetPage.getTaskListCustomCellValue(0, CUSTOMER_NAME_COLUMN_ID)));
@@ -51,7 +50,6 @@ public class TaskWidgetCustomizationTest extends BaseTest {
   public void testSortCustomColumnsInTaskListPage() {
     MainMenuPage mainMenuPage = new MainMenuPage();
     TaskWidgetPage taskWidgetPage = mainMenuPage.selectTaskMenu();
-    taskWidgetPage.waitAjaxIndicatorDisappear();
     taskWidgetPage.filterTasksInExpendedModeBy("Order");
     taskWidgetPage.sortTaskListByColumn(CUSTOMER_NAME_COLUMN_HEADER);
     taskWidgetPage.waitAjaxIndicatorDisappear();

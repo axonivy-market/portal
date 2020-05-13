@@ -35,6 +35,6 @@ public class UserTaskWithMailFormPage extends TaskTemplatePage {
   }
   public void finish() {
     click(By.id("task-form:ok-btn"));
-    waitAjaxIndicatorDisappear();
+    ensureNoBackgroundRequest();
   }
 }
