@@ -4,7 +4,8 @@ import org.openqa.selenium.By;
 
 public class ExpressApprovalPage extends TaskTemplatePage {
   public void approve() {
-    clickByCssSelector("button[id$='approve-btn']");
+    click(By.cssSelector("button[id$='approve-btn']"));
+   	new HomePage().isDisplayed();
   }
 
   public void reject() {

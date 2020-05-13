@@ -41,6 +41,7 @@ public class MainMenuPage extends TemplatePage {
 
   public TaskWidgetPage selectTaskMenu() {
     clickByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu");
+    ensureNoBackgroundRequest();
     return new TaskWidgetPage();
   }
 
