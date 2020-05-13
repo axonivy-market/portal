@@ -13,7 +13,9 @@ import portal.guitest.page.HomePage;
 
 public class AdminSettingsTest extends BaseTest {
 
-	@Test
+	private static final String SHOW_ENVIRONMENT_INFO_SETTING = "SHOW_ENVIRONMENT_INFO";
+
+  @Test
 	public void whenLoginAsAdminThenAdminMenuItemDisplayed() {
 		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
 		login(TestAccount.ADMIN_USER);
@@ -33,15 +35,15 @@ public class AdminSettingsTest extends BaseTest {
 	@Test
 	public void testDefaultEnvironmentInfo() {
 		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+		updatePortalSetting(SHOW_ENVIRONMENT_INFO_SETTING, "true");
 		login(TestAccount.ADMIN_USER);
 		HomePage homePage = new HomePage();
-		AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
-		adminSettingsPage.setEnviromentInfo();
 		assertTrue(homePage.getEnviromentInfo().contains("Host: " + SystemProperties.getServerName() + " Env:Default"));
 	}
 	
 	@Test
 	public void testCustomizedEnvironmentInfo() {
+	  updatePortalSetting(SHOW_ENVIRONMENT_INFO_SETTING, "true");
 		login(TestAccount.ADMIN_USER);
 		HomePage homePage = new HomePage();
 		AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();

@@ -411,14 +411,8 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 in.isAddMode = false;
 in.dialogTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/editSetting");
 GlobalVariable globalVariable = GlobalVariable.valueOf(in.selectedSetting.key);
-if (GlobalVariable.getBooleanType().contains(globalVariable)) {
-	in.settingInputType = 2; //dropdown
-	in.dropDownValues = Arrays.asList("false", "true");
-} else if (GlobalVariable.getNumberType().contains(globalVariable)) {
-	in.settingInputType = 3; //number
-} else {
-	in.settingInputType = 1; //text
-}' #txt
+in.settingInputType = globalVariable.getType();
+in.dropDownValues = globalVariable.getOptions();' #txt
 As0 f72 security system #txt
 As0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
