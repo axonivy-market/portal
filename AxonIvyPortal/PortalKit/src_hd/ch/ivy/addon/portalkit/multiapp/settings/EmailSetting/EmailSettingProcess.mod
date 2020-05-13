@@ -106,7 +106,6 @@ Es0 f24 77 160 128 160 #arcP
 Es0 f36 actionTable 'out=in;
 ' #txt
 Es0 f36 actionCode 'import ch.ivy.addon.portalkit.bean.EmailSettingBean;
-import org.primefaces.PrimeFaces;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting;
 import org.apache.commons.collections4.CollectionUtils;
 import javax.faces.context.FacesContext;

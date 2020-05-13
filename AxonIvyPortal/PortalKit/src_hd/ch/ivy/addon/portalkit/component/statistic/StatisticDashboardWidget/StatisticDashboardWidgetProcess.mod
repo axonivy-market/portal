@@ -783,8 +783,7 @@ Ss0 f75 expr in #txt
 Ss0 f75 800 288 832 288 #arcP
 Ss0 f5 actionTable 'out=in;
 ' #txt
-Ss0 f5 actionCode 'import org.primefaces.PrimeFaces;
-import org.apache.commons.lang3.StringUtils;
+Ss0 f5 actionCode 'import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.bean.StatisticDashboardBean;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
@@ -893,12 +892,7 @@ Ss0 f77 0 0.05614676741636741 0 0 #arcLabel
 Ss0 f69 725 64 784 64 #arcP
 Ss0 f72 actionTable 'out=in;
 ' #txt
-Ss0 f72 actionCode 'import org.primefaces.PrimeFaces;
-import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.jsf.ManagedBeans;
-import ch.ivy.addon.portalkit.bean.StatisticDashboardBean;
-import ch.ivy.addon.portalkit.statistics.StatisticChart;
-import ch.ivy.addon.portalkit.service.StatisticService;
+Ss0 f72 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
 
 /* isReloadChartContent is a flag to reload the ChartJS canvas on UI 
 	 If isFinishLoadCharts is true, we will reload the ChartJS canvas to draw new canva based on new data
