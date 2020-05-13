@@ -1400,10 +1400,10 @@ As0 f97 expr out #txt
 As0 f97 1400 1638 1400 1691 #arcP
 As0 f55 actionTable 'out=in;
 ' #txt
-As0 f55 actionCode 'import ch.ivy.addon.portalkit.util.AdminSettingUtils;
+As0 f55 actionCode 'import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
 
 if (in.settingTabOpened) {
-	AdminSettingUtils.clearFiltersForSettingTable();
+	PrimeFacesUtils.executeScript("PF(''settingTable'').clearFilters()");
 }' #txt
 As0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1694,19 +1694,15 @@ As0 f89 @|UdProcessEndIcon #fIcon
 As0 f90 expr out #txt
 As0 f90 600 1957 600 2099 #arcP
 As0 f2 guid 16F55D573C483035 #txt
-As0 f2 method onTabChange(org.primefaces.event.TabChangeEvent) #txt
-As0 f2 inParameterDecl '<org.primefaces.event.TabChangeEvent tabEvent> param;' #txt
-As0 f2 inActionCode 'import ch.ivy.addon.portalkit.util.AdminSettingUtils;
-import ch.ivy.addon.portalkit.service.AnnouncementService;
-import org.primefaces.component.tabview.TabView;
-import org.primefaces.event.TabChangeEvent;
+As0 f2 method onTabChange(Integer) #txt
+As0 f2 inParameterDecl '<Integer tabIndexActive> param;' #txt
+As0 f2 inParameterMapAction 'out.tabIndexActive=param.tabIndexActive;
+' #txt
+As0 f2 inActionCode 'import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
 
-TabChangeEvent tabChangeEvent = param.tabEvent;
-TabView tabView = tabChangeEvent.getComponent() as TabView;
-out.tabIndexActive = tabView.getChildren().indexOf(tabChangeEvent.getTab());
 if (out.tabIndexActive == 1) {
 	out.settingTabOpened = true;
-	AdminSettingUtils.filterForSettingTable();
+	PrimeFacesUtils.executeScript("PF(''settingTable'').filter()");
 }
 
 ' #txt
@@ -1714,7 +1710,7 @@ As0 f2 outParameterDecl '<> result;' #txt
 As0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>onTabChange(TabChangeEvent)</name>
+        <name>onTabChange(Integer)</name>
     </language>
 </elementInfo>
 ' #txt
