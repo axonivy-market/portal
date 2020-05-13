@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.persistence.domain;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -51,7 +53,7 @@ public class GlobalSetting extends BusinessEntity {
   public String getDisplayValue() {
     GlobalVariable variable = GlobalVariable.valueOf(key);
     if (variable.getType() == GlobalVariableType.SELECTION) {
-      return GlobalVariable.Option.valueOf(value).translate();
+      return GlobalVariable.Option.valueOf(StringUtils.upperCase(value)).translate();
     }
     return value;
   }
