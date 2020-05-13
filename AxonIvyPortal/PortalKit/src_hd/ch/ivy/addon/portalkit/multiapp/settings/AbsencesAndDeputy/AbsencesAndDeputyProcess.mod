@@ -151,7 +151,6 @@ As0 @PushWFArc f141 '' #zField
 As0 @PushWFArc f27 '' #zField
 As0 @RichDialogMethodStart f16 '' #zField
 As0 @PushWFArc f17 '' #zField
-As0 @RichDialogProcessStart f18 '' #zField
 >Proto As0 As0 AbsencesAndDeputyProcess #zField
 As0 f5 guid 14BD99040C72C9E8 #txt
 As0 f5 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
@@ -703,6 +702,7 @@ import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
 
 in.ivyUsers = UserUtils.sortApplicationUsers(in.ivyUsers);
 in.substituteRoot = AbsenceAndSubstituteUtils.buildSustitute(in.substitutes, in.ivyUsers);' #txt
+As0 f97 security system #txt
 As0 f97 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 As0 f97 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1609,23 +1609,6 @@ As0 f17 expr out #txt
 As0 f17 1472 77 1602 312 #arcP
 As0 f17 1 1472 312 #addKink
 As0 f17 1 0.3871797712799135 0 0 #arcLabel
-As0 f18 guid 15F8F95BC493FC67 #txt
-As0 f18 type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
-As0 f18 actionDecl 'ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData out;
-' #txt
-As0 f18 actionTable 'out=in;
-' #txt
-As0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>openAbsence</name>
-        <nameStyle>11,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f18 1379 51 26 26 -38 15 #rect
-As0 f18 @|RichDialogProcessStartIcon #fIcon
 >Proto As0 .type ch.ivy.addon.portalkit.multiapp.settings.AbsencesAndDeputy.AbsencesAndDeputyData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
