@@ -115,7 +115,6 @@ As0 @PushWFArc f67 '' #zField
 As0 @PushWFArc f74 '' #zField
 As0 @UdMethod f53 '' #zField
 As0 @UdProcessEnd f175 '' #zField
-As0 @UdMethod f176 '' #zField
 As0 @PushWFArc f164 '' #zField
 As0 @PushWFArc f22 '' #zField
 As0 @Alternative f26 '' #zField
@@ -153,7 +152,6 @@ As0 @PushWFArc f99 '' #zField
 As0 @PushWFArc f106 '' #zField
 As0 @PushWFArc f107 '' #zField
 As0 @GridStep f32 '' #zField
-As0 @PushWFArc f108 '' #zField
 As0 @PushWFArc f110 '' #zField
 As0 @PushWFArc f118 '' #zField
 As0 @Alternative f3 '' #zField
@@ -169,6 +167,8 @@ As0 @GridStep f141 '' #zField
 As0 @PushWFArc f145 '' #zField
 As0 @PushWFArc f42 '' #zField
 As0 @PushWFArc f151 '' #zField
+As0 @PushWFArc f108 '' #zField
+As0 @UdMethod f176 '' #zField
 >Proto As0 As0 AbsenceManagementProcess #zField
 As0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1182,21 +1182,6 @@ As0 f53 99 1171 26 26 -82 22 #rect
 As0 f53 @|UdMethodIcon #fIcon
 As0 f175 499 1363 26 26 0 12 #rect
 As0 f175 @|UdProcessEndIcon #fIcon
-As0 f176 guid 1702ED96A943696D #txt
-As0 f176 method onTabChange(org.primefaces.event.TabChangeEvent) #txt
-As0 f176 inParameterDecl '<org.primefaces.event.TabChangeEvent tabEvent> param;' #txt
-As0 f176 inParameterMapAction 'out.tabChangeEvent=param.tabEvent;
-' #txt
-As0 f176 outParameterDecl '<> result;' #txt
-As0 f176 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>onTabChange(TabChangeEvent)</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f176 99 1363 26 26 -63 12 #rect
-As0 f176 @|UdMethodIcon #fIcon
 As0 f164 expr in #txt
 As0 f164 outCond in.errors.isEmpty() #txt
 As0 f164 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1467,17 +1452,10 @@ As0 f107 200 1864 280 1930 #arcP
 As0 f32 actionTable 'out=in;
 ' #txt
 As0 f32 actionCode 'import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
-import org.primefaces.component.tabview.TabView;
 
-TabView tabView = in.tabChangeEvent.getComponent() as TabView;
-in.tabIndex = tabView.index;
-String name = out.applications.get(tabView.index).name;
+String name = out.applications.get(in.tabIndex).name;
 in.application = ServiceUtilities.findApp(name);
-in.currentAppName = in.application.getName();
-
-
-
-' #txt
+in.currentAppName = in.application.getName();' #txt
 As0 f32 security system #txt
 As0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1488,7 +1466,6 @@ As0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f32 248 1354 144 44 -65 -8 #rect
 As0 f32 @|StepIcon #fIcon
-As0 f108 125 1376 248 1376 #arcP
 As0 f110 392 1376 499 1376 #arcP
 As0 f118 1248 1768 1347 1768 #arcP
 As0 f118 0 0.48063036947240817 0 -11 #arcLabel
@@ -1600,6 +1577,22 @@ As0 f42 1072 1464 1139 1464 #arcP
 As0 f42 0 0.4431818181818182 0 -9 #arcLabel
 As0 f151 expr out #txt
 As0 f151 85 320 168 320 #arcP
+As0 f108 125 1376 248 1376 #arcP
+As0 f176 guid 1702ED96A943696D #txt
+As0 f176 method onTabChange(Number) #txt
+As0 f176 inParameterDecl '<Number tabIndex> param;' #txt
+As0 f176 inParameterMapAction 'out.tabIndex=param.tabIndex;
+' #txt
+As0 f176 outParameterDecl '<> result;' #txt
+As0 f176 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>onTabChange(Number)</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f176 99 1363 26 26 -63 12 #rect
+As0 f176 @|UdMethodIcon #fIcon
 >Proto As0 .type ch.ivy.addon.portalkit.multiapp.settings.AbsenceManagement.AbsenceManagementData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
