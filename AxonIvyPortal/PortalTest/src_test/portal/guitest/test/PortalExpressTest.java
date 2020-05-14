@@ -12,7 +12,6 @@ import org.junit.Test;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.DefaultExpresTaskPage;
 import portal.guitest.page.ExpressApprovalPage;
@@ -383,8 +382,6 @@ public class PortalExpressTest extends BaseTest {
 		expressTaskPage.finish();
 		executeApproval("Approved at first level");
 		executeApproval("Approved at second level");
-		login(TestAccount.DEMO_USER);
-		refreshPageAndCheckNoTaskLeft();
 		login(TestAccount.ADMIN_USER);
 		executeApproval("Approved at second level");
 		login(TestAccount.DEMO_USER);
@@ -480,10 +477,4 @@ public class PortalExpressTest extends BaseTest {
 		processWidget.openExpressPage();
 	}
 	
-	private void refreshPageAndCheckNoTaskLeft() {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    Sleeper.sleep(2000);
-    taskWidgetPage.refresh();
-    assertEquals(0, taskWidgetPage.countTasks());
-  }
 }
