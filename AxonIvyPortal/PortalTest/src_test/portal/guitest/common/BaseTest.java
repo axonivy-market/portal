@@ -205,4 +205,15 @@ public class BaseTest {
     return browserType.getConfiguration().getDriverPath();
   }
 
+  public void updatePortalSetting(String portalSettingName, String portalSettingValue) {
+    try {
+      String encodeSettingName = URLEncoder.encode(portalSettingName, "UTF-8");
+      String encodeSettingValue = URLEncoder.encode(portalSettingValue, "UTF-8");
+      String updatePortalSettingLink = "portalKitTestHelper/17208192E0AF4185/updatePortalSetting.ivp?settingName=%s&settingValue=%s";
+      redirectToRelativeLink(String.format(updatePortalSettingLink, encodeSettingName, encodeSettingValue));
+    } catch (UnsupportedEncodingException e) {
+      // TODO Auto-generated catch block
+      e.printStackTrace();
+    }
+  }
 }
