@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.ExpressApprovalPage;
 import portal.guitest.page.ExpressEndPage;
@@ -86,15 +87,15 @@ public class ExpressTest extends BaseTest{
   private void executeExpressProcessWhenMultiApproval() {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
-    assertEquals(0, new TaskWidgetPage().countTasks());
+    refreshPageAndCheckNoTaskLeft();
     login(TestAccount.ADMIN_USER);
     executeUserTask();
-    assertEquals(0, new TaskWidgetPage().countTasks());
+    refreshPageAndCheckNoTaskLeft();
     login(TestAccount.DEMO_USER);
     executeApproval("Approved at first level");
     executeApproval("Approved at second level");
     login(TestAccount.DEMO_USER);
-    assertEquals(0, new TaskWidgetPage().countTasks());
+    refreshPageAndCheckNoTaskLeft();
     login(TestAccount.ADMIN_USER);
     executeApproval("Approved at second level");
     login(TestAccount.DEMO_USER);
@@ -107,6 +108,15 @@ public class ExpressTest extends BaseTest{
         + TestAccount.DEMO_USER.getFullName() + ",Approved at second level,Yes,"
         + TestAccount.ADMIN_USER.getFullName() + ",Approved at second level,Yes", approvalResult);
     new ExpressEndPage().finish();
+  }
+
+  private void refreshPageAndCheckNoTaskLeft() {
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    //Sometimes our test are too quick, that the task still be handle by ivy and still display in homepage,
+    //wait a bit then refresh a page to check the task is disappear
+    Sleeper.sleep(2000);
+    taskWidgetPage.refresh();
+    assertEquals(0, taskWidgetPage.countTasks());
   }
 
   private String executeReview() {

@@ -384,7 +384,7 @@ public class PortalExpressTest extends BaseTest {
 		executeApproval("Approved at first level");
 		executeApproval("Approved at second level");
 		login(TestAccount.DEMO_USER);
-		assertEquals(0, new TaskWidgetPage().countTasks());
+		refreshPageAndCheckNoTaskLeft();
 		login(TestAccount.ADMIN_USER);
 		executeApproval("Approved at second level");
 		login(TestAccount.DEMO_USER);
@@ -420,7 +420,6 @@ public class PortalExpressTest extends BaseTest {
 
 	protected String executeReview(String taskName) {
 		taskWidgetPage = new TaskWidgetPage();
-		Sleeper.sleep(2000);
 		taskWidgetPage.filterTasksBy(taskName);
 		taskWidgetPage.startTask(0);
 		ExpressReviewPage reviewPage = new ExpressReviewPage();
@@ -440,7 +439,6 @@ public class PortalExpressTest extends BaseTest {
 
 	protected void executeUserTask(String taskName) {
 		taskWidgetPage = new TaskWidgetPage();
-		Sleeper.sleep(2000);
 		taskWidgetPage.filterTasksBy(taskName);
 		taskWidgetPage.startTask(0);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
@@ -462,8 +460,6 @@ public class PortalExpressTest extends BaseTest {
 		ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
 		approvalPage1.comment(comment);
 		approvalPage1.approve();
-		HomePage home = new HomePage();
-		home.waitForPageLoaded();
 	}
 
 	protected void rejectApproval(String comment) {
@@ -483,4 +479,11 @@ public class PortalExpressTest extends BaseTest {
 		processWidget.expand();
 		processWidget.openExpressPage();
 	}
+	
+	private void refreshPageAndCheckNoTaskLeft() {
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    Sleeper.sleep(2000);
+    taskWidgetPage.refresh();
+    assertEquals(0, taskWidgetPage.countTasks());
+  }
 }
