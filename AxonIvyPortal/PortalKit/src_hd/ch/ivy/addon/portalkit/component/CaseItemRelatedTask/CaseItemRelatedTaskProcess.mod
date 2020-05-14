@@ -519,8 +519,10 @@ Cs0 f40 632 592 696 592 #arcP
 Cs0 f34 actionTable 'out=in;
 ' #txt
 Cs0 f34 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 
-ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");' #txt
+ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");
+ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);' #txt
 Cs0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
