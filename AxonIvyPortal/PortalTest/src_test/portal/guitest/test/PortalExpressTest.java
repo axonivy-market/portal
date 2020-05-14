@@ -83,7 +83,6 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.createUploadComponent("Upload");
 		formDefinition.moveAllElementToDragAndDrogPanel();
 		formDefinition.executeWorkflow();
-		Sleeper.sleep(2000);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		Assert.assertTrue(expressTaskPage.isDocumentTableVisible());
 		Assert.assertTrue(expressTaskPage.isDocumentUploadButtonVisible());
@@ -159,7 +158,6 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.createTextInputField("Input Text", INPUT_TEXT_TYPE_INDEX, false);
 		formDefinition.moveAllElementToDragAndDrogPanel();
 		formDefinition.executeWorkflow();
-		Sleeper.sleep(2000);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
 		HomePage home = new HomePage();
@@ -385,6 +383,7 @@ public class PortalExpressTest extends BaseTest {
 		expressTaskPage.finish();
 		executeApproval("Approved at first level");
 		executeApproval("Approved at second level");
+		login(TestAccount.DEMO_USER);
 		assertEquals(0, new TaskWidgetPage().countTasks());
 		login(TestAccount.ADMIN_USER);
 		executeApproval("Approved at second level");
@@ -458,6 +457,7 @@ public class PortalExpressTest extends BaseTest {
 
 	protected void executeApproval(String comment) {
 		taskWidgetPage = new TaskWidgetPage();
+		taskWidgetPage.filterTasksBy("Task");
 		taskWidgetPage.startTask(0);
 		ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
 		approvalPage1.comment(comment);

@@ -313,4 +313,8 @@ public abstract class TemplatePage extends AbstractPage {
     return findElementByCssSelector(CURRENT_BREADCRUMB_SELECTOR)
         .getAttribute("innerHTML");
   }
+  
+  public String getLoggedInUserFormat() {
+    return getText(By.id("user-settings-menu"));
+  }
 }
