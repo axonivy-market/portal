@@ -1,6 +1,7 @@
 package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
@@ -153,7 +154,7 @@ public class TaskFilterTest extends BaseTest {
 		assertTrue(taskWidgetPage.isAllCategoriesUnselected());
 
 		taskWidgetPage.applyCategoryFilter();
-		assertEquals("Task category: All", taskWidgetPage.getFilterValue(taskCategoryId + "-filter"));
+		assertNotEquals("Task category: All", taskWidgetPage.getFilterValue(taskCategoryId + "-filter"));
 	}
 
 	@Test
