@@ -129,6 +129,7 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
       <ui:param name="dataModel" value="#{data.dataModel}" />
       <ui:param name="portalPage" value="#{data.portalPage}" />
       <ui:param name="isFromTaskList" value="#{data.isFromTaskList}" />
+      <ui:param name="isTaskStartedInDetails" value="#{data.isTaskStartedInDetails}" />
       <ui:define name="title">#{ivy.cms.co('/Labels/TaskItemDetail')}</ui:define>
 
       <!-- To show/hidden any sections of Task detail, you can turn true/false for below parameters -->
