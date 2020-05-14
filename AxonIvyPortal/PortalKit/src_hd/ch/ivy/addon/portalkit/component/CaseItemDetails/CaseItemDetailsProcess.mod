@@ -17,6 +17,11 @@ Cs0 @UdInit f6 '' #zField
 Cs0 @PushWFArc f0 '' #zField
 Cs0 @UdEvent f2 '' #zField
 Cs0 @PushWFArc f3 '' #zField
+Cs0 @UdMethod f5 '' #zField
+Cs0 @UdProcessEnd f7 '' #zField
+Cs0 @GridStep f9 '' #zField
+Cs0 @PushWFArc f10 '' #zField
+Cs0 @PushWFArc f8 '' #zField
 >Proto Cs0 Cs0 CaseItemDetailsProcess #zField
 Cs0 f1 211 51 26 26 0 12 #rect
 Cs0 f1 @|UdProcessEndIcon #fIcon
@@ -49,6 +54,40 @@ Cs0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f2 83 147 26 26 -14 15 #rect
 Cs0 f2 @|UdEventIcon #fIcon
 Cs0 f3 109 160 211 160 #arcP
+Cs0 f5 guid 171F36E243EDFAD7 #txt
+Cs0 f5 method getHideCaseDocumentConfiguration() #txt
+Cs0 f5 inParameterDecl '<> param;' #txt
+Cs0 f5 outParameterDecl '<> result;' #txt
+Cs0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>getHideCaseDocumentConfiguration()</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f5 83 275 26 26 -67 29 #rect
+Cs0 f5 @|UdMethodIcon #fIcon
+Cs0 f7 435 275 26 26 0 12 #rect
+Cs0 f7 @|UdProcessEndIcon #fIcon
+Cs0 f9 actionTable 'out=in;
+' #txt
+Cs0 f9 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
+
+// Get the latest configuration of HIDE_CASE_DOCUMENT in GlobalSettingService
+// If null or empty, will return false
+in.isHideCaseDocument = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.HIDE_CASE_DOCUMENT.toString());' #txt
+Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find HIDE_CASE_DOCUMENT configuration</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f9 144 266 256 44 -122 -8 #rect
+Cs0 f9 @|StepIcon #fIcon
+Cs0 f10 109 288 144 288 #arcP
+Cs0 f8 400 288 435 288 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemDetails.CaseItemDetailsData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -57,3 +96,7 @@ Cs0 f6 mainOut f0 tail #connect
 Cs0 f0 head f1 mainIn #connect
 Cs0 f2 mainOut f3 tail #connect
 Cs0 f3 head f4 mainIn #connect
+Cs0 f5 mainOut f10 tail #connect
+Cs0 f10 head f9 mainIn #connect
+Cs0 f9 mainOut f8 tail #connect
+Cs0 f8 head f7 mainIn #connect
