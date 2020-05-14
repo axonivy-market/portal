@@ -15,6 +15,4 @@ public interface ITaskService {
   IvyTaskResultDTO analyzePriorityStatistic(TaskSearchCriteria criteria);
   
   IvyTaskResultDTO analyzeExpiryStatistic(TaskSearchCriteria criteria);
-  
-  IvyTaskResultDTO analyzeElapsedTimeOfTasks(TaskSearchCriteria criteria);
 }
