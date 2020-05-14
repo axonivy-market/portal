@@ -6,3 +6,5 @@ isShowBackButton Boolean #field
 isShowBackButton PERSISTENT #fieldModifier
 isFromDoneTask Boolean #field
 isFromDoneTask PERSISTENT #fieldModifier
+isTaskStartedInDetails Boolean #field
+isTaskStartedInDetails PERSISTENT #fieldModifier

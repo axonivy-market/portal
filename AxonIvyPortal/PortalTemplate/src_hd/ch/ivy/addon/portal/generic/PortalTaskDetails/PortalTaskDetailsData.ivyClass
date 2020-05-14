@@ -9,3 +9,5 @@ portalPage PERSISTENT #fieldModifier
 isFromTaskList Boolean #field
 isFromTaskList 'true: opened from TASK_LIST or SEARCH_RESULTS; false: back from Task Start page' #fieldComment
 isFromTaskList PERSISTENT #fieldModifier
+isTaskStartedInDetails Boolean #field
+isTaskStartedInDetails PERSISTENT #fieldModifier
