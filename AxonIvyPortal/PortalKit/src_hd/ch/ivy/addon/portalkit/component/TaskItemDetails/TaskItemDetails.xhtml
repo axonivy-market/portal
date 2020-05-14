@@ -92,7 +92,8 @@
         </h:panelGroup>
 
         <!-- Document box -->
-        <h:panelGroup id="task-detail-document-container" rendered="#{cc.attrs.showItemDetailDocuments}"
+        <f:event listener="#{logic.getHideTaskDocumentConfiguration}" type="preRenderComponent" />
+        <h:panelGroup id="task-detail-document-container" rendered="#{cc.attrs.showItemDetailDocuments and !data.isHideTaskDocument}"
           styleClass="card card-w-title task-detail-card task-document-component">
           <ic:ch.ivy.addon.portalkit.component.TaskItemDocuments id="task-documents" task="#{task}" componentToUpdate="#{p:component('task-detail-note-container')}" />
         </h:panelGroup>
