@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
+import portal.guitest.common.Sleeper;
 import vn.wawa.guitest.base.client.Browser;
 
 public class ExpressFormDefinitionPage extends TemplatePage {
@@ -18,7 +19,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 	private static final String RIGHT_POSITION = "rightpanel";
 	private static final String HEADER_POSITION = "header";
 	private static final String FOOTER_POSITION = "footer";
-	private static final String[] POSITIONS = {LEFT_POSITION, RIGHT_POSITION, HEADER_POSITION, FOOTER_POSITION};
+	private static final String[] POSITIONS = {LEFT_POSITION, HEADER_POSITION, FOOTER_POSITION};
 
 	@Override
 	protected String getLoadedLocator() {
@@ -122,9 +123,10 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 
 	public void moveAllElementToDragAndDrogPanel() {
 		int size = driver.findElements(By.xpath("//div[@id='form:available-form-elements_content']/table/tbody/tr")).size();
-		for (int i = size - 1; i >= 0; i--) {
-		  if(i == size - 1) {
-		    moveFormElementToPanel(i, LEFT_POSITION);
+		int startIndex = size - 1;
+		for (int i = startIndex; i >= 0; i--) {
+		  if(i == startIndex) {
+		    moveFormElementToPanel(i, RIGHT_POSITION);
 		  }
 		  else {
 		    moveFormElementToPanel(i, getRandomPosition());
@@ -145,8 +147,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		WebElement panel = findElementById(String.format("form:selected-form-elements-%s-panel", position));
 		Actions builder = new Actions(driver);
 		Action moveProcessSequence = builder.dragAndDrop(formElement, panel).build();
-//				builder.clickAndHold(formElement).moveByOffset(-1, -1).moveToElement(panel).release(formElement).build();
-		moveProcessSequence.perform();
+	  	moveProcessSequence.perform();
 		waitAjaxIndicatorDisappear();
 	}
 
@@ -185,6 +186,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 	public void executeWorkflow() {
 		click(By.id("execute-button"));
 		waitAjaxIndicatorDisappear();
+		Sleeper.sleep(2000);
 	}
 
 	public void nextStep() {
