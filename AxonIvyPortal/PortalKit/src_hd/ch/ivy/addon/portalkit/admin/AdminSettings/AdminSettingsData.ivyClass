@@ -58,3 +58,5 @@ isAnnouncementActivated Boolean #field
 isAnnouncementActivated PERSISTENT #fieldModifier
 userLazyDataModel ch.ivy.addon.portalkit.datamodel.UserLazyDataModel #field
 userLazyDataModel PERSISTENT #fieldModifier
+tempApplicationName String #field
+tempApplicationName PERSISTENT #fieldModifier

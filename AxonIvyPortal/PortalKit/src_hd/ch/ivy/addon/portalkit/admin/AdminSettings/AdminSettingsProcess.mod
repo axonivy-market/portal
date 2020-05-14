@@ -184,6 +184,8 @@ As0 @UdProcessEnd f8 '' #zField
 As0 @PushWFArc f61 '' #zField
 As0 @UdMethod f7 '' #zField
 As0 @UdProcessEnd f12 '' #zField
+As0 @GridStep f14 '' #zField
+As0 @PushWFArc f16 '' #zField
 As0 @PushWFArc f13 '' #zField
 >Proto As0 As0 AdminUIProcess #zField
 Ct0 @TextInP .type .type #zField
@@ -1728,8 +1730,8 @@ As0 f61 896 653 896 755 #arcP
 As0 f7 guid 1705C5F107D1D280 #txt
 As0 f7 method usersInApp(ch.ivy.addon.portalkit.persistence.domain.Application) #txt
 As0 f7 inParameterDecl '<ch.ivy.addon.portalkit.persistence.domain.Application application> param;' #txt
-As0 f7 inActionCode 'import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
-out.userLazyDataModel.setApplication(ServiceUtilities.findApp(param.application.name));' #txt
+As0 f7 inParameterMapAction 'out.tempApplicationName=param.application.name;
+' #txt
 As0 f7 outParameterDecl '<> result;' #txt
 As0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1738,11 +1740,26 @@ As0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f7 179 851 26 26 -23 15 #rect
+As0 f7 179 851 26 26 -47 -33 #rect
 As0 f7 @|UdMethodIcon #fIcon
-As0 f12 179 979 26 26 0 12 #rect
+As0 f12 179 1043 26 26 0 12 #rect
 As0 f12 @|UdProcessEndIcon #fIcon
-As0 f13 192 877 192 979 #arcP
+As0 f14 actionTable 'out=in;
+' #txt
+As0 f14 actionCode 'import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+in.userLazyDataModel.setApplication(ServiceUtilities.findApp(in.tempApplicationName));' #txt
+As0 f14 security system #txt
+As0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>set application for lazy data model</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f14 96 938 192 44 -92 -8 #rect
+As0 f14 @|StepIcon #fIcon
+As0 f16 192 877 192 938 #arcP
+As0 f13 192 982 192 1043 #arcP
 >Proto As0 .type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1986,7 +2003,9 @@ As0 f87 mainOut f90 tail #connect
 As0 f90 head f89 mainIn #connect
 As0 f2 mainOut f61 tail #connect
 As0 f61 head f8 mainIn #connect
-As0 f7 mainOut f13 tail #connect
+As0 f7 mainOut f16 tail #connect
+As0 f16 head f14 mainIn #connect
+As0 f14 mainOut f13 tail #connect
 As0 f13 head f12 mainIn #connect
 Ct0 g0 m f0 tail #connect
 Ct0 f0 head f51 mainIn #connect
