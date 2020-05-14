@@ -9,8 +9,6 @@ import org.openqa.selenium.WebElement;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
-import portal.guitest.common.Sleeper;
-
 
 public class TaskAnalysisWidgetPage extends TemplatePage {
 
@@ -175,7 +173,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
     waitForElementDisplayed(By.id("task-widget:filter-save-form:save-filter-set-name-input"), true);
     enterKeys(findElementById("task-widget:filter-save-form:save-filter-set-name-input"), filterSetName);
-    Sleeper.sleep(1000);
 
     WebElement filterVisibilityContainer = findElementById("task-widget:filter-save-form:save-filter-type-radio");
     if (isPersonalFilter) {
@@ -241,7 +238,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
     click(By.cssSelector("button[id$='"+filterIdName+"-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
-    Sleeper.sleep(2000);
   }
   
   public void removeUserInFilter() {
@@ -254,7 +250,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").clear();
     click(By.cssSelector("button[id$='creator-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
-    Sleeper.sleep(2000);
   }
   
   public void removeResponsible() {
@@ -267,7 +262,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     findElementByCssSelector("input[id$='responsible-filter:filter-input-form:responsible_input']").clear();
     click(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
-    Sleeper.sleep(2000);
   }
   
   public void filterByResponsible(String user, String filterName,String filterIdName) {
@@ -278,13 +272,11 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     //enterKeys(responsible, text);
     type(responsible,user);
     waitForElementDisplayedByCssSelector("span[id$='responsible-filter:filter-input-form:responsible_panel']", 5);
-    Sleeper.sleep(2000);
     waitForElementDisplayedByCssSelector("i[class*='fa-user']",5);
     click(By.cssSelector("i[class*='fa-user']"));
     waitAjaxIndicatorDisappear();
     click(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
-    Sleeper.sleep(2000);
   }
   public String getUser(String filterName) {
     waitForElementDisplayed(By.cssSelector("button[id$='" + filterName + "-filter:filter-open-form:advanced-filter-command']"),true,DEFAULT_TIMEOUT);

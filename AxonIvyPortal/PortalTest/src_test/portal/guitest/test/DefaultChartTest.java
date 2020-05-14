@@ -39,7 +39,6 @@ public class DefaultChartTest extends BaseTest {
     grantPermissionToCreateChart();
     MainMenuPage mainMenuPage = new MainMenuPage();
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    Sleeper.sleep(5000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     
     assertEquals(DEFAULT_NAME, statisticWidgetPage.getChartName(0));
