@@ -138,22 +138,25 @@
 }
 
 /********************** START MENU ITEM ***********************/
-.layout-wrapper .layout-sidebar .layout-menu>li:not(.active-menuitem)>a.current-application {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
+  .layout-wrapper .layout-sidebar,
+.layout-wrapper.layout-wrapper-active .layout-main-mask {
+  z-index: 1000; }
 
-.first-sub-item {
-  margin-top: -42px !important;
-  padding-top: 48px !important;
-  border-top-left-radius: 6px;
-  border-top-right-radius: 6px;
-}
+.layout-wrapper .layout-main .layout-topbar {
+  z-index: 997; }
 
-.last-sub-item {
-  border-bottom-right-radius: 10px !important;
-  border-bottom-left-radius: 10px !important;
-}
+.layout-wrapper .layout-main .layout-topbar {
+  box-shadow: none;
+  padding-bottom: 0;
+  height: 60px; }
+
+.layout-wrapper .layout-main .layout-content {
+  padding: 60px 20px 0 30px;
+  height: 100vh;
+  overflow-x: hidden; }
+  
+.layout-wrapper .layout-sidebar .layout-menu li {
+  width: auto; }
 
 /********************** END MENU ITEM ***********************/
 
@@ -4300,7 +4303,7 @@ body .ui-dialog.ui-widget.export-express-dialog {
 
 .express-workflow-summary-table .express-selection-column {
   width: 50px !important;
-  text-align:center"; 
+  text-align:center; 
 }
 
 .express-workflow-summary-table tbody tr td,
