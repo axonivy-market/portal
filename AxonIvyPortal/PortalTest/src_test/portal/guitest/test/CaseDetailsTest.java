@@ -40,9 +40,7 @@ public class CaseDetailsTest extends BaseTest {
   public void testDestroyCase() {
     detailsPage.onClickDestroyCase();
     detailsPage.confimDestruction();
-    detailsPage.waitAjaxIndicatorDisappear();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
-    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
+    CaseWidgetPage casePage = new CaseWidgetPage();
     assertEquals(0, casePage.getNumberOfCases());
   }
 
