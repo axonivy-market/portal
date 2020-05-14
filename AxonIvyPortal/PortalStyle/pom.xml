@@ -49,7 +49,6 @@
           <outputPath>${resources.directory.theme}</outputPath>
           <generateSourceMap>false</generateSourceMap>
           <generateSourceComments>false</generateSourceComments>
-          <outputStyle>compressed</outputStyle>
         </configuration>
       </plugin>
     </plugins>

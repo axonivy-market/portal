@@ -196,16 +196,7 @@
   right: 0;
   transform: translate(-25%, 30%);
 }
-
-.layout-wrapper .layout-sidebar .layout-menu>li>a.submenu {
-  padding-left: 25px;
-}
-
-.layout-wrapper .layout-sidebar .layout-menu li>a i {
-  height: 18px;
-  width: 18px;
-  top: 56%;
-}
+/* END APPLICATION MENU */
 
 .task-template-title-horizontal-container {
   display: flex;
