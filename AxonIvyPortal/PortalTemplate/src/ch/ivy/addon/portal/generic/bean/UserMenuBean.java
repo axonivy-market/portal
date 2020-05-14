@@ -61,6 +61,7 @@ public class UserMenuBean implements Serializable {
       GlobalVariable.Option option = GlobalVariable.Option.valueOf(format);
       String fullName = Ivy.session().getSessionUser().getFullName();
       String userName = Ivy.session().getSessionUserName();
+      String fullDisplayFormat = "%s (%s)";
       switch (option) {
         case USERNAME:
           loggedInUser = userName;
@@ -69,10 +70,10 @@ public class UserMenuBean implements Serializable {
           loggedInUser = fullName;
           break;
         case DISPLAY_NAME_USERNAME:
-          loggedInUser = String.format("%s (%s)", fullName, userName);
+          loggedInUser = String.format(fullDisplayFormat, fullName, userName);
           break;
         default:
-          loggedInUser = String.format("%s (%s)", userName, fullName);
+          loggedInUser = String.format(fullDisplayFormat, userName, fullName);
           break;
       }
     }
