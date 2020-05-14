@@ -15,3 +15,5 @@ dataModel PERSISTENT #fieldModifier
 portalPage ch.ivy.addon.portalkit.enums.PortalPage #field
 portalPage 'Page opened Task Details' #fieldComment
 portalPage PERSISTENT #fieldModifier
+isHideTaskDocument Boolean #field
+isHideTaskDocument PERSISTENT #fieldModifier

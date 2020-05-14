@@ -1,4 +1,9 @@
 {
+  /HTML_DIALOG {
+    /ch.ivy.addon.portalkit.component.PageHeader "com.axonivy.portal.developerexamples.component.PageHeaderOverride"
+    /ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo "com.axonivy.portal.developerexamples.component.UserWithEnvironmentInfoOverride"
+    /ch.ivy.addon.portalkit.component.PageFooter "com.axonivy.portal.developerexamples.component.PageFooterOverride"
+  }
   /PROCESS {
     /Functional-Processes.DefaultChart "Functional Processes/DefaultChartOverride"
     /Functional-Processes.CalculateTaskDelegate "Functional Processes/CalculateTaskDelegateOverride"
@@ -19,10 +24,5 @@
     /Functional-Processes.OpenPortalTaskDetailsHook "Functional Processes/OpenPortalTaskDetailsOverride"
     /Functional-Processes.DefaultStatisticCustomField "Functional Processes/DefaultStatisticCustomFieldOverride"
     /Functional-Processes.OpenPortalCases "Functional Processes/OpenPortalCasesOverride"
-  }
-  /HTML_DIALOG {
-    /ch.ivy.addon.portalkit.component.PageHeader "ch.ivy.addon.portalkit.component.PageHeaderOverride"
-    /ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo "com.axonivy.portal.developerexamples.component.UserWithEnvironmentInfoOverride"
-    /ch.ivy.addon.portalkit.component.PageFooter "ch.ivy.addon.portalkit.component.PageFooterOverride"
   }
 }

@@ -169,6 +169,7 @@ public class ChatTest extends BaseTest {
 	private ChatPage enableChatPrivate() {
 	  updatePortalSetting(ENABLE_PRIVATE_CHAT_SETTING, "true");
 	  login(TestAccount.ADMIN_USER);
+	  new HomePage().getChat();
 		return new ChatPage();
 	}
 	
