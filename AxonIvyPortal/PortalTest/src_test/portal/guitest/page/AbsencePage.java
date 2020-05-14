@@ -47,9 +47,10 @@ public class AbsencePage extends TemplatePage {
   
 	public void setDeputy(String fullName) {
 		String usernameSelector = "input[id$='substitute-username_input']";
-		waitForElementDisplayed(By.cssSelector(usernameSelector), true);
+		waitForElementPresent(By.cssSelector(usernameSelector), true);
 		WebElement usernameInput = findElementByCssSelector(usernameSelector);
 		usernameInput.clear();
+		usernameInput = findElementByCssSelector(usernameSelector);
 		usernameInput.sendKeys(fullName);
 		waitAjaxIndicatorDisappear();
 		String itemSelector = "tr[data-item-label*='" + fullName + "']";
