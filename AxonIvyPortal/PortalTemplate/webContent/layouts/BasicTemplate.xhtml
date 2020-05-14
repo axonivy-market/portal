@@ -11,7 +11,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
   </f:facet>
 
-  <f:attribute name="primefaces.THEME" value="none" />
+  <f:attribute name="primefaces.THEME" value="serenity-ivy" />
   
   <title>
     <ui:insert name="title">
@@ -26,13 +26,22 @@
 
   <h:outputStylesheet name="css/nanoscroller.css" library="serenity-layout" />
   <h:outputStylesheet name="css/ripple.css" library="serenity-layout" />
-  <h:outputStylesheet name="css/layout-lime.css" library="serenity-layout" />
+  <h:outputStylesheet name="css/grid.css" library="serenity-layout" />
+  <h:outputStylesheet name="css/layout-ivy.css" library="serenity-layout" />
 
+  <h:outputStylesheet library="css" name="portal-variables.css" />
   <h:outputStylesheet library="css" name="template.css" />
   <h:outputStylesheet library="css" name="module.css" />
- 
+  <h:outputStylesheet library="css" name="portal.css" />
+
+  <h:outputStylesheet library="css" name="customization.css" />
+
   <h:outputScript name="js/nanoscroller.js" library="serenity-layout" />
   <h:outputScript name="js/ripple.js" library="serenity-layout" />
+  <h:outputScript name="js/layout.js" library="serenity-layout" />
+  <h:outputScript name="js/swipe.js" library="serenity-layout" />
+  <h:outputScript name="js/css-vars-ponyfill.min.js" library="serenity-layout" />
+  
   <script src="#{resource['ivy-webcontent:layouts/js/cookie-helper.js']}" />
   <script src="#{resource['ivy-webcontent:layouts/js/primefaces-calendar-en-us.js']}" />
   <script src="#{resource['ivy-webcontent:resources/serenity-layout/js/layout.js']}" />
@@ -45,8 +54,15 @@
 </h:head>
 
 <h:body>
+  <script type="text/javascript">
+    $(window).resize(function() {
+      setTimeout(function() {
+      Portal.updateBreadcrumb();
+      }, 1);
+    });
+  </script>
   <f:facet name="last">
-    <h:outputStylesheet library="serenity-portal" name="theme.css" />
+    
   </f:facet>
   
   <c:set var="isNotRequiredLogin" value="#{isNotRequiredLogin == null ? false : isNotRequiredLogin}" />
