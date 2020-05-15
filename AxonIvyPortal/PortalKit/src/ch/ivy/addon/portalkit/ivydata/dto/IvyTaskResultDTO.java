@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.ivydata.dto;
 
 import java.util.List;
 
-import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -15,7 +14,6 @@ public class IvyTaskResultDTO extends AbstractResultDTO {
   private CategoryTree categoryTree;
   private PriorityStatistic priorityStatistic;
   private ExpiryStatistic expiryStatistic;
-  private ElapsedTimeStatistic elapsedTimeStatistic;
 
   public List<ITask> getTasks() {
     return tasks;
@@ -55,14 +53,6 @@ public class IvyTaskResultDTO extends AbstractResultDTO {
 
   public void setExpiryStatistic(ExpiryStatistic expiryStatistic) {
     this.expiryStatistic = expiryStatistic;
-  }
-
-  public ElapsedTimeStatistic getElapsedTimeStatistic() {
-    return elapsedTimeStatistic;
-  }
-
-  public void setElapsedTimeStatistic(ElapsedTimeStatistic elapsedTimeStatistic) {
-    this.elapsedTimeStatistic = elapsedTimeStatistic;
   }
 
 }
