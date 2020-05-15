@@ -34,7 +34,6 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     super.setup();
     createTestingTasks();
     createTestData();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     login(TestAccount.ADMIN_USER);
     grantPermissionOfPortal();
     resetLanguageOfCurrentUser();

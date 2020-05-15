@@ -12,7 +12,6 @@ public class ProjectVersionTest extends BaseTest {
 
   @Test
   public void shouldShowProjectVersion() {
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     HomePage homePage = new HomePage();
     ProjectVersionPage projectVersionPage = homePage.openProjectVersionPage();
     assertTrue("Engine version not displayed", projectVersionPage.isEngineVersionDisplayed());
