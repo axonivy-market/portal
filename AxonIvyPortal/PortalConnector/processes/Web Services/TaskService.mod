@@ -90,6 +90,14 @@ Te0 @StartWS f7 '' #zField
 Te0 @GridStep f12 '' #zField
 Te0 @PushWFArc f29 '' #zField
 Te0 @PushWFArc f30 '' #zField
+Te0 @StartWS f31 '' #zField
+Te0 @GridStep f33 '' #zField
+Te0 @PushWFArc f34 '' #zField
+Te0 @PushWFArc f36 '' #zField
+Te0 @GridStep f57 '' #zField
+Te0 @StartWS f82 '' #zField
+Te0 @PushWFArc f83 '' #zField
+Te0 @PushWFArc f84 '' #zField
 >Proto Te0 Te0 TaskService #zField
 Te0 f8 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
 ' #txt
@@ -1215,6 +1223,120 @@ Te0 f30 expr out #txt
 Te0 f30 3712 140 1526 312 #arcP
 Te0 f30 1 3712 320 #addKink
 Te0 f30 1 0.45591214648301137 0 0 #arcLabel
+Te0 f31 inParamDecl '<ch.ivy.ws.addon.service.TaskSearchCriteria taskSearchCriteria> param;' #txt
+Te0 f31 inParamTable 'out.taskSearchCriteria=param.taskSearchCriteria;
+' #txt
+Te0 f31 outParamDecl '<ch.ivy.ws.addon.types.PriorityStatistic priorityStatistic,List<ch.ivy.ws.addon.WSException> errors> result;
+' #txt
+Te0 f31 outParamTable 'result.priorityStatistic=in.priorityStatistic;
+result.errors=in.errors;
+' #txt
+Te0 f31 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
+' #txt
+Te0 f31 callSignature analyzePriorityStatistic2(ch.ivy.ws.addon.service.TaskSearchCriteria) #txt
+Te0 f31 useUserDefinedException false #txt
+Te0 f31 taskData TaskTriggered.PRI=2 #txt
+Te0 f31 type ch.ivy.ws.addon.TaskServiceData #txt
+Te0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>analyzePriorityStatistic2(TaskSearchCriteria)</name>
+    </language>
+</elementInfo>
+' #txt
+Te0 f31 @C|.responsibility Everybody #txt
+Te0 f31 2355 179 26 26 13 0 #rect
+Te0 f31 @|StartWSIcon #fIcon
+Te0 f33 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
+' #txt
+Te0 f33 actionTable 'out=in;
+' #txt
+Te0 f33 actionCode 'import ch.ivy.ws.addon.bo.TaskServiceResult;
+import ch.ivy.ws.addon.WsServiceFactory;
+import ch.ivy.ws.addon.WSException;
+
+try{
+	TaskServiceResult tsResult = WsServiceFactory.getTaskService().analyzePriorityStatistic(in.taskSearchCriteria);
+	in.priorityStatistic = tsResult.getPriorityStatistic();
+	in.errors = tsResult.getErrors();
+}catch(WSException e){
+	in.errors.add(e);
+}' #txt
+Te0 f33 type ch.ivy.ws.addon.TaskServiceData #txt
+Te0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>analyze priority</name>
+        <nameStyle>16,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f33 2350 252 36 24 20 -2 #rect
+Te0 f33 @|StepIcon #fIcon
+Te0 f34 expr out #txt
+Te0 f34 2368 205 2368 252 #arcP
+Te0 f36 expr out #txt
+Te0 f36 2368 276 1526 312 #arcP
+Te0 f36 1 2368 312 #addKink
+Te0 f36 1 0.4695943141141823 0 0 #arcLabel
+Te0 f57 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
+' #txt
+Te0 f57 actionTable 'out=in;
+' #txt
+Te0 f57 actionCode 'import ch.ivy.ws.addon.bo.TaskServiceResult;
+import ch.ivy.ws.addon.WsServiceFactory;
+import ch.ivy.ws.addon.WSException;
+
+try {
+	TaskServiceResult result = WsServiceFactory.getTaskService().analyzeExpiryStatistic(in.taskSearchCriteria);
+	in.errors.addAll(result.getErrors());
+	in.expiryStatistic = result.getExpiryStatistic();
+}catch(WSException e){
+	in.errors.add(e);
+}' #txt
+Te0 f57 type ch.ivy.ws.addon.TaskServiceData #txt
+Te0 f57 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>analyze expiry</name>
+        <nameStyle>14,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f57 2662 252 36 24 20 -2 #rect
+Te0 f57 @|StepIcon #fIcon
+Te0 f82 inParamDecl '<ch.ivy.ws.addon.service.TaskSearchCriteria taskSearchCriteria> param;' #txt
+Te0 f82 inParamTable 'out.taskSearchCriteria=param.taskSearchCriteria;
+' #txt
+Te0 f82 outParamDecl '<ch.ivy.ws.addon.types.ExpiryStatistic expiryStatistic,List<ch.ivy.ws.addon.WSException> errors> result;
+' #txt
+Te0 f82 outParamTable 'result.expiryStatistic=in.expiryStatistic;
+result.errors=in.errors;
+' #txt
+Te0 f82 actionDecl 'ch.ivy.ws.addon.TaskServiceData out;
+' #txt
+Te0 f82 callSignature analyzeExpiryStatistic2(ch.ivy.ws.addon.service.TaskSearchCriteria) #txt
+Te0 f82 useUserDefinedException false #txt
+Te0 f82 taskData TaskTriggered.PRI=2 #txt
+Te0 f82 type ch.ivy.ws.addon.TaskServiceData #txt
+Te0 f82 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>analyzeExpiryStatistic2(TaskSearchCriteria)</name>
+    </language>
+</elementInfo>
+' #txt
+Te0 f82 @C|.responsibility Everybody #txt
+Te0 f82 2667 179 26 26 13 0 #rect
+Te0 f82 @|StartWSIcon #fIcon
+Te0 f83 expr out #txt
+Te0 f83 2680 205 2680 252 #arcP
+Te0 f84 expr out #txt
+Te0 f84 2680 276 1526 312 #arcP
+Te0 f84 1 2680 312 #addKink
+Te0 f84 1 0.46126601176805193 0 0 #arcLabel
 >Proto Te0 .webServiceName ch.ivy.ws.addon.TaskService #txt
 >Proto Te0 .authenticationType 'HTTP Basic' #txt
 >Proto Te0 .type ch.ivy.ws.addon.TaskServiceData #txt
@@ -1362,3 +1484,11 @@ Te0 f7 mainOut f29 tail #connect
 Te0 f29 head f12 mainIn #connect
 Te0 f12 mainOut f30 tail #connect
 Te0 f30 head f58 in #connect
+Te0 f31 mainOut f34 tail #connect
+Te0 f34 head f33 mainIn #connect
+Te0 f33 mainOut f36 tail #connect
+Te0 f36 head f58 in #connect
+Te0 f82 mainOut f83 tail #connect
+Te0 f83 head f57 mainIn #connect
+Te0 f57 mainOut f84 tail #connect
+Te0 f84 head f58 in #connect

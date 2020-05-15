@@ -582,96 +582,131 @@ public class TaskServiceImpl extends AbstractService implements ITaskService {
   @Override
   public TaskServiceResult analyzePriorityStatistic(String jsonQuery, final String username, List<String> apps)
       throws WSException {
+    TaskSearchCriteria taskSearchCriteria = new TaskSearchCriteria();
+    taskSearchCriteria.setJsonQuery(jsonQuery);
+    taskSearchCriteria.setInvolvedUsername(username);
+    taskSearchCriteria.setInvolvedApplications(apps);
+    return analyzePriorityStatistic(taskSearchCriteria);
+  }
+
+  @Override
+  public TaskServiceResult analyzePriorityStatistic(TaskSearchCriteria taskSearchCriteria)
+      throws WSException {
+    String jsonQuery = taskSearchCriteria.getJsonQuery();
+    String username = taskSearchCriteria.getInvolvedUsername();
+    List<String> apps = taskSearchCriteria.getInvolvedApplications();
+    boolean isIgnoreInvolvedUser = taskSearchCriteria.isIgnoreInvolvedUser();
     try {
       return executeAsSystem(() -> {
         TaskQuery priorityQuery =
             StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
-
-        if (username != null && !StringUtils.isEmpty(username)) {
-          AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
-          priorityQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
-              .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
-        } else {
-          priorityQuery.where().and(queryForInvolvedApplications(apps));
-        }
-
-        queryExcludeHiddenTasks(priorityQuery, apps);
-
-        priorityQuery.aggregate().countRows()
-          .groupBy().priority()
-          .orderBy().priority();
-
-        Recordset recordSet = taskQueryExecutor().getRecordset(priorityQuery);
-        PriorityStatistic priorityStatistic = new PriorityStatistic();
-        if (recordSet != null) {
-          recordSet.getRecords().forEach(record -> {
-            int priority = Integer.parseInt(record.getField("PRIORITY").toString());
-            long numberOfTasks = Long.parseLong(record.getField("COUNT").toString());
-            if (priority == WorkflowPriority.EXCEPTION.intValue()) {
-              priorityStatistic.setException(numberOfTasks);
-            } else if (priority == WorkflowPriority.HIGH.intValue()) {
-              priorityStatistic.setHigh(numberOfTasks);
-            } else if (priority == WorkflowPriority.NORMAL.intValue()) {
-              priorityStatistic.setNormal(numberOfTasks);
+            
+            if (username != null && !StringUtils.isEmpty(username)) {
+              AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
+              if (isIgnoreInvolvedUser) {
+                priorityQuery.where().and(queryForStates(Arrays.asList(SUSPENDED, RESUMED, DONE, PARKED, UNASSIGNED)));
+              } else {
+                priorityQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()));
+              }
+              priorityQuery.where().and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
             } else {
-              priorityStatistic.setLow(numberOfTasks);
+              priorityQuery.where().and(queryForInvolvedApplications(apps));
             }
-          });
-        }
-
-        return result(priorityStatistic, noErrors());
+            
+            queryExcludeHiddenTasks(priorityQuery, apps);
+            
+            priorityQuery.aggregate().countRows()
+            .groupBy().priority()
+            .orderBy().priority();
+            
+            Recordset recordSet = taskQueryExecutor().getRecordset(priorityQuery);
+            PriorityStatistic priorityStatistic = new PriorityStatistic();
+            if (recordSet != null) {
+              recordSet.getRecords().forEach(record -> {
+                int priority = Integer.parseInt(record.getField("PRIORITY").toString());
+                long numberOfTasks = Long.parseLong(record.getField("COUNT").toString());
+                if (priority == WorkflowPriority.EXCEPTION.intValue()) {
+                  priorityStatistic.setException(numberOfTasks);
+                } else if (priority == WorkflowPriority.HIGH.intValue()) {
+                  priorityStatistic.setHigh(numberOfTasks);
+                } else if (priority == WorkflowPriority.NORMAL.intValue()) {
+                  priorityStatistic.setNormal(numberOfTasks);
+                } else {
+                  priorityStatistic.setLow(numberOfTasks);
+                }
+              });
+            }
+            
+            return result(priorityStatistic, noErrors());
       });
     } catch (Exception e) {
       throw new WSException(10049, e);
     }
   }
-
+  
   @Override
   public TaskServiceResult analyzeExpiryStatistic(String jsonQuery, final String username, List<String> apps) throws WSException {
+    TaskSearchCriteria taskSearchCriteria = new TaskSearchCriteria();
+    taskSearchCriteria.setJsonQuery(jsonQuery);
+    taskSearchCriteria.setInvolvedUsername(username);
+    taskSearchCriteria.setInvolvedApplications(apps);
+    return analyzeExpiryStatistic(taskSearchCriteria);
+  }
+
+  @Override
+  public TaskServiceResult analyzeExpiryStatistic(TaskSearchCriteria taskSearchCriteria) throws WSException {
+    String jsonQuery = taskSearchCriteria.getJsonQuery();
+    String username = taskSearchCriteria.getInvolvedUsername();
+    List<String> apps = taskSearchCriteria.getInvolvedApplications();
+    boolean isIgnoreInvolvedUser = taskSearchCriteria.isIgnoreInvolvedUser();
     try {
       return executeAsSystem(() -> {
         TaskQuery expiryQuery =
             StringUtils.isNotBlank(jsonQuery) ? TaskQuery.fromJson(jsonQuery) : TaskQuery.create();
-
-        if (username != null && !StringUtils.isEmpty(username)) {
-          AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
-          expiryQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()))
-              .and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
-        } else {
-          expiryQuery.where().and(queryForInvolvedApplications(apps));
-        }
-
-        queryExcludeHiddenTasks(expiryQuery, apps);
-
-        expiryQuery.aggregate().countRows()
-          .groupBy().expiryTimestamp()
-          .orderBy().expiryTimestamp();
-
-        Recordset recordSet = taskQueryExecutor().getRecordset(expiryQuery);
-        HashMap<String, String> recordMap = new HashMap<String, String>();
-        if (recordSet != null) {
-          for (Record record : recordSet.getRecords()) {
-            if (record.getField("EXPIRYTIMESTAMP") != null) {
-              recordMap.put(record.getField("EXPIRYTIMESTAMP").toString(), record.getField("COUNT").toString());
+            
+            if (username != null && !StringUtils.isEmpty(username)) {
+              AvailableAppsResult availableAppsResult = findAvailableApplicationsAndUsers(apps, username);
+              if (isIgnoreInvolvedUser) {
+                expiryQuery.where().and(queryForStates(Arrays.asList(SUSPENDED, RESUMED, PARKED, UNASSIGNED)));
+              } else {
+                expiryQuery.where().and(queryForCanWorkOnUsers(availableAppsResult.getUsers()));
+              }
+              expiryQuery.where().and(queryForInvolvedApplications(availableAppsResult.getAvailableApps()));
+            } else {
+              expiryQuery.where().and(queryForInvolvedApplications(apps));
             }
-          }
-        }
-
-        ExpiryStatistic expiryStatistic = new ExpiryStatistic();
-        Gson gsonConverter = new Gson();
-        String json = "";
-        if (recordMap.size() != 0) {
-          json = gsonConverter.toJson(recordMap);
-        }
-        expiryStatistic.setResult(json);
-
-        return result(expiryStatistic, noErrors());
+            
+            queryExcludeHiddenTasks(expiryQuery, apps);
+            
+            expiryQuery.aggregate().countRows()
+            .groupBy().expiryTimestamp()
+            .orderBy().expiryTimestamp();
+            
+            Recordset recordSet = taskQueryExecutor().getRecordset(expiryQuery);
+            HashMap<String, String> recordMap = new HashMap<String, String>();
+            if (recordSet != null) {
+              for (Record record : recordSet.getRecords()) {
+                if (record.getField("EXPIRYTIMESTAMP") != null) {
+                  recordMap.put(record.getField("EXPIRYTIMESTAMP").toString(), record.getField("COUNT").toString());
+                }
+              }
+            }
+            
+            ExpiryStatistic expiryStatistic = new ExpiryStatistic();
+            Gson gsonConverter = new Gson();
+            String json = "";
+            if (recordMap.size() != 0) {
+              json = gsonConverter.toJson(recordMap);
+            }
+            expiryStatistic.setResult(json);
+            
+            return result(expiryStatistic, noErrors());
       });
     } catch (Exception e) {
       throw new WSException(10050, e);
     }
   }
-
+  
   @Override
   public TaskServiceResult analyzeElapsedTimeOfTasks(String jsonQuery, List<String> apps) throws WSException {
     try {
