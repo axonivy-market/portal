@@ -2,17 +2,14 @@ package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCasesExcluded;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.apache.commons.lang3.time.DateUtils;
 
-import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
@@ -218,42 +215,6 @@ public class TaskService implements ITaskService {
     }
     expiryStatistic.setNumberOfTasksByExpiryTime(numberOfTasksByExpiryTime);
     return expiryStatistic;
-  }
-  
-  @Override
-  public IvyTaskResultDTO analyzeElapsedTimeOfTasks(TaskSearchCriteria criteria) {
-    return IvyExecutor.executeAsSystem(() -> {
-      IvyTaskResultDTO result = new IvyTaskResultDTO();
-      try {
-        TaskQuery finalQuery = extendQueryWithUserCanWorkOn(criteria);
-        finalQuery.where().and().businessRuntime().isNotNull();
-        finalQuery.aggregate().avgBusinessRuntime().groupBy().category();
-
-        Recordset recordSet = taskQueryExecutor().getRecordset(finalQuery);
-        ElapsedTimeStatistic elapsedTimeStatistic = createCategoryToAverageElapsedTimeMap(recordSet);
-        result.setElapsedTimeStatistic(elapsedTimeStatistic);
-      } catch (Exception ex) {
-        Ivy.log().error("Error in getting task elapsed time statistic", ex);
-        result.setErrors(Arrays.asList(new PortalIvyDataException(PortalIvyDataErrorType.FAIL_TO_LOAD_TASK_ELAPSED_TIME_STATISTIC.toString())));
-      }
-      return result;
-    });
-  }
-  
-  private ElapsedTimeStatistic createCategoryToAverageElapsedTimeMap(Recordset recordSet) {
-    ElapsedTimeStatistic elapsedTimeStatistic = new ElapsedTimeStatistic();
-    HashMap<String, Long> averageElapsedTimeByCategory = new HashMap<>();
-    if (recordSet != null) {
-      recordSet.getRecords().forEach(record -> {
-        String categoryName = record.getField("CATEGORY").toString();
-        BigDecimal averageElapsedTime =
-            Optional.ofNullable((BigDecimal) record.getField("AVGBUSINESSRUNTIME")).orElse(BigDecimal.ZERO);
-        long averageElapsedTimeValue = averageElapsedTime.longValue();
-        averageElapsedTimeByCategory.put(categoryName, averageElapsedTimeValue);
-      });
-    }
-    elapsedTimeStatistic.setAverageElapsedTimeByCategory(averageElapsedTimeByCategory);
-    return elapsedTimeStatistic;
   }
 
   private TaskQuery extendQueryWithInvolvedUser(TaskSearchCriteria criteria) {
