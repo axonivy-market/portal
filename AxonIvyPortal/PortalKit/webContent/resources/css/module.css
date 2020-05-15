@@ -140,23 +140,25 @@
 /********************** START MENU ITEM ***********************/
   .layout-wrapper .layout-sidebar,
 .layout-wrapper.layout-wrapper-active .layout-main-mask {
-  z-index: 1000; }
-
-.layout-wrapper .layout-main .layout-topbar {
-  z-index: 997; }
+  z-index: 1000;
+}
 
 .layout-wrapper .layout-main .layout-topbar {
   box-shadow: none;
   padding-bottom: 0;
-  height: 60px; }
+  height: 60px;
+  z-index: 997;
+}
 
 .layout-wrapper .layout-main .layout-content {
   padding: 60px 20px 0 30px;
   height: 100vh;
-  overflow-x: hidden; }
-  
+  overflow-x: hidden;
+}
+
 .layout-wrapper .layout-sidebar .layout-menu li {
-  width: auto; }
+  width: auto;
+}
 
 /********************** END MENU ITEM ***********************/
 
