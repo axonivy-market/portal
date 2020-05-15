@@ -6,10 +6,6 @@
   <version>9.1.0.0-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
-    <resources.directory.theme>${resources.directory}/serenity-portal/</resources.directory.theme>
-    <resources.directory.css>${resources.directory}/serenity-portal/</resources.directory.css>
-    <libsass.version>0.2.10-libsass_3.5.3</libsass.version>
-    <resources.directory>${project.basedir}/webContent/resources</resources.directory>
     <build.plugin.version>9.1.0-SNAPSHOT</build.plugin.version>
     <ivy.engine.version>9.1.0</ivy.engine.version>
   </properties>
@@ -30,26 +26,6 @@
         <artifactId>project-build-plugin</artifactId>
         <version>${build.plugin.version}</version>
         <extensions>true</extensions>
-      </plugin>
-      <plugin>
-        <groupId>com.github.warmuuh</groupId>
-        <artifactId>libsass-maven-plugin</artifactId>
-        <version>${libsass.version}</version>
-        <executions>
-          <execution>
-            <id>scss</id>
-            <phase>validate</phase>
-            <goals>
-              <goal>compile</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <inputPath>${resources.directory.theme}</inputPath>
-          <outputPath>${resources.directory.theme}</outputPath>
-          <generateSourceMap>false</generateSourceMap>
-          <generateSourceComments>false</generateSourceComments>
-        </configuration>
       </plugin>
     </plugins>
   </build>

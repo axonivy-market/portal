@@ -198,6 +198,10 @@ body .ui-datatable tbody tr.ui-datatable-even {
   .ui-datatable-reflow .ui-reflow-dropdown {
     font-size: var(--large-font-size); } }
 
+body .ui-widget-header .ui-button .ui-icon {
+  color: var(--text-button-color) !important;
+}
+
 /* Layout sidebar*/
 .submenu-container {
   background-color: var(--submenu-bg-color); }
@@ -485,10 +489,6 @@ body .ui-fileupload .ui-fileupload-buttonbar {
 
 .user-task-dyna-container .upload-container {
   margin-top: 10px; }
-
-/* Input switch */
-body .ui-inputswitch.ui-inputswitch-checked .ui-inputswitch-handle {
-  background-color: var(--ivy-primary-color-white); }
 
 /* Tooltip */
 .ui-tooltip {
@@ -1563,6 +1563,10 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .ui-inputswitch.ui-widget.ui-widget-content.express-input-switch-selection.ui-inputswitch-checked {
   background-color: var(--express-input-switch-selection-background-color);
   border-color: var(--express-input-switch-selection-border); }
+
+.ui-inputswitch.ui-widget.ui-widget-content.express-input-switch-selection.ui-inputswitch-checked .ui-inputswitch-handle {
+  background: var(--ivy-primary-color-white);
+}
 
 .available-elements-action-btn button {
   background-color: var(--express-available-elements-action-button-background-color);
