@@ -311,22 +311,6 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return (ElapsedTimeStatistic) response.get(RESULT);
   }
 
-  /**
-   * Get Elapsed time of related tasks by Case Category
-   * 
-   * @param taskQuery
-   * @return Elapsed time of related tasks by Case Category
-   */
-  public ElapsedTimeStatistic getElapsedTimeOfTasksStatisticData(TaskQuery taskQuery) {
-    Map<String, Object> params = new HashMap<>();
-    params.put(TASK_QUERY, taskQuery);
-
-    Map<String, Object> response =
-        IvyAdapterService.startSubProcess("analyzeElapsedTimeOfTasks(ch.ivyteam.ivy.workflow.query.TaskQuery)", params,
-            Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
-    return (ElapsedTimeStatistic) response.get(RESULT);
-  }
-
   @SuppressWarnings("unchecked")
   public List<String> getCustomFields(String fieldName, String keyword){
     CaseCustomFieldSearchCriteria criteria = new CaseCustomFieldSearchCriteria();
@@ -416,6 +400,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
             taskExpireIn15, taskExpireIn16, taskExpireIn17};
 
     for (Entry<Date, Long> result : numberOfTasksByExpiryTime.entrySet()) {
+      if (new Date().after(result.getKey())) {
+        continue;
+      }
       Date resultDate = result.getKey();
       Calendar cal = Calendar.getInstance();
       cal.setTime(resultDate);
@@ -486,6 +473,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
             taskExpireOnSaturday, taskExpireOnSunday};
 
     for (Entry<Date, Long> result : numberOfTasksByExpiryTime.entrySet()) {
+      if (new Date().after(result.getKey())) {
+        continue;
+      }
       Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
       Calendar cal = Calendar.getInstance();
       cal.setTime(resultDate);
@@ -535,6 +525,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
         StatisticChartTimeUtils.truncateMinutesPart(DateUtils.addMonths(firstDateOfSelectedMonth, 1));
 
     for (Entry<Date, Long> result : numberOfTasksByExpiryTime.entrySet()) {
+      if (new Date().after(result.getKey())) {
+        continue;
+      }
       Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
       if (checkIfDateBetweenRange(firstDateOfFirstWeek, firstDateOfSecondWeek, resultDate)) {
         taskExpireOnFirstWeek += result.getValue();
@@ -613,6 +606,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
     if (numberOfTasksByExpiryTime != null) {
       for (Entry<Date, Long> result : numberOfTasksByExpiryTime.entrySet()) {
+        if (new Date().after(result.getKey())) {
+          continue;
+        }
         Date resultDate = StatisticChartTimeUtils.truncateMinutesPart(result.getKey());
         Calendar cal = Calendar.getInstance();
         cal.setTime(resultDate);
