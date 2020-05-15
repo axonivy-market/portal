@@ -2,7 +2,7 @@ package portal.guitest.test;
 
 import static org.junit.Assert.assertTrue;
 
-import org.junit.AfterClass;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -39,7 +39,7 @@ public class ClientSideTimeoutTest extends BaseTest {
     return adminSettingPage;
   }
   
-  @AfterClass
+  @After
   public void cleanupSettingAfterTest() {
     redirectToRelativeLink(cleanupDataLink);
   }
