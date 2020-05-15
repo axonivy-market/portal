@@ -332,6 +332,11 @@
   line-height: 2;
 }
 
+.layout-wrapper .layout-main .layout-topbar {
+  position: relative;
+  width: 100%;
+}
+
 /* END SERENITY TOP BAR */
 /* SERENITY MAIN LAYOUT */
 .layout-wrapper {
