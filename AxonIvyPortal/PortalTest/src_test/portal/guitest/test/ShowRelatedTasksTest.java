@@ -37,7 +37,6 @@ public class ShowRelatedTasksTest extends BaseTest {
     super.setup();
     redirectToRelativeLink("portalKitTestHelper/153CACC26D0D4C3D/createRelatedTasksTestUser.ivp");
     redirectToRelativeLink(createTestingTasksUrl);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     login(TestAccount.TEST_RELATED_TASKS_USER);
     denyReadAllPermissionFromCurrentUser();
   }
