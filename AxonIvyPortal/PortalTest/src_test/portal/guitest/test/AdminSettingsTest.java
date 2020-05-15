@@ -17,7 +17,6 @@ public class AdminSettingsTest extends BaseTest {
 
   @Test
 	public void whenLoginAsAdminThenAdminMenuItemDisplayed() {
-		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
 		login(TestAccount.ADMIN_USER);
 		HomePage homePage = new HomePage();
 		assertTrue("Admin Settings menu item is not displayed", homePage.isAdminSettingsMenuItemPresent());
@@ -27,14 +26,12 @@ public class AdminSettingsTest extends BaseTest {
 
 	@Test
 	public void whenLoginAsNonAdminThenAdminMenuItemNotDisplayed() {
-		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
 		HomePage homePage = new HomePage();
 		assertFalse("Admin Settings menu item is displayed", homePage.isAdminSettingsMenuItemPresent());
 	}
 
 	@Test
 	public void testDefaultEnvironmentInfo() {
-	  redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();

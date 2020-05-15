@@ -57,6 +57,7 @@ public class BaseTest {
   protected String createTestingCaseContainOneTask = "internalSupport/14B2FC03D2E87141/CreateSupportTicket.ivp";
   protected String createUnassignedTaskUrl = "internalSupport/14B2FC03D2E87141/createUnassignedTask.ivp";
   protected String expressStartLink = "axonIvyExpress/15798655494F25E1/AxonIvyExpressWF.ivp";
+  protected String cleanupDataLink = "portalKitTestHelper/1511A66AF619A768/cleanData.ivp";
   @Rule
   public ScreenshotFailedTestRule screenshotTestRule = new ScreenshotFailedTestRule();
   
@@ -72,9 +73,24 @@ public class BaseTest {
   };
   
   @Before
+  /**
+   * Default setup for each test
+   * It will clean up all test data and login with account demo
+   */
   public void setup() {
     browser = Browser.getBrowser();
-    launchBrowserAndGotoRelativeLink("portalKitTestHelper/1511A66AF619A768/cleanData.ivp");
+    launchBrowserAndGotoRelativeLink(cleanupDataLink);
+  }
+  
+  /**
+   * Alternative setup, just login with input account, don't cleanup anything
+   * @param relativePath
+   * @param account
+   */
+  public void setupWithAlternativeLinkAndAccount(String relativePath, TestAccount account) {
+    browser = Browser.getBrowser();
+    launchBrowserAndGotoRelativeLink(relativePath);
+    login(account);
   }
 
   public void launchBrowserAndGotoRelativeLink(String relativeProcessStartLink) {
@@ -170,13 +186,13 @@ public class BaseTest {
       password = URLEncoder.encode(testAccount.getPassword(), "UTF-8");
 
       AtomicBoolean isLoginSuccess = new AtomicBoolean(false);
-      Awaitility.await().atMost(new Duration(30, TimeUnit.SECONDS)).until(() -> {
+      Awaitility.await().atMost(new Duration(60, TimeUnit.SECONDS)).until(() -> {
         try {
           redirectToRelativeLink(String.format(LOGIN_URL_PATTERN, username, password));
           new HomePage() {
             @Override
             protected long getTimeOutForLocator() {
-              return 7L;
+              return 60L;
             }
           }.isDisplayed();
           isLoginSuccess.set(true);
