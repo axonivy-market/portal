@@ -192,7 +192,7 @@ public class BaseTest {
           new HomePage() {
             @Override
             protected long getTimeOutForLocator() {
-              return 60L;
+              return 10L;
             }
           }.isDisplayed();
           isLoginSuccess.set(true);
