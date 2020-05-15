@@ -34,7 +34,6 @@ public class ExpressTest extends BaseTest{
   @Before
   public void setup() {
     super.setup();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
   }
 

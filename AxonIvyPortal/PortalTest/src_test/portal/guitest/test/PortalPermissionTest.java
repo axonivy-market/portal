@@ -24,7 +24,6 @@ public class PortalPermissionTest extends BaseTest{
   @Before
   public void setup() {
     super.setup();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     grantAccessFullListPermissions();
     homePage = new HomePage();
   }
