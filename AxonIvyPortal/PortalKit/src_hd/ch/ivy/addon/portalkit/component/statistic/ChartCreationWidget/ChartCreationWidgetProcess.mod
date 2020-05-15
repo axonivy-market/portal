@@ -48,9 +48,6 @@ Cs0 @PushWFArc f27 '' #zField
 Cs0 @GridStep f28 '' #zField
 Cs0 @PushWFArc f29 '' #zField
 Cs0 @PushWFArc f2 '' #zField
-Cs0 @UdMethod f30 '' #zField
-Cs0 @UdProcessEnd f31 '' #zField
-Cs0 @PushWFArc f32 '' #zField
 Cs0 @PushWFArc f26 '' #zField
 >Proto Cs0 Cs0 ChartCreationWidgetProcess #zField
 Cs0 f0 guid 15FFC669CAD8BE32 #txt
@@ -68,7 +65,7 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f0 99 51 26 26 -16 15 #rect
 Cs0 f0 @|UdInitIcon #fIcon
-Cs0 f1 1363 147 26 26 0 12 #rect
+Cs0 f1 827 51 26 26 0 12 #rect
 Cs0 f1 @|UdProcessEndIcon #fIcon
 Cs0 f3 guid 15FFC669CBAE4804 #txt
 Cs0 f3 actionTable 'out=in;
@@ -229,7 +226,7 @@ Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f15 782 138 112 44 -22 -8 #rect
+Cs0 f15 246 42 112 44 -22 -8 #rect
 Cs0 f15 @|StepIcon #fIcon
 Cs0 f7 435 243 26 26 0 12 #rect
 Cs0 f7 @|UdProcessEndIcon #fIcon
@@ -416,10 +413,10 @@ Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f9 984 138 112 44 -47 -8 #rect
+Cs0 f9 448 42 112 44 -47 -8 #rect
 Cs0 f9 @|CallSubIcon #fIcon
 Cs0 f27 expr out #txt
-Cs0 f27 894 160 984 160 #arcP
+Cs0 f27 358 64 448 64 #arcP
 Cs0 f28 actionTable 'out=in;
 ' #txt
 Cs0 f28 actionCode 'import java.util.ArrayList;
@@ -427,30 +424,20 @@ for (String field : in.customFields){
 	in.statisticFilter.customFieldFilters.put(field, new ArrayList());	
 }
 ' #txt
-Cs0 f28 1176 138 112 44 0 -8 #rect
-Cs0 f28 @|StepIcon #fIcon
-Cs0 f29 expr out #txt
-Cs0 f29 1096 160 1176 160 #arcP
-Cs0 f2 expr out #txt
-Cs0 f2 1288 160 1363 160 #arcP
-Cs0 f30 guid 16F47038B424968C #txt
-Cs0 f30 method loadDataToFilter() #txt
-Cs0 f30 inParameterDecl '<> param;' #txt
-Cs0 f30 outParameterDecl '<> result;' #txt
-Cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+Cs0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>loadDataToFilter()</name>
+        <name>init custom fields</name>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f30 659 147 26 26 -25 15 #rect
-Cs0 f30 @|UdMethodIcon #fIcon
-Cs0 f31 435 51 26 26 0 12 #rect
-Cs0 f31 @|UdProcessEndIcon #fIcon
-Cs0 f32 expr out #txt
-Cs0 f32 125 64 435 64 #arcP
-Cs0 f26 685 160 782 160 #arcP
+Cs0 f28 640 42 112 44 -46 -8 #rect
+Cs0 f28 @|StepIcon #fIcon
+Cs0 f29 expr out #txt
+Cs0 f29 560 64 640 64 #arcP
+Cs0 f2 expr out #txt
+Cs0 f2 752 64 827 64 #arcP
+Cs0 f26 125 64 246 64 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -493,7 +480,5 @@ Cs0 f9 mainOut f29 tail #connect
 Cs0 f29 head f28 mainIn #connect
 Cs0 f28 mainOut f2 tail #connect
 Cs0 f2 head f1 mainIn #connect
-Cs0 f0 mainOut f32 tail #connect
-Cs0 f32 head f31 mainIn #connect
-Cs0 f30 mainOut f26 tail #connect
+Cs0 f0 mainOut f26 tail #connect
 Cs0 f26 head f15 mainIn #connect
