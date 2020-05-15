@@ -22,10 +22,7 @@ public class AbsenceTest extends BaseTest {
   @Override
   @Before
   public void setup() {
-    super.setup();
-    redirectToRelativeLink("portalKitTestHelper/1511A66AF619A768/cleanAbsences.ivp");
-
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    super.setupWithAlternativeLinkAndAccount("portalKitTestHelper/1511A66AF619A768/cleanAbsencesAndSubstitues.ivp", TestAccount.DEMO_USER);
   }
 
   @Test
