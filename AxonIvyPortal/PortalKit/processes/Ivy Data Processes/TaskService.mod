@@ -39,18 +39,11 @@ Te0 @StartSub f39 '' #zField
 Te0 @EndSub f40 '' #zField
 Te0 @PushWFArc f42 '' #zField
 Te0 @PushWFArc f44 '' #zField
-Te0 @GridStep f46 '' #zField
-Te0 @EndSub f47 '' #zField
-Te0 @StartSub f48 '' #zField
-Te0 @CallSub f49 '' #zField
-Te0 @PushWFArc f52 '' #zField
-Te0 @PushWFArc f53 '' #zField
 Te0 @PushWFArc f54 '' #zField
 Te0 @PushWFArc f11 '' #zField
 Te0 @PushWFArc f13 '' #zField
 Te0 @PushWFArc f17 '' #zField
 Te0 @PushWFArc f7 '' #zField
-Te0 @PushWFArc f33 '' #zField
 >Proto Te0 Te0 TaskService #zField
 Te0 f0 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria,Integer startIndex,Integer count> param;' #txt
 Te0 f0 inParamTable 'out.count=param.count;
@@ -338,63 +331,6 @@ Te0 f42 expr out #txt
 Te0 f42 488 480 561 480 #arcP
 Te0 f44 expr out #txt
 Te0 f44 312 480 376 480 #arcP
-Te0 f46 actionTable 'out=in;
-' #txt
-Te0 f46 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
-import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
-
-IvyTaskResultDTO dto = TaskService.newInstance().analyzeElapsedTimeOfTasks(in.taskSearchCriteria);
-out.elapsedTimeStatistic = dto.elapsedTimeStatistic;
-out.errors = dto.errors;' #txt
-Te0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Analyze elapsed time statistic</name>
-    </language>
-</elementInfo>
-' #txt
-Te0 f46 160 554 176 44 -80 -8 #rect
-Te0 f46 @|StepIcon #fIcon
-Te0 f47 561 561 30 30 0 15 #rect
-Te0 f47 @|EndSubIcon #fIcon
-Te0 f48 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria> param;' #txt
-Te0 f48 inParamTable 'out.taskSearchCriteria=param.taskSearchCriteria;
-' #txt
-Te0 f48 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic elapsedTimeStatistic> result;' #txt
-Te0 f48 outParamTable 'result.errors=in.errors;
-result.elapsedTimeStatistic=in.elapsedTimeStatistic;
-' #txt
-Te0 f48 callSignature analyzeElapsedTime(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria) #txt
-Te0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>analyzeElapsedTime(TaskSearchCriteria)</name>
-    </language>
-</elementInfo>
-' #txt
-Te0 f48 81 561 30 30 -68 21 #rect
-Te0 f48 @|StartSubIcon #fIcon
-Te0 f49 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
-Te0 f49 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
-Te0 f49 requestMappingAction 'param.exceptions=in.errors;
-' #txt
-Te0 f49 responseActionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
-' #txt
-Te0 f49 responseMappingAction 'out=in;
-' #txt
-Te0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>ErrorHandler</name>
-    </language>
-</elementInfo>
-' #txt
-Te0 f49 376 554 112 44 -35 -8 #rect
-Te0 f49 @|CallSubIcon #fIcon
-Te0 f52 expr out #txt
-Te0 f52 336 576 376 576 #arcP
-Te0 f53 expr out #txt
-Te0 f53 488 576 561 576 #arcP
 Te0 f54 expr out #txt
 Te0 f54 111 96 192 96 #arcP
 Te0 f11 expr out #txt
@@ -405,8 +341,6 @@ Te0 f17 expr out #txt
 Te0 f17 111 384 176 384 #arcP
 Te0 f7 expr out #txt
 Te0 f7 111 480 184 480 #arcP
-Te0 f33 expr out #txt
-Te0 f33 111 576 160 576 #arcP
 >Proto Te0 .type ch.ivyteam.wf.processes.TaskServiceData #txt
 >Proto Te0 .processKind CALLABLE_SUB #txt
 >Proto Te0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -483,10 +417,6 @@ Te0 f24 mainOut f44 tail #connect
 Te0 f44 head f20 mainIn #connect
 Te0 f20 mainOut f42 tail #connect
 Te0 f42 head f40 mainIn #connect
-Te0 f46 mainOut f52 tail #connect
-Te0 f52 head f49 mainIn #connect
-Te0 f49 mainOut f53 tail #connect
-Te0 f53 head f47 mainIn #connect
 Te0 f0 mainOut f54 tail #connect
 Te0 f54 head f6 mainIn #connect
 Te0 f18 mainOut f11 tail #connect
@@ -497,5 +427,3 @@ Te0 f1 mainOut f17 tail #connect
 Te0 f17 head f2 mainIn #connect
 Te0 f39 mainOut f7 tail #connect
 Te0 f7 head f24 mainIn #connect
-Te0 f48 mainOut f33 tail #connect
-Te0 f33 head f46 mainIn #connect
