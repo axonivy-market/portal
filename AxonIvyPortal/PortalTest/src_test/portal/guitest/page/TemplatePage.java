@@ -118,15 +118,6 @@ public abstract class TemplatePage extends AbstractPage {
     }
   }
   
-  /**
-   * In some pages, we execute 2 ajax when interact with UI, one ajax doesn't show loading icon,
-   * and one ajax show loading icon. In case the first ajax is slow, then waitAjaxIndicatorDisappear()
-   * won't run correctly
-   */
-  public void waitForAjaxIndicatorAppear() {
-    waitForElementDisplayed(By.id("ajax-indicator:ajax-indicator-ajax-indicator_start"), true);
-  }
-
   public <T> void waitForElementDisplayed(T locator, boolean expected) {
     waitForElementDisplayed(locator, expected, getTimeOutForLocator());
   }
