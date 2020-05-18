@@ -14,7 +14,6 @@ Ss0 @MessageFlowInP-0n messageIn messageIn #zField
 Ss0 @MessageFlowOutP-0n messageOut messageOut #zField
 Ss0 @TextInP .xml .xml #zField
 Ss0 @TextInP .responsibility .responsibility #zField
-Ss0 @GridStep f8 '' #zField
 Ss0 @UdInit f11 '' #zField
 Ss0 @UdProcessEnd f14 '' #zField
 Ss0 @UdProcessEnd f2 '' #zField
@@ -36,37 +35,20 @@ Ss0 @UdProcessEnd f28 '' #zField
 Ss0 @PushWFArc f29 '' #zField
 Ss0 @GridStep f30 '' #zField
 Ss0 @CallSub f7 '' #zField
-Ss0 @PushWFArc f10 '' #zField
 Ss0 @GridStep f36 '' #zField
 Ss0 @PushWFArc f38 '' #zField
-Ss0 @GridStep f40 '' #zField
 Ss0 @CallSub f42 '' #zField
-Ss0 @PushWFArc f43 '' #zField
-Ss0 @UdEvent f6 '' #zField
-Ss0 @PushWFArc f9 '' #zField
-Ss0 @UdEvent f44 '' #zField
-Ss0 @PushWFArc f35 '' #zField
-Ss0 @UdEvent f45 '' #zField
 Ss0 @UdMethod f32 '' #zField
 Ss0 @UdProcessEnd f33 '' #zField
 Ss0 @PushWFArc f34 '' #zField
 Ss0 @Alternative f39 '' #zField
-Ss0 @PushWFArc f41 '' #zField
 Ss0 @PushWFArc f37 '' #zField
 Ss0 @UdProcessEnd f46 '' #zField
-Ss0 @UdEvent f50 '' #zField
 Ss0 @UdProcessEnd f48 '' #zField
-Ss0 @PushWFArc f49 '' #zField
-Ss0 @UdEvent f51 '' #zField
 Ss0 @UdProcessEnd f52 '' #zField
 Ss0 @GridStep f53 '' #zField
-Ss0 @PushWFArc f54 '' #zField
 Ss0 @PushWFArc f55 '' #zField
-Ss0 @UdEvent f56 '' #zField
-Ss0 @PushWFArc f57 '' #zField
 Ss0 @PushWFArc f47 '' #zField
-Ss0 @UdEvent f58 '' #zField
-Ss0 @PushWFArc f59 '' #zField
 Ss0 @UdMethod f63 '' #zField
 Ss0 @GridStep f65 '' #zField
 Ss0 @UdProcessEnd f66 '' #zField
@@ -97,6 +79,18 @@ Ss0 @PushWFArc f12 '' #zField
 Ss0 @UdMethod f68 '' #zField
 Ss0 @UdProcessEnd f78 '' #zField
 Ss0 @PushWFArc f82 '' #zField
+Ss0 @UdMethod f83 '' #zField
+Ss0 @PushWFArc f84 '' #zField
+Ss0 @UdMethod f6 '' #zField
+Ss0 @PushWFArc f8 '' #zField
+Ss0 @UdMethod f9 '' #zField
+Ss0 @PushWFArc f10 '' #zField
+Ss0 @UdMethod f35 '' #zField
+Ss0 @PushWFArc f40 '' #zField
+Ss0 @UdMethod f41 '' #zField
+Ss0 @PushWFArc f43 '' #zField
+Ss0 @UdMethod f44 '' #zField
+Ss0 @PushWFArc f45 '' #zField
 >Proto Ss0 Ss0 StatisticDashboardWidgetProcess #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
@@ -122,23 +116,6 @@ Ss0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ss0 S10 832 266 128 44 -56 -8 #rect
 Ss0 S10 @|BIcon #fIcon
 Ss0 S10 g0 -64 0 #fFoot
-Ss0 f8 actionTable 'out=in;
-' #txt
-Ss0 f8 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
-
-in.taskQuery = StatisticChartQueryUtils.getQueryForSelectedItemOfTaskByPriorityChart(in.event, in.selectedStatisticChart);
-in.taskListName = in.selectedStatisticChart.name;' #txt
-Ss0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Build task query</name>
-        <nameStyle>16
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f8 288 402 112 44 -43 -8 #rect
-Ss0 f8 @|StepIcon #fIcon
 Ss0 f11 guid 1604F11B5BA97CC5 #txt
 Ss0 f11 method start() #txt
 Ss0 f11 inParameterDecl '<> param;' #txt
@@ -245,7 +222,7 @@ Ss0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ss0 f17 115 947 26 26 -70 15 #rect
 Ss0 f17 @|UdMethodIcon #fIcon
-Ss0 f18 499 659 26 26 0 12 #rect
+Ss0 f18 483 659 26 26 0 12 #rect
 Ss0 f18 @|UdProcessEndIcon #fIcon
 Ss0 f19 actionTable 'out=in;
 ' #txt
@@ -270,7 +247,7 @@ Ss0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ss0 f19 288 650 128 44 -61 -8 #rect
 Ss0 f19 @|StepIcon #fIcon
 Ss0 f20 expr out #txt
-Ss0 f20 416 672 499 672 #arcP
+Ss0 f20 416 672 483 672 #arcP
 Ss0 f21 expr out #txt
 Ss0 f21 141 672 288 672 #arcP
 Ss0 f21 0 0.8266142598914986 0 0 #arcLabel
@@ -328,10 +305,10 @@ Ss0 f26 296 1002 112 44 -33 -8 #rect
 Ss0 f26 @|StepIcon #fIcon
 Ss0 f27 expr out #txt
 Ss0 f27 149 1024 296 1024 #arcP
-Ss0 f28 507 1011 26 26 0 12 #rect
+Ss0 f28 483 1011 26 26 0 12 #rect
 Ss0 f28 @|UdProcessEndIcon #fIcon
 Ss0 f29 expr out #txt
-Ss0 f29 408 1024 507 1024 #arcP
+Ss0 f29 408 1024 483 1024 #arcP
 Ss0 f30 actionTable 'out=in;
 ' #txt
 Ss0 f30 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChart;
@@ -382,8 +359,6 @@ Ss0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ss0 f7 488 402 112 44 -26 -8 #rect
 Ss0 f7 @|CallSubIcon #fIcon
-Ss0 f10 expr out #txt
-Ss0 f10 400 424 488 424 #arcP
 Ss0 f36 actionTable 'out=in;
 ' #txt
 Ss0 f36 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -391,9 +366,6 @@ import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
-
-String selectedChartId = out.event.getComponent().getAttributes().get("selectedChartId") as String;
-in.selectedItemOfDrilldown = StatisticService.getSelectedValueOfBarChart(in.event);
 
 if (StatisticService.selectMonthOfYear(in.selectedItemOfDrilldown))  {
 	in.previousSelectedMonth = in.selectedItemOfDrilldown;
@@ -403,14 +375,6 @@ if (StatisticService.selectMonthOfYear(in.selectedItemOfDrilldown))  {
 	in.previousSelectedDay = in.selectedItemOfDrilldown;
 }
 
-for (StatisticChart chart : in.statisticChartList) {
-	if (chart.id == selectedChartId) {
-		in.selectedStatisticChart = chart;
-		break;
-	}
-}
-
-in.taskQuery = StatisticChartQueryUtils.getQueryForSelectedItemOfTaskByExpiryChart(in.event, in.selectedStatisticChart, in.previousSelectedMonth, in.previousSelectedWeek, in.previousSelectedDay);
 in.taskListName = in.selectedStatisticChart.name + " - " + in.selectedItemOfDrilldown;
 if (StatisticService.selectHourOfDay(in.selectedItemOfDrilldown)) {
 	in.taskListName += " " + ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/hour");
@@ -432,22 +396,6 @@ Ss0 f38 expr out #txt
 Ss0 f38 408 272 544 402 #arcP
 Ss0 f38 1 544 272 #addKink
 Ss0 f38 0 0.7876935071335653 0 0 #arcLabel
-Ss0 f40 actionTable 'out=in;
-' #txt
-Ss0 f40 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
-
-in.caseQuery = StatisticChartQueryUtils.getQueryForSelectedItemByCaseByState(in.event, in.selectedStatisticChart);' #txt
-Ss0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Build case query</name>
-        <nameStyle>16
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f40 288 482 112 44 -45 -8 #rect
-Ss0 f40 @|StepIcon #fIcon
 Ss0 f42 processCall 'Functional Processes/Navigator:viewCaseForAnalytic(String,ch.ivyteam.ivy.workflow.query.CaseQuery)' #txt
 Ss0 f42 requestActionDecl '<String chartName,ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
 Ss0 f42 requestMappingAction 'param.chartName=in.selectedStatisticChart.name;
@@ -466,86 +414,8 @@ Ss0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f42 488 482 112 44 -26 -8 #rect
+Ss0 f42 344 474 112 44 -26 -8 #rect
 Ss0 f42 @|CallSubIcon #fIcon
-Ss0 f43 expr out #txt
-Ss0 f43 400 504 488 504 #arcP
-Ss0 f6 guid 1608CEAE326E61AC #txt
-Ss0 f6 actionTable 'out=in;
-' #txt
-Ss0 f6 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChart;
-import org.primefaces.event.ItemSelectEvent;
-
-out.event = event as ItemSelectEvent;
-String selectedChartId = out.event.getComponent().getAttributes().get("selectedChartId") as String;
-
-for (StatisticChart chart : out.statisticChartList) {
-	if (chart.id == selectedChartId) {
-		out.selectedStatisticChart = chart;
-		break;
-	}
-}' #txt
-Ss0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>drilldownTaskByPriority</name>
-        <nameStyle>23,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f6 115 411 26 26 -63 15 #rect
-Ss0 f6 @|UdEventIcon #fIcon
-Ss0 f9 expr out #txt
-Ss0 f9 141 424 288 424 #arcP
-Ss0 f44 guid 1608CECF9E359730 #txt
-Ss0 f44 actionTable 'out=in;
-' #txt
-Ss0 f44 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
-import org.primefaces.event.ItemSelectEvent;
-
-out.event = event as ItemSelectEvent;
-String selectedDrilldownItem = StatisticService.getSelectedValueOfBarChart(in.event);
-out.isDrilldownToTaskList = StatisticService.selectHourOfDay(selectedDrilldownItem);' #txt
-Ss0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>onSelectDrilldownTaskByExpiry</name>
-        <nameStyle>29,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f44 123 259 26 26 -86 15 #rect
-Ss0 f44 @|UdEventIcon #fIcon
-Ss0 f35 expr out #txt
-Ss0 f35 141 504 288 504 #arcP
-Ss0 f45 guid 1608CED0281A1901 #txt
-Ss0 f45 actionTable 'out=in;
-' #txt
-Ss0 f45 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChart;
-import org.primefaces.event.ItemSelectEvent;
-
-out.event = event as ItemSelectEvent;
-String selectedChartId = out.event.getComponent().getAttributes().get("selectedChartId") as String;
-
-for (StatisticChart chart : out.statisticChartList) {
-	if (chart.id == selectedChartId) {
-		out.selectedStatisticChart = chart;
-		break;
-	}
-}' #txt
-Ss0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>drilldownCaseByState</name>
-        <nameStyle>20,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f45 115 491 26 26 -60 15 #rect
-Ss0 f45 @|UdEventIcon #fIcon
 Ss0 f32 guid 160E2C0243084AFE #txt
 Ss0 f32 method selectChart(ch.ivy.addon.portalkit.statistics.StatisticChart) #txt
 Ss0 f32 inParameterDecl '<ch.ivy.addon.portalkit.statistics.StatisticChart chart> param;' #txt
@@ -563,79 +433,27 @@ Ss0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ss0 f32 123 1107 26 26 -72 15 #rect
 Ss0 f32 @|UdMethodIcon #fIcon
-Ss0 f33 507 1107 26 26 0 12 #rect
+Ss0 f33 483 1107 26 26 0 12 #rect
 Ss0 f33 @|UdProcessEndIcon #fIcon
 Ss0 f34 expr out #txt
-Ss0 f34 149 1120 507 1120 #arcP
+Ss0 f34 149 1120 483 1120 #arcP
 Ss0 f39 216 256 32 32 0 16 #rect
 Ss0 f39 @|AlternativeIcon #fIcon
-Ss0 f41 expr out #txt
-Ss0 f41 149 272 216 272 #arcP
 Ss0 f37 expr in #txt
 Ss0 f37 outCond 'in.showTaskListImmediately || in.isDrilldownToTaskList' #txt
 Ss0 f37 248 272 296 272 #arcP
 Ss0 f46 539 195 26 26 0 12 #rect
 Ss0 f46 @|UdProcessEndIcon #fIcon
-Ss0 f50 guid 161BBDE048B4425D #txt
-Ss0 f50 actionTable 'out=in;
-' #txt
-Ss0 f50 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChart;
-import ch.ivy.addon.portalkit.service.StatisticService;
-import org.primefaces.event.ItemSelectEvent;
-
-out.event = event as ItemSelectEvent;
-
-String selectedChartId = out.event.getComponent().getAttributes().get("selectedChartId") as String;
-in.selectedCaseCategory = StatisticService.getSelectedValueOfBarChart(out.event);
-
-for (StatisticChart chart : out.statisticChartList) {
-	if (chart.id == selectedChartId) {
-		out.selectedStatisticChart = chart;
-		break;
-	}
-}' #txt
-Ss0 f50 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>drilldownElapsedTime</name>
-        <nameStyle>20,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f50 118 563 26 26 -62 15 #rect
-Ss0 f50 @|UdEventIcon #fIcon
-Ss0 f48 502 563 26 26 0 12 #rect
+Ss0 f48 486 563 26 26 0 12 #rect
 Ss0 f48 @|UdProcessEndIcon #fIcon
-Ss0 f49 expr out #txt
-Ss0 f49 144 576 502 576 #arcP
-Ss0 f51 guid 163DD299EBA17A9E #txt
-Ss0 f51 actionTable 'out=in;
-' #txt
-Ss0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>drilldownTaskByExpiry</name>
-        <nameStyle>21,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f51 699 483 26 26 -61 15 #rect
-Ss0 f51 @|UdEventIcon #fIcon
 Ss0 f52 1107 483 26 26 0 12 #rect
 Ss0 f52 @|UdProcessEndIcon #fIcon
 Ss0 f53 actionTable 'out=in;
 ' #txt
-Ss0 f53 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
-import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.service.StatisticService;
-import ch.ivy.addon.portalkit.statistics.StatisticChart;
-import org.primefaces.event.ItemSelectEvent;
+Ss0 f53 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
 
 in.isFinishLoadCharts = false;
-String selectedChartId = out.event.getComponent().getAttributes().get("selectedChartId") as String;
-in.selectedItemOfDrilldown = StatisticService.getSelectedValueOfBarChart(in.event);
+
 if (StatisticService.selectMonthOfYear(in.selectedItemOfDrilldown))  {
 	in.previousSelectedMonth = in.selectedItemOfDrilldown;
 } else if (StatisticService.selectWeekOfMonth(in.selectedItemOfDrilldown))  {
@@ -643,13 +461,7 @@ if (StatisticService.selectMonthOfYear(in.selectedItemOfDrilldown))  {
 } else if (StatisticService.selectDayOfWeek(in.selectedItemOfDrilldown)) {
 	in.previousSelectedDay = in.selectedItemOfDrilldown;
 }
-
-for (StatisticChart chart : out.statisticChartList) {
-	if (chart.id == selectedChartId) {
-		out.selectedStatisticChart = chart;
-		break;
-	}
-}' #txt
+' #txt
 Ss0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -659,57 +471,12 @@ Ss0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ss0 f53 832 474 112 44 -22 -8 #rect
 Ss0 f53 @|StepIcon #fIcon
-Ss0 f54 expr out #txt
-Ss0 f54 725 496 832 496 #arcP
-Ss0 f54 0 0.49999999999999994 0 0 #arcLabel
 Ss0 f55 expr out #txt
 Ss0 f55 944 496 1107 496 #arcP
-Ss0 f56 guid 163DD43587A98693 #txt
-Ss0 f56 actionTable 'out=in;
-' #txt
-Ss0 f56 actionCode 'import org.primefaces.event.ItemSelectEvent;
-if(!out.#event is initialized) {
-	out.event = event as ItemSelectEvent;
-}' #txt
-Ss0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>toTaskByExpiryTaskList</name>
-        <nameStyle>22,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f56 123 339 26 26 -64 15 #rect
-Ss0 f56 @|UdEventIcon #fIcon
-Ss0 f57 expr out #txt
-Ss0 f57 149 352 352 294 #arcP
-Ss0 f57 1 352 352 #addKink
-Ss0 f57 0 0.6889232284912005 0 0 #arcLabel
 Ss0 f47 expr in #txt
 Ss0 f47 232 256 539 208 #arcP
 Ss0 f47 1 232 208 #addKink
 Ss0 f47 1 0.30783775632694704 0 0 #arcLabel
-Ss0 f58 guid 16421D52DC7B863C #txt
-Ss0 f58 actionTable 'out=in;
-' #txt
-Ss0 f58 actionCode 'import org.primefaces.event.ItemSelectEvent;
-out.event = event as ItemSelectEvent;' #txt
-Ss0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>toTaskByExpiryTaskListFromHomePage</name>
-        <nameStyle>34,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f58 459 339 26 26 -135 16 #rect
-Ss0 f58 @|UdEventIcon #fIcon
-Ss0 f59 expr out #txt
-Ss0 f59 459 352 352 294 #arcP
-Ss0 f59 1 352 352 #addKink
-Ss0 f59 0 0.8154754678204545 0 0 #arcLabel
 Ss0 f63 guid 168FFD6C153F13B5 #txt
 Ss0 f63 method generateChartModel() #txt
 Ss0 f63 inParameterDecl '<> param;' #txt
@@ -978,6 +745,115 @@ Ss0 f68 @|UdMethodIcon #fIcon
 Ss0 f78 1011 659 26 26 0 12 #rect
 Ss0 f78 @|UdProcessEndIcon #fIcon
 Ss0 f82 717 672 1011 672 #arcP
+Ss0 f83 guid 172118B5A5BCDFA3 #txt
+Ss0 f83 method drilldownTaskByPriority(String,ch.ivyteam.ivy.workflow.query.TaskQuery) #txt
+Ss0 f83 inParameterDecl '<String taskListName,ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
+Ss0 f83 inParameterMapAction 'out.taskListName=param.taskListName;
+out.taskQuery=param.taskQuery;
+' #txt
+Ss0 f83 outParameterDecl '<> result;' #txt
+Ss0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>drilldownTaskByPriority(String,TaskQuery)</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f83 115 411 26 26 -64 12 #rect
+Ss0 f83 @|UdMethodIcon #fIcon
+Ss0 f84 141 424 488 424 #arcP
+Ss0 f84 0 0.5039194664928536 0 0 #arcLabel
+Ss0 f6 guid 17211FB704E994CF #txt
+Ss0 f6 method drilldownCaseByState(ch.ivy.addon.portalkit.statistics.StatisticChart,ch.ivyteam.ivy.workflow.query.CaseQuery) #txt
+Ss0 f6 inParameterDecl '<ch.ivy.addon.portalkit.statistics.StatisticChart selectedStatisticChart,ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
+Ss0 f6 inParameterMapAction 'out.caseQuery=param.caseQuery;
+out.selectedStatisticChart=param.selectedStatisticChart;
+' #txt
+Ss0 f6 outParameterDecl '<> result;' #txt
+Ss0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>drilldownCaseByState(StatisticChart,CaseQuery)</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f6 115 483 26 26 -64 14 #rect
+Ss0 f6 @|UdMethodIcon #fIcon
+Ss0 f8 141 496 344 496 #arcP
+Ss0 f8 0 0.5123943661971831 0 0 #arcLabel
+Ss0 f9 guid 172122396A7D2B17 #txt
+Ss0 f9 method drilldownElapsedTime(ch.ivy.addon.portalkit.statistics.StatisticChart,String) #txt
+Ss0 f9 inParameterDecl '<ch.ivy.addon.portalkit.statistics.StatisticChart selectedStatisticChart,String selectedCaseCategory> param;' #txt
+Ss0 f9 inParameterMapAction 'out.selectedCaseCategory=param.selectedCaseCategory;
+out.selectedStatisticChart=param.selectedStatisticChart;
+' #txt
+Ss0 f9 outParameterDecl '<> result;' #txt
+Ss0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>drilldownElapsedTime(StatisticChart,String)</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f9 115 563 26 26 -64 18 #rect
+Ss0 f9 @|UdMethodIcon #fIcon
+Ss0 f10 141 576 486 576 #arcP
+Ss0 f35 guid 172124FE5841FB53 #txt
+Ss0 f35 method onSelectDrilldownTaskByExpiry(Boolean,String,ch.ivy.addon.portalkit.statistics.StatisticChart,ch.ivyteam.ivy.workflow.query.TaskQuery) #txt
+Ss0 f35 inParameterDecl '<Boolean isDrilldownToTaskList,String selectedItemOfDrilldown,ch.ivy.addon.portalkit.statistics.StatisticChart selectedStatisticChart,ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
+Ss0 f35 inParameterMapAction 'out.isDrilldownToTaskList=param.isDrilldownToTaskList;
+out.selectedItemOfDrilldown=param.selectedItemOfDrilldown;
+out.selectedStatisticChart=param.selectedStatisticChart;
+out.taskQuery=param.taskQuery;
+' #txt
+Ss0 f35 outParameterDecl '<> result;' #txt
+Ss0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>onSelectDrilldownTaskByExpiry(Boolean,String,StatisticChart,TaskQuery)</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f35 115 259 26 26 -63 28 #rect
+Ss0 f35 @|UdMethodIcon #fIcon
+Ss0 f40 141 272 216 272 #arcP
+Ss0 f41 guid 1721265AF851FB22 #txt
+Ss0 f41 method toTaskByExpiryTaskList(String,ch.ivy.addon.portalkit.statistics.StatisticChart,ch.ivyteam.ivy.workflow.query.TaskQuery) #txt
+Ss0 f41 inParameterDecl '<String selectedItemOfDrilldown,ch.ivy.addon.portalkit.statistics.StatisticChart selectedStatisticChart,ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
+Ss0 f41 inParameterMapAction 'out.selectedItemOfDrilldown=param.selectedItemOfDrilldown;
+out.selectedStatisticChart=param.selectedStatisticChart;
+out.taskQuery=param.taskQuery;
+' #txt
+Ss0 f41 outParameterDecl '<> result;' #txt
+Ss0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>toTaskByExpiryTaskList(String,StatisticChart,TaskQuery)</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f41 115 339 26 26 -66 11 #rect
+Ss0 f41 @|UdMethodIcon #fIcon
+Ss0 f43 141 352 352 294 #arcP
+Ss0 f43 1 352 352 #addKink
+Ss0 f43 0 0.6935149083325024 0 0 #arcLabel
+Ss0 f44 guid 1721272BDEB5A469 #txt
+Ss0 f44 method drilldownTaskByExpiry(ch.ivy.addon.portalkit.statistics.StatisticChart,String) #txt
+Ss0 f44 inParameterDecl '<ch.ivy.addon.portalkit.statistics.StatisticChart selectedStatisticChart,String selectedItemOfDrilldown> param;' #txt
+Ss0 f44 inParameterMapAction 'out.selectedItemOfDrilldown=param.selectedItemOfDrilldown;
+out.selectedStatisticChart=param.selectedStatisticChart;
+' #txt
+Ss0 f44 outParameterDecl '<> result;' #txt
+Ss0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>drilldownTaskByExpiry(StatisticChart,String)</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f44 691 483 26 26 -55 20 #rect
+Ss0 f44 @|UdMethodIcon #fIcon
+Ss0 f45 717 496 832 496 #arcP
 >Proto Ss0 .type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 >Proto Ss0 .processKind HTML_DIALOG #txt
 >Proto Ss0 -8 -8 16 16 16 26 #rect
@@ -1057,34 +933,16 @@ Ss0 f25 mainOut f27 tail #connect
 Ss0 f27 head f26 mainIn #connect
 Ss0 f26 mainOut f29 tail #connect
 Ss0 f29 head f28 mainIn #connect
-Ss0 f8 mainOut f10 tail #connect
-Ss0 f10 head f7 mainIn #connect
 Ss0 f36 mainOut f38 tail #connect
 Ss0 f38 head f7 mainIn #connect
-Ss0 f40 mainOut f43 tail #connect
-Ss0 f43 head f42 mainIn #connect
-Ss0 f6 mainOut f9 tail #connect
-Ss0 f9 head f8 mainIn #connect
-Ss0 f45 mainOut f35 tail #connect
-Ss0 f35 head f40 mainIn #connect
 Ss0 f32 mainOut f34 tail #connect
 Ss0 f34 head f33 mainIn #connect
-Ss0 f44 mainOut f41 tail #connect
-Ss0 f41 head f39 in #connect
 Ss0 f39 out f37 tail #connect
 Ss0 f37 head f36 mainIn #connect
-Ss0 f50 mainOut f49 tail #connect
-Ss0 f49 head f48 mainIn #connect
-Ss0 f51 mainOut f54 tail #connect
-Ss0 f54 head f53 mainIn #connect
 Ss0 f53 mainOut f55 tail #connect
 Ss0 f55 head f52 mainIn #connect
-Ss0 f56 mainOut f57 tail #connect
-Ss0 f57 head f36 mainIn #connect
 Ss0 f39 out f47 tail #connect
 Ss0 f47 head f46 mainIn #connect
-Ss0 f58 mainOut f59 tail #connect
-Ss0 f59 head f36 mainIn #connect
 Ss0 S10 g2 f1 tail #connect
 Ss0 f1 head f3 in #connect
 Ss0 f63 mainOut f73 tail #connect
@@ -1121,6 +979,18 @@ Ss0 f3 out f12 tail #connect
 Ss0 f12 head f30 mainIn #connect
 Ss0 f68 mainOut f82 tail #connect
 Ss0 f82 head f78 mainIn #connect
+Ss0 f83 mainOut f84 tail #connect
+Ss0 f84 head f7 mainIn #connect
+Ss0 f6 mainOut f8 tail #connect
+Ss0 f8 head f42 mainIn #connect
+Ss0 f9 mainOut f10 tail #connect
+Ss0 f10 head f48 mainIn #connect
+Ss0 f35 mainOut f40 tail #connect
+Ss0 f40 head f39 in #connect
+Ss0 f41 mainOut f43 tail #connect
+Ss0 f43 head f36 mainIn #connect
+Ss0 f44 mainOut f45 tail #connect
+Ss0 f45 head f53 mainIn #connect
 Ct0 f60 mainOut f76 tail #connect
 Ct0 f76 head f73 mainIn #connect
 Ct0 f74 mainOut f75 tail #connect
