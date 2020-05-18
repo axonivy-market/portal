@@ -18,6 +18,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.MapUtils;
+import org.primefaces.component.tabview.TabView;
+import org.primefaces.event.TabChangeEvent;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
@@ -54,6 +56,16 @@ public class AbsenceManagementBean implements Serializable{
 
     substitutionManagementCapable =
         permissionCheckerService.hasAllPermissions(USER_CREATE_SUBSTITUTE, USER_READ_SUBSTITUTES);
+  }
+  
+  public void onTabChange(TabChangeEvent tabChangeEvent) {
+    if (tabChangeEvent.getComponent() instanceof TabView) {
+      TabView tabView = (TabView) tabChangeEvent.getComponent();
+      Number activeTabIndex = tabView.getIndex();
+      
+      IvyComponentLogicCaller<String> substitueTabChange = new IvyComponentLogicCaller<>();
+      substitueTabChange.invokeComponentLogic("absence-management", "#{logic.onTabChange}", new Object[] { activeTabIndex });
+    }
   }
 
   public boolean isOwnAbsencesReadable() {
