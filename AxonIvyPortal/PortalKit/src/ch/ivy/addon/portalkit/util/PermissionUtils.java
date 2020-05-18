@@ -1,6 +1,12 @@
 package ch.ivy.addon.portalkit.util;
 
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.persistence.PersistencyException;
+import ch.ivyteam.ivy.security.IPermission;
+import ch.ivyteam.ivy.security.IPermissionAccess;
+import ch.ivyteam.ivy.security.ISecurityDescriptor;
+import ch.ivyteam.ivy.security.IUser;
 
 public class PermissionUtils {
   private static final String ADMIN_ROLE = "AXONIVY_PORTAL_ADMIN";
@@ -37,5 +43,21 @@ public class PermissionUtils {
 
   public static boolean isSessionUserHasAdminRole() {
     return Ivy.session().hasRole(Ivy.request().getApplication().getSecurityContext().findRole(ADMIN_ROLE), false);
+  }
+  
+  public static boolean hasPermission(IApplication application, String username, IPermission permission) {
+    IPermissionAccess permissionAccess = null;
+    try {
+      IUser user = application.getSecurityContext().findUser(username);
+      ISecurityDescriptor securityDescriptor = application.getSecurityDescriptor();
+      if (user != null) {
+        permissionAccess = securityDescriptor.getPermissionAccess(permission, user);
+        return permissionAccess.isGranted();
+      }
+    } catch (PersistencyException e) {
+      Ivy.log().error(e);
+      return false;
+    }
+    return false;
   }
 }
