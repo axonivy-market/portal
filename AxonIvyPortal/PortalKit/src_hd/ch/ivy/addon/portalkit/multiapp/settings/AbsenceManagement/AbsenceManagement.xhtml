@@ -85,7 +85,7 @@
       </div>
     </div>
 
-    <p:tabView id="substitue-tab" value="#{data.applications}" var="app" styleClass="substitue-tab" activeIndex="#{data.tabIndex}">
+    <p:tabView id="substitue-tab" value="#{data.applications}" var="app" styleClass="substitue-tab" activeIndex="#{data.tabIndex}" rendered="#{not empty data.applications}">
     <p:ajax event="tabChange" listener="#{absenceManagementBean.onTabChange}"/>
     <p:tab title="#{app.displayName}" >
     
@@ -162,6 +162,7 @@
                 <p:radioButton id="on-absence-option" for="active-period" itemIndex="1" />
                 <h:outputLabel for="on-absence-option" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/duringMyAbsence')}" />
               </div>
+              
             </p:column>
           </p:dataTable>
         </div>
@@ -195,12 +196,13 @@
 
   <div class="ui-g-12 ui-dialog-footer">
     <p:commandButton id="save-substitute" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" 
+      rendered="#{not empty data.applications}"
       actionListener="#{logic.saveSubstitutes}" process=":#{p:component('substitue-tab')}" partialSubmit="true" update="errors-message"
       oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.attrs.dialogName}').hide();}" />
    
     <p:spacer width="5px" />
     <p:commandButton id="cancel-subsitute" type="button"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+      value="#{ivy.cms.co(empty data.applications ? '/ch.ivy.addon.portalkit.ui.jsf/common/close' : '/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       onclick="PF('#{cc.attrs.dialogName}').hide();" styleClass="portal-cancel-button" />
   </div>
   
