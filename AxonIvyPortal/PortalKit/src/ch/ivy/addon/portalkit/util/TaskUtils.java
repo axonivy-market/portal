@@ -166,7 +166,8 @@ public final class TaskUtils {
    */
   public static ITask findTaskById(long taskId) {
     return IvyExecutor.executeAsSystem(() -> {
-      return Ivy.wf().findTask(taskId);
+      TaskQuery taskQuery = TaskQuery.create().where().taskId().isEqual(taskId);
+      return Ivy.wf().getGlobalContext().getTaskQueryExecutor().getFirstResult(taskQuery);
     });
   }
 
