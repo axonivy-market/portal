@@ -237,13 +237,11 @@ public class CaseWidgetPage extends TemplatePage {
 	public void clickDefaultCheckbox() {
 		WebElement columnCheckbox = findElementByXpath(DEFAULT_COLUMNS_XPATH);
 		click(columnCheckbox);
-		waitForAjaxIndicatorAppear();
 		waitAjaxIndicatorDisappear();
 	}
 
 	public void clickApplyButton() {
 		click(By.cssSelector(APPLY_BUTTON_CSS_SELECTOR));
-		waitForAjaxIndicatorAppear();
 		waitAjaxIndicatorDisappear();
 	}
 
