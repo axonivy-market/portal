@@ -337,7 +337,8 @@ ac0 f25 224 234 112 44 -22 -8 #rect
 ac0 f25 @|StepIcon #fIcon
 ac0 f21 actionTable 'out=in;
 ' #txt
-ac0 f21 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+ac0 f21 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
 RegisteredApplicationService service = new RegisteredApplicationService();
@@ -345,7 +346,10 @@ java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.
 in.taskSearchCriteria.apps = apps;
 in.taskSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
 in.taskSearchCriteria.sorted = false;
-in.taskSearchCriteria.adminQuery = PermissionUtils.checkReadAllTasksPermission();' #txt
+if (PermissionUtils.checkReadAllTasksPermission()) {
+  in.taskSearchCriteria.adminQuery = true;
+  in.taskSearchCriteria.includedStates = [TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.DONE, TaskState.PARKED, TaskState.UNASSIGNED];
+}' #txt
 ac0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
