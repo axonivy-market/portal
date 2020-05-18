@@ -34,7 +34,6 @@ public class ExpressTest extends BaseTest{
   @Before
   public void setup() {
     super.setup();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
   }
 
@@ -86,15 +85,11 @@ public class ExpressTest extends BaseTest{
   private void executeExpressProcessWhenMultiApproval() {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
     expressTaskPage.finish();
-    assertEquals(0, new TaskWidgetPage().countTasks());
     login(TestAccount.ADMIN_USER);
     executeUserTask();
-    assertEquals(0, new TaskWidgetPage().countTasks());
     login(TestAccount.DEMO_USER);
     executeApproval("Approved at first level");
     executeApproval("Approved at second level");
-    login(TestAccount.DEMO_USER);
-    assertEquals(0, new TaskWidgetPage().countTasks());
     login(TestAccount.ADMIN_USER);
     executeApproval("Approved at second level");
     login(TestAccount.DEMO_USER);
