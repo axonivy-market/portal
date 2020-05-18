@@ -86,7 +86,7 @@
     </div>
 
     <p:tabView id="substitue-tab" value="#{data.applications}" var="app" styleClass="substitue-tab" activeIndex="#{data.tabIndex}" rendered="#{not empty data.applications}">
-    <p:ajax event="tabChange" listener="#{logic.onTabChange}"/>
+    <p:ajax event="tabChange" listener="#{absenceManagementBean.onTabChange}"/>
     <p:tab title="#{app.displayName}" >
     
       <!-- MY DEPUTY -->
@@ -212,7 +212,7 @@
     widgetVar="deleteAbsenceConfirmation" rendered="#{absenceManagementBean.ownAbsencesDeletable}">
     <p:commandButton process="@this" id="confirm-action" styleClass="confirm-action"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" actionListener="#{logic.deleteAbsence}"
-      oncomplete="PF('deleteAbsenceConfirmation').hide();" update=":#{p:component('absence-table')} :#{p:component('substitue-tab')}" />
+      oncomplete="PF('deleteAbsenceConfirmation').hide();" update=":#{p:component('absence-table')}  :#{p:component('substitue-tab')}" />
     <p:commandButton id="cancel-confirmation-action" styleClass="portal-cancel-button"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       onclick="PF('deleteAbsenceConfirmation').hide()" type="button" />

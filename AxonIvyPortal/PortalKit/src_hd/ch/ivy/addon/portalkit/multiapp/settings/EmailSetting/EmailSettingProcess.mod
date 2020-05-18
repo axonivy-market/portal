@@ -105,7 +105,7 @@ Es0 f24 expr out #txt
 Es0 f24 77 160 128 160 #arcP
 Es0 f36 actionTable 'out=in;
 ' #txt
-Es0 f36 actionCode 'import org.primefaces.PrimeFaces;
+Es0 f36 actionCode 'import ch.ivy.addon.portalkit.bean.EmailSettingBean;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting;
 import org.apache.commons.collections4.CollectionUtils;
 import javax.faces.context.FacesContext;
@@ -114,14 +114,13 @@ import ch.ivy.addon.portalkit.util.BeanUtils;
 
 BeanUtils.invokeBeanMethodViaMethodExpression("#{errorDisplayBean.displayErrors}", in.errors);
 
-PrimeFaces primeFaces = PrimeFaces.current();
+
 boolean isEmailSettingsEmpty = CollectionUtils.isEmpty(in.emailSettings);
 if (isEmailSettingsEmpty) {
 	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, null, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/emailSetting/noSettingMsg")));
 }
 
-primeFaces.ajax().addCallbackParam("settingEmpty", isEmailSettingsEmpty);
-primeFaces.ajax().addCallbackParam("settingForAllApp", in.settingForAllApp);
+EmailSettingBean.addSettingsToCallbackParam(isEmailSettingsEmpty, in.settingForAllApp);
 
 if(in.#generalEmailSetting == null){
 	out.generalEmailSetting = new IvyEmailSetting();

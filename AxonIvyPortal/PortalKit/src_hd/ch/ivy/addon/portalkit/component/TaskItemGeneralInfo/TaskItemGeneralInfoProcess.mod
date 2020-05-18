@@ -25,11 +25,11 @@ Ts0 @UdProcessEnd f11 '' #zField
 Ts0 @GridStep f7 '' #zField
 Ts0 @PushWFArc f12 '' #zField
 Ts0 @CallSub f9 '' #zField
-Ts0 @UdEvent f6 '' #zField
-Ts0 @PushWFArc f3 '' #zField
 Ts0 @GridStep f4 '' #zField
 Ts0 @PushWFArc f8 '' #zField
 Ts0 @PushWFArc f10 '' #zField
+Ts0 @UdMethod f16 '' #zField
+Ts0 @PushWFArc f3 '' #zField
 >Proto Ts0 Ts0 TaskItemGeneralInfoProcess #zField
 Ts0 f0 guid 1682691BC1A26D76 #txt
 Ts0 f0 method start() #txt
@@ -109,11 +109,8 @@ Ts0 f11 659 179 26 26 0 12 #rect
 Ts0 f11 @|UdProcessEndIcon #fIcon
 Ts0 f7 actionTable 'out=in;
 ' #txt
-Ts0 f7 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivy.addon.portalkit.dto.GlobalCaseId;
-import org.primefaces.component.commandlink.CommandLink;
+Ts0 f7 actionCode 'import ch.ivy.addon.portalkit.dto.GlobalCaseId;
 
-out.selectedCase = out.commandLink.getAttributes().get("caseView") as ICase;
 in.globalCaseId = GlobalCaseId.caseId(in.selectedCase.getId()).build();' #txt
 Ts0 f7 security system #txt
 Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -144,23 +141,6 @@ Ts0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f9 488 170 112 44 -26 -8 #rect
 Ts0 f9 @|CallSubIcon #fIcon
-Ts0 f6 guid 16D8B98E15129219 #txt
-Ts0 f6 actionTable 'out=in;
-' #txt
-Ts0 f6 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
-import org.primefaces.component.commandlink.CommandLink;
-
-out.commandLink = event.getSource() as CommandLink;' #txt
-Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>navigateToRelatedCase</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f6 83 179 26 26 -73 20 #rect
-Ts0 f6 @|UdEventIcon #fIcon
-Ts0 f3 109 192 160 192 #arcP
 Ts0 f4 actionTable 'out=in;
 ' #txt
 Ts0 f4 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
@@ -178,6 +158,22 @@ Ts0 f4 @|StepIcon #fIcon
 Ts0 f8 expr out #txt
 Ts0 f8 288 192 320 192 #arcP
 Ts0 f10 448 192 488 192 #arcP
+Ts0 f16 guid 1720D0EE85E5021E #txt
+Ts0 f16 method navigateToRelatedCase(ch.ivyteam.ivy.workflow.ICase) #txt
+Ts0 f16 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase selectedCase> param;' #txt
+Ts0 f16 inParameterMapAction 'out.selectedCase=param.selectedCase;
+' #txt
+Ts0 f16 outParameterDecl '<> result;' #txt
+Ts0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>navigateToRelatedCase(ICase)</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f16 83 179 26 26 -63 20 #rect
+Ts0 f16 @|UdMethodIcon #fIcon
+Ts0 f3 109 192 160 192 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -192,9 +188,9 @@ Ts0 f13 mainOut f17 tail #connect
 Ts0 f17 head f15 mainIn #connect
 Ts0 f15 mainOut f20 tail #connect
 Ts0 f20 head f19 mainIn #connect
-Ts0 f6 mainOut f3 tail #connect
-Ts0 f3 head f7 mainIn #connect
 Ts0 f7 mainOut f8 tail #connect
 Ts0 f8 head f4 mainIn #connect
 Ts0 f4 mainOut f10 tail #connect
 Ts0 f10 head f9 mainIn #connect
+Ts0 f16 mainOut f3 tail #connect
+Ts0 f3 head f7 mainIn #connect
