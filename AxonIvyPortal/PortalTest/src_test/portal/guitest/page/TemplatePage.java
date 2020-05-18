@@ -32,9 +32,9 @@ public abstract class TemplatePage extends AbstractPage {
     waitForLocatorDisplayed(getLoadedLocator());
   }
 
-  //If page load more than 30s, mark it failed by timeout
+  //If page load more than 45s, mark it failed by timeout
   protected long getTimeOutForLocator() {
-    return 30L;
+    return 45L;
   }
 
   protected void waitForLocatorDisplayed(String locator) {
@@ -116,6 +116,15 @@ public abstract class TemplatePage extends AbstractPage {
     if (displayed) {
       waitForElementDisplayed(ajaxIndicatorStartState, false);
     }
+  }
+  
+  /**
+   * In some pages, we execute 2 ajax when interact with UI, one ajax doesn't show loading icon,
+   * and one ajax show loading icon. In case the first ajax is slow, then waitAjaxIndicatorDisappear()
+   * won't run correctly
+   */
+  public void waitForAjaxIndicatorAppear() {
+    waitForElementDisplayed(By.id("ajax-indicator:ajax-indicator-ajax-indicator_start"), true);
   }
 
   public <T> void waitForElementDisplayed(T locator, boolean expected) {
