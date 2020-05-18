@@ -996,7 +996,7 @@ import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import org.apache.commons.collections4.CollectionUtils;
 
 RegisteredApplicationService service = new RegisteredApplicationService();
-in.applications = service.findActiveIvyAppsUserCanWork(ivy.session.getSessionUserName());
+in.applications = service.findActiveIvyAppsUserCanCreateSubstitute(ivy.session.getSessionUserName());
 
 if (CollectionUtils.isNotEmpty(in.applications)) {
 	String appName = in.applications.get(0).name;
