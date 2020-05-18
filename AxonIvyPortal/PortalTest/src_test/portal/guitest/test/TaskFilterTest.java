@@ -1,12 +1,11 @@
 package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 
-import org.apache.commons.codec.binary.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -23,7 +22,6 @@ public class TaskFilterTest extends BaseTest {
 	public void setup() {
 		super.setup();
 		redirectToRelativeLink(createTestingTasksUrl);
-		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
 	}
 
 	@Test
@@ -38,8 +36,8 @@ public class TaskFilterTest extends BaseTest {
 
 	@Test
 	public void testAdvancedFilterTask() {
-		MainMenuPage mainMenuPage = new MainMenuPage();
-		TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+	  	TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    	taskWidgetPage.expand();
 		assertEquals(3, taskWidgetPage.countTasks());
 
 		taskWidgetPage.openAdvancedFilter("Description", "description");
@@ -50,8 +48,8 @@ public class TaskFilterTest extends BaseTest {
 
 	@Test
 	public void testShowDoneStateFilterForNormalUser() {
-		MainMenuPage mainMenuPage = new MainMenuPage();
-		TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+	  	TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    	taskWidgetPage.expand();
 		assertEquals(3, taskWidgetPage.countTasks());
 
 		String stateFilterValue = taskWidgetPage.getFilterValue("state-filter");
@@ -77,8 +75,8 @@ public class TaskFilterTest extends BaseTest {
 
 	@Test
 	public void testSaveTaskFilter() {
-		MainMenuPage mainMenuPage = new MainMenuPage();
-		TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+	  	TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    	taskWidgetPage.expand();
 
 		String filterName = "Maternity";
 		taskWidgetPage.openAdvancedFilter("Description", "description");
@@ -90,7 +88,8 @@ public class TaskFilterTest extends BaseTest {
 	@Test
 	public void testSaveTaskFilterOnDifferentTaskList() {
 		MainMenuPage mainMenuPage = new MainMenuPage();
-		TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+		taskWidgetPage.expand();
 
 		String filterName = "MyFilter";
 
@@ -99,7 +98,7 @@ public class TaskFilterTest extends BaseTest {
 		taskWidgetPage.saveFilter(filterName);
 
 		redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
-		taskWidgetPage = mainMenuPage.openTaskList();
+		taskWidgetPage.expand();
 
 		assertTrue(taskWidgetPage.getFilterName().contains("Default filter"));
 
@@ -116,9 +115,8 @@ public class TaskFilterTest extends BaseTest {
 	public void testShowUnassignedTaskToPersonHaveTaskReadAllPermission() {
 		login(TestAccount.ADMIN_USER);
 		redirectToRelativeLink(createUnassignedTaskUrl);
-		MainMenuPage mainMenuPage = new MainMenuPage();
-		mainMenuPage.selectCaseMenu();
-		TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    	taskWidgetPage.expand();
 		assertEquals(6, taskWidgetPage.countTasks());
 
 		taskWidgetPage.openStateFilterOverlayPanel();
@@ -133,9 +131,8 @@ public class TaskFilterTest extends BaseTest {
 	@Test
 	public void testNotShowUnassignedTaskToPersonNotHaveTaskReadAllPermission() {
 		redirectToRelativeLink(createUnassignedTaskUrl);
-		MainMenuPage mainMenuPage = new MainMenuPage();
-		mainMenuPage.selectCaseMenu();
-		TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+		taskWidgetPage.expand();
 
 		assertEquals(3, taskWidgetPage.countTasks());
 		taskWidgetPage.openStateFilterOverlayPanel();
@@ -144,9 +141,8 @@ public class TaskFilterTest extends BaseTest {
 
 	@Test
 	public void testCategory() {
-		MainMenuPage mainMenuPage = new MainMenuPage();
-		TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
-
+		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+		taskWidgetPage.expand();
 		String taskCategoryId = "task-category";
 		taskWidgetPage.openAdvancedFilter("Task category", taskCategoryId);
 		assertEquals("Task category: All", taskWidgetPage.getFilterValue(taskCategoryId + "-filter"));
@@ -157,7 +153,7 @@ public class TaskFilterTest extends BaseTest {
 		assertTrue(taskWidgetPage.isAllCategoriesUnselected());
 
 		taskWidgetPage.applyCategoryFilter();
-		assertFalse(StringUtils.equals("Task category: All", taskWidgetPage.getFilterValue(taskCategoryId + "-filter")));
+		assertNotEquals("Task category: All", taskWidgetPage.getFilterValue(taskCategoryId + "-filter"));
 	}
 
 	@Test
@@ -167,8 +163,9 @@ public class TaskFilterTest extends BaseTest {
 		String filterMaternity = "Maternity";
 		
 		MainMenuPage mainMenuPage = new MainMenuPage();
-		TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
-    taskWidgetPage.openAdvancedFilter("Description", "description");
+		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    	taskWidgetPage.expand();
+    	taskWidgetPage.openAdvancedFilter("Description", "description");
 		taskWidgetPage.filterByDescription(filterMaternity);
 		taskWidgetPage.saveFilter(filterMaternity);
 
@@ -192,7 +189,8 @@ public class TaskFilterTest extends BaseTest {
 		String filterMaternity = "Maternity";
 		
 		MainMenuPage mainMenuPage = new MainMenuPage();
-		TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.expand();
     taskWidgetPage.openAdvancedFilter("Description", "description");
     taskWidgetPage.filterByResponsible("Everybody");
 		taskWidgetPage.filterByDescription(filterMaternity);
@@ -209,17 +207,17 @@ public class TaskFilterTest extends BaseTest {
 	
 	@Test
 	public void testDefaultFilter() {
-		MainMenuPage mainMenuPage = new MainMenuPage();
-		TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+	  	TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    	taskWidgetPage.expand();
 		assertTrue(taskWidgetPage.getFilterName().contains("Default filter"));
 	}
 	
 	@Test
 	public void testNoSelectionWhenChangeFilter() {
 		String filterMaternity = "Maternity";
-		MainMenuPage mainMenuPage = new MainMenuPage();
-		TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
-    taskWidgetPage.openAdvancedFilter("Description", "description");
+		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    	taskWidgetPage.expand();
+    	taskWidgetPage.openAdvancedFilter("Description", "description");
 		taskWidgetPage.filterByDescription(filterMaternity);
 		taskWidgetPage.saveFilter(filterMaternity);
 		taskWidgetPage.filterByResponsible("Demo");
@@ -230,9 +228,9 @@ public class TaskFilterTest extends BaseTest {
 	@Test
 	public void testResetFilter() {
 		String filterMaternity = "Maternity";
-		MainMenuPage mainMenuPage = new MainMenuPage();
-		TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
-    taskWidgetPage.openAdvancedFilter("Description", "description");
+		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    	taskWidgetPage.expand();
+    	taskWidgetPage.openAdvancedFilter("Description", "description");
 		taskWidgetPage.filterByDescription(filterMaternity);
 		taskWidgetPage.saveFilter(filterMaternity);
 		taskWidgetPage.filterByResponsible("Demo");

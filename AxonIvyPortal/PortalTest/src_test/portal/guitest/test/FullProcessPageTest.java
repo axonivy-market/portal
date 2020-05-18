@@ -20,7 +20,6 @@ public class FullProcessPageTest extends BaseTest{
   @Before
   public void setup() {
     super.setup();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     processWidgetPage = mainMenuPage.selectProcessesMenu();

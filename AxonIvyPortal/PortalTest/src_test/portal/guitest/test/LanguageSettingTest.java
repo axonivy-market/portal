@@ -16,7 +16,7 @@ public class LanguageSettingTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    createTestDataAndRedirectToHomePage();
+    createTestData();
   }
 
   @Test
@@ -39,9 +39,8 @@ public class LanguageSettingTest extends BaseTest {
     languagePage.cancel();
   }
 
-  private void createTestDataAndRedirectToHomePage() {
+  private void createTestData() {
     redirectToRelativeLink(createTestingTasksUrl);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
 }
