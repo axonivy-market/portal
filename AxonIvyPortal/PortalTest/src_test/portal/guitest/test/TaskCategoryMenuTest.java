@@ -8,7 +8,6 @@ import org.junit.Test;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class TaskCategoryMenuTest extends BaseTest {
@@ -20,14 +19,13 @@ public class TaskCategoryMenuTest extends BaseTest {
   public void setup() {
     super.setup();
     redirectToRelativeLink(createTestingTasksUrl);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
   @Test
   public void testSelectTaskCategoryMenuAsNormalUser() {
     homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
-    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.expand();
     assertEquals(3, taskWidgetPage.countTasks());
   }
 
@@ -35,8 +33,8 @@ public class TaskCategoryMenuTest extends BaseTest {
   public void testSelectTaskCategoryMenuAsAdminRole() {
     login(TestAccount.ADMIN_USER);
     homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
-    TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.expand();
     assertEquals(4, taskWidgetPage.countTasks());
   }
 }

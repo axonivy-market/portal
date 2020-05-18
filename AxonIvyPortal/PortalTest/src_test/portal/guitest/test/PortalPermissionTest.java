@@ -24,7 +24,6 @@ public class PortalPermissionTest extends BaseTest{
   @Before
   public void setup() {
     super.setup();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     grantAccessFullListPermissions();
     homePage = new HomePage();
   }
@@ -66,14 +65,15 @@ public class PortalPermissionTest extends BaseTest{
     denyTaskActionsPermissions();
     createTestingTasks();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.openTaskList();
+    taskWidgetPage.expand();
     Assert.assertFalse(taskWidgetPage.isTaskResetDisplayed());
     Assert.assertFalse(taskWidgetPage.isTaskDelegateDisplayed());
     Assert.assertFalse(taskWidgetPage.isTaskReserverDisplayed());
     Assert.assertFalse(taskWidgetPage.isAdhocSideStepDisplayed());
     
     grantTaskActionsPermissions();
-    taskWidgetPage.openTaskList();
+    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.expand();
     taskWidgetPage.sideStepMenuOnActionButton(0);
     Assert.assertTrue(taskWidgetPage.isTaskResetDisplayed());
     Assert.assertTrue(taskWidgetPage.isTaskDelegateDisplayed());
