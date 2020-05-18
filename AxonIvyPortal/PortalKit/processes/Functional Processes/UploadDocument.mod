@@ -134,7 +134,6 @@ Ut0 f71 @|StepIcon #fIcon
 Ut0 f38 actionTable 'out=in;
 ' #txt
 Ut0 f38 actionCode 'import ch.ivy.addon.portalkit.enums.UploadDocumentCheckStatus;
-import org.primefaces.model.UploadedFile;
 import ch.ivy.addon.portalkit.service.CaseDocumentService;
 
 String fileName = in.uploadedFile.getFileName();

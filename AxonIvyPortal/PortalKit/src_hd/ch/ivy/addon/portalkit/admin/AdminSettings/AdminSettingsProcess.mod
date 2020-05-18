@@ -56,7 +56,6 @@ As0 @GridStep f88 '' #zField
 As0 @Alternative f170 '' #zField
 As0 @UdMethod f176 '' #zField
 As0 @UdProcessEnd f177 '' #zField
-As0 @GridStep f179 '' #zField
 As0 @Alternative f178 '' #zField
 As0 @UdEvent f185 '' #zField
 As0 @GridStep f202 '' #zField
@@ -101,8 +100,6 @@ As0 @GridStep f225 '' #zField
 As0 @PushWFArc f226 '' #zField
 As0 @PushWFArc f227 '' #zField
 As0 @GridStep f231 '' #zField
-As0 @PushWFArc f180 '' #zField
-As0 @PushWFArc f181 '' #zField
 As0 @GridStep f15 '' #zField
 As0 @PushWFArc f124 '' #zField
 As0 @PushWFArc f133 '' #zField
@@ -187,6 +184,7 @@ As0 @UdProcessEnd f12 '' #zField
 As0 @GridStep f14 '' #zField
 As0 @PushWFArc f16 '' #zField
 As0 @PushWFArc f13 '' #zField
+As0 @PushWFArc f20 '' #zField
 >Proto As0 As0 AdminUIProcess #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
@@ -676,44 +674,23 @@ As0 f170 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f170 530 746 28 28 14 0 #rect
 As0 f170 @|AlternativeIcon #fIcon
 As0 f176 guid 14E951D887B4F17A #txt
-As0 f176 method onApplicationReorder(org.primefaces.event.ReorderEvent) #txt
-As0 f176 inParameterDecl '<org.primefaces.event.ReorderEvent reorderEvent> param;' #txt
-As0 f176 inParameterMapAction 'out.reorderEvent=param.reorderEvent;
+As0 f176 method onApplicationReorder(java.util.List<ch.ivy.addon.portalkit.persistence.domain.Application>,ch.ivy.addon.portalkit.persistence.domain.Application) #txt
+As0 f176 inParameterDecl '<java.util.List<ch.ivy.addon.portalkit.persistence.domain.Application> orderedApplicationList,ch.ivy.addon.portalkit.persistence.domain.Application selectedApp> param;' #txt
+As0 f176 inParameterMapAction 'out.applicationList=param.orderedApplicationList;
+out.selectedApp=param.selectedApp;
 ' #txt
 As0 f176 outParameterDecl '<> result;' #txt
 As0 f176 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>onApplicationReorder(ReorderEvent)</name>
+        <name>onApplicationReorder(List&lt;Application&gt;,Application)</name>
     </language>
 </elementInfo>
 ' #txt
-As0 f176 1438 390 20 20 13 0 #rect
+As0 f176 1438 390 20 20 -74 10 #rect
 As0 f176 @|UdMethodIcon #fIcon
-As0 f177 1438 662 20 20 13 0 #rect
+As0 f177 1438 566 20 20 13 0 #rect
 As0 f177 @|UdProcessEndIcon #fIcon
-As0 f179 actionTable 'out=in;
-' #txt
-As0 f179 actionCode 'int fromIndex = in.reorderEvent.getFromIndex();
-int toIndex = in.reorderEvent.getToIndex();
-
-in.selectedApp = in.applicationList.removeGet(fromIndex);
-in.applicationList.add(toIndex, in.selectedApp);
-
-for (int i = 0; i < in.applicationList.size(); i++) {
-	in.applicationList.get(i).setMenuOrdinal(i);
-}' #txt
-As0 f179 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>calculate applications'' order</name>
-        <nameStyle>29,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f179 1430 444 36 24 20 -2 #rect
-As0 f179 @|StepIcon #fIcon
 As0 f178 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1170,12 +1147,8 @@ As0 f231 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f231 1430 508 36 24 20 -2 #rect
+As0 f231 1430 452 36 24 23 -7 #rect
 As0 f231 @|StepIcon #fIcon
-As0 f180 expr out #txt
-As0 f180 1448 410 1448 444 #arcP
-As0 f181 expr out #txt
-As0 f181 1448 468 1448 508 #arcP
 As0 f15 actionTable 'out=in;
 ' #txt
 As0 f15 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
@@ -1402,10 +1375,10 @@ As0 f97 expr out #txt
 As0 f97 1400 1638 1400 1691 #arcP
 As0 f55 actionTable 'out=in;
 ' #txt
-As0 f55 actionCode 'import org.primefaces.PrimeFaces;
+As0 f55 actionCode 'import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
 
 if (in.settingTabOpened) {
-	PrimeFaces.current().executeScript("PF(''settingTable'').clearFilters()");
+	PrimeFacesUtils.executeScript("PF(''settingTable'').clearFilters()");
 }' #txt
 As0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1549,12 +1522,12 @@ As0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f46 1392 578 112 44 -44 -8 #rect
+As0 f46 1392 498 112 44 -44 -8 #rect
 As0 f46 @|StepIcon #fIcon
 As0 f49 expr out #txt
-As0 f49 1448 532 1448 578 #arcP
+As0 f49 1448 476 1448 498 #arcP
 As0 f50 expr out #txt
-As0 f50 1448 622 1448 662 #arcP
+As0 f50 1448 542 1448 566 #arcP
 As0 f83 expr out #txt
 As0 f83 536 1598 536 1658 #arcP
 As0 f84 536 1702 536 1763 #arcP
@@ -1696,19 +1669,15 @@ As0 f89 @|UdProcessEndIcon #fIcon
 As0 f90 expr out #txt
 As0 f90 600 1957 600 2099 #arcP
 As0 f2 guid 16F55D573C483035 #txt
-As0 f2 method onTabChange(org.primefaces.event.TabChangeEvent) #txt
-As0 f2 inParameterDecl '<org.primefaces.event.TabChangeEvent tabEvent> param;' #txt
-As0 f2 inActionCode 'import org.primefaces.PrimeFaces;
-import ch.ivy.addon.portalkit.service.AnnouncementService;
-import org.primefaces.component.tabview.TabView;
-import org.primefaces.event.TabChangeEvent;
+As0 f2 method onTabChange(Integer) #txt
+As0 f2 inParameterDecl '<Integer tabIndexActive> param;' #txt
+As0 f2 inParameterMapAction 'out.tabIndexActive=param.tabIndexActive;
+' #txt
+As0 f2 inActionCode 'import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
 
-TabChangeEvent tabChangeEvent = param.tabEvent;
-TabView tabView = tabChangeEvent.getComponent() as TabView;
-out.tabIndexActive = tabView.getChildren().indexOf(tabChangeEvent.getTab());
 if (out.tabIndexActive == 1) {
 	out.settingTabOpened = true;
-	PrimeFaces.current().executeScript("PF(''settingTable'').filter()");
+	PrimeFacesUtils.executeScript("PF(''settingTable'').filter()");
 }
 
 ' #txt
@@ -1716,7 +1685,7 @@ As0 f2 outParameterDecl '<> result;' #txt
 As0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>onTabChange(TabChangeEvent)</name>
+        <name>onTabChange(Integer)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -1758,6 +1727,8 @@ As0 f14 96 970 192 44 -92 -8 #rect
 As0 f14 @|StepIcon #fIcon
 As0 f16 192 909 192 970 #arcP
 As0 f13 192 1014 192 1075 #arcP
+As0 f20 1448 410 1448 452 #arcP
+As0 f20 0 0.4542198737914966 0 0 #arcLabel
 >Proto As0 .type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1868,8 +1839,6 @@ As0 f158 mainOut f160 tail #connect
 As0 f160 head f156 mainIn #connect
 As0 f161 mainOut f163 tail #connect
 As0 f163 head f162 mainIn #connect
-As0 f176 mainOut f180 tail #connect
-As0 f180 head f179 mainIn #connect
 As0 f192 mainOut f195 tail #connect
 As0 f195 head f178 in #connect
 As0 f178 out f197 tail #connect
@@ -1909,8 +1878,6 @@ As0 f200 mainOut f226 tail #connect
 As0 f226 head f225 mainIn #connect
 As0 f225 mainOut f227 tail #connect
 As0 f227 head f216 mainIn #connect
-As0 f179 mainOut f181 tail #connect
-As0 f181 head f231 mainIn #connect
 As0 f141 mainOut f124 tail #connect
 As0 f124 head f142 mainIn #connect
 As0 f133 head f88 mainIn #connect
@@ -2005,6 +1972,8 @@ As0 f7 mainOut f16 tail #connect
 As0 f16 head f14 mainIn #connect
 As0 f14 mainOut f13 tail #connect
 As0 f13 head f12 mainIn #connect
+As0 f176 mainOut f20 tail #connect
+As0 f20 head f231 mainIn #connect
 Ct0 g0 m f0 tail #connect
 Ct0 f0 head f51 mainIn #connect
 Ct0 f1 head g1 m #connect
