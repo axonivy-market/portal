@@ -11,7 +11,6 @@
   <cc:attribute name="showItemDetailsHistories" />
   <cc:attribute name="showItemDetailDocuments" />
   <cc:attribute name="showItemBackButton" />
-  <cc:attribute name="isFromDoneTask" />
   <cc:attribute name="descriptionComponentToUpdate" />
   <cc:attribute name="isWorkingOnTask" />
   <cc:attribute name="isTaskStartedInDetails" />
@@ -47,7 +46,7 @@
           </p:inplace>
         </h:panelGroup>
 
-        <p:commandLink id="back-to-cases" rendered="#{showItemBackButton}" onclick="backToPrevPage(#{cc.attrs.isFromDoneTask}, #{cc.attrs.isTaskStartedInDetails})" styleClass="case-details-back-btn">
+        <p:commandLink id="back-to-cases" rendered="#{showItemBackButton}" onclick="backToPrevPage(#{cc.attrs.isTaskStartedInDetails})" styleClass="case-details-back-btn">
           <i class="fa fa-reply-all" />
           <p:spacer width="3px"/>
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"/>
@@ -151,7 +150,7 @@
   </p:confirmDialog>
 
   <script type="text/javascript">
-      function backToPrevPage(isFromDoneTask, isTaskStartedInDetails) {
+      function backToPrevPage(isTaskStartedInDetails) {
         if (document.referrer &amp;&amp; !isTaskStartedInDetails) {
           window.history.back();
         } else {
