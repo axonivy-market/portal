@@ -61,9 +61,6 @@
       }, 1);
     });
   </script>
-  <f:facet name="last">
-    
-  </f:facet>
   
   <c:set var="isNotRequiredLogin" value="#{isNotRequiredLogin == null ? false : isNotRequiredLogin}" />
   <c:choose>
@@ -118,6 +115,10 @@
               </div>
             </div>
           </div>
+
+          <!-- div for positioning layout, don't modify it -->
+          <div class="position-topbar" />
+
           <!-- If showMainArea indicator is true, the layout content will be rendered by the schedule loading of JS file-->
           <!-- Otherwise, the layout content will be rendered by once DOM is pasted already -->
           <div class="layout-content container #{layoutContentStyleClass} #{showMainArea eq true ? '' : 'u-invisibility'}" id="main-area-panel">

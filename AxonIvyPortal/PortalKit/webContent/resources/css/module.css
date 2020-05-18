@@ -151,8 +151,8 @@
 }
 
 .layout-wrapper .layout-main .layout-content {
-  padding: 60px 20px 0 30px;
-  height: 100vh;
+  padding: 0 20px 0 30px;
+   height: calc(100vh - 58px);
   overflow-x: hidden;
 }
 
@@ -2885,7 +2885,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 /********************************** STATISTIC WIDGET **********************************/
 .statistic-widget-container:not(.statistic-widget-compact-mode-container) {
-  padding: 0.5em;
+  padding: 0 0.5em 0.5em 0.5em;
 }
 
 .statistic-widget-container:not(.statistic-widget-compact-mode-container) .widget-header .widget-header-main {
@@ -4378,3 +4378,7 @@ body .portal-breadcrumb.ui-breadcrumb ul li {
 }
 
 /*=================== BREADCRUMB END ===================*/
+
+.position-topbar {
+	height: 58px;
+}

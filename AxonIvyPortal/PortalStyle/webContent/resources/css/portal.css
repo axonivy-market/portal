@@ -38,7 +38,7 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
   height: auto; }
 
 .login-body {
-  background-image: url("#{resource['serenity-layout:images/login/login-bg.jpg']}");
+  background-image: url("#{resource['images:login/login-bg.jpg']}");
   margin: 0;
   padding: 0;
   background-attachment: fixed;
@@ -223,12 +223,7 @@ body .ui-widget-header .ui-button .ui-icon {
   background: var(--ivy-primary-color-light);
   box-shadow: none;
   padding-bottom: 0;
-  height: 60px; }
-
-.layout-wrapper .layout-main .layout-content {
-  padding: 60px 20px 0 30px;
-  height: 100vh;
-  overflow-x: hidden; }
+  height: 58px; }
 
 .topbar-menu li .ui-commandlink {
   font-size: var(--large-font-size); }
@@ -239,7 +234,7 @@ body .ui-widget-header .ui-button .ui-icon {
 
 @media screen and (max-width: 40em) {
   .layout-wrapper .layout-main .layout-content {
-    padding: 60px 0 0 0; } }
+    padding: 0; } }
 
 @media (max-width: 1365px) {
   .layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu {
