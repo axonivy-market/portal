@@ -26,7 +26,6 @@ public class CaseDetailsTest extends BaseTest {
   public void setup() {
     super.setup();
     redirectToRelativeLink(createTestingTasksUrl);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     login(TestAccount.ADMIN_USER);
 
     homePage = new HomePage();
@@ -40,9 +39,7 @@ public class CaseDetailsTest extends BaseTest {
   public void testDestroyCase() {
     detailsPage.onClickDestroyCase();
     detailsPage.confimDestruction();
-    detailsPage.waitAjaxIndicatorDisappear();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
-    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
+    CaseWidgetPage casePage = new CaseWidgetPage();
     assertEquals(0, casePage.getNumberOfCases());
   }
 

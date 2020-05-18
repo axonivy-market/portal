@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
-import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class TaskDescriptionChangeTest extends BaseTest {
@@ -18,7 +17,6 @@ public class TaskDescriptionChangeTest extends BaseTest {
   public void setup() {
     super.setup();
     createTestingTasks();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
   @Test
