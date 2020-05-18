@@ -6,8 +6,6 @@
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{logic.initialize}" type="preRenderComponent" />
-
   <h:form id="express-management-form" styleClass="express-management-form">
     <div class="ui-g">
       <div class="ui-g-12 TexAlRight u-padding-0">
@@ -16,12 +14,12 @@
         <p:spacer width="10px" />
         <p:commandButton id="export-express-btn" widgetVar="export-express-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/exportExpress')}"
           process="express-workflow-summary-table" partialSubmit="true" oncomplete="PF('export-express-dialog').show()"
-          update="#{p:component('export-express-dialog')} #{p:component('express-export-group')}" disabled="#{empty data.selectedExpressProcessList}" />
+          update="#{p:component('export-express-dialog')} #{p:component('express-export-group')}" disabled="#{empty expressManagementBean.selectedExpressProcesses}" />
       </div>
 
       <div class="ui-g-12 u-padding-0 MarTop5">
         <p:dataTable id="express-workflow-summary-table" widgetVar="express-workflow-summary-table"
-          var="express" value="#{data.expressProcessList}" selection="#{data.selectedExpressProcessList}"
+          var="express" value="#{expressManagementBean.expressProcesses}" selection="#{expressManagementBean.selectedExpressProcesses}"
           styleClass="express-workflow-summary-table admin-table" rowKey="#{express.processName}"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           scrollable="true" scrollHeight="240" reflow="true">
@@ -55,9 +53,9 @@
     fitViewport="true" position="center center" responsive="true" positionType="absolute"
     onShow="PF('export-express-dialog').initPosition();" closeOnEscape="false">
     <h:form id="express-export-form">
-      <h:panelGroup id="express-export-group" layout="block" class="ui-g" rendered="#{not empty data.selectedExpressProcessList}">
+      <h:panelGroup id="express-export-group" layout="block" class="ui-g" rendered="#{not empty expressManagementBean.selectedExpressProcesses}">
         <div class="ui-g-12">
-          <h4 class="import-header-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/importHeaderTitle')} #{data.selectedExpressProcessList.size()}
+          <h4 class="import-header-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/importHeaderTitle')} #{expressManagementBean.selectedExpressProcesses.size()}
             #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/processCount')}</h4>
         </div>
 
@@ -68,7 +66,7 @@
         </div>
 
         <div jsf:id="express-export-selected" class="ui-g-12 express-export-selected">
-          <ui:repeat var="process" value="#{data.selectedExpressProcessList}">
+          <ui:repeat var="process" value="#{expressManagementBean.selectedExpressProcesses}">
             <li class="MarTop5"><span>#{process.processName}</span></li>
           </ui:repeat>
         </div>
@@ -78,10 +76,10 @@
     <f:facet name="footer">
       <h:form id="export-express-dowload-form" styleClass="ui-g">
         <div class="ui-g-12">
-          <p:commandButton id="export-express-dowload" rendered="#{not empty data.selectedExpressProcessList}"
+          <p:commandButton id="export-express-dowload" rendered="#{not empty expressManagementBean.selectedExpressProcesses}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}" ajax="false"
             onclick="PrimeFaces.monitorDownload(showLoadingIndicator, hideLoadingAndCloseExportDialog); PF('export-express-dialog').initPosition();">
-            <p:fileDownload value="#{logic.exportExpress()}" />
+            <p:fileDownload value="#{expressManagementBean.exportExpress()}" />
           </p:commandButton>
           <p:spacer width="10px" />
           <p:commandButton styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
@@ -111,8 +109,8 @@
             update="import-express-form impress-export-output import-express-dialog-message"
             label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
             uploadLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/deployButton')}" uploadIcon="fa fa-cogs"
-            cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" fileUploadListener="#{logic.importExpress}"
-            value="#{data.importExpressFile}" fileLimit="1"
+            cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" fileUploadListener="#{expressManagementBean.importExpress}"
+            value="#{expressManagementBean.importExpressFile}" fileLimit="1"
             onstart="showLoadingIndicator(); cleanExportMessage(); PF('close-import-express').disable();"
             oncomplete="hideLoadingIndicator(); PF('import-express-dialog').initPosition(); refreshExpressTable(); PF('close-import-express').enable();"
             styleClass="express-process-upload"
@@ -127,9 +125,9 @@
         </div>
 
         <div jsf:id="impress-export-output" class="ui-g-12">
-          <div jsf:id="import-status" class="import-status #{data.importStatus}">#{data.importStatus}</div>
+          <div jsf:id="import-status" class="import-status #{expressManagementBean.importStatus}">#{expressManagementBean.importStatus}</div>
 
-          <pre class="express-import-result">#{data.importOutput}</pre>
+          <pre class="express-import-result">#{expressManagementBean.importOutput}</pre>
         </div>
       </h:panelGroup>
     </h:form>
