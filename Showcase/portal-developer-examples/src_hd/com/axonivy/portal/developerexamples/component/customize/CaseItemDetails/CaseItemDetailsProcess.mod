@@ -58,7 +58,6 @@ Cs0 f6 actionTable 'out=in;
 ' #txt
 Cs0 f6 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
 
-in.isFromDoneTask = ivy.session.getAttribute(SessionAttribute.IS_TASK_FINISHED.toString()) as Boolean;
 in.isTaskStartedInDetails = ivy.session.getAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString()) as Boolean;' #txt
 Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
