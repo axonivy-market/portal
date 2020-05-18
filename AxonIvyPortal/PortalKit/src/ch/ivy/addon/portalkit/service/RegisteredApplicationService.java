@@ -101,7 +101,7 @@ public class RegisteredApplicationService extends AbstractService<Application> {
   
   /**
    * Finds names of the active applications registered by the admin user; if empty, means there is no
-   * configuration in admin settings, finds all of active applications of the engine.
+   * configuration in admin settings.
    * 
    * @param username
    * @return {@link java.util.List} of application names
@@ -158,7 +158,7 @@ public class RegisteredApplicationService extends AbstractService<Application> {
   
   /**
    * Finds names of the active applications registered by the admin user; if empty, means there is no
-   * configuration in admin settings, finds all of active applications of the engine.
+   * configuration in admin settings.
    * 
    * @param username
    * @return {@link java.util.List} of application names
