@@ -42,7 +42,7 @@
           <p:dataTable value="#{data.applicationList}" var="app" id="applicationTable" draggableRows="true"
             reflow="true" styleClass="admin-table application-table" widgetVar="applicationTable"
             emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
-            <p:ajax event="rowReorder" listener="#{logic.onApplicationReorder}" update="applicationTable" />
+            <p:ajax event="rowReorder" listener="#{adminSettingBean.onApplicationReorder}" update="applicationTable" />
 
             <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/type')}"
               styleClass="application-table-type-column">
