@@ -139,11 +139,6 @@ public class TaskWidgetPage extends TemplatePage {
 		String actionButton =
 		String.format("button[id$='%d\\:task-item\\:task-action\\:additional-options\\:task-side-steps-menu']", index);
 		waitForElementDisplayed(By.cssSelector(actionButton), true);
-		// Unstable step, after go to task list, click immediately to Action button,
-		// Portal opens task detail.
-		// could be related to Javascript running when loading page. Try to wait page
-		// ready before clicking More button.
-		Sleeper.sleep(2000);
 		clickByCssSelector(actionButton);
 		ensureNoBackgroundRequest();
 		waitForElementDisplayed(
