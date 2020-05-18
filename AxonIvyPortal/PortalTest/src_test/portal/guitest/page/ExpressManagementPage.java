@@ -36,11 +36,7 @@ public class ExpressManagementPage extends TemplatePage {
   public void selectJSONFile(String pathToFile) {
     findElementByCssSelector("*[id$=':express-process-upload_input']").sendKeys(pathToFile);
     // currently haven't found solution to check when the file upload finish, we have to wait
-    if (isIntegrationTestRun()) {
-      Sleeper.sleep(10000);
-    } else {
-      Sleeper.sleep(5000);
-    }
+    Sleeper.sleep(2000);
   }
 
   public void clickOnCloseButton() {

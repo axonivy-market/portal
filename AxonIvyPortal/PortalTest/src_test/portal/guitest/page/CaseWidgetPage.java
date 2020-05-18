@@ -231,7 +231,7 @@ public class CaseWidgetPage extends TemplatePage {
 
 	public void clickColumnCheckbox(int columnIndex) {
 		WebElement columnCheckbox = findElementByXpath(String.format(SELECT_ITEM_XPATH, columnIndex));
-		columnCheckbox.click();
+		click(columnCheckbox);
 	}
 
 	public void clickDefaultCheckbox() {

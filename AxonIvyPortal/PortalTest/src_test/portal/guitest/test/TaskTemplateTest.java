@@ -38,14 +38,14 @@ public class TaskTemplateTest extends BaseTest {
 
   @Test
   public void testCaseDetailsTabDisplayed() {
-    createTestDataAndRedirectToHomePage();
+    createTestData();
     TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     assertTrue("Case details is not displayed", taskTemplatePage.containsCaseDetails());
   }
 
   @Test
   public void testAddingANote() {
-    createTestDataAndRedirectToHomePage();
+    createTestData();
     TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     assertEquals(1, taskTemplatePage.countHistoryItems());
     taskTemplatePage.addNewNote("Sample note message");
@@ -75,7 +75,7 @@ public class TaskTemplateTest extends BaseTest {
 
   @Test
   public void testOpeningRelatedTask() {
-    createTestDataAndRedirectToHomePage();
+    createTestData();
     TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     assertTrue(taskTemplatePage.countRelatedTasks() > 0);
     TaskDetailsPage taskDetailsPage = taskTemplatePage.openFirstRelatedTaskInHistoryArea();
@@ -84,7 +84,7 @@ public class TaskTemplateTest extends BaseTest {
 
   @Test
   public void testOpeningDocumentUploading() {
-    createTestDataAndRedirectToHomePage();
+    createTestData();
     TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     taskTemplatePage.openDocumentUploadingDialog();
     assertTrue(taskTemplatePage.isDocumentUploadingDialogDisplayed());
@@ -92,7 +92,7 @@ public class TaskTemplateTest extends BaseTest {
   
   @Test
   public void testLeaveWorkingTaskByClickingOnLogo() {
-    createTestDataAndRedirectToHomePage();
+    createTestData();
     TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
@@ -104,7 +104,7 @@ public class TaskTemplateTest extends BaseTest {
   
   @Test
   public void testReserveWorkingTaskByClickingOnLogo() {
-    createTestDataAndRedirectToHomePage();
+    createTestData();
     TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     taskTemplatePage.clickOnLogo();
     WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
@@ -116,7 +116,7 @@ public class TaskTemplateTest extends BaseTest {
   
   @Test
   public void testResetTaskWhenStartSideStep() {
-    createTestDataAndRedirectToHomePage();
+    createTestData();
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     ProcessWidgetPage processWidgetPage = mainMenuPage.selectProcessesMenu();
@@ -161,9 +161,8 @@ public class TaskTemplateTest extends BaseTest {
     assertFalse(taskTemplatePage.isCaseInfoButtonDisplayed());
   }
   
-  private void createTestDataAndRedirectToHomePage() {
+  private void createTestData() {
     redirectToRelativeLink(createTestingTasksUrl);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
   
   private TaskTemplatePage startATaskAndOpenCaseInfo() {
