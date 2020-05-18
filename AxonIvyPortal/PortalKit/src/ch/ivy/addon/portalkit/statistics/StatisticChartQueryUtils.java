@@ -30,6 +30,7 @@ import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.util.Dates;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivy.ws.addon.CategoryData;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -258,7 +259,9 @@ public class StatisticChartQueryUtils {
     generateTaskQueryForStartTimestamp(filter, taskQuery);
     
     // Filter by roles
-    generateTaskQueryForRoles(filter, taskQuery);
+    if (!PermissionUtils.checkReadAllTasksPermission()) {
+      generateTaskQueryForRoles(filter, taskQuery);
+    }
 
     generateTaskQueryForTaskPriority(filter, taskQuery);
 
@@ -330,6 +333,7 @@ public class StatisticChartQueryUtils {
    */
   public static TaskQuery generateTaskQueryForExpiry(StatisticFilter filter) {
     TaskQuery taskQuery = generateTaskQuery(filter);
+    taskQuery.where().and().state().isNotEqual(TaskState.DONE);
     filterOnlyTasksExpireInThisYear(taskQuery);
     return taskQuery;
   }

@@ -358,6 +358,7 @@ in.taskDataModel.getQueryCriteria().setTaskQuery(in.taskQuery);
 in.taskDataModel.getQueryCriteria().setKeyword(StringUtils.EMPTY);
 in.taskDataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 in.taskDataModel.setNotKeepFilter(true);
+in.taskDataModel.setIgnoreInvolvedUser(PermissionUtils.checkReadAllTasksPermission());
 
 in.taskView = TaskView
 								.create()

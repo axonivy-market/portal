@@ -9,3 +9,4 @@ involvedApplications java.util.List<String> #field
 elapsedTimeStatisticResult java.util.List<ch.ivy.ws.addon.ElapsedTimeStatistic> #field
 caseCategories java.util.List<ch.ivy.ws.addon.CategoryData> #field
 caseSearchCriteria ch.ivy.ws.addon.CaseSearchCriteria #field
+taskSearchCriteria ch.ivy.ws.addon.TaskSearchCriteria #field

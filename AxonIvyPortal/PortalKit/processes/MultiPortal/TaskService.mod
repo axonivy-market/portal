@@ -190,11 +190,9 @@ Te0 @PushWFArc f109 '' #zField
 Te0 @GridStep f52 '' #zField
 Te0 @PushWFArc f116 '' #zField
 Te0 @PushWFArc f117 '' #zField
-Te0 @PushWFArc f77 '' #zField
 Te0 @GridStep f119 '' #zField
 Te0 @PushWFArc f123 '' #zField
 Te0 @PushWFArc f124 '' #zField
-Te0 @PushWFArc f86 '' #zField
 Te0 @CallSub f128 '' #zField
 Te0 @GridStep f130 '' #zField
 Te0 @GridStep f132 '' #zField
@@ -344,9 +342,29 @@ Te0 @PushWFArc f330 '' #zField
 Te0 @GridStep f332 '' #zField
 Te0 @PushWFArc f333 '' #zField
 Te0 @PushWFArc f331 '' #zField
+Te0 @StartSub f334 '' #zField
+Te0 @Alternative f335 '' #zField
+Te0 @PushWFArc f336 '' #zField
+Te0 @CallSub f338 '' #zField
+Te0 @PushWFArc f77 '' #zField
+Te0 @PushWFArc f341 '' #zField
+Te0 @GridStep f342 '' #zField
+Te0 @PushWFArc f343 '' #zField
+Te0 @PushWFArc f344 '' #zField
+Te0 @PushWFArc f337 '' #zField
+Te0 @StartSub f339 '' #zField
+Te0 @PushWFArc f340 '' #zField
+Te0 @GridStep f346 '' #zField
+Te0 @Alternative f347 '' #zField
+Te0 @PushWFArc f349 '' #zField
+Te0 @PushWFArc f350 '' #zField
+Te0 @PushWFArc f86 '' #zField
+Te0 @CallSub f352 '' #zField
+Te0 @PushWFArc f353 '' #zField
+Te0 @PushWFArc f348 '' #zField
 >Proto Te0 Te0 TaskService #zField
 Te0 f3 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f3 1347 995 26 26 14 0 #rect
+Te0 f3 1347 1227 26 26 14 0 #rect
 Te0 f3 @|EndSubIcon #fIcon
 Te0 f10 inParamDecl '<ch.ivy.addon.portalkit.persistence.domain.Server ivyServer,java.lang.Long taskId> param;' #txt
 Te0 f10 inParamTable 'out.server=param.ivyServer;
@@ -813,27 +831,27 @@ Te0 f144 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f144 1342 948 36 24 20 -2 #rect
+Te0 f144 1342 1180 36 24 20 -2 #rect
 Te0 f144 @|CallSubIcon #fIcon
 Te0 f40 expr out #txt
-Te0 f40 1360 972 1360 995 #arcP
+Te0 f40 1360 1204 1360 1227 #arcP
 Te0 f148 type ch.ivyteam.wf.processes.TaskServiceData #txt
-Te0 f148 1346 866 28 28 14 0 #rect
+Te0 f148 1346 1098 28 28 14 0 #rect
 Te0 f148 @|AlternativeIcon #fIcon
 Te0 f145 expr out #txt
-Te0 f145 64 428 1346 880 #arcP
-Te0 f145 1 64 880 #addKink
+Te0 f145 64 428 1346 1112 #arcP
+Te0 f145 1 64 1112 #addKink
 Te0 f145 1 0.3372157085423557 0 0 #arcLabel
 Te0 f21 expr out #txt
-Te0 f21 320 428 1347 879 #arcP
+Te0 f21 320 428 1349 1109 #arcP
 Te0 f21 1 320 832 #addKink
 Te0 f21 0 0.8445206008999235 0 0 #arcLabel
 Te0 f64 expr out #txt
-Te0 f64 1032 268 1351 875 #arcP
+Te0 f64 1032 268 1354 1104 #arcP
 Te0 f64 1 1032 688 #addKink
 Te0 f64 1 0.2885922078745302 0 0 #arcLabel
 Te0 f88 expr out #txt
-Te0 f88 1240 284 1354 872 #arcP
+Te0 f88 1240 284 1357 1101 #arcP
 Te0 f88 1 1240 704 #addKink
 Te0 f88 1 0.325354739952554 0 0 #arcLabel
 Te0 f108 expr out #txt
@@ -1147,11 +1165,11 @@ Te0 f176 @|CallSubIcon #fIcon
 Te0 f177 expr out #txt
 Te0 f177 592 140 592 188 #arcP
 Te0 f74 expr out #txt
-Te0 f74 592 212 1347 879 #arcP
+Te0 f74 592 212 1350 1108 #arcP
 Te0 f74 1 592 800 #addKink
 Te0 f74 1 0.14309408299440282 0 0 #arcLabel
 Te0 f53 expr in #txt
-Te0 f53 778 184 1348 878 #arcP
+Te0 f53 778 184 1351 1107 #arcP
 Te0 f53 1 704 184 #addKink
 Te0 f53 2 704 768 #addKink
 Te0 f53 2 0.9863728673860209 0 0 #arcLabel
@@ -1377,7 +1395,7 @@ Te0 f118 expr in #txt
 Te0 f118 outCond in.listIterator.hasNext() #txt
 Te0 f118 1552 198 1552 228 #arcP
 Te0 f120 expr in #txt
-Te0 f120 1538 184 1366 872 #arcP
+Te0 f120 1538 184 1363 1101 #arcP
 Te0 f120 1 1481 184 #addKink
 Te0 f120 2 1481 720 #addKink
 Te0 f120 2 0.41034644898445616 0 0 #arcLabel
@@ -1673,9 +1691,9 @@ Te0 f133 1824 77 1824 108 #arcP
 Te0 f134 expr out #txt
 Te0 f134 1824 132 1824 170 #arcP
 Te0 f135 expr in #txt
-Te0 f135 1810 184 1374 880 #arcP
+Te0 f135 1810 184 1374 1112 #arcP
 Te0 f135 1 1761 184 #addKink
-Te0 f135 2 1761 880 #addKink
+Te0 f135 2 1761 1112 #addKink
 Te0 f135 2 0.4929090123375711 0 0 #arcLabel
 Te0 f136 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f136 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1759,7 +1777,7 @@ Te0 f139 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f139 3118 596 36 24 20 -2 #rect
+Te0 f139 3118 828 36 24 20 -2 #rect
 Te0 f139 @|CallSubIcon #fIcon
 Te0 f141 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
@@ -1884,7 +1902,7 @@ Te0 f149 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f149 3118 652 36 24 20 -2 #rect
+Te0 f149 3118 884 36 24 20 -2 #rect
 Te0 f149 @|StepIcon #fIcon
 Te0 f154 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
@@ -1914,8 +1932,8 @@ Te0 f154 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Te0 f154 3118 108 36 24 20 -2 #rect
 Te0 f154 @|StepIcon #fIcon
 Te0 f175 expr out #txt
-Te0 f175 3154 664 3264 252 #arcP
-Te0 f175 1 3264 664 #addKink
+Te0 f175 3154 896 3264 252 #arcP
+Te0 f175 1 3264 896 #addKink
 Te0 f175 1 0.3622224354814317 0 0 #arcLabel
 Te0 f179 expr out #txt
 Te0 f179 3264 228 3150 184 #arcP
@@ -1928,7 +1946,7 @@ Te0 f181 3150 496 3264 252 #arcP
 Te0 f181 1 3264 496 #addKink
 Te0 f181 0 0.8799989356997663 0 0 #arcLabel
 Te0 f183 expr out #txt
-Te0 f183 3136 620 3136 652 #arcP
+Te0 f183 3136 852 3136 884 #arcP
 Te0 f185 expr in #txt
 Te0 f185 outCond in.listIterator.hasNext() #txt
 Te0 f185 3136 198 3136 228 #arcP
@@ -1937,9 +1955,9 @@ Te0 f187 3136 77 3136 108 #arcP
 Te0 f188 expr out #txt
 Te0 f188 3136 132 3136 170 #arcP
 Te0 f189 expr in #txt
-Te0 f189 3122 184 1374 880 #arcP
+Te0 f189 3122 184 1374 1112 #arcP
 Te0 f189 1 3008 184 #addKink
-Te0 f189 2 3008 880 #addKink
+Te0 f189 2 3008 1112 #addKink
 Te0 f189 2 0.1177291472607177 0 0 #arcLabel
 Te0 f191 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f191 processCall MultiPortal/ApplicationService:getApplicationConfiguredOn(ch.ivy.addon.portalkit.persistence.domain.Server) #txt
@@ -2099,7 +2117,7 @@ Te0 f197 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f197 3478 596 36 24 20 -2 #rect
+Te0 f197 3478 820 36 24 20 -2 #rect
 Te0 f197 @|CallSubIcon #fIcon
 Te0 f198 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
@@ -2118,7 +2136,7 @@ Te0 f198 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Te0 f198 3478 652 36 24 20 -2 #rect
+Te0 f198 3478 884 36 24 20 -2 #rect
 Te0 f198 @|StepIcon #fIcon
 Te0 f199 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
@@ -2178,8 +2196,8 @@ clear apps list</desc>
 Te0 f200 3606 228 36 24 20 -2 #rect
 Te0 f200 @|StepIcon #fIcon
 Te0 f202 expr out #txt
-Te0 f202 3514 664 3624 252 #arcP
-Te0 f202 1 3624 664 #addKink
+Te0 f202 3514 896 3624 252 #arcP
+Te0 f202 1 3624 896 #addKink
 Te0 f202 1 0.3395443488573781 0 0 #arcLabel
 Te0 f204 expr out #txt
 Te0 f204 3624 228 3510 184 #arcP
@@ -2192,7 +2210,7 @@ Te0 f206 3510 496 3624 252 #arcP
 Te0 f206 1 3624 496 #addKink
 Te0 f206 0 0.8288430891547728 0 0 #arcLabel
 Te0 f208 expr out #txt
-Te0 f208 3496 620 3496 652 #arcP
+Te0 f208 3496 844 3496 884 #arcP
 Te0 f210 expr in #txt
 Te0 f210 outCond in.listIterator.hasNext() #txt
 Te0 f210 3496 198 3496 228 #arcP
@@ -2201,9 +2219,9 @@ Te0 f212 3496 77 3496 108 #arcP
 Te0 f213 expr out #txt
 Te0 f213 3496 132 3496 170 #arcP
 Te0 f214 expr in #txt
-Te0 f214 3482 184 1374 880 #arcP
+Te0 f214 3482 184 1374 1112 #arcP
 Te0 f214 1 3392 184 #addKink
-Te0 f214 2 3392 880 #addKink
+Te0 f214 2 3392 1112 #addKink
 Te0 f214 1 0.2277635497779572 0 0 #arcLabel
 Te0 f0 inParamDecl '<java.lang.String userName,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.Long taskId> param;' #txt
 Te0 f0 inParamTable 'out.server=param.server;
@@ -2300,8 +2318,8 @@ Te0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Te0 f26 4078 372 36 24 20 -2 #rect
 Te0 f26 @|StepIcon #fIcon
 Te0 f31 expr out #txt
-Te0 f31 4096 396 1374 880 #arcP
-Te0 f31 1 4096 880 #addKink
+Te0 f31 4096 396 1374 1112 #arcP
+Te0 f31 1 4096 1112 #addKink
 Te0 f31 1 0.383363698121514 0 0 #arcLabel
 Te0 f32 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
@@ -2396,8 +2414,8 @@ Te0 f38 4328 77 4328 124 #arcP
 Te0 f42 expr out #txt
 Te0 f42 4328 148 4328 188 #arcP
 Te0 f44 expr out #txt
-Te0 f44 4328 292 1374 880 #arcP
-Te0 f44 1 4328 880 #addKink
+Te0 f44 4328 292 1374 1112 #arcP
+Te0 f44 1 4328 1112 #addKink
 Te0 f44 1 0.39100529100529113 0 0 #arcLabel
 Te0 f13 expr out #txt
 Te0 f13 64 77 64 116 #arcP
@@ -2503,7 +2521,7 @@ Te0 f82 expr in #txt
 Te0 f82 outCond in.hasNoSelectedApp #txt
 Te0 f82 3496 318 3496 356 #arcP
 Te0 f93 expr in #txt
-Te0 f93 1360 894 1360 948 #arcP
+Te0 f93 1360 1126 1360 1180 #arcP
 Te0 f99 expr out #txt
 Te0 f99 1552 252 1552 290 #arcP
 Te0 f45 expr out #txt
@@ -2628,8 +2646,6 @@ Te0 f117 3122 304 3118 560 #arcP
 Te0 f117 1 3072 304 #addKink
 Te0 f117 2 3072 560 #addKink
 Te0 f117 1 0.4930555555555556 0 0 #arcLabel
-Te0 f77 expr out #txt
-Te0 f77 3136 572 3136 596 #arcP
 Te0 f119 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
 Te0 f119 actionTable 'out=in;
@@ -2659,8 +2675,6 @@ Te0 f124 3482 304 3478 560 #arcP
 Te0 f124 1 3448 304 #addKink
 Te0 f124 2 3448 560 #addKink
 Te0 f124 1 0.4930555555555556 0 0 #arcLabel
-Te0 f86 expr out #txt
-Te0 f86 3496 572 3496 596 #arcP
 Te0 f128 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f128 processCall ServiceIntegrators/TaskServiceIntegrator:findPersonalCategories(String,String,List<String>,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
 Te0 f128 doCall true #txt
@@ -3286,14 +3300,14 @@ Te0 f245 1 2378 288 #addKink
 Te0 f245 2 2378 528 #addKink
 Te0 f245 1 0.4930555555555556 0 0 #arcLabel
 Te0 f246 expr in #txt
-Te0 f246 2130 176 1374 880 #arcP
+Te0 f246 2130 176 1374 1112 #arcP
 Te0 f246 1 2048 176 #addKink
-Te0 f246 2 2048 880 #addKink
+Te0 f246 2 2048 1112 #addKink
 Te0 f246 2 0.11428571428571428 0 0 #arcLabel
 Te0 f247 expr in #txt
-Te0 f247 2410 168 1374 880 #arcP
+Te0 f247 2410 168 1374 1112 #arcP
 Te0 f247 1 2336 168 #addKink
-Te0 f247 2 2336 880 #addKink
+Te0 f247 2 2336 1112 #addKink
 Te0 f247 2 0.21333333333333335 0 0 #arcLabel
 Te0 f94 expr out #txt
 Te0 f94 1552 628 1552 660 #arcP
@@ -3602,8 +3616,8 @@ Te0 f267 4552 149 4552 189 #arcP
 Te0 f268 expr out #txt
 Te0 f268 4552 78 4552 125 #arcP
 Te0 f269 expr out #txt
-Te0 f269 4552 293 1374 880 #arcP
-Te0 f269 1 4552 880 #addKink
+Te0 f269 4552 293 1374 1112 #arcP
+Te0 f269 1 4552 1112 #addKink
 Te0 f269 0 0.7385410347342349 0 0 #arcLabel
 Te0 f270 type ch.ivyteam.wf.processes.TaskServiceData #txt
 Te0 f270 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -3914,9 +3928,9 @@ Te0 f294 2751 604 2751 636 #arcP
 Te0 f295 expr out #txt
 Te0 f295 2751 364 2751 404 #arcP
 Te0 f296 expr in #txt
-Te0 f296 2737 168 1374 880 #arcP
+Te0 f296 2737 168 1374 1112 #arcP
 Te0 f296 1 2656 168 #addKink
-Te0 f296 2 2656 880 #addKink
+Te0 f296 2 2656 1112 #addKink
 Te0 f296 1 0.7513873294614658 0 0 #arcLabel
 Te0 f297 inParamDecl '<java.lang.String jsonQuery,List<java.lang.String> apps,java.lang.Long serverId,java.lang.String userName> param;' #txt
 Te0 f297 inParamTable 'out.apps=param.apps;
@@ -4228,9 +4242,9 @@ Te0 f321 3841 74 3841 105 #arcP
 Te0 f322 expr out #txt
 Te0 f322 3841 617 3841 649 #arcP
 Te0 f323 expr in #txt
-Te0 f323 3827 181 1374 880 #arcP
+Te0 f323 3827 181 1374 1112 #arcP
 Te0 f323 1 3712 181 #addKink
-Te0 f323 2 3712 880 #addKink
+Te0 f323 2 3712 1112 #addKink
 Te0 f323 2 0.3593429158110883 0 0 #arcLabel
 Te0 f324 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
 ' #txt
@@ -4364,9 +4378,248 @@ Te0 f333 expr out #txt
 Te0 f333 4768 293 4768 330 #arcP
 Te0 f333 0 0.47518302636543885 0 0 #arcLabel
 Te0 f331 expr out #txt
-Te0 f331 4768 374 1374 880 #arcP
-Te0 f331 1 4768 880 #addKink
+Te0 f331 4768 374 1374 1112 #arcP
+Te0 f331 1 4768 1112 #addKink
 Te0 f331 1 0.47518302636543885 0 0 #arcLabel
+Te0 f334 inParamDecl '<ch.ivy.ws.addon.TaskSearchCriteria taskSearchCriteria,java.lang.Long serverId> param;' #txt
+Te0 f334 inParamTable 'out.apps=param.taskSearchCriteria.involvedApplications;
+out.hasNoSelectedApp=param.taskSearchCriteria.involvedApplications.isEmpty();
+out.jsonQuery=param.taskSearchCriteria.jsonQuery;
+out.server.id=param.serverId;
+out.taskSearchCriteria=param.taskSearchCriteria;
+out.userName=param.taskSearchCriteria.involvedUsername;
+' #txt
+Te0 f334 outParamDecl '<ch.ivy.ws.addon.PriorityStatistic priorityStatistic,List<ch.ivy.ws.addon.WsException> errors> result;
+' #txt
+Te0 f334 outParamTable 'result.priorityStatistic=in.priorityStatistic;
+result.errors=in.errors;
+' #txt
+Te0 f334 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f334 callSignature analyzePriorityStatistic2(ch.ivy.ws.addon.TaskSearchCriteria,Long) #txt
+Te0 f334 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f334 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>analyzePriorityStatistic2(TaskSearchCriteria,Long)</name>
+    </language>
+</elementInfo>
+' #txt
+Te0 f334 3195 75 26 26 -50 -39 #rect
+Te0 f334 @|StartSubIcon #fIcon
+Te0 f335 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f335 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>use taskSearchCriteria?</name>
+        <nameStyle>23,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f335 3120 640 32 32 -66 18 #rect
+Te0 f335 @|AlternativeIcon #fIcon
+Te0 f336 expr out #txt
+Te0 f336 3136 572 3136 640 #arcP
+Te0 f338 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f338 processCall ServiceIntegrators/TaskServiceIntegrator:analyzePriorityStatistic2(ch.ivy.ws.addon.TaskSearchCriteria,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Te0 f338 doCall true #txt
+Te0 f338 requestActionDecl '<ch.ivy.ws.addon.TaskSearchCriteria taskSearchCriteria,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;
+' #txt
+Te0 f338 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
+param.server=in.server;
+param.endpoint=in.endpoint;
+' #txt
+Te0 f338 responseActionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f338 responseMappingAction 'out=in;
+out.tempErrors=result.errors;
+out.tempPriorityStatistic=result.priorityStatistic;
+' #txt
+Te0 f338 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>AnalyzePriorityStatistic</name>
+        <nameStyle>24,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f338 3030 756 36 24 -56 20 #rect
+Te0 f338 @|CallSubIcon #fIcon
+Te0 f77 expr in #txt
+Te0 f77 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no</name>
+        <nameStyle>2,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f77 3136 672 3136 828 #arcP
+Te0 f77 0 0.5 10 0 #arcLabel
+Te0 f341 expr out #txt
+Te0 f341 3048 780 3118 896 #arcP
+Te0 f341 1 3048 896 #addKink
+Te0 f341 1 0.2334691959200251 0 0 #arcLabel
+Te0 f342 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f342 actionTable 'out=in;
+' #txt
+Te0 f342 actionCode 'in.taskSearchCriteria.involvedUsername = in.userName;
+in.taskSearchCriteria.jsonQuery = in.jsonQuery;
+in.taskSearchCriteria.involvedApplications = in.apps;' #txt
+Te0 f342 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f342 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>update
+taskSearchCriteria</name>
+        <nameStyle>25,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f342 3030 700 36 24 -121 -11 #rect
+Te0 f342 @|StepIcon #fIcon
+Te0 f343 expr out #txt
+Te0 f343 3048 724 3048 756 #arcP
+Te0 f344 expr in #txt
+Te0 f344 outCond 'in.#taskSearchCriteria is initialized' #txt
+Te0 f344 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+        <nameStyle>3,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f344 3120 656 3048 700 #arcP
+Te0 f344 1 3048 656 #addKink
+Te0 f344 0 0.6203784647938799 -1 -7 #arcLabel
+Te0 f337 expr out #txt
+Te0 f337 3196 93 3154 120 #arcP
+Te0 f339 inParamDecl '<ch.ivy.ws.addon.TaskSearchCriteria taskSearchCriteria,java.lang.Long serverId> param;' #txt
+Te0 f339 inParamTable 'out.apps=param.taskSearchCriteria.involvedApplications;
+out.hasNoSelectedApp=param.taskSearchCriteria.involvedApplications.isEmpty();
+out.jsonQuery=param.taskSearchCriteria.jsonQuery;
+out.server.id=param.serverId;
+out.taskSearchCriteria=param.taskSearchCriteria;
+out.userName=param.taskSearchCriteria.involvedUsername;
+' #txt
+Te0 f339 outParamDecl '<java.util.List<ch.ivy.ws.addon.ExpiryStatistic> expiryStatistic,List<ch.ivy.ws.addon.WsException> errors> result;
+' #txt
+Te0 f339 outParamTable 'result.expiryStatistic=in.expiryStatistic;
+result.errors=in.errors;
+' #txt
+Te0 f339 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f339 callSignature analyzeExpiryStatistic2(ch.ivy.ws.addon.TaskSearchCriteria,Long) #txt
+Te0 f339 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f339 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>analyzeExpiryStatistic2(TaskSearchCriteria,Long)</name>
+    </language>
+</elementInfo>
+' #txt
+Te0 f339 3555 75 26 26 -50 -39 #rect
+Te0 f339 @|StartSubIcon #fIcon
+Te0 f340 expr out #txt
+Te0 f340 3556 93 3514 120 #arcP
+Te0 f346 actionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f346 actionTable 'out=in;
+' #txt
+Te0 f346 actionCode 'in.taskSearchCriteria.involvedUsername = in.userName;
+in.taskSearchCriteria.jsonQuery = in.jsonQuery;
+in.taskSearchCriteria.involvedApplications = in.apps;' #txt
+Te0 f346 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f346 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>update
+taskSearchCriteria</name>
+        <nameStyle>25,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f346 3406 676 36 24 -121 -11 #rect
+Te0 f346 @|StepIcon #fIcon
+Te0 f347 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f347 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>use taskSearchCriteria?</name>
+        <nameStyle>23,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f347 3480 592 32 32 -66 18 #rect
+Te0 f347 @|AlternativeIcon #fIcon
+Te0 f349 expr in #txt
+Te0 f349 outCond 'in.#taskSearchCriteria is initialized' #txt
+Te0 f349 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>yes</name>
+        <nameStyle>3,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f349 3480 608 3424 676 #arcP
+Te0 f349 1 3424 608 #addKink
+Te0 f349 0 0.6203784647938799 -1 -7 #arcLabel
+Te0 f350 expr out #txt
+Te0 f350 3496 572 3496 592 #arcP
+Te0 f86 expr in #txt
+Te0 f86 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>no</name>
+        <nameStyle>2,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f86 3496 624 3496 820 #arcP
+Te0 f352 type ch.ivyteam.wf.processes.TaskServiceData #txt
+Te0 f352 processCall ServiceIntegrators/TaskServiceIntegrator:analyzeExpiryStatistic2(ch.ivy.ws.addon.TaskSearchCriteria,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Te0 f352 doCall true #txt
+Te0 f352 requestActionDecl '<ch.ivy.ws.addon.TaskSearchCriteria taskSearchCriteria,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;
+' #txt
+Te0 f352 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
+param.server=in.server;
+param.endpoint=in.endpoint;
+' #txt
+Te0 f352 responseActionDecl 'ch.ivyteam.wf.processes.TaskServiceData out;
+' #txt
+Te0 f352 responseMappingAction 'out=in;
+out.tempErrors=result.errors;
+out.tempExpiryStatistic=result.expiryStatistic;
+' #txt
+Te0 f352 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>TaskServiceIntegrator</name>
+        <nameStyle>21,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f352 3406 756 36 24 20 -2 #rect
+Te0 f352 @|CallSubIcon #fIcon
+Te0 f353 expr out #txt
+Te0 f353 3424 700 3424 756 #arcP
+Te0 f348 expr out #txt
+Te0 f348 3424 780 3478 896 #arcP
+Te0 f348 1 3424 896 #addKink
+Te0 f348 0 0.8379312516832345 0 0 #arcLabel
 >Proto Te0 .type ch.ivyteam.wf.processes.TaskServiceData #txt
 >Proto Te0 .processKind CALLABLE_SUB #txt
 >Proto Te0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -4606,15 +4859,11 @@ Te0 f116 head f52 mainIn #connect
 Te0 f146 out f181 tail #connect
 Te0 f63 out f117 tail #connect
 Te0 f117 head f52 mainIn #connect
-Te0 f52 mainOut f77 tail #connect
-Te0 f77 head f139 mainIn #connect
 Te0 f192 out f123 tail #connect
 Te0 f123 head f119 mainIn #connect
 Te0 f192 out f206 tail #connect
 Te0 f79 out f124 tail #connect
 Te0 f124 head f119 mainIn #connect
-Te0 f119 mainOut f86 tail #connect
-Te0 f86 head f197 mainIn #connect
 Te0 f140 mainOut f182 tail #connect
 Te0 f182 head f178 mainIn #connect
 Te0 f178 mainOut f184 tail #connect
@@ -4783,3 +5032,27 @@ Te0 f324 mainOut f333 tail #connect
 Te0 f333 head f332 mainIn #connect
 Te0 f332 mainOut f331 tail #connect
 Te0 f331 head f148 in #connect
+Te0 f52 mainOut f336 tail #connect
+Te0 f336 head f335 in #connect
+Te0 f77 head f139 mainIn #connect
+Te0 f338 mainOut f341 tail #connect
+Te0 f341 head f149 mainIn #connect
+Te0 f342 mainOut f343 tail #connect
+Te0 f343 head f338 mainIn #connect
+Te0 f335 out f344 tail #connect
+Te0 f344 head f342 mainIn #connect
+Te0 f335 out f77 tail #connect
+Te0 f334 mainOut f337 tail #connect
+Te0 f337 head f154 mainIn #connect
+Te0 f339 mainOut f340 tail #connect
+Te0 f340 head f199 mainIn #connect
+Te0 f347 out f349 tail #connect
+Te0 f349 head f346 mainIn #connect
+Te0 f119 mainOut f350 tail #connect
+Te0 f350 head f347 in #connect
+Te0 f347 out f86 tail #connect
+Te0 f86 head f197 mainIn #connect
+Te0 f346 mainOut f353 tail #connect
+Te0 f353 head f352 mainIn #connect
+Te0 f352 mainOut f348 tail #connect
+Te0 f348 head f198 mainIn #connect
