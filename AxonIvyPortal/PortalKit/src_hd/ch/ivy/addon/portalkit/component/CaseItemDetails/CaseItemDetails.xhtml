@@ -152,7 +152,7 @@
 
   <script type="text/javascript">
       function backToPrevPage(isFromDoneTask, isTaskStartedInDetails) {
-        if (document.referrer &amp;&amp; !isFromDoneTask &amp;&amp; !isTaskStartedInDetails) {
+        if (document.referrer &amp;&amp; !isTaskStartedInDetails) {
           window.history.back();
         } else {
           backToCasesList();

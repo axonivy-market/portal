@@ -505,9 +505,11 @@ Cs0 f31 384 464 176 48 -59 -8 #rect
 Cs0 f31 @|StepIcon #fIcon
 Cs0 f39 actionTable 'out=in;
 ' #txt
-Cs0 f39 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+Cs0 f39 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 
-ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");' #txt
+ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");
+TaskUtils.updateTaskStatusAttributes(false);' #txt
 Cs0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
