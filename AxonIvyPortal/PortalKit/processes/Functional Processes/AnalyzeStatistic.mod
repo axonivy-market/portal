@@ -141,14 +141,12 @@ ac0 f6 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
 ac0 f6 753 241 30 30 0 15 #rect
 ac0 f6 @|EndSubIcon #fIcon
 ac0 f11 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
-ac0 f11 processCall MultiPortal/TaskService:analyzePriorityStatistic(String,List<String>,Long,String) #txt
+ac0 f11 processCall MultiPortal/TaskService:analyzePriorityStatistic2(ch.ivy.ws.addon.TaskSearchCriteria,Long) #txt
 ac0 f11 doCall true #txt
-ac0 f11 requestActionDecl '<java.lang.String jsonQuery,List<java.lang.String> apps,java.lang.Long serverId,java.lang.String userName> param;
+ac0 f11 requestActionDecl '<ch.ivy.ws.addon.TaskSearchCriteria taskSearchCriteria,java.lang.Long serverId> param;
 ' #txt
-ac0 f11 requestMappingAction 'param.jsonQuery=in.jsonQuery;
-param.apps=in.involvedApplications;
+ac0 f11 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
 param.serverId=in.serverId;
-param.userName=ivy.session.getSessionUserName();
 ' #txt
 ac0 f11 responseActionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ' #txt
@@ -197,14 +195,12 @@ ac0 f15 @|CallSubIcon #fIcon
 ac0 f7 expr out #txt
 ac0 f7 688 160 753 160 #arcP
 ac0 f19 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
-ac0 f19 processCall MultiPortal/TaskService:analyzeExpiryStatistic(String,List<String>,Long,String) #txt
+ac0 f19 processCall MultiPortal/TaskService:analyzeExpiryStatistic2(ch.ivy.ws.addon.TaskSearchCriteria,Long) #txt
 ac0 f19 doCall true #txt
-ac0 f19 requestActionDecl '<java.lang.String jsonQuery,List<java.lang.String> apps,java.lang.Long serverId,java.lang.String userName> param;
+ac0 f19 requestActionDecl '<ch.ivy.ws.addon.TaskSearchCriteria taskSearchCriteria,java.lang.Long serverId> param;
 ' #txt
-ac0 f19 requestMappingAction 'param.jsonQuery=in.jsonQuery;
-param.apps=in.involvedApplications;
+ac0 f19 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
 param.serverId=in.serverId;
-param.userName=ivy.session.getSessionUserName();
 ' #txt
 ac0 f19 responseActionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ' #txt
@@ -510,19 +506,26 @@ ac0 f25 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ' #txt
 ac0 f25 actionTable 'out=in;
 ' #txt
-ac0 f25 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+ac0 f25 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.ws.addon.TaskSearchCriteria;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 
 in.serverId = SecurityServiceUtils.getServerIdFromSession();
 String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
 if (#applicationName is initialized) {
 	in.involvedApplications = [applicationName];
-}' #txt
+}
+in.taskSearchCriteria = new TaskSearchCriteria();
+in.taskSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
+in.taskSearchCriteria.involvedApplications = in.involvedApplications;
+in.taskSearchCriteria.jsonQuery = in.jsonQuery;
+in.taskSearchCriteria.ignoreInvolvedUser = PermissionUtils.checkReadAllTasksPermission();' #txt
 ac0 f25 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
 ac0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Initialize</name>
-        <nameStyle>10
+        <nameStyle>10,7
 </nameStyle>
     </language>
 </elementInfo>
@@ -533,19 +536,27 @@ ac0 f21 actionDecl 'ch.ivy.add.portalkit.AnalyzeStatisticData out;
 ' #txt
 ac0 f21 actionTable 'out=in;
 ' #txt
-ac0 f21 actionCode 'import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+ac0 f21 actionCode 'import ch.ivy.ws.addon.TaskSearchCriteria;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 
 in.serverId = SecurityServiceUtils.getServerIdFromSession();
 String applicationName = SecurityServiceUtils.getApplicationNameFromSession();
 if (#applicationName is initialized) {
 	in.involvedApplications = [applicationName];
-}' #txt
+}
+
+in.taskSearchCriteria = new TaskSearchCriteria();
+in.taskSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
+in.taskSearchCriteria.involvedApplications = in.involvedApplications;
+in.taskSearchCriteria.jsonQuery = in.jsonQuery;
+in.taskSearchCriteria.ignoreInvolvedUser = PermissionUtils.checkReadAllTasksPermission();' #txt
 ac0 f21 type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
 ac0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Initialize</name>
-        <nameStyle>10
+        <nameStyle>10,7
 </nameStyle>
     </language>
 </elementInfo>
