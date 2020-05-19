@@ -225,6 +225,11 @@ public class CaseWidgetPage extends TemplatePage {
 		return StringUtils.isNotBlank(count) ? Integer.parseInt(count) : null;
 	}
 
+	 public void waitUntilCaseCountDifferentThanZero() {
+	    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
+	    .until(() -> getCaseCount().intValue() != 0);
+	  }
+	
 	public void clickColumnsButton() {
 		clickByCssSelector(COLUMNS_BUTTON_CSS_SELECTOR);
 	}

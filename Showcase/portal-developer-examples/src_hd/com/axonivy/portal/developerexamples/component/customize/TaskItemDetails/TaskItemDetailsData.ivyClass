@@ -8,3 +8,5 @@ dataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
 dataModel PERSISTENT #fieldModifier
 isFromTaskList Boolean #field
 isFromTaskList PERSISTENT #fieldModifier
+isTaskStartedInDetails Boolean #field
+isTaskStartedInDetails PERSISTENT #fieldModifier
