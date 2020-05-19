@@ -287,7 +287,8 @@ if(in.isWorkingOnTask) {
 		flash.setRedirect(true);
 		flash.setKeepMessages(true);
 	}
-}' #txt
+}
+' #txt
 Cs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -300,7 +301,8 @@ Cs0 f11 176 362 144 44 -54 -16 #rect
 Cs0 f11 @|StepIcon #fIcon
 Cs0 f33 actionTable 'out=in;
 ' #txt
-Cs0 f33 actionCode 'import org.apache.commons.lang3.StringUtils;
+Cs0 f33 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import javax.faces.context.Flash;
@@ -319,7 +321,9 @@ if(in.isWorkingOnTask) {
 		flash.setRedirect(true);
 		flash.setKeepMessages(true);
 	}
-}' #txt
+}
+
+TaskUtils.updateTaskStartedAttribute(false);' #txt
 Cs0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -428,9 +432,11 @@ Cs0 f31 384 464 176 48 -59 -8 #rect
 Cs0 f31 @|StepIcon #fIcon
 Cs0 f39 actionTable 'out=in;
 ' #txt
-Cs0 f39 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+Cs0 f39 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 
-ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");' #txt
+ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");
+TaskUtils.updateTaskStartedAttribute(false);' #txt
 Cs0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -445,9 +451,11 @@ Cs0 f36 320 488 384 488 #arcP
 Cs0 f40 632 592 696 592 #arcP
 Cs0 f34 actionTable 'out=in;
 ' #txt
-Cs0 f34 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+Cs0 f34 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 
-ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");' #txt
+ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");
+TaskUtils.updateTaskStartedAttribute(false);' #txt
 Cs0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
