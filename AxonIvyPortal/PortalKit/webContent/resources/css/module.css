@@ -163,14 +163,15 @@
 /********************** END MENU ITEM ***********************/
 
 /********************** START SUBMENU ITEM ***********************/
-.submenu-container {
+.layout-wrapper .layout-sidebar .layout-menu li.submenu-container {
   box-shadow: none;
   margin: auto 10px;
-  padding-right: 0 !important;
+  padding-right: 0;
+  padding-left: 0;
 }
 
-.submenu-container a {
-  box-shadow: none !important;
+.layout-wrapper .layout-sidebar .layout-menu li.submenu-container a {
+  box-shadow: none;
 }
 
 /********************** END SUBMENU ITEM ***********************/
