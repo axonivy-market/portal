@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
-import portal.guitest.common.Sleeper;
 import vn.wawa.guitest.base.client.Browser;
 
 public class ExpressFormDefinitionPage extends TemplatePage {
@@ -185,8 +184,12 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 
 	public void executeWorkflow() {
 		click(By.id("execute-button"));
-		waitAjaxIndicatorDisappear();
-		Sleeper.sleep(2000);
+		waitForElementDisplayed(By.id("form:dynaform-fieldset"), true);
+	}
+	
+	public void executeWorkflowAndWaitForUserTaskWithEmailDisplay() {
+	  click(By.id("execute-button"));
+    waitForElementDisplayed(By.id("task-form:task-view:dyna-form-fieldset"), true);
 	}
 
 	public void nextStep() {

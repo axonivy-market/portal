@@ -5,16 +5,25 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.StreamedContent;
+import org.primefaces.model.UploadedFile;
 
+import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
+import ch.ivy.addon.portalkit.enums.ExpressMessageType;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
@@ -27,12 +36,23 @@ public class ExpressManagementBean implements Serializable {
 
   private List<SecurityMemberDTO> activeMemberList;
   private boolean isShowExpressManagementTab;
+  private List<ExpressProcess> expressProcesses;
+  private List<ExpressProcess> selectedExpressProcesses;
+  private StreamedContent exportExpressFile;
+  private UploadedFile importExpressFile;
+  private String importOutput;
+  private String importStatus;
+  private FacesMessage validateMessage;
+  private Boolean isError;
+  private ExpressManagementUtils expressManagementUtils;
 
   @PostConstruct
   public void initManagement() {
     activeMemberList = findAllActiveUser();
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
     isShowExpressManagementTab = collector.findExpressCreationProcess() != null;
+    expressManagementUtils = new ExpressManagementUtils();
+    setExpressProcesses(expressManagementUtils.findExpressProcesses());
   }
 
   @SuppressWarnings("unchecked")
@@ -80,7 +100,62 @@ public class ExpressManagementBean implements Serializable {
     }
     return displayName;
   }
+  
+  public void importExpress(FileUploadEvent event) {
+    importExpressFile = event.getFile();
+    validate();
+    if (isError) {
+      displayedMessage();
+    } else {
+      importExpressProcesses();
+    }
+  }
+  
+  public StreamedContent exportExpress() {
+    if (selectedExpressProcesses != null && !selectedExpressProcesses.isEmpty()) {
+      ExpressManagementUtils utils = new ExpressManagementUtils();  
+      exportExpressFile = utils.exportExpressProcess(selectedExpressProcesses);
+    }
+    return exportExpressFile;
+  }
 
+  private void validate() {
+    isError = false;
+    importOutput = StringUtils.EMPTY;
+
+    if (importExpressFile == null || importExpressFile.getSize() == 0) {
+      isError = true;
+      validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/fileEmptyMessage"), null);
+    } else if (!FilenameUtils.isExtension(importExpressFile.getFileName(), "json")) {
+      isError = true;
+      validateMessage = new FacesMessage(FacesMessage.SEVERITY_ERROR, Ivy.cms().co("/Dialogs/components/CaseDocument/invalidFileMessage"), null);
+    }
+  }
+  
+  private void displayedMessage() {
+    FacesContext.getCurrentInstance().addMessage("import-express-form:import-express-dialog-message", validateMessage);
+    importStatus = ExpressMessageType.FAILED.getLabel();
+  }
+  
+  @SuppressWarnings("unchecked")
+  private void importExpressProcesses() {
+    List<Object> results = expressManagementUtils.importExpressProcesses(importExpressFile);
+    try {
+      importStatus = results.get(0).toString();
+      importOutput = results.get(1).toString();
+      if (!importStatus.equalsIgnoreCase(ExpressMessageType.FAILED.getLabel())) {
+        expressProcesses.addAll((List<ExpressProcess>)results.get(2));
+      }
+    } catch (Exception e) {
+      importStatus = ExpressMessageType.FAILED.getLabel();
+      importOutput = e.getMessage();
+    }
+
+    if (importStatus.equalsIgnoreCase(ExpressMessageType.FAILED.getLabel())) {
+      isError = true;
+    }
+  }
+  
   public boolean isShowExpressManagementTab() {
     return isShowExpressManagementTab;
   }
@@ -89,4 +164,51 @@ public class ExpressManagementBean implements Serializable {
     this.isShowExpressManagementTab = isShowExpressManagementTab;
   }
 
+  public List<ExpressProcess> getExpressProcesses() {
+    return expressProcesses;
+  }
+
+  public void setExpressProcesses(List<ExpressProcess> expressProcesses) {
+    this.expressProcesses = expressProcesses;
+  }
+
+  public String getImportOutput() {
+    return importOutput;
+  }
+
+  public void setImportOutput(String importOutput) {
+    this.importOutput = importOutput;
+  }
+  
+  public List<ExpressProcess> getSelectedExpressProcesses() {
+    return selectedExpressProcesses;
+  }
+
+  public void setSelectedExpressProcesses(List<ExpressProcess> selectedExpressProcesses) {
+    this.selectedExpressProcesses = selectedExpressProcesses;
+  }
+
+  public StreamedContent getExportExpressFile() {
+    return exportExpressFile;
+  }
+
+  public void setExportExpressFile(StreamedContent exportExpressFile) {
+    this.exportExpressFile = exportExpressFile;
+  }
+
+  public String getImportStatus() {
+    return importStatus;
+  }
+
+  public void setImportStatus(String importStatus) {
+    this.importStatus = importStatus;
+  }
+
+  public UploadedFile getImportExpressFile() {
+    return importExpressFile;
+  }
+
+  public void setImportExpressFile(UploadedFile importExpressFile) {
+    this.importExpressFile = importExpressFile;
+  }
 }
