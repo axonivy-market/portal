@@ -61,12 +61,12 @@ public class SecurityService implements ISecurityService {
   }
   
   private List<UserDTO> queryUsers(String query, List<String> apps, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) throws PortalIvyDataException {
-    query = "%"+ StringUtils.defaultString(query, StringUtils.EMPTY) +"%";
+    String containingQuery = "%"+ StringUtils.defaultString(query, StringUtils.EMPTY) +"%";
     IUserQueryExecutor executor = ServerFactory.getServer().getSecurityManager().getUserQueryExecutor();
     UserQuery userQuery = executor.createUserQuery().groupBy().name().fullName().orderBy().fullName();
     IFilterQuery filterQuery = userQuery.where();
-    filterQuery.fullName().isLikeIgnoreCase(query)
-      .or().name().isLikeIgnoreCase(query);
+    filterQuery.fullName().isLikeIgnoreCase(containingQuery)
+      .or().name().isLikeIgnoreCase(containingQuery);
     if (CollectionUtils.isNotEmpty(fromRoles)) {
       UserQuery hasRolesQuery = UserQuery.create();
       for (String appName : apps) {
@@ -242,11 +242,11 @@ public class SecurityService implements ISecurityService {
   }
   
   private List<UserDTO> queryUsers(String query, IApplication app, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
-    query = "%"+ StringUtils.defaultString(query, StringUtils.EMPTY) +"%";
+    String containingQuery = "%"+ StringUtils.defaultString(query, StringUtils.EMPTY) +"%";
     UserQuery userQuery = UserQuery.create();
     IFilterQuery filterQuery = userQuery.where();
-    filterQuery.fullName().isLikeIgnoreCase(query)
-      .or().name().isLikeIgnoreCase(query);
+    filterQuery.fullName().isLikeIgnoreCase(containingQuery)
+      .or().name().isLikeIgnoreCase(containingQuery);
     if (CollectionUtils.isNotEmpty(fromRoles)) {
       UserQuery hasRolesQuery = queryHasRoles(app, fromRoles);
       filterQuery.andOverall(hasRolesQuery);
