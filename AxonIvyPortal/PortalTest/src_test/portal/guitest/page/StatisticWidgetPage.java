@@ -42,7 +42,7 @@ public class StatisticWidgetPage extends TemplatePage {
 
   public void backToDashboard() {
     clickByCssSelector("a[id$='back-from-chart-creation']");
-    waitAjaxIndicatorDisappear();
+    waitForElementDisplayed(By.cssSelector("a[id$='create-chart-link']"), true);
   }
   
   public TaskAnalysisWidgetPage navigateToTaskAnalysisPage() {
