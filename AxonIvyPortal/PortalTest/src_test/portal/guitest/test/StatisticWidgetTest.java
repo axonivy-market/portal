@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
@@ -32,10 +33,9 @@ public class StatisticWidgetTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
+    Sleeper.sleep(2000); // To make Firefox test more stable, make business data updated correctly
     redirectToRelativeLink(createTestingTasksUrl);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     login(TestAccount.ADMIN_USER);
-
     homePage = new HomePage();
   }
 
@@ -67,7 +67,6 @@ public class StatisticWidgetTest extends BaseTest {
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     statisticWidgetPage.switchCreateMode();
     
-    Sleeper.sleep(5000);
     statisticWidgetPage.createTaskByPriorityChart();
     statisticWidgetPage.createTaskByExpiryChart();
     statisticWidgetPage.createCaseByStateChart();
@@ -76,7 +75,6 @@ public class StatisticWidgetTest extends BaseTest {
     statisticWidgetPage.createCaseByFinishTime();
 
     statisticWidgetPage.backToDashboard();
-    statisticWidgetPage.waitLastChartCreated();
     statisticWidgetPage.waitForElementDisplayed(By.cssSelector("div[id$='6:chart-name-container'] .chart-name"), true);
     WebElement taskByPriorityDefaultChartName
     = statisticWidgetPage.findElementByCssSelector("div[id$='0:chart-name-container'] .chart-name");

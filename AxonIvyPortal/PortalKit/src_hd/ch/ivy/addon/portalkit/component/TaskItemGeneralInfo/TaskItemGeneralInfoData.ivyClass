@@ -8,5 +8,3 @@ selectedCase ch.ivyteam.ivy.workflow.ICase #field
 selectedCase PERSISTENT #fieldModifier
 task ch.ivyteam.ivy.workflow.ITask #field
 task PERSISTENT #fieldModifier
-commandLink org.primefaces.component.commandlink.CommandLink #field
-commandLink PERSISTENT #fieldModifier

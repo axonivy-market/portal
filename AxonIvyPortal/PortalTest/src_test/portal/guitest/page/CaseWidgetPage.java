@@ -225,23 +225,28 @@ public class CaseWidgetPage extends TemplatePage {
 		return StringUtils.isNotBlank(count) ? Integer.parseInt(count) : null;
 	}
 
+	 public void waitUntilCaseCountDifferentThanZero() {
+	    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
+	    .until(() -> getCaseCount().intValue() != 0);
+	  }
+	
 	public void clickColumnsButton() {
 		clickByCssSelector(COLUMNS_BUTTON_CSS_SELECTOR);
 	}
 
 	public void clickColumnCheckbox(int columnIndex) {
 		WebElement columnCheckbox = findElementByXpath(String.format(SELECT_ITEM_XPATH, columnIndex));
-		columnCheckbox.click();
+		click(columnCheckbox);
 	}
 
 	public void clickDefaultCheckbox() {
 		WebElement columnCheckbox = findElementByXpath(DEFAULT_COLUMNS_XPATH);
-		columnCheckbox.click();
+		click(columnCheckbox);
 		waitAjaxIndicatorDisappear();
 	}
 
 	public void clickApplyButton() {
-		clickByCssSelector(APPLY_BUTTON_CSS_SELECTOR);
+		click(By.cssSelector(APPLY_BUTTON_CSS_SELECTOR));
 		waitAjaxIndicatorDisappear();
 	}
 

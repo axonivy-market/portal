@@ -35,7 +35,6 @@ public class ProcessWidgetTest extends BaseTest {
   @Override
   public void setup() {
     super.setup();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
   }
 
@@ -265,6 +264,7 @@ public class ProcessWidgetTest extends BaseTest {
     assertEquals("Processes", processWidget.getTextOfCurrentBreadcrumb());
 
     processWidget.clickHomeBreadcrumb();
+    homePage = new HomePage();
     assertEquals(true, homePage.isDisplayed());
   }
 
