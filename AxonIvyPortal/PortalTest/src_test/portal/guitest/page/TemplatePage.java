@@ -32,9 +32,9 @@ public abstract class TemplatePage extends AbstractPage {
     waitForLocatorDisplayed(getLoadedLocator());
   }
 
-  //If page load more than 30s, mark it failed by timeout
+  //If page load more than 45s, mark it failed by timeout
   protected long getTimeOutForLocator() {
-    return 30L;
+    return 45L;
   }
 
   protected void waitForLocatorDisplayed(String locator) {
@@ -117,7 +117,7 @@ public abstract class TemplatePage extends AbstractPage {
       waitForElementDisplayed(ajaxIndicatorStartState, false);
     }
   }
-
+  
   public <T> void waitForElementDisplayed(T locator, boolean expected) {
     waitForElementDisplayed(locator, expected, getTimeOutForLocator());
   }
