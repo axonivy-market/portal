@@ -13,7 +13,7 @@
       <p:messages widgetVar="growl" showDetail="true" closable="true" id="absence-messages" escape="false" styleClass="new-absence-messages"/>
       <h:panelGroup id="input-adsence-data-section" layout="block" rendered="#{not data.isLoadDeputy}">
         <ui:include src="Absence.xhtml">
-          <ui:param name="updateComponent" value="#{p:component('next-to-deputy')} #{p:component('absence-messages')}" />
+          <ui:param name="updateComponent" value="#{p:component('next-to-deputy')} #{p:component('save-substitutes')} #{p:component('absence-messages')}" />
           <ui:param name="uneditedUserName" value="false" />
         </ui:include>
       </h:panelGroup>
@@ -42,7 +42,7 @@
         <p:commandButton process="@form" id="save-substitutes" rendered="#{data.isLoadDeputy or (data.isLoadDeputy eq 'false' and !absenceBean.ownSubstituteCreatable)}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" actionListener="#{logic.saveSubstitutes}"
           disabled="#{data.validationError}"
-          update=":#{p:component('absence-table')} absence-messages" />
+          update="@form #{p:component('absence-table')}" />
 
         <p:spacer width="5px" rendered="#{data.isLoadDeputy}" />
         <p:commandButton id="close-add-new-absence-dialog" actionListener="#{logic.cancel}"
