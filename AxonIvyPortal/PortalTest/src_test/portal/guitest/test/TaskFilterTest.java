@@ -62,15 +62,15 @@ public class TaskFilterTest extends BaseTest {
 	@Test
 	public void testKeepSessionFilter() {
 		MainMenuPage mainMenuPage = new MainMenuPage();
-		TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+		final TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
 		taskWidgetPage.openAdvancedFilter("Description", "description");
 		taskWidgetPage.filterByDescription("Maternity");
-		assertEquals(1, taskWidgetPage.countTasks());
+		assertTrueWithWait(() -> taskWidgetPage.countTasks() == 1, 5);
 
 		mainMenuPage.openCaseList();
-		taskWidgetPage = mainMenuPage.openTaskList();
-		assertEquals(1, taskWidgetPage.countTasks());
-		assertTrue(taskWidgetPage.isAdvancedFilterDisplayed("description"));
+		TaskWidgetPage taskWidgetPage2 = mainMenuPage.openTaskList();
+		assertEquals(1, taskWidgetPage2.countTasks());
+		assertTrue(taskWidgetPage2.isAdvancedFilterDisplayed("description"));
 	}
 
 	@Test
