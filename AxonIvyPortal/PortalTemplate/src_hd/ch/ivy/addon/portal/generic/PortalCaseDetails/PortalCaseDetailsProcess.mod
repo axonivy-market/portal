@@ -58,19 +58,19 @@ Ps0 f6 actionTable 'out=in;
 ' #txt
 Ps0 f6 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
 
-in.isFromDoneTask = ivy.session.getAttribute(SessionAttribute.IS_TASK_FINISHED.toString()) as Boolean;' #txt
+in.isTaskStartedInDetails = ivy.session.getAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString()) as Boolean;' #txt
 Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Check is open from done task</name>
+        <name>Check is open from task</name>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f6 200 42 176 44 -82 -8 #rect
+Ps0 f6 216 42 144 44 -66 -8 #rect
 Ps0 f6 @|StepIcon #fIcon
 Ps0 f7 expr out #txt
-Ps0 f7 109 64 200 64 #arcP
-Ps0 f2 376 64 435 64 #arcP
+Ps0 f7 109 64 216 64 #arcP
+Ps0 f2 360 64 435 64 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.PortalCaseDetails.PortalCaseDetailsData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
