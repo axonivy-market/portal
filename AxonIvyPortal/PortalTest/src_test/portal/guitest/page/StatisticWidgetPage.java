@@ -76,7 +76,6 @@ public class StatisticWidgetPage extends TemplatePage {
         return findElementByCssSelector(String.format("div[id$='%d:chart-name-container'] .chart-name", chartIndex)).getText().length()>1;
       } catch (WebDriverException e) {
         System.out.println("Exception when waiting for element existed, try again.");
-        e.printStackTrace();
       }
       return false;
     });
@@ -95,7 +94,6 @@ public class StatisticWidgetPage extends TemplatePage {
         return restoreDefault.getText().contains("Restore default");
       } catch (WebDriverException e) {
         System.out.println("Exception when waiting for element existed, try again.");
-        e.printStackTrace();
       }
       return false;
     });

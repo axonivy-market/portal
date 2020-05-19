@@ -233,7 +233,6 @@ public class BaseTest {
       String updatePortalSettingLink = "portalKitTestHelper/17208192E0AF4185/updatePortalSetting.ivp?settingName=%s&settingValue=%s";
       redirectToRelativeLink(String.format(updatePortalSettingLink, encodeSettingName, encodeSettingValue));
     } catch (UnsupportedEncodingException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
   }
