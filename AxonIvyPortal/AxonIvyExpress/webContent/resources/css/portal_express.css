@@ -19,6 +19,7 @@
 
 .express-work-flow .express-error-container {
   border: 0;
+  padding: 8px 14px;
 }
 
 /* Override fieldset style for express */
@@ -470,6 +471,10 @@ td.email-attachment-text {
 
 .form-create-tabs {
   border: none !important;
+}
+
+.form-create-tabs .ui-messages-close .ui-icon {
+  color: unset !important;
 }
 
 /* DYNA FORM */

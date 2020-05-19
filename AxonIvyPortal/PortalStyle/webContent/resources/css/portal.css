@@ -205,10 +205,6 @@ body .ui-datatable tbody tr.ui-datatable-even {
   .ui-datatable-reflow .ui-reflow-dropdown {
     font-size: var(--large-font-size); } }
 
-body .ui-widget-header .ui-button .ui-icon {
-  color: var(--text-button-color) !important;
-}
-
 /* Layout sidebar*/
 .submenu-container {
   background-color: var(--submenu-bg-color); }
@@ -305,35 +301,6 @@ body .ui-messages ul {
   .ui-message-fatal-summary {
     margin-left: 0px; } }
 
-/* Buttons */
-body .ui-button .ui-button-text {
-  font-size: var(--large-font-size);
-  color: var(--text-button-color); }
-
-.ui-widget.ui-button.ui-state-hover,
-.ui-widget.ui-buttonset .ui-state-hover,
-body .ui-buttonset .ui-state-active {
-  background-color: var(--ui-button-hover-background-color); }
-
-.ui-widget.ui-button .ui-button-text {
-  color: var(--text-button-color); }
-
-.ui-widget.ui-button .ui-icon {
-  color: var(--text-button-color); }
-
-.ui-widget.ui-button ui-button-icon-left.ui-icon {
-  color: var(--text-button-color); }
-
-.ui-widget.ui-button .ui-icon-calendar {
-  color: #212121; }
-
-.ui-widget.ui-button.ui-spinner-button.ui-state-hover,
-.ui-widget.ui-button.ui-datepicker-trigger {
-  background-color: var(--ui-transparent-button-hover-background-color); }
-
-.ui-autocomplete .ui-autocomplete-dropdown {
-  min-width: 18px; }
-
 /* Inputs */
 input::-ms-clear {
   display: none; }
@@ -368,39 +335,6 @@ body .md-inputfield input:focus ~ label {
 
 span.ui-inputnumber.ui-widget.ui-state-error {
   border: none; }
-
-/* Select Checkbox Menu & Picklist */
-body .ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-close.ui-state-hover {
-  background: var(--select-check-box-close-hover-color);
-  border-radius: 50%; }
-
-.ui-selectcheckboxmenu-panel .ui-selectcheckboxmenu-filter-container .ui-icon-search,
-.ui-picklist .ui-picklist-filter-container .ui-icon,
-.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
-  color: var(--ivy-primary-color-grey-dark);
-  background: var(--checkbox-menu-icon-background-color);
-  overflow: visible;
-  text-indent: 5px; }
-
-.ui-selectcheckboxmenu-header .ui-selectcheckboxmenu-filter-container .ui-icon:before,
-.ui-picklist .ui-picklist-filter-container .ui-icon:before {
-  font-family: var(--icon-font-family);
-  font-size: var(--select-checkbox-menu-icon-font-size);
-  -webkit-font-smoothing: antialiased;
-  content: "\f002";
-  position: absolute; }
-
-.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger,
-.ui-selectcheckboxmenu .ui-selectcheckboxmenu-trigger.ui-state-hover {
-  background-color: var(--select-checkbox-menu-trigger-background-color); }
-
-body .ui-picklist li.ui-picklist-item.ui-state-hover {
-  color: var(--hovered-picklist-item-text-color); }
-
-body .ui-picklist .ui-picklist-filter-container .ui-icon {
-  top: auto;
-  bottom: 5px;
-  right: 7px; }
 
 /* Auto complete */
 .ui-autocomplete-panel .ui-autocomplete-items.ui-autocomplete-table tr:hover {
@@ -1119,6 +1053,18 @@ body .fieldset-no-border {
 .no-running-task-case {
   margin-bottom: 10px;
   border-bottom: 1px solid var(--case-related-task-content-border); }
+
+@media screen and (max-width: 40em) {
+  .task-item-body .ui-datatable-tablewrapper,
+  .case-detail-body .case-details-item .ui-datatable-tablewrapper {
+    overflow: hidden;
+  }
+
+  .task-item-body .ui-datatable thead th:first-child,
+  .case-detail-body .case-details-item .ui-datatable thead th:first-child {
+    border-right: 1px solid #d8d8d8;
+  }
+}
 
 /**Style for Absences and Debuty  --------------------------------------*/
 .substituted-user-text {
