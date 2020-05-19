@@ -26,7 +26,5 @@ selectedUser ch.ivy.addon.portalkit.dto.UserDTO #field
 selectedUser PERSISTENT #fieldModifier
 displayedAbsences java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence> #field
 displayedAbsences PERSISTENT #fieldModifier
-isAbsenceBeingCreated Boolean #field
-isAbsenceBeingCreated PERSISTENT #fieldModifier
 application ch.ivyteam.ivy.application.IApplication #field
 application PERSISTENT #fieldModifier

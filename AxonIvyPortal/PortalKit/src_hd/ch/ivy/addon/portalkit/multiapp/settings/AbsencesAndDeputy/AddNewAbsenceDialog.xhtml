@@ -26,8 +26,8 @@
         <p:commandButton id="next-to-deputy"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}"
           disabled="#{data.validationError}" process="input-adsence-data-section" actionListener="#{logic.createAbsenceAndLoadDeputy}"
-          rendered="#{not data.isLoadDeputy}" update="@form" />
-
+          rendered="#{not data.isLoadDeputy and absenceBean.ownSubstituteCreatable}" update="@form" />
+		
         <p:spacer width="5px" />
 
         <p:commandButton id="back-to-adsences"
@@ -39,8 +39,9 @@
 
         <p:spacer width="5px" rendered="#{data.isLoadDeputy}" />
 
-        <p:commandButton process="@form" id="save-substitutes" rendered="#{data.isLoadDeputy}"
+        <p:commandButton process="@form" id="save-substitutes" rendered="#{data.isLoadDeputy or (data.isLoadDeputy eq 'false' and !absenceBean.ownSubstituteCreatable)}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" actionListener="#{logic.saveSubstitutes}"
+          disabled="#{data.validationError}"
           update=":#{p:component('absence-table')} absence-messages" />
 
         <p:spacer width="5px" rendered="#{data.isLoadDeputy}" />

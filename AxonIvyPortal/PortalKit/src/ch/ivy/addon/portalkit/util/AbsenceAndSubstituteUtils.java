@@ -19,7 +19,9 @@ import ch.ivy.addon.portalkit.bo.SubstituteNode;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
+import ch.ivy.addon.portalkit.service.PermissionCheckerService;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IPermission;
 
 public final class AbsenceAndSubstituteUtils {
 
@@ -38,15 +40,17 @@ public final class AbsenceAndSubstituteUtils {
    */
   public static TreeNode buildSustitute(Map<IvyApplication, List<IvySubstitute>> ivySubtitutesByApp) {
     TreeNode substituteRoot = new DefaultTreeNode(new SubstituteNode(), null);
-
+    PermissionCheckerService permissionService = new PermissionCheckerService();
     for (Map.Entry<IvyApplication,List<IvySubstitute>> entry : ivySubtitutesByApp.entrySet()) {
       IvyApplication ivyApplication = entry.getKey();
-      TreeNode appNode =
-          new DefaultTreeNode(new SubstituteNode(ivyApplication.getDisplayName(), null, false, ivyApplication.getName()), substituteRoot);
-      appNode.setExpanded(true);
-
-      for (int i = 0; i < entry.getValue().size(); i++) {
-        createSubstituteNode(appNode, entry.getValue().get(i), ivyApplication.getName()).setRowKey("node_" + i);
+      if (permissionService.hasAtLeaseOnePermissionOnApp(ivyApplication.getName(), IPermission.USER_CREATE_OWN_SUBSTITUTE, IPermission.USER_CREATE_SUBSTITUTE)){
+        TreeNode appNode =
+            new DefaultTreeNode(new SubstituteNode(ivyApplication.getDisplayName(), null, false, ivyApplication.getName()), substituteRoot);
+        appNode.setExpanded(true);
+  
+        for (int i = 0; i < entry.getValue().size(); i++) {
+          createSubstituteNode(appNode, entry.getValue().get(i), ivyApplication.getName()).setRowKey("node_" + i);
+        }
       }
     }
     return substituteRoot;
