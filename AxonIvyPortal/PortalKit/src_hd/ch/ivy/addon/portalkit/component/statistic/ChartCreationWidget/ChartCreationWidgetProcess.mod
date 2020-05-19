@@ -419,8 +419,7 @@ Cs0 f27 expr out #txt
 Cs0 f27 366 64 456 64 #arcP
 Cs0 f28 actionTable 'out=in;
 ' #txt
-Cs0 f28 actionCode 'import org.primefaces.PrimeFaces;
-import java.util.ArrayList;
+Cs0 f28 actionCode 'import java.util.ArrayList;
 for (String field : in.customFields){
 	in.statisticFilter.customFieldFilters.put(field, new ArrayList());	
 }
