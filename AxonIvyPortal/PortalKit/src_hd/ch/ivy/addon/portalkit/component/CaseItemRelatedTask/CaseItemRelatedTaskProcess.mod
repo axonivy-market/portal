@@ -407,7 +407,8 @@ Cs0 f11 @|StepIcon #fIcon
 Cs0 f16 320 384 384 384 #arcP
 Cs0 f33 actionTable 'out=in;
 ' #txt
-Cs0 f33 actionCode 'import org.apache.commons.lang3.StringUtils;
+Cs0 f33 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import javax.faces.context.Flash;
@@ -426,7 +427,9 @@ if(in.isWorkingOnTask) {
 		flash.setRedirect(true);
 		flash.setKeepMessages(true);
 	}
-}' #txt
+}
+
+TaskUtils.updateTaskStartedAttribute(false);' #txt
 Cs0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -509,8 +512,10 @@ Cs0 f2 109 384 176 384 #arcP
 Cs0 f39 actionTable 'out=in;
 ' #txt
 Cs0 f39 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 
-ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");' #txt
+ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");
+TaskUtils.updateTaskStartedAttribute(false);' #txt
 Cs0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -525,9 +530,11 @@ Cs0 f40 432 592 488 592 #arcP
 Cs0 f36 616 592 672 592 #arcP
 Cs0 f41 actionTable 'out=in;
 ' #txt
-Cs0 f41 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+Cs0 f41 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 
-ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");' #txt
+ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");
+TaskUtils.updateTaskStartedAttribute(false);' #txt
 Cs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
