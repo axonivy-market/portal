@@ -72,8 +72,16 @@ public class TaskDetailsPage extends TemplatePage {
   }
   
   public TaskWidgetPage goBackToTaskListFromTaskDetails() {
-    findElementById("task-detail-template:task-detail-title-form:back-to-previous-page").click();
+    clickBackButton();
     return new TaskWidgetPage();
+  }
+  
+  public boolean isBackButtonPresented() {
+    return findElementById("task-detail-template:task-detail-title-form:back-to-previous-page").isDisplayed();
+  }
+  
+  public void clickBackButton() {
+    findElementById("task-detail-template:task-detail-title-form:back-to-previous-page").click();
   }
 
   public TaskTemplatePage clickStartTask() {
