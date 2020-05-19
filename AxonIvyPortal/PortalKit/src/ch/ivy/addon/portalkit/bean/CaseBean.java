@@ -77,7 +77,7 @@ public class CaseBean implements Serializable {
     }
     String requestPath = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), friendlyRequestPath);
     if (StringUtils.isNotEmpty(requestPath)) {
-      TaskUtils.updateTaskStatusAttributes(false);
+      TaskUtils.updateTaskStartedAttribute(false);
       PortalNavigator.redirect(requestPath);
     }
   }

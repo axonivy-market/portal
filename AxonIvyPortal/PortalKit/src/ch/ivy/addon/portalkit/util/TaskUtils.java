@@ -188,8 +188,8 @@ public final class TaskUtils {
   	}
   }
   
-  public static void updateTaskStatusAttributes(boolean status) {
-    Ivy.session().setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), status);
+  public static void updateTaskStartedAttribute(boolean status) {
     Ivy.session().setAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString(), status);
   }
+
 }
