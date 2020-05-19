@@ -194,6 +194,7 @@ public class CaseWidgetTest extends BaseTest {
     initHomePage(TestAccount.DEMO_USER);
     mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
+    casePage.waitUntilCaseCountDifferentThanZero();
     assertEquals(1, casePage.getCaseCount().intValue());
   }
   
