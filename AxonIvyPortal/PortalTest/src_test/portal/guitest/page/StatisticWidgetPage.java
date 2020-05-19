@@ -42,20 +42,7 @@ public class StatisticWidgetPage extends TemplatePage {
 
   public void backToDashboard() {
     clickByCssSelector("a[id$='back-from-chart-creation']");
-    waitAjaxIndicatorDisappear();
-  }
-  
-  public void waitLastChartCreated() {
-    Awaitility.await().atMost(new Duration(2000, TimeUnit.SECONDS)).until(() -> {
-      try {
-        WebElement lastChart = findElementByCssSelector("div[id$='6:chart-name-container'] .chart-name");
-        return lastChart.getText().contains("Case by finished time chart");
-      } catch (WebDriverException e) {
-        System.out.println("Exception when waiting for element existed, try again.");
-        e.printStackTrace();
-      }
-      return false;
-    });
+    waitForElementDisplayed(By.cssSelector("a[id$='create-chart-link']"), true);
   }
   
   public TaskAnalysisWidgetPage navigateToTaskAnalysisPage() {
