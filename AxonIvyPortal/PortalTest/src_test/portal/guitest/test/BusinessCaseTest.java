@@ -26,7 +26,6 @@ public class BusinessCaseTest extends BaseTest {
   public void setup() {
     super.setup();
     redirectToRelativeLink(businessCaseUrl);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
   @Test

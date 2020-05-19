@@ -19,7 +19,6 @@ public class PageRefreshingTest extends BaseTest {
     killBrowsers();
     super.setup();
     createTestingTasks();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
   @Test
