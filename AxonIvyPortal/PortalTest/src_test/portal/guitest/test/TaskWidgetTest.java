@@ -145,8 +145,10 @@ public class TaskWidgetTest extends BaseTest {
   public void testShowTaskCount() { 
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.waitUntilTaskCountDifferentThanZero();
     assertEquals("In Dashboard, Task Count != 3", 3, taskWidgetPage.getTaskCount().intValue());
     taskWidgetPage.expand();
+    taskWidgetPage.waitUntilTaskCountDifferentThanZero();
     assertEquals("In Task list, Task Count != 3", 3, taskWidgetPage.getTaskCount().intValue());
   }
   

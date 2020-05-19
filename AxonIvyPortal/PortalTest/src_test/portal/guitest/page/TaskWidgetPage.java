@@ -284,6 +284,11 @@ public class TaskWidgetPage extends TemplatePage {
 		waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), true);
 	}
 
+	public void waitUntilTaskCountDifferentThanZero() {
+	  Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
+    .until(() -> getTaskCount().intValue() != 0);
+	}
+	
 	public boolean isDelegateTypeSelectAvailable() {
 		return isElementPresent(By.cssSelector("div[id$=':activator-panel']"));
 	}
