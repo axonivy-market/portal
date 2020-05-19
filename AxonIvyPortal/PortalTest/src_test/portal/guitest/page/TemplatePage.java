@@ -17,7 +17,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.UrlHelpers;
 import vn.wawa.guitest.base.page.AbstractPage;
 
@@ -49,8 +48,7 @@ public abstract class TemplatePage extends AbstractPage {
         super.waitForElementDisplayed(locator, expected, timeout);
         return;
       } catch (WebDriverException e) {
-        System.out.println("Exception when waiting, try again.");
-        e.printStackTrace();
+        System.out.println("Exception when waiting for element displayed, try again.");
       }
     });
   }
@@ -61,7 +59,6 @@ public abstract class TemplatePage extends AbstractPage {
         return (findListElementsByCssSelector(cssSelector).size() != 0) == expected;
       } catch (WebDriverException e) {
         System.out.println("Exception when waiting for element existed, try again.");
-        e.printStackTrace();
       }
       return false;
     });

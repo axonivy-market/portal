@@ -65,7 +65,6 @@ public class TaskFilterTest extends BaseTest {
 		final TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
 		taskWidgetPage.openAdvancedFilter("Description", "description");
 		taskWidgetPage.filterByDescription("Maternity");
-		assertTrueWithWait(() -> taskWidgetPage.countTasks() == 1, 5);
 
 		mainMenuPage.openCaseList();
 		TaskWidgetPage taskWidgetPage2 = mainMenuPage.openTaskList();
