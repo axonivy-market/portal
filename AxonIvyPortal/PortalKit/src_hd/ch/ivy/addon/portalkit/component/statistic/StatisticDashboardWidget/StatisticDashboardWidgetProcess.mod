@@ -617,24 +617,16 @@ Ss0 f74 2 992 240 #addKink
 Ss0 f0 149 64 275 64 #arcP
 Ss0 f4 actionTable 'out=in;
 ' #txt
-Ss0 f4 actionCode 'import ch.ivy.addon.portalkit.enums.StatisticChartType;
-import org.primefaces.model.charts.donut.DonutChartModel;
-import ch.ivy.addon.portalkit.service.StatisticService;
+Ss0 f4 actionCode 'import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.bean.StatisticDashboardBean;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import java.util.ArrayList;
-import ch.ivy.addon.portalkit.jsf.ManagedBeans;
-import ch.ivy.addon.portalkit.bean.StatisticDashboardBean;
 
 if (in.statisticChartList.isEmpty()) {
-	StatisticService service = new StatisticService();
-	StatisticChart emptyChart = new StatisticChart();
-	emptyChart.name = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statistics");
-	emptyChart.type = StatisticChartType.TASK_BY_PRIORITY;
-
-	DonutChartModel model = service.createDonutChartPlaceholder();
-	model.options.title.text = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/emptystate/defaultEmptyMessages");
-	emptyChart.setDonutChartModel(model);
-	
+	FacesContext context = FacesContext.getCurrentInstance();
+	StatisticDashboardBean statisticDashboardBean = context.getApplication()
+		.evaluateExpressionGet(context, "#{statisticDashboardBean}", StatisticDashboardBean.class) as StatisticDashboardBean;
+	StatisticChart emptyChart = statisticDashboardBean.createDefaultEmptyChart();
 	in.statisticChartList = new ArrayList<StatisticChart>();
 	in.statisticChartList.add(emptyChart);
 }' #txt
