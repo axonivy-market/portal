@@ -13,7 +13,6 @@ import org.openqa.selenium.WebElement;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.TaskState;
 
 public class TaskWidgetPage extends TemplatePage {
@@ -107,22 +106,28 @@ public class TaskWidgetPage extends TemplatePage {
 		return taskElements.size();
 	}
 
-  public void filterTasksBy(String keyword) {
+  public void filterTasksBy(String keyword, int... expectedNumberOfTasksAfterFiltering) {
     WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
     keywordFilter.clear();
     keywordFilter.click(); // To make Firefox more stable
     keywordFilter.sendKeys(keyword);
-    //sometimes our test execution too quick, in the background ivy haven't finished the process
-    Sleeper.sleep(2000);
-    waitAjaxIndicatorDisappear();
+    waitForNumberOfTasks(expectedNumberOfTasksAfterFiltering);
   }
 
-	public void filterTasksInExpandedModeBy(String keyword) {
+  private void waitForNumberOfTasks(int... expectedNumberOfTasksAfterFiltering) {
+    if (expectedNumberOfTasksAfterFiltering.length == 0) {
+      Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> this.countTasks() == 1);
+    } else {
+      Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> this.countTasks() == expectedNumberOfTasksAfterFiltering[0]);
+    }
+  }
+
+	public void filterTasksInExpandedModeBy(String keyword, int... expectedNumberOfTasksAfterFiltering) {
 		waitForElementDisplayed(By.cssSelector(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE), true);
 		WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE);
 		keywordFilter.clear();
 		keywordFilter.sendKeys(keyword);
-		Sleeper.sleep(2000);
+    waitForNumberOfTasks(expectedNumberOfTasksAfterFiltering);
 	}
 
 	public CaseDetailsPage openRelatedCaseOfTask() {
