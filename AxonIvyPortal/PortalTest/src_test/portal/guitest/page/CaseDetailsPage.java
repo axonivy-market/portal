@@ -226,7 +226,6 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void onClickDestroyCase() {
     click(findElementById("case-item-details:destroy-case-link"));
-    click(findElementById("case-item-details:destroy-case-link"));
   }
   
   public void confimDestruction() {
@@ -283,11 +282,7 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("span[id$='document-upload-dialog_title']"), true);
     findElementByCssSelector("input[id$='document-upload-panel_input']").sendKeys(pathToFile);
     // currently haven't found solution to check when the file upload finish, we have to wait
-    if (isIntegrationTestRun()) {
-      Sleeper.sleep(10000);
-    } else {
-      Sleeper.sleep(5000);
-    }
+    Sleeper.sleep(2000);
   }
 
   public boolean isDeleteDocumentButtonPresented() {

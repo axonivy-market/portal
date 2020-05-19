@@ -192,11 +192,11 @@ Ca0 f60 expr out #txt
 Ca0 f60 408 212 408 275 #arcP
 Ca0 f56 expr out #txt
 Ca0 f56 408 109 408 188 #arcP
-Ca0 f10 outLink cleanAbsences.ivp #txt
+Ca0 f10 outLink cleanAbsencesAndSubstitues.ivp #txt
 Ca0 f10 inParamDecl '<> param;' #txt
 Ca0 f10 requestEnabled true #txt
 Ca0 f10 triggerEnabled false #txt
-Ca0 f10 callSignature cleanAbsences() #txt
+Ca0 f10 callSignature cleanAbsencesAndSubstitues() #txt
 Ca0 f10 persist false #txt
 Ca0 f10 startName '(For autotest) Clean absences' #txt
 Ca0 f10 taskData 'TaskTriggered.EXPRI=2
@@ -209,9 +209,7 @@ Ca0 f10 showInStartList 1 #txt
 Ca0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>cleanAbsences.ivp</name>
-        <nameStyle>17,5,7
-</nameStyle>
+        <name>cleanAbsencesAndSubstitues.ivp</name>
     </language>
 </elementInfo>
 ' #txt
@@ -221,7 +219,7 @@ Ca0 f10 @|StartRequestIcon #fIcon
 Ca0 f11 actionTable 'out=in;
 ' #txt
 Ca0 f11 actionCode 'import ch.ivy.addon.portalkit.test.util.AbsenceUtils;
-AbsenceUtils.cleanAllAbsences();' #txt
+AbsenceUtils.cleanAllAbsencesAndSubstitutes();' #txt
 Ca0 f11 security system #txt
 Ca0 f11 582 188 36 24 20 -2 #rect
 Ca0 f11 @|StepIcon #fIcon
@@ -256,7 +254,7 @@ Ca0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ca0 f15 @C|.responsibility Everybody #txt
-Ca0 f15 723 83 26 26 -43 -32 #rect
+Ca0 f15 723 99 26 26 -43 -32 #rect
 Ca0 f15 @|StartRequestIcon #fIcon
 Ca0 f16 actionTable 'out=in;
 ' #txt
@@ -269,7 +267,7 @@ Ca0 f16 security system #txt
 Ca0 f16 718 180 36 24 20 -2 #rect
 Ca0 f16 @|StepIcon #fIcon
 Ca0 f18 expr out #txt
-Ca0 f18 736 109 736 180 #arcP
+Ca0 f18 736 125 736 180 #arcP
 Ca0 f17 723 275 26 26 14 0 #rect
 Ca0 f17 @|EndIcon #fIcon
 Ca0 f19 expr out #txt

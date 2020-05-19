@@ -146,9 +146,9 @@ Bs0 f36 320 314 112 44 -24 -8 #rect
 Bs0 f36 @|StepIcon #fIcon
 Bs0 f37 actionTable 'out=in;
 ' #txt
-Bs0 f37 actionCode 'import org.primefaces.PrimeFaces;
+Bs0 f37 actionCode 'import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
 
-PrimeFaces.current().executeScript("navigateToTaskListFromBreadcrumb();");' #txt
+PrimeFacesUtils.executeScript("navigateToTaskListFromBreadcrumb();");' #txt
 Bs0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -199,9 +199,9 @@ Bs0 f8 499 403 26 26 0 12 #rect
 Bs0 f8 @|UdProcessEndIcon #fIcon
 Bs0 f9 actionTable 'out=in;
 ' #txt
-Bs0 f9 actionCode 'import org.primefaces.PrimeFaces;
+Bs0 f9 actionCode 'import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
 
-PrimeFaces.current().executeScript("navigateToHomeFromBreadcrumb();");' #txt
+PrimeFacesUtils.executeScript("navigateToHomeFromBreadcrumb();");' #txt
 Bs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

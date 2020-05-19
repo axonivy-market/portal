@@ -167,7 +167,7 @@ public class ProcessWidgetPage extends TemplatePage {
 
   public void expand() {
     loadSwitchModeButton();
-    switchModeButton.click();
+    click(switchModeButton);
     waitForElementDisplayed(By.id(processWidgetId + ":process-search:non-ajax-keyword-filter"), true, DEFAULT_TIMEOUT);
   }
 
