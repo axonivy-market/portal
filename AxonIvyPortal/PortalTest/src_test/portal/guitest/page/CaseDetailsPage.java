@@ -183,7 +183,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public CaseWidgetPage goBackToCaseListFromCaseDetails() {
-    findElementById("case-item-details:case-detail-title-form:back-to-cases").click();
+    clickBackButton();
     return new CaseWidgetPage();
   }
   
@@ -306,5 +306,18 @@ public class CaseDetailsPage extends TemplatePage {
     WebElement destroyConfirmationDialog = findElementById(destroyCaseDialogId);
     WebElement confirmButton = findChildElementById(destroyConfirmationDialog, "case-item-details:confirm-destruction");
     confirmButton.click();
+  }
+  
+  public boolean isBackButtonDisplayed() {
+    return isElementDisplayedById("case-item-details:case-detail-title-form:back-to-cases");
+  }
+  
+  public void clickBackButton() {
+    findElementById("case-item-details:case-detail-title-form:back-to-cases").click();
+  }
+
+  public CaseDetailsPage openRelatedCaseOfBusinessCase(int index) {
+    findElementByCssSelector("a[id$=':related-tasks:cases:" + index + ":case-name']").click();
+    return new CaseDetailsPage();
   }
 }

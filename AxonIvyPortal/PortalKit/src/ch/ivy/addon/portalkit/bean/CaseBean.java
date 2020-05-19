@@ -13,6 +13,7 @@ import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.support.UrlDetector;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -79,6 +80,7 @@ public class CaseBean implements Serializable {
     }
     String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(friendlyRequestPath);
     if (StringUtils.isNotEmpty(requestPath)) {
+      TaskUtils.updateTaskStartedAttribute(false);
       UrlDetector urlDetector = new UrlDetector();
       String serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
       redirect(serverUrl + requestPath);
