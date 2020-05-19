@@ -249,7 +249,7 @@ public abstract class TemplatePage extends AbstractPage {
   public TaskWidgetPage openTaskList() {
     openMainMenu();
     clickByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu");
-    Sleeper.sleep(5000);
+    waitForElementDisplayed(By.cssSelector("button[id$='task-config-button']"), true);
     return new TaskWidgetPage();
   }
 
