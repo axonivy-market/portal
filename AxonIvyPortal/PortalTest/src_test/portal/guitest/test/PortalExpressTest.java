@@ -282,7 +282,7 @@ public class PortalExpressTest extends BaseTest {
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
 		ExpressFormDefinitionPage formDefinition = configureComplexProcess(expressProcessPage);
-		formDefinition.executeWorkflow();
+		formDefinition.executeWorkflowAndWaitForUserTaskWithEmailDisplay();
 		executeComplexProcess();
 	}
 

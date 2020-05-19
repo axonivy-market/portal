@@ -12,7 +12,9 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.ItemSelectEvent;
+import org.primefaces.model.charts.donut.DonutChartModel;
 
+import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
@@ -20,6 +22,7 @@ import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
@@ -128,6 +131,17 @@ public class StatisticDashboardBean implements Serializable {
     IvyComponentLogicCaller<String> drilldownTaskByExpiry = new IvyComponentLogicCaller<>();
     drilldownTaskByExpiry.invokeComponentLogic(STATISTIC_DASHBOARD_WIDGET_COMPONENT_ID,
         "#{logic.drilldownTaskByExpiry}", new Object[] {selectedStatisticChart, selectedItemOfDrilldown});
+  }
+  
+  public StatisticChart createDefaultEmptyChart() {
+    StatisticChart emptyChart = new StatisticChart();
+    emptyChart.setName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statistics"));
+    emptyChart.setType(StatisticChartType.TASK_BY_PRIORITY);
+    StatisticService service = new StatisticService();
+    DonutChartModel model = service.createDonutChartPlaceholder();
+    model.getOptions().getTitle().setText(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/emptystate/defaultEmptyMessages"));
+    emptyChart.setDonutChartModel(model);
+    return emptyChart;
   }
 
   private static StatisticChart getSelectedStatisticChart(ItemSelectEvent event) {
