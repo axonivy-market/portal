@@ -195,13 +195,13 @@ public class TaskActionBean {
     }
     String requestPath = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), friendlyRequestPath);
     if (StringUtils.isNotEmpty(requestPath)) {
-      TaskUtils.updateTaskStatusAttributes(false);
+      TaskUtils.updateTaskStartedAttribute(false);
       PortalNavigator.redirect(requestPath + "?endedTaskId=" + task.getId());
     }
   }
   
   public void removeTaskAttributesInSession() {
-    TaskUtils.updateTaskStatusAttributes(false);
+    TaskUtils.updateTaskStartedAttribute(false);
   }
 
 }

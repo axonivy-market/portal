@@ -393,7 +393,7 @@ if(in.isWorkingOnTask) {
 	}
 }
 
-TaskUtils.updateTaskStatusAttributes(false);' #txt
+TaskUtils.updateTaskStartedAttribute(false);' #txt
 Cs0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -509,7 +509,7 @@ Cs0 f39 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 
 ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");
-TaskUtils.updateTaskStatusAttributes(false);' #txt
+TaskUtils.updateTaskStartedAttribute(false);' #txt
 Cs0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -528,7 +528,7 @@ Cs0 f34 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 
 ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");
-TaskUtils.updateTaskStatusAttributes(false);' #txt
+TaskUtils.updateTaskStartedAttribute(false);' #txt
 Cs0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
