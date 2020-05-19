@@ -10,6 +10,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -187,4 +188,9 @@ public final class TaskUtils {
   		return false;
   	}
   }
+  
+  public static void updateTaskStartedAttribute(boolean status) {
+    Ivy.session().setAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString(), status);
+  }
+
 }
