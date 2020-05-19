@@ -126,6 +126,15 @@ public interface ITaskService {
   public TaskServiceResult analyzePriorityStatistic(String jsonQuery, final String username, List<String> apps) throws WSException;
 
   /**
+   * Get statistic data by task priority with considering TaskReadAll permission
+   * 
+   * @param taskSearchCriteria
+   * @return statistic data
+   * @throws WSException
+   */
+  public TaskServiceResult analyzePriorityStatistic(TaskSearchCriteria taskSearchCriteria) throws WSException;
+  
+  /**
    * Get statistic data by task expiry date
    * 
    * @param jsonQuery
@@ -135,6 +144,15 @@ public interface ITaskService {
    * @throws WSException
    */
   public TaskServiceResult analyzeExpiryStatistic(String jsonQuery, final String username, List<String> apps) throws WSException;
+  
+  /**
+   * Get statistic data by task expiry date with considering TaskReadAll permission
+   * 
+   * @param taskSearchCriteria
+   * @return statistic data
+   * @throws WSException
+   */
+  public TaskServiceResult analyzeExpiryStatistic(TaskSearchCriteria taskSearchCriteria) throws WSException;
 
   /**
    * Get statistic data about elapsed time of done tasks

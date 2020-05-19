@@ -244,6 +244,32 @@ Te0 @PushWFArc f233 '' #zField
 Te0 @PushWFArc f234 '' #zField
 Te0 @PushWFArc f235 '' #zField
 Te0 @PushWFArc f225 '' #zField
+Te0 @WSElement f229 '' #zField
+Te0 @WSElement f230 '' #zField
+Te0 @WSElement f236 '' #zField
+Te0 @StartSub f237 '' #zField
+Te0 @Alternative f238 '' #zField
+Te0 @EndSub f239 '' #zField
+Te0 @EndSub f240 '' #zField
+Te0 @Alternative f241 '' #zField
+Te0 @WSElement f242 '' #zField
+Te0 @WSElement f243 '' #zField
+Te0 @StartSub f244 '' #zField
+Te0 @WSElement f245 '' #zField
+Te0 @PushWFArc f246 '' #zField
+Te0 @PushWFArc f247 '' #zField
+Te0 @PushWFArc f248 '' #zField
+Te0 @PushWFArc f249 '' #zField
+Te0 @PushWFArc f250 '' #zField
+Te0 @PushWFArc f251 '' #zField
+Te0 @PushWFArc f252 '' #zField
+Te0 @PushWFArc f253 '' #zField
+Te0 @PushWFArc f254 '' #zField
+Te0 @PushWFArc f255 '' #zField
+Te0 @PushWFArc f256 '' #zField
+Te0 @PushWFArc f257 '' #zField
+Te0 @PushWFArc f258 '' #zField
+Te0 @PushWFArc f259 '' #zField
 >Proto Te0 Te0 TaskServiceIntegrator #zField
 Te0 f7 .resExport export #txt
 Te0 f7 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
@@ -3432,6 +3458,355 @@ Te0 f235 expr out #txt
 Te0 f235 736 1132 736 1203 #arcP
 Te0 f225 expr out #txt
 Te0 f225 736 909 736 1010 #arcP
+Te0 f229 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f229 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
+' #txt
+Te0 f229 actionTable 'out=in;
+out.errors=wsResponse.analyzePriorityStatistic2Response.result.errors;
+out.priorityStatistic=wsResponse.analyzePriorityStatistic2Response.result.priorityStatistic;
+' #txt
+Te0 f229 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Te0 f229 timeout 60 #txt
+Te0 f229 beanConfig '"KEY_PASSWORD=
+KEY_AXIS_PORTNAME=TaskServicePort
+KEY_WEBSERVICECONFIG_ID=146B90974252183F
+KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=
+KEY_OPERATION=analyzePriorityStatistic2
+KEY_AUTHENTICATION_KIND=0
+KEY_HOST=
+KEY_USE_AUTHENTICATION=false
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzePriorityStatistic2.taskSearchCriteria__@@__ch.ivy.ws.addon.TaskSearchCriteria__@@__in.taskSearchCriteria"""' #txt
+Te0 f229 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f229 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f229 returningObjectList '[wsResponse]' #txt
+Te0 f229 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>default settings</name>
+        <nameStyle>16,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f229 878 1484 36 24 20 -2 #rect
+Te0 f229 @|WebServiceIcon #fIcon
+Te0 f230 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f230 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
+' #txt
+Te0 f230 actionTable 'out=in;
+out.errors=wsResponse.analyzeExpiryStatistic2Response.result.errors;
+out.expiryStatistic=wsResponse.analyzeExpiryStatistic2Response.result.expiryStatistic;
+' #txt
+Te0 f230 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Te0 f230 timeout 60 #txt
+Te0 f230 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+KEY_AXIS_PORTNAME=TaskServicePort
+KEY_WEBSERVICECONFIG_ID=146B90974252183F
+KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=<%\\=in.server.username%>
+KEY_OPERATION=analyzeExpiryStatistic2
+KEY_AUTHENTICATION_KIND=1
+KEY_HOST=
+KEY_USE_AUTHENTICATION=true
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzeExpiryStatistic2.taskSearchCriteria__@@__ch.ivy.ws.addon.TaskSearchCriteria__@@__in.taskSearchCriteria"""' #txt
+Te0 f230 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f230 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f230 returningObjectList '[wsResponse]' #txt
+Te0 f230 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>HTTP Basic</name>
+        <nameStyle>10,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f230 1070 1484 36 24 20 -2 #rect
+Te0 f230 @|WebServiceIcon #fIcon
+Te0 f236 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f236 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
+' #txt
+Te0 f236 actionTable 'out=in;
+out.errors=wsResponse.analyzePriorityStatistic2Response.result.errors;
+out.priorityStatistic=wsResponse.analyzePriorityStatistic2Response.result.priorityStatistic;
+' #txt
+Te0 f236 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Te0 f236 timeout 60 #txt
+Te0 f236 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+KEY_AXIS_PORTNAME=TaskServicePort
+KEY_WEBSERVICECONFIG_ID=146B90974252183F
+KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=<%\\=in.server.username%>
+KEY_OPERATION=analyzePriorityStatistic2
+KEY_AUTHENTICATION_KIND=4
+KEY_HOST=<%\\=in.server.host%>
+KEY_USE_AUTHENTICATION=true
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzePriorityStatistic2.taskSearchCriteria__@@__ch.ivy.ws.addon.TaskSearchCriteria__@@__in.taskSearchCriteria"""' #txt
+Te0 f236 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f236 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f236 returningObjectList '[wsResponse]' #txt
+Te0 f236 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NTLM</name>
+        <nameStyle>4,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f236 718 1484 36 24 20 -2 #rect
+Te0 f236 @|WebServiceIcon #fIcon
+Te0 f237 inParamDecl '<ch.ivy.ws.addon.TaskSearchCriteria taskSearchCriteria,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
+Te0 f237 inParamTable 'out.endpoint=param.endpoint;
+out.server=param.server;
+out.taskSearchCriteria=param.taskSearchCriteria;
+' #txt
+Te0 f237 outParamDecl '<ch.ivy.ws.addon.PriorityStatistic priorityStatistic,List<ch.ivy.ws.addon.WsException> errors> result;
+' #txt
+Te0 f237 outParamTable 'result.priorityStatistic=in.priorityStatistic;
+result.errors=in.errors;
+' #txt
+Te0 f237 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
+' #txt
+Te0 f237 callSignature analyzePriorityStatistic2(ch.ivy.ws.addon.TaskSearchCriteria,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Te0 f237 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f237 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>analyzePriorityStatistic2(TaskSearchCriteria,Server,String)</name>
+    </language>
+</elementInfo>
+' #txt
+Te0 f237 723 1291 26 26 14 0 #rect
+Te0 f237 @|StartSubIcon #fIcon
+Te0 f238 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f238 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Authentication Type?</name>
+        <nameStyle>20,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f238 1234 1386 28 28 14 -22 #rect
+Te0 f238 @|AlternativeIcon #fIcon
+Te0 f239 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f239 1235 1579 26 26 14 0 #rect
+Te0 f239 @|EndSubIcon #fIcon
+Te0 f240 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f240 723 1579 26 26 14 0 #rect
+Te0 f240 @|EndSubIcon #fIcon
+Te0 f241 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f241 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Authentication Type?</name>
+        <nameStyle>20,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f241 722 1386 28 28 14 -22 #rect
+Te0 f241 @|AlternativeIcon #fIcon
+Te0 f242 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f242 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
+' #txt
+Te0 f242 actionTable 'out=in;
+out.errors=wsResponse.analyzeExpiryStatistic2Response.result.errors;
+out.expiryStatistic=wsResponse.analyzeExpiryStatistic2Response.result.expiryStatistic;
+' #txt
+Te0 f242 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Te0 f242 timeout 60 #txt
+Te0 f242 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+KEY_AXIS_PORTNAME=TaskServicePort
+KEY_WEBSERVICECONFIG_ID=146B90974252183F
+KEY_DOMAIN=<%\\=in.server.domain%>
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=<%\\=in.server.username%>
+KEY_OPERATION=analyzeExpiryStatistic2
+KEY_AUTHENTICATION_KIND=4
+KEY_HOST=<%\\=in.server.host%>
+KEY_USE_AUTHENTICATION=true
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzeExpiryStatistic2.taskSearchCriteria__@@__ch.ivy.ws.addon.TaskSearchCriteria__@@__in.taskSearchCriteria"""' #txt
+Te0 f242 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f242 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f242 returningObjectList '[wsResponse]' #txt
+Te0 f242 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NTLM</name>
+        <nameStyle>4,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f242 1230 1484 36 24 20 -2 #rect
+Te0 f242 @|WebServiceIcon #fIcon
+Te0 f243 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f243 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
+' #txt
+Te0 f243 actionTable 'out=in;
+out.errors=wsResponse.analyzeExpiryStatistic2Response.result.errors;
+out.expiryStatistic=wsResponse.analyzeExpiryStatistic2Response.result.expiryStatistic;
+' #txt
+Te0 f243 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Te0 f243 timeout 60 #txt
+Te0 f243 beanConfig '"KEY_PASSWORD=
+KEY_AXIS_PORTNAME=TaskServicePort
+KEY_WEBSERVICECONFIG_ID=146B90974252183F
+KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=
+KEY_OPERATION=analyzeExpiryStatistic2
+KEY_AUTHENTICATION_KIND=0
+KEY_HOST=
+KEY_USE_AUTHENTICATION=false
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzeExpiryStatistic2.taskSearchCriteria__@@__ch.ivy.ws.addon.TaskSearchCriteria__@@__in.taskSearchCriteria"""' #txt
+Te0 f243 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f243 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f243 returningObjectList '[wsResponse]' #txt
+Te0 f243 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>default settings</name>
+        <nameStyle>16,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f243 1390 1484 36 24 20 -2 #rect
+Te0 f243 @|WebServiceIcon #fIcon
+Te0 f244 inParamDecl '<ch.ivy.ws.addon.TaskSearchCriteria taskSearchCriteria,ch.ivy.addon.portalkit.persistence.domain.Server server,java.lang.String endpoint> param;' #txt
+Te0 f244 inParamTable 'out.endpoint=param.endpoint;
+out.server=param.server;
+out.taskSearchCriteria=param.taskSearchCriteria;
+' #txt
+Te0 f244 outParamDecl '<ch.ivy.ws.addon.ExpiryStatistic expiryStatistic,List<ch.ivy.ws.addon.WsException> errors> result;
+' #txt
+Te0 f244 outParamTable 'result.expiryStatistic=in.expiryStatistic;
+result.errors=in.errors;
+' #txt
+Te0 f244 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
+' #txt
+Te0 f244 callSignature analyzeExpiryStatistic2(ch.ivy.ws.addon.TaskSearchCriteria,ch.ivy.addon.portalkit.persistence.domain.Server,String) #txt
+Te0 f244 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f244 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>analyzeExpiryStatistic2(TaskSearchCriteria,Server,String)</name>
+    </language>
+</elementInfo>
+' #txt
+Te0 f244 1235 1291 26 26 14 0 #rect
+Te0 f244 @|StartSubIcon #fIcon
+Te0 f245 type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
+Te0 f245 actionDecl 'ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData out;
+' #txt
+Te0 f245 actionTable 'out=in;
+out.errors=wsResponse.analyzePriorityStatistic2Response.result.errors;
+out.priorityStatistic=wsResponse.analyzePriorityStatistic2Response.result.priorityStatistic;
+' #txt
+Te0 f245 cache '{/cache false /invalidation false /scope 0 /groupname ""/lifetime_group "0"/invalidation_time_group ""/identifier ""/lifetime_entry "0"/invalidation_time_entry ""}' #txt
+Te0 f245 timeout 60 #txt
+Te0 f245 beanConfig '"KEY_PASSWORD=<%\\=in.server.password%>
+KEY_AXIS_PORTNAME=TaskServicePort
+KEY_WEBSERVICECONFIG_ID=146B90974252183F
+KEY_DOMAIN=
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_AUTO_INITIALIZE_FIRST_LEVEL_FIELDS=true
+KEY_REQUEST_PARAMETER_MAPPINGS_OPTIONS_MAP_NULL_VALUES=false
+KEY_USERNAME=<%\\=in.server.username%>
+KEY_OPERATION=analyzePriorityStatistic2
+KEY_AUTHENTICATION_KIND=1
+KEY_HOST=
+KEY_USE_AUTHENTICATION=true
+KEY_AXIS_CSL_PARAMETER_DATA=""arg0.analyzePriorityStatistic2.taskSearchCriteria__@@__ch.ivy.ws.addon.TaskSearchCriteria__@@__in.taskSearchCriteria"""' #txt
+Te0 f245 exceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f245 timeoutExceptionHandler 14E8BC51CC56193A-f7-buffer #txt
+Te0 f245 returningObjectList '[wsResponse]' #txt
+Te0 f245 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>HTTP Basic</name>
+        <nameStyle>10,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Te0 f245 558 1484 36 24 20 -2 #rect
+Te0 f245 @|WebServiceIcon #fIcon
+Te0 f246 expr out #txt
+Te0 f246 1248 1508 1248 1579 #arcP
+Te0 f247 expr out #txt
+Te0 f247 736 1508 736 1579 #arcP
+Te0 f248 expr in #txt
+Te0 f248 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.HTTP_BASIC == in.server.wsAuthenticationType' #txt
+Te0 f248 1234 1400 1088 1484 #arcP
+Te0 f248 1 1088 1400 #addKink
+Te0 f248 0 0.7954957451949382 0 0 #arcLabel
+Te0 f249 expr out #txt
+Te0 f249 576 1508 723 1592 #arcP
+Te0 f249 1 576 1592 #addKink
+Te0 f249 1 0.18161108144754468 0 0 #arcLabel
+Te0 f250 expr out #txt
+Te0 f250 1408 1508 1261 1592 #arcP
+Te0 f250 1 1408 1592 #addKink
+Te0 f250 1 0.3064243755457913 0 0 #arcLabel
+Te0 f251 expr out #txt
+Te0 f251 1248 1317 1248 1386 #arcP
+Te0 f252 expr in #txt
+Te0 f252 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.HTTP_BASIC == in.server.wsAuthenticationType' #txt
+Te0 f252 722 1400 576 1484 #arcP
+Te0 f252 1 576 1400 #addKink
+Te0 f252 0 0.8513335782119379 0 0 #arcLabel
+Te0 f253 expr in #txt
+Te0 f253 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.NTLM == in.server.wsAuthenticationType' #txt
+Te0 f253 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name></name>
+    </language>
+</elementInfo>
+' #txt
+Te0 f253 736 1414 736 1484 #arcP
+Te0 f253 0 0.5135920522713141 0 0 #arcLabel
+Te0 f254 expr out #txt
+Te0 f254 736 1317 736 1386 #arcP
+Te0 f255 expr in #txt
+Te0 f255 750 1400 896 1484 #arcP
+Te0 f255 1 896 1400 #addKink
+Te0 f255 0 0.7875410210393261 0 0 #arcLabel
+Te0 f256 expr out #txt
+Te0 f256 1088 1508 1235 1592 #arcP
+Te0 f256 1 1088 1592 #addKink
+Te0 f256 1 0.20679742620065877 0 0 #arcLabel
+Te0 f257 expr in #txt
+Te0 f257 outCond 'ch.ivy.addon.portalkit.enums.WSAuthenticationType.NTLM == in.server.wsAuthenticationType' #txt
+Te0 f257 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name></name>
+    </language>
+</elementInfo>
+' #txt
+Te0 f257 1248 1414 1248 1484 #arcP
+Te0 f258 expr out #txt
+Te0 f258 896 1508 749 1592 #arcP
+Te0 f258 1 896 1592 #addKink
+Te0 f258 1 0.3353862987498499 0 0 #arcLabel
+Te0 f259 expr in #txt
+Te0 f259 1262 1400 1408 1484 #arcP
+Te0 f259 1 1408 1400 #addKink
+Te0 f259 0 0.7199483620017699 0 0 #arcLabel
 >Proto Te0 .type ch.ivy.add.portalkit.service.integrators.TaskServiceIntegratorData #txt
 >Proto Te0 .processKind CALLABLE_SUB #txt
 >Proto Te0 0 0 32 24 18 0 #rect
@@ -3686,3 +4061,31 @@ Te0 f226 out f231 tail #connect
 Te0 f231 head f224 mainIn #connect
 Te0 f227 mainOut f225 tail #connect
 Te0 f225 head f226 in #connect
+Te0 f241 out f253 tail #connect
+Te0 f253 head f236 mainIn #connect
+Te0 f236 mainOut f247 tail #connect
+Te0 f247 head f240 mainIn #connect
+Te0 f229 mainOut f258 tail #connect
+Te0 f258 head f240 mainIn #connect
+Te0 f238 out f257 tail #connect
+Te0 f257 head f242 mainIn #connect
+Te0 f242 mainOut f246 tail #connect
+Te0 f246 head f239 mainIn #connect
+Te0 f243 mainOut f250 tail #connect
+Te0 f250 head f239 mainIn #connect
+Te0 f237 mainOut f254 tail #connect
+Te0 f254 head f241 in #connect
+Te0 f241 out f252 tail #connect
+Te0 f252 head f245 mainIn #connect
+Te0 f245 mainOut f249 tail #connect
+Te0 f249 head f240 mainIn #connect
+Te0 f241 out f255 tail #connect
+Te0 f255 head f229 mainIn #connect
+Te0 f244 mainOut f251 tail #connect
+Te0 f251 head f238 in #connect
+Te0 f238 out f248 tail #connect
+Te0 f248 head f230 mainIn #connect
+Te0 f230 mainOut f256 tail #connect
+Te0 f256 head f239 mainIn #connect
+Te0 f238 out f259 tail #connect
+Te0 f259 head f243 mainIn #connect

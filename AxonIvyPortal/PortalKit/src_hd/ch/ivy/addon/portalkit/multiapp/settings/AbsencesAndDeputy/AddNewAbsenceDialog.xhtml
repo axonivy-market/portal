@@ -14,7 +14,7 @@
       <p:messages id="absence-messages" />
       <h:panelGroup id="input-adsence-data-section" layout="block" rendered="#{data.isLoadDeputy eq 'false'}">
         <ui:include src="Absence.xhtml">
-          <ui:param name="updateComponent" value="next-to-deputy absence-messages" />
+          <ui:param name="updateComponent" value="next-to-deputy absence-messages save-new-absence" />
           <ui:param name="uneditedUserName" value="false" />
         </ui:include>
       </h:panelGroup>
@@ -25,10 +25,11 @@
       </h:panelGroup>
 
       <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
-        <p:commandButton id="next-to-deputy" styleClass=""
+        <p:commandButton id="next-to-deputy" 
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}"
           disabled="#{data.validationError}" process="input-adsence-data-section" actionListener="#{logic.loadDeputy}"
-          rendered="#{data.isLoadDeputy eq 'false'}" update="@form" oncomplete="PF('addNewAbsence').initPosition();" />
+          rendered="#{data.isLoadDeputy eq 'false' and absenceBean.ownSubstituteCreatable}" 
+          update="@form" oncomplete="PF('addNewAbsence').initPosition();" />
 
         <p:spacer width="5px" />
 
@@ -40,10 +41,9 @@
         </p:commandButton>
 
         <p:spacer width="5px" rendered="#{data.isLoadDeputy}" />
-
-        <p:commandButton process="@form" id="save-new-absence" rendered="#{data.isLoadDeputy}" styleClass=""
+        <p:commandButton process="@form" id="save-new-absence" rendered="#{data.isLoadDeputy or (data.isLoadDeputy eq 'false' and !absenceBean.ownSubstituteCreatable)}" 
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" actionListener="#{logic.saveNewAbsence}"
-          update=":#{p:component('absence-table')}" oncomplete="PF('addNewAbsence').hide();" />
+          update="@form #{p:component('absence-table')}" oncomplete="if(!args.validationFailed){PF('addNewAbsence').hide();}" disabled="#{data.validationError}" />
 
         <p:spacer width="5px" rendered="#{data.isLoadDeputy}" />
         <p:commandButton id="close-add-new-absence-dialog" actionListener="#{logic.cancel}"

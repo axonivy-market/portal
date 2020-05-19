@@ -22,7 +22,9 @@ import ch.ivy.addon.portalkit.bo.RemoteSubstitute;
 import ch.ivy.addon.portalkit.bo.ServerApplication;
 import ch.ivy.addon.portalkit.bo.SubstituteNode;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.service.PermissionCheckerService;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IPermission;
 
 public final class AbsenceAndSubstituteUtils {
 
@@ -42,15 +44,18 @@ public final class AbsenceAndSubstituteUtils {
     Map<String, List<RemoteApplicationUser>> mapUser = new HashMap<String, List<RemoteApplicationUser>>();
     List<String> apps = new ArrayList<String>();
     Map<String, String> appDisplayNameMap = new HashMap<String, String>();
+    PermissionCheckerService permissionService = new PermissionCheckerService();
     for (RemoteApplicationUser remoteUser : ivyUsers) {
-      String key = remoteUser.getAppName() + " - " + remoteUser.getAppDisplayName();
-      if (mapUser.get(key) == null) {
-        mapUser.put(key, new ArrayList<RemoteApplicationUser>());
-        apps.add(key);
-      }
-      mapUser.get(key).add(remoteUser);
-      if (appDisplayNameMap.get(key) == null) {
-        appDisplayNameMap.put(key, remoteUser.getAppDisplayName());
+      if (permissionService.hasAtLeaseOnePermissionOnApp(remoteUser.getAppName(), IPermission.USER_CREATE_OWN_SUBSTITUTE, IPermission.USER_CREATE_SUBSTITUTE)){
+        String key = remoteUser.getAppName() + " - " + remoteUser.getAppDisplayName();
+        if (mapUser.get(key) == null) {
+          mapUser.put(key, new ArrayList<RemoteApplicationUser>());
+          apps.add(key);
+        }
+        mapUser.get(key).add(remoteUser);
+        if (appDisplayNameMap.get(key) == null) {
+          appDisplayNameMap.put(key, remoteUser.getAppDisplayName());
+        }
       }
     }
 
