@@ -16,7 +16,6 @@ effectedApplications List<ch.ivy.addon.portalkit.persistence.domain.Application>
 isAddMode Boolean #field
 isAddMode PERSISTENT #fieldModifier
 languages List<String> #field
-reorderEvent org.primefaces.event.ReorderEvent #field
 selectedApp ch.ivy.addon.portalkit.persistence.domain.Application #field
 selectedApp PERSISTENT #fieldModifier
 selectedSetting ch.ivy.addon.portalkit.persistence.domain.GlobalSetting #field
@@ -54,3 +53,5 @@ isAnnouncementActivated Boolean #field
 isAnnouncementActivated PERSISTENT #fieldModifier
 userLazyDataModel ch.ivy.addon.portalkit.datamodel.UserLazyDataModel #field
 userLazyDataModel PERSISTENT #fieldModifier
+tempApplicationName String #field
+tempApplicationName PERSISTENT #fieldModifier

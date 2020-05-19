@@ -221,6 +221,7 @@ String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTit
 String titleOnMobile = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks");
 
 in.taskDataModel.getCriteria().setCustomTaskQuery(in.taskQuery);
+in.taskDataModel.setAdminQuery(PermissionUtils.checkReadAllTasksPermission());
 in.taskDataModel.getCriteria().setKeyword(StringUtils.EMPTY);
 in.taskDataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 in.taskDataModel.setNotKeepFilter(true);

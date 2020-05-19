@@ -24,7 +24,6 @@ public class GlobalGrowlTest extends BaseTest {
   @Test
   public void testDisplayCustomGrowlAfterFinishTask() {
     redirectToRelativeLink(CUSTOM_GROWL_URL);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     HomePage homePage = taskTemplatePage.clickSubmitButton();
@@ -34,7 +33,6 @@ public class GlobalGrowlTest extends BaseTest {
   @Test
   public void testDisplayDefaultGrowlAfterFinishTask() {
     redirectToRelativeLink(createTestingTasksUrl);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.inputFields("Employee", "1.1.2019", "1.1.2019", "Representation");
@@ -54,7 +52,6 @@ public class GlobalGrowlTest extends BaseTest {
   @Test
   public void testDisplayDefaultGrowlAfterCancelTask() {
     redirectToRelativeLink(createTestingTasksUrl);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     HomePage homePage = taskTemplatePage.clickCancelAndLeftButton();
@@ -64,7 +61,6 @@ public class GlobalGrowlTest extends BaseTest {
   @Test
   public void testDisplayCustomGrowlAfterCancelTask() {
     redirectToRelativeLink(CUSTOM_GROWL_URL);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     HomePage homePage = taskTemplatePage.clickCancelAndLeftButton();
