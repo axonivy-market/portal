@@ -79,7 +79,6 @@
   --context-button-state-hover-or-focus-background-color: var(--ivy-primary-color-grey-pale);
 
   /* Text color of buttons */
-  --text-button-color: var(--ivy-primary-color-white);
   --cancel-button-text-color: var(--ivy-primary-color-black);
   --context-button-text-color: var(--ivy-primary-color-black);
 
@@ -297,9 +296,7 @@
   --error-message-background-color: var(--ivy-primary-color-white);
   --error-message-header-color: #e67163;
   /* SelectCheckbox */
-  --select-check-box-close-hover-color: var(--ivy-primary-color-white);
   --config-checkbox-container-border: var(--ivy-primary-color-grey-light);
-  --select-checkbox-menu-icon-font-size: 1.8rem;
   /* Express */
   --express-input-switch-selection-background-color: var(--primary-color);
   --task-responsible-label-state-error-color: #e62a10;
@@ -327,7 +324,6 @@
   --email-file-upload-corner-top-background-color: transparent;
   --express-table-no-header-border: var(--ivy-primary-color-grey-light);
   --express-table-no-header-background-color: transparent;
-  --select-checkbox-menu-trigger-background-color: var(--ivy-primary-color-white);
   --expand-collapse-button-color: var(--ivy-primary-color-black);
   --process-express-logo-background-color: transparent;
   --express-workflow-active-switch-label-font-weight: 700;
@@ -391,7 +387,6 @@
   --chat-send-form-icon-color: var(--ivy-primary-color-black);
   /* Icon */
   --icon-font-family: "FontAwesome";
-  --checkbox-menu-icon-background-color: transparent;
   --fieldset-togger-hover-background-color: transparent;
   --icon-selection-dialog-border: transparent;
   --icon-selection-dialog-border-hover: var(--ivy-primary-color-black);
@@ -426,7 +421,6 @@
   --body-dialog-title-font-size: 1.9rem;
   --hovered-item-select-one-menu-text-color: var(--ivy-primary-color-black);
   --hovered-item-select-one-list-box-text-color: var(--ivy-primary-color-black);
-  --hovered-picklist-item-text-color: var(--ivy-primary-color-black);
   --auto-complete-hover-color: var(--ivy-primary-color-black);
   --ui-fiedset-legend-text-color: var(--ivy-primary-color-black);
   --ui-dialog-title-bar-text-color: var(--ivy-primary-color-black);
@@ -437,7 +431,6 @@
   --ui-data-picker-title-border-color: var(--ivy-primary-color-grey-pale);
   --ui-data-picker-title-background-color: var(--ivy-primary-color-grey-pale);
   --ui-fileupload-buttonbar-background-color: var(--ivy-primary-color-grey-light);
-  --ui-button-hover-background-color: var(--ivy-primary-color-light);
   --ui-transparent-button-hover-background-color: transparent;
   --menu-item-link-color: var(--ivy-primary-color-black);
   --menu-item-link-hover-background-color: var(--ivy-primary-color-grey-pale);
