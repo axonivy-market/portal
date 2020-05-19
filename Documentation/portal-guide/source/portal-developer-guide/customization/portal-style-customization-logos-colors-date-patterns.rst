@@ -28,76 +28,61 @@ PortalStyle project.
 -  Modify cms entry ``PortalStyle/images/logo/faviconLogo.png`` to update
    favicon logo. Recommended size for favicon: 16x16 or 32x32 pixels.
 
--  Override the variables: ``$loginLogoHeight``, ``$homeLogoHeight`` in
-   ``variables.scss`` to scale your logos.
+-  Override CSS variables: ``--login-logo-height``, ``--home-logo-height`` in
+   ``customization.css`` to scale your logos.
 
    .. _customization-portal-logos-and-colors-change-portal-background:
 
 Change Portal styles
 --------------------
 
-Portal applies |sass_framework| framework to support
-you in customizing styles of Portal. They are ``theme.scss`` and ``variables.scss``.
+Portal uses modern |css_variable|  to support styles customization.
+Portal variables are stored in ``portal-variables.css`` and Portal default styles are stored in ``portal.css``.
 
-   - ``theme.scss`` in ``PortalStyle/webContent/resources/serenity-portal``
-   - ``variables.scss`` in ``PortalStyle/webContent/resources/sass/ivy``
+Both of them are placed in folder ``PortalStyle/webContent/resources/css``
 
-.. caution:: Please do not modify directly on these files because they can be changed by new Portal version for upgrade.
+.. caution:: Please do not modify directly on these files because they can be changed by new Portal version for upgrade. You can use ``customization.css`` to override them easily without migration problem.
 
 ..
 
-Below is the list of some Portal elements which are using primary colors of Serenity theme:
+Below is the list of some Portal elements which are using customizable colors:
 
 .. table::
 
-   +-----------------------+-----------------------------+----------------------------------------------------------------+
-   | Variable              | Default value               | Description                                                    |
-   +=======================+=============================+================================================================+
-   | $primaryColor         | $darkBlue: #007095          | - Background color of button (except Cancel button)            |
-   |                       |                             | - Background color of Titlebar panel/selectcheckboxmenu header |
-   |                       |                             | - Background color of selected checkbox/radio button           |
-   |                       |                             | - Background color of process chain (except waiting state)     |
-   |                       |                             | - Background color of hovered row in datatable                 |
-   |                       |                             | - Portal header bar                                            |
-   |                       |                             | - Label and bottom border of active input field                |
-   |                       |                             | - Sidebar anchor                                               |
-   |                       |                             | - Text color of active tab                                     |
-   +-----------------------+-----------------------------+----------------------------------------------------------------+
-   | $primaryDarkColor     | $darkBlue: #007095          | - Background color of toolbar                                  |
-   |                       |                             | - Background color of datatable pagination                     |
-   |                       |                             |   (except table in Case/Task detail)                           |
-   +-----------------------+-----------------------------+----------------------------------------------------------------+
-   | $primaryLightColor    | $mediumBlue: #49bad6        | - Background color of hovered button                           |
-   +-----------------------+-----------------------------+----------------------------------------------------------------+
-   | $primaryLightestColor | white                       | - Active checkbox icon                                         |
-   |                       |                             | - Background color of active sidebar menu item                 |
-   +-----------------------+-----------------------------+----------------------------------------------------------------+
-   | $primaryTextColor     | black                       | - For almost texts in Portal (except some specific styles      |
-   |                       |                             |   like Case/Task Description in Case/Task list)                |
-   +-----------------------+-----------------------------+----------------------------------------------------------------+
-   | $accentColor          | $primaryColor               | - Active submenuitem of sidebar                                |
-   |                       |                             | - Background color of active items (form elements)             |
-   |                       |                             | - Background color of active page number in datatable          |
-   |                       |                             |   (except table in Case/Task detail)                           |
-   |                       |                             | - Bottom border of active tab                                  |
-   |                       |                             | - Border color of datepicker-today                             |
-   +-----------------------+-----------------------------+----------------------------------------------------------------+
-   | $accentTextColor      | white                       | - Text of active items                                         |
-   |                       |                             | - Text of active page number in datatable                      |
-   |                       |                             | - Text of panel header and calenda header                      |
-   +-----------------------+-----------------------------+----------------------------------------------------------------+
+   +------------------------------+-----------------------------+----------------------------------------------------------------+
+   | Variable                     | Default value               | Description                                                    |
+   +==============================+=============================+================================================================+
+   | --primary-color              | hsl(195,100%,29%)           | - Background color of button (except Cancel button)            |
+   |                              |                             | - Background color of selected checkbox/radio button           |
+   |                              |                             | - Background color of process chain (except waiting state)     |
+   |                              |                             | - Portal header bar                                            |
+   |                              |                             | - Label and bottom border of active input field                |
+   |                              |                             | - Sidebar anchor                                               |
+   |                              |                             | - Text color of active tab                                     |
+   +------------------------------+-----------------------------+----------------------------------------------------------------+
+   | --primary-dark-color         | hsl(195, 100%, 20%)         | - Background color of hovered button                           |
+   +------------------------------+-----------------------------+----------------------------------------------------------------+
+   | --primary-text-color         | white                       | - Text, icon color of button, checkbox, and other elements     |
+   +------------------------------+-----------------------------+----------------------------------------------------------------+
+   | --accent-color               | hsl(0, 1%, 34%)             | - Background color of active items (form elements)             |
+   |                              |                             | - Background color of active page number in datatable          |
+   |                              |                             |   (except table in Case/Task detail)                           |
+   |                              |                             | - Bottom border of active tab                                  |
+   |                              |                             | - Border color of datepicker-today                             |
+   +------------------------------+-----------------------------+----------------------------------------------------------------+
+   | --accent-text-color          | white                       | - Text of active items                                         |
+   |                              |                             | - Text of active page number in datatable                      |
+   +------------------------------+-----------------------------+----------------------------------------------------------------+
 
 You can customize in:
 
-- ``font-faces.scss``: to replace default font url-s by your font url-s and add/change other font styles to customize the Portal's font styles.
-
-- ``customization.scss``: to change styles of Portal. E.g. Portal's component styles.
+- ``customization.css``: to change styles of Portal. E.g. Portal's component styles.
 
 .. tip::
    - For ``font-size``, Portal uses ``rem``. 
      Font size of all elements are calculated based on font-size of ``html`` element.
 
-   - If ``$primaryColor`` is a bright tone color (such as yellow or light blue), you may want to change ``$accentTextColor`` to ``black``. 
+   - If ``--primary-color`` is a bright tone color (such as yellow or light blue), you may want to change ``--primary-text-color`` to ``black``. 
      It helps text of buttons and other components easier to recognize.
 
 .. warning::
@@ -106,12 +91,6 @@ You can customize in:
    - Limitation: the task priority color customization hasn't changed the task priority colors in statistic.
 
    If you want to custom color of statistic, please refer to :ref:`Override Statistic color <override-Statistic-colors>`
-
-After you finish your customization, compile these above scss files to
-build the css file named ``theme.css`` and put it at
-``PortalStyle/webContent/resources/serenity-portal``.
-You are highly recommended to run the ``mvn libsass:compile`` maven
-command in PortalStyle to do it quickly.
 
 .. _customization-portal-logos-and-colors-changedatepatterns:
 
@@ -122,6 +101,6 @@ You can change date pattern by modifying CMS in PortalStyle project:
 ``PortalStyle/patterns/datePattern`` and
 ``PortalStyle/patterns/dateTimePattern`` .
 
-.. |sass_framework| raw:: html
+.. |css_variable| raw:: html
 
-   <a href="https://sass-lang.com/" target="_blank">SASS</a>
+   <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties" target="_blank">CSS Variable</a>
