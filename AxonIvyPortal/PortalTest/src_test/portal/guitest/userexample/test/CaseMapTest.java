@@ -80,7 +80,7 @@ public class CaseMapTest extends BaseTest {
     Assert.assertEquals("Fail", caseMapPage.getInternalCreditComment());
     caseMapPage.clickRejectButton();
     taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy(APPROVAL_LEVEL_2);
+    taskWidgetPage.filterTasksBy(APPROVAL_LEVEL_2, 0);
     Assert.assertEquals(0, taskWidgetPage.countTasks());
   }
 
