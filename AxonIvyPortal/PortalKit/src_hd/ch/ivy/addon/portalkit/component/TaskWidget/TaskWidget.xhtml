@@ -30,7 +30,7 @@
 
   <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} ui-g">
     <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}">
-      <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header ui-g-12 ui-g"
+      <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header ui-g-12"
         layout="block">
         <div class="#{data.dataModel.compactMode? 'widget-header-main': 'widget-tasklist-header'} ui-g-8 ui-sm-4">
           <h:panelGroup id="task-widget-title" styleClass="widget-header-main-title task-widget-header-content-title #{data.dataModel.compactMode ? 'compact-mod-title' : ''}">
@@ -233,7 +233,7 @@
       </h:panelGroup>
     </h:panelGroup>
 
-    <h:panelGroup layout="block" id="task-view" styleClass="ui-g-12 #{data.dataModel.compactMode ? '' : 'u-no-padding-left'} js-task-view">
+    <h:panelGroup layout="block" id="task-view" styleClass="ui-g-12 js-task-view task-view">
       <h:panelGroup id="task-view-container" layout="block" styleClass="task-view-container">
         <p:dataScroller id="task-list-scroller" widgetVar="task-list-scroller"
           value="#{data.dataModel}" 
