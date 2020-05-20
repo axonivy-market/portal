@@ -23,11 +23,12 @@ function CaseWidget() {
         error = 55; // included margin, padding in search page
       }
 
+      var layoutContentTopDistance = $('.layout-content').outerHeight(true) - $('.layout-content').height();
       var mainScreenHeight = ($('body').outerHeight(true)||0) - ($('.layout-topbar').outerHeight(true)||0) - 15;//minus 15 to remove 2nd scroll bar
       var availableHeight = mainScreenHeight - (caseWidgetHeaderContainer.outerHeight(true)||0)
           - (caseWidgetSortMenuContainer.outerHeight(true)||0) - (caseWidgetFilterContainer.outerHeight(true)||0)
           - (globalSearchInput.is(":visible") ? globalSearchInput.outerHeight(true) : 0) - (globalSearchTabHeader.outerHeight(true)||0)
-          - (announcementMessageContainer.outerHeight(true)||0) - error;
+          - (announcementMessageContainer.outerHeight(true)||0) - error - layoutContentTopDistance;
 
       if (!!availableHeight) {
         container.height(availableHeight);
