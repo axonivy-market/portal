@@ -27,10 +27,12 @@ function ProcessWidget() {
         error = 55; // included margin, padding in search page
       }
       var announcementMessageContainer = $('.js-announcement-message');
+      var layoutContentPadding = $('.layout-content').outerHeight(true) - $('.layout-content').height();
       var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight() - globalSearchBottom;
       var availableHeight = mainScreenHeight - (announcementMessageContainer.outerHeight(true)||0)
                               - (processsHeader.outerHeight(true)||0) - (globalSearchInput.is(":visible") ? globalSearchInput.outerHeight(true) : 0)
-                              - (globalSearchTabHeader.outerHeight(true)||0) - error;
+                              - (globalSearchTabHeader.outerHeight(true)||0) - error
+                              - layoutContentPadding;
       if (!!availableHeight) {
         processStartListContainer.css("max-height", availableHeight + "px");
         this.setupProcessNav(processStartListContainer, availableHeight, announcementMessageContainer);
