@@ -65,7 +65,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
 
     if (sideStepList == null) {
       ICaseMapService caseMapService =
-          ICaseMapService.current().getCaseMapService(iCase.getBusinessCase(),
+          ICaseMapService.get().getCaseMapService(iCase.getBusinessCase(),
               Ivy.session().getSessionUser().getUserToken());
       sideStepList = caseMapService.findStartableSideSteps();
       sortSideStepsByName(sideStepList);
