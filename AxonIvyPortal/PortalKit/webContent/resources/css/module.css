@@ -239,9 +239,9 @@
   }
 }
 
-.dashboard-task-widget-container.compact-task-widget .task-view {
-  padding: 7px 0;
-}
+/* .dashboard-task-widget-container.compact-task-widget .task-view { */
+/*   padding: 7px 0; */
+/* } */
 
 .dashboard-task-widget-container.compact-task-widget .widget.task-widget .task-widget-sub-header {
   width: 100%;
@@ -1536,7 +1536,7 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 }
 
 .task-view-container .ui-datascroller .ui-datascroller-content {
-  padding: 2px;
+  padding: 2px !important;
 }
 
 .task-view-container .Card {
@@ -1545,7 +1545,7 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 
 a.compact-task-start-link .task-start-list-item {
   border-radius: 5px;
-  margin: auto .5em;
+  margin: auto 7px;
   margin-bottom: 12px;
   height: 78px;
   padding: 6px 0;
@@ -3098,7 +3098,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   position: absolute;
   top: 0;
   right: 0;
-  margin-top: 10px;
+  margin-top: 7px;
 }
 
 .edit-statistic-container {
@@ -3964,9 +3964,13 @@ _:-ms-fullscreen, :root .content-link-history {
   height: 30px;
   line-height: 30px;
   display: inline-block;
-  padding: 0 10px 0 5px;
+/*   padding: 0 10px 0 5px; */
 }
 
+.filter-selection-form span.filter-label {
+  font-size: 12px;
+  color: var(--task-widget-header-column);
+}
 /* =================== RESPONSIVE ENHANCEMENT ====================== */
 @media screen and (min-width: 40.063em) {
   .ui-md-0 {
