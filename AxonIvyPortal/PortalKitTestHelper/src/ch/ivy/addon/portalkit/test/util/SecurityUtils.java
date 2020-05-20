@@ -71,7 +71,7 @@ public class SecurityUtils {
   
   DOCUMENT_OF_INVOLVED_CASE_WRITE,
   
-  IPermissionRepository.instance().findByName("ShowCaseDetails")
+  IPermissionRepository.get().findByName("ShowCaseDetails")
   };
   private static final IPermission DEMO_DENIED_PERMISSIONS[] = {
 

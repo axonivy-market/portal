@@ -41,7 +41,7 @@ public enum PortalPermission {
 
   public IPermission getPermission() {
     if (permission == null) {
-      permission = IPermissionRepository.instance().findByName(value);
+      permission = IPermissionRepository.get().findByName(value);
       
     }
     return permission;
