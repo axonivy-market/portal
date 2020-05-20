@@ -14,6 +14,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.TaskState;
+import portal.guitest.common.WaitHelper;
 
 public class TaskWidgetPage extends TemplatePage {
 
@@ -115,11 +116,13 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   private void waitForNumberOfTasks(int... expectedNumberOfTasksAfterFiltering) {
+    int expectedNumber;
     if (expectedNumberOfTasksAfterFiltering.length == 0) {
-      Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> this.countTasks() == 1);
+      expectedNumber = 1;
     } else {
-      Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> this.countTasks() == expectedNumberOfTasksAfterFiltering[0]);
+      expectedNumber = expectedNumberOfTasksAfterFiltering[0];
     }
+    WaitHelper.assertTrueWithWait(() -> this.countTasks() == expectedNumber);
   }
 
 	public void filterTasksInExpandedModeBy(String keyword, int... expectedNumberOfTasksAfterFiltering) {
@@ -260,7 +263,7 @@ public class TaskWidgetPage extends TemplatePage {
 		return false;
 	}
 
-	public void sortTaskListByColumn(String columnHeaderText) {
+	public void sortTaskListByColumn(String columnHeaderText, int rowIndex, String columnId, String expectedValue) {
 		WebElement taskListHeader = findElementById(taskWidgetId + ":task-widget-sort-menu");
 		for (WebElement column : taskListHeader.findElements(By.tagName("a"))) {
 			if (columnHeaderText.equals(column.getText())) {
@@ -268,6 +271,7 @@ public class TaskWidgetPage extends TemplatePage {
 				break;
 			}
 		}
+		WaitHelper.assertTrueWithWait(() -> getTaskListCustomCellValue(rowIndex, columnId).equals(expectedValue)); 
 	}
 
 	public String getTaskListCustomCellValue(int index, String columnId) {

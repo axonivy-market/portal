@@ -11,6 +11,8 @@ import org.openqa.selenium.WebElement;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
+import portal.guitest.common.WaitHelper;
+
 public class CaseWidgetPage extends TemplatePage {
 
 	private String caseWidgetId;
@@ -242,7 +244,7 @@ public class CaseWidgetPage extends TemplatePage {
 	public void clickDefaultCheckbox() {
 		WebElement columnCheckbox = findElementByXpath(DEFAULT_COLUMNS_XPATH);
 		click(columnCheckbox);
-		waitAjaxIndicatorDisappear();
+		WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector("label[for$='columns-checkbox:3']").getAttribute("class").equals("ui-state-disabled"));
 	}
 
 	public void clickApplyButton() {

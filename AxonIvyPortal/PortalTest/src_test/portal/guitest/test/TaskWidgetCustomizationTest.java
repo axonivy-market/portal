@@ -50,13 +50,11 @@ public class TaskWidgetCustomizationTest extends BaseTest {
   public void testSortCustomColumnsInTaskListPage() {
     MainMenuPage mainMenuPage = new MainMenuPage();
     TaskWidgetPage taskWidgetPage = mainMenuPage.selectTaskMenu();
-    taskWidgetPage.filterTasksInExpandedModeBy("Order");
-    taskWidgetPage.sortTaskListByColumn(CUSTOMER_NAME_COLUMN_HEADER);
-    taskWidgetPage.waitAjaxIndicatorDisappear();
+    taskWidgetPage.filterTasksInExpandedModeBy("Order", 3);
+    taskWidgetPage.sortTaskListByColumn(CUSTOMER_NAME_COLUMN_HEADER, 0, CUSTOMER_NAME_COLUMN_ID, "Florian");
     assertTrue("Florian".equals(taskWidgetPage.getTaskListCustomCellValue(0, CUSTOMER_NAME_COLUMN_ID)));
 
-    taskWidgetPage.sortTaskListByColumn(CUSTOMER_NAME_COLUMN_HEADER);
-    taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertTrue("Florian".equals(taskWidgetPage.getTaskListCustomCellValue(2, CUSTOMER_NAME_COLUMN_ID)));
+    taskWidgetPage.sortTaskListByColumn(CUSTOMER_NAME_COLUMN_HEADER, 0, CUSTOMER_NAME_COLUMN_ID, "Sarah");
+    assertTrue(taskWidgetPage.getTaskListCustomCellValue(2, CUSTOMER_NAME_COLUMN_ID), "Florian".equals(taskWidgetPage.getTaskListCustomCellValue(2, CUSTOMER_NAME_COLUMN_ID)));
   }
 }
