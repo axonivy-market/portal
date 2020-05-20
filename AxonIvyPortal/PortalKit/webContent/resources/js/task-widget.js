@@ -34,12 +34,13 @@ function TaskWidget() {
 
         var compactProcessWidgetHeight = window.matchMedia("(max-width: 40em)").matches == true ? ($('.compact-process-widget').outerHeight(true) || 0) : 0;
         var taskViewPaddingValue = parseInt($('.js-task-view').css('padding-top'), 10) + parseInt($('.js-task-view').css('padding-bottom'), 10);
+        var layoutContentTopDistance = $('.layout-content').outerHeight(true) - $('.layout-content').height();
 
         var mainScreenHeight = ($('body').outerHeight(true)||0) - ($('.layout-topbar').outerHeight(true)||0);
         var availableHeight = mainScreenHeight - (taskWidgetHeaderContainer.outerHeight(true)||0) - (announcementMessageContainer.outerHeight(true)||0)
             - (taskWidgetSortMenuContainer.outerHeight(true)||0) - (taskWidgetFilterContainer.outerHeight(true)||0)
             - customWidgetContainer - (globalSearchInput.is(":visible") ? globalSearchInput.outerHeight(true) : 0) - (globalSearchTabHeader.outerHeight(true)||0) - error
-            - compactProcessWidgetHeight - taskViewPaddingValue;
+            - compactProcessWidgetHeight - taskViewPaddingValue - layoutContentTopDistance;
         if (!!availableHeight) {
           container.height(availableHeight);
         }
