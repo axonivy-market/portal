@@ -15,6 +15,7 @@ import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.AdditionalCaseDetailsPage;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
@@ -116,14 +117,14 @@ public class CaseWidgetTest extends BaseTest {
     casePage.clickDefaultCheckbox();
     casePage.clickColumnCheckbox(4);
     casePage.clickApplyButton();
-    assertFalse(casePage.isCaseListColumnExist(CREATED_COLUMN_HEADER));
-    assertTrue(casePage.isCaseListColumnExist(STATE_COLUMN_HEADER));
+    WaitHelper.assertTrueWithWait(() -> !casePage.isCaseListColumnExist(CREATED_COLUMN_HEADER));
+    WaitHelper.assertTrueWithWait(() -> casePage.isCaseListColumnExist(STATE_COLUMN_HEADER));
     casePage.clickColumnsButton();
     casePage.clickColumnCheckbox(4);
     casePage.clickColumnCheckbox(6);
     casePage.clickApplyButton();
-    assertTrue(casePage.isCaseListColumnExist(CREATED_COLUMN_HEADER));
-    assertFalse(casePage.isCaseListColumnExist(STATE_COLUMN_HEADER));
+    WaitHelper.assertTrueWithWait(() -> casePage.isCaseListColumnExist(CREATED_COLUMN_HEADER));
+    WaitHelper.assertTrueWithWait(() -> !casePage.isCaseListColumnExist(STATE_COLUMN_HEADER));
   }
   
   @Test
