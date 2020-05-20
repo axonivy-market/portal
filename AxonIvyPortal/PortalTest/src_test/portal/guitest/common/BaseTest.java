@@ -237,12 +237,4 @@ public class BaseTest {
     }
   }
 
-  /**
-   * Uses this method to wait then assertTrue. Instead of Assert#assertTrue(boolean), this method will wait until the condition is true or timeout 
-   * @param supplier
-   * @param durationInSeconds
-   */
-  public void assertTrueWithWait(Supplier<Boolean> supplier, int durationInSeconds) {
-    Awaitility.await().atMost(new Duration(durationInSeconds, TimeUnit.SECONDS)).until(() -> supplier.get());
-  }
 }
