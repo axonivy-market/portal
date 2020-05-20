@@ -75,7 +75,7 @@ public class TaskActionBean {
 
   private boolean userCanOnlyDelegateAssignedTask(ITask task) {
     IPermission permission =
-        IPermissionRepository.get().findByName(PortalPermission.TASK_WRITE_ACTIVATOR_OWN_TASKS.getValue());
+        IPermissionRepository.instance().findByName(PortalPermission.TASK_WRITE_ACTIVATOR_OWN_TASKS.getValue());
     if (Objects.isNull(permission)) {
       return false;
     }
