@@ -40,8 +40,6 @@ application ch.ivyteam.ivy.application.IApplication #field
 application PERSISTENT #fieldModifier
 isCreateMode Boolean #field
 isCreateMode PERSISTENT #fieldModifier
-tabChangeEvent org.primefaces.event.TabChangeEvent #field
-tabChangeEvent PERSISTENT #fieldModifier
 substituteUser ch.ivy.addon.portalkit.dto.UserDTO #field
 substituteUser 'user bind to autocomplete in my deputy' #fieldComment
 substituteUser PERSISTENT #fieldModifier

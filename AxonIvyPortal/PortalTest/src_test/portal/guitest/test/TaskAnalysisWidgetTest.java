@@ -1,7 +1,7 @@
 package portal.guitest.test;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +34,6 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     super.setup();
     createTestingTasks();
     createTestData();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     login(TestAccount.ADMIN_USER);
     grantPermissionOfPortal();
     resetLanguageOfCurrentUser();

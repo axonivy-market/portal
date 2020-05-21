@@ -11,6 +11,7 @@ import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.factory.LibraryServiceFactory;
 import ch.ivy.addon.portalkit.ivydata.service.ILibraryService;
 import ch.ivyteam.ivy.application.ILibrary;
+import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -45,5 +46,9 @@ public class ProjectVersionBean implements Serializable {
     ILibrary portalLibrary = Ivy.wf().getApplication().findReleasedLibrary(PortalLibrary.PORTAL_KIT.getValue());
     portalVersion = portalLibrary.getQualifiedVersion().toString();
     projectLibraries = retrieveProjectLibraries();
+  }
+  
+  public String translateReleaseState(ReleaseState state) {
+    return Ivy.cms().co(String.format("/ch.ivy.addon.portalkit.ui.jsf/Enums/ReleaseState/%s", state.toString()));
   }
 }

@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import ch.ivy.addon.portalkit.ivydata.service.ILibraryService;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.ILibrary;
+import ch.ivyteam.ivy.application.ReleaseState;
 import ch.ivyteam.ivy.server.ServerFactory;
 
 public class NoRegisteredAppLibraryService implements ILibraryService {
@@ -20,7 +21,8 @@ public class NoRegisteredAppLibraryService implements ILibraryService {
     for (IApplication app : apps) {
       libraries.put(
           app.getName(),
-          app.getLibraries().stream().filter(lib -> !portalLibraryStrings.contains(lib.getId()))
+          app.getLibraries().stream().filter(lib -> !portalLibraryStrings.contains(lib.getId())
+              && (lib.getProcessModelVersion().getReleaseState() == ReleaseState.RELEASED || lib.getProcessModelVersion().getReleaseState() == ReleaseState.DEPRECATED))
               .collect(Collectors.toList()));
     }
     return libraries;

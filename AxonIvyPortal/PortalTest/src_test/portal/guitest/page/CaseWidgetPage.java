@@ -11,7 +11,7 @@ import org.openqa.selenium.WebElement;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
-import portal.guitest.common.Sleeper;
+import portal.guitest.common.WaitHelper;
 
 public class CaseWidgetPage extends TemplatePage {
 
@@ -72,8 +72,9 @@ public class CaseWidgetPage extends TemplatePage {
 
 	public boolean isDestroyButtonVisible() {
 		try {
-			getDestroyButtonOfCaseItem();
-			return true;
+		  clickByCssSelector("button[id$='action-steps-menu']");
+		  waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
+	    return isElementDisplayed(By.cssSelector("a[id$='destroy-case'"));
 		} catch (Exception ex) {
 			return false;
 		}
@@ -176,18 +177,17 @@ public class CaseWidgetPage extends TemplatePage {
 				findElementByCssSelector("input[id$='description-filter:filter-input-form:description']");
 		enterKeys(descriptionInput, text);
 		click(By.cssSelector("button[id$='description-filter:filter-input-form:update-command']"));
-		Sleeper.sleep(2000);
+		waitAjaxIndicatorDisappear();
 	}
 
 	public void saveFilter(String filterName) {
 		click(By.id(caseWidgetId + ":filter-save-action"));
 		waitAjaxIndicatorDisappear();
-		Sleeper.sleep(2000);
+		waitForElementDisplayed(By.id(caseWidgetId + ":filter-save-form:save-filter-set-name-input"), true);
 		WebElement filterNameInput = findElementById(caseWidgetId + ":filter-save-form:save-filter-set-name-input");
 		enterKeys(filterNameInput, filterName);
 		click(findElementById(caseWidgetId + ":filter-save-form:filter-save-command"));
 		waitAjaxIndicatorDisappear();
-		Sleeper.sleep(2000);
 	}
 
 	public String getFilterName() {
@@ -227,23 +227,28 @@ public class CaseWidgetPage extends TemplatePage {
 		return StringUtils.isNotBlank(count) ? Integer.parseInt(count) : null;
 	}
 
+	 public void waitUntilCaseCountDifferentThanZero() {
+	    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
+	    .until(() -> getCaseCount().intValue() != 0);
+	  }
+	
 	public void clickColumnsButton() {
 		clickByCssSelector(COLUMNS_BUTTON_CSS_SELECTOR);
 	}
 
 	public void clickColumnCheckbox(int columnIndex) {
 		WebElement columnCheckbox = findElementByXpath(String.format(SELECT_ITEM_XPATH, columnIndex));
-		columnCheckbox.click();
+		click(columnCheckbox);
 	}
 
 	public void clickDefaultCheckbox() {
 		WebElement columnCheckbox = findElementByXpath(DEFAULT_COLUMNS_XPATH);
-		columnCheckbox.click();
-		waitAjaxIndicatorDisappear();
+		click(columnCheckbox);
+		WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector("label[for$='columns-checkbox:3']").getAttribute("class").equals("ui-state-disabled"));
 	}
 
 	public void clickApplyButton() {
-		clickByCssSelector(APPLY_BUTTON_CSS_SELECTOR);
+		click(By.cssSelector(APPLY_BUTTON_CSS_SELECTOR));
 		waitAjaxIndicatorDisappear();
 	}
 
@@ -284,7 +289,6 @@ public class CaseWidgetPage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 		click(By.cssSelector("button[id$='creator-filter:filter-input-form:update-command']"));
 		waitAjaxIndicatorDisappear();
-		Sleeper.sleep(2000);
 	}
 
   public void openSavedFilters(String filterName) {
@@ -310,7 +314,6 @@ public class CaseWidgetPage extends TemplatePage {
 		findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").clear();
 		click(By.cssSelector("button[id$='creator-filter:filter-input-form:update-command']"));
 		waitAjaxIndicatorDisappear();
-		// Sleeper.sleep(2000);
 	}
 
 	public String getCreator() {
@@ -318,6 +321,6 @@ public class CaseWidgetPage extends TemplatePage {
 		click(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
 		waitForElementDisplayed(By.cssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']"),true);
 		return findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']")
-				.getAttribute("value");
-	}
+        .getAttribute("value");
+  }
 }

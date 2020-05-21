@@ -25,7 +25,6 @@ public class TaskSearchCriteria {
   private Long taskId;
   private Long caseId;
   private String category;
-  private boolean isTaskStartedByAnotherDisplayed;
   private TaskAssigneeType taskAssigneeType;
   private boolean isNewQueryCreated;
   private boolean isQueryByTaskId;
@@ -339,14 +338,6 @@ public class TaskSearchCriteria {
     this.caseId = caseId;
   }
 
-  public boolean isTaskStartedByAnotherDisplayed() {
-    return isTaskStartedByAnotherDisplayed;
-  }
-
-  public void setTaskStartedByAnotherDisplayed(boolean isTaskStartedByAnotherDisplayed) {
-    this.isTaskStartedByAnotherDisplayed = isTaskStartedByAnotherDisplayed;
-  }
-
   public TaskAssigneeType getTaskAssigneeType() {
     return taskAssigneeType;
   }
@@ -378,7 +369,7 @@ public class TaskSearchCriteria {
   public void setQueryForUnassignedTask(boolean isQueryForUnassignedTask) {
     this.isQueryForUnassignedTask = isQueryForUnassignedTask;
   }
-
+  
   public TaskQuery getCustomTaskQuery() {
     return customTaskQuery;
   }

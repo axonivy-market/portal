@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.dto;
 
+import ch.ivyteam.ivy.scripting.objects.Record;
 import ch.ivyteam.ivy.security.IUser;
 
 public class UserDTO {
@@ -18,6 +19,12 @@ public class UserDTO {
     this.displayName = user.getDisplayName();
     this.email = user.getEMailAddress();
     this.id = user.getId();
+  }
+  
+  public UserDTO(Record record) {
+    this.name = record.getField("NAME").toString();
+    this.memberName = "#" + this.name;
+    this.displayName = record.getField("FULLNAME").toString();
   }
   
   public UserDTO(UserDTO user) {

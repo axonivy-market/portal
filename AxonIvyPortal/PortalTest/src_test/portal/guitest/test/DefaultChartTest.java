@@ -1,6 +1,6 @@
 package portal.guitest.test;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -39,7 +39,6 @@ public class DefaultChartTest extends BaseTest {
     grantPermissionToCreateChart();
     MainMenuPage mainMenuPage = new MainMenuPage();
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    Sleeper.sleep(20000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     
     assertEquals(DEFAULT_NAME, statisticWidgetPage.getChartName(0));
@@ -53,13 +52,10 @@ public class DefaultChartTest extends BaseTest {
     grantPermissionToCreateChart();
     MainMenuPage mainMenuPage = new MainMenuPage();
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    Sleeper.sleep(10000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     statisticWidgetPage.switchCreateMode();
-    Sleeper.sleep(5000);
-    createCaseByFinishedTask(statisticWidgetPage);
+    statisticWidgetPage.createCaseByFinishedTask();
     statisticWidgetPage.backToDashboard();
-    Sleeper.sleep(5000);
     statisticWidgetPage.restoreDefaultCharts();
 
     WebElement taskByExpiryChartName3 = null ;
@@ -71,18 +67,6 @@ public class DefaultChartTest extends BaseTest {
     assertEquals(DEFAULT_NAME_1, statisticWidgetPage.getChartName(0));
     assertEquals(DEFAULT_NAME_2, statisticWidgetPage.getChartName(1));
     assertEquals(null, taskByExpiryChartName3);
-  }
-  
-  private void createCaseByFinishedTask(StatisticWidgetPage statisticWidgetPage) {
-    statisticWidgetPage.clickByCssSelector("a[id$='create-case-by-finished-task-link']");
-    statisticWidgetPage.waitAjaxIndicatorDisappear();
-
-    statisticWidgetPage.waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true, 30);
-    WebElement chartNameInput = statisticWidgetPage.findElementByCssSelector("input[id$='chart-name-input']");
-
-    chartNameInput.sendKeys("User chart");
-    statisticWidgetPage.clickByCssSelector("button[id$='chart-save-command']");
-    statisticWidgetPage.waitAjaxIndicatorDisappear();
   }
   
   private void grantPermissionToCreateChart() {

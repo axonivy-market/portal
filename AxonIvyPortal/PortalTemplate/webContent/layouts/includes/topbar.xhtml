@@ -35,9 +35,8 @@
       </li>
 
       <li class="setting-container" >
-        <ic:ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo />
-        <a href="#" jsf:rendered="#{not userMenuBean.showServerInformation}" id="user-settings-menu"> <span
-          class="user-name">#{userMenuBean.userName}</span>
+        <a href="#" id="user-settings-menu"> <span
+          class="user-name">#{userMenuBean.loggedInUser}</span>
         </a>
         <ul id="user-setting-container">
           <li>
@@ -146,7 +145,7 @@
       </h:form>
     </p:dialog>
 
-    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/header')}" styleClass="project-info-dialog" width="800"
+    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/header')}" styleClass="project-info-dialog" width="1000"
       closeOnEscape="true" widgetVar="project-info-dialog" id="project-info-dialog" resizable="false" modal="true" draggable="false"
       appendTo="@(body)" dynamic="true" responsive="true">
       <ic:ch.ivy.addon.portalkit.component.ProjectVersion id="project-version" />

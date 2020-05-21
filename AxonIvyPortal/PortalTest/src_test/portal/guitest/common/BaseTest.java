@@ -5,12 +5,13 @@ import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.function.Supplier;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
-import org.junit.rules.MethodRule;
-import org.junit.rules.TestWatchman;
-import org.junit.runners.model.FrameworkMethod;
+import org.junit.rules.TestWatcher;
+import org.junit.runner.Description;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
@@ -57,22 +58,42 @@ public class BaseTest {
   protected String createTestingCaseUrlForDefaultAdditionalCaseDetails = "internalSupport/14B2FC03D2E87141/DefaultAdditionalCaseDetails.ivp";
   protected String createTestingCaseContainOneTask = "internalSupport/14B2FC03D2E87141/CreateSupportTicket.ivp";
   protected String createUnassignedTaskUrl = "internalSupport/14B2FC03D2E87141/createUnassignedTask.ivp";
-
+  protected String expressStartLink = "axonIvyExpress/15798655494F25E1/AxonIvyExpressWF.ivp";
+  protected String cleanupDataLink = "portalKitTestHelper/1511A66AF619A768/cleanData.ivp";
+  protected String createBetaCompanyUrl = "portal-developer-examples/1624C1C79661758C/createBetaCompany.ivp";
   @Rule
   public ScreenshotFailedTestRule screenshotTestRule = new ScreenshotFailedTestRule();
   
   @Rule
-  public MethodRule watchman = new TestWatchman() {
+  public TestWatcher watchman= new TestWatcher() {
+
     @Override
-    public void starting(FrameworkMethod method) {
-        System.out.println("Starting test: " + method.getName());
+    protected void starting(Description description) {
+      super.starting(description);
+      System.out.println("Starting test: " + description.getMethodName());
     }
+    
   };
   
   @Before
+  /**
+   * Default setup for each test
+   * It will clean up all test data and login with account demo
+   */
   public void setup() {
     browser = Browser.getBrowser();
-    launchBrowserAndGotoRelativeLink("portalKitTestHelper/1511A66AF619A768/cleanData.ivp");
+    launchBrowserAndGotoRelativeLink(cleanupDataLink);
+  }
+  
+  /**
+   * Alternative setup, just login with input account, don't cleanup anything
+   * @param relativePath
+   * @param account
+   */
+  public void setupWithAlternativeLinkAndAccount(String relativePath, TestAccount account) {
+    browser = Browser.getBrowser();
+    launchBrowserAndGotoRelativeLink(relativePath);
+    login(account);
   }
 
   public void launchBrowserAndGotoRelativeLink(String relativeProcessStartLink) {
@@ -168,13 +189,13 @@ public class BaseTest {
       password = URLEncoder.encode(testAccount.getPassword(), "UTF-8");
 
       AtomicBoolean isLoginSuccess = new AtomicBoolean(false);
-      Awaitility.await().atMost(new Duration(30, TimeUnit.SECONDS)).until(() -> {
+      Awaitility.await().atMost(new Duration(60, TimeUnit.SECONDS)).until(() -> {
         try {
           redirectToRelativeLink(String.format(LOGIN_URL_PATTERN, username, password));
           new HomePage() {
             @Override
             protected long getTimeOutForLocator() {
-              return 7L;
+              return 10L;
             }
           }.isDisplayed();
           isLoginSuccess.set(true);
@@ -203,6 +224,17 @@ public class BaseTest {
   
   private String getDriverPath() {
     return browserType.getConfiguration().getDriverPath();
+  }
+
+  public void updatePortalSetting(String portalSettingName, String portalSettingValue) {
+    try {
+      String encodeSettingName = URLEncoder.encode(portalSettingName, "UTF-8");
+      String encodeSettingValue = URLEncoder.encode(portalSettingValue, "UTF-8");
+      String updatePortalSettingLink = "portalKitTestHelper/17208192E0AF4185/updatePortalSetting.ivp?settingName=%s&settingValue=%s";
+      redirectToRelativeLink(String.format(updatePortalSettingLink, encodeSettingName, encodeSettingValue));
+    } catch (UnsupportedEncodingException e) {
+      e.printStackTrace();
+    }
   }
 
 }

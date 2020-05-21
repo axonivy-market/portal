@@ -80,7 +80,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
   private void initSystemPermission(IPermissionGroup permissionGroup, List<IPermission> permissions) {
     for (IPermission permission : permissions) {
       if (!hasPermission(permissionGroup, permission)) {
-        IPermissionGroupRepository.get().addPermission(permissionGroup, permission);
+        IPermissionGroupRepository.instance().addPermission(permissionGroup, permission);
       }
     }
   }
@@ -95,9 +95,9 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
   }
 
   private IPermission createPermission(PortalPermission permission) {
-    IPermission iPermission = IPermissionRepository.get().findByName(permission.getValue());
+    IPermission iPermission = IPermissionRepository.instance().findByName(permission.getValue());
     if (Objects.isNull(iPermission)) {
-      iPermission = IPermissionRepository.get().create(permission.getValue());
+      iPermission = IPermissionRepository.instance().create(permission.getValue());
     }
     return iPermission;
   }
@@ -149,9 +149,9 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
   }
 
   private IPermissionGroup createPermissionsGroup(IPermissionGroup parent, PortalPermissionGroup group) {
-    IPermissionGroup permissionGroup = IPermissionGroupRepository.get().findByName(group.getValue());
+    IPermissionGroup permissionGroup = IPermissionGroupRepository.instance().findByName(group.getValue());
     if (Objects.isNull(permissionGroup)) {
-      permissionGroup = IPermissionGroupRepository.get().create(parent, group.getValue());
+      permissionGroup = IPermissionGroupRepository.instance().create(parent, group.getValue());
     }
     return permissionGroup;
   }

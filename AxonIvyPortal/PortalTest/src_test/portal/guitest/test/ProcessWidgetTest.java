@@ -1,9 +1,9 @@
 package portal.guitest.test;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,7 +20,7 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.ProcessWidgetPage.AddNewExternalLinkDialog;
 import portal.guitest.page.ProcessWidgetPage.AddNewProcessDialog;
-@SuppressWarnings("restriction")
+
 public class ProcessWidgetTest extends BaseTest {
 
   private static final String CLEAN_ALL_FAVORITE_PROCESSES = "(For autotest) Clean all favorite processes";
@@ -35,7 +35,6 @@ public class ProcessWidgetTest extends BaseTest {
   @Override
   public void setup() {
     super.setup();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
   }
 
@@ -265,6 +264,7 @@ public class ProcessWidgetTest extends BaseTest {
     assertEquals("Processes", processWidget.getTextOfCurrentBreadcrumb());
 
     processWidget.clickHomeBreadcrumb();
+    homePage = new HomePage();
     assertEquals(true, homePage.isDisplayed());
   }
 

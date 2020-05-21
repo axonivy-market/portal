@@ -21,7 +21,6 @@ public class DateTimeDisplayTest extends BaseTest {
   public void setup(){
     super.setup();
     createTestingTasks();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
   }
 
