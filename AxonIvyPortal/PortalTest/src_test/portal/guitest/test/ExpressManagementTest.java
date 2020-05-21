@@ -1,8 +1,8 @@
 package portal.guitest.test;
 
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.concurrent.TimeUnit;
 
@@ -31,7 +31,6 @@ public class ExpressManagementTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     login(TestAccount.ADMIN_USER);
   }
 
@@ -39,8 +38,7 @@ public class ExpressManagementTest extends BaseTest {
   public void testImportUnsupportedExtension() {
     HomePage homePage = new HomePage();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
-    adminSettingsPage.openExpressManagementTab();
-    ExpressManagementPage expressManagementPage = new ExpressManagementPage();
+    ExpressManagementPage expressManagementPage = adminSettingsPage.openExpressManagementTab();
     expressManagementPage.openImportDialog();
     expressManagementPage.selectJSONFile(FileHelper.getAbsolutePathToTestFile("unsupportedExtension.abc"));
     String message = expressManagementPage.getUploadMessage();
@@ -52,8 +50,7 @@ public class ExpressManagementTest extends BaseTest {
   public void testImportExpressProcess() {
     HomePage homePage = new HomePage();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
-    adminSettingsPage.openExpressManagementTab();
-    ExpressManagementPage expressManagementPage = new ExpressManagementPage();
+    ExpressManagementPage expressManagementPage = adminSettingsPage.openExpressManagementTab();
     expressManagementPage.openImportDialog();
     expressManagementPage.selectJSONFile(FileHelper.getAbsolutePathToTestFile("express-test.json"));
     expressManagementPage.clickOnDeployExpress();

@@ -123,7 +123,7 @@ public enum PortalSecurity {
         .collect(Collectors.toList());
     
     iPermissions.forEach(iPermission -> {
-      IPermission ivyPermission = IPermissionRepository.get().findByName(iPermission.getValue());
+      IPermission ivyPermission = IPermissionRepository.instance().findByName(iPermission.getValue());
       if (!denniedPermission.contains(ivyPermission)) {
         portalSecurity.grantPermission(ivyPermission, securityMember);
       }

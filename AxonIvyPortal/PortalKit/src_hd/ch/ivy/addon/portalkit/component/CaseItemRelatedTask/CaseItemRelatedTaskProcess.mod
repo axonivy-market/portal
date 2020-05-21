@@ -27,23 +27,15 @@ Cs0 @GridStep f17 '' #zField
 Cs0 @PushWFArc f18 '' #zField
 Cs0 @CallSub f19 '' #zField
 Cs0 @PushWFArc f20 '' #zField
-Cs0 @UdEvent f5 '' #zField
-Cs0 @UdEvent f22 '' #zField
 Cs0 @CallSub f23 '' #zField
-Cs0 @UdEvent f25 '' #zField
 Cs0 @CallSub f26 '' #zField
 Cs0 @CallSub f28 '' #zField
 Cs0 @PushWFArc f29 '' #zField
 Cs0 @SJArc f21 '' #zField
-Cs0 @UdEvent f30 '' #zField
 Cs0 @GridStep f11 '' #zField
-Cs0 @PushWFArc f2 '' #zField
 Cs0 @GridStep f33 '' #zField
-Cs0 @PushWFArc f32 '' #zField
 Cs0 @GridStep f35 '' #zField
-Cs0 @PushWFArc f27 '' #zField
 Cs0 @GridStep f37 '' #zField
-Cs0 @PushWFArc f24 '' #zField
 Cs0 @GridStep f4 '' #zField
 Cs0 @PushWFArc f16 '' #zField
 Cs0 @GridStep f31 '' #zField
@@ -54,6 +46,14 @@ Cs0 @PushWFArc f40 '' #zField
 Cs0 @GridStep f34 '' #zField
 Cs0 @PushWFArc f42 '' #zField
 Cs0 @PushWFArc f38 '' #zField
+Cs0 @UdMethod f45 '' #zField
+Cs0 @PushWFArc f47 '' #zField
+Cs0 @PushWFArc f44 '' #zField
+Cs0 @UdMethod f43 '' #zField
+Cs0 @UdMethod f2 '' #zField
+Cs0 @PushWFArc f5 '' #zField
+Cs0 @UdMethod f25 '' #zField
+Cs0 @PushWFArc f27 '' #zField
 >Proto Cs0 Cs0 CaseItemRelatedTaskProcess #zField
 Cs0 f0 guid 167E9A75EF3D0909 #txt
 Cs0 f0 method start() #txt
@@ -206,39 +206,6 @@ Cs0 f19 408 266 112 44 -35 -8 #rect
 Cs0 f19 @|CallSubIcon #fIcon
 Cs0 f20 expr out #txt
 Cs0 f20 352 288 408 288 #arcP
-Cs0 f5 guid 1682B962CA36E3CC #txt
-Cs0 f5 actionTable 'out=in;
-' #txt
-Cs0 f5 actionCode 'import org.primefaces.component.commandlink.CommandLink;
-CommandLink commandLink = event.getSource() as CommandLink;
-out.isWorkingOnTask = commandLink.getAttributes().get("isWorkingOnTask") as Boolean;' #txt
-Cs0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>openPortalTasks</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f5 83 371 26 26 -47 15 #rect
-Cs0 f5 @|UdEventIcon #fIcon
-Cs0 f22 guid 1682B96F9503687C #txt
-Cs0 f22 actionTable 'out=in;
-' #txt
-Cs0 f22 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
-import org.primefaces.component.commandlink.CommandLink;
-
-CommandLink commandLink = event.getSource() as CommandLink;
-out.selectedTechnicalCase = commandLink.getAttributes().get("selectedCase") as ICase;
-out.isWorkingOnTask = commandLink.getAttributes().get("isWorkingOnTask") as Boolean;' #txt
-Cs0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>navigateToRelatedCaseDetails</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f22 83 683 26 26 -47 15 #rect
-Cs0 f22 @|UdEventIcon #fIcon
 Cs0 f23 processCall 'Functional Processes/Navigator:viewCase(ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
 Cs0 f23 requestActionDecl '<ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
 Cs0 f23 requestMappingAction 'param.caseId=ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.selectedTechnicalCase.getId()).isBusinessCase(in.selectedTechnicalCase.isBusinessCase()).build();
@@ -256,24 +223,6 @@ Cs0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f23 696 674 128 44 -61 -8 #rect
 Cs0 f23 @|CallSubIcon #fIcon
-Cs0 f25 guid 1690E16A5D3AD46C #txt
-Cs0 f25 actionTable 'out=in;
-' #txt
-Cs0 f25 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
-import org.primefaces.component.commandlink.CommandLink;
-
-CommandLink commandLink = event.getSource() as CommandLink;
-out.selectedTechnicalCase = commandLink.getAttributes().get("selectedCase") as ICase;
-out.isWorkingOnTask = commandLink.getAttributes().get("isWorkingOnTask") as Boolean;' #txt
-Cs0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>navigateToTechnicalCasesOfBusinessCase</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f25 83 579 26 26 -88 17 #rect
-Cs0 f25 @|UdEventIcon #fIcon
 Cs0 f26 processCall 'Functional Processes/Navigator:viewTechnicalCasesOfBusniessCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
 Cs0 f26 requestActionDecl '<String businessCaseName,ch.ivy.addon.portalkit.dto.GlobalCaseId businessCaseId> param;' #txt
 Cs0 f26 requestMappingAction 'param.businessCaseName=ch.ivy.addon.portalkit.util.PermissionUtils.getCaseName(in.selectedTechnicalCase);
@@ -317,24 +266,6 @@ Cs0 f21 expr out #txt
 Cs0 f21 var in2 #txt
 Cs0 f21 648 266 648 208 #arcP
 Cs0 f21 0 0.8623545764087797 0 0 #arcLabel
-Cs0 f30 guid 16D8A8E9B8ABB666 #txt
-Cs0 f30 actionTable 'out=in;
-' #txt
-Cs0 f30 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
-import org.primefaces.component.commandlink.CommandLink;
-
-CommandLink commandLink = event.getSource() as CommandLink;
-out.taskId = commandLink.getAttributes().get("taskId") as Long;
-out.isWorkingOnTask = commandLink.getAttributes().get("isWorkingOnTask") as Boolean;' #txt
-Cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>navigateToRelatedTaskDetails</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f30 83 475 26 26 -72 20 #rect
-Cs0 f30 @|UdEventIcon #fIcon
 Cs0 f11 actionTable 'out=in;
 ' #txt
 Cs0 f11 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -356,7 +287,8 @@ if(in.isWorkingOnTask) {
 		flash.setRedirect(true);
 		flash.setKeepMessages(true);
 	}
-}' #txt
+}
+' #txt
 Cs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -367,10 +299,10 @@ finish or leave task</name>
 ' #txt
 Cs0 f11 176 362 144 44 -54 -16 #rect
 Cs0 f11 @|StepIcon #fIcon
-Cs0 f2 109 384 176 384 #arcP
 Cs0 f33 actionTable 'out=in;
 ' #txt
-Cs0 f33 actionCode 'import org.apache.commons.lang3.StringUtils;
+Cs0 f33 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import javax.faces.context.Flash;
@@ -389,7 +321,9 @@ if(in.isWorkingOnTask) {
 		flash.setRedirect(true);
 		flash.setKeepMessages(true);
 	}
-}' #txt
+}
+
+TaskUtils.updateTaskStartedAttribute(false);' #txt
 Cs0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -400,7 +334,6 @@ finish or leave task</name>
 ' #txt
 Cs0 f33 176 466 144 44 -54 -16 #rect
 Cs0 f33 @|StepIcon #fIcon
-Cs0 f32 109 488 176 488 #arcP
 Cs0 f35 actionTable 'out=in;
 ' #txt
 Cs0 f35 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -433,7 +366,6 @@ finish or leave task</name>
 ' #txt
 Cs0 f35 264 570 144 44 -54 -16 #rect
 Cs0 f35 @|StepIcon #fIcon
-Cs0 f27 109 592 264 592 #arcP
 Cs0 f37 actionTable 'out=in;
 ' #txt
 Cs0 f37 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -466,7 +398,6 @@ finish or leave task</name>
 ' #txt
 Cs0 f37 264 674 144 44 -54 -16 #rect
 Cs0 f37 @|StepIcon #fIcon
-Cs0 f24 109 696 264 696 #arcP
 Cs0 f4 actionTable 'out=in;
 ' #txt
 Cs0 f4 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -501,9 +432,11 @@ Cs0 f31 384 464 176 48 -59 -8 #rect
 Cs0 f31 @|StepIcon #fIcon
 Cs0 f39 actionTable 'out=in;
 ' #txt
-Cs0 f39 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+Cs0 f39 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 
-ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");' #txt
+ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");
+TaskUtils.updateTaskStartedAttribute(false);' #txt
 Cs0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -518,9 +451,11 @@ Cs0 f36 320 488 384 488 #arcP
 Cs0 f40 632 592 696 592 #arcP
 Cs0 f34 actionTable 'out=in;
 ' #txt
-Cs0 f34 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+Cs0 f34 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 
-ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");' #txt
+ivy.session.setAttribute(SessionAttribute.NAVIGATE_FROM_RELATED_CASE.toString(), "true");
+TaskUtils.updateTaskStartedAttribute(false);' #txt
 Cs0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -532,6 +467,75 @@ Cs0 f34 456 674 176 44 -82 -8 #rect
 Cs0 f34 @|StepIcon #fIcon
 Cs0 f42 408 696 456 696 #arcP
 Cs0 f38 632 696 696 696 #arcP
+Cs0 f45 guid 1720C62D9BF92EB1 #txt
+Cs0 f45 method navigateToSelectedTaskDetails(Long,Boolean) #txt
+Cs0 f45 inParameterDecl '<Long taskId,Boolean isWorkingOnTask> param;' #txt
+Cs0 f45 inParameterMapAction 'out.isWorkingOnTask=param.isWorkingOnTask;
+out.taskId=param.taskId;
+' #txt
+Cs0 f45 outParameterDecl '<> result;' #txt
+Cs0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>navigateToSelectedTaskDetails(Long,Boolean)</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f45 83 475 26 26 -77 20 #rect
+Cs0 f45 @|UdMethodIcon #fIcon
+Cs0 f47 109 488 176 488 #arcP
+Cs0 f47 0 0.5541990710792534 0 0 #arcLabel
+Cs0 f44 109 384 176 384 #arcP
+Cs0 f44 0 0.5658938645158399 0 0 #arcLabel
+Cs0 f43 guid 1720C5CCA7DA3932 #txt
+Cs0 f43 method navigateToRelatedTasksOfCase(Boolean) #txt
+Cs0 f43 inParameterDecl '<Boolean isWorkingOnTask> param;' #txt
+Cs0 f43 inParameterMapAction 'out.isWorkingOnTask=param.isWorkingOnTask;
+' #txt
+Cs0 f43 outParameterDecl '<> result;' #txt
+Cs0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>navigateToRelatedTasksOfCase(Boolean)</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f43 83 371 26 26 -78 23 #rect
+Cs0 f43 @|UdMethodIcon #fIcon
+Cs0 f2 guid 1720CC0AEC970FA8 #txt
+Cs0 f2 method navigateToTechnicalCasesOfBusinessCase(ch.ivyteam.ivy.workflow.ICase,Boolean) #txt
+Cs0 f2 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase selectedTechnicalCase,Boolean isWorkingOnTask> param;' #txt
+Cs0 f2 inParameterMapAction 'out.isWorkingOnTask=param.isWorkingOnTask;
+out.selectedTechnicalCase=param.selectedTechnicalCase;
+' #txt
+Cs0 f2 outParameterDecl '<> result;' #txt
+Cs0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>navigateToTechnicalCasesOfBusinessCase(ICase,Boolean)</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f2 83 579 26 26 -90 19 #rect
+Cs0 f2 @|UdMethodIcon #fIcon
+Cs0 f5 109 592 264 592 #arcP
+Cs0 f25 guid 1720CC59596D550D #txt
+Cs0 f25 method navigateToRelatedCaseDetails(ch.ivyteam.ivy.workflow.ICase,Boolean) #txt
+Cs0 f25 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase selectedTechnicalCase,Boolean isWorkingOnTask> param;' #txt
+Cs0 f25 inParameterMapAction 'out.isWorkingOnTask=param.isWorkingOnTask;
+out.selectedTechnicalCase=param.selectedTechnicalCase;
+' #txt
+Cs0 f25 outParameterDecl '<> result;' #txt
+Cs0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>navigateToRelatedCaseDetails(ICase,Boolean)</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f25 83 683 26 26 -78 20 #rect
+Cs0 f25 @|UdMethodIcon #fIcon
+Cs0 f27 109 696 264 696 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -554,14 +558,6 @@ Cs0 f19 mainOut f29 tail #connect
 Cs0 f29 head f28 mainIn #connect
 Cs0 f28 mainOut f21 tail #connect
 Cs0 f21 head f9 in #connect
-Cs0 f5 mainOut f2 tail #connect
-Cs0 f2 head f11 mainIn #connect
-Cs0 f30 mainOut f32 tail #connect
-Cs0 f32 head f33 mainIn #connect
-Cs0 f25 mainOut f27 tail #connect
-Cs0 f27 head f35 mainIn #connect
-Cs0 f22 mainOut f24 tail #connect
-Cs0 f24 head f37 mainIn #connect
 Cs0 f11 mainOut f16 tail #connect
 Cs0 f16 head f4 mainIn #connect
 Cs0 f35 mainOut f41 tail #connect
@@ -574,3 +570,11 @@ Cs0 f37 mainOut f42 tail #connect
 Cs0 f42 head f34 mainIn #connect
 Cs0 f34 mainOut f38 tail #connect
 Cs0 f38 head f23 mainIn #connect
+Cs0 f43 mainOut f44 tail #connect
+Cs0 f44 head f11 mainIn #connect
+Cs0 f45 mainOut f47 tail #connect
+Cs0 f47 head f33 mainIn #connect
+Cs0 f2 mainOut f5 tail #connect
+Cs0 f5 head f35 mainIn #connect
+Cs0 f25 mainOut f27 tail #connect
+Cs0 f27 head f37 mainIn #connect

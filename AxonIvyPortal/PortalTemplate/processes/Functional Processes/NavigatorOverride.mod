@@ -221,6 +221,7 @@ String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTit
 String titleOnMobile = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks");
 
 in.taskDataModel.getCriteria().setCustomTaskQuery(in.taskQuery);
+in.taskDataModel.setAdminQuery(PermissionUtils.checkReadAllTasksPermission());
 in.taskDataModel.getCriteria().setKeyword(StringUtils.EMPTY);
 in.taskDataModel.setTaskAssigneeType(TaskAssigneeType.ALL);
 in.taskDataModel.setNotKeepFilter(true);
@@ -692,6 +693,7 @@ Nr0 f58 processCall 'Functional Processes/OpenPortalTaskDetailsHook:call(ITask,T
 Nr0 f58 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
 Nr0 f58 requestMappingAction 'param.task=in.iTask;
 param.portalPage=ch.ivy.addon.portalkit.enums.PortalPage.CASE_DETAIL_FROM_TASK;
+param.isFromTaskList=false;
 ' #txt
 Nr0 f58 responseActionDecl 'ch.ivy.addon.portal.generic.NavigatorOverrideData out;
 ' #txt

@@ -23,13 +23,11 @@ import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
-import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisTaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
-import ch.ivy.addon.portalkit.taskfilter.TaskInProgressByOthersFilter;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -190,7 +188,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   public TaskAnalysisFilterData saveTaskAnalysisFilter(String filterName, FilterType filterType, Long taskFilterGroupId) {
     TaskAnalysisFilterData taskAnalysisFilterData = new TaskAnalysisFilterData();
     List<TaskFilter> taskFiltersToSave = new ArrayList<>(selectedFilters);
-    addCustomSettingsToTaskFilters(taskFiltersToSave);
     taskAnalysisFilterData.setTaskFilters(taskFiltersToSave);
     List<CaseFilter> filtersToSave = new ArrayList<>(selectedCaseFilters);
     taskAnalysisFilterData.setCaseFilters(filtersToSave);
@@ -214,18 +211,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     isSelectedDefaultFilter = FilterType.DEFAULT.equals(taskAnalysisFilterData.getType());
     selectedTaskAnalysisFilterData = taskAnalysisFilterData;
     new TaskAnalysisFilterService().applyFilter(this, taskAnalysisFilterData);
-    applyCustomSettings(taskAnalysisFilterData);
-  }
-
-  private void applyCustomSettings(TaskAnalysisFilterData taskAnalysisFilterData) throws ReflectiveOperationException {
-    isInProgressFilterDisplayed = false;
-    inProgressFilter = new TaskInProgressByOthersFilter();
-    for (TaskFilter savedTaskFilter : taskAnalysisFilterData.getTaskFilters()) {
-      if (savedTaskFilter instanceof TaskInProgressByOthersFilter) {
-        new TaskFilterService().copyFilterValues(inProgressFilter, savedTaskFilter);
-        isInProgressFilterDisplayed = true;
-      }
-    }
   }
 
   /**
@@ -254,8 +239,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
         caseCriteria.setIncludedStates(caseFilterContainer.getStateFilter().getSelectedFilteredStates());
       }
     }
-
-    criteria.setTaskStartedByAnotherDisplayed(inProgressFilter.getIsTaskInProgressByOthersDisplayed());
 
     TaskQuery taskQuery = buildTaskQuery();
     if (CollectionUtils.isNotEmpty(selectedCaseFilters)) {

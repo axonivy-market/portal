@@ -1,13 +1,12 @@
 package portal.guitest.test;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.page.HomePage;
 import portal.guitest.page.ProcessHistoryPage;
 
 public class ProcessHistoryTest extends BaseTest {
@@ -22,7 +21,6 @@ public class ProcessHistoryTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
   @Test

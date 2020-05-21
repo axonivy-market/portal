@@ -1,6 +1,6 @@
 package portal.guitest.test;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 
@@ -18,7 +18,6 @@ import portal.guitest.page.ExpressProcessPage;
 import portal.guitest.page.ExpressReviewPage;
 import portal.guitest.page.ExpressTaskPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class ExpressTest extends BaseTest{
@@ -29,20 +28,18 @@ public class ExpressTest extends BaseTest{
   private static final int INPUT_NUMBER_TYPE_INDEX = 1;
   
   private HomePage homePage;
-  private ProcessWidgetPage processWidget;
   private TaskWidgetPage taskWidgetPage;
   ExpressResponsible responsible1 = new ExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
   @Override
   @Before
   public void setup() {
     super.setup();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
   }
 
   @Test
   public void testAdhocMultiApprovalWhenMultiTask() {
-    goToCreateExpressProcess();
+    goToExpressCreationPage();
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
     ExpressFormDefinitionPage formDefinition = configureExpressProcessWhenMultiApproval(expressProcessPage);
@@ -52,7 +49,7 @@ public class ExpressTest extends BaseTest{
 
   @Test
   public void testBreadCrumb() {
-    goToCreateExpressProcess();
+    goToExpressCreationPage();
     ExpressProcessPage expressProcessPage = new ExpressProcessPage();
     assertEquals("Express Workflow", expressProcessPage.getTextOfCurrentBreadcrumb());
 
@@ -90,11 +87,9 @@ public class ExpressTest extends BaseTest{
     expressTaskPage.finish();
     login(TestAccount.ADMIN_USER);
     executeUserTask();
-    assertEquals(0, new TaskWidgetPage().countTasks());
     login(TestAccount.DEMO_USER);
     executeApproval("Approved at first level");
     executeApproval("Approved at second level");
-    assertEquals(0, new TaskWidgetPage().countTasks());
     login(TestAccount.ADMIN_USER);
     executeApproval("Approved at second level");
     login(TestAccount.DEMO_USER);
@@ -129,6 +124,7 @@ public class ExpressTest extends BaseTest{
   
   private void executeApproval(String comment) {
     taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.filterTasksBy("Task");
     taskWidgetPage.startTask(0);
     ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
     approvalPage1.comment(comment);
@@ -137,9 +133,7 @@ public class ExpressTest extends BaseTest{
     home.waitForPageLoaded();
   }
 
-  private void goToCreateExpressProcess() {
-    processWidget = homePage.getProcessWidget();
-    processWidget.expand();
-    processWidget.openExpressPage();
+  private void goToExpressCreationPage() {
+    redirectToRelativeLink(expressStartLink);
   }
 }

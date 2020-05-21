@@ -28,6 +28,9 @@
   --ivy-tertinary-color-yellow-light: hsl(47, 100%, 79%);
   --ivy-portal-blue-light: rgba(144, 221, 233, 0.24);
 
+  --accent-color: var(--ivy-portal-blue-light);
+  --accent-text-color: black;
+
   /* Default Portal styles */
   --default-font-size: 10px;
   --default-body-font-size: 1.4rem;
@@ -244,8 +247,8 @@
   --task-filter-separator-border-bottom: var(--ivy-primary-color-grey-light);
   --task-view-container-data-scroller-content-background-color: transparent;
   --task-start-list-description-cell: var(--ivy-primary-color-grey-medium);
-  --task-in-progress-checkbox-label-color: var(--ivy-primary-color-black);
   --task-filter-delete-user-defined-icon-hover-color: var(--primary-color);
+  --task-in-progress-checkbox-label-color: var(--primary-text-color);
   /* Task Detail */
   --task-detail-paginator-color: var(--ivy-primary-color-black);
   --task-detail-paginator-header-corner-top-border-color: var(--ivy-primary-color-grey-light);
@@ -272,9 +275,8 @@
   --user-setting-container-link-color: var(--ivy-primary-color-grey-medium);
   --user-setting-container-box-shadow: rgba(43, 59, 93, 0.6);
   --email-setting-widget-header: var(--ivy-primary-color-white);
-  --username-show-environment-info-font-weight: bold;
   /* Absences and Deputy */
-  --username-show-environment-info-font-weight: var(--ivy-primary-color-black);
+  --substituted-user-text-color: var(--ivy-primary-color-black);
   /* Awesome Icon Selection */
   --link-change-awesome-icon-color: var(--ivy-primary-color-black);
   --content-link-change-awesome-icon-color: var(--primary-color);

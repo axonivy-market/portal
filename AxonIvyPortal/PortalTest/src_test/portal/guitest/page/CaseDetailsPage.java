@@ -183,7 +183,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public CaseWidgetPage goBackToCaseListFromCaseDetails() {
-    findElementById("case-item-details:case-detail-title-form:back-to-cases").click();
+    clickBackButton();
     return new CaseWidgetPage();
   }
   
@@ -195,7 +195,6 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   private void onChangeDescriptionInput(String newDescription) {
-    Sleeper.sleep(2000);
    // WebElement caseDescriptionInput = findElementById("case-item-details:description:case-description-form:case-description-output");
     WebElement caseDescriptionInput = findElementByCssSelector("textarea[id='case-item-details:description:case-description-form:case-description-input']");
     waitForElementDisplayed(caseDescriptionInput, true);
@@ -226,7 +225,6 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void onClickDestroyCase() {
-    click(findElementById("case-item-details:destroy-case-link"));
     click(findElementById("case-item-details:destroy-case-link"));
   }
   
@@ -262,6 +260,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void uploadDocumentWithoutError(String pathToFile) {
+    Sleeper.sleep(2000);//slow down a bit for FF
     openAddDocumentDialogAndUploadDocument(pathToFile);
     waitForElementDisplayed(By.cssSelector("span[class$='ui-messages-info-summary']"), true);
     click(By.cssSelector("button[id$='case-item-details:document:document-upload-close-command']"));
@@ -283,11 +282,7 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("span[id$='document-upload-dialog_title']"), true);
     findElementByCssSelector("input[id$='document-upload-panel_input']").sendKeys(pathToFile);
     // currently haven't found solution to check when the file upload finish, we have to wait
-    if (isIntegrationTestRun()) {
-      Sleeper.sleep(10000);
-    } else {
-      Sleeper.sleep(5000);
-    }
+    Sleeper.sleep(2000);
   }
 
   public boolean isDeleteDocumentButtonPresented() {
@@ -329,6 +324,19 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void clickCaseListBreadCrumb() {
     click(By.cssSelector(".portal-breadcrumb ul li:nth-of-type(3) .ui-menuitem-link"));
+  }
+  
+  public boolean isBackButtonDisplayed() {
+    return isElementDisplayedById("case-item-details:case-detail-title-form:back-to-cases");
+  }
+  
+  public void clickBackButton() {
+    findElementById("case-item-details:case-detail-title-form:back-to-cases").click();
+  }
+
+  public CaseDetailsPage openRelatedCaseOfBusinessCase(int index) {
+    findElementByCssSelector("a[id$=':related-tasks:cases:" + index + ":case-name']").click();
+    return new CaseDetailsPage();
   }
 
 }
