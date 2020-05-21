@@ -100,6 +100,15 @@ Pt0 @PushWFArc f66 '' #zField
 Pt0 @CallSub f67 '' #zField
 Pt0 @StartRequest f68 '' #zField
 Pt0 @PushWFArc f69 '' #zField
+Pt0 @UserDialog f71 '' #zField
+Pt0 @StartRequest f72 '' #zField
+Pt0 @StartRequest f73 '' #zField
+Pt0 @StartRequest f76 '' #zField
+Pt0 @UserDialog f74 '' #zField
+Pt0 @UserDialog f75 '' #zField
+Pt0 @PushWFArc f77 '' #zField
+Pt0 @PushWFArc f78 '' #zField
+Pt0 @PushWFArc f79 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk0 @TextInP .type .type #zField
 Bk0 @TextInP .processKind .processKind #zField
@@ -223,7 +232,17 @@ import ch.ivyteam.ivy.workflow.ITask;
 in.isTaskFinished = SecurityServiceUtils.getSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString()).toBoolean();
 
 ITask task = ivy.wf.findTask(in.endedTaskId);
-ITask taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
+ITask taskWithTaskEndInfo = null;
+
+if (#task is initialized && task.getStartSwitchEvent() is initialized) {
+	taskWithTaskEndInfo = StickyTaskListService.service().getPreviousTaskWithTaskEndInfo(task);
+}
+
+boolean isTaskStarted = false;
+in.isFirstTask = false;
+String callbackUrl;
+String IS_TASK_FINISHED = SessionAttribute.IS_TASK_FINISHED.toString();
+
 if (#task is initialized) {
 	if (#taskWithTaskEndInfo is initialized) {
 		String taskEndInfoSessionAttributeKey = StickyTaskListService.service().getTaskEndInfoSessionAttributeKey(taskWithTaskEndInfo.getId());
@@ -243,7 +262,10 @@ if (#task is initialized) {
 	}
 }
 
-ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), true);' #txt
+in.isTaskFinished = #task is initialized && task.getEndTimestamp() is initialized;
+ivy.session.setAttribute(IS_TASK_FINISHED, in.isTaskFinished);
+ivy.session.setAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString(), in.isTaskStartedInDetails);
+' #txt
 Pt0 f11 security system #txt
 Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -921,6 +943,113 @@ Pt0 f68 @C|.responsibility Everybody #txt
 Pt0 f68 81 1041 30 30 -57 17 #rect
 Pt0 f68 @|StartRequestIcon #fIcon
 Pt0 f69 111 1056 176 1056 #arcP
+Pt0 f71 dialogId ch.ivy.addon.portal.generic.Processes #txt
+Pt0 f71 startMethod start() #txt
+Pt0 f71 requestActionDecl '<> param;' #txt
+Pt0 f71 responseMappingAction 'out=in;
+' #txt
+Pt0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>processes</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f71 192 1130 112 44 -29 -8 #rect
+Pt0 f71 @|UserDialogIcon #fIcon
+Pt0 f72 outLink Error500Page.ivp #txt
+Pt0 f72 inParamDecl '<> param;' #txt
+Pt0 f72 requestEnabled true #txt
+Pt0 f72 triggerEnabled false #txt
+Pt0 f72 callSignature Error500Page() #txt
+Pt0 f72 caseData businessCase.attach=true #txt
+Pt0 f72 showInStartList 0 #txt
+Pt0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Error500Page.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f72 @C|.responsibility Everybody #txt
+Pt0 f72 81 1233 30 30 -44 17 #rect
+Pt0 f72 @|StartRequestIcon #fIcon
+Pt0 f73 outLink Error404Page.ivp #txt
+Pt0 f73 inParamDecl '<> param;' #txt
+Pt0 f73 requestEnabled true #txt
+Pt0 f73 triggerEnabled false #txt
+Pt0 f73 callSignature Error404Page() #txt
+Pt0 f73 caseData businessCase.attach=true #txt
+Pt0 f73 showInStartList 0 #txt
+Pt0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Error404Page.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f73 @C|.responsibility Everybody #txt
+Pt0 f73 81 1329 30 30 -39 17 #rect
+Pt0 f73 @|StartRequestIcon #fIcon
+Pt0 f76 outLink DefaultProcessStartListPage.ivp #txt
+Pt0 f76 inParamDecl '<> param;' #txt
+Pt0 f76 requestEnabled true #txt
+Pt0 f76 triggerEnabled false #txt
+Pt0 f76 callSignature DefaultProcessStartListPage() #txt
+Pt0 f76 persist false #txt
+Pt0 f76 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Pt0 f76 caseData businessCase.attach=true #txt
+Pt0 f76 showInStartList 0 #txt
+Pt0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DefaultProcessStartListPage.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f76 @C|.responsibility Everybody #txt
+Pt0 f76 81 1137 30 30 -60 17 #rect
+Pt0 f76 @|StartRequestIcon #fIcon
+Pt0 f74 dialogId ch.ivy.addon.portal.error.ErrorPage #txt
+Pt0 f74 startMethod start(String) #txt
+Pt0 f74 requestActionDecl '<String errorCode> param;' #txt
+Pt0 f74 requestMappingAction 'param.errorCode="500";
+' #txt
+Pt0 f74 responseMappingAction 'out=in;
+' #txt
+Pt0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ErrorPage</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f74 192 1226 112 44 -27 -8 #rect
+Pt0 f74 @|UserDialogIcon #fIcon
+Pt0 f75 dialogId ch.ivy.addon.portal.error.ErrorPage #txt
+Pt0 f75 startMethod start(String) #txt
+Pt0 f75 requestActionDecl '<String errorCode> param;' #txt
+Pt0 f75 requestMappingAction 'param.errorCode="404";
+' #txt
+Pt0 f75 responseMappingAction 'out=in;
+' #txt
+Pt0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ErrorPage</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f75 192 1322 112 44 -27 -8 #rect
+Pt0 f75 @|UserDialogIcon #fIcon
+Pt0 f77 111 1248 192 1248 #arcP
+Pt0 f78 111 1344 192 1344 #arcP
+Pt0 f79 111 1152 192 1152 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1127,7 +1256,7 @@ Bk0 f8 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Bk0 f8 240 96 448 96 #arcP
 Bk0 f8 0 0.47115384615384615 0 -11 #arcLabel
 Bk0 f2 expr in #txt
-Bk0 f2 outCond 'in.isTaskStartedInDetails && !in.isTaskFinished' #txt
+Bk0 f2 outCond 'in.isTaskStartedInDetails && !in.isTaskFinished && !in.backFromTaskDetails' #txt
 Bk0 f2 230 106 352 192 #arcP
 Bk0 f2 1 288 192 #addKink
 Bk0 f2 0 0.770003174626784 0 0 #arcLabel
@@ -1525,6 +1654,12 @@ Pt0 f62 mainOut f66 tail #connect
 Pt0 f66 head f65 mainIn #connect
 Pt0 f68 mainOut f69 tail #connect
 Pt0 f69 head f67 mainIn #connect
+Pt0 f76 mainOut f79 tail #connect
+Pt0 f79 head f71 mainIn #connect
+Pt0 f72 mainOut f77 tail #connect
+Pt0 f77 head f74 mainIn #connect
+Pt0 f73 mainOut f78 tail #connect
+Pt0 f78 head f75 mainIn #connect
 Bk0 f17 mainOut f26 tail #connect
 Bk0 f26 head f23 mainIn #connect
 Bk0 f19 mainOut f39 tail #connect

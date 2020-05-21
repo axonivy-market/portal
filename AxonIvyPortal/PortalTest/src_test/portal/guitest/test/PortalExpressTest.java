@@ -1,7 +1,7 @@
 package portal.guitest.test;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +12,6 @@ import org.junit.Test;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.DefaultExpresTaskPage;
 import portal.guitest.page.ExpressApprovalPage;
@@ -52,7 +51,6 @@ public class PortalExpressTest extends BaseTest {
 	@Before
 	public void setup() {
 		super.setup();
-		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
 		redirectToRelativeLink("portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp");
 		homePage = new HomePage();
 	}
@@ -71,7 +69,7 @@ public class PortalExpressTest extends BaseTest {
 
 	@Test
 	public void testCreateDocumentElement() {
-		goToCreateExpressProcess();
+	  goToCreateExpressProcess();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(true, true, "Test 1", "Test description");
 
@@ -83,7 +81,6 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.createUploadComponent("Upload");
 		formDefinition.moveAllElementToDragAndDrogPanel();
 		formDefinition.executeWorkflow();
-		Sleeper.sleep(2000);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		Assert.assertTrue(expressTaskPage.isDocumentTableVisible());
 		Assert.assertTrue(expressTaskPage.isDocumentUploadButtonVisible());
@@ -92,7 +89,7 @@ public class PortalExpressTest extends BaseTest {
 
 	@Test
 	public void createFullElementsOfForm() {
-		goToCreateExpressProcess();
+		goToExpressCreationPage();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(true, true, "Test 1", "Test description");
 
@@ -122,7 +119,7 @@ public class PortalExpressTest extends BaseTest {
 
 	@Test
 	public void createFullTaskType() {
-		goToCreateExpressProcess();
+		goToExpressCreationPage();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(true, true, "Test full task type", "Test description");
 
@@ -148,7 +145,7 @@ public class PortalExpressTest extends BaseTest {
 
 	@Test
 	public void testStartFirstTaskIfCreatorIsAssigned() {
-		goToCreateExpressProcess();
+		goToExpressCreationPage();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(true, true, "Test 1 Process for creator",
 				"Test description Process for creator");
@@ -159,16 +156,15 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.createTextInputField("Input Text", INPUT_TEXT_TYPE_INDEX, false);
 		formDefinition.moveAllElementToDragAndDrogPanel();
 		formDefinition.executeWorkflow();
-		Sleeper.sleep(2000);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
 		HomePage home = new HomePage();
-		home.waitForPageLoaded();
+		assertTrue(home.isDisplayed());
 	}
 
 	@Test
 	public void createUserDefaultProcess() {
-		goToCreateExpressProcess();
+		goToExpressCreationPage();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.waitForPageLoaded();
 		expressProcessPage.fillProcessProperties(true, false, "Test create default process", "Test description");
@@ -270,7 +266,7 @@ public class PortalExpressTest extends BaseTest {
 	
 	@Test
 	public void testRejectedApprovalWhenMultiTask() {
-		goToCreateExpressProcess();
+		goToExpressCreationPage();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(false, true, "Test approval", "Test description");
 		expressProcessPage.fillProcessOwners(Arrays.asList(responsible1, groupHr));
@@ -282,18 +278,18 @@ public class PortalExpressTest extends BaseTest {
 
 	@Test
 	public void testComplexProcess() {
-		goToCreateExpressProcess();
+		goToExpressCreationPage();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
 		ExpressFormDefinitionPage formDefinition = configureComplexProcess(expressProcessPage);
-		formDefinition.executeWorkflow();
+		formDefinition.executeWorkflowAndWaitForUserTaskWithEmailDisplay();
 		executeComplexProcess();
 	}
 
 	private void createAdministratedWorkflow(String expressProcessName, List<ExpressResponsible> processOwners,
 			Boolean isMultiApproved) {
 		ExpressFormDefinitionPage formDefinition;
-		goToCreateExpressProcess();
+		goToExpressCreationPage();
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(false, true, expressProcessName, "Test description");
 		expressProcessPage.fillProcessOwners(processOwners);
@@ -385,7 +381,6 @@ public class PortalExpressTest extends BaseTest {
 		expressTaskPage.finish();
 		executeApproval("Approved at first level");
 		executeApproval("Approved at second level");
-		assertEquals(0, new TaskWidgetPage().countTasks());
 		login(TestAccount.ADMIN_USER);
 		executeApproval("Approved at second level");
 		login(TestAccount.DEMO_USER);
@@ -421,7 +416,6 @@ public class PortalExpressTest extends BaseTest {
 
 	protected String executeReview(String taskName) {
 		taskWidgetPage = new TaskWidgetPage();
-		Sleeper.sleep(2000);
 		taskWidgetPage.filterTasksBy(taskName);
 		taskWidgetPage.startTask(0);
 		ExpressReviewPage reviewPage = new ExpressReviewPage();
@@ -441,7 +435,6 @@ public class PortalExpressTest extends BaseTest {
 
 	protected void executeUserTask(String taskName) {
 		taskWidgetPage = new TaskWidgetPage();
-		Sleeper.sleep(2000);
 		taskWidgetPage.filterTasksBy(taskName);
 		taskWidgetPage.startTask(0);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
@@ -458,12 +451,11 @@ public class PortalExpressTest extends BaseTest {
 
 	protected void executeApproval(String comment) {
 		taskWidgetPage = new TaskWidgetPage();
+		taskWidgetPage.filterTasksBy("Task");
 		taskWidgetPage.startTask(0);
 		ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
 		approvalPage1.comment(comment);
 		approvalPage1.approve();
-		HomePage home = new HomePage();
-		home.waitForPageLoaded();
 	}
 
 	protected void rejectApproval(String comment) {
@@ -474,9 +466,14 @@ public class PortalExpressTest extends BaseTest {
 		approvalPage1.reject();
 	}
 
+	protected void goToExpressCreationPage() {
+	  redirectToRelativeLink(expressStartLink);
+	}
+
 	protected void goToCreateExpressProcess() {
 		processWidget = homePage.getProcessWidget();
 		processWidget.expand();
 		processWidget.openExpressPage();
 	}
+	
 }

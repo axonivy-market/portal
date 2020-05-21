@@ -33,7 +33,7 @@ public class StatisticWidgetPage extends TemplatePage {
   
   @Override
   protected long getTimeOutForLocator() {
-    return 300L;
+    return 30L;
   }
 
   public void switchCreateMode() {
@@ -42,19 +42,7 @@ public class StatisticWidgetPage extends TemplatePage {
 
   public void backToDashboard() {
     clickByCssSelector("a[id$='back-from-chart-creation']");
-  }
-  
-  public void waitLastChartCreated() {
-    Awaitility.await().atMost(new Duration(2000, TimeUnit.SECONDS)).until(() -> {
-      try {
-        WebElement lastChart = findElementByCssSelector("div[id$='6:chart-name-container'] .chart-name");
-        return lastChart.getText().contains("Case by finished time chart");
-      } catch (WebDriverException e) {
-        System.out.println("Exception when waiting for element existed, try again.");
-        e.printStackTrace();
-      }
-      return false;
-    });
+    waitForElementDisplayed(By.cssSelector("a[id$='create-chart-link']"), true);
   }
   
   public TaskAnalysisWidgetPage navigateToTaskAnalysisPage() {
@@ -88,7 +76,6 @@ public class StatisticWidgetPage extends TemplatePage {
         return findElementByCssSelector(String.format("div[id$='%d:chart-name-container'] .chart-name", chartIndex)).getText().length()>1;
       } catch (WebDriverException e) {
         System.out.println("Exception when waiting for element existed, try again.");
-        e.printStackTrace();
       }
       return false;
     });
@@ -107,7 +94,6 @@ public class StatisticWidgetPage extends TemplatePage {
         return restoreDefault.getText().contains("Restore default");
       } catch (WebDriverException e) {
         System.out.println("Exception when waiting for element existed, try again.");
-        e.printStackTrace();
       }
       return false;
     });

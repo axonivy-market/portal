@@ -3,7 +3,9 @@ package portal.guitest.page;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 public class AbsencePage extends TemplatePage {
@@ -47,9 +49,17 @@ public class AbsencePage extends TemplatePage {
   
 	public void setDeputy(String fullName) {
 		String usernameSelector = "input[id$='substitute-username_input']";
-		waitForElementDisplayed(By.cssSelector(usernameSelector), true);
+		waitForElementPresent(By.cssSelector(usernameSelector), true);
 		WebElement usernameInput = findElementByCssSelector(usernameSelector);
-		usernameInput.clear();
+		//We have javascript behavior to clear input when the text is No deputy,
+		//so strange behavior when clear this input => need to find it again because DOM is changed in background
+		if(StringUtils.isEmpty(usernameInput.getAttribute("value")) || "No deputy".equals(usernameInput.getAttribute("value"))) {
+		  usernameInput.click();
+		}
+		else {
+		  usernameInput.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
+		}
+		usernameInput = findElementByCssSelector(usernameSelector);
 		usernameInput.sendKeys(fullName);
 		waitAjaxIndicatorDisappear();
 		String itemSelector = "tr[data-item-label*='" + fullName + "']";

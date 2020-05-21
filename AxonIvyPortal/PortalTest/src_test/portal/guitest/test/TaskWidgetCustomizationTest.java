@@ -1,7 +1,7 @@
 package portal.guitest.test;
 
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -41,7 +41,6 @@ public class TaskWidgetCustomizationTest extends BaseTest {
   public void testShowHideCustomColumnsInTaskListPage() {
     MainMenuPage mainMenuPage = new MainMenuPage();
     TaskWidgetPage taskWidgetPage = mainMenuPage.selectTaskMenu();
-    taskWidgetPage.waitAjaxIndicatorDisappear();
     assertFalse(taskWidgetPage.isTaskListColumnExist(STATE_COLUMN_NAME));
     assertTrue(taskWidgetPage.isTaskListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
     assertTrue("Florian".equals(taskWidgetPage.getTaskListCustomCellValue(0, CUSTOMER_NAME_COLUMN_ID)));
@@ -51,14 +50,11 @@ public class TaskWidgetCustomizationTest extends BaseTest {
   public void testSortCustomColumnsInTaskListPage() {
     MainMenuPage mainMenuPage = new MainMenuPage();
     TaskWidgetPage taskWidgetPage = mainMenuPage.selectTaskMenu();
-    taskWidgetPage.waitAjaxIndicatorDisappear();
-    taskWidgetPage.filterTasksInExpendedModeBy("Order");
-    taskWidgetPage.sortTaskListByColumn(CUSTOMER_NAME_COLUMN_HEADER);
-    taskWidgetPage.waitAjaxIndicatorDisappear();
+    taskWidgetPage.filterTasksInExpandedModeBy("Order", 3);
+    taskWidgetPage.sortTaskListByColumn(CUSTOMER_NAME_COLUMN_HEADER, 0, CUSTOMER_NAME_COLUMN_ID, "Florian");
     assertTrue("Florian".equals(taskWidgetPage.getTaskListCustomCellValue(0, CUSTOMER_NAME_COLUMN_ID)));
 
-    taskWidgetPage.sortTaskListByColumn(CUSTOMER_NAME_COLUMN_HEADER);
-    taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertTrue("Florian".equals(taskWidgetPage.getTaskListCustomCellValue(2, CUSTOMER_NAME_COLUMN_ID)));
+    taskWidgetPage.sortTaskListByColumn(CUSTOMER_NAME_COLUMN_HEADER, 0, CUSTOMER_NAME_COLUMN_ID, "Sarah");
+    assertTrue(taskWidgetPage.getTaskListCustomCellValue(2, CUSTOMER_NAME_COLUMN_ID), "Florian".equals(taskWidgetPage.getTaskListCustomCellValue(2, CUSTOMER_NAME_COLUMN_ID)));
   }
 }

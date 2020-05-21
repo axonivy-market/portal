@@ -24,7 +24,6 @@ public class LeaveRequestTest extends BaseTest {
   
   @Test
   public void testLeaveRequestValidation() {
-    login(TestAccount.DEMO_USER);
     leaveRequestPage = startLeaveRequestProcess();
     Assert.assertEquals("Leave type: This field is required"
         + ",From: This field is required,"
@@ -38,7 +37,6 @@ public class LeaveRequestTest extends BaseTest {
  
   @Test
   public void testApproveScenario() {
-    login(TestAccount.DEMO_USER);
     leaveRequestPage = startLeaveRequestProcess();
     Assert.assertEquals("Create leave request", leaveRequestPage.getPageTitle());
     leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", "01.01.2020", "01.02.2020", TestAccount.ADMIN_USER.getFullName(), "requester comment");
@@ -63,7 +61,6 @@ public class LeaveRequestTest extends BaseTest {
   
   @Test
   public void testRejectScenario() {
-    login(TestAccount.DEMO_USER);
     leaveRequestPage = startLeaveRequestProcess();
     Assert.assertEquals("Create leave request", leaveRequestPage.getPageTitle());
     leaveRequestPage.enterLeaveRequestInformation("Maternity Leave", "01.01.2020", "01.02.2020", TestAccount.ADMIN_USER.getFullName(), "requester comment");

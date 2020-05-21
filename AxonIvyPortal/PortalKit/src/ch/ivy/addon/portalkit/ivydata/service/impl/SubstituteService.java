@@ -24,7 +24,6 @@ import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.IRole;
@@ -148,7 +147,7 @@ public class SubstituteService implements ISubstituteService {
     return ivySubstitute;
   }
 
-  private void createSubstitutes(List<IvySubstitute> substitutes, IUser user, IApplication application) throws PersistencyException, EnvironmentNotAvailableException, PortalIvyDataException {
+  private void createSubstitutes(List<IvySubstitute> substitutes, IUser user, IApplication application) throws PersistencyException, PortalIvyDataException {
     for (IvySubstitute ivySubstitute : substitutes) {
       if (ivySubstitute.getSubstituteUser() != null) {
         IUser iUser = ServiceUtilities.findUser(ivySubstitute.getSubstituteUser().getName(), application);

@@ -7,7 +7,6 @@ import java.util.concurrent.Callable;
 import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
-import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.ISubProcessStart;
 import ch.ivyteam.ivy.process.call.SubProcessRunner;
@@ -52,10 +51,6 @@ public class IvyAdapterService {
     try {
       ISecurityManager securityManager = SecurityManagerFactory.getSecurityManager();
       return securityManager.executeAsSystem(callable);
-    } catch (EnvironmentNotAvailableException e) {
-      String message = "Environment not available.";
-      Ivy.log().error(message);
-      throw new ServiceException(message, e);
     } catch (NoSuchFieldException e) {
       String message = "Field not found.";
       Ivy.log().error(message);

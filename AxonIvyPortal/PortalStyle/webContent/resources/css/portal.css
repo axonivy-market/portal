@@ -173,10 +173,6 @@ body .ui-dialog .ui-dialog-titlebar {
     padding: 1rem 2rem 2rem; }
 
 /* Data table */
-body .ui-datatable tbody tr td.ui-editable-column.ui-state-highlight.ui-cell-editing {
-  background-color: var(--ivy-portal-blue-light);
-}
-
 body .ui-datatable tbody tr td.ui-editable-column.ui-state-highlight.ui-cell-editing .ui-inputfield {
   color: var(--ui-input-field-text-color); }
 
@@ -189,11 +185,6 @@ body .ui-datatable tbody tr td.ui-editable-column.ui-state-highlight.ui-cell-edi
 
 body .ui-datatable.ui-datatable-scrollable thead tr th {
   font-size: var(--large-font-size); }
-
-body .ui-datatable thead th.ui-state-highlight {
-  background-color: var(--ivy-portal-blue-light);
-  color: var(--ivy-primary-color-black);
-}
 
 body .ui-datatable thead th.ui-state-active .ui-icon, body .ui-datatable thead th.ui-state-highlight .ui-icon {
 	color: var(--ivy-primary-color-black);
@@ -573,9 +564,6 @@ body .ui-widget.ui-fieldset.process-group.ui-fieldset .ui-fieldset-legend {
 
 .task-priority-exception {
   color: var(--task-exception-high-color); }
-
-.in-progress-task-checkbox .ui-chkbox-label {
-  color: var(--task-in-progress-checkbox-label-color); }
 
 /*Style For Statistic Widget -----------------------------------------------------------------------------*/
 body .statistic-carousel .ui-widget-header.ui-carousel-header {
@@ -1365,12 +1353,9 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   -moz-box-shadow: 0px 2px 4px 0px var(--user-setting-container-box-shadow);
   box-shadow: 0px 2px 4px 0px var(--user-setting-container-box-shadow); }
 
-.user-name-show-environment-info {
-  font-weight: var(--username-show-environment-info-font-weight); }
-
 /* Absences and Debuty -------------------------*/
 .substituted-user-text {
-  color: var(--username-show-environment-info-font-weight); }
+  color: var(--substituted-user-text-color); }
 
 /*Awesome Icon Selection--------------------------*/
 .ui-commandlink.select-awesome-icon-button {
@@ -1716,9 +1701,6 @@ ul.participants-list li {
 
 .user-name {
   font-size: var(--large-font-size); }
-
-.show-environment-info {
-  font-size: 1.1rem; }
 
 .global-search-icon {
   font-size: var(--large-font-size); }

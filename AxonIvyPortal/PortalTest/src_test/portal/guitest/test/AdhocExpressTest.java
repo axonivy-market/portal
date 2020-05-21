@@ -1,6 +1,6 @@
 package portal.guitest.test;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +27,6 @@ public class AdhocExpressTest extends BaseTest {
   public void setup() {
     super.setup();
     redirectToRelativeLink(createTestingTasksUrl);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
   @Test
