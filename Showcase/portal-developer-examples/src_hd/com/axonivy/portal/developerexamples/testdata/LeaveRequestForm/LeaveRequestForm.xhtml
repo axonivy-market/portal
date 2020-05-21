@@ -13,7 +13,7 @@
         <p:focus></p:focus>
         <h:panelGroup styleClass="ui-g">
           <h:panelGrid columns="2" columnClasses="TexAlLeft ui-g-6, ui-g-6" styleClass="ui-g-4 ui-sm-12 ui-fluid">
-            <h:panelGroup class="md-inputfield MarTop10">
+            <h:panelGroup class="md-inputfield MarTop5">
               <p:inputText id="fullname" required="true"
                 requiredMessage="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/IsRequired')}" />
               <p:outputLabel for="fullname"
@@ -21,7 +21,7 @@
             </h:panelGroup>
             <p:message id="fullname-msg" for="fullname" />
   
-            <h:panelGroup class="md-inputfield MarTop20">
+            <h:panelGroup class="md-inputfield MarTop5">
               <p:inputText id="substitute" required="true"
                 requiredMessage="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/IsRequired')}" />
               <p:outputLabel for="substitute"
@@ -29,7 +29,7 @@
             </h:panelGroup>
             <p:message id="substitute-msg" for="substitute" />
   
-            <h:panelGroup class="md-inputfield MarTop20">
+            <h:panelGroup class="md-inputfield MarTop5">
               <p:calendar id="from" value="" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}"
                 required="true"
                 requiredMessage="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/IsRequired')}">
@@ -40,7 +40,7 @@
             </h:panelGroup>
             <p:message id="from-msg" for="from" />
   
-            <h:panelGroup class="md-inputfield MarTop20">
+            <h:panelGroup class="md-inputfield MarTop5">
               <p:calendar id="to" value="" locale="#{localeBean.locale}" pattern="#{dateTimePatternBean.datePattern}"
                 required="true"
                 requiredMessage="#{ivy.cms.co('/Dialogs/ch/ivyteam/ivy/project/portal/examples/testdata/LeaveRequestForm/IsRequired')}">

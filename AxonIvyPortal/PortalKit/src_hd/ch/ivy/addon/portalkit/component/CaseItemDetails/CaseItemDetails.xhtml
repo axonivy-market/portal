@@ -23,7 +23,7 @@
   <c:set var="showItemDetailsHistories" value="#{cc.attrs.showItemDetailsHistories == null ?  true:cc.attrs.showItemDetailsHistories}"/>
   <c:set var="showItemDetailDocuments" value="#{cc.attrs.showItemDetailDocuments == null ? true:cc.attrs.showItemDetailDocuments}"/>
   <c:set var="showItemBackButton" value="#{cc.attrs.showItemBackButton == null ? true:cc.attrs.showItemBackButton}"/>
-  <div class="ui-g">
+  <div class="ui-g widget-details-item">
 
     <h:panelGroup styleClass="ui-g-12" rendered="#{showItemDetailsHeader}" layout="block">
       <h:form id="case-detail-title-form" styleClass="ui-g-12 case-detail-title-header-container">
@@ -93,7 +93,7 @@
                   trackMouse="true" hideEvent="mouseleave click"/>
               </h:panelGroup>
             </div>
-            <div class="Separator ui-g-12 u-padding-0" />
+
             <div class="ui-g-12 u-padding-0">
               <ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
             </div>
