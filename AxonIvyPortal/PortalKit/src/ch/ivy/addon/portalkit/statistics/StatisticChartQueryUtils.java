@@ -444,6 +444,9 @@ public class StatisticChartQueryUtils {
   }
   
   private static void generateCaseQueryForRole(StatisticFilter filter, CaseQuery caseQuery) {
+    if (filter.getIsAllRolesSelected() && PermissionUtils.checkReadAllCasesPermission()) {
+      return;
+    }
     TaskQuery taskQuery = TaskQuery.create();
     generateTaskQueryForRoles(filter, taskQuery);
     caseQuery.where().and().tasks(taskQuery);
@@ -548,8 +551,9 @@ public class StatisticChartQueryUtils {
     taskQuery.where().and().state().isEqual(TaskState.DONE);
     
     //Filter by role which finished task
-    generateTaskQueryForRoles(filter, taskQuery);
-
+    if (!(PermissionUtils.checkReadAllCasesPermission() && filter.getIsAllRolesSelected())) {
+      generateTaskQueryForRoles(filter, taskQuery);
+    }
     // Filter by task priority
     generateTaskQueryForTaskPriority(filter, taskQuery);
     
