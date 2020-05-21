@@ -1,7 +1,8 @@
 package portal.guitest.test;
 
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertTrue;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
@@ -13,11 +14,15 @@ import portal.guitest.page.LoginPage;
 
 public class PasswordChangeTest extends BaseTest {
 
+  
+  @Override
+  @Before
+  public void setup() {
+    setupWithAlternativeLinkAndAccount("portalKitTestHelper/153CACC26D0D4C3D/createTestUser.ivp", TestAccount.TEST_CHANGE_PASSWORD_USER);
+  }
+  
   @Test
   public void passwordChangeTest() {
-    redirectToRelativeLink("portalKitTestHelper/153CACC26D0D4C3D/createTestUser.ivp");
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-    login(TestAccount.TEST_CHANGE_PASSWORD_USER);
     HomePage homePage = new HomePage();
 
     String newPassword = "abc";

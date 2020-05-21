@@ -4,20 +4,20 @@ import static ch.ivyteam.ivy.security.IPermission.CASE_DESTROY;
 import static ch.ivyteam.ivy.security.IPermission.CASE_READ_ALL;
 import static ch.ivyteam.ivy.security.IPermission.CASE_WRITE_DESCRIPTION;
 import static ch.ivyteam.ivy.security.IPermission.CASE_WRITE_NAME;
+import static ch.ivyteam.ivy.security.IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE;
 import static ch.ivyteam.ivy.security.IPermission.TASK_PARK_OWN_WORKING_TASK;
 import static ch.ivyteam.ivy.security.IPermission.TASK_READ_ALL;
 import static ch.ivyteam.ivy.security.IPermission.TASK_RESET_OWN_WORKING_TASK;
 import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_ACTIVATOR;
 import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_DESCRIPTION;
+import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_EXPIRY_TIMESTAMP;
 import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_NAME;
 import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_ORIGINAL_PRIORITY;
-import static ch.ivyteam.ivy.security.IPermission.TASK_WRITE_EXPIRY_TIMESTAMP;
 import static ch.ivyteam.ivy.security.IPermission.USER_CREATE_ABSENCE;
 import static ch.ivyteam.ivy.security.IPermission.USER_CREATE_SUBSTITUTE;
 import static ch.ivyteam.ivy.security.IPermission.USER_DELETE_ABSENCE;
 import static ch.ivyteam.ivy.security.IPermission.USER_READ_ABSENCES;
 import static ch.ivyteam.ivy.security.IPermission.USER_READ_SUBSTITUTES;
-import static ch.ivyteam.ivy.security.IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +25,6 @@ import java.util.concurrent.Callable;
 import java.util.stream.Collectors;
 
 import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.environment.EnvironmentNotAvailableException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.IPermission;
@@ -72,7 +71,7 @@ public class SecurityUtils {
   
   DOCUMENT_OF_INVOLVED_CASE_WRITE,
   
-  IPermissionRepository.get().findByName("ShowCaseDetails")
+  IPermissionRepository.instance().findByName("ShowCaseDetails")
   };
   private static final IPermission DEMO_DENIED_PERMISSIONS[] = {
 
@@ -102,12 +101,10 @@ public class SecurityUtils {
    * @param rolename user
    * @return true - user has the given role (direct or indirect) <br>
    *         false - user does not have to given role
-   * @throws EnvironmentNotAvailableException user
    * @throws PersistencyException user
    * @throws Exception user
    */
-  public static boolean hasRole(final IUser user, final String rolename) throws EnvironmentNotAvailableException,
-      PersistencyException, Exception {
+  public static boolean hasRole(final IUser user, final String rolename) throws PersistencyException, Exception {
     // return Ivy.wf().getSecurityContext().executeAsSystemUser(
     return ServerFactory.getServer().getSecurityManager().executeAsSystem( // this is faster because
                                                                            // no additional
@@ -157,11 +154,9 @@ public class SecurityUtils {
    * @param rolename user
    * @return true - session user has the given role (direct or indirect) <br>
    *         false - session user does not have to given role
-   * @throws EnvironmentNotAvailableException user
    * @throws Exception Exception
    */
-  public static boolean hasRole(final IWorkflowSession session, final String rolename)
-      throws EnvironmentNotAvailableException, Exception {
+  public static boolean hasRole(final IWorkflowSession session, final String rolename) throws Exception {
     // return Ivy.wf().getSecurityContext().executeAsSystemUser(
     return ServerFactory.getServer().getSecurityManager().executeAsSystem( // this is faster because
                                                                            // no additional

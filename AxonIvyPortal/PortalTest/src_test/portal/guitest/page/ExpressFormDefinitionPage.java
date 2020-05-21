@@ -9,7 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 
-import portal.guitest.common.Sleeper;
 import vn.wawa.guitest.base.client.Browser;
 
 public class ExpressFormDefinitionPage extends TemplatePage {
@@ -19,7 +18,7 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 	private static final String RIGHT_POSITION = "rightpanel";
 	private static final String HEADER_POSITION = "header";
 	private static final String FOOTER_POSITION = "footer";
-	private static final String[] POSITIONS = {LEFT_POSITION, RIGHT_POSITION, HEADER_POSITION, FOOTER_POSITION};
+	private static final String[] POSITIONS = {LEFT_POSITION, HEADER_POSITION, FOOTER_POSITION};
 
 	@Override
 	protected String getLoadedLocator() {
@@ -42,7 +41,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 	public void createTextAreaField(String label, boolean isRequired) {
 		click(By.xpath("//*[@id='form:create-tabs']/ul/li[2]"));
 		ensureNoBackgroundRequest();
-		Sleeper.sleep(3000);
 		waitForElementDisplayed(By.id("form:create-tabs:create-input-area-tab"), true, TIME_OUT);
 		type(By.id("form:create-tabs:input-area-label"), label);
 		if (isRequired) {
@@ -56,11 +54,9 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 	public void createCheckboxField(String label, int numberOfSelection) {
 		click(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"));
 		ensureNoBackgroundRequest();
-		Sleeper.sleep(3000);
 		waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-options"), true, TIME_OUT);
 		type(By.id("form:create-tabs:many-checkbox-label"), label);
 		addCheckboxOptions(numberOfSelection);
-		Sleeper.sleep(1000);
 		click(By.id("form:create-tabs:add-checkbox-btn"));
 		waitAjaxIndicatorDisappear();
 		ensureNoBackgroundRequest();
@@ -69,15 +65,12 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 	public void createCheckboxFieldWithDataProvider(String label) {
 		click(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"));
 		ensureNoBackgroundRequest();
-		Sleeper.sleep(3000);
 		waitForElementDisplayed(By.id("form:create-tabs:create-many-checkbox-tab"), true, TIME_OUT);
 		click(By.id("form:create-tabs:DataProvider_label"));
-		Sleeper.sleep(1000);
 		click(By.xpath("//*[@data-label='TestDataProviderForPortalExpress']"));
 		waitAjaxIndicatorDisappear();
 		waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-label"), true, TIME_OUT);
 		type(By.id("form:create-tabs:many-checkbox-label"), label);
-		Sleeper.sleep(1000);
 		click(By.id("form:create-tabs:add-checkbox-btn"));
 		waitAjaxIndicatorDisappear();
 		ensureNoBackgroundRequest();
@@ -86,10 +79,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 	public void createRadioButtonField(String label, int numberOfOption) {
 		click(By.xpath("//*[@id='form:create-tabs']/ul/li[4]"));
 		ensureNoBackgroundRequest();
-		Sleeper.sleep(3000);
 		waitForElementDisplayed(By.id("form:create-tabs:one-radio-label"), true, TIME_OUT);
 		type(By.id("form:create-tabs:one-radio-label"), label);
-		Sleeper.sleep(2000);
 		addRadioOptions(numberOfOption);
 		click(By.id("form:create-tabs:add-radio-btn"));
 		waitAjaxIndicatorDisappear();
@@ -99,7 +90,6 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 	public void createUploadComponent(String label) {
 		click(By.xpath("//*[@id='form:create-tabs']/ul/li[5]"));
 		ensureNoBackgroundRequest();
-		Sleeper.sleep(3000);
 		waitForElementDisplayed(By.id("form:create-tabs:create-file-upload-tab"), true, TIME_OUT);
 		type(By.id("form:create-tabs:file-upload-label"), label);
 		click(By.id("form:create-tabs:add-upload-file-btn"));
@@ -132,8 +122,15 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 
 	public void moveAllElementToDragAndDrogPanel() {
 		int size = driver.findElements(By.xpath("//div[@id='form:available-form-elements_content']/table/tbody/tr")).size();
-		for (int i = size - 1; i >= 0; i--) {
-			moveFormElementToPanel(i, getRandomPosition());
+		int startIndex = size - 1;
+		for (int i = startIndex; i >= 0; i--) {
+		  if(i == startIndex) {
+		    moveFormElementToPanel(i, RIGHT_POSITION);
+		  }
+		  else {
+		    moveFormElementToPanel(i, getRandomPosition());
+		  }
+		
 		}
 	}
 
@@ -144,11 +141,12 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 			position = FOOTER_POSITION;
 		}
 		waitForElementDisplayed(By.id(String.format("form:selected-form-elements-%s-panel", position)), true);
+		//this click to fix bug can't drag on IE
+		formElement.click();
 		WebElement panel = findElementById(String.format("form:selected-form-elements-%s-panel", position));
 		Actions builder = new Actions(driver);
 		Action moveProcessSequence = builder.dragAndDrop(formElement, panel).build();
-//				builder.clickAndHold(formElement).moveByOffset(-1, -1).moveToElement(panel).release(formElement).build();
-		moveProcessSequence.perform();
+	  	moveProcessSequence.perform();
 		waitAjaxIndicatorDisappear();
 	}
 
@@ -186,7 +184,12 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 
 	public void executeWorkflow() {
 		click(By.id("execute-button"));
-		waitAjaxIndicatorDisappear();
+		waitForElementDisplayed(By.id("form:dynaform-fieldset"), true);
+	}
+	
+	public void executeWorkflowAndWaitForUserTaskWithEmailDisplay() {
+	  click(By.id("execute-button"));
+    waitForElementDisplayed(By.id("task-form:task-view:dyna-form-fieldset"), true);
 	}
 
 	public void nextStep() {

@@ -1,6 +1,6 @@
 package portal.guitest.test;
 
-import static junit.framework.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDate;
@@ -22,10 +22,7 @@ public class AbsenceTest extends BaseTest {
   @Override
   @Before
   public void setup() {
-    super.setup();
-    redirectToRelativeLink("portalKitTestHelper/1511A66AF619A768/cleanAbsences.ivp");
-
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    super.setupWithAlternativeLinkAndAccount("portalKitTestHelper/1511A66AF619A768/cleanAbsencesAndSubstitues.ivp", TestAccount.DEMO_USER);
   }
 
   @Test
@@ -79,11 +76,11 @@ public class AbsenceTest extends BaseTest {
   public void testDeputyAsAdminUser() {
     login(TestAccount.ADMIN_USER);
     AbsencePage absencePage = openAbsencePage();
-    absencePage.setSubstitutedByAdmin("Portal Demo User");
+    absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     absencePage.setDeputy("caseOwnerUser");
     absencePage.saveSubstitute();
     absencePage.openAbsencePage();
-    absencePage.setSubstitutedByAdmin("Portal Demo User");
+    absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     assertEquals("caseOwnerUser", absencePage.getMyDeputy());
   }
 
@@ -93,7 +90,7 @@ public class AbsenceTest extends BaseTest {
     AbsencePage absencePage = openAbsencePage();
     createAbsenceForCurrentUser(TOMORROW, TOMORROW, "For Family", absencePage);
 
-    absencePage.setDeputy("Demo");
+    absencePage.setDeputy(TestAccount.DEMO_USER.getFullName());
     absencePage.saveSubstitute();
     login(TestAccount.DEMO_USER);
     absencePage.openAbsencePage();

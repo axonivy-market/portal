@@ -34,7 +34,7 @@ public class PermissionUtils {
     return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
         ch.ivyteam.ivy.security.IPermission.TASK_READ_ALL);
   }
-
+  
   /**
    * Check if current user has read all cases permission
    * 
@@ -134,7 +134,7 @@ public class PermissionUtils {
    * @return true : portal permission is grated, otherwise false
    */
   public static boolean hasPortalPermission(PortalPermission portalPermission) {
-    IPermission iPermission = IPermissionRepository.get().findByName(portalPermission.getValue());
+    IPermission iPermission = IPermissionRepository.instance().findByName(portalPermission.getValue());
     if (Objects.isNull(iPermission)) {
       return false;
     }

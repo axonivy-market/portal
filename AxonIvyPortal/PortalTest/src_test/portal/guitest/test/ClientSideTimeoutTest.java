@@ -1,7 +1,8 @@
 package portal.guitest.test;
 
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertTrue;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,8 +16,7 @@ public class ClientSideTimeoutTest extends BaseTest {
   @Override
   @Before
   public void setup() {
-    super.setup();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    setupWithAlternativeLinkAndAccount(HomePage.PORTAL_HOME_PAGE_URL, TestAccount.ADMIN_USER);
   }
   
   @Test
@@ -32,12 +32,16 @@ public class ClientSideTimeoutTest extends BaseTest {
   }
   
   private AdminSettingsPage setupClientSideTimeout2Minutes() {
-    login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
     AdminSettingsPage adminSettingPage = homePage.openAdminSettings();
     adminSettingPage.setClientSideTimeout("2");
     refreshPage();
     return adminSettingPage;
+  }
+  
+  @After
+  public void cleanupSettingAfterTest() {
+    redirectToRelativeLink(cleanupDataLink);
   }
   
 }

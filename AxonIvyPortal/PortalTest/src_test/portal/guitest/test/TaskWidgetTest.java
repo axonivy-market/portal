@@ -1,8 +1,8 @@
 package portal.guitest.test;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -18,7 +18,6 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
-import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
@@ -26,6 +25,7 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class TaskWidgetTest extends BaseTest {
 
+  private static final String DISABLE_TASK_COUNT_SETTING = "DISABLE_TASK_COUNT";
   private static final String GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =
       "portalKitTestHelper/14DE09882B540AD5/grantOnlyDelegateOwnTasksPermission.ivp";
   private static final String DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =
@@ -38,7 +38,6 @@ public class TaskWidgetTest extends BaseTest {
   public void setup() {
     super.setup();
     createTestingTasks();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
   @Test
@@ -63,16 +62,6 @@ public class TaskWidgetTest extends BaseTest {
 
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
     assertEquals("Tasks", taskWidgetPage.getPageTitle());
-  }
-
-  @Test
-  public void testTasksInPortalHomePageUpdatedAfterExpandToFullMode() {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    assertEquals(3, taskWidgetPage.countTasks());
-
-    taskWidgetPage.createTestingTasksInNewWindow();
-    taskWidgetPage.expand();
-    assertEquals(6, taskWidgetPage.countTasks());
   }
 
   @Test
@@ -123,9 +112,9 @@ public class TaskWidgetTest extends BaseTest {
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.expand();
-    taskWidgetPage.filterTasksInExpendedModeBy("Annual Leave Request");
+    taskWidgetPage.filterTasksInExpandedModeBy("Annual Leave Request");
     Assert.assertFalse(taskWidgetPage.isTaskStartEnabled(0));
-    taskWidgetPage.filterTasksInExpendedModeBy("Sick Leave Request");
+    taskWidgetPage.filterTasksInExpandedModeBy("Sick Leave Request");
     Awaitility.waitAtMost(5, TimeUnit.SECONDS).until(() -> taskWidgetPage.isTaskStartEnabled(0));
   }
 
@@ -146,7 +135,7 @@ public class TaskWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.openTaskList();
+    taskWidgetPage.expand();
     taskWidgetPage.openTaskDetails(0);
     assertEquals("OtherLeave/Maternity", taskWidgetPage.getTaskCategory());
     assertEquals("LeaveRequest", taskWidgetPage.getCaseCategory());
@@ -156,30 +145,33 @@ public class TaskWidgetTest extends BaseTest {
   public void testShowTaskCount() { 
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.waitUntilTaskCountDifferentThanZero();
     assertEquals("In Dashboard, Task Count != 3", 3, taskWidgetPage.getTaskCount().intValue());
-    taskWidgetPage.openTaskList();
+    taskWidgetPage.expand();
+    taskWidgetPage.waitUntilTaskCountDifferentThanZero();
     assertEquals("In Task list, Task Count != 3", 3, taskWidgetPage.getTaskCount().intValue());
   }
   
   @Test
   public void testDisableTaskCount() {
+    updatePortalSetting(DISABLE_TASK_COUNT_SETTING, "true");
     login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
-    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
-    adminSettingsPage.setDisabledTaskCount();
 
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.openTaskList();
-    assertEquals("In Task list, Task Count is not disabled", null, taskWidgetPage.getTaskCount());
+    assertEquals("In HomePage, Task Count is disabled", null, taskWidgetPage.getTaskCount());
+    taskWidgetPage.expand();
+    assertEquals("In Task list, Task Count is disabled", null, taskWidgetPage.getTaskCount());
   }
 
   @Test
   public void testBreadCrumb() {
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.openTaskList();
+    taskWidgetPage.expand();
     assertEquals("Tasks", taskWidgetPage.getTextOfCurrentBreadcrumb());
     taskWidgetPage.clickHomeBreadcrumb();
+    homePage = new HomePage();
     assertEquals(true, homePage.isDisplayed());
   }
 
@@ -187,7 +179,7 @@ public class TaskWidgetTest extends BaseTest {
   public void testBreadCrumbInTaskDetail() {
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.openTaskList();
+    taskWidgetPage.expand();
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
     assertEquals("Task: Maternity Leave Request", taskDetailsPage.getTextOfCurrentBreadcrumb());
 

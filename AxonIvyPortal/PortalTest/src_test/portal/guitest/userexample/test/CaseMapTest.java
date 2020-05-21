@@ -5,9 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
-import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.userexamples.page.CaseMapPage;
 import portal.guitest.userexamples.page.UserExamplesEndPage;
@@ -27,40 +25,33 @@ public class CaseMapTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
   @Test
   public void testCaseMapApprovalWorkflow() {
-    login(TestAccount.DEMO_USER);
     redirectToRelativeLink(CASE_MAP_URL);
     caseMapPage = new CaseMapPage();
     caseMapPage.inputFields("John", "Jack", "1.1.2019", "VN", "20000", "To buy a new car", "80000", "100000");
     caseMapPage.clickSubmitRequestButton();
-    login(TestAccount.DEMO_USER);
     startTaskByTaskName(VERIFY_PERSONAL_DATA);
     assertInputData();
     caseMapPage.inputVerifierComment("Ok");
     caseMapPage.clickSubmitButton();
-    login(TestAccount.DEMO_USER);
     startTaskByTaskName(INTERNAL_SOLVENCY_CHECK);
     assertInputData();
     Assert.assertEquals("Ok", caseMapPage.getVerifierComment());
     caseMapPage.inputInternalCreditComment("Pass");
     caseMapPage.clickSubmitButton();
-    login(TestAccount.DEMO_USER);
     startTaskByTaskName(APPROVAL_LEVEL_1);
     assertInputData();
     Assert.assertEquals("Ok", caseMapPage.getVerifierComment());
     Assert.assertEquals("Pass", caseMapPage.getInternalCreditComment());
     caseMapPage.clickApproveButton();
-    login(TestAccount.DEMO_USER);
     startTaskByTaskName(APPROVAL_LEVEL_2);
     assertInputData();
     Assert.assertEquals("Ok", caseMapPage.getVerifierComment());
     Assert.assertEquals("Pass", caseMapPage.getInternalCreditComment());
     caseMapPage.clickApproveButton();
-    login(TestAccount.DEMO_USER);
     startTaskByTaskName(CREATE_CONTRACT);
     assertInputData();
     UserExamplesEndPage userExamplesEndPage = caseMapPage.clickSubmitContractButton();
@@ -70,30 +61,26 @@ public class CaseMapTest extends BaseTest {
 
   @Test
   public void testCaseMapRejectedWorkflow() {
-    login(TestAccount.DEMO_USER);
     redirectToRelativeLink(CASE_MAP_URL);
     caseMapPage = new CaseMapPage();
     caseMapPage.inputFields("John", "Jack", "1.1.2019", "VN", "20000", "To buy a new car", "80000", "100000");
     caseMapPage.clickSubmitRequestButton();
-    login(TestAccount.DEMO_USER);
     startTaskByTaskName(VERIFY_PERSONAL_DATA);
     assertInputData();
     caseMapPage.inputVerifierComment("Ok");
     caseMapPage.clickSubmitButton();
-    login(TestAccount.DEMO_USER);
     startTaskByTaskName(INTERNAL_SOLVENCY_CHECK);
     assertInputData();
     Assert.assertEquals("Ok", caseMapPage.getVerifierComment());
     caseMapPage.inputInternalCreditComment("Fail");
     caseMapPage.clickSubmitButton();
-    login(TestAccount.DEMO_USER);
     startTaskByTaskName(APPROVAL_LEVEL_1);
     assertInputData();
     Assert.assertEquals("Ok", caseMapPage.getVerifierComment());
     Assert.assertEquals("Fail", caseMapPage.getInternalCreditComment());
     caseMapPage.clickRejectButton();
     taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy(APPROVAL_LEVEL_2);
+    taskWidgetPage.filterTasksBy(APPROVAL_LEVEL_2, 0);
     Assert.assertEquals(0, taskWidgetPage.countTasks());
   }
 
@@ -109,7 +96,6 @@ public class CaseMapTest extends BaseTest {
 
   @Test
   public void testCollectPersonalDataValidation() {
-    login(TestAccount.DEMO_USER);
     redirectToRelativeLink(CASE_MAP_URL);
     caseMapPage = new CaseMapPage();
     caseMapPage.inputFields("", "", "", "", "", "", "", "");

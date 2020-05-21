@@ -1,7 +1,7 @@
 package portal.guitest.test;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static portal.guitest.page.StatisticWidgetPage.CASE_BY_FINISHED_TASK_CHART_NAME;
 import static portal.guitest.page.StatisticWidgetPage.CASE_BY_FINISHED_TIME_CHART_NAME;
 import static portal.guitest.page.StatisticWidgetPage.CASE_BY_STATE_CHART_NAME;
@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
@@ -32,10 +33,9 @@ public class StatisticWidgetTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
+    Sleeper.sleep(2000); // To make Firefox test more stable, make business data updated correctly
     redirectToRelativeLink(createTestingTasksUrl);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     login(TestAccount.ADMIN_USER);
-
     homePage = new HomePage();
   }
 
@@ -44,7 +44,6 @@ public class StatisticWidgetTest extends BaseTest {
     grantPermissionToCreateChart();
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    Sleeper.sleep(2000);
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     assertTrue(statisticWidgetPage.isFullMode());
   }
@@ -55,7 +54,6 @@ public class StatisticWidgetTest extends BaseTest {
     redirectToRelativeLink(denyPortalPermissionsURL);
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    Sleeper.sleep(40000);
     assertEquals(false, statisticWidgetPage.hasCreateChartsLink());
     String grantAllPermissionsForAdminUserURL = "portalKitTestHelper/14DE09882B540AD5/grantPortalPermission.ivp";
     redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
@@ -69,7 +67,6 @@ public class StatisticWidgetTest extends BaseTest {
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
     statisticWidgetPage.switchCreateMode();
     
-    Sleeper.sleep(20000);
     statisticWidgetPage.createTaskByPriorityChart();
     statisticWidgetPage.createTaskByExpiryChart();
     statisticWidgetPage.createCaseByStateChart();
@@ -78,7 +75,6 @@ public class StatisticWidgetTest extends BaseTest {
     statisticWidgetPage.createCaseByFinishTime();
 
     statisticWidgetPage.backToDashboard();
-    statisticWidgetPage.waitLastChartCreated();
     statisticWidgetPage.waitForElementDisplayed(By.cssSelector("div[id$='6:chart-name-container'] .chart-name"), true);
     WebElement taskByPriorityDefaultChartName
     = statisticWidgetPage.findElementByCssSelector("div[id$='0:chart-name-container'] .chart-name");
@@ -116,6 +112,7 @@ public class StatisticWidgetTest extends BaseTest {
     assertEquals("Statistics", statisticWidgetPage.getTextOfCurrentBreadcrumb());
 
     statisticWidgetPage.clickHomeBreadcrumb();
+    homePage = new HomePage();
     assertEquals(true, homePage.isDisplayed());
   }
 

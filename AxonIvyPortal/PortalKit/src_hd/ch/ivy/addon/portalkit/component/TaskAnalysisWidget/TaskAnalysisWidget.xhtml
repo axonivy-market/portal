@@ -128,12 +128,6 @@
                     <f:selectItems value="#{data.dataModel.taskFilters}" var="filter" itemLabel="#{filter.label()}"
                       itemValue="#{filter}" />
                   </p:selectManyCheckbox>
-                  <p:selectBooleanCheckbox id="task-in-progress-checkbox" styleClass="in-progress-task-checkbox"
-                    rendered="#{!data.dataModel.hasReadAllTasksPermisson()}" value="#{data.dataModel.inProgressFilterDisplayed}"
-                    itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskState/RESUMED')}">
-                  </p:selectBooleanCheckbox>
-                  <p:tooltip for="task-in-progress-checkbox" trackMouse="true"
-                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/DisplayTaskStartedByOtherUsersTooltip')}" />
                 </p:scrollPanel>
 
                 <h:panelGroup id="add-task-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer">
