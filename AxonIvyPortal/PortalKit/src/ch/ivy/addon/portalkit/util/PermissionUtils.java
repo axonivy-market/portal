@@ -134,7 +134,7 @@ public class PermissionUtils {
    * @return true : portal permission is grated, otherwise false
    */
   public static boolean hasPortalPermission(PortalPermission portalPermission) {
-    IPermission iPermission = IPermissionRepository.get().findByName(portalPermission.getValue());
+    IPermission iPermission = IPermissionRepository.instance().findByName(portalPermission.getValue());
     if (Objects.isNull(iPermission)) {
       return false;
     }
