@@ -159,6 +159,8 @@ Migrate 8.x to 9.1
 
 5. HOMEPAGE_URL (single Portal app mode) and registered application link (multi Portal app mode) are not available anymore. To let portal know about your new portal home, you have to set default pages to your project, follow this chapter to customize standard processes: `Standard Processes <https://developer.axonivy.com/doc/latest/engine-guide/administration/standard-processes.html>`_
 
+6. Portal now use |css_variable| instead of SASS. Therefore you must convert SASS syntax to new CSS variable or use online tool such as |css_variable_convert| to convert it.
+
 Migrate 8.0.1 to 8.0.2
 ----------------------
 
@@ -470,6 +472,8 @@ Changes in 9.1
 -  User Selection Component is introduced, refer to :ref:`User 
    Selection <components-additional-components-user-selection>` for more details.
 
+- Refactor style customization approach. From now on, Portal use CSS Variable as technology to customize CSS.
+
 Changes in 8.0
 --------------
 
@@ -660,3 +664,9 @@ Changes in 6.0 (Säntis)
 
 .. |copy-start-process| image:: images/installation/copy-start-process.png
 .. |server-address-settings| image:: images/installation/server-address-settings.png
+.. |css_variable| raw:: html
+
+   <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties" target="_blank">CSS Variable</a>
+.. |css_variable_convert| raw:: html
+
+   <a href="https://www.npmjs.com/package/sass-to-css-variables" target="_blank">SASS to CSS Variables</a>
