@@ -83,12 +83,16 @@ public class CaseService implements ICaseService {
   }
   
   private CaseQuery queryForUsers(String involvedUsername, List<String> apps) {
+    boolean isCaseOwnerEnabled = isCaseOwnerEnabled();
     CaseQuery caseQuery = CaseQuery.businessCases();
-    if (isCaseOwnerEnabled()) {
-      apps.forEach(app -> caseQuery.where().or().userIsInvolved(involvedUsername, app).or().isOwner("#" + involvedUsername, app));
-    } else {
-      apps.forEach(app -> caseQuery.where().or().userIsInvolved(involvedUsername, app));
-    }
+    apps.forEach(app -> {
+      caseQuery.where().or().userIsInvolved(involvedUsername, app);
+      if (isCaseOwnerEnabled) {
+        caseQuery.where().or().isOwner("#" + involvedUsername, app);
+      }
+    });
+    
+    
     return caseQuery;
   }
 

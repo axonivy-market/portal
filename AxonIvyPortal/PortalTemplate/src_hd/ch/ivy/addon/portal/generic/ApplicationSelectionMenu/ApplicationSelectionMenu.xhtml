@@ -32,7 +32,7 @@
   </div>
 
   <!-- APPLICATION MENU -->
-  <h:panelGroup id="main-navigator-container" layout="block" styleClass="nano #{showMainArea eq true ? '' : 'u-invisibility'}">
+  <h:panelGroup id="main-navigator-container" layout="block" styleClass="nano">
     <div id="#{cc.clientId}" class="nano-content sidebar-scroll-content">
       <div class="layout-menu-container">
         <div class="ui-xl-hidden ui-lg-hidden mobile-global-search-container">
@@ -78,11 +78,9 @@
                     value="#{(fn:contains(subMenuItem.link, '.ivp?') or fn:endsWith(subMenuItem.link, '.ivp') or fn:endsWith(subMenuItem.link, '.icm')) or subMenuItem.link eq NULL}" />
 
                   <p:menuitem id="menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}" 
-                    rendered="#{isThirdPartyApp and isIvyLink}" actionListener="#{logic.onClickSubMenuItem}" value="#{subMenuItem.label}"
+                    rendered="#{isThirdPartyApp and isIvyLink}" actionListener="#{logic.onClickSubMenuItem(subMenuItem,task)}" value="#{subMenuItem.label}"
                     icon="#{subMenuItem.icon}" iconPos="right" styleClass="submenu #{subMenuItem.menuKind}" update="main-menu" process="main-menu"
                     containerStyleClass="submenu-container #{firstSubItem} #{lastSubItem}" global="false">
-                    <f:attribute name="selectedSubMenuItem" value="#{subMenuItem}" />
-                    <f:attribute name="task" value="#{task}" />
                   </p:menuitem>
 
                   <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}"
@@ -97,13 +95,13 @@
             </c:forEach>
           </ps:menu>
 
-        <!-- Remote commands for breadcrumb -->
-        <p:remoteCommand name="navigateToTaskListFromBreadcrumb"
-          actionListener="#{data.setDestinationBreadcrumbPage('TASK')}"
-          oncomplete="PF('task-losing-confirmation-dialog').show();" />
-        <p:remoteCommand name="navigateToHomeFromBreadcrumb"
-          actionListener="#{data.setDestinationBreadcrumbPage('HOME')}"
-          oncomplete="PF('task-losing-confirmation-dialog').show();" />
+	        <!-- Remote commands for breadcrumb -->
+	        <p:remoteCommand name="navigateToTaskListFromBreadcrumb"
+	          actionListener="#{data.setDestinationBreadcrumbPage('TASK')}"
+	          oncomplete="PF('task-losing-confirmation-dialog').show();" />
+	        <p:remoteCommand name="navigateToHomeFromBreadcrumb"
+	          actionListener="#{data.setDestinationBreadcrumbPage('HOME')}"
+	          oncomplete="PF('task-losing-confirmation-dialog').show();" />
         </h:form>
       </div>
     </div>
@@ -127,8 +125,8 @@
           styleClass="ui-confirmdialog-yes u-mar-right-5" rendered="#{task.state != 'CREATED'}" />
         <p:tooltip for="reserve-task-button" trackMouse="true" rendered="#{task.state != 'CREATED'}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leaveAndReserve')}" />
-        <p:commandButton onclick="PF('task-losing-confirmation-dialog').hide();"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
+        <p:commandButton onclick="PF('task-losing-confirmation-dialog').hide();" actionListener="#{logic.continueWorkingOnTask}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this" update="@none"
           styleClass="ui-confirmdialog-no portal-cancel-button" />
       </h:panelGroup>
     </h:form>

@@ -1,6 +1,6 @@
 package portal.guitest.test;
 
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 
@@ -12,16 +12,15 @@ import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
-import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.ChatPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
-@SuppressWarnings("restriction")
 public class ChatTest extends BaseTest {
-	private AdminSettingsPage adminSettingsPage;
-	private static final String CHAT_MESSAGE_USER_DEMO = "Hi i'm demo user";
+	private static final String ENABLE_PRIVATE_CHAT_SETTING = "ENABLE_PRIVATE_CHAT";
+  private static final String ENABLE_GROUP_CHAT_SETTING = "ENABLE_GROUP_CHAT";
+  private static final String CHAT_MESSAGE_USER_DEMO = "Hi i'm demo user";
 	private static final String CHAT_MESSAGE_USER_ADMIN = "Hi i'm admin user";
 	ExpressResponsible chatUser1 = new ExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
 	ExpressResponsible chatGroup1 = new ExpressResponsible("Human resources department", true);
@@ -31,7 +30,6 @@ public class ChatTest extends BaseTest {
 	@Before
 	public void setup() {
 		super.setup();
-		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
 	}
 
 	@Test
@@ -162,17 +160,15 @@ public class ChatTest extends BaseTest {
 	}
 
 	private ChatPage enableChatGroup() {
+	  updatePortalSetting(ENABLE_GROUP_CHAT_SETTING, "true");
 	  login(TestAccount.ADMIN_USER);
-		adminSettingsPage = new HomePage().openAdminSettings();
-		adminSettingsPage.setChatGroup();
 		return new ChatPage();
 	}
 
 	private ChatPage enableChatPrivate() {
+	  updatePortalSetting(ENABLE_PRIVATE_CHAT_SETTING, "true");
 	  login(TestAccount.ADMIN_USER);
-		adminSettingsPage = new HomePage().openAdminSettings();
-		adminSettingsPage.setChatPrivate();
-		new HomePage().getChat();
+	  new HomePage().getChat();
 		return new ChatPage();
 	}
 	

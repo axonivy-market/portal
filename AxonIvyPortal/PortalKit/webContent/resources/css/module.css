@@ -257,14 +257,6 @@
   display: flex;
 }
 
-.task-widget .in-progress-task-checkbox, .case-widget-container .in-progress-task-checkbox {
-  padding-left: 2.4px;
-}
-
-_:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-widget-container .in-progress-task-checkbox {
-  margin-left: .1rem;
-}
-
 .task-widget .advanced-filter-container .additional-filter-container,
 .case-widget-container .advanced-filter-container .additional-filter-container {
   display: flex;
@@ -2487,7 +2479,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 /******************************** PROJECT INFO DIALOG ******************************/
 .project-info-dialog {
-  max-width: 800px;
+  max-width: 1000px;
 }
 
 @media screen and (max-width: 40em) {

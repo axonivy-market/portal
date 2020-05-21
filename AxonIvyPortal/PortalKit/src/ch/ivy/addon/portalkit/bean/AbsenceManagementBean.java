@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.bean;
 
 import static ch.ivyteam.ivy.security.IPermission.USER_CREATE_ABSENCE;
 import static ch.ivyteam.ivy.security.IPermission.USER_CREATE_OWN_ABSENCE;
-import static ch.ivyteam.ivy.security.IPermission.USER_CREATE_OWN_SUBSTITUTE;
 import static ch.ivyteam.ivy.security.IPermission.USER_CREATE_SUBSTITUTE;
 import static ch.ivyteam.ivy.security.IPermission.USER_DELETE_ABSENCE;
 import static ch.ivyteam.ivy.security.IPermission.USER_DELETE_OWN_ABSENCE;
@@ -19,6 +18,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.MapUtils;
+import org.primefaces.component.tabview.TabView;
+import org.primefaces.event.TabChangeEvent;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
@@ -39,7 +40,6 @@ public class AbsenceManagementBean implements Serializable{
   private boolean ownAbsencesDeletable;
   private boolean absencesInThePastCreatable;
   private boolean absencesInThePastDeletable;
-  private boolean ownSubstituteCreatable;
   private boolean substitutionManagementCapable;
   
   @PostConstruct
@@ -54,10 +54,18 @@ public class AbsenceManagementBean implements Serializable{
     absencesInThePastCreatable = permissionCheckerService.hasPermission(USER_CREATE_ABSENCE);
     absencesInThePastDeletable = permissionCheckerService.hasPermission(USER_DELETE_ABSENCE);
 
-    ownSubstituteCreatable =
-        permissionCheckerService.hasAtLeaseOnePermission(USER_CREATE_OWN_SUBSTITUTE, USER_CREATE_SUBSTITUTE);
     substitutionManagementCapable =
         permissionCheckerService.hasAllPermissions(USER_CREATE_SUBSTITUTE, USER_READ_SUBSTITUTES);
+  }
+  
+  public void onTabChange(TabChangeEvent tabChangeEvent) {
+    if (tabChangeEvent.getComponent() instanceof TabView) {
+      TabView tabView = (TabView) tabChangeEvent.getComponent();
+      Number activeTabIndex = tabView.getIndex();
+      
+      IvyComponentLogicCaller<String> substitueTabChange = new IvyComponentLogicCaller<>();
+      substitueTabChange.invokeComponentLogic("absence-management", "#{logic.onTabChange}", new Object[] { activeTabIndex });
+    }
   }
 
   public boolean isOwnAbsencesReadable() {
@@ -70,10 +78,6 @@ public class AbsenceManagementBean implements Serializable{
 
   public boolean isOwnAbsencesDeletable() {
     return ownAbsencesDeletable;
-  }
-
-  public boolean isOwnSubstituteCreatable() {
-    return ownSubstituteCreatable;
   }
 
   public boolean isSubstitutionManagementCapable() {

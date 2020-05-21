@@ -1,8 +1,8 @@
 package portal.guitest.test;
 
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertFalse;
-import static junit.framework.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.concurrent.TimeUnit;
 
@@ -14,10 +14,9 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.AdditionalCaseDetailsPage;
-import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
@@ -28,6 +27,7 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class CaseWidgetTest extends BaseTest {
 
+  private static final String DISABLE_CASE_COUNT_SETTING = "DISABLE_CASE_COUNT";
   private static final String INVESTMENT_REQUEST_CUSTOMIZATION_CASE_DETAILS_PAGE_CASE_NAME = "Investment Request";
   private static final String LEAVE_REQUEST_DEFAULT_CASE_DETAILS_PAGE_CASE_NAME = "Leave Request for Default Additional Case Details";
   private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
@@ -45,7 +45,6 @@ public class CaseWidgetTest extends BaseTest {
   public void setup() {
     super.setup();
     redirectToRelativeLink(createTestingTasksUrl);
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
   @Test
@@ -57,7 +56,6 @@ public class CaseWidgetTest extends BaseTest {
     taskWidgetPage.filterTasksBy("Report and hide case");
     taskWidgetPage.startTaskWithoutUI(0);
     homePage = new HomePage();
-    Sleeper.sleep(2000);
     
     mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
@@ -119,14 +117,14 @@ public class CaseWidgetTest extends BaseTest {
     casePage.clickDefaultCheckbox();
     casePage.clickColumnCheckbox(4);
     casePage.clickApplyButton();
-    assertFalse(casePage.isCaseListColumnExist(CREATED_COLUMN_HEADER));
-    assertTrue(casePage.isCaseListColumnExist(STATE_COLUMN_HEADER));
+    WaitHelper.assertTrueWithWait(() -> !casePage.isCaseListColumnExist(CREATED_COLUMN_HEADER));
+    WaitHelper.assertTrueWithWait(() -> casePage.isCaseListColumnExist(STATE_COLUMN_HEADER));
     casePage.clickColumnsButton();
     casePage.clickColumnCheckbox(4);
     casePage.clickColumnCheckbox(6);
     casePage.clickApplyButton();
-    assertTrue(casePage.isCaseListColumnExist(CREATED_COLUMN_HEADER));
-    assertFalse(casePage.isCaseListColumnExist(STATE_COLUMN_HEADER));
+    WaitHelper.assertTrueWithWait(() -> casePage.isCaseListColumnExist(CREATED_COLUMN_HEADER));
+    WaitHelper.assertTrueWithWait(() -> !casePage.isCaseListColumnExist(STATE_COLUMN_HEADER));
   }
   
   @Test
@@ -197,14 +195,14 @@ public class CaseWidgetTest extends BaseTest {
     initHomePage(TestAccount.DEMO_USER);
     mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
+    casePage.waitUntilCaseCountDifferentThanZero();
     assertEquals(1, casePage.getCaseCount().intValue());
   }
   
   @Test
-  public void testDisableTaskCount() {
+  public void testDisableCaseCount() {
+    updatePortalSetting(DISABLE_CASE_COUNT_SETTING, "true");
     initHomePage(TestAccount.ADMIN_USER);
-    AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
-    adminSettingsPage.setDisabledCaseCount();
 
     mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
@@ -218,6 +216,7 @@ public class CaseWidgetTest extends BaseTest {
     casePage = mainMenuPage.selectCaseMenu();
     assertEquals("Cases", casePage.getTextOfCurrentBreadcrumb());
     casePage.clickHomeBreadcrumb();
+    homePage = new HomePage();
     assertEquals(true, homePage.isDisplayed());
   }
 

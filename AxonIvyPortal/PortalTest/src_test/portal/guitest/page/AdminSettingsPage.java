@@ -1,16 +1,10 @@
 package portal.guitest.page;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import com.jayway.awaitility.Awaitility;
-import com.jayway.awaitility.Duration;
-
-import portal.guitest.common.Sleeper;
 
 public class AdminSettingsPage extends TemplatePage {
 
@@ -94,61 +88,12 @@ public class AdminSettingsPage extends TemplatePage {
     closeInformConfigDialog();
   }
 
-  public void setChatGroup() {
-    openSettingTab();
-    editGlobalVariable("ENABLE_GROUP_CHAT", "true", true);
-    closeConfirmationDialog();
-  }
-
   public void setEnviromentInfo() {
     openSettingTab();
     editGlobalVariable("SHOW_ENVIRONMENT_INFO", "true", true);
     closeConfirmationDialog();
   }
   
-
-  public void setChatPrivate() {
-    openSettingTab();
-    editGlobalVariable("ENABLE_PRIVATE_CHAT", "true", true);
-    closeConfirmationDialog();
-  }
-
-  public void setEnableScriptCheckingGlobalVariable() {
-    openSettingTab();
-    editGlobalVariable("ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT", "true", true);
-    closeConfirmationDialog();
-  }
-
-  public void setDisableScriptCheckingGlobalVariable() {
-    openSettingTab();
-    editGlobalVariable("ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT", "false", true);
-    closeConfirmationDialog();
-  }
-
-  public void setFileExtensionWhiteList() {
-    openSettingTab();
-    editGlobalVariable("UPLOAD_DOCUMENT_WHITELIST_EXTENSION", ", abc, pdf, doc", false);
-    closeConfirmationDialog();
-  }
-
-  public void setHideUploadDocumentForDoneCase() {
-    openSettingTab();
-    editGlobalVariable("HIDE_UPLOAD_DOCUMENT_FOR_DONE_CASE", "true", true);
-    closeConfirmationDialog();
-  }
-
-  public void setDisabledTaskCount() {
-    openSettingTab();
-    editGlobalVariable("DISABLE_TASK_COUNT", "true", true);
-    closeConfirmationDialog();
-  }
-  
-  public void setDisabledCaseCount() {
-    openSettingTab();
-    editGlobalVariable("DISABLE_CASE_COUNT", "true", true);
-    closeConfirmationDialog();
-  }
-
   public boolean isWarningDialogShowWhenTimeoutIsLosing() {
     waitForElementDisplayed(By.id("warning-before-lost-session:timeout-warning-dialog"), true, 120);
     return isElementDisplayed(By.id("warning-before-lost-session:timeout-warning-dialog"));
@@ -167,17 +112,12 @@ public class AdminSettingsPage extends TemplatePage {
     return new AnnouncementPage();
   }
 
-  public void openExpressManagementTab() {
-    refreshAndWaitElement("a[href$='express-management-tab']");
-    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(
-        () -> findElementByXpath("//a[@href='#adminui:adminTabView:express-management-tab']").isEnabled()
-            && findElementByXpath("//a[@href='#adminui:adminTabView:express-management-tab']").isDisplayed());
+  public ExpressManagementPage openExpressManagementTab() {
     WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:express-management-tab']");
-    //Unstable click
-    Sleeper.sleep(3000);
-    settingTabLink.click();
+    click(settingTabLink);
     waitForElementPresent(By.id("adminui:adminTabView:express-management-tab"), true);
     waitAjaxIndicatorDisappear();
+    return new ExpressManagementPage();
   }
 
 }
