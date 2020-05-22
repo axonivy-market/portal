@@ -30,7 +30,7 @@
 
   <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} ui-g">
     <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}">
-      <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header ui-g-12"
+      <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header ui-g-12 ui-g"
         layout="block">
         <div class="#{data.dataModel.compactMode? 'widget-header-main': 'widget-tasklist-header'} ui-g-8 ui-sm-4">
           <h:panelGroup id="task-widget-title" styleClass="widget-header-main-title task-widget-header-content-title #{data.dataModel.compactMode ? 'compact-mod-title' : ''}">
@@ -63,12 +63,11 @@
       <h:panelGroup id="filter-container" styleClass="filter-container js-filter-container ui-g-12 u-no-padding-top u-hidden-md-down"
         rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}">
         <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group"
-          rendered="#{(not empty data.taskPrivateFilters or not empty data.taskPublicFilters) and not data.dataModel.compactMode}">
+          rendered="#{(not empty data.taskPrivateFilters or not empty data.taskPublicFilters) and not data.dataModel.compactMode}"> 
           <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container">
             <h:panelGroup id="filter-selection-panel" layout="block">
-              <span class="filter-label">Selected filter </span>
               <p:commandLink id="filter-name" styleClass="filter-name" global="false">
-<!--                 <span>#{ivy.cms.co(data.dataModel.isSelectedDefaultFilter() or data.dataModel.selectedTaskFilterData == null ? '/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter' : '/ch.ivy.addon.portalkit.ui.jsf/components/taskView/savedFilters')} </span> -->
+                <span>#{ivy.cms.co(data.dataModel.isSelectedDefaultFilter() or data.dataModel.selectedTaskFilterData == null ? '/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter' : '/ch.ivy.addon.portalkit.ui.jsf/components/taskView/savedFilters')} </span>
                 <span>#{data.dataModel.isSelectedDefaultFilter() ? data.dataModel.defaultTaskFilterData.filterName : data.dataModel.selectedTaskFilterData == null ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection') : data.dataModel.selectedTaskFilterData.filterName}</span>
               </p:commandLink>
               <p:overlayPanel id="filter-name-overlay-panel" styleClass="filter-name-overlay-panel" for="filter-name"
@@ -122,26 +121,29 @@
           </h:form>
         </h:panelGroup>
 
-        <h:panelGroup id="advanced-filter-container" layout="block" styleClass="advanced-filter-container"
-           style="border-right: solid 1px var(--filter-selection-container-group-border-color);margin-right: 8px;">
-          <h:outputText class="filter-label" value="Applied options"
-            style="position: absolute;
-            margin-bottom: 12px;
-            padding-left: 5px;
-            font-size: 12px;
-            color: var(--task-widget-header-column);
-            padding-top: 9px;" />
-          <div class="additional-filter-container" style="margin-top: 29px;">
+        <h:panelGroup id="advanced-filter-container" layout="block" styleClass="advanced-filter-container">
+          <div class="additional-filter-container">
             <f:event listener="#{data.dataModel.initFilters()}" type="preRenderComponent" />
             <cc:renderFacet name="taskFilter" />
+            <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="in-progress-filter"
+              removeListener="#{data.dataModel.hideInProgressFilter()}" displayFooterButtons="false"
+              taskFilter="#{data.dataModel.inProgressFilter}" dataModel="#{data.dataModel}"
+              rendered="#{!data.dataModel.hasReadAllTasksPermisson() and data.dataModel.inProgressFilterDisplayed}"
+              forceRendered="true" position="100" >
+              <p:selectBooleanCheckbox id="in-progress-checkbox" styleClass="in-progress-task-checkbox"
+                value="#{data.dataModel.inProgressFilter.isTaskInProgressByOthersDisplayed}"
+                itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/display')}">
+                <p:ajax
+                  update="@([id$='in-progress-filter:filter-open-form']) @form #{p:component('task-view-container')}"
+                  global="false" oncomplete="taskWidget.setupScrollbar();" />
+              </p:selectBooleanCheckbox>
+            </ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter>
             
             <!-- Add more filters button -->
-            <h:panelGroup id="filter-add-container" styleClass="filter-add-container" style="padding: 0 20px; align-self: center;">
-<!--               <p:commandButton id="filter-add-action" -->
-<!--                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/more')}" styleClass="filter-add-button" -->
-<!--                 icon="fa fa-caret-down" iconPos="right" type="button" /> -->
-              <p:commandLink id="filter-add-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/more')} options"
-                />
+            <h:panelGroup id="filter-add-container" styleClass="filter-add-container">
+              <p:commandButton id="filter-add-action"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/more')}" styleClass="filter-add-button"
+                icon="fa fa-caret-down" iconPos="right" type="button" />
               <p:overlayPanel id="filter-add-panel" widgetVar="filter-add-panel" styleClass="filter-add-panel" for="filter-add-action" my="left top"
                 at="left bottom" dismissable="false">
                 <h:form id="filter-add-form">
@@ -153,6 +155,13 @@
                       <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
                         itemValue="#{filter}" />
                     </p:selectManyCheckbox>
+                    <p:selectBooleanCheckbox id="in-progress-checkbox" styleClass="in-progress-task-checkbox"
+                      rendered="#{!data.dataModel.hasReadAllTasksPermisson()}"
+                      value="#{data.dataModel.inProgressFilterDisplayed}"
+                      itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskState/RESUMED')}">
+                    </p:selectBooleanCheckbox>
+                    <p:tooltip for="in-progress-checkbox" trackMouse="true"
+                      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/DisplayTaskStartedByOtherUsersTooltip')}" />
                   </p:scrollPanel>
 
                   <h:panelGroup id="add-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer">
@@ -174,25 +183,7 @@
               </p:overlayPanel>
             </h:panelGroup>
 
-<!--             Reset filter button -->
-<!--             <h:panelGroup id="filter-reset-container" -->
-<!--               styleClass="filter-buttons-container filter-reset-action"> -->
-<!--               <p:commandButton id="filter-reset-action" rendered="#{data.dataModel.selectedTaskFilterData == null and !data.dataModel.isSelectedDefaultFilter()}" -->
-<!--                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" styleClass="filter-add-button" -->
-<!--                 icon="fa fa-refresh" iconPos="right" onclick="PF('reset-filter-set-dialog').show();" global="false"/> -->
-<!--             </h:panelGroup> -->
-<!--             Save filter button -->
-<!--             <h:panelGroup id="filter-save-container" styleClass="filter-save-container u-hidden-sm-down"> -->
-<!--               <p:commandButton id="filter-save-action" -->
-<!--                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" styleClass="filter-add-button" -->
-<!--                 icon="fa fa-save" iconPos="right" update="save-filter-set-dialog" resetValues="true" -->
-<!--                 oncomplete="PF('save-filter-set-dialog').show();" /> -->
-<!--             </h:panelGroup> -->
-          </div>
-        </h:panelGroup>
-        
-        <div style="align-self: flex-end; padding-bottom: 7px;">
-                              <!-- Reset filter button -->
+            <!-- Reset filter button -->
             <h:panelGroup id="filter-reset-container"
               styleClass="filter-buttons-container filter-reset-action">
               <p:commandButton id="filter-reset-action" rendered="#{data.dataModel.selectedTaskFilterData == null and !data.dataModel.isSelectedDefaultFilter()}"
@@ -206,7 +197,8 @@
                 icon="fa fa-save" iconPos="right" update="save-filter-set-dialog" resetValues="true"
                 oncomplete="PF('save-filter-set-dialog').show();" />
             </h:panelGroup>
-            </div>
+          </div>
+        </h:panelGroup>
       </h:panelGroup>
     </h:panelGroup>
 
@@ -241,7 +233,7 @@
       </h:panelGroup>
     </h:panelGroup>
 
-    <h:panelGroup layout="block" id="task-view" styleClass="ui-g-12 #{data.dataModel.compactMode ? 'u-padding-0' : ''}  js-task-view task-view">
+    <h:panelGroup layout="block" id="task-view" styleClass="ui-g-12 #{data.dataModel.compactMode ? '' : 'u-no-padding-left'} js-task-view">
       <h:panelGroup id="task-view-container" layout="block" styleClass="task-view-container">
         <p:dataScroller id="task-list-scroller" widgetVar="task-list-scroller"
           value="#{data.dataModel}" 

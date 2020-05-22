@@ -11,9 +11,9 @@
   <cc:attribute name="showItemDetailsHistories" />
   <cc:attribute name="showItemDetailDocuments" />
   <cc:attribute name="showItemBackButton" />
+  <cc:attribute name="isFromDoneTask" />
   <cc:attribute name="descriptionComponentToUpdate" />
   <cc:attribute name="isWorkingOnTask" />
-  <cc:attribute name="isTaskStartedInDetails" />
 </cc:interface>
 
 <cc:implementation>
@@ -23,7 +23,7 @@
   <c:set var="showItemDetailsHistories" value="#{cc.attrs.showItemDetailsHistories == null ?  true:cc.attrs.showItemDetailsHistories}"/>
   <c:set var="showItemDetailDocuments" value="#{cc.attrs.showItemDetailDocuments == null ? true:cc.attrs.showItemDetailDocuments}"/>
   <c:set var="showItemBackButton" value="#{cc.attrs.showItemBackButton == null ? true:cc.attrs.showItemBackButton}"/>
-  <div class="ui-g widget-details-item">
+  <div class="ui-g">
 
     <h:panelGroup styleClass="ui-g-12" rendered="#{showItemDetailsHeader}" layout="block">
       <h:form id="case-detail-title-form" styleClass="ui-g-12 case-detail-title-header-container">
@@ -46,7 +46,7 @@
           </p:inplace>
         </h:panelGroup>
 
-        <p:commandLink id="back-to-cases" rendered="#{showItemBackButton}" onclick="backToPrevPage(#{cc.attrs.isTaskStartedInDetails})" styleClass="case-details-back-btn">
+        <p:commandLink id="back-to-cases" rendered="#{showItemBackButton}" onclick="backToPrevPage(#{cc.attrs.isFromDoneTask});" styleClass="case-details-back-btn">
           <i class="fa fa-reply-all" />
           <p:spacer width="3px"/>
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"/>
@@ -93,7 +93,7 @@
                   trackMouse="true" hideEvent="mouseleave click"/>
               </h:panelGroup>
             </div>
-
+            <div class="Separator ui-g-12 u-padding-0" />
             <div class="ui-g-12 u-padding-0">
               <ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
             </div>
@@ -123,8 +123,7 @@
         </h:panelGroup>
 
         <!-- Documents box -->
-        <f:event listener="#{logic.getHideCaseDocumentConfiguration}" type="preRenderComponent" />
-        <h:panelGroup rendered="#{showItemDetailDocuments and !data.isHideCaseDocument}"
+        <h:panelGroup rendered="#{showItemDetailDocuments}"
           styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card card-w-title case-detail-card case-document-component">
             <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}"
@@ -150,8 +149,8 @@
   </p:confirmDialog>
 
   <script type="text/javascript">
-      function backToPrevPage(isTaskStartedInDetails) {
-        if (document.referrer &amp;&amp; !isTaskStartedInDetails) {
+      function backToPrevPage(isFromDoneTask) {
+        if (document.referrer &amp;&amp; !isFromDoneTask) {
           window.history.back();
         } else {
           backToCasesList();
