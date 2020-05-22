@@ -26,7 +26,9 @@
   --ivy-tertinary-color-yellow-dark: hsl(46, 100%, 58%);
   --ivy-tertinary-color-yellow-medium: hsl(49, 99%, 65%);
   --ivy-tertinary-color-yellow-light: hsl(47, 100%, 79%);
-  --ivy-portal-blue-light: rgba(144, 221, 233, 0.24);
+
+  --accent-color: rgba(144, 221, 233, 0.24);
+  --accent-text-color: var(--primary-dark-text-color);
 
   --accent-color: var(--ivy-portal-blue-light);
   --accent-text-color: black;
@@ -271,8 +273,6 @@
   --output-label-task-template-title-font-weight: 400;
   /* Admin Setting */
   --admin-setting-no-permission-message-color: #e53935;
-  --user-setting-container-link-hover-color: var(--ivy-primary-color-grey-dark);
-  --user-setting-container-link-color: var(--ivy-primary-color-grey-medium);
   --user-setting-container-box-shadow: rgba(43, 59, 93, 0.6);
   --email-setting-widget-header: var(--ivy-primary-color-white);
   /* Absences and Deputy */
@@ -327,7 +327,6 @@
   --express-table-no-header-border: var(--ivy-primary-color-grey-light);
   --express-table-no-header-background-color: transparent;
   --expand-collapse-button-color: var(--ivy-primary-color-black);
-  --process-express-logo-background-color: transparent;
   --express-workflow-active-switch-label-font-weight: 700;
   --express-review-content-title-font-weight: 700;
   --express-finished-task-label-font-weight: 700;
