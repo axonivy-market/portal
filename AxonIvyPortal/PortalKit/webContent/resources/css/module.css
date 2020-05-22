@@ -899,13 +899,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   opacity: 1;
 }
 
-.process-header .create-express-workflow-icon {
-  margin-right: 4px;
-  height: 1.6rem;
-  width: 1.6rem;
-  opacity: 0.6;
-}
-
 body .process-widget .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler {
   width: 20px;
   height: 20px;
@@ -1235,11 +1228,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   background-repeat: no-repeat;
   width: 1.5rem;
   height: 1.5rem;
-}
-
-.process-header .create-express-workflow-icon, .express-process-logo {
-  background-size: 100%;
-  background-image: url("#{resource['ivy-webcontent:images/expressLogo/icon_express_process_120x120.png']}");
 }
 
 .express-process-logo .ui-panel-content,
