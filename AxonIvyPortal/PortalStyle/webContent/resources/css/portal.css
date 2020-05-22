@@ -1762,3 +1762,12 @@ ul.participants-list li {
 .express-workflow-summary-table tr.ui-datatable-selectable.ui-state-hover th:not(:last-child),
 .express-workflow-summary-table tr.ui-datatable-selectable.ui-state-hover td:not(:last-child) {
   border-right-color: var(--ivy-primary-color-grey-medium); }
+
+/* Modify style because accent color of Portal so light */
+body .ui-datepicker tbody td.ui-datepicker-today a, body .ui-datepicker tbody td.ui-datepicker-today span {
+  border-color: var(--accent-light-color);
+}
+
+body .ui-slider .ui-slider-handle {
+  background-color: var(--accent-light-color);
+}
