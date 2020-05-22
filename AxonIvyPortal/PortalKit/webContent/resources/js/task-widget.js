@@ -44,9 +44,6 @@ function TaskWidget() {
             - compactProcessWidgetHeight - taskViewPaddingValue
             - layoutContentPadding - containerPadding;
         if (!!availableHeight) {
-          if ($('.compact-task-widget').length > 0 && container.outerHeight(true) > availableHeight) {
-            container.css('margin-right', '7px');
-          }
           container.outerHeight(availableHeight);
         }
       }
