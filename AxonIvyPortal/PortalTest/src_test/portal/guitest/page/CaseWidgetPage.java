@@ -234,6 +234,7 @@ public class CaseWidgetPage extends TemplatePage {
 	
 	public void clickColumnsButton() {
 		clickByCssSelector(COLUMNS_BUTTON_CSS_SELECTOR);
+		waitForElementDisplayedByCssSelector("label[for$='columns-checkbox:3']");
 	}
 
 	public void clickColumnCheckbox(int columnIndex) {
@@ -284,7 +285,7 @@ public class CaseWidgetPage extends TemplatePage {
 		WebElement responsible = findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']");
 		type(responsible, text);
 		waitAjaxIndicatorDisappear();
-		waitForElementDisplayedByCssSelector("i[class*='fa-user']", 5);
+		waitForElementDisplayedByCssSelector("i[class*='fa-user']");
 		click(By.cssSelector("i[class*='fa-user']"));
 		waitAjaxIndicatorDisappear();
 		click(By.cssSelector("button[id$='creator-filter:filter-input-form:update-command']"));
