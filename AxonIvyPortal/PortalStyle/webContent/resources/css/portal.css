@@ -171,10 +171,6 @@ body .ui-dialog .ui-dialog-titlebar {
     padding: 1rem 2rem 2rem; }
 
 /* Data table */
-body .ui-datatable tbody tr td.ui-editable-column.ui-state-highlight.ui-cell-editing {
-  background-color: var(--ivy-portal-blue-light);
-}
-
 body .ui-datatable tbody tr td.ui-editable-column.ui-state-highlight.ui-cell-editing .ui-inputfield {
   color: var(--ui-input-field-text-color); }
 
@@ -187,11 +183,6 @@ body .ui-datatable tbody tr td.ui-editable-column.ui-state-highlight.ui-cell-edi
 
 body .ui-datatable.ui-datatable-scrollable thead tr th {
   font-size: var(--large-font-size); }
-
-body .ui-datatable thead th.ui-state-highlight {
-  background-color: var(--ivy-portal-blue-light);
-  color: var(--ivy-primary-color-black);
-}
 
 body .ui-datatable thead th.ui-state-active .ui-icon, body .ui-datatable thead th.ui-state-highlight .ui-icon {
 	color: var(--ivy-primary-color-black);
@@ -1814,3 +1805,12 @@ ul.participants-list li {
 .express-workflow-summary-table tr.ui-datatable-selectable.ui-state-hover th:not(:last-child),
 .express-workflow-summary-table tr.ui-datatable-selectable.ui-state-hover td:not(:last-child) {
   border-right-color: var(--ivy-primary-color-grey-medium); }
+
+/* Modify style because accent color of Portal so light */
+body .ui-datepicker tbody td.ui-datepicker-today a, body .ui-datepicker tbody td.ui-datepicker-today span {
+  border-color: var(--accent-light-color);
+}
+
+body .ui-slider .ui-slider-handle {
+  background-color: var(--accent-light-color);
+}
