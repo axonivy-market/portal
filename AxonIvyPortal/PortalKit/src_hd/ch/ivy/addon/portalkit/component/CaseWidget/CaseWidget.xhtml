@@ -28,12 +28,12 @@
   <div id="#{cc.clientId}" class="widget case-widget-container ui-g">
     <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}">
       <h:panelGroup id="case-widget-header" styleClass="widget-header ui-g-12 ui-g" layout="block">
-        <div class="case-widget-top-header widget-header-main-title ui-g-8 ui-sm-4">
+        <div class="case-widget-top-header ui-g-8 ui-sm-4">
           <h:panelGroup id="case-widget-title">
             <f:event listener="#{logic.preRenderTitle()}" type="preRenderComponent" />
             <span class="case-widget-top-header-main-title">
-              <span class="#{empty cc.attrs.titleOnMobile ? '':'u-hidden-sm-down'}">#{cc.attrs.title}</span>
-              <span class="#{empty cc.attrs.titleOnMobile ? 'u-display-none':'u-hidden-md-up'}">#{cc.attrs.titleOnMobile}</span>
+              <span class="#{empty cc.attrs.titleOnMobile ? '':'u-hidden-sm-down'} u-padding-right-5">#{cc.attrs.title}</span>
+              <span class="#{empty cc.attrs.titleOnMobile ? 'u-display-none':'u-hidden-md-up'} u-padding-right-5">#{cc.attrs.titleOnMobile}</span>
               <h:outputText value="(#{data.dataModel.rowCount})" rendered="#{!data.dataModel.disableCaseCount}" />
             </span>
           </h:panelGroup>
@@ -180,7 +180,7 @@
             dataModel="#{data.dataModel}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader()"
             configButtonId="case-config-button" overlayPanelId="case-config-columns-panel" />
     </h:panelGroup>
-    <h:panelGroup id="case-view" layout="block" class="ui-g-12">
+    <h:panelGroup id="case-view" layout="block" class="ui-g-12 u-no-padding-left">
       <h:panelGroup id="case-list" layout="block" styleClass="case-list">
         <p:dataScroller id="case-list-scroller" value="#{data.dataModel}" var="case" chunkSize="#{cc.attrs.chunkSize}"
           lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list" widgetVar="case-list-scroller">
