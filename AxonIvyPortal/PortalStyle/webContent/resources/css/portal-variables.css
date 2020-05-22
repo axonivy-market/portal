@@ -1,6 +1,8 @@
 @charset "UTF-8";
 
 :root {
+  
+  
   /* AxonIvy Colors: */
   --ivy-primary-color-black: hsl(0, 0%, 11%);
   --ivy-primary-color-white: hsl(0, 0%, 100%);
@@ -96,10 +98,15 @@
 
   /* Widget header */
   --widget-header-main-border-bottom-color: var(--ivy-primary-color-grey-light);
-  --widget-task-list-header-border-bottom-color: var(--ivy-primary-color-grey-light);
   --widget-sort-menu-border-bottom-color: var(--ivy-primary-color-grey-light);
   --widget-header-input-field-background-color: transparent;
   --widget-header-input-hover-background-color: transparent;
+  --widget-header-font-size: 1.8rem;
+  --widget-header-font-weight: bold;
+  
+  /* Portal Card */
+  --card-box-shadow: 0px 4px 16px rgba(27, 27, 27, 0.16);
+  --card-border-radius: 5px;
 
   /* Announcement panel color */
   --announcement-background-color: var(--ivy-tertinary-color-yellow-light);
@@ -169,20 +176,19 @@
   --filter-selection-container-group-border-color: var(--ivy-primary-color-grey-medium);
   /* Process */
   --process-navigator-item-color: var(--ivy-primary-color-black);
-  --process-start-list-item-hover-background-color: var(--ivy-primary-color-white);
+  --process-start-list-item-hover-background-color: hsla(188, 67%, 74%, 0.24);
   --process-history-column-header-is-selected-color: var(--ivy-primary-color-black);
   --process-history-message-label-color: var(--ivy-primary-color-black);
   --process-start-list-item-color: var(--ivy-primary-color-black);
-  --process-header-title-container-border-bottom: var(--ivy-primary-color-grey-light);
   --process-navigator-border: var(--ivy-primary-color-grey-light);
   --process-navigator-item-selected-border: var(--primary-color);
   --process-history-column-header-border: var(--ivy-primary-color-grey-light);
   --process-history-list-data-scroller-background-color: transparent;
-  --process-order-list-item-background-color: var(--ivy-primary-color-grey-pale);
+  --process-order-list-item-background-color: var(--ivy-primary-color-white);
+  --process-order-list-item-box-shadow: 0px 2px 8px hsla(0, 0%, 11%, 0.16);
   --selected-process-nav-item-font-weight: bold;
   --process-start-list-item-name-font-weight: 400;
   --process-nav-item-disable-color: hsla(0, 0%, 11%, 0.3);
-  --process-order-item-hover-box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.8);
   --hovered-process-start-list-item-i-con-color: var(--primary-color);
   --hovered-user-process-start-list-item-icon-color: var(--primary-color);
   /* Case Detail */
@@ -205,9 +211,7 @@
   --case-odd-row-background-color: var(--ivy-primary-color-grey-pale);
   /* Case Item */
   --history-note-color: var(--ivy-primary-color-black);
-  --additional-case-detail-link-color: var(--ivy-primary-color-grey-medium);
   --additional-case-detail-link-hover-color: var(--ivy-primary-color-grey-dark);
-  --note-show-more-link-color: var(--ivy-primary-color-grey-medium);
   --note-show-more-link-hover-color: var(--ivy-primary-color-grey-dark);
   --case-task-document-name-color: var(--ivy-primary-color-black);
   --case-widget-column-header-is-selected-color: var(--ivy-primary-color-black);
@@ -217,7 +221,6 @@
   --case-action-separator-border-color: hsla(180, 1%, 61%, 0.5);
   --case-state-in-progress-color: rgba(7, 140, 255, 1);
   --case-state-done-color: #4eb41c;
-  --case-widget-top-header-border-bottom: var(--ivy-primary-color-grey-light);
   --case-widget-column-header-border-bottom: var(--ivy-primary-color-grey-light);
   --case-list-data-scroller-content-background-color: transparent;
   --case-header-action-cell-button-background-color: transparent;
@@ -229,11 +232,12 @@
   --case-item-description-cell: var(--ivy-primary-color-grey-medium);
   /* Case and Task Action Item */
   --case-task-action-button-hover-background-color: transparent;
-  --case-task-action-button-color: var(--ivy-primary-color-grey-medium);
+  --case-task-action-button-color: var(--primary-color);
   /* Task Widget */
   --task-filter-selection-form-hover-background-color: var(--ivy-primary-color-grey-pale);
-  --compact-task-start-list-item-hover-background-color: hsla(180, 1%, 85%, 0.5);
-  --compact-task-start-link-item-background-color: var(--ivy-primary-color-grey-pale);
+  --compact-task-start-list-item-hover-background-color: hsla(188, 67%, 74%, 0.24);
+  --compact-task-start-link-item-background-color: var(--ivy-primary-color-white);
+  --compact-task-start-link-item-box-shadow: 0px 2px 8px hsla(0, 0%, 11%, 0.16);
   --compact-task-start-info-color: var(--ivy-primary-color-black);
   --compact-task-start-info-icon-color: hsla(0, 0%, 11%, 0.5);
   --compact-task-start-info-icon-color: var(--ivy-primary-color-black);
