@@ -1,4 +1,4 @@
-
+/* Font face */
 @font-face {
   font-family: "true-minimalistic-icons";
   src: url("#{resource['true-minimalistic-icons:true-minimalistic-icons.eot']}");
@@ -6,8 +6,6 @@
   font-weight: normal;
   font-style: normal; }
 
-
-/* Add your customizations of theme here */
 /* Generic */
 html {
   overflow-x: auto;
@@ -173,6 +171,10 @@ body .ui-dialog .ui-dialog-titlebar {
     padding: 1rem 2rem 2rem; }
 
 /* Data table */
+body .ui-datatable tbody tr td.ui-editable-column.ui-state-highlight.ui-cell-editing {
+  background-color: var(--ivy-portal-blue-light);
+}
+
 body .ui-datatable tbody tr td.ui-editable-column.ui-state-highlight.ui-cell-editing .ui-inputfield {
   color: var(--ui-input-field-text-color); }
 
@@ -185,6 +187,11 @@ body .ui-datatable tbody tr td.ui-editable-column.ui-state-highlight.ui-cell-edi
 
 body .ui-datatable.ui-datatable-scrollable thead tr th {
   font-size: var(--large-font-size); }
+
+body .ui-datatable thead th.ui-state-highlight {
+  background-color: var(--ivy-portal-blue-light);
+  color: var(--ivy-primary-color-black);
+}
 
 body .ui-datatable thead th.ui-state-active .ui-icon, body .ui-datatable thead th.ui-state-highlight .ui-icon {
 	color: var(--ivy-primary-color-black);
@@ -220,11 +227,6 @@ body .ui-datatable tbody tr.ui-datatable-even {
   box-shadow: none;
   padding-bottom: 0;
   height: 58px; }
-
-.layout-wrapper .layout-main .layout-content {
-  padding: 20px 20px 0 20px;
-  height: calc(100vh - 58px);
-  overflow-x: hidden; }
 
 .topbar-menu li .ui-commandlink {
   font-size: var(--large-font-size); }
@@ -565,6 +567,9 @@ body .ui-widget.ui-fieldset.process-group.ui-fieldset .ui-fieldset-legend {
 .task-priority-exception {
   color: var(--task-exception-high-color); }
 
+.in-progress-task-checkbox .ui-chkbox-label {
+  color: var(--task-in-progress-checkbox-label-color); }
+
 /*Style For Statistic Widget -----------------------------------------------------------------------------*/
 body .statistic-carousel .ui-widget-header.ui-carousel-header {
   background-color: var(--statistic-panel-header) !important;
@@ -583,6 +588,7 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 .statistic-carousel .ui-carousel-header .ui-carousel-header-title .chart-info,
 .dashboard-chart-panel .chart-actions-container .chart-action,
 .dashboard-chart-panel .chart-info {
+  color: var(--statistic-carousel-header-button-color);
   font-size: 1.5rem; }
 
 .statistic-carousel .ui-carousel-header .ui-carousel-header-title .chart-info:hover,
@@ -618,16 +624,17 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 
 .dashboard-chart-panel .card,
 .edit-statistic-container .card,
-.statistic-widget.compact-mode .statistic-carousel.card,
-.filter-container.card {
-  box-shadow: var(--card-box-shadow);
-  border-radius: var(--card-border-radius); }
+.statistic-widget.compact-mode .statistic-carousel.card {
+  box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.14), 0 4px 2px -1px rgba(0, 0, 0, 0.12); }
 
 .statistic-filter-accordion-panel .ui-accordion-content {
   border: solid 1px var(--statistic-filter-accordion-panel-border); }
 
 .statistic-widget-container .widget-header-main, .widget.analysis-task-widget .widget-header-main {
   border-bottom: none; }
+
+.statistic-widget-container .widget-header, .widget.analysis-task-widget .widget-header {
+  border-bottom: 1px solid rgba(28, 28, 28, 0.1); }
 
 /*Style For Buttons --------------------------------------------------------------------------------------*/
 body .portal-cancel-button.ui-widget.ui-button,
@@ -780,6 +787,19 @@ body .portal-cancel-button.ui-widget.ui-button .ui-icon,
   background-color: var(--announcement-background-color);
   border: 2px solid var(--announcement-border-color); }
 
+body .ui-button.action-button {
+  box-shadow: none;
+  background-color: transparent;
+  border: 1px solid transparent; }
+  body .ui-button.action-button .ui-button-text.ui-c, body .ui-button.action-button .ui-icon.ui-c {
+    color: var(--case-task-action-button-color); }
+
+.ui-button.ui-widget.action-button.ui-state-hover {
+  background-color: var(--case-task-action-button-hover-background-color); }
+
+.case-detail-title-header-container, .task-detail-header {
+  border-bottom: 1px solid rgba(28, 28, 28, 0.1); }
+
 /*Style For Task Detail --------------------------------------------------------------------------------------*/
 body .task-item-body .task-details-item-note .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top, .task-item-body .task-details-item-document .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
   background-color: var(--task-detail-paginator-header-corner-top-background-color);
@@ -802,19 +822,30 @@ body .ui-inputfield.task-name-input {
   font-size: var(--large-font-size);
   font-weight: var(--task-name-input-font-weight); }
 
-.task-detail-header .task-name-edit {
+.task-detail-header {
   font-weight: var(--task-detail-header-font-weight); }
 
 .task-detail-section-title {
   font-weight: var(--task-detail-section-title-font-weight); }
 
-.task-item-body .card {
-  box-shadow: var(--card-box-shadow);
-  border-radius: var(--card-border-radius);
-}
-
 .task-action-item:hover {
   background-color: var(--task-detail-action-item-hover-background-color); }
+
+body .action-button.task-action-item.ui-state-disabled span,
+body .case-header-container .ui-button.action-button.ui-state-disabled span {
+  color: var(--command-link-disabled-text-color); }
+
+body .action-button.task-action-item.ui-state-hover .ui-button-text.ui-c, body .action-button.task-action-item.ui-state-hover .ui-icon,
+body .case-header-container .ui-button.action-button.ui-state-hover .ui-button-text.ui-c,
+body .case-header-container .ui-button.action-button.ui-state-hover .ui-icon {
+  color: var(--command-link-hover-text-color); }
+
+body .action-button.task-action-item.ui-state-active .ui-button-text.ui-c, body .action-button.task-action-item.ui-state-active .ui-icon, body .action-button.task-action-item.ui-state-focus .ui-button-text.ui-c, body .action-button.task-action-item.ui-state-focus .ui-icon,
+body .case-header-container .ui-button.action-button.ui-state-active .ui-button-text.ui-c,
+body .case-header-container .ui-button.action-button.ui-state-active .ui-icon,
+body .case-header-container .ui-button.action-button.ui-state-focus .ui-button-text.ui-c,
+body .case-header-container .ui-button.action-button.ui-state-focus .ui-icon {
+  color: var(--command-link-active-text-color); }
 
 /*Style For Advance Filter --------------------------------------------------------------------------------------*/
 body .ui-datepicker .ui-timepicker-div dl dd {
@@ -864,15 +895,12 @@ body .fieldset-no-border {
   font-size: var(--small-font-size); }
 
 .widget-header-main-title {
-  font-size: var(--widget-header-font-size);
-  font-weight: var(--widget-header-font-weight);
-  line-height: 26px; }
+  font-size: var(--large-font-size); }
 
-.widget-sort-menu.full-mode a.ui-widget.ui-commandlink:not(.filter-add-button) {
-  font-size: var(--large-font-size);
-  color: var(--task-widget-header-column); }
+.widget-sort-menu.full-mode a.ui-widget.ui-commandlink {
+  font-size: var(--large-font-size); }
 
-.widget-sort-menu a.ui-widget.ui-commandlink.is-selected:not(.filter-add-button) {
+.widget-sort-menu a.ui-widget.ui-commandlink.is-selected {
   color: var(--compact-task-start-info-icon-color); }
 
 .task-widget .advanced-filter .ui-button-text-only .ui-button-text,
@@ -895,15 +923,22 @@ body .fieldset-no-border {
   color: var(--advanced-filter-error-color);
   font-family: var(--icon-font-family); }
 
-.widget-sort-menu.full-mode,
-.task-view-container .task-start-list .task-start-list-item.full-mode {
+.widget-header-main {
+  border-bottom: 1px solid var(--widget-header-main-border-bottom-color); }
+
+.widget-tasklist-header {
+  border-bottom: 1px solid var(--widget-task-list-header-border-bottom-color); }
+
+.widget-sort-menu.full-mode {
   border-bottom: 1px solid var(--widget-sort-menu-border-bottom-color); }
 
+/*Style for Case Widget-------------------------------------------------------------------------------------*/
+.case-widget-top-header-main-title, .case-header-container {
+  font-size: var(--large-font-size); }
+
 /*Style for Case Detail --------------------------------------------------------------------------------------*/
-.case-detail-body .card {
-  box-shadow: var(--card-box-shadow);
-  border-radius: var(--card-border-radius);
-}
+.case-detail-header {
+  font-size: var(--large-font-size); }
 
 .process-empty-container,
 .process-start-list-item-action,
@@ -912,8 +947,7 @@ body .fieldset-no-border {
 
 .process-widget .favorite-process-title,
 .process-widget .default-process-title {
-  font-size: var(--large-font-size);
-  line-height: 20px; }
+  font-size: var(--large-font-size); }
 
 .filter-selection-form label,
 .filter-selection-form a.ui-commandlink,
@@ -927,8 +961,7 @@ body .fieldset-no-border {
 
 .task-start-info-header,
 .task-start-list-item.full-mode .task-start-link {
-  font-size: var(--large-font-size);
-  line-height: 20px; }
+  font-size: var(--large-font-size); }
 
 .task-start-info-footer, .task-start-info-content {
   font-size: var(--small-font-size); }
@@ -985,11 +1018,12 @@ body .fieldset-no-border {
   padding: 3px;
   border-radius: 2px; }
 
-.case-detail-header,
-.task-detail-header .task-name-edit {
-  font-size: var(--widget-header-font-size);
-  font-weight: var(--widget-header-font-weight);
-  line-height: 26px;}
+.case-detail-header {
+  font-size: var(--large-font-size);
+  font-weight: var(--case-detail-header-font-weight); }
+
+.note-show-more-link {
+  color: var(--note-show-more-link-color); }
 
 .note-show-more-link:hover {
   color: var(--note-show-more-link-hover-color); }
@@ -1002,6 +1036,7 @@ body .fieldset-no-border {
   color: var(--case-related-task-hover-color); }
 
 .additional-case-details-link {
+  color: var(--additional-case-detail-link-color);
   font-weight: var(--additional-case-detail-link-font-weight); }
 
 .additional-case-details-link:hover {
@@ -1147,13 +1182,16 @@ body .ui-inputfield.case-detail-name-input {
   border: 0.8px solid var(--case-action-separator-border-color); }
 
 .case-list-item {
-  background-color: var(--case-list-item-background-color);
-  border-bottom: 1px solid var(--case-widget-column-header-border-bottom); }
+  background-color: var(--case-list-item-background-color); }
 
-.case-widget-container .widget-column-header a.ui-commandlink:not(.filter-add-button) {
-  color: var(--task-widget-header-column);  }
+.case-list-item:hover,
+.case-list-item.case-odd-row:hover {
+  background-color: var(--case-list-item-hover-background-color); }
 
-.case-widget-container .widget-column-header a.ui-commandlink.is-selected:not(.filter-add-button) {
+.case-list-item.case-odd-row {
+  background-color: var(--case-odd-row-background-color); }
+
+.case-widget-container .widget-column-header .is-selected {
   color: var(--case-widget-column-header-is-selected-color); }
 
 .case-header-name-desc-cell .case-header-desc-cell {
@@ -1184,6 +1222,9 @@ body .ui-inputfield.case-detail-name-input {
 .case-state-done {
   color: var(--case-state-done-color); }
 
+.case-widget-container .case-widget-top-header {
+  border-bottom: 1px solid var(--case-widget-top-header-border-bottom); }
+
 .case-widget-container .widget-column-header,
 .case-default-widget-container .widget-column-header {
   border-bottom: 1px solid var(--case-widget-column-header-border-bottom); }
@@ -1202,8 +1243,7 @@ body .ui-inputfield.case-detail-name-input {
 .expand-collapse-btns .expand-collapse-btn {
   color: var(--expand-collapse-button-color);
   background-color: var(--collapse-button-background-color);
-  font-size: var(--small-font-size);
-  box-shadow: var(--process-order-list-item-box-shadow); }
+  font-size: var(--small-font-size); }
 
 .expand-collapse-btns a.expand-collapse-btn:hover {
   background-color: var(--collapse-button-hover-background-color); }
@@ -1227,12 +1267,14 @@ body .ui-inputfield.case-detail-name-input {
 .process-start-list-item,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item {
   background-color: var(--process-order-list-item-background-color);
-  color: var(--process-start-list-item-color);
-  box-shadow: var(--process-order-list-item-box-shadow); }
+  color: var(--process-start-list-item-color); }
 
 .process-start-list-item:hover,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover {
-  background: var(--process-start-list-item-hover-background-color); }
+  background: var(--process-start-list-item-hover-background-color);
+  -webkit-box-shadow: var(--process-order-item-hover-box-shadow);
+  -moz-box-shadow: var(--process-order-item-hover-box-shadow);
+  box-shadow: var(--process-order-item-hover-box-shadow); }
 
 .process-start-list-item:hover .process-start-list-item-name,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-name {
@@ -1271,6 +1313,9 @@ body .ui-inputfield.case-detail-name-input {
   font-family: var(--icon-font-family);
   font-size: var(--large-font-size); }
 
+.process-header .process-header-title-container {
+  border-bottom: 1px solid var(--process-header-title-container-border-bottom); }
+
 .process-header .create-express-workflow-icon,
 body .ui-widget-content .express-process-logo {
   background-color: var(--process-express-logo-background-color); }
@@ -1299,8 +1344,7 @@ body .ui-widget-content .express-process-logo {
   color: var(--filter-name-label-color); }
 
 a.compact-task-start-link .task-start-list-item {
-  background-color: var(--compact-task-start-link-item-background-color);
-  box-shadow: var(--compact-task-start-link-item-box-shadow); }
+  background-color: var(--compact-task-start-link-item-background-color); }
 
 a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.full-mode:hover {
   background: var(--compact-task-start-list-item-hover-background-color); }
@@ -1316,6 +1360,9 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .task-start-list .description-cell {
   color: var(--task-start-list-description-cell); }
+
+.task-odd-row.full-mode {
+  background-color: var(--task-odd-row-full-mode-background-color); }
 
 .filter-name-overlay-panel .filter-separator.ui-separator {
   border-bottom: 1px solid var(--task-filter-separator-border-bottom); }
@@ -1353,9 +1400,12 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   -moz-box-shadow: 0px 2px 4px 0px var(--user-setting-container-box-shadow);
   box-shadow: 0px 2px 4px 0px var(--user-setting-container-box-shadow); }
 
+.user-name-show-environment-info {
+  font-weight: var(--username-show-environment-info-font-weight); }
+
 /* Absences and Debuty -------------------------*/
 .substituted-user-text {
-  color: var(--substituted-user-text-color); }
+  color: var(--username-show-environment-info-font-weight); }
 
 /*Awesome Icon Selection--------------------------*/
 .ui-commandlink.select-awesome-icon-button {
@@ -1690,8 +1740,7 @@ ul.participants-list li {
 .process-widget-action .name-sort-command,
 .editing-switch-command,
 .show-adding-dialog-commmand {
-  font-size: var(--small-font-size);
-  line-height: 18px; }
+  font-size: var(--small-font-size); }
 
 .config-checkbox-container {
   border-bottom: 1px solid var(--config-checkbox-container-border); }
@@ -1702,11 +1751,14 @@ ul.participants-list li {
 .user-name {
   font-size: var(--large-font-size); }
 
+.show-environment-info {
+  font-size: 1.1rem; }
+
 .global-search-icon {
   font-size: var(--large-font-size); }
 
-.action-button.task-action-item i {
-  font-size: var(--header-font-size); }
+.action-button .ui-button-icon-right.ui-icon.ui-c {
+  font-size: 2rem; }
 
 /* Portal's File upload component */
 .upload-container .ui-widget.ui-selectonemenu,
