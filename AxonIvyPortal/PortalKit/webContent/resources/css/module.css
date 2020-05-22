@@ -151,7 +151,6 @@
 }
 
 .layout-wrapper .layout-main .layout-content {
-  padding: 0 20px 0 30px;
    height: calc(100vh - 58px);
   overflow-x: hidden;
 }
