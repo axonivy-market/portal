@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
@@ -50,11 +51,11 @@ public class CaseWidgetCustomizationTest extends BaseTest {
     caseWidgetPage.clickDefaultCheckbox();
     caseWidgetPage.clickColumnCheckbox(6);
     caseWidgetPage.clickApplyButton();
-    assertFalse(caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
+    WaitHelper.assertTrueWithWait(() -> !caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
     caseWidgetPage.clickColumnsButton();
     caseWidgetPage.clickColumnCheckbox(6);
     caseWidgetPage.clickApplyButton();
-    assertTrue(caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
+    WaitHelper.assertTrueWithWait(() -> caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
 	}
 
 	@Test

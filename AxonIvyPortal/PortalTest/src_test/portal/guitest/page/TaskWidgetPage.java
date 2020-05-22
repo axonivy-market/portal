@@ -412,7 +412,7 @@ public class TaskWidgetPage extends TemplatePage {
 				findElementByCssSelector("input[id$='responsible-filter:filter-input-form:responsible_input']");
 		//enterKeys(responsible, text);
 		type(responsible,text);
-		waitForElementDisplayedByCssSelector("span[id$='responsible-filter:filter-input-form:responsible_panel']", 5);
+		waitForElementDisplayedByCssSelector("span[id$='responsible-filter:filter-input-form:responsible_panel']");
 		click(By.cssSelector("i[class*='fa-user']"));
 		waitAjaxIndicatorDisappear();
 		click(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']"));
