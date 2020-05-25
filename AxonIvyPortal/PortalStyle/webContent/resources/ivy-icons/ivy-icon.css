@@ -15,12 +15,17 @@ Generated using nucleoapp.com
 -------------------------*/
 .icon {
   display: inline-block;
-  font: normal normal normal 1em/1 'IvyIcons';
+  font: normal normal normal 1em/1 'IvyIcons' !important;
   speak: none;
   text-transform: none;
-  /* Better Font Rendering */
+  / Better Font Rendering /
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Sync size with primefaces icons */
+.ui-icon.icon {
+  font: normal normal normal 18px/1 'IvyIcons' !important;
 }
 /*------------------------
   change icon size
