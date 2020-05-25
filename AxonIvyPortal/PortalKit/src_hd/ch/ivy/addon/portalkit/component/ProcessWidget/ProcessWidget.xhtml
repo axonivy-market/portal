@@ -20,29 +20,31 @@
 
         <div class="ui-g-12 u-no-padding-top u-no-padding-left ui-g">
           
-          <div class="ui-g-3">
+          <div class="ui-sm-12 ui-md-10 ui-lg-7 ui-xl-4 process-widget-filter">
             <ic:ch.ivy.addon.portalkit.component.Filter id="process-search" listener="processWidget.filter()" ajax="false"
                   placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processFilterPlaceHolder')}"
                   styleClass="js-filter-process-widget-list-item" />
           </div>
-          <h:panelGroup id="create-express-link" layout="block"
-            rendered="#{!cc.attrs.hideExpressCreation and processWidgetBean.canCreateExpessWorkflow()}"
-            styleClass="create-express-link u-hidden-md-down">
-            <p:commandLink id="create-express-workflow"
-              value="#{processWidgetBean.createExpressWorkflowProcessStart.name}"
-              actionListener="#{processWidgetBean.startExpressWorkflowCreationLink()}">
-              <i class="create-express-workflow-icon Fleft" />
-            </p:commandLink>
-          </h:panelGroup>
-          <h:panelGroup styleClass="u-hidden-md-down add-external-link-command">
-            <p:commandLink id="add-external-link-command"
-              actionListener="#{externalLinkBean.addNewExternalLink(cc.clientId)}"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addExternalLink')}"
-              update="#{cc.clientId}:add-external-link-dialog" oncomplete="PF('add-external-link-dialog').show()">
-              <i class="fa fa-external-link Fleft add-external-link-icon" aria-hidden="true"></i>
-            </p:commandLink>
-            <ui:include src="ExternalLinkDialog.xhtml" />
-          </h:panelGroup>
+          <div class="ui-g u-hidden-md-down">
+	          <h:panelGroup id="create-express-link" layout="block"
+	            rendered="#{!cc.attrs.hideExpressCreation and processWidgetBean.canCreateExpessWorkflow()}"
+	            styleClass="create-express-link">
+	            <p:commandLink id="create-express-workflow"
+	              value="#{processWidgetBean.createExpressWorkflowProcessStart.name}"
+	              actionListener="#{processWidgetBean.startExpressWorkflowCreationLink()}">
+	              <i class="create-express-workflow-icon icon ivyicon-startup-launch Fleft" />
+	            </p:commandLink>
+	          </h:panelGroup>
+	          <h:panelGroup styleClass="add-external-link-command">
+	            <p:commandLink id="add-external-link-command"
+	              actionListener="#{externalLinkBean.addNewExternalLink(cc.clientId)}"
+	              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addExternalLink')}"
+	              update="#{cc.clientId}:add-external-link-dialog" oncomplete="PF('add-external-link-dialog').show()">
+	              <i class="fa fa-external-link Fleft add-external-link-icon" aria-hidden="true"></i>
+	            </p:commandLink>
+	            <ui:include src="ExternalLinkDialog.xhtml" />
+	          </h:panelGroup>
+	        </div>
         </div>
       </div>
 
