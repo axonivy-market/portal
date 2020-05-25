@@ -1199,15 +1199,6 @@ body .ui-inputfield.case-detail-name-input {
   font-size: var(--large-font-size); }
 
 /*Process --------------------------------------*/
-.expand-collapse-btns .expand-collapse-btn {
-  color: var(--expand-collapse-button-color);
-  background-color: var(--collapse-button-background-color);
-  font-size: var(--small-font-size);
-  box-shadow: var(--process-order-list-item-box-shadow); }
-
-.expand-collapse-btns a.expand-collapse-btn:hover {
-  background-color: var(--collapse-button-hover-background-color); }
-
 .process-widget .process-nav .process-nav-item {
   color: var(--process-navigator-item-color);
   font-size: var(--large-font-size); }
@@ -1771,4 +1762,16 @@ body .ui-datepicker tbody td.ui-datepicker-today a, body .ui-datepicker tbody td
 
 body .ui-slider .ui-slider-handle {
   background-color: var(--accent-light-color);
+}
+
+.process-nav .expand-collapse-btn {
+	font-family: var(--icon-font-family);
+}
+
+.process-nav .expand-collapse-btn.expand:before {
+	content: "\f067";
+}
+
+.process-nav .expand-collapse-btn.collapse:before {
+	content: "\f068";
 }
