@@ -892,6 +892,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .process-header .create-express-link {
   display: inline-block;
   float: right;
+  padding-top: 14px;
 }
 
 .process-header .create-express-link a:hover i {
@@ -1080,6 +1081,7 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 
 .add-external-link-command {
   margin-left: 10px;
+  padding-top: 14px;
 }
 
 .process-start-list-item-action.is-express {
@@ -1146,6 +1148,18 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 .process-start-list-item:hover,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-action {
   opacity: 1;
+}
+
+
+.process-widget .process-widget-filter {
+  padding-right: 20px;
+}
+
+@media screen and (max-width: 40em) {
+  .process-widget .process-widget-filter {
+    padding-right: 0;
+    width: 93%;
+  }
 }
 
 .process-widget .process-group {
