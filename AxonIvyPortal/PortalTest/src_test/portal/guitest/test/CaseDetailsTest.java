@@ -92,7 +92,6 @@ public class CaseDetailsTest extends BaseTest {
     assertEquals(CASE_LIST_TITLE, casePage.getPageTitle());
     Assert.assertTrue(casePage.isCaseDisplayed(LEAVE_REQUEST_CASE_NAME));
     
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     redirectToRelativeLink(createBetaCompanyUrl);
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
@@ -103,9 +102,7 @@ public class CaseDetailsTest extends BaseTest {
     Assert.assertTrue(detailsPage.isRelatedTasksComponentPresented());
     detailsPage = detailsPage.openRelatedCaseOfBusinessCase(0);
     assertEquals(CASE_DETAILS_TITLE, detailsPage.getPageTitle());
-    String techCaseName = detailsPage.getCaseName();
-    techCaseName = techCaseName + "-Technical Case";
-    detailsPage.changeCaseName(techCaseName);
+    assertEquals("Signal create Beta Company", detailsPage.getCaseName());
 
     Assert.assertTrue(detailsPage.isBackButtonDisplayed());
     detailsPage.clickBackButton();
