@@ -1273,7 +1273,12 @@ body .ui-inputfield.case-detail-name-input {
 
 .process-header .create-express-workflow-icon,
 body .ui-widget-content .express-process-logo {
-  background-color: var(--process-express-logo-background-color); }
+  font-size: 1.8rem; }
+
+.process-header .create-express-workflow-icon {
+  padding-right: 2px;
+  margin-top: -3px;
+}
 
 .process-item-action-container {
   font-size: var(--large-font-size); }
@@ -1341,11 +1346,7 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   color: var(--admin-setting-no-permission-message-color); }
 
 #user-setting-container li a {
-  font-size: var(--large-font-size);
-  color: var(--user-setting-container-link-color); }
-
-#user-setting-container li a:hover {
-  color: var(--user-setting-container-link-hover-color); }
+  font-size: var(--large-font-size); }
 
 #user-setting-container {
   border-radius: 0 0 10px 10px var(--user-setting-container-box-shadow);
