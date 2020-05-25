@@ -222,7 +222,7 @@ body .ui-datatable tbody tr.ui-datatable-even {
   height: 58px; }
 
 .layout-wrapper .layout-main .layout-content {
-  padding: 20px 20px 0 20px;
+  padding: 0 20px 0 20px;
   height: calc(100vh - 58px);
   overflow-x: hidden; }
 
@@ -1264,11 +1264,11 @@ body .ui-inputfield.case-detail-name-input {
 
 .process-header .create-express-workflow-icon,
 body .ui-widget-content .express-process-logo {
-  font-size: 1.8rem; }
+  font-size: 1.6rem !important; }
 
 .process-header .create-express-workflow-icon {
   padding-right: 2px;
-  margin-top: -3px;
+  margin-top: -1px;
 }
 
 .process-item-action-container {
