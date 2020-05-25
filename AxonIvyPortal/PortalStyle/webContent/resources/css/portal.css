@@ -868,7 +868,7 @@ body .fieldset-no-border {
   font-weight: var(--widget-header-font-weight);
   line-height: 26px; }
 
-.widget-sort-menu.full-mode a.ui-widget.ui-commandlink:not(.filter-add-button) {
+.widget-sort-menu.full-mode a.ui-widget.ui-commandlink:not(.filter-add-button):not(.config-columns) {
   font-size: var(--large-font-size);
   color: var(--task-widget-header-column); }
 
