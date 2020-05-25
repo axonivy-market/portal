@@ -71,10 +71,6 @@
   height: 36px;
 }
 
-.widget-header-content-filter {
-  width: 100%;
-}
-
 .widget-header-sub {
   flex: 1 0 auto;
   align-self: flex-end;
@@ -263,7 +259,9 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
 }
 
 .task-widget .filter-add-container,
+.task-widget .filter-reset-action,
 .case-widget-container .filter-add-container {
+  margin-top: 7px;
   margin-right: 10px;
   order: 1000;
 }
@@ -3568,7 +3566,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 .config-columns-button {
-  margin-left: auto;
+  margin-left: 15px;
 }
 
 .config-columns-button button.filter-add-button {
@@ -3772,10 +3770,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   .simple-filter-icon {
     display: none !important;
   }
-  .widget-header-content-filter {
-    padding-right: 0 !important;
-    padding-top: 3px;
-  }
+
   .filter-container {
     padding: 0.5em !important;
   }
