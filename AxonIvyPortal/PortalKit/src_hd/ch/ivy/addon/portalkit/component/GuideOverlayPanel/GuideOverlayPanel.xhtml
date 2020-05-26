@@ -1,0 +1,135 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="targetComponent" required="true" shortDescription="Id of target component." />
+  <cc:attribute name="targetCssSelector" required="true" shortDescription="Find target component by css selector in order to highlight it" />
+  <cc:attribute name="targetPosition" default="relative" shortDescription="Position css style of targer component highlight it. Default is relative" />
+  <cc:attribute name="arrowPosition" default="top center"
+    shortDescription="Arrow position points to target component. First value is the overlay panel's side, second value is arrow position at this side.Default is top center" />
+  <cc:attribute name="icon" />
+  <cc:attribute name="title" />
+  <cc:attribute name="content" />
+  <cc:attribute name="contentWidth" />
+  <cc:attribute name="my" default="center top+30" shortDescription="Position of the panel relative to the target." />
+  <cc:attribute name="at" default="left bottom" shortDescription="Position of the target relative to the panel." />
+  <cc:attribute name="onShow" />
+  <cc:attribute name="onHide" />
+  <cc:attribute name="onNext" shortDescription="javascript function to execute after click on Next button" />
+</cc:interface>
+
+<cc:implementation>
+  <p:dialog id="#{cc.attrs.targetComponent}-guide" widgetVar="#{cc.attrs.targetComponent}-guide" modal="true" appendTo="@(body)"
+    styleClass="guide-panel" onHide="hideGuide('#{cc.attrs.targetCssSelector}');#{cc.attrs.onHide}" 
+    draggable="false" closable="false" resizable="false" showHeader="false"
+    onShow="showGuide('#{cc.attrs.targetCssSelector}', '#{cc.attrs.my}', '#{cc.attrs.at}', '#{cc.attrs.targetPosition}', '#{cc.attrs.arrowPosition}'); #{cc.attrs.onShow}">
+    <span class="guide-panel__arrow" />
+    <div class="guide-panel__container" style="width: #{cc.attrs.contentWidth}">
+      <span class="fa #{cc.attrs.icon} fa-4x" />
+      <h2>#{cc.attrs.title}</h2>
+      <p class="guide-panel__content">#{cc.attrs.content}</p>
+      <div class="guide-panel__buttons">
+        <p:link href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
+          onclick="PF('#{cc.attrs.targetComponent}-guide').hide()" styleClass="guide-panel__cancel" />
+        <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}" 
+          onclick="PF('#{cc.attrs.targetComponent}-guide').hide(); #{cc.attrs.onNext}" />
+      </div>
+      <div class="guide-panel__dont-show-again">
+        <p:selectBooleanCheckbox value="" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/dontShowAgain')}" />
+      </div>
+    </div>
+  </p:dialog>
+
+  <script>
+    var originTargetPosition;
+    var originTargetBackgroundColor;
+    var originTargetZIndex;
+  
+    function showGuide(targetCssSelector, originMy, at, targetPosition, arrowPosition) {
+      var $guidePanel = $('.guide-panel:visible');
+      var $target = $(targetCssSelector);
+      var my = originMy;
+      if (originMy.includes('center')) {
+        var left;
+        if (originMy.startsWith("center")) {
+          var centerAlign = ($target.outerWidth() - $guidePanel.outerWidth()) / 2;
+          left = 'left+' + centerAlign;
+        } else {
+          left = originMy.substr(0, originMy.indexOf(' '));
+        }
+        var top;
+        if (originMy.endsWith("center")) {
+          var centerAlign = ($target.outerHeight() - $guidePanel.outerHeight()) / 2;
+          top = ' top+' + centerAlign;
+        } else {
+          top = originMy.substr(originMy.lastIndexOf(' '));
+        }
+        my = left + top;
+      }
+      
+      var $arrow = $('.guide-panel:visible .guide-panel__arrow');
+      if (arrowPosition === 'top center') {
+        $arrow.css({
+          'top': '-15px',
+          'left': 'calc(50% - 15px)',
+          'border-left': '15px solid transparent',
+          'border-right': '15px solid transparent',
+          'border-bottom': '15px solid white'
+        });
+      } else if (arrowPosition === 'left top') {
+        $arrow.css({
+          'top': '15px',
+          'left': '-15px',
+          'border-top': '15px solid transparent',
+          'border-bottom': '15px solid transparent',
+          'border-right': '15px solid white'
+        });
+      } else if (arrowPosition === 'right top') {
+        $arrow.css({
+          'top': '15px',
+          'right': '-15px',
+          'border-top': '15px solid transparent',
+          'border-bottom': '15px solid transparent',
+          'border-left': '15px solid white'
+        });
+      } else if (arrowPosition === 'top right') {
+        $arrow.css({
+          'top': '-15px',
+          'right': '15px',
+          'border-left': '15px solid transparent',
+          'border-right': '15px solid transparent',
+          'border-bottom': '15px solid white'
+        });
+      }
+      
+      var zIndex = $guidePanel.css('z-index');
+      $guidePanel.position({
+        my: my,
+        at: at,
+        of: $target
+      });
+      originTargetPosition = $target.css('position');
+      originTargetBackgroundColor = $target.css('background-color')
+      originTargetZIndex = $target.css('z-index');
+      $target.css({
+        'position' : targetPosition,
+        'background-color' : 'white',
+        'z-index' : zIndex
+      });
+      $('#guide-modal').css('z-index', zIndex);
+    }
+    
+    function hideGuide(targetCssSelector) {
+      $('#guide-modal').css('z-index', -1);
+      var $target = $(targetCssSelector);
+      $target.css({
+        'position' : originTargetPosition,
+        'background-color' : originTargetBackgroundColor,
+        'z-index' : originTargetZIndex
+      });
+    }
+  </script>
+</cc:implementation>
+</html>
