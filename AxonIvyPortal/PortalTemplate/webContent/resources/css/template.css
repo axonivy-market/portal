@@ -13,6 +13,10 @@
   bottom: 0;
 }
 
+#portal-environment {
+  text-align: right;
+}
+
 #logo>img {
   margin: 5px 0 0 0px;
 }
@@ -69,10 +73,8 @@
 }
 
 .show-environment-info {
-  line-height: 20px;
-  text-align: center;
-  background-color: #f4f5f5;
-  box-shadow: 3px 0 6px rgba(0, 0, 0, 0.3);
+  font-size: 11px;
+  padding: 0 5px 0 0;
 }
 
 /* Override default state of ui-layout-container in Internet Explorer */
