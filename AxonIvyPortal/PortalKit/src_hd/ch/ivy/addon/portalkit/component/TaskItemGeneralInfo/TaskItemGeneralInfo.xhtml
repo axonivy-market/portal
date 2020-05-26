@@ -181,9 +181,11 @@
               <p:ajax event="save" listener="#{logic.updateDeadline(task)}" update="expiry-form #{cc.attrs.componentToUpdate}" />
               <p:calendar id="expiry-calendar" styleClass="task-details-data-expiry" value="#{task.expiryTimestamp}" pattern="#{dateTimePatternBean.configuredPattern}"
                 locale="#{localeBean.locale}">
+                <f:attribute name="selectedTask" value="#{task}"/>
                 <f:validator validatorId="taskExpiryTimestampValidator" />
               </p:calendar>
             </p:inplace>
+            <p:growl id="expiry-form-message" for="expiry-calendar"/>
           </h:form>
           <h:outputText id="no-expiry-available"
             value="#{empty task.expiryTimestamp ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : task.expiryTimestamp}"
