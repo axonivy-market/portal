@@ -79,7 +79,6 @@ public class SecurityService implements ISecurityService {
       UserQuery excludeUsernameQuery = queryExcludeUsernames(excludedUsernames);
       filterQuery.andOverall(excludeUsernameQuery);
     }
-    filterQuery.andOverall(UserQuery.create().where().enabled());
     Recordset recordset = executor.getRecordset(userQuery, startIndex, count);
     return recordset.getRecords().stream().map(UserDTO::new).collect(Collectors.toList());
   }
@@ -256,7 +255,6 @@ public class SecurityService implements ISecurityService {
       UserQuery excludeUsernameQuery = queryExcludeUsernames(excludedUsernames);
       filterQuery.andOverall(excludeUsernameQuery);
     }
-    filterQuery.andOverall(UserQuery.create().where().enabled());
     List<IUser> users = userQuery
         .orderBy().fullName().name()
         .executor().results(startIndex, count);
