@@ -55,7 +55,6 @@
               <i class="fa fa-user-circle" /> #{ivy.cms.co('/Dialogs/Tasks/TaskDetail/DataDescription')}
               <div class="task-details-action-container action-container">
                 <h:panelGroup>
-  
                   <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task)}" styleClass="task-action-item"
                     rendered="#{task.state != 'RESUMED'}" actionListener="#{logic.openTask()}">
                     <i class="fa fa-chevron-right" />
