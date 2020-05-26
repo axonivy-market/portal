@@ -76,6 +76,22 @@
           <ic:ch.ivy.addon.portal.generic.GlobalSearch id="global-search-component" isWorkingOnATask="#{isWorkingOnATask}" />
         </h:form></li>
     </ul>
+    
+    <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="setting-container-guide-component" targetComponent="setting-container"
+      title="User name" content="Clicking on the user name you can define absences, language, mail settings, etc."
+      contentWidth="370px" targetCssSelector=".setting-container" icon="fa-user" onNext="PF('statistic-widget-container-guide').show()"
+      my="right bottom-30" at="right top" arrowPosition="top right" onShow="showUsernameGuide()" onHide="hideUsernameGuide()" />
+      
+    <script>
+      function showUsernameGuide() {
+        var zIndex = $('#guide-modal').css('z-index');
+        $('.layout-topbar').css({'z-index':zIndex})
+      }
+      
+      function hideUsernameGuide() {
+        $('.layout-topbar').removeAttr("style");
+      }
+    </script>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" width="500" closeOnEscape="true"
       widgetVar="changePasswordDialog" id="change-password-dialog" resizable="false" modal="true" draggable="false" appendTo="@(body)" dynamic="true"

@@ -1,0 +1,41 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="icon" />
+  <cc:attribute name="title" />
+  <cc:attribute name="content" />
+  <cc:attribute name="contentWidth" />
+  <cc:attribute name="onNext" required="true" shortDescription="javascript function to execute after click on Next button" />
+</cc:interface>
+
+<cc:implementation>
+  <ui:param name="icon" value="#{empty cc.attrs.icon ? 'fa fa-home fa-4x' : cc.attrs.icon}" />
+  <ui:param name="title" value="#{empty cc.attrs.title ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/welcome/title') : cc.attrs.title}" />
+  <ui:param name="content" value="#{empty cc.attrs.content ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/welcome/content') : cc.attrs.content}" />
+  <ui:param name="contentWidth" value="#{empty cc.attrs.contentWidth ? '500px' : cc.attrs.contentWidth}" />
+
+  <p:dialog id="welcome-portal-guide" widgetVar="welcome-portal-guide" modal="true" appendTo="@(body)" styleClass="guide-panel"
+    draggable="false" closable="false" resizable="false" showHeader="false" fitViewport="true" responsive="true">
+    <div class="guide-panel__container" style="width: #{contentWidth}">
+      <span class="#{icon}" />
+      <h2>#{title}</h2>
+      <p class="guide-panel__content">#{content}</p>
+      <div class="guide-panel__buttons">
+        <p:link id="welcome-guide-cancel" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
+          onclick="PF('welcome-portal-guide').hide()" styleClass="guide-panel__cancel" />
+        <p:commandButton id="welcome-guide-next" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}" 
+          onclick="PF('welcome-portal-guide').hide(); #{cc.attrs.onNext}" />
+      </div>
+    </div>
+  </p:dialog>
+  
+  <script>
+    $(document).ready(function() {
+      PF('welcome-portal-guide').show();
+    });
+  </script>
+</cc:implementation>
+</html>

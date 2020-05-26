@@ -25,6 +25,11 @@
                     label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/seeAllProcesses')}" />
                 </f:facet>
               </ic:ch.ivy.addon.portalkit.component.CompactProcessWidget>
+              
+              <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="process-widget-guide-component" targetComponent="process-widget"
+                title="Processes" content="In this area you will find all available processes. Just click on it and the process will start."
+                contentWidth="370px" targetCssSelector="#process-widget" icon="fa-cogs"
+                onNext="PF('task-widget-guide').show()" />
           </ui:insert>
         </h:panelGroup>
         <h:panelGroup layout="block" rendered="#{displayTaskWidget}"
@@ -42,6 +47,11 @@
                   label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/showFullTaskList')}" />
               </f:facet>
             </ic:ch.ivy.addon.portalkit.component.TaskWidget>
+            
+            <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="task-widget-guide-component" targetComponent="task-widget"
+              title="Tasks" content="In this area you will find all open tasks. Just click on it to work on a task."
+              contentWidth="370px" targetCssSelector="#task-widget" icon="fa-check-square-o"
+              onNext="PF('setting-container-guide').show()" />
           </ui:insert>
         </h:panelGroup>
         <h:panelGroup layout="block" class="ui-g-3 ui-lg-3 ui-md-hidden ui-sm-hidden" rendered="#{displayStatisticWidget}">
@@ -55,6 +65,11 @@
                 </f:facet>
               </ic:ch.ivy.addon.portalkit.component.StatisticWidget>
             </h:panelGroup>
+            
+            <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="statistic-widget-guide-component" targetComponent="statistic-widget-container"
+              title="Statistics" content="In this area you will find all different kind of existing statistics. Click for more details."
+              contentWidth="370px" targetCssSelector="#statistic-widget-container" icon="fa-bar-chart"
+              my="right-30 top" at="left top" arrowPosition="right top" />
           </ui:insert>
         </h:panelGroup>
       </h:panelGroup>
@@ -65,6 +80,10 @@
           </ui:insert>
         </div>
       </div>
+      
+      <ic:ch.ivy.addon.portalkit.component.WelcomePortalDialog id="welcome-portal-guide-component"
+        onNext="PF('left-menu-guide').show()" icon="#{welcomeGuideIcon}" title="#{welcomeGuideTitle}" 
+        content="#{welcomeGuideContent}" contentWidth="#{welcomeGuideContentWidth}" />
     </ui:define>
   </ui:composition>
 </h:body>
