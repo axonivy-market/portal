@@ -180,7 +180,7 @@
             dataModel="#{data.dataModel}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader()"
             configButtonId="case-config-button" overlayPanelId="case-config-columns-panel" />
     </h:panelGroup>
-    <h:panelGroup id="case-view" layout="block" class="ui-g-12">
+    <h:panelGroup id="case-view" layout="block" class="ui-g-12 case-view">
       <h:panelGroup id="case-list" layout="block" styleClass="case-list">
         <p:dataScroller id="case-list-scroller" value="#{data.dataModel}" var="case" chunkSize="#{cc.attrs.chunkSize}"
           lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list" widgetVar="case-list-scroller">

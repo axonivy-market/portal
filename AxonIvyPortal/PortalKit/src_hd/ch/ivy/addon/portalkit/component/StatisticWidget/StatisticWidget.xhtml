@@ -15,7 +15,7 @@
 
   <f:event listener="#{logic.setCompactMode(cc.attrs.compactMode)}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="ui-g widget statistic-widget-container #{!cc.attrs.compactMode ? '':'statistic-widget-compact-mode-container'}">
-    <h:panelGroup id="header" layout="block" styleClass="widget-header ui-g-12">
+    <h:panelGroup id="header" layout="block" styleClass="widget-header ui-g-12 u-no-padding-top">
       <div class="widget-header-main #{data.createMode ? 'creation-mode':''}">
         <h:outputText styleClass="widget-header-main-title" 
           value="#{ivy.cms.co(!data.createMode ? '/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statistics' : '/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/createNewStatistic')}" />
@@ -94,7 +94,7 @@
           isDrilldownExpiryChart="#{data.isDrilldownExpiryChart}" isBackFromDrilldown="#{data.isBackFromDrilldown}" />
       </h:panelGroup>
 
-      <h:panelGroup id="chart-list-container" layout="block" styleClass="chart-list-container ui-g-12"
+      <h:panelGroup id="chart-list-container" layout="block" styleClass="chart-list-container ui-g-12 u-padding-0"
         rendered="#{!data.compactMode and data.createMode}">
         <ic:ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget id="chart-creation-widget" statisticChartList="#{data.statisticChartList}" />
       </h:panelGroup>
