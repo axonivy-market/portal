@@ -780,6 +780,17 @@ body .portal-cancel-button.ui-widget.ui-button .ui-icon,
   background-color: var(--announcement-background-color);
   border: 2px solid var(--announcement-border-color); }
 
+body .ui-button.action-button {
+  box-shadow: none;
+  background-color: transparent;
+  border: 1px solid transparent; }
+
+body .ui-widget.ui-button.action-button span, body .ui-widget.ui-button.action-button span {
+  color: var(--case-task-action-button-color); }
+
+.ui-button.ui-widget.action-button.ui-state-hover {
+  background-color: var(--case-task-action-button-hover-background-color); }
+
 /*Style For Task Detail --------------------------------------------------------------------------------------*/
 body .task-item-body .task-details-item-note .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top, .task-item-body .task-details-item-document .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
   background-color: var(--task-detail-paginator-header-corner-top-background-color);
@@ -872,7 +883,7 @@ body .fieldset-no-border {
   font-size: var(--large-font-size);
   color: var(--task-widget-header-column); }
 
-.widget-sort-menu a.ui-widget.ui-commandlink.is-selected:not(.filter-add-button) {
+.widget-sort-menu.full-mode a.ui-widget.ui-commandlink.is-selected:not(.filter-add-button):not(.config-columns) {
   color: var(--compact-task-start-info-icon-color); }
 
 .task-widget .advanced-filter .ui-button-text-only .ui-button-text,
@@ -895,8 +906,7 @@ body .fieldset-no-border {
   color: var(--advanced-filter-error-color);
   font-family: var(--icon-font-family); }
 
-.widget-sort-menu.full-mode,
-.task-view-container .task-start-list .task-start-list-item.full-mode {
+.widget-sort-menu.full-mode {
   border-bottom: 1px solid var(--widget-sort-menu-border-bottom-color); }
 
 /*Style for Case Detail --------------------------------------------------------------------------------------*/
@@ -990,9 +1000,6 @@ body .fieldset-no-border {
   font-size: var(--widget-header-font-size);
   font-weight: var(--widget-header-font-weight);
   line-height: 26px;}
-
-.note-show-more-link:hover {
-  color: var(--note-show-more-link-hover-color); }
 
 .related-task-content .related-task,
 .case-related-running {
@@ -1223,7 +1230,8 @@ body .ui-inputfield.case-detail-name-input {
 
 .process-start-list-item:hover,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover {
-  background: var(--process-start-list-item-hover-background-color); }
+  background: var(--process-start-list-item-hover-background-color);
+  border: var(--process-start-list-item-hover-border); }
 
 .process-start-list-item:hover .process-start-list-item-name,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-name {
@@ -1298,8 +1306,14 @@ a.compact-task-start-link .task-start-list-item {
   background-color: var(--compact-task-start-link-item-background-color);
   box-shadow: var(--compact-task-start-link-item-box-shadow); }
 
-a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.full-mode:hover {
-  background: var(--compact-task-start-list-item-hover-background-color); }
+.task-start-list-item.full-mode {
+  border-bottom: 1px solid var(--task-filter-separator-border-bottom);
+}
+
+a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.full-mode:hover,
+.case-list-item:hover {
+  background: var(--compact-task-start-list-item-hover-background-color);
+  border: var(--compact-task-start-list-item-hover-border); }
 
 .task-start-info-header, .task-start-info-content, .task-start-info-footer {
   color: var(--compact-task-start-info-color); }
