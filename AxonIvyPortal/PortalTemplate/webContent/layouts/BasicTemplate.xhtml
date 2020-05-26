@@ -82,18 +82,23 @@
       </div>
 
       <div class="layout-wrapper js-layout-wrapper #{guestPreferences.orientationRTL ? 'layout-rtl' : ''} #{showMainArea eq true ? '' : 'u-invisibility'}">
-         <div class="layout-sidebar #{guestPreferences.darkMenu ? 'layout-sidebar-dark' : ''} #{currentPage} left-sidebar-color js-left-sidebar" id="left-menu">
-            <c:choose>
-              <c:when test="#{isNotRequiredLogin}">
-                <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu startMethod="StartNotRequiredLogin" id="user-menu-without-login" isWorkingOnATask="#{isWorkingOnATask}" 
-                  showGlobalSearch="true" task="#{task}" />
-              </c:when>
-              <c:otherwise>
-                <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu id="user-menu-required-login" isWorkingOnATask="#{isWorkingOnATask}" 
-                  showGlobalSearch="true" task="#{task}" />
-              </c:otherwise>
-            </c:choose>
+        <div class="layout-sidebar #{guestPreferences.darkMenu ? 'layout-sidebar-dark' : ''} #{currentPage} left-sidebar-color js-left-sidebar" id="left-menu">
+          <c:choose>
+            <c:when test="#{isNotRequiredLogin}">
+              <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu startMethod="StartNotRequiredLogin" id="user-menu-without-login" isWorkingOnATask="#{isWorkingOnATask}" 
+                showGlobalSearch="true" task="#{task}" />
+            </c:when>
+            <c:otherwise>
+              <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu id="user-menu-required-login" isWorkingOnATask="#{isWorkingOnATask}" 
+                showGlobalSearch="true" task="#{task}" />
+            </c:otherwise>
+          </c:choose>
         </div>
+        
+        <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="left-menu-guide-component" targetComponent="left-menu"
+          title="Main Menu" content="The grey Menu includes a full process list, a task and case list and advanced statistics area."
+          contentWidth="370px" targetCssSelector="#left-menu" icon="fa-bars" onNext="PF('process-widget-guide').show()"
+          my="left+30 top+70" at="right top" targetPosition="fixed" arrowPosition="left top" />
 
         <div class="layout-main js-layout-main">
           <div class="layout-topbar">
@@ -149,6 +154,8 @@
         <ic:ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo />
         <ic:ch.ivy.addon.portalkit.component.PageFooter />
       </div>
+      
+      <div id="guide-modal" class="ui-dialog-mask ui-widget-overlay" style="background: transparent;" />
     </c:otherwise>
   </c:choose>
 
