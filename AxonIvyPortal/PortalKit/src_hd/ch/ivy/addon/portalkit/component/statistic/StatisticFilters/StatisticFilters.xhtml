@@ -23,7 +23,7 @@
         oncomplete="clearChartModels(); updateChartModels();" global="true"/>
     </div>
 
-    <p:accordionPanel id="statistic-filter-accordion-panel" styleClass="statistic-filter-accordion-panel ui-g-12 ui-fluid" multiple="true" activeIndex="0,1,2,3">
+    <p:accordionPanel id="statistic-filter-accordion-panel" styleClass="statistic-filter-accordion-panel ui-g-12 ui-fluid" multiple="true" activeIndex="0,1">
       <!-- PERIOD TIME FILTER -->
       <p:tab id="period-time-filter-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/timePeriod')}">
   
@@ -65,28 +65,6 @@
 
       </p:tab>
   
-      <!-- CASE CATEGORY FILTER -->
-      <p:tab id="case-category-filter-tab">
-  
-        <f:facet name="title">
-          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/caseCategoriesLabel')}" />
-          <p:outputLabel id="case-category-filter-info" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle"/></p:outputLabel>
-          <p:tooltip for="case-category-filter-info" styleClass="statistic-filter-tooltip">
-            #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
-            #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
-            #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')} <br/>
-            #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/description")}: #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/caseCategoryFilterDescription")}
-          </p:tooltip>
-        </f:facet>
-
-        <p:tree id="task-category-filter-tree" value="#{filter.caseCategories.root}" var="node" selectionMode="checkbox"
-          filterBy="#{node}" filterMatchMode="contains" styleClass="statistic-case-category-tree" selection="#{filter.caseCategories.categories}">
-          <p:treeNode>
-            <h:outputText value="#{node.value}" />
-          </p:treeNode>
-        </p:tree>
-      </p:tab>
-  
       <!-- ROLE FILTER -->
       <p:tab id="role-filter-tab">
   
@@ -112,6 +90,28 @@
             <p:ajax global="false" />
           </p:selectManyCheckbox>
         </p:scrollPanel>
+      </p:tab>
+  
+      <!-- CASE CATEGORY FILTER -->
+      <p:tab id="case-category-filter-tab">
+  
+        <f:facet name="title">
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/caseCategoriesLabel')}" />
+          <p:outputLabel id="case-category-filter-info" styleClass="chart-filter-info-icon"><span class="fa fa-info-circle"/></p:outputLabel>
+          <p:tooltip for="case-category-filter-info" styleClass="statistic-filter-tooltip">
+            #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/affectedCharts")}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')},
+            #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')},
+            #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}, #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')} <br/>
+            #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/description")}: #{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/filter/caseCategoryFilterDescription")}
+          </p:tooltip>
+        </f:facet>
+
+        <p:tree id="task-category-filter-tree" value="#{filter.caseCategories.root}" var="node" selectionMode="checkbox"
+          filterBy="#{node}" filterMatchMode="contains" styleClass="statistic-case-category-tree" selection="#{filter.caseCategories.categories}">
+          <p:treeNode>
+            <h:outputText value="#{node.value}" />
+          </p:treeNode>
+        </p:tree>
       </p:tab>
   
       <!-- CASE STATE FILTER -->

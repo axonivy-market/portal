@@ -225,10 +225,6 @@ body .ui-chkbox .ui-chkbox-box.ui-state-active.ui-state-focus .ui-chkbox-icon {
   color: $commandLinkHoverTextColor;
 }
 
-.ui-commandlink:active {
-  color: $commandLinkActiveTextColor;
-}
-
 .ui-commandlink.ui-state-disabled {
   color: rgba($commandLinkDisabledTextColor,1);
   font-size: $largeFontSize;
@@ -590,7 +586,7 @@ body .ui-tabs .ui-tabs-nav>li.ui-state-default:not(.ui-state-active) a {
 }
 
 .layout-wrapper .layout-main .layout-content {
-    padding: 60px 20px 0 30px;
+    padding: 60px 20px 0;
     height: 100vh;
     overflow-x: hidden;
 }

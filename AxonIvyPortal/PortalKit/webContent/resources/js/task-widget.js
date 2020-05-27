@@ -36,14 +36,23 @@ function TaskWidget() {
 
         var compactProcessWidgetHeight = window.matchMedia("(max-width: 40em)").matches == true ? ($('.compact-process-widget').outerHeight(true) || 0) : 0;
         var taskViewPaddingValue = parseInt($('.js-task-view').css('padding-top'), 10) + parseInt($('.js-task-view').css('padding-bottom'), 10);
+        var compactTaskWidgetPadding = ($('.dashboard-task-widget-container').outerHeight(true)||0) - ($('.dashboard-task-widget-container').height()||0);
 
         var mainScreenHeight = ($('body').outerHeight(true)||0) - ($('.layout-topbar').outerHeight(true)||0);
         var availableHeight = mainScreenHeight - (taskWidgetHeaderContainer.outerHeight(true)||0) - (announcementMessageContainer.outerHeight(true)||0)
             - (taskWidgetSortMenuContainer.outerHeight(true)||0) - (taskWidgetFilterContainer.outerHeight(true)||0)
             - customWidgetContainer - (globalSearchInput.is(":visible") ? globalSearchInput.outerHeight(true) : 0) - (globalSearchTabHeader.outerHeight(true)||0) - error
-            - compactProcessWidgetHeight - taskViewPaddingValue - headerHeight - footerHeight;
+            - compactProcessWidgetHeight - taskViewPaddingValue - headerHeight - footerHeight
+            - compactTaskWidgetPadding;
         if (!!availableHeight) {
           container.height(availableHeight);
+          if (container.outerHeight(true) > availableHeight) {
+            var taskStartItemMarginRight = $('.task-start-list-item').css("margin-right");
+            var scrollbarWidth = container.width() - container.find('.ui-datascroller-list').outerWidth(true);
+            if (scrollbarWidth > 0) {
+              container.css("margin-right", taskStartItemMarginRight);
+            }
+          }
         }
       }
     },

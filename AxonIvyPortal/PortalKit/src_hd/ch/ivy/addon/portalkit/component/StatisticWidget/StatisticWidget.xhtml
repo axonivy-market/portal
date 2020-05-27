@@ -14,8 +14,8 @@
   <h:outputScript library="chartjs-plugin" name="chartjs-plugin-datalabels.min.js"/>
 
   <f:event listener="#{logic.setCompactMode(cc.attrs.compactMode)}" type="preRenderComponent" />
-  <div id="#{cc.clientId}" class="widget statistic-widget-container #{!cc.attrs.compactMode ? '':'statistic-widget-compact-mode-container'}">
-    <h:panelGroup id="header" layout="block" styleClass="widget-header">
+  <div id="#{cc.clientId}" class="widget statistic-widget-container ui-g #{!cc.attrs.compactMode ? '':'statistic-widget-compact-mode-container'}">
+    <h:panelGroup id="header" layout="block" styleClass="ui-g-12 widget-header statistic-widget-header">
       <div class="widget-header-main #{data.createMode ? 'creation-mode':''}">
         <h:outputText styleClass="widget-header-main-title" 
           value="#{ivy.cms.co(!data.createMode ? '/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statistics' : '/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/createNewStatistic')}" />
@@ -82,10 +82,10 @@
     </h:panelGroup>
 
     <h:panelGroup id="widget-container" layout="block"
-      styleClass="ui-g statistic-widget js-statistic-widget-container #{data.compactMode? 'compact-mode': ''}">
+      styleClass="ui-g-12 statistic-widget js-statistic-widget-container #{data.compactMode? 'compact-mode': ''}">
 
       <h:panelGroup id="statistic-dashboard-container" layout="block"
-        styleClass="ui-g-12 u-padding-0 statistic-dashboard-container #{data.isDrilldownElapsedTime ? 'elapsed-time-detail-container-width' : 'statistic-dashboard-container-width'}"
+        styleClass="ui-g-12 #{data.compactMode? '': 'u-padding-0'} statistic-dashboard-container #{data.isDrilldownElapsedTime ? 'elapsed-time-detail-container-width' : 'statistic-dashboard-container-width'}"
         rendered="#{!data.createMode}">
         <ic:ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget id="statistic-dashboard-widget"
           showTaskListImmediately="#{cc.attrs.showTaskListImmediately}" compactMode="#{data.compactMode}"
@@ -94,7 +94,7 @@
           isDrilldownExpiryChart="#{data.isDrilldownExpiryChart}" isBackFromDrilldown="#{data.isBackFromDrilldown}" />
       </h:panelGroup>
 
-      <h:panelGroup id="chart-list-container" layout="block" styleClass="chart-list-container ui-g-12 u-padding-0"
+      <h:panelGroup id="chart-list-container" layout="block" styleClass="chart-list-container ui-g-12 u-no-padding-left u-no-padding-top"
         rendered="#{!data.compactMode and data.createMode}">
         <ic:ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget id="chart-creation-widget" statisticChartList="#{data.statisticChartList}" />
       </h:panelGroup>

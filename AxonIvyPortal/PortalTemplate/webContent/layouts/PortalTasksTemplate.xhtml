@@ -20,10 +20,10 @@
           noTaskFoundMessage="#{taskView.noTaskFoundMessage}"
           hideWidgetHeader="#{hideWidgetHeader}" currentPortalPage="TASK_LIST">
             <f:facet name="title">
-              <h:form rendered="#{taskView.canLinkBackCaseDetail()}" prependId="false" styleClass="u-padding-right-5">
+              <h:form rendered="#{taskView.canLinkBackCaseDetail()}" prependId="false" styleClass="task-widget-header-title">
                 <span class="#{not empty taskView.titleOnMobile ? 'u-hidden-sm-down':''}">
                   #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader')}
-                  <h:commandLink value="##{taskView.dataModel.criteria.caseId}" styleClass="ui-link"
+                  <h:commandLink value="##{taskView.dataModel.criteria.caseId}" styleClass="ui-link task-widget-header-link"
                     actionListener="#{navigatorBean.navigateToCaseDetail(taskView.dataModel.criteria.caseId)}" />
                   #{taskView.dataModel.caseName}
                 </span>
@@ -32,14 +32,14 @@
                   styleClass="#{not empty taskView.titleOnMobile ? 'u-hidden-md-up':'u-display-none'} ui-link"
                   actionListener="#{navigatorBean.navigateToCaseDetail(taskView.dataModel.criteria.caseId)}" />
               </h:form>
-              <h:panelGroup rendered="#{!taskView.canLinkBackCaseDetail()}" styleClass="u-padding-right-5">
+              <h:panelGroup rendered="#{!taskView.canLinkBackCaseDetail()}" styleClass="task-widget-header-title">
                 <h:outputText styleClass="#{not empty taskView.titleOnMobile ? 'u-hidden-sm-down':''}"
                   value="#{empty taskView.pageTitle ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks') : taskView.pageTitle}" />
                 <!--  Show a alternative short title on mobile  -->
                 <h:outputText styleClass="#{not empty taskView.titleOnMobile ? 'u-hidden-md-up':'u-display-none'}"
                   value="#{taskView.titleOnMobile}" />
               </h:panelGroup>
-              <h:outputText value="#{taskView.dataModel.disableTaskCount ? '' : '('.concat(taskView.dataModel.rowCount).concat(')')}" />
+              <h:outputText styleClass="task-widget-header-counter" value="#{taskView.dataModel.disableTaskCount ? '' : '('.concat(taskView.dataModel.rowCount).concat(')')}" />
             </f:facet>
 
             <f:facet name="taskListHeader">
