@@ -1306,7 +1306,9 @@ a.compact-task-start-link .task-start-list-item {
   background-color: var(--compact-task-start-link-item-background-color);
   box-shadow: var(--compact-task-start-link-item-box-shadow); }
 
-.task-start-list-item.full-mode {
+.task-start-list-item.full-mode,
+.case-list-item {
+  border: 1px solid transparent;
   border-bottom: 1px solid var(--task-filter-separator-border-bottom);
 }
 
@@ -1337,6 +1339,19 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .task-widget .filter-container .filter-selection-container-group,
 .case-widget-container .filter-container .filter-selection-container-group {
   border-right: solid 1px var(--filter-selection-container-group-border-color); }
+
+.filter-container .filter-selection-label,
+.filter-container .selected-filters-label {
+  color: var(--widget-advanced-filter-label-color);
+}
+
+.task-widget .filter-add-container:hover,
+.task-widget .filter-reset-action:hover,
+.case-widget-container .filter-add-container:hover {
+  border-color: var(--widget-advanced-filter-hover-border);
+  background: var(--widget-advanced-filter-hover-backround-color);
+
+}
 
 #task-description .scroll-panel, .action-icon.icon-compact-mode {
   font-size: var(--small-font-size);
@@ -1743,7 +1758,7 @@ ul.participants-list li {
   .import-express-dialog .import-status.Warning {
     color: var(--express-import-status-warning); }
   .import-express-dialog .import-status.Failed {
-    color: var(--express-import-status-failed); }
+    color: var(--express-import-status-failed); }	
 
 .express-workflow-summary-table .ui-paginator.ui-paginator-top {
   background-color: var(--express-import-paginator-background-color);
@@ -1771,7 +1786,7 @@ ul.participants-list li {
 
 /* Modify style because accent color of Portal so light */
 body .ui-datepicker tbody td.ui-datepicker-today a, body .ui-datepicker tbody td.ui-datepicker-today span {
-  border-color: var(--accent-light-color);
+  border: solid 1px var(--accent-light-color);
 }
 
 body .ui-slider .ui-slider-handle {
