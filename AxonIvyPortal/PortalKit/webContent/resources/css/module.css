@@ -147,7 +147,7 @@
 }
 
 .layout-wrapper .layout-main .layout-content {
-   height: calc(100vh - 58px);
+  height: calc(100vh - 58px);
   overflow-x: hidden;
 }
 
