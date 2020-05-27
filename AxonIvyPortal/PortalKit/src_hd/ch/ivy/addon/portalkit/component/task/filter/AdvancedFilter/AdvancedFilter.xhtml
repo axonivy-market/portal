@@ -38,7 +38,7 @@
   <c:set var="taskContainerId" value="#{p:component('task-view-container')}" />
   <c:set var="renderedFilter" value="#{(not empty dataModel and selectedFilters.contains(taskFilter)) or cc.attrs.forceRendered}" />
 
-  <h:panelGroup id="advanced-filter-component" styleClass="advanced-filter-component"
+  <h:panelGroup id="advanced-filter-component" styleClass="advanced-filter-component u-hidden-md-down"
     style="order: #{not empty cc.attrs.position ? cc.attrs.position : selectedFilters.indexOf(taskFilter)}">
     <h:panelGroup rendered="#{renderedFilter}">
       <h:form id="filter-open-form">
@@ -49,7 +49,7 @@
           <p:commandLink id="advanced-filter-remove-command"
             styleClass="fa fa-times-circle advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
             actionListener="#{dataModel.removeFilter(taskFilter)}" global="false"
-            update="@(.advanced-filter-container) @(.filter-add-container) @(.filter-selection-form) @(.task-view-container) @(.filter-buttons-container)"
+            update="@(.filter-container) @(.filter-add-container) @(.filter-selection-form) @(.task-view-container) @(.filter-buttons-container)"
             oncomplete="#{empty cc.attrs.resultContainerUpdated ? 'taskWidget.setupScrollbar(); taskWidget.setupHeader()' : ''}">
             <f:actionListener binding="#{cc.attrs.removeListener}" />
           </p:commandLink>

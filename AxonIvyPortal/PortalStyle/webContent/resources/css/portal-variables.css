@@ -183,6 +183,7 @@
   --widget-advanced-filter-hover-backround-color: var(--ivy-primary-color-grey-pale);
   --filter-name-label-color: var(--ivy-primary-color-grey-medium);
   --filter-selection-container-group-border-color: var(--ivy-primary-color-grey-medium);
+  --widget-advanced-filter-label-color: var(--ivy-primary-color-grey-medium);
   /* Process */
   --process-navigator-item-color: var(--ivy-primary-color-black);
   --process-start-list-item-hover-background-color: var(--item-background-hover);
