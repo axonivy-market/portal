@@ -53,7 +53,7 @@ function TaskWidget() {
     },
     
     toggleTaskFilter: function(toggler) {
-      $('.js-filter-container').toggleClass('u-hidden-md-down');
+      $('.advanced-filter-component').toggleClass('u-hidden-md-down');
     },
   }
 }

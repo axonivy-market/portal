@@ -36,7 +36,7 @@
   <c:set var="widgetVarPanel" value="#{fn:replace(cc.clientId, ':', '-')}-panel" />
   <c:set var="caseContainerId" value="#{p:component('case-list')}" />
   <c:set var="renderedFilter" value="#{(not empty dataModel and selectedFilters.contains(caseFilter)) or cc.attrs.forceRendered}" />
-  <h:panelGroup rendered="#{renderedFilter}"
+  <h:panelGroup id="advanced-filter-component" styleClass="advanced-filter-component u-hidden-md-down" rendered="#{renderedFilter}"
     style="order: #{not empty cc.attrs.position ? cc.attrs.position : selectedFilters.indexOf(caseFilter)}">
     <h:form id="filter-open-form">
       <h:panelGroup id="advanced-filter-item-container" styleClass="advanced-filter #{cc.attrs.containerStyleClass}">
@@ -46,7 +46,7 @@
         <p:commandLink id="advanced-filter-remove-command"
           styleClass="fa fa-times-circle advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
           actionListener="#{dataModel.removeFilter(caseFilter)}" global="false"
-          update="@(.advanced-filter-container) @(.filter-add-container) @(.filter-selection-form) @(.case-list) @(.filter-buttons-container)"
+          update="@(.filter-container) @(.filter-add-container) @(.filter-selection-form) @(.case-list) @(.filter-buttons-container)"
           oncomplete="#{empty cc.attrs.resultContainerUpdated ? 'caseWidget.setUpScrollbar();caseWidget.setupHeader()' : ''}">
           <f:actionListener binding="#{cc.attrs.removeListener}" />
         </p:commandLink>
