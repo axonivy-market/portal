@@ -46,15 +46,13 @@
         </h:panelGroup>
         <h:panelGroup layout="block" class="ui-g-3 ui-lg-3 ui-md-hidden ui-sm-hidden" rendered="#{displayStatisticWidget}">
           <ui:insert name="statisticWidget">
-            <h:panelGroup layout="block" id="statistic-widget-container">
-              <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true"
-                showTaskListImmediately="true" statisticChartList="#{statisticChartList}">
-                <f:facet name="headerToolbar">
-                  <ic:ch.ivy.addon.portal.generic.StatisticNavigator id="statistic-link"
-                    label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/showAllCharts')}" />
-                </f:facet>
-              </ic:ch.ivy.addon.portalkit.component.StatisticWidget>
-            </h:panelGroup>
+            <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true"
+              showTaskListImmediately="true" statisticChartList="#{statisticChartList}">
+              <f:facet name="headerToolbar">
+                <ic:ch.ivy.addon.portal.generic.StatisticNavigator id="statistic-link"
+                  label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/showAllCharts')}" />
+              </f:facet>
+            </ic:ch.ivy.addon.portalkit.component.StatisticWidget>
           </ui:insert>
         </h:panelGroup>
       </h:panelGroup>

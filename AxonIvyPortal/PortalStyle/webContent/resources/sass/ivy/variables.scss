@@ -101,8 +101,8 @@ $cancelButtonTextColor: $primaryTextColor !default;
 $contextButtonTextColor: $primaryTextColor !default;
 
 /* Link */
-$commandLinkTextColor: $mediumGrey !default;
-$commandLinkHoverTextColor: $darkGrey !default;
+$commandLinkTextColor: $primaryColor !default;
+$commandLinkHoverTextColor: $primaryLightColor !default;
 $commandLinkActiveTextColor: $darkGrey !default;
 $commandLinkDisabledTextColor: $mediumGrey !default;
 
@@ -114,10 +114,17 @@ $fieldSetNoBorderColor: transparent !default;
 
 /* Widget header */
 $widgetHeaderMainBorderBottomColor: $borderColor !default;
-$widgetTaskListHeaderBorderBottomColor: $borderColor !default;
 $widgetSortMenuBorderBottomColor: $borderColor !default;
 $widgetHeaderInputFieldBackgroundColor: transparent !default;
 $widgetHeaderInputHoverBackgroundColor: transparent !default;
+$widgetHeaderTitleFontSize: 1.8rem !default;
+$widgetHeaderTitleLineHeight: 26px !default;
+$widgetHeaderFontWeight: bold !default;
+
+$widgetItemBoxShadowColor: hsla(0, 0%, 15%, 0.2);
+$widgetItemBorderRadius: 5px;
+$widgetItemBackgroundHover: rgba(144, 221, 233, 0.24);
+$widgetItemBorderHover: 1px solid #90DDE9;
 
 /* Announcement panel color */
 $announcementBackgroundColor: $lightYellow !default;
@@ -149,13 +156,15 @@ $dashboardChartPanelChartNameFontWeight: 400 !default;
 $chartInfoHeaderFontWeight: bold !default;
 $chartInfoLabelFontWeight: bold !default;
 $chartNameFontSize: $largeFontSize !default;
+$chartNameLineHeight: 20px !default;
 $chartFilterHeaderFontSize: $headerFontSize !default;
 $chartContainerAddLinkFontSize: $smallFontSize !default;
 $dashboardChartNameFontSize: $headerFontSize !default;
 $statisticCarouselHeaderButtonHoverColor: $commandLinkHoverTextColor !default;
 $statisticCarouselHeaderButtonColor: $commandLinkTextColor !default;
 $statisticCarouselHeaderColor: $darkGrey !default;
-$statisticCarouselCardBoxShadowColor: black !default;
+$statisticCardBoxShadow: 0px 4px 16px $widgetItemBoxShadowColor !default;
+$statisticCardBorderRadius: $widgetItemBorderRadius !default;
 
 /* Start Menu Item */
 $menuItemCurrentApplicationBorderBottomColor: transparent !default;
@@ -182,20 +191,21 @@ $filterSelectionContainerGroupBorderColor: $mediumGrey !default;
 
 /* Process */
 $processNavigatorItemColor: $primaryTextColor !default;
-$processStartListItemHoverBackgroundColor: $white !default;
+$processStartListItemHoverBackgroundColor: $widgetItemBackgroundHover !default;
+$processStartListItemHoverBorder: $widgetItemBorderHover !default;
 $processHistoryColumnHeaderIsSelectedColor: $black !default;
 $processHistoryMessageLabelColor: $black !default;
 $processStartListItemColor: $primaryTextColor !default;
-$processHeaderTitleContainerBorderBottom: $borderColor !default;
 $processNavigatorBorder: $borderColor !default;
 $processNavigatorItemSelectedBorder: $primaryColor !default;
 $processHistoryColumnHeaderBorder: $borderColor !default;
 $processHistoryListDataScrollerBackgroundColor: transparent !default;
-$processOrderListItemBackgroundColor: $paleGrey !default;
+$processOrderListItemBackgroundColor: $white !default;
+$processOrderListItemBoxShadow: 0px 2px 8px $widgetItemBoxShadowColor !default;
 $selectedProcessNavItemFontWeight: bold !default;
 $processStartListItemNameFontWeight: 400 !default;
 $processNavItemDisableColor: rgba($primaryTextColor, 0.3) !default;
-$processOrderItemHoverBoxShadowColor: black !default;
+$processOrderItemHoverBoxShadowColor: 0px 2px 8px $widgetItemBoxShadowColor !default;
 $hoveredProcessStartListItemIConColor: $primaryColor !default;
 $hoveredUserProcessStartListItemIconColor: $primaryColor;
 
@@ -209,15 +219,11 @@ $userDefinedFilterContainerHoverFontWeight: normal !default;
 $caseDetailNameInputFontWeight: bold !default;
 $additionalCaseDetailLinkFontWeight: 400 !default;
 $detailsDocumentAddLinkFontWeight: 400 !default;
-$caseDetailHeaderFontWeight: bold !default;
 $historyButtonContainerFontWeight: bold !default;
 $caseDetailPaginatorHeaderCornerTopBackgroundColor: rgba($lightGrey,0.5) !default;
 $caseDetailPaginatorHoverButtonBackgroundColor: rgba($lightGrey,0.5) !default;
 $caseDescriptionTextColorHightlight: $primaryTextColor !default;
 $caseDetailNameTextColorHightLight: $primaryTextColor !default;
-
-/* Case List */
-$caseOddRowBackgroundColor: $paleGrey !default;
 
 /* Case Item */
 $historyNoteColor: $primaryTextColor !default;
@@ -234,7 +240,6 @@ $caseActionStepsContentsBackgroundColor: $white !default;
 $caseActionSeparatorBorderColor: rgba($mediumGrey, 0.5) !default;
 $caseStateInProgressColor: rgba(7, 140, 255, 1) !default;
 $caseStateDoneColor: $caseTaskStateDoneOrResumeGreen !default;
-$caseWidgetTopHeaderBorderBottom: $borderColor !default;
 $caseWidgetColumnHeaderBorderBottom: $borderColor !default;
 $caseListDataScrollerContentBackgroundColor: transparent !default;
 $caseHeaderActionCellButtonBackgroundColor: transparent !default;
@@ -252,10 +257,13 @@ $caseTaskActionButtonColor: $commandLinkTextColor !default;
 
 /* Task Widget */
 $taskFilterSelectionFormHoverBackgroundColor: $paleGrey !default;
-$compactTaskStartListItemHoverBackgroundColor: rgba($lightGrey, 0.5) !default;
-$compactTaskStartLinkItemBackgroundColor: $paleGrey !default;
+$compactTaskStartListItemHoverBackgroundColor: $widgetItemBackgroundHover !default;
+$compactTaskStartLinkItemBackgroundColor: $white !default;
+$compactTaskStartLinkItemBoxShadow: 0px 2px 8px $widgetItemBoxShadowColor !default;
+$compactTaskStartLinkItemBorderRadius: $widgetItemBorderRadius !default;
+$compactTaskStartLinkItemHoverBorder: $widgetItemBorderHover !default;
 $compactTaskStartInfoColor: $primaryTextColor !default;
-$compactTaskStartInfoIconColor: rgba($compactTaskStartInfoColor, 0.5) !default;
+$compactTaskStartInfoIconColor: $black !default;
 $taskWidgetSortMenuLinkIsSelectedColor: $primaryTextColor !default;
 $taskWidgetOverlayPanelContentBackgroundColor: $white !default;
 $taskWidgetLinkColor: $primaryTextColor !default;
@@ -264,7 +272,6 @@ $taskActionLeftIconColor: $caseTaskActionButtonColor !default;
 $taskFilterSeparatorBorderBottom: $borderColor !default;
 $taskViewContainerDataScrollerContentBackgroundColor: transparent !default;
 $taskStartListDescriptionCell: $mediumGrey !default;
-$taskOddRowFullModeBackgroundColor: $paleGrey !default;
 $taskFilterDeleteUserDefinedIconHoverColor: $primaryColor;
 
 /* Task Detail */
@@ -273,7 +280,6 @@ $taskDetailPaginatorHeaderCornerTopBorderColor: $lightGrey !default;
 $taskDetailPaginatorHeaderCornerTopBackgroundColor: rgba($lightGrey, 0.5) !default;
 $taskDetailPaginatorHoveredButtonBackgroundColor: rgba($lightGrey, 0.5) !default;
 $taskDetailActionItemHoverBackgroundColor: transparent !default;
-$taskDetailHeaderFontWeight: bold !default;
 $taskDetailSectionTitleFontWeight: bold !default;
 $taskStartInfoHeaderFontWeight: bold !default;
 $taskStartInfoTaskIdFontWeight: normal !default;
@@ -363,14 +369,11 @@ $emailFileUploadCornerTopBackgroundColor: transparent !default;
 $expressTableNoHeaderBorder: $lightGrey !default;
 $expressTableNoHeaderBackgroundColor: transparent !default;
 $selectCheckboxMenuTriggerBackgroundColor: $white !default;
-$expandCollapseButtonColor: $primaryTextColor !default;
 $processExpressLogoBackgroundColor: transparent !default;
 $expressWorkflowActiveSwitchLabelFontWeight: 700 !default;
 $expressReviewContentTitleFontWeight: 700 !default;
 $expressFinishedTaskLabelFontWeight: 700 !default;
 $expressActiveDefinedTaskButtonFontWeight: bold !default;
-$collapseButtonBackgroundColor: $paleGrey !default;
-$collapseButtonHoverBackgroundColor: $lightGrey  !default;
 $expressAssigneeIconColor: $primaryTextColor !default;
 $expressReviewContentTitleBorderColor: rgba($mediumGrey, 0.5) !default;
 $expressImportStatusSuccess: $mediumGreen;

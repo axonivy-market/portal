@@ -205,6 +205,14 @@ function expandOrCollapseAllCategories(shouldExpand) {
       $(categoryButton).click();
     }
   });
+  
+  if (shouldExpand) {
+    $('[id $= "expand-all-btn"]').hide();
+    $('[id $= "collapse-all-btn"]').show();
+  } else {
+    $('[id $= "expand-all-btn"]').show();
+    $('[id $= "collapse-all-btn"]').hide();
+  }
 }
 
 function jumpToProcessGroupByCharacter(event) {

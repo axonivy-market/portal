@@ -48,7 +48,7 @@
           </h:panelGroup>
         </div>
         <h:panelGroup rendered="#{!cc.attrs.hideTaskFilter and !data.dataModel.compactMode}" layout="block"
-          styleClass="widget-header-content-filter expanded-mode ui-g-4 ui-sm-8" id="expanded-mode-filter-view">
+          styleClass="widget-header-content-filter expanded-mode ui-g-4 ui-sm-8 u-no-padding-top" id="expanded-mode-filter-view">
           <h:form id="expanded-mode-filter-form" onsubmit="return false;">
             <ic:ch.ivy.addon.portalkit.component.Filter id="expanded-mode-filter-container" icon="fa fa-filter simple-filter-icon"
               updateComponent="#{cc.clientId}:filter-selection-container #{p:component('task-view-container')}"
@@ -213,7 +213,7 @@
       </h:panelGroup>
     </h:panelGroup>
 
-    <h:panelGroup layout="block" id="task-view" styleClass="ui-g-12 #{data.dataModel.compactMode ? '' : 'u-no-padding-left'} js-task-view">
+    <h:panelGroup layout="block" id="task-view" styleClass="ui-g-12 js-task-view task-view">
       <h:panelGroup id="task-view-container" layout="block" styleClass="task-view-container">
         <p:dataScroller id="task-list-scroller" widgetVar="task-list-scroller"
           value="#{data.dataModel}" 

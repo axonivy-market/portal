@@ -1,0 +1,400 @@
+/*--------------------------------
+
+IvyIcons Web Font
+Generated using nucleoapp.com
+-------------------------------- */
+@font-face {
+  font-family: 'IvyIcons';
+  src: url("#{resource['ivy-icons:IvyIcons.eot']}");
+  src: url("#{resource['ivy-icons:IvyIcons.eot']}") format('embedded-opentype'), url("#{resource['ivy-icons:IvyIcons.woff2']}") format('woff2'), url("#{resource['ivy-icons:IvyIcons.woff']}") format('woff'), url("#{resource['ivy-icons:IvyIcons.ttf']}") format('truetype'), url("#{resource['ivy-icons:IvyIcons.svg']}") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/*------------------------
+	base class definition
+-------------------------*/
+.icon {
+  display: inline-block;
+  font: normal normal normal 1em/1 'IvyIcons' !important;
+  speak: none;
+  text-transform: none;
+  /* Better Font Rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Sync size with primefaces icons */
+.ui-icon.icon {
+  font: normal normal normal 18px/1 'IvyIcons' !important;
+}
+/*------------------------
+  change icon size
+-------------------------*/
+/* relative units */
+.icon-sm {
+  font-size: 0.8em;
+}
+.icon-lg {
+  font-size: 1.2em;
+}
+/* absolute units */
+.icon-16 {
+  font-size: 16px;
+}
+.icon-32 {
+  font-size: 32px;
+}
+/*----------------------------------
+  add a square/circle background
+-----------------------------------*/
+.icon-bg-square,
+.icon-bg-circle {
+  padding: 0.35em;
+  background-color: #eee;
+}
+.icon-bg-circle {
+  border-radius: 50%;
+}
+/*------------------------------------
+  use icons as list item markers
+-------------------------------------*/
+.icon-ul {
+  padding-left: 0;
+  list-style-type: none;
+}
+.icon-ul > li {
+  display: flex;
+  align-items: flex-start;
+  line-height: 1.4;
+}
+.icon-ul > li > .icon {
+  margin-right: 0.4em;
+  line-height: inherit;
+}
+/*------------------------
+  spinning icons
+-------------------------*/
+.icon-is-spinning {
+  -webkit-animation: icon-spin 2s infinite linear;
+  -moz-animation: icon-spin 2s infinite linear;
+  animation: icon-spin 2s infinite linear;
+}
+@-webkit-keyframes icon-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@-moz-keyframes icon-spin {
+  0% {
+    -moz-transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@keyframes icon-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+/*------------------------
+  rotated/flipped icons
+-------------------------*/
+.icon-rotate-90 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+.icon-rotate-180 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+.icon-rotate-270 {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  -webkit-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -ms-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
+  transform: rotate(270deg);
+}
+.icon-flip-y {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=0);
+  -webkit-transform: scale(-1, 1);
+  -moz-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+}
+.icon-flip-x {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2);
+  -webkit-transform: scale(1, -1);
+  -moz-transform: scale(1, -1);
+  -ms-transform: scale(1, -1);
+  -o-transform: scale(1, -1);
+  transform: scale(1, -1);
+}
+/*------------------------
+	icons
+-------------------------*/
+
+.ivyicon-pie-line-graph-desktop::before {
+  content: "\ea03";
+}
+
+.ivyicon-pie-line-graph::before {
+  content: "\ea04";
+}
+
+.ivyicon-logout::before {
+  content: "\ea05";
+}
+
+.ivyicon-house-1::before {
+  content: "\ea06";
+}
+
+.ivyicon-cog-double-2::before {
+  content: "\ea07";
+}
+
+.ivyicon-cog-double::before {
+  content: "\ea08";
+}
+
+.ivyicon-cog::before {
+  content: "\ea09";
+}
+
+.ivyicon-information-circle::before {
+  content: "\ea0a";
+}
+
+.ivyicon-delete-1::before {
+  content: "\ea0b";
+}
+
+.ivyicon-search-circle::before {
+  content: "\ea0c";
+}
+
+.ivyicon-search::before {
+  content: "\ea0d";
+}
+
+.ivyicon-copy-paste::before {
+  content: "\ea0e";
+}
+
+.ivyicon-remove-circle::before {
+  content: "\ea0f";
+}
+
+.ivyicon-keyboard-arrow-return::before {
+  content: "\ea10";
+}
+
+.ivyicon-add-circle::before {
+  content: "\ea11";
+}
+
+.ivyicon-button-refresh-arrow::before {
+  content: "\ea12";
+}
+
+.ivyicon-button-refresh-arrows::before {
+  content: "\ea13";
+}
+
+.ivyicon-move-back::before {
+  content: "\ea14";
+}
+
+.ivyicon-data-transfer-circle::before {
+  content: "\ea15";
+}
+
+.ivyicon-bulb::before {
+  content: "\ea16";
+}
+
+.ivyicon-download-circle::before {
+  content: "\ea17";
+}
+
+.ivyicon-upload-circle::before {
+  content: "\ea18";
+}
+
+.ivyicon-human-resources-workflow::before {
+  content: "\ea19";
+}
+
+.ivyicon-presentation-statistics::before {
+  content: "\ea1a";
+}
+
+.ivyicon-startup-launch::before {
+  content: "\ea1b";
+}
+
+.ivyicon-graphic-tablet-drawing-pen::before {
+  content: "\ea1c";
+}
+
+.ivyicon-conversation-chat-2::before {
+  content: "\ea1d";
+}
+
+.ivyicon-messages-bubble-add::before {
+  content: "\ea1e";
+}
+
+.ivyicon-messages-bubble-information::before {
+  content: "\ea1f";
+}
+
+.ivyicon-messages-bubble-square-warning::before {
+  content: "\ea20";
+}
+
+.ivyicon-single-neutral-actions-process::before {
+  content: "\ea21";
+}
+
+.ivyicon-multiple-actions-add::before {
+  content: "\ea22";
+}
+
+.ivyicon-mood-warning::before {
+  content: "\ea23";
+}
+
+.ivyicon-rating-star-add::before {
+  content: "\ea24";
+}
+
+.ivyicon-recycling-hand-trash::before {
+  content: "\ea25";
+}
+
+.ivyicon-road-sign-warning::before {
+  content: "\ea26";
+}
+
+.ivyicon-style-two-pin-warning::before {
+  content: "\ea27";
+}
+
+.ivyicon-statistics-daytum::before {
+  content: "\ea28";
+}
+
+.ivyicon-arrow-button-right-3::before {
+  content: "\ea29";
+}
+
+.ivyicon-arrow-button-right::before {
+  content: "\ea2a";
+}
+
+.ivyicon-arrow-right-1::before {
+  content: "\ea2b";
+}
+
+.ivyicon-advertising-megaphone::before {
+  content: "\ea2c";
+}
+
+.ivyicon-advertising-megaphone-2::before {
+  content: "\ea2d";
+}
+
+.ivyicon-business-contract-handshake-sign::before {
+  content: "\ea2e";
+}
+
+.ivyicon-monetization-approve::before {
+  content: "\ea2f";
+}
+
+.ivyicon-shopping-cart-check::before {
+  content: "\ea30";
+}
+
+.ivyicon-user-logout::before {
+  content: "\ea31";
+}
+
+.ivyicon-check-circle-1::before {
+  content: "\ea32";
+}
+
+.ivyicon-login-3::before {
+  content: "\ea33";
+}
+
+.ivyicon-close::before {
+  content: "\ea34";
+}
+
+.ivyicon-check-circle::before {
+  content: "\ea35";
+}
+
+.ivyicon-remove::before {
+  content: "\ea37";
+}
+
+.ivyicon-floppy-disk::before {
+  content: "\ea38";
+}
+
+.ivyicon-messages-bubble::before {
+  content: "\ea3a";
+}
+
+.ivyicon-house-chimney-2::before {
+  content: "\ea3c";
+}
+
+.ivyicon-task-list-edit::before {
+  content: "\ea3d";
+}
+
+.ivyicon-layout-bullets::before {
+  content: "\ea3e";
+}
+
+.ivyicon-hyperlink-3::before {
+  content: "\ea3f";
+}
+
+.ivyicon-add::before {
+  content: "\ea40";
+}
+
+.ivyicon-question-circle::before {
+  content: "\ea41";
+}
+

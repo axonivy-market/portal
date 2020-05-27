@@ -23,10 +23,14 @@
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
   <f:event listener="#{data.setCurrentPortalPage(cc.attrs.currentPortalPage)}" type="preRenderComponent" />
 
-  <p:commandButton id="#{cc.attrs.actionLinkId}" onstart="event.stopPropagation();" global="false" disabled="#{cc.attrs.isDisabled}"
-    actionListener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId(), cc.attrs.isAdhocExcluded)}" styleClass="action-button task-action-item #{cc.attrs.buttonStyleClass}"
-    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="fa fa-angle-down"
-    iconPos="right" update="side-steps-panel" />
+
+  <p:commandLink id="#{cc.attrs.actionLinkId}" onstart="event.stopPropagation();" global="false" disabled="#{cc.attrs.isDisabled}"
+    actionListener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId(), cc.attrs.isAdhocExcluded)}"
+    styleClass="action-button task-action-item #{cc.attrs.buttonStyleClass}"
+    update="side-steps-panel">
+      <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}</span>
+      <i class="fa fa-angle-down"/>
+  </p:commandLink>
 
   <p:overlayPanel id="side-steps-panel" widgetVar="#{cc.attrs.panelWidgetVar}" for="#{cc.attrs.actionLinkId}" my="left top" at="left bottom" appendTo="@(body)"
     styleClass="options-panel" dynamic="true" rendered="#{!cc.attrs.isDisabled}">

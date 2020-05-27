@@ -108,6 +108,18 @@ body .ui-widget.ui-fieldset.process-group.ui-fieldset .ui-fieldset-legend {
     text-indent: 0;
 }
 
+.process-nav .expand-collapse-btn {
+  font-family: $iconFontFamily;
+}
+
+.process-nav .expand-collapse-btn.expand:before {
+  content: "\f067";
+}
+
+.process-nav .expand-collapse-btn.collapse:before {
+  content: "\f068";
+}
+
 /*Style For Task Widget ----------------------------------------------------------------------------------*/
 .filter-selection-form .filter-name:hover,
 .filter-selection-form .filter-name-overlay-panel .user-defined-filter-container .delete-user-defined-filter-command:hover {
@@ -193,6 +205,7 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 .statistic-carousel .ui-carousel-header-title .chart-name {
   color: $statisticCarouselHeaderColor;
   font-size: $chartNameFontSize;
+  line-height: $chartNameLineHeight;
 }
 
 .dashboard-chart-panel .chart-name {
@@ -210,7 +223,8 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
   font-size: $chartContainerAddLinkFontSize;
 }
 
-.ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-item label {
+.ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-item label,
+.statistic-widget-container:not(.statistic-widget-compact-mode-container) .widget-header-main .widget-header-main-menu a.ui-widget.ui-commandlink {
     font-size: $largeFontSize;
 }
 
@@ -225,24 +239,17 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 
 .dashboard-chart-panel .card,
 .edit-statistic-container .card,
-.statistic-widget.compact-mode .statistic-carousel.card {
-  box-shadow: 0 2px 6px 0 rgba($statisticCarouselCardBoxShadowColor, 0.2),
-              0 2px 4px 0 rgba($statisticCarouselCardBoxShadowColor, 0.14),
-              0 4px 2px -1px rgba($statisticCarouselCardBoxShadowColor, 0.12);
+.statistic-widget.compact-mode .statistic-carousel.card,
+.filter-container.card,
+.case-detail-card.card,
+.task-detail-card.card,
+.task-detail-general-card.card {
+  box-shadow: $statisticCardBoxShadow;
+  border-radius: $statisticCardBorderRadius;
 }
 
 .statistic-filter-accordion-panel .ui-accordion-content {
   border: solid 1px $statisticFilterAccordionPanelBorder;
-}
-
-.statistic-widget-container, .widget.analysis-task-widget {
-  .widget-header-main {
-    border-bottom: none;
-  }
-
-  .widget-header {
-    border-bottom: 1px solid rgba($black, 0.1);
-  }
 }
 
 /*Style For Buttons --------------------------------------------------------------------------------------*/
@@ -449,10 +456,6 @@ body .ui-button.action-button {
    background-color: $caseTaskActionButtonHoverBackgroundColor;
 }
 
-.case-detail-title-header-container, .task-detail-header {
-  border-bottom: 1px solid rgba($black, 0.1);
-}
-
 /*Style For Task Detail --------------------------------------------------------------------------------------*/
 
 body .task-item-body .task-details-item-note, .task-item-body .task-details-item-document {
@@ -481,39 +484,21 @@ body .task-item-body .task-details-item-note, .task-item-body .task-details-item
     }
 }
 
-body .ui-inputfield.task-name-input {
+body .ui-inputfield.task-name-input,
+body .ui-inputfield.case-detail-name-input {
   font-size: $largeFontSize;
-  font-weight: $taskNameInputFontWeight;
 }
 
-.task-detail-header {
-  font-weight: $taskDetailHeaderFontWeight;
-}
-
-.task-detail-section-title {
+.task-detail-section-title .task-detail-section-title-label {
   font-weight: $taskDetailSectionTitleFontWeight;
 }
 
 .task-action-item:hover {
   background-color: $taskDetailActionItemHoverBackgroundColor;
 }
-body .action-button.task-action-item,
-body .case-header-container .ui-button.action-button {
-  &.ui-state-disabled {
-    span {
-      color: $commandLinkDisabledTextColor;
-    }
-  }
-  &.ui-state-hover {
-    .ui-button-text.ui-c, .ui-icon {
-      color: $commandLinkHoverTextColor;
-    }
-  }
-  &.ui-state-active, &.ui-state-focus {
-    .ui-button-text.ui-c, .ui-icon {
-      color: $commandLinkActiveTextColor;
-    }
-  }
+body .action-button.task-action-item i,
+body .case-header-container a.action-button i {
+  font-size: $headerFontSize;
 }
 
 /*Style For Advance Filter --------------------------------------------------------------------------------------*/
@@ -574,8 +559,13 @@ body .fieldset-no-border {
   font-size: $smallFontSize;
 }
 
-.widget-header-main-title {
-  font-size: $largeFontSize ;
+.widget-header-main-title,
+.process-header-title,
+.task-detail-header .task-name-edit,
+.case-detail-title-header-container .case-detail-header {
+  font-size: $widgetHeaderTitleFontSize;
+  line-height: $widgetHeaderTitleLineHeight;
+  font-weight: $widgetHeaderFontWeight;
 }
 
 .widget-sort-menu.full-mode a.ui-widget.ui-commandlink { 
@@ -610,27 +600,16 @@ body .fieldset-no-border {
   font-family: $iconFontFamily;
 }
 
-.widget-header-main {
-  border-bottom: 1px solid $widgetHeaderMainBorderBottomColor;
-}
-
-.widget-tasklist-header {
-  border-bottom: 1px solid $widgetTaskListHeaderBorderBottomColor;
-}
-
 .widget-sort-menu.full-mode {
   border-bottom: 1px solid $widgetSortMenuBorderBottomColor;
 }
 
 /*Style for Case Widget-------------------------------------------------------------------------------------*/ 
-.case-widget-top-header-main-title, .case-header-container {
+.case-header-container {
   font-size: $largeFontSize;
 }
 
 /*Style for Case Detail --------------------------------------------------------------------------------------*/
-.case-detail-header {
-  font-size: $largeFontSize;
-}
 
 .process-empty-container ,
 .process-start-list-item-action,
@@ -653,6 +632,12 @@ body .fieldset-no-border {
 
 .filter-selection-form .filter-name-overlay-panel .user-defined-filter-container:hover .ui-commandlink {
   font-weight: $userDefinedFilterContainerHoverFontWeight;
+}
+
+.task-start-list-item.full-mode,
+.case-list-item {
+  border: 1px solid transparent;
+  border-bottom: 1px solid $borderColor;
 }
 
 .task-start-info-header,
@@ -737,11 +722,6 @@ body .fieldset-no-border {
     padding: 3px;
     border-radius: $borderRadius;
   }
-}
-
-.case-detail-header {
-  font-size: $largeFontSize;
-  font-weight: $caseDetailHeaderFontWeight;
 }
 
 .note-show-more-link {
@@ -928,11 +908,6 @@ span.task-details-document-add-link {
   font-weight: $detailsDocumentAddLinkFontWeight;
 }
 
-body .ui-inputfield.case-detail-name-input {
-  font-size: $largeFontSize;
-  font-weight: $caseDetailNameInputFontWeight;
-}
-
 .case-detail-section-title, .case-history-button-container,
 .task-history-button-container {
   font-weight: $historyButtonContainerFontWeight;
@@ -952,15 +927,11 @@ body .ui-inputfield.case-detail-name-input {
   background-color: $caseListItemBackgroundColor;
 }
 
-.case-list-item:hover,
-.case-list-item.case-odd-row:hover {
+.case-list-item:hover {
   background-color: $caseListItemHoverBackgroundColor;
 }
-.case-list-item.case-odd-row {
-  background-color: $caseOddRowBackgroundColor;
-}
 
-.case-widget-container .widget-column-header .is-selected {
+.case-widget-container .widget-column-header a.ui-commandlink.is-selected {
   color: $caseWidgetColumnHeaderIsSelectedColor;
 }
 
@@ -1001,10 +972,6 @@ body .ui-inputfield.case-detail-name-input {
   color: $caseStateDoneColor;
 }
 
-.case-widget-container .case-widget-top-header {
-  border-bottom: 1px solid $caseWidgetTopHeaderBorderBottom;
-}
-
 .case-widget-container .widget-column-header,
 .case-default-widget-container .widget-column-header {
   border-bottom: 1px solid $caseWidgetColumnHeaderBorderBottom;
@@ -1024,15 +991,6 @@ body .ui-inputfield.case-detail-name-input {
 }
 
 /*Process --------------------------------------*/
-.expand-collapse-btns .expand-collapse-btn {
-  color: $expandCollapseButtonColor;
-  background-color: $collapseButtonBackgroundColor;
-  font-size: $smallFontSize;
-}
-
-.expand-collapse-btns a.expand-collapse-btn:hover {
-  background-color: $collapseButtonHoverBackgroundColor;
-}
 
 .process-widget .process-nav .process-nav-item { 
   color: $processNavigatorItemColor;
@@ -1058,15 +1016,16 @@ body .ui-inputfield.case-detail-name-input {
 .process-start-list-item,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item {
   background-color: $processOrderListItemBackgroundColor;
+  box-shadow: $processOrderListItemBoxShadow;
   color: $processStartListItemColor;
+  border: 1px solid transparent;
 }
 
 .process-start-list-item:hover,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover {
   background: $processStartListItemHoverBackgroundColor;
-  -webkit-box-shadow: 0 0 4px 0 rgba($processOrderItemHoverBoxShadowColor, 0.8);
-  -moz-box-shadow: 0 0 4px 0 rgba($processOrderItemHoverBoxShadowColor, 0.8);
-  box-shadow: 0 0 4px 0 rgba($processOrderItemHoverBoxShadowColor, 0.8);
+  border: $processStartListItemHoverBorder;
+  box-shadow: $processOrderItemHoverBoxShadowColor;
 }
 
 .process-start-list-item:hover .process-start-list-item-name,
@@ -1114,10 +1073,6 @@ body .ui-inputfield.case-detail-name-input {
   font-size: $largeFontSize;
 }
 
-.process-header .process-header-title-container {
-  border-bottom: 1px solid $processHeaderTitleContainerBorderBottom;
-}
-
 .process-header .create-express-workflow-icon,
 body .ui-widget-content .express-process-logo {
   background-color: $processExpressLogoBackgroundColor;
@@ -1152,12 +1107,29 @@ body .ui-widget-content .express-process-logo {
   color: $filterNameLabelColor;
 }
 
-a.compact-task-start-link .task-start-list-item {
-  background-color: $compactTaskStartLinkItemBackgroundColor;
+.task-widget-sub-header a.ui-commandlink,
+.case-widget-container .widget-column-header a.ui-commandlink {
+  color: $mediumGrey;
 }
 
-a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.full-mode:hover {
+.task-widget-sub-header a.ui-commandlink.filter-add-button,
+.case-widget-container .widget-column-header a.ui-commandlink.filter-add-button {
+  color: $commandLinkTextColor;
+}
+
+a.compact-task-start-link .task-start-list-item {
+  background-color: $compactTaskStartLinkItemBackgroundColor;
+  border-radius: $compactTaskStartLinkItemBorderRadius;
+  box-shadow: $compactTaskStartLinkItemBoxShadow;
+  border: 1px solid transparent;
+}
+
+a.compact-task-start-link .task-start-list-item:hover,
+.task-start-list-item.full-mode:hover,
+.case-list-item:hover {
   background: $compactTaskStartListItemHoverBackgroundColor;
+  border: $compactTaskStartLinkItemHoverBorder;
+  box-sizing: border-box;
 }
 
 .task-start-info-header, .task-start-info-content, .task-start-info-footer {
@@ -1174,10 +1146,6 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 
 .task-start-list .description-cell {
   color: $taskStartListDescriptionCell;
-}
-
-.task-odd-row.full-mode {
-  background-color: $taskOddRowFullModeBackgroundColor;
 }
 
 .filter-name-overlay-panel .filter-separator.ui-separator{

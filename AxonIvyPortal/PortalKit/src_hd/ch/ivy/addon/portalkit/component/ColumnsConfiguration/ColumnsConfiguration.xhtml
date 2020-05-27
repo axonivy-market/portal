@@ -15,9 +15,8 @@
 <cc:implementation>
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
   <h:panelGroup id="config-columns-container" styleClass="config-columns-button u-hidden-md-down">
-    <p:commandButton id="#{cc.attrs.configButtonId}" type="button"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/columns')}" styleClass="filter-add-button"
-      icon="fa fa-caret-down" iconPos="right" />
+
+    <p:commandLink id="#{cc.attrs.configButtonId}" styleClass="filter-add-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/columns')}"/>
   </h:panelGroup>
 
   <p:overlayPanel id="#{cc.attrs.overlayPanelId}" widgetVar="#{cc.attrs.overlayPanelId}" appendTo="@(body)"
