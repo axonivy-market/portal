@@ -507,6 +507,15 @@ body .ui-widget-header.portal-breadcrumb {
 
 .applications-email-setting-dialog .ui-dialog-content.ui-widget-content {
   font-size: var(--large-font-size); }
+  
+/*Style For Item Widget in List -----------------------------------------------------------------------------------*/
+.process-start-list-item,
+.process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item,
+a.compact-task-start-link .task-start-list-item {
+  background-color: var(--item-widget-background-color);
+  color: var(--item-widget-text-color);
+  box-shadow: var(--item-widget-box-shadow);
+  border: 1px solid transparent; }
 
 /*Style For Process Widget --------------------------------------------------------------------------------*/
 .process-start-list-item:hover .process-start-list-item-icon {
@@ -1011,9 +1020,6 @@ body .fieldset-no-border {
 .additional-case-details-link {
   font-weight: var(--additional-case-detail-link-font-weight); }
 
-.additional-case-details-link:hover {
-  color: var(--additional-case-detail-link-hover-color); }
-
 .related-task-content,
 .no-running-task-case {
   border: 1px solid var(--case-related-task-content-border);
@@ -1222,12 +1228,6 @@ body .ui-inputfield.case-detail-name-input {
 .process-widget .process-nav .process-nav-item.selected:before {
   border-left: 3px solid var(--process-navigator-item-selected-border); }
 
-.process-start-list-item,
-.process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item {
-  background-color: var(--process-order-list-item-background-color);
-  color: var(--process-start-list-item-color);
-  box-shadow: var(--process-order-list-item-box-shadow); }
-
 .process-start-list-item:hover,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover {
   background: var(--process-start-list-item-hover-background-color);
@@ -1302,12 +1302,9 @@ body .ui-widget-content .express-process-logo {
 .filter-name-overlay-panel .filter-type-label {
   color: var(--filter-name-label-color); }
 
-a.compact-task-start-link .task-start-list-item {
-  background-color: var(--compact-task-start-link-item-background-color);
-  box-shadow: var(--compact-task-start-link-item-box-shadow); }
-
 .task-start-list-item.full-mode,
 .case-list-item {
+  border: 1px solid transparent;
   border: 1px solid transparent;
   border-bottom: 1px solid var(--task-filter-separator-border-bottom);
 }

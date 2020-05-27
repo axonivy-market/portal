@@ -44,10 +44,14 @@ function TaskWidget() {
             - compactProcessWidgetHeight - taskViewPaddingValue
             - layoutContentPadding - containerPadding;
         if (!!availableHeight) {
-          if ($('.compact-task-widget').length > 0 && container.outerHeight(true) > availableHeight) {
-            container.css('margin-right', '7px');
-          }
-          container.outerHeight(availableHeight);
+            container.outerHeight(availableHeight);
+            if (container.outerHeight(true) > availableHeight) {
+              var taskStartItemMarginRight = $('.task-start-list-item').css("margin-right");
+              var scrollbarWidth = container.width() - container.find('.ui-datascroller-list').outerWidth(true);
+              if (scrollbarWidth > 0) {
+                container.css("margin-right", taskStartItemMarginRight);
+              }
+            }
         }
       }
     },
