@@ -54,14 +54,6 @@
 </h:head>
 
 <h:body>
-  <script type="text/javascript">
-    $(window).resize(function() {
-      setTimeout(function() {
-      Portal.updateBreadcrumb();
-      }, 1);
-    });
-  </script>
-  
   <c:set var="isNotRequiredLogin" value="#{isNotRequiredLogin == null ? false : isNotRequiredLogin}" />
   <c:choose>
     <c:when test="#{ivy.wf.securityContext.currentSession.sessionUserUnknown and !isNotRequiredLogin}">
@@ -147,7 +139,9 @@
       </div>
       
       <div id="portal-template-footer">
-        <ic:ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo />
+        <div id="portal-environment">
+          <ic:ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo />
+        </div>
         <ic:ch.ivy.addon.portalkit.component.PageFooter />
       </div>
     </c:otherwise>
