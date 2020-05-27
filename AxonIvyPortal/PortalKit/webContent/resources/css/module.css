@@ -630,12 +630,13 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .action-container, .action-container a.task-action-item, .action-container span.task-action-item {
-  display: flex !important;
-  align-items: center !important;
+  display: flex;
+  align-items: center;
 }
 
 .action-container a.task-action-item .icon-compact-mode, .action-container span.task-action-item .icon-compact-mode {
   margin-top: 3px;
+  margin-right: 3px;
 }
 
 @media (max-width : 767px) {
@@ -923,10 +924,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   border-radius: 3px;
   float: left;
   margin-right: 10px;
-}
-
-.widget.process-widget .all-processes-container.ui-g-12 {
-  padding: .5em 0;
 }
 
 .process-widget-action {
@@ -1712,10 +1709,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   position: absolute;
   top: -2px;
   right: 0;
-}
-
-.task-details-action-container .task-action-item .task-action-item-label {
-  margin-left: 3px;
 }
 
 .options-panel .option-action-icon {
