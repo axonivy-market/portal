@@ -9,7 +9,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="styleClass" />
   <cc:attribute name="chunkSize" shortDescription="Number of items to fetch for each lazy load" default="20" />
-  <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" />
+  <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskAnalysis')}" />
 </cc:interface>
 
 <cc:implementation>
@@ -17,13 +17,8 @@
   <h:outputScript name="task-widget.js" library="js" />
 
   <div id="#{cc.clientId}" class="widget task-widget analysis-task-widget #{cc.attrs.styleClass} ui-g-12">
-    <h:panelGroup id="header" layout="block" styleClass="widget-header">
-      <div class="widget-header-main">
-        <h:outputText styleClass="widget-header-main-title" 
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskAnalysis')}" />
-      </div>
 
-      <h:panelGroup layout="block" styleClass="task-analysic-action ui-g">
+      <h:panelGroup layout="block" styleClass="task-analysic-action ui-g Fright">
         <h:panelGroup layout="block" styleClass="ui-g-12 u-padding-0">
           <p:commandLink id="back-button" actionListener="#{logic.redirectToStatisticPage}" styleClass="Fright">
             <i class="fa fa-reply-all" />
@@ -32,7 +27,7 @@
           </p:commandLink>
         </h:panelGroup>
       </h:panelGroup>
-    </h:panelGroup>
+
 
     <h:panelGroup id="filter-selection-container" layout="block" styleClass="filter-selection-container">
       <h:form id="filter-selection-form" class="filter-selection-form">
@@ -115,8 +110,8 @@
             dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedTaskFilters}" resultContainerUpdated="#{false}" />
 
           <h:panelGroup id="task-filter-add-container" styleClass="filter-add-container" style="order: #{data.dataModel.selectedTaskFilters.size()}">
-            <p:commandButton id="task-filter-add-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
-              styleClass="filter-add-button" icon="fa fa-caret-down" iconPos="right" type="button" />
+            <p:commandLink id="task-filter-add-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/moreOptions')}"
+              styleClass="filter-add-button" />
             <p:overlayPanel id="task-filter-add-panel" widgetVar="task-filter-add-panel" styleClass="filter-add-panel" for="task-filter-add-action" my="left top"
               at="left bottom" dismissable="false">
               <h:form id="task-filter-add-form">
@@ -172,8 +167,8 @@
                dataModel="#{data.dataModel}" selectedFilters="#{data.dataModel.selectedCaseFilters}" resultContainerUpdated="#{false}"/>
 
           <h:panelGroup id="case-filter-add-container" styleClass="filter-add-container" style="order: #{data.dataModel.selectedCaseFilters.size()}">
-            <p:commandButton id="case-filter-add-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}"
-              styleClass="filter-add-button" icon="fa fa-caret-down" iconPos="right" type="button" />
+            <p:commandLink id="case-filter-add-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/moreOptions')}"
+              styleClass="filter-add-button" />
             <p:overlayPanel id="case-filter-add-panel" widgetVar="case-filter-add-panel" styleClass="filter-add-panel" for="case-filter-add-action" my="left top"
               at="left bottom" dismissable="false">
               <h:form id="case-filter-add-form">
