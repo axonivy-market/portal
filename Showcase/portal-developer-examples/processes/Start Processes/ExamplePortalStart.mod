@@ -317,7 +317,9 @@ if (#task is initialized) {
 			SecurityServiceUtils.removeSessionAttribute(taskEndInfoSessionAttributeKey);
 		}
 		
-		in.callbackUrl = taskWithTaskEndInfo.customFields().stringField(CustomFields.EXPRESS_END_PAGE_URL.toString()).getOrDefault("");
+		if (#task is initialized && task.getEndTimestamp() is initialized || ivy.session.getAttribute(IS_TASK_FINISHED).toBoolean()) {
+			in.callbackUrl = taskWithTaskEndInfo.customFields().stringField(CustomFields.EXPRESS_END_PAGE_URL.toString()).getOrDefault("");
+		}
 	} else {
 		in.isFirstTask = true;
 		in.portalPage = PortalPage.HOME_PAGE;
