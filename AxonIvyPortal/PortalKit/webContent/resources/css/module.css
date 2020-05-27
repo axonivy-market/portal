@@ -71,6 +71,10 @@
   height: 36px;
 }
 
+.widget-header-content-filter {
+  width: 100%;
+}
+
 .widget-header-sub {
   flex: 1 0 auto;
   align-self: flex-end;
@@ -184,6 +188,10 @@
   top: -8px;
 }
 
+.expand-mode .filter-widget {
+  top: -6px;
+}
+
 .filter-widget-input {
   flex-grow: 1;
 }
@@ -240,10 +248,6 @@
   width: 100%;
 }
 
-.task-widget .advanced-filter-container, .case-widget-container .advanced-filter-container {
-  display: flex;
-}
-
 .task-widget .in-progress-task-checkbox, .case-widget-container .in-progress-task-checkbox {
   padding-left: 2.4px;
 }
@@ -252,18 +256,14 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   margin-left: .1rem;
 }
 
-.task-widget .advanced-filter-container .additional-filter-container,
-.case-widget-container .advanced-filter-container .additional-filter-container {
-  display: flex;
-  flex-wrap: wrap;
-}
-
 .task-widget .filter-add-container,
 .task-widget .filter-reset-action,
-.case-widget-container .filter-add-container {
-  margin-top: 7px;
-  margin-right: 10px;
+.case-widget .filter-add-container,
+.case-widget .filter-reset-action {
   order: 1000;
+  margin-right: 10px;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .task-widget .advanced-filter, .case-widget-container .advanced-filter, .case-widget .advanced-filter {
@@ -283,7 +283,7 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
 .task-widget .ui-widget.ui-button.advanced-filter-command,
 .case-widget-container .ui-widget.ui-button.advanced-filter-command {
   display: inline-block;
-  line-height: 30px;
+  line-height: 1;
   min-width: 0;
   padding: 0 25px 0 5px !important;
   overflow: hidden;
@@ -298,7 +298,7 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   display: inline-block;
   height: 30px;
   line-height: 30px;
-  min-width: 0;
+  width: calc(100% - 5px);
 }
 
 .analysis-task-widget .filter-selection-container {
@@ -898,7 +898,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 .process-header .create-express-link {
   display: inline-block;
   margin-left: 12px;
-  padding-top: 14px;
 }
 
 .process-header .create-express-link a:hover i {
@@ -1428,6 +1427,8 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 .filter-container {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 10px;
+  align-items: center;
 }
 
 .filter-selection-form {
@@ -1440,7 +1441,7 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 }
 
 .filter-selection-form .filter-name-overlay-panel .ui-overlaypanel-content {
-  padding: 15px 0 !important;
+  padding: 15px 0 0 0;
   max-height: 70vh;
   overflow-y: auto;
   overflow-x: hidden;
@@ -1453,16 +1454,28 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
   align-items: center;
 }
 
+.filter-container .text-filter {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+@media (max-width: 991px) {
+  .filter-container .text-filter {
+    width: 100%;
+  }
+}
+
 .filter-name-overlay-panel .filter-type-label {
   text-align: left;
-  padding: 10px 0 10px 6px;
+  padding-left: 10px;
+  cursor: default;
 }
 
 .filter-selection-form .filter-name-overlay-panel .user-defined-filter-container .user-defined-filter {
   flex: 1 0 80%;
   position: relative;
   text-align: left;
-  padding: 10px 0 10px 6px;
+  padding: 10px 0 10px 10px;
   max-width: 14rem;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -1485,8 +1498,9 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
   order: 1001;
 }
 
-.task-widget .filter-save-container {
+.task-widget .filter-save-action {
   order: 1002;
+  margin-top: 10px;
 }
 
 .save-filter-set-dialog {
@@ -1797,6 +1811,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   .case-widget-container .ui-widget.ui-button.advanced-filter-command:after {
     position: absolute;
     right: 25px;
+    top: 9px;
   }
   .task-start-list-item.full-mode .task-start-link, .case-header-container {
     height: 50px;
@@ -2114,8 +2129,9 @@ a[id*=application-menu-item]>span.ui-menuitem-text {
   order: 1001;
 }
 
-.case-widget-container .filter-save-container {
+.case-widget-container .filter-add-button {
   order: 1002;
+  margin-top: 10px;
 }
 
 /********************************** END CASE VIEW **********************************/
@@ -3750,12 +3766,12 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   margin-right: 10px;
 }
 
-.analysis-task-widget .filter-add-container {
-  display: block !important;
-}
-
 .analysis-task-widget .widget-header-main {
   height: 35px !important;
+}
+
+.analysis-task-widget.task-widget .filter-selection-container {
+  width: auto;
 }
 
 .task-analysis-filter-selection-panel {
@@ -3768,6 +3784,20 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .case-filter-selection-checkbox {
   width: 160px;
+}
+
+.additional-filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.analysis-task-widget.task-widget .filter-add-container {
+  margin-top: 0;
+}
+
+body .ui-widget-content.filter-name-overlay-panel {
+  padding: 0;
 }
 
 /* Display icon filter on mobile as a button */
@@ -3948,10 +3978,22 @@ _:-ms-fullscreen, :root .content-link-history {
   }
 }
 /* ================= END RESPONSIVE GRID ==================== */
-.task-widget .filter-container .filter-selection-container-group, .case-widget-container .filter-container .filter-selection-container-group
-  {
+.task-widget .filter-container .filter-selection-container-group, .case-widget-container .filter-container .filter-selection-container-group {
   display: inline-block;
   margin-right: 5px;
+}
+
+.filter-container .applied-filters-container {
+  width: calc(100% - 150px);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+@media (max-width: 991px) {
+  .filter-container .applied-filters-container {
+    width: 100%;
+  }
 }
 
 .filter-selection-form a.ui-commandlink.filter-name {
@@ -3960,6 +4002,33 @@ _:-ms-fullscreen, :root .content-link-history {
   line-height: 30px;
   display: inline-block;
   padding: 0 10px 0 5px;
+}
+
+.task-widget .filter-container .filter-selection-container-group {
+  height: 100%;
+  width: 140px;
+}
+
+.filter-selection-container-group .filter-selection-label {
+  display: block;
+  padding-left: 5px;
+}
+
+.filter-container .selected-filters-label {
+  display: block;
+  margin-bottom: 9px;
+}
+
+.filter-container .advanced-filter-component {
+  margin-top: 10px;
+}
+
+.task-widget .filter-add-container,
+.task-widget .filter-reset-action,
+.case-widget-container .filter-add-container {
+  border: solid 1px transparent;
+  margin-top: 12px;
+  height: 30px;
 }
 
 /* =================== RESPONSIVE ENHANCEMENT ====================== */
