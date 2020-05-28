@@ -19,7 +19,7 @@ Ue0 f0 inParamDecl '<> param;' #txt
 Ue0 f0 requestEnabled true #txt
 Ue0 f0 triggerEnabled false #txt
 Ue0 f0 callSignature userExampleGuide() #txt
-Ue0 f0 startName <%=ivy.cms.co("/Processes/UserExampleGuide/title")%> #txt
+Ue0 f0 startName <%=ivy.cms.co("/Processes/UserExampleGuide/name")%> #txt
 Ue0 f0 startDescription <%=ivy.cms.co("/Processes/UserExampleGuide/processDescription")%> #txt
 Ue0 f0 caseData 'businessCase.attach=true
 customFields.STRING.embedInFrame="false"' #txt
@@ -47,10 +47,10 @@ Ue0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ue0 f3 472 42 128 44 -55 -8 #rect
+Ue0 f3 296 42 128 44 -55 -8 #rect
 Ue0 f3 @|UserDialogIcon #fIcon
-Ue0 f2 600 64 721 64 #arcP
-Ue0 f11 111 64 472 64 #arcP
+Ue0 f2 424 64 721 64 #arcP
+Ue0 f11 111 64 296 64 #arcP
 >Proto Ue0 .type com.axonivy.portal.userexamples.UserExampleGuideData #txt
 >Proto Ue0 .processKind NORMAL #txt
 >Proto Ue0 0 0 32 24 18 0 #rect
