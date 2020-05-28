@@ -32,10 +32,7 @@
 				if (buttonId == '' &amp;&amp; !!window.chrome == true &amp;&amp; e.target.className == 'ui-button-text ui-c') {
 					buttonId = $(e.target).parent().attr('id');
 				}
-				var saveLanguageButton = "language-settings-form:language-settings:save-settings";
-				if (saveLanguageButton != buttonId) {
-					showConfirmDialogBeforeUnload = true;
-				}
+				showConfirmDialogBeforeUnload = true;
 			});
 
 			PrimeFaces.ajax.ResponseProcessor.doRedirect = function(node) {
