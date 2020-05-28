@@ -150,7 +150,7 @@ public class TaskWidgetPage extends TemplatePage {
 
 	public void sideStepMenuOnActionButton(int index) {
 		String actionButton =
-				String.format("button[id$='%d\\:task-item\\:task-action\\:additional-options\\:task-side-steps-menu']", index);
+				String.format("[id$='%d\\:task-item\\:task-action\\:additional-options\\:task-side-steps-menu']", index);
 		waitForElementDisplayed(By.cssSelector(actionButton), true);
 		// Unstable step, after go to task list, click immediately to Action button,
 		// Portal opens task detail.
