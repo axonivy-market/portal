@@ -1,0 +1,6 @@
+LendingOverviewData #class
+com.axonivy.portal.userexamples.credit.LendingOverview #namespace
+userProcess ch.ivy.addon.portalkit.persistence.domain.UserProcess #field
+userProcess PERSISTENT #fieldModifier
+caseMapDetail ch.ivy.addon.portalkit.bo.CaseMapDetail #field
+caseMapDetail PERSISTENT #fieldModifier
