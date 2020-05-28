@@ -28,6 +28,7 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -41,6 +42,7 @@ import ch.ivyteam.ivy.workflow.TaskState;
 public class UserMenuBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
+  private static final String USER_PROFILE_FRIENDLY_REQUEST_PATH =  "Business Processes/UserProfile/UserProfile.ivp";
   public static final long TIME_BEFORE_LOST_SESSION = 3 * DateUtils.MILLIS_PER_MINUTE; // 3 minutes
   public static final String TASK_LEAVE_WARNING_COMPONENT = "task-leave-warning-component";
 
@@ -138,6 +140,14 @@ public class UserMenuBean implements Serializable {
       navigateToHomePage();
     }
   }
+  
+  public void navigateToUserProfileOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      PrimeFaces.current().executeScript("PF('task-losing-confirmation-dialog').show()");
+    } else {
+      navigateToUserProfile();
+    }
+  }
 
   public void resetTaskAndNavigateToHomePage(ITask task) throws IOException {
     TaskUtils.resetTask(task != null ? task : Ivy.wfTask());
@@ -154,6 +164,20 @@ public class UserMenuBean implements Serializable {
   public void reserveTaskAndNavigateToHomePage(ITask task) throws IOException {
     TaskUtils.parkTask(task != null ? task : Ivy.wfTask());
     navigateToHomePage();
+  }
+  
+  public void resetTaskAndNavigateToUserProfileWithGrowl(ITask task) throws IOException {
+    IvyComponentLogicCaller<ITask> leaveTask = new IvyComponentLogicCaller<>();
+    leaveTask.invokeComponentLogic(TASK_LEAVE_WARNING_COMPONENT, "#{logic.leave}", new Object[] {});
+    TaskUtils.resetTask(task != null ? task : Ivy.wfTask());
+    navigateToUserProfile();
+  }
+
+  public void reserveTaskAndNavigateToUserProfileWithGrowl(ITask task) throws IOException {
+    IvyComponentLogicCaller<ITask> reserveTask = new IvyComponentLogicCaller<>();
+    reserveTask.invokeComponentLogic(TASK_LEAVE_WARNING_COMPONENT, "#{logic.reserve}", new Object[] {});
+    TaskUtils.parkTask(task != null ? task : Ivy.wfTask());
+    navigateToUserProfile();
   }
   
   public void reserveTaskAndNavigateToHomePageWithGrowl(ITask task) throws IOException {
@@ -182,6 +206,10 @@ public class UserMenuBean implements Serializable {
   
   private void navigateToHomePage() throws IOException {
     getExternalContext().redirect(getHomePageURL());
+  }
+  
+  private void navigateToUserProfile() throws IOException {
+    getExternalContext().redirect(ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), USER_PROFILE_FRIENDLY_REQUEST_PATH));
   }
 
   private boolean isDefaultPortalApp() {
