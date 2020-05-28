@@ -50,7 +50,7 @@ public class CaseWidgetPage extends TemplatePage {
 	}
 
 	private WebElement getDestroyButtonOfCaseItem() {
-		clickByCssSelector("button[id$='action-steps-menu']");
+		clickByCssSelector("[id$='action-steps-menu']");
 		waitForElementDisplayed(By.cssSelector("a[id$='destroy-case']"), true);
 		Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
 				.until(() -> findElementByCssSelector("a[id$='destroy-case']").isDisplayed());
@@ -58,7 +58,7 @@ public class CaseWidgetPage extends TemplatePage {
 	}
 
 	private WebElement getMoreActionsPanel() {
-		clickByCssSelector("button[id$='action-steps-menu']");
+		clickByCssSelector("[id$='action-steps-menu']");
 		waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
 		Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
 				.until(() -> findElementByCssSelector("div[id$='action-steps-panel']").isDisplayed());
