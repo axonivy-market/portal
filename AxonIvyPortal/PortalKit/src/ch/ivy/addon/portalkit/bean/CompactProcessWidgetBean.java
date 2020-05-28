@@ -8,7 +8,6 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
@@ -20,6 +19,7 @@ import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.comparator.UserProcessIndexComparator;
+import ch.ivy.addon.portalkit.constant.DummyProcess;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
@@ -50,18 +50,44 @@ private static final long serialVersionUID = -5889375917550618261L;
   private boolean editMode;
   private boolean isUserFavoritesEnabled;
   private boolean isDisplayShowAllProcessesLink;
+  private boolean isGuide = true; //TODO
   
-  @PostConstruct
   public void init() {
     userProcessService = new UserProcessService();
     selectedUserProcesses = new ArrayList<>();
     userName = UserUtils.getSessionUserName();
-
-    String isUserFavoritesEnabledGlobalVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_USER_FAVORITES.toString());
-    isUserFavoritesEnabled = StringUtils.isNotBlank(isUserFavoritesEnabledGlobalVariable) ? Boolean.parseBoolean(isUserFavoritesEnabledGlobalVariable) : true;
-    userProcesses = findUserProcesses();
-    defaultProcesses = findStartableDefaultProcesses();
-    isDisplayShowAllProcessesLink = PermissionUtils.checkAccessFullProcessListPermission();
+    
+    if (isGuide) {
+      createDummyDataForGuide();
+      isGuide = false;
+    } else {
+      String isUserFavoritesEnabledGlobalVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_USER_FAVORITES.toString());
+      isUserFavoritesEnabled = StringUtils.isNotBlank(isUserFavoritesEnabledGlobalVariable) ? Boolean.parseBoolean(isUserFavoritesEnabledGlobalVariable) : true;
+      userProcesses = findUserProcesses();
+      defaultProcesses = findStartableDefaultProcesses();
+      isDisplayShowAllProcessesLink = PermissionUtils.checkAccessFullProcessListPermission();
+    }
+  }
+  
+  private void createDummyDataForGuide() {
+    isUserFavoritesEnabled = true;
+    isDisplayShowAllProcessesLink = true;
+    
+    userProcesses = new ArrayList<>();
+    UserProcess userProcess = new UserProcess();
+    userProcess.setProcessName(DummyProcess.FAVORITE_NAME);
+    userProcess.setIcon(DummyProcess.FAVORITE_ICON);
+    userProcesses.add(userProcess);
+    
+    defaultProcesses = new ArrayList<>();
+    UserProcess appProcess1 = new UserProcess();
+    appProcess1.setProcessName(DummyProcess.APP_PROCESS_NAME_1);
+    appProcess1.setIcon(DummyProcess.APP_PROCESS_ICON_1);
+    defaultProcesses.add(appProcess1);
+    UserProcess appProcess2 = new UserProcess();
+    appProcess2.setProcessName(DummyProcess.APP_PROCESS_NAME_2);
+    appProcess2.setIcon(DummyProcess.APP_PROCESS_ICON_2);
+    defaultProcesses.add(appProcess2);
   }
 
   private List<UserProcess> findStartableDefaultProcesses() {
