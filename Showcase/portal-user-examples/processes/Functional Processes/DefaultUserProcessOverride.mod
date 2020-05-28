@@ -48,9 +48,8 @@ String leaveRequestStartLink = collector.findStartableLinkByUserFriendlyRequestP
 if (!StringUtils.isEmpty(leaveRequestStartLink)){	
 	UserProcess userProcess = new UserProcess();
 	userProcess.setLink(leaveRequestStartLink);
-	userProcess.setProcessName(ivy.cms.co("/Processes/UserExampleGuide/title"));
+	userProcess.setProcessName(ivy.cms.co("/Processes/UserExampleGuide/name"));
 	userProcess.setIcon("fa-ticket");
-	userProcess.setIndex(1);
 	in.defaultUserProcesses.add(userProcess);
 }
 ' #txt

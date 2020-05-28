@@ -613,6 +613,7 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 .chart-info-container label {
   font-weight: var(--chart-info-label-font-weight); }
 
+.overview-process-panel .card,
 .dashboard-chart-panel .card,
 .edit-statistic-container .card,
 .statistic-widget.compact-mode .statistic-carousel.card {
@@ -1815,3 +1816,4 @@ body .ui-datepicker tbody td.ui-datepicker-today a, body .ui-datepicker tbody td
 body .ui-slider .ui-slider-handle {
   background-color: var(--accent-light-color);
 }
+
