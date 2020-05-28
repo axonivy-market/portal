@@ -49,6 +49,7 @@
   <h:outputScript name="responsive-toolkit.js" library="js" />
   <h:outputScript name="main.js" library="js" />
   <h:outputScript name="portal.js" library="js" />
+  <h:outputScript name="guide-panel.js" library="js" />
   <ui:insert name="head" />
 </h:head>
 
@@ -98,7 +99,8 @@
         <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="left-menu-guide-component" targetComponent="left-menu"
           title="Main Menu" content="The grey Menu includes a full process list, a task and case list and advanced statistics area."
           contentWidth="370px" targetCssSelector="#left-menu" icon="fa-bars" onNext="PF('process-widget-guide').show()"
-          my="left+30 top+70" at="right top" targetPosition="fixed" arrowPosition="left top" />
+          my="left+30 top+70" at="right top" targetPosition="fixed" arrowPosition="left top"
+          updatedComponentAfterGuide="#{updatedComponentAfterGuide}" />
 
         <div class="layout-main js-layout-main">
           <div class="layout-topbar">
@@ -115,6 +117,7 @@
                 <ui:param name="enablesChat" value="#{enablesChat}" />
                 <ui:param name="viewName" value="#{viewName}" />
                 <ui:param name="case" value="#{case}" />
+                <ui:param name="updatedComponentAfterGuide" value="#{updatedComponentAfterGuide}" />
               </ui:include>
               <div class="color-header">
                 <div class="first-header-bar" />
@@ -155,7 +158,7 @@
         <ic:ch.ivy.addon.portalkit.component.PageFooter />
       </div>
       
-      <div id="guide-modal" class="ui-dialog-mask ui-widget-overlay" style="background: transparent;" />
+      <div id="guide-modal" class="ui-dialog-mask ui-widget-overlay guide-modal" />
     </c:otherwise>
   </c:choose>
 
