@@ -19,7 +19,7 @@ public class CaseWidgetPage extends TemplatePage {
 	private static final String CASE_ITEM_LIST_SELECTOR = "li[class='ui-datascroller-item']";
 	private static final String CASE_NAME_CSS_SELECTOR = "span[class*='case-header-name-cell']";
 	private static final String CASE_PAGE_LOCATION = "//*[contains(@id,'case-view')]";
-	private static final String COLUMNS_BUTTON_CSS_SELECTOR = "button[id$='case-config-button']";
+	private static final String COLUMNS_BUTTON_CSS_SELECTOR = "[id$='case-config-button']";
 	private static final String SELECT_ITEM_XPATH =
 			"//*[@id=\"case-widget:case-columns-configuration:select-columns-form:columns-checkbox\"]/tbody/tr[%s]/td/div/div[2]";
 	private static final String APPLY_BUTTON_CSS_SELECTOR = "button[id$='select-columns-form:update-command']";
@@ -102,7 +102,7 @@ public class CaseWidgetPage extends TemplatePage {
 		List<WebElement> caseItems = findListElementsByCssSelector(CASE_ITEM_LIST_SELECTOR);
 		for (WebElement caseItem : caseItems) {
 			if (caseItem.findElement(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
-				caseItem.findElement(By.cssSelector("button[id*='action-steps-menu']")).click();
+				caseItem.findElement(By.cssSelector("[id*='action-steps-menu']")).click();
 				waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
 				findElementByCssSelector("a[id$='case-item-open-detail-link']").click();
 				return new CaseDetailsPage();

@@ -33,28 +33,28 @@ public class CaseWidgetCustomizationTest extends BaseTest {
 	
 	@Test
 	public void testShowHideCustomColumnsInCaseWidget() {
-	  MainMenuPage mainMenuPage = new MainMenuPage();
-	  CaseWidgetPage caseWidgetPage = mainMenuPage.selectCaseMenu();
-	  caseWidgetPage.sortCaseListByColumn(CUSTOMER_NAME_CASE_LIST_HEADER_ID);
-	  assertFalse(caseWidgetPage.isCaseListColumnExist(STATE_COLUMN_HEADER));
-    assertTrue(caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
-    assertEquals("CustomVarCharField10", caseWidgetPage.getCaseListFirstCustomCellValue());
+		MainMenuPage mainMenuPage = new MainMenuPage();
+		CaseWidgetPage caseWidgetPage = mainMenuPage.selectCaseMenu();
+		caseWidgetPage.sortCaseListByColumn(CUSTOMER_NAME_CASE_LIST_HEADER_ID);
+		assertFalse(caseWidgetPage.isCaseListColumnExist(STATE_COLUMN_HEADER));
+		assertTrue(caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
+		assertEquals("CustomVarCharField10", caseWidgetPage.getCaseListFirstCustomCellValue());
 	}
 	
 	@Test
 	public void testEnableAndDisableColumnsInCaseWidget() {
-	  MainMenuPage mainMenuPage = new MainMenuPage();
-    CaseWidgetPage caseWidgetPage = mainMenuPage.selectCaseMenu();
-    assertTrue(caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
-    caseWidgetPage.clickColumnsButton();
-    caseWidgetPage.clickDefaultCheckbox();
-    caseWidgetPage.clickColumnCheckbox(6);
-    caseWidgetPage.clickApplyButton();
-    assertFalse(caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
-    caseWidgetPage.clickColumnsButton();
-    caseWidgetPage.clickColumnCheckbox(6);
-    caseWidgetPage.clickApplyButton();
-    assertTrue(caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
+		MainMenuPage mainMenuPage = new MainMenuPage();
+		CaseWidgetPage caseWidgetPage = mainMenuPage.selectCaseMenu();
+		assertTrue(caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
+		caseWidgetPage.clickColumnsButton();
+		caseWidgetPage.clickDefaultCheckbox();
+		caseWidgetPage.clickColumnCheckbox(6);
+		caseWidgetPage.clickApplyButton();
+		assertFalse(caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
+		caseWidgetPage.clickColumnsButton();
+		caseWidgetPage.clickColumnCheckbox(6);
+		caseWidgetPage.clickApplyButton();
+		assertTrue(caseWidgetPage.isCaseListColumnExist(CUSTOMER_NAME_COLUMN_HEADER));
 	}
 
 	@Test
@@ -63,6 +63,6 @@ public class CaseWidgetCustomizationTest extends BaseTest {
 		CaseWidgetPage caseWidgetPage = mainMenuPage.selectCaseMenu();
 		caseWidgetPage
 				.sortCaseListByColumn(CUSTOMER_NAME_CASE_LIST_HEADER_ID);
-    assertEquals("CustomVarCharField10", caseWidgetPage.getCaseListFirstCustomCellValue());
+		assertEquals("CustomVarCharField10", caseWidgetPage.getCaseListFirstCustomCellValue());
 	}
 }
