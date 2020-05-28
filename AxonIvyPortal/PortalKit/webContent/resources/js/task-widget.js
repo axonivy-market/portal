@@ -44,7 +44,7 @@ function TaskWidget() {
             - compactProcessWidgetHeight - taskViewPaddingValue
             - layoutContentPadding - containerPadding;
         if (!!availableHeight) {
-            container.outerHeight(availableHeight);
+            container.height(availableHeight);
             if (container.outerHeight(true) > availableHeight) {
               var taskStartItemMarginRight = $('.task-start-list-item').css("margin-right");
               var scrollbarWidth = container.width() - container.find('.ui-datascroller-list').outerWidth(true);
