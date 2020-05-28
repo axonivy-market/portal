@@ -80,7 +80,8 @@
     <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="setting-container-guide-component" targetComponent="setting-container"
       title="User name" content="Clicking on the user name you can define absences, language, mail settings, etc."
       contentWidth="370px" targetCssSelector=".setting-container" icon="fa-user" onNext="PF('statistic-widget-container-guide').show()"
-      my="right bottom-30" at="right top" arrowPosition="top right" onShow="showUsernameGuide()" onHide="hideUsernameGuide()" />
+      my="right bottom-30" at="right top" arrowPosition="top right" onShow="showUsernameGuide()" onHide="hideUsernameGuide()"
+      updatedComponentAfterGuide="#{updatedComponentAfterGuide}" />
       
     <script>
       function showUsernameGuide() {

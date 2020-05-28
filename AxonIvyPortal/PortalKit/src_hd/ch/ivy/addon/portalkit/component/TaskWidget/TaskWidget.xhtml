@@ -250,7 +250,7 @@
           lazy="true" 
           mode="inline" 
           rowIndexVar="rowIndex"
-          styleClass="task-start-list js-task-start-list #{data.dataModel.compactMode ? 'compact-mode' : ''}">
+          styleClass="task-start-list js-task-start-list #{data.dataModel.compactMode ? 'compact-mode' : ''} #{data.dataModel.isGuide ? 'js-is-guide' : ''}">
           <ic:ch.ivy.addon.portalkit.component.TaskItem 
             id="task-item" task="#{task}"
             rowIndex="#{rowIndex}" currentPortalPage="#{cc.attrs.currentPortalPage}"

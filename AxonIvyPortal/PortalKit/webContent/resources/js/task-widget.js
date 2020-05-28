@@ -11,7 +11,7 @@ function TaskWidget() {
       var childElements = $('.js-task-start-list-item');
       var winHeight = window.innerHeight;
       if (childElements.length > 0) {
-        var container = $('.js-task-start-list > .ui-datascroller-content');
+        var container = $('.js-task-start-list:not(.js-is-guide) > .ui-datascroller-content');
         var taskWidgetHeaderContainer = $('.js-task-widget-header');
         var announcementMessageContainer = $('.js-announcement-message');
         var taskWidgetSortMenuContainer = $('.js-task-widget-sub-header');

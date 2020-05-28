@@ -4372,6 +4372,11 @@ body .portal-breadcrumb.ui-breadcrumb ul li {
 }
 
 /*=================== GUIDE ===================*/
+.ui-dialog-mask.ui-widget-overlay.guide-modal {
+  background-color: transparent;
+  z-index: -1;
+}
+
 .ui-dialog.guide-panel, .ui-dialog.guide-panel .ui-dialog-content {
   overflow: unset;
 }

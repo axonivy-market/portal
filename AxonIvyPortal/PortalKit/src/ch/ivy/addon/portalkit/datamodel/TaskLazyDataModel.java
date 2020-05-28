@@ -19,6 +19,7 @@ import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
+import ch.ivy.addon.portalkit.constant.DummyTask;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -76,6 +77,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected boolean isNotKeepFilter;
   protected boolean disableTaskCount;
   protected Boolean isSelectedDefaultFilter;
+  protected boolean isGuide = true;
 
   public TaskLazyDataModel(String taskWidgetComponentId) {
     super();
@@ -228,26 +230,46 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   @Override
   public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-    if (first == 0) {
-      initializedDataModel(criteria);
-      if (!disableTaskCount) {
-        PrimeFaces.current().executeScript("updateTaskCount()");
+    if (isGuide) {
+      isGuide = false;
+      List<ITask> tasks = createDummyDataForGuide();
+      data.addAll(tasks);
+      setRowCount(1);
+      PrimeFaces.current().executeScript("updateTaskCount()");
+      return tasks;
+    } else {
+      if (first == 0) {
+        initializedDataModel(criteria);
+        if (!disableTaskCount) {
+          PrimeFaces.current().executeScript("updateTaskCount()");
+        }
       }
-    } 
-    
-    List<ITask> foundTasks = findTasks(criteria, first, pageSize);
-    if (disableTaskCount) {
-      int rowCount = 0;
-      if (foundTasks.size() >= pageSize) {
-        rowCount = first + pageSize + 1;
-      } else {
-        rowCount = first + foundTasks.size();
+      
+      List<ITask> foundTasks = findTasks(criteria, first, pageSize);
+      if (disableTaskCount) {
+        int rowCount = 0;
+        if (foundTasks.size() >= pageSize) {
+          rowCount = first + pageSize + 1;
+        } else {
+          rowCount = first + foundTasks.size();
+        }
+        setRowCount(rowCount);
+        PrimeFaces.current().executeScript("PF('task-list-scroller').cfg.totalSize = " + rowCount);
       }
-      setRowCount(rowCount);
-      PrimeFaces.current().executeScript("PF('task-list-scroller').cfg.totalSize = " + rowCount);
+      data.addAll(foundTasks);
+      return foundTasks;
     }
-    data.addAll(foundTasks);
-    return foundTasks;
+  }
+  
+  private List<ITask> createDummyDataForGuide() {
+    ITask task = ITask.current();
+    task.setName(DummyTask.TASK_NAME);
+    task.setDescription(DummyTask.TASK_DESCRIPTION);
+    return Arrays.asList(task);
+  }
+  
+  public boolean getIsGuide() {
+    return isGuide;
   }
 
   /**
