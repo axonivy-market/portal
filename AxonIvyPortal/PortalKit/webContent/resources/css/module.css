@@ -2722,14 +2722,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 /* Override Primefaces table style */
-.absence-table table, .language-table table, .admin-table table {
+.absence-table table, .admin-table table {
   box-sizing: border-box !important;
-}
-
-.language-table .ui-datatable-scrollable-body {
-  height: auto !important;
-  max-height: 55vh !important;
-  overflow-x: hidden;
 }
 
 .delete-absence-confirmation-dialog .confirm-action {
@@ -2749,31 +2743,19 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 /********************************** END CHANGE PASSWORK DIALOG **********************************/
 
-/********************************** LANGUAGE SETTING DIALOG **********************************/
-.language-setting-dialog {
-   max-width: 600px;
+/********************************** LANGUAGE SETTING **********************************/
+.md-inputfield .language-selection-label {
+  left: 0;
 }
-
-@media screen and (max-width: 40em) {
-  .language-setting-dialog {
-    max-width: 96vw;
-  }
+.user-profile-footer {
+  padding-right: 5px !important;
+  text-align: right;
 }
-
-@media (max-width: 1365px) {
-  .language-setting-dialog {
-    overflow: auto;
-  }
+.user-profile-footer .ui-button {
+  min-width: 120px;
+  margin-bottom: 6px
 }
-
-@media (min-width: 1366px) and (max-width: 1919px) {
-  .language-setting-dialog {
-    overflow: auto;
-  }
-}
-
-/********************************** END LANGUAGE SETTING DIALOG **********************************/
-
+/********************************** END LANGUAGE SETTING **********************************/
 /********************************** EMAIL SETTING DIALOG **********************************/
 @media screen and (min-width: 41em) {
   .applications-email-setting-dialog {
