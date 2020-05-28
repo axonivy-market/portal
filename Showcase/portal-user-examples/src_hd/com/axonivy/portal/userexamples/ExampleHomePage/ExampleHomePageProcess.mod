@@ -23,7 +23,10 @@ Hs0 @UdMethod f13 '' #zField
 Hs0 @Alternative f14 '' #zField
 Hs0 @PushWFArc f15 '' #zField
 Hs0 @PushWFArc f16 '' #zField
+Hs0 @UserDialog f8 '' #zField
+Hs0 @PushWFArc f10 '' #zField
 Hs0 @PushWFArc f17 '' #zField
+Hs0 @PushWFArc f18 '' #zField
 >Proto Hs0 Hs0 ExampleHomePageProcess #zField
 Hs0 f0 guid 1723A6F02AC488D2 #txt
 Hs0 f0 method start() #txt
@@ -132,15 +135,18 @@ Hs0 f9 responseMappingAction 'out=in;
 Hs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>LeaveRequestOverview</name>
+        <name>Leave Request&#13;
+Overview</name>
     </language>
 </elementInfo>
 ' #txt
-Hs0 f9 336 234 144 44 -64 -8 #rect
+Hs0 f9 408 234 128 44 -40 -16 #rect
 Hs0 f9 @|UserDialogIcon #fIcon
-Hs0 f11 547 243 26 26 0 12 #rect
+Hs0 f11 659 339 26 26 0 12 #rect
 Hs0 f11 @|UdProcessEndIcon #fIcon
-Hs0 f12 480 256 547 256 #arcP
+Hs0 f12 536 256 672 339 #arcP
+Hs0 f12 1 672 256 #addKink
+Hs0 f12 0 0.7256302308797495 0 0 #arcLabel
 Hs0 f13 guid 1725039A6FEBEA96 #txt
 Hs0 f13 method navigate(ch.ivy.addon.portalkit.persistence.domain.UserProcess) #txt
 Hs0 f13 inParameterDecl '<ch.ivy.addon.portalkit.persistence.domain.UserProcess process> param;' #txt
@@ -160,11 +166,37 @@ Hs0 f14 272 336 32 32 0 16 #rect
 Hs0 f14 @|AlternativeIcon #fIcon
 Hs0 f15 expr in #txt
 Hs0 f15 outCond ivy.cms.co("/Processes/LeaveRequest/name").equals(in.process.processName) #txt
-Hs0 f15 297 345 408 278 #arcP
+Hs0 f15 288 336 408 256 #arcP
+Hs0 f15 1 288 256 #addKink
+Hs0 f15 1 0.2526788839979472 0 0 #arcLabel
 Hs0 f16 109 352 272 352 #arcP
-Hs0 f17 304 352 560 269 #arcP
-Hs0 f17 1 560 352 #addKink
-Hs0 f17 0 0.676036937432907 0 0 #arcLabel
+Hs0 f8 dialogId com.axonivy.portal.userexamples.credit.LendingOverview #txt
+Hs0 f8 startMethod start(ch.ivy.addon.portalkit.persistence.domain.UserProcess) #txt
+Hs0 f8 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.UserProcess userProcess> param;' #txt
+Hs0 f8 requestMappingAction 'param.userProcess=in.process;
+' #txt
+Hs0 f8 responseMappingAction 'out=in;
+' #txt
+Hs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Lending overview</name>
+    </language>
+</elementInfo>
+' #txt
+Hs0 f8 408 330 112 44 -47 -8 #rect
+Hs0 f8 @|UserDialogIcon #fIcon
+Hs0 f10 expr in #txt
+Hs0 f10 outCond ivy.cms.co("/Processes/CaseMap/name").equals(in.process.processName) #txt
+Hs0 f10 304 352 408 352 #arcP
+Hs0 f10 0 0.676036937432907 0 0 #arcLabel
+Hs0 f17 520 352 659 352 #arcP
+Hs0 f17 0 0.31403006125915683 0 0 #arcLabel
+Hs0 f18 expr in #txt
+Hs0 f18 288 368 672 365 #arcP
+Hs0 f18 1 288 464 #addKink
+Hs0 f18 2 672 464 #addKink
+Hs0 f18 1 0.6127782473457252 0 0 #arcLabel
 >Proto Hs0 .type com.axonivy.portal.userexamples.ExampleHomePage.ExampleHomePageData #txt
 >Proto Hs0 .processKind HTML_DIALOG #txt
 >Proto Hs0 -8 -8 16 16 16 26 #rect
@@ -181,5 +213,9 @@ Hs0 f14 out f15 tail #connect
 Hs0 f15 head f9 mainIn #connect
 Hs0 f13 mainOut f16 tail #connect
 Hs0 f16 head f14 in #connect
-Hs0 f14 out f17 tail #connect
+Hs0 f14 out f10 tail #connect
+Hs0 f10 head f8 mainIn #connect
+Hs0 f8 mainOut f17 tail #connect
 Hs0 f17 head f11 mainIn #connect
+Hs0 f14 out f18 tail #connect
+Hs0 f18 head f11 mainIn #connect
