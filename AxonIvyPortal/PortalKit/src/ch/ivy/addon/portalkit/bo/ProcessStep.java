@@ -6,7 +6,6 @@ public class ProcessStep {
   private String name;
   private List<String> descriptions;
   
-  
   public String getName() {
     return name;
   }

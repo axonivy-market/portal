@@ -4370,7 +4370,7 @@ body .portal-breadcrumb.ui-breadcrumb ul li {
 .position-topbar {
 	height: 58px;
 }
-.overview-process-panel{
+.margin0{
 	margin:0 auto;
 }
 .process-step-description > p{
@@ -4511,6 +4511,48 @@ height:30px;
     position: absolute;
     left: -15px; */
 }
-.xxx{
-padding:em;
+
+.case-stage{
+background-color:var(--ivy-primary-color-grey-medium);
+color: var(--ivy-primary-color-white);
+position: relative;
+box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.14), 0 4px 2px -1px rgba(0, 0, 0, 0.12); 
+height:5rem;
+font-size:1.5rem;
+}
+.case-stage > label {
+    position: absolute;
+    top: 50%;
+    margin-top: -9px;
+}
+.case-stage-process{
+height:10rem;	
+border-bottom: 1px solid black;
+}
+.stage-detail{
+background-color:var(--ivy-primary-color-grey-light);	
+}
+.col-container {
+  display: table;
+}
+.col {
+  display: table-cell;
+}
+.stage-icon{
+font-size:2em;
+background-color:var(--ivy-primary-color-grey-medium);;
+color:var(--ivy-primary-color-white);
+ width: 100%; 
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* margin-right:-10px; */
+}
+.rectangle {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  background-color: var(--ivy-primary-color-grey-medium);
+  display: flex;  
 }
