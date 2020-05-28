@@ -55,18 +55,18 @@
               <i class="fa fa-user-circle" /> #{ivy.cms.co('/Dialogs/Tasks/TaskDetail/DataDescription')}
               <div class="task-details-action-container action-container">
                 <h:panelGroup>
-                  <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task)}" styleClass="task-action-item"
+                  <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task)}" styleClass="task-action-item start-task-action"
                     rendered="#{task.state != 'RESUMED'}" actionListener="#{logic.openTask()}">
-                    <i class="tmi-chevorn-right icon-compact-mode" />
                     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label" />
+                    <i class="tmi-chevorn-right icon-compact-mode" />
                   </p:commandLink>
   
-                  <p:commandLink id="resume-task-detail-start-command" disabled="#{!taskActionBean.canResume(task)}" styleClass="task-action-item"
+                  <p:commandLink id="resume-task-detail-start-command" disabled="#{!taskActionBean.canResume(task)}" styleClass="task-action-item start-task-action"
                     rendered="#{task.state == 'RESUMED'}">
                     <p:ajax event="click" listener="#{logic.validate(task)}" onstart="event.stopPropagation();"
                       oncomplete="if (args &amp;&amp; !args.validationFailed) PF('reset-task-dialog').show()" />
-                    <i class="tmi-chevorn-right icon-compact-mode" />
                     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label" />
+                    <i class="tmi-chevorn-right icon-compact-mode" />
                   </p:commandLink>
   
                   <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-detail-more-step"
