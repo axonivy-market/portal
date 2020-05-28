@@ -19,37 +19,42 @@
           </div>
 
           <p:spacer height="25" />
-          <div class="card ui-g-12">
+          <div class="card ui-g-12 ">
             <div class="ui-g-12">
-              <B><h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/theProcess')}" /></B>
+              <B><h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/theCasemap')}" /></B>
             </div>
-            <ui:repeat var="step" value="#{processSteps}">
+            
+            <ui:repeat var="stage" value="#{caseMapDetail.stages}">
 
-              <h:panelGroup layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12 panel-breadcrumb">
-                <div class="ui-g-12">
-                  <div style="margin0">
-
-                    <div class="ui-g-12 process-breadcrumb">
-                      <h:outputLabel value="#{step.name}" />
-                    </div>
-                    <div class="card ui-g-12" style="height: 200px;">
-
-                      <ui:repeat var="desc" value="#{step.descriptions}">
-                        <div class="ui-g-12">
-                          <div class="ui-g-2 TexAlCenter">
-                            <p:graphicImage library="ivy-cms" name="/Images/check-circle-1" height="20rem" />
-                          </div>
-                          <div class="ui-g-10">
-                            <h:outputText value="#{desc}" escape="false" styleClass="process-step-description" />
-                          </div>
-                        </div>
-                      </ui:repeat>
+              <h:panelGroup layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12" >
+                
+                <div class="ui-g-12" >
+                  <div class="ui-g-12 " >
+                    <div class="rectangle margin0">
+                      <span class="#{caseMapDetailBean.getIconOfStage(caseMapDetail, stage)} stage-icon" ></span>
                     </div>
                   </div>
+                  <div class="ui-g-12 case-stage">
+                    <h:outputLabel value="#{stage}" />
+                  </div>
+                  <div class="card ui-g-12 stage-detail" >
+
+                    <ui:repeat var="desc" value="#{caseMapDetailBean.getProcessOfStage(caseMapDetail, stage)}">
+                      <div class="card ui-g-12 case-stage-process">
+                        <h:outputText value="#{desc}" escape="false" />
+                        <HR />
+                      </div>
+                      
+                    </ui:repeat>
+                  </div>
+                </div>
+                <div class="ui-g-12 TexAlCenter">
+                  <p:commandButton value="Go to detail stage #{stage}" actionListener="#{compactProcessWidgetBean.startProcess(data.process)}" />
                 </div>
               </h:panelGroup>
+              
             </ui:repeat>
-
+            
           </div>
           <div class="ui-g-12 TexAlRight">
             <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" actionListener="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(false, ivy.task)}"/>
