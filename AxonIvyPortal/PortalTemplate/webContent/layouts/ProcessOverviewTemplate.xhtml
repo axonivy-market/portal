@@ -6,8 +6,64 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:define name="pageContent">
-        
-        <h:panelGroup styleClass="ui-g-12 u-padding-0">
+      <div class="ui-g">
+
+
+        <div class="overview-process-panel ui-g-6 ui-xl-8 ui-lg-12 ui-md-12 ui-sm-12">
+          <div class="ui-g-1 ui-xl-1 ui-lg-1 ui-md-2 ui-sm-2">
+            <p:graphicImage library="ivy-cms" name="#{process.icon}" />
+          </div>
+          <div class="ui-g-11 ui-xl-11 ui-lg-11 ui-md-10 ui-sm-10 TexAlLeft">
+            <h2>#{process.processName}</h2>
+          </div>
+          <div class="ui-g-12">
+            <h:outputText value="#{process.description}" />
+          </div>
+
+          <p:spacer height="25" />
+          <div class="card ui-g-12">
+            <div class="ui-g-12">
+              <B><h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/theProcess')}" /></B>
+            </div>
+            <ui:repeat var="step" value="#{processSteps}">
+
+              <h:panelGroup layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12 panel-breadcrumb">
+                <div class="ui-g-12">
+                  <div style="margin:0 auto;">
+
+                    <div class="ui-g-12 process-breadcrumb">
+                      <h:outputLabel value="#{step.name}" />
+                    </div>
+                    <div class="card ui-g-12" style="height: 200px;">
+
+                      <ui:repeat var="desc" value="#{step.descriptions}">
+                        <div class="ui-g-12">
+                          <div class="ui-g-2 TexAlCenter">
+                            <p:graphicImage library="ivy-cms" name="/Images/check-circle-1" height="20rem" />
+                          </div>
+                          <div class="ui-g-10">
+                            <h:outputText value="#{desc}" escape="false" styleClass="process-step-description" />
+                          </div>
+                        </div>
+                      </ui:repeat>
+                    </div>
+                  </div>
+                </div>
+              </h:panelGroup>
+            </ui:repeat>
+
+          </div>
+          <div class="ui-g-12 TexAlRight">
+            <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
+            <p:spacer width="25px" />
+            <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{process.processName}"
+              actionListener="#{compactProcessWidgetBean.startProcess(data.process)}" />
+          </div>
+        </div>
+      </div>
+
+
+      <!-- <h:panelGroup styleClass="ui-g-12 u-padding-0">
           <h:panelGroup layout="block" styleClass="dashboard-chart-panel ui-g ">
             <h:panelGroup layout="block" styleClass="ui-g-12">
               <ui:insert name="introduction">
@@ -35,11 +91,11 @@
                 </div>
                 <div class="ui-g-12 TexAlCenter">
                   <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{process.processName}" 
-                    rendered="#{process.description ne ivy.cms.co('/Processes/UserExampleGuide/commingSoon')}" 
+                    rendered="#{process.description ne ivy.cms.co('/Processes/UserExampleGuide/comingSoon')}" 
                     actionListener="#{compactProcessWidgetBean.startProcess(process)}"/>
                 </div>
                 <div class="ui-g-12 TexAlCenter">
-                  <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/moreInformation')}" rendered="#{process.description ne ivy.cms.co('/Processes/UserExampleGuide/commingSoon')}" />
+                  <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/moreInformation')}" rendered="#{process.description ne ivy.cms.co('/Processes/UserExampleGuide/comingSoon')}" />
                 </div>
               </div>
             </h:panelGroup>
@@ -48,7 +104,7 @@
             
          
           </h:panelGroup>
-        </h:panelGroup>
+        </h:panelGroup> -->
     </ui:define>
   </ui:composition>
 </h:body>
