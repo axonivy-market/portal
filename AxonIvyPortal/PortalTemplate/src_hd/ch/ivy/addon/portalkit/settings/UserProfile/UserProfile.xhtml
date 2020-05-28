@@ -1,0 +1,49 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:ic="http://ivyteam.ch/jsf/component"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+	<ui:composition template="/layouts/BasicTemplate.xhtml">
+		<ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/myProfile/myProfileTitle')}</ui:define>
+		<ui:define name="simplePageContent">
+			<f:event listener="#{logic.initLanguageData()}"
+				type="preRenderComponent" />
+			<h1>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/myProfile/myProfileTitle')}</h1>
+			<h:form>
+				<h:panelGroup layout="block">
+					<ic:ch.ivy.addon.portalkit.multiapp.settings.EmailSetting
+						id="applications-email-setting" dialogName="emailSetting" />
+				</h:panelGroup>
+				<h:panelGroup layout="block">
+					<h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}</h2>
+					<p:messages id="errors-message" severity="error" showDetail="true"
+						escape="false" closable="true" />
+
+					<div class="md-inputfield MarTop40">
+						<p:selectOneMenu id="language-selection"
+							value="#{data.language.userLanguage}">
+							<f:selectItem itemLabel="" itemValue="#{null}" />
+							<f:selectItems value="#{data.language.languages}" />
+						</p:selectOneMenu>
+						<p:outputLabel id="language-selection-label"
+							styleClass="language-selection-label"
+							value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/selectedLanguage')}" />
+					</div>
+				</h:panelGroup>
+				<h:panelGroup layout="block"
+					styleClass="user-profile-footer">
+					<p:commandButton id="save-settings"
+						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+						actionListener="#{logic.saveUserLanguages}"
+						update="errors-message"
+						oncomplete="if (args &amp;&amp; !args.validationFailed) { updateGrowlEmail(); reloadMenuItem()}" />
+					<p:spacer width="5px" />
+				</h:panelGroup>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

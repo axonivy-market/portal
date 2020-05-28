@@ -18,6 +18,17 @@
       <ic:ch.ivy.addon.portalkit.singleapp.general.SetLanguage />
     </c:if>
   </div>
+  
+  <div class="TexAlCenter logo-container">
+    <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="task-leave-warning-component-user-profile" rendered="#{isWorkingOnATask}"
+      leaveActionListener="#{userMenuBean.resetTaskAndNavigateToUserProfileWithGrowl(task)}" 
+      reserveActionListener="#{userMenuBean.reserveTaskAndNavigateToUserProfileWithGrowl(task)}"
+      componentId="task-losing-confirmation-dialog" widgetVar="task-losing-confirmation-dialog"
+      taskState="#{task.state}" />
+    <c:if test="#{!isNotRequiredLogin}">
+      <ic:ch.ivy.addon.portalkit.singleapp.general.SetLanguage />
+    </c:if>
+  </div>
 
   <ui:insert name="menu-bar">
     <ul id="top-menu" class="topbar-menu animated js-top-menu">
@@ -39,6 +50,9 @@
           class="user-name">#{userMenuBean.loggedInUser}</span>
         </a>
         <ul id="user-setting-container">
+        
+          <li><p:commandLink id="user-profile" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/myProfile/myProfileTitle')}"
+          	actionListener="#{userMenuBean.navigateToUserProfileOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}" /></li>
           <li>
             <p:link id="adminui-menu-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}"  
               onclick="PF('adminUI').show(); $('#user-setting-container').click()" rendered="#{permissionBean.hasAdminPermission()}" />
@@ -47,16 +61,10 @@
           <li><p:link id="absence-menu-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
               onclick="rcAbsenceManagement(); $('#user-setting-container').click()" rendered="#{absenceManagementBean.ownAbsencesReadable}" /></li>
 
-          <li><p:commandLink id="email-setting-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}"
+<!--           <li><p:commandLink id="email-setting-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}"
               oncomplete="PF('emailSetting').show(); $('#user-settings-menu').click()" resetValues="true" update="applications-email-setting-form">
               <p:resetInput target=":applications-email-setting-dialog" />
-            </p:commandLink></li>
-
-          <li><p:commandLink id="language-setting-menu-item"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}"
-              oncomplete="PF('languageDialogVar').show(); $('#user-setting-container').click()" resetValues="true" update="language-settings-form">
-              <p:resetInput target=":language-setting-dialog" />
-            </p:commandLink></li>
+            </p:commandLink></li> -->
 
           <li><p:commandLink id="change-password-menu-item"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}"
@@ -120,30 +128,21 @@
       <ic:ch.ivy.addon.portalkit.multiapp.settings.AbsenceManagement id="absence-management" dialogName="absenceManagement" />
     </p:dialog>
 
-    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}" styleClass="applications-email-setting-dialog"
+    <!-- <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}" styleClass="applications-email-setting-dialog"
       closeOnEscape="true" widgetVar="emailSetting" id="applications-email-setting-dialog" resizable="false" modal="true" appendTo="@(body)"
       dynamic="true" fitViewport="true" onShow="changeWidthDailySummaryPanel()" responsive="true">
       <h:form id="applications-email-setting-form" styleClass="applications-email-setting-form">
         <ic:ch.ivy.addon.portalkit.multiapp.settings.EmailSetting id="applications-email-setting" dialogName="emailSetting" />
       </h:form>
-          <script>
-    function changeWidthDailySummaryPanel() {
-        var dailySummary = $('[id $= ":daily-summary-checkbox"]').get(0);
-        if(dailySummary != null) {
-        $('[id $= ":daily-summary-checkbox_panel"]').width(dailySummary.offsetWidth);
-        }
-    } 
-</script>
-    </p:dialog>
-
-    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}" styleClass="language-setting-dialog"
-      width="50%" closeOnEscape="true" widgetVar="languageDialogVar" id="language-setting-dialog" resizable="false" modal="true" dynamic="true"
-      appendTo="@(body)" responsive="true">
-      <h:form id="language-settings-form" styleClass="language-settings-form">
-        <ic:ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage id="language-settings" startMethod="start" dialogName="languageDialogVar" 
-          isWorkingOnATask="#{isWorkingOnATask}"/>
-      </h:form>
-    </p:dialog>
+      <script>
+      	function changeWidthDailySummaryPanel() {
+      	  var dailySummary = $('[id $= ":daily-summary-checkbox"]').get(0);
+      	  if(dailySummary != null) {
+      	    $('[id $= ":daily-summary-checkbox_panel"]').width(dailySummary.offsetWidth);
+      	  }
+        } 
+      </script>
+    </p:dialog> -->
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/header')}" styleClass="project-info-dialog" width="1000"
       closeOnEscape="true" widgetVar="project-info-dialog" id="project-info-dialog" resizable="false" modal="true" draggable="false"
