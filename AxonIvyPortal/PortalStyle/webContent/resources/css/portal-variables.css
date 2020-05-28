@@ -226,7 +226,6 @@
   /* Case Item */
   --history-note-color: var(--ivy-primary-color-black);
   --case-task-document-name-color: var(--ivy-primary-color-black);
-  --case-widget-column-header-is-selected-color: var(--ivy-primary-color-black);
   --case-item-action-steps-item-hover-background-color: var(--ivy-primary-color-grey-pale);
   --case-item-action-steps-item-hover-text-color: var(--ivy-primary-color-grey-dark);
   --case-action-steps-contents-background-color: var(--ivy-primary-color-white);
@@ -276,6 +275,7 @@
   /* Task Action Item */
   --task-action-item-widget-header-color: var(--ivy-primary-color-white);
   --task-action-item-label-font-weight: normal;
+  --task-start-action-font-weight: bold;
   /* Task Template */
   --task-template-action-button-focus: transparent;
   --task-template-title-font-weight: bold;
