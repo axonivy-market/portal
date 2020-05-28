@@ -888,11 +888,13 @@ body .fieldset-no-border {
   font-weight: var(--widget-header-font-weight);
   line-height: 26px; }
 
-.widget-sort-menu.full-mode a.ui-widget.ui-commandlink:not(.filter-add-button):not(.config-columns) {
+.widget-sort-menu.full-mode a.ui-widget.ui-commandlink:not(.filter-add-button):not(.config-columns),
+.case-widget-container .widget-column-header a.ui-commandlink:not(.filter-add-button):not(.config-columns) {
   font-size: var(--large-font-size);
   color: var(--task-widget-header-column); }
 
-.widget-sort-menu.full-mode a.ui-widget.ui-commandlink.is-selected:not(.filter-add-button):not(.config-columns) {
+.widget-sort-menu.full-mode a.ui-widget.ui-commandlink.is-selected:not(.filter-add-button):not(.config-columns),
+.case-widget-container .widget-column-header a.ui-commandlink.is-selected:not(.filter-add-button):not(.config-columns) {
   color: var(--compact-task-start-info-icon-color); }
 
 .task-widget .advanced-filter .ui-button-text-only .ui-button-text,
@@ -1162,12 +1164,6 @@ body .ui-inputfield.case-detail-name-input {
 .case-list-item {
   background-color: var(--case-list-item-background-color);
   border-bottom: 1px solid var(--case-widget-column-header-border-bottom); }
-
-.case-widget-container .widget-column-header a.ui-commandlink:not(.filter-add-button) {
-  color: var(--task-widget-header-column);  }
-
-.case-widget-container .widget-column-header a.ui-commandlink.is-selected:not(.filter-add-button) {
-  color: var(--case-widget-column-header-is-selected-color); }
 
 .case-header-name-desc-cell .case-header-desc-cell {
   color: var(--case-item-description-cell); }
@@ -1725,6 +1721,10 @@ ul.participants-list li {
 
 .action-button.task-action-item i {
   font-size: var(--header-font-size); }
+  
+.task-action-item.start-task-action .task-action-item-label {
+  font-weight: var(--task-start-action-font-weight);
+}
 
 /* Portal's File upload component */
 .upload-container .ui-widget.ui-selectonemenu,
