@@ -5,7 +5,9 @@ import java.util.Map;
 
 public class CaseMapDetail {
   private String name;
+  private String icon;
   private String description;
+  private String startLink;
   private List<String> stages; 
   private Map<String, List<String>> stageDetail;
   private Map<String, List<String>> processDetail;
@@ -46,5 +48,17 @@ public class CaseMapDetail {
   }
   public void setStageIcon(Map<String, String> stageIcon) {
     this.stageIcon = stageIcon;
+  }
+  public String getIcon() {
+    return icon;
+  }
+  public void setIcon(String icon) {
+    this.icon = icon;
+  }
+  public String getStartLink() {
+    return startLink;
+  }
+  public void setStartLink(String startLink) {
+    this.startLink = startLink;
   }
 }

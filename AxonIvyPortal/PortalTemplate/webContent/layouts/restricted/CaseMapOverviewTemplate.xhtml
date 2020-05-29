@@ -5,6 +5,7 @@
   xmlns:ic="http://ivyteam.ch/jsf/component">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
+
     <ui:define name="pageContent">
       <div class="ui-g">
         <div class="margin0 ui-g-6 ui-xl-8 ui-lg-12 ui-md-12 ui-sm-12">
@@ -18,47 +19,58 @@
             <h:outputText value="#{process.description}" />
           </div>
 
-          <p:spacer height="25" />
+          <p:spacer height="25rem" />
           <div class="card ui-g-12 ">
             <div class="ui-g-12">
-              <B><h:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/theCasemap')}" /></B>
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/theCasemap')}" styleClass="title-text"/>
             </div>
-            
-            <ui:repeat var="stage" value="#{caseMapDetail.stages}">
+            <ui:repeat var="stage" value="#{caseMapDetail.stages}" varStatus="stageStatus">
 
               <h:panelGroup layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12" >
                 
-                <div class="ui-g-12" >
-                  <div class="ui-g-12 " >
+                <div class="ui-g-12" style="height:50rem;" >
+                  <div class="ui-g-12" >
                     <div class="rectangle margin0">
-                      <span class="#{caseMapDetailBean.getIconOfStage(caseMapDetail, stage)} stage-icon" ></span>
+                      <i class="#{caseMapDetailBean.getIconOfStage(caseMapDetail, stage)} stage-icon" />
                     </div>
                   </div>
                   <div class="ui-g-12 case-stage">
-                    <h:outputLabel value="#{stage}" />
+                    <div class="ui-g-11">
+                      <h:outputText value="#{stage}" styleClass="case-stage-text" />
+                    </div>
+                    <div class="ui-g-1">
+                      <i class="fa fa-ellipsis-v " />
+                    </div>
                   </div>
                   <div class="card ui-g-12 stage-detail" >
 
                     <ui:repeat var="desc" value="#{caseMapDetailBean.getProcessOfStage(caseMapDetail, stage)}">
                       <div class="card ui-g-12 case-stage-process">
-                        <h:outputText value="#{desc}" escape="false" />
-                        <HR />
+                        <div class="ui-g-11">
+                        <h:outputText value="#{desc}" escape="false" styleClass="case-stage-text"/>
+                        </div>
+                        <div class="ui-g-1">
+                        <i class="fa fa-ellipsis-v " />
+                        </div>
+                        <hr />
                       </div>
                       
                     </ui:repeat>
                   </div>
                 </div>
-                <div class="ui-g-12 TexAlCenter">
-                  <p:commandButton value="Go to detail stage #{stage}" actionListener="#{compactProcessWidgetBean.startProcess(data.process)}" />
-                </div>
+                <ui:insert name="detail-button">
+                  <h:outputText value="Insert your navigation button here" />
+                  <!-- <div class="ui-g-12 TexAlCenter">
+                    <p:commandButton value="Go to detail stage #{stage}" actionListener="#{compactProcessWidgetBean.startProcess(data.process)}" />
+                  </div> -->
+                </ui:insert>
               </h:panelGroup>
               
             </ui:repeat>
-            
           </div>
           <div class="ui-g-12 TexAlRight">
             <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" actionListener="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(false, ivy.task)}"/>
-            <p:spacer width="25px" />
+            <p:spacer width="20rem" />
             <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{process.processName}"
               actionListener="#{compactProcessWidgetBean.startProcess(data.process)}" />
           </div>
