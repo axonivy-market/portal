@@ -18,7 +18,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
-import ch.ivy.addon.portalkit.bean.UserFormatBean;
 import ch.ivy.addon.portalkit.bo.ExcelExportSheet;
 import ch.ivy.addon.portalkit.enums.TaskAndCaseAnalysisColumn;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -30,11 +29,9 @@ public class TaskAnalysisExporter {
   public static final int MAX_TASK_NUMBER_IN_EXCEL = 1048575; // = MAX ROWS (1048576) - 1 (for header row)
   private static final String FILE_NAME_SUFFIX_FOR_EXCEL_IN_ZIP = "_%s";
   private Map<String, Boolean> columnsVisibility;
-  private UserFormatBean userFormatBean;
   
   public TaskAnalysisExporter(Map<String, Boolean> columnsVisibility) {
     this.columnsVisibility = columnsVisibility;
-    this.userFormatBean = new UserFormatBean();
   }
 
   public StreamedContent getStreamedContent(List<ITask> tasks) throws IOException {
@@ -157,12 +154,12 @@ public class TaskAnalysisExporter {
         if (task.getActivatorName() == null) {
           return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
         }
-        return userFormatBean.formatWithTip(task.getActivator() != null ? task.getActivator().getDisplayName() : StringUtils.EMPTY, task.getActivatorName());
+        return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(task.getActivator(), task.getActivatorName());
       case TASK_WORKER:
         if (task.getWorkerUserName() == null) {
           return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
         }
-        return userFormatBean.formatWithTip(task.getWorkerUser() != null ? task.getWorkerUser().getFullName() : StringUtils.EMPTY , task.getWorkerUserName());
+        return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForUser(task.getWorkerUser(), task.getWorkerUserName());
       case TASK_PRIORITY:
         return task.getPriority().toString();
       case TASK_STATE:

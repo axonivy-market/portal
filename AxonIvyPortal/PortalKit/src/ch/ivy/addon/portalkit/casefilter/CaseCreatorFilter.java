@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
@@ -49,10 +50,7 @@ public class CaseCreatorFilter extends CaseFilter {
   }
 
   public String formatName(UserDTO creator) {
-    if (StringUtils.isBlank(creator.getDisplayName())) {
-      return creator.getName();
-    }
-    return creator.getDisplayName() + " (" + creator.getName() + ")";
+    return SecurityMemberDisplayNameUtils.generateFullDisplayNameForUserDTO(creator);
   }
 
   public UserDTO getSelectedCreator() {
