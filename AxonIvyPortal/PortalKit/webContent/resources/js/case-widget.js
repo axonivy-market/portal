@@ -35,6 +35,20 @@ function CaseWidget() {
       }
     }
   };
+
+  this.updateCaseCountToBreadcrumb = function() {
+      var $breadCrumbTaskElem = $("[id $= ':breadcrumb'] li").last().find(".ui-menuitem-link");
+      if ($breadCrumbTaskElem.length == 0) {
+        return;
+      }
+
+      if ($breadCrumbTaskElem.find(".js-count").length == 0) {
+        $breadCrumbTaskElem.find("span").addClass("has-count");
+        $breadCrumbTaskElem.append('<span class="js-count has-count"> (' + $(".js-case-count-hidden").get(0).innerHTML + ')</span>');
+      } else {
+    	  $breadCrumbTaskElem.find(".js-count").get(0).innerHTML = " (" + $(".js-case-count-hidden").get(0).innerHTML + ")";
+      }
+    }
 }
 
 function CaseListToolKit() {

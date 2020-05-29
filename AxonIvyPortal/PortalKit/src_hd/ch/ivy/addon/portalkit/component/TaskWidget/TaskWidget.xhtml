@@ -30,7 +30,7 @@
 
   <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} ui-g">
     <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}">
-      <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header ui-g-12 u-no-padding-top u-no-padding-left"
+      <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header ui-g-12 u-no-padding-left u-no-padding-bottom"
         layout="block">
         <!-- Title -->
         <div class="#{data.dataModel.compactMode? 'widget-header-main ui-g-8 ui-sm-4': 'u-hidden'}">
@@ -50,7 +50,7 @@
         </div>
 
         <!-- Filter part -->
-        <h:panelGroup id="filter-container" styleClass="filter-container ui-g-12 u-no-padding-top"
+        <h:panelGroup id="filter-container" styleClass="filter-container ui-g-12 u-no-padding-bottom"
           rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}">
           <!-- Filter selection -->
           <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group u-hidden-md-down"
@@ -72,8 +72,8 @@
                         <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
                           value="#{taskFilterData.filterName}"
                           actionListener="#{logic.applyFilter(taskFilterData)}"
-                          update="#{cc.clientId}:filter-container #{cc.clientId}:task-widget-header #{cc.clientId}:filter-add-form #{cc.clientId}:filter-selection-container #{cc.clientId}:task-view-container"
-                          oncomplete="taskWidget.setupScrollbar();" />
+                          update="#{cc.clientId}:filter-container #{cc.clientId}:task-widget-header #{cc.clientId}:filter-add-form #{cc.clientId}:filter-selection-container #{cc.clientId}:task-view-container #{cc.clientId}:hidden-task-count"
+                          oncomplete="taskWidget.setupScrollbar(); taskWidget.updateTaskCountToBreadcrumb();" />
                         <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter"
                           value="#{taskFilterData.filterName}" trackMouse="true" />
                         <p:commandLink id="delete-user-defined-filter-command"
@@ -95,8 +95,8 @@
                         <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
                           value="#{taskFilterData.filterName}"
                           actionListener="#{logic.applyFilter(taskFilterData)}"
-                          update="#{cc.clientId}:filter-container #{cc.clientId}:task-widget-header #{cc.clientId}:filter-add-form #{cc.clientId}:filter-selection-container #{cc.clientId}:task-view-container"
-                          oncomplete="taskWidget.setupScrollbar();" />
+                          update="#{cc.clientId}:filter-container #{cc.clientId}:task-widget-header #{cc.clientId}:filter-add-form #{cc.clientId}:filter-selection-container #{cc.clientId}:task-view-container #{cc.clientId}:hidden-task-count"
+                          oncomplete="taskWidget.setupScrollbar(); taskWidget.updateTaskCountToBreadcrumb();" />
                         <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter"
                           value="#{taskFilterData.filterName}" trackMouse="true" />
                         <p:commandLink id="delete-user-defined-filter-command"
@@ -118,11 +118,11 @@
               <span class="selected-filters-label u-hidden-md-down">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/appliedFilters')} </span>
               <h:form id="expanded-mode-filter-form" onsubmit="return false;">
                 <ic:ch.ivy.addon.portalkit.component.Filter id="expanded-mode-filter-container" icon="fa fa-filter simple-filter-icon"
-                  updateComponent="#{cc.clientId}:filter-selection-container #{p:component('task-view-container')}"
+                  updateComponent="#{cc.clientId}:filter-selection-container #{p:component('task-view-container')} #{cc.clientId}:hidden-task-count"
                   listener="#{data.dataModel.onKeywordChange()}"
                   placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
                   keywordStoresIn="#{data.dataModel.criteria.keyword}" styleClass="widget-header-filter-input"
-                  onCompletedCallback="taskWidget.setupScrollbar(); taskWidget.setupHeader()" iconAsButton="true" onClickIconFilter="taskWidget.toggleTaskFilter(this);taskWidget.setupScrollbar();"/>
+                  onCompletedCallback="taskWidget.setupScrollbar(); taskWidget.setupHeader(); taskWidget.updateTaskCountToBreadcrumb();" iconAsButton="true" onClickIconFilter="taskWidget.toggleTaskFilter(this);taskWidget.setupScrollbar();"/>
               </h:form>
             </div>
 
@@ -150,8 +150,8 @@
                 <h:panelGroup id="add-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer">
                   <p:commandButton id="update-filter-selected-command"
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-                    update="@(.filter-container) @(.filter-selection-form) @(.task-view-container)"
-                    oncomplete="taskWidget.setupScrollbar();"
+                    update="@(.filter-container) @(.filter-selection-form) @(.task-view-container) #{cc.clientId}:hidden-task-count"
+                    oncomplete="taskWidget.setupScrollbar(); taskWidget.updateTaskCountToBreadcrumb();"
                     process="@(filter-add-form)"
                     actionListener="#{data.dataModel.updateSelectedFilter}">
                   </p:commandButton>
@@ -254,8 +254,8 @@
     responsive="true">
       <p:commandButton id="filter-reset-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
         partialSubmit="true" immediate="true"
-        actionListener="#{logic.restoreDefaultFilterSet}" update="@(.filter-container) @(.filter-selection-form) @(.task-view-container)"
-        oncomplete="PF('reset-filter-set-dialog').hide(); taskWidget.setupScrollbar(); taskWidget.setupHeader();">
+        actionListener="#{logic.restoreDefaultFilterSet}" update="@(.filter-container) @(.filter-selection-form) @(.task-view-container) #{cc.clientId}:hidden-task-count"
+        oncomplete="PF('reset-filter-set-dialog').hide(); taskWidget.setupScrollbar(); taskWidget.setupHeader(); taskWidget.updateTaskCountToBreadcrumb();">
       </p:commandButton>
       <p:spacer width="5px" />
       <p:commandButton type="button" styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
@@ -310,8 +310,8 @@
     widgetVar="delete-filter-confirmation-dialog" appendTo="@(body)" severity="alert" responsive="true">
     <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
       actionListener="#{logic.deleteFilter()}"
-      oncomplete="PF('delete-filter-confirmation-dialog').hide(); taskWidget.setupScrollbar();"
-      update="filter-container #{cc.clientId}:filter-container task-view-container filter-add-form" />
+      oncomplete="PF('delete-filter-confirmation-dialog').hide(); taskWidget.setupScrollbar(); taskWidget.updateTaskCountToBreadcrumb();"
+      update="filter-container #{cc.clientId}:filter-container task-view-container filter-add-form #{cc.clientId}:hidden-task-count" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
       onclick="PF('delete-filter-confirmation-dialog').hide();" type="button" styleClass="portal-cancel-button" />
   </p:confirmDialog>
@@ -336,7 +336,7 @@
     componentToUpdate="#{p:component('task-start')}" />
 
   <!-- hidden row count to update breadcrumb -->
-  <h:outputText styleClass="u-hidden js-task-count-hidden" value="#{data.dataModel.rowCount}" rendered="#{not data.dataModel.disableTaskCount}" />
+  <h:outputText id="hidden-task-count" styleClass="u-hidden js-task-count-hidden" value="#{data.dataModel.rowCount}" rendered="#{not data.dataModel.disableTaskCount}" />
 
   <script type="text/javascript">
       var taskWidget = new TaskWidget();
@@ -346,18 +346,11 @@
         $('[id $= "toggle-tasks-link"]').toggleClass("fa-plus").toggleClass("fa-minus");
       }
 
-      function updateTaskCountToBreadcrumb() {
-        var breadCrumbTaskElem = $("[id $= ':breadcrumb'] li").last().find(".ui-menuitem-text").get(0);
-        if (breadCrumbTaskElem != null) {
-          breadCrumbTaskElem.innerHTML = breadCrumbTaskElem.innerHTML + " (" + $(".js-task-count-hidden").get(0).innerHTML + ")";
-        }
-      }
-
       $(function() {
         var simpleScreen = new TaskListScreenHandler();
         var responsiveToolkit = ResponsiveToolkit(simpleScreen);
         Portal.init(responsiveToolkit);
-        updateTaskCountToBreadcrumb();
+        taskWidget.updateTaskCountToBreadcrumb();
       });
     </script>
   <h:form id="update-task-count-rc-form">
