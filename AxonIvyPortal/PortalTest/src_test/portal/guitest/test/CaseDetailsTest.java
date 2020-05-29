@@ -7,11 +7,13 @@ import org.apache.commons.lang.StringUtils;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
@@ -84,6 +86,7 @@ public class CaseDetailsTest extends BaseTest {
     assertTrue(detailsPage.isViewNoteDialogPresented());
   }
   
+  @Ignore
   @Test
   public void testNavigateFromTechToBusinessCase() {
     assertEquals(CASE_DETAILS_TITLE, detailsPage.getPageTitle());
@@ -92,7 +95,6 @@ public class CaseDetailsTest extends BaseTest {
     assertEquals(CASE_LIST_TITLE, casePage.getPageTitle());
     Assert.assertTrue(casePage.isCaseDisplayed(LEAVE_REQUEST_CASE_NAME));
     
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     redirectToRelativeLink(createBetaCompanyUrl);
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
@@ -102,10 +104,7 @@ public class CaseDetailsTest extends BaseTest {
 
     Assert.assertTrue(detailsPage.isRelatedTasksComponentPresented());
     detailsPage = detailsPage.openRelatedCaseOfBusinessCase(0);
-    assertEquals(CASE_DETAILS_TITLE, detailsPage.getPageTitle());
-    String techCaseName = detailsPage.getCaseName();
-    techCaseName = techCaseName + "-Technical Case";
-    detailsPage.changeCaseName(techCaseName);
+    WaitHelper.assertTrueWithWait(() -> StringUtils.equals("Signal create Beta Company", detailsPage.getCaseName()));
 
     Assert.assertTrue(detailsPage.isBackButtonDisplayed());
     detailsPage.clickBackButton();
