@@ -3,9 +3,15 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-  <ui:composition template="/layouts/CaseMapOverviewTemplate.xhtml">
+  <ui:composition template="/layouts/restricted/CaseMapOverviewTemplate.xhtml">
     <ui:param name="process" value="#{data.userProcess}" />
     <ui:param name="caseMapDetail" value="#{data.caseMapDetail}" />
+    
+    <ui:define name="detail-button">
+      <div class="ui-g-12 TexAlCenter">
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/goToDetail')} #{stage}" actionListener="#{logic.navigateToDetail(stageStatus.index)}" />
+      </div>
+    </ui:define>
   </ui:composition>
 </h:body>
 </html>
