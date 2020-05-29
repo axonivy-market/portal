@@ -331,11 +331,11 @@ public class CaseDetailsPage extends TemplatePage {
   }
   
   public void clickBackButton() {
-    findElementById("case-item-details:case-detail-title-form:back-to-cases").click();
+    click(findElementById("case-item-details:case-detail-title-form:back-to-cases"));
   }
 
   public CaseDetailsPage openRelatedCaseOfBusinessCase(int index) {
-    findElementByCssSelector("a[id$=':related-tasks:cases:" + index + ":case-name']").click();
+    click(By.cssSelector("a[id$='related-tasks:cases:" + index + ":case-name']"));
     return new CaseDetailsPage();
   }
 
