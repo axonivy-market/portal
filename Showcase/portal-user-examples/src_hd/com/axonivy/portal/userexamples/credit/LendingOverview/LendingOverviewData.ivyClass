@@ -4,3 +4,5 @@ userProcess ch.ivy.addon.portalkit.persistence.domain.UserProcess #field
 userProcess PERSISTENT #fieldModifier
 caseMapDetail ch.ivy.addon.portalkit.bo.CaseMapDetail #field
 caseMapDetail PERSISTENT #fieldModifier
+stageIndex Integer #field
+stageIndex PERSISTENT #fieldModifier
