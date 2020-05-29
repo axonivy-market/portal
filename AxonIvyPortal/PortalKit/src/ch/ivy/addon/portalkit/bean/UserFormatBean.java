@@ -9,8 +9,15 @@ import org.apache.commons.lang.StringUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
+
+/**
+ * @deprecated Use {@link SecurityMemberDisplayNameFormatBean} instead
+ *
+ */
+
 @ManagedBean
 @ApplicationScoped
+@Deprecated(forRemoval = true, since = "9.1")
 public class UserFormatBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
