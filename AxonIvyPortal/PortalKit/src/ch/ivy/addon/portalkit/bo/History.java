@@ -2,6 +2,10 @@ package ch.ivy.addon.portalkit.bo;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.StringUtils;
+
+import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.TaskState;
 
 public class History {
@@ -12,7 +16,8 @@ public class History {
   private Date timestamp;
   private TaskState taskState;
   private String involvedUsername;
-  private String involvedFullname;
+  private IUser involvedUser;
+  private String displayName;
 
   public enum HistoryType {
     TASK, NOTE;
@@ -66,12 +71,23 @@ public class History {
     this.involvedUsername = involvedUsername;
   }
 
-  public String getInvolvedFullname() {
-    return involvedFullname;
+  public IUser getInvolvedUser() {
+    return involvedUser;
   }
 
-  public void setInvolvedFullname(String involvedFullname) {
-    this.involvedFullname = involvedFullname;
+  public void setInvolvedUser(IUser involvedUser) {
+    this.involvedUser = involvedUser;
   }
 
+  public String getDisplayName() {
+    if(StringUtils.isBlank(this.displayName)) {
+      this.displayName = SecurityMemberDisplayNameUtils.generateBriefDisplayNameForUser(this.involvedUser, this.involvedUsername);
+    }
+    return displayName;
+  }
+
+  public void setDisplayName(String displayName) {
+    this.displayName = displayName;
+  }
+  
 }
