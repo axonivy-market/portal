@@ -564,7 +564,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 
 .case-header-container {
   display: flex;
-  height: 65px;
+  height: 50px;
   align-items: center;
   position: relative;
 }
@@ -1423,7 +1423,6 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 .filter-container {
   display: flex;
   flex-wrap: wrap;
-  margin-top: 10px;
   align-items: center;
 }
 
@@ -1687,7 +1686,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 .task-start-list-item.full-mode .task-start-link {
   display: flex;
   flex: 1;
-  height: 65px;
+  height: 50px;
   align-items: center;
   position: relative;
   cursor: pointer;
@@ -3073,15 +3072,26 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .statistic-actions-panel {
-  margin-top: 10px;
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: calc(100% - 200px);
-  text-align: right;
+  float: right;
+  width: 100%;
+}
+
+.statistic-actions-panel .chart-link {
+  float: left;
+  border-radius: 5px;
 }
 
 .statistic-actions-panel:not(.creation-mode) {
   flex-basis: calc(100% - 100px);
+}
+
+.statistic-actions-panel .ui-commandlink {
+  height: 30px;
+  padding: 5px;
+  border: solid 1px transparent;
 }
 
 .task-analysic-action {
@@ -3105,6 +3115,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   position: absolute;
   top: 0;
   right: 0;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .edit-statistic-container {
@@ -3627,17 +3639,39 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   width: 33.5rem;
 }
 
+.chart-list-container .filter-container .chart-filter-header-text {
+  margin-left: 25px;
+}
+
 .statistic-filter-container table.ui-selectmanycheckbox.ui-widget label {
   display: inline !important;
 }
 
-.apply-filters-btn {
+.chart-list-container .filter-container .apply-filters-btn {
   float: right;
+  margin-right: 16px;
 }
 
 .statistic-filter-accordion-panel {
   border: none !important;
   padding: 0.5em 0 !important;
+}
+
+body .ui-accordion.statistic-filter-accordion-panel .ui-accordion-header,
+body .ui-accordion.statistic-filter-accordion-panel .ui-accordion-header.ui-state-active {
+  background: transparent;
+  padding-left: 25px;
+  font-weight: bold;
+  border: solid 1px transparent;
+}
+
+body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-header .ui-icon {
+  left: 0;
+}
+
+body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-content {
+  border: 0;
+  padding-left: 19px;
 }
 
 .statistic-filter-accordion-panel .ui-accordion-content {
@@ -3970,9 +4004,12 @@ _:-ms-fullscreen, :root .content-link-history {
   }
 }
 /* ================= END RESPONSIVE GRID ==================== */
-.task-widget .filter-container .filter-selection-container-group, .case-widget-container .filter-container .filter-selection-container-group {
+.task-widget .filter-container .filter-selection-container-group,
+.case-widget-container .filter-container .filter-selection-container-group {
   display: inline-block;
   margin-right: 5px;
+  height: 100%;
+  width: 140px;
 }
 
 .filter-container .applied-filters-container {
@@ -3994,11 +4031,6 @@ _:-ms-fullscreen, :root .content-link-history {
   line-height: 30px;
   display: inline-block;
   padding: 0 10px 0 5px;
-}
-
-.task-widget .filter-container .filter-selection-container-group {
-  height: 100%;
-  width: 140px;
 }
 
 .filter-selection-container-group .filter-selection-label {
@@ -4420,6 +4452,9 @@ body .portal-breadcrumb.ui-breadcrumb ul li {
 	line-height: 2rem;
 }
 
+body .portal-breadcrumb.ui-breadcrumb ul li .has-count {
+	display: inline;
+}
 /*=================== BREADCRUMB END ===================*/
 
 .position-topbar {
