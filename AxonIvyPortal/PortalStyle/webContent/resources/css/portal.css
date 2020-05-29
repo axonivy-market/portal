@@ -638,6 +638,19 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 .statistic-widget-container .widget-header-main, .widget.analysis-task-widget .widget-header-main {
   border-bottom: none; }
 
+
+  body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-header.ui-tabs-outline,
+  body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-header.ui-state-hover,
+  body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-header.ui-state-active.ui-tabs-outline {
+    background: var(--compact-task-start-list-item-hover-background-color);
+    border: var(--compact-task-start-list-item-hover-border);
+  }
+
+.statistic-actions-panel .ui-commandlink.chart-link:hover {
+  border-color: var(--statistic-link-hover-border);
+  background: var(--statistic-link-hover-backround-color);
+}
+
 /*Style For Buttons --------------------------------------------------------------------------------------*/
 body .portal-cancel-button.ui-widget.ui-button,
 body .ui-inplace-cancel.ui-widget.ui-button,
@@ -1164,6 +1177,13 @@ body .ui-inputfield.case-detail-name-input {
 .case-list-item {
   background-color: var(--case-list-item-background-color);
   border-bottom: 1px solid var(--case-widget-column-header-border-bottom); }
+
+
+.case-widget-container .widget-column-header a.ui-commandlink:not(.filter-add-button):not(.config-columns) {
+  color: var(--task-widget-header-column);  }
+
+.case-widget-container .widget-column-header a.ui-commandlink.is-selected:not(.filter-add-button) {
+  color: var(--case-widget-column-header-is-selected-color); }
 
 .case-header-name-desc-cell .case-header-desc-cell {
   color: var(--case-item-description-cell); }
