@@ -105,7 +105,7 @@
             autoCompletePanelStyleClass="ui-g-4 ui-sm-8 substituted-user"
             scrollHeight="200" size="35" isRenderedMessage="false" styleClass="ui-g-12">
             <p:column>
-              <h:outputText value="#{user.briefDisplayNameWithState}" />
+              <h:outputText value="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />
             </p:column>
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{logic.changeUserSubstitute}" update="#{p:component('substitute-table')}" partialSubmit="true" />
@@ -133,7 +133,7 @@
                 <p:column>
                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
                     rendered="#{empty user}" />
-                  <h:outputText value="#{user.briefDisplayNameWithState}"
+                  <h:outputText value="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
                     rendered="#{not empty user}" />
                 </p:column>
               </ic:ch.ivy.addon.portalkit.component.UserSelection>
