@@ -498,9 +498,6 @@ body .ui-widget-header.portal-breadcrumb {
 .application-email-setting .ui-widget-header {
   color: var(--email-setting-widget-header); }
 
-.applications-email-setting-dialog .ui-dialog-content.ui-widget-content {
-  font-size: var(--large-font-size); }
-
 /*Style For Process Widget --------------------------------------------------------------------------------*/
 .process-start-list-item:hover .process-start-list-item-icon {
   color: var(--hovered-process-start-list-item-i-con-color); }
