@@ -12,6 +12,8 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
+import ch.ivyteam.ivy.environment.Ivy;
+
 @FacesValidator("taskExpiryTimestampValidator")
 public class TaskExpiryTimestampValidator implements Validator {
 
@@ -23,8 +25,10 @@ public class TaskExpiryTimestampValidator implements Validator {
     LocalDateTime expiryTimestamp = ((Date) value).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 
     if (expiryTimestamp.isBefore(LocalDateTime.now())) {
-      throw new ValidatorException(new FacesMessage(FacesMessage.SEVERITY_ERROR,
-          "Task expiry timestamp should not be in the past.", null));
+      FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskDetails/failedExpiryValidation"), null);
+      context.addMessage("expiry-calendar", message);
+      throw new ValidatorException(message);
     }
   }
 

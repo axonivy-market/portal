@@ -183,6 +183,7 @@
                 <f:validator validatorId="taskExpiryTimestampValidator" />
               </p:calendar>
             </p:inplace>
+            <p:growl id="expiry-form-message" for="expiry-calendar"/>
           </h:form>
           <h:outputText id="no-expiry-available"
             value="#{empty task.expiryTimestamp ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : task.expiryTimestamp}"
