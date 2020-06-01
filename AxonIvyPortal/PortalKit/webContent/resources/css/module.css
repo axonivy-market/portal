@@ -2743,7 +2743,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 /********************************** END CHANGE PASSWORK DIALOG **********************************/
 
-/********************************** LANGUAGE SETTING **********************************/
+/********************************** USER PROFILE **********************************/
 .md-inputfield .language-selection-label {
   left: 0;
 }
@@ -2751,64 +2751,21 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding-right: 5px !important;
   text-align: right;
 }
+
+.user-profile {
+  margin: 0px 15px;
+}
+
 .user-profile-footer .ui-button {
   min-width: 120px;
   margin-bottom: 6px
 }
-/********************************** END LANGUAGE SETTING **********************************/
+/********************************** END USER PROFILE SETTING **********************************/
 /********************************** EMAIL SETTING DIALOG **********************************/
-@media screen and (min-width: 41em) {
-  .applications-email-setting-dialog {
-    min-width: 420px !important;
-  }
-}
-
-@media screen and (max-width: 40em) {
-  .applications-email-setting-dialog {
-    min-width: 300px;
-    height: 365px;
-    margin-left: 10px;
-    margin-right: 10px;
-  }
-  .applications-email-setting-form {
-    height: 260px;
-  }
-  .applications-email-setting-dialog .ui-dialog .ui-dialog-content {
-    overflow: unset !important;
-    padding: 1rem !important;
-  }
-  .email-setting-component {
-    max-height: 235px;
-    overflow: auto;
-    margin-bottom: 10px;
-  }
-}
 
 .application-email-setting-container tbody tr td {
   padding-left: 0 !important;
   padding-right: 0 !important;
-}
-
-.applications-email-setting-dialog .email-setting-container {
-  overflow-y: auto;
-  min-height: 200px;
-}
-
-.field-select-setting-options {
-  margin-left: -2px !important;
-}
-
-.applications-email-setting-dialog .daily-summary-checkbox {
-  width: 98%;
-}
-
-.applications-email-setting-dialog .ui-dialog-footer.u-dialog-footer.u-email-dialog-footer {
-  margin: auto !important;
-  padding-right: 5px !important;
-}
-
-.applications-email-setting-dialog .ui-dialog-content.ui-widget-content {
-  padding: 1rem 2rem;
 }
 
 .application-email-setting-row {
@@ -2821,6 +2778,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .application-email-setting-row tbody tr td {
   padding-bottom: 10px !important;
+}
+
+.daily-summary-checkbox {
+	min-width: 100%
 }
 /********************************** END EMAIL SETTING DIALOG **********************************/
 
