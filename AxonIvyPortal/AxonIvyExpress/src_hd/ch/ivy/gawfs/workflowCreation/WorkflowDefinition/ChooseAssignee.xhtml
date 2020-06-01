@@ -18,7 +18,7 @@
           selectedUser="#{data.selectedUser}" queryDelay="500"
           rendered="#{data.isAssignToUser}" isRenderedMessage="false" >
           <p:column>
-            <h:outputText value="#{user.briefDisplayNameWithState}" />
+            <h:outputText value="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />
           </p:column> 
           <f:facet name="event">
             <p:ajax event="itemSelect" update="#{p:component('add-assignee-button')}" />
