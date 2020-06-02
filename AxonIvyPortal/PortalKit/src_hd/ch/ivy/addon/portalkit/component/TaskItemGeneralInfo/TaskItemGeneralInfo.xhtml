@@ -181,7 +181,6 @@
               <p:ajax event="save" listener="#{logic.updateDeadline(task)}" update="expiry-form #{cc.attrs.componentToUpdate}" />
               <p:calendar id="expiry-calendar" styleClass="task-details-data-expiry" value="#{task.expiryTimestamp}" pattern="#{dateTimePatternBean.configuredPattern}"
                 locale="#{localeBean.locale}">
-                <f:attribute name="selectedTask" value="#{task}"/>
                 <f:validator validatorId="taskExpiryTimestampValidator" />
               </p:calendar>
             </p:inplace>
