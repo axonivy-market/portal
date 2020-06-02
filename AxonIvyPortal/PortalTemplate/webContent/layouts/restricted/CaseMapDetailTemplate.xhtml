@@ -19,97 +19,98 @@
           </div>
 
           <p:spacer height="25rem" />
-          
-          <div class="card ui-g-12 ">
-            <ui:insert name="navigation">
-            <!-- Need to insert navigation button here -->
-              <div class="ui-g-6">
-                <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/backToCaseMap')}"/>
+          <div class="ui-g-12 ">
+            <div class="card ui-g-12 ">
+              <ui:insert name="navigation">
+              <!-- Need to insert navigation button here -->
+                <div class="ui-g-6">
+                  <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/backToCaseMap')}"/>
+                </div>
+                <div class="ui-g-6 TexAlRight">
+                  <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/previousStage')}" 
+                    rendered="#{stageIndex > 0}" />
+                  <p:spacer width="20rem" rendered="#{caseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}"/>
+                  <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/nextStage')}" 
+                    rendered="#{caseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}" />
+                </div>
+              </ui:insert>
+              <div class="ui-g-12">
+              <div class="ui-g-12">
+                <h:outputText value="#{caseMapDetailBean.getDisplayStage(caseMapDetail,stageIndex)}" styleClass="title-text" />
               </div>
-              <div class="ui-g-6 TexAlRight">
-                <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/previousStage')}" 
-                  rendered="#{stageIndex > 0}" />
-                <p:spacer width="20rem" rendered="#{caseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}"/>
-                <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/nextStage')}" 
-                  rendered="#{caseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}" />
+              
+              <!-- PROCESS -->
+              <ui:repeat var="process" value="#{caseMapDetailBean.getProcessOfStage(caseMapDetail, stageIndex)}" varStatus="processStatus">
+                <h:panelGroup layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12 ">
+                  <div class="ui-g-12">
+                  <div class="side-step-info" >
+                  </div>
+                  <div class="ui-g-12">
+                    <div style="margin0">
+                      <div class="ui-g-12 #{processStatus.index == 0?'process-first-breadcrumb':'process-breadcrumb'} ">
+                        <h:outputText value="#{process}" styleClass="process-breadcrumb-title"/>
+                      </div>
+                      <div class="card ui-g-12" style="height: 25rem;">
+  
+                        <ui:repeat var="desc" value="#{caseMapDetailBean.getProcessDescription(caseMapDetail, process)}">
+                          <div class="ui-g-12">
+                            <div class="ui-g-2 TexAlCenter">
+                              <p:graphicImage library="ivy-cms" name="/Images/check-circle-1" height="20rem" />
+                            </div>
+                            <div class="ui-g-10">
+                              <h:outputText value="#{desc}" escape="false" styleClass="process-step-description" />
+                            </div>
+                          </div>
+                        </ui:repeat>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </h:panelGroup>
+              </ui:repeat>
+              <!-- SIDE STEP -->
+              <ui:repeat var="process" value="#{caseMapDetailBean.getSideStepOfStage(caseMapDetail, stageIndex)}">
+                <h:panelGroup layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12">
+                  <div class="ui-g-12 side-step-panel">
+                  <div class="dropdown side-step-info ">
+                    <h:outputText value="#{ivy.cms.co('/Processes/CaseMap/sideStep')}" styleClass="side-step-info-text"/>
+                    <p:spacer width="15rem"/>
+                    <p:graphicImage library="ivy-cms" name="/Images/information-circle" height="20rem"/>
+                    <p:spacer width="2rem"/>
+                    <div class="dropdown-content">
+                      <a href="#"><h:outputText escape="false" value="#{ivy.cms.co('/Processes/CaseMap/availableSideStep')}" /></a>
+                    </div>
+                  </div>
+                  <div class="ui-g-12">
+                    <div style="margin0">
+  
+                      <div class="ui-g-12 process-breadcrumb">
+                        <h:outputText value="#{process}" styleClass="process-breadcrumb-title"/>
+                      </div>
+                      <div class="card ui-g-12 description-content" >
+  
+                        <ui:repeat var="desc" value="#{caseMapDetailBean.getProcessDescription(caseMapDetail, process)}">
+                          <div class="ui-g-12">
+                            <div class="ui-g-2 TexAlCenter">
+                              <p:graphicImage library="ivy-cms" name="/Images/check-circle-1" height="20rem" />
+                            </div>
+                            <div class="ui-g-10">
+                              <h:outputText value="#{desc}" escape="false" styleClass="process-step-description" />
+                            </div>
+                          </div>
+                        </ui:repeat>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </h:panelGroup>
+              </ui:repeat>
               </div>
-            </ui:insert>
-            <div class="ui-g-12">
-              <h:outputText value="#{caseMapDetailBean.getDisplayStage(caseMapDetail,stageIndex)}" styleClass="title-text" />
             </div>
-            
-            <!-- PROCESS -->
-            <ui:repeat var="process" value="#{caseMapDetailBean.getProcessOfStage(caseMapDetail, stageIndex)}" >
-              <h:panelGroup layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12 ">
-                <div class="ui-g-12 side-step-info" >
-                </div>
-                <div class="ui-g-12">
-                  <div style="margin0">
-
-                    <div class="ui-g-12 process-breadcrumb">
-                      <h:outputLabel value="#{process}" />
-                    </div>
-                    <div class="card ui-g-12" style="height: 25rem;">
-
-                      <ui:repeat var="desc" value="#{caseMapDetailBean.getProcessDescription(caseMapDetail, process)}">
-                        <div class="ui-g-12">
-                          <div class="ui-g-2 TexAlCenter">
-                            <p:graphicImage library="ivy-cms" name="/Images/check-circle-1" height="20rem" />
-                          </div>
-                          <div class="ui-g-10">
-                            <h:outputText value="#{desc}" escape="false" styleClass="process-step-description" />
-                          </div>
-                        </div>
-                      </ui:repeat>
-                    </div>
-                  </div>
-                </div>
-              </h:panelGroup>
-            </ui:repeat>
-            
-            <!-- SIDE STEP -->
-            <ui:repeat var="process" value="#{caseMapDetailBean.getSideStepOfStage(caseMapDetail, stageIndex)}">
-              <h:panelGroup layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12 ">
-                <div class="dropdown ui-g-12 side-step-info ">
-                  <h:outputText value="#{ivy.cms.co('/Processes/CaseMap/sideStep')}"/>
-                  <p:spacer width="15rem"/>
-                  <p:graphicImage library="ivy-cms" name="/Images/information-circle" height="20rem"/>
-                  <p:spacer width="2rem"/>
-                  <div class="dropdown-content">
-                    <a href="#"><h:outputText escape="false" value="#{ivy.cms.co('/Processes/CaseMap/availableSideStep')}" /></a>
-                  </div>
-                </div>
-                <div class="ui-g-12">
-                  <div style="margin0">
-
-                    <div class="ui-g-12 process-breadcrumb">
-                      <h:outputLabel value="#{process}" />
-                    </div>
-                    <div class="card ui-g-12" style="height: 25rem;">
-
-                      <ui:repeat var="desc" value="#{caseMapDetailBean.getProcessDescription(caseMapDetail, process)}">
-                        <div class="ui-g-12">
-                          <div class="ui-g-2 TexAlCenter">
-                            <p:graphicImage library="ivy-cms" name="/Images/check-circle-1" height="20rem" />
-                          </div>
-                          <div class="ui-g-10">
-                            <h:outputText value="#{desc}" escape="false" styleClass="process-step-description" />
-                          </div>
-                        </div>
-                      </ui:repeat>
-                    </div>
-                  </div>
-                </div>
-              </h:panelGroup>
-            </ui:repeat>
-            
           </div>
-          <div class="ui-g-12 TexAlRight">
-            <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-              actionListener="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(false, ivy.task)}" />
-            <p:spacer width="20rem" />
-            <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{caseMapDetail.name}"
-              actionListener="#{caseMapDetailBean.startCaseMap(caseMapDetail.startLink)}" />
+          <div class="ui-g-12 TexAlRight ">
+            <ui:insert name="actionButtons">
+            </ui:insert>
           </div>
         </div>
       </div>

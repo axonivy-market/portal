@@ -6,6 +6,12 @@
   <ui:composition template="/layouts/restricted/ProcessOverviewTemplate.xhtml">
     <ui:param name="process" value="#{data.userProcess}" />
     <ui:param name="processSteps" value="#{data.processSteps}" />
+    <ui:define name="actionButtons">
+      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" actionListener="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(false, ivy.task)}"/>
+      <p:spacer width="20rem" />
+      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{data.userProcess.processName}"
+        actionListener="#{compactProcessWidgetBean.startProcess(data.userProcess)}" />
+    </ui:define>
   </ui:composition>
 </h:body>
 </html>
