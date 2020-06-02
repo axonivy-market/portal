@@ -32,3 +32,9 @@ h3, h4 {
   font-weight: bold;
   margin: auto;
 }
+.case-map-navigation-icon{
+color:var(--primary-color);
+}
+.fa-chevron-left{
+color:var(--primary-color);	
+}

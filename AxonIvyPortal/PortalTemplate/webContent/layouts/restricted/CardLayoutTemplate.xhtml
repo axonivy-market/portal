@@ -9,15 +9,15 @@
     <ui:define name="pageContent">
       <div class="ui-g">
         <div class="margin0 ui-g-8 ui-xl-8 ui-lg-12 ui-md-12 ui-sm-12">
-          <ui:insert name="header">
-              <div class="ui-g-12">
-                <h1>Place header here</h1>
-                <h:outputText value="Place description here" />
-              </div>
-              <br />
-          </ui:insert>
+          <div class="ui-g-12">
+            <ui:insert name="header">
+              <h1>Place header here</h1>
+              <h:outputText value="Place description here" />
+            </ui:insert>
+          </div>
+          <br />
+          <div class="ui-g-12">
           <ui:repeat var="item" value="#{items}">
-
             <h:panelGroup layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12">
               <div class="card-item card ui-g-12 " >
                 <ui:insert name="card">
@@ -28,6 +28,7 @@
             </h:panelGroup>
 
           </ui:repeat>
+          </div>
         </div>
       </div>
 
