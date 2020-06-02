@@ -13,7 +13,6 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.workflow.ITask;
 
 @FacesValidator("taskExpiryTimestampValidator")
 public class TaskExpiryTimestampValidator implements Validator {
@@ -24,12 +23,10 @@ public class TaskExpiryTimestampValidator implements Validator {
       return;
     }
     LocalDateTime expiryTimestamp = ((Date) value).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-    ITask selectedTask = (ITask)component.getAttributes().get("selectedTask");
-    LocalDateTime startTimestamp = selectedTask.getStartTimestamp().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 
-    if (expiryTimestamp.isBefore(startTimestamp)) {
+    if (expiryTimestamp.isBefore(LocalDateTime.now())) {
       FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR,
-          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskDetails/expiryMustBeLaterThanCreatedDateMessage"), null);
+          Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskDetails/failedExpiryValidation"), null);
       context.addMessage("expiry-calendar", message);
       throw new ValidatorException(message);
     }
