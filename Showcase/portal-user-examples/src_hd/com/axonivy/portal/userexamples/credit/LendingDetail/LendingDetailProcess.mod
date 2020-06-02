@@ -14,6 +14,14 @@ Ls0 @PushWFArc f2 '' #zField
 Ls0 @UdEvent f3 '' #zField
 Ls0 @UdExitEnd f4 '' #zField
 Ls0 @PushWFArc f5 '' #zField
+Ls0 @UdMethod f7 '' #zField
+Ls0 @UserDialog f8 '' #zField
+Ls0 @UserDialog f10 '' #zField
+Ls0 @PushWFArc f11 '' #zField
+Ls0 @UdMethod f6 '' #zField
+Ls0 @GridStep f12 '' #zField
+Ls0 @PushWFArc f13 '' #zField
+Ls0 @PushWFArc f9 '' #zField
 >Proto Ls0 Ls0 LendingDetailProcess #zField
 Ls0 f0 guid 1725FB50A476B54F #txt
 Ls0 f0 method start(ch.ivy.addon.portalkit.bo.CaseMapDetail,Integer) #txt
@@ -49,6 +57,90 @@ Ls0 f3 @|UdEventIcon #fIcon
 Ls0 f4 211 147 26 26 0 12 #rect
 Ls0 f4 @|UdExitEndIcon #fIcon
 Ls0 f5 109 160 211 160 #arcP
+Ls0 f7 guid 1726DF016BB85891 #txt
+Ls0 f7 method navigateToOverviewPage() #txt
+Ls0 f7 inParameterDecl '<> param;' #txt
+Ls0 f7 outParameterDecl '<> result;' #txt
+Ls0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>navigateToOverviewPage()</name>
+    </language>
+</elementInfo>
+' #txt
+Ls0 f7 83 339 26 26 -28 15 #rect
+Ls0 f7 @|UdMethodIcon #fIcon
+Ls0 f8 dialogId com.axonivy.portal.userexamples.credit.LendingOverview #txt
+Ls0 f8 startMethod start(ch.ivy.addon.portalkit.persistence.domain.UserProcess) #txt
+Ls0 f8 requestActionDecl '<ch.ivy.addon.portalkit.persistence.domain.UserProcess userProcess> param;' #txt
+Ls0 f8 requestMappingAction 'param.userProcess=in.userProcess;
+' #txt
+Ls0 f8 responseMappingAction 'out=in;
+' #txt
+Ls0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>LendingOverview</name>
+    </language>
+</elementInfo>
+' #txt
+Ls0 f8 408 330 112 44 -47 -8 #rect
+Ls0 f8 @|UserDialogIcon #fIcon
+Ls0 f10 dialogId com.axonivy.portal.userexamples.credit.LendingDetail #txt
+Ls0 f10 startMethod start(ch.ivy.addon.portalkit.bo.CaseMapDetail,Integer) #txt
+Ls0 f10 requestActionDecl '<ch.ivy.addon.portalkit.bo.CaseMapDetail caseMapDetail,Integer index> param;' #txt
+Ls0 f10 requestMappingAction 'param.caseMapDetail=in.caseMapDetail;
+param.index=in.stageIndex;
+' #txt
+Ls0 f10 responseMappingAction 'out=in;
+' #txt
+Ls0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>LendingDetail</name>
+    </language>
+</elementInfo>
+' #txt
+Ls0 f10 296 234 112 44 -38 -8 #rect
+Ls0 f10 @|UserDialogIcon #fIcon
+Ls0 f11 109 256 296 256 #arcP
+Ls0 f6 guid 1726DEFF21B6E30F #txt
+Ls0 f6 method navigate(ch.ivy.addon.portalkit.bo.CaseMapDetail,Integer) #txt
+Ls0 f6 inParameterDecl '<ch.ivy.addon.portalkit.bo.CaseMapDetail caseMapDetail,Integer stageIndex> param;' #txt
+Ls0 f6 inParameterMapAction 'out.caseMapDetail=param.caseMapDetail;
+out.stageIndex=param.stageIndex;
+' #txt
+Ls0 f6 outParameterDecl '<> result;' #txt
+Ls0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>navigate(CaseMapDetail,Integer)</name>
+    </language>
+</elementInfo>
+' #txt
+Ls0 f6 83 243 26 26 -25 15 #rect
+Ls0 f6 @|UdMethodIcon #fIcon
+Ls0 f12 actionTable 'out=in;
+' #txt
+Ls0 f12 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
+
+in.userProcess = new UserProcess();
+in.userProcess.setLink(in.caseMapDetail.startLink);
+in.userProcess.setIcon(in.caseMapDetail.icon);
+in.userProcess.setProcessName(in.caseMapDetail.getName());
+in.userProcess.setDescription(in.caseMapDetail.getDescription());
+' #txt
+Ls0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>create user process</name>
+    </language>
+</elementInfo>
+' #txt
+Ls0 f12 240 330 128 44 -55 -8 #rect
+Ls0 f12 @|StepIcon #fIcon
+Ls0 f13 109 352 240 352 #arcP
+Ls0 f9 368 352 408 352 #arcP
 >Proto Ls0 .type com.axonivy.portal.userexamples.credit.LendingDetail.LendingDetailData #txt
 >Proto Ls0 .processKind HTML_DIALOG #txt
 >Proto Ls0 -8 -8 16 16 16 26 #rect
@@ -57,3 +149,9 @@ Ls0 f0 mainOut f2 tail #connect
 Ls0 f2 head f1 mainIn #connect
 Ls0 f3 mainOut f5 tail #connect
 Ls0 f5 head f4 mainIn #connect
+Ls0 f6 mainOut f11 tail #connect
+Ls0 f11 head f10 mainIn #connect
+Ls0 f7 mainOut f13 tail #connect
+Ls0 f13 head f12 mainIn #connect
+Ls0 f12 mainOut f9 tail #connect
+Ls0 f9 head f8 mainIn #connect
