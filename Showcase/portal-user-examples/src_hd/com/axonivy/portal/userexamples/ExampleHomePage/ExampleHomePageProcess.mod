@@ -112,43 +112,6 @@ marketingProcess.setIcon("/Images/advertising-megaphone");
 marketingProcess.setDescription(ivy.cms.co("/Processes/UserExampleGuide/comingSoon"));
 in.processes.add(marketingProcess);
 
-UserProcess marketingProcess1 = new UserProcess();
-marketingProcess1.setProcessName("Another card");
-marketingProcess1.setIcon("/Images/shopping-cart-check");
-marketingProcess1.setDescription(ivy.cms.co("/Processes/UserExampleGuide/comingSoon"));
-in.processes.add(marketingProcess1);
-
-UserProcess marketingProcess2 = new UserProcess();
-marketingProcess2.setProcessName("Another card");
-marketingProcess2.setIcon("/Images/shopping-cart-check");
-marketingProcess2.setDescription(ivy.cms.co("/Processes/UserExampleGuide/comingSoon"));
-in.processes.add(marketingProcess2);
-
-UserProcess marketingProcess3 = new UserProcess();
-marketingProcess3.setProcessName("Another card");
-marketingProcess3.setIcon("/Images/shopping-cart-check");
-marketingProcess3.setDescription(ivy.cms.co("/Processes/UserExampleGuide/comingSoon"));
-in.processes.add(marketingProcess3);
-
-UserProcess marketingProcess4 = new UserProcess();
-marketingProcess4.setProcessName("Another card");
-marketingProcess4.setIcon("/Images/shopping-cart-check");
-marketingProcess4.setDescription(ivy.cms.co("/Processes/UserExampleGuide/comingSoon"));
-in.processes.add(marketingProcess4);
-
-
-UserProcess marketingProcess5 = new UserProcess();
-marketingProcess5.setProcessName("Another card");
-marketingProcess5.setIcon("/Images/shopping-cart-check");
-marketingProcess5.setDescription(ivy.cms.co("/Processes/UserExampleGuide/comingSoon"));
-in.processes.add(marketingProcess5);
-
-
-UserProcess marketingProcess6 = new UserProcess();
-marketingProcess6.setProcessName("Another card");
-marketingProcess6.setIcon("/Images/shopping-cart-check");
-marketingProcess6.setDescription(ivy.cms.co("/Processes/UserExampleGuide/comingSoon"));
-in.processes.add(marketingProcess6);
 
 
 ' #txt
