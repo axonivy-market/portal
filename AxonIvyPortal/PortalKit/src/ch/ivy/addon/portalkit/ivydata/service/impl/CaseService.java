@@ -82,17 +82,21 @@ public class CaseService implements ICaseService {
     return Ivy.wf().getGlobalContext().getCaseQueryExecutor().getCount(query);
   }
   
-  private CaseQuery queryForUsers(String involvedUsername, List<String> apps) {
+  private CaseQuery queryForUsers(String involvedUsername, List<String> apps, boolean isTechnicalCases) {
     boolean isCaseOwnerEnabled = isCaseOwnerEnabled();
-    CaseQuery caseQuery = CaseQuery.businessCases();
+    final CaseQuery caseQuery;
+    if (isTechnicalCases) {
+      caseQuery = CaseQuery.subCases();
+    } else {
+      caseQuery = CaseQuery.businessCases();
+    }
+
     apps.forEach(app -> {
       caseQuery.where().or().userIsInvolved(involvedUsername, app);
       if (isCaseOwnerEnabled) {
         caseQuery.where().or().isOwner("#" + involvedUsername, app);
       }
     });
-    
-    
     return caseQuery;
   }
 
@@ -120,7 +124,7 @@ public class CaseService implements ICaseService {
         
         if (criteria.hasApps()) {
           if (criteria.hasInvolvedUsername()) {
-            finalQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps()));
+            finalQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps(), false));
           } else {
             finalQuery.where().and(queryForApplications(criteria.getApps()));
           }
@@ -246,7 +250,7 @@ public class CaseService implements ICaseService {
 
     if (criteria.hasApps()) {
       if (criteria.hasInvolvedUsername() && !criteria.isAdminQuery()) {
-        clonedQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps()));
+        clonedQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps(), criteria.isTechnicalCase()));
       } else {
         clonedQuery.where().and(queryForApplications(criteria.getApps()));
       }
@@ -255,6 +259,7 @@ public class CaseService implements ICaseService {
     if (isHiddenTasksCasesExcluded(criteria.getApps())) {
       clonedQuery.where().and(queryExcludeHiddenCases());
     }
+    
     return clonedQuery;
   }
 
