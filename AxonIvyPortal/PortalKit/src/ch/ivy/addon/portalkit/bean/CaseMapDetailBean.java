@@ -2,12 +2,14 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.CaseMapDetail;
@@ -26,12 +28,25 @@ public class CaseMapDetailBean implements Serializable {
   }
   
   public List<String> getProcessOfStage(CaseMapDetail detail, String stage){
-    return detail.getStageDetail().get(stage);
+    List<String> processes = new ArrayList<>(); 
+    processes.addAll(detail.getStageDetail().get(stage));
+    return processes;
   }
   
   public List<String> getProcessOfStage(CaseMapDetail detail, int stageIndex){
     String stage = detail.getStages().get(stageIndex);
-    return detail.getStageDetail().get(stage);
+    return getProcessOfStage(detail, stage);
+  }
+  
+  public List<String> getSideStepOfStage(CaseMapDetail detail, String stage){
+    List<String> sideSteps = new ArrayList<>(); 
+    sideSteps.addAll(CollectionUtils.emptyIfNull(detail.getSideStepDetail().get(stage)));
+    return sideSteps;
+  }
+  
+  public List<String> getSideStepOfStage(CaseMapDetail detail, int stageIndex){
+    String stage = detail.getStages().get(stageIndex);
+    return getSideStepOfStage(detail, stage);
   }
   
   public String getIconOfStage(CaseMapDetail detail, String stage){
@@ -50,5 +65,13 @@ public class CaseMapDetailBean implements Serializable {
     if (StringUtils.isNotEmpty(link)) {
       FacesContext.getCurrentInstance().getExternalContext().redirect(link);
     }
+  }
+  
+  public boolean renderNextLink(CaseMapDetail detail, int stageIndex) {
+    return stageIndex < detail.getStages().size() - 1;
+  }
+  
+  public boolean renderPreCondition(CaseMapDetail detail, String processName) {
+    return detail.getPreConditionDetail().containsKey(processName);
   }
 }

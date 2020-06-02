@@ -71,16 +71,18 @@ in.caseMapDetail.setDescription(in.userProcess.getDescription());
 in.caseMapDetail.setStages(Arrays.asList(ivy.cms.co("/Processes/CaseMap/Stage/identification"), 
 ivy.cms.co("/Processes/CaseMap/Stage/creditRating"), ivy.cms.co("/Processes/CaseMap/Stage/approval")));
 
+// STAGE
 Map stageMap = new HashMap();
 stageMap.put(ivy.cms.co("/Processes/CaseMap/Stage/identification"), 
 	Arrays.asList(ivy.cms.co("/Processes/CaseMap/collectPersonalData"), ivy.cms.co("/Processes/CaseMap/verifyPersonalData")));
 stageMap.put(ivy.cms.co("/Processes/CaseMap/Stage/creditRating"), 
-	Arrays.asList(ivy.cms.co("/Processes/CaseMap/checkCompanyRegister"), ivy.cms.co("/Processes/CaseMap/internalSolvencyCheck"), ivy.cms.co("/Processes/CaseMap/externalSolvencyCheck")));
+	Arrays.asList(ivy.cms.co("/Processes/CaseMap/checkCompanyRegister"), ivy.cms.co("/Processes/CaseMap/internalSolvencyCheck")));
 stageMap.put(ivy.cms.co("/Processes/CaseMap/Stage/approval"), 
 	Arrays.asList(ivy.cms.co("/Processes/CaseMap/approveLevel1"), ivy.cms.co("/Processes/CaseMap/approveLevel2"), ivy.cms.co("/Processes/CaseMap/createContract")));
 
 in.caseMapDetail.setStageDetail(stageMap);
 
+// PROCCESS
 Map processMap = new HashMap();
 processMap.put(ivy.cms.co("/Processes/CaseMap/collectPersonalData"), 
 	Arrays.asList(ivy.cms.co("/Processes/CaseMap/CollectPersonDataDescription/description1"), ivy.cms.co("/Processes/CaseMap/CollectPersonDataDescription/description2"), ivy.cms.co("/Processes/CaseMap/CollectPersonDataDescription/description3")));
@@ -101,6 +103,19 @@ processMap.put(ivy.cms.co("/Processes/CaseMap/createContract"),
 	
 in.caseMapDetail.setProcessDetail(processMap);
 
+// SIDE STEP
+Map sideStepMap = new HashMap();
+sideStepMap.put(ivy.cms.co("/Processes/CaseMap/Stage/creditRating"), Arrays.asList(ivy.cms.co("/Processes/CaseMap/externalSolvencyCheck")));
+
+in.caseMapDetail.setSideStepDetail(sideStepMap);
+
+// PRE CONDITION
+Map preConditionMap = new HashMap();
+preConditionMap.put(ivy.cms.co("/Processes/CaseMap/approveLevel1"), true);
+preConditionMap.put(ivy.cms.co("/Processes/CaseMap/approveLevel2"), true);
+preConditionMap.put(ivy.cms.co("/Processes/CaseMap/createContract"), true);
+
+in.caseMapDetail.setPreConditionDetail(preConditionMap);	
 
 ICaseMap caseMap = ivy.casemap.find().byPath("CaseMap/Lending");
 if (caseMap != null){	
