@@ -11,7 +11,9 @@ public class CaseMapDetail {
   private List<String> stages; 
   private Map<String, List<String>> stageDetail;
   private Map<String, List<String>> processDetail;
+  private Map<String, List<String>> sideStepDetail;
   private Map<String, String> stageIcon;
+  private Map<String, Boolean> preConditionDetail;
   
   public Map<String, List<String>> getStageDetail() {
     return stageDetail;
@@ -60,5 +62,17 @@ public class CaseMapDetail {
   }
   public void setStartLink(String startLink) {
     this.startLink = startLink;
+  }
+  public Map<String, List<String>> getSideStepDetail() {
+    return sideStepDetail;
+  }
+  public void setSideStepDetail(Map<String, List<String>> sideStepDetail) {
+    this.sideStepDetail = sideStepDetail;
+  }
+  public Map<String, Boolean> getPreConditionDetail() {
+    return preConditionDetail;
+  }
+  public void setPreConditionDetail(Map<String, Boolean> preConditionDetail) {
+    this.preConditionDetail = preConditionDetail;
   }
 }

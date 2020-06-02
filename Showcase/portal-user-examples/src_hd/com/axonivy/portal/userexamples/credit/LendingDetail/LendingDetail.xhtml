@@ -5,7 +5,23 @@
 <h:body>
   <ui:composition template="/layouts/restricted/CaseMapDetailTemplate.xhtml">
     <ui:param name="caseMapDetail" value="#{data.caseMapDetail}" />
-    <ui:param name="stageIndex" value="#{data.stageIndex}"></ui:param>
+    <ui:param name="stageIndex" value="#{data.stageIndex}" />
+    
+    <ui:define name="navigation">
+      <div class="ui-g-6">
+        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/backToCaseMap')}"
+        actionListener="#{logic.navigateToOverviewPage}" />
+      </div>
+      <div class="ui-g-6 TexAlRight">
+        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/previousStage')}" 
+          rendered="#{stageIndex > 0}"
+          actionListener="#{logic.navigate(data.caseMapDetail, data.stageIndex - 1)}" />
+        <p:spacer width="20rem" rendered="#{caseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}"/>
+        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/nextStage')}" 
+          rendered="#{caseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}"
+          actionListener="#{logic.navigate(data.caseMapDetail, data.stageIndex + 1)}" />
+      </div>
+    </ui:define>
   </ui:composition>
 </h:body>
 </html>
