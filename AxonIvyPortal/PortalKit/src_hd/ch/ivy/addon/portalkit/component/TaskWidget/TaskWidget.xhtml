@@ -112,19 +112,24 @@
             </h:form>
           </h:panelGroup>
 
-          <!-- Search filter -->
           <div id="applied-filters-container" class="applied-filters-container">
-            <div id="text-filter" class="text-filter ui-g-2 ui-sm-12">
-              <span class="selected-filters-label u-hidden-md-down">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/appliedFilters')} </span>
-              <h:form id="expanded-mode-filter-form" onsubmit="return false;">
-                <ic:ch.ivy.addon.portalkit.component.Filter id="expanded-mode-filter-container" icon="fa fa-filter simple-filter-icon"
-                  updateComponent="#{cc.clientId}:filter-selection-container #{p:component('task-view-container')} #{cc.clientId}:hidden-task-count"
-                  listener="#{data.dataModel.onKeywordChange()}"
-                  placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
-                  keywordStoresIn="#{data.dataModel.criteria.keyword}" styleClass="widget-header-filter-input"
-                  onCompletedCallback="taskWidget.setupScrollbar(); taskWidget.setupHeader(); taskWidget.updateTaskCountToBreadcrumb();" iconAsButton="true" onClickIconFilter="taskWidget.toggleTaskFilter(this);taskWidget.setupScrollbar();"/>
-              </h:form>
+            <!-- Title on mobile -->
+            <div class="ui-sm-4 widget-title-mobile">
+              <h:outputText value="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}" styleClass="top-header-main-title" />
             </div>
+
+          <!-- Search filter -->
+          <div id="text-filter" class="text-filter ui-g-2 ui-sm-8">
+            <span class="selected-filters-label u-hidden-md-down">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/appliedFilters')} </span>
+            <h:form id="expanded-mode-filter-form" onsubmit="return false;">
+              <ic:ch.ivy.addon.portalkit.component.Filter id="expanded-mode-filter-container" icon="fa fa-filter simple-filter-icon"
+                updateComponent="#{cc.clientId}:filter-selection-container #{p:component('task-view-container')} #{cc.clientId}:hidden-task-count"
+                listener="#{data.dataModel.onKeywordChange()}"
+                placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
+                keywordStoresIn="#{data.dataModel.criteria.keyword}" styleClass="widget-header-filter-input"
+                onCompletedCallback="taskWidget.setupScrollbar(); taskWidget.setupHeader(); taskWidget.updateTaskCountToBreadcrumb();" iconAsButton="true" onClickIconFilter="taskWidget.toggleTaskFilter(this);taskWidget.setupScrollbar();"/>
+            </h:form>
+          </div>
 
             <!-- Advanced filters -->
             <f:event listener="#{data.dataModel.initFilters()}" type="preRenderComponent" />
