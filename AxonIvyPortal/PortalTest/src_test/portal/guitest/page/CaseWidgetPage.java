@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
+import com.jayway.awaitility.core.ConditionTimeoutException;
 
 import portal.guitest.common.WaitHelper;
 
@@ -122,6 +123,11 @@ public class CaseWidgetPage extends TemplatePage {
 				caseWidgetId + ":case-list-scroller:" + index + ":case-item:case-name-component:case-header-name-cell");
 		return name.getText();
 	}
+	
+	public String getCreatorAt(int index) {
+    List<WebElement> creators = findListElementsByClassName("case-header-creator-cell");
+    return creators.get(index).getText();
+  }
 
 	public String getCaseName() {
 		waitForElementDisplayed(By.cssSelector("*[id$='case-list']"), true);
@@ -227,6 +233,15 @@ public class CaseWidgetPage extends TemplatePage {
 		return StringUtils.isNotBlank(count) ? Integer.parseInt(count) : null;
 	}
 
+	/**
+	 * count number of case row
+	 * @return number of case elements
+	 */
+	public int countCases() {
+    List<WebElement> caseItems = findListElementsByCssSelector("div[class*='case-list-item']");
+    return caseItems.size();
+  }
+	
 	 public void waitUntilCaseCountDifferentThanZero() {
 	    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
 	    .until(() -> getCaseCount().intValue() != 0);
@@ -291,6 +306,22 @@ public class CaseWidgetPage extends TemplatePage {
 		click(By.cssSelector("button[id$='creator-filter:filter-input-form:update-command']"));
 		waitAjaxIndicatorDisappear();
 	}
+	
+	public boolean isUserDisplayInCreatorFilter(String userFullName) {
+    click(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
+    WebElement responsible =
+        findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']");
+    type(responsible,userFullName);
+    waitAjaxIndicatorDisappear();
+    try {
+      Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
+      .until(() -> findElementByCssSelector("span[id$='filter-input-form:creator-component:creator-select_panel']").isDisplayed());
+    }
+    catch(ConditionTimeoutException timeoutException) {
+      return false;
+    }
+    return true;
+  }
 
   public void openSavedFilters(String filterName) {
     refreshAndWaitElement("a[id$='case-widget:filter-selection-form:filter-name']");
