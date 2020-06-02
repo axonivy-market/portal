@@ -1,3 +1,4 @@
+@charset "UTF-8";
 
 @font-face {
   font-family: "true-minimalistic-icons";
@@ -191,7 +192,7 @@ body .ui-datatable thead th.ui-state-active .ui-icon, body .ui-datatable thead t
 }
 
 body .ui-datatable tbody tr.ui-datatable-even {
-	background-color: var(--primary-white);
+	background-color: var(--ivy-primary-color-white);
 }
 
 @media (max-width: 640px) {
@@ -572,7 +573,7 @@ body .ui-widget.ui-fieldset.process-group.ui-fieldset .ui-fieldset-legend {
   color: var(--task-priority-high-color); }
 
 .task-priority-exception {
-  color: var(--task-exception-high-color); }
+  color: var(--task-priority-exception-color); }
 
 /*Style For Statistic Widget -----------------------------------------------------------------------------*/
 body .statistic-carousel .ui-widget-header.ui-carousel-header {
@@ -1087,14 +1088,16 @@ body .fieldset-no-border {
 
 .compact-process-widget .toggle-processes-link,
 .compact-toggle-tasks-link {
-  font-size: var(--large-font-size); }
+  font-size: var(--large-font-size);
+  font-weight: var(--widget-header-font-weight); }
+
+.compact-toggle-tasks-link {
+  padding-left: 8px;
+}
 
 /* Style for Start Menu Item-----------------------------*/
 .layout-wrapper .layout-sidebar .layout-menu > li > a.current-application {
   border-bottom: 1px solid --menu-item-current-application-border-bottom-color; }
-
-.layout-wrapper .layout-sidebar .layout-menu > li:not(.active-menuitem) > a.current-application {
-  border-bottom-color: var(--sidebar-menu-inactive-item-current-app-border-bottom-color); }
 
 /* Style for Filter Widget -----------------------------**/
 .task-widget .advanced-filter:hover,
@@ -1182,9 +1185,6 @@ body .ui-inputfield.case-detail-name-input {
 .case-widget-container .widget-column-header a.ui-commandlink:not(.filter-add-button):not(.config-columns) {
   color: var(--task-widget-header-column);  }
 
-.case-widget-container .widget-column-header a.ui-commandlink.is-selected:not(.filter-add-button) {
-  color: var(--case-widget-column-header-is-selected-color); }
-
 .case-header-name-desc-cell .case-header-desc-cell {
   color: var(--case-item-description-cell); }
 
@@ -1226,6 +1226,13 @@ body .ui-inputfield.case-detail-name-input {
 
 .action-steps-panel .action-icon {
   font-size: var(--large-font-size); }
+
+
+.widget-title-mobile {
+  border-bottom: solid 1px var(--widget-header-mobile-border-bottom);
+  height: 100%;
+  margin-top: 1px;
+}
 
 /*Process --------------------------------------*/
 .process-widget .process-nav .process-nav-item {
@@ -1274,7 +1281,7 @@ body .ui-inputfield.case-detail-name-input {
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item .ui-link,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list table tr td,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item.ui-state-hover tr td {
-  color: var(--process-start-list-item-color); }
+  color: var(--process-navigator-item-color); }
 
 .compact-process-widget .toggle-processes-link.fa-plus:before,
 .compact-toggle-tasks-link.fa-plus:before {

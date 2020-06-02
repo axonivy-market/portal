@@ -26,8 +26,9 @@
 <cc:implementation>
   <h:outputScript name="case-widget.js" library="js" />
   <div id="#{cc.clientId}" class="widget case-widget case-widget-container ui-g">
-    <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader and !cc.attrs.hideCaseFilter}">
-      <h:panelGroup id="case-widget-header" styleClass="widget-header ui-g-12 ui-g u-no-padding-left u-no-padding-bottom" layout="block">
+      <h:panelGroup id="case-widget-header" layout="block"
+        styleClass="widget-header ui-g-12 ui-g u-no-padding-left u-no-padding-bottom"
+        rendered="#{!cc.attrs.hideWidgetHeader and !cc.attrs.hideCaseFilter}">
         <h:panelGroup id="filter-container" styleClass="filter-container js-filter-container ui-g-12 u-no-padding-bottom"
         rendered="#{!cc.attrs.hideCaseFilter}">
         <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group  u-hidden-md-down"
@@ -90,17 +91,26 @@
         </h:panelGroup>
 
         <div id="applied-filters-container" class="applied-filters-container">
-          <!-- Search filter -->
-          <div id="text-filter" class="text-filter ui-g-2 ui-sm-12">
-            <span class="selected-filters-label u-hidden-md-down">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/appliedFilters')} </span>
-            <h:form id="case-basic-filter-form" onsubmit="return false;">
-              <ic:ch.ivy.addon.portalkit.component.Filter id="case-filter-component" keywordStoresIn="#{data.dataModel.criteria.keyword}"
-                updateComponent="#{cc.clientId}:case-list #{cc.clientId}:case-count-hidden" icon="fa fa-filter simple-filter-icon"
-                listener="#{data.dataModel.onKeywordChange()}" styleClass="case-filter-component"
-                placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
-                onCompletedCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();" iconAsButton="true" onClickIconFilter="caseWidget.toggleTaskFilter(this);caseWidget.setUpScrollbar();" />
-            </h:form>
-          </div>
+         <!-- Title on mobile -->
+         <h:panelGroup id="case-header-mobile" styleClass="ui-sm-4 widget-title-mobile">
+           <f:event listener="#{logic.preRenderTitle()}" type="preRenderComponent" />
+           <span class="top-header-main-title">
+             <span> #{empty cc.attrs.titleOnMobile ? cc.attrs.title : cc.attrs.titleOnMobile}</span>
+             <h:outputText value=" (#{data.dataModel.rowCount})" rendered="#{!data.dataModel.disableCaseCount}" />
+          </span>
+        </h:panelGroup>
+
+        <!-- Search filter -->
+        <div id="text-filter" class="text-filter ">
+          <span class="selected-filters-label u-hidden-md-down">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/appliedFilters')} </span>
+          <h:form id="case-basic-filter-form" onsubmit="return false;">
+            <ic:ch.ivy.addon.portalkit.component.Filter id="case-filter-component" keywordStoresIn="#{data.dataModel.criteria.keyword}"
+              updateComponent="#{cc.clientId}:case-list #{cc.clientId}:case-count-hidden" icon="fa fa-filter simple-filter-icon"
+              listener="#{data.dataModel.onKeywordChange()}" styleClass="case-filter-component"
+              placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
+              onCompletedCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();" iconAsButton="true" onClickIconFilter="caseWidget.toggleTaskFilter(this);caseWidget.setUpScrollbar();" />
+          </h:form>
+        </div>
 
 
             <f:event listener="#{data.dataModel.initFilters()}" type="preRenderComponent" />
@@ -154,9 +164,6 @@
               oncomplete="PF('save-filter-set-dialog').show();" />
            </div>
       </h:panelGroup>
-    </h:panelGroup>
-
-      
     </h:panelGroup>
 
     <h:panelGroup id="widget-column-header"
