@@ -37,14 +37,14 @@ function TaskWidget() {
         var layoutContentPadding = $('.layout-content').outerHeight(true) - $('.layout-content').height();
         var containerPadding = container.outerHeight(true) - container.height();
 
-        var mainScreenHeight = ($('body').outerHeight(true)||0) - ($('.layout-topbar').outerHeight(true)||0);
+        var mainScreenHeight = ($('.js-layout-content').outerHeight(true)||0);
         var availableHeight = mainScreenHeight - (taskWidgetHeaderContainer.outerHeight(true)||0) - (announcementMessageContainer.outerHeight(true)||0)
             - (taskWidgetSortMenuContainer.outerHeight(true)||0) - (taskWidgetFilterContainer.outerHeight(true)||0)
-            - customWidgetContainer - (globalSearchInput.is(":visible") ? globalSearchInput.outerHeight(true) : 0) - (globalSearchTabHeader.outerHeight(true)||0) - error
-            - compactProcessWidgetHeight - taskViewPaddingValue
+            - error
+            - taskViewPaddingValue
             - layoutContentPadding - containerPadding;
         if (!!availableHeight) {
-            container.height(availableHeight);
+            container.outerHeight(availableHeight);
             if (container.outerHeight(true) > availableHeight) {
               var taskStartItemMarginRight = $('.task-start-list-item').css("margin-right");
               var scrollbarWidth = container.width() - container.find('.ui-datascroller-list').outerWidth(true);
