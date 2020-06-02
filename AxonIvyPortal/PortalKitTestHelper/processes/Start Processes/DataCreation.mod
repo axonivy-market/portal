@@ -130,6 +130,18 @@ Dt0 @EndTask f115 '' #zField
 Dt0 @GridStep f117 '' #zField
 Dt0 @PushWFArc f116 '' #zField
 Dt0 @PushWFArc f118 '' #zField
+Dt0 @StartRequest f119 '' #zField
+Dt0 @GridStep f120 '' #zField
+Dt0 @PushWFArc f121 '' #zField
+Dt0 @EndTask f122 '' #zField
+Dt0 @PushWFArc f123 '' #zField
+Dt0 @StartRequest f129 '' #zField
+Dt0 @TaskSwitchSimple f130 '' #zField
+Dt0 @EndTask f132 '' #zField
+Dt0 @PushWFArc f133 '' #zField
+Dt0 @GridStep f134 '' #zField
+Dt0 @PushWFArc f135 '' #zField
+Dt0 @TkArc f131 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Dt0 f0 outLink createTasks.ivp #txt
 Dt0 f0 inParamDecl '<String taskStructureInfo> param;' #txt
@@ -1191,6 +1203,86 @@ Dt0 f117 192 1186 112 44 -33 -8 #rect
 Dt0 f117 @|StepIcon #fIcon
 Dt0 f116 79 1208 192 1208 #arcP
 Dt0 f118 304 1208 449 1208 #arcP
+Dt0 f119 outLink disableVisibilityUser.ivp #txt
+Dt0 f119 inParamDecl '<> param;' #txt
+Dt0 f119 requestEnabled true #txt
+Dt0 f119 triggerEnabled false #txt
+Dt0 f119 callSignature disableVisibilityUser() #txt
+Dt0 f119 caseData businessCase.attach=true #txt
+Dt0 f119 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>disableVisibilityUser.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f119 @C|.responsibility Everybody #txt
+Dt0 f119 993 905 30 30 -75 18 #rect
+Dt0 f119 @|StartRequestIcon #fIcon
+Dt0 f120 actionTable 'out=in;
+' #txt
+Dt0 f120 actionCode 'import ch.ivyteam.ivy.security.user.NewUser;
+import ch.ivyteam.ivy.security.IUser;
+
+IUser user = ivy.wf.getSecurityContext().findUser("visibility_test_user");
+
+if (user != null) {
+	user.disable();
+}
+else {
+	user = ivy.wf.getSecurityContext().users().create(NewUser.create("visibility_test_user").password("+d3m0++").fullName("Visibility Test User").toNewUser());
+	user.disable();
+}
+ivy.log.warn("Disable user");' #txt
+Dt0 f120 security system #txt
+Dt0 f120 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Create disabled user</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f120 1072 898 128 44 -58 -8 #rect
+Dt0 f120 @|StepIcon #fIcon
+Dt0 f121 1023 920 1072 920 #arcP
+Dt0 f122 1233 905 30 30 0 15 #rect
+Dt0 f122 @|EndIcon #fIcon
+Dt0 f123 1200 920 1233 920 #arcP
+Dt0 f129 outLink createTaskAndCaseForDisabledUser.ivp #txt
+Dt0 f129 inParamDecl '<> param;' #txt
+Dt0 f129 requestEnabled true #txt
+Dt0 f129 triggerEnabled false #txt
+Dt0 f129 callSignature createTaskAndCaseForDisabledUser() #txt
+Dt0 f129 caseData 'businessCase.attach=true
+case.name=Disabled user''s case' #txt
+Dt0 f129 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createTaskAndCaseForDisabledUser.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f129 @C|.responsibility Everybody #txt
+Dt0 f129 977 993 30 30 -100 24 #rect
+Dt0 f129 @|StartRequestIcon #fIcon
+Dt0 f130 actionTable 'out=in1;
+' #txt
+Dt0 f130 taskData 'TaskA.NAM=Task for disabled user
+TaskA.ROL="visibility_test_user"
+TaskA.TYPE=3' #txt
+Dt0 f130 1233 993 30 30 0 16 #rect
+Dt0 f130 @|TaskSwitchSimpleIcon #fIcon
+Dt0 f132 1361 993 30 30 0 15 #rect
+Dt0 f132 @|EndIcon #fIcon
+Dt0 f133 1263 1008 1361 1008 #arcP
+Dt0 f134 actionTable 'out=in;
+' #txt
+Dt0 f134 actionCode ivy.case.setCreatorUser(ivy.wf.getSecurityContext().users().find("visibility_test_user")); #txt
+Dt0 f134 security system #txt
+Dt0 f134 1064 986 112 44 0 -8 #rect
+Dt0 f134 @|StepIcon #fIcon
+Dt0 f135 1007 1008 1064 1008 #arcP
+Dt0 f131 1176 1008 1233 1008 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1312,3 +1404,13 @@ Dt0 f114 mainOut f116 tail #connect
 Dt0 f116 head f117 mainIn #connect
 Dt0 f117 mainOut f118 tail #connect
 Dt0 f118 head f115 mainIn #connect
+Dt0 f119 mainOut f121 tail #connect
+Dt0 f121 head f120 mainIn #connect
+Dt0 f120 mainOut f123 tail #connect
+Dt0 f123 head f122 mainIn #connect
+Dt0 f130 out f133 tail #connect
+Dt0 f133 head f132 mainIn #connect
+Dt0 f129 mainOut f135 tail #connect
+Dt0 f135 head f134 mainIn #connect
+Dt0 f134 mainOut f131 tail #connect
+Dt0 f131 head f130 in #connect
