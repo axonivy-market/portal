@@ -2747,9 +2747,14 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .md-inputfield .language-selection-label {
   left: 0;
 }
+
 .user-profile-footer {
   padding-right: 5px !important;
   text-align: right;
+}
+
+.user-profile .user-profile-title {
+  padding-left: 0px;
 }
 
 .user-profile {
@@ -2760,8 +2765,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   min-width: 120px;
   margin-bottom: 6px
 }
-/********************************** END USER PROFILE SETTING **********************************/
-/********************************** EMAIL SETTING DIALOG **********************************/
 
 .application-email-setting-container tbody tr td {
   padding-left: 0 !important;
@@ -2781,9 +2784,13 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .daily-summary-checkbox {
-	min-width: 100%
+  min-width: 100%;
 }
-/********************************** END EMAIL SETTING DIALOG **********************************/
+
+.email-setting-switch {
+  float: right;
+}
+/********************************** END USER PROFILE SETTING **********************************/
 
 /********************************** PROCESS STARTS **********************************/
 .process-start-container {
