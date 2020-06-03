@@ -8,22 +8,24 @@
     <ui:param name="stageIndex" value="#{data.stageIndex}" />
     
     <ui:define name="navigation">
-      <div class="ui-g-6">
-        <i class="fa fa-chevron-left" style="color:var(--primary-color);"/><p:spacer width="5rem"/>
+      <div class="ui-g-5">
+        <i class="fa fa-chevron-left ui-md-hidden ui-sm-hidden" style="color:var(--primary-color);"/>
+        <p:spacer width="5rem" styleClass="ui-md-hidden ui-sm-hidden"/>
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/backToCaseMap')}"
         actionListener="#{logic.navigateToOverviewPage}" />
       </div>
-      <div class="ui-g-6 TexAlRight">
-        <i class="fa fa-chevron-left" style="color:var(--primary-color);" jsf:rendered="#{stageIndex > 0}" /><p:spacer width="5rem"/>
+      <div class="ui-g-7 TexAlRight">
+        <i class="fa fa-chevron-left ui-md-hidden ui-sm-hidden" style="color:var(--primary-color);" jsf:rendered="#{stageIndex > 0}" />
+        <p:spacer width="5rem" styleClass=" ui-md-hidden ui-sm-hidden"/>
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/previousStage')}" 
           actionListener="#{logic.navigate(data.caseMapDetail, data.stageIndex - 1)}" 
           rendered="#{stageIndex > 0}"/>
-        <p:spacer width="20rem" rendered="#{caseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}"/>
+        <p:spacer width="10rem" rendered="#{caseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}"/>
         <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/nextStage')}" 
           actionListener="#{logic.navigate(data.caseMapDetail, data.stageIndex + 1)}" 
           rendered="#{caseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}"/>
         <p:spacer width="5rem" rendered="#{caseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}"/>
-        <i class="fa fa-chevron-right" style="color:var(--primary-color);" jsf:rendered="#{caseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}"/>
+        <i class="fa fa-chevron-right ui-md-hidden ui-sm-hidden" style="color:var(--primary-color);" jsf:rendered="#{caseMapDetailBean.renderNextLink(caseMapDetail,stageIndex)}"/>
       </div>
     </ui:define>
     
