@@ -4459,7 +4459,7 @@ background-color:var(--ivy-primary-color-grey-light);
 }
 .stage-icon{
 font-size:2em;
-background-color:var(--ivy-primary-color-grey-medium);;
+background-color:var(--ivy-primary-color-grey-medium);
 color:var(--ivy-primary-color-white);
 width: 100%; 
 height: 100%;
@@ -4473,6 +4473,7 @@ height: 50px;
 border-radius: 4px;
 background-color: var(--ivy-primary-color-grey-medium);
 display: flex;  
+position: relative;
 }
 .card-item{
 height: 40rem; 
@@ -4489,7 +4490,6 @@ height:2rem;
 }
 .side-step-info-text{
 margin-left:1rem;	
-margin-top:1px;
 } 
 .dropdown{
 margin:auto;	
