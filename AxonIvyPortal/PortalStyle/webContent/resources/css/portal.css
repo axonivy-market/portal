@@ -495,9 +495,6 @@ body .ui-widget-header.portal-breadcrumb {
 .daily-summary.ui-selectmanycheckbox.ui-widget label {
   margin-left: 0px; }
 
-.application-email-setting .ui-widget-header {
-  color: var(--email-setting-widget-header); }
-
 /*Style For Process Widget --------------------------------------------------------------------------------*/
 .process-start-list-item:hover .process-start-list-item-icon {
   color: var(--hovered-process-start-list-item-i-con-color); }
