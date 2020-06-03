@@ -9,10 +9,10 @@ var Portal = {
     
     // Update screen when window size is changed
     $(window).resize(function() {
+      Portal.updateLayoutContent();
       setTimeout(function() {
         responsiveToolkit.updateLayoutWithoutAnimation();
       }, 250);
-      Portal.updateLayoutContent();
     });
     
     //Add very small timeout when page ready, fix responsive problem for IE 11
@@ -26,20 +26,20 @@ var Portal = {
   
   // Remove u-invisibility class when DOM is pasted already
   updateLayoutContent : function() {
+    var headerHeight = $('#portal-template-header').outerHeight();
+    var footerHeight = $('#portal-template-footer').outerHeight();
+    var headerFooterHeight = headerHeight + footerHeight;
     if ($('.js-layout-wrapper').hasClass('u-invisibility')) {
-      var headerHeight = $('#portal-template-header').outerHeight();
-      var footerHeight = $('#portal-template-footer').outerHeight();
       var envHeight = $('#portal-environment').outerHeight();
-      var headerFooterHeight = headerHeight + footerHeight;
 
       var announcementMessageContainer = $('.js-announcement-message');
 
       $('.js-left-sidebar').css('top', headerHeight + 'px').css('height', 'calc(100% - ' + (headerFooterHeight - envHeight) + 'px)');
-      $('.js-layout-main').css('margin-top', headerHeight + 'px')
-        .css('height', 'calc(100% - ' + headerFooterHeight + 'px)');
-      $('.js-layout-content').css('height', $('.js-layout-content').outerHeight() - headerFooterHeight);
+      $('.js-layout-main').css('margin-top', headerHeight + 'px').css('height', 'calc(100% - ' + headerFooterHeight + 'px)');
       $('.js-layout-wrapper').removeClass('u-invisibility');
     }
+	// need to fix: topbar + headerFooterHeight
+    $('.js-layout-content').css('max-height', 'calc(100% - ' + headerFooterHeight + 'px)');
   },
 
   updateBreadcrumb : function() {
