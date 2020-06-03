@@ -167,9 +167,16 @@ Hs0 f14 272 336 32 32 0 16 #rect
 Hs0 f14 @|AlternativeIcon #fIcon
 Hs0 f15 expr in #txt
 Hs0 f15 outCond ivy.cms.co("/Processes/LeaveRequest/name").equals(in.process.processName) #txt
+Hs0 f15 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>leave request</name>
+    </language>
+</elementInfo>
+' #txt
 Hs0 f15 288 336 408 256 #arcP
 Hs0 f15 1 288 256 #addKink
-Hs0 f15 1 0.2526788839979472 0 0 #arcLabel
+Hs0 f15 1 0.35833333333333334 0 -11 #arcLabel
 Hs0 f16 109 352 272 352 #arcP
 Hs0 f8 dialogId com.axonivy.portal.userexamples.credit.LendingOverview #txt
 Hs0 f8 startMethod start(ch.ivy.addon.portalkit.persistence.domain.UserProcess) #txt
@@ -189,8 +196,15 @@ Hs0 f8 408 330 112 44 -47 -8 #rect
 Hs0 f8 @|UserDialogIcon #fIcon
 Hs0 f10 expr in #txt
 Hs0 f10 outCond ivy.cms.co("/Processes/CaseMap/name").equals(in.process.processName) #txt
+Hs0 f10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>lending</name>
+    </language>
+</elementInfo>
+' #txt
 Hs0 f10 304 352 408 352 #arcP
-Hs0 f10 0 0.676036937432907 0 0 #arcLabel
+Hs0 f10 0 0.38461538461538464 0 -10 #arcLabel
 Hs0 f17 520 352 659 352 #arcP
 Hs0 f17 0 0.31403006125915683 0 0 #arcLabel
 Hs0 f18 expr in #txt
