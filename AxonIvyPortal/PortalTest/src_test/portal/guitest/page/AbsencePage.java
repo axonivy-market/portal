@@ -81,6 +81,10 @@ public class AbsencePage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 	}
 	
+	public String getSubstitutedByAdmin() {
+	  return findElementByCssSelector("input[id$='substituted-user_input']").getAttribute("value");
+	}
+	
   public void saveSubstitute() {
     clickByCssSelector("button[id*='absence-management:save-substitute']");
     waitAjaxIndicatorDisappear();
