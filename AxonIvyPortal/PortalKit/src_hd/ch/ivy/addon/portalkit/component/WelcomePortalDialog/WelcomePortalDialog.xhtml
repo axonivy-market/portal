@@ -26,8 +26,9 @@
       <p class="guide-panel__content">#{content}</p>
       <div class="guide-panel__buttons">
         <p:commandLink id="welcome-guide-cancel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          process="@none" update="#{cc.attrs.updatedComponentAfterGuide}"
-          oncomplete="PF('welcome-portal-guide').hide()" styleClass="guide-panel__cancel" />
+          process="@(this)" update="#{cc.attrs.updatedComponentAfterGuide}"
+          actionListener="#{guideBean.updateToLoadRealData()}"
+          oncomplete="PF('welcome-portal-guide').hide(); rcFinishGuide()" styleClass="guide-panel__cancel" />
         <p:commandButton id="welcome-guide-next" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}" 
           onclick="PF('welcome-portal-guide').hide(); #{cc.attrs.onNext}" />
       </div>
