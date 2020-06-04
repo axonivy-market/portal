@@ -39,7 +39,7 @@ Ce0 f22 actionTable 'out=in;
 ' #txt
 Ce0 f22 actionCode 'import ch.ivy.addon.portal.generic.view.TaskView;
 
-in.taskView = TaskView.create().dataModel(in.dataModel).showHeaderToolbar(true).noTaskFoundMessage("").createNewTaskView();
+in.taskView = TaskView.create().dataModel(in.dataModel).createNewTaskView();
 ' #txt
 Ce0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -52,7 +52,7 @@ Ce0 f22 352 42 112 44 -38 -8 #rect
 Ce0 f22 @|StepIcon #fIcon
 Ce0 f1 689 49 30 30 0 15 #rect
 Ce0 f1 @|EndIcon #fIcon
-Ce0 f3 dialogId com.axonivy.portal.developerexamples.CustomizedGuideInHome #txt
+Ce0 f3 dialogId com.axonivy.portal.developerexamples.CustomizedGuide #txt
 Ce0 f3 startMethod start(ch.ivy.addon.portal.generic.view.TaskView) #txt
 Ce0 f3 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
 Ce0 f3 requestMappingAction 'param.taskView=in.taskView;
