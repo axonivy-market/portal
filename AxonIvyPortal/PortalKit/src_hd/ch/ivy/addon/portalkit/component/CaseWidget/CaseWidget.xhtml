@@ -96,7 +96,7 @@
            <f:event listener="#{logic.preRenderTitle()}" type="preRenderComponent" />
            <span class="top-header-main-title">
              <span> #{empty cc.attrs.titleOnMobile ? cc.attrs.title : cc.attrs.titleOnMobile}</span>
-             <h:outputText value=" (#{data.dataModel.rowCount})" rendered="#{!data.dataModel.disableCaseCount}" />
+             <h:outputText styleClass="js-case-count-mobile" rendered="#{!data.dataModel.disableCaseCount}" />
           </span>
         </h:panelGroup>
 

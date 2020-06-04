@@ -115,7 +115,10 @@
           <div id="applied-filters-container" class="applied-filters-container">
             <!-- Title on mobile -->
             <div class="ui-sm-4 widget-title-mobile">
-              <h:outputText value="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}" styleClass="top-header-main-title" />
+              <span class="top-header-main-title">
+                <span>#{cc.attrs.title}</span>
+                <h:outputText styleClass="js-task-count-mobile" rendered="#{!data.dataModel.disableTaskCount}" />
+              </span>
             </div>
 
           <!-- Search filter -->

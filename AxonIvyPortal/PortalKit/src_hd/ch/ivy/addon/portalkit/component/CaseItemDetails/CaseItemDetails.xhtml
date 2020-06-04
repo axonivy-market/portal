@@ -27,7 +27,7 @@
 
     <h:panelGroup styleClass="ui-g-12" rendered="#{showItemDetailsHeader}" layout="block">
       <h:form id="case-detail-title-form" styleClass="ui-g-12 case-detail-title-header-container">
-        <h:panelGroup id="case-detail-name" styleClass="case-detail-header" layout="block">
+        <h:panelGroup id="case-detail-name" styleClass="case-detail-header u-hidden-md-up" layout="block">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: "
             styleClass="case-detail-name-prefix" />
           <p:inplace id="case-name-edit-inplace" editor="true"

@@ -32,16 +32,22 @@ function TaskWidget() {
           error = 55; // included margin, padding in search page
         }
 
-        var compactTaskWidgetPadding = $('.compact-task-widget').outerHeight(true) - $('.compact-task-widget').height();
-        var taskViewPadding = $('.js-task-view').outerHeight(true) - $('.js-task-view').height();
-        var layoutContentPadding = $('.layout-content').outerHeight(true) - $('.layout-content').height();
-        var containerPadding = container.outerHeight(true) - container.height();
+        var compactProcessWidgetHeight = window.matchMedia("(max-width: 40em)").matches == true ? ($('.compact-process-widget').outerHeight(true) || 0) : 0;
+        var compactTaskWidgetPadding = $('.compact-task-widget').outerHeight(true) - $('.compact-task-widget').height()||0;
+        var taskViewPadding = $('.js-task-view').outerHeight(true) - $('.js-task-view').height()||0;
+        var layoutContentPadding = $('.layout-content').outerHeight(true) - $('.layout-content').height()||0;
+        var containerPadding = container.outerHeight(true) - container.height()||0;
+
+        var headerHeight = $('#portal-template-header').outerHeight()||0;
+        var footerHeight = $('#portal-template-footer').outerHeight()||0;
+        var headerFooterHeight = headerHeight + footerHeight;
+        var envHeight = $('.js-layout-wrapper').hasClass('u-invisibility') ? $('#portal-environment').outerHeight()||0 : 0;
 
         var mainScreenHeight = ($('.js-layout-content').outerHeight(true)||0);
         var availableHeight = mainScreenHeight - (taskWidgetHeaderContainer.outerHeight(true)||0)
             - (announcementMessageContainer.outerHeight(true)||0) - (taskWidgetSortMenuContainer.outerHeight(true)||0)
             - (taskWidgetFilterContainer.outerHeight(true)||0) - error - customWidgetContainer
-            - taskViewPadding - layoutContentPadding - compactTaskWidgetPadding;
+            - taskViewPadding - layoutContentPadding - compactTaskWidgetPadding - compactProcessWidgetHeight - headerFooterHeight - envHeight;
         if (!!availableHeight) {
             container.height(availableHeight);
             if (container.outerHeight(true) > availableHeight) {
@@ -71,6 +77,8 @@ function TaskWidget() {
       } else {
     	  $breadCrumbTaskElem.find(".js-count").get(0).innerHTML = " (" + $(".js-task-count-hidden").get(0).innerHTML + ")";
       }
+
+      $(".js-task-count-mobile").get(0).innerHTML = " (" + $(".js-task-count-hidden").get(0).innerHTML + ")";
     }
   }
 }
