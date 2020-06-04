@@ -7,17 +7,17 @@
     <ui:param name="items" value="#{data.processes}" />
     
     <ui:define name="header">
-      <h:panelGroup layout="block" styleClass="ui-g-12">
+      <h:panelGroup layout="block" styleClass="ui-g-12" id="example-header">
         <h1>#{ivy.cms.co('/Processes/UserExampleGuide/name')}</h1>
         <h:outputText value="#{ivy.cms.co('/Processes/UserExampleGuide/description')}" />
         <br />
       </h:panelGroup>
     </ui:define>
     <ui:define name="card">
-      <div style="padding:2rem;">
+      <div style="padding:2rem;" id="panel-#{itemStatus.index}">
       
-        <div class="ui-g-12 TexAlCenter">
-          <p:graphicImage library="ivy-cms" name="#{item.icon}" />
+        <div class="ui-g-12 TexAlCenter" >
+          <p:graphicImage library="ivy-cms" name="#{item.icon}" id="icon"/> 
         </div>
         <div class="ui-g-12 TexAlCenter" style="height: 8rem;">
           <h2>#{item.processName}</h2>
@@ -26,14 +26,16 @@
           <h:outputText value="#{item.description}" styleClass="TexAlCenter" />
         </div>
         <p:spacer height="10" />
-        <div class="ui-g-12 TexAlCenter">
+        <div class="ui-g-12 TexAlCenter" id="start-button-wrap-#{itemStatus.index}">
           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{process.processName}"
-            rendered="#{process.description ne ivy.cms.co('/Processes/UserExampleGuide/comingSoon')}"
+            rendered="#{process.description ne ivy.cms.co('/Processes/UserExampleGuide/comingSoon')}" 
+            id="start-button"
             actionListener="#{compactProcessWidgetBean.startProcess(item)}" />
         </div>
-        <div class="ui-g-12 TexAlCenter">
+        <div class="ui-g-12 TexAlCenter" id="more-info-wrap">
           <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/moreInformation')}"
             rendered="#{process.description ne ivy.cms.co('/Processes/UserExampleGuide/comingSoon')}"
+            id="more-info"
             actionListener="#{logic.navigate(item)}" />
         </div>
       </div>

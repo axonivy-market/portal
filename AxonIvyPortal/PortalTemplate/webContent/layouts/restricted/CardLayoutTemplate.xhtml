@@ -17,7 +17,7 @@
           </div>
           <br />
           <div class="ui-g-12">
-          <ui:repeat var="item" value="#{items}">
+          <ui:repeat var="item" value="#{items}" varStatus="itemStatus" >
             <h:panelGroup layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-6 ui-sm-12">
               <div class="card-item card ui-g-12 " >
                 <ui:insert name="card">

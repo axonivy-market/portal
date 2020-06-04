@@ -8,17 +8,12 @@
     <ui:define name="pageContent">
       <div class="ui-g">
         <div class="margin0 ui-g-6 ui-xl-8 ui-lg-12 ui-md-12 ui-sm-12">
-          <div class="ui-g-1 ui-xl-1 ui-lg-1 ui-md-2 ui-sm-3">
-            <p:graphicImage library="ivy-cms" name="#{caseMapDetail.icon}" />
-          </div>
-          <div class="ui-g-11 ui-xl-11 ui-lg-11 ui-md-10 ui-sm-9 TexAlLeft">
-            <h2>#{caseMapDetail.name}</h2>
-          </div>
-          <div class="ui-g-12">
-            <h:outputText value="#{caseMapDetail.description}" />
-          </div>
-
-          <p:spacer height="25rem" />
+          <ui:insert name="header">
+            <!-- Place header here -->
+            <h1>Place header here</h1>
+            <h:outputText value="Place description here" />
+          </ui:insert>
+          <p:spacer height="25rem" styleClass="ui-sm-hidden"/>
           <div class="ui-g-12 ">
             <div class="card ui-g-12 ">
               <ui:insert name="navigation">
@@ -27,7 +22,7 @@
               </ui:insert>
               <div class="ui-g-12">
               <div class="ui-g-12">
-                <h:outputText value="#{caseMapDetailBean.getDisplayStage(caseMapDetail,stageIndex)}" styleClass="title-text" />
+                <h:outputText value="#{caseMapDetailBean.getDisplayStage(caseMapDetail,stageIndex)}" styleClass="title-text" id="stage-#{stageIndex}-name"/>
               </div>
               
               <!-- PROCESS -->
@@ -39,7 +34,7 @@
                   <div class="ui-g-12">
                     <div style="margin0">
                       <div class="ui-g-12 #{processStatus.index == 0?'process-first-breadcrumb':'process-breadcrumb'} ">
-                        <h:outputText value="#{process}" styleClass="process-breadcrumb-title"/>
+                        <h:outputText value="#{process}" styleClass="process-breadcrumb-title" id="process-name"/>
                       </div>
                       <div class="card ui-g-12 description-content height100" >
   
@@ -77,7 +72,7 @@
                     <div style="margin0">
   
                       <div class="ui-g-12 process-breadcrumb">
-                        <h:outputText value="#{process}" styleClass="process-breadcrumb-title"/>
+                        <h:outputText value="#{process}" styleClass="process-breadcrumb-title" id="side-step-name"/>
                       </div>
                       <div class="card ui-g-12 description-content" >
   
