@@ -34,12 +34,12 @@ var Portal = {
 
       var announcementMessageContainer = $('.js-announcement-message');
 
-      $('.js-left-sidebar').css('top', headerHeight + 'px').css('height', 'calc(100% - ' + (headerFooterHeight - envHeight) + 'px)');
-      $('.js-layout-main').css('margin-top', headerHeight + 'px').css('height', 'calc(100% - ' + headerFooterHeight + 'px)');
+      $('.js-left-sidebar').css('top', headerHeight + 'px').css('height', 'calc(100vh - ' + (headerFooterHeight - envHeight) + 'px)');
+      $('.js-layout-main').css('margin-top', headerHeight + 'px').css('height', 'calc(100vh - ' + headerFooterHeight + 'px)');
       $('.js-layout-wrapper').removeClass('u-invisibility');
     }
 	// need to fix: topbar + headerFooterHeight
-    $('.js-layout-content').css('max-height', 'calc(100% - ' + headerFooterHeight + 'px)');
+    $('.js-layout-content').css('height', $('.js-layout-main').outerHeight() - $('.layout-topbar').outerHeight() + 'px');
   },
 
   updateBreadcrumb : function() {
