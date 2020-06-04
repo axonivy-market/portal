@@ -2,21 +2,29 @@ package ch.ivy.addon.portalkit.bo;
 
 import java.util.Optional;
 
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 public class Guide {
 
-  public static final String SHOW_GUIDE = "SHOW_GUIDE";
+  private static final String SHOW_GUIDE = "SHOW_GUIDE";
   private boolean isGuideShown;
+  private GlobalSettingService globalSettingService;
 
   public Guide() {
+    globalSettingService = new GlobalSettingService();
     Optional<String> showGuide = Optional.of(Ivy.session()).map(IWorkflowSession::getSessionUser)
         .map(user -> user.getProperty(SHOW_GUIDE));
     isGuideShown = showGuide.isPresent() ? Boolean.parseBoolean(showGuide.get()) : true;
   }
 
   public boolean isGuideShown() {
+    boolean showGuideSetting = Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_USER_GUIDE.toString()));
+    if (!showGuideSetting) {
+      return false;
+    }
     return isGuideShown;
   }
   

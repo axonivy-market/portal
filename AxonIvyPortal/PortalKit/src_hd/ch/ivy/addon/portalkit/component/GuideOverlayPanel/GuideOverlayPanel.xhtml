@@ -35,13 +35,13 @@
     <div class="guide-panel__container" style="width: #{cc.attrs.contentWidth}">
       <span class="fa #{cc.attrs.icon} fa-4x" />
       <h2>#{cc.attrs.title}</h2>
-      <p class="guide-panel__content">#{cc.attrs.content}</p>
+      <p class="guide-panel__content"><h:outputText id="#{cc.attrs.targetComponent}-content" value="#{cc.attrs.content}" escape="false" /></p>
       <h:panelGroup id="guide-panel-buttons" layout="block" styleClass="guide-panel__buttons">
         <p:commandLink id="cancel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           process="@this" update="#{cc.attrs.updatedComponentAfterGuide}"
           actionListener="#{guideBean.updateToLoadRealData()}" partialSubmit="true"
           oncomplete="PF('#{cc.attrs.targetComponent}-guide').hide(); rcFinishGuide()" styleClass="guide-panel__cancel"
-          rendered="#{not empty cc.attrs.onNext and not guideBean.dontShowAgain}" />
+          rendered="#{not empty cc.attrs.onNext and not guideBean.dontShowAgain}" global="false" />
           
         <p:commandButton id="next" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}" 
           onclick="PF('#{cc.attrs.targetComponent}-guide').hide(); #{cc.attrs.onNext}" rendered="#{not empty cc.attrs.onNext and not guideBean.dontShowAgain}" />
@@ -49,7 +49,7 @@
           process="@this" update="#{cc.attrs.updatedComponentAfterGuide}"
           actionListener="#{guideBean.updateToLoadRealData()}" partialSubmit="true"
           oncomplete="PF('#{cc.attrs.targetComponent}-guide').hide(); #{cc.attrs.onFinish}; rcFinishGuide()"
-          rendered="#{empty cc.attrs.onNext or guideBean.dontShowAgain}" />
+          rendered="#{empty cc.attrs.onNext or guideBean.dontShowAgain}" global="false" />
       </h:panelGroup>
       <div class="guide-panel__dont-show-again">
         <p:selectBooleanCheckbox id="dont-show-again-chbox" value="#{guideBean.dontShowAgain}"

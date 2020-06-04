@@ -15,7 +15,7 @@
 <cc:implementation>
   <ui:param name="icon" value="#{empty cc.attrs.icon ? 'fa fa-home fa-4x' : cc.attrs.icon}" />
   <ui:param name="title" value="#{empty cc.attrs.title ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/welcome/title') : cc.attrs.title}" />
-  <ui:param name="content" value="#{empty cc.attrs.content ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/welcome/content') : cc.attrs.content}" />
+  <ui:param name="content" value="#{empty cc.attrs.content ? logic.buildContent() : cc.attrs.content}" />
   <ui:param name="contentWidth" value="#{empty cc.attrs.contentWidth ? '500px' : cc.attrs.contentWidth}" />
 
   <p:dialog id="welcome-portal-guide" widgetVar="welcome-portal-guide" modal="true" appendTo="@(body)" styleClass="guide-panel"
@@ -23,12 +23,13 @@
     <div class="guide-panel__container" style="width: #{contentWidth}">
       <span class="#{icon}" />
       <h2>#{title}</h2>
-      <p class="guide-panel__content">#{content}</p>
+      <p class="guide-panel__content"><h:outputText id="welcome-content" value="#{content}" escape="false" /></p>
       <div class="guide-panel__buttons">
         <p:commandLink id="welcome-guide-cancel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          process="@(this)" update="#{cc.attrs.updatedComponentAfterGuide}"
-          actionListener="#{guideBean.updateToLoadRealData()}"
-          oncomplete="PF('welcome-portal-guide').hide(); rcFinishGuide()" styleClass="guide-panel__cancel" />
+          process="@this" update="#{cc.attrs.updatedComponentAfterGuide}"
+          actionListener="#{guideBean.updateToLoadRealData()}" global="false"
+          onstart="PF('welcome-portal-guide').hide();"
+          oncomplete="rcFinishGuide()" styleClass="guide-panel__cancel" />
         <p:commandButton id="welcome-guide-next" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}" 
           onclick="PF('welcome-portal-guide').hide(); #{cc.attrs.onNext}" />
       </div>

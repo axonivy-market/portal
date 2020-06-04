@@ -49,7 +49,7 @@ List<IUser> users = ivy.wf.getApplication().getSecurityContext().users().paged()
 for (IUser user : users) {
 	UserForGuide userForGuide = new UserForGuide();
 	userForGuide.setName(user.getName());
-	userForGuide.setGuidePropertyValue(user.getProperty(Guide.SHOW_GUIDE));
+	userForGuide.setGuidePropertyValue(user.getProperty("SHOW_GUIDE"));
 	userForGuide.setIsGuideShown(StringUtils.isNotBlank(userForGuide.getGuidePropertyValue()) ? Boolean.valueOf(userForGuide.getGuidePropertyValue()) : true);
 	in.users.add(userForGuide);
 }' #txt
@@ -83,7 +83,7 @@ if (user.equals(ivy.session.getSessionUser())) {
 	GuideBean guideBean =	ManagedBeans.get("guideBean") as GuideBean;
 	guideBean.setDontShowAgain(!in.user.isGuideShown);
 } else {
-	user.setProperty(Guide.SHOW_GUIDE, String.valueOf(in.user.isGuideShown));
+	user.setProperty("SHOW_GUIDE", String.valueOf(in.user.isGuideShown));
 }
 ' #txt
 Us0 f6 security system #txt
