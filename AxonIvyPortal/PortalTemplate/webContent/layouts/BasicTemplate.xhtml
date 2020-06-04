@@ -96,19 +96,22 @@
           </c:choose>
         </div>
         
-        <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="left-menu-guide-component" targetComponent="left-menu"
-          title="Main Menu" content="The grey Menu includes a full process list, a task and case list and advanced statistics area."
-          contentWidth="370px" targetCssSelector="#left-menu" icon="fa-bars" onNext="PF('process-widget-guide').show()"
-          my="left+30 top+70" at="right top" targetPosition="fixed" arrowPosition="left top"
-          updatedComponentAfterGuide="#{updatedComponentAfterGuide}" />
-
+        <ui:insert name="mainMenuGuide">
+          <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="left-menu-guide-component" targetComponent="left-menu"
+            title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/mainMenu/title')}" 
+            content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/mainMenu/content')}"
+            contentWidth="370px" targetCssSelector="#left-menu" icon="fa-bars" onNext="PF('process-widget-guide').show()"
+            my="left+30 top+70" at="right top" targetPosition="fixed" arrowPosition="left top"
+            updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}" />
+        </ui:insert>
+          
         <div class="layout-main js-layout-main">
           <div class="layout-topbar">
             <a class="menu-btn">
               <i class="material-icons fa fa-bars left-sidebar-menu-icon left-sidebar-menu-icon-font-size" />
             </a>
             <div class="layout-topbar-menu-wrapper">
-              <ui:include src="/layouts/includes/topbar.xhtml">
+              <ui:decorate template="/layouts/includes/topbar.xhtml">
                 <ui:param name="task" value="#{task}" />
                 <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
                 <ui:param name="isNotRequiredLogin" value="#{isNotRequiredLogin}" />
@@ -118,7 +121,7 @@
                 <ui:param name="viewName" value="#{viewName}" />
                 <ui:param name="case" value="#{case}" />
                 <ui:param name="updatedComponentAfterGuide" value="#{updatedComponentAfterGuide}" />
-              </ui:include>
+              </ui:decorate>
               <div class="color-header">
                 <div class="first-header-bar" />
                 <div class="second-header-bar" />
