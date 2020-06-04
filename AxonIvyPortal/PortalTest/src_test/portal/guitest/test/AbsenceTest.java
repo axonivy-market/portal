@@ -22,7 +22,7 @@ public class AbsenceTest extends BaseTest {
   @Override
   @Before
   public void setup() {
-    super.setupWithAlternativeLinkAndAccount("portalKitTestHelper/1511A66AF619A768/cleanAbsencesAndSubstitues.ivp", TestAccount.DEMO_USER);
+    super.setupWithAlternativeLinkAndAccount(cleanUpAbsencesAndSubstituesLink, TestAccount.DEMO_USER);
   }
 
   @Test
