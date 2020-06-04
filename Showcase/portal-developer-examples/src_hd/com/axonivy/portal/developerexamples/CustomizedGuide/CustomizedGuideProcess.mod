@@ -1,7 +1,7 @@
 [Ivy]
 17279832D3EFD089 7.5.0 #module
 >Proto >Proto Collection #zClass
-Ps0 CustomizedGuideInHomeProcess Big #zClass
+Ps0 CustomizedGuideProcess Big #zClass
 Ps0 RD #cInfo
 Ps0 #process
 Ps0 @TextInP .type .type #zField
@@ -17,7 +17,7 @@ Ps0 @PushWFArc f2 '' #zField
 Ps0 @UdMethod f1 '' #zField
 Ps0 @UdProcessEnd f6 '' #zField
 Ps0 @PushWFArc f7 '' #zField
->Proto Ps0 Ps0 CustomizedGuideInHomeProcess #zField
+>Proto Ps0 Ps0 CustomizedGuideProcess #zField
 Ps0 f0 guid 1624C82641E60027 #txt
 Ps0 f0 method start(TaskView) #txt
 Ps0 f0 inParameterDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
@@ -63,7 +63,7 @@ Ps0 f6 213 149 22 22 14 0 #rect
 Ps0 f6 @|UdProcessEndIcon #fIcon
 Ps0 f7 expr out #txt
 Ps0 f7 107 160 213 160 #arcP
->Proto Ps0 .type com.axonivy.portal.developerexamples.CustomizedGuideInHome.CustomizedGuideInHomeData #txt
+>Proto Ps0 .type com.axonivy.portal.developerexamples.CustomizedGuide.CustomizedGuideData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
 >Proto Ps0 '' #fIcon
