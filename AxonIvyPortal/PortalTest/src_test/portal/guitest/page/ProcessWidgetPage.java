@@ -63,6 +63,12 @@ public class ProcessWidgetPage extends TemplatePage {
     }
     return processItemElement;
   }
+  
+  public ExpressProcessPage editExpressWF(String wfName) {
+    enterSearchKeyword(wfName);
+    click(By.cssSelector("[id$='edit-express-workflow']"));
+    return new ExpressProcessPage();
+  }
 
   public boolean isProcessDisplay(String processName) {
     return getProcess(processName) !=null;
