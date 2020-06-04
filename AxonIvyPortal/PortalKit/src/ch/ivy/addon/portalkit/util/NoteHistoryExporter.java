@@ -14,7 +14,6 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import ch.ivy.addon.portalkit.bean.CaseBean;
-import ch.ivy.addon.portalkit.bean.UserFormatBean;
 import ch.ivy.addon.portalkit.bo.ExcelExportSheet;
 import ch.ivy.addon.portalkit.bo.History;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -22,8 +21,7 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
 
 public class NoteHistoryExporter {
-  private UserFormatBean userFormatBean;
-
+  
   public StreamedContent getStreamedContentOfTaskNoteHistory(List<INote> taskNoteHistory, String fileName) {
     List<List<Object>> rows = generateDataForTaskNoteHistory(taskNoteHistory);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -81,7 +79,7 @@ public class NoteHistoryExporter {
     for (INote taskNote : taskNoteHistory) {
       List<Object> row = new ArrayList<>();
       row.add(taskNote.getMessage());
-      row.add(taskNote.getWritter().getDisplayName());
+      row.add(SecurityMemberDisplayNameUtils.generateBriefDisplayNameForUser(taskNote.getWritter(), taskNote.getWritter().getName()));
       row.add(formatDate(taskNote.getCreationTimestamp()));
       rows.add(row);
     }
@@ -102,21 +100,18 @@ public class NoteHistoryExporter {
     List<Object> row = new ArrayList<>();
     row.add(iCase.getName());
     row.add(iCase.getId());
-    row.add(iCase.getCreatorUser() != null
-        ? userFormatBean.format(iCase.getCreatorUser().getDisplayName(), iCase.getCreatorUser().getName())
-        : Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable"));
+    row.add(SecurityMemberDisplayNameUtils.generateFullDisplayNameForUser(iCase.getCreatorUser(), iCase.getCreatorUser().getName()));
     row.add(new CaseBean().getState(iCase));
     rows.add(row);
     return rows;
   }
 
   private List<List<Object>> generateDataForCaseNoteHistory(List<History> caseNoteHistory) {
-    userFormatBean = new UserFormatBean();
     List<List<Object>> rows = new ArrayList<>();
     for (History caseNote : caseNoteHistory) {
       List<Object> row = new ArrayList<>();
       row.add(caseNote.getContent());
-      row.add(userFormatBean.format(caseNote.getInvolvedFullname(), caseNote.getInvolvedUsername()));
+      row.add(caseNote.getDisplayName());
       row.add(formatDate(caseNote.getTimestamp()));
       rows.add(row);
     }
