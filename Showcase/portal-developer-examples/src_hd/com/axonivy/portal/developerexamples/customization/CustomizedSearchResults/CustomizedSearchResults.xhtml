@@ -30,7 +30,7 @@
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskName task="#{task}" dataModel="#{dataModel.taskDataModel}" />
       </div>
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible dataModel="#{dataModel.taskDataModel}"
-        userName="#{task.getActivatorName()}" fullName="#{task.getActivator().getDisplayName()}"
+        responsibleName="#{task.getActivatorName()}" responsible="#{task.getActivator()}"
         styleClass="activatior-column" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.getId()}"
         dataModel="#{dataModel.taskDataModel}" />

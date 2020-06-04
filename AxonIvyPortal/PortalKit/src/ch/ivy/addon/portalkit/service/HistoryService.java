@@ -13,7 +13,6 @@ import ch.ivy.addon.portalkit.bo.History;
 import ch.ivy.addon.portalkit.bo.History.HistoryType;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivyteam.ivy.security.ISecurityConstants;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.ITask;
 
@@ -69,13 +68,8 @@ public class HistoryService {
     history.setId(task.getId());
     history.setContent(task.getName());
     history.setTaskState(task.getState());
-    if (task.getWorkerUserName() != null) {
-      history.setInvolvedUsername(task.getWorkerUserName().replaceFirst("#", ""));
-      IUser worker = task.getWorkerUser();
-      if (worker != null) {
-        history.setInvolvedFullname(worker.getFullName());
-      }
-    }
+    history.setInvolvedUsername(task.getWorkerUserName());
+    history.setInvolvedUser(task.getWorkerUser());
 
     // If task is done, set end time as history time
     // Otherwise, set start time as history time
@@ -89,9 +83,7 @@ public class HistoryService {
     History history = new History();
     history.setId(note.getId());
     history.setContent(note.getMessage());
-    if (note.getWritter() != null) {
-      history.setInvolvedFullname(note.getWritter().getFullName());
-    }
+    history.setInvolvedUser(note.getWritter());
     history.setInvolvedUsername(note.getWritterName());
     history.setTimestamp(new Timestamp(note.getCreationTimestamp().getTime()));
     history.setType(HistoryType.NOTE);
