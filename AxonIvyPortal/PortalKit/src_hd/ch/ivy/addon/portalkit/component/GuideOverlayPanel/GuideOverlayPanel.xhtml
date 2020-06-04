@@ -21,9 +21,9 @@
     shortDescription="Position of the target relative to the panel, including two values, e.g. left top. Available values: top, right, bottom, left Default: left bottom" />
   <cc:attribute name="onShow" />
   <cc:attribute name="onHide" />
-  <cc:attribute name="onNext" shortDescription="javascript function to execute after click on Next button" />
+  <cc:attribute name="onNext" shortDescription="javascript function to execute after click on Next button. If empty, this step is the last one." />
+  <cc:attribute name="onFinish" shortDescription="javascript function to execute after click on Finish button" />
   <cc:attribute name="updatedComponentAfterGuide" shortDescription="Update the given components in order to display real data after guide." />
-  <cc:attribute name="isFinalStep" default="false" />
 </cc:interface>
 
 <cc:implementation>
@@ -36,21 +36,26 @@
       <span class="fa #{cc.attrs.icon} fa-4x" />
       <h2>#{cc.attrs.title}</h2>
       <p class="guide-panel__content">#{cc.attrs.content}</p>
-      <div class="guide-panel__buttons">
+      <h:panelGroup id="guide-panel-buttons" layout="block" styleClass="guide-panel__buttons">
         <p:commandLink id="cancel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          process="@none" update="#{cc.attrs.updatedComponentAfterGuide}"
-          oncomplete="PF('#{cc.attrs.targetComponent}-guide').hide()" styleClass="guide-panel__cancel"
-          rendered="#{not cc.attrs.isFinalStep}" />
+          process="@this" update="#{cc.attrs.updatedComponentAfterGuide}"
+          actionListener="#{guideBean.updateToLoadRealData()}" partialSubmit="true"
+          oncomplete="PF('#{cc.attrs.targetComponent}-guide').hide(); rcFinishGuide()" styleClass="guide-panel__cancel"
+          rendered="#{not empty cc.attrs.onNext and not guideBean.dontShowAgain}" />
           
         <p:commandButton id="next" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}" 
-          onclick="PF('#{cc.attrs.targetComponent}-guide').hide(); #{cc.attrs.onNext}" rendered="#{not cc.attrs.isFinalStep}" />
+          onclick="PF('#{cc.attrs.targetComponent}-guide').hide(); #{cc.attrs.onNext}" rendered="#{not empty cc.attrs.onNext and not guideBean.dontShowAgain}" />
         <p:commandButton id="finish" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/finish')}"
-          process="@none" update="#{cc.attrs.updatedComponentAfterGuide}"
-          oncomplete="PF('#{cc.attrs.targetComponent}-guide').hide(); #{cc.attrs.onNext}"
-          rendered="#{cc.attrs.isFinalStep}" />
-      </div>
+          process="@this" update="#{cc.attrs.updatedComponentAfterGuide}"
+          actionListener="#{guideBean.updateToLoadRealData()}" partialSubmit="true"
+          oncomplete="PF('#{cc.attrs.targetComponent}-guide').hide(); #{cc.attrs.onFinish}; rcFinishGuide()"
+          rendered="#{empty cc.attrs.onNext or guideBean.dontShowAgain}" />
+      </h:panelGroup>
       <div class="guide-panel__dont-show-again">
-        <p:selectBooleanCheckbox value="" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/dontShowAgain')}" />
+        <p:selectBooleanCheckbox id="dont-show-again-chbox" value="#{guideBean.dontShowAgain}"
+          itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/dontShowAgain')}">
+          <p:ajax process="@this" partialSubmit="true" update="guide-panel-buttons" />
+        </p:selectBooleanCheckbox>
       </div>
     </div>
   </p:dialog>
