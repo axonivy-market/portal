@@ -12,7 +12,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{compactProcessWidgetBean.init}" type="preRenderComponent" />
+  <f:event listener="#{compactProcessWidgetBean.preRender}" type="preRenderComponent" />
   <h:outputScript library="js" name="process-widget.js" />
   <div id="#{cc.clientId}" class="widget process-widget ui-g">
     <ui:include src="Header.xhtml" />

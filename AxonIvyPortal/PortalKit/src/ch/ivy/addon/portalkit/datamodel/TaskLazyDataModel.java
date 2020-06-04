@@ -19,13 +19,13 @@ import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
-import ch.ivy.addon.portalkit.constant.DummyTask;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
+import ch.ivy.addon.portalkit.service.DummyTaskService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.service.TaskColumnsConfigurationService;
@@ -91,7 +91,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       buildDefaultTaskFilterData();
     }
   }
-
+  
   private void loadSessionTaskFiltersAttribute() {
     if (shouldSaveAndLoadSessionFilters()) {
       if (isSameFilterGroupId()) {
@@ -231,12 +231,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   @Override
   public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
     if (isGuide) {
-      isGuide = false;
-      List<ITask> tasks = createDummyDataForGuide();
-      data.addAll(tasks);
-      setRowCount(1);
-      PrimeFaces.current().executeScript("updateTaskCount()");
-      return tasks;
+      return createDummyDataForGuide();
     } else {
       if (first == 0) {
         initializedDataModel(criteria);
@@ -262,14 +257,20 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
   
   private List<ITask> createDummyDataForGuide() {
-    ITask task = ITask.current();
-    task.setName(DummyTask.TASK_NAME);
-    task.setDescription(DummyTask.TASK_DESCRIPTION);
-    return Arrays.asList(task);
+    data = new ArrayList<>();
+    List<ITask> tasks = DummyTaskService.dummyTasks();
+    data.addAll(tasks);
+    setRowCount(1);
+    PrimeFaces.current().executeScript("updateTaskCount()");
+    return tasks;
   }
   
   public boolean getIsGuide() {
     return isGuide;
+  }
+  
+  public void setIsGuide(boolean isGuide) {
+    this.isGuide = isGuide;
   }
 
   /**

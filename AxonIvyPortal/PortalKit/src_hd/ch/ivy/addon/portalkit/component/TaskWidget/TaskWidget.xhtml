@@ -27,6 +27,8 @@
   <c:set var="noTaskFoundMessage"
     value="#{empty cc.attrs.noTaskFoundMessage ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/noTask') : cc.attrs.noTaskFoundMessage}" />
   <h:outputScript name="task-widget.js" library="js" />
+  
+  <f:event listener="#{taskWidgetBean.preRender(data.dataModel)}" type="preRenderComponent" />
 
   <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} ui-g">
     <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}">
