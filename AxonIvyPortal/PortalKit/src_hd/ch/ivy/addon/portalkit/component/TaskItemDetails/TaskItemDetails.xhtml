@@ -18,7 +18,7 @@
   <div class="ui-g widget-details-item">
     <h:panelGroup id="task-detail-container" rendered="#{cc.attrs.showItemDetailsHeader}" styleClass="ui-g-12 u-truncate-text">
       <h:form id="task-detail-title-form" onsubmit="return false;" styleClass="task-detail-header">
-        <h:panelGroup id="#{cc.attrs.nameId}-edit-form" styleClass="task-name-edit u-truncate-text">
+        <h:panelGroup id="#{cc.attrs.nameId}-edit-form" styleClass="task-name-edit u-truncate-text u-hidden-md-up">
           <h:outputText value="#{ivy.cms.co('/Labels/Task')}: " />
           <p:inplace id="#{cc.attrs.nameId}-inplace" editor="true" disabled="#{!taskActionBean.canChangeName(task)}"
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
