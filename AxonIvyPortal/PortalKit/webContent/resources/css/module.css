@@ -747,6 +747,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   text-align: right;
 }
 
+@media (min-width: 768px) {
+  .case-details-back-btn, .task-details-back-btn {
+    text-align: left;
+  }
+}
+
 .case-detail-title-header-container {
   padding: 0 !important;
   display: flex;
