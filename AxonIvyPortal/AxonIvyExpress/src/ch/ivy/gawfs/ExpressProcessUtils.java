@@ -19,6 +19,7 @@ import ch.ivy.addon.portalkit.bo.ExpressUserEmail;
 import ch.ivy.addon.portalkit.dto.ExpressAttachment;
 import ch.ivy.addon.portalkit.enums.ExpressEmailAttachmentStatus;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivy.gawfs.enums.FormElementType;
 import ch.ivy.gawfs.enums.TaskType;
 import ch.ivy.gawfs.mail.MailAttachment;
@@ -190,7 +191,7 @@ public class ExpressProcessUtils {
       .stream()
       .map(responsibleName -> Ivy.session().getSecurityContext().findSecurityMember(responsibleName))
       .filter(securityMember -> securityMember != null)
-      .map(securityMember -> StringUtils.defaultIfBlank(securityMember.getDisplayName(), securityMember.getName()))
+      .map(securityMember -> SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(securityMember, securityMember.getName()))
       .collect(Collectors.joining(", "));
   }
 

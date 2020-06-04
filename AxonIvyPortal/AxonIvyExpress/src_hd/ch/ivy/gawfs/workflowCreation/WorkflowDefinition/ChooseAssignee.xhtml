@@ -18,7 +18,7 @@
           selectedUser="#{data.selectedUser}" queryDelay="500"
           rendered="#{data.isAssignToUser}" isRenderedMessage="false" >
           <p:column>
-            <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.name)}" />
+            <h:outputText value="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />
           </p:column> 
           <f:facet name="event">
             <p:ajax event="itemSelect" update="#{p:component('add-assignee-button')}" />
@@ -45,7 +45,7 @@
               <h:outputText id="assign-type-icon" class="fa #{assignee.isUser() ? 'fa-user' : 'fa-users'} " />
             </p:column>
             <p:column styleClass="assignee-name-col">
-              <h:outputText value="#{assignee.getDisplayName().length() ne 0 ? assignee.getDisplayName() : assignee.getName()}" />
+              <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(assignee, assignee.getName())}" />
             </p:column>
             <p:column>
               <p:commandLink id="delete-assignee" styleClass="fa fa-trash delete-assignee" actionListener="#{logic.removeSelectedAssignee(assignee)}"

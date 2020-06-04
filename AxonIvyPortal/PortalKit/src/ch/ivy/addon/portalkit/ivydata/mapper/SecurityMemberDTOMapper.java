@@ -17,6 +17,7 @@ public class SecurityMemberDTOMapper {
     result.setMemberName(userDTO.getMemberName());
     result.setName(userDTO.getName());
     result.setUser(true);
+    result.setEnabled(userDTO.isEnabled());
     
     return result;
   }
@@ -43,6 +44,7 @@ public class SecurityMemberDTOMapper {
     result.setMemberName(roleDTO.getMemberName());
     result.setName(roleDTO.getName());
     result.setUser(false);
+    result.setEnabled(true);
     
     return result;
   }
