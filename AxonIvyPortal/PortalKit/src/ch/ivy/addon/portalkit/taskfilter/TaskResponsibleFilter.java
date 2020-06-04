@@ -72,6 +72,7 @@ public class TaskResponsibleFilter extends TaskFilter {
       } else {
         responsibleName = responsible.getDisplayName() + " (" + responsible.getName() + ")";
       }
+      return responsible.isEnabled()? responsibleName : Ivy.cms().co("/Labels/disabledUserPrefix") + " " + responsibleName;
     }
     return responsibleName;
   }

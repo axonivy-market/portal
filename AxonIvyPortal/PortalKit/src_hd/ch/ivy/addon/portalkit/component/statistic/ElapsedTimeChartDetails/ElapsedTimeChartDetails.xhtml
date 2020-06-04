@@ -40,7 +40,7 @@
 
         <p:column id="case-creator" styleClass="case-creator js-elapsed-case"
           headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" sortable="false">
-          <h:outputText value="#{userFormatBean.format(elapsedTimeDetail.getCreatorUser().getFullName(), elapsedTimeDetail.getCreatorUserName())}"/>
+          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(elapsedTimeDetail.getCreatorUser(), elapsedTimeDetail.getCreatorUserName())}"/>
         </p:column>
 
         <p:column id="case-created" styleClass="case-created js-elapsed-case" 
