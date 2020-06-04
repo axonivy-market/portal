@@ -32,7 +32,7 @@
           autoCompleteStyleClass="absence-user-selection"
           scrollHeight="200" size="35">
           <p:column>
-            <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.name)}"/>
+            <h:outputText value="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"/>
           </p:column>
           <f:facet name="event">
             <p:ajax event="itemSelect" listener="#{logic.findAbsences}" partialSubmit="true" update="#{p:component('absence-table')}"/>
@@ -105,7 +105,7 @@
             autoCompletePanelStyleClass="ui-g-4 ui-sm-8 substituted-user"
             scrollHeight="200" size="35" isRenderedMessage="false" styleClass="ui-g-12">
             <p:column>
-              <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.name)}" />
+              <h:outputText value="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />
             </p:column>
             <f:facet name="event">
               <p:ajax event="itemSelect" listener="#{logic.changeUserSubstitute}" update="#{p:component('substitute-table')}" partialSubmit="true" />
@@ -127,13 +127,13 @@
                 selectedUser="#{substitute.substituteUser}"
                 scrollHeight="200" size="30"
                 isRenderedMessage="false"
-                itemLabel="#{not empty user ? user.displayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
+                itemLabel="#{not empty user ? user.briefDisplayNameWithState : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
                 autoCompletePanelStyleClass="user-selection-autocomplete-panel"
                 inputStyleClass="js-substitute-input">
                 <p:column>
                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/noDeputy')}"
                     rendered="#{empty user}" />
-                  <h:outputText value="#{userFormatBean.formatWithTip(user.displayName, user.name)}"
+                  <h:outputText value="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}"
                     rendered="#{not empty user}" />
                 </p:column>
               </ic:ch.ivy.addon.portalkit.component.UserSelection>

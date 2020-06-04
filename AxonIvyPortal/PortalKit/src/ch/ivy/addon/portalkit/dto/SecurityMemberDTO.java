@@ -1,6 +1,8 @@
 package ch.ivy.addon.portalkit.dto;
 
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
+import ch.ivyteam.ivy.security.IUser;
 
 public class SecurityMemberDTO {
   private long id;
@@ -8,46 +10,77 @@ public class SecurityMemberDTO {
   private String displayName;
   private String memberName;
   private boolean isUser;
-  
+  private boolean isEnabled;
+
   public SecurityMemberDTO() {}
-  
+
   public SecurityMemberDTO(ISecurityMember securityMember) {
     this.id = securityMember.getId();
     this.name = securityMember.getName();
     this.displayName = securityMember.getDisplayName();
     this.memberName = securityMember.getMemberName();
     this.isUser = securityMember.isUser();
+    if(securityMember.isUser()) {
+      IUser user = (IUser) securityMember;
+      this.isEnabled = user.isEnabled();
+    }
+    else {
+      this.isEnabled = true;
+    }
   }
-  
+
   public long getId() {
     return id;
   }
+
   public void setId(long id) {
     this.id = id;
   }
+
   public String getName() {
     return name;
   }
+
   public void setName(String name) {
     this.name = name;
   }
+
   public String getDisplayName() {
     return displayName;
   }
+
   public void setDisplayName(String displayName) {
     this.displayName = displayName;
   }
+
   public String getMemberName() {
     return memberName;
   }
+
   public void setMemberName(String memberName) {
     this.memberName = memberName;
   }
+
   public boolean isUser() {
     return isUser;
   }
+
   public void setUser(boolean isUser) {
     this.isUser = isUser;
   }
+
+  public boolean isEnabled() {
+    return isEnabled;
+  }
+
+  public void setEnabled(boolean isEnabled) {
+    this.isEnabled = isEnabled;
+  }
   
+  public String getBriefDisplayNameWithState() {
+    if(this.isEnabled) {
+      return this.displayName;
+    }
+    return Ivy.cms().co("/Labels/disabledUserPrefix") + " " + this.displayName; 
+  }
 }

@@ -15,7 +15,7 @@
     taskFilter="#{cc.attrs.filter}" selectedFilters="#{cc.attrs.selectedFilters}" resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dataModel="#{cc.attrs.dataModel}" dismissableOverlayPanel="false">
     <p:autoComplete id="responsible" scrollHeight="210" dropdown="true" size="35" 
       completeMethod="#{logic.autoCompleteForResponsible}" value="#{cc.attrs.filter.selectedResponsible}"
-      var="responsible" itemValue="#{responsible}" itemLabel="#{responsible.displayName}"
+      var="responsible" itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}"
       converter="pojoConverter" cache="true" maxResults="100"
       moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
       styleClass="responsible-list-filter">
