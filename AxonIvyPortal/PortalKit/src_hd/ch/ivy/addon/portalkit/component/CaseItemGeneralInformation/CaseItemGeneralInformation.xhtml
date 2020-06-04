@@ -18,16 +18,16 @@
           
           <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseOwner')}" />
           <h:panelGroup rendered="#{not empty case.getOwner()}">
-            <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="case-owner-full-name" rendered="#{case.getOwner().isUser()}"
-              fullname="#{not empty case.getOwner() ? case.getOwner().getFullName() : ''}" username="#{case.ownerName}" />
+            <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="case-owner-full-name" rendered="#{case.getOwner().isUser()}"
+              securityMember="#{case.getOwner()}" securityMemberName="#{case.ownerName}" />
             <h:outputText value="#{case.getOwner().getDisplayName()}" rendered="#{not case.getOwner().isUser()}" />
           </h:panelGroup>
           <!-- Second column for panelGrid in case of no owner -->
           <h:panelGroup rendered="#{empty case.getOwner()}" /> 
 
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
-          <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="case-creator-full-name" 
-            fullname="#{case.getCreatorUser().getFullName()}" username="#{case.creatorUserName}" />
+          <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="case-creator-full-name" 
+            securityMember="#{case.getCreatorUser()}" securityMemberName="#{case.creatorUserName}" />
 
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/create')}" />
           <h:outputText id="case-start-time" value="#{case.startTimestamp}">
