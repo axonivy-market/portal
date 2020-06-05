@@ -81,7 +81,7 @@
       <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="setting-container-guide-component" targetComponent="setting-container"
         title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/username/title')}" 
         content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/username/content')}"
-        contentWidth="370px" targetCssSelector=".setting-container" icon="fa-user" onNext="PF('statistic-widget-container-guide').show()"
+        targetCssSelector=".setting-container" icon="fa-user" onNext="PF('statistic-widget-container-guide').show()"
         my="right bottom-30" at="right top" arrowPosition="top right" onShow="showUsernameGuide()" onHide="hideUsernameGuide()"
         updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}" />
         
