@@ -55,8 +55,8 @@ function GuidePanel(targetCssSelector, originMy, at, targetPosition, arrowPositi
   
   var positionTarget = function(position, backgroundColor, zIndex) {
     $target.css({
-      'position' : targetPosition,
-      'background-color' : 'white',
+      'position' : position,
+      'background-color' : backgroundColor,
       'z-index' : zIndex
     });
   }
