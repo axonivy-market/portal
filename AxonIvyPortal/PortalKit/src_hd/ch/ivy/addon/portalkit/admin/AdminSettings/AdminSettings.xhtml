@@ -231,8 +231,7 @@
                   styleClass="admin-settings-form-input application-input-with-button"
                   requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appNameRequiredMsg')}"
                   validatorMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appNameCharactersLimit')}">
-                  <p:keyFilter regEx="/[a-zA-Z0-9_]/i" preventPaste="false" />
-                  <f:validateRegex pattern="^[a-zA-Z0-9_]*$" />
+                  <f:validateRegex pattern="[\p{Alnum}_-]+" />
                 </p:inputText>
                 <p:outputLabel styleClass="admin-settings-form-input-label"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationName')}" for="appName" />
