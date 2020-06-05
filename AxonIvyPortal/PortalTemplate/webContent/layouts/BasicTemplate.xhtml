@@ -100,7 +100,7 @@
           <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="left-menu-guide-component" targetComponent="left-menu"
             title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/mainMenu/title')}" 
             content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/mainMenu/content')}"
-            contentWidth="370px" targetCssSelector="#left-menu" icon="fa-bars" onNext="PF('process-widget-guide').show()"
+            targetCssSelector="#left-menu" icon="fa-bars" onNext="PF('process-widget-guide').show()"
             my="left+30 top+70" at="right top" targetPosition="fixed" arrowPosition="left top"
             updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}" />
         </ui:insert>
