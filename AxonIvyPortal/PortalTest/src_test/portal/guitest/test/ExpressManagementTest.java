@@ -54,7 +54,6 @@ public class ExpressManagementTest extends BaseTest {
     expressManagementPage.openImportDialog();
     expressManagementPage.selectJSONFile(FileHelper.getAbsolutePathToTestFile("express-test.json"));
     expressManagementPage.clickOnDeployExpress();
-    Sleeper.sleep(1000);
     expressManagementPage.clickOnCloseButton();
     adminSettingsPage.closeAdminSettingDialog();
     adminSettingsPage.closeInformConfigDialog();

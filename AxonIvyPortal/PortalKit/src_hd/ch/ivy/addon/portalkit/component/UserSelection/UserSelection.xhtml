@@ -31,7 +31,7 @@
     shortDescription="Highlights the first suggested user automatically."/>
   <cc:attribute name="size" 
     shortDescription="Number of characters used to determine the width of the input element."/>
-  <cc:attribute name="itemLabel" default="#{user.getDisplayName()}" 
+  <cc:attribute name="itemLabel" default="#{user.getBriefDisplayNameWithState()}" 
     shortDescription="Displayed text of selected user item and users in dropdown list." />
   <cc:attribute name="scrollHeight" default="390" 
     shortDescription="scrollHeight attribute of primefaces autocomplete."/>
