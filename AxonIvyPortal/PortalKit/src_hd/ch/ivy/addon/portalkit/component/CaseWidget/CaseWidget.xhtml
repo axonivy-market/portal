@@ -120,7 +120,7 @@
 
             <!-- Add more filters button -->
             <p:commandLink id="filter-add-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/moreOptions')}"
-              styleClass="filter-add-container u-hidden-md-down" />
+              styleClass="filter-add-container u-hidden-md-down" global="false" />
             <p:overlayPanel id="filter-add-panel" widgetVar="filter-add-panel" styleClass="filter-add-panel"
               for="filter-add-action" my="left top" at="left bottom" dismissable="false">
               <h:form id="filter-add-form">
