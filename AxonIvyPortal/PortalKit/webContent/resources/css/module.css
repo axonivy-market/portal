@@ -2749,12 +2749,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .user-profile-footer {
-  padding-right: 5px !important;
+  margin-top: 25px;
   text-align: right;
-}
-
-.user-profile .user-profile-title {
-  padding-left: 0px;
 }
 
 .user-profile {
@@ -2766,12 +2762,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   margin-bottom: 6px
 }
 
-.application-email-setting-container tbody tr td {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-.application-email-setting-row {
+.application-email-setting-row,
+.daily-summary-checkbox.ui-selectcheckboxmenu {
   width: 100%;
 }
 
@@ -2783,12 +2775,17 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding-bottom: 10px !important;
 }
 
-.daily-summary-checkbox {
-  min-width: 100%;
+.my-profile-container {
+  margin: 0 15px;
 }
 
-.email-setting-switch {
-  float: right;
+.user-profile .setting-header {
+  margin-bottom: 10px;
+}
+
+.language-selection,
+.email-setting-container {
+  margin-top: 30px;
 }
 /********************************** END USER PROFILE SETTING **********************************/
 
