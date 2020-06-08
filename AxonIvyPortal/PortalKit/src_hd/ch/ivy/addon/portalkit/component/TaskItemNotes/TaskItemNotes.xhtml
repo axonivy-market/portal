@@ -50,7 +50,8 @@
           </span>
         </p:column>
 
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/author')}" sortBy="#{note.creationTimestamp}"
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/author')}" 
+          sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(note.writter, note.writterName)}"
           styleClass="task-document-author u-truncate-text ui-sm-hidden">
           <i class="fa fa-pencil-square-o" />
           <p:spacer width="5" />
