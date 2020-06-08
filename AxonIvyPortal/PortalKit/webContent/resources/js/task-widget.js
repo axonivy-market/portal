@@ -86,11 +86,11 @@ function TaskWidget() {
 function TaskListToolKit() {
 
   function hideColumnWhenExpandMenu($columns) {
-    $columns.addClass("ui-hidden");
+    $columns.addClass("u-hidden");
   }
 
   function displayColumnWhenCollapseMenu($columns) {
-    $columns.removeClass("ui-hidden");
+    $columns.removeClass("u-hidden");
   }
 
   return {
