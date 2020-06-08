@@ -139,7 +139,10 @@ public class TaskAnalysisExporter {
       case CASE_CATEGORY:
         return task.getCase().getCategoryPath();
       case CASE_CREATOR:
-        return task.getCase().getCreatorUserName();
+        if (task.getCase().getCreatorUserName() == null) {
+          return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
+        }
+        return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(task.getCase().getCreatorUser(), task.getCase().getCreatorUserName());
       case CASE_STATE:
         return task.getCase().getState().toString();
       case TASK_NAME:
