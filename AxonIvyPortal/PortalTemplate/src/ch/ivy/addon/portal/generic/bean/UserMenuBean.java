@@ -45,6 +45,7 @@ public class UserMenuBean implements Serializable {
   private static final String USER_PROFILE_FRIENDLY_REQUEST_PATH =  "Business Processes/UserProfile/UserProfile.ivp";
   public static final long TIME_BEFORE_LOST_SESSION = 3 * DateUtils.MILLIS_PER_MINUTE; // 3 minutes
   public static final String TASK_LEAVE_WARNING_COMPONENT = "task-leave-warning-component";
+  private String targetPage = getHomePageURL();
 
   private String loggedInUser;
   GlobalSettingService globalSettingService;
@@ -135,6 +136,7 @@ public class UserMenuBean implements Serializable {
 
   public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      targetPage = getHomePageURL();
       PrimeFaces.current().executeScript("PF('logo-task-losing-confirmation-dialog').show()");
     } else {
       navigateToHomePage();
@@ -143,48 +145,25 @@ public class UserMenuBean implements Serializable {
   
   public void navigateToUserProfileOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
     if (isWorkingOnATask && task.getState() != TaskState.DONE) {
-      PrimeFaces.current().executeScript("PF('task-losing-confirmation-dialog').show()");
+      PrimeFaces.current().executeScript("PF('logo-task-losing-confirmation-dialog').show()");
+      targetPage = getUserProfileUrl();
     } else {
       navigateToUserProfile();
     }
   }
-
-  public void resetTaskAndNavigateToHomePage(ITask task) throws IOException {
-    TaskUtils.resetTask(task != null ? task : Ivy.wfTask());
-    navigateToHomePage();
-  }
-
-  public void resetTaskAndNavigateToHomePageWithGrowl(ITask task) throws IOException {
-    IvyComponentLogicCaller<ITask> leaveTask = new IvyComponentLogicCaller<>();
-    leaveTask.invokeComponentLogic(TASK_LEAVE_WARNING_COMPONENT, "#{logic.leave}", new Object[] {});
-    TaskUtils.resetTask(task != null ? task : Ivy.wfTask());
-    navigateToHomePage();
-  }
-
-  public void reserveTaskAndNavigateToHomePage(ITask task) throws IOException {
-    TaskUtils.parkTask(task != null ? task : Ivy.wfTask());
-    navigateToHomePage();
-  }
   
-  public void resetTaskAndNavigateToUserProfileWithGrowl(ITask task) throws IOException {
-    IvyComponentLogicCaller<ITask> leaveTask = new IvyComponentLogicCaller<>();
-    leaveTask.invokeComponentLogic(TASK_LEAVE_WARNING_COMPONENT, "#{logic.leave}", new Object[] {});
-    TaskUtils.resetTask(task != null ? task : Ivy.wfTask());
-    navigateToUserProfile();
-  }
-
-  public void reserveTaskAndNavigateToUserProfileWithGrowl(ITask task) throws IOException {
+  public void reserveTaskAndNavigateWithGrowl(ITask task) throws IOException {
     IvyComponentLogicCaller<ITask> reserveTask = new IvyComponentLogicCaller<>();
     reserveTask.invokeComponentLogic(TASK_LEAVE_WARNING_COMPONENT, "#{logic.reserve}", new Object[] {});
     TaskUtils.parkTask(task != null ? task : Ivy.wfTask());
-    navigateToUserProfile();
+    navigateToTargetPage();
   }
   
-  public void reserveTaskAndNavigateToHomePageWithGrowl(ITask task) throws IOException {
-    IvyComponentLogicCaller<ITask> reserveTask = new IvyComponentLogicCaller<>();
-    reserveTask.invokeComponentLogic(TASK_LEAVE_WARNING_COMPONENT, "#{logic.reserve}", new Object[] {});
-    TaskUtils.parkTask(task != null ? task : Ivy.wfTask());
-    navigateToHomePage();
+  public void resetTaskAndNavigateWithGrowl(ITask task) throws IOException {
+    IvyComponentLogicCaller<ITask> leaveTask = new IvyComponentLogicCaller<>();
+    leaveTask.invokeComponentLogic(TASK_LEAVE_WARNING_COMPONENT, "#{logic.leave}", new Object[] {});
+    TaskUtils.resetTask(task != null ? task : Ivy.wfTask());
+    navigateToTargetPage();
   }
   
   public boolean getErrorDetailToEndUser() {
@@ -209,7 +188,15 @@ public class UserMenuBean implements Serializable {
   }
   
   private void navigateToUserProfile() throws IOException {
-    getExternalContext().redirect(ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), USER_PROFILE_FRIENDLY_REQUEST_PATH));
+    getExternalContext().redirect(getUserProfileUrl());
+  }
+  
+  private void navigateToTargetPage() throws IOException {
+    getExternalContext().redirect(targetPage);
+  }
+  
+  private String getUserProfileUrl() {
+    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), USER_PROFILE_FRIENDLY_REQUEST_PATH);
   }
 
   private boolean isDefaultPortalApp() {

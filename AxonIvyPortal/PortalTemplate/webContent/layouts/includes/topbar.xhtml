@@ -10,20 +10,9 @@
   <div class="TexAlCenter logo-container">
 
     <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="task-leave-warning-component" rendered="#{isWorkingOnATask}"
-      leaveActionListener="#{userMenuBean.resetTaskAndNavigateToHomePageWithGrowl(task)}" 
-      reserveActionListener="#{userMenuBean.reserveTaskAndNavigateToHomePageWithGrowl(task)}"
+      leaveActionListener="#{userMenuBean.resetTaskAndNavigateWithGrowl(task)}" 
+      reserveActionListener="#{userMenuBean.reserveTaskAndNavigateWithGrowl(task)}"
       componentId="logo-task-losing-confirmation-dialog" widgetVar="logo-task-losing-confirmation-dialog"
-      taskState="#{task.state}" />
-    <c:if test="#{!isNotRequiredLogin}">
-      <ic:ch.ivy.addon.portalkit.singleapp.general.SetLanguage />
-    </c:if>
-  </div>
-  
-  <div class="TexAlCenter logo-container">
-    <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask id="task-leave-warning-component-user-profile" rendered="#{isWorkingOnATask}"
-      leaveActionListener="#{userMenuBean.resetTaskAndNavigateToUserProfileWithGrowl(task)}" 
-      reserveActionListener="#{userMenuBean.reserveTaskAndNavigateToUserProfileWithGrowl(task)}"
-      componentId="task-losing-confirmation-dialog" widgetVar="task-losing-confirmation-dialog"
       taskState="#{task.state}" />
     <c:if test="#{!isNotRequiredLogin}">
       <ic:ch.ivy.addon.portalkit.singleapp.general.SetLanguage />
