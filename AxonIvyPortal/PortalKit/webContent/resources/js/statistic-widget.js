@@ -164,7 +164,7 @@ var elapsedTimeChartDetail = {
 	},
 	
 	toggleColumn: function() {
-		if($(hiddenColumn).hasClass("ui-hidden")) {
+		if($(hiddenColumn).hasClass("u-hidden")) {
 			this.displayColumnWhenResizeScreen(hiddenColumn);
 			this.toggleIcon();
 			$(caseTable).css("min-width", "900px");
@@ -195,11 +195,11 @@ var elapsedTimeChartDetail = {
 	},
 
 	hideColumnWhenResizeScreen: function(column) {
-		$(column).addClass("ui-hidden");
+		$(column).addClass("u-hidden");
 	},
 	
 	displayColumnWhenResizeScreen: function(column) {
-		$(column).removeClass("ui-hidden");
+		$(column).removeClass("u-hidden");
 	}
 }
 

@@ -17,6 +17,8 @@
   <div id="#{cc.clientId}" class="ui-g widget statistic-widget-container #{!cc.attrs.compactMode ? '':'statistic-widget-compact-mode-container'}">
     <h:panelGroup id="header" layout="block" styleClass="widget-header ui-g-12 u-no-padding-bottom">
       <div class="widget-header-main #{data.createMode ? 'creation-mode':''}">
+        <h:outputText styleClass="widget-header-main-title" rendered="#{cc.attrs.compactMode}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statistics')}" />
         <h:panelGroup id="statistic-widget-header" layout="block" rendered="#{data.isDisplayShowAllChartLink and cc.attrs.compactMode}"
           styleClass="widget-header-main-menu">
           <cc:renderFacet name="headerToolbar" />
