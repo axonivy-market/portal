@@ -1,15 +1,13 @@
 package ch.ivy.addon.portalkit.taskfilter;
 
-import java.util.List;
 import java.util.Optional;
 
-import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
-import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
+import ch.ivy.addon.portalkit.ivydata.service.impl.TaskService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
@@ -35,12 +33,7 @@ public class TaskResponsibleFilter extends TaskFilter {
   }
 
   private SecurityMemberDTO getResponsibles(String memberName) {
-    String queryParam = memberName.replaceFirst("#", "").trim();
-    List<SecurityMemberDTO> responsibles = SecurityMemberUtils.findSecurityMembers(queryParam, 0, 1);
-    if (CollectionUtils.isEmpty(responsibles)) {
-      return null;
-    }
-    return responsibles.get(0);
+    return TaskService.newInstance().findTaskResponsible(memberName);
   }
 
   @Override
