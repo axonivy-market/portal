@@ -99,15 +99,20 @@ Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
 Ct0 @TextInP .xml .xml #zField
 Ct0 @TextInP .responsibility .responsibility #zField
-Ct0 @PushWFArc f75 '' #zField
 Ct0 @CallSub f74 '' #zField
 Ct0 @GridStep f73 '' #zField
-Ct0 @PushWFArc f76 '' #zField
 Ct0 @CallSub f60 '' #zField
 Ct0 @PushTrueWFInG-01 g0 '' #zField
 Ct0 @PushTrueWFOutG-01 g2 '' #zField
 Ct0 @PushWFArc f1 '' #zField
 Ct0 @PushWFArc f2 '' #zField
+Ct0 @Alternative f0 '' #zField
+Ct0 @PushWFArc f3 '' #zField
+Ct0 @PushWFArc f4 '' #zField
+Ct0 @Alternative f5 '' #zField
+Ct0 @PushWFArc f6 '' #zField
+Ct0 @PushWFArc f7 '' #zField
+Ct0 @PushWFArc f8 '' #zField
 >Proto Ct0 Ct0 Component #zField
 Ss0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -842,7 +847,6 @@ import ch.ivy.addon.portalkit.service.StatisticService;
 
 StatisticService service = new StatisticService();
 service.fetchStatisticColor();
-in.isFinishLoadCharts = true;
 in.statisticChartList = [DummyStatisticService.createDummyChartForGuide()];
 in.prevStatisticList = new ArrayList(in.statisticChartList);' #txt
 Ss0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -895,7 +899,6 @@ Ss0 f12 0 0.6951177187602995 0 0 #arcLabel
 >Proto Ss0 .processKind HTML_DIALOG #txt
 >Proto Ss0 -8 -8 16 16 16 26 #rect
 >Proto Ss0 '' #fIcon
-Ct0 f75 248 160 336 160 #arcP
 Ct0 f74 processCall 'Functional Processes/DefaultChartColors:defaultChartColors()' #txt
 Ct0 f74 requestActionDecl '<> param;' #txt
 Ct0 f74 responseMappingAction 'out=in;
@@ -927,10 +930,8 @@ Ct0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ct0 f73 528 138 112 44 -41 -8 #rect
+Ct0 f73 648 138 112 44 -41 -8 #rect
 Ct0 f73 @|StepIcon #fIcon
-Ct0 f76 expr out #txt
-Ct0 f76 448 160 528 160 #arcP
 Ct0 f60 processCall 'Functional Processes/DefaultChart:createDefaultChart()' #txt
 Ct0 f60 requestActionDecl '<> param;' #txt
 Ct0 f60 responseActionDecl 'ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData out;
@@ -947,14 +948,30 @@ Ct0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ct0 f60 336 138 112 44 -34 -8 #rect
+Ct0 f60 392 138 112 44 -34 -8 #rect
 Ct0 f60 @|CallSubIcon #fIcon
-Ct0 g0 43 147 26 26 -1 -55 #rect
+Ct0 g0 51 147 26 26 -1 -55 #rect
 Ct0 g0 @|MIGIcon #fIcon
-Ct0 g2 731 147 26 26 0 5 #rect
+Ct0 g2 787 147 26 26 0 5 #rect
 Ct0 g2 @|MOGIcon #fIcon
-Ct0 f1 69 160 136 160 #arcP
-Ct0 f2 640 160 731 160 #arcP
+Ct0 f1 77 160 136 160 #arcP
+Ct0 f2 760 160 787 160 #arcP
+Ct0 f0 304 144 32 32 0 16 #rect
+Ct0 f0 @|AlternativeIcon #fIcon
+Ct0 f3 248 160 304 160 #arcP
+Ct0 f4 expr in #txt
+Ct0 f4 outCond in.defaultCharts.isEmpty() #txt
+Ct0 f4 336 160 392 160 #arcP
+Ct0 f5 560 144 32 32 0 16 #rect
+Ct0 f5 @|AlternativeIcon #fIcon
+Ct0 f6 expr out #txt
+Ct0 f6 504 160 560 160 #arcP
+Ct0 f7 592 160 648 160 #arcP
+Ct0 f8 expr in #txt
+Ct0 f8 320 144 576 144 #arcP
+Ct0 f8 1 320 96 #addKink
+Ct0 f8 2 576 96 #addKink
+Ct0 f8 1 0.4566663876663031 0 0 #arcLabel
 >Proto Ct0 0 0 32 24 18 0 #rect
 >Proto Ct0 @|BIcon #fIcon
 Ss0 f19 mainOut f20 tail #connect
@@ -1033,12 +1050,18 @@ Ss0 f3 out f57 tail #connect
 Ss0 f57 head f30 mainIn #connect
 Ss0 f49 mainOut f12 tail #connect
 Ss0 f12 head f2 mainIn #connect
-Ct0 f60 mainOut f76 tail #connect
-Ct0 f76 head f73 mainIn #connect
-Ct0 f74 mainOut f75 tail #connect
-Ct0 f75 head f60 mainIn #connect
 Ct0 g0 m f1 tail #connect
 Ct0 f1 head f74 mainIn #connect
 Ct0 f73 mainOut f2 tail #connect
 Ct0 f2 head g2 m #connect
-Ct0 0 0 800 320 0 #ivRect
+Ct0 f74 mainOut f3 tail #connect
+Ct0 f3 head f0 in #connect
+Ct0 f0 out f4 tail #connect
+Ct0 f4 head f60 mainIn #connect
+Ct0 f60 mainOut f6 tail #connect
+Ct0 f6 head f5 in #connect
+Ct0 f5 out f7 tail #connect
+Ct0 f7 head f73 mainIn #connect
+Ct0 f0 out f8 tail #connect
+Ct0 f8 head f5 in #connect
+Ct0 0 0 832 320 0 #ivRect
