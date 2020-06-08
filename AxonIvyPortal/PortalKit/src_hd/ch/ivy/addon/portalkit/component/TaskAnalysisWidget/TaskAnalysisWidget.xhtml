@@ -111,7 +111,7 @@
 
           <h:panelGroup id="task-filter-add-container" styleClass="filter-add-container" style="order: #{data.dataModel.selectedTaskFilters.size()}">
             <p:commandLink id="task-filter-add-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/moreOptions')}"
-              styleClass="filter-add-button" />
+              styleClass="filter-add-button" global="false" />
             <p:overlayPanel id="task-filter-add-panel" widgetVar="task-filter-add-panel" styleClass="filter-add-panel" for="task-filter-add-action" my="left top"
               at="left bottom" dismissable="false">
               <h:form id="task-filter-add-form">
@@ -168,7 +168,7 @@
 
           <h:panelGroup id="case-filter-add-container" styleClass="filter-add-container" style="order: #{data.dataModel.selectedCaseFilters.size()}">
             <p:commandLink id="case-filter-add-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/moreOptions')}"
-              styleClass="filter-add-button" />
+              styleClass="filter-add-button" global="false" />
             <p:overlayPanel id="case-filter-add-panel" widgetVar="case-filter-add-panel" styleClass="filter-add-panel" for="case-filter-add-action" my="left top"
               at="left bottom" dismissable="false">
               <h:form id="case-filter-add-form">

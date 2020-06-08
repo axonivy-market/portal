@@ -627,7 +627,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .action-container a.task-action-item .icon-compact-mode, .action-container span.task-action-item .icon-compact-mode {
-  margin-top: 3px;
+  margin-top: 5px;
   margin-right: 3px;
 }
 
@@ -3135,8 +3135,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding-right: 10px;
 }
 
-.edit-statistic-container {
-  padding-right: 33.5rem !important;
+.chart-list-container .edit-statistic-container {
+  padding-right: 33.5rem;
 }
 
 .edit-statistic-container .chart-list {
@@ -4047,6 +4047,9 @@ _:-ms-fullscreen, :root .content-link-history {
   line-height: 30px;
   display: inline-block;
   padding: 0 10px 0 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .filter-selection-container-group .filter-selection-label {
@@ -4429,6 +4432,11 @@ body .ui-dialog.ui-widget.export-express-dialog {
 
 
 /*=================== BREADCRUMB ===================*/
+
+body .ui-widget-header.portal-breadcrumb a {
+	outline: none;
+}
+
 .layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu>li.breadcrumb-container {
 	display: flex;
 	float: left;

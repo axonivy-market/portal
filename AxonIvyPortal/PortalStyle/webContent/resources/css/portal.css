@@ -1130,6 +1130,9 @@ body .fieldset-no-border {
   color: var(--widget-advanced-filter-icon-color);
   font-size: 1.8rem; }
 
+.advanced-filter-icon:hover {
+  color: var(--widget-advanced-filter-icon-color-hover);}
+
 .task-widget .ui-overlaypanel.advanced-filter-panel,
 .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-content,
 .case-widget-container .ui-overlaypanel.advanced-filter-panel,
