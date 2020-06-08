@@ -2,20 +2,29 @@ package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCasesExcluded;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
+import ch.ivy.addon.portalkit.dto.RoleDTO;
+import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
+import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyTaskResultDTO;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
+import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ITaskService;
@@ -27,6 +36,8 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Record;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.query.UserQuery;
+import ch.ivyteam.ivy.security.query.UserQuery.IFilterQuery;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
@@ -219,7 +230,6 @@ public class TaskService implements ITaskService {
 
   private TaskQuery extendQueryWithInvolvedUser(TaskSearchCriteria criteria) {
     TaskQuery finalQuery = criteria.getFinalTaskQuery();
-    @SuppressWarnings("deprecation")
     TaskQuery clonedQuery = TaskQuery.fromJson(finalQuery.asJson()); // clone to keep the final query in TaskSearchCriteria
     if (criteria.hasApps()) {
       if (criteria.hasInvolvedUsername() && !criteria.isAdminQuery()) {
@@ -252,4 +262,44 @@ public class TaskService implements ITaskService {
   private ITaskQueryExecutor taskQueryExecutor() {
     return Ivy.wf().getGlobalContext().getTaskQueryExecutor();
   }
+
+  public SecurityMemberDTO findTaskResponsible(String responsibleName) {
+    IApplication app = Ivy.wf().getApplication();
+    List<SecurityMemberDTO> members = new ArrayList<>();
+    if (responsibleName.contains("#")) {
+      members = findUserResponsibleByName(responsibleName.replace("#", ""), app);
+    } else {
+      members = findRoleResponsibleByName(responsibleName, app);
+    }
+    
+    return CollectionUtils.isEmpty(members) ? null : members.get(0);
+  }
+
+  private List<SecurityMemberDTO> findUserResponsibleByName(String responsibleName, IApplication app) {
+    return IvyExecutor.executeAsSystem(() -> {
+      List<IUser> users = new ArrayList<>();
+      try {
+        UserQuery userQuery = app.getSecurityContext().users().query();
+        userQuery.where().and().name().isEqualIgnoreCase(responsibleName);
+        users = userQuery.executor().results(0, 1);
+      } catch (Exception ex) {
+        Ivy.log().error("Error in getting security members within app {0}", ex, app.getName());
+      }
+      return SecurityMemberDTOMapper.mapFromUserDTOs(users.stream().map(UserDTO::new).collect(Collectors.toList()));
+    });
+  }
+
+  private List<SecurityMemberDTO> findRoleResponsibleByName(String responsibleName, IApplication app) {
+    return IvyExecutor.executeAsSystem(() -> {
+      List<RoleDTO> roles = new ArrayList<>();
+      try {
+        roles = ServiceUtilities.findAllRoleDTO(app).stream()
+            .filter(role -> StringUtils.equalsIgnoreCase(role.getName(), responsibleName)).collect(Collectors.toList());
+      } catch (Exception ex) {
+        Ivy.log().error("Error in getting security members within app {0}", ex, app.getName());
+      }
+      return SecurityMemberDTOMapper.mapFromRoleDTOs(roles);
+    });
+  }
+
 }
