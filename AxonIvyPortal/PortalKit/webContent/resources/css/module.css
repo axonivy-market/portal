@@ -4378,7 +4378,7 @@ body .portal-breadcrumb.ui-breadcrumb ul li {
 }
 
 .ui-dialog.guide-panel, .ui-dialog.guide-panel .ui-dialog-content {
-  overflow: hidden;
+  overflow: visible;
 }
 
 .guide-panel__arrow {
