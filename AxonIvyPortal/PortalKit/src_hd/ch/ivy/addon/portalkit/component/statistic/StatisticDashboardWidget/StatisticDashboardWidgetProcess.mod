@@ -76,9 +76,6 @@ Ss0 @PushWFArc f71 '' #zField
 Ss0 @PushWFArc f67 '' #zField
 Ss0 @PushWFArc f76 '' #zField
 Ss0 @PushWFArc f12 '' #zField
-Ss0 @UdMethod f68 '' #zField
-Ss0 @UdProcessEnd f78 '' #zField
-Ss0 @PushWFArc f82 '' #zField
 Ss0 @UdMethod f83 '' #zField
 Ss0 @PushWFArc f84 '' #zField
 Ss0 @UdMethod f6 '' #zField
@@ -716,27 +713,6 @@ Ss0 f76 1011 275 1136 224 #arcP
 Ss0 f76 1 1024 224 #addKink
 Ss0 f12 expr in #txt
 Ss0 f12 1024 288 1136 288 #arcP
-Ss0 f68 guid 1700968EFCD82AA5 #txt
-Ss0 f68 method reinitializeWidgetIndicator() #txt
-Ss0 f68 inParameterDecl '<> param;' #txt
-Ss0 f68 inParameterMapAction 'out.isFinishLoadCharts=false;
-out.isReloadChartContent=true;
-out.prevStatisticListSize=null;
-' #txt
-Ss0 f68 inActionCode 'ivy.log.info("reset indicator");' #txt
-Ss0 f68 outParameterDecl '<> result;' #txt
-Ss0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>reinitializeWidgetIndicator()</name>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f68 691 659 26 26 -25 15 #rect
-Ss0 f68 @|UdMethodIcon #fIcon
-Ss0 f78 1011 659 26 26 0 12 #rect
-Ss0 f78 @|UdProcessEndIcon #fIcon
-Ss0 f82 717 672 1011 672 #arcP
 Ss0 f83 guid 172118B5A5BCDFA3 #txt
 Ss0 f83 method drilldownTaskByPriority(String,ch.ivyteam.ivy.workflow.query.TaskQuery) #txt
 Ss0 f83 inParameterDecl '<String taskListName,ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
@@ -969,8 +945,6 @@ Ss0 f3 out f76 tail #connect
 Ss0 f76 head f65 mainIn #connect
 Ss0 f3 out f12 tail #connect
 Ss0 f12 head f30 mainIn #connect
-Ss0 f68 mainOut f82 tail #connect
-Ss0 f82 head f78 mainIn #connect
 Ss0 f83 mainOut f84 tail #connect
 Ss0 f84 head f7 mainIn #connect
 Ss0 f6 mainOut f8 tail #connect

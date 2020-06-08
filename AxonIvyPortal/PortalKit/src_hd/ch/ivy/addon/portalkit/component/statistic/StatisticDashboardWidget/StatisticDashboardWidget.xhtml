@@ -136,9 +136,6 @@
 
     <p:remoteCommand rendered="#{cc.attrs.compactMode}" name="updateStatisticCarousel" update="@([id$='statistic-carousel-container'])" 
       global="false" immediate="true" process="@this" partialSubmit="true"/>
-
-    <p:remoteCommand id="reload-chart-command" name="reloadCharts" delay="1" global="false"
-      action="#{logic.reinitializeWidgetIndicator()}" async="true" immediate="true" process="@this" partialSubmit="true" />
   </h:form>
 
   <p:dialog id="chart-details-dialog" widgetVar="chart-details-dialog" appendTo="@(body)"
