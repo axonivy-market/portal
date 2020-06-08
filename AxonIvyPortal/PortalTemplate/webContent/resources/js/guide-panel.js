@@ -23,16 +23,16 @@ function GuidePanel(targetCssSelector, originMy, at, targetPosition, arrowPositi
   
   var updateMy = function($guidePanel) {
     var my = originMy;
-    if (originMy.includes('center')) {
+    if (originMy.indexOf('center') !== -1) {
       var left;
-      if (originMy.startsWith("center")) {
+      if (originMy.indexOf("center") == 0) {
         var centerAlign = ($target.outerWidth() - $guidePanel.outerWidth()) / 2;
         left = 'left+' + centerAlign;
       } else {
         left = originMy.substr(0, originMy.indexOf(' '));
       }
       var top;
-      if (originMy.endsWith("center")) {
+      if (originMy.indexOf("center", originMy.length - "center".length) !== -1) {
         var centerAlign = ($target.outerHeight() - $guidePanel.outerHeight()) / 2;
         top = ' top+' + centerAlign;
       } else {
