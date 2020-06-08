@@ -202,10 +202,3 @@ var elapsedTimeChartDetail = {
 		$(column).removeClass("ui-hidden");
 	}
 }
-
-// Update Statistic chart when changed language
-$(document).ready(function() {	
-	$(document).on("click", '[id$=":language-settings:save-settings"]', function() {
-		reloadCharts();
-	});
-});
