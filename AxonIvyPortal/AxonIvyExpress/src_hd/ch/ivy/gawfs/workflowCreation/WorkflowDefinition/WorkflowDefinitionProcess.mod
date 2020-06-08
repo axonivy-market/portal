@@ -317,7 +317,8 @@ Fs0 f19 83 371 26 26 -62 15 #rect
 Fs0 f19 @|UdMethodIcon #fIcon
 Fs0 f23 actionTable 'out=in;
 ' #txt
-Fs0 f23 actionCode 'import org.apache.commons.lang3.StringUtils;
+Fs0 f23 actionCode 'import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
+import org.apache.commons.lang3.StringUtils;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import java.util.ArrayList;
 
@@ -327,7 +328,7 @@ if(in.isSelectProcessOwnerResponsibles) {
 	
 	for (ISecurityMember responsible : out.selectedAssigneeList) {
 		out.data.processCoOwners.add(responsible.getMemberName());
-		responsibleNames.add(StringUtils.defaultIfBlank(responsible.getDisplayName(), responsible.getName()).toString());				
+		responsibleNames.add(SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(responsible, responsible.getName()));
 	}
 	
 	out.data.processCoOwnersDisplayName = String.join(", ", responsibleNames);
@@ -337,7 +338,7 @@ else{
 	
 	for (ISecurityMember responsible : out.selectedAssigneeList) {
 		out.taskDefinition.responsibles.add(responsible.getMemberName());
-		responsibleNames.add(StringUtils.defaultIfBlank(responsible.getDisplayName(), responsible.getName()).toString());		
+		responsibleNames.add(SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(responsible, responsible.getName()));
 	}	
 	out.taskDefinition.responsibleDisplayName = String.join(", ", responsibleNames);
 }
