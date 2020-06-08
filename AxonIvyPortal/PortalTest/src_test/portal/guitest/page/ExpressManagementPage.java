@@ -49,6 +49,7 @@ public class ExpressManagementPage extends TemplatePage {
     WebElement deployButton = findElementByCssSelector(".ui-fileupload-upload");
     Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> deployButton.isEnabled());
     click(deployButton);
+    waitForElementDisplayed(By.id("adminui:adminTabView:express-management-component:import-express-form:impress-export-output"), true);
   }
 
   public String getUploadMessage() {
