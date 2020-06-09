@@ -2761,14 +2761,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 /* Override Primefaces table style */
-.absence-table table, .language-table table, .admin-table table {
+.absence-table table, .admin-table table {
   box-sizing: border-box !important;
-}
-
-.language-table .ui-datatable-scrollable-body {
-  height: auto !important;
-  max-height: 55vh !important;
-  overflow-x: hidden;
 }
 
 .delete-absence-confirmation-dialog .confirm-action {
@@ -2788,87 +2782,27 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 /********************************** END CHANGE PASSWORK DIALOG **********************************/
 
-/********************************** LANGUAGE SETTING DIALOG **********************************/
-.language-setting-dialog {
-   max-width: 600px;
+/********************************** USER PROFILE **********************************/
+.md-inputfield .language-selection-label {
+  left: 0;
 }
 
-@media screen and (max-width: 40em) {
-  .language-setting-dialog {
-    max-width: 96vw;
-  }
+.user-profile-footer {
+  margin-top: 25px;
+  text-align: right;
 }
 
-@media (max-width: 1365px) {
-  .language-setting-dialog {
-    overflow: auto;
-  }
+.user-profile {
+  margin: 0px 15px;
 }
 
-@media (min-width: 1366px) and (max-width: 1919px) {
-  .language-setting-dialog {
-    overflow: auto;
-  }
+.user-profile-footer .ui-button {
+  min-width: 120px;
+  margin-bottom: 6px
 }
 
-/********************************** END LANGUAGE SETTING DIALOG **********************************/
-
-/********************************** EMAIL SETTING DIALOG **********************************/
-@media screen and (min-width: 41em) {
-  .applications-email-setting-dialog {
-    min-width: 420px !important;
-  }
-}
-
-@media screen and (max-width: 40em) {
-  .applications-email-setting-dialog {
-    min-width: 300px;
-    height: 365px;
-    margin-left: 10px;
-    margin-right: 10px;
-  }
-  .applications-email-setting-form {
-    height: 260px;
-  }
-  .applications-email-setting-dialog .ui-dialog .ui-dialog-content {
-    overflow: unset !important;
-    padding: 1rem !important;
-  }
-  .email-setting-component {
-    max-height: 235px;
-    overflow: auto;
-    margin-bottom: 10px;
-  }
-}
-
-.application-email-setting-container tbody tr td {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-.applications-email-setting-dialog .email-setting-container {
-  overflow-y: auto;
-  min-height: 200px;
-}
-
-.field-select-setting-options {
-  margin-left: -2px !important;
-}
-
-.applications-email-setting-dialog .daily-summary-checkbox {
-  width: 98%;
-}
-
-.applications-email-setting-dialog .ui-dialog-footer.u-dialog-footer.u-email-dialog-footer {
-  margin: auto !important;
-  padding-right: 5px !important;
-}
-
-.applications-email-setting-dialog .ui-dialog-content.ui-widget-content {
-  padding: 1rem 2rem;
-}
-
-.application-email-setting-row {
+.application-email-setting-row,
+.daily-summary-checkbox.ui-selectcheckboxmenu {
   width: 100%;
 }
 
@@ -2879,7 +2813,20 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .application-email-setting-row tbody tr td {
   padding-bottom: 10px !important;
 }
-/********************************** END EMAIL SETTING DIALOG **********************************/
+
+.my-profile-container {
+  margin: 0 15px;
+}
+
+.user-profile .setting-header {
+  margin-bottom: 10px;
+}
+
+.language-selection,
+.email-setting-container {
+  margin-top: 30px;
+}
+/********************************** END USER PROFILE SETTING **********************************/
 
 /********************************** PROCESS STARTS **********************************/
 .process-start-container {
