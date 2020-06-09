@@ -32,6 +32,13 @@ var Portal = {
     $('.js-layout-main').css('margin-top', headerHeight + 'px')
       .css('height', 'calc(100% - ' + headerFooterHeight + 'px)');
     $('.js-layout-content').css('height', 'calc(100vh - ' + headerFooterHeight + 'px)');
+
+    var chatPanel = $('.js-chat-panel');
+    if (chatPanel.length == 1) {
+      chatPanel.css('height', 'calc(100% - ' + (headerFooterHeight - envHeight) + 'px)');
+      chatPanel.css('top', headerHeight + 'px');
+    }
+
     $('.js-layout-wrapper').removeClass('u-invisibility');
   }
 }
