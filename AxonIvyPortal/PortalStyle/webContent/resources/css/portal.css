@@ -503,12 +503,7 @@ body .ui-widget-header.portal-breadcrumb {
 .daily-summary.ui-selectmanycheckbox.ui-widget label {
   margin-left: 0px; }
 
-.application-email-setting .ui-widget-header {
-  color: var(--email-setting-widget-header); }
 
-.applications-email-setting-dialog .ui-dialog-content.ui-widget-content {
-  font-size: var(--large-font-size); }
-  
 /*Style For Item Widget in List -----------------------------------------------------------------------------------*/
 .process-start-list-item,
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item,
@@ -809,7 +804,7 @@ body .ui-button.action-button {
   border: 1px solid transparent; }
 
 body .ui-widget.ui-button.action-button span, body .ui-widget.ui-button.action-button span {
-  color: var(--case-task-action-button-color); }
+    color: var(--case-task-action-button-color); }
 
 .ui-button.ui-widget.action-button.ui-state-hover {
   background-color: var(--case-task-action-button-hover-background-color); }
