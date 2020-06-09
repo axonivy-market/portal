@@ -237,10 +237,6 @@
 .hide {
   display: none !important;
 }
-/* For Serenity theme - End */
-.ui-hidden {
-  display: none !important;
-}
 
 @media screen and (max-width: 40em) {
   .ui-sm-hidden {
@@ -321,6 +317,18 @@
 
 @media ( min-width : 1200px) {
   .u-hidden-xl-up {
+    display: none !important;
+  }
+}
+
+@media ( max-width : 1024px) {
+  .u-hidden-1024-down {
+    display: none !important;
+  }
+}
+
+@media ( min-width : 1025px) {
+  .u-hidden-1024-up {
     display: none !important;
   }
 }
