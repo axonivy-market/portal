@@ -108,4 +108,8 @@ public class CaseMapPage extends TaskTemplatePage {
     clickByCssSelector("button[id$='submit-contract-button']");
     return new UserExamplesEndPage();
   }
+  
+  public String getTitle() {
+    return findElementByCssSelector("[id$='title']").getText();
+  }
 }
