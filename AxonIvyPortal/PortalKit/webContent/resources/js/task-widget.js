@@ -62,7 +62,7 @@ function TaskWidget() {
     },
     
     toggleTaskFilter: function(toggler) {
-      $('.advanced-filter-component').toggleClass('u-hidden-md-down');
+      $('.js-advanced-filter-component').toggleClass('u-hidden-md-down');
     },
 
     updateTaskCountToBreadcrumb : function() {
@@ -73,12 +73,12 @@ function TaskWidget() {
 
       if ($breadCrumbTaskElem.find(".js-count").length == 0) {
         $breadCrumbTaskElem.find("span").addClass("has-count");
-        $breadCrumbTaskElem.append('<span class="js-count has-count"> (' + $(".js-task-count-hidden").get(0).innerHTML + ')</span>');
+        $breadCrumbTaskElem.append('<span class="js-count has-count"> (' + $(".js-hidden-task-count").get(0).innerHTML + ')</span>');
       } else {
-    	  $breadCrumbTaskElem.find(".js-count").get(0).innerHTML = " (" + $(".js-task-count-hidden").get(0).innerHTML + ")";
+    	  $breadCrumbTaskElem.find(".js-count").get(0).innerHTML = " (" + $(".js-hidden-task-count").get(0).innerHTML + ")";
       }
 
-      $(".js-task-count-mobile").get(0).innerHTML = " (" + $(".js-task-count-hidden").get(0).innerHTML + ")";
+      $(".js-task-count-mobile").get(0).innerHTML = " (" + $(".js-hidden-task-count").get(0).innerHTML + ")";
     }
   }
 }

@@ -15,7 +15,6 @@
   <cc:attribute name="hideCaseFilter" default="false" shortDescription="Case filter text field is hidden or not"
     type="java.lang.Boolean" />
   <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}" />
-  <cc:attribute name="titleOnMobile" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')}" />
   <cc:attribute name="autoSelectCaseId" />
   <cc:attribute name="filterGroupId" />
   <cc:attribute name="hideWidgetHeader" default="false" type="java.lang.Boolean" />
@@ -50,7 +49,7 @@
                       <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
                         value="#{filterData.filterName}"
                         actionListener="#{logic.applyFilter(filterData)}"
-                        update="#{cc.clientId}:filter-selection-container #{cc.clientId}:filter-container #{cc.clientId}:case-widget-header #{cc.clientId}:case-list #{cc.clientId}:filter-add-form #{cc.clientId}:case-count-hidden"
+                        update="#{cc.clientId}:filter-selection-container #{cc.clientId}:filter-container #{cc.clientId}:case-widget-header #{cc.clientId}:case-list #{cc.clientId}:filter-add-form #{cc.clientId}:hidden-case-count"
                         oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader();caseWidget.updateCaseCountToBreadcrumb();" />
                       <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter"
                         value="#{filterData.filterName}" trackMouse="true" />
@@ -73,7 +72,7 @@
                       <p:commandLink id="user-defined-filter" styleClass="user-defined-filter"
                         value="#{filterData.filterName}"
                         actionListener="#{logic.applyFilter(filterData)}"
-                        update="#{cc.clientId}:filter-selection-container #{cc.clientId}:filter-container #{cc.clientId}:case-widget-header #{cc.clientId}:case-list #{cc.clientId}:filter-add-form #{cc.clientId}:case-count-hidden"
+                        update="#{cc.clientId}:filter-selection-container #{cc.clientId}:filter-container #{cc.clientId}:case-widget-header #{cc.clientId}:case-list #{cc.clientId}:filter-add-form #{cc.clientId}:hidden-case-count"
                         oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader();caseWidget.updateCaseCountToBreadcrumb();" />
                       <p:tooltip id="user-defined-filter-tooltip" for="user-defined-filter"
                         value="#{filterData.filterName}" trackMouse="true" />
@@ -95,7 +94,7 @@
          <h:panelGroup id="case-header-mobile" styleClass="ui-sm-4 widget-title-mobile">
            <f:event listener="#{logic.preRenderTitle()}" type="preRenderComponent" />
            <span class="top-header-main-title">
-             <span> #{empty cc.attrs.titleOnMobile ? cc.attrs.title : cc.attrs.titleOnMobile}</span>
+             <span> #{cc.attrs.title}</span>
              <h:outputText styleClass="js-case-count-mobile" rendered="#{!data.dataModel.disableCaseCount}" />
           </span>
         </h:panelGroup>
@@ -105,7 +104,7 @@
           <span class="selected-filters-label u-hidden-md-down">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/appliedFilters')} </span>
           <h:form id="case-basic-filter-form" onsubmit="return false;">
             <ic:ch.ivy.addon.portalkit.component.Filter id="case-filter-component" keywordStoresIn="#{data.dataModel.criteria.keyword}"
-              updateComponent="#{cc.clientId}:case-list #{cc.clientId}:case-count-hidden" icon="fa fa-filter simple-filter-icon"
+              updateComponent="#{cc.clientId}:case-list #{cc.clientId}:hidden-case-count" icon="fa fa-filter simple-filter-icon"
               listener="#{data.dataModel.onKeywordChange()}" styleClass="case-filter-component"
               placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
               onCompletedCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();" iconAsButton="true" onClickIconFilter="caseWidget.toggleTaskFilter(this);caseWidget.setUpScrollbar();" />
@@ -136,7 +135,7 @@
                 <h:panelGroup id="add-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer">
                   <p:commandButton id="update-filter-selected-command"
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-                    update="@(.filter-container) @(.filter-selection-form) @(.case-list) #{cc.clientId}:case-count-hidden"
+                    update="@(.filter-container) @(.filter-selection-form) @(.case-list) #{cc.clientId}:hidden-case-count"
                     oncomplete="caseWidget.setUpScrollbar(); caseWidget.updateCaseCountToBreadcrumb();" process="@(filter-add-form)"
                     actionListener="#{data.dataModel.updateSelectedFilter}">
                   </p:commandButton>
@@ -171,7 +170,7 @@
       <f:event listener="#{data.dataModel.initColumnsConfiguration()}" type="preRenderComponent" />
       <cc:renderFacet name="caseListHeader" />
       <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration id="case-columns-configuration"
-            updatedComponent="#{cc.clientId}:case-view #{cc.clientId}:widget-column-header #{cc.clientId}:case-count-hidden"
+            updatedComponent="#{cc.clientId}:case-view #{cc.clientId}:widget-column-header #{cc.clientId}:hidden-case-count"
             dataModel="#{data.dataModel}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();"
             configButtonId="case-config-button" overlayPanelId="case-config-columns-panel" />
     </h:panelGroup>
@@ -202,7 +201,7 @@
     responsive="true">
       <p:commandButton id="filter-reset-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
         partialSubmit="true" immediate="true"
-        actionListener="#{logic.restoreDefaultFilterSet}" update="@(.filter-container) @(.filter-add-action) @(.filter-selection-form) @(.case-list) #{cc.clientId}:case-count-hidden"
+        actionListener="#{logic.restoreDefaultFilterSet}" update="@(.filter-container) @(.filter-add-action) @(.filter-selection-form) @(.case-list) #{cc.clientId}:hidden-case-count"
         oncomplete="PF('reset-filter-set-dialog').hide(); caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();">
       </p:commandButton>
       <p:spacer width="5px" />
@@ -259,7 +258,7 @@
     <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
       actionListener="#{logic.deleteFilter}"
       oncomplete="PF('delete-filter-confirmation-dialog').hide(); caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();"
-      update="case-basic-filter-form filter-container #{cc.clientId}:filter-container case-list filter-add-form #{cc.clientId}:case-count-hidden" />
+      update="case-basic-filter-form filter-container #{cc.clientId}:filter-container case-list filter-add-form #{cc.clientId}:hidden-case-count" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
       onclick="PF('delete-filter-confirmation-dialog').hide();" type="button" styleClass="portal-cancel-button" />
   </p:confirmDialog>
@@ -271,13 +270,12 @@
     <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
       actionListener="#{caseWidgetBean.destroyCase(caseWidgetBean.selectedCase)}"
       oncomplete="caseWidget.setUpScrollbar();caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb(); PF('destroy-case-dialog').hide()"
-      update="#{p:component('case-list')} #{p:component('case-list-scroller')} #{cc.clientId}:case-count-hidden" />
+      update="#{p:component('case-list')} #{p:component('case-list-scroller')} #{cc.clientId}:hidden-case-count" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
       onclick="PF('destroy-case-dialog').hide();" type="button" styleClass="portal-cancel-button" />
   </p:confirmDialog>
 
-  <h:outputText id="title-on-mobile" styleClass="u-display-none" value="#{cc.attrs.titleOnMobile}" />
-  <h:outputText id="case-count-hidden" styleClass="u-hidden js-case-count-hidden case-count-hidden" value="#{data.dataModel.rowCount}" rendered="#{not data.dataModel.disableCaseCount}" />
+  <h:outputText id="hidden-case-count" styleClass="u-hidden js-hidden-case-count hidden-case-count" value="#{data.dataModel.rowCount}" rendered="#{not data.dataModel.disableCaseCount}" />
   <script type="text/javascript">
       var caseWidget = new CaseWidget();
       $(function() {
