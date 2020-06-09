@@ -3406,7 +3406,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   height: 4px;
   display: flex;
   margin-top: 5px;
-  margin-left: -2%;
+  margin-left: -25px;
   width: 105%;
 }
 
@@ -4370,3 +4370,41 @@ body .portal-breadcrumb.ui-breadcrumb ul li {
 .position-topbar {
 	height: 58px;
 }
+
+/*=================== GUIDE ===================*/
+.ui-dialog-mask.ui-widget-overlay.guide-modal {
+  background-color: transparent;
+  z-index: -1;
+}
+
+.ui-dialog.guide-panel, .ui-dialog.guide-panel .ui-dialog-content {
+  overflow: visible;
+}
+
+.guide-panel__arrow {
+  content: " ";
+  position: absolute;
+}
+
+.guide-panel__container {
+  padding: 40px 20px 20px 20px;
+  text-align: center;
+}
+
+.guide-panel__content {
+  padding: 0 40px;
+  margin-bottom: 40px;
+}
+
+.guide-panel__buttons {
+  text-align: right;
+}
+
+.guide-panel__cancel {
+  margin-right: 15px;
+}
+
+.guide-panel__dont-show-again {
+  text-align: left;
+}
+/*=================== GUIDE END ===================*/
