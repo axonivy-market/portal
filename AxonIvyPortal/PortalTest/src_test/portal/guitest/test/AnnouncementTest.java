@@ -11,7 +11,7 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.AnnouncementPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LanguagePage;
+import portal.guitest.page.UserProfilePage;
 
 public class AnnouncementTest extends BaseTest {
   @Override
@@ -34,15 +34,16 @@ public class AnnouncementTest extends BaseTest {
     adminSettingsPage.closeAdminSettingDialog();
     adminSettingsPage.closeInformConfigDialog();
 
-    LanguagePage languagePage = homePage.openLanguagePage();
-    languagePage.selectLanguage(0);
-    languagePage.save();
+    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+    userProfilePage.selectLanguage(1);
+    userProfilePage.save();
     assertEquals("lies mich", homePage.getAnnouncementMessage());
-
+    
+    userProfilePage.clickOnLogo();
     homePage = new HomePage();
-    languagePage = homePage.openLanguagePage();
-    languagePage.selectLanguage(1);
-    languagePage.save();
+    userProfilePage = homePage.openMyProfilePage();
+    userProfilePage.selectLanguage(2);
+    userProfilePage.save();
     assertEquals("Readme1", homePage.getAnnouncementMessage());
 
   }
