@@ -1,14 +1,16 @@
 package portal.guitest.test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.LanguagePage;
+import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskWidgetPage;
+import portal.guitest.page.UserProfilePage;
+import portal.guitest.page.WorkingTaskDialogFromUserProfilePage;
 
 public class LanguageSettingTest extends BaseTest {
 
@@ -23,20 +25,28 @@ public class LanguageSettingTest extends BaseTest {
   public void testChangeLanguageWhenWorkingOnTask() {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTask(0);
-
-    LanguagePage languagePage = taskWidgetPage.openLanguagePage();
-    assertTrue(languagePage.isWarningMessageShownOn());
-
-    languagePage.cancel();
+    taskWidgetPage.clickOnMyProfile();
+    WorkingTaskDialogFromUserProfilePage workingTaskDialogPage = new WorkingTaskDialogFromUserProfilePage();
+    workingTaskDialogPage.leaveTask();
+    UserProfilePage userProfilePage = new UserProfilePage();
+    assertEquals("Language settings", userProfilePage.getLanguageSettingTitle());
   }
 
   @Test
-  public void testChangeLanguageAtHomepage() {
+  public void testChangeLanguage() {
     HomePage homePage = new HomePage();
-    LanguagePage languagePage = homePage.openLanguagePage();
-    assertTrue(!languagePage.isWarningMessageShownOn());
-
-    languagePage.cancel();
+    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+    userProfilePage.selectLanguage(1);
+    userProfilePage.save();  
+    userProfilePage.clickOnLogo();
+    homePage = new HomePage();
+    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    assertEquals("Prozesse", mainMenuPage.getProcessMenuItemText());
+    userProfilePage = homePage.openMyProfilePage();
+    userProfilePage.selectLanguage(2);
+    userProfilePage.save();
+    mainMenuPage = userProfilePage.openMainMenu();
+    assertEquals("Processes", mainMenuPage.getProcessMenuItemText());
   }
 
   private void createTestData() {

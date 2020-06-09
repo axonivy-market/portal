@@ -17,9 +17,6 @@ import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.service.ILanguageService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
-import ch.ivy.addon.portalkit.persistence.dao.ApplicationDao;
-import ch.ivy.addon.portalkit.persistence.domain.Application;
-import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
@@ -38,38 +35,30 @@ public class LanguageService implements ILanguageService {
   }
 
   @Override
-  public IvyLanguageResultDTO findUserLanguages(String username, List<String> apps) {
-    return IvyExecutor.executeAsSystem(() -> { 
+  public IvyLanguageResultDTO findUserLanguages(String username) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyLanguageResultDTO result = new IvyLanguageResultDTO();
-      if (CollectionUtils.isEmpty(apps)) {
-        return result;
+      List<PortalIvyDataException> errors = new ArrayList<>();
+      try {
+        IvyLanguage ivyLanguage = getIvyLanguage(username, Ivy.wf().getApplication().getName());
+        if (ivyLanguage != null) {
+          result.setIvyLanguage(ivyLanguage);
+        }
+      } catch (PortalIvyDataException e) {
+        errors.add(e);
+      } catch (Exception ex) {
+        Ivy.log().error("Error in getting user language of user {0} within app {1}", ex, username,
+            Ivy.wf().getApplication().getName());
+        errors.add(new PortalIvyDataException(Ivy.wf().getApplication().getName(),
+            PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString()));
       }
 
-      List<PortalIvyDataException> errors = new ArrayList<>();
-      List<IvyLanguage> ivyLanguages = new ArrayList<>();
-      List<Application> applications = new ApplicationDao().findByNames(apps);
-      for (String appName : apps) {
-        try {
-          String appDisplayName = applications.stream().filter(app -> StringUtils.equals(app.getName(), appName))
-              .map(ApplicationMultiLanguage::getDisplayNameInCurrentLocale).findFirst().orElse(appName);
-          IvyLanguage ivyLanguage = getIvyLanguage(username, appName, appDisplayName);
-          if (ivyLanguage != null) {
-            ivyLanguages.add(ivyLanguage);
-          }
-        } catch (PortalIvyDataException e) {
-          errors.add(e);
-        } catch (Exception ex) {
-          Ivy.log().error("Error in getting user language of user {0} within app {1}", ex, username, appName);
-          errors.add(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString()));
-        }
-      }
       result.setErrors(errors);
-      result.setIvyLanguages(ivyLanguages);
       return result;
     });
   }
 
-  private IvyLanguage getIvyLanguage(final String username, final String appName, final String appDisplayName) throws PortalIvyDataException {
+  private IvyLanguage getIvyLanguage(final String username, final String appName) throws PortalIvyDataException {
     IApplication app = ServiceUtilities.findApp(appName);
     IUser user = ServiceUtilities.findUser(username, app);
     IvyLanguage ivyLanguage = new IvyLanguage();
@@ -80,7 +69,6 @@ public class LanguageService implements ILanguageService {
       throw new PortalIvyDataException(app.getName(), PortalIvyDataErrorType.SUPPORTED_LANGUAGES_NOT_FOUND.toString());
     }
 
-    ivyLanguage.setAppDisplayName(appDisplayName);
     ivyLanguage.setAppName(app.getName());
     ivyLanguage.setUserLanguage(getUserLanguage(user).toLowerCase());
     ivyLanguage.setSupportedLanguages(supportedLanguages);
@@ -111,30 +99,27 @@ public class LanguageService implements ILanguageService {
   }
 
   @Override
-  public IvyLanguageResultDTO saveUserLanguages(String username, List<IvyLanguage> languages) {
-    return IvyExecutor.executeAsSystem(() -> { 
+  public IvyLanguageResultDTO saveUserLanguage(String username, IvyLanguage language) {
+    return IvyExecutor.executeAsSystem(() -> {
       IvyLanguageResultDTO rs = new IvyLanguageResultDTO();
       List<PortalIvyDataException> errors = new ArrayList<>();
-      if (CollectionUtils.isNotEmpty(languages)) {
-        for (IvyLanguage language : languages) {
-          try {
-            IApplication app = ServiceUtilities.findApp(language.getAppName());
-            IUser user = ServiceUtilities.findUser(username, app);
-            List<IProcessModelVersion> activePmvs = ServiceUtilities.getActiveReleasedPmvs(app);
-            Locale userLanguage = Locale.forLanguageTag(language.getUserLanguage());
-            if (!getSupportedEmailLanguages(activePmvs).contains(userLanguage)) { 
-              errors.add(new PortalIvyDataException(app.getName(), PortalIvyDataErrorType.SUPPORTED_LANGUAGES_NOT_FOUND.toString()));
-              continue;
-            }
-
-            user.setEMailLanguage(userLanguage);
-          } catch (PortalIvyDataException e) {
-            errors.add(e);
-          } catch (Exception ex) {
-            Ivy.log().error("Error in saving user language of user {0} within app {1}", ex, username, language.getAppName());
-            errors.add(new PortalIvyDataException(language.getAppName(), PortalIvyDataErrorType.FAIL_TO_SAVE_LANGUAGE.toString()));
-          }
+      try {
+        IApplication app = ServiceUtilities.findApp(language.getAppName());
+        IUser user = ServiceUtilities.findUser(username, app);
+        List<IProcessModelVersion> activePmvs = ServiceUtilities.getActiveReleasedPmvs(app);
+        Locale userLanguage = Locale.forLanguageTag(language.getUserLanguage());
+        if (!getSupportedEmailLanguages(activePmvs).contains(userLanguage)) {
+          errors.add(new PortalIvyDataException(app.getName(),
+              PortalIvyDataErrorType.SUPPORTED_LANGUAGES_NOT_FOUND.toString()));
         }
+        user.setEMailLanguage(userLanguage);
+      } catch (PortalIvyDataException e) {
+        errors.add(e);
+      } catch (Exception ex) {
+        Ivy.log().error("Error in saving user language of user {0} within app {1}", ex, username,
+            language.getAppName());
+        errors.add(
+            new PortalIvyDataException(language.getAppName(), PortalIvyDataErrorType.FAIL_TO_SAVE_LANGUAGE.toString()));
       }
       rs.setErrors(errors);
       return rs;
@@ -155,12 +140,12 @@ public class LanguageService implements ILanguageService {
 
   @Override
   public IvyLanguageResultDTO getSupportedLanguages(String appName) {
-    return IvyExecutor.executeAsSystem(() -> { 
+    return IvyExecutor.executeAsSystem(() -> {
       IvyLanguageResultDTO result = new IvyLanguageResultDTO();
-      
+
       List<PortalIvyDataException> errors = new ArrayList<>();
       List<IvyLanguage> ivyLanguages = new ArrayList<>();
-      
+
       try {
         IApplication app = ServiceUtilities.findApp(appName);
         IvyLanguage ivyLanguage = new IvyLanguage();
@@ -168,13 +153,14 @@ public class LanguageService implements ILanguageService {
         List<IProcessModelVersion> activeReleasedPmvs = ServiceUtilities.getActiveReleasedPmvs(app);
         List<String> supportedLanguages = getSupportedLanguagesFromPmvs(activeReleasedPmvs);
         if (CollectionUtils.isEmpty(supportedLanguages)) {
-          errors.add(new PortalIvyDataException(app.getName(), PortalIvyDataErrorType.SUPPORTED_LANGUAGES_NOT_FOUND.toString()));
+          errors.add(new PortalIvyDataException(app.getName(),
+              PortalIvyDataErrorType.SUPPORTED_LANGUAGES_NOT_FOUND.toString()));
         }
 
         ivyLanguage.setAppName(app.getName());
         ivyLanguage.setSupportedLanguages(supportedLanguages);
-        
-        ivyLanguages.add(ivyLanguage);      
+
+        ivyLanguages.add(ivyLanguage);
         result.setErrors(errors);
         result.setIvyLanguages(ivyLanguages);
       } catch (Exception e) {
@@ -184,4 +170,5 @@ public class LanguageService implements ILanguageService {
       return result;
     });
   }
+
 }

@@ -6,6 +6,7 @@
   <ui:composition template="/layouts/restricted/CaseMapDetailTemplate.xhtml">
     <ui:param name="caseMapDetail" value="#{data.caseMapDetail}" />
     <ui:param name="stageIndex" value="#{data.stageIndex}" />
+    <ui:define name="pageTitle">#{caseMapDetailBean.getDisplayStage(caseMapDetail,stageIndex)}</ui:define>
     <ui:define name="header">
       <div class="ui-g-1 ui-xl-1 ui-lg-1 ui-md-2 ui-sm-3">
         <p:graphicImage library="ivy-cms" name="#{caseMapDetail.icon}" />
@@ -45,7 +46,7 @@
     
     <ui:define name="actionButtons">
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        actionListener="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(false, ivy.task)}" />
+        actionListener="#{logic.cancel}" />
       <p:spacer width="20rem" />
       <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{caseMapDetail.name}"
         actionListener="#{caseMapDetailBean.startCaseMap(caseMapDetail.startLink)}" />

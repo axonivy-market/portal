@@ -1,20 +1,16 @@
 package ch.ivy.addon.portalkit.ivydata.dto;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting;
 
 public class IvyEmailSettingResultDTO extends AbstractResultDTO {
 
-  private List<IvyEmailSetting> ivyEmailSettings = new ArrayList<>();
+  private IvyEmailSetting ivyEmailSetting = new IvyEmailSetting();
 
-  public List<IvyEmailSetting> getIvyEmailSettings() {
-    return ivyEmailSettings;
+  public IvyEmailSetting getIvyEmailSetting() {
+    return ivyEmailSetting;
   }
 
-  public void setIvyEmailSettings(List<IvyEmailSetting> ivyEmailSettings) {
-    this.ivyEmailSettings = ivyEmailSettings;
+  public void setIvyEmailSetting(IvyEmailSetting ivyEmailSetting) {
+    this.ivyEmailSetting = ivyEmailSetting;
   }
-
 }

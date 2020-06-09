@@ -5,7 +5,7 @@
 <h:body>
   <ui:composition template="/layouts/restricted/CaseMapOverviewTemplate.xhtml">
     <ui:param name="caseMapDetail" value="#{data.caseMapDetail}" />
-    
+    <ui:define name="pageTitle">#{data.userProcess.processName}</ui:define>
     <ui:define name="header">
       <div class="ui-g-1 ui-xl-1 ui-lg-1 ui-md-2 ui-sm-3">
         <p:graphicImage library="ivy-cms" name="#{data.userProcess.icon}" />
@@ -26,7 +26,7 @@
     </ui:define>
     
     <ui:define name="actionButtons">
-      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" actionListener="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(false, ivy.task)}"/>
+      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" actionListener="#{logic.cancel}"/>
       <p:spacer width="20rem" />
       <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{data.userProcess.processName}"
         id="start"

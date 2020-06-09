@@ -32,7 +32,7 @@
                   <div class="side-step-info" >
                   </div>
                   <div class="ui-g-12">
-                    <div style="margin0">
+                    <div>
                       <div class="ui-g-12 #{processStatus.index == 0?'process-first-breadcrumb':'process-breadcrumb'} ">
                         <h:outputText value="#{process}" styleClass="process-breadcrumb-title" id="process-name"/>
                       </div>
@@ -56,8 +56,8 @@
               </ui:repeat>
               <!-- SIDE STEP -->
               <ui:repeat var="process" value="#{caseMapDetailBean.getSideStepOfStage(caseMapDetail, stageIndex)}">
-                <h:panelGroup layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12">
-                  <div class="ui-g-12 side-step-panel">
+                <h:panelGroup layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12 side-step-panel">
+                  <div class="ui-g-12">
                   <div class="dropdown side-step-info ">
                     <div class="ui-g">
                       <h:outputText value="#{ivy.cms.co('/Processes/CaseMap/sideStep')}" styleClass="side-step-info-text"/>
@@ -69,8 +69,7 @@
                     </div>
                   </div>
                   <div class="ui-g-12">
-                    <div style="margin0">
-  
+                    <div>
                       <div class="ui-g-12 process-breadcrumb">
                         <h:outputText value="#{process}" styleClass="process-breadcrumb-title" id="side-step-name"/>
                       </div>

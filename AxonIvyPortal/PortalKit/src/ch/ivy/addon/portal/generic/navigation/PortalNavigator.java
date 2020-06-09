@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
+import ch.ivy.addon.portalkit.util.HelpLinkUtil;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
@@ -98,22 +99,32 @@ public final class PortalNavigator {
   }
 
   public void navigateToPortalProcess() {
+    String processHelpLink = HelpLinkUtil.readProcessListHelpLink();
+    Ivy.session().setAttribute(SessionAttribute.HELP_URL_LINK.toString(), processHelpLink);
     navigateByKeyword("DefaultProcessStartListPage.ivp", PORTAL_PROCESS, new HashMap<>());
   }
 
   public void navigateToPortalCase() {
+    String caseListHelpLink = HelpLinkUtil.readCaseListHelpLink();
+    Ivy.session().setAttribute(SessionAttribute.HELP_URL_LINK.toString(), caseListHelpLink);
     navigateByKeyword("CaseListPage.ivp", PORTAL_CASE, new HashMap<>());
   }
 
   public void navigateToPortalTask() {
+    String taskListHelpLink = HelpLinkUtil.readTaskListHelpLink();
+    Ivy.session().setAttribute(SessionAttribute.HELP_URL_LINK.toString(), taskListHelpLink);
     navigateByKeyword("DefaultTaskListPage.ivp", PORTAL_TASK, new HashMap<>());
   }
 
   public void navigateToPortalStatistic() {
+    String statisticDashboardHelpLink = HelpLinkUtil.readStatisticDashboardHelpLink();
+    Ivy.session().setAttribute(SessionAttribute.HELP_URL_LINK.toString(), statisticDashboardHelpLink);
     navigateByKeyword("StatisticPage.ivp", PORTAL_STATISTIC, new HashMap<>());
   }
 
   public void navigateToPortalHome() {
+    String dashboardHelpLink = HelpLinkUtil.readDashboardHelpLink();
+    Ivy.session().setAttribute(SessionAttribute.HELP_URL_LINK.toString(), dashboardHelpLink);
     navigateByKeyword("DefaultApplicationHomePage.ivp", PORTAL_PROCESS_START_NAME, new HashMap<>());
   }
 

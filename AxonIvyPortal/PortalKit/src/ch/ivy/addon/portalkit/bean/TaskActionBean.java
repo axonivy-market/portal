@@ -9,6 +9,7 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.constant.DummyTask;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -90,7 +91,7 @@ public class TaskActionBean {
     ISession session = null;
     try {
       session = ServiceUtilities.findUserWorkflowSession(Ivy.session().getSessionUserName(), task.getApplication());
-      return task.canUserResumeTask(session).wasSuccessful();
+      return task.canUserResumeTask(session).wasSuccessful() || StringUtils.equals(task.getName(), DummyTask.TASK_NAME);
     } finally {
       if (session != null && !Objects.equals(Ivy.wf().getApplication(), task.getApplication())) {
         ISecurityContext securityContext = task.getApplication().getSecurityContext();
