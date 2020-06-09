@@ -20,10 +20,9 @@
 		<p:tooltip for="process-name" value="#{process.name}" trackMouse="true" hideEvent="mouseleave click"/>
 	</div>
 	<div class="process-item-action-container">
-		<h:panelGroup
-			styleClass="process-start-list-item-action #{isExpress ? 'is-express' : ''} u-padding-0"
+		<h:panelGroup styleClass="process-start-list-item-action #{isExpress ? 'is-express' : ''} u-padding-0"
 			rendered="#{isExpress}" layout="block">
-			<p:panel id="express-process-logo" styleClass="express-process-logo icon ivyicon-startup-launch" />
+			<h:outputText id="express-process-logo" styleClass="express-process-logo icon ivyicon-startup-launch" />
 			<p:tooltip id="express-process-logo-tooltip"
 				for="express-process-logo"
 				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expressWorkflow')}"

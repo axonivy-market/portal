@@ -11,7 +11,7 @@
           <p:fileDownload value="#{logic.getExportedFile(taskAnalysisWidgetBean.getColumns())}" />
         </p:commandButton>
   
-        <p:commandButton id="toggler" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/columns')}" icon="fa fa-caret-down" iconPos="right" />
+        <p:commandButton id="toggler" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}" icon="fa fa-caret-down" iconPos="right" />
         <p:columnToggler id="task-table-toggler" datasource="task-table" trigger="toggler">
           <p:ajax event="toggle" listener="#{taskAnalysisWidgetBean.onToggleColumns}" oncomplete="initializeScrollbar();" />
         </p:columnToggler>
@@ -41,7 +41,7 @@
 
         <p:column id="case-creator" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseCreator')}" sortable="false" width="200"
           visible="#{taskAnalysisWidgetBean.columns['CASE_CREATOR']}" exportable="#{taskAnalysisWidgetBean.columns['CASE_CREATOR']}">
-          <h:outputText value="#{task.case.creatorUserName}" />
+          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.case.creatorUser, task.case.creatorUserName)}" />
         </p:column>
 
         <p:column id="case-state" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseState')}" sortable="false" width="120"
@@ -75,12 +75,12 @@
         <p:column id="task-activator" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskResponsible')}" field="TASK_ACTIVATOR" sortBy="#{TASK_ACTIVATOR}" width="200"
           visible="#{taskAnalysisWidgetBean.columns['TASK_ACTIVATOR']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_ACTIVATOR']}">
-          <h:outputText value="#{empty task.activator.displayName ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable'): task.activator.displayName}" />
+          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activatorName)}" />
         </p:column>
 
         <p:column id="task-worker" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskWorker')}" field="TASK_WORKER" sortBy="#{TASK_WORKER}" width="200"
           visible="#{taskAnalysisWidgetBean.columns['TASK_WORKER']}" exportable="#{taskAnalysisWidgetBean.columns['TASK_WORKER']}">
-          <h:outputText value="#{empty task.workerUser.displayName ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : task.workerUser.displayName}" />
+          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.workerUser, task.workerUserName)}"/>
         </p:column>
 
         <p:column id="task-priority" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskPriority')}" field="TASK_PRIORITY" sortBy="#{TASK_PRIORITY}"

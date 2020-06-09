@@ -30,7 +30,6 @@
           </p:commandLink>
         </h:panelGroup>
       </div>
-      <div class="Separator ui-g-12 u-padding-0" />
 
       <div class="ui-g-12 u-padding-0">
         <p:dataTable id="task-details-documents" var="document" rendered="#{not empty data.documents}" value="#{data.documents}" paginator="true" paginatorAlwaysVisible="false" pageLinks="3"
@@ -56,8 +55,8 @@
 
           <p:column id="document-author" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"
             styleClass="task-document-author u-truncate-text ui-sm-hidden"
-            sortBy="#{empty document.creation.user.fullName ? document.creation.user.name:document.creation.user.fullName}">
-            <h:outputText value="#{empty document.creation.user.fullName ? document.creation.user.name:document.creation.user.fullName}" />
+            sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(document.creation.user, document.creation.user.name)}">
+            <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(document.creation.user, document.creation.user.name)}" />
           </p:column>
 
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" styleClass="task-history-date u-truncate-text ui-sm-hidden"

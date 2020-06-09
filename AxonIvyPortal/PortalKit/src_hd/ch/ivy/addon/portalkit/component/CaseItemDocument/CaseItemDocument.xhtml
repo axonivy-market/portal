@@ -29,7 +29,6 @@
           </p:commandLink>
         </h:panelGroup>
       </div>
-      <div class="Separator ui-g-12 u-padding-0" />
 
       <div class="ui-g-12 u-padding-0">
         <p:dataTable id="case-details-documents" rendered="#{not empty data.documents}" var="document"
@@ -61,9 +60,9 @@
           <p:column id="document-author"
             headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}"
             styleClass="case-document-author u-truncate-text ui-sm-hidden"
-            sortBy="#{empty document.creation.user.fullName ? document.creation.user.name:document.creation.user.fullName}">
+            sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(document.creation.user, document.creation.user.name)}">
             <h:outputText
-              value="#{empty document.creation.user.fullName ? document.creation.user.name:document.creation.user.fullName}" />
+              value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(document.creation.user, document.creation.user.name)}" />
           </p:column>
 
           <p:column id="document-creation"

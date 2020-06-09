@@ -37,6 +37,9 @@ function ProcessWidget() {
         processStartListContainer.css("max-height", availableHeight + "px");
         this.setupProcessNav(processStartListContainer, availableHeight, announcementMessageContainer);
       }
+
+      $('.js-layout-content').css('height', 'auto');
+
       processStartListContainer.on("scroll", function() {
         $(".process-nav-item.selected").removeClass("selected");
       });
@@ -203,6 +206,14 @@ function expandOrCollapseAllCategories(shouldExpand) {
       $(categoryButton).click();
     }
   });
+
+  if (shouldExpand) {
+    $('[id $= "expand-all-btn"]').hide();
+    $('[id $= "collapse-all-btn"]').show();
+  } else {
+    $('[id $= "expand-all-btn"]').show();
+    $('[id $= "collapse-all-btn"]').hide();
+  }
 }
 
 function jumpToProcessGroupByCharacter(event) {
