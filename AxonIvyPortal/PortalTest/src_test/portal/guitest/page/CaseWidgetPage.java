@@ -197,7 +197,7 @@ public class CaseWidgetPage extends TemplatePage {
 	}
 
 	public String getFilterName() {
-		WebElement filterName = findElementByCssSelector("a[id$='case-widget:filter-selection-form:filter-name'] > span:nth-child(2) ");
+		WebElement filterName = findElementByCssSelector("[id$='case-widget:filter-selection-form:filter-name'] > span");
 		return filterName.getText();
 	}
 
@@ -331,9 +331,9 @@ public class CaseWidgetPage extends TemplatePage {
       if (filter.getText().equals(filterName)) {
         click(filter);
         waitAjaxIndicatorDisappear();
-        refreshAndWaitElement("a[id$='case-widget:filter-selection-form:filter-name'] > span:nth-child(2)");
+        refreshAndWaitElement("[id$='case-widget:filter-selection-form:filter-name'] > span)");
         Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(
-            () -> findElementByCssSelector("a[id$='case-widget:filter-selection-form:filter-name'] > span:nth-child(2)")
+            () -> findElementByCssSelector("[id$='case-widget:filter-selection-form:filter-name'] > span")
                 .getText().contains(filterName));
         return;
       }
