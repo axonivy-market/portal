@@ -36,8 +36,6 @@
       </div>
     </div>
 
-    <div class="Separator" />
-
     <h:panelGroup id="task-history-content-container" styleClass="ui-g-12 u-padding-0">
       <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true" pageLinks="3" rows="5" paginatorPosition="top" rendered="#{not empty data.notes}"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" paginatorAlwaysVisible="false"
