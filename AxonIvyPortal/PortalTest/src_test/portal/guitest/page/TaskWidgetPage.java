@@ -9,7 +9,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.remote.server.handler.FindElements;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
