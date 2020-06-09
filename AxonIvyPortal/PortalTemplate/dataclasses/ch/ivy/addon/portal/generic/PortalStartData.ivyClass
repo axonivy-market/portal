@@ -16,3 +16,4 @@ taskSelected ch.ivyteam.ivy.workflow.ITask #field
 caseSelected ch.ivyteam.ivy.workflow.ICase #field
 backFromTaskDetails Boolean #field
 isFirstTask Boolean #field
+embedInIFrame Boolean #field

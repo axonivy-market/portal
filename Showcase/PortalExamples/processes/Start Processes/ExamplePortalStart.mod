@@ -98,6 +98,16 @@ Pt0 @UserDialog f71 '' #zField
 Pt0 @PushWFArc f79 '' #zField
 Pt0 @PushWFArc f78 '' #zField
 Pt0 @PushWFArc f77 '' #zField
+Pt0 @Alternative f65 '' #zField
+Pt0 @UserDialog f59 '' #zField
+Pt0 @InfoButton f66 '' #zField
+Pt0 @StartRequest f60 '' #zField
+Pt0 @GridStep f61 '' #zField
+Pt0 @GridStep f62 '' #zField
+Pt0 @PushWFArc f80 '' #zField
+Pt0 @PushWFArc f68 '' #zField
+Pt0 @PushWFArc f69 '' #zField
+Pt0 @PushWFArc f67 '' #zField
 >Proto Pt0 Pt0 ExamplePortalStart #zField
 Bk2 @TextInP .type .type #zField
 Bk2 @TextInP .processKind .processKind #zField
@@ -928,6 +938,96 @@ Pt0 f71 @|UserDialogIcon #fIcon
 Pt0 f79 111 896 192 896 #arcP
 Pt0 f78 111 1088 192 1088 #arcP
 Pt0 f77 111 992 192 992 #arcP
+Pt0 f65 336 1168 32 32 0 16 #rect
+Pt0 f65 @|AlternativeIcon #fIcon
+Pt0 f59 dialogId ch.ivy.addon.portal.generic.iframe.TaskTemplateIFrame #txt
+Pt0 f59 startMethod start(String,Number) #txt
+Pt0 f59 requestActionDecl '<String url,Number taskId> param;' #txt
+Pt0 f59 requestMappingAction 'param.url=in.callbackUrl;
+param.taskId=in.endedTaskId;
+' #txt
+Pt0 f59 responseMappingAction 'out=in;
+' #txt
+Pt0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>TaskTemplateIFrame</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f59 424 1162 128 44 -55 -8 #rect
+Pt0 f59 @|UserDialogIcon #fIcon
+Pt0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>If open a process/start in "embedInFrame" mode (add to url embedInFrame parameter), &#13;
+DefaultFramePage process will run</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f66 56 1322 464 44 -228 -16 #rect
+Pt0 f66 @|IBIcon #fIcon
+Pt0 f60 outLink DefaultFramePage.ivp #txt
+Pt0 f60 inParamDecl '<String relativeUrl,Number runningTaskId> param;' #txt
+Pt0 f60 inParamTable 'out.endedTaskId=param.runningTaskId;
+' #txt
+Pt0 f60 actionCode 'import ch.ivyteam.ivy.request.RequestUriFactory;
+import ch.ivyteam.ivy.bpm.error.BpmError;
+if (param.relativeUrl.startsWith("/" + RequestUriFactory.getIvyContextName() + "/")) {
+  out.callbackUrl = param.relativeUrl;
+} else {
+  BpmError.create("frame:unsupported:url").withMessage("only relative urls are supported (security reasons)").throwError();
+}' #txt
+Pt0 f60 requestEnabled true #txt
+Pt0 f60 triggerEnabled false #txt
+Pt0 f60 callSignature DefaultFramePage(String,Number) #txt
+Pt0 f60 caseData businessCase.attach=true #txt
+Pt0 f60 showInStartList 0 #txt
+Pt0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DefaultFramePage.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f60 @C|.responsibility Everybody #txt
+Pt0 f60 81 1169 30 30 -48 16 #rect
+Pt0 f60 @|StartRequestIcon #fIcon
+Pt0 f61 actionTable 'out=in;
+' #txt
+Pt0 f61 actionCode 'import ch.ivy.addon.portalkit.service.IFrameService;
+out.embedInIFrame = IFrameService.embedInFrame(in.endedTaskId);' #txt
+Pt0 f61 security system #txt
+Pt0 f61 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>get embedInIFrame setting</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f61 152 1162 144 44 -69 -8 #rect
+Pt0 f61 @|StepIcon #fIcon
+Pt0 f62 actionTable 'out=in;
+' #txt
+Pt0 f62 actionCode 'import ch.ivy.addon.portalkit.util.RequestUtil;
+RequestUtil.redirect(in.callbackUrl);' #txt
+Pt0 f62 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Redirect to task start</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f62 424 1258 112 44 -53 -8 #rect
+Pt0 f62 @|StepIcon #fIcon
+Pt0 f80 352 1200 424 1280 #arcP
+Pt0 f80 1 352 1280 #addKink
+Pt0 f80 1 0.3245481098375822 0 0 #arcLabel
+Pt0 f68 111 1184 152 1184 #arcP
+Pt0 f69 expr in #txt
+Pt0 f69 outCond in.embedInIFrame #txt
+Pt0 f69 368 1184 424 1184 #arcP
+Pt0 f67 296 1184 336 1184 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1528,6 +1628,14 @@ Pt0 f72 mainOut f77 tail #connect
 Pt0 f77 head f74 mainIn #connect
 Pt0 f73 mainOut f78 tail #connect
 Pt0 f78 head f75 mainIn #connect
+Pt0 f60 mainOut f68 tail #connect
+Pt0 f68 head f61 mainIn #connect
+Pt0 f61 mainOut f67 tail #connect
+Pt0 f67 head f65 in #connect
+Pt0 f80 head f62 mainIn #connect
+Pt0 f65 out f69 tail #connect
+Pt0 f69 head f59 mainIn #connect
+Pt0 f65 out f80 tail #connect
 Bk2 f106 mainOut f107 tail #connect
 Bk2 f107 head f104 mainIn #connect
 Bk2 g0 m f0 tail #connect

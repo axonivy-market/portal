@@ -146,6 +146,13 @@ In engine
    project.
 4. Follow detailed migration notes for each version below.
 
+Migrate 8.0.x to 8.0.7
+----------------------
+
+PortalStart.mod file is changed. If you have
+customized this process in your project, copy new PortalStart from
+Portal Template to your project and re-apply your customization.
+
 Migrate 8.0.1 to 8.0.2
 ----------------------
 
