@@ -176,8 +176,9 @@
         <p:dataTable id="substitution-table" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           scrollHeight="150" scrollable="true" styleClass="substitution-table"
           reflow="true" value="#{absenceManagementBean.loadSubstitutionsForApp(data.substitutionsByApp, app.name)}" var="substitution" >
-          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}" sortBy="#{substitution.ownerUser.name}">
-            <h:outputText value="#{substitution.ownerUser.getName()}" />
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}" 
+            sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(substitution.ownerUser, substitution.ownerUser.name)}">
+            <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(substitution.ownerUser, substitution.ownerUser.name)}" />
           </p:column>
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/applicationAndRole')}" sortBy="#{substitution.substitionRoleDisplayName}" >
             <h:outputText value="#{substitution.substitionRoleDisplayName}" />

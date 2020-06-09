@@ -134,7 +134,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   private static final String CHART_NAME = "name";
   private static final String CHART_LEGEND_POSITION_LEFT = "left";
   private static final String CHART_LEGEND_POSITION_BOTTOM = "bottom";
-  private static StatisticColors statisticColors;
+  private static StatisticColors statisticColors = new StatisticColors();
   private String LOADING_MESSAGE = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/loadingCharts");
 
   @Override
@@ -1411,4 +1411,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
         .and().textField(CHART_NAME).isEqualToIgnoringCase(chartName).limit(1).execute().getFirst();
   }
 
+  public boolean isSame(List<StatisticChart> first, List<StatisticChart> second) {
+    if (CollectionUtils.isEmpty(first) || CollectionUtils.isEmpty(second) || first.size() != second.size()) {
+      return false;
+    }
+    return first.stream().allMatch(s -> second.contains(s));
+  }
 }

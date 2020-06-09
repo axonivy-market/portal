@@ -65,8 +65,18 @@ public class ProcessWidgetPage extends TemplatePage {
   }
   
   public ExpressProcessPage editExpressWF(String wfName) {
-    enterSearchKeyword(wfName);
-    click(By.cssSelector("[id$='edit-express-workflow']"));
+    int numberOfRefesh = 5;
+    for(int i=0; i< numberOfRefesh; i++) {
+      waitForElementDisplayed(By.id(processWidgetId + ":process-search:non-ajax-keyword-filter"), true);
+      enterSearchKeyword(wfName);
+      if(isElementDisplayed(By.cssSelector("[id$='edit-express-workflow']"))) {
+        click(By.cssSelector("[id$='edit-express-workflow']"));
+        break;
+      }
+      else {
+        refresh();
+      }
+    }
     return new ExpressProcessPage();
   }
 
