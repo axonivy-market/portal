@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class MainMenuPage extends TemplatePage {
+  
+  private static String PROCESS_MENU_ITEM_CSS_SELECTOR = "li.submenu-container:nth-child(2) > a.ripplelink.submenu";
 
   @Override
   protected String getLoadedLocator() {
@@ -34,7 +36,7 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public ProcessWidgetPage selectProcessesMenu() {
-    clickByCssSelector("li.submenu-container:nth-child(2) > a.ripplelink.submenu");
+    clickByCssSelector(PROCESS_MENU_ITEM_CSS_SELECTOR);
     waitForProcessesPageAfterSelectProcessesCategory();
     return new ProcessWidgetPage();
   }
@@ -59,6 +61,11 @@ public class MainMenuPage extends TemplatePage {
   public CaseWidgetPage selectCaseMenu() {
     clickByCssSelector("li.submenu-container:nth-child(4) > a.ripplelink.submenu");
     return new CaseWidgetPage();
+  }
+  
+  public String getProcessMenuItemText() {
+    openMainMenu();
+    return findElementByCssSelector(PROCESS_MENU_ITEM_CSS_SELECTOR).getText();
   }
 
 }
