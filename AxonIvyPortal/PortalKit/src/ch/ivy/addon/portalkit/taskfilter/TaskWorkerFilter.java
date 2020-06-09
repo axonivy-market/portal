@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
@@ -49,10 +50,7 @@ public class TaskWorkerFilter extends TaskFilter {
   }
 
   public String formatName(UserDTO worker) {
-    if (StringUtils.isBlank(worker.getDisplayName())) {
-      return worker.getName();
-    }
-    return worker.getDisplayName() + " (" + worker.getName() + ")";
+    return SecurityMemberDisplayNameUtils.generateFullDisplayNameForUserDTO(worker);
   }
   
   public UserDTO getSelectedWorker() {
