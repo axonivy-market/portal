@@ -20,3 +20,4 @@ isBusinessCase Boolean #field
 caseName String #field
 keyword String #field
 keyword 'used in global search process' #fieldComment
+embedInIFrame Boolean #field
