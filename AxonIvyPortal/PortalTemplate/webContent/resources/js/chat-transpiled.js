@@ -436,6 +436,12 @@ function Chat(uri, view) {
     e.stopImmediatePropagation();
     view.renderChatMessagePanelUIWhenOpen();
 
+    // Hide environment info when open chat
+    var portalEnvironment = $('.js-portal-environment');
+    if (portalEnvironment.length > 0) {
+      portalEnvironment.addClass('u-hidden');
+    }
+
     if ($(".js-top-menu").hasClass("mod-chat-active")) {
       if (isChatGroupEnabled === 'true') {
         getGroups();
@@ -979,6 +985,12 @@ function View(uri) {
   this.closeChatPanel = function () {
     closeChatMessagePanel();
     this.renderChatMessagePanelUIWhenOpen();
+
+    // Show environment info when open chat
+    var portalEnvironment = $('.js-portal-environment');
+    if (portalEnvironment.length > 0) {
+      portalEnvironment.removeClass('u-hidden');
+    }
   };
 
   function updateExistingGroups() {
