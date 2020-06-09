@@ -344,7 +344,7 @@
     componentToUpdate="#{p:component('task-start')}" />
 
   <!-- hidden row count to update breadcrumb -->
-  <h:outputText id="hidden-task-count" styleClass="u-hidden js-task-count-hidden" value="#{data.dataModel.rowCount}" rendered="#{not data.dataModel.disableTaskCount}" />
+  <h:outputText id="hidden-task-count" styleClass="u-hidden hidden-task-count js-hidden-task-count" value="#{data.dataModel.rowCount}" rendered="#{not data.dataModel.disableTaskCount}" />
 
   <script type="text/javascript">
       var taskWidget = new TaskWidget();
