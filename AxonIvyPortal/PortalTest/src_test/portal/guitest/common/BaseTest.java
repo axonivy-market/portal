@@ -83,6 +83,7 @@ public class BaseTest {
   public void setup() {
     browser = Browser.getBrowser();
     launchBrowserAndGotoRelativeLink(cleanupDataLink);
+    updatePortalSetting("SHOW_USER_GUIDE", "false");
   }
   
   /**
