@@ -3124,7 +3124,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .chart-list-container {
   position: relative;
-/*   margin-right: 1.5rem; */
 }
 
 .chart-list-container .filter-container {
@@ -3220,8 +3219,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .dashboard-chart-panel {
   position: relative;
   height: 100%;
-/*   margin: auto 1rem 1rem 0; */
-/*   padding-right: 0.5rem; */
 }
 
 .dashboard-chart-panel .ui-panel-titlebar.ui-widget-header {

@@ -31,14 +31,12 @@ var Portal = {
     var headerFooterHeight = headerHeight + footerHeight;
     if ($('.js-layout-wrapper').hasClass('u-invisibility')) {
       var envHeight = $('#portal-environment').outerHeight();
-
       var announcementMessageContainer = $('.js-announcement-message');
 
       $('.js-left-sidebar').css('top', headerHeight + 'px').css('height', 'calc(100vh - ' + (headerFooterHeight - envHeight) + 'px)');
       $('.js-layout-main').css('margin-top', headerHeight + 'px').css('height', 'calc(100vh - ' + headerFooterHeight + 'px)');
       $('.js-layout-wrapper').removeClass('u-invisibility');
     }
-	// need to fix: topbar + headerFooterHeight
     $('.js-layout-content').css('height', $('.js-layout-main').outerHeight() - $('.layout-topbar').outerHeight() + 'px');
   },
 

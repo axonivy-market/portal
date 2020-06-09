@@ -30,20 +30,7 @@
         <h:panelGroup id="case-detail-name" styleClass="case-detail-header u-hidden-md-up" layout="block">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: "
             styleClass="case-detail-name-prefix" />
-          <p:inplace id="case-name-edit-inplace" editor="true"
-            disabled="#{!caseActionBean.canChangeName(case) or case.state eq 'DONE'}"
-            saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-            cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-            widgetVar="case-detail-name-edit-inplace"
-            label="#{empty case.getName() ? ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable') : case.name}"
-            styleClass="case-detail-name-inplace-edit u-truncate-text">
-            <p:inputText id="case-detail-name-input" value="#{case.name}" maxlength="200"
-              styleClass="case-detail-name-input"
-              onkeypress="if(event.keyCode == 13) {PF('case-name-edit-inplace').save()}" />
-            <p:ajax event="save" update="case-detail-title-form" />
-            <f:passThroughAttribute name="onclick"
-              value="#{caseActionBean.canChangeName(case) ? event.stopPropagation():''}" />
-          </p:inplace>
+          <span class="u-truncate-text">#{case.name}</span>
         </h:panelGroup>
 
         <p:commandLink id="back-to-cases" rendered="#{showItemBackButton}" onclick="backToPrevPage(#{cc.attrs.isTaskStartedInDetails})" styleClass="case-details-back-btn">
