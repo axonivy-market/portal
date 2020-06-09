@@ -161,6 +161,8 @@ Migrate 8.x to 9.1
 
 6. Portal now use |css_variable| instead of SASS. Therefore you must convert SASS syntax to new CSS variable or use online tool such as |css_variable_convert| to convert it.
 
+7. We removed ``titleOnMobile`` parameter in ``TaskWidget.xhtml`` and ``CaseWidget.xhtml``. Please use parameter ``title`` instead.
+
 Migrate 8.0.1 to 8.0.2
 ----------------------
 
@@ -473,6 +475,9 @@ Changes in 9.1
    Selection <components-additional-components-user-selection>` for more details.
 
 - Refactor style customization approach. From now on, Portal use CSS Variable as technology to customize CSS.
+
+- Introduce the User Guide feature, using the ``SHOW_USER_GUIDE`` Portal Setting to activate/deactivate it, 
+  and follow :ref:`Customize user guide <customization-portal-home-user-guide>` for your customization.
 
 Changes in 8.0
 --------------

@@ -9,10 +9,11 @@ var Portal = {
     
     // Update screen when window size is changed
     $(window).resize(function() {
+      Portal.updateLayoutContent();
       setTimeout(function() {
         responsiveToolkit.updateLayoutWithoutAnimation();
       }, 250);
-      Portal.updateLayoutContent();
+      Portal.updateGuide();
     });
     
     //Add very small timeout when page ready, fix responsive problem for IE 11
@@ -24,17 +25,32 @@ var Portal = {
     this.updateBreadcrumb();
   },
   
-  // Remove u-invisibility class when DOM is pasted already
+  updateGuide : function() {
+    var $guidePanel = $('.guide-panel:visible');
+    if ($guidePanel.length > 0) {
+      var id = $guidePanel.attr('id');
+      if (id !== undefined) {
+        var guidePanelObject = window[id.substring(id.lastIndexOf(':') + 1)];
+        if (guidePanelObject !== undefined) {
+          guidePanelObject.show();
+        }
+      }
+    }
+  },
+  
   updateLayoutContent : function() {
     var headerHeight = $('#portal-template-header').outerHeight();
     var footerHeight = $('#portal-template-footer').outerHeight();
-    var envHeight = $('#portal-environment').outerHeight();
     var headerFooterHeight = headerHeight + footerHeight;
-    $('.js-left-sidebar').css('top', headerHeight + 'px').css('height', 'calc(100% - ' + (headerFooterHeight - envHeight) + 'px)');
-    $('.js-layout-main').css('margin-top', headerHeight + 'px')
-      .css('height', 'calc(100% - ' + headerFooterHeight + 'px)');
-    $('.js-layout-content').css('height', $('.js-layout-content').outerHeight() - headerFooterHeight);
-    $('.js-layout-wrapper').removeClass('u-invisibility');
+    if ($('.js-layout-wrapper').hasClass('u-invisibility')) {
+      var envHeight = $('#portal-environment').outerHeight();
+      var announcementMessageContainer = $('.js-announcement-message');
+
+      $('.js-left-sidebar').css('top', headerHeight + 'px').css('height', 'calc(100vh - ' + (headerFooterHeight - envHeight) + 'px)');
+      $('.js-layout-main').css('margin-top', headerHeight + 'px').css('height', 'calc(100vh - ' + headerFooterHeight + 'px)');
+      $('.js-layout-wrapper').removeClass('u-invisibility');
+    }
+    $('.js-layout-content').css('height', $('.js-layout-main').outerHeight() - $('.layout-topbar').outerHeight() + 'px');
   },
 
   updateBreadcrumb : function() {
