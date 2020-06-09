@@ -167,12 +167,12 @@ Us0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 f20 304 202 112 44 -27 -8 #rect
+Us0 f20 296 202 112 44 -27 -8 #rect
 Us0 f20 @|StepIcon #fIcon
 Us0 f29 expr out #txt
 Us0 f29 109 224 144 224 #arcP
 Us0 f31 expr out #txt
-Us0 f31 256 224 304 224 #arcP
+Us0 f31 256 224 296 224 #arcP
 Us0 f32 actionTable 'out=in;
 ' #txt
 Us0 f32 actionCode 'import ch.ivy.addon.portalkit.util.BeanUtils;
@@ -185,7 +185,7 @@ Us0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 f32 688 282 128 44 -57 -8 #rect
+Us0 f32 672 282 128 44 -57 -8 #rect
 Us0 f32 @|StepIcon #fIcon
 Us0 f36 395 347 26 26 0 12 #rect
 Us0 f36 @|UdProcessEndIcon #fIcon
@@ -196,7 +196,7 @@ Us0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 f37 624 208 32 32 -28 -35 #rect
+Us0 f37 608 208 32 32 -28 -35 #rect
 Us0 f37 @|AlternativeIcon #fIcon
 Us0 f39 processCall 'Ivy Data Processes/EmailSettingService:findEmailSetting(String)' #txt
 Us0 f39 requestActionDecl '<String username> param;' #txt
@@ -237,7 +237,7 @@ Us0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Us0 f41 160 338 112 44 -51 -8 #rect
 Us0 f41 @|StepIcon #fIcon
-Us0 f42 883 211 26 26 0 12 #rect
+Us0 f42 867 211 26 26 0 12 #rect
 Us0 f42 @|UdProcessEndIcon #fIcon
 Us0 f45 processCall 'Ivy Data Processes/EmailSettingService:saveEmailSetting(String,ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting)' #txt
 Us0 f45 requestActionDecl '<String username,ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting emailSetting> param;' #txt
@@ -260,17 +260,17 @@ Us0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 f45 464 202 128 44 -55 -8 #rect
+Us0 f45 448 202 128 44 -55 -8 #rect
 Us0 f45 @|CallSubIcon #fIcon
 Us0 f47 expr in #txt
-Us0 f47 640 240 688 304 #arcP
-Us0 f47 1 640 304 #addKink
+Us0 f47 624 240 672 304 #arcP
+Us0 f47 1 624 304 #addKink
 Us0 f47 1 0.6505659106079889 0 0 #arcLabel
-Us0 f54 592 224 624 224 #arcP
+Us0 f54 576 224 608 224 #arcP
 Us0 f54 0 0.5344876828921243 0 0 #arcLabel
 Us0 f55 expr out #txt
-Us0 f55 816 304 896 237 #arcP
-Us0 f55 1 896 304 #addKink
+Us0 f55 800 304 880 237 #arcP
+Us0 f55 1 880 304 #addKink
 Us0 f55 1 0.48911829285115505 0 0 #arcLabel
 Us0 f58 272 360 395 360 #arcP
 Us0 f51 guid 1725FC03D28A7AF7 #txt
@@ -307,7 +307,7 @@ Us0 f3 expr out #txt
 Us0 f3 408 144 448 144 #arcP
 Us0 f4 576 144 608 144 #arcP
 Us0 f6 expr out #txt
-Us0 f6 416 224 464 224 #arcP
+Us0 f6 408 224 448 224 #arcP
 Us0 f6 0 0.4704168002362267 0 0 #arcLabel
 Us0 f5 actionTable 'out=in;
 ' #txt
@@ -321,7 +321,7 @@ import ch.ivy.addon.portal.generic.bean.UserMenuBean;
 FacesContext context = FacesContext.getCurrentInstance();
 
 Flash flash = context.getExternalContext().getFlash();
-FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/note"), ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/emailSetting/saveEmailSettingsSuccessfully"));
+FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/note"), ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/userProfile/saveUserSettingsSuccessfully"));
 context.addMessage("user-profile-message", message);
 flash.setRedirect(true);
 flash.setKeepMessages(true);
@@ -336,13 +336,13 @@ Us0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 f5 688 202 160 44 -75 -8 #rect
+Us0 f5 672 202 160 44 -75 -8 #rect
 Us0 f5 @|StepIcon #fIcon
 Us0 f7 expr in #txt
 Us0 f7 outCond in.errors.isEmpty() #txt
-Us0 f7 656 224 688 224 #arcP
+Us0 f7 640 224 672 224 #arcP
 Us0 f7 0 0.43569339242613336 0 0 #arcLabel
-Us0 f13 848 224 883 224 #arcP
+Us0 f13 832 224 867 224 #arcP
 Us0 f13 0 0.43569339242613336 0 0 #arcLabel
 >Proto Us0 .type ch.ivy.addon.portalkit.settings.UserProfile.UserProfileData #txt
 >Proto Us0 .processKind HTML_DIALOG #txt
