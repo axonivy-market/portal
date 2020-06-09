@@ -1,2 +1,4 @@
 WelcomePageData #class
 com.axonivy.portal.developerexamples.WelcomePage #namespace
+content String #field
+content PERSISTENT #fieldModifier

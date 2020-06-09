@@ -7,6 +7,8 @@
   xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="updatedComponentAfterGuide" 
+      value="#{not empty updatedComponentAfterGuide ? updatedComponentAfterGuide : 'process-widget task-widget statistic-widget-container'}" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard')}</ui:define>
     <ui:define name="pageContent">
       <c:set var="displayProcessWidget" value="#{not empty displayProcessWidget ? displayProcessWidget : true}" />
@@ -17,14 +19,23 @@
       <h:panelGroup layout="block" styleClass="ui-g home-page-container">
         <h:panelGroup layout="block" class="ui-g-3 ui-lg-3 ui-md-4 ui-sm-12 compact-process-widget" rendered="#{displayProcessWidget}">
           <ui:insert name="processWidget">
-              <ic:ch.ivy.addon.portalkit.component.CompactProcessWidget id="process-widget"
-                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}"
-                mobileTitle="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/myProcesses')}">
-                <f:facet name="headerToolbar">
-                  <ic:ch.ivy.addon.portal.generic.ProcessNavigator id="process-link"
-                    label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/seeAllProcesses')}" />
-                </f:facet>
-              </ic:ch.ivy.addon.portalkit.component.CompactProcessWidget>
+            <ic:ch.ivy.addon.portalkit.component.CompactProcessWidget id="process-widget"
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}"
+              mobileTitle="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/myProcesses')}">
+              <f:facet name="headerToolbar">
+                <ic:ch.ivy.addon.portal.generic.ProcessNavigator id="process-link"
+                  label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/seeAllProcesses')}" />
+              </f:facet>
+            </ic:ch.ivy.addon.portalkit.component.CompactProcessWidget>
+            
+            <ui:insert name="processWidgetGuide">
+              <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="process-widget-guide-component" targetComponent="process-widget"
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/process/title')}" 
+                content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/process/content')}"
+                targetCssSelector="#process-widget" icon="fa-cogs"
+                onNext="PF('task-widget-guide').show()"
+                updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}" />
+            </ui:insert>
           </ui:insert>
         </h:panelGroup>
         <h:panelGroup layout="block" rendered="#{displayTaskWidget}"
@@ -42,6 +53,15 @@
                   label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/showFullTaskList')}" />
               </f:facet>
             </ic:ch.ivy.addon.portalkit.component.TaskWidget>
+            
+            <ui:insert name="taskWidgetGuide">
+              <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="task-widget-guide-component" targetComponent="task-widget"
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/task/title')}" 
+                content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/task/content')}"
+                targetCssSelector="#task-widget" icon="fa-check-square-o"
+                onNext="PF('setting-container-guide').show()"
+                updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}" />
+            </ui:insert>
           </ui:insert>
         </h:panelGroup>
         <h:panelGroup layout="block" class="ui-g-3 ui-lg-3 ui-md-hidden ui-sm-hidden" rendered="#{displayStatisticWidget}">
@@ -55,6 +75,16 @@
                 </f:facet>
               </ic:ch.ivy.addon.portalkit.component.StatisticWidget>
             </h:panelGroup>
+
+            <ui:insert name="statisticWidgetGuide">
+              <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="statistic-widget-guide-component"
+                targetComponent="statistic-widget-container"
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/statistic/title')}"
+                content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/statistic/content')}"
+                targetCssSelector="#statistic-widget-container" icon="fa-bar-chart"
+                my="right-30 top" at="left top" arrowPosition="right top"
+                updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}" />
+            </ui:insert>
           </ui:insert>
         </h:panelGroup>
       </h:panelGroup>
@@ -65,6 +95,12 @@
           </ui:insert>
         </div>
       </div>
+      
+      <ui:insert name="welcomeGuide">
+        <ic:ch.ivy.addon.portalkit.component.WelcomePortalDialog id="welcome-portal-guide-component"
+          onNext="PF('left-menu-guide').show()" updatedComponentAfterGuide="#{updatedComponentAfterGuide}" 
+          rendered="#{guideBean.isGuideShown}" />
+      </ui:insert>
     </ui:define>
   </ui:composition>
 </h:body>
