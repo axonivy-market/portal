@@ -1249,9 +1249,8 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 }
 
 _:-ms-input-placeholder, :root .express-process-logo {
-  height: auto;
-  width: auto;
   margin-right: 5px;
+  margin-bottom: 1px;
 }
 
 _:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
