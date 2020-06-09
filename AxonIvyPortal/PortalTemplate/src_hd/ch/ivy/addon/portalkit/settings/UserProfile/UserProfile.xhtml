@@ -4,18 +4,14 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="viewName" value="USER_PROFILE" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle')}</ui:define>
     <ui:define name="simplePageContent">
       <f:event listener="#{logic.initSettings}" type="preRenderComponent" />
       <div class="user-profile">
-
         <h:form id="my-profile-form">
-          <div class="ui-g-12">
-            <div class="ui-g-12 ui-md-hidden ui-lg-3"></div>
-            <h1 class="ui-g-12 ui-md-12 ui-lg-6 u-padding-0 MarTop0">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle')}</h1>
-          </div>
-          <div class="ui-g-12 ui-sm-hidden ui-md-hidden ui-lg-3"></div>
-          <p:panel id="my-profile-form-card" class="card ui-g-12 ui-md-12 ui-lg-6">
+          <div class="ui-g-12 ui-sm-hidden ui-md-2 ui-lg-4"></div>
+          <p:panel id="my-profile-form-card" class="card ui-g-12 ui-md-8 ui-lg-4">
             <div id="my-profile-container" class="my-profile-container">
             <p:messages id="errors-message" severity="warn,error" showDetail="true" escape="false" closable="true" />
             <p:growl id="user-setting-info" showDetail="true" severity="info" for="user-profile-message" />
