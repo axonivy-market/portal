@@ -187,7 +187,7 @@ public class UserMenuBean implements Serializable {
     getExternalContext().redirect(getHomePageURL());
   }
   
-  private void navigateToUserProfile() throws IOException {
+  public void navigateToUserProfile() throws IOException {
     getExternalContext().redirect(getUserProfileUrl());
   }
   
