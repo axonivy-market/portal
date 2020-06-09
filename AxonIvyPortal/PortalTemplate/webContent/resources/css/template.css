@@ -1,15 +1,15 @@
 /*Uses for customize serenity layout in Portal Template*/
-#portal-template-header {
+#portal-template-header, #portal-template-footer {
   position: fixed;
-  z-index: 1001;
+  z-index: 1000;
   width: 100%;
+}
+
+#portal-template-header {
   top: 0;
 }
 
 #portal-template-footer {
-  position: fixed;
-  z-index: 1001;
-  width: 100%;
   bottom: 0;
 }
 
