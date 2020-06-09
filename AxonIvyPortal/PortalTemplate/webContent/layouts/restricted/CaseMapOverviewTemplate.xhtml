@@ -25,8 +25,8 @@
     
                   <h:panelGroup layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-6 ui-sm-12 " >
                     
-                    <div class="ui-g-12 height-100 case-map-stage ">
-                      <div class="ui-g-12" >
+                    <div class="ui-g-12 height-100 case-map-stage">
+                      <div class="ui-g-12 #{stageStatus.first?'':'line-left'} #{stageStatus.last?'':'line-right'}" >
                         <div class="square margin-0 card">
                           <i class="#{caseMapDetailBean.getIconOfStage(caseMapDetail, stage)} case-stage-icon" />
                         </div>
