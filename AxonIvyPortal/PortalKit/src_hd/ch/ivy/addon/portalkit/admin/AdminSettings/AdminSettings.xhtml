@@ -287,7 +287,7 @@
             <div class="ui-g-9">
               <h:panelGroup styleClass="admin-application md-inputfield">
                 <p:inputText value="#{data.displayNameInCurrentLanguage}" id="appDisplayName3rd"
-                  styleClass="admin-settings-form-input">
+                  styleClass="admin-settings-form-input" required="true">
                   <f:converter converterId="displayNameConvertor" />
                   <f:validator validatorId="displayNameValidator" />
                 </p:inputText>
