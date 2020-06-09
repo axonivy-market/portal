@@ -1,0 +1,37 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/restricted/CaseMapOverviewTemplate.xhtml">
+    <ui:param name="caseMapDetail" value="#{data.caseMapDetail}" />
+    <ui:define name="pageTitle">#{data.userProcess.processName}</ui:define>
+    <ui:define name="header">
+      <div class="ui-g-1 ui-xl-1 ui-lg-1 ui-md-2 ui-sm-3">
+        <p:graphicImage library="ivy-cms" name="#{data.userProcess.icon}" />
+      </div>
+      <div class="ui-g-11 ui-xl-11 ui-lg-11 ui-md-10 ui-sm-9 TexAlLeft" id="lending-header">
+        <h2>#{data.userProcess.processName}</h2>
+      </div>
+      <div class="ui-g-12">
+        <h:outputText value="#{data.userProcess.description}" />
+      </div>
+    </ui:define>
+    
+    <ui:define name="detailButton">
+      <div class="ui-g-12 TexAlCenter">
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/goToDetail')} #{stage}" 
+          actionListener="#{logic.navigateToDetail(stageStatus.index)}" id="detail-stage"/>
+      </div>
+    </ui:define>
+    
+    <ui:define name="actionButtons">
+      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" actionListener="#{logic.cancel}"/>
+      <p:spacer width="20rem" />
+      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{data.userProcess.processName}"
+        id="start"
+        actionListener="#{compactProcessWidgetBean.startProcess(data.userProcess)}" />
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>
