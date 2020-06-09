@@ -23,22 +23,16 @@ Us0 @GridStep f20 '' #zField
 Us0 @PushWFArc f29 '' #zField
 Us0 @PushWFArc f31 '' #zField
 Us0 @GridStep f32 '' #zField
-Us0 @GridStep f35 '' #zField
 Us0 @UdProcessEnd f36 '' #zField
 Us0 @Alternative f37 '' #zField
 Us0 @CallSub f39 '' #zField
 Us0 @GridStep f41 '' #zField
 Us0 @UdProcessEnd f42 '' #zField
 Us0 @CallSub f45 '' #zField
-Us0 @UdProcessEnd f46 '' #zField
 Us0 @PushWFArc f47 '' #zField
 Us0 @PushWFArc f54 '' #zField
 Us0 @PushWFArc f55 '' #zField
-Us0 @PushWFArc f56 '' #zField
-Us0 @PushWFArc f57 '' #zField
 Us0 @PushWFArc f58 '' #zField
-Us0 @UdMethod f52 '' #zField
-Us0 @PushWFArc f34 '' #zField
 Us0 @UdMethod f51 '' #zField
 Us0 @PushWFArc f33 '' #zField
 Us0 @PushWFArc f2 '' #zField
@@ -46,6 +40,9 @@ Us0 @UdInit f0 '' #zField
 Us0 @PushWFArc f3 '' #zField
 Us0 @PushWFArc f4 '' #zField
 Us0 @PushWFArc f6 '' #zField
+Us0 @GridStep f5 '' #zField
+Us0 @PushWFArc f7 '' #zField
+Us0 @PushWFArc f13 '' #zField
 >Proto Us0 Us0 UserProfileProcess #zField
 Us0 f1 211 51 26 26 0 12 #rect
 Us0 f1 @|UdProcessEndIcon #fIcon
@@ -56,7 +53,8 @@ Us0 f9 actionTable 'out=in;
 Us0 f9 actionCode 'import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.util.UserUtils;
 
-UserUtils.setLanguague();' #txt
+UserUtils.setLanguague();
+' #txt
 Us0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -77,10 +75,8 @@ BeanUtils.invokeBeanMethodViaMethodExpression("#{errorDisplayBean.displayErrors}
 
 boolean isEmailSettingsEmpty = !in.#emailSetting is initialized;
 if (isEmailSettingsEmpty) {
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, null, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/emailSetting/noSettingMsg")));
-}
-
-PrimeFaces.current().ajax().addCallbackParam("settingEmpty", isEmailSettingsEmpty);' #txt
+	FacesContext.getCurrentInstance().addMessage("errors-message", new FacesMessage(FacesMessage.SEVERITY_WARN, null, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/emailSetting/noSettingMsg")));
+}' #txt
 Us0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -162,7 +158,8 @@ Us0 f20 actionTable 'out=in;
 ' #txt
 Us0 f20 actionCode 'import ch.ivy.addon.portalkit.util.UserUtils;
 
-UserUtils.setLanguague();' #txt
+UserUtils.setLanguague();
+' #txt
 Us0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -188,25 +185,9 @@ Us0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 f32 680 250 128 44 -57 -8 #rect
+Us0 f32 688 282 128 44 -57 -8 #rect
 Us0 f32 @|StepIcon #fIcon
-Us0 f35 actionTable 'out=in;
-' #txt
-Us0 f35 actionCode 'import javax.faces.context.Flash;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
-FacesContext.getCurrentInstance().addMessage("change-email-setting-message", new FacesMessage(FacesMessage.SEVERITY_INFO, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/note"), ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/emailSetting/saveEmailSettingsSuccessfully")));' #txt
-Us0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Display the sucessful saving message</name>
-    </language>
-</elementInfo>
-' #txt
-Us0 f35 136 282 224 44 -106 -8 #rect
-Us0 f35 @|StepIcon #fIcon
-Us0 f36 395 371 26 26 0 12 #rect
+Us0 f36 395 347 26 26 0 12 #rect
 Us0 f36 @|UdProcessEndIcon #fIcon
 Us0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -254,9 +235,9 @@ Us0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 f41 160 362 112 44 -51 -8 #rect
+Us0 f41 160 338 112 44 -51 -8 #rect
 Us0 f41 @|StepIcon #fIcon
-Us0 f42 843 211 26 26 0 12 #rect
+Us0 f42 883 211 26 26 0 12 #rect
 Us0 f42 @|UdProcessEndIcon #fIcon
 Us0 f45 processCall 'Ivy Data Processes/EmailSettingService:saveEmailSetting(String,ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting)' #txt
 Us0 f45 requestActionDecl '<String username,ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting emailSetting> param;' #txt
@@ -271,7 +252,6 @@ import java.util.Objects;
 if (!out.#errors is initialized) {
 	out.errors = new ArrayList();
 }
-
 out.errors.addAll(result.errors);' #txt
 Us0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -282,39 +262,17 @@ Us0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Us0 f45 464 202 128 44 -55 -8 #rect
 Us0 f45 @|CallSubIcon #fIcon
-Us0 f46 395 291 26 26 0 12 #rect
-Us0 f46 @|UdProcessEndIcon #fIcon
 Us0 f47 expr in #txt
-Us0 f47 640 240 680 272 #arcP
-Us0 f47 1 640 272 #addKink
+Us0 f47 640 240 688 304 #arcP
+Us0 f47 1 640 304 #addKink
 Us0 f47 1 0.6505659106079889 0 0 #arcLabel
 Us0 f54 592 224 624 224 #arcP
 Us0 f54 0 0.5344876828921243 0 0 #arcLabel
 Us0 f55 expr out #txt
-Us0 f55 808 272 856 237 #arcP
-Us0 f55 1 856 272 #addKink
+Us0 f55 816 304 896 237 #arcP
+Us0 f55 1 896 304 #addKink
 Us0 f55 1 0.48911829285115505 0 0 #arcLabel
-Us0 f56 expr in #txt
-Us0 f56 outCond in.errors.isEmpty() #txt
-Us0 f56 656 224 843 224 #arcP
-Us0 f56 0 0.43569339242613336 0 0 #arcLabel
-Us0 f57 expr out #txt
-Us0 f57 360 304 395 304 #arcP
-Us0 f58 272 384 395 384 #arcP
-Us0 f52 guid 1725FBFD4A054A2E #txt
-Us0 f52 method updateGrowl() #txt
-Us0 f52 inParameterDecl '<> param;' #txt
-Us0 f52 outParameterDecl '<> result;' #txt
-Us0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>updateGrowl()</name>
-    </language>
-</elementInfo>
-' #txt
-Us0 f52 83 291 26 26 -33 19 #rect
-Us0 f52 @|UdMethodIcon #fIcon
-Us0 f34 109 304 136 304 #arcP
+Us0 f58 272 360 395 360 #arcP
 Us0 f51 guid 1725FC03D28A7AF7 #txt
 Us0 f51 method updateDailyList() #txt
 Us0 f51 inParameterDecl '<> param;' #txt
@@ -326,9 +284,9 @@ Us0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 f51 83 371 26 26 -32 20 #rect
+Us0 f51 83 347 26 26 -32 20 #rect
 Us0 f51 @|UdMethodIcon #fIcon
-Us0 f33 109 384 160 384 #arcP
+Us0 f33 109 360 160 360 #arcP
 Us0 f2 109 64 211 64 #arcP
 Us0 f0 guid 172546E1FE4FCAB2 #txt
 Us0 f0 method start() #txt
@@ -351,6 +309,41 @@ Us0 f4 576 144 608 144 #arcP
 Us0 f6 expr out #txt
 Us0 f6 416 224 464 224 #arcP
 Us0 f6 0 0.4704168002362267 0 0 #arcLabel
+Us0 f5 actionTable 'out=in;
+' #txt
+Us0 f5 actionCode 'import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
+import javax.faces.application.FacesMessage;
+import ch.ivy.addon.portal.generic.bean.UserMenuBean;
+
+
+FacesContext context = FacesContext.getCurrentInstance();
+
+Flash flash = context.getExternalContext().getFlash();
+FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/note"), ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/emailSetting/saveEmailSettingsSuccessfully"));
+context.addMessage("user-profile-message", message);
+flash.setRedirect(true);
+flash.setKeepMessages(true);
+
+UserMenuBean userMenuBean = context.getApplication().evaluateExpressionGet(context, "#{userMenuBean}", UserMenuBean.class) as UserMenuBean;
+userMenuBean.navigateToUserProfile();
+' #txt
+Us0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show successful message</name>
+    </language>
+</elementInfo>
+' #txt
+Us0 f5 688 202 160 44 -75 -8 #rect
+Us0 f5 @|StepIcon #fIcon
+Us0 f7 expr in #txt
+Us0 f7 outCond in.errors.isEmpty() #txt
+Us0 f7 656 224 688 224 #arcP
+Us0 f7 0 0.43569339242613336 0 0 #arcLabel
+Us0 f13 848 224 883 224 #arcP
+Us0 f13 0 0.43569339242613336 0 0 #arcLabel
 >Proto Us0 .type ch.ivy.addon.portalkit.settings.UserProfile.UserProfileData #txt
 >Proto Us0 .processKind HTML_DIALOG #txt
 >Proto Us0 -8 -8 16 16 16 26 #rect
@@ -369,18 +362,11 @@ Us0 f18 mainOut f31 tail #connect
 Us0 f31 head f20 mainIn #connect
 Us0 f32 mainOut f55 tail #connect
 Us0 f55 head f42 mainIn #connect
-Us0 f35 mainOut f57 tail #connect
-Us0 f57 head f46 mainIn #connect
-Us0 f37 out f56 tail #connect
-Us0 f56 head f42 mainIn #connect
-Us0 f37 out f47 tail #connect
 Us0 f47 head f32 mainIn #connect
 Us0 f41 mainOut f58 tail #connect
 Us0 f58 head f36 mainIn #connect
 Us0 f45 mainOut f54 tail #connect
 Us0 f54 head f37 in #connect
-Us0 f52 mainOut f34 tail #connect
-Us0 f34 head f35 mainIn #connect
 Us0 f51 mainOut f33 tail #connect
 Us0 f33 head f41 mainIn #connect
 Us0 f9 mainOut f3 tail #connect
@@ -389,3 +375,8 @@ Us0 f39 mainOut f4 tail #connect
 Us0 f4 head f10 mainIn #connect
 Us0 f20 mainOut f6 tail #connect
 Us0 f6 head f45 mainIn #connect
+Us0 f37 out f7 tail #connect
+Us0 f7 head f5 mainIn #connect
+Us0 f37 out f47 tail #connect
+Us0 f5 mainOut f13 tail #connect
+Us0 f13 head f42 mainIn #connect
