@@ -39,7 +39,7 @@ public class AdhocExpressTest extends BaseTest {
     
     //check if task Maternity exists
     taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy(taskNamePrefix);
+    taskWidgetPage.filterTasksBy(taskNamePrefix, 1);
     assertEquals(1, taskWidgetPage.countTasks());
     String taskId = taskWidgetPage.getTaskId();
     taskTemplatePage = taskWidgetPage.startTask(0);
@@ -68,7 +68,7 @@ public class AdhocExpressTest extends BaseTest {
     
     //approval task of adhoc
     new HomePage().isDisplayed();
-    taskWidgetPage.filterTasksBy(defaultTaskName2);
+    taskWidgetPage.filterTasksBy(defaultTaskName2, 1);
     assertEquals(1, taskWidgetPage.countTasks());
     taskWidgetPage.startTask(0);
     defaultExpressTaskPage = new DefaultExpresTaskPage();
@@ -77,7 +77,7 @@ public class AdhocExpressTest extends BaseTest {
     
     //check if task Maternity task
     new HomePage().isDisplayed();
-    taskWidgetPage.filterTasksBy(taskNamePrefix);
+    taskWidgetPage.filterTasksBy(taskNamePrefix, 1);
     assertEquals(1, taskWidgetPage.countTasks());
     taskWidgetPage.startTask(0);
     
