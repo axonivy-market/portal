@@ -476,6 +476,9 @@ Changes in 9.1
 
 - Refactor style customization approach. From now on, Portal use CSS Variable as technology to customize CSS.
 
+- Introduce the User Guide feature, using the ``SHOW_USER_GUIDE`` Portal Setting to activate/deactivate it, 
+  and follow :ref:`Customize user guide <customization-portal-home-user-guide>` for your customization.
+
 Changes in 8.0
 --------------
 
