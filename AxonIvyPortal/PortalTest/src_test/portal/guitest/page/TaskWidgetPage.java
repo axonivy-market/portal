@@ -144,7 +144,7 @@ public class TaskWidgetPage extends TemplatePage {
 
 	public void sideStepMenuOnActionButton(int index) {
 		String actionButton =
-		String.format("button[id$='%d\\:task-item\\:task-action\\:additional-options\\:task-side-steps-menu']", index);
+		String.format("[id$='%d\\:task-item\\:task-action\\:additional-options\\:task-side-steps-menu']", index);
 		waitForElementDisplayed(By.cssSelector(actionButton), true);
 		clickByCssSelector(actionButton);
 		ensureNoBackgroundRequest();
@@ -354,13 +354,13 @@ public class TaskWidgetPage extends TemplatePage {
 	}
 
 	public void openAdvancedFilter(String filterName, String filterIdName) {
-		click(By.cssSelector("button[id$='filter-add-action']"));
+		click(By.cssSelector("[id$='filter-add-action']"));
 		WebElement filterSelectionElement = findElementById(taskWidgetId + ":filter-add-form:filter-selection");
 		List<WebElement> elements = findChildElementsByTagName(filterSelectionElement, "LABEL");
 		for (WebElement element : elements) {
 			if (element.getText().equals(filterName)) {
 				click(element);
-				click(By.cssSelector("button[id$='task-widget:filter-add-form:update-filter-selected-command']"));
+				click(By.cssSelector("[id$='task-widget:filter-add-form:update-filter-selected-command']"));
 				waitAjaxIndicatorDisappear();
 				break;
 			}
@@ -498,9 +498,9 @@ public class TaskWidgetPage extends TemplatePage {
 
 	public String getFilterName() {
 	  refreshAndWaitElement("a[id$='task-widget:filter-selection-form:filter-name']");
-	  waitForElementDisplayed(By.cssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2) "), true);
+	  waitForElementDisplayed(By.cssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span"), true);
 		WebElement filterName =
-				findElementByCssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2) ");
+				findElementByCssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span");
 		return filterName.getText();
 	}
 

@@ -6,12 +6,12 @@
   <h:panelGroup id="statistic-result-list" layout="block" styleClass="statistic-result-list MarTop10">
     <h:form id="statistic-result-form">
       <h:panelGroup layout="block" id="statistic-result-buttons-container" styleClass="ui-g statistic-result-buttons-container MarTop10">
-        <p:commandButton ajax="false" styleClass="FRight" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
+        <p:commandLink ajax="false" styleClass="FRight" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}"
            onclick="PrimeFaces.monitorDownload(start, stop);">
           <p:fileDownload value="#{logic.getExportedFile(taskAnalysisWidgetBean.getColumns())}" />
-        </p:commandButton>
-  
-        <p:commandButton id="toggler" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}" icon="fa fa-caret-down" iconPos="right" />
+        </p:commandLink>
+        <p:spacer width="20px" ></p:spacer>
+        <p:commandLink id="toggler" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}" icon="fa fa-caret-down" iconPos="right" />
         <p:columnToggler id="task-table-toggler" datasource="task-table" trigger="toggler">
           <p:ajax event="toggle" listener="#{taskAnalysisWidgetBean.onToggleColumns}" oncomplete="initializeScrollbar();" />
         </p:columnToggler>
