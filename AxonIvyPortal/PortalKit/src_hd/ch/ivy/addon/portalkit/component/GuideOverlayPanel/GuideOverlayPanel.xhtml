@@ -33,7 +33,7 @@
     onShow="window['#{cc.attrs.targetComponent}' + '-guide'].show(); #{cc.attrs.onShow}">
     <span class="guide-panel__arrow" />
     <div class="guide-panel__container" style="width: #{cc.attrs.contentWidth}">
-      <span class="fa #{cc.attrs.icon} fa-4x" />
+      <span class="fa #{cc.attrs.icon} guide-panel__icon" />
       <h2>#{cc.attrs.title}</h2>
       <p class="guide-panel__content"><h:outputText id="#{cc.attrs.targetComponent}-content" value="#{cc.attrs.content}" escape="false" /></p>
       <h:panelGroup id="guide-panel-buttons" layout="block" styleClass="guide-panel__buttons">
