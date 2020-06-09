@@ -15,16 +15,10 @@ public class Guide {
 
   public Guide() {
     globalSettingService = new GlobalSettingService();
-    Optional<String> showGuide = Optional.of(Ivy.session()).map(IWorkflowSession::getSessionUser)
-        .map(user -> user.getProperty(SHOW_GUIDE));
-    isGuideShown = showGuide.isPresent() ? Boolean.parseBoolean(showGuide.get()) : true;
+    readShowGuideProperty();
   }
 
   public boolean isGuideShown() {
-    boolean showGuideSetting = Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_USER_GUIDE.toString()));
-    if (!showGuideSetting) {
-      return false;
-    }
     return isGuideShown;
   }
   
@@ -37,9 +31,15 @@ public class Guide {
     Ivy.session().getSessionUser().setProperty(SHOW_GUIDE, String.valueOf(isGuideShown));
   }
   
-  public boolean getShowGuideProperty() {
+  public void readShowGuideProperty() {
+    boolean showGuideSetting = Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_USER_GUIDE.toString()));
+    if (!showGuideSetting) {
+      isGuideShown = false;
+      return;
+    }
+    
     Optional<String> showGuide = Optional.of(Ivy.session()).map(IWorkflowSession::getSessionUser)
         .map(user -> user.getProperty(SHOW_GUIDE));
-    return showGuide.isPresent() ? Boolean.parseBoolean(showGuide.get()) : true;
+    isGuideShown = showGuide.isPresent() ? Boolean.parseBoolean(showGuide.get()) : true;
   }
 }
