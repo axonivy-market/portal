@@ -38,7 +38,9 @@ defaultCharts java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> #
 defaultCharts PERSISTENT #fieldModifier
 isDrilldownExpiryChart Boolean #field
 isDrilldownExpiryChart PERSISTENT #fieldModifier
-prevStatisticListSize Integer #field
-prevStatisticListSize PERSISTENT #fieldModifier
 isReloadChartContent Boolean #field
 isReloadChartContent PERSISTENT #fieldModifier
+isGuide Boolean #field
+isGuide PERSISTENT #fieldModifier
+prevStatisticList java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> #field
+prevStatisticList PERSISTENT #fieldModifier

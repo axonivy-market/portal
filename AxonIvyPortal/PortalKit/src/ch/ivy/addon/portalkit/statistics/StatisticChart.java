@@ -1,6 +1,8 @@
 package ch.ivy.addon.portalkit.statistics;
 
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.primefaces.model.charts.bar.BarChartModel;
 import org.primefaces.model.charts.donut.DonutChartModel;
 
@@ -93,5 +95,20 @@ public class StatisticChart {
 
   public void setDefaultChart(String defaultChart) {
     this.defaultChart = defaultChart;
+  }
+  
+  @Override
+  public boolean equals(Object o) {
+    StatisticChart chart = (StatisticChart) o;
+    EqualsBuilder builder = new EqualsBuilder();
+    builder.append(getId(), chart.getId());
+    return builder.isEquals();
+  }
+  
+  @Override
+  public int hashCode() {
+    HashCodeBuilder builder = new HashCodeBuilder();
+    builder.append(getId());
+    return builder.hashCode();
   }
 }
