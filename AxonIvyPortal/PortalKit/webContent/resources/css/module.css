@@ -3833,10 +3833,7 @@ body .ui-widget-content.filter-name-overlay-panel {
 
 .statistic-result-buttons-container {
   justify-content: flex-end;
-}
-
-.statistic-result-buttons-container .ui-widget.ui-button {
-  margin: 0 0 10px 10px;
+  margin-bottom: 10px;
 }
 
 .statistic-result-list .task-table {
