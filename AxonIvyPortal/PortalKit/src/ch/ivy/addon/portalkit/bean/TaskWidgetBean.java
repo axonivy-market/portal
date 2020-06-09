@@ -7,6 +7,7 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.bo.GuidePool;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -15,6 +16,7 @@ import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
@@ -30,6 +32,7 @@ public class TaskWidgetBean implements Serializable {
   private TaskLazyDataModel dataModel;
   private Boolean isTaskDetailOpenning;
   private boolean isShowFullTaskList;
+  private boolean isGuide;
 
   public TaskWidgetBean() {
     expandedTaskId = -1L;
@@ -39,6 +42,11 @@ public class TaskWidgetBean implements Serializable {
         StringUtils.isNumeric(taskListRefreshIntervalUserSetting) ? Long.parseLong(taskListRefreshIntervalUserSetting)
             : DEFAULT_TASK_LIST_REFRESH_INTERVAL;
     isShowFullTaskList = PermissionUtils.checkAccessFullTaskListPermission();
+  }
+  
+  public void preRender(TaskLazyDataModel dataModel) {
+    isGuide = GuidePool.instance().guide(Ivy.session().getSessionUserName()).isGuideShown();
+    dataModel.setIsGuide(isGuide);
   }
 
   public Long getExpandedTaskId() {
