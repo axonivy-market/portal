@@ -14,10 +14,12 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.RoleDTO;
+import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
+import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
@@ -229,6 +231,41 @@ public class ServiceUtilities {
       roles.removeIf(role -> role.getProperty("HIDE") != null);
       return roles.stream().map(role -> new RoleDTO(role)).collect(Collectors.toList());
     });
+  }
+
+  public static SecurityMemberDTO findSecurityMemberByName(String securityMemberName) {
+    IApplication app = Ivy.wf().getApplication();
+    SecurityMemberDTO member = null;
+    if (securityMemberName.startsWith("#")) {
+      member = findSecurityUserByName(securityMemberName.replace("#", ""), app);
+    } else {
+      member = findSecurityRoleByName(securityMemberName, app);
+    }
+    
+    return member;
+  }
+
+  private static SecurityMemberDTO findSecurityUserByName(String securityMemberName, IApplication app) {
+    UserDTO userDTO = null;
+    try {
+      userDTO = findUserDTO(securityMemberName, app);
+    } catch (Exception ex) {
+      Ivy.log().error("Error in getting security members within app {0}", ex, app.getName());
+    }
+    return SecurityMemberDTOMapper.mapFromUserDTO(userDTO);
+  }
+
+  private static SecurityMemberDTO findSecurityRoleByName(String securityMemberName, IApplication app) {
+    List<RoleDTO> roles = null;
+    try {
+      roles = findAllRoleDTO(app).stream()
+              .filter(role -> StringUtils.equalsIgnoreCase(role.getName(), securityMemberName))
+              .collect(Collectors.toList());
+    } catch (Exception ex) {
+      Ivy.log().error("Error in getting security members within app {0}", ex, app.getName());
+    }
+    List<SecurityMemberDTO> members = SecurityMemberDTOMapper.mapFromRoleDTOs(roles);
+    return CollectionUtils.isEmpty(members) ? null : members.get(0);
   }
 
 }
