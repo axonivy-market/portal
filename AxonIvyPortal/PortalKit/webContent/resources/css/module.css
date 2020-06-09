@@ -2793,7 +2793,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .user-profile {
-  margin: 0px 15px;
+  margin: 15px;
 }
 
 .user-profile-footer .ui-button {
