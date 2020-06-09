@@ -143,7 +143,7 @@ public class StatisticDashboardBean implements Serializable {
     emptyChart.setDonutChartModel(model);
     return emptyChart;
   }
-
+  
   private static StatisticChart getSelectedStatisticChart(ItemSelectEvent event) {
     String selectedChartId = (String) event.getComponent().getAttributes().get("selectedChartId");
     List<StatisticChart> statisticCharts =
