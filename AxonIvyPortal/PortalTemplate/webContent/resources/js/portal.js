@@ -13,6 +13,7 @@ var Portal = {
       setTimeout(function() {
         responsiveToolkit.updateLayoutWithoutAnimation();
       }, 250);
+      Portal.updateGuide();
     });
     
     //Add very small timeout when page ready, fix responsive problem for IE 11
@@ -24,7 +25,19 @@ var Portal = {
     this.updateBreadcrumb();
   },
   
-  // Remove u-invisibility class when DOM is pasted already
+  updateGuide : function() {
+    var $guidePanel = $('.guide-panel:visible');
+    if ($guidePanel.length > 0) {
+      var id = $guidePanel.attr('id');
+      if (id !== undefined) {
+        var guidePanelObject = window[id.substring(id.lastIndexOf(':') + 1)];
+        if (guidePanelObject !== undefined) {
+          guidePanelObject.show();
+        }
+      }
+    }
+  },
+  
   updateLayoutContent : function() {
     var headerHeight = $('#portal-template-header').outerHeight();
     var footerHeight = $('#portal-template-footer').outerHeight();
