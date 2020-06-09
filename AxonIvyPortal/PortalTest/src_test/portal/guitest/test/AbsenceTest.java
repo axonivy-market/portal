@@ -94,7 +94,7 @@ public class AbsenceTest extends BaseTest {
     absencePage.saveSubstitute();
     login(TestAccount.DEMO_USER);
     absencePage.openAbsencePage();
-    assertTrue(absencePage.getIAMDeputyFor().contains(TestAccount.ADMIN_USER.getUsername()));
+    assertTrue(absencePage.getIAMDeputyFor().contains(TestAccount.ADMIN_USER.getFullName()));
   }
 
   private AbsencePage openAbsencePage() {
