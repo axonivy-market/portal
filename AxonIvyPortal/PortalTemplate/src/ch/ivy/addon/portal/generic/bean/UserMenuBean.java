@@ -45,7 +45,7 @@ public class UserMenuBean implements Serializable {
   private static final String USER_PROFILE_FRIENDLY_REQUEST_PATH =  "Business Processes/UserProfile/UserProfile.ivp";
   public static final long TIME_BEFORE_LOST_SESSION = 3 * DateUtils.MILLIS_PER_MINUTE; // 3 minutes
   public static final String TASK_LEAVE_WARNING_COMPONENT = "task-leave-warning-component";
-  private String targetPage = getHomePageURL();
+  private String targetPage = StringUtils.EMPTY;
 
   private String loggedInUser;
   GlobalSettingService globalSettingService;
