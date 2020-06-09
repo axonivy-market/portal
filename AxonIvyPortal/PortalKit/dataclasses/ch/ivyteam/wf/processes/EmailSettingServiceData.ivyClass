@@ -1,6 +1,5 @@
 EmailSettingServiceData #class
 ch.ivyteam.wf.processes #namespace
-apps java.util.List<String> #field
 errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
-ivyEmailSettings java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting> #field
 username String #field
+ivyEmailSetting ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting #field

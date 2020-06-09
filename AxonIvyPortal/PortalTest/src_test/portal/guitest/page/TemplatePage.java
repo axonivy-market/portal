@@ -150,9 +150,14 @@ public abstract class TemplatePage extends AbstractPage {
     return new ChangePasswordPage();
   }
 
-  public LanguagePage openLanguagePage() {
-    clickUserMenuItem("language-setting-menu-item");
-    return new LanguagePage();
+  public UserProfilePage openMyProfilePage() {
+    clickUserMenuItem("user-profile");
+    return new UserProfilePage();
+  }
+  
+  public void clickOnMyProfile() {
+    clickUserMenuItem("user-profile");
+    waitAjaxIndicatorDisappear();
   }
 
   public ProjectVersionPage openProjectVersionPage() {
