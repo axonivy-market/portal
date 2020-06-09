@@ -237,10 +237,6 @@
 .hide {
   display: none !important;
 }
-/* For Serenity theme - End */
-.ui-hidden {
-  display: none !important;
-}
 
 @media screen and (max-width: 40em) {
   .ui-sm-hidden {
