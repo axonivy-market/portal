@@ -27,10 +27,12 @@ import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
 import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.ProcessType;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.util.HelpLinkUtil;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -181,6 +183,8 @@ public class ProcessWidgetBean implements Serializable {
   }
   
   public void startExpressWorkflowCreationLink() throws IOException {
+    String expressHelpLink = HelpLinkUtil.readExpressHelpLink();
+    Ivy.session().setAttribute(SessionAttribute.HELP_URL_LINK.toString(), expressHelpLink);
     FacesContext.getCurrentInstance().getExternalContext().redirect(getCreateExpessWorkflowLink());
     return;
   }
