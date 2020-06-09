@@ -1,1 +1,1 @@
-Only [a-zA-Z0-9_] characters allowed for application name.
+Only [\p{Alnum}_-]+ characters allowed for application name.
