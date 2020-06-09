@@ -230,7 +230,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   @Override
   public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-    if (isGuide) {
+    if (isGuide && compactMode) {
       return createDummyDataForGuide();
     } else {
       if (first == 0) {
