@@ -14,7 +14,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <ui:param name="icon" value="#{empty cc.attrs.icon ? 'fa fa-home fa-4x' : cc.attrs.icon}" />
+  <ui:param name="icon" value="#{empty cc.attrs.icon ? 'icon ivyicon-bulb' : cc.attrs.icon}" />
   <ui:param name="title" value="#{empty cc.attrs.title ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/welcome/title') : cc.attrs.title}" />
   <ui:param name="content" value="#{empty cc.attrs.content ? logic.buildContent() : cc.attrs.content}" />
   <ui:param name="mobileContent" value="#{empty cc.attrs.mobileContent ? logic.buildMobileContent() : cc.attrs.mobileContent}" />
@@ -23,7 +23,7 @@
   <p:dialog id="welcome-portal-guide" widgetVar="welcome-portal-guide" modal="true" appendTo="@(body)" styleClass="guide-panel"
     draggable="false" closable="false" resizable="false" showHeader="false" fitViewport="true" responsive="true">
     <div class="guide-panel__container" style="max-width: #{contentWidth}">
-      <span class="#{icon}" />
+      <span class="#{icon} guide-panel__icon" />
       <h2>#{title}</h2>
       <p class="guide-panel__content">
         <h:outputText id="welcome-content" value="#{content}" escape="false" styleClass="u-hidden-1024-down" />
