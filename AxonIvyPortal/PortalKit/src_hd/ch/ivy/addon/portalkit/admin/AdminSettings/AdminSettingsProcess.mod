@@ -86,7 +86,6 @@ As0 @PushWFArc f198 '' #zField
 As0 @GridStep f205 '' #zField
 As0 @PushWFArc f220 '' #zField
 As0 @PushWFArc f204 '' #zField
-As0 @PushWFArc f114 '' #zField
 As0 @PushWFArc f211 '' #zField
 As0 @Alternative f209 '' #zField
 As0 @PushWFArc f213 '' #zField
@@ -187,6 +186,13 @@ As0 @UdProcessEnd f12 '' #zField
 As0 @GridStep f14 '' #zField
 As0 @PushWFArc f16 '' #zField
 As0 @PushWFArc f13 '' #zField
+As0 @GridStep f20 '' #zField
+As0 @Alternative f62 '' #zField
+As0 @UdProcessEnd f94 '' #zField
+As0 @PushWFArc f95 '' #zField
+As0 @PushWFArc f96 '' #zField
+As0 @PushWFArc f99 '' #zField
+As0 @PushWFArc f101 '' #zField
 >Proto As0 As0 AdminUIProcess #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
@@ -297,7 +303,7 @@ As0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-As0 f37 534 446 20 20 13 0 #rect
+As0 f37 534 390 20 20 18 -3 #rect
 As0 f37 @|UdEventIcon #fIcon
 As0 f38 534 1286 20 20 13 0 #rect
 As0 f38 @|UdProcessEndIcon #fIcon
@@ -994,8 +1000,6 @@ As0 f204 expr out #txt
 As0 f204 816 412 886 488 #arcP
 As0 f204 1 816 488 #addKink
 As0 f204 0 0.7997648611494669 0 0 #arcLabel
-As0 f114 expr out #txt
-As0 f114 544 466 544 500 #arcP
 As0 f211 expr in #txt
 As0 f211 outCond in.isAddMode #txt
 As0 f211 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1760,6 +1764,45 @@ As0 f14 96 938 192 44 -92 -8 #rect
 As0 f14 @|StepIcon #fIcon
 As0 f16 192 877 192 938 #arcP
 As0 f13 192 982 192 1043 #arcP
+As0 f20 actionTable 'out=in;
+' #txt
+As0 f20 actionCode 'import ch.ivy.addon.portalkit.enums.ApplicationType;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import ch.ivyteam.ivy.checking.CommonFormats;
+
+if (in.type == ApplicationType.IVY_APPLICATION) {
+	try {
+	  CommonFormats.APPLICATION_PROCESS_MODEL_NAME.checkAndThrow(in.selectedApp.name);
+	} catch (RuntimeException ex) {
+	  FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, ex.getMessage(), null));
+	  FacesContext.getCurrentInstance().validationFailed();
+	}
+}
+' #txt
+As0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Validate app name</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f20 524 444 40 24 24 -6 #rect
+As0 f20 @|StepIcon #fIcon
+As0 f62 448 496 32 32 0 16 #rect
+As0 f62 @|AlternativeIcon #fIcon
+As0 f94 454 542 20 20 13 0 #rect
+As0 f94 @|UdProcessEndIcon #fIcon
+As0 f95 expr in #txt
+As0 f95 outCond javax.faces.context.FacesContext.getCurrentInstance().isValidationFailed() #txt
+As0 f95 464 528 464 542 #arcP
+As0 f96 524 456 464 496 #arcP
+As0 f96 1 464 456 #addKink
+As0 f96 0 0.6816042505180657 0 0 #arcLabel
+As0 f99 expr in #txt
+As0 f99 480 512 526 512 #arcP
+As0 f101 expr out #txt
+As0 f101 544 410 544 444 #arcP
 >Proto As0 .type ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1897,8 +1940,6 @@ As0 f198 head f196 in #connect
 As0 f220 head f205 mainIn #connect
 As0 f205 mainOut f204 tail #connect
 As0 f204 head f45 mainIn #connect
-As0 f37 mainOut f114 tail #connect
-As0 f114 head f113 mainIn #connect
 As0 f209 out f211 tail #connect
 As0 f211 head f173 mainIn #connect
 As0 f209 out f213 tail #connect
@@ -2007,6 +2048,14 @@ As0 f7 mainOut f16 tail #connect
 As0 f16 head f14 mainIn #connect
 As0 f14 mainOut f13 tail #connect
 As0 f13 head f12 mainIn #connect
+As0 f62 out f95 tail #connect
+As0 f95 head f94 mainIn #connect
+As0 f20 mainOut f96 tail #connect
+As0 f96 head f62 in #connect
+As0 f62 out f99 tail #connect
+As0 f99 head f113 mainIn #connect
+As0 f37 mainOut f101 tail #connect
+As0 f101 head f20 mainIn #connect
 Ct0 g0 m f0 tail #connect
 Ct0 f0 head f51 mainIn #connect
 Ct0 f1 head g1 m #connect

@@ -82,10 +82,10 @@ public class CaseService implements ICaseService {
     return Ivy.wf().getGlobalContext().getCaseQueryExecutor().getCount(query);
   }
   
-  private CaseQuery queryForUsers(String involvedUsername, List<String> apps, boolean isTechnicalCases) {
+  private CaseQuery queryForUsers(String involvedUsername, List<String> apps, boolean isTechnicalCase) {
     boolean isCaseOwnerEnabled = isCaseOwnerEnabled();
     final CaseQuery caseQuery;
-    if (isTechnicalCases) {
+    if (isTechnicalCase) {
       caseQuery = CaseQuery.subCases();
     } else {
       caseQuery = CaseQuery.businessCases();
