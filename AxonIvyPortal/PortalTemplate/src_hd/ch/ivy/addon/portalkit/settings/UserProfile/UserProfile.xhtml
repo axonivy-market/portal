@@ -4,7 +4,7 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
-    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/myProfile/myProfileTitle')}</ui:define>
+    <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle')}</ui:define>
     <ui:define name="simplePageContent">
       <f:event listener="#{logic.initSettings}" type="preRenderComponent" />
       <div class="user-profile">
@@ -12,7 +12,7 @@
         <h:form id="my-profile-form">
           <div class="ui-g-12">
             <div class="ui-g-12 ui-md-hidden ui-lg-3"></div>
-            <h1 class="ui-g-12 ui-md-12 ui-lg-6 u-padding-0 MarTop0">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/myProfile/myProfileTitle')}</h1>
+            <h1 class="ui-g-12 ui-md-12 ui-lg-6 u-padding-0 MarTop0">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle')}</h1>
           </div>
           <div class="ui-g-12 ui-sm-hidden ui-md-hidden ui-lg-3"></div>
           <p:panel id="my-profile-form-card" class="card ui-g-12 ui-md-12 ui-lg-6">
@@ -21,7 +21,7 @@
             <p:growl id="user-setting-info" showDetail="true" severity="info" for="user-profile-message" />
               
             <div id="language-setting-container">
-              <h2 class="setting-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}</h2>
+              <h2 id="language-setting-title" class="setting-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}</h2>
                 <div class="md-inputfield language-selection">
                   <p:selectOneMenu id="language-selection" value="#{data.language.userLanguage}">
                     <f:selectItem itemLabel="" itemValue="#{null}" />
