@@ -17,6 +17,7 @@ import ch.ivy.addon.portalkit.bo.CaseMapDetail;
 @ManagedBean(name = "caseMapDetailBean")
 @ViewScoped
 public class CaseMapDetailBean implements Serializable {
+  private static final long serialVersionUID = 1L;
   private CaseMapDetail caseMapDetail;
 
   public CaseMapDetail getCaseMapDetail() {

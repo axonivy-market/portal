@@ -19,6 +19,9 @@ Ls0 @PushWFArc f2 '' #zField
 Ls0 @UdMethod f8 '' #zField
 Ls0 @UserDialog f9 '' #zField
 Ls0 @PushWFArc f10 '' #zField
+Ls0 @UdEvent f11 '' #zField
+Ls0 @UserDialog f12 '' #zField
+Ls0 @PushWFArc f13 '' #zField
 >Proto Ls0 Ls0 LendingOverviewProcess #zField
 Ls0 f0 guid 172598596081B8FA #txt
 Ls0 f0 method start(ch.ivy.addon.portalkit.persistence.domain.UserProcess) #txt
@@ -54,7 +57,8 @@ Ls0 f4 @|UdExitEndIcon #fIcon
 Ls0 f5 109 160 211 160 #arcP
 Ls0 f6 actionTable 'out=in;
 ' #txt
-Ls0 f6 actionCode 'import java.util.Map;
+Ls0 f6 actionCode 'import java.util.Locale;
+import java.util.Map;
 import java.util.HashMap;
 import java.util.Arrays;
 import ch.ivy.addon.portalkit.bo.CaseMapDetail;
@@ -121,7 +125,16 @@ ICaseMap caseMap = ivy.casemap.find().byPath("CaseMap/Lending");
 if (caseMap != null){	
 	Map iconMap = new HashMap();
 	for (IStage stage : caseMap.getStages()){		
-		iconMap.put(stage.getName(), stage.getIcon().getCssClass());		
+		if (ivy.cms.coLocale("/Processes/CaseMap/Stage/identification", Locale.ENGLISH).equalsIgnoreCase(stage.getName())){
+			iconMap.put(ivy.cms.co("/Processes/CaseMap/Stage/identification"), stage.getIcon().getCssClass());		
+		}
+		if (ivy.cms.coLocale("/Processes/CaseMap/Stage/creditRating", Locale.ENGLISH).equalsIgnoreCase(stage.getName())){
+			iconMap.put(ivy.cms.co("/Processes/CaseMap/Stage/creditRating"), stage.getIcon().getCssClass());				
+		}
+		if (ivy.cms.coLocale("/Processes/CaseMap/Stage/approval", Locale.ENGLISH).equalsIgnoreCase(stage.getName())){
+			iconMap.put(ivy.cms.co("/Processes/CaseMap/Stage/approval"), stage.getIcon().getCssClass());				
+		}
+		
 	}
 	in.caseMapDetail.setStageIcon(iconMap);
 }
@@ -175,6 +188,33 @@ Ls0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ls0 f9 232 234 112 44 -38 -8 #rect
 Ls0 f9 @|UserDialogIcon #fIcon
 Ls0 f10 109 256 232 256 #arcP
+Ls0 f11 guid 17298009F9A705DB #txt
+Ls0 f11 actionTable 'out=in;
+' #txt
+Ls0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>cancel</name>
+    </language>
+</elementInfo>
+' #txt
+Ls0 f11 83 339 26 26 -14 15 #rect
+Ls0 f11 @|UdEventIcon #fIcon
+Ls0 f12 dialogId com.axonivy.portal.userexamples.ExampleHomePage #txt
+Ls0 f12 startMethod start() #txt
+Ls0 f12 requestActionDecl '<> param;' #txt
+Ls0 f12 responseMappingAction 'out=in;
+' #txt
+Ls0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ExampleHomePage</name>
+    </language>
+</elementInfo>
+' #txt
+Ls0 f12 224 330 128 44 -55 -8 #rect
+Ls0 f12 @|UserDialogIcon #fIcon
+Ls0 f13 109 352 224 352 #arcP
 >Proto Ls0 .type com.axonivy.portal.userexamples.credit.LendingOverview.LendingOverviewData #txt
 >Proto Ls0 .processKind HTML_DIALOG #txt
 >Proto Ls0 -8 -8 16 16 16 26 #rect
@@ -187,3 +227,5 @@ Ls0 f6 mainOut f2 tail #connect
 Ls0 f2 head f1 mainIn #connect
 Ls0 f8 mainOut f10 tail #connect
 Ls0 f10 head f9 mainIn #connect
+Ls0 f11 mainOut f13 tail #connect
+Ls0 f13 head f12 mainIn #connect
