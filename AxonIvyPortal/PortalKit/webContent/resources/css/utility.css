@@ -321,6 +321,18 @@
   }
 }
 
+@media ( max-width : 1024px) {
+  .u-hidden-1024-down {
+    display: none !important;
+  }
+}
+
+@media ( min-width : 1025px) {
+  .u-hidden-1024-up {
+    display: none !important;
+  }
+}
+
 .u-padding-right-5 {
   padding-right: 5px;
 }
