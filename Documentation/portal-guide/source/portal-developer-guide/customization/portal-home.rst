@@ -138,5 +138,35 @@ The default page title is Dashboard. Apply the following code to change it:
    <ui:define name="title">YOUR PAGE'S TITLE</ui:define>
    </ui:composition>
 
+.. _customization-portal-home-user-guide:
+
+Customize user guide
+--------------------
+
+When user guide is shown, default order of guide steps is Welcome > Main Menu > Processes > Tasks > Username > Statistics.
+If you want to customize the guide, define the sections and using the ``GuideOverlayPanel`` components, 
+refer to ``CustomizedGuide.xhtml`` in the ``portal-developer-examples`` project. 
+
+The supported sections: ``welcomeGuide``, ``mainMenuGuide``, ``processWidgetGuide``, ``taskWidgetGuide``, ``statisticWidgetGuide``, ``userSettingsGuide``
+
+.. code-block:: html
+
+	<ui:define name="welcomeGuide">
+	  <ic:ch.ivy.addon.portalkit.component.WelcomePortalDialog id="welcome-portal-guide-component"
+	    title="Welcome to Customized Guide"
+	    onNext="PF('left-menu-guide').show()" updatedComponentAfterGuide="#{updatedComponentAfterGuide}" 
+	    rendered="#{guideBean.isGuideShown}" />
+	</ui:define>
+	
+	<ui:define name="taskWidgetGuide">
+	  <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="task-widget-guide-component" 
+	    targetComponent="task-widget" targetCssSelector="#task-widget" icon="fa-check-square-o"
+	    title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/task/title')}" 
+	    content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/task/content')}"
+	    updatedComponentAfterGuide="#{updatedComponentAfterGuide}" 
+	    rendered="#{guideBean.isGuideShown}" />
+	</ui:define>
+..
+
 
 .. |home-page-template| image:: images/portal-home/home-page-template.png

@@ -251,4 +251,5 @@ public class TaskService implements ITaskService {
   private ITaskQueryExecutor taskQueryExecutor() {
     return Ivy.wf().getGlobalContext().getTaskQueryExecutor();
   }
+
 }
