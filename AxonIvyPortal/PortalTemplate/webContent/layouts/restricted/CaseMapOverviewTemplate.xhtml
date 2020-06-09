@@ -25,10 +25,10 @@
     
                   <h:panelGroup layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-6 ui-sm-12 " >
                     
-                    <div class="ui-g-12 height100 casemap-stage ">
+                    <div class="ui-g-12 height100 case-map-stage ">
                       <div class="ui-g-12" >
-                        <div class="rectangle margin0">
-                          <i class="#{caseMapDetailBean.getIconOfStage(caseMapDetail, stage)} stage-icon" />
+                        <div class="rectangle margin0 card">
+                          <i class="#{caseMapDetailBean.getIconOfStage(caseMapDetail, stage)} case-stage-icon" />
                         </div>
                       </div>
                       <div class="ui-g-12 case-stage">
@@ -39,7 +39,7 @@
                           <i class="fa fa-ellipsis-v " />
                         </div>
                       </div>
-                      <div class="card ui-g-12 stage-detail" >
+                      <div class="card ui-g-12 case-stage-detail" >
     
                         <!-- PROCESS -->
                         <ui:repeat var="desc" value="#{caseMapDetailBean.getProcessOfStage(caseMapDetail, stage)}">

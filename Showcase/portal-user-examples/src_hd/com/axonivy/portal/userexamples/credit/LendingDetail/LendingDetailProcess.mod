@@ -22,6 +22,9 @@ Ls0 @UdMethod f6 '' #zField
 Ls0 @GridStep f12 '' #zField
 Ls0 @PushWFArc f13 '' #zField
 Ls0 @PushWFArc f9 '' #zField
+Ls0 @UdEvent f14 '' #zField
+Ls0 @UserDialog f15 '' #zField
+Ls0 @PushWFArc f16 '' #zField
 >Proto Ls0 Ls0 LendingDetailProcess #zField
 Ls0 f0 guid 1725FB50A476B54F #txt
 Ls0 f0 method start(ch.ivy.addon.portalkit.bo.CaseMapDetail,Integer) #txt
@@ -141,6 +144,33 @@ Ls0 f12 240 330 128 44 -55 -8 #rect
 Ls0 f12 @|StepIcon #fIcon
 Ls0 f13 109 352 240 352 #arcP
 Ls0 f9 368 352 408 352 #arcP
+Ls0 f14 guid 17297FBEEBF8A2C6 #txt
+Ls0 f14 actionTable 'out=in;
+' #txt
+Ls0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>cancel</name>
+    </language>
+</elementInfo>
+' #txt
+Ls0 f14 83 435 26 26 -14 15 #rect
+Ls0 f14 @|UdEventIcon #fIcon
+Ls0 f15 dialogId com.axonivy.portal.userexamples.ExampleHomePage #txt
+Ls0 f15 startMethod start() #txt
+Ls0 f15 requestActionDecl '<> param;' #txt
+Ls0 f15 responseMappingAction 'out=in;
+' #txt
+Ls0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ExampleHomePage</name>
+    </language>
+</elementInfo>
+' #txt
+Ls0 f15 160 426 128 44 -55 -8 #rect
+Ls0 f15 @|UserDialogIcon #fIcon
+Ls0 f16 109 448 160 448 #arcP
 >Proto Ls0 .type com.axonivy.portal.userexamples.credit.LendingDetail.LendingDetailData #txt
 >Proto Ls0 .processKind HTML_DIALOG #txt
 >Proto Ls0 -8 -8 16 16 16 26 #rect
@@ -155,3 +185,5 @@ Ls0 f7 mainOut f13 tail #connect
 Ls0 f13 head f12 mainIn #connect
 Ls0 f12 mainOut f9 tail #connect
 Ls0 f9 head f8 mainIn #connect
+Ls0 f14 mainOut f16 tail #connect
+Ls0 f16 head f15 mainIn #connect

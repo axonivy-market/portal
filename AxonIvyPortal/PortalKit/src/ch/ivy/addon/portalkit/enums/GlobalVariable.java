@@ -30,7 +30,9 @@ public enum GlobalVariable {
   EMBED_IN_FRAME(GlobalVariableType.SELECTION, Option.TRUE.toString(), "embedInFrame"),
   LOGGED_IN_USER_FORMAT(GlobalVariableType.SELECTION, Option.DISPLAY_NAME.toString(), "loggedInUserFormat", getLoggedInUserFormatOptions()),
   HIDE_TASK_DOCUMENT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideTaskDocument"),
-  HIDE_CASE_DOCUMENT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseDocument");
+  HIDE_CASE_DOCUMENT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseDocument"),
+  SHOW_USER_GUIDE(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showUserGuide");
+  
   private GlobalVariableType type;
   private String defaultValue;
   private String noteCMS;
