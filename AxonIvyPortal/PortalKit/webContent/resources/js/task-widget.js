@@ -33,36 +33,64 @@ function TaskWidget() {
         }
 
         var compactProcessWidgetHeight = window.matchMedia("(max-width: 40em)").matches == true ? ($('.compact-process-widget').outerHeight(true) || 0) : 0;
-        var taskViewPaddingValue = parseInt($('.js-task-view').css('padding-top'), 10) + parseInt($('.js-task-view').css('padding-bottom'), 10);
-        var layoutContentPadding = $('.layout-content').outerHeight(true) - $('.layout-content').height();
-        var containerPadding = container.outerHeight(true) - container.height();
+        var compactTaskWidgetPadding = $('.compact-task-widget').outerHeight(true) - $('.compact-task-widget').height()||0;
+        var taskViewPadding = $('.js-task-view').outerHeight(true) - $('.js-task-view').height()||0;
+        var layoutContentPadding = $('.layout-content').outerHeight(true) - $('.layout-content').height()||0;
+        var containerPadding = container.outerHeight(true) - container.height()||0;
 
-        var mainScreenHeight = ($('body').outerHeight(true)||0) - ($('.layout-topbar').outerHeight(true)||0);
-        var availableHeight = mainScreenHeight - (taskWidgetHeaderContainer.outerHeight(true)||0) - (announcementMessageContainer.outerHeight(true)||0)
-            - (taskWidgetSortMenuContainer.outerHeight(true)||0) - (taskWidgetFilterContainer.outerHeight(true)||0)
-            - customWidgetContainer - (globalSearchInput.is(":visible") ? globalSearchInput.outerHeight(true) : 0) - (globalSearchTabHeader.outerHeight(true)||0) - error
-            - compactProcessWidgetHeight - taskViewPaddingValue
-            - layoutContentPadding - containerPadding;
+        var headerHeight = $('#portal-template-header').outerHeight()||0;
+        var footerHeight = $('#portal-template-footer').outerHeight()||0;
+        var headerFooterHeight = headerHeight + footerHeight;
+        var envHeight = $('.js-layout-wrapper').hasClass('u-invisibility') ? $('#portal-environment').outerHeight()||0 : 0;
+
+        var mainScreenHeight = ($('.js-layout-content').outerHeight(true)||0);
+        var availableHeight = mainScreenHeight - (taskWidgetHeaderContainer.outerHeight(true)||0)
+            - (announcementMessageContainer.outerHeight(true)||0) - (taskWidgetSortMenuContainer.outerHeight(true)||0)
+            - (taskWidgetFilterContainer.outerHeight(true)||0) - error - customWidgetContainer
+            - taskViewPadding - layoutContentPadding - compactTaskWidgetPadding - compactProcessWidgetHeight - headerFooterHeight - envHeight;
         if (!!availableHeight) {
-          container.outerHeight(availableHeight);
+            container.height(availableHeight);
+            if (container.outerHeight(true) > availableHeight) {
+              var taskStartItemMarginRight = $('.task-start-list-item').css("margin-right");
+              var scrollbarWidth = container.width() - container.find('.ui-datascroller-list').outerWidth(true);
+              if (scrollbarWidth > 0) {
+                container.css("margin-right", taskStartItemMarginRight);
+              }
+            }
         }
       }
     },
     
     toggleTaskFilter: function(toggler) {
-      $('.js-filter-container').toggleClass('u-hidden-md-down');
+      $('.js-advanced-filter-component').toggleClass('u-hidden-md-down');
     },
+
+    updateTaskCountToBreadcrumb : function() {
+      var $breadCrumbTaskElem = $("[id $= ':breadcrumb'] li").last().find(".ui-menuitem-link");
+      if ($breadCrumbTaskElem.length == 0) {
+        return;
+      }
+
+      if ($breadCrumbTaskElem.find(".js-count").length == 0) {
+        $breadCrumbTaskElem.find("span").addClass("has-count");
+        $breadCrumbTaskElem.append('<span class="js-count has-count"> (' + $(".js-hidden-task-count").get(0).innerHTML + ')</span>');
+      } else {
+    	  $breadCrumbTaskElem.find(".js-count").get(0).innerHTML = " (" + $(".js-hidden-task-count").get(0).innerHTML + ")";
+      }
+
+      $(".js-task-count-mobile").get(0).innerHTML = " (" + $(".js-hidden-task-count").get(0).innerHTML + ")";
+    }
   }
 }
 
 function TaskListToolKit() {
 
   function hideColumnWhenExpandMenu($columns) {
-    $columns.addClass("ui-hidden");
+    $columns.addClass("u-hidden");
   }
 
   function displayColumnWhenCollapseMenu($columns) {
-    $columns.removeClass("ui-hidden");
+    $columns.removeClass("u-hidden");
   }
 
   return {

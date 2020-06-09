@@ -161,6 +161,8 @@ Migrate 8.x to 9.1
 
 6. Portal now use |css_variable| instead of SASS. Therefore you must convert SASS syntax to new CSS variable or use online tool such as |css_variable_convert| to convert it.
 
+7. We removed ``titleOnMobile`` parameter in ``TaskWidget.xhtml`` and ``CaseWidget.xhtml``. Please use parameter ``title`` instead.
+
 Migrate 8.0.1 to 8.0.2
 ----------------------
 
