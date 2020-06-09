@@ -106,6 +106,18 @@ Pt0 @UserDialog f71 '' #zField
 Pt0 @PushWFArc f77 '' #zField
 Pt0 @PushWFArc f78 '' #zField
 Pt0 @PushWFArc f79 '' #zField
+Pt0 @GridStep f80 '' #zField
+Pt0 @GridStep f83 '' #zField
+Pt0 @GridStep f86 '' #zField
+Pt0 @StartRequest f82 '' #zField
+Pt0 @InfoButton f85 '' #zField
+Pt0 @Alternative f81 '' #zField
+Pt0 @UserDialog f84 '' #zField
+Pt0 @PushWFArc f89 '' #zField
+Pt0 @PushWFArc f87 '' #zField
+Pt0 @PushWFArc f90 '' #zField
+Pt0 @PushWFArc f88 '' #zField
+Pt0 @PushWFArc f91 '' #zField
 >Proto Pt0 Pt0 InternalSupportPortalStart #zField
 Bk1 @TextInP .type .type #zField
 Bk1 @TextInP .processKind .processKind #zField
@@ -1045,6 +1057,110 @@ Pt0 f71 @|UserDialogIcon #fIcon
 Pt0 f77 111 1280 192 1280 #arcP
 Pt0 f78 111 1376 192 1376 #arcP
 Pt0 f79 111 1184 192 1184 #arcP
+Pt0 f80 actionTable 'out=in;
+' #txt
+Pt0 f80 actionCode 'import ch.ivy.addon.portalkit.util.RequestUtil;
+RequestUtil.redirect(in.callbackUrl);' #txt
+Pt0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Redirect to task start</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f80 616 1546 112 44 -53 -8 #rect
+Pt0 f80 @|StepIcon #fIcon
+Pt0 f83 actionTable 'out=in;
+' #txt
+Pt0 f83 actionCode 'import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.bpm.error.BpmError;
+
+ITask task = ivy.wf.findTask(in.endedTaskId);
+if (!in.callbackUrl.startsWith("/" + task.getApplication().getName() + "/")) {
+  BpmError.create("frame:unsupported:url").withMessage("only relative urls are supported (security reasons)").throwError();
+}' #txt
+Pt0 f83 security system #txt
+Pt0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Check if url is valid</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f83 168 1450 112 44 -51 -8 #rect
+Pt0 f83 @|StepIcon #fIcon
+Pt0 f86 actionTable 'out=in;
+' #txt
+Pt0 f86 actionCode 'import ch.ivy.addon.portalkit.service.IFrameService;
+out.embedInIFrame = IFrameService.embedInFrame(in.endedTaskId);' #txt
+Pt0 f86 security system #txt
+Pt0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>get embedInIFrame setting</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f86 344 1450 144 44 -69 -8 #rect
+Pt0 f86 @|StepIcon #fIcon
+Pt0 f82 outLink DefaultFramePage.ivp #txt
+Pt0 f82 inParamDecl '<String relativeUrl,Number runningTaskId> param;' #txt
+Pt0 f82 inParamTable 'out.callbackUrl=param.relativeUrl;
+out.endedTaskId=param.runningTaskId;
+' #txt
+Pt0 f82 requestEnabled true #txt
+Pt0 f82 triggerEnabled false #txt
+Pt0 f82 callSignature DefaultFramePage(String,Number) #txt
+Pt0 f82 caseData businessCase.attach=true #txt
+Pt0 f82 showInStartList 0 #txt
+Pt0 f82 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DefaultFramePage.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f82 @C|.responsibility Everybody #txt
+Pt0 f82 81 1457 30 30 -48 16 #rect
+Pt0 f82 @|StartRequestIcon #fIcon
+Pt0 f85 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>If open a process/start in "embedInFrame" mode (add to url embedInFrame parameter), &#13;
+DefaultFramePage process will run</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f85 64 1530 464 44 -228 -16 #rect
+Pt0 f85 @|IBIcon #fIcon
+Pt0 f81 528 1456 32 32 0 16 #rect
+Pt0 f81 @|AlternativeIcon #fIcon
+Pt0 f84 dialogId ch.ivy.addon.portal.generic.iframe.TaskTemplateIFrame #txt
+Pt0 f84 startMethod start(String,Number) #txt
+Pt0 f84 requestActionDecl '<String url,Number taskId> param;' #txt
+Pt0 f84 requestMappingAction 'param.url=in.callbackUrl;
+param.taskId=in.endedTaskId;
+' #txt
+Pt0 f84 responseMappingAction 'out=in;
+' #txt
+Pt0 f84 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>TaskTemplateIFrame</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f84 616 1450 128 44 -55 -8 #rect
+Pt0 f84 @|UserDialogIcon #fIcon
+Pt0 f89 111 1472 168 1472 #arcP
+Pt0 f87 expr in #txt
+Pt0 f87 outCond in.embedInIFrame #txt
+Pt0 f87 560 1472 616 1472 #arcP
+Pt0 f90 544 1488 616 1568 #arcP
+Pt0 f90 1 544 1568 #addKink
+Pt0 f90 1 0.1556203489120305 0 0 #arcLabel
+Pt0 f88 280 1472 344 1472 #arcP
+Pt0 f91 488 1472 528 1472 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1651,6 +1767,16 @@ Pt0 f72 mainOut f77 tail #connect
 Pt0 f77 head f74 mainIn #connect
 Pt0 f73 mainOut f78 tail #connect
 Pt0 f78 head f75 mainIn #connect
+Pt0 f86 mainOut f91 tail #connect
+Pt0 f91 head f81 in #connect
+Pt0 f90 head f80 mainIn #connect
+Pt0 f81 out f87 tail #connect
+Pt0 f87 head f84 mainIn #connect
+Pt0 f81 out f90 tail #connect
+Pt0 f82 mainOut f89 tail #connect
+Pt0 f89 head f83 mainIn #connect
+Pt0 f83 mainOut f88 tail #connect
+Pt0 f88 head f86 mainIn #connect
 Bk1 f106 mainOut f107 tail #connect
 Bk1 f107 head f104 mainIn #connect
 Bk1 g0 m f0 tail #connect
