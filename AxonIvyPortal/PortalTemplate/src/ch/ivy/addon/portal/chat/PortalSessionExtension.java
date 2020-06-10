@@ -43,29 +43,31 @@ public final class PortalSessionExtension implements ISessionExtension {
   }
 
   @Override
-  public void destroySession(ISession session, IPersistentTransaction transaction) throws PersistencyException {
+  public void destroySession(ISession session, IPersistentTransaction transaction) {
     // this method is called when session timed out
-    if (chatService() != null && StringUtils.isNotBlank(session.getHttpSessionIdentifier())
-        && isLastSessionBoundToUser(session)) {
-      chatService().handleUserOffline(session.getSessionUserName());
-      removeChatMessageQueue(session);
+    try {
+      executeWithIvyContext(() -> {
+        if (chatService() != null && StringUtils.isNotBlank(session.getHttpSessionIdentifier())
+            && isLastSessionBoundToUser(session)) {
+          chatService().handleUserOffline(session.getSessionUserName());
+          ConcurrentChatUtils.removePortalChatResponseHistory(session.getSessionUserName());
+        }
+        return null;
+      }, processModelVersion(), session);
+    } catch (Exception e) {
+      Ivy.log().error(e);
     }
   }
 
   @Override
-  public void logoutSession(ISession session, IPersistentTransaction transaction, long currentTaskId)
-      throws PersistencyException {
+  public void logoutSession(ISession session, IPersistentTransaction transaction, long currentTaskId) {
     // this method is called when user logged out
-    if (chatService() != null && isLastSessionBoundToUser(session)) {
-      chatService().handleUserOffline(session.getSessionUserName());
-      removeChatMessageQueue(session);
-    }
-  }
-
-  private void removeChatMessageQueue(ISession session) {
     try {
       executeWithIvyContext(() -> {
-        ConcurrentChatUtils.removePortalChatMessageQueue(session.getSessionUserName());
+        if (chatService() != null && isLastSessionBoundToUser(session)) {
+          chatService().handleUserOffline(session.getSessionUserName());
+          ConcurrentChatUtils.removePortalChatResponseHistory(session.getSessionUserName());
+        }
         return null;
       }, processModelVersion(), session);
     } catch (Exception e) {
@@ -75,15 +77,8 @@ public final class PortalSessionExtension implements ISessionExtension {
 
   private boolean isLastSessionBoundToUser(ISession session) {
     String username = session.getSessionUserName();
-    try {
-      return executeWithIvyContext(
-          () -> Ivy.wf().getSecurityContext().getSessions().stream()
-              .noneMatch(s -> s.getSessionUserName().equals(username) && !s.equals(session)),
-          processModelVersion(), session);
-    } catch (Exception e) {
-      Ivy.log().error(e);
-      return false;
-    }
+    return Ivy.wf().getSecurityContext().getSessions().stream()
+        .noneMatch(s -> s.getSessionUserName().equals(username) && !s.equals(session));
   }
 
   private static AbstractExecutionContext createRequestContext(IProcessModelVersion pmv,  ISession session) {
