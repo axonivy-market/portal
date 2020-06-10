@@ -239,9 +239,6 @@
   .compact-task-widget .widget-header-main, .compact-process-widget .widget-header-main {
     height: 30px !important;
   }
-  .task-widget .sort-task-menu {
-    margin-top: 9px !important;
-  }
 }
 
 .task-widget-sub-header {
@@ -1224,6 +1221,10 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   background-repeat: no-repeat;
   width: 1.5rem;
   height: 1.5rem;
+}
+
+span..express-process-logo {
+  margin: 0 5px;
 }
 
 .express-process-logo .ui-panel-content,
