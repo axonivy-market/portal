@@ -107,7 +107,7 @@
               updateComponent="#{cc.clientId}:case-list #{cc.clientId}:hidden-case-count" icon="fa fa-filter simple-filter-icon"
               listener="#{data.dataModel.onKeywordChange()}" styleClass="case-filter-component"
               placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
-              onCompletedCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();" iconAsButton="true" onClickIconFilter="caseWidget.toggleTaskFilter(this);caseWidget.setUpScrollbar();" />
+              onCompletedCallback="caseWidget.setUpScrollbar();caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();" iconAsButton="true" onClickIconFilter="caseWidget.toggleCaseFilter(this);caseWidget.setUpScrollbar();" />
           </h:form>
         </div>
 

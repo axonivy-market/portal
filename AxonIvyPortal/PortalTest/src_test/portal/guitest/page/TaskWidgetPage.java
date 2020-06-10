@@ -50,7 +50,7 @@ public class TaskWidgetPage extends TemplatePage {
 		WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
 		click(fullModeButton);
 		ensureNoBackgroundRequest();
-		waitForElementExisted("button[id$=':filter-save-action']",true, 10);
+		waitForElementExisted("[id$=':filter-save-action']",true, 10);
 		waitForLocatorDisplayed("id('" + taskWidgetId + ":filter-save-action')");
 	}
 
