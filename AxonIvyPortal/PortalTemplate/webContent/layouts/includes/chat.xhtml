@@ -26,15 +26,19 @@
 
               var view = new View(resource);
               var chat = new Chat(resource, view);
-              chat.listen(true);
-              chat.getSendersOfUnreadMessages();
-              if (isChatGroupEnabled === 'true') {
-                chat.registerGroupResponse();
-              }
-              if (isChatPrivateEnabled === 'true') {
-                chat.registerUserResponse();
-              }
-       </script>
+              window.addEventListener("load", function() {
+                setTimeout(function(){
+                  chat.listen(true, "INITIAL_RESPONSE_ID", "CHAT_LONG_POLLING_REQUEST");
+                  chat.getSendersOfUnreadMessages();
+                }, 2000);
+              });
+
+              document.addEventListener(visibilityChange, function() {
+                if (!document[hidden] &amp;&amp; isChatDeactivated === true) {
+                  chat.reloadChat();
+                }
+              }, false);
+            </script>
       <p:remoteCommand autoRun="true" actionListener="#{chatRendererBean.getGroupChatName}" global="false" />
       <h:outputStylesheet library="css" name="chat.css" />
       <div id="chat-panel" class="chat-panel js-chat-panel">
