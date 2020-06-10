@@ -4643,7 +4643,21 @@ height: 25rem;
 .card-layout-content{
 position:absolute;
 top:4.5rem;	
+overflow-y:auto;
+height:100%;
 }
 .case-map-stage hr{
 clear: both;
+}
+.process-overview-layout-content{
+overflow-y:auto;
+height:100%;	
+}
+.case-map-detail-layout-content{
+overflow-y:auto;
+height:100%;	
+}
+.case-map-overview-layout-content{
+overflow-y:auto;
+height:100%;	
 }
