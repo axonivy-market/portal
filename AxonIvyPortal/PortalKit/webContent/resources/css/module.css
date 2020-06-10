@@ -4627,12 +4627,12 @@ display: block;
 .case-map-stage{	
 height:52rem;
 }
-@media (max-width: 575px) {
+@media (max-width: 768px) {
 .side-step-panel{
 border-top: 0.14rem dashed;
 } 
 }
-@media (min-width: 576px) {
+@media (min-width: 769px) {
 .side-step-panel{
 border-left: 0.14rem dashed;
 } 
@@ -4644,20 +4644,20 @@ height: 25rem;
 position:absolute;
 top:4.5rem;	
 overflow-y:auto;
-height:100%;
+height:95%;
 }
 .case-map-stage hr{
 clear: both;
 }
 .process-overview-layout-content{
 overflow-y:auto;
-height:100%;	
+height:95%;	
 }
 .case-map-detail-layout-content{
 overflow-y:auto;
-height:100%;	
+height:95%;	
 }
 .case-map-overview-layout-content{
 overflow-y:auto;
-height:100%;	
+height:95%;	
 }
