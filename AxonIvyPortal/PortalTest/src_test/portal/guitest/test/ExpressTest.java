@@ -124,7 +124,7 @@ public class ExpressTest extends BaseTest{
   
   private void executeApproval(String comment) {
     taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy("Task");
+    taskWidgetPage.filterTasksBy("Task", 1);
     taskWidgetPage.startTask(0);
     ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
     approvalPage1.comment(comment);

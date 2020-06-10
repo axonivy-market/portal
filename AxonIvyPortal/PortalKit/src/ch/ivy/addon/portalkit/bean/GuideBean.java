@@ -19,6 +19,7 @@ public class GuideBean {
   @PostConstruct
   public void init() {
     guide = GuidePool.instance().guide(Ivy.session().getSessionUserName());
+    guide.readShowGuideProperty();
     isGuideShown = guide.isGuideShown();
   }
   
@@ -32,8 +33,8 @@ public class GuideBean {
   }
   
   public void finish() {
-    boolean isGuideShown = guide.getShowGuideProperty();
-    this.isGuideShown = isGuideShown;
+    guide.readShowGuideProperty();
+    isGuideShown = guide.isGuideShown();
     guide.setIsGuideShown(isGuideShown);
   }
   
