@@ -227,8 +227,7 @@ public class CaseWidgetPage extends TemplatePage {
 	}
 
 	public Integer getCaseCount() {
-		WebElement caseTitleElement = findElementById("case-widget:case-widget-title");
-		String title = caseTitleElement.getText();
+		String title = getTextOfCurrentBreadcrumb();
 		String count = StringUtils.substringBetween(title, "(", ")");
 		return StringUtils.isNotBlank(count) ? Integer.parseInt(count) : null;
 	}

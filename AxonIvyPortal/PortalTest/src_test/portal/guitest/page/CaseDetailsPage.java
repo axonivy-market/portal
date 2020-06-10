@@ -25,7 +25,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('case-item-details:case-detail-title-form:case-detail-name')";
+    return "id('case-item-details:case-detail-title-form')";
   }
 
   public CaseDetailsPage() {
@@ -290,9 +290,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public String getCaseName() {
-    WebElement selectedCaseNameElement =
-        findElementByCssSelector("#case-item-details\\:case-detail-title-form\\:case-name-edit-inplace_display");
-    return selectedCaseNameElement.getText();
+    return getTextOfCurrentBreadcrumb().replace("Case: ", "");
   }
   public boolean isAddNoteButtonDisplayed() {
     return isElementDisplayedById("case-item-details:case-histories:add-note-command");
