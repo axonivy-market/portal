@@ -38,40 +38,18 @@ Ds0 f1 51 339 26 26 14 0 #rect
 Ds0 f1 @|EndSubIcon #fIcon
 Ds0 f3 actionTable 'out=in;
 ' #txt
-Ds0 f3 actionCode 'import ch.ivyteam.ivy.workflow.start.IWebStartable;
-import org.apache.commons.lang3.StringUtils;
+Ds0 f3 actionCode 'import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
-import ch.ivyteam.ivy.workflow.IProcessStart;
-import ch.ivyteam.ivy.server.ServerFactory;
-
 
 ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
 
-String leaveRequestStartLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/LeaveRequest/start.ivp");
+String leaveRequestStartLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/UserExampleGuide/userExampleGuide.ivp");
 if (!StringUtils.isEmpty(leaveRequestStartLink)){	
 	UserProcess userProcess = new UserProcess();
 	userProcess.setLink(leaveRequestStartLink);
-	userProcess.setProcessName(ivy.cms.co("/Processes/LeaveRequest/leaveRequest"));
+	userProcess.setProcessName(ivy.cms.co("/Processes/UserExampleGuide/name"));
 	userProcess.setIcon("fa-ticket");
-	userProcess.setIndex(1);
-	in.defaultUserProcesses.add(userProcess);
-}
-
-List<IWebStartable> startableLinks = ivy.wf.getStartables(ivy.session.getSessionUser());
-IWebStartable lendingCaseMap = null;
-for(IWebStartable link : startableLinks) {
-	if(link.getDisplayName().equals("Lending (Case Map)")) {
-		lendingCaseMap = link;
-	}
-}
-
-if (lendingCaseMap != null){
-	UserProcess userProcess = new UserProcess();
-	userProcess.setLink(lendingCaseMap.getLink().getRelativeEncoded());
-	userProcess.setProcessName("Lending (Case Map)");
-	userProcess.setIcon("fa-briefcase");
-	userProcess.setIndex(2);
 	in.defaultUserProcesses.add(userProcess);
 }
 ' #txt
