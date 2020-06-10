@@ -1,46 +1,48 @@
 package ch.ivy.addon.portal.chat;
 
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ConcurrentLinkedDeque;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISession;
 
 public final class ConcurrentChatUtils {
-  public static final String PORTAL_CHAT_MESSAGE_QUEUE = "PortalChatMessageQueue_%s";
+  public static final String PORTAL_CHAT_RESPONSE_HISTORY = "PortalChatResponseHistory_%s";
+  private static final int RECENT_HISTORY_SIZE = 20;
 
   private ConcurrentChatUtils() {}
 
   @SuppressWarnings("unchecked")
-  public static Queue<ChatMessage> getPortalChatMessageQueue(String username) {
-    return (Queue<ChatMessage>) Ivy.wf().getApplication().getAttribute(String.format(PORTAL_CHAT_MESSAGE_QUEUE, username));
-  }
-
-  public static Queue<ChatMessage> getPortalChatMessageQueueOrInitIfNull(String username) {
-    Queue<ChatMessage> queue = getPortalChatMessageQueue(username);
-    if (queue == null) {
-      queue = new ConcurrentLinkedQueue<>();
-      setPortalChatMessageQueue(username, queue);
+  public static Deque<ChatResponse> getRecentChatResponseHistory(String username) {
+    Deque<ChatResponse> history = (Deque<ChatResponse>) Ivy.wf().getApplication()
+        .getAttribute(String.format(PORTAL_CHAT_RESPONSE_HISTORY, username));
+    if (history == null) {
+      history = new ConcurrentLinkedDeque<>();
+      Ivy.wf().getApplication().setAttribute(String.format(PORTAL_CHAT_RESPONSE_HISTORY, username), history);
     }
-    return queue;
+    if (history.size() > RECENT_HISTORY_SIZE) {
+      int numberOfEntriesToRemove = history.size() - RECENT_HISTORY_SIZE;
+      for (int i = 0; i < numberOfEntriesToRemove; i++) {
+        history.pollFirst();
+      }
+    }
+    return history;
   }
 
-  public static void setPortalChatMessageQueue(String username,Queue<ChatMessage> queue) {
-    Ivy.wf().getApplication().setAttribute(String.format(PORTAL_CHAT_MESSAGE_QUEUE, username), queue);
+  public static void removePortalChatResponseHistory(String username) {
+    Ivy.wf().getApplication().removeAttribute(String.format(PORTAL_CHAT_RESPONSE_HISTORY, username));
   }
-  
-  public static void removePortalChatMessageQueue(String username) {
-    Ivy.wf().getApplication().removeAttribute(String.format(PORTAL_CHAT_MESSAGE_QUEUE, username));
-  }
-  
+
   public static boolean isUserOnline(String username) {
-    return Ivy.wf().getSecurityContext().getSessions().stream().anyMatch(session -> session.getSessionUserName().equals(username));
+    return Ivy.wf().getSecurityContext().getSessions().stream()
+        .anyMatch(session -> session.getSessionUserName().equals(username));
   }
 
   /**
-   * Gets map [username, ISession] of all active sessions 
+   * Gets map [username, ISession] of all active sessions
+   * 
    * @return map [username, ISession] of all active sessions
    */
   public static Map<String, ISession> getUserNameToSession() {

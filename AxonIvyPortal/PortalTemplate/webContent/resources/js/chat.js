@@ -10,6 +10,21 @@ var numberToApplyLazyLoad = 50;
 var recipientName;
 var originalMessageTemplate;
 var jsMessageList;
+var clientId = new Date().getTime();
+var isChatDeactivated = false;
+var hasPendingRequestForSendersOfUnreadMessages= false;
+var hidden, visibilityChange;
+
+if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support 
+  hidden = "hidden";
+  visibilityChange = "visibilitychange";
+} else if (typeof document.msHidden !== "undefined") {
+  hidden = "msHidden";
+  visibilityChange = "msvisibilitychange";
+} else if (typeof document.webkitHidden !== "undefined") {
+  hidden = "webkitHidden";
+  visibilityChange = "webkitvisibilitychange";
+}
 
 function IvyUri(){
   this.rest = function()
@@ -26,56 +41,24 @@ function Chat(uri, view) {
     // current service uri: e.g. "http://localhost:8081/ivy/api/designer/chat"
     this.uri = uri;
     var chatGroupMemoryPrefix = "Case-";
-    
-    this.registerGroupResponse = async function() {
-      const jsonResponse = await fetch(uri+"/groups", { method:"POST", mode: 'cors', credentials: "include", headers: {"X-Requested-By": "ivy", "Content-Type": "application/json", "Accept": "application/json"}});
-      if (jsonResponse.status >= 400) {
-        console.error("Response error with HTTP code: " + jsonResponse.status + ", the browser stops sending long-polling request for groups.");
-        return;
-      }
-      var response = await jsonResponse.json();
-      this.registerGroupResponse();
-      if (response.status === "SERVER_TIMEOUT") {// if long-polling request timeout
-        return;
-      }
-      view.renderGroupList(response);
-    }
 
     function getGroups() {
       jQuery.ajax({
         type: "GET",
         contentType: "text/plain",
-        url: uri + "/groups",
+        url: uri + "/groups/" + clientId,
         crossDomain: true,
         cache: false,
         headers: {"X-Requested-By": "ivy"},
-        complete: function (xhr) {
-          if (xhr.responseText === "NO_ASYNC_RESPONSE") {
-            chat.registerGroupResponse();
-          }
-        }
       });
     }
 
-    this.registerUserResponse = async function() {
-      const jsonResponse = await fetch(uri+"/users", { method:"POST", mode: 'cors', credentials: "include", headers: {"X-Requested-By": "ivy", "Content-Type": "application/json", "Accept": "application/json"}});
-      if (jsonResponse.status >= 400) {
-        console.error("Response error with HTTP code: " + jsonResponse.status + ", the browser stops sending long-polling request for users.");
-        return;
-      }
-      var response = await jsonResponse.json();
-      this.registerUserResponse();
-      if (response.status === "SERVER_TIMEOUT") {// if long-polling request timeout
-        return;
-      }
-      if (response.action === "updateUserStatus") {
-        view.updateUserOnlineStatus(response.content);
-      } else if (response.action === "getUsers"){
-        view.renderUsers(response.content);
-      }
-    }
-    
     this.getSendersOfUnreadMessages = function() {
+      if (hasPendingRequestForSendersOfUnreadMessages === true) {
+        return;
+      }
+      hasPendingRequestForSendersOfUnreadMessages = true;
+      setTimeout(function () {
         jQuery.ajax({
           type: "GET",
           url: uri + "/unread/senders",
@@ -84,9 +67,11 @@ function Chat(uri, view) {
           cache: false,
           headers: {"X-Requested-By": "ivy"},
           success: function (response) {
+            view.clearAllUnreadBadge();
             if (response.length){
+              let chatGroupMemoryPrefixPattern = "^" + chatGroupMemoryPrefix;
               for (var i = 0; i < response.length; i++) {
-                if (response[i].startsWith(chatGroupMemoryPrefix)){
+                if (response[i].match(chatGroupMemoryPrefixPattern)){
                   var caseId = response[i].replace(chatGroupMemoryPrefix, "");
                   view.updateGroupNotification(caseId);
                 } else {
@@ -98,71 +83,142 @@ function Chat(uri, view) {
             }
           }
         });
+        hasPendingRequestForSendersOfUnreadMessages = false;
+      }, 300);
+      
+
     }
     
     this.markReadGroupMessages = function(caseId) {
-		jQuery.ajax({
-			type: "POST",
-			contentType: "text/plain",
-			url: uri + "/group/read/" + caseId,
-			crossDomain: true,
-			cache: false,
-			headers: {"X-Requested-By": "ivy"}
-		});
+    jQuery.ajax({
+      type: "POST",
+      contentType: "text/plain",
+      url: uri + "/group/read/" + caseId + "/" + clientId,
+      crossDomain: true,
+      cache: false,
+      headers: {"X-Requested-By": "ivy"}
+    });
     }
 
-    this.listen = async function(isFirstCall) {
+    this.reloadChat = function() {
+      clientId = new Date().getTime();
+      this.listen(true, "INITIAL_RESPONSE_ID", "CHAT_LONG_POLLING_REQUEST");
+      isChatDeactivated = false;
+
+      if ($(".js-top-menu").hasClass("mod-chat-active")) {
+        if (isChatGroupEnabled === 'true'){
+          getGroups();
+        }
+        if (isChatPrivateEnabled === 'true'){
+          getUsers();
+        }
+      }
+
+      if ($(".js-show-chat-message.active.loaded").length == 1) {
+        this.loadChat($(".js-show-chat-message.active.loaded").get(0));
+        chat.markReadMessages();
+      }
+
+      if ($(".js-show-group-chat-message.active.loaded").length == 1) {
+        var caseId = $(".js-show-group-chat-message.active.loaded").find("input[class='js-case-id']").get(0).value;
+        chat.loadChatGroup(caseId);
+        chat.markReadGroupMessages(caseId);
+      }
+      this.getSendersOfUnreadMessages();
+    }
+
+    this.listen = async function(isFirstCall, lastResponseId, lastResponseStatus) {
       var path= "messages";
       if (isFirstCall !== true) {
         path += "-next";
       }
-      const response = await fetch(uri+"/" + path, { method:"POST", mode: 'cors', credentials: "include", headers: {"X-Requested-By": "ivy", "Content-Type": "application/json", "Accept": "application/json"}});
-      if (response.status >= 400) {
-        console.error("Response error with HTTP code: " + response.status + ", the browser stops sending long-polling request for messages.");
+      path += "/" + clientId + "/" + lastResponseId + "/" + lastResponseStatus;
+
+      const jsonResponse = await fetch(uri+"/" + path, { method:"POST", mode: 'cors', credentials: "include", headers: {"X-Requested-By": "ivy", "Content-Type": "application/json", "Accept": "application/json"}});
+      if (jsonResponse.status >= 400) {
+        console.error("Response error with HTTP code: " + jsonResponse.status + ", the browser stops sending long-polling request for messages.");
         return;
       }
-      const messages = await response.json();
-      this.listen(false); // wait for next update
-      if (messages.status === "SERVER_TIMEOUT") {// if long-polling request timeout
+
+      var response = await jsonResponse.json();
+      var currentResponseId = response.id;
+      if (response.status === "CHAT_REACHED_LIMITED_CONNECTION") {
+        currentResponseId = lastResponseId;
+      } else if (response.status === "DEACTIVATE_CHAT") {
+        if (!document[hidden]) {
+          setTimeout(function () {
+            chat.reloadChat();
+          }, 5000 - (new Date().getTime() - clientId));
+        } else {
+          isChatDeactivated = true;
+        }
         return;
       }
-      var responseRecipients = messages["recipients"][0];
-      if (responseRecipients.indexOf(chatGroupMemoryPrefix) != -1) {
-      	// group chat
-      	var $activeGroup = $(".js-show-group-chat-message.active");
-      	if ($activeGroup.length == 0) {
-      		// do not have active group chat: handle notification
-      		var responseCaseId = responseRecipients.replace(chatGroupMemoryPrefix, "");
-      		view.updateGroupNotification(responseCaseId);// update notification
-      	} else {
-      		// have active group chat:
-      		var responseCaseId = responseRecipients.replace(chatGroupMemoryPrefix, "");
-      		var activeGroupCaseId = $(".js-show-group-chat-message.active").find("input[class='js-case-id']").get(0).value;
-      		if (responseCaseId == activeGroupCaseId && $(".js-chat-panel").hasClass("message-displayed")) {
-      			// message sent from active group: render message
-      			view.renderGroupMessage(messages);
-      			this.markReadGroupMessages(responseCaseId);
-      			view.updateUnreadUserBadge();
-      		} else {
-      			// message sent from another group: handle notification
-      			view.updateGroupNotification(responseCaseId);// update notification
-      		}
-      	}
-      } else {
-      	// private chat
-      	var recipient = $(".js-contact-card-name", ".js-show-chat-message.active").text();
-          if (messages["sender"] == recipient) {
-          	  view.renderMessage(messages); // update UI
-              chat.markReadMessages();
+      this.listen(false, currentResponseId, response.status); // wait for next update
+      if (response.status === "SERVER_TIMEOUT") {// if long-polling request timeout
+        return;
+      }
+      if (response.action === "updateUserStatus") {
+          view.updateUserOnlineStatus(response.content);
+      } else if (response.action === "getUsers") {
+         view.renderUsers(response.content);
+         chat.getSendersOfUnreadMessages();
+      } else if (response.action === "getGroups") {
+        view.renderGroupList(response.content);
+      } else if (response.action === "readPrivateMessage"){
+        let sender = response.content;
+        view.hideNotificationForReadMessages(sender);
+        view.updateUnreadUserBadge();
+      } else if (response.action === "readGroupMessage"){
+        let sender = response.content;
+        view.hideNotificationForReadGroupMessages(sender);
+        view.updateUnreadUserBadge();
+      } else if (response.action === "getMessages"){
+        const messages = await response.content;
+        var responseRecipients = messages["recipients"][0];
+        var sender = messages["sender"];
+        if (responseRecipients.indexOf(chatGroupMemoryPrefix) != -1) {
+          // group chat
+          let responseCaseId = responseRecipients.replace(chatGroupMemoryPrefix, "");
+          let $activeGroup = $(".js-show-group-chat-message.active");
+          if ($activeGroup.length == 0 && sender != userName) {
+            // do not have active group chat: handle notification
+            view.updateGroupNotification(responseCaseId);// update notification
+          } 
+          if ($activeGroup.length > 0) {
+            // have active group chat:
+            let activeGroupCaseId = $(".js-show-group-chat-message.active").find("input[class='js-case-id']").get(0).value;
+            if (responseCaseId == activeGroupCaseId && $(".js-chat-panel").hasClass("message-displayed")) {
+              // message sent from active group: render message
+              view.renderGroupMessage(messages);
+              this.markReadGroupMessages(responseCaseId);
               view.updateUnreadUserBadge();
-          } else {
-          	$("#toggle-chat-panel-command").attr("data-badge", " ");
-              var sender = messages["sender"];
-              
-              if ($(".js-chat-panel").hasClass("active")) {
-              	view.updatePrivateNotification(sender);// update notification
-              }
+            } else if (sender != userName) {
+              // message sent from another group or from another user: handle notification
+              view.updateGroupNotification(responseCaseId);// update notification
+            }
           }
+        } else {
+          // private chat
+          let recipient = $(".js-contact-card-name", ".js-show-chat-message.active").text();
+          if (sender == recipient) {
+            view.renderMessage(messages); // update UI
+            chat.markReadMessages();
+            view.updateUnreadUserBadge();
+          } else {  
+            //render message for active chat boxes with recipient in other tabs 
+            if (userName == sender && $(".js-chat-panel").hasClass("active") && recipient == responseRecipients) {
+              view.renderMyMessage(messages)
+            }
+              
+            if (userName != sender) {
+              $("#toggle-chat-panel-command").attr("data-badge", " ");
+              if ($(".js-chat-panel").hasClass("active")) {
+                view.updatePrivateNotification(sender);// update notification
+              } 
+            }
+          }
+        }
       }
     }
 
@@ -196,7 +252,7 @@ function Chat(uri, view) {
       jQuery.ajax({
         type: "POST",
         contentType: "text/plain",
-        url: uri + "/" + recipient,
+        url: uri + "/" + recipient + "/" + clientId,
         crossDomain: true,
         cache: false,
         headers: {"X-Requested-By": "ivy"},
@@ -209,16 +265,16 @@ function Chat(uri, view) {
     }
 
     function sendGroupMessage() {
-    	if ($(".js-input-message").val() === "") {
+      if ($(".js-input-message").val() === "") {
         return;
       }
-    	var message = {"message": $(".js-input-message").val().trim()};
-    	var caseId = $(".js-show-group-chat-message.active").find("input[class='js-case-id']").get(0).value;
-    	var recipient = $(".js-contact-card-name", ".js-show-chat-message.active").text();
+      var message = {"message": $(".js-input-message").val().trim()};
+      var caseId = $(".js-show-group-chat-message.active").find("input[class='js-case-id']").get(0).value;
+      var recipient = $(".js-contact-card-name", ".js-show-chat-message.active").text();
         jQuery.ajax({
           type: "POST",
           contentType: "text/plain",
-          url: uri + "/group/" + caseId,
+          url: uri + "/group/" + caseId + "/" + clientId,
           crossDomain: true,
           cache: false,
           headers: {"X-Requested-By": "ivy"},
@@ -235,7 +291,7 @@ function Chat(uri, view) {
       jQuery.ajax({
         type: "POST",
         contentType: "text/plain",
-        url: uri + "/read/" + sender,
+        url: uri + "/read/" + sender + "/" + clientId,
         crossDomain: true,
         cache: false,
         headers: {"X-Requested-By": "ivy"}
@@ -246,15 +302,10 @@ function Chat(uri, view) {
       jQuery.ajax({
         type: "GET",
         contentType: "text/plain",
-        url: uri + "/users",
+        url: uri + "/users/" + clientId,
         crossDomain: true,
         cache: false,
         headers: {"X-Requested-By": "ivy"},
-        complete: function (xhr) {
-          if (xhr.responseText === "NO_ASYNC_RESPONSE") {
-            chat.registerUserResponse();
-          }
-        }
       });
     }
 
@@ -285,14 +336,14 @@ function Chat(uri, view) {
     }
     
     this.onKeyEvent = function(e) {
-    	if (e.ctrlKey && e.keyCode == 13) {
-    		var messageInputField = document.getElementById("message-input-field");
-    		var position = messageInputField.selectionEnd;
-    		messageInputField.value = messageInputField.value.substring(0, position) + "\n" + messageInputField.value.substring(position);
-    		messageInputField.selectionEnd = position+1;
-    		messageInputField.seletionStart = position+1;
-    		messageInputField.scrollTop = messageInputField.scrollHeight;
-    	} else if (e.keyCode === 13) {
+      if (e.ctrlKey && e.keyCode == 13) {
+        var messageInputField = document.getElementById("message-input-field");
+        var position = messageInputField.selectionEnd;
+        messageInputField.value = messageInputField.value.substring(0, position) + "\n" + messageInputField.value.substring(position);
+        messageInputField.selectionEnd = position+1;
+        messageInputField.seletionStart = position+1;
+        messageInputField.scrollTop = messageInputField.scrollHeight;
+      } else if (e.keyCode === 13) {
           e.preventDefault();
           chat.sendMessage();
         }
@@ -320,15 +371,15 @@ function Chat(uri, view) {
     }
 
     this.getParticipantsForGroupChat = async function() {
-    	var caseId = $('.js-show-group-chat-message.active').find("input[class='js-case-id']").get(0).value;
-    	jQuery.ajax({
+      var caseId = $('.js-show-group-chat-message.active').find("input[class='js-case-id']").get(0).value;
+      jQuery.ajax({
         type: "GET",
         url: uri + "/group/participants/" + caseId,
         crossDomain: true,
         async: true,
         cache: false,
         success: function (response) {
-        	view.renderParticipantsForGroup(response);
+          view.renderParticipantsForGroup(response);
         }
       });
     }
@@ -340,6 +391,10 @@ function View(uri)
     var existingGroups = [];
 
     this.updateUserOnlineStatus = function(user) {
+      updateUserOnline(user);
+    }
+
+    function updateUserOnline(user) {
       if (user) {
       var contactCardStatus = $(".contact-card.js-show-chat-message").find(".contact-card-name").filter(function() {
         return $(this).text() === user.name;
@@ -366,7 +421,7 @@ function View(uri)
       });
       
       if (groupChats.length > 0) {
-      	$('.js-no-group-chat-template').addClass('u-hidden');
+        $('.js-no-group-chat-template').addClass('u-hidden');
         groupChats.forEach(function(groupChat) {
           if (existingGroups.length == 0 || existingGroups.indexOf(groupChat.caseId) == -1) {
             var groupChatName = groupChatFormat;
@@ -426,6 +481,8 @@ function View(uri)
               $(cloneContact.getElementsByClassName("js-contact-card-status")[0]).addClass("is-offline");
             }
             contactList.appendChild(cloneContact);
+          } else {
+            updateUserOnline(user);
           }
         });
       }
@@ -472,7 +529,7 @@ function View(uri)
 
     this.renderGroupMessage = function(message) {
       setValueForMessageComponent();
-    	renderMessageFunc(message, false, true);
+      renderMessageFunc(message, message.sender === userName, true);
       updateMessageListForIE11();
     }
     
@@ -585,8 +642,8 @@ function View(uri)
        }, 0);
       }
       if ($(cloneTemplate).hasClass("my-message") && isIphone) {
-    	  var $chatMessages = $(".js-chat-panel.active").find(".js-message-list").find(".chat-message");
-    	  $messageList.animate({
+        var $chatMessages = $(".js-chat-panel.active").find(".js-message-list").find(".chat-message");
+        $messageList.animate({
               scrollTop: $messageList.scrollTop() + $chatMessages.last().offset().top}
           , 0);
       }
@@ -613,7 +670,7 @@ function View(uri)
       jQuery.each(unreadCounter, function(index, counterJson) {
         var counter = jQuery.parseJSON(counterJson);
         var userTemplate = $(".js-contact-card-name:contains('" + counter["key"] + "')").filter(function() {
-        	return $(this).text() === counter["key"];
+          return $(this).text() === counter["key"];
         }).closest(".js-show-chat-message");
         var notification = $(userTemplate.get(0)).find(".js-notification");
         notification.removeClass("u-hidden");
@@ -626,10 +683,22 @@ function View(uri)
       groupNotification.removeClass("u-hidden");
       $("#toggle-chat-panel-command").attr("data-badge", " ");
     }
+
+    this.hideNotificationForReadMessages = function(sender) {
+      var userNotification = $(".js-contact-card-name:contains('" + sender + "')").filter(function() {
+        return $(this).text() === sender;
+      }).closest(".js-show-chat-message").find(".js-notification");
+      userNotification.addClass("u-hidden");
+    }
+    
+    this.hideNotificationForReadGroupMessages = function(sender) {
+      var groupNotification = $(".js-case-id:hidden[value='" + sender + "']").closest(".js-show-group-chat-message").find(".js-notification");
+      groupNotification.addClass("u-hidden");
+    }
     
     this.updatePrivateNotification = function(sender) {
       var userNotification = $(".js-contact-card-name:contains('" + sender + "')").filter(function() {
-      	return $(this).text() === sender;
+        return $(this).text() === sender;
       }).closest(".js-show-chat-message").find(".js-notification");
       userNotification.removeClass("u-hidden");
       $("#toggle-chat-panel-command").attr("data-badge", " ");
@@ -641,19 +710,19 @@ function View(uri)
     }
 
     function renderUserParticipantGroup(users) {
-    	var $usersParticipants = $('.js-users-participants>.participants-list');
-    	$usersParticipants.find('li').remove();
+      var $usersParticipants = $('.js-users-participants>.participants-list');
+      $usersParticipants.find('li').remove();
         if (users !== undefined && users.length > 0) {
-      	  $('.js-users-participants-header').removeClass('u-hidden');
-      	  $('.js-users-participants').removeClass('u-hidden');
-      	  $(users).each(function(index, user) {
-      		  var userDom = document.createElement('li');
-      		  userDom.innerHTML = user;
-          	  $usersParticipants.get(0).appendChild(userDom);
+          $('.js-users-participants-header').removeClass('u-hidden');
+          $('.js-users-participants').removeClass('u-hidden');
+          $(users).each(function(index, user) {
+            var userDom = document.createElement('li');
+            userDom.innerHTML = user;
+              $usersParticipants.get(0).appendChild(userDom);
             });
         } else {
-      	  $('.js-users-participants-header').addClass('u-hidden');
-      	  $('.js-users-participants').addClass('u-hidden');
+          $('.js-users-participants-header').addClass('u-hidden');
+          $('.js-users-participants').addClass('u-hidden');
         }
     }
 
@@ -738,7 +807,7 @@ function View(uri)
     function addActionListenerForShowChatMessageButton(element) {
       // group chat
       if ($(element).hasClass("js-show-group-chat-message")) {
-      	var caseId = $(element).find("input[class='js-case-id']").get(0).value;
+        var caseId = $(element).find("input[class='js-case-id']").get(0).value;
         chat.loadChatGroup(caseId);
         chat.markReadGroupMessages(caseId);
       }
@@ -852,15 +921,24 @@ function View(uri)
           }
       }
     this.updateUnreadUserBadge = function() {
-    	$("#toggle-chat-panel-command").removeAttr("data-badge");
-    	$(".js-notification").each(function(){
-    		if (!$(this).hasClass("u-hidden")){
-    			$("#toggle-chat-panel-command").attr("data-badge", " ");
-    			return;
-    		}
-    	});
+      $("#toggle-chat-panel-command").removeAttr("data-badge");
+      $(".js-notification").each(function(){
+        if (!$(this).hasClass("u-hidden")){
+          $("#toggle-chat-panel-command").attr("data-badge", " ");
+          return;
+        }
+      });
     }
 
+    this.clearAllUnreadBadge = function() {
+      $("#toggle-chat-panel-command").removeAttr("data-badge");
+      $(".js-notification").each(function(){
+        if (!$(this).hasClass("u-hidden")){
+          $(this).addClass("u-hidden");
+        }
+      });
+    }
+    
     $(window).resize(function() {
       updateMessageListForIE11();
       scrollToLastedMessage();

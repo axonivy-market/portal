@@ -25,6 +25,7 @@ public enum GlobalVariable {
   ENABLE_GROUP_CHAT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableGroupChat"),
   ENABLE_PRIVATE_CHAT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "enablePrivateChat"),
   CHAT_RESPONSE_TIMEOUT(GlobalVariableType.NUMBER, "chatResponseTimeout"),
+  CHAT_MAX_CONNECTION(GlobalVariableType.NUMBER, "3", "chatMaxConnection"),
   ENABLE_CASE_OWNER(GlobalVariableType.SELECTION, Option.FALSE.toString(), "enableCaseOwner"),
   DISABLE_CASE_COUNT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "disableCaseCount"),
   DISABLE_TASK_COUNT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "disableTaskCount"),
