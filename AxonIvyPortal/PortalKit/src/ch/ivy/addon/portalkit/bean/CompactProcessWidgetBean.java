@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.component.UIComponent;
@@ -52,6 +53,12 @@ private static final long serialVersionUID = -5889375917550618261L;
   private boolean isUserFavoritesEnabled;
   private boolean isDisplayShowAllProcessesLink;
   private boolean isGuide;
+  
+  @PostConstruct
+  public void init() {
+    // used in global search page
+    isDisplayShowAllProcessesLink = PermissionUtils.checkAccessFullProcessListPermission();
+  }
   
   public void preRender() {
     isGuide = GuidePool.instance().guide(Ivy.session().getSessionUserName()).isGuideShown();
