@@ -51,7 +51,7 @@ public class CaseFilterTest extends BaseTest {
 
 		mainMenuPage.selectTaskMenu();
 		casePage = mainMenuPage.openCaseList();
-		assertEquals(filterName, casePage.getFilterName());
+		assertEquals(filterName, casePage.getFilterName().toLowerCase());
 	}
 
 	@Test
