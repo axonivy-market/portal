@@ -5,6 +5,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -25,7 +26,7 @@ public abstract class TemplatePage extends AbstractPage {
   private static final String TEMPLATE_PAGE_LOCATOR = "id('global-search-component:global-search-data')";
   public static final String CLASS_PROPERTY = "class";
   private static final String HOME_BREADCRUMB_SELECTOR = ".portal-breadcrumb .ui-menuitem-link:first-child";
-  private static final String CURRENT_BREADCRUMB_SELECTOR = ".portal-breadcrumb span:last-child .ui-menuitem-text";
+  private static final String CURRENT_BREADCRUMB_SELECTOR = ".portal-breadcrumb li:last-child .ui-menuitem-link.ui-state-disabled";
 
   public TemplatePage() {
     waitForLocatorDisplayed(getLoadedLocator());
@@ -312,8 +313,15 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public String getTextOfCurrentBreadcrumb() {
-    return findElementByCssSelector(CURRENT_BREADCRUMB_SELECTOR)
-        .getAttribute("innerHTML");
+    WebElement breadcrumb = findElementByCssSelector(CURRENT_BREADCRUMB_SELECTOR);
+    String result = "";
+    if (CollectionUtils.isNotEmpty(breadcrumb.findElements(By.cssSelector(".js-count")))) {
+      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getAttribute("innerHTML") + breadcrumb.findElement(By.cssSelector(".js-count")).getAttribute("innerHTML");
+    } else {
+      result = breadcrumb.findElement(By.cssSelector(".ui-menuitem-text")).getAttribute("innerHTML");
+    }
+    return result;
+        
   }
   
   public String getLoggedInUserFormat() {
