@@ -1826,3 +1826,39 @@ body .ui-slider .ui-slider-handle {
 .process-nav .expand-collapse-btn.collapse:before {
 	content: "\f068";
 }
+.side-step-panel .dropdown-content {
+background-color: var(--ivy-primary-color-white);
+}
+.case-map-stage .line-right:after, .case-map-stage .line-left:before {
+border-top: 0.2rem solid var(--primary-color);   
+}
+.case-map-stage .square {
+background-color: var(--primary-color);
+}
+.case-stage-icon{
+background-color:var(--primary-color);
+}
+.case-stage-detail{
+background-color:var(--ivy-primary-color-white);	
+}
+.case-stage{
+background-color:var(--primary-color);
+color: var(--ivy-primary-color-white);
+}
+.process-breadcrumb:before {
+border-left-color: var(--ivy-primary-color-white);
+}
+.process-breadcrumb:after {
+border-left-color: var(--primary-color);
+}
+.process-breadcrumb{
+background-color:var(--primary-color);
+color: var(--button-text-color);
+}
+.process-first-breadcrumb:after {
+border-left-color: var(--primary-color);
+}
+.process-first-breadcrumb{
+background-color:var(--primary-color);
+color: var(--button-text-color);
+}
