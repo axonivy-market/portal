@@ -1,0 +1,113 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:define name="title">Dashboard</ui:define>
+    <ui:define name="pageContent">
+      <h3>Dashboard</h3>
+      <style type="text/css">
+.ui-dashboard-column .ui-panel {
+  margin: 10px;
+}
+
+.new-widget-container .ui-grid.ui-grid-responsive {
+  padding: 0;
+  border: none;
+}
+
+.ui-datagrid .ui-panel.widget-selection .ui-panel-titlebar {
+  background-color: #007095;
+}
+
+.ui-datagrid .ui-panel.widget-selection .ui-panel-titlebar .ui-panel-title {
+  color: white;
+}
+</style>
+      <div>
+        <h:form>
+          <p:dashboard id="board" model="#{dashboardBean.model}" styleClass="portal-dashboard" style="display: flex">
+            <p:ajax event="reorder" listener="#{dashboardBean.handleReorder}" update="board" />
+            
+            <p:panel id="process-widget" styleClass="process-widget-panel card" closable="true">
+              <p:ajax event="close" listener="#{dashboardBean.onClose}" global="false" />
+              
+              <f:facet name="header">
+                <i class="fa fa-magic u-mar-right-5" /> Your Processes
+              </f:facet>
+              <f:facet name="actions">
+                <p:commandLink styleClass="ui-panel-titlebar-icon">
+                  <i class="fa fa-arrow-right" />
+                </p:commandLink>
+              </f:facet>
+              <ic:ch.ivy.addon.portalkit.component.UserProcessWidget id="process-widget-component" />
+            </p:panel>
+
+            <p:panel id="actions" styleClass="card" style="text-align: center">
+              <p:ajax event="close" listener="#{dashboardBean.onClose}" global="false" />
+              
+              <p:commandButton id="add-widget-button" value="Add a new widget" type="button" style="margin-bottom: 5px"
+                onclick="PF('new-widget-dialog').show()" />
+              <br />
+              <p:commandLink id="restore-widget-button" value="Restore default widgets" />
+            </p:panel>
+            <p:panel id="task-widget" styleClass="prototype task-widget-panel card">
+              <f:facet name="header">
+                <i class="fa fa-magic u-mar-right-5" /> Your Tasks
+              </f:facet>
+              <f:facet name="actions">
+                <p:commandLink styleClass="ui-panel-titlebar-icon">
+                  <i class="fa fa-arrow-right" />
+                </p:commandLink>
+                <p:commandLink styleClass="ui-panel-titlebar-icon" onclick="PF('edit-task-widget-dialog').show()">
+                  <i class="fa fa-pencil" />
+                </p:commandLink>
+                <p:commandLink styleClass="ui-panel-titlebar-icon">
+                  <i class="fa fa-info-circle" />
+                </p:commandLink>
+              </f:facet>
+              <ic:ch.ivy.addon.portal.generic.prototype.TaskWidget />
+            </p:panel>
+          </p:dashboard>
+          <p:resizable for="task-widget" />
+          <p:resizable for="process-widget" />
+        </h:form>
+      </div>
+
+      <p:dialog id="new-widget-dialog" widgetVar="new-widget-dialog" header="Create a Widget" appendTo="@(body)"
+        closeOnEscape="true" draggable="false" dynamic="true" fitViewport="true" responsive="true" modal="true">
+
+        <p:dataGrid id="new-widget-container" var="widget" value="#{dashboardBean.widgets}" layout="grid" columns="2"
+          styleClass="new-widget-container">
+          <p:panel header="#{widget.name}" style="text-align:center;" styleClass="widget-selection">
+            <h:panelGrid columns="1" style="width:300px; height: 300px;">
+              <i class="#{widget.icon}" style="font-size: 5rem" />
+              <p:link href="#" value="Select" rendered="#{widget.name ne 'Task List'}" />
+              <p:link href="#" value="Select" rendered="#{widget.name eq 'Task List'}"
+                onclick="PF('task-widget-configuration-dialog').show();PF('new-widget-dialog').hide();" />
+            </h:panelGrid>
+          </p:panel>
+        </p:dataGrid>
+
+        <f:facet name="footer">
+          <p:commandButton id="new-widget-close-button" value="Close" type="button"
+            onclick="PF('new-widget-dialog').hide()" />
+        </f:facet>
+      </p:dialog>
+
+      <p:dialog id="task-widget-configuration-dialog" widgetVar="task-widget-configuration-dialog"
+        header="Task Widget Configuration" appendTo="@(body)" closeOnEscape="true" draggable="false" dynamic="true"
+        fitViewport="true" responsive="true" modal="true" width="80vw">
+        <ui:include src="TaskWidgetConfiguration.xhtml" />
+        <f:facet name="footer">
+          <p:commandButton id="task-configuration-save-button" value="Save" type="button"
+            onclick="PF('task-widget-configuration-dialog').hide()" />
+          <p:commandButton id="task-configuration-cancel-button" value="Cancel" type="button"
+            onclick="PF('task-widget-configuration-dialog').hide()" />
+        </f:facet>
+      </p:dialog>
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>
