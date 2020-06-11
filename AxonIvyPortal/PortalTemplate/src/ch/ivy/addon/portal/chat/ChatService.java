@@ -60,7 +60,8 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
  * <ul>
  * <li>Only one long-polling request for each tab</li>
  * <li>Each user has a list of AsyncResponse for multi-tab</li>
- * <li>Each action is recorded in chat history, e.g. sending messages, marking chat as read, user online/offline. The history helps prevent actions lost if unavailable AsyncResponse.</li>
+ * <li>Each action is recorded in chat history, e.g. sending messages, marking chat as read, user online/offline. The
+ * history helps prevent actions lost if unavailable AsyncResponse.</li>
  * </ul>
  */
 @Path("chat")
@@ -89,7 +90,8 @@ public class ChatService {
     }
     Queue<ResponseInfo> responses = getResponses();
     // unhandled chat responses happen because of clicking chat button before async response is created
-    ChatResponse unhandledChatResponse = ConcurrentChatUtils.getRecentChatResponseHistory(sessionUserName()).stream().filter(entry -> clientId.equals(entry.getClientId())).findFirst().orElse(null);
+    ChatResponse unhandledChatResponse = ConcurrentChatUtils.getRecentChatResponseHistory(sessionUserName()).stream()
+        .filter(entry -> clientId.equals(entry.getClientId())).findFirst().orElse(null);
     if (unhandledChatResponse != null) {
       response.resume(toJson(unhandledChatResponse));
     } else {
@@ -129,18 +131,16 @@ public class ChatService {
   public List<String> getSendersOfUnreadMessages() {
     List<String> participants = Arrays.asList(sessionUserName());
     List<ChatMessage> unreadMessagesInMemory = ChatMessageManager.getUnreadMessagesInMemory(participants);
-    
-    return ListUtils.emptyIfNull(unreadMessagesInMemory)
-      .stream()
-      .map(ChatMessage::getSender)
-      .distinct()
-      .collect(Collectors.toList());
+
+    return ListUtils.emptyIfNull(unreadMessagesInMemory).stream().map(ChatMessage::getSender).distinct()
+        .collect(Collectors.toList());
   }
-  
+
   @POST
   @Path("/read/{participant}/{clientId}")
   @Produces(MediaType.APPLICATION_JSON)
-  public synchronized Response readMessage(@PathParam("participant") String participant, @PathParam("clientId") String clientId) {
+  public synchronized Response readMessage(@PathParam("participant") String participant,
+      @PathParam("clientId") String clientId) {
     ChatMessageManager.deletedReadMessagesInMemory(Arrays.asList(sessionUserName()), participant);
     ChatResponse lastChatResponse = ConcurrentChatUtils.getRecentChatResponseHistory(sessionUserName()).getLast();
     if (!isDuplicatedAction(participant, lastChatResponse, READ_PRIVATE_MESSAGE_ACTION)) {
@@ -152,7 +152,8 @@ public class ChatService {
   @POST
   @Path("/group/read/{caseId}/{clientId}")
   @Produces(MediaType.APPLICATION_JSON)
-  public synchronized Response readGroupMessage(@PathParam("caseId") String caseId, @PathParam("clientId") String clientId) {
+  public synchronized Response readGroupMessage(@PathParam("caseId") String caseId,
+      @PathParam("clientId") String clientId) {
     ChatMessageManager.deletedReadMessagesInMemoryForGroupChat(Arrays.asList(sessionUserName()), caseId);
     ChatResponse lastChatResponse = ConcurrentChatUtils.getRecentChatResponseHistory(sessionUserName()).getLast();
     if (!isDuplicatedAction(caseId, lastChatResponse, READ_GROUP_MESSAGE_ACTION)) {
@@ -187,7 +188,8 @@ public class ChatService {
   @Path("/{receiver}/{clientId}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.APPLICATION_JSON)
-  public synchronized Response sendPrivateMessage(String messageText, @PathParam("receiver") String receiver, @PathParam("clientId") String clientId) {
+  public synchronized Response sendPrivateMessage(String messageText, @PathParam("receiver") String receiver,
+      @PathParam("clientId") String clientId) {
     ChatMessage message = new ChatMessage(sessionUserName(), Arrays.asList(receiver), messageText);
     ChatMessageManager.storeUnreadMessageInMemory(message);
 
@@ -201,6 +203,7 @@ public class ChatService {
 
   /**
    * Load all message for a group chat
+   * 
    * @param caseId
    * @return message list
    */
@@ -215,28 +218,31 @@ public class ChatService {
     }
     return messages;
   }
-  
+
   /**
    * Send message to a group chat for case
+   * 
    * @param messageText
    * @param caseId
-   * @param clientId id from browser tab 
+   * @param clientId id from browser tab
    * @return response
    */
   @POST
   @Path("/group/{caseId}/{clientId}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.APPLICATION_JSON)
-  public synchronized Response sendGroupMessage(String messageText, @PathParam("caseId") String caseId, @PathParam("clientId") String clientId) {
+  public synchronized Response sendGroupMessage(String messageText, @PathParam("caseId") String caseId,
+      @PathParam("clientId") String clientId) {
     String currentUsername = sessionUserName();
     List<GroupChat> availableGroups = usernameToGroupChats.get(currentUsername);
 
-    if (CollectionUtils.isNotEmpty(availableGroups) && availableGroups.stream().anyMatch(group -> group.getCaseId() == Long.parseLong(caseId))) {
+    if (CollectionUtils.isNotEmpty(availableGroups)
+        && availableGroups.stream().anyMatch(group -> group.getCaseId() == Long.parseLong(caseId))) {
       ChatMessage message = new ChatMessage(currentUsername, messageText, caseId);
       ChatMessageManager.saveGroupMessage(message, caseId);
       Set<String> members = ChatGroupUtils.getUserNamesFromGroup(Long.parseLong(caseId));
 
-      //Find online users of current group chat to resume new message
+      // Find online users of current group chat to resume new message
       ChatResponse chatResponse = new ChatResponse("getMessages", message);
       for (String member : members) {
         resumeAsyncResponse(member, chatResponse, clientId);
@@ -249,7 +255,8 @@ public class ChatService {
 
   /**
    * Send user status to other users
-   * @param clientId id from browser tab 
+   * 
+   * @param clientId id from browser tab
    * 
    * @return response successful
    */
@@ -264,12 +271,12 @@ public class ChatService {
     resumeAsyncResponseForOneClient(sessionUserName(), chatResponse, clientId);
     return Response.ok(SUCCESSFUL).build();
   }
-  
+
   @GET
   @Path("/group/participants/{caseId}")
   @Produces(MediaType.APPLICATION_JSON)
   public Map<String, Set<String>> getParticipantsForGroupChat(@PathParam("caseId") String caseId) {
-    return ChatGroupUtils.getParticipantsFromGroup(Long.parseLong(caseId)); 
+    return ChatGroupUtils.getParticipantsFromGroup(Long.parseLong(caseId));
   }
 
   public synchronized void handleUserOnline(String username) {
@@ -313,38 +320,36 @@ public class ChatService {
     ObjectMapper mapper = new ObjectMapper();
     CaseQuery caseQuery = buildCaseQuery();
     List<ICase> caseWithNoneEmptyGroupChatInfo = Ivy.wf().getCaseQueryExecutor().getResults(caseQuery);
-    
+
     return caseWithNoneEmptyGroupChatInfo.stream()
-        .filter(iCase -> isUserInvolvedInGroup(iCase.getId(), sessionUserName()))
-        .map(iCase -> {
+        .filter(iCase -> isUserInvolvedInGroup(iCase.getId(), sessionUserName())).map(iCase -> {
           try {
-            return mapper.readValue(iCase.customFields().stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).get().orElse(StringUtils.EMPTY), GroupChat.class);
+            return mapper.readValue(iCase.customFields()
+                .stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).get().orElse(StringUtils.EMPTY),
+                GroupChat.class);
           } catch (PersistencyException | EnvironmentNotAvailableException | IOException e) {
             Ivy.log().error(e);
             return null;
           }
-        })
-        .filter(Objects::nonNull)
-        .collect(Collectors.toList());
+        }).filter(Objects::nonNull).collect(Collectors.toList());
   }
 
   private CaseQuery buildCaseQuery() {
-    return CaseUtils.createBusinessCaseQuery().where()
-        .customField().stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).isNotNull()
-        .and().state().isNotEqual(CaseState.DONE)
-        .and().state().isNotEqual(CaseState.DESTROYED);
+    return CaseUtils.createBusinessCaseQuery().where().customField()
+        .stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).isNotNull().and().state()
+        .isNotEqual(CaseState.DONE).and().state().isNotEqual(CaseState.DESTROYED);
   }
-  
+
   private boolean isUserInvolvedInGroup(long caseId, String userName) {
-      Set<String> groupChatUserNames = ChatGroupUtils.getUserNamesFromGroup(caseId);
-      for (String name : groupChatUserNames) {
-        if (name.equals(userName)) {
-            return true;
-        }
+    Set<String> groupChatUserNames = ChatGroupUtils.getUserNamesFromGroup(caseId);
+    for (String name : groupChatUserNames) {
+      if (name.equals(userName)) {
+        return true;
       }
-      return false;
+    }
+    return false;
   }
-  
+
   private synchronized void updateUserStatus(String username, boolean isOnline) {
     List<String> contactStrings = new ArrayList<>();
     ChatContact contact = new ChatContact(username, isOnline);
@@ -364,12 +369,13 @@ public class ChatService {
     Queue<ResponseInfo> clonedResponses = new ConcurrentLinkedQueue<>(responses);
     responses.clear();
     if (username.equals(sessionUserName())) {
-      clonedResponses.stream().filter(info -> excludedClientId.equals(info.getClientId())).findFirst().ifPresent(responseInfo -> {
-        responses.add(responseInfo);
-        clonedResponses.remove(responseInfo);
-      });
+      clonedResponses.stream().filter(info -> excludedClientId.equals(info.getClientId())).findFirst()
+          .ifPresent(responseInfo -> {
+            responses.add(responseInfo);
+            clonedResponses.remove(responseInfo);
+          });
     }
-    
+
     String jsonChat = toJson(chatResponse);
     for (ResponseInfo responseInfo : clonedResponses) {
       AsyncResponse asyncResponse = responseInfo.getAsyncResponse();
@@ -393,7 +399,7 @@ public class ChatService {
       responseInfo.getAsyncResponse().resume(json);
     }
   }
-  
+
   private void configureResponseTimeoutIfAny(AsyncResponse response, Map<String, Queue<ResponseInfo>> userToResponse) {
     if (isChatResponseTimeoutConfigured()) {
       Long chatResponseTimeout = Long.parseLong(getChatResponseTimeoutValue());
@@ -445,7 +451,7 @@ public class ChatService {
     }
     return maxConnectionNumber;
   }
-  
+
   private Queue<ResponseInfo> getResponses() {
     return getResponses(sessionUserName());
   }
@@ -459,56 +465,60 @@ public class ChatService {
     return queue;
   }
 
-    private String sessionUserName() {
-      return Ivy.session().getSessionUserName();
-    }
+  private String sessionUserName() {
+    return Ivy.session().getSessionUserName();
+  }
 
-    private void informClientIfReachLimitedConnection(Queue<ResponseInfo> responses) {
-      int maxConnection = getMaxChatConnectionPerUser();
-      if (responses.size() > maxConnection) {
-        int numberOfResponsesToResume = responses.size() - maxConnection;
-        ChatResponse chatResponse = new ChatResponse(CHAT_RESPONSE_CHAT_REACHED_LIMITED_CONNECTION_STATUS);
-        String json = toJson(chatResponse);
-        for (int i = 0; i < numberOfResponsesToResume; i++) {
-          responses.poll().getAsyncResponse().resume(json);
+  private void informClientIfReachLimitedConnection(Queue<ResponseInfo> responses) {
+    int maxConnection = getMaxChatConnectionPerUser();
+    if (responses.size() > maxConnection) {
+      int numberOfResponsesToResume = responses.size() - maxConnection;
+      ChatResponse chatResponse = new ChatResponse(CHAT_RESPONSE_CHAT_REACHED_LIMITED_CONNECTION_STATUS);
+      String json = toJson(chatResponse);
+      for (int i = 0; i < numberOfResponsesToResume; i++) {
+        responses.poll().getAsyncResponse().resume(json);
+      }
+    }
+  }
+
+  private void deactivateChat(AsyncResponse response, String clientId) {
+    ChatResponse chatResponse = new ChatResponse(CHAT_RESPONSE_DEACTIVATE_CHAT_STATUS);
+    Queue<ResponseInfo> responses = getResponses();
+    responses.add(new ResponseInfo(response, clientId));
+    ResponseInfo responseInfoToDeactivate = responses.stream()
+        .min((info1, info2) -> Long.valueOf(info1.getClientId()).compareTo(Long.valueOf(info2.getClientId()))).get();
+    responses.remove(responseInfoToDeactivate);
+    responseInfoToDeactivate.getAsyncResponse().resume(toJson(chatResponse));
+  }
+
+  private ChatResponse getUnhandledResponse(String clientId, String lastResponseId) {
+    ChatResponse lastUnhandledHistoryEntry = null;
+    // lastResponseId = "INITIAL_RESPONSE_ID" when chat button is not clicked yet, but chat is deactivated due to too
+    // many tabs, then the tab is selected again.
+    if (!lastResponseId.equals("INITIAL_RESPONSE_ID")) {
+      Iterator<ChatResponse> it =
+          ConcurrentChatUtils.getRecentChatResponseHistory(sessionUserName()).descendingIterator();
+      ChatResponse currentHistoryEntry = null;
+      while (it.hasNext()) {
+        if (isHistoryEntryRelatedToCurrentRequest(clientId, currentHistoryEntry)) {
+          lastUnhandledHistoryEntry = currentHistoryEntry;
+        }
+        currentHistoryEntry = it.next();
+        if (lastResponseId.equals(currentHistoryEntry.getId())) {
+          break;
         }
       }
     }
+    return lastUnhandledHistoryEntry;
+  }
 
-    private void deactivateChat(AsyncResponse response, String clientId) {
-      ChatResponse chatResponse = new ChatResponse(CHAT_RESPONSE_DEACTIVATE_CHAT_STATUS);
-      Queue<ResponseInfo> responses = getResponses();
-      responses.add(new ResponseInfo(response, clientId));
-      ResponseInfo responseInfoToDeactivate = responses.stream().min((info1, info2) -> Long.valueOf(info1.getClientId()).compareTo(Long.valueOf(info2.getClientId()))).get();
-      responses.remove(responseInfoToDeactivate);
-      responseInfoToDeactivate.getAsyncResponse().resume(toJson(chatResponse));
-    }
+  private boolean isHistoryEntryRelatedToCurrentRequest(String clientId, ChatResponse historyEntry) {
+    return historyEntry != null && (historyEntry.getClientId() == null || historyEntry.getClientId().equals(clientId));
+  }
 
-    private ChatResponse getUnhandledResponse(String clientId, String lastResponseId) {
-      ChatResponse lastUnhandledHistoryEntry = null;
-      // lastResponseId = "INITIAL_RESPONSE_ID" when chat button is not clicked yet, but chat is deactivated due to too many tabs, then the tab is selected again.
-      if (!lastResponseId.equals("INITIAL_RESPONSE_ID")) {
-        Iterator<ChatResponse> it = ConcurrentChatUtils.getRecentChatResponseHistory(sessionUserName()).descendingIterator();
-        ChatResponse currentHistoryEntry = null;
-        while (it.hasNext()) {
-          if (isHistoryEntryRelatedToCurrentRequest(clientId, currentHistoryEntry)) {
-            lastUnhandledHistoryEntry = currentHistoryEntry;
-          }
-          currentHistoryEntry = it.next();
-          if (lastResponseId.equals(currentHistoryEntry.getId())) {
-            break;
-          }
-        }
-      }
-      return lastUnhandledHistoryEntry;
-    }
-
-    private boolean isHistoryEntryRelatedToCurrentRequest(String clientId, ChatResponse historyEntry) {
-      return historyEntry != null && (historyEntry.getClientId() == null || historyEntry.getClientId().equals(clientId));
-    }
-
-    private boolean isDuplicatedAction(String content, ChatResponse lastChatResponse, String action) {
-      return lastChatResponse != null && action.equals(lastChatResponse.getAction()) && content.equals(lastChatResponse.getContent());
-    }
+  private boolean isDuplicatedAction(String content, ChatResponse lastChatResponse, String action) {
+    return lastChatResponse != null && action.equals(lastChatResponse.getAction())
+        && content.equals(lastChatResponse.getContent());
+  }
 
 }
