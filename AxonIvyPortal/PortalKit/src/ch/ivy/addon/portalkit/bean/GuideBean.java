@@ -32,12 +32,6 @@ public class GuideBean {
     guide.setIsGuideShown(false);
   }
   
-  public void finish() {
-    guide.readShowGuideProperty();
-    isGuideShown = guide.isGuideShown();
-    guide.setIsGuideShown(isGuideShown);
-  }
-  
   public boolean getDontShowAgain() {
     return dontShowAgain;
   }

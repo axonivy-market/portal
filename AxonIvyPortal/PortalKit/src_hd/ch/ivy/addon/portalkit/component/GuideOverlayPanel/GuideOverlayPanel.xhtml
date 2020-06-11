@@ -40,7 +40,7 @@
         <p:commandLink id="cancel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           process="@this" update="#{cc.attrs.updatedComponentAfterGuide}"
           actionListener="#{guideBean.updateToLoadRealData()}" partialSubmit="true"
-          oncomplete="PF('#{cc.attrs.targetComponent}-guide').hide(); rcFinishGuide()" styleClass="guide-panel__cancel"
+          oncomplete="PF('#{cc.attrs.targetComponent}-guide').hide();" styleClass="guide-panel__cancel"
           rendered="#{not empty cc.attrs.onNext and not guideBean.dontShowAgain}" global="false" />
           
         <p:commandButton id="next" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}" 
@@ -48,7 +48,7 @@
         <p:commandButton id="finish" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/finish')}"
           process="@this" update="#{cc.attrs.updatedComponentAfterGuide}"
           actionListener="#{guideBean.updateToLoadRealData()}" partialSubmit="true"
-          oncomplete="PF('#{cc.attrs.targetComponent}-guide').hide(); #{cc.attrs.onFinish}; rcFinishGuide()"
+          oncomplete="PF('#{cc.attrs.targetComponent}-guide').hide(); #{cc.attrs.onFinish}; "
           rendered="#{empty cc.attrs.onNext or guideBean.dontShowAgain}" global="false" />
       </h:panelGroup>
       <div class="guide-panel__dont-show-again">
