@@ -20,7 +20,7 @@ import ch.ivyteam.util.callable.AbstractExecutionContext;
 
 public final class PortalSessionExtension implements ISessionExtension {
   private static PortalSessionExtension instance = new PortalSessionExtension();
-  
+
   private PortalSessionExtension() {}
 
   public static PortalSessionExtension getInstance() {
@@ -37,8 +37,8 @@ public final class PortalSessionExtension implements ISessionExtension {
   @Override
   public void createSession(ISession session, IPersistentTransaction transaction) throws PersistencyException {
     // this method is called when new session is created, e.g.
-    //    - After session is timed out, access ivy engine again.
-    //    - Open incognito browser window then access ivy engine
+    // - After session is timed out, access ivy engine again.
+    // - Open incognito browser window then access ivy engine
     // this is unrelated to login user, it is related to session of browser.
   }
 
@@ -81,13 +81,14 @@ public final class PortalSessionExtension implements ISessionExtension {
         .noneMatch(s -> s.getSessionUserName().equals(username) && !s.equals(session));
   }
 
-  private static AbstractExecutionContext createRequestContext(IProcessModelVersion pmv,  ISession session) {
-      IProcessModelVersionRequest request = RequestFactory.createRestRequest(pmv, session);
-      return new RequestContext(request);
+  private static AbstractExecutionContext createRequestContext(IProcessModelVersion pmv, ISession session) {
+    IProcessModelVersionRequest request = RequestFactory.createRestRequest(pmv, session);
+    return new RequestContext(request);
   }
-  
-  private static <T> T executeWithIvyContext(Callable<T> callable, IProcessModelVersion pmv, ISession session) throws Exception {
-      return createRequestContext(pmv, session).callInContext(callable);
+
+  private static <T> T executeWithIvyContext(Callable<T> callable, IProcessModelVersion pmv, ISession session)
+      throws Exception {
+    return createRequestContext(pmv, session).callInContext(callable);
   }
 
   private ChatService chatService() {
