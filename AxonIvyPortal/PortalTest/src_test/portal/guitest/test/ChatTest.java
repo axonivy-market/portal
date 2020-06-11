@@ -148,7 +148,7 @@ public class ChatTest extends BaseTest {
 		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
 		TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.clickTaskActionMenu();
-		taskTemplatePage.clickChatGroup();
+		taskTemplatePage.clickChatGroup(isPredifinedGroup);
 		return chatPage;
 	}
 
@@ -157,7 +157,7 @@ public class ChatTest extends BaseTest {
 		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
 		TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
 		taskTemplatePage.clickTaskActionMenu();
-		taskTemplatePage.clickChatGroup();
+		taskTemplatePage.clickChatGroup(false);
 		taskTemplatePage.joinProcessChatAlreadyCreated();
 	}
 

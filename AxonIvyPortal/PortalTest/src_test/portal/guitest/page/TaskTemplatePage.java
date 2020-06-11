@@ -178,7 +178,7 @@ public class TaskTemplatePage extends TemplatePage {
     String chatGroup = "a[id$='chat-group']";
     clickByCssSelector(chatGroup);
     if (growlMessageExpected) {
-      waitForElementDisplayedByCssSelector("span.ui-growl-title");
+      waitForElementDisplayedByCssSelector("span.ui-growl-title", 5);
     }
   }
   

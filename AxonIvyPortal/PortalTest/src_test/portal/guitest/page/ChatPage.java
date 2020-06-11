@@ -37,7 +37,7 @@ public class ChatPage extends TemplatePage {
   }
 
   public void selectChatGroup() {
-    waitForElementDisplayedByCssSelector("span.js-group-card-name[title$='Portal Demo User']");
+    waitForElementDisplayedByCssSelector("span.js-group-card-name[title$='Portal Demo User']", 5);
     click(findElementByCssSelector("span.js-group-card-name[title$='Portal Demo User']"));
   }
 
