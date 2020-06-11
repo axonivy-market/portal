@@ -76,13 +76,14 @@ public class ChatService {
   private static final String SUCCESSFUL = "SUCCESSFUL";
   private Map<String, Queue<ResponseInfo>> messageResponses = new ConcurrentHashMap<>();
   private Map<String, List<GroupChat>> usernameToGroupChats = new ConcurrentHashMap<>();
-  private int reachedLimitedConnectionCounter;
+  private Map<String, Integer> reachedLimitedConnectionCounters = new ConcurrentHashMap<>();
+  private static List<String> ACTIONS_FOR_ONE_CLIENT = Arrays.asList("getUsers", "getGroups");
 
   @POST
   @Path("/messages/{clientId}/{lastResponseId}/{lastResponseStatus}")
   @Produces(MediaType.APPLICATION_JSON)
   public synchronized void registerMessage(@Suspended AsyncResponse response, @PathParam("clientId") String clientId) {
-    reachedLimitedConnectionCounter = 0;
+    resetReachedLimitedConnectionCounter();
     if (ChatServiceContainer.getChatService() == null) {
       ChatServiceContainer.setChatService(this);
       ChatServiceContainer.registerSessionExtension();
@@ -90,7 +91,8 @@ public class ChatService {
     Queue<ResponseInfo> responses = getResponses();
     // unhandled chat responses happen because of clicking chat button before async response is created
     ChatResponse unhandledChatResponse = ConcurrentChatUtils.getRecentChatResponseHistory(sessionUserName()).stream()
-        .filter(entry -> clientId.equals(entry.getClientId())).findFirst().orElse(null);
+        .filter(entry -> isHistoryEntryOnlyForThisClient(clientId, entry))
+        .findFirst().orElse(null);
     if (unhandledChatResponse != null) {
       response.resume(toJson(unhandledChatResponse));
     } else {
@@ -106,10 +108,10 @@ public class ChatService {
   public synchronized void reRegisterMessage(@Suspended AsyncResponse response, @PathParam("clientId") String clientId,
       @PathParam("lastResponseId") String lastResponseId, @PathParam("lastResponseStatus") String lastResponseStatus) {
     if (lastResponseStatus.equals(CHAT_RESPONSE_CHAT_REACHED_LIMITED_CONNECTION_STATUS)) {
-      reachedLimitedConnectionCounter++;
+      increaseReachedLimitedConnectionCounter();
     }
-    if (reachedLimitedConnectionCounter >= getMaxChatConnectionPerUser()) {
-      reachedLimitedConnectionCounter = 0;
+    if (getReachedLimitedConnectionCounter() >= getMaxChatConnectionPerUser()) {
+      resetReachedLimitedConnectionCounter();
       deactivateChat(response, clientId);
       return;
     }
@@ -192,7 +194,7 @@ public class ChatService {
     ChatMessage message = new ChatMessage(sessionUserName(), Arrays.asList(receiver), messageText);
     ChatMessageManager.storeUnreadMessageInMemory(message);
 
-    ChatResponse chatResponse = new ChatResponse("getMessages", message);
+    ChatResponse chatResponse = new ChatResponse("getMessages", message, clientId);
     // If receiver is online, send message directly to receiver's response.
     resumeAsyncResponse(receiver, chatResponse, clientId);
     resumeAsyncResponse(sessionUserName(), chatResponse, clientId);
@@ -242,7 +244,7 @@ public class ChatService {
       Set<String> members = ChatGroupUtils.getUserNamesFromGroup(Long.parseLong(caseId));
 
       // Find online users of current group chat to resume new message
-      ChatResponse chatResponse = new ChatResponse("getMessages", message);
+      ChatResponse chatResponse = new ChatResponse("getMessages", message, clientId);
       for (String member : members) {
         resumeAsyncResponse(member, chatResponse, clientId);
       }
@@ -265,8 +267,7 @@ public class ChatService {
   @Produces(MediaType.APPLICATION_JSON)
   public synchronized Response getUsers(@PathParam("clientId") String clientId) {
     List<ChatContact> contacts = ChatContactManager.loadOnlineContacts();
-    ChatResponse chatResponse = new ChatResponse("getUsers", contacts);
-    chatResponse.setClientId(clientId);
+    ChatResponse chatResponse = new ChatResponse("getUsers", contacts, clientId);
     resumeAsyncResponseForOneClient(sessionUserName(), chatResponse, clientId);
     return Response.ok(SUCCESSFUL).build();
   }
@@ -293,8 +294,7 @@ public class ChatService {
   public synchronized Response loadAllGroupChat(@PathParam("clientId") String clientId) {
     String sessionUserName = sessionUserName();
     List<GroupChat> groupChats = findAllChatGroups();
-    ChatResponse chatResponse = new ChatResponse("getGroups", groupChats);
-    chatResponse.setClientId(clientId);
+    ChatResponse chatResponse = new ChatResponse("getGroups", groupChats, clientId);
     resumeAsyncResponseForOneClient(sessionUserName, chatResponse, clientId);
     usernameToGroupChats.put(sessionUserName, groupChats);
     return Response.ok(SUCCESSFUL).build();
@@ -464,6 +464,23 @@ public class ChatService {
     return queue;
   }
 
+  private int getReachedLimitedConnectionCounter() {
+    Integer counter = reachedLimitedConnectionCounters.get(sessionUserName());
+    if (counter == null) {
+      counter = 0;
+      reachedLimitedConnectionCounters.put(sessionUserName(), counter);
+    }
+    return counter;
+  }
+
+  private void increaseReachedLimitedConnectionCounter() {
+    reachedLimitedConnectionCounters.put(sessionUserName(), getReachedLimitedConnectionCounter() + 1);
+  }
+
+  private void resetReachedLimitedConnectionCounter() {
+    reachedLimitedConnectionCounters.put(sessionUserName(), 0);
+  }
+
   private String sessionUserName() {
     return Ivy.session().getSessionUserName();
   }
@@ -512,7 +529,14 @@ public class ChatService {
   }
 
   private boolean isHistoryEntryRelatedToCurrentRequest(String clientId, ChatResponse historyEntry) {
-    return historyEntry != null && (historyEntry.getClientId() == null || historyEntry.getClientId().equals(clientId));
+    return historyEntry != null && (historyEntry.getClientId() == null
+        || (historyEntry.getClientId().equals(clientId) && ACTIONS_FOR_ONE_CLIENT.contains(historyEntry.getAction()))
+        || (!historyEntry.getClientId().equals(clientId)
+            && !ACTIONS_FOR_ONE_CLIENT.contains(historyEntry.getAction())));
+  }
+
+  private boolean isHistoryEntryOnlyForThisClient(String clientId, ChatResponse entry) {
+    return clientId.equals(entry.getClientId()) && ACTIONS_FOR_ONE_CLIENT.contains(entry.getAction());
   }
 
   private boolean isDuplicatedAction(String content, ChatResponse lastChatResponse, String action) {
