@@ -1,0 +1,102 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<cc:interface componentType="IvyComponent">
+</cc:interface>
+<cc:implementation>
+  <f:event listener="#{logic.initialize}" type="preRenderComponent" />
+  <h:outputText value="3 tasks" />
+  <p:dataTable value="#{data.tasks}" var="task" styleClass="task-table"
+    draggableColumns="true">
+    <p:column headerText="Start" styleClass="start-column">
+      <p:commandLink>
+        <span class="fa fa-play" />
+      </p:commandLink>
+    </p:column>
+    <p:column headerText="Prio" styleClass="prio-column" filterBy="#{task.priority}">
+      <h:outputText value="#{task.priority}" styleClass="priority #{task.priority}" />
+    </p:column>
+    <p:column headerText="Task Name" styleClass="name-column" filterBy="#{task.name}">
+      <h:outputText value="#{task.name}" />
+    </p:column>
+    <p:column headerText="Description" styleClass="desc-column" filterBy="#{task.description}">
+      <h:outputText value="#{task.description}" />
+    </p:column>
+  </p:dataTable>
+  <p:dialog id="edit-task-widget-dialog" styleClass="edit-task-widget-dialog" widgetVar="edit-task-widget-dialog" width="700px" modal="true" appendTo="@(body)">
+    <p:tabView id="edit-task-widget" activeIndex="0">
+      <p:tab title="General Info">
+        <div class="ui-g ui-fluid">
+		      <div class="ui-g-4">
+		        <h:outputLabel value="Widget name" for="widget-name" />
+		      </div>
+		      <div class="ui-g-8" >
+		        <p:inputText id="widget-name" value="#{data.widgetName}" />
+		      </div>
+		    </div>
+		    <div class="ui-g">
+		      <div class="ui-g-12" >
+		        <p:selectBooleanCheckbox id="disable-count-task" value="#{data.disableCountTask}" />
+		        <h:outputLabel for="disable-count-task" value="Disable count task" />
+		      </div>
+		    </div>
+      </p:tab>
+      <p:tab title="Custom columns">
+        <p:commandButton type="button" value="New column" onclick="PF('create-column-dialog').show()" />
+        <p:orderList id="order-list-items" value="#{data.columns}" var="column"
+          itemValue="#{column}" responsive="true" controlsLocation="none" >
+          <p:column>
+            <h:outputText value="#{column}" />
+          </p:column>
+        </p:orderList>
+      </p:tab>
+      <p:tab title="Custom query">
+        
+      </p:tab>
+    </p:tabView>
+
+     <div class="ui-g-12 ui-dialog-footer">
+	    <p:commandButton id="save-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" 
+	      oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('edit-task-widget-dialog').hide();}" />
+	   
+	    <p:spacer width="5px" />
+	    <p:commandButton id="cancel-widget" type="button"
+	      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+	      onclick="PF('edit-task-widget-dialog').hide();" styleClass="portal-cancel-button" />
+	  </div>
+  </p:dialog>
+  <p:dialog id="create-column-dialog" widgetVar="create-column-dialog" modal="true" appendTo="@(body)">
+    <div class="ui-g">
+      <div class="ui-g-4">
+        <h:outputLabel value="Column name" />
+      </div>
+      <div class="ui-g-8">
+        <p:inputText value="#{data.newColumnName}" />
+      </div>
+      <div class="ui-g-4">
+        <h:outputLabel value="Column custom field" />
+      </div>
+      <div class="ui-g-8">
+        <p:inputText value="#{data.newColumnValue}" />
+      </div>
+    </div>
+    <div class="ui-g-12 ui-dialog-footer">
+      <p:commandButton id="create-column" value="Create"
+        actionListener="#{logic.addColumn}"
+        process="@(form)"
+        update="#{p:component('order-list-items')}"
+        oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('create-column-dialog').hide();}" />
+     
+      <p:spacer width="5px" />
+      <p:commandButton id="cancel-create-column" type="button"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        onclick="PF('create-column-dialog').hide();" styleClass="portal-cancel-button" />
+    </div>
+  </p:dialog>
+</cc:implementation>
+</html>
