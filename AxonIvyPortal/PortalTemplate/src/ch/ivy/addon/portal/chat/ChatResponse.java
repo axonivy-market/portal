@@ -19,6 +19,7 @@ public class ChatResponse {
     this.action = action;
     this.content = content;
   }
+
   public ChatResponse(String status) {
     this();
     this.status = status;
