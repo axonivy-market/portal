@@ -302,8 +302,8 @@ public class ProcessWidgetPage extends TemplatePage {
   }
   
   public void openExpressPage() {
-    waitForElementDisplayed(By.id(processWidgetId + ":create-express-form:create-express-workflow"), true);
-    click(By.id("process-widget:create-express-form:create-express-workflow"));
+    waitForElementDisplayed(By.id(processWidgetId + ":create-express-workflow"), true);
+    click(By.id("process-widget:create-express-workflow"));
   }
   
   public boolean isProcessEmpty() {
@@ -311,7 +311,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
   
   public boolean hasCreateNewExpressWorkflowLink() {
-    return isElementPresent(By.id("process-widget:create-express-form:create-express-workflow"));
+    return isElementPresent(By.id("process-widget:create-express-workflow"));
   }
   
   public void deleteExternalLinkByFieldsetIndexAndIndex(int fieldsetIndex, int index) {

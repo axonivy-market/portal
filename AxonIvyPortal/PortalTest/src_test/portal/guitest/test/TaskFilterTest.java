@@ -90,7 +90,7 @@ public class TaskFilterTest extends BaseTest {
 		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
 		taskWidgetPage.expand();
 
-		String filterName = "MyFilter";
+		String filterName = "myFilter";
 
 		taskWidgetPage.openAdvancedFilter("Description", "description");
 		taskWidgetPage.filterByDescription("Sick");
@@ -231,8 +231,6 @@ public class TaskFilterTest extends BaseTest {
     	taskWidgetPage.expand();
     	taskWidgetPage.openAdvancedFilter("Description", "description");
 		taskWidgetPage.filterByDescription(filterMaternity);
-		taskWidgetPage.saveFilter(filterMaternity);
-		taskWidgetPage.filterByResponsible("Demo");
 		taskWidgetPage.resetFilter();
 		
 		assertTrue(taskWidgetPage.getFilterName().contains("Default filter"));

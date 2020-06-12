@@ -141,7 +141,7 @@ function Chat(uri, view) {
 
       var response = await jsonResponse.json();
       var currentResponseId = response.id;
-      if (response.status === "CHAT_REACHED_LIMITED_CONNECTION") {
+      if (response.status === "CHAT_REACHED_LIMITED_CONNECTION" || response.status === "SERVER_TIMEOUT") {
         currentResponseId = lastResponseId;
       } else if (response.status === "DEACTIVATE_CHAT") {
         if (!document[hidden]) {
@@ -154,9 +154,6 @@ function Chat(uri, view) {
         return;
       }
       this.listen(false, currentResponseId, response.status); // wait for next update
-      if (response.status === "SERVER_TIMEOUT") {// if long-polling request timeout
-        return;
-      }
       if (response.action === "updateUserStatus") {
           view.updateUserOnlineStatus(response.content);
       } else if (response.action === "getUsers") {
@@ -858,8 +855,8 @@ function View(uri)
       var contactNames = contactList.getElementsByClassName("js-contact-card-name");
       for (var i = 0; i < contactNames.length; i++) {
         var name = contactNames[i];
-        if (existingUsers.indexOf(name.innerText) == -1) {
-          existingUsers.push(name.innerText);
+        if (existingUsers.indexOf(name.textContent) == -1) {
+          existingUsers.push(name.textContent);
         }
       }
     }
