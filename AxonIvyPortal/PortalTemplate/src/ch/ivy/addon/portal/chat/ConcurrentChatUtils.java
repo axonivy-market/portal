@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISession;
 
@@ -16,19 +17,21 @@ public final class ConcurrentChatUtils {
 
   @SuppressWarnings("unchecked")
   public static Deque<ChatResponse> getRecentChatResponseHistory(String username) {
-    Deque<ChatResponse> history = (Deque<ChatResponse>) Ivy.wf().getApplication()
-        .getAttribute(String.format(PORTAL_CHAT_RESPONSE_HISTORY, username));
-    if (history == null) {
-      history = new ConcurrentLinkedDeque<>();
-      Ivy.wf().getApplication().setAttribute(String.format(PORTAL_CHAT_RESPONSE_HISTORY, username), history);
-    }
-    if (history.size() > RECENT_HISTORY_SIZE) {
-      int numberOfEntriesToRemove = history.size() - RECENT_HISTORY_SIZE;
-      for (int i = 0; i < numberOfEntriesToRemove; i++) {
-        history.pollFirst();
+    return IvyExecutor.executeAsSystem(() -> {
+      Deque<ChatResponse> history = (Deque<ChatResponse>) Ivy.wf().getApplication()
+          .getAttribute(String.format(PORTAL_CHAT_RESPONSE_HISTORY, username));
+      if (history == null) {
+        history = new ConcurrentLinkedDeque<>();
+        Ivy.wf().getApplication().setAttribute(String.format(PORTAL_CHAT_RESPONSE_HISTORY, username), history);
       }
-    }
-    return history;
+      if (history.size() > RECENT_HISTORY_SIZE) {
+        int numberOfEntriesToRemove = history.size() - RECENT_HISTORY_SIZE;
+        for (int i = 0; i < numberOfEntriesToRemove; i++) {
+          history.pollFirst();
+        }
+      }
+      return history;
+    });
   }
 
   public static void removePortalChatResponseHistory(String username) {
