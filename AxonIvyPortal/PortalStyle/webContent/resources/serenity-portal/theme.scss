@@ -1079,13 +1079,9 @@ span.task-details-document-add-link {
 
 .process-start-list-item .process-start-list-item-action .process-description,
 .process-start-list-item .ui-commandlink.process-item,
-.process-start-list-item .process-start-list-item-action .external-link-icon {
-  font-size: 1.5rem;
-}
-
-.process-start-list-item-action.is-express,
+.process-start-list-item .process-start-list-item-action .external-link-icon,
 .process-start-list-item-action.is-express .ui-commandlink.process-item {
-  font-size: $expressLogoFontSize;
+  font-size: 1.5rem;
 }
 
 /* Task Widget --------------------------------**/
