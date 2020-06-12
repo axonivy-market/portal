@@ -8,7 +8,7 @@ public class SearchResultPage extends TemplatePage {
 	private final String INFO_EXPRESS_WORKFlOW = "span[id$='info-workflow']";
 	private final String EDIT_EXPRESS_WORKFlOW = "a[id$='edit-express-workflow']";
 	private final String DELETE_EXPRESS_WORKFlOW = "a[id$='delete-express-workflow']";
-	private final String EXPRESS_PROCESS_LOGO = "div[id$='express-process-logo']";
+	private final String EXPRESS_PROCESS_LOGO = "span[id$='express-process-logo']";
 
 	@Override
 	protected String getLoadedLocator() {
