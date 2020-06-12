@@ -45,8 +45,8 @@ public class CaseFilterTest extends BaseTest {
 		CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
 
 		casePage.openAdvancedFilter("Description", "description");
-		casePage.filterByDescription("Leave");
-		String filterName = "Leave";
+		casePage.filterByDescription("leave");
+		String filterName = "leave";
 		casePage.saveFilter(filterName);
 
 		mainMenuPage.selectTaskMenu();
@@ -110,7 +110,7 @@ public class CaseFilterTest extends BaseTest {
 
 		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
 
-		casePage = mainMenuPage.openCaseList();
+		casePage = mainMenuPage.selectCaseMenu();
 		casePage.openAdvancedFilter("Creator", "creator");
 		casePage.filterByCreator("Demo");
 		casePage.saveFilter(filterResponsible);
