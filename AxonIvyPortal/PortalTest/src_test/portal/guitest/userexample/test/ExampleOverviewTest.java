@@ -7,7 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.TestAccount;
 import portal.guitest.page.ExampleOverviewPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LeaveRequestOverviewPage;
@@ -31,7 +30,6 @@ public class ExampleOverviewTest extends BaseTest {
   
   @Test
   public void testOverviewLeaveRequest() {
-    login(TestAccount.DEMO_USER);
     processWidget = homePage.getProcessWidget();
     ExampleOverviewPage exampleOverviewPage = processWidget.openExampleOverviewPage(EXAMPLE_PROCESS_NAME);
     LeaveRequestOverviewPage leaveRequestOverview = exampleOverviewPage.openLeaveRequestOverview();
@@ -46,25 +44,24 @@ public class ExampleOverviewTest extends BaseTest {
   
   @Test
   public void testOverviewLending() {
-    login(TestAccount.DEMO_USER);
     processWidget = homePage.getProcessWidget();
     ExampleOverviewPage exampleOverviewPage = processWidget.openExampleOverviewPage(EXAMPLE_PROCESS_NAME);
     
     LendingOverviewPage lendingOverview = exampleOverviewPage.openLendingOverview();
-    assertEquals("Lending(Case Map)", lendingOverview.getHearText());
+    assertEquals("Lending (Case Map)", lendingOverview.getHearText());
     assertEquals("Identification", lendingOverview.getStageName(0));
     assertEquals("Credit rating", lendingOverview.getStageName(1));
     assertEquals("Approval", lendingOverview.getStageName(2));
     
     LendingDetailPage creditRating = lendingOverview.navigateToStageDetail(1);
-    assertEquals("Lending(Case Map)", creditRating.getHearText());
+    assertEquals("Lending (Case Map)", creditRating.getHearText());
     assertEquals("Stage 2 - Credit rating", creditRating.getStageName());
     assertEquals("Check Company Register", creditRating.getProcessName(0));
     assertEquals("Internal Solvency Check", creditRating.getProcessName(1));
     assertEquals("External Solvency Check", creditRating.getSideStepName(0));
      
     lendingOverview = creditRating.navigateToLendingOverview();
-    assertEquals("Lending(Case Map)", lendingOverview.getHearText());
+    assertEquals("Lending (Case Map)", lendingOverview.getHearText());
     
     CaseMapPage caseMapPage = lendingOverview.startLendingCase();
     assertEquals("Collect Personal Data", caseMapPage.getTitle());
@@ -72,7 +69,6 @@ public class ExampleOverviewTest extends BaseTest {
   
   @Test
   public void testOverviewDetailNavigate() {
-    login(TestAccount.DEMO_USER);
     processWidget = homePage.getProcessWidget();
     ExampleOverviewPage exampleOverviewPage = processWidget.openExampleOverviewPage(EXAMPLE_PROCESS_NAME);
     

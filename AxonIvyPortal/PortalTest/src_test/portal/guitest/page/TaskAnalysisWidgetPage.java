@@ -39,14 +39,14 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
 
   private WebElement findTaskFilterButton() {
-    refreshAndWaitElement("button[id$='task-widget:task-filter-add-action']");
+    refreshAndWaitElement("[id$='task-widget:task-filter-add-action']");
     String taskFilterButtonId = "task-widget:task-filter-add-action";
     waitForElementDisplayed(By.id(taskFilterButtonId), true);
     return findElementById(taskFilterButtonId);
   }
 
   private WebElement findCaseFilterButton() {
-    refreshAndWaitElement("button[id$='task-widget:case-filter-add-action']");
+    refreshAndWaitElement("[id$='task-widget:case-filter-add-action']");
     String caseFilterButtonId = "task-widget:case-filter-add-action";
     waitForElementDisplayed(By.id(caseFilterButtonId), true);
     return findElementById(caseFilterButtonId);
@@ -66,6 +66,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
         click(filterElement);
         click(By.cssSelector("button[id$='task-widget:task-filter-add-form:update-task-filter-selected-command']"));
         waitAjaxIndicatorDisappear();
+        ensureNoBackgroundRequest();
         break;
       }
     }
@@ -82,6 +83,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
         click(filterElement);
         click(By.cssSelector("button[id$='task-widget:case-filter-add-form:update-task-filter-selected-command']"));
         waitAjaxIndicatorDisappear();
+        ensureNoBackgroundRequest();
         break;
       }
     }
@@ -91,29 +93,29 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
 
   public void filterByTaskName(String text) {
-    click(By.cssSelector("button[id$='task-name-filter:filter-open-form:advanced-filter-command']"));
+    click(By.cssSelector("[id$='task-name-filter:filter-open-form:advanced-filter-command']"));
     WebElement nameInput =
         findElementByCssSelector("input[id$='task-name-filter:filter-input-form:name']");
     enterKeys(nameInput, text);
-    click(By.cssSelector("button[id$='task-name-filter:filter-input-form:update-command']"));
+    click(By.cssSelector("[id$='task-name-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
   }
 
   public void filterByTaskPriority(List<String> selectedPriorities) {
-    click(By.cssSelector("button[id$='priority-filter:filter-open-form:advanced-filter-command']"));
+    click(By.cssSelector("[id$='priority-filter:filter-open-form:advanced-filter-command']"));
     WebElement selectionElement = findElementByCssSelector("[id$='priority-filter:filter-input-form:advanced-filter-panel-content']");
     for (WebElement labelElement : findChildElementsByTagName(selectionElement, "LABEL")) {
       if (!selectedPriorities.contains(labelElement.getText())) {
         click(labelElement);
       }
     }
-    click(By.cssSelector("button[id$='priority-filter:filter-input-form:update-command']"));
+    click(By.cssSelector("[id$='priority-filter:filter-input-form:update-command']"));
     waitForPageLoaded();
     waitAjaxIndicatorDisappear();
   }
 
   public void filterByTaskCategory(String selectedCategory) {
-    click(By.cssSelector("button[id$='task-category-filter:filter-open-form:advanced-filter-command']"));
+    click(By.cssSelector("[id$='task-category-filter:filter-open-form:advanced-filter-command']"));
     WebElement selectionElement = findElementByCssSelector("[id$='task-category-filter:filter-input-form:advanced-filter-panel-content']");
     List<WebElement> categoryTreeLabels = findChildElementsByClassName(selectionElement, "ui-treenode-label");
     //Find parent node of tree first and uncheck it
@@ -125,16 +127,16 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
         break;
       }
     }
-    click(By.cssSelector("button[id$='task-category-filter:filter-input-form:update-command']"));
+    click(By.cssSelector("[id$='task-category-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
   }
 
   public void filterByCaseName(String text) {
-    click(By.cssSelector("button[id$='case-name-filter:filter-open-form:advanced-filter-command']"));
+    click(By.cssSelector("[id$='case-name-filter:filter-open-form:advanced-filter-command']"));
     WebElement nameInput =
         findElementByCssSelector("input[id$='case-name-filter:filter-input-form:name']");
     enterKeys(nameInput, text);
-    click(By.cssSelector("button[id$='case-name-filter:filter-input-form:update-command']"));
+    click(By.cssSelector("[id$='case-name-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
   }
 
@@ -152,7 +154,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
 
   public void filterByCaseCategory(String selectedCategory) {
-    click(By.cssSelector("button[id$='case-category-filter:filter-open-form:advanced-filter-command']"));
+    click(By.cssSelector("[id$='case-category-filter:filter-open-form:advanced-filter-command']"));
     WebElement selectionElement = findElementByCssSelector("[id$='case-category-filter:filter-input-form:advanced-filter-panel-content']");
     List<WebElement> categoryTreeLabels = findChildElementsByClassName(selectionElement, "ui-treenode-label");
     //Find parent node of tree first and uncheck it
@@ -207,15 +209,15 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
 
   public boolean isResetButtonShown() {
-    waitForElementDisplayed(By.cssSelector("button[id$='task-widget:filter-reset-action']"), true);
-    return  isElementDisplayed(By.cssSelector("button[id$='task-widget:filter-reset-action']"));
+    waitForElementDisplayed(By.cssSelector("[id$='task-widget:filter-reset-action']"), true);
+    return  isElementDisplayed(By.cssSelector("[id$='task-widget:filter-reset-action']"));
   }
 
   public void resetFilter() {
-    click(By.cssSelector("button[id$='task-widget:filter-reset-action']"));
+    click(By.cssSelector("[id$='task-widget:filter-reset-action']"));
     waitAjaxIndicatorDisappear();
-    waitForElementDisplayed(By.cssSelector("button[id$='task-widget:filter-reset-command']"), true);
-    click(By.cssSelector("button[id$='task-widget:filter-reset-command']"));
+    waitForElementDisplayed(By.cssSelector("[id$='task-widget:filter-reset-command']"), true);
+    click(By.cssSelector("[id$='task-widget:filter-reset-command']"));
     waitAjaxIndicatorDisappear();
     refreshAndWaitElement("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)");
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(

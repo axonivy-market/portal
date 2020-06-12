@@ -19,6 +19,14 @@ public class ChatResponse {
     this.action = action;
     this.content = content;
   }
+
+  public ChatResponse(String action, Object content, String clientId) {
+    this();
+    this.action = action;
+    this.content = content;
+    this.clientId = clientId;
+  }
+  
   public ChatResponse(String status) {
     this();
     this.status = status;
