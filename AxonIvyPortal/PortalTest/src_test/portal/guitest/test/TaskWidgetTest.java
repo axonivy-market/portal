@@ -169,7 +169,7 @@ public class TaskWidgetTest extends BaseTest {
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.expand();
-    assertEquals("Tasks", taskWidgetPage.getTextOfCurrentBreadcrumb());
+    assertEquals("Tasks (3)", taskWidgetPage.getTextOfCurrentBreadcrumb());
     taskWidgetPage.clickHomeBreadcrumb();
     homePage = new HomePage();
     assertEquals(true, homePage.isDisplayed());
