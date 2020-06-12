@@ -18,162 +18,162 @@ import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class ChatTest extends BaseTest {
-	private static final String ENABLE_PRIVATE_CHAT_SETTING = "ENABLE_PRIVATE_CHAT";
+  private static final String ENABLE_PRIVATE_CHAT_SETTING = "ENABLE_PRIVATE_CHAT";
   private static final String ENABLE_GROUP_CHAT_SETTING = "ENABLE_GROUP_CHAT";
   private static final String CHAT_MESSAGE_USER_DEMO = "Hi i'm demo user";
-	private static final String CHAT_MESSAGE_USER_ADMIN = "Hi i'm admin user";
-	ExpressResponsible chatUser1 = new ExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
-	ExpressResponsible chatGroup1 = new ExpressResponsible("Human resources department", true);
-	ExpressResponsible chatGroupEveryBody = new ExpressResponsible("Everybody", true);
+  private static final String CHAT_MESSAGE_USER_ADMIN = "Hi i'm admin user";
+  ExpressResponsible chatUser1 = new ExpressResponsible(TestAccount.ADMIN_USER.getUsername(), false);
+  ExpressResponsible chatGroup1 = new ExpressResponsible("Human resources department", true);
+  ExpressResponsible chatGroupEveryBody = new ExpressResponsible("Everybody", true);
 
-	@Override
-	@Before
-	public void setup() {
-		super.setup();
-	}
+  @Override
+  @Before
+  public void setup() {
+    super.setup();
+  }
 
-	@Test
-	public void chatAddGroup() {
-		ChatPage chatPage = enableChatGroup();
-		createChatGroupWithPredifinedGroup(true, TestAccount.DEMO_USER);
-		joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
-		chatMessageInGroup(TestAccount.DEMO_USER, CHAT_MESSAGE_USER_DEMO);
-		launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-		ChatPage chatPage2 = chatMessageInGroup(TestAccount.ADMIN_USER, CHAT_MESSAGE_USER_ADMIN);
+  @Test
+  public void chatAddGroup() {
+    ChatPage chatPage = enableChatGroup();
+    createChatGroupWithPredifinedGroup(true, TestAccount.DEMO_USER);
+    joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
+    chatMessageInGroup(TestAccount.DEMO_USER, CHAT_MESSAGE_USER_DEMO);
+    launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    ChatPage chatPage2 = chatMessageInGroup(TestAccount.ADMIN_USER, CHAT_MESSAGE_USER_ADMIN);
 
-		launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-		ChatPage chatPage3 = createChatGroupWithPredifinedGroup(false, TestAccount.GUEST_USER);
-		chatPage3.addUserToChatGroup(Arrays.asList(chatUser1, chatGroupEveryBody));
+    launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    ChatPage chatPage3 = createChatGroupWithPredifinedGroup(false, TestAccount.GUEST_USER);
+    chatPage3.addUserToChatGroup(Arrays.asList(chatUser1, chatGroupEveryBody));
 
-		assertTrue(chatPage2.isChatGroupDisplayed("Leave Request"));
-		assertTrue(chatPage.isChatGroupDisplayed("Leave Request"));
-	}
+    assertTrue(chatPage2.isChatGroupDisplayed("Leave Request"));
+    assertTrue(chatPage.isChatGroupDisplayed("Leave Request"));
+  }
 
-	@Test
-	public void chatGroupOnTwoInstanceOfBrowser() {
-		ChatPage chatPage = enableChatGroup();
-		createChatGroupWithPredifinedGroup(true, TestAccount.DEMO_USER);
-		joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
-		chatMessageInGroup(TestAccount.DEMO_USER, CHAT_MESSAGE_USER_DEMO);
-		launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-		ChatPage chatPage2 = chatMessageInGroup(TestAccount.ADMIN_USER, CHAT_MESSAGE_USER_ADMIN);
-		chatPage2.closeChatMessageList();
-		chatPage.sendMessage("from 1 to 2");
-		assertTrue(chatPage2.isNotificationBadgeChat());
-		assertTrue(chatPage2.isNotificationContactChat());
-		chatPage2.selectChatGroup();
-		chatPage2.sendMessage("from 2 to 1");
-		assertTrue("from 2 to 1", chatPage.getAllMessagesChatLog().contains("from 2 to 1"));
-		assertTrue("from 1 to 2", chatPage2.getAllMessagesChatLog().contains("from 1 to 2"));
-	}
+  @Test
+  public void chatGroupOnTwoInstanceOfBrowser() {
+    ChatPage chatPage = enableChatGroup();
+    createChatGroupWithPredifinedGroup(true, TestAccount.DEMO_USER);
+    joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
+    chatMessageInGroup(TestAccount.DEMO_USER, CHAT_MESSAGE_USER_DEMO);
+    launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    ChatPage chatPage2 = chatMessageInGroup(TestAccount.ADMIN_USER, CHAT_MESSAGE_USER_ADMIN);
+    chatPage2.closeChatMessageList();
+    chatPage.sendMessage("from 1 to 2");
+    assertTrue(chatPage2.isNotificationBadgeChat());
+    assertTrue(chatPage2.isNotificationContactChat());
+    chatPage2.selectChatGroup();
+    chatPage2.sendMessage("from 2 to 1");
+    assertTrue("from 2 to 1", chatPage.getAllMessagesChatLog().contains("from 2 to 1"));
+    assertTrue("from 1 to 2", chatPage2.getAllMessagesChatLog().contains("from 1 to 2"));
+  }
 
-	@Test
-	public void chatDisplay() {
-		enableChatGroup();
-		assertTrue("Chat Shown", new HomePage().isChatDisplayed());
-	}
+  @Test
+  public void chatDisplay() {
+    enableChatGroup();
+    assertTrue("Chat Shown", new HomePage().isChatDisplayed());
+  }
 
-	@Test
-	public void chatPrivate() {
-		ChatPage chatPage = enableChatPrivate();
-		chatPage.selectChatUser("demo");
-		chatPage.sendMessage(CHAT_MESSAGE_USER_ADMIN);
+  @Test
+  public void chatPrivate() {
+    ChatPage chatPage = enableChatPrivate();
+    chatPage.selectChatUser("demo");
+    chatPage.sendMessage(CHAT_MESSAGE_USER_ADMIN);
 
-		login(TestAccount.DEMO_USER);
-		new HomePage().getChat();
-		chatPage.selectChatUser("admin");
-		chatPage.sendMessage(CHAT_MESSAGE_USER_DEMO);
-	}
+    login(TestAccount.DEMO_USER);
+    new HomePage().getChat();
+    chatPage.selectChatUser("admin");
+    chatPage.sendMessage(CHAT_MESSAGE_USER_DEMO);
+  }
 
-	@Test
-	public void chatGroupWithPredifinedGroup() {
-		enableChatGroup();
-		createChatGroupWithPredifinedGroup(true, TestAccount.DEMO_USER);
-	}
+  @Test
+  public void chatGroupWithPredifinedGroup() {
+    enableChatGroup();
+    createChatGroupWithPredifinedGroup(true, TestAccount.DEMO_USER);
+  }
 
-	@Test
-	public void chatGroupWithOutPredifinedGroup() {
-		ChatPage chatPage = enableChatGroup();
-		createChatGroupWithPredifinedGroup(false, TestAccount.DEMO_USER);
-		chatPage.addUserToChatGroup(Arrays.asList(chatUser1, chatGroup1));
+  @Test
+  public void chatGroupWithOutPredifinedGroup() {
+    ChatPage chatPage = enableChatGroup();
+    createChatGroupWithPredifinedGroup(false, TestAccount.DEMO_USER);
+    chatPage.addUserToChatGroup(Arrays.asList(chatUser1, chatGroup1));
 
-		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-		Sleeper.sleep(1000); // chat groups are not loading at the beginning, wait a bit for Firefox browser
-		new HomePage().getChat();
-		chatPage.selectChatGroup();
-		chatPage.getAllParticipants();
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    Sleeper.sleep(1000); // chat groups are not loading at the beginning, wait a bit for Firefox browser
+    new HomePage().getChat();
+    chatPage.selectChatGroup();
+    chatPage.getAllParticipants();
 
-		assertTrue("Admin in chat group", chatPage.getAllParticipants().contains(TestAccount.ADMIN_USER.getUsername()));
-		assertTrue("Demo in chat group", chatPage.getAllParticipants().contains(TestAccount.DEMO_USER.getUsername()));
-		chatPage.closeModalParticipants();
-		chatPage.closeChatMessageList();
-	}
+    assertTrue("Admin in chat group", chatPage.getAllParticipants().contains(TestAccount.ADMIN_USER.getUsername()));
+    assertTrue("Demo in chat group", chatPage.getAllParticipants().contains(TestAccount.DEMO_USER.getUsername()));
+    chatPage.closeModalParticipants();
+    chatPage.closeChatMessageList();
+  }
 
-	@Test
-	public void joinChatGroupAlreadyCreated() {
-		ChatPage chatPage = enableChatGroup();
-		createChatGroupWithPredifinedGroup(true, TestAccount.DEMO_USER);
-		joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
-		chatMessageInGroup(TestAccount.DEMO_USER, CHAT_MESSAGE_USER_DEMO);
-		chatMessageInGroup(TestAccount.ADMIN_USER, CHAT_MESSAGE_USER_ADMIN);
+  @Test
+  public void joinChatGroupAlreadyCreated() {
+    ChatPage chatPage = enableChatGroup();
+    createChatGroupWithPredifinedGroup(true, TestAccount.DEMO_USER);
+    joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
+    chatMessageInGroup(TestAccount.DEMO_USER, CHAT_MESSAGE_USER_DEMO);
+    chatMessageInGroup(TestAccount.ADMIN_USER, CHAT_MESSAGE_USER_ADMIN);
 
-		assertTrue("Chat message demo", chatPage.getAllMessagesChatLog().contains(CHAT_MESSAGE_USER_DEMO));
-		assertTrue("Chat message admin", chatPage.getAllMessagesChatLog().contains(CHAT_MESSAGE_USER_ADMIN));
+    assertTrue("Chat message demo", chatPage.getAllMessagesChatLog().contains(CHAT_MESSAGE_USER_DEMO));
+    assertTrue("Chat message admin", chatPage.getAllMessagesChatLog().contains(CHAT_MESSAGE_USER_ADMIN));
 
-		login(TestAccount.DEMO_USER);
-		assertTrue(new HomePage().getChat().isNotificationContactChat());
-	}
+    login(TestAccount.DEMO_USER);
+    assertTrue(new HomePage().getChat().isNotificationContactChat());
+  }
 
-	private ChatPage chatMessageInGroup(TestAccount chatUser, String chatMessage) {
-		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-		login(chatUser);
-		ChatPage chatPage = new HomePage().getChat();
-		chatPage.selectChatGroup();
-		chatPage.sendMessage(chatMessage);
-		return chatPage;
-	}
+  private ChatPage chatMessageInGroup(TestAccount chatUser, String chatMessage) {
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    login(chatUser);
+    ChatPage chatPage = new HomePage().getChat();
+    chatPage.selectChatGroup();
+    chatPage.sendMessage(chatMessage);
+    return chatPage;
+  }
 
-	private ChatPage createChatGroupWithPredifinedGroup(boolean isPredifinedGroup, TestAccount creatorChatGroup) {
-		if (isPredifinedGroup) {
-			redirectToRelativeLink(createTestingTasksUrl);
-		} else {
-			redirectToRelativeLink(createTestingCaseUrlForDefaultAdditionalCaseDetails);
-		}
-		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-		login(creatorChatGroup);
-		ChatPage chatPage = new HomePage().getChat();
-		// Create chat group via task
-		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-		TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+  private ChatPage createChatGroupWithPredifinedGroup(boolean isPredifinedGroup, TestAccount creatorChatGroup) {
+    if (isPredifinedGroup) {
+      redirectToRelativeLink(createTestingTasksUrl);
+    } else {
+      redirectToRelativeLink(createTestingCaseUrlForDefaultAdditionalCaseDetails);
+    }
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    login(creatorChatGroup);
+    ChatPage chatPage = new HomePage().getChat();
+    // Create chat group via task
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.clickTaskActionMenu();
-		taskTemplatePage.clickChatGroup();
-		return chatPage;
-	}
+    taskTemplatePage.clickChatGroup(isPredifinedGroup);
+    return chatPage;
+  }
 
-	private void joinChatGroupWhichAlreadyHadChatGroup(TestAccount userJoined) {
-		login(userJoined);
-		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-		TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-		taskTemplatePage.clickTaskActionMenu();
-		taskTemplatePage.clickChatGroup();
-		taskTemplatePage.joinProcessChatAlreadyCreated();
-	}
+  private void joinChatGroupWhichAlreadyHadChatGroup(TestAccount userJoined) {
+    login(userJoined);
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    taskTemplatePage.clickTaskActionMenu();
+    taskTemplatePage.clickChatGroup(false);
+    taskTemplatePage.joinProcessChatAlreadyCreated();
+  }
 
-	private ChatPage enableChatGroup() {
-	  updatePortalSetting(ENABLE_GROUP_CHAT_SETTING, "true");
-	  login(TestAccount.ADMIN_USER);
-		return new ChatPage();
-	}
+  private ChatPage enableChatGroup() {
+    updatePortalSetting(ENABLE_GROUP_CHAT_SETTING, "true");
+    login(TestAccount.ADMIN_USER);
+    return new ChatPage();
+  }
 
-	private ChatPage enableChatPrivate() {
-	  updatePortalSetting(ENABLE_PRIVATE_CHAT_SETTING, "true");
-	  login(TestAccount.ADMIN_USER);
-	  new HomePage().getChat();
-		return new ChatPage();
-	}
-	
-	@AfterClass
-	public static void cleanUpBrowsers() {
-	  killBrowsers();
-	}
+  private ChatPage enableChatPrivate() {
+    updatePortalSetting(ENABLE_PRIVATE_CHAT_SETTING, "true");
+    login(TestAccount.ADMIN_USER);
+    new HomePage().getChat();
+    return new ChatPage();
+  }
+
+  @AfterClass
+  public static void cleanUpBrowsers() {
+    killBrowsers();
+  }
 }

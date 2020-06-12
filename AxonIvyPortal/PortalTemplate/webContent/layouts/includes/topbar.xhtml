@@ -147,7 +147,6 @@
         update="project-info-dialog" />
       <p:remoteCommand name="rcAbsenceManagement" actionListener="#{absenceManagementBean.loadData}" oncomplete="PF('absenceManagement').show()"
         update="absence-management-dialog" />
-      <p:remoteCommand name="rcFinishGuide" actionListener="#{guideBean.finish()}" />
     </h:form>
   </ui:insert>
   <c:if test="#{chatRendererBean.isChatRendered}">

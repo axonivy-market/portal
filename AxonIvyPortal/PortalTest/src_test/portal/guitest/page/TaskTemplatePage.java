@@ -174,10 +174,12 @@ public class TaskTemplatePage extends TemplatePage {
 	    clickByCssSelector(taskAction);
 }
   
-  public void clickChatGroup() {
+  public void clickChatGroup(boolean growlMessageExpected) {
     String chatGroup = "a[id$='chat-group']";
     clickByCssSelector(chatGroup);
-    waitAjaxIndicatorDisappear();
+    if (growlMessageExpected) {
+      waitForElementDisplayedByCssSelector("span.ui-growl-title");
+    }
   }
   
   public void joinProcessChatAlreadyCreated() {
