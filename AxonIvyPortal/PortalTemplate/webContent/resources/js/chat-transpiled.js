@@ -189,7 +189,7 @@ function Chat(uri, view) {
               response = _context.sent;
               currentResponseId = response.id;
 
-              if (!(response.status === "CHAT_REACHED_LIMITED_CONNECTION")) {
+              if (!(response.status === "CHAT_REACHED_LIMITED_CONNECTION" || response.status === "SERVER_TIMEOUT")) {
                 _context.next = 17;
                 break;
               }
@@ -217,78 +217,70 @@ function Chat(uri, view) {
             case 20:
               this.listen(false, currentResponseId, response.status); // wait for next update
 
-              if (!(response.status === "SERVER_TIMEOUT")) {
-                _context.next = 23;
-                break;
-              }
-
-              return _context.abrupt("return");
-
-            case 23:
               if (!(response.action === "updateUserStatus")) {
-                _context.next = 27;
+                _context.next = 25;
                 break;
               }
 
               view.updateUserOnlineStatus(response.content);
-              _context.next = 55;
+              _context.next = 53;
               break;
 
-            case 27:
+            case 25:
               if (!(response.action === "getUsers")) {
-                _context.next = 32;
+                _context.next = 30;
                 break;
               }
 
               view.renderUsers(response.content);
               chat.getSendersOfUnreadMessages();
-              _context.next = 55;
+              _context.next = 53;
               break;
 
-            case 32:
+            case 30:
               if (!(response.action === "getGroups")) {
-                _context.next = 36;
+                _context.next = 34;
                 break;
               }
 
               view.renderGroupList(response.content);
-              _context.next = 55;
+              _context.next = 53;
               break;
 
-            case 36:
+            case 34:
               if (!(response.action === "readPrivateMessage")) {
-                _context.next = 42;
+                _context.next = 40;
                 break;
               }
 
               _sender = response.content;
               view.hideNotificationForReadMessages(_sender);
               view.updateUnreadUserBadge();
-              _context.next = 55;
+              _context.next = 53;
               break;
 
-            case 42:
+            case 40:
               if (!(response.action === "readGroupMessage")) {
-                _context.next = 48;
+                _context.next = 46;
                 break;
               }
 
               _sender2 = response.content;
               view.hideNotificationForReadGroupMessages(_sender2);
               view.updateUnreadUserBadge();
-              _context.next = 55;
+              _context.next = 53;
               break;
 
-            case 48:
+            case 46:
               if (!(response.action === "getMessages")) {
-                _context.next = 55;
+                _context.next = 53;
                 break;
               }
 
-              _context.next = 51;
+              _context.next = 49;
               return response.content;
 
-            case 51:
+            case 49:
               _messages = _context.sent;
               responseRecipients = _messages["recipients"][0];
               sender = _messages["sender"];
@@ -342,7 +334,7 @@ function Chat(uri, view) {
                 }
               }
 
-            case 55:
+            case 53:
             case "end":
               return _context.stop();
           }
@@ -460,10 +452,10 @@ function Chat(uri, view) {
 
   $("#toggle-chat-panel-command").off().click(function (e) {
     e.stopImmediatePropagation();
-    view.renderChatMessagePanelUIWhenOpen();
+    view.renderChatMessagePanelUIWhenOpen(); // Hide environment info when open chat
 
-    // Hide environment info when open chat
     var portalEnvironment = $('.js-portal-environment');
+
     if (portalEnvironment.length > 0) {
       portalEnvironment.addClass('u-hidden');
     }
@@ -1028,10 +1020,10 @@ function View(uri) {
 
   this.closeChatPanel = function () {
     closeChatMessagePanel();
-    this.renderChatMessagePanelUIWhenOpen();
+    this.renderChatMessagePanelUIWhenOpen(); // Show environment info when open chat
 
-    // Show environment info when open chat
     var portalEnvironment = $('.js-portal-environment');
+
     if (portalEnvironment.length > 0) {
       portalEnvironment.removeClass('u-hidden');
     }
@@ -1059,8 +1051,8 @@ function View(uri) {
     for (var i = 0; i < contactNames.length; i++) {
       var name = contactNames[i];
 
-      if (existingUsers.indexOf(name.innerText) == -1) {
-        existingUsers.push(name.innerText);
+      if (existingUsers.indexOf(name.textContent) == -1) {
+        existingUsers.push(name.textContent);
       }
     }
   }

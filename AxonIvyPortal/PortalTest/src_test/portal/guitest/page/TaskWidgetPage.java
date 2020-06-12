@@ -549,10 +549,16 @@ public class TaskWidgetPage extends TemplatePage {
 	}
 
 	public Integer getTaskCount() {
-		WebElement taskTitleElement = findElementById("task-widget:task-widget-title");
-		String title = taskTitleElement.getText();
-		String count = StringUtils.substringBetween(title, "(", ")");
-		return StringUtils.isNotBlank(count) ? Integer.parseInt(count) : null;
+		if (isElementDisplayed(By.cssSelector(".compact-task-widget"))) {
+			WebElement taskTitleElement = findElementById("task-widget:task-widget-title");
+			String title = taskTitleElement.findElement(By.cssSelector("span")).getText();
+			String count = StringUtils.substringBetween(title, "(", ")");
+			return StringUtils.isNotBlank(count) ? Integer.parseInt(count) : null;
+		} else {
+			String title = getTextOfCurrentBreadcrumb();
+			String count = StringUtils.substringBetween(title, "(", ")");
+			return StringUtils.isNotBlank(count) ? Integer.parseInt(count) : null;
+		}
 	}
 
 	public boolean isTaskStateOpen(int index) {
@@ -622,9 +628,9 @@ public class TaskWidgetPage extends TemplatePage {
 	}
 
 	public void resetFilter() {
-		click(By.cssSelector("button[id$='task-widget:filter-reset-action']"));
+		click(By.cssSelector("[id$='task-widget:filter-reset-action']"));
 		waitAjaxIndicatorDisappear();
-		click(By.cssSelector("button[id$='task-widget:filter-reset-command']"));
+		click(By.cssSelector("[id$='task-widget:filter-reset-command']"));
 		waitForElementDisplayed(By.id("task-widget:reset-filter-set-dialog"), false);
 	}
 }
