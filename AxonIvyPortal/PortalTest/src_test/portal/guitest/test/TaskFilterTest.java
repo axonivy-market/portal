@@ -186,12 +186,12 @@ public class TaskFilterTest extends BaseTest {
 		// Prepare 2 filter
 		String filterResponsible = "Responsible";
 		String filterMaternity = "Maternity";
-		
+
 		MainMenuPage mainMenuPage = new MainMenuPage();
 		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.expand();
-    taskWidgetPage.openAdvancedFilter("Description", "description");
-    taskWidgetPage.filterByResponsible("Everybody");
+		taskWidgetPage.expand();
+		taskWidgetPage.openAdvancedFilter("Description", "description");
+		taskWidgetPage.filterByResponsible("Everybody");
 		taskWidgetPage.filterByDescription(filterMaternity);
 		taskWidgetPage.saveFilter(filterMaternity);
 

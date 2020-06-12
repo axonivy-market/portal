@@ -194,6 +194,7 @@ public class CaseWidgetPage extends TemplatePage {
 		enterKeys(filterNameInput, filterName);
 		click(findElementById(caseWidgetId + ":filter-save-form:filter-save-command"));
 		waitAjaxIndicatorDisappear();
+		ensureNoBackgroundRequest();
 	}
 
 	public String getFilterName() {
@@ -330,7 +331,8 @@ public class CaseWidgetPage extends TemplatePage {
       if (filter.getText().equals(filterName)) {
         click(filter);
         waitAjaxIndicatorDisappear();
-        refreshAndWaitElement("[id$='case-widget:filter-selection-form:filter-name'] > span)");
+        ensureNoBackgroundRequest();
+        refreshAndWaitElement("[id$='case-widget:filter-selection-form:filter-name'] > span");
         Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(
             () -> findElementByCssSelector("[id$='case-widget:filter-selection-form:filter-name'] > span")
                 .getText().contains(filterName));
