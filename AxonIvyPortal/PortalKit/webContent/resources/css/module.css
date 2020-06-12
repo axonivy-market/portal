@@ -1240,8 +1240,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   height: 1.5rem;
 }
 
-
-.express-process-logo .ui-panel-content,
 .is-external-link .ui-panel-content {
   width: 0.4rem;
   height: 0.4rem;
@@ -1250,13 +1248,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 
 _:-ms-input-placeholder, :root .express-process-logo {
   margin-right: 5px;
-  margin-bottom: 1px;
-}
-
-_:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
-  width: auto;
-  height: auto;
-  margin: 0;
 }
 
 .add-external-link-icon {
