@@ -324,7 +324,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public ExampleOverviewPage openExampleOverviewPage(String exampleProcessName) {
-    getProcess(exampleProcessName).click();
+    click(getProcess(exampleProcessName));
     waitAjaxIndicatorDisappear();
     return new ExampleOverviewPage();
   }
