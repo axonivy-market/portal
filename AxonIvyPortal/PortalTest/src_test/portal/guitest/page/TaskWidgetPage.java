@@ -414,13 +414,15 @@ public class TaskWidgetPage extends TemplatePage {
 		click(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"));
 		WebElement responsible =
 				findElementByCssSelector("input[id$='responsible-filter:filter-input-form:responsible_input']");
-		//enterKeys(responsible, text);
 		type(responsible,text);
+		waitAjaxIndicatorDisappear();
+		ensureNoBackgroundRequest();
 		waitForElementDisplayedByCssSelector("span[id$='responsible-filter:filter-input-form:responsible_panel']");
 		click(By.cssSelector("i[class*='fa-user']"));
 		waitAjaxIndicatorDisappear();
 		click(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']"));
 		waitAjaxIndicatorDisappear();
+		ensureNoBackgroundRequest();
 	}
 
 	public void removeResponsibleFilter() {
@@ -472,6 +474,7 @@ public class TaskWidgetPage extends TemplatePage {
 		enterKeys(filterNameInput, filterName);
 		click(findElementById(taskWidgetId + ":filter-save-form:filter-save-command"));
 		waitAjaxIndicatorDisappear();
+		ensureNoBackgroundRequest();
 	}
 
 	public void openSavedFilters(String filterName) {
