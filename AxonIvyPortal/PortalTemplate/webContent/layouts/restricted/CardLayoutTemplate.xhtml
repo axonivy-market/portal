@@ -8,7 +8,7 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:define name="pageContent">
       <div class="ui-g card-layout-content" >
-        <div class="center ui-g-8 ui-xl-8 ui-lg-12 ui-md-12 ui-sm-12">
+        <div class="center #{isFullScreen? 'ui-g-12':'ui-g-8'} #{isFullScreen? 'ui-xl-12':'ui-xl-8'} ui-lg-12 ui-md-12 ui-sm-12">
           <div class="ui-g-12">
             <ui:insert name="header">
               <h1>Place header here</h1>
@@ -18,7 +18,7 @@
           <br />
           <div class="ui-g-12">
           <ui:repeat var="item" value="#{items}" varStatus="itemStatus" >
-            <h:panelGroup layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-6 ui-sm-12">
+            <h:panelGroup layout="block" styleClass="#{isFullScreen? 'ui-g-2':'ui-g-4'} #{isFullScreen? 'ui-xl-2':'ui-xl-4'} #{isFullScreen? 'ui-lg-4':'ui-lg-6'} ui-md-6 ui-sm-12">
               <div class="card-item card ui-g-12 " >
                 <ui:insert name="card">
                   <!-- Put card contain here -->

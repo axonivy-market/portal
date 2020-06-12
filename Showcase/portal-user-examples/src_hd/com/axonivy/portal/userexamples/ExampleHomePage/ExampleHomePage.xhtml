@@ -5,6 +5,7 @@
 <h:body>
   <ui:composition template="/layouts/restricted/CardLayoutTemplate.xhtml">
     <ui:param name="items" value="#{data.processes}" />
+    <ui:param name="isFullScreen" value="false" />
     <ui:define name="pageTitle">#{ivy.cms.co('/Processes/UserExampleGuide/name')}</ui:define>
     <ui:define name="header">
       <h:panelGroup layout="block" styleClass="ui-g-12" id="example-header">
