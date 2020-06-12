@@ -1083,6 +1083,11 @@ span.task-details-document-add-link {
   font-size: 1.5rem;
 }
 
+.process-start-list-item-action.is-express,
+.process-start-list-item-action.is-express .ui-commandlink.process-item {
+  font-size: $expressLogoFontSize;
+}
+
 /* Task Widget --------------------------------**/
 .filter-selection-form label,
 .filter-selection-form a.ui-commandlink,
