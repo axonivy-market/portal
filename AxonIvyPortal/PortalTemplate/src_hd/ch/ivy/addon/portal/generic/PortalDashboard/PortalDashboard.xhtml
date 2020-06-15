@@ -6,86 +6,95 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:define name="title">Dashboard</ui:define>
     <ui:define name="pageContent">
-      <h3>Dashboard</h3>
+      <h1>Dashboard</h1>
       <style type="text/css">
-.ui-dashboard-column .ui-panel {
-  margin: 10px;
-}
-
-.new-widget-container .ui-grid.ui-grid-responsive {
-  padding: 0;
-  border: none;
-}
-
-.ui-datagrid .ui-panel.widget-selection .ui-panel-titlebar {
-  background-color: #007095;
-}
-
-.ui-datagrid .ui-panel.widget-selection .ui-panel-titlebar .ui-panel-title {
-  color: white;
-}
-</style>
-      <div>
-        <h:form>
-          <p:dashboard id="board" model="#{dashboardBean.model}" styleClass="portal-dashboard" style="display: flex">
-            <p:ajax event="reorder" listener="#{dashboardBean.handleReorder}" update="board" />
-            
-            <p:panel id="process-widget" styleClass="process-widget-panel card" closable="true">
-              <p:ajax event="close" listener="#{dashboardBean.onClose}" global="false" />
+        .new-widget-container .ui-grid.ui-grid-responsive {
+          padding: 0;
+          border: none;
+        }
+        .header {
+          background-color: var(--primary-color);
+          color: var(--ivy-primary-color-white);
+          padding: 10px;
+        }
+        .card {
+          padding: 0;
+        }
+        .actions {
+          float: right;
+        }
+        .actions a {
+          color: var(--ivy-primary-color-white);
+        }
+      </style>
+      <div class="grid-stack" style="background-color: var(--ivy-primary-color-grey-pale)">
+        <ui:repeat var="widget" value="#{dashboardBean.widgets}">
+          <div class="grid-stack-item" data-gs-x="#{widget.posX}" data-gs-y="#{widget.posY}"
+            data-gs-width="#{widget.width}" data-gs-height="#{widget.height}">
+            <div class="grid-stack-item-content card">
+              <h:panelGroup rendered="#{widget.type eq 'TASK'}">
+                <div class="header">
+                  <span class="title">
+                    <i class="fa fa-exchange fa-lg u-mar-right-5 drag-handler" style="cursor: move;" data-action="Drag" /> Your Tasks
+                  </span>
+                  
+                  <div class="actions">
+                    <p:commandLink styleClass="u-mar-right-5">
+                      <i class="fa fa-arrow-right" />
+                    </p:commandLink>
+                    <p:commandLink styleClass="u-mar-right-5" onclick="PF('edit-task-widget-dialog').show()">
+                      <i class="fa fa-pencil" />
+                    </p:commandLink>
+                    <p:commandLink>
+                      <i class="fa fa-info-circle" />
+                    </p:commandLink>
+                  </div>
+                </div>
+                <ic:ch.ivy.addon.portal.generic.prototype.TaskWidget />
+              </h:panelGroup>
+                
+              <h:panelGroup rendered="#{widget.type eq 'PROCESS'}">
+                <div class="header">
+                  <span class="title">
+                    <i class="fa fa-exchange fa-lg u-mar-right-5 drag-handler" style="cursor: move;" data-action="Drag" /> Your Processes
+                  </span>
+                  
+                  <div class="actions">
+                    <p:commandLink styleClass="u-mar-right-5">
+                      <i class="fa fa-arrow-right" />
+                    </p:commandLink>
+                  </div>
+                </div>
+                <ic:ch.ivy.addon.portalkit.component.UserProcessWidget id="process-widget-component" />
+              </h:panelGroup>
               
-              <f:facet name="header">
-                <i class="fa fa-magic u-mar-right-5" /> Your Processes
-              </f:facet>
-              <f:facet name="actions">
-                <p:commandLink styleClass="ui-panel-titlebar-icon">
-                  <i class="fa fa-arrow-right" />
-                </p:commandLink>
-              </f:facet>
-              <ic:ch.ivy.addon.portalkit.component.UserProcessWidget id="process-widget-component" />
-            </p:panel>
-
-            <p:panel id="actions" styleClass="card" style="text-align: center">
-              <p:ajax event="close" listener="#{dashboardBean.onClose}" global="false" />
-              
-              <p:commandButton id="add-widget-button" value="Add a new widget" type="button" style="margin-bottom: 5px"
-                onclick="PF('new-widget-dialog').show()" />
-              <br />
-              <p:commandLink id="restore-widget-button" value="Restore default widgets" />
-            </p:panel>
-            <p:panel id="task-widget" styleClass="prototype task-widget-panel card">
-              <f:facet name="header">
-                <i class="fa fa-magic u-mar-right-5" /> Your Tasks
-              </f:facet>
-              <f:facet name="actions">
-                <p:commandLink styleClass="ui-panel-titlebar-icon">
-                  <i class="fa fa-arrow-right" />
-                </p:commandLink>
-                <p:commandLink styleClass="ui-panel-titlebar-icon" onclick="PF('edit-task-widget-dialog').show()">
-                  <i class="fa fa-pencil" />
-                </p:commandLink>
-                <p:commandLink styleClass="ui-panel-titlebar-icon">
-                  <i class="fa fa-info-circle" />
-                </p:commandLink>
-              </f:facet>
-              <ic:ch.ivy.addon.portal.generic.prototype.TaskWidget />
-            </p:panel>
-          </p:dashboard>
-          <p:resizable for="task-widget" />
-          <p:resizable for="process-widget" />
-        </h:form>
+              <h:panelGroup id="actions" layout="block" style="text-align: center; padding: 4px" rendered="#{widget.type eq 'NEW'}">
+                <i class="fa fa-exchange fa-lg u-mar-right-5 drag-handler" data-action="Drag" 
+                  style="cursor: move; position: absolute; top: 5px; left: 5px;" />
+                <p:commandButton id="add-widget-button" value="Add a new widget" type="button" style="margin-bottom: 5px"
+                  onclick="PF('new-widget-dialog').show()" />
+                <br />
+                <p:commandLink id="restore-widget-button" value="Restore default widgets" />
+              </h:panelGroup>
+            </div>
+          </div>
+        </ui:repeat>
       </div>
 
+<script type="text/javascript">
+  GridStack.init({column: 12, row: 11, handleClass :'drag-handler'});
+</script>
       <p:dialog id="new-widget-dialog" widgetVar="new-widget-dialog" header="Create a Widget" appendTo="@(body)"
         closeOnEscape="true" draggable="false" dynamic="true" fitViewport="true" responsive="true" modal="true">
 
-        <p:dataGrid id="new-widget-container" var="widget" value="#{dashboardBean.widgets}" layout="grid" columns="2"
+        <p:dataGrid id="new-widget-container" var="sample" value="#{dashboardBean.samples}" layout="grid" columns="2"
           styleClass="new-widget-container">
-          <p:panel header="#{widget.name}" style="text-align:center;" styleClass="widget-selection">
+          <p:panel header="#{sample.name}" style="text-align:center;" styleClass="widget-selection">
             <h:panelGrid columns="1" style="width:300px; height: 300px;">
-              <i class="#{widget.icon}" style="font-size: 5rem" />
-              <p:link href="#" value="Select" rendered="#{widget.name ne 'Task List'}" />
-              <p:link href="#" value="Select" rendered="#{widget.name eq 'Task List'}"
-                onclick="PF('task-widget-configuration-dialog').show();PF('new-widget-dialog').hide();" />
+              <i class="#{sample.image}" style="font-size: 5rem" />
+              <p:link href="#" value="Select" rendered="#{sample.type ne 'TASK'}" />
+              <p:link href="#" value="Select" rendered="#{sample.type eq 'TASK'}"
+                onclick="PF('new-widget-dialog').hide();PF('task-widget-configuration-dialog').show();" />
             </h:panelGrid>
           </p:panel>
         </p:dataGrid>
