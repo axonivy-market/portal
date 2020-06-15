@@ -1,12 +1,13 @@
 package ch.ivy.addon.portal.chat;
 
-import static ch.ivy.addon.portalkit.enums.GlobalVariable.CHAT_RESPONSE_TIMEOUT;
 import static ch.ivy.addon.portalkit.enums.GlobalVariable.CHAT_MAX_CONNECTION;
+import static ch.ivy.addon.portalkit.enums.GlobalVariable.CHAT_RESPONSE_TIMEOUT;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -385,7 +386,8 @@ public class ChatService {
   }
 
   private String toJson(Object object) {
-    return new GsonBuilder().setPrettyPrinting().disableHtmlEscaping().create().toJson(object);
+    return new GsonBuilder().registerTypeAdapter(Date.class, new GsonUTCDateAdapter()).setPrettyPrinting()
+        .disableHtmlEscaping().create().toJson(object);
   }
 
   private void resumeAsyncResponseForOneClient(String username, ChatResponse chatResponse, String clientId) {
