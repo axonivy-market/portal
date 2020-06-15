@@ -132,13 +132,13 @@ function Chat(uri, view) {
     }
 
     if ($(".js-show-chat-message.active.loaded").length == 1) {
-      this.loadChat($(".js-show-chat-message.active.loaded").get(0));
+      this.loadChat($(".js-show-chat-message.active.loaded").get(0), true);
       chat.markReadMessages();
     }
 
     if ($(".js-show-group-chat-message.active.loaded").length == 1) {
       var caseId = $(".js-show-group-chat-message.active.loaded").find("input[class='js-case-id']").get(0).value;
-      chat.loadChatGroup(caseId);
+      chat.loadChatGroup(caseId, true);
       chat.markReadGroupMessages(caseId);
     }
 
@@ -349,7 +349,7 @@ function Chat(uri, view) {
     };
   }();
 
-  this.loadChat = function (recipient) {
+  this.loadChat = function (recipient, isInputMessageKept) {
     var recipientName = $(recipient).find(".js-contact-card-name", ".js-show-chat-message.active").text();
     var $notification = $(recipient).find(".js-notification");
 
@@ -365,7 +365,7 @@ function Chat(uri, view) {
       async: true,
       cache: false,
       success: function success(response) {
-        view.clearMessages();
+        view.clearMessages(isInputMessageKept);
         view.renderMessageList(response, recipientName);
         view.updateUnreadUserBadge();
       }
@@ -503,7 +503,7 @@ function Chat(uri, view) {
     }
   };
 
-  this.loadChatGroup = function (caseId) {
+  this.loadChatGroup = function (caseId, isInputMessageKept) {
     var $groupNotification = $(".js-case-id:hidden[value='" + caseId + "']").closest(".js-show-group-chat-message").find(".js-notification");
     ;
 
@@ -519,7 +519,7 @@ function Chat(uri, view) {
       async: true,
       cache: false,
       success: function success(response) {
-        view.clearMessages();
+        view.clearMessages(isInputMessageKept);
         view.renderMessageListForGroup(response, userName);
         view.updateUnreadUserBadge();
       }
@@ -830,10 +830,13 @@ function View(uri) {
     }
   }
 
-  this.clearMessages = function () {
+  this.clearMessages = function (isInputMessageKept) {
     var messageList = document.getElementsByClassName("js-message-list")[0];
     messageList.innerText = "";
-    $(".js-input-message").val("");
+
+    if (!isInputMessageKept) {
+      $(".js-input-message").val("");
+    }
   };
 
   this.renderChatMessagePanelUIWhenOpen = function () {
