@@ -1,1 +1,1 @@
-TODO If number of browser tabs is greater than this max number, chat will be deactivated on inactive browser tabs. Valid values are 1, 2, 3, 4, 5.
+Si le nombre de tabs du browser est supérieur à ce nombre maximum, le chat sera désactivé sur les tabs inactifs du browser. Les valeurs valides sont 1, 2, 3, 4, 5.
