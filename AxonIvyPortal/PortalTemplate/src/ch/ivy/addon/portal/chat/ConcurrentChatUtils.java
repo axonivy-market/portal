@@ -35,7 +35,10 @@ public final class ConcurrentChatUtils {
   }
 
   public static void removePortalChatResponseHistory(String username) {
-    Ivy.wf().getApplication().removeAttribute(String.format(PORTAL_CHAT_RESPONSE_HISTORY, username));
+    IvyExecutor.executeAsSystem(() -> {
+      Ivy.wf().getApplication().removeAttribute(String.format(PORTAL_CHAT_RESPONSE_HISTORY, username));
+      return null;
+    });
   }
 
   public static boolean isUserOnline(String username) {
