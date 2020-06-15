@@ -35,7 +35,7 @@
               <h:panelGroup rendered="#{widget.type eq 'TASK'}">
                 <div class="header">
                   <span class="title">
-                    <i class="fa fa-exchange fa-lg u-mar-right-5 drag-handler" style="cursor: move;" data-action="Drag" /> Your Tasks
+                    <i class="fa fa-arrows fa-lg u-mar-right-5 drag-handler" style="cursor: move;" data-action="Drag" /> Your Tasks
                   </span>
                   
                   <div class="actions">
@@ -56,7 +56,7 @@
               <h:panelGroup rendered="#{widget.type eq 'PROCESS'}">
                 <div class="header">
                   <span class="title">
-                    <i class="fa fa-exchange fa-lg u-mar-right-5 drag-handler" style="cursor: move;" data-action="Drag" /> Your Processes
+                    <i class="fa fa-arrows fa-lg u-mar-right-5 drag-handler" style="cursor: move;" data-action="Drag" /> Your Processes
                   </span>
                   
                   <div class="actions">
@@ -69,7 +69,7 @@
               </h:panelGroup>
               
               <h:panelGroup id="actions" layout="block" style="text-align: center; padding: 4px" rendered="#{widget.type eq 'NEW'}">
-                <i class="fa fa-exchange fa-lg u-mar-right-5 drag-handler" data-action="Drag" 
+                <i class="fa fa-arrows fa-lg u-mar-right-5 drag-handler" data-action="Drag" 
                   style="cursor: move; position: absolute; top: 5px; left: 5px;" />
                 <p:commandButton id="add-widget-button" value="Add a new widget" type="button" style="margin-bottom: 5px"
                   onclick="PF('new-widget-dialog').show()" />
