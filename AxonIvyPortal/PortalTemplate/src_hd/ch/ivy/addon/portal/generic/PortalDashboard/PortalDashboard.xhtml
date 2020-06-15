@@ -35,7 +35,7 @@
               <h:panelGroup rendered="#{widget.type eq 'TASK'}">
                 <div class="header">
                   <span class="title">
-                    <i class="fa fa-arrows fa-lg u-mar-right-5 drag-handler" style="cursor: move;" data-action="Drag" /> Your Tasks
+                    Your Tasks
                   </span>
                   
                   <div class="actions">
@@ -45,9 +45,7 @@
                     <p:commandLink styleClass="u-mar-right-5" onclick="PF('edit-task-widget-dialog').show()">
                       <i class="fa fa-pencil" />
                     </p:commandLink>
-                    <p:commandLink>
-                      <i class="fa fa-arrow-right" />
-                    </p:commandLink>
+                    <i class="fa fa-arrows drag-handler" style="cursor: move;" data-action="Drag" />
                   </div>
                 </div>
                 <ic:ch.ivy.addon.portal.generic.prototype.TaskWidget />
@@ -56,13 +54,11 @@
               <h:panelGroup rendered="#{widget.type eq 'PROCESS'}">
                 <div class="header">
                   <span class="title">
-                    <i class="fa fa-arrows fa-lg u-mar-right-5 drag-handler" style="cursor: move;" data-action="Drag" /> Your Processes
+                    Your Processes
                   </span>
                   
                   <div class="actions">
-                    <p:commandLink styleClass="u-mar-right-5">
-                      <i class="fa fa-arrow-right" />
-                    </p:commandLink>
+                    <i class="fa fa-arrows drag-handler" style="cursor: move;" data-action="Drag" /> 
                   </div>
                 </div>
                 <ic:ch.ivy.addon.portalkit.component.UserProcessWidget id="process-widget-component" />
@@ -71,8 +67,8 @@
               </h:panelGroup>
               
               <h:panelGroup id="actions" layout="block" style="text-align: center; padding: 4px" rendered="#{widget.type eq 'NEW'}">
-                <i class="fa fa-arrows fa-lg u-mar-right-5 drag-handler" data-action="Drag" 
-                  style="cursor: move; position: absolute; top: 5px; left: 5px;" />
+                <i class="fa fa-arrows drag-handler" data-action="Drag" 
+                  style="cursor: move; position: absolute; top: 5px; right: 5px;" />
                 <p:commandButton id="add-widget-button" value="Add a new widget" type="button" style="margin-bottom: 5px"
                   onclick="PF('new-widget-dialog').show()" />
                 <br />
