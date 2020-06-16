@@ -89,13 +89,13 @@
   GridStack.init({column: 12, row: 11, handleClass :'drag-handler'});
 </script>
       <p:dialog id="new-widget-dialog" widgetVar="new-widget-dialog" header="Create a Widget" appendTo="@(body)"
-        closeOnEscape="true" draggable="false" dynamic="true" fitViewport="true" responsive="true" modal="true">
+        closeOnEscape="true" draggable="false" fitViewport="true" responsive="true" modal="true">
 
         <p:dataGrid id="new-widget-container" var="sample" value="#{dashboardBean.samples}" layout="grid" columns="2"
           styleClass="new-widget-container">
           <p:panel header="#{sample.name}" style="text-align:center;" styleClass="widget-selection">
             <h:panelGrid columns="1" style="width:300px; height: 300px;">
-              <i class="#{sample.image}" style="font-size: 5rem" />
+              <p:graphicImage library="images" name="#{sample.image}" width="300px" height="300px" />
               <p:link href="#" value="Select" rendered="#{sample.type ne 'TASK'}" />
               <p:link href="#" value="Select" rendered="#{sample.type eq 'TASK'}"
                 onclick="PF('new-widget-dialog').hide();PF('task-widget-configuration-dialog').show();" />

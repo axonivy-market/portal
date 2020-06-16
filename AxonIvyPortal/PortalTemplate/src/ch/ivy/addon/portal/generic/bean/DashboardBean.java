@@ -46,18 +46,18 @@ public class DashboardBean implements Serializable {
   }
   
   private WidgetSample taskSample() {
-    return new WidgetSample("Task List", DashboardWidgetType.TASK, "");
+    return new WidgetSample("Task List", DashboardWidgetType.TASK, "task-widget-prototype.png");
   }
   
   private WidgetSample caseSample() {
-    return new WidgetSample("Case List", DashboardWidgetType.CASE, "");
+    return new WidgetSample("Case List", DashboardWidgetType.CASE, "case-widget-prototype.png");
   }
   
   private WidgetSample statisticSample() {
-    return new WidgetSample("Statistic Widget", DashboardWidgetType.STATISTIC, "");
+    return new WidgetSample("Statistic Widget", DashboardWidgetType.STATISTIC, "statistic-widget-prototype.png");
   }
   
   private WidgetSample processSample() {
-    return new WidgetSample("Process List", DashboardWidgetType.PROCESS, "");
+    return new WidgetSample("Process List", DashboardWidgetType.PROCESS, "process-widget-prototype.png");
   }
 }
