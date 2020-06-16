@@ -3,11 +3,9 @@ package ch.ivy.addon.portalkit.util;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -213,8 +211,7 @@ public class UserUtils {
             .withParam("excludedUsernames", excludedUsernames)
             .call()
             .get("users", List.class);
-        return users.stream()
-            .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getName))), ArrayList::new));
+        return users;
       }
       
       return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
