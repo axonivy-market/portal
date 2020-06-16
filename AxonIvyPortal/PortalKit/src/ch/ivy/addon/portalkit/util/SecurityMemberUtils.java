@@ -1,9 +1,6 @@
 package ch.ivy.addon.portalkit.util;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
@@ -42,8 +39,7 @@ public class SecurityMemberUtils {
             .withParam("count", count)
             .call()
             .get("members", List.class);
-        return users.stream()
-            .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(SecurityMemberDTO::getName))), ArrayList::new));
+        return users;
       }
       
       return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
