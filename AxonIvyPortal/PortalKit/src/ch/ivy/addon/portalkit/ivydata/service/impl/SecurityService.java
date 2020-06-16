@@ -26,7 +26,6 @@ import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.query.IUserQueryExecutor;
 import ch.ivyteam.ivy.security.query.UserQuery;
 import ch.ivyteam.ivy.security.query.UserQuery.IFilterQuery;
@@ -47,15 +46,14 @@ public class SecurityService implements ISecurityService {
       if (CollectionUtils.isEmpty(apps)) {
         return result;
       }
-      List<PortalIvyDataException> errors = new ArrayList<>();
       try {
         result.setUsers(queryUsers(query, apps, startIndex, count, fromRoles, excludedUsernames));
       } catch (PortalIvyDataException e) {
-        errors.add(e);
-      } catch (Exception ex) {
-        Ivy.log().error("Error in getting users", ex);
+        result.setErrors(Arrays.asList(e));
+      } 
+      catch (Exception ex) {
+        Ivy.log().error("Unexpected exception in getting users", ex);
       }
-      result.setErrors(errors);
       return result;
     });
   }
@@ -65,8 +63,12 @@ public class SecurityService implements ISecurityService {
     IUserQueryExecutor executor = ServerFactory.getServer().getSecurityManager().getUserQueryExecutor();
     UserQuery userQuery = executor.createUserQuery().orderBy().fullName();
     IFilterQuery filterQuery = userQuery.where();
-    filterQuery.fullName().isLikeIgnoreCase(containingQuery)
-      .or().name().isLikeIgnoreCase(containingQuery);
+    
+    filterQuery.fullName()
+      .isLikeIgnoreCase(containingQuery)
+      .or()
+      .name()
+      .isLikeIgnoreCase(containingQuery);
     if (CollectionUtils.isNotEmpty(fromRoles)) {
       UserQuery hasRolesQuery = UserQuery.create();
       for (String appName : apps) {
@@ -80,26 +82,27 @@ public class SecurityService implements ISecurityService {
       filterQuery.andOverall(excludeUsernameQuery);
     }
     Recordset recordset = executor.getRecordset(userQuery, startIndex, count);
-    return recordset.getRecords().stream().map(UserDTO::new).collect(Collectors.toList());
+    return recordset.getRecords()
+        .stream()
+        .map(UserDTO::new)
+        .collect(Collectors.toList());
   }
 
   @Override
   public IvySecurityResultDTO findUsers(String query, IApplication app, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
     return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
-      List<PortalIvyDataException> errors = new ArrayList<>();
       if (app.getActivityState() != ActivityState.ACTIVE) {
         result.setErrors(Arrays.asList(new PortalIvyDataException(app.getName(), PortalIvyDataErrorType.APP_NOT_FOUND.toString())));
         return result;
       }
 
       try {
-        List<UserDTO> userDTOs = queryUsers(query, app, startIndex, count, fromRoles, excludedUsernames);
+        List<UserDTO> userDTOs = queryUsers(query, Arrays.asList(app.getName()), startIndex, count, fromRoles, excludedUsernames);
         result.setUsers(userDTOs);
-      } catch (Exception ex) {
-        Ivy.log().error("Error in getting users within app {0}", ex, app.getName());
+      } catch (PortalIvyDataException e) {
+        result.setErrors(Arrays.asList(e));
       }
-      result.setErrors(errors);
       return result;
     });
   }
@@ -120,7 +123,7 @@ public class SecurityService implements ISecurityService {
         } catch (PortalIvyDataException e) {
           errors.add(e);
         } catch (Exception ex) {
-          Ivy.log().error("Error in getting roles within app {0}", ex, appName);
+          Ivy.log().error("Unexpected exception in getting roles within app {0}", ex, appName);
         }
       }
       result.setErrors(errors);
@@ -133,7 +136,6 @@ public class SecurityService implements ISecurityService {
   public IvySecurityResultDTO findRoles(IApplication app) {
     return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
-      List<PortalIvyDataException> errors = new ArrayList<>();
       if (app.getActivityState() != ActivityState.ACTIVE) {
         result.setErrors(Arrays.asList(new PortalIvyDataException(app.getName(), PortalIvyDataErrorType.APP_NOT_FOUND.toString())));
         return result;
@@ -144,9 +146,8 @@ public class SecurityService implements ISecurityService {
         roles.sort((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName()));
         result.setRoles(roles);
       } catch (Exception ex) {
-        Ivy.log().error("Error in getting roles within app {0}", ex, app.getName());
+        Ivy.log().error("Unexpected exception in getting roles within app {0}", ex, app.getName());
       }
-      result.setErrors(errors);
       return result;
     });
   }
@@ -155,7 +156,6 @@ public class SecurityService implements ISecurityService {
   public IvySecurityResultDTO findRoleDTOs(IApplication app) {
     return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
-      List<PortalIvyDataException> errors = new ArrayList<>();
       if (app.getActivityState() != ActivityState.ACTIVE) {
         result.setErrors(Arrays.asList(new PortalIvyDataException(app.getName(), PortalIvyDataErrorType.APP_NOT_FOUND.toString())));
         return result;
@@ -166,9 +166,8 @@ public class SecurityService implements ISecurityService {
         roles.sort((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName()));
         result.setRoleDTOs(roles);
       } catch (Exception ex) {
-        Ivy.log().error("Error in getting roles within app {0}", ex, app.getName());
+        Ivy.log().error("Unexpected exception in getting roles within app {0}", ex, app.getName());
       }
-      result.setErrors(errors);
       return result;
     });
   }
@@ -177,7 +176,6 @@ public class SecurityService implements ISecurityService {
   public IvySecurityResultDTO findSecurityMembers(String query, IApplication app, int startIndex, int count) {
     return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
-      List<PortalIvyDataException> errors = new ArrayList<>();
       if (app.getActivityState() != ActivityState.ACTIVE) {
         result.setErrors(Arrays.asList(new PortalIvyDataException(app.getName(), PortalIvyDataErrorType.APP_NOT_FOUND.toString())));
         return result;
@@ -189,7 +187,7 @@ public class SecurityService implements ISecurityService {
             .sorted((r1, r2) -> StringUtils.compareIgnoreCase(r1.getDisplayName(), r2.getDisplayName()))
             .collect(Collectors.toList());
         
-        List<UserDTO> users = queryUsers(query, app, startIndex, count, null, null);
+        List<UserDTO> users = queryUsers(query, Arrays.asList(app.getName()), startIndex, count, null, null);
         
         List<SecurityMemberDTO> members = SecurityMemberDTOMapper.mapFromUserDTOs(users);
         members.addAll(SecurityMemberDTOMapper.mapFromRoleDTOs(roles));
@@ -198,67 +196,51 @@ public class SecurityService implements ISecurityService {
           size = members.size();
         }
         result.setSecurityMembers(members.subList(startIndex, Math.min(size, members.size())));
+      } catch (PortalIvyDataException e) {
+        result.setErrors(Arrays.asList(e));
       } catch (Exception ex) {
-        Ivy.log().error("Error in getting security members within app {0}", ex, app.getName());
+        Ivy.log().error("Unexpected exception in getting security members within app {0}", ex, app.getName());
       }
-      result.setErrors(errors);
       return result;
     });
   }
 
   @Override
   public IvySecurityResultDTO findSecurityMembers(String query, List<String> apps, int startIndex, int count) {
-    return IvyExecutor.executeAsSystem(() -> { 
+    return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       List<PortalIvyDataException> errors = new ArrayList<>();
       Map<String, RoleDTO> roleByName = new HashMap<>();
-      Map<String, UserDTO> userByName = new HashMap<>();
-      for (String appName : apps) {
-        try {
+      try {
+        for (String appName : apps) {
           IApplication app = ServiceUtilities.findApp(appName);
           ServiceUtilities.findAllRoleDTO(app).forEach(role -> {
-            if (StringUtils.containsIgnoreCase(role.getDisplayName(), query) || StringUtils.containsIgnoreCase(role.getName(), query)) {
+            if (StringUtils.containsIgnoreCase(role.getDisplayName(), query)
+                || StringUtils.containsIgnoreCase(role.getName(), query)) {
               roleByName.put(role.getName() + " - " + role.getMemberName(), role);
             }
           });
-          queryUsers(query, app, startIndex, count, null, null).forEach(user -> userByName.put(user.getName() + " - " + user.getMemberName(), user));
-        } catch (Exception ex) {
-          Ivy.log().error("Error in getting security members within app {0}", ex, appName);
         }
+        List<RoleDTO> roles = roleByName.values().stream()
+            .sorted((r1, r2) -> StringUtils.compareIgnoreCase(r1.getDisplayName(), r2.getDisplayName()))
+            .collect(Collectors.toList());
+        List<UserDTO> users = queryUsers(query, apps, startIndex, count, null, null);
+
+        List<SecurityMemberDTO> members = SecurityMemberDTOMapper.mapFromUserDTOs(users);
+        members.addAll(SecurityMemberDTOMapper.mapFromRoleDTOs(roles));
+        int size = count;
+        if (count <= 0) {
+          size = members.size();
+        }
+        result.setSecurityMembers(members.subList(startIndex, Math.min(size, members.size())));
+      } catch (PortalIvyDataException e) {
+        errors.add(e);
+      } catch (Exception ex) {
+        Ivy.log().error("Unexpected exception in getting security member", ex);
       }
-      List<RoleDTO> roles = roleByName.values().stream().sorted((r1, r2) -> StringUtils.compareIgnoreCase(r1.getDisplayName(), r2.getDisplayName())).collect(Collectors.toList());
-      List<UserDTO> users = userByName.values().stream().sorted((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName())).collect(Collectors.toList());
-      
-      List<SecurityMemberDTO> members = SecurityMemberDTOMapper.mapFromUserDTOs(users);
-      members.addAll(SecurityMemberDTOMapper.mapFromRoleDTOs(roles));
-      int size = count;
-      if (count <= 0) {
-        size = members.size();
-      }
-      result.setSecurityMembers(members.subList(startIndex, Math.min(size, members.size())));
       result.setErrors(errors);
       return result;
     });
-  }
-  
-  private List<UserDTO> queryUsers(String query, IApplication app, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
-    String containingQuery = "%"+ StringUtils.defaultString(query, StringUtils.EMPTY) +"%";
-    UserQuery userQuery = app.getSecurityContext().users().query();
-    IFilterQuery filterQuery = userQuery.where();
-    filterQuery.fullName().isLikeIgnoreCase(containingQuery)
-      .or().name().isLikeIgnoreCase(containingQuery);
-    if (CollectionUtils.isNotEmpty(fromRoles)) {
-      UserQuery hasRolesQuery = queryHasRoles(app, fromRoles);
-      filterQuery.andOverall(hasRolesQuery);
-    }
-    if (CollectionUtils.isNotEmpty(excludedUsernames)) {
-      UserQuery excludeUsernameQuery = queryExcludeUsernames(excludedUsernames);
-      filterQuery.andOverall(excludeUsernameQuery);
-    }
-    List<IUser> users = userQuery
-        .orderBy().fullName().name()
-        .executor().results(startIndex, count);
-    return users.stream().map(UserDTO::new).collect(Collectors.toList());
   }
   
   private UserQuery queryExcludeUsernames(List<String> excludedUsernames) {
@@ -273,13 +255,13 @@ public class SecurityService implements ISecurityService {
   private UserQuery queryHasRoles(IApplication app, List<String> fromRoles) {
     List<IRole> roles = new ArrayList<>();
     for (String roleName : fromRoles) {
-		IRole iRole = app.getSecurityContext().findRole(roleName);
-		if (Objects.nonNull(iRole)) {
-		  roles.add(iRole);
-		} else {
-			Ivy.log().warn("Cannot find role name: {0}", roleName);
-		}
-	}
+      IRole iRole = app.getSecurityContext().findRole(roleName);
+      if (Objects.nonNull(iRole)) {
+        roles.add(iRole);
+      } else {
+        Ivy.log().warn("Cannot find role name: {0}", roleName);
+      }
+    }
     
     UserQuery hasRolesQuery = UserQuery.create();
     IFilterQuery hasRolesFilter = hasRolesQuery.where();
