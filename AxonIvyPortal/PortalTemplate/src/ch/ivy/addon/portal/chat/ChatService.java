@@ -68,8 +68,13 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
 @Singleton
 public class ChatService {
 
+  private static final String UPDATE_USER_STATUS_ACTION = "updateUserStatus";
+  private static final String GET_GROUPS_ACTION = "getGroups";
+  private static final String GET_USERS_ACTION = "getUsers";
+  private static final String GET_MESSAGES_ACTION = "getMessages";
   private static final String READ_GROUP_MESSAGE_ACTION = "readGroupMessage";
   private static final String READ_PRIVATE_MESSAGE_ACTION = "readPrivateMessage";
+  private static final List<String> ACTIONS_FOR_ONE_CLIENT = Arrays.asList(GET_USERS_ACTION, GET_GROUPS_ACTION);
   private static final String CHAT_RESPONSE_TIMEOUT_STATUS = "SERVER_TIMEOUT";
   private static final String CHAT_RESPONSE_CHAT_REACHED_LIMITED_CONNECTION_STATUS = "CHAT_REACHED_LIMITED_CONNECTION";
   private static final String CHAT_RESPONSE_DEACTIVATE_CHAT_STATUS = "DEACTIVATE_CHAT";
@@ -78,7 +83,6 @@ public class ChatService {
   private Map<String, Queue<ResponseInfo>> messageResponses = new ConcurrentHashMap<>();
   private Map<String, List<GroupChat>> usernameToGroupChats = new ConcurrentHashMap<>();
   private Map<String, Integer> reachedLimitedConnectionCounters = new ConcurrentHashMap<>();
-  private static List<String> ACTIONS_FOR_ONE_CLIENT = Arrays.asList("getUsers", "getGroups");
 
   @POST
   @Path("/messages/{clientId}/{lastResponseId}/{lastResponseStatus}")
@@ -195,7 +199,7 @@ public class ChatService {
     ChatMessage message = new ChatMessage(sessionUserName(), Arrays.asList(receiver), messageText);
     ChatMessageManager.storeUnreadMessageInMemory(message);
 
-    ChatResponse chatResponse = new ChatResponse("getMessages", message, clientId);
+    ChatResponse chatResponse = new ChatResponse(GET_MESSAGES_ACTION, message, clientId);
     // If receiver is online, send message directly to receiver's response.
     resumeAsyncResponse(receiver, chatResponse, clientId);
     resumeAsyncResponse(sessionUserName(), chatResponse, clientId);
@@ -245,7 +249,7 @@ public class ChatService {
       Set<String> members = ChatGroupUtils.getUserNamesFromGroup(Long.parseLong(caseId));
 
       // Find online users of current group chat to resume new message
-      ChatResponse chatResponse = new ChatResponse("getMessages", message, clientId);
+      ChatResponse chatResponse = new ChatResponse(GET_MESSAGES_ACTION, message, clientId);
       for (String member : members) {
         resumeAsyncResponse(member, chatResponse, clientId);
       }
@@ -268,7 +272,7 @@ public class ChatService {
   @Produces(MediaType.APPLICATION_JSON)
   public synchronized Response getUsers(@PathParam("clientId") String clientId) {
     List<ChatContact> contacts = ChatContactManager.loadOnlineContacts();
-    ChatResponse chatResponse = new ChatResponse("getUsers", contacts, clientId);
+    ChatResponse chatResponse = new ChatResponse(GET_USERS_ACTION, contacts, clientId);
     resumeAsyncResponseForOneClient(sessionUserName(), chatResponse, clientId);
     return Response.ok(SUCCESSFUL).build();
   }
@@ -295,7 +299,7 @@ public class ChatService {
   public synchronized Response loadAllGroupChat(@PathParam("clientId") String clientId) {
     String sessionUserName = sessionUserName();
     List<GroupChat> groupChats = findAllChatGroups();
-    ChatResponse chatResponse = new ChatResponse("getGroups", groupChats, clientId);
+    ChatResponse chatResponse = new ChatResponse(GET_GROUPS_ACTION, groupChats, clientId);
     resumeAsyncResponseForOneClient(sessionUserName, chatResponse, clientId);
     usernameToGroupChats.put(sessionUserName, groupChats);
     return Response.ok(SUCCESSFUL).build();
@@ -310,7 +314,7 @@ public class ChatService {
       if (groupUserNames.contains(userName)) {
         List<GroupChat> groupChats = pair.getValue();
         groupChats.add(groupChat);
-        ChatResponse chatResponse = new ChatResponse("getGroups", groupChats);
+        ChatResponse chatResponse = new ChatResponse(GET_GROUPS_ACTION, groupChats);
         resumeAsyncResponse(userName, chatResponse, EMPTY);
       }
     }
@@ -354,7 +358,7 @@ public class ChatService {
     List<String> contactStrings = new ArrayList<>();
     ChatContact contact = new ChatContact(username, isOnline);
     contactStrings.add(toJson(contact));
-    ChatResponse chatResponse = new ChatResponse("updateUserStatus", contact);
+    ChatResponse chatResponse = new ChatResponse(UPDATE_USER_STATUS_ACTION, contact);
     for (String receiver : messageResponses.keySet()) {
       resumeAsyncResponse(receiver, chatResponse, EMPTY);
     }
