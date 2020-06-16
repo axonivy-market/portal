@@ -3,10 +3,10 @@
 Portal Header
 *************
 
-The Axon.ivy Portal header is always visible. On the top right of the
-header you find two very useful features:
+Axon.ivy Portal header is always visible. On the top right of the
+header you find two useful features:
 
-1. The name of the user you’re logged in with. Additionally, if you
+1. Name of the user you’re logged in with. Additionally, if you
    click on your username you get a menu with options that allow you to
    configure the Axon.ivy Portal to your personal needs. See `User Settings in
    the Axon.ivy Portal`_ for a detailed overview of the configuration options.
@@ -17,103 +17,23 @@ header you find two very useful features:
 
 .. figure:: images/portal-header.png
 
-User Settings in the Axon.ivy Portal
+User Settings in Axon.ivy Portal
 ------------------------------------
 
 When you click on your username in the top right of the Axon.ivy Portal,
 a menu is shown allowing you to configure the portal to your personal
 needs. These features are described in the following sections below.
 
-Absences
+My profile
 --------
 
-The menu entry **Absences** provides you with an absence management
-component. Here you can enter your absences and define delegates for
-tasks assigned to you or one of the roles you hold.
+Menu entry **My profile** contains user language and email settings.
 
-.. hint::
-   Although you can specify         
-   delegates for a role you hold, we recommend specifying only delegates for tasks
-   assigned personally to you. Roles are normally held by a group of users, so if
-   you’re absent one of your role members is still able to pick up the task.
+.. figure:: images/my-profile-save.png
+.. figure:: images/my-profile.png
 
-.. figure:: images/portal-absences.png
-
-The dialog shows you all current and upcoming absences. You may show also past
-absences by activating the option **Show absences in the past**. Furthermore,
-you can edit or delete absences by using the |edit-icon| **Edit** or |delete-icon|
-**Delete** action in the row of the respective absence.
-
-HowTo: Add absence
-^^^^^^^^^^^^^^^^^^
-
-1. Click on the button **Add absence**
-
-2. The :guilabel:`Add absence` dialog is opened
-
-3. Enter a start date
-
-4. Enter an end date
-
-5. You may provide an explanatory comment
-
-6. Confirm your absence with the button **OK**
-
-.. figure:: images/how-to-add-an-absence.png
-
-HowTo: Set deputies
-^^^^^^^^^^^^^^^^^^^
-
-1. You see a list with an entry for your personal tasks and for each
-   role you hold.
-
-2. Specify a deputy by selecting user from the list.
-
-3. With personal task, you can choose **Always** or **During my absence**
-
-4. Confirm your deputies with the button **Save**.
-
-.. figure:: images/how-to-set-absence-deputies.png
-
-Email settings
---------------
-
-The menu entry **Email settings** allows you to configure your
-preferences related to standard email notifications send by the Axon.ivy
-Engine.
-
-.. hint:: 
-   If configured by your company’s application, you might also be able to configure application specific email notifications.   
-..
-
-The :guilabel:`Email settings` dialog provides you with the following configuration options:
-
-1. The option **For all applications** allows you to use one
-   configuration for all applications. It is important to note, that in the
-   background these settings will be applied to all available applications.
-
-2. The option **For each application** separate allows you to provide
-   individual settings for each available application.
-
-3. The option **Email notification on task assignment** allows you to
-   specify if you want to receive an instant notification when a task is
-   assigned to you or one of the roles you hold.
-
-4. The setting **Daily summary at** allows you to specify the weekdays
-   when you receive a summary of all tasks assigned to you or one of
-   your roles.
-
-5. The option **Further emails from application** allows you to activate
-   / deactivate further email notifications.
-
-
-.. figure:: images/axon-ivy-portal-email-notifications-settings.png
-
-Language Settings
------------------
-
-The menu entry **Language settings** allows you to specify your
-preferred application language. The setting will affect all Axon.ivy
+**Language settings** allows you to specify your
+preferred application language. This setting will affect all Axon.ivy
 Portal pages and – if supported – your companies applications pages as
 well. The following languages are currently supported in the Axon.ivy
 Portal:
@@ -137,9 +57,74 @@ Portal:
    English, but you select Spanish  
    as the portal language, your     
    application specific dialogs will
-   still be shown in English.       
+   still be shown in English.    
 
-.. figure:: images/portal-language-settings.png
+**Email settings** allows you to configure your
+preferences related to standard email notifications send by the Axon.ivy
+Engine.
+
+.. hint:: 
+   If configured by your company’s application, you might also be able to configure application specific email notifications.   
+..
+
+Toggle button **Receive email notification on task assignment** allows you to 
+specify if you want to receive an instant notification when a task is assigned to you or one of the roles you hold.
+
+Toggle button **Receive further emails from application** allows you to activate / deactivate further email notifications.
+
+Toggle button **Receive daily summary at** allows you to specify the weekdays 
+when you receive a summary of all tasks assigned to you or one of your roles.
+
+Click **Save** to save all your changes.
+
+Absences
+--------
+
+Menu entry **Absences** provides you with an absence management
+component. Here you can enter your absence and define delegate for
+tasks assigned to you or one of the roles you hold.
+
+.. hint::
+   Although you can specify         
+   delegates for a role you hold, we recommend specifying only delegates for tasks
+   assigned personally to you. Roles are normally held by a group of users, so if
+   you’re absent one of your role members is still able to pick up the task.
+
+.. figure:: images/portal-absences.png
+
+The dialog shows you all current and upcoming absences. You may show also past
+absences by activating the option **Show absences in the past**. Furthermore,
+you can edit or delete absences by using the |edit-icon| **Edit** or |delete-icon|
+**Delete** action in the row of the respective absence.
+
+How to: Add absence
+^^^^^^^^^^^^^^^^^^
+
+1. Click on the button **Add absence**
+
+2. The :guilabel:`Add absence` dialog is opened
+
+3. Enter start date and end date
+
+4. You may provide an explanatory comment
+
+5. Confirm your absence by clicking button **OK**
+
+.. figure:: images/how-to-add-an-absence.png
+
+How to: Set deputy
+^^^^^^^^^^^^^^^^^^^
+
+1. You see a list with an entry for your personal tasks and for each
+   role you hold.
+
+2. Specify a deputy by selecting user from the list.
+
+3. With personal task, you can choose **Always** or **During my absence**
+
+4. Confirm your deputies with the button **Save**.
+
+.. figure:: images/how-to-set-absence-deputies.png
 
 Change Password
 ---------------
