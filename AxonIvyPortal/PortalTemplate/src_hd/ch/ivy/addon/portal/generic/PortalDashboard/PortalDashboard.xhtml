@@ -35,11 +35,10 @@
               <h:panelGroup rendered="#{widget.type eq 'TASK'}">
                 <div class="header" style="flex: 0 0 30px">
                   <span class="title">
-                    <i class="fa fa-check-square-o u-mar-right-5" /> Your Tasks
+                    <i class="fa fa-arrows drag-handler u-mar-right-5" style="cursor: move;" data-action="Drag" /> Your Tasks
                   </span>
                   
                   <div class="actions">
-                    <i class="fa fa-arrows drag-handler u-mar-right-5" style="cursor: move;" data-action="Drag" />
                     <p:commandLink styleClass="u-mar-right-5">
                       <i class="fa fa-info-circle" />
                     </p:commandLink>
@@ -59,11 +58,10 @@
               <h:panelGroup rendered="#{widget.type eq 'PROCESS'}">
                 <div class="header" style="flex: 0 0 30px">
                   <span class="title">
-                    <i class="fa fa-cogs u-mar-right-5" /> Your Processes
+                    <i class="fa fa-arrows drag-handler u-mar-right-5" style="cursor: move;" data-action="Drag" /> Your Processes
                   </span>
                   
                   <div class="actions">
-                    <i class="fa fa-arrows drag-handler u-mar-right-5" style="cursor: move;" data-action="Drag" /> 
                     <p:commandLink>
                       <i class="fa fa-arrow-right" />
                     </p:commandLink>
@@ -76,7 +74,7 @@
               
               <h:panelGroup id="actions" layout="block" style="text-align: center; padding: 4px" rendered="#{widget.type eq 'NEW'}">
                 <i class="fa fa-arrows drag-handler" data-action="Drag" 
-                  style="cursor: move; position: absolute; top: 5px; right: 5px;" />
+                  style="cursor: move; position: absolute; top: 5px; left: 5px;" />
                 <p:commandButton id="add-widget-button" value="Add a new widget" type="button" style="margin-bottom: 5px"
                   onclick="PF('new-widget-dialog').show()" />
                 <br />
