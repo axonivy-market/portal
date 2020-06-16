@@ -12,6 +12,7 @@ import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
@@ -53,7 +54,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   protected List<CaseFilter> filters;
   protected List<CaseFilter> selectedFilters;
-  protected List<CaseFilter> oldSelectedFilters;
+  protected List<CaseFilter> oldSelectedFilters = new ArrayList<>();
   protected CaseFilterContainer filterContainer;
   protected CaseFilterData selectedFilterData;
   protected CaseFilterData defaultCaseFilterData;
@@ -155,14 +156,8 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   private void collectFiltersForDefaultFilterSet() {
     if (defaultCaseFilterData != null && CollectionUtils.isEmpty(defaultCaseFilterData.getFilters())) {
-      CaseFilterContainer tempFilterContainer = null;
-      if (this.filterContainer == null) {
-        tempFilterContainer = new DefaultCaseFilterContainer();
-      } else {
-        tempFilterContainer = this.filterContainer;
-      }
+      CaseFilterContainer tempFilterContainer = ObjectUtils.defaultIfNull(this.filterContainer, new DefaultCaseFilterContainer());  
       setValuesForCaseStateFilter(criteria, tempFilterContainer);
-
       defaultCaseFilterData.setFilters(tempFilterContainer.getFilters().stream().filter(CaseFilter::defaultFilter).collect(Collectors.toList()));
     }
   }
