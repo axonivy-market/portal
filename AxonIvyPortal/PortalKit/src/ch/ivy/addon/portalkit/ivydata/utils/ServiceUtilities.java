@@ -51,15 +51,12 @@ public class ServiceUtilities {
     return app;
   }
 
-  public static List<IApplication> findApps(List<String> appNames) {
+  public static List<IApplication> findApps(List<String> appNames) throws PortalIvyDataException {
     Objects.requireNonNull(appNames, "The appNames must not be null");
 
     List<IApplication> apps = new ArrayList<>();
     for (String appName : appNames) {
-      IApplication app = getServer().getApplicationConfigurationManager().findApplication(appName);
-      if (app != null && app.getActivityState() == ActivityState.ACTIVE) {
-        apps.add(app);
-      }
+      apps.add(findApp(appName));
     }
     return apps;
   }
