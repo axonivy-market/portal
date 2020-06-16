@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions">
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://java.sun.com/jsp/jstl/functions">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:define name="title">Dashboard</ui:define>
@@ -27,15 +27,15 @@
           color: var(--ivy-primary-color-white);
         }
       </style>
-      <div class="grid-stack" style="background-color: var(--ivy-primary-color-grey-pale)">
+      <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack" style="background-color: var(--ivy-primary-color-grey-pale)">
         <ui:repeat var="widget" value="#{dashboardBean.widgets}">
-          <div class="grid-stack-item" data-gs-x="#{widget.posX}" data-gs-y="#{widget.posY}"
+          <div class="grid-stack-item" data-gs-x="#{widget.x}" data-gs-y="#{widget.y}" data-gs-id="#{widget.id}"
             data-gs-width="#{widget.width}" data-gs-height="#{widget.height}">
             <div class="grid-stack-item-content card" style="display: flex;flex-direction: column;">
-              <h:panelGroup rendered="#{widget.type eq 'TASK'}">
+              <h:panelGroup rendered="#{fn:startsWith(widget.id, 'TASK')}">
                 <div class="header" style="flex: 0 0 30px">
                   <span class="title">
-                    <i class="fa fa-arrows drag-handler u-mar-right-5" style="cursor: move;" data-action="Drag" /> Your Tasks
+                    <i class="fa fa-arrows drag-handler u-mar-right-5" style="cursor: move;" data-action="Drag" /> #{not empty widget.name ? widget.name : 'Your Tasks'}
                   </span>
                   
                   <div class="actions">
@@ -55,10 +55,10 @@
                 </div>
               </h:panelGroup>
                 
-              <h:panelGroup rendered="#{widget.type eq 'PROCESS'}">
+              <h:panelGroup rendered="#{fn:startsWith(widget.id, 'PROCESS')}">
                 <div class="header" style="flex: 0 0 30px">
                   <span class="title">
-                    <i class="fa fa-arrows drag-handler u-mar-right-5" style="cursor: move;" data-action="Drag" /> Your Processes
+                    <i class="fa fa-arrows drag-handler u-mar-right-5" style="cursor: move;" data-action="Drag" /> #{not empty widget.name ? widget.name : 'Your Processes'}
                   </span>
                   
                   <div class="actions">
@@ -72,22 +72,60 @@
                 </div>
               </h:panelGroup>
               
-              <h:panelGroup id="actions" layout="block" style="text-align: center; padding: 4px" rendered="#{widget.type eq 'NEW'}">
+              <h:panelGroup id="actions" layout="block" style="text-align: center; padding: 4px" rendered="#{widget.id eq 'NEW'}">
                 <i class="fa fa-arrows drag-handler" data-action="Drag" 
                   style="cursor: move; position: absolute; top: 5px; left: 5px;" />
                 <p:commandButton id="add-widget-button" value="Add a new widget" type="button" style="margin-bottom: 5px"
                   onclick="PF('new-widget-dialog').show()" />
                 <br />
-                <p:commandLink id="restore-widget-button" value="Restore default widgets" />
+                <p:commandLink id="restore-button" value="Restore default widgets" actionListener="#{dashboardBean.restore()}"
+                  update="grid-stack" oncomplete="restoreGrid()" />
               </h:panelGroup>
             </div>
           </div>
         </ui:repeat>
-      </div>
+      </h:panelGroup>
 
-<script type="text/javascript">
-  GridStack.init({column: 12, row: 11, handleClass :'drag-handler'});
-</script>
+      <h:form>
+        <p:remoteCommand name="saveConfigurationCommand" actionListener="#{dashboardBean.save()}" global="false" />
+      </h:form>
+      <script type="text/javascript">
+        var grid;
+        loadGrid();
+        
+        function restoreGrid() {
+          grid.destroy([false]);
+          loadGrid();
+        }
+        
+        function loadGrid() {
+          grid = GridStack.init({
+            column: 12, 
+            row: 11, 
+            handleClass :'drag-handler', 
+            resizable: {
+              handles: 'e, se, s, sw, w'
+            }
+          });
+        }
+        
+        grid.on('change', function() {
+          var serializedData = [];
+          grid.engine.nodes.forEach(function(node) {
+            serializedData.push({
+              id: node.id,
+              x: node.x,
+              y: node.y,
+              width: node.width,
+              height: node.height
+            });
+          });
+          saveConfigurationCommand([{
+            name : 'nodes',
+            value : JSON.stringify(serializedData, null, '')
+          }]);
+        });
+      </script>
       <p:dialog id="new-widget-dialog" widgetVar="new-widget-dialog" header="Create a Widget" appendTo="@(body)"
         closeOnEscape="true" draggable="false" fitViewport="true" responsive="true" modal="true">
 
