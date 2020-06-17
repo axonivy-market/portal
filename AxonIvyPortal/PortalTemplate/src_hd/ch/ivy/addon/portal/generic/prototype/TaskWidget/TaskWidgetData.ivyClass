@@ -2,17 +2,9 @@ TaskWidgetData #class
 ch.ivy.addon.portal.generic.prototype.TaskWidget #namespace
 tasks java.util.List<ch.ivyteam.ivy.workflow.ITask> #field
 tasks PERSISTENT #fieldModifier
-taskCount Integer #field
-taskCount PERSISTENT #fieldModifier
 taskSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria #field
 taskSearchCriteria PERSISTENT #fieldModifier
-widgetName String #field
-widgetName PERSISTENT #fieldModifier
-disableCountTask Boolean #field
-disableCountTask PERSISTENT #fieldModifier
-columns java.util.List<String> #field
-columns PERSISTENT #fieldModifier
-newColumnName String #field
-newColumnName PERSISTENT #fieldModifier
-newColumnValue String #field
-newColumnValue PERSISTENT #fieldModifier
+taskQuery ch.ivyteam.ivy.workflow.query.TaskQuery #field
+taskQuery PERSISTENT #fieldModifier
+taskWidget ch.ivy.addon.portalkit.dto.TaskDashboardWidget #field
+taskWidget PERSISTENT #fieldModifier

@@ -16,6 +16,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.dto.DashboardWidget;
@@ -72,6 +73,10 @@ public class DashboardBean implements Serializable {
     Map<String, String> requestParamMap = getRequestParameterMap();
     String nodes = Optional.ofNullable(requestParamMap.get("nodes")).orElse(StringUtils.EMPTY);
     Ivy.wf().getApplication().customProperties().property("dashboard.widgets." + user).setValue(nodes);
+  }
+  
+  public void saveWidgets() throws JsonProcessingException {
+    Ivy.wf().getApplication().customProperties().property("dashboard.widgets." + user).setValue(mapper.writeValueAsString(widgets));
   }
   
   public void restore() throws IOException {
