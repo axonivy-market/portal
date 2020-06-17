@@ -29,6 +29,11 @@ public class ResourceLoader {
     return Optional.ofNullable(pmv.getProject().getFile("pom.xml")).map(IFile::getLocationURI)
         .map(Paths::get).filter(Files::exists);
   }
+  
+  public Optional<Path> getWidgetConfiguration() {
+    return Optional.ofNullable(pmv.getProject().getFile("resources/widget.json")).map(IFile::getLocationURI)
+        .map(Paths::get).filter(Files::exists);
+  }
 
   private Optional<IFolder> getWebContentFolder() {
     try {
