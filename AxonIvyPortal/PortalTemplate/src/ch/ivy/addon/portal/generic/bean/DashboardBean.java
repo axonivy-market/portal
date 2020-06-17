@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -59,8 +60,9 @@ public class DashboardBean implements Serializable {
     Optional<Path> path = loader.getWidgetConfiguration();
     String read = String.join("\n", Files.readAllLines(path.get()));
     ObjectMapper mapper = new ObjectMapper();
-    DashboardWidgetConfiguration configuration = mapper.readValue(read, DashboardWidgetConfiguration.class);
+    DashboardWidgetConfiguration configuration = new DashboardWidgetConfiguration();
     configuration.setUser(user);
+    configuration.setWidgets(Arrays.asList(mapper.readValue(read, DashboardWidget[].class)));
     return configuration;
   }
 
@@ -81,8 +83,10 @@ public class DashboardBean implements Serializable {
     Ivy.repo().save(configuration);
   }
   
-  public void restore() {
+  public void restore() throws IOException {
     Ivy.repo().delete(configuration);
+    configuration = defaultConfiguration();
+    widgets = configuration.getWidgets();
   }
   
   private Map<String, String> getRequestParameterMap() {
