@@ -1,0 +1,27 @@
+{
+	"widgets": [
+	{
+		"id": "TASK_1",
+		"name": "Your Tasks 123",
+		"x": 0,
+		"y": 0,
+		"width": 8,
+		"height": 11
+	},
+	{
+		"id": "PROCESS_1",
+		"name": "Your Processes",
+		"x": 8,
+		"y": 0,
+		"width": 4,
+		"height": 4
+	},
+	{
+		"id": "NEW",
+		"x": 8,
+		"y": 4,
+		"width": 4,
+		"height": 1
+	}
+	]
+}
