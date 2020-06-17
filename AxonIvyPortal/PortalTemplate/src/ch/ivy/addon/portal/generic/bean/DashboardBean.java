@@ -16,13 +16,9 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.dto.DashboardWidget;
-import ch.ivy.addon.portalkit.dto.DashboardWidgetConfiguration;
 import ch.ivy.addon.portalkit.dto.WidgetSample;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
@@ -38,32 +34,30 @@ public class DashboardBean implements Serializable {
   private List<DashboardWidget> widgets;
   private List<WidgetSample> samples;
   private String user;
-  private DashboardWidgetConfiguration configuration;
+  private ObjectMapper mapper;
 
   @PostConstruct
   public void init() {
+    mapper = new ObjectMapper();
     samples = List.of(taskSample(), caseSample(), statisticSample(), processSample());
     user = Ivy.session().getSessionUserName();
-    configuration = Ivy.repo().search(DashboardWidgetConfiguration.class).textField("user").containsPhrase(user).limit(1).execute().getFirst();
-    if (configuration == null) {
-      try {
-        configuration = defaultConfiguration();
-      } catch (IOException e) {
+    String configurationJson = Ivy.wf().getApplication().customProperties().property("dashboard.widgets." + user).getValue();
+    try {
+      if (StringUtils.isNotBlank(configurationJson)) {
+        widgets = Arrays.asList(mapper.readValue(configurationJson, DashboardWidget[].class));
+      } else {
+        widgets = defaultWidgets();
       }
+    } catch (IOException e) {
     }
-    widgets = configuration.getWidgets();
   }
   
-  private DashboardWidgetConfiguration defaultConfiguration() throws IOException {
+  private List<DashboardWidget> defaultWidgets() throws IOException {
     ILibrary portalStyleLib = Ivy.wf().getApplication().findReleasedLibrary(PortalLibrary.PORTAL_STYLE.getValue());
     ResourceLoader loader = new ResourceLoader(portalStyleLib.getProcessModelVersion());
     Optional<Path> path = loader.getWidgetConfiguration();
     String read = String.join("\n", Files.readAllLines(path.get()));
-    ObjectMapper mapper = new ObjectMapper();
-    DashboardWidgetConfiguration configuration = new DashboardWidgetConfiguration();
-    configuration.setUser(user);
-    configuration.setWidgets(Arrays.asList(mapper.readValue(read, DashboardWidget[].class)));
-    return configuration;
+    return Arrays.asList(mapper.readValue(read, DashboardWidget[].class));
   }
 
   public List<DashboardWidget> getWidgets() {
@@ -74,19 +68,15 @@ public class DashboardBean implements Serializable {
     return samples;
   }
   
-  public void save() throws JsonParseException, JsonMappingException, IOException {
+  public void save() {
     Map<String, String> requestParamMap = getRequestParameterMap();
     String nodes = Optional.ofNullable(requestParamMap.get("nodes")).orElse(StringUtils.EMPTY);
-    ObjectMapper mapper = new ObjectMapper();
-    List<DashboardWidget> widgets = mapper.readValue(nodes, new TypeReference<List<DashboardWidget>>(){});
-    configuration.setWidgets(widgets);
-    Ivy.repo().save(configuration);
+    Ivy.wf().getApplication().customProperties().property("dashboard.widgets." + user).setValue(nodes);
   }
   
   public void restore() throws IOException {
-    Ivy.repo().delete(configuration);
-    configuration = defaultConfiguration();
-    widgets = configuration.getWidgets();
+    Ivy.wf().getApplication().customProperties().delete("dashboard.widgets." + user);
+    widgets = defaultWidgets();
   }
   
   private Map<String, String> getRequestParameterMap() {
