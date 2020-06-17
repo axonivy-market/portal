@@ -2,58 +2,59 @@ package ch.ivy.addon.portalkit.dto;
 
 import java.io.Serializable;
 
-import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
-
 public class DashboardWidget implements Serializable {
 
   private static final long serialVersionUID = 4580715578128184706L;
   
+  private String id;
   private String name;
-  private DashboardWidgetType type;
-  private int posX;
-  private int posY;
+  private int x;
+  private int y;
   private int width;
   private int height;
+  
+  public DashboardWidget() {
+  }
 
-  public DashboardWidget(String name, DashboardWidgetType type, int posX, int posY, int width, int height) {
+  public DashboardWidget(String id, String name, int x, int y, int width, int height) {
+    this.id = id;
     this.name = name;
-    this.type = type;
-    this.posX = posX;
-    this.posY = posY;
+    this.x = x;
+    this.y = y;
     this.width = width;
     this.height = height;
+  }
+  
+  public String getId() {
+    return id;
+  }
+  
+  public void setId(String id) {
+    this.id = id;
   }
   
   public String getName() {
     return name;
   }
-
+  
   public void setName(String name) {
     this.name = name;
   }
-
-  public DashboardWidgetType getType() {
-    return type;
-  }
   
-  public void setType(DashboardWidgetType type) {
-    this.type = type;
+  public int getX() {
+    return x;
   }
 
-  public int getPosX() {
-    return posX;
+  public void setX(int x) {
+    this.x = x;
   }
 
-  public void setPosX(int posX) {
-    this.posX = posX;
+  public int gety() {
+    return y;
   }
 
-  public int getPosY() {
-    return posY;
-  }
-
-  public void setPosY(int posY) {
-    this.posY = posY;
+  public void setY(int y) {
+    this.y = y;
   }
  
   public int getWidth() {
