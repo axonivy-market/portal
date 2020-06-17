@@ -1,15 +1,16 @@
-{
-	"widgets": [
+[
 	{
-		"id": "TASK_1",
-		"name": "Your Tasks 123",
+		"type": "task",
+		"id": "task_1",
+		"name": "Your Tasks",
 		"x": 0,
 		"y": 0,
 		"width": 8,
 		"height": 11
 	},
 	{
-		"id": "PROCESS_1",
+		"type": "process",
+		"id": "process_1",
 		"name": "Your Processes",
 		"x": 8,
 		"y": 0,
@@ -17,11 +18,11 @@
 		"height": 4
 	},
 	{
-		"id": "NEW",
+		"type": "action",
+		"id": "action",
 		"x": 8,
 		"y": 4,
 		"width": 4,
 		"height": 1
 	}
-	]
-}
+]
