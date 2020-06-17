@@ -17,7 +17,7 @@ header you find two useful features:
 
 .. figure:: images/portal-header.png
 
-User Settings in Axon.ivy Portal
+User Settings in the Axon.ivy Portal
 ------------------------------------
 
 When you click on your username in the top right of the Axon.ivy Portal,
