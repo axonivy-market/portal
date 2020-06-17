@@ -42,7 +42,7 @@
                     <p:commandLink styleClass="u-mar-right-5">
                       <i class="fa fa-info-circle" />
                     </p:commandLink>
-                    <p:commandLink styleClass="u-mar-right-5" onclick="PF('edit-task-widget-dialog').show()">
+                    <p:commandLink styleClass="u-mar-right-5" onclick="PF('task-widget-configuration-dialog').show()" global="false" immediate="true">
                       <i class="fa fa-pencil" />
                     </p:commandLink>
                     <p:commandLink>
@@ -51,8 +51,9 @@
                   </div>
                 </div>
                 <div style="flex: auto;overflow:auto;margin-bottom: 20px;padding:10px">
-                  <ic:ch.ivy.addon.portal.generic.prototype.TaskWidget />
+                  <ic:ch.ivy.addon.portal.generic.prototype.TaskWidget taskWidget="#{widget}" />
                 </div>
+                <ic:ch.ivy.addon.portal.generic.prototype.TaskWidgetConfiguration id="task-widget-configuration-dialog" taskWidget="#{widget}" />
               </h:panelGroup>
                 
               <h:panelGroup rendered="#{fn:startsWith(widget.id, 'process')}">
@@ -140,18 +141,6 @@
         <f:facet name="footer">
           <p:commandButton id="new-widget-close-button" value="Close" type="button"
             onclick="PF('new-widget-dialog').hide()" />
-        </f:facet>
-      </p:dialog>
-
-      <p:dialog id="task-widget-configuration-dialog" widgetVar="task-widget-configuration-dialog"
-        header="Task Widget Configuration" appendTo="@(body)" closeOnEscape="true" draggable="false" dynamic="true"
-        fitViewport="true" responsive="true" modal="true" width="80vw">
-        <ui:include src="TaskWidgetConfiguration.xhtml" />
-        <f:facet name="footer">
-          <p:commandButton id="task-configuration-save-button" value="Save" type="button"
-            onclick="PF('task-widget-configuration-dialog').hide()" />
-          <p:commandButton id="task-configuration-cancel-button" value="Cancel" type="button"
-            onclick="PF('task-widget-configuration-dialog').hide()" />
         </f:facet>
       </p:dialog>
     </ui:define>

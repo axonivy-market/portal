@@ -7,96 +7,58 @@
   xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <cc:interface componentType="IvyComponent">
+  <cc:attribute name="readOnly" default="false" />
+  <cc:attribute name="showToggleColumn" default="false" />
+  <cc:attribute name="taskWidget" />
 </cc:interface>
 <cc:implementation>
-  <f:event listener="#{logic.initialize}" type="preRenderComponent" />
-  <h:outputText value="3 tasks" />
-  <p:dataTable value="#{data.tasks}" var="task" styleClass="task-table"
-    draggableColumns="true">
-    <p:column headerText="Start" styleClass="start-column">
-      <p:commandLink>
-        <span class="fa fa-play" />
-      </p:commandLink>
-    </p:column>
-    <p:column headerText="Prio" styleClass="prio-column" filterBy="#{task.priority}">
-      <h:outputText value="#{task.priority}" styleClass="priority #{task.priority}" />
-    </p:column>
-    <p:column headerText="Task Name" styleClass="name-column" filterBy="#{task.name}">
-      <h:outputText value="#{task.name}" />
-    </p:column>
-    <p:column headerText="Description" styleClass="desc-column" filterBy="#{task.description}">
-      <h:outputText value="#{task.description}" />
-    </p:column>
-  </p:dataTable>
-  <p:dialog id="edit-task-widget-dialog" styleClass="edit-task-widget-dialog" widgetVar="edit-task-widget-dialog" width="700px" modal="true" appendTo="@(body)">
-    <p:tabView id="edit-task-widget" activeIndex="0">
-      <p:tab title="General Info">
-        <div class="ui-g ui-fluid">
-		      <div class="ui-g-4">
-		        <h:outputLabel value="Widget name" for="widget-name" />
-		      </div>
-		      <div class="ui-g-8" >
-		        <p:inputText id="widget-name" value="#{data.widgetName}" />
-		      </div>
-		    </div>
-		    <div class="ui-g">
-		      <div class="ui-g-12" >
-		        <p:selectBooleanCheckbox id="disable-count-task" value="#{data.disableCountTask}" />
-		        <h:outputLabel for="disable-count-task" value="Disable count task" />
-		      </div>
-		    </div>
-      </p:tab>
-      <p:tab title="Custom columns">
-        <p:commandButton type="button" value="New column" onclick="PF('create-column-dialog').show()" />
-        <p:orderList id="order-list-items" value="#{data.columns}" var="column"
-          itemValue="#{column}" responsive="true" controlsLocation="none" >
-          <p:column>
-            <h:outputText value="#{column}" />
-          </p:column>
-        </p:orderList>
-      </p:tab>
-      <p:tab title="Custom query">
-        
-      </p:tab>
-    </p:tabView>
-
-     <div class="ui-g-12 ui-dialog-footer">
-	    <p:commandButton id="save-widget" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" 
-	      oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('edit-task-widget-dialog').hide();}" />
-	   
-	    <p:spacer width="5px" />
-	    <p:commandButton id="cancel-widget" type="button"
-	      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-	      onclick="PF('edit-task-widget-dialog').hide();" styleClass="portal-cancel-button" />
-	  </div>
-  </p:dialog>
-  <p:dialog id="create-column-dialog" widgetVar="create-column-dialog" modal="true" appendTo="@(body)">
-    <div class="ui-g">
-      <div class="ui-g-4">
-        <h:outputLabel value="Column name" />
-      </div>
-      <div class="ui-g-8">
-        <p:inputText value="#{data.newColumnName}" />
-      </div>
-      <div class="ui-g-4">
-        <h:outputLabel value="Column custom field" />
-      </div>
-      <div class="ui-g-8">
-        <p:inputText value="#{data.newColumnValue}" />
-      </div>
+  <f:event listener="#{logic.initialize(cc.attrs.taskWidget)}" type="preRenderComponent" />
+  <div class="task-widget-header-main widget-header-main">
+    <h:outputText styleClass="widget-header-main-title" value="3 tasks" />
+  </div>
+  <div class="ui-g">
+    <div class="ui-g-8">
+      <h:outputText value="You can reorder columns by drag and drop them to desired position." />
     </div>
-    <div class="ui-g-12 ui-dialog-footer">
-      <p:commandButton id="create-column" value="Create"
-        actionListener="#{logic.addColumn}"
-        process="@(form)"
-        update="#{p:component('order-list-items')}"
-        oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('create-column-dialog').hide();}" />
-     
-      <p:spacer width="5px" />
-      <p:commandButton id="cancel-create-column" type="button"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        onclick="PF('create-column-dialog').hide();" styleClass="portal-cancel-button" />
+    <div class="ui-g-4">
+      <p:commandLink id="column-toggler" value="Manage columns" rendered="#{cc.attrs.showToggleColumn}" styleClass="Fright" />
+      <p:columnToggler trigger="column-toggler" datasource="task-table" />
     </div>
-  </p:dialog>
+    <h:panelGroup id="task-table-container" layout="block" styleClass="ui-g-12 u-padding-0 task-configuration__task-table-container">
+      <p:dataTable id="task-table" value="#{data.tasks}" var="task" styleClass="prototype-task-table task-table" rows="10" rowsPerPageTemplate="5,10,15"
+        draggableColumns="true" paginator="true" paginatorPosition="bottom">
+        <p:column headerText="Start" styleClass="start-column">
+          <p:commandLink disabled="#{cc.attrs.readOnly}">
+            <span class="fa fa-play" />
+          </p:commandLink>
+        </p:column>
+        <p:column headerText="Prio" styleClass="prio-column" filterBy="#{task.priority}">
+          <h:outputText value="#{taskWidgetConfigurationPrototypeBean.getUserFriendlyTaskPriority(task.priority)}" styleClass="priority #{task.priority}" />
+        </p:column>
+        <p:column headerText="ID" styleClass="task-id-column" filterBy="#{task.id}">
+          <h:outputText value="#{task.id}" />
+        </p:column>
+        <p:column headerText="Task Name" styleClass="name-column" filterBy="#{task.name}">
+          <h:outputText value="#{task.name}" />
+        </p:column>
+        <p:column headerText="Description" styleClass="desc-column" filterBy="#{task.description}">
+          <h:outputText value="#{task.description}" />
+        </p:column>
+        <p:column headerText="Responsible" styleClass="" filterBy="#{task.activator.displayName}">
+          <h:outputText value="#{task.activator.displayName}" />
+        </p:column>
+        <p:column headerText="State" styleClass="state-column" filterBy="#{task.state}">
+          <h:outputText value="#{taskWidgetConfigurationPrototypeBean.getUserFriendlyTaskState(task.state)}" styleClass="state #{task.state}" />
+        </p:column>
+        <p:column headerText="Created" styleClass="" filterBy="#{task.startTimestamp}">
+          <h:outputText value="#{task.startTimestamp}" styleClass="" />
+        </p:column>
+        <p:column headerText="Expired" styleClass="" filterBy="#{task.expiryTimestamp}">
+          <h:outputText value="#{task.expiryTimestamp}" styleClass="" />
+        </p:column>
+      </p:dataTable>
+        <p:remoteCommand name="reloadTasks" actionListener="#{logic.initialize(cc.attrs.taskWidget)}" process="@(form)" update="@(form) #{p:component('task-table-container')}" />
+    </h:panelGroup>
+  </div>
 </cc:implementation>
 </html>
