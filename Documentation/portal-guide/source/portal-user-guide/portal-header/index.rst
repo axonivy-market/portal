@@ -25,7 +25,7 @@ a menu is shown allowing you to configure the portal to your personal
 needs. These features are described in the following sections below.
 
 My profile
---------
+----------
 
 Menu entry **My profile** contains user language and email settings.
 
@@ -98,7 +98,7 @@ you can edit or delete absences by using the |edit-icon| **Edit** or |delete-ico
 **Delete** action in the row of the respective absence.
 
 How to: Add absence
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^
 
 1. Click on the button **Add absence**
 
@@ -113,7 +113,7 @@ How to: Add absence
 .. figure:: images/how-to-add-an-absence.png
 
 How to: Set deputy
-^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
 1. You see a list with an entry for your personal tasks and for each
    role you hold.
