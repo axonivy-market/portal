@@ -121,11 +121,11 @@ public class ChatPage extends TemplatePage {
   }
 
   public boolean isNotificationBadgeChat() {
-    waitForElementDisplayed(By.cssSelector("a[data-badge=' ']"), true);
+    waitForElementDisplayed(By.cssSelector("a.notification-badge"), true);
     return isElementPresent(By.cssSelector("a[data-badge=' ']"));
   }
 
   public boolean isNotificationContactChat() {
-    return !isElementPresent(By.cssSelector("span[class$='u-hiden']"));
+    return isElementPresent(By.cssSelector("span[class$='js-notification']"));
   }
 }
