@@ -57,12 +57,6 @@ public class HomePage extends TemplatePage {
 		return true;
 	}
 
-	public  ChatPage getChat() {
-		waitForElementDisplayed(By.id("toggle-chat-panel-command"), true, 5);
-		click(findElementById("toggle-chat-panel-command"));
-		return new ChatPage();
-	}
-
 	public String getEnviromentInfo() {
 		waitForElementDisplayed(By.cssSelector("span[id$='server-infor']"), true, 5);
 		return findElementByCssSelector("span[id$='server-infor']").getText();
