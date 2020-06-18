@@ -50,12 +50,13 @@ public class DashboardBean implements Serializable {
     user = Ivy.session().getSessionUserName();
     List<ICustomProperty> properties = Ivy.wf().getApplication().customProperties().findAllStartingWith("dashboard.widgets." + user);
     try {
-      widgets = defaultWidgets();
-      /*
-       * if (CollectionUtils.isNotEmpty(properties)) { for (ICustomProperty property :
-       * properties) { widgets.add(mapper.readValue(property.getValue(),
-       * DashboardWidget.class)); } } else { widgets = defaultWidgets(); }
-       */
+      if (CollectionUtils.isNotEmpty(properties)) {
+        for (ICustomProperty property : properties) {
+          widgets.add(mapper.readValue(property.getValue(), DashboardWidget.class));
+        }
+      } else {
+        widgets = defaultWidgets();
+      }
     } catch (IOException e) {
     }
   }
@@ -91,7 +92,14 @@ public class DashboardBean implements Serializable {
   }
   
   public void saveWidget(DashboardWidget widget) throws JsonProcessingException {
-    Ivy.wf().getApplication().customProperties().property("dashboard.widgets." + user + "." + widget.getId()).setValue(mapper.writeValueAsString(widget));
+    List<ICustomProperty> properties = Ivy.wf().getApplication().customProperties().findAllStartingWith("dashboard.widgets." + user);
+    if (CollectionUtils.isNotEmpty(properties)) {
+      Ivy.wf().getApplication().customProperties().property("dashboard.widgets." + user + "." + widget.getId()).setValue(mapper.writeValueAsString(widget));
+    } else {
+      for (DashboardWidget w : widgets) {
+        Ivy.wf().getApplication().customProperties().property("dashboard.widgets." + user + "." + w.getId()).setValue(mapper.writeValueAsString(w));
+      }
+    }
   }
   
   public void restore() throws IOException {
