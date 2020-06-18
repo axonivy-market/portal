@@ -77,9 +77,9 @@ public class TaskWidgetConfigurationPrototypeBean {
     }
   }
 
-  public void saveTaskDashboardWidget() throws JsonProcessingException {
+  public void saveTaskDashboardWidget(TaskDashboardWidget widget) throws JsonProcessingException {
     DashboardBean dashboardBean = ManagedBeans.get("dashboardBean");
-    dashboardBean.saveWidgets();
+    dashboardBean.saveWidget(widget);
   }
 
   public List<TaskState> getFilteredStates() {
