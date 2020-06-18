@@ -4824,6 +4824,10 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu  .ui-selectch
 .task-configuration__layout-container {
 	width: calc(100% - 470px);
 	align-items: flex-start;
-	align-self: baseline;
+	align-self: stretch;
 	padding: 10px !important;
+}
+
+.task-configuration__header {
+	margin: 0;
 }
