@@ -2,6 +2,8 @@ package ch.ivy.addon.portalkit.dto;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
@@ -60,7 +62,7 @@ public abstract class DashboardWidget implements Serializable {
     this.x = x;
   }
 
-  public int gety() {
+  public int getY() {
     return y;
   }
 
@@ -82,5 +84,30 @@ public abstract class DashboardWidget implements Serializable {
 
   public void setHeight(int height) {
     this.height = height;
+  }
+
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((id == null) ? 0 : id.hashCode());
+    return result;
+  }
+
+  @Override
+  public boolean equals(Object obj) {
+    if (this == obj)
+      return true;
+    if (obj == null)
+      return false;
+    if (getClass() != obj.getClass())
+      return false;
+    DashboardWidget other = (DashboardWidget) obj;
+    if (id == null) {
+      if (other.id != null)
+        return false;
+    } else if (!id.equals(other.id))
+      return false;
+    return true;
   }
 }
