@@ -140,14 +140,13 @@
           <ic:ch.ivy.addon.portal.generic.prototype.TaskWidget id="task-widget-preview" readOnly="true" showToggleColumn="true" taskWidget="#{cc.attrs.taskWidget}" />
         </div>
       </div>
-    </h:form>
 
+    </h:form>
     <f:facet name="footer">
-      <p:commandButton id="task-configuration-save-button" value="Save" type="button">
-        <p:ajax event="click" listener="#{taskWidgetConfigurationPrototypeBean.saveTaskDashboardWidget()}"
-        process="#{p:component('task-configuration-form')}"
+      <p:commandButton id="task-configuration-save-button" value="Save"
+        actionListener="#{taskWidgetConfigurationPrototypeBean.saveTaskDashboardWidget()}"
+        process="#{p:component('task-configuration-form')}" partialSubmit="true"
         oncomplete="PF('task-widget-configuration-dialog').hide(); reloadTasks();" />
-      </p:commandButton>
       <p:commandButton id="task-configuration-cancel-button" value="Cancel" type="button"
         onclick="PF('task-widget-configuration-dialog').hide()" />
     </f:facet>
