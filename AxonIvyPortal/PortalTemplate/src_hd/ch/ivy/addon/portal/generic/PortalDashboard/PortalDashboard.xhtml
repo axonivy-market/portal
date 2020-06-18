@@ -103,25 +103,25 @@
               handles: 'e, se, s, sw, w'
             }
           });
-        }
-        
-        grid.on('change', function() {
-          var serializedData = [];
-          grid.engine.nodes.forEach(function(node) {
-            serializedData.push({
-              type: node.id.split('_')[0],
-              id: node.id,
-              x: node.x,
-              y: node.y,
-              width: node.width,
-              height: node.height
+          
+          grid.on('change', function() {
+            var serializedData = [];
+            grid.engine.nodes.forEach(function(node) {
+              serializedData.push({
+                type: node.id.split('_')[0],
+                id: node.id,
+                x: node.x,
+                y: node.y,
+                width: node.width,
+                height: node.height
+              });
             });
+            saveConfigurationCommand([{
+              name : 'nodes',
+              value : JSON.stringify(serializedData, null, '')
+            }]);
           });
-          saveConfigurationCommand([{
-            name : 'nodes',
-            value : JSON.stringify(serializedData, null, '')
-          }]);
-        });
+        }
       </script>
       <p:dialog id="new-widget-dialog" widgetVar="new-widget-dialog" header="Create a Widget" appendTo="@(body)"
         closeOnEscape="true" draggable="false" fitViewport="true" responsive="true" modal="true">
