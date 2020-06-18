@@ -20,6 +20,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   private Date expiryDateFrom;
   private Date expiryDateTo;
   private List<String> categories;
+  private List<String> taskColumns;
 
   public String getTaskId() {
     return taskId;
@@ -86,5 +87,11 @@ public class TaskDashboardWidget extends DashboardWidget {
   }
   public void setCategories(List<String> categories) {
     this.categories = categories;
+  }
+  public List<String> getTaskColumns() {
+    return taskColumns;
+  }
+  public void setTaskColumns(List<String> taskColumns) {
+    this.taskColumns = taskColumns;
   }
 }
