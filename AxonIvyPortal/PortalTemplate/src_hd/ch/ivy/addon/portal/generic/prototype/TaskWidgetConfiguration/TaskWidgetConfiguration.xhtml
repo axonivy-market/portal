@@ -10,13 +10,13 @@
   <cc:attribute name="readOnly" default="false" />
   <cc:attribute name="showToggleColumn" default="false" />
   <cc:attribute name="taskWidget" />
+  <cc:attribute name="componentToUpdate" />
 </cc:interface>
 <cc:implementation>
   <p:dialog id="#{cc.clientId}" widgetVar="task-widget-configuration-dialog"
     header="Task Widget Configuration" appendTo="@(body)" closeOnEscape="true" draggable="false" dynamic="true"
     fitViewport="true" responsive="true" modal="true" width="80vw">
 
-    <h:form id="task-configuration-form">
       <div class="task-configuration ui-g">
         <div class="task-configuration__settings ui-g-4 filter-container card">
           <div class="ui-g-12">
@@ -24,6 +24,7 @@
             as columns to be shown:
           </div>
   
+  <h:form id="task-configuration-form">
           <div class="ui-g-3">
             <p:outputLabel for="widget-title" value="Widget Title" />
           </div>
@@ -39,7 +40,7 @@
           </div>
           <div class="ui-g-8">
             <p:commandButton id="apply-filter-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}"
-              styleClass="apply-filters-btn Fright" process="@(form)" global="true" oncomplete="reloadTasks();"/>
+              styleClass="apply-filters-btn Fright" process="@(form)" global="true" oncomplete="reloadTasksForPreview();"/>
           </div>
       
           <div class="ui-g-3">
@@ -132,16 +133,15 @@
           <div class="ui-g-9">
             <p:inputText id="category" styleClass="task-configuration__input-text" />
           </div>
+        </h:form>
         </div>
         <div class="card filter-container task-configuration__layout-container">
-          <div class="ui-g-12">
-            <h3>Layout</h3>
+          <div class="ui-g-12 task-configuration__header-container">
+            <h3 class="task-configuration__header">Layout</h3>
           </div>
-          <ic:ch.ivy.addon.portal.generic.prototype.TaskWidget id="task-widget-preview" readOnly="true" showToggleColumn="true" taskWidget="#{cc.attrs.taskWidget}" />
+          <ic:ch.ivy.addon.portal.generic.prototype.PreviewTaskWidget id="task-widget-preview" taskWidget="#{cc.attrs.taskWidget}" />
         </div>
       </div>
-
-    </h:form>
     <f:facet name="footer">
       <p:commandButton id="task-configuration-save-button" value="Save"
         actionListener="#{taskWidgetConfigurationPrototypeBean.saveTaskDashboardWidget(cc.attrs.taskWidget)}"
