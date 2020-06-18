@@ -52,12 +52,9 @@ Click on group chat icon, the dialog will appear to choose members of group chat
 Limitation of current Portal chat
 ---------------------------------
 
-1. Do not support multiple tabs. For each browser, user is able to open
-   1 Portal tab if he enables Portal chat.
-
-2. Portal Chat does not support cross application chat. That means user is
-   able to chat with other users in the current application, but he cannot chat
-   with users in other application.
+Portal Chat does not support cross application chat. That means user is
+able to chat with other users in the current application, but he cannot chat
+with users in other application.
 
 .. |chat| image:: images/portal-chat/chat.png
 .. |chat-group-assignee| image:: images/portal-chat/chat-group-assignee.png
