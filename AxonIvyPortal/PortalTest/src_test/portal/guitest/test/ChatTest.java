@@ -65,8 +65,7 @@ public class ChatTest extends BaseTest {
     ChatPage chatPage2 = chatMessageInGroup(TestAccount.ADMIN_USER, CHAT_MESSAGE_USER_ADMIN);
     chatPage2.closeChatMessageList();
     chatPage.sendMessage("from 1 to 2");
-    assertTrue(chatPage2.isNotificationBadgeChat());
-    assertTrue(chatPage2.isNotificationContactChat());
+    assertChatNotification(chatPage2, true);
     chatPage2.selectChatGroup();
     chatPage2.sendMessage("from 2 to 1");
     assertContainMessage(chatPage, "from 2 to 1");
@@ -186,8 +185,8 @@ public class ChatTest extends BaseTest {
   }
 
   private void assertChatNotification(ChatPage chatPage, boolean hasNotification) {
-    assertEquals(hasNotification, chatPage.isNotificationBadgeChat());
-    assertEquals(hasNotification, chatPage.isNotificationContactChat());
+    WaitHelper.assertTrueWithWait(() -> hasNotification == chatPage.isNotificationBadgeChat());
+    WaitHelper.assertTrueWithWait(() -> hasNotification == chatPage.isNotificationContactChat());
   }
 
   private ChatPage chatMessageInGroup(TestAccount chatUser, String chatMessage) {
