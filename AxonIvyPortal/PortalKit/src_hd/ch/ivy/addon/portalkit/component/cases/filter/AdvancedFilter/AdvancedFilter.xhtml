@@ -46,7 +46,7 @@
         <p:commandLink id="advanced-filter-remove-command"
           styleClass="fa fa-times-circle advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
           actionListener="#{dataModel.removeFilter(caseFilter)}" global="false"
-          update="@(.filter-container) @(.filter-add-container) @(.filter-selection-form) @(.case-list) @(.filter-buttons-container) @(.hidden-case-count)"
+          update="@(.filter-container) @(.filter-add-container) @(.filter-selection-form) @(.case-list) @(.hidden-case-count)"
           oncomplete="#{empty cc.attrs.resultContainerUpdated ? 'caseWidget.setUpScrollbar();caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();' : ''}">
           <f:actionListener binding="#{cc.attrs.removeListener}" />
         </p:commandLink>
@@ -68,7 +68,7 @@
           <p:commandButton id="update-command"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             actionListener="#{caseFilter.validate()}"
-            update="#{cc.clientId}:filter-open-form @form @(.filter-buttons-container) @(.filter-selection-form) @(.filter-buttons-container)  @(.hidden-case-count)"
+            update="#{cc.clientId}:filter-open-form @form @(.filter-container) @(.hidden-case-count)"
             oncomplete="if (args &amp;&amp; args.validationFailed) PF('#{widgetVarPanel}').show(); #{empty cc.attrs.resultContainerUpdated ? 'caseWidget.setUpScrollbar();caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();' : ''}">
             <f:actionListener binding="#{empty cc.attrs.resultContainerUpdated ? logic.updateCasesByFilter(caseContainerId) : ''}" />
             <f:actionListener binding="#{cc.attrs.updateListener}" />
@@ -77,8 +77,7 @@
           <p:spacer width="5" />
           <p:commandButton id="cancel-command" styleClass="portal-cancel-button" process="@this" global="false"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="#{cc.clientId}:filter-open-form @form" resetValues="true"
-            oncomplete="PF('#{widgetVarPanel}').hide(); #{facesContext.validationFailed ? caseFilter.resetValues() : ''};">
-          </p:commandButton>
+            oncomplete="PF('#{widgetVarPanel}').hide(); #{facesContext.validationFailed ? caseFilter.resetValues() : ''};" />
         </h:panelGroup>
       </p:overlayPanel>
     </h:form>
