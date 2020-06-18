@@ -2,18 +2,26 @@ package ch.ivy.addon.portal.generic.bean;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.event.ToggleEvent;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import ch.ivy.addon.portalkit.dto.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.UserDTO;
+import ch.ivy.addon.portalkit.enums.TaskColumn;
+import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -24,9 +32,8 @@ import ch.ivyteam.ivy.workflow.WorkflowPriority;
 public class TaskWidgetConfigurationPrototypeBean {
   private List<TaskState> filteredStates;
   private List<WorkflowPriority> priorities;
-  private List<String> portalDefaultColumns =
-          Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "STATE", "DESCRIPTION", "CATEGORY");
   private UserDTO selectedUser;
+  private Map <String, Boolean> taskColumns;
 
   @PostConstruct
   public void init() {
@@ -35,6 +42,17 @@ public class TaskWidgetConfigurationPrototypeBean {
 
       this.priorities = Arrays.asList(WorkflowPriority.EXCEPTION, WorkflowPriority.HIGH, WorkflowPriority.NORMAL, WorkflowPriority.LOW);
 
+      TaskDashboardWidget widget = Attrs.currentContext().get("cc.attrs.taskWidget");
+      this.taskColumns = new HashMap<>();
+      if (CollectionUtils.isNotEmpty(Optional.ofNullable(widget).map(TaskDashboardWidget::getTaskColumns).orElse(new ArrayList<>()))) {
+        for(TaskColumn column : TaskColumn.values()) {
+          taskColumns.put(column.name(), widget.getTaskColumns().contains(column.name()));
+        }
+      } else {
+        for(TaskColumn column : TaskColumn.values()) {
+          taskColumns.put(column.name(), true);
+        }
+      }
   }
 
   public String getUserFriendlyTaskState(TaskState state) {
@@ -77,8 +95,22 @@ public class TaskWidgetConfigurationPrototypeBean {
     }
   }
 
+  public void onToggleColumns(ToggleEvent e) {
+    TaskColumn toggledColumn = TaskColumn.values()[(Integer) e.getData()];
+    this.taskColumns.put(toggledColumn.name(), !this.taskColumns.get(toggledColumn.name()).booleanValue());
+  }
+
   public void saveTaskDashboardWidget(TaskDashboardWidget widget) throws JsonProcessingException {
     DashboardBean dashboardBean = ManagedBeans.get("dashboardBean");
+    if (widget.getTaskColumns() == null) {
+      widget.setTaskColumns(new ArrayList<>());
+    }
+
+    for (Entry<String, Boolean> entry : this.taskColumns.entrySet()) {
+      if (entry.getValue() && widget.getTaskColumns().contains(entry.getKey())) {
+        widget.getTaskColumns().add(entry.getKey());
+      }
+    }
     dashboardBean.saveWidget(widget);
   }
 
@@ -98,19 +130,19 @@ public class TaskWidgetConfigurationPrototypeBean {
       this.priorities = priorities;
   }
 
-  public List<String> getPortalDefaultColumns() {
-    return portalDefaultColumns;
-  }
-
-  public void setPortalDefaultColumns(List<String> portalDefaultColumns) {
-    this.portalDefaultColumns = portalDefaultColumns;
-  }
-
   public UserDTO getSelectedUser() {
     return selectedUser;
   }
 
   public void setSelectedUser(UserDTO selectedUser) {
     this.selectedUser = selectedUser;
+  }
+
+  public Map <String, Boolean> getTaskColumns() {
+    return taskColumns;
+  }
+
+  public void setTaskColumns(Map <String, Boolean> taskColumns) {
+    this.taskColumns = taskColumns;
   }
 }
