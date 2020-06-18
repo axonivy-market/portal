@@ -144,7 +144,7 @@
     </h:form>
     <f:facet name="footer">
       <p:commandButton id="task-configuration-save-button" value="Save"
-        actionListener="#{taskWidgetConfigurationPrototypeBean.saveTaskDashboardWidget()}"
+        actionListener="#{taskWidgetConfigurationPrototypeBean.saveTaskDashboardWidget(cc.attrs.taskWidget)}"
         process="#{p:component('task-configuration-form')}" partialSubmit="true"
         oncomplete="PF('task-widget-configuration-dialog').hide(); reloadTasks();" />
       <p:commandButton id="task-configuration-cancel-button" value="Cancel" type="button"
