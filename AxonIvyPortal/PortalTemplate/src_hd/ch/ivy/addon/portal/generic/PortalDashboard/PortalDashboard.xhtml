@@ -13,18 +13,19 @@
           border: none;
         }
         .header {
-          background-color: var(--primary-color);
-          color: var(--ivy-primary-color-white);
           padding: 10px;
+          font-size: 18px;
+          border-bottom: 2px solid lightgrey;
+          font-weight: bold;
+        }
+        .ui-resizable-handle {
+          color: var(--primary-color);
         }
         .card {
           padding: 0;
         }
         .actions {
           float: right;
-        }
-        .actions a {
-          color: var(--ivy-primary-color-white);
         }
       </style>
       <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack" style="background-color: var(--ivy-primary-color-grey-pale)">
@@ -35,7 +36,8 @@
               <h:panelGroup rendered="#{fn:startsWith(widget.id, 'task')}">
                 <div class="header" style="flex: 0 0 30px">
                   <span class="title">
-                    <i class="fa fa-arrows drag-handler u-mar-right-5" style="cursor: move;" data-action="Drag" /> #{not empty widget.name ? widget.name : 'Your Tasks'}
+                    <i class="fa fa-arrows drag-handler u-mar-right-5" style="cursor: move; color: var(--primary-color);" data-action="Drag" /> 
+                    #{not empty widget.name ? widget.name : 'Your Tasks'}
                   </span>
                   
                   <div class="actions">
@@ -59,7 +61,8 @@
               <h:panelGroup rendered="#{fn:startsWith(widget.id, 'process')}">
                 <div class="header" style="flex: 0 0 30px">
                   <span class="title">
-                    <i class="fa fa-arrows drag-handler u-mar-right-5" style="cursor: move;" data-action="Drag" /> #{not empty widget.name ? widget.name : 'Your Processes'}
+                    <i class="fa fa-arrows drag-handler u-mar-right-5" style="cursor: move; color: var(--primary-color);" data-action="Drag" /> 
+                    #{not empty widget.name ? widget.name : 'Your Processes'}
                   </span>
                   
                   <div class="actions">
@@ -75,7 +78,7 @@
               
               <h:panelGroup id="actions" layout="block" style="text-align: center; padding: 4px" rendered="#{widget.id eq 'action'}">
                 <i class="fa fa-arrows drag-handler" data-action="Drag" 
-                  style="cursor: move; position: absolute; top: 5px; left: 5px;" />
+                  style="cursor: move; position: absolute; top: 5px; left: 5px;color: var(--primary-color);font-size: 18px;" />
                 <p:commandButton id="add-widget-button" value="Add a new widget" type="button" style="margin-bottom: 5px"
                   onclick="PF('new-widget-dialog').show()" />
                 <br />
@@ -128,8 +131,8 @@
         <p:dataGrid id="new-widget-container" var="sample" value="#{dashboardBean.samples}" layout="grid" columns="2"
           styleClass="new-widget-container">
           <p:panel header="#{sample.name}" style="text-align:center;" styleClass="widget-selection">
-            <h:panelGrid columns="1" style="width:300px; height: 300px;">
-              <p:graphicImage library="images" name="#{sample.image}" width="300px" height="300px" />
+            <h:panelGrid columns="1">
+              <p:graphicImage library="images" name="#{sample.image}" width="500px" height="350px" />
               <p:link href="#" value="Select" rendered="#{sample.type ne 'TASK'}" />
               <p:link href="#" value="Select" rendered="#{sample.type eq 'TASK'}"
                 onclick="PF('new-widget-dialog').hide();PF('task-widget-configuration-dialog').show();" />
