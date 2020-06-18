@@ -53,7 +53,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   protected List<CaseFilter> filters;
   protected List<CaseFilter> selectedFilters;
-  protected List<CaseFilter> oldSelectedFilters;
+  protected List<CaseFilter> oldSelectedFilters = new ArrayList<>();
   protected CaseFilterContainer filterContainer;
   protected CaseFilterData selectedFilterData;
   protected CaseFilterData defaultCaseFilterData;
