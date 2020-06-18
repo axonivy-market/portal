@@ -50,13 +50,12 @@ public class DashboardBean implements Serializable {
     user = Ivy.session().getSessionUserName();
     List<ICustomProperty> properties = Ivy.wf().getApplication().customProperties().findAllStartingWith("dashboard.widgets." + user);
     try {
-      if (CollectionUtils.isNotEmpty(properties)) {
-        for (ICustomProperty property : properties) {
-          widgets.add(mapper.readValue(property.getValue(), DashboardWidget.class));
-        }
-      } else {
-        widgets = defaultWidgets();
-      }
+      widgets = defaultWidgets();
+      /*
+       * if (CollectionUtils.isNotEmpty(properties)) { for (ICustomProperty property :
+       * properties) { widgets.add(mapper.readValue(property.getValue(),
+       * DashboardWidget.class)); } } else { widgets = defaultWidgets(); }
+       */
     } catch (IOException e) {
     }
   }
