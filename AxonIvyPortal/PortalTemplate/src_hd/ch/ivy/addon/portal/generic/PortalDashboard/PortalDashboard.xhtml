@@ -50,10 +50,10 @@
                     </p:commandLink>
                   </div>
                 </div>
-                <div style="flex: auto;overflow:auto;margin-bottom: 20px;padding:10px">
+                <h:panelGroup styleClass="#{widget.id}" style="flex: auto;overflow:auto;margin-bottom: 20px;padding:10px" layout="block">
                   <ic:ch.ivy.addon.portal.generic.prototype.TaskWidget taskWidget="#{widget}" />
-                </div>
-                <ic:ch.ivy.addon.portal.generic.prototype.TaskWidgetConfiguration id="task-widget-configuration-dialog" taskWidget="#{widget}" />
+                </h:panelGroup>
+                <ic:ch.ivy.addon.portal.generic.prototype.TaskWidgetConfiguration id="task-widget-configuration-dialog" taskWidget="#{widget}" componentToUpdate="@(.#{widget.id})" />
               </h:panelGroup>
                 
               <h:panelGroup rendered="#{fn:startsWith(widget.id, 'process')}">
