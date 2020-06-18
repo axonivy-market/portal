@@ -69,6 +69,7 @@ Process developer can set up global settings of Portal in file ``portal_settings
       #ENABLE_GROUP_CHAT = false
       #ENABLE_PRIVATE_CHAT = false
       #CHAT_RESPONSE_TIMEOUT =
+      #CHAT_MAX_CONNECTION = 3
 
       # Documents security settings
       #ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT = false
