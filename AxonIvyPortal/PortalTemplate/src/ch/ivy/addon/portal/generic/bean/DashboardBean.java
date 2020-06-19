@@ -24,6 +24,8 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.dto.DashboardWidget;
+import ch.ivy.addon.portalkit.dto.ProcessDashboardWidget;
+import ch.ivy.addon.portalkit.dto.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.WidgetSample;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
@@ -66,7 +68,7 @@ public class DashboardBean implements Serializable {
     ResourceLoader loader = new ResourceLoader(portalStyleLib.getProcessModelVersion());
     Optional<Path> path = loader.getWidgetConfiguration();
     String read = String.join("\n", Files.readAllLines(path.get()));
-    return Arrays.asList(mapper.readValue(read, DashboardWidget[].class));
+    return new ArrayList<>(Arrays.asList(mapper.readValue(read, DashboardWidget[].class)));
   }
 
   public List<DashboardWidget> getWidgets() {
@@ -100,6 +102,16 @@ public class DashboardBean implements Serializable {
         Ivy.wf().getApplication().customProperties().property("dashboard.widgets." + user + "." + w.getId()).setValue(mapper.writeValueAsString(w));
       }
     }
+  }
+  
+  public void create() {
+    TaskDashboardWidget widget = new TaskDashboardWidget();
+    widget.setId("task_2");
+    widget.setName("New Tasks");
+    widget.setWidth(8);
+    widget.setHeight(5);
+    widget.setAutoPosition(true);
+    widgets.add(widget);
   }
   
   public void restore() throws IOException {
