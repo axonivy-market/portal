@@ -14,13 +14,23 @@
   <div class="task-widget-header-main widget-header-main">
     <h:outputText styleClass="widget-header-main-title" value="3 tasks" />
   </div>
-  <h:form>
   <div class="ui-g">
+    <div class="ui-g-8">
+      <h:outputText value="You can reorder columns by drag and drop them to desired position." />
+    </div>
+    <h:form id="preview-task-widget-for-creation-form">
+    <div class="ui-g-12">
+      <p:commandLink id="column-toggler" value="Manage columns" styleClass="Fright">
+      </p:commandLink>
+      <p:columnToggler trigger="column-toggler" datasource="task-table">
+        <p:ajax event="toggle" listener="#{taskWidgetConfigurationPrototypeBean.onToggleColumns}" />
+      </p:columnToggler>
+    </div>
     <h:panelGroup id="task-table-container" layout="block" styleClass="ui-g-12 u-padding-0 task-configuration__task-table-container">
       <p:dataTable id="task-table" value="#{data.tasks}" var="task" styleClass="prototype-task-table task-table" rows="10" rowsPerPageTemplate="5,10,15"
         draggableColumns="true" paginator="true" paginatorPosition="bottom">
         <p:column headerText="Start" styleClass="start-column">
-          <p:commandLink>
+          <p:commandLink id="start-task">
             <span class="fa fa-play" />
           </p:commandLink>
         </p:column>
@@ -49,9 +59,9 @@
           <h:outputText value="#{task.expiryTimestamp}" styleClass="" />
         </p:column>
       </p:dataTable>
-        <p:remoteCommand name="#{data.taskWidget.id}:reloadTasks" actionListener="#{logic.initialize(cc.attrs.taskWidget)}" process="@(form)" update="task-table-container" />
+        <p:remoteCommand name="reloadTasksForPreviewCreation" actionListener="#{logic.initialize(cc.attrs.taskWidget)}" process="preview-task-widget-for-creation-form" update="preview-task-widget-for-creation-form" />
     </h:panelGroup>
+    </h:form>
   </div>
-  </h:form>
 </cc:implementation>
 </html>
