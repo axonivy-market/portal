@@ -31,7 +31,7 @@
       <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack" style="background-color: var(--ivy-primary-color-grey-pale)">
         <ui:repeat var="widget" value="#{dashboardBean.widgets}">
           <div class="grid-stack-item" data-gs-x="#{widget.x}" data-gs-y="#{widget.y}" data-gs-id="#{widget.id}"
-            data-gs-width="#{widget.width}" data-gs-height="#{widget.height}">
+            data-gs-width="#{widget.width}" data-gs-height="#{widget.height}" data-gs-autoPosition="#{widget.autoPosition}">
             <div class="grid-stack-item-content card" style="display: flex;flex-direction: column;">
               <h:panelGroup rendered="#{fn:startsWith(widget.id, 'task')}">
                 <div class="header" style="flex: 0 0 30px">
