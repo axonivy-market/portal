@@ -29,7 +29,7 @@
         }
       </style>
       <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack" style="background-color: var(--ivy-primary-color-grey-pale)">
-        <ui:repeat var="widget" value="#{dashboardBean.widgets}">
+        <ui:repeat var="widget" value="#{dashboardBean.widgets}" varStatus="status">
           <div class="grid-stack-item" data-gs-x="#{widget.x}" data-gs-y="#{widget.y}" data-gs-id="#{widget.id}"
             data-gs-width="#{widget.width}" data-gs-height="#{widget.height}" data-gs-autoPosition="#{widget.autoPosition}">
             <div class="grid-stack-item-content card" style="display: flex;flex-direction: column;">
@@ -44,7 +44,7 @@
                     <p:commandLink styleClass="u-mar-right-5">
                       <i class="fa fa-info-circle" />
                     </p:commandLink>
-                    <p:commandLink styleClass="u-mar-right-5" onclick="PF('task-widget-configuration-dialog').show()" global="false" immediate="true">
+                    <p:commandLink styleClass="u-mar-right-5" onclick="PF('task-widget-configuration-dialog-#{widget.id}').show()" global="false" immediate="true">
                       <i class="fa fa-pencil" />
                     </p:commandLink>
                     <p:commandLink>
@@ -55,7 +55,7 @@
                 <h:panelGroup styleClass="#{widget.id}" style="flex: auto;overflow:auto;margin-bottom: 20px;padding:10px" layout="block">
                   <ic:ch.ivy.addon.portal.generic.prototype.TaskWidget taskWidget="#{widget}" />
                 </h:panelGroup>
-                <ic:ch.ivy.addon.portal.generic.prototype.TaskWidgetConfiguration id="task-widget-configuration-dialog" taskWidget="#{widget}" componentToUpdate="@(.#{widget.id})" />
+                <ic:ch.ivy.addon.portal.generic.prototype.TaskWidgetConfiguration taskWidget="#{widget}" componentToUpdate="@(.#{widget.id})" />
               </h:panelGroup>
                 
               <h:panelGroup rendered="#{fn:startsWith(widget.id, 'process')}">
@@ -135,7 +135,7 @@
               <p:graphicImage library="images" name="#{sample.image}" width="500px" height="350px" />
               <p:link href="#" value="Select" rendered="#{sample.type ne 'TASK'}" />
               <p:link href="#" value="Select" rendered="#{sample.type eq 'TASK'}"
-                onclick="PF('new-widget-dialog').hide();PF('task-widget-configuration-dialog').show();" />
+                onclick="PF('create-task-widget-dialog').show(); PF('new-widget-dialog').hide();" />
             </h:panelGrid>
           </p:panel>
         </p:dataGrid>
@@ -145,6 +145,7 @@
             onclick="PF('new-widget-dialog').hide()" />
         </f:facet>
       </p:dialog>
+      <ic:ch.ivy.addon.portal.generic.prototype.CreateTaskWidgetDialog taskWidget="#{dashboardBean.defaultTaskDashboardWidget}" />
     </ui:define>
   </ui:composition>
 </h:body>

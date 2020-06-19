@@ -7,15 +7,10 @@
   xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="readOnly" default="false" />
-  <cc:attribute name="showToggleColumn" default="false" />
-  <cc:attribute name="taskWidget" />
-  <cc:attribute name="componentToUpdate" />
-  <cc:attribute name="index" />
 </cc:interface>
 <cc:implementation>
   <f:event listener="#{logic.initialize(cc.attrs.taskWidget)}" type="preRenderComponent" />
-  <p:dialog id="task-widget-configuration-dialog" widgetVar="task-widget-configuration-dialog-#{data.widgetId}"
+  <p:dialog id="create-task-widget-dialog" widgetVar="create-task-widget-dialog"
     header="Task Widget Configuration" appendTo="@(body)" closeOnEscape="true" draggable="false" dynamic="true"
     fitViewport="true" responsive="true" modal="true" width="80vw">
 
@@ -26,13 +21,13 @@
             as columns to be shown:
           </div>
   
-  <h:form id="task-configuration-form">
+  <h:form id="create-task-configuration-form">
           <div class="ui-g-3">
             <p:outputLabel for="widget-title" value="Widget Title" />
           </div>
           <div class="ui-g-9">
             <p:inputText id="widget-title" styleClass="task-configuration__input-text"
-            value="#{cc.attrs.taskWidget.name}" />
+            value="#{data.widget.name}" />
           </div>
   
           <div class="ui-g-12" />
@@ -42,7 +37,7 @@
           </div>
           <div class="ui-g-8">
             <p:commandButton id="apply-filter-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}"
-              styleClass="apply-filters-btn Fright" process="@(form)" global="true" oncomplete="reloadTasksForPreview();"/>
+              styleClass="apply-filters-btn Fright" process="create-task-configuration-form" global="true" oncomplete="reloadTasksForPreviewCreation();"/>
           </div>
       
           <div class="ui-g-3">
@@ -50,7 +45,7 @@
           </div>
           <div class="ui-g-9">
             <p:inputText id="task-id" styleClass="task-configuration__input-text"
-            value="#{cc.attrs.taskWidget.taskId}" />
+            value="#{data.widget.taskId}" />
           </div>
       
           <div class="ui-g-3">
@@ -58,7 +53,7 @@
           </div>
           <div class="ui-g-9">
             <p:inputText id="name" styleClass="task-configuration__input-text"
-            value="#{cc.attrs.taskWidget.taskName}" />
+            value="#{data.widget.taskName}" />
           </div>
       
           <div class="ui-g-3">
@@ -66,14 +61,14 @@
           </div>
           <div class="ui-g-9">
             <p:inputText id="description" styleClass="task-configuration__input-text"
-            value="#{cc.attrs.taskWidget.description}" />
+            value="#{data.widget.description}" />
           </div>
       
           <div class="ui-g-3">
             <p:outputLabel for="priorities" value="Priority" />
           </div>
           <div class="ui-g-9">
-            <p:selectCheckboxMenu id="priorities" value="#{cc.attrs.taskWidget.priorities}" label="Priorities" multiple="true"
+            <p:selectCheckboxMenu id="priorities" value="#{data.widget.priorities}" label="Priorities" multiple="true"
               filter="true" filterMatchMode="startsWith" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
               <f:selectItems value="#{taskWidgetConfigurationPrototypeBean.priorities}" />
             </p:selectCheckboxMenu>
@@ -83,7 +78,7 @@
             <p:outputLabel for="states" value="State" />
           </div>
           <div class="ui-g-9">
-            <p:selectCheckboxMenu id="states" value="#{cc.attrs.taskWidget.states}" label="States" multiple="true"
+            <p:selectCheckboxMenu id="states" value="#{data.widget.states}" label="States" multiple="true"
               filter="true" filterMatchMode="startsWith" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
               <f:selectItems value="#{taskWidgetConfigurationPrototypeBean.filteredStates}" />
             </p:selectCheckboxMenu>
@@ -102,7 +97,7 @@
           </div>
           <div class="ui-g-9">
             <p:calendar id="created-from" showOn="button" styleClass="task-configuration__calendar"
-            value="#{cc.attrs.taskWidget.createdDateFrom}" />
+            value="#{data.widget.createdDateFrom}" />
           </div>
       
           <div class="ui-g-3">
@@ -110,7 +105,7 @@
           </div>
           <div class="ui-g-9">
             <p:calendar id="created-to" showOn="button" styleClass="task-configuration__calendar"
-            value="#{cc.attrs.taskWidget.createdDateTo}" />
+            value="#{data.widget.createdDateTo}" />
           </div>
       
           <div class="ui-g-3">
@@ -118,7 +113,7 @@
           </div>
           <div class="ui-g-9">
             <p:calendar id="expiry-from" showOn="button" styleClass="task-configuration__calendar"
-            value="#{cc.attrs.taskWidget.expiryDateFrom}" />
+            value="#{data.widget.expiryDateFrom}" />
           </div>
       
           <div class="ui-g-3">
@@ -126,7 +121,7 @@
           </div>
           <div class="ui-g-9">
             <p:calendar id="expiry-to" showOn="button" styleClass="task-configuration__calendar"
-            value="#{cc.attrs.taskWidget.expiryDateTo}" />
+            value="#{data.widget.expiryDateTo}" />
           </div>
           
           <div class="ui-g-3">
@@ -141,16 +136,17 @@
           <div class="ui-g-12 task-configuration__header-container">
             <h3 class="task-configuration__header">Layout</h3>
           </div>
-          <ic:ch.ivy.addon.portal.generic.prototype.PreviewTaskWidget id="task-widget-preview" taskWidget="#{cc.attrs.taskWidget}" />
+          <ic:ch.ivy.addon.portal.generic.prototype.PreviewTaskWidgetForCreation id="task-widget-preview" taskWidget="#{data.widget}" />
         </div>
       </div>
     <f:facet name="footer">
       <p:commandButton id="task-configuration-save-button" value="Save"
-        actionListener="#{taskWidgetConfigurationPrototypeBean.saveTaskDashboardWidget(cc.attrs.taskWidget)}"
-        process="#{p:component('task-configuration-form')}" partialSubmit="true"
-        oncomplete="PF('task-widget-configuration-dialog-#{data.widgetId}').hide(); #{data.taskWidget.id}:reloadTasks();" />
+        actionListener="#{taskWidgetConfigurationPrototypeBean.createTaskDashboardWidget(data.widget)}"
+        process="#{p:component('create-task-configuration-form')}" partialSubmit="true"
+        update="#{p:component('grid-stack')}"
+        oncomplete="PF('create-task-widget-dialog').hide();" />
       <p:commandButton id="task-configuration-cancel-button" value="Cancel" type="button"
-        onclick="PF('task-widget-configuration-dialog-#{data.widgetId}').hide()" />
+        onclick="PF('create-task-widget-dialog').hide()" />
     </f:facet>
   </p:dialog>
 </cc:implementation>
