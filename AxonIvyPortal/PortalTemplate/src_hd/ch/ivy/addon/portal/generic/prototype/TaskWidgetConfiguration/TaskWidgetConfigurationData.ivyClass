@@ -1,2 +1,6 @@
 TaskWidgetConfigurationData #class
 ch.ivy.addon.portal.generic.prototype.TaskWidgetConfiguration #namespace
+taskWidget ch.ivy.addon.portalkit.dto.TaskDashboardWidget #field
+taskWidget PERSISTENT #fieldModifier
+widgetId String #field
+widgetId PERSISTENT #fieldModifier

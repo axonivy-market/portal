@@ -6,9 +6,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -24,7 +26,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.dto.DashboardWidget;
-import ch.ivy.addon.portalkit.dto.ProcessDashboardWidget;
 import ch.ivy.addon.portalkit.dto.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.WidgetSample;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
@@ -79,6 +80,25 @@ public class DashboardBean implements Serializable {
     return samples;
   }
   
+  public TaskDashboardWidget getDefaultTaskDashboardWidget() throws IOException {
+    TaskDashboardWidget result = (TaskDashboardWidget) defaultWidgets().stream().filter(widget -> widget.getId().contains("task")).findFirst().get();
+    Integer maxId = Collections.max(this.widgets.stream()
+        .filter(widget -> widget.getId().startsWith("task_"))
+        .map(DashboardWidget::getId)
+        .map(widget -> widget.replace("task_", ""))
+        .map(Integer::parseInt)
+        .collect(Collectors.toList()));
+    if(maxId == null) {
+      result.setId("task_0");
+    } else {
+      maxId += 1;
+      result.setId("task_".concat(Integer.toString(maxId)));
+    }
+    result.setAutoPosition(true);
+    result.setHeight(6);
+    return result;
+  }
+  
   public void save() throws JsonParseException, JsonMappingException, IOException {
     Map<String, String> requestParamMap = getRequestParameterMap();
     String nodes = Optional.ofNullable(requestParamMap.get("nodes")).orElse(StringUtils.EMPTY);
@@ -104,14 +124,10 @@ public class DashboardBean implements Serializable {
     }
   }
   
-  public void create() {
-    TaskDashboardWidget widget = new TaskDashboardWidget();
-    widget.setId("task_2");
-    widget.setName("New Tasks");
-    widget.setWidth(8);
-    widget.setHeight(5);
-    widget.setAutoPosition(true);
+  public void create() throws JsonParseException, JsonMappingException, IOException {
+    TaskDashboardWidget widget = getDefaultTaskDashboardWidget();
     widgets.add(widget);
+    saveWidget(widget);
   }
   
   public void restore() throws IOException {
