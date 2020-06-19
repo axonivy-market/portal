@@ -101,6 +101,7 @@ public class TaskWidgetConfigurationPrototypeBean {
   }
 
   public void saveTaskDashboardWidget(TaskDashboardWidget widget) throws JsonProcessingException {
+
     DashboardBean dashboardBean = ManagedBeans.get("dashboardBean");
     if (widget.getTaskColumns() == null) {
       widget.setTaskColumns(new ArrayList<>());
@@ -109,6 +110,21 @@ public class TaskWidgetConfigurationPrototypeBean {
     for (Entry<String, Boolean> entry : this.taskColumns.entrySet()) {
       if (entry.getValue() && widget.getTaskColumns().contains(entry.getKey())) {
         widget.getTaskColumns().add(entry.getKey());
+      }
+    }
+    dashboardBean.saveWidget(widget);
+  }
+  
+  public void createTaskDashboardWidget(TaskDashboardWidget widget) throws JsonProcessingException {
+    DashboardBean dashboardBean = ManagedBeans.get("dashboardBean");
+    widget.setTaskColumns(new ArrayList<>());
+    if (this.taskColumns.isEmpty()) {
+      widget.setTaskColumns(Arrays.asList(TaskColumn.PRIORITY.name(), TaskColumn.NAME.name(), TaskColumn.ACTIVATOR.name(), TaskColumn.STATE.name()));
+    } else {
+      for (Entry<String, Boolean> entry : this.taskColumns.entrySet()) {
+        if (entry.getValue() && widget.getTaskColumns().contains(entry.getKey())) {
+          widget.getTaskColumns().add(entry.getKey());
+        }
       }
     }
     dashboardBean.saveWidget(widget);
