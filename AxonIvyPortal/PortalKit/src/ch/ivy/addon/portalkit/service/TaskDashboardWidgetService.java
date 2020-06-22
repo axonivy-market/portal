@@ -14,7 +14,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class TaskDashboardWidgetService {
   public TaskQuery loadTaskQuery(TaskDashboardWidget definition) {
-    if (definition.getTaskName() == null) {
+    if (definition.getName() == null) {
       return TaskQuery.create();
     }
 
