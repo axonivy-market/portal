@@ -142,9 +142,9 @@
     <f:facet name="footer">
       <p:commandButton id="task-configuration-save-button" value="Save"
         actionListener="#{taskWidgetConfigurationPrototypeBean.createTaskDashboardWidget(data.widget)}"
-        process="#{p:component('create-task-configuration-form')}" partialSubmit="true"
+        process="#{p:component('create-task-configuration-form')}"
         update="#{p:component('grid-stack')}"
-        oncomplete="PF('create-task-widget-dialog').hide();" />
+        oncomplete="PF('create-task-widget-dialog').hide(); loadGrid();" />
       <p:commandButton id="task-configuration-cancel-button" value="Cancel" type="button"
         onclick="PF('create-task-widget-dialog').hide()" />
     </f:facet>

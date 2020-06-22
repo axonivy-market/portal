@@ -82,18 +82,6 @@ public class DashboardBean implements Serializable {
   
   public TaskDashboardWidget getDefaultTaskDashboardWidget() throws IOException {
     TaskDashboardWidget result = (TaskDashboardWidget) defaultWidgets().stream().filter(widget -> widget.getId().contains("task")).findFirst().get();
-    Integer maxId = Collections.max(this.widgets.stream()
-        .filter(widget -> widget.getId().startsWith("task_"))
-        .map(DashboardWidget::getId)
-        .map(widget -> widget.replace("task_", ""))
-        .map(Integer::parseInt)
-        .collect(Collectors.toList()));
-    if(maxId == null) {
-      result.setId("task_0");
-    } else {
-      maxId += 1;
-      result.setId("task_".concat(Integer.toString(maxId)));
-    }
     result.setAutoPosition(true);
     result.setHeight(6);
     return result;
@@ -122,6 +110,7 @@ public class DashboardBean implements Serializable {
         Ivy.wf().getApplication().customProperties().property("dashboard.widgets." + user + "." + w.getId()).setValue(mapper.writeValueAsString(w));
       }
     }
+    widgets.add(widget);
   }
   
   public void create() throws JsonParseException, JsonMappingException, IOException {
@@ -136,6 +125,21 @@ public class DashboardBean implements Serializable {
       Ivy.wf().getApplication().customProperties().delete(property.getName());
     }
     widgets = defaultWidgets();
+  }
+  
+  public String getNewTaskWidgetId() {
+    String result = "";
+    List<String> ids = this.widgets.stream()
+        .filter(widget -> widget.getId().startsWith("task_"))
+        .map(DashboardWidget::getId).collect(Collectors.toList());
+
+    Integer maxId = Collections.max(ids.stream().map(id -> Integer.parseInt(id.replace("task_", ""))).collect(Collectors.toList()));
+    if (maxId == null || maxId < 0) {
+      result = "task_0";
+    } else {
+      result = "task_".concat(Integer.toString(maxId + 1));
+    }
+    return result;
   }
   
   private Map<String, String> getRequestParameterMap() {
