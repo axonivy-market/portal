@@ -16,6 +16,8 @@ Cs0 @UdExitEnd f4 '' #zField
 Cs0 @PushWFArc f5 '' #zField
 Cs0 @UdMethod f6 '' #zField
 Cs0 @UdProcessEnd f7 '' #zField
+Cs0 @GridStep f9 '' #zField
+Cs0 @PushWFArc f10 '' #zField
 Cs0 @PushWFArc f8 '' #zField
 >Proto Cs0 Cs0 CreateTaskWidgetDialogProcess #zField
 Cs0 f0 guid 172CAF291F5C429A #txt
@@ -64,9 +66,22 @@ Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f6 83 243 26 26 -25 15 #rect
 Cs0 f6 @|UdMethodIcon #fIcon
-Cs0 f7 211 243 26 26 0 12 #rect
+Cs0 f7 339 243 26 26 0 12 #rect
 Cs0 f7 @|UdProcessEndIcon #fIcon
-Cs0 f8 109 256 211 256 #arcP
+Cs0 f9 actionTable 'out=in;
+' #txt
+Cs0 f9 actionCode 'in.widget.id = null;' #txt
+Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>set ID to null</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f9 168 234 112 44 -34 -8 #rect
+Cs0 f9 @|StepIcon #fIcon
+Cs0 f10 109 256 168 256 #arcP
+Cs0 f8 280 256 339 256 #arcP
 >Proto Cs0 .type ch.ivy.addon.portal.generic.prototype.CreateTaskWidgetDialog.CreateTaskWidgetDialogData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -75,5 +90,7 @@ Cs0 f0 mainOut f2 tail #connect
 Cs0 f2 head f1 mainIn #connect
 Cs0 f3 mainOut f5 tail #connect
 Cs0 f5 head f4 mainIn #connect
-Cs0 f6 mainOut f8 tail #connect
+Cs0 f6 mainOut f10 tail #connect
+Cs0 f10 head f9 mainIn #connect
+Cs0 f9 mainOut f8 tail #connect
 Cs0 f8 head f7 mainIn #connect

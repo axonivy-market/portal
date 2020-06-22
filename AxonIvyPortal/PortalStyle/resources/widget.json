@@ -6,7 +6,9 @@
 		"x": 0,
 		"y": 0,
 		"width": 8,
-		"height": 12
+		"height": 12,
+		"priorities": ["LOW","NORMAL","HIGH","EXCEPTION"],
+		"states": ["CREATED","SUSPENDED","RESUMED","PARKED","DONE"]
 	},
 	{
 		"type": "process",
