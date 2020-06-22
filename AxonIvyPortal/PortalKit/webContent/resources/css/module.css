@@ -4730,12 +4730,10 @@ height:100%;
 .prototype-task-table .state-column .state {
   border-radius: 8px;
   box-sizing: border-box;
-  text-align: center;
   display: block;
   font-size: 1.2rem;
   width: fit-content;
   padding: 2px 5px;
-  margin: auto;
   cursor: default;
 }
 
