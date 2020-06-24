@@ -144,6 +144,7 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 
 TaskWidgetConfigurationPrototypeBean bean = ManagedBeans.get("taskWidgetConfigurationPrototypeBean") as TaskWidgetConfigurationPrototypeBean;
 bean.createTaskDashboardWidget(in.widget);' #txt
+Cs0 f18 security system #txt
 Cs0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
