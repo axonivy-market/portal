@@ -3,18 +3,21 @@ package ch.ivy.addon.portalkit.dto;
 import java.util.Date;
 import java.util.List;
 
+import ch.ivy.addon.portalkit.enums.TaskDashboardWidgetType;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
 public class TaskDashboardWidget extends DashboardWidget {
   private static final long serialVersionUID = 3048837559125720787L;
 
+  private TaskDashboardWidgetType taskDashboardWidgetType;
   private String taskId;
   private String taskName;
   private String description;
   private List<WorkflowPriority> priorities;
   private List<TaskState> states;
-  private String responsible;
+  private List<String> responsibles;
+  private List<String> roles;
   private Date createdDateFrom;
   private Date createdDateTo;
   private Date expiryDateFrom;
@@ -22,6 +25,12 @@ public class TaskDashboardWidget extends DashboardWidget {
   private List<String> categories;
   private List<String> taskColumns;
 
+  public TaskDashboardWidgetType getTaskDashboardWidgetType() {
+    return taskDashboardWidgetType;
+  }
+  public void setTaskDashboardWidgetType(TaskDashboardWidgetType taskDashboardWidgetType) {
+    this.taskDashboardWidgetType = taskDashboardWidgetType;
+  }
   public String getTaskId() {
     return taskId;
   }
@@ -52,11 +61,11 @@ public class TaskDashboardWidget extends DashboardWidget {
   public void setStates(List<TaskState> states) {
     this.states = states;
   }
-  public String getResponsible() {
-    return responsible;
+  public List<String> getResponsibles() {
+    return responsibles;
   }
-  public void setResponsible(String responsible) {
-    this.responsible = responsible;
+  public void setResponsibles(List<String> responsibles) {
+    this.responsibles = responsibles;
   }
   public Date getCreatedDateFrom() {
     return createdDateFrom;
@@ -93,5 +102,11 @@ public class TaskDashboardWidget extends DashboardWidget {
   }
   public void setTaskColumns(List<String> taskColumns) {
     this.taskColumns = taskColumns;
+  }
+  public List<String> getRoles() {
+    return roles;
+  }
+  public void setRoles(List<String> roles) {
+    this.roles = roles;
   }
 }
