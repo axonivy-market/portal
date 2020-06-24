@@ -11,10 +11,10 @@
 </cc:interface>
 <cc:implementation>
   <f:event listener="#{logic.initialize(cc.attrs.taskWidget)}" type="preRenderComponent" />
-  <div class="task-widget-header-main widget-header-main">
-    <h:outputText styleClass="widget-header-main-title" value="3 tasks" />
-  </div>
   <div class="ui-g">
+    <div class="ui-g-12 task-widget-header-main widget-header-main">
+      <h:outputText styleClass="widget-header-main-title" value="3 tasks" />
+    </div>
     <div class="ui-g-8">
       <h:outputText value="You can reorder columns by drag and drop them to desired position." />
     </div>

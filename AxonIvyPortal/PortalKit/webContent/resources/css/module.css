@@ -4792,8 +4792,8 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu {
 	width: 90%;
 }
 
-body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu  .ui-selectcheckboxmenu-token {
-	width: 116px;
+body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
+	top: 5px;
 }
 
 .task-configuration__calendar {
@@ -4828,4 +4828,22 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu  .ui-selectch
 
 .task-configuration__header {
 	margin: 0;
+}
+
+.task-configuration__select-one-menu {
+	float: right;
+	width: 90% !important;
+}
+
+.task-configuration__user-selection > span {
+	width: 90%;
+	float: right;
+}
+
+.task-configuration__user-selection .ui-autocomplete-input {
+	width: 100%;
+}
+
+.task-configuration__form {
+	height: 94%;
 }
