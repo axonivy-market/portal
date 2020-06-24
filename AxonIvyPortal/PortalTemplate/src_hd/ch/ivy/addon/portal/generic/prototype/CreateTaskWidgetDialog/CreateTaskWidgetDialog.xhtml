@@ -9,7 +9,7 @@
 <cc:interface componentType="IvyComponent">
 </cc:interface>
 <cc:implementation>
-  <f:event listener="#{logic.initialize(cc.attrs.taskWidget)}" type="preRenderComponent" />
+  <f:event listener="#{logic.initialize}" type="preRenderComponent" />
   <p:dialog id="create-task-widget-dialog" widgetVar="create-task-widget-dialog"
     header="Task Widget Configuration" appendTo="@(body)" closeOnEscape="true" draggable="false" dynamic="true"
     fitViewport="true" responsive="true" modal="true" width="80vw">
@@ -21,7 +21,7 @@
             as columns to be shown:
           </div>
   
-  <h:form id="create-task-configuration-form">
+        <h:form id="create-task-configuration-form" styleClass="task-configuration__form">
           <div class="ui-g-3">
             <p:outputLabel for="widget-title" value="Widget Title" />
           </div>
@@ -29,7 +29,19 @@
             <p:inputText id="widget-title" styleClass="task-configuration__input-text"
             value="#{data.widget.name}" />
           </div>
-  
+
+          <div class="ui-g-3">
+            <p:outputLabel for="task-list-type" value="Task list type" />
+          </div>
+          <div class="ui-g-9">
+            <p:selectOneMenu id="task-list-type" value="#{data.selectedTaskListType}" styleClass="task-configuration__select-one-menu">
+              <f:selectItem itemLabel="Personal task list" itemValue="PERSONAL" />
+              <f:selectItem itemLabel="Task list by role" itemValue="ROLE" />
+              <f:selectItem itemLabel="Customize" itemValue="CUSTOM" />
+              <p:ajax event="change" update="@form" listener="#{logic.updateType}" />
+            </p:selectOneMenu>
+          </div>
+
           <div class="ui-g-12" />
       
           <div class="ui-g-4">
@@ -40,96 +52,109 @@
               styleClass="apply-filters-btn Fright" process="create-task-configuration-form" global="true" oncomplete="reloadTasksForPreviewCreation();"/>
           </div>
       
-          <div class="ui-g-3">
+          <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
             <p:outputLabel for="task-id" value="Task Id" />
           </div>
-          <div class="ui-g-9">
+          <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
             <p:inputText id="task-id" styleClass="task-configuration__input-text"
             value="#{data.widget.taskId}" />
           </div>
       
-          <div class="ui-g-3">
+          <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
             <p:outputLabel for="name" value="Task name" />
           </div>
-          <div class="ui-g-9">
+          <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
             <p:inputText id="name" styleClass="task-configuration__input-text"
             value="#{data.widget.taskName}" />
           </div>
       
-          <div class="ui-g-3">
+          <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
             <p:outputLabel for="description" value="Description" />
           </div>
-          <div class="ui-g-9">
+          <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
             <p:inputText id="description" styleClass="task-configuration__input-text"
             value="#{data.widget.description}" />
           </div>
       
-          <div class="ui-g-3">
+          <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM' or data.selectedTaskListType == 'PERSONAL'}">
             <p:outputLabel for="priorities" value="Priority" />
           </div>
-          <div class="ui-g-9">
+          <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM' or data.selectedTaskListType == 'PERSONAL'}">
             <p:selectCheckboxMenu id="priorities" value="#{data.widget.priorities}" label="Priorities" multiple="true"
               filter="true" filterMatchMode="startsWith" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
               <f:selectItems value="#{taskWidgetConfigurationPrototypeBean.priorities}" />
             </p:selectCheckboxMenu>
           </div>
       
-          <div class="ui-g-3">
+          <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM' or data.selectedTaskListType == 'PERSONAL'}">
             <p:outputLabel for="states" value="State" />
           </div>
-          <div class="ui-g-9">
+          <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM' or data.selectedTaskListType == 'PERSONAL'}">
             <p:selectCheckboxMenu id="states" value="#{data.widget.states}" label="States" multiple="true"
               filter="true" filterMatchMode="startsWith" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
               <f:selectItems value="#{taskWidgetConfigurationPrototypeBean.filteredStates}" />
             </p:selectCheckboxMenu>
           </div>
       
-          <div class="ui-g-3">
-            <p:outputLabel for="responsible" value="Responsible" />
+          <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
+            <p:outputLabel for="responsibles" value="Responsibles" />
           </div>
-          <div class="ui-g-9">
-          <ic:ch.ivy.addon.portalkit.component.UserSelection id="responsible" selectedUser="#{taskWidgetConfigurationPrototypeBean.selectedUser}"/>
-            <!-- <p:inputText id="responsible" styleClass="task-configuration__input-text" /> -->
+          <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
+            <p:selectCheckboxMenu id="responsibles" value="#{data.widget.responsibles}" label="Responsibles" multiple="true"
+              filter="true" filterMatchMode="startsWith" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
+              <f:selectItems value="#{taskWidgetConfigurationPrototypeBean.availableResponsibles}" var="user" itemValue="#{user.memberName}" itemLabel="#{user.displayName}" />
+            </p:selectCheckboxMenu>
+          </div>
+
+          <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM' or data.selectedTaskListType == 'ROLE'}">
+            <p:outputLabel for="roles" value="Roles" />
+          </div>
+          <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM' or data.selectedTaskListType == 'ROLE'}">
+            <p:selectCheckboxMenu id="roles" value="#{data.widget.roles}" label="Roles" multiple="true"
+              filter="true" filterMatchMode="startsWith" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
+              <f:selectItems value="#{taskWidgetConfigurationPrototypeBean.availableRoles}" var="role" itemValue="#{role.memberName}" itemLabel="#{role.displayName}" />
+            </p:selectCheckboxMenu>
           </div>
       
-          <div class="ui-g-3">
+          <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
             <p:outputLabel for="created-from" value="Created From" />
           </div>
-          <div class="ui-g-9">
+          <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
             <p:calendar id="created-from" showOn="button" styleClass="task-configuration__calendar"
             value="#{data.widget.createdDateFrom}" />
           </div>
       
-          <div class="ui-g-3">
+          <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
             <p:outputLabel for="created-to" value="Created To" />
           </div>
-          <div class="ui-g-9">
+          <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
             <p:calendar id="created-to" showOn="button" styleClass="task-configuration__calendar"
             value="#{data.widget.createdDateTo}" />
           </div>
       
-          <div class="ui-g-3">
+          <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
             <p:outputLabel for="expiry-from" value="Expiry From" />
           </div>
-          <div class="ui-g-9">
+          <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
             <p:calendar id="expiry-from" showOn="button" styleClass="task-configuration__calendar"
             value="#{data.widget.expiryDateFrom}" />
           </div>
       
-          <div class="ui-g-3">
+          <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
             <p:outputLabel for="expiry-to" value="Expiry To" />
           </div>
-          <div class="ui-g-9">
+          <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
             <p:calendar id="expiry-to" showOn="button" styleClass="task-configuration__calendar"
             value="#{data.widget.expiryDateTo}" />
           </div>
           
-          <div class="ui-g-3">
+          <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
             <p:outputLabel for="category" value="Category" />
           </div>
-          <div class="ui-g-9">
+          <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
             <p:inputText id="category" styleClass="task-configuration__input-text" />
           </div>
+          <p:remoteCommand name="refreshWidget" actionListener="#{logic.refreshWidget}" />
         </h:form>
         </div>
         <div class="card filter-container task-configuration__layout-container">
@@ -141,12 +166,13 @@
       </div>
     <f:facet name="footer">
       <p:commandButton id="task-configuration-save-button" value="Save"
-        actionListener="#{taskWidgetConfigurationPrototypeBean.createTaskDashboardWidget(data.widget)}"
+        actionListener="#{logic.createTaskWidget()}"
         process="#{p:component('create-task-configuration-form')}"
-        update="#{p:component('grid-stack')}"
+        update="#{p:component('grid-stack')} create-task-widget-dialog"
         oncomplete="PF('create-task-widget-dialog').hide(); loadGrid();" />
       <p:commandButton id="task-configuration-cancel-button" value="Cancel" type="button"
-        onclick="PF('create-task-widget-dialog').hide()" />
+        actionListener="#{logic.initialize()}"
+        oncomplete="PF('create-task-widget-dialog').hide()" />
     </f:facet>
   </p:dialog>
 </cc:implementation>
