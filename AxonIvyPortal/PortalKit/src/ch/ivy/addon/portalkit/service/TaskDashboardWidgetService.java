@@ -51,8 +51,15 @@ public class TaskDashboardWidgetService {
     taskQuery.where().and(stateSubQuery);
 
     // Responsible
-    if (StringUtils.isNotBlank(definition.getResponsible())) {
-      taskQuery.where().and().activatorName().isEqual(definition.getResponsible());
+    if (CollectionUtils.isNotEmpty(definition.getResponsibles()) || CollectionUtils.isNotEmpty(definition.getRoles())) {
+      TaskQuery responsibleQuery = TaskQuery.create();
+      if (CollectionUtils.isNotEmpty(definition.getResponsibles())) {
+        definition.getResponsibles().forEach(user -> responsibleQuery.where().or().activatorName().isEqual("#".concat(user)));
+      }
+      if (CollectionUtils.isNotEmpty(definition.getRoles())) {
+        definition.getRoles().forEach(role -> responsibleQuery.where().or().activatorName().isEqual(role));
+      }
+      taskQuery.where().and(responsibleQuery);
     }
 
     // Created date

@@ -21,9 +21,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import ch.ivy.addon.portalkit.dto.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.enums.TaskColumn;
+import ch.ivy.addon.portalkit.enums.TaskDashboardWidgetType;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IRole;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
@@ -34,6 +37,8 @@ public class TaskWidgetConfigurationPrototypeBean {
   private List<WorkflowPriority> priorities;
   private UserDTO selectedUser;
   private Map <String, Boolean> taskColumns;
+  private List<IUser> availableResponsibles;
+  private List<IRole> availableRoles;
 
   @PostConstruct
   public void init() {
@@ -53,6 +58,9 @@ public class TaskWidgetConfigurationPrototypeBean {
           taskColumns.put(column.name(), true);
         }
       }
+
+      this.availableRoles = Ivy.wf().getSecurityContext().getActiveRoles();
+      this.availableResponsibles = Ivy.wf().getSecurityContext().getUsers();
   }
 
   public String getUserFriendlyTaskState(TaskState state) {
@@ -132,6 +140,24 @@ public class TaskWidgetConfigurationPrototypeBean {
     dashboardBean.saveWidget(widget);
   }
 
+  public void clearTaskFilters(TaskDashboardWidget widget) {
+    widget.setTaskId(null);
+    widget.setTaskName(null);
+    widget.setCreatedDateFrom(null);
+    widget.setCreatedDateTo(null);
+    widget.setExpiryDateFrom(null);
+    widget.setExpiryDateTo(null);
+    widget.setCategories(null);
+    widget.setDescription(null);
+    widget.setPriorities(getPriorities());
+    widget.setStates(getFilteredStates());
+    widget.setRoles(null);
+    if (widget.getTaskDashboardWidgetType() == TaskDashboardWidgetType.PERSONAL) {
+      widget.setResponsibles(Arrays.asList(Ivy.session().getSessionUserName()));
+    } else {
+      widget.setResponsibles(null);
+    }
+  }
   public List<TaskState> getFilteredStates() {
       return filteredStates;
   }
@@ -162,5 +188,21 @@ public class TaskWidgetConfigurationPrototypeBean {
 
   public void setTaskColumns(Map <String, Boolean> taskColumns) {
     this.taskColumns = taskColumns;
+  }
+
+  public List<IUser> getAvailableResponsibles() {
+    return availableResponsibles;
+  }
+
+  public void setAvailableResponsibles(List<IUser> availableResponsibles) {
+    this.availableResponsibles = availableResponsibles;
+  }
+
+  public List<IRole> getAvailableRoles() {
+    return availableRoles;
+  }
+
+  public void setAvailableRoles(List<IRole> availableRoles) {
+    this.availableRoles = availableRoles;
   }
 }
