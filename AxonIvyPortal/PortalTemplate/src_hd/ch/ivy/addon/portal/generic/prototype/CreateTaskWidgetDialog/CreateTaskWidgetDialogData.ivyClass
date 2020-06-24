@@ -2,3 +2,5 @@ CreateTaskWidgetDialogData #class
 ch.ivy.addon.portal.generic.prototype.CreateTaskWidgetDialog #namespace
 widget ch.ivy.addon.portalkit.dto.TaskDashboardWidget #field
 widget PERSISTENT #fieldModifier
+selectedTaskListType String #field
+selectedTaskListType PERSISTENT #fieldModifier

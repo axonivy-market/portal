@@ -79,7 +79,7 @@ public class DashboardBean implements Serializable {
   public List<WidgetSample> getSamples() {
     return samples;
   }
-  
+
   public TaskDashboardWidget getDefaultTaskDashboardWidget() throws IOException {
     TaskDashboardWidget result = (TaskDashboardWidget) defaultWidgets().stream().filter(widget -> widget.getId().contains("task")).findFirst().get();
     result.setAutoPosition(true);
