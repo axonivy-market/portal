@@ -4422,11 +4422,6 @@ body .portal-breadcrumb.ui-breadcrumb ul li .has-count {
 	display: inline;
 }
 /*=================== BREADCRUMB END ===================*/
-
-.position-topbar {
-	height: 58px;
-}
-
 /*=================== GUIDE ===================*/
 .ui-dialog-mask.ui-widget-overlay.guide-modal {
   background-color: transparent;
