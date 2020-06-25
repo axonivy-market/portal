@@ -19,17 +19,20 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.event.TabChangeEvent;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ch.ivy.addon.portalkit.dto.Dashboard;
 import ch.ivy.addon.portalkit.dto.DashboardWidget;
 import ch.ivy.addon.portalkit.dto.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.WidgetSample;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.enums.TaskDashboardWidgetType;
 import ch.ivy.addon.portalkit.loader.ResourceLoader;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.application.property.ICustomProperty;
@@ -40,50 +43,55 @@ import ch.ivyteam.ivy.environment.Ivy;
 public class DashboardBean implements Serializable {
 
   private static final long serialVersionUID = -4224901891867040688L;
-  private List<DashboardWidget> widgets;
+  private List<Dashboard> dashboards;
+  private Dashboard selectedDashboard;
   private List<WidgetSample> samples;
   private String user;
   private ObjectMapper mapper;
 
   @PostConstruct
   public void init() {
-    widgets = new ArrayList<>();
+    dashboards = new ArrayList<>();
     mapper = new ObjectMapper();
     samples = List.of(taskSample(), caseSample(), statisticSample(), processSample());
     user = Ivy.session().getSessionUserName();
     List<ICustomProperty> properties = Ivy.wf().getApplication().customProperties().findAllStartingWith("dashboard.widgets." + user);
     try {
+      dashboards = defaultDashboards();
       if (CollectionUtils.isNotEmpty(properties)) {
         for (ICustomProperty property : properties) {
-          widgets.add(mapper.readValue(property.getValue(), DashboardWidget.class));
+          Dashboard d = mapper.readValue(property.getValue(), Dashboard.class);
+          dashboards.set(dashboards.indexOf(d), d);
         }
-      } else {
-        widgets = defaultWidgets();
       }
+      selectedDashboard = dashboards.get(0);
     } catch (IOException e) {
     }
   }
   
-  private List<DashboardWidget> defaultWidgets() throws IOException {
+  private List<Dashboard> defaultDashboards() throws IOException {
     ILibrary portalStyleLib = Ivy.wf().getApplication().findReleasedLibrary(PortalLibrary.PORTAL_STYLE.getValue());
     ResourceLoader loader = new ResourceLoader(portalStyleLib.getProcessModelVersion());
     Optional<Path> path = loader.getWidgetConfiguration();
     String read = String.join("\n", Files.readAllLines(path.get()));
-    return new ArrayList<>(Arrays.asList(mapper.readValue(read, DashboardWidget[].class)));
-  }
-
-  public List<DashboardWidget> getWidgets() {
-    return widgets;
+    return new ArrayList<>(Arrays.asList(mapper.readValue(read, Dashboard[].class)));
   }
   
+  public List<Dashboard> getDashboards() {
+    return dashboards;
+  }
+
   public List<WidgetSample> getSamples() {
     return samples;
   }
 
   public TaskDashboardWidget getDefaultTaskDashboardWidget() throws IOException {
-    TaskDashboardWidget result = (TaskDashboardWidget) defaultWidgets().stream().filter(widget -> widget.getId().contains("task")).findFirst().get();
-    result.setAutoPosition(true);
+    TaskDashboardWidget result = new TaskDashboardWidget();
+    result.setName("Your Tasks");
+    result.setWidth(8);
     result.setHeight(6);
+    result.setAutoPosition(true);
+    result.setTaskDashboardWidgetType(TaskDashboardWidgetType.CUSTOM);
     return result;
   }
   
@@ -92,44 +100,54 @@ public class DashboardBean implements Serializable {
     String nodes = Optional.ofNullable(requestParamMap.get("nodes")).orElse(StringUtils.EMPTY);
     List<DashboardWidget> widgets = Arrays.asList(mapper.readValue(nodes, DashboardWidget[].class));
     for (DashboardWidget widget : widgets) {
-      DashboardWidget updatedWidget = this.widgets.get(this.widgets.indexOf(widget));
+      DashboardWidget updatedWidget = selectedDashboard.getWidgets().get(selectedDashboard.getWidgets().indexOf(widget));
       updatedWidget.setX(widget.getX());
       updatedWidget.setY(widget.getY());
       updatedWidget.setWidth(widget.getWidth());
       updatedWidget.setHeight(widget.getHeight());
-      Ivy.wf().getApplication().customProperties().property("dashboard.widgets." + user + "." + widget.getId()).setValue(mapper.writeValueAsString(updatedWidget));
     }
+    Ivy.wf().getApplication().customProperties().property(dashboardProperty(selectedDashboard)).setValue(mapper.writeValueAsString(selectedDashboard));
   }
   
   public void saveWidget(DashboardWidget widget) throws JsonProcessingException {
+    selectedDashboard.getWidgets().add(widget);
+    dashboards.set(dashboards.indexOf(selectedDashboard), selectedDashboard);
     List<ICustomProperty> properties = Ivy.wf().getApplication().customProperties().findAllStartingWith("dashboard.widgets." + user);
     if (CollectionUtils.isNotEmpty(properties)) {
-      Ivy.wf().getApplication().customProperties().property("dashboard.widgets." + user + "." + widget.getId()).setValue(mapper.writeValueAsString(widget));
+      Ivy.wf().getApplication().customProperties().property(dashboardProperty(selectedDashboard)).setValue(mapper.writeValueAsString(selectedDashboard));
     } else {
-      for (DashboardWidget w : widgets) {
-        Ivy.wf().getApplication().customProperties().property("dashboard.widgets." + user + "." + w.getId()).setValue(mapper.writeValueAsString(w));
+      for (Dashboard dashboard : dashboards) {
+        Ivy.wf().getApplication().customProperties().property(dashboardProperty(dashboard)).setValue(mapper.writeValueAsString(dashboard));
       }
     }
-    widgets.add(widget);
+  }
+  
+  private String dashboardProperty(Dashboard dashboard) {
+    return "dashboard.widgets." + user + "." + dashboard.getId();
   }
   
   public void create() throws JsonParseException, JsonMappingException, IOException {
     TaskDashboardWidget widget = getDefaultTaskDashboardWidget();
-    widgets.add(widget);
     saveWidget(widget);
   }
   
   public void restore() throws IOException {
-    List<ICustomProperty> properties = Ivy.wf().getApplication().customProperties().findAllStartingWith("dashboard.widgets." + user);
+    List<ICustomProperty> properties = Ivy.wf().getApplication().customProperties().findAllStartingWith(dashboardProperty(selectedDashboard));
     for (ICustomProperty property : properties) {
       Ivy.wf().getApplication().customProperties().delete(property.getName());
     }
-    widgets = defaultWidgets();
+    List<Dashboard> defaultDashboards = defaultDashboards();
+    selectedDashboard = defaultDashboards.get(defaultDashboards.indexOf(selectedDashboard));
+    dashboards.set(dashboards.indexOf(selectedDashboard), selectedDashboard);
+  }
+  
+  public void onTabChange(TabChangeEvent event) {
+    selectedDashboard = (Dashboard) event.getData();
   }
   
   public String getNewTaskWidgetId() {
     String result = "";
-    List<String> ids = this.widgets.stream()
+    List<String> ids = selectedDashboard.getWidgets().stream()
         .filter(widget -> widget.getId().startsWith("task_"))
         .map(DashboardWidget::getId).collect(Collectors.toList());
 
