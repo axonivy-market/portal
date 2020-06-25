@@ -38,16 +38,11 @@ function TaskWidget() {
         var layoutContentPadding = $('.layout-content').outerHeight(true) - $('.layout-content').height()||0;
         var containerPadding = container.outerHeight(true) - container.height()||0;
 
-        var headerHeight = $('#portal-template-header').outerHeight()||0;
-        var footerHeight = $('#portal-template-footer').outerHeight()||0;
-        var headerFooterHeight = headerHeight + footerHeight;
-        var envHeight = $('.js-layout-wrapper').hasClass('u-invisibility') ? $('#portal-environment').outerHeight()||0 : 0;
-
         var mainScreenHeight = ($('.js-layout-content').outerHeight(true)||0);
         var availableHeight = mainScreenHeight - (taskWidgetHeaderContainer.outerHeight(true)||0)
             - (announcementMessageContainer.outerHeight(true)||0) - (taskWidgetSortMenuContainer.outerHeight(true)||0)
             - (taskWidgetFilterContainer.outerHeight(true)||0) - error - customWidgetContainer
-            - taskViewPadding - layoutContentPadding - compactTaskWidgetPadding - compactProcessWidgetHeight - headerFooterHeight - envHeight;
+            - taskViewPadding - layoutContentPadding - compactTaskWidgetPadding - compactProcessWidgetHeight;
         if (!!availableHeight) {
             container.height(availableHeight);
             if (container.outerHeight(true) > availableHeight) {
