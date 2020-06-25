@@ -42,6 +42,8 @@ var Portal = {
     var headerHeight = $('#portal-template-header').outerHeight();
     var footerHeight = $('#portal-template-footer').outerHeight();
     var headerFooterHeight = headerHeight + footerHeight;
+    var layoutTopbarHeight = $('.layout-topbar').outerHeight();
+    $('.js-position-topbar').height(layoutTopbarHeight);
     if ($('.js-layout-wrapper').hasClass('u-invisibility')) {
       var envHeight = $('#portal-environment').outerHeight();
       var announcementMessageContainer = $('.js-announcement-message');
@@ -50,7 +52,7 @@ var Portal = {
     $('.js-left-sidebar').css('top', headerHeight + 'px').css('height', 'calc(100vh - ' + (headerFooterHeight - envHeight) + 'px)');
     $('.js-layout-main').css('margin-top', headerHeight + 'px').css('height', 'calc(100vh - ' + headerFooterHeight + 'px)');
     $('.js-layout-wrapper').removeClass('u-invisibility');
-    $('.js-layout-content').css('height', $('.js-layout-main').outerHeight() - $('.layout-topbar').outerHeight() + 'px');
+    $('.js-layout-content').css('height', $('.js-layout-main').outerHeight() - layoutTopbarHeight + 'px');
     var chatPanel = $('.js-chat-panel');
     if (chatPanel.length == 1) {
       chatPanel.css('height', 'calc(100% - ' + (headerFooterHeight - envHeight) + 'px)');
