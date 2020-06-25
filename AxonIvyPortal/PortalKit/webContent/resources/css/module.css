@@ -4845,5 +4845,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 }
 
 .task-configuration__form {
-	height: 94%;
+	height: 650px;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
