@@ -18,7 +18,7 @@
   <div class="ui-g">
     <h:panelGroup id="task-table-container" layout="block" styleClass="ui-g-12 u-padding-0 task-configuration__task-table-container">
       <p:dataTable id="task-table" value="#{data.tasks}" var="task" styleClass="prototype-task-table task-table" rows="10" rowsPerPageTemplate="5,10,15"
-        draggableColumns="true" paginator="true" paginatorPosition="bottom">
+        draggableColumns="true" paginator="true" paginatorPosition="bottom" filteredValue="#{data.filteredTasks}">
         <p:column headerText="Start" styleClass="start-column">
           <p:commandLink>
             <span class="fa fa-play" />
