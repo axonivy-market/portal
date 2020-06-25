@@ -92,7 +92,7 @@ public abstract class DashboardWidget implements Serializable {
   public void setAutoPosition(boolean autoPosition) {
     this.autoPosition = autoPosition;
   }
-
+  
   @Override
   public int hashCode() {
     final int prime = 31;
