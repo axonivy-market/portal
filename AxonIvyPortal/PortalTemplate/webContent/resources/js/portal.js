@@ -39,6 +39,7 @@ var Portal = {
     if (chatPanel.length == 1) {
       chatPanel.css('height', 'calc(100% - ' + (headerFooterHeight - envHeight) + 'px)');
       chatPanel.css('top', headerHeight + 'px');
+      chatPanel.css('bottom', footerHeight + 'px');
     }
 
     $('.js-layout-wrapper').removeClass('u-invisibility');
