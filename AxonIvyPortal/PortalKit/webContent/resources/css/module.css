@@ -4776,7 +4776,7 @@ height:100%;
 
 .task-configuration__settings.card {
 	width: 450px;
-	padding: 20px;
+	padding: 20px 15px;
 	margin-right: 20px;
 	border-right: solid 1px var(--ivy-primary-color-grey-light);
 }
