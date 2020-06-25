@@ -4776,7 +4776,7 @@ height:100%;
 
 .task-configuration__settings.card {
 	width: 450px;
-	padding: 20px;
+	padding: 20px 15px;
 	margin-right: 20px;
 	border-right: solid 1px var(--ivy-primary-color-grey-light);
 }
@@ -4845,5 +4845,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 }
 
 .task-configuration__form {
-	height: 94%;
+	height: 650px;
+	overflow-y: auto;
+	overflow-x: hidden;
 }

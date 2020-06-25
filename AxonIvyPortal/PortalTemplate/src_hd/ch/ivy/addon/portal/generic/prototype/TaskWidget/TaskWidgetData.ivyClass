@@ -8,3 +8,5 @@ taskQuery ch.ivyteam.ivy.workflow.query.TaskQuery #field
 taskQuery PERSISTENT #fieldModifier
 taskWidget ch.ivy.addon.portalkit.dto.TaskDashboardWidget #field
 taskWidget PERSISTENT #fieldModifier
+filteredTasks java.util.List<ch.ivyteam.ivy.workflow.ITask> #field
+filteredTasks PERSISTENT #fieldModifier
