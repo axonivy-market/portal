@@ -1,31 +1,37 @@
 [
 	{
-		"type": "task",
-		"id": "task_1",
-		"name": "Your Tasks",
-		"x": 0,
-		"y": 0,
-		"width": 8,
-		"height": 12,
-		"taskDashboardWidgetType": "CUSTOM",
-		"priorities": ["LOW","NORMAL","HIGH","EXCEPTION"],
-		"states": ["CREATED","SUSPENDED","RESUMED","PARKED","DONE"]
-	},
-	{
-		"type": "process",
-		"id": "process_1",
-		"name": "Your Processes",
-		"x": 8,
-		"y": 0,
-		"width": 4,
-		"height": 4
-	},
-	{
-		"type": "action",
-		"id": "action",
-		"x": 8,
-		"y": 4,
-		"width": 4,
-		"height": 1
+		"id": "1",
+		"title": "Dashboard",
+		"widgets": [
+			{
+				"type": "task",
+				"id": "task_1",
+				"name": "Your Tasks",
+				"x": 0,
+				"y": 0,
+				"width": 8,
+				"height": 12,
+				"taskDashboardWidgetType": "CUSTOM",
+				"priorities": ["LOW","NORMAL","HIGH","EXCEPTION"],
+				"states": ["CREATED","SUSPENDED","RESUMED","PARKED","DONE"]
+			},
+			{
+				"type": "process",
+				"id": "process_1",
+				"name": "Your Processes",
+				"x": 8,
+				"y": 0,
+				"width": 4,
+				"height": 4
+			},
+			{
+				"type": "action",
+				"id": "action",
+				"x": 8,
+				"y": 4,
+				"width": 4,
+				"height": 1
+			}
+		]
 	}
 ]
