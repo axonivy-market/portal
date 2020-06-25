@@ -1455,7 +1455,7 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
     display: none;
   }
   .filter-container .text-filter {
-    width: 16.66666667%;
+    width: fit-content;
   }
 }
 .filter-selection-form {
@@ -4405,7 +4405,7 @@ body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled .ui
 }
 
 body .ui-widget-header.portal-breadcrumb ul li:last-child {
-	width: calc(100% - 130px);
+	width: calc(100% - 150px);
 }
 
 
