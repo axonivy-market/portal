@@ -203,14 +203,13 @@
       <p:outputPanel id="appOverview">
 
         <p:panelGrid styleClass="u-no-border admin-settings-container ui-fluid" id="applicationPanelGrid">
-
           <!-- Application Type -->
           <h:panelGroup id="applicationTypesContainer" styleClass="ui-g" layout="block">
             <div class="ui-g-6 ui-sm-12">
               <p:selectOneMenu value="#{data.type}" required="true" styleClass="ui-g-12">
                 <f:selectItems value="#{masterDataBean.applicationTypes}" var="type" itemLabel="#{type.label}" />
                 <p:ajax event="change" listener="#{logic.appTypeChange}" oncomplete="PF('appDialog').initPosition()"
-                  update="@(form)" />
+                  update="@form" />
               </p:selectOneMenu>
             </div>
             <div class="ui-g-6 ui-sm-12">
