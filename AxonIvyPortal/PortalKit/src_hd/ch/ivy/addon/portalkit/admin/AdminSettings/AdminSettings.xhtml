@@ -210,7 +210,7 @@
               <p:selectOneMenu value="#{data.type}" required="true" styleClass="ui-g-12">
                 <f:selectItems value="#{masterDataBean.applicationTypes}" var="type" itemLabel="#{type.label}" />
                 <p:ajax event="change" listener="#{logic.appTypeChange}" oncomplete="PF('appDialog').initPosition()"
-                  update="@(form)" />
+                  update="@form" />
               </p:selectOneMenu>
             </div>
             <div class="ui-g-6 ui-sm-12">
