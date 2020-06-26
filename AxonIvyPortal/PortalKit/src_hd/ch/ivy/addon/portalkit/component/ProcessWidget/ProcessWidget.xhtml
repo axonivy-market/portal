@@ -18,8 +18,8 @@
   <div class="ui-g">
     <div id="#{cc.clientId}" class="widget process-widget ui-g-12">
       <!-- Process header -->
-      <div class="process-header js-process-header">
-        <h:panelGroup id="header" styleClass="widget-header expanded ui-g-12 u-padding-0" layout="block" rendered="#{!cc.attrs.hideHeader}">
+      <div class="process-header js-process-header" jsf:rendered="#{!cc.attrs.hideHeader}">
+        <h:panelGroup id="header" styleClass="widget-header expanded ui-g-12 u-padding-0" layout="block">
           <h:panelGroup layout="block" styleClass="ui-g-8 ui-sm-4">
             <div class="process-header-title-container">
               <span class="process-header-title">#{cc.attrs.title}</span>
