@@ -7,8 +7,9 @@
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="processListStyleClass" />
+  <cc:attribute name="hideHeader" default="false" type="java.lang.Boolean" />
   <cc:attribute name="hideExpressCreation" default="false" />
-  <cc:attribute name="hideProcessNavigation" default="false"></cc:attribute>
+  <cc:attribute name="hideProcessNavigation" default="false" />
 </cc:interface>
 
 <cc:implementation>
@@ -16,7 +17,7 @@
   <div class="ui-g">
     <div id="#{cc.clientId}" class="widget process-widget ui-g-12">
       <!-- Process header -->
-      <div class="process-header js-process-header">
+      <h:panelGroup layout="block" class="process-header js-process-header" rendered="#{!cc.attrs.hideHeader}">
 
         <div class="ui-g-12 u-no-padding-top u-no-padding-left u-no-padding-bottom ui-g">
           
@@ -46,7 +47,7 @@
 	          </h:panelGroup>
 	        </div>
         </div>
-      </div>
+      </h:panelGroup>
 
       <!-- Process body -->
       <h:panelGroup id="process-list" layout="block" styleClass="widget-content process-start-list-container js-process-start-list-container ui-g-12">
