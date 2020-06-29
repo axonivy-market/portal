@@ -18,18 +18,9 @@
   <div class="ui-g widget-details-item">
     <h:panelGroup id="task-detail-container" rendered="#{cc.attrs.showItemDetailsHeader}" styleClass="ui-g-12 u-truncate-text">
       <h:form id="task-detail-title-form" onsubmit="return false;" styleClass="task-detail-header">
-        <h:panelGroup id="#{cc.attrs.nameId}-edit-form" styleClass="task-name-edit u-truncate-text u-hidden-md-up">
+        <h:panelGroup id="#{cc.attrs.nameId}-edit-form" styleClass="task-name-edit u-truncate-text u-hidden-md-up MarTop5">
           <h:outputText value="#{ivy.cms.co('/Labels/Task')}: " />
-          <p:inplace id="#{cc.attrs.nameId}-inplace" editor="true" disabled="#{!taskActionBean.canChangeName(task)}"
-            saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-            widgetVar="#{cc.attrs.nameId}-inplace" styleClass="task-name-inplace u-truncate-text"
-            label="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}">
-            <p:inputText id="task-name-input" value="#{task.name}" styleClass="task-name-input" maxlength="200" valueChangeListener="#{logic.keepOldNameValue}"
-              onkeypress="if(event.keyCode == 13) {PF('task-name-inplace').save()}" />
-            <p:ajax event="save" listener="#{logic.updateTask()}" process="#{cc.attrs.nameId}-edit-form"
-              update="task-detail-title-form #{cc.attrs.nameId}-edit-form #{cc.attrs.componentToUpdate} #{p:component('task-detail-note-container')}" />
-            <f:passThroughAttribute name="onclick" value="if('#{taskActionBean.canChangeName(task)}'=='true') {event.stopPropagation()}" />
-          </p:inplace>
+          <span class="u-truncate-text">#{task.name}</span>
         </h:panelGroup>
   
       <p:commandLink id="back-to-previous-page" onclick="backToPrevPage(#{cc.attrs.isFromTaskList}, #{cc.attrs.isTaskStartedInDetails})" styleClass="task-details-back-btn">
