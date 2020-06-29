@@ -1225,13 +1225,6 @@ body .ui-inputfield.case-detail-name-input {
 .action-steps-panel .action-icon {
   font-size: var(--large-font-size); }
 
-
-.widget-title-mobile {
-  border-bottom: solid 1px var(--widget-header-mobile-border-bottom);
-  height: 100%;
-  margin-top: 1px;
-}
-
 /*Process --------------------------------------*/
 .process-widget .process-nav .process-nav-item {
   color: var(--process-navigator-item-color);
