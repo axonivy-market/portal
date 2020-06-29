@@ -75,9 +75,11 @@
 
         </p:dataTable>
 
-        <h:outputText styleClass="no-documents-message ui-g-12"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noDocuments')}"
-          rendered="#{empty data.documents}" />
+        <h:panelGroup layout="block" styleClass="ui-g-12 no-item-panel" rendered="#{empty data.documents}">
+          <i class="icon ivyicon-information-circle" />
+          <h:outputText styleClass="no-item-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noDocumentAvailable')}" />
+          <h:outputText styleClass="no-item-detail" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pleaseAddDocument')}" />
+        </h:panelGroup>
       </div>
     </h:form>
   </div>

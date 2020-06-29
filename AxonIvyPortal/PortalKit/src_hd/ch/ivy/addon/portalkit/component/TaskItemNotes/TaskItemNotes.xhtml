@@ -62,9 +62,12 @@
           </h:outputText>
         </p:column>
       </p:dataTable>
-       <h:outputText styleClass="no-documents-message ui-g-12"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noHistories')}"
-        rendered="#{empty data.notes}" />
+
+      <h:panelGroup layout="block" styleClass="ui-g-12 no-item-panel" rendered="#{empty data.notes}">
+        <i class="icon ivyicon-information-circle" />
+        <h:outputText styleClass="no-item-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noNoteAvailable')}" />
+        <h:outputText styleClass="no-item-detail" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pleaseAddNote')}" />
+      </h:panelGroup>
     </h:panelGroup>
   </div>
 

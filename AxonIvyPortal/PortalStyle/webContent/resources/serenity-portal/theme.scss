@@ -1720,3 +1720,13 @@ ul.participants-list li {
     }
   }
 }
+
+/* Others */
+.no-item-panel .icon {
+  font-size: $noItemIconFontSize !important;
+  color: $noItemIconColor !important;
+}
+
+.no-item-panel .no-item-header {
+  font-size: $noItemHeaderFontSize;
+}
