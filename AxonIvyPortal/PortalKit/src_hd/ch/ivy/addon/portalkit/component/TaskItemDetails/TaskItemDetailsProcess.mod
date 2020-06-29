@@ -144,10 +144,12 @@ Cs0 f14 83 467 26 26 -46 17 #rect
 Cs0 f14 @|UdMethodIcon #fIcon
 Cs0 f45 actionTable 'out=in;
 ' #txt
-Cs0 f45 actionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+Cs0 f45 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.bean.TaskActionBean;
 
 TaskActionBean taskActionBean = ManagedBeans.get("taskActionBean") as TaskActionBean;
+in.task = TaskUtils.findTaskById(in.task.getId());
 out.canUserResumeTask = taskActionBean.canResume(in.task);
 ' #txt
 Cs0 f45 security system #txt
@@ -186,14 +188,14 @@ if(in.task.getState() == TaskState.DONE){
 	if (worker != null){
 		String fullName = worker.getFullName();
 		String workerName = StringUtils.isBlank(fullName) ? worker.getName() : worker.getFullName() + " (" + worker.getName() + ")";
-		notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/isAnotherUserWorking", [in.task.name, in.task.getId(), worker]);
+		notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/isAnotherUserWorking", [in.task.name, in.task.getId(), workerName]);
 	} else {
 		notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/noPermission", [in.task.getName()]);
 	}
 }
 
 facesContext.validationFailed();
-facesContext.addMessage("portal-global-growl", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
+facesContext.addMessage("portal-global-growl-message", new FacesMessage(FacesMessage.SEVERITY_INFO, notification, null));
 PrimeFaces.current().ajax().update("portal-global-growl");  
 ' #txt
 Cs0 f66 security system #txt
@@ -299,10 +301,12 @@ Cs0 f97 83 659 26 26 -60 16 #rect
 Cs0 f97 @|UdMethodIcon #fIcon
 Cs0 f80 actionTable 'out=in;
 ' #txt
-Cs0 f80 actionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+Cs0 f80 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.bean.TaskActionBean;
 
 TaskActionBean taskActionBean = ManagedBeans.get("taskActionBean") as TaskActionBean;
+in.task = TaskUtils.findTaskById(in.task.getId());
 out.canUserResumeTask = taskActionBean.canResume(in.task);
 ' #txt
 Cs0 f80 security system #txt
