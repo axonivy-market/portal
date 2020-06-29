@@ -9,7 +9,7 @@
 <cc:interface componentType="IvyComponent">
 </cc:interface>
 <cc:implementation>
-  <f:event listener="#{logic.initialize}" type="preRenderComponent" />
+  <f:event listener="#{logic.initialize()}" type="preRenderComponent" />
   <p:dialog id="create-task-widget-dialog" widgetVar="create-task-widget-dialog"
     header="Task Widget Configuration" appendTo="@(body)" closeOnEscape="true" draggable="false" dynamic="true"
     fitViewport="true" responsive="true" modal="true" width="80vw">
@@ -154,7 +154,6 @@
           <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
             <p:inputText id="category" styleClass="task-configuration__input-text" />
           </div>
-          <p:remoteCommand name="refreshWidget" actionListener="#{logic.refreshWidget}" />
         </h:form>
         </div>
         <div class="card filter-container task-configuration__layout-container">
@@ -168,7 +167,7 @@
       <p:commandButton id="task-configuration-save-button" value="Save"
         actionListener="#{logic.createTaskWidget()}"
         process="#{p:component('create-task-configuration-form')}"
-        update="#{p:component('grid-stack')} create-task-widget-dialog"
+        update="grid-stack-tab-view:0:grid-stack create-task-widget-dialog"
         oncomplete="PF('create-task-widget-dialog').hide(); loadGrid();" />
       <p:commandButton id="task-configuration-cancel-button" value="Cancel" type="button"
         actionListener="#{logic.initialize()}"
