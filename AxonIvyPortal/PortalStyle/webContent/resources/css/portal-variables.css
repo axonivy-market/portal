@@ -454,6 +454,9 @@
   --action-step-disabled-text-color: var(--ivy-primary-color-grey-medium);
   --place-holder-text-color: var(--ivy-primary-color-grey-medium);
   --text-tab-default-color: var(--ivy-primary-color-grey-medium);
+  --no-item-icon-font-size: 8rem;
+  --no-item-icon-color: var(--ivy-primary-color-grey-light);
+  --no-item-header-font-size: 2rem;
   /* Portal breadcrumb */
   --breadcrumb-background-color: transparent;
   --breadcrumb-font-size: 1.4rem;
