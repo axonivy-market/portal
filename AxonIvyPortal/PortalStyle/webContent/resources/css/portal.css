@@ -1862,3 +1862,12 @@ border-left-color: var(--primary-color);
 background-color:var(--primary-color);
 color: var(--button-text-color);
 }
+
+.no-item-panel .icon {
+  font-size: var(--no-item-icon-font-size) !important;
+  color: var(--no-item-icon-color);
+}
+
+.no-item-panel .no-item-header {
+  font-size: var(--no-item-header-font-size);
+}
