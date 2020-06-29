@@ -1882,8 +1882,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 .no-item-panel .icon {
   display: block;
   text-align: center;
-  font-size: 8rem !important;
-  color: var(--ivy-primary-color-grey-light);
 }
 
 .no-item-panel .no-item-header,
@@ -1894,7 +1892,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .no-item-panel .no-item-header {
-  font-size: 2rem;
   margin-top: 20px;
 }
 
