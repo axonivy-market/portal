@@ -113,8 +113,7 @@
   --widget-header-input-hover-background-color: transparent;
   --widget-header-font-size: 1.8rem;
   --widget-header-font-weight: bold;
-  --widget-header-mobile-border-bottom: var(--ivy-primary-color-grey-light);
-  
+
   /* Portal Card */
   --card-box-shadow: 0px 4px 16px rgba(27, 27, 27, 0.16);
   --card-border-radius: 5px;

@@ -93,7 +93,7 @@
          <!-- Title on mobile -->
          <h:panelGroup id="case-header-mobile" styleClass="ui-sm-4 widget-title-mobile">
            <f:event listener="#{logic.preRenderTitle()}" type="preRenderComponent" />
-           <span class="top-header-main-title">
+           <span class="top-header-main-title widget-header-main-title">
              <span> #{cc.attrs.title}</span>
              <h:outputText styleClass="js-case-count-mobile" rendered="#{!data.dataModel.disableCaseCount}" />
           </span>
@@ -119,7 +119,7 @@
 
             <!-- Add more filters button -->
             <p:commandLink id="filter-add-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/moreOptions')}"
-              styleClass="filter-add-container u-hidden-md-down" global="false" />
+              styleClass="filter-add-container u-hidden-md-down js-filter-add-action" global="false" />
             <p:overlayPanel id="filter-add-panel" widgetVar="filter-add-panel" styleClass="filter-add-panel"
               for="filter-add-action" my="left top" at="left bottom" dismissable="false">
               <h:form id="filter-add-form">
@@ -151,17 +151,17 @@
 
             <!-- Reset filter button -->
             <p:commandLink id="filter-reset-action" rendered="#{data.dataModel.selectedFilterData == null and !data.dataModel.isSelectedDefaultFilter()}"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" styleClass="filter-reset-action filter-add-container  u-hidden-md-down"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" styleClass="filter-reset-action filter-add-container  u-hidden-md-down js-filter-reset-action"
               onclick="PF('reset-filter-set-dialog').show();" global="false">
               <span class="fa fa-refresh" />
             </p:commandLink>
 
             <!-- Save filter button -->
             <p:commandButton id="filter-save-action"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" styleClass="filter-add-button u-hidden-md-down"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" styleClass="filter-add-button u-hidden-md-down js-filter-save-action"
               icon="fa fa-save" iconPos="right" update="save-filter-set-dialog" resetValues="true"
               oncomplete="PF('save-filter-set-dialog').show();" />
-           </div>
+        </div>
       </h:panelGroup>
     </h:panelGroup>
 

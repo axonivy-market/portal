@@ -20,8 +20,10 @@
       <h:panelGroup layout="block" class="process-header js-process-header" rendered="#{!cc.attrs.hideHeader}">
 
         <div class="ui-g-12 u-no-padding-top u-no-padding-left u-no-padding-bottom ui-g">
-          
-          <div class="ui-sm-12 ui-md-10 ui-lg-7 ui-xl-4 process-widget-filter">
+          <div class="ui-sm-3 u-hidden-sm-up">
+            <span class="process-header-title widget-header-main-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}</span>
+          </div>
+          <div class="ui-sm-9 ui-md-10 ui-lg-7 ui-xl-4 process-widget-filter">
             <ic:ch.ivy.addon.portalkit.component.Filter id="process-search" listener="processWidget.filter()" ajax="false"
                   placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processFilterPlaceHolder')}"
                   styleClass="js-filter-process-widget-list-item" />
