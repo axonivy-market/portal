@@ -1875,10 +1875,28 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   padding: 15px;
 }
 
-.no-documents-message {
-  text-align: center;
-  line-height: 2.5px;
+.no-item-panel {
+  margin-top: 4%;
+}
+
+.no-item-panel .icon {
   display: block;
+  text-align: center;
+}
+
+.no-item-panel .no-item-header,
+.no-item-panel .no-item-detail {
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+.no-item-panel .no-item-header {
+  margin-top: 20px;
+}
+
+.no-item-panel .no-item-detail {
+  margin-top: 10px;
 }
 
 .task-details-document-download-icon {
