@@ -24,28 +24,28 @@
             <span class="fa fa-play" />
           </p:commandLink>
         </p:column>
-        <p:column headerText="Prio" styleClass="prio-column" filterBy="#{task.priority}" visible="#{taskWidgetConfigurationPrototypeBean.taskColumns['PRIORITY']}">
+        <p:column headerText="Prio" styleClass="prio-column" filterBy="#{task.priority}" visible="#{cc.attrs.taskWidget.taskColumns.contains('PRIORITY')}">
           <h:outputText value="#{taskWidgetConfigurationPrototypeBean.getUserFriendlyTaskPriority(task.priority)}" styleClass="priority #{task.priority}" />
         </p:column>
-        <p:column headerText="ID" styleClass="task-id-column" filterBy="#{task.id}" visible="#{taskWidgetConfigurationPrototypeBean.taskColumns['ID']}">
+        <p:column headerText="ID" styleClass="task-id-column" filterBy="#{task.id}" visible="#{cc.attrs.taskWidget.taskColumns.contains('ID')}">
           <h:outputText value="#{task.id}" />
         </p:column>
-        <p:column headerText="Task Name" styleClass="name-column" filterBy="#{task.name}" visible="#{taskWidgetConfigurationPrototypeBean.taskColumns['NAME']}">
+        <p:column headerText="Task Name" styleClass="name-column" filterBy="#{task.name}" visible="#{cc.attrs.taskWidget.taskColumns.contains('NAME')}">
           <h:outputText value="#{task.name}" />
         </p:column>
-        <p:column headerText="Description" styleClass="desc-column" filterBy="#{task.description}" visible="#{taskWidgetConfigurationPrototypeBean.taskColumns['DESCRIPTION']}">
+        <p:column headerText="Description" styleClass="desc-column" filterBy="#{task.description}" visible="#{cc.attrs.taskWidget.taskColumns.contains('DESCRIPTION')}">
           <h:outputText value="#{task.description}" />
         </p:column>
-        <p:column headerText="Responsible" styleClass="" filterBy="#{task.activator.displayName}" visible="#{taskWidgetConfigurationPrototypeBean.taskColumns['ACTIVATOR']}">
+        <p:column headerText="Responsible" styleClass="" filterBy="#{task.activator.displayName}" visible="#{cc.attrs.taskWidget.taskColumns.contains('ACTIVATOR')}">
           <h:outputText value="#{task.activator.displayName}" />
         </p:column>
-        <p:column headerText="State" styleClass="state-column" filterBy="#{task.state}" visible="#{taskWidgetConfigurationPrototypeBean.taskColumns['STATE']}">
+        <p:column headerText="State" styleClass="state-column" filterBy="#{task.state}" visible="#{cc.attrs.taskWidget.taskColumns.contains('STATE')}">
           <h:outputText value="#{taskWidgetConfigurationPrototypeBean.getUserFriendlyTaskState(task.state)}" styleClass="state #{task.state}" />
         </p:column>
-        <p:column headerText="Created" styleClass="" filterBy="#{task.startTimestamp}" visible="#{taskWidgetConfigurationPrototypeBean.taskColumns['CREATION_TIME']}">
+        <p:column headerText="Created" styleClass="" filterBy="#{task.startTimestamp}" visible="#{cc.attrs.taskWidget.taskColumns.contains('CREATION_TIME')}">
           <h:outputText value="#{task.startTimestamp}" styleClass="" />
         </p:column>
-        <p:column headerText="Expired" styleClass="" filterBy="#{task.expiryTimestamp}" visible="#{taskWidgetConfigurationPrototypeBean.taskColumns['EXPIRY_TIME']}">
+        <p:column headerText="Expired" styleClass="" filterBy="#{task.expiryTimestamp}" visible="#{cc.attrs.taskWidget.taskColumns.contains('EXPIRY_TIME')}">
           <h:outputText value="#{task.expiryTimestamp}" styleClass="" />
         </p:column>
       </p:dataTable>
