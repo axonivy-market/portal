@@ -8,6 +8,8 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.dto.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.enums.TaskDashboardWidgetType;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -22,12 +24,14 @@ public class TaskDashboardWidgetService {
 
     // Name
     if (StringUtils.isNotBlank(definition.getTaskName())) {
-      taskQuery.where().and().name().isLike(definition.getTaskName());
+      String containingKeyword = String.format("%%%s%%", definition.getTaskName());
+      taskQuery.where().name().isLikeIgnoreCase(containingKeyword);
     }
 
     // Description
     if (StringUtils.isNotBlank(definition.getDescription())) {
-      taskQuery.where().and().description().isLike(definition.getDescription());
+      String containingKeyword = String.format("%%%s%%", definition.getTaskName());
+      taskQuery.where().description().isLikeIgnoreCase(containingKeyword);
     }
 
     // Priority
@@ -51,7 +55,9 @@ public class TaskDashboardWidgetService {
     taskQuery.where().and(stateSubQuery);
 
     // Responsible
-    if (CollectionUtils.isNotEmpty(definition.getResponsibles()) || CollectionUtils.isNotEmpty(definition.getRoles())) {
+    if (definition.getTaskDashboardWidgetType() == TaskDashboardWidgetType.PERSONAL) {
+      taskQuery.where().and().activatorUserId().isEqual(Ivy.session().getSessionUser().getId());
+    } else if (CollectionUtils.isNotEmpty(definition.getResponsibles()) || CollectionUtils.isNotEmpty(definition.getRoles())) {
       TaskQuery responsibleQuery = TaskQuery.create();
       if (CollectionUtils.isNotEmpty(definition.getResponsibles())) {
         definition.getResponsibles().forEach(user -> responsibleQuery.where().or().activatorName().isEqual("#".concat(user)));

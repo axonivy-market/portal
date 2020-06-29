@@ -37,6 +37,8 @@ import ch.ivy.addon.portalkit.loader.ResourceLoader;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.application.property.ICustomProperty;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
 @ViewScoped
 @ManagedBean
@@ -92,6 +94,8 @@ public class DashboardBean implements Serializable {
     result.setHeight(6);
     result.setAutoPosition(true);
     result.setTaskDashboardWidgetType(TaskDashboardWidgetType.CUSTOM);
+    result.setPriorities(new ArrayList<>(List.of(WorkflowPriority.LOW, WorkflowPriority.NORMAL, WorkflowPriority.HIGH, WorkflowPriority.EXCEPTION)));
+    result.setStates(new ArrayList<>(List.of(TaskState.CREATED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE, TaskState.UNASSIGNED)));
     return result;
   }
   
