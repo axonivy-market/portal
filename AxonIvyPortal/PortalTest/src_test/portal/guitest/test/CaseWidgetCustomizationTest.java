@@ -16,8 +16,6 @@ import portal.guitest.page.MainMenuPage;
 
 public class CaseWidgetCustomizationTest extends BaseTest {
 
-	private static final String CREATE_CASES_FOR_CASE_LIST_CUSTOMIZATION =
-			"portal-developer-examples/162511D2577DBA88/createCasesForCaseListCustomization.ivp";
 	private static final String CUSTOMER_NAME_CASE_LIST_HEADER_ID = 
 	    "case-widget:customVarCharField1-column-header:customVarCharField1-column-header";
 	private static final String STATE_COLUMN_HEADER = "State";
@@ -27,7 +25,7 @@ public class CaseWidgetCustomizationTest extends BaseTest {
 	@Before
 	public void setup() {
 		super.setup();
-		redirectToRelativeLink(CREATE_CASES_FOR_CASE_LIST_CUSTOMIZATION);
+		redirectToRelativeLink(createCasesForCaseListCustomization);
 		login(TestAccount.ADMIN_USER);
 		redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
 	}

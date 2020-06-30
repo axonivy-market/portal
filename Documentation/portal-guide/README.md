@@ -11,6 +11,8 @@ Using reStructredText as markup language.
 
 You can browse the documentation at http://127.0.0.1:8000
 
+## Retrieve document screenshots
+* run this command **mvn clean verify**
 
 ## Dev Environment Setup
 

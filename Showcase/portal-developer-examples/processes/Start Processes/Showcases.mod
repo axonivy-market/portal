@@ -38,6 +38,14 @@ Ss0 @PushWFArc f26 '' #zField
 Ss0 @UserDialog f23 '' #zField
 Ss0 @PushWFArc f24 '' #zField
 Ss0 @PushWFArc f22 '' #zField
+Ss0 @StartRequest f27 '' #zField
+Ss0 @EndTask f28 '' #zField
+Ss0 @UserDialog f30 '' #zField
+Ss0 @PushWFArc f31 '' #zField
+Ss0 @PushWFArc f29 '' #zField
+Ss0 @StartRequest f32 '' #zField
+Ss0 @EndTask f33 '' #zField
+Ss0 @PushWFArc f34 '' #zField
 >Proto Ss0 Ss0 Showcases #zField
 Ss0 f0 outLink ApplicationShowcase.ivp #txt
 Ss0 f0 inParamDecl '<> param;' #txt
@@ -272,6 +280,60 @@ Ss0 f23 344 458 112 44 -52 -8 #rect
 Ss0 f23 @|UserDialogIcon #fIcon
 Ss0 f24 280 480 344 480 #arcP
 Ss0 f22 456 480 561 480 #arcP
+Ss0 f27 outLink StartTwoColumnTemplateShowcase.ivp #txt
+Ss0 f27 inParamDecl '<> param;' #txt
+Ss0 f27 requestEnabled true #txt
+Ss0 f27 triggerEnabled false #txt
+Ss0 f27 callSignature StartTwoColumnTemplateShowcase() #txt
+Ss0 f27 caseData businessCase.attach=true #txt
+Ss0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>StartTwoColumnTemplateShowcase.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f27 @C|.responsibility Everybody #txt
+Ss0 f27 721 49 30 30 -104 24 #rect
+Ss0 f27 @|StartRequestIcon #fIcon
+Ss0 f28 977 49 30 30 0 15 #rect
+Ss0 f28 @|EndIcon #fIcon
+Ss0 f30 dialogId com.axonivy.portal.developerexamples.TwoColumnsShowcase #txt
+Ss0 f30 startMethod start() #txt
+Ss0 f30 requestActionDecl '<> param;' #txt
+Ss0 f30 responseMappingAction 'out=in;
+' #txt
+Ss0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Open two columns temple</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f30 784 42 160 44 -72 -8 #rect
+Ss0 f30 @|UserDialogIcon #fIcon
+Ss0 f31 751 64 784 64 #arcP
+Ss0 f29 944 64 977 64 #arcP
+Ss0 f32 outLink StartShowIvyErrorPage.ivp #txt
+Ss0 f32 inParamDecl '<> param;' #txt
+Ss0 f32 actionCode 1/0; #txt
+Ss0 f32 requestEnabled true #txt
+Ss0 f32 triggerEnabled false #txt
+Ss0 f32 callSignature StartShowIvyErrorPage() #txt
+Ss0 f32 caseData businessCase.attach=true #txt
+Ss0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>StartShowIvyErrorPage.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f32 @C|.responsibility Everybody #txt
+Ss0 f32 721 145 30 30 -79 19 #rect
+Ss0 f32 @|StartRequestIcon #fIcon
+Ss0 f33 977 145 30 30 0 15 #rect
+Ss0 f33 @|EndIcon #fIcon
+Ss0 f34 751 160 977 160 #arcP
 >Proto Ss0 .type com.axonivy.portal.developerexamples.showcase.Data #txt
 >Proto Ss0 .processKind NORMAL #txt
 >Proto Ss0 0 0 32 24 18 0 #rect
@@ -298,3 +360,9 @@ Ss0 f25 mainOut f24 tail #connect
 Ss0 f24 head f23 mainIn #connect
 Ss0 f23 mainOut f22 tail #connect
 Ss0 f22 head f21 mainIn #connect
+Ss0 f27 mainOut f31 tail #connect
+Ss0 f31 head f30 mainIn #connect
+Ss0 f30 mainOut f29 tail #connect
+Ss0 f29 head f28 mainIn #connect
+Ss0 f32 mainOut f34 tail #connect
+Ss0 f34 head f33 mainIn #connect

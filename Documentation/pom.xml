@@ -2,12 +2,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-		<groupId>ch.ivyteam.ivy.project.portal</groupId>
-		<artifactId>doc-config</artifactId>
-		<version>${revision}</version>
-		<relativePath>maven</relativePath>
+        <groupId>ch.ivyteam.ivy.project.portal</groupId>
+        <artifactId>doc-config</artifactId>
+        <version>${revision}</version>
+        <relativePath>maven</relativePath>
     </parent>
-    
+
     <artifactId>doc-modules</artifactId>
     <packaging>pom</packaging>
 

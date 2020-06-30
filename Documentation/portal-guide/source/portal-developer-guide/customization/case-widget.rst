@@ -70,7 +70,7 @@ Refer to ``portal-developer-examples`` project for examples
 Case List Header and Case Header
 --------------------------------
 
-Refer to the ``caseListHeader`` and ``caseHeader`` sections in
+Refer to the ``caseListHeader (1)`` and ``caseHeader (2)`` sections in
 ``PortalCases.xhtml`` of PortalTemplate. In case your case widget has
 new columns, you should override CaseLazyDataModel to make the sort
 function of these columns work:
@@ -82,7 +82,7 @@ function of these columns work:
 -  Override the ``extendSort`` method and extend the sort function for
    the added columns (see the method's Javadoc comments)
 
--  Default caseList supports user to config display/hide column
+-  Default caseList supports user to config display/hide column: ``Custom SortFields (1)``, ``Custom Checkboxes (2)`` and ``Custom header column (3)``.
 
    |case-columns-configuration|
 
@@ -130,6 +130,10 @@ Case filter
 
 -  In order to introduce new filter, create a new java class extends
    CaseFilter and override its methods (see javadoc comments)
+
+   1. Filter ``label()`` and ``value()`` method.
+   2. Filter ``resetValue()`` is called when click on ``X`` icon.
+   3. Filter ``validate()`` is called when click on ``Apply`` button.
 
    |case-filter|
 
@@ -321,6 +325,6 @@ You can refer to ``portal-developer-examples`` project for examples
    .. tip:: The smallest browser width you can anchor the left menu is
           1025. So you could reduce width of browser to 1025 to test and decide which columns need to be hidden.
 
-.. |case-filter| image:: images/case-widget/case-filter.png
-.. |case-columns-configuration| image:: images/case-widget/case-columns-configuration.png
-.. |case-list| image:: images/case-widget/case-list.png
+.. |case-filter| image:: ../../screenshots/case/customization/case-filter.png
+.. |case-columns-configuration| image:: ../../screenshots/case/customization/case-columns-configuration.png
+.. |case-list| image:: ../../screenshots/case/customization/case-list.png

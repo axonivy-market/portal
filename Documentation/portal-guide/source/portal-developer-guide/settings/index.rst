@@ -23,7 +23,7 @@ How to open Admin Settings
 Open ``Admin Settings`` by selecting the item in ``UserMenu`` on the
 topbar, if your page using layout of ``PortalTemplate`` .
 
-|multi-portal-open-settings|
+|select-admin-settings|
 
 .. important:: 
    If your application does not use templates of PortalTemplate project, you
@@ -171,7 +171,7 @@ Choose ``Application`` tab on ``Admin Settings`` dialog and click on
 ``New`` button to add new application. Here you can choose application
 type either as Ivy application or Third Party application.
 
-|multi-portal-add-application|
+|add-application|
 
 .. tip::
 
@@ -586,14 +586,15 @@ Global variables
    |                           |             | property.                 |
    +---------------------------+-------------+---------------------------+
 
-.. |portal-header| image:: images/settings/portal-header.png
-.. |global-settings| image:: images/settings/global-settings.png
-.. |global-setting-edit| image:: images/settings/global-setting-edit.png
+
+.. |portal-header| image:: ../../screenshots/settings/user-settings.png
+.. |global-settings| image:: ../../screenshots/settings/global-settings.png
+.. |global-setting-edit| image:: ../../screenshots/settings/edit-global-settings.png
 .. |multi-application-with-portal| image:: images/settings/multi-application-with-portal.png
 .. |multi-application-without-portal| image:: images/settings/multi-application-without-portal.png
 .. |language-precedence| image:: images/settings/language-precedence.png
 .. |language-settings| image:: images/settings/language-settings.png
 .. |add-new-language| image:: images/settings/add-new-language.png
-.. |multi-portal-open-settings| image:: images/settings/multi-portal-open-settings.png
-.. |multi-portal-add-application| image:: images/settings/multi-portal-add-application.png
+.. |select-admin-settings| image:: ../../screenshots/settings/select-admin-settings.png
+.. |add-application| image:: ../../screenshots/settings/add-application.png
 

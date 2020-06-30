@@ -51,15 +51,21 @@ public class CaseWidgetPage extends TemplatePage {
 	}
 
 	private WebElement getDestroyButtonOfCaseItem() {
-		clickByCssSelector("button[id$='action-steps-menu']");
+		openActionStepMenu();
 		waitForElementDisplayed(By.cssSelector("a[id$='destroy-case']"), true);
 		Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
 				.until(() -> findElementByCssSelector("a[id$='destroy-case']").isDisplayed());
 		return findElementByCssSelector("a[id$='destroy-case']");
 	}
 
+  public void openActionStepMenu() {
+    waitForElementDisplayed(By.cssSelector("[id$=':case-item:case-item-action-form']"), true);
+    clickByCssSelector("button[id$='action-steps-menu']");
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
+
 	private WebElement getMoreActionsPanel() {
-		clickByCssSelector("button[id$='action-steps-menu']");
+		openActionStepMenu();
 		waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
 		Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
 				.until(() -> findElementByCssSelector("div[id$='action-steps-panel']").isDisplayed());
@@ -73,7 +79,7 @@ public class CaseWidgetPage extends TemplatePage {
 
 	public boolean isDestroyButtonVisible() {
 		try {
-		  clickByCssSelector("button[id$='action-steps-menu']");
+		  openActionStepMenu();
 		  waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
 	    return isElementDisplayed(By.cssSelector("a[id$='destroy-case'"));
 		} catch (Exception ex) {
@@ -187,15 +193,20 @@ public class CaseWidgetPage extends TemplatePage {
 	}
 
 	public void saveFilter(String filterName) {
-		click(By.id(caseWidgetId + ":filter-save-action"));
-		waitAjaxIndicatorDisappear();
-		waitForElementDisplayed(By.id(caseWidgetId + ":filter-save-form:save-filter-set-name-input"), true);
+		getSaveFilterDialog();
 		WebElement filterNameInput = findElementById(caseWidgetId + ":filter-save-form:save-filter-set-name-input");
 		enterKeys(filterNameInput, filterName);
 		click(findElementById(caseWidgetId + ":filter-save-form:filter-save-command"));
 		waitAjaxIndicatorDisappear();
 		ensureNoBackgroundRequest();
 	}
+
+  public WebElement getSaveFilterDialog() {
+    click(By.id(caseWidgetId + ":filter-save-action"));
+		waitAjaxIndicatorDisappear();
+		waitForElementDisplayed(By.id(caseWidgetId + ":filter-save-form:save-filter-set-name-input"), true);
+		return findElementById(caseWidgetId + ":save-filter-set-dialog");
+  }
 
 	public String getFilterName() {
 		WebElement filterName = findElementByCssSelector("[id$='case-widget:filter-selection-form:filter-name'] > span");
@@ -356,4 +367,8 @@ public class CaseWidgetPage extends TemplatePage {
 		return findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']")
         .getAttribute("value");
   }
+	
+	public void waitUntilCaseFilterDisplayed() {
+	  waitForElementDisplayed(By.id("case-widget:filter-container"), true);
+	}
 }

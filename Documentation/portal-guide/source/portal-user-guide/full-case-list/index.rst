@@ -13,7 +13,7 @@ using the |case-icon| **Cases** link in the Axon.ivy Portal menu.
    the Axon.ivy Portal, you might see not only the cases you’re involved in but
    all cases.                      
 
-.. figure:: images/navigate-to-full-cases-list-page.png
+|navigate-to-full-cases-list-page|
 
 On the top of the :guilabel:`Full Case List` page you see next to the heading :guilabel:`Cases`
 in brackets the overall number of cases shown to you. Further to the right you
@@ -35,7 +35,7 @@ For each case the following key information is shown in the list:
 
 6. Status
 
-.. figure:: images/case-key-information.png
+|case-key-information|
 
 Furthermore, at the end of each row you find a set of key features in
 handling cases:
@@ -47,32 +47,33 @@ handling cases:
 Finally, you have the possibility to access the full set of the case
 data by clinking the case Name/Description.
 
-.. figure:: images/case-details.png
+|case-details|
 
 The case details are separated in 4 different sections:
 
 1. Data and Description, you find various metadata concerning the case and description.
 
-.. figure:: images/case-details-data-description.png
+|case-details-data-description|
 
 2. Related running tasks and cases, you find a list of all related running cases and
    tasks. Moving the mouse over the tasks shows you the state and the
    responsible user of the task. To show all related tasks see the HowTo
    below.
 
-.. figure:: images/case-details-related-tasks-cases.png
+|case-details-related-tasks-cases|
+
 
 3. Histories, the Axon.ivy Portal adds notes
    here for state changes of the case. You may add additional notes
    which is described below.
 
-.. figure:: images/case-details-histories.png
+|case-details-histories|
 
 4. Documents, you find an area for documents that were
    attached to the case. You may add or delete documents which his
    described in the HowTo’s below.
 
-.. figure:: images/case-details-documents.png
+|case-details-documents|
 
 .. _howto-use-existing-filter-1:
 
@@ -115,7 +116,7 @@ HowTo: Create new filter
 
 9. Save the filter by clicking the button **Ok**.
 
-.. figure:: images/how-to-create-case-filter.png
+|how-to-create-case-filter|
 
 
 .. centered:: Case filter criterias
@@ -163,7 +164,7 @@ HowTo: Show all related Tasks
    appearance and features. The shown tasks are only down selected to the ones
    related to your case already.
 
-.. figure:: images/related-tasks-list-page.png
+|related-tasks-list-page|
 
 .. _howto-attach-a-document-to-the-case-1:
 
@@ -181,7 +182,7 @@ HowTo: Attach a document to the case
 
 5. Click the button **Close** to add the attachment
 
-.. figure:: images/how-to-attach-document-to-case.png
+|how-to-attach-document-to-case|
 
 .. _howto-remove-an-attachment-from-the-case-1:
 
@@ -197,7 +198,7 @@ HowTo: Remove an attachment from the case
 
 4. Confirm the deletion with the button **Yes**
 
-.. figure:: images/how-to-delete-an-attachment-from-case.png
+|how-to-delete-an-attachment-from-case|
 
 HowTo: Add a note to a case
 ---------------------------
@@ -212,7 +213,7 @@ HowTo: Add a note to a case
 
 5. Confirm your note by clicking the button **Save**.
 
-.. figure:: images/how-to-add-task-note.png
+|how-to-add-task-note|
 
 HowTo: Export a case history
 ----------------------------
@@ -221,13 +222,28 @@ HowTo: Export a case history
 
 2. Click on the |show-more-icon| **Show more** link below the notes section
 
-.. figure:: images/how-to-show-note-details.png
+|how-to-show-note-details|
 
 3. A new page with the case history is opened
 
 4. You may export the history by clicking on the button **Export to
    Excel**
 
-.. figure:: images/export-case-history.png
+|export-case-history|
 
 .. include:: ../includes/_common-icon.rst
+
+.. |navigate-to-full-cases-list-page| image:: ../../screenshots/case/navigate-to-full-cases-list-page.png
+.. |case-key-information| image:: ../../screenshots/case/case-key-information.png
+.. |case-details| image:: ../../screenshots/case-detail/case-details.png
+.. |case-details-data-description| image:: ../../screenshots/case-detail/case-details-data-description.png
+.. |case-details-related-tasks-cases| image:: ../../screenshots/case-detail/case-details-related-tasks-cases.png
+.. |case-details-histories| image:: ../../screenshots/case-detail/case-details-histories.png
+.. |case-details-documents| image:: ../../screenshots/case-detail/case-details-documents.png
+.. |how-to-create-case-filter| image:: ../../screenshots/case/how-to-create-case-filter.png
+.. |related-tasks-list-page| image:: ../../screenshots/task/task-key-information.png
+.. |how-to-attach-document-to-case| image:: ../../screenshots/case-detail/how-to-attach-document-to-case.png
+.. |how-to-delete-an-attachment-from-case| image:: ../../screenshots/case-detail/how-to-delete-an-attachment-from-case.png
+.. |how-to-add-task-note| image:: ../../screenshots/case-detail/how-to-add-task-note.png
+.. |how-to-show-note-details| image:: ../../screenshots/case-detail/how-to-show-note-details.png
+.. |export-case-history| image:: ../../screenshots/case/export-case-history.png

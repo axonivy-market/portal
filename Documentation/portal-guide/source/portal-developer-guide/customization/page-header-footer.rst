@@ -13,4 +13,5 @@ You could add header and footer to every page by overriding the ``PageHeader`` a
 If you use Case Scope, you need to copy the ``PortalStart`` process from ``PortalTemplate`` to your project and
 it is ensured that the process request is issued through your project instead of PortalTemplate
 
-.. |page-header-footer| image:: images/page-header-footer/page-header-footer.png
+
+.. |page-header-footer| image:: ../../screenshots/dashboard/page-header-footer.png

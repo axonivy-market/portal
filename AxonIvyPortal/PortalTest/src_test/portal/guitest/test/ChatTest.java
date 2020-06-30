@@ -65,7 +65,7 @@ public class ChatTest extends BaseTest {
     chatPage2.closeChatMessageList();
     chatPage.sendMessage("from 1 to 2");
     assertChatNotification(chatPage2, true);
-    chatPage2.selectChatGroup();
+    chatPage2.selectPortalDemoUserChatGroup();
     chatPage2.sendMessage("from 2 to 1");
     assertContainMessage(chatPage, "from 2 to 1");
     assertContainMessage(chatPage2, "from 1 to 2");
@@ -104,7 +104,7 @@ public class ChatTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     Sleeper.sleep(1000); // chat groups are not loading at the beginning, wait a bit for Firefox browser
     new HomePage().getChat();
-    chatPage.selectChatGroup();
+    chatPage.selectPortalDemoUserChatGroup();
     chatPage.getAllParticipants();
 
     assertTrue("Admin in chat group", chatPage.getAllParticipants().contains(TestAccount.ADMIN_USER.getUsername()));
@@ -133,13 +133,13 @@ public class ChatTest extends BaseTest {
     enableChatGroup();
     createChatGroupWithPredifinedGroup(true, TestAccount.DEMO_USER);
     ChatPage chatPageDemo1 = new TaskTemplatePage().getChat();
-    chatPageDemo1.selectChatGroup();
+    chatPageDemo1.selectPortalDemoUserChatGroup();
     launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPageDemo2 = openChatGroup(TestAccount.DEMO_USER);
     launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
     ChatPage chatPageAdmin1 = new TaskTemplatePage().getChat();
-    chatPageAdmin1.selectChatGroup();
+    chatPageAdmin1.selectPortalDemoUserChatGroup();
     launchBrowserAndGotoRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     ChatPage chatPageAdmin2 = openChatGroup(TestAccount.ADMIN_USER);
     chatPageAdmin1.closeChatMessageList();
@@ -152,7 +152,7 @@ public class ChatTest extends BaseTest {
     assertChatNotification(chatPageAdmin1, true);
     assertChatNotification(chatPageAdmin2, true);
     // admin1 opens group
-    chatPageAdmin1.selectChatGroup();
+    chatPageAdmin1.selectPortalDemoUserChatGroup();
     assertContainMessage(chatPageAdmin1, DEMO1_1);
     assertChatNotification(chatPageAdmin2, false);
 
@@ -198,7 +198,7 @@ public class ChatTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     login(chatUser);
     ChatPage chatPage = new HomePage().getChat();
-    chatPage.selectChatGroup();
+    chatPage.selectPortalDemoUserChatGroup();
     return chatPage;
   }
 

@@ -9,11 +9,9 @@ information, Portal supports overriding concept for TaskItemDetails.
 
 Each TaskItemDetails contains
 
--  showItemDetailsHeader
+-  ``showItemDetailsNotes (1)``
 
--  showItemDetailsNotes
-
--  showItemDetailDocuments
+-  ``showItemDetailDocuments (2)``
 
 -  TaskItemDetail custom panel: taskItemDetailCustomPanelTop,
    taskItemDetailCustomPanelBottom
@@ -191,13 +189,15 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
 -  After applied above code to your custom page, the custom panel will
    display as below
 
-   |custom-panel-override|
+   1. ``taskItemDetailCustomPanelTop (1)`` panel box.
+   2. ``taskItemDetailCustomPanelBottom (2)`` panel box.
 
--  Finally, we have a custom Task details page
+   |task-customized-top|
 
-   |task-customized|
+   |task-customized-bottom|
 
-.. |task-standard| image:: images/task-item-details/task-standard.png
-.. |custom-panel-override| image:: images/task-item-details/custom-panel-override.png
-.. |task-customized| image:: images/task-item-details/task-customized.png
+
+.. |task-standard| image:: ../../screenshots/task-detail/customization/task-standard.png
+.. |task-customized-top| image:: ../../screenshots/task-detail/customization/task-customized-top.png
+.. |task-customized-bottom| image:: ../../screenshots/task-detail/customization/task-customized-bottom.png
 
