@@ -56,7 +56,7 @@
               <h:panelGroup>
 
                 <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task)}" styleClass="task-action-item"
-                  rendered="#{task.state != 'RESUMED'}" actionListener="#{logic.openTask()}">
+                  rendered="#{task.state != 'RESUMED'}" actionListener="#{logic.openTask()}" update="task-detail-general-container">
                   <i class="tmi-chevorn-right" />
                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label" />
                 </p:commandLink>
