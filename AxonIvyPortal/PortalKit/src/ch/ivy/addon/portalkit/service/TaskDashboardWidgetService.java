@@ -13,14 +13,15 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
+import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class TaskDashboardWidgetService {
   public TaskQuery loadTaskQuery(TaskDashboardWidget definition) {
-    if (definition.getName() == null) {
-      return TaskQuery.create();
-    }
-
     TaskQuery taskQuery = TaskQuery.create();
+    
+    if (definition.getName() == null) {
+      return taskQuery;
+    }
 
     // Name
     if (StringUtils.isNotBlank(definition.getTaskName())) {
@@ -36,21 +37,25 @@ public class TaskDashboardWidgetService {
 
     // Priority
     TaskQuery prioritySubQuery = TaskQuery.create();
-    if (CollectionUtils.isNotEmpty(definition.getPriorities())) {
-      definition.getPriorities().forEach(priority -> prioritySubQuery.where().or().priority().isEqual(priority));
-    } else {
-      List<WorkflowPriority> priorities = Arrays.asList(WorkflowPriority.EXCEPTION, WorkflowPriority.HIGH, WorkflowPriority.NORMAL, WorkflowPriority.LOW);
-      priorities.forEach(priority -> prioritySubQuery.where().and().priority().isNotEqual(priority));
+    List<WorkflowPriority> priorities = definition.getPriorities();
+    if (CollectionUtils.isEmpty(priorities)) {
+      priorities = Arrays.asList(WorkflowPriority.EXCEPTION, WorkflowPriority.HIGH, WorkflowPriority.NORMAL, WorkflowPriority.LOW);
+    }
+    IFilterQuery priorityFilterQuery = prioritySubQuery.where();
+    for (WorkflowPriority priority : priorities) {
+      priorityFilterQuery.or().priority().isEqual(priority);
     }
     taskQuery.where().and(prioritySubQuery);
 
     // State
     TaskQuery stateSubQuery = TaskQuery.create();
-    if (CollectionUtils.isNotEmpty(definition.getStates())) {
-      definition.getStates().forEach(state -> stateSubQuery.where().or().state().isEqual(state));
-    } else {
-      List<TaskState> states = Arrays.asList(TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE);
-      states.forEach(state -> stateSubQuery.where().and().state().isNotEqual(state));
+    List<TaskState> states = definition.getStates();
+    if (CollectionUtils.isEmpty(states)) {
+      states = Arrays.asList(TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE, TaskState.UNASSIGNED);
+    }
+    IFilterQuery stateFilterQuery = stateSubQuery.where();
+    for (TaskState state : states) {
+      stateFilterQuery.or().state().isEqual(state);
     }
     taskQuery.where().and(stateSubQuery);
 
@@ -95,8 +100,6 @@ public class TaskDashboardWidgetService {
       }
       taskQuery.where().and(subTaskQueryForExpiryDate);
     }
-    
-    // Category
     
     return taskQuery;
   }

@@ -25,7 +25,10 @@
           </p:commandLink>
         </p:column>
         <p:column headerText="Prio" styleClass="prio-column" filterBy="#{task.priority}" visible="#{cc.attrs.taskWidget.taskColumns.contains('PRIORITY')}">
-          <h:outputText value="#{taskWidgetConfigurationPrototypeBean.getUserFriendlyTaskPriority(task.priority)}" styleClass="priority #{task.priority}" />
+          <i jsf:rendered="#{task.priority eq 'LOW'}" class="icon ivyicon-navigation-right-circle-1" />
+          <i jsf:rendered="#{task.priority eq 'NORMAL'}" class="icon ivyicon-navigation-right-circle-1" />
+          <i jsf:rendered="#{task.priority eq 'HIGH'}" class="icon ivyicon-navigation-up-circle" />
+          <i jsf:rendered="#{task.priority eq 'EXCEPTION'}" class="icon ivyicon-alert-circle" style="color: red" />
         </p:column>
         <p:column headerText="ID" styleClass="task-id-column" filterBy="#{task.id}" visible="#{cc.attrs.taskWidget.taskColumns.contains('ID')}">
           <h:outputText value="#{task.id}" />
@@ -49,7 +52,6 @@
           <h:outputText value="#{task.expiryTimestamp}" styleClass="" />
         </p:column>
       </p:dataTable>
-        <p:remoteCommand name="#{data.taskWidget.id}:reloadTasks" actionListener="#{logic.initialize(cc.attrs.taskWidget)}" process="@(form)" update="task-table-container" />
     </h:panelGroup>
   </div>
   </h:form>

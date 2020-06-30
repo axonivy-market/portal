@@ -24,8 +24,7 @@ Ps0 @PushWFArc f10 '' #zField
 >Proto Ps0 Ps0 PreviewTaskWidgetProcess #zField
 Ps0 f8 processCall 'Ivy Data Processes/TaskService:findTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria,Integer,Integer)' #txt
 Ps0 f8 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria,Integer startIndex,Integer count> param;' #txt
-Ps0 f8 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
-param.taskSearchCriteria.adminQuery=true;
+Ps0 f8 requestMappingAction 'param.taskSearchCriteria.adminQuery=true;
 param.taskSearchCriteria.finalTaskQuery=in.taskQuery;
 param.startIndex=0;
 param.count=-1;

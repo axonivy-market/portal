@@ -2,6 +2,7 @@
 
 IvyIcons Web Font
 Generated using nucleoapp.com
+
 -------------------------------- */
 @font-face {
   font-family: 'IvyIcons';
@@ -15,17 +16,12 @@ Generated using nucleoapp.com
 -------------------------*/
 .icon {
   display: inline-block;
-  font: normal normal normal 1em/1 'IvyIcons' !important;
+  font: normal normal normal 1em/1 'IvyIcons';
   speak: none;
   text-transform: none;
-  / Better Font Rendering /
+  /* Better Font Rendering */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* Sync size with primefaces icons */
-.ui-icon.icon {
-  font: normal normal normal 18px/1 'IvyIcons' !important;
 }
 /*------------------------
   change icon size
@@ -166,10 +162,6 @@ Generated using nucleoapp.com
   content: "\ea04";
 }
 
-.ivyicon-logout::before {
-  content: "\ea05";
-}
-
 .ivyicon-house-1::before {
   content: "\ea06";
 }
@@ -206,10 +198,6 @@ Generated using nucleoapp.com
   content: "\ea0e";
 }
 
-.ivyicon-remove-circle::before {
-  content: "\ea0f";
-}
-
 .ivyicon-keyboard-arrow-return::before {
   content: "\ea10";
 }
@@ -230,20 +218,8 @@ Generated using nucleoapp.com
   content: "\ea14";
 }
 
-.ivyicon-data-transfer-circle::before {
-  content: "\ea15";
-}
-
 .ivyicon-bulb::before {
   content: "\ea16";
-}
-
-.ivyicon-download-circle::before {
-  content: "\ea17";
-}
-
-.ivyicon-upload-circle::before {
-  content: "\ea18";
 }
 
 .ivyicon-human-resources-workflow::before {
@@ -396,5 +372,33 @@ Generated using nucleoapp.com
 
 .ivyicon-question-circle::before {
   content: "\ea41";
+}
+
+.ivyicon-navigation-right-circle-1::before {
+  content: "\ea42";
+}
+
+.ivyicon-navigation-up-circle::before {
+  content: "\ea43";
+}
+
+.ivyicon-navigation-right-circle-1-2::before {
+  content: "\ea44";
+}
+
+.ivyicon-synchronize-arrows::before {
+  content: "\ea45";
+}
+
+.ivyicon-delete::before {
+  content: "\ea46";
+}
+
+.ivyicon-alarm-bell-timer::before {
+  content: "\ea47";
+}
+
+.ivyicon-alert-circle::before {
+  content: "\ea48";
 }
 
