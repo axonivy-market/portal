@@ -41,30 +41,6 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testEnterTaskDetailWhenClickOnTaskRowAndGoBack() {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-
-    taskWidgetPage.expand();
-    taskDetailsPage = taskWidgetPage.openTaskDetails(0);
-    assertEquals("Task Details", taskDetailsPage.getPageTitle());
-
-    taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
-    assertEquals("Tasks", taskWidgetPage.getPageTitle());
-  }
-  
-  @Test
-  public void testEnterTaskDetailFromTaskActionAndGoBack() {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-
-    taskWidgetPage.expand();
-    taskDetailsPage = taskWidgetPage.openTaskDetailsFromActionMenu(0);
-    assertEquals("Task Details", taskDetailsPage.getPageTitle());
-
-    taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
-    assertEquals("Tasks", taskWidgetPage.getPageTitle());
-  }
-
-  @Test
   public void testOpenRelatedCaseOfTask() {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.expand();

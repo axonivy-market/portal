@@ -53,6 +53,18 @@ Cs0 @PushWFArc f21 '' #zField
 Cs0 @PushWFArc f22 '' #zField
 Cs0 @PushWFArc f23 '' #zField
 Cs0 @PushWFArc f24 '' #zField
+Cs0 @StartRequest f25 '' #zField
+Cs0 @GridStep f26 '' #zField
+Cs0 @EndTask f27 '' #zField
+Cs0 @CallSub f28 '' #zField
+Cs0 @EndTask f29 '' #zField
+Cs0 @SignalStartEvent f31 '' #zField
+Cs0 @PushWFArc f34 '' #zField
+Cs0 @PushWFArc f35 '' #zField
+Cs0 @PushWFArc f30 '' #zField
+Cs0 @UserTask f32 '' #zField
+Cs0 @TkArc f33 '' #zField
+Cs0 @PushWFArc f36 '' #zField
 >Proto Cs0 Cs0 CreateTestData #zField
 Cs0 f0 outLink createTasksForTaskListCustomization.ivp #txt
 Cs0 f0 inParamDecl '<> param;' #txt
@@ -521,6 +533,108 @@ Cs0 f24 expr out #txt
 Cs0 f24 362 456 608 507 #arcP
 Cs0 f24 1 608 456 #addKink
 Cs0 f24 0 0.936929200171276 0 0 #arcLabel
+Cs0 f25 outLink createNewPayment.ivp #txt
+Cs0 f25 inParamDecl '<> param;' #txt
+Cs0 f25 requestEnabled true #txt
+Cs0 f25 triggerEnabled false #txt
+Cs0 f25 callSignature createNewPayment() #txt
+Cs0 f25 persist false #txt
+Cs0 f25 startName 'Create New Payment' #txt
+Cs0 f25 taskData 'TaskTriggered.EXPRI=2
+TaskTriggered.EXROL=Everybody
+TaskTriggered.EXTYPE=0
+TaskTriggered.PRI=2
+TaskTriggered.ROL=Everybody
+TaskTriggered.TYPE=0' #txt
+Cs0 f25 caseData 'businessCase.attach=true
+case.name=Create New Payment' #txt
+Cs0 f25 showInStartList 1 #txt
+Cs0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createNewPayment.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f25 @C|.responsibility Everybody #txt
+Cs0 f25 81 673 30 30 -65 17 #rect
+Cs0 f25 @|StartRequestIcon #fIcon
+Cs0 f26 actionTable 'out=in;
+' #txt
+Cs0 f26 actionCode 'import ch.ivyteam.ivy.process.model.value.SignalCode;
+
+ivy.case.setCategoryPath("Payment");
+
+SignalCode code = new SignalCode("ch:axonivy:portal:example:createnewpayment");
+ivy.wf.signals().send(code);' #txt
+Cs0 f26 security system #txt
+Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Send signal to create company</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f26 248 666 176 44 -84 -8 #rect
+Cs0 f26 @|StepIcon #fIcon
+Cs0 f27 593 673 30 30 0 15 #rect
+Cs0 f27 @|EndIcon #fIcon
+Cs0 f28 processCall 'Functional Processes/SetBusinessEntityId:call(String)' #txt
+Cs0 f28 requestActionDecl '<String businessEntityId> param;' #txt
+Cs0 f28 requestMappingAction 'param.businessEntityId="payment";
+' #txt
+Cs0 f28 responseActionDecl 'com.axonivy.portal.developerexamples.component.ProcessHistoryComponentData out;
+' #txt
+Cs0 f28 responseMappingAction 'out=in;
+' #txt
+Cs0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>SetBusinessEntityId</name>
+        <nameStyle>19,5,7
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f28 856 666 128 44 -55 -8 #rect
+Cs0 f28 @|CallSubIcon #fIcon
+Cs0 f29 1305 673 30 30 0 15 #rect
+Cs0 f29 @|EndIcon #fIcon
+Cs0 f31 signalCode ch:axonivy:portal:example:createnewpayment #txt
+Cs0 f31 attachToBusinessCase true #txt
+Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Signal create New Payment</name>
+        <nameStyle>25,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f31 753 673 30 30 -78 17 #rect
+Cs0 f31 @|SignalStartEventIcon #fIcon
+Cs0 f34 783 688 856 688 #arcP
+Cs0 f35 expr out #txt
+Cs0 f35 424 688 593 688 #arcP
+Cs0 f30 111 688 248 688 #arcP
+Cs0 f32 dialogId com.axonivy.portal.developerexamples.NewPayment #txt
+Cs0 f32 startMethod start() #txt
+Cs0 f32 requestActionDecl '<> param;' #txt
+Cs0 f32 responseMappingAction 'out=in;
+' #txt
+Cs0 f32 taskData 'TaskA.NAM=Do New Payment
+TaskA.customFields.STRING.embedInFrame="false"' #txt
+Cs0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>NewPayment</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f32 1096 666 112 44 -36 -8 #rect
+Cs0 f32 @|UserTaskIcon #fIcon
+Cs0 f33 984 688 1096 688 #arcP
+Cs0 f36 1208 688 1305 688 #arcP
 >Proto Cs0 .type com.axonivy.portal.developerexamples.Data #txt
 >Proto Cs0 .processKind NORMAL #txt
 >Proto Cs0 0 0 32 24 18 0 #rect
@@ -565,3 +679,13 @@ Cs0 f17 mainOut f24 tail #connect
 Cs0 f24 head f16 mainIn #connect
 Cs0 f15 mainOut f20 tail #connect
 Cs0 f20 head f16 mainIn #connect
+Cs0 f31 mainOut f34 tail #connect
+Cs0 f34 head f28 mainIn #connect
+Cs0 f26 mainOut f35 tail #connect
+Cs0 f35 head f27 mainIn #connect
+Cs0 f25 mainOut f30 tail #connect
+Cs0 f30 head f26 mainIn #connect
+Cs0 f28 mainOut f33 tail #connect
+Cs0 f33 head f32 in #connect
+Cs0 f32 out f36 tail #connect
+Cs0 f36 head f29 mainIn #connect

@@ -93,4 +93,18 @@ public class TaskDetailsPage extends TemplatePage {
     click(By.cssSelector(".portal-breadcrumb ul li:nth-of-type(3) .ui-menuitem-link"));
     ensureNoBackgroundRequest();
   }
+  
+  public String getTaskName() {
+    String[] breadcrumbTexts = getTextOfCurrentBreadcrumb().split(":");
+    int item = breadcrumbTexts.length;
+    if (item > 1) {
+      return breadcrumbTexts[item - 1].trim();
+    }
+    return breadcrumbTexts[0].trim();
+  }
+  
+  public CaseDetailsPage backToCaseDetails() {
+    clickBackButton();
+    return new CaseDetailsPage();
+  }
 }
