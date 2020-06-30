@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.support;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -91,7 +92,7 @@ public final class DataCache {
   @SuppressWarnings("unchecked")
   public static List<User> getAllUsersFromCache() {
     IDataCacheEntry cacheEntry = Ivy.datacache().getAppCache().getEntry(PortalCacheConstants.PORTAL_USERS_CACHE_GROUP_NAME, PortalCacheConstants.USERS_LIST_CACHE_ENTRY_NAME);
-    return cacheEntry != null ? (List<User>) cacheEntry.getValue() : null;
+    return cacheEntry != null ? (List<User>) cacheEntry.getValue() : new ArrayList<>();
   }
   
   public static void cacheAllUsers(String applicationName, List<User> users) {

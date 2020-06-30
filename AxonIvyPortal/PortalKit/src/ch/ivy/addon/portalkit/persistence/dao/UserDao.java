@@ -43,7 +43,7 @@ public class UserDao extends AbstractDao<User> {
   @ExecuteAsSystem
   private List<User> getAllUsers() {
     List<User> users = DataCache.getAllUsersFromCache();
-    if (users == null) {
+    if (CollectionUtils.isEmpty(users)) {
       users = findAll();
       DataCache.cacheAllUsers(Ivy.wf().getApplication().getName(), users);
     }
