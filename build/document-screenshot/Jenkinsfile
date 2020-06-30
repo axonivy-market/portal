@@ -22,9 +22,11 @@ pipeline {
         -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
       ''')
        booleanParam(name: 'deployToRepo', defaultValue: false, description: 'Force deploy new version of screenshots')
+       booleanParam(name: 'checkoutCodeFromLatestReleaseTag', defaultValue: false, description: 'Turn on when you want to release new Portal screenshots, it will checkout the code from latest release tag')
   }
 
   environment {
+    releaseDir = 'archive'
     engineDir = "$env.WORKSPACE/AxonIvyPortal/PortalTest/engine"
   }
 
@@ -48,6 +50,28 @@ pipeline {
               sc query "${windowsEngineService}" | find /i "RUNNING"
               if not "%ERRORLEVEL%"=="1" ( net stop "${windowsEngineService}")
             """
+          }
+          
+          if(params.checkoutCodeFromLatestReleaseTag) {
+              downloadPortalRelease()
+
+              echo '====================Check out tag of Portal latest successful release===================='
+              powershell '''
+                $artifactPattern = $env:releaseDir + '/AxonIvyPortal/PortalKit/target/*.iar' 
+                $artifactName = dir $artifactPattern | select -expand BaseName
+                $versionLastestReleasedPortal = $artifactName.substring(10)
+                git fetch --tags
+                git checkout tags/$versionLastestReleasedPortal
+                git reset --hard HEAD
+                git clean -fd
+              '''
+
+              echo '====================Copy patch to workspace if any. Note: this is in a tag and we cannot change code in git repo===================='
+              powershell '''
+                if (Test-Path ../patch/master) {
+                  copy -path ../patch/master -recurse -force -destination .
+                }
+              '''
           }
 
           echo '====================Extract engine===================='
@@ -119,4 +143,13 @@ pipeline {
       junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
     }
   }
+}
+
+def downloadPortalRelease() {
+  echo '====================Download Portal latest successful release===================='
+  def branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
+  withCredentials([usernameColonPassword(credentialsId: 'jenkins-guest-cred', variable: 'jenkinsGuestCred')]) {
+    bat "curl --user ${jenkinsGuestCred} --output archive.zip ${env.JENKINS_URL}job/PortalRelease/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
+  }
+  unzip zipFile: 'archive.zip', quiet: true
 }
