@@ -229,7 +229,6 @@ Tt0 f25 544 302 544 403 #arcP
 Tt0 f1 actionTable 'out=in;
 ' #txt
 Tt0 f1 actionCode 'import ch.ivyteam.ivy.workflow.WorkflowPriority;
-ivy.case.customFields().stringField("CASE_DETAIL_PROCESS").set(ivy.html.startRef("Start Processes/InternalSupportPortalHome/caseDetails.ivp"));
 
 in.expiredDate = new Duration(1,0,0,0,0,0);
 in.taskPriority = WorkflowPriority.NORMAL;' #txt
