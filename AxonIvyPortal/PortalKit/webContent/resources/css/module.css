@@ -4387,20 +4387,9 @@ body .ui-dialog.ui-widget.export-express-dialog {
     max-width: 100%;
   }
 }
-
 /*=================== EXPRESS MANAGEMENT END ===================*/
 
-/*=================== NOTE HISTORY START ===================*/
-@media screen and (max-width: 40em) {
-  .note-history-fullname-column {
-    width: 40% !important;
-  }
-}
-/*=================== NOTE HISTORY END ===================*/
-
-
 /*=================== BREADCRUMB ===================*/
-
 body .ui-widget-header.portal-breadcrumb a {
 	outline: none;
 }
