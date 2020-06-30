@@ -52,7 +52,9 @@ var Portal = {
     $('.js-left-sidebar').css('top', headerHeight + 'px').css('height', 'calc(100vh - ' + (headerFooterHeight - envHeight) + 'px)');
     $('.js-layout-main').css('margin-top', headerHeight + 'px').css('height', 'calc(100vh - ' + headerFooterHeight + 'px)');
     $('.js-layout-wrapper').removeClass('u-invisibility');
-    $('.js-layout-content').css('height', $('.js-layout-main').outerHeight() - layoutTopbarHeight + 'px');
+
+    var topbarWithHeaderFooterHeight = layoutTopbarHeight + headerFooterHeight;
+    $('.js-layout-content').css('height', 'calc(100vh - ' + topbarWithHeaderFooterHeight + 'px)');
     var chatPanel = $('.js-chat-panel');
     if (chatPanel.length == 1) {
       chatPanel.css('height', 'calc(100% - ' + (headerFooterHeight - envHeight) + 'px)');
