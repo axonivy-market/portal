@@ -11,15 +11,13 @@ import org.apache.commons.lang.StringUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.DummyTask;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
-import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
-import ch.ivyteam.ivy.security.ISecurityContext;
-import ch.ivyteam.ivy.security.ISession;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -87,17 +85,11 @@ public class TaskActionBean {
     if (task == null) {
       return false;
     }
-    
-    ISession session = null;
-    try {
-      session = ServiceUtilities.findUserWorkflowSession(Ivy.session().getSessionUserName(), task.getApplication());
-      return task.canUserResumeTask(session).wasSuccessful() || StringUtils.equals(task.getName(), DummyTask.TASK_NAME);
-    } finally {
-      if (session != null && !Objects.equals(Ivy.wf().getApplication(), task.getApplication())) {
-        ISecurityContext securityContext = task.getApplication().getSecurityContext();
-        securityContext.destroySession(session.getIdentifier());
-      }
+    if(StringUtils.equals(task.getName(), DummyTask.TASK_NAME)) {
+      return true;
     }
+    IUser sessionUser = Ivy.session().getSessionUser();
+    return sessionUser != null? task.canUserResumeTask(sessionUser.getUserToken()).wasSuccessful() : false;
   }
 
   public boolean canPark(ITask task) {
