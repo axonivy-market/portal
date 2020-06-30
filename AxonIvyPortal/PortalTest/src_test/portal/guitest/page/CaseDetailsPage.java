@@ -1,11 +1,15 @@
 package portal.guitest.page;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.Sleeper;
 
@@ -332,9 +336,20 @@ public class CaseDetailsPage extends TemplatePage {
     click(findElementById("case-item-details:case-detail-title-form:back-to-cases"));
   }
 
-  public CaseDetailsPage openRelatedCaseOfBusinessCase(int index) {
+  public void openRelatedCaseOfBusinessCase(int index) {
     click(By.cssSelector("a[id$='related-tasks:cases:" + index + ":case-name']"));
-    return new CaseDetailsPage();
+    waitForPageLoaded();
+  }
+  
+  public void waitForCaseDetailsReload() {
+    waitForPageLoaded();
+    Sleeper.sleep(3000); // currently, cannot find how to navigate to same page
+    waitForElementDisplayed(By.className("case-detail-body"), true);
+  }
+  
+  public void waitForCaseNameChanged(String caseName) {
+    waitForElementDisplayed(findElementByCssSelector(CURRENT_BREADCRUMB_SELECTOR), true);
+    Awaitility.waitAtMost(new Duration(60, TimeUnit.SECONDS)).until(() -> getTextOfCurrentBreadcrumb().contains(caseName));
   }
 
 }

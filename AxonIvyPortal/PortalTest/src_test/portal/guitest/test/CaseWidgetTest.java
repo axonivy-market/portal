@@ -22,7 +22,6 @@ import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskDetailsPage;
-import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class CaseWidgetTest extends BaseTest {
@@ -125,40 +124,6 @@ public class CaseWidgetTest extends BaseTest {
     casePage.clickApplyButton();
     WaitHelper.assertTrueWithWait(() -> casePage.isCaseListColumnExist(CREATED_COLUMN_HEADER));
     WaitHelper.assertTrueWithWait(() -> !casePage.isCaseListColumnExist(STATE_COLUMN_HEADER));
-  }
-  
-  @Test
-  public void testEnterCaseDetailFromActionMenuAndGoBack() {
-    initHomePage(TestAccount.DEMO_USER);
-    mainMenuPage = homePage.openMainMenu();
-    casePage = mainMenuPage.selectCaseMenu();
-    caseDetailsPage = casePage.openCaseDetailsFromActionMenuByCaseName(LEAVE_REQUEST_CASE_NAME);
-    assertEquals("Case Details", caseDetailsPage.getPageTitle());
-    casePage = caseDetailsPage.goBackToCaseListFromCaseDetails();
-    assertEquals("Cases", casePage.getPageTitle());
-  }
-
-  @Test
-  public void testFinishTaskFromCaseDetailAndGoBack() {
-    initHomePage(TestAccount.DEMO_USER);
-    mainMenuPage = homePage.openMainMenu();
-    casePage = mainMenuPage.selectCaseMenu();
-
-    caseDetailsPage = casePage.openCaseDetailsFromActionMenuByCaseName(LEAVE_REQUEST_CASE_NAME);
-    assertEquals("Case Details", caseDetailsPage.getPageTitle());
-
-    TaskDetailsPage taskDetailsPage = caseDetailsPage.openTasksOfCasePage(0);
-    assertEquals("Task Details", taskDetailsPage.getPageTitle());
-
-    TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
-    taskTemplatePage.inputFields("tester", "16.05.2019", "17.05.2019", "tester");
-    taskTemplatePage.findElementById("leave-request:button-submit").click();
-
-    caseDetailsPage = new CaseDetailsPage();
-    assertEquals("Case Details", caseDetailsPage.getPageTitle());
-
-    casePage = caseDetailsPage.goBackToCaseListFromCaseDetails();
-    assertEquals("Cases", casePage.getPageTitle());
   }
 
   private void openAdditionalCaseDetailsPage(String initDataUrl, String caseName){
