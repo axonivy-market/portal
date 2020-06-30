@@ -47,7 +47,7 @@
               <div class="task-details-action-container action-container">
                 <h:panelGroup>
                   <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task)}" styleClass="task-action-item start-task-action"
-                    rendered="#{task.state != 'RESUMED'}" actionListener="#{logic.openTask()}">
+                    rendered="#{task.state != 'RESUMED'}" actionListener="#{logic.openTask()}" update="task-detail-general-container">
                     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label" />
                     <i class="tmi-chevorn-right icon-compact-mode" />
                   </p:commandLink>
