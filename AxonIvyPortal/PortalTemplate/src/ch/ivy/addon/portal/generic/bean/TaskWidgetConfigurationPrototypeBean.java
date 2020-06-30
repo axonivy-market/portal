@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
@@ -16,14 +15,11 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.ToggleEvent;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import ch.ivy.addon.portalkit.dto.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.enums.TaskColumn;
 import ch.ivy.addon.portalkit.enums.TaskDashboardWidgetType;
 import ch.ivy.addon.portalkit.jsf.Attrs;
-import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
@@ -106,38 +102,6 @@ public class TaskWidgetConfigurationPrototypeBean {
   public void onToggleColumns(ToggleEvent e) {
     TaskColumn toggledColumn = TaskColumn.values()[(Integer) e.getData()];
     this.taskColumns.put(toggledColumn.name(), !this.taskColumns.get(toggledColumn.name()).booleanValue());
-  }
-
-  public void saveTaskDashboardWidget(TaskDashboardWidget widget) throws JsonProcessingException {
-
-    DashboardBean dashboardBean = ManagedBeans.get("dashboardBean");
-    if (widget.getTaskColumns() == null) {
-      widget.setTaskColumns(new ArrayList<>());
-    }
-
-    for (Entry<String, Boolean> entry : this.taskColumns.entrySet()) {
-      if (entry.getValue() && widget.getTaskColumns().contains(entry.getKey())) {
-        widget.getTaskColumns().add(entry.getKey());
-      }
-    }
-    dashboardBean.saveWidget(widget);
-  }
-  
-  public void createTaskDashboardWidget(TaskDashboardWidget widget) throws JsonProcessingException {
-    DashboardBean dashboardBean = ManagedBeans.get("dashboardBean");
-
-    widget.setId(dashboardBean.getNewTaskWidgetId());
-    widget.setTaskColumns(new ArrayList<>());
-    if (this.taskColumns.isEmpty()) {
-      widget.setTaskColumns(Arrays.asList(TaskColumn.PRIORITY.name(), TaskColumn.NAME.name(), TaskColumn.ACTIVATOR.name(), TaskColumn.STATE.name()));
-    } else {
-      for (Entry<String, Boolean> entry : this.taskColumns.entrySet()) {
-        if (entry.getValue() && widget.getTaskColumns().contains(entry.getKey())) {
-          widget.getTaskColumns().add(entry.getKey());
-        }
-      }
-    }
-    dashboardBean.saveWidget(widget);
   }
 
   public void clearTaskFilters(TaskDashboardWidget widget) {
