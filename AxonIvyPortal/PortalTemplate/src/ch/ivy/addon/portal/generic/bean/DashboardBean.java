@@ -50,6 +50,7 @@ public class DashboardBean implements Serializable {
   private List<WidgetSample> samples;
   private String user;
   private ObjectMapper mapper;
+  private DashboardWidget widget;
 
   @PostConstruct
   public void init() {
@@ -89,13 +90,14 @@ public class DashboardBean implements Serializable {
 
   public TaskDashboardWidget getDefaultTaskDashboardWidget() throws IOException {
     TaskDashboardWidget result = new TaskDashboardWidget();
+    result.setId(getNewTaskWidgetId());
     result.setName("Your Tasks");
     result.setWidth(8);
     result.setHeight(6);
     result.setAutoPosition(true);
     result.setTaskDashboardWidgetType(TaskDashboardWidgetType.CUSTOM);
     result.setPriorities(new ArrayList<>(List.of(WorkflowPriority.LOW, WorkflowPriority.NORMAL, WorkflowPriority.HIGH, WorkflowPriority.EXCEPTION)));
-    result.setStates(new ArrayList<>(List.of(TaskState.CREATED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE, TaskState.UNASSIGNED)));
+    result.setStates(new ArrayList<>(List.of(TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE, TaskState.UNASSIGNED)));
     return result;
   }
   
@@ -113,8 +115,13 @@ public class DashboardBean implements Serializable {
     Ivy.wf().getApplication().customProperties().property(dashboardProperty(selectedDashboard)).setValue(mapper.writeValueAsString(selectedDashboard));
   }
   
-  public void saveWidget(DashboardWidget widget) throws JsonProcessingException {
-    selectedDashboard.getWidgets().add(widget);
+  public void saveWidget() throws JsonProcessingException {
+    List<DashboardWidget> widgets = selectedDashboard.getWidgets();
+    if (widgets.contains(widget)) {
+      widgets.set(widgets.indexOf(widget), widget);
+    } else {
+      widgets.add(widget);
+    }
     dashboards.set(dashboards.indexOf(selectedDashboard), selectedDashboard);
     List<ICustomProperty> properties = Ivy.wf().getApplication().customProperties().findAllStartingWith("dashboard.widgets." + user);
     if (CollectionUtils.isNotEmpty(properties)) {
@@ -130,9 +137,8 @@ public class DashboardBean implements Serializable {
     return "dashboard.widgets." + user + "." + dashboard.getId();
   }
   
-  public void create() throws JsonParseException, JsonMappingException, IOException {
-    TaskDashboardWidget widget = getDefaultTaskDashboardWidget();
-    saveWidget(widget);
+  public void create() throws IOException {
+    widget = getDefaultTaskDashboardWidget();
   }
   
   public void restore() throws IOException {
@@ -184,5 +190,13 @@ public class DashboardBean implements Serializable {
   
   private WidgetSample processSample() {
     return new WidgetSample("Process List", DashboardWidgetType.PROCESS, "process-widget-prototype.png");
+  }
+  
+  public DashboardWidget getTaskWidget() {
+    return widget;
+  }
+  
+  public void setTaskWidget(DashboardWidget widget) {
+    this.widget = widget;
   }
 }

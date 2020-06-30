@@ -18,7 +18,6 @@
     <div class="ui-g-8">
       <h:outputText value="You can reorder columns by drag and drop them to desired position." />
     </div>
-    <h:form>
     <div class="ui-g-12">
       <p:commandLink id="column-toggler" value="Manage columns" styleClass="Fright">
       </p:commandLink>
@@ -35,7 +34,10 @@
           </p:commandLink>
         </p:column>
         <p:column headerText="Prio" styleClass="prio-column" filterBy="#{task.priority}" visible="#{taskWidgetConfigurationPrototypeBean.taskColumns['PRIORITY']}">
-          <h:outputText value="#{taskWidgetConfigurationPrototypeBean.getUserFriendlyTaskPriority(task.priority)}" styleClass="priority #{task.priority}" />
+          <i jsf:rendered="#{task.priority eq 'LOW'}" class="icon ivyicon-navigation-right-circle-1" />
+          <i jsf:rendered="#{task.priority eq 'NORMAL'}" class="icon ivyicon-navigation-right-circle-1" />
+          <i jsf:rendered="#{task.priority eq 'HIGH'}" class="icon ivyicon-navigation-up-circle" />
+          <i jsf:rendered="#{task.priority eq 'EXCEPTION'}" class="icon ivyicon-alert-circle" style="color: red" />
         </p:column>
         <p:column headerText="ID" styleClass="task-id-column" filterBy="#{task.id}" visible="#{taskWidgetConfigurationPrototypeBean.taskColumns['ID']}">
           <h:outputText value="#{task.id}" />
@@ -59,9 +61,7 @@
           <h:outputText value="#{task.expiryTimestamp}" styleClass="" />
         </p:column>
       </p:dataTable>
-        <p:remoteCommand name="reloadTasksForPreview" actionListener="#{logic.initialize(cc.attrs.taskWidget)}" process="@(form)" update="@(form)" />
     </h:panelGroup>
-    </h:form>
   </div>
 </cc:implementation>
 </html>

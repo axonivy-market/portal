@@ -13,7 +13,7 @@
 				"height": 12,
 				"taskDashboardWidgetType": "CUSTOM",
 				"priorities": ["LOW","NORMAL","HIGH","EXCEPTION"],
-				"states": ["CREATED","SUSPENDED","RESUMED","PARKED","DONE"]
+				"states": ["CREATED","SUSPENDED","RESUMED","PARKED","DONE","UNASSIGNED"]
 			},
 			{
 				"type": "process",
