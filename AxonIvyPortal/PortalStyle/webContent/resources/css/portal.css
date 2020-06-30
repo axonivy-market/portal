@@ -831,7 +831,7 @@ body .ui-inputfield.task-name-input {
   font-size: var(--large-font-size);
   font-weight: var(--task-name-input-font-weight); }
 
-.task-detail-header .task-name-edit {
+.task-detail-header .task-name {
   font-weight: var(--task-detail-header-font-weight); }
 
 .task-detail-section-title {
@@ -1016,7 +1016,7 @@ body .fieldset-no-border {
   border-radius: 2px; }
 
 .case-detail-header,
-.task-detail-header .task-name-edit {
+.task-detail-header .task-name {
   font-size: var(--widget-header-font-size);
   font-weight: var(--widget-header-font-weight);
   line-height: 26px;}
