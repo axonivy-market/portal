@@ -1,5 +1,6 @@
 package portal.guitest.page;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class ExampleOverviewPage extends TemplatePage {
@@ -20,5 +21,14 @@ public class ExampleOverviewPage extends TemplatePage {
     element.click();
     waitAjaxIndicatorDisappear();
     return new LendingOverviewPage();
+  }
+  
+  public void startUserExampleProcess(int index) {
+    String userProcessId = String.format("[id$=':%d:start-button']", index);
+    click(findElementByCssSelector(userProcessId));
+  }
+  
+  public void waitUntilExampleOverviewDisplayed() {
+    waitForElementDisplayed(By.id("example-header"), true);
   }
 }

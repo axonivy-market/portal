@@ -72,7 +72,7 @@ Follow these steps to customize the global search page:
       - CustomizedSearchResults HTML dialog
       - OpenPortalSearchOverride callable process
 
-.. |global-search-result| image:: images/global-search-result/global-search-result.png
+.. |global-search-result| image:: ../../screenshots/search/global-search-result.png
 .. |customized-data-model-cast| image:: images/global-search-result/customized-data-model-cast.png
 
 

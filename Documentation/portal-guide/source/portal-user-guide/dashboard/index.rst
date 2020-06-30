@@ -8,7 +8,7 @@ successful login. You can always get back to the dashboard using the
 **Dashboard** link in the Axon.ivy Portal menu. Alternatively, you can click on
 the Axon.ivy logo in the header.
 
-.. figure:: images/dash-board.png
+|dash-board|
 
 The dashboard itself is separated in 3 sections:
 
@@ -34,7 +34,7 @@ are a key feature to enhance your Axon.ivy Portal experience and increase your
 efficiency. To make full use of this feature the Axon.ivy Portal offers you an
 easy way to configure the process favorites to your personal needs. 
 
-.. figure:: images/process-favorites.png
+|process-favorites|
 
 When you have a look at the process favorites you see two areas:
 
@@ -70,7 +70,7 @@ HowTo: Add a process as a user favorite
 
 6. Confirm your configuration with the button **Add**.
 
-.. figure:: images/how-to-add-process-favorite.png
+|how-to-add-process-favorite|
 
 .. hint:: 
    The list of processes in the dropdown menu shows only the processes which are
@@ -91,9 +91,9 @@ HowTo: Delete a process as a user favorite
 3. Confirm the removal with the link **Save** next to the heading **User
    Favorites**.
 
-.. figure:: images/how-to-delete-process-favorites-1.png
+|how-to-delete-process-favorites-1|
 
-.. figure:: images/how-to-delete-process-favorites-2.png
+|how-to-delete-process-favorites-2|
 
 HowTo: Reorder user favorites
 -----------------------------
@@ -107,7 +107,7 @@ I. Sort by name
    you can use the link **Sort by name** next to the heading **User
    Favorites**.
 
-.. figure:: images/how-to-order-process-favorites-by-name.png
+|how-to-order-process-favorites-by-name|
 
 II. Edit processes
 ^^^^^^^^^^^^^^^^^^
@@ -120,10 +120,10 @@ II. Edit processes
 3. Confirm the reorder with the link **Save** next to the heading **User
    Favorites**.
 
-.. figure:: images/how-to-delete-process-favorites-1.png
+|how-to-delete-process-favorites-1|
 
 
-.. figure:: images/how-to-order-process-favorites-individually.png
+|how-to-order-process-favorites-individually|
 
 Personal Tasks
 --------------
@@ -134,7 +134,7 @@ roles you hold within the application. Therefore, this section is key in
 understanding your workload within the application. You may pick up any task
 from the task list and start working on it.
 
-.. figure:: images/personal-tasks.png
+|personal-tasks|
 
    
 
@@ -151,7 +151,7 @@ support you in finding the correct tasks:
    description of the tasks in your task list.
 2. On the right side of the Tasks section you can find the sort by :guilabel:`Creation Date` :guilabel:`Expiry` :guilabel:`Priority`  
 
-.. figure:: images/personal-tasks-sort-and-search-features.png
+|personal-tasks-sort-and-search-features|
 
   
 
@@ -172,7 +172,7 @@ The following information can be found in the task entries:
 
 6. The :guilabel:`Task Description`
 
-.. figure:: images/personal-tasks-key-information.png
+|personal-tasks-key-information|
 
 
 Statistics
@@ -182,7 +182,7 @@ The statistics you find under the heading :guilabel:`Statistics` on the
 right-hand side of your dashboard. The charts in this section allow you to grasp
 the overall situation at a glance.
 
-.. figure:: images/dashboard-statistics-section.png
+|dashboard-statistics-section|
 
 
 Next to the heading you find a link **Show all charts**. This quick link
@@ -202,10 +202,23 @@ charts. Each chart then provides you with the following information:
 
 3. The :guilabel:`Legend` explains the different elements of the charts.
 
-.. figure:: images/statistics-key-information.png
+|statistics-key-information|
 
 If you require more or different charts, you need to create them first.
 Chapter :ref:`howto-create-chart` explains in detail how to create new
 charts.
 
 .. include:: ../includes/_common-icon.rst
+
+.. |dash-board| image:: ../../screenshots/dashboard/dashboard-3-sections.png
+.. |process-favorites| image:: ../../screenshots/dashboard/process-widget.png
+.. |how-to-add-process-favorite| image:: ../../screenshots/process/how-to-add-process-favorite.png
+.. |how-to-delete-process-favorites-1| image:: ../../screenshots/process/how-to-edit-process-favorites.png
+.. |how-to-delete-process-favorites-2| image:: ../../screenshots/process/how-to-delete-process-favorites.png
+.. |how-to-order-process-favorites-by-name| image:: ../../screenshots/process/how-to-order-process-favorites-by-name.png
+.. |how-to-order-process-favorites-individually| image:: ../../screenshots/process/how-to-order-process-favorites-individually.png
+.. |personal-tasks| image:: ../../screenshots/dashboard/task-widget.png
+.. |personal-tasks-sort-and-search-features| image:: ../../screenshots/dashboard/personal-tasks-sort-and-search-features.png
+.. |personal-tasks-key-information| image:: ../../screenshots/dashboard/personal-tasks-key-information.png
+.. |dashboard-statistics-section| image:: ../../screenshots/dashboard/statistic-widget.png
+.. |statistics-key-information| image:: ../../screenshots/dashboard/statistics-key-information.png

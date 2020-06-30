@@ -63,7 +63,14 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 	}
 
 	public void createCheckboxFieldWithDataProvider(String label) {
-		click(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"));
+		fillDataForCheckboxProvider(label);
+		click(By.id("form:create-tabs:add-checkbox-btn"));
+		waitAjaxIndicatorDisappear();
+		ensureNoBackgroundRequest();
+	}
+
+  public void fillDataForCheckboxProvider(String label) {
+    click(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"));
 		ensureNoBackgroundRequest();
 		waitForElementDisplayed(By.id("form:create-tabs:create-many-checkbox-tab"), true, TIME_OUT);
 		click(By.id("form:create-tabs:DataProvider_label"));
@@ -71,10 +78,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 		waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-label"), true, TIME_OUT);
 		type(By.id("form:create-tabs:many-checkbox-label"), label);
-		click(By.id("form:create-tabs:add-checkbox-btn"));
-		waitAjaxIndicatorDisappear();
-		ensureNoBackgroundRequest();
-	}
+		waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
 
 	public void createRadioButtonField(String label, int numberOfOption) {
 		click(By.xpath("//*[@id='form:create-tabs']/ul/li[4]"));

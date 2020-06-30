@@ -1,6 +1,7 @@
 package portal.guitest.page;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 
 public class HomePage extends TemplatePage {
@@ -37,6 +38,14 @@ public class HomePage extends TemplatePage {
 	public boolean isShowAllChartsLinkDisplayed() {
 		return isElementDisplayedById(SHOW_ALL_CHARTS_LINK_ID);
 	}
+	
+	public void waitForStatisticRendered() {
+	  waitForElementDisplayed(By.cssSelector("a[class$='chart-info']"), true);
+	}
+	
+	public void waitForGrowlDisappear() {
+	  waitForElementDisplayed(By.id("portal-global-growl_container"), false);
+	}
 
 	public String getAnnouncementMessage() {
 		waitForElementDisplayed(By.cssSelector("div[class$='announcement-message-customizable']"), true);
@@ -60,6 +69,18 @@ public class HomePage extends TemplatePage {
 	public String getEnviromentInfo() {
 		waitForElementDisplayed(By.cssSelector("span[id$='server-infor']"), true, 5);
 		return findElementByCssSelector("span[id$='server-infor']").getText();
+	}
+	
+	public WebElement getStatisticWidgetElement() {
+	  return findElementById("statistics-widget");
+	}
+	
+	public WebElement getProcessWidgetElement() {
+	  return findElementById("process-widget");
+	}
+	
+	public WebElement getTaskWidgetElement() {
+	  return findElementById("task-widget");
 	}
 	
 }

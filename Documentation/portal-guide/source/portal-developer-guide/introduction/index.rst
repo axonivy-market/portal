@@ -69,7 +69,7 @@ Further Improvements
 
 -  Integrated AdHoc Workflows available
 
-.. |portal-group-chat| image:: images/portal-group-chat.png
-.. |data-provider-express| image:: images/data-provider-express.png
+.. |portal-group-chat| image:: ../../screenshots/chat/chat.png
+.. |data-provider-express| image:: ../../screenshots/express/express-workflow.png
 .. |announcement-portal| image:: images/announcement-portal.png
 

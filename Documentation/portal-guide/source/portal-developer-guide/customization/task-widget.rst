@@ -68,7 +68,7 @@ Refer to ``portal-developer-examples`` project for examples
 Task List Header and Task header
 --------------------------------
 
-Refer to the ``taskListHeader`` and ``taskHeader`` sections in
+Refer to the ``taskListHeader (1)`` and ``taskHeader (2)`` sections in
 ``PortalTasks.xhtml`` of PortalTemplate. In case your task widget has
 new columns, you should override TaskLazyDataModel to make the sort
 function of these columns work:
@@ -80,7 +80,7 @@ function of these columns work:
 *  Override the ``extendSort`` method and extend the sort function for
    the added columns (see the method's Javadoc comments)
 
-*  Default taskList supports user to config display/hide column
+*  Default taskList supports user to config display/hide column: ``Custom SortFields (1)``, ``Custom checkboxes (2)`` and ``Custom header column (3)``
 
    |task-columns-configuration|
 
@@ -128,6 +128,10 @@ Task filter
 
 -  In order to introduce new filter, create a new java class extends
    TaskFilter and override its methods (see javadoc comments)
+
+   1. Filter ``label()`` and ``value()`` method.
+   2. Filter ``resetValue()`` method.
+   3. Filter ``validate()`` method.
 
    |task-filter|
 
@@ -358,10 +362,10 @@ You can refer to ``portal-developer-examples`` project for examples
       1025. So you could reduce width of browser to 1025 to test and
       decide which columns need to be hidden.
 
-.. |task-filter| image:: images/task-widget/task-filter.png
+.. |task-filter| image:: ../../screenshots/task/customization/task-filter.png
 .. |calculate-task-delegate| image:: images/task-widget/calculate-task-delegate.png
-.. |task-columns-configuration| image:: images/task-widget/task-columns-configuration.png
-.. |task-list| image:: images/task-widget/task-list.png
+.. |task-columns-configuration| image:: ../../screenshots/task/customization/task-columns-configuration.png
+.. |task-list| image:: ../../screenshots/task/customization/task-list.png
 .. |task-sort-override| image:: images/task-widget/task-sort-override.png
 
 

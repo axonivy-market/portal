@@ -76,4 +76,4 @@ Follow the steps:
 3. To pass some supported params in IFrame such as process steps, refer to :ref:`IFrameTaskTemplate <components-layout-templates-iframe-task-template>`
 
 .. |task-embedInFrame| image:: images/task-embedInFrame.png
-.. |case-embedInFrame| image:: images/case-embedInFrame.png	
+.. |case-embedInFrame| image:: images/case-embedInFrame.png

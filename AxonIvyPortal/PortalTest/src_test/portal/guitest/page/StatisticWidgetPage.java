@@ -1,5 +1,6 @@
 package portal.guitest.page;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -193,5 +194,38 @@ public class StatisticWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
     waitForElementExisted("span[class='ui-growl-title']", true, DEFAULT_TIMEOUT);
   }
-
+  
+  public WebElement getChartCreationContainer() {
+    return findElementById("statistics-widget:chart-creation-widget:chart-management-form:chart-list");
+  }
+  
+  public WebElement getCaseByFinishedTaskCreationDialog() {
+    waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-task-link"), true, 30);
+    WebElement createCaseByFinishedTaskLink
+      = findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-task-link");
+    click(createCaseByFinishedTaskLink);
+    waitAjaxIndicatorDisappear();
+    waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
+    return findElementByCssSelector("div[id$='add-chart-dialog']");
+  }
+  
+  public void waitForChartCreationPageRendered() {
+    waitForElementDisplayed(By.id("statistics-widget:back-from-chart-creation"), true);
+  }
+  
+  public void waitForAllChartLoaded() {
+    ensureNoBackgroundRequest();
+    Sleeper.sleep(2000);//wait for last chart animation finish
+  }
+  
+  public WebElement getChartPanelByIndex(int index) {
+    return findElementByCssSelector(String.format("span[id$='%d:chart-panel']", index));
+  }
+  
+  public WebElement getChartInfoDialogOfChart(int chartIndex) {
+    List<WebElement> chartInfoIcons = findListElementsByClassName("chart-info"); 
+    click(chartInfoIcons.get(chartIndex));
+    waitForElementDisplayed(By.id("statistics-widget:statistic-dashboard-widget:chart-details-dialog"), true);
+    return findElementById("statistics-widget:statistic-dashboard-widget:chart-details-dialog");
+  }
 }

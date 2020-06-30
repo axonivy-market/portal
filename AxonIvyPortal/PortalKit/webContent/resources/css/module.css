@@ -4322,6 +4322,14 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
 body .ui-dialog.ui-widget.import-express-dialog,
 body .ui-dialog.ui-widget.export-express-dialog {
   min-width: 450px;
+  max-width: 80%;
+}
+
+@media screen and (max-width: 40em) {
+body .ui-dialog.ui-widget.import-express-dialog,
+body .ui-dialog.ui-widget.export-express-dialog {
+  max-width: 100%;
+}	
 }
 
 .import-express-dialog .express-import-result {

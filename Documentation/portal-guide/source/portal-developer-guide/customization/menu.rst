@@ -29,5 +29,5 @@ Therefore, if you want to hide Statistic widget in your overrided
 process, please take a look on NOTE section of ``LoadSubMenuItems`` in
 PortalTemplate.
 
-.. |default-menu-items| image:: images/menu/default-menu-items.png
+.. |default-menu-items| image:: ../../screenshots/dashboard/expanded-left-menu.png
 .. |load-sub-menu-items-process| image:: images/menu/load-sub-menu-items-process.png

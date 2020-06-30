@@ -11,7 +11,7 @@
 		<ui:define name="simplePageContent">
           <h:form>
             <h:outputText value="Click to Test button to show Portal custom error handler" style="display:block;font-size:2em"/>
-            <p:commandButton value="Test" actionListener="#{logic.errorMethod}" update="@form"/>
+            <p:commandButton id="test-error-method" value="Test" actionListener="#{logic.errorMethod}" update="@form"/>
           </h:form>
         </ui:define>
 	</ui:composition>

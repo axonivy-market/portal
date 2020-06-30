@@ -15,7 +15,7 @@ header you find two useful features:
    with a portal-wide search. This feature is described in detail in 
    `Global Search`_.
 
-.. figure:: images/portal-header.png
+|portal-header|
 
 User Settings in the Axon.ivy Portal
 ------------------------------------
@@ -29,8 +29,9 @@ My profile
 
 Menu entry **My profile** contains user language and email settings.
 
-.. figure:: images/my-profile-save.png
-.. figure:: images/my-profile.png
+|my-profile-save|
+
+|my-profile|
 
 **Language settings** allows you to specify your
 preferred application language. This setting will affect all Axon.ivy
@@ -90,7 +91,7 @@ tasks assigned to you or one of the roles you hold.
    assigned personally to you. Roles are normally held by a group of users, so if
    you’re absent one of your role members is still able to pick up the task.
 
-.. figure:: images/portal-absences.png
+|portal-absences|
 
 The dialog shows you all current and upcoming absences. You may show also past
 absences by activating the option **Show absences in the past**. Furthermore,
@@ -110,7 +111,7 @@ How to: Add absence
 
 5. Confirm your absence by clicking button **OK**
 
-.. figure:: images/how-to-add-an-absence.png
+|how-to-add-an-absence|
 
 How to: Set deputy
 ^^^^^^^^^^^^^^^^^^
@@ -124,14 +125,14 @@ How to: Set deputy
 
 4. Confirm your deputies with the button **Save**.
 
-.. figure:: images/how-to-set-absence-deputies.png
+|how-to-set-absence-deputies|
 
 Change Password
 ---------------
 
 The menu entry **Change password** allows you to set a new password.
 
-.. figure:: images/portal-password-change-dialog.png
+|portal-password-change-dialog|
 
 Info
 ----
@@ -140,7 +141,7 @@ The menu entry **Info** provides you with detailed information about the
 Axon.ivy Engine, the Axon.ivy Portal and your companies application. You
 might be asked for this information in case you issue a support request.
 
-.. figure:: images/portal-version-information.png
+|portal-version-information|
 
 Logout
 ------
@@ -172,7 +173,7 @@ When you confirm the keyword you’re looking for, the Axon.ivy Portal
 will route you to the :guilabel:`Global Search Results` page. For each category
 a tab is provided, giving you the results of your search.
 
-.. figure:: images/portal-global-search-result-page.png
+|portal-global-search-result-page|
 
 .. hint:: 
    Your company’s application may   
@@ -185,3 +186,14 @@ a tab is provided, giving you the results of your search.
    more information.                
 
 .. include:: ../includes/_common-icon.rst  
+
+
+.. |portal-header| image:: ../../screenshots/dashboard/portal-header-with-numbering-annotation.png
+.. |my-profile-save| image:: ../../screenshots/my-profile/email-settings.png
+.. |my-profile| image:: ../../screenshots/my-profile/my-profile.png
+.. |portal-absences| image:: ../../screenshots/settings/absence.png
+.. |how-to-add-an-absence| image:: ../../screenshots/settings/new-absence.png
+.. |how-to-set-absence-deputies| image:: ../../screenshots/settings/set-deputy.png
+.. |portal-password-change-dialog| image:: ../../screenshots/settings/change-password.png
+.. |portal-version-information| image:: ../../screenshots/settings/portal-version-information.png
+.. |portal-global-search-result-page| image:: ../../screenshots/search/global-search-result.png

@@ -53,7 +53,7 @@ if(in.#businessCase is initialized) {
 	CustomizedIvyDocumentTransformer transformer = new CustomizedIvyDocumentTransformer();
 	in.documents = transformer.transform(iDocuments);
 	for(CustomizedIvyDocument doc : in.documents) {
-		doc.setName("Overridden: " + doc.getName());
+		doc.setName("Customized name: " + doc.getName());
 		String typeStringField = DocumentCustomField.TYPE_PREFIX + doc.id;
 		String typeString = in.businessCase.customFields().stringField(typeStringField).getOrNull();
 		if (StringUtils.isNotBlank(typeString)) {

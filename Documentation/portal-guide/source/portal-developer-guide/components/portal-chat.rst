@@ -56,6 +56,6 @@ Portal Chat does not support cross application chat. That means user is
 able to chat with other users in the current application, but he cannot chat
 with users in other application.
 
-.. |chat| image:: images/portal-chat/chat.png
-.. |chat-group-assignee| image:: images/portal-chat/chat-group-assignee.png
-.. |create-new-group-chat| image:: images/portal-chat/create-new-group-chat.png
+.. |chat| image:: ../../screenshots/chat/chat.png
+.. |chat-group-assignee| image:: ../../screenshots/chat/chat-group-assignee.png
+.. |create-new-group-chat| image:: ../../screenshots/chat/create-new-group-chat.png
