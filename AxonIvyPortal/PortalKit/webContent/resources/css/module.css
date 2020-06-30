@@ -1156,6 +1156,11 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   padding-right: 0;
 }
 
+body .ui-tabs.search-results-tabview .ui-tabs-panel {
+  padding-top: 0;
+  padding-bottom: 0;
+} 
+
 .process-widget .default-process-title {
   display: inline-block;
   padding-right: 20px;
@@ -3687,7 +3692,7 @@ body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-c
 
 .statistic-case-category-tree .ui-tree-container {
   height: 26rem;
-  width: 100%;
+  width: 100vw;
   max-width: 26.5rem;
   overflow: auto !important;
 }
@@ -4184,7 +4189,7 @@ _:-ms-fullscreen, :root .content-link-history {
   text-overflow: ellipsis;
 }
 
-.task-name-edit {
+.task-name {
   width: 100%;
 }
 
