@@ -89,4 +89,8 @@ public class AbsencePage extends TemplatePage {
     clickByCssSelector("button[id*='absence-management:save-substitute']");
     waitAjaxIndicatorDisappear();
   }
+  
+  public WebElement getAbsenceDialog() {
+    return findElementById("absence-management-dialog");
+  }
 }

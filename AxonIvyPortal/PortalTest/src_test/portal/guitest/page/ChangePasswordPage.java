@@ -2,6 +2,8 @@ package portal.guitest.page;
 
 import org.openqa.selenium.WebElement;
 
+import portal.guitest.common.Sleeper;
+
 public class ChangePasswordPage extends TemplatePage {
 
   
@@ -44,5 +46,10 @@ public class ChangePasswordPage extends TemplatePage {
   public boolean isNewCurrentPasswordStrongEnough() {
     WebElement element = findElementByCssSelector("#change-password-form\\:password-setting\\:change-password-messages .ui-messages-error-detail");
     return element.getText().equalsIgnoreCase("New password is not strong enough. Must contains at least 1 special character, 1 number, 1 uppercase and 1 lowercase character!");
+  }
+  
+  public WebElement getChangePasswordDialog() {
+    Sleeper.sleep(200);//sleep a bit to make focus field effect before taking the screenshot
+    return findElementById("change-password-dialog");
   }
 }

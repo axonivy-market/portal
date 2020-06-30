@@ -100,8 +100,8 @@ Example testing URL: 500
 
 |500|
 
-.. |portal-ajax-error-handler| image:: images/error-handling/portal-ajax-error-handler.png
-.. |default-ivy-error| image:: images/error-handling/default-ivy-error.png
-.. |404| image:: images/error-handling/404.png
-.. |500| image:: images/error-handling/500.png
+.. |portal-ajax-error-handler| image:: ../../screenshots/error-handling/portal-ajax-error-handler.png
+.. |default-ivy-error| image:: ../../screenshots/error-handling/default-ivy-error.png
+.. |404| image:: ../../screenshots/error-handling/404.png
+.. |500| image:: ../../screenshots/error-handling/500.png
 

@@ -117,4 +117,8 @@ public class UserProfilePage extends TemplatePage {
   public boolean isReceiveSummarySettingSwitchedOn() {
     return isSettingSwitchedOn(RECEIVE_DAILY_SUMMARY_SELECTOR);
   }
+  
+  public WebElement getUserSettingCard() {
+    return findElementById("my-profile-form:my-profile-form-card");
+  }
 }

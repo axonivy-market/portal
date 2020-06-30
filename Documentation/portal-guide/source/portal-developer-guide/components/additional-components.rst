@@ -311,6 +311,8 @@ I want to display user in dropdown list with format <Full name> (<username>) and
 
 |user-selection-with-children-and-ajax-event|
 
+|user-selection-component-ajax-expand|
+
 .. code-block:: html
 
       <ic:ch.ivy.addon.portalkit.component.UserSelection 
@@ -339,14 +341,15 @@ Attributes of this component:
   :class: longtable
   :widths: 1 1 1 3
 
-.. |process-history-example| image:: images/additional-component/process-history-example.png
-.. |process-history-dialog-example| image:: images/additional-component/process-history-dialog-example.png
+.. |process-history-example| image:: ../../screenshots/components/process-history-example.png
+.. |process-history-dialog-example| image:: ../../screenshots/components/process-history-dialog-example.png
 .. |set-business-entity-id-sub-process| image:: images/additional-component/set-business-entity-id-sub-process.png
-.. |task-analysis| image:: images/additional-component/task-analysis.png
-.. |process-chain| image:: images/additional-component/process-chain.png
-.. |example-global-growl-finished-task| image:: images/additional-component/example-global-growl-finished-task.png
-.. |example-global-growl-cancelled-task| image:: images/additional-component/example-global-growl-cancelled-task.png
-.. |document-table| image:: images/additional-component/document-table.png
-.. |user-selection| image:: images/additional-component/user-selection-component.png
-.. |user-selection-floating-label| image:: images/additional-component/user-selection-component-floating-label.png
-.. |user-selection-with-children-and-ajax-event| image:: images/additional-component/user-selection-component-with-children-and-ajax-event.png
+.. |task-analysis| image:: ../../screenshots/components/task-analysis.png
+.. |process-chain| image:: ../../screenshots/components/process-chain.png
+.. |example-global-growl-finished-task| image:: ../../screenshots/components/example-global-growl-finished-task.png
+.. |example-global-growl-cancelled-task| image:: ../../screenshots/components/example-global-growl-cancelled-task.png
+.. |document-table| image:: ../../screenshots/components/document-table.png
+.. |user-selection| image:: ../../screenshots/components/user-selection-component.png
+.. |user-selection-floating-label| image:: ../../screenshots/components/user-selection-component-floating-label.png
+.. |user-selection-with-children-and-ajax-event| image:: ../../screenshots/components/user-selection-component-ajax-event-selected-message.png
+.. |user-selection-component-ajax-expand| image:: ../../screenshots/components/user-selection-component-ajax-expand.png
