@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import portal.guitest.common.Sleeper;
+
 public class TaskDetailsPage extends TemplatePage {
 
   @Override
@@ -106,5 +108,76 @@ public class TaskDetailsPage extends TemplatePage {
   public CaseDetailsPage backToCaseDetails() {
     clickBackButton();
     return new CaseDetailsPage();
+  }
+
+  public WebElement getTaskGeneralInformation() {
+    return findElementByCssSelector("[id$='task-detail-template:task-detail-general-container']");
+  }
+
+  public void openAddNoteDialog() {
+    click(findElementByCssSelector("[id$='task-detail-template:task-notes:add-note-command']"));
+    waitForElementDisplayed(By.id("task-detail-template:task-notes:add-new-note-dialog"), true);
+  }
+
+  public WebElement getAddNoteDialog() {
+    return findElementByCssSelector("[id$='task-detail-template:task-notes:add-new-note-dialog']");
+  }
+
+  public void openAddAttachmentDialog() {
+    click(findElementByCssSelector("[id$='task-detail-template:task-documents:add-document-command']"));
+    waitForElementDisplayed(By.id("task-detail-template:task-documents:document-upload-dialog"), true);
+  }
+
+  public void addNoteToTaskWithContent(String content) {
+    openAddNoteDialog();
+    waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
+    WebElement addNoteDialog = findElementByCssSelector("div.ui-dialog[aria-hidden='false']");
+    waitForElementDisplayed(addNoteDialog, true);
+    addNoteDialog.findElement(By.cssSelector("textarea[id$='note-content']")).sendKeys(content);
+    click(addNoteDialog.findElement(By.cssSelector("button[id$='save-add-note-command']")));
+    waitAjaxIndicatorDisappear();
+  }
+
+  public void uploadDocument(String path) {
+    Sleeper.sleep(500);//slow down a bit for FF
+    openAddAttachmentDialog();
+    Sleeper.sleep(500);
+    uploadDocumentByPath(path);
+    waitForElementDisplayed(By.cssSelector("span[class$='ui-messages-info-summary']"), true);
+    click(By.cssSelector("button[id$=':task-documents:document-upload-close-command']"));
+  }
+
+  private void uploadDocumentByPath(String path) {
+    findElementByCssSelector("input[id$='document-upload-panel_input']").sendKeys(path);
+  }
+  
+  public void waitUtilsTaskDetailsDisplayed() {
+    waitForElementDisplayed(By.id("task-detail-template:task-detail-container"), true);
+  }
+
+  public WebElement getTaskHistories() {
+    return findElementByCssSelector("[id$='task-detail-template:task-detail-note-container']");
+  }
+
+  public WebElement getTaskAttachment() {
+    return findElementByCssSelector("[id$='task-detail-template:task-detail-document-container']");
+  }
+
+  public WebElement getAddAttachmentDialog() {
+    return findElementByCssSelector("[id$='task-detail-template:task-documents:document-upload-dialog']");
+  }
+
+  public void clickOnDeleteDocumentIcon(int index) {
+    String deleteIconId = String.format("[id$=':task-documents:task-details-documents:%s:delete-file']", index);
+    click(findElementByCssSelector(deleteIconId));
+    waitForElementDisplayed(By.id("task-detail-template:task-documents:document-deletion-dialog_content"), true);
+  }
+
+  public WebElement getDeleteDocumentConfirmDialog() {
+    return findElementByCssSelector("[id$=':task-documents:document-deletion-dialog']");
+  }
+
+  public void clickOnShowMoreHistories() {
+    click(findElementByCssSelector("[id$=':task-notes:show-more-note-link']"));
   }
 }

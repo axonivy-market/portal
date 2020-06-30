@@ -6,6 +6,8 @@ import org.apache.commons.collections.CollectionUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import portal.guitest.common.Sleeper;
+
 public class AdminSettingsPage extends TemplatePage {
 
   private static final String DIALOG_TITLE = "admin-ui-dialog_title";
@@ -24,7 +26,7 @@ public class AdminSettingsPage extends TemplatePage {
     return findElementById(DIALOG_TITLE).isDisplayed();
   }
 
-  private void openSettingTab() {
+  public void openSettingTab() {
     WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:settingTab']");
     click(settingTabLink);
     waitForElementPresent(By.id("adminui:adminTabView:settingForm"), true);
@@ -119,5 +121,22 @@ public class AdminSettingsPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
     return new ExpressManagementPage();
   }
-
+  
+  public WebElement getAdminSettingDialog() {
+    return findElementById("admin-ui-dialog");
+  }
+  
+  public WebElement getAddApplicationDialog( ) {
+    click(By.id("adminui:adminTabView:add-application-btn"));
+    waitForElementDisplayed(By.id("adminui:appDialog"), true);
+    Sleeper.sleep(300);//Wait a bit focus effects, just only use this for capture screenshot
+    return findElementById("adminui:appDialog");
+  }
+  
+  public WebElement getEditSettingDialogOfFirstRow() {
+    click(By.id("adminui:adminTabView:settingTable:0:edit"));
+    waitForElementDisplayed(By.id("adminui:settingDialog"), true);
+    Sleeper.sleep(300);//Wait a bit focus effects, just only use this for capture screenshot
+    return findElementById("adminui:settingDialog");
+  }
 }

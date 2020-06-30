@@ -147,6 +147,11 @@ Dt0 @GridStep f125 '' #zField
 Dt0 @PushWFArc f126 '' #zField
 Dt0 @EndTask f127 '' #zField
 Dt0 @PushWFArc f128 '' #zField
+Dt0 @StartRequest f136 '' #zField
+Dt0 @EndTask f137 '' #zField
+Dt0 @GridStep f139 '' #zField
+Dt0 @PushWFArc f140 '' #zField
+Dt0 @PushWFArc f138 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Dt0 f0 outLink createTasks.ivp #txt
 Dt0 f0 inParamDecl '<String taskStructureInfo> param;' #txt
@@ -1336,6 +1341,94 @@ Dt0 f126 1007 848 1056 848 #arcP
 Dt0 f127 1233 833 30 30 0 15 #rect
 Dt0 f127 @|EndIcon #fIcon
 Dt0 f128 1184 848 1233 848 #arcP
+Dt0 f136 outLink createTestUserFavoriteProcess.ivp #txt
+Dt0 f136 inParamDecl '<> param;' #txt
+Dt0 f136 requestEnabled true #txt
+Dt0 f136 triggerEnabled false #txt
+Dt0 f136 callSignature createTestUserFavoriteProcess() #txt
+Dt0 f136 startName 'Create Test UserFavorite Processes' #txt
+Dt0 f136 caseData businessCase.attach=true #txt
+Dt0 f136 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createTestUserFavoriteProcess.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f136 @C|.responsibility Everybody #txt
+Dt0 f136 752 1184 32 32 -114 25 #rect
+Dt0 f136 @|StartRequestIcon #fIcon
+Dt0 f137 1041 1185 30 30 0 15 #rect
+Dt0 f137 @|EndIcon #fIcon
+Dt0 f139 actionTable 'out=in;
+' #txt
+Dt0 f139 actionCode 'import ch.ivy.addon.portalkit.service.ExternalLinkService;
+import ch.ivy.addon.portalkit.bo.ExternalLink;
+import ch.ivy.addon.portalkit.service.ExpressProcessService;
+import ch.ivy.addon.portalkit.bo.ExpressProcess;
+import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
+import ch.ivy.addon.portalkit.service.UserProcessService;
+// Create user process
+UserProcessService userProcessService = new UserProcessService();
+String testUsername = ivy.session.getSessionUserName();
+
+UserProcess userProcess = new UserProcess();
+userProcess.setApplicationId(ivy.request.getApplication().getId());
+userProcess.setUserName(testUsername);
+userProcess.setIndex(1);
+userProcess.setDescription("Case Map: Leave Request");
+userProcess.setProcessName("Case Map: Leave Request");
+userProcess.setIcon("fa fa-rocket fa-fw");
+userProcessService.save(userProcess);
+
+userProcess = new UserProcess();
+userProcess.setApplicationId(ivy.request.getApplication().getId());
+userProcess.setUserName(testUsername);
+userProcess.setIndex(2);
+userProcess.setDescription("Create Support Ticket");
+userProcess.setProcessName("Create Support Ticket");
+userProcess.setIcon("fa fa-tags fa-fw");
+userProcessService.save(userProcess);
+
+userProcess = new UserProcess();
+userProcess.setApplicationId(ivy.request.getApplication().getId());
+userProcess.setUserName(testUsername);
+userProcess.setIndex(3);
+userProcess.setDescription("Appraisal");
+userProcess.setProcessName("Appraisal");
+userProcess.setIcon("fa fa-graduation-cap fa-fw");
+userProcessService.save(userProcess);
+
+ExpressProcess expressProcess = new ExpressProcess();
+expressProcess.ableToEdit = true;
+expressProcess.processName = "A sample for Express process";
+expressProcess.processDescription = "A sample for Express process";
+expressProcess.readyToExecute = true;
+expressProcess.processFolder = "test";
+expressProcess.processType = "AHWF";
+expressProcess.processPermissions = ["#demo"];
+expressProcess.processOwner = "#demo";
+ExpressProcessService expressProcessService = new ExpressProcessService();
+expressProcessService.save(expressProcess);
+
+ExternalLink externalLink = new ExternalLink();
+externalLink.name = "A sample for External link to Google";
+externalLink.creator = "#demo";
+externalLink.public = true;
+externalLink.link = "google.com";
+ExternalLinkService externalLinkService = new ExternalLinkService();
+externalLinkService.save(externalLink);' #txt
+Dt0 f139 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Create user process</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f139 864 1178 128 44 -56 -8 #rect
+Dt0 f139 @|StepIcon #fIcon
+Dt0 f140 784 1200 864 1200 #arcP
+Dt0 f138 992 1200 1041 1200 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1471,3 +1564,7 @@ Dt0 f124 mainOut f126 tail #connect
 Dt0 f126 head f125 mainIn #connect
 Dt0 f125 mainOut f128 tail #connect
 Dt0 f128 head f127 mainIn #connect
+Dt0 f136 mainOut f140 tail #connect
+Dt0 f140 head f139 mainIn #connect
+Dt0 f139 mainOut f138 tail #connect
+Dt0 f138 head f137 mainIn #connect

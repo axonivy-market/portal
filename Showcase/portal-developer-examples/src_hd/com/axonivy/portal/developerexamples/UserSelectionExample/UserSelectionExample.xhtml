@@ -20,7 +20,7 @@
               autoCompletePanelStyleClass="ui-g-5 ui-sm-12" 
               isReadOnly="true" hightlight="false"/>
           </div>
-          <div class="ui-g-4 ui-xl-3 ui-md-6 ui-sm-12">
+          <div id="floating-label-component" class="ui-g-4 ui-xl-3 ui-md-6 ui-sm-12">
             <ic:ch.ivy.addon.portalkit.component.UserSelection
               componentId="all-user-autocomplete"
               hightlight="false" selectedUser="#{data.selectedUser}"
@@ -32,7 +32,7 @@
           </div>
         </div>
         <div class="ui-g" >
-          <div class="ui-g-8 ui-xl-4 ui-md-6 ui-sm-12">
+          <div id="user-by-role-component" class="ui-g-8 ui-xl-4 ui-md-6 ui-sm-12">
               <ic:ch.ivy.addon.portalkit.component.UserSelection 
               componentId="user-by-role-autocomplete"
               fromRoleNames="#{data.definedRoleNames}"
@@ -43,7 +43,7 @@
               labelPanelStyleClass="ui-g-5 ui-md-6 ui-sm-12" 
               autoCompletePanelStyleClass="ui-g-5 ui-sm-12" />
           </div>
-          <div class="ui-g-4 ui-xl-3 ui-md-6 ui-sm-12">
+          <div id="item-select-with-ajax-event-component" class="ui-g-4 ui-xl-3 ui-md-6 ui-sm-12">
             <ic:ch.ivy.addon.portalkit.component.UserSelection 
               id="item-select-event-component"
               componentId="item-select-event-for-user-selection"
@@ -66,7 +66,7 @@
         <div class="ui-g assign-task-to-selected-user-panel display-block">
           <div class="ui-g-8 ui-xl-4 ui-md-6 ui-sm-12" />
           <div class="ui-g-4 ui-xl-3 ui-md-6 ui-sm-12">
-            <p:commandButton update="@form" value="Assign selected user from defined roles to next task"
+            <p:commandButton id="assign-selected-user-btn" update="@form" value="Assign selected user from defined roles to next task"
               actionListener="#{logic.finish}" styleClass=" assign-task-to-selected-user" />
           </div>
         </div>

@@ -180,6 +180,7 @@ public class TaskTemplatePage extends TemplatePage {
   
   public void clickChatGroup(boolean growlMessageExpected) {
     String chatGroup = "a[id$='chat-group']";
+    waitForElementDisplayed(By.cssSelector(chatGroup), true);
     clickByCssSelector(chatGroup);
     if (growlMessageExpected) {
       waitForElementDisplayedByCssSelector("span.ui-growl-title");
@@ -209,5 +210,15 @@ public class TaskTemplatePage extends TemplatePage {
   
   public boolean isTaskActionDisplayed() {
     return isElementDisplayedById("horizontal-task-actions");
+  }
+  
+  public WebElement getAddMemberToChatDialog() {
+    waitForElementDisplayed(By.id("chat-assignee-dialog"), true);
+    return findElementById("chat-assignee-dialog");
+  }
+  
+  public void clickCreateGroupChatBtn() {
+    click(By.id("chat-assignee-selection-form:chat-group-create-button"));
+    waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), false);
   }
 }

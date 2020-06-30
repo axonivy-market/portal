@@ -17,7 +17,7 @@ Introduction
 ------------
 
 The default home page of Portal has three built-in widgets in order:
-``Process widget``, ``Task widget``, ``Statistic widget``. If it does
+``Process widget (1)``, ``Task widget (2)``, ``Statistic widget (3)``. If it does
 not fit your needs, you can replace it by your own one. We decided that
 based on screen size, widget may become hidden, not smaller.
 
@@ -169,4 +169,4 @@ The supported sections: ``welcomeGuide``, ``mainMenuGuide``, ``processWidgetGuid
 ..
 
 
-.. |home-page-template| image:: images/portal-home/home-page-template.png
+.. |home-page-template| image:: ../../screenshots/dashboard/dashboard-3-sections.png

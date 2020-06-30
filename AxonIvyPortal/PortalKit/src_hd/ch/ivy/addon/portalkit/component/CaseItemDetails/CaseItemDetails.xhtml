@@ -48,7 +48,7 @@
         <cc:renderFacet name="caseItemDetailCustomTop" />
 
         <!-- General & description box -->
-        <div class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+        <div id="case-general-information-card"  class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card card-w-title case-detail-card">
             <div class="ui-g-12 u-padding-0 case-detail-section-title-container">
               <div class="case-detail-section-title u-truncate-text u-padding-0">
@@ -103,7 +103,7 @@
         <cc:renderFacet name="caseItemDetailCustomMiddle" />
 
         <!-- Related running box -->
-        <h:panelGroup rendered="#{showItemDetailRelated}" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+        <h:panelGroup id="case-details-related-running-tasks-card" rendered="#{showItemDetailRelated}" styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card card-w-title case-detail-card case-related-task-component">
             <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}" isWorkingOnTask="#{cc.attrs.isWorkingOnTask}"/>
           </div>
@@ -111,7 +111,7 @@
 
         <!-- Documents box -->
         <f:event listener="#{logic.getHideCaseDocumentConfiguration}" type="preRenderComponent" />
-        <h:panelGroup rendered="#{showItemDetailDocuments and !data.isHideCaseDocument}"
+        <h:panelGroup id="case-details-document-card" rendered="#{showItemDetailDocuments and !data.isHideCaseDocument}"
           styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
           <div class="card card-w-title case-detail-card case-document-component">
             <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}"

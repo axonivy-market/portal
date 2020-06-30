@@ -128,6 +128,7 @@ public class ProcessWidgetPage extends TemplatePage {
   public AddNewExternalLinkDialog openNewExternalLinkDialog() {
     waitForElementDisplayed(By.id(processWidgetId + ":add-external-link-command"), true);
     click(By.id("process-widget:add-external-link-command"));
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     return new AddNewExternalLinkDialog();
   }
 
@@ -301,9 +302,10 @@ public class ProcessWidgetPage extends TemplatePage {
     }
   }
   
-  public void openExpressPage() {
+  public ExpressProcessPage openExpressPage() {
     waitForElementDisplayed(By.id(processWidgetId + ":create-express-workflow"), true);
     click(By.id("process-widget:create-express-workflow"));
+    return new ExpressProcessPage();
   }
   
   public boolean isProcessEmpty() {
@@ -328,4 +330,19 @@ public class ProcessWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
     return new ExampleOverviewPage();
   }
+
+  public WebElement getAddExternalLinkDialog() {
+    return findElementById("process-widget:add-external-link-dialog");
+  }
+
+  public WebElement navigateToProcessIndex(String character) {
+    WebElement processIndex = findElementByCssSelector(".process-nav-item.js-process-starts-with-" + character);
+    processIndex.click();
+    return processIndex;
+  }
+  
+  public void waitUtilProcessWidgetDisplayed() {
+    waitForElementDisplayed(By.id("process-widget"), true);
+  }
+
 }
