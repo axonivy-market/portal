@@ -35,11 +35,14 @@
           </div>
         </div>
         
+        <div class="ui-g">
+        <div class="ui-g-12">
         <p:dataTable id="notes-table" widgetVar="notesTable" var="history" sortBy="#{history.timestamp}"
           sortOrder="DESCENDING" value="#{data.histories}" filteredValue="#{data.filteredHistories}"
-          emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
+          emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+          reflow="true">
           <p:column sortBy="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}"
-            filterBy="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}" filterMatchMode="contains" styleClass="u-truncate-text history-note ui-sm-12">
+            filterBy="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}" filterMatchMode="contains" styleClass="u-truncate-text history-note">
             <f:facet name="header">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" />
             </f:facet>
@@ -51,9 +54,9 @@
             <f:facet name="header">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}" />
             </f:facet>
-            <h:outputText value="#{history.displayName}" />
+            <h:outputText value="#{history.displayName}" styleClass="case-task-note-histories" />
           </p:column>
-          <p:column width="20%" sortBy="#{history.timestamp}" styleClass="u-hidden-sm-down">
+          <p:column width="20%" sortBy="#{history.timestamp}">
             <f:facet name="header">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" />
             </f:facet>
@@ -62,6 +65,8 @@
             </h:outputText>
           </p:column>
         </p:dataTable>
+        </div>
+        </div>
         
         <p:commandButton ajax="false" styleClass="note-history-export-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
