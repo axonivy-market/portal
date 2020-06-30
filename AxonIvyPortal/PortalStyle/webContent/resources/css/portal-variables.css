@@ -113,8 +113,7 @@
   --widget-header-input-hover-background-color: transparent;
   --widget-header-font-size: 1.8rem;
   --widget-header-font-weight: bold;
-  --widget-header-mobile-border-bottom: var(--ivy-primary-color-grey-light);
-  
+
   /* Portal Card */
   --card-box-shadow: 0px 4px 16px rgba(27, 27, 27, 0.16);
   --card-border-radius: 5px;
@@ -454,6 +453,9 @@
   --action-step-disabled-text-color: var(--ivy-primary-color-grey-medium);
   --place-holder-text-color: var(--ivy-primary-color-grey-medium);
   --text-tab-default-color: var(--ivy-primary-color-grey-medium);
+  --no-item-icon-font-size: 8rem;
+  --no-item-icon-color: var(--ivy-primary-color-grey-light);
+  --no-item-header-font-size: 2rem;
   /* Portal breadcrumb */
   --breadcrumb-background-color: transparent;
   --breadcrumb-font-size: 1.4rem;
