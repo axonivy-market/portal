@@ -32,7 +32,7 @@ pipeline {
           powershell '''
             #find all pom file of portal project and change their versions and their portal dependencies to releaseVersion
             $utf8WithoutBom = New-Object System.Text.UTF8Encoding($false)
-            $files = get-childitem AxonIvyPortal/*/pom.xml,Showcase/*/pom.xml,AxonIvyPortal/PortalTest/customized_pom.xml
+            $files = get-childitem AxonIvyPortal/*/pom.xml,Showcase/*/pom.xml,AxonIvyPortal/PortalTest/customized_pom.xml,AxonIvyPortal/PortalTest/document_screenshot_pom.xml
             foreach($file in $files) {
               $xml = new-object xml
               $xml.load($file)

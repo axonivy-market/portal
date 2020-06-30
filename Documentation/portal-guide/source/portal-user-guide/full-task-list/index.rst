@@ -18,7 +18,7 @@ link in the Axon.ivy Portal menu.
    all open tasks.                
 
 
-.. figure:: images/navigate-to-full-task-list-page.png
+|navigate-to-full-task-list-page|
 
 On the top of the **Full Task List** page you see next to the heading
 **Tasks** in brackets the overall number of tasks shown to you. Further
@@ -43,7 +43,7 @@ For each task the following key information is shown in the list:
 
 7. Status
 
-.. figure:: images/task-key-information.png
+|task-key-information|
 
 Furthermore, at the end of each row you find a side step menu of key features in
 handling tasks:
@@ -64,19 +64,19 @@ The task details are separated in 3 different sections:
 1. Data and description, you find various metadata concerning the task and
    the respective case it is related to.
 
-.. figure:: images/detailed-task-information-data-description.png
+|detailed-task-information-data-description|
 
 2. Note, you may add additional notes which is described below
 
-.. figure:: images/detailed-task-information-note.png
+|detailed-task-information-note|
 
 3. Document, these documents once attached to the case are
    available on all tasks. You may add or delete documents which his
    described in the HowTo’s below.
 
-.. figure:: images/detailed-task-information-documents.png
+|detailed-task-information-documents|
 
-.. figure:: images/detailed-task-information.png
+|detailed-task-information|
 
 HowTo: Use existing filter
 --------------------------
@@ -115,7 +115,7 @@ HowTo: Create new filter
 
 9. Save the filter by clicking the button **Ok**.
 
-.. figure:: images/how-to-create-task-filter.png
+|how-to-create-task-filter|
 
 
 .. centered:: _`Task filter criterias`
@@ -173,7 +173,7 @@ HowTo: Attach a document to the case
 
 5. Click the button **Close** to add the attachment
 
-.. figure:: images/how-to-upload-document.png
+|how-to-upload-document|
 
 HowTo: Remove an attachment from the case
 -----------------------------------------
@@ -187,7 +187,7 @@ HowTo: Remove an attachment from the case
 
 4. Confirm the deletion with the button **Yes**
 
-.. figure:: images/how-to-delete-document.png
+|how-to-delete-document|
 
 HowTo: Add a note to a task
 ---------------------------
@@ -202,7 +202,7 @@ HowTo: Add a note to a task
 
 5. Confirm your note by clicking the button :guilabel:`Save`
 
-.. figure:: images/how-to-add-note.png
+|how-to-add-note|
 
 HowTo: Export a task history
 ----------------------------
@@ -211,13 +211,27 @@ HowTo: Export a task history
 
 2. Click on the |show-more-icon| **Show more** link below the notes section
 
-.. figure:: images/how-to-show-note-details.png
+|how-to-show-note-details|
 
 3. A new page with the task history is opened
 
 4. You may export the history by clicking on the button **Export to
    Excel**
 
-.. figure:: images/how-to-export-note-details.png
+|how-to-export-note-details|
 
 .. include:: ../includes/_common-icon.rst
+
+
+.. |navigate-to-full-task-list-page| image:: ../../screenshots/dashboard/expanded-left-menu.png
+.. |task-key-information| image:: ../../screenshots/task/task-key-information.png
+.. |detailed-task-information-data-description| image:: ../../screenshots/task-detail/detailed-task-information-data-description.png
+.. |detailed-task-information-note| image:: ../../screenshots/task-detail/detailed-task-information-note.png
+.. |detailed-task-information-documents| image:: ../../screenshots/task-detail/detailed-task-information-documents.png
+.. |detailed-task-information| image:: ../../screenshots/task-detail/detailed-task-information.png
+.. |how-to-create-task-filter| image:: ../../screenshots/task/how-to-create-task-filter.png
+.. |how-to-upload-document| image:: ../../screenshots/task-detail/how-to-upload-document.png
+.. |how-to-delete-document| image:: ../../screenshots/task-detail/how-to-delete-document.png
+.. |how-to-add-note| image:: ../../screenshots/task-detail/how-to-add-note.png
+.. |how-to-show-note-details| image:: ../../screenshots/task-detail/how-to-show-note-details.png
+.. |how-to-export-note-details| image:: ../../screenshots/task-detail/how-to-export-note-details.png

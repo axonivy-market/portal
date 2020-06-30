@@ -63,7 +63,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void showNoteHistory() {
-    click(caseItem.findElement(By.cssSelector("a[id$='show-more-note-link']")));
+    click(findElementByCssSelector("a[id$='show-more-note-link']"));
   }
 
   public String getLatestHistoryContent() {
@@ -226,6 +226,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void onClickHistoryIcon() {
     click(findElementById("case-item-details:case-histories:add-note-command"));
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public void onClickDestroyCase() {
@@ -282,15 +283,32 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   private void openAddDocumentDialogAndUploadDocument(String pathToFile) {
-    clickByCssSelector("a[id$='add-document-command']");
-    waitForElementDisplayed(By.cssSelector("span[id$='document-upload-dialog_title']"), true);
+    getAddAttachmentDialog();
     findElementByCssSelector("input[id$='document-upload-panel_input']").sendKeys(pathToFile);
     // currently haven't found solution to check when the file upload finish, we have to wait
     Sleeper.sleep(2000);
   }
 
   public boolean isDeleteDocumentButtonPresented() {
-    return isElementDisplayed(By.cssSelector("a[id$='delete-file']"));
+    return isElementDisplayed(findDeleteDocumentIcon());
+  }
+  
+  public void removeAttachmentInCaseDocument(String filename) {
+    WebElement documentName = findElementByCssSelector("span[class$='js-document-name']");
+    if (documentName.getText().equalsIgnoreCase(filename)) {
+      getDeleteDocumentConfirmDialog();
+      findElementByCssSelector("button[id$='document-deletion-command']").click();
+    }
+  }
+  
+  public WebElement getDeleteDocumentConfirmDialog() {
+    click(findElementByCssSelector("a[id$='delete-file']"));
+    waitForElementDisplayed(By.cssSelector("div[class$='document-deletion-dialog']"), true);
+    return findElementByCssSelector("div[class$='document-deletion-dialog']");
+  }
+
+  public WebElement findDeleteDocumentIcon() {
+    return findElementByCssSelector("a[id$='delete-file']");
   }
 
   public String getCaseName() {
@@ -350,6 +368,38 @@ public class CaseDetailsPage extends TemplatePage {
   public void waitForCaseNameChanged(String caseName) {
     waitForElementDisplayed(findElementByCssSelector(CURRENT_BREADCRUMB_SELECTOR), true);
     Awaitility.waitAtMost(new Duration(60, TimeUnit.SECONDS)).until(() -> getTextOfCurrentBreadcrumb().contains(caseName));
+  }
+
+  public WebElement getGeneralInforBox() {
+    return findElementByCssSelector("[id$='case-general-information-card']");
+  }
+
+  public WebElement getRelatedRunningTaskBox() {
+    return findElementByCssSelector("[id$='case-details-related-running-tasks-card']");
+  }
+
+  public WebElement getHistoriesBox() {
+    return findElementByCssSelector("[id$='history-container']");
+  }
+
+  public WebElement getDocumentBox() {
+    return findElementByCssSelector("[id$='case-details-document-card']");
+  }
+
+  public WebElement getAddNoteDialog() {
+    onClickHistoryIcon();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+    return findElementById("case-item-details:case-histories:add-note-dialog");
+  }
+
+  public WebElement getAddAttachmentDialog() {
+    clickByCssSelector("a[id$='add-document-command']");
+    waitForElementDisplayed(By.cssSelector("span[id$='document-upload-dialog_title']"), true);
+    return findElementById("case-item-details:document:document-upload-dialog");
+  }
+  
+  public void waitForCaseDetailsDisplay() {
+    waitForElementDisplayed(By.id("case-item-details:case-detail-title-form"), true);
   }
 
 }

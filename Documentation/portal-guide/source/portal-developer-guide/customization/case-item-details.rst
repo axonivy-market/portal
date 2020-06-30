@@ -9,13 +9,13 @@ information, Portal supports overriding concept for CaseItemDetails.
 
 Each CaseItemDetails contains
 
--  CaseItemDetailsHeader
+- ``CaseItemDetailsDataAndDescription (1)`` box.
 
--  CaseItemDetailsRelated
+-  ``CaseItemDetailsHistories (2)`` box.
 
--  CaseItemDetailsHistories
+-  ``CaseItemDetailsRelated (3)`` box.
 
--  CaseItemDetailsDocuments
+-  ``CaseItemDetailsDocuments (4)`` box.
 
 -  CaseItemDetail custom panel: caseItemDetailCustomTop,
    caseItemDetailCustomMiddle, caseItemDetailCustomBottom
@@ -224,17 +224,20 @@ Refer to the ``caseItemDetailCustom*`` section in
 -  After applied above code to your custom page, custom panels will be
    displayed as below
 
-   |case-customized|
+   1. ``caseItemDetailCustomTop`` panel box.
+   2. ``caseItemDetailCustomMiddle`` panel box.
+   3. ``caseItemDetailCustomBottom`` panel box.
+
+   |case-customized-top|
+
+   |case-customized-bottom|
 
 -  Other example, we have a full flexibility page if we use ``ui-g-*``
    class to define the width of panel
 
-   We used ``ui-g-6`` class to define width for 3 custom panels in the
-   custom page below
 
-   |case-customized-fit|
+.. |case-standard| image:: ../../screenshots/case-detail/customization/case-standard.png
+.. |case-customized-top| image:: ../../screenshots/case-detail/customization/case-customized-top.png
+.. |case-customized-bottom| image:: ../../screenshots/case-detail/customization/case-customized-bottom.png
 
-.. |case-standard| image:: images/case-item-details/case-standard.png
-.. |case-customized| image:: images/case-item-details/case-customized.png
-.. |case-customized-fit| image:: images/case-item-details/case-customized-fit.png
 

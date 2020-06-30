@@ -236,7 +236,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
   }
 
   private void createTestData() {
-    redirectToRelativeLink("internalSupport/15C7B30FB93C827E/create12CasesWithCategory.ivp");
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
   }
 
   private void addFilters(TaskAnalysisWidgetPage taskAnalysisWidgetPage) {

@@ -151,6 +151,14 @@ public class TaskWidgetPage extends TemplatePage {
 		waitForElementDisplayed(
 		By.cssSelector("div[id$='side-steps-panel'].ui-overlay-visible a[id$='adhoc-side-step-item']"), true);
 	}
+	
+	public TaskTemplatePage clickOnSideStepAction(int taskIndex, int sideStepIndex) {
+	  String sideStepsId = String.format("task-widget:task-list-scroller:%d:task-item:task-action:additional-options:task-additional-actions", taskIndex);
+	  WebElement sideStepPanel = findElementByCssSelector("[id$='" + sideStepsId + "']");
+	  List<WebElement> sideSteps = sideStepPanel.findElements(By.className("option-item"));
+	  click(sideSteps.get(sideStepIndex));
+	  return new TaskTemplatePage();
+	}
 
 	public boolean isMoreButtonDisplayed(int taskId) {
 		String moreButton = String.format(
@@ -636,4 +644,25 @@ public class TaskWidgetPage extends TemplatePage {
 		click(By.cssSelector("[id$='task-widget:filter-reset-command']"));
 		waitForElementDisplayed(By.id("task-widget:reset-filter-set-dialog"), false);
 	}
+	
+	public void openCompactSortMenu() {
+	  click(By.cssSelector("[id$='sort-task-menu_label']"));
+	  waitForElementDisplayed(By.cssSelector("div[id$='sort-task-menu_panel']"), true);
+	}
+	
+	public WebElement getSaveFilterDialog() {
+	  click(By.id(taskWidgetId + ":filter-save-action"));
+    waitAjaxIndicatorDisappear();
+    waitForElementDisplayed(By.id(taskWidgetId + ":filter-save-form:save-filter-set-name-input"), true);
+    return findElementById(taskWidgetId + ":save-filter-set-dialog");
+	}
+
+  public void clickColumnsButton() {
+    clickByCssSelector("[id$='task-widget:task-columns-configuration:task-config-command']");
+    waitForElementDisplayedByCssSelector("label[for$=':columns-checkbox:3']");
+  }
+
+  public void waitForGrowlDisappear() {
+    waitForElementDisplayed(By.id("portal-global-growl_container"), false);
+  }
 }

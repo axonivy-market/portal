@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.UrlHelpers;
 import vn.wawa.guitest.base.page.AbstractPage;
 
@@ -263,6 +264,11 @@ public abstract class TemplatePage extends AbstractPage {
   public String getGlobalGrowlMessage() {
     return findElementById("portal-global-growl_container").getText();
   }
+  
+  public void waitForGrowlMessageDisplayClearly() {
+    waitForElementDisplayed(By.id("portal-global-growl_container"), true);
+    Sleeper.sleep(500);//wait for animation finish to capture screenshot
+  }
 
   public GlobalSearch getGlobalSearch() {
     return new GlobalSearch();
@@ -332,6 +338,35 @@ public abstract class TemplatePage extends AbstractPage {
     waitForElementDisplayed(By.id("toggle-chat-panel-command"), true, 5);
     click(findElementById("toggle-chat-panel-command"));
     return new ChatPage();
+  }  
+  public WebElement getAbsenceManagementDialog() {
+    return findElementById("absence-management-dialog");
   }
-
+  
+  public WebElement getUserSettings() {
+    waitForElementDisplayed(By.id("user-settings-menu"), true);
+    click(findElementById("user-settings-menu"));
+    waitForElementDisplayed(By.id("logout-setting:logout-menu-item"), true);
+    return findElementById("user-setting-container");
+  }
+  
+  public WebElement getTopBar() {
+    return findElementById("top-menu");
+  }
+  
+  public void waitUntilLayoutWrapperDisplayed() {
+    waitForElementDisplayed(By.className("layout-wrapper"), true);
+  }
+  
+  public void waitUntilErrorMessageShowUp() {
+    waitForElementDisplayed(By.className("notification-container"), true);
+  }
+  
+  public void clickOnShowMoreLinkOfErrorMessages() {
+    click(findElementByCssSelector("a[class$='notification-content-action-more-details']"));
+  }
+  
+  public void waitUntilErrorContainerDisplayed() {
+    waitForElementDisplayed(By.className("error-container"), true);
+  }
 }

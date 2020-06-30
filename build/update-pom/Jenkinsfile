@@ -17,7 +17,7 @@ pipeline {
           echo "====================Update properties build.plugin.version, ivy.engine.version of all pom===================="
           powershell '''
             $utf8WithoutBom = New-Object System.Text.UTF8Encoding($false)
-            $files = get-childitem AxonIvyPortal/*/pom.xml,Showcase/*/pom.xml,AxonIvyPortal/PortalTest/customized_pom.xml
+            $files = get-childitem AxonIvyPortal/*/pom.xml,Showcase/*/pom.xml,AxonIvyPortal/PortalTest/customized_pom.xml,AxonIvyPortal/PortalTest/document_screenshot_pom.xml
             foreach($file in $files) {
               $xml = new-object xml
               $xml.load($file)

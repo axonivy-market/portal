@@ -1,0 +1,122 @@
+pipeline {
+  agent {label 'portal-slave'}
+  
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
+  }
+
+  triggers {
+    cron('0 23 * * *')
+  }
+
+  tools { 
+      maven '3.6' 
+      jdk '11' 
+  }
+
+  parameters {
+      string(name: 'testPatternToRun', defaultValue: 'portal.guitest.document.screenshot.*Test', description: 'Screenshot test pattern')
+      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
+        -Divy.engine.download.url=-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip for nightly master
+        -Divy.engine.list.url=https://jenkins.ivyteam.io/job/ivy-core_product/job/master/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 for last successful build master
+        -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
+      ''')
+       booleanParam(name: 'deployToRepo', defaultValue: false, description: 'Force deploy new version of screenshots')
+  }
+
+  environment {
+    engineDir = "$env.WORKSPACE/AxonIvyPortal/PortalTest/engine"
+  }
+
+  stages {
+    stage('build') {
+      steps {
+        script {
+          echo "====================Turn off Elasticsearch port from 19200 to 19210===================="
+          powershell '''
+            for (($port = 19200); $port -lt 19210; ($port++)) {
+              Get-NetTCPConnection -LocalPort $port -erroraction 'silentlycontinue'
+              if ( $LastExitCode -eq 0 ) {
+                Stop-Process -Id (Get-NetTCPConnection -LocalPort $port).OwningProcess -Force
+              }
+            }
+          '''
+          echo "====================Stop other engines===================="
+          def windowsEngineServices = ['Axon.ivy Engine - LTS', 'Axon.ivyEngine8.0', 'Axon.ivyEngineTrunk']
+          for (windowsEngineService in windowsEngineServices) {
+            bat """
+              sc query "${windowsEngineService}" | find /i "RUNNING"
+              if not "%ERRORLEVEL%"=="1" ( net stop "${windowsEngineService}")
+            """
+          }
+
+          echo '====================Extract engine===================='
+          bat '''
+            mvn clean compile -f AxonIvyPortal/PortalTest/pom.xml -Divy.engine.directory=%engineDir% %engineDownloadURL%
+          '''
+          
+          echo '====================Run script to copy decorate js and css to Portal===================='
+          bat "AxonIvyPortal/PortalTest/resources/copy-decorate-js-css.bat"
+          
+          echo "====================Build Portal modules===================="
+          def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'AxonIvyPortal/PortalApp']
+          for (module in modules) {
+            bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir%"
+          }
+
+          echo "====================Deploy Portal modules===================="
+          powershell '''
+            $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
+            rmdir $DEPLOYMENT/* -recurse
+            Copy-Item AxonIvyPortal/PortalApp/target/*zip -Destination $DEPLOYMENT
+            Copy-Item Showcase/portal-developer-examples/target/*iar -Destination $DEPLOYMENT
+            Copy-Item Showcase/portal-user-examples/target/*iar -Destination $DEPLOYMENT
+          '''
+
+          node('master') {
+            echo '====================Close all remote desktop connections and setup new remote destop to Portal slave===================='
+            bat '''
+              taskkill -im mstsc.exe -F
+              exit 0
+            '''
+            configFileProvider(
+                [configFile(fileId: 'properties-config', variable: 'PROPERTIES_CONFIG')]) {
+                props = readProperties  file: "${env.PROPERTIES_CONFIG}"
+                //e.g. remoteDesktopCmd=D:/tools/remote-desktop-plus/rdp.exe /v:10.123.1.193 /domain:wawa.vn /u:wawa /p:W4w4@CH$ /w:2560 /h:1440 /noclose
+                bat "${props.remoteDesktopCmd}"
+            }
+          }
+
+          echo '====================Close opening browsers===================='
+          bat '''
+            taskkill -im IEDriverServer.exe -F
+            taskkill -im iexplore.exe -F
+            taskkill -im GeckoFireFoxDriver.exe -F
+            taskkill -im firefox.exe -F
+            exit 0
+          '''
+
+          echo '====================Execute maven for testing===================='
+          def mavenGoal = params.deployToRepo? 'deploy' : 'install'
+          bat "mvn clean ${mavenGoal} -f AxonIvyPortal/PortalTest/document_screenshot_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
+
+          node('master') {
+            echo '====================Close all remote desktop connections===================='
+            bat '''
+              taskkill -im mstsc.exe -F
+              exit 0
+            '''
+          }
+        }
+      }
+    }
+  }
+
+  post {
+    always {
+      archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/*.zip", allowEmptyArchive: true
+      archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/test/*/*.jpg", allowEmptyArchive: true
+      junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
+    }
+  }
+}

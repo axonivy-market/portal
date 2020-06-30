@@ -135,4 +135,17 @@ public class ExpressProcessPage extends TemplatePage {
 	public String getResponsiblesOfTask(int taskIndex) {
 	  return findElementById(String.format("form:defined-tasks-list:%d:task-responsible-link", taskIndex)).getText();
 	}
+	
+	public WebElement getDefineTaskStep(int stepIndex) {
+	  String defineTaskStepId = String.format(":defined-tasks-list:%s:process-flow-field", stepIndex);
+	  return findElementByCssSelector("[id$='"+ defineTaskStepId + "']");
+	}
+	
+	public void waitUntilExpressProcessDisplay() {
+	  waitForElementDisplayed(By.id("form:process-setting-fieldset"), true);
+	}
+
+  public void waitForChooseResponsibleDialogHidden() {
+    waitForElementDisplayed(findElementById("choose-responsible-dialog"), false);
+  }
 }

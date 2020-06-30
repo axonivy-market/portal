@@ -484,14 +484,11 @@ E.g. Initialize ``ResponsiveToolkit`` for TaskList page.
       </script>
       </ui:define>
 
-.. |basic-template| image:: images/layout-templates/basic-template.png
-.. |case-list-template| image:: images/layout-templates/case-list-template.png
-.. |portal-header| image:: images/layout-templates/portal-header.png
-.. |process-chain-shape| image:: images/layout-templates/process-chain-shape.png
-.. |task-list-template| image:: images/layout-templates/task-list-template.png
-.. |task-name-template| image:: images/layout-templates/task-name-template.png
-.. |task-template-process-chain| image:: images/layout-templates/task-template-process-chain.png
-.. |task-template-task-form| image:: images/layout-templates/task-template-task-form.png
-.. |two-column-template| image:: images/layout-templates/two-column-template.png
+.. |basic-template| image:: ../../screenshots/layout-template/basic-template.png
+.. |case-list-template| image:: ../../screenshots/case/case-key-information.png
+.. |portal-header| image:: ../../screenshots/settings/user-settings.png
+.. |task-list-template| image:: ../../screenshots/task/task-key-information.png
+.. |task-name-template| image:: ../../screenshots/layout-template/task-template.png
+.. |two-column-template| image:: ../../screenshots/layout-template/two-column-template.png
 
 
