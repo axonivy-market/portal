@@ -739,6 +739,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   width: 1px;
 }
 
+@media (max-width: 768px) {
+  .case-info-dialog .case-detail-header {
+    display: none;
+  }
+}
+
 .case-details-back-btn, .task-details-back-btn {
   flex: 0 0 110px;
   text-align: right;
@@ -889,6 +895,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 
 .process-header .process-header-title-container {
   height: 36px;
+}
+
+.widget-header-main-title.process-header-title {
+  bottom: 15px;
+  left: 5px;
 }
 
 .process-header .create-express-link {
@@ -1132,13 +1143,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 
 .process-widget .process-widget-filter {
   padding-right: 20px;
-}
-
-@media screen and (max-width: 40em) {
-  .process-widget .process-widget-filter {
-    padding-right: 0;
-    width: 93%;
-  }
 }
 
 .process-widget .process-group {
@@ -1433,7 +1437,7 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 
 .filter-container .widget-title-mobile .top-header-main-title {
   position: absolute;
-  top: -11px;
+  top: -16px;
   left: 8px;
 }
 
@@ -1882,8 +1886,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 .no-item-panel .icon {
   display: block;
   text-align: center;
-  font-size: 8rem !important;
-  color: var(--ivy-primary-color-grey-light);
 }
 
 .no-item-panel .no-item-header,
@@ -1894,7 +1896,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .no-item-panel .no-item-header {
-  font-size: 2rem;
   margin-top: 20px;
 }
 
@@ -3073,6 +3074,15 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   flex-basis: calc(100% - 100px);
 }
 
+@media screen and (max-width: 40em) {
+  .statistic-actions-panel {
+    margin-top: -16px;
+  }
+  .statistic-actions-panel .chart-link {
+    float: right;
+  }
+}
+
 .statistic-actions-panel .ui-commandlink {
   height: 30px;
   padding: 5px;
@@ -3105,6 +3115,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .chart-list-container .edit-statistic-container {
   padding-right: 33.5rem;
+  padding-top: 0;
 }
 
 .edit-statistic-container .chart-list {
@@ -3725,14 +3736,8 @@ body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-c
 
 /* Small screen */
 @media (max-width: 1365px) {
-  .chart-list-container .filter-container {
-    width: 25rem !important;
-  }
   .statistic-case-category-tree .ui-tree-container {
     max-width: 18.5rem;
-  }
-  .edit-statistic-container {
-    padding-right: 25rem !important;
   }
   .filter-container .ui-inputfield.hasDatepicker {
     width: 15.5rem !important;
@@ -4382,20 +4387,9 @@ body .ui-dialog.ui-widget.export-express-dialog {
     max-width: 100%;
   }
 }
-
 /*=================== EXPRESS MANAGEMENT END ===================*/
 
-/*=================== NOTE HISTORY START ===================*/
-@media screen and (max-width: 40em) {
-  .note-history-fullname-column {
-    width: 40% !important;
-  }
-}
-/*=================== NOTE HISTORY END ===================*/
-
-
 /*=================== BREADCRUMB ===================*/
-
 body .ui-widget-header.portal-breadcrumb a {
 	outline: none;
 }

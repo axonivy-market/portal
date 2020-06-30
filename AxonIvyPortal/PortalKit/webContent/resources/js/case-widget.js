@@ -5,7 +5,10 @@ function CaseWidget() {
   }
   
   this.toggleCaseFilter = function(toggler) {
-	  $('.js-advanced-filter-component').toggleClass('u-hidden-md-down');
+    $('.js-advanced-filter-component').toggleClass('u-hidden-md-down');
+    $('.js-filter-add-action').toggleClass('u-hidden-md-down');
+    $('.js-filter-reset-action').toggleClass('u-hidden-md-down');
+    $('.js-filter-save-action').toggleClass('u-hidden-md-down');
   }
   
   this.setUpScrollbar = function() {
