@@ -4,12 +4,13 @@
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
+  <cc:attribute name="labelStyleClasses" />
 </cc:interface>
 
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
   <div class="ui-g">
-    <div class="ui-xl-3 ui-lg-4 ui-md-4 ui-sm-5 ui-g-2 task-detail-description-label ">
+    <div class="ui-xl-3 ui-lg-4 ui-md-4 ui-sm-5 ui-g-2 task-detail-description-label #{cc.attrs.labelStyleClasses}">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" rendered="true" />
     </div>
     <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4 task-detail-description">

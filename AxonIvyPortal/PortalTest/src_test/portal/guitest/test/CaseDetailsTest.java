@@ -5,15 +5,12 @@ import static org.junit.Assert.assertTrue;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.After;
-import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
-import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
@@ -23,11 +20,8 @@ public class CaseDetailsTest extends BaseTest {
 
   private HomePage homePage;
   private CaseDetailsPage detailsPage;
-  
-  private static final String CASE_DETAILS_TITLE = "Case Details";
-  private static final String BETA_CASE_NAME = "Beta Company";
+
   private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
-  private static final String CASE_LIST_TITLE = "Cases";
 
   @Override
   @Before
@@ -84,37 +78,6 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.addNote("Consider the remaining annual leaves before the approval");
     detailsPage.clickViewNote();
     assertTrue(detailsPage.isViewNoteDialogPresented());
-  }
-  
-  @Ignore
-  @Test
-  public void testNavigateFromTechToBusinessCase() {
-    assertEquals(CASE_DETAILS_TITLE, detailsPage.getPageTitle());
-    Assert.assertTrue(detailsPage.isBackButtonDisplayed());
-    CaseWidgetPage casePage = detailsPage.goBackToCaseListFromCaseDetails();
-    assertEquals(CASE_LIST_TITLE, casePage.getPageTitle());
-    Assert.assertTrue(casePage.isCaseDisplayed(LEAVE_REQUEST_CASE_NAME));
-    
-    redirectToRelativeLink(createBetaCompanyUrl);
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
-    casePage = mainMenuPage.selectCaseMenu();
-
-    detailsPage = casePage.openDetailsOfCaseHasName(BETA_CASE_NAME);
-    assertEquals(CASE_DETAILS_TITLE, detailsPage.getPageTitle());
-
-    Assert.assertTrue(detailsPage.isRelatedTasksComponentPresented());
-    detailsPage = detailsPage.openRelatedCaseOfBusinessCase(0);
-    WaitHelper.assertTrueWithWait(() -> StringUtils.equals("Signal create Beta Company", detailsPage.getCaseName()));
-
-    Assert.assertTrue(detailsPage.isBackButtonDisplayed());
-    detailsPage.clickBackButton();
-    detailsPage = new CaseDetailsPage();
-    assertEquals(CASE_DETAILS_TITLE, detailsPage.getPageTitle());
-    assertEquals(BETA_CASE_NAME, detailsPage.getCaseName());
-
-    Assert.assertTrue(detailsPage.isBackButtonDisplayed());
-    CaseWidgetPage caseWidgetPage = detailsPage.goBackToCaseListFromCaseDetails();
-    assertEquals(CASE_LIST_TITLE, caseWidgetPage.getPageTitle());
   }
 
   @After
