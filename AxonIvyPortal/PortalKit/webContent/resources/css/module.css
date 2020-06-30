@@ -4715,7 +4715,16 @@ height:100%;
   display: block;
 }
 
-.prototype-task-table .prio-column,
+.prototype-task-table .prio-column {
+  width: 100px !important;
+  text-align: center;
+}
+
+.prototype-task-table .prio-column i {
+  font-size: 18px;
+  display: block;
+}
+
 .prototype-task-table .state-column,
 .prototype-task-table .task-id-column {
 	width: 120px !important;
@@ -4735,22 +4744,6 @@ height:100%;
   width: fit-content;
   padding: 2px 5px;
   cursor: default;
-}
-
-.prototype-task-table .prio-column .priority.LOW {
-  border: 1.5px solid #90DDE9;
-}
-
-.prototype-task-table .prio-column .priority.NORMAL {
-  border: 1.5px solid #49BAD6;
-}
-
-.prototype-task-table .prio-column .priority.HIGH {
-  border: 1.5px solid #007095;
-}
-	
-.prototype-task-table .prio-column .priority.FATAL {
-  background: rgba(73, 186, 214, 0.56);
 }
 
 .prototype-task-table .state-column .state.OPEN,
