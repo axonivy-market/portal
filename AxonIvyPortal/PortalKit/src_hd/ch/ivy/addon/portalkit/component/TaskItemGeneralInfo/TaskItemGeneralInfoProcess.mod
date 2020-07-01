@@ -28,6 +28,12 @@ Ts0 @PushWFArc f10 '' #zField
 Ts0 @CallSub f9 '' #zField
 Ts0 @UdEvent f6 '' #zField
 Ts0 @PushWFArc f3 '' #zField
+Ts0 @UdMethod f4 '' #zField
+Ts0 @UdProcessEnd f8 '' #zField
+Ts0 @GridStep f22 '' #zField
+Ts0 @GridStep f23 '' #zField
+Ts0 @PushWFArc f16 '' #zField
+Ts0 @PushWFArc f18 '' #zField
 >Proto Ts0 Ts0 TaskItemGeneralInfoProcess #zField
 Ts0 f0 guid 1682691BC1A26D76 #txt
 Ts0 f0 method start() #txt
@@ -95,14 +101,14 @@ Ts0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f15 328 266 112 44 -24 -8 #rect
+Ts0 f15 336 266 112 44 -24 -8 #rect
 Ts0 f15 @|StepIcon #fIcon
 Ts0 f17 expr out #txt
-Ts0 f17 288 288 328 288 #arcP
+Ts0 f17 288 288 336 288 #arcP
 Ts0 f19 499 275 26 26 0 12 #rect
 Ts0 f19 @|UdProcessEndIcon #fIcon
 Ts0 f20 expr out #txt
-Ts0 f20 440 288 499 288 #arcP
+Ts0 f20 448 288 499 288 #arcP
 Ts0 f11 499 179 26 26 0 12 #rect
 Ts0 f11 @|UdProcessEndIcon #fIcon
 Ts0 f7 actionTable 'out=in;
@@ -161,6 +167,61 @@ Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f6 83 179 26 26 -73 20 #rect
 Ts0 f6 @|UdEventIcon #fIcon
 Ts0 f3 109 192 160 192 #arcP
+Ts0 f4 guid 172EE75D388AEEA5 #txt
+Ts0 f4 method updateDelayTimestamp(ch.ivyteam.ivy.workflow.ITask) #txt
+Ts0 f4 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
+Ts0 f4 inParameterMapAction 'out.task=param.task;
+' #txt
+Ts0 f4 outParameterDecl '<> result;' #txt
+Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>updateDelayTimestamp</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f4 83 403 26 26 -69 23 #rect
+Ts0 f4 @|UdMethodIcon #fIcon
+Ts0 f8 363 403 26 26 0 12 #rect
+Ts0 f8 @|UdProcessEndIcon #fIcon
+Ts0 f22 actionTable 'out=in;
+' #txt
+Ts0 f22 actionCode 'in.task.getCase().getBusinessCase().createNote(ivy.session, in.changeDeadlineNoteContent);' #txt
+Ts0 f22 security system #txt
+Ts0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Add note</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f22 1120 370 112 44 -24 -8 #rect
+Ts0 f22 @|StepIcon #fIcon
+Ts0 f23 actionTable 'out=in;
+' #txt
+Ts0 f23 actionCode 'import org.apache.commons.lang3.StringUtils;
+import ch.ivyteam.ivy.security.IUser;
+import ch.ivy.addon.portalkit.service.TaskInforActionService;
+
+TaskInforActionService service = new TaskInforActionService();
+IUser user = ivy.session.getSessionUser();
+String fullName = user.getFullName();
+String userName = StringUtils.substring(user.getMemberName(), 1);
+String delayNote = service.prepareChangeDelayNoteContent(fullName, userName, in.task.delayTimestamp, in.task.getId());
+in.task.getCase().getBusinessCase().createNote(ivy.session, delayNote);
+' #txt
+Ts0 f23 security system #txt
+Ts0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Add note</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f23 200 394 112 44 -24 -8 #rect
+Ts0 f23 @|StepIcon #fIcon
+Ts0 f16 312 416 363 416 #arcP
+Ts0 f18 109 416 200 416 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -179,3 +240,7 @@ Ts0 f15 mainOut f20 tail #connect
 Ts0 f20 head f19 mainIn #connect
 Ts0 f6 mainOut f3 tail #connect
 Ts0 f3 head f7 mainIn #connect
+Ts0 f23 mainOut f16 tail #connect
+Ts0 f16 head f8 mainIn #connect
+Ts0 f4 mainOut f18 tail #connect
+Ts0 f18 head f23 mainIn #connect

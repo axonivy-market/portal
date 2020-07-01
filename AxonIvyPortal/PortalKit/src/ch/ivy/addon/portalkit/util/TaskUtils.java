@@ -192,4 +192,22 @@ public final class TaskUtils {
   public static void updateTaskStartedAttribute(boolean status) {
     Ivy.session().setAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString(), status);
   }
+
+  /** Destroys task if session user has permission TASK_READ, TASK_DESTROY
+   * and this task is not DONE or DESTROYED
+   * @param taskId
+   */
+  public static void destroyTaskById(long taskId) {
+    if (PermissionUtils.checkDestroyTaskPermission()) {
+      ITask task = findTaskById(taskId);
+      if (task == null || Arrays.asList(TaskState.DONE, TaskState.DESTROYED).contains(task.getState())) {
+        return;
+      }
+      IvyExecutor.executeAsSystem(() -> {
+        task.destroy();
+        return Void.class;
+      });
+    }
+  }
+
 }

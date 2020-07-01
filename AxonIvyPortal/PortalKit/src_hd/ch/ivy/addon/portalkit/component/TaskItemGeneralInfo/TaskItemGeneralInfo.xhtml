@@ -205,8 +205,20 @@
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/delayedUntil')}" />
       </div>
       <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
-        <h:outputText id="delay-date"
-          value="#{empty task.getDelayTimestamp() ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable') : task.getDelayTimestamp()}" />
+        <h:form id="delay-form">
+          <p:inplace id="delay-date" styleClass="delay-edit-inplace" editor="true"
+            saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+            cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            label="#{formattingNullWrapperBean.format(task.getDelayTimestamp())}"
+            disabled="#{!taskActionBean.canChangeDelayTimestamp(task)}">
+            <p:ajax event="save" listener="#{logic.updateDelayTimestamp(task)}"
+              update="delay-form #{cc.clientId}:task-detail-state #{cc.attrs.componentToUpdate}"
+              resetValues="true" />
+            <p:calendar id="delay-date-calendar" styleClass="delay-date-calendar" value="#{task.delayTimestamp}"
+              pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}">
+            </p:calendar>
+          </p:inplace>
+        </h:form>
       </div>
     </div>
 

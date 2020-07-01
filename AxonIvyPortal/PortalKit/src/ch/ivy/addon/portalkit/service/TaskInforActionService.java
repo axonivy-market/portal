@@ -18,6 +18,13 @@ public class TaskInforActionService {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/setDeadlineNote", parameters);
   }
 
+  public String prepareChangeDelayNoteContent(String fullNameOfUser, String userNameOfUser, Date datetime,
+      Long taskId) {
+    String formattedDate = formatDate(datetime);
+    List<Object> parameters = Arrays.asList(fullNameOfUser, userNameOfUser, taskId.toString(), formattedDate);
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskDetails/setDelayTimestamp", parameters);
+  }
+
   public String prepareChaneNameNoteContent(String changeBy, String newName, String oldName) {
     List<Object> parameters = Arrays.asList(changeBy, oldName, newName);
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/setNameNote", parameters);

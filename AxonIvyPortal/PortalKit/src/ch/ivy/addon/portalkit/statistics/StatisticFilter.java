@@ -30,6 +30,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IRole;
@@ -55,7 +56,7 @@ public class StatisticFilter implements Cloneable {
   private boolean isAllRolesSelected = true;
 
   @JsonIgnore
-  private List<CaseState> caseStates = Arrays.asList(CREATED, RUNNING, DONE);
+  private List<CaseState> caseStates = new ArrayList<>(Arrays.asList(CREATED, RUNNING, DONE));
   private List<CaseState> selectedCaseStates = new ArrayList<>();
   private boolean isAllCaseStatesSelected = true;
   
@@ -82,6 +83,7 @@ public class StatisticFilter implements Cloneable {
     this.selectedRoles.add(0, Ivy.session().getSessionUser().getMemberName());
 
     // Initialize list of case states
+    extendCaseStatesForAdmin();
     this.selectedCaseStates = new ArrayList<>(this.caseStates);
 
     // Initialize list of task priorities
@@ -90,6 +92,12 @@ public class StatisticFilter implements Cloneable {
     // Initialize list of case categories
     caseCategories = new StatisticCaseCategoryFilter();
 
+  }
+
+  private void extendCaseStatesForAdmin() {
+    if (PermissionUtils.checkReadAllCasesPermission() && !caseStates.contains(CaseState.DESTROYED)) {
+      caseStates.add(CaseState.DESTROYED);
+    }
   }
 
   private List<IRole> findDistinctRoles() {

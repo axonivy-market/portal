@@ -228,7 +228,8 @@
             rowIndex="#{rowIndex}" currentPortalPage="#{cc.attrs.currentPortalPage}"
             isSelected="#{cc.attrs.selectedTaskId eq task.getId()}"
             compactMode="#{data.dataModel.compactMode}" 
-            dataModel="#{data.dataModel}">
+            dataModel="#{data.dataModel}"
+            onDestroyComplete="PF('destroy-task-dialog').show()">
             <cc:insertFacet name="taskHeader" />
           </ic:ch.ivy.addon.portalkit.component.TaskItem>
         </p:dataScroller>
@@ -327,6 +328,18 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
       </h:form>
     </div>
+  </p:confirmDialog>
+  
+  <p:confirmDialog id="destroy-task-confirmation-dialog"
+    message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage')}" closeOnEscape="true"
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" widgetVar="destroy-task-dialog"
+    appendTo="@(body)" severity="alert" responsive="true">
+    <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+      actionListener="#{taskWidgetBean.destroyTask(taskWidgetBean.selectedTaskItemId)}"
+      oncomplete="taskWidget.setupScrollbar();PF('destroy-task-dialog').hide()"
+      update="#{cc.clientId}:task-view" />
+    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
+      onclick="PF('destroy-task-dialog').hide();" type="button" styleClass="portal-cancel-button" />
   </p:confirmDialog>
 
   <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="task-item-delegate-component" dataModel="#{data.dataModel}"

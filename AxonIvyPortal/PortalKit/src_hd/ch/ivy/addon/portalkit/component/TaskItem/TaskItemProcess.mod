@@ -23,7 +23,6 @@ Ts0 @PushWFArc f87 '' #zField
 Ts0 @GridStep f80 '' #zField
 Ts0 @GridStep f66 '' #zField
 Ts0 @Alternative f77 '' #zField
-Ts0 @PushWFArc f110 '' #zField
 Ts0 @UdProcessEnd f109 '' #zField
 Ts0 @PushWFArc f101 '' #zField
 Ts0 @PushWFArc f67 '' #zField
@@ -44,6 +43,9 @@ Ts0 @PushWFArc f8 '' #zField
 Ts0 @PushWFArc f9 '' #zField
 Ts0 @PushWFArc f2 '' #zField
 Ts0 @PushWFArc f11 '' #zField
+Ts0 @GridStep f3 '' #zField
+Ts0 @PushWFArc f4 '' #zField
+Ts0 @PushWFArc f5 '' #zField
 >Proto Ts0 Ts0 TaskItemProcess #zField
 Ts0 f46 587 203 26 26 0 12 #rect
 Ts0 f46 @|UdProcessEndIcon #fIcon
@@ -88,7 +90,7 @@ Ts0 f108 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f108 83 491 26 26 -85 17 #rect
+Ts0 f108 83 491 26 26 -80 25 #rect
 Ts0 f108 @|UdMethodIcon #fIcon
 Ts0 f87 expr out #txt
 Ts0 f87 288 408 336 408 #arcP
@@ -152,10 +154,7 @@ Ts0 f66 424 290 112 44 -35 -8 #rect
 Ts0 f66 @|StepIcon #fIcon
 Ts0 f77 338 202 28 28 14 0 #rect
 Ts0 f77 @|AlternativeIcon #fIcon
-Ts0 f110 expr out #txt
-Ts0 f110 109 504 339 504 #arcP
-Ts0 f110 0 0.49999999999999994 0 0 #arcLabel
-Ts0 f109 339 491 26 26 0 12 #rect
+Ts0 f109 467 491 26 26 0 12 #rect
 Ts0 f109 @|UdProcessEndIcon #fIcon
 Ts0 f101 expr in #txt
 Ts0 f101 352 392 352 328 #arcP
@@ -300,12 +299,33 @@ Ts0 f2 109 96 339 96 #arcP
 Ts0 f11 expr in #txt
 Ts0 f11 outCond in.canUserResumeTask #txt
 Ts0 f11 366 216 416 216 #arcP
+Ts0 f3 actionTable 'out=in;
+' #txt
+Ts0 f3 actionCode 'import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+
+TaskWidgetBean taskWidgetBean = ManagedBeans.get("taskWidgetBean") as TaskWidgetBean;
+if (taskWidgetBean != null) {
+	taskWidgetBean.setSelectedTaskItemId(in.task.getId());
+}' #txt
+Ts0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Update selectedTaskItemId</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f3 208 482 160 44 -75 -8 #rect
+Ts0 f3 @|StepIcon #fIcon
+Ts0 f4 expr out #txt
+Ts0 f4 109 504 208 504 #arcP
+Ts0 f4 0 0.49999999999999994 0 0 #arcLabel
+Ts0 f5 368 504 467 504 #arcP
+Ts0 f5 0 0.49999999999999994 0 0 #arcLabel
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
 >Proto Ts0 '' #fIcon
-Ts0 f108 mainOut f110 tail #connect
-Ts0 f110 head f109 mainIn #connect
 Ts0 f33 mainOut f58 tail #connect
 Ts0 f58 head f45 mainIn #connect
 Ts0 f45 mainOut f60 tail #connect
@@ -332,3 +352,7 @@ Ts0 f2 head f1 mainIn #connect
 Ts0 f77 out f11 tail #connect
 Ts0 f11 head f49 mainIn #connect
 Ts0 f77 out f100 tail #connect
+Ts0 f108 mainOut f4 tail #connect
+Ts0 f4 head f3 mainIn #connect
+Ts0 f3 mainOut f5 tail #connect
+Ts0 f5 head f109 mainIn #connect

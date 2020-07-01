@@ -72,9 +72,10 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
     initSystemPermission(expressPermissionGroup, getPortalPermissionsByGroup(PortalPermissionGroup.EXPRESS_GROUP));
     grantPortalPermissionsForEverybody(
         Arrays.asList(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART, PortalPermission.EXPRESS_CREATE_WORKFLOW, PortalPermission.ACCESS_FULL_CASE_LIST,
-            PortalPermission.ACCESS_FULL_TASK_LIST, PortalPermission.ACCESS_FULL_PROCESS_LIST, PortalPermission.ACCESS_FULL_STATISTICS_LIST, PortalPermission.TASK_CASE_ADD_NOTE,
-            PortalPermission.TASK_CASE_SHOW_MORE_NOTE, PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS, PortalPermission.SHOW_ALL_TASKS_OF_CASE, 
-            PortalPermission.TASK_DISPLAY_RESET_ACTION, PortalPermission.TASK_DISPLAY_RESERVE_ACTION, PortalPermission.TASK_DISPLAY_DELEGATE_ACTION));
+            PortalPermission.ACCESS_FULL_TASK_LIST, PortalPermission.ACCESS_FULL_PROCESS_LIST, PortalPermission.ACCESS_FULL_STATISTICS_LIST,
+            PortalPermission.TASK_CASE_ADD_NOTE, PortalPermission.TASK_CASE_SHOW_MORE_NOTE, PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS,
+            PortalPermission.SHOW_ALL_TASKS_OF_CASE, PortalPermission.TASK_DISPLAY_RESET_ACTION, PortalPermission.TASK_DISPLAY_RESERVE_ACTION,
+            PortalPermission.TASK_DISPLAY_DELEGATE_ACTION, PortalPermission.TASK_RESET_READY_FOR_JOIN));
   }
 
   private void initSystemPermission(IPermissionGroup permissionGroup, List<IPermission> permissions) {
@@ -87,10 +88,13 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
 
   private List<IPermission> getTaskPermissions() {
     List<IPermission> result = getPortalPermissionsByGroup(PortalPermissionGroup.TASK_PERMISSIONS_GROUP);
+    IPermission taskResetReadyForJoinPermission = createPermission(PortalPermission.TASK_RESET_READY_FOR_JOIN);
+    result.add(taskResetReadyForJoinPermission);
     result.addAll(Arrays.asList(IPermission.TASK_READ_ALL, IPermission.TASK_RESET_OWN_WORKING_TASK,
         IPermission.TASK_RESET, IPermission.TASK_WRITE_ACTIVATOR, IPermission.TASK_PARK_OWN_WORKING_TASK,
         IPermission.TASK_WRITE_EXPIRY_TIMESTAMP, IPermission.TASK_WRITE_ORIGINAL_PRIORITY,
-        IPermission.TASK_WRITE_DESCRIPTION, IPermission.TASK_WRITE_NAME, IPermission.TASK_READ_OWN_CASE_TASKS));
+        IPermission.TASK_WRITE_DESCRIPTION, IPermission.TASK_WRITE_NAME, IPermission.TASK_READ_OWN_CASE_TASKS,
+        IPermission.TASK_DESTROY, IPermission.TASK_WRITE_DELAY_TIMESTAMP));
     return result;
   }
 

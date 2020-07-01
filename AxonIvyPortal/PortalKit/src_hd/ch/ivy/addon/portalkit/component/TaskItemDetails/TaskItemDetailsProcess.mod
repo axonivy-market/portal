@@ -54,6 +54,11 @@ Cs0 @UdProcessEnd f19 '' #zField
 Cs0 @GridStep f22 '' #zField
 Cs0 @PushWFArc f23 '' #zField
 Cs0 @PushWFArc f21 '' #zField
+Cs0 @UdMethod f24 '' #zField
+Cs0 @UdProcessEnd f25 '' #zField
+Cs0 @GridStep f27 '' #zField
+Cs0 @PushWFArc f28 '' #zField
+Cs0 @PushWFArc f26 '' #zField
 >Proto Cs0 Cs0 TaskItemDetailsProcess #zField
 Cs0 f0 guid 16BBB5787F4A8092 #txt
 Cs0 f0 method start(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage) #txt
@@ -370,6 +375,42 @@ Cs0 f22 192 778 256 44 -121 -8 #rect
 Cs0 f22 @|StepIcon #fIcon
 Cs0 f23 109 800 192 800 #arcP
 Cs0 f21 448 800 499 800 #arcP
+Cs0 f24 guid 172B738DB49E0230 #txt
+Cs0 f24 method destroyTask(ch.ivyteam.ivy.workflow.ITask) #txt
+Cs0 f24 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask selectedTask> param;' #txt
+Cs0 f24 inParameterMapAction 'out.task=param.selectedTask;
+' #txt
+Cs0 f24 outParameterDecl '<> result;' #txt
+Cs0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>destroyTask(ITask)</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f24 83 915 26 26 -56 18 #rect
+Cs0 f24 @|UdMethodIcon #fIcon
+Cs0 f25 371 915 26 26 0 12 #rect
+Cs0 f25 @|UdProcessEndIcon #fIcon
+Cs0 f27 actionTable 'out=in;
+' #txt
+Cs0 f27 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+
+Long destroyedTaskId = in.task.getId();
+TaskUtils.destroyTaskById(destroyedTaskId);
+in.task = TaskUtils.findTaskById(destroyedTaskId);' #txt
+Cs0 f27 security system #txt
+Cs0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Destroy task</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f27 192 906 112 44 -34 -8 #rect
+Cs0 f27 @|StepIcon #fIcon
+Cs0 f28 109 928 192 928 #arcP
+Cs0 f26 304 928 371 928 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -412,3 +453,7 @@ Cs0 f18 mainOut f23 tail #connect
 Cs0 f23 head f22 mainIn #connect
 Cs0 f22 mainOut f21 tail #connect
 Cs0 f21 head f19 mainIn #connect
+Cs0 f24 mainOut f28 tail #connect
+Cs0 f28 head f27 mainIn #connect
+Cs0 f27 mainOut f26 tail #connect
+Cs0 f26 head f25 mainIn #connect

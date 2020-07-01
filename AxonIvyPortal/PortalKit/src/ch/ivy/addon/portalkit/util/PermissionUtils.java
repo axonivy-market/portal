@@ -76,6 +76,15 @@ public class PermissionUtils {
   }
 
   /**
+   * Check if current user has task destroy permission,
+   * @return True : has task destroy permission, False : do not have this permission
+   */
+  public static boolean checkDestroyTaskPermission() {
+    return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
+        ch.ivyteam.ivy.security.IPermission.TASK_DESTROY);
+  }
+  
+  /**
    * Check if user can start an Express workflow
    * and set permission if user able to edit/delete express WF
    * 
@@ -208,5 +217,13 @@ public class PermissionUtils {
 
   public static String getTaskName(ITask task) {
     return IvyExecutor.executeAsSystem(task::getName);
+  }
+
+  /**
+   * Check if current user has permission to see/reset task is in state ReadyForJoin
+   * @return true if current user has permission.
+   */
+  public static boolean canResetTaskReadyForJoin() {
+    return hasPortalPermission(PortalPermission.TASK_RESET_READY_FOR_JOIN);
   }
 }

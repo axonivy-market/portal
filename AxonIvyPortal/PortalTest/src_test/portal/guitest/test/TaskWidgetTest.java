@@ -131,6 +131,20 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
+  public void testDestroyTask() {
+    login(TestAccount.ADMIN_USER);
+    HomePage homePage = new HomePage();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.expand();
+    taskWidgetPage.filterTasksInExpendedModeBy("Annual Leave Request");
+    taskWidgetPage.sideStepMenuOnActionButton(0);
+    Assert.assertTrue(taskWidgetPage.isTaskDestroyEnabled(0));
+    taskWidgetPage.destroyTask(0);
+    taskWidgetPage.confimDestruction();
+    assertEquals(TaskState.DESTROYED, taskWidgetPage.getTaskState(0));
+  }
+  
+  @Test
   public void testDisplayDelegateButton() {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(GRANT_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);

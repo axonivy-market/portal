@@ -70,4 +70,11 @@ public final class CaseUtils {
   public static CaseQuery createBusinessCaseQuery() {
     return CaseQuery.businessCases();
   }
+  
+  public static void destroyCase(ICase selectedCase) {
+    IvyExecutor.executeAsSystem(() -> {
+      selectedCase.destroy();
+      return Void.class;
+    });
+  }
 }

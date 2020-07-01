@@ -142,6 +142,7 @@ body .ui-widget.ui-fieldset.process-group.ui-fieldset .ui-fieldset-legend {
     color: $taskStateDoneColor;
 }
 
+.case-state-zombie-destroyed,
 .task-state-zombie-destroyed {
     color: $taskStateZombieDestroyedColor;
 }
@@ -477,7 +478,7 @@ body .task-item-body .task-details-item-note, .task-item-body .task-details-item
   }
 }
 
-.task-description-inplace, .edit-priority-inplace, .task-name-inplace, .expiry-edit-inplace{
+.task-description-inplace, .edit-priority-inplace, .task-name-inplace, .expiry-edit-inplace, .delay-edit-inplace {
   .ui-inplace-display.ui-state-highlight {
       background-color: $taskHighlightedInplaceFieldBackgroundColor;
       color: $taskHighlightedInplaceFieldTextColor;
