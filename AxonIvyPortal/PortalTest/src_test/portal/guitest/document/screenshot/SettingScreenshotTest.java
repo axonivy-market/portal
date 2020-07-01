@@ -88,6 +88,7 @@ public class SettingScreenshotTest extends BaseTest {
     createAbsenceForCurrentUser(TOMORROW, TOMORROW, "Vacation", absencePage);
     ScreenshotUtil.captureElementScreenshot(absencePage.getAbsenceDialog(), ScreenshotUtil.SETTINGS_FOLDER + "absence");
     absencePage.openNewAbsenceDialog();
+    Sleeper.sleep(1000);//wait for animation finish to capture nice screenshot
     ScreenshotUtil.captureElementScreenshot(absencePage.getAbsenceDialog(), ScreenshotUtil.SETTINGS_FOLDER + "new-absence");
     
     refreshPage();
