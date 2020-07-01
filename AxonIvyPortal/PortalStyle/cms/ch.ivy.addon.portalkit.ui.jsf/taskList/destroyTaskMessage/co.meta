@@ -1,0 +1,5 @@
+co: name={destroyTaskMessage} description={} changed={2020-06-15 12:19:22 CEST} changedby={nqhoan} visualorder={0} guid={172B776B960D29CF} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={172B777F0C317CC4} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-06-15 12:12:56 CEST} validto={} changed={2020-06-15 12:19:22 CEST} changedby={nqhoan} properties={} id={}
+val: guid={172B777F0041D520} datatype={} isdefault={false} langid={de} description={} validfrom={2020-06-15 12:12:58 CEST} validto={} changed={2020-06-15 12:19:22 CEST} changedby={nqhoan} properties={} id={}
+val: guid={172B777F09C99493} datatype={} isdefault={false} langid={es} description={} validfrom={2020-06-15 12:13:01 CEST} validto={} changed={2020-06-15 12:19:22 CEST} changedby={nqhoan} properties={} id={}
+val: guid={172B776B96F8376E} datatype={} isdefault={true} langid={en} description={} validfrom={2020-06-15 12:11:50 CEST} validto={} changed={2020-06-15 12:19:22 CEST} changedby={nqhoan} properties={} id={}
