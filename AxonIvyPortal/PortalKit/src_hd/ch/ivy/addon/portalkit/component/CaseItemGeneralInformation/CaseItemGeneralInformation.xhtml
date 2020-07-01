@@ -38,6 +38,7 @@
           <h:panelGroup id="case-state" styleClass="case-header-default-cell">
             <h:panelGroup id="#{cc.clientId}-in-progress" styleClass="fa fa-play-circle case-state-in-progress" rendered="#{case.state eq 'CREATED' or case.state eq 'RUNNING'}" />
             <h:panelGroup id="#{cc.clientId}-done" styleClass="fa fa-check-circle case-state-done" rendered="#{case.state eq 'DONE'}" />
+            <h:panelGroup id="#{cc.clientId}-destroyed" styleClass="fa fa-exclamation-circle case-state-zombie-destroyed" rendered="#{case.state eq 'DESTROYED' or case.state eq 'ZOMBIE'}" />
             <h:outputText value="#{caseBean.getState(case)}" styleClass="case-details-state"/>
           </h:panelGroup>
 

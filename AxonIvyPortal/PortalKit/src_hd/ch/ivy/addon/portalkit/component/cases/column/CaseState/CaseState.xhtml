@@ -23,6 +23,8 @@
       rendered="#{case.state eq 'CREATED' or case.state eq 'RUNNING'}" />
     <h:panelGroup id="#{componentId}-done" styleClass="fa fa-check-circle case-state-done #{cc.attrs.stateIconStyleClass}" 
       rendered="#{case.state eq 'DONE'}" />
+    <h:panelGroup id="#{componentId}-destroyed" rendered="#{case.state eq 'DESTROYED' or case.state eq 'ZOMBIE'}"
+      styleClass="fa fa-exclamation-circle case-state-zombie-destroyed #{cc.attrs.stateIconStyleClass}" />
   </h:panelGroup>
   <p:tooltip for="#{componentId}" value="#{caseBean.getState(case)}" styleClass="#{cc.attrs.stateTooltipStyleClass}" trackMouse="true" hideEvent="mouseleave click"/>
 </cc:implementation>

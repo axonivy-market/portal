@@ -28,7 +28,7 @@
       <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu"
         panelWidgetVar="task-side-steps-panel-#{rowIndex}" isAdhocExcluded="false" renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}"
         task="#{task}" componentToUpdate="#{p:component('task-start')}" currentPortalPage="#{currentPortalPage}" showDetailOption="#{true}" dataModel="#{dataModel}"
-        buttonStyleClass="u-hidden-md-down" />
+        buttonStyleClass="u-hidden-md-down" onDestroyComplete="#{onDestroyComplete}"/>
     </div>
   </div>
 </ui:composition>

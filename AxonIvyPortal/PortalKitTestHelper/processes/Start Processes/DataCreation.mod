@@ -4,6 +4,8 @@
 Dt0 DataCreation Big #zClass
 Dt0 B #cInfo
 Dt0 #process
+Ct0 Component Big #zClass
+Ct0 B #cInfo
 Dt0 @TextInP .type .type #zField
 Dt0 @TextInP .processKind .processKind #zField
 Dt0 @AnnotationInP-0n ai ai #zField
@@ -147,12 +149,34 @@ Dt0 @GridStep f125 '' #zField
 Dt0 @PushWFArc f126 '' #zField
 Dt0 @EndTask f127 '' #zField
 Dt0 @PushWFArc f128 '' #zField
-Dt0 @StartRequest f136 '' #zField
 Dt0 @EndTask f137 '' #zField
-Dt0 @GridStep f139 '' #zField
-Dt0 @PushWFArc f140 '' #zField
+Dt0 Ct0 S10 'Sub 1' #zField
+Dt0 @StartRequest f136 '' #zField
+Dt0 @PushWFArc f139 '' #zField
 Dt0 @PushWFArc f138 '' #zField
+Dt0 @StartRequest f140 '' #zField
+Dt0 @EndTask f141 '' #zField
+Dt0 @GridStep f142 '' #zField
+Dt0 @PushWFArc f143 '' #zField
+Dt0 @PushWFArc f144 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
+Ct0 @TextInP .type .type #zField
+Ct0 @TextInP .processKind .processKind #zField
+Ct0 @TextInP .xml .xml #zField
+Ct0 @TextInP .responsibility .responsibility #zField
+Ct0 @PushTrueWFInG-01 g0 '' #zField
+Ct0 @PushTrueWFOutG-01 g1 '' #zField
+Ct0 @TaskSwitch f1 '' #zField
+Ct0 @TkArc f2 '' #zField
+Ct0 @GridStep f3 '' #zField
+Ct0 @PushWFArc f4 '' #zField
+Ct0 @TaskSwitch f5 '' #zField
+Ct0 @TkArc f6 '' #zField
+Ct0 @PushWFArc f0 '' #zField
+Ct0 @EndTask f10 '' #zField
+Ct0 @PushWFArc f11 '' #zField
+Ct0 @TkArc f7 '' #zField
+>Proto Ct0 Ct0 Component #zField
 Dt0 f0 outLink createTasks.ivp #txt
 Dt0 f0 inParamDecl '<String taskStructureInfo> param;' #txt
 Dt0 f0 inParamTable 'out.taskStructureInfo=param.taskStructureInfo;
@@ -1341,28 +1365,60 @@ Dt0 f126 1007 848 1056 848 #arcP
 Dt0 f127 1233 833 30 30 0 15 #rect
 Dt0 f127 @|EndIcon #fIcon
 Dt0 f128 1184 848 1233 848 #arcP
-Dt0 f136 outLink createTestUserFavoriteProcess.ivp #txt
+Dt0 f137 433 1305 30 30 0 15 #rect
+Dt0 f137 @|EndIcon #fIcon
+Dt0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language lang="en">
+        <name>Create 3 tasks with system state</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 S10 160 1298 192 44 -89 -8 #rect
+Dt0 S10 @|BIcon #fIcon
+Dt0 f136 outLink createTaskWithSystemState.ivp #txt
 Dt0 f136 inParamDecl '<> param;' #txt
 Dt0 f136 requestEnabled true #txt
 Dt0 f136 triggerEnabled false #txt
-Dt0 f136 callSignature createTestUserFavoriteProcess() #txt
-Dt0 f136 startName 'Create Test UserFavorite Processes' #txt
-Dt0 f136 caseData businessCase.attach=true #txt
+Dt0 f136 callSignature createTaskWithSystemState() #txt
+Dt0 f136 startName 'Create Task With System State (Ready for join, destroyed, delay)' #txt
+Dt0 f136 taskData 'TaskTriggered.NAM=Create Tasks With System States' #txt
+Dt0 f136 caseData 'businessCase.attach=true
+case.name=Create Tasks With System States' #txt
 Dt0 f136 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createTaskWithSystemState.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f136 @C|.responsibility Everybody #txt
+Dt0 f136 49 1305 30 30 -45 28 #rect
+Dt0 f136 @|StartRequestIcon #fIcon
+Dt0 f139 79 1320 160 1320 #arcP
+Dt0 f138 352 1320 433 1320 #arcP
+Dt0 f140 outLink createTestUserFavoriteProcess.ivp #txt
+Dt0 f140 inParamDecl '<> param;' #txt
+Dt0 f140 requestEnabled true #txt
+Dt0 f140 triggerEnabled false #txt
+Dt0 f140 callSignature createTestUserFavoriteProcess() #txt
+Dt0 f140 startName 'Create Test UserFavorite Processes' #txt
+Dt0 f140 caseData businessCase.attach=true #txt
+Dt0 f140 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>createTestUserFavoriteProcess.ivp</name>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f136 @C|.responsibility Everybody #txt
-Dt0 f136 752 1184 32 32 -114 25 #rect
-Dt0 f136 @|StartRequestIcon #fIcon
-Dt0 f137 1041 1185 30 30 0 15 #rect
-Dt0 f137 @|EndIcon #fIcon
-Dt0 f139 actionTable 'out=in;
+Dt0 f140 @C|.responsibility Everybody #txt
+Dt0 f140 808 1192 32 32 -114 25 #rect
+Dt0 f140 @|StartRequestIcon #fIcon
+Dt0 f141 1097 1193 30 30 0 15 #rect
+Dt0 f141 @|EndIcon #fIcon
+Dt0 f142 actionTable 'out=in;
 ' #txt
-Dt0 f139 actionCode 'import ch.ivy.addon.portalkit.service.ExternalLinkService;
+Dt0 f142 actionCode 'import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.bo.ExternalLink;
 import ch.ivy.addon.portalkit.service.ExpressProcessService;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
@@ -1418,17 +1474,17 @@ externalLink.public = true;
 externalLink.link = "google.com";
 ExternalLinkService externalLinkService = new ExternalLinkService();
 externalLinkService.save(externalLink);' #txt
-Dt0 f139 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+Dt0 f142 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>Create user process</name>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f139 864 1178 128 44 -56 -8 #rect
-Dt0 f139 @|StepIcon #fIcon
-Dt0 f140 784 1200 864 1200 #arcP
-Dt0 f138 992 1200 1041 1200 #arcP
+Dt0 f142 920 1186 128 44 -56 -8 #rect
+Dt0 f142 @|StepIcon #fIcon
+Dt0 f143 1048 1208 1097 1208 #arcP
+Dt0 f144 840 1208 920 1208 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1438,6 +1494,91 @@ Dt0 f138 992 1200 1041 1200 #arcP
 ' #txt
 >Proto Dt0 0 0 32 24 18 0 #rect
 >Proto Dt0 @|BIcon #fIcon
+Ct0 g0 51 243 26 26 -50 18 #rect
+Ct0 g0 @|MIGIcon #fIcon
+Ct0 g1 723 243 26 26 0 5 #rect
+Ct0 g1 @|MOGIcon #fIcon
+Ct0 f1 actionTable 'out=in1;
+' #txt
+Ct0 f1 outLinks "TaskA.ivp","TaskB.ivp","TaskC.ivp" #txt
+Ct0 f1 taskData 'TaskB.DEL=new Duration(50000)
+TaskB.NAM=Task Switch B
+TaskB.SKIP_TASK_LIST=true
+TaskB.customFields.STRING.StateExampleTaskSwitchB="TaskWillBeDestroyed"
+TaskA.NAM=Task Switch A
+TaskA.SKIP_TASK_LIST=true
+TaskC.DEL=new Duration(50000)
+TaskC.NAM=Task Switch C
+TaskC.SKIP_TASK_LIST=true' #txt
+Ct0 f1 192 240 32 32 0 16 #rect
+Ct0 f1 @|TaskSwitchIcon #fIcon
+Ct0 f2 var in1 #txt
+Ct0 f2 77 256 192 256 #arcP
+Ct0 f3 actionTable 'out=in;
+' #txt
+Ct0 f3 actionCode 'import ch.ivy.addon.portalkit.test.util.TaskUtils;
+
+TaskUtils.destroyTaskByCustomField("StateExampleTaskSwitchB");' #txt
+Ct0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Call TaskUtils to destroy task with customField</name>
+    </language>
+</elementInfo>
+' #txt
+Ct0 f3 304 234 272 44 -127 -8 #rect
+Ct0 f3 @|StepIcon #fIcon
+Ct0 f4 expr data #txt
+Ct0 f4 outCond ivp=="TaskA.ivp" #txt
+Ct0 f4 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Task A</name>
+    </language>
+</elementInfo>
+' #txt
+Ct0 f4 224 256 304 256 #arcP
+Ct0 f4 0 0.5 0 -14 #arcLabel
+Ct0 f5 actionTable 'out=in1;
+' #txt
+Ct0 f5 outLinks "TaskA.ivp" #txt
+Ct0 f5 624 240 32 32 0 16 #rect
+Ct0 f5 @|TaskSwitchIcon #fIcon
+Ct0 f6 var in1 #txt
+Ct0 f6 576 256 624 256 #arcP
+Ct0 f0 expr data #txt
+Ct0 f0 outCond ivp=="TaskA.ivp" #txt
+Ct0 f0 656 256 723 256 #arcP
+Ct0 f10 625 145 30 30 0 15 #rect
+Ct0 f10 @|EndIcon #fIcon
+Ct0 f11 expr data #txt
+Ct0 f11 outCond ivp=="TaskB.ivp" #txt
+Ct0 f11 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Task B</name>
+    </language>
+</elementInfo>
+' #txt
+Ct0 f11 208 240 625 160 #arcP
+Ct0 f11 1 208 160 #addKink
+Ct0 f11 1 0.4943310657596372 0 -11 #arcLabel
+Ct0 f7 expr data #txt
+Ct0 f7 outCond ivp=="TaskC.ivp" #txt
+Ct0 f7 var in2 #txt
+Ct0 f7 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Task C</name>
+    </language>
+</elementInfo>
+' #txt
+Ct0 f7 208 272 640 272 #arcP
+Ct0 f7 1 208 352 #addKink
+Ct0 f7 2 640 352 #addKink
+Ct0 f7 1 0.46064814814814814 0 -13 #arcLabel
+>Proto Ct0 0 0 32 24 18 0 #rect
+>Proto Ct0 @|BIcon #fIcon
 Dt0 f30 mainOut f33 tail #connect
 Dt0 f33 head f32 in #connect
 Dt0 f35 head f34 mainIn #connect
@@ -1564,7 +1705,24 @@ Dt0 f124 mainOut f126 tail #connect
 Dt0 f126 head f125 mainIn #connect
 Dt0 f125 mainOut f128 tail #connect
 Dt0 f128 head f127 mainIn #connect
-Dt0 f136 mainOut f140 tail #connect
-Dt0 f140 head f139 mainIn #connect
-Dt0 f139 mainOut f138 tail #connect
+Dt0 f136 mainOut f139 tail #connect
+Dt0 f139 head S10 g0 #connect
+Dt0 S10 g1 f138 tail #connect
 Dt0 f138 head f137 mainIn #connect
+Dt0 f140 mainOut f144 tail #connect
+Dt0 f144 head f142 mainIn #connect
+Dt0 f142 mainOut f143 tail #connect
+Dt0 f143 head f141 mainIn #connect
+Ct0 g0 m f2 tail #connect
+Ct0 f2 head f1 in #connect
+Ct0 f1 out f4 tail #connect
+Ct0 f4 head f3 mainIn #connect
+Ct0 f3 mainOut f6 tail #connect
+Ct0 f6 head f5 in #connect
+Ct0 f5 out f0 tail #connect
+Ct0 f0 head g1 m #connect
+Ct0 f1 out f11 tail #connect
+Ct0 f11 head f10 mainIn #connect
+Ct0 f1 out f7 tail #connect
+Ct0 f7 head f5 in #connect
+Ct0 0 0 760 552 0 #ivRect

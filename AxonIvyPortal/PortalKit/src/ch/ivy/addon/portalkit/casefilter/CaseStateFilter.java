@@ -1,18 +1,19 @@
 package ch.ivy.addon.portalkit.casefilter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class CaseStateFilter extends CaseFilter {
 
@@ -24,9 +25,15 @@ public class CaseStateFilter extends CaseFilter {
 
   /**
    * Initialize the values of filteredStates: CREATED, RUNNING, DONE
+   * Advance note: if current user is Administrator, will consider to add system states
    */
   public CaseStateFilter() {
-    this.filteredStates = Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE);
+    this.filteredStates = new ArrayList<>(CaseSearchCriteria.STANDARD_STATES);
+    if (PermissionUtils.checkReadAllCasesPermission()) {
+      this.filteredStates.addAll(CaseSearchCriteria.ADVANCE_STATES);
+    } else {
+      this.filteredStates.add(CaseState.DONE);
+    }
     this.selectedFilteredStatesAtBeginning = new ArrayList<>(filteredStates);
     this.selectedFilteredStates = new ArrayList<>();
   }
