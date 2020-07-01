@@ -92,6 +92,6 @@ public class TaskTemplateIFrameTest extends BaseTest {
 		TaskTemplateIFramePage taskTemplateIFramePage = new TaskTemplateIFramePage();
 		assertTrue("Verify iframe tag created", taskTemplateIFramePage.isIFrameTagDisplayed());
 		taskTemplateIFramePage.switchToIFrame("iFrame");
-		taskTemplateIFramePage.proceedTaskInCaseLevelIFrame();;
+		taskTemplateIFramePage.proceedTaskInCaseLevelIFrame();
 	}
 }
