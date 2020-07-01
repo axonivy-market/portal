@@ -37,6 +37,7 @@ public class ChatScreenshotTest extends BaseTest {
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CHAT_FOLDER + "create-new-group-chat");
     
     taskTemplatePage.clickChatGroup(false);
+    Sleeper.sleep(3000);//wait for focus animation finish to capture screenshot
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskTemplatePage.getAddMemberToChatDialog(), ScreenshotUtil.CHAT_FOLDER + "chat-group-assignee", new ScreenshotMargin(20));
     taskTemplatePage.clickCreateGroupChatBtn();
     

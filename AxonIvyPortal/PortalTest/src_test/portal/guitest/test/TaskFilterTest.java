@@ -126,6 +126,19 @@ public class TaskFilterTest extends BaseTest {
 		assertEquals(1, taskWidgetPage.countTasks());
 		assertEquals("OPEN (Unassigned)", taskWidgetPage.getTaskStateTooltip(0));
 	}
+	
+	@Test
+	public void testShowSystemStatesFilterForAdminUser() {
+	  login(TestAccount.ADMIN_USER);
+	  MainMenuPage mainMenuPage = new MainMenuPage();
+	  TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+
+	  String stateFilterValue = taskWidgetPage.getFilterValue("state-filter");
+	  assertEquals("State: All", stateFilterValue);
+
+	  taskWidgetPage.openStateFilter();
+	  assertEquals("Ready for joining", taskWidgetPage.getStateFilterSelection(8));
+	}
 
 	@Test
 	public void testNotShowUnassignedTaskToPersonNotHaveTaskReadAllPermission() {

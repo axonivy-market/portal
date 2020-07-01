@@ -41,7 +41,9 @@ public class PortalTaskScreenshotTest extends BaseTest {
     taskWidgetPage.closeMainMenu();
     Sleeper.sleep(500); // wait for Layout.js renders left menu
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_WIDGET_FOLDER + "task-key-information");
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskWidgetPage.getSaveFilterDialog(), ScreenshotUtil.TASK_WIDGET_FOLDER + "how-to-create-task-filter",new ScreenshotMargin(100, 200));
+    WebElement saveTaskFilterDialog = taskWidgetPage.getSaveFilterDialog();
+    Sleeper.sleep(1000);//wait for focus animation finish to capture screenshot
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(saveTaskFilterDialog, ScreenshotUtil.TASK_WIDGET_FOLDER + "how-to-create-task-filter",new ScreenshotMargin(100, 200));
   }
   
   @Test
@@ -80,13 +82,13 @@ public class PortalTaskScreenshotTest extends BaseTest {
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(generalInfo, ScreenshotUtil.TASK_DETAIL_FOLDER + "detailed-task-information-data-description", new ScreenshotMargin(20));
     
     taskDetails.openAddNoteDialog();
-    Sleeper.sleep(500);
+    Sleeper.sleep(2000);//wait for focus animation to capture screenshot
     WebElement addNoteDialog = taskDetails.getAddNoteDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(addNoteDialog, ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-add-note", new ScreenshotMargin(50));
     taskDetails.addNoteToTaskWithContent("Add a note for this task");
     
     taskDetails.openAddAttachmentDialog();
-    Sleeper.sleep(500);
+    Sleeper.sleep(2000);//wait for focus animation to capture screenshot
     WebElement addDocument = taskDetails.getAddAttachmentDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(addDocument, ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-upload-document", new ScreenshotMargin(50));
     taskDetails.uploadDocument(getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
