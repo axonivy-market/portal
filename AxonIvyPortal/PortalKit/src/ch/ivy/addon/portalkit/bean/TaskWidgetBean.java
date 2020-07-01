@@ -118,4 +118,8 @@ public class TaskWidgetBean implements Serializable {
     this.selectedTaskItemId = selectedTaskItemId;
   }
   
+  public void destroyTask(Long taskId) {
+    TaskUtils.destroyTaskById(taskId);
+  }
+  
 }
