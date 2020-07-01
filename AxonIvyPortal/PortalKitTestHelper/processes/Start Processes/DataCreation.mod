@@ -4,6 +4,9 @@
 Dt0 DataCreation Big #zClass
 Dt0 B #cInfo
 Dt0 #process
+Ct0 Component Big #zClass
+Ct0 B #cInfo
+Dt0 Ct0 S10 'Sub 1' #zField
 Dt0 @TextInP .type .type #zField
 Dt0 @TextInP .processKind .processKind #zField
 Dt0 @AnnotationInP-0n ai ai #zField
@@ -130,7 +133,37 @@ Dt0 @EndTask f115 '' #zField
 Dt0 @GridStep f117 '' #zField
 Dt0 @PushWFArc f116 '' #zField
 Dt0 @PushWFArc f118 '' #zField
+Dt0 @EndTask f123 '' #zField
+Dt0 @StartRequest f126 '' #zField
+Dt0 @PushWFArc f144 '' #zField
+Dt0 @PushWFArc f119 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
+Ct0 @TextInP .type .type #zField
+Ct0 @TextInP .processKind .processKind #zField
+Ct0 @TextInP .xml .xml #zField
+Ct0 @TextInP .responsibility .responsibility #zField
+Ct0 @TaskSwitch f122 '' #zField
+Ct0 @TaskSwitch f124 '' #zField
+Ct0 @TkArc f141 '' #zField
+Ct0 @PushTrueWFInG-01 g0 '' #zField
+Ct0 @TkArc f0 '' #zField
+Ct0 @GridStep f3 '' #zField
+Ct0 @PushWFArc f4 '' #zField
+Ct0 @TkArc f5 '' #zField
+Ct0 @PushTrueWFOutG-01 g1 '' #zField
+Ct0 @PushWFArc f1 '' #zField
+Ct0 @PushWFArc f139 '' #zField
+Ct0 @EndTask f127 '' #zField
+>Proto Ct0 Ct0 Component #zField
+Dt0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language lang="en">
+        <name>Create 3 tasks with system state</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 S10 192 1338 192 44 -89 -8 #rect
+Dt0 S10 @|BIcon #fIcon
 Dt0 f0 outLink createTasks.ivp #txt
 Dt0 f0 inParamDecl '<String taskStructureInfo> param;' #txt
 Dt0 f0 inParamTable 'out.taskStructureInfo=param.taskStructureInfo;
@@ -1190,6 +1223,29 @@ Dt0 f117 192 1186 112 44 -33 -8 #rect
 Dt0 f117 @|StepIcon #fIcon
 Dt0 f116 79 1208 192 1208 #arcP
 Dt0 f118 304 1208 449 1208 #arcP
+Dt0 f123 473 1345 30 30 0 15 #rect
+Dt0 f123 @|EndIcon #fIcon
+Dt0 f126 outLink createTasksWithSystemState.ivp #txt
+Dt0 f126 inParamDecl '<> param;' #txt
+Dt0 f126 requestEnabled true #txt
+Dt0 f126 triggerEnabled false #txt
+Dt0 f126 callSignature createTasksWithSystemState() #txt
+Dt0 f126 startName 'Create Task With System State (Ready for join, destroyed, delay)' #txt
+Dt0 f126 taskData 'TaskTriggered.NAM=Create Tasks With System States' #txt
+Dt0 f126 caseData 'businessCase.attach=true
+case.name=Create Tasks With System States' #txt
+Dt0 f126 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createTaskWithSystemState</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f126 @C|.responsibility Everybody #txt
+Dt0 f126 49 1345 30 30 -37 24 #rect
+Dt0 f126 @|StartRequestIcon #fIcon
+Dt0 f144 79 1360 192 1360 #arcP
+Dt0 f119 384 1360 473 1360 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1199,6 +1255,108 @@ Dt0 f118 304 1208 449 1208 #arcP
 ' #txt
 >Proto Dt0 0 0 32 24 18 0 #rect
 >Proto Dt0 @|BIcon #fIcon
+Ct0 f122 actionTable 'out=in1;
+' #txt
+Ct0 f122 outLinks "TaskA.ivp" #txt
+Ct0 f122 taskData 'TaskB.NAM=Task N
+TaskB.PRI=3' #txt
+Ct0 f122 648 296 32 32 0 16 #rect
+Ct0 f122 @|TaskSwitchIcon #fIcon
+Ct0 f124 actionTable 'out=in1;
+' #txt
+Ct0 f124 actionCode '
+
+
+
+' #txt
+Ct0 f124 outLinks "TaskB.ivp","TaskA.ivp","TaskC.ivp" #txt
+Ct0 f124 taskData 'TaskB.DEL=new Duration(50000)
+TaskB.NAM=Task Switch B
+TaskB.PRI=0
+TaskB.SKIP_TASK_LIST=true
+TaskB.customFields.STRING.StateExampleTaskSwitchB="TaskWillBeDestroyed"
+TaskA.NAM=Task Switch A
+TaskA.SKIP_TASK_LIST=true
+TaskC.SKIP_TASK_LIST=true
+TaskC.DEL=new Duration(50000)
+TaskC.NAM=Task Switch C
+TaskC.PRI=3' #txt
+Ct0 f124 240 296 32 32 0 16 #rect
+Ct0 f124 @|TaskSwitchIcon #fIcon
+Ct0 f141 expr data #txt
+Ct0 f141 outCond ivp=="TaskC.ivp" #txt
+Ct0 f141 var in1 #txt
+Ct0 f141 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Task C</name>
+    </language>
+</elementInfo>
+' #txt
+Ct0 f141 256 296 664 296 #arcP
+Ct0 f141 1 256 224 #addKink
+Ct0 f141 2 664 224 #addKink
+Ct0 f141 1 0.49019607843137253 0 -14 #arcLabel
+Ct0 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language lang="en">
+        <name>in 1</name>
+    </language>
+</elementInfo>
+' #txt
+Ct0 g0 67 299 26 26 -47 27 #rect
+Ct0 g0 @|MIGIcon #fIcon
+Ct0 f0 var in1 #txt
+Ct0 f0 93 312 240 312 #arcP
+Ct0 f3 actionTable 'out=in;
+' #txt
+Ct0 f3 actionCode 'import ch.ivy.addon.portalkit.test.util.TaskUtils;
+
+TaskUtils.destroyTaskByCustomField("StateExampleTaskSwitchB");' #txt
+Ct0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Call TaskUtils to destroy task with customField</name>
+    </language>
+</elementInfo>
+' #txt
+Ct0 f3 328 290 272 44 -127 -8 #rect
+Ct0 f3 @|StepIcon #fIcon
+Ct0 f4 expr data #txt
+Ct0 f4 outCond ivp=="TaskA.ivp" #txt
+Ct0 f4 272 312 328 312 #arcP
+Ct0 f5 var in2 #txt
+Ct0 f5 600 312 648 312 #arcP
+Ct0 f5 0 0.4894750550293351 0 0 #arcLabel
+Ct0 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>out</name>
+    </language>
+</elementInfo>
+' #txt
+Ct0 g1 835 299 26 26 -10 17 #rect
+Ct0 g1 @|MOGIcon #fIcon
+Ct0 f1 expr data #txt
+Ct0 f1 outCond ivp=="TaskA.ivp" #txt
+Ct0 f1 680 312 835 312 #arcP
+Ct0 f1 0 0.9907724834271591 0 0 #arcLabel
+Ct0 f139 expr data #txt
+Ct0 f139 outCond ivp=="TaskB.ivp" #txt
+Ct0 f139 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Task B</name>
+    </language>
+</elementInfo>
+' #txt
+Ct0 f139 256 328 809 416 #arcP
+Ct0 f139 1 256 416 #addKink
+Ct0 f139 1 0.47377938517179025 0 15 #arcLabel
+Ct0 f127 809 401 30 30 0 15 #rect
+Ct0 f127 @|EndIcon #fIcon
+>Proto Ct0 0 0 32 24 18 0 #rect
+>Proto Ct0 @|BIcon #fIcon
 Dt0 f30 mainOut f33 tail #connect
 Dt0 f33 head f32 in #connect
 Dt0 f35 head f34 mainIn #connect
@@ -1311,3 +1469,20 @@ Dt0 f114 mainOut f116 tail #connect
 Dt0 f116 head f117 mainIn #connect
 Dt0 f117 mainOut f118 tail #connect
 Dt0 f118 head f115 mainIn #connect
+Dt0 f144 head S10 g0 #connect
+Dt0 f126 mainOut f144 tail #connect
+Dt0 S10 g1 f119 tail #connect
+Dt0 f119 head f123 mainIn #connect
+Ct0 f139 head f127 mainIn #connect
+Ct0 f141 head f122 in #connect
+Ct0 g0 m f0 tail #connect
+Ct0 f0 head f124 in #connect
+Ct0 f124 out f139 tail #connect
+Ct0 f124 out f141 tail #connect
+Ct0 f124 out f4 tail #connect
+Ct0 f4 head f3 mainIn #connect
+Ct0 f3 mainOut f5 tail #connect
+Ct0 f5 head f122 in #connect
+Ct0 f122 out f1 tail #connect
+Ct0 f1 head g1 m #connect
+Ct0 0 0 1128 792 0 #ivRect

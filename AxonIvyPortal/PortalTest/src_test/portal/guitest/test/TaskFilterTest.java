@@ -60,6 +60,19 @@ public class TaskFilterTest extends BaseTest {
 		taskWidgetPage.openStateFilter();
 		assertEquals("Done", taskWidgetPage.getStateFilterSelection(4));
 	}
+	
+	@Test
+	public void testShowSystemStatesFilterForAdminUser() {
+	  login(TestAccount.ADMIN_USER);
+	  MainMenuPage mainMenuPage = new MainMenuPage();
+	  TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+
+	  String stateFilterValue = taskWidgetPage.getFilterValue("state-filter");
+	  assertEquals("State: All", stateFilterValue);
+
+    taskWidgetPage.openStateFilter();
+    assertEquals("Ready for joining", taskWidgetPage.getStateFilterSelection(8));
+	}
 
 	@Test
 	public void testKeepSessionFilter() {

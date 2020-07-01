@@ -91,6 +91,10 @@ Is0 @PushWFArc f72 '' #zField
 Is0 @UserDialog f78 '' #zField
 Is0 @PushWFArc f79 '' #zField
 Is0 @PushWFArc f73 '' #zField
+Is0 @StartRequest f80 '' #zField
+Is0 @GridStep f82 '' #zField
+Is0 @PushWFArc f83 '' #zField
+Is0 @PushWFArc f81 '' #zField
 >Proto Is0 Is0 GrantPermissions #zField
 Is0 f0 outLink grantAllPermissionsToCurrentUser.ivp #txt
 Is0 f0 inParamDecl '<> param;' #txt
@@ -1134,6 +1138,40 @@ Is0 f79 expr out #txt
 Is0 f79 63 1552 104 1552 #arcP
 Is0 f73 expr out #txt
 Is0 f73 248 1552 284 1552 #arcP
+Is0 f80 outLink grantShowTaskReadyForJoin.ivp #txt
+Is0 f80 inParamDecl '<> param;' #txt
+Is0 f80 requestEnabled true #txt
+Is0 f80 triggerEnabled false #txt
+Is0 f80 callSignature grantShowTaskReadyForJoin() #txt
+Is0 f80 caseData businessCase.attach=true #txt
+Is0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>grantShowTaskReadyForJoin.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f80 @C|.responsibility Everybody #txt
+Is0 f80 33 1633 30 30 -35 24 #rect
+Is0 f80 @|StartRequestIcon #fIcon
+Is0 f82 actionTable 'out=in;
+' #txt
+Is0 f82 actionCode 'import java.util.Objects;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+import ch.ivyteam.ivy.security.IPermission;
+
+IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_RESET_READY_FOR_JOIN.getValue());
+if (Objects.nonNull(iPermission)){
+  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
+}' #txt
+Is0 f82 216 1636 48 24 0 -8 #rect
+Is0 f82 @|StepIcon #fIcon
+Is0 f83 63 1648 216 1648 #arcP
+Is0 f83 0 0.3438914027149321 0 0 #arcLabel
+Is0 f81 264 1648 408 543 #arcP
+Is0 f81 1 408 1648 #addKink
+Is0 f81 1 0.3438914027149321 0 0 #arcLabel
 >Proto Is0 .type portalKit_test.GrantPermissionsData #txt
 >Proto Is0 .processKind NORMAL #txt
 >Proto Is0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1226,3 +1264,7 @@ Is0 f70 mainOut f79 tail #connect
 Is0 f79 head f78 mainIn #connect
 Is0 f78 mainOut f73 tail #connect
 Is0 f73 head f71 mainIn #connect
+Is0 f80 mainOut f83 tail #connect
+Is0 f83 head f82 mainIn #connect
+Is0 f82 mainOut f81 tail #connect
+Is0 f81 head f7 mainIn #connect

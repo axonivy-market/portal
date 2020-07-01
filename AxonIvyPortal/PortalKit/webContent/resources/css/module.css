@@ -633,7 +633,8 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .action-container a.task-action-item .icon-compact-mode, .action-container span.task-action-item .icon-compact-mode,
-.task-detail-general-card .task-details-action-container a.ui-commandlink.task-action-item i.tmi-chevorn-right {
+.task-detail-general-card .task-details-action-container a.ui-commandlink.task-action-item i.tmi-chevorn-right,
+span.task-action-item i.tmi-chevorn-right {
   margin-top: 3px;
 }
 

@@ -84,10 +84,7 @@ public class CaseWidgetBean implements Serializable {
   }
   
   public void destroyCase(ICase iCase) {
-    IvyExecutor.executeAsSystem(() -> {
-      iCase.destroy();
-      return Void.class;
-    });
+    CaseUtils.destroyCase(iCase);
   }
 
   public String sanitizeHTML(String text) {
