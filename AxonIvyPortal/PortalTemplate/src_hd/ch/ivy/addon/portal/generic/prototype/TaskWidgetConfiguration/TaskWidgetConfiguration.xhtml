@@ -45,8 +45,8 @@
           <strong>Available Filters</strong>
         </div>
         <div class="ui-g-8">
-          <p:commandButton id="apply-filter-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/applyFilter')}"
-            styleClass="apply-filters-btn Fright" global="true" update="task-widget-preview-container" />
+          <p:commandButton id="preview-button" value="Preview"
+            styleClass="Fright" global="true" update="task-widget-preview-container" />
         </div>
   
         <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
