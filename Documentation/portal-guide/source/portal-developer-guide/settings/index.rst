@@ -332,13 +332,23 @@ Personal task permission
 
    This function will be enabled if session user has permission
    ``IPermission.TASK_RESET_OWN_WORKING_TASK`` or
+   ``PortalPermission.TASK_RESET_READY_FOR_JOIN`` or
    ``IPermission.TASK_RESET``.
 
    .. important::
-      Task state has to be one of following values: RESUMED, PARKED.
+      Task state has to be one of following values: RESUMED, PARKED, READY_FOR_JOIN.
 
    This function will be hidden if session user does not have permission
    ``PortalPermission.TASK_DISPLAY_RESET_ACTION``.
+
+
+-  DELETE TASK
+
+   Delete task function will be enabled if session user has
+   ``IPermission.TASK_DESTROY``.
+
+   .. important::
+      Task state hasn't to be in DESTROYED and DONE.
 
 -  RESERVE
 

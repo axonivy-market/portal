@@ -42,7 +42,9 @@ public enum PortalSecurity {
             IPermission.TASK_WRITE_NAME,
             IPermission.TASK_WRITE_ORIGINAL_PRIORITY,
             IPermission.TASK_WRITE_EXPIRY_TIMESTAMP,
+            IPermission.TASK_WRITE_DELAY_TIMESTAMP,
             IPermission.TASK_RESET_OWN_WORKING_TASK,
+            IPermission.TASK_DESTROY,
             IPermission.CASE_DESTROY,
             IPermission.CASE_READ_ALL,
             IPermission.CASE_WRITE_DESCRIPTION,
@@ -84,7 +86,7 @@ public enum PortalSecurity {
         }
         grantPermissionsToForSecurityMember(Arrays.asList(
             PortalPermission.STATISTIC_ANALYZE_TASK, PortalPermission.SHOW_CASE_DETAILS, 
-            PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK), adminUser);
+            PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK, PortalPermission.TASK_DISPLAY_DESTROY_ACTION), adminUser);
       }
 
       IUser demoUser = userRepo.findWithExternalLookup(Username.DEMO);
