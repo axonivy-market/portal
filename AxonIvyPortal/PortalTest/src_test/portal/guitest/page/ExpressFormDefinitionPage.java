@@ -61,7 +61,13 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 		ensureNoBackgroundRequest();
 	}
-
+	
+	public void switchToCheckBoxTab() {
+	  click(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"));
+    ensureNoBackgroundRequest();
+    waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-options"), true, TIME_OUT);
+	}
+	
 	public void createCheckboxFieldWithDataProvider(String label) {
 		fillDataForCheckboxProvider(label);
 		click(By.id("form:create-tabs:add-checkbox-btn"));
