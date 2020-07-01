@@ -69,6 +69,7 @@ public class SettingScreenshotTest extends BaseTest {
   public void screenshotMyProfile() throws IOException {
     homePage = new HomePage();
     UserProfilePage userProfilePage = homePage.openMyProfilePage();
+    Sleeper.sleep(1000);//Wait for focus animation finish before capture screenshot
     ScreenshotUtil.captureElementScreenshot(userProfilePage.getUserSettingCard(), ScreenshotUtil.MY_PROFILE_FOLDER + "my-profile");
     userProfilePage.switchOnEmailOnTaskAssignmentSetting();
     userProfilePage.switchOnFurtherEmailFromAppSetting();
