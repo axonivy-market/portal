@@ -74,8 +74,7 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
         Arrays.asList(PortalPermission.STATISTIC_ADD_DASHBOARD_CHART, PortalPermission.EXPRESS_CREATE_WORKFLOW, PortalPermission.ACCESS_FULL_CASE_LIST,
             PortalPermission.ACCESS_FULL_TASK_LIST, PortalPermission.ACCESS_FULL_PROCESS_LIST, PortalPermission.ACCESS_FULL_STATISTICS_LIST, PortalPermission.TASK_CASE_ADD_NOTE,
             PortalPermission.TASK_CASE_SHOW_MORE_NOTE, PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS, PortalPermission.SHOW_ALL_TASKS_OF_CASE, 
-            PortalPermission.TASK_DISPLAY_RESET_ACTION, PortalPermission.TASK_DISPLAY_RESERVE_ACTION, PortalPermission.TASK_DISPLAY_DELEGATE_ACTION,
-            PortalPermission.TASK_RESET_READY_FOR_JOIN));
+            PortalPermission.TASK_DISPLAY_RESET_ACTION, PortalPermission.TASK_DISPLAY_RESERVE_ACTION, PortalPermission.TASK_DISPLAY_DELEGATE_ACTION));
   }
 
   private void initSystemPermission(IPermissionGroup permissionGroup, List<IPermission> permissions) {
