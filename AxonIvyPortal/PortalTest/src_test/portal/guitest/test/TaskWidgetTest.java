@@ -18,6 +18,7 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.TestRole;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.HomePage;
@@ -171,5 +172,38 @@ public class TaskWidgetTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.openTaskList();
     assertEquals("In Task list, Task Count is not disabled", null, taskWidgetPage.getTaskCount());
+  }
+  
+  @Test
+  public void testDelegateTask() {
+    login(TestAccount.HR_ROLE_USER);
+    HomePage homePage = new HomePage();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.expand();
+    assertEquals(TestRole.EVERYBODY_ROLE, taskWidgetPage.getResponsibleOfTaskAt(0));
+    taskWidgetPage.openTaskDelegateDialog(0);
+    taskWidgetPage.selectDelegateResponsible(TestAccount.HR_ROLE_USER.getFullName(), false);
+    assertEquals(TestAccount.HR_ROLE_USER.getFullName(), taskWidgetPage.getResponsibleOfTaskAt(0));
+    
+    taskWidgetPage.openTaskDelegateDialog(0);
+    taskWidgetPage.selectDelegateResponsible(TestRole.HR_ROLE, true);
+    assertEquals(TestRole.HR_ROLE, taskWidgetPage.getResponsibleOfTaskAt(0));
+  }
+  
+  @Test
+  public void testDelegateTaskInTaskDetail() {
+    login(TestAccount.HR_ROLE_USER);
+    HomePage homePage = new HomePage();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.expand();
+    TaskDetailsPage taskDetailsPage = taskWidgetPage.openTaskDetails(0);
+    assertEquals(TestRole.EVERYBODY_ROLE, taskDetailsPage.getTaskResponsible());
+    taskDetailsPage.openTaskDelegateDialog();
+    taskDetailsPage.selectDelegateResponsible(TestAccount.HR_ROLE_USER.getFullName(), false);
+    assertEquals(TestAccount.HR_ROLE_USER.getFullName(), taskDetailsPage.getTaskResponsible());
+    
+    taskDetailsPage.openTaskDelegateDialog();
+    taskDetailsPage.selectDelegateResponsible(TestRole.HR_ROLE, true);
+    assertEquals(TestRole.HR_ROLE, taskDetailsPage.getTaskResponsible());
   }
 }

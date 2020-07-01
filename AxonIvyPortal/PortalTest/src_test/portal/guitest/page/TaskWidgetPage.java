@@ -635,4 +635,32 @@ public class TaskWidgetPage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 		Sleeper.sleep(3000);
 	}
+	
+	public String getResponsibleOfTaskAt(int index) {
+    List<WebElement> responsibles = findListElementsByClassName("responsible-cell");
+    return responsibles.get(index).getText();
+  }
+	
+  public void selectDelegateResponsible(String responsibleName, boolean isRole) {
+    if(isRole) {
+      List<WebElement> radioButtonLabels = findListElementsByCssSelector("table[id$='activator-type-select'] label");
+      click(radioButtonLabels.get(1));
+      waitAjaxIndicatorDisappear();
+      waitForElementDisplayed(By.cssSelector("input[id$='group-activator-select_input']"), true);
+      type(By.cssSelector("input[id$='group-activator-select_input']"), responsibleName);
+      waitForElementDisplayed(By.cssSelector("span[id$='group-activator-select_panel']"), true);
+      List<WebElement> foundRoles = findElementByCssSelector("span[id$='group-activator-select_panel").findElements(By.tagName("li"));
+      click(foundRoles.get(0));
+    }
+    else {
+      waitForElementDisplayed(By.cssSelector("input[id$='user-activator-select_input']"), true);
+      type(By.cssSelector("input[id$='user-activator-select_input']"), responsibleName);
+      waitForElementDisplayed(By.cssSelector("span[id$='user-activator-select_panel']"), true);
+      List<WebElement> foundUsers = findElementByCssSelector("span[id$='user-activator-select_panel']").findElements(By.tagName("tr"));
+      click(foundUsers.get(0));
+    }
+    waitAjaxIndicatorDisappear();
+    click(By.cssSelector("button[id$='proceed-task-delegate-command']"));
+    waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), false);
+  }
 }
