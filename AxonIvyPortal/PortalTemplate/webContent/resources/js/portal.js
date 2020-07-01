@@ -73,34 +73,36 @@ var Portal = {
       return;
     }
 
-    var usedWidthOfTopMenu = 0;
-    topMenuElements.each(function(i, val) {
-      if (!val.classList.contains("breadcrumb-container")) {
-        usedWidthOfTopMenu += val.offsetWidth + 22;
-      }
-    });
+    setTimeout(function() {
+        var usedWidthOfTopMenu = 0;
+        topMenuElements.each(function(i, val) {
+          if (!val.classList.contains("breadcrumb-container")) {
+            usedWidthOfTopMenu += val.offsetWidth + 22;
+          }
+        });
 
-    usedWidthOfTopMenu = usedWidthOfTopMenu + 2;
-    var breadCrumbWidth = "calc(100% - " + usedWidthOfTopMenu + "px)";
-    breadCrumb.css({"display": "block", "width" : breadCrumbWidth});
-    if (taskName.length > 0) {
-      taskName.css({"display": "none"});
-    }
-
-    var breadcrumbWidthWithoutCurrentStep = 0;
-    breadCrumbMembers.each(function(i, val) {
-      if (i != breadCrumbMembers.length - 1) {
-        breadcrumbWidthWithoutCurrentStep += val.offsetWidth;
-      }
-    });
-    var currentBreadcrumb = $(breadCrumbMembers.get(breadCrumbMembers.length - 1));
-    currentBreadcrumb.css("max-width", "calc(100% - " + breadcrumbWidthWithoutCurrentStep + "px)");
-    if (currentBreadcrumb.get(0).offsetWidth == 0) {
-      breadCrumb.css("display", "none");
-      if (taskName.length > 0) {
-          taskName.css({"display": "flex"});
+        usedWidthOfTopMenu = usedWidthOfTopMenu + 2;
+        var breadCrumbWidth = "calc(100% - " + usedWidthOfTopMenu + "px)";
+        breadCrumb.css({"display": "block", "width" : breadCrumbWidth});
+        if (taskName.length > 0) {
+          taskName.css({"display": "none"});
         }
-    }
+
+        var breadcrumbWidthWithoutCurrentStep = 0;
+        breadCrumbMembers.each(function(i, val) {
+          if (i != breadCrumbMembers.length - 1) {
+            breadcrumbWidthWithoutCurrentStep += val.offsetWidth;
+          }
+        });
+        var currentBreadcrumb = $(breadCrumbMembers.get(breadCrumbMembers.length - 1));
+        currentBreadcrumb.css("max-width", "calc(100% - " + breadcrumbWidthWithoutCurrentStep + "px)");
+        if (currentBreadcrumb.get(0).offsetWidth == 0) {
+          breadCrumb.css("display", "none");
+          if (taskName.length > 0) {
+              taskName.css({"display": "flex"});
+            }
+        }
+      }, 1);
   }
 }
 
