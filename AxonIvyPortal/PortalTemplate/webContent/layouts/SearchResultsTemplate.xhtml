@@ -28,7 +28,7 @@
       	<h:outputText styleClass="not-display-result-tab-view" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/notDisplayResultTabView')}."/>
       </c:if>
       <div id="search-results-tabview-container" class="search-results-tabview-container">
-        <p:tabView id="search-results-tabview" widgetVar="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview"
+        <p:tabView id="search-results-tabview" widgetVar="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview js-search-results-tabview"
           rendered="#{isShowResultTabView}">
           <p:tab id="process-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" titleStyleClass="process-tab-title"
             rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink}">
