@@ -644,6 +644,33 @@ public class TaskWidgetPage extends TemplatePage {
 		click(By.cssSelector("[id$='task-widget:filter-reset-command']"));
 		waitForElementDisplayed(By.id("task-widget:reset-filter-set-dialog"), false);
 	}
+
+  public boolean isTaskDestroyEnabled(int rowIndex) {
+    WebElement destroyButton = findDestroyCommand(rowIndex);
+    return !destroyButton.getAttribute(CLASS).contains("ui-state-disabled");
+  }
+
+  public void destroyTask(int rowIndex) {
+    click(findDestroyCommand(rowIndex));
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
+
+  public WebElement findDestroyCommand(int rowIndex) {
+    String destroyCommandButton = String.format(
+        taskWidgetId + ":task-list-scroller:%s:task-item:task-action:additional-options:task-destroy-command", rowIndex);
+    waitForElementDisplayed(By.id(destroyCommandButton), true);
+    return findElementById(destroyCommandButton);
+  }
+  
+  public void confimDestruction() {
+    String destroyCaseDialogId = taskWidgetId + ":destroy-task-confirmation-dialog";
+    waitForElementDisplayed(By.id(destroyCaseDialogId), true);
+    WebElement destroyConfirmationDialog = findElementById(destroyCaseDialogId);
+    WebElement confirmButton = findChildElementById(destroyConfirmationDialog, taskWidgetId + ":confirm-destruction");
+    confirmButton.click();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
+  
 	
 	public void openCompactSortMenu() {
 	  click(By.cssSelector("[id$='sort-task-menu_label']"));

@@ -1,10 +1,21 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
 import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_TIMESTAMP_FIELD5;
+import static ch.ivyteam.ivy.workflow.TaskState.CREATED;
+import static ch.ivyteam.ivy.workflow.TaskState.DELAYED;
+import static ch.ivyteam.ivy.workflow.TaskState.DESTROYED;
+import static ch.ivyteam.ivy.workflow.TaskState.DONE;
+import static ch.ivyteam.ivy.workflow.TaskState.PARKED;
+import static ch.ivyteam.ivy.workflow.TaskState.READY_FOR_JOIN;
+import static ch.ivyteam.ivy.workflow.TaskState.RESUMED;
+import static ch.ivyteam.ivy.workflow.TaskState.SUSPENDED;
+import static ch.ivyteam.ivy.workflow.TaskState.UNASSIGNED;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -17,6 +28,8 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class TaskSearchCriteria {
 
+  public final static EnumSet<TaskState> STANDARD_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN);
+  public final static EnumSet<TaskState> ADVANCE_STATES = EnumSet.of(DONE, UNASSIGNED, DELAYED, DESTROYED);
   private String involvedUsername;
   private List<String> apps;
   private List<TaskState> includedStates;
@@ -88,9 +101,9 @@ public class TaskSearchCriteria {
       finalQuery.where().and().activatorRoleId().isNotNull();
     } else if (getTaskAssigneeType() == TaskAssigneeType.USER) {
       TaskQuery personalTaskQuery = TaskQuery.create().where().activatorUserId().isNotNull();
-      if (getIncludedStates().contains(TaskState.PARKED)) {
+      if (getIncludedStates().contains(PARKED)) {
         TaskQuery reservedTaskQuery =
-            TaskQuery.create().where().activatorRoleId().isNotNull().and().state().isEqual(TaskState.PARKED);
+            TaskQuery.create().where().activatorRoleId().isNotNull().and().state().isEqual(PARKED);
         personalTaskQuery.where().or(reservedTaskQuery);
       }
       finalQuery.where().and(personalTaskQuery);
@@ -247,6 +260,22 @@ public class TaskSearchCriteria {
         } else {
           query.orderBy().state();
         }
+      }
+    }
+  }
+  
+  /** Check if current user can see task in advance state such as
+   * DONE, UNASSIGNED, DELAYED, DESTROYED, READY_FOR_JOIN
+   * Then extend Search query for task criteria
+   * @param isAdminPermission
+   */
+  public void extendStatesQueryByPermission(boolean isAdminPermission) {
+    this.setAdminQuery(isAdminPermission);
+    if (isAdminPermission) {
+      List<TaskState> adminStateNotIncluded = ADVANCE_STATES.stream()
+          .filter(item -> !includedStates.contains(item)).collect(Collectors.toList());
+      if (CollectionUtils.isNotEmpty(adminStateNotIncluded)) {
+        addIncludedStates(adminStateNotIncluded);
       }
     }
   }

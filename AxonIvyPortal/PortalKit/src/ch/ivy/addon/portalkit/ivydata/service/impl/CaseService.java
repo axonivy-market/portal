@@ -84,7 +84,7 @@ public class CaseService implements ICaseService {
   
   private CaseQuery queryForUsers(String involvedUsername, List<String> apps, boolean isTechnicalCase) {
     boolean isCaseOwnerEnabled = isCaseOwnerEnabled();
-    final CaseQuery caseQuery;
+    CaseQuery caseQuery;
     if (isTechnicalCase) {
       caseQuery = CaseQuery.subCases();
     } else {
