@@ -67,6 +67,7 @@ var Portal = {
     var topMenuElements = $("#top-menu").find("> li");
     var breadCrumb = $("#top-menu").find("> li.breadcrumb-container");
     var breadCrumbMembers = breadCrumb.find("li");
+    var taskName = $('.js-task-name-details');
 
     if (breadCrumbMembers.length == 0) {
       return;
@@ -82,6 +83,9 @@ var Portal = {
     usedWidthOfTopMenu = usedWidthOfTopMenu + 2;
     var breadCrumbWidth = "calc(100% - " + usedWidthOfTopMenu + "px)";
     breadCrumb.css({"display": "block", "width" : breadCrumbWidth});
+    if (taskName.length > 0) {
+      taskName.css({"display": "none"});
+    }
 
     var breadcrumbWidthWithoutCurrentStep = 0;
     breadCrumbMembers.each(function(i, val) {
@@ -93,6 +97,9 @@ var Portal = {
     currentBreadcrumb.css("max-width", "calc(100% - " + breadcrumbWidthWithoutCurrentStep + "px)");
     if (currentBreadcrumb.get(0).offsetWidth == 0) {
       breadCrumb.css("display", "none");
+      if (taskName.length > 0) {
+          taskName.css({"display": "flex"});
+        }
     }
   }
 }
