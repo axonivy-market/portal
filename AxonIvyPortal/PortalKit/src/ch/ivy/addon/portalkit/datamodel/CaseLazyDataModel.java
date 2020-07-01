@@ -218,9 +218,8 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   public void setAdminQuery(boolean isAdminQuery) {
-    criteria.setAdminQuery(isAdminQuery);
-    if (isAdminQuery && !criteria.getIncludedStates().contains(CaseState.DONE)) {
-      criteria.addIncludedStates(Arrays.asList(CaseState.DONE));
+    criteria.extendStatesQueryByPermission(isAdminQuery);
+    if (isAdminQuery) {
       setValuesForCaseStateFilter(criteria, filterContainer);
     }
   }

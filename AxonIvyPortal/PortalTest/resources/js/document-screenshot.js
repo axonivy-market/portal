@@ -321,7 +321,6 @@ function highlightExportExpress() {
   appendStepAnnotation(checkAll, 1, -10, checkAll.width() + 10);
   
   var exportButton = $("[id$=':express-management-component:express-management-form:export-express-btn']");
-  createRedMediumOutline(exportButton);
   appendStepAnnotation(exportButton, 2, -10, exportButton.width() + 15);
 }
 
