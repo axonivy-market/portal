@@ -1444,6 +1444,11 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
   position: absolute;
   top: -16px;
   left: 8px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 2.3rem;
 }
 
 .filter-container .text-filter {
@@ -1452,10 +1457,10 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 
 @media (max-width: 991px) {
   .filter-container .widget-title-mobile {
-    width: 33.33333333%;
+    width: 40%;
   }
     .filter-container .text-filter {
-    width: 66.66666667%;
+    width: 60%;
   }
 }
 
@@ -3692,8 +3697,7 @@ body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-c
 
 .statistic-case-category-tree .ui-tree-container {
   height: 26rem;
-  width: 100vw;
-  max-width: 26.5rem;
+  width: 100%;
   overflow: auto !important;
 }
 
@@ -3741,9 +3745,6 @@ body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-c
 
 /* Small screen */
 @media (max-width: 1365px) {
-  .statistic-case-category-tree .ui-tree-container {
-    max-width: 18.5rem;
-  }
   .filter-container .ui-inputfield.hasDatepicker {
     width: 15.5rem !important;
   }
@@ -3826,9 +3827,6 @@ body .ui-widget-content.filter-name-overlay-panel {
 
   .filter-container {
     padding: 0.5em !important;
-  }
-  .statistic-case-category-tree .ui-tree-container {
-    max-width: 19.5rem !important;
   }
   .filter-widget-input.case-filter-component {
     padding-right: 35px !important;
