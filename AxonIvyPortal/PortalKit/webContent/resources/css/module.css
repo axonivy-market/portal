@@ -4692,10 +4692,6 @@ height:100%;
 	color: white;
 	margin: 0 5px;
 }
-.prototype-task-table .start-column {
-	width: 60px !important;
-	position: relative;
-}
 
 .prototype-task-table {
 	padding: 10px;
@@ -4706,8 +4702,8 @@ height:100%;
 }
 
 .prototype-task-table .start-column .ui-column-title {
-	position: absolute;
-	top: 12px;
+	position: relative;
+	top: -11px;
 }
 
 .prototype-task-table .start-column .fa {
@@ -4725,11 +4721,6 @@ height:100%;
   display: block;
 }
 
-.prototype-task-table .state-column,
-.prototype-task-table .task-id-column {
-	width: 120px !important;
-}
-
 .prototype-task-table .default-column {
 	max-width: 300px;
 	width: 300px;
@@ -4739,7 +4730,6 @@ height:100%;
 .prototype-task-table .state-column .state {
   border-radius: 8px;
   box-sizing: border-box;
-  display: block;
   font-size: 1.2rem;
   width: fit-content;
   padding: 2px 5px;
@@ -4762,7 +4752,7 @@ height:100%;
   border: 1.5px solid #D4EBA2;
 }
 
-.prototype-task-table .state-column .state.RESERVED {
+.prototype-task-table .state-column .state.PARKED {
   background: #FCC3C3;
   border: 1.5px solid #FCC3C3;
 }
