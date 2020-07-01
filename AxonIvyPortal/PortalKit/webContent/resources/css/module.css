@@ -1156,6 +1156,11 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   padding-right: 0;
 }
 
+body .ui-tabs.search-results-tabview .ui-tabs-panel {
+  padding-top: 0;
+  padding-bottom: 0;
+} 
+
 .process-widget .default-process-title {
   display: inline-block;
   padding-right: 20px;
@@ -1439,6 +1444,11 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
   position: absolute;
   top: -16px;
   left: 8px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 2.3rem;
 }
 
 .filter-container .text-filter {
@@ -1447,10 +1457,10 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 
 @media (max-width: 991px) {
   .filter-container .widget-title-mobile {
-    width: 33.33333333%;
+    width: 40%;
   }
     .filter-container .text-filter {
-    width: 66.66666667%;
+    width: 60%;
   }
 }
 
@@ -3688,7 +3698,6 @@ body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-c
 .statistic-case-category-tree .ui-tree-container {
   height: 26rem;
   width: 100%;
-  max-width: 26.5rem;
   overflow: auto !important;
 }
 
@@ -3736,9 +3745,6 @@ body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-c
 
 /* Small screen */
 @media (max-width: 1365px) {
-  .statistic-case-category-tree .ui-tree-container {
-    max-width: 18.5rem;
-  }
   .filter-container .ui-inputfield.hasDatepicker {
     width: 15.5rem !important;
   }
@@ -3821,9 +3827,6 @@ body .ui-widget-content.filter-name-overlay-panel {
 
   .filter-container {
     padding: 0.5em !important;
-  }
-  .statistic-case-category-tree .ui-tree-container {
-    max-width: 19.5rem !important;
   }
   .filter-widget-input.case-filter-component {
     padding-right: 35px !important;
@@ -4184,7 +4187,7 @@ _:-ms-fullscreen, :root .content-link-history {
   text-overflow: ellipsis;
 }
 
-.task-name-edit {
+.task-name {
   width: 100%;
 }
 

@@ -18,7 +18,7 @@
   <div class="ui-g widget-details-item">
     <h:panelGroup id="task-detail-container" rendered="#{cc.attrs.showItemDetailsHeader}" styleClass="ui-g-12 u-truncate-text">
       <h:form id="task-detail-title-form" onsubmit="return false;" styleClass="task-detail-header">
-        <h:panelGroup id="#{cc.attrs.nameId}-edit-form" styleClass="task-name-edit u-truncate-text u-hidden-md-up MarTop5">
+        <h:panelGroup id="#{cc.attrs.nameId}-edit-form" styleClass="js-task-name-details task-name u-truncate-text MarTop5 task-name">
           <h:outputText value="#{ivy.cms.co('/Labels/Task')}: " />
           <span class="u-truncate-text">#{task.name}</span>
         </h:panelGroup>
