@@ -310,7 +310,8 @@ ac0 f31 226 330 112 44 -22 -8 #rect
 ac0 f31 @|StepIcon #fIcon
 ac0 f25 actionTable 'out=in;
 ' #txt
-ac0 f25 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
+ac0 f25 actionCode 'import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
+import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
@@ -320,9 +321,11 @@ in.taskSearchCriteria.apps = apps;
 in.taskSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
 in.taskSearchCriteria.sorted = false;
 if (PermissionUtils.checkReadAllTasksPermission()) {
-  in.taskSearchCriteria.adminQuery = true;
-  in.taskSearchCriteria.includedStates = [TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.UNASSIGNED]; // list task list but exclude DONE
+  in.taskSearchCriteria.includedStates.addAll(TaskSearchCriteria.STANDARD_STATES);
+  in.taskSearchCriteria.extendStatesQueryByPermission(PermissionUtils.checkReadAllTasksPermission());
+  in.taskSearchCriteria.includedStates.remove(TaskState.DONE);
 }
+
 ' #txt
 ac0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -337,9 +340,11 @@ ac0 f25 224 234 112 44 -22 -8 #rect
 ac0 f25 @|StepIcon #fIcon
 ac0 f21 actionTable 'out=in;
 ' #txt
-ac0 f21 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
+ac0 f21 actionCode 'import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
+import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+
 
 RegisteredApplicationService service = new RegisteredApplicationService();
 java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
@@ -347,9 +352,10 @@ in.taskSearchCriteria.apps = apps;
 in.taskSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
 in.taskSearchCriteria.sorted = false;
 if (PermissionUtils.checkReadAllTasksPermission()) {
-  in.taskSearchCriteria.adminQuery = true;
-  in.taskSearchCriteria.includedStates = [TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.DONE, TaskState.PARKED, TaskState.UNASSIGNED];
-}' #txt
+  in.taskSearchCriteria.includedStates.addAll(TaskSearchCriteria.STANDARD_STATES);
+  in.taskSearchCriteria.extendStatesQueryByPermission(PermissionUtils.checkReadAllTasksPermission());
+}
+' #txt
 ac0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

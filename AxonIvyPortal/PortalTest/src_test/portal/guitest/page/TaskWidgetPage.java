@@ -644,6 +644,33 @@ public class TaskWidgetPage extends TemplatePage {
 		click(By.cssSelector("[id$='task-widget:filter-reset-command']"));
 		waitForElementDisplayed(By.id("task-widget:reset-filter-set-dialog"), false);
 	}
+
+  public boolean isTaskDestroyEnabled(int rowIndex) {
+    WebElement destroyButton = findDestroyCommand(rowIndex);
+    return !destroyButton.getAttribute(CLASS).contains("ui-state-disabled");
+  }
+
+  public void destroyTask(int rowIndex) {
+    click(findDestroyCommand(rowIndex));
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
+
+  public WebElement findDestroyCommand(int rowIndex) {
+    String destroyCommandButton = String.format(
+        taskWidgetId + ":task-list-scroller:%s:task-item:task-action:additional-options:task-destroy-command", rowIndex);
+    waitForElementDisplayed(By.id(destroyCommandButton), true);
+    return findElementById(destroyCommandButton);
+  }
+  
+  public void confimDestruction() {
+    String destroyCaseDialogId = taskWidgetId + ":destroy-task-confirmation-dialog";
+    waitForElementDisplayed(By.id(destroyCaseDialogId), true);
+    WebElement destroyConfirmationDialog = findElementById(destroyCaseDialogId);
+    WebElement confirmButton = findChildElementById(destroyConfirmationDialog, taskWidgetId + ":confirm-destruction");
+    confirmButton.click();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
+  
 	
 	public void openCompactSortMenu() {
 	  click(By.cssSelector("[id$='sort-task-menu_label']"));
@@ -665,4 +692,29 @@ public class TaskWidgetPage extends TemplatePage {
   public void waitForGrowlDisappear() {
     waitForElementDisplayed(By.id("portal-global-growl_container"), false);
   }
+  
+  public void selectDelegateResponsible(String responsibleName, boolean isRole) {
+    if(isRole) {
+      List<WebElement> radioButtonLabels = findListElementsByCssSelector("table[id$='activator-type-select'] label");
+      click(radioButtonLabels.get(1));
+      waitAjaxIndicatorDisappear();
+      waitForElementDisplayed(By.cssSelector("input[id$='group-activator-select_input']"), true);
+      type(By.cssSelector("input[id$='group-activator-select_input']"), responsibleName);
+      waitForElementDisplayed(By.cssSelector("span[id$='group-activator-select_panel']"), true);
+      List<WebElement> foundRoles = findElementByCssSelector("span[id$='group-activator-select_panel").findElements(By.tagName("li"));
+      click(foundRoles.get(0));
+    }
+    else {
+      waitForElementDisplayed(By.cssSelector("input[id$='user-activator-select_input']"), true);
+      type(By.cssSelector("input[id$='user-activator-select_input']"), responsibleName);
+      waitForElementDisplayed(By.cssSelector("span[id$='user-activator-select_panel']"), true);
+      List<WebElement> foundUsers = findElementByCssSelector("span[id$='user-activator-select_panel']").findElements(By.tagName("tr"));
+      click(foundUsers.get(0));
+    }
+    waitAjaxIndicatorDisappear();
+    click(By.cssSelector("button[id$='proceed-task-delegate-command']"));
+    waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), false);
+  }
+  
+  
 }
