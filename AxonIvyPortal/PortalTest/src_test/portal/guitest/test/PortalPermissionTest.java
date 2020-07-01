@@ -148,6 +148,7 @@ public class PortalPermissionTest extends BaseTest{
     redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_DELEGATE_ACTION.getValue()));
     redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_RESERVE_ACTION.getValue()));
     redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS.getValue()));
+    redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_DESTROY_ACTION.getValue()));
   }
   
   private void denyTaskActionsPermissions() {
@@ -155,6 +156,7 @@ public class PortalPermissionTest extends BaseTest{
     redirectToRelativeLink(String.format(denySpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_DELEGATE_ACTION.getValue()));
     redirectToRelativeLink(String.format(denySpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_RESERVE_ACTION.getValue()));
     redirectToRelativeLink(String.format(denySpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS.getValue()));
+    redirectToRelativeLink(String.format(grantSpecificPortalPermissionLink, PortalPermission.TASK_DISPLAY_DESTROY_ACTION.getValue()));
   }
   
   private void grantCasePermissions() {
