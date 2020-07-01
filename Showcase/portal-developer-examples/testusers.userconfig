@@ -26,7 +26,4 @@
         <role>GeneralManager</role>
         <role>CostObject</role>
     </user>
-    <user>
-        <username>hello_user</username>
-    </user>
 </userConfig>

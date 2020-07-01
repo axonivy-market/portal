@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.datamodel;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -28,13 +27,12 @@ import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisTaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
-import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
@@ -104,7 +102,7 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   protected void buildCriteria() {
     criteria = new TaskSearchCriteria();
     criteria.setQueryForUnassignedTask(false);
-    criteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED)));
+    criteria.setIncludedStates(new ArrayList<>(TaskSearchCriteria.STANDARD_STATES));
     criteria.setSortField(TaskSortField.ID.toString());
     criteria.setSortDescending(true);
   }
@@ -419,7 +417,8 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   protected void buildCaseCriteria() {
     caseCriteria = new CaseSearchCriteria();
     caseCriteria.setBusinessCase(true);
-    caseCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
+    caseCriteria.setIncludedStates(new ArrayList<>(CaseSearchCriteria.STANDARD_STATES));
+    caseCriteria.extendStatesQueryByPermission(PermissionUtils.checkReadAllCasesPermission());
     caseCriteria.setSortField(CaseSortField.ID.toString());
     caseCriteria.setSortDescending(true);
   }

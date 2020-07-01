@@ -549,6 +549,7 @@ body .ui-widget.ui-fieldset.process-group.ui-fieldset .ui-fieldset-legend {
 .task-state-done {
   color: var(--task-state-done-color); }
 
+.case-state-zombie-destroyed,
 .task-state-zombie-destroyed {
   color: var(--task-state-zombie-destroyed-color); }
 
@@ -823,7 +824,9 @@ body .task-item-body .task-details-item-note .ui-paginator a.ui-state-active, .t
 body .task-item-body .task-details-item-note .ui-paginator a.ui-paginator-page.ui-state-hover, body .task-item-body .task-details-item-note .ui-paginator a.ui-paginator-page.ui-state-active, body .task-item-body .task-details-item-note .ui-paginator a.ui-paginator-page.ui-state-hover, body .task-item-body .task-details-item-note .ui-paginator a.ui-paginator-page.ui-state-active, body .task-item-body .task-details-item-note a.ui-paginator-first.ui-state-hover, body .task-item-body .task-details-item-note a.ui-paginator-first.ui-state-active, body .task-item-body .task-details-item-note a.ui-paginator-prev.ui-state-hover, body .task-item-body .task-details-item-note a.ui-paginator-prev.ui-state-active, body .task-item-body .task-details-item-note a.ui-paginator-next.ui-state-hover, body .task-item-body .task-details-item-note a.ui-paginator-next.ui-state-active, body .task-item-body .task-details-item-note a.ui-paginator-last.ui-state-hover, body .task-item-body .task-details-item-note a.ui-paginator-last.ui-state-active, .task-item-body .task-details-item-document .ui-paginator a.ui-paginator-page.ui-state-hover, .task-item-body .task-details-item-document .ui-paginator a.ui-paginator-page.ui-state-active, .task-item-body .task-details-item-document .ui-paginator a.ui-paginator-page.ui-state-hover, .task-item-body .task-details-item-document .ui-paginator a.ui-paginator-page.ui-state-active, .task-item-body .task-details-item-document a.ui-paginator-first.ui-state-hover, .task-item-body .task-details-item-document a.ui-paginator-first.ui-state-active, .task-item-body .task-details-item-document a.ui-paginator-prev.ui-state-hover, .task-item-body .task-details-item-document a.ui-paginator-prev.ui-state-active, .task-item-body .task-details-item-document a.ui-paginator-next.ui-state-hover, .task-item-body .task-details-item-document a.ui-paginator-next.ui-state-active, .task-item-body .task-details-item-document a.ui-paginator-last.ui-state-hover, .task-item-body .task-details-item-document a.ui-paginator-last.ui-state-active {
   background-color: var(--task-detail-paginator-hovered-button-background-color); }
 
-.task-description-inplace .ui-inplace-display.ui-state-highlight, .edit-priority-inplace .ui-inplace-display.ui-state-highlight, .task-name-inplace .ui-inplace-display.ui-state-highlight, .expiry-edit-inplace .ui-inplace-display.ui-state-highlight {
+.task-description-inplace .ui-inplace-display.ui-state-highlight, .edit-priority-inplace .ui-inplace-display.ui-state-highlight, .task-name-inplace .ui-inplace-display.ui-state-highlight,
+.expiry-edit-inplace .ui-inplace-display.ui-state-highlight,
+.delay-edit-inplace .ui-inplace-display.ui-state-highlight {
   background-color: var(--task-highlighted-inplace-field-background-color);
   color: var(--task-highlighted-inplace-field-text-color); }
 
