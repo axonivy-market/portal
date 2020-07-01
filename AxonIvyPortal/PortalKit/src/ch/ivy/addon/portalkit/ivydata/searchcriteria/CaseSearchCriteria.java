@@ -1,7 +1,14 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
+import static ch.ivyteam.ivy.workflow.CaseState.CREATED;
+import static ch.ivyteam.ivy.workflow.CaseState.DESTROYED;
+import static ch.ivyteam.ivy.workflow.CaseState.DONE;
+import static ch.ivyteam.ivy.workflow.CaseState.RUNNING;
+
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -14,6 +21,8 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery;
 
 public class CaseSearchCriteria {
 
+  public final static EnumSet<CaseState> STANDARD_STATES = EnumSet.of(CREATED, RUNNING);
+  public final static EnumSet<CaseState> ADVANCE_STATES = EnumSet.of(DONE, DESTROYED);
   private String involvedUsername;
   private List<String> apps;
   private List<CaseState> includedStates;
@@ -198,6 +207,22 @@ public class CaseSearchCriteria {
       }
     }
   }
+  
+  /** Check if current user can see task in advance state such as
+   * DONE, DESTROYED
+   * Then extend Search query for case criteria
+   * @param hasAdminPermission
+   */
+  public void extendStatesQueryByPermission(boolean hasAdminPermission) {
+    setAdminQuery(hasAdminPermission);
+    if (hasAdminPermission) {
+      List<CaseState> adminStateNotIncluded = ADVANCE_STATES.stream()
+          .filter(state -> !includedStates.contains(state)).collect(Collectors.toList());
+      if (!adminStateNotIncluded.isEmpty()) {
+        addIncludedStates(adminStateNotIncluded);
+      }
+    }
+  }
 
   public List<String> getApps() {
     return apps;
@@ -360,5 +385,5 @@ public class CaseSearchCriteria {
   public void setFinalCaseQuery(CaseQuery finalCaseQuery) {
     this.finalCaseQuery = finalCaseQuery;
   }
-  
+
 }
