@@ -16,7 +16,6 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.CaseUtils;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.NumberUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -84,10 +83,7 @@ public class CaseWidgetBean implements Serializable {
   }
   
   public void destroyCase(ICase iCase) {
-    IvyExecutor.executeAsSystem(() -> {
-      iCase.destroy();
-      return Void.class;
-    });
+    CaseUtils.destroyCase(iCase);
   }
 
   public String sanitizeHTML(String text) {

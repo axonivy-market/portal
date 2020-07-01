@@ -1,6 +1,8 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.util.Arrays;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Objects;
 
 import javax.faces.bean.ManagedBean;
@@ -11,6 +13,7 @@ import org.apache.commons.lang.StringUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.DummyTask;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
@@ -31,6 +34,7 @@ public class TaskActionBean {
   private boolean isShowDelegateTask;
   //This variable control display of side step and create adhoc
   private boolean isShowAdditionalOptions;
+  private boolean isShowDestroyTask;
   private static final String BACK_FROM_TASK_DETAILS = "Start Processes/PortalStart/BackFromTaskDetails.ivp";
 
   public TaskActionBean() {
@@ -38,6 +42,7 @@ public class TaskActionBean {
     isShowReserveTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_RESERVE_ACTION);
     isShowDelegateTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION);
     isShowAdditionalOptions = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS);
+    isShowDestroyTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_DESTROY_ACTION);
   }
 
   public boolean canReset(ITask task) {
@@ -45,10 +50,16 @@ public class TaskActionBean {
       return false;
     }
     
-    TaskState taskState = task.getState();
-    if (taskState != TaskState.RESUMED && taskState != TaskState.PARKED) {
+    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.READY_FOR_JOIN);
+    if (!taskStates.contains(task.getState())) {
       return false;
     }
+    
+    if (task.getState() == TaskState.READY_FOR_JOIN) {
+      IPermission resetTaskReadyForJoin = IPermissionRepository.instance().findByName(PortalPermission.TASK_RESET_READY_FOR_JOIN.getValue());
+      return hasPermission(task, resetTaskReadyForJoin);
+    }
+  
 
     return (hasPermission(task, IPermission.TASK_RESET_OWN_WORKING_TASK) && canResume(task))
         || hasPermission(task, IPermission.TASK_RESET);
@@ -117,6 +128,13 @@ public class TaskActionBean {
     return (hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP) && task.getExpiryActivator() != null)
         || (task != null && StringUtils.isNotBlank(task.getExpiryTaskStartElementPid()));
   }
+  
+  public boolean canChangeDelayTimestamp(ITask task) {
+    if (TaskState.DELAYED != task.getState()) {
+      return false;
+    }
+    return hasPermission(task, IPermission.TASK_WRITE_DELAY_TIMESTAMP);
+  }
 
   public boolean notHaveExpiryHandleLogic(ITask task) {
     return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP)
@@ -136,12 +154,17 @@ public class TaskActionBean {
         || hasPermission(task, IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
   }
 
+  public boolean canDestroyTask(ITask task) {
+    List<TaskState> taskStates = Arrays.asList(TaskState.DONE, TaskState.DESTROYED);
+    return hasPermission(task, IPermission.TASK_DESTROY) && !taskStates.contains(task.getState());
+  }
+
   public boolean isNotDone(ITask task) {
     if (task == null) {
       return false;
     }
-    EnumSet<TaskState> taskStates =
-        EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED, TaskState.UNASSIGNED, TaskState.CREATED);
+    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED, TaskState.UNASSIGNED,
+        TaskState.CREATED, TaskState.READY_FOR_JOIN, TaskState.DELAYED);
     return taskStates.contains(task.getState());
   }
   
@@ -195,6 +218,23 @@ public class TaskActionBean {
   
   public void removeTaskAttributesInSession() {
     TaskUtils.updateTaskStartedAttribute(false);
+  }
+
+  public boolean isShowDestroyTask() {
+    return isShowDestroyTask;
+  }
+
+  public void setShowDestroyTask(boolean isShowDestroyTask) {
+    this.isShowDestroyTask = isShowDestroyTask;
+  }
+
+  public void updateSelectedTaskItemId(boolean isShowInTaskList, Long taskId) {
+    if (isShowInTaskList) {
+      TaskWidgetBean taskWidgetBean = ManagedBeans.get("taskWidgetBean");
+      if (taskWidgetBean != null) {
+        taskWidgetBean.setSelectedTaskItemId(taskId);
+      }
+    }
   }
 
 }

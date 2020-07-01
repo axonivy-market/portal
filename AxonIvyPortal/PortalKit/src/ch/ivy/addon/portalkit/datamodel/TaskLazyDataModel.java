@@ -322,8 +322,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     criteria = new TaskSearchCriteria();
     criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
     criteria.setQueryForUnassignedTask(false);
-    criteria
-        .setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED)));
+    criteria.setIncludedStates(new ArrayList<>(TaskSearchCriteria.STANDARD_STATES));
     criteria.setSortField(TaskSortField.ID.toString());
     criteria.setSortDescending(true);
     if (shouldSaveAndLoadSessionFilters()) {
@@ -364,16 +363,10 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   public void setAdminQuery(boolean isAdminQuery) {
-    List<TaskState> includedStates = criteria.getIncludedStates();
-    List<TaskState> adminStateNotIncluded = Arrays.asList(TaskState.DONE, TaskState.UNASSIGNED)
-        .stream()
-        .filter(item -> !includedStates.contains(item))
-        .collect(Collectors.toList());
-    if (isAdminQuery && !adminStateNotIncluded.isEmpty()) {
-      criteria.addIncludedStates(adminStateNotIncluded);
+    criteria.extendStatesQueryByPermission(isAdminQuery);
+    if (isAdminQuery) {
       setValuesForStateFilter(criteria, this.filterContainer);
     }
-    criteria.setAdminQuery(isAdminQuery);
   }
 
   public void setInvolvedUsername(String involvedUsername) {
