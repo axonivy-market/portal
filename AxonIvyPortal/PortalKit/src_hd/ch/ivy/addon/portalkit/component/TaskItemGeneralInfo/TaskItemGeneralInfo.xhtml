@@ -39,10 +39,7 @@
                 editor="true">
                 <f:facet name="output">
                   <h:panelGroup id="priority-icon">
-                    <h:panelGroup rendered="#{task.priority == 'LOW'}" styleClass="fa fa-circle task-priority-low task-details-data-priority-icon" />
-                    <h:panelGroup rendered="#{task.priority == 'NORMAL'}" styleClass="fa fa-circle task-priority-normal task-details-data-priority-icon" />
-                    <h:panelGroup rendered="#{task.priority == 'HIGH'}" styleClass="fa fa-circle task-priority-high task-details-data-priority-icon" />
-                    <h:panelGroup rendered="#{task.priority == 'EXCEPTION'}" styleClass="fa fa-circle task-priority-exception task-details-data-priority-icon" />
+                    <h:panelGroup styleClass="fa fa-circle task-priority-#{task.priority.toString().toLowerCase()} task-details-data-priority-icon" />
                     <h:outputText value="#{taskBean.getPriority(task.priority)}" />
                   </h:panelGroup>
                 </f:facet>
@@ -57,11 +54,8 @@
             </h:form>
           </ui:fragment>
           <ui:fragment rendered="#{not taskActionBean.canChangePriority(task)}">
-            <h:panelGroup rendered="#{task.originalPriority == 'LOW'}" styleClass="fa fa-circle task-priority-low task-details-data-priority-icon" />
-            <h:panelGroup rendered="#{task.originalPriority == 'NORMAL'}" styleClass="fa fa-circle task-priority-normal task-details-data-priority-icon" />
-            <h:panelGroup rendered="#{task.originalPriority == 'HIGH'}" styleClass="fa fa-circle task-priority-high task-details-data-priority-icon" />
-            <h:panelGroup rendered="#{task.originalPriority == 'EXCEPTION'}" styleClass="fa fa-circle task-priority-exception task-details-data-priority-icon" />
-            <h:outputText value="#{taskBean.getPriority(task.originalPriority)}" styleClass="DispInlBlock" />
+            <h:panelGroup styleClass="fa fa-circle task-priority-#{task.priority.toString().toLowerCase()} task-details-data-priority-icon" />
+            <h:outputText value="#{taskBean.getPriority(task.priority)}" styleClass="DispInlBlock" />
           </ui:fragment>
         </h:panelGroup>
       </div>
