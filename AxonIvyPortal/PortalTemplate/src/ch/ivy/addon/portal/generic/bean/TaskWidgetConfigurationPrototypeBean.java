@@ -72,7 +72,7 @@ public class TaskWidgetConfigurationPrototypeBean {
       case DONE:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DONE");
       case PARKED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/RESERVED");
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/PARKED");
       case DESTROYED:
       case ZOMBIE:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DESTROYED");
