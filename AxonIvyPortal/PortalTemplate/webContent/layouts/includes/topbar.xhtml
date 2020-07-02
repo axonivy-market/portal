@@ -89,7 +89,7 @@
       </script>
     </ui:insert>
 
-    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" width="500" closeOnEscape="true"
+    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" width="50%" closeOnEscape="true"
       widgetVar="changePasswordDialog" id="change-password-dialog" resizable="false" modal="true" draggable="false" appendTo="@(body)" dynamic="true"
       styleClass="change-password-dialog" responsive="true">
       <h:form id="change-password-form">
@@ -99,8 +99,8 @@
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}" closeOnEscape="true" widgetVar="adminUI"
       id="admin-ui-dialog" resizable="false" styleClass="admin-ui-dialog" modal="true" draggable="true" appendTo="@(body)" dynamic="true"
-      onShow="initAdminSettingsData()" onHide="PF('dialogClosingInformation').show();" width="80vw" responsive="true">
-      <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="adminui" />
+      onShow="initAdminSettingsData(); PF('adminUI').initPosition();" onHide="PF('dialogClosingInformation').show();" width="80vw" responsive="true" fitViewport="true">
+      <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="adminui" onTabChange="PF('adminUI').initPosition();"/>
       <f:facet name="footer">
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="close-button" type="button"
           onclick="clearFilter(); PF('adminUI').hide();" />
@@ -118,7 +118,7 @@
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/absenceAndDeputy')}" 
-      styleClass="absence-settings-dialog"  
+      styleClass="absence-settings-dialog"
       width="80%"
       closeOnEscape="true" 
       widgetVar="absenceManagement" 
@@ -128,8 +128,10 @@
       draggable="true"
       appendTo="@(body)" 
       dynamic="true" 
-      responsive="true">
-      <ic:ch.ivy.addon.portalkit.multiapp.settings.AbsenceManagement id="absence-management" dialogName="absenceManagement" />
+      responsive="true"
+      fitViewport="true"
+      onShow="PF('absenceManagement').initPosition();">
+      <ic:ch.ivy.addon.portalkit.multiapp.settings.AbsenceManagement id="absence-management" dialogName="absenceManagement" onTabChange="PF('absenceManagement').initPosition();"/>
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/header')}" styleClass="project-info-dialog" width="1000"
