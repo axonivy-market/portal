@@ -1842,6 +1842,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
     min-width: 96vw;
   }
 }
+
+.state-cell.default-task-cell {
+  display: flex;
+  align-items: center;
+}
 /********************************** END TASK WIDGET **********************************/
 
 /********************************** TASK DETAIL **********************************/
