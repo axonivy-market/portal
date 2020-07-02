@@ -394,6 +394,12 @@ public class TaskWidgetPage extends TemplatePage {
 				findElementByCssSelector("label[for$='state-filter:filter-input-form:state-selection:" + pos + "']");
 		return stateFilterSelectionElement.getText();
 	}
+	
+  public List<String> getListStateFilterSelection() {
+    List<WebElement> stateFilterSelectionElementList =
+        findListElementsByCssSelector("label[for*=':state-filter:filter-input-form:state-selection:']");
+    return stateFilterSelectionElementList.stream().map(WebElement::getText).collect(Collectors.toList());
+  }
 
 	public void openStateFilter() {
 		click(By.cssSelector("button[id$='state-filter:filter-open-form:advanced-filter-command']"));
