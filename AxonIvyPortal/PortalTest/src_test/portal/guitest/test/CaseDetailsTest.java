@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.CaseState;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
@@ -42,7 +43,8 @@ public class CaseDetailsTest extends BaseTest {
     detailsPage.onClickDestroyCase();
     detailsPage.confimDestruction();
     CaseWidgetPage casePage = new CaseWidgetPage();
-    assertEquals(0, casePage.getNumberOfCases());
+    CaseState caseState = casePage.getCaseState(0);
+    assertEquals(CaseState.DESTROYED, caseState);
   }
 
   @Test
