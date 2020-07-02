@@ -68,6 +68,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
         click(filterElement);
         click(By.cssSelector("button[id$='task-widget:task-filter-add-form:update-task-filter-selected-command']"));
         waitAjaxIndicatorDisappear();
+        ensureNoBackgroundRequest();
         break;
       }
     }
@@ -84,6 +85,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
         click(filterElement);
         click(By.cssSelector("button[id$='task-widget:case-filter-add-form:update-task-filter-selected-command']"));
         waitAjaxIndicatorDisappear();
+        ensureNoBackgroundRequest();
         break;
       }
     }
@@ -199,6 +201,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     }
     click(filterContainer.findElement(By.linkText(filterSetName)));
     waitAjaxIndicatorDisappear();
+    ensureNoBackgroundRequest();
   }
   
   public String getFilterName() {
