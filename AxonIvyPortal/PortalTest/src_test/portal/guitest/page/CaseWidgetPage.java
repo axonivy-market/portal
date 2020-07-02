@@ -11,6 +11,7 @@ import org.openqa.selenium.WebElement;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
+import portal.guitest.common.CaseState;
 import portal.guitest.common.Sleeper;
 
 public class CaseWidgetPage extends TemplatePage {
@@ -320,4 +321,10 @@ public class CaseWidgetPage extends TemplatePage {
 		return findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']")
 				.getAttribute("value");
 	}
+
+  public CaseState getCaseState(int caseIndex) {
+    List<WebElement> caseStateCells = findListElementsByCssSelector("span[id$=':case-state-cell']");
+    String stateClass = caseStateCells.get(caseIndex).findElement(By.className("fa")).getAttribute("class");
+    return CaseState.fromClass(stateClass.substring(stateClass.indexOf("case-state-")));
+  }
 }
