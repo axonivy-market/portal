@@ -5,6 +5,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="dialogName" shortDescription="Name of setting dialog's widget that contains this component" />
+  <cc:attribute name="onTabChange" />
 </cc:interface>
 
 <cc:implementation>
@@ -27,8 +28,8 @@
           completeMethod="#{logic.autoCompleteForUser}"
           isRenderedMessage="false"
           label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}"
-          labelPanelStyleClass="ui-g-4 ui-xl-4 ui-sm-3"
-          autoCompletePanelStyleClass="ui-g-8 ui-sm-9"
+          labelPanelStyleClass="ui-g-4 ui-xl-4 ui-sm-12"
+          autoCompletePanelStyleClass="ui-g-8 ui-sm-12"
           autoCompleteStyleClass="absence-user-selection"
           scrollHeight="200" size="35">
           <p:column>
@@ -39,7 +40,7 @@
           </f:facet>
         </ic:ch.ivy.addon.portalkit.component.UserSelection>
       </div>
-      <div class="#{data.isSupervisor? 'ui-g-4 ui-lg-4 ui-md-6 show-absence-in-the-past-panel' : 'ui-g-8'}">
+      <div class="#{data.isSupervisor? 'ui-g-4 ui-lg-4 ui-md-6 ui-sm-12 show-absence-in-the-past-panel' : 'ui-g-8'}">
         <p:selectBooleanCheckbox id="show-absence-in-the-past"
           value="#{data.absenceInThePastShown}"
           itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/showAbsencesInThePast')}">
@@ -47,7 +48,7 @@
             partialSubmit="true" />
         </p:selectBooleanCheckbox>
       </div>
-      <div class="ui-g-4 ui-lg-4 ui-md-12 add-absence-panel TexAlRight">
+      <div class="ui-g-4 ui-lg-4 ui-md-12 ui-sm-12 add-absence-panel TexAlRight">
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence')}"
           id="add-absence" process="@this" oncomplete="PF('absence').show()" actionListener="#{logic.add}"
           update="@widgetVar(absence)" rendered="#{absenceManagementBean.ownAbsencesCreatable}" />
@@ -86,7 +87,7 @@
     </div>
 
     <p:tabView id="substitue-tab" value="#{data.applications}" var="app" styleClass="substitue-tab" activeIndex="#{data.tabIndex}" rendered="#{not empty data.applications}">
-    <p:ajax event="tabChange" listener="#{absenceManagementBean.onTabChange}"/>
+    <p:ajax event="tabChange" listener="#{absenceManagementBean.onTabChange}" oncomplete="#{cc.attrs.onTabChange}"/>
     <p:tab title="#{app.displayName}" >
     
       <!-- MY DEPUTY -->
@@ -94,15 +95,15 @@
         <div class="ui-g-12">
           <h:outputText value="#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/deputy' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/myDeputies')}" styleClass="FontBold"/>
         </div>
-        <div id="username-deputy" class="ui-g-8" jsf:rendered="#{absenceManagementBean.substitutionManagementCapable}">
+        <div id="username-deputy" class="ui-g-8 ui-sm-12" jsf:rendered="#{absenceManagementBean.substitutionManagementCapable}">
           <ic:ch.ivy.addon.portalkit.component.UserSelection
             id="substituted-user-selection-component"
             componentId="substituted-user"
             selectedUser="#{data.substituteUser}"
             completeMethod="#{logic.autoCompleteForUserOnApp}"
             label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/substitutedUser')}"
-            labelPanelStyleClass="ui-g-2 ui-xl-2 ui-sm-4"
-            autoCompletePanelStyleClass="ui-g-4 ui-sm-8 substituted-user"
+            labelPanelStyleClass="ui-g-2 ui-xl-2 ui-md-4 ui-sm-12"
+            autoCompletePanelStyleClass="ui-g-4 ui-md-8 ui-sm-12 substituted-user"
             scrollHeight="200" size="35" isRenderedMessage="false" styleClass="ui-g-12">
             <p:column>
               <h:outputText value="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />
