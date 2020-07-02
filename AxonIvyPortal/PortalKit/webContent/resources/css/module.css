@@ -1843,7 +1843,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   }
 }
 
-.state-cell.default-task-cell {
+.task-item-body .task-detail-general-card .state-cell.default-task-cell {
   display: flex;
   align-items: center;
 }
