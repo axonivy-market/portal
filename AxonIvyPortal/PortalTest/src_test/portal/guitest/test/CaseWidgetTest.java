@@ -14,6 +14,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.CaseState;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdditionalCaseDetailsPage;
@@ -69,11 +70,11 @@ public class CaseWidgetTest extends BaseTest {
     initHomePage(TestAccount.ADMIN_USER);
     mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
-    int numberOfCasesBeforeDestroying = casePage.getNumberOfCases();
     casePage.clickDestroyButton();
     casePage.confimDestruction();
     casePage.waitAjaxIndicatorDisappear();
-    assertEquals(numberOfCasesBeforeDestroying - 1, casePage.getNumberOfCases());
+    CaseState caseState = casePage.getCaseState(0);
+    assertEquals(CaseState.DESTROYED, caseState);
 
   }
 

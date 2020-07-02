@@ -55,10 +55,10 @@ public class TaskFilterTest extends BaseTest {
 		assertEquals(3, taskWidgetPage.countTasks());
 
 		String stateFilterValue = taskWidgetPage.getFilterValue("state-filter");
-		assertEquals("State: Created, Suspended, In progress, Reserved", stateFilterValue);
+		assertEquals("State: Created, Ready for joining, Suspended, In progress, Reserved", stateFilterValue);
 
 		taskWidgetPage.openStateFilter();
-		assertEquals("Done", taskWidgetPage.getStateFilterSelection(4));
+		assertTrue(taskWidgetPage.getListStateFilterSelection().contains("Done"));
 	}
 	
 	@Test
@@ -71,7 +71,9 @@ public class TaskFilterTest extends BaseTest {
 	  assertEquals("State: All", stateFilterValue);
 
     taskWidgetPage.openStateFilter();
-    assertEquals("Ready for joining", taskWidgetPage.getStateFilterSelection(8));
+    assertTrue(taskWidgetPage.getListStateFilterSelection().contains("Ready for joining"));
+    assertTrue(taskWidgetPage.getListStateFilterSelection().contains("Destroyed"));
+    assertTrue(taskWidgetPage.getListStateFilterSelection().contains("Delayed"));
 	}
 
 	@Test
