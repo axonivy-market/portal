@@ -137,8 +137,7 @@ public class TaskFilterTest extends BaseTest {
 		assertEquals(6, taskWidgetPage.countTasks());
 
 		taskWidgetPage.openStateFilterOverlayPanel();
-		assertEquals("Created,Suspended,In progress,Reserved,Done,Unassigned",
-				taskWidgetPage.getDisplayStateInStateFilter());
+		assertTrue(taskWidgetPage.getDisplayStateInStateFilter().contains("Unassigned"));
 
 		taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Created", "Suspended", "In progress", "Reserved", "Done"));
 		assertEquals(1, taskWidgetPage.countTasks());
@@ -154,7 +153,8 @@ public class TaskFilterTest extends BaseTest {
 
 		assertEquals(3, taskWidgetPage.countTasks());
 		taskWidgetPage.openStateFilterOverlayPanel();
-		assertEquals("Created,Suspended,In progress,Reserved,Done", taskWidgetPage.getDisplayStateInStateFilter());
+		
+    assertFalse(taskWidgetPage.getListStateFilterSelection().contains("Unassigned"));
 	}
 
 	@Test
