@@ -12,12 +12,12 @@ import portal.guitest.page.TemplatePage.GlobalSearch;
 
 public class GlobalSearchScreenshotTest extends BaseTest {
   private HomePage homePage;
-  private GlobalSearch globalSearch;
   
   @Test
   public void screenshotForGlobalSearch() throws IOException {
     homePage = new HomePage();
-    globalSearch = homePage.getGlobalSearch();
+    homePage.waitForStatisticRendered();
+    GlobalSearch globalSearch = homePage.getGlobalSearch();
     globalSearch.inputSearchKeyword("process");
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SEARCH_FOLDER + "global-search-result");
