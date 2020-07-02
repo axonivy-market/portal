@@ -2747,14 +2747,6 @@ padding: 0;
 }
 
 @media screen and (max-width: 40em) {
-  .absence-settings-dialog.ui-dialog .ui-dialog-content {
-    max-height: 90vh;
-  }
-
-  .absence-management .add-absence-panel {
-    width: 12%;
-  }
-
   .absence-management .show-absence-in-the-past-panel {
     width: 72%;
     padding-right: 0;
@@ -2804,13 +2796,13 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 /********************************** CHANGE PASSWORK DIALOG **********************************/
 .change-password-dialog {
-  min-width: 500px;
+  max-width: 500px;
+  min-width: 350px;
 }
 
 @media screen and (max-width: 40em) {
   .change-password-dialog {
-    top: 100px !important;
-    min-width: 96vw;
+    max-width: 96vw;
   }
 }
 /********************************** END CHANGE PASSWORK DIALOG **********************************/
