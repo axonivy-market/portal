@@ -18,7 +18,7 @@
   <!-- TAB VIEW -->
   <p:tabView id="adminTabView" rendered="#{permissionBean.hasAdminPermission()}">
 
-    <p:ajax event="tabChange" listener="#{adminSettingBean.onTabChange}" onstart="refreshExpressManagement();"/>	
+    <p:ajax event="tabChange" listener="#{adminSettingBean.onTabChange}" onstart="refreshExpressManagement();"/>
     <!-- APPLICATION TAB -->
     <p:tab id="applicationTab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applications')}">
       <h:form prependId="false" id="applicationForm">
@@ -184,11 +184,11 @@
       function refreshExpressManagement() {
         var expressTab = $('[id$=":express-management-tab"]');
         if (expressTab.length > 0) {
-          var expressManagementTable = $('[id$=":express-workflow-summary-table"');
-          if (expressManagementTable.length > 0) {
+          var expressManagementTable = $('[id$=":express-workflow-summary-table"]');
+           if (expressManagementTable.length > 0) {
             PF('express-workflow-summary-table').unselectAllRows();
             PF('export-express-btn').disable();
-          }
+          } 
         }
       }
   </script>
