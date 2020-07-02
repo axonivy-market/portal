@@ -102,7 +102,7 @@ var Portal = {
               taskName.css({"display": "flex"});
             }
         }
-      }, 1);
+      }, 200);
   }
 }
 
@@ -196,6 +196,7 @@ var MainMenu = {
 function handleError(xhr, renderDetail){
   //From PF 7.0 with new jQuery version, when we call ajax by remote command then navigate when remote command still executing, this request HTML status is abort
   //This make general exception dialog display frequently
+  alert(JSON.stringify(xhr));
   if (xhr.statusText === 'abort') {
     return;
   }
