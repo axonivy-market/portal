@@ -89,7 +89,7 @@
       </script>
     </ui:insert>
 
-    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" width="500" closeOnEscape="true"
+    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" width="50%" closeOnEscape="true"
       widgetVar="changePasswordDialog" id="change-password-dialog" resizable="false" modal="true" draggable="false" appendTo="@(body)" dynamic="true"
       styleClass="change-password-dialog" responsive="true">
       <h:form id="change-password-form">
@@ -118,7 +118,7 @@
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/absenceAndDeputy')}" 
-      styleClass="absence-settings-dialog"  
+      styleClass="absence-settings-dialog"
       width="80%"
       closeOnEscape="true" 
       widgetVar="absenceManagement" 
@@ -128,8 +128,10 @@
       draggable="true"
       appendTo="@(body)" 
       dynamic="true" 
-      responsive="true">
-      <ic:ch.ivy.addon.portalkit.multiapp.settings.AbsenceManagement id="absence-management" dialogName="absenceManagement" />
+      responsive="true"
+      fitViewport="true"
+      onShow="PF('absenceManagement').initPosition();">
+      <ic:ch.ivy.addon.portalkit.multiapp.settings.AbsenceManagement id="absence-management" dialogName="absenceManagement" onTabChange="PF('absenceManagement').initPosition();"/>
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/header')}" styleClass="project-info-dialog" width="1000"
