@@ -5,15 +5,11 @@ import static junit.framework.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
-import com.jayway.awaitility.Awaitility;
-import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
@@ -34,14 +30,11 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     super.setup();
     createTestingTasks();
     createTestData();
-    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     login(TestAccount.ADMIN_USER);
     grantPermissionOfPortal();
-    resetLanguageOfCurrentUser();
     homePage = new HomePage();
     mainMenuPage = homePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    statisticWidgetPage.waitForPageLoaded();
   }
 
   private void grantPermissionOfPortal() {
@@ -121,11 +114,9 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     List<String> selectedPriorities = new ArrayList<>();
     selectedPriorities.add(prioritySeletion);
     taskAnalysisWidgetPage.filterByTaskPriority(selectedPriorities);
-    taskAnalysisWidgetPage.click(By.cssSelector("button[id$='task-widget:apply-filter']"));
-    taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
+    taskAnalysisWidgetPage.clickApplyFilter();
 
-    List<WebElement> results =
-        getRowsInTaskTable(taskAnalysisWidgetPage);
+    List<WebElement> results = taskAnalysisWidgetPage.getRowsInTaskTable();
 
     assertEquals(2, results.size());
 
@@ -149,11 +140,9 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     List<String> selectedStates = new ArrayList<>();
     selectedStates.add(stateSeletion);
     taskAnalysisWidgetPage.filterByCaseState(selectedStates);
-    taskAnalysisWidgetPage.click(By.cssSelector("button[id$='task-widget:apply-filter']"));
-    taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
+    taskAnalysisWidgetPage.clickApplyFilter();
 
-    List<WebElement> results =
-        getRowsInTaskTable(taskAnalysisWidgetPage);
+    List<WebElement> results = taskAnalysisWidgetPage.getRowsInTaskTable();
 
     assertEquals(4, results.size());
 
@@ -169,10 +158,8 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
     taskAnalysisWidgetPage.openAdvancedTaskFilter("Task category", "task-category");
     taskAnalysisWidgetPage.filterByTaskCategory("Other Leave");
-    taskAnalysisWidgetPage.click(By.cssSelector("button[id$='task-widget:apply-filter']"));
-    taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
-    List<WebElement> results =
-        getRowsInTaskTable(taskAnalysisWidgetPage);
+    taskAnalysisWidgetPage.clickApplyFilter();
+    List<WebElement> results = taskAnalysisWidgetPage.getRowsInTaskTable();
 
     assertEquals(2, results.size());
   }
@@ -182,12 +169,9 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
     taskAnalysisWidgetPage.openAdvancedCaseFilter("Case category", "case-category");
     taskAnalysisWidgetPage.filterByCaseCategory("Leave Request");
-    taskAnalysisWidgetPage.click(By.cssSelector("button[id$='task-widget:apply-filter']"));
-    taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
+    taskAnalysisWidgetPage.clickApplyFilter();
 
-    List<WebElement> results =
-        getRowsInTaskTable(taskAnalysisWidgetPage);
-
+    List<WebElement> results = taskAnalysisWidgetPage.getRowsInTaskTable();
     assertEquals(4, results.size());
   }
 
@@ -202,18 +186,11 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     statisticWidgetPage = taskAnalysisWidgetPage.navigateToStatisticPage();
     final TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
     secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, false);
-    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
-      return getRowsInTaskTable(secondTaskAnalysisWidgetPage).size() == 1;
-    });
-    List<WebElement> resultCells = getRowsInTaskTable(secondTaskAnalysisWidgetPage).get(0).findElements(By.cssSelector("td:not([class='ui-helper-hidden'])"));
+    secondTaskAnalysisWidgetPage.waitForTaskDataChangeToSpecificSize(1);
+    List<WebElement> resultCells = secondTaskAnalysisWidgetPage.getRowsInTaskTable().get(0).findElements(By.cssSelector("td:not([class='ui-helper-hidden'])"));
     assertTrue(resultCells.get(0).getText().toLowerCase().contains("request"));
     assertTrue(resultCells.get(1).getText().equals("RUNNING"));
     assertTrue(resultCells.get(2).getText().toLowerCase().contains("annual"));
-  }
-
-  private List<WebElement> getRowsInTaskTable(final TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage) {
-    return secondTaskAnalysisWidgetPage.findElementById("task-widget:statistic-result-form:task-table_data")
-    .findElements(By.cssSelector("tr[role='row']"));
   }
 
   @Test
@@ -225,12 +202,11 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage.saveFilterSet(filterSetName, true);
 
     statisticWidgetPage = taskAnalysisWidgetPage.navigateToStatisticPage();
-    final TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
+    TaskAnalysisWidgetPage secondTaskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
     secondTaskAnalysisWidgetPage.loadFilterSet(filterSetName, true);
-    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
-      return getRowsInTaskTable(secondTaskAnalysisWidgetPage).size() == 1;
-    });
-    List<WebElement> resultCells = getRowsInTaskTable(secondTaskAnalysisWidgetPage).get(0).findElements(By.cssSelector("td:not([class='ui-helper-hidden'])"));
+    secondTaskAnalysisWidgetPage.waitForTaskDataChangeToSpecificSize(1);
+    
+    List<WebElement> resultCells = secondTaskAnalysisWidgetPage.getRowsInTaskTable().get(0).findElements(By.cssSelector("td:not([class='ui-helper-hidden'])"));
     assertTrue(resultCells.get(0).getText().toLowerCase().contains("request"));
     assertTrue(resultCells.get(1).getText().equals("RUNNING"));
     assertTrue(resultCells.get(2).getText().toLowerCase().contains("annual"));

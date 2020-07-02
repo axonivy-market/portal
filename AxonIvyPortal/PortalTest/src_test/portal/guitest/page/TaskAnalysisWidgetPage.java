@@ -277,7 +277,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
         findElementByCssSelector("input[id$='responsible-filter:filter-input-form:responsible_input']");
     //enterKeys(responsible, text);
     type(responsible,user);
-    waitForElementDisplayedByCssSelector("span[id$='responsible-filter:filter-input-form:responsible_panel']", 5);
+    waitForElementDisplayedByCssSelector("span[id$='responsible-filter:filter-input-form:responsible_panel']", 10);
     Sleeper.sleep(2000);
     waitForElementDisplayedByCssSelector("i[class*='fa-user']",5);
     click(By.cssSelector("i[class*='fa-user']"));
@@ -294,5 +294,21 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
                 .length() > 1);
     return findElementByCssSelector(
         "button[id$='" + filterName + "-filter:filter-open-form:advanced-filter-command'] > span").getText();
+  }
+  
+  public List<WebElement> getRowsInTaskTable() {
+    return findElementById("task-widget:statistic-result-form:task-table_data").findElements(By.cssSelector("tr[role='row']"));
+  }
+  
+  public void clickApplyFilter() {
+    click(By.cssSelector("button[id$='task-widget:apply-filter']"));
+    waitAjaxIndicatorDisappear();
+    ensureNoBackgroundRequest();
+  }
+  
+  public void waitForTaskDataChangeToSpecificSize(int size) {
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
+      return getRowsInTaskTable().size() == size;
+    });
   }
 }
