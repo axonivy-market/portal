@@ -70,8 +70,8 @@ public class TaskActionBean {
       return false;
     }
     
-    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.DONE, TaskState.FAILED, TaskState.DESTROYED, TaskState.CREATED);
-   
+    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.DONE, TaskState.FAILED, TaskState.DESTROYED,
+        TaskState.CREATED, TaskState.READY_FOR_JOIN);
     if (taskStates.contains(task.getState())) {
       return false;
     }
@@ -164,7 +164,7 @@ public class TaskActionBean {
       return false;
     }
     EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED, TaskState.UNASSIGNED,
-        TaskState.CREATED, TaskState.READY_FOR_JOIN, TaskState.DELAYED);
+        TaskState.CREATED, TaskState.DELAYED);
     return taskStates.contains(task.getState());
   }
   
