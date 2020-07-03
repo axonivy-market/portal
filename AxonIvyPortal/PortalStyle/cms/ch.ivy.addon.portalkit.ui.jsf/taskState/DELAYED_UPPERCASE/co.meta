@@ -1,5 +1,5 @@
-co: name={DELAYED_UPPERCASE} description={} changed={2020-06-18 04:35:22 CEST} changedby={nqhoan} visualorder={0} guid={172C54792FAB6F2C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={172C54793117B919} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:37 CET} validto={} changed={2020-06-18 04:35:22 CEST} changedby={nqhoan} properties={} id={}
+co: name={DELAYED_UPPERCASE} description={} changed={2020-07-03 12:00:12 CEST} changedby={chnam} visualorder={0} guid={172C54792FAB6F2C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={172C54793117B919} datatype={} isdefault={false} langid={es} description={} validfrom={2020-07-03 12:00:12 CEST} validto={} changed={2020-07-03 12:00:12 CEST} changedby={chnam} properties={} id={}
 val: guid={172C547930313985} datatype={} isdefault={true} langid={en} description={} validfrom={2015-04-23 11:10:07 CEST} validto={} changed={2020-06-18 04:35:22 CEST} changedby={nqhoan} properties={} id={}
-val: guid={172C547931B817D5} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-23 11:10:17 CEST} validto={} changed={2020-06-18 04:35:22 CEST} changedby={nqhoan} properties={} id={}
-val: guid={172C54793266FC7E} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:07 CEST} validto={} changed={2020-06-18 04:35:22 CEST} changedby={nqhoan} properties={} id={}
+val: guid={172C547931B817D5} datatype={} isdefault={false} langid={de} description={} validfrom={2020-07-03 12:00:12 CEST} validto={} changed={2020-07-03 12:00:12 CEST} changedby={chnam} properties={} id={}
+val: guid={172C54793266FC7E} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-07-03 12:00:12 CEST} validto={} changed={2020-07-03 12:00:12 CEST} changedby={chnam} properties={} id={}
