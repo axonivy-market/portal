@@ -116,6 +116,8 @@ public class ChatTest extends BaseTest {
 
   @Test
   public void joinChatGroupAlreadyCreated() {
+    killBrowsers();
+    setup();
     ChatPage chatPage = enableChatGroup();
     createChatGroupWithPredifinedGroup(true, TestAccount.DEMO_USER);
     joinChatGroupWhichAlreadyHadChatGroup(TestAccount.ADMIN_USER);
@@ -126,7 +128,8 @@ public class ChatTest extends BaseTest {
     assertContainMessage(chatPage, CHAT_MESSAGE_USER_ADMIN);
 
     login(TestAccount.DEMO_USER);
-    WaitHelper.assertTrueWithWait(() -> new HomePage().getChat().isNotificationContactChat());
+    ChatPage chatPage2 = new HomePage().getChat();
+    WaitHelper.assertTrueWithWait(() -> chatPage2.isNotificationContactChat());
   }
 
   @Test
