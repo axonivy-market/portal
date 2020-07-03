@@ -184,7 +184,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
         .stream()
         .filter(chart -> arrs.contains(chart.getType()) && CollectionUtils.isEmpty(chart.getFilter().getSelectedRoles()))
         .findFirst()
-        .orElseGet(null);
+        .orElse(null);
     
     if (firstChartUnselectAllRoles != null) {
       StatisticFilter filter = firstChartUnselectAllRoles.getFilter();
