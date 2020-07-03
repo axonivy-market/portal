@@ -26,7 +26,6 @@
   <c:set var="isShowInTaskList" value="#{empty cc.attrs.showInTaskList ? true : cc.attrs.showInTaskList}" />
   <f:event listener="#{data.setCurrentPortalPage(cc.attrs.currentPortalPage)}" type="preRenderComponent" />
 
-
   <p:commandLink id="#{cc.attrs.actionLinkId}" onstart="event.stopPropagation();" global="false" disabled="#{cc.attrs.isDisabled}"
     actionListener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId(), cc.attrs.isAdhocExcluded)}"
     styleClass="action-button task-action-item #{cc.attrs.buttonStyleClass}"
