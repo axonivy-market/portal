@@ -1,5 +1,5 @@
-co: name={title} description={} changed={2020-05-25 11:35:45 CEST} changedby={dhtlong} visualorder={0} guid={01724B2E96D34EE0} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1724B2E96ED6C3DD} datatype={} isdefault={false} langid={es} description={} validfrom={2020-05-25 11:34:04 CEST} validto={} changed={2020-05-25 11:35:41 CEST} changedby={dhtlong} properties={} id={}
+co: name={title} description={} changed={2020-07-03 12:00:08 CEST} changedby={chnam} visualorder={0} guid={01724B2E96D34EE0} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1724B2E96ED6C3DD} datatype={} isdefault={false} langid={es} description={} validfrom={2020-07-03 12:00:08 CEST} validto={} changed={2020-07-03 12:00:08 CEST} changedby={chnam} properties={} id={}
 val: guid={1724B2E96D74BAC6} datatype={} isdefault={false} langid={de} description={} validfrom={2020-05-25 11:34:03 CEST} validto={} changed={2020-05-25 11:35:45 CEST} changedby={dhtlong} properties={} id={}
-val: guid={1724B2E96E7A523B} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-05-25 11:34:04 CEST} validto={} changed={2020-05-25 11:35:41 CEST} changedby={dhtlong} properties={} id={}
+val: guid={1724B2E96E7A523B} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-07-03 12:00:08 CEST} validto={} changed={2020-07-03 12:00:08 CEST} changedby={chnam} properties={} id={}
 val: guid={1724B2E96E0E1D2B} datatype={} isdefault={true} langid={en} description={} validfrom={2020-05-25 11:34:04 CEST} validto={} changed={2020-05-25 11:34:04 CEST} changedby={dhtlong} properties={} id={}
