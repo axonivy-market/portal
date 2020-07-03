@@ -68,6 +68,7 @@ var Portal = {
     var breadCrumb = $("#top-menu").find("> li.breadcrumb-container");
     var breadCrumbMembers = breadCrumb.find("li");
     var taskName = $('.js-task-name-details');
+    var filterContainer = $('.js-filter-container');
 
     if (breadCrumbMembers.length == 0) {
       return;
@@ -87,6 +88,10 @@ var Portal = {
         if (taskName.length > 0) {
           taskName.css({"display": "none"});
         }
+        if (filterContainer.length > 0) {
+          filterContainer.find('.widget-title-mobile').css({"display": "none"});
+          filterContainer.removeClass('has-title-mobile');
+        }
 
         var breadcrumbWidthWithoutCurrentStep = 0;
         breadCrumbMembers.each(function(i, val) {
@@ -100,7 +105,13 @@ var Portal = {
           breadCrumb.css("display", "none");
           if (taskName.length > 0) {
               taskName.css({"display": "flex"});
-            }
+          }
+          if (filterContainer.length > 0) {
+              filterContainer.find('.widget-title-mobile').css({"display": "block"});
+              if(!filterContainer.hasClass('has-title-mobile')) {
+                filterContainer.addClass('has-title-mobile');
+              }
+          }
         }
       }, 200);
   }
@@ -196,7 +207,6 @@ var MainMenu = {
 function handleError(xhr, renderDetail){
   //From PF 7.0 with new jQuery version, when we call ajax by remote command then navigate when remote command still executing, this request HTML status is abort
   //This make general exception dialog display frequently
-  alert(JSON.stringify(xhr));
   if (xhr.statusText === 'abort') {
     return;
   }

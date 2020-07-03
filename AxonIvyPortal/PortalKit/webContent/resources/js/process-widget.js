@@ -38,8 +38,6 @@ function ProcessWidget() {
         this.setupProcessNav(processStartListContainer, availableHeight, announcementMessageContainer);
       }
 
-      $('.js-layout-content').css('height', 'auto');
-
       processStartListContainer.on("scroll", function() {
         $(".process-nav-item.selected").removeClass("selected");
       });

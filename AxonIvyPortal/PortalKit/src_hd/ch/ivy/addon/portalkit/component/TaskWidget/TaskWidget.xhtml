@@ -52,7 +52,7 @@
         </div>
 
         <!-- Filter part -->
-        <h:panelGroup id="filter-container" styleClass="filter-container ui-g-12 u-no-padding-bottom"
+        <h:panelGroup id="filter-container" styleClass="filter-container ui-g-12 u-no-padding-bottom js-filter-container"
           rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}">
           <!-- Filter selection -->
           <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group u-hidden-md-down"
@@ -116,7 +116,7 @@
 
           <div id="applied-filters-container" class="applied-filters-container">
             <!-- Title on mobile -->
-            <div class="ui-sm-4 widget-title-mobile">
+            <div class="widget-title-mobile">
               <span class="top-header-main-title widget-header-main-title">
                 <span>#{cc.attrs.title}</span>
                 <h:outputText styleClass="js-task-count-mobile" rendered="#{!data.dataModel.disableTaskCount}" />
