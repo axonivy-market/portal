@@ -1,0 +1,4 @@
+CaseOwnerFilterData #class
+ch.ivy.addon.portalkit.component.cases.filter.CaseOwnerFilter #namespace
+query String #field
+query PERSISTENT #fieldModifier

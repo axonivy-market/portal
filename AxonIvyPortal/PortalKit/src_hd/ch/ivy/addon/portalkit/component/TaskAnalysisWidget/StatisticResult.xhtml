@@ -43,6 +43,12 @@
           visible="#{taskAnalysisWidgetBean.columns['CASE_CREATOR']}" exportable="#{taskAnalysisWidgetBean.columns['CASE_CREATOR']}">
           <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.case.creatorUser, task.case.creatorUserName)}" />
         </p:column>
+        
+        <p:column id="case-owner" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseOwner')}" sortable="false" width="200"
+          visible="#{taskAnalysisWidgetBean.columns['CASE_OWNER']}" exportable="#{taskAnalysisWidgetBean.columns['CASE_OWNER']}"
+          rendered="#{taskAnalysisWidgetBean.isCaseOwnerEnabled()}">
+          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.case.owner, task.case.ownerName)}" />
+        </p:column>
 
         <p:column id="case-state" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseState')}" sortable="false" width="120"
           visible="#{taskAnalysisWidgetBean.columns['CASE_STATE']}" exportable="#{taskAnalysisWidgetBean.columns['CASE_STATE']}">
