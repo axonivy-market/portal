@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+  xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:ic="http://ivyteam.ch/jsf/component">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
+  <cc:attribute name="componentId" default="case-creator-cell" />
+  <cc:attribute name="dataModel" />
+  <cc:attribute name="styleClass" />
+  <cc:attribute name="responsiveStyleClass" default="js-hidden-when-expand-menu u-hidden-md-down" />
+</cc:interface>
+
+<cc:implementation>
+  <c:set var="case" value="#{cc.attrs.case}" />
+  <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
+
+  <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="#{cc.attrs.componentId}"
+    styleClass="case-header-creator-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" securityMember="#{case.getOwner()}"
+    securityMemberName="#{case.getOwnerName()}" rendered="#{dataModel.isSelectedColumn('OWNER')}" />
+</cc:implementation>
+</html>
