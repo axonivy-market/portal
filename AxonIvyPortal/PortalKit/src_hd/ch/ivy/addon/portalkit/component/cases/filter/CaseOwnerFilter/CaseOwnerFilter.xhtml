@@ -1,0 +1,31 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="componentId" default="owner-filter" />
+  <cc:attribute name="filter" required="true" type="ch.ivy.addon.portalkit.casefilter.CaseOwnerFilter" />
+  <cc:attribute name="dataModel" required="true" />
+  <cc:attribute name="selectedFilters" />
+  <cc:attribute name="resultContainerUpdated" />
+</cc:interface>
+
+<cc:implementation>
+  <ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter id="#{cc.attrs.componentId}"
+    caseFilter="#{cc.attrs.filter}" selectedFilters="#{cc.attrs.selectedFilters}"
+    resultContainerUpdated="#{cc.attrs.resultContainerUpdated}" dataModel="#{cc.attrs.dataModel}"
+    dismissableOverlayPanel="false">
+    <p:autoComplete id="owner" scrollHeight="390" dropdown="true" size="35" 
+      completeMethod="#{logic.query}" value="#{cc.attrs.filter.selectedOwner}"
+      var="owner" itemValue="#{owner}" itemLabel="#{owner.briefDisplayNameWithState}"
+      converter="pojoConverter" cache="true" maxResults="100"
+      moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
+      styleClass="responsible-list-filter">
+      <p:column>
+        <i class="fa #{owner.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+        <h:outputText value="#{cc.attrs.filter.formatName(owner)}" />
+      </p:column>
+    </p:autoComplete>
+  </ic:ch.ivy.addon.portalkit.component.cases.filter.AdvancedFilter>
+</cc:implementation>
+</html>
