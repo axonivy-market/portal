@@ -151,7 +151,6 @@
 }
 
 .layout-wrapper .layout-main .layout-content {
-  height: calc(100vh - 58px);
   overflow-x: hidden;
 }
 
@@ -389,6 +388,7 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   max-height: 75vh;
+  width: 100%;
 }
 
 .ui-selectonelistbox.responsible-list-filter {
