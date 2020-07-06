@@ -45,7 +45,7 @@
                   symbolStyleClass="task-details-document-download-icon" />
               </p:commandLink>
               <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}"
-                rendered="#{data.businessCase.state ne 'DONE' and data.isShowUploadDocumentButton and taskActionBean.canWriteDocument(data.task)}"
+                rendered="#{!(data.businessCase.state eq 'DONE' and data.isShowUploadDocumentButton) and taskActionBean.canWriteDocument(data.task)}"
                 styleClass="fa fa-times Fright task-document-download" oncomplete="PF('document-deletion-dialog').show()">
                 <p:tooltip for="delete-file" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/deleteFile')} #{document.name}"
                   trackMouse="true" hideEvent="mouseleave click"/>
@@ -70,7 +70,7 @@
           <i class="icon ivyicon-information-circle" />
           <h:outputText styleClass="no-item-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noDocumentAvailable')}" />
           <h:outputText styleClass="no-item-detail" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pleaseAddDocument')}"
-            rendered="#{data.businessCase.state ne 'DONE' and data.isShowUploadDocumentButton and taskActionBean.canWriteDocument(data.task)}" />
+            rendered="#{!(data.businessCase.state eq 'DONE' and data.isShowUploadDocumentButton) and taskActionBean.canWriteDocument(data.task)}" />
         </h:panelGroup>
       </div>
     </h:form>
