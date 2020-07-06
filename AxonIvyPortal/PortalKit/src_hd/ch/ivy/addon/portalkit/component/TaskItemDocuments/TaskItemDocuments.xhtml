@@ -22,7 +22,7 @@
         </div>
         <h:panelGroup layout="block" styleClass="task-details-document-add ui-g-6 u-padding-0">
           <p:commandLink id="add-document-command" styleClass="task-details-document-add-link"
-            rendered="#{data.businessCase.state ne 'DONE' and data.isShowUploadDocumentButton and taskActionBean.canWriteDocument(data.task)}"
+            rendered="#{!(data.businessCase.state eq 'DONE' and data.isShowUploadDocumentButton) and taskActionBean.canWriteDocument(data.task)}"
             actionListener="#{data.setTask(task)}" oncomplete="PF('document-upload-dialog').show()">
             <span class="fa fa-plus-circle" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}</span>
