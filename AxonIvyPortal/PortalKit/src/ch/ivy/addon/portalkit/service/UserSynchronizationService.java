@@ -67,7 +67,7 @@ public class UserSynchronizationService {
       DataCache.invalidateUsersCache(Ivy.wf().getApplication().getName());
       List<User> usersLoadedFromDB = userService.findByUserName(username); // cache & find
       if (!isUserExistedInCurrentApp(usersLoadedFromDB)) {
-        userService.save(user);
+        saveUserToRepo(usersLoadedFromDB, user);
         List<User> users = new ArrayList<>(DataCache.getAllUsersFromCache());
         users.add(user);
         Repo<Long, User> repo = userDao.buildRepoIndexedByUserName(users);
@@ -77,6 +77,26 @@ public class UserSynchronizationService {
       Ivy.log().info("User found in cache. Name: {0}, fullname: {1}", Ivy.session().getSessionUserName(), Ivy.session().getSessionUser().getDisplayName()); 
     }
   }
+
+  private static void saveUserToRepo(List<User> usersLoadedFromDB, User user) {
+    // Check user is saved in Repo
+    if (!usersLoadedFromDB.contains(user)) {
+      UserService userService = new UserService();
+      try {
+        userService.save(user);
+      } catch (Exception exception) {
+        Ivy.log().info("Cannot save user {0}", user.getUserName());
+        exception.printStackTrace();
+        // Find user from Repo without DataCache
+        List<User> users = userService.findAll();
+        if (!users.contains(user)) {
+          Ivy.log().info("User {0} isn't exited in currnet app -> Add to repo", user.getUserName());
+          userService.save(user);
+        }
+      }
+    }
+  }
+
   private static boolean isUserExistedInCurrentApp(List<User> usersCheck) {
     return CollectionUtils
         .emptyIfNull(usersCheck)
