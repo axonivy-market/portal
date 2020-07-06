@@ -425,6 +425,7 @@ public class TaskWidgetPage extends TemplatePage {
 	}
 
 	public void filterByResponsible(String text) {
+	  waitForElementDisplayed(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"), true);
 		click(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"));
 		WebElement responsible =
 				findElementByCssSelector("input[id$='responsible-filter:filter-input-form:responsible_input']");

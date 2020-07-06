@@ -18,7 +18,6 @@ function TaskWidget() {
         if (taskWidgetSortMenuContainer.outerHeight(true) == 0) {
           taskWidgetSortMenuContainer = $('.js-task-widget-sort-menu');
         }
-        var taskWidgetFilterContainer = $('.js-filter-container');
         var customWidgetContainer = $('.js-custom-widget-container');
         if (customWidgetContainer.height() > 0) {
         	customWidgetContainer = customWidgetContainer.outerHeight(true)||0;
@@ -41,7 +40,7 @@ function TaskWidget() {
         var mainScreenHeight = ($('.js-layout-content').outerHeight(true)||0);
         var availableHeight = mainScreenHeight - (taskWidgetHeaderContainer.outerHeight(true)||0)
             - (announcementMessageContainer.outerHeight(true)||0) - (taskWidgetSortMenuContainer.outerHeight(true)||0)
-            - (taskWidgetFilterContainer.outerHeight(true)||0) - error - customWidgetContainer
+            - error - customWidgetContainer
             - taskViewPadding - layoutContentPadding - compactTaskWidgetPadding - compactProcessWidgetHeight;
         if (!!availableHeight) {
             container.height(availableHeight);

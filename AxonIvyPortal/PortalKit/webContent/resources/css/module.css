@@ -1435,10 +1435,15 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 }
 
 .filter-container .widget-title-mobile {
+  display: block;
   height: 10px;
   position: relative;
   padding: 0;
   width: 40%;
+}
+
+.has-breadcrumb .filter-container .widget-title-mobile {
+  display: none;
 }
 
 .filter-container .widget-title-mobile .top-header-main-title {
@@ -3816,12 +3821,12 @@ body .ui-widget-content.filter-name-overlay-panel {
 }
 
 @media (max-width: 991px) {
-  .text-filter {
+  .has-breadcrumb .text-filter {
     width: 100% !important;
   }
-  .has-title-mobile .text-filter {
+  .text-filter {
     width: 60% !important;
-  } 
+  }
 }
 
 @media (min-width: 992px) {
@@ -4176,6 +4181,14 @@ _:-ms-fullscreen, :root .content-link-history {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.task-detail-header .task-name {
+  display: flex;
+}
+
+.has-breadcrumb .task-detail-header .task-name {
+  display: none;
 }
 
 .task-name {
