@@ -63,7 +63,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
-  private List<String> portalDefaultColumns = Arrays.asList("NAME", "ID", "CREATOR", "CREATION_TIME", "FINISHED_TIME", "STATE");
+  private List<String> portalDefaultColumns = Arrays.asList("NAME", "ID", "CREATOR", "OWNER", "CREATION_TIME", "FINISHED_TIME", "STATE");
   private List<String> portalRequiredColumns = Arrays.asList("NAME");
 
   private boolean isAutoHideColumns;
@@ -436,6 +436,11 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   public void initColumnsConfiguration() {
+    if (new GlobalSettingService().isCaseOwnerEnabled()) {
+      portalDefaultColumns = List.of("NAME", "ID", "CREATOR", "OWNER", "CREATION_TIME", "FINISHED_TIME", "STATE");
+    } else {
+      portalDefaultColumns = List.of("NAME", "ID", "CREATOR", "CREATION_TIME", "FINISHED_TIME", "STATE");
+    }
     if (CollectionUtils.isEmpty(allColumns)) {
       allColumns.addAll(getDefaultColumns());
       initSelectedColumns();
