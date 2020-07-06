@@ -76,6 +76,7 @@ var Portal = {
 
     setTimeout(function() {
         var usedWidthOfTopMenu = 0;
+        var layoutWrapper = $('.js-layout-wrapper');
         topMenuElements.each(function(i, val) {
           if (!val.classList.contains("breadcrumb-container")) {
             usedWidthOfTopMenu += val.offsetWidth + 22;
@@ -85,12 +86,8 @@ var Portal = {
         usedWidthOfTopMenu = usedWidthOfTopMenu + 2;
         var breadCrumbWidth = "calc(100% - " + usedWidthOfTopMenu + "px)";
         breadCrumb.css({"display": "block", "width" : breadCrumbWidth});
-        if (taskName.length > 0) {
-          taskName.css({"display": "none"});
-        }
-        if (filterContainer.length > 0) {
-          filterContainer.find('.widget-title-mobile').css({"display": "none"});
-          filterContainer.removeClass('has-title-mobile');
+        if(!layoutWrapper.hasClass('has-breadcrumb')) {
+          layoutWrapper.addClass('has-breadcrumb');
         }
 
         var breadcrumbWidthWithoutCurrentStep = 0;
@@ -103,15 +100,7 @@ var Portal = {
         currentBreadcrumb.css("max-width", "calc(100% - " + breadcrumbWidthWithoutCurrentStep + "px)");
         if (currentBreadcrumb.get(0).offsetWidth == 0) {
           breadCrumb.css("display", "none");
-          if (taskName.length > 0) {
-              taskName.css({"display": "flex"});
-          }
-          if (filterContainer.length > 0) {
-              filterContainer.find('.widget-title-mobile').css({"display": "block"});
-              if(!filterContainer.hasClass('has-title-mobile')) {
-                filterContainer.addClass('has-title-mobile');
-              }
-          }
+          layoutWrapper.removeClass('has-breadcrumb');
         }
       }, 200);
   }
