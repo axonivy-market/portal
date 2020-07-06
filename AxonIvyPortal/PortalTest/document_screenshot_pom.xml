@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-  xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.ivyteam.ivy.project.portal</groupId>
   <artifactId>portal-document-screenshots</artifactId>
@@ -10,7 +7,7 @@
   <packaging>pom</packaging>
   <properties>
     <powermock.version>2.0.2</powermock.version>
-    <build.plugin.version>9.1.0-SNAPSHOT</build.plugin.version>
+    <build.plugin.version>9.1.0</build.plugin.version>
     <ivy.engine.version>9.1.0</ivy.engine.version>
   </properties>
   <distributionManagement>
@@ -78,7 +75,6 @@
           <encoding>UTF-8</encoding>
         </configuration>
         <executions>
-          
           <execution>
             <id>default-installEngine</id>
             <goals>
@@ -86,7 +82,6 @@
             </goals>
             <phase>initialize</phase>
           </execution>
-          
           <execution>
             <id>default-compileProject</id>
             <goals>
@@ -94,7 +89,6 @@
             </goals>
             <phase>compile</phase>
           </execution>
-          
           <execution>
             <id>default-test-compile</id>
             <goals>
@@ -102,7 +96,6 @@
             </goals>
             <phase>test-compile</phase>
           </execution>
-          
           <execution>
             <id>default-ivy-test-properties</id>
             <goals>
@@ -110,7 +103,6 @@
             </goals>
             <phase>test</phase>
           </execution>
-          
           <execution>
             <id>start.test.engine</id>
             <phase>process-test-classes</phase>
@@ -118,7 +110,6 @@
               <goal>start-test-engine</goal>
             </goals>
           </execution>
-          
           <execution>
             <id>stop.test.engine</id>
             <goals>
@@ -126,7 +117,6 @@
             </goals>
             <phase>post-integration-test</phase>
           </execution>
-          
           <execution>
             <id>portaltesthelper.deploy</id>
             <goals>
@@ -138,7 +128,6 @@
             </configuration>
             <phase>process-test-classes</phase>
           </execution>
-          
           <execution>
             <id>internalsupport.deploy</id>
             <goals>
@@ -150,7 +139,6 @@
             </configuration>
             <phase>process-test-classes</phase>
           </execution>
-          
           <execution>
             <id>default-pack-iar</id>
             <goals>
@@ -160,7 +148,6 @@
           </execution>
         </executions>
       </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -182,7 +169,6 @@
           </execution>
         </executions>
       </plugin>
-      
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
