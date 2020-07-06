@@ -7,6 +7,7 @@ public enum TaskAndCaseAnalysisColumn {
   CASE_ID(false, false),
   CASE_CATEGORY(false, false),
   CASE_CREATOR(false, false),
+  CASE_OWNER(false, false),
   CASE_STATE(false, true),
   TASK_NAME(true, true),
   TASK_ID(true, false),
