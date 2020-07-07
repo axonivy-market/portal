@@ -1,5 +1,7 @@
 package portal.guitest.page;
 
+import static portal.guitest.common.WaitHelper.assertTrueWithWait;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -12,6 +14,7 @@ import org.openqa.selenium.WebElement;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
+
 import portal.guitest.common.TaskState;
 import portal.guitest.common.WaitHelper;
 
@@ -498,8 +501,7 @@ public class TaskWidgetPage extends TemplatePage {
 		for (WebElement filter : saveFilters) {
 			if (filter.getText().equals(filterName)) {
 				click(filter);
-				waitAjaxIndicatorDisappear();
-				waitForElementDisplayed(By.id("task-widget:filter-selection-form:filter-name-overlay-panel"), false);
+				assertTrueWithWait(() -> findElementByCssSelector(".filter-name").getText().equals(filterName));
 				return;
 			}
 		}
