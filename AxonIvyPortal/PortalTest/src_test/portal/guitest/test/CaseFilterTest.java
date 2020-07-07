@@ -22,6 +22,21 @@ public class CaseFilterTest extends BaseTest {
 		redirectToRelativeLink(createTestingTasksUrl);
 	}
 
+  @Test
+  public void testCaseOwnerFilter() {
+    updatePortalSetting("ENABLE_CASE_OWNER", "true");
+    redirectToRelativeLink(userIsOwnerUrl);
+    login(TestAccount.ADMIN_USER);
+    HomePage homePage = new HomePage();
+    MainMenuPage mainMenuPage = homePage.openMainMenu();
+    CaseWidgetPage casePage = mainMenuPage.selectCaseMenu();
+
+    casePage.openAdvancedFilter("Owner", "owner");
+    casePage.filterByOwner("Demo");
+    assertEquals(1, casePage.getNumberOfCases());
+    updatePortalSetting("ENABLE_CASE_OWNER", "false");
+  }
+	
 	@Test
 	public void testCaseAdvancedFilter() {
 		login(TestAccount.ADMIN_USER);
