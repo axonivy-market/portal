@@ -281,6 +281,21 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     click(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
   }
+  
+  public void filterByOwner(String user) {
+    openAdvancedCaseFilter("Owner", "owner");
+    click(By.cssSelector("button[id$='owner-filter:filter-open-form:advanced-filter-command']"));
+    WebElement owner =
+        findElementByCssSelector("input[id$='owner-filter:filter-input-form:owner_input']");
+    type(owner, user);
+    waitForElementDisplayedByCssSelector("span[id$='owner-filter:filter-input-form:owner_panel']");
+    waitForElementDisplayedByCssSelector("i[class*='fa-user']", 5);
+    click(By.cssSelector("i[class*='fa-user']"));
+    waitAjaxIndicatorDisappear();
+    click(By.cssSelector("button[id$='owner-filter:filter-input-form:update-command']"));
+    waitAjaxIndicatorDisappear();
+  }
+  
   public String getUser(String filterName) {
     waitForElementDisplayed(By.cssSelector("button[id$='" + filterName + "-filter:filter-open-form:advanced-filter-command']"),true,DEFAULT_TIMEOUT);
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
