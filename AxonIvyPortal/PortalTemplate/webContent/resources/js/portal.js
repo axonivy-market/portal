@@ -68,39 +68,41 @@ var Portal = {
     var breadCrumb = $("#top-menu").find("> li.breadcrumb-container");
     var breadCrumbMembers = breadCrumb.find("li");
     var taskName = $('.js-task-name-details');
+    var filterContainer = $('.js-filter-container');
 
     if (breadCrumbMembers.length == 0) {
       return;
     }
 
-    var usedWidthOfTopMenu = 0;
-    topMenuElements.each(function(i, val) {
-      if (!val.classList.contains("breadcrumb-container")) {
-        usedWidthOfTopMenu += val.offsetWidth + 22;
-      }
-    });
+    setTimeout(function() {
+        var usedWidthOfTopMenu = 0;
+        var layoutWrapper = $('.js-layout-wrapper');
+        topMenuElements.each(function(i, val) {
+          if (!val.classList.contains("breadcrumb-container")) {
+            usedWidthOfTopMenu += val.offsetWidth + 22;
+          }
+        });
 
-    usedWidthOfTopMenu = usedWidthOfTopMenu + 2;
-    var breadCrumbWidth = "calc(100% - " + usedWidthOfTopMenu + "px)";
-    breadCrumb.css({"display": "block", "width" : breadCrumbWidth});
-    if (taskName.length > 0) {
-      taskName.css({"display": "none"});
-    }
-
-    var breadcrumbWidthWithoutCurrentStep = 0;
-    breadCrumbMembers.each(function(i, val) {
-      if (i != breadCrumbMembers.length - 1) {
-        breadcrumbWidthWithoutCurrentStep += val.offsetWidth;
-      }
-    });
-    var currentBreadcrumb = $(breadCrumbMembers.get(breadCrumbMembers.length - 1));
-    currentBreadcrumb.css("max-width", "calc(100% - " + breadcrumbWidthWithoutCurrentStep + "px)");
-    if (currentBreadcrumb.get(0).offsetWidth == 0) {
-      breadCrumb.css("display", "none");
-      if (taskName.length > 0) {
-          taskName.css({"display": "flex"});
+        usedWidthOfTopMenu = usedWidthOfTopMenu + 2;
+        var breadCrumbWidth = "calc(100% - " + usedWidthOfTopMenu + "px)";
+        breadCrumb.css({"display": "block", "width" : breadCrumbWidth});
+        if(!layoutWrapper.hasClass('has-breadcrumb')) {
+          layoutWrapper.addClass('has-breadcrumb');
         }
-    }
+
+        var breadcrumbWidthWithoutCurrentStep = 0;
+        breadCrumbMembers.each(function(i, val) {
+          if (i != breadCrumbMembers.length - 1) {
+            breadcrumbWidthWithoutCurrentStep += val.offsetWidth;
+          }
+        });
+        var currentBreadcrumb = $(breadCrumbMembers.get(breadCrumbMembers.length - 1));
+        currentBreadcrumb.css("max-width", "calc(100% - " + breadcrumbWidthWithoutCurrentStep + "px)");
+        if (currentBreadcrumb.get(0).offsetWidth == 0) {
+          breadCrumb.css("display", "none");
+          layoutWrapper.removeClass('has-breadcrumb');
+        }
+      }, 200);
   }
 }
 

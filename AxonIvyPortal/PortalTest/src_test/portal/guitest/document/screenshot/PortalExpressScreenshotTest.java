@@ -89,7 +89,7 @@ public class PortalExpressScreenshotTest extends BaseTest {
     
     ScreenshotUtil.resizeBrowser(new Dimension(1100, 1100));
     ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
-    formDefinition.fillDataForCheckboxProvider("Checkbox with Data Provider");
+    formDefinition.switchToCheckBoxTab();
     Sleeper.sleep(300);
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.EXPRESS_FOLDER + "express-workflow");
     

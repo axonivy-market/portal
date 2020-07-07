@@ -22,7 +22,7 @@
         </div>
         <h:panelGroup layout="block" styleClass="task-details-document-add ui-g-6 u-padding-0">
           <p:commandLink id="add-document-command" styleClass="task-details-document-add-link"
-            rendered="#{data.businessCase.state ne 'DONE' and data.isShowUploadDocumentButton and taskActionBean.canWriteDocument(data.task)}"
+            rendered="#{!(data.businessCase.state eq 'DONE' and data.isShowUploadDocumentButton) and taskActionBean.canWriteDocument(data.task)}"
             actionListener="#{data.setTask(task)}" oncomplete="PF('document-upload-dialog').show()">
             <span class="fa fa-plus-circle" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}</span>
@@ -45,7 +45,7 @@
                   symbolStyleClass="task-details-document-download-icon" />
               </p:commandLink>
               <p:commandLink id="delete-file" actionListener="#{data.setDocument(document)}"
-                rendered="#{data.businessCase.state ne 'DONE' and data.isShowUploadDocumentButton and taskActionBean.canWriteDocument(data.task)}"
+                rendered="#{!(data.businessCase.state eq 'DONE' and data.isShowUploadDocumentButton) and taskActionBean.canWriteDocument(data.task)}"
                 styleClass="fa fa-times Fright task-document-download" oncomplete="PF('document-deletion-dialog').show()">
                 <p:tooltip for="delete-file" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/deleteFile')} #{document.name}"
                   trackMouse="true" hideEvent="mouseleave click"/>
@@ -69,7 +69,8 @@
         <h:panelGroup layout="block" styleClass="ui-g-12 no-item-panel" rendered="#{empty data.documents}">
           <i class="icon ivyicon-information-circle" />
           <h:outputText styleClass="no-item-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noDocumentAvailable')}" />
-          <h:outputText styleClass="no-item-detail" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pleaseAddDocument')}" />
+          <h:outputText styleClass="no-item-detail" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pleaseAddDocument')}"
+            rendered="#{!(data.businessCase.state eq 'DONE' and data.isShowUploadDocumentButton) and taskActionBean.canWriteDocument(data.task)}" />
         </h:panelGroup>
       </div>
     </h:form>
