@@ -80,6 +80,13 @@ Ts0 f108 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.porta
 Ts0 f108 inParameterMapAction 'out.dataModel=param.dataModel;
 out.task=param.task;
 ' #txt
+Ts0 f108 inActionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
+
+TaskWidgetBean taskWidgetBean = ManagedBeans.get("taskWidgetBean") as TaskWidgetBean;
+if (taskWidgetBean != null) {
+  taskWidgetBean.setSelectedTaskItemId(param.task.getId());
+}' #txt
 Ts0 f108 outParameterDecl '<> result;' #txt
 Ts0 f108 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
