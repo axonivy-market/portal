@@ -7,6 +7,7 @@
 	xmlns:pe="http://primefaces.org/ui/extensions">
 
 <cc:interface componentType="IvyComponent">
+  <cc:attribute name="onTabChange" />
 </cc:interface>
 <cc:implementation>
   <p:outputPanel id="loginPanel" styleClass="admin-settings-no-permission-message" layout="block"
@@ -18,7 +19,7 @@
   <!-- TAB VIEW -->
   <p:tabView id="adminTabView" rendered="#{permissionBean.hasAdminPermission()}">
 
-    <p:ajax event="tabChange" listener="#{adminSettingBean.onTabChange}" onstart="refreshExpressManagement();"/>	
+    <p:ajax event="tabChange" listener="#{adminSettingBean.onTabChange}" onstart="refreshExpressManagement();" oncomplete="#{cc.attrs.onTabChange}"/>
     <!-- APPLICATION TAB -->
     <p:tab id="applicationTab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applications')}">
       <h:form prependId="false" id="applicationForm">
@@ -184,11 +185,11 @@
       function refreshExpressManagement() {
         var expressTab = $('[id$=":express-management-tab"]');
         if (expressTab.length > 0) {
-          var expressManagementTable = $('[id$=":express-workflow-summary-table"');
-          if (expressManagementTable.length > 0) {
+          var expressManagementTable = $('[id$=":express-workflow-summary-table"]');
+           if (expressManagementTable.length > 0) {
             PF('express-workflow-summary-table').unselectAllRows();
             PF('export-express-btn').disable();
-          }
+          } 
         }
       }
   </script>
