@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.codec.binary.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -173,6 +174,48 @@ public class TaskAnalysisWidgetTest extends BaseTest {
 
     List<WebElement> results = taskAnalysisWidgetPage.getRowsInTaskTable();
     assertEquals(4, results.size());
+  }
+  
+  @Test
+  public void testApplyCaseOwnerFilter() {
+    updatePortalSetting("ENABLE_CASE_OWNER", "true");
+    redirectToRelativeLink(userIsOwnerUrl);
+    homePage = new HomePage();
+    mainMenuPage = homePage.openMainMenu();
+    statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
+    TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
+    taskAnalysisWidgetPage.filterByOwner("Demo");
+    taskAnalysisWidgetPage.clickApplyFilter();
+
+    List<WebElement> results = taskAnalysisWidgetPage.getRowsInTaskTable();
+    assertEquals(2, results.size());
+    updatePortalSetting("ENABLE_CASE_OWNER", "false");
+  }
+  
+  @Test
+  public void testAddCaseOwnerColumn() {
+    updatePortalSetting("ENABLE_CASE_OWNER", "true");
+    homePage = new HomePage();
+    mainMenuPage = homePage.openMainMenu();
+    statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
+    TaskAnalysisWidgetPage taskAnalysisWidgetPage = statisticWidgetPage.navigateToTaskAnalysisPage();
+
+    WebElement toggler = taskAnalysisWidgetPage.findColumnToggler();
+    taskAnalysisWidgetPage.click(toggler);
+    taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
+
+    WebElement columnContainer = taskAnalysisWidgetPage.getDriver().findElement(By.tagName("body"))
+        .findElement(By.cssSelector(".ui-columntoggler"));
+    List<WebElement> checkboxes = columnContainer.findElements(By.cssSelector("li.ui-columntoggler-item"));
+
+    checkboxes.forEach(elem -> {
+      if (StringUtils.equals(elem.getText(), "Case Owner")) {
+        elem.findElement(By.className("ui-chkbox")).click();
+      }
+    });
+    taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
+    assertTrue(taskAnalysisWidgetPage.isElementDisplayed(By.id("task-widget:statistic-result-form:task-table:case-owner")));
+    updatePortalSetting("ENABLE_CASE_OWNER", "false");
   }
 
   @Test
