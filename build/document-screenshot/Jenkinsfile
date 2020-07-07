@@ -21,7 +21,7 @@ pipeline {
         -Divy.engine.list.url=https://jenkins.ivyteam.io/job/ivy-core_product/job/master/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 for last successful build master
         -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
       ''')
-       booleanParam(name: 'deployToRepo', defaultValue: false, description: 'Force deploy new version of screenshots')
+       booleanParam(name: 'deployToRepo', defaultValue: false, description: 'Force deploy new version of screenshots. CAUTION: Only enable this option when you run with default test pattern.')
        booleanParam(name: 'checkoutCodeFromLatestReleaseTag', defaultValue: false, description: 'Turn on when you want to release new Portal screenshots, it will checkout the code from latest release tag')
   }
 

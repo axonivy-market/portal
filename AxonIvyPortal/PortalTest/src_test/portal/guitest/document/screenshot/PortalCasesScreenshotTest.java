@@ -60,6 +60,7 @@ public class PortalCasesScreenshotTest extends BaseTest {
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.CASE_WIDGET_FOLDER + "case-key-information", new Dimension(SCREENSHOT_WIDTH, SCREENSHOT_HEIGHT));
     
     WebElement saveFilterDialog =  caseWidget.getSaveFilterDialog();
+    Sleeper.sleep(1000);//wait for focus animation finish to capture screenshot
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(saveFilterDialog, ScreenshotUtil.CASE_WIDGET_FOLDER + "how-to-create-case-filter", new ScreenshotMargin(100, 200));
   }
 
@@ -78,12 +79,12 @@ public class PortalCasesScreenshotTest extends BaseTest {
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(relatedTask, ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details-related-tasks-cases", new ScreenshotMargin(10));
     
     WebElement addNote = detailsPage.getAddNoteDialog();
-    Sleeper.sleep(500);
+    Sleeper.sleep(2000);//wait for focus animation to capture screenshot
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(addNote, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-add-task-note", new ScreenshotMargin(30, 50));
     detailsPage.addNote("Beta Company");
     
     WebElement addDocument = detailsPage.getAddAttachmentDialog();
-    Sleeper.sleep(500);
+    Sleeper.sleep(2000);//wait for focus animation to capture screenshot
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(addDocument, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-attach-document-to-case", new ScreenshotMargin(30, 60));
     detailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
     

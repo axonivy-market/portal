@@ -198,6 +198,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     }
     click(filterContainer.findElement(By.linkText(filterSetName)));
     waitAjaxIndicatorDisappear();
+    ensureNoBackgroundRequest();
   }
   
   public String getFilterName() {
@@ -288,5 +289,21 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
                 .length() > 1);
     return findElementByCssSelector(
         "button[id$='" + filterName + "-filter:filter-open-form:advanced-filter-command'] > span").getText();
+  }
+  
+  public List<WebElement> getRowsInTaskTable() {
+    return findElementById("task-widget:statistic-result-form:task-table_data").findElements(By.cssSelector("tr[role='row']"));
+  }
+  
+  public void clickApplyFilter() {
+    click(By.cssSelector("button[id$='task-widget:apply-filter']"));
+    waitAjaxIndicatorDisappear();
+    ensureNoBackgroundRequest();
+  }
+  
+  public void waitForTaskDataChangeToSpecificSize(int size) {
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
+      return getRowsInTaskTable().size() == size;
+    });
   }
 }
