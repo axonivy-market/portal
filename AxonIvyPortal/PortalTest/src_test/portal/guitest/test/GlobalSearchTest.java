@@ -23,4 +23,14 @@ public class GlobalSearchTest extends BaseTest{
     searchResultPage.openEmployeeTab();
     Assert.assertEquals(2, searchResultPage.countNumberOfEmployee());
   }
+  
+  @Test
+  public void testHideGlobalSearch() {
+    updatePortalSetting("SHOW_GLOBAL_SEARCH", "false");
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    homePage = new HomePage();
+    globalSearch = homePage.getGlobalSearch();
+    Assert.assertFalse(globalSearch.isPresent());
+    updatePortalSetting("SHOW_GLOBAL_SEARCH", "true");
+  }
 }
