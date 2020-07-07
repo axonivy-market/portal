@@ -3,8 +3,12 @@ package portal.guitest.common;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
+import org.openqa.selenium.By;
+
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
+
+import portal.guitest.page.TemplatePage;
 
 public final class WaitHelper {
 
@@ -35,4 +39,12 @@ public final class WaitHelper {
   public static void assertTrueWithWait(Supplier<Boolean> supplier) {
     assertTrueWithWait(supplier, 10);
   }
+
+  public static void waitForNavigation(TemplatePage page, Runnable navigationAcion) {
+    String viewState = page.findElementByCssSelector("input[name='javax.faces.ViewState']").getAttribute("value");
+    navigationAcion.run();
+    page.waitForElementPresent(By.cssSelector("input[value='" + viewState + "']"), false);
+
+  }
+
 }
