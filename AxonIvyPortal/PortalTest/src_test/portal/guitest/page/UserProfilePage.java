@@ -66,31 +66,31 @@ public class UserProfilePage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
   
-  public void switchOnSetting(String cssSelector) {
+  private void switchOnSetting(String cssSelector) {
     WebElement inputSwitch = findElementByCssSelector(cssSelector);
     if (!inputSwitch.getAttribute("class").contains("ui-inputswitch-checked")) {
-      inputSwitch.click();
+      click(inputSwitch);
     }
   }
   
-  public void switchOffSetting(String cssSelector) {
+  private void switchOffSetting(String cssSelector) {
     WebElement inputSwitch = findElementByCssSelector(cssSelector);
     if (inputSwitch.getAttribute("class").contains("ui-inputswitch-checked")) {
-      inputSwitch.click();
+      click(inputSwitch);
     }
   }
 
   public void selectDaysForDailySummary(List<Integer> indices) {
     WebElement checkbox = findElementByCssSelector(DAILY_SUMMARY_CHECKBOX_SELECTOR);
-    checkbox.click();
+    click(checkbox);
     for(int index : indices) {
       String selectedDayXPath = String.format(SELECTED_DAY_XPATH, index);
       WebElement selectedDayCheckbox = findChildElementByXpathExpression(checkbox, selectedDayXPath);
       if (!selectedDayCheckbox.getAttribute("class").contains("ui-state-active")) {
-        selectedDayCheckbox.click();
+        click(selectedDayCheckbox);
       }
     }
-    findElementByXpath(CHECKBOX_PANEL_CLOSE_BUTTON_XPATH).click();
+    click(findElementByXpath(CHECKBOX_PANEL_CLOSE_BUTTON_XPATH));
   }
 
   public void waitUntilSelectedDayUpdated() {
