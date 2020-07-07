@@ -15,12 +15,15 @@ import ch.ivy.addon.portalkit.bo.CaseColumnsConfiguration;
 import ch.ivy.addon.portalkit.bo.ColumnsConfiguration;
 import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.process.call.SubProcessCall;
 
 public class CleanUpObsoletedUserDataService {
 
@@ -29,12 +32,28 @@ public class CleanUpObsoletedUserDataService {
   private List<Long> userIds;
   private Long applicationId;
 
+  @SuppressWarnings("unchecked")
   public void cleanUpData() {
     StopWatch stopWatch = new StopWatch();
     stopWatch.start();
     Ivy.log().info("***** CLEAN_UP_JOB: Started Clean up data");
     try {
-      currentUsers = UserUtils.findUsers("", 0, -1, null, null);
+      if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
+        currentUsers =  IvyExecutor.executeAsSystem(() -> {
+          return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
+          .withStartName("findUsers")
+          .withParam("application", Ivy.request().getApplication())
+          .withParam("query", "")
+          .withParam("startIndex", 0)
+          .withParam("count", -1)
+          .withParam("fromRoles", null)
+          .withParam("excludedUsernames", null)
+          .call()
+          .get("users", List.class);
+        });
+      } else {
+        currentUsers = UserUtils.findUsers("", 0, -1, null, null);
+      }
     } catch (Exception e) {
       Ivy.log().error("CLEAN_UP_JOB: Can't get list of users", e);
       return;
