@@ -15,8 +15,15 @@ public final class WaitHelper {
    * @param supplier
    * @param durationInSeconds
    */
-  public static void assertTrueWithWait(Supplier<Boolean> supplier, int durationInSeconds) {
-    Awaitility.await().atMost(new Duration(durationInSeconds, TimeUnit.SECONDS)).until(() -> supplier.get());
+  private static void assertTrueWithWait(Supplier<Boolean> supplier, int durationInSeconds) {
+    Awaitility.await().atMost(new Duration(durationInSeconds, TimeUnit.SECONDS)).until(() -> {
+      try {
+        return supplier.get();
+      } catch (Exception e) {
+        System.out.println("Exception when assertTrueWithWait");
+      }
+      return false;
+    });
   }
 
   /**
@@ -26,6 +33,6 @@ public final class WaitHelper {
    * @param supplier
    */
   public static void assertTrueWithWait(Supplier<Boolean> supplier) {
-    Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> supplier.get());
+    assertTrueWithWait(supplier, 10);
   }
 }
