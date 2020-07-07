@@ -459,6 +459,10 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of Axon.ivy.
 
+Changes in 8.0.8
+----------------
+-  The ``SHOW_GLOBAL_SEARCH`` Portal setting is introduced to display/hide the global search feature.
+
 Changes in 8.0.3
 ----------------
 -  User Selection Component is introduced, refer to :ref:`User 
