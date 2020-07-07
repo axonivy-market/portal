@@ -151,7 +151,6 @@
 }
 
 .layout-wrapper .layout-main .layout-content {
-  height: calc(100vh - 58px);
   overflow-x: hidden;
 }
 
@@ -389,6 +388,7 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   max-height: 75vh;
+  width: 100%;
 }
 
 .ui-selectonelistbox.responsible-list-filter {
@@ -1435,9 +1435,15 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 }
 
 .filter-container .widget-title-mobile {
+  display: block;
   height: 10px;
   position: relative;
   padding: 0;
+  width: 40%;
+}
+
+.has-breadcrumb .filter-container .widget-title-mobile {
+  display: none;
 }
 
 .filter-container .widget-title-mobile .top-header-main-title {
@@ -1455,23 +1461,6 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
   padding: 0 .5em;
 }
 
-@media (max-width: 991px) {
-  .filter-container .widget-title-mobile {
-    width: 40%;
-  }
-    .filter-container .text-filter {
-    width: 60%;
-  }
-}
-
-@media (min-width: 992px) {
-  .filter-container .widget-title-mobile {
-    display: none;
-  }
-  .filter-container .text-filter {
-    width: fit-content;
-  }
-}
 .filter-selection-form {
   margin-right: 5px;
   padding: 0 !important;
@@ -1841,6 +1830,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   .save-filter-set-dialog {
     min-width: 96vw;
   }
+}
+
+.task-item-body .task-detail-general-card .state-cell.default-task-cell {
+  display: flex;
+  align-items: center;
 }
 /********************************** END TASK WIDGET **********************************/
 
@@ -2747,14 +2741,6 @@ padding: 0;
 }
 
 @media screen and (max-width: 40em) {
-  .absence-settings-dialog.ui-dialog .ui-dialog-content {
-    max-height: 90vh;
-  }
-
-  .absence-management .add-absence-panel {
-    width: 12%;
-  }
-
   .absence-management .show-absence-in-the-past-panel {
     width: 72%;
     padding-right: 0;
@@ -2804,13 +2790,13 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 /********************************** CHANGE PASSWORK DIALOG **********************************/
 .change-password-dialog {
-  min-width: 500px;
+  max-width: 500px;
+  min-width: 350px;
 }
 
 @media screen and (max-width: 40em) {
   .change-password-dialog {
-    top: 100px !important;
-    min-width: 96vw;
+    max-width: 96vw;
   }
 }
 /********************************** END CHANGE PASSWORK DIALOG **********************************/
@@ -3698,6 +3684,7 @@ body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-c
 .statistic-case-category-tree .ui-tree-container {
   height: 26rem;
   width: 100%;
+  max-width: 282px;
   overflow: auto !important;
 }
 
@@ -3830,6 +3817,15 @@ body .ui-widget-content.filter-name-overlay-panel {
   }
   .filter-widget-input.case-filter-component {
     padding-right: 35px !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .has-breadcrumb .text-filter {
+    width: 100% !important;
+  }
+  .text-filter {
+    width: 60% !important;
   }
 }
 
@@ -4185,6 +4181,14 @@ _:-ms-fullscreen, :root .content-link-history {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.task-detail-header .task-name {
+  display: flex;
+}
+
+.has-breadcrumb .task-detail-header .task-name {
+  display: none;
 }
 
 .task-name {

@@ -12,6 +12,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 import com.jayway.awaitility.core.ConditionTimeoutException;
 
+import portal.guitest.common.CaseState;
 import portal.guitest.common.WaitHelper;
 
 public class CaseWidgetPage extends TemplatePage {
@@ -371,4 +372,10 @@ public class CaseWidgetPage extends TemplatePage {
 	public void waitUntilCaseFilterDisplayed() {
 	  waitForElementDisplayed(By.id("case-widget:filter-container"), true);
 	}
+
+  public CaseState getCaseState(int caseIndex) {
+    List<WebElement> caseStateCells = findListElementsByCssSelector("span[id$=':case-state-cell']");
+    String stateClass = caseStateCells.get(caseIndex).findElement(By.className("fa")).getAttribute("class");
+    return CaseState.fromClass(stateClass.substring(stateClass.indexOf("case-state-")));
+  }
 }

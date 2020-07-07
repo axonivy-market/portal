@@ -290,7 +290,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public boolean isDeleteDocumentButtonPresented() {
-    return isElementDisplayed(findDeleteDocumentIcon());
+    return isElementDisplayed(By.cssSelector("a[id$='delete-file']"));
   }
   
   public void removeAttachmentInCaseDocument(String filename) {

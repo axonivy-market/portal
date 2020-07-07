@@ -215,7 +215,7 @@ public class StatisticWidgetPage extends TemplatePage {
   
   public void waitForAllChartLoaded() {
     ensureNoBackgroundRequest();
-    Sleeper.sleep(2000);//wait for last chart animation finish
+    Sleeper.sleep(5000);//wait for last chart animation finish
   }
   
   public WebElement getChartPanelByIndex(int index) {

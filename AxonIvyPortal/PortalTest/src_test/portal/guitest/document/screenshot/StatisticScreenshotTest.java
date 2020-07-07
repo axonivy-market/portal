@@ -4,10 +4,12 @@ import java.io.IOException;
 
 import org.junit.Test;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.WebElement;
 
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
@@ -47,7 +49,10 @@ public class StatisticScreenshotTest extends BaseTest {
     statisticWidgetPage.createTaskByPriorityChart();
     statisticWidgetPage.createTaskByExpiryChart();
     ScreenshotUtil.captureElementScreenshot(statisticWidgetPage.getChartCreationContainer(), ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "available-charts");
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(statisticWidgetPage.getCaseByFinishedTaskCreationDialog(), ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "chart-creation-dialog", new ScreenshotMargin(100, 100));
+    
+    WebElement chartCreationDialog = statisticWidgetPage.getCaseByFinishedTaskCreationDialog();
+    Sleeper.sleep(1000);//Wait for focus animation finish before capture screenshot
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(chartCreationDialog, ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "chart-creation-dialog", new ScreenshotMargin(100, 100));
     
     refreshPage();
     statisticWidgetPage.waitForChartCreationPageRendered();
