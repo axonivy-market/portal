@@ -1,5 +1,7 @@
 package portal.guitest.page;
 
+import static portal.guitest.common.WaitHelper.assertTrueWithWait;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -342,12 +344,7 @@ public class CaseWidgetPage extends TemplatePage {
     for (WebElement filter : saveFilters) {
       if (filter.getText().equals(filterName)) {
         click(filter);
-        waitAjaxIndicatorDisappear();
-        ensureNoBackgroundRequest();
-        refreshAndWaitElement("[id$='case-widget:filter-selection-form:filter-name'] > span");
-        Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(
-            () -> findElementByCssSelector("[id$='case-widget:filter-selection-form:filter-name'] > span")
-                .getText().contains(filterName));
+        assertTrueWithWait(() -> findElementByCssSelector(".filter-name").getText().equals(filterName));
         return;
       }
     }

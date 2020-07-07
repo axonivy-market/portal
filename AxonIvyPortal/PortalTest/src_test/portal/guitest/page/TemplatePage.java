@@ -1,5 +1,7 @@
 package portal.guitest.page;
 
+import static portal.guitest.common.WaitHelper.waitForNavigation;
+
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -252,13 +254,14 @@ public abstract class TemplatePage extends AbstractPage {
 
   public TaskWidgetPage openTaskList() {
     openMainMenu();
-    clickByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu");
+    waitForNavigation(this, () -> clickByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu"));
     waitForElementDisplayed(By.cssSelector("[id$='task-config-command']"), true);
     return new TaskWidgetPage();
   }
 
   public CaseWidgetPage openCaseList() {
-    return openMainMenu().selectCaseMenu();
+    waitForNavigation(this, () ->  openMainMenu().selectCaseMenu());
+    return new CaseWidgetPage();
   }
 
   public String getGlobalGrowlMessage() {
