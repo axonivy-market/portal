@@ -200,22 +200,19 @@ public class BaseTest {
       username = URLEncoder.encode(testAccount.getUsername(), "UTF-8");
       password = URLEncoder.encode(testAccount.getPassword(), "UTF-8");
 
-      AtomicBoolean isLoginSuccess = new AtomicBoolean(false);
       Awaitility.await().atMost(new Duration(60, TimeUnit.SECONDS)).until(() -> {
         try {
           redirectToRelativeLink(String.format(LOGIN_URL_PATTERN, username, password));
-          new HomePage() {
+          return new HomePage() {
             @Override
             protected long getTimeOutForLocator() {
               return 10L;
             }
-          }.isDisplayed();
-          isLoginSuccess.set(true);
+          }.findElementByCssSelector(".user-name").getText().equals(testAccount.getFullName());
         } catch (Exception e) {
           System.out.println("*****Login unsuccessfully. Try again if not timeout.");
         }
-        return isLoginSuccess.get();
-
+        return false;
       });
 
     } catch (UnsupportedEncodingException e) {
