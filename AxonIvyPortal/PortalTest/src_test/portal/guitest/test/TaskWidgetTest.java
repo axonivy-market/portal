@@ -19,6 +19,7 @@ import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.TestRole;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
@@ -90,7 +91,7 @@ public class TaskWidgetTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.expand();
     taskWidgetPage.filterTasksInExpandedModeBy("Annual Leave Request");
-    Assert.assertFalse(taskWidgetPage.isTaskStartEnabled(0));
+    WaitHelper.assertTrueWithWait(() -> !taskWidgetPage.isTaskStartEnabled(0));
     taskWidgetPage.filterTasksInExpandedModeBy("Sick Leave Request");
     Awaitility.waitAtMost(5, TimeUnit.SECONDS).until(() -> taskWidgetPage.isTaskStartEnabled(0));
   }
