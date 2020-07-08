@@ -30,6 +30,11 @@ are disabled by default.
    setting **CHAT_RESPONSE_TIMEOUT** a number less than Nginx timeout to
    make chat work properly.
 
+4. Each tab uses one long-polling request for chat. Browsers limit the number of long-polling request for one domain, max number could be six or more.
+   To handle this limitation, Portal introduces Global setting **CHAT_MAX_CONNECTION**, default value is 3. 
+   If fourth tab is open, chat in one inactive tab will be deactivated. If you select deactivated chat tab again, all chat information will be refreshed and chat is activated again, 
+   then chat in another tab will be deactivated.
+
 
 How to create a group chat
 --------------------------
