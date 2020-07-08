@@ -286,6 +286,41 @@ Now, if the deployment process is success, your workflows are imported and admin
 
 |deployment-result|
 
+AdHoc process
+-------------
+
+Axon.ivy Express also provides an AdHoc process feature. When Express is deployed, user can start an AdHoc process from any task. 
+Adhoc allows user to define more process steps and will be executed before current task.
+
+Start Adhoc by clicking on top right menu icon in your task then select :guilabel:`Start Adhoc`
+
+|adhoc-start|
+
+.. important:: 
+
+  Save your data on working task before start Adhoc
+..
+
+Then define your Adhoc process
+
+|adhoc-define|
+
+After start process, Adhoc tasks will be executed before for your current task
+
+|adhoc-first-task|
+
+Finish all created Adhoc tasks to return to original task
+
+|adhoc-finish|
+
+When start your original task, you will see summary about the Adhoc process for your task. 
+
+|adhoc-process-history|
+
+You can also view it again by clicking menu icon then select :guilabel:`Adhoc history`.
+
+|adhoc-show-history|
+
 
 .. |navigate-to-axon-ivy-express| image:: ../../screenshots/express/navigate-to-axon-ivy-express.png
 .. |start-link-for-axon-ivy-express| image:: ../../screenshots/express/start-link-for-axon-ivy-express.png
@@ -301,3 +336,9 @@ Now, if the deployment process is success, your workflows are imported and admin
 .. |import-selection| image:: ../../screenshots/express-management/import-selection.png
 .. |import-deployment| image:: ../../screenshots/express-management/import-deployment.png
 .. |deployment-result| image:: ../../screenshots/express-management/deployment-result.png
+.. |adhoc-start| image:: ../../screenshots/express/adhoc-start.png
+.. |adhoc-define| image:: ../../screenshots/express/adhoc-define.png
+.. |adhoc-first-task| image:: ../../screenshots/express/adhoc-first-task.png
+.. |adhoc-finish| image:: ../../screenshots/express/adhoc-finish.png
+.. |adhoc-process-history| image:: ../../screenshots/express/adhoc-process-history.png
+.. |adhoc-show-history| image:: ../../screenshots/express/adhoc-show-history.png
