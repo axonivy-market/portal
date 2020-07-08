@@ -213,8 +213,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
         elem.findElement(By.className("ui-chkbox")).click();
       }
     });
-    taskAnalysisWidgetPage.waitAjaxIndicatorDisappear();
-    assertTrue(taskAnalysisWidgetPage.isElementDisplayed(By.id("task-widget:statistic-result-form:task-table:case-owner")));
+    taskAnalysisWidgetPage.isElementDisplayed(By.id("task-widget:statistic-result-form:task-table:case-owner"));
     updatePortalSetting("ENABLE_CASE_OWNER", "false");
   }
 
