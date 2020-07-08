@@ -260,8 +260,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public CaseWidgetPage openCaseList() {
-    waitForNavigation(this, () ->  openMainMenu().selectCaseMenu());
-    return new CaseWidgetPage();
+    return openMainMenu().selectCaseMenu();
   }
 
   public String getGlobalGrowlMessage() {
