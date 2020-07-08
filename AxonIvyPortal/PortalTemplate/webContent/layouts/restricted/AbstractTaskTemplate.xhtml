@@ -57,7 +57,10 @@
                 <p:menuitem id="side-steps-menu" styleClass="empty-side-steps" global="false"
                   disabled="#{empty abstractTaskTemplateBean.sideStepList}" rendered="#{isSideStepDisabled}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" />
-
+                  
+                <p:menuitem id="no-adhoc" styleClass="empty-side-steps" global="false" rendered="#{!abstractTaskTemplateBean.hasExpressAdhocWF() or !task.isPersistent()}"
+                  disabled="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noAdhoc')}" /> 
+                  
                 <c:forEach var="sidestep" items="#{abstractTaskTemplateBean.sideStepList}" varStatus="taskStatus">
                   <p:menuitem id="side-step-item-#{taskStatus.index}" styleClass="side-step-item"
                     value="#{sidestep.getName()}" global="false"
@@ -114,6 +117,9 @@
                 <p:menuitem id="side-steps-menu" styleClass="empty-side-steps" global="false"
                   disabled="#{empty abstractTaskTemplateBean.sideStepList}" rendered="#{isSideStepDisabled}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" />
+                  
+                <p:menuitem id="no-adhoc" styleClass="empty-side-steps" global="false" rendered="#{!abstractTaskTemplateBean.hasExpressAdhocWF() or !task.isPersistent()}"
+                  disabled="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noAdhoc')}" /> 
     
                 <c:forEach var="sidestep" items="#{abstractTaskTemplateBean.sideStepList}" varStatus="taskStatus">
                   <p:menuitem id="side-step-item-#{taskStatus.index}" styleClass="side-step-item"
