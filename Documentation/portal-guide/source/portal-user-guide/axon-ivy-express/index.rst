@@ -282,3 +282,35 @@ After the deploy process is finished, an output log panel will be displayed, you
 Now, if the deployment process is success, your workflows are imported and administrator can check, edit them before they are ready to use by user.
 
 .. figure:: images/deployment-result.png
+
+AdHoc Process
+-------------
+
+Axon.ivy Express also provides an AdHoc process feature. When Express is deployed, user can start an AdHoc process from any task. 
+Adhoc allows user to define more process steps and will be executed before current task.
+
+Start Adhoc by clicking on top right menu icon in your task then select :guilabel:`Start Adhoc`
+
+.. figure:: images/adhoc-start.png
+
+.. important:: 
+
+  Save your data on working task before start Adhoc
+..
+
+Then define your Adhoc process
+
+.. figure:: images/adhoc-define.png
+
+After start process, Adhoc tasks will be executed before for your current task
+
+.. figure:: images/adhoc-task.png
+
+Finish all created Adhoc tasks to return to original task
+
+.. figure:: images/adhoc-finish.png
+
+When start your original task, you will see summary about the Adhoc process for your task. 
+You can also view it again by clicking menu icon then select :guilabel:`Adhoc history`.
+
+.. figure:: images/adhoc-process-history.png

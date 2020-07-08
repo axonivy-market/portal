@@ -56,7 +56,10 @@
                 <p:menuitem id="side-steps-menu" styleClass="empty-side-steps" global="false"
                   disabled="#{empty abstractTaskTemplateBean.sideStepList}" rendered="#{isSideStepDisabled}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" />
-
+			  
+				<p:menuitem id="no-adhoc" styleClass="empty-side-steps" global="false" rendered="#{!abstractTaskTemplateBean.hasExpressAdhocWF() or !task.isPersistent()}"
+                  disabled="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noAdhoc')}" /> 
+				
                 <c:forEach var="sidestep" items="#{abstractTaskTemplateBean.sideStepList}" varStatus="taskStatus">
                   <p:menuitem id="side-step-item-#{taskStatus.index}" styleClass="side-step-item"
                     value="#{sidestep.getName()}" global="false"
@@ -86,17 +89,16 @@
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="fa fa-info"
               onclick="PF('case-info-dialog').show()" rendered="#{!isHideCaseInfo}" />
             <p:spacer width="10" />
-            <p:commandButton id="horizontal-task-actions" type="button" rendered="#{!isHideTaskAction}"
+            <p:commandButton id="horizontal-task-actions" type="button" rendered="#{!isHideTaskAction}" 
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ui-icon-menu" />
           
             <h:form id="horizontal-task-action-form">
-              <p:menu id="horizontal-task-action-menu" overlay="true" trigger="horizontal-task-actions" my="right top" at="right bottom"
+              <p:menu id="horizontal-task-action-menu" overlay="true" trigger="horizontal-task-actions" my="right top" at="right bottom" 
                 styleClass="action-steps-panel task-actions-menu" rendered="#{!isHideTaskAction}">
                 <p:menuitem id="show-adhoc-history" rendered="#{abstractTaskTemplateBean.hasAdhocTasks(task)}"
                   icon="fa fa-history fa-2x" oncomplete="PF('adhoc-task-history-dialog').show()"
                   value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistory')}"
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistoryTooltip')}" />
-    
                 <p:menuitem id="start-adhoc"
                   rendered="#{empty isShowStartAdhocButton? (abstractTaskTemplateBean.hasExpressAdhocWF() and task.isPersistent()) : isShowStartAdhocButton}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHoc')}"
@@ -113,6 +115,9 @@
                 <p:menuitem id="side-steps-menu" styleClass="empty-side-steps" global="false"
                   disabled="#{empty abstractTaskTemplateBean.sideStepList}" rendered="#{isSideStepDisabled}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" />
+				
+				<p:menuitem id="no-adhoc" styleClass="empty-side-steps" global="false" rendered="#{!abstractTaskTemplateBean.hasExpressAdhocWF() or !task.isPersistent()}"
+                  disabled="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noAdhoc')}" />                  
     
                 <c:forEach var="sidestep" items="#{abstractTaskTemplateBean.sideStepList}" varStatus="taskStatus">
                   <p:menuitem id="side-step-item-#{taskStatus.index}" styleClass="side-step-item"
