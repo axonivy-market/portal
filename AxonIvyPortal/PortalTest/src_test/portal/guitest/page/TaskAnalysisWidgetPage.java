@@ -291,7 +291,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitForElementDisplayedByCssSelector("span[id$='owner-filter:filter-input-form:owner_panel']");
     waitForElementDisplayedByCssSelector("i[class*='fa-user']", 5);
     click(By.cssSelector("i[class*='fa-user']"));
-    waitAjaxIndicatorDisappear();
     click(By.cssSelector("button[id$='owner-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
   }
