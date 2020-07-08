@@ -88,6 +88,9 @@
                   disabled="#{empty deprecatedTaskTemplate7Bean.sideStepList}" rendered="#{isSideStepDisabled}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}" />
 
+                <p:menuitem id="no-adhoc" styleClass="empty-side-steps" global="false" rendered="#{!deprecatedTaskTemplate7Bean.hasExpressAdhocWF() or !task.isPersistent()}"
+                  disabled="true" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noAdhoc')}" /> 
+                
                 <c:forEach var="sidestep" items="#{deprecatedTaskTemplate7Bean.sideStepList}" varStatus="taskStatus">
                   <p:menuitem id="side-step-item-#{taskStatus.index}"
                     value="#{sidestep.getName()}" global="false"

@@ -1,5 +1,5 @@
-co: name={noSideSteps} description={} changed={2019-03-25 10:06:47 CET} changedby={lttung} visualorder={0} guid={15C5CD6D26F17237} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15D74087C2570E1B} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 08:57:14 CEST} validto={} changed={2017-08-10 08:57:14 CEST} changedby={t} properties={} id={}
-val: guid={169B41A28EA52ACB} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:47 CET} validto={} changed={2019-03-25 10:06:47 CET} changedby={lttung} properties={} id={}
-val: guid={15C5CD6D279A7A28} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-31 06:50:01 CEST} validto={} changed={2017-06-02 04:44:58 CEST} changedby={lttung} properties={} id={}
-val: guid={15C5CD6D289C9D51} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-31 06:50:01 CEST} validto={} changed={2017-06-02 04:44:54 CEST} changedby={lttung} properties={} id={}
+co: name={noSideSteps} description={} changed={2020-07-08 09:14:20 CEST} changedby={chnam} visualorder={0} guid={15C5CD6D26F17237} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15D74087C2570E1B} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-08-10 08:57:14 CEST} validto={} changed={2020-07-08 09:14:20 CEST} changedby={chnam} properties={} id={}
+val: guid={169B41A28EA52ACB} datatype={} isdefault={false} langid={es} description={} validfrom={2019-03-25 10:06:47 CET} validto={} changed={2020-07-08 09:14:20 CEST} changedby={chnam} properties={} id={}
+val: guid={15C5CD6D279A7A28} datatype={} isdefault={false} langid={de} description={} validfrom={2017-05-31 06:50:01 CEST} validto={} changed={2020-07-08 09:14:20 CEST} changedby={chnam} properties={} id={}
+val: guid={15C5CD6D289C9D51} datatype={} isdefault={true} langid={en} description={} validfrom={2017-05-31 06:50:01 CEST} validto={} changed={2020-07-08 09:14:20 CEST} changedby={chnam} properties={} id={}
