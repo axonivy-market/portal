@@ -107,6 +107,10 @@ public class TaskTemplatePage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
   
+  public void clickActionMenuButton() {
+    clickByCssSelector("#horizontal-task-actions");
+  }
+  
   public void clickAdhocOkButton() {
     clickByCssSelector("button[id$='start-adhoc-ok-button']");
     waitAjaxIndicatorDisappear();
