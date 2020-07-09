@@ -44,7 +44,7 @@ public final class WaitHelper {
     String viewState = page.findElementByCssSelector("input[name='javax.faces.ViewState']").getAttribute("value");
     navigationAcion.run();
     page.waitForElementPresent(By.cssSelector("input[value='" + viewState + "']"), false);
-
+    page.waitForElementDisplayed("id('global-search-component:global-search-data')", true);
   }
 
 }
