@@ -6,13 +6,10 @@ import static org.junit.Assert.assertTrue;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import com.jayway.awaitility.Awaitility;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
@@ -93,7 +90,7 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.filterTasksInExpandedModeBy("Annual Leave Request");
     WaitHelper.assertTrueWithWait(() -> !taskWidgetPage.isTaskStartEnabled(0));
     taskWidgetPage.filterTasksInExpandedModeBy("Sick Leave Request");
-    Awaitility.waitAtMost(5, TimeUnit.SECONDS).until(() -> taskWidgetPage.isTaskStartEnabled(0));
+    WaitHelper.assertTrueWithWait(() -> taskWidgetPage.isTaskStartEnabled(0));
   }
 
   @Test
