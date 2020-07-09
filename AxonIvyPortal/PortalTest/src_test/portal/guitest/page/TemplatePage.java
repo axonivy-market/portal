@@ -22,6 +22,7 @@ import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.UrlHelpers;
+import portal.guitest.common.WaitHelper;
 import vn.wawa.guitest.base.page.AbstractPage;
 
 public abstract class TemplatePage extends AbstractPage {
@@ -306,7 +307,7 @@ public abstract class TemplatePage extends AbstractPage {
   protected void refreshAndWaitElement(String cssSelector) {
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
       if ((findListElementsByCssSelector(cssSelector).isEmpty())) {
-        refresh();
+        WaitHelper.waitForNavigation(this, () -> refresh());
         return false;
       } else {
         return true;
