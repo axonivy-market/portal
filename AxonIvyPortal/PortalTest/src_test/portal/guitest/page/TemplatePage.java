@@ -293,6 +293,10 @@ public abstract class TemplatePage extends AbstractPage {
       type(getSearchInput(), keyword + Keys.ENTER);
       return new SearchResultPage();
     }
+    
+    public boolean isPresent() {
+      return isElementPresent(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR));
+    }
   }
   
   public void clickByCssSelector(String cssSelector) {
