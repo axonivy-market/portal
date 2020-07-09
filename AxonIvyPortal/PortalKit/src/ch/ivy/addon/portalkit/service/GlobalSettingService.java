@@ -101,6 +101,10 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
     return StringUtils.isBlank(settingValue) ? Boolean.valueOf(globalVariable.getDefaultValue()) : Boolean.valueOf(settingValue);
   }
   
+  public boolean isCaseOwnerEnabled() {
+    return findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_CASE_OWNER.toString());
+  }
+  
   @Override
   public GlobalSetting save(GlobalSetting entity) {
     GlobalSetting persistedGlobalSetting = getDao().findGlobalSetting(entity.getKey());
