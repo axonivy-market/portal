@@ -3,11 +3,13 @@ package ch.ivy.addon.portalkit.casefilter;
 import java.util.Collections;
 
 import ch.ivy.addon.portalkit.comparator.CaseFilterComparator;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 public class DefaultCaseFilterContainer extends CaseFilterContainer {
 
   protected CaseCreationDateFilter caseCreationDateFilter = new CaseCreationDateFilter();
   protected CaseCreatorFilter caseCreatorFilter = new CaseCreatorFilter();
+  protected CaseOwnerFilter caseOwnerFilter = new CaseOwnerFilter();
   protected CaseDescriptionFilter caseDescriptionFilter = new CaseDescriptionFilter();
   protected CaseFinishedDateFilter caseFinishedDateFilter = new CaseFinishedDateFilter();
   protected CaseCategoryFilter caseCategoryFilter = new CaseCategoryFilter();
@@ -16,6 +18,9 @@ public class DefaultCaseFilterContainer extends CaseFilterContainer {
     super();
     filters.add(caseCreationDateFilter);
     filters.add(caseCreatorFilter);
+    if (new GlobalSettingService().isCaseOwnerEnabled()) {
+      filters.add(caseOwnerFilter);
+    }
     filters.add(caseDescriptionFilter);
     filters.add(caseFinishedDateFilter);
     filters.add(caseCategoryFilter);
@@ -36,6 +41,14 @@ public class DefaultCaseFilterContainer extends CaseFilterContainer {
 
   public void setCaseCreatorFilter(CaseCreatorFilter caseCreatorFilter) {
     this.caseCreatorFilter = caseCreatorFilter;
+  }
+  
+  public CaseOwnerFilter getCaseOwnerFilter() {
+    return caseOwnerFilter;
+  }
+  
+  public void setCaseOwnerFilter(CaseOwnerFilter caseOwnerFilter) {
+    this.caseOwnerFilter = caseOwnerFilter;
   }
 
   public CaseDescriptionFilter getCaseDescriptionFilter() {

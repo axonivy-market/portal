@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
@@ -82,4 +83,7 @@ public class CaseBean implements Serializable {
     }
   }
 
+  public boolean isCaseOwnerEnabled() {
+    return new GlobalSettingService().isCaseOwnerEnabled();
+  }
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
@@ -43,7 +44,11 @@ public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
 
 	@Override
 	protected List<String> getDefaultColumns() {
-	  return Arrays.asList("NAME", "ID", "CREATOR", "CREATION_TIME", "FINISHED_TIME", CUSTOM_VARCHAR_FIELD1, CUSTOM_TIMESTAMP_FIELD1);
+    if (new GlobalSettingService().isCaseOwnerEnabled()) {
+      return Arrays.asList("NAME", "ID", "CREATOR", "OWNER", "CREATION_TIME", "FINISHED_TIME", CUSTOM_VARCHAR_FIELD1, CUSTOM_TIMESTAMP_FIELD1);
+    } else {
+      return Arrays.asList("NAME", "ID", "CREATOR", "CREATION_TIME", "FINISHED_TIME", CUSTOM_VARCHAR_FIELD1, CUSTOM_TIMESTAMP_FIELD1);
+    }
 	}
 	
 	@Override
