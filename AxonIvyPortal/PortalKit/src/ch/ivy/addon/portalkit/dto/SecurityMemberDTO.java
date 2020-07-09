@@ -78,7 +78,7 @@ public class SecurityMemberDTO {
   }
   
   public String getBriefDisplayNameWithState() {
-    if(this.isEnabled) {
+    if (this.isEnabled) {
       return this.displayName;
     }
     return Ivy.cms().co("/Labels/disabledUserPrefix") + " " + this.displayName; 
