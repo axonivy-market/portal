@@ -163,6 +163,8 @@ Migrate 8.x to 9.1
 
 7. We removed ``titleOnMobile`` parameter in ``TaskWidget.xhtml`` and ``CaseWidget.xhtml``. Please use parameter ``title`` instead.
 
+8. If administrator activate the ``ENABLE_CASE_OWNER`` Portal settings and there is a customized case list, customize this field to this case list, e.g. add filter, column configuration, header
+
 Migrate 8.0.1 to 8.0.2
 ----------------------
 
