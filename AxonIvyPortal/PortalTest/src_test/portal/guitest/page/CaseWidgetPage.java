@@ -172,6 +172,7 @@ public class CaseWidgetPage extends TemplatePage {
 		click(By.id(caseWidgetId + ":filter-add-action"));
 		WebElement filterSelectionElement = findElementById(caseWidgetId + ":filter-add-form:filter-selection");
 
+		System.out.println(filterSelectionElement.getTagName());
 		List<WebElement> elements = findChildElementsByTagName(filterSelectionElement, "LABEL");
 		for (WebElement element : elements) {
 			if (element.getText().equals(filterName)) {
@@ -374,5 +375,17 @@ public class CaseWidgetPage extends TemplatePage {
     List<WebElement> caseStateCells = findListElementsByCssSelector("span[id$=':case-state-cell']");
     String stateClass = caseStateCells.get(caseIndex).findElement(By.className("fa")).getAttribute("class");
     return CaseState.fromClass(stateClass.substring(stateClass.indexOf("case-state-")));
+  }
+  
+  public void filterByOwner(String text) {
+    click(By.cssSelector("button[id$='owner-filter:filter-open-form:advanced-filter-command']"));
+    WebElement owner = findElementByCssSelector("input[id$='owner-filter:filter-input-form:owner_input']");
+    type(owner, text);
+    waitAjaxIndicatorDisappear();
+    waitForElementDisplayedByCssSelector("i[class*='fa-user']");
+    click(By.cssSelector("i[class*='fa-user']"));
+    waitAjaxIndicatorDisappear();
+    click(By.cssSelector("button[id$='owner-filter:filter-input-form:update-command']"));
+    waitAjaxIndicatorDisappear();
   }
 }
