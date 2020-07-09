@@ -461,7 +461,7 @@ releases of Axon.ivy.
 
 Changes in 8.0.8
 ----------------
--  The ``SHOW_GLOBAL_SEARCH`` Portal setting is introduced to display/hide the global search feature.
+-  The ``SHOW_GLOBAL_SEARCH`` Portal setting is introduced to show/hide the global search feature.
 
 Changes in 8.0.3
 ----------------
