@@ -87,6 +87,13 @@ Process developer can set up global settings of Portal in file ``portal_settings
       # IFrame setting
       #EMBED_IN_FRAME = true
 
+      # Logged in user format, available values: USERNAME, DISPLAY_NAME, DISPLAY_NAME_USERNAME, USERNAME_DISPLAYNAME
+      #LOGGED_IN_USER_FORMAT = DISPLAY_NAME
+
+      # Task/case detail document component setting
+      #HIDE_TASK_DOCUMENT = false
+      #HIDE_CASE_DOCUMENT = false
+      
       # Others
       #HOMEPAGE_URL =
       #SHOW_ENVIRONMENT_INFO = false
@@ -98,13 +105,8 @@ Process developer can set up global settings of Portal in file ``portal_settings
       #HIDE_STATISTIC_WIDGET = false
       #ENABLE_USER_FAVORITES = true
       #DISPLAY_MESSAGE_AFTER_FINISH_TASK = true
-      
-      # Logged in user format, available values: USERNAME, DISPLAY_NAME, DISPLAY_NAME_USERNAME, USERNAME_DISPLAYNAME
-      #LOGGED_IN_USER_FORMAT = DISPLAY_NAME
+      #SHOW_GLOBAL_SEARCH = true
 
-      # Task/case detail document component setting
-      #HIDE_TASK_DOCUMENT = false
-      #HIDE_CASE_DOCUMENT = false
 
 This file already contains list of settings with their default values.
 These settings will be applied once you start Portal.
