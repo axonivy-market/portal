@@ -481,6 +481,10 @@ Changes in 9.1
 - Introduce the User Guide feature, using the ``SHOW_USER_GUIDE`` Portal Setting to activate/deactivate it, 
   and follow :ref:`Customize user guide <customization-portal-home-user-guide>` for your customization.
 
+Changes in 8.0.8
+----------------
+-  The ``SHOW_GLOBAL_SEARCH`` Portal setting is introduced to display/hide the global search feature.
+
 Changes in 8.0
 --------------
 
