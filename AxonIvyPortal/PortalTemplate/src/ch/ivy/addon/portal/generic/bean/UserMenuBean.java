@@ -48,6 +48,7 @@ public class UserMenuBean implements Serializable {
   private String targetPage = StringUtils.EMPTY;
 
   private String loggedInUser;
+  private boolean isShowGlobalSearch;
   GlobalSettingService globalSettingService;
 
   public String getLoggedInUser() {
@@ -78,6 +79,7 @@ public class UserMenuBean implements Serializable {
           break;
       }
     }
+    isShowGlobalSearch = Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_GLOBAL_SEARCH.toString()));
   }
 
   public boolean isShowServerInformation() {
@@ -94,6 +96,10 @@ public class UserMenuBean implements Serializable {
 
   public boolean isHiddenStatisticWidget() {
     return BooleanUtils.toBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET.toString()));
+  }
+  
+  public boolean getIsShowGlobalSearch() {
+    return isShowGlobalSearch;
   }
 
   public long getClientSideTimeout() {
