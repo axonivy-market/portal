@@ -53,8 +53,8 @@ public class CaseOwnerFilter extends CaseFilter {
       return ALL;
     }
     
-    String ownerName = owner.getDisplayName() + " (" + owner.getName() + ")";
-    return owner.isEnabled() ? ownerName : Ivy.cms().co("/Labels/disabledUserPrefix") + " " + ownerName;
+    String ownerName = String.format("%s (%s)", owner.getDisplayName(), owner.getName());
+    return owner.isEnabled() ? ownerName : String.format("%s %s", Ivy.cms().co("/Labels/disabledUserPrefix"), ownerName);
   }
 
   public SecurityMemberDTO getSelectedOwner() {
