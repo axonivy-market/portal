@@ -63,6 +63,7 @@
         <extensions>true</extensions>
         <configuration>
           <encoding>UTF-8</encoding>
+          <compilerWarnings>false</compilerWarnings>
         </configuration>
         <executions>
           <execution>

@@ -60,6 +60,9 @@
         <artifactId>project-build-plugin</artifactId>
         <version>${build.plugin.version}</version>
         <extensions>true</extensions>
+        <configuration>
+          <compilerWarnings>false</compilerWarnings>
+        </configuration>
       </plugin>
       <!-- for GUI test -->
       <plugin>
