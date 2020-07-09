@@ -71,6 +71,8 @@
       <f:event type="preRenderView"
         listener="#{facesContext.externalContext.response.setHeader('Cache-Control', 'no-cache, no-store')}" />
         
+      <c:set var="showGlobalSearch" value="#{userMenuBean.isShowGlobalSearch}" />
+        
       <div id="portal-template-header">
         <ic:ch.ivy.addon.portalkit.component.PageHeader />
       </div>
@@ -80,11 +82,11 @@
           <c:choose>
             <c:when test="#{isNotRequiredLogin}">
               <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu startMethod="StartNotRequiredLogin" id="user-menu-without-login" isWorkingOnATask="#{isWorkingOnATask}" 
-                showGlobalSearch="true" task="#{task}" />
+                showGlobalSearch="#{showGlobalSearch}" task="#{task}" />
             </c:when>
             <c:otherwise>
               <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu id="user-menu-required-login" isWorkingOnATask="#{isWorkingOnATask}" 
-                showGlobalSearch="true" task="#{task}" />
+                showGlobalSearch="#{showGlobalSearch}" task="#{task}" />
             </c:otherwise>
           </c:choose>
         </div>
@@ -109,7 +111,7 @@
                 <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
                 <ui:param name="isNotRequiredLogin" value="#{isNotRequiredLogin}" />
                 <ui:param name="hasMainMenu" value="#{empty hasMainMenu ? true : hasMainMenu}" />
-                <ui:param name="showGlobalSearch" value="true" />
+                <ui:param name="showGlobalSearch" value="#{showGlobalSearch}" />
                 <ui:param name="enablesChat" value="#{enablesChat}" />
                 <ui:param name="viewName" value="#{viewName}" />
                 <ui:param name="case" value="#{case}" />
