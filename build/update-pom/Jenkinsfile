@@ -4,7 +4,12 @@ pipeline {
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
   }
-  
+
+  tools { 
+      maven '3.6' 
+      jdk '11' 
+  }
+
   parameters {
       string(name: 'buildPluginVersion', defaultValue: '8.0.4', description: 'Axon.ivy build plugin version of all pom will be updated to.')
       string(name: 'ivyEngineVersion', defaultValue: '9.1.0', description: 'Axon.ivy engine version of all pom will be updated to.')
@@ -42,17 +47,24 @@ pipeline {
             git push origin ${env.BRANCH_NAME}
           """
           echo "====================Cache engine in local repository===================="
-          bat '''
-            mvn clean compile -f AxonIvyPortal/PortalStyle/pom.xml -Divy.engine.directory=C:/Users/wawa/.m2/repository/.cache/ivy/%ivyEngineVersion% %engineDownloadURL%
-          '''
-          node('portal-slave') {
-            bat '''
-              mvn clean compile -f AxonIvyPortal/PortalStyle/pom.xml -Divy.engine.directory=C:/Users/wawa/.m2/repository/.cache/ivy/%ivyEngineVersion% %engineDownloadURL%
-            '''
-          }
+          cacheEngine()
+        }
+      }
+    }
 
+    stage('cache-engine-on-performance-server') {
+      agent {label 'portal-slave'}
+      steps {
+        script {
+          cacheEngine()
         }
       }
     }
   }
+}
+
+def cacheEngine() {
+  bat '''
+    mvn clean compile -f AxonIvyPortal/PortalStyle/pom.xml -Divy.engine.directory=C:/Users/wawa/.m2/repository/.cache/ivy/%ivyEngineVersion% %engineDownloadURL%
+  '''
 }
