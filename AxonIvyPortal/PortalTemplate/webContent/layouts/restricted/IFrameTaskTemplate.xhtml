@@ -16,6 +16,7 @@
     <!-- isHideCaseInfo: hide case info button, false (default) or true -->
     <!-- isHideTaskName: hide task name, false (default) or true -->
     <!-- isHideTaskAction: hide task action button, false (default) or true -->
+    <!-- isWorkingOnATask: working on a task in order to display warning if leave page, false or true (default) -->
     <!-- processChainDirection: VERTICAL or HORIZONTAL (default) -->
     <!-- processChainShape: LINE or CIRCLE (default) -->
     <!-- announcementInvisible: false or true (default) -->
@@ -41,6 +42,7 @@
     <!--   window.isHideCaseInfo = false; -->
     <!--   window.isHideTaskName = false; -->
     <!--   window.isHideTaskAction = false; -->
+    <!--   window.isWorkingOnATask = false; -->
     <!--   window.processChainDirection = "VERTICAL"; -->
     <!--   window.processChainShape = "LINE"; -->
     <!--   window.announcementInvisible = false; -->
@@ -55,6 +57,7 @@
     <ui:param name="isHideCaseInfo" value="#{iFrameTaskTemplateBean.isHideCaseInfo}" />
     <ui:param name="isHideTaskName" value="#{iFrameTaskTemplateBean.isHideTaskName}" />
     <ui:param name="isHideTaskAction" value="#{iFrameTaskTemplateBean.isHideTaskAction}" />
+    <ui:param name="isWorkingOnATask" value="#{iFrameTaskTemplateBean.isWorkingOnATask}" />
     <ui:param name="processChainDirection" value="#{iFrameTaskTemplateBean.processChainDirection}" />
     <ui:param name="processChainShape" value="#{iFrameTaskTemplateBean.processChainShape}" />
     <ui:param name="announcementContainerStyleClass" value="u-hidden" />
@@ -66,7 +69,7 @@
         <p:remoteCommand name="redirectToEndPageCommand" actionListener="#{iFrameTaskTemplateBean.navigateToEndPage()}" />
         <p:remoteCommand name="redirectToUrlCommand" actionListener="#{iFrameTaskTemplateBean.navigateToUrl()}" />
         <p:remoteCommand name="getDataFromIFrame" actionListener="#{iFrameTaskTemplateBean.getDataFromIFrame()}"
-          update="@([id$='header-container']) @([id$='task-leave-warning-dialog']) @([id$='task-leave-warning-component'])" 
+          update="@([id$='header-container']) @([id$='task-leave-warning-dialog']) @([id$='task-leave-warning-component']) @([id$='left-menu']) @([id$='logout-setting'])" 
           oncomplete="resizeIFrame();updateContentContainerClass()" global="false" />
       </h:form>
 

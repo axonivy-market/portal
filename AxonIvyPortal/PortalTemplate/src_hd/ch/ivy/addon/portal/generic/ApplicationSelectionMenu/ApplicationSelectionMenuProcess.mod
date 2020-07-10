@@ -66,6 +66,9 @@ As0 @GridStep f19 '' #zField
 As0 @PushWFArc f13 '' #zField
 As0 @PushWFArc f20 '' #zField
 As0 @PushWFArc f30 '' #zField
+As0 @UdMethod f32 '' #zField
+As0 @UdProcessEnd f36 '' #zField
+As0 @PushWFArc f39 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f67 actionTable 'out=in;
 ' #txt
@@ -141,15 +144,13 @@ dialog</name>
 As0 f83 960 266 128 44 -42 -16 #rect
 As0 f83 @|StepIcon #fIcon
 As0 f87 guid 15FB36E87031CAD2 #txt
-As0 f87 method start(String) #txt
-As0 f87 inParameterDecl '<String isWorkingOnATask> param;' #txt
-As0 f87 inParameterMapAction 'out.isWorkingOnATask=Boolean.parseBoolean(param.isWorkingOnATask);
-' #txt
+As0 f87 method start() #txt
+As0 f87 inParameterDecl '<> param;' #txt
 As0 f87 outParameterDecl '<> result;' #txt
 As0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(String)</name>
+        <name>start()</name>
     </language>
 </elementInfo>
 ' #txt
@@ -529,6 +530,24 @@ As0 f20 1 0.25 0 0 #arcLabel
 As0 f30 704 174 850 192 #arcP
 As0 f30 1 704 192 #addKink
 As0 f30 1 0.24741320293901495 0 0 #arcLabel
+As0 f32 guid 173366F028A863C4 #txt
+As0 f32 method init(Boolean) #txt
+As0 f32 inParameterDecl '<Boolean isWorkingOnATask> param;' #txt
+As0 f32 inParameterMapAction 'out.isWorkingOnATask=param.isWorkingOnATask;
+' #txt
+As0 f32 outParameterDecl '<> result;' #txt
+As0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>init(Boolean)</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f32 115 627 26 26 -23 15 #rect
+As0 f32 @|UdMethodIcon #fIcon
+As0 f36 275 627 26 26 0 12 #rect
+As0 f36 @|UdProcessEndIcon #fIcon
+As0 f39 141 640 275 640 #arcP
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -611,3 +630,5 @@ As0 f91 mainOut f20 tail #connect
 As0 f20 head f19 mainIn #connect
 As0 f19 mainOut f30 tail #connect
 As0 f30 head f98 in #connect
+As0 f32 mainOut f39 tail #connect
+As0 f39 head f36 mainIn #connect
