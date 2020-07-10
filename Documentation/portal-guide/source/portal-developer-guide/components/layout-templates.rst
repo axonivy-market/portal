@@ -113,6 +113,7 @@ Inside your UI, you can configure these parameters which will be rendered by the
 		window.isHideTaskName= false;
 		window.isHideTaskAction = false;
 		window.isHideCaseInfo = false;
+		window.isWorkingOnATask = false;
 		window.processChainDirection = "VERTICAL";
 		window.processChainShape = "LINE";
 		window.announcementInvisible = false;
