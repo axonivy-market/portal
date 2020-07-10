@@ -78,7 +78,7 @@
       </div>
 
       <div class="layout-wrapper js-layout-wrapper #{guestPreferences.orientationRTL ? 'layout-rtl' : ''} #{showMainArea eq true ? '' : 'u-invisibility'}">
-        <div class="layout-sidebar #{guestPreferences.darkMenu ? 'layout-sidebar-dark' : ''} #{currentPage} left-sidebar-color js-left-sidebar" id="left-menu">
+        <h:panelGroup layout="block" styleClass="layout-sidebar #{guestPreferences.darkMenu ? 'layout-sidebar-dark' : ''} #{currentPage} left-sidebar-color js-left-sidebar" id="left-menu">
           <c:choose>
             <c:when test="#{isNotRequiredLogin}">
               <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu startMethod="StartNotRequiredLogin" id="user-menu-without-login" isWorkingOnATask="#{isWorkingOnATask}" 
@@ -89,7 +89,7 @@
                 showGlobalSearch="#{showGlobalSearch}" task="#{task}" />
             </c:otherwise>
           </c:choose>
-        </div>
+        </h:panelGroup>
         
         <ui:insert name="mainMenuGuide">
           <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="left-menu-guide-component" targetComponent="left-menu"
