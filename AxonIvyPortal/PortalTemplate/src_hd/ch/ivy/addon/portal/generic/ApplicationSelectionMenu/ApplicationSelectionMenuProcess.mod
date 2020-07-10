@@ -74,6 +74,9 @@ As0 @UdProcessEnd f41 '' #zField
 As0 @GridStep f43 '' #zField
 As0 @PushWFArc f44 '' #zField
 As0 @PushWFArc f42 '' #zField
+As0 @UdMethod f45 '' #zField
+As0 @UdProcessEnd f46 '' #zField
+As0 @PushWFArc f47 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f67 actionTable 'out=in;
 ' #txt
@@ -149,15 +152,13 @@ dialog</name>
 As0 f83 960 266 128 44 -42 -16 #rect
 As0 f83 @|StepIcon #fIcon
 As0 f87 guid 15FB36E87031CAD2 #txt
-As0 f87 method start(String) #txt
-As0 f87 inParameterDecl '<String isWorkingOnATask> param;' #txt
-As0 f87 inParameterMapAction 'out.isWorkingOnATask=Boolean.parseBoolean(param.isWorkingOnATask);
-' #txt
+As0 f87 method start() #txt
+As0 f87 inParameterDecl '<> param;' #txt
 As0 f87 outParameterDecl '<> result;' #txt
 As0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(String)</name>
+        <name>start()</name>
     </language>
 </elementInfo>
 ' #txt
@@ -589,6 +590,24 @@ As0 f43 1480 106 112 44 -43 -8 #rect
 As0 f43 @|StepIcon #fIcon
 As0 f44 1536 45 1536 106 #arcP
 As0 f42 1536 150 1536 211 #arcP
+As0 f45 guid 1734B654FF31BF39 #txt
+As0 f45 method init(Boolean) #txt
+As0 f45 inParameterDecl '<Boolean isWorkingOnATask> param;' #txt
+As0 f45 inParameterMapAction 'out.isWorkingOnATask=param.isWorkingOnATask;
+' #txt
+As0 f45 outParameterDecl '<> result;' #txt
+As0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>init(Boolean)</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f45 83 659 26 26 -23 15 #rect
+As0 f45 @|UdMethodIcon #fIcon
+As0 f46 307 659 26 26 0 12 #rect
+As0 f46 @|UdProcessEndIcon #fIcon
+As0 f47 109 672 307 672 #arcP
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -679,3 +698,5 @@ As0 f2 mainOut f44 tail #connect
 As0 f44 head f43 mainIn #connect
 As0 f43 mainOut f42 tail #connect
 As0 f42 head f41 mainIn #connect
+As0 f45 mainOut f47 tail #connect
+As0 f47 head f46 mainIn #connect
