@@ -36,7 +36,7 @@ public class AdhocScreenshotTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(1);
     taskTemplatePage.clickActionMenuButton();
-    ScreenshotUtil.resizeBrowser(new Dimension(1000, 580));
+    ScreenshotUtil.resizeBrowser(new Dimension(1200, 580));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "adhoc-start");
     taskTemplatePage.clickAdhocCreationButton();
     taskTemplatePage.clickAdhocOkButton();
