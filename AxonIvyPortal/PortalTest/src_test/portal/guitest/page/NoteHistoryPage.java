@@ -1,11 +1,19 @@
 package portal.guitest.page;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class NoteHistoryPage extends TemplatePage {
 
   private static final String TABLE_ROWS_PATH = "div[id*='notes-table'] table>tbody>tr";
+  
+  @Override
+  protected String getLoadedLocator() {
+    return "id('form:notes-table')";
+  }
 
   public int countNotes() {
     waitForElementDisplayed(By.cssSelector("div[id*='notes-table']"), true);
@@ -14,7 +22,7 @@ public class NoteHistoryPage extends TemplatePage {
 
   public String getNoteContentOfRow(int index) {
     WebElement firstRow = driver.findElements(By.cssSelector(TABLE_ROWS_PATH)).get(index);
-    return firstRow.findElements(By.xpath("td")).get(2).getText();
+    return firstRow.findElements(By.xpath("td")).get(0).getText();
   }
 
   public String getCaseName() {
@@ -27,5 +35,10 @@ public class NoteHistoryPage extends TemplatePage {
   
   public String getCaseId() {
     return findElementById("form:case-id").getText();
+  }
+  
+  public List<String> getNoteAuthors() {
+    List<WebElement> noteAuthorElements = findListElementsByCssSelector("td.note-history-fullname-column");
+    return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 }
