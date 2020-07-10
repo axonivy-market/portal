@@ -34,27 +34,35 @@ public class HistoryServiceTest {
 
   @Test
   public void testCreateHistoriesFromINotesAndITasks() {
-    HistoryService historyService = new HistoryService();
-    List<History> histories = historyService.getHistories(createITasks(), createINotes());
-    Assert.assertEquals(2, histories.size());
-    Assert.assertEquals(History.HistoryType.NOTE, histories.get(0).getType());
-    Assert.assertEquals(History.HistoryType.TASK, histories.get(1).getType());
-  }
-
-  @Test
-  public void testCreateHistoriesFromINotesAndITasksExcludingTechnicalNotes() {
     mockStatic(UserUtils.class);
-    boolean excludeTechnicalNote = true;
     List<ITask> tasks = new ArrayList<>(createTechnicalITasks());
     tasks.addAll(createITasks());
     List<INote> notes = new ArrayList<>(createTechnicalINotes());
     notes.addAll(createINotes());
     HistoryService historyService = new HistoryService();
-    List<History> histories = historyService.getHistories(tasks, notes, excludeTechnicalNote);
-    System.out.println(histories.size());
+    List<History> histories = historyService.getHistories(tasks, notes, true, true);
     Assert.assertEquals(2, histories.size());
     Assert.assertEquals(History.HistoryType.NOTE, histories.get(0).getType());
     Assert.assertEquals(History.HistoryType.TASK, histories.get(1).getType());
+    
+    histories = historyService.getHistories(tasks, notes, true, false);
+    Assert.assertEquals(3, histories.size());
+    Assert.assertEquals(History.HistoryType.NOTE, histories.get(0).getType());
+    Assert.assertEquals(History.HistoryType.NOTE, histories.get(1).getType());
+    Assert.assertEquals(History.HistoryType.TASK, histories.get(2).getType());
+    
+    histories = historyService.getHistories(tasks, notes, false, true);
+    Assert.assertEquals(3, histories.size());
+    Assert.assertEquals(History.HistoryType.NOTE, histories.get(0).getType());
+    Assert.assertEquals(History.HistoryType.TASK, histories.get(1).getType());
+    Assert.assertEquals(History.HistoryType.TASK, histories.get(2).getType());
+    
+    histories = historyService.getHistories(tasks, notes, false, false);
+    Assert.assertEquals(4, histories.size());
+    Assert.assertEquals(History.HistoryType.NOTE, histories.get(0).getType());
+    Assert.assertEquals(History.HistoryType.NOTE, histories.get(1).getType());
+    Assert.assertEquals(History.HistoryType.TASK, histories.get(2).getType());
+    Assert.assertEquals(History.HistoryType.TASK, histories.get(3).getType());
   }
 
   private List<ITask> createITasks() {

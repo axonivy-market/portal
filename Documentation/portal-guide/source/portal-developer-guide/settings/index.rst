@@ -65,6 +65,10 @@ Process developer can set up global settings of Portal in file ``portal_settings
       #HIDE_SYSTEM_TASKS_FROM_HISTORY = true
       #HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR = false
 
+      #System notes visibility
+      #HIDE_SYSTEM_NOTES_FROM_HISTORY = true
+      #HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR = false
+
       # Portal chat settings
       #ENABLE_GROUP_CHAT = false
       #ENABLE_PRIVATE_CHAT = false
