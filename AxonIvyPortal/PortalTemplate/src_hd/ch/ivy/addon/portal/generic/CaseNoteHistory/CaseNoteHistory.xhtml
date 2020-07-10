@@ -13,13 +13,13 @@
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" />
           </div>
           <div class="ui-g-10 ui-sm-9">
-            <h:outputText value="#{data.ivyCase.name}" />
+            <h:outputText id="case-name" value="#{data.ivyCase.name}" />
           </div>
           <div class="ui-g-2 ui-sm-3">
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
           </div>
           <div class="ui-g-10 ui-sm-9">
-            <h:outputText value="#{data.ivyCase.id}" />
+            <h:outputText id="case-id" value="#{data.ivyCase.id}" />
           </div>
           <div class="ui-g-2 ui-sm-3">
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
@@ -31,7 +31,7 @@
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" />
           </div>
           <div class="ui-g-10 ui-sm-9">
-            <h:outputText value="#{caseBean.getState(data.ivyCase)}" />
+            <h:outputText id="case-state" value="#{caseBean.getState(data.ivyCase)}" />
           </div>
         </div>
         
