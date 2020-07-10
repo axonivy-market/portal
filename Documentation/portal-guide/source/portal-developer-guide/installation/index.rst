@@ -463,6 +463,9 @@ Changes in 8.0.8
 ----------------
 -  The ``SHOW_GLOBAL_SEARCH`` Portal setting is introduced to show/hide the global search feature.
 
+-  We introduce 2 new Portal settings: ``HIDE_SYSTEM_NOTES_FROM_HISTORY`` and ``HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR``.
+   These variables control visibility of System notes for normal and admin users.
+
 Changes in 8.0.3
 ----------------
 -  User Selection Component is introduced, refer to :ref:`User 

@@ -67,8 +67,8 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 ICase iCase = in.task.getCase().getBusinessCase();
 GlobalSettingService globalSettingService = new GlobalSettingService();
-boolean excludeTechnicalHistory = globalSettingService.findHideSystemTasksFromHistorySettingValue();
-out.notes = CaseUtils.findNotes(iCase, excludeTechnicalHistory);
+boolean excludeSystemNotes = globalSettingService.findHideSystemNotesFromHistorySettingValue();
+out.notes = CaseUtils.findNotes(iCase, excludeSystemNotes);
 ' #txt
 Ts0 f4 security system #txt
 Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

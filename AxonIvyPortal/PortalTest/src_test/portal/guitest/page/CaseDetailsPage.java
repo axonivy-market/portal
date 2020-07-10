@@ -268,6 +268,11 @@ public class CaseDetailsPage extends TemplatePage {
         findElementByCssSelector("#case-item-details\\:case-detail-title-form\\:case-name-edit-inplace_display");
     return selectedCaseNameElement.getText();
   }
+  
+  public String getCaseId() {
+    return findElementById("general-information:case-id").getText();
+  }
+  
   public boolean isAddNoteButtonDisplayed() {
     return isElementDisplayedById("case-item-details:case-histories:add-note-command");
   }
