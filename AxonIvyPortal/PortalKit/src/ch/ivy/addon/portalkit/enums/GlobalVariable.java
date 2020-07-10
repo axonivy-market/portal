@@ -19,6 +19,8 @@ public enum GlobalVariable {
   CLIENT_SIDE_TIMEOUT(GlobalVariableType.NUMBER, "clientSideTimeoutNote"),
   HIDE_SYSTEM_TASKS_FROM_HISTORY(GlobalVariableType.SELECTION, Option.TRUE.toString(), "hideSystemTasksFromHistory"),
   HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideSystemTasksFromHistoryAdministrator"),
+  HIDE_SYSTEM_NOTES_FROM_HISTORY(GlobalVariableType.SELECTION, Option.TRUE.toString(), "hideSystemNotesFromHistory"),
+  HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideSystemNotesFromHistoryAdministrator"),
   ENABLE_USER_FAVORITES(GlobalVariableType.SELECTION, Option.TRUE.toString(), "enableUserFavorites"),
   HIDE_STATISTIC_WIDGET(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideStatisticWidget"),
   DISPLAY_MESSAGE_AFTER_FINISH_TASK(GlobalVariableType.SELECTION, Option.TRUE.toString(), "displayMessageAfterFinishOrLeaveTask"),

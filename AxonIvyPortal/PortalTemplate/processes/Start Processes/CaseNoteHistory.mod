@@ -41,8 +41,9 @@ for(ITask task : in.internalCase.getTasks()) {
 
 HistoryService historyService = new HistoryService();
 GlobalSettingService globalSettingService = new GlobalSettingService();
-boolean excludeTechnicalHistory = globalSettingService.findHideSystemTasksFromHistorySettingValue();
-in.histories = historyService.getHistories(finishedTasks, in.internalCase.getNotes(), excludeTechnicalHistory);' #txt
+boolean excludeSystemTasks = globalSettingService.findHideSystemTasksFromHistorySettingValue();
+boolean excludeSystemNotes = globalSettingService.findHideSystemNotesFromHistorySettingValue();
+in.histories = historyService.getHistories(finishedTasks, in.internalCase.getNotes(), excludeSystemTasks, excludeSystemNotes);' #txt
 Cy0 f17 security system #txt
 Cy0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

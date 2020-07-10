@@ -29,6 +29,7 @@ public class TaskTemplatePage extends TemplatePage {
     findElementByCssSelector("textarea[id$='note-content']").sendKeys(content);
     clickByCssSelector("button[id$='save-add-note-command']");
     waitAjaxIndicatorDisappear();
+    waitForElementDisplayed(By.cssSelector("div[id$='add-note-dialog']"), false);
   }
 
   public void openDocumentUploadingDialog() {
@@ -98,7 +99,11 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public String getCaseName(){
-    return findElementById("case-item:case-name-component:case-header-name-cell").getText();
+    return findElementByCssSelector("span[id$='case-detail-title-form:case-name-edit-inplace_display']").getText();
+  }
+  
+  public String getCaseId(){
+    return findElementById("general-information:case-id").getText();
   }
   
   public void clickAdhocCreationButton() {

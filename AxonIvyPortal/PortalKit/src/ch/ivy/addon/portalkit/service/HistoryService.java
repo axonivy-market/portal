@@ -19,19 +19,9 @@ import ch.ivyteam.ivy.workflow.ITask;
 
 public class HistoryService {
 
-  public List<History> getHistories(List<ITask> tasks, List<INote> notes, boolean excludeTechnicalHistory) {
-    return excludeTechnicalHistory ? getNonTechnicalHistories(tasks, notes) : getHistories(tasks, notes);
-  }
-
-  public List<History> getHistories(List<ITask> tasks, List<INote> notes) {
-    List<History> historiesRelatedToTasks = createHistoriesFromITasks(tasks);
-    List<History> historiesRelatedToNotes = createToHistoriesFromINotes(notes);
-    return sortHistoriesByTimeStampDescending(Arrays.asList(historiesRelatedToTasks, historiesRelatedToNotes));
-  }
-
-  public List<History> getNonTechnicalHistories(List<ITask> tasks, List<INote> notes) {
-    List<History> historiesRelatedToTasks = createHistoriesFromNonTechnicalITasks(tasks);
-    List<History> historiesRelatedToNotes = createToHistoriesFromNonTechnicalINotes(notes);
+  public List<History> getHistories(List<ITask> tasks, List<INote> notes, boolean excludeSystemTasks, boolean excludeSystemNotes) {
+    List<History> historiesRelatedToTasks = createHistoriesFromITasks(tasks, excludeSystemTasks);
+    List<History> historiesRelatedToNotes = createHistoriesFromINotes(notes, excludeSystemNotes);
     return sortHistoriesByTimeStampDescending(Arrays.asList(historiesRelatedToTasks, historiesRelatedToNotes));
   }
 
@@ -44,24 +34,25 @@ public class HistoryService {
     return allHistories;
   }
 
-  private List<History> createHistoriesFromITasks(List<ITask> tasks) {
-    return tasks.stream().filter(task -> task.customFields().stringField(AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).getOrNull() == null).map(this::createHistoryFrom).collect(Collectors.toList());
-  }
-
-  private List<History> createHistoriesFromNonTechnicalITasks(List<ITask> tasks) {
+  private List<History> createHistoriesFromITasks(List<ITask> tasks, boolean excludeSystemTasks) {
+    if(excludeSystemTasks) {
+      return tasks.stream()
+          .filter(task -> !StringUtils.equals(task.getWorkerUserName(), ISecurityConstants.SYSTEM_USER_NAME))
+          .filter(task -> task.customFields().stringField(AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).getOrNull() == null)
+          .map(this::createHistoryFrom).collect(Collectors.toList());
+    }
     return tasks.stream()
-        .filter(task -> !StringUtils.equals(task.getWorkerUserName(), ISecurityConstants.SYSTEM_USER_NAME))
         .filter(task -> task.customFields().stringField(AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).getOrNull() == null)
         .map(this::createHistoryFrom).collect(Collectors.toList());
   }
 
-  private List<History> createToHistoriesFromINotes(List<INote> notes) {
+  private List<History> createHistoriesFromINotes(List<INote> notes, boolean excludeSystemNotes) {
+    if(excludeSystemNotes) {
+      return notes.stream()
+          .filter(note -> !StringUtils.equals(note.getWritterName(), ISecurityConstants.SYSTEM_USER_NAME))
+          .map(this::createHistoryFrom).collect(Collectors.toList());
+    }
     return notes.stream().map(this::createHistoryFrom).collect(Collectors.toList());
-  }
-
-  private List<History> createToHistoriesFromNonTechnicalINotes(List<INote> notes) {
-    return notes.stream().filter(note -> !StringUtils.equals(note.getWritterName(), ISecurityConstants.SYSTEM_USER_NAME))
-        .map(this::createHistoryFrom).collect(Collectors.toList());
   }
 
   private History createHistoryFrom(ITask task) {

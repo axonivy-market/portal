@@ -101,6 +101,13 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
     return StringUtils.isBlank(settingValue) ? Boolean.valueOf(globalVariable.getDefaultValue()) : Boolean.valueOf(settingValue);
   }
   
+  public boolean findHideSystemNotesFromHistorySettingValue() {
+    GlobalVariable globalVariable =
+        PermissionUtils.isSessionUserHasAdminRole() ? GlobalVariable.HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR
+            : GlobalVariable.HIDE_SYSTEM_NOTES_FROM_HISTORY;
+    return findGlobalSettingValueAsBoolean(globalVariable.toString());
+  }
+  
   @Override
   public GlobalSetting save(GlobalSetting entity) {
     GlobalSetting persistedGlobalSetting = getDao().findGlobalSetting(entity.getKey());

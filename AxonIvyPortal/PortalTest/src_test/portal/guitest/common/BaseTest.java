@@ -58,7 +58,9 @@ public class BaseTest {
   protected String createTestingCaseContainOneTask = "internalSupport/14B2FC03D2E87141/CreateSupportTicket.ivp";
   protected String createUnassignedTaskUrl = "internalSupport/14B2FC03D2E87141/createUnassignedTask.ivp";
   protected String createBetaCompanyUrl = "portalExamples/1624C1C79661758C/createBetaCompany.ivp";
-
+  protected String showTaskNoteHistoryUrl = "portalTemplate/16044EDBC0E23859/showTaskNoteHistory.ivp?selectedTaskId=%s";
+  protected String showCaseNoteHistoryUrl = "portalTemplate/1603506A872272C6/showCaseNoteHistory.ivp?caseId=%s";
+  
   @Rule
   public ScreenshotFailedTestRule screenshotTestRule = new ScreenshotFailedTestRule();
   
@@ -213,8 +215,15 @@ public class BaseTest {
       String updatePortalSettingLink = "portalKitTestHelper/17208192E0AF4185/updatePortalSetting.ivp?settingName=%s&settingValue=%s";
       redirectToRelativeLink(String.format(updatePortalSettingLink, encodeSettingName, encodeSettingValue));
     } catch (UnsupportedEncodingException e) {
-      // TODO Auto-generated catch block
       e.printStackTrace();
     }
   }
+  
+  public void goToTaskNoteHistoryPage(String taskId) {
+     redirectToRelativeLink(String.format(showTaskNoteHistoryUrl, taskId));
+  }
+  
+  public void goToCaseNoteHistoryPage(String caseId) {
+    redirectToRelativeLink(String.format(showCaseNoteHistoryUrl, caseId));
+ }
 }
