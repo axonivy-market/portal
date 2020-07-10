@@ -234,4 +234,18 @@ public class TaskTemplatePage extends TemplatePage {
   public String getTaskName() {
     return getTextOfCurrentBreadcrumb().replace("Task: ", "");
   }
+  
+  public void clickLeaveTaskOnWarningDialog() {
+    By leaveButton = By.id("task-leave-warning-component:leave-button");
+    waitForElementDisplayed(leaveButton, true);
+    click(leaveButton);
+  }
+  
+  public TaskWidgetPage finishCreateInvestmentTask() {
+    driver.switchTo().frame("iFrame");
+    type(By.id("form:invested-amount"), "1");
+    click(By.id("form:save-btn"));
+    driver.switchTo().defaultContent();
+    return new TaskWidgetPage();
+  }
 }
