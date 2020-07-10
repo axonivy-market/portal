@@ -314,6 +314,11 @@ public class CaseDetailsPage extends TemplatePage {
   public String getCaseName() {
     return getTextOfCurrentBreadcrumb().replace("Case: ", "");
   }
+  
+  public String getCaseId() {
+    return findElementById("general-information:case-id").getText();
+  }
+  
   public boolean isAddNoteButtonDisplayed() {
     return isElementDisplayedById("case-item-details:case-histories:add-note-command");
   }

@@ -71,6 +71,9 @@ public class BaseTest {
   protected String userSelectionComponentShowcaseUrl = "portal-developer-examples/170514494945ADB9/start.ivp";
   protected String startUserExampleProcess = "portal-user-examples/17236DB1D3DA14C0/userExampleGuide.ivp";
   protected String userIsOwnerUrl = "internalSupport/16A68510A341BE6E/userIsOwner.ivp";
+  protected String showTaskNoteHistoryUrl = "portalTemplate/16044EDBC0E23859/showTaskNoteHistory.ivp?selectedTaskId=%s";
+  protected String showCaseNoteHistoryUrl = "portalTemplate/1603506A872272C6/showCaseNoteHistory.ivp?caseId=%s";
+  
   
   @Rule
   public ScreenshotFailedTestRule screenshotTestRule = new ScreenshotFailedTestRule();
@@ -245,6 +248,14 @@ public class BaseTest {
       e.printStackTrace();
     }
   }
+  
+  public void goToTaskNoteHistoryPage(String taskId) {
+     redirectToRelativeLink(String.format(showTaskNoteHistoryUrl, taskId));
+  }
+  
+  public void goToCaseNoteHistoryPage(String caseId) {
+    redirectToRelativeLink(String.format(showCaseNoteHistoryUrl, caseId));
+ }
 
   
   public void executeDecorateJs(String function) {

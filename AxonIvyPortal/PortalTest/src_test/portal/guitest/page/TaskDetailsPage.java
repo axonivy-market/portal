@@ -189,6 +189,11 @@ public class TaskDetailsPage extends TemplatePage {
     return findElementById("task-detail-template:general-information:task-activator:user").getText();
   }
   
+  public String getTaskId() {
+    return findElementById("task-id").getText();
+  }
+  
+  
   public void openTaskDelegateDialog() {
     openActionPanel();
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
