@@ -24,7 +24,7 @@ public final class WaitHelper {
       try {
         return supplier.get();
       } catch (Exception e) {
-        System.out.println("Exception when assertTrueWithWait");
+        System.out.println("ERROR when assertTrueWithWait");
       }
       return false;
     });
@@ -40,6 +40,32 @@ public final class WaitHelper {
     assertTrueWithWait(supplier, 10);
   }
 
+  public static void assertTrueWithRefreshPage(TemplatePage page, Supplier<Boolean> supplier) {
+    Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> {
+      try {
+        boolean result = supplier.get();
+        if (!result) {
+          Sleeper.sleep(1000); // Wait for latest data
+          result = supplier.get();
+          if (!result) {
+            System.out.println("Refresh page for latest data");
+            waitForNavigation(page, () -> page.refresh());
+          }
+        }
+        return supplier.get();
+      } catch (Exception e) {
+        System.out.println("ERROR when assertTrueWithRefreshPage");
+        Sleeper.sleep(1000);
+        try {
+          supplier.get();
+        } catch (Exception e1) {
+          waitForNavigation(page, () -> page.refresh());
+        }
+      }
+      return false;
+    });
+  }
+  
   public static void waitForNavigation(TemplatePage page, Runnable navigationAcion) {
     String viewState = page.findElementByCssSelector("input[name='javax.faces.ViewState']").getAttribute("value");
     navigationAcion.run();

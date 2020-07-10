@@ -7,6 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -35,7 +36,7 @@ public class SearchProcessTest extends BaseTest {
     
     searchResultPage.startProcess(processName);
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    assertTrue(taskWidgetPage.getNameOfTaskInCompactListAt(0).contains("Request form"));
+    WaitHelper.assertTrueWithRefreshPage(taskWidgetPage, () -> taskWidgetPage.getNameOfTaskInCompactListAt(0).contains("Request form"));
   }
   
   @Test
