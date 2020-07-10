@@ -36,7 +36,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private static final String IS_HIDE_CASE_INFO = "isHideCaseInfo";
   private static final String IS_HIDE_TASK_NAME = "isHideTaskName";
   private static final String IS_HIDE_TASK_ACTION = "isHideTaskAction";
-  
+  private static final String IS_WORKING_ON_A_TASK = "isWorkingOnATask";
   
   private int currentProcessStep;
   private List<String> processSteps;
@@ -48,6 +48,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private boolean isHideTaskAction = true;
   private boolean isHideTaskName = true;
   private boolean isHideCaseInfo = true;
+  private boolean isWorkingOnATask = true;
   
   private PortalNavigator navigator = new PortalNavigator();
 
@@ -87,10 +88,11 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     processSteps = StringUtils.isNotBlank(requestParamMap.get(PROCESS_STEPS_PARAM)) ? Arrays.asList(requestParamMap.get(PROCESS_STEPS_PARAM).split("\\s*,\\s*")) : new ArrayList<>();
     isShowAllSteps = Optional.ofNullable(requestParamMap.get(IS_SHOW_ALL_STEPS_PARAM)).map(BooleanUtils::toBoolean).orElse(false);
     processChainDirection = Optional.ofNullable(requestParamMap.get(PROCESS_CHAIN_DIRECTION_PARAM)).orElse(StringUtils.EMPTY);
-    processChainShape = Optional.ofNullable(requestParamMap.get(PROCESS_CHAIN_SHAPE_PARAM)).map(Object::toString).orElse(StringUtils.EMPTY);
+    processChainShape = Optional.ofNullable(requestParamMap.get(PROCESS_CHAIN_SHAPE_PARAM)).orElse(StringUtils.EMPTY);
     isHideCaseInfo = Optional.ofNullable(requestParamMap.get(IS_HIDE_CASE_INFO)).map(BooleanUtils::toBoolean).orElse(false);
     isHideTaskName = Optional.ofNullable(requestParamMap.get(IS_HIDE_TASK_NAME)).map(BooleanUtils::toBoolean).orElse(false);
     isHideTaskAction = Optional.ofNullable(requestParamMap.get(IS_HIDE_TASK_ACTION)).map(BooleanUtils::toBoolean).orElse(false);
+    isWorkingOnATask = Optional.ofNullable(requestParamMap.get(IS_WORKING_ON_A_TASK)).map(p -> StringUtils.isNotBlank(p) ? BooleanUtils.toBoolean(p) : true).get();
   }
 
   private Map<String, String> getRequestParameterMap() {
@@ -150,5 +152,8 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   public boolean getIsHideCaseInfo() {
     return isHideCaseInfo;
   }
-
+  
+  public boolean getIsWorkingOnATask() {
+    return isWorkingOnATask;
+  }
 }

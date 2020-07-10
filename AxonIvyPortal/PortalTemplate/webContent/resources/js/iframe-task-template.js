@@ -22,6 +22,9 @@ function loadIframe() {
       name : 'isHideTaskAction',
       value : window.isHideTaskAction
     }, {
+      name : 'isWorkingOnATask',
+      value : window.isWorkingOnATask
+    }, {
       name : 'processChainDirection',
       value : window.processChainDirection
     }, {
