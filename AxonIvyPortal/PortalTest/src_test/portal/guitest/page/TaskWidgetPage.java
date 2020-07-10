@@ -25,7 +25,6 @@ public class TaskWidgetPage extends TemplatePage {
 	private static final String TASK_ACTION = "horizontal-task-actions";
 	private static final String CLASS = "class";
 	private static final String ID_END = "*[id$='";
-	private static final String TASK_ITEM_TASK_INFO = ":task-item:task-info']";
 	private static final String TASK_STATE_OPEN_ID =
 			"task-widget:task-list-scroller:%d:task-item:task-state-component:task-state-open";
 	private static final String TASK_STATE_RESERVED_ID =
@@ -83,6 +82,10 @@ public class TaskWidgetPage extends TemplatePage {
 		waitTaskAppearThenClick(index);
 		waitForElementPresent(By.id(TASK_ACTION), true);
 		return new TaskTemplatePage();
+	}
+	
+	public String getTaskIdOfRow(int taskRowIndex) {
+	  return findElementById(String.format("task-widget:task-list-scroller:%d:task-item:task-id-component:task-id", taskRowIndex)).getText();
 	}
 
 	public TaskTemplatePage startTaskWithouWaitForTaskActionPresent(int index) {
@@ -565,7 +568,7 @@ public class TaskWidgetPage extends TemplatePage {
 			refreshAndWaitElement(cssSelector);
 			clickByCssSelector(cssSelector);
 		} else {
-			String cssSelector = ID_END + index + TASK_ITEM_TASK_INFO;
+			String cssSelector = String.format("a[id$='%d:task-item:task-action:task-action-component']", index);
 			refreshAndWaitElement(cssSelector);
 			clickByCssSelector(cssSelector);
 		}

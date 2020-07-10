@@ -111,8 +111,9 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 HistoryService historyService = new HistoryService();
 GlobalSettingService globalSettingService = new GlobalSettingService();
-boolean excludeTechnicalHistory = globalSettingService.findHideSystemTasksFromHistorySettingValue();
-in.histories = historyService.getHistories(in.tasks, in.iCase.getNotes(), excludeTechnicalHistory);' #txt
+boolean excludeSystemTasks = globalSettingService.findHideSystemTasksFromHistorySettingValue();
+boolean excludeSystemNotes = globalSettingService.findHideSystemNotesFromHistorySettingValue();
+in.histories = historyService.getHistories(in.tasks, in.iCase.getNotes(), excludeSystemTasks, excludeSystemNotes);' #txt
 Cs0 f26 security system #txt
 Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
