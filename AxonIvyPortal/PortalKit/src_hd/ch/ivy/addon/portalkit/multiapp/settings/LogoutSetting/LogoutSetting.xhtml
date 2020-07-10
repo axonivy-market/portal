@@ -5,11 +5,13 @@
   xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="isWorkingOnATask" default="false" />
   <cc:attribute name="task" />
+  <cc:attribute name="isWorkingOnATask" type="java.lang.Boolean" />
 </cc:interface>
 
 <cc:implementation>
+  <f:event listener="#{logic.init(cc.attrs.isWorkingOnATask)}" type="preRenderComponent" />
+  
   <c:set var="task" value="#{not empty cc.attrs.task ? cc.attrs.task : ivy.task}" />
   
   <div id="#{cc.clientId}">
@@ -18,7 +20,7 @@
       rendered="#{!userMenuBean.hiddenLogout}" actionListener="#{logic.logout(task)}" />
 
     <p:confirmDialog id="logout-confirmation-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" 
-      closeOnEscape="true" widgetVar="logoutConfirmation" appendTo="@(body)" rendered="#{cc.attrs.isWorkingOnATask}" responsive="true">
+      closeOnEscape="true" widgetVar="logoutConfirmation" appendTo="@(body)" rendered="#{data.isWorkingOnATask}" responsive="true">
       <h:form prependId="false">
         <h:panelGroup>
           <p:commandButton actionListener="#{logic.logoutInDialog(task)}" process="@this"

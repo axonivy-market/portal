@@ -10,20 +10,23 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="onClickTaskMenuItemCallback" />
   <cc:attribute name="showGlobalSearch" />
-  <cc:attribute name="isWorkingOnATask"/>
   <cc:attribute name="task" />
+  <cc:attribute name="isWorkingOnATask" type="java.lang.Boolean" />
 </cc:interface>
 
 <cc:implementation>
+  <f:event listener="#{logic.init(cc.attrs.isWorkingOnATask)}" type="preRenderComponent" />
+
   <c:set var="task" value="#{not empty cc.attrs.task ? cc.attrs.task : ivy.task}" />
 
   <!-- LOGO  -->
   <div class="sidebar-logo">
-    <p:commandLink id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(cc.attrs.isWorkingOnATask, task)}">
+    #{cc.attrs.isWorkingOnATask} aaa #{data.isWorkingOnATask}
+    <p:commandLink id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}">
       <p:graphicImage styleClass="portal-home-logo" value="#{resource['ivy-cms:images/logo/CorporateLogo']}" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
     </p:commandLink>
 
-    <p:commandLink id="logo-small" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(cc.attrs.isWorkingOnATask, task)}" styleClass="portal-home-logo-small">
+    <p:commandLink id="logo-small" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}" styleClass="portal-home-logo-small">
       <p:graphicImage styleClass="portal-home-logo portal-home-logo-small" value="#{resource['ivy-cms:images/logo/SmallCorporateLogo']}" 
         alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
     </p:commandLink>
