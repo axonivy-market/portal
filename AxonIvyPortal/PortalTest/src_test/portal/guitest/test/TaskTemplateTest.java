@@ -10,12 +10,14 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NoteHistoryPage;
@@ -29,6 +31,7 @@ public class TaskTemplateTest extends BaseTest {
 
   private String createImpersistentTaskUrl = "portalExamples/169BDE2F368D6EC4/PrimefacesElements.ivp";
   private static final String CUSTOM_PARAMS_TEMPLATE_TASK_URL= "portalExamples/1718293B3F6E5478/start.ivp";
+  private static final String IFRAME_TASK_URL= "PortalExamples/16E5DB746865BCEC/CreateInvestment.ivp?embedInFrame";
 
   @Override
   @Before
@@ -159,6 +162,25 @@ public class TaskTemplateTest extends BaseTest {
     assertFalse(taskTemplatePage.isTaskNameDisplayed());
     assertFalse(taskTemplatePage.isTaskActionDisplayed());
     assertFalse(taskTemplatePage.isCaseInfoButtonDisplayed());
+  }
+  
+  @Test
+  public void testDisplayWarningInIFrameTaskTemplate() {
+    redirectToRelativeLink(IFRAME_TASK_URL);
+    final TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
+    taskTemplatePage.clickOnLogo();
+    By leaveButton = By.id("task-leave-warning-component:leave-button");
+    WaitHelper.assertTrueWithWait(() -> taskTemplatePage.isElementDisplayed(leaveButton));
+  }
+  
+  @Test
+  public void testNotDisplayWarningInIFrameTaskTemplate() {
+    redirectToRelativeLink(IFRAME_TASK_URL);
+    TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
+    TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
+    TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(3);
+    taskTemplatePage2.clickOnLogo();
+    WaitHelper.assertTrueWithWait(() -> taskTemplatePage2.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
   }
   
   private void createTestDataAndRedirectToHomePage() {
