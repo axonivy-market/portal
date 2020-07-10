@@ -21,7 +21,6 @@
 
   <!-- LOGO  -->
   <div class="sidebar-logo">
-    #{cc.attrs.isWorkingOnATask} aaa #{data.isWorkingOnATask}
     <p:commandLink id="logo" action="#{userMenuBean.navigateToHomePageOrDisplayWorkingTaskWarning(data.isWorkingOnATask, task)}">
       <p:graphicImage styleClass="portal-home-logo" value="#{resource['ivy-cms:images/logo/CorporateLogo']}" alt="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/homeLogo')}" />
     </p:commandLink>
