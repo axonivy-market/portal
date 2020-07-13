@@ -1741,5 +1741,23 @@ ul.participants-list li {
 .axonivy-loader .spinner:before,
 .axonivy-loader .spinner:after {
   border: 2px solid transparent;
-  border-top-color: #0052CC;
+  border-top-color: $axonLoaderBorderColor;
+}
+
+
+@-webkit-keyframes change-color {
+  0%   { background-color: transparent;}
+  100% { background-color: $portalAjaxChangedBackground;}
+}
+@-moz-keyframes change-color {
+  0%   { background-color: transparent;}
+  100% { background-color: $portalAjaxChangedBackground;}
+}
+@-o-keyframes change-color {
+  0%   { background-color: transparent;}
+  100% { background-color: $portalAjaxChangedBackground;}
+}
+@keyframes change-color {
+  0%   { background-color: transparent;}
+  100% { background-color: $portalAjaxChangedBackground;}
 }
