@@ -2095,7 +2095,6 @@ _:-ms-fullscreen, :root .additional-case-details-link {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: hsla(0, 0%, 100%, 0.9);
   width: 100px;
   height: 100px;
   border-radius: 10px;
@@ -2111,8 +2110,6 @@ _:-ms-fullscreen, :root .additional-case-details-link {
   margin: 0 auto;
   height: 50px;
   width: 50px;
-  border: 2px solid transparent;
-  border-top-color: #0052CC;
   border-radius: 50%;
   -webkit-animation: spinloader 2s linear infinite;
           animation: spinloader 2s linear infinite;
@@ -2125,9 +2122,7 @@ _:-ms-fullscreen, :root .additional-case-details-link {
   right: 7px;
   bottom: 7px;
   left: 7px;
-  border: 2px solid transparent;
   border-radius: 50%;
-  border-top-color: #0052CC;
   -webkit-animation: spinloader 3s linear infinite;
           animation: spinloader 3s linear infinite;
 }
@@ -2139,9 +2134,7 @@ _:-ms-fullscreen, :root .additional-case-details-link {
   right: 15px;
   bottom: 15px;
   left: 15px;
-  border: 2px solid transparent;
   border-radius: 50%;
-  border-top-color: #0052CC;
   -webkit-animation: spinloader 1.5s linear infinite;
           animation: spinloader 1.5s linear infinite;
 }
