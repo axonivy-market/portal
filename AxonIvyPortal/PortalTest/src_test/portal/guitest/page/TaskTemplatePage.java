@@ -211,4 +211,8 @@ public class TaskTemplatePage extends TemplatePage {
   public boolean isTaskActionDisplayed() {
     return isElementDisplayedById("horizontal-task-actions");
   }
+  
+  public String getTaskName() {
+    return findElementById("title").getText();
+  }
 }
