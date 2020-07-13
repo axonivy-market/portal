@@ -451,7 +451,9 @@ public class PortalExpressTest extends BaseTest {
 
 	protected void executeApproval(String comment) {
 		taskWidgetPage = new TaskWidgetPage();
-		taskWidgetPage.filterTasksBy("Task");
+		if (taskWidgetPage.countTasks() == 0) {
+		  taskWidgetPage.filterTasksBy("Task");
+		}
 		taskWidgetPage.startTask(0);
 		ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
 		approvalPage1.comment(comment);
