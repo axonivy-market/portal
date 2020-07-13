@@ -8,6 +8,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
+import portal.guitest.common.WaitHelper;
+
 public class AbsencePage extends TemplatePage {
 
 	@Override
@@ -59,15 +61,20 @@ public class AbsencePage extends TemplatePage {
 		else {
 		  usernameInput.sendKeys(Keys.chord(Keys.CONTROL,"a", Keys.DELETE));
 		}
-		usernameInput = findElementByCssSelector(usernameSelector);
-		usernameInput.sendKeys(fullName);
+    WaitHelper.retryAction(() -> {
+      WebElement input = findElementByCssSelector(usernameSelector);
+      input.clear();
+      clickByCssSelector(usernameSelector);
+      input.sendKeys(fullName);
+    });
+
 		waitAjaxIndicatorDisappear();
 		String itemSelector = "tr[data-item-label*='" + fullName + "']";
 		waitForElementDisplayed(By.cssSelector(itemSelector), true);
 		clickByCssSelector(itemSelector);
 		waitAjaxIndicatorDisappear();
 	}
-	
+
 	public void setSubstitutedByAdmin(String substitutedUser) {
 		String substitutedUserInput = "input[id$='substituted-user_input']";
 		waitForElementDisplayed(By.cssSelector(substitutedUserInput), true);
