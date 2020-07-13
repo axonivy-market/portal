@@ -16,9 +16,11 @@
   
   <p:ajaxStatus id="#{cc.clientId}-#{cc.id}" widgetVar="#{cc.attrs.widgetVar}" onerror="handleError(PrimeFaces.ajax.Queue.xhrs[0], #{renderDetail})">
     <f:facet name="start">
-      <div class="axonivy-loader ajax-status-position #{cc.attrs.styleClass}">
-        <div class="spinner" />
-        <h5>#{empty cc.attrs.startLoadingText ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loading') : cc.attrs.startLoadingText}...</h5>
+      <div class="ajax-status-position ajax-status-color #{cc.attrs.styleClass}">
+        <div class="axonivy-loader">
+          <div class="spinner" />
+          <h5>#{empty cc.attrs.startLoadingText ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loading') : cc.attrs.startLoadingText}...</h5>
+        </div>
       </div>
     </f:facet>
   </p:ajaxStatus>
