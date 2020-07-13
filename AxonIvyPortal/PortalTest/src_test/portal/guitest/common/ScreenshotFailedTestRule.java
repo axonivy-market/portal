@@ -7,6 +7,7 @@ import org.apache.commons.io.FileUtils;
 import org.junit.rules.MethodRule;
 import org.junit.runners.model.FrameworkMethod;
 import org.junit.runners.model.Statement;
+import org.openqa.selenium.NoSuchSessionException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -31,6 +32,8 @@ public class ScreenshotFailedTestRule implements MethodRule {
         } finally {
           try {
             Browser.getBrowser().shutdown();
+          } catch (NoSuchSessionException e) {
+            System.out.println("ERROR Browsers are killed before shutdown");
           } catch (Exception e) {
             captureScreenshot(frameworkMethod.getName() + "-shutdown-error");
             Sleeper.sleep(5000);
