@@ -73,4 +73,19 @@ public final class WaitHelper {
     page.waitForElementDisplayed("id('global-search-component:global-search-data')", true);
   }
 
+  public static void retryAction(Runnable action) {
+    int attempts = 0;
+    while (attempts < 10) {
+      try {
+        action.run();
+        break;
+      } catch (Exception e) {
+        System.out.println("ERROR action");
+      }
+      attempts++;
+    }
+    if (attempts == 10) {
+      action.run();
+    }
+  }
 }
