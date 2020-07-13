@@ -230,4 +230,8 @@ public class TaskTemplatePage extends TemplatePage {
     click(By.id("chat-assignee-selection-form:chat-group-create-button"));
     waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), false);
   }
+
+  public String getTaskName() {
+    return getTextOfCurrentBreadcrumb().replace("Task: ", "");
+  }
 }
