@@ -2089,44 +2089,82 @@ _:-ms-fullscreen, :root .additional-case-details-link {
   z-index: 10000;
   top: 0;
 }
-
-@-webkit-keyframes change-color {
-  0%   { background-color: transparent; color: black;}
-  100% { background-color: rgba(0, 0, 0, 0.46); color: white;}
-}
-@-moz-keyframes change-color {
-  0%   { background-color: transparent; color: black;}
-  100% { background-color: rgba(0, 0, 0, 0.46); color: white;}
-}
-@-o-keyframes change-color {
-  0%   { background-color: transparent; color: black;}
-  100% { background-color: rgba(0, 0, 0, 0.46); color: white;}
-}
-@keyframes change-color {
-  0%   { background-color: transparent; color: black;}
-  100% { background-color: rgba(0, 0, 0, 0.46); color: white;}
+.axonivy-loader {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: hsla(0, 0%, 100%, 0.9);
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  padding: 20px;
 }
 
-.ajax-status-color {
-  -webkit-animation: change-color 1s; /* Safari 4+ */
-  -moz-animation: change-color 1s; /* Fx 5+ */
-  -o-animation: change-color 1s; /* Opera 12+ */
-  animation: change-color 1s; /* IE 10+ */
-  animation-delay: 1s;
-  animation-fill-mode: forwards;
+.axonivy-loader h5 {
+  margin-top: 5px;
+  text-align: center;
 }
 
-.ajax-status .ajax-spinner {
-  margin: auto;
+.axonivy-loader .spinner {
+  margin: 0 auto;
+  height: 50px;
+  width: 50px;
+  border: 2px solid transparent;
+  border-top-color: #0052CC;
+  border-radius: 50%;
+  -webkit-animation: spinloader 2s linear infinite;
+          animation: spinloader 2s linear infinite;
 }
 
-.ajax-status .ajax-spinner:before {
-  content: url("#{resource['images/loader/spinner.gif']}");
+.axonivy-loader .spinner:before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  bottom: 7px;
+  left: 7px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  border-top-color: #0052CC;
+  -webkit-animation: spinloader 3s linear infinite;
+          animation: spinloader 3s linear infinite;
 }
 
-.ajax-status span {
-  margin: auto;
-  height: 0;
+.axonivy-loader .spinner:after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  bottom: 15px;
+  left: 15px;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  border-top-color: #0052CC;
+  -webkit-animation: spinloader 1.5s linear infinite;
+          animation: spinloader 1.5s linear infinite;
+}
+
+@-webkit-keyframes spinloader {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+@keyframes spinloader {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
 }
 
 /* Override Primefaces styles */
