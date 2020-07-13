@@ -516,5 +516,5 @@ $noItemIconColor: rgb(216, 217, 217) !default;
 $noItemHeaderFontSize: 2rem !default;
 
 /* Portal Global Ajax Status */
-$axonLoaderBackgroundColor: hsla(0, 0%, 100%, 0.9);
-$axonLoaderBorderColor: #0052CC;
+$axonLoaderBackgroundColor: hsla(0, 0%, 100%, 0.9) !default;
+$axonLoaderBorderColor: $primaryColor !default;
