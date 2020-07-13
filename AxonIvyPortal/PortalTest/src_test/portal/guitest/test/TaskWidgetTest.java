@@ -23,6 +23,7 @@ import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
+import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class TaskWidgetTest extends BaseTest {
@@ -220,4 +221,42 @@ public class TaskWidgetTest extends BaseTest {
     taskDetailsPage.selectDelegateResponsible(TestRole.HR_ROLE, true);
     assertEquals(TestRole.HR_ROLE, taskDetailsPage.getTaskResponsible());
   }
+  
+  @Test
+  public void testStartATaskAtHomePage() {
+    HomePage homePage = new HomePage();
+    String maternityRequest = "Maternity Leave Request";
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    //Start first task
+    taskWidgetPage.filterTasksBy(maternityRequest);
+    assertFalse(taskWidgetPage.isResumedTask(0));
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    homePage = taskTemplatePage.clickCancelAndLeftButton();
+    
+    // Start first task is resumed
+    taskWidgetPage = homePage.getTaskWidget();
+    assertTrue(taskWidgetPage.isResumedTask(0));
+    taskTemplatePage = taskWidgetPage.startTask(0);
+    assertEquals(maternityRequest, taskTemplatePage.getTaskName());
+    homePage =taskTemplatePage.clickCancelAndLeftButton();
+    
+    String sickRequest = "Sick Leave Request";
+    taskWidgetPage = homePage.getTaskWidget();
+    //Start second task
+    taskWidgetPage.filterTasksBy(sickRequest);
+    assertFalse(taskWidgetPage.isResumedTask(0));
+    taskWidgetPage.filterTasksBy("Request");
+    taskTemplatePage = taskWidgetPage.startTask(1);
+    homePage = taskTemplatePage.clickCancelAndLeftButton();
+    
+    // Start second task is resumed
+    taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.filterTasksBy(sickRequest);
+    assertTrue(taskWidgetPage.isResumedTask(0));
+    taskWidgetPage.filterTasksBy("Request");
+    taskTemplatePage = taskWidgetPage.startTask(1);
+    assertEquals(sickRequest, taskTemplatePage.getTaskName());
+    taskTemplatePage.clickCancelAndLeftButton();
+  }
+  
 }
