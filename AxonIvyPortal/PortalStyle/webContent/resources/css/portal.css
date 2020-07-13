@@ -1867,3 +1867,15 @@ color: var(--button-text-color);
 .no-item-panel .no-item-header {
   font-size: var(--no-item-header-font-size);
 }
+
+/* Portal Global Ajax Status */
+.axonivy-loader {
+  background-color: var(--ajax-loading-bg);
+}
+
+.axonivy-loader .spinner,
+.axonivy-loader .spinner:before,
+.axonivy-loader .spinner:after {
+  border: 2px solid transparent;
+  border-top-color: var(--primary-color);
+}
