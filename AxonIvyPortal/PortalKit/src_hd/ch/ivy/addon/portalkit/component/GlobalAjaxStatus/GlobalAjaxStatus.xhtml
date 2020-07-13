@@ -8,8 +8,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="styleClass" />
   <cc:attribute name="widgetVar" />
-  <cc:attribute name="startLoadingText" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loading')}"
-    shortDescription="The text is showing when start ajax loading indicator"/>
+  <cc:attribute name="startLoadingText" shortDescription="The text is showing when start ajax loading indicator"/>
 </cc:interface>
 <cc:implementation>
 
@@ -20,7 +19,7 @@
     <f:facet name="start">
       <div class="axonivy-loader #{cc.attrs.styleClass} ajax-status-position">
         <div class="spinner" />
-        <h5>#{cc.attrs.startLoadingText}...</h5>
+        <h5>#{empty cc.attrs.startLoadingText ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loading') : cc.attrs.startLoadingText}...</h5>
       </div>
     </f:facet>
   </p:ajaxStatus>
