@@ -20,6 +20,7 @@ import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
+import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class TaskWidgetTest extends BaseTest {
@@ -213,5 +214,37 @@ public class TaskWidgetTest extends BaseTest {
     taskDetailsPage.openTaskDelegateDialog();
     taskDetailsPage.selectDelegateResponsible(TestRole.HR_ROLE, true);
     assertEquals(TestRole.HR_ROLE, taskDetailsPage.getTaskResponsible());
+  }
+
+  @Test
+  public void testStartATaskAtHomePage() {
+    HomePage homePage = new HomePage();
+    String maternityRequest = "Maternity Leave Request";
+    String sickRequest = "Sick Leave Request";
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    //Start first task
+    assertFalse(taskWidgetPage.isResumedTask(0));
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    homePage = taskTemplatePage.clickCancelAndLeftButton();
+    
+    // Start first task is resumed
+    taskWidgetPage = homePage.getTaskWidget();
+    assertTrue(taskWidgetPage.isResumedTask(0));
+    taskTemplatePage = taskWidgetPage.startTask(0);
+    assertEquals(maternityRequest, taskTemplatePage.getTaskName());
+    homePage =taskTemplatePage.clickCancelAndLeftButton();
+    
+    taskWidgetPage = homePage.getTaskWidget();
+    //Start second task
+    assertFalse(taskWidgetPage.isResumedTask(1));
+    taskTemplatePage = taskWidgetPage.startTask(1);
+    homePage = taskTemplatePage.clickCancelAndLeftButton();
+    
+    // Start second task is resumed
+    taskWidgetPage = homePage.getTaskWidget();
+    assertTrue(taskWidgetPage.isResumedTask(1));
+    taskTemplatePage = taskWidgetPage.startTask(1);
+    assertEquals(sickRequest, taskTemplatePage.getTaskName());
+    taskTemplatePage.clickCancelAndLeftButton();
   }
 }
