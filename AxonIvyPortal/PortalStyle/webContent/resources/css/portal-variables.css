@@ -461,4 +461,7 @@
   --breadcrumb-font-size: 1.4rem;
   --breadcrumb-home-icon-font-size: 2rem;
   --current-step-color: var(--primary-color);
-  --current-step-opacity: 1; }
+  --current-step-opacity: 1; 
+  /* Portal Global Ajax Status */
+  --ajax-loading-bg: hsla(0, 0%, 100%, 0.9);
+  }
