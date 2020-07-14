@@ -811,11 +811,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   text-align: right;
 }
 
-.layout-content.container .case-detail-body, .layout-content.container .task-item-body-container {
-  padding-bottom: 60px !important;
-  margin-bottom: 60px !important;
-}
-
 .case-task-note-histories {
   white-space: pre-wrap;
 }
@@ -2470,7 +2465,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .task-name-vertical-process-chain {
   margin-left: 140px;
-  margin-top: 10px;
 }
 
 .task-name-vertical-process-chain.vertical-chain-shape-line {
@@ -2688,6 +2682,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .announcement-input {
   width: 100%;
+}
+
+.annoucement-in-frame-template {
+  margin-bottom: 5px;
 }
 
 .announcement-message {

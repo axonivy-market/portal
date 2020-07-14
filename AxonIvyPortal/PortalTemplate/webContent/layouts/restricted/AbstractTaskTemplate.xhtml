@@ -14,11 +14,12 @@
       <p:growl id="task-template-growl" />
   
       <div class="task-template-container ui-g-12 #{taskTemplateContainerStyleClass}">
+      
         <c:set var="case" value="#{task.getCase().getBusinessCase()}" scope="request" />
         <c:set var="isSideStepDisabled" value="#{!abstractTaskTemplateBean.checkSideStepsEnabled(case)}" scope="request" />
         <ui:insert name="breadCrumb" />
   
-        <h:panelGroup id="header-container" styleClass="#{processChainDirection eq 'VERTICAL' ? '' : 'task-template-title-horizontal-container'}">
+        <h:panelGroup id="header-container" layout="block" styleClass="js-task-header-container #{processChainDirection eq 'VERTICAL' ? '' : 'task-template-title-horizontal-container'}">
           <h:panelGroup id="task-template-title" layout="block" rendered="#{task ne null}"
             styleClass="task-template-title #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
             <ui:insert name="taskName">
