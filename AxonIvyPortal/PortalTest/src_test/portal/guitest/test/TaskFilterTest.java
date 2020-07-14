@@ -8,6 +8,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.Arrays;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
@@ -111,6 +112,7 @@ public class TaskFilterTest extends BaseTest {
 		assertEquals(filterName, taskWidgetPage.getFilterName());
 	}
 
+	@Ignore(value = "Wait for fix in XIVY-4274")
 	@Test
 	public void testShowUnassignedTaskToPersonHaveTaskReadAllPermission() {
 		login(TestAccount.ADMIN_USER);

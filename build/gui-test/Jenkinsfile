@@ -2,12 +2,12 @@ pipeline {
   agent {label 'portal-slave'}
   
   options {
-    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
+    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '30'))
   }
 
   triggers {
     // Firefox guitest is not triggered by SCM change
-    pollSCM env.JOB_NAME.contains('Firefox') ? '0 5 31 2 *' : '0 30 * * *'
+    pollSCM env.JOB_NAME.contains('Firefox') ? '0 5 31 2 *' : '0 5 * * *'
     cron(env.JOB_NAME.contains('Firefox') ? '0 21 * * *' : '0 15 * * *')
   }
 
