@@ -39,6 +39,9 @@ var Portal = {
   },
   
   updateLayoutContent : function() {
+    var vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty('--vh', vh + 'px');
+
     var headerHeight = $('#portal-template-header').outerHeight();
     var footerHeight = $('#portal-template-footer').outerHeight();
     var headerFooterHeight = headerHeight + footerHeight;
@@ -49,12 +52,12 @@ var Portal = {
       var announcementMessageContainer = $('.js-announcement-message');
     }
 
-    $('.js-left-sidebar').css('top', headerHeight + 'px').css('height', 'calc(100vh - ' + (headerFooterHeight - envHeight) + 'px)');
-    $('.js-layout-main').css('margin-top', headerHeight + 'px').css('height', 'calc(100vh - ' + headerFooterHeight + 'px)');
+    $('.js-left-sidebar').css('top', headerHeight + 'px').css('height', 'calc(var(--vh, 1vh) * 100 - ' + (headerFooterHeight - envHeight) + 'px)');
+    $('.js-layout-main').css('margin-top', headerHeight + 'px').css('height', 'calc(var(--vh, 1vh) * 100 - ' + headerFooterHeight + 'px)');
     $('.js-layout-wrapper').removeClass('u-invisibility');
 
     var topbarWithHeaderFooterHeight = layoutTopbarHeight + headerFooterHeight;
-    $('.js-layout-content').css('height', 'calc(100vh - ' + topbarWithHeaderFooterHeight + 'px)');
+    $('.js-layout-content').css('height', 'calc(var(--vh, 1vh) * 100 - ' + topbarWithHeaderFooterHeight + 'px)');
     var chatPanel = $('.js-chat-panel');
     if (chatPanel.length == 1) {
       chatPanel.css('height', 'calc(100% - ' + (headerFooterHeight - envHeight) + 'px)');
