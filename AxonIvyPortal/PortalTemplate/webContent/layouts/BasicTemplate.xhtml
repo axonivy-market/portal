@@ -132,7 +132,7 @@
           <!-- Otherwise, the layout content will be rendered by once DOM is pasted already -->
           <div class="layout-content js-layout-content container #{layoutContentStyleClass}" id="main-area-panel">
             <h:panelGroup id="announcement-container" layout="block" styleClass="#{announcementContainerStyleClass}">
-              <h:panelGroup layout="block" styleClass="announcement-message js-announcement-message announcement-message-customizable #{announcementStyleClass}" 
+              <h:panelGroup id="announcement" layout="block" styleClass="announcement-message js-announcement-message announcement-message-customizable #{announcementStyleClass}" 
                 rendered="#{userMenuBean.isAnnouncementActivated() and not announcementInvisible}">
                 <h:outputText value="#{userMenuBean.getAnnouncement()}" />
               </h:panelGroup>
