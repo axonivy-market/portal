@@ -31,7 +31,7 @@
             		dataModel="#{caseView.dataModel}" sortable="true" sortedField="CREATOR" />
                 
                 <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="owner-column-header" 
-                  responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down"
+                  responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/OWNER')}" 
                   dataModel="#{caseView.dataModel}" sortable="true" sortedField="OWNER" rendered="#{caseBean.isCaseOwnerEnabled()}" />
                 
@@ -72,7 +72,8 @@
                 <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator componentId="case-creator-cell"
                   case="#{case}" dataModel="#{caseView.dataModel}" responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down" />
                 <ic:ch.ivy.addon.portalkit.component.cases.column.CaseOwner componentId="case-owner-cell"
-                  case="#{case}" dataModel="#{caseView.getDataModel()}" rendered="#{caseBean.isCaseOwnerEnabled()}" />
+                  case="#{case}" dataModel="#{caseView.getDataModel()}" rendered="#{caseBean.isCaseOwnerEnabled()}"
+                  responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down" />
                 <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-date-cell"
                   rendered="#{caseView.dataModel.isSelectedColumn('CREATION_TIME')}" value="#{case.startTimestamp}" />
                 <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-expiry-date-cell"
