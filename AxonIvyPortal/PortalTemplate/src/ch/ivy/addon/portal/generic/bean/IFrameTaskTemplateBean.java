@@ -54,10 +54,6 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   
   private PortalNavigator navigator = new PortalNavigator();
 
-  public void navigateToHomePage() {
-    navigator.navigateToPortalHome();
-  }
-  
   public void navigateToEndPage() {
     Map<String, String> requestParamMap = getRequestParameterMap();
     String taskId = requestParamMap.get(TASK_ID_PARAM);
