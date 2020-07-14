@@ -211,7 +211,10 @@ public class TaskTemplatePage extends TemplatePage {
   public boolean isTaskActionDisplayed() {
     return isElementDisplayedById("horizontal-task-actions");
   }
-  
+  public String getTaskName() {
+    return findElementById("title").getText();
+  }
+
   public void clickLeaveTaskOnWarningDialog() {
     By leaveButton = By.id("task-leave-warning-component:leave-button");
     waitForElementDisplayed(leaveButton, true);

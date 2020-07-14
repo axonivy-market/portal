@@ -554,14 +554,34 @@ public class TaskWidgetPage extends TemplatePage {
 	private void waitTaskAppearThenClick(int index) {
 		WebElement taskListElement = findElementById(taskWidgetId + ":task-list-scroller");
 		if (taskListElement.getAttribute(CLASS).contains("compact-mode")) {
-			String cssSelector = String.format("a[id$='%d\\:task-item\\:compact-task-start-link']", index);
-			refreshAndWaitElement(cssSelector);
-			clickByCssSelector(cssSelector);
-		} else {
+      List<WebElement> taskItems = taskListElement.findElements(By.className("compact-task-start-link"));
+      boolean isResumedTask = taskItems.get(index).getAttribute("id").contains("compact-resumed-task-start-link");
+      click(taskItems.get(index));
+      if (isResumedTask) {
+        resetResumedTask();
+      }
+    } else {
 			String cssSelector = String.format("a[id$='%d:task-item:task-action:task-action-component']", index);
 			refreshAndWaitElement(cssSelector);
 			clickByCssSelector(cssSelector);
 		}
+	}
+	
+  public void resetResumedTask() {
+    waitForElementDisplayed(By.cssSelector("[id$=':reset-task-dialog_content']"), true);
+    click(findElementByCssSelector("[id$=':reset-task-form:reset-task-button']"));
+  }
+	
+	public boolean isResumedTask(int index) {
+	  List<WebElement> taskItems;
+	  WebElement taskListElement = findElementById(taskWidgetId + ":task-list-scroller");
+    if (taskListElement.getAttribute(CLASS).contains("compact-mode")) {
+      taskItems = taskListElement.findElements(By.className("compact-task-start-link"));
+      return taskItems.get(index).getAttribute("id").contains("compact-resumed-task-start-link");
+    }
+
+    taskItems = taskListElement.findElements(By.className("task-start-list-item"));
+    return taskItems.get(index).getAttribute("id").contains(":task-action:resume-task-action-component");
 	}
 
 	public Integer getTaskCount() {
