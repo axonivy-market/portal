@@ -63,15 +63,14 @@ How to use Basic template
 
 1. Create a new HTML User Dialog and then use ``ui:composition`` to
    define the template inside and reuse the default responsiveness
-   behavior. To override it, please use ``pageContent`` instead of
-   ``simplePageContent`` and
+   behavior. Define the ``pageContent`` section and
    :ref:`Responsiveness <components-layout-templates-responsiveness>`.
 
    .. code-block:: html
    
       <ui:composition template="/layouts/BasicTemplate.xhtml">
       <ui:define name="title">Sample Page</ui:define>
-      <ui:define name="simplePageContent">
+      <ui:define name="pageContent">
       This is sample content.
       </ui:define>
       </ui:composition>

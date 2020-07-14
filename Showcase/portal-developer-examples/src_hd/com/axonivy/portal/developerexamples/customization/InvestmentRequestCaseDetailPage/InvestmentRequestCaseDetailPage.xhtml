@@ -9,7 +9,7 @@
 	<ui:composition template="/layouts/BasicTemplate.xhtml">
 		<ui:param name="isNotRequiredLogin" value="false" />
 		<ui:define name="title">Investment Request Case Detail Page</ui:define>
-		<ui:define name="simplePageContent">
+		<ui:define name="pageContent">
           <p:dataTable 
             id="additional-case-detail-table" 
             value="#{data.ivyCase.customFields().all()}" 
