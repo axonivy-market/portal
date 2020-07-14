@@ -1731,3 +1731,33 @@ ul.participants-list li {
 .no-item-panel .no-item-header {
   font-size: $noItemHeaderFontSize;
 }
+
+/*Portal Global Ajax Status */
+.axonivy-loader {
+  background-color: $axonLoaderBackgroundColor;
+}
+
+.axonivy-loader .spinner,
+.axonivy-loader .spinner:before,
+.axonivy-loader .spinner:after {
+  border: 2px solid transparent;
+  border-top-color: $axonLoaderBorderColor;
+}
+
+
+@-webkit-keyframes change-color {
+  0%   { background-color: transparent;}
+  100% { background-color: $portalAjaxChangedBackground;}
+}
+@-moz-keyframes change-color {
+  0%   { background-color: transparent;}
+  100% { background-color: $portalAjaxChangedBackground;}
+}
+@-o-keyframes change-color {
+  0%   { background-color: transparent;}
+  100% { background-color: $portalAjaxChangedBackground;}
+}
+@keyframes change-color {
+  0%   { background-color: transparent;}
+  100% { background-color: $portalAjaxChangedBackground;}
+}
