@@ -6,7 +6,7 @@
 	<ui:composition template="/layouts/BasicTemplate.xhtml">
 		<ui:param name="isNotRequiredLogin" value="false" />
 		<ui:define name="title">Resource Process History</ui:define>
-		<ui:define name="simplePageContent">
+		<ui:define name="pageContent">
 			<h1>Process history of Resource A247</h1>
 			<p:commandButton value="Open process history dialog" process="@this" oncomplete="PF('process-history-dialog').show()"
 				update="process-history-dialog" />
