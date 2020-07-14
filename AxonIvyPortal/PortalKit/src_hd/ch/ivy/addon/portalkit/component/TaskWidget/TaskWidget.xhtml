@@ -335,7 +335,7 @@
     <div>
       <h:form id="reset-task-form">
         <p:commandButton actionListener="#{logic.resetAndOpenTask(cc.attrs.currentPortalPage, taskWidgetBean.selectedTaskItemId)}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-          onstart="#{cc.attrs.onTaskStartCallback}" />
+          onstart="#{cc.attrs.onTaskStartCallback}" id="reset-task-button"/>
         <p:commandButton onclick="PF('reset-task-dialog').hide()" styleClass="portal-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
       </h:form>
