@@ -39,14 +39,13 @@ function loadIframe() {
 
 function checkUrl(iFrame) {
   document.title = iFrame.contentDocument.title;
-  var path = iFrame.contentWindow.location.pathname;
-  if (path.match("/default/end.xhtml$") || path.match("/default/end.jsp$")) {
-    var href = iFrame.contentWindow.location.href;
-    var taskId = href.substring(href.lastIndexOf("=") + 1);
+  var loc = iFrame.contentWindow.location;
+  if (loc.pathname.match("/default/redirect.xhtml$")) {
+    var redirectUrl = new URLSearchParams(loc.search).get("redirectPage");
     iFrame.src = "about:blank";
-    redirectToEndPageCommand([{
-      name : 'taskId',
-      value : taskId
+    redirectToUrlCommand([{
+      name: 'url',
+      value: redirectUrl
     }]);
   }
 }
@@ -56,7 +55,7 @@ function resizeIFrame() {
   Portal.updateLayoutContent();
   var taskHeaderContainerHeight = ($('.js-task-header-container').outerHeight(true)||0);
   var announcementMessageContainerHeight = ($('.js-annoucement-in-frame-template').outerHeight(true)||0);
-  var error = 25;
+  var error = 10;
 
   var mainScreenHeight = $('.js-layout-content').outerHeight(true);
   var availableHeight = mainScreenHeight - taskHeaderContainerHeight - announcementMessageContainerHeight - error;

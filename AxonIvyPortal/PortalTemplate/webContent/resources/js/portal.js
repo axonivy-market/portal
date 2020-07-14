@@ -52,8 +52,8 @@ var Portal = {
       var announcementMessageContainer = $('.js-announcement-message');
     }
 
-    $('.js-left-sidebar').css('top', headerHeight + 'px').css('height', 'calc(var(--vh, 1vh) * 100 - ' + (headerFooterHeight - envHeight) + 'px)');
-    $('.js-layout-main').css('margin-top', headerHeight + 'px').css('height', 'calc(var(--vh, 1vh) * 100 - ' + headerFooterHeight + 'px)');
+    $('.js-left-sidebar').css('top', headerHeight + 'px').css('height', 'calc(100vh - ' + (headerFooterHeight - envHeight) + 'px)');
+    $('.js-layout-main').css('margin-top', headerHeight + 'px').css('height', 'calc(100vh - ' + headerFooterHeight + 'px)');
     $('.js-layout-wrapper').removeClass('u-invisibility');
 
     var topbarWithHeaderFooterHeight = layoutTopbarHeight + headerFooterHeight;
