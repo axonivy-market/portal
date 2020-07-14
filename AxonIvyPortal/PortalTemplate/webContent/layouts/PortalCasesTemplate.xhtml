@@ -50,7 +50,8 @@
                 <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator componentId="case-creator-cell"
                   case="#{case}" dataModel="#{caseView.getDataModel()}" />
                 <ic:ch.ivy.addon.portalkit.component.cases.column.CaseOwner componentId="case-owner-cell"
-                  case="#{case}" dataModel="#{caseView.getDataModel()}" rendered="#{caseBean.isCaseOwnerEnabled()}" />
+                  case="#{case}" dataModel="#{caseView.getDataModel()}" rendered="#{caseBean.isCaseOwnerEnabled()}"
+                  responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down" />
                 <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-date-cell"
                   rendered="#{caseView.dataModel.isSelectedColumn('CREATION_TIME')}" value="#{case.startTimestamp}" />
                 <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-expiry-date-cell"
