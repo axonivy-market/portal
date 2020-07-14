@@ -73,7 +73,7 @@ function updateContentContainerClass() {
     }
   }
   if (!window.announcementInvisible) {
-    $('#announcement-container').removeClass('u-invisibility');
+    $('#announcement').removeClass('u-invisibility');
   }
   $('.task-template-container').removeClass('u-invisibility');
 }
