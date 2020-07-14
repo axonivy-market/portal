@@ -569,13 +569,7 @@ public class TaskWidgetPage extends TemplatePage {
 	
   public void resetResumedTask() {
     waitForElementDisplayed(By.cssSelector("[id$=':reset-task-dialog_content']"), true);
-    List<WebElement> confirmButtons = findListElementsByCssSelector("[id^='task-widget:reset-task-form:']");
-    confirmButtons.forEach(button -> {
-      if (button.getText().equalsIgnoreCase("Ok")) {
-        click(button);
-        return;
-      }
-    });
+    click(findElementByCssSelector("[id$=':reset-task-form:reset-task-button']"));
   }
 	
 	public boolean isResumedTask(int index) {
