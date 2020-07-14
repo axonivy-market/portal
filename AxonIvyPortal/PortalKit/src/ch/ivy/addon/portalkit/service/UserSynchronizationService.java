@@ -85,8 +85,7 @@ public class UserSynchronizationService {
       try {
         userService.save(user);
       } catch (Exception exception) {
-        Ivy.log().info("Cannot save user {0}", user.getUserName());
-        exception.printStackTrace();
+        Ivy.log().info("Cannot save user {0}", exception, user.getUserName());
         // Find user from Repo without DataCache
         List<User> users = userService.findAll();
         if (!users.contains(user)) {
