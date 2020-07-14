@@ -26,7 +26,6 @@ public final class PortalNavigatorInFrame {
     String statement = "parent.redirectToHomePageCommand()";
     PrimeFaces.current().executeScript(statement);
   }
-  
 
   public void navigateToUrl(String url) throws UnsupportedEncodingException {
     String statement = "parent.redirectToUrlCommand([{name: 'url', value: '" + URLDecoder.decode(url, "UTF-8") + "'}])";
