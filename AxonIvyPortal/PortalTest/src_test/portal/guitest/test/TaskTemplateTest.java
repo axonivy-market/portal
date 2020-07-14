@@ -31,7 +31,7 @@ public class TaskTemplateTest extends BaseTest {
 
   private String createImpersistentTaskUrl = "portal-developer-examples/169BDE2F368D6EC4/PrimefacesElements.ivp";
   private static final String CUSTOM_PARAMS_TEMPLATE_TASK_URL= "portal-developer-examples/1718293B3F6E5478/start.ivp";
-  private static final String IFRAME_TASK_URL= "PortalExamples/16E5DB746865BCEC/CreateInvestment.ivp?embedInFrame";
+  private static final String IFRAME_TASK_URL= "portal-developer-examples/16E5DB746865BCEC/CreateInvestment.ivp?embedInFrame";
 
   @Override
   @Before

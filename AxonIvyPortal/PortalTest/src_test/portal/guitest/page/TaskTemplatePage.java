@@ -243,6 +243,7 @@ public class TaskTemplatePage extends TemplatePage {
   
   public TaskWidgetPage finishCreateInvestmentTask() {
     driver.switchTo().frame("iFrame");
+    waitForElementDisplayed(By.id("form:invested-amount"), true);
     type(By.id("form:invested-amount"), "1");
     click(By.id("form:save-btn"));
     driver.switchTo().defaultContent();
