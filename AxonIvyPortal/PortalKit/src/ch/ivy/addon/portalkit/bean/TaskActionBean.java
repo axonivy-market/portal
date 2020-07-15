@@ -237,4 +237,8 @@ public class TaskActionBean {
     }
   }
 
+  public boolean showClearDelayTime(ITask task) {
+    return TaskState.DELAYED.equals(task.getState()) && task.getDelayTimestamp() != null;
+  }
+
 }
