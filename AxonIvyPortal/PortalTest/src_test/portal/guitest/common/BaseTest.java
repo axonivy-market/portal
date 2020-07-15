@@ -60,6 +60,7 @@ public class BaseTest {
   protected String createBetaCompanyUrl = "portalExamples/1624C1C79661758C/createBetaCompany.ivp";
   protected String showTaskNoteHistoryUrl = "portalTemplate/16044EDBC0E23859/showTaskNoteHistory.ivp?selectedTaskId=%s";
   protected String showCaseNoteHistoryUrl = "portalTemplate/1603506A872272C6/showCaseNoteHistory.ivp?caseId=%s";
+  protected String createTaskWithSystemState = "portalKitTestHelper/153CACC26D0D4C3D/createTasksWithSystemState.ivp";
   
   @Rule
   public ScreenshotFailedTestRule screenshotTestRule = new ScreenshotFailedTestRule();

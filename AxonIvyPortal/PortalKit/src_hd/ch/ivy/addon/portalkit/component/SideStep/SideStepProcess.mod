@@ -28,6 +28,11 @@ Ts0 @PushWFArc f2 '' #zField
 Ts0 @UdMethod f3 '' #zField
 Ts0 @CallSub f7 '' #zField
 Ts0 @PushWFArc f8 '' #zField
+Ts0 @UdMethod f4 '' #zField
+Ts0 @UdProcessEnd f5 '' #zField
+Ts0 @GridStep f11 '' #zField
+Ts0 @PushWFArc f12 '' #zField
+Ts0 @PushWFArc f10 '' #zField
 >Proto Ts0 Ts0 SideStepProcess #zField
 Ts0 f17 -106 1334 20 20 13 0 #rect
 Ts0 f17 @|UdProcessEndIcon #fIcon
@@ -157,6 +162,50 @@ Ts0 f7 256 378 144 44 -64 -8 #rect
 Ts0 f7 @|CallSubIcon #fIcon
 Ts0 f8 expr out #txt
 Ts0 f8 101 400 256 400 #arcP
+Ts0 f4 guid 173475B41A88A01F #txt
+Ts0 f4 method clearDelay(ch.ivyteam.ivy.workflow.ITask) #txt
+Ts0 f4 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
+Ts0 f4 inParameterMapAction 'out.task=param.task;
+' #txt
+Ts0 f4 outParameterDecl '<> result;' #txt
+Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>clearDelay(ITask)</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f4 83 499 26 26 -42 15 #rect
+Ts0 f4 @|UdMethodIcon #fIcon
+Ts0 f5 339 499 26 26 0 12 #rect
+Ts0 f5 @|UdProcessEndIcon #fIcon
+Ts0 f11 actionTable 'out=in;
+' #txt
+Ts0 f11 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import org.apache.commons.lang3.StringUtils;
+import ch.ivyteam.ivy.security.IUser;
+import ch.ivy.addon.portalkit.service.TaskInforActionService;
+
+boolean isDone = TaskUtils.removeTaskDelay(in.task);
+if (isDone) {
+	TaskInforActionService service = new TaskInforActionService();
+	IUser user = ivy.session.getSessionUser();
+	String fullName = user.getFullName();
+	String userName = StringUtils.substring(user.getMemberName(), 1);
+	String delayNote = service.prepareChangeDelayNoteContent(fullName, userName, new Date(), in.task.getId());
+	in.task.getCase().getBusinessCase().createNote(ivy.session, delayNote);
+}' #txt
+Ts0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>clear the delay time</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f11 168 490 112 44 -53 -8 #rect
+Ts0 f11 @|StepIcon #fIcon
+Ts0 f12 109 512 168 512 #arcP
+Ts0 f10 280 512 339 512 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.SideStep.SideStepData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -173,3 +222,7 @@ Ts0 f0 mainOut f2 tail #connect
 Ts0 f2 head f1 mainIn #connect
 Ts0 f3 mainOut f8 tail #connect
 Ts0 f8 head f7 mainIn #connect
+Ts0 f4 mainOut f12 tail #connect
+Ts0 f12 head f11 mainIn #connect
+Ts0 f11 mainOut f10 tail #connect
+Ts0 f10 head f5 mainIn #connect
