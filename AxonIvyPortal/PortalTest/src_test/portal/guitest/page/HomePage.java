@@ -3,6 +3,8 @@ package portal.guitest.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import portal.guitest.common.WaitHelper;
+
 
 public class HomePage extends TemplatePage {
 
@@ -40,7 +42,10 @@ public class HomePage extends TemplatePage {
 	}
 	
 	public void waitForStatisticRendered() {
-	  waitForElementDisplayed(By.cssSelector("a[class$='chart-info']"), true);
+    WaitHelper.assertTrueWithRefreshPage(this, () -> {
+      waitForElementDisplayed(By.cssSelector("a[class$='chart-info']"), true, 2);
+      return true;
+    });
 	}
 	
 	public void waitForGrowlDisappear() {
