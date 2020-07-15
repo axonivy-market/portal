@@ -4,15 +4,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.TestRole;
@@ -65,21 +61,6 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.resetTask(0);
     taskWidgetPage.waitAjaxIndicatorDisappear();
     assertEquals(TaskState.OPEN, taskWidgetPage.getTaskState(0));
-  }
-
-  @Test
-  public void testChangeTaskDeadline() {
-    int firstTask = 0;
-    LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
-    String tomorrowStringLiteral = tomorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
-
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.expand();
-    taskWidgetPage.openTaskDetails(firstTask);
-    taskWidgetPage.waitAjaxIndicatorDisappear();
-    taskWidgetPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
-    taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertEquals(tomorrowStringLiteral, taskWidgetPage.getExpiryOfTaskAt());
   }
 
   @Test
@@ -197,23 +178,6 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.openTaskDelegateDialog(0);
     taskWidgetPage.selectDelegateResponsible(TestRole.HR_ROLE, true);
     assertEquals(TestRole.HR_ROLE, taskWidgetPage.getResponsibleOfTaskAt(0));
-  }
-  
-  @Test
-  public void testDelegateTaskInTaskDetail() {
-    login(TestAccount.HR_ROLE_USER);
-    HomePage homePage = new HomePage();
-    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
-    TaskDetailsPage taskDetailsPage = taskWidgetPage.openTaskDetails(0);
-    assertEquals(TestRole.EVERYBODY_ROLE, taskDetailsPage.getTaskResponsible());
-    taskDetailsPage.openTaskDelegateDialog();
-    taskDetailsPage.selectDelegateResponsible(TestAccount.HR_ROLE_USER.getFullName(), false);
-    assertEquals(TestAccount.HR_ROLE_USER.getFullName(), taskDetailsPage.getTaskResponsible());
-    
-    taskDetailsPage.openTaskDelegateDialog();
-    taskDetailsPage.selectDelegateResponsible(TestRole.HR_ROLE, true);
-    assertEquals(TestRole.HR_ROLE, taskDetailsPage.getTaskResponsible());
   }
 
   @Test
