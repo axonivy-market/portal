@@ -30,7 +30,6 @@ Ts0 @UdEvent f6 '' #zField
 Ts0 @PushWFArc f3 '' #zField
 Ts0 @UdMethod f4 '' #zField
 Ts0 @UdProcessEnd f8 '' #zField
-Ts0 @GridStep f22 '' #zField
 Ts0 @GridStep f23 '' #zField
 Ts0 @PushWFArc f16 '' #zField
 Ts0 @PushWFArc f18 '' #zField
@@ -182,21 +181,8 @@ Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f4 83 403 26 26 -69 23 #rect
 Ts0 f4 @|UdMethodIcon #fIcon
-Ts0 f8 363 403 26 26 0 12 #rect
+Ts0 f8 355 403 26 26 0 12 #rect
 Ts0 f8 @|UdProcessEndIcon #fIcon
-Ts0 f22 actionTable 'out=in;
-' #txt
-Ts0 f22 actionCode 'in.task.getCase().getBusinessCase().createNote(ivy.session, in.changeDeadlineNoteContent);' #txt
-Ts0 f22 security system #txt
-Ts0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Add note</name>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f22 1120 370 112 44 -24 -8 #rect
-Ts0 f22 @|StepIcon #fIcon
 Ts0 f23 actionTable 'out=in;
 ' #txt
 Ts0 f23 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -218,10 +204,10 @@ Ts0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f23 200 394 112 44 -24 -8 #rect
+Ts0 f23 192 394 112 44 -24 -8 #rect
 Ts0 f23 @|StepIcon #fIcon
-Ts0 f16 312 416 363 416 #arcP
-Ts0 f18 109 416 200 416 #arcP
+Ts0 f16 304 416 355 416 #arcP
+Ts0 f18 109 416 192 416 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItemGeneralInfo.TaskItemGeneralInfoData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect

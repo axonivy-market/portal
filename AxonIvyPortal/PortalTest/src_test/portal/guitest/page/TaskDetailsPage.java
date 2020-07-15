@@ -11,6 +11,8 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 public class TaskDetailsPage extends TemplatePage {
+  
+  private static final String UI_INPLACE_SAVE = "ui-inplace-save";
 
   @Override
   protected String getLoadedLocator() {
@@ -131,5 +133,45 @@ public class TaskDetailsPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
     click(By.cssSelector("button[id$='proceed-task-delegate-command']"));
     waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), false);
+  }
+  
+  public void changeExpiryOfTaskAt(String dateStringLiteral) {
+    click(findElementById("task-detail-template:general-information:expiry-form:edit-inplace_display"));
+    waitForElementDisplayed(By.id("task-detail-template:general-information:expiry-form:expiry-calendar"), true);
+    WebElement taskExpiryInlineEdit =
+        findElementById("task-detail-template:general-information:expiry-form:expiry-calendar_input");
+    taskExpiryInlineEdit.sendKeys(dateStringLiteral);
+
+    WebElement editor = findElementById("task-detail-template:general-information:expiry-form:edit-inplace_editor");
+    WebElement saveButton = findChildElementByClassName(editor, UI_INPLACE_SAVE);
+    saveButton.click();
+    waitForElementDisplayed(By.cssSelector("[id$=':expiry-form:edit-inplace_editor']"), false);
+  }
+
+  public boolean isClearDelayTimeDisplayed() {
+    return isElementDisplayedById("task-detail-template:additional-options:task-clear-delay-command");
+  }
+  
+  public void clickOnClearDelayTime() {
+    click(findElementByCssSelector("a[id$=':additional-options:task-clear-delay-command']"));
+    waitForElementDisplayed(By.cssSelector("[id$=':additional-options:side-steps-panel']"), false);
+  }
+
+  public String getTaskState() {
+    WebElement taskStateComponent = findElementByCssSelector("[id$=':general-information:task-detail-state']");
+    return taskStateComponent.findElement(By.cssSelector("span[class*='task-detail-state']")).getText();
+  }
+
+  public String getTaskDelayTime() {
+    return findElementByCssSelector("span[id$='general-information:delay-form:delay-date_display']").getText();
+  }
+
+  public void updateDelayTimestamp(String tomorrowStringLiteral) {
+    click(findElementByCssSelector("span[id$='general-information:delay-form:delay-date_display']"));
+    WebElement delayInput = findElementByCssSelector("[id$='delay-form:delay-date-calendar_input']");
+    delayInput.sendKeys(tomorrowStringLiteral);
+    WebElement buttonAction = findElementByCssSelector("[id$='delay-form:delay-date_editor']");
+    click(buttonAction.findElement(By.className("ui-inplace-save")));
+    waitAjaxIndicatorDisappear();
   }
 }

@@ -63,7 +63,13 @@
       <i class="option-action-icon tmi-box-arrow-toinside" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}</span>
     </p:commandLink>
-
+    
+    <p:commandLink id="task-clear-delay-command" disabled="#{!taskActionBean.canChangeDelayTimestamp(task)}" rendered="#{taskActionBean.showClearDelayTime(task)}"
+      styleClass="option-item" actionListener="#{logic.clearDelay(task)}" update="@parent #{cc.attrs.componentToUpdate}">
+      <i class="option-action-icon fa fa-refresh" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/clearDelay')}</span>
+    </p:commandLink>
+    
     <p:commandLink id="task-destroy-command" disabled="#{!taskActionBean.canDestroyTask(task)}" rendered="#{taskActionBean.showDestroyTask}"
       styleClass="option-item" update="@parent #{cc.attrs.componentToUpdate}"
       actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
