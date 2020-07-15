@@ -165,6 +165,8 @@ Migrate 8.x to 9.1
 
 8. If administrator activate the ``ENABLE_CASE_OWNER`` Portal settings and there is a customized case list, customize this field to this case list, e.g. add filter, column configuration, header
 
+9. The ``PortalNavigatorInFrame#navigateToPortalHome`` method is removed, redirect to ivy.html.applicationHomeRef() in your page instead.
+
 Migrate 8.0.1 to 8.0.2
 ----------------------
 
