@@ -12,10 +12,7 @@ This section covers Portal role, permissions and some settings in User menu
 Admin settings
 ==============
 
-User needs to have role ``AXONIVY_PORTAL_ADMIN`` to see this menu item,
-it is used to configure Portal configuration, see different Portal
-configurations in
-:ref:`Portal mode <installation-basic-portal-mode>`
+User needs to have role ``AXONIVY_PORTAL_ADMIN`` to see this menu.
 
 How to open Admin Settings
 --------------------------
