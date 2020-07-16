@@ -168,6 +168,7 @@ public class TaskDetailsPage extends TemplatePage {
 
   public void updateDelayTimestamp(String tomorrowStringLiteral) {
     click(findElementByCssSelector("span[id$='general-information:delay-form:delay-date_display']"));
+    waitForElementDisplayed(By.id("ui-datepicker-div"), true);
     WebElement delayInput = findElementByCssSelector("[id$='delay-form:delay-date-calendar_input']");
     delayInput.sendKeys(tomorrowStringLiteral);
     WebElement buttonAction = findElementByCssSelector("[id$='delay-form:delay-date_editor']");
