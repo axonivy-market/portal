@@ -72,7 +72,7 @@
               <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-detail-more-step"
                 panelWidgetVar="task-side-steps-panel-#{rowIndex}" isAdhocExcluded="false"
                 renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}" task="#{task}"
-                isDisabled="#{!taskActionBean.isNotDone(task)}"
+                isDisabled="#{taskActionBean.noActionAvailable(task)}"
                 componentToUpdate="#{cc.clientId}:task-detail-general-container #{cc.clientId}:task-detail-note-container"
                 onDestroyComplete="PF('destroy-task-dialog').show()" showInTaskList="false" />
             </h:panelGroup>
