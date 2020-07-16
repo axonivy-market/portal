@@ -87,7 +87,7 @@ public class TaskDetailsTest extends BaseTest {
     String tomorrow = prepareTomorrowAsString();
     taskDetailsPage.updateDelayTimestamp(tomorrow);
     assertEquals("DELAYED", taskDetailsPage.getTaskState());
-    
+    refreshPage();
     String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskDetailsPage.updateDelayTimestamp(yesterday);
     assertEquals("SUSPENDED", taskDetailsPage.getTaskState());
