@@ -211,6 +211,16 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.id("task-detail-template:additional-options:side-steps-panel"),true);
   }
   
+  public boolean isActionLinkEnable() {
+    return !findElementByClassName("action-button").getAttribute("class").contains("ui-state-disabled");
+  }
+  
+  public List<String> getActiveTaskAction() {
+    openActionPanel();
+    WebElement actionPanel = findElementByCssSelector("div[id$='task-detail-template:additional-options:side-steps-panel']");
+    return actionPanel.findElements(By.cssSelector("a[class*='option-item']")).stream().map(WebElement::getText).collect(Collectors.toList());
+  }
+  
   public void selectDelegateResponsible(String responsibleName, boolean isRole) {
     if(isRole) {
       List<WebElement> radioButtonLabels = findListElementsByCssSelector("table[id$='activator-type-select'] label");
