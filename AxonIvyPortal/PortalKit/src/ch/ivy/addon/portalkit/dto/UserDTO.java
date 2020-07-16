@@ -22,7 +22,6 @@ public class UserDTO {
   }
   
   public UserDTO(Record record) {
-    this.id = Long.valueOf(record.getField("USERID").toString());
     this.name = record.getField("NAME").toString();
     this.memberName = "#" + this.name;
     this.displayName = record.getField("FULLNAME").toString();

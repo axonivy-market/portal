@@ -70,7 +70,7 @@ public class SecurityService implements ISecurityService {
    */
   private List<UserDTO> queryUsers(String query, List<String> apps, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) throws PortalIvyDataException {
     IUserQueryExecutor executor = ServerFactory.getServer().getSecurityManager().getUserQueryExecutor();
-    UserQuery userQuery = executor.createUserQuery().orderBy().fullName();
+    UserQuery userQuery = executor.createUserQuery().groupBy().name().fullName().orderBy().fullName();
     IFilterQuery filterQuery = createFilterQuery(query, userQuery);
     
     if (CollectionUtils.isNotEmpty(fromRoles)) {
