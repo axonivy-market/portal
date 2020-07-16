@@ -745,5 +745,14 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), false);
   }
   
+   public List<String> getActiveTaskAction(int taskIndex) {
+    clickOnTaskActionLink(taskIndex);
+    WebElement actionPanel = findElementByCssSelector(String.format("div[id$='task-list-scroller:%d:task-item:task-action:additional-options:side-steps-panel']", taskIndex));
+    return actionPanel.findElements(By.cssSelector("a[class*='option-item']")).stream().map(WebElement::getText).collect(Collectors.toList());
+  }
   
+  public void clickOnTaskActionLink(int taskIndex) {
+    click(findElementByCssSelector(String.format("a[id$='task-list-scroller:%d:task-item:task-action:additional-options:task-side-steps-menu'", taskIndex)));
+    waitForElementDisplayed(By.cssSelector(String.format("div[id$='task-list-scroller:%d:task-item:task-action:additional-options:side-steps-panel'", taskIndex)), true);
+  }
 }
