@@ -10,7 +10,7 @@ import portal.guitest.common.Sleeper;
  * This is a work around to kill all browsers after ChatTest.
  * If killing browsers in @AfterClass of ChatTest first then in ScreenshotFailedTestRule shutdown the browser, shutting down the browser could take 3 hours to finish. 
  */
-public class ChatTestKillBrowsers {
+public class ChatTestKillBrowsersTest {
 
 
   @Test
