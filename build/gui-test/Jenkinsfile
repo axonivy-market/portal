@@ -2,7 +2,7 @@ pipeline {
   agent {label 'portal-slave'}
   
   options {
-    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
+    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '30'))
   }
   
   triggers {
@@ -112,7 +112,7 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/*/*/*.jpg", allowEmptyArchive: true
+      archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/*/*/*.jpg, AxonIvyPortal/PortalTest/target/testEngineOut.log", allowEmptyArchive: true
       junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
     }
   }
