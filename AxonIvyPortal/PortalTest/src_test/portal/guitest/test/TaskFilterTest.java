@@ -112,7 +112,6 @@ public class TaskFilterTest extends BaseTest {
 		assertEquals(filterName, taskWidgetPage.getFilterName());
 	}
 
-	@Ignore(value = "Wait for fix in XIVY-4274")
 	@Test
 	public void testShowUnassignedTaskToPersonHaveTaskReadAllPermission() {
 		login(TestAccount.ADMIN_USER);
@@ -121,12 +120,9 @@ public class TaskFilterTest extends BaseTest {
     	taskWidgetPage.expand();
 		assertEquals(6, taskWidgetPage.countTasks());
 
-		taskWidgetPage.openStateFilterOverlayPanel();
-		assertTrue(taskWidgetPage.getDisplayStateInStateFilter().contains("Unassigned"));
-
-		taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Created", "Suspended", "In progress", "Reserved", "Done"));
-		assertEquals(1, taskWidgetPage.countTasks());
-		assertEquals("OPEN (Unassigned)", taskWidgetPage.getTaskStateTooltip(0));
+		taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Suspended"));
+		assertEquals(4, taskWidgetPage.countTasks());
+		assertEquals("Not exist user", taskWidgetPage.getResponsibleOfTaskAt(0));
 	}
 	
 	@Test
