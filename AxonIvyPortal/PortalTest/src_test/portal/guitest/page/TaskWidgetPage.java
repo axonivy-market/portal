@@ -449,6 +449,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void clickOnTaskStatesAndApply(List<String> states) {
     openStateFilter();
+    waitAjaxIndicatorDisappear();
     WebElement stateFilterPanel = findElementByCssSelector("div[id$='state-filter:filter-input-form:advanced-filter-panel']");
     List<String> labelList = findChildElementsByTagName(stateFilterPanel, "label").stream().map(WebElement::getText).collect(Collectors.toList());
     List<WebElement> checkBoxList = stateFilterPanel.findElements(By.cssSelector("div[class*='ui-chkbox-box ui-widget ui-corner-all ui-state-default']"));
