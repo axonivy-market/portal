@@ -8,7 +8,6 @@ import static org.junit.Assert.assertTrue;
 import java.util.Arrays;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
