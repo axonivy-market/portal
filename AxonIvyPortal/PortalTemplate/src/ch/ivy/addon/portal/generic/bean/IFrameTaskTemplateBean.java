@@ -32,6 +32,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private static final String PROCESS_CHAIN_SHAPE_PARAM = "processChainShape";
   private static final String PROCESS_CHAIN_DIRECTION_PARAM = "processChainDirection";
   private static final String PROCESS_STEPS_PARAM = "processSteps";
+  private static final String ANNOUNCEMENT_INVISIBLE_PARAM = "announcementInvisible";
   private static final String CURRENT_PROCESS_STEP_PARAM = "currentProcessStep";
   private static final String IS_HIDE_CASE_INFO = "isHideCaseInfo";
   private static final String IS_HIDE_TASK_NAME = "isHideTaskName";
@@ -43,6 +44,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private boolean isShowAllSteps;
   private String processChainDirection;
   private String processChainShape;
+  private boolean announcementInvisible = true;
   //In Iframe, when initial loading the page we hide both 
   //3 items: task action, task name and case info, to avoid blinking problem
   private boolean isHideTaskAction = true;
@@ -89,6 +91,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     isShowAllSteps = Optional.ofNullable(requestParamMap.get(IS_SHOW_ALL_STEPS_PARAM)).map(BooleanUtils::toBoolean).orElse(false);
     processChainDirection = Optional.ofNullable(requestParamMap.get(PROCESS_CHAIN_DIRECTION_PARAM)).orElse(StringUtils.EMPTY);
     processChainShape = Optional.ofNullable(requestParamMap.get(PROCESS_CHAIN_SHAPE_PARAM)).orElse(StringUtils.EMPTY);
+    announcementInvisible = Optional.ofNullable(requestParamMap.get(ANNOUNCEMENT_INVISIBLE_PARAM)).map(p -> StringUtils.isNotBlank(p) ? BooleanUtils.toBoolean(p) : true).get();
     isHideCaseInfo = Optional.ofNullable(requestParamMap.get(IS_HIDE_CASE_INFO)).map(BooleanUtils::toBoolean).orElse(false);
     isHideTaskName = Optional.ofNullable(requestParamMap.get(IS_HIDE_TASK_NAME)).map(BooleanUtils::toBoolean).orElse(false);
     isHideTaskAction = Optional.ofNullable(requestParamMap.get(IS_HIDE_TASK_ACTION)).map(BooleanUtils::toBoolean).orElse(false);
@@ -117,28 +120,16 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     return isShowAllSteps;
   }
 
-  public void setIsShowAllSteps(boolean isShowAllSteps) {
-    this.isShowAllSteps = isShowAllSteps;
-  }
-
-  public void setProcessSteps(List<String> processSteps) {
-    this.processSteps = processSteps;
-  }
-
   public String getProcessChainDirection() {
     return processChainDirection;
-  }
-
-  public void setProcessChainDirection(String processChainDirection) {
-    this.processChainDirection = processChainDirection;
   }
 
   public String getProcessChainShape() {
     return processChainShape;
   }
-
-  public void setProcessChainShape(String processChainShape) {
-    this.processChainShape = processChainShape;
+  
+  public boolean getAnnouncementInvisible() {
+    return announcementInvisible;
   }
 
   public boolean getIsHideTaskAction() {

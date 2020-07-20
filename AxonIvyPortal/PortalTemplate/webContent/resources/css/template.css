@@ -110,14 +110,12 @@
 /*Task template*/
 .task-template-container {
   min-height: 400px;
-  margin-bottom: 20px !important;
   position: relative;
 }
 
 .task-template-title {
   display: flex;
   align-items: center;
-  margin-top: 5px;
   flex: 1 0 auto;
 }
 
@@ -146,10 +144,6 @@
   .layout-wrapper .layout-main .layout-content.frame-container {
     height: 100%;
   }
-}
-
-.task-frame-container {
-  height: calc(100vh - 160px);
 }
 
 .task-frame {

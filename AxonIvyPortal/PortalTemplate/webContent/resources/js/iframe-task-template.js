@@ -34,12 +34,6 @@ function loadIframe() {
       name : 'announcementInvisible',
       value : window.announcementInvisible
     }]);
-    
-    if (!window.announcementInvisible) {
-      $('#announcement-container').removeClass('u-hidden');
-      $('.task-template-container').height($('.task-template-container').outerHeight() - 10);
-    }
-    $('.task-template-container').removeClass('u-hidden');
   });
 }
 
@@ -58,10 +52,18 @@ function checkUrl(iFrame) {
 }
 
 window.addEventListener("resize", resizeIFrame, false);
-resizeIFrame();
 function resizeIFrame() {
-  var mainPanelHeight = $('.task-frame-container').get(0).offsetHeight;
-  $('iframe[id="iFrame"]').height(mainPanelHeight);
+  Portal.updateLayoutContent();
+  var taskHeaderContainerHeight = ($('.js-task-header-container').outerHeight(true)||0);
+  var announcementMessageContainerHeight = ($('.js-annoucement-in-frame-template').outerHeight(true)||0);
+  var error = 25;
+
+  var mainScreenHeight = $('.js-layout-content').outerHeight(true);
+  var availableHeight = mainScreenHeight - taskHeaderContainerHeight - announcementMessageContainerHeight - error;
+
+  if (!!availableHeight) {
+    $('iframe[id="iFrame"]').height(availableHeight);
+  }
 }
 
 function updateContentContainerClass() {
@@ -71,4 +73,8 @@ function updateContentContainerClass() {
       $('.task-frame-container').addClass('vertical-chain-shape-line');
     }
   }
+  if (!window.announcementInvisible) {
+    $('#announcement').removeClass('u-invisibility');
+  }
+  $('.task-template-container').removeClass('u-invisibility');
 }
