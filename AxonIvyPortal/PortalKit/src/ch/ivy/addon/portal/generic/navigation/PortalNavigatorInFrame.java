@@ -5,7 +5,6 @@ import java.net.URLDecoder;
 
 import org.primefaces.PrimeFaces;
 
-import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivyteam.ivy.environment.Ivy;
 
 /**
@@ -17,7 +16,6 @@ public final class PortalNavigatorInFrame {
    * Navigates to PortalEndPage without finishing a task, e.g. clicking on Cancel button then back to previous page: task list or task details or global search
    */
   public void navigateToPortalEndPage() {
-    Ivy.session().setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);
     String statement = "parent.redirectToEndPageCommand([{name: 'taskId', value: " + Ivy.wfTask().getId() + "}]);";
     PrimeFaces.current().executeScript(statement);
   }
