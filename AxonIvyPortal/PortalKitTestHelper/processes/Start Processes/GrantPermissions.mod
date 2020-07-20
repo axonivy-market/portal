@@ -95,6 +95,18 @@ Is0 @StartRequest f80 '' #zField
 Is0 @GridStep f82 '' #zField
 Is0 @PushWFArc f83 '' #zField
 Is0 @PushWFArc f81 '' #zField
+Is0 @StartRequest f84 '' #zField
+Is0 @GridStep f85 '' #zField
+Is0 @PushWFArc f86 '' #zField
+Is0 @PushWFArc f87 '' #zField
+Is0 @StartRequest f88 '' #zField
+Is0 @GridStep f89 '' #zField
+Is0 @PushWFArc f90 '' #zField
+Is0 @PushWFArc f91 '' #zField
+Is0 @StartRequest f92 '' #zField
+Is0 @GridStep f93 '' #zField
+Is0 @PushWFArc f94 '' #zField
+Is0 @PushWFArc f95 '' #zField
 >Proto Is0 Is0 GrantPermissions #zField
 Is0 f0 outLink grantAllPermissionsToCurrentUser.ivp #txt
 Is0 f0 inParamDecl '<> param;' #txt
@@ -1147,7 +1159,7 @@ Is0 f80 caseData businessCase.attach=true #txt
 Is0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>grantShowTaskReadyForJoin.ivp</name>
+        <name>grantResetTaskReadyForJoin.ivp</name>
     </language>
 </elementInfo>
 ' #txt
@@ -1165,6 +1177,7 @@ IPermission iPermission = IPermissionRepository.get().findByName(PortalPermissio
 if (Objects.nonNull(iPermission)){
   ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
 }' #txt
+Is0 f82 security system #txt
 Is0 f82 216 1636 48 24 0 -8 #rect
 Is0 f82 @|StepIcon #fIcon
 Is0 f83 63 1648 216 1648 #arcP
@@ -1172,6 +1185,94 @@ Is0 f83 0 0.3438914027149321 0 0 #arcLabel
 Is0 f81 264 1648 408 543 #arcP
 Is0 f81 1 408 1648 #addKink
 Is0 f81 1 0.3438914027149321 0 0 #arcLabel
+Is0 f84 outLink denyResetTaskReadyForJoin.ivp #txt
+Is0 f84 inParamDecl '<> param;' #txt
+Is0 f84 requestEnabled true #txt
+Is0 f84 triggerEnabled false #txt
+Is0 f84 callSignature denyResetTaskReadyForJoin() #txt
+Is0 f84 caseData businessCase.attach=true #txt
+Is0 f84 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>denyResetTaskReadyForJoin.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f84 @C|.responsibility Everybody #txt
+Is0 f84 33 1713 30 30 16 0 #rect
+Is0 f84 @|StartRequestIcon #fIcon
+Is0 f85 actionTable 'out=in;
+' #txt
+Is0 f85 actionCode 'import java.util.Objects;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+import ch.ivyteam.ivy.security.IPermission;
+
+IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_RESET_READY_FOR_JOIN.getValue());
+if (Objects.nonNull(iPermission)){
+  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());
+}' #txt
+Is0 f85 security system #txt
+Is0 f85 220 1716 40 24 0 -8 #rect
+Is0 f85 @|StepIcon #fIcon
+Is0 f86 63 1728 220 1728 #arcP
+Is0 f87 260 1728 408 543 #arcP
+Is0 f87 1 408 1728 #addKink
+Is0 f87 1 0.4459915611814346 0 0 #arcLabel
+Is0 f88 outLink grantDestroyTaskPermission.ivp #txt
+Is0 f88 inParamDecl '<> param;' #txt
+Is0 f88 requestEnabled true #txt
+Is0 f88 triggerEnabled false #txt
+Is0 f88 callSignature grantDestroyTaskPermission() #txt
+Is0 f88 caseData businessCase.attach=true #txt
+Is0 f88 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>grantDestroyTaskPermission.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f88 @C|.responsibility Everybody #txt
+Is0 f88 777 449 30 30 16 0 #rect
+Is0 f88 @|StartRequestIcon #fIcon
+Is0 f89 actionTable 'out=in;
+' #txt
+Is0 f89 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.TASK_DESTROY, ivy.session.getSessionUser());' #txt
+Is0 f89 security system #txt
+Is0 f89 604 452 40 24 0 -8 #rect
+Is0 f89 @|StepIcon #fIcon
+Is0 f90 777 464 644 464 #arcP
+Is0 f91 604 464 408 513 #arcP
+Is0 f91 1 408 464 #addKink
+Is0 f91 0 0.6011949495660706 0 0 #arcLabel
+Is0 f92 outLink denyDestroyTaskPermission.ivp #txt
+Is0 f92 inParamDecl '<> param;' #txt
+Is0 f92 requestEnabled true #txt
+Is0 f92 triggerEnabled false #txt
+Is0 f92 callSignature denyDestroyTaskPermission() #txt
+Is0 f92 caseData businessCase.attach=true #txt
+Is0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>denyDestroyTaskPermission.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f92 @C|.responsibility Everybody #txt
+Is0 f92 777 513 30 30 16 0 #rect
+Is0 f92 @|StartRequestIcon #fIcon
+Is0 f93 actionTable 'out=in;
+' #txt
+Is0 f93 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+
+ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.TASK_DESTROY, ivy.session.getSessionUser());' #txt
+Is0 f93 security system #txt
+Is0 f93 604 516 40 24 0 -8 #rect
+Is0 f93 @|StepIcon #fIcon
+Is0 f94 777 528 644 528 #arcP
+Is0 f95 604 528 423 528 #arcP
 >Proto Is0 .type portalKit_test.GrantPermissionsData #txt
 >Proto Is0 .processKind NORMAL #txt
 >Proto Is0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1268,3 +1369,15 @@ Is0 f80 mainOut f83 tail #connect
 Is0 f83 head f82 mainIn #connect
 Is0 f82 mainOut f81 tail #connect
 Is0 f81 head f7 mainIn #connect
+Is0 f84 mainOut f86 tail #connect
+Is0 f86 head f85 mainIn #connect
+Is0 f85 mainOut f87 tail #connect
+Is0 f87 head f7 mainIn #connect
+Is0 f88 mainOut f90 tail #connect
+Is0 f90 head f89 mainIn #connect
+Is0 f89 mainOut f91 tail #connect
+Is0 f91 head f7 mainIn #connect
+Is0 f92 mainOut f94 tail #connect
+Is0 f94 head f93 mainIn #connect
+Is0 f93 mainOut f95 tail #connect
+Is0 f95 head f7 mainIn #connect
