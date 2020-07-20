@@ -101,11 +101,7 @@ Fs0 @PushWFArc f2 '' #zField
 Fs0 @GridStep f76 '' #zField
 Fs0 @PushWFArc f78 '' #zField
 Fs0 @PushWFArc f75 '' #zField
-Fs0 @GridStep f91 '' #zField
-Fs0 @PushWFArc f92 '' #zField
-Fs0 @GridStep f93 '' #zField
 Fs0 @PushWFArc f31 '' #zField
-Fs0 @PushWFArc f94 '' #zField
 >Proto Fs0 Fs0 WorkflowDefinitionProcess #zField
 Fs0 f0 guid 1576FA61C9D81A51 #txt
 Fs0 f0 method start(gawfs.Data) #txt
@@ -371,7 +367,7 @@ Fs0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Fs0 f25 83 531 26 26 -18 15 #rect
 Fs0 f25 @|UdMethodIcon #fIcon
-Fs0 f30 779 611 26 26 0 12 #rect
+Fs0 f30 435 611 26 26 0 12 #rect
 Fs0 f30 @|UdExitEndIcon #fIcon
 Fs0 f28 actionTable 'out=in;
 ' #txt
@@ -966,53 +962,7 @@ Fs0 f78 0 0.3973656425622029 0 0 #arcLabel
 Fs0 f75 328 160 552 86 #arcP
 Fs0 f75 1 552 160 #addKink
 Fs0 f75 0 0.7191176064037719 0 0 #arcLabel
-Fs0 f91 actionTable 'out=in;
-' #txt
-Fs0 f91 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import javax.faces.context.Flash;
-import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
-
-String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
-boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
-if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
-	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-	if (!flash.containsKey("overridePortalGrowl")) {
-		FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
-		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-	}
-	flash.setRedirect(true);
-	flash.setKeepMessages(true);
-}' #txt
-Fs0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Display message after&#13;
-finish or leave task</name>
-    </language>
-</elementInfo>
-' #txt
-Fs0 f91 576 602 144 44 -54 -16 #rect
-Fs0 f91 @|StepIcon #fIcon
-Fs0 f92 720 624 779 624 #arcP
-Fs0 f93 actionTable 'out=in;
-' #txt
-Fs0 f93 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
-
-ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);' #txt
-Fs0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Set task is finished</name>
-    </language>
-</elementInfo>
-' #txt
-Fs0 f93 424 602 112 44 -52 -8 #rect
-Fs0 f93 @|StepIcon #fIcon
-Fs0 f31 376 624 424 624 #arcP
-Fs0 f94 536 624 576 624 #arcP
+Fs0 f31 376 624 435 624 #arcP
 >Proto Fs0 .type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 >Proto Fs0 .processKind HTML_DIALOG #txt
 >Proto Fs0 -8 -8 16 16 16 26 #rect
@@ -1097,9 +1047,5 @@ Fs0 f74 mainOut f78 tail #connect
 Fs0 f78 head f76 mainIn #connect
 Fs0 f76 mainOut f75 tail #connect
 Fs0 f75 head f77 mainIn #connect
-Fs0 f91 mainOut f92 tail #connect
-Fs0 f92 head f30 mainIn #connect
 Fs0 f28 mainOut f31 tail #connect
-Fs0 f31 head f93 mainIn #connect
-Fs0 f93 mainOut f94 tail #connect
-Fs0 f94 head f91 mainIn #connect
+Fs0 f31 head f30 mainIn #connect

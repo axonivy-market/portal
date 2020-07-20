@@ -11,7 +11,6 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.MenuKind;
-import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
@@ -89,7 +88,6 @@ public final class PortalNavigator {
   public void navigateToPortalEndPage() {
     String defaultEndPage = getDefaultEndPage();
     redirect(defaultEndPage + "?endedTaskId=" + Ivy.wfTask().getId());
-    Ivy.session().setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);
   }
 
   private String getDefaultEndPage() {
