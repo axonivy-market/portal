@@ -1461,6 +1461,10 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
   padding: 0 .5em;
 }
 
+.filter-container .technical-case-text-filter {
+  width: 40%;
+}
+
 .filter-selection-form {
   margin-right: 5px;
   padding: 0 !important;
@@ -4068,6 +4072,10 @@ _:-ms-fullscreen, :root .content-link-history {
 .filter-container .selected-filters-label {
   display: block;
   margin-bottom: 9px;
+}
+
+.filter-container .technical-case-text-filter .selected-filters-label {
+  display: none;
 }
 
 .filter-container .advanced-filter-component {
