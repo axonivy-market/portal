@@ -136,10 +136,7 @@ public class TaskFilterTest extends BaseTest {
 		TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
 		assertEquals(6, taskWidgetPage.countTasks());
 
-		taskWidgetPage.openStateFilterOverlayPanel();
-		assertTrue(taskWidgetPage.getDisplayStateInStateFilter().contains("Unassigned"));
-
-		taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Created", "Suspended", "In progress", "Reserved", "Done"));
+		taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Unassigned"));
 		assertEquals(1, taskWidgetPage.countTasks());
 		assertEquals("OPEN (Unassigned)", taskWidgetPage.getTaskStateTooltip(0));
 	}
