@@ -50,7 +50,9 @@ function CaseWidget() {
       } else {
         $breadCrumbTaskElem.find(".js-count").get(0).innerHTML = " (" + $(".js-hidden-case-count").get(0).innerHTML + ")";
       }
-      $(".js-case-count-mobile").get(0).innerHTML = " (" + $(".js-hidden-case-count").get(0).innerHTML + ")";
+      if ($(".js-case-count-mobile").length > 0) {
+        $(".js-case-count-mobile").get(0).innerHTML = " (" + $(".js-hidden-case-count").get(0).innerHTML + ")";
+      }
     }
 }
 
