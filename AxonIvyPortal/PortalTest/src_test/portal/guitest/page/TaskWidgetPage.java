@@ -2,6 +2,7 @@ package portal.guitest.page;
 
 import static portal.guitest.common.WaitHelper.assertTrueWithWait;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -21,7 +22,6 @@ import portal.guitest.common.WaitHelper;
 public class TaskWidgetPage extends TemplatePage {
 
 	private String taskWidgetId;
-	private static final String UI_INPLACE_SAVE = "ui-inplace-save";
 	private static final String TASK_ACTION = "horizontal-task-actions";
 	private static final String CLASS = "class";
 	private static final String ID_END = "*[id$='";
@@ -74,8 +74,7 @@ public class TaskWidgetPage extends TemplatePage {
 
 	private TaskDetailsPage clickOnTaskEntryInFullMode(int index) {
 		clickByCssSelector("div[id$='" + index + "\\:task-item\\:task-info']");
-		TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
-		return taskDetailsPage;
+		return new TaskDetailsPage();
 	}
 
 	public TaskTemplatePage startTask(int index) {
@@ -214,18 +213,6 @@ public class TaskWidgetPage extends TemplatePage {
 			return stateContent.getAttribute("innerText");
 		}
 		return StringUtils.EMPTY;
-	}
-
-	public void changeExpiryOfTaskAt(String dateStringLiteral) {
-		click(findElementById("task-detail-template:general-information:expiry-form:edit-inplace_display"));
-		waitForElementDisplayed(By.id("task-detail-template:general-information:expiry-form:expiry-calendar"), true);
-		WebElement taskExpiryInlineEdit =
-				findElementById("task-detail-template:general-information:expiry-form:expiry-calendar_input");
-		taskExpiryInlineEdit.sendKeys(dateStringLiteral);
-
-		WebElement editor = findElementById("task-detail-template:general-information:expiry-form:edit-inplace_editor");
-		WebElement saveButton = findChildElementByClassName(editor, UI_INPLACE_SAVE);
-		saveButton.click();
 	}
 
 	public String getExpiryOfTaskAt() {
@@ -475,19 +462,26 @@ public class TaskWidgetPage extends TemplatePage {
 	}
 
 	public void clickOnTaskStatesAndApply(List<String> states) {
-		WebElement stateFilter =
-				findElementByCssSelector("div[id$='state-filter:filter-input-form:advanced-filter-panel']");
-		List<WebElement> elements = findChildElementsByTagName(stateFilter, "LABEL");
-		for (String state : states) {
-			for (WebElement ele : elements) {
-				if (state.equals(ele.getText())) {
-					ele.click();
-					break;
-				}
-			}
-		}
-		click(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"));
-		waitAjaxIndicatorDisappear();
+    openStateFilter();
+    WebElement stateFilterPanel = findElementByCssSelector("div[id$='state-filter:filter-input-form:advanced-filter-panel']");
+    List<String> labelList = findChildElementsByTagName(stateFilterPanel, "label").stream().map(WebElement::getText).collect(Collectors.toList());
+    List<WebElement> checkBoxList = stateFilterPanel.findElements(By.cssSelector("div[class*='ui-chkbox-box ui-widget ui-corner-all ui-state-default']"));
+    List<Integer> statesSelectedIndex = new ArrayList<>();
+    states.forEach(state -> {
+      int stateIndex = labelList.indexOf(state);
+      if (stateIndex >= 0 && stateIndex < labelList.size()) {
+        statesSelectedIndex.add(stateIndex);
+      }
+    });
+    
+    checkBoxList.forEach(checkBox -> {
+      if (checkBox.getAttribute("class").contains("ui-state-active")) checkBox.click();
+    });
+    
+    statesSelectedIndex.forEach(index -> checkBoxList.get(index).click());
+
+    click(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"));
+    waitAjaxIndicatorDisappear();
 	}
 
 	public void saveFilter(String filterName) {
@@ -751,5 +745,14 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), false);
   }
   
+   public List<String> getActiveTaskAction(int taskIndex) {
+    clickOnTaskActionLink(taskIndex);
+    WebElement actionPanel = findElementByCssSelector(String.format("div[id$='task-list-scroller:%d:task-item:task-action:additional-options:side-steps-panel']", taskIndex));
+    return actionPanel.findElements(By.cssSelector("a[class*='option-item']")).stream().map(WebElement::getText).collect(Collectors.toList());
+  }
   
+  public void clickOnTaskActionLink(int taskIndex) {
+    click(findElementByCssSelector(String.format("a[id$='task-list-scroller:%d:task-item:task-action:additional-options:task-side-steps-menu'", taskIndex)));
+    waitForElementDisplayed(By.cssSelector(String.format("div[id$='task-list-scroller:%d:task-item:task-action:additional-options:side-steps-panel'", taskIndex)), true);
+  }
 }

@@ -163,6 +163,9 @@ public class MenuView {
       case CASE:
         buildBreadCrumbForCaseList();
         break;
+      case TECHNICAL_CASE:
+        buildBreadCrumbForTechnicalCaseList(userCase);
+        break;
       case PROCESS:
         buildBreadCrumbForProcess();
         break;
@@ -202,6 +205,15 @@ public class MenuView {
     setPortalHomeMenuToBreadcrumbModel();
 
     DefaultMenuItem caseListSubmenuItem = buildCaseListMenuItem();
+    caseListSubmenuItem.setDisabled(true);
+    breadcrumbModel.getElements().add(caseListSubmenuItem);
+  }
+
+  private void buildBreadCrumbForTechnicalCaseList(ICase userCase) {
+    setPortalHomeMenuToBreadcrumbModel();
+    DefaultMenuItem caseListSubmenuItem = buildCaseListMenuItem();
+    String title = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCasesOfBusinessCaseTitle", Arrays.asList(Long.toString(userCase.getId()), userCase.getName()));
+    caseListSubmenuItem.setValue(title);
     caseListSubmenuItem.setDisabled(true);
     breadcrumbModel.getElements().add(caseListSubmenuItem);
   }

@@ -213,9 +213,11 @@
               update="delay-form #{cc.clientId}:task-detail-state #{cc.attrs.componentToUpdate}"
               resetValues="true" />
             <p:calendar id="delay-date-calendar" styleClass="delay-date-calendar" value="#{task.delayTimestamp}"
-              pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}">
+              pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" >
+              <f:validator validatorId="taskDelayTimestampValidator"/>
             </p:calendar>
           </p:inplace>
+          <p:growl id="delay-form-message" for="delay-date-calendar"/>
         </h:form>
       </div>
     </div>
