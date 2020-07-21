@@ -7,7 +7,6 @@ public enum SessionAttribute {
   TASK_CATEGORY,
   TASK_END_INFO,
   PORTAL_START_PMV_ID,
-  IS_TASK_FINISHED,  // task status after leave (for sticky task list feature)
   IS_TASK_STARTED_IN_DETAILS, // task status (for navigating back feature)
   NAVIGATE_FROM_RELATED_CASE, // use for navigate back after destroy case
   HELP_URL_LINK;

@@ -13,4 +13,4 @@ You could change the displayed information by overriding the ``UserWithEnvironme
 If you use Case Scope, you need to copy the ``PortalStart`` process from ``PortalTemplate`` to your project and
 it is ensured that the process request is issued through your project instead of PortalTemplate
 
-.. |user-with-environment-info| image:: images/user-with-environment-info/user-with-environment-info.png
+.. |user-with-environment-info| image:: ../../screenshots/dashboard/environment-info.png
