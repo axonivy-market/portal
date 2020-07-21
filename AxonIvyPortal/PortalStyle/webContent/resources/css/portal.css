@@ -703,6 +703,8 @@ body .portal-cancel-button.ui-widget.ui-button .ui-icon,
 .ui-widget.ui-button.defined-task-button.ui-state-hover {
   background-color: var(--defined-task-button-actived-or-hover-background-color); }
   
+.defined-task-container.card,
+.form-elements-container.card,
 .approval-comment-container .card,
 .express-email-container .card,
 .express-fieldset .card,
