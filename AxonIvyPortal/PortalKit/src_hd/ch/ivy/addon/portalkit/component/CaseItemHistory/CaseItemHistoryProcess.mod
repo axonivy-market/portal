@@ -64,7 +64,7 @@ Cs0 f19 actionTable 'out=in;
 ' #txt
 Cs0 f19 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
 
-out.taskSearchCriteria.includedStates = [TaskState.DONE, TaskState.DESTROYED, TaskState.ZOMBIE, TaskState.CREATED];
+out.taskSearchCriteria.includedStates = [TaskState.DONE, TaskState.DESTROYED];
 out.taskSearchCriteria.caseId = in.iCase.getId();
 out.taskSearchCriteria.queryByBusinessCaseId = in.iCase.isBusinessCase();
 out.taskSearchCriteria.newQueryCreated = true;
