@@ -702,6 +702,13 @@ body .portal-cancel-button.ui-widget.ui-button .ui-icon,
 
 .ui-widget.ui-button.defined-task-button.ui-state-hover {
   background-color: var(--defined-task-button-actived-or-hover-background-color); }
+  
+.approval-comment-container .card,
+.express-email-container .card,
+.express-fieldset .card,
+.express-view-form .card {
+  box-shadow: var(--card-box-shadow);
+  border-radius: var(--card-border-radius); }
 
 /*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
 .stages-chain .current i {

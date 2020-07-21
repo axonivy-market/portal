@@ -42,6 +42,7 @@ public class ExpressManagementPage extends TemplatePage {
     WebElement closeButton = findElementByCssSelector("*[id$=':close-import-express']");
     Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> closeButton.isEnabled());
     click(closeButton);
+    waitForElementDisplayed(By.cssSelector("*[id$=':close-import-express']"), false);
   }
 
   public void clickOnDeployExpress() {
@@ -83,6 +84,11 @@ public class ExpressManagementPage extends TemplatePage {
 
   public WebElement getExportExpressDialog() {
     return findElementByCssSelector("[id$=':express-management-component:export-express-dialog']");
+  }
+
+  public void deployExpressFile() {
+    clickOnDeployExpress();
+    clickOnCloseButton();
   }
 
 }
