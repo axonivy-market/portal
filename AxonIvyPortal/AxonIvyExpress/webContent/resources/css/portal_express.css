@@ -228,8 +228,6 @@
 
 .form-elements-container {
   margin: 0 0 16px;
-  border: none !important;
-  padding: 0;
 }
 
 .form-elements-container .form-elements-1st-column {
@@ -248,6 +246,7 @@
 .form-elements-container .ui-panelgrid-content.ui-widget-content.ui-grid.ui-grid-responsive {
   padding-left: 0;
   padding-right: 0;
+  border-color: transparent;
 }
 
 .available-form-elements .ui-datagrid-content.ui-widget-content {
