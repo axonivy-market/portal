@@ -110,28 +110,26 @@ In engine
 
 1. Convert database schema if needed.
 
-2. Redeploy Portal projects (exclude PortalConnector) and customer
+2. Redeploy Portal projects and customer
    project.
 3. Follow detailed migration notes for each version below.
 
 Migrate 8.x to 9.1
 ----------------------
 
-1. Removed the ``views`` field in SubMenuItem.java. Adapt it if you overrode the ``LoadSubMenuItems`` callable process
+1. Remove the ``views`` field in SubMenuItem.java. Adapt it if you overrode the ``LoadSubMenuItems`` callable process
 
-2. Please add parameter ``<ui:param name="viewName" value="TASK" />`` to your customized ``PortalTasksTemplate`` to displayed breadcrumb of Task list.
+2. Add parameter ``<ui:param name="viewName" value="TASK" />`` to your customized ``PortalTasksTemplate`` to displayed breadcrumb of Task list.
 
-3. Please add parameter ``<ui:param name="viewName" value="CASE" />`` to your customized ``PortalCasesTemplate`` to displayed breadcrumb of Case list.
+3. Add parameter ``<ui:param name="viewName" value="CASE" />`` to your customized ``PortalCasesTemplate`` to displayed breadcrumb of Case list.
 
-4. Ivy core enhanced the Ivy URI, so Portal needs to make a migration. Please deploy :download:`PortalUrlMigration.iar <documents/PortalUrlMigration.iar>` project to any Ivy Application then run ``migratePortalUrl.ivp`` once and wait until it is redirected to another page without error (E.g: Homepage). It is recommended to remove it after the migration.
+4. Ivy core enhanced the Ivy URI, so Portal needs to make a migration. Deploy :download:`PortalUrlMigration.iar <documents/PortalUrlMigration.iar>` project to any Ivy Application then run ``migratePortalUrl.ivp`` once and wait until it is redirected to another page without error (E.g: Homepage). It is recommended to remove it after the migration.
 
 5. HOMEPAGE_URL (single Portal app mode) and registered application link (multi Portal app mode) are not available anymore. To let portal know about your new portal home, you have to set default pages to your project, follow this chapter to customize standard processes: `Standard Processes <https://developer.axonivy.com/doc/latest/engine-guide/administration/standard-processes.html>`_
 
-6. Portal now use |css_variable| instead of SASS. Therefore you must convert SASS syntax to new CSS variable or use online tool such as |css_variable_convert| to convert it.
+6. Portal now uses |css_variable| instead of SASS. Therefore you must convert SASS syntax to new CSS variable or use online tool such as |css_variable_convert| to convert it.
 
-7. We removed ``titleOnMobile`` parameter in ``TaskWidget.xhtml`` and ``CaseWidget.xhtml``. Please use parameter ``title`` instead.
-
-8. If administrator activate the ``ENABLE_CASE_OWNER`` Portal settings and there is a customized case list, customize this field to this case list, e.g. add filter, column configuration, header
+7. If administrator activate the ``ENABLE_CASE_OWNER`` Portal settings and there is a customized case list, customize this field to this case list, e.g. add filter, column configuration, header
 
 
 .. _installation-release-notes:
@@ -144,13 +142,13 @@ releases of Axon.ivy.
 
 Changes in 9.1
 ----------------
--  User Selection Component is introduced, refer to :ref:`User 
-   Selection <components-additional-components-user-selection>` for more details.
 
 - Refactor style customization approach. From now on, Portal use CSS Variable as technology to customize CSS.
 
 - Introduce the User Guide feature, using the ``SHOW_USER_GUIDE`` Portal Setting to activate/deactivate it, 
   and follow :ref:`Customize user guide <customization-portal-home-user-guide>` for your customization.
+
+- TaskTemplate-7, TaskTemplate and TwoColumnTemplate are removed.
 
 .. |css_variable| raw:: html
 
