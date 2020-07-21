@@ -27,6 +27,16 @@
   width: auto !important;
 }
 
+.express-fieldset-content {
+  margin-top: 10px;
+  padding-bottom: 30px;
+}
+
+.approval-comment-container .card,
+.approval-result-content {
+  padding-bottom: 30px;
+}
+
 .process-property-container {
   width: 100%;
   margin: auto;
@@ -808,4 +818,14 @@ body .task-template-content .ui-fieldset .ui-fieldset-legend {
     margin-left: 0px !important;
     width: 50%;
   }
+}
+
+/* Express View */
+.express-view-form .button-group,
+.express-view-form .empty-finished-tasks-container {
+  margin: 20px 14px;
+}
+
+.express-view-form .no-item-panel {
+  margin: 4%;
 }

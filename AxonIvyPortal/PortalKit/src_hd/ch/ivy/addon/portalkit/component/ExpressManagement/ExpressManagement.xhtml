@@ -51,7 +51,7 @@
   <p:dialog id="export-express-dialog" widgetVar="export-express-dialog" modal="true" draggable="false" closable="false" resizable="false"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/exportExpressProcessTitle')}" appendTo="@(body)" styleClass="export-express-dialog"
     fitViewport="true" position="center center" responsive="true" positionType="absolute"
-    onShow="PF('export-express-dialog').initPosition();" closeOnEscape="false">
+    onShow="PF('export-express-dialog').initPosition();" closeOnEscape="false" width="70%">
     <h:form id="express-export-form">
       <h:panelGroup id="express-export-group" layout="block" class="ui-g" rendered="#{not empty expressManagementBean.selectedExpressProcesses}">
         <div class="ui-g-12">
@@ -93,7 +93,7 @@
     onShow="PF('import-express-dialog').initPosition();cleanExportMessage();" position="center center" appendTo="@(body)"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/importExpressProcessTitle')}"
     fitViewport="true" responsive="true" positionType="absolute" closeOnEscape="false"
-    styleClass="import-express-dialog">
+    styleClass="import-express-dialog" width="70%">
     <h:form id="import-express-form">
       <h:panelGroup id="express-process-upload-panel" layout="block" styleClass="ui-g">
         <div class="ui-g-12">
