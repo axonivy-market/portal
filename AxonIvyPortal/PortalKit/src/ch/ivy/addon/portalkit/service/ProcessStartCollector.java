@@ -28,6 +28,7 @@ public class ProcessStartCollector {
       "Start Processes/GenericPredefinedWorkflowStart/GenericPredefinedProcessStart.ivp";
   private static final String EXPRESS_WORKFLOW_EDIT_REQUEST_PATH =
       "Start Processes/GenericPredefinedWorkflowStart/GenericEditProcessStart.ivp";
+  private static final String EXPRESS_BUSINESS_VIEW_REQUEST_PATH = "Start Processes/ExpressStart/startExpressBusinessView.ivp";
 
   public ProcessStartCollector(IApplication application) {
     this.application = application;
@@ -123,6 +124,10 @@ public class ProcessStartCollector {
 
   public String findExpressWorkflowStartLink() {
     return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(application, EXPRESS_WORKFLOW_FRIENDLY_REQUEST_PATH);
+  }
+
+  public String findExpressBusinessViewStartLink() {
+    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(application, EXPRESS_BUSINESS_VIEW_REQUEST_PATH);
   }
 
   public String findCreateExpressWorkflowStartLink() {

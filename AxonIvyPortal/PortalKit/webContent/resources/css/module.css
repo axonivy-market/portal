@@ -4378,14 +4378,15 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
 body .ui-dialog.ui-widget.import-express-dialog,
 body .ui-dialog.ui-widget.export-express-dialog {
   min-width: 450px;
-  max-width: 80%;
+  max-width: 1000px;
 }
 
 @media screen and (max-width: 40em) {
-body .ui-dialog.ui-widget.import-express-dialog,
-body .ui-dialog.ui-widget.export-express-dialog {
-  max-width: 100%;
-}	
+  body .ui-dialog.ui-widget.import-express-dialog,
+  body .ui-dialog.ui-widget.export-express-dialog {
+    min-width: 85vw;
+    max-width: 95%;
+  }	
 }
 
 .import-express-dialog .express-import-result {
@@ -4444,13 +4445,6 @@ body .ui-dialog.ui-widget.export-express-dialog {
   overflow: hidden;
 }
 
-@media screen and (max-width: 40em) {
-  body .ui-dialog.ui-widget.import-express-dialog,
-  body .ui-dialog.ui-widget.export-express-dialog {
-    min-width: 96vw;
-    max-width: 100%;
-  }
-}
 /*=================== EXPRESS MANAGEMENT END ===================*/
 
 /*=================== BREADCRUMB ===================*/

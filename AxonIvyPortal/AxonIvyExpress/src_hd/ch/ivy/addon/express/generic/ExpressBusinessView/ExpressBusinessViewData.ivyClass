@@ -1,0 +1,4 @@
+ExpressBusinessViewData #class
+ch.ivy.addon.express.generic.ExpressBusinessView #namespace
+caseId Long #field
+caseId PERSISTENT #fieldModifier
