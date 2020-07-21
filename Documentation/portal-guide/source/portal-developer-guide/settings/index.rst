@@ -134,7 +134,7 @@ Select one in dropdown list of ``Selected language``. After the change is saved,
 
 -  For multiple languages, the CMS key ``/AppInfo/SupportedLanguages``
    must exist in your application. This CMS entry is
-   in to Portal Style. It contains list of all languages supported by
+   in Portal Style. It contains list of all languages supported by
    your application, separated by comma.
 
    -  Must not contain spaces
@@ -184,25 +184,25 @@ Absences
 
 -  READ
 
-   User need permission :
+   User needs permission :
    ``IPermission.USER_READ_OWN_ABSENCES`` or
    ``IPermission.USER_READ_ABSENCES``.
 
 -  CREATE/MODIFY
 
-   User need permission :
+   User needs permission :
    ``IPermission.USER_CREATE_OWN_ABSENCE`` or
    ``IPermission.USER_CREATE_ABSENCE``.
 
 -  DELETE
 
-   User need permission :
+   User needs permission :
    ``IPermission.USER_DELETE_OWN_ABSENCE`` or
    ``IPermission.USER_DELETE_ABSENCE``.
 
 -  MANAGE EVERY USER ABSENCES
 
-   User can read, add, delete absences of all users. User need all permissions :
+   User can read, add, delete absences of all users. User needs all permissions :
    ``IPermission.USER_CREATE_ABSENCE``,  
    ``IPermission.USER_DELETE_ABSENCE`` and 
    ``IPermission.USER_READ_ABSENCES``.
@@ -212,7 +212,7 @@ Substitute
 
 -  MANAGE EVERY USER SUBSTITUTES
 
-   User need all permissions :
+   User needs all permissions :
    ``IPermission.USER_CREATE_SUBSTITUTE`` and
    ``IPermission.USER_READ_SUBSTITUTES``.
 
@@ -224,15 +224,15 @@ Personal task permission
 
 -  DELEGATE
 
-   To show delegate action, user need permission:
+   To show delegate action, user needs permission:
    ``PortalPermission.TASK_DISPLAY_DELEGATE_ACTION``.
 
-   To delegate personal or group tasks, user need permission:
+   To delegate personal or group tasks, user needs permission:
    ``TaskWriteActivatorOwnTasks`` (This permission belongs to Portal
    permission group and it is not assigned to role Everybody by
    default). 
    
-   To delegate all tasks in task list, user need permission:
+   To delegate all tasks in task list, user needs permission:
    ``IPermission.TASK_WRITE_ACTIVATOR``.
 
    .. important::
@@ -241,10 +241,10 @@ Personal task permission
 
 -  RESET
 
-   To show reset action, user need permission:
+   To show reset action, user needs permission:
    ``PortalPermission.TASK_DISPLAY_RESET_ACTION``.
 
-   To reset task, user need permission:
+   To reset task, user needs permission:
    ``IPermission.TASK_RESET_OWN_WORKING_TASK`` or
    ``PortalPermission.TASK_RESET_READY_FOR_JOIN`` or
    ``IPermission.TASK_RESET``.
@@ -255,7 +255,7 @@ Personal task permission
    
 -  DELETE TASK
 
-   User need permission:
+   User needs permission:
    ``IPermission.TASK_DESTROY``.
 
    .. important::
@@ -263,10 +263,10 @@ Personal task permission
 
 -  RESERVE
 
-   To show reserve action, user need permission: 
+   To show reserve action, user needs permission: 
    ``PortalPermission.TASK_DISPLAY_RESERVE_ACTION``.
 
-   To reserve task, user need permission: 
+   To reserve task, user needs permission: 
    ``IPermission.TASK_PARK_OWN_WORKING_TASK``.
 
    .. important::
@@ -274,7 +274,7 @@ Personal task permission
 
 -  CHANGE TASK DESCRIPTION
 
-   User need permission: 
+   User needs permission: 
    ``IPermission.TASK_WRITE_DESCRIPTION``.
 
    .. important::
@@ -283,7 +283,7 @@ Personal task permission
 
 -  CHANGE DEADLINE
 
-   User need permission: 
+   User needs permission: 
    ``IPermission.TASK_WRITE_EXPIRY_TIMESTAMP``.
 
    .. important::
@@ -292,7 +292,7 @@ Personal task permission
 
 -  CHANGE PRIORITY
 
-   User need permission: 
+   User needs permission: 
    ``IPermission.TASK_WRITE_ORIGINAL_PRIORITY``.
 
    .. important::
@@ -301,7 +301,7 @@ Personal task permission
 
 -  DISPLAY ADDITIONAL OPTIONS
 
-   To show additional action, user need permission: 
+   To show additional action, user needs permission: 
    ``PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS``.
 
 Personal case permission
@@ -313,7 +313,7 @@ Personal case permission
 
 -  DELETE CASE
 
-   User need permission: 
+   User needs permission: 
    ``IPermission.CASE_DESTROY``.
 
    .. important::
@@ -321,7 +321,7 @@ Personal case permission
 
 -  CHANGE CASE DESCRIPTION
 
-   User need permission: 
+   User needs permission: 
    ``IPermission.CASE_WRITE_DESCRIPTION``.
 
    .. important::
@@ -329,10 +329,10 @@ Personal case permission
 
 -  SEE RELATED TASKS OF CASE
 
-   To show related tasks action, user need permission: 
+   To show related tasks action, user needs permission: 
    ``PortalPermission.SHOW_ALL_TASKS_OF_CASE`` .
 
-   To see related task, user need permission: 
+   To see related tasks, user needs permission: 
    ``IPermission.TASK_READ_OWN_CASE_TASKS`` or
    ``IPermission.TASK_READ_ALL``.
 
@@ -341,14 +341,14 @@ Personal case permission
 
 -  DISPLAY SHOW DETAILS LINK
 
-   User need permission: 
+   User needs permission: 
    ``PortalPermission.SHOW_CASE_DETAILS``.
    This permission is not assigned to role Everybody by default.
 
 Upload/delete document permission
 ---------------------------------
 
-User need permission: 
+User needs permission: 
 ``IPermission.DOCUMENT_WRITE`` or
 ``IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE``.
 
@@ -357,7 +357,7 @@ Express Workflow permission
 
 -  CREATE EXPRESS WORKFLOW
 
-   User need permission: 
+   User needs permission: 
    ``PortalPermission.EXPRESS_CREATE_WORKFLOW`` (This permission belongs
    to Portal permission group, assigned to role Everybody by default).
 
@@ -366,14 +366,14 @@ Statistics permission
 
 -  ADD DASHBOARD CHART
 
-   User need permission: 
+   User needs permission: 
    ``PortalPermission.STATISTIC_ADD_DASHBOARD_CHART`` (This permission
    belongs to Portal permission group, assigned to role Everybody by
    default).
 
 -  ANALYZE TASK
 
-   Filter tasks and export data to excel for advanced analysis. User need permission: 
+   Filter tasks and export data to excel for advanced analysis. User needs permission: 
    ``PortalPermission.STATISTIC_ANALYZE_TASK`` (This permission belongs
    to Portal permission group and it is not assigned to role Everybody
    by default).
