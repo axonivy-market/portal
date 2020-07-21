@@ -3,7 +3,7 @@
 User with environment info
 ==========================
 
-This component shows username with environment info when the ``SHOW_ENVIRONMENT_INFO`` variable is activated.
+This component shows environment info when the ``SHOW_ENVIRONMENT_INFO`` variable value is TRUE.
 
 |user-with-environment-info|
 
