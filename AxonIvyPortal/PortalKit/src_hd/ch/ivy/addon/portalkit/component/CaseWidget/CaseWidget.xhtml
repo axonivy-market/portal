@@ -19,6 +19,7 @@
   <cc:attribute name="filterGroupId" />
   <cc:attribute name="hideWidgetHeader" default="false" type="java.lang.Boolean" />
   <cc:attribute name="listHeaderStyleClass" />
+  <cc:attribute name="isTechnicalCaseView" default="false" />
   <cc:facet name="emptyMessage" />
 </cc:interface>
 
@@ -31,7 +32,7 @@
         <h:panelGroup id="filter-container" styleClass="filter-container js-filter-container ui-g-12 u-no-padding-bottom"
         rendered="#{!cc.attrs.hideCaseFilter}">
         <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group  u-hidden-md-down"
-          rendered="#{(not empty data.privateFilters or not empty data.publicFilters)}">
+          rendered="#{(not empty data.privateFilters or not empty data.publicFilters) and !cc.attrs.isTechnicalCaseView}">
           <span class="filter-selection-label">#{ivy.cms.co(data.dataModel.isSelectedDefaultFilter() or data.dataModel.selectedFilterData == null ? '/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter' : '/ch.ivy.addon.portalkit.ui.jsf/components/taskView/savedFilters')} </span>
           <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container">
             <h:panelGroup id="filter-selection-panel" layout="block">
@@ -100,7 +101,7 @@
         </h:panelGroup>
 
         <!-- Search filter -->
-        <div id="text-filter" class="text-filter ">
+        <div id="text-filter" class="text-filter #{cc.attrs.isTechnicalCaseView ? 'technical-case-text-filter' : ''}">
           <span class="selected-filters-label u-hidden-md-down">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/appliedFilters')} </span>
           <h:form id="case-basic-filter-form" onsubmit="return false;">
             <ic:ch.ivy.addon.portalkit.component.Filter id="case-filter-component" keywordStoresIn="#{data.dataModel.criteria.keyword}"
@@ -119,7 +120,7 @@
 
             <!-- Add more filters button -->
             <p:commandLink id="filter-add-action" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/moreOptions')}"
-              styleClass="filter-add-container u-hidden-md-down js-filter-add-action" global="false" />
+              styleClass="filter-add-container u-hidden-md-down js-filter-add-action" global="false" rendered="#{!cc.attrs.isTechnicalCaseView}" />
             <p:overlayPanel id="filter-add-panel" widgetVar="filter-add-panel" styleClass="filter-add-panel"
               for="filter-add-action" my="left top" at="left bottom" dismissable="false">
               <h:form id="filter-add-form">
@@ -150,7 +151,7 @@
             </p:overlayPanel>
 
             <!-- Reset filter button -->
-            <p:commandLink id="filter-reset-action" rendered="#{data.dataModel.selectedFilterData == null and !data.dataModel.isSelectedDefaultFilter()}"
+            <p:commandLink id="filter-reset-action" rendered="#{data.dataModel.selectedFilterData == null and !data.dataModel.isSelectedDefaultFilter() and !cc.attrs.isTechnicalCaseView}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" styleClass="filter-reset-action filter-add-container  u-hidden-md-down js-filter-reset-action"
               onclick="PF('reset-filter-set-dialog').show();" global="false">
               <span class="fa fa-refresh" />
@@ -160,7 +161,7 @@
             <p:commandButton id="filter-save-action"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" styleClass="filter-add-button u-hidden-md-down js-filter-save-action"
               icon="fa fa-save" iconPos="right" update="save-filter-set-dialog" resetValues="true"
-              oncomplete="PF('save-filter-set-dialog').show();" />
+              oncomplete="PF('save-filter-set-dialog').show();" rendered="#{!cc.attrs.isTechnicalCaseView}" />
         </div>
       </h:panelGroup>
     </h:panelGroup>
