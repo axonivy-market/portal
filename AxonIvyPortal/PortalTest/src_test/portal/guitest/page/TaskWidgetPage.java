@@ -481,7 +481,13 @@ public class TaskWidgetPage extends TemplatePage {
     statesSelectedIndex.forEach(index -> checkBoxList.get(index).click());
 
     click(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"));
-    waitAjaxIndicatorDisappear();
+    waitForElementDisplayed(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"), false);
+  }
+	
+	public void clickOnStartTaskLink(int index) {
+	  String startLinkId = String.format("a[id$='task-list-scroller:%d:task-item:task-action:task-action-component']", index);
+	  refreshAndWaitElement(startLinkId);
+    click(findElementByCssSelector(startLinkId));
 	}
 
 	public void saveFilter(String filterName) {
