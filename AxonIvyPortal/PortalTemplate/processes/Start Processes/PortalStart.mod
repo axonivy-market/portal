@@ -234,6 +234,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 ITask task = ivy.wf.findTask(in.endedTaskId);
 in.isFirstTask = true;
 in.portalPage = PortalPage.HOME_PAGE;
+
 if (#task is initialized) {
 	in.isTaskFinished = task.getEndTimestamp() is initialized;
 	
@@ -258,6 +259,10 @@ if (#task is initialized) {
 			in.callbackUrl = taskWithTaskEndInfo.customFields().stringField(CustomFields.EXPRESS_END_PAGE_URL.toString()).getOrDefault("");
 		}
 	} 
+} else {
+	Boolean isTaskFinished = SecurityServiceUtils.getSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString()).toBoolean();
+	in.isTaskFinished = #isTaskFinished is initialized ? isTaskFinished : true;
+	SecurityServiceUtils.removeSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString());
 }
 
 ivy.session.setAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString(), in.isTaskStartedInDetails);' #txt
