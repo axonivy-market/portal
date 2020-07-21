@@ -33,6 +33,23 @@ public class DashboardScreenshotTest extends BaseTest {
   }
   
   @Test
+  public void takeScreenshotOverlayGuide() throws IOException {
+    updatePortalSetting("SHOW_USER_GUIDE", "true");
+    homePage = new HomePage();
+    ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DASHBOARD_FOLDER + "overlay-guide");
+  }
+  
+  @Test
+  public void takeScreenshotWithEnvironmentInfo() throws IOException {
+    updatePortalSetting("SHOW_ENVIRONMENT_INFO", "true");
+    homePage = new HomePage();
+    ScreenshotUtil.resizeBrowser(new Dimension(1200, 500));
+    ScreenshotUtil.captureHalfRightPageScreenShot(ScreenshotUtil.DASHBOARD_FOLDER + "environment-info");
+  }
+  
+  
+  @Test
   public void screenshotDashBoard() throws IOException {
     ScreenshotUtil.resizeBrowserAndCaptureWholeScreen(ScreenshotUtil.DASHBOARD_FOLDER + "dashboard", new Dimension(1200, 800));
     ScreenshotUtil.maximizeBrowser();
@@ -86,6 +103,7 @@ public class DashboardScreenshotTest extends BaseTest {
     ScreenshotUtil.captureElementScreenshot(homePage.getTaskWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "personal-tasks-sort-and-search-features");
     
   }
+  
 
   private void refreshHomePage() {
     refreshPage();

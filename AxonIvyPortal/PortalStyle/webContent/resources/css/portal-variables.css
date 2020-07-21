@@ -464,5 +464,5 @@
   --current-step-opacity: 1; 
   /* Portal Global Ajax Status */
   --ajax-loading-bg: hsla(0, 0%, 100%, 0.9);
-  --portal-ajax-changed-background: rgba(0, 0, 0, 0.2);
+  --portal-ajax-changed-background: rgba(0, 0, 0, 0.3);
   }
