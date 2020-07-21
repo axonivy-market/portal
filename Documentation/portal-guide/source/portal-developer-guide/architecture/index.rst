@@ -39,7 +39,7 @@ focus/hover color by providing a lot of variables.
 .. note:: 
 
       This module is prepared for process developers to override and keep
-      customer styles by editing SCSS files.
+      customer styles by editing CSS files.
 
 .. _architecture-portal-template:
 
