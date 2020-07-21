@@ -326,9 +326,10 @@ Pt0 f70 @C|.responsibility Everybody #txt
 Pt0 f70 81 658 30 30 -46 17 #rect
 Pt0 f70 @|StartRequestIcon #fIcon
 Pt0 f12 dialogId ch.ivy.addon.portal.generic.PortalFinishTaskHandle #txt
-Pt0 f12 startMethod start(Boolean) #txt
-Pt0 f12 requestActionDecl '<Boolean isTaskFinished> param;' #txt
+Pt0 f12 startMethod start(Boolean,Boolean) #txt
+Pt0 f12 requestActionDecl '<Boolean isTaskFinished,Boolean isFirstTask> param;' #txt
 Pt0 f12 requestMappingAction 'param.isTaskFinished=in.isTaskFinished;
+param.isFirstTask=in.isFirstTask;
 ' #txt
 Pt0 f12 responseMappingAction 'out=in;
 ' #txt
@@ -686,6 +687,10 @@ if (#task is initialized) {
 			in.callbackUrl = taskWithTaskEndInfo.customFields().stringField(CustomFields.EXPRESS_END_PAGE_URL.toString()).getOrDefault("");
 		}
 	} 
+} else {
+	Boolean isTaskFinished = SecurityServiceUtils.getSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString()).toBoolean();
+	in.isTaskFinished = #isTaskFinished is initialized ? isTaskFinished : true;
+	SecurityServiceUtils.removeSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString());
 }
 
 ivy.session.setAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString(), in.isTaskStartedInDetails);' #txt
