@@ -3,6 +3,7 @@ var Portal = {
     if ($('form.login-form').length > 0) {
       return;
     }
+
     // Update menuitem when access page by direct link
     MainMenu.init(responsiveToolkit);
     
@@ -159,3 +160,18 @@ function handleError(xhr, renderDetail){
   }
   PF('error-ajax-dialog').show();
 }
+
+// Showing Loader icon when page loading
+window.addEventListener('beforeunload', function() {
+  $('.portal-ajax-loader').children().show();
+});
+
+$(document).ready(function($) {
+  $('.portal-ajax-loader').children().show();
+});
+
+$(window).on('load', function (e) {
+  setTimeout(function() {
+    $('.portal-ajax-loader').children().hide();
+  }, 50);
+});
