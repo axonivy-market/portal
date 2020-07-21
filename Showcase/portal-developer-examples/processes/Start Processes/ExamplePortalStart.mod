@@ -326,10 +326,9 @@ Pt0 f70 @C|.responsibility Everybody #txt
 Pt0 f70 81 658 30 30 -46 17 #rect
 Pt0 f70 @|StartRequestIcon #fIcon
 Pt0 f12 dialogId ch.ivy.addon.portal.generic.PortalFinishTaskHandle #txt
-Pt0 f12 startMethod start(Boolean,Boolean) #txt
-Pt0 f12 requestActionDecl '<Boolean isTaskFinished,Boolean isFirstTask> param;' #txt
+Pt0 f12 startMethod start(Boolean) #txt
+Pt0 f12 requestActionDecl '<Boolean isTaskFinished> param;' #txt
 Pt0 f12 requestMappingAction 'param.isTaskFinished=in.isTaskFinished;
-param.isFirstTask=in.isFirstTask;
 ' #txt
 Pt0 f12 responseMappingAction 'out=in;
 ' #txt
