@@ -1512,6 +1512,22 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
   background-color: var(--express-available-elements-action-button-background-color);
   box-shadow: var(--express-available-elements-action-button-shadow); }
 
+.available-elements-action-btn button:hover {	
+  background-color:var(--ivy-primary-color-white);}  
+  
+.available-elements-action-btn button:focus {	
+  background-color:var(--ivy-primary-color-white);}  
+
+.express-add-option-panel button {
+  background-color: var(--express-available-elements-action-button-background-color);
+  box-shadow: var(--express-available-elements-action-button-shadow); }
+
+.express-add-option-panel button:hover {	
+  background-color:var(--ivy-primary-color-grey-light);}  
+  
+.express-add-option-panel button:focus {	
+  background-color:var(--ivy-primary-color-grey-light);}  
+
 body .available-elements-action-btn .ui-button.ui-button-icon-only .ui-icon {
   color: var(--express-available-elements-action-button-icon-color); }
 
