@@ -80,8 +80,10 @@ Ds0 @PushWFArc f68 '' #zField
 Ds0 @GridStep f69 '' #zField
 Ds0 @PushWFArc f70 '' #zField
 Ds0 @PushWFArc f54 '' #zField
-Ds0 @PushWFArc f30 '' #zField
 Ds0 @PushWFArc f71 '' #zField
+Ds0 @GridStep f64 '' #zField
+Ds0 @PushWFArc f72 '' #zField
+Ds0 @PushWFArc f30 '' #zField
 >Proto Ds0 Ds0 FormDefinitionProcess #zField
 Ds0 f0 guid 156E35E680453115 #txt
 Ds0 f0 method start(gawfs.Data) #txt
@@ -745,12 +747,29 @@ Ds0 f54 expr in #txt
 Ds0 f54 192 752 272 816 #arcP
 Ds0 f54 1 192 816 #addKink
 Ds0 f54 1 0.1487695459411198 0 0 #arcLabel
-Ds0 f30 384 816 720 621 #arcP
-Ds0 f30 1 720 816 #addKink
-Ds0 f30 0 0.7876920328136172 0 0 #arcLabel
 Ds0 f71 592 968 720 926 #arcP
 Ds0 f71 1 720 968 #addKink
 Ds0 f71 0 0.79256232539932 0 0 #arcLabel
+Ds0 f64 actionTable 'out=in;
+' #txt
+Ds0 f64 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);' #txt
+Ds0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Set attr to know&#13;
+that task is cancelled</name>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f64 440 794 144 44 -51 -16 #rect
+Ds0 f64 @|StepIcon #fIcon
+Ds0 f72 384 816 440 816 #arcP
+Ds0 f72 0 0.7876920328136172 0 0 #arcLabel
+Ds0 f30 584 816 720 621 #arcP
+Ds0 f30 1 720 816 #addKink
+Ds0 f30 0 0.7876920328136172 0 0 #arcLabel
 >Proto Ds0 .type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 >Proto Ds0 .processKind HTML_DIALOG #txt
 >Proto Ds0 -8 -8 16 16 16 26 #rect
@@ -819,7 +838,9 @@ Ds0 f67 out f70 tail #connect
 Ds0 f70 head f69 mainIn #connect
 Ds0 f67 out f54 tail #connect
 Ds0 f54 head f48 mainIn #connect
-Ds0 f48 mainOut f30 tail #connect
-Ds0 f30 head f4 mainIn #connect
 Ds0 f63 mainOut f71 tail #connect
 Ds0 f71 head f53 mainIn #connect
+Ds0 f48 mainOut f72 tail #connect
+Ds0 f72 head f64 mainIn #connect
+Ds0 f64 mainOut f30 tail #connect
+Ds0 f30 head f4 mainIn #connect

@@ -101,6 +101,8 @@ Fs0 @PushWFArc f2 '' #zField
 Fs0 @GridStep f76 '' #zField
 Fs0 @PushWFArc f78 '' #zField
 Fs0 @PushWFArc f75 '' #zField
+Fs0 @GridStep f91 '' #zField
+Fs0 @PushWFArc f92 '' #zField
 Fs0 @PushWFArc f31 '' #zField
 >Proto Fs0 Fs0 WorkflowDefinitionProcess #zField
 Fs0 f0 guid 1576FA61C9D81A51 #txt
@@ -367,7 +369,7 @@ Fs0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Fs0 f25 83 531 26 26 -18 15 #rect
 Fs0 f25 @|UdMethodIcon #fIcon
-Fs0 f30 435 611 26 26 0 12 #rect
+Fs0 f30 587 611 26 26 0 12 #rect
 Fs0 f30 @|UdExitEndIcon #fIcon
 Fs0 f28 actionTable 'out=in;
 ' #txt
@@ -962,7 +964,23 @@ Fs0 f78 0 0.3973656425622029 0 0 #arcLabel
 Fs0 f75 328 160 552 86 #arcP
 Fs0 f75 1 552 160 #addKink
 Fs0 f75 0 0.7191176064037719 0 0 #arcLabel
-Fs0 f31 376 624 435 624 #arcP
+Fs0 f91 actionTable 'out=in;
+' #txt
+Fs0 f91 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);' #txt
+Fs0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Set attr to know&#13;
+that task is cancelled</name>
+    </language>
+</elementInfo>
+' #txt
+Fs0 f91 400 602 144 44 -51 -16 #rect
+Fs0 f91 @|StepIcon #fIcon
+Fs0 f92 376 624 400 624 #arcP
+Fs0 f31 544 624 587 624 #arcP
 >Proto Fs0 .type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 >Proto Fs0 .processKind HTML_DIALOG #txt
 >Proto Fs0 -8 -8 16 16 16 26 #rect
@@ -1047,5 +1065,7 @@ Fs0 f74 mainOut f78 tail #connect
 Fs0 f78 head f76 mainIn #connect
 Fs0 f76 mainOut f75 tail #connect
 Fs0 f75 head f77 mainIn #connect
-Fs0 f28 mainOut f31 tail #connect
+Fs0 f28 mainOut f92 tail #connect
+Fs0 f92 head f91 mainIn #connect
+Fs0 f91 mainOut f31 tail #connect
 Fs0 f31 head f30 mainIn #connect
