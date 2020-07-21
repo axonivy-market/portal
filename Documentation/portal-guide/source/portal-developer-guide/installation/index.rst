@@ -110,7 +110,7 @@ In engine
 
 1. Convert database schema if needed.
 
-2. Redeploy Portal projects (exclude PortalConnector) and customer
+2. Redeploy Portal projects and customer
    project.
 3. Follow detailed migration notes for each version below.
 
@@ -147,6 +147,8 @@ Changes in 9.1
 
 - Introduce the User Guide feature, using the ``SHOW_USER_GUIDE`` Portal Setting to activate/deactivate it, 
   and follow :ref:`Customize user guide <customization-portal-home-user-guide>` for your customization.
+
+- TaskTemplate-7, TaskTemplate and TwoColumnTemplate are removed.
 
 .. |css_variable| raw:: html
 
