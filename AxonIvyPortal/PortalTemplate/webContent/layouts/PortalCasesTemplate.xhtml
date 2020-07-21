@@ -7,7 +7,7 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="caseView" value="#{data.caseView}" />
-    <ui:param name="viewName" value="CASE" />
+    <ui:param name="viewName" value="#{data.caseView.isTechnicalCaseView() ? 'TECHNICAL_CASE' : 'CASE'}" />
     <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
     <ui:param name="announcementContainerStyleClass" value="announcement-container-in-case-list" />
 
@@ -21,7 +21,7 @@
             dataModel="#{caseView.getDataModel()}"
             hideCaseFilter="#{caseView.hideCaseFilter or not empty caseView.getKeyword()}"
             autoSelectCaseId="#{caseView.getAutoSelectCaseId()}" filterGroupId="#{filterGroupId}"
-            hideWidgetHeader="#{hideWidgetHeader}">
+            hideWidgetHeader="#{hideWidgetHeader}" isTechnicalCaseView="#{data.caseView.isTechnicalCaseView()}">
 
             <f:facet name="caseListHeader">
               <ui:fragment rendered="#{useOverrideListHeader}">

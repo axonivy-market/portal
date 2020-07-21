@@ -16,6 +16,7 @@ public class CaseView {
     // The titleOnMobile is a short title using for mobile screen
     private String titleOnMobile = StringUtils.EMPTY;
     private boolean hideCaseFilter = false;
+    private boolean isTechnicalCaseView = false;
 
     public Builder dataModel(CaseLazyDataModel dataModel) {
       this.dataModel = dataModel;
@@ -46,8 +47,13 @@ public class CaseView {
       this.hideCaseFilter = isHideCaseFilter;
       return this;
     }
-    
-    public CaseView buildNewView() {
+
+    public Builder setTechnicalCaseView(boolean isTechnicalCaseView) {
+      this.isTechnicalCaseView = isTechnicalCaseView;
+      return this;
+    }
+
+	public CaseView buildNewView() {
       return new CaseView(this);
     }
   }
@@ -60,6 +66,7 @@ public class CaseView {
   private String titleOnMobile = StringUtils.EMPTY;
   private String caseName = StringUtils.EMPTY;
   private boolean hideCaseFilter = false;
+  private boolean isTechnicalCaseView = false;
 
   public CaseView(Builder builder) {
     dataModel = builder.dataModel;
@@ -68,6 +75,7 @@ public class CaseView {
     title = builder.title;
     titleOnMobile = builder.titleOnMobile;
     this.hideCaseFilter = builder.hideCaseFilter;
+    this.isTechnicalCaseView = builder.isTechnicalCaseView;
   }
 
   public static Builder create() {
@@ -100,5 +108,9 @@ public class CaseView {
 
   public boolean isHideCaseFilter() {
     return hideCaseFilter;
+  }
+
+  public boolean isTechnicalCaseView() {
+    return isTechnicalCaseView;
   }
 }
