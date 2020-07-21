@@ -1,12 +1,12 @@
 package portal.guitest.test;
 
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
@@ -32,9 +32,10 @@ public class SystemTaskHistoryVisibilityTest extends BaseTest {
     assertFalse(noteHistoryPage.getNoteAuthors().contains("System user"));
     
     updatePortalSetting("HIDE_SYSTEM_TASKS_FROM_HISTORY", "false");
-    goToCaseNoteHistoryPage(caseId);
-    noteHistoryPage = new NoteHistoryPage();
-    assertTrue(noteHistoryPage.getNoteAuthors().contains("System user"));
+    WaitHelper.assertTrueWithRefreshPage(homePage, () -> {
+      goToCaseNoteHistoryPage(caseId);
+      return new NoteHistoryPage().getNoteAuthors().contains("System user");
+    });
   }
   
   @Test
@@ -45,13 +46,13 @@ public class SystemTaskHistoryVisibilityTest extends BaseTest {
     CaseWidgetPage caseWidgetPage = homePage.openCaseList();
     CaseDetailsPage caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName("Beta Company");
     String caseId = caseDetailsPage.getCaseId();
-    goToCaseNoteHistoryPage(caseId);
-    NoteHistoryPage noteHistoryPage = new NoteHistoryPage();
-    assertTrue(noteHistoryPage.getNoteAuthors().contains("System user"));
+    WaitHelper.assertTrueWithRefreshPage(homePage, () -> {
+      goToCaseNoteHistoryPage(caseId);
+      return new NoteHistoryPage().getNoteAuthors().contains("System user");
+    });
     
     updatePortalSetting("HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR", "true");
     goToCaseNoteHistoryPage(caseId);
-    noteHistoryPage = new NoteHistoryPage();
-    assertFalse(noteHistoryPage.getNoteAuthors().contains("System user"));
+    assertFalse(new NoteHistoryPage().getNoteAuthors().contains("System user"));
   }
 }

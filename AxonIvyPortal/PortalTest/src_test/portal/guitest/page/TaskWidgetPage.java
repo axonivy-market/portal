@@ -112,6 +112,9 @@ public class TaskWidgetPage extends TemplatePage {
 	}
 
   public void filterTasksBy(String keyword, int... expectedNumberOfTasksAfterFiltering) {
+    if (countTasks() == getExpectedNumberOfTasks(expectedNumberOfTasksAfterFiltering)) {
+      return;
+    }
     WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR);
     WaitHelper.assertTrueWithWait(() -> {
       keywordFilter.clear();
@@ -123,13 +126,18 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   private void waitForNumberOfTasks(int... expectedNumberOfTasksAfterFiltering) {
+    int expectedNumber = getExpectedNumberOfTasks(expectedNumberOfTasksAfterFiltering);
+    WaitHelper.assertTrueWithWait(() -> this.countTasks() == expectedNumber);
+  }
+
+  private int getExpectedNumberOfTasks(int... expectedNumberOfTasksAfterFiltering) {
     int expectedNumber;
     if (expectedNumberOfTasksAfterFiltering.length == 0) {
       expectedNumber = 1;
     } else {
       expectedNumber = expectedNumberOfTasksAfterFiltering[0];
     }
-    WaitHelper.assertTrueWithWait(() -> this.countTasks() == expectedNumber);
+    return expectedNumber;
   }
 
 	public void filterTasksInExpandedModeBy(String keyword, int... expectedNumberOfTasksAfterFiltering) {
