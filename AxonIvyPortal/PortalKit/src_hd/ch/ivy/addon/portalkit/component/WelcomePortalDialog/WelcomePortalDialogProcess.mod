@@ -53,7 +53,7 @@ String portalGuideLink;
 if (StringUtils.contains(portalVersion, "SNAPSHOT")) {
 	portalGuideLink = latestPortalGuideLink;
 } else {
-	portalGuideLink = String.format("https://developer.axonivy.com/documentation/portal-guide/", portalVersion);
+	portalGuideLink = String.format("https://developer.axonivy.com/documentation/portal-guide/%s", portalVersion);
 }
 
 in.content = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/guide/welcome/content", [portalGuideLink]);' #txt
