@@ -3,6 +3,7 @@ package portal.guitest.page;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import portal.guitest.common.Sleeper;
@@ -10,6 +11,10 @@ import portal.guitest.common.Sleeper;
 public class ExpressReviewPage extends TaskTemplatePage {
   public void finish() {
     clickByCssSelector("button[id$='acknowledged']");
+  }
+  
+  public void clickOnOkButton() {
+    click(By.cssSelector("button[id$='close-button']"));
   }
 
   public String getApprovalResult() {
