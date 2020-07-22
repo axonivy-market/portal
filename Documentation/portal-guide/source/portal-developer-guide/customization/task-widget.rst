@@ -187,7 +187,7 @@ How to override task widget's data query
    .. code-block:: java
 
       if (in.isQueryForHomePage) { // in home page
-          in.taskQuery = TaskQuery.create().where().activatorUserId().isNotNull();
+          in.taskQuery = TaskQuery.create().where().activatorId().isNotNull();
       }
 
 -  Apply the following steps in case you would like to provide data for
