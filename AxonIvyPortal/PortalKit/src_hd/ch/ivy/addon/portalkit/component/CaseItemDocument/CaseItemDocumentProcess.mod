@@ -293,6 +293,10 @@ Cs0 f53 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseItemDocument.Ca
 Cs0 f53 responseMappingAction 'out=in;
 out.documents=result.documents;
 ' #txt
+Cs0 f53 responseActionCode 'import ch.ivy.addon.portalkit.ivydata.bo.IvyDocument;
+for (IvyDocument doc : result.documents) {
+  ivy.log.error("DOC " + doc.getCreation().getUser().getId() + doc.getCreation().getUser().getName());
+}' #txt
 Cs0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

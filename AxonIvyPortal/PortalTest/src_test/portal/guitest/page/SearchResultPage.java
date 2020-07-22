@@ -88,7 +88,7 @@ public class SearchResultPage extends TemplatePage {
 	
 	public boolean isExpressProcessLogo() {
 		WebElement element = findElementByCssSelector(EXPRESS_PROCESS_LOGO);
-		return element.getAttribute("class").contains("express-process-logo");
+		return element.getAttribute("class").contains("ivyicon-startup-launch");
 	}
 	
 }

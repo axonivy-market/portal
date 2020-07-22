@@ -35,7 +35,8 @@ public enum GlobalVariable {
   HIDE_TASK_DOCUMENT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideTaskDocument"),
   HIDE_CASE_DOCUMENT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseDocument"),
   SHOW_USER_GUIDE(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showUserGuide"),
-  SHOW_GLOBAL_SEARCH(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showGlobalSearch");
+  SHOW_GLOBAL_SEARCH(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showGlobalSearch"),
+  SHOW_BUTTON_ICON(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showButtonIcon");
   
   private GlobalVariableType type;
   private String defaultValue;

@@ -18,7 +18,7 @@
               <p:messages styleClass="ui-g-12 ui-lg-12 ui-md-12 ui-sm-12" />
               <h:outputText value="#{ivy.cms.co('/Labels/CaseMap/Credit/person')}"
                 styleClass="credit-label margin-left-16" />
-              <h:panelGrid columns="1" columnClasses="TexAlLeft ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12">
+              <h:panelGrid columns="1" columnClasses="u-text-align-left ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12">
                 <h:panelGroup layout="block">
                   <p:outputLabel for="first-name" value="#{ivy.cms.co('/Labels/CaseMap/Credit/firstName')}" />
                   <p:inputText required="true" id="first-name" value="#{data.dossier.customer.firstName}"
@@ -39,7 +39,7 @@
 
               <h:outputText value="#{ivy.cms.co('/Labels/CaseMap/Credit/credit')}"
                 styleClass="credit-label margin-left-16" />
-              <h:panelGrid columns="2" columnClasses="TexAlLeft ui-g-6, TexAlLeft ui-g-6"
+              <h:panelGrid columns="2" columnClasses="u-text-align-left ui-g-6, u-text-align-left ui-g-6"
                 styleClass="ui-g-12 ui-md-12 ui-sm-12">
                 <h:panelGroup layout="block">
                   <p:outputLabel for="request-amount" value="#{ivy.cms.co('/Labels/CaseMap/Credit/approvalAmount')}" />
@@ -69,7 +69,7 @@
 
               <h:outputText value="#{ivy.cms.co('/Labels/CaseMap/Credit/verifierComment')}"
                 styleClass="credit-label margin-left-16" />
-              <h:panelGrid columns="1" columnClasses="TexAlLeft ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12">
+              <h:panelGrid columns="1" columnClasses="u-text-align-left ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12">
                 <p:inputTextarea id="verifier-comment" value="#{data.dossier.verifierComment}" disabled="true" />
               </h:panelGrid>
 
@@ -77,7 +77,7 @@
                 <h:outputText value="#{ivy.cms.co('/Labels/CaseMap/Credit/externalCreditComment')}"
                   styleClass="credit-label margin-left-16" />
               </h:panelGroup>
-              <h:panelGrid columns="1" columnClasses="TexAlLeft ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12">
+              <h:panelGrid columns="1" columnClasses="u-text-align-left ui-g-12" styleClass="ui-g-12 ui-md-12 ui-sm-12">
                 <f:facet name="header">
                   <p:messages></p:messages>
                 </f:facet>
@@ -87,7 +87,7 @@
           </p:panel>
         </h:panelGroup>
         <p:commandButton id="submit-button" actionListener="#{logic.close}"
-          value="#{ivy.cms.co('/Dialog/Common/submit')}" update="form" icon="fa fa-send-o"
+          value="#{ivy.cms.co('/Dialog/Common/submit')}" update="form" icon="icon ivyicon-check-1"
           styleClass="Fright" />
       </h:form>
 

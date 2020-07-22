@@ -25,7 +25,7 @@
 						value="#{ivy.cms.co('/ProcessPages/ProcessLeaves/ProcessLeave/cancelReason')}" />
 					<p:inputText id="cancelReason" value="#{data.cancelReason}"></p:inputText>
 				</h:panelGrid>
-				 <h:panelGroup styleClass="MarTop20 DispBlock">
+				 <h:panelGroup layout="block" styleClass="MarTop20">
 					<p:commandButton value="Submit"
 						icon="fa fa-paper-plane" actionListener="#{logic.cancelApprovalRequest(ivy.case.getBusinessCase().getId())}" />
 					<p:spacer width="5px"/>

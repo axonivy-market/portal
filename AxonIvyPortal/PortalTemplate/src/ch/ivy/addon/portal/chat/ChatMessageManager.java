@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -16,13 +17,15 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
+import com.google.gson.Gson;
+
 import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.File;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
-
-import com.google.gson.Gson;
 
 public final class ChatMessageManager {
 
@@ -40,15 +43,30 @@ public final class ChatMessageManager {
   private ChatMessageManager() {}
 
   public static List<ChatMessage> loadPersonalMessages(List<String> participants) {
-    String filename = generateFileName(participants);
+    String filename = generateFileName(replaceUsernameByUserId(participants));
     String filepath = generateFilePath(filename);
     return loadEncryptedMessagesFromFilePath(filepath);
   }
 
   public static void savePersonalMessage(ChatMessage message) {
+    replaceSenderAndRecipientNamesByIds(message);
     String filename = prepareFilename(message);
     String filepath = generateFilePath(filename);
     encryptAndSaveMessageToFile(message, filepath);
+  }
+
+  private static void replaceSenderAndRecipientNamesByIds(ChatMessage message) {
+    message.setSender(Long.toString(UserUtils.findUserByUsername(message.getSender()).getId()));
+    message.setRecipients(replaceUsernameByUserId(message.getRecipients()));
+  }
+
+  private static List<String> replaceUsernameByUserId(List<String> participants) {
+    List<String> updatedParticipants = new ArrayList<>();
+    for (String participant : participants) {
+      IUser participantUser = UserUtils.findUserByUsername(participant);
+      updatedParticipants.add(Long.toString(participantUser.getId()));
+    }
+    return updatedParticipants;
   }
 
   /**
@@ -82,6 +100,15 @@ public final class ChatMessageManager {
         for (String record : records) {
           String decryptedRecord = SecureMessage.decrypt(record, java.io.File.separator + filepath);
           ChatMessage message = new Gson().fromJson(decryptedRecord, ChatMessage.class);
+          message.setSender(Optional.ofNullable(UserUtils.findUserByUserId(Long.parseLong(message.getSender()))).map(IUser::getName).orElse(""));
+          List<String> updatedRecipients = new ArrayList<>();
+          for (String recipient : message.getRecipients()) {
+            IUser recipientUser = UserUtils.findUserByUserId(Long.parseLong(recipient));
+            if (recipientUser != null) {
+              updatedRecipients.add(recipientUser.getName());
+            }
+          }
+          message.setRecipients(updatedRecipients);
           messages.add(message);
         }
       }
@@ -100,6 +127,7 @@ public final class ChatMessageManager {
         String[] records = conversation.split(LINE_SEPARATOR);
         for (String record : records) {
           ChatMessage message = new Gson().fromJson(record, ChatMessage.class);
+          message.setSender(UserUtils.findUserByUserId(Long.parseLong(message.getSender().substring(1))).getName());
           messages.add(message);
         }
       }
@@ -110,6 +138,8 @@ public final class ChatMessageManager {
   }
 
   private static void saveGroupMessageToFile(ChatMessage message, String filepath) {
+    String senderName = message.getSender();
+    message.setSender("#".concat(Long.toString(UserUtils.findUserByUsername(message.getSender()).getId())));
     String convertedMessage = new Gson().toJson(message);
     try {
       File conversation = new File(filepath);
@@ -125,9 +155,10 @@ public final class ChatMessageManager {
       }
     } catch (IOException e) {
       String template = "Could not save the current conversation from [%s] to file [%s].";
-      String errorMessage = String.format(template, message.getSender(), filepath);
+      String errorMessage = String.format(template, senderName, filepath);
       Ivy.log().warn(errorMessage, e);
     }
+    message.setSender(senderName);
   }
 
   private static void encryptAndSaveMessageToFile(ChatMessage message, String filepath) {
@@ -189,7 +220,7 @@ public final class ChatMessageManager {
     synchronized (getCommon(attrName)) {
       List<ChatMessage> messages = getUnreadMessagesInMemory(message.getRecipients());
       if (messages.stream().noneMatch(msg -> msg.getSender().equals(message.getSender()))) {
-    	  messages.add(new ChatMessage(message.getSender(), message.getRecipients()));
+        messages.add(new ChatMessage(message.getSender(), message.getRecipients()));
       }
       Ivy.wf().getApplication().setAttribute(attrName, messages);
     }

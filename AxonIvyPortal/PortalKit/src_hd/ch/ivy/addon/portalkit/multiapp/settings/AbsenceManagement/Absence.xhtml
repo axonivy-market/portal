@@ -70,19 +70,19 @@
         </div>
       </h:panelGroup>
       <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
-        <p:commandButton process="@form" id="save-absence" disabled="#{data.validationError}"
-          oncomplete="if (args &amp;&amp; !args.validationFailed)PF('absence').hide();"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" actionListener="#{logic.saveAbsence}"
-          update=":#{p:component('absence-table')} absence-messages :#{p:component('substitue-tab')}" />
-        <p:spacer width="5px" />
-        <p:commandButton id="close-add-absence-dialog" type="button" 
-          styleClass="portal-cancel-button" rendered="#{data.isCreateMode}"
+        <p:commandLink id="close-add-absence-dialog" rendered="#{data.isCreateMode}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
           onclick="PF('absence').hide();" />
-        <p:commandButton id="close-edit-absence-dialog" actionListener="#{logic.cancel}"
-          styleClass="portal-cancel-button" rendered="#{!data.isCreateMode}"
+        <p:commandLink id="close-edit-absence-dialog" actionListener="#{logic.cancel}"
+          rendered="#{!data.isCreateMode}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           oncomplete="PF('absence').hide();"/>
+        <p:spacer width="15px" />
+        <p:commandButton process="@form" id="save-absence" disabled="#{data.validationError}"
+          oncomplete="if (args &amp;&amp; !args.validationFailed)PF('absence').hide();"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-floppy-disk')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.saveAbsence}"
+          update=":#{p:component('absence-table')} absence-messages :#{p:component('substitue-tab')}" />
       </h:panelGroup>
     </h:form>
   </p:dialog>

@@ -4,6 +4,7 @@ import java.util.Collection;
 import java.util.Objects;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
@@ -92,8 +93,10 @@ public class PermissionUtils {
    * @return True: has permission to start Express workflow, False: Do not have permission to start Express workflow
    */
   public static boolean checkAbleToStartAndAbleToEditExpressWorkflow(ExpressProcess workflow) {
-    boolean isWorkflowOwner = Ivy.session().canActAsUser(
-        Ivy.request().getApplication().getSecurityContext().users().find(workflow.getProcessOwner().substring(1)));
+    ExpressManagementUtils utils = new ExpressManagementUtils();
+    String validProcessOwnerName = utils.getValidMemberName(workflow.getProcessOwner());
+    boolean isWorkflowOwner = StringUtils.isNotBlank(validProcessOwnerName) ? Ivy.session().canActAsUser(
+        Ivy.request().getApplication().getSecurityContext().users().find(validProcessOwnerName.substring(1))) : false;
     boolean hasAdminRole = isSessionUserHasAdminRole();
 
     if (isWorkflowOwner || hasAdminRole) {

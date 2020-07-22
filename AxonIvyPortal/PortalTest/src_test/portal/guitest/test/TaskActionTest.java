@@ -56,7 +56,7 @@ public class TaskActionTest extends BaseTest {
 
     // In progress
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
-    taskTemplatePage.clickCancelButton();
+    taskTemplatePage.clickCancelLink();
     taskDetailsPage = new TaskDetailsPage();
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
     assertTaskActionsByTaskState("In progress", Arrays.asList("Reserve", "Reset", "Add Ad-hoc Task"));
@@ -89,7 +89,7 @@ public class TaskActionTest extends BaseTest {
 
     // In progress
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
-    taskTemplatePage.clickCancelButton();
+    taskTemplatePage.clickCancelLink();
     taskDetailsPage = new TaskDetailsPage();
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
     assertTaskActionsByTaskState("In progress", Arrays.asList("Reserve", "Reset", "Destroy", "Add Ad-hoc Task"));

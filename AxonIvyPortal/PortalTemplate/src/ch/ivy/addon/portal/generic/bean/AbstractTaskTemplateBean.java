@@ -22,6 +22,7 @@ import ch.ivyteam.ivy.casemap.runtime.model.IStage;
 import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.query.UserQuery;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 
@@ -104,13 +105,19 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
     return adhocHistories;
   }
 
-  public static String getUserByUsername(String username) {
+  public static String getUserByUsernameAndExternalName(String username, String externalId) {
     if (StringUtils.isBlank(username)) {
       return "";
     }
 
     return IvyExecutor.executeAsSystem(() -> {
-      IUser user = Ivy.wf().getSecurityContext().users().find(username);
+      IUser user = UserUtils.findUserByUsername(username);
+      if (user == null) {
+        UserQuery query = Ivy.wf().getSecurityContext().users().query();
+        query.where().externalId().isEqual(externalId);
+        user = query.executor().firstResult();
+        Ivy.log().error("USER : " + username + " " + externalId + " " +user == null);
+      }
       return user == null ? "" : UserUtils.getFullName(user);
     });
   }

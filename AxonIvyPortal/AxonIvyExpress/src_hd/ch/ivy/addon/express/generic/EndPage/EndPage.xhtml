@@ -1,30 +1,26 @@
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	xmlns:ic="http://ivyteam.ch/jsf/component"
-	xmlns:p="http://primefaces.org/ui"
-	xmlns:pe="http://primefaces.org/ui/extensions">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
 <h:body>
-	<ui:composition template="/layouts/BasicTemplate.xhtml">
-		<ui:param name="viewName" value="EXPRESS" />
-		<ui:define name="pageContent">
-			<h:form id="form" styleClass="ui-g">
-				<h:panelGrid columns="1" styleClass="ui-g-12 TexAlCenter">
-					<p:spacer height="30"/>
-					<h3>
-						<i class="fa fa-check"/>
-						#{ivy.cms.co('/Dialogs/ch/ivy/addon/express/generic/endpage/title')}
-					</h3>
-					<p:outputLabel value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/express/generic/endpage/subtitle')}" />
-					<br />
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:param name="viewName" value="EXPRESS" />
+    <ui:define name="pageContent">
+      <h:form id="form" styleClass="ui-g">
+        <h:panelGrid columns="1" styleClass="ui-g-12 TexAlCenter">
+          <p:spacer height="30" />
+          <h3>
+            <i class="icon ivyicon-check-1" /> #{ivy.cms.co('/Dialogs/ch/ivy/addon/express/generic/endpage/title')}
+          </h3>
+          <p:outputLabel value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/express/generic/endpage/subtitle')}" />
+          <br />
 
-					<p:commandButton id="close-button" actionListener="#{logic.close}"
-						value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-						update="form" icon="fa fa-home" />
-				</h:panelGrid>
-			</h:form>
-		</ui:define>
-	</ui:composition>
+          <p:commandButton id="close-button" actionListener="#{logic.close}"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" update="form" 
+            icon="#{visibilityBean.generateButtonIcon('icon ivyicon-house-chimney-2')}" />
+        </h:panelGrid>
+      </h:form>
+    </ui:define>
+  </ui:composition>
 </h:body>
 </html>

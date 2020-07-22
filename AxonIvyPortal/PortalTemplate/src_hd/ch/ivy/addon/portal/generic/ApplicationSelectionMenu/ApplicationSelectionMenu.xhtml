@@ -5,7 +5,7 @@
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
   xmlns:p="http://primefaces.org/ui" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
-  xmlns:ps="http://primefaces.org/serenity">
+  xmlns:ps="http://primefaces.org/serenity" xmlns:pm="http://primefaces.org/serenity-ivy">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="onClickTaskMenuItemCallback" />
@@ -46,7 +46,7 @@
         <!-- Application menu -->
         <h:form id="main-navigator">
 
-          <ps:menu id="main-menu" widgetVar="main-menu">
+          <pm:menu id="main-menu" widgetVar="main-menu">
             <!-- Loop menu applications -->
             <c:forEach var="menuItem" items="#{menuView.menuItems}" varStatus="menuItemStatus">
 
@@ -90,13 +90,13 @@
               </c:if>
 
             </c:forEach>
-          </ps:menu>
+          </pm:menu>
 
 	        <!-- Remote commands for breadcrumb -->
-	        <p:remoteCommand name="navigateToTaskListFromBreadcrumb"
+	        <p:remoteCommand name="navigateToTaskListFromBreadcrumb" immediate="true"
 	          actionListener="#{data.setDestinationBreadcrumbPage('TASK')}"
 	          oncomplete="PF('task-losing-confirmation-dialog').show();" />
-	        <p:remoteCommand name="navigateToHomeFromBreadcrumb"
+	        <p:remoteCommand name="navigateToHomeFromBreadcrumb" immediate="true"
 	          actionListener="#{data.setDestinationBreadcrumbPage('HOME')}"
 	          oncomplete="PF('task-losing-confirmation-dialog').show();" />
         </h:form>
@@ -109,29 +109,30 @@
     </div>
   </h:panelGroup>
 
-  <p:confirmDialog id="task-leave-warning-dialog" rendered="#{data.isWorkingOnATask}" 
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
+  <p:dialog id="task-leave-warning-dialog" rendered="#{data.isWorkingOnATask}" 
+    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" modal="true"
     widgetVar="task-losing-confirmation-dialog" appendTo="@(body)" closeOnEscape="true" responsive="true">
     <h:form prependId="false">
-      <h:panelGroup>
-        <p:commandButton id="leave-button" actionListener="#{logic.leave(task)}" process="@this" update="@none"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leave')}"
-          styleClass="ui-confirmdialog-yes u-mar-right-5" />
-        <p:commandButton id="reserve-task-button" actionListener="#{logic.reserveTask(task)}" process="@this" update="@none"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
-          styleClass="ui-confirmdialog-yes u-mar-right-5" rendered="#{task.state != 'CREATED'}" />
-        <p:tooltip for="reserve-task-button" trackMouse="true" rendered="#{task.state != 'CREATED'}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leaveAndReserve')}" />
-        <p:commandButton onclick="PF('task-losing-confirmation-dialog').hide();" actionListener="#{logic.continueWorkingOnTask}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this" update="@none"
-          styleClass="ui-confirmdialog-no portal-cancel-button" />
-      </h:panelGroup>
-    </h:form>
-    <f:facet name="message">
-      <h:outputText escape="false" styleClass="ui-confirm-dialog-message"
+        <span class="ui-icon ui-icon-alert ui-confirm-dialog-severity"></span>
+        <h:outputText escape="false" styleClass="ui-confirm-dialog-message"
         value="#{ivy.cms.co(task.state == 'CREATED' ? '/ch.ivy.addon.portalkit.ui.jsf/taskWarning/createdTaskLeave' : '/ch.ivy.addon.portalkit.ui.jsf/taskWarning/resetParkTaskBeforeLeave')}" />
-    </f:facet>
-  </p:confirmDialog>
+        <h:panelGroup layout="block" styleClass="ui-dialog-footer u-no-padding-right">
+          <p:commandLink onclick="PF('task-losing-confirmation-dialog').hide();" actionListener="#{logic.continueWorkingOnTask}"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this" update="@none" />
+          <p:spacer width="15px" />
+          <p:commandButton id="reserve-task-button" actionListener="#{logic.reserveTask(task)}" process="@this" update="@none"
+            icon="#{visibilityBean.generateButtonIcon('icon ivyicon-touch-finger_1')}"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}"
+            styleClass="u-mar-right-5 secondary-btn" rendered="#{task.state != 'CREATED'}" />
+          <p:commandButton id="leave-button" actionListener="#{logic.leave(task)}" process="@this" update="@none"
+            icon="#{visibilityBean.generateButtonIcon('icon ivyicon-arrow-left')}"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leave')}"
+            styleClass="u-mar-right-5" />
+          <p:tooltip for="reserve-task-button" trackMouse="true" rendered="#{task.state != 'CREATED'}"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leaveAndReserve')}" />
+        </h:panelGroup>
+    </h:form>
+  </p:dialog>
   <script type="text/javascript">
     function removeHighlightedMenuItem() {
       PF('main-menu').clearMenuState();
