@@ -1168,7 +1168,7 @@ UserProcessService userProcessService = new UserProcessService();
 for (int i = 0; i < 930; i++) {
 	UserProcess userProcess = new UserProcess();
 	userProcess.setApplicationId(ivy.request.getApplication().getId());
-	userProcess.setUserName(testUsername);
+	userProcess.setUserId(testUserId);
 	userProcess.setIndex(i);
 	userProcess.setDescription("Test user process - " + i);
 	userProcess.setProcessName("Test user process - " + i);
@@ -1431,11 +1431,11 @@ import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.UserProcessService;
 // Create user process
 UserProcessService userProcessService = new UserProcessService();
-String testUsername = ivy.session.getSessionUserName();
+Long testUserId = ivy.session.getSessionUser().getId();
 
 UserProcess userProcess = new UserProcess();
 userProcess.setApplicationId(ivy.request.getApplication().getId());
-userProcess.setUserName(testUsername);
+userProcess.setUserId(testUserId);
 userProcess.setIndex(1);
 userProcess.setDescription("Case Map: Leave Request");
 userProcess.setProcessName("Case Map: Leave Request");
@@ -1444,7 +1444,7 @@ userProcessService.save(userProcess);
 
 userProcess = new UserProcess();
 userProcess.setApplicationId(ivy.request.getApplication().getId());
-userProcess.setUserName(testUsername);
+userProcess.setUserId(testUserId);
 userProcess.setIndex(2);
 userProcess.setDescription("Create Support Ticket");
 userProcess.setProcessName("Create Support Ticket");
@@ -1453,7 +1453,7 @@ userProcessService.save(userProcess);
 
 userProcess = new UserProcess();
 userProcess.setApplicationId(ivy.request.getApplication().getId());
-userProcess.setUserName(testUsername);
+userProcess.setUserId(testUserId);
 userProcess.setIndex(3);
 userProcess.setDescription("Appraisal");
 userProcess.setProcessName("Appraisal");
@@ -1474,7 +1474,7 @@ expressProcessService.save(expressProcess);
 
 ExternalLink externalLink = new ExternalLink();
 externalLink.name = "A sample for External link to Google";
-externalLink.creator = "#demo";
+externalLink.creatorId = ivy.wf.getSecurityContext().users().find("demo").getId();
 externalLink.public = true;
 externalLink.link = "google.com";
 ExternalLinkService externalLinkService = new ExternalLinkService();

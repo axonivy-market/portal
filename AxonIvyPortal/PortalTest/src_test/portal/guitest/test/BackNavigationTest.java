@@ -156,7 +156,7 @@ public class BackNavigationTest extends BaseTest {
     assertEquals(PAYMENT_TASK_NAME, taskDetailsPage.getTaskName());
 
     TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
-    taskTemplatePage.clickCancelButton();
+    taskTemplatePage.clickCancelLink();
     taskDetailsPage = new TaskDetailsPage();
     assertEquals(PAYMENT_TASK_NAME, taskDetailsPage.getTaskName());
     taskDetailsPage.clickBackButton();

@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -39,9 +40,11 @@ import org.apache.commons.lang3.StringUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.GsonBuilder;
 
+import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -196,6 +199,9 @@ public class ChatService {
   @Produces(MediaType.APPLICATION_JSON)
   public synchronized Response sendPrivateMessage(String messageText, @PathParam("receiver") String receiver,
       @PathParam("clientId") String clientId) {
+    if (UserUtils.findUserByUsername(receiver) == null) {
+      return Response.ok(ERROR).build();
+    }
     ChatMessage message = new ChatMessage(sessionUserName(), Arrays.asList(receiver), messageText);
     ChatMessageManager.storeUnreadMessageInMemory(message);
 
@@ -325,7 +331,7 @@ public class ChatService {
     CaseQuery caseQuery = buildCaseQuery();
     List<ICase> caseWithNoneEmptyGroupChatInfo = Ivy.wf().getCaseQueryExecutor().getResults(caseQuery);
 
-    return caseWithNoneEmptyGroupChatInfo.stream()
+    List<GroupChat> result = caseWithNoneEmptyGroupChatInfo.stream()
         .filter(iCase -> isUserInvolvedInGroup(iCase.getId(), sessionUserName())).map(iCase -> {
           try {
             return mapper.readValue(iCase.customFields()
@@ -336,6 +342,22 @@ public class ChatService {
             return null;
           }
         }).filter(Objects::nonNull).collect(Collectors.toList());
+    for (GroupChat group : result) {
+      Set<SecurityMemberDTO> assignees = new HashSet<>();
+      assignees.addAll(group.getAssignees());
+      Set<String> assigneeNames = new HashSet<>();
+      assigneeNames.addAll(group.getAssigneeNames().stream().filter(name -> name.startsWith("#")).collect(Collectors.toList()));
+      assignees.stream().filter(assignee -> assignee.isUser()).forEach(assignee -> {
+        for (String name : assigneeNames) {
+          if (assignee.getId() == Long.parseLong(name.substring(1))) {
+            group.getAssigneeNames().remove(name);
+            group.getAssigneeNames().add(assignee.getName());
+          }
+        }
+      });
+    }
+    
+    return result;
   }
 
   private CaseQuery buildCaseQuery() {

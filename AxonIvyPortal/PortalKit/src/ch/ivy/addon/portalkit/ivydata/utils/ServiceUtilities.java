@@ -163,6 +163,24 @@ public class ServiceUtilities {
     });
   }
 
+  public static IWorkflowSession findUserWorkflowSession(Long userId, IApplication app) {
+    if (Objects.equals(Ivy.wf().getApplication(), app)) {
+      return Ivy.session();
+    }
+
+    ISecurityContext securityContext = app.getSecurityContext();
+    return IvyExecutor.executeAsSystem(() -> {
+      ISession session = securityContext.createSession();
+      IUser user = securityContext.users().find(userId);
+
+      if (user != null) {
+        String authenticationMode = "customAuth";
+        session.authenticateSessionUser(user, authenticationMode, -1L);
+      }
+      return Ivy.wf().getWorkflowSession(session);
+    });
+  }
+
   public List<IApplication> getApplicationsRelatedToPortal() {
     RegisteredApplicationService service = new RegisteredApplicationService();
     List<String> configuredApps =

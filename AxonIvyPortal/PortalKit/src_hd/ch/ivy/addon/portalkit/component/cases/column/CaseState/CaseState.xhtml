@@ -19,12 +19,12 @@
 
   <h:panelGroup rendered="#{dataModel.isSelectedColumn('STATE')}" id="#{componentId}" 
     styleClass="case-header-default-cell #{cc.attrs.stateStyleClass} #{cc.attrs.responsiveStyleClass}">
-    <h:panelGroup id="#{componentId}-in-progress" styleClass="fa fa-play-circle case-state-in-progress #{cc.attrs.stateIconStyleClass}"
+    <h:panelGroup id="#{componentId}-in-progress" styleClass="icon ivyicon-hourglass case-state-in-progress #{cc.attrs.stateIconStyleClass}"
       rendered="#{case.state eq 'CREATED' or case.state eq 'RUNNING'}" />
-    <h:panelGroup id="#{componentId}-done" styleClass="fa fa-check-circle case-state-done #{cc.attrs.stateIconStyleClass}" 
+    <h:panelGroup id="#{componentId}-done" styleClass="icon ivyicon-check-circle-1 case-state-done #{cc.attrs.stateIconStyleClass}" 
       rendered="#{case.state eq 'DONE'}" />
     <h:panelGroup id="#{componentId}-destroyed" rendered="#{case.state eq 'DESTROYED' or case.state eq 'ZOMBIE'}"
-      styleClass="fa fa-exclamation-circle case-state-zombie-destroyed #{cc.attrs.stateIconStyleClass}" />
+      styleClass="icon ivyicon-alert-circle case-state-zombie-destroyed #{cc.attrs.stateIconStyleClass}" />
   </h:panelGroup>
   <p:tooltip for="#{componentId}" value="#{caseBean.getState(case)}" styleClass="#{cc.attrs.stateTooltipStyleClass}" trackMouse="true" hideEvent="mouseleave click"/>
 </cc:implementation>

@@ -4,6 +4,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
@@ -65,7 +66,7 @@ public final class WaitHelper {
       return false;
     });
   }
-  
+
   public static void waitForNavigation(TemplatePage page, Runnable navigationAcion) {
     String viewState = page.findElementByCssSelector("input[name='javax.faces.ViewState']").getAttribute("value");
     navigationAcion.run();
@@ -87,5 +88,15 @@ public final class WaitHelper {
     if (attempts == 10) {
       action.run();
     }
+  }
+
+  public static void typeWithRetry(TemplatePage page, String cssSelector, String value) {
+    WaitHelper.assertTrueWithWait(() -> {
+      WebElement input = page.findElementByCssSelector(cssSelector);
+      input.clear();
+      input.click(); // To make Firefox more stable
+      input.sendKeys(value);
+      return input.getAttribute("value").equals(value);
+    });
   }
 }
