@@ -173,5 +173,5 @@ $(document).ready(function($) {
 $(window).on('load', function (e) {
   setTimeout(function() {
     $('.portal-ajax-loader').children().hide();
-  }, 50);
+  }, 1);
 });
