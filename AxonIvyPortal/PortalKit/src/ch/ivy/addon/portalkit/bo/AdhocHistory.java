@@ -3,12 +3,13 @@ package ch.ivy.addon.portalkit.bo;
 import java.util.Date;
 
 public class AdhocHistory {
-	
+  
   private long originalTaskId;
   private String content;
   private Date timestamp;
   private String taskName;
   private String authorUsername;
+  private String externalSecurityId;
   
   public long getOriginalTaskId() {
     return originalTaskId;
@@ -48,5 +49,13 @@ public class AdhocHistory {
 
   public void setAuthorUsername(String authorUsername) {
     this.authorUsername = authorUsername;
+  }
+
+  public String getExternalSecurityId() {
+    return externalSecurityId;
+  }
+
+  public void setExternalSecurityId(String externalSecurityId) {
+    this.externalSecurityId = externalSecurityId;
   }
 }

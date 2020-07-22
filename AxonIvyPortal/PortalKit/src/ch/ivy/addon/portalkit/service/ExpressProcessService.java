@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
+import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
 import ch.ivyteam.ivy.business.data.store.search.Filter;
 import ch.ivyteam.ivy.business.data.store.search.Result;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -49,4 +50,14 @@ public class ExpressProcessService extends BusinessDataService<ExpressProcess> {
     return new ArrayList<>();
   }
 
+  public ExpressProcess findExpressProcessById(String id) {
+    ExpressProcess result = super.findById(id);
+    if (result != null) {
+      ExpressManagementUtils utils = new ExpressManagementUtils();
+      result.setProcessOwner(utils.getValidMemberName(result.getProcessOwner()));
+      result.setProcessCoOwners(utils.getValidMemberNames(result.getProcessCoOwners()));
+      result.setProcessPermissions(utils.getValidMemberNames(result.getProcessPermissions()));
+    }
+    return result;
+  }
 }
