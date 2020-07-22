@@ -39,6 +39,15 @@ var Portal = {
   },
   
   updateLayoutContent : function() {
+    var ua = window.navigator.userAgent;
+    var isIE = /MSIE|Trident/.test(ua);
+    var fullHeight= '100vh';
+    if (!isIE) {
+      var vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', vh + 'px');
+      fullHeight = 'var(--vh, 1vh) * 100';
+    }
+
     var headerHeight = $('#portal-template-header').outerHeight();
     var footerHeight = $('#portal-template-footer').outerHeight();
     var headerFooterHeight = headerHeight + footerHeight;
@@ -54,7 +63,7 @@ var Portal = {
     $('.js-layout-wrapper').removeClass('u-invisibility');
 
     var topbarWithHeaderFooterHeight = layoutTopbarHeight + headerFooterHeight;
-    $('.js-layout-content').css('height', 'calc(100vh - ' + topbarWithHeaderFooterHeight + 'px)');
+    $('.js-layout-content').css('height', 'calc(' + fullHeight + ' - ' + topbarWithHeaderFooterHeight + 'px)');
     var chatPanel = $('.js-chat-panel');
     if (chatPanel.length == 1) {
       chatPanel.css('height', 'calc(100% - ' + (headerFooterHeight - envHeight) + 'px)');
