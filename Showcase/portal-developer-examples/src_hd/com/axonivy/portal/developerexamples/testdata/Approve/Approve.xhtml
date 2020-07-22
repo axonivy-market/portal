@@ -94,9 +94,10 @@
 	        	Additional information
 	        </p:tab>
         </p:tabView>
-        <div style="width: 100%">
-          <p:commandButton id="approve-btn" value="Approve" actionListener="#{logic.close}" update="@(form)" 
-           style="float: right; margin-top: 20px;" />
+        <div style="width: 100%; margin-top: 20px; float: right">
+          <p:commandButton id="approve-btn" value="Approve" actionListener="#{logic.close}" update="@(form)" />
+         
+          <p:commandButton id="home-btn" value="Back to Home" actionListener="#{logic.home}" immediate="true" />
         </div>
       </h:form>
       <script>
@@ -104,6 +105,7 @@
         window.currentProcessStep = 1;
         window.isShowAllSteps = true;
         window.isWorkingOnATask = false;
+        window.announcementInvisible = false;
       </script>
     </ui:define>
   </ui:composition>
