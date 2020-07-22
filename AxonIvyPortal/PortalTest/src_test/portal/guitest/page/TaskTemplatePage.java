@@ -94,8 +94,8 @@ public class TaskTemplatePage extends TemplatePage {
     return findListElementsByCssSelector("a[id$='side-step-item']").size();
   }
   
-  public void clickCancelButton() {
-    click(driver.findElement(By.className("portal-cancel-button")));
+  public void clickCancelLink() {
+    click(By.linkText("Cancel"));
   }
   
   public void showNoteHistory() {
@@ -182,7 +182,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public HomePage clickCancelAndLeftButton() {
-    String cancelButton = "button[id$='button-cancel']";
+    String cancelButton = "a[id$='button-cancel']";
     clickByCssSelector(cancelButton);
     return new HomePage();
   }

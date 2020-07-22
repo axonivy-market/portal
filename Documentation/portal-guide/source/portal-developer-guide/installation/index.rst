@@ -155,6 +155,10 @@ Changes in 9.1
 - Introduce the User Guide feature, using the ``SHOW_USER_GUIDE`` Portal Setting to activate/deactivate it, 
   and follow :ref:`Customize user guide <customization-portal-home-user-guide>` for your customization.
 
+- Introduce new Portal Setting ``SHOW_BUTTON_ICON`` to control visibility of icon of button in Portal.
+
+- Introduce new Portal dialog with icon decorator. Refer to :ref:`this section <components-additional-portal-dialog-with-icon>` for more detail.
+
 - TaskTemplate-7, TaskTemplate and TwoColumnTemplate are removed.
 
 .. |css_variable| raw:: html

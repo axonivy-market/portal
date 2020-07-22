@@ -24,23 +24,28 @@ public class CaseBean implements Serializable {
   private static final String OPEN_CASES_LIST = "Start Processes/PortalStart/CaseListPage.ivp";
 
   /**
-   * Get the font-awesome class of specified CaseState
+   * Get correspondence icon classes and color class for case state
    * 
    * @param state CaseState
-   * @return String CSS class of the caseState
+   * @return css classes for case state
    */
   public String getCaseStateIcon(CaseState state) {
-    if (CaseState.CREATED.equals(state)) {
-      return "fa fa-file-o";
-    } else if (CaseState.DESTROYED.equals(state)) {
-      return "fa fa-times";
-    } else if (CaseState.DONE.equals(state)) {
-      return "fa fa-check";
-    } else if (CaseState.RUNNING.equals(state)) {
-      return "fa fa-spinner";
+    if(state == null)  {
+      return "";
     }
-
-    return "fa-user-secret";
+    switch(state) {
+      case CREATED:
+      case RUNNING:
+        return "icon ivyicon-hourglass case-state-in-progress";
+      case DONE:
+        return "icon ivyicon-check-circle-1 case-state-done";
+      case DESTROYED:
+      case ZOMBIE:
+        return "icon ivyicon-alert-circle case-state-zombie-destroyed";
+      default: 
+        return "";
+    }
+      
   }
 
   /**

@@ -153,12 +153,28 @@
   margin-right: 5px !important;
 }
 
+.u-mar-right-10 {
+  margin-right: 10px;
+}
+
+.u-mar-right-15 {
+  margin-right: 15px !important;
+}
+
 .u-mar-right-20 {
   margin-right: 20px !important;
 }
 
 .u-padding-0 {
   padding: 0 !important;
+}
+
+.u-padding-right-5 {
+  padding-right: 5px !important;
+}
+
+.u-padding-right-10 {
+  padding-right: 10px !important;
 }
 
 .u-no-padding-top {
@@ -177,61 +193,16 @@
   padding-right: 0 !important;
 }
 
-/* For Serenity theme - Start */
-/*
-* Some style is removed after migrated to Serenity - need re-define
-*/
-.MarRight10 {
-  margin-right: 10px;
-}
-
-.MarTop20 {
-  margin-top: 20px;
-}
-
-.Fleft {
-  float: left;
-}
-
-.Fright {
-  float: right;
-}
-
-.Separator {
-  border-bottom: solid 1px #E0E0E0;
-  width: 100%;
-  overflow: hidden;
-  height: 0px;
-  margin: 10px 0px;
-  clear: both;
-}
-
-.TexAlRight {
+.u-text-align-right {
   text-align: right !important;
 }
 
-.TexAlLeft {
+.u-text-align-left {
   text-align: left !important;
 }
 
-.TexAlCenter {
+.u-text-align-center {
   text-align: center !important;
-}
-
-.MarTop0 {
-  margin-top: 0 !important;
-}
-
-.MarTop5 {
-  margin-top: 5px !important;
-}
-
-.MarTop10 {
-  margin-top: 10px !important;
-}
-
-.DispBlock {
-  display: block !important;
 }
 
 .hide {
@@ -336,10 +307,60 @@
   }
 }
 
-.u-padding-right-5 {
-  padding-right: 5px;
+/* For Serenity theme - Start */
+/* Do not use them for new code, these classes are for backward compatibility
+* Some style is removed after migrated to Serenity - need re-define
+*/
+.MarRight10 {
+  margin-right: 10px;
+}
+
+.MarTop20 {
+  margin-top: 20px;
+}
+
+.Fleft {
+  float: left;
+}
+
+.Fright {
+  float: right;
+}
+
+.Separator {
+  border-bottom: solid 1px #E0E0E0;
+  width: 100%;
+  overflow: hidden;
+  height: 0px;
+  margin: 10px 0px;
+  clear: both;
+}
+
+.TexAlRight {
+  text-align: right !important;
+}
+
+.TexAlLeft {
+  text-align: left !important;
+}
+
+.TexAlCenter {
+  text-align: center !important;
+}
+
+.MarTop0 {
+  margin-top: 0 !important;
+}
+
+.MarTop5 {
+  margin-top: 5px !important;
+}
+
+.MarTop10 {
+  margin-top: 10px !important;
 }
 
 .FontBold {
   font-weight: bold;
 }
+/* For Serenity theme - End */

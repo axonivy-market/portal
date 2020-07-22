@@ -23,25 +23,25 @@
             styleClass="task-template-title #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
             <ui:insert name="taskName">
               <ui:fragment rendered="#{!isHideTaskName}">
-                <span class=" fa fa-check-square-o task-template-title-icon" />
+                <span class="icon ivyicon-task-list-edit task-template-title-icon" />
                 <h:outputText id="title" title="#{task.name}" value="#{task.name}" styleClass="task-title" />
               </ui:fragment>
             </ui:insert>
             
             <h:panelGroup id="vertical-task-template-tasks-command" class="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and processChainDirection eq 'VERTICAL'}">
-              <p:commandButton id="vertical-case-info" type="button" 
-                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="fa fa-info"
+              <p:commandButton id="vertical-case-info" type="button" styleClass="secondary-btn border-with-primary-color"
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="icon ivyicon-folder-search"
                 onclick="PF('case-info-dialog').show()" rendered="#{!isHideCaseInfo}" />
               <p:spacer width="10" />
-              <p:commandButton id="vertical-task-actions" type="button" rendered="#{!isHideTaskAction}"
-                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ui-icon-menu" />
+              <p:commandButton id="vertical-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="secondary-btn border-with-primary-color"
+                title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="icon ivyicon-navigation-menu" />
             </h:panelGroup>
             
             <h:form id="vertical-task-action-form" rendered="#{processChainDirection eq 'VERTICAL'}">
               <p:menu id="vertical-task-action-menu" overlay="true" trigger="vertical-task-actions" my="right top" at="right bottom"
                 styleClass="action-steps-panel task-actions-menu">
                 <p:menuitem id="show-adhoc-history" rendered="#{abstractTaskTemplateBean.hasAdhocTasks(task) }"
-                  icon="fa fa-history fa-2x" oncomplete="PF('adhoc-task-history-dialog').show()"
+                  icon="icon ivyicon-synchronize-arrow-clock" oncomplete="PF('adhoc-task-history-dialog').show()"
                   value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistory')}"
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistoryTooltip')}" />
 
@@ -49,7 +49,7 @@
                   rendered="#{empty isShowStartAdhocButton? (abstractTaskTemplateBean.hasExpressAdhocWF() and task.isPersistent()) : isShowStartAdhocButton}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHoc')}"
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}"
-                  icon="fa fa-random fa-2x" oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()" />
+                  icon="icon ivyicon-move-to-bottom" oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()" />
 
                 <p:separator
                   rendered="#{abstractTaskTemplateBean.hasAdhocTasks(task) or (empty isShowStartAdhocButton? (abstractTaskTemplateBean.hasExpressAdhocWF() and task.isPersistent()) : isShowStartAdhocButton)}" />
@@ -86,18 +86,18 @@
           </h:panelGroup>
   
           <h:panelGroup id="horizontal-task-template-tasks-command" styleClass="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and processChainDirection ne 'VERTICAL'}">
-            <p:commandButton id="horizontal-case-info" type="button"
-              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="fa fa-info"
+            <p:commandButton id="horizontal-case-info" type="button" styleClass="secondary-btn border-with-primary-color"
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="icon ivyicon-folder-search"
               onclick="PF('case-info-dialog').show()" rendered="#{!isHideCaseInfo}" />
             <p:spacer width="10" />
-            <p:commandButton id="horizontal-task-actions" type="button" rendered="#{!isHideTaskAction}"
-              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="ui-icon-menu" />
+            <p:commandButton id="horizontal-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="secondary-btn border-with-primary-color"
+              title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="icon ivyicon-navigation-menu" />
           
             <h:form id="horizontal-task-action-form">
               <p:menu id="horizontal-task-action-menu" overlay="true" trigger="horizontal-task-actions" my="right top" at="right bottom"
                 styleClass="action-steps-panel task-actions-menu" rendered="#{!isHideTaskAction}">
                 <p:menuitem id="show-adhoc-history" rendered="#{abstractTaskTemplateBean.hasAdhocTasks(task)}"
-                  icon="fa fa-history fa-2x" oncomplete="PF('adhoc-task-history-dialog').show()"
+                  icon="icon ivyicon-synchronize-arrow-clock" oncomplete="PF('adhoc-task-history-dialog').show()"
                   value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistory')}"
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/adhocHistoryTooltip')}" />
     
@@ -105,9 +105,9 @@
                   rendered="#{empty isShowStartAdhocButton? (abstractTaskTemplateBean.hasExpressAdhocWF() and task.isPersistent()) : isShowStartAdhocButton}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHoc')}"
                   title="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/startAdHocTooltip')}"
-                  icon="fa fa-random fa-2x" oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()" />
+                  icon="icon ivyicon-move-to-bottom" oncomplete="PF('adhoc-task-reset-confirmation-dialog').show()" />
     
-                <p:menuitem id="chat-group" icon="fa fa-comments fa-2x" action="#{chatAssigneeBean.createGroupChatForConfiguredRoleList(task)}"
+                <p:menuitem id="chat-group" icon="icon ivyicon-messages-bubble-add" action="#{chatAssigneeBean.createGroupChatForConfiguredRoleList(task)}"
                   rendered="#{chatRendererBean.isGroupChatRendered and !(task.state eq 'CREATED') and !chatRendererBean.isExpressCreationTask()}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createProcessChat')}" update="chat-assignee-dialog" />
     
@@ -168,11 +168,12 @@
           <f:facet name="footer">
             <h:form id="chat-group-join-form" rendered="#{chatAssigneeBean.doesGroupChatExist()}">
               <h:panelGroup styleClass="Fs14 ui-dialog-buttonpane">
+                <p:commandLink id="chat-group-cancel-button"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                  onclick="PF('chat-assignee-dialog').hide()" />
+                <p:spacer width="15px" />
                 <p:commandButton id="chat-group-join-button" actionListener="#{chatAssigneeBean.joinGroupChat()}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/joinProcessChat')}" process="@this" update="@none" />
-                <p:commandButton id="chat-group-cancel-button" type="button"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                  styleClass="portal-cancel-button" onclick="PF('chat-assignee-dialog').hide()" />
               </h:panelGroup>
             </h:form>
           </f:facet>
@@ -193,11 +194,12 @@
           <f:facet name="footer">
             <h:form prependId="false">
               <h:panelGroup styleClass="ui-dialog-buttonpane">
+                <p:commandLink onclick="PF('adhoc-task-reset-confirmation-dialog').hide()"
+                  id="start-adhoc-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
+                <p:spacer width="15px" />
                 <p:commandButton actionListener="#{abstractTaskTemplateBean.startAdhoc(task.id)}" process="@this" update="@none"
+                  icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
                   id="start-adhoc-ok-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
-                <p:commandButton onclick="PF('adhoc-task-reset-confirmation-dialog').hide()"
-                  id="start-adhoc-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                  type="button" styleClass="portal-cancel-button" />
               </h:panelGroup>
             </h:form>
           </f:facet>
@@ -212,11 +214,12 @@
           <f:facet name="footer">
             <h:form prependId="false">
               <h:panelGroup styleClass="ui-dialog-buttonpane">
+                <p:commandLink id="side-step-start-cancel" onclick="PF('sidestep-task-reset-confirmation-dialog').hide()"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
+                <p:spacer width="15px" />
                 <p:commandButton id="side-step-start-ok" actionListener="#{abstractTaskTemplateBean.startSideStep(task)}" process="@this" update="@none"
+                  icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
-                <p:commandButton id="side-step-start-cancel" onclick="PF('sidestep-task-reset-confirmation-dialog').hide()"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
-                  styleClass="portal-cancel-button" />
               </h:panelGroup>
             </h:form>
           </f:facet>
@@ -253,7 +256,7 @@
               <h:panelGroup styleClass="ui-dialog-buttonpane">
                 <p:commandButton onclick="PF('adhoc-task-history-dialog').hide()" id="close-adhoc-dialog-button"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
-                  styleClass="portal-cancel-button" />
+                  icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}" />
               </h:panelGroup>
             </h:form>
           </f:facet>

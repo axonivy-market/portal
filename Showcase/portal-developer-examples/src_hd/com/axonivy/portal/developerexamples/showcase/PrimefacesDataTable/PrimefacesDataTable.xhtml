@@ -21,9 +21,8 @@
           </p:tab>
         </p:tabView>
         <div class="MarTop20 Fright">
-          <p:commandButton actionListener="#{logic.close}" value="Proceed" update="form" icon="fa fa-check" process="@this" />
-          <p:commandButton actionListener="#{logic.close}" value="Cancel" update="form" icon="fa fa-close" process="@this"
-            styleClass="portal-cancel-button" />
+          <p:commandLink actionListener="#{logic.close}" value="Cancel" update="form" process="@this" styleClass="u-mar-right-15" />
+          <p:commandButton actionListener="#{logic.close}" value="Proceed" update="form" icon="icon ivyicon-check-1" process="@this" />
         </div>
       </h:form>
     </ui:define>

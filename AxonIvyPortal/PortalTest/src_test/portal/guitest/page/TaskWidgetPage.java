@@ -207,7 +207,7 @@ public class TaskWidgetPage extends TemplatePage {
 		WebElement stateCell = findElementById(
 				taskWidgetId + ":task-list-scroller:" + taskRowIndex + ":task-item:task-state-component:task-state");
 		if (stateCell != null) {
-			String stateClass = stateCell.findElement(By.className("fa")).getAttribute(CLASS);
+			String stateClass = stateCell.findElement(By.className("icon")).getAttribute(CLASS);
 			return TaskState.fromClass(stateClass.substring(stateClass.indexOf("task-state-")));
 		}
 		return null;
@@ -437,7 +437,7 @@ public class TaskWidgetPage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 		ensureNoBackgroundRequest();
 		waitForElementDisplayedByCssSelector("span[id$='responsible-filter:filter-input-form:responsible_panel']");
-		click(By.cssSelector("i[class*='fa-user']"));
+		click(By.cssSelector("i[class*='neutral']"));
 		waitAjaxIndicatorDisappear();
 		click(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']"));
 		waitAjaxIndicatorDisappear();

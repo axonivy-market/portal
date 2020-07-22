@@ -480,12 +480,7 @@ _:-ms-fullscreen, :root .chat-message {
   right: 18px;
 }
 
-.close-chat .ui-button.ui-button-icon-only {
-  width: 25px;
-  height: 27px;
-}
-
 .close-chat .ui-button.ui-button-icon-only .ui-icon {
-  margin-left: -9px;
+  margin-left: -8px;
   margin-top: -7px;
 }
