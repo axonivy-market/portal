@@ -123,6 +123,7 @@
 
 .task-template-title-icon {
   margin-right: 5px;
+  font-weight: bold !important;
 }
 
 .task-template-content {

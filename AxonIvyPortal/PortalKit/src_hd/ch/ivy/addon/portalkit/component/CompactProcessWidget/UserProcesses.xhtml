@@ -53,7 +53,7 @@
                   title="#{compactProcessWidgetBean.isProcessMarkedAsDeleting(process.id) ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/remove')}"
                   actionListener="#{compactProcessWidgetBean.selectDeletingProcess}" process="@form"
                   update="#{p:component('order-list-items')}" id="process-delete-link">
-                  <i class="fa #{compactProcessWidgetBean.isProcessMarkedAsDeleting(process.id) ? 'fa-undo' : 'fa-trash'} fa-lg" />
+                  <i class="icon #{compactProcessWidgetBean.isProcessMarkedAsDeleting(process.id) ? 'ivyicon-undo' : 'ivyicon-bin-1'}" />
                   <f:param name="processId" value="#{process.id}" />
                 </p:commandLink>
               </div>
@@ -137,14 +137,15 @@
         </div>
       </div>
       <div class="ui-dialog-footer u-dialog-footer">
+        <p:commandLink id="cancel-adding-process-command" global="false"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@none"
+          onclick="PF('add-new-process-dialog').hide()" />
+        <p:spacer width="15px" />
         <p:commandButton id="add-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add')}"
           process="@form" actionListener="#{compactProcessWidgetBean.saveNewUserProcess}"
           update="@form #{p:component('process-list')} #{p:component('process-widget-action')}"
           oncomplete="if(!args.validationFailed){PF('add-new-process-dialog').hide();} favouritesProcess.setUpScrollBarUserProcesses()" />
-        <p:spacer width="5" />
-        <p:commandButton id="cancel-adding-process-command" global="false" styleClass="portal-cancel-button"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@none"
-          onclick="PF('add-new-process-dialog').hide()" />
       </div>
     </h:form>
   </p:dialog>

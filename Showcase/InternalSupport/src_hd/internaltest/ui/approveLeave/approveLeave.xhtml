@@ -57,7 +57,7 @@
 		</ui:define>
 
 		<ui:define name="rightButtons">
-      <h:panelGroup styleClass="MarTop5 DispBlock">
+      <h:panelGroup layout="block" styleClass="MarTop5">
         <h:form>
           <p:commandButton actionListener="#{logic.close}" update=":#{p:component('messageForm')}" value="Approve" icon="fa fa-check-circle-o" />
           <p:spacer width="5px" />

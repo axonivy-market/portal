@@ -354,7 +354,7 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
 .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer,
 .case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer,
 .task-widget .filter-add-panel .ui-overlaypanel-footer,
-.case-widget-container .filter-add-panel .ui-overlaypanel-footer {
+.case-widget-container .filter-add-panel .ui-overlaypanel-footer{
   padding: 10px;
   text-align: right;
 }
@@ -410,8 +410,8 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   transition: none;
 }
 
-.config-columns-footer {
-  margin-top: 5px;
+.config-columns-panel .ui-overlaypanel-footer {
+  text-align: right;
 }
 
 /********************************** END ADVANCED FILTER WIDGET **********************************/
@@ -504,14 +504,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   position: absolute;
   top: 2px;
   right: 4px;
-}
-
-.document-deletion-dialog .ui-dialog-buttonpane.ui-dialog-footer.ui-widget-content {
-  padding: 6px;
-}
-
-.document-deletion-dialog .ui-icon.ui-icon-alert.ui-confirm-dialog-severity {
-  margin-left: 0;
 }
 
 /********************************** CASE ITEM SIMILAR TO TASK ITEM CLASSES **********************************/
@@ -623,11 +615,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   align-items: center;
 }
 
-.action-container a.task-action-item .icon-compact-mode, .action-container span.task-action-item .icon-compact-mode {
+/* .action-container a.task-action-item .icon-compact-mode, .action-container span.task-action-item .icon-compact-mode {
   margin-top: 5px;
   margin-right: 3px;
 }
-
+ */
 @media (max-width : 767px) {
   .case-widget-top-header-main-title {
     word-break: break-all;
@@ -719,6 +711,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 
 .action-steps-panel .action-icon {
   margin-right: 5px;
+  float: left;
 }
 
 .action-steps-panel .action-step-item {
@@ -1113,9 +1106,8 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 
 .process-start-list-item .open-icon {
   position: absolute;
-  bottom: 27%;
+  bottom: 36.5%;
   right: 15px;
-  padding-top: 5px;
 }
 
 .process-start-list-item .process-start-list-item-action .process-description {
@@ -1217,42 +1209,6 @@ body .ui-tabs.search-results-tabview .ui-tabs-panel {
 .compact-processes-container .process-start-list-item, .compact-default-processes-container .process-start-list-item {
   margin: auto;
   margin-bottom: 12px;
-}
-
-.process-start-list-item-action>div.express-process-logo {
-  opacity: 0.3;
-  margin: 0 5px;
-}
-
-.express-process-logo {
-  cursor: default;
-  border: none !important;
-  background-repeat: no-repeat;
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-span..express-process-logo {
-  margin: 0 5px;
-}
-
-.express-process-logo .ui-panel-content,
-.is-external-link .ui-panel-content {
-  width: 0.4rem;
-  height: 0.4rem;
-  margin: 0 5px 3px 5px;
-}
-
-_:-ms-input-placeholder, :root .express-process-logo {
-  height: auto;
-  width: auto;
-  margin-right: 5px;
-}
-
-_:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
-  width: auto;
-  height: auto;
-  margin: 0;
 }
 
 .add-external-link-icon {
@@ -1599,7 +1555,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .icon-compact-mode {
-  vertical-align: middle;
+  vertical-align: middle !important;
 }
 
 .action-icon.icon-compact-mode {
@@ -1838,7 +1794,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-item-body .task-detail-general-card .state-cell.default-task-cell {
   display: flex;
-  align-items: center;
 }
 /********************************** END TASK WIDGET **********************************/
 
@@ -2731,7 +2686,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .new-app, .ui-dialog-footer button {
-  min-width: 120px;
+  min-width: 90px;
   margin-bottom: 6px;
 }
 
@@ -2817,10 +2772,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 /* Override Primefaces table style */
 .absence-table table, .admin-table table {
   box-sizing: border-box !important;
-}
-
-.delete-absence-confirmation-dialog .confirm-action {
-  outline: none;
 }
 
 /********************************** CHANGE PASSWORK DIALOG **********************************/
@@ -3611,7 +3562,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 .config-columns-panel .ui-button.ui-widget {
-  min-width: 120px;
+  min-width: 90px;
 }
 
 .config-columns-button {
@@ -4471,7 +4422,6 @@ body .ui-widget-header.portal-breadcrumb ul li:last-child {
 	width: calc(100% - 150px);
 }
 
-
 body .ui-widget-header.portal-breadcrumb a,
 body .ui-widget-header.portal-breadcrumb .ui-breadcrumb-chevron {
 	color: black;
@@ -4483,6 +4433,14 @@ body .portal-breadcrumb.ui-breadcrumb ul li {
 
 body .portal-breadcrumb.ui-breadcrumb ul li .has-count {
 	display: inline;
+}
+
+.ui-breadcrumb .ui-icon-home:before {
+   display: none;
+}
+
+body .ui-breadcrumb li:first-child a span {
+  display: block;
 }
 /*=================== BREADCRUMB END ===================*/
 /*=================== GUIDE ===================*/
@@ -4730,3 +4688,22 @@ overflow-y:auto;
 height:100%;	
 }
 }
+.case-details-row-space span.icon {
+  vertical-align: text-top;
+}
+/** Fix for ivy icon --- Start---- **/
+body a .icon,
+body td .icon {
+  vertical-align: text-top;
+}
+/** Fix for ivy icon --- End---- **/
+
+/** Portal dialog ---- start-----**/
+.portal-dialog .ui-dialog-titlebar {
+  border-bottom: 0 !important;
+}
+
+.portal-dialog-content {
+  margin-top: 20px;
+}
+/** Portal dialog ---- end-----**/

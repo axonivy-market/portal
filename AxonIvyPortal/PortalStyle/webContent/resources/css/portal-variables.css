@@ -28,11 +28,8 @@
   --ivy-tertinary-color-yellow-light: hsl(47, 100%, 79%);
   --ivy-portal-blue-light: #90DDE9;
 
-  --accent-color: rgba(144, 221, 233, 0.24);
-  --accent-text-color: var(--primary-dark-text-color);
-
   --accent-color: var(--ivy-portal-blue-light);
-  --accent-text-color: black;
+  --accent-text-color: var(--primary-dark-text-color);
 
   /* Default Portal styles */
   --default-font-size: 10px;
@@ -40,6 +37,7 @@
   --large-font-size: 1.4rem;
   --small-font-size: 1.2rem;
   --header-font-size: 2rem;
+  --left-menu-icon-font-size: 1.8rem;  
   --portal-font-family: "Roboto";
   --default-font-style: normal;
   --default-font-weight: 400;
@@ -59,7 +57,8 @@
   --portal-border-radius: 5px;
   --item-background-hover: rgba(144, 221, 233, 0.24);
   --item-border-hover: 1px solid #90DDE9;
-
+  /* top bar*/
+  --top-bar-icon-size: 1.8rem;
   /* 3 colors of header bar */
   --first-header-bar-color: var(--primary-color);
   --second-header-bar-color: var(--primary-color);
@@ -73,16 +72,26 @@
 
   /* Task state color */
   --task-state-open-color: #078cff;
-  --task-state-in-progress-color: #4eb41c;
+  --task-state-in-progress-color: var(--ivy-tertinary-color-yellow-dark);
   --task-state-done-color: #4eb41c;
   --task-state-reserved-color: rgba(black, 0.4);
   --task-state-system-color: rgba(black, 0.4);
   --task-state-zombie-destroyed-color: #ff6464;
-
+  --task-state-reserved-font-size: 1.8rem;
+  --task-state-system-font-size: 1.8rem;
+  
+  /**Portal dialog*/
+  --portal-dialog-header-text-font-size: 3rem;
+  --portal-dialog-icon-font-size: 6rem;
+  
   /* Color and border radius of Portal button e.g Add, Close, New, Save, OK .. */
   --cancel-button-background-color: var(--ivy-primary-color-grey-light);
   --cancel-button-state-hover-or-focus-background-color: var(--ivy-primary-color-grey-pale);
   --action-button-border-radius: 0px;
+  
+  /* Color of secondary button */
+  --button-secondary-bg-color: var(--ivy-primary-color-white);
+  --button-secondary-text-color: var(--primary-color);
 
   /* Color and border radius of context button, 
   it only affects when button has attribute styleClass="context-button" */
@@ -234,7 +243,7 @@
   --case-item-action-steps-item-hover-text-color: var(--ivy-primary-color-grey-dark);
   --case-action-steps-contents-background-color: var(--ivy-primary-color-white);
   --case-action-separator-border-color: hsla(180, 1%, 61%, 0.5);
-  --case-state-in-progress-color: rgba(7, 140, 255, 1);
+  --case-state-in-progress-color: var(--ivy-tertinary-color-yellow-dark);
   --case-state-done-color: #4eb41c;
   --case-widget-column-header-border-bottom: var(--ivy-primary-color-grey-light);
   --case-list-data-scroller-content-background-color: transparent;
@@ -363,11 +372,11 @@
   --contact-card-background-color: var(--ivy-primary-color-white);
   --contact-card-hover-background-color: hsla(0, 0%, 100%, 0.85);
   --contact-card-icon-unread-message-color: var(--ivy-primary-color-white);
-  --contact-card-icon-unread-message-background-color: #ff6d6e;
+  --contact-card-icon-unread-message-background-color: var(--ivy-tertinary-color-red-dark);
   --contact-card-status-background-color: var(--ivy-tertinary-color-green-medium);
   --contact-card-name-color: var(--ivy-primary-color-white);
   --contact-notification-color: var(--ivy-primary-color-white);
-  --contact-notification-background-color: var(--ivy-tertinary-color-red-medium);
+  --contact-notification-background-color: var(--ivy-tertinary-color-red-dark);
   --contact-card-name: var(--ivy-primary-color-black);
   --message-list-background-color: var(--ivy-primary-color-grey-pale);
   --message-list-header-background-color: var(--ivy-primary-color-grey-dark);
@@ -377,7 +386,7 @@
   --message-chat-header-name-color: var(--ivy-primary-color-white);
   --show-participants-link-color: var(--ivy-primary-color-white);
   --chat-form-background-color: var(--ivy-primary-color-white);
-  --notification-badge-background-color: #ff6d6e;
+  --notification-badge-background-color: var(--ivy-tertinary-color-red-dark);
   --notification-badge-color: var(--ivy-primary-color-white);
   --chat-contact-type-header-color: var(--ivy-primary-color-white);
   --chat-tooltip-color: var(--ivy-primary-color-white);
@@ -460,6 +469,7 @@
   --breadcrumb-background-color: transparent;
   --breadcrumb-font-size: 1.4rem;
   --breadcrumb-home-icon-font-size: 2rem;
+  --breadcrumb-home-icon-color: var(--primary-color);
   --current-step-color: var(--primary-color);
   --current-step-opacity: 1; 
   /* Portal Global Ajax Status */

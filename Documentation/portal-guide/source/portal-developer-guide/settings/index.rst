@@ -107,6 +107,7 @@ Process developer can set up global settings of Portal in file ``portal_settings
       #DISPLAY_MESSAGE_AFTER_FINISH_TASK = true
       #SHOW_USER_GUIDE = true
       #SHOW_GLOBAL_SEARCH = true
+      #SHOW_BUTTON_ICON = true
 
 This file already contains list of settings with their default values.
 These settings will be applied once you start Portal.

@@ -40,13 +40,13 @@
 
     <p:commandLink id="task-open-detail-command" styleClass="option-item"
       actionListener="#{logic.openDetails(task, dataModel)}" rendered="#{cc.attrs.showDetailOption}">
-      <i class="option-action-icon fa fa-info-circle" />
+      <i class="option-action-icon icon ivyicon-information-circle" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}</span>
     </p:commandLink>
 
     <p:commandLink id="task-reset-command" onstart="event.stopPropagation();" rendered="#{taskActionBean.showResetTask}" disabled="#{!taskActionBean.canReset(task)}"
       styleClass="option-item" actionListener="#{logic.resetTask(task)}" update="@parent #{cc.attrs.componentToUpdate}">
-      <i class="option-action-icon tmi-box-arrow-left" />
+      <i class="option-action-icon icon ivyicon-road-sign-u-turn-left" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}</span>
     </p:commandLink>
 
@@ -55,13 +55,13 @@
       oncomplete="initDataToDelegate()"
       actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
       update="@parent #{cc.attrs.componentToUpdate} @widgetVar(task-delegate-dialog)" global="false">
-      <i class="option-action-icon tmi-box-arrow-right" />
+      <i class="option-action-icon icon ivyicon-road-sign-u-turn-right" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegate')}</span>
     </p:commandLink>
 
     <p:commandLink id="task-reserve-command" disabled="#{!taskActionBean.canPark(task)}" rendered="#{taskActionBean.showReserveTask}" onstart="event.stopPropagation();"
       styleClass="option-item" actionListener="#{logic.parkTask(task)}" update="@parent #{cc.attrs.componentToUpdate}">
-      <i class="option-action-icon tmi-box-arrow-toinside" />
+      <i class="option-action-icon icon ivyicon-navigation-right-circle" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reserve')}</span>
     </p:commandLink>
     
@@ -75,8 +75,8 @@
       styleClass="option-item" update="@parent #{cc.attrs.componentToUpdate}"
       actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
       oncomplete="#{cc.attrs.onDestroyComplete}" process="@this" global="false">
-      <i class="option-action-icon fa fa-remove" />
-      <span class="option-item-label">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/Destroy')}</span>
+      <i class="option-action-icon icon ivyicon-remove" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}</span>
     </p:commandLink>
     
     <h:panelGroup id="task-additional-actions" layout="block" rendered="#{cc.attrs.renderedAdditionalAction}">
@@ -84,8 +84,11 @@
       <p:commandLink rendered="#{empty sideStepBean.currentSideSteps}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noSideSteps')}"
         styleClass="option-item" />
       <ui:repeat var="sideStep" value="#{sideStepBean.currentSideSteps}">
-        <p:commandLink id="adhoc-side-step-item" styleClass="option-item" value="#{sideStep.name}" global="false" rendered="#{sideStep.isAdhoc()}"
-          actionListener="#{sideStepBean.startAdhoc(sideStep, task.getId())}" process="@this" />
+        <p:commandLink id="adhoc-side-step-item" styleClass="option-item" global="false" rendered="#{sideStep.isAdhoc()}"
+          actionListener="#{sideStepBean.startAdhoc(sideStep, task.getId())}" process="@this">
+          <i class="icon ivyicon-add u-mar-right-5" />
+          <h:outputText value="#{sideStep.name}" />
+        </p:commandLink>
   
         <p:commandLink id="option-item" styleClass="option-item" value="#{sideStep.name}" global="false" rendered="#{not sideStep.isAdhoc()}"
           actionListener="#{sideStepBean.startSideStep(sideStep)}" process="@this" />

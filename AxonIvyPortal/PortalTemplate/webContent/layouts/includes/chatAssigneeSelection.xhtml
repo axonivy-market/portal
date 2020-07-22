@@ -48,6 +48,7 @@
     
     <div class="ui-g-12 chat-add-assignee-button-grid">
       <p:commandButton id="chat-add-assignee-button"
+        icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
         disabled="#{chatAssigneeBean.selectedUser == null and chatAssigneeBean.selectedRole == null}" actionListener="#{chatAssigneeBean.addAssignee}"
         global="false" update="error-message chat-selected-assignee-fieldset" ignoreAutoUpdate="true" />
@@ -59,9 +60,9 @@
         <ui:repeat var="assignee" value="#{chatAssigneeBean.selectedAssignees}">
           <div class="ui-g">
             <div class="ui-g-12">
-              <h:outputText id="chat-assign-type-icon" class="fa #{assignee.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+              <h:outputText id="chat-assign-type-icon" class="icon #{assignee.isUser() ? 'ivyicon-single-neutral-actions' : 'ivyicon-multiple-neutral-1'} u-mar-right-5" />
               <h:outputText value="#{assignee.briefDisplayNameWithState}" />
-              <p:commandLink id="chat-delete-assignee" styleClass="fa fa-trash chat-delete-assignee"
+              <p:commandLink id="chat-delete-assignee" styleClass="icon ivyicon-bin-1 chat-delete-assignee"
                 rendered="#{assignee ne ivy.session.getSessionUser()}"
                 actionListener="#{chatAssigneeBean.removeAssignee(assignee)}" update="#{p:component('chat-assignee-selection-panel')}" />
             </div>
@@ -72,7 +73,7 @@
 
     <div class="ui-g-12 chat-action-container">
       <p:commandButton id="chat-group-create-button" actionListener="#{chatBean[createGroupChat]}"
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createProcessChat')}" icon="fa fa-check">
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/createProcessChat')}" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}">
       </p:commandButton>
     </div>
   </h:panelGroup>

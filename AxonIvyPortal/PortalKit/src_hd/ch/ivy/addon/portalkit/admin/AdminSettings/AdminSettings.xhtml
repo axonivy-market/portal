@@ -12,7 +12,7 @@
 <cc:implementation>
   <p:outputPanel id="loginPanel" styleClass="admin-settings-no-permission-message" layout="block"
     rendered="#{!permissionBean.hasAdminPermission()}">
-    <span class="fa fa-exclamation-circle" />
+    <span class="icon ivyicon-alert-circle" />
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/permission/noPermission')}" />
   </p:outputPanel>
 
@@ -33,7 +33,7 @@
 
         <h:panelGroup layout="block" styleClass="application-tab-action-buttons">
           <p:commandButton id="add-application-btn" actionListener="#{logic.addNewApp}" oncomplete="PF('appDialog').show()" resetValues="true"
-            styleClass="new-app" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/new')}"
+            styleClass="new-app" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/new')}" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add')}"
             update=":#{p:component('appDialog')}" />
         </h:panelGroup>
 
@@ -61,19 +61,19 @@
                 actionListener="#{logic.editApplication(app)}" process="@this"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
                 update="@this :#{p:component('appDialog')}">
-                <span class="fa fa-pencil" />
+                <span class="icon ivyicon-graphic-tablet-drawing-pen" />
               </p:commandLink>
               <p:commandLink id="delete" process="@this" styleClass="action-column-icon-button"
                 actionListener="#{logic.submitDeleteApp(app)}" update=":#{p:component('deleteConfirmationDialog')}"
                 oncomplete="PF('deleteConfirmation').show()"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
-                <span class="fa fa-trash-o" />
+                <span class="icon ivyicon-bin-1" />
               </p:commandLink>
               <p:commandLink id="previewUsers" process="@this" rendered="#{not empty app.serverId}"
                 update=":#{p:component('previewUsersDialog')}" actionListener="#{logic.usersInApp(app)}"
                 oncomplete="PF('previewUsersDialog').show()" styleClass="action-column-icon-button"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/previewUsers')}">
-                <span class="fa fa-users" />
+                <span class="icon ivyicon-multiple-neutral-1" />
               </p:commandLink>
             </p:column>
           </p:dataTable>
@@ -93,7 +93,7 @@
           update=":#{p:component('applicationTable')} :#{p:component('settingTable')} :#{p:component('announcement-table')} :#{p:component('action-group')} :#{p:component('announcement-validation-messages')}" />
         <p:remoteCommand name="clearFilter" actionListener="#{logic.clearSettingTableFilter}" process="@this" immediate="true" />
         <h:panelGroup layout="block" styleClass="setting-tab-action-buttons">
-          <p:commandButton id="restore-all-to-default-button"
+          <p:commandButton id="restore-all-to-default-button" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-button-refresh-arrows')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreAllToDefault')}"
             actionListener="#{logic.submitResetAllSettings}" oncomplete="PF('resetConfirmation').show()"
             update=":#{p:component('resetConfirmationDialog')}" />
@@ -126,13 +126,13 @@
               actionListener="#{logic.editSetting(setting)}" process="@this"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
               update="@this :#{p:component('settingDialog')}">
-              <span class="fa fa-pencil" />
+              <span class="icon ivyicon-graphic-tablet-drawing-pen" />
             </p:commandLink>
             <p:commandLink id="reset" process="@this" update=":#{p:component('resetConfirmationDialog')}"
               actionListener="#{logic.submitResetSetting(setting)}" oncomplete="PF('resetConfirmation').show()"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/restoreDefault')}"
               styleClass="action-column-icon-button">
-              <span class="fa fa-undo" />
+              <span class="icon ivyicon-undo" />
             </p:commandLink>
           </p:column>
         </p:dataTable>
@@ -147,11 +147,13 @@
         <h:panelGroup id="action-group" styleClass="announcement-tab-action-buttons" layout="block">
           <div class="announcement-information">#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/information")}</div>
           <p:commandButton id="publish-announcement" process="@form" disabled="#{data.isAnnouncementActivated}"
+            icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-circle-1')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/enable')}"
             actionListener="#{logic.publishAnnouncement()}"
             update="#{cc.clientId}:adminTabView:announcement-table #{cc.clientId}:adminTabView:announcement-validation-messages #{cc.clientId}:adminTabView:announcement-information-messages #{cc.clientId}:adminTabView:action-group" />
           <p:spacer width="5px" />
           <p:commandButton id="delete-announcement" process="@form" actionListener="#{logic.depublishAnnouncement()}"
+            icon="#{visibilityBean.generateButtonIcon('icon ivyicon-delete')}"
             disabled="#{not data.isAnnouncementActivated}"
             update="#{cc.clientId}:adminTabView:announcement-validation-messages #{cc.clientId}:adminTabView:announcement-information-messages #{cc.clientId}:adminTabView:action-group"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/announcement/disable')}">
@@ -240,6 +242,7 @@
             <div class="ui-g-3">
               <p:commandButton styleClass="app-setting-button"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
+                icon="#{visibilityBean.generateButtonIcon('icon ivyicon-touchpad-finger')}"
                 oncomplete="PF('applicationSelectionDialog').show()" process="@this"
                 actionListener="#{logic.getApplicationList}" />
             </div>
@@ -262,6 +265,7 @@
             </div>
             <div class="ui-g-3">
               <p:commandButton rendered="#{data.type == 'IVY_APPLICATION'}" id="addLanguages"
+                icon="#{visibilityBean.generateButtonIcon('icon ivyicon-chat-translate')}"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                 process="appName appDisplayName" styleClass="add-languages"
                 update=":#{p:component('applicationName')} appDisplayName appDialogForm"
@@ -299,6 +303,7 @@
             </div>
             <div class="ui-g-3">
               <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
+                icon="#{visibilityBean.generateButtonIcon('icon ivyicon-chat-translate')}"
                 process="appDisplayName3rd" styleClass="app-setting-button Fright"
                 update=":#{p:component('applicationName')} appDialogForm" actionListener="#{logic.getLanguageList}"
                 oncomplete="PF('applicationName').show();">
@@ -325,16 +330,19 @@
 
         <!-- Two buttons OK, Cancel -->
         <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
+          <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            process="@this" 
+            update=":#{p:component('applicationTable')} appDialogForm"
+            actionListener="#{logic.cancelApplicationDialog}"
+            oncomplete="PF('appDialog').hide()"
+            global="false"/>
+          <p:spacer width="15px" />
           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-            styleClass="portal-ok-button" actionListener="#{logic.saveApplication}"
+            icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
+            actionListener="#{logic.saveApplication}"
             oncomplete="if (!args.validationFailed){ PF('appDialog').hide()}"
             update="#{p:component('applicationTable')} appDialogForm" process="@form" widgetVar="saveAppButton"
             onclick="PF('saveAppButton').disable();" resetValues="true"/>
-          <p:spacer width="5px" />
-          <p:commandButton actionListener="#{logic.cancelApplicationDialog}" process="@this"
-            styleClass="portal-cancel-button" update=":#{p:component('applicationTable')} appDialogForm"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" oncomplete="PF('appDialog').hide()"
-            global="false" />
         </h:panelGroup>
       </p:outputPanel>
     </h:form>
@@ -386,56 +394,71 @@
         </p:panelGrid>
 
         <!-- Two buttons OK, Cancel -->
-        <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
+        <h:panelGroup layout="block" styleClass="ui-dialog-footer u-no-padding-right">
+          <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"  
+            process="@this"
+            oncomplete="PF('settingDialog').hide()" 
+            global="false"/>
+          <p:spacer width="15px" />
           <p:commandButton id="save-setting" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-            actionListener="#{logic.saveSetting}" styleClass="confirm-save-setting-button portal-ok-button"
+            icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
+            actionListener="#{logic.saveSetting}" styleClass="confirm-save-setting-button"
             oncomplete="if (!args.validationFailed){ PF('settingDialog').hide(); PF('settingTable').clearFilters()}"
             update=":#{p:component('settingForm')} @form" process="@form" widgetVar="saveSettingButton"
             onclick="PF('saveSettingButton').disable();" />
-          <p:spacer width="5px" />
-          <p:commandButton styleClass="portal-cancel-button cancel-save-setting-button"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
-            oncomplete="PF('settingDialog').hide()" global="false" />
+         
         </h:panelGroup>
       </p:outputPanel>
     </h:form>
   </p:dialog>
 
   <!--  CONFIRMATION DIALOG TO DELETE SETTING -->
-  <p:confirmDialog id="deleteConfirmationDialog" message="#{data.confirmMsg}" appendTo="@(body)"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" severity="alert"
-    widgetVar="deleteConfirmation" responsive="true">
-    <p:commandButton styleClass="portal-ok-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-      actionListener="#{logic.delete}" oncomplete="PF('deleteConfirmation').hide();"
-      update=":#{p:component('applicationForm')}" />
-    <p:spacer width="5px" />
-    <p:commandButton styleClass="portal-cancel-button"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('deleteConfirmation').hide()"
-      type="button" />
-  </p:confirmDialog>
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="deleteConfirmationDialog" />
+    <ui:param name="widgetVar" value="deleteConfirmation" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="icon ivyicon-delete-1" />
+    <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+    <ui:param name="dialogContent" value="#{data.confirmMsg}" />
+    
+    <ui:define name="dialogFooter">
+       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
+          onclick="PF('deleteConfirmation').hide()" styleClass="u-mar-right-15"/>
+       <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}"
+          actionListener="#{logic.delete}" oncomplete="PF('deleteConfirmation').hide();"
+          update=":#{p:component('applicationForm')}" />
+    </ui:define>
+  </ui:decorate>
 
   <!--  CONFIRMATION DIALOG TO RESET SETTING -->
-  <p:confirmDialog id="resetConfirmationDialog" message="#{data.confirmMsg}" appendTo="@(body)"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" severity="alert"
-    widgetVar="resetConfirmation" styleClass="reset-confirmation-dialog"
-    responsive="true">
-    <c:if test="#{data.resetAllSettings}">
-      <p:commandButton styleClass="portal-ok-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-        actionListener="#{logic.resetValues}"
-        oncomplete="PF('resetConfirmation').hide(); PF('settingTable').clearFilters();"
-        update=":#{p:component('settingForm')}" />
-    </c:if>
-    <c:if test="#{!data.resetAllSettings}">
-      <p:commandButton styleClass="portal-ok-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-        actionListener="#{logic.resetValue}"
-        oncomplete="PF('resetConfirmation').hide(); PF('settingTable').clearFilters();"
-        update=":#{p:component('settingForm')}" />
-    </c:if>
-    <p:spacer width="5px" />
-    <p:commandButton styleClass="portal-cancel-button"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('resetConfirmation').hide()"
-      type="button" />
-  </p:confirmDialog>
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="resetConfirmationDialog" />
+    <ui:param name="widgetVar" value="resetConfirmation" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="icon ivyicon-road-sign-warning" />
+    <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+    <ui:param name="dialogContent" value="#{data.confirmMsg}" />
+    
+    <ui:define name="dialogFooter">
+      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
+        onclick="PF('resetConfirmation').hide()" styleClass="u-mar-right-15"/>
+      <c:if test="#{data.resetAllSettings}">
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-button-refresh-arrows')}"
+          actionListener="#{logic.resetValues}"
+          oncomplete="PF('resetConfirmation').hide(); PF('settingTable').clearFilters();"
+          update=":#{p:component('settingForm')}" />
+      </c:if>
+      <c:if test="#{!data.resetAllSettings}">
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restore')}"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-button-refresh-arrows')}"
+          actionListener="#{logic.resetValue}"
+          oncomplete="PF('resetConfirmation').hide(); PF('settingTable').clearFilters();"
+          update=":#{p:component('settingForm')}" />
+      </c:if>
+    </ui:define>
+  </ui:decorate>
 
   <!-- USER LIST DIALOG -->
   <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/previewUsers')}"
@@ -471,14 +494,15 @@
       </p:column>
       <p:column>
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-touchpad-finger')}"
           actionListener="#{logic.selectApplication(app)}" update="${cc.clientId}:appDialogForm" resetValues="true"
           oncomplete="PF('applicationSelectionDialog').hide()" />
       </p:column>
     </p:dataTable>
-    <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
-      <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        onclick="PF('applicationSelectionDialog').hide();"
-        styleClass="application-selection-action-buttons portal-cancel-button" />
+    <h:panelGroup layout="block" styleClass="ui-g-12 u-text-align-right u-no-padding-right">
+      <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        onclick="PF('applicationSelectionDialog').hide();" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}"
+        styleClass="application-selection-action-buttons" />
     </h:panelGroup>
   </p:dialog>
 
@@ -499,13 +523,13 @@
       </h:dataTable>
 
       <div class="u-dialog-footer ui-dialog-footer">
-        <p:commandButton styleClass="portal-ok-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('applicationName').hide();"/>
+        <p:spacer width="15px" rendered="#{!data.supportedLanguages.isEmpty()}" />
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
           process="@form" update="#{cc.clientId}:appDisplayName #{cc.clientId}:appDisplayName3rd"
           oncomplete="PF('applicationName').hide();" actionListener="#{logic.processLanguage}"
           rendered="#{!data.supportedLanguages.isEmpty()}" />
-        <p:spacer width="5px" rendered="#{!data.supportedLanguages.isEmpty()}" />
-        <p:commandButton type="button" styleClass="portal-cancel-button"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('applicationName').hide();" />
       </div>
     </h:form>
   </p:dialog>
