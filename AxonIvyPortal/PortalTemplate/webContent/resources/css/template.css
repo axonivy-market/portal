@@ -140,10 +140,8 @@
   }
 }
 
-@media  screen and (max-height: 500px) {
-  .layout-wrapper .layout-main .layout-content.frame-container {
-    height: 100%;
-  }
+.layout-wrapper .layout-main .layout-content.frame-container {
+  overflow-y: hidden; 
 }
 
 .task-frame {

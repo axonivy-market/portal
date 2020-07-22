@@ -11,7 +11,6 @@ var Portal = {
       setTimeout(function() {
         responsiveToolkit.updateLayoutWithoutAnimation();
       }, 250);
-      Portal.updateLayoutContent();
     });
     
     //Add very small timeout when page ready, fix responsive problem for IE 11
@@ -24,8 +23,14 @@ var Portal = {
   
   // Remove u-invisibility class when DOM is pasted already
   updateLayoutContent : function() {
-    var vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty('--vh', vh + 'px');
+    var ua = window.navigator.userAgent;
+    var isIE = /MSIE|Trident/.test(ua);
+    var fullHeight= '100vh';
+    if (!isIE ) {
+      var vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', vh + 'px');
+      fullHeight = 'var(--vh, 1vh) * 100';
+    }
 
     var headerHeight = $('#portal-template-header').outerHeight();
     var footerHeight = $('#portal-template-footer').outerHeight();
@@ -35,7 +40,7 @@ var Portal = {
     $('.js-position-topbar').height(layoutTopbarHeight); 
     $('.js-left-sidebar').css('top', headerHeight + 'px').css('height', 'calc(100% - ' + (headerFooterHeight - envHeight) + 'px)');
     $('.js-layout-main').css('margin-top', headerHeight + 'px').css('height', 'calc(100% - ' + headerFooterHeight + 'px)');
-    $('.js-layout-content').css('height', 'calc(var(--vh, 1vh) * 100 - ' + (headerFooterHeight + layoutTopbarHeight) + 'px)');
+    $('.js-layout-content').css('height', 'calc(' + fullHeight + ' - ' + (headerFooterHeight + layoutTopbarHeight) + 'px)');
     $('.js-layout-content').css('padding-top', '0px');
     
     var chatPanel = $('.js-chat-panel');
