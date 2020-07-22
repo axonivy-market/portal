@@ -25,8 +25,8 @@ public class ExternalLinkService extends AbstractService<ExternalLink> {
     return (ExternalLinkDao) super.getDao();
   }
   
-  public List<ExternalLink> findStartableLink(String username) {
-    return getDao().findStartableLink(username);
+  public List<ExternalLink> findStartableLink(Long userId) {
+    return getDao().findStartableLink(userId);
   }
   
   public void delete(long id) {

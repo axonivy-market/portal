@@ -1,9 +1,9 @@
 package ch.ivy.addon.portalkit.persistence.dao;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
-
-import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.ExternalLink;
 import ch.ivyteam.ivy.application.IApplication;
@@ -19,9 +19,9 @@ public class ExternalLinkDao extends AbstractDao<ExternalLink> {
   }
 
   @ExecuteAsSystem
-  public List<ExternalLink> findStartableLink(String username) {
-    return findAll().stream()
-        .filter(externalLink -> StringUtils.equals(externalLink.getCreator(), username) || externalLink.isPublic())
+  public List<ExternalLink> findStartableLink(Long userId) {
+    return Optional.ofNullable(findAll()).orElse(new ArrayList<>()).stream()
+        .filter(externalLink -> Optional.ofNullable(externalLink.getCreatorId()).orElse(-1L).longValue() == userId.longValue() || externalLink.isPublic())
         .collect(Collectors.toList());
   }
 

@@ -13,10 +13,12 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.ws.rs.core.MediaType;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.map.HashedMap;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -41,7 +43,9 @@ import ch.ivy.addon.portalkit.enums.ExpressMessageType;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.query.UserQuery;
 
 public class ExpressManagementUtils {
 
@@ -52,6 +56,7 @@ public class ExpressManagementUtils {
     private static final long serialVersionUID = 5516908246675433850L;}.getType();
   private static final String EXPRESS_TYPE = "AHWF"; // this variable is equal to process type REPEAT in ch.ivy.gawfs.enums.ProcessType
   private static final String JSON_EXTENSION = "json";
+  private static final String EXTERNAL_ID_PREFIX = " externalId:";
   
   /**
    * Find express repeat workflow list which are ready to execute and start
@@ -131,8 +136,8 @@ public class ExpressManagementUtils {
     Gson gson = new GsonBuilder().serializeNulls().create();
     JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
     if (jsonObject != null) {
-      // Fetch all users/groups for express users validation 
-      List<String> memberList = getExpressMember();
+        // Fetch all users/groups for express users validation 
+        List<String> memberList = getExpressMember();
       boolean invalidVersion = false;
 
       for (String memberKey : jsonObject.keySet()) {
@@ -141,8 +146,8 @@ public class ExpressManagementUtils {
         }
 
         switch (memberKey) {
-          case VERSION:
-            // Validate version of express JSON file
+            case VERSION:
+              // Validate version of express JSON file
             invalidVersion = validateExpressVersion(importExpressResult, outputMessages, jsonObject.get(memberKey));
             break;
           case EXPRESS_WORKFLOW:
@@ -155,21 +160,21 @@ public class ExpressManagementUtils {
       }
     }
     outputMessages.put(ExpressMessageType.IMPORT_EXPRESS_PROCESSES, outputExpressProcessList);
-    return outputMessages;
-  }
+                return outputMessages;
+              }
 
   private void processExpressJsonObject(List<ExpressProcess> outputExpressProcessList,
       StringBuilder importExpressResult,  Map<ExpressMessageType, Object> outputMessages, List<String> memberList,
       List<ExpressWorkflow> expressWorkflowsList) {
-    if (expressWorkflowsList != null) {
-      int errorCounts = deployExpressWorkflows(importExpressResult, memberList, expressWorkflowsList, outputExpressProcessList);
-      if (errorCounts == 0) {
+              if (expressWorkflowsList != null) {
+                int errorCounts = deployExpressWorkflows(importExpressResult, memberList, expressWorkflowsList, outputExpressProcessList);
+                if (errorCounts == 0) {
         outputMessages.put(ExpressMessageType.IMPORT_STATUS, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/successful"));
-      } else if (errorCounts < expressWorkflowsList.size()) {
+                } else if (errorCounts < expressWorkflowsList.size()) {
         outputMessages.put(ExpressMessageType.IMPORT_STATUS, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/warning"));
-      }
-    }
-  }
+                }
+              }
+          }
 
   private boolean validateExpressVersion(StringBuilder importExpressResult,  Map<ExpressMessageType, Object> outputMessages,
       JsonElement jsonElement) {
@@ -181,9 +186,9 @@ public class ExpressManagementUtils {
       importExpressResult.append(StringUtils.LF);
       outputMessages.put(ExpressMessageType.IMPORT_RESULT, importExpressResult.toString());
       return true;
-    }
+      }
     return false;
-  }
+    }
 
   private boolean validateExpressVersion(Integer expressVersion) {
     for (Integer version : PortalConstants.EXPRESS_INVALID_VERSION) {
@@ -222,6 +227,10 @@ public class ExpressManagementUtils {
       validateUsersForProcess(importExpressResult, memberList, expressProcess);
       // Save process
       expressProcess.setId(null);
+      expressProcess.setProcessPermissions(updateExternalIdsToSecurityMemberNames(expressProcess.getProcessPermissions()));
+      expressProcess.setProcessOwner(updateExternalIdToSecurityMemberName(expressProcess.getProcessOwner()));
+      expressProcess.setProcessCoOwners(updateExternalIdsToSecurityMemberNames(expressProcess.getProcessCoOwners()));
+
       BusinessDataInfo<ExpressProcess> info = ExpressServiceRegistry.getProcessService().save(expressProcess);
       String processId = info.getId();
 
@@ -264,6 +273,7 @@ public class ExpressManagementUtils {
 
       taskDefinition.setId(null);
       taskDefinition.setProcessID(processId);
+      taskDefinition.setResponsibles(updateExternalIdsToSecurityMemberNames(taskDefinition.getResponsibles()));
       ExpressServiceRegistry.getTaskDefinitionService().save(taskDefinition);
     });
 
@@ -364,4 +374,87 @@ public class ExpressManagementUtils {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressExportName", Arrays.asList(curentDate));
   }
 
+  /**
+   * Some users have external security ID,
+   * need to add correspond external security ID of those user into security members list instead of username.
+   * 
+   * @param securityNames
+   * @return names of security members with external ID.
+   */
+  public List<String> updateExternalIdsToSecurityMemberNames(List<String> securityNames) {
+    List<String> result = new ArrayList<>();
+    securityNames.forEach(securityName -> {
+      result.add(updateExternalIdToSecurityMemberName(securityName));
+    });
+    return result;
+  }
+
+  /**
+   * Try to get external ID of security member,
+   * If there is no external ID, use old securityName instead.
+   * 
+   * @param securityName
+   * @return name of security member with external ID.
+   */
+  public String updateExternalIdToSecurityMemberName(String securityName) {
+    if (securityName.startsWith("#")) {
+      IUser securityMember = UserUtils.findUserByUsername(securityName.substring(1));
+      if (securityMember != null) {
+        return StringUtils.isBlank(securityMember.getExternalId()) ? securityName : securityName.concat(EXTERNAL_ID_PREFIX).concat(securityMember.getExternalId());
+      } else {
+        return securityName;
+      }
+    } else {
+      ISecurityMember securityMember = Ivy.wf().getSecurityContext().findSecurityMember(securityName);
+      return securityMember == null ? securityName : securityMember.getMemberName(); 
+    }
+  }
+
+  /**
+   * Find valid member name with external lookup
+   * 
+   * @param memberName
+   * @return valid member name
+   */
+  public String getValidMemberName(String memberName) {
+    String result = "";
+    if (StringUtils.isBlank(memberName)) {
+      return result;
+    }
+
+    ISecurityMember responsible;
+    if (memberName.contains(EXTERNAL_ID_PREFIX)) {
+      UserQuery query = Ivy.wf().getSecurityContext().users().query();
+      responsible = query.where().externalId().isEqual(memberName.split(EXTERNAL_ID_PREFIX)[1]).executor().firstResult();
+      result = Optional.ofNullable(responsible).map(ISecurityMember::getMemberName).orElse("");
+    } else {
+      responsible = Ivy.session().getSecurityContext().findSecurityMember(memberName);
+      if (responsible != null) {
+        result = Optional.ofNullable(responsible).map(ISecurityMember::getMemberName).orElse("");
+      }
+    }
+    return result;
+  }
+
+  /**
+   * Find valid member names with external lookup
+   * 
+   * @param memberNames
+   * @return valid member names
+   */
+  public List<String> getValidMemberNames(List<String> memberNames) {
+    List<String> result = new ArrayList<>();
+    if (CollectionUtils.isEmpty(memberNames)) {
+      return result;
+    }
+
+    memberNames.forEach(name -> {
+      String updatedMemberName = getValidMemberName(name);
+      if(StringUtils.isNotBlank(updatedMemberName)) {
+        result.add(updatedMemberName);
+      }
+    });
+
+    return result;
+  }
 }

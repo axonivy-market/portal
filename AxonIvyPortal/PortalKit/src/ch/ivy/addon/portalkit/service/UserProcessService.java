@@ -20,12 +20,12 @@ public class UserProcessService extends AbstractService<UserProcess> {
     return (UserProcessDao) super.getDao();
   }
 
-  public List<UserProcess> findByUserName(String userName) {
-    return getDao().findByUserName(userName);
+  public List<UserProcess> findByUserId(Long userId) {
+    return getDao().findByUserId(userId);
   }
 
-  public List<UserProcess> createDefaultUserProcesses(List<UserProcess> defaultUserProcesses, String userName) {
-    defaultUserProcesses.stream().forEach(defaultUserProcess -> defaultUserProcess.setUserName(userName));
+  public List<UserProcess> createDefaultUserProcesses(List<UserProcess> defaultUserProcesses, Long userId) {
+    defaultUserProcesses.stream().forEach(defaultUserProcess -> defaultUserProcess.setUserId(userId));
     return saveAll(defaultUserProcesses);
   }
 
