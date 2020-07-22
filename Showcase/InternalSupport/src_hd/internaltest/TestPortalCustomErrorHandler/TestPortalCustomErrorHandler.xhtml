@@ -8,7 +8,7 @@
 <h:body>
 	<ui:composition template="/layouts/BasicTemplate.xhtml">
 		<ui:param name="isNotRequiredLogin" value="false" />
-		<ui:define name="simplePageContent">
+		<ui:define name="pageContent">
           <h:form>
             <h:outputText value="Click to Test button to show Portal custom error handler" style="display:block;font-size:2em"/>
             <p:commandButton id="test-error-method" value="Test" actionListener="#{logic.errorMethod}" update="@form"/>
