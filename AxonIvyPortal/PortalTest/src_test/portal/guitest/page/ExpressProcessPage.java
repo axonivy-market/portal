@@ -20,13 +20,13 @@ public class ExpressProcessPage extends TemplatePage {
 			String processDescription) {
 		if (isAdhocWF) {
 		  click(By.cssSelector("div[id='form:process-type']"));
+		  WaitHelper.assertTrueWithWait(() -> "One time".equals(findElementByCssSelector("label.switch-active").getText()));
 		}
 		
     if (!isCreateOwn) {
       click(By.cssSelector("div[id='form:user-interface-type']"));
       agreeToDeleteAllDefineTasks();
     }
-    WaitHelper.assertTrueWithWait(() -> "One time".equals(findElementByCssSelector("label.switch-active").getText()));
 		type(By.id("form:process-name"), processName);
 		type(By.id("form:process-description"), processDescription);
 	}
