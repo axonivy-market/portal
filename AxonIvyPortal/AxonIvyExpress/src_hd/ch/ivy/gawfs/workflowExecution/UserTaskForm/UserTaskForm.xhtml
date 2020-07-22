@@ -78,7 +78,7 @@
 
               <pe:dynaFormControl type="FileUpload" for="fileUpload">
                 <ic:ch.ivy.addon.portalkit.component.document.DocumentTable id="fileUploadComponent" typeColumnRendered="false"
-                  messageRendered="false"
+                  messageRendered="false" renderChooseUploadIcon="#{visibilityBean.showButtonIcon}"
                   fileLimit="#{dynaData.intSetting}" />
               </pe:dynaFormControl>
 
@@ -98,11 +98,11 @@
 
         <br />
         <p:outputPanel styleClass="TexAlRight">
+          <p:commandLink id="cancel-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="form"
+            actionListener="#{logic.cancel}" />
+          <p:spacer width="15" />
           <p:commandButton id="ok-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" update="form" process="form"
-            actionListener="#{logic.close}" icon="fa fa-check" />
-          <p:spacer width="5" />
-          <p:commandButton id="cancel-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="form"
-            actionListener="#{logic.cancel}" styleClass="portal-cancel-button" icon="fa fa-times" />
+            actionListener="#{logic.close}" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}" />
         </p:outputPanel>
       </h:form>
     </ui:define>

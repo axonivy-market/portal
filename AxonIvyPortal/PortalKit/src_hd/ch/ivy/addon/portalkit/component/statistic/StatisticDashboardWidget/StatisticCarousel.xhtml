@@ -14,7 +14,7 @@
     <h:panelGroup styleClass="hidden-carousel-title">
       <h:panelGroup id="chart-name-container" styleClass="chart-name-container" layout="block">
         <h:outputText id="chart-name" styleClass="chart-name" value="#{chart.name}" />
-        <p:commandLink styleClass="fa fa-info-circle chart-info" actionListener="#{logic.selectChart(chart)}" update="#{p:component('chart-details-dialog')}"
+        <p:commandLink styleClass="icon ivyicon-information-circle chart-info" actionListener="#{logic.selectChart(chart)}" update="#{p:component('chart-details-dialog')}"
           oncomplete="PF('chart-details-dialog').show();" rendered="#{data.hasStatistic}" />
       </h:panelGroup>
 

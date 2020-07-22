@@ -24,7 +24,7 @@
         </h:panelGroup>
   
       <p:commandLink id="back-to-previous-page" onclick="backToPrevPage(#{cc.attrs.isFromTaskList}, #{cc.attrs.isTaskStartedInDetails})" styleClass="task-details-back-btn">
-          <i class="fa fa-reply-all" />
+          <i class="icon ivyicon-arrow-left-1" />
           <p:spacer width="3px" />
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
         </p:commandLink>
@@ -48,7 +48,7 @@
                 <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task)}"
                   styleClass="task-action-item start-task-action" rendered="#{task.state != 'RESUMED'}" actionListener="#{logic.openTask()}">
                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label" />
-                  <i class="tmi-chevorn-right icon-compact-mode" />
+                  <i class="icon ivyicon-arrow-right-1 icon-compact-mode" />
                 </p:commandLink>
 
                 <p:commandLink id="resume-task-detail-start-command" disabled="#{!taskActionBean.canResume(task)}"
@@ -56,7 +56,7 @@
                   <p:ajax event="click" listener="#{logic.validate(task)}" onstart="event.stopPropagation();"
                     oncomplete="if (args &amp;&amp; !args.validationFailed) PF('reset-task-dialog').show()" />
                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label" />
-                  <i class="tmi-chevorn-right icon-compact-mode" />
+                  <i class="icon ivyicon-arrow-right-1 icon-compact-mode" />
                 </p:commandLink>
 
                 <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-detail-more-step"
@@ -94,33 +94,45 @@
       </div>
     </div>
   </div>
-  <p:confirmDialog id="reset-task-dialog" appendTo="@(body)" widgetVar="reset-task-dialog"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" closeOnEscape="true" responsive="true">
-    <f:facet name="message">
-      <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
-    </f:facet>
-    <h:panelGroup>
-      <h:form id="reset-task-form">
-        <p:commandButton actionListener="#{logic.resetAndOpenTask}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-          onstart="#{cc.attrs.onTaskStartCallback}" />
-        <p:commandButton onclick="PF('reset-task-dialog').hide()" styleClass="portal-cancel-button"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
-      </h:form>
-    </h:panelGroup>
-  </p:confirmDialog>
   
-  <p:confirmDialog id="destroy-task-confirmation-dialog"
-    message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage')}" closeOnEscape="true"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" widgetVar="destroy-task-dialog"
-    appendTo="@(body)" severity="alert" responsive="true">
-    <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-      actionListener="#{logic.destroyTask(task)}"
-      oncomplete="PF('destroy-task-dialog').hide()"
-      update="#{cc.clientId}:task-detail-general-container"
-      process="@this"/>
-    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
-      onclick="PF('destroy-task-dialog').hide();" type="button" styleClass="portal-cancel-button" />
-  </p:confirmDialog>
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="reset-task-dialog" />
+    <ui:param name="widgetVar" value="reset-task-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="icon ivyicon-road-sign-warning" />
+    <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
+    
+    <ui:define name="dialogFooter">
+      <h:form id="reset-task-form">
+        <p:commandLink onclick="PF('reset-task-dialog').hide()"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
+        <p:commandButton actionListener="#{logic.resetAndOpenTask}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-road-sign-u-turn-left')}"
+          onstart="#{cc.attrs.onTaskStartCallback}" />
+      </h:form>
+    </ui:define>
+  </ui:decorate>
+  
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="destroy-task-confirmation-dialog" />
+    <ui:param name="widgetVar" value="destroy-task-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="icon ivyicon-delete-1" />
+    <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage')}" />
+    
+    <ui:define name="dialogFooter">
+      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        onclick="PF('destroy-task-dialog').hide();" styleClass="u-mar-right-15"/>
+       <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
+        icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}"
+        actionListener="#{logic.destroyTask(task)}"
+        oncomplete="PF('destroy-task-dialog').hide()"
+        update="#{cc.clientId}:task-detail-general-container"
+        process="@this"/>
+    </ui:define>
+  </ui:decorate>
   
   <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="task-item-delegate-component" task="#{task}"
     componentToUpdate="#{p:component('task-detail-general-container')} #{p:component('task-detail-note-container')} #{p:component('task-detail-data-description-container')}" />

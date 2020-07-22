@@ -89,7 +89,7 @@ public class MenuView {
     if (numberOfIvyApplications > 1 || numberOfIvyApplications == 0) {
       Button menuItem = new Button();
       menuItem.setValue(Ivy.cms().co(DASHBOARD));
-      menuItem.setIcon("fa fa-home");
+      menuItem.setIcon("icon ivyicon-house-chimney-2");
       if (numberOfIvyApplications == 0) {
         menuItem.setHref(new PortalNavigator().getPortalStartUrl());
         menuItem.setStyleClass(ACTIVE_MENU);
@@ -261,8 +261,7 @@ public class MenuView {
 
   private MenuItem buildPortalHomeMenuItem() {
     DefaultMenuItem menuItem = new DefaultMenuItem();
-    menuItem.setValue("");
-    menuItem.setStyleClass("home-breadcrumb");
+    menuItem.setIcon("icon ivyicon-house-chimney-2");
     menuItem.setOnclick("navigateToPortalHome();");
     return menuItem;
   }

@@ -68,19 +68,19 @@
   
           <h:panelGroup id="advanced-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer"
             rendered="#{cc.attrs.displayFooterButtons}">
+            <p:commandLink id="cancel-command" process="@this" global="false"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="#{cc.clientId}:filter-open-form @form" resetValues="true"
+              oncomplete="PF('#{widgetVarPanel}').hide(); #{facesContext.validationFailed ? taskFilter.resetValues() : ''};" />
+            <p:spacer width="15" />
             <p:commandButton id="update-command"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+              icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
               actionListener="#{taskFilter.validate()}"
               update="#{cc.clientId}:filter-open-form @form @(.filter-container) @(.hidden-task-count)"
               oncomplete="if (args &amp;&amp; args.validationFailed) PF('#{widgetVarPanel}').show(); #{empty cc.attrs.resultContainerUpdated ? 'taskWidget.setupScrollbar(); taskWidget.setupHeader(); taskWidget.updateTaskCountToBreadcrumb();' : ''}">
               <f:actionListener binding="#{empty cc.attrs.resultContainerUpdated ? logic.updateTasksByFilter(taskContainerId) : ''}" />
               <f:actionListener binding="#{cc.attrs.updateListener}" />
               <f:actionListener binding="#{args.validationFailed ? '':dataModel.onFilterApply()}" />
-            </p:commandButton>
-            <p:spacer width="5" />
-            <p:commandButton id="cancel-command" styleClass="portal-cancel-button" process="@this" global="false"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="#{cc.clientId}:filter-open-form @form" resetValues="true"
-              oncomplete="PF('#{widgetVarPanel}').hide(); #{facesContext.validationFailed ? taskFilter.resetValues() : ''};">
             </p:commandButton>
           </h:panelGroup>
         </p:overlayPanel>

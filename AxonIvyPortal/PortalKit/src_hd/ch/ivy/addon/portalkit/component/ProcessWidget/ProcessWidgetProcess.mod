@@ -61,7 +61,7 @@ Ps0 f2 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationSe
 RegisteredApplicationService service = new RegisteredApplicationService();
 java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
 out.processSearchCriteria.apps = apps;
-out.processSearchCriteria.username = ivy.session.getSessionUserName();
+out.processSearchCriteria.userId = ivy.session.getSessionUser().getId();
 
 ' #txt
 Ps0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

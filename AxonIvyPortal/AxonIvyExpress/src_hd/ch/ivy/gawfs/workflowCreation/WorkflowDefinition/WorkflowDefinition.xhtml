@@ -94,7 +94,7 @@
                           <label class="#{data.data.isUseDefaultUI ? 'switch-active':''}">
                             #{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/UseDefault')}
                             <p:commandLink onclick="PF('default-template-dialog').show();">
-                              <i class="show-default-ui-icon fa fa-info-circle" />
+                              <i class="show-default-ui-icon icon ivyicon-information-circle" />
                             </p:commandLink>
                           </label>
                         </h:panelGroup>
@@ -119,7 +119,9 @@
                             <p:commandLink id="process-owner-link" immediate="true" styleClass="task-responsible-link"
                               value="#{not empty data.data.processCoOwnersDisplayName ? data.data.processCoOwnersDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
                               actionListener="#{logic.initProcessStartResponsibles}" oncomplete="PF('choose-responsible-dialog').show();"
-                              process="@this" update="assignee-selection-form:assignee-selection-panel" global="false" />
+                              process="@this" update="assignee-selection-form:assignee-selection-panel" global="false">
+                              <i class="icon ivyicon-add" />
+                            </p:commandLink>
                           </h:panelGroup>
                         </div>
                       </h:panelGroup>
@@ -207,7 +209,9 @@
                               <p:commandLink id="task-responsible-link" immediate="true" styleClass="task-responsible-link"
                                 value="#{not empty gtask.responsibleDisplayName ? gtask.responsibleDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
                                 actionListener="#{logic.initAssginement(gtask)}" oncomplete="PF('choose-responsible-dialog').show();"
-                                update="assignee-selection-form:assignee-selection-panel" global="false" />
+                                update="assignee-selection-form:assignee-selection-panel" global="false">
+                                <i class="icon ivyicon-add" />
+                              </p:commandLink>
                             </h:panelGroup>
                           </div>
                         </h:panelGroup>
@@ -266,7 +270,9 @@
                             <p:commandLink id="default-task-responsible-link" immediate="true" styleClass="task-responsible-link"
                               value="#{not empty gtask.responsibleDisplayName ? gtask.responsibleDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
                               actionListener="#{logic.initAssginement(gtask)}" oncomplete="PF('choose-responsible-dialog').show();"
-                              update="assignee-selection-form:assignee-selection-panel" global="false" />
+                              update="assignee-selection-form:assignee-selection-panel" global="false">
+                              <i class="icon ivyicon-add" />
+                            </p:commandLink>
                           </h:panelGroup>
                         </h:panelGroup>
 
@@ -298,14 +304,14 @@
                   rendered="#{data.data.definedTasks.size() == gtask.position}">
                   <p:row>
                     <p:column styleClass="dynamic-task-left-action">
-                      <p:commandButton id="add-step-button" icon="fa fa-plus" immediate="true"
+                      <p:commandButton id="add-step-button" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add')}" immediate="true"
                         value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AddProcessStep')}" actionListener="#{logic.addProcessStep}"
                         process="form" update="#{p:component('defined-tasks-list-container')} #{p:component('error-messages')}">
                       </p:commandButton>
                     </p:column>
 
                     <p:column styleClass="dynamic-task-right-action">
-                      <p:commandButton id="remove-step-button" icon="fa fa-minus" immediate="true" rendered="#{data.data.definedTasks.size()>1}"
+                      <p:commandButton id="remove-step-button" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}" immediate="true" rendered="#{data.data.definedTasks.size()>1}"
                         value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/DeleteProcessStep')}"
                         actionListener="#{logic.deleteProcessStep}" process="form" update="#{p:component('defined-tasks-list-container')} #{p:component('error-messages')}">
                       </p:commandButton>
@@ -319,16 +325,15 @@
 
         <p:outputPanel styleClass="TexAlRight">
           <h:panelGroup id="express-button-container">
+            <p:commandLink id="cancel-workflow-button" actionListener="#{logic.cancel}" immediate="true"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
+            <p:spacer width="15" />
             <p:commandButton id="save" actionListener="#{logic.close}" update="form"
-              icon="fa #{data.data.isUseDefaultUI ? 'fa-check' : 'fa-arrow-right'}"
+              icon="#{visibilityBean.generateButtonIcon(data.data.isUseDefaultUI ? (data.data.processType eq 'AD_HOC' ? 'icon ivyicon-cog-play' : 'icon ivyicon-check-1') : 'icon ivyicon-arrow-right-1')}"
               value="#{data.data.isUseDefaultUI ? (data.data.processType eq 'AD_HOC' ? ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow') :
                ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')) : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}">
               <ui:param name="save-workflow" value="true" />
             </p:commandButton>
-            <p:spacer width="5" />
-
-            <p:commandButton id="cancel-workflow-button" actionListener="#{logic.cancel}" styleClass="portal-cancel-button" immediate="true"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" icon="fa fa-times" />
           </h:panelGroup>
         </p:outputPanel>
 
@@ -348,21 +353,28 @@
 
         <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
           <p:commandButton type="button" id="close-default-templat-dialog-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-            onclick="PF('default-template-dialog').hide();" />
+            icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}" onclick="PF('default-template-dialog').hide();" />
         </h:panelGroup>
       </p:dialog>
-
-      <p:confirmDialog id="delete-all-defined-tasks-warning" widgetVar="delete-all-defined-tasks-warning"
-        message="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/ChangeSettingWarning')}" appendTo="@(body)"
-        header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" severity="alert" closable="false"
-        responsive="true">
-        <p:commandButton id="delete-all-defined-tasks-warning-ok" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-          resetValues="true" actionListener="#{logic.changeUISetting(true)}" oncomplete="PF('delete-all-defined-tasks-warning').hide()"
-          update="#{p:component('defined-tasks-list-container')} #{p:component('express-button-container')} #{p:component('process-chain-component-id')}" global="false" />
-        <p:commandButton id="delete-all-defined-tasks-warning-cancel" styleClass="portal-cancel-button"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" actionListener="#{logic.changeUISetting(false)}"
-          oncomplete="PF('delete-all-defined-tasks-warning').hide()" update="form" global="false" />
-      </p:confirmDialog>
+      
+      <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+        <ui:param name="id" value="delete-all-defined-tasks-warning" />
+        <ui:param name="widgetVar" value="delete-all-defined-tasks-warning" />
+        <ui:param name="appendTo" value="@(body)" />
+        <ui:param name="iconClass" value="icon ivyicon-road-sign-warning" />
+        <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+        <ui:param name="dialogContent" value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/UserInterface/ChangeSettingWarning')}" />
+        
+        <ui:define name="dialogFooter">
+           <p:commandLink id="delete-all-defined-tasks-warning-cancel"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" actionListener="#{logic.changeUISetting(false)}"
+              oncomplete="PF('delete-all-defined-tasks-warning').hide()" update="form" global="false" styleClass="u-mar-right-15" />
+           <p:commandButton id="delete-all-defined-tasks-warning-ok" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
+              icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
+              resetValues="true" actionListener="#{logic.changeUISetting(true)}" oncomplete="PF('delete-all-defined-tasks-warning').hide()"
+              update="#{p:component('defined-tasks-list-container')} #{p:component('express-button-container')} #{p:component('process-chain-component-id')}" global="false" />
+        </ui:define>
+      </ui:decorate>
     </ui:define>
 
     <ui:define name="css">

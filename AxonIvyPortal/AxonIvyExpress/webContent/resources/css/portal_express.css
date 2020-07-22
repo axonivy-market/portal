@@ -734,11 +734,6 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
   right: 5px;
 }
 
-.task-responsible-link:after {
-  content: "\f044";
-  margin-left: 5px;
-}
-
 /* User task form */
 .user-task-dyna-container {
   padding: 0.5em 1em 1em;

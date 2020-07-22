@@ -45,12 +45,12 @@ public class ProcessService implements IProcessService {
         IApplication application = null;
         try {
           application = ServiceUtilities.findApp(app);
-          session = ServiceUtilities.findUserWorkflowSession(criteria.getUsername(), application);
+          session = ServiceUtilities.findUserWorkflowSession(criteria.getUserId(), application);
           processes.addAll(findStartablesWithoutPortalHome(session));
         } catch (PortalIvyDataException e) {
           errors.add(e);
         } catch (Exception ex) {
-          Ivy.log().error("Error in getting processes of user {0} within app {1}", ex, criteria.getUsername(), app);
+          Ivy.log().error("Error in getting processes of user {0} within app {1}", ex, criteria.getUserId(), app);
           errors.add(new PortalIvyDataException(app, PortalIvyDataErrorType.FAIL_TO_LOAD_PROCESS.toString()));
         } finally {
           if (session != null && application != null && !Objects.equals(Ivy.wf().getApplication(), application)) {

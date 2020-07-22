@@ -30,11 +30,11 @@
       <li jsf:rendered="#{chatRendererBean.isChatRendered}">
         <p:commandLink id="toggle-chat-panel-command" global="false"
           styleClass="notification-badge mod-chat-menu">
-          <i class="fa fa-comment" />
+          <i class="icon ivyicon-messages-bubble" />
         </p:commandLink>
       </li>
 
-      <li class="setting-container" >
+      <li class="setting-container">
         <a href="#" id="user-settings-menu"> <span
           class="user-name">#{userMenuBean.loggedInUser}</span>
         </a>
@@ -72,7 +72,7 @@
       <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="setting-container-guide-component" targetComponent="setting-container"
         title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/username/title')}" 
         content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/username/content')}"
-        targetCssSelector=".setting-container" icon="fa-user" onNext="PF('statistic-widget-container-guide').show()"
+        targetCssSelector=".setting-container" iconClass="icon ivyicon-single-neutral-actions" onNext="PF('statistic-widget-container-guide').show()"
         my="right bottom-30" at="right top" arrowPosition="top right" onShow="showUsernameGuide()" onHide="hideUsernameGuide()"
         updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}" />
         
@@ -101,10 +101,10 @@
       id="admin-ui-dialog" resizable="false" styleClass="admin-ui-dialog" modal="true" draggable="true" appendTo="@(body)" dynamic="true"
       onShow="initAdminSettingsData(); PF('adminUI').initPosition();" onHide="PF('dialogClosingInformation').show();" width="80vw" responsive="true" fitViewport="true">
       <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="adminui" onTabChange="PF('adminUI').initPosition();"/>
-      <f:facet name="footer">
+      <div class="ui-dialog-footer">
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="close-button" type="button"
-          onclick="clearFilter(); PF('adminUI').hide();" />
-      </f:facet>
+        icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}" onclick="clearFilter(); PF('adminUI').hide();" />
+      </div>
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/dialogHeader')}" width="50%"
@@ -112,8 +112,8 @@
       appendTo="@(body)" dynamic="true" styleClass="dialog-closing-information" responsive="true">
       <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/informMessage')}" />
       <f:facet name="footer">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" styleClass="portal-ok-button" id="close-dialog-button"
-          type="button" onclick="window.location.reload();" />
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" id="close-dialog-button"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}" type="button" onclick="window.location.reload();" />
       </f:facet>
     </p:dialog>
 
@@ -138,9 +138,9 @@
       closeOnEscape="true" widgetVar="project-info-dialog" id="project-info-dialog" resizable="false" modal="true" draggable="false"
       appendTo="@(body)" dynamic="true" responsive="true">
       <ic:ch.ivy.addon.portalkit.component.ProjectVersion id="project-version" />
-      <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer u-email-dialog-footer">
+      <h:panelGroup layout="block" styleClass="ui-g-12 u-text-align-right">
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="project-version-close-button" type="button"
-          onclick="PF('project-info-dialog').hide();" />
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}" onclick="PF('project-info-dialog').hide();" />
       </h:panelGroup>
     </p:dialog>
 

@@ -6,7 +6,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class ProcessSubMenuItem extends SubMenuItem {
   public ProcessSubMenuItem() {
-    this.icon = "fa fa-cogs";
+    this.icon = "icon ivyicon-cog-double-2";
     this.menuKind = MenuKind.PROCESS;
     this.label = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/processes");
     this.link = new PortalNavigator().getSubMenuItemUrlOfCurrentApplication(MenuKind.PROCESS);
