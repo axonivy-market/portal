@@ -31,7 +31,6 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.UserProcessService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -47,7 +46,7 @@ private static final long serialVersionUID = -5889375917550618261L;
   
   private UserProcessService userProcessService;
   private UserProcess editingProcess;
-  private String userName;
+  private Long userId;
   
   private boolean editMode;
   private boolean isUserFavoritesEnabled;
@@ -64,7 +63,7 @@ private static final long serialVersionUID = -5889375917550618261L;
     isGuide = GuidePool.instance().guide(Ivy.session().getSessionUserName()).isGuideShown();
     userProcessService = new UserProcessService();
     selectedUserProcesses = new ArrayList<>();
-    userName = UserUtils.getSessionUserName();
+    userId = Ivy.session().getSessionUser().getId();
     
     if (isGuide) {
       createDummyDataForGuide();
@@ -95,7 +94,7 @@ private static final long serialVersionUID = -5889375917550618261L;
       return new ArrayList<>();
     }
     
-    List<UserProcess> processes = userProcessService.findByUserName(userName);
+    List<UserProcess> processes = userProcessService.findByUserId(userId);
     processes.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
     removeDeletedExpressWorkflowFromUserProcesses(processes);
     removeDeletedExternalLinkFromUserProcesses(processes);
@@ -132,7 +131,7 @@ private static final long serialVersionUID = -5889375917550618261L;
 
   public void saveNewUserProcess() {
     editingProcess.setApplicationId(Ivy.request().getApplication().getId());
-    editingProcess.setUserName(Ivy.session().getSessionUserName());
+    editingProcess.setUserId(userId);
     editingProcess.setIndex(userProcesses.size());
     editingProcess = userProcessService.save(editingProcess);
     userProcesses.add(editingProcess);
@@ -274,7 +273,7 @@ private static final long serialVersionUID = -5889375917550618261L;
   
   private void removeDeletedExternalLinkFromUserProcesses(List<UserProcess> processes) {
     List<String> startableExternalLinkIds = ExternalLinkService.getInstance()
-        .findStartableLink(Ivy.session().getSessionUserName())
+        .findStartableLink(Ivy.session().getSessionUser().getId())
         .stream()
         .map(link -> link.getId().toString())
         .collect(Collectors.toList());

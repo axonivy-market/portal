@@ -5,7 +5,7 @@ import java.util.List;
 public class ProcessSearchCriteria {
 
   private String filteredKeyword;
-  private String username;
+  private Long userId;
   private List<String> apps;
 
   public String getFilteredKeyword() {
@@ -16,12 +16,12 @@ public class ProcessSearchCriteria {
     this.filteredKeyword = filteredKeyword;
   }
 
-  public String getUsername() {
-    return username;
+  public Long getUserId() {
+    return userId;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
+  public void setUserId(Long userId) {
+    this.userId = userId;
   }
 
   public List<String> getApps() {
@@ -31,5 +31,4 @@ public class ProcessSearchCriteria {
   public void setApps(List<String> apps) {
     this.apps = apps;
   }
-
 }
