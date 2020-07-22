@@ -24,17 +24,18 @@ public class UserProcessDaoTest {
 
   @Test
   public void testFindByUserName() {
-    String userName = "TestUser";
+    @SuppressWarnings("deprecation")
+    Long userId = new Long("123");
     UserProcess processBelongToUser = new UserProcess();
-    processBelongToUser.setUserName(userName);
+    processBelongToUser.setUserId(userId);
     UserProcess processNotBelongToUser = new UserProcess();
 
     List<UserProcess> processes = Arrays.asList(processBelongToUser, processNotBelongToUser);
 
     PowerMockito.when(userProcessDao.findAll()).thenReturn(processes);
-    PowerMockito.when(userProcessDao.findByUserName(userName)).thenCallRealMethod();
+    PowerMockito.when(userProcessDao.findByUserId(userId)).thenCallRealMethod();
 
-    List<UserProcess> actualUserProcesses = userProcessDao.findByUserName(userName);
+    List<UserProcess> actualUserProcesses = userProcessDao.findByUserId(userId);
 
     Assert.assertEquals(Arrays.asList(processBelongToUser), actualUserProcesses);
   }

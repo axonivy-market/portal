@@ -19,6 +19,7 @@ import ch.ivy.addon.portalkit.bo.ExpressUserEmail;
 import ch.ivy.addon.portalkit.dto.ExpressAttachment;
 import ch.ivy.addon.portalkit.enums.ExpressEmailAttachmentStatus;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
+import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivy.gawfs.enums.FormElementType;
 import ch.ivy.gawfs.enums.TaskType;
@@ -58,11 +59,15 @@ public class ExpressProcessUtils {
     processRepository.setProcessDescription(expressData.getProcessDescription());
     processRepository.setProcessType(expressData.getProcessType().getValue());
     processRepository.setUseDefaultUI(expressData.getIsUseDefaultUI());
+
+    ExpressManagementUtils expressManagementUtils = new ExpressManagementUtils();
     if(StringUtils.isBlank(processRepository.getProcessOwner())) {
-      processRepository.setProcessOwner(Ivy.session().getSessionUser().getMemberName());
+      String ownerName = Ivy.session().getSessionUser().getMemberName();
+      processRepository.setProcessOwner(expressManagementUtils.updateExternalIdToSecurityMemberName(ownerName));
     }
-    processRepository.setProcessPermissions(expressData.getDefinedTasks().get(0).getResponsibles());
-    processRepository.setProcessCoOwners(expressData.getProcessCoOwners());
+
+    processRepository.setProcessPermissions(expressManagementUtils.updateExternalIdsToSecurityMemberNames(expressData.getDefinedTasks().get(0).getResponsibles()));
+    processRepository.setProcessCoOwners(expressManagementUtils.updateExternalIdsToSecurityMemberNames(expressData.getProcessCoOwners()));
     processRepository.setProcessFolder(expressData.getProcessFolder());
     processRepository.setReadyToExecute(expressData.getReadyToExecute());
 
@@ -70,7 +75,6 @@ public class ExpressProcessUtils {
     processRepository.setId(info.getId());
 
     saveDefinedTasks(processRepository.getId(), expressData.getDefinedTasks());
-
     return processRepository;
   }
 
@@ -85,13 +89,14 @@ public class ExpressProcessUtils {
     ExpressServiceRegistry.getTaskDefinitionService().deleteByProcessId(processId);
     ExpressServiceRegistry.getFormElementService().deleteByProcessId(processId);
 
+    ExpressManagementUtils expressManagementUtils = new ExpressManagementUtils();
     // Save the task definition with the order of the tasks
     for (TaskDef taskDef : definedTasks) {
       ExpressTaskDefinition expressTaskDef = new ExpressTaskDefinition();
       expressTaskDef.setType(taskDef.getTaskType().name());
       expressTaskDef.setSubject(taskDef.getSubject());
       expressTaskDef.setDescription(taskDef.getDescription());
-      expressTaskDef.setResponsibles(taskDef.getResponsibles());
+      expressTaskDef.setResponsibles(expressManagementUtils.updateExternalIdsToSecurityMemberNames(taskDef.getResponsibles()));
       expressTaskDef.setUntilDays(taskDef.getUntilDays().intValue());
       expressTaskDef.setProcessID(processId);
       expressTaskDef.setTaskPosition(taskDef.getPosition());
@@ -201,11 +206,20 @@ public class ExpressProcessUtils {
    * @param responsibleNames
    * @return security members
    */
-  public List<String> getValidSecurityMembers(List<String> responsibleNames) {
-    return CollectionUtils.emptyIfNull(responsibleNames)
-        .stream()
-        .filter(responsibleName -> Ivy.session().getSecurityContext().findSecurityMember(responsibleName) != null)
-        .collect(Collectors.toList());
+  private List<String> getValidSecurityMembers(List<String> responsibleNames) {
+    if (CollectionUtils.isEmpty(responsibleNames)) {
+      return new ArrayList<>();
+    }
+
+    ExpressManagementUtils utils = new ExpressManagementUtils();
+    List<String> result = new ArrayList<>();
+    responsibleNames.forEach(responsibleName -> {
+      String validMemberName = utils.getValidMemberName(responsibleName);
+      if (StringUtils.isNotBlank(validMemberName)) {
+        result.add(validMemberName);
+      }
+    });
+    return result;
   }
 
   /**
@@ -474,5 +488,4 @@ public class ExpressProcessUtils {
     dataProvider.setName(subProcessStart.getProcessName());
     return dataProvider;
   }
-
 }
