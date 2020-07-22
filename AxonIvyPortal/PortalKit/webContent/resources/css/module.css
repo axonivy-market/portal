@@ -2084,16 +2084,6 @@ _:-ms-fullscreen, :root .additional-case-details-link {
   right: 0;
   bottom: 0;
   z-index: 10000;
-  top: 0;
-}
-
-.ajax-status-color {
-  -webkit-animation: change-color .5s; /* Safari 4+ */
-  -moz-animation: change-color .5s; /* Fx 5+ */
-  -o-animation: change-color .5s; /* Opera 12+ */
-  animation: change-color .5s; /* IE 10+ */
-  animation-delay: .5s;
-  animation-fill-mode: forwards;
 }
 
 .axonivy-loader {
