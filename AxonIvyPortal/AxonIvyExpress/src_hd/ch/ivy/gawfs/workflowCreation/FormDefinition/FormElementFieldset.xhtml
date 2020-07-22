@@ -187,10 +187,11 @@
                         requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputCheckbox')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
                         placeholder="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputCheckbox')}"
                         maxlength="#{ivy.cms.co('/Dialogs/general/maxOptionsLength')}" id="input-checkbox-name" />
-
-                      <p:commandButton icon="fa fa-trash-o fa-2x" title="" styleClass="placement-form-element-remove-btn"
-                        actionListener="#{data.createManyCheckboxTab.deleteOption(option)}" process="form:create-tabs:many-checkbox-options"
-                        update="form:create-tabs:many-checkbox-options" immediate="true" />
+                      <div class="available-elements-action-btn">
+                        <p:commandButton icon="fa fa-trash-o fa-2x" styleClass="placement-form-element-remove-btn"
+                          actionListener="#{data.createManyCheckboxTab.deleteOption(option)}" process="form:create-tabs:many-checkbox-options"
+                          update="form:create-tabs:many-checkbox-options" immediate="true" />
+                      </div>
                     </p:column>
                   </p:dataTable>
                 </h:panelGroup>
@@ -251,11 +252,12 @@
                   <p:inputText value="#{option.value}" styleClass="express-workflow-table-input" id="form-element-input-options"
                     requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputOptions')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
                     placeholder="Option" required="true" maxlength="#{ivy.cms.co('/Dialogs/general/maxOptionsLength')}" />
-
-                  <p:commandButton icon="fa fa-trash-o" styleClass="placement-form-element-remove-btn"
+                  
+                  <div class="available-elements-action-btn">
+                    <p:commandButton icon="fa fa-trash-o" styleClass="placement-form-element-remove-btn"
                     actionListener="#{data.createOneRadioTab.deleteOption(option)}" process="form:create-tabs:one-radio-options"
-                    update="form:create-tabs:one-radio-options" immediate="true">
-                  </p:commandButton>
+                    update="form:create-tabs:one-radio-options" immediate="true" />
+                  </div>
                 </p:column>
               </p:dataTable>
             </div>

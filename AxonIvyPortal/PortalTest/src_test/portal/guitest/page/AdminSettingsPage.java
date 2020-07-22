@@ -85,7 +85,7 @@ public class AdminSettingsPage extends TemplatePage {
     closeConfirmationDialog();
   }
 
-  private void closeConfirmationDialog() {
+  public void closeConfirmationDialog() {
     closeAdminSettingDialog();
     closeInformConfigDialog();
   }

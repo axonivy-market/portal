@@ -386,3 +386,7 @@ function highlightShowAllProcesses() {
   createRedThickOutline($('.submenu.PROCESS'));
   createRedMediumOutline($("[id$='process-widget:process-link:process-link']"));
 }
+
+function highlightShowAdditionalLink() {
+  createRedMediumOutline($("[id$='case-item:case-item-action-form:action-step-component:show-additional-case-details-link']"));
+}
