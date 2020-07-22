@@ -63,15 +63,14 @@ How to use Basic template
 
 1. Create a new HTML User Dialog and then use ``ui:composition`` to
    define the template inside and reuse the default responsiveness
-   behavior. To override it, please use ``pageContent`` instead of
-   ``simplePageContent`` and
+   behavior. Define the ``pageContent`` section and
    :ref:`Responsiveness <components-layout-templates-responsiveness>`.
 
    .. code-block:: html
    
       <ui:composition template="/layouts/BasicTemplate.xhtml">
       <ui:define name="title">Sample Page</ui:define>
-      <ui:define name="simplePageContent">
+      <ui:define name="pageContent">
       This is sample content.
       </ui:define>
       </ui:composition>
@@ -125,7 +124,7 @@ Inside your UI, you can configure these parameters which will be rendered by the
 	
 In case your project has navigation button without finishing a task, e.g Cancel, to 
 
--  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrame``.
+-  One of default page (app home, task list, process list, etc.): in your HTMLDialog, redirect to the page you want
 -  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame``.
 -  A specific url: call ``navigateToUrl(String url)`` from class ``PortalNavigatorInFrame``.
 
@@ -161,7 +160,7 @@ Create a new HTML User Dialog and then use ``ui:composition`` to  define templat
 
 In case your project has navigation button without finishing a task, e.g Cancel, to 
 
--  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrame``.
+-  One of default page (app home, task list, process list, etc.): in your HTMLDialog, redirect to the page you want
 -  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame``.
 -  A specific url: call ``navigateToUrl(String url)`` from class ``PortalNavigatorInFrame``.
 

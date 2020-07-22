@@ -19,12 +19,6 @@ public final class PortalNavigatorInFrame {
     String statement = "parent.redirectToEndPageCommand([{name: 'taskId', value: " + Ivy.wfTask().getId() + "}]);";
     PrimeFaces.current().executeScript(statement);
   }
-  
-  public void navigateToPortalHome() {
-    String statement = "parent.redirectToHomePageCommand()";
-    PrimeFaces.current().executeScript(statement);
-  }
-  
 
   public void navigateToUrl(String url) throws UnsupportedEncodingException {
     String statement = "parent.redirectToUrlCommand([{name: 'url', value: '" + URLDecoder.decode(url, "UTF-8") + "'}])";
