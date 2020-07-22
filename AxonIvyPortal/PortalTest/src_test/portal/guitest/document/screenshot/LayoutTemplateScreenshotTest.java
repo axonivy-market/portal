@@ -14,17 +14,12 @@ import portal.guitest.page.HomePage;
 
 public class LayoutTemplateScreenshotTest extends BaseTest {
   
-  private String twoColumnsStartUrl = "portal-developer-examples/169BDE2F368D6EC4/StartTwoColumnTemplateShowcase.ivp";
   private String applicationShowcase = "portal-developer-examples/169BDE2F368D6EC4/ApplicationShowcase.ivp";
 
   @Test
   public void screenshotLayoutTemplate() throws IOException {
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 700));
     HomePage homePage = new HomePage();
-    redirectToRelativeLink(twoColumnsStartUrl);
-    homePage.waitUntilLayoutWrapperDisplayed();
-    Sleeper.sleep(500); // wait for Layout.js renders left menu
-    ScreenshotUtil.capturePageScreenshot(LAYOUT_FOLDER + "two-column-template");
     
     redirectToRelativeLink(viewBetaCompanyProcessHistoryUrl);
     homePage.waitUntilLayoutWrapperDisplayed();
