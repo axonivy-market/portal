@@ -18,12 +18,12 @@ Generated using nucleoapp.com
   font: normal normal normal 1em/1 'IvyIcons' !important;
   speak: none;
   text-transform: none;
-  / Better Font Rendering /
+  /* Better Font Rendering */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Sync size with primefaces icons */
+/* This is a fix from Portal - DO NOT DELETE - Sync size with primefaces icons */
 .ui-icon.icon {
   font: normal normal normal 18px/1 'IvyIcons' !important;
 }
@@ -32,17 +32,17 @@ Generated using nucleoapp.com
 -------------------------*/
 /* relative units */
 .icon-sm {
-  font-size: 0.8em;
+  font-size: 0.8em !important;
 }
 .icon-lg {
-  font-size: 1.2em;
+  font-size: 1.2em !important;
 }
 /* absolute units */
 .icon-16 {
-  font-size: 16px;
+  font-size: 16px !important;
 }
 .icon-32 {
-  font-size: 32px;
+  font-size: 32px !important;
 }
 /*----------------------------------
   add a square/circle background
@@ -159,270 +159,362 @@ Generated using nucleoapp.com
 -------------------------*/
 
 .ivyicon-pie-line-graph-desktop::before {
-  content: "\ea03";
+  content: "\ea02";
 }
 
 .ivyicon-pie-line-graph::before {
-  content: "\ea04";
-}
-
-.ivyicon-logout::before {
-  content: "\ea05";
-}
-
-.ivyicon-house-1::before {
-  content: "\ea06";
-}
-
-.ivyicon-cog-double-2::before {
-  content: "\ea07";
-}
-
-.ivyicon-cog-double::before {
-  content: "\ea08";
+  content: "\ea03";
 }
 
 .ivyicon-cog::before {
-  content: "\ea09";
+  content: "\ea04";
 }
 
 .ivyicon-information-circle::before {
-  content: "\ea0a";
+  content: "\ea05";
 }
 
 .ivyicon-delete-1::before {
-  content: "\ea0b";
+  content: "\ea06";
 }
 
 .ivyicon-search-circle::before {
-  content: "\ea0c";
+  content: "\ea07";
 }
 
-.ivyicon-search::before {
-  content: "\ea0d";
+.ivyicon-cog-double-2::before {
+  content: "\ea08";
 }
 
 .ivyicon-copy-paste::before {
-  content: "\ea0e";
+  content: "\ea09";
 }
 
-.ivyicon-remove-circle::before {
-  content: "\ea0f";
+.ivyicon-house-1::before {
+  content: "\ea0a";
 }
 
-.ivyicon-keyboard-arrow-return::before {
-  content: "\ea10";
+.ivyicon-search::before {
+  content: "\ea0b";
 }
 
-.ivyicon-add-circle::before {
-  content: "\ea11";
-}
-
-.ivyicon-button-refresh-arrow::before {
-  content: "\ea12";
+.ivyicon-cog-double::before {
+  content: "\ea0c";
 }
 
 .ivyicon-button-refresh-arrows::before {
-  content: "\ea13";
+  content: "\ea0d";
 }
 
 .ivyicon-move-back::before {
-  content: "\ea14";
-}
-
-.ivyicon-data-transfer-circle::before {
-  content: "\ea15";
+  content: "\ea0e";
 }
 
 .ivyicon-bulb::before {
-  content: "\ea16";
-}
-
-.ivyicon-download-circle::before {
-  content: "\ea17";
-}
-
-.ivyicon-upload-circle::before {
-  content: "\ea18";
+  content: "\ea0f";
 }
 
 .ivyicon-human-resources-workflow::before {
-  content: "\ea19";
+  content: "\ea10";
 }
 
 .ivyicon-presentation-statistics::before {
-  content: "\ea1a";
+  content: "\ea11";
 }
 
 .ivyicon-startup-launch::before {
-  content: "\ea1b";
+  content: "\ea12";
 }
 
 .ivyicon-graphic-tablet-drawing-pen::before {
-  content: "\ea1c";
+  content: "\ea13";
 }
 
 .ivyicon-conversation-chat-2::before {
-  content: "\ea1d";
+  content: "\ea14";
 }
 
 .ivyicon-messages-bubble-add::before {
-  content: "\ea1e";
+  content: "\ea15";
 }
 
 .ivyicon-messages-bubble-information::before {
-  content: "\ea1f";
+  content: "\ea16";
 }
 
 .ivyicon-messages-bubble-square-warning::before {
-  content: "\ea20";
+  content: "\ea17";
 }
 
 .ivyicon-single-neutral-actions-process::before {
-  content: "\ea21";
+  content: "\ea18";
 }
 
 .ivyicon-multiple-actions-add::before {
-  content: "\ea22";
+  content: "\ea19";
 }
 
 .ivyicon-mood-warning::before {
-  content: "\ea23";
+  content: "\ea1a";
 }
 
 .ivyicon-rating-star-add::before {
-  content: "\ea24";
+  content: "\ea1b";
 }
 
 .ivyicon-recycling-hand-trash::before {
-  content: "\ea25";
+  content: "\ea1c";
 }
 
 .ivyicon-road-sign-warning::before {
-  content: "\ea26";
+  content: "\ea1d";
 }
 
 .ivyicon-style-two-pin-warning::before {
-  content: "\ea27";
+  content: "\ea1e";
 }
 
 .ivyicon-statistics-daytum::before {
-  content: "\ea28";
+  content: "\ea1f";
 }
 
 .ivyicon-arrow-button-right-3::before {
-  content: "\ea29";
+  content: "\ea20";
 }
 
 .ivyicon-arrow-button-right::before {
-  content: "\ea2a";
+  content: "\ea21";
 }
 
 .ivyicon-arrow-right-1::before {
-  content: "\ea2b";
+  content: "\ea22";
 }
 
 .ivyicon-advertising-megaphone::before {
-  content: "\ea2c";
+  content: "\ea23";
 }
 
 .ivyicon-advertising-megaphone-2::before {
-  content: "\ea2d";
+  content: "\ea24";
 }
 
 .ivyicon-business-contract-handshake-sign::before {
-  content: "\ea2e";
+  content: "\ea25";
 }
 
 .ivyicon-monetization-approve::before {
-  content: "\ea2f";
+  content: "\ea26";
 }
 
 .ivyicon-shopping-cart-check::before {
-  content: "\ea30";
+  content: "\ea27";
 }
 
 .ivyicon-user-logout::before {
-  content: "\ea31";
+  content: "\ea28";
 }
 
 .ivyicon-check-circle-1::before {
-  content: "\ea32";
+  content: "\ea29";
 }
 
 .ivyicon-login-3::before {
-  content: "\ea33";
+  content: "\ea2a";
 }
 
 .ivyicon-close::before {
-  content: "\ea34";
+  content: "\ea2b";
 }
 
 .ivyicon-check-circle::before {
-  content: "\ea35";
+  content: "\ea2c";
 }
 
 .ivyicon-remove::before {
-  content: "\ea37";
+  content: "\ea2d";
 }
 
 .ivyicon-floppy-disk::before {
-  content: "\ea38";
+  content: "\ea2e";
 }
 
 .ivyicon-messages-bubble::before {
-  content: "\ea3a";
+  content: "\ea2f";
 }
 
 .ivyicon-house-chimney-2::before {
-  content: "\ea3c";
+  content: "\ea30";
 }
 
 .ivyicon-task-list-edit::before {
-  content: "\ea3d";
+  content: "\ea31";
 }
 
 .ivyicon-layout-bullets::before {
-  content: "\ea3e";
+  content: "\ea32";
 }
 
 .ivyicon-hyperlink-3::before {
-  content: "\ea3f";
+  content: "\ea33";
 }
 
 .ivyicon-add::before {
-  content: "\ea40";
+  content: "\ea34";
 }
 
 .ivyicon-question-circle::before {
-  content: "\ea41";
+  content: "\ea35";
 }
 
 .ivyicon-navigation-right-circle-1::before {
-  content: "\ea42";
+  content: "\ea36";
 }
 
 .ivyicon-navigation-up-circle::before {
-  content: "\ea43";
+  content: "\ea37";
 }
 
 .ivyicon-navigation-right-circle-1-2::before {
-  content: "\ea44";
+  content: "\ea38";
 }
 
 .ivyicon-synchronize-arrows::before {
-  content: "\ea45";
+  content: "\ea39";
 }
 
 .ivyicon-delete::before {
-  content: "\ea46";
+  content: "\ea3a";
 }
 
 .ivyicon-alarm-bell-timer::before {
-  content: "\ea47";
+  content: "\ea3b";
 }
 
 .ivyicon-alert-circle::before {
+  content: "\ea3c";
+}
+
+.ivyicon-keyboard-arrow-return::before {
+  content: "\ea3d";
+}
+
+.ivyicon-add-circle::before {
+  content: "\ea3e";
+}
+
+.ivyicon-button-refresh-arrow::before {
+  content: "\ea3f";
+}
+
+.ivyicon-navigation-right-circle::before {
+  content: "\ea40";
+}
+
+.ivyicon-road-sign-u-turn-left::before {
+  content: "\ea41";
+}
+
+.ivyicon-road-sign-u-turn-right::before {
+  content: "\ea42";
+}
+
+.ivyicon-arrow-left-1::before {
+  content: "\ea43";
+}
+
+.ivyicon-filter-1::before {
+  content: "\ea44";
+}
+
+.ivyicon-undo::before {
+  content: "\ea45";
+}
+
+.ivyicon-multiple-neutral-1::before {
+  content: "\ea46";
+}
+
+.ivyicon-single-neutral-actions::before {
+  content: "\ea47";
+}
+
+.ivyicon-touch-finger_1::before {
   content: "\ea48";
+}
+
+.ivyicon-navigation-menu::before {
+  content: "\ea49";
+}
+
+.ivyicon-hourglass::before {
+  content: "\ea4a";
+}
+
+.ivyicon-controls-play::before {
+  content: "\ea4b";
+}
+
+.ivyicon-bin-1::before {
+  content: "\ea4c";
+}
+
+.ivyicon-move-to-bottom::before {
+  content: "\ea4d";
+}
+
+.ivyicon-synchronize-arrow-clock::before {
+  content: "\ea4e";
+}
+
+.ivyicon-arrow-left::before {
+  content: "\ea4f";
+}
+
+.ivyicon-cog-play::before {
+  content: "\ea50";
+}
+
+.ivyicon-download-bottom::before {
+  content: "\ea51";
+}
+
+.ivyicon-upload-bottom::before {
+  content: "\ea52";
+}
+
+.ivyicon-office-file-xls-1::before {
+  content: "\ea53";
+}
+
+.ivyicon-touchpad-finger::before {
+  content: "\ea54";
+}
+
+.ivyicon-chat-translate::before {
+  content: "\ea55";
+}
+
+.ivyicon-notes-add::before {
+  content: "\ea56";
+}
+
+.ivyicon-expand-6::before {
+  content: "\ea57";
+}
+
+.ivyicon-send-email::before {
+  content: "\ea58";
+}
+
+.ivyicon-check-1::before {
+  content: "\ea59";
+}
+
+.ivyicon-folder-search::before {
+  content: "\ea5a";
+}
+
+.ivyicon-common-file-add::before {
+  content: "\ea5b";
 }
 

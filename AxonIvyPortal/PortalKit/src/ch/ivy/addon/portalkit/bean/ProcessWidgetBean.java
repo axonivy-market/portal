@@ -129,7 +129,7 @@ public class ProcessWidgetBean implements Serializable {
   }
   
   private List<Process> findExternalLink() {
-    List<ExternalLink> externalLinks = ExternalLinkService.getInstance().findStartableLink(Ivy.session().getSessionUser().getName());
+    List<ExternalLink> externalLinks = ExternalLinkService.getInstance().findStartableLink(Ivy.session().getSessionUser().getId());
     List<Process> defaultPortalProcesses = new ArrayList<>();
     externalLinks.forEach(externalLink -> defaultPortalProcesses.add(new ExternalLinkProcessItem(externalLink)));
     return defaultPortalProcesses;

@@ -32,7 +32,7 @@
               <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="process-widget-guide-component" targetComponent="process-widget"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/process/title')}" 
                 content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/process/content')}"
-                targetCssSelector="#process-widget" icon="fa-cogs"
+                targetCssSelector="#process-widget" iconClass="icon ivyicon-cog-double-2"
                 onNext="PF('task-widget-guide').show()"
                 updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}" />
             </ui:insert>
@@ -58,7 +58,7 @@
               <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="task-widget-guide-component" targetComponent="task-widget"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/task/title')}" 
                 content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/task/content')}"
-                targetCssSelector="#task-widget" icon="fa-check-square-o"
+                targetCssSelector="#task-widget" iconClass="icon ivyicon-task-list-edit"
                 onNext="PF('setting-container-guide').show()"
                 updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}" />
             </ui:insert>
@@ -81,7 +81,7 @@
                 targetComponent="statistic-widget-container"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/statistic/title')}"
                 content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/statistic/content')}"
-                targetCssSelector="#statistic-widget-container" icon="fa-bar-chart"
+                targetCssSelector="#statistic-widget-container" iconClass="icon ivyicon-pie-line-graph"
                 my="right-30 top" at="left top" arrowPosition="right top"
                 updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}" />
             </ui:insert>

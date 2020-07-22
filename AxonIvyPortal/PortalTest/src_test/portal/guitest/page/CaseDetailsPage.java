@@ -238,7 +238,7 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.id(destroyCaseDialogId), true);
     WebElement destroyConfirmationDialog = findElementById(destroyCaseDialogId);
     WebElement confirmButton = findChildElementById(destroyConfirmationDialog, "case-item-details:confirm-destruction");
-    confirmButton.click();
+    click(confirmButton);
   }
   
   @Override
@@ -303,8 +303,8 @@ public class CaseDetailsPage extends TemplatePage {
   
   public WebElement getDeleteDocumentConfirmDialog() {
     click(findElementByCssSelector("a[id$='delete-file']"));
-    waitForElementDisplayed(By.cssSelector("div[class$='document-deletion-dialog']"), true);
-    return findElementByCssSelector("div[class$='document-deletion-dialog']");
+    waitForElementDisplayed(By.cssSelector("div[id$='document-deletion-dialog']"), true);
+    return findElementByCssSelector("div[id$='document-deletion-dialog']");
   }
 
   public WebElement findDeleteDocumentIcon() {

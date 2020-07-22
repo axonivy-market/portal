@@ -67,7 +67,7 @@ if(PermissionUtils.checkAccessFullStatisticsListPermission()) {
 }
 
 SubMenuItem google = new SubMenuItem();
-google.setIcon("fa fa-google");
+google.setIcon("icon ivyicon-bulb");
 google.setLabel("Google");
 google.setMenuKind(MenuKind.CUSTOM);
 google.setLink("www.google.com");

@@ -11,8 +11,11 @@ public class ExternalLink extends BusinessEntity{
 
   private String name;
   private String link;
-  private String creator;
+  private Long creatorId;
   private boolean isPublic;
+
+  @Deprecated
+  private String creator;
 
   public String getName() {
     return name;
@@ -38,27 +41,37 @@ public class ExternalLink extends BusinessEntity{
     this.isPublic = isPublic;
   }
 
+  public Long getCreatorId() {
+    return creatorId;
+  }
+
+  public void setCreatorId(Long creatorId) {
+    this.creatorId = creatorId;
+  }
+
+  @Deprecated
   public String getCreator() {
     return creator;
   }
 
+  @Deprecated
   public void setCreator(String creator) {
     this.creator = creator;
   }
 
   @JsonIgnore
   public boolean isAbleToEdit() {
-    return this.creator.equalsIgnoreCase(Ivy.session().getSessionUserName());
+    return this.creatorId == Ivy.session().getSessionUser().getId();
   }
   
   @Override
   public String toString() {
-    return "ExternalLink {creator=" + creator + ", name=" + name + ", link=" + link + ", isPublic=" + isPublic + "}";
+    return "ExternalLink {creatorId=" + creatorId + ", name=" + name + ", link=" + link + ", isPublic=" + isPublic + "}";
   }
   
   @Override
   public int hashCode() {
-    return Objects.hash(name, link, creator, isPublic);
+    return Objects.hash(name, link, creatorId, isPublic);
   }
   
   @Override
