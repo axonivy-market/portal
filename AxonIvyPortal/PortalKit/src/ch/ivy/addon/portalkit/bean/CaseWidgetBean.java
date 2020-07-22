@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
@@ -14,6 +15,7 @@ import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
+import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.support.HtmlParser;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.NumberUtils;
@@ -63,9 +65,15 @@ public class CaseWidgetBean implements Serializable {
   }
 
   public String getAdditionalCaseDetailsPageUri(ICase iCase) {
-    String additionalCaseDetailsPageUri = iCase.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull();
-    if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
-      additionalCaseDetailsPageUri = CaseUtils.getProcessStartUriWithCaseParameters(iCase, START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE);
+    String additionalCaseDetailsPageUri = StringUtils.EMPTY;
+    if (BooleanUtils.toBoolean(iCase.customFields().stringField("isExpress").getOrNull())) {
+      ProcessStartCollector processStartCollector =  new ProcessStartCollector(Ivy.request().getApplication());
+      additionalCaseDetailsPageUri = processStartCollector.findExpressBusinessViewStartLink() + "?caseId=" + iCase.getId();
+    } else {
+      additionalCaseDetailsPageUri = iCase.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull();
+      if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
+        additionalCaseDetailsPageUri = CaseUtils.getProcessStartUriWithCaseParameters(iCase, START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE);
+      }
     }
     return additionalCaseDetailsPageUri;
   }

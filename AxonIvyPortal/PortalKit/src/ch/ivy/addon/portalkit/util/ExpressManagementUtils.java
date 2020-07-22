@@ -17,6 +17,7 @@ import java.util.stream.Collectors;
 
 import javax.ws.rs.core.MediaType;
 
+import org.apache.commons.collections4.map.HashedMap;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.StopWatch;
@@ -24,7 +25,6 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -48,7 +48,8 @@ public class ExpressManagementUtils {
   private static final String VERSION = "version";
   private static final String EXPRESS_WORKFLOW = "expressWorkflow";
   private static final String PATTERN =  Ivy.cms().findContentObjectValue("/patterns/dateTimePattern", Locale.ENGLISH).getContentAsString();
-  private static final Type EXPRESS_LIST_CONVERT_TYPE = new TypeToken<List<ExpressWorkflow>>() {}.getType();
+  private static final Type EXPRESS_LIST_CONVERT_TYPE = new TypeToken<List<ExpressWorkflow>>() {
+    private static final long serialVersionUID = 5516908246675433850L;}.getType();
   private static final String EXPRESS_TYPE = "AHWF"; // this variable is equal to process type REPEAT in ch.ivy.gawfs.enums.ProcessType
   private static final String JSON_EXTENSION = "json";
   
@@ -83,16 +84,14 @@ public class ExpressManagementUtils {
    * @param expressData file contains express workflow list
    * @return output messages after run import process
    */
-  @SuppressWarnings("unchecked")
-  public List<Object> importExpressProcesses(UploadedFile expressData) {
-    List<ExpressProcess> outputExpressProcessList = new ArrayList<>();
-    List<Object> outputMessages = new ArrayList<>(Arrays.asList(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/failed"), StringUtils.EMPTY, outputExpressProcessList));
+  public Map<ExpressMessageType, Object> importExpressProcesses(UploadedFile expressData) {
+    Map<ExpressMessageType, Object> outputMessages = initOutputMessage();
     StringBuilder importExpressResult = new StringBuilder();
     StopWatch stopWatch = new StopWatch();
     stopWatch.start();
 
     if (expressData == null || !FilenameUtils.isExtension(expressData.getFileName(), JSON_EXTENSION)) {
-      outputMessages.set(1, addResultLog(importExpressResult,
+      outputMessages.put(ExpressMessageType.IMPORT_RESULT, addResultLog(importExpressResult,
               Ivy.cms().co(expressData != null ? "/Dialogs/components/CaseDocument/invalidFileMessage" : "/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/fileEmptyMessage"), ExpressMessageType.ERROR));
       return outputMessages;
     }
@@ -100,57 +99,90 @@ public class ExpressManagementUtils {
     addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/startDeployLog", Arrays.asList(expressData.getFileName())), ExpressMessageType.INFO);
 
     try {
-      ObjectMapper mapper = new ObjectMapper();
-      Map<String, Object> jsonMap = mapper.readValue(expressData.getInputstream(), Map.class);
-      if (jsonMap != null) {
-        // Fetch all users/groups for express users validation 
-        List<String> memberList = getExpressMember();
+      installExpressWorkflows(expressData.getInputstream(), importExpressResult, outputMessages);
 
-        for (Object object : jsonMap.keySet()) {
-          switch (object.toString()) {
-            case VERSION:
-              // Validate version of express JSON file
-              if (validateExpressVersion(Integer.valueOf(jsonMap.get(object).toString()))) {
-                addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/versionLog", Arrays.asList(jsonMap.get(object))), ExpressMessageType.INFO);
-                importExpressResult.append(StringUtils.LF);
-              } else {
-                addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/invalidVersionLog", Arrays.asList(jsonMap.get(object))), ExpressMessageType.ERROR);
-                importExpressResult.append(StringUtils.LF);
-                outputMessages.set(1, importExpressResult.toString());
-                return outputMessages;
-              }
-              break;
-            case EXPRESS_WORKFLOW:
-              // Convert inputData to JSON
-              Reader reader = new InputStreamReader(expressData.getInputstream(), StandardCharsets.UTF_8);
-              Gson gson = new GsonBuilder().serializeNulls().create();
-
-              JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
-              JsonElement jsonElement = jsonObject.get(EXPRESS_WORKFLOW);
-              List<ExpressWorkflow> expressWorkflowsList = gson.fromJson(jsonElement, EXPRESS_LIST_CONVERT_TYPE);
-              if (expressWorkflowsList != null) {
-                int errorCounts = deployExpressWorkflows(importExpressResult, memberList, expressWorkflowsList, outputExpressProcessList);
-                if (errorCounts == 0) {
-                  outputMessages.set(0, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/successful"));
-                } else if (errorCounts < expressWorkflowsList.size()) {
-                  outputMessages.set(0, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/warning"));
-                }
-              }
-          }
-        }
-
-        addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/endDeployLog"), ExpressMessageType.INFO);
-        stopWatch.stop();
-        addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/deploymentFinishedLog", Arrays.asList(expressData.getFileName(),stopWatch.getTime())), ExpressMessageType.INFO);
-      }
+      addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/endDeployLog"), ExpressMessageType.INFO);
+      stopWatch.stop();
+      addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/deploymentFinishedLog", Arrays.asList(expressData.getFileName(),stopWatch.getTime())), ExpressMessageType.INFO);
     } catch (Exception e) {
       addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/deployErrorLog",Arrays.asList(expressData.getFileName())), ExpressMessageType.ERROR);
       Ivy.log().error(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/deployErrorLog",Arrays.asList(expressData.getFileName())) + e);
     }
 
     importExpressResult.append(StringUtils.LF);
-    outputMessages.set(1, importExpressResult.toString());
+    outputMessages.put(ExpressMessageType.IMPORT_RESULT, importExpressResult.toString());
     return outputMessages;
+  }
+
+  private Map<ExpressMessageType, Object> initOutputMessage() {
+    Map<ExpressMessageType, Object> outputMessages = new HashedMap<>();
+    outputMessages.put(ExpressMessageType.IMPORT_STATUS, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/failed"));
+    outputMessages.put(ExpressMessageType.IMPORT_RESULT, StringUtils.EMPTY);
+    outputMessages.put(ExpressMessageType.IMPORT_EXPRESS_PROCESSES, new ArrayList<ExpressProcess>());
+    return outputMessages;
+  }
+
+  public Map<ExpressMessageType, Object> installExpressWorkflows(InputStream expressInputstream,
+      StringBuilder importExpressResult, Map<ExpressMessageType, Object> outputMessages) {
+
+    List<ExpressProcess> outputExpressProcessList = new ArrayList<>();
+    Reader reader = new InputStreamReader(expressInputstream, StandardCharsets.UTF_8);
+    // Convert inputData to JSON
+    Gson gson = new GsonBuilder().serializeNulls().create();
+    JsonObject jsonObject = gson.fromJson(reader, JsonObject.class);
+    if (jsonObject != null) {
+      // Fetch all users/groups for express users validation 
+      List<String> memberList = getExpressMember();
+      boolean invalidVersion = false;
+
+      for (String memberKey : jsonObject.keySet()) {
+        if (invalidVersion) {
+          break;
+        }
+
+        switch (memberKey) {
+          case VERSION:
+            // Validate version of express JSON file
+            invalidVersion = validateExpressVersion(importExpressResult, outputMessages, jsonObject.get(memberKey));
+            break;
+          case EXPRESS_WORKFLOW:
+            JsonElement jsonElement = jsonObject.get(memberKey);
+            List<ExpressWorkflow> expressWorkflowsList = gson.fromJson(jsonElement, EXPRESS_LIST_CONVERT_TYPE);
+            processExpressJsonObject(outputExpressProcessList, importExpressResult, outputMessages, memberList,
+                expressWorkflowsList);
+            break;
+        }
+      }
+    }
+    outputMessages.put(ExpressMessageType.IMPORT_EXPRESS_PROCESSES, outputExpressProcessList);
+    return outputMessages;
+  }
+
+  private void processExpressJsonObject(List<ExpressProcess> outputExpressProcessList,
+      StringBuilder importExpressResult,  Map<ExpressMessageType, Object> outputMessages, List<String> memberList,
+      List<ExpressWorkflow> expressWorkflowsList) {
+    if (expressWorkflowsList != null) {
+      int errorCounts = deployExpressWorkflows(importExpressResult, memberList, expressWorkflowsList, outputExpressProcessList);
+      if (errorCounts == 0) {
+        outputMessages.put(ExpressMessageType.IMPORT_STATUS, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/successful"));
+      } else if (errorCounts < expressWorkflowsList.size()) {
+        outputMessages.put(ExpressMessageType.IMPORT_STATUS, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/status/warning"));
+      }
+    }
+  }
+
+  private boolean validateExpressVersion(StringBuilder importExpressResult,  Map<ExpressMessageType, Object> outputMessages,
+      JsonElement jsonElement) {
+    if (validateExpressVersion(Integer.valueOf(jsonElement.toString()))) {
+      addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/versionLog", Arrays.asList(jsonElement)), ExpressMessageType.INFO);
+      importExpressResult.append(StringUtils.LF);
+    } else {
+      addResultLog(importExpressResult, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/expressMessages/invalidVersionLog", Arrays.asList(jsonElement)), ExpressMessageType.ERROR);
+      importExpressResult.append(StringUtils.LF);
+      outputMessages.put(ExpressMessageType.IMPORT_RESULT, importExpressResult.toString());
+      return true;
+    }
+    return false;
   }
 
   private boolean validateExpressVersion(Integer expressVersion) {

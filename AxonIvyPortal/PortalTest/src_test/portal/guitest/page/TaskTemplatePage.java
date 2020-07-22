@@ -17,6 +17,10 @@ public class TaskTemplatePage extends TemplatePage {
     clickByCssSelector("#horizontal-case-info");
     waitForElementDisplayed(By.cssSelector("span[id$='case-info-dialog_title']"), true);
   }
+  
+  public void clickOnAdditionalBusinessDetailLink() {
+    click(findElementByCssSelector("a[id$=':show-additional-case-details-link']"));
+  }
 
   public boolean containsCaseDetails() {
     WebElement caseDetails = findDisplayedElementByCssSelector("div[id$='case-details-panel']");

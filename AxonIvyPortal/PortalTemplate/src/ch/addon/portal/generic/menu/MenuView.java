@@ -184,6 +184,9 @@ public class MenuView {
       case USER_PROFILE:
         buildBreadCrumbForUserProfile();
         break;
+      case EXPRESS_BUSINESS:
+        buildBreadCrumbForExpressBusiness(userCase);
+        break;
       default:
         break;
     }
@@ -250,6 +253,11 @@ public class MenuView {
     setPortalHomeMenuToBreadcrumbModel();
     breadcrumbModel.getElements().add(buildExpressMenuItem());
   }
+  
+  private void buildBreadCrumbForExpressBusiness(ICase userCase) {
+    setPortalHomeMenuToBreadcrumbModel();
+    breadcrumbModel.getElements().add(buildExpressBusinessMenuItem(Long.toString(userCase.getId())));
+  }
 
   private MenuItem buildPortalHomeMenuItem() {
     DefaultMenuItem menuItem = new DefaultMenuItem();
@@ -314,7 +322,15 @@ public class MenuView {
     menuItem.setDisabled(true);
     return menuItem;
   }
-  
+
+  private MenuItem buildExpressBusinessMenuItem(String caseId) {
+    DefaultMenuItem menuItem = new DefaultMenuItem();
+    menuItem.setValue(Ivy.cms().co("/Dialogs/ch/ivy/addon/express/generic/expressWorkflowName", Arrays.asList(caseId)));
+    menuItem.setUrl("#");
+    menuItem.setDisabled(true);
+    return menuItem;
+  }
+
   private MenuItem buildUserProfileMenuItem() {
     DefaultMenuItem menuItem = new DefaultMenuItem();
     menuItem.setValue(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle"));
