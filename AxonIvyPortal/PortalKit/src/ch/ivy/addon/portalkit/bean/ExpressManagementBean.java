@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
@@ -139,12 +140,12 @@ public class ExpressManagementBean implements Serializable {
   
   @SuppressWarnings("unchecked")
   private void importExpressProcesses() {
-    List<Object> results = expressManagementUtils.importExpressProcesses(importExpressFile);
+    Map<ExpressMessageType, Object> results = expressManagementUtils.importExpressProcesses(importExpressFile);
     try {
-      importStatus = results.get(0).toString();
-      importOutput = results.get(1).toString();
+      importStatus = results.get(ExpressMessageType.IMPORT_STATUS).toString();
+      importOutput = results.get(ExpressMessageType.IMPORT_RESULT).toString();
       if (!importStatus.equalsIgnoreCase(ExpressMessageType.FAILED.getLabel())) {
-        expressProcesses.addAll((List<ExpressProcess>)results.get(2));
+        expressProcesses.addAll((List<ExpressProcess>) results.get(ExpressMessageType.IMPORT_EXPRESS_PROCESSES));
       }
     } catch (Exception e) {
       importStatus = ExpressMessageType.FAILED.getLabel();

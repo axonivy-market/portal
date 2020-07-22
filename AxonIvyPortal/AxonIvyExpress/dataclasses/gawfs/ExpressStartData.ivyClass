@@ -1,0 +1,4 @@
+ExpressStartData #class
+gawfs #namespace
+caseId Long #field
+caseId PERSISTENT #fieldModifier

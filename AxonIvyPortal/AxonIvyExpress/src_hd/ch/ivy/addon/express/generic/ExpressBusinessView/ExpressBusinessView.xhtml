@@ -1,0 +1,58 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/TaskTemplate-8.xhtml">
+    <ui:param name="isShowStartAdhocButton" value="false" />
+    <ui:param name="processChainShape" value="LINE" />
+    <ui:param name="isHideCaseInfo" value="true" />
+    <ui:param name="isHideTaskAction" value="true" />
+    <ui:param name="isWorkingOnATask" value="false" />
+    <ui:param name="isHideTaskName" value="true" />
+    <ui:param name="viewName" value="#{empty viewName ? 'EXPRESS_BUSINESS' : viewName}" />
+    <ui:param name="case" value="#{expressBusinessViewBean.expressCase}" />
+    
+    <ui:define name="title">
+      <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/express/generic/expressWorkflowName', [expressBusinessViewBean.expressCase.getId()])}" />
+    </ui:define>
+    <ui:param name="steps" value="#{expressBusinessViewBean.getWorkflowSteps()}" />
+    <ui:param name="actualStepIndex" value="#{expressBusinessViewBean.getFinishedActualStepIndex()}" />
+
+    <ui:define name="content">
+      <h:outputScript library="js" name="express-dyna-form.js" />
+      <h:form id="express-view-form" styleClass="express-view-form">
+
+        <h:panelGroup id="user-finished-tasks-container" layout="block" rendered="#{not empty expressBusinessViewBean.finishedTasks}">
+          <ic:ch.ivy.gawfs.component.FinishedUserTasksForm id="finished-tasks-component"
+            finishedTasks="#{expressBusinessViewBean.finishedTasks}"
+            expressCase="#{expressBusinessViewBean.expressCase}"
+            expandAllSteps="true"/>
+        </h:panelGroup>
+
+        <h:panelGroup rendered="#{empty expressBusinessViewBean.finishedTasks}" id="empty-finished-tasks-container" layout="block" styleClass="ui-g card empty-finished-tasks-container">
+          <div class="ui-g-12 no-item-panel">
+            <i class="icon ivyicon-startup-launch" />
+            <h:outputText styleClass="no-item-header" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/express/generic/expressNoItem')}" />
+            <h:outputText styleClass="no-item-detail" value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/express/generic/expressNoItemDescription')} ##{expressBusinessViewBean.expressCase.id}" />
+          </div>
+        </h:panelGroup>
+
+        <div class="button-group">
+          <p:commandButton id="cancel-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" immediate="true"
+            actionListener="#{logic.cancel}" styleClass="Fright portal-cancel-button" icon="icon ivyicon-remove" />
+        </div>
+      </h:form>
+    </ui:define>
+
+    <script>
+      $(document).ready(function() {
+        var expressDynaForm = new ExpressDynaform();
+      })
+    </script>
+
+    <ui:define name="css">
+      <h:outputStylesheet library="css" name="portal_express.css" />
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

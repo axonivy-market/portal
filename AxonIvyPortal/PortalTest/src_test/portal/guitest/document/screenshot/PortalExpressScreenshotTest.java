@@ -16,17 +16,21 @@ import portal.guitest.common.FileHelper;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
+import portal.guitest.page.CaseWidgetPage;
+import portal.guitest.page.ExpressBusinessViewPage;
 import portal.guitest.page.ExpressFormDefinitionPage;
 import portal.guitest.page.ExpressManagementPage;
 import portal.guitest.page.ExpressProcessPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.ProcessWidgetPage;
+import portal.guitest.test.ExpressManagementTest;
 
 public class PortalExpressScreenshotTest extends BaseTest {
   
   private static final int USER_TASK_INDEX = 0;
   private static final int USER_TASK_WITH_EMAIL_INDEX = 1;
   private static final int INFORMATION_EMAIL_INDEX = 2;
+  private String expressAdditionalBusinessUrl = "AxonIvyExpress/17326FC2F133FBEA/startExpressBusinessView.ivp";
 
   private HomePage homePage;
   private ProcessWidgetPage processWidget;
@@ -157,6 +161,31 @@ public class PortalExpressScreenshotTest extends BaseTest {
     expressManagementPage.clickOnExportButton();
     WebElement exportDialog = expressManagementPage.getExportExpressDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(exportDialog, ScreenshotUtil.EXPRESS_MANAGEMENT_FOLDER + "export-list-summary", new ScreenshotMargin(40));
+  }
+  
+  @Test
+  public void screenshotExpressBusinessPage() throws IOException {
+    ExpressManagementTest expressManagementTest = new ExpressManagementTest();
+    expressManagementTest.setup();
+    expressManagementTest.prepareExpressWorkflowStep();
+    expressManagementTest.completeExpressWorkflowTasks(ExpressManagementTest.FIRST_COMMENT, ExpressManagementTest.SECOND_COMMENT);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    homePage = new HomePage();
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 800));
+    CaseWidgetPage caseWidgetPage = homePage.openCaseList();
+    caseWidgetPage.openActionStepMenu();
+    executeDecorateJs("highlightShowAdditionalLink()");
+    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.EXPRESS_FOLDER + "express-case");
+    
+    String caseId = caseWidgetPage.getCaseId(0);
+    redirectToRelativeLink(expressAdditionalBusinessUrl + "?caseId=" + caseId);
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1100));
+    ExpressBusinessViewPage expressBusinessView = new ExpressBusinessViewPage();
+    expressBusinessView.clickOnLegendOfFieldset(1);
+    expressBusinessView.clickOnLegendOfFieldset(2);
+    expressBusinessView.closeMainMenu();
+    Sleeper.sleep(500); // wait for js of fieldSet executed
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "express-business-summary");
   }
 
 }
