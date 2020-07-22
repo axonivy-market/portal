@@ -79,6 +79,7 @@
 
             <h:panelGroup layout="block" styleClass="user-profile-footer">
               <p:commandButton id="save-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+                icon="#{visibilityBean.generateButtonIcon('icon ivyicon-floppy-disk')}"
                 actionListener="#{logic.save}" update="errors-message" />
               <p:spacer width="5px" />
             </h:panelGroup>

@@ -95,7 +95,7 @@
           <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="left-menu-guide-component" targetComponent="left-menu"
             title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/mainMenu/title')}" 
             content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/mainMenu/content')}"
-            targetCssSelector="#left-menu" icon="fa-bars" onNext="PF('process-widget-guide').show()"
+            targetCssSelector="#left-menu" iconClass="icon ivyicon-navigation-menu" onNext="PF('process-widget-guide').show()"
             my="left+30 top+70" at="right top" targetPosition="fixed" arrowPosition="left top"
             updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}" />
         </ui:insert>
@@ -103,7 +103,7 @@
         <div class="layout-main js-layout-main">
           <div class="layout-topbar">
             <a class="menu-btn">
-              <i class="material-icons fa fa-bars left-sidebar-menu-icon left-sidebar-menu-icon-font-size" />
+              <i class="icon ivyicon-navigation-menu left-sidebar-menu-icon left-sidebar-menu-icon-font-size" />
             </a>
             <div class="layout-topbar-menu-wrapper">
               <ui:decorate template="/layouts/includes/topbar.xhtml">

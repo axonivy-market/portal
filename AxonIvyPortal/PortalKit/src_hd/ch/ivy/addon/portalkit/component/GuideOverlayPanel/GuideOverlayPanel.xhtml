@@ -11,7 +11,7 @@
     shortDescription="Position css style of targer component highlight it. Default is relative" />
   <cc:attribute name="arrowPosition" default="top center"
     shortDescription="Arrow position points to target component. First value is the overlay panel's side, available values: top, right, bottom, left. Second value is arrow position at this side, available values: top, right, bottom, left, center. Default: top center" />
-  <cc:attribute name="icon" />
+  <cc:attribute name="iconClass" />
   <cc:attribute name="title" />
   <cc:attribute name="content" />
   <cc:attribute name="contentWidth" default="370px" />
@@ -33,7 +33,7 @@
     onShow="window['#{cc.attrs.targetComponent}' + '-guide'].show(); #{cc.attrs.onShow}">
     <span class="guide-panel__arrow" />
     <div class="guide-panel__container" style="width: #{cc.attrs.contentWidth}">
-      <span class="fa #{cc.attrs.icon} guide-panel__icon" />
+      <span class="#{cc.attrs.iconClass} guide-panel__icon" />
       <h2>#{cc.attrs.title}</h2>
       <p class="guide-panel__content"><h:outputText id="#{cc.attrs.targetComponent}-content" value="#{cc.attrs.content}" escape="false" /></p>
       <h:panelGroup id="guide-panel-buttons" layout="block" styleClass="guide-panel__buttons">
@@ -44,8 +44,10 @@
           rendered="#{not empty cc.attrs.onNext and not guideBean.dontShowAgain}" global="false" />
           
         <p:commandButton id="next" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}" 
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-arrow-right-1')}"
           onclick="PF('#{cc.attrs.targetComponent}-guide').hide(); #{cc.attrs.onNext}" rendered="#{not empty cc.attrs.onNext and not guideBean.dontShowAgain}" />
         <p:commandButton id="finish" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/finish')}"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
           process="@this" update="#{cc.attrs.updatedComponentAfterGuide}"
           actionListener="#{guideBean.updateToLoadRealData()}" partialSubmit="true"
           oncomplete="PF('#{cc.attrs.targetComponent}-guide').hide(); #{cc.attrs.onFinish}; "

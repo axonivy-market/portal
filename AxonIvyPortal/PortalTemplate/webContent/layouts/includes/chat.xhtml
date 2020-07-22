@@ -53,13 +53,13 @@
               rendered="#{chatRendererBean.isPrivateChatRendered}" />
           </div>
           <div class="close-chat">
-            <p:commandButton id="close-chat-button" icon="fa fa-chevron-right" onclick="view.closeChatPanel();" process="@(this)" partialSubmit="true" immediate="true" global="false" />
+            <p:commandButton id="close-chat-button" icon="icon ivyicon-arrow-right-1" onclick="view.closeChatPanel();" process="@(this)" partialSubmit="true" immediate="true" global="false" />
           </div>
         </div>
         <div class="message-list js-chat-message-container">
           <div class="message-list-header">
             <span class="message-chat-header-name js-message-chat-header-name TexAlCenter" /> <span class="message-list-header-close js-close-message-list">
-              <i class="fa fa-times-circle" />
+              <i class="icon ivyicon-delete-1" />
             </span>
             <p:commandLink id="show-participants-link" styleClass="show-participants-link"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/viewParticipant')}"
@@ -72,7 +72,7 @@
               <textarea id="message-input-field" onkeydown="chat.onKeyEvent(event)" placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/typeMessage')}" maxlength="2500"
                 class="message-list-content-send-input js-input-message ui-inputfield ui-inputtextarea ui-widget ui-state-default ui-corner-all message-list-content-send-input js-input-message ui-inputtextarea-resizable">
               </textarea>
-              <p:commandButton icon="fa fa-paper-plane" onclick="chat.sendMessage()"
+              <p:commandButton icon="icon ivyicon-send-email" onclick="chat.sendMessage()"
                 styleClass="message-list-content-send-button js-send-chat-message" global="false" type="button" />
             </h:panelGroup>
           </div>
@@ -82,7 +82,7 @@
       <span class="contact-card js-no-group-chat-template no-group-chat u-hidden">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/noGroupChat')}</span>
 
       <div class="contact-card js-show-group-chat-message js-group-template u-hidden">
-        <span class="contact-card-icon js-show-contact-message-unread"> <i class="fa fa-users" />
+        <span class="contact-card-icon js-show-contact-message-unread"> <i class="icon ivyicon-multiple-neutral-1" />
         </span>
         <div class="contact-card-name">
           <span class="js-group-card-name" />
@@ -91,7 +91,7 @@
       </div>
 
       <div id="contact-template" class="contact-card js-contact-template js-show-chat-message u-hidden">
-        <span class="contact-card-icon js-show-contact-message-unread"> <i class="fa fa-user" /> <i
+        <span class="contact-card-icon js-show-contact-message-unread"> <i class="icon ivyicon-single-neutral-actions" /> <i
           class="contact-card-status js-contact-card-status" />
         </span> <span class="contact-card-name js-contact-card-name" /> <span class="contact-notification js-notification u-hidden" />
       </div>
@@ -119,7 +119,7 @@
       <f:facet name="footer">
         <h:panelGroup layout="block">
           <p:commandButton onclick="PF('participants-list-dialog').hide()" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-            type="button" />
+            type="button" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}" />
         </h:panelGroup>
       </f:facet>
     </p:dialog>

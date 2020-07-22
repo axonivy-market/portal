@@ -1,0 +1,79 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/BasicTemplate.xhtml">
+    <ui:define name="pageTitle">Portal Dialog Example</ui:define>
+    <ui:define name="pageContent">
+
+      <h3>
+        This is an example page for Portal dialogs.
+      </h3>
+
+      <h:form id="form">
+        <div class="command-btns">
+          <p:commandButton id="open-info-dialog" type="button" onclick="PF('info-dialog').show();" value="Open info dialog" />
+          <br/> <br/>
+          <p:commandButton id="open-warning-dialog" type="button" onclick="PF('warning-dialog').show();" value="Open warning dialog" />
+          <br/> <br/>
+          <p:commandButton id="open-delete-dialog" type="button" onclick="PF('delete-dialog').show();" value="Open delete dialog" />
+        </div>
+      </h:form>
+    
+      <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+          <ui:param name="id" value="info-dialog" />
+          <ui:param name="widgetVar" value="info-dialog" />
+          <ui:param name="appendTo" value="@(body)" />
+          <ui:param name="headerText" value="Need your attention" />
+          <ui:param name="dialogContent" value="This is a sample content of info dialog. This is a sample content of info dialog." />
+          
+          <ui:define name="dialogFooter">
+             <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                onclick="PF('info-dialog').hide();" styleClass="u-mar-right-15" />
+             <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+                icon="icon ivyicon-check-1"
+                onclick="PF('info-dialog').hide();" />
+          </ui:define>
+      </ui:decorate>
+      
+      <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+          <ui:param name="id" value="warning-dialog" />
+          <ui:param name="widgetVar" value="warning-dialog" />
+          <ui:param name="appendTo" value="@(body)" />
+          <ui:param name="maxWidth" value="400px"/>
+          <ui:param name="iconClass" value="icon ivyicon-road-sign-warning" />
+          <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+          <ui:param name="headerText" value="Warning!" />
+          <ui:param name="dialogContent" value="Accept if you want to reset all settings to default value." />
+          
+          <ui:define name="dialogFooter">
+             <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                onclick="PF('warning-dialog').hide();" styleClass="u-mar-right-15" />
+             <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+                icon="icon ivyicon-button-refresh-arrows"
+                onclick="PF('warning-dialog').hide();" />
+          </ui:define>
+      </ui:decorate>
+      
+      <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+          <ui:param name="id" value="delete-dialog" />
+          <ui:param name="widgetVar" value="delete-dialog" />
+          <ui:param name="appendTo" value="@(body)" />
+          <ui:param name="iconClass" value="icon ivyicon-delete-1" />
+          <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+          <ui:param name="dialogContent" value="This operation cannot be undone. Are you sure you want to delete this item?" />
+          
+          <ui:define name="dialogFooter">
+             <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                onclick="PF('delete-dialog').hide();" styleClass="u-mar-right-15" />
+             <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+                icon="icon ivyicon-remove"
+                onclick="PF('delete-dialog').hide();" />
+          </ui:define>
+      </ui:decorate>
+    
+    </ui:define>
+  </ui:composition>
+</h:body>
+</html>

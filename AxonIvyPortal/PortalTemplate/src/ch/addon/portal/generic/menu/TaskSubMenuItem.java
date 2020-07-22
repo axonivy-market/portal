@@ -6,7 +6,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class TaskSubMenuItem extends SubMenuItem {
   public TaskSubMenuItem() {
-    this.icon = "fa fa-check-square-o";
+    this.icon = "icon ivyicon-task-list-edit";
     this.menuKind = MenuKind.TASK;
     this.label = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks");
     this.link = new PortalNavigator().getSubMenuItemUrlOfCurrentApplication(MenuKind.TASK);
