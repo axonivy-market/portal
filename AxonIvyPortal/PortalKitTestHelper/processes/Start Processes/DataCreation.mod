@@ -1474,7 +1474,7 @@ expressProcessService.save(expressProcess);
 
 ExternalLink externalLink = new ExternalLink();
 externalLink.name = "A sample for External link to Google";
-externalLink.creatorId = ivy.wf.getSecurityContext().users().find("#demo").getId();
+externalLink.creatorId = ivy.wf.getSecurityContext().users().find("demo").getId();
 externalLink.public = true;
 externalLink.link = "google.com";
 ExternalLinkService externalLinkService = new ExternalLinkService();
