@@ -188,7 +188,7 @@ PrimeFaces.widget.Serenity = PrimeFaces.widget.BaseWidget.extend({
             e.preventDefault();
         });
         
-        this.menuButton.on('click', function(e) {
+        this.menuButton.off('click.menubutton').on('click.menubutton', function(e) {
             $this.wrapper.removeClass('layout-wrapper-static-restore').toggleClass('layout-wrapper-active');
             $(document.body).toggleClass('hidden-overflow');
             
