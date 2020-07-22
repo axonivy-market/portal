@@ -41,6 +41,11 @@ Ss0 @PushWFArc f22 '' #zField
 Ss0 @StartRequest f32 '' #zField
 Ss0 @EndTask f33 '' #zField
 Ss0 @PushWFArc f34 '' #zField
+Ss0 @StartRequest f35 '' #zField
+Ss0 @EndTask f36 '' #zField
+Ss0 @UserDialog f37 '' #zField
+Ss0 @PushWFArc f38 '' #zField
+Ss0 @PushWFArc f39 '' #zField
 >Proto Ss0 Ss0 Showcases #zField
 Ss0 f0 outLink ApplicationShowcase.ivp #txt
 Ss0 f0 inParamDecl '<> param;' #txt
@@ -295,6 +300,41 @@ Ss0 f32 @|StartRequestIcon #fIcon
 Ss0 f33 977 145 30 30 0 15 #rect
 Ss0 f33 @|EndIcon #fIcon
 Ss0 f34 751 160 977 160 #arcP
+Ss0 f35 outLink PortalDialogExamples.ivp #txt
+Ss0 f35 inParamDecl '<> param;' #txt
+Ss0 f35 requestEnabled true #txt
+Ss0 f35 triggerEnabled false #txt
+Ss0 f35 callSignature PortalDialogExamples() #txt
+Ss0 f35 startName 'Portal Dialog Examples' #txt
+Ss0 f35 caseData businessCase.attach=true #txt
+Ss0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>PortalDialogExamples.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f35 @C|.responsibility Everybody #txt
+Ss0 f35 721 241 30 30 -82 18 #rect
+Ss0 f35 @|StartRequestIcon #fIcon
+Ss0 f36 977 241 30 30 0 15 #rect
+Ss0 f36 @|EndIcon #fIcon
+Ss0 f37 dialogId com.axonivy.portal.developerexamples.PortalDialogExample #txt
+Ss0 f37 startMethod start() #txt
+Ss0 f37 requestActionDecl '<> param;' #txt
+Ss0 f37 responseMappingAction 'out=in;
+' #txt
+Ss0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>PortalDialogExample</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f37 800 234 128 44 -58 -8 #rect
+Ss0 f37 @|UserDialogIcon #fIcon
+Ss0 f38 751 256 800 256 #arcP
+Ss0 f39 928 256 977 256 #arcP
 >Proto Ss0 .type com.axonivy.portal.developerexamples.showcase.Data #txt
 >Proto Ss0 .processKind NORMAL #txt
 >Proto Ss0 0 0 32 24 18 0 #rect
@@ -323,3 +363,7 @@ Ss0 f23 mainOut f22 tail #connect
 Ss0 f22 head f21 mainIn #connect
 Ss0 f32 mainOut f34 tail #connect
 Ss0 f34 head f33 mainIn #connect
+Ss0 f35 mainOut f38 tail #connect
+Ss0 f38 head f37 mainIn #connect
+Ss0 f37 mainOut f39 tail #connect
+Ss0 f39 head f36 mainIn #connect

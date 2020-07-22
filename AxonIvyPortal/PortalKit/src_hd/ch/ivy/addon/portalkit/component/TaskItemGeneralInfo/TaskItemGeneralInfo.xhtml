@@ -67,20 +67,8 @@
       </div>
       <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
         <h:panelGroup id="task-detail-state" styleClass="state-cell default-task-cell">
-          <h:panelGroup id="task-detail-state-open" rendered="#{state == 'SUSPENDED' or state == 'UNASSIGNED'}" styleClass="fa fa-play-circle task-state-open " />
-          <h:panelGroup id="task-detail-state-in-progress" rendered="#{state == 'RESUMED' or state == 'CREATED'}" styleClass="fa fa-play-circle task-state-in-progress" />
-          <h:panelGroup id="task-detail-state-done" rendered="#{state == 'DONE'}" styleClass="fa fa-check-circle task-state-done " />
-          <h:panelGroup id="task-detail-state-reserved" rendered="#{state == 'PARKED'}" styleClass="fa fa-pause-circle task-state-reserved " />
-          <h:panelGroup id="task-detail-state-destroyed" rendered="#{state == 'DESTROYED' or state == 'ZOMBIE'}"
-            styleClass="fa fa-exclamation-circle task-state-zombie-destroyed" />
-          <h:panelGroup id="task-detail-state-delayed" rendered="#{state == 'DELAYED'}"
-            styleClass="icon ivyicon-alarm-bell-timer task-state-delaye" />
-          <h:panelGroup id="task-detail-state-system"
-            rendered="#{state != 'SUSPENDED' and state != 'UNASSIGNED' and state != 'RESUMED' and state != 'CREATED'
-            and state != 'DONE' and state != 'PARKED' and state != 'DESTROYED' and state != 'ZOMBIE'
-            and state != 'DELAYED'}"
-            styleClass="fa fa-cog task-state-system " />
-          <h:outputText value="#{state}" styleClass="task-detail-state" />
+          <h:panelGroup id="task-detail-state-icon" styleClass="#{taskBean.getStateIcon(state)}" />
+          <h:outputText value="#{taskBean.getTranslatedState(state)}" styleClass="task-detail-state" />
         </h:panelGroup>
       </div>
     </div>

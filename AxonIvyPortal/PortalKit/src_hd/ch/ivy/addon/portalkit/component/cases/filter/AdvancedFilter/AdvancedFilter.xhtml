@@ -65,7 +65,12 @@
 
         <h:panelGroup id="advanced-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer"
           rendered="#{cc.attrs.displayFooterButtons}">
+          <p:commandLink id="cancel-command" process="@this" global="false"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="#{cc.clientId}:filter-open-form @form" resetValues="true"
+            oncomplete="PF('#{widgetVarPanel}').hide(); #{facesContext.validationFailed ? caseFilter.resetValues() : ''};" />
+          <p:spacer width="15" />
           <p:commandButton id="update-command"
+            icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             actionListener="#{caseFilter.validate()}"
             update="#{cc.clientId}:filter-open-form @form @(.filter-container) @(.hidden-case-count)"
@@ -74,10 +79,6 @@
             <f:actionListener binding="#{cc.attrs.updateListener}" />
             <f:actionListener binding="#{args.validationFailed ? '':dataModel.onFilterApply()}" />
           </p:commandButton>
-          <p:spacer width="5" />
-          <p:commandButton id="cancel-command" styleClass="portal-cancel-button" process="@this" global="false"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="#{cc.clientId}:filter-open-form @form" resetValues="true"
-            oncomplete="PF('#{widgetVarPanel}').hide(); #{facesContext.validationFailed ? caseFilter.resetValues() : ''};" />
         </h:panelGroup>
       </p:overlayPanel>
     </h:form>

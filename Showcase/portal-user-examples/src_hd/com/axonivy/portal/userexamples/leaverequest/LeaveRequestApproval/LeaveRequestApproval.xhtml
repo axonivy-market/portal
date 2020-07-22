@@ -15,7 +15,7 @@
           <div class="ui-g-12 ui-md-12 ui-lg-1 ui-xl-3"></div>
           <p:panel class="card ui-g-12 ui-md-12 ui-lg-10 ui-xl-6">
             <p>#{ivy.cms.co('/Labels/LeaveRequest/approvalTaskIntro')}</p>
-            <h:panelGrid columns="1" columnClasses="TexAlLeft" styleClass="ui-g-12">
+            <h:panelGrid columns="1" columnClasses="u-text-align-left" styleClass="ui-g-12">
               <p:messages styleClass="ui-g-12" />
               <h:panelGroup class="md-inputfield MarTop10">
                 <p:inputText id="requester" disabled="true" value="#{data.requester.displayName}" />
@@ -63,12 +63,12 @@
             </h:panelGrid>
 
             <h:panelGroup layout="block" styleClass="MarTop5 ui-g-12" id="command-group">
-              <p:commandButton value="#{ivy.cms.co('/Dialog/Common/approve')}" icon="fa fa-send-o" styleClass="Fright"
+              <p:commandButton value="#{ivy.cms.co('/Dialog/Common/approve')}" icon="icon ivyicon-check-1" styleClass="Fright"
                 partialSubmit="true" id="approved-btn" actionListener="#{logic.approved}" process=":leave-request"
                 update=":leave-request" style="width: auto" />
               <p:spacer width="5px" styleClass="Fright" />
-              <p:commandButton value="#{ivy.cms.co('/Dialog/Common/reject')}" icon="fa fa-ban" partialSubmit="true"
-                id="rejected-btn" styleClass="portal-cancel-button Fright" actionListener="#{logic.rejected}"
+              <p:commandButton value="#{ivy.cms.co('/Dialog/Common/reject')}" icon="icon ivyicon-delete" partialSubmit="true"
+                id="rejected-btn" styleClass="secondary-btn Fright" actionListener="#{logic.rejected}"
                 process=":leave-request" update=":leave-request" style="width: auto" />
             </h:panelGroup>
           </p:panel>

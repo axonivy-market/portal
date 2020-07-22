@@ -25,7 +25,7 @@
         <h:panelGroup id="more-related-tasks" layout="block" styleClass="Fright show-more-technical-cases-container u-truncate-text">
           <p:commandLink id="show-more-related-tasks" actionListener="#{logic.navigateToRelatedTasksOfCase(cc.attrs.isWorkingOnTask)}" styleClass="case-related-command-link" 
               rendered="#{caseWidgetBean.showAllTasksOfCase and cc.attrs.case.state != 'CREATED'}">
-            <span class="fa fa-external-link-square" />
+            <span class="icon ivyicon-expand-6" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTasks')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:commandLink>
@@ -38,7 +38,7 @@
           value="#{data.relatedTasks.size() gt 20 ? caseWidgetBean.getFirst20Items(data.relatedTasks) : data.relatedTasks}" mode="inline"
           chunkSize="10" var="task" styleClass="case-related-task-case-running">
           <h:panelGroup id="task" layout="block" class="grid-item-content-list-item related-task-content js-related-task">
-            <i class="fa #{taskBean.getStateIcon(task.state)} fa-fw related-task-list-item-status" />
+            <i class="#{taskBean.getStateIcon(task.state)} related-task-list-item-status" />
             <p:commandLink id="task-name"
               value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}"
               styleClass="related-task" actionListener="#{logic.navigateToSelectedTaskDetails(task.getId(), cc.attrs.isWorkingOnTask)}">
@@ -61,7 +61,7 @@
         <h:panelGroup id="more-related-cases" layout="block" styleClass="Fright show-more-technical-cases-container u-truncate-text">
           <p:commandLink id="show-more-related-cases" styleClass="case-related-command-link" rendered="#{not empty data.technicalCases}"
             actionListener="#{logic.navigateToTechnicalCasesOfBusinessCase(cc.attrs.case,cc.attrs.isWorkingOnTask)}">
-            <span class="fa fa-external-link-square" />
+            <span class="icon ivyicon-expand-6" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTechnicalCases')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:commandLink>
