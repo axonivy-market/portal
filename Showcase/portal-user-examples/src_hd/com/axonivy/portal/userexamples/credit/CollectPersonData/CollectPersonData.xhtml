@@ -18,7 +18,7 @@
           <p:panel class="card ui-g-12 ui-md-12">
             <h:panelGroup styleClass="ui-g" layout="block">
               <p:messages styleClass="ui-g-12" />
-              <h:panelGrid columns="2" columnClasses="TexAlLeft ui-g-6, TexAlLeft ui-g-6"
+              <h:panelGrid columns="2" columnClasses="u-text-align-left ui-g-6, u-text-align-left ui-g-6"
                 styleClass="ui-g-12 ui-md-12 ui-sm-12">
 
                 <h:panelGroup layout="block" styleClass="credit-request-column-1">
@@ -91,7 +91,7 @@
           </p:panel>
         </h:panelGroup>
         <p:commandButton id="submit-request" actionListener="#{logic.close}"
-          value="#{ivy.cms.co('/Labels/CaseMap/Credit/submitRequest')}" update="form" icon="fa fa-send-o"
+          value="#{ivy.cms.co('/Labels/CaseMap/Credit/submitRequest')}" update="form" icon="icon ivyicon-check-1"
           styleClass="Fright" />
       </h:form>
 

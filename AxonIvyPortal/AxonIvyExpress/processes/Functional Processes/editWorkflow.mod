@@ -620,7 +620,7 @@ import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.gawfs.ExpressProcessUtils;
 
-ExpressProcess workflow = ExpressServiceRegistry.getProcessService().findById(in.processID) as ExpressProcess;
+ExpressProcess workflow = ExpressServiceRegistry.getProcessService().findExpressProcessById(in.processID) as ExpressProcess;
 
 in.processDescription = workflow.processDescription;
 in.processName = workflow.processName;

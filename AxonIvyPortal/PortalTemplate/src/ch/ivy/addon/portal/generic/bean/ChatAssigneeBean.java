@@ -158,7 +158,7 @@ public class ChatAssigneeBean implements Serializable {
     if (existedGroupChat != null) {
       Set<String> assigneeNames = existedGroupChat.getAssigneeNames();
       if (CollectionUtils.isNotEmpty(assigneeNames)) {
-        assigneeNames.add(Ivy.session().getSessionUser().getMemberName());
+        assigneeNames.add("#".concat(Long.toString(Ivy.session().getSessionUser().getId())));
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
             Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/joinedProcessChat",
                 Arrays.asList(getGroupChatName(existedGroupChat))), null);
@@ -189,7 +189,9 @@ public class ChatAssigneeBean implements Serializable {
         .orElse(StringUtils.EMPTY);
     try {
       ObjectMapper mapper = new ObjectMapper();
-      return mapper.readValue(groupChatJson, GroupChat.class);
+      GroupChat result = mapper.readValue(groupChatJson, GroupChat.class);
+      result.getAssignees();
+      return result;
     } catch (IOException e) {
       Ivy.log().error("Failed to parse group chat for case {0}, json: {1}", e, iCase.getId(), groupChatJson);
       return null;

@@ -436,7 +436,7 @@ GlobalSettingService globalSettingService = new GlobalSettingService();
 globalSettingService.deleteAll(globalSettingService.findAll());
 
 
-List<ExternalLink> privateExternalLinks = ExternalLinkService.getInstance().findStartableLink("demo");
+List<ExternalLink> privateExternalLinks = ExternalLinkService.getInstance().findStartableLink(ivy.wf.getSecurityContext().users().find("demo").getId());
 if (CollectionUtils.isNotEmpty(privateExternalLinks)) {
   for (int i = 0; i < privateExternalLinks.size(); i++) {
     if (privateExternalLinks.get(i).isPublic()) {

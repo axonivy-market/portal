@@ -120,7 +120,7 @@ function highlightProcessItems() {
   createRedMediumOutline(expressLogo);
   appendStepAnnotation(expressLogo, "2", -45, -10);
   
-  var externalLink = $('.fa-external-link.external-link-icon:eq(0)');
+  var externalLink = $('.ivyicon-hyperlink-3.external-link-icon:eq(0)');
   createRedMediumOutline(externalLink);
   appendStepAnnotation(externalLink, "3", -45, -10);
 }
