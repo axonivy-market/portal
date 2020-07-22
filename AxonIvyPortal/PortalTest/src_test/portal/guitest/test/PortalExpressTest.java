@@ -13,6 +13,7 @@ import org.junit.Test;
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.DefaultExpresTaskPage;
 import portal.guitest.page.ExpressApprovalPage;
 import portal.guitest.page.ExpressEndPage;
@@ -399,7 +400,7 @@ public class PortalExpressTest extends BaseTest {
 		userTaskWithMailFormPage.inputData("wawa@axonivy.io", "Task information", "Task is created");
 		userTaskWithMailFormPage.finish();
 		executeApproval("Approved at first level");
-		executeUserTask("Task 4");
+		executeUserTask();
 		String approvalResult = executeReview("Test approval: Final Review");
 		Assert.assertEquals("Portal Demo User,Approved at first level,Yes", approvalResult);
 		new ExpressEndPage().finish();
@@ -426,16 +427,7 @@ public class PortalExpressTest extends BaseTest {
 
 	protected void executeUserTask() {
 		taskWidgetPage = new TaskWidgetPage();
-		taskWidgetPage.startTask(0);
-		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
-		expressTaskPage.finish();
-		HomePage home = new HomePage();
-		home.waitForPageLoaded();
-	}
-
-	protected void executeUserTask(String taskName) {
-		taskWidgetPage = new TaskWidgetPage();
-		taskWidgetPage.filterTasksBy(taskName);
+		WaitHelper.assertTrueWithRefreshPage(taskWidgetPage, () -> taskWidgetPage.countTasks() == 1);
 		taskWidgetPage.startTask(0);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
