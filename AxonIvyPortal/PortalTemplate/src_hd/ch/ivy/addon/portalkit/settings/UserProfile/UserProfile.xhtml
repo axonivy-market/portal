@@ -6,7 +6,7 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="viewName" value="USER_PROFILE" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle')}</ui:define>
-    <ui:define name="simplePageContent">
+    <ui:define name="pageContent">
       <f:event listener="#{logic.initSettings}" type="preRenderComponent" />
       <div class="user-profile">
         <h:form id="my-profile-form">
