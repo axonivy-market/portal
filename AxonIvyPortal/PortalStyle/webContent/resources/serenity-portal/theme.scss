@@ -1743,21 +1743,3 @@ ul.participants-list li {
   border: 2px solid transparent;
   border-top-color: $axonLoaderBorderColor;
 }
-
-
-@-webkit-keyframes change-color {
-  0%   { background-color: transparent;}
-  100% { background-color: $portalAjaxChangedBackground;}
-}
-@-moz-keyframes change-color {
-  0%   { background-color: transparent;}
-  100% { background-color: $portalAjaxChangedBackground;}
-}
-@-o-keyframes change-color {
-  0%   { background-color: transparent;}
-  100% { background-color: $portalAjaxChangedBackground;}
-}
-@keyframes change-color {
-  0%   { background-color: transparent;}
-  100% { background-color: $portalAjaxChangedBackground;}
-}
