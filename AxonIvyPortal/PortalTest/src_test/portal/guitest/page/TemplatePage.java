@@ -94,6 +94,7 @@ public abstract class TemplatePage extends AbstractPage {
     try {
       wait.until(myFunction);
     } catch (WebDriverException e) {
+      e.printStackTrace();
       System.out.println("ERROR when ensuring not background request");
     }
   }
@@ -300,6 +301,7 @@ public abstract class TemplatePage extends AbstractPage {
     }
 
     public SearchResultPage inputSearchKeyword(String keyword) {
+      click(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR));
       type(getSearchInput(), keyword + Keys.ENTER);
       return new SearchResultPage();
     }

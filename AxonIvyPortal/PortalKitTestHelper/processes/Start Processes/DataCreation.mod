@@ -159,6 +159,11 @@ Dt0 @EndTask f141 '' #zField
 Dt0 @GridStep f142 '' #zField
 Dt0 @PushWFArc f143 '' #zField
 Dt0 @PushWFArc f144 '' #zField
+Dt0 @StartRequest f145 '' #zField
+Dt0 @EndTask f146 '' #zField
+Dt0 @GridStep f147 '' #zField
+Dt0 @PushWFArc f148 '' #zField
+Dt0 @PushWFArc f149 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
@@ -1485,6 +1490,50 @@ Dt0 f142 920 1186 128 44 -56 -8 #rect
 Dt0 f142 @|StepIcon #fIcon
 Dt0 f143 1048 1208 1097 1208 #arcP
 Dt0 f144 840 1208 920 1208 #arcP
+Dt0 f145 outLink createSampleExpressWorkflowProcess.ivp #txt
+Dt0 f145 inParamDecl '<String filePath> param;' #txt
+Dt0 f145 inParamTable 'out.expressExportFilePath=param.filePath;
+' #txt
+Dt0 f145 requestEnabled true #txt
+Dt0 f145 triggerEnabled false #txt
+Dt0 f145 callSignature createSampleExpressWorkflowProcess(String) #txt
+Dt0 f145 caseData businessCase.attach=true #txt
+Dt0 f145 showInStartList 0 #txt
+Dt0 f145 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createSampleExpressWorkflowProcess.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f145 @C|.responsibility Everybody #txt
+Dt0 f145 801 1297 30 30 -121 29 #rect
+Dt0 f145 @|StartRequestIcon #fIcon
+Dt0 f146 1105 1297 30 30 0 15 #rect
+Dt0 f146 @|EndIcon #fIcon
+Dt0 f147 actionTable 'out=in;
+' #txt
+Dt0 f147 actionCode 'import org.apache.commons.collections4.map.HashedMap;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
+
+ExpressManagementUtils utils = new ExpressManagementUtils();
+InputStream inputstream = new FileInputStream(in.expressExportFilePath);
+utils.installExpressWorkflows(inputstream, new StringBuilder(), new HashedMap());
+' #txt
+Dt0 f147 security system #txt
+Dt0 f147 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Import Express from file</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f147 912 1290 144 44 -65 -8 #rect
+Dt0 f147 @|StepIcon #fIcon
+Dt0 f148 831 1312 912 1312 #arcP
+Dt0 f149 1056 1312 1105 1312 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1713,6 +1762,10 @@ Dt0 f140 mainOut f144 tail #connect
 Dt0 f144 head f142 mainIn #connect
 Dt0 f142 mainOut f143 tail #connect
 Dt0 f143 head f141 mainIn #connect
+Dt0 f145 mainOut f148 tail #connect
+Dt0 f148 head f147 mainIn #connect
+Dt0 f147 mainOut f149 tail #connect
+Dt0 f149 head f146 mainIn #connect
 Ct0 g0 m f2 tail #connect
 Ct0 f2 head f1 in #connect
 Ct0 f1 out f4 tail #connect

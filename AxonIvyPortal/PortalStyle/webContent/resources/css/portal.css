@@ -702,6 +702,15 @@ body .portal-cancel-button.ui-widget.ui-button .ui-icon,
 
 .ui-widget.ui-button.defined-task-button.ui-state-hover {
   background-color: var(--defined-task-button-actived-or-hover-background-color); }
+  
+.defined-task-container.card,
+.form-elements-container.card,
+.approval-comment-container .card,
+.express-email-container .card,
+.express-fieldset .card,
+.express-view-form .card {
+  box-shadow: var(--card-box-shadow);
+  border-radius: var(--card-border-radius); }
 
 /*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
 .stages-chain .current i {
@@ -1504,6 +1513,13 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .available-elements-action-btn button {
   background-color: var(--express-available-elements-action-button-background-color);
   box-shadow: var(--express-available-elements-action-button-shadow); }
+  
+.express-add-option-panel button {
+  background-color: var(--express-available-elements-action-button-background-color);
+  box-shadow: var(--express-available-elements-action-button-shadow); }
+
+.available-elements-action-btn button:hover, .available-elements-action-btn button:focus, .express-add-option-panel button:hover, .express-add-option-panel button:focus {	
+  background-color:transparent;}
 
 body .available-elements-action-btn .ui-button.ui-button-icon-only .ui-icon {
   color: var(--express-available-elements-action-button-icon-color); }

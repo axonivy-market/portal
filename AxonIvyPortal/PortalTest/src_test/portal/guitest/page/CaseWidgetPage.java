@@ -147,11 +147,18 @@ public class CaseWidgetPage extends TemplatePage {
 	}
 
 	public String getCaseId() {
-		waitForElementDisplayed(By.cssSelector("*[id$='case-list']"), true);
+		waitForElementDisplayed(By.cssSelector("*[id$=':case-list']"), true);
 		WebElement selectedCaseElement = findElementByCssSelector(".case-list-item-expanded");
 		WebElement selectedCaseIdElement = selectedCaseElement.findElement(By.cssSelector(".case-header-id-cell"));
 		return selectedCaseIdElement.getText();
 	}
+	
+  public String getCaseId(int caseIndex) {
+    waitForElementDisplayed(By.cssSelector("*[id$=':case-list']"), true);
+    WebElement selectedCaseElement = findElementByCssSelector(String.format("[id$='case-list-scroller:%d:case-item:case-item-container']", caseIndex));
+    WebElement selectedCaseIdElement = selectedCaseElement.findElement(By.cssSelector("[id$=':case-id-cell']"));
+    return selectedCaseIdElement.getText();
+  }
 
 	public boolean isCaseDisplayed(String name) {
 		List<WebElement> caseNameElements = findListElementsByClassName("case-header-name-cell");
