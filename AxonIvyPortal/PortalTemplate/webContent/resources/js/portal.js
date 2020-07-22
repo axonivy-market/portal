@@ -216,18 +216,3 @@ function handleError(xhr, renderDetail){
   }
   PF('error-ajax-dialog').show();
 }
-
-// Showing Loader icon when page loading
-window.addEventListener('beforeunload', function() {
-  $('.portal-ajax-loader').children().show();
-});
-
-$(document).ready(function($) {
-  $('.portal-ajax-loader').children().show();
-});
-
-$(window).on('load', function (e) {
-  setTimeout(function() {
-    $('.portal-ajax-loader').children().hide();
-  }, 1);
-});
