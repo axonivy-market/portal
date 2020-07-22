@@ -93,23 +93,13 @@ public class TaskSearchCriteria {
       finalQuery.where().and(queryForCategory(getCategory()));
     }
   }
-
+  
   private void addAssigneeTypeQuery(TaskQuery finalQuery) {
     if (isQueryForUnassignedTask()) {
-      finalQuery.where().and().activatorUserId().isNull().and().activatorRoleId().isNull();
-    } else if (getTaskAssigneeType() == TaskAssigneeType.ROLE) {
-      finalQuery.where().and().activatorRoleId().isNotNull();
-    } else if (getTaskAssigneeType() == TaskAssigneeType.USER) {
-      TaskQuery personalTaskQuery = TaskQuery.create().where().activatorUserId().isNotNull();
-      if (getIncludedStates().contains(PARKED)) {
-        TaskQuery reservedTaskQuery =
-            TaskQuery.create().where().activatorRoleId().isNotNull().and().state().isEqual(PARKED);
-        personalTaskQuery.where().or(reservedTaskQuery);
-      }
-      finalQuery.where().and(personalTaskQuery);
-    }
+      finalQuery.where().and().activatorId().isNull(); 
+    } 
   }
-
+  
   private void addCaseIdQuery(TaskQuery finalQuery) {
     if (hasCaseId()) {
       if (isQueryByBusinessCaseId()) {
