@@ -1896,19 +1896,3 @@ color: var(--button-text-color);
   border-top-color: var(--primary-color);
 }
 
-@-webkit-keyframes change-color {
-  0%   { background-color: transparent;}
-  100% { background-color: var(--portal-ajax-changed-background);}
-}
-@-moz-keyframes change-color {
-  0%   { background-color: transparent;}
-  100% { background-color: var(--portal-ajax-changed-background);}
-}
-@-o-keyframes change-color {
-  0%   { background-color: transparent;}
-  100% { background-color: var(--portal-ajax-changed-background);}
-}
-@keyframes change-color {
-  0%   { background-color: transparent;}
-  100% { background-color: var(--portal-ajax-changed-background);}
-}
