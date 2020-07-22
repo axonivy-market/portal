@@ -689,9 +689,9 @@ if (#task is initialized) {
 } else {
 	Boolean isTaskFinished = SecurityServiceUtils.getSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString()).toBoolean();
 	in.isTaskFinished = #isTaskFinished is initialized ? isTaskFinished : true;
-	SecurityServiceUtils.removeSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString());
 }
 
+SecurityServiceUtils.removeSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString());
 ivy.session.setAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString(), in.isTaskStartedInDetails);' #txt
 Pt0 f11 security system #txt
 Pt0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
