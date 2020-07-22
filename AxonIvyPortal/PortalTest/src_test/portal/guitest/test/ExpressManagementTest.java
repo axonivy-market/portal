@@ -162,7 +162,7 @@ public class ExpressManagementTest extends BaseTest {
     taskWidgetPage.clickOnStartTaskLink(0);
     ExpressReviewPage expressReview = new ExpressReviewPage();
     expressReview.finish();
-    expressReview.clickOnOkButton();
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
 
   private void executeApprovalTask(String comment) {
