@@ -17,21 +17,21 @@
   <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('STATE')}" >
     <h:panelGroup id="#{cc.attrs.componentId}" styleClass="state-cell default-task-cell #{cc.attrs.stateStyleClass} #{cc.attrs.responsiveStyleClass}">
       <h:panelGroup id="#{cc.attrs.componentId}-open" rendered="#{state == 'SUSPENDED' or state == 'UNASSIGNED'}"
-        styleClass="fa fa-play-circle task-state-open #{cc.attrs.stateIconStyleClass}" />
+        styleClass="icon ivyicon-controls-play task-state-open #{cc.attrs.stateIconStyleClass}" />
       <h:panelGroup id="#{cc.attrs.componentId}-in-progress" rendered="#{state == 'RESUMED' or state == 'CREATED'}"
-        styleClass="fa fa-play-circle task-state-in-progress #{cc.attrs.stateIconStyleClass}" />
+        styleClass="icon ivyicon-hourglass task-state-in-progress #{cc.attrs.stateIconStyleClass}" />
       <h:panelGroup id="#{cc.attrs.componentId}-done" rendered="#{state == 'DONE'}"
-        styleClass="fa fa-check-circle task-state-done #{cc.attrs.stateIconStyleClass}" />
+        styleClass="icon ivyicon-check-circle-1 task-state-done #{cc.attrs.stateIconStyleClass}" />
       <h:panelGroup id="#{cc.attrs.componentId}-reserved" rendered="#{state == 'PARKED'}"
-        styleClass="fa fa-pause-circle task-state-reserved #{cc.attrs.stateIconStyleClass}" />
+        styleClass="icon ivyicon-touch-finger_1 task-state-reserved #{cc.attrs.stateIconStyleClass}" />
       <h:panelGroup id="#{cc.attrs.componentId}-destroyed" rendered="#{state == 'DESTROYED' or state == 'ZOMBIE'}"
-        styleClass="fa fa-exclamation-circle task-state-zombie-destroyed #{cc.attrs.stateIconStyleClass}" />
+        styleClass="icon ivyicon-alert-circle task-state-zombie-destroyed #{cc.attrs.stateIconStyleClass}" />
       <h:panelGroup id="#{cc.attrs.componentId}-delayed" rendered="#{state == 'DELAYED'}"
         styleClass="icon ivyicon-alarm-bell-timer task-state-delayed #{cc.attrs.stateIconStyleClass}" />
       <h:panelGroup id="#{cc.attrs.componentId}-system"
         rendered="#{state != 'SUSPENDED' and state != 'UNASSIGNED' and state != 'RESUMED' and state != 'CREATED'
        and state != 'DONE' and state != 'PARKED' and state != 'DESTROYED' and state != 'ZOMBIE' and state != 'DELAYED'}"
-        styleClass="fa fa-cog task-state-system #{cc.attrs.stateIconStyleClass}" />
+        styleClass="icon ivyicon-synchronize-arrows task-state-system #{cc.attrs.stateIconStyleClass}" />
     </h:panelGroup>
   </h:panelGroup>
   <p:tooltip id="state-tooltip" for="#{cc.attrs.componentId}"

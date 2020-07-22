@@ -24,7 +24,7 @@
     </h:panelGroup>
     <f:facet name="footer">
       <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
-        onclick="PF('application-error-dialog').hide();" />
+        icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}" onclick="PF('application-error-dialog').hide();" />
     </f:facet>
   </p:dialog>
 </cc:implementation>

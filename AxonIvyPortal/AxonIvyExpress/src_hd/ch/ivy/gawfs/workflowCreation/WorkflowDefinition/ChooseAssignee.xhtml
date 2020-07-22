@@ -33,7 +33,7 @@
           <p:ajax event="itemSelect" update="add-assignee-button" />
         </p:autoComplete>
         <p:commandButton id="add-assignee-button" styleClass="add-assignee-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
-          disabled="#{data.selectedUser == null and data.selectedRole == null}" icon="fa fa-plus" actionListener="#{logic.addAssignee}" global="false"
+          disabled="#{data.selectedUser == null and data.selectedRole == null}" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add')}" actionListener="#{logic.addAssignee}" global="false"
           update="error-message selected-assignee-fieldset" ignoreAutoUpdate="true" />
       </h:panelGroup>
 
@@ -42,13 +42,13 @@
         <ui:repeat var="assignee" value="#{data.selectedAssigneeList}">
           <p:panelGrid id="selected-assignee-panel" styleClass="assignee-selection">
             <p:column styleClass="assignee-type-col">
-              <h:outputText id="assign-type-icon" class="fa #{assignee.isUser() ? 'fa-user' : 'fa-users'} " />
+              <h:outputText id="assign-type-icon" class="icon #{assignee.isUser() ? 'ivyicon-single-neutral-actions' : 'ivyicon-multiple-neutral-1'} " />
             </p:column>
             <p:column styleClass="assignee-name-col">
               <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(assignee, assignee.getName())}" />
             </p:column>
             <p:column>
-              <p:commandLink id="delete-assignee" styleClass="fa fa-trash delete-assignee" actionListener="#{logic.removeSelectedAssignee(assignee)}"
+              <p:commandLink id="delete-assignee" styleClass="icon ivyicon-bin-1 delete-assignee" actionListener="#{logic.removeSelectedAssignee(assignee)}"
                 update="assignee-selection-form" />
             </p:column>
           </p:panelGrid>
@@ -57,7 +57,8 @@
 
       <p:outputPanel styleClass="TexAlRight">
         <p:commandButton id="save-assignee-button" styleClass="save-assignee-button"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.updateResponsibles}" icon="fa fa-check"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.updateResponsibles}"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-floppy-disk')}"
           oncomplete="PF('choose-responsible-dialog').hide();" update="#{data.selectedResponsibleFieldId}">
           <p:resetInput target="choose-responsible-dialog" />
         </p:commandButton>

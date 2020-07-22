@@ -36,13 +36,13 @@
 		<h:panelGroup rendered="#{isExternalLink}" layout="block"
 			styleClass="process-start-list-item-action #{isExternalLink ? 'is-external-link' : ''} u-padding-0" >
 			<h:panelGroup id="external-link-icon" 
-				styleClass="fa fa-external-link external-link-icon #{!process.getProcess().ableToEdit ? 'public-external-link' : ''}" />
+				styleClass="icon ivyicon-hyperlink-3 external-link-icon #{!process.getProcess().ableToEdit ? 'public-external-link' : ''}" />
 			<p:tooltip id="external-link-icon-tooltip"
 				for="external-link-icon"
 				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/externalLink')}"
 				position="top" trackMouse="true" hideEvent="mouseleave click"/>
 			<p:commandLink id="delete-external-link"
-				styleClass="fa fa-trash process-item"
+				styleClass="icon ivyicon-bin-1 process-item"
 				actionListener="#{processWidgetBean.setDeletedExternalLink(process)}"
 				oncomplete="PF('remove-external-link-dialog').show();"
 				update=":#{p:component('remove-external-link-dialog')}" 
@@ -55,12 +55,12 @@
 		<h:panelGroup
 			styleClass="process-start-list-item-action u-hidden-md-down">
 			<h:outputText id="info-workflow"
-				styleClass="fa fa-info-circle process-description process-item" />
+				styleClass="icon ivyicon-information-circle process-description process-item" />
 			<p:tooltip id="info-workflow-tooltip" for="info-workflow"
 				value="#{process.description}" position="top" trackMouse="true" hideEvent="mouseleave click"
 				styleClass="js-process-start-list-item-description" />
 		</h:panelGroup>
-		<span id="open-process-start" class="tmi-chevorn-right open-icon" />
+		<span id="open-process-start" class="icon ivyicon-arrow-right-1 open-icon" />
 	</div>
 </ui:composition>
 </html>

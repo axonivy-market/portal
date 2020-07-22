@@ -1,13 +1,5 @@
 @charset "UTF-8";
 
-@font-face {
-  font-family: "true-minimalistic-icons";
-  src: url("#{resource['true-minimalistic-icons:true-minimalistic-icons.eot']}");
-  src: url("#{resource['true-minimalistic-icons:true-minimalistic-icons.eot']}?#iefix") format("embedded-opentype"), url("#{resource['true-minimalistic-icons:true-minimalistic-icons.woff']}") format("woff"), url("#{resource['true-minimalistic-icons:true-minimalistic-icons.ttf']}") format("truetype"), url("#{resource['true-minimalistic-icons:true-minimalistic-icons.svg']}#true-minimalistic-icons") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-
 /* Add your customizations of theme here */
 /* Generic */
 html {
@@ -109,39 +101,6 @@ body .ui-icon {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-[class^="tmi-"]:before,
-[class*=" tmi-"]:before {
-  font-family: var(--true-minimalistic-icon-font-family);
-  font-style: var(--true-minimalistic-icon-font-style);
-  font-weight: var(--true-minimalistic-icon-font-weight);
-  font-variant: var(--true-minimalistic-icon-font-variant);
-  text-transform: none;
-  speak: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
-
-.tmi-box-arrow-left:before {
-  content: "\e03c"; }
-
-.tmi-box-arrow-right:before {
-  content: "\e03d"; }
-
-.tmi-box-arrow-toinside:before {
-  content: "\e03e"; }
-
-.tmi-chevorn-right:before {
-  content: "\44"; }
-
-.tmi-ellipsis-h:before,
-.tmi-ellipsis-v:before {
-  content: "\e00f"; }
-
-.tmi-ellipsis-v {
-  -ms-transform: rotate(90deg);
-  -webkit-transform: rotate(90deg);
-  transform: rotate(90deg); }
-
 /* Fieldset */
 .ui-fieldset-content table {
   width: 100%; }
@@ -214,7 +173,7 @@ body .ui-datatable tbody tr.ui-datatable-even {
   height: 65px; }
 
 .layout-wrapper .layout-main .layout-topbar .menu-btn i {
-  font-size: 2.4rem; }
+  font-size: 2.4rem !important; }
 
 .layout-wrapper .layout-main .layout-topbar {
   background: var(--ivy-primary-color-light);
@@ -229,6 +188,10 @@ body .ui-datatable tbody tr.ui-datatable-even {
 
 .topbar-menu li .ui-commandlink {
   font-size: var(--large-font-size); }
+  
+.topbar-menu li .icon {
+  font-size: var(--top-bar-icon-size) !important;
+}
 
 @media screen and (max-height: 500px) {
   .layout-wrapper .layout-main .layout-content {
@@ -496,9 +459,9 @@ body .ui-widget-header.portal-breadcrumb {
   background-color: var(--breadcrumb-background-color) !important;
   font-size: var(--breadcrumb-font-size); }
 
-.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu .ui-widget-header.portal-breadcrumb li a.ui-icon-home {
-  font-size: var(--breadcrumb-home-icon-font-size); }
-
+.portal-breadcrumb .icon {
+  color: var(--breadcrumb-home-icon-color) !important;
+}
 /*Style Email Setting --------------------------------------------------------------------------------*/
 .daily-summary.ui-selectmanycheckbox.ui-widget label {
   margin-left: 0px; }
@@ -554,10 +517,14 @@ body .ui-widget.ui-fieldset.process-group.ui-fieldset .ui-fieldset-legend {
   color: var(--task-state-zombie-destroyed-color); }
 
 .task-state-reserved {
-  color: var(--task-state-reserved-color); }
+  color: var(--task-state-reserved-color); 
+  font-size: var(--task-state-reserved-font-size) !important;
+}
 
 .task-state-system {
-  color: var(--task-state-system-color); }
+  color: var(--task-state-system-color); 
+  font-size: var(--task-state-system-font-size) !important;
+}
 
 .task-priority-low {
   color: var(--task-priority-low-color); }
@@ -589,7 +556,8 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 .statistic-carousel .ui-carousel-header .ui-carousel-header-title .chart-info,
 .dashboard-chart-panel .chart-actions-container .chart-action,
 .dashboard-chart-panel .chart-info {
-  font-size: 1.5rem; }
+  font-size: 1.5rem !important; 
+}
 
 .statistic-carousel .ui-carousel-header .ui-carousel-header-title .chart-info:hover,
 .dashboard-chart-panel .chart-info:hover,
@@ -1296,8 +1264,7 @@ body .ui-inputfield.case-detail-name-input {
   font-family: var(--icon-font-family);
   font-size: var(--large-font-size); }
 
-.process-header .create-express-workflow-icon,
-body .ui-widget-content .express-process-logo {
+.process-header .create-express-workflow-icon {
   font-size: 1.6rem !important; }
 
 .process-header .create-express-workflow-icon {
@@ -1311,7 +1278,8 @@ body .ui-widget-content .express-process-logo {
 .process-start-list-item .process-start-list-item-action .process-description,
 .process-start-list-item .ui-commandlink.process-item,
 .process-start-list-item .process-start-list-item-action .external-link-icon {
-  font-size: 1.5rem; }
+  font-size: 1.5rem !important; 
+}
 
 /* Task Widget --------------------------------**/
 .filter-selection-form label,
@@ -1727,7 +1695,7 @@ ul.participants-list li {
   font-size: var(--large-font-size); }
 
 .close-chat button .ui-button-icon-left.ui-icon {
-  font-size: var(--close-chat-font-size); }
+  font-size: var(--close-chat-font-size) !important; }
 
 .close-chat button.ui-button.ui-button-icon-only {
   background: var(--close-chat-button-background-color); }
@@ -1896,3 +1864,38 @@ color: var(--button-text-color);
   border-top-color: var(--primary-color);
 }
 
+
+.layout-menu .icon  {
+  font-size: var(--left-menu-icon-font-size) !important;
+}
+
+body .ui-button.secondary-btn.ui-state-hover {
+  background-color: var(--item-background-hover);
+}
+body .ui-button.secondary-btn.ui-state-focus {
+  background-color: var(--item-background-hover);
+}
+
+.secondary-btn.border-with-primary-color {
+  border: 1px solid var(--primary-color);
+}
+
+.portal-dialog-header-text {
+  font-size: var(--portal-dialog-header-text-font-size);
+}
+
+.portal-dialog-icon {
+  font-size: var(--portal-dialog-icon-font-size) !important;
+}
+
+.portal-dialog-info-icon {
+  color: var(--primary-color);
+}
+
+.portal-dialog-warning-icon {
+  color: var(--ivy-tertinary-color-yellow-dark);
+}
+
+.portal-dialog-error-icon {
+  color: var(--ivy-tertinary-color-red-medium);
+}

@@ -23,14 +23,14 @@
             styleClass="case-details-document-add-link note-show-more-link" target="_blank"
             href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(case)}"
             rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
-            <span class="fa fa-external-link-square note-show-more-link-icon" />
+            <span class="icon ivyicon-expand-6 note-show-more-link-icon" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:link>
           <p:commandLink id="add-note-command" styleClass="case-details-document-add-link"
             rendered="#{caseTaskNoteHistoryBean.showAddNote}" onclick="PF('add-note-dialog-#{case.id}').show()"
             actionListener="#{data.setICase(case)}">
-            <span class="fa fa-plus-circle" />
+            <span class="icon ivyicon-notes-add" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')} </span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
           </p:commandLink>
@@ -64,15 +64,15 @@
           sortBy="#{history.displayName}" styleClass="case-document-author u-truncate-text ui-sm-hidden">
           <h:outputText value="#{history.displayName}"
             styleClass="history-fullname">
-            <i class="fa fa-check-circle" jsf:id="done-task"
+            <i class="icon ivyicon-check-circle-1" jsf:id="done-task"
               jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DONE'}" />
-            <i class="fa fa-exclamation-circle" jsf:id="destroyed-task"
+            <i class="icon ivyicon-alert-circle" jsf:id="destroyed-task"
               jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'DESTROYED'}" />
-            <i class="fa fa-exclamation-circle" jsf:id="zombie-task"
+            <i class="icon ivyicon-alert-circle" jsf:id="zombie-task"
               jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'ZOMBIE'}" />
-            <i class="fa fa-exclamation-circle" jsf:id="created-task"
+            <i class="icon ivyicon-check-circle-1" jsf:id="created-task"
               jsf:rendered="#{history.type eq 'TASK' and history.taskState.toString() eq 'CREATED'}" />
-            <i class="fa fa-pencil-square-o" jsf:rendered="#{history.type eq 'NOTE'}" />
+            <i class="icon ivyicon-graphic-tablet-drawing-pen" jsf:rendered="#{history.type eq 'NOTE'}" />
           </h:outputText>
         </p:column>
 
@@ -100,7 +100,8 @@
       <h:outputText value="#{data.fullNote}" />
     </h:panelGroup>
     <f:facet name="footer">
-      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button"
+      <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" 
+        icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}" type="button"
         onclick="PF('view-note-dialog').hide()" />
     </f:facet>
   </p:dialog>
@@ -118,14 +119,16 @@
           styleClass="note-content-textarea" autoResize="false" />
       </h:panelGroup>
       <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
+        <p:commandLink id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
+          onsuccess="PF('add-note-dialog-#{case.id}').hide()"
+          update="note-content create-note-msg" />
+        <p:spacer width="15px" />
         <p:commandButton styleClass="add-new-note-save-command" id="save-add-note-command"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-floppy-disk')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" process="note-content"
           update="note-content create-note-msg :#{cc.clientId}:case-histories #{p:component('case-histories-table')}" actionListener="#{logic.createNote()}"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('add-note-dialog-#{case.id}').hide();}" resetValues="true"/>
-        <p:commandButton id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
-          styleClass="portal-cancel-button" onsuccess="PF('add-note-dialog-#{case.id}').hide()"
-          update="note-content create-note-msg" />
       </h:panelGroup>
     </h:form>
   </p:dialog>

@@ -40,16 +40,15 @@
 				</h:panelGroup>
 				<h:panelGroup styleClass="MarTop5 DispBlock Fright"
 					id="command-group">
-					<p:commandButton value="Send" icon="fa fa-send-o"
+					<p:commandLink value="Cancel"
+						id="button-cancel"
+						actionListener="#{logic.cancel}" partialSubmit="true"
+						process="@this" />
+					<p:spacer width="15px" />
+					<p:commandButton value="Send" icon="icon ivyicon-check-1"
 						partialSubmit="true" id="button-submit"
 						actionListener="#{logic.close}" process=":payment-request"
 						update=":payment-request" />
-					<p:spacer width="5px" />
-					<p:commandButton value="Cancel"
-						styleClass="mod-cancel-button portal-cancel-button"
-						icon="fa fa-ban" id="button-cancel"
-						actionListener="#{logic.cancel}" partialSubmit="true"
-						process="@this" />
 				</h:panelGroup>
 			</h:form>
 
