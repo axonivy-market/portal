@@ -131,6 +131,13 @@ Migrate 8.x to 9.1
 
 7. If administrator activate the ``ENABLE_CASE_OWNER`` Portal settings and there is a customized case list, customize this field to this case list, e.g. add filter, column configuration, header
 
+8. From 9.1, Ivy engine use new mechanism to synchronize user data, therefore Portal must adapt some data related to users. Some data must be migrated to work properly. Please follow these steps to migrate data of your application:
+   - Deploy :download:`MigrateRelatedDataOfUserTo9.iar <documents/MigrateRelatedDataOfUserTo9.iar>` project to your Ivy application.
+   - Run ``migratePrivateChat.ivp`` to migrate private chat messages.
+   - Run ``migrateGroupChat.ivp`` to migrate group chat.
+   - Run ``migrateUserProcessesAndExternalLinks.ivp`` to migrate user processes and external links.
+   - Run ``migrateExpressProcesses.ivp`` to migrate Express processes, please skip this step if your application does not have Express.
+   - Restart Ivy engine.
 
 .. _installation-release-notes:
 
