@@ -41,7 +41,6 @@ import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
-import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
@@ -191,21 +190,7 @@ public class ChatAssigneeBean implements Serializable {
     try {
       ObjectMapper mapper = new ObjectMapper();
       GroupChat result = mapper.readValue(groupChatJson, GroupChat.class);
-
-      Set<String> updatedAssigneeNames = new HashSet<>();
-      for (String assigneeName : result.getAssigneeNames()) {
-        if (assigneeName.startsWith("#")) {
-          IUser assignee = UserUtils.findUserByUsername(assigneeName.substring(1));
-          if (assignee != null) {
-            updatedAssigneeNames.add("#".concat(Long.toString(assignee.getId())));
-          }
-        } else {
-          updatedAssigneeNames.add(assigneeName);
-        }
-      }
-      result.setAssigneeNames(updatedAssigneeNames);
       result.getAssignees();
-
       return result;
     } catch (IOException e) {
       Ivy.log().error("Failed to parse group chat for case {0}, json: {1}", e, iCase.getId(), groupChatJson);
