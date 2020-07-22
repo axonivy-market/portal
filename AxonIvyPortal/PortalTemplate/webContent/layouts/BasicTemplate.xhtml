@@ -157,6 +157,9 @@
         $(function() {
           Portal.updateLayoutContent();
           MainMenu.highlightMenuItem();
+          $(window).resize(function() {
+            Portal.updateLayoutContent();
+          });
         });
       </script>
     </ui:insert>
