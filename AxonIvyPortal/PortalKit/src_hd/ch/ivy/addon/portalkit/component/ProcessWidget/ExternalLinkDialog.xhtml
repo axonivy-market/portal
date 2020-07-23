@@ -64,7 +64,7 @@
           onclick="PF('add-external-link-dialog').hide()" />
         <p:spacer width="15" />
         <p:commandButton id="adding-new-external-link-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
-          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add')}"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}"
           process="add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink}"
           update="add-external-link-form #{cc.clientId}:process-list"
           oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide();}" />

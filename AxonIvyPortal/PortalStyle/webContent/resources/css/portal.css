@@ -1799,17 +1799,6 @@ body .ui-slider .ui-slider-handle {
   background-color: var(--accent-light-color);
 }
 
-.process-nav .expand-collapse-btn {
-	font-family: var(--icon-font-family);
-}
-
-.process-nav .expand-collapse-btn.expand:before {
-	content: "\f067";
-}
-
-.process-nav .expand-collapse-btn.collapse:before {
-	content: "\f068";
-}
 .side-step-panel .dropdown-content {
 background-color: var(--ivy-primary-color-white);
 }
@@ -1882,10 +1871,6 @@ body .ui-button.secondary-btn.ui-state-focus {
 
 .secondary-btn.border-with-primary-color {
   border: 1px solid var(--primary-color);
-}
-
-.portal-dialog-header-text {
-  font-size: var(--portal-dialog-header-text-font-size);
 }
 
 .portal-dialog-icon {

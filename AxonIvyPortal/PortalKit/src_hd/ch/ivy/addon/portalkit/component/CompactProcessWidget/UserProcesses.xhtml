@@ -139,10 +139,9 @@
       <div class="ui-dialog-footer u-dialog-footer">
         <p:commandLink id="cancel-adding-process-command" global="false"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@none"
-          onclick="PF('add-new-process-dialog').hide()" />
-        <p:spacer width="15px" />
+          onclick="PF('add-new-process-dialog').hide()" styleClass="u-mar-right-15"/>
         <p:commandButton id="add-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
-          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add')}"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}"
           process="@form" actionListener="#{compactProcessWidgetBean.saveNewUserProcess}"
           update="@form #{p:component('process-list')} #{p:component('process-widget-action')}"
           oncomplete="if(!args.validationFailed){PF('add-new-process-dialog').hide();} favouritesProcess.setUpScrollBarUserProcesses()" />

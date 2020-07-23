@@ -92,7 +92,7 @@
       <p:messages id="upload-messages" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/addDocumentHelpText')}" />
       <p:fileUpload styleClass="document-upload" id="document-upload-panel" fileUploadListener="#{logic.uploadDocument}"
-        chooseIcon="#{visibilityBean.generateButtonIcon('icon ivyicon-add')}"
+        chooseIcon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}"
         mode="advanced" dragDropSupport="true" multiple="true"
         update="#{cc.clientId}:document-upload-form:upload-messages #{cc.attrs.componentToUpdate} #{cc.clientId}:case-document-form"
         label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}" auto="true"
