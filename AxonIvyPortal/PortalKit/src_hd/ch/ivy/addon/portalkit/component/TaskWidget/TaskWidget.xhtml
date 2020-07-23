@@ -80,7 +80,7 @@
                           value="#{taskFilterData.filterName}" trackMouse="true" />
                         <p:commandLink id="delete-user-defined-filter-command"
                           rendered="#{taskWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
-                          styleClass="fa fa-times-circle delete-user-defined-filter-command"
+                          styleClass="icon ivyicon-delete-2 delete-user-defined-filter-command"
                           actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
                           oncomplete="PF('delete-filter-confirmation-dialog').show();"/>
                       </h:panelGroup>
@@ -103,7 +103,7 @@
                           value="#{taskFilterData.filterName}" trackMouse="true" />
                         <p:commandLink id="delete-user-defined-filter-command"
                           rendered="#{taskWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
-                          styleClass="fa fa-times-circle delete-user-defined-filter-command"
+                          styleClass="icon ivyicon-delete-2 delete-user-defined-filter-command"
                           actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
                           oncomplete="PF('delete-filter-confirmation-dialog').show();" />
                       </div>
@@ -306,7 +306,7 @@
     <ui:param name="widgetVar" value="reset-filter-set-dialog" />
     <ui:param name="rendered" value="#{!data.dataModel.compactMode}" />
     <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteDocumentHeaderText')}" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetToStandardFilterHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/restoreDefaultFilterMessage')}" />
     
     <ui:define name="dialogFooter">
