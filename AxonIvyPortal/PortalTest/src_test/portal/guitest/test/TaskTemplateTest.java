@@ -178,7 +178,7 @@ public class TaskTemplateTest extends BaseTest {
     redirectToRelativeLink(IFRAME_TASK_URL);
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
-    TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(3);
+    TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(1);
     taskTemplatePage2.clickOnLogo();
     WaitHelper.assertTrueWithWait(() -> taskTemplatePage2.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
   }
