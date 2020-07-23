@@ -51,7 +51,7 @@
       <div class="ui-g-4 ui-lg-4 ui-md-12 ui-sm-12 add-absence-panel TexAlRight">
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence')}"
           id="add-absence" process="@this" oncomplete="PF('absence').show()" actionListener="#{logic.add}"
-          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add')}"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}"
           update="@widgetVar(absence)" rendered="#{absenceManagementBean.ownAbsencesCreatable}" />
       </div>
 

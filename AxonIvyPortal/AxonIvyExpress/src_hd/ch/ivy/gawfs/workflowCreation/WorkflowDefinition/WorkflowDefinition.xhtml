@@ -120,7 +120,7 @@
                               value="#{not empty data.data.processCoOwnersDisplayName ? data.data.processCoOwnersDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
                               actionListener="#{logic.initProcessStartResponsibles}" oncomplete="PF('choose-responsible-dialog').show();"
                               process="@this" update="assignee-selection-form:assignee-selection-panel" global="false">
-                              <i class="icon ivyicon-add" />
+                              <i class="icon ivyicon-notes-quill" />
                             </p:commandLink>
                           </h:panelGroup>
                         </div>
@@ -210,7 +210,7 @@
                                 value="#{not empty gtask.responsibleDisplayName ? gtask.responsibleDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
                                 actionListener="#{logic.initAssginement(gtask)}" oncomplete="PF('choose-responsible-dialog').show();"
                                 update="assignee-selection-form:assignee-selection-panel" global="false">
-                                <i class="icon ivyicon-add" />
+                                <i class="icon ivyicon-notes-quill" />
                               </p:commandLink>
                             </h:panelGroup>
                           </div>
@@ -271,7 +271,7 @@
                               value="#{not empty gtask.responsibleDisplayName ? gtask.responsibleDisplayName : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}"
                               actionListener="#{logic.initAssginement(gtask)}" oncomplete="PF('choose-responsible-dialog').show();"
                               update="assignee-selection-form:assignee-selection-panel" global="false">
-                              <i class="icon ivyicon-add" />
+                              <i class="icon ivyicon-notes-quill" />
                             </p:commandLink>
                           </h:panelGroup>
                         </h:panelGroup>
@@ -304,7 +304,7 @@
                   rendered="#{data.data.definedTasks.size() == gtask.position}">
                   <p:row>
                     <p:column styleClass="dynamic-task-left-action">
-                      <p:commandButton id="add-step-button" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add')}" immediate="true"
+                      <p:commandButton id="add-step-button" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}" immediate="true"
                         value="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/AddProcessStep')}" actionListener="#{logic.addProcessStep}"
                         process="form" update="#{p:component('defined-tasks-list-container')} #{p:component('error-messages')}">
                       </p:commandButton>

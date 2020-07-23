@@ -8,8 +8,11 @@
 <ui:composition>
   <h:panelGroup id="header" styleClass="widget-header ui-g-12 u-no-padding-bottom" layout="block">
     <h:panelGroup class="widget-header-main">
-      <p:commandLink id="toggle-processes-link" styleClass="toggle-processes-link ui-lg-hidden ui-xl-hidden ui-md-hidden fa-plus"
-             global="false" onclick="toggleShowProcessList();" value="#{cc.attrs.mobileTitle}" />
+      <p:commandLink id="toggle-processes-link" styleClass="toggle-processes-link ui-lg-hidden ui-xl-hidden ui-md-hidden"
+             global="false" onclick="toggleShowProcessList();">
+          <i class="icon ivyicon-add-small u-mar-right-5"/>
+          <h:outputText value="#{cc.attrs.mobileTitle}" />
+      </p:commandLink>
       <span class="widget-header-main-title ui-sm-hidden">#{cc.attrs.title}</span>
       <h:panelGroup styleClass="widget-header-main-menu" rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink and not compactProcessWidgetBean.editMode}">
         <cc:renderFacet name="headerToolbar" />
@@ -19,7 +22,7 @@
    <script>
      function toggleShowProcessList() {
        $('[id $= "all-processes-container"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
-       $('[id $= "toggle-processes-link"]').toggleClass("fa-plus").toggleClass("fa-minus");
+       $('[id $= "toggle-processes-link"] > i').toggleClass("ivyicon-add-small").toggleClass("ivyicon-subtract-small");
      }
    </script>
 </ui:composition>

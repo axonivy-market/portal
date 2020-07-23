@@ -86,7 +86,7 @@
     <div class="ui-g">
       <h:panelGroup layout="block" rendered="#{cc.attrs.typeColumnRendered or cc.attrs.uploadRendered}" styleClass="upload-container ui-g-12">
         <p:fileUpload id="document-upload" mode="advanced" auto="true" dragDropSupport="true"
-          chooseIcon="#{cc.attrs.renderChooseUploadIcon? 'icon ivyicon-add' : '' }"
+          chooseIcon="#{cc.attrs.renderChooseUploadIcon? 'icon ivyicon-add-small' : '' }"
           fileUploadListener="#{logic.upload}"
           rendered="#{cc.attrs.uploadRendered}"
           update="document-table document-messages #{cc.attrs.updatedComponentAfterUploaded}"
