@@ -140,7 +140,7 @@ public class ExpressManagementTest extends BaseTest {
     executePromoteResourceTask();
     // Filter open Task
     gotoTaskList();
-    taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Suspended", "In progress"));
+    taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Suspended"));
     executeSendEmailTask();
     executeReviewTask();
     // back to home and refresh task list data
