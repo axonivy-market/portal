@@ -209,6 +209,10 @@
   display: none !important;
 }
 
+.u-font-bold {
+  font-weight: bold !important;
+}
+
 @media screen and (max-width: 40em) {
   .ui-sm-hidden {
     display: none !important;
