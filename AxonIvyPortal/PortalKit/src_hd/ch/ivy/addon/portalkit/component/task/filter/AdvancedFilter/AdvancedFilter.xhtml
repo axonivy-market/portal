@@ -47,7 +47,7 @@
             value="#{cc.attrs.taskFilter.label()}: #{cc.attrs.taskFilter.value()}"
             styleClass="advanced-filter-command #{cc.attrs.buttonStyleClass} #{facesContext.validationFailed ? 'error-filter' : ''} #{cc.attrs.buttonStyleClass}" />
           <p:commandLink id="advanced-filter-remove-command"
-            styleClass="fa fa-times-circle advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
+            styleClass="icon ivyicon-delete-2 advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
             actionListener="#{dataModel.removeFilter(taskFilter)}" global="false"
             update="@(.filter-container) @(.advanced-filter-container) @(.filter-add-container) @(.filter-selection-form) @(.task-view-container) @(.filter-buttons-container) @(.hidden-task-count)"
             oncomplete="#{empty cc.attrs.resultContainerUpdated ? 'taskWidget.setupScrollbar(); taskWidget.setupHeader(); taskWidget.updateTaskCountToBreadcrumb();' : ''}">
