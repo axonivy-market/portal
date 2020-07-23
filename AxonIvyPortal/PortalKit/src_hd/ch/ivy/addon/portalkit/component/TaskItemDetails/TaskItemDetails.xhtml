@@ -43,7 +43,7 @@
         <div class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12 custom-task-left-component">
           <h:panelGroup id="task-detail-general-container" layout="block" styleClass="card card-w-title task-detail-general-card custom-general-panel">
             <div class="task-detail-section-title u-truncate-text ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
-              <i class="fa fa-user-circle" /> #{ivy.cms.co('/Dialogs/Tasks/TaskDetail/DataDescription')}
+              <i class="icon ivyicon-single-neutral-actions" /> #{ivy.cms.co('/Dialogs/Tasks/TaskDetail/DataDescription')}
               <h:panelGroup id="task-detail-action-group" class="task-details-action-container action-container" layout="block">
                 <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task)}"
                   styleClass="task-action-item start-task-action" rendered="#{task.state != 'RESUMED'}" actionListener="#{logic.openTask()}">
@@ -101,6 +101,7 @@
     <ui:param name="appendTo" value="@(body)" />
     <ui:param name="iconClass" value="icon ivyicon-road-sign-warning" />
     <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restTaskHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
     
     <ui:define name="dialogFooter">
@@ -120,6 +121,7 @@
     <ui:param name="appendTo" value="@(body)" />
     <ui:param name="iconClass" value="icon ivyicon-delete-1" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyTaskHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage')}" />
     
     <ui:define name="dialogFooter">

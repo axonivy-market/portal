@@ -18,7 +18,7 @@
     <h:form id="task-document-form" prependId="false" styleClass="ui-g-12 u-padding-0">
       <div class="task-detail-section-title ui-g-12">
         <div class="ui-g-6 u-truncate-text u-padding-0">
-          <i class="fa fa-file" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/documents')}
+          <i class="icon ivyicon-common-file-empty" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/documents')}
         </div>
         <h:panelGroup layout="block" styleClass="task-details-document-add ui-g-6 u-padding-0">
           <p:commandLink id="add-document-command" styleClass="task-details-document-add-link"
@@ -102,6 +102,7 @@
     <ui:param name="appendTo" value="@(body)" />
     <ui:param name="iconClass" value="icon ivyicon-delete-1" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteDocumentHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}" />
     
     <ui:define name="dialogFooter">
