@@ -50,9 +50,9 @@ If you want to differentiate the customization in home page from customization i
 just check  the attribute isQueryForHomePage
 
 if (in.isQueryForHomePage) { // in home page
-	in.taskQuery = TaskQuery.create().where().activatorId().isNotNull();
+	in.taskQuery = TaskQuery.create().where().activatorName().isLike("#");&#13;
 }</name>
-        <nameStyle>421,5
+        <nameStyle>424,5
 </nameStyle>
     </language>
 </elementInfo>
@@ -64,7 +64,7 @@ By0 f2 actionTable 'out=in;
 By0 f2 actionCode 'import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 if (in.isQueryForHomePage) { // in home page
-	in.taskQuery = TaskQuery.create().where().activatorId().isNotNull();
+	in.taskQuery = TaskQuery.create().where().activatorName().isLike("#%");
 }' #txt
 By0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
