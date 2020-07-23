@@ -199,8 +199,8 @@ public class TaskDetailsPage extends TemplatePage {
   public void openTaskDelegateDialog() {
     openActionPanel();
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
-        .until(() -> findElementByCssSelector("a[id$='task-delegate-command']").isDisplayed());
-    clickByCssSelector("a[id$='task-delegate-command']");
+        .until(() -> findElementByCssSelector("a[id$='\\:task-delegate-command']").isDisplayed());
+    clickByCssSelector("a[id$='\\:task-delegate-command']");
     waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), true);
   }
   

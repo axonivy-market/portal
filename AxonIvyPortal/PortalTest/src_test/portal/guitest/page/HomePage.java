@@ -53,12 +53,12 @@ public class HomePage extends TemplatePage {
 	}
 
 	public String getAnnouncementMessage() {
-		waitForElementDisplayed(By.cssSelector("div[class$='announcement-message-customizable']"), true);
-		return driver.findElement(By.cssSelector("div[class$='announcement-message-customizable']")).getText();
+		waitForElementDisplayed(By.cssSelector("div[class*='announcement-message-customizable']"), true);
+		return driver.findElement(By.cssSelector("div[class*='announcement-message-customizable']")).getText();
 	}
 
 	public boolean isAnnouncementMessageNotDisplayed() {
-		if (driver.findElements(By.cssSelector("div[class$='announcement-message-customizable']")).size() == 0) {
+		if (driver.findElements(By.cssSelector("div[class*='announcement-message-customizable']")).size() == 0) {
 			return true;
 		}
 		return false;

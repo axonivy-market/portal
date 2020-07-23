@@ -16,7 +16,7 @@
 
     <div class="task-detail-section-title ui-g-12">
       <div class="ui-g-4 u-truncate-text u-padding-0">
-        <i class="fa fa-history" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskNotes')}
+        <i class="icon ivyicon-synchronize-arrow-clock" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskNotes')}
       </div>
       <div class="task-history-button-container ui-g-8 u-padding-0">
         <h:panelGroup layout="block">
@@ -51,7 +51,7 @@
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/author')}" 
           sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(note.writter, note.writterName)}"
           styleClass="task-document-author u-truncate-text ui-sm-hidden">
-          <i class="fa fa-pencil-square-o" />
+          <i class="icon ivyicon-notes-quill" />
           <p:spacer width="5" />
           <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName securityMemberName="#{note.writterName}" securityMember="#{note.writter}" />
         </p:column>
