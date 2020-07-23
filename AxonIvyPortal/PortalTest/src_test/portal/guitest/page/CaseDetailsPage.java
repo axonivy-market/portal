@@ -138,7 +138,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public List<String> getCaseNoteAuthors() {
-    List<WebElement> noteAuthorElements = findListElementsByCssSelector(".fa-pencil-square-o + span.history-fullname");
+    List<WebElement> noteAuthorElements = findListElementsByCssSelector(".ivyicon-notes-quill + span.history-fullname");
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 
@@ -316,7 +316,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
   
   public String getCaseId() {
-    return findElementById("general-information:case-id").getText();
+    return findElementById("case-item-details:general-information:case-id").getText();
   }
   
   public boolean isAddNoteButtonDisplayed() {
