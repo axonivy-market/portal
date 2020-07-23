@@ -162,359 +162,479 @@ Generated using nucleoapp.com
   content: "\ea02";
 }
 
-.ivyicon-pie-line-graph::before {
+.ivyicon-delete-1::before {
   content: "\ea03";
 }
 
-.ivyicon-cog::before {
+.ivyicon-search-circle::before {
   content: "\ea04";
 }
 
-.ivyicon-information-circle::before {
+.ivyicon-cog-double-2::before {
   content: "\ea05";
 }
 
-.ivyicon-delete-1::before {
+.ivyicon-copy-paste::before {
   content: "\ea06";
 }
 
-.ivyicon-search-circle::before {
+.ivyicon-house-1::before {
   content: "\ea07";
 }
 
-.ivyicon-cog-double-2::before {
+.ivyicon-search::before {
   content: "\ea08";
 }
 
-.ivyicon-copy-paste::before {
+.ivyicon-cog-double::before {
   content: "\ea09";
 }
 
-.ivyicon-house-1::before {
+.ivyicon-button-refresh-arrows::before {
   content: "\ea0a";
 }
 
-.ivyicon-search::before {
+.ivyicon-move-back::before {
   content: "\ea0b";
 }
 
-.ivyicon-cog-double::before {
+.ivyicon-bulb::before {
   content: "\ea0c";
 }
 
-.ivyicon-button-refresh-arrows::before {
+.ivyicon-cog::before {
   content: "\ea0d";
 }
 
-.ivyicon-move-back::before {
+.ivyicon-presentation-statistics::before {
   content: "\ea0e";
 }
 
-.ivyicon-bulb::before {
+.ivyicon-startup-launch::before {
   content: "\ea0f";
 }
 
-.ivyicon-human-resources-workflow::before {
+.ivyicon-graphic-tablet-drawing-pen::before {
   content: "\ea10";
 }
 
-.ivyicon-presentation-statistics::before {
+.ivyicon-conversation-chat-2::before {
   content: "\ea11";
 }
 
-.ivyicon-startup-launch::before {
+.ivyicon-messages-bubble-add::before {
   content: "\ea12";
 }
 
-.ivyicon-graphic-tablet-drawing-pen::before {
+.ivyicon-messages-bubble-information::before {
   content: "\ea13";
 }
 
-.ivyicon-conversation-chat-2::before {
+.ivyicon-messages-bubble-square-warning::before {
   content: "\ea14";
 }
 
-.ivyicon-messages-bubble-add::before {
+.ivyicon-human-resources-workflow::before {
   content: "\ea15";
 }
 
-.ivyicon-messages-bubble-information::before {
+.ivyicon-multiple-actions-add::before {
   content: "\ea16";
 }
 
-.ivyicon-messages-bubble-square-warning::before {
+.ivyicon-mood-warning::before {
   content: "\ea17";
 }
 
-.ivyicon-single-neutral-actions-process::before {
+.ivyicon-rating-star-add::before {
   content: "\ea18";
 }
 
-.ivyicon-multiple-actions-add::before {
+.ivyicon-recycling-hand-trash::before {
   content: "\ea19";
 }
 
-.ivyicon-mood-warning::before {
+.ivyicon-single-neutral-actions-process::before {
   content: "\ea1a";
 }
 
-.ivyicon-rating-star-add::before {
+.ivyicon-style-two-pin-warning::before {
   content: "\ea1b";
 }
 
-.ivyicon-recycling-hand-trash::before {
+.ivyicon-statistics-daytum::before {
   content: "\ea1c";
 }
 
-.ivyicon-road-sign-warning::before {
+.ivyicon-arrow-button-right-3::before {
   content: "\ea1d";
 }
 
-.ivyicon-style-two-pin-warning::before {
+.ivyicon-arrow-button-right::before {
   content: "\ea1e";
 }
 
-.ivyicon-statistics-daytum::before {
+.ivyicon-arrow-right-1::before {
   content: "\ea1f";
 }
 
-.ivyicon-arrow-button-right-3::before {
+.ivyicon-advertising-megaphone::before {
   content: "\ea20";
 }
 
-.ivyicon-arrow-button-right::before {
+.ivyicon-information-circle::before {
   content: "\ea21";
 }
 
-.ivyicon-arrow-right-1::before {
+.ivyicon-business-contract-handshake-sign::before {
   content: "\ea22";
 }
 
-.ivyicon-advertising-megaphone::before {
+.ivyicon-monetization-approve::before {
   content: "\ea23";
 }
 
-.ivyicon-advertising-megaphone-2::before {
+.ivyicon-shopping-cart-check::before {
   content: "\ea24";
 }
 
-.ivyicon-business-contract-handshake-sign::before {
+.ivyicon-advertising-megaphone-2::before {
   content: "\ea25";
 }
 
-.ivyicon-monetization-approve::before {
+.ivyicon-check-circle-1::before {
   content: "\ea26";
 }
 
-.ivyicon-shopping-cart-check::before {
+.ivyicon-login-3::before {
   content: "\ea27";
 }
 
-.ivyicon-user-logout::before {
+.ivyicon-close::before {
   content: "\ea28";
 }
 
-.ivyicon-check-circle-1::before {
+.ivyicon-check-circle::before {
   content: "\ea29";
 }
 
-.ivyicon-login-3::before {
+.ivyicon-remove::before {
   content: "\ea2a";
 }
 
-.ivyicon-close::before {
+.ivyicon-floppy-disk::before {
   content: "\ea2b";
 }
 
-.ivyicon-check-circle::before {
+.ivyicon-messages-bubble::before {
   content: "\ea2c";
 }
 
-.ivyicon-remove::before {
+.ivyicon-house-chimney-2::before {
   content: "\ea2d";
 }
 
-.ivyicon-floppy-disk::before {
+.ivyicon-task-list-edit::before {
   content: "\ea2e";
 }
 
-.ivyicon-messages-bubble::before {
+.ivyicon-layout-bullets::before {
   content: "\ea2f";
 }
 
-.ivyicon-house-chimney-2::before {
+.ivyicon-hyperlink-3::before {
   content: "\ea30";
 }
 
-.ivyicon-task-list-edit::before {
+.ivyicon-add::before {
   content: "\ea31";
 }
 
-.ivyicon-layout-bullets::before {
+.ivyicon-question-circle::before {
   content: "\ea32";
 }
 
-.ivyicon-hyperlink-3::before {
+.ivyicon-navigation-right-circle-1::before {
   content: "\ea33";
 }
 
-.ivyicon-add::before {
+.ivyicon-navigation-up-circle::before {
   content: "\ea34";
 }
 
-.ivyicon-question-circle::before {
+.ivyicon-navigation-right-circle-1-2::before {
   content: "\ea35";
 }
 
-.ivyicon-navigation-right-circle-1::before {
+.ivyicon-synchronize-arrows::before {
   content: "\ea36";
 }
 
-.ivyicon-navigation-up-circle::before {
+.ivyicon-delete::before {
   content: "\ea37";
 }
 
-.ivyicon-navigation-right-circle-1-2::before {
+.ivyicon-alarm-bell-timer::before {
   content: "\ea38";
 }
 
-.ivyicon-synchronize-arrows::before {
+.ivyicon-alert-circle::before {
   content: "\ea39";
 }
 
-.ivyicon-delete::before {
+.ivyicon-keyboard-arrow-return::before {
   content: "\ea3a";
 }
 
-.ivyicon-alarm-bell-timer::before {
+.ivyicon-add-circle::before {
   content: "\ea3b";
 }
 
-.ivyicon-alert-circle::before {
+.ivyicon-button-refresh-arrow::before {
   content: "\ea3c";
 }
 
-.ivyicon-keyboard-arrow-return::before {
+.ivyicon-navigation-right-circle::before {
   content: "\ea3d";
 }
 
-.ivyicon-add-circle::before {
+.ivyicon-road-sign-u-turn-left::before {
   content: "\ea3e";
 }
 
-.ivyicon-button-refresh-arrow::before {
+.ivyicon-road-sign-u-turn-right::before {
   content: "\ea3f";
 }
 
-.ivyicon-navigation-right-circle::before {
+.ivyicon-arrow-left-1::before {
   content: "\ea40";
 }
 
-.ivyicon-road-sign-u-turn-left::before {
+.ivyicon-filter-1::before {
   content: "\ea41";
 }
 
-.ivyicon-road-sign-u-turn-right::before {
+.ivyicon-undo::before {
   content: "\ea42";
 }
 
-.ivyicon-arrow-left-1::before {
+.ivyicon-multiple-neutral-1::before {
   content: "\ea43";
 }
 
-.ivyicon-filter-1::before {
+.ivyicon-single-neutral-actions::before {
   content: "\ea44";
 }
 
-.ivyicon-undo::before {
+.ivyicon-touch-finger_1::before {
   content: "\ea45";
 }
 
-.ivyicon-multiple-neutral-1::before {
+.ivyicon-navigation-menu::before {
   content: "\ea46";
 }
 
-.ivyicon-single-neutral-actions::before {
+.ivyicon-hourglass::before {
   content: "\ea47";
 }
 
-.ivyicon-touch-finger_1::before {
+.ivyicon-controls-play::before {
   content: "\ea48";
 }
 
-.ivyicon-navigation-menu::before {
+.ivyicon-bin-1::before {
   content: "\ea49";
 }
 
-.ivyicon-hourglass::before {
+.ivyicon-move-to-bottom::before {
   content: "\ea4a";
 }
 
-.ivyicon-controls-play::before {
+.ivyicon-synchronize-arrow-clock::before {
   content: "\ea4b";
 }
 
-.ivyicon-bin-1::before {
+.ivyicon-arrow-left::before {
   content: "\ea4c";
 }
 
-.ivyicon-move-to-bottom::before {
+.ivyicon-cog-play::before {
   content: "\ea4d";
 }
 
-.ivyicon-synchronize-arrow-clock::before {
+.ivyicon-download-bottom::before {
   content: "\ea4e";
 }
 
-.ivyicon-arrow-left::before {
+.ivyicon-upload-bottom::before {
   content: "\ea4f";
 }
 
-.ivyicon-cog-play::before {
+.ivyicon-office-file-xls-1::before {
   content: "\ea50";
 }
 
-.ivyicon-download-bottom::before {
+.ivyicon-touchpad-finger::before {
   content: "\ea51";
 }
 
-.ivyicon-upload-bottom::before {
+.ivyicon-chat-translate::before {
   content: "\ea52";
 }
 
-.ivyicon-office-file-xls-1::before {
+.ivyicon-notes-add::before {
   content: "\ea53";
 }
 
-.ivyicon-touchpad-finger::before {
+.ivyicon-expand-6::before {
   content: "\ea54";
 }
 
-.ivyicon-chat-translate::before {
+.ivyicon-send-email::before {
   content: "\ea55";
 }
 
-.ivyicon-notes-add::before {
+.ivyicon-check-1::before {
   content: "\ea56";
 }
 
-.ivyicon-expand-6::before {
+.ivyicon-folder-search::before {
   content: "\ea57";
 }
 
-.ivyicon-send-email::before {
+.ivyicon-common-file-add::before {
   content: "\ea58";
 }
 
-.ivyicon-check-1::before {
+.ivyicon-add-small::before {
   content: "\ea59";
 }
 
-.ivyicon-folder-search::before {
+.ivyicon-arrow-right-1-small::before {
   content: "\ea5a";
 }
 
-.ivyicon-common-file-add::before {
+.ivyicon-office-file-txt-1::before {
   content: "\ea5b";
+}
+
+.ivyicon-office-file-ppt-1::before {
+  content: "\ea5c";
+}
+
+.ivyicon-office-file-pdf-1::before {
+  content: "\ea5d";
+}
+
+.ivyicon-office-file-doc-1::before {
+  content: "\ea5e";
+}
+
+.ivyicon-file-exe::before {
+  content: "\ea5f";
+}
+
+.ivyicon-file-html::before {
+  content: "\ea60";
+}
+
+.ivyicon-image-file-bmp::before {
+  content: "\ea61";
+}
+
+.ivyicon-file-xml::before {
+  content: "\ea62";
+}
+
+.ivyicon-image-file-gif::before {
+  content: "\ea63";
+}
+
+.ivyicon-image-file-jpg::before {
+  content: "\ea64";
+}
+
+.ivyicon-arrow-right::before {
+  content: "\ea65";
+}
+
+.ivyicon-layers-grid-settings::before {
+  content: "\ea66";
+}
+
+.ivyicon-analytics-board-graph-line::before {
+  content: "\ea67";
+}
+
+.ivyicon-subtract::before {
+  content: "\ea68";
+}
+
+.ivyicon-subtract-small::before {
+  content: "\ea69";
+}
+
+.ivyicon-file-csv::before {
+  content: "\ea6a";
+}
+
+.ivyicon-file-zip::before {
+  content: "\ea6b";
+}
+
+.ivyicon-image-file-png::before {
+  content: "\ea6c";
+}
+
+.ivyicon-common-file-empty::before {
+  content: "\ea6d";
+}
+
+.ivyicon-file-rar::before {
+  content: "\ea6e";
+}
+
+.ivyicon-zip-file::before {
+  content: "\ea6f";
+}
+
+.ivyicon-email-action-unread::before {
+  content: "\ea70";
+}
+
+.ivyicon-image-file-landscape::before {
+  content: "\ea71";
+}
+
+.ivyicon-delete-2::before {
+  content: "\ea72";
+}
+
+.ivyicon-logout-1::before {
+  content: "\ea73";
+}
+
+.ivyicon-notes-quill::before {
+  content: "\ea74";
+}
+
+.ivyicon-arrow-down-1::before {
+  content: "\ea75";
+}
+
+.ivyicon-monitor-refresh::before {
+  content: "\ea76";
+}
+
+.ivyicon-road-sign-warning::before {
+  content: "\ea77";
+}
+
+.ivyicon-pie-line-graph::before {
+  content: "\ea78";
+}
+
+.ivyicon-user-logout::before {
+  content: "\ea79";
 }
 
