@@ -171,15 +171,16 @@ public class PortalExpressScreenshotTest extends BaseTest {
     expressManagementTest.completeExpressWorkflowTasks(ExpressManagementTest.FIRST_COMMENT, ExpressManagementTest.SECOND_COMMENT);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
     homePage = new HomePage();
-    ScreenshotUtil.resizeBrowser(new Dimension(1366, 800));
+    ScreenshotUtil.resizeBrowser(new Dimension(1050, 800));
     CaseWidgetPage caseWidgetPage = homePage.openCaseList();
+    caseWidgetPage.closeMainMenu();
     caseWidgetPage.openActionStepMenu();
     executeDecorateJs("highlightShowAdditionalLink()");
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.EXPRESS_FOLDER + "express-case");
     
     String caseId = caseWidgetPage.getCaseId(0);
     redirectToRelativeLink(expressAdditionalBusinessUrl + "?caseId=" + caseId);
-    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1100));
+    ScreenshotUtil.resizeBrowser(new Dimension(1050, 1100));
     ExpressBusinessViewPage expressBusinessView = new ExpressBusinessViewPage();
     expressBusinessView.clickOnLegendOfFieldset(1);
     expressBusinessView.clickOnLegendOfFieldset(2);
