@@ -18,9 +18,7 @@
   
   <div class="u-text-align-center">
     <i class="#{not empty iconClass ? iconClass : 'icon ivyicon-information-circle'} #{not empty iconStyleClass? iconStyleClass : 'portal-dialog-info-icon'} portal-dialog-icon" />
-    <div class="portal-dialog-header-text">
-      <h:outputText value="#{not empty headerText? headerText : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmationHeaderText')}" />
-    </div>
+    <h2>#{not empty headerText? headerText : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmationHeaderText')}</h2>
   </div>
   
   <div class="u-text-align-center portal-dialog-content">#{dialogContent}</div>

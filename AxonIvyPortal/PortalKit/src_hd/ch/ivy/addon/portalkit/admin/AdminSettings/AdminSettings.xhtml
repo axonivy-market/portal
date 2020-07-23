@@ -33,7 +33,7 @@
 
         <h:panelGroup layout="block" styleClass="application-tab-action-buttons">
           <p:commandButton id="add-application-btn" actionListener="#{logic.addNewApp}" oncomplete="PF('appDialog').show()" resetValues="true"
-            styleClass="new-app" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/new')}" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add')}"
+            styleClass="new-app" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/new')}" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}"
             update=":#{p:component('appDialog')}" />
         </h:panelGroup>
 

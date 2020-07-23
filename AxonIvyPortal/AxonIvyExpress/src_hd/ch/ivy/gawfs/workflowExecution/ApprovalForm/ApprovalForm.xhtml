@@ -32,12 +32,10 @@
           </h:panelGroup>
         </div>
 
-        <h:panelGrid columns="2" styleClass="case-view-footer ui-g-12 u-no-border">
-          <h:panelGroup>
-            <p:commandLink id="cancel-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="form"
-              actionListener="#{logic.cancel}" />
-          </h:panelGroup>
+        <h:panelGrid styleClass="case-view-footer ui-g-12 u-no-border">
           <h:panelGroup layout="block" styleClass="TexAlRight">
+            <p:commandLink id="cancel-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="form"
+              actionListener="#{logic.cancel}" styleClass="u-mar-right-15" />
             <p:commandButton id="refuse-btn" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/ApprovalForm/Reject')}" update="form" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-delete')}"
               actionListener="#{logic.closeDeny}" styleClass="secondary-btn" />
             <p:spacer width="5" />
