@@ -412,13 +412,14 @@
     </h:form>
   </p:dialog>
 
-  <!--  CONFIRMATION DIALOG TO DELETE SETTING -->
+  <!--  CONFIRMATION DIALOG TO DELETE APPLICATION -->
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
     <ui:param name="id" value="deleteConfirmationDialog" />
     <ui:param name="widgetVar" value="deleteConfirmation" />
     <ui:param name="appendTo" value="@(body)" />
     <ui:param name="iconClass" value="icon ivyicon-delete-1" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteSettingHeaderText')}" />
     <ui:param name="dialogContent" value="#{data.confirmMsg}" />
     
     <ui:define name="dialogFooter">
@@ -438,6 +439,7 @@
     <ui:param name="appendTo" value="@(body)" />
     <ui:param name="iconClass" value="icon ivyicon-road-sign-warning" />
     <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetSettingHeaderText')}" />
     <ui:param name="dialogContent" value="#{data.confirmMsg}" />
     
     <ui:define name="dialogFooter">
