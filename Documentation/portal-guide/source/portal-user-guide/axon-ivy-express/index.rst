@@ -238,12 +238,15 @@ For express case, after you had done a workflow, you can recheck the summary dat
 
 HowTo: Show Business summary
 """"""""""""""""""""""""""""
+
     1. Firstly, you should go to the :ref:`Case List <full-case-list>` page and open ``Action`` link of your case.
 
     2. Find the ``Show Business details`` link and click on it.
+
     |express-case|
 
     3. Then the ``Express form`` will be shown up via read-only mode.
+
     |express-business-summary|
 
 .. note:: In case, your process is running, you will only see the data of what express task had done on the ``Summary`` page
