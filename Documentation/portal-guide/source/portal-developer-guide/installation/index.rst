@@ -144,6 +144,8 @@ Migrate 8.x to 9.1
 
 - Restart Ivy engine.
 
+9. Use ``pageContent`` to define your section in ``BasicTemplate.xhtml`` instead of ``simplePageContent``
+
 .. _installation-release-notes:
 
 Release notes
