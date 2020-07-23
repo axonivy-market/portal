@@ -41,8 +41,11 @@
             <cc:renderFacet name="title" />
             <h:outputText rendered="#{empty cc.facets.title}" 
               value="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}" styleClass="ui-sm-hidden" />
-            <p:commandLink id="toggle-tasks-link" rendered="#{empty cc.facets.title or data.dataModel.compactMode}" styleClass="fa-minus compact-toggle-tasks-link ui-lg-hidden ui-xl-hidden ui-md-hidden"
-              value="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}" global="false" oncomplete="toggleShowTaskList();" />
+            <p:commandLink id="toggle-tasks-link" rendered="#{empty cc.facets.title or data.dataModel.compactMode}" styleClass="compact-toggle-tasks-link ui-lg-hidden ui-xl-hidden ui-md-hidden"
+              global="false" oncomplete="toggleShowTaskList();">
+              <i class="icon ivyicon-subtract-small u-mar-right-5"/>
+              <h:outputText value="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}" />
+            </p:commandLink>
           </h:panelGroup>
 
           <h:panelGroup styleClass="widget-header-main-menu"
@@ -396,7 +399,7 @@
       function toggleShowTaskList() {
         $('[id $= "task-widget-sub-header"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
         $('[id $= "task-view"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
-        $('[id $= "toggle-tasks-link"]').toggleClass("fa-plus").toggleClass("fa-minus");
+        $('[id $= "toggle-tasks-link"] > i').toggleClass("ivyicon-add-small").toggleClass("ivyicon-subtract-small");
       }
 
       $(function() {

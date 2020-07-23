@@ -16,8 +16,10 @@
     message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/warningMessage')}"
     widgetVar="timeout-warning-dialog" appendTo="@(body)" closable="false" width="auto" responsive="true">
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/logoutSetting/logout')}"
+      icon="#{visibilityBean.generateButtonIcon('icon ivyicon-logout-1')}"
       styleClass="secondary-btn" actionListener="#{logic.logout(task)}" oncomplete="returnHomePage()" />
     <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/warningBeforeLostSession/extend')}"
+      icon="#{visibilityBean.generateButtonIcon('icon ivyicon-monitor-refresh')}"
       actionListener="#{logic.extendSession}" oncomplete="PortalSessionWarning.hideWarningDialog();PortalSessionWarning.resetCounterAndTimeout();" />
   </p:confirmDialog>
   

@@ -36,7 +36,7 @@
           oncomplete="PF('welcome-portal-guide').hide();" styleClass="guide-panel__cancel u-hidden-1024-down"
           rendered="#{not guideBean.dontShowAgain}" />
         <p:commandButton id="welcome-guide-next" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}"
-          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-arrow-right-1')}" 
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-arrow-right-1-small')}" 
           onclick="PF('welcome-portal-guide').hide(); #{cc.attrs.onNext}"
           rendered="#{not guideBean.dontShowAgain}" styleClass="u-hidden-1024-down" />
         <p:commandButton id="finish" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/finish')}"

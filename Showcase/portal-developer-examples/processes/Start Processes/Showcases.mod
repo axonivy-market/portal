@@ -306,7 +306,8 @@ Ss0 f35 requestEnabled true #txt
 Ss0 f35 triggerEnabled false #txt
 Ss0 f35 callSignature PortalDialogExamples() #txt
 Ss0 f35 startName 'Portal Dialog Examples' #txt
-Ss0 f35 caseData businessCase.attach=true #txt
+Ss0 f35 caseData 'businessCase.attach=true
+customFields.STRING.embedInFrame="false"' #txt
 Ss0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

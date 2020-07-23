@@ -48,7 +48,7 @@
     
     <div class="ui-g-12 chat-add-assignee-button-grid">
       <p:commandButton id="chat-add-assignee-button"
-        icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add')}"
+        icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
         disabled="#{chatAssigneeBean.selectedUser == null and chatAssigneeBean.selectedRole == null}" actionListener="#{chatAssigneeBean.addAssignee}"
         global="false" update="error-message chat-selected-assignee-fieldset" ignoreAutoUpdate="true" />
