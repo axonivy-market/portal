@@ -81,8 +81,7 @@
   --task-state-system-font-size: 1.8rem;
   
   /**Portal dialog*/
-  --portal-dialog-header-text-font-size: 3rem;
-  --portal-dialog-icon-font-size: 6rem;
+  --portal-dialog-icon-font-size: 5rem;
   
   /* Color and border radius of Portal button e.g Add, Close, New, Save, OK .. */
   --cancel-button-background-color: var(--ivy-primary-color-grey-light);

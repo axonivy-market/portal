@@ -1058,14 +1058,9 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   bottom: 2px;
 }
 
-.compact-process-widget .toggle-processes-link.fa-plus:before, .compact-toggle-tasks-link.fa-plus:before {
-  padding-right: 4px;
-  content: '\f067';
-}
-
-.compact-process-widget .toggle-processes-link.fa-minus:before, .compact-toggle-tasks-link.fa-minus:before {
-  padding-right: 4px;
-  content: '\f068';
+.toggle-processes-link .icon,
+.compact-toggle-tasks-link .icon {
+  font-weight: bold !important;
 }
 
 .process-start-list-item-action.is-express {
@@ -4702,6 +4697,6 @@ body td .icon {
 }
 
 .portal-dialog-content {
-  margin-top: 20px;
+  margin:20px 0;
 }
 /** Portal dialog ---- end-----**/

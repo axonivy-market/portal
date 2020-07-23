@@ -58,6 +58,7 @@
   
             <p:commandLink id="task-analysis-page-navigation-link" actionListener="#{logic.navigateToTaskAnalysisPage}"
               rendered="#{data.canAnalyzeTask and !data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart}" styleClass="task-analysis-page-navigation-link u-hidden-md-down Fright">
+              <i class="icon ivyicon-analytics-board-graph-line u-mar-right-5" />
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskAnalysis')}" />
             </p:commandLink>
           </h:panelGroup>
