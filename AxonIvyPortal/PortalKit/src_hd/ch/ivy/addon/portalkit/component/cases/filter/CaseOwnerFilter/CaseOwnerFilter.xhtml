@@ -22,7 +22,7 @@
       moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
       styleClass="responsible-list-filter">
       <p:column>
-        <i class="fa #{owner.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+        <i class="icon #{owner.isUser() ? 'ivyicon-single-neutral-actions' : 'ivyicon-multiple-neutral-1'} u-mar-right-5" />
         <h:outputText value="#{cc.attrs.filter.formatName(owner)}" />
       </p:column>
     </p:autoComplete>
