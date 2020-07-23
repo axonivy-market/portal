@@ -107,7 +107,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public String getCaseId(){
-    return findElementById("general-information:case-id").getText();
+    return findElementByCssSelector("span[id$='case-id']").getText();
   }
   
   public void clickAdhocCreationButton() {

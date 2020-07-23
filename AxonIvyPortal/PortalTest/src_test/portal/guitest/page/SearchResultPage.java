@@ -73,17 +73,17 @@ public class SearchResultPage extends TemplatePage {
 
 	public boolean isInfoWorkflowIcon() {
 		WebElement element = findElementByCssSelector(INFO_EXPRESS_WORKFlOW);	
-		return element.getAttribute("class").contains("fa-info-circle");
+		return element.getAttribute("class").contains("ivyicon-information-circle");
 	}
 	
 	public boolean isEditExpressWorkflow() {
 		WebElement element = findElementByCssSelector(EDIT_EXPRESS_WORKFlOW);
-		return element.getAttribute("class").contains("fa-pencil");
+		return element.getAttribute("class").contains("ivyicon-graphic-tablet-drawing-pen");
 	}
 	
 	public boolean isDeleteExpressWorkflown() {
 		WebElement element = findElementByCssSelector(DELETE_EXPRESS_WORKFlOW);
-		return element.getAttribute("class").contains("fa-trash");
+		return element.getAttribute("class").contains("ivyicon-bin-1");
 	}
 	
 	public boolean isExpressProcessLogo() {

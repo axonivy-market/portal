@@ -53,7 +53,7 @@
                     trackMouse="true" />
                   <p:commandLink id="delete-user-defined-filter-command"
                     rendered="#{taskAnalysisWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
-                    styleClass="fa fa-times-circle delete-user-defined-filter-command"
+                    styleClass="icon ivyicon-delete-2 delete-user-defined-filter-command"
                     actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
                     oncomplete="PF('delete-filter-confirmation-dialog').show();" />
                 </h:panelGroup>
@@ -74,7 +74,7 @@
                     trackMouse="true" />
                   <p:commandLink id="delete-user-defined-filter-command"
                     rendered="#{taskAnalysisWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
-                    styleClass="fa fa-times-circle delete-user-defined-filter-command"
+                    styleClass="icon ivyicon-delete-2 delete-user-defined-filter-command"
                     actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
                     oncomplete="PF('delete-filter-confirmation-dialog').show();" />
                 </h:panelGroup>
@@ -232,6 +232,7 @@
     <ui:param name="id" value="reset-filter-set-dialog" />
     <ui:param name="widgetVar" value="reset-filter-set-dialog" />
     <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetToStandardFilterHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/restoreDefaultFilterMessage')}" />
     
     <ui:define name="dialogFooter">
@@ -289,6 +290,7 @@
     <ui:param name="appendTo" value="@(body)" />
     <ui:param name="iconClass" value="icon ivyicon-delete-1" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteFilterHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterDeletionConfirmation')}" />
     
     <ui:define name="dialogFooter">
