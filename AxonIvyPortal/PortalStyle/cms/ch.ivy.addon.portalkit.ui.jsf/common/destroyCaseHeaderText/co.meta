@@ -1,0 +1,5 @@
+co: name={destroyCaseHeaderText} description={} changed={2020-07-22 12:19:14 CEST} changedby={ldnam} visualorder={0} guid={17376076DD085356} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1737608C83989073} datatype={} isdefault={false} langid={de} description={} validfrom={2020-07-22 12:19:10 CEST} validto={} changed={2020-07-22 12:19:13 CEST} changedby={ldnam} properties={} id={}
+val: guid={1737608C8D52A999} datatype={} isdefault={false} langid={es} description={} validfrom={2020-07-22 12:19:07 CEST} validto={} changed={2020-07-22 12:19:14 CEST} changedby={ldnam} properties={} id={}
+val: guid={17376076DD32287D} datatype={} isdefault={true} langid={en} description={} validfrom={2020-07-22 12:17:45 CEST} validto={} changed={2020-07-22 12:17:45 CEST} changedby={ldnam} properties={} id={}
+val: guid={1737608C900A2529} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-07-22 12:19:05 CEST} validto={} changed={2020-07-22 12:19:14 CEST} changedby={ldnam} properties={} id={}

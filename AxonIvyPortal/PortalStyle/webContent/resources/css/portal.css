@@ -814,8 +814,10 @@ body .ui-inputfield.task-name-input {
 .task-detail-header .task-name {
   font-weight: var(--task-detail-header-font-weight); }
 
-.task-detail-section-title {
-  font-weight: var(--task-detail-section-title-font-weight); }
+.task-detail-section-title,
+.task-detail-section-title > i.icon,
+.task-detail-section-title > div > i.icon {
+  font-weight: var(--task-detail-section-title-font-weight) !important; }
 
 .task-item-body .card {
   box-shadow: var(--card-box-shadow);
@@ -1103,7 +1105,7 @@ body .fieldset-no-border {
 
 .advanced-filter-icon {
   color: var(--widget-advanced-filter-icon-color);
-  font-size: 1.8rem; }
+  font-size: 1.4rem !important; }
 
 .advanced-filter-icon:hover {
   color: var(--widget-advanced-filter-icon-color-hover);}
@@ -1144,8 +1146,10 @@ body .ui-inputfield.case-detail-name-input {
   font-weight: var(--case-detail-name-input-font-weight); }
 
 .case-detail-section-title, .case-history-button-container,
-.task-history-button-container {
-  font-weight: var(--history-button-container-font-weight); }
+.task-history-button-container,
+.case-detail-section-title > i.icon,
+.case-detail-section-title > div > i.icon {
+  font-weight: var(--history-button-container-font-weight) !important; }
 
 .case-header-action-cell .action-item .ui-button {
   background: var(--case-header-action-cell-button-background-color);

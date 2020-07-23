@@ -56,7 +56,7 @@
                         value="#{filterData.filterName}" trackMouse="true" />
                       <p:commandLink id="delete-user-defined-filter-command"
                         rendered="#{caseWidgetBean.isDeleteFilterEnabledFor(filterData)}"
-                        styleClass="fa fa-times-circle delete-user-defined-filter-command"
+                        styleClass="icon ivyicon-delete-2 delete-user-defined-filter-command"
                         actionListener="#{data.setFilterDataToBeDeleted(filterData)}"
                         oncomplete="PF('delete-filter-confirmation-dialog').show();" />
                     </div>
@@ -79,7 +79,7 @@
                         value="#{filterData.filterName}" trackMouse="true" />
                       <p:commandLink id="delete-user-defined-filter-command"
                         rendered="#{caseWidgetBean.isDeleteFilterEnabledFor(filterData)}"
-                        styleClass="fa fa-times-circle delete-user-defined-filter-command"
+                        styleClass="icon ivyicon-delete-2 delete-user-defined-filter-command"
                         actionListener="#{logic.setFilterToBeDeleted(filterData)}"
                         oncomplete="PF('delete-filter-confirmation-dialog').show();" />
                     </div>
@@ -203,6 +203,7 @@
     <ui:param name="id" value="reset-filter-set-dialog" />
     <ui:param name="widgetVar" value="reset-filter-set-dialog" />
     <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetToStandardFilterHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/restoreDefaultFilterMessage')}" />
     
     <ui:define name="dialogFooter">
@@ -265,6 +266,7 @@
     <ui:param name="appendTo" value="@(body)" />
     <ui:param name="iconClass" value="icon ivyicon-delete-1" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteFilterHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterDeletionConfirmation')}" />
     
     <ui:define name="dialogFooter">
@@ -278,13 +280,14 @@
     </ui:define>
   </ui:decorate>
   
-  <!-- Destroy task dialog -->
+  <!-- Destroy case dialog -->
   <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
     <ui:param name="id" value="destroy-case-confirmation-dialog" />
     <ui:param name="widgetVar" value="destroy-case-dialog" />
     <ui:param name="appendTo" value="@(body)" />
     <ui:param name="iconClass" value="icon ivyicon-delete-1" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyCaseHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage')}" />
     
     <ui:define name="dialogFooter">
