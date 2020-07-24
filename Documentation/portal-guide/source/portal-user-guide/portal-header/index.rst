@@ -95,7 +95,7 @@ tasks assigned to you or one of the roles you hold.
 
 The dialog shows you all current and upcoming absences. You may show also past
 absences by activating the option **Show absences in the past**. Furthermore,
-you can edit or delete absences by using the |edit-icon| **Edit** or |delete-icon|
+you can edit or delete absences by using the |edit-icon| **Edit** or |trash-icon|
 **Delete** action in the row of the respective absence.
 
 How to: Add absence
