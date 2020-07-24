@@ -202,7 +202,7 @@ public class CaseSearchCriteria {
       if (!CaseSortField.OWNER.toString().equalsIgnoreCase(criteria.getSortField())) {
         return;
       }
-      OrderByColumnQuery orderByName = query.orderBy().ownerName();
+      OrderByColumnQuery orderByName = query.orderBy().ownerDisplayName();
       if (criteria.isSortDescending()) {
         orderByName.descending();
       }
