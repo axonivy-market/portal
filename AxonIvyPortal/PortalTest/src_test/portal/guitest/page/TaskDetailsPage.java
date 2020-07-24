@@ -212,7 +212,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
   
   public boolean isActionLinkEnable() {
-    return !findElementByClassName("action-button").getAttribute("class").contains("ui-state-disabled");
+    return !findElementByClassName("action-link").getAttribute("class").contains("ui-state-disabled");
   }
   
   public List<String> getActiveTaskAction() {
