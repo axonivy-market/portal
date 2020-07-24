@@ -20,19 +20,14 @@ As0 @UdProcessEnd f1 '' #zField
 As0 @GridStep f11 '' #zField
 As0 @UdEvent f10 '' #zField
 As0 @UdInit f0 '' #zField
-As0 @UdEvent f29 '' #zField
-As0 @UdProcessEnd f30 '' #zField
 As0 @UdEvent f3 '' #zField
-As0 @UdProcessEnd f31 '' #zField
 As0 @UdMethod f24 '' #zField
 As0 @UdExitEnd f4 '' #zField
 As0 @UdProcessEnd f23 '' #zField
 As0 @UdProcessEnd f19 '' #zField
-As0 @PushWFArc f33 '' #zField
 As0 @PushWFArc f22 '' #zField
 As0 @PushWFArc f16 '' #zField
 As0 @PushWFArc f34 '' #zField
-As0 @PushWFArc f32 '' #zField
 As0 @PushWFArc f5 '' #zField
 As0 @PushWFArc f2 '' #zField
 As0 @PushWFArc f14 '' #zField
@@ -43,6 +38,8 @@ As0 @PushWFArc f21 '' #zField
 As0 @UdProcessEnd f18 '' #zField
 As0 @PushWFArc f15 '' #zField
 As0 @UdMethod f8 '' #zField
+As0 @UdExitEnd f25 '' #zField
+As0 @PushWFArc f27 '' #zField
 >Proto As0 As0 ApplicationDialogProcess #zField
 As0 f17 467 283 26 26 0 12 #rect
 As0 f17 @|UdProcessEndIcon #fIcon
@@ -166,20 +163,6 @@ As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f0 83 51 26 26 -16 15 #rect
 As0 f0 @|UdInitIcon #fIcon
-As0 f29 guid 169C76B36E16E61A #txt
-As0 f29 actionTable 'out=in;
-' #txt
-As0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>cancel</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f29 83 619 26 26 -47 15 #rect
-As0 f29 @|UdEventIcon #fIcon
-As0 f30 459 539 26 26 0 12 #rect
-As0 f30 @|UdProcessEndIcon #fIcon
 As0 f3 guid 169C76B36E13A297 #txt
 As0 f3 actionTable 'out=in;
 ' #txt
@@ -192,8 +175,6 @@ As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f3 83 155 26 26 -15 12 #rect
 As0 f3 @|UdEventIcon #fIcon
-As0 f31 459 619 26 26 0 12 #rect
-As0 f31 @|UdProcessEndIcon #fIcon
 As0 f24 guid 169C76B36E1C02EC #txt
 As0 f24 method handleFileUploader(org.primefaces.event.FileUploadEvent) #txt
 As0 f24 inParameterDecl '<org.primefaces.event.FileUploadEvent event> param;' #txt
@@ -229,16 +210,12 @@ As0 f23 467 219 26 26 0 12 #rect
 As0 f23 @|UdProcessEndIcon #fIcon
 As0 f19 467 475 26 26 0 12 #rect
 As0 f19 @|UdProcessEndIcon #fIcon
-As0 f33 expr out #txt
-As0 f33 109 632 459 632 #arcP
 As0 f22 expr out #txt
 As0 f22 344 488 467 488 #arcP
 As0 f16 expr out #txt
 As0 f16 109 488 232 488 #arcP
 As0 f34 expr out #txt
 As0 f34 109 232 467 232 #arcP
-As0 f32 expr out #txt
-As0 f32 109 552 459 552 #arcP
 As0 f5 expr out #txt
 As0 f5 109 168 243 168 #arcP
 As0 f2 expr out #txt
@@ -303,6 +280,11 @@ As0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 As0 f8 83 363 26 26 -52 15 #rect
 As0 f8 @|UdMethodIcon #fIcon
+As0 f25 459 539 26 26 0 12 #rect
+As0 f25 @|UdExitEndIcon #fIcon
+As0 f27 expr out #txt
+As0 f27 109 552 459 552 #arcP
+As0 f27 0 0.5126441679273225 0 0 #arcLabel
 >Proto As0 .type com.axonivy.portal.developerexamples.showcase.ApplicationDialog.ApplicationDialogData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 -8 -8 16 16 16 26 #rect
@@ -325,9 +307,7 @@ As0 f12 mainOut f21 tail #connect
 As0 f21 head f18 mainIn #connect
 As0 f13 mainOut f22 tail #connect
 As0 f22 head f19 mainIn #connect
-As0 f28 mainOut f32 tail #connect
-As0 f32 head f30 mainIn #connect
-As0 f29 mainOut f33 tail #connect
-As0 f33 head f31 mainIn #connect
 As0 f24 mainOut f34 tail #connect
 As0 f34 head f23 mainIn #connect
+As0 f28 mainOut f27 tail #connect
+As0 f27 head f25 mainIn #connect
