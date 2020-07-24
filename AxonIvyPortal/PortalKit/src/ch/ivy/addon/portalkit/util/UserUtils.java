@@ -172,7 +172,7 @@ public class UserUtils {
   
   public static CaseFilterData getSessionSelectedCaseFilterSetAttribute() {
     Object sessionObject = Ivy.session().getAttribute(SELECTED_CASE_FILTER_SET);
-    return sessionObject instanceof TaskFilterData ? (CaseFilterData) sessionObject : null;
+    return sessionObject instanceof CaseFilterData ? (CaseFilterData) sessionObject : null;
   }
 
   @SuppressWarnings("unchecked")
@@ -180,7 +180,7 @@ public class UserUtils {
     List<CaseFilter> filters = new ArrayList<>();
     List<?> obj = (List<?>) Ivy.session().getAttribute(SELECTED_CASE_FILTER);
     
-    if (CollectionUtils.isNotEmpty(obj) && obj.get(0) instanceof TaskFilter) {
+    if (CollectionUtils.isNotEmpty(obj) && obj.get(0) instanceof CaseFilter) {
       return (List<CaseFilter>)obj;
     }
     return filters;
