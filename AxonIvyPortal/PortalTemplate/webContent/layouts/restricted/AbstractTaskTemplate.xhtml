@@ -186,13 +186,21 @@
           </h:form>
         </p:dialog>
   
-        <p:dialog id="adhoc-task-reset-confirmation-dialog" resizable="false"
-          header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
-          widgetVar="adhoc-task-reset-confirmation-dialog" appendTo="@(body)" modal="true" dynamic="true"
-          responsive="true">
-          <h:outputText escape="false" styleClass="ui-confirm-dialog-message" id="adhoc-creation-message"
-            value="#{abstractTaskTemplateBean.getAdhocCreationMessage(task.id)}" />
-          <f:facet name="footer">
+        <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+          <ui:param name="id" value="adhoc-task-reset-confirmation-dialog" />
+          <ui:param name="widgetVar" value="adhoc-task-reset-confirmation-dialog" />
+          <ui:param name="dynamic" value="true"/>
+          <ui:param name="appendTo" value="@(body)" />
+          <ui:param name="iconClass" value="icon ivyicon-road-sign-warning" />
+          <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+          
+          <ui:define name="dialogContentSection">
+            <div id="adhoc-creation-message" class="u-text-align-center portal-dialog-content">
+              #{abstractTaskTemplateBean.getAdhocCreationMessage(task.id)}
+            </div>
+          </ui:define>
+          
+          <ui:define name="dialogFooter">
             <h:form prependId="false">
               <h:panelGroup styleClass="ui-dialog-buttonpane">
                 <p:commandLink onclick="PF('adhoc-task-reset-confirmation-dialog').hide()"
@@ -203,16 +211,19 @@
                   id="start-adhoc-ok-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
               </h:panelGroup>
             </h:form>
-          </f:facet>
-        </p:dialog>
+          </ui:define>
+        </ui:decorate>
         
-        <p:dialog id="sidestep-task-reset-confirmation-dialog" resizable="false"
-          header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
-          widgetVar="sidestep-task-reset-confirmation-dialog" appendTo="@(body)" modal="true" dynamic="true"
-          responsive="true">
-          <h:outputText escape="false" styleClass="ui-confirm-dialog-message"
-            value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/goToSidestepWarning')}" />
-          <f:facet name="footer">
+        <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+          <ui:param name="id" value="sidestep-task-reset-confirmation-dialog" />
+          <ui:param name="widgetVar" value="sidestep-task-reset-confirmation-dialog" />
+          <ui:param name="dynamic" value="true"/>
+          <ui:param name="appendTo" value="@(body)" />
+          <ui:param name="iconClass" value="icon ivyicon-road-sign-warning" />
+          <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+          <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/OpenTaskTemplate/goToSidestepWarning')}" />
+          
+          <ui:define name="dialogFooter">
             <h:form prependId="false">
               <h:panelGroup styleClass="ui-dialog-buttonpane">
                 <p:commandLink id="side-step-start-cancel" onclick="PF('sidestep-task-reset-confirmation-dialog').hide()"
@@ -223,8 +234,8 @@
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" />
               </h:panelGroup>
             </h:form>
-          </f:facet>
-        </p:dialog>
+          </ui:define>
+        </ui:decorate>
         
         <p:dialog id="adhoc-task-history-dialog" resizable="false"
           styleClass="adhoc-task-history-dialog"

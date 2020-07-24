@@ -167,7 +167,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public String getAdhocCreationMessage() {
-    String adhocCreationMessageCSSSelector = "span[id$='adhoc-creation-message']";
+    String adhocCreationMessageCSSSelector = "div[id$='adhoc-creation-message']";
     return findDisplayedElementByCssSelector(adhocCreationMessageCSSSelector).getText();
   }
 
