@@ -36,6 +36,7 @@ public class DashboardScreenshotTest extends BaseTest {
   public void takeScreenshotOverlayGuide() throws IOException {
     updatePortalSetting("SHOW_USER_GUIDE", "true");
     homePage = new HomePage();
+    homePage.waitForGrowlDisappear();
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DASHBOARD_FOLDER + "overlay-guide");
   }
@@ -44,6 +45,7 @@ public class DashboardScreenshotTest extends BaseTest {
   public void takeScreenshotWithEnvironmentInfo() throws IOException {
     updatePortalSetting("SHOW_ENVIRONMENT_INFO", "true");
     homePage = new HomePage();
+    homePage.waitForGrowlDisappear();
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 500));
     ScreenshotUtil.captureHalfRightPageScreenShot(ScreenshotUtil.DASHBOARD_FOLDER + "environment-info");
   }

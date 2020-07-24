@@ -71,6 +71,7 @@ public class PortalProcessesScreenshotTest extends BaseTest {
   
   @Test
   public void screenshotHowtoAddProcessFavorite() throws IOException {
+    homePage.waitForGrowlDisappear();
     processWidget = homePage.getProcessWidget();
     ScreenshotUtil.resizeBrowser(new Dimension(1366, SCREENSHOT_MOBILE_HEIGHT));
     processWidget.openNewProcessDialog();
