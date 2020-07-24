@@ -144,7 +144,7 @@ HowTo: Create an Express Workflow
 
 21. Select if the input of this date is required or not
 
-22. Use the button |arrow-down-icon| **Create** to create the input element
+22. Use the button |add-icon| **Create** to create the input element
 
 23. The created element appears in the list **Available form elements**
 
