@@ -498,6 +498,7 @@ import org.apache.commons.lang3.StringUtils;
 // Add a short title for mobile screen
 String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle", Arrays.asList(in.caseId.id().toString()));
 
+in.caseDataModel.getCriteria().setNewQueryCreated(true);
 in.caseDataModel.getCriteria().setKeyword(StringUtils.EMPTY);
 in.caseDataModel.getCriteria().setBusinessCase(false);
 in.caseDataModel.getCriteria().setBusinessCaseId(in.caseId.id());
