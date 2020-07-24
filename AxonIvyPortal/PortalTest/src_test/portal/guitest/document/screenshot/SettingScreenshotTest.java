@@ -31,6 +31,7 @@ public class SettingScreenshotTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     homePage = new HomePage();
     homePage.waitForStatisticRendered();
+    homePage.waitForGrowlDisappear();
     homePage.getUserSettings();
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SETTINGS_FOLDER + "user-settings", new Dimension(1500, 800));
     
