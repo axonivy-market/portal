@@ -42,7 +42,7 @@ handling cases:
 
 1. Detail
 
-2. **Action** for further actions
+2. **Actions** for further actions
 
 Finally, you have the possibility to access the full set of the case
 data by clinking the case Name/Description.
@@ -102,7 +102,7 @@ HowTo: Create new filter
 
 3. Add more filters by clicking on the button **More** again.
 
-4. Drop filters by clicking on the |delete-attachment-icon| **Delete** button next to
+4. Drop filters by clicking on the |delete-circle-icon| **Delete** button next to
    the filter.
 
 5. When finished, click on the button **Save filter**.
@@ -191,7 +191,7 @@ HowTo: Remove an attachment from the case
 
 1. Open the case details of a task
 
-2. Click on the |delete-attachment-icon| **Delete attachment** link next to the
+2. Click on the |delete-icon| **Delete attachment** link next to the
    attachment you want to remove.
 
 3. A :guilabel:`Confirmation` dialog is opened
