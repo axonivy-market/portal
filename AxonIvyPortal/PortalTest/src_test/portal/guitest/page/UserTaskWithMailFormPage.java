@@ -11,7 +11,7 @@ public class UserTaskWithMailFormPage extends TaskTemplatePage {
 
   public void selectEmailTab() {
     clickByCssSelector("a[href*='mail-tab']");
-    ensureNoBackgroundRequest();
+    waitForElementDisplayed(By.cssSelector("div[id$='information-email:email-content_editor']"), true);
   }
   public void inputData(String recipient, String subject, String content) {
     inputRecipient(recipient);
@@ -35,6 +35,5 @@ public class UserTaskWithMailFormPage extends TaskTemplatePage {
   }
   public void finish() {
     click(By.id("task-form:ok-btn"));
-    ensureNoBackgroundRequest();
   }
 }

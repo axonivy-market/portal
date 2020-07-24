@@ -324,6 +324,13 @@ function highlightExportExpress() {
   appendStepAnnotation(exportButton, 2, -10, exportButton.width() + 15);
 }
 
+function cleanHighlightExportExpress() {
+  var expressTable = $("[id$=':express-management-component:express-management-form:express-workflow-summary-table']");
+  var checkAll = expressTable.find(".express-selection-column:eq(0)").find(".ui-chkbox-box");
+  checkAll.removeClass("red-medium-outline");
+  $('.marker').remove();
+}
+
 function scrollToBottomOfLayoutContent() {
   var layoutContent = $('.js-layout-content'); 
   layoutContent.scrollTop(layoutContent[0].scrollHeight);
