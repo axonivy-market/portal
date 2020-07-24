@@ -11,6 +11,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.Sleeper;
+import portal.guitest.common.WaitHelper;
 
 public class TaskDetailsPage extends TemplatePage {
   
@@ -282,6 +283,6 @@ public class TaskDetailsPage extends TemplatePage {
     delayInput.sendKeys(tomorrow);
     WebElement buttonAction = findElementByCssSelector("[id$='delay-form:delay-date_editor']");
     click(buttonAction.findElement(By.className("ui-inplace-save")));
-    waitAjaxIndicatorDisappear();
+    WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("span[id$=':delay-form:delay-date_display']").getText().equalsIgnoreCase(tomorrow));
   }
 }
