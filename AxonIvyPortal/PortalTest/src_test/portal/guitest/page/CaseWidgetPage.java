@@ -113,7 +113,7 @@ public class CaseWidgetPage extends TemplatePage {
 		List<WebElement> caseItems = findListElementsByCssSelector(CASE_ITEM_LIST_SELECTOR);
 		for (WebElement caseItem : caseItems) {
 			if (caseItem.findElement(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
-				caseItem.findElement(By.cssSelector("button[id*='action-steps-menu']")).click();
+				caseItem.findElement(By.cssSelector("a[id*='action-steps-menu']")).click();
 				waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
 				findElementByCssSelector("a[id$='case-item-open-detail-link']").click();
 				return new CaseDetailsPage();

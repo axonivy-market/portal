@@ -769,4 +769,8 @@ public class TaskWidgetPage extends TemplatePage {
     click(findElementByCssSelector(String.format("a[id$='task-list-scroller:%d:task-item:task-action:additional-options:task-side-steps-menu'", taskIndex)));
     waitForElementDisplayed(By.cssSelector(String.format("div[id$='task-list-scroller:%d:task-item:task-action:additional-options:side-steps-panel'", taskIndex)), true);
   }
+  
+  public void waitForActionGroupDisplay() {
+    waitForElementDisplayed(By.cssSelector("div[class='action-container']"), true);
+  }
 }

@@ -157,7 +157,7 @@ public class PortalExpressScreenshotTest extends BaseTest {
     executeDecorateJs("highlightExportExpress()");
     WebElement adminDialog = adminSettingsPage.getAdminSettingDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminDialog, ScreenshotUtil.EXPRESS_MANAGEMENT_FOLDER + "express-export-tab", new ScreenshotMargin(40));
-    
+    executeDecorateJs("cleanHighlightExportExpress()");
     expressManagementPage.clickOnExportButton();
     WebElement exportDialog = expressManagementPage.getExportExpressDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(exportDialog, ScreenshotUtil.EXPRESS_MANAGEMENT_FOLDER + "export-list-summary", new ScreenshotMargin(40));

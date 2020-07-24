@@ -45,7 +45,8 @@ public class ExpressBusinessViewPage extends TaskTemplatePage {
   }
   
   public String getApprovalResultsText() {
-    return findListElementsByCssSelector("div[id*='approval-result'] td").stream().map(WebElement::getText)
+    WebElement approvalTable = findElementByClassName("approval-result-content");
+    return approvalTable.findElements(By.cssSelector("tbody[id$=':approval-result-table_data'] td")).stream().map(WebElement::getText)
         .collect(Collectors.joining(","));
   }
 

@@ -106,7 +106,7 @@ public class ExpressManagementTest extends BaseTest {
     openAdditionalBusinessPage(REQUEST_NEW_RESOURCE_PROCESS);
     
     ExpressBusinessViewPage expressBusiness = new ExpressBusinessViewPage();
-    assertTrue(expressBusiness.getIndexOfCurrentProcessChain() == 5);
+    assertTrue(expressBusiness.getIndexOfCurrentProcessChain() == 4);
 
     String fieldSetTitle = expressBusiness.getTextOfLegendFinishedTask(0);
     assertEquals("Promote new resource", fieldSetTitle);
@@ -123,7 +123,7 @@ public class ExpressManagementTest extends BaseTest {
     fieldSetTitle = expressBusiness.getTextOfLegendApprovalResult(0);
     assertEquals("Approval Request", fieldSetTitle);
     assertEquals(String.format("%s,%s,%s,%s,%s,%s", APPROVAL_USER_NAME, FIRST_COMMENT, APPROVAL_STATUS, APPROVAL_USER_NAME,
-        SECOND_COMMENT, APPROVAL_STATUS), expressBusiness.getApprovalResultsText().replaceFirst(",", ""));
+        SECOND_COMMENT, APPROVAL_STATUS), expressBusiness.getApprovalResultsText());
   }
 
   public void openAdditionalBusinessPage(String caseName) {
@@ -166,17 +166,19 @@ public class ExpressManagementTest extends BaseTest {
   }
 
   private void executeApprovalTask(String comment) {
+    taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.clickOnStartTaskLink(0);
     ExpressApprovalPage expressApproval = new ExpressApprovalPage();
+    expressApproval.waitForCommentContainerDisplay();
     expressApproval.comment(comment);
     expressApproval.clickOnApprove();
-    taskWidgetPage = new TaskWidgetPage();
   }
 
   private void executeReviewTask() {
     taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.clickOnStartTaskLink(0);
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
+    expressTaskPage.waitForExpressFieldSetDisplay();
     expressTaskPage.enterRequiredInputFieldByLabel("Comment", "Mr.David to axon");
     expressTaskPage.enterRequiredInputFieldByLabel("Approval date", "15.07.2020");
     expressTaskPage.finish();
@@ -185,6 +187,7 @@ public class ExpressManagementTest extends BaseTest {
   private void executeSendEmailTask() {
     taskWidgetPage.clickOnStartTaskLink(0);
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
+    expressTaskPage.waitForExpressFieldSetDisplay();
     expressTaskPage.enterRequiredInputFieldByLabel("Welcome", "Welcome Mr.David to axon");
     expressTaskPage.enterRequiredInputFieldByLabel("Start date", "10.07.2020");
 
@@ -192,10 +195,13 @@ public class ExpressManagementTest extends BaseTest {
     userTaskWithMail.selectEmailTab();
     userTaskWithMail.inputData("hr@email.com", "Please review this applicant", "Hello HR team, please proceed.");
     userTaskWithMail.finish();
+    taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.waitForActionGroupDisplay();
   }
 
   private void executePromoteResourceTask() {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
+    expressTaskPage.waitForExpressFieldSetDisplay();
     expressTaskPage.enterRequiredInputFieldByLabel("Applicant name", "David Rafi");
     expressTaskPage.enterRequiredInputFieldByLabel("Email", "David@email.com");
     expressTaskPage.enterRequiredInputFieldByLabel("Address", "39b Truong Son, Tan Binh");
