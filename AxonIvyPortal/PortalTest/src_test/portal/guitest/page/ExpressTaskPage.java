@@ -26,5 +26,9 @@ public class ExpressTaskPage extends TaskTemplatePage {
     WebElement inputField = findElementByCssSelector(String.format("input[data-p-rmsg*='%s']",  label));
     inputField.sendKeys(data);
   }
+  
+  public void waitForExpressFieldSetDisplay() {
+    waitForElementDisplayed(By.className("express-fieldset"), true);
+  }
 
 }
