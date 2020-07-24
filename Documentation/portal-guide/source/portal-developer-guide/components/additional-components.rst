@@ -378,7 +378,12 @@ How to use
 
 Please refer to ``PortalDialogExample.xhtml`` in ``portal-developer-examples`` for more examples.
 
-Attributes of this decorator:
+This decorator provide 2 custom sections:
+
+- ``dialogFooter``: you have to define this section, it contains footer of dialog.
+- ``dialogContentSection``: this is optional, if you want to use your custom style for your dialog content, please define this section.
+
+Parameters of this decorator:
 
 .. csv-table::
   :file: documents/additional-components/portal_dialog_decorator.csv
