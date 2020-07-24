@@ -12,6 +12,7 @@ import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.LazyDataModel;
@@ -177,11 +178,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   public void collectFiltersForDefaultFilterSet() {
     if (defaultTaskFilterData != null && CollectionUtils.isEmpty(defaultTaskFilterData.getFilters())) {
       TaskFilterContainer tempFilterContainer = null;
-      if (this.filterContainer == null) {
-        tempFilterContainer = new DefaultTaskFilterContainer();
-      } else {
-        tempFilterContainer = this.filterContainer;
-      }
+      tempFilterContainer = ObjectUtils.defaultIfNull(this.filterContainer, new DefaultTaskFilterContainer()); 
       updateStateForTaskCriteria();
       setValuesForStateFilter(criteria, tempFilterContainer);
       buildTaskStateFilter(tempFilterContainer);
