@@ -776,17 +776,6 @@ body .portal-cancel-button.ui-widget.ui-button .ui-icon,
   background-color: var(--announcement-background-color);
   border: 2px solid var(--announcement-border-color); }
 
-body .ui-button.action-button {
-  box-shadow: none;
-  background-color: transparent;
-  border: 1px solid transparent; }
-
-body .ui-widget.ui-button.action-button span, body .ui-widget.ui-button.action-button span {
-    color: var(--case-task-action-button-color); }
-
-.ui-button.ui-widget.action-button.ui-state-hover {
-  background-color: var(--case-task-action-button-hover-background-color); }
-
 /*Style For Task Detail --------------------------------------------------------------------------------------*/
 body .task-item-body .task-details-item-note .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top, .task-item-body .task-details-item-document .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
   background-color: var(--task-detail-paginator-header-corner-top-background-color);
@@ -1728,9 +1717,12 @@ ul.participants-list li {
 .global-search-icon {
   font-size: var(--large-font-size); }
 
-.action-button.task-action-item i {
+.action-link i {
   font-size: var(--header-font-size); }
-  
+
+.action-link span {
+  font-weight: var(--task-action-item-label-font-weight); }
+
 .task-action-item.start-task-action .task-action-item-label {
   font-weight: var(--task-start-action-font-weight);
 }
