@@ -21,7 +21,11 @@
     <h2>#{not empty headerText? headerText : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmationHeaderText')}</h2>
   </div>
   
-  <div class="u-text-align-center portal-dialog-content">#{dialogContent}</div>
+  <ui:insert name="dialogContentSection" />
+  
+  <h:panelGroup layout="block" rendered="#{not empty dialogContent}" class="u-text-align-center portal-dialog-content">
+    #{dialogContent}
+  </h:panelGroup>
   
   <f:facet name="footer">
     <ui:insert name="dialogFooter" />
