@@ -4099,8 +4099,18 @@ _:-ms-fullscreen, :root .content-link-history {
   margin-right: 5px;
 }
 
-.action-button.task-action-item {
-  margin-left: 10px;
+.action-link  {
+  margin: auto 10px;
+  display: flex;
+  align-items: center;
+}
+
+.case-header-action-cell .action-container {
+  padding: 0 10px;
+}
+
+.action-link span {
+  margin-right: 5px;
 }
 
 .task-right-component {
