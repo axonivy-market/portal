@@ -12,4 +12,4 @@ appendTo,No,,Alternative to appendToBody. Appends the dialog to the given search
 iconClass,No,icon ivyicon-information-circle,Icon classes.
 iconStyleClass,No,portal-dialog-info-icon,"Specific additional style for icon, color for example. We already provided 3 classes: portal-dialog-info-icon, portal-dialog-warning-icon, portal-dialog-error-icon"
 headerText,No,Are you sure?,Dialog header text.
-dialogContent,Yes,,Dialog's content.
+dialogContent,No,,"Dialog's content. If you don't have this parameter, please define dialogContentSection"
