@@ -6,7 +6,7 @@ Full Task List
 The :guilabel:`Full Task List` page shows you the same tasks you see on your
 personal dashboard. However, this page provides you with extended
 information on the tasks, as well as, advanced search and filter
-capabilities. You can reach the page by using the |check-icon| **Tasks**
+capabilities. You can reach the page by using the |task-list-icon| **Tasks**
 link in the Axon.ivy Portal menu.
 
 .. hint:: 
@@ -54,7 +54,9 @@ handling tasks:
 
 3. Reverse
 
-4. Add Ad-hoc Task
+4. Destroy Task
+
+5. Add Ad-hoc Task
 
 Finally, you have the possibility to access the full set of the task
 data by clicking on the row containing the task Name and Description.
@@ -100,7 +102,7 @@ HowTo: Create new filter
 
 3. Add more filters by clicking on the button **Filter** again.
 
-4. Drop filters by clicking on the |delete-attachment-icon| **Delete** button next to
+4. Drop filters by clicking on the |delete-circle-icon| **Delete** button next to
    the filter.
 
 5. When finished defining your filter, click on the button **Save
