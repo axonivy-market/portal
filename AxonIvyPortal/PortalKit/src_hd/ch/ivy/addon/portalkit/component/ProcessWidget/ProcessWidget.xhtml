@@ -100,24 +100,34 @@
     </div>
   </div>
 
-  <p:dialog id="remove-express-workflow-dialog" widgetVar="remove-express-workflow-dialog"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemHeader')}" closeOnEscape="true" modal="true"
-    dynamic="true" appendTo="@(body)" resizable="false" responsive="true">
-    <h:form id="delete-workflow-form">
-      <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemConfirmation')}" />
-      <br />
-      <h:outputText value="#{processWidgetBean.deletedExpressProcess.getName()}" styleClass="FontBold" />
-      <div class="ui-dialog-footer u-dialog-footer">
-        <p:commandLink onclick="PF('remove-express-workflow-dialog').hide()"
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="remove-express-workflow-dialog" />
+    <ui:param name="widgetVar" value="remove-express-workflow-dialog" />
+    <ui:param name="dynamic" value="true"/>
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="icon ivyicon-delete-1" />
+    <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemHeader')}" />
+    
+    <ui:define name="dialogContentSection">
+      <div class="u-text-align-center portal-dialog-content">
+         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemConfirmation')}" />
+         <br />
+         <h:outputText value="#{processWidgetBean.deletedExpressProcess.getName()}" styleClass="u-font-bold" />
+      </div>
+    </ui:define>
+    
+    <ui:define name="dialogFooter">
+      <h:form id="delete-workflow-form">
+        <p:commandLink onclick="PF('remove-express-workflow-dialog').hide()" styleClass="u-mar-right-15"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
-        <p:spacer width="15" />
         <p:commandButton global="false" process="@this" update="#{cc.clientId}:process-list"
           icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
           actionListener="#{processWidgetBean.deleteExpressWorkflow}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           oncomplete="PF('remove-express-workflow-dialog').hide();" />
-      </div>
-    </h:form>
-  </p:dialog>
+      </h:form>
+    </ui:define>
+  </ui:decorate>
 
   <script>
       var processWidget = new ProcessWidget();
