@@ -97,13 +97,13 @@ public class UploadDocumentTest extends BaseTest{
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     
     caseDetailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile(pdfFile));
-    Assert.assertTrue(isCorrectIconExtension(pdfFile, "fa fa-file-pdf-o"));
+    Assert.assertTrue(isCorrectIconExtension(pdfFile, "icon ivyicon-office-file-pdf-1"));
     
     caseDetailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile(wordFile));
-    Assert.assertTrue(isCorrectIconExtension(wordFile, "fa fa-file-word-o"));
+    Assert.assertTrue(isCorrectIconExtension(wordFile, "icon ivyicon-office-file-doc-1"));
     
     caseDetailsPage.uploadDocumentWithoutError(getAbsolutePathToTestFile(unsupportFile));
-    Assert.assertTrue(isCorrectIconExtension(unsupportFile, "fa fa-file-o"));
+    Assert.assertTrue(isCorrectIconExtension(unsupportFile, "icon ivyicon-common-file-empty"));
   }
   
   private boolean isCorrectIconExtension(String fileName, String iconClass) {
