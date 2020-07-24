@@ -63,7 +63,7 @@ public class CaseWidgetPage extends TemplatePage {
 
   public void openActionStepMenu() {
     waitForElementDisplayed(By.cssSelector("[id$=':case-item:case-item-action-form']"), true);
-    clickByCssSelector("button[id$='action-steps-menu']");
+    clickByCssSelector("a[id$='action-steps-menu']");
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
