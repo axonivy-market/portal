@@ -29,7 +29,7 @@
   <p:commandLink id="#{cc.attrs.actionLinkId}" disabled="#{cc.attrs.isDisabled}" global="false"
     onstart="event.stopPropagation()"
     actionListener="#{sideStepBean.getSideSteps(task.getId(), task.case.getId(), cc.attrs.isAdhocExcluded)}"
-    styleClass="action-button task-action-item #{cc.attrs.buttonStyleClass}"
+    styleClass="action-link #{cc.attrs.buttonStyleClass}"
     update="side-steps-panel">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="task-action-item-label" />
     <i class="icon ivyicon-arrow-down-1" />
