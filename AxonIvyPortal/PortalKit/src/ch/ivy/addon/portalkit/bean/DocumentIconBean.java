@@ -40,8 +40,7 @@ public class DocumentIconBean {
   private static final String DEFAULT = "icon ivyicon-common-file-empty";
 
   /**
-   * Base on extension of document, getIconCssClass method detects a corresponding Font Awesome icon.
-   * Note: Font Awesome version is 4.7.0
+   * Base on extension of document, getIconCssClass method detects a corresponding ivy icon.
    * 
    * @param documentName is a name of file
    * @return return css class for icon
