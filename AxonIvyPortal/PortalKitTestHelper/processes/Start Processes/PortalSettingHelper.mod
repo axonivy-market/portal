@@ -38,29 +38,14 @@ Pr0 f1 @|EndIcon #fIcon
 Pr0 f3 actionTable 'out=in;
 ' #txt
 Pr0 f3 actionCode 'import ch.ivy.addon.portalkit.service.IvyCacheService;
-import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
-
 GlobalSettingService globalSettingService = new GlobalSettingService();
-List<GlobalSetting> globalSettings = globalSettingService.findAllGlobalSetting();
-
-GlobalSetting globalSettingsForSave = null;
-for(GlobalSetting s : globalSettings) {
-	if(StringUtils.equals(s.getKey(), in.settingName)) {
-	   globalSettingsForSave = s;
-	   break;
-	}
-}
-    
-if(globalSettingsForSave != null) {
-	globalSettingsForSave.setValue(in.settingValue);
-	// Save portal setting
-	globalSettingService.save(globalSettingsForSave);
-	//Invalidate application cache to make new properties effects
-	IvyCacheService.newInstance().invalidateGlobalSettingOnApp(ivy.request.getApplication().getName());
-}' #txt
+GlobalSetting globalSetting = globalSettingService.findGlobalSettingByKey(in.settingName);
+globalSetting.setValue(in.settingValue);
+globalSettingService.save(globalSetting);
+IvyCacheService.newInstance().cacheGlobalSetting(in.settingName, in.settingValue);' #txt
 Pr0 f3 security system #txt
 Pr0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
