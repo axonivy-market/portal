@@ -10,6 +10,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.page.TemplatePage;
+import vn.wawa.guitest.base.page.AbstractPage;
 
 public final class WaitHelper {
 
@@ -90,7 +91,7 @@ public final class WaitHelper {
     }
   }
 
-  public static void typeWithRetry(TemplatePage page, String cssSelector, String value) {
+  public static void typeWithRetry(AbstractPage page, String cssSelector, String value) {
     WaitHelper.assertTrueWithWait(() -> {
       WebElement input = page.findElementByCssSelector(cssSelector);
       input.clear();

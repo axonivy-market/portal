@@ -302,7 +302,13 @@ public abstract class TemplatePage extends AbstractPage {
 
     public SearchResultPage inputSearchKeyword(String keyword) {
       click(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR));
-      type(getSearchInput(), keyword + Keys.ENTER);
+      WaitHelper.typeWithRetry(new AbstractPage() {
+        @Override
+        protected String getLoadedLocator() {
+          return TEMPLATE_PAGE_LOCATOR;
+        }
+      }, GLOBAL_SEARCH_INPUT_SELECTOR, keyword);
+      getSearchInput().sendKeys(Keys.ENTER.toString());
       return new SearchResultPage();
     }
     
