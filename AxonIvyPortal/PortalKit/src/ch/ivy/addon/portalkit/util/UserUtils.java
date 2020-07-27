@@ -127,7 +127,8 @@ public class UserUtils {
   }
 
   public static TaskFilterData getSessionSelectedTaskFilterSetAttribute() {
-    return (TaskFilterData) Ivy.session().getAttribute(SELECTED_TASK_FILTER_SET);
+    Object sessionObject = Ivy.session().getAttribute(SELECTED_TASK_FILTER_SET);
+    return sessionObject instanceof TaskFilterData ? (TaskFilterData) sessionObject : null;
   }
   
   public static Long getSessionFilterGroupIdAttribute() {
@@ -140,9 +141,11 @@ public class UserUtils {
 
   @SuppressWarnings("unchecked")
   public static List<TaskFilter> getSessionTaskAdvancedFilterAttribute() {
-    List<TaskFilter> filters = (List<TaskFilter>) Ivy.session().getAttribute(SELECTED_TASK_FILTER);
-    if (CollectionUtils.isEmpty(filters)) {
-      return new ArrayList<>();
+    List<TaskFilter> filters = new ArrayList<>();
+    List<?> obj = (List<?>) Ivy.session().getAttribute(SELECTED_TASK_FILTER);
+    
+    if (CollectionUtils.isNotEmpty(obj) && obj.get(0) instanceof TaskFilter) {
+      return (List<TaskFilter>)obj;
     }
     return filters;
   }
@@ -172,14 +175,17 @@ public class UserUtils {
   }
   
   public static CaseFilterData getSessionSelectedCaseFilterSetAttribute() {
-    return (CaseFilterData) Ivy.session().getAttribute(SELECTED_CASE_FILTER_SET);
+    Object sessionObject = Ivy.session().getAttribute(SELECTED_CASE_FILTER_SET);
+    return sessionObject instanceof CaseFilterData ? (CaseFilterData) sessionObject : null;
   }
 
   @SuppressWarnings("unchecked")
   public static List<CaseFilter> getSessionCaseAdvancedFilterAttribute() {
-    List<CaseFilter> filters = (List<CaseFilter>) Ivy.session().getAttribute(SELECTED_CASE_FILTER);
-    if (CollectionUtils.isEmpty(filters)) {
-      return new ArrayList<>();
+    List<CaseFilter> filters = new ArrayList<>();
+    List<?> obj = (List<?>) Ivy.session().getAttribute(SELECTED_CASE_FILTER);
+    
+    if (CollectionUtils.isNotEmpty(obj) && obj.get(0) instanceof CaseFilter) {
+      return (List<CaseFilter>)obj;
     }
     return filters;
   }
