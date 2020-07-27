@@ -14,10 +14,11 @@
 
 <cc:implementation>
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
-  <h:panelGroup id="config-columns-container" styleClass="config-columns-button u-hidden-md-down">
-    <p:commandLink id="#{cc.attrs.configButtonId}" type="button"
-     styleClass="config-columns"
-      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}" />
+  <h:panelGroup id="config-columns-container" layout="block" styleClass="config-columns-button u-hidden-md-down">
+    <p:commandLink id="#{cc.attrs.configButtonId}" styleClass="config-columns">
+      <i class="icon ivyicon-layers-grid-settings u-mar-right-5" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}" />
+    </p:commandLink>
   </h:panelGroup>
 
   <p:overlayPanel id="#{cc.attrs.overlayPanelId}" widgetVar="#{cc.attrs.overlayPanelId}" appendTo="@(body)"
