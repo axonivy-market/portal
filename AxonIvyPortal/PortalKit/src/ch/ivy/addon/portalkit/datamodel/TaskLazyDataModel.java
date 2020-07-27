@@ -215,6 +215,7 @@ public class TaskLazyDataModel extends LazyDataModel<RemoteTask> {
   }
 
   private void initializedDataModel(TaskSearchCriteria criteria) {
+    searchCriteria.setInvolvedUsername(Ivy.session().getSessionUserName());
     data.clear();
     displayedTaskMap.clear();
     notDisplayedTaskMap.clear();

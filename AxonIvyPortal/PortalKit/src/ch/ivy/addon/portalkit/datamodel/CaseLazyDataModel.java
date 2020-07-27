@@ -201,6 +201,7 @@ public class CaseLazyDataModel extends LazyDataModel<RemoteCase> {
   }
 
   private void initializedDataModel(CaseSearchCriteria criteria) {
+    searchCriteria.setInvolvedUsername(Ivy.session().getSessionUserName());
     data.clear();
     displayedCaseMap.clear();
     notDisplayedCaseMap.clear();
