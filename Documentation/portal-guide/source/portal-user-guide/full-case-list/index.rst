@@ -16,9 +16,7 @@ using the |case-icon| **Cases** link in the Axon.ivy Portal menu.
 |navigate-to-full-cases-list-page|
 
 On the top of the :guilabel:`Full Case List` page you see next to the heading :guilabel:`Cases`
-in brackets the overall number of cases shown to you. Further to the right you
-find a |filter-icon| **Search** feature which you might use if you’re looking for a
-specific case. Below you find the filter feature. The usage will be explained in
+in brackets the overall number of cases shown to you. Below you find the filter feature. The usage will be explained in
 the HowTo’s further down this chapter. Finally, you see the list of cases.
 
 For each case the following key information is shown in the list:
