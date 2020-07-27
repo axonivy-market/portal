@@ -255,7 +255,7 @@ public class TaskSearchCriteria {
   }
   
   /** Check if current user can see task in advance state such as
-   * DONE, UNASSIGNED, DELAYED, DESTROYED, READY_FOR_JOIN
+   * DONE, DELAYED, DESTROYED, READY_FOR_JOIN
    * Then extend Search query for task criteria
    * @param isAdminPermission
    */
