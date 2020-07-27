@@ -165,13 +165,8 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   protected void updateStateForTaskCriteria() {
-    if (isRelatedTaskDisplayed) {
-      if (!criteria.getIncludedStates().contains(TaskState.DONE)) {
-        criteria.addIncludedStates(Arrays.asList(TaskState.DONE));
-      }
-      if (!criteria.getIncludedStates().contains(TaskState.UNASSIGNED)) {
-        criteria.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
-      }
+    if (isRelatedTaskDisplayed && !criteria.getIncludedStates().contains(TaskState.DONE)) {
+      criteria.addIncludedStates(Arrays.asList(TaskState.DONE));
     }
   }
 
