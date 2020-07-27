@@ -47,7 +47,6 @@ public class TaskBean implements Serializable {
     switch (state) {
     // Open
       case SUSPENDED:
-      case UNASSIGNED:
         return "icon ivyicon-controls-play task-state-open";
         // In progress
       case CREATED:
@@ -80,8 +79,7 @@ public class TaskBean implements Serializable {
     if (task == null) {
       return false;
     }
-    EnumSet<TaskState> taskStages =
-        EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED, TaskState.UNASSIGNED);
+    EnumSet<TaskState> taskStages = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED);
     return taskStages.contains(task.getState());
   }
 
@@ -118,7 +116,6 @@ public class TaskBean implements Serializable {
     }
     switch (state) {
       case SUSPENDED:
-      case UNASSIGNED:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/OPEN");
       case CREATED:
       case RESUMED:
