@@ -107,10 +107,6 @@ public class TaskActionTest extends BaseTest {
     assertTaskActionsByTaskState("Destroyed", new ArrayList<>());
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
-    // Unassigned - cannot test due to wait for ivy-api release
-    // redirectToRelativeLink(createUnassignedTaskUrl);
-    // assertTaskActionsByTaskState("Unassigned", Arrays.asList("Delegate", "Destroy", "Add Ad-hoc Task"));
-
     redirectToRelativeLink(denyResetReadyForJoinURL);
     redirectToRelativeLink(denyDestroyTaskURL);
   }
