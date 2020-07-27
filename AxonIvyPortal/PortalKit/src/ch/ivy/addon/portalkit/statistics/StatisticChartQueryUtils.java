@@ -13,8 +13,8 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.RUNNING_
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TODAY_EXPIRY_KEY;
 import static ch.ivyteam.ivy.workflow.WorkflowPriority.EXCEPTION;
 import static ch.ivyteam.ivy.workflow.WorkflowPriority.HIGH;
-import static ch.ivyteam.ivy.workflow.WorkflowPriority.NORMAL;
 import static ch.ivyteam.ivy.workflow.WorkflowPriority.LOW;
+import static ch.ivyteam.ivy.workflow.WorkflowPriority.NORMAL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -280,7 +280,7 @@ public class StatisticChartQueryUtils {
     if (CollectionUtils.isNotEmpty(filter.getSelectedRoles())) {
       filter.getSelectedRoles().forEach(role -> subTaskQueryForRoles.where().or().activatorName().isEqual(role));
     } else {
-      subTaskQueryForRoles.where().and().activatorId().isNull(); //exclude other users
+      subTaskQueryForRoles.where().and().activatorName().isNotLike("#%"); //exclude other users
       List<IRole> roles = CollectionUtils.emptyIfNull(filter.getRoles()).stream().filter(role -> role instanceof IRole).map(role -> (IRole)role).collect(Collectors.toList());
       roles.forEach(role -> subTaskQueryForRoles.where().and().activatorName().isNotEqual(role.getMemberName())); //exclude role
     }

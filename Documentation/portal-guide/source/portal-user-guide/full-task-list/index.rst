@@ -21,9 +21,7 @@ link in the Axon.ivy Portal menu.
 |navigate-to-full-task-list-page|
 
 On the top of the **Full Task List** page you see next to the heading
-**Tasks** in brackets the overall number of tasks shown to you. Further
-to the right you find a  search feature which you might use if
-you’re looking for a specific task. Below you find the filter feature.
+**Tasks** in brackets the overall number of tasks shown to you. Below you find the filter feature.
 The usage will be explained in the HowTo’s further down this chapter.
 Finally, you see the list of tasks.
 
