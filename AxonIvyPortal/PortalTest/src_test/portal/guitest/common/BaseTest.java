@@ -107,6 +107,7 @@ public class BaseTest {
    */
   public void setupWithAlternativeLinkAndAccount(String relativePath, TestAccount account) {
     browser = Browser.getBrowser();
+    updatePortalSetting("SHOW_USER_GUIDE", "false");
     launchBrowserAndGotoRelativeLink(relativePath);
     login(account);
   }
