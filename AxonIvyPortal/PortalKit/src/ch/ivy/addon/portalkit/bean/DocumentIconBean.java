@@ -33,6 +33,7 @@ public class DocumentIconBean {
   private static final String PDF = "pdf";
   private static final String POWER_POINT = "ppt";
   private static final String TEXT = "txt";
+  private static final String CSV = "icon ivyicon-file-csv";
   private static final String ARCHIVE = "icon ivyicon-file-zip";
   private static final String XML = "icon ivyicon-file-xml";
   private static final String IMAGE = "icon ivyicon-image-file-landscape";
@@ -51,7 +52,7 @@ public class DocumentIconBean {
       String fileExtension = FilenameUtils.getExtension(StringUtils.lowerCase(documentName));
       if (ALLOWED_WORD_FORMAT.contains(fileExtension)) {
         iconClass = WORD;
-      } else if (ALLOWED_EXCEL_FORMAT.contains(fileExtension) || CSV_FORMAT.contains(fileExtension)) {
+      } else if (ALLOWED_EXCEL_FORMAT.contains(fileExtension)) {
         iconClass = EXCEL;
       } else if (ALLOWED_PDF_FORMAT.contains(fileExtension)) {
         iconClass = PDF;
@@ -63,6 +64,8 @@ public class DocumentIconBean {
         return ARCHIVE;
       } else if (XML_FORMAT.contains(fileExtension)) {
         return XML;
+      } else if (CSV_FORMAT.contains(fileExtension)) {
+        return CSV;
       } else if (IMAGE_FORMAT.contains(fileExtension)) {
         return IMAGE;
       } else if (EMAIL_FORMAT.contains(fileExtension)) {
