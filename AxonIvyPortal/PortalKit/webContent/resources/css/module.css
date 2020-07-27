@@ -414,6 +414,10 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   text-align: right;
 }
 
+.config-columns {
+  white-space: nowrap;
+}
+
 /********************************** END ADVANCED FILTER WIDGET **********************************/
 
 /********************************** START CASE ITEM **********************************/
