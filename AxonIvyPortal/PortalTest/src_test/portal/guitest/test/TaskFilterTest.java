@@ -1,7 +1,6 @@
 package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -112,9 +111,9 @@ public class TaskFilterTest extends BaseTest {
 	}
 
 	@Test
-	public void testShowUnassignedTaskToPersonHaveTaskReadAllPermission() {
+	public void testShowTaskWithNotExistsedActivatorToPersonHaveTaskReadAllPermission() {
 		login(TestAccount.ADMIN_USER);
-		redirectToRelativeLink(createUnassignedTaskUrl);
+		redirectToRelativeLink(createTaskWithNotExistedActivatorUrl);
 		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     	taskWidgetPage.expand();
 		assertEquals(6, taskWidgetPage.countTasks());
@@ -140,14 +139,12 @@ public class TaskFilterTest extends BaseTest {
 	}
 
 	@Test
-	public void testNotShowUnassignedTaskToPersonNotHaveTaskReadAllPermission() {
-		redirectToRelativeLink(createUnassignedTaskUrl);
+	public void testNotShowTaskWithNotExistsedActivatorToPersonNotHaveTaskReadAllPermission() {
+		redirectToRelativeLink(createTaskWithNotExistedActivatorUrl);
 		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
 		taskWidgetPage.expand();
 
 		assertEquals(3, taskWidgetPage.countTasks());
-		taskWidgetPage.openStateFilterOverlayPanel();
-		assertFalse(taskWidgetPage.getListStateFilterSelection().contains("Unassigned"));
 	}
 
 	@Test
