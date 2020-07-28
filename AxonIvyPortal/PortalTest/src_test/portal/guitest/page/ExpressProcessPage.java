@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.Sleeper;
+import portal.guitest.common.WaitHelper;
 
 public class ExpressProcessPage extends TemplatePage {
 
@@ -19,12 +20,13 @@ public class ExpressProcessPage extends TemplatePage {
 			String processDescription) {
 		if (isAdhocWF) {
 		  click(By.cssSelector("div[id='form:process-type']"));
+		  WaitHelper.assertTrueWithWait(() -> "One time".equals(findElementByCssSelector("label.switch-active").getText()));
 		}
 		
     if (!isCreateOwn) {
       click(By.cssSelector("div[id='form:user-interface-type']"));
       agreeToDeleteAllDefineTasks();
-    } 
+    }
 		type(By.id("form:process-name"), processName);
 		type(By.id("form:process-description"), processDescription);
 	}
@@ -41,8 +43,8 @@ public class ExpressProcessPage extends TemplatePage {
 		Sleeper.sleep(1000);
 		waitAjaxIndicatorDisappear();
 		if (typeIndex != 2) { // 2 is INFORMATION_EMAIL_INDEX
-			type(By.id(String.format("form:defined-tasks-list:%d:task-name", taskIndex)), taskName);
-			type(By.id(String.format("form:defined-tasks-list:%d:task-description", taskIndex)), taskDescription);
+			WaitHelper.typeWithRetry(this, String.format("input[id$='%d:task-name']", taskIndex), taskName);
+			WaitHelper.typeWithRetry(this, String.format("input[id$='%d:task-description']", taskIndex), taskDescription);
 			click(By.id(String.format("form:defined-tasks-list:%d:task-responsible-link", taskIndex)));
 			// waitAjaxIndicatorDisappear();
 			ensureNoBackgroundRequest();
@@ -107,11 +109,15 @@ public class ExpressProcessPage extends TemplatePage {
 		click(By.id("assignee-selection-form:add-assignee-button"));
 	}
 
-	private void chooseTaskType(int taskIndex, int typeIndex) {
-		click(By.id(String.format("form:defined-tasks-list:%d:task-type_label", taskIndex)));
-		waitForElementDisplayed(By.id(String.format("form:defined-tasks-list:%d:task-type_panel", taskIndex)), true);
-		click(By.xpath(String.format("//*[@id='form:defined-tasks-list:%d:task-type_%d']", taskIndex, typeIndex)));
-	}
+  private void chooseTaskType(int taskIndex, int typeIndex) {
+    click(By.id(String.format("form:defined-tasks-list:%d:task-type_label", taskIndex)));
+    waitForElementDisplayed(By.id(String.format("form:defined-tasks-list:%d:task-type_panel", taskIndex)), true);
+    String taskType =
+        findElementByCssSelector(String.format("li[id$=':%d:task-type_%d']", taskIndex, typeIndex)).getText();
+    click(By.xpath(String.format("//*[@id='form:defined-tasks-list:%d:task-type_%d']", taskIndex, typeIndex)));
+    WaitHelper.assertTrueWithWait(() -> taskType.equals(
+        findElementByCssSelector(String.format("label[id$='%d:task-type_label']", taskIndex, taskIndex)).getText()));
+  }
 
 	private void agreeToDeleteAllDefineTasks() {
 		waitForElementDisplayed(By.id("delete-all-defined-tasks-warning"), true);

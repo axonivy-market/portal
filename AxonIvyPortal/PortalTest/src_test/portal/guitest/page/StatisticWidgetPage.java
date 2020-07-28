@@ -84,9 +84,7 @@ public class StatisticWidgetPage extends TemplatePage {
 
   public void createTaskByPriorityChart() {
     waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-task-by-priority-link"), true, 30);
-    WebElement createTaskByPriorityLink
-      = findElementById("statistics-widget:chart-creation-widget:chart-management-form:create-task-by-priority-link");
-    click(createTaskByPriorityLink);
+    click(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-task-by-priority-link"));
     waitAjaxIndicatorDisappear();
 
     waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true);
