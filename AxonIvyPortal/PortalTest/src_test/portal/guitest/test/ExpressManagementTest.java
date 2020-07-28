@@ -80,7 +80,7 @@ public class ExpressManagementTest extends BaseTest {
     homePage.switchLastBrowserTab();
     ExpressBusinessViewPage expressBusiness = new ExpressBusinessViewPage();
     assertTrue(StringUtils.contains(expressBusiness.getTextOfCurrentBreadcrumb(), "Business Details of Case #"));
-    assertEquals("No Express task is finished", expressBusiness.getEmptyFinishedTaskMessage());
+    assertTrue(StringUtils.contains("There is no completed Express Task yet", expressBusiness.getEmptyFinishedTaskMessage()));
     homePage = expressBusiness.clickOnCloseButton();
   }
 
