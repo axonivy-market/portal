@@ -215,9 +215,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   private boolean shouldSaveAndLoadSessionFilters() {
-    boolean isValidCriteria =
-        (this.criteria == null) || (this.criteria != null && !this.criteria.isQueryForUnassignedTask());
-    return isValidCriteria && !isRelatedTaskDisplayed && !isNotKeepFilter;
+    return !isRelatedTaskDisplayed && !isNotKeepFilter;
   }
 
   @Override
@@ -313,7 +311,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected void buildCriteria() {
     criteria = new TaskSearchCriteria();
     criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
-    criteria.setQueryForUnassignedTask(false);
     criteria.setIncludedStates(new ArrayList<>(TaskSearchCriteria.STANDARD_STATES));
     criteria.setSortField(TaskSortField.ID.toString());
     criteria.setSortDescending(true);
@@ -790,10 +787,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     this.isNotKeepFilter = isNotKeepFilter;
     this.selectedTaskFilterData = null;
     this.isSelectedDefaultFilter = false;
-  }
-
-  public void setQueryForUnassignedTask(boolean isQueryForOnlyUnassignedTask) {
-    this.criteria.setQueryForUnassignedTask(isQueryForOnlyUnassignedTask);
   }
 
   /**
