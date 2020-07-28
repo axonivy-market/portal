@@ -62,7 +62,7 @@ var Portal = {
     $('.js-layout-main').css('margin-top', headerHeight + 'px').css('height', 'calc(100vh - ' + headerFooterHeight + 'px)');
     $('.js-layout-wrapper').removeClass('u-invisibility');
 
-    var topbarWithHeaderFooterHeight = layoutTopbarHeight + headerFooterHeight;
+    var topbarWithHeaderFooterHeight = layoutTopbarHeight + headerFooterHeight - 1;
     $('.js-layout-content').css('height', 'calc(' + fullHeight + ' - ' + topbarWithHeaderFooterHeight + 'px)');
     var chatPanel = $('.js-chat-panel');
     if (chatPanel.length == 1) {
