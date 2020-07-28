@@ -121,7 +121,7 @@
         <ui:define name="dialogFooter">
            <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               onclick="PF('cancel-dialog').hide();" styleClass="u-mar-right-15" />
-           <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" actionListener="#{logic.cancel}"
+           <p:commandButton id="yes-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" actionListener="#{logic.cancel}"
               icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
               oncomplete="PF('cancel-dialog').hide()" update="form" global="false" />
         </ui:define>

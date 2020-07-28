@@ -2,7 +2,6 @@ package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
 
 import java.util.concurrent.TimeUnit;
 
@@ -10,14 +9,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.WaitHelper;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NoteHistoryPage;
@@ -30,8 +27,6 @@ import portal.guitest.page.WorkingTaskDialogPage;
 public class TaskTemplateTest extends BaseTest {
 
   private String createImpersistentTaskUrl = "portal-developer-examples/169BDE2F368D6EC4/PrimefacesElements.ivp";
-  private static final String CUSTOM_PARAMS_TEMPLATE_TASK_URL= "portal-developer-examples/1718293B3F6E5478/start.ivp";
-  private static final String IFRAME_TASK_URL= "portal-developer-examples/16E5DB746865BCEC/CreateInvestment.ivp?embedInFrame";
 
   @Override
   @Before
@@ -142,47 +137,6 @@ public class TaskTemplateTest extends BaseTest {
     assertEquals(true, taskTemplatePage.isStartAdhocBtnNotExist());
   }
 
-  @Test
-  public void testCustomParamsForTaskTemplate8() {
-    redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy("Task template 8 with custom params");
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTaskWithouWaitForTaskActionPresent(0);
-    assertFalse(taskTemplatePage.isTaskNameDisplayed());
-    assertFalse(taskTemplatePage.isTaskActionDisplayed());
-    assertFalse(taskTemplatePage.isCaseInfoButtonDisplayed());
-  }
-  
-  @Test
-  public void testCustomParamsForIFrameTaskTemplate() {
-    redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy("IFrame task with custom params");
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTaskWithouWaitForTaskActionPresent(0);
-    assertFalse(taskTemplatePage.isTaskNameDisplayed());
-    assertFalse(taskTemplatePage.isTaskActionDisplayed());
-    assertFalse(taskTemplatePage.isCaseInfoButtonDisplayed());
-  }
-
-  @Test
-  public void testDisplayWarningInIFrameTaskTemplate() {
-    redirectToRelativeLink(IFRAME_TASK_URL);
-    final TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
-    taskTemplatePage.clickOnLogo();
-    By leaveButton = By.id("task-leave-warning-component:leave-button");
-    WaitHelper.assertTrueWithWait(() -> taskTemplatePage.isElementDisplayed(leaveButton));
-  }
-  
-  @Test
-  public void testNotDisplayWarningInIFrameTaskTemplate() {
-    redirectToRelativeLink(IFRAME_TASK_URL);
-    TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
-    TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
-    TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(1);
-    taskTemplatePage2.clickOnLogo();
-    WaitHelper.assertTrueWithWait(() -> taskTemplatePage2.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
-  }
-  
   private void createTestData() {
     redirectToRelativeLink(createTestingTasksUrl);
   }
