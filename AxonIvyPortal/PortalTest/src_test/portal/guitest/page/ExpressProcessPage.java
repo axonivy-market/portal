@@ -154,4 +154,9 @@ public class ExpressProcessPage extends TemplatePage {
   public void waitForChooseResponsibleDialogHidden() {
     waitForElementDisplayed(findElementById("choose-responsible-dialog"), false);
   }
+  
+  public HomePage cancelWorkflowDefinition() {
+    click(By.id("form:cancel-workflow-button"));
+    return new HomePage();
+  }
 }
