@@ -253,4 +253,21 @@ public class TaskTemplatePage extends TemplatePage {
     driver.switchTo().defaultContent();
     return new TaskWidgetPage();
   }
+  
+  public HomePage backToHomeInIFrameApprovalTask() {
+    driver.switchTo().frame("iFrame");
+    waitForElementDisplayed(By.id("content-form:home-btn"), true);
+    click(By.id("content-form:home-btn"));
+    driver.switchTo().defaultContent();
+    return new HomePage();
+  }
+  
+  public TaskWidgetPage finishIFrameApprovalTask() {
+    driver.switchTo().frame("iFrame");
+    waitForElementDisplayed(By.id("content-form:approve-btn"), true);
+    type(By.id("content-form:j_id_d:approval-note"), "1");
+    click(By.id("content-form:approve-btn"));
+    driver.switchTo().defaultContent();
+    return new TaskWidgetPage();
+  }
 }

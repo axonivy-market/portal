@@ -227,4 +227,16 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     click(By.id("user-menu-required-login:leave-button"));
     return new HomePage();
   }
+  
+  public HomePage cancel() {
+    click(By.id("cancel-button"));
+    waitForElementDisplayed(By.id("yes-button"), true);
+    click(By.id("yes-button"));
+    return new HomePage();
+  }
+  
+  public HomePage save() {
+    click(By.id("save-button"));
+    return new HomePage();
+  }
 }
