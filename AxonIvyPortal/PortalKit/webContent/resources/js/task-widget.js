@@ -17,6 +17,7 @@ function TaskWidget() {
         // temporary hide mobile title to calculate
         var mobileTitle = taskWidgetHeaderContainer.find(".js-widget-title-mobile");
         if (mobileTitle.length > 0) {
+          $(".js-layout-content").css("overflow-y", "hidden");
           mobileTitle.addClass("u-hidden");
         }
 
