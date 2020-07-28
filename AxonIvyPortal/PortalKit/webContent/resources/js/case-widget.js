@@ -16,6 +16,13 @@ function CaseWidget() {
     if (childElements.length > 0) {
       var container = $('.js-case-list > .ui-datascroller-content');
       var caseWidgetHeaderContainer = $('.widget-header');
+
+      // temporary hide mobile title to calculate
+      var mobileTitle = caseWidgetHeaderContainer.find(".js-widget-title-mobile");
+      if (mobileTitle.length > 0) {
+        mobileTitle.addClass("u-hidden");
+      }
+
       var announcementMessageContainer = $('.js-announcement-message');
       var caseWidgetSortMenuContainer = $('.js-case-widget-column-header');
       var caseWidgetFilterContainer = $('.js-filter-container');
@@ -34,6 +41,11 @@ function CaseWidget() {
 
       if (!!availableHeight) {
         container.height(availableHeight);
+      }
+
+      // show mobile title after calculate
+      if (mobileTitle.length > 0) {
+        mobileTitle.removeClass("u-hidden");
       }
     }
   };
