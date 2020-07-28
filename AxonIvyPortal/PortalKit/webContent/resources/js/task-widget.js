@@ -13,6 +13,13 @@ function TaskWidget() {
       if (childElements.length > 0) {
         var container = $('.js-task-start-list:not(.js-is-guide) > .ui-datascroller-content');
         var taskWidgetHeaderContainer = $('.js-task-widget-header');
+
+        // temporary hide mobile title to calculate
+        var mobileTitle = taskWidgetHeaderContainer.find(".js-widget-title-mobile");
+        if (mobileTitle.length > 0) {
+          mobileTitle.addClass("u-hidden");
+        }
+
         var announcementMessageContainer = $('.js-announcement-message');
         var taskWidgetSortMenuContainer = $('.js-task-widget-sub-header');
         if (taskWidgetSortMenuContainer.outerHeight(true) == 0) {
@@ -51,6 +58,11 @@ function TaskWidget() {
                 container.css("margin-right", taskStartItemMarginRight);
               }
             }
+        }
+
+        // show mobile title after calculate
+        if (mobileTitle.length > 0) {
+          mobileTitle.removeClass("u-hidden");
         }
       }
     },
