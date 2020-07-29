@@ -449,6 +449,11 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   margin-right: 0.3em;
 }
 
+.case-description-output-icon {
+  top: 2px;
+  position: relative;
+}
+
 .case-detail-name-input {
   width: calc(100% - 85px);
   margin-right: 5px !important;
@@ -2816,8 +2821,14 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding-bottom: 10px !important;
 }
 
-.my-profile-container {
-  margin: 0 15px;
+.my-profile-form {
+  margin: 10px;
+}
+
+.my-profile-container.card {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin: 0 auto;
 }
 
 .user-profile .setting-header {
