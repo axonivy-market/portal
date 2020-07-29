@@ -163,7 +163,7 @@ public class TaskActionBean {
     if (task == null) {
       return false;
     }
-    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED, TaskState.UNASSIGNED,
+    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED,
         TaskState.CREATED, TaskState.DELAYED);
     return taskStates.contains(task.getState());
   }
