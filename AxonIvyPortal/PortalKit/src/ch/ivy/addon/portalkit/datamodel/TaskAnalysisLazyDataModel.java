@@ -101,7 +101,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   @Override
   protected void buildCriteria() {
     criteria = new TaskSearchCriteria();
-    criteria.setQueryForUnassignedTask(false);
     criteria.setIncludedStates(new ArrayList<>(TaskSearchCriteria.STANDARD_STATES));
     criteria.setSortField(TaskSortField.ID.toString());
     criteria.setSortDescending(true);
@@ -291,9 +290,9 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
       case TASK_CREATION_TIME:
         orderQuery = taskQuery.orderBy().startTimestamp();
         break;
-      case TASK_DESCRIPTION:
-        orderQuery =taskQuery.orderBy().description();
-        break;
+//      case TASK_DESCRIPTION:
+//        orderQuery =taskQuery.orderBy().description();
+//        break;
       case TASK_EXPIRY_TIME:
         orderQuery = taskQuery.orderBy().expiryTimestamp();
         break;
