@@ -60,9 +60,9 @@ public class TaskStateFilter extends TaskFilter {
 
   private boolean isAllStatesSelected() {
     return filteredStates.equals(selectedFilteredStates)
-        //In case only one state is selected and the current user doesn't have that state (happen with UNASSIGNED state)
+        //In case only one state is selected and the current user doesn't have that state (happen with e.g DELAYED, DESTROY state)
         || (selectedFilteredStates.size() == 1 && !filteredStates.contains(selectedFilteredStates.get(0)))
-    // In case the filter is a saved filter from a user who can filter more task state
+        // In case the filter is a saved filter from a user who can filter more task state
         || (filteredStates.size() < selectedFilteredStates.size() && selectedFilteredStates.containsAll(filteredStates));
   }
 

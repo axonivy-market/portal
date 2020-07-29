@@ -16,7 +16,7 @@
   <c:set var="state" value="#{cc.attrs.state}" />
   <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('STATE')}" >
     <h:panelGroup id="#{cc.attrs.componentId}" styleClass="state-cell default-task-cell #{cc.attrs.stateStyleClass} #{cc.attrs.responsiveStyleClass}">
-      <h:panelGroup id="#{cc.attrs.componentId}-open" rendered="#{state == 'SUSPENDED' or state == 'UNASSIGNED'}"
+      <h:panelGroup id="#{cc.attrs.componentId}-open" rendered="#{state == 'SUSPENDED'}"
         styleClass="icon ivyicon-controls-play task-state-open #{cc.attrs.stateIconStyleClass}" />
       <h:panelGroup id="#{cc.attrs.componentId}-in-progress" rendered="#{state == 'RESUMED' or state == 'CREATED'}"
         styleClass="icon ivyicon-hourglass task-state-in-progress #{cc.attrs.stateIconStyleClass}" />
@@ -29,7 +29,7 @@
       <h:panelGroup id="#{cc.attrs.componentId}-delayed" rendered="#{state == 'DELAYED'}"
         styleClass="icon ivyicon-alarm-bell-timer task-state-delayed #{cc.attrs.stateIconStyleClass}" />
       <h:panelGroup id="#{cc.attrs.componentId}-system"
-        rendered="#{state != 'SUSPENDED' and state != 'UNASSIGNED' and state != 'RESUMED' and state != 'CREATED'
+        rendered="#{state != 'SUSPENDED' and state != 'RESUMED' and state != 'CREATED'
        and state != 'DONE' and state != 'PARKED' and state != 'DESTROYED' and state != 'ZOMBIE' and state != 'DELAYED'}"
         styleClass="icon ivyicon-synchronize-arrows task-state-system #{cc.attrs.stateIconStyleClass}" />
     </h:panelGroup>
