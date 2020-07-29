@@ -9,7 +9,6 @@ import static ch.ivyteam.ivy.workflow.TaskState.PARKED;
 import static ch.ivyteam.ivy.workflow.TaskState.READY_FOR_JOIN;
 import static ch.ivyteam.ivy.workflow.TaskState.RESUMED;
 import static ch.ivyteam.ivy.workflow.TaskState.SUSPENDED;
-import static ch.ivyteam.ivy.workflow.TaskState.UNASSIGNED;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -29,7 +28,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 public class TaskSearchCriteria {
 
   public final static EnumSet<TaskState> STANDARD_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN);
-  public final static EnumSet<TaskState> ADVANCE_STATES = EnumSet.of(DONE, UNASSIGNED, DELAYED, DESTROYED);
+  public final static EnumSet<TaskState> ADVANCE_STATES = EnumSet.of(DONE, DELAYED, DESTROYED);
   private String involvedUsername;
   private List<String> apps;
   private List<TaskState> includedStates;
@@ -42,7 +41,6 @@ public class TaskSearchCriteria {
   private boolean isNewQueryCreated;
   private boolean isQueryByTaskId;
   private boolean isQueryByBusinessCaseId;
-  private boolean isQueryForUnassignedTask;
   private String sortField;
   private boolean sortDescending;
   private boolean isSorted = true;
@@ -78,13 +76,17 @@ public class TaskSearchCriteria {
 
     addCaseIdQuery(finalQuery);
     addKeywordQuery(finalQuery);
-    addAssigneeTypeQuery(finalQuery);
     addCategoryQuery(finalQuery);
 
     if (isSorted) {
       TaskSortingQueryAppender appender = new TaskSortingQueryAppender(finalQuery);
       finalQuery = appender.appendSorting(this).toQuery();
     }
+    
+    if (!isAdminQuery) {
+      finalQuery.where().and().activatorAvailable().isTrue();
+    }
+    
     return finalQuery;
   }
   
@@ -92,12 +94,6 @@ public class TaskSearchCriteria {
     if (hasCategory()) {
       finalQuery.where().and(queryForCategory(getCategory()));
     }
-  }
-  
-  private void addAssigneeTypeQuery(TaskQuery finalQuery) {
-    if (isQueryForUnassignedTask()) {
-      finalQuery.where().and().activatorId().isNull(); 
-    } 
   }
   
   private void addCaseIdQuery(TaskQuery finalQuery) {
@@ -113,7 +109,7 @@ public class TaskSearchCriteria {
   }
 
   private void addTaskStateQuery(TaskQuery finalQuery) {
-    if (hasIncludedStates() && !isQueryForUnassignedTask()) {
+    if (hasIncludedStates()) {
       finalQuery.where().and(queryForStates(getIncludedStates()));
     }
   }
@@ -255,7 +251,7 @@ public class TaskSearchCriteria {
   }
   
   /** Check if current user can see task in advance state such as
-   * DONE, UNASSIGNED, DELAYED, DESTROYED, READY_FOR_JOIN
+   * DONE, DELAYED, DESTROYED, READY_FOR_JOIN
    * Then extend Search query for task criteria
    * @param isAdminPermission
    */
@@ -381,14 +377,6 @@ public class TaskSearchCriteria {
     this.isQueryByBusinessCaseId = isQueryByBusinessCaseId;
   }
 
-  public boolean isQueryForUnassignedTask() {
-    return isQueryForUnassignedTask;
-  }
-
-  public void setQueryForUnassignedTask(boolean isQueryForUnassignedTask) {
-    this.isQueryForUnassignedTask = isQueryForUnassignedTask;
-  }
-  
   public TaskQuery getCustomTaskQuery() {
     return customTaskQuery;
   }
