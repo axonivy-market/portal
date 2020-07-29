@@ -41,6 +41,7 @@
                   <h:panelGroup id="priority-icon">
                     <h:panelGroup styleClass="fa fa-circle task-priority-#{task.priority.toString().toLowerCase()} task-details-data-priority-icon" />
                     <h:outputText value="#{taskBean.getPriority(task.priority)}" />
+                    <i class="icon ivyicon-graphic-tablet-drawing-pen" />
                   </h:panelGroup>
                 </f:facet>
                 <p:ajax event="save" update="priority-form" />
@@ -161,8 +162,13 @@
         <ui:fragment rendered="#{taskBean.isNotDone(task)}">
           <h:form id="expiry-form">
             <p:inplace id="edit-inplace" styleClass="expiry-edit-inplace" editor="true" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-              cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" label="#{formattingNullWrapperBean.format(task.expiryTimestamp)}"
+              cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               rendered="#{taskActionBean.canChangeExpiry(task)}">
+              <f:facet name="output">
+                <h:outputText value="#{formattingNullWrapperBean.format(task.expiryTimestamp)}" />
+                <i class="icon ivyicon-graphic-tablet-drawing-pen" />
+              </f:facet>
+              
               <p:ajax event="save" listener="#{logic.updateDeadline(task)}" update="expiry-form #{cc.attrs.componentToUpdate}" />
               <p:calendar id="expiry-calendar" styleClass="task-details-data-expiry" value="#{task.expiryTimestamp}" pattern="#{dateTimePatternBean.configuredPattern}"
                 locale="#{localeBean.locale}">
@@ -195,8 +201,12 @@
           <p:inplace id="delay-date" styleClass="delay-edit-inplace" editor="true"
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-            label="#{formattingNullWrapperBean.format(task.getDelayTimestamp())}"
             disabled="#{!taskActionBean.canChangeDelayTimestamp(task)}">
+            <f:facet name="output">
+              <h:outputText value="#{formattingNullWrapperBean.format(task.getDelayTimestamp())} " />
+              <i jsf:rendered="#{taskActionBean.canChangeDelayTimestamp(task)}" class="icon ivyicon-graphic-tablet-drawing-pen" />
+            </f:facet>
+            
             <p:ajax event="save" listener="#{logic.updateDelayTimestamp(task)}"
               update="delay-form #{cc.clientId}:task-detail-state #{cc.attrs.componentToUpdate}"
               resetValues="true" />
