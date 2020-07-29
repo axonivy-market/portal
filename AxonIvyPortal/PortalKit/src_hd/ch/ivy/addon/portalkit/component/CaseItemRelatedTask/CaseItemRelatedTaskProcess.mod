@@ -127,7 +127,7 @@ ISession session = ServiceUtilities.findUserWorkflowSession(ivy.session.getSessi
 boolean isOwner = in.iCase.#owner != null ? in.iCase.getOwner().isMember(ivy.session, true) : false;
 boolean ableToSeeAllRelatedTaskOfCase = PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission() || isOwner;
 for (ITask task : in.iCase.getTasks()) {
-	if ((task.getState() == TaskState.SUSPENDED || task.getState() == TaskState.RESUMED || task.getState() == TaskState.UNASSIGNED || task.getState() == TaskState.PARKED || task.getState() == TaskState.CREATED)
+	if ((task.getState() == TaskState.SUSPENDED || task.getState() == TaskState.RESUMED || task.getState() == TaskState.PARKED || task.getState() == TaskState.CREATED)
 				&& (excludeHiddenTasks ? StringUtils.isEmpty(task.customFields().stringField(AdditionalProperty.HIDE.toString()).getOrNull()) : true) && task.isPersistent()) {
 		if (ableToSeeAllRelatedTaskOfCase) {
 			in.totalRelatedTasks++;
@@ -288,7 +288,7 @@ if(in.isWorkingOnTask) {
 	if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		if (!flash.containsKey("overridePortalGrowl")) {
-			FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
+			FacesMessage message = new FacesMessage(ivy.cms.co(in.isTaskFinished ? "/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully":"/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
 			FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
 		}
 		flash.setRedirect(true);
@@ -356,7 +356,7 @@ if(in.isWorkingOnTask) {
 	if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
 		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 		if (!flash.containsKey("overridePortalGrowl")) {
-			FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
+			FacesMessage message = new FacesMessage(ivy.cms.co(in.isTaskFinished ? "/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully":"/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
 			FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
 		}
 		flash.setRedirect(true);
