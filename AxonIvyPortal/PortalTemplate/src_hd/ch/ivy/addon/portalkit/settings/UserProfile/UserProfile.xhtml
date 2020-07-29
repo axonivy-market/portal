@@ -8,26 +8,24 @@
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle')}</ui:define>
     <ui:define name="pageContent">
       <f:event listener="#{logic.initSettings}" type="preRenderComponent" />
-      <div class="user-profile">
-        <h:form id="my-profile-form">
-          <div class="ui-g-12 ui-sm-hidden ui-md-2 ui-lg-4"></div>
-          <p:panel id="my-profile-form-card" class="card ui-g-12 ui-md-8 ui-lg-4">
-            <div id="my-profile-container" class="my-profile-container">
+      <h:form id="my-profile-form" styleClass="my-profile-form">
+        <div class="ui-g">
+          <div id="my-profile-container" class="my-profile-container card ui-g-12 ui-md-8 ui-lg-6 ui-xl-4">
             <p:messages id="errors-message" severity="warn,error" showDetail="true" escape="false" closable="true" />
-            <p:growl id="user-setting-info" showDetail="true" severity="info" for="user-profile-message" />
-              
+            <p:growl id="user-setting-info" showDetail="true" severity="info" for="user-profile-message" sticky="true" />
+
             <div id="language-setting-container">
               <h2 id="language-setting-title" class="setting-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/languageSetting')}</h2>
-                <div class="md-inputfield language-selection">
-                  <p:selectOneMenu id="language-selection" value="#{data.language.userLanguage}">
-                    <f:selectItem itemLabel="" itemValue="#{null}" />
-                    <f:selectItems value="#{data.language.languages}" />
-                  </p:selectOneMenu>
-                  <p:outputLabel id="language-selection-label" styleClass="language-selection-label"
-                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/selectedLanguage')}" />
-                </div>
+              <div class="md-inputfield language-selection">
+                <p:selectOneMenu id="language-selection" value="#{data.language.userLanguage}">
+                  <f:selectItem itemLabel="" itemValue="#{null}" />
+                  <f:selectItems value="#{data.language.languages}" />
+                </p:selectOneMenu>
+                <p:outputLabel id="language-selection-label" styleClass="language-selection-label"
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/languageSetting/selectedLanguage')}" />
+              </div>
             </div>
-            
+
             <div id="email-setting-container" class="email-setting-container">
 
               <h2 class="setting-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/emailSetting')}</h2>
@@ -41,13 +39,14 @@
                   value="#{data.emailSetting.emailSendOnNewWorkTasks}" />
 
                 <!-- FURTHER MAILS FROM APPLICATION -->
-                <p:outputLabel id="further-mails-from-application-label" 
+                <p:outputLabel id="further-mails-from-application-label"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/furtherEmailFromApp')}"
                   for="further-mails-from-application" />
-                <p:inputSwitch id="further-mails-from-application" value="#{data.emailSetting.customMailEnabled}" styleClass="Fright"/>
+                <p:inputSwitch id="further-mails-from-application" value="#{data.emailSetting.customMailEnabled}"
+                  styleClass="Fright" />
 
                 <!--  DAILY SUMMARY -->
-                <p:outputLabel id="daily-summary-label" 
+                <p:outputLabel id="daily-summary-label"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/dailySummary')}"
                   for="daily-summary" />
                 <p:inputSwitch id="daily-summary" value="#{data.emailSetting.enableDailySummary}" styleClass="Fright">
@@ -56,9 +55,10 @@
                 </p:inputSwitch>
               </h:panelGrid>
 
-              <h:panelGroup id="daily-summary-checkbox-selection-container" layout="block" >
-                <p:selectCheckboxMenu id="daily-summary-checkbox" value="#{data.emailSetting.emailSendDailyTaskSummary}"
-                  onShow="changeWidthDailySummaryPanel();" onHide="updateDailySummaryMail();"
+              <h:panelGroup id="daily-summary-checkbox-selection-container" layout="block">
+                <p:selectCheckboxMenu id="daily-summary-checkbox"
+                  value="#{data.emailSetting.emailSendDailyTaskSummary}" onShow="changeWidthDailySummaryPanel();"
+                  onHide="updateDailySummaryMail();"
                   label="#{empty data.emailSetting.emailSendDailyTaskSummary ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/day'):ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/selectedDay', [data.emailSetting.emailSendDailyTaskSummary.size()])}"
                   styleClass="daily-summary-checkbox" rendered="#{data.emailSetting.enableDailySummary}">
                   <f:selectItems value="#{data.dailySummaryList}" var="day"
@@ -74,19 +74,18 @@
                     $('[id $= ":daily-summary-checkbox_panel"]').width(dailySummary.offsetWidth);
                   }
                 }
-			  </script>
+              </script>
             </div>
 
             <h:panelGroup layout="block" styleClass="user-profile-footer">
               <p:commandButton id="save-settings" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-                icon="#{visibilityBean.generateButtonIcon('icon ivyicon-floppy-disk')}"
-                actionListener="#{logic.save}" update="errors-message" />
+                icon="#{visibilityBean.generateButtonIcon('icon ivyicon-floppy-disk')}" actionListener="#{logic.save}"
+                update="errors-message" />
               <p:spacer width="5px" />
             </h:panelGroup>
-            </div>
-          </p:panel>
-        </h:form>
-      </div>
+          </div>
+        </div>
+      </h:form>
     </ui:define>
   </ui:composition>
 </h:body>
