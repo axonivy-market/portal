@@ -83,6 +83,10 @@ public class TaskSearchCriteria {
       finalQuery = appender.appendSorting(this).toQuery();
     }
     
+    if (!isAdminQuery) {
+      finalQuery.where().and().activatorAvailable().isTrue();
+    }
+    
     return finalQuery;
   }
   
