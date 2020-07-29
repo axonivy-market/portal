@@ -109,7 +109,7 @@ public class TaskSearchCriteria {
   }
 
   private void addTaskStateQuery(TaskQuery finalQuery) {
-    if (hasIncludedStates() /* && !isQueryForUnassignedTask() */) {
+    if (hasIncludedStates()) {
       finalQuery.where().and(queryForStates(getIncludedStates()));
     }
   }
