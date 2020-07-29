@@ -1,6 +1,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://java.sun.com/jsp/jstl/core">
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
@@ -17,7 +17,7 @@
       <h:form id="task-detail-description-form">
         <div class="scroll-panel OvAuto">
           <p:inplace id="task-description-inplace" editor="true" styleClass="task-description-inplace"
-            disabled="#{!taskActionBean.canChangeDescription(task) or taskBean.isDone(task)}"
+            disabled="#{!taskActionBean.canChangeDescription(task)}"
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noDescription')}">
@@ -28,7 +28,8 @@
             </f:facet>
             <f:facet name="output">
               <h:outputText id="task-description-output" escape="false" styleClass="task-detail-description-output"
-                value="#{taskWidgetBean.sanitizeHTML(task.description)}" />
+                value="#{taskWidgetBean.sanitizeHTML(task.description)} " />
+              <i jsf:rendered="#{taskActionBean.canChangeDescription(task)}" class="icon ivyicon-graphic-tablet-drawing-pen" />
             </f:facet>
           </p:inplace>
         </div>
