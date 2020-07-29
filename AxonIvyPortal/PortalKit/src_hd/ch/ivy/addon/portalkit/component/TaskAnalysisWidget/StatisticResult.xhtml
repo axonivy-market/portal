@@ -76,7 +76,7 @@
           <h:outputText id="task-category-value" value="#{task.categoryPath}" />
         </p:column>
 
-        <p:column id="task-description" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskDescription')}" field="TASK_DESCRIPTION" sortBy="#{TASK_DESCRIPTION}" width="250"
+        <p:column id="task-description" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskDescription')}" sortable="false" width="250"
           visible="#{taskAnalysisWidgetBean.columns['TASK_DESCRIPTION']}"
           exportable="#{taskAnalysisWidgetBean.columns['TASK_DESCRIPTION']}">
           <h:outputText value="#{task.description}" />
