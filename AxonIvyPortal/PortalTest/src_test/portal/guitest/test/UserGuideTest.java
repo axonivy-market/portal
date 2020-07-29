@@ -1,5 +1,6 @@
 package portal.guitest.test;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -26,5 +27,10 @@ public class UserGuideTest extends BaseTest {
     userGuidePage.nextToUsernameGuide();
     userGuidePage.nextToStatisticGuide();
     userGuidePage.finishInStatisticGuide();
+  }
+  
+  @After
+  public void destroy() {
+    updatePortalSetting("SHOW_USER_GUIDE", "false");
   }
 }
