@@ -18,11 +18,6 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class TaskActionTest extends BaseTest {
 
-  private String denyResetReadyForJoinURL = "portalKitTestHelper/14DE09882B540AD5/denyResetTaskReadyForJoin.ivp";
-  private String denyDestroyTaskURL = "portalKitTestHelper/14DE09882B540AD5/denyDestroyTaskPermission.ivp";
-  private String grantResetReadyForJoinURL = "portalKitTestHelper/14DE09882B540AD5/grantResetTaskReadyForJoin.ivp";
-  private String grantDestroyTaskURL = "portalKitTestHelper/14DE09882B540AD5/grantDestroyTaskPermission.ivp";
-
   private HomePage homePage;
   private TaskWidgetPage taskWidgetPage;
   private TaskDetailsPage taskDetailsPage;
@@ -69,8 +64,6 @@ public class TaskActionTest extends BaseTest {
   @Test
   public void testVisibilityTaskActionForAdminUser() {
     login(TestAccount.ADMIN_USER);
-    redirectToRelativeLink(grantResetReadyForJoinURL);
-    redirectToRelativeLink(grantDestroyTaskURL);
     redirectToRelativeLink(createTaskWithSystemState);
     gotoTaskList();
     // Ready for Join
@@ -107,8 +100,6 @@ public class TaskActionTest extends BaseTest {
     assertTaskActionsByTaskState("Destroyed", new ArrayList<>());
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
-    redirectToRelativeLink(denyResetReadyForJoinURL);
-    redirectToRelativeLink(denyDestroyTaskURL);
   }
 
   private void gotoTaskList() {
