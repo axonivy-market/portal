@@ -54,7 +54,6 @@ public class CaseDetailsTest extends BaseTest {
 
   @Test
   public void testAddCaseNote() {
-    detailsPage.onClickHistoryIcon();
     assertEquals(1, detailsPage.getNumberOfHistory());
     detailsPage.addNote("Consider the remaining annual leaves before the approval");
     assertEquals(2, detailsPage.getNumberOfHistory());
