@@ -45,10 +45,9 @@ public class TaskTemplateTest extends BaseTest {
   public void testAddingANote() {
     createTestData();
     TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
-    assertEquals(1, taskTemplatePage.countHistoryItems());
+    assertEquals(0, taskTemplatePage.countNoteItems());
     taskTemplatePage.addNewNote("Sample note message");
     assertEquals(1, taskTemplatePage.countNoteItems());
-    assertEquals(1, taskTemplatePage.countHistoryItems());
   }
 
   @Test
