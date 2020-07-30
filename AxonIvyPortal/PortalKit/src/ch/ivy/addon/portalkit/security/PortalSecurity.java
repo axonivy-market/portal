@@ -67,7 +67,7 @@ public enum PortalSecurity {
             IPermission.USER_DELETE_OWN_SUBSTITUTE,
             IPermission.USER_READ_OWN_SUBSTITUTIONS);
   
-    private static final List<PortalPermission> DEVELOPER_USER_ADDTIONAL = Arrays.asList(PortalPermission.values());
+    private static final List<PortalPermission> ALL_PORTAL_PERMISSIONS = Arrays.asList(PortalPermission.values());
     private Permissions() {}
   }
 
@@ -84,9 +84,7 @@ public enum PortalSecurity {
         for (IPermission permission : Permissions.ADMIN_USER_ADDITIONAL) {
           securityDescriptor.grantPermission(permission, adminUser);
         }
-        grantPermissionsToForSecurityMember(Arrays.asList(
-            PortalPermission.STATISTIC_ANALYZE_TASK, PortalPermission.SHOW_CASE_DETAILS, 
-            PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK, PortalPermission.TASK_DISPLAY_DESTROY_ACTION), adminUser);
+        grantPermissionsToForSecurityMember(Permissions.ALL_PORTAL_PERMISSIONS, adminUser);
       }
 
       IUser demoUser = userRepo.findWithExternalLookup(Username.DEMO);
@@ -105,7 +103,7 @@ public enum PortalSecurity {
       
       IUser developerUser = userRepo.findWithExternalLookup(ISecurityConstants.DEVELOPER_USER_NAME);
       if (developerUser != null) {
-        grantPermissionsToForSecurityMember(Permissions.DEVELOPER_USER_ADDTIONAL, developerUser);
+        grantPermissionsToForSecurityMember(Permissions.ALL_PORTAL_PERMISSIONS, developerUser);
       }
     }
   }

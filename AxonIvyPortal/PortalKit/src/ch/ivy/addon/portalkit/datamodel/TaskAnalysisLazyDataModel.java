@@ -290,9 +290,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
       case TASK_CREATION_TIME:
         orderQuery = taskQuery.orderBy().startTimestamp();
         break;
-//      case TASK_DESCRIPTION:
-//        orderQuery =taskQuery.orderBy().description();
-//        break;
       case TASK_EXPIRY_TIME:
         orderQuery = taskQuery.orderBy().expiryTimestamp();
         break;
