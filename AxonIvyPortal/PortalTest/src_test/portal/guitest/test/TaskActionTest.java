@@ -57,8 +57,6 @@ public class TaskActionTest extends BaseTest {
     assertTaskActionsByTaskState("In progress", Arrays.asList("Reserve", "Reset", "Add Ad-hoc Task"));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
-    // Done
-    assertTaskActionsByTaskState("Done", new ArrayList<>());
   }
 
   @Test
