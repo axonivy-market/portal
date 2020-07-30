@@ -62,13 +62,16 @@ Cs0 f18 83 179 26 26 -41 15 #rect
 Cs0 f18 @|UdMethodIcon #fIcon
 Cs0 f19 actionTable 'out=in;
 ' #txt
-Cs0 f19 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
+Cs0 f19 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivyteam.ivy.workflow.TaskState;
 
+out.taskSearchCriteria.setAdminQuery(PermissionUtils.checkReadAllTasksPermission());
 out.taskSearchCriteria.includedStates = [TaskState.DONE, TaskState.DESTROYED];
 out.taskSearchCriteria.caseId = in.iCase.getId();
 out.taskSearchCriteria.queryByBusinessCaseId = in.iCase.isBusinessCase();
 out.taskSearchCriteria.newQueryCreated = true;
-out.taskSearchCriteria.finalTaskQuery = out.taskSearchCriteria.createQuery();' #txt
+out.taskSearchCriteria.finalTaskQuery = out.taskSearchCriteria.createQuery();
+' #txt
 Cs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
