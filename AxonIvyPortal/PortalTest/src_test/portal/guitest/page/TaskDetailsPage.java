@@ -90,7 +90,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
   
   public void clickBackButton() {
-    findElementById("task-detail-template:task-detail-title-form:back-to-previous-page").click();
+    click(By.id("task-detail-template:task-detail-title-form:back-to-previous-page"));
   }
 
   public TaskTemplatePage clickStartTask() {
