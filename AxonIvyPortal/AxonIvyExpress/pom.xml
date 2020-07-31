@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>ch.ivyteam.ivy.project.portal</groupId>
+  <groupId>ch.cs.ivy</groupId>
   <artifactId>axonIvyExpress</artifactId>
-  <version>8.0.0.0-SNAPSHOT</version>
+  <version>8.0.8</version>
   <packaging>iar</packaging>
-  <properties>
-    <build.plugin.version>8.0.5</build.plugin.version>
-    <ivy.engine.version>8.0.8</ivy.engine.version>
-  </properties>
   <distributionManagement>
     <repository>
       <id>repo.axonivy.io</id>
@@ -19,11 +16,15 @@
       <url>https://repo.axonivy.io/artifactory/ext-snapshot-local/</url>
     </snapshotRepository>
   </distributionManagement>
+  <properties>
+    <ivy.engine.version>8.0.8</ivy.engine.version>
+    <build.plugin.version>8.0.5</build.plugin.version>
+  </properties>
   <dependencies>
     <dependency>
-      <groupId>ch.ivyteam.ivy.project.portal</groupId>
+      <groupId>ch.cs.ivy</groupId>
       <artifactId>portalTemplate</artifactId>
-      <version>8.0.0.0-SNAPSHOT</version>
+      <version>8.0.8</version>
       <type>iar</type>
     </dependency>
   </dependencies>
