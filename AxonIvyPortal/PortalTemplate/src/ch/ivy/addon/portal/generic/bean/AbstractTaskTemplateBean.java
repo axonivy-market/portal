@@ -116,7 +116,6 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
         UserQuery query = Ivy.wf().getSecurityContext().users().query();
         query.where().externalId().isEqual(externalId);
         user = query.executor().firstResult();
-        Ivy.log().error("USER : " + username + " " + externalId + " " +user == null);
       }
       return user == null ? "" : UserUtils.getFullName(user);
     });
