@@ -33,11 +33,11 @@
           <span class="u-truncate-text">#{case.name}</span>
         </h:panelGroup>
 
-        <p:commandLink id="back-to-cases" rendered="#{showItemBackButton}" onclick="backToPrevPage(#{cc.attrs.isTaskStartedInDetails})" styleClass="case-details-back-btn">
+        <p:link id="back-to-cases" href="#" rendered="#{showItemBackButton}" onclick="backToPrevPage(#{!cc.attrs.isTaskStartedInDetails})" styleClass="case-details-back-btn">
           <i class="icon ivyicon-arrow-left-1" />
           <p:spacer width="3px"/>
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"/>
-        </p:commandLink>
+        </p:link>
         <p:remoteCommand name="backToCasesList" actionListener="#{caseBean.backToCasesList()}" process="@this" immediate="true" />
       </h:form>
     </h:panelGroup>
@@ -140,26 +140,19 @@
       <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
         icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}"
         actionListener="#{caseWidgetBean.destroyCase(case)}"
-        oncomplete="PF('destroy-case-dialog').hide();navigateAfterDestroyCase(#{caseWidgetBean.willNavigateBack()});" />
+        oncomplete="backToPrevPage(#{caseWidgetBean.willNavigateBack()});" />
     </ui:define>
   </ui:decorate>
 
   <script type="text/javascript">
-      function backToPrevPage(isTaskStartedInDetails) {
-        if (document.referrer &amp;&amp; !isTaskStartedInDetails) {
-          window.history.back();
-        } else {
-          backToCasesList();
-        }
+    function backToPrevPage(isHistoryBack) {
+      if (document.referrer &amp;&amp; isHistoryBack) {
+        window.history.back();
+        event.preventDefault();
+      } else {
+        backToCasesList();
       }
-      
-      function navigateAfterDestroyCase(willNavigateBack) {
-        if (document.referrer &amp;&amp; willNavigateBack) {
-          window.history.back();
-        } else {
-          backToCasesList();
-        }
-      }
-    </script>
+    }
+  </script>
 </cc:implementation>
 </html>
