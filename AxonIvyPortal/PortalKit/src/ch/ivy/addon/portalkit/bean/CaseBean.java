@@ -8,7 +8,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -20,7 +19,6 @@ import ch.ivyteam.ivy.workflow.ICase;
 public class CaseBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  private static final String OPEN_CASE_ITEM_DETAILS = "Start Processes/PortalStart/CaseDetailsPage.ivp";
   private static final String OPEN_CASES_LIST = "Start Processes/PortalStart/CaseListPage.ivp";
 
   /**
@@ -66,14 +64,6 @@ public class CaseBean implements Serializable {
       return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/RUNNING");
     }
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/" + caseState);
-  }
-
-  public void navigateToCaseDetails(ICase iCase) {
-    String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("CaseDetailsPage.ivp");
-    if (StringUtils.isEmpty(customizePortalFriendlyRequestPath)) {
-      customizePortalFriendlyRequestPath = OPEN_CASE_ITEM_DETAILS;
-    }
-    PortalNavigator.redirect(CaseUtils.getProcessStartUriWithCaseParameters(iCase, customizePortalFriendlyRequestPath));
   }
 
   public void backToCasesList() {
