@@ -1,7 +1,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:define name="title">Dashboard</ui:define>
@@ -32,20 +33,26 @@
         .one-dashboard > a {
           color: black !important;
         }
+        .ui-draggable:not(.ui-draggable-disabled) > .ui-draggable-handle {
+           cursor: move;
+        }
       </style>
-      <p:tabView id="grid-stack-tab-view" value="#{dashboardBean.dashboards}" var="dashboard" dynamic="true">
+      <p:commandButton id="switch-mode" value="Switch to #{dashboardBean.isReadOnlyMode ? 'Edit' : 'View'} Mode" style="top: 10px; float: right; z-index: 1000;"
+        actionListener="#{dashboardBean.toggleMode}" update="grid-stack-tab-view @this" process="@this" partialSubmit="true" oncomplete="loadGrid()"
+        rendered="#{dashboardBean.canEdit}" />
+      <p:tabView id="grid-stack-tab-view" value="#{dashboardBean.dashboards}" var="dashboard" dynamic="true" activeIndex="#{dashboardBean.tabActiveIndex}">
         <p:ajax event="tabChange" listener="#{dashboardBean.onTabChange}" oncomplete="loadGrid()" />
         <p:tab title="#{dashboard.title}" titleStyleClass="#{dashboardBean.dashboards.size() eq 1 ? 'one-dashboard' :''}"
           titleStyle="font-size: 18px">
           <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack" style="background-color: var(--ivy-primary-color-grey-pale)">
             <ui:repeat var="widget" value="#{dashboard.widgets}" varStatus="status">
               <div class="grid-stack-item" data-gs-x="#{widget.x}" data-gs-y="#{widget.y}" data-gs-id="#{widget.id}"
-                data-gs-width="#{widget.width}" data-gs-height="#{widget.height}" data-gs-autoPosition="#{widget.autoPosition}">
+                data-gs-width="#{widget.width}" data-gs-height="#{widget.height}" data-gs-autoPosition="#{widget.autoPosition}"
+                data-gs-no-resize="#{dashboardBean.isReadOnlyMode}" data-gs-no-move="#{dashboardBean.isReadOnlyMode}">
                 <div class="grid-stack-item-content card" style="display: flex;flex-direction: column;">
                   <h:panelGroup rendered="#{fn:startsWith(widget.id, 'task')}">
                     <div class="header" style="flex: 0 0 30px">
                       <span class="title">
-                        <i class="fa fa-arrows drag-handler u-mar-right-5" style="cursor: move; color: var(--primary-color);" data-action="Drag" /> 
                         #{not empty widget.name ? widget.name : 'Your Tasks'}
                       </span>
                       
@@ -54,7 +61,7 @@
                           <i class="fa fa-info-circle" />
                         </p:commandLink>
                         <p:commandLink styleClass="u-mar-right-5" oncomplete="PF('task-widget-configuration-dialog').show()" global="false"
-                          actionListener="#{dashboardBean.setTaskWidget(widget)}" update="task-widget-configuration-dialog">
+                          actionListener="#{dashboardBean.setTaskWidget(widget)}" update="task-widget-configuration-dialog" rendered="#{!dashboardBean.isReadOnlyMode}">
                           <i class="fa fa-pencil" />
                         </p:commandLink>
                         <p:commandLink>
@@ -70,7 +77,6 @@
                   <h:panelGroup rendered="#{fn:startsWith(widget.id, 'process')}">
                     <div class="header" style="flex: 0 0 30px">
                       <span class="title">
-                        <i class="fa fa-arrows drag-handler u-mar-right-5" style="cursor: move; color: var(--primary-color);" data-action="Drag" /> 
                         #{not empty widget.name ? widget.name : 'Your Processes'}
                       </span>
                       
@@ -86,13 +92,16 @@
                   </h:panelGroup>
                   
                   <h:panelGroup id="actions" layout="block" style="text-align: center; padding-top: 4px" rendered="#{widget.id eq 'action'}">
-                    <i class="fa fa-arrows drag-handler" data-action="Drag" 
-                      style="cursor: move; position: absolute; top: 5px; left: 5px;color: var(--primary-color);font-size: 18px;" />
-                    <p:commandButton id="add-widget-button" value="Add a new widget" type="button" style="margin-bottom: 5px"
-                      onclick="PF('new-widget-dialog').show()" />
-                    <br />
-                    <p:commandLink id="restore-button" value="Restore default widgets" actionListener="#{dashboardBean.restore()}"
-                      update="grid-stack-tab-view:#{dashboardBean.dashboards.indexOf(dashboard)}:grid-stack" oncomplete="loadGrid()" />
+                    <h:panelGroup rendered="#{!dashboardBean.isReadOnlyMode}">
+                      <p:commandButton id="add-widget-button" value="Add a new widget" type="button" style="margin-bottom: 5px"
+                        onclick="PF('new-widget-dialog').show()" />
+                      <br />
+                      <p:commandLink id="restore-button" value="Restore default widgets" actionListener="#{dashboardBean.restore()}"
+                        update="grid-stack-tab-view:#{dashboardBean.dashboards.indexOf(dashboard)}:grid-stack" oncomplete="loadGrid()" />
+                    </h:panelGroup>
+                    <h:panelGroup rendered="#{dashboardBean.isReadOnlyMode}">
+                      Actions are disabled because you are in View Mode.
+                    </h:panelGroup>
                   </h:panelGroup>
                 </div>
               </div>
@@ -111,7 +120,6 @@
         function loadGrid() {
           grids = GridStack.initAll({
             column: 12, 
-            handleClass :'drag-handler', 
             resizable: {
               handles: 'e, se, s, sw, w'
             }
