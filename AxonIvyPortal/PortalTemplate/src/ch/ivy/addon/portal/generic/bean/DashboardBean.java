@@ -19,6 +19,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.component.tabview.TabView;
 import org.primefaces.event.TabChangeEvent;
 
 import com.fasterxml.jackson.core.JsonParseException;
@@ -34,6 +35,7 @@ import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.TaskDashboardWidgetType;
 import ch.ivy.addon.portalkit.loader.ResourceLoader;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.application.property.ICustomProperty;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -51,9 +53,15 @@ public class DashboardBean implements Serializable {
   private String user;
   private ObjectMapper mapper;
   private DashboardWidget widget;
+  private boolean isReadOnlyMode;
+  private int tabActiveIndex;
+  private boolean canEdit;
 
   @PostConstruct
   public void init() {
+    canEdit = PermissionUtils.hasDashboardWritePermission();
+    tabActiveIndex = 0;
+    isReadOnlyMode = true;
     dashboards = new ArrayList<>();
     mapper = new ObjectMapper();
     samples = List.of(taskSample(), caseSample(), statisticSample(), processSample());
@@ -153,6 +161,7 @@ public class DashboardBean implements Serializable {
   
   public void onTabChange(TabChangeEvent event) {
     selectedDashboard = (Dashboard) event.getData();
+    tabActiveIndex = ((TabView) event.getSource()).getIndex();
   }
   
   public String getNewTaskWidgetId() {
@@ -168,6 +177,10 @@ public class DashboardBean implements Serializable {
       result = "task_".concat(Integer.toString(maxId + 1));
     }
     return result;
+  }
+  
+  public void toggleMode() {
+    isReadOnlyMode = !isReadOnlyMode;
   }
   
   private Map<String, String> getRequestParameterMap() {
@@ -198,5 +211,25 @@ public class DashboardBean implements Serializable {
   
   public void setTaskWidget(DashboardWidget widget) {
     this.widget = widget;
+  }
+  
+  public boolean getIsReadOnlyMode() {
+    return isReadOnlyMode;
+  }
+  
+  public void setIsReadOnlyMode(boolean isReadOnlyMode) {
+    this.isReadOnlyMode = isReadOnlyMode;
+  }
+  
+  public int getTabActiveIndex() {
+    return tabActiveIndex;
+  }
+  
+  public void setTabActiveIndex(int tabActiveIndex) {
+    this.tabActiveIndex = tabActiveIndex;
+  }
+  
+  public boolean getCanEdit() {
+    return canEdit;
   }
 }

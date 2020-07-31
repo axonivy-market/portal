@@ -201,6 +201,10 @@ public class PermissionUtils {
   public static boolean checkPublicLinkCreationPermission() {
     return hasPortalPermission(PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK);
   }
+  
+  public static boolean hasDashboardWritePermission() {
+    return hasPortalPermission(PortalPermission.DASHBOARD_WRITE);
+  }
 
   public static String getCaseName(ICase iCase) {
     return IvyExecutor.executeAsSystem(iCase::getName);
