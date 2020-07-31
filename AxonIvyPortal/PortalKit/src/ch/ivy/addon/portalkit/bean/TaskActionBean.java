@@ -9,6 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang.StringUtils;
+import org.primefaces.PF;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.DummyTask;
@@ -204,22 +205,6 @@ public class TaskActionBean {
     this.isShowAdditionalOptions = isShowAdditionalOptions;
   }
 
-  public void backToTaskList(ITask task) {
-    String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("BackFromTaskDetails.ivp");
-    if (StringUtils.isEmpty(friendlyRequestPath)) {
-      friendlyRequestPath = BACK_FROM_TASK_DETAILS;
-    }
-    String requestPath = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), friendlyRequestPath);
-    if (StringUtils.isNotEmpty(requestPath)) {
-      TaskUtils.updateTaskStartedAttribute(false);
-      PortalNavigator.redirect(requestPath + "?endedTaskId=" + task.getId());
-    }
-  }
-  
-  public void removeTaskAttributesInSession() {
-    TaskUtils.updateTaskStartedAttribute(false);
-  }
-
   public boolean isShowDestroyTask() {
     return isShowDestroyTask;
   }
@@ -243,5 +228,26 @@ public class TaskActionBean {
 
   public boolean noActionAvailable(ITask task) {
     return !isNotDone(task) && !canReset(task);
+  }
+  
+  public void backToPrevPage(ITask task, boolean isFromTaskList, boolean isTaskStartedInDetails) {
+    if (isFromTaskList || !isTaskStartedInDetails) {
+      TaskUtils.updateTaskStartedAttribute(false);
+      PF.current().executeScript("window.history.back()");
+    } else {
+      backToTaskList(task);
+    }
+  }
+  
+  private void backToTaskList(ITask task) {
+    String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("BackFromTaskDetails.ivp");
+    if (StringUtils.isEmpty(friendlyRequestPath)) {
+      friendlyRequestPath = BACK_FROM_TASK_DETAILS;
+    }
+    String requestPath = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), friendlyRequestPath);
+    if (StringUtils.isNotEmpty(requestPath)) {
+      TaskUtils.updateTaskStartedAttribute(false);
+      PortalNavigator.redirect(requestPath + "?endedTaskId=" + task.getId());
+    }
   }
 }
