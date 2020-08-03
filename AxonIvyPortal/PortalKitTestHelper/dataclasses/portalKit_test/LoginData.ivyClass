@@ -2,3 +2,5 @@ LoginData #class
 portalKit_test #namespace
 username String #field
 password String #field
+tryTime Number #field
+isLoggedIn Boolean #field

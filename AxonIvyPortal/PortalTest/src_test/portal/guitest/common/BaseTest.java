@@ -178,9 +178,9 @@ public class BaseTest {
           new HomePage() {
             @Override
             protected long getTimeOutForLocator() {
-              return 7L;
+              return 10L;
             }
-          }.isDisplayed();
+          };
           isLoginSuccess.set(true);
         } catch (Exception e) {
           System.out.println("*****Login unsuccessfully. Try again if not timeout.");
