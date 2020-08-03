@@ -172,7 +172,7 @@ public class BaseTest {
       password = URLEncoder.encode(testAccount.getPassword(), "UTF-8");
 
       AtomicBoolean isLoginSuccess = new AtomicBoolean(false);
-      Awaitility.await().atMost(new Duration(30, TimeUnit.SECONDS)).until(() -> {
+      Awaitility.await().atMost(new Duration(60, TimeUnit.SECONDS)).until(() -> {
         try {
           redirectToRelativeLink(String.format(LOGIN_URL_PATTERN, username, password));
           new HomePage() {

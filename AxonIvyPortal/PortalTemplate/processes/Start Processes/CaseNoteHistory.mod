@@ -33,6 +33,7 @@ List<ITask> finishedTasks = new ArrayList();
 in.internalCase = ivy.wf.getGlobalContext().getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(in.caseId)) as ICase;
 for(ITask task : in.internalCase.getTasks()) {
 	if(task.getState() == TaskState.DONE 
+	|| task.getState() == TaskState.CREATED 
 	|| task.getState() == TaskState.DESTROYED 
 	|| task.getState() == TaskState.ZOMBIE) {
 		finishedTasks.add(task);

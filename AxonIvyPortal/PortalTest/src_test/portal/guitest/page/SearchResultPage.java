@@ -41,8 +41,13 @@ public class SearchResultPage extends TemplatePage {
 	}
 
 	public String getTaskResult(int index) {
-		TaskWidgetPage taskWidgetPage = new TaskWidgetPage("search-results-tabview:task-results");
-		return taskWidgetPage.getNameOfTaskAt(index);
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage("search-results-tabview:task-results") {
+      @Override
+      protected String getLoadedLocator() {
+        return "//*[contains(@id,'task-results:task-view')]";
+      }
+    };
+    return taskWidgetPage.getNameOfTaskAt(index);
 	}
 
 	public String getCaseResult(int index) {

@@ -1734,12 +1734,12 @@ ul.participants-list li {
 
 /*Portal Global Ajax Status */
 .axonivy-loader {
-  background-color: $axonLoaderBackgroundColor;
+  background-color: $ajaxLoaderBackgroundColor;
 }
 
 .axonivy-loader .spinner,
 .axonivy-loader .spinner:before,
 .axonivy-loader .spinner:after {
   border: 2px solid transparent;
-  border-top-color: $axonLoaderBorderColor;
+  border-top-color: $ajaxLoaderBorderColor;
 }
