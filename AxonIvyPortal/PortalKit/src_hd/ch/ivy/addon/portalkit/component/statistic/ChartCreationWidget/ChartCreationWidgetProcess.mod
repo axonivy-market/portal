@@ -213,7 +213,8 @@ if (!(in.statisticChartList is initialized)) {
 	in.statisticChartList = new ArrayList();
 }
 
-in.statisticFilter = new StatisticFilter().init();
+in.statisticFilter = new StatisticFilter();
+in.statisticFilter.init();
 in.oldStatisticFilter = ObjectUtils.clone(in.statisticFilter) as StatisticFilter;
 ' #txt
 Cs0 f15 security system #txt
