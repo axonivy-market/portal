@@ -23,7 +23,7 @@ Ln0 f3 actionTable 'out=in;
 ' #txt
 Ln0 f3 actionCode 'ivy.session.loginSessionUser(in.username, in.password);
 for (int i = 0; i < 5; i++) {
-	if (!ivy.session.getSessionUserName().equals(in.username)) {
+	if (ivy.wf.getSecurityContext().getCurrentSession().isSessionUserUnknown()) {
 		if (i == 5) {
 			ivy.log.warn("Unsuccessful login after retry");
 		} else {

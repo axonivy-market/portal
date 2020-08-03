@@ -489,6 +489,20 @@ import javax.faces.application.FacesMessage;
 import ch.ivyteam.ivy.security.IUser;
 import java.util.Locale;
 ivy.session.loginSessionUser("demo", "demo");
+for (int i = 0; i < 5; i++) {
+	if (ivy.wf.getSecurityContext().getCurrentSession().isSessionUserUnknown()) {
+		if (i == 5) {
+			ivy.log.warn("Unsuccessful login after retry (in clean data)");
+		} else {
+		  ivy.log.warn("Unsuccessful login, retry (in clean data)");
+		  ivy.session.loginSessionUser("demo", "demo");
+		  Thread.sleep(500);
+	  }
+	} else {
+		break;
+	}
+}
+
 //set language from user settings or application details
 IUser sessionUser = ivy.session.getSessionUser();
 
@@ -505,7 +519,10 @@ if (sessionUser.getEMailLanguage() != null &&
 	Locale l = new Locale(language, country, "APPLICATION_DEFAULT");
 	ivy.session.setContentLocale(l);
 	ivy.session.setFormattingLocale(l);
-}' #txt
+}
+
+
+' #txt
 Ca0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
