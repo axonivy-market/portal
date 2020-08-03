@@ -134,6 +134,12 @@ pipeline {
               exit 0
             '''
           }
+          
+          echo "====================Copy ElasticSearch log===================="
+          powershell '''
+            $LOG= $env:engineDir + "/elasticsearch/logs/ivy-elasticsearch-*.log"
+            Copy-Item $LOG -Destination AxonIvyPortal/PortalTest/target
+          '''
         }
       }
     }
@@ -142,7 +148,7 @@ pipeline {
   post {
     always {
       archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/*.zip", allowEmptyArchive: true
-      archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/test/*/*.jpg", allowEmptyArchive: true
+      archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/test/*/*.jpg, AxonIvyPortal/PortalTest/target/testEngineOut.log, , AxonIvyPortal/PortalTest/target/ivy-elasticsearch-*.log", allowEmptyArchive: true
       junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
     }
   }
