@@ -25,16 +25,15 @@ public class StatisticScreenshotTest extends BaseTest {
     super.setup();
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingCaseContainOneTask);
-    homePage = new HomePage();
   }
   
   @Test
   public void screenshotForStatistic() throws IOException {
-    homePage.waitForStatisticRendered();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTaskWithoutUI(0);
-    homePage.waitForStatisticRendered();
+    homePage = new HomePage();
     homePage.waitForGrowlDisappear();
+    homePage.waitForStatisticRendered();
     
     mainMenuPage = homePage.openMainMenu();
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));

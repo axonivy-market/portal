@@ -119,6 +119,6 @@ public class UserProfilePage extends TemplatePage {
   }
   
   public WebElement getUserSettingCard() {
-    return findElementById("my-profile-form:my-profile-container");
+    return findElementById("my-profile-container");
   }
 }
