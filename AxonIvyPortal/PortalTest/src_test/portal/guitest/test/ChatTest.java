@@ -4,7 +4,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,7 +18,6 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
-@SuppressWarnings("restriction")
 public class ChatTest extends BaseTest {
 	private AdminSettingsPage adminSettingsPage;
   private static final String ADMIN1_2 = "admin1-2";
@@ -246,9 +244,5 @@ public class ChatTest extends BaseTest {
 		new HomePage().getChat();
 		return new ChatPage();
 	}
-	
-	@AfterClass
-	public static void cleanUpBrowsers() {
-	  killBrowsers();
-	}
+
 }

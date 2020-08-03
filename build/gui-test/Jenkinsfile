@@ -31,6 +31,7 @@ pipeline {
     stage('build') {
       steps {
         script {
+          def utils = load 'build/common/utils.groovy'
           echo "====================Turn off Elasticsearch port from 19200 to 19210===================="
           powershell '''
             for (($port = 19200); $port -lt 19210; ($port++)) {
@@ -82,14 +83,7 @@ pipeline {
             }
           }
 
-          echo '====================Close opening browsers===================='
-          bat '''
-            taskkill -im IEDriverServer.exe -F
-            taskkill -im iexplore.exe -F
-            taskkill -im GeckoFireFoxDriver.exe -F
-            taskkill -im firefox.exe -F
-            exit 0
-          '''
+          utils.killUnnecessaryProcessesToRunTest();
 
           echo '====================Execute maven for testing===================='
           bat "mvn clean test -f AxonIvyPortal/PortalTest/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=${props.browserType} -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"

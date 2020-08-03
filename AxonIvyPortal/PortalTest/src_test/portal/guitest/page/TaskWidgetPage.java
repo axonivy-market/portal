@@ -42,7 +42,7 @@ public class TaskWidgetPage extends TemplatePage {
 
 	@Override
 	protected String getLoadedLocator() {
-		return "//*[contains(@id,'task-view')]";
+    return "//*[contains(@id,'task-widget:task-view')]";
 	}
 
 	@Override
