@@ -206,20 +206,6 @@ public class UserUtils {
   @SuppressWarnings("unchecked")
   public static List<UserDTO> findUsers(String query, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
     return IvyExecutor.executeAsSystem(() -> {
-      if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
-        List<UserDTO> users = SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
-            .withStartName("findUsersOverAllApplications")
-            .withParam("username", getSessionUserName())
-            .withParam("query", query)
-            .withParam("startIndex", startIndex)
-            .withParam("count", count)
-            .withParam("fromRoles", fromRoles)
-            .withParam("excludedUsernames", excludedUsernames)
-            .call()
-            .get("users", List.class);
-        return users;
-      }
-      
       return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
           .withStartName("findUsers")
           .withParam("application", Ivy.request().getApplication())
