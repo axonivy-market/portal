@@ -113,10 +113,10 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   public TaskFilterData buildDefaultTaskFilterData() {
     if (defaultTaskFilterData == null) {
       defaultTaskFilterData = new TaskFilterData();
-      defaultTaskFilterData.setFilterName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultFilter"));
       defaultTaskFilterData.setType(FilterType.DEFAULT);
       collectFiltersForDefaultFilterSet();
     }
+    defaultTaskFilterData.setFilterName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultFilter"));
     isSelectedDefaultFilter = isSelectedDefaultFilter == null ? true: isSelectedDefaultFilter;
     return defaultTaskFilterData;
   }
@@ -459,12 +459,12 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     resetFilterData();
   }
 
-  public void resetFilters() {
+  public void resetFilters() throws ReflectiveOperationException {
     for (TaskFilter selectedFilter : selectedFilters) {
       selectedFilter.resetValues();
     }
-    selectedFilters = new ArrayList<>();
-    selectedTaskFilterData = null;
+
+    applyFilter(buildDefaultTaskFilterData());
   }
 
   /**
