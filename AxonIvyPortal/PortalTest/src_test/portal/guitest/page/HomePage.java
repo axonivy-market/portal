@@ -42,10 +42,19 @@ public class HomePage extends TemplatePage {
 	}
 	
 	public void waitForStatisticRendered() {
-    WaitHelper.assertTrueWithRefreshPage(this, () -> {
-      waitForElementDisplayed(By.cssSelector("a[class$='chart-info']"), true, 2);
-      return true;
-    });
+	  try {
+      WaitHelper.assertTrueWithRefreshPage(this, () -> {
+        waitForElementDisplayed(By.cssSelector("a[class$='chart-info']"), true, 2);
+        return true;
+      });
+	  } catch (Exception e) {
+	    try {
+        Thread.sleep(99999L);
+      } catch (InterruptedException e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
+	  }
 	}
 	
 	public void waitForGrowlDisappear() {
