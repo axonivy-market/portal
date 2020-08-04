@@ -1,5 +1,5 @@
 pipeline {
-  agent {label 'master'}
+  agent {label 'aws-fra-integration'}
   
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
@@ -10,14 +10,12 @@ pipeline {
   }
 
   tools { 
-      maven '3.6' 
-      jdk '11' 
+      maven 'maven' 
+      jdk 'JDK 11.0.5' 
   }
 
   parameters {
       string(name: 'modulesMustBeBuilt', defaultValue: '', description: 'Define modules must be built. By default, only modules which have code changes since the last successful build are built. Available modules: PortalStyle,PortalKit,PortalTemplate,AxonIvyExpress,PortalKitTestHelper,PortalExamples,InternalSupport. E.g. PortalStyle code is changed, then set this property value PortalKit,PortalTemplate => PortalStyle,PortalKit,PortalTemplate will be built.')
-      choice(name: 'engine', choices: ['singleAppEngine'], description: 'Which engine to deploy? Currently, only singleAppEngine is set up for 8.0')
-
   }
 
   stages {
@@ -25,9 +23,8 @@ pipeline {
       steps {
         script {
           builtModules = []
-          config = [singleAppEngine: [applications: ['Portal'], engineDir : 'D:/tools/ivy-server/8.0']]
-          applications = config[params.engine]['applications']
-          engineDir = config[params.engine]['engineDir']
+          applications = ['Portal']
+          engineDir = 'C:/tools/ivy-server/geat'
 
           def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/PortalExamples', 'Showcase/InternalSupport']
           def changeLog = ''
@@ -40,7 +37,7 @@ pipeline {
               bat "mvn clean install -f ${module}/pom.xml"
             }
           }
-          bat "mvn clean test -f AxonIvyPortal/PortalTest/pom.xml -Dtest=ch.ivy.addon.**.*Test"
+          // bat "mvn clean test -f AxonIvyPortal/PortalTest/pom.xml -Dtest=ch.ivy.addon.**.*Test"
           archiveArtifacts artifacts: "*/*/target/*.iar", allowEmptyArchive: true
           junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
         }
