@@ -147,6 +147,8 @@ Migrate 8.x to 9.1
 
 9. Use ``pageContent`` to define your section in ``BasicTemplate.xhtml`` instead of ``simplePageContent``
 
+10. ``TaskTemplate-7`` is removed, change it to ``TaskTemplate-8``. ``TaskTemplate`` is also removed, change it to ``frame-8`` (provided by Ivy).
+
 .. _installation-release-notes:
 
 Release notes
