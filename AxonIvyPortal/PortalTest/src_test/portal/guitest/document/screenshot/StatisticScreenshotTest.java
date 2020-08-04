@@ -23,6 +23,7 @@ public class StatisticScreenshotTest extends BaseTest {
   @Override
   public void setup() {
     super.setup();
+    Sleeper.sleep(2000); // To make business data updated correctly 
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingCaseContainOneTask);
   }
