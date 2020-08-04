@@ -49,8 +49,7 @@ public class MainMenuPage extends TemplatePage {
 
   public StatisticWidgetPage selectStatisticDashboard() {
     clickByCssSelector("li.submenu-container:nth-child(5) > a.ripplelink.submenu");
-    ensureNoBackgroundRequest();
-    waitForPageLoaded();
+    waitForElementDisplayed(By.id("statistics-widget:create-chart-link"), true);
     return new StatisticWidgetPage();
   }
 
