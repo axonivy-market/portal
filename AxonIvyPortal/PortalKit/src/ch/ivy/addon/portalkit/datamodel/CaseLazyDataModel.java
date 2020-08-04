@@ -204,12 +204,11 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     resetFilterData();
   }
 
-  public void resetFilters() {
+  public void resetFilters() throws ReflectiveOperationException {
     for (CaseFilter selectedFilter : selectedFilters) {
       selectedFilter.resetValues();
     }
-    selectedFilters = new ArrayList<>();
-    selectedFilterData = null;
+    applyFilter(buildDefaultCaseFilterData());
   }
 
   public void setSorting(String sortedField, boolean descending) {
