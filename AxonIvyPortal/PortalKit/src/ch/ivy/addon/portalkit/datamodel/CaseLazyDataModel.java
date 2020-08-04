@@ -107,9 +107,9 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     if (defaultCaseFilterData == null) {
       defaultCaseFilterData = new CaseFilterData();
       defaultCaseFilterData.setType(FilterType.DEFAULT);
+      defaultCaseFilterData.setFilterName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultFilter"));
       collectFiltersForDefaultFilterSet();
     }
-    defaultCaseFilterData.setFilterName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultFilter"));
     isSelectedDefaultFilter = isSelectedDefaultFilter == null ? true : isSelectedDefaultFilter;
     return defaultCaseFilterData;
   }
