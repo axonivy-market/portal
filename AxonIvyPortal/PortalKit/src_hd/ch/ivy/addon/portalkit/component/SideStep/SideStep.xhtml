@@ -26,7 +26,7 @@
   <c:set var="isShowInTaskList" value="#{empty cc.attrs.showInTaskList ? true : cc.attrs.showInTaskList}" />
   <f:event listener="#{data.setCurrentPortalPage(cc.attrs.currentPortalPage)}" type="preRenderComponent" />
 
-  <p:link id="#{cc.attrs.actionLinkId}" disabled="#{cc.attrs.isDisabled}" href="#"
+  <p:link id="#{cc.attrs.actionLinkId}" disabled="#{cc.attrs.isDisabled}" onclick="return false;"
     styleClass="action-link #{cc.attrs.buttonStyleClass}">
     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="task-action-item-label" />
     <i class="icon ivyicon-arrow-down-1" />
