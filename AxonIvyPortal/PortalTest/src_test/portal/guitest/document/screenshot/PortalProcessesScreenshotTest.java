@@ -9,12 +9,12 @@ import org.openqa.selenium.WebElement;
 
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
-import portal.guitest.common.BaseTest;
+import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.ProcessWidgetPage;
 
-public class PortalProcessesScreenshotTest extends BaseTest {
+public class PortalProcessesScreenshotTest extends ScreenshotTest {
 
   private HomePage homePage;
   ProcessWidgetPage processWidget;
@@ -71,7 +71,6 @@ public class PortalProcessesScreenshotTest extends BaseTest {
   
   @Test
   public void screenshotHowtoAddProcessFavorite() throws IOException {
-    homePage.waitForGrowlDisappear();
     processWidget = homePage.getProcessWidget();
     ScreenshotUtil.resizeBrowser(new Dimension(1366, SCREENSHOT_MOBILE_HEIGHT));
     processWidget.openNewProcessDialog();

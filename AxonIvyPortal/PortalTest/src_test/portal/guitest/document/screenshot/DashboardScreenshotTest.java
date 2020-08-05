@@ -8,11 +8,11 @@ import org.openqa.selenium.Dimension;
 
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
-import portal.guitest.common.BaseTest;
+import portal.guitest.common.ScreenshotTest;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskWidgetPage;
 
-public class DashboardScreenshotTest extends BaseTest {
+public class DashboardScreenshotTest extends ScreenshotTest {
   
   private HomePage homePage;
   private static final int SCREENSHOT_WIDTH = 1500;
@@ -29,14 +29,12 @@ public class DashboardScreenshotTest extends BaseTest {
     refreshPage();
     homePage = new HomePage();
     homePage.waitForStatisticRendered();
-    homePage.waitForGrowlDisappear();
   }
   
   @Test
   public void takeScreenshotOverlayGuide() throws IOException {
     updatePortalSetting("SHOW_USER_GUIDE", "true");
     homePage = new HomePage();
-    homePage.waitForGrowlDisappear();
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DASHBOARD_FOLDER + "overlay-guide");
   }
@@ -45,7 +43,6 @@ public class DashboardScreenshotTest extends BaseTest {
   public void takeScreenshotWithEnvironmentInfo() throws IOException {
     updatePortalSetting("SHOW_ENVIRONMENT_INFO", "true");
     homePage = new HomePage();
-    homePage.waitForGrowlDisappear();
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 500));
     ScreenshotUtil.captureHalfRightPageScreenShot(ScreenshotUtil.DASHBOARD_FOLDER + "environment-info");
   }

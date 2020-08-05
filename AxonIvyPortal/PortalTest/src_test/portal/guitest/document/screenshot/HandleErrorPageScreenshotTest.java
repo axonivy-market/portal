@@ -9,11 +9,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
-import portal.guitest.common.BaseTest;
+import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.page.HomePage;
 
-public class HandleErrorPageScreenshotTest extends BaseTest {
+public class HandleErrorPageScreenshotTest extends ScreenshotTest {
   
   private String portalCustomErrorUrl = "InternalSupport/14B2FC03D2E87141/testPortalCustomErrorHandler.ivp";
   private String showIvyErrorPageUrl = "portal-developer-examples/169BDE2F368D6EC4/StartShowIvyErrorPage.ivp";

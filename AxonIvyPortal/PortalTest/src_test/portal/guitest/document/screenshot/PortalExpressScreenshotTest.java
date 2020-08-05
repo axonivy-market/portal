@@ -11,8 +11,8 @@ import org.openqa.selenium.WebElement;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.bean.ExpressResponsible;
-import portal.guitest.common.BaseTest;
 import portal.guitest.common.FileHelper;
+import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AdminSettingsPage;
@@ -25,7 +25,7 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.test.ExpressManagementTest;
 
-public class PortalExpressScreenshotTest extends BaseTest {
+public class PortalExpressScreenshotTest extends ScreenshotTest {
   
   private static final int USER_TASK_INDEX = 0;
   private static final int USER_TASK_WITH_EMAIL_INDEX = 1;

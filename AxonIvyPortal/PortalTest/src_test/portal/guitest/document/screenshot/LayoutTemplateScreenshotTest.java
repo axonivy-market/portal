@@ -8,11 +8,11 @@ import org.junit.Test;
 import org.openqa.selenium.Dimension;
 
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
-import portal.guitest.common.BaseTest;
+import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.page.HomePage;
 
-public class LayoutTemplateScreenshotTest extends BaseTest {
+public class LayoutTemplateScreenshotTest extends ScreenshotTest {
   
   private String applicationShowcase = "portal-developer-examples/169BDE2F368D6EC4/ApplicationShowcase.ivp";
 

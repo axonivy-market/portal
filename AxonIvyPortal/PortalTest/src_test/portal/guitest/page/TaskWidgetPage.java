@@ -738,10 +738,6 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementDisplayedByCssSelector("label[for$=':columns-checkbox:3']");
   }
 
-  public void waitForGrowlDisappear() {
-    waitForElementDisplayed(By.id("portal-global-growl_container"), false);
-  }
-
   public void selectDelegateResponsible(String responsibleName, boolean isRole) {
     if (isRole) {
       List<WebElement> radioButtonLabels = findListElementsByCssSelector("table[id$='activator-type-select'] label");
