@@ -175,6 +175,15 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     isSelectedDefaultFilter = false;
   }
 
+  public boolean isSameTaskFilterData(TaskAnalysisFilterData filterToBeRemoved) {
+    if (filterToBeRemoved == null || selectedTaskAnalysisFilterData == null) {
+      return false;
+    }
+    return filterToBeRemoved.getFilterGroupId().equals(selectedTaskAnalysisFilterData.getFilterGroupId())
+        && filterToBeRemoved.getType().equals(selectedTaskAnalysisFilterData.getType())
+        && filterToBeRemoved.getFilterName().equals(selectedTaskAnalysisFilterData.getFilterName());
+  }
+  
   /**
    * Save all filter settings to business data
    * 
