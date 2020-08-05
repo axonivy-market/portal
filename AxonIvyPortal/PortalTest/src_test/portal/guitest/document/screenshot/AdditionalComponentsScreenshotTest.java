@@ -7,8 +7,8 @@ import org.openqa.selenium.Dimension;
 
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
-import portal.guitest.common.BaseTest;
 import portal.guitest.common.FileHelper;
+import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.DocumentTableComponentPage;
 import portal.guitest.page.HomePage;
@@ -19,7 +19,7 @@ import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.page.UserSelectionComponentPage;
 
-public class AdditionalComponentsScreenshotTest extends BaseTest {
+public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
 
   @Test
   public void captureScreenshotForProcessChainComponent() throws IOException {
@@ -30,6 +30,7 @@ public class AdditionalComponentsScreenshotTest extends BaseTest {
   
   @Test
   public void captureScreenshotGrowlMessage() throws IOException {
+    updatePortalSetting("DISPLAY_MESSAGE_AFTER_FINISH_TASK", "true");
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingCaseContainOneTask);
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 1000));

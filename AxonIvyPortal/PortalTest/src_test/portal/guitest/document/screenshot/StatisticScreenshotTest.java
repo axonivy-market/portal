@@ -8,14 +8,14 @@ import org.openqa.selenium.WebElement;
 
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
-import portal.guitest.common.BaseTest;
+import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
 import portal.guitest.page.TaskWidgetPage;
 
-public class StatisticScreenshotTest extends BaseTest {
+public class StatisticScreenshotTest extends ScreenshotTest {
 
   private HomePage homePage;
   private MainMenuPage mainMenuPage;
@@ -33,7 +33,6 @@ public class StatisticScreenshotTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTaskWithoutUI(0);
     homePage = new HomePage();
-    homePage.waitForGrowlDisappear();
     homePage.waitForStatisticRendered();
     
     mainMenuPage = homePage.openMainMenu();

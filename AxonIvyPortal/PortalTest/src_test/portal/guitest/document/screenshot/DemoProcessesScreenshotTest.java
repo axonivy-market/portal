@@ -9,7 +9,7 @@ import org.junit.Test;
 import org.openqa.selenium.Dimension;
 
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
-import portal.guitest.common.BaseTest;
+import portal.guitest.common.ScreenshotTest;
 import portal.guitest.page.ExampleOverviewPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
@@ -17,7 +17,7 @@ import portal.guitest.page.TaskWidgetPage;
 import portal.guitest.userexamples.page.CaseMapPage;
 import portal.guitest.userexamples.page.LeaveRequestPage;
 
-public class DemoProcessesScreenshotTest extends BaseTest {
+public class DemoProcessesScreenshotTest extends ScreenshotTest {
   
   private static String LEAVE_REQUEST_START_LINK = "portal-user-examples/170321BD7F5539D6/start.ivp";
   private static final String CASE_MAP_URL = "/portal-user-examples/70765b37-a3e8-418a-a8d5-c2b3a539408e.icm";
@@ -77,7 +77,6 @@ public class DemoProcessesScreenshotTest extends BaseTest {
     
     caseMapPage = new CaseMapPage();
     taskWidgetPage = caseMapPage.clickSubmitButtonAndBackToTaskList();
-    taskWidgetPage.waitForGrowlDisappear();
     taskWidgetPage.sideStepMenuOnActionButton(0);
     executeDecorateJs("highlightTaskActionItem(0, 1)");
     ScreenshotUtil.captureHalfTopPageScreenShot(DEMO_FOLDER + "lending-casemap-external-solvency-service");
