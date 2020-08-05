@@ -243,7 +243,8 @@ if(in.taskFilterDataToBeRemoved.type == FilterType.ONLY_ME) {
 } else {
 	in.taskPublicFilters.remove(in.taskFilterDataToBeRemoved);
 }
-if (in.dataModel.#selectedTaskFilterData is initialized && in.dataModel.selectedTaskFilterData.equals(in.taskFilterDataToBeRemoved)) {
+if (in.dataModel.#selectedTaskFilterData is initialized && in.dataModel.isSameTaskFilterData(in.taskFilterDataToBeRemoved)) {
+	ivy.log.error("reset task");
 	in.dataModel.resetFilters();
 	in.keyword = null;
 }' #txt
