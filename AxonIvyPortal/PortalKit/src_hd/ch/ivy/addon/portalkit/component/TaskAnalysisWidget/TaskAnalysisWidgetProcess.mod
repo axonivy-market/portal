@@ -248,7 +248,7 @@ if(in.taskFilterDataToBeRemoved.type == FilterType.ONLY_ME) {
 } else {
 	in.taskPublicFilters.remove(in.taskFilterDataToBeRemoved);
 }
-if (in.dataModel.#selectedTaskAnalysisFilterData is initialized && in.dataModel.selectedTaskAnalysisFilterData.equals(in.taskFilterDataToBeRemoved)) {
+if (in.dataModel.isSameTaskFilterData(in.taskFilterDataToBeRemoved)) {
 	in.dataModel.resetFilters();
 }' #txt
 Ts0 f35 security system #txt
