@@ -353,7 +353,7 @@ if(in.filterDataToBeDeleted.type == FilterType.ONLY_ME) {
 	in.publicFilters.remove(in.filterDataToBeDeleted);
 }
 
-if (in.dataModel.#selectedFilterData is initialized && in.dataModel.selectedFilterData.equals(in.filterDataToBeDeleted)) {
+if (in.dataModel.#selectedFilterData is initialized && in.dataModel.isSameCaseFilterData(in.filterDataToBeDeleted)) {
 	in.dataModel.resetFilters();
 	in.filteringKeyword = null;
 }' #txt
