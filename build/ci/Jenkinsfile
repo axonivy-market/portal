@@ -23,7 +23,7 @@ pipeline {
       steps {
         script {
           builtModules = []
-          applications = ['Portal']
+          applications = ['GEAT']
           engineDir = 'C:/tools/ivy-server/geat'
 
           def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/PortalExamples', 'Showcase/InternalSupport']
