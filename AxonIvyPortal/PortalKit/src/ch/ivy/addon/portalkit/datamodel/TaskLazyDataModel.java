@@ -467,6 +467,15 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     applyFilter(buildDefaultTaskFilterData());
   }
 
+  public boolean isSameTaskFilterData(TaskFilterData filterToBeRemoved) {
+    if (filterToBeRemoved == null || this.selectedTaskFilterData == null) {
+      return false;
+    }
+    return filterToBeRemoved.getFilterGroupId() == this.selectedTaskFilterData.getFilterGroupId()
+        && filterToBeRemoved.getType().equals(this.selectedTaskFilterData.getType())
+        && filterToBeRemoved.getFilterName().equals(this.selectedTaskFilterData.getFilterName());
+  }
+
   /**
    * Save all filter settings to business data
    * 
