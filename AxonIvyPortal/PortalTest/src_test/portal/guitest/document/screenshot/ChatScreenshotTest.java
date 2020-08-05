@@ -7,7 +7,7 @@ import org.openqa.selenium.Dimension;
 
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
-import portal.guitest.common.BaseTest;
+import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.ChatPage;
@@ -15,7 +15,7 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
-public class ChatScreenshotTest extends BaseTest {
+public class ChatScreenshotTest extends ScreenshotTest {
   
   @Override
   public void setup() {

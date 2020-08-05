@@ -15,13 +15,13 @@ import com.jayway.awaitility.Duration;
 
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
-import portal.guitest.common.BaseTest;
+import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
 
-public class PortalTaskScreenshotTest extends BaseTest {
+public class PortalTaskScreenshotTest extends ScreenshotTest {
 
   private static final int SCREENSHOT_WIDTH = 1500;
   private HomePage homePage;

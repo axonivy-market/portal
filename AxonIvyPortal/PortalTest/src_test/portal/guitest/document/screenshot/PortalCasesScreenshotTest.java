@@ -16,14 +16,14 @@ import com.jayway.awaitility.Duration;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
-import portal.guitest.common.BaseTest;
+import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 
-public class PortalCasesScreenshotTest extends BaseTest {
+public class PortalCasesScreenshotTest extends ScreenshotTest {
 
   private HomePage homePage;
   private CaseWidgetPage caseWidget;

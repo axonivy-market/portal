@@ -9,7 +9,7 @@ import org.openqa.selenium.Dimension;
 
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.bean.ExpressResponsible;
-import portal.guitest.common.BaseTest;
+import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.page.DefaultExpresTaskPage;
 import portal.guitest.page.ExpressProcessPage;
@@ -17,7 +17,7 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
-public class AdhocScreenshotTest extends BaseTest {
+public class AdhocScreenshotTest extends ScreenshotTest {
   
   @Override
   public void setup() {
