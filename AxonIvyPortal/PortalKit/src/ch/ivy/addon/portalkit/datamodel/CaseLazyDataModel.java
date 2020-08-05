@@ -12,6 +12,7 @@ import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
@@ -220,9 +221,10 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     if (filterToBeRemoved == null || this.selectedFilterData == null) {
       return false;
     }
-    return filterToBeRemoved.getFilterGroupId() == this.selectedFilterData.getFilterGroupId()
-        && filterToBeRemoved.getType().equals(this.selectedFilterData.getType())
-        && filterToBeRemoved.getFilterName().equals(this.selectedFilterData.getFilterName());
+
+    return filterToBeRemoved.getFilterGroupId().equals(selectedFilterData.getFilterGroupId())
+        && filterToBeRemoved.getType() == selectedFilterData.getType()
+        && StringUtils.equals(filterToBeRemoved.getFilterName(), selectedFilterData.getFilterName());
   }
 
   public void setSorting(String sortedField, boolean descending) {

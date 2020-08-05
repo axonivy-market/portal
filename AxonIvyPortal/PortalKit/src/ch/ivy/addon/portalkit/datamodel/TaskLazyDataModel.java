@@ -458,9 +458,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     if (filterToBeRemoved == null || this.selectedTaskFilterData == null) {
       return false;
     }
-    return filterToBeRemoved.getFilterGroupId() == this.selectedTaskFilterData.getFilterGroupId()
-        && filterToBeRemoved.getType().equals(this.selectedTaskFilterData.getType())
-        && filterToBeRemoved.getFilterName().equals(this.selectedTaskFilterData.getFilterName());
+    return filterToBeRemoved.getFilterGroupId().equals(selectedTaskFilterData.getFilterGroupId())
+        && filterToBeRemoved.getType().equals(selectedTaskFilterData.getType())
+        && filterToBeRemoved.getFilterName().equals(selectedTaskFilterData.getFilterName());
   }
 
   /**
