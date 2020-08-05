@@ -49,7 +49,11 @@ public class MainMenuPage extends TemplatePage {
 
   public StatisticWidgetPage selectStatisticDashboard() {
     clickByCssSelector("li.submenu-container:nth-child(5) > a.ripplelink.submenu");
-    waitForElementDisplayed(By.id("statistics-widget:create-chart-link"), true);
+    String breadcrumbId = "portal-breadcrumb:breadcrumb-form:breadcrumb";
+    waitForElementDisplayed(By.id(breadcrumbId), true);
+    WebElement breadcrumb = findElementById(breadcrumbId);
+    WebElement currentEntry = breadcrumb.findElement(By.cssSelector(".ui-menuitem-link.ui-state-disabled"));
+    waitUntilTextToBePresentInElement(currentEntry, "Statistics", 10);
     return new StatisticWidgetPage();
   }
 

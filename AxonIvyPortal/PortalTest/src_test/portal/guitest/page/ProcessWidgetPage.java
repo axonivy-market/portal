@@ -55,12 +55,7 @@ public class ProcessWidgetPage extends TemplatePage {
   
   public WebElement getProcess(String processName) {
     WebElement processListElement = findElementById(processWidgetId + ":process-list");
-    WebElement processItemElement = null;
-    try {
-      processItemElement =
-          findChildElementByXpathExpression(processListElement, "//a[.//text() = '" + processName + "']");
-    } catch (Exception e) {
-    }
+    WebElement processItemElement = findChildElementByXpathExpression(processListElement, "//a[.//text() = '" + processName + "']");
     return processItemElement;
   }
   
