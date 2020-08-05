@@ -468,12 +468,12 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   public boolean isSameTaskFilterData(TaskFilterData filterToBeRemoved) {
-    if (filterToBeRemoved == null || this.selectedTaskFilterData == null) {
+    if (filterToBeRemoved == null || selectedTaskFilterData == null) {
       return false;
     }
-    return filterToBeRemoved.getFilterGroupId() == this.selectedTaskFilterData.getFilterGroupId()
-        && filterToBeRemoved.getType().equals(this.selectedTaskFilterData.getType())
-        && filterToBeRemoved.getFilterName().equals(this.selectedTaskFilterData.getFilterName());
+    return filterToBeRemoved.getFilterGroupId().equals(selectedTaskFilterData.getFilterGroupId())
+        && filterToBeRemoved.getType() == selectedTaskFilterData.getType()
+        && filterToBeRemoved.getFilterName().equals(selectedTaskFilterData.getFilterName());
   }
 
   /**
