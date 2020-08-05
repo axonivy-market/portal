@@ -12,8 +12,8 @@ documents java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyDocument> #field
 documents PERSISTENT #fieldModifier
 documentUploadEvent org.primefaces.event.FileUploadEvent #field
 documentUploadEvent PERSISTENT #fieldModifier
-isShowUploadDocumentButton Boolean #field
-isShowUploadDocumentButton PERSISTENT #fieldModifier
+isHideUploadDocumentForDoneCase Boolean #field
+isHideUploadDocumentForDoneCase PERSISTENT #fieldModifier
 name String #field
 name PERSISTENT #fieldModifier
 task ch.ivyteam.ivy.workflow.ITask #field
