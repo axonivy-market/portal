@@ -106,8 +106,8 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   public CaseFilterData buildDefaultCaseFilterData() {
     if (defaultCaseFilterData == null) {
       defaultCaseFilterData = new CaseFilterData();
-      defaultCaseFilterData.setFilterName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultFilter"));
       defaultCaseFilterData.setType(FilterType.DEFAULT);
+      defaultCaseFilterData.setFilterName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultFilter"));
       collectFiltersForDefaultFilterSet();
     }
     isSelectedDefaultFilter = isSelectedDefaultFilter == null ? true : isSelectedDefaultFilter;
@@ -209,12 +209,11 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     resetFilterData();
   }
 
-  public void resetFilters() {
+  public void resetFilters() throws ReflectiveOperationException {
     for (CaseFilter selectedFilter : selectedFilters) {
       selectedFilter.resetValues();
     }
-    selectedFilters = new ArrayList<>();
-    selectedFilterData = null;
+    applyFilter(buildDefaultCaseFilterData());
   }
 
   public void setSorting(String sortedField, boolean descending) {
@@ -670,6 +669,9 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   public CaseFilterData getDefaultCaseFilterData() {
+    if (defaultCaseFilterData != null) {
+      defaultCaseFilterData.setFilterName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultFilter"));
+    }
     return defaultCaseFilterData;
   }
 
