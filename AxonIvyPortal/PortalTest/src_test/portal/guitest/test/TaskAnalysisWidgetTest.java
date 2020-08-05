@@ -307,7 +307,6 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     
     taskAnalysisWidgetPage.saveFilterSet(filterSetName, false);
     MainMenuPage mainMenuPage = new MainMenuPage();
-    mainMenuPage.openCaseList();
     mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.navigateToTaskAnalysisPage();
     taskAnalysisWidgetPage.loadFilterSet(filterSetName, false);
@@ -315,7 +314,6 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     taskAnalysisWidgetPage.removeResponsible();
     taskAnalysisWidgetPage.removeUserInFilter();
     
-    mainMenuPage.openCaseList();
     mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.navigateToTaskAnalysisPage();
     taskAnalysisWidgetPage.loadFilterSet(filterSetName, false);
