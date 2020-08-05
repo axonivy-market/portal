@@ -212,12 +212,12 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   public boolean isSameCaseFilterData(CaseFilterData filterToBeRemoved) {
-    if (filterToBeRemoved == null || this.selectedFilterData == null) {
+    if (filterToBeRemoved == null || selectedFilterData == null) {
       return false;
     }
-    return filterToBeRemoved.getFilterGroupId() == this.selectedFilterData.getFilterGroupId()
-        && filterToBeRemoved.getType().equals(this.selectedFilterData.getType())
-        && filterToBeRemoved.getFilterName().equals(this.selectedFilterData.getFilterName());
+    return filterToBeRemoved.getFilterGroupId().equals(selectedFilterData.getFilterGroupId())
+        && filterToBeRemoved.getType() == selectedFilterData.getType()
+        && filterToBeRemoved.getFilterName().equals(selectedFilterData.getFilterName());
   }
 
   public void setSorting(String sortedField, boolean descending) {
