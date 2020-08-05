@@ -48,10 +48,6 @@ public class HomePage extends TemplatePage {
     });
 	}
 	
-	public void waitForGrowlDisappear() {
-	  waitForElementDisplayed(By.id("portal-global-growl_container"), false);
-	}
-
 	public String getAnnouncementMessage() {
 		waitForElementDisplayed(By.cssSelector("div[class*='announcement-message-customizable']"), true);
 		return driver.findElement(By.cssSelector("div[class*='announcement-message-customizable']")).getText();

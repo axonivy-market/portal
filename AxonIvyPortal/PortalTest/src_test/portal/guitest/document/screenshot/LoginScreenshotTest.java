@@ -8,12 +8,12 @@ import org.openqa.selenium.Dimension;
 
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-import portal.guitest.common.BaseTest;
+import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.page.HomePage;
 import vn.wawa.guitest.base.client.Browser;
 
-public class LoginScreenshotTest extends BaseTest {
+public class LoginScreenshotTest extends ScreenshotTest {
   
   @Before
   @Override
