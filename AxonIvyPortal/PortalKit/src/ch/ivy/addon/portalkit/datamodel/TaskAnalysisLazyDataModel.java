@@ -458,6 +458,9 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   }
 
   public TaskAnalysisFilterData getDefaultTaskAnalysisFilterData() {
+    if (defaultTaskAnalysisFilterData != null) {
+      defaultTaskAnalysisFilterData.setFilterName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultFilter"));
+    }
     return defaultTaskAnalysisFilterData;
   }
 
