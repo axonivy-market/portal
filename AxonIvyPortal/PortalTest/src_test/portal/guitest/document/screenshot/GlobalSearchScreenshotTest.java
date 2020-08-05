@@ -6,11 +6,11 @@ import org.junit.Test;
 import org.openqa.selenium.Dimension;
 
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
-import portal.guitest.common.BaseTest;
+import portal.guitest.common.ScreenshotTest;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TemplatePage.GlobalSearch;
 
-public class GlobalSearchScreenshotTest extends BaseTest {
+public class GlobalSearchScreenshotTest extends ScreenshotTest {
   private HomePage homePage;
   
   @Test

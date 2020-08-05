@@ -8,7 +8,7 @@ import org.openqa.selenium.Dimension;
 
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
-import portal.guitest.common.BaseTest;
+import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.AbsencePage;
@@ -19,7 +19,7 @@ import portal.guitest.page.NewAbsencePage;
 import portal.guitest.page.ProjectVersionPage;
 import portal.guitest.page.UserProfilePage;
 
-public class SettingScreenshotTest extends BaseTest {
+public class SettingScreenshotTest extends ScreenshotTest {
   
   private HomePage homePage;
   private static final LocalDate TODAY = LocalDate.now();
@@ -31,7 +31,6 @@ public class SettingScreenshotTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     homePage = new HomePage();
     homePage.waitForStatisticRendered();
-    homePage.waitForGrowlDisappear();
     homePage.getUserSettings();
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SETTINGS_FOLDER + "user-settings", new Dimension(1500, 800));
     
@@ -76,7 +75,6 @@ public class SettingScreenshotTest extends BaseTest {
     userProfilePage.switchOnFurtherEmailFromAppSetting();
     userProfilePage.switchOnReceiveSummarySetting();
     ScreenshotUtil.captureElementScreenshot(userProfilePage.getUserSettingCard(), ScreenshotUtil.MY_PROFILE_FOLDER + "email-settings");
-    
   }
   
   @Test
