@@ -301,7 +301,7 @@ Pt0 f28 caseData 'businessCase.attach=true
 case.category=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>
 case.description=<%\=ivy.cms.co("/Processes/Cases/PortalInternalProcess/PortalInternalProcessDescription")%>
 case.name=<%\=ivy.cms.co("/Processes/Cases/PortalCategory")%>\: <%\=ivy.cms.co("/Processes/portalSettingSaved")%>' #txt
-Pt0 f28 showInStartList 1 #txt
+Pt0 f28 showInStartList 0 #txt
 Pt0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
