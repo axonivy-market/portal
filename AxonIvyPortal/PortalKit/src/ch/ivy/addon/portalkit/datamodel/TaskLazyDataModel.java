@@ -107,7 +107,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   private boolean isSameFilterGroupId() {
     filterGroupId = UserUtils.getSessionFilterGroupIdAttribute();
-    return filterGroupId == null || filterGroupId == Ivy.request().getProcessModel().getId();
+    return filterGroupId == null || filterGroupId.equals(Ivy.request().getProcessModel().getId());
   }
 
   public TaskFilterData buildDefaultTaskFilterData() {
