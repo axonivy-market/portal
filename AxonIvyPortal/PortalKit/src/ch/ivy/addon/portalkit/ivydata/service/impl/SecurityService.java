@@ -268,7 +268,7 @@ public class SecurityService implements ISecurityService {
     UserQuery excludeUsernameQuery = UserQuery.create();
     IFilterQuery excludeUsernameFilter = excludeUsernameQuery.where();
     for (String username : excludedUsernames) {
-      excludeUsernameFilter.or().name().isNotEqual(username);
+      excludeUsernameFilter.and().name().isNotEqual(username);
     }
     return excludeUsernameQuery;
   }
