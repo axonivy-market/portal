@@ -4,7 +4,7 @@ import ch.ivyteam.ivy.persistence.query.Query;
 
 public abstract class AbstractFilter<T extends Query<?>> {
 
-  protected static final String ALL = "All";
+  public static final String ALL = "All";
   protected static final String COMMA = ", ";
   protected static final String GREATER_EQUAL = ">= %s";
   protected static final String LESS_EQUAL = "<= %s";
