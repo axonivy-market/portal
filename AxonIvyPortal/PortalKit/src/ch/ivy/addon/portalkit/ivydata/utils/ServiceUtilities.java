@@ -31,11 +31,8 @@ import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityConstants;
-import ch.ivyteam.ivy.security.ISecurityContext;
-import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
-import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 public class ServiceUtilities {
 
@@ -144,42 +141,6 @@ public class ServiceUtilities {
     });
   }
   
-
-  public static IWorkflowSession findUserWorkflowSession(String username, IApplication app) {
-    if (Objects.equals(Ivy.wf().getApplication(), app)) {
-      return Ivy.session();
-    }
-
-    ISecurityContext securityContext = app.getSecurityContext();
-    return IvyExecutor.executeAsSystem(() -> {
-      ISession session = securityContext.createSession();
-      IUser user = securityContext.users().find(username);
-
-      if (user != null) {
-        String authenticationMode = "customAuth";
-        session.authenticateSessionUser(user, authenticationMode, -1L);
-      }
-      return Ivy.wf().getWorkflowSession(session);
-    });
-  }
-
-  public static IWorkflowSession findUserWorkflowSession(Long userId, IApplication app) {
-    if (Objects.equals(Ivy.wf().getApplication(), app)) {
-      return Ivy.session();
-    }
-
-    ISecurityContext securityContext = app.getSecurityContext();
-    return IvyExecutor.executeAsSystem(() -> {
-      ISession session = securityContext.createSession();
-      IUser user = securityContext.users().find(userId);
-
-      if (user != null) {
-        String authenticationMode = "customAuth";
-        session.authenticateSessionUser(user, authenticationMode, -1L);
-      }
-      return Ivy.wf().getWorkflowSession(session);
-    });
-  }
 
   public List<IApplication> getApplicationsRelatedToPortal() {
     RegisteredApplicationService service = new RegisteredApplicationService();

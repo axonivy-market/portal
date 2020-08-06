@@ -67,7 +67,7 @@ public class CaseWidgetBean implements Serializable {
   public String getAdditionalCaseDetailsPageUri(ICase iCase) {
     String additionalCaseDetailsPageUri = StringUtils.EMPTY;
     if (BooleanUtils.toBoolean(iCase.customFields().stringField("isExpress").getOrNull())) {
-      ProcessStartCollector processStartCollector =  new ProcessStartCollector(Ivy.request().getApplication());
+      ProcessStartCollector processStartCollector =  new ProcessStartCollector();
       additionalCaseDetailsPageUri = processStartCollector.findExpressBusinessViewStartLink() + "?caseId=" + iCase.getId();
     } else {
       additionalCaseDetailsPageUri = iCase.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull();

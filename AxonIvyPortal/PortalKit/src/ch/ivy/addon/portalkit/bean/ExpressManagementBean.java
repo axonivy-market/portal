@@ -50,7 +50,7 @@ public class ExpressManagementBean implements Serializable {
   @PostConstruct
   public void initManagement() {
     activeMemberList = findAllActiveUser();
-    ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
+    ProcessStartCollector collector = new ProcessStartCollector();
     isShowExpressManagementTab = collector.findExpressCreationProcess() != null;
     expressManagementUtils = new ExpressManagementUtils();
     setExpressProcesses(expressManagementUtils.findExpressProcesses());

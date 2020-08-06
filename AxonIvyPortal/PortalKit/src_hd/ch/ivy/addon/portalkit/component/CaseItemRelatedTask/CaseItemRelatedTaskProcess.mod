@@ -123,7 +123,7 @@ in.relatedTasks.clear();
 int count = 1;
 in.totalRelatedTasks = 0;
 boolean excludeHiddenTasks = Boolean.parseBoolean(ivy.var.get(HiddenTasksCasesConfig.PORTAL_HIDDEN_TASK_CASE_EXCLUDED));
-ISession session = ServiceUtilities.findUserWorkflowSession(ivy.session.getSessionUserName(), in.iCase.getApplication());
+ISession session = ivy.session;
 boolean isOwner = in.iCase.#owner != null ? in.iCase.getOwner().isMember(ivy.session, true) : false;
 boolean ableToSeeAllRelatedTaskOfCase = PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission() || isOwner;
 for (ITask task : in.iCase.getTasks()) {

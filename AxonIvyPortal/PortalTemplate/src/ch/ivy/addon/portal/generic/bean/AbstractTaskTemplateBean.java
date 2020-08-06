@@ -42,7 +42,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   }
 
   public void startAdhoc(Long taskId) {
-    ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
+    ProcessStartCollector processStartCollector = new ProcessStartCollector();
     String url = processStartCollector.findExpressAdhocWFLink();
     url = url + "?originalTaskId=" + taskId;
     PortalNavigator.redirect(url);
@@ -54,7 +54,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   }
 
   public boolean hasExpressAdhocWF() {
-    ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
+    ProcessStartCollector processStartCollector = new ProcessStartCollector();
     String adhocUrl = processStartCollector.findExpressAdhocWFLink();
     return !adhocUrl.isEmpty();
   }
