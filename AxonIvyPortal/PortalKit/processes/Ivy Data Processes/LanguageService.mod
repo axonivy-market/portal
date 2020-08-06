@@ -55,7 +55,8 @@ Ee0 f17 actionTable 'out=in;
 Ee0 f17 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 
-IvyLanguageResultDTO dto = LanguageService.newInstance().getSupportedLanguages(in.apps.get(0));
+
+IvyLanguageResultDTO dto = LanguageService.newInstance().getSupportedLanguages();
 out.languages = dto.ivyLanguages;
 out.errors = dto.errors;' #txt
 Ee0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -90,18 +91,16 @@ Ee0 f20 expr out #txt
 Ee0 f20 536 256 609 256 #arcP
 Ee0 f21 expr out #txt
 Ee0 f21 368 256 424 256 #arcP
-Ee0 f23 inParamDecl '<String appName> param;' #txt
-Ee0 f23 inParamTable 'out.apps=java.util.Arrays.asList(param.appName);
-' #txt
+Ee0 f23 inParamDecl '<> param;' #txt
 Ee0 f23 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage supportedLanguge> result;' #txt
 Ee0 f23 outParamTable 'result.errors=in.errors;
 result.supportedLanguge=org.apache.commons.collections4.CollectionUtils.isNotEmpty(in.languages) ? in.languages.get(0) : null;
 ' #txt
-Ee0 f23 callSignature loadSupportedLanguages(String) #txt
+Ee0 f23 callSignature loadSupportedLanguages() #txt
 Ee0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>loadSupportedLanguages(String)</name>
+        <name>loadSupportedLanguages()</name>
     </language>
 </elementInfo>
 ' #txt

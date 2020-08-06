@@ -139,15 +139,15 @@ public class LanguageService implements ILanguageService {
   }
 
   @Override
-  public IvyLanguageResultDTO getSupportedLanguages(String appName) {
+  public IvyLanguageResultDTO getSupportedLanguages() {
     return IvyExecutor.executeAsSystem(() -> {
       IvyLanguageResultDTO result = new IvyLanguageResultDTO();
 
       List<PortalIvyDataException> errors = new ArrayList<>();
       List<IvyLanguage> ivyLanguages = new ArrayList<>();
+      IApplication app = Ivy.wf().getApplication();
 
       try {
-        IApplication app = ServiceUtilities.findApp(appName);
         IvyLanguage ivyLanguage = new IvyLanguage();
 
         List<IProcessModelVersion> activeReleasedPmvs = ServiceUtilities.getActiveReleasedPmvs(app);
@@ -164,8 +164,8 @@ public class LanguageService implements ILanguageService {
         result.setErrors(errors);
         result.setIvyLanguages(ivyLanguages);
       } catch (Exception e) {
-        Ivy.log().error("Error load language for application {0}", e, appName);
-        errors.add(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString()));
+        Ivy.log().error("Error load language for application {0}", e, app.getName());
+        errors.add(new PortalIvyDataException(app.getName(), PortalIvyDataErrorType.FAIL_TO_LOAD_LANGUAGE.toString()));
       }
       return result;
     });
