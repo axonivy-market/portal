@@ -1,3 +1,7 @@
+$(document).ready(function() {
+  $.removeCookie('serenity_expandeditems', {path: '/'});
+});
+
 loadIframe();
 function loadIframe() {
   var iframe = document.getElementById('iFrame');
