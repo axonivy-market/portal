@@ -50,3 +50,20 @@ Portal install with IIS
 It could be a problem when install portal with IIS with proxy, depends
 on your environment. Consider to configure if your IIS is called via
 proxy. Add ``-Dhttp.proxyHost`` to ``VM argument`` could help.
+
+Update default pages
+====================
+If you copy ``PortalStart.mod`` to your project for customization, or :ref:`change the group id of Portal artifact <customization-change-group-id>`,
+you need to follow this chapter to customize standard processes in your designer and engine:
+`Standard Processes <https://developer.axonivy.com/doc/latest/engine-guide/administration/standard-processes.html>`_
+
+For example, below is the default setting:
+
+.. literalinclude:: files\app-designer.yaml
+  :language: yaml
+
+And your portal project has different package and name, such as: ``com.example:customizedPortal``. Then you can change the configuration as below:
+
+.. literalinclude:: files\app-designer-customized.yaml
+  :language: yaml
+
