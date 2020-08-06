@@ -52,7 +52,7 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
         announcements.stream().collect(Collectors.groupingBy(Announcement::getLanguage));
     Stream<String> supportedLanguageStream =
         ServerService.getInstance().getApplicationsRelatedToPortal().stream().map(IApplication::getName)
-            .flatMap(appName -> LanguageService.newInstance().getSupportedLanguages(appName).getIvyLanguages().stream())
+            .flatMap(appName -> LanguageService.newInstance().getSupportedLanguages().getIvyLanguages().stream())
             .flatMap(language -> language.getSupportedLanguages().stream()).distinct().map(String::toUpperCase);
     return IvyExecutor.executeAsSystem(() -> supportedLanguageStream.map(language -> {
       if (languageToAnnouncements.containsKey(language)) {
