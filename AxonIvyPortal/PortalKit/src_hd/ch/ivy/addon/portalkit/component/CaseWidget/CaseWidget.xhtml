@@ -165,7 +165,8 @@
             <p:commandButton id="filter-save-action"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" styleClass="filter-add-button u-hidden-md-down js-filter-save-action"
               icon="#{visibilityBean.generateButtonIcon('icon ivyicon-floppy-disk')}" update="save-filter-set-dialog" resetValues="true"
-              oncomplete="PF('save-filter-set-dialog').show();" rendered="#{!cc.attrs.isTechnicalCaseView}" />
+              oncomplete="PF('save-filter-set-dialog').show();" rendered="#{!cc.attrs.isTechnicalCaseView}"
+              actionListener="#{permissionBean.verifyCaseStateFilter(data.dataModel.selectedFilters)}" />
         </div>
       </h:panelGroup>
     </h:panelGroup>
@@ -238,7 +239,7 @@
           <f:selectItem id="only-me"
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeOnlyMe')}"
             itemValue="ONLY_ME" />
-          <f:selectItem id="all-users" itemDisabled="#{!permissionBean.hasAdminPermission()}"
+          <f:selectItem id="all-users" itemDisabled="#{!permissionBean.hasAdminPermission() or permissionBean.adminCaseStateIncluded}"
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeAllUsers')}"
             itemValue="ALL_USERS" />
         </p:selectOneRadio>
