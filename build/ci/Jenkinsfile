@@ -50,7 +50,7 @@ pipeline {
           def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/PortalStyle/pom.xml').getProperties().getProperty("build.plugin.version")
           for (module in builtModules) {
             for (application in applications) {
-              bat "mvn com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=${application} -Divy.deploy.engine.dir=${engineDir} -Divy.test.engine=MODIFY_EXISTING"
+              bat "mvn com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=${application} -Divy.deploy.engine.dir=${engineDir} -Divy.test.engine=MODIFY_EXISTING -Divy.deploy.timeout.seconds=120"
             }
           }
         }
