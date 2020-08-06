@@ -333,10 +333,10 @@ public abstract class TemplatePage extends AbstractPage {
     });
   }
 
-  public void clickHomeBreadcrumb() {
+  public HomePage clickHomeBreadcrumb() {
     waitForElementDisplayed(By.cssSelector(HOME_BREADCRUMB_SELECTOR), true);
     click(By.cssSelector(HOME_BREADCRUMB_SELECTOR));
-    ensureNoBackgroundRequest();
+    return new HomePage();
   }
 
   public String getTextOfCurrentBreadcrumb() {
