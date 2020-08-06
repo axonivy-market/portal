@@ -71,7 +71,7 @@ if (costObject1 == null) {
   }
 }
 in.selectedUserForReadOnlyField = new UserDTO(costObject1);
-in.excludedUsernames = Arrays.asList("gm2");' #txt
+in.excludedUsernames = Arrays.asList("gm1", "gm2", "admin");' #txt
 Us0 f6 security system #txt
 Us0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
