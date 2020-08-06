@@ -45,7 +45,7 @@ import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.server.ServerFactory;
 
 
-ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
+ProcessStartCollector collector = new ProcessStartCollector();
 
 String createAlphaLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/createAlphaCompany.ivp");
 if (!StringUtils.isEmpty(createAlphaLink)){	

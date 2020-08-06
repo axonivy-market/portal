@@ -2,21 +2,15 @@ package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
-
-import org.apache.commons.collections4.CollectionUtils;
 
 import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessResultDTO;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
-import ch.ivy.addon.portalkit.ivydata.searchcriteria.ProcessSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.IProcessService;
-import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -31,34 +25,20 @@ public class ProcessService implements IProcessService {
   }
 
   @Override
-  public IvyProcessResultDTO findProcesses(ProcessSearchCriteria criteria) {
+  public IvyProcessResultDTO findProcesses() {
     return IvyExecutor.executeAsSystem(() -> { 
       IvyProcessResultDTO result = new IvyProcessResultDTO();
-      if (criteria == null || CollectionUtils.isEmpty(criteria.getApps())) {
-        return result;
-      }
 
       List<PortalIvyDataException> errors = new ArrayList<>();
       List<IWebStartable> processes = new ArrayList<>();
-      criteria.getApps().stream().forEach(app -> {
-        IWorkflowSession session = null;
-        IApplication application = null;
-        try {
-          application = ServiceUtilities.findApp(app);
-          session = ServiceUtilities.findUserWorkflowSession(criteria.getUserId(), application);
-          processes.addAll(findStartablesWithoutPortalHome(session));
-        } catch (PortalIvyDataException e) {
-          errors.add(e);
-        } catch (Exception ex) {
-          Ivy.log().error("Error in getting processes of user {0} within app {1}", ex, criteria.getUserId(), app);
-          errors.add(new PortalIvyDataException(app, PortalIvyDataErrorType.FAIL_TO_LOAD_PROCESS.toString()));
-        } finally {
-          if (session != null && application != null && !Objects.equals(Ivy.wf().getApplication(), application)) {
-            ISecurityContext securityContext = application.getSecurityContext();
-            securityContext.destroySession(session.getIdentifier());
-          }
-        }
-      });
+      IWorkflowSession session = Ivy.session();
+      IApplication application = Ivy.request().getApplication();
+      try {
+        processes.addAll(findStartablesWithoutPortalHome(session));
+      } catch (Exception ex) {
+        Ivy.log().error("Error in getting processes of user {0} within app {1}", ex, Ivy.session().getSessionUserName(), application.getName());
+        errors.add(new PortalIvyDataException(application.getName(), PortalIvyDataErrorType.FAIL_TO_LOAD_PROCESS.toString()));
+      }
       result.setErrors(errors);
       result.setProcesses(processes);
       return result;
