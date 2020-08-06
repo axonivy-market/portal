@@ -2,8 +2,6 @@ ProcessWidgetData #class
 ch.ivy.addon.portalkit.component.ProcessWidget #namespace
 errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
 errors PERSISTENT #fieldModifier
-processSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.ProcessSearchCriteria #field
-processSearchCriteria PERSISTENT #fieldModifier
 processes java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable> #field
 processes PERSISTENT #fieldModifier
 expressProcesses java.util.List<ch.ivy.addon.portalkit.bo.ExpressProcess> #field

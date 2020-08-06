@@ -1,16 +1,14 @@
 package ch.ivy.addon.portalkit.ivydata.service;
 
 import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessResultDTO;
-import ch.ivy.addon.portalkit.ivydata.searchcriteria.ProcessSearchCriteria;
 
 @FunctionalInterface
 public interface IProcessService {
 
   /**
-   * Finds the processes which the given user can start
-   * @param criteria
+   * Finds the processes that current login user can start
    * @return IvyProcessResultDTO
    */
-  IvyProcessResultDTO findProcesses(ProcessSearchCriteria criteria);
+  IvyProcessResultDTO findProcesses();
   
 }

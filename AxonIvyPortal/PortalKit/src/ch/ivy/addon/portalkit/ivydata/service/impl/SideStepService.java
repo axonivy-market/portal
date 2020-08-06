@@ -44,7 +44,7 @@ public class SideStepService implements ISideStepService {
         List<IvySideStep> ivySideSteps = startableSideSteps.stream().map(this::toIvySideStep).collect(Collectors.toList());
         
         if (!criteria.isAdhocExcluded()) {
-          IvySideStep adhocSideStep = createAdhocSideStep(iCase);
+          IvySideStep adhocSideStep = createAdhocSideStep();
           if (adhocSideStep != null) {
             ivySideSteps.add(adhocSideStep);
           }
@@ -60,9 +60,8 @@ public class SideStepService implements ISideStepService {
     });
   }
 
-  private IvySideStep createAdhocSideStep(ICase iCase) {
-    IApplication application = iCase.getApplication();
-    ProcessStartCollector collector = new ProcessStartCollector(application);
+  private IvySideStep createAdhocSideStep() {
+    ProcessStartCollector collector = new ProcessStartCollector();
     String expressAdhocWFLink = collector.findExpressAdhocWFLink();
     if (StringUtils.isBlank(expressAdhocWFLink)) {
       return null;
