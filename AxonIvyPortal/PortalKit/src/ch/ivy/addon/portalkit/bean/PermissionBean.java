@@ -1,9 +1,12 @@
 package ch.ivy.addon.portalkit.bean;
 
 import static ch.ivy.addon.portalkit.filter.AbstractFilter.ALL;
+import static ch.ivyteam.ivy.workflow.TaskState.DELAYED;
+import static ch.ivyteam.ivy.workflow.TaskState.DESTROYED;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -11,8 +14,6 @@ import javax.faces.bean.RequestScoped;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseStateFilter;
-import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
-import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskStateFilter;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -55,7 +56,7 @@ public class PermissionBean implements Serializable {
   }
 
   /**
-   * If Task State filter is selecting a ADVANCE_STATES
+   * If Task State filter is selecting DELAYED or DESTROYED
    * Then disable option save a filter for all user
    * @param taskFilters is selected filters
    */
@@ -64,7 +65,7 @@ public class PermissionBean implements Serializable {
       if (filter instanceof TaskStateFilter) {
         TaskStateFilter taskStateFilter = (TaskStateFilter) filter;
         if (!taskStateFilter.value().equals(ALL)) {
-          List<TaskState> adminStates = new ArrayList<>(TaskSearchCriteria.ADVANCE_STATES);
+          List<TaskState> adminStates = new ArrayList<>(Arrays.asList(DELAYED, DESTROYED));
           isAdminTaskStateIncluded = adminStates.removeAll(taskStateFilter.getSelectedFilteredStates());
         }
         return;
@@ -73,7 +74,7 @@ public class PermissionBean implements Serializable {
   }
 
   /**
-   * If Case State filter is selecting a ADVANCE_STATES
+   * If Case State filter is selecting DESTROYED
    * Then disable option save a filter for all user
    * @param caseFilters is selected filters
    */
@@ -82,7 +83,7 @@ public class PermissionBean implements Serializable {
       if (filter instanceof CaseStateFilter) {
         CaseStateFilter caseStateFilter = (CaseStateFilter) filter;
         if (!caseStateFilter.value().equals(ALL)) {
-          List<CaseState> adminStates = new ArrayList<>(CaseSearchCriteria.ADVANCE_STATES);
+          List<CaseState> adminStates = new ArrayList<>(Arrays.asList(CaseState.DESTROYED));
           isAdminCaseStateIncluded = adminStates.removeAll(caseStateFilter.getSelectedFilteredStates());
         }
         return;
