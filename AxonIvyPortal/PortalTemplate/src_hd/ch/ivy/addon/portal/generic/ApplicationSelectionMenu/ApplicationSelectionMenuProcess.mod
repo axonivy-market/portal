@@ -138,7 +138,7 @@ As0 f83 actionTable 'out=in;
 ' #txt
 As0 f83 actionCode 'import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
 
-PrimeFacesUtils.executeScript("removeHighlightedMenuItem(); PF(''task-losing-confirmation-dialog'').show()");' #txt
+PrimeFacesUtils.executeScript("PF(''task-losing-confirmation-dialog'').show()");' #txt
 As0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
