@@ -22,8 +22,7 @@ public interface ILanguageService {
 
   /**
    * get supported languages of application store in portal style
-   * @param appName
    * @return {@link IvyLanguageResultDTO}
    */
-  IvyLanguageResultDTO getSupportedLanguages(String appName);
+  IvyLanguageResultDTO getSupportedLanguages();
 }
