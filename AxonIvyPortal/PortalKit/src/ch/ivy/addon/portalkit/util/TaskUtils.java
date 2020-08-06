@@ -6,16 +6,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.SecurityManagerFactory;
@@ -46,18 +43,9 @@ public final class TaskUtils {
    */
   public static void parkTask(final ITask task) {
     IvyExecutor.executeAsSystem(() -> {
-      IWorkflowSession iWorkflowSession = null;
-      try {
-        iWorkflowSession =
-            ServiceUtilities.findUserWorkflowSession(Ivy.session().getSessionUserName(), task.getApplication());
-        iWorkflowSession.parkTask(task);
-        return null;
-      } finally {
-        if (iWorkflowSession != null && !Objects.equals(Ivy.wf().getApplication(), task.getApplication())) {
-          ISecurityContext securityContext = task.getApplication().getSecurityContext();
-          securityContext.destroySession(iWorkflowSession.getIdentifier());
-        }
-      }
+      IWorkflowSession iWorkflowSession = Ivy.session();
+      iWorkflowSession.parkTask(task);
+      return Void.class;
     });
   }
 

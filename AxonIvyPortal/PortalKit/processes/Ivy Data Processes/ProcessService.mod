@@ -17,18 +17,16 @@ Pt0 @PushWFArc f27 '' #zField
 Pt0 @PushWFArc f23 '' #zField
 Pt0 @PushWFArc f0 '' #zField
 >Proto Pt0 Pt0 ProcessService #zField
-Pt0 f15 inParamDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.ProcessSearchCriteria processSearchCriteria> param;' #txt
-Pt0 f15 inParamTable 'out.processSearchCriteria=param.processSearchCriteria;
-' #txt
+Pt0 f15 inParamDecl '<> param;' #txt
 Pt0 f15 outParamDecl '<java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable> processes,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
 Pt0 f15 outParamTable 'result.processes=in.processes;
 result.errors=in.errors;
 ' #txt
-Pt0 f15 callSignature findProcesses(ch.ivy.addon.portalkit.ivydata.searchcriteria.ProcessSearchCriteria) #txt
+Pt0 f15 callSignature findProcesses() #txt
 Pt0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findProcesses(ProcessSearchCriteria)</name>
+        <name>findProcesses()</name>
     </language>
 </elementInfo>
 ' #txt
@@ -41,7 +39,7 @@ Pt0 f24 actionTable 'out=in;
 Pt0 f24 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 
-IvyProcessResultDTO dto = ProcessService.newInstance().findProcesses(in.processSearchCriteria);
+IvyProcessResultDTO dto = ProcessService.newInstance().findProcesses();
 out.processes = dto.processes;
 out.errors = dto.errors;' #txt
 Pt0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
