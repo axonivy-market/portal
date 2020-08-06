@@ -42,7 +42,7 @@ Ds0 f3 actionCode 'import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 
-ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
+ProcessStartCollector collector = new ProcessStartCollector();
 
 String leaveRequestStartLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/UserExampleGuide/userExampleGuide.ivp");
 if (!StringUtils.isEmpty(leaveRequestStartLink)){	
