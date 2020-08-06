@@ -265,7 +265,7 @@ public class TaskTemplatePage extends TemplatePage {
   public TaskWidgetPage finishIFrameApprovalTask() {
     driver.switchTo().frame("iFrame");
     waitForElementDisplayed(By.id("content-form:approve-btn"), true);
-    type(By.id("content-form:j_id_d:approval-note"), "1");
+    type(By.id("content-form:content-tab-view:approval-note"), "1");
     click(By.id("content-form:approve-btn"));
     driver.switchTo().defaultContent();
     return new TaskWidgetPage();
