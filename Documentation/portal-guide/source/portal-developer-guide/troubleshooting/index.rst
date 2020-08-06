@@ -59,11 +59,11 @@ you need to follow this chapter to customize standard processes in your designer
 
 For example, below is the default setting:
 
-.. literalinclude:: files\app-designer.yaml
+.. literalinclude:: files/app-designer.yaml
   :language: yaml
 
 And your portal project has different package and name, such as: ``com.example:customizedPortal``. Then you can change the configuration as below:
 
-.. literalinclude:: files\app-designer-customized.yaml
+.. literalinclude:: files/app-designer-customized.yaml
   :language: yaml
 
