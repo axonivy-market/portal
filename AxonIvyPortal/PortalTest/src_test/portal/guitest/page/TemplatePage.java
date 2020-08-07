@@ -333,12 +333,20 @@ public abstract class TemplatePage extends AbstractPage {
     });
   }
 
-  public void clickHomeBreadcrumb() {
+  public HomePage goToHomeFromBreadcrumb() {
     waitForElementDisplayed(By.cssSelector(HOME_BREADCRUMB_SELECTOR), true);
     click(By.cssSelector(HOME_BREADCRUMB_SELECTOR));
-    ensureNoBackgroundRequest();
+    return new HomePage();
   }
-
+  
+  public HomePage goToHomeFromBreadcrumbWithWarning() {
+    waitForElementDisplayed(By.cssSelector(HOME_BREADCRUMB_SELECTOR), true);
+    click(By.cssSelector(HOME_BREADCRUMB_SELECTOR));
+    waitForElementDisplayed(By.id("user-menu-required-login:leave-button"), true);
+    click(By.id("user-menu-required-login:leave-button"));
+    return new HomePage();
+  }
+  
   public String getTextOfCurrentBreadcrumb() {
     WebElement breadcrumb = findElementByCssSelector(CURRENT_BREADCRUMB_SELECTOR);
     String result = "";
