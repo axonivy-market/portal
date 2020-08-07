@@ -57,7 +57,6 @@ Ps0 f6 requestActionDecl '<> param;' #txt
 Ps0 f6 responseActionDecl 'ch.ivy.addon.portalkit.component.ProcessWidget.ProcessWidgetData out;
 ' #txt
 Ps0 f6 responseMappingAction 'out=in;
-out.errors=result.errors;
 out.processes=result.processes;
 ' #txt
 Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
