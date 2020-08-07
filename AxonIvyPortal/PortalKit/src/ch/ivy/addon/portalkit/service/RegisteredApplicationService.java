@@ -13,7 +13,6 @@ import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.service.IApplicationService;
-import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.persistence.dao.ApplicationDao;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivyteam.ivy.application.IApplication;
@@ -44,7 +43,7 @@ public class RegisteredApplicationService extends AbstractService<Application> {
       return (List<Application>) sessionCache.getValue();
     }
   }
-
+  
   public Application findByDisplayNameAndName(String displayName, String name) {
     return getDao().findByDisplayNameAndName(displayName, name);
   }
@@ -136,21 +135,16 @@ public class RegisteredApplicationService extends AbstractService<Application> {
   }
 
   /**
-   * Find all register apps
-   * @param username
-   * @return all register app
+   * Find all register 3rd party apps
+   * @return all register 3rd party apps
    */
   @SuppressWarnings("unchecked")
-  public List<Application> findApplicationByUser(String username){
-    IDataCacheEntry sessionCache = IvyCacheService.newInstance().getSessionCache(username, IvyCacheIdentifier.ALL_IVY_AND_THIRD_PARTY_APPLICATIONS);
+  public List<Application> findAllThirdPartyApplication(){
+    IDataCacheEntry sessionCache = IvyCacheService.newInstance().getSessionCache(IvyCacheIdentifier.APPLICATION_GROUP_NAME, IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS);
     if (sessionCache == null) {
-      List<Application> apps = findAllIvyApplications();
-      List<Application> applications = CollectionUtils.emptyIfNull(apps)
-          .stream()
-          .filter(app -> ServiceUtilities.findUser(username, app.getName()) != null)
-          .collect(Collectors.toList());
+      List<Application> applications = new ArrayList<>();
       applications.addAll(getDao().findAllThirdPartyApplications());
-      IvyCacheService.newInstance().setSessionCache(username, IvyCacheIdentifier.ALL_IVY_AND_THIRD_PARTY_APPLICATIONS, applications);
+      IvyCacheService.newInstance().setSessionCache(IvyCacheIdentifier.APPLICATION_GROUP_NAME, IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS, applications);
       return applications;
     } else {
       return (List<Application>) sessionCache.getValue();
