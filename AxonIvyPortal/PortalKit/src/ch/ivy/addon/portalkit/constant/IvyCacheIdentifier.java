@@ -11,8 +11,9 @@ public final class IvyCacheIdentifier {
   public static final String PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME = "PORTAL_ANNOUNCEMENT_CACHE_GROUP";
   public static final String LOGOUT_PAGE_CACHE_GROUP_NAME = "LOGOUT_PAGE_GROUP";
   public static final String LOGOUT_PAGE_CACHE_ENTRY_NAME = "LOGOUT_PAGE_ID";
-  public static final String ALL_IVY_AND_THIRD_PARTY_APPLICATIONS = "ALL_IVY_AND_THIRD_PARTY_APPLICATIONS";
+  public static final String THIRD_PARTY_APPLICATIONS = "THIRD_PARTY_APPLICATIONS";
   public static final String ALL_IVY_APPLICATIONS = "ALL_IVY_APPLICATIONS";
+  public static final String APPLICATION_GROUP_NAME = "APPLICATION_GROUP";
   public static final String STATISTIC_COLOR = "STATISTIC_COLOR"; 
 
   private IvyCacheIdentifier() {}
