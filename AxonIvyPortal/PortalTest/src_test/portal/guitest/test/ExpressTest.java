@@ -60,8 +60,7 @@ public class ExpressTest extends BaseTest{
     ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
     assertEquals("Express Workflow", formDefinition.getTextOfCurrentBreadcrumb());
 
-    formDefinition.clickHomeBreadcrumb();
-    homePage = formDefinition.leave();
+    homePage = formDefinition.goToHomeFromBreadcrumbWithWarning();
     assertEquals(true, homePage.isDisplayed());
   }
   
