@@ -22,16 +22,11 @@ Us0 @UdMethod f19 '' #zField
 Us0 @GridStep f20 '' #zField
 Us0 @PushWFArc f29 '' #zField
 Us0 @PushWFArc f31 '' #zField
-Us0 @GridStep f32 '' #zField
 Us0 @UdProcessEnd f36 '' #zField
-Us0 @Alternative f37 '' #zField
 Us0 @CallSub f39 '' #zField
 Us0 @GridStep f41 '' #zField
 Us0 @UdProcessEnd f42 '' #zField
 Us0 @CallSub f45 '' #zField
-Us0 @PushWFArc f47 '' #zField
-Us0 @PushWFArc f54 '' #zField
-Us0 @PushWFArc f55 '' #zField
 Us0 @PushWFArc f58 '' #zField
 Us0 @UdMethod f51 '' #zField
 Us0 @PushWFArc f33 '' #zField
@@ -41,12 +36,12 @@ Us0 @PushWFArc f3 '' #zField
 Us0 @PushWFArc f4 '' #zField
 Us0 @PushWFArc f6 '' #zField
 Us0 @GridStep f5 '' #zField
-Us0 @PushWFArc f7 '' #zField
 Us0 @PushWFArc f13 '' #zField
+Us0 @PushWFArc f14 '' #zField
 >Proto Us0 Us0 UserProfileProcess #zField
 Us0 f1 211 51 26 26 0 12 #rect
 Us0 f1 @|UdProcessEndIcon #fIcon
-Us0 f8 819 131 26 26 0 12 #rect
+Us0 f8 811 131 26 26 0 12 #rect
 Us0 f8 @|UdProcessEndIcon #fIcon
 Us0 f9 actionTable 'out=in;
 ' #txt
@@ -71,8 +66,6 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.util.BeanUtils;
 
-BeanUtils.invokeBeanMethodViaMethodExpression("#{errorDisplayBean.displayErrors}", in.errors);
-
 boolean isEmailSettingsEmpty = !in.#emailSetting is initialized;
 if (isEmailSettingsEmpty) {
 	FacesContext.getCurrentInstance().addMessage("errors-message", new FacesMessage(FacesMessage.SEVERITY_WARN, null, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/emailSetting/noSettingMsg")));
@@ -80,20 +73,18 @@ if (isEmailSettingsEmpty) {
 Us0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Display errors if have</name>
+        <name>Display errors if &#13;
+no settings found</name>
     </language>
 </elementInfo>
 ' #txt
-Us0 f10 608 122 128 44 -57 -8 #rect
+Us0 f10 616 122 128 44 -43 -16 #rect
 Us0 f10 @|StepIcon #fIcon
-Us0 f11 processCall 'Ivy Data Processes/LanguageService:findUserLanguages(String)' #txt
-Us0 f11 requestActionDecl '<String username> param;' #txt
-Us0 f11 requestMappingAction 'param.username=ivy.session.getSessionUserName();
-' #txt
+Us0 f11 processCall 'Ivy Data Processes/LanguageService:findUserLanguages()' #txt
+Us0 f11 requestActionDecl '<> param;' #txt
 Us0 f11 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData out;
 ' #txt
 Us0 f11 responseMappingAction 'out=in;
-out.errors=result.errors;
 out.language=result.language;
 ' #txt
 Us0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -118,19 +109,17 @@ Us0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Us0 f12 83 131 26 26 -22 17 #rect
 Us0 f12 @|UdMethodIcon #fIcon
-Us0 f17 736 144 819 144 #arcP
+Us0 f17 744 144 811 144 #arcP
 Us0 f25 expr out #txt
 Us0 f25 256 144 296 144 #arcP
 Us0 f26 109 144 144 144 #arcP
-Us0 f18 processCall 'Ivy Data Processes/LanguageService:saveUserLanguage(String,ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage)' #txt
-Us0 f18 requestActionDecl '<String username,ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage language> param;' #txt
-Us0 f18 requestMappingAction 'param.username=ivy.session.getSessionUserName();
-param.language=in.language;
+Us0 f18 processCall 'Ivy Data Processes/LanguageService:saveUserLanguage(ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage)' #txt
+Us0 f18 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage language> param;' #txt
+Us0 f18 requestMappingAction 'param.language=in.language;
 ' #txt
 Us0 f18 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData out;
 ' #txt
 Us0 f18 responseMappingAction 'out=in;
-out.errors=result.errors;
 ' #txt
 Us0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -173,48 +162,15 @@ Us0 f29 expr out #txt
 Us0 f29 109 224 144 224 #arcP
 Us0 f31 expr out #txt
 Us0 f31 256 224 296 224 #arcP
-Us0 f32 actionTable 'out=in;
-' #txt
-Us0 f32 actionCode 'import ch.ivy.addon.portalkit.util.BeanUtils;
-
-BeanUtils.invokeBeanMethodViaMethodExpression("#{errorDisplayBean.displayErrors}", in.errors);' #txt
-Us0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Display errors if have</name>
-    </language>
-</elementInfo>
-' #txt
-Us0 f32 672 282 128 44 -57 -8 #rect
-Us0 f32 @|StepIcon #fIcon
-Us0 f36 395 347 26 26 0 12 #rect
+Us0 f36 315 347 26 26 0 12 #rect
 Us0 f36 @|UdProcessEndIcon #fIcon
-Us0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>successful?</name>
-    </language>
-</elementInfo>
-' #txt
-Us0 f37 608 208 32 32 -28 -35 #rect
-Us0 f37 @|AlternativeIcon #fIcon
-Us0 f39 processCall 'Ivy Data Processes/EmailSettingService:findEmailSetting(String)' #txt
-Us0 f39 requestActionDecl '<String username> param;' #txt
-Us0 f39 requestMappingAction 'param.username=ivy.session.getSessionUserName();
-' #txt
+Us0 f39 processCall 'Ivy Data Processes/EmailSettingService:findEmailSetting()' #txt
+Us0 f39 requestActionDecl '<> param;' #txt
 Us0 f39 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData out;
 ' #txt
 Us0 f39 responseMappingAction 'out=in;
 out.emailSetting=result.ivyEmailSetting;
 ' #txt
-Us0 f39 responseActionCode 'import java.util.ArrayList;
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
-import java.util.Objects;
-if (!out.#errors is initialized) {
-	out.errors = new ArrayList();
-}
-
-out.errors.addAll(result.errors);' #txt
 Us0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -237,22 +193,14 @@ Us0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Us0 f41 160 338 112 44 -51 -8 #rect
 Us0 f41 @|StepIcon #fIcon
-Us0 f42 867 211 26 26 0 12 #rect
+Us0 f42 811 211 26 26 0 12 #rect
 Us0 f42 @|UdProcessEndIcon #fIcon
-Us0 f45 processCall 'Ivy Data Processes/EmailSettingService:saveEmailSetting(String,ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting)' #txt
-Us0 f45 requestActionDecl '<String username,ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting emailSetting> param;' #txt
-Us0 f45 requestMappingAction 'param.username=ivy.session.getSessionUserName();
-param.emailSetting=in.emailSetting;
+Us0 f45 processCall 'Ivy Data Processes/EmailSettingService:saveEmailSetting(ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting)' #txt
+Us0 f45 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting emailSetting> param;' #txt
+Us0 f45 requestMappingAction 'param.emailSetting=in.emailSetting;
 ' #txt
 Us0 f45 responseMappingAction 'out=in;
 ' #txt
-Us0 f45 responseActionCode 'import java.util.ArrayList;
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
-import java.util.Objects;
-if (!out.#errors is initialized) {
-	out.errors = new ArrayList();
-}
-out.errors.addAll(result.errors);' #txt
 Us0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -262,17 +210,7 @@ Us0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Us0 f45 448 202 128 44 -55 -8 #rect
 Us0 f45 @|CallSubIcon #fIcon
-Us0 f47 expr in #txt
-Us0 f47 624 240 672 304 #arcP
-Us0 f47 1 624 304 #addKink
-Us0 f47 1 0.6505659106079889 0 0 #arcLabel
-Us0 f54 576 224 608 224 #arcP
-Us0 f54 0 0.5344876828921243 0 0 #arcLabel
-Us0 f55 expr out #txt
-Us0 f55 800 304 880 237 #arcP
-Us0 f55 1 880 304 #addKink
-Us0 f55 1 0.48911829285115505 0 0 #arcLabel
-Us0 f58 272 360 395 360 #arcP
+Us0 f58 272 360 315 360 #arcP
 Us0 f51 guid 1725FC03D28A7AF7 #txt
 Us0 f51 method updateDailyList() #txt
 Us0 f51 inParameterDecl '<> param;' #txt
@@ -305,7 +243,7 @@ Us0 f0 83 51 26 26 -16 15 #rect
 Us0 f0 @|UdInitIcon #fIcon
 Us0 f3 expr out #txt
 Us0 f3 408 144 448 144 #arcP
-Us0 f4 576 144 608 144 #arcP
+Us0 f4 576 144 616 144 #arcP
 Us0 f6 expr out #txt
 Us0 f6 408 224 448 224 #arcP
 Us0 f6 0 0.4704168002362267 0 0 #arcLabel
@@ -336,14 +274,12 @@ Us0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 f5 672 202 160 44 -75 -8 #rect
+Us0 f5 616 202 160 44 -75 -8 #rect
 Us0 f5 @|StepIcon #fIcon
-Us0 f7 expr in #txt
-Us0 f7 outCond in.errors.isEmpty() #txt
-Us0 f7 640 224 672 224 #arcP
-Us0 f7 0 0.43569339242613336 0 0 #arcLabel
-Us0 f13 832 224 867 224 #arcP
+Us0 f13 776 224 811 224 #arcP
 Us0 f13 0 0.43569339242613336 0 0 #arcLabel
+Us0 f14 576 224 616 224 #arcP
+Us0 f14 0 0.5344876828921243 0 0 #arcLabel
 >Proto Us0 .type ch.ivy.addon.portalkit.settings.UserProfile.UserProfileData #txt
 >Proto Us0 .processKind HTML_DIALOG #txt
 >Proto Us0 -8 -8 16 16 16 26 #rect
@@ -360,13 +296,8 @@ Us0 f19 mainOut f29 tail #connect
 Us0 f29 head f18 mainIn #connect
 Us0 f18 mainOut f31 tail #connect
 Us0 f31 head f20 mainIn #connect
-Us0 f32 mainOut f55 tail #connect
-Us0 f55 head f42 mainIn #connect
-Us0 f47 head f32 mainIn #connect
 Us0 f41 mainOut f58 tail #connect
 Us0 f58 head f36 mainIn #connect
-Us0 f45 mainOut f54 tail #connect
-Us0 f54 head f37 in #connect
 Us0 f51 mainOut f33 tail #connect
 Us0 f33 head f41 mainIn #connect
 Us0 f9 mainOut f3 tail #connect
@@ -375,8 +306,7 @@ Us0 f39 mainOut f4 tail #connect
 Us0 f4 head f10 mainIn #connect
 Us0 f20 mainOut f6 tail #connect
 Us0 f6 head f45 mainIn #connect
-Us0 f37 out f7 tail #connect
-Us0 f7 head f5 mainIn #connect
-Us0 f37 out f47 tail #connect
 Us0 f5 mainOut f13 tail #connect
 Us0 f13 head f42 mainIn #connect
+Us0 f45 mainOut f14 tail #connect
+Us0 f14 head f5 mainIn #connect

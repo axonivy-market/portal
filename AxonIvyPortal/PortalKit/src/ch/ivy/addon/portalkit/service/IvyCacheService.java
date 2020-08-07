@@ -8,7 +8,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
-import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.data.cache.IDataCache;
 import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
@@ -92,21 +91,15 @@ public class IvyCacheService {
   }
   
   public void invalidateGlobalSettingCache(){
-    IDataCacheGroup groupNameCurrentApp = applicationCache().getGroup(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME);
-    if (groupNameCurrentApp != null){
-      Ivy.log().info("CLEAR GET APPS WS CACHE CURRENT APP");
-      applicationCache().invalidateGroup(groupNameCurrentApp );
-    }
-    invalidateGlobalSettingOnApp(PortalConstants.PORTAL_APPLICATION_NAME);
+    invalidateApplicationCacheByGroupName(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME);
   }
 
-  public void invalidateCacheGroupOfAllPortalApps(String groupName) {
-    List<IApplication> apps = ServerService.getInstance().getApplicationsRelatedToPortal();
-    apps.stream().map(app -> app.getAdapter(IDataCache.class)).filter(Objects::nonNull)
-        .map(dataCache -> dataCache.getGroup(groupName)).filter(Objects::nonNull).forEach(cacheGroup -> {
-          cacheGroup.invalidateAllEntries();
-        });
-    Ivy.log().info("CLEAR CACHE GROUP {0} OF ALL ALLICATIONS RELATED TO PORTAL", groupName);
+  public void invalidateApplicationCacheByGroupName(String groupName) {
+    IDataCacheGroup cacheGroup = applicationCache().getGroup(groupName);
+    if(cacheGroup != null) {
+      applicationCache().invalidateGroup(cacheGroup);
+      Ivy.log().info("CLEAR APPLIATION CACHE - GROUP {0}", groupName);
+    }
   }
 
   public void invalidateGlobalSettingOnApp(String applicationName) {
@@ -114,7 +107,7 @@ public class IvyCacheService {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(() ->{
         IApplication findApplication = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(applicationName);
         if (findApplication != null) {
-          IDataCache cache = findApplication .getAdapter(IDataCache.class);
+          IDataCache cache = findApplication.getAdapter(IDataCache.class);
           if (cache != null) {
             IDataCacheGroup wsGroupName = cache.getGroup(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME);
             if (wsGroupName != null){
