@@ -1,15 +1,10 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
-import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.List;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyEmailSettingResultDTO;
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.service.IEmailSettingService;
-import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -28,10 +23,9 @@ public class EmailSettingService implements IEmailSettingService {
     return new EmailSettingService();
   }
 
-  private IvyEmailSetting getIvyEmailSetting(final String username, final String appName)
-      throws PortalIvyDataException {
-    IApplication app = ServiceUtilities.findApp(appName);
-    IUser user = ServiceUtilities.findUser(username, app);
+  private IvyEmailSetting getIvyEmailSetting() {
+    IApplication app = Ivy.request().getApplication();
+    IUser user = Ivy.session().getSessionUser();
 
     IUserEMailNotificationSettings emailSettings = user.getEMailNotificationSettings();
     IvyEmailSetting ivyEmailSetting = convertToIvyEmailSetting(
@@ -65,36 +59,24 @@ public class EmailSettingService implements IEmailSettingService {
   }
 
   @Override
-  public IvyEmailSettingResultDTO saveEmailSetting(String username, IvyEmailSetting emailSetting) {
+  public IvyEmailSettingResultDTO saveEmailSetting(IvyEmailSetting emailSetting) {
     return IvyExecutor.executeAsSystem(() -> {
       IvyEmailSettingResultDTO rs = new IvyEmailSettingResultDTO();
-      List<PortalIvyDataException> errors = new ArrayList<>();
 
-      try {
-        IApplication app = ServiceUtilities.findApp(emailSetting.getAppName());
-        IUser user = ServiceUtilities.findUser(username, app);
-        IUserEMailNotificationSettings userEmailSettings = user.getEMailNotificationSettings();
+      IUser user = Ivy.session().getSessionUser();
+      IUserEMailNotificationSettings userEmailSettings = user.getEMailNotificationSettings();
 
-        userEmailSettings.setNotificationDisabled(false);
-        userEmailSettings.setSendDailyTaskSummary(EnumSet.copyOf(emailSetting.getEmailSendDailyTaskSummary()));
-        userEmailSettings.setSendOnNewWorkTasks(emailSetting.isEmailSendOnNewWorkTasks());
-        if (emailSetting.isCustomMailEnabled()) {
-          user.setProperty(ENABLE_CUSTOM_MAIL, String.valueOf(emailSetting.isCustomMailEnabled()));
-        } else {
-          user.removeProperty(ENABLE_CUSTOM_MAIL);
-          user.removeProperty(OLD_VAR_DISABLE_CUSTOM_MAIL);
-        }
-        userEmailSettings.setUseApplicationDefault(false);
-        user.setEMailNotificationSettings(userEmailSettings);
-      } catch (PortalIvyDataException e) {
-        errors.add(e);
-      } catch (Exception ex) {
-        Ivy.log().error("Error in saving email settings of user {0} within app {1}", ex, username,
-            emailSetting.getAppName());
-        errors.add(new PortalIvyDataException(emailSetting.getAppName(),
-            PortalIvyDataErrorType.FAIL_TO_SAVE_EMAIL_SETTING.toString()));
+      userEmailSettings.setNotificationDisabled(false);
+      userEmailSettings.setSendDailyTaskSummary(EnumSet.copyOf(emailSetting.getEmailSendDailyTaskSummary()));
+      userEmailSettings.setSendOnNewWorkTasks(emailSetting.isEmailSendOnNewWorkTasks());
+      if (emailSetting.isCustomMailEnabled()) {
+        user.setProperty(ENABLE_CUSTOM_MAIL, String.valueOf(emailSetting.isCustomMailEnabled()));
+      } else {
+        user.removeProperty(ENABLE_CUSTOM_MAIL);
+        user.removeProperty(OLD_VAR_DISABLE_CUSTOM_MAIL);
       }
-      rs.setErrors(errors);
+      userEmailSettings.setUseApplicationDefault(false);
+      user.setEMailNotificationSettings(userEmailSettings);
       return rs;
     });
   }
@@ -112,20 +94,10 @@ public class EmailSettingService implements IEmailSettingService {
   }
 
   @Override
-  public IvyEmailSettingResultDTO findEmailSetting(String username) {
+  public IvyEmailSettingResultDTO findEmailSetting() {
     return IvyExecutor.executeAsSystem(() -> {
       IvyEmailSettingResultDTO result = new IvyEmailSettingResultDTO();
-      List<PortalIvyDataException> errors = new ArrayList<>();
-      String appName = Ivy.wf().getApplication().getName();
-      try {
-        result.setIvyEmailSetting(getIvyEmailSetting(username, appName));
-      } catch (PortalIvyDataException e) {
-        errors.add(e);
-      } catch (Exception ex) {
-        Ivy.log().error("Error in getting email settings of user {0} within app {1}", ex, username, appName);
-        errors.add(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_LOAD_EMAIL_SETTING.toString()));
-      }
-      result.setErrors(errors);
+      result.setIvyEmailSetting(getIvyEmailSetting());
       return result;
     });
   }
