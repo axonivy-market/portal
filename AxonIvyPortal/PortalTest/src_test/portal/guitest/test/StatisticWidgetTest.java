@@ -111,7 +111,7 @@ public class StatisticWidgetTest extends BaseTest {
     statisticWidgetPage.switchCreateMode();
     assertEquals("Statistics", statisticWidgetPage.getTextOfCurrentBreadcrumb());
 
-    statisticWidgetPage.clickHomeBreadcrumb();
+    statisticWidgetPage.goToHomeFromBreadcrumb();
     homePage = new HomePage();
     assertEquals(true, homePage.isDisplayed());
   }
