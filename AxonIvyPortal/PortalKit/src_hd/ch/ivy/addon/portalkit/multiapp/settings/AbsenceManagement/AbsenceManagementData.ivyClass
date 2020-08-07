@@ -6,17 +6,12 @@ backupAbsence ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence #field
 backupAbsence PERSISTENT #fieldModifier
 errorLink String #field
 errorLink PERSISTENT #fieldModifier
-errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
-errors PERSISTENT #fieldModifier
 isSupervisor Boolean #field
 users java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> #field
 users PERSISTENT #fieldModifier
 queryAutoComplete String #field
 selectedAbsence ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence #field
 selectedAbsence PERSISTENT #fieldModifier
-substitutesByApp java.util.Map #field
-substitutesByApp 'map of <application, substitutes>' #fieldComment
-substitutesByApp PERSISTENT #fieldModifier
 validationError Boolean #field
 absenceInThePastShown Boolean #field
 absenceInThePastShown PERSISTENT #fieldModifier
@@ -27,11 +22,6 @@ displayedAbsences java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence> #
 displayedAbsences PERSISTENT #fieldModifier
 isAbsenceBeingCreated Boolean #field
 isAbsenceBeingCreated PERSISTENT #fieldModifier
-substitutionsByApp java.util.Map #field
-substitutionsByApp 'map of <application, substitution>' #fieldComment
-substitutionsByApp PERSISTENT #fieldModifier
-applications java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyApplication> #field
-applications PERSISTENT #fieldModifier
 selectedAbsenceUser ch.ivy.addon.portalkit.dto.UserDTO #field
 selectedAbsenceUser PERSISTENT #fieldModifier
 selectedUser ch.ivy.addon.portalkit.dto.UserDTO #field
@@ -45,8 +35,7 @@ substituteUser 'user bind to autocomplete in my deputy' #fieldComment
 substituteUser PERSISTENT #fieldModifier
 currentAppName String #field
 currentAppName PERSISTENT #fieldModifier
-substitutesForSelectedApp java.util.Map #field
-substitutesForSelectedApp PERSISTENT #fieldModifier
-tabIndex Number #field
-tabIndex 'reopen first tab when open dialog' #fieldComment
-tabIndex PERSISTENT #fieldModifier
+substitutes java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute> #field
+substitutes PERSISTENT #fieldModifier
+substitutions java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute> #field
+substitutions PERSISTENT #fieldModifier

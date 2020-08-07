@@ -2715,7 +2715,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   width: calc(100% - 20px);
 }
 
-body .substitue-tab.ui-tabs .ui-tabs-panel {
+body .ui-tabs .ui-tabs-panel {
 padding: 0;
 }
 
