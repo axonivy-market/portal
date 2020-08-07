@@ -181,7 +181,7 @@ public class CaseWidgetTest extends BaseTest {
     mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
     assertEquals("Cases (1)", casePage.getTextOfCurrentBreadcrumb());
-    homePage = casePage.clickHomeBreadcrumb();
+    homePage = casePage.goToHomeFromBreadcrumb();
     assertTrue(homePage.isDisplayed());
   }
 
@@ -198,7 +198,7 @@ public class CaseWidgetTest extends BaseTest {
     assertTrue(casePage.isDisplayed());
 
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
-    homePage = caseDetailsPage.clickHomeBreadcrumb();
+    homePage = caseDetailsPage.goToHomeFromBreadcrumb();
     assertTrue(homePage.isDisplayed());
   }
 }
