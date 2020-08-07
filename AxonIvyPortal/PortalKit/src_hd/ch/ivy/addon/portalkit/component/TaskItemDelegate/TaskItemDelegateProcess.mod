@@ -105,10 +105,9 @@ Ts0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f93 184 506 112 44 -29 -8 #rect
 Ts0 f93 @|StepIcon #fIcon
-Ts0 f86 processCall 'Ivy Data Processes/SecurityService:findUsers(ch.ivyteam.ivy.application.IApplication,String,Integer,Integer,java.util.List<String>,java.util.List<String>)' #txt
-Ts0 f86 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
-Ts0 f86 requestMappingAction 'param.application=in.application;
-param.query=in.queryAutoComplete;
+Ts0 f86 processCall 'Ivy Data Processes/SecurityService:findUsers(String,Integer,Integer,java.util.List<String>,java.util.List<String>)' #txt
+Ts0 f86 requestActionDecl '<String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
+Ts0 f86 requestMappingAction 'param.query=in.queryAutoComplete;
 param.startIndex=0;
 param.count=101;
 ' #txt
@@ -421,10 +420,9 @@ Ts0 f9 464 410 144 44 -64 -8 #rect
 Ts0 f9 @|CallSubIcon #fIcon
 Ts0 f10 416 432 464 432 #arcP
 Ts0 f11 608 432 691 432 #arcP
-Ts0 f12 processCall 'Ivy Data Processes/SecurityService:findUsers(ch.ivyteam.ivy.application.IApplication,String,Integer,Integer,java.util.List<String>,java.util.List<String>)' #txt
-Ts0 f12 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
-Ts0 f12 requestMappingAction 'param.application=in.application;
-param.query="";
+Ts0 f12 processCall 'Ivy Data Processes/SecurityService:findUsers(String,Integer,Integer,java.util.List<String>,java.util.List<String>)' #txt
+Ts0 f12 requestActionDecl '<String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
+Ts0 f12 requestMappingAction 'param.query="";
 param.startIndex=0;
 param.count=101;
 ' #txt
