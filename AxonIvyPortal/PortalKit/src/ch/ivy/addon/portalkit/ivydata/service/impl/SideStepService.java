@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -8,13 +7,10 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvySideStep;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySideStepResultDTO;
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ISideStepService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.casemap.runtime.ICaseMapService;
 import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -34,28 +30,23 @@ public class SideStepService implements ISideStepService {
   public IvySideStepResultDTO findSideStepsByCriteria(SideStepSearchCriteria criteria) {
     return IvyExecutor.executeAsSystem(() -> { 
       IvySideStepResultDTO result = new IvySideStepResultDTO();
-      try {
-        ICase iCase = findCase(criteria.getCaseId());
-        if (iCase == null) {
-          return null;
-        }
-        
-        List<IStartableSideStep> startableSideSteps = getSideSteps(criteria.getInvolvedUsername(), iCase);
-        List<IvySideStep> ivySideSteps = startableSideSteps.stream().map(this::toIvySideStep).collect(Collectors.toList());
-        
-        if (!criteria.isAdhocExcluded()) {
-          IvySideStep adhocSideStep = createAdhocSideStep();
-          if (adhocSideStep != null) {
-            ivySideSteps.add(adhocSideStep);
-          }
-        }
-        
-        ivySideSteps.sort((s1, s2) -> StringUtils.compareIgnoreCase(s1.getName(), s2.getName()));
-        result.setSideSteps(ivySideSteps);
-      } catch (Exception ex) {
-        Ivy.log().error("Error in getting side steps of case {0} via user {1}", ex, criteria.getCaseId(), criteria.getInvolvedUsername());
-        result.setErrors(Arrays.asList(new PortalIvyDataException(PortalIvyDataErrorType.FAIL_TO_LOAD_SIDESTEP.toString())));
+      ICase iCase = findCase(criteria.getCaseId());
+      if (iCase == null) {
+        return null;
       }
+      
+      List<IStartableSideStep> startableSideSteps = getSideSteps(iCase);
+      List<IvySideStep> ivySideSteps = startableSideSteps.stream().map(this::toIvySideStep).collect(Collectors.toList());
+      
+      if (!criteria.isAdhocExcluded()) {
+        IvySideStep adhocSideStep = createAdhocSideStep();
+        if (adhocSideStep != null) {
+          ivySideSteps.add(adhocSideStep);
+        }
+      }
+      
+      ivySideSteps.sort((s1, s2) -> StringUtils.compareIgnoreCase(s1.getName(), s2.getName()));
+      result.setSideSteps(ivySideSteps);
       return result;
     });
   }
@@ -81,9 +72,8 @@ public class SideStepService implements ISideStepService {
     return ivySideStep;
   }
 
-  private List<IStartableSideStep> getSideSteps(String username, ICase iCase) {
-    IApplication application = iCase.getApplication();
-    IUser user = application.getSecurityContext().users().find(username);
+  private List<IStartableSideStep> getSideSteps(ICase iCase) {
+    IUser user = Ivy.session().getSessionUser();
     ICaseMapService caseMapService =
         ICaseMapService.current().getCaseMapService(iCase.getBusinessCase(), user.getUserToken());
     return caseMapService.findStartableSideSteps();
