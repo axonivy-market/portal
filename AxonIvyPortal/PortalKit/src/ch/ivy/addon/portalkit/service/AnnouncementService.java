@@ -5,15 +5,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.Announcement;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
+import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class AnnouncementService extends BusinessDataService<Announcement> {
@@ -46,15 +45,15 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
     announcements.forEach(announcement -> delete(announcement.getId()));
   }
 
-  public List<Announcement> getAnnouncements() {
+  public List<Announcement> getAnnouncements() throws PortalIvyDataException {
     List<Announcement> announcements = findAllOrderedByLanguage();
     Map<String, List<Announcement>> languageToAnnouncements =
         announcements.stream().collect(Collectors.groupingBy(Announcement::getLanguage));
-    Stream<String> supportedLanguageStream =
-        ServerService.getInstance().getApplicationsRelatedToPortal().stream().map(IApplication::getName)
-            .flatMap(appName -> LanguageService.newInstance().getSupportedLanguages().getIvyLanguages().stream())
-            .flatMap(language -> language.getSupportedLanguages().stream()).distinct().map(String::toUpperCase);
-    return IvyExecutor.executeAsSystem(() -> supportedLanguageStream.map(language -> {
+    
+    
+    List<String> supportedLanguages =  LanguageService.newInstance().getSupportedLanguagesOfCurrentApp();
+    
+    return IvyExecutor.executeAsSystem(() -> supportedLanguages.stream().map(language -> {
       if (languageToAnnouncements.containsKey(language)) {
         return languageToAnnouncements.get(language).get(0);
       } else {
@@ -64,9 +63,8 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
   }
 
   public boolean isDefaultApplicationLanguage(String language) {
-    List<IApplication> apps = ServerService.getInstance().getApplicationsRelatedToPortal();
     return IvyExecutor.executeAsSystem(
-        () -> apps.stream().anyMatch(app -> app.getDefaultEMailLanguage().getLanguage().equalsIgnoreCase(language)));
+        () -> Ivy.wf().getApplication().getDefaultEMailLanguage().getLanguage().equalsIgnoreCase(language));
   }
 
   public String getAnnouncement() {
@@ -141,7 +139,7 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
 
   public void invalidateCache() {
     IvyCacheService.newInstance()
-        .invalidateCacheGroupOfAllPortalApps(IvyCacheIdentifier.PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME);
+        .invalidateApplicationCacheByGroupName(IvyCacheIdentifier.PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME);
   }
 
   @Override

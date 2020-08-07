@@ -41,9 +41,6 @@ Ds0 f3 actionTable 'out=in;
 Ds0 f3 actionCode 'import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
-import ch.ivyteam.ivy.workflow.IProcessStart;
-import ch.ivyteam.ivy.server.ServerFactory;
-
 
 ProcessStartCollector collector = new ProcessStartCollector();
 
