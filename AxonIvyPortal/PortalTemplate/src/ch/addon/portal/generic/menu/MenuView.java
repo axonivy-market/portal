@@ -73,8 +73,10 @@ public class MenuView {
       boolean isThirdPartyApp = application.getServerId() == null;
       if (isThirdPartyApp) {
         menuItem.getAttributes().put(THIRD_PARTY, true);
+        menuItem.setHref(application.getLink());
+      } else {
+        menuItem.setHref(portalNavigator.getPortalStartUrl(application.getName()));
       }
-      menuItem.setHref(portalNavigator.getPortalStartUrl(application.getName()));
       menuItem.getAttributes().put(APP_NAME, application.getName());
       menuItem.setIcon("fa " + application.getMenuIcon());
 

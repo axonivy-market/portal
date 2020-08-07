@@ -265,7 +265,7 @@ public class ProcessWidgetTest extends BaseTest {
     processWidget.expand();
     assertEquals("Processes", processWidget.getTextOfCurrentBreadcrumb());
 
-    processWidget.clickHomeBreadcrumb();
+    processWidget.goToHomeFromBreadcrumb();
     homePage = new HomePage();
     assertEquals(true, homePage.isDisplayed());
   }
