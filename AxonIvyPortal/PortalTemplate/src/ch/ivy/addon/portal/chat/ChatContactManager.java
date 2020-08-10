@@ -3,13 +3,16 @@ package ch.ivy.addon.portal.chat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.SessionInfo;
 
 public final class ChatContactManager {
 
@@ -26,8 +29,19 @@ public final class ChatContactManager {
   }
 
   public static List<String> getOnlineContacts() {
-    return Ivy.wf().getSecurityContext().getSessions().stream().map(ISession::getSessionUserName)
-        .filter(session -> !StringUtils.equals(session, Ivy.session().getSessionUserName()) && !StringUtils.contains(session, UNKNOWN_USER)).collect(Collectors.toList());
+    Stream<String> onlineUsernames;
+    if (ChatService.IS_STANDARD_MODE) {
+      onlineUsernames = securityContext().getSessions().stream().map(ISession::getSessionUserName);
+    } else {
+      onlineUsernames = securityContext().getClusterSessionsSnapshot().getSessionInfos().stream()
+          .map(SessionInfo::getSessionUserName).distinct();
+    }
+    return onlineUsernames.filter(session -> !StringUtils.equals(session, Ivy.session().getSessionUserName())
+        && !StringUtils.contains(session, UNKNOWN_USER)).collect(Collectors.toList());
+  }
+
+  private static ISecurityContext securityContext() {
+    return Ivy.wf().getSecurityContext();
   }
 
   private static List<ChatContact> loadContacts() {
