@@ -7,18 +7,17 @@
   xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="taskWidget" />
+  <cc:attribute name="taskWidget" type="ch.ivy.addon.portalkit.dto.TaskDashboardWidget" />
 </cc:interface>
 <cc:implementation>
-  <f:event listener="#{logic.initialize(cc.attrs.taskWidget)}" type="preRenderComponent" />
   <div class="task-widget-header-main widget-header-main">
     <h:outputText styleClass="widget-header-main-title" value="3 tasks" />
   </div>
   <h:form>
   <div class="ui-g">
     <h:panelGroup id="task-table-container" layout="block" styleClass="ui-g-12 u-padding-0 task-configuration__task-table-container">
-      <p:dataTable id="task-table" value="#{data.tasks}" var="task" styleClass="prototype-task-table task-table" rows="10" rowsPerPageTemplate="5,10,15"
-        draggableColumns="true" paginator="true" paginatorPosition="bottom" filteredValue="#{data.filteredTasks}">
+      <p:dataTable id="task-table" value="#{cc.attrs.taskWidget.dataModel}" var="task" styleClass="prototype-task-table task-table" rows="10" rowsPerPageTemplate="5,10,15"
+        draggableColumns="true" paginator="true" paginatorPosition="bottom" lazy="true">
         <p:column headerText="Start" styleClass="start-column" width="50" style="text-align: center">
           <p:commandLink>
             <span class="fa fa-play" />
