@@ -93,7 +93,6 @@ param.count=-1;
 Cs0 f21 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData out;
 ' #txt
 Cs0 f21 responseMappingAction 'out=in;
-out.errors=result.errors;
 out.tasks=result.tasks;
 ' #txt
 Cs0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
