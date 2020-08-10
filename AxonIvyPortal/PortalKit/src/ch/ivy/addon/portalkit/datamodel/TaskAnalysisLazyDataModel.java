@@ -105,10 +105,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     criteria.setSortDescending(true);
   }
 
-  public void setApps(List<String> apps) {
-    criteria.setApps(apps);
-  }
-
   public List<TaskFilter> getTaskFilters() {
     return filters;
   }
