@@ -58,7 +58,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     isNotKeepFilter = true;
     selectedCaseFilters = new ArrayList<>();
     buildCaseCriteria();
-    setInvolvedApplicationsForCaseCriteria();
     buildDefaultTaskAnalysisFilterData();
   }
 
@@ -104,10 +103,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     criteria.setIncludedStates(new ArrayList<>(TaskSearchCriteria.STANDARD_STATES));
     criteria.setSortField(TaskSortField.ID.toString());
     criteria.setSortDescending(true);
-  }
-  
-  protected void setInvolvedApplicationsForCaseCriteria() {
-    caseCriteria.setApps(criteria.getApps());
   }
 
   public void setApps(List<String> apps) {

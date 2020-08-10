@@ -110,7 +110,6 @@ Cs0 f7 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidge
 ' #txt
 Cs0 f7 responseMappingAction 'out=in;
 out.cases=result.cases;
-out.errors=result.errors;
 ' #txt
 Cs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -151,7 +150,6 @@ Cs0 f18 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
 Cs0 f18 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
 ' #txt
 Cs0 f18 responseMappingAction 'out=in;
-out.errors=result.errors;
 out.totalCases=result.totalCases;
 ' #txt
 Cs0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
