@@ -79,7 +79,7 @@ public class ChatAssigneeBean implements Serializable {
 
   private void checkCaseHasGroupChat() {
     CaseQuery caseQuery = queryCaseHasGroupChat();
-    doesGroupChatExist = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getFirstResult(caseQuery) != null;
+    doesGroupChatExist = Ivy.wf().getCaseQueryExecutor().getFirstResult(caseQuery) != null;
   }
 
   public void handleConfiguredRoleList() {
@@ -142,7 +142,7 @@ public class ChatAssigneeBean implements Serializable {
   public String getGroupChatExistMessage() {
     if (StringUtils.isBlank(groupChatExistMessage)) {
       CaseQuery caseQuery = queryCaseHasGroupChat();
-      ICase iCase = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getFirstResult(caseQuery);
+      ICase iCase = Ivy.wf().getCaseQueryExecutor().getFirstResult(caseQuery);
       existedGroupChat = mapFromCustomField(iCase);
       groupChatExistMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/processChatWasCreated",
           Arrays.asList(getGroupChatName(existedGroupChat)));

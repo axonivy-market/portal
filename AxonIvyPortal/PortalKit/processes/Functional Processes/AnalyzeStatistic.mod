@@ -48,11 +48,9 @@ ac0 @PushWFArc f13 '' #zField
 ac0 @PushWFArc f14 '' #zField
 ac0 @EndSub f38 '' #zField
 ac0 @StartSub f40 '' #zField
-ac0 @GridStep f42 '' #zField
 ac0 @CallSub f51 '' #zField
-ac0 @PushWFArc f53 '' #zField
 ac0 @PushWFArc f54 '' #zField
-ac0 @PushWFArc f55 '' #zField
+ac0 @PushWFArc f16 '' #zField
 >Proto ac0 ac0 AnalyzeStatistic #zField
 ac0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.query.TaskQuery taskQuery> param;' #txt
 ac0 f0 inParamTable 'out.taskSearchCriteria.customTaskQuery=param.taskQuery;
@@ -265,12 +263,7 @@ ac0 f43 143 448 224 448 #arcP
 ac0 f23 actionTable 'out=in;
 ' #txt
 ac0 f23 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-RegisteredApplicationService service = new RegisteredApplicationService();
-java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
-in.caseSearchCriteria.apps = apps;
-in.caseSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
 in.caseSearchCriteria.businessCase = true;
 in.caseSearchCriteria.adminQuery = PermissionUtils.checkReadAllCasesPermission();
 in.caseSearchCriteria.sorted = false;' #txt
@@ -288,12 +281,7 @@ ac0 f23 @|StepIcon #fIcon
 ac0 f31 actionTable 'out=in;
 ' #txt
 ac0 f31 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-RegisteredApplicationService service = new RegisteredApplicationService();
-java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
-in.caseSearchCriteria.apps = apps;
-in.caseSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
 in.caseSearchCriteria.businessCase = true;
 in.caseSearchCriteria.adminQuery = PermissionUtils.checkReadAllCasesPermission();
 in.caseSearchCriteria.sorted = false;' #txt
@@ -370,15 +358,9 @@ ac0 f21 @|StepIcon #fIcon
 ac0 f41 actionTable 'out=in;
 ' #txt
 ac0 f41 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-RegisteredApplicationService service = new RegisteredApplicationService();
-java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
-in.caseSearchCriteria.apps = apps;
-
-if (!PermissionUtils.checkReadAllCasesPermission()) {
-	in.caseSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
-}' #txt
+in.caseSearchCriteria.setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
+' #txt
 ac0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -418,24 +400,6 @@ ac0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ac0 f40 113 529 30 30 -117 17 #rect
 ac0 f40 @|StartSubIcon #fIcon
-ac0 f42 actionTable 'out=in;
-' #txt
-ac0 f42 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
-
-RegisteredApplicationService service = new RegisteredApplicationService();
-java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
-in.caseCustomFieldSearchCriteria.apps = apps;' #txt
-ac0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Initialize</name>
-        <nameStyle>10
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-ac0 f42 224 522 112 44 -22 -8 #rect
-ac0 f42 @|StepIcon #fIcon
 ac0 f51 processCall 'Ivy Data Processes/CaseService:findValuesOfCustomField(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria)' #txt
 ac0 f51 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria caseCustomFieldSearchCriteria> param;' #txt
 ac0 f51 requestMappingAction 'param.caseCustomFieldSearchCriteria=in.caseCustomFieldSearchCriteria;
@@ -454,12 +418,10 @@ ac0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 ac0 f51 384 522 112 44 -35 -8 #rect
 ac0 f51 @|CallSubIcon #fIcon
-ac0 f53 expr out #txt
-ac0 f53 143 544 224 544 #arcP
 ac0 f54 expr out #txt
 ac0 f54 496 544 561 544 #arcP
-ac0 f55 expr out #txt
-ac0 f55 336 544 384 544 #arcP
+ac0 f16 expr out #txt
+ac0 f16 143 544 384 544 #arcP
 >Proto ac0 .type ch.ivy.add.portalkit.AnalyzeStatisticData #txt
 >Proto ac0 .processKind CALLABLE_SUB #txt
 >Proto ac0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -499,9 +461,7 @@ ac0 f31 mainOut f13 tail #connect
 ac0 f13 head f28 mainIn #connect
 ac0 f41 mainOut f14 tail #connect
 ac0 f14 head f39 mainIn #connect
-ac0 f40 mainOut f53 tail #connect
-ac0 f53 head f42 mainIn #connect
 ac0 f51 mainOut f54 tail #connect
 ac0 f54 head f38 mainIn #connect
-ac0 f42 mainOut f55 tail #connect
-ac0 f55 head f51 mainIn #connect
+ac0 f40 mainOut f16 tail #connect
+ac0 f16 head f51 mainIn #connect
