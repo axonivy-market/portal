@@ -57,6 +57,10 @@ public class MainMenuPage extends TemplatePage {
     return new StatisticWidgetPage();
   }
 
+  public void clickThirdPartyAppByIndex(int index) {
+    clickByCssSelector("[id *= ':thirdparty-menu-item-" + index + "'] > a");
+  }
+
   private void waitForProcessesPageAfterSelectProcessesCategory() {
     waitForElementDisplayed(By.id("process-widget:process-search:non-ajax-keyword-filter"), true);
   }
