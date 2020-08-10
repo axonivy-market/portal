@@ -164,6 +164,11 @@ Dt0 @EndTask f146 '' #zField
 Dt0 @GridStep f147 '' #zField
 Dt0 @PushWFArc f148 '' #zField
 Dt0 @PushWFArc f149 '' #zField
+Dt0 @StartRequest f150 '' #zField
+Dt0 @EndTask f151 '' #zField
+Dt0 @GridStep f152 '' #zField
+Dt0 @PushWFArc f153 '' #zField
+Dt0 @PushWFArc f154 '' #zField
 >Proto Dt0 Dt0 DataCreation #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
@@ -1535,6 +1540,54 @@ Dt0 f147 912 1290 144 44 -65 -8 #rect
 Dt0 f147 @|StepIcon #fIcon
 Dt0 f148 831 1312 912 1312 #arcP
 Dt0 f149 1056 1312 1105 1312 #arcP
+Dt0 f150 outLink createThirdPartyApp.ivp #txt
+Dt0 f150 inParamDecl '<> param;' #txt
+Dt0 f150 requestEnabled true #txt
+Dt0 f150 triggerEnabled false #txt
+Dt0 f150 callSignature createThirdPartyApp() #txt
+Dt0 f150 startName 'Create third party app' #txt
+Dt0 f150 startDescription 'Create third party app' #txt
+Dt0 f150 caseData businessCase.attach=true #txt
+Dt0 f150 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createThirdPartyApp.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f150 @C|.responsibility Everybody #txt
+Dt0 f150 49 1457 30 30 -21 17 #rect
+Dt0 f150 @|StartRequestIcon #fIcon
+Dt0 f151 433 1457 30 30 0 15 #rect
+Dt0 f151 @|EndIcon #fIcon
+Dt0 f152 actionTable 'out=in;
+' #txt
+Dt0 f152 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Application;
+
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+
+Application app = new Application();
+app.displayName = "Google";
+app.link = "https://www.google.com/";
+app.menuIcon = "fa fa-play";
+app.menuOrdinal = 0;
+app.name = "Google";
+
+RegisteredApplicationService applicationService = new RegisteredApplicationService();
+app = applicationService.save(app) as Application;
+
+ivy.log.error(app.menuOrdinal);' #txt
+Dt0 f152 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>create 3rd app</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f152 184 1450 112 44 -39 -8 #rect
+Dt0 f152 @|StepIcon #fIcon
+Dt0 f153 79 1472 184 1472 #arcP
+Dt0 f154 296 1472 433 1472 #arcP
 >Proto Dt0 .type portalKit_test.DataCreationData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1767,6 +1820,10 @@ Dt0 f145 mainOut f148 tail #connect
 Dt0 f148 head f147 mainIn #connect
 Dt0 f147 mainOut f149 tail #connect
 Dt0 f149 head f146 mainIn #connect
+Dt0 f150 mainOut f153 tail #connect
+Dt0 f153 head f152 mainIn #connect
+Dt0 f152 mainOut f154 tail #connect
+Dt0 f154 head f151 mainIn #connect
 Ct0 g0 m f2 tail #connect
 Ct0 f2 head f1 in #connect
 Ct0 f1 out f4 tail #connect
