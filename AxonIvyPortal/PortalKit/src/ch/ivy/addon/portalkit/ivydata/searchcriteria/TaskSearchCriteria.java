@@ -23,14 +23,18 @@ import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
+import ch.ivyteam.ivy.workflow.query.TaskQuery.FilterLink;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class TaskSearchCriteria {
 
   public final static EnumSet<TaskState> STANDARD_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN);
   public final static EnumSet<TaskState> ADVANCE_STATES = EnumSet.of(DONE, DELAYED, DESTROYED);
+  /**
+   * No need since 9.2, this value is always session username
+   */
+  @Deprecated(forRemoval = true, since = "9.2")
   private String involvedUsername;
-  private List<String> apps;
   private List<TaskState> includedStates;
   private boolean isAdminQuery;
   private String keyword;
@@ -277,14 +281,6 @@ public class TaskSearchCriteria {
     this.includedStates.addAll(includedStates);
   }
   
-  public List<String> getApps() {
-    return apps;
-  }
-
-  public void setApps(List<String> apps) {
-    this.apps = apps;
-  }
-
   public String getKeyword() {
     return keyword;
   }
@@ -325,10 +321,20 @@ public class TaskSearchCriteria {
     this.sortDescending = sortDescending;
   }
 
+  /**
+   * No need since 9.2, always use session username
+   * @return
+   */
+  @Deprecated(forRemoval = true, since = "9.2")
   public String getInvolvedUsername() {
     return involvedUsername;
   }
 
+  /**
+   * No need since 9.2, always use session username
+   * @param involvedUsername
+   */
+  @Deprecated(forRemoval = true, since = "9.2")
   public void setInvolvedUsername(String involvedUsername) {
     this.involvedUsername = involvedUsername;
   }
@@ -385,10 +391,6 @@ public class TaskSearchCriteria {
     return CollectionUtils.isNotEmpty(includedStates);
   }
 
-  public boolean hasApps() {
-    return CollectionUtils.isNotEmpty(apps);
-  }
-
   public boolean hasKeyword() {
     return StringUtils.isNotEmpty(keyword);
   }
@@ -405,6 +407,11 @@ public class TaskSearchCriteria {
     return StringUtils.isNotBlank(category);
   }
 
+  /**
+   * No need since 9.2, always true
+   * @return
+   */
+  @Deprecated(forRemoval = true, since = "9.2")
   public boolean hasInvolvedUsername() {
     return StringUtils.isNotBlank(involvedUsername);
   }
