@@ -5,23 +5,23 @@ import java.util.concurrent.Callable;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivyteam.di.restricted.DiCore;
-import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.IPersistentTransaction;
 import ch.ivyteam.ivy.persistence.PersistencyException;
-import ch.ivyteam.ivy.request.IProcessModelVersionRequest;
-import ch.ivyteam.ivy.request.RequestFactory;
-import ch.ivyteam.ivy.request.impl.RequestContext;
 import ch.ivyteam.ivy.security.ISecurityManager;
 import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.security.ISessionExtension;
-import ch.ivyteam.util.callable.AbstractExecutionContext;
+import ch.ivyteam.log.Logger;
+import ch.ivyteam.util.threadcontext.IvyAsyncRunner;
 
 
 public final class PortalSessionExtension implements ISessionExtension {
   private static PortalSessionExtension instance = new PortalSessionExtension();
+  private IvyAsyncRunner asyncRunner;
 
-  private PortalSessionExtension() {}
+  private PortalSessionExtension() {
+    asyncRunner = new IvyAsyncRunner();
+  }
 
   public static PortalSessionExtension getInstance() {
     if (instance == null) {
@@ -53,9 +53,9 @@ public final class PortalSessionExtension implements ISessionExtension {
           ConcurrentChatUtils.removePortalChatResponseHistory(session.getSessionUserName());
         }
         return null;
-      }, processModelVersion(), session);
+      });
     } catch (Exception e) {
-      Ivy.log().error(e);
+      Logger.getLogger(PortalSessionExtension.class).error("PortalSessionExtension destroySession", e);
     }
   }
 
@@ -69,9 +69,9 @@ public final class PortalSessionExtension implements ISessionExtension {
           ConcurrentChatUtils.removePortalChatResponseHistory(session.getSessionUserName());
         }
         return null;
-      }, processModelVersion(), session);
+      });
     } catch (Exception e) {
-      Ivy.log().error(e);
+      Logger.getLogger(PortalSessionExtension.class).error("PortalSessionExtension logoutSession", e);
     }
   }
 
@@ -81,21 +81,12 @@ public final class PortalSessionExtension implements ISessionExtension {
         .noneMatch(s -> s.getSessionUserName().equals(username) && !s.equals(session));
   }
 
-  private static AbstractExecutionContext createRequestContext(IProcessModelVersion pmv, ISession session) {
-    IProcessModelVersionRequest request = RequestFactory.createRestRequest(pmv, session);
-    return new RequestContext(request);
-  }
-
-  private static <T> T executeWithIvyContext(Callable<T> callable, IProcessModelVersion pmv, ISession session)
-      throws Exception {
-    return createRequestContext(pmv, session).callInContext(callable);
+  private <T> T executeWithIvyContext(Callable<T> callable) throws Exception {
+    return asyncRunner.run(callable);
   }
 
   private ChatService chatService() {
     return ChatServiceContainer.getChatService();
   }
 
-  private IProcessModelVersion processModelVersion() {
-    return ChatServiceContainer.getProcessModelVersion();
-  }
 }

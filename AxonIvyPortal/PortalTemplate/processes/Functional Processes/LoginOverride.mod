@@ -33,15 +33,21 @@ Ln0 f1 337 49 30 30 0 15 #rect
 Ln0 f1 @|EndSubIcon #fIcon
 Ln0 f3 actionTable 'out=in;
 ' #txt
-Ln0 f3 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
+Ln0 f3 actionCode 'import ch.ivy.addon.portal.chat.ClusterChatEventSender;
+import ch.ivy.addon.portal.chat.ChatService;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portal.chat.ChatServiceContainer;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 String isEnableChatGlobalVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_PRIVATE_CHAT.toString());
 boolean isEnableChat = StringUtils.isNotBlank(isEnableChatGlobalVariable) ? Boolean.parseBoolean(isEnableChatGlobalVariable) : true;
-if (isEnableChat && ChatServiceContainer.getChatService() != null) {
-  ChatServiceContainer.getChatService().handleUserOnline(ivy.session.getSessionUserName());
+if (isEnableChat) {
+  if (ChatServiceContainer.getChatService() != null && ChatService.IS_STANDARD_MODE) {
+    ChatServiceContainer.getChatService().handleUserOnline(ivy.session.getSessionUserName());
+  } else {
+	  ClusterChatEventSender.handleUserOnline(ivy.session.getSessionUserName());
+  }
 }' #txt
 Ln0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
