@@ -192,6 +192,11 @@ public class BaseTest {
     redirectToRelativeLink("portalKitTestHelper/1511A66AF619A768/resetLanguageOfCurrentUser.ivp");
   }
   
+  public void createThirdPartyApp() {
+	  redirectToRelativeLink("PortalKitTestHelper/153CACC26D0D4C3D/createThirdPartyApp.ivp");
+    
+  }
+  
   public void refreshPage(){
     browser.getDriver().navigate().refresh();
   }
