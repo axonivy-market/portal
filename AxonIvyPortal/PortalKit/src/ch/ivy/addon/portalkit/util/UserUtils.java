@@ -195,7 +195,7 @@ public class UserUtils {
   }
   
   /**
-   * Finds the users who have the given roles. If the current application is Portal, find all users over all applications, otherwise in current application
+   * Finds the users who have the given roles in current application.
    * @param query
    * @param startIndex index of the first record is 0
    * @param count use -1 to return all beginning from the startIndex
@@ -208,7 +208,6 @@ public class UserUtils {
     return IvyExecutor.executeAsSystem(() -> {
       return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
           .withStartName("findUsers")
-          .withParam("application", Ivy.request().getApplication())
           .withParam("query", query)
           .withParam("startIndex", startIndex)
           .withParam("count", count)
