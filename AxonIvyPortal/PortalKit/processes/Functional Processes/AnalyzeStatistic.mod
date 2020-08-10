@@ -301,12 +301,7 @@ ac0 f25 actionTable 'out=in;
 ac0 f25 actionCode 'import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-RegisteredApplicationService service = new RegisteredApplicationService();
-java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
-in.taskSearchCriteria.apps = apps;
-in.taskSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
 in.taskSearchCriteria.sorted = false;
 if (PermissionUtils.checkReadAllTasksPermission()) {
   in.taskSearchCriteria.includedStates.addAll(TaskSearchCriteria.STANDARD_STATES);
@@ -333,11 +328,6 @@ import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
-
-RegisteredApplicationService service = new RegisteredApplicationService();
-java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
-in.taskSearchCriteria.apps = apps;
-in.taskSearchCriteria.involvedUsername = ivy.session.getSessionUserName();
 in.taskSearchCriteria.sorted = false;
 if (PermissionUtils.checkReadAllTasksPermission()) {
   in.taskSearchCriteria.includedStates.addAll(TaskSearchCriteria.STANDARD_STATES);
