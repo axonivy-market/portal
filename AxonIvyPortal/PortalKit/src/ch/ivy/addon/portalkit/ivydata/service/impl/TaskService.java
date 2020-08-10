@@ -127,7 +127,7 @@ public class TaskService implements ITaskService {
             finalQuery.where().and(queryForApplications(criteria.getApps()));
           }
         }
-        if (isHiddenTasksCasesExcluded(criteria.getApps())) {
+        if (isHiddenTasksCasesExcluded()) {
           finalQuery.where().and(queryExcludeHiddenTasks());
         }
         finalQuery.where().and().category().isNotNull();
@@ -227,7 +227,7 @@ public class TaskService implements ITaskService {
         clonedQuery.where().and(queryForApplications(criteria.getApps()));
       }
     }
-    if (isHiddenTasksCasesExcluded(criteria.getApps())) {
+    if (isHiddenTasksCasesExcluded()) {
       clonedQuery.where().and(queryExcludeHiddenTasks());
     }
     return clonedQuery;
@@ -242,7 +242,7 @@ public class TaskService implements ITaskService {
         finalQuery.where().and(queryForApplications(criteria.getApps()));
       }
     }
-    if (isHiddenTasksCasesExcluded(criteria.getApps())) {
+    if (isHiddenTasksCasesExcluded()) {
       finalQuery.where().and(queryExcludeHiddenTasks());
     }
     return finalQuery;
