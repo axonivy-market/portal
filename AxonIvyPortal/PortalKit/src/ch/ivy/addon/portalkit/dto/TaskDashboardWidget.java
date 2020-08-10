@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 
+import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.TaskColumn;
 import ch.ivy.addon.portalkit.enums.TaskDashboardWidgetType;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -28,6 +29,11 @@ public class TaskDashboardWidget extends DashboardWidget {
   private Date expiryDateTo;
   private List<String> categories;
   private List<String> taskColumns;
+  private DashboardTaskLazyDataModel dataModel;
+  
+  public TaskDashboardWidget() {
+    dataModel = new DashboardTaskLazyDataModel();
+  }
 
   public TaskDashboardWidgetType getTaskDashboardWidgetType() {
     return taskDashboardWidgetType;
@@ -145,5 +151,13 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   public void setRoles(List<String> roles) {
     this.roles = roles;
+  }
+  
+  public DashboardTaskLazyDataModel getDataModel() {
+    return dataModel;
+  }
+  
+  public void setDataModel(DashboardTaskLazyDataModel dataModel) {
+    this.dataModel = dataModel;
   }
 }
