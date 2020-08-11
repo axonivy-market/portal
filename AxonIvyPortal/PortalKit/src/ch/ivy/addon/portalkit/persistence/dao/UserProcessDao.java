@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class UserProcessDao extends AbstractDao<UserProcess> {
 
@@ -19,9 +20,12 @@ public class UserProcessDao extends AbstractDao<UserProcess> {
   }
 
   @ExecuteAsSystem
-  public List<UserProcess> findByUserId(Long userId) {
+  public List<UserProcess> findByUserIdInCurrentApplication(Long userId) {
+    Long applicationId = Ivy.wf().getApplication().getId();
     return Optional.ofNullable(findAll()).orElse(new ArrayList<>()).stream()
-        .filter(userProcess -> (Optional.ofNullable(userProcess.getUserId()).orElse(-1L).longValue() == userId.longValue() && !userProcess.isDefaultProcess()))
+        .filter(userProcess -> (Optional.ofNullable(userProcess.getUserId()).orElse(-1L).longValue() == userId.longValue() 
+        && Optional.ofNullable(userProcess.getApplicationId()).orElse(-1L).longValue() == applicationId.longValue()
+        && !userProcess.isDefaultProcess()))
         .collect(Collectors.toList());
   }
 
