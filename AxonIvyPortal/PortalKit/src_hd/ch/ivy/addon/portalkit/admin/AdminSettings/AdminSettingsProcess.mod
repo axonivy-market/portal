@@ -1165,12 +1165,12 @@ As0 f57 expr out #txt
 As0 f57 1072 1596 624 1680 #arcP
 As0 f57 1 1072 1680 #addKink
 As0 f57 1 0.40112042914479545 0 0 #arcLabel
-As0 f21 processCall 'Ivy Data Processes/LanguageService:loadSupportedLanguages()' #txt
+As0 f21 processCall 'Ivy Data Processes/LanguageService:findUserLanguages()' #txt
 As0 f21 requestActionDecl '<> param;' #txt
 As0 f21 responseActionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
 As0 f21 responseMappingAction 'out=in;
-out.languages=result.supportedLanguge.supportedLanguages;
+out.languages=result.language.supportedLanguages;
 ' #txt
 As0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

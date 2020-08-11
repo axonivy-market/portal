@@ -10,7 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.Announcement;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
+import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -45,13 +45,14 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
     announcements.forEach(announcement -> delete(announcement.getId()));
   }
 
-  public List<Announcement> getAnnouncements() throws PortalIvyDataException {
+  public List<Announcement> getAnnouncements(){
     List<Announcement> announcements = findAllOrderedByLanguage();
     Map<String, List<Announcement>> languageToAnnouncements =
         announcements.stream().collect(Collectors.groupingBy(Announcement::getLanguage));
     
     
-    List<String> supportedLanguages =  LanguageService.newInstance().getSupportedLanguagesOfCurrentApp();
+    IvyLanguageResultDTO ivyLanguage = LanguageService.newInstance().findUserLanguages();
+    List<String> supportedLanguages =  ivyLanguage.getIvyLanguage().getSupportedLanguages(); 
     
     return IvyExecutor.executeAsSystem(() -> supportedLanguages.stream().map(language -> {
       if (languageToAnnouncements.containsKey(language)) {
