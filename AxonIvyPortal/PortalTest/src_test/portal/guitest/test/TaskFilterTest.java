@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -125,6 +126,7 @@ public class TaskFilterTest extends BaseTest {
 	
 	@Test
 	public void testShowSystemStatesFilterForAdminUser() {
+	  List<String> adminStates = Arrays.asList("Created", "Ready for joining", "Suspended", "In progress", "Reserved", "Delayed", "Done", "Destroyed", "Failed", "Join failed", "Waiting for event");
 	  login(TestAccount.ADMIN_USER);
 	  MainMenuPage mainMenuPage = new MainMenuPage();
 	  TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
@@ -133,9 +135,9 @@ public class TaskFilterTest extends BaseTest {
 	  assertEquals("State: All", stateFilterValue);
 
 	  taskWidgetPage.openStateFilter();
-    assertTrue(taskWidgetPage.getListStateFilterSelection().contains("Ready for joining"));
-    assertTrue(taskWidgetPage.getListStateFilterSelection().contains("Destroyed"));
-    assertTrue(taskWidgetPage.getListStateFilterSelection().contains("Delayed"));
+	  List<String> states = taskWidgetPage.getListStateFilterSelection();
+	  assertTrue(states.size() == adminStates.size());
+	  assertTrue(states.containsAll(adminStates));
 	}
 
 	@Test
