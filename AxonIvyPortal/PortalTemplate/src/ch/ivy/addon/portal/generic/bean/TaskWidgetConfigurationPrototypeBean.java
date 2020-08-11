@@ -15,14 +15,13 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.ToggleEvent;
 
+import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.enums.TaskColumn;
-import ch.ivy.addon.portalkit.enums.TaskDashboardWidgetType;
+import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
@@ -32,31 +31,33 @@ public class TaskWidgetConfigurationPrototypeBean {
   private List<TaskState> filteredStates;
   private List<WorkflowPriority> priorities;
   private UserDTO selectedUser;
-  private Map <String, Boolean> taskColumns;
-  private List<IUser> availableResponsibles;
-  private List<IRole> availableRoles;
+  private Map<String, Boolean> taskColumns;
+  private List<SecurityMemberDTO> responsibles;
 
   @PostConstruct
   public void init() {
-      this.setFilteredStates(new ArrayList<>());
-      this.getFilteredStates().addAll(Arrays.asList(TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE));
+    this.setFilteredStates(new ArrayList<>());
+    this.getFilteredStates().addAll(
+        Arrays.asList(TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE));
 
-      this.priorities = Arrays.asList(WorkflowPriority.EXCEPTION, WorkflowPriority.HIGH, WorkflowPriority.NORMAL, WorkflowPriority.LOW);
+    this.priorities =
+        Arrays.asList(WorkflowPriority.EXCEPTION, WorkflowPriority.HIGH, WorkflowPriority.NORMAL, WorkflowPriority.LOW);
 
-      TaskDashboardWidget widget = Attrs.currentContext().get("cc.attrs.taskWidget");
-      this.taskColumns = new HashMap<>();
-      if (CollectionUtils.isNotEmpty(Optional.ofNullable(widget).map(TaskDashboardWidget::getTaskColumns).orElse(new ArrayList<>()))) {
-        for(TaskColumn column : TaskColumn.values()) {
-          taskColumns.put(column.name(), widget.getTaskColumns().contains(column.name()));
-        }
-      } else {
-        for(TaskColumn column : TaskColumn.values()) {
-          taskColumns.put(column.name(), true);
-        }
+    TaskDashboardWidget widget = Attrs.currentContext().get("cc.attrs.taskWidget");
+    this.taskColumns = new HashMap<>();
+    if (CollectionUtils
+        .isNotEmpty(Optional.ofNullable(widget).map(TaskDashboardWidget::getTaskColumns).orElse(new ArrayList<>()))) {
+      for (TaskColumn column : TaskColumn.values()) {
+        taskColumns.put(column.name(), widget.getTaskColumns().contains(column.name()));
       }
+    } else {
+      for (TaskColumn column : TaskColumn.values()) {
+        taskColumns.put(column.name(), true);
+      }
+    }
 
-      this.availableRoles = Ivy.wf().getSecurityContext().getActiveRoles();
-      this.availableResponsibles = Ivy.wf().getSecurityContext().getUsers();
+    this.responsibles =
+        SecurityService.newInstance().findSecurityMembers("", Ivy.wf().getApplication(), 0, -1).getSecurityMembers();
   }
 
   public String getUserFriendlyTaskState(TaskState state) {
@@ -105,7 +106,6 @@ public class TaskWidgetConfigurationPrototypeBean {
   }
 
   public void clearTaskFilters(TaskDashboardWidget widget) {
-    widget.setTaskId(null);
     widget.setTaskName(null);
     widget.setCreatedDateFrom(null);
     widget.setCreatedDateTo(null);
@@ -115,27 +115,22 @@ public class TaskWidgetConfigurationPrototypeBean {
     widget.setDescription(null);
     widget.setPriorities(getPriorities());
     widget.setStates(getFilteredStates());
-    widget.setRoles(null);
-    if (widget.getTaskDashboardWidgetType() == TaskDashboardWidgetType.PERSONAL) {
-      widget.setResponsibles(Arrays.asList(Ivy.session().getSessionUserName()));
-    } else {
-      widget.setResponsibles(null);
-    }
   }
+
   public List<TaskState> getFilteredStates() {
-      return filteredStates;
+    return filteredStates;
   }
 
   public void setFilteredStates(List<TaskState> filteredStates) {
-      this.filteredStates = filteredStates;
+    this.filteredStates = filteredStates;
   }
 
   public List<WorkflowPriority> getPriorities() {
-      return priorities;
+    return priorities;
   }
 
   public void setPriorities(List<WorkflowPriority> priorities) {
-      this.priorities = priorities;
+    this.priorities = priorities;
   }
 
   public UserDTO getSelectedUser() {
@@ -146,27 +141,19 @@ public class TaskWidgetConfigurationPrototypeBean {
     this.selectedUser = selectedUser;
   }
 
-  public Map <String, Boolean> getTaskColumns() {
+  public Map<String, Boolean> getTaskColumns() {
     return taskColumns;
   }
 
-  public void setTaskColumns(Map <String, Boolean> taskColumns) {
+  public void setTaskColumns(Map<String, Boolean> taskColumns) {
     this.taskColumns = taskColumns;
   }
 
-  public List<IUser> getAvailableResponsibles() {
-    return availableResponsibles;
+  public List<SecurityMemberDTO> getResponsibles() {
+    return responsibles;
   }
 
-  public void setAvailableResponsibles(List<IUser> availableResponsibles) {
-    this.availableResponsibles = availableResponsibles;
-  }
-
-  public List<IRole> getAvailableRoles() {
-    return availableRoles;
-  }
-
-  public void setAvailableRoles(List<IRole> availableRoles) {
-    this.availableRoles = availableRoles;
+  public void setResponsibles(List<SecurityMemberDTO> responsibles) {
+    this.responsibles = responsibles;
   }
 }

@@ -6,129 +6,117 @@ import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.TaskColumn;
-import ch.ivy.addon.portalkit.enums.TaskDashboardWidgetType;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
 public class TaskDashboardWidget extends DashboardWidget {
   private static final long serialVersionUID = 3048837559125720787L;
 
-  private TaskDashboardWidgetType taskDashboardWidgetType;
-  private String taskId;
-  private String taskName;
-  private String description;
-  private List<WorkflowPriority> priorities;
-  private List<TaskState> states;
-  private List<String> responsibles;
-  private List<String> roles;
-  private Date createdDateFrom;
-  private Date createdDateTo;
-  private Date expiryDateFrom;
-  private Date expiryDateTo;
-  private List<String> categories;
   private List<String> taskColumns;
+  
+  @JsonIgnore
   private DashboardTaskLazyDataModel dataModel;
   
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
   }
-
-  public TaskDashboardWidgetType getTaskDashboardWidgetType() {
-    return taskDashboardWidgetType;
+  
+  @Override
+  public void setId(String id) {
+    super.setId(id);
+    dataModel.setWidgetId(id);
   }
-
-  public void setTaskDashboardWidgetType(TaskDashboardWidgetType taskDashboardWidgetType) {
-    this.taskDashboardWidgetType = taskDashboardWidgetType;
+  
+  public boolean getCanWorkOn() {
+    return this.dataModel.getCanWorkOn();
   }
-
-  public String getTaskId() {
-    return taskId;
-  }
-
-  public void setTaskId(String taskId) {
-    this.taskId = taskId;
+  
+  public void setCanWorkOn(boolean canWorkOn) {
+    this.dataModel.setCanWorkOn(canWorkOn);
   }
 
   public String getTaskName() {
-    return taskName;
+    return this.dataModel.getTaskName();
   }
 
   public void setTaskName(String taskName) {
-    this.taskName = taskName;
+    this.dataModel.setTaskName(taskName);
   }
 
   public String getDescription() {
-    return description;
+    return this.dataModel.getDescription();
   }
 
   public void setDescription(String description) {
-    this.description = description;
+    this.dataModel.setDescription(description);
   }
 
   public List<WorkflowPriority> getPriorities() {
-    return priorities;
+    return this.dataModel.getPriorities();
   }
 
   public void setPriorities(List<WorkflowPriority> priorities) {
-    this.priorities = priorities;
+    this.dataModel.setPriorities(priorities);
   }
 
   public List<TaskState> getStates() {
-    return states;
+    return this.dataModel.getStates();
   }
 
   public void setStates(List<TaskState> states) {
-    this.states = states;
+    this.dataModel.setStates(states);
   }
 
   public List<String> getResponsibles() {
-    return responsibles;
+    return this.dataModel.getResponsibles();
   }
 
   public void setResponsibles(List<String> responsibles) {
-    this.responsibles = responsibles;
+    this.dataModel.setResponsibles(responsibles);
   }
 
   public Date getCreatedDateFrom() {
-    return createdDateFrom;
+    return this.dataModel.getCreatedDateFrom();
   }
 
   public void setCreatedDateFrom(Date createdDateFrom) {
-    this.createdDateFrom = createdDateFrom;
+    this.dataModel.setCreatedDateFrom(createdDateFrom);
   }
 
   public Date getCreatedDateTo() {
-    return createdDateTo;
+    return this.dataModel.getCreatedDateTo();
   }
 
   public void setCreatedDateTo(Date createdDateTo) {
-    this.createdDateTo = createdDateTo;
+    this.dataModel.setCreatedDateTo(createdDateTo);
   }
 
   public Date getExpiryDateFrom() {
-    return expiryDateFrom;
+    return this.dataModel.getExpiryDateFrom();
   }
 
   public void setExpiryDateFrom(Date expiryDateFrom) {
-    this.expiryDateFrom = expiryDateFrom;
+    this.dataModel.setExpiryDateTo(expiryDateFrom);
   }
 
   public Date getExpiryDateTo() {
-    return expiryDateTo;
+    return this.dataModel.getExpiryDateTo();
   }
 
   public void setExpiryDateTo(Date expiryDateTo) {
-    this.expiryDateTo = expiryDateTo;
+    this.dataModel.setExpiryDateTo(expiryDateTo);
   }
 
-  public List<String> getCategories() {
-    return categories;
+  public String getCategory() {
+    return this.dataModel.getCategory();
   }
 
-  public void setCategories(List<String> categories) {
-    this.categories = categories;
+  public void setCategory(String category) {
+    this.dataModel.setCategory(category);
   }
 
   public List<String> getTaskColumns() {
@@ -145,19 +133,16 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.taskColumns = taskColumns;
   }
 
-  public List<String> getRoles() {
-    return roles;
-  }
-
-  public void setRoles(List<String> roles) {
-    this.roles = roles;
-  }
-  
   public DashboardTaskLazyDataModel getDataModel() {
     return dataModel;
   }
   
   public void setDataModel(DashboardTaskLazyDataModel dataModel) {
     this.dataModel = dataModel;
+  }
+  
+  @JsonIgnore
+  public int getTaskCount() {
+    return getDataModel().getRowCount();
   }
 }
