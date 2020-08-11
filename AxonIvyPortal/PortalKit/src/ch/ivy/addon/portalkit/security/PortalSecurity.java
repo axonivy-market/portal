@@ -44,6 +44,7 @@ public enum PortalSecurity {
             IPermission.TASK_WRITE_EXPIRY_TIMESTAMP,
             IPermission.TASK_WRITE_DELAY_TIMESTAMP,
             IPermission.TASK_RESET_OWN_WORKING_TASK,
+            IPermission.TASK_RESET,
             IPermission.TASK_DESTROY,
             IPermission.CASE_DESTROY,
             IPermission.CASE_READ_ALL,
@@ -54,7 +55,8 @@ public enum PortalSecurity {
             IPermission.USER_DELETE_ABSENCE,
             IPermission.USER_READ_ABSENCES,
             IPermission.USER_READ_SUBSTITUTES,
-            IPermission.DOCUMENT_WRITE);
+            IPermission.DOCUMENT_WRITE,
+            IPermission.WORKFLOW_EVENT_READ_ALL);
   
     private static final List<IPermission> DEMO_USER_ADDITIONAL = Arrays.asList(IPermission.DOCUMENT_WRITE);
   
