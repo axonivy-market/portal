@@ -11,9 +11,8 @@
 				"y": 0,
 				"width": 8,
 				"height": 12,
-				"taskDashboardWidgetType": "CUSTOM",
 				"priorities": ["LOW","NORMAL","HIGH","EXCEPTION"],
-				"states": ["CREATED","SUSPENDED","RESUMED","PARKED","DONE","UNASSIGNED"]
+				"states": ["CREATED","SUSPENDED","RESUMED","PARKED","DONE"]
 			},
 			{
 				"type": "process",
@@ -46,7 +45,6 @@
 				"y": 0,
 				"width": 6,
 				"height": 6,
-				"taskDashboardWidgetType": "PERSONAL",
 				"priorities": ["LOW","NORMAL","HIGH","EXCEPTION"],
 				"states": ["CREATED","SUSPENDED","RESUMED","PARKED","DONE"],
 				"taskColumns": ["PRIORITY", "ID", "NAME", "STATE"]
@@ -59,7 +57,6 @@
 				"y": 0,
 				"width": 6,
 				"height": 6,
-				"taskDashboardWidgetType": "CUSTOM",
 				"taskName": "Leave Request",
 				"priorities": ["LOW","NORMAL","HIGH","EXCEPTION"],
 				"states": ["CREATED","SUSPENDED","RESUMED","PARKED","DONE"],
@@ -73,8 +70,7 @@
 				"y": 6,
 				"width": 6,
 				"height": 6,
-				"taskDashboardWidgetType": "ROLE",
-				"roles": ["Everybody"],
+				"responsibles": ["Everybody"],
 				"priorities": ["LOW","NORMAL","HIGH","EXCEPTION"],
 				"states": ["CREATED","SUSPENDED","RESUMED","PARKED","DONE"],
 				"taskColumns": ["PRIORITY", "ID", "NAME", "STATE"]
@@ -87,7 +83,6 @@
 				"y": 6,
 				"width": 6,
 				"height": 6,
-				"taskDashboardWidgetType": "CUSTOM",
 				"taskName": "SupportTicket",
 				"priorities": ["LOW","NORMAL","HIGH","EXCEPTION"],
 				"states": ["CREATED","SUSPENDED","RESUMED","PARKED","DONE"],

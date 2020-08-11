@@ -45,15 +45,16 @@
         <p:tab title="#{dashboard.title}" titleStyleClass="#{dashboardBean.dashboards.size() eq 1 ? 'one-dashboard' :''}"
           titleStyle="font-size: 18px">
           <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack" style="background-color: var(--ivy-primary-color-grey-pale)">
-            <ui:repeat var="widget" value="#{dashboard.widgets}" varStatus="status">
+            <ui:repeat id="widgets" var="widget" value="#{dashboard.widgets}" varStatus="status">
               <div class="grid-stack-item" data-gs-x="#{widget.x}" data-gs-y="#{widget.y}" data-gs-id="#{widget.id}"
                 data-gs-width="#{widget.width}" data-gs-height="#{widget.height}" data-gs-autoPosition="#{widget.autoPosition}"
-                data-gs-no-resize="#{dashboardBean.isReadOnlyMode}" data-gs-no-move="#{dashboardBean.isReadOnlyMode}">
+                data-gs-no-resize="#{dashboardBean.isReadOnlyMode}" data-gs-no-move="#{dashboardBean.isReadOnlyMode}"
+                jsf:rendered="#{widget.id ne 'action' or (widget.id eq 'action' and !dashboardBean.isReadOnlyMode)}">
                 <div class="grid-stack-item-content card" style="display: flex;flex-direction: column;">
-                  <h:panelGroup rendered="#{fn:startsWith(widget.id, 'task')}">
+                  <h:form id="task-form" rendered="#{fn:startsWith(widget.id, 'task')}">
                     <div class="header" style="flex: 0 0 30px">
                       <span class="title">
-                        #{not empty widget.name ? widget.name : 'Your Tasks'}
+                        #{not empty widget.name ? widget.name : 'Your Tasks'} (<h:panelGroup id="task-count">#{widget.taskCount}</h:panelGroup>)
                       </span>
                       
                       <div class="actions">
@@ -70,9 +71,10 @@
                       </div>
                     </div>
                     <h:panelGroup styleClass="#{widget.id}" style="flex: auto;overflow:auto;margin-bottom: 20px;padding:10px" layout="block">
-                      <ic:ch.ivy.addon.portal.generic.prototype.TaskWidget taskWidget="#{widget}" />
+                      <ic:ch.ivy.addon.portal.generic.prototype.TaskWidget taskWidget="#{widget}" 
+                        taskCountId="grid-stack-tab-view:#{dashboardBean.dashboards.indexOf(dashboard)}:widgets:#{status.index}:task-form:task-count" />
                     </h:panelGroup>
-                  </h:panelGroup>
+                  </h:form>
                     
                   <h:panelGroup rendered="#{fn:startsWith(widget.id, 'process')}">
                     <div class="header" style="flex: 0 0 30px">
@@ -92,16 +94,11 @@
                   </h:panelGroup>
                   
                   <h:panelGroup id="actions" layout="block" style="text-align: center; padding-top: 4px" rendered="#{widget.id eq 'action'}">
-                    <h:panelGroup rendered="#{!dashboardBean.isReadOnlyMode}">
-                      <p:commandButton id="add-widget-button" value="Add a new widget" type="button" style="margin-bottom: 5px"
-                        onclick="PF('new-widget-dialog').show()" />
-                      <br />
-                      <p:commandLink id="restore-button" value="Restore default widgets" actionListener="#{dashboardBean.restore()}"
-                        update="grid-stack-tab-view:#{dashboardBean.dashboards.indexOf(dashboard)}:grid-stack" oncomplete="loadGrid()" />
-                    </h:panelGroup>
-                    <h:panelGroup rendered="#{dashboardBean.isReadOnlyMode}">
-                      Actions are disabled because you are in View Mode.
-                    </h:panelGroup>
+                    <p:commandButton id="add-widget-button" value="Add a new widget" type="button" style="margin-bottom: 5px"
+                      onclick="PF('new-widget-dialog').show()" />
+                    <br />
+                    <p:commandLink id="restore-button" value="Restore default widgets" actionListener="#{dashboardBean.restore()}"
+                      update="grid-stack-tab-view:#{dashboardBean.dashboards.indexOf(dashboard)}:grid-stack" oncomplete="loadGrid()" />
                   </h:panelGroup>
                 </div>
               </div>

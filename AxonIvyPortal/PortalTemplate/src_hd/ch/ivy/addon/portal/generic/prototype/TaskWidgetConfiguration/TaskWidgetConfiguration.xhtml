@@ -27,18 +27,6 @@
           value="#{cc.attrs.taskWidget.name}" />
         </div>
   
-        <div class="ui-g-3">
-          <p:outputLabel for="task-list-type" value="Task list type" />
-        </div>
-        <div class="ui-g-9">
-          <p:selectOneMenu id="task-list-type" value="#{data.selectedTaskListType}" styleClass="task-configuration__select-one-menu">
-            <f:selectItem itemLabel="Personal task list" itemValue="PERSONAL" />
-            <f:selectItem itemLabel="Task list by role" itemValue="ROLE" />
-            <f:selectItem itemLabel="Customize" itemValue="CUSTOM" />
-            <p:ajax event="change" update="@form" listener="#{logic.updateType}" />
-          </p:selectOneMenu>
-        </div>
-  
         <div class="ui-g-12" />
     
         <div class="ui-g-4">
@@ -48,107 +36,95 @@
           <p:commandButton id="preview-button" value="Preview"
             styleClass="Fright" global="true" update="task-widget-preview-container" />
         </div>
-  
-        <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
-          <p:outputLabel for="task-id" value="Task Id" />
-        </div>
-        <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
-          <p:inputText id="task-id" styleClass="task-configuration__input-text"
-          value="#{cc.attrs.taskWidget.taskId}" />
-        </div>
-  
-        <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
+
+        <div class="ui-g-3">
           <p:outputLabel for="name" value="Task name" />
         </div>
-        <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
+        <div class="ui-g-9">
           <p:inputText id="name" styleClass="task-configuration__input-text"
           value="#{cc.attrs.taskWidget.taskName}" />
         </div>
     
-        <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
+        <div class="ui-g-3">
           <p:outputLabel for="description" value="Description" />
         </div>
-        <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
+        <div class="ui-g-9">
           <p:inputText id="description" styleClass="task-configuration__input-text"
           value="#{cc.attrs.taskWidget.description}" />
         </div>
     
-        <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM' or data.selectedTaskListType == 'PERSONAL'}">
+        <div class="ui-g-3">
           <p:outputLabel for="priorities" value="Priority" />
         </div>
-        <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM' or data.selectedTaskListType == 'PERSONAL'}">
+        <div class="ui-g-9">
           <p:selectCheckboxMenu id="priorities" value="#{cc.attrs.taskWidget.priorities}" label="Priorities" multiple="true"
             filter="true" filterMatchMode="startsWith" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
             <f:selectItems value="#{taskWidgetConfigurationPrototypeBean.priorities}" />
           </p:selectCheckboxMenu>
         </div>
     
-        <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM' or data.selectedTaskListType == 'PERSONAL'}">
+        <div class="ui-g-3">
           <p:outputLabel for="states" value="State" />
         </div>
-        <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM' or data.selectedTaskListType == 'PERSONAL'}">
+        <div class="ui-g-9">
           <p:selectCheckboxMenu id="states" value="#{cc.attrs.taskWidget.states}" label="States" multiple="true"
             filter="true" filterMatchMode="startsWith" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
             <f:selectItems value="#{taskWidgetConfigurationPrototypeBean.filteredStates}" />
           </p:selectCheckboxMenu>
         </div>
     
-        <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
+        <div class="ui-g-3">
           <p:outputLabel for="responsibles" value="Responsibles" />
         </div>
-        <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
+        <div class="ui-g-9">
           <p:selectCheckboxMenu id="responsibles" value="#{cc.attrs.taskWidget.responsibles}" label="Responsibles" multiple="true"
             filter="true" filterMatchMode="startsWith" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
-            <f:selectItems value="#{taskWidgetConfigurationPrototypeBean.availableResponsibles}" var="user" itemValue="#{user.memberName}" itemLabel="#{user.displayName}" />
+            <f:selectItems value="#{taskWidgetConfigurationPrototypeBean.responsibles}" var="r" itemValue="#{r.name}" itemLabel="#{r.displayName}" />
           </p:selectCheckboxMenu>
+          <br/>
+        </div>
+        <div class="ui-g-3" />
+        <div class="ui-g-9">
+          <span style="width: 10%; display: inline-block" />
+          <p:selectBooleanCheckbox id="can-work-on" value="#{cc.attrs.taskWidget.canWorkOn}" itemLabel="Can work on" />
         </div>
   
-        <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM' or data.selectedTaskListType == 'ROLE'}">
-          <p:outputLabel for="roles" value="Roles" />
-        </div>
-        <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM' or data.selectedTaskListType == 'ROLE'}">
-          <p:selectCheckboxMenu id="roles" value="#{cc.attrs.taskWidget.roles}" label="Roles" multiple="true"
-            filter="true" filterMatchMode="startsWith" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
-            <f:selectItems value="#{taskWidgetConfigurationPrototypeBean.availableRoles}" var="role" itemValue="#{role.memberName}" itemLabel="#{role.displayName}" />
-          </p:selectCheckboxMenu>
-        </div>
-  
-        <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
+        <div class="ui-g-3">
           <p:outputLabel for="created-from" value="Created From" />
         </div>
-        <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
+        <div class="ui-g-9">
           <p:calendar id="created-from" showOn="button" styleClass="task-configuration__calendar"
           value="#{cc.attrs.taskWidget.createdDateFrom}" />
         </div>
     
-        <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
+        <div class="ui-g-3">
           <p:outputLabel for="created-to" value="Created To" />
         </div>
-        <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
+        <div class="ui-g-9">
           <p:calendar id="created-to" showOn="button" styleClass="task-configuration__calendar"
           value="#{cc.attrs.taskWidget.createdDateTo}" />
         </div>
     
-        <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
+        <div class="ui-g-3">
           <p:outputLabel for="expiry-from" value="Expiry From" />
         </div>
-        <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
+        <div class="ui-g-9">
           <p:calendar id="expiry-from" showOn="button" styleClass="task-configuration__calendar"
           value="#{cc.attrs.taskWidget.expiryDateFrom}" />
         </div>
     
-        <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
+        <div class="ui-g-3">
           <p:outputLabel for="expiry-to" value="Expiry To" />
         </div>
-        <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
+        <div class="ui-g-9">
           <p:calendar id="expiry-to" showOn="button" styleClass="task-configuration__calendar"
           value="#{cc.attrs.taskWidget.expiryDateTo}" />
         </div>
         
-        <div class="ui-g-3" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
+        <div class="ui-g-3">
           <p:outputLabel for="category" value="Category" />
         </div>
-        <div class="ui-g-9" jsf:rendered="#{data.selectedTaskListType == 'CUSTOM'}">
+        <div class="ui-g-9">
           <p:inputText id="category" styleClass="task-configuration__input-text" />
         </div>
       </div>

@@ -33,7 +33,6 @@ import ch.ivy.addon.portalkit.dto.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.WidgetSample;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
-import ch.ivy.addon.portalkit.enums.TaskDashboardWidgetType;
 import ch.ivy.addon.portalkit.loader.ResourceLoader;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.application.ILibrary;
@@ -77,6 +76,7 @@ public class DashboardBean implements Serializable {
       }
       selectedDashboard = dashboards.get(0);
     } catch (IOException e) {
+      Ivy.log().error(e);
     }
   }
   
@@ -103,9 +103,8 @@ public class DashboardBean implements Serializable {
     result.setWidth(8);
     result.setHeight(6);
     result.setAutoPosition(true);
-    result.setTaskDashboardWidgetType(TaskDashboardWidgetType.CUSTOM);
     result.setPriorities(new ArrayList<>(List.of(WorkflowPriority.LOW, WorkflowPriority.NORMAL, WorkflowPriority.HIGH, WorkflowPriority.EXCEPTION)));
-    result.setStates(new ArrayList<>(List.of(TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE, TaskState.UNASSIGNED)));
+    result.setStates(new ArrayList<>(List.of(TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE)));
     return result;
   }
   

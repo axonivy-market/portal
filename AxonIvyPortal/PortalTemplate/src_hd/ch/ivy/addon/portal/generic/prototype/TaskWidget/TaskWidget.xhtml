@@ -7,53 +7,50 @@
   xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="taskWidget" type="ch.ivy.addon.portalkit.dto.TaskDashboardWidget" />
+  <cc:attribute name="taskWidget" type="ch.ivy.addon.portalkit.dto.TaskDashboardWidget" required="true" />
+  <cc:attribute name="taskCountId" required="true" />
 </cc:interface>
 <cc:implementation>
-  <div class="task-widget-header-main widget-header-main">
-    <h:outputText styleClass="widget-header-main-title" value="3 tasks" />
-  </div>
-  <h:form>
   <div class="ui-g">
     <h:panelGroup id="task-table-container" layout="block" styleClass="ui-g-12 u-padding-0 task-configuration__task-table-container">
       <p:dataTable id="task-table" value="#{cc.attrs.taskWidget.dataModel}" var="task" styleClass="prototype-task-table task-table" rows="10" rowsPerPageTemplate="5,10,15"
-        draggableColumns="true" paginator="true" paginatorPosition="bottom" lazy="true">
+        paginator="true" paginatorPosition="bottom" lazy="true">
         <p:column headerText="Start" styleClass="start-column" width="50" style="text-align: center">
           <p:commandLink>
             <span class="fa fa-play" />
           </p:commandLink>
         </p:column>
-        <p:column headerText="Prio" styleClass="prio-column" filterBy="#{task.priority}" visible="#{cc.attrs.taskWidget.taskColumns.contains('PRIORITY')}">
+        <p:column headerText="Prio" styleClass="prio-column" filterBy="#{task.priority}" sortBy="#{task.priority}" rendered="#{cc.attrs.taskWidget.taskColumns.contains('PRIORITY')}" field="PRIORITY">
           <i jsf:rendered="#{task.priority eq 'LOW'}" class="icon ivyicon-navigation-right-circle-1" />
           <i jsf:rendered="#{task.priority eq 'NORMAL'}" class="icon ivyicon-navigation-right-circle-1" />
           <i jsf:rendered="#{task.priority eq 'HIGH'}" class="icon ivyicon-navigation-up-circle" />
           <i jsf:rendered="#{task.priority eq 'EXCEPTION'}" class="icon ivyicon-alert-circle" style="color: red" />
         </p:column>
-        <p:column headerText="ID" filterBy="#{task.id}" visible="#{cc.attrs.taskWidget.taskColumns.contains('ID')}"
+        <p:column headerText="ID" filterBy="#{task.id}" sortBy="#{task.id}" rendered="#{cc.attrs.taskWidget.taskColumns.contains('ID')}" field="ID"
           width="100" style="text-align: center">
           <h:outputText value="#{task.id}" />
         </p:column>
-        <p:column headerText="Task Name" styleClass="name-column" filterBy="#{task.name}" visible="#{cc.attrs.taskWidget.taskColumns.contains('NAME')}">
+        <p:column headerText="Task Name" styleClass="name-column" filterBy="#{task.name}" sortBy="#{task.name}" rendered="#{cc.attrs.taskWidget.taskColumns.contains('NAME')}" field="NAME">
           <h:outputText value="#{task.name}" />
         </p:column>
-        <p:column headerText="Description" styleClass="desc-column" filterBy="#{task.description}" visible="#{cc.attrs.taskWidget.taskColumns.contains('DESCRIPTION')}">
+        <p:column headerText="Description" styleClass="desc-column" filterBy="#{task.description}" rendered="#{cc.attrs.taskWidget.taskColumns.contains('DESCRIPTION')}" field="DESCRIPTION">
           <h:outputText value="#{task.description}" />
         </p:column>
-        <p:column headerText="Responsible" styleClass="" filterBy="#{task.activator.displayName}" visible="#{cc.attrs.taskWidget.taskColumns.contains('ACTIVATOR')}"
+        <p:column headerText="Responsible" filterBy="#{task.activator.displayName}" sortBy="#{task.activator.displayName}" rendered="#{cc.attrs.taskWidget.taskColumns.contains('ACTIVATOR')}" field="ACTIVATOR"
           width="150" style="text-align: center">
           <h:outputText value="#{task.activator.displayName}" />
         </p:column>
-        <p:column headerText="State" styleClass="state-column" filterBy="#{task.state}" visible="#{cc.attrs.taskWidget.taskColumns.contains('STATE')}"
+        <p:column headerText="State" styleClass="state-column" filterBy="#{task.state}" sortBy="#{task.state}" rendered="#{cc.attrs.taskWidget.taskColumns.contains('STATE')}" field="STATE"
           width="100" style="text-align: center">
           <h:outputText value="#{taskWidgetConfigurationPrototypeBean.getUserFriendlyTaskState(task.state)}" styleClass="state #{task.state}" />
         </p:column>
-        <p:column headerText="Created" filterBy="#{task.startTimestamp}" visible="#{cc.attrs.taskWidget.taskColumns.contains('CREATION_TIME')}"
+        <p:column headerText="Created" filterBy="#{task.startTimestamp}" sortBy="#{task.startTimestamp}" rendered="#{cc.attrs.taskWidget.taskColumns.contains('CREATION_TIME')}" field="CREATION_TIME"
           width="100" style="text-align: center">
           <h:outputText value="#{task.startTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
           </h:outputText>
         </p:column>
-        <p:column headerText="Expired" filterBy="#{task.expiryTimestamp}" visible="#{cc.attrs.taskWidget.taskColumns.contains('EXPIRY_TIME')}"
+        <p:column headerText="Expired" filterBy="#{task.expiryTimestamp}" sortBy="#{task.expiryTimestamp}" rendered="#{cc.attrs.taskWidget.taskColumns.contains('EXPIRY_TIME')}" field="EXPIRY_TIME"
           width="100" style="text-align: center">
           <h:outputText value="#{task.expiryTimestamp}">
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
@@ -62,6 +59,7 @@
       </p:dataTable>
     </h:panelGroup>
   </div>
-  </h:form>
+  
+  <p:remoteCommand name="rcUpdateTaskCount#{cc.attrs.taskWidget.id}" update="#{cc.attrs.taskCountId}" global="false" process="@this" />
 </cc:implementation>
 </html>

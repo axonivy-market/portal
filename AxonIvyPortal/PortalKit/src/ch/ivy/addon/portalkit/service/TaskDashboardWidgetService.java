@@ -8,8 +8,6 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.dto.TaskDashboardWidget;
-import ch.ivy.addon.portalkit.enums.TaskDashboardWidgetType;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -31,7 +29,7 @@ public class TaskDashboardWidgetService {
 
     // Description
     if (StringUtils.isNotBlank(definition.getDescription())) {
-      String containingKeyword = String.format("%%%s%%", definition.getTaskName());
+      String containingKeyword = String.format("%%%s%%", definition.getDescription());
       taskQuery.where().description().isLikeIgnoreCase(containingKeyword);
     }
 
@@ -51,7 +49,7 @@ public class TaskDashboardWidgetService {
     TaskQuery stateSubQuery = TaskQuery.create();
     List<TaskState> states = definition.getStates();
     if (CollectionUtils.isEmpty(states)) {
-      states = Arrays.asList(TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE, TaskState.UNASSIGNED);
+      states = Arrays.asList(TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE);
     }
     IFilterQuery stateFilterQuery = stateSubQuery.where();
     for (TaskState state : states) {
@@ -60,15 +58,10 @@ public class TaskDashboardWidgetService {
     taskQuery.where().and(stateSubQuery);
 
     // Responsible
-    if (definition.getTaskDashboardWidgetType() == TaskDashboardWidgetType.PERSONAL) {
-      taskQuery.where().and().activatorUserId().isEqual(Ivy.session().getSessionUser().getId());
-    } else if (CollectionUtils.isNotEmpty(definition.getResponsibles()) || CollectionUtils.isNotEmpty(definition.getRoles())) {
+    if (CollectionUtils.isNotEmpty(definition.getResponsibles())) {
       TaskQuery responsibleQuery = TaskQuery.create();
       if (CollectionUtils.isNotEmpty(definition.getResponsibles())) {
-        definition.getResponsibles().forEach(user -> responsibleQuery.where().or().activatorName().isEqual("#".concat(user)));
-      }
-      if (CollectionUtils.isNotEmpty(definition.getRoles())) {
-        definition.getRoles().forEach(role -> responsibleQuery.where().or().activatorName().isEqual(role));
+        definition.getResponsibles().forEach(r -> responsibleQuery.where().or().activatorName().isEqual(r));
       }
       taskQuery.where().and(responsibleQuery);
     }
