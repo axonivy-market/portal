@@ -48,11 +48,11 @@ public class RegisteredApplicationService extends AbstractService<Application> {
    */
   @SuppressWarnings("unchecked")
   public List<Application> findAllThirdPartyApplication(){
-    IDataCacheEntry sessionCache = IvyCacheService.newInstance().getSessionCache(IvyCacheIdentifier.APPLICATION_GROUP_NAME, IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS);
+    IDataCacheEntry sessionCache = IvyCacheService.newInstance().getSessionCache(IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS, IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS);
     if (sessionCache == null) {
       List<Application> applications = new ArrayList<>();
       applications.addAll(getDao().findAllThirdPartyApplications());
-      IvyCacheService.newInstance().setSessionCache(IvyCacheIdentifier.APPLICATION_GROUP_NAME, IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS, applications);
+      IvyCacheService.newInstance().setSessionCache(IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS, IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS, applications);
       return applications;
     } else {
       return (List<Application>) sessionCache.getValue();

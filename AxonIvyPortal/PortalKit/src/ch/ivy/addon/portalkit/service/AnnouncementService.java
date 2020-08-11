@@ -140,7 +140,7 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
 
   public void invalidateCache() {
     IvyCacheService.newInstance()
-        .invalidateApplicationCacheByGroupName(IvyCacheIdentifier.PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME);
+        .invalidateApplicationCacheForAllAvailableApplications(IvyCacheIdentifier.PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME);
   }
 
   @Override
