@@ -92,12 +92,8 @@ public class ExpressManagementBean implements Serializable {
         displayName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
       }
     } else {
-      try {
-        IUser user = ServiceUtilities.findUser(activatorName, Ivy.request().getApplication());
-        displayName = StringUtils.isBlank(user.getDisplayName()) ? user.getName() : user.getDisplayName();
-      } catch (Exception ex) {
-        Ivy.log().error("Error in getting users within app {0}", ex, Ivy.request().getApplication());
-      }
+      IUser user = ServiceUtilities.findUser(activatorName, Ivy.request().getApplication());
+      displayName = StringUtils.isBlank(user.getDisplayName()) ? user.getName() : user.getDisplayName();
     }
     return displayName;
   }

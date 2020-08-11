@@ -9,13 +9,11 @@ import java.util.stream.Collectors;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.service.ISubstituteService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserSubstitute;
@@ -115,7 +113,7 @@ public class SubstituteService implements ISubstituteService {
     return ivySubstitute;
   }
 
-  private void createSubstitutes(List<IvySubstitute> substitutes, IUser user, IApplication application) throws PortalIvyDataException{
+  private void createSubstitutes(List<IvySubstitute> substitutes, IUser user, IApplication application){
     for (IvySubstitute ivySubstitute : substitutes) {
       if (ivySubstitute.getSubstituteUser() != null) {
         IUser iUser = ServiceUtilities.findUser(ivySubstitute.getSubstituteUser().getName(), application);
@@ -141,14 +139,10 @@ public class SubstituteService implements ISubstituteService {
         return Void.class;
       }
 
-      try {
-        IApplication application = Ivy.wf().getApplication();
-        IUser user = ServiceUtilities.findUser(userDTO.getName(), application);
-        deleteSubstitutes(user);
-        createSubstitutes(ivySubstitutes, user, application);
-      } catch (PortalIvyDataException e) {
-        throw new PersistencyException(e);
-      }
+      IApplication application = Ivy.wf().getApplication();
+      IUser user = ServiceUtilities.findUser(userDTO.getName(), application);
+      deleteSubstitutes(user);
+      createSubstitutes(ivySubstitutes, user, application);
       return Void.class;
     });
   }
