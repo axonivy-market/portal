@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Deque;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -42,6 +43,7 @@ import com.google.gson.GsonBuilder;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.util.RedeploymentUtils;
 import ch.ivyteam.di.restricted.DiCore;
 import ch.ivyteam.ivy.cluster.restricted.IClusterManager;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -108,10 +110,12 @@ public class ChatService {
     // unhandled chat responses happen because of clicking chat button before async response is created
     ChatResponse unhandledChatResponse = null;
     try {
-      unhandledChatResponse = ConcurrentChatUtils.getRecentChatResponseHistory(sessionUserName()).stream()
-          .filter(entry -> isHistoryEntryOnlyForThisClient(clientId, entry)).findFirst().orElse(null);
+      unhandledChatResponse = getUnhandledResponseWhenRegisteringMessage(clientId);
     } catch (ClassCastException e) {
       Ivy.log().info("PMV could be redeployed", e);
+      Deque<ChatResponse> history = ConcurrentChatUtils.getRecentChatResponseHistory(sessionUserName());
+      RedeploymentUtils.filterObjectOfCurrentClassLoader(history, ChatResponse.class);
+      unhandledChatResponse = getUnhandledResponseWhenRegisteringMessage(clientId);
     }
     if (unhandledChatResponse != null) {
       response.resume(toJson(unhandledChatResponse));
@@ -325,7 +329,8 @@ public class ChatService {
   }
 
   public void handleUserOnline(String username) {
-    handleAction(() -> performUpdatingUserStatus(username, true), () -> ClusterChatEventSender.handleUserOnline(username));
+    handleAction(() -> performUpdatingUserStatus(username, true),
+        () -> ClusterChatEventSender.handleUserOnline(username));
   }
 
   public void handleUserOffline(String username) {
@@ -334,6 +339,7 @@ public class ChatService {
 
   public synchronized void performHandlingUserOffline(String username) {
     messageResponses.remove(username);
+    usernameToGroupChats.remove(username);
     performUpdatingUserStatus(username, false);
   }
 
@@ -596,6 +602,11 @@ public class ChatService {
   private boolean isDuplicatedAction(String content, ChatResponse lastChatResponse, String action) {
     return lastChatResponse != null && action.equals(lastChatResponse.getAction())
         && content.equals(lastChatResponse.getContent());
+  }
+
+  private ChatResponse getUnhandledResponseWhenRegisteringMessage(String clientId) {
+    return ConcurrentChatUtils.getRecentChatResponseHistory(sessionUserName()).stream()
+        .filter(entry -> isHistoryEntryOnlyForThisClient(clientId, entry)).findFirst().orElse(null);
   }
 
   private void handleAction(Runnable actionOnStandardMode, Runnable actionOnClusterMode) {

@@ -14,9 +14,9 @@ public enum ClusterChatAction implements Consumer<ClusterChatEventParameter> {
   }), PORTAL_CHAT_UPDATE_GROUP_LIST((param) -> {
     ChatServiceContainer.getChatService().performUpdatingGroupList(param.getGroupChat());
   }), PORTAL_CHAT_UPDATE_USER_STATUS((param) -> {
-    ChatServiceContainer.getChatService().performUpdatingUserStatus(param.getUsername(), param.isOnline());
+    ChatServiceContainer.getChatService().performUpdatingUserStatus(param.getActor(), param.isOnline());
   }), PORTAL_CHAT_HANDLE_USER_OFFLINE((param) -> {
-    ChatServiceContainer.getChatService().performHandlingUserOffline((param.getUsername()));
+    ChatServiceContainer.getChatService().performHandlingUserOffline((param.getActor()));
   }), PORTAL_CHAT_READ_MESSAGE((param) -> {
     ChatServiceContainer.getChatService().performReadingMessage(param.getParticipant(), param.getClientId(),
         param.getActor());
