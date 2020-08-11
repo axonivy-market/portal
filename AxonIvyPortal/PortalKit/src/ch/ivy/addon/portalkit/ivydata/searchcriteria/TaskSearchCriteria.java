@@ -23,7 +23,6 @@ import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
-import ch.ivyteam.ivy.workflow.query.TaskQuery.FilterLink;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class TaskSearchCriteria {
@@ -409,7 +408,7 @@ public class TaskSearchCriteria {
 
   /**
    * No need since 9.2, always true
-   * @return
+   * @return username
    */
   @Deprecated(forRemoval = true, since = "9.2")
   public boolean hasInvolvedUsername() {

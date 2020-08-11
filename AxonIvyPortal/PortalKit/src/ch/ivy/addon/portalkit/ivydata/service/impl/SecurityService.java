@@ -45,40 +45,6 @@ public class SecurityService implements ISecurityService {
   }
   
   /**
-   * Quey users in engine
-   * @param query
-   * @param apps
-   * @param startIndex
-   * @param count
-   * @param fromRoles
-   * @param excludedUsernames
-   * @return {@link List}
-   * @throws PortalIvyDataException
-   */
-  /*
-  private List<UserDTO> queryUsers(String query, List<String> apps, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) throws PortalIvyDataException {
-    IUserQueryExecutor executor = ServerFactory.getServer().getSecurityManager().getUserQueryExecutor();
-    UserQuery userQuery = executor.createUserQuery().orderBy().fullName();
-    IFilterQuery filterQuery = createFilterQuery(query, userQuery);
-    
-    if (CollectionUtils.isNotEmpty(fromRoles)) {
-      UserQuery hasRolesQuery = UserQuery.create();
-      for (String appName : apps) {
-        IApplication app = ServiceUtilities.findApp(appName);
-        hasRolesQuery.where().or(queryHasRoles(app, fromRoles));
-      }
-      filterQuery.andOverall(hasRolesQuery);
-    }
-    excludeUsername(excludedUsernames, filterQuery);
-    
-    Recordset recordset = executor.getRecordset(userQuery, startIndex, count);
-    return recordset.getRecords()
-        .stream()
-        .map(UserDTO::new)
-        .collect(Collectors.toList());
-  }*/
-  
-  /**
    * Query users in specific application
    * @param query
    * @param app
@@ -135,20 +101,9 @@ public class SecurityService implements ISecurityService {
   
   @Override
   public IvySecurityResultDTO findRoles() {
-    return IvyExecutor.executeAsSystem(() -> { 
-      IvySecurityResultDTO result = new IvySecurityResultDTO();
-      List<IRole> roles = new ArrayList<>();
-      IApplication app = Ivy.wf().getApplication();
-      roles.addAll(ServiceUtilities.findAllRoles(app));
-      result.setRoles(roles);
-      return result;
-    });
-  }
-  
-  @Override
-  public IvySecurityResultDTO findRoles(IApplication app) {
     return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
+      IApplication app = Ivy.wf().getApplication();
       List<IRole> roles = ServiceUtilities.findAllRoles(app);
       roles.sort((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName()));
       result.setRoles(roles);
@@ -157,9 +112,10 @@ public class SecurityService implements ISecurityService {
   }
   
   @Override
-  public IvySecurityResultDTO findRoleDTOs(IApplication app) {
+  public IvySecurityResultDTO findRoleDTOs() {
     return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
+      IApplication app = Ivy.wf().getApplication();
       List<RoleDTO> roles = ServiceUtilities.findAllRoleDTO(app);
       roles.sort(getRoleDTOComparator());
       result.setRoleDTOs(roles);
