@@ -39,22 +39,12 @@ public interface ISecurityService {
   /**
    * Finds the users and roles
    * @param query
-   * @param app
-   * @param startIndex 0..n. The index of the first record is 0
-   * @param count 0..n. Use -1 to return all beginning from the startIndex
-   * @return {@link IvySecurityResultDTO}
-   */
-  IvySecurityResultDTO findSecurityMembers(String query, IApplication app, int startIndex, int count);
-  
-  /**
-   * Finds the users and roles in current application
-   * @param query
    * @param startIndex 0..n. The index of the first record is 0
    * @param count 0..n. Use -1 to return all beginning from the startIndex
    * @return {@link IvySecurityResultDTO}
    */
   IvySecurityResultDTO findSecurityMembers(String query, int startIndex, int count);
-
+  
   /**
    * Gets roleDTOs in current application 
    * @return {@link IvySecurityResultDTO}
