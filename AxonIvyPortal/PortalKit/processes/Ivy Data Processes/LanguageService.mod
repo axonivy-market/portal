@@ -47,7 +47,7 @@ Ee0 f17 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultD
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 
 
-IvyLanguageResultDTO dto = LanguageService.newInstance().getSupportedLanguages();
+IvyLanguageResultDTO dto = LanguageService.newInstance().findUserLanguages();//getSupportedLanguages();
 out.language = dto.ivyLanguage;' #txt
 Ee0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -80,10 +80,9 @@ Ee0 f32 521 145 30 30 0 15 #rect
 Ee0 f32 @|EndSubIcon #fIcon
 Ee0 f33 actionTable 'out=in;
 ' #txt
-Ee0 f33 actionCode 'import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
-import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+Ee0 f33 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 
-IvyLanguageResultDTO dto = LanguageService.newInstance().saveUserLanguage(in.language);' #txt
+LanguageService.newInstance().saveUserLanguage(in.language);' #txt
 Ee0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

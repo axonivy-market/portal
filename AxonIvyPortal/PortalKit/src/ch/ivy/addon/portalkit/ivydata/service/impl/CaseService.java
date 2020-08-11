@@ -3,7 +3,6 @@ package ch.ivy.addon.portalkit.ivydata.service.impl;
 import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCasesExcluded;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,8 +16,6 @@ import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
@@ -149,18 +146,13 @@ public class CaseService implements ICaseService {
   public IvyCaseResultDTO analyzeElapsedTimeByCaseCategory(CaseSearchCriteria criteria) {
     return IvyExecutor.executeAsSystem(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
-      try {
-        CaseQuery finalQuery = extendQuery(criteria);
-        finalQuery.where().and().businessRuntime().isNotNull();
-        finalQuery.aggregate().avgBusinessRuntime().groupBy().category();
+      CaseQuery finalQuery = extendQuery(criteria);
+      finalQuery.where().and().businessRuntime().isNotNull();
+      finalQuery.aggregate().avgBusinessRuntime().groupBy().category();
 
-        Recordset recordSet = Ivy.wf().getCaseQueryExecutor().getRecordset(finalQuery);
-        ElapsedTimeStatistic elapsedTimeStatistic = createCategoryToAverageElapsedTimeMap(recordSet);
-        result.setElapsedTimeStatistic(elapsedTimeStatistic);
-      } catch (Exception ex) {
-        Ivy.log().error("Error in getting case elapsed time statistic", ex);
-        result.setErrors(Arrays.asList(new PortalIvyDataException(PortalIvyDataErrorType.FAIL_TO_LOAD_CASE_ELAPSED_TIME_STATISTIC.toString())));
-      }
+      Recordset recordSet = Ivy.wf().getCaseQueryExecutor().getRecordset(finalQuery);
+      ElapsedTimeStatistic elapsedTimeStatistic = createCategoryToAverageElapsedTimeMap(recordSet);
+      result.setElapsedTimeStatistic(elapsedTimeStatistic);
       return result;
     });
   }
