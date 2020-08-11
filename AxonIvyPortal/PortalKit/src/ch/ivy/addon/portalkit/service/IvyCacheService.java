@@ -8,6 +8,7 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
+import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.data.cache.IDataCache;
 import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
@@ -43,7 +44,7 @@ public class IvyCacheService {
     sessionCache().setEntry(groupIdentifier, identifier, value);
   }
   
-  public void invalidateGroup(String groupIdentifier) {
+  public void invalidateSessionCacheWithGroup(String groupIdentifier) {
     IDataCacheGroup group = sessionCache().getGroup(groupIdentifier);
     if (group != null) {
       sessionCache().invalidateGroup(group);
@@ -98,25 +99,33 @@ public class IvyCacheService {
     IDataCacheGroup cacheGroup = applicationCache().getGroup(groupName);
     if(cacheGroup != null) {
       applicationCache().invalidateGroup(cacheGroup);
-      Ivy.log().info("CLEAR APPLIATION CACHE - GROUP {0}", groupName);
+      Ivy.log().info("CLEAR APPLICATION CACHE - GROUP {0}", groupName);
     }
   }
 
-  public void invalidateGlobalSettingOnApp(String applicationName) {
+  /**
+   * This method will invalidate global configuration cache store in application cache
+   * @param cacheGroupName
+   */
+  //TODO: after switch to application scope for all configuration, we don't need this method, just clear cache on current app
+  public void invalidateApplicationCacheForAllAvailableApplications(String cacheGroupName) {
     try {
       ServerFactory.getServer().getSecurityManager().executeAsSystem(() ->{
-        IApplication findApplication = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(applicationName);
-        if (findApplication != null) {
-          IDataCache cache = findApplication.getAdapter(IDataCache.class);
-          if (cache != null) {
-            IDataCacheGroup wsGroupName = cache.getGroup(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME);
-            if (wsGroupName != null){
-              Ivy.log().info("CLEAR GLOBAL SETTING CACHE : {0} on application {1}", IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME, applicationName);
-              wsGroupName.invalidateAllEntries();
+        List<IApplication> ivyApplications = ServerFactory.getServer().getApplicationConfigurationManager().getApplications();
+        ivyApplications.forEach(app -> {
+          if(isActive(app)) {
+            IDataCache cache = app.getAdapter(IDataCache.class);
+            if (cache != null) {
+              IDataCacheGroup wsGroupName = cache.getGroup(cacheGroupName);
+              if (wsGroupName != null){
+                Ivy.log().info("CLEAR APPLICATION CACHE - GROUP {0} ON APPLICATION {1}", cacheGroupName, app.getName());
+                wsGroupName.invalidateAllEntries();
+              }
             }
           }
-        }
-        return null;
+            
+        });
+        return Void.class;
       });
     } catch (Exception e) {
       Ivy.log().error(e);
@@ -139,5 +148,9 @@ public class IvyCacheService {
   
   private IDataCache applicationCache() {
     return Ivy.datacache().getAppCache();
+  }
+  
+  private boolean isActive(IApplication ivyApplication) {
+    return ivyApplication.getActivityState() == ActivityState.ACTIVE;
   }
 }

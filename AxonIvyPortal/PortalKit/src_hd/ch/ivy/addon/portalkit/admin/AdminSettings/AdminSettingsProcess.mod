@@ -1096,8 +1096,7 @@ As0 f26 actionTable 'out=in;
 As0 f26 actionCode 'import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 
-IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION);
-IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON);' #txt
+IvyCacheService.newInstance().invalidateSessionCacheWithGroup(IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS);' #txt
 As0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1116,8 +1115,8 @@ As0 f42 actionTable 'out=in;
 As0 f42 actionCode 'import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 
-IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION);
-IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON);
+IvyCacheService.newInstance().invalidateSessionCacheWithGroup(IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS);
+
 ' #txt
 As0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1137,8 +1136,7 @@ As0 f46 actionTable 'out=in;
 As0 f46 actionCode 'import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 
-IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION);
-IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON);' #txt
+IvyCacheService.newInstance().invalidateSessionCacheWithGroup(IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS);' #txt
 As0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1364,9 +1362,10 @@ As0 f14 0 0.5102703343998245 0 0 #arcLabel
 >Proto As0 '' #fIcon
 Ct0 f51 actionTable 'out=in;
 ' #txt
-Ct0 f51 actionCode 'import ch.ivy.addon.portalkit.service.IvyCacheService;
+Ct0 f51 actionCode 'import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
+import ch.ivy.addon.portalkit.service.IvyCacheService;
 
-IvyCacheService.newInstance().invalidateGlobalSettingOnApp(ivy.wf.getApplication().getName());
+IvyCacheService.newInstance().invalidateApplicationCacheForAllAvailableApplications(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME);
 ' #txt
 Ct0 f51 security system #txt
 Ct0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

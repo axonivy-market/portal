@@ -324,9 +324,7 @@ ac0 f25 @|StepIcon #fIcon
 ac0 f21 actionTable 'out=in;
 ' #txt
 ac0 f21 actionCode 'import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
-import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
 in.taskSearchCriteria.sorted = false;
 if (PermissionUtils.checkReadAllTasksPermission()) {
