@@ -1364,17 +1364,11 @@ As0 f14 0 0.5102703343998245 0 0 #arcLabel
 >Proto As0 '' #fIcon
 Ct0 f51 actionTable 'out=in;
 ' #txt
-Ct0 f51 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Application;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
-import ch.ivy.addon.portalkit.service.IvyCacheService;
+Ct0 f51 actionCode 'import ch.ivy.addon.portalkit.service.IvyCacheService;
 
-IvyCacheService.newInstance().invalidateGlobalSettingCache();
-
-java.util.List<Application> apps = new RegisteredApplicationService().findAllIvyApplications();
-
-for (Application app: apps){
-	IvyCacheService.newInstance().invalidateGlobalSettingOnApp(app.getName());
-}' #txt
+IvyCacheService.newInstance().invalidateGlobalSettingOnApp(ivy.wf.getApplication().getName());
+' #txt
+Ct0 f51 security system #txt
 Ct0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

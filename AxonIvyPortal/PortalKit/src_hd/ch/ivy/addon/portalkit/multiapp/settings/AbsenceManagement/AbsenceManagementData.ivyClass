@@ -13,9 +13,6 @@ selectedAbsence PERSISTENT #fieldModifier
 validationError Boolean #field
 absenceInThePastShown Boolean #field
 absenceInThePastShown PERSISTENT #fieldModifier
-selectedSubstituteUserByApp java.util.Map #field
-selectedSubstituteUserByApp 'map of <application, user> in case many applications and admin can change user to set deputy on each app. User is always login user if not admin' #fieldComment
-selectedSubstituteUserByApp PERSISTENT #fieldModifier
 displayedAbsences java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence> #field
 displayedAbsences PERSISTENT #fieldModifier
 isAbsenceBeingCreated Boolean #field
