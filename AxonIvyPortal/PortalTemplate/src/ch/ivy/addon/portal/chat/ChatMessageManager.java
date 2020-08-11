@@ -19,6 +19,7 @@ import org.apache.commons.lang3.math.NumberUtils;
 import com.google.gson.Gson;
 
 import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.util.RedeploymentUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.File;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -206,17 +207,23 @@ public final class ChatMessageManager {
     }
   }
 
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings({"unchecked"})
   public static List<ChatMessage> getUnreadMessagesInMemory(List<String> participants) {
     String attrName = messageAttribute(participants);
     List<ChatMessage> unreadMessages = (List<ChatMessage>) ObjectUtils.defaultIfNull(Ivy.wf().getApplication().getAttribute(attrName),
           new ArrayList<>());
     
-    unreadMessages.removeAll(unreadMessages.stream().filter(x -> isDestroyedOrDoneCase(x.getSender())).collect(Collectors.toList()));
+    try {
+      unreadMessages.removeAll(unreadMessages.stream().filter(x -> isDestroyedOrDoneCase(x.getSender())).collect(Collectors.toList()));
+    } catch (ClassCastException e) {
+      Ivy.log().info("PMV could be redeployed", e);
+      RedeploymentUtils.filterObjectOfCurrentClassLoader(unreadMessages, ChatMessage.class);
+      unreadMessages.removeAll(unreadMessages.stream().filter(x -> isDestroyedOrDoneCase(x.getSender())).collect(Collectors.toList()));
+    }
     Ivy.wf().getApplication().setAttribute(attrName, unreadMessages);
     return unreadMessages;
   }
-  
+
   private static boolean isDestroyedOrDoneCase(String sender){
     String caseId = getCaseId(sender);
     if (StringUtils.isNotBlank(caseId)){
