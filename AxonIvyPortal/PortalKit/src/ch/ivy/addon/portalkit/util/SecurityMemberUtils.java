@@ -32,7 +32,6 @@ public class SecurityMemberUtils {
     return IvyExecutor.executeAsSystem(() -> {
       return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
           .withStartName("findSecurityMembers")
-          .withParam("application", Ivy.request().getApplication())
           .withParam("query", query)
           .withParam("startIndex", startIndex)
           .withParam("count", count)
