@@ -414,7 +414,9 @@ public class TaskWidgetPage extends TemplatePage {
         findElementByCssSelector("input[id$='description-filter:filter-input-form:description']");
     enterKeys(descriptionInput, text);
     click(By.cssSelector("button[id$='description-filter:filter-input-form:update-command']"));
-    waitAjaxIndicatorDisappear();
+
+    WaitHelper.assertTrueWithWait(() ->
+        findElementByCssSelector("[id$=':description-filter:filter-open-form:advanced-filter-command']").getText().contains(text));
   }
 
   public void filterByCustomerName(String text) {
