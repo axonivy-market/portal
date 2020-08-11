@@ -1,5 +1,5 @@
-co: name={addNewApplication} description={} changed={2019-02-11 03:13:30 CET} changedby={ntminh01} visualorder={0} guid={15F713A586D2141E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A5879D1848} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:01 CEST} validto={} changed={2017-10-31 07:59:30 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A5880EF455} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:45 CET} validto={} changed={2017-10-31 07:59:30 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A58749B445} datatype={} isdefault={true} langid={en} description={} validfrom={2015-02-10 10:20:39 CET} validto={} changed={2017-10-31 07:59:30 CET} changedby={chnam} properties={} id={}
-val: guid={168DA54B3B6976F1} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:30 CET} validto={} changed={2019-02-11 03:13:30 CET} changedby={ntminh01} properties={} id={}
+co: name={addNewApplication} description={} changed={2020-08-11 04:37:11 CEST} changedby={chnam} visualorder={0} guid={15F713A586D2141E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={15F713A5879D1848} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:01 CEST} validto={} changed={2020-08-11 04:37:11 CEST} changedby={chnam} properties={} id={}
+val: guid={15F713A5880EF455} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:45 CET} validto={} changed={2020-08-11 04:37:10 CEST} changedby={chnam} properties={} id={}
+val: guid={15F713A58749B445} datatype={} isdefault={true} langid={en} description={} validfrom={2015-02-10 10:20:39 CET} validto={} changed={2020-08-11 04:37:11 CEST} changedby={chnam} properties={} id={}
+val: guid={168DA54B3B6976F1} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:30 CET} validto={} changed={2020-08-11 04:37:10 CEST} changedby={chnam} properties={} id={}
