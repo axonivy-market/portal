@@ -283,7 +283,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   protected void initializedDataModel(TaskSearchCriteria criteria) {
-    criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
     data.clear();
     buildQueryToSearchCriteria();
     if (disableTaskCount) {
@@ -308,7 +307,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   protected void buildCriteria() {
     criteria = new TaskSearchCriteria();
-    criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
     criteria.setIncludedStates(new ArrayList<>(TaskSearchCriteria.STANDARD_STATES));
     criteria.setSortField(TaskSortField.ID.toString());
     criteria.setSortDescending(true);

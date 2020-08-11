@@ -378,10 +378,8 @@ Ts0 f3 224 184 488 264 #arcP
 Ts0 f3 1 224 264 #addKink
 Ts0 f4 expr in #txt
 Ts0 f4 240 168 304 168 #arcP
-Ts0 f5 processCall 'Ivy Data Processes/SecurityService:findRolesDTO(ch.ivyteam.ivy.application.IApplication)' #txt
-Ts0 f5 requestActionDecl '<ch.ivyteam.ivy.application.IApplication application> param;' #txt
-Ts0 f5 requestMappingAction 'param.application=in.application;
-' #txt
+Ts0 f5 processCall 'Ivy Data Processes/SecurityService:findRolesDTO()' #txt
+Ts0 f5 requestActionDecl '<> param;' #txt
 Ts0 f5 responseMappingAction 'out=in;
 out.rolesToDelegate=result.roles;
 ' #txt

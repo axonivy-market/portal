@@ -14,6 +14,7 @@ public class SecurityMemberDisplayNameUtils {
   private static final String NOT_AVAILABLE_CMS = "/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable";
   private static final String FORMAT_WITH_DISPLAY_NAME = "%s (%s)";
   private static final String FORMAT_WITHOUT_DISPLAY_NAME = "<%s> (%s)";
+  private static final String FORMAT_DISABLED_USER = "%s %s";
 
 
   public static String generateBriefDisplayNameForSecurityMember(ISecurityMember securityMember, String securityMemberName) {
@@ -86,7 +87,7 @@ public class SecurityMemberDisplayNameUtils {
     else {
       displayName = String.format(FORMAT_WITH_DISPLAY_NAME, user.getDisplayName(), formattedUsername);
       if(!user.isEnabled()) {
-        displayName = Ivy.cms().co(DISABLED_USER_PREFIX_CMS) + " " + displayName;
+        displayName = formatDisabledUser(displayName);
       }
     }
     return displayName;
@@ -105,10 +106,14 @@ public class SecurityMemberDisplayNameUtils {
     else {
       displayName = String.format(FORMAT_WITH_DISPLAY_NAME, user.getDisplayName(), formattedUsername);
       if(!user.isEnabled()) {
-        displayName = Ivy.cms().co(DISABLED_USER_PREFIX_CMS) + " " + displayName;
+        displayName = formatDisabledUser(displayName);
       }
     }
     return displayName;
+  }
+
+  private static String formatDisabledUser(String displayName) {
+    return String.format(FORMAT_DISABLED_USER, Ivy.cms().co(DISABLED_USER_PREFIX_CMS), displayName);
   }
 
   private static String stripSharpCharacterFromSecurityMemberName(String username) {
