@@ -323,11 +323,11 @@ public class TaskSearchCriteria {
 
   /**
    * No need since 9.2, always use session username
-   * @return
+   * @return empty String
    */
   @Deprecated(forRemoval = true, since = "9.2")
   public String getInvolvedUsername() {
-    return involvedUsername;
+    return "";
   }
 
   /**
