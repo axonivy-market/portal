@@ -22,7 +22,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserAbsence;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 public class UserUtils {
@@ -45,25 +44,21 @@ public class UserUtils {
    * Set locale for session from user setting or application default
    */
   public static void setLanguague() {
-    try {
-      ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-        IUser sessionUser = getIvySession().getSessionUser();
-        Locale l = null;
-        if (sessionUser.getEMailLanguage() != null) {
-          l = sessionUser.getEMailLanguage();
-        } else {
-          // Application Default
-          Locale defaultApplicationLocal = Ivy.request().getApplication().getDefaultEMailLanguage();
-          l = new Locale(defaultApplicationLocal.getLanguage(), defaultApplicationLocal.getCountry(),
-              APPLICATION_DEFAULT);
-        }
-        getIvySession().setContentLocale(l);
-        getIvySession().setFormattingLocale(l);
-        return null;
-      });
-    } catch (Exception e) {
-      Ivy.log().error(e);
-    }
+    IvyExecutor.executeAsSystem(()->{
+      IUser sessionUser = getIvySession().getSessionUser();
+      Locale l = null;
+      if (sessionUser.getEMailLanguage() != null) {
+        l = sessionUser.getEMailLanguage();
+      } else {
+        // Application Default
+        Locale defaultApplicationLocal = Ivy.request().getApplication().getDefaultEMailLanguage();
+        l = new Locale(defaultApplicationLocal.getLanguage(), defaultApplicationLocal.getCountry(),
+            APPLICATION_DEFAULT);
+      }
+      getIvySession().setContentLocale(l);
+      getIvySession().setFormattingLocale(l);
+      return null;
+    });
   }
 
   public static String getSessionUserName() {
