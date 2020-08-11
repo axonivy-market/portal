@@ -37,13 +37,6 @@ public interface ISecurityService {
   IvySecurityResultDTO findRoles();
   
   /**
-   * Finds the roles by the given application
-   * @param app
-   * @return {@link IvySecurityResultDTO}
-   */
-  IvySecurityResultDTO findRoles(IApplication app);
-  
-  /**
    * Finds the users and roles
    * @param query
    * @param app
@@ -63,9 +56,8 @@ public interface ISecurityService {
   IvySecurityResultDTO findSecurityMembers(String query, int startIndex, int count);
 
   /**
-   * Gets roleDTOs of the given application name
-   * @param app 
+   * Gets roleDTOs in current application 
    * @return {@link IvySecurityResultDTO}
    */
-  IvySecurityResultDTO findRoleDTOs(IApplication app);
+  IvySecurityResultDTO findRoleDTOs();
 }

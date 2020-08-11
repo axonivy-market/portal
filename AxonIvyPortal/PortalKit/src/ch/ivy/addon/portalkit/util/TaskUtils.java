@@ -6,17 +6,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
-import ch.ivyteam.ivy.security.SecurityManagerFactory;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
@@ -56,15 +52,10 @@ public final class TaskUtils {
    * @return Boolean
    */
   public static Boolean removeTaskDelay(final ITask task) {
-    try {
-      return SecurityManagerFactory.getSecurityManager().executeAsSystem(() -> {
-        task.setDelayTimestamp(null);
-        return true;
-      });
-    } catch (Exception e) {
-      Ivy.log().error(e);
-      return false;
-    }
+    return IvyExecutor.executeAsSystem(() -> {
+      task.setDelayTimestamp(null);
+      return true;
+    });
   }
 
   /**
@@ -93,15 +84,11 @@ public final class TaskUtils {
    * @param iSecurityMember
    */
   public static void delegateTask(final ITask iTask, final ISecurityMember iSecurityMember) {
-    try {
-      ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-        iTask.setActivator(iSecurityMember);
-        iTask.customFields().timestampField(CUSTOM_TIMESTAMP_FIELD5).set(new Date());
-        return null;
-      });
-    } catch (Exception e) {
-      Ivy.log().error(e);
-    }
+    IvyExecutor.executeAsSystem(() -> {
+      iTask.setActivator(iSecurityMember);
+      iTask.customFields().timestampField(CUSTOM_TIMESTAMP_FIELD5).set(new Date());
+      return Void.class;
+    });
   }
 
   /**
@@ -130,21 +117,16 @@ public final class TaskUtils {
    */
   public static ITask findTaskUserHasPermissionToSee(final long taskId) {
     return IvyExecutor.executeAsSystem(() -> {
-      try {
-        TaskQuery taskQuery1 = TaskQuery.create().where().taskId().isEqual(taskId);
-        TaskQuery taskQuery2 = TaskQuery.create().where().currentUserIsInvolved();
-        IUser user = Ivy.session().getSessionUser();
-        if (user == null) {
-          return null;
-        }
-        for (IRole role : user.getRoles()) {
-          taskQuery2 = taskQuery2.where().or().roleIsInvolved(role);
-        }
-        return Ivy.wf().getTaskQueryExecutor().getFirstResult(taskQuery1.where().and(taskQuery2));
-      } catch (Exception e) {
-        Ivy.log().error(e);
+      TaskQuery taskQuery1 = TaskQuery.create().where().taskId().isEqual(taskId);
+      TaskQuery taskQuery2 = TaskQuery.create().where().currentUserIsInvolved();
+      IUser user = Ivy.session().getSessionUser();
+      if (user == null) {
         return null;
       }
+      for (IRole role : user.getRoles()) {
+        taskQuery2 = taskQuery2.where().or().roleIsInvolved(role);
+      }
+      return Ivy.wf().getTaskQueryExecutor().getFirstResult(taskQuery1.where().and(taskQuery2));
     });
   }
 
@@ -156,25 +138,15 @@ public final class TaskUtils {
   public static ITask findTaskById(long taskId) {
     return IvyExecutor.executeAsSystem(() -> {
       TaskQuery taskQuery = TaskQuery.create().where().taskId().isEqual(taskId);
-      return Ivy.wf().getGlobalContext().getTaskQueryExecutor().getFirstResult(taskQuery);
+      return Ivy.wf().getTaskQueryExecutor().getFirstResult(taskQuery);
     });
   }
 
   public static boolean isTaskCurrentOpeningTask(ITask task){
-	  try {
-  		return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-  			  var wfTask = Ivy.wfTask();
-  			  var currentTaskAppName = Optional.of(wfTask).map(ITask::getApplication).map(IApplication::getName).orElse("");
-  			  var taskAppName = Optional.of(task).map(ITask::getApplication).map(IApplication::getName).orElse("");
-  			  return task.getState() == TaskState.RESUMED &&
-  					  task.getId() == wfTask.getId() &&
-  					  taskAppName.equals(currentTaskAppName);
-  		});
-  	} catch (Exception e) {
-  		// TODO Auto-generated catch block
-  		Ivy.log().error(e);
-  		return false;
-  	}
+    return IvyExecutor.executeAsSystem(() -> {
+      var wfTask = Ivy.wfTask();
+      return task.getState() == TaskState.RESUMED && task.getId() == wfTask.getId();
+    });
   }
   
   public static void updateTaskStartedAttribute(boolean status) {
