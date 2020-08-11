@@ -30,20 +30,19 @@ Pt0 @PushWFArc f9 '' #zField
 Pt0 @PushWFArc f11 '' #zField
 Pt0 @PushWFArc f18 '' #zField
 >Proto Pt0 Pt0 SecurityService #zField
-Pt0 f4 inParamDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count> param;' #txt
-Pt0 f4 inParamTable 'out.application=param.application;
-out.count=param.count;
+Pt0 f4 inParamDecl '<String query,Integer startIndex,Integer count> param;' #txt
+Pt0 f4 inParamTable 'out.count=param.count;
 out.query=param.query;
 out.startIndex=param.startIndex;
 ' #txt
 Pt0 f4 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.dto.SecurityMemberDTO> members,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
 Pt0 f4 outParamTable 'result.members=in.securityMembers;
 ' #txt
-Pt0 f4 callSignature findSecurityMembers(ch.ivyteam.ivy.application.IApplication,String,Integer,Integer) #txt
+Pt0 f4 callSignature findSecurityMembers(String,Integer,Integer) #txt
 Pt0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findSecurityMembers(IApplication,String,Integer,Integer)</name>
+        <name>findSecurityMembers(String,Integer,Integer)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -54,7 +53,7 @@ Pt0 f5 actionTable 'out=in;
 Pt0 f5 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
 
-IvySecurityResultDTO dto = SecurityService.newInstance().findSecurityMembers(in.query, in.application, in.startIndex, in.count);
+IvySecurityResultDTO dto = SecurityService.newInstance().findSecurityMembers(in.query, in.startIndex, in.count);
 out.securityMembers = dto.securityMembers;
 
 

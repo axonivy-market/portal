@@ -1,6 +1,5 @@
 SecurityServiceData #class
 ch.ivyteam.wf.processes #namespace
-application ch.ivyteam.ivy.application.IApplication #field
 count Integer #field
 query String #field
 roleDTOs java.util.List<ch.ivy.addon.portalkit.dto.RoleDTO> #field

@@ -2,9 +2,7 @@ package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -51,7 +49,7 @@ public class SecurityService implements ISecurityService {
    * @param startIndex
    * @param count
    * @param fromRoles
-   * @param excludedUsernames
+   * @param excludedUsernames 
    * @return {@link List}
    */
   private List<UserDTO> queryUsers(String query, IApplication app, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
@@ -124,9 +122,10 @@ public class SecurityService implements ISecurityService {
   }
 
   @Override
-  public IvySecurityResultDTO findSecurityMembers(String query, IApplication app, int startIndex, int count) {
+  public IvySecurityResultDTO findSecurityMembers(String query, int startIndex, int count) {
     return IvyExecutor.executeAsSystem(() -> {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
+      IApplication app = Ivy.wf().getApplication();
       List<RoleDTO> roles = ServiceUtilities.findAllRoleDTO(app).stream()
           .filter(role -> doesNameContainQuery(query, role))
           .sorted(getRoleDTOComparator())
@@ -145,33 +144,6 @@ public class SecurityService implements ISecurityService {
     });
   }
 
-  @Override
-  public IvySecurityResultDTO findSecurityMembers(String query, int startIndex, int count) {
-    return IvyExecutor.executeAsSystem(() -> {
-      IvySecurityResultDTO result = new IvySecurityResultDTO();
-      Map<String, RoleDTO> roleByName = new HashMap<>();
-      IApplication app = Ivy.wf().getApplication();
-      ServiceUtilities.findAllRoleDTO(app).forEach(role -> {
-        if (doesNameContainQuery(query, role)) {
-          roleByName.put(role.getName() + " - " + role.getMemberName(), role);
-        }
-      });
-      List<RoleDTO> roles = roleByName.values().stream()
-          .sorted(getRoleDTOComparator())
-          .collect(Collectors.toList());
-      List<UserDTO> users = queryUsers(query, app, startIndex, count, null, null);
-
-      List<SecurityMemberDTO> members = SecurityMemberDTOMapper.mapFromUserDTOs(users);
-      members.addAll(SecurityMemberDTOMapper.mapFromRoleDTOs(roles));
-      int size = count;
-      if (count <= 0) {
-        size = members.size();
-      }
-      result.setSecurityMembers(members.subList(startIndex, Math.min(size, members.size())));
-      return result;
-    });
-  }
-  
   private UserQuery queryExcludeUsernames(List<String> excludedUsernames) {
     UserQuery excludeUsernameQuery = UserQuery.create();
     IFilterQuery excludeUsernameFilter = excludeUsernameQuery.where();
