@@ -20,8 +20,8 @@ public class UserProcessService extends AbstractService<UserProcess> {
     return (UserProcessDao) super.getDao();
   }
 
-  public List<UserProcess> findByUserId(Long userId) {
-    return getDao().findByUserId(userId);
+  public List<UserProcess> findByUserIdInCurrentApplication(Long userId) {
+    return getDao().findByUserIdInCurrentApplication(userId);
   }
 
   public List<UserProcess> createDefaultUserProcesses(List<UserProcess> defaultUserProcesses, Long userId) {

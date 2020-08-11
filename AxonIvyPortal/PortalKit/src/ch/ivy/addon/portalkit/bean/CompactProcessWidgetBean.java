@@ -94,7 +94,7 @@ private static final long serialVersionUID = -5889375917550618261L;
       return new ArrayList<>();
     }
     
-    List<UserProcess> processes = userProcessService.findByUserId(userId);
+    List<UserProcess> processes = userProcessService.findByUserIdInCurrentApplication(userId);
     processes.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
     removeDeletedExpressWorkflowFromUserProcesses(processes);
     removeDeletedExternalLinkFromUserProcesses(processes);
