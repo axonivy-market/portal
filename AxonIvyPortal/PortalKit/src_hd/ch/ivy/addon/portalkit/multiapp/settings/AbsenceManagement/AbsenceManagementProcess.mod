@@ -703,20 +703,10 @@ As0 f27 99 227 26 26 -25 15 #rect
 As0 f27 @|UdMethodIcon #fIcon
 As0 f102 actionTable 'out=in;
 ' #txt
-As0 f102 actionCode 'import java.util.HashMap;
-import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
-import ch.ivy.addon.portalkit.dto.UserDTO;
+As0 f102 actionCode 'import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 
 in.selectedAbsenceUser = new UserDTO(ivy.session.getSessionUser());
-
-/*in.selectedSubstituteUserByApp = new HashMap();
-
-for (IvyApplication app : in.applications){
-	in.selectedSubstituteUserByApp.put(app.getName(), new UserDTO(ivy.session.getSessionUser()));
-}*/
-
-
 in.substituteUser = new UserDTO(ivy.session.getSessionUser());' #txt
 As0 f102 security system #txt
 As0 f102 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

@@ -61,7 +61,6 @@ public class ExpressManagementBean implements Serializable {
     if (activeMemberList == null) {
       return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
           .withStartName("findSecurityMembers")
-          .withParam("application", Ivy.request().getApplication())
           .withParam("query", "")
           .withParam("startIndex", 0)
           .withParam("count", PortalConstants.MAX_USERS_IN_AUTOCOMPLETE)
