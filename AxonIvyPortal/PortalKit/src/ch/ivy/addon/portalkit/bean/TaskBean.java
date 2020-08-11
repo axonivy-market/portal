@@ -64,6 +64,11 @@ public class TaskBean implements Serializable {
       case DESTROYED:
       case ZOMBIE:
         return "icon ivyicon-alert-circle task-state-zombie-destroyed";
+      case FAILED:
+      case JOIN_FAILED:
+        return "icon ivyicon-mood-warning task-state-failed";
+      case WAITING_FOR_INTERMEDIATE_EVENT:
+        return "icon ivyicon-synchronize-arrow-clock task-state-waiting";
         // System
       default:
         return "icon ivyicon-synchronize-arrows task-state-system";
@@ -153,4 +158,18 @@ public class TaskBean implements Serializable {
     }
     return StringUtils.EMPTY;
   }
+  
+  /**
+   * Get failed reason of task FAILED or JOIN_FAILED
+   * @param task
+   * @return failedReason see more {@link ITask#getFailReason()}
+   */
+  public String getTaskFailedReason(ITask task) {
+    if ((task.getState() == TaskState.FAILED || task.getState() == TaskState.JOIN_FAILED)
+         && StringUtils.isNotEmpty(task.getFailReason())) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/taskFailReason", Arrays.asList(task.getFailReason()));
+    }
+    return StringUtils.EMPTY;
+  }
+  
 }
