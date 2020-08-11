@@ -13,8 +13,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.service.ILanguageService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
@@ -43,14 +41,14 @@ public class LanguageService implements ILanguageService {
     });
   }
 
-  private IvyLanguage getIvyLanguageOfCurrentApp() throws PortalIvyDataException {
+  private IvyLanguage getIvyLanguageOfCurrentApp() {
     IvyLanguage ivyLanguage = new IvyLanguage();
     IUser currentUser = Ivy.session().getSessionUser();
     IApplication currentApp = Ivy.request().getApplication();
     List<IProcessModelVersion> activeReleasedPmvs = ServiceUtilities.getActiveReleasedPmvs(currentApp);
     List<String> supportedLanguages = getSupportedLanguagesFromPmvs(activeReleasedPmvs);
     if (CollectionUtils.isEmpty(supportedLanguages)) {
-      throw new PortalIvyDataException(PortalIvyDataErrorType.SUPPORTED_LANGUAGES_NOT_FOUND.toString());
+      supportedLanguages.add(currentApp.getDefaultEMailLanguage().toString());
     }
 
     ivyLanguage.setAppName(currentApp.getName());
@@ -84,64 +82,12 @@ public class LanguageService implements ILanguageService {
   }
 
   @Override
-  public IvyLanguageResultDTO saveUserLanguage(IvyLanguage language) throws PortalIvyDataException {
-    return IvyExecutor.executeAsSystem(() -> {
-      IvyLanguageResultDTO rs = new IvyLanguageResultDTO();
+  public void saveUserLanguage(IvyLanguage language){
+    IvyExecutor.executeAsSystem(() -> {
       IUser currentUser = Ivy.session().getSessionUser();
-      IApplication currentApp = Ivy.request().getApplication();
-      List<IProcessModelVersion> activePmvs = ServiceUtilities.getActiveReleasedPmvs(currentApp);
       Locale userLanguage = Locale.forLanguageTag(language.getUserLanguage());
-      if (!getSupportedEmailLanguages(activePmvs).contains(userLanguage)) {
-        throw new PortalIvyDataException(PortalIvyDataErrorType.SUPPORTED_LANGUAGES_NOT_FOUND.toString());
-      }
       currentUser.setEMailLanguage(userLanguage);
-      return rs;
-    });
-  }
-
-  private Set<Locale> getSupportedEmailLanguages(List<IProcessModelVersion> activePmvs) {
-    Set<Locale> supportedEmailLanguages = new HashSet<>();
-    activePmvs.forEach(pmv -> {
-      IContentManagementSystem findCms = getServer().getContentManagement().findCms(pmv);
-      if (findCms != null) {
-        supportedEmailLanguages.addAll(findCms.getSupportedLanguages());
-      }
-    });
-
-    return supportedEmailLanguages;
-  }
-  
-  @Override
-  public IvyLanguageResultDTO getSupportedLanguages() {
-    return IvyExecutor.executeAsSystem(() -> {
-      IvyLanguageResultDTO result = new IvyLanguageResultDTO();
-
-      IApplication app = Ivy.wf().getApplication();
-      IvyLanguage ivyLanguage = new IvyLanguage();
-
-      List<IProcessModelVersion> activeReleasedPmvs = ServiceUtilities.getActiveReleasedPmvs(app);
-      List<String> supportedLanguages = getSupportedLanguagesFromPmvs(activeReleasedPmvs);
-
-      ivyLanguage.setAppName(app.getName());
-      ivyLanguage.setSupportedLanguages(supportedLanguages);
-
-      result.setIvyLanguage(ivyLanguage);
-      return result;
-    });
-  }
-
-  @Override
-  public List<String> getSupportedLanguagesOfCurrentApp() throws PortalIvyDataException{
-    return IvyExecutor.executeAsSystem(() -> {
-      IApplication app = Ivy.wf().getApplication();
-
-      List<IProcessModelVersion> activeReleasedPmvs = ServiceUtilities.getActiveReleasedPmvs(app);
-      List<String> supportedLanguages = getSupportedLanguagesFromPmvs(activeReleasedPmvs);
-      if (CollectionUtils.isEmpty(supportedLanguages)) {
-        throw new PortalIvyDataException(PortalIvyDataErrorType.SUPPORTED_LANGUAGES_NOT_FOUND.toString());
-      }
-      return supportedLanguages;
-
+      return Void.class;
     });
   }
 
