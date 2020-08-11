@@ -6,3 +6,4 @@ userAction com.axonivy.portal.developerexamples.enums.UserAction #field
 caseNumber Integer #field
 count Integer #field
 category String #field
+eventId String #field
