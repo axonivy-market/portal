@@ -54,6 +54,7 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public void clickThirdPartyAppByIndex(int index) {
+    waitForElementDisplayed(By.cssSelector("[id *= ':thirdparty-menu-item-" + index + "'] > a"), true);
     clickByCssSelector("[id *= ':thirdparty-menu-item-" + index + "'] > a");
   }
 
