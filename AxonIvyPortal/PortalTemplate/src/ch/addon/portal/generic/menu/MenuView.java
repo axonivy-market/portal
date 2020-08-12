@@ -121,6 +121,9 @@ public class MenuView {
       case TECHNICAL_CASE:
         buildBreadCrumbForTechnicalCaseList(userCase);
         break;
+      case RELATED_TASK:
+        buildBreadCrumbForRelatedTask(userCase);
+        break;
       case PROCESS:
         buildBreadCrumbForProcess();
         break;
@@ -174,6 +177,15 @@ public class MenuView {
     caseListSubmenuItem.setValue(title);
     caseListSubmenuItem.setDisabled(true);
     breadcrumbModel.getElements().add(caseListSubmenuItem);
+  }
+
+  private void buildBreadCrumbForRelatedTask(ICase userCase) {
+    setPortalHomeMenuToBreadcrumbModel();
+    DefaultMenuItem taskListSubmenuItem = buildTaskListMenuItem();
+    String title = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader").concat(" #").concat(Long.toString(userCase.getId()));
+    taskListSubmenuItem.setValue(title);
+    taskListSubmenuItem.setDisabled(true);
+    breadcrumbModel.getElements().add(taskListSubmenuItem);
   }
 
   private void buildBreadCrumbForProcess() {
