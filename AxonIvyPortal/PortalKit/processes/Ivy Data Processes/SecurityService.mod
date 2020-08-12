@@ -35,7 +35,7 @@ Pt0 f4 inParamTable 'out.count=param.count;
 out.query=param.query;
 out.startIndex=param.startIndex;
 ' #txt
-Pt0 f4 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.dto.SecurityMemberDTO> members,java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors> result;' #txt
+Pt0 f4 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.dto.SecurityMemberDTO> members> result;' #txt
 Pt0 f4 outParamTable 'result.members=in.securityMembers;
 ' #txt
 Pt0 f4 callSignature findSecurityMembers(String,Integer,Integer) #txt
@@ -79,7 +79,7 @@ out.fromRoles=param.fromRoles;
 out.query=param.query;
 out.startIndex=param.startIndex;
 ' #txt
-Pt0 f19 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> users> result;' #txt
+Pt0 f19 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> users> result;' #txt
 Pt0 f19 outParamTable 'result.users=in.users;
 ' #txt
 Pt0 f19 callSignature findUsers(String,Integer,Integer,java.util.List<String>,java.util.List<String>) #txt
@@ -137,7 +137,7 @@ Pt0 f37 @|StepIcon #fIcon
 Pt0 f38 641 145 30 30 0 15 #rect
 Pt0 f38 @|EndSubIcon #fIcon
 Pt0 f40 inParamDecl '<> param;' #txt
-Pt0 f40 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.List<ch.ivyteam.ivy.security.IRole> roles> result;' #txt
+Pt0 f40 outParamDecl '<java.util.List<ch.ivyteam.ivy.security.IRole> roles> result;' #txt
 Pt0 f40 outParamTable 'result.roles=in.roles;
 ' #txt
 Pt0 f40 callSignature findRoles() #txt
@@ -173,7 +173,7 @@ Pt0 f48 @|StepIcon #fIcon
 Pt0 f50 641 337 30 30 0 15 #rect
 Pt0 f50 @|EndSubIcon #fIcon
 Pt0 f51 inParamDecl '<> param;' #txt
-Pt0 f51 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.List<ch.ivy.addon.portalkit.dto.RoleDTO> roles> result;' #txt
+Pt0 f51 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.dto.RoleDTO> roles> result;' #txt
 Pt0 f51 outParamTable 'result.roles=in.roleDTOs;
 ' #txt
 Pt0 f51 callSignature findRolesDTO() #txt

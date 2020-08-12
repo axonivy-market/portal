@@ -347,8 +347,7 @@ As0 f101 264 698 112 44 -45 -8 #rect
 As0 f101 @|CallSubIcon #fIcon
 As0 f152 actionTable 'out=in;
 ' #txt
-As0 f152 actionCode 'import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
-import java.util.ArrayList;
+As0 f152 actionCode 'import java.util.ArrayList;
 import java.util.Set;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
