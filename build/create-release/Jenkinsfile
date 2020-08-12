@@ -1,5 +1,5 @@
 pipeline {
-  agent {label 'portal-slave'}
+  agent {label 'aws-fra-integration'}
   
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
@@ -12,16 +12,10 @@ pipeline {
 
   parameters {
       string(name: 'releaseVersion', defaultValue: '1.0.0-m1', description: 'The release version.')
-      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-8/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
-        -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-8/axonivy-engine-windows.zip for nightly 8.0
-        -Divy.engine.list.url=https://jenkins.ivyteam.io/job/ivy-core_product/job/release%252F8.0/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 for last successful build 8.0
-        -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
-      ''')
-      booleanParam(name: 'deployToRepo', defaultValue: false, description: 'Should deploy artifacts to repo? Note: only deploy to repo if no commit since the last build and pre-integration passed.')
   }
 
   environment {
-    engineDir = "$env.WORKSPACE/engine"
+    engineDir = 'C:/tools/ivy-server/geat'
   }
 
   stages {
@@ -52,8 +46,8 @@ pipeline {
           // module structure [module path, isPossibleToDeploy]
           def modules = [['AxonIvyPortal/PortalStyle', true], ['AxonIvyPortal/PortalKit', true], ['AxonIvyPortal/PortalTemplate', true], ['AxonIvyPortal/AxonIvyExpress', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/PortalExamples', true], ['Showcase/InternalSupport', false], ['AxonIvyPortal/PortalApp', true]]
           for (module in modules) {
-            def mavenGoal = params.deployToRepo && module[1]? 'deploy' : 'install'
-            bat "mvn clean ${mavenGoal} -Divy.engine.directory=%engineDir% -Divy.engine.version=(7.0.0,] -Divy.compiler.engine.start.timeout=120 %engineDownloadURL% -f ${module[0]}/pom.xml"
+            def mavenGoal = 'deploy'
+            bat "mvn clean ${mavenGoal} -Divy.engine.directory=%engineDir% -Divy.engine.version=(8.0.8,] -Divy.compiler.engine.start.timeout=120 -f ${module[0]}/pom.xml"
           }
 
           echo "====================Create release tag ${params.releaseVersion}===================="
