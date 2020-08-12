@@ -47,7 +47,7 @@ pipeline {
           def modules = [['AxonIvyPortal/PortalStyle', true], ['AxonIvyPortal/PortalKit', true], ['AxonIvyPortal/PortalTemplate', true], ['AxonIvyPortal/AxonIvyExpress', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/PortalExamples', true], ['Showcase/InternalSupport', false], ['AxonIvyPortal/PortalApp', true]]
           for (module in modules) {
             def mavenGoal = 'deploy'
-            bat "mvn clean ${mavenGoal} -Divy.engine.directory=%engineDir% -Divy.engine.version=(8.0.8,] -Divy.compiler.engine.start.timeout=120 -f ${module[0]}/pom.xml"
+            bat "mvn clean ${mavenGoal} -Divy.compiler.engine.start.timeout=120 -f ${module[0]}/pom.xml"
           }
 
           echo "====================Create release tag ${params.releaseVersion}===================="
