@@ -6,8 +6,8 @@ pipeline {
   }
   
   tools { 
-      maven '3.6' 
-      jdk '11' 
+      maven 'maven' 
+      jdk 'JDK 11.0.5' 
   }
 
   parameters {
