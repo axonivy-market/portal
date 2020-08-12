@@ -8,7 +8,7 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="taskView" value="#{data.taskView}" />
-    <ui:param name="viewName" value="TASK" />
+    <ui:param name="viewName" value="#{data.taskView.isRelatedTaskView() ? 'RELATED_TASK' : 'TASK'}" />
     <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
     <ui:param name="announcementContainerStyleClass" value="announcement-container-in-task-list" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</ui:define>
