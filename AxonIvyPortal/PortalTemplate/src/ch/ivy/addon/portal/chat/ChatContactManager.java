@@ -1,5 +1,8 @@
 package ch.ivy.addon.portal.chat;
 
+import static ch.ivy.addon.portal.chat.ChatServiceContainer.getApplication;
+import static ch.ivy.addon.portal.chat.ChatServiceContainer.wf;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,8 +20,7 @@ import ch.ivyteam.ivy.security.SessionInfo;
 public final class ChatContactManager {
 
   private static final String UNKNOWN_USER = "Unknown User";
-  private static final String PORTAL_CONNECTOR = "PortalConnector";
-  
+
   private ChatContactManager() {}
 
   public static List<ChatContact> loadOnlineContacts() {
@@ -28,7 +30,7 @@ public final class ChatContactManager {
     return users;
   }
 
-  public static List<String> getOnlineContacts() {
+  private static List<String> getOnlineContacts() {
     Stream<String> onlineUsernames;
     if (ChatService.IS_STANDARD_MODE) {
       onlineUsernames = securityContext().getSessions().stream().map(ISession::getSessionUserName);
@@ -41,7 +43,7 @@ public final class ChatContactManager {
   }
 
   private static ISecurityContext securityContext() {
-    return Ivy.wf().getSecurityContext();
+    return wf().getSecurityContext();
   }
 
   private static List<ChatContact> loadContacts() {
@@ -70,9 +72,9 @@ public final class ChatContactManager {
   }
 
   private static List<IUser> getContextUsers() {
-    List<IUser> users = new ArrayList<>(Ivy.wf().getApplication().getSecurityContext().getUsers());
+    List<IUser> users = new ArrayList<>(getApplication().getSecurityContext().getUsers());
     users.sort((first, second) -> first.getName().compareToIgnoreCase(second.getName()));
-    users.removeIf(user -> StringUtils.equals(user.getName(), ISecurityConstants.SYSTEM_USER_NAME) || StringUtils.equals(user.getName(), PORTAL_CONNECTOR));
+    users.removeIf(user -> StringUtils.equals(user.getName(), ISecurityConstants.SYSTEM_USER_NAME));
     return users;
   }
 }
