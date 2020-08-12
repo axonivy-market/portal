@@ -6,14 +6,11 @@
   <version>8.0.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <distributionManagement>
-    <repository>
-      <id>central</id>
-      <url>https://repo.axonivy.io/artifactory/ext-release-local/</url>
-    </repository>
-    <snapshotRepository>
-      <id>central</id>
-      <url>https://repo.axonivy.io/artifactory/ext-snapshot-local/</url>
-    </snapshotRepository>
+	<repository>
+		<id>central</id>
+		<name>repo.axonivy.io</name>
+		<url>https://repo.axonivy.io/artifactory/ext-release-local</url>
+	</repository>
   </distributionManagement>
   <dependencies>
     <dependency>
