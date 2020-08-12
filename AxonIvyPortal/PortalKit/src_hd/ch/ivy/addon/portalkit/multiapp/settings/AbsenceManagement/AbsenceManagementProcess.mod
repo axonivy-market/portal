@@ -163,11 +163,10 @@ As0 f80 907 131 26 26 0 12 #rect
 As0 f80 @|UdProcessEndIcon #fIcon
 As0 f142 actionTable 'out=in;
 ' #txt
-As0 f142 actionCode 'import ch.ivy.addon.portalkit.service.PermissionCheckerService;
+As0 f142 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.security.IPermission;
 
-PermissionCheckerService permissionChecker = new PermissionCheckerService();
-in.isSupervisor = permissionChecker.hasAllPermissions(IPermission.USER_CREATE_ABSENCE, IPermission.USER_READ_ABSENCES, IPermission.USER_DELETE_ABSENCE);' #txt
+in.isSupervisor = PermissionUtils.hasAllPermissions(IPermission.USER_CREATE_ABSENCE, IPermission.USER_READ_ABSENCES, IPermission.USER_DELETE_ABSENCE);' #txt
 As0 f142 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
