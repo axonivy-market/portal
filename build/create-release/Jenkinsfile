@@ -43,11 +43,9 @@ pipeline {
           '''
 
           echo "====================Build all modules===================="
-          // module structure [module path, isPossibleToDeploy]
-          def modules = [['AxonIvyPortal/PortalStyle', true], ['AxonIvyPortal/PortalKit', true], ['AxonIvyPortal/PortalTemplate', true], ['AxonIvyPortal/AxonIvyExpress', true], ['AxonIvyPortal/PortalKitTestHelper', false], ['Showcase/PortalExamples', false], ['Showcase/InternalSupport', false], ['AxonIvyPortal/PortalApp', true]]
+          def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress']
           for (module in modules) {
-            def mavenGoal = 'deploy'
-            bat "mvn clean ${mavenGoal} -Divy.compiler.engine.start.timeout=120 -f ${module[0]}/pom.xml"
+            bat "mvn clean deploy -Divy.compiler.engine.start.timeout=120 -f ${module}/pom.xml"
           }
 
           echo "====================Create release tag ${params.releaseVersion}===================="
@@ -68,7 +66,7 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: "**/target/*.iar,AxonIvyPortal/PortalApp/target/*.zip,*/*/pom.xml"
+      archiveArtifacts artifacts: "**/target/*.iar,*/*/pom.xml"
     }
   }
 }
