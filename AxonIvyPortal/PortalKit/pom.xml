@@ -11,11 +11,11 @@
   </properties>
   <distributionManagement>
     <repository>
-      <id>repo.axonivy.io</id>
+      <id>central</id>
       <url>https://repo.axonivy.io/artifactory/ext-release-local/</url>
     </repository>
     <snapshotRepository>
-      <id>repo.axonivy.io</id>
+      <id>central</id>
       <url>https://repo.axonivy.io/artifactory/ext-snapshot-local/</url>
     </snapshotRepository>
   </distributionManagement>
