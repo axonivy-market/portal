@@ -1,5 +1,7 @@
 package ch.ivy.addon.portal.chat;
 
+import static ch.ivy.addon.portal.chat.ChatServiceContainer.log;
+import static ch.ivy.addon.portal.chat.ChatServiceContainer.wf;
 import static ch.ivy.addon.portalkit.enums.GlobalVariable.CHAT_MAX_CONNECTION;
 import static ch.ivy.addon.portalkit.enums.GlobalVariable.CHAT_RESPONSE_TIMEOUT;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
@@ -112,7 +114,7 @@ public class ChatService {
     try {
       unhandledChatResponse = getUnhandledResponseWhenRegisteringMessage(clientId);
     } catch (ClassCastException e) {
-      Ivy.log().info("PMV could be redeployed", e);
+      log().info("PMV could be redeployed", e);
       Deque<ChatResponse> history = ConcurrentChatUtils.getRecentChatResponseHistory(sessionUserName());
       RedeploymentUtils.filterObjectOfCurrentClassLoader(history, ChatResponse.class);
       unhandledChatResponse = getUnhandledResponseWhenRegisteringMessage(clientId);
@@ -173,8 +175,8 @@ public class ChatService {
 
   public synchronized void performReadingMessage(String participant, String clientId, String actor) {
     ChatMessageManager.deletedReadMessagesInMemory(Arrays.asList(actor), participant);
-    ChatResponse lastChatResponse = ConcurrentChatUtils.getRecentChatResponseHistory(actor).getLast();
-    if (!isDuplicatedAction(participant, lastChatResponse, READ_PRIVATE_MESSAGE_ACTION)) {
+    ChatResponse lastChatResponse = ConcurrentChatUtils.getRecentChatResponseHistory(actor).peekLast();
+    if (lastChatResponse != null && !isDuplicatedAction(participant, lastChatResponse, READ_PRIVATE_MESSAGE_ACTION)) {
       resumeAsyncResponse(actor, new ChatResponse(READ_PRIVATE_MESSAGE_ACTION, participant), clientId, actor);
     }
   }
@@ -191,8 +193,8 @@ public class ChatService {
 
   public void performReadingGroupMessage(String caseId, String clientId, String actor) {
     ChatMessageManager.deletedReadMessagesInMemoryForGroupChat(Arrays.asList(actor), caseId);
-    ChatResponse lastChatResponse = ConcurrentChatUtils.getRecentChatResponseHistory(actor).getLast();
-    if (!isDuplicatedAction(caseId, lastChatResponse, READ_GROUP_MESSAGE_ACTION)) {
+    ChatResponse lastChatResponse = ConcurrentChatUtils.getRecentChatResponseHistory(actor).peekLast();
+    if (lastChatResponse != null && !isDuplicatedAction(caseId, lastChatResponse, READ_GROUP_MESSAGE_ACTION)) {
       resumeAsyncResponse(actor, new ChatResponse(READ_GROUP_MESSAGE_ACTION, caseId), clientId, actor);
     }
   }
@@ -377,7 +379,7 @@ public class ChatService {
   private List<GroupChat> findAllChatGroups() {
     ObjectMapper mapper = new ObjectMapper();
     CaseQuery caseQuery = buildCaseQuery();
-    List<ICase> caseWithNoneEmptyGroupChatInfo = Ivy.wf().getCaseQueryExecutor().getResults(caseQuery);
+    List<ICase> caseWithNoneEmptyGroupChatInfo = wf().getCaseQueryExecutor().getResults(caseQuery);
 
     return caseWithNoneEmptyGroupChatInfo.stream()
         .filter(iCase -> isUserInvolvedInGroup(iCase.getId(), sessionUserName())).map(iCase -> {
@@ -386,7 +388,7 @@ public class ChatService {
                 .stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).get().orElse(StringUtils.EMPTY),
                 GroupChat.class);
           } catch (PersistencyException | IOException e) {
-            Ivy.log().error(e);
+            log().error(e);
             return null;
           }
         }).filter(Objects::nonNull).collect(Collectors.toList());
@@ -483,7 +485,7 @@ public class ChatService {
     try {
       return StringUtils.isNotBlank(chatResponseTimeout) && Long.parseLong(chatResponseTimeout) > 0;
     } catch (NumberFormatException e) {
-      Ivy.log().error("Chat response timeout must be a Long number, check Portal settings again.", e);
+      log().error("Chat response timeout must be a Long number, check Portal settings again.", e);
     }
     return false;
   }
@@ -503,7 +505,7 @@ public class ChatService {
         }
       }
     } catch (NumberFormatException e) {
-      Ivy.log().error("Chat max connection per user must be an Integer number, check Portal settings again.", e);
+      log().error("Chat max connection per user must be an Integer number, check Portal settings again.", e);
     }
     if (maxConnectionNumber == 0) {
       maxConnectionNumber = Integer.parseInt(CHAT_MAX_CONNECTION.getDefaultValue());
