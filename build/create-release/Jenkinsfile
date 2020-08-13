@@ -11,11 +11,7 @@ pipeline {
   }
 
   parameters {
-      string(name: 'releaseVersion', defaultValue: '1.0.0-m1', description: 'The release version.')
-  }
-
-  environment {
-    engineDir = 'C:/tools/ivy-server/geat'
+      string(name: 'releaseVersion', defaultValue: '8.0.8', description: 'The release version.')
   }
 
   stages {
@@ -33,7 +29,7 @@ pipeline {
               $xml.project.version = $env:releaseVersion
               $dependencies = $xml.project.dependencies.ChildNodes
               foreach($dependency in $dependencies) {
-                if(($dependency.groupId -eq 'ch.ivyteam.ivy.project.portal') -or ($dependency.groupId -eq 'com.axonivy.portal')) {
+                if($dependency.groupId -eq 'ch.cs.ivy') {
                   $dependency.version = $env:releaseVersion
                 }
               }
@@ -56,7 +52,7 @@ pipeline {
 
             rem Create tag for the release
             git commit -a -m "update projects version"
-            git tag -a ${params.releaseVersion} -m "Tagged Portal release ${params.releaseVersion} by build job ${env.BUILD_URL}
+            git tag -a ${params.releaseVersion} -m "Tagged Portal-Geat release ${params.releaseVersion} by build job ${env.BUILD_URL}
             git push origin ${params.releaseVersion}
           """
         }
