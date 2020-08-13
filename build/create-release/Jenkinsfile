@@ -51,8 +51,6 @@ pipeline {
           echo "====================Create release tag ${params.releaseVersion}===================="
           bat """
             rem remove created tag
-			git config --global user.email "jenkins@axonivy.io"
-			git config --global user.name "Jenkins"
             git push --delete origin ${params.releaseVersion}
             git tag -d ${params.releaseVersion}
 
