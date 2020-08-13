@@ -28,7 +28,7 @@ There are 3 levels:
 
 	- ``true``: start inside IFrame 
 	- ``false``: not start inside IFrame 
-	- Don't set to check application level
+	- Don't set to check engine level
 	
 	|case-embedInFrame|
 
