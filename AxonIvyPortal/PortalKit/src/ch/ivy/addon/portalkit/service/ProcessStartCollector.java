@@ -33,6 +33,10 @@ public class ProcessStartCollector {
   public ProcessStartCollector() {
     this.application = Ivy.request().getApplication();
   }
+  
+  public ProcessStartCollector(IApplication application) {
+    this.application = application;
+  }
 
   public List<IProcessStart> findProcessStartRequestPathContainsKeyword(String keyword) {
     List<IProcessStart> processStarts = new ArrayList<>();
