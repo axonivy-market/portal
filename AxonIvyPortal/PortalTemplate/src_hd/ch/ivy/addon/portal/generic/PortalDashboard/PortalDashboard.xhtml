@@ -51,30 +51,32 @@
                 data-gs-no-resize="#{dashboardBean.isReadOnlyMode}" data-gs-no-move="#{dashboardBean.isReadOnlyMode}"
                 jsf:rendered="#{widget.id ne 'action' or (widget.id eq 'action' and !dashboardBean.isReadOnlyMode)}">
                 <div class="grid-stack-item-content card" style="display: flex;flex-direction: column;">
-                  <h:form id="task-form" rendered="#{fn:startsWith(widget.id, 'task')}">
-                    <div class="header" style="flex: 0 0 30px">
-                      <span class="title">
-                        #{not empty widget.name ? widget.name : 'Your Tasks'} (<h:panelGroup id="task-count">#{widget.taskCount}</h:panelGroup>)
-                      </span>
-                      
-                      <div class="actions">
-                        <p:commandLink styleClass="u-mar-right-5">
-                          <i class="fa fa-info-circle" />
-                        </p:commandLink>
-                        <p:commandLink styleClass="u-mar-right-5" oncomplete="PF('task-widget-configuration-dialog').show()" global="false"
-                          actionListener="#{dashboardBean.setTaskWidget(widget)}" update="task-widget-configuration-dialog" rendered="#{!dashboardBean.isReadOnlyMode}">
-                          <i class="fa fa-pencil" />
-                        </p:commandLink>
-                        <p:commandLink>
-                          <i class="fa fa-arrow-right" />
-                        </p:commandLink>
+                  <h:panelGroup rendered="#{fn:startsWith(widget.id, 'task')}">
+                    <h:form id="task-form" style="display: contents">
+                      <div class="header" style="flex: 0 0 30px">
+                        <span class="title">
+                          #{not empty widget.name ? widget.name : 'Your Tasks'} (<h:panelGroup id="task-count">#{widget.taskCount}</h:panelGroup>)
+                        </span>
+                        
+                        <div class="actions">
+                          <p:commandLink styleClass="u-mar-right-5">
+                            <i class="fa fa-info-circle" />
+                          </p:commandLink>
+                          <p:commandLink styleClass="u-mar-right-5" oncomplete="PF('task-widget-configuration-dialog').show()" global="false"
+                            actionListener="#{dashboardBean.setTaskWidget(widget)}" update="task-widget-configuration-dialog" rendered="#{!dashboardBean.isReadOnlyMode}">
+                            <i class="fa fa-pencil" />
+                          </p:commandLink>
+                          <p:commandLink>
+                            <i class="fa fa-arrow-right" />
+                          </p:commandLink>
+                        </div>
                       </div>
-                    </div>
-                    <h:panelGroup styleClass="#{widget.id}" style="flex: auto;overflow:auto;margin-bottom: 20px;padding:10px" layout="block">
-                      <ic:ch.ivy.addon.portal.generic.prototype.TaskWidget taskWidget="#{widget}" 
-                        taskCountId="grid-stack-tab-view:#{dashboardBean.dashboards.indexOf(dashboard)}:widgets:#{status.index}:task-form:task-count" />
-                    </h:panelGroup>
-                  </h:form>
+                      <h:panelGroup styleClass="#{widget.id}" style="flex: auto;overflow:auto;margin-bottom: 20px;padding:10px" layout="block">
+                        <ic:ch.ivy.addon.portal.generic.prototype.TaskWidget taskWidget="#{widget}" 
+                          taskCountId="grid-stack-tab-view:#{dashboardBean.dashboards.indexOf(dashboard)}:widgets:#{status.index}:task-form:task-count" />
+                      </h:panelGroup>
+                    </h:form>
+                  </h:panelGroup>
                     
                   <h:panelGroup rendered="#{fn:startsWith(widget.id, 'process')}">
                     <div class="header" style="flex: 0 0 30px">
