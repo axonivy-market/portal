@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
+import static ch.ivy.addon.portalkit.filter.AbstractFilter.ALL;
+
 import java.io.Serializable;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -10,7 +12,9 @@ import javax.faces.bean.ViewScoped;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
+import ch.ivy.addon.portalkit.casefilter.CaseStateFilter;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
@@ -21,6 +25,7 @@ import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.NumberUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 
 @ManagedBean
@@ -35,6 +40,7 @@ public class CaseWidgetBean implements Serializable {
   private boolean isShowCaseDetails;
   private boolean isShowAllTasksOfCase;
   private boolean isShowFullCaseList;
+  private boolean isAdminCaseStateIncluded;
 
   public CaseWidgetBean() {
     expandedCaseId = -1L;
@@ -76,6 +82,36 @@ public class CaseWidgetBean implements Serializable {
       }
     }
     return additionalCaseDetailsPageUri;
+  }
+
+  /**
+   * If Case State filter is selecting DESTROYED
+   * Then disable option save a filter for all user
+   * @param caseFilters is selected filters
+   */
+  public void verifyCaseStateFilter(List<CaseFilter> caseFilters) {
+    if (!PermissionUtils.checkReadAllCasesPermission()) {
+      isAdminCaseStateIncluded = false;
+      return;
+    }
+    for (CaseFilter filter : caseFilters) {
+      if (filter instanceof CaseStateFilter) {
+        CaseStateFilter caseStateFilter = (CaseStateFilter) filter;
+        if (!caseStateFilter.value().equals(ALL)) {
+          isAdminCaseStateIncluded = caseStateFilter.getSelectedFilteredStates()
+              .contains(CaseState.DESTROYED);
+        }
+        break;
+      }
+    }
+  }
+
+  public boolean isAdminCaseStateIncluded() {
+    return isAdminCaseStateIncluded;
+  }
+
+  public void setAdminCaseStateIncluded(boolean isAdminCaseStateIncluded) {
+    this.isAdminCaseStateIncluded = isAdminCaseStateIncluded;
   }
 
   public boolean isNaN(Number number){
