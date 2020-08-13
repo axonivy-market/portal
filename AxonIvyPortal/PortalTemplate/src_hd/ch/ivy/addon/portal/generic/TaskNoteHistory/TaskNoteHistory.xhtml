@@ -48,9 +48,11 @@
             <div class="ui-g-12">
               <p:dataTable id="notes-table" widgetVar="notesTable" var="note" sortBy="#{note.creationTimestamp.time}" sortOrder="DESCENDING"
                 value="#{data.notes}" filteredValue="#{data.filteredNotes}"
-                emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
+                emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+                reflow="true" scrollable="true">
 
-                <p:column sortBy="#{note.message}" filterBy="#{note.message}" filterMatchMode="contains">
+                <p:column sortBy="#{note.message}" filterBy="#{note.message}" filterMatchMode="contains"
+                  width="65%">
                   <f:facet name="header">
                     <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" />
                   </f:facet>
