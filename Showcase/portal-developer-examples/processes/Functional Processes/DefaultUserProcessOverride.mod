@@ -103,13 +103,13 @@ Ds0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>This process overrides DefaultUserProcess in Portal Kit. 
-It add 5 application favorites processes and determines their order using the setIndex method of UserProcess.</name>
-        <nameStyle>167,7
+It add several application favorites processes and determines their order using the setIndex method of UserProcess.</name>
+        <nameStyle>173,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f5 220 152 648 80 -301 -16 #rect
+Ds0 f5 224 170 640 44 -317 -16 #rect
 Ds0 f5 @|IBIcon #fIcon
 >Proto Ds0 .type _com.axonivy.portal.developerexamples.DefaultUserProcessOverrideData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt

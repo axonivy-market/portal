@@ -75,12 +75,12 @@ HINT: how to get a process url
 - We provide method to get startable link by UserFriendlyRequestPath (If user don''t have permission to start this link, the method will return empty string)
 ProcessStartCollector.findStartableLinkByUserFriendlyRequestPath(...)
 Example: 
-ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
+ProcessStartCollector collector = new ProcessStartCollector();
 String newEmployeeLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/Employee/NewEmployee.ivp");</name>
         <nameStyle>744,5
 226,5
 1,5
-223,5
+195,5
 </nameStyle>
     </language>
 </elementInfo>
