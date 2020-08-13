@@ -11,7 +11,7 @@ pipeline {
   }
 
   parameters {
-      string(name: 'releaseVersion', defaultValue: '1.0.0-m1', description: 'The release version.')
+      string(name: 'releaseVersion', defaultValue: '8.0.8', description: 'The release version.')
   }
 
   environment {
@@ -51,6 +51,8 @@ pipeline {
           echo "====================Create release tag ${params.releaseVersion}===================="
           bat """
             rem remove created tag
+			git config --global user.email "jenkins@axonivy.io"
+			git config --global user.name "Jenkins"
             git push --delete origin ${params.releaseVersion}
             git tag -d ${params.releaseVersion}
 
