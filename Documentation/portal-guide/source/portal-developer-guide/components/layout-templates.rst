@@ -8,8 +8,8 @@ Layout templates
 Templates for development
 -------------------------
 
-Your Portal Project is dependent on PortalTemplate project, in which there are 7 templates that can be used directly without iframes. 
-In addition 3 templates are described to be used with iframes.
+Your Portal Project is dependent on PortalTemplate project, in which there are several templates that can be used directly without iframes. 
+In addition 2 templates are described to be used with iframes.
 
 Templates without IFrames:
 
@@ -34,8 +34,8 @@ that you configure in Administration page. Since version 8.0, Portal
 officially supports responsiveness, every templates has its default
 responsiveness, you can refer to
 :ref:`Responsiveness <components-layout-templates-responsiveness>`
-to override it. Besides, there are user settings like: Absences, Email,
-Language Settings and Administration (for admin only). Details about
+to override it. Besides, there are user settings like: My Profile, Absences, Email
+and Administration (for admin only). Details about
 user settings can be found in
 :ref:`Settings <settings>`.
 
