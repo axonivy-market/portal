@@ -45,13 +45,11 @@ Following these steps to have your own Portal Home:
       </ui:define>
       </ui:composition>
 
-2. In case of single Portal: Create a new process start named ``DefaultApplicationHomePage.ivp`` for the new
+2. Create a new process start named ``DefaultApplicationHomePage.ivp`` for the new
    home page. Now you will use this process start as the entry point of
    your portal instead of the default one. To let portal know about
    your new portal home, you have to set default pages to your project, follow this chapter to customize standard processes:
-   `Standard Processes <https://developer.axonivy.com/doc/latest/engine-guide/administration/standard-processes.html>`_
-   
-   *In case of multi Portal:* refer to :ref:`Setup multi portals <settings-admin-settings>` to setup.
+   `Standard Processes <https://developer.axonivy.com/doc/latest/engine-guide/administration/standard-processes.html>`_      
 
 
 .. _customization-portal-home-advanced-usage:
