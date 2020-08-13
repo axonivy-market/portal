@@ -728,6 +728,8 @@ Cs0 f41 inParamDecl '<> param;' #txt
 Cs0 f41 requestEnabled true #txt
 Cs0 f41 triggerEnabled false #txt
 Cs0 f41 callSignature createTechnicalStateTasks() #txt
+Cs0 f41 startName 'Create Technical States of Task' #txt
+Cs0 f41 startDescription 'Create Technical States of Task: create 3 new states such as FAILED, JOIN_FAILED and WAITING_FOR_EVENT' #txt
 Cs0 f41 taskData 'TaskTriggered.CATEGORY=TechicalTasks
 TaskTriggered.DESC=Create Tasks in state such as\: FAILED, JOIN_FAILED and WAITING_FOR_INTERMEDIATE_EVENT
 TaskTriggered.NAM=Create Technical Tasks' #txt
