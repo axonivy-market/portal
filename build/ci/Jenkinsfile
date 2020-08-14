@@ -24,7 +24,7 @@ pipeline {
         script {
           builtModules = []
           applications = ['GEAT']
-          engineDir = 'C:/tools/ivy-server/geat'
+          engineDir = 'C:/tools/ivy-server/geat-dev'
 
           def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress']
           def changeLog = ''
