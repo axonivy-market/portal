@@ -1,8 +1,8 @@
 package ch.ivy.addon.portal.chat;
 
-import static ch.ivy.addon.portal.chat.ChatServiceContainer.getApplication;
-import static ch.ivy.addon.portal.chat.ChatServiceContainer.log;
-import static ch.ivy.addon.portal.chat.ChatServiceContainer.wf;
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.getApplication;
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.log;
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.wf;
 
 import java.io.IOException;
 import java.util.Arrays;

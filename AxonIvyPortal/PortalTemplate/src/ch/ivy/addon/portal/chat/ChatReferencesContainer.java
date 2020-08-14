@@ -7,17 +7,18 @@ import ch.ivyteam.log.ILogger;
 
 /**
  * Holds instance of {@link ChatService}. Also holds IWorkflowContext Ivy.wf(), ILogger Ivy.log() because in cluster
- * mode, when handling system event, it does not have Ivy context.
+ * mode, when handling system event, it does not have Ivy context, therefore we use these references instead of
+ * Ivy.wf(), Ivy.log()
  *
  */
-public final class ChatServiceContainer {
+public final class ChatReferencesContainer {
 
   private static ChatService chatService;
-  private static boolean isSessionExtentionRegistered;
+  private static boolean isIvyExtentionRegistered;
   private static IWorkflowContext worflowContext;
   private static ILogger logger;
 
-  private ChatServiceContainer() {}
+  private ChatReferencesContainer() {}
 
   public static ChatService getChatService() {
     return chatService;
@@ -44,18 +45,18 @@ public final class ChatServiceContainer {
   }
 
   public static void setChatService(ChatService chatService) {
-    ChatServiceContainer.chatService = chatService;
+    ChatReferencesContainer.chatService = chatService;
     if (worflowContext == null) {
-      ChatServiceContainer.worflowContext = Ivy.wf();
+      ChatReferencesContainer.worflowContext = Ivy.wf();
     }
     if (logger == null) {
-      ChatServiceContainer.logger = Ivy.log();
+      ChatReferencesContainer.logger = Ivy.log();
     }
   }
 
-  public static void registerSessionExtension() {
-    if (!isSessionExtentionRegistered) {
-      isSessionExtentionRegistered = true;
+  public static void registerIvyExtension() {
+    if (!isIvyExtentionRegistered) {
+      isIvyExtentionRegistered = true;
       PortalSessionExtension.install();
       PortalServerListener.install();
     }

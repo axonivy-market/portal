@@ -1,6 +1,6 @@
 package ch.ivy.addon.portal.chat;
 
-import static ch.ivy.addon.portal.chat.ChatServiceContainer.wf;
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.wf;
 import static ch.ivy.addon.portal.chat.ClusterChatAction.PORTAL_CHAT_HANDLE_USER_OFFLINE;
 import static ch.ivy.addon.portal.chat.ClusterChatAction.PORTAL_CHAT_READ_GROUP_MESSAGE;
 import static ch.ivy.addon.portal.chat.ClusterChatAction.PORTAL_CHAT_READ_MESSAGE;

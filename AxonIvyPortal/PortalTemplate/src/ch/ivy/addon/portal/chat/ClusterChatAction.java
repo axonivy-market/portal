@@ -1,6 +1,6 @@
 package ch.ivy.addon.portal.chat;
 
-import static ch.ivy.addon.portal.chat.ChatServiceContainer.getChatService;
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.getChatService;
 
 import java.util.function.Consumer;
 
