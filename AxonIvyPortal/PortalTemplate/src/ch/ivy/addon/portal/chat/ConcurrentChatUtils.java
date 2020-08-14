@@ -39,23 +39,4 @@ public final class ConcurrentChatUtils {
     });
   }
 
-  // public static boolean isUserOnline(String username) {
-  // return Ivy.wf().getSecurityContext().getSessions().stream()
-  // .anyMatch(session -> session.getSessionUserName().equals(username));
-  // }
-
-  // /**
-  // * Gets map [username, ISession] of all active sessions
-  // *
-  // * @return map [username, ISession] of all active sessions
-  // */
-  // public static Map<String, ISession> getUserNameToSession() {
-  // Map<String, ISession> map = new HashMap<>();
-  // for (ISession session : Ivy.wf().getSecurityContext().getSessions()) {
-  // map.put(session.getSessionUserName(), session);
-  // }
-  // return map;
-  // }
-
-
 }
