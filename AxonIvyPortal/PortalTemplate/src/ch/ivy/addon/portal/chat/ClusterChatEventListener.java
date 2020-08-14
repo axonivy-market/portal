@@ -1,7 +1,7 @@
 package ch.ivy.addon.portal.chat;
 
-import static ch.ivy.addon.portal.chat.ChatServiceContainer.getChatService;
-import static ch.ivy.addon.portal.chat.ChatServiceContainer.wf;
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.getChatService;
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.wf;
 import static ch.ivy.addon.portal.chat.ClusterChatAction.CLUSTER_CHAT_ACTION_PREFIX;
 
 import java.util.ArrayList;

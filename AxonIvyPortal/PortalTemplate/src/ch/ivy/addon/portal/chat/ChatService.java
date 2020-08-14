@@ -1,7 +1,7 @@
 package ch.ivy.addon.portal.chat;
 
-import static ch.ivy.addon.portal.chat.ChatServiceContainer.log;
-import static ch.ivy.addon.portal.chat.ChatServiceContainer.wf;
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.log;
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.wf;
 import static ch.ivy.addon.portalkit.enums.GlobalVariable.CHAT_MAX_CONNECTION;
 import static ch.ivy.addon.portalkit.enums.GlobalVariable.CHAT_RESPONSE_TIMEOUT;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
@@ -100,9 +100,9 @@ public class ChatService {
   @Produces(MediaType.APPLICATION_JSON)
   public synchronized void registerMessage(@Suspended AsyncResponse response, @PathParam("clientId") String clientId) {
     resetReachedLimitedConnectionCounter();
-    if (ChatServiceContainer.getChatService() == null) {
-      ChatServiceContainer.setChatService(this);
-      ChatServiceContainer.registerSessionExtension();
+    if (ChatReferencesContainer.getChatService() == null) {
+      ChatReferencesContainer.setChatService(this);
+      ChatReferencesContainer.registerIvyExtension();
       if (!IS_STANDARD_MODE) {
         ClusterChatEventListener.register();
         nodeId = DiCore.getGlobalInjector().getInstance(IClusterManager.class).getLocalClusterNode().getId();

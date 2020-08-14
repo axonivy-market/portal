@@ -1,6 +1,6 @@
 package ch.ivy.addon.portal.chat;
 
-import static ch.ivy.addon.portal.chat.ChatServiceContainer.getApplication;
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.getApplication;
 
 import java.util.Deque;
 import java.util.concurrent.ConcurrentLinkedDeque;

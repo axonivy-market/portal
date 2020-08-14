@@ -1,7 +1,7 @@
 package ch.ivy.addon.portal.chat;
 
-import static ch.ivy.addon.portal.chat.ChatServiceContainer.getChatService;
-import static ch.ivy.addon.portal.chat.ChatServiceContainer.wf;
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.getChatService;
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.wf;
 
 import java.util.concurrent.Callable;
 
