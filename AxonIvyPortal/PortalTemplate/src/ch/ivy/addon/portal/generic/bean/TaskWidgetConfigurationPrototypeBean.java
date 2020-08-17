@@ -15,12 +15,14 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.ToggleEvent;
 
+import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.enums.TaskColumn;
 import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
+import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
@@ -58,6 +60,23 @@ public class TaskWidgetConfigurationPrototypeBean {
 
     this.responsibles =
         SecurityService.newInstance().findSecurityMembers("", Ivy.wf().getApplication(), 0, -1).getSecurityMembers();
+  }
+  
+  public String formatName(SecurityMemberDTO responsible) {
+    String responsibleName = "";
+    if (responsible != null) {
+      if (StringUtils.isBlank(responsible.getDisplayName())) {
+        responsibleName = responsible.getName();
+      } else {
+        responsibleName = responsible.getDisplayName() + " (" + responsible.getName() + ")";
+      }
+      return responsible.isEnabled()? responsibleName : Ivy.cms().co("/Labels/disabledUserPrefix") + " " + responsibleName;
+    }
+    return responsibleName;
+  }
+  
+  public List<SecurityMemberDTO> completeResponsibles(String query) {
+    return SecurityMemberUtils.findSecurityMembers(query, 0, PortalConstants.MAX_USERS_IN_AUTOCOMPLETE);
   }
 
   public String getUserFriendlyTaskState(TaskState state) {
@@ -111,7 +130,7 @@ public class TaskWidgetConfigurationPrototypeBean {
     widget.setCreatedDateTo(null);
     widget.setExpiryDateFrom(null);
     widget.setExpiryDateTo(null);
-    widget.setCategories(null);
+    widget.setCategory(null);
     widget.setDescription(null);
     widget.setPriorities(getPriorities());
     widget.setStates(getFilteredStates());
