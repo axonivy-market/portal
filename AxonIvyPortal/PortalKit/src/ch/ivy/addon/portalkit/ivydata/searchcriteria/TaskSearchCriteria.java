@@ -28,7 +28,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 public class TaskSearchCriteria {
 
   public final static EnumSet<TaskState> STANDARD_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN);
-  public final static EnumSet<TaskState> ADVANCE_STATES = EnumSet.of(DONE, DELAYED, DESTROYED);
+  public final static EnumSet<TaskState> ADVANCE_STATES = EnumSet.of(DONE, DELAYED, DESTROYED, TaskState.JOIN_FAILED, TaskState.FAILED, TaskState.WAITING_FOR_INTERMEDIATE_EVENT);
   private String involvedUsername;
   private List<String> apps;
   private List<TaskState> includedStates;
