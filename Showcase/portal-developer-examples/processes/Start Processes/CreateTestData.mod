@@ -4,6 +4,15 @@
 Cs0 CreateTestData Big #zClass
 Cs0 B #cInfo
 Cs0 #process
+Ct2 Component Big #zClass
+Ct2 B #cInfo
+Ct1 Component Big #zClass
+Ct1 B #cInfo
+Ct0 Component Big #zClass
+Ct0 B #cInfo
+Cs0 Ct2 S30 'Sub 3' #zField
+Cs0 Ct1 S20 'Sub 2' #zField
+Cs0 Ct0 S10 'Sub 1' #zField
 Cs0 @TextInP .type .type #zField
 Cs0 @TextInP .processKind .processKind #zField
 Cs0 @AnnotationInP-0n ai ai #zField
@@ -65,7 +74,86 @@ Cs0 @PushWFArc f30 '' #zField
 Cs0 @UserTask f32 '' #zField
 Cs0 @TkArc f33 '' #zField
 Cs0 @PushWFArc f36 '' #zField
+Cs0 @StartRequest f41 '' #zField
+Cs0 @Split f51 '' #zField
+Cs0 @PushWFArc f60 '' #zField
+Cs0 @PushWFArc f61 '' #zField
+Cs0 @GridStep f68 '' #zField
+Cs0 @PushWFArc f39 '' #zField
+Cs0 @PushWFArc f62 '' #zField
+Cs0 @PushWFArc f63 '' #zField
 >Proto Cs0 Cs0 CreateTestData #zField
+Ct2 @TextInP .type .type #zField
+Ct2 @TextInP .processKind .processKind #zField
+Ct2 @TextInP .xml .xml #zField
+Ct2 @TextInP .responsibility .responsibility #zField
+Ct2 @TaskSwitchSimple f63 '' #zField
+Ct2 @IntermediateEvent f2 '' #zField
+Ct2 @TkArc f0 '' #zField
+Ct2 @PushTrueWFInG-01 g2 '' #zField
+Ct2 @PushWFArc f4 '' #zField
+Ct2 @EndTask f7 '' #zField
+Ct2 @PushWFArc f8 '' #zField
+>Proto Ct2 Ct0 Component #zField
+Ct1 @TextInP .type .type #zField
+Ct1 @TextInP .processKind .processKind #zField
+Ct1 @TextInP .xml .xml #zField
+Ct1 @TextInP .responsibility .responsibility #zField
+Ct1 @EndTask f41 '' #zField
+Ct1 @SignalStartEvent f51 '' #zField
+Ct1 @GridStep f60 '' #zField
+Ct1 @PushTrueWFInG-01 g2 '' #zField
+Ct1 @PushWFArc f2 '' #zField
+Ct1 @EndTask f4 '' #zField
+Ct1 @PushWFArc f5 '' #zField
+Ct1 @GridStep f3 '' #zField
+Ct1 @PushWFArc f6 '' #zField
+Ct1 @PushWFArc f1 '' #zField
+>Proto Ct1 Ct1 Component #zField
+Ct0 @TextInP .type .type #zField
+Ct0 @TextInP .processKind .processKind #zField
+Ct0 @TextInP .xml .xml #zField
+Ct0 @TextInP .responsibility .responsibility #zField
+Ct0 @PushWFArc f74 '' #zField
+Ct0 @EndTask f69 '' #zField
+Ct0 @SignalStartEvent f73 '' #zField
+Ct0 @GridStep f71 '' #zField
+Ct0 @GridStep f67 '' #zField
+Ct0 @PushTrueWFInG-01 g2 '' #zField
+Ct0 @PushWFArc f2 '' #zField
+Ct0 @EndTask f4 '' #zField
+Ct0 @PushWFArc f5 '' #zField
+Ct0 @TaskSwitchSimple f1 '' #zField
+Ct0 @TkArc f6 '' #zField
+Ct0 @PushWFArc f7 '' #zField
+>Proto Ct0 Ct2 Component #zField
+Cs0 S30 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language lang="en">
+        <name>Create WAITING_FOR_INTERMEDIATE_EVENT task state</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 S30 448 1010 336 44 -158 -8 #rect
+Cs0 S30 @|BIcon #fIcon
+Cs0 S20 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language lang="en">
+        <name>Create FAILED task</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 S20 516 912 200 48 -53 -8 #rect
+Cs0 S20 @|BIcon #fIcon
+Cs0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language lang="en">
+        <name>Create JOIN_FAILED task</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 S10 520 816 208 48 -70 -8 #rect
+Cs0 S10 @|BIcon #fIcon
 Cs0 f0 outLink createTasksForTaskListCustomization.ivp #txt
 Cs0 f0 inParamDecl '<> param;' #txt
 Cs0 f0 requestEnabled true #txt
@@ -635,10 +723,242 @@ Cs0 f32 1096 666 112 44 -36 -8 #rect
 Cs0 f32 @|UserTaskIcon #fIcon
 Cs0 f33 984 688 1096 688 #arcP
 Cs0 f36 1208 688 1305 688 #arcP
+Cs0 f41 outLink createTechnicalStateTasks.ivp #txt
+Cs0 f41 inParamDecl '<> param;' #txt
+Cs0 f41 requestEnabled true #txt
+Cs0 f41 triggerEnabled false #txt
+Cs0 f41 callSignature createTechnicalStateTasks() #txt
+Cs0 f41 startName 'Create Technical States of Task' #txt
+Cs0 f41 startDescription 'Create Technical States of Task: create 3 new states such as FAILED, JOIN_FAILED and WAITING_FOR_EVENT' #txt
+Cs0 f41 taskData 'TaskTriggered.CATEGORY=TechicalTasks
+TaskTriggered.DESC=Create Tasks in state such as\: FAILED, JOIN_FAILED and WAITING_FOR_INTERMEDIATE_EVENT
+TaskTriggered.NAM=Create Technical Tasks' #txt
+Cs0 f41 caseData 'businessCase.attach=true
+case.name=Create Technical Tasks' #txt
+Cs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createTechnicalStateTasks.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f41 @C|.responsibility Everybody #txt
+Cs0 f41 89 921 30 30 -87 21 #rect
+Cs0 f41 @|StartRequestIcon #fIcon
+Cs0 f51 actionTable 'out1=in;
+' #txt
+Cs0 f51 208 920 32 32 0 16 #rect
+Cs0 f51 @|ThreadIcon #fIcon
+Cs0 f60 119 936 208 936 #arcP
+Cs0 f61 expr out1 #txt
+Cs0 f61 224 920 520 840 #arcP
+Cs0 f61 1 224 840 #addKink
+Cs0 f61 1 0.10360708589181097 0 0 #arcLabel
+Cs0 f68 actionTable 'out=in;
+' #txt
+Cs0 f68 actionCode 'in.eventId = "createTechnicalStateTask" + ivy.task.getId();' #txt
+Cs0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>set eventId</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f68 276 1020 72 24 -29 -8 #rect
+Cs0 f68 @|StepIcon #fIcon
+Cs0 f39 expr out3 #txt
+Cs0 f39 224 952 276 1032 #arcP
+Cs0 f39 1 224 1032 #addKink
+Cs0 f39 1 0.7917182054721094 0 0 #arcLabel
+Cs0 f62 348 1032 448 1032 #arcP
+Cs0 f62 0 0.3511512534965784 0 0 #arcLabel
+Cs0 f63 expr out2 #txt
+Cs0 f63 240 936 516 936 #arcP
 >Proto Cs0 .type com.axonivy.portal.developerexamples.Data #txt
 >Proto Cs0 .processKind NORMAL #txt
 >Proto Cs0 0 0 32 24 18 0 #rect
 >Proto Cs0 @|BIcon #fIcon
+Ct2 f63 actionTable 'out=in1;
+' #txt
+Ct2 f63 caseData 'case.name=Task in state WAITING_FOR_INTERMEDIATE_EVENT' #txt
+Ct2 f63 taskData 'TaskA.DESC=Task in state WAITING_FOR_INTERMEDIATE_EVENT
+TaskA.NAM=Task in state WAITING_FOR_INTERMEDIATE_EVENT' #txt
+Ct2 f63 633 185 30 30 0 16 #rect
+Ct2 f63 @|TaskSwitchSimpleIcon #fIcon
+Ct2 f2 actionTable 'out=in;
+' #txt
+Ct2 f2 eventIdConfig "in.eventId" #txt
+Ct2 f2 timeoutConfig 'ACTION_AFTER_TIMEOUT=NOTHING
+EXCEPTION_PROCESS_START=
+TIMEOUT_SCRIPT=''12H''' #txt
+Ct2 f2 taskData 'ivp.DESC=Example ProcessIntermediateEventBean Task
+ivp.NAM=Example ProcessIntermediateEventBean Task' #txt
+Ct2 f2 eventBeanClass "ch.ivyteam.ivy.process.intermediateevent.TestProcessIntermediateEventBean" #txt
+Ct2 f2 eventBeanConfig "" #txt
+Ct2 f2 393 185 30 30 0 16 #rect
+Ct2 f2 @|IntermediateEventIcon #fIcon
+Ct2 f0 423 200 633 200 #arcP
+Ct2 g2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createTechnicalStateTasks</name>
+    </language>
+</elementInfo>
+' #txt
+Ct2 g2 163 187 26 26 -69 22 #rect
+Ct2 g2 @|MIGIcon #fIcon
+Ct2 f4 189 200 393 200 #arcP
+Ct2 f7 769 185 30 30 0 15 #rect
+Ct2 f7 @|EndIcon #fIcon
+Ct2 f8 663 200 769 200 #arcP
+>Proto Ct0 0 0 32 24 18 0 #rect
+>Proto Ct0 @|BIcon #fIcon
+Ct1 f41 425 281 30 30 0 15 #rect
+Ct1 f41 @|EndIcon #fIcon
+Ct1 f51 signalCode ch:axonivy:portal:example:createtaskfailed #txt
+Ct1 f51 attachToBusinessCase true #txt
+Ct1 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Signal create Task failed</name>
+        <nameStyle>25,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ct1 f51 169 281 30 30 -78 17 #rect
+Ct1 f51 @|SignalStartEventIcon #fIcon
+Ct1 f60 actionTable 'out=in;
+' #txt
+Ct1 f60 actionCode 'import ch.ivyteam.ivy.process.model.value.SignalCode;
+
+ivy.case.setCategoryPath("Technical Task");
+
+SignalCode code = new SignalCode("ch:axonivy:portal:example:createtaskfailed");
+ivy.wf.signals().send(code);
+' #txt
+Ct1 f60 security system #txt
+Ct1 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Send signal to create technical task</name>
+    </language>
+</elementInfo>
+' #txt
+Ct1 f60 280 138 208 44 -97 -8 #rect
+Ct1 f60 @|StepIcon #fIcon
+Ct1 g2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createTechnicalStateTasks</name>
+    </language>
+</elementInfo>
+' #txt
+Ct1 g2 115 147 26 26 -85 28 #rect
+Ct1 g2 @|MIGIcon #fIcon
+Ct1 f2 141 160 280 160 #arcP
+Ct1 f4 721 145 30 30 0 15 #rect
+Ct1 f4 @|EndIcon #fIcon
+Ct1 f5 expr out #txt
+Ct1 f5 488 160 721 160 #arcP
+Ct1 f3 actionTable 'out=in;
+' #txt
+Ct1 f3 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
+
+ivy.task.categoryPath = "TechicalTasks";
+
+// create a runtime error
+if (ivy.task.getWorkflowEvents() == null || ivy.task.getWorkflowEvents().size() <=2) {
+		5 / 0;
+}' #txt
+Ct1 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>reate a runtime error</name>
+    </language>
+</elementInfo>
+' #txt
+Ct1 f3 248 274 128 44 -56 -8 #rect
+Ct1 f3 @|StepIcon #fIcon
+Ct1 f6 199 296 248 296 #arcP
+Ct1 f1 376 296 425 296 #arcP
+>Proto Ct1 0 0 32 24 18 0 #rect
+>Proto Ct1 @|BIcon #fIcon
+Ct0 f74 expr out #txt
+Ct0 f74 416 208 520 208 #arcP
+Ct0 f69 721 329 30 30 0 15 #rect
+Ct0 f69 @|EndIcon #fIcon
+Ct0 f73 signalCode ch:axonivy:portal:example:createtechnicaltask #txt
+Ct0 f73 attachToBusinessCase true #txt
+Ct0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Signal create Technical task</name>
+        <nameStyle>28,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ct0 f73 305 329 30 30 -78 17 #rect
+Ct0 f73 @|SignalStartEventIcon #fIcon
+Ct0 f71 actionTable 'out=in;
+' #txt
+Ct0 f71 actionCode 'import ch.ivyteam.ivy.process.model.value.SignalCode;
+
+SignalCode code = new SignalCode("ch:axonivy:portal:example:createtechnicaltask");
+ivy.wf.signals().send(code);' #txt
+Ct0 f71 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Send signal to create technical task</name>
+    </language>
+</elementInfo>
+' #txt
+Ct0 f71 520 186 208 44 -97 -8 #rect
+Ct0 f71 @|StepIcon #fIcon
+Ct0 f67 actionTable 'out=in;
+' #txt
+Ct0 f67 actionCode 'ivy.case.setCategoryPath("Technical Task");' #txt
+Ct0 f67 security system #txt
+Ct0 f67 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Set process&#xD;
+code name</name>
+    </language>
+</elementInfo>
+' #txt
+Ct0 f67 304 186 112 44 -33 -16 #rect
+Ct0 f67 @|StepIcon #fIcon
+Ct0 g2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>createTechnicalStateTasks</name>
+    </language>
+</elementInfo>
+' #txt
+Ct0 g2 139 195 26 26 -85 38 #rect
+Ct0 g2 @|MIGIcon #fIcon
+Ct0 f2 165 208 304 208 #arcP
+Ct0 f2 0 0.49069289127713717 0 0 #arcLabel
+Ct0 f4 889 193 30 30 0 15 #rect
+Ct0 f4 @|EndIcon #fIcon
+Ct0 f5 expr out #txt
+Ct0 f5 728 208 889 208 #arcP
+Ct0 f1 actionTable 'out=in1;
+' #txt
+Ct0 f1 taskData 'TaskA.DESC=Task failed by runtime exception
+TaskA.NAM=Technical task(JOIN_FAILED)
+TaskA.ROL=SYSTEM
+TaskA.SCRIPT=5/0;
+TaskA.SKIP_TASK_LIST=true
+TaskA.TYPE=0' #txt
+Ct0 f1 457 329 30 30 0 16 #rect
+Ct0 f1 @|TaskSwitchSimpleIcon #fIcon
+Ct0 f6 335 344 457 344 #arcP
+Ct0 f7 487 344 721 344 #arcP
+>Proto Ct2 0 0 32 24 18 0 #rect
+>Proto Ct2 @|BIcon #fIcon
 Cs0 f0 mainOut f2 tail #connect
 Cs0 f2 head f7 in #connect
 Cs0 f7 out f3 tail #connect
@@ -689,3 +1009,40 @@ Cs0 f28 mainOut f33 tail #connect
 Cs0 f33 head f32 in #connect
 Cs0 f32 out f36 tail #connect
 Cs0 f36 head f29 mainIn #connect
+Cs0 f41 mainOut f60 tail #connect
+Cs0 f60 head f51 in #connect
+Cs0 f51 out f61 tail #connect
+Cs0 f61 head S10 g2 #connect
+Cs0 f51 out f39 tail #connect
+Cs0 f39 head f68 mainIn #connect
+Cs0 f68 mainOut f62 tail #connect
+Cs0 f62 head S30 g2 #connect
+Cs0 f51 out f63 tail #connect
+Cs0 f63 head S20 g2 #connect
+Ct2 f2 mainOut f0 tail #connect
+Ct2 f0 head f63 in #connect
+Ct2 g2 m f4 tail #connect
+Ct2 f4 head f2 mainIn #connect
+Ct2 f63 out f8 tail #connect
+Ct2 f8 head f7 mainIn #connect
+Ct2 0 0 1024 440 0 #ivRect
+Ct1 g2 m f2 tail #connect
+Ct1 f2 head f60 mainIn #connect
+Ct1 f60 mainOut f5 tail #connect
+Ct1 f5 head f4 mainIn #connect
+Ct1 f51 mainOut f6 tail #connect
+Ct1 f6 head f3 mainIn #connect
+Ct1 f3 mainOut f1 tail #connect
+Ct1 f1 head f41 mainIn #connect
+Ct1 0 0 960 528 0 #ivRect
+Ct0 f67 mainOut f74 tail #connect
+Ct0 f74 head f71 mainIn #connect
+Ct0 g2 m f2 tail #connect
+Ct0 f2 head f67 mainIn #connect
+Ct0 f71 mainOut f5 tail #connect
+Ct0 f5 head f4 mainIn #connect
+Ct0 f73 mainOut f6 tail #connect
+Ct0 f6 head f1 in #connect
+Ct0 f1 out f7 tail #connect
+Ct0 f7 head f69 mainIn #connect
+Ct0 0 0 1040 536 0 #ivRect

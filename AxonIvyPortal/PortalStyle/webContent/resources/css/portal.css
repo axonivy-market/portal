@@ -516,6 +516,12 @@ body .ui-widget.ui-fieldset.process-group.ui-fieldset .ui-fieldset-legend {
 .task-state-zombie-destroyed {
   color: var(--task-state-zombie-destroyed-color); }
 
+.task-state-failed {
+  color: var(--task-state-failed-color);}
+
+.task-state-waiting {
+  color: var(--task-state-waiting-color);}
+
 .task-state-reserved {
   color: var(--task-state-reserved-color); 
   font-size: var(--task-state-reserved-font-size) !important;

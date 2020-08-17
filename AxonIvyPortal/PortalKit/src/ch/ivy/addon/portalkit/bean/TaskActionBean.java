@@ -51,7 +51,8 @@ public class TaskActionBean {
       return false;
     }
     
-    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.READY_FOR_JOIN);
+    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.READY_FOR_JOIN,
+        TaskState.FAILED);
     if (!taskStates.contains(task.getState())) {
       return false;
     }
@@ -72,7 +73,7 @@ public class TaskActionBean {
     }
     
     EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.DONE, TaskState.FAILED, TaskState.DESTROYED,
-        TaskState.CREATED, TaskState.READY_FOR_JOIN);
+        TaskState.CREATED, TaskState.READY_FOR_JOIN, TaskState.FAILED, TaskState.JOIN_FAILED, TaskState.WAITING_FOR_INTERMEDIATE_EVENT);
     if (taskStates.contains(task.getState())) {
       return false;
     }
@@ -169,8 +170,14 @@ public class TaskActionBean {
     return taskStates.contains(task.getState());
   }
   
+  public boolean isTechnicalState(ITask task) {
+    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.WAITING_FOR_INTERMEDIATE_EVENT, TaskState.FAILED,
+        TaskState.JOIN_FAILED);
+    return taskStates.contains(task.getState());
+  }
+  
   public boolean showAdditionalOptions(ITask task) {
-    return isShowAdditionalOptions && isNotDone(task);
+    return isShowAdditionalOptions && isNotDone(task) && isTechnicalState(task);
   }
   
   public boolean isShowResetTask() {
@@ -227,7 +234,7 @@ public class TaskActionBean {
   }
 
   public boolean noActionAvailable(ITask task) {
-    return !isNotDone(task) && !canReset(task);
+    return !isNotDone(task) && !canReset(task) && !isTechnicalState(task);
   }
   
   public void backToPrevPage(ITask task, boolean isFromTaskList, boolean isTaskStartedInDetails) {
