@@ -77,11 +77,17 @@
           <p:outputLabel for="responsibles" value="Responsibles" />
         </div>
         <div class="ui-g-9">
-          <p:selectCheckboxMenu id="responsibles" value="#{cc.attrs.taskWidget.responsibles}" label="Responsibles" multiple="true"
-            filter="true" filterMatchMode="startsWith" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
-            <f:selectItems value="#{taskWidgetConfigurationPrototypeBean.responsibles}" var="r" itemValue="#{r.name}" itemLabel="#{r.displayName}" />
-          </p:selectCheckboxMenu>
-          <br/>
+          <p:autoComplete id="responsibles" scrollHeight="210" dropdown="true" size="35"
+            completeMethod="#{taskWidgetConfigurationPrototypeBean.completeResponsibles}" value="#{cc.attrs.taskWidget.responsibles}"
+            var="responsible" itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}"
+            converter="pojoConverter" cache="true" maxResults="100" multiple="true"
+            moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true"
+            styleClass="task-configuration__responsibles" forceSelection="true">
+            <p:column>
+              <i class="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+              <h:outputText value="#{taskWidgetConfigurationPrototypeBean.formatName(responsible)}" />
+            </p:column>
+          </p:autoComplete>
         </div>
         <div class="ui-g-3" />
         <div class="ui-g-9">
