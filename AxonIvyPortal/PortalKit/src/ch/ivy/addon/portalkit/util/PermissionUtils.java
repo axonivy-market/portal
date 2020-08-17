@@ -229,4 +229,13 @@ public class PermissionUtils {
   public static boolean canResetTaskReadyForJoin() {
     return hasPortalPermission(PortalPermission.TASK_RESET_READY_FOR_JOIN);
   }
+  
+  /**
+   * Check if current user has permission to see the WorkflowEvent of task
+   * @return rue if current user has permission.
+   */
+  public static boolean checkReadAllWorkflowEventPermission() {
+    return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
+        ch.ivyteam.ivy.security.IPermission.WORKFLOW_EVENT_READ_ALL);
+  }
 }
