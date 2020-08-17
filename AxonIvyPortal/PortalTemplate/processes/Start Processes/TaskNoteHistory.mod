@@ -13,9 +13,7 @@ Ty0 @TextInP .xml .xml #zField
 Ty0 @TextInP .responsibility .responsibility #zField
 Ty0 @StartRequest f0 '' #zField
 Ty0 @EndTask f1 '' #zField
-Ty0 @GridStep f9 '' #zField
 Ty0 @UserDialog f11 '' #zField
-Ty0 @PushWFArc f12 '' #zField
 Ty0 @PushWFArc f2 '' #zField
 Ty0 @GridStep f17 '' #zField
 Ty0 @PushWFArc f3 '' #zField
@@ -47,31 +45,16 @@ Ty0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ty0 f0 @C|.responsibility Everybody #txt
-Ty0 f0 81 49 30 30 -69 17 #rect
+Ty0 f0 113 113 30 30 -69 17 #rect
 Ty0 f0 @|StartRequestIcon #fIcon
-Ty0 f1 705 49 30 30 0 15 #rect
+Ty0 f1 705 113 30 30 0 15 #rect
 Ty0 f1 @|EndIcon #fIcon
-Ty0 f9 actionTable 'out=in;
-' #txt
-Ty0 f9 actionCode 'import ch.ivy.addon.portalkit.comparator.NoteComparator;
-
-in.notes.sort(new NoteComparator());' #txt
-Ty0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>sort notes</name>
-        <nameStyle>10,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ty0 f9 376 42 112 44 -27 -8 #rect
-Ty0 f9 @|StepIcon #fIcon
 Ty0 f11 dialogId ch.ivy.addon.portal.generic.TaskNoteHistory #txt
-Ty0 f11 startMethod start(java.util.List<ch.ivyteam.ivy.workflow.INote>,String) #txt
-Ty0 f11 requestActionDecl '<java.util.List<ch.ivyteam.ivy.workflow.INote> notes,String exportedFileName> param;' #txt
-Ty0 f11 requestMappingAction 'param.notes=in.notes;
+Ty0 f11 startMethod startHistories(ch.ivyteam.ivy.workflow.ITask,String,java.util.List<ch.ivyteam.ivy.workflow.INote>) #txt
+Ty0 f11 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,String exportedFileName,java.util.List<ch.ivyteam.ivy.workflow.INote> notes> param;' #txt
+Ty0 f11 requestMappingAction 'param.task=in.task;
 param.exportedFileName=ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/taskExportedFileNamePrefix", java.util.Arrays.asList(ch.ivy.addon.portalkit.util.PermissionUtils.getTaskName(in.task)));
+param.notes=in.notes;
 ' #txt
 Ty0 f11 responseActionDecl 'ch.ivy.addon.portal.generic.TaskNoteHistoryData out;
 ' #txt
@@ -86,25 +69,31 @@ Ty0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ty0 f11 544 42 112 44 -48 -8 #rect
+Ty0 f11 480 106 112 44 -48 -8 #rect
 Ty0 f11 @|UserDialogIcon #fIcon
-Ty0 f12 expr out #txt
-Ty0 f12 488 64 544 64 #arcP
 Ty0 f2 expr out #txt
-Ty0 f2 656 64 705 64 #arcP
+Ty0 f2 592 128 705 128 #arcP
 Ty0 f17 actionTable 'out=in;
 ' #txt
-Ty0 f17 actionCode 'import ch.ivyteam.ivy.workflow.query.TaskQuery;
+Ty0 f17 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivyteam.ivy.workflow.INote;
+import ch.ivy.addon.portalkit.bo.History;
+import ch.ivy.addon.portalkit.service.HistoryService;
+import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.comparator.NoteComparator;
 
-out.task = ivy.wf.getGlobalContext().getTaskQueryExecutor().getFirstResult(TaskQuery.create().where().taskId().isEqual(in.taskId)) as ITask;
-ICase iCase = out.task.getCase().getBusinessCase();
+in.task = ivy.wf.getGlobalContext().getTaskQueryExecutor().getFirstResult(TaskQuery.create().where().taskId().isEqual(in.taskId)) as ITask;
+ICase iCase = in.task.getCase().getBusinessCase();
 GlobalSettingService globalSettingService = new GlobalSettingService();
 boolean excludeSystemNotes = globalSettingService.findHideSystemNotesFromHistorySettingValue();
-in.notes = CaseUtils.findNotes(iCase, excludeSystemNotes);' #txt
+in.notes = CaseUtils.findNotes(iCase, excludeSystemNotes);
+in.notes.sort(new NoteComparator());
+' #txt
 Ty0 f17 security system #txt
 Ty0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -113,12 +102,11 @@ Ty0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ty0 f17 200 42 112 44 -27 -8 #rect
+Ty0 f17 256 106 112 44 -27 -8 #rect
 Ty0 f17 @|StepIcon #fIcon
 Ty0 f3 expr out #txt
-Ty0 f3 111 64 200 64 #arcP
-Ty0 f4 expr out #txt
-Ty0 f4 312 64 376 64 #arcP
+Ty0 f3 143 128 256 128 #arcP
+Ty0 f4 368 128 480 128 #arcP
 >Proto Ty0 .type ch.ivy.addon.portal.generic.TaskNoteHistoryData #txt
 >Proto Ty0 .processKind NORMAL #txt
 >Proto Ty0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -128,11 +116,9 @@ Ty0 f4 312 64 376 64 #arcP
 ' #txt
 >Proto Ty0 0 0 32 24 18 0 #rect
 >Proto Ty0 @|BIcon #fIcon
-Ty0 f9 mainOut f12 tail #connect
-Ty0 f12 head f11 mainIn #connect
 Ty0 f11 mainOut f2 tail #connect
 Ty0 f2 head f1 mainIn #connect
 Ty0 f0 mainOut f3 tail #connect
 Ty0 f3 head f17 mainIn #connect
 Ty0 f17 mainOut f4 tail #connect
-Ty0 f4 head f9 mainIn #connect
+Ty0 f4 head f11 mainIn #connect
