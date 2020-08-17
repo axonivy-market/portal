@@ -77,7 +77,7 @@
   --task-state-reserved-color: rgba(black, 0.4);
   --task-state-system-color: rgba(black, 0.4);
   --task-state-zombie-destroyed-color: #ff6464;
-  --task-state-failed-color: var(--lns-color-salmon);
+  --task-state-failed-color: #ff6464;
   --task-state-waiting-color: var(--ivy-tertinary-color-yellow-dark);
   --task-state-reserved-font-size: 1.8rem;
   --task-state-system-font-size: 1.8rem;

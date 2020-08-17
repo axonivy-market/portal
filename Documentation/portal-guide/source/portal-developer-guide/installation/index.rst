@@ -157,8 +157,20 @@ Release notes
 This part lists all relevant changes since the last official product
 releases of Axon.ivy.
 
+
+Changes in 9.2
+--------------
+
+- Include new TaskState such as ``Destroyed``, ``Failed``, ``Join failed`` and ``Waiting for event`` in Portal Task list, also in Task State filter
+
+- Include new CaseState ``Destroyed`` in Portal Case list, also in Case State filter
+
+- Introduce ``Workflow Events table``, user who has permission ``WORKFLOW_EVENT_READ_ALL`` can see all ``WORKFLOW_EVENTS``
+
+
+
 Changes in 9.1
-----------------
+--------------
 
 - Refactor style customization approach. From now on, Portal use CSS Variable as technology to customize CSS.
 
@@ -170,6 +182,7 @@ Changes in 9.1
 - Introduce new Portal dialog with icon decorator. Refer to :ref:`this section <components-additional-portal-dialog-with-icon>` for more detail.
 
 - TaskTemplate-7, TaskTemplate and TwoColumnTemplate are removed.
+
 
 .. |css_variable| raw:: html
 
