@@ -1570,7 +1570,7 @@ Application app = new Application();
 app.displayName = "Google";
 app.link = "https://www.google.com/";
 app.menuIcon = "fa fa-play";
-app.menuOrdinal = 0;
+app.menuOrdinal = 99;
 app.name = "Google";
 
 RegisteredApplicationService applicationService = new RegisteredApplicationService();
