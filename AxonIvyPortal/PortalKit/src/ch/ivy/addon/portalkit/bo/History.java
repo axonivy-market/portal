@@ -20,7 +20,7 @@ public class History {
   private String displayName;
 
   public enum HistoryType {
-    TASK, NOTE;
+    TASK, NOTE, EVENT;
   }
 
   public long getId() {
