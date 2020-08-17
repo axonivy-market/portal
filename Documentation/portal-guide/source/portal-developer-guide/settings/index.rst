@@ -251,7 +251,7 @@ Personal task permission
    ``IPermission.TASK_RESET``.
 
    .. important::
-      Task state has to be one of following values: RESUMED, PARKED, READY_FOR_JOIN.
+      Task state has to be one of following values: RESUMED, PARKED, READY_FOR_JOIN, FAILED.
 
    
 -  DELETE TASK
