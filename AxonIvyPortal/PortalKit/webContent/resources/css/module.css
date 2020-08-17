@@ -4831,3 +4831,12 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 	overflow-y: auto;
 	overflow-x: hidden;
 }
+
+.task-configuration__responsibles.ui-autocomplete {
+  width: 90%;
+  float: right;
+}
+
+.task-configuration__responsibles.ui-autocomplete .ui-inputfield {
+  width: 100%;
+}
