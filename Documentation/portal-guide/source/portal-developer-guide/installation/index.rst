@@ -165,7 +165,7 @@ Changes in 9.2
 
 - Include new CaseState ``Destroyed`` in Portal Case list, also in Case State filter.
 
-- Introduce ``Workflow Events table``, user who has permission ``WORKFLOW_EVENT_READ_ALL`` can see all ``WORKFLOW_EVENTS``.
+- Introduce :ref:`Workflow Events table <how-to-show-workflow-events>`, user who has permission ``WORKFLOW_EVENT_READ_ALL`` can see all ``WORKFLOW_EVENTS``.
 
 
 
