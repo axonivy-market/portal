@@ -1,6 +1,5 @@
 package portal.guitest.document.screenshot;
 
-import static org.junit.Assert.assertTrue;
 import static portal.guitest.common.FileHelper.getAbsolutePathToTestFile;
 
 import java.io.IOException;
@@ -133,7 +132,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-export-note-details", new Dimension(SCREENSHOT_WIDTH, 1000));
     
     executeDecorateJs("highlightShowWorkflowEvents()");
-    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-show-workflow-event", new Dimension(SCREENSHOT_WIDTH, 1000));
+    ScreenshotUtil.captureHalfTopRightPageScreenShot(ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-show-workflow-event");
 
     taskNoteHistoryPage.openWorkflowEventDialog();
     WebElement workflowEventTable = taskNoteHistoryPage.getWorkflowEventsTable();
