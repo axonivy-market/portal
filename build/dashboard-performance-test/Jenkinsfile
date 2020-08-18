@@ -17,7 +17,7 @@ pipeline {
   environment {
     engineVersion = 'trunk'
     engineDir = "C:/tools/ivy-server/${env.engineVersion}"
-    portalApplicationName = 'Portal_Dashboard'
+    portalApplicationName = 'PortalDashboard'
   }
 
   stages {
@@ -54,7 +54,7 @@ pipeline {
       steps {
         script {
           today = new Date().format('dd-MM-yyyy_HH-mm')
-          fileOperations([folderCreateOperation(folderPath: "D:/PerformanceResult/${today}/${env.engineVersion}")])
+          fileOperations([folderCreateOperation(folderPath: "D:/PerformanceResult_Dashboard/${today}/${env.engineVersion}")])
 
           echo "====================Test one admin user===================="
           updateConfigFile('data/single_admin_user_server.csv', '1')
