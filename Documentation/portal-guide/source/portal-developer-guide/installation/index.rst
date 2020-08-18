@@ -114,8 +114,18 @@ In engine
    project.
 3. Follow detailed migration notes for each version below.
 
+Migrate 9.1 to 9.2
+------------------
+1. We remove implementation of Portal multiple applications. So that you need to adapt some points below:
+ 
+ - Adapt start process signature of ``PasswordService`` in ``ChangePassword.mod`` if you overrode this callable.
+ 
+ - If you are using ``ProcessStartCollector``, replace constructor ``ProcessStartCollector(application)`` with ``ProcessStartCollector()``.
+
+ - If you have TaskLazyDataModel, CaseLazyDataModel customization, remove ``setInvolvedApplications()`` method, ``setInvolvedUsername`` in search criteria.
+
 Migrate 8.x to 9.1
-----------------------
+------------------
 
 1. Remove the ``views`` field in SubMenuItem.java. Adapt it if you overrode the ``LoadSubMenuItems`` callable process
 

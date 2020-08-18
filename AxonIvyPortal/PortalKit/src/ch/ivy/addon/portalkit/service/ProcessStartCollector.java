@@ -34,6 +34,10 @@ public class ProcessStartCollector {
     this.application = Ivy.request().getApplication();
   }
   
+  @Deprecated(since = "9.2")
+  /**
+   * Use ProcessStartCollector() instead
+   */
   public ProcessStartCollector(IApplication application) {
     this.application = application;
   }
