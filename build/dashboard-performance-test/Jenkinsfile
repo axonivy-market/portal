@@ -16,15 +16,15 @@ pipeline {
 
   environment {
     engineVersion = 'trunk'
-    engineDir = "C:/tools/ivy-server/${env.engineVersion}"
-    portalApplicationName = 'PortalDashboard'
+    engineDir = "C:/tools/ivy-server/dashboard"
+    portalApplicationName = 'Portal'
   }
 
   stages {
     stage('deploy') {
       steps {
         script {
-          engines = ['Axon.ivy Engine - LTS', 'Axon.ivyEngine8.0', 'Axon.ivyEngineTrunk']
+          engines = ['Axon.ivy Engine - LTS', 'Axon.ivyEngine8.0', 'Axon.ivyEngineTrunk', 'Axon.ivyEngineDashboard']
           for (engine in engines) {
             bat """
               net stop "${engine}"
@@ -32,7 +32,7 @@ pipeline {
             """
           }
           bat """
-            net start "${engines[2]}"
+            net start "${engines[3]}"
             exit 0
           """
 
@@ -54,7 +54,7 @@ pipeline {
       steps {
         script {
           today = new Date().format('dd-MM-yyyy_HH-mm')
-          fileOperations([folderCreateOperation(folderPath: "D:/PerformanceResult_Dashboard/${today}/${env.engineVersion}")])
+          fileOperations([folderCreateOperation(folderPath: "D:/PerformanceResult/${today}/dashboard")])
 
           echo "====================Test one admin user===================="
           updateConfigFile('data/single_admin_user_server.csv', '1')
@@ -82,8 +82,8 @@ pipeline {
         exit 0
       """
       node('master') {
-        archiveArtifacts artifacts: "D:/PerformanceResult_Dashboard/${today}/*/*.jtl", allowEmptyArchive: true
-        perfReport sourceDataFiles: "D:/PerformanceResult_Dashboard/${today}/*/*.jtl", compareBuildPrevious :true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true
+        archiveArtifacts artifacts: "D:/PerformanceResult/${today}/*/*.jtl", allowEmptyArchive: true
+        perfReport sourceDataFiles: "D:/PerformanceResult/${today}/*/*.jtl", compareBuildPrevious :true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true
       }
     }
   }
@@ -100,6 +100,6 @@ def updateConfigFile(acccountFilePath, numberOfUser) {
 
 def executeJMeter(resultFileName) {
   bat """
-    jmeter.bat -n -t AxonIvyPortal/PortalTest/jmeter/dashboard_testplan.jmx -l D:/PerformanceResult_Dashboard/${today}/${env.engineVersion}/${resultFileName}
+    jmeter.bat -n -t AxonIvyPortal/PortalTest/jmeter/dashboard_testplan.jmx -l D:/PerformanceResult/${today}/dashboard/${resultFileName}
   """
 }
