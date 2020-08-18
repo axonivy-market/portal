@@ -129,7 +129,7 @@ Migrate 8.x to 9.1
 
 6. Portal now uses |css_variable| instead of SASS. Therefore you must convert SASS syntax to new CSS variable or use online tool such as |css_variable_convert| to convert it.
 
-7. If administrator activate the ``ENABLE_CASE_OWNER`` Portal settings and there is a customized case list, customize this field to this case list, e.g. add filter, column configuration, header
+7. If administrator activate the ``ENABLE_CASE_OWNER`` Portal settings and there is a customized case list, customize this field to this case list, e.g. add filter, column configuration, header.
 
 8. From 9.1, Ivy engine use new mechanism to synchronize user data, therefore Portal must adapt some data related to users. Some data must be migrated to work properly. Please follow these steps to migrate data of your application:
 
@@ -145,7 +145,7 @@ Migrate 8.x to 9.1
 
    - Restart Ivy engine.
 
-9. Use ``pageContent`` to define your section in ``BasicTemplate.xhtml`` instead of ``simplePageContent``
+9. Use ``pageContent`` to define your section in ``BasicTemplate.xhtml`` instead of ``simplePageContent``.
 
 10. ``TaskTemplate-7`` is removed, change it to ``TaskTemplate-8``. ``TaskTemplate`` is also removed, change it to ``frame-8`` (provided by Ivy).
 
@@ -161,11 +161,11 @@ releases of Axon.ivy.
 Changes in 9.2
 --------------
 
-- Include new TaskState such as ``Destroyed``, ``Failed``, ``Join failed`` and ``Waiting for event`` in Portal Task list, also in Task State filter
+- Include new TaskState such as ``Destroyed``, ``Failed``, ``Join failed`` and ``Waiting for event`` in Portal Task list, also in Task State filter.
 
-- Include new CaseState ``Destroyed`` in Portal Case list, also in Case State filter
+- Include new CaseState ``Destroyed`` in Portal Case list, also in Case State filter.
 
-- Introduce ``Workflow Events table``, user who has permission ``WORKFLOW_EVENT_READ_ALL`` can see all ``WORKFLOW_EVENTS``
+- Introduce ``Workflow Events table``, user who has permission ``WORKFLOW_EVENT_READ_ALL`` can see all ``WORKFLOW_EVENTS``.
 
 
 
