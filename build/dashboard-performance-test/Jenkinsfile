@@ -1,0 +1,105 @@
+pipeline {
+  agent {label 'portal-slave'}
+  
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '200', artifactNumToKeepStr: '5'))
+  }
+  
+  triggers {
+    cron('0 14 * * *')
+  }
+
+  tools { 
+      maven '3.6' 
+      jdk '11' 
+  }
+
+  environment {
+    engineVersion = 'trunk'
+    engineDir = "C:/tools/ivy-server/${env.engineVersion}"
+    portalApplicationName = 'Portal_Dashboard'
+  }
+
+  stages {
+    stage('deploy') {
+      steps {
+        script {
+          engines = ['Axon.ivy Engine - LTS', 'Axon.ivyEngine8.0', 'Axon.ivyEngineTrunk']
+          for (engine in engines) {
+            bat """
+              net stop "${engine}"
+              exit 0
+            """
+          }
+          bat """
+            net start "${engines[2]}"
+            exit 0
+          """
+
+          def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/PortalStyle/pom.xml').getProperties().getProperty("build.plugin.version")
+          def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate']
+          for (module in modules) {
+            bat "mvn clean install -f ${module}/pom.xml"
+            bat "mvn com.axonivy.ivy.ci:project-build-plugin:${buildPluginVersion}:deploy-to-engine -f ${module}/pom.xml -Divy.deploy.engine.app=%portalApplicationName% -Divy.deploy.engine.dir=%engineDir% -Divy.deploy.timeout.seconds=60 -Divy.test.engine=MODIFY_EXISTING"
+          }
+        }
+      }
+    }
+    stage('test') {
+      agent {label 'master'}
+
+      tools { 
+        jdk '8' 
+      }
+      steps {
+        script {
+          today = new Date().format('dd-MM-yyyy_HH-mm')
+          fileOperations([folderCreateOperation(folderPath: "D:/PerformanceResult/${today}/${env.engineVersion}")])
+
+          echo "====================Test one admin user===================="
+          updateConfigFile('data/single_admin_user_server.csv', '1')
+          bat '''
+            jmeter.bat -n -t AxonIvyPortal/PortalTest/jmeter/dashboard_testplan.jmx -l temp.jtl
+          '''
+          executeJMeter('result_1_admin_user.jtl')
+
+          echo "====================Test for one normal user===================="
+          updateConfigFile('data/single_normal_user_server.csv', '1')
+          executeJMeter('result_1_normal_user.jtl')
+
+          echo "====================Test ten users===================="
+          updateConfigFile('data/users_server.csv', '10')
+          executeJMeter('result_10_users.jtl')
+        }
+      }
+    }
+  }
+
+  post {
+    always {
+      bat """
+        net stop "${engines[2]}"
+        exit 0
+      """
+      node('master') {
+        archiveArtifacts artifacts: "D:/PerformanceResult_Dashboard/${today}/*/*.jtl", allowEmptyArchive: true
+        perfReport sourceDataFiles: "D:/PerformanceResult_Dashboard/${today}/*/*.jtl", compareBuildPrevious :true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true
+      }
+    }
+  }
+}
+
+def updateConfigFile(acccountFilePath, numberOfUser) {
+  powershell """
+    get-content AxonIvyPortal/PortalTest/jmeter/test.properties | select-string -pattern 'portal.thread.numberOfUser' -notmatch | select-string -pattern 'file.csv' -notmatch | Out-File AxonIvyPortal/PortalTest/jmeter/out.properties -encoding ASCII
+    Add-Content AxonIvyPortal/PortalTest/jmeter/out.properties "file.csv=${acccountFilePath}"
+    Add-Content AxonIvyPortal/PortalTest/jmeter/out.properties "portal.thread.numberOfUser=${numberOfUser}"
+    move AxonIvyPortal/PortalTest/jmeter/out.properties AxonIvyPortal/PortalTest/jmeter/test.properties -Force
+  """
+}
+
+def executeJMeter(resultFileName) {
+  bat """
+    jmeter.bat -n -t AxonIvyPortal/PortalTest/jmeter/dashboard_testplan.jmx -l D:/PerformanceResult_Dashboard/${today}/${env.engineVersion}/${resultFileName}
+  """
+}
