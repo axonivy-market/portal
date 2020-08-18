@@ -25,10 +25,8 @@ public class TaskWidgetPage extends TemplatePage {
   private static final String TASK_ACTION = "horizontal-task-actions";
   private static final String CLASS = "class";
   private static final String ID_END = "*[id$='";
-  private static final String TASK_STATE_OPEN_ID =
-      "task-widget:task-list-scroller:%d:task-item:task-state-component:task-state-open";
-  private static final String TASK_STATE_RESERVED_ID =
-      "task-widget:task-list-scroller:%d:task-item:task-state-component:task-state-reserved";
+  private static final String TASK_STATE_COMPONENT_ID =
+      "task-widget:task-list-scroller:%d:task-item:task-state-component:task-state";
   private static final String KEYWORD_FILTER_SELECTOR =
       "input[id='task-widget:filter-form:filter-container:ajax-keyword-filter']";
   private static final String KEYWORD_FILTER_SELECTOR_EXPANDED_MODE =
@@ -204,8 +202,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public TaskState getTaskState(int taskRowIndex) {
-    WebElement stateCell = findElementById(
-        taskWidgetId + ":task-list-scroller:" + taskRowIndex + ":task-item:task-state-component:task-state");
+    WebElement stateCell = findElementById(String.format(TASK_STATE_COMPONENT_ID, taskRowIndex));
     if (stateCell != null) {
       String stateClass = stateCell.findElement(By.className("icon")).getAttribute(CLASS);
       return TaskState.fromClass(stateClass.substring(stateClass.indexOf("task-state-")));
@@ -214,8 +211,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public String getTaskStateTooltip(int taskRowIndex) {
-    WebElement stateTooltip = findElementById(
-        "task-widget:task-list-scroller:" + taskRowIndex + ":task-item:task-state-component:state-tooltip");
+    WebElement stateTooltip = findElementById(String.format("task-widget:task-list-scroller:%d:task-item:task-state-component:state-tooltip", taskRowIndex));
     if (stateTooltip != null) {
       WebElement stateContent = findChildElementByClassName(stateTooltip, "ui-tooltip-text");
       return stateContent.getAttribute("innerText");
@@ -623,7 +619,8 @@ public class TaskWidgetPage extends TemplatePage {
 
   public boolean isTaskStateOpen(int index) {
     try {
-      findElementById(String.format(TASK_STATE_OPEN_ID, index));
+      WebElement stateComponent = findElementById(String.format(TASK_STATE_COMPONENT_ID, index));
+      stateComponent.findElement(By.className("task-state-open"));
     } catch (NoSuchElementException e) {
       return false;
     }
@@ -632,7 +629,8 @@ public class TaskWidgetPage extends TemplatePage {
 
   public boolean isTaskStateReserved(int index) {
     try {
-      findElementById(String.format(TASK_STATE_RESERVED_ID, index));
+      WebElement stateComponent = findElementById(String.format(TASK_STATE_COMPONENT_ID, index));
+      stateComponent.findElement(By.className("task-state-reserved"));
     } catch (NoSuchElementException e) {
       return false;
     }

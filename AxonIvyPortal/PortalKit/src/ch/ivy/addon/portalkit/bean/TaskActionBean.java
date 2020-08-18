@@ -177,7 +177,7 @@ public class TaskActionBean {
   }
   
   public boolean showAdditionalOptions(ITask task) {
-    return isShowAdditionalOptions && isNotDone(task) && isTechnicalState(task);
+    return isShowAdditionalOptions && isNotDone(task) && !isTechnicalState(task);
   }
   
   public boolean isShowResetTask() {
