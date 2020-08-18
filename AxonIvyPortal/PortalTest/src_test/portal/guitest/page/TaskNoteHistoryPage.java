@@ -33,4 +33,9 @@ public class TaskNoteHistoryPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("div[id$='events-table']"), true);
   }
 
+  public WebElement getWorkflowEventsTable() {
+    waitForElementDisplayed(By.cssSelector("th[id*='events-table:']"), true);
+    return findElementByCssSelector("div[id$='workflow-events-dialog']");
+  }
+
 }
