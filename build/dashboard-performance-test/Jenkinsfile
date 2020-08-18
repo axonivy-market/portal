@@ -6,7 +6,7 @@ pipeline {
   }
   
   triggers {
-    cron('0 14 * * *')
+    cron('0 15 * * *')
   }
 
   tools { 
@@ -15,8 +15,8 @@ pipeline {
   }
 
   environment {
-    engineVersion = 'trunk'
-    engineDir = "C:/tools/ivy-server/dashboard"
+    engineVersion = 'dashboard'
+    engineDir = "C:/tools/ivy-server/${env.engineVersion}"
     portalApplicationName = 'Portal'
   }
 
@@ -54,7 +54,7 @@ pipeline {
       steps {
         script {
           today = new Date().format('dd-MM-yyyy_HH-mm')
-          fileOperations([folderCreateOperation(folderPath: "D:/PerformanceResult/${today}/dashboard")])
+          fileOperations([folderCreateOperation(folderPath: "D:/PerformanceResult/${today}/${env.engineVersion}")])
 
           echo "====================Test one admin user===================="
           updateConfigFile('data/single_admin_user_server.csv', '1')
@@ -100,6 +100,6 @@ def updateConfigFile(acccountFilePath, numberOfUser) {
 
 def executeJMeter(resultFileName) {
   bat """
-    jmeter.bat -n -t AxonIvyPortal/PortalTest/jmeter/dashboard_testplan.jmx -l D:/PerformanceResult/${today}/dashboard/${resultFileName}
+    jmeter.bat -n -t AxonIvyPortal/PortalTest/jmeter/dashboard_testplan.jmx -l D:/PerformanceResult/${today}/${env.engineVersion}/${resultFileName}
   """
 }
