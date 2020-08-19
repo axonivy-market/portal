@@ -11,10 +11,19 @@
   <cc:attribute name="taskCountId" required="true" />
 </cc:interface>
 <cc:implementation>
+  <script>
+    function hideLoading() {
+      $('.js-loading').css('display', 'none');
+      $('.js-task-table').css('display', '');
+    }
+  </script>
+  <p:remoteCommand autoRun="true" actionListener="#{cc.attrs.taskWidget.dataModel.loadFirstTime()}" update="dataTable" global="false" async="true" />
   <div class="ui-g">
     <h:panelGroup id="task-table-container" layout="block" styleClass="ui-g-12 u-padding-0 task-configuration__task-table-container">
-      <p:dataTable id="task-table" value="#{cc.attrs.taskWidget.dataModel}" var="task" styleClass="prototype-task-table task-table" rows="10" rowsPerPageTemplate="5,10,15"
-        paginator="true" paginatorPosition="bottom" lazy="true">
+<!--       <h:panelGroup id="loading" styleClass="js-loading">Loading</h:panelGroup> -->
+      <p:dataTable id="dataTable" value="#{cc.attrs.taskWidget.dataModel}" var="task" styleClass="prototype-task-table task-table js-task-table" 
+        rows="10" rowsPerPageTemplate="5,10,15" paginator="true" paginatorPosition="bottom" lazy="true"
+        emptyMessage="#{cc.attrs.taskWidget.dataModel.message}">
         <p:column headerText="Start" styleClass="start-column" width="50" style="text-align: center">
           <p:commandLink>
             <span class="fa fa-play" />

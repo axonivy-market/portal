@@ -38,10 +38,7 @@ public class TaskWidgetConfigurationPrototypeBean {
 
   @PostConstruct
   public void init() {
-    this.setFilteredStates(new ArrayList<>());
-    this.getFilteredStates().addAll(
-        Arrays.asList(TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE));
-
+    this.filteredStates = Arrays.asList(TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE);
     this.priorities =
         Arrays.asList(WorkflowPriority.EXCEPTION, WorkflowPriority.HIGH, WorkflowPriority.NORMAL, WorkflowPriority.LOW);
 
@@ -58,8 +55,7 @@ public class TaskWidgetConfigurationPrototypeBean {
       }
     }
 
-    this.responsibles =
-        SecurityService.newInstance().findSecurityMembers("", Ivy.wf().getApplication(), 0, -1).getSecurityMembers();
+    this.responsibles = new ArrayList<>();
   }
   
   public String formatName(SecurityMemberDTO responsible) {

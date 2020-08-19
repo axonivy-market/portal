@@ -21,13 +21,21 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
   
   private DashboardTaskSearchCriteria criteria;
   private String widgetId;
+  private boolean isFirstTime = true;
+  private List<ITask> tasks;
+  private String message;
   
   public DashboardTaskLazyDataModel() {
     criteria = new DashboardTaskSearchCriteria();
+    message = "Loading";
   }
   
   @Override
   public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+    if (isFirstTime) {
+      isFirstTime = false;
+      return tasks;
+    }
     criteria.setSortField(sortField);
     criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
     TaskQuery query = criteria.buildQuery();
@@ -37,6 +45,19 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
       PrimeFaces.current().executeScript("rcUpdateTaskCount" + widgetId + "()");
     }
     return data;
+  }
+  
+  public String getMessage() {
+    return message;
+  }
+  
+  public void loadFirstTime() {
+    TaskQuery query = criteria.buildQuery();
+    tasks = Ivy.wf().getTaskQueryExecutor().getResults(query, 0, getPageSize());
+    setRowCount((int) Ivy.wf().getTaskQueryExecutor().getCount(query));
+    PrimeFaces.current().executeScript("rcUpdateTaskCount" + widgetId + "()");
+    isFirstTime = true;
+    message = "No records found.";
   }
   
   public String getWidgetId() {
