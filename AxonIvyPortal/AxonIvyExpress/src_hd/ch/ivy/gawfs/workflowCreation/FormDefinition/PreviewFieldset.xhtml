@@ -6,7 +6,7 @@
     <pe:dynaForm id="dyna-form" value="#{data.dynaFormController.model}" var="dynaData">
 
       <pe:dynaFormControl type="InputFieldText" for="hidden-input-field-text" styleClass="input-text-field">
-        <h:inputHidden id="hidden-input-field-text" />
+        <h:inputHidden id="hidden-input-field-text" rendered="false"/>
 
         <h:panelGroup styleClass="md-inputfield">
           <p:inputText id="input-field-text" value="#{dynaData.value}" required="#{dynaData.required}"
@@ -46,7 +46,7 @@
         </p:selectOneRadio>
       </pe:dynaFormControl>
 
-      <pe:dynaFormControl type="FileUpload" for="fileUpload">
+      <pe:dynaFormControl type="FileUpload" for="fileUploadComponent">
         <ic:ch.ivy.addon.portalkit.component.document.DocumentTable id="fileUploadComponent" uploadRendered="false"
           fileLimit="#{dynaData.intSetting}" typeColumnRendered="false" />
       </pe:dynaFormControl>
