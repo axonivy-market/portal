@@ -34,7 +34,7 @@
                   columnClasses="label-container, field-container" styleClass="user-task-dyna-form ui-fluid">
   
                   <pe:dynaFormControl type="InputFieldText" for="hidden-input-field-text" styleClass="input-text-field">
-                    <h:inputHidden id="hidden-input-field-text" />
+                    <h:inputHidden id="hidden-input-field-text" rendered="false"/>
   
                     <h:panelGroup styleClass="md-inputfield">
                       <p:inputText id="inputFieldText" value="#{dynaData.value}" required="#{dynaData.required}"
@@ -59,7 +59,7 @@
                       autoResize="false" requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
                   </pe:dynaFormControl>
   
-                  <pe:dynaFormControl type="FileUpload" for="file-upload">
+                  <pe:dynaFormControl type="FileUpload" for="fileUploadComponent">
                     <ic:ch.ivy.addon.portalkit.component.document.DocumentTable id="fileUploadComponent" typeColumnRendered="false"
                       messageRendered="false"
                       fileLimit="#{dynaData.intSetting}" />
