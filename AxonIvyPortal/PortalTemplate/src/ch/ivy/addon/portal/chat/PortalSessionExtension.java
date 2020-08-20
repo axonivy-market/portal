@@ -10,13 +10,14 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivyteam.di.restricted.DiCore;
 import ch.ivyteam.ivy.persistence.IPersistentTransaction;
 import ch.ivyteam.ivy.persistence.PersistencyException;
+import ch.ivyteam.ivy.scripting.IIvyScriptProjectClassLoader;
 import ch.ivyteam.ivy.security.ISecurityManager;
 import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.security.ISessionExtension;
 import ch.ivyteam.log.Logger;
 import ch.ivyteam.util.threadcontext.IvyAsyncRunner;
 
-
+@SuppressWarnings("restriction")
 public final class PortalSessionExtension implements ISessionExtension {
   private static PortalSessionExtension instance;
   private IvyAsyncRunner asyncRunner;
@@ -51,6 +52,10 @@ public final class PortalSessionExtension implements ISessionExtension {
   @Override
   public void destroySession(ISession session, IPersistentTransaction transaction) {
     // this method is called when session timed out
+    if (isSessionExtensionObsolete()) {
+      uninstall();
+      return;
+    }
     try {
       executeWithIvyContext(() -> {
         if (chatService() != null && StringUtils.isNotBlank(session.getHttpSessionIdentifier())
@@ -68,6 +73,10 @@ public final class PortalSessionExtension implements ISessionExtension {
   @Override
   public void logoutSession(ISession session, IPersistentTransaction transaction, long currentTaskId) {
     // this method is called when user logged out
+    if (isSessionExtensionObsolete()) {
+      uninstall();
+      return;
+    }
     try {
       executeWithIvyContext(() -> {
         if (chatService() != null && isLastSessionBoundToUser(session)) {
@@ -79,6 +88,16 @@ public final class PortalSessionExtension implements ISessionExtension {
     } catch (Exception e) {
       Logger.getLogger(PortalSessionExtension.class).error("PortalSessionExtension logoutSession", e);
     }
+  }
+
+  private boolean isSessionExtensionObsolete() {
+    var classLoader = this.getClass().getClassLoader();
+    if (classLoader instanceof IIvyScriptProjectClassLoader) {
+      if (((IIvyScriptProjectClassLoader) classLoader).isDeprecated()) {
+        return true;
+      }
+    }
+    return false;
   }
 
   private boolean isLastSessionBoundToUser(ISession session) {

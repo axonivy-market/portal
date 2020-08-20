@@ -21,6 +21,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import javax.inject.Singleton;
@@ -110,15 +111,7 @@ public class ChatService {
     }
     Queue<ResponseInfo> responses = getResponses();
     // unhandled chat responses happen because of clicking chat button before async response is created
-    ChatResponse unhandledChatResponse = null;
-    try {
-      unhandledChatResponse = getUnhandledResponseWhenRegisteringMessage(clientId);
-    } catch (ClassCastException e) {
-      log().info("PMV could be redeployed", e);
-      Deque<ChatResponse> history = ConcurrentChatUtils.getRecentChatResponseHistory(sessionUserName());
-      RedeploymentUtils.filterObjectOfCurrentClassLoader(history, ChatResponse.class);
-      unhandledChatResponse = getUnhandledResponseWhenRegisteringMessage(clientId);
-    }
+    ChatResponse unhandledChatResponse = getChatResponseFromHistory(() -> getUnhandledResponseWhenRegisteringMessage(clientId), sessionUserName());
     if (unhandledChatResponse != null) {
       response.resume(toJson(unhandledChatResponse));
     } else {
@@ -175,7 +168,7 @@ public class ChatService {
 
   public synchronized void performReadingMessage(String participant, String clientId, String actor) {
     ChatMessageManager.deletedReadMessagesInMemory(Arrays.asList(actor), participant);
-    ChatResponse lastChatResponse = ConcurrentChatUtils.getRecentChatResponseHistory(actor).peekLast();
+    ChatResponse lastChatResponse = getChatResponseFromHistory(() -> ConcurrentChatUtils.getRecentChatResponseHistory(actor).peekLast(), actor);
     if (lastChatResponse != null && !isDuplicatedAction(participant, lastChatResponse, READ_PRIVATE_MESSAGE_ACTION)) {
       resumeAsyncResponse(actor, new ChatResponse(READ_PRIVATE_MESSAGE_ACTION, participant), clientId, actor);
     }
@@ -193,7 +186,7 @@ public class ChatService {
 
   public void performReadingGroupMessage(String caseId, String clientId, String actor) {
     ChatMessageManager.deletedReadMessagesInMemoryForGroupChat(Arrays.asList(actor), caseId);
-    ChatResponse lastChatResponse = ConcurrentChatUtils.getRecentChatResponseHistory(actor).peekLast();
+    ChatResponse lastChatResponse = getChatResponseFromHistory(() -> ConcurrentChatUtils.getRecentChatResponseHistory(actor).peekLast(), actor);
     if (lastChatResponse != null && !isDuplicatedAction(caseId, lastChatResponse, READ_GROUP_MESSAGE_ACTION)) {
       resumeAsyncResponse(actor, new ChatResponse(READ_GROUP_MESSAGE_ACTION, caseId), clientId, actor);
     }
@@ -619,4 +612,15 @@ public class ChatService {
     }
   }
 
+  private ChatResponse getChatResponseFromHistory(Supplier<ChatResponse> supplier, String actor) {
+    try {
+      return supplier.get();
+    } catch (ClassCastException e) {
+      log().info("PMV could be redeployed", e);
+      Deque<ChatResponse> history = ConcurrentChatUtils.getRecentChatResponseHistory(actor);
+      RedeploymentUtils.filterObjectOfCurrentClassLoader(history, ChatResponse.class);
+      return supplier.get();
+    }
+  }
+  
 }
