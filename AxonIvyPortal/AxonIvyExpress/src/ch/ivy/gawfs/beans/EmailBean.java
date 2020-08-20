@@ -34,6 +34,8 @@ import ch.ivyteam.ivy.scripting.objects.File;
 @ManagedBean
 @ViewScoped
 public class EmailBean {
+  
+  private String emailRegex = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	private ExpressUserEmail userEmail;
 	private StreamedContent file;
 	@SuppressWarnings("unused")
@@ -157,5 +159,9 @@ public class EmailBean {
 	public void setFilteredAttachments(List<ExpressAttachment> filteredAttachments) {
 		this.filteredAttachments = filteredAttachments;
 	}
-	
+
+  public String getEmailRegex() {
+    return emailRegex;
+  }
+
 }
