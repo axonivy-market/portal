@@ -1,6 +1,7 @@
 package ch.ivy.addon.portal.chat;
 
 import static ch.ivy.addon.portal.chat.ChatReferencesContainer.getChatService;
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.log;
 import static ch.ivy.addon.portal.chat.ChatReferencesContainer.wf;
 import static ch.ivy.addon.portal.chat.ClusterChatAction.CLUSTER_CHAT_ACTION_PREFIX;
 
@@ -22,15 +23,20 @@ public class ClusterChatEventListener implements ISystemEventListener {
 
   @Override
   public void handleSystemEvent(SystemEvent<?> event) {
-    IvyExecutor.executeAsSystem(() -> {
-      String eventName = event.getName();
-      if (StringUtils.isNotBlank(eventName) && eventName.contains(CLUSTER_CHAT_ACTION_PREFIX)
-          && getChatService() != null) {
-        ClusterChatEventParameter parameter = (ClusterChatEventParameter) event.getParameter();
-        ClusterChatAction.valueOf(eventName).accept(parameter);
-      }
-      return "";
-    });
+    try {
+      IvyExecutor.executeAsSystem(() -> {
+        String eventName = event.getName();
+        if (StringUtils.isNotBlank(eventName) && eventName.contains(CLUSTER_CHAT_ACTION_PREFIX)
+            && getChatService() != null) {
+          ClusterChatEventParameter parameter = (ClusterChatEventParameter) event.getParameter();
+          ClusterChatAction.valueOf(eventName).accept(parameter);
+        }
+        return "";
+      });
+    } catch (Exception e) {
+      log().error(e);
+      throw e;
+    }
   }
 
   public static void register() {
