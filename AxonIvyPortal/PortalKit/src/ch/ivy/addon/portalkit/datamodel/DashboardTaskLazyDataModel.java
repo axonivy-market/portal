@@ -3,17 +3,21 @@ package ch.ivy.addon.portalkit.datamodel;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.DashboardTaskSearchCriteria;
+import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
+import ch.ivyteam.util.threadcontext.IvyThreadContext;
 
 public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
 
@@ -23,17 +27,24 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
   private String widgetId;
   private boolean isFirstTime = true;
   private List<ITask> tasks;
-  private String message;
+  private CompletableFuture<Void> future;
   
   public DashboardTaskLazyDataModel() {
     criteria = new DashboardTaskSearchCriteria();
-    message = "Loading";
   }
   
   @Override
   public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
     if (isFirstTime) {
       isFirstTime = false;
+      if (future != null) {
+        try {
+          future.get();
+          PrimeFaces.current().executeScript("rcUpdateTaskCount" + widgetId + "()");
+        } catch (InterruptedException | ExecutionException e) {
+          throw new PortalException(e);
+        }
+      }
       return tasks;
     }
     criteria.setSortField(sortField);
@@ -47,17 +58,21 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
     return data;
   }
   
-  public String getMessage() {
-    return message;
-  }
-  
   public void loadFirstTime() {
     TaskQuery query = criteria.buildQuery();
-    tasks = Ivy.wf().getTaskQueryExecutor().getResults(query, 0, getPageSize());
-    setRowCount((int) Ivy.wf().getTaskQueryExecutor().getCount(query));
-    PrimeFaces.current().executeScript("rcUpdateTaskCount" + widgetId + "()");
+    Object memento = IvyThreadContext.saveToMemento();
+    CompletableFuture<Void> loadFuture = CompletableFuture.runAsync(() -> {
+      IvyThreadContext.restoreFromMemento(memento);
+      tasks = Ivy.wf().getTaskQueryExecutor().getResults(query, 0, getPageSize());
+      IvyThreadContext.reset();
+    });
+    CompletableFuture<Void> countFuture = CompletableFuture.runAsync(() -> {
+      IvyThreadContext.restoreFromMemento(memento);
+      setRowCount((int) Ivy.wf().getTaskQueryExecutor().getCount(query));
+      IvyThreadContext.reset();
+    });
+    future = CompletableFuture.allOf(loadFuture, countFuture);
     isFirstTime = true;
-    message = "No records found.";
   }
   
   public String getWidgetId() {
