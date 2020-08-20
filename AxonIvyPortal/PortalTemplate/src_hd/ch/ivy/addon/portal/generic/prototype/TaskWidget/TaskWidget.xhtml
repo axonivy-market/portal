@@ -11,19 +11,14 @@
   <cc:attribute name="taskCountId" required="true" />
 </cc:interface>
 <cc:implementation>
-  <script>
-    function hideLoading() {
-      $('.js-loading').css('display', 'none');
-      $('.js-task-table').css('display', '');
-    }
-  </script>
-  <p:remoteCommand autoRun="true" actionListener="#{cc.attrs.taskWidget.dataModel.loadFirstTime()}" update="dataTable" global="false" async="true" />
+  <p:remoteCommand autoRun="true" actionListener="#{cc.attrs.taskWidget.dataModel.loadFirstTime()}" update="dataTable" global="false" async="true" process="@this"
+    oncomplete="$('.js-loading-#{cc.attrs.taskWidget.id}').css('display', 'none');$('.js-task-table-#{cc.attrs.taskWidget.id}').css('display', '');" />
   <div class="ui-g">
     <h:panelGroup id="task-table-container" layout="block" styleClass="ui-g-12 u-padding-0 task-configuration__task-table-container">
-<!--       <h:panelGroup id="loading" styleClass="js-loading">Loading</h:panelGroup> -->
-      <p:dataTable id="dataTable" value="#{cc.attrs.taskWidget.dataModel}" var="task" styleClass="prototype-task-table task-table js-task-table" 
-        rows="10" rowsPerPageTemplate="5,10,15" paginator="true" paginatorPosition="bottom" lazy="true"
-        emptyMessage="#{cc.attrs.taskWidget.dataModel.message}">
+      <h:panelGroup id="loading" styleClass="js-loading-#{cc.attrs.taskWidget.id}">Loading...</h:panelGroup>
+      <p:dataTable id="dataTable" value="#{cc.attrs.taskWidget.dataModel}" var="task" 
+        styleClass="prototype-task-table task-table js-task-table-#{cc.attrs.taskWidget.id}" style="display: none" 
+        rows="10" rowsPerPageTemplate="5,10,15" paginator="true" paginatorPosition="bottom" lazy="true">
         <p:column headerText="Start" styleClass="start-column" width="50" style="text-align: center">
           <p:commandLink>
             <span class="fa fa-play" />
@@ -69,6 +64,6 @@
     </h:panelGroup>
   </div>
   
-  <p:remoteCommand name="rcUpdateTaskCount#{cc.attrs.taskWidget.id}" update="#{cc.attrs.taskCountId}" global="false" process="@this" />
+  <p:remoteCommand name="rcUpdateTaskCount#{cc.attrs.taskWidget.id}" update="#{cc.attrs.taskCountId}" global="false" process="@this" async="true" />
 </cc:implementation>
 </html>
