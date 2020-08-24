@@ -1562,21 +1562,28 @@ Dt0 f151 433 1457 30 30 0 15 #rect
 Dt0 f151 @|EndIcon #fIcon
 Dt0 f152 actionTable 'out=in;
 ' #txt
-Dt0 f152 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Application;
-
+Dt0 f152 actionCode 'import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
+import ch.ivy.addon.portalkit.service.IvyCacheService;
+import ch.ivy.addon.portalkit.util.Locales;
+import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
+import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
+DisplayNameConvertor convertor = new DisplayNameConvertor();
+convertor.add(new Locales().getCurrentLocale(), "Google");
+
 Application app = new Application();
-app.displayName = "Google";
+app.displayName = convertor.toJson();
 app.link = "https://www.google.com/";
 app.menuIcon = "fa fa-play";
 app.menuOrdinal = 99;
-app.name = "Google";
+app.name = convertor.toJson();
 
 RegisteredApplicationService applicationService = new RegisteredApplicationService();
 app = applicationService.save(app) as Application;
 
-' #txt
+IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION);
+IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON);' #txt
 Dt0 f152 security system #txt
 Dt0 f152 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
