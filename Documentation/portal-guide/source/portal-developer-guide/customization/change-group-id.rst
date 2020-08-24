@@ -13,4 +13,4 @@ This variable is defined in PortalKit project.
 
 .. note::
 	Do not forget to change default pages to your project, follow this chapter to customize standard processes:
-	`Standard Processes <https://developer.axonivy.com/doc/latest/engine-guide/administration/standard-processes.html>`_
+	`Standard Processes <https://developer.axonivy.com/doc/9.1/engine-guide/administration/standard-processes.html>`_
