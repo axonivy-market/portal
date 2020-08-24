@@ -53,8 +53,10 @@ public class MenuTest extends BaseTest {
 
   @Test
   public void testNavigateToThirdPartyApp() {
-    login(TestAccount.ADMIN_USER);
     createThirdPartyApp();
+    login(TestAccount.DEMO_USER);
+    // to refresh cache
+    login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     mainMenuPage.clickThirdPartyAppByIndex(1);
