@@ -1576,7 +1576,8 @@ app.name = "Google";
 RegisteredApplicationService applicationService = new RegisteredApplicationService();
 app = applicationService.save(app) as Application;
 
-ivy.log.error(app.menuOrdinal);' #txt
+' #txt
+Dt0 f152 security system #txt
 Dt0 f152 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
