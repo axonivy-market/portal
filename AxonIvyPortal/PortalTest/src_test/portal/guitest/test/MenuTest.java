@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
@@ -52,6 +53,7 @@ public class MenuTest extends BaseTest {
 
   @Test
   public void testNavigateToThirdPartyApp() {
+    login(TestAccount.ADMIN_USER);
     createThirdPartyApp();
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
