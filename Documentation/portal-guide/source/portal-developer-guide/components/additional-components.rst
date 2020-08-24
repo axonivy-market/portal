@@ -391,6 +391,12 @@ Parameters of this decorator:
   :class: longtable
   :widths: 20 10 25 45
 
+Portal cronjob trigger
+----------------------
+Portal provides a helpful bean ``ch.ivy.addon.portalkit.util.CronByGlobalVariableTriggerStartEventBean`` using the Quartz framework which help trigger cron job by global variable. The global variable should contains the cron job Pattern, to trigger to process on the right time.
+
+There is a online `Cron Maker <http://www.cronmaker.com>`_ could help you to create your own cron job pattern.
+
 .. |process-history-example| image:: ../../screenshots/components/process-history-example.png
 .. |process-history-dialog-example| image:: ../../screenshots/components/process-history-dialog-example.png
 .. |set-business-entity-id-sub-process| image:: images/additional-component/set-business-entity-id-sub-process.png
