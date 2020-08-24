@@ -26,7 +26,7 @@ of each module, refer to :ref:`architecture` .
 -  AxonIvyExpress
 
 The project deployment of Ivy project are described in `project
-deployment <http://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html#administration-deployment>`__
+deployment <https://developer.axonivy.com/doc/9.1/engine-guide/administration/deployment.html>`__
 .
 
 Installation
@@ -87,7 +87,7 @@ How to migrate
 
    In order to migrate Portal, you need to migrate Axon.ivy, refer
    `Axon.ivy migration
-   notes <https://developer.axonivy.com/doc/latest/MigrationNotes.html>`__.
+   notes <https://developer.axonivy.com/doc/9.1/axonivy/migration/index.html>`__.
    Changes in Axon.ivy could lead to problems if customer project is not
    migrated properly.
 
@@ -125,7 +125,7 @@ Migrate 8.x to 9.1
 
 4. Ivy core enhanced the Ivy URI, so Portal needs to make a migration. Deploy :download:`PortalUrlMigration.iar <documents/PortalUrlMigration.iar>` project to any Ivy Application then run ``migratePortalUrl.ivp`` once and wait until it is redirected to another page without error (E.g: Homepage). It is recommended to remove it after the migration.
 
-5. HOMEPAGE_URL (single Portal app mode) and registered application link (multi Portal app mode) are not available anymore. To let portal know about your new portal home, you have to set default pages to your project, follow this chapter to customize standard processes: `Standard Processes <https://developer.axonivy.com/doc/latest/engine-guide/administration/standard-processes.html>`_
+5. HOMEPAGE_URL (single Portal app mode) and registered application link (multi Portal app mode) are not available anymore. To let portal know about your new portal home, you have to set default pages to your project, follow this chapter to customize standard processes: `Standard Processes <https://developer.axonivy.com/doc/9.1/engine-guide/administration/standard-processes.html>`_
 
 6. Portal now uses |css_variable| instead of SASS. Therefore you must convert SASS syntax to new CSS variable or use online tool such as |css_variable_convert| to convert it.
 
