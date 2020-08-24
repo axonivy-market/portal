@@ -176,7 +176,7 @@ Permission settings
 ===================
 
 Permissions can be configured in `Cockpit
-<http://developer.axonivy.com/doc/latest/engine-guide/tool-reference/engine-cockpit.html#security>`_.
+<https://developer.axonivy.com/doc/9.1/engine-guide/tool-reference/engine-cockpit/index.html>`_.
 In the security area, you will find all these permission in the Group
 "PortalPermissions"
 
@@ -459,8 +459,9 @@ Global variables
    |                                             |             | to                        |
    |                                             |             | `crontrigger <http://quar |
    |                                             |             | tz-scheduler.org/document |
-   |                                             |             | ation/quartz-2.1.x/tutori |
-   |                                             |             | als/crontrigger>`__       |
+   |                                             |             | ation/quartz-2.1.7/tutori |
+   |                                             |             | als/tutorial-lesson-06.htm|
+   |                                             |             | l>`__                     |
    |                                             |             | . Restart Ivy engine      |
    |                                             |             | after changing this       |
    |                                             |             | variable.                 |
