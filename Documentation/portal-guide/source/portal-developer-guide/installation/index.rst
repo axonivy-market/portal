@@ -26,7 +26,7 @@ of each module, refer to :ref:`architecture` .
 -  AxonIvyExpress
 
 The project deployment of Ivy project are described in `project
-deployment <http://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html#administration-deployment>`__
+deployment <https://developer.axonivy.com/doc/8.0/engine-guide/administration/deployment.html>`__
 .
 
 .. _installation-basic-portal-mode:
@@ -118,7 +118,7 @@ How to migrate
 
    In order to migrate Portal, you need to migrate Axon.ivy, refer
    `Axon.ivy migration
-   notes <https://developer.axonivy.com/doc/latest/MigrationNotes.html>`__.
+   notes <https://developer.axonivy.com/doc/8.0/engine-guide/installation/upgrade.html>`__.
    Changes in Axon.ivy could lead to problems if customer project is not
    migrated properly.
 
@@ -402,7 +402,7 @@ Migrate 6.4 to 6.5
 ------------------
 
 -  If compilation error "The type org.apache.axis2.databinding.ADBBean
-   cannot be resolved" occurs, use  `Project compilation classpath <https://developer.axonivy.com/doc/latest/doc/migrationNotes/MigrationNotesDesigner7.0.html#projectClasspath>`_  to fix.
+   cannot be resolved" occurs, follow  `Migration Notes <https://developer.axonivy.com/doc/8.0/doc/migrationNotes/MigrationNotes.html>`_  to fix.
 -  The relative link in default user processes starts with ivy context
    path instead of "pro". If there are customized default user proceses, append
    context path at the beginning. E.g. in Portal  ``6.4`` , it is
@@ -561,7 +561,7 @@ Changes in 7.2
 
 -  Override DefaultApplicationHomePage.ivp, DefaultLoginPage.ivp,
    DefaultEndPage.ivp processes, refer to `Replacement
-   Project <https://developer.axonivy.com/doc/latest/EngineGuideHtml/administration.html#ServerAdministration-htmlworkflowui>`__,
+   Project <https://developer.axonivy.com/doc/7.0/EngineGuideHtml/administration.html#ServerAdministration.htmlworkflowui>`__,
    check migration notes if you have the customized PortalStart.ivp
    process.
 
