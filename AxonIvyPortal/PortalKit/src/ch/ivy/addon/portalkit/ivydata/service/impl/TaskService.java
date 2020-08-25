@@ -64,12 +64,6 @@ public class TaskService implements ITaskService {
     return taskQueryExecutor().getCount(query);
   }
   
-  private static TaskQuery queryForUserCanWorkOn() {
-    TaskQuery taskQuery = TaskQuery.create();
-    taskQuery.where().or().canWorkOn(Ivy.session().getSessionUser());
-    return taskQuery;
-  }
-  
   private TaskQuery queryExcludeHiddenTasks() {
     return TaskQuery.create().where().customField().stringField(AdditionalProperty.HIDE.toString()).isNull();
   }
@@ -172,7 +166,7 @@ public class TaskService implements ITaskService {
   private TaskQuery extendQueryWithUserCanWorkOn(TaskSearchCriteria criteria) {
     TaskQuery finalQuery = criteria.getFinalTaskQuery();
     if (!criteria.isAdminQuery()) {
-      finalQuery.where().and(queryForUserCanWorkOn());
+      finalQuery.where().and().currentUserCanWorkOn();
     } 
     if (isHiddenTasksCasesExcluded()) {
       finalQuery.where().and(queryExcludeHiddenTasks());
