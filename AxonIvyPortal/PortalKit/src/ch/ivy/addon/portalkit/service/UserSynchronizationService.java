@@ -55,6 +55,9 @@ public class UserSynchronizationService {
     String applicationName = Ivy.wf().getApplication().getName();
     Ivy.log().info("Check user {0} is in cache for app: {1}", Ivy.session().getSessionUserName(), applicationName);
     if (!isUserExistedInCurrentApp(userService.findByUserName(username))){
+      if (CollectionUtils.isEmpty(new ApplicationService().findAllIvyApplications())) {//if no configured apps
+        return;
+      }
       User user = new User();
       user.setUserName(Ivy.session().getSessionUserName());
       user.setFullUserName(Ivy.session().getSessionUser().getDisplayName());
