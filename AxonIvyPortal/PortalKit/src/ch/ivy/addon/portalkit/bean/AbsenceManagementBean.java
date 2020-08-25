@@ -37,15 +37,15 @@ public class AbsenceManagementBean implements Serializable{
   
   @PostConstruct
   public void init() {
-    ownAbsencesReadable = PermissionUtils.hasAtLeaseOnePermission(USER_READ_OWN_ABSENCES, USER_READ_ABSENCES);
-    ownAbsencesCreatable = PermissionUtils.hasAtLeaseOnePermission(USER_CREATE_OWN_ABSENCE, USER_CREATE_ABSENCE);
-    ownAbsencesDeletable = PermissionUtils.hasAtLeaseOnePermission(USER_DELETE_OWN_ABSENCE, USER_DELETE_ABSENCE);
+    ownAbsencesReadable = PermissionUtils.hasAtLeastOnePermission(USER_READ_OWN_ABSENCES, USER_READ_ABSENCES);
+    ownAbsencesCreatable = PermissionUtils.hasAtLeastOnePermission(USER_CREATE_OWN_ABSENCE, USER_CREATE_ABSENCE);
+    ownAbsencesDeletable = PermissionUtils.hasAtLeastOnePermission(USER_DELETE_OWN_ABSENCE, USER_DELETE_ABSENCE);
 
     absencesInThePastCreatable = PermissionUtils.hasPermission(USER_CREATE_ABSENCE);
     absencesInThePastDeletable = PermissionUtils.hasPermission(USER_DELETE_ABSENCE);
 
     substitutionManagementCapable = PermissionUtils.hasAllPermissions(USER_CREATE_SUBSTITUTE, USER_READ_SUBSTITUTES);
-    substitutionCapable = PermissionUtils.hasAtLeaseOnePermission(USER_CREATE_OWN_SUBSTITUTE, USER_CREATE_SUBSTITUTE);
+    substitutionCapable = PermissionUtils.hasAtLeastOnePermission(USER_CREATE_OWN_SUBSTITUTE, USER_CREATE_SUBSTITUTE);
   }
 
   public boolean isOwnAbsencesReadable() {
