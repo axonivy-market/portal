@@ -223,7 +223,7 @@ public class PermissionUtils {
     return hasAllPermissions;
   }
 
-  public static boolean hasAtLeaseOnePermission(IPermission permission, IPermission... permissions) {
+  public static boolean hasAtLeastOnePermission(IPermission permission, IPermission... permissions) {
     boolean hasAtLeastOnePermission = hasPermission(permission);
     for (IPermission perm : permissions) {
       hasAtLeastOnePermission |= hasPermission(perm);
