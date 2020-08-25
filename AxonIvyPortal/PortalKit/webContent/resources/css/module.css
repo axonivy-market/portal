@@ -2715,10 +2715,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   width: calc(100% - 20px);
 }
 
-body .ui-tabs .ui-tabs-panel {
-padding: 0;
-}
-
 @media screen and (max-width: 40em) {
   .absence-management .show-absence-in-the-past-panel {
     width: 72%;
@@ -2763,7 +2759,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   box-sizing: border-box !important;
 }
 
-/********************************** CHANGE PASSWORK DIALOG **********************************/
+/********************************** CHANGE PASSWORD DIALOG **********************************/
 .change-password-dialog {
   max-width: 500px;
   min-width: 350px;
@@ -2774,7 +2770,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
     max-width: 96vw;
   }
 }
-/********************************** END CHANGE PASSWORK DIALOG **********************************/
+/********************************** END CHANGE PASSWORD DIALOG **********************************/
 
 /********************************** USER PROFILE **********************************/
 .md-inputfield .language-selection-label {

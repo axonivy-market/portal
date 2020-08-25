@@ -23,24 +23,10 @@ public interface ISubstituteService {
   IvySubstituteResultDTO findSubstitutions(String username);
   
   /**
-   * Updates substitutes of multiple users, user will be mapped by application name
-   * @param userPerApplication sample map: <app1, list1 > <app2, list2>
-   * @param ivySubstitutesByApp sample map: <app1, demo> <app2, admin>
-   * @return
-   * this function will set list 1 as substitutes for user demo, list 2 as substitutes for user admin 
-   */
-  
-  /**
    * Updates substitutes for user
    * @param userDTO
    * @param ivySubstitutes
    */
   void saveSubstitutes(UserDTO userDTO, List<IvySubstitute> ivySubstitutes);
   
-//  /**
-//   * find substitutes for given user on given application
-//   * @param username
-//   * @return substitutes
-//   */
-//  IvySubstituteResultDTO findSubstitutesOnApp(String username);
 }
