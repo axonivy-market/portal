@@ -213,7 +213,7 @@ selected app</name>
 ' #txt
 As0 f95 644 512 120 48 -33 -16 #rect
 As0 f95 @|StepIcon #fIcon
-As0 f97 processCall 'Business Processes/FindApplicationsByUser:findThirdPartyApplications()' #txt
+As0 f97 processCall 'Business Processes/FindThirdPartyApplications:findThirdPartyApplications()' #txt
 As0 f97 requestActionDecl '<> param;' #txt
 As0 f97 responseActionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt

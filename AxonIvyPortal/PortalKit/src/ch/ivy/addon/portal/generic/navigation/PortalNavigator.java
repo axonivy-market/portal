@@ -32,14 +32,10 @@ public final class PortalNavigator {
 
   
   public String getPortalStartUrl() {
-    return getDefaultApplicationHomePage();
-  }
-  
-  private String getDefaultApplicationHomePage() {
     return IvyExecutor.executeAsSystem(() ->
       Ivy.wf().getStandardProcessImplementation(StandardProcessType.DefaultApplicationHomePage).getLink().getRelative());
   }
-
+  
   public static void redirect(String url) {
     try {
       FacesContext.getCurrentInstance().getExternalContext().redirect(url);
