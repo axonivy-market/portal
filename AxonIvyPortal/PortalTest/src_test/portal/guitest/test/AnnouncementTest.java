@@ -23,7 +23,6 @@ public class AnnouncementTest extends BaseTest {
   }
 
   @Test
-  //This test hard to run on local, don't know why
   public void testNotificationLocalizationWhenChangingLanguageSetting() {
     HomePage homePage = new HomePage();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
@@ -35,15 +34,14 @@ public class AnnouncementTest extends BaseTest {
     adminSettingsPage.closeInformConfigDialog();
 
     UserProfilePage userProfilePage = homePage.openMyProfilePage();
-    userProfilePage.selectLanguage(1);
+    userProfilePage.selectLanguage(0);
     userProfilePage.save();
     assertEquals("lies mich", homePage.getAnnouncementMessage());
-    
+
+    userProfilePage.selectLanguage(1);
+    userProfilePage.save();
     userProfilePage.clickOnLogo();
     homePage = new HomePage();
-    userProfilePage = homePage.openMyProfilePage();
-    userProfilePage.selectLanguage(2);
-    userProfilePage.save();
     assertEquals("Readme1", homePage.getAnnouncementMessage());
 
   }
