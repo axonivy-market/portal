@@ -9,7 +9,7 @@ import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 public class Guide {
 
-  private static final String SHOW_GUIDE = "SHOW_GUIDE";
+  public static final String SHOW_GUIDE = "SHOW_GUIDE";
   private boolean isGuideShown;
   private GlobalSettingService globalSettingService;
 
@@ -29,6 +29,7 @@ public class Guide {
   public void setShowGuideProperty(boolean isGuideShown) {
     this.isGuideShown = isGuideShown;
     Ivy.session().getSessionUser().setProperty(SHOW_GUIDE, String.valueOf(isGuideShown));
+    Ivy.log().warn("setShowGuideProperty - isGuideShown: " + isGuideShown);
   }
   
   public void readShowGuideProperty() {

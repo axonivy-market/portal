@@ -2805,8 +2805,17 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 /********************************** END CHANGE PASSWORK DIALOG **********************************/
 
 /********************************** USER PROFILE **********************************/
-.md-inputfield .language-selection-label {
-  left: 0;
+@media screen and (max-width: 40em) {
+  .my-profile-container .card {
+    height: auto !important;
+  }
+}
+
+@media screen and (min-width: 90.063em) {
+  .my-profile-container {
+    width: 75%;
+    min-width: 1200px;
+  }
 }
 
 .user-profile-footer {
@@ -2823,7 +2832,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   margin-bottom: 6px
 }
 
-.application-email-setting-row,
 .daily-summary-checkbox.ui-selectcheckboxmenu {
   width: 100%;
 }
@@ -2832,27 +2840,49 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding-left: 3px !important;
 }
 
-.application-email-setting-row tbody tr td {
-  padding-bottom: 10px !important;
+.application-email-panel {
+  width: auto;
+  padding: 0 .5em;
+}
+
+.application-email-setting-label {
+  padding-bottom: 1em;
+  padding-right: 4em;
 }
 
 .my-profile-form {
   margin: 10px;
 }
 
-.my-profile-container.card {
-  padding-left: 15px;
-  padding-right: 15px;
-  margin: 0 auto;
+.my-profile-container {
+  margin: auto;
+  max-width: 1850px;
 }
 
-.user-profile .setting-header {
+.my-profile-container .card {
+  height: 100%;
+  float: left;
+}
+
+.my-profile-container .setting-header {
   margin-bottom: 10px;
 }
 
-.language-selection,
-.email-setting-container {
-  margin-top: 30px;
+.my-profile-container .setting-header h2 {
+  padding: 0;
+  margin-bottom: 8px;
+}
+
+.my-profile-container .setting-header span  {
+  padding: 0 0 0 1px;
+  margin: 0;
+  opacity: 0.75;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+}
+
+.email-setting-container .ui-selectmanycheckbox.daily-summary.ui-grid-responsive .ui-g-12.ui-md-4 {
+  display: inline-flex;
 }
 /********************************** END USER PROFILE SETTING **********************************/
 
