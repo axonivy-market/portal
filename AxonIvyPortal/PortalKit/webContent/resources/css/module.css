@@ -2881,9 +2881,16 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   line-height: 1.2rem;
 }
 
+.my-profile-container .show-tutorial,
 .email-setting-container .ui-selectmanycheckbox.daily-summary.ui-grid-responsive .ui-g-12.ui-md-4 {
   display: inline-flex;
+  word-break: break-word;
 }
+
+.my-profile-container .show-tutorial span.ui-chkbox-label {
+  padding-top: 2px;
+}
+
 /********************************** END USER PROFILE SETTING **********************************/
 
 /********************************** PROCESS STARTS **********************************/
