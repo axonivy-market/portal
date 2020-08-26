@@ -114,8 +114,13 @@ In engine
    project.
 3. Follow detailed migration notes for each version below.
 
+Migrate 9.1 to 9.2
+------------------
+
+1. In PortalNavigatorInFrame.java, change the methods from non-static to static.
+
 Migrate 8.x to 9.1
-----------------------
+------------------
 
 1. Remove the ``views`` field in SubMenuItem.java. Adapt it if you overrode the ``LoadSubMenuItems`` callable process
 
