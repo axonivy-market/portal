@@ -8,12 +8,12 @@ public class ChatContact {
   public ChatContact(String name) {
     this.name = name;
   }
-  
+
   public ChatContact(String name, boolean isOnline) {
     this.name = name;
     this.isOnline = isOnline;
   }
-  
+
   public String getName() {
     return name;
   }
