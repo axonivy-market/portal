@@ -10,3 +10,11 @@ emailSetting ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting #field
 emailSetting PERSISTENT #fieldModifier
 dailySummaryList java.util.List<ch.ivyteam.util.date.Weekday> #field
 dailySummaryList PERSISTENT #fieldModifier
+showTutorial Boolean #field
+showTutorial PERSISTENT #fieldModifier
+homepageSelected String #field
+homepageSelected PERSISTENT #fieldModifier
+homepageSelectionOptions java.util.List<String> #field
+homepageSelectionOptions PERSISTENT #fieldModifier
+disableShowTutorial Boolean #field
+disableShowTutorial PERSISTENT #fieldModifier
