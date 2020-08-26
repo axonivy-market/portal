@@ -21,7 +21,6 @@ public class GuideBean {
     guide = GuidePool.instance().guide(Ivy.session().getSessionUserName());
     guide.readShowGuideProperty();
     isGuideShown = guide.isGuideShown();
-    Ivy.log().warn("isGuideShown: " + isGuideShown);
   }
   
   public boolean getIsGuideShown() {
@@ -40,7 +39,6 @@ public class GuideBean {
   public void setDontShowAgain(boolean dontShowAgain) {
     this.dontShowAgain = dontShowAgain;
     guide.setShowGuideProperty(!dontShowAgain);
-    Ivy.log().warn("setDontShowAgain - isGuideShown: " + !dontShowAgain);
   }
 
 }

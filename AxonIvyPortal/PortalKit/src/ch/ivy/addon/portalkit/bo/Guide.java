@@ -29,7 +29,6 @@ public class Guide {
   public void setShowGuideProperty(boolean isGuideShown) {
     this.isGuideShown = isGuideShown;
     Ivy.session().getSessionUser().setProperty(SHOW_GUIDE, String.valueOf(isGuideShown));
-    Ivy.log().warn("setShowGuideProperty - isGuideShown: " + isGuideShown);
   }
   
   public void readShowGuideProperty() {
