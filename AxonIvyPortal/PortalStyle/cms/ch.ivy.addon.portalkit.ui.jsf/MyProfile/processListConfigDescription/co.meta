@@ -1,0 +1,5 @@
+co: name={processListConfigDescription} description={} changed={2020-08-26 05:45:05 CEST} changedby={nqhoan} visualorder={0} guid={17428D797F968B2E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17428DE83F8567EF} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-08-26 05:44:55 CEST} validto={} changed={2020-08-26 05:45:05 CEST} changedby={nqhoan} properties={} id={}
+val: guid={17428DE833B862E1} datatype={} isdefault={false} langid={de} description={} validfrom={2020-08-26 05:44:58 CEST} validto={} changed={2020-08-26 05:45:05 CEST} changedby={nqhoan} properties={} id={}
+val: guid={17428DE83BC98121} datatype={} isdefault={false} langid={es} description={} validfrom={2020-08-26 05:45:00 CEST} validto={} changed={2020-08-26 05:45:05 CEST} changedby={nqhoan} properties={} id={}
+val: guid={17428D797FC4A513} datatype={} isdefault={true} langid={en} description={} validfrom={2020-08-26 05:37:31 CEST} validto={} changed={2020-08-26 05:37:31 CEST} changedby={nqhoan} properties={} id={}

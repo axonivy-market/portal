@@ -13,7 +13,7 @@ public class UserProfilePage extends TemplatePage {
   private static String MAIL_NOTI_ON_TASK_ASSIGNMENT_SELECTOR = "div[id$=':mail-notification-on-task-assign']";
   private static String FURTHER_EMAIL_FROM_APP_SELECTOR = "div[id$=':further-mails-from-application']";
   private static String RECEIVE_DAILY_SUMMARY_SELECTOR = "div[id$=':daily-summary']";
-  private static String DAILY_SUMMARY_CHECKBOX_SELECTOR = "div[id$=':daily-summary-checkbox']";
+  private static String DAILY_SUMMARY_CHECKBOX_SELECTOR = "label[for^='my-profile-form:daily-summary:']";
   private static String SELECTED_DAY_XPATH="//*[@id=\'my-profile-form:daily-summary-checkbox_panel\']/div[2]/ul/li[%d]/div/div[2]";
   private static String CHECKBOX_PANEL_CLOSE_BUTTON_XPATH = "//*[@id=\"my-profile-form:daily-summary-checkbox_panel\"]/div[1]/a";
   private static String DAILY_SUMMARY_CHECKBOX_LABEL_SELECTOR = "label[id$=':daily-summary-checkbox_label']";
@@ -81,8 +81,6 @@ public class UserProfilePage extends TemplatePage {
   }
 
   public void selectDaysForDailySummary(List<Integer> indices) {
-    WebElement checkbox = findElementByCssSelector(DAILY_SUMMARY_CHECKBOX_SELECTOR);
-    click(checkbox);
     for(int index : indices) {
       String selectedDayXPath = String.format(SELECTED_DAY_XPATH, index);
       WebElement selectedDayCheckbox = findChildElementByXpathExpression(checkbox, selectedDayXPath);
