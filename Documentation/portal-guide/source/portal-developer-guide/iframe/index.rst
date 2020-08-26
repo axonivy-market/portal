@@ -7,55 +7,21 @@ Do you want to decouple your project and Portal when start a task to reduce your
 If the answer is yes, this chapter will help you.
 
 Since Portal 8, we introduce new feature that a process/task could be started inside IFrame, means that you can feel free to design
-your html dialog independent from Portal, it is rendered inside IFrame in order to reduce migration effort.
-
-.. _iframe-configuration:
-
-How to configure
-================
-
-There are 4 levels:
-
-- Task level: in Task custom fields, set the ``embedInFrame`` String field to
-
-	- ``true``: start inside IFrame
-	- ``false``: not start inside IFrame
-	- Don't set to check case level
-	
-	|task-embedInFrame|
-
-- Case level: in Case custom fields, set the ``embedInFrame`` String field to 
-
-	- ``true``: start inside IFrame 
-	- ``false``: not start inside IFrame 
-	- Don't set to check application level
-	
-	|case-embedInFrame|
-
-- Application level:
-
-	- Portal Administrator could :ref:`register an application <settings-admin-settings>` and choose the option that all of the tasks in this application are started inside IFrame
-	- Don't register an application to check engine level
-
-- Engine level:
-
-	- Portal Administrator could choose the option that all of the tasks in whole engine are started inside IFrame or not via the ``EMBED_IN_FRAME`` Portal variable in :ref:`Global settings <settings-admin-settings-global-settings>`
-	
-.. important::
-	If there is no configuration, a process/task is started inside IFrame as default.
+your html dialog independent from Portal, it is rendered automatically inside IFrame as default in order to reduce migration effort.
 
 .. _iframe-usage:
 
 How to use
 ==========
 
-Follow the steps:
+.. important::
+	If there is no configuration, a process/task is started inside IFrame as default.
 
-1. Configure as the above instruction to start your task inside IFrame
+Follow these steps:
  
-2. In your task, open a HTML User Dialog independent from Portal:
-
-	- Create a dialog with the frame-8 template in designer, or use your own template to separate your css styles from Portal (highly recommend)
+1. Your HTML User Dialog must be independent from Portal, Portal will render it automatically in IFrame
+	
+	- Could use the ``frame-8`` template in designer, or your own template (highly recommend)
 	- Or use the :ref:`TaskTemplate <components-layout-templates-task-template>` template (no encouragement - dead path)
 	
 	+------------------------------------------------------+----------------------------------------------+
@@ -73,7 +39,29 @@ Follow the steps:
 	|                                                      |  - Different look&feel between Portal and UIs|
 	+------------------------------------------------------+----------------------------------------------+
 	
-3. To pass some supported params in IFrame such as process steps, refer to :ref:`IFrameTaskTemplate <components-layout-templates-iframe-task-template>`
+2. To pass some supported params in IFrame such as process steps, refer to :ref:`IFrameTaskTemplate <components-layout-templates-iframe-task-template>`
+
+3. If you don't want to use the default configuration, follow one of these 3 levels to open your task(s) in IFrame:
+
+- Task level: in Task custom fields, set the ``embedInFrame`` String field to
+
+	- ``true``: start inside IFrame
+	- ``false``: not start inside IFrame
+	- Don't set to check case level
+	
+	|task-embedInFrame|
+
+- Case level: in Case custom fields, set the ``embedInFrame`` String field to 
+
+	- ``true``: start inside IFrame 
+	- ``false``: not start inside IFrame 
+	- Don't set to check application level
+	
+	|case-embedInFrame|
+
+- Engine level:
+
+	- Portal Administrator could choose the option that all of the tasks in whole engine are started inside IFrame or not via the ``EMBED_IN_FRAME`` Portal variable in :ref:`Global settings <settings-admin-settings-global-settings>`
 
 .. |task-embedInFrame| image:: images/task-embedInFrame.png
-.. |case-embedInFrame| image:: images/case-embedInFrame.png	
+.. |case-embedInFrame| image:: images/case-embedInFrame.png
