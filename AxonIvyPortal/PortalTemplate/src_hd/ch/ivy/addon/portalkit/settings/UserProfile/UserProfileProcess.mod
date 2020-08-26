@@ -296,8 +296,6 @@ Us0 f28 actionTable 'out=in;
 ' #txt
 Us0 f28 actionCode 'import ch.ivy.addon.portalkit.bean.GuideBean;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
-import ch.ivy.addon.portalkit.bo.Guide;
-import ch.ivyteam.ivy.security.IUser;
 
 // Update GuideBean
 GuideBean guideBean =	ManagedBeans.get("guideBean") as GuideBean;
@@ -348,9 +346,7 @@ Ct3 f11 176 138 112 44 -41 -8 #rect
 Ct3 f11 @|StepIcon #fIcon
 Ct3 f23 actionTable 'out=in;
 ' #txt
-Ct3 f23 actionCode 'import java.util.Arrays;
-
-// Update this code when we start implementing Homepage selection
+Ct3 f23 actionCode '// Update this code when we start implementing Homepage selection
 in.homepageSelected = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/HomepageSelection/fullTaskList");
 in.homepageSelectionOptions.add(in.homepageSelected);' #txt
 Ct3 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
