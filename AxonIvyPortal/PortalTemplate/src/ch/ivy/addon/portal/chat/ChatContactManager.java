@@ -1,21 +1,26 @@
 package ch.ivy.addon.portal.chat;
 
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.getApplication;
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.wf;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
+import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.SessionInfo;
 
 public final class ChatContactManager {
 
   private static final String UNKNOWN_USER = "Unknown User";
-  private static final String PORTAL_CONNECTOR = "PortalConnector";
-  
+
   private ChatContactManager() {}
 
   public static List<ChatContact> loadOnlineContacts() {
@@ -25,9 +30,20 @@ public final class ChatContactManager {
     return users;
   }
 
-  public static List<String> getOnlineContacts() {
-    return Ivy.wf().getSecurityContext().getSessions().stream().map(ISession::getSessionUserName)
-        .filter(session -> !StringUtils.equals(session, Ivy.session().getSessionUserName()) && !StringUtils.contains(session, UNKNOWN_USER)).collect(Collectors.toList());
+  private static List<String> getOnlineContacts() {
+    Stream<String> onlineUsernames;
+    if (ChatService.IS_STANDARD_MODE) {
+      onlineUsernames = securityContext().getSessions().stream().map(ISession::getSessionUserName);
+    } else {
+      onlineUsernames = securityContext().getClusterSessionsSnapshot().getSessionInfos().stream()
+          .map(SessionInfo::getSessionUserName).distinct();
+    }
+    return onlineUsernames.filter(session -> !StringUtils.equals(session, Ivy.session().getSessionUserName())
+        && !StringUtils.contains(session, UNKNOWN_USER)).collect(Collectors.toList());
+  }
+
+  private static ISecurityContext securityContext() {
+    return wf().getSecurityContext();
   }
 
   private static List<ChatContact> loadContacts() {
@@ -56,9 +72,9 @@ public final class ChatContactManager {
   }
 
   private static List<IUser> getContextUsers() {
-    List<IUser> users = new ArrayList<>(Ivy.wf().getApplication().getSecurityContext().getUsers());
+    List<IUser> users = new ArrayList<>(getApplication().getSecurityContext().getUsers());
     users.sort((first, second) -> first.getName().compareToIgnoreCase(second.getName()));
-    users.removeIf(user -> StringUtils.equals(user.getName(), ISecurityConstants.SYSTEM_USER_NAME) || StringUtils.equals(user.getName(), PORTAL_CONNECTOR));
+    users.removeIf(user -> StringUtils.equals(user.getName(), ISecurityConstants.SYSTEM_USER_NAME));
     return users;
   }
 }

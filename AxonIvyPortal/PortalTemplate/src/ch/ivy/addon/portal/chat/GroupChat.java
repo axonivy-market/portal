@@ -27,7 +27,7 @@ public class GroupChat implements Serializable {
   private Map<String, String> params;
   @JsonIgnore
   private Set<SecurityMemberDTO> assignees;
-  
+
   public Long getCaseId() {
     return caseId;
   }
@@ -35,7 +35,7 @@ public class GroupChat implements Serializable {
   public void setCaseId(Long caseId) {
     this.caseId = caseId;
   }
-  
+
   public Long getVersion() {
     return version;
   }
@@ -79,11 +79,11 @@ public class GroupChat implements Serializable {
   public Set<SecurityMemberDTO> getAssignees() {
     if (CollectionUtils.isEmpty(this.assignees) && CollectionUtils.isNotEmpty(this.assigneeNames)
         && StringUtils.isNotBlank(this.applicationName)) {
-      IApplication app = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(this.applicationName);
-      this.assignees = assigneeNames.stream()
-          .map(assigneeName -> app.getSecurityContext().findSecurityMember(assigneeName))
-          .map(assignee -> new SecurityMemberDTO(assignee))
-          .collect(Collectors.toSet());
+      IApplication app =
+          ServerFactory.getServer().getApplicationConfigurationManager().findApplication(this.applicationName);
+      this.assignees =
+          assigneeNames.stream().map(assigneeName -> app.getSecurityContext().findSecurityMember(assigneeName))
+              .map(assignee -> new SecurityMemberDTO(assignee)).collect(Collectors.toSet());
     }
     return assignees;
   }
@@ -94,7 +94,7 @@ public class GroupChat implements Serializable {
       this.assigneeNames = assignees.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toSet());
     }
   }
-  
+
   public Map<String, String> getParams() {
     return params;
   }
@@ -105,7 +105,7 @@ public class GroupChat implements Serializable {
 
   @Override
   public String toString() {
-    return "{caseId: " + caseId + ", version: " + version + ", applicationName: " + applicationName + ", creator: " + creator
-        + ", assignees: " + assignees + "}";
+    return "{caseId: " + caseId + ", version: " + version + ", applicationName: " + applicationName + ", creator: "
+        + creator + ", assignees: " + assignees + "}";
   }
 }
