@@ -1,0 +1,5 @@
+co: name={taskListConfigDescription} description={} changed={2020-08-26 05:46:16 CEST} changedby={nqhoan} visualorder={0} guid={17428D8B366B0B65} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17428DF9A43FF252} datatype={} isdefault={false} langid={es} description={} validfrom={2020-08-26 05:46:12 CEST} validto={} changed={2020-08-26 05:46:16 CEST} changedby={nqhoan} properties={} id={}
+val: guid={17428DF99D2F0EBC} datatype={} isdefault={false} langid={de} description={} validfrom={2020-08-26 05:46:10 CEST} validto={} changed={2020-08-26 05:46:16 CEST} changedby={nqhoan} properties={} id={}
+val: guid={17428D8B3695133A} datatype={} isdefault={true} langid={en} description={} validfrom={2020-08-26 05:38:44 CEST} validto={} changed={2020-08-26 05:38:44 CEST} changedby={nqhoan} properties={} id={}
+val: guid={17428DF9A8056253} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-08-26 05:46:08 CEST} validto={} changed={2020-08-26 05:46:16 CEST} changedby={nqhoan} properties={} id={}

@@ -21,44 +21,45 @@
             <div class="portal-section-container card">
               <div class="ui-g-12">
                 <div class="setting-header ui-g-12">
-                  <h2>General Settings</h2>
-                  <span>In this area you can configuration the portal according your requirements</span>
+                  <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/generalSettings')}</h2>
+                  <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/generalSettingDescription')}</span>
                 </div>
 
                 <div class="ui-g-12 u-no-padding-top">
-                  <span class="ui-g-12">Select Homepage</span>
-                  <div class="ui-g-6">
+                  <span class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/selectHomepage')}</span>
+                  <div class="ui-g-6 ui-sm-12">
                     <!-- Please update this code when start Homepage selection -->
                     <p:selectOneMenu value="#{data.homepageSelected}" disabled="true">
                       <f:selectItems value="#{data.homepageSelectionOptions}" var="homeSelect"
                         itemValue="#{homeSelect}" itemLabel="#{homeSelect}" />
                     </p:selectOneMenu>
                   </div>
-                  <div class="ui-g-6">
-                    <p:selectBooleanCheckbox itemLabel="Show Tutorial"
-                      value="#{data.showTutorial}" disabled="#{data.disableShowTutorial}"/>
+                  <div class="ui-g-6 ui-sm-12">
+                    <p:selectBooleanCheckbox itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/showTutorial')}"
+                      value="#{data.showTutorial}" disabled="#{data.disableShowTutorial}"
+                      styleClass="show-tutorial #{data.disableShowTutorial ? 'ui-state-disabled' : ''}"/>
                   </div>
                 </div>
               </div>
 
               <div class="ui-g-12">
                 <div class="setting-header ui-g-12">
-                  <h2>Process list configuration</h2>
-                  <span>In this area you can configuration the process list according your requirements</span>
+                  <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/processListConfiguration')}</h2>
+                  <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/processListConfigDescription')}</span>
                 </div>
               </div>
 
               <div class="ui-g-12">
                 <div class="setting-header ui-g-12">
-                  <h2>Task list configuration</h2>
-                  <span>In this area you can configuration the task list according your requirements</span>
+                  <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/taskListConfiguration')}</h2>
+                  <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/taskListConfigDescription')}</span>
                 </div>
               </div>
 
               <div class="ui-g-12">
                 <div class="setting-header ui-g-12">
-                  <h2>Case list configuration</h2>
-                  <span>In this area you can configuration the case list according your requirements</span>
+                  <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/caseListConfiguration')}</h2>
+                  <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/caseListConfigDescription')}</span>
                 </div>
               </div>
             </div>
