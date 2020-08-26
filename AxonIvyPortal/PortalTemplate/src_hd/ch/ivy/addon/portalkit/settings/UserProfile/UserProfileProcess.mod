@@ -59,7 +59,7 @@ Ct3 @PushTrueWFInG-01 g0 '' #zField
 Ct3 @PushWFArc f0 '' #zField
 Ct3 @PushTrueWFOutG-01 g1 '' #zField
 Ct3 @PushWFArc f1 '' #zField
->Proto Ct3 Ct3 Component #zField
+>Proto Ct3 Ct0 Component #zField
 Ct2 @TextInP .type .type #zField
 Ct2 @TextInP .processKind .processKind #zField
 Ct2 @TextInP .xml .xml #zField
@@ -71,7 +71,7 @@ Ct2 @PushTrueWFInG-01 g0 '' #zField
 Ct2 @PushWFArc f0 '' #zField
 Ct2 @PushTrueWFOutG-01 g1 '' #zField
 Ct2 @PushWFArc f1 '' #zField
->Proto Ct2 Ct2 Component #zField
+>Proto Ct2 Ct1 Component #zField
 Ct1 @TextInP .type .type #zField
 Ct1 @TextInP .processKind .processKind #zField
 Ct1 @TextInP .xml .xml #zField
@@ -87,7 +87,7 @@ Ct1 @PushTrueWFOutG-01 g1 '' #zField
 Ct1 @PushWFArc f1 '' #zField
 Ct1 @PushTrueWFOutG-01 g2 '' #zField
 Ct1 @PushWFArc f2 '' #zField
->Proto Ct1 Ct1 Component #zField
+>Proto Ct1 Ct2 Component #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
 Ct0 @TextInP .xml .xml #zField
@@ -99,7 +99,7 @@ Ct0 @PushTrueWFInG-01 g0 '' #zField
 Ct0 @PushWFArc f0 '' #zField
 Ct0 @PushTrueWFOutG-01 g1 '' #zField
 Ct0 @PushWFArc f1 '' #zField
->Proto Ct0 Ct0 Component #zField
+>Proto Ct0 Ct3 Component #zField
 Us0 S40 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -351,7 +351,7 @@ Ct3 f23 actionTable 'out=in;
 Ct3 f23 actionCode 'import java.util.Arrays;
 
 // Update this code when we start implementing Homepage selection
-in.homepageSelected = "Full Task list";
+in.homepageSelected = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/HomepageSelection/fullTaskList");
 in.homepageSelectionOptions.add(in.homepageSelected);' #txt
 Ct3 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -383,8 +383,8 @@ Ct3 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ct3 g1 755 147 26 26 0 5 #rect
 Ct3 g1 @|MOGIcon #fIcon
 Ct3 f1 592 160 755 160 #arcP
->Proto Ct3 0 0 32 24 18 0 #rect
->Proto Ct3 @|BIcon #fIcon
+>Proto Ct0 0 0 32 24 18 0 #rect
+>Proto Ct0 @|BIcon #fIcon
 Ct2 f11 processCall 'Ivy Data Processes/LanguageService:findUserLanguages(String)' #txt
 Ct2 f11 requestActionDecl '<String username> param;' #txt
 Ct2 f11 requestMappingAction 'param.username=ivy.session.getSessionUserName();
@@ -443,8 +443,8 @@ Ct2 g1 467 147 26 26 0 5 #rect
 Ct2 g1 @|MOGIcon #fIcon
 Ct2 f1 expr out #txt
 Ct2 f1 400 160 467 160 #arcP
->Proto Ct2 0 0 32 24 18 0 #rect
->Proto Ct2 @|BIcon #fIcon
+>Proto Ct1 0 0 32 24 18 0 #rect
+>Proto Ct1 @|BIcon #fIcon
 Ct1 f5 actionTable 'out=in;
 ' #txt
 Ct1 f5 actionCode 'import javax.faces.context.ExternalContext;
@@ -537,8 +537,8 @@ Ct1 g2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ct1 g2 755 207 26 26 0 5 #rect
 Ct1 g2 @|MOGIcon #fIcon
 Ct1 f2 600 220 755 220 #arcP
->Proto Ct1 0 0 32 24 18 0 #rect
->Proto Ct1 @|BIcon #fIcon
+>Proto Ct2 0 0 32 24 18 0 #rect
+>Proto Ct2 @|BIcon #fIcon
 Ct0 f31 expr out #txt
 Ct0 f31 248 160 288 160 #arcP
 Ct0 f18 processCall 'Ivy Data Processes/LanguageService:saveUserLanguage(String,ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage)' #txt
@@ -596,8 +596,8 @@ Ct0 g1 467 147 26 26 0 5 #rect
 Ct0 g1 @|MOGIcon #fIcon
 Ct0 f1 expr out #txt
 Ct0 f1 400 160 467 160 #arcP
->Proto Ct0 0 0 32 24 18 0 #rect
->Proto Ct0 @|BIcon #fIcon
+>Proto Ct3 0 0 32 24 18 0 #rect
+>Proto Ct3 @|BIcon #fIcon
 Us0 f0 mainOut f2 tail #connect
 Us0 f2 head f1 mainIn #connect
 Us0 f16 mainOut f15 tail #connect
