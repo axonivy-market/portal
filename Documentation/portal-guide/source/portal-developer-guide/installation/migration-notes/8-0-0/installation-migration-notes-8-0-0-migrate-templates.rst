@@ -1,7 +1,7 @@
 .. _installation-migration-notes-8-0-0-migrate-templates:
 
 Migrate TaskTemplate
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^
 
 Since Portal 8, we introduce :ref:`IFrame <iframe-in-portal>` so that customer project could be decoupled from Portal in order to reduce migration effort.
 
@@ -11,7 +11,7 @@ It's ``highly recommended`` to use this IFrame feature with your own template fo
 
 2. In HTML dialogs, use this template: adapt ``ui:composition``, ``ui:params``, ``ui:define``, etc.
 
-3. A task is started inside IFrame as default, you can configure it, refer to :ref:`here <iframe-configuration>`.
+3. A task is started inside IFrame as default, you can configure it, refer to :ref:`here <iframe-usage>`.
 
 +----------------------------------------------+------------------------------------------------------+
 | Pros                                         | Cons                                                 |
@@ -33,7 +33,7 @@ If your project has the ``<ui:insert name="content">`` tag, rename ``content`` t
 .. _installation-migration-notes-8-0-0-basic-template:
 
 Migrate BasicTemplate
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^
 
 There are some changes in BasicTemplate. In the past, if you overwritten BasicTemplate ``footer`` section and copied responsive js in old BasicTemplate,
 please copy the latest js in ``footer`` section of BasicTemplate.
