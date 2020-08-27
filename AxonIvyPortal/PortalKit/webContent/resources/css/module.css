@@ -2876,7 +2876,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .my-profile-container .setting-header span  {
   padding: 0 0 0 1px;
   margin: 0;
-  opacity: 0.75;
   font-size: 1.2rem;
   line-height: 1.2rem;
 }
