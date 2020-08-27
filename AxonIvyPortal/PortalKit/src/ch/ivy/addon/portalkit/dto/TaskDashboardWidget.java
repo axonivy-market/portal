@@ -28,7 +28,6 @@ public class TaskDashboardWidget extends DashboardWidget {
   @Override
   public void setId(String id) {
     super.setId(id);
-    dataModel.setWidgetId(id);
   }
   
   public boolean getCanWorkOn() {
