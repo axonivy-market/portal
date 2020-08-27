@@ -55,7 +55,7 @@
                     <h:form id="task-form" style="display: contents">
                       <div class="header" style="flex: 0 0 30px">
                         <span class="title">
-                          #{not empty widget.name ? widget.name : 'Your Tasks'} (<h:panelGroup id="task-count">#{widget.taskCount}</h:panelGroup>)
+                          #{not empty widget.name ? widget.name : 'Your Tasks'}
                         </span>
                         
                         <div class="actions">
@@ -72,8 +72,7 @@
                         </div>
                       </div>
                       <h:panelGroup styleClass="#{widget.id}" style="flex: auto;overflow:auto;margin-bottom: 20px;padding:10px" layout="block">
-                        <ic:ch.ivy.addon.portal.generic.prototype.TaskWidget taskWidget="#{widget}" 
-                          taskCountId="grid-stack-tab-view:#{dashboardBean.dashboards.indexOf(dashboard)}:widgets:#{status.index}:task-form:task-count" />
+                        <ic:ch.ivy.addon.portal.generic.prototype.TaskWidget taskWidget="#{widget}" />
                       </h:panelGroup>
                     </h:form>
                   </h:panelGroup>

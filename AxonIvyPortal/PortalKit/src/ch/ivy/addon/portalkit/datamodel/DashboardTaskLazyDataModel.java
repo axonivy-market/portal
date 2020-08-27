@@ -1,12 +1,12 @@
 package ch.ivy.addon.portalkit.datamodel;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-import org.primefaces.PrimeFaces;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
@@ -24,65 +24,57 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
   private static final long serialVersionUID = -6615871274830927272L;
   
   private DashboardTaskSearchCriteria criteria;
-  private String widgetId;
   private boolean isFirstTime = true;
   private List<ITask> tasks;
   private CompletableFuture<Void> future;
+  private TaskQuery query;
   
   public DashboardTaskLazyDataModel() {
     criteria = new DashboardTaskSearchCriteria();
+    tasks = new ArrayList<>();
   }
   
   @Override
   public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
+    int page = (first / pageSize) + 1;
     if (isFirstTime) {
       isFirstTime = false;
       if (future != null) {
         try {
           future.get();
-          PrimeFaces.current().executeScript("rcUpdateTaskCount" + widgetId + "()");
         } catch (InterruptedException | ExecutionException e) {
           throw new PortalException(e);
         }
       }
-      return tasks;
+    } else {
+      if (page == 1) {
+        criteria.setSortField(sortField);
+        criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
+        query = criteria.buildQuery();
+      }
+      tasks = Ivy.wf().getTaskQueryExecutor().getResults(query, first, pageSize * (page <= 2 ? 5 : 3));
     }
-    criteria.setSortField(sortField);
-    criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
-    TaskQuery query = criteria.buildQuery();
-    List<ITask> data = Ivy.wf().getTaskQueryExecutor().getResults(query, first, pageSize);
-    if (first == 0) {
-      setRowCount((int) Ivy.wf().getTaskQueryExecutor().getCount(query));
-      PrimeFaces.current().executeScript("rcUpdateTaskCount" + widgetId + "()");
+    int rowsOfPreviousPages = (page - 1) * pageSize;
+    int rowCount = tasks.size() + rowsOfPreviousPages;
+    List<ITask> result = new ArrayList<>();
+    for (int i = 0; i < Math.min(pageSize, tasks.size()); i++) {
+      result.add(tasks.get(i));
     }
-    return data;
+    setRowCount(rowCount);
+    return result;
   }
   
   public void loadFirstTime() {
-    TaskQuery query = criteria.buildQuery();
+    query = criteria.buildQuery();
     Object memento = IvyThreadContext.saveToMemento();
-    CompletableFuture<Void> loadFuture = CompletableFuture.runAsync(() -> {
+    future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
-      tasks = Ivy.wf().getTaskQueryExecutor().getResults(query, 0, getPageSize());
+      tasks = Ivy.wf().getTaskQueryExecutor().getResults(query, 0, getPageSize() * 5);
       IvyThreadContext.reset();
     });
-    CompletableFuture<Void> countFuture = CompletableFuture.runAsync(() -> {
-      IvyThreadContext.restoreFromMemento(memento);
-      setRowCount((int) Ivy.wf().getTaskQueryExecutor().getCount(query));
-      IvyThreadContext.reset();
-    });
-    future = CompletableFuture.allOf(loadFuture, countFuture);
     isFirstTime = true;
   }
   
-  public String getWidgetId() {
-    return widgetId;
-  }
-  
-  public void setWidgetId(String widgetId) {
-    this.widgetId = widgetId;
-  }
-
   public DashboardTaskSearchCriteria getCriteria() {
     return criteria;
   }
