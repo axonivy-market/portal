@@ -9,17 +9,16 @@ import java.util.List;
  * 
  * @since 7.3.0
  */
-public class ChatMessage
-{
+public class ChatMessage {
   private String sender;
   private List<String> recipients;
   private Date sentDate;
   private String message;
-  
-  public ChatMessage() {  // for decode
+
+  public ChatMessage() { // for decode
   }
 
-  //For case group chat
+  // For case group chat
   public ChatMessage(String sender, String message, String caseId) {
     this.sender = sender;
     this.sentDate = new Date();
@@ -33,12 +32,12 @@ public class ChatMessage
     this.sentDate = new Date();
     this.message = message;
   }
-  
+
   public ChatMessage(String sender, List<String> recipients) {
     this.sender = sender;
     this.recipients = recipients;
   }
-  
+
   public ChatMessage copy() {
     ChatMessage clonedMessage = new ChatMessage();
     clonedMessage.setSender(sender);
