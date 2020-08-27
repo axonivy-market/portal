@@ -471,4 +471,5 @@
   --current-step-opacity: 1; 
   /* Portal Global Ajax Status */
   --ajax-loading-bg: hsla(0, 0%, 100%, 0.9);
+  --general-config-description-color: var(--ivy-primary-color-grey-medium);
   }
