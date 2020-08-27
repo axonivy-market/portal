@@ -37,7 +37,7 @@ Follow these steps:
 
 	- ``true``: start inside IFrame 
 	- ``false``: not start inside IFrame 
-	- Don't set to check application level
+	- Don't set to check engine level
 	
 	|case-embedInFrame|
 
