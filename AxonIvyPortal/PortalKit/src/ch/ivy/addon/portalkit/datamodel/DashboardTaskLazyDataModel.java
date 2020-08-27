@@ -36,7 +36,6 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
   
   @Override
   public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
-    int page = (first / pageSize) + 1;
     if (isFirstTime) {
       isFirstTime = false;
       if (future != null) {
@@ -47,15 +46,14 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
         }
       }
     } else {
-      if (page == 1) {
+      if (first == 0) {
         criteria.setSortField(sortField);
         criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
         query = criteria.buildQuery();
       }
-      tasks = Ivy.wf().getTaskQueryExecutor().getResults(query, first, pageSize * (page <= 2 ? 5 : 3));
+      tasks = Ivy.wf().getTaskQueryExecutor().getResults(query, first, pageSize * (first <= pageSize ? 5 : 3));
     }
-    int rowsOfPreviousPages = (page - 1) * pageSize;
-    int rowCount = tasks.size() + rowsOfPreviousPages;
+    int rowCount = tasks.size() + first;
     List<ITask> result = new ArrayList<>();
     for (int i = 0; i < Math.min(pageSize, tasks.size()); i++) {
       result.add(tasks.get(i));
