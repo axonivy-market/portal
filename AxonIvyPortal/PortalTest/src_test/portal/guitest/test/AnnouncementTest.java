@@ -43,18 +43,15 @@ public class AnnouncementTest extends BaseTest {
     userProfilePage.clickOnLogo();
     homePage = new HomePage();
     assertEquals("Readme1", homePage.getAnnouncementMessage());
-
   }
 
   @Test
   public void testValidationForDefaultLanguage() {
     HomePage homePage = new HomePage();
-
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
     AnnouncementPage announcementPage = adminSettingsPage.openAnnouncementTab();
     announcementPage.publish();
     assertEquals("Announcement for application default language is required.", announcementPage.getInfoSummary());
-
   }
 
   @Test
