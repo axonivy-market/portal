@@ -3,6 +3,7 @@ package ch.ivy.addon.portal.chat;
 import java.io.Serializable;
 
 public class ClusterChatEventParameter implements Serializable {
+  private static final long serialVersionUID = -1819316118583473763L;
   private String clientId;
   private String messageText;
   private String receiver; // receiver if sending private message or caseId if sending group message
