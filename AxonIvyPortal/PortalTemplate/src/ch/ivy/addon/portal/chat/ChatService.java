@@ -1,5 +1,7 @@
 package ch.ivy.addon.portal.chat;
 
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.log;
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.wf;
 import static ch.ivy.addon.portalkit.enums.GlobalVariable.CHAT_MAX_CONNECTION;
 import static ch.ivy.addon.portalkit.enums.GlobalVariable.CHAT_RESPONSE_TIMEOUT;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
@@ -8,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.Deque;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -19,6 +22,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import javax.inject.Singleton;
@@ -44,9 +48,13 @@ import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.util.RedeploymentUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.di.restricted.DiCore;
+import ch.ivyteam.ivy.cluster.restricted.IClusterManager;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.persistence.PersistencyException;
+import ch.ivyteam.ivy.server.restricted.EngineMode;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -67,6 +75,7 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
  * history helps prevent actions lost if unavailable AsyncResponse.</li>
  * </ul>
  */
+@SuppressWarnings("restriction")
 @Path("chat")
 @Singleton
 public class ChatService {
@@ -86,21 +95,27 @@ public class ChatService {
   private Map<String, Queue<ResponseInfo>> messageResponses = new ConcurrentHashMap<>();
   private Map<String, List<GroupChat>> usernameToGroupChats = new ConcurrentHashMap<>();
   private Map<String, Integer> reachedLimitedConnectionCounters = new ConcurrentHashMap<>();
+  /** Only necessary if in cluster */
+  private static long nodeId;
+  public static final boolean IS_STANDARD_MODE = EngineMode.isNot(EngineMode.ENTERPRISE);
 
   @POST
   @Path("/messages/{clientId}/{lastResponseId}/{lastResponseStatus}")
   @Produces(MediaType.APPLICATION_JSON)
   public synchronized void registerMessage(@Suspended AsyncResponse response, @PathParam("clientId") String clientId) {
     resetReachedLimitedConnectionCounter();
-    if (ChatServiceContainer.getChatService() == null) {
-      ChatServiceContainer.setChatService(this);
-      ChatServiceContainer.registerSessionExtension();
+    if (ChatReferencesContainer.getChatService() == null) {
+      ChatReferencesContainer.setChatService(this);
+      ChatReferencesContainer.registerIvyExtension();
+      if (!IS_STANDARD_MODE) {
+        ClusterChatEventListener.register();
+        nodeId = DiCore.getGlobalInjector().getInstance(IClusterManager.class).getLocalClusterNode().getId();
+      }
     }
     Queue<ResponseInfo> responses = getResponses();
     // unhandled chat responses happen because of clicking chat button before async response is created
-    ChatResponse unhandledChatResponse = ConcurrentChatUtils.getRecentChatResponseHistory(sessionUserName()).stream()
-        .filter(entry -> isHistoryEntryOnlyForThisClient(clientId, entry))
-        .findFirst().orElse(null);
+    ChatResponse unhandledChatResponse =
+        getChatResponseFromHistory(() -> getUnhandledResponseWhenRegisteringMessage(clientId), sessionUserName());
     if (unhandledChatResponse != null) {
       response.resume(toJson(unhandledChatResponse));
     } else {
@@ -134,6 +149,7 @@ public class ChatService {
     }
   }
 
+
   @GET
   @Path("/unread/senders")
   @Produces(MediaType.APPLICATION_JSON)
@@ -148,27 +164,37 @@ public class ChatService {
   @POST
   @Path("/read/{participant}/{clientId}")
   @Produces(MediaType.APPLICATION_JSON)
-  public synchronized Response readMessage(@PathParam("participant") String participant,
-      @PathParam("clientId") String clientId) {
-    ChatMessageManager.deletedReadMessagesInMemory(Arrays.asList(sessionUserName()), participant);
-    ChatResponse lastChatResponse = ConcurrentChatUtils.getRecentChatResponseHistory(sessionUserName()).getLast();
-    if (!isDuplicatedAction(participant, lastChatResponse, READ_PRIVATE_MESSAGE_ACTION)) {
-      resumeAsyncResponse(sessionUserName(), new ChatResponse(READ_PRIVATE_MESSAGE_ACTION, participant), clientId);
-    }
+  public Response readMessage(@PathParam("participant") String participant, @PathParam("clientId") String clientId) {
+    handleAction(() -> performReadingMessage(participant, clientId, sessionUserName()),
+        () -> ClusterChatEventSender.readMessage(participant, clientId, sessionUserName()));
     return Response.ok(SUCCESSFUL).build();
+  }
+
+  public synchronized void performReadingMessage(String participant, String clientId, String actor) {
+    ChatMessageManager.deletedReadMessagesInMemory(Arrays.asList(actor), participant);
+    ChatResponse lastChatResponse =
+        getChatResponseFromHistory(() -> ConcurrentChatUtils.getRecentChatResponseHistory(actor).peekLast(), actor);
+    if (lastChatResponse != null && !isDuplicatedAction(participant, lastChatResponse, READ_PRIVATE_MESSAGE_ACTION)) {
+      resumeAsyncResponse(actor, new ChatResponse(READ_PRIVATE_MESSAGE_ACTION, participant), clientId, actor);
+    }
   }
 
   @POST
   @Path("/group/read/{caseId}/{clientId}")
   @Produces(MediaType.APPLICATION_JSON)
-  public synchronized Response readGroupMessage(@PathParam("caseId") String caseId,
-      @PathParam("clientId") String clientId) {
-    ChatMessageManager.deletedReadMessagesInMemoryForGroupChat(Arrays.asList(sessionUserName()), caseId);
-    ChatResponse lastChatResponse = ConcurrentChatUtils.getRecentChatResponseHistory(sessionUserName()).getLast();
-    if (!isDuplicatedAction(caseId, lastChatResponse, READ_GROUP_MESSAGE_ACTION)) {
-      resumeAsyncResponse(sessionUserName(), new ChatResponse(READ_GROUP_MESSAGE_ACTION, caseId), clientId);
-    }
+  public Response readGroupMessage(@PathParam("caseId") String caseId, @PathParam("clientId") String clientId) {
+    handleAction(() -> performReadingGroupMessage(caseId, clientId, sessionUserName()),
+        () -> ClusterChatEventSender.readGroupMessage(caseId, clientId, sessionUserName()));
     return Response.ok(SUCCESSFUL).build();
+  }
+
+  public synchronized void performReadingGroupMessage(String caseId, String clientId, String actor) {
+    ChatMessageManager.deletedReadMessagesInMemoryForGroupChat(Arrays.asList(actor), caseId);
+    ChatResponse lastChatResponse =
+        getChatResponseFromHistory(() -> ConcurrentChatUtils.getRecentChatResponseHistory(actor).peekLast(), actor);
+    if (lastChatResponse != null && !isDuplicatedAction(caseId, lastChatResponse, READ_GROUP_MESSAGE_ACTION)) {
+      resumeAsyncResponse(actor, new ChatResponse(READ_GROUP_MESSAGE_ACTION, caseId), clientId, actor);
+    }
   }
 
   /**
@@ -197,20 +223,28 @@ public class ChatService {
   @Path("/{receiver}/{clientId}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.APPLICATION_JSON)
-  public synchronized Response sendPrivateMessage(String messageText, @PathParam("receiver") String receiver,
+  public Response sendPrivateMessage(String messageText, @PathParam("receiver") String receiver,
       @PathParam("clientId") String clientId) {
+    handleAction(() -> performSendingPrivateMessage(messageText, receiver, clientId, sessionUserName(), nodeId),
+        () -> ClusterChatEventSender.sendPrivateMessage(messageText, receiver, clientId, nodeId));
+    return Response.ok(SUCCESSFUL).build();
+  }
+
+  public synchronized void performSendingPrivateMessage(String messageText, String receiver, String clientId,
+      String actor, long nodeId) {
     if (UserUtils.findUserByUsername(receiver) == null) {
-      return Response.ok(ERROR).build();
+      return;
     }
-    ChatMessage message = new ChatMessage(sessionUserName(), Arrays.asList(receiver), messageText);
+    ChatMessage message = new ChatMessage(actor, Arrays.asList(receiver), messageText);
     ChatMessageManager.storeUnreadMessageInMemory(message);
 
     ChatResponse chatResponse = new ChatResponse(GET_MESSAGES_ACTION, message, clientId);
     // If receiver is online, send message directly to receiver's response.
-    resumeAsyncResponse(receiver, chatResponse, clientId);
-    resumeAsyncResponse(sessionUserName(), chatResponse, clientId);
-    ChatMessageManager.savePersonalMessage(message);
-    return Response.ok(SUCCESSFUL).build();
+    resumeAsyncResponse(receiver, chatResponse, clientId, actor);
+    resumeAsyncResponse(actor, chatResponse, clientId, actor);
+    if (ChatService.nodeId == nodeId) {
+      ChatMessageManager.savePersonalMessage(message);
+    }
   }
 
   /**
@@ -243,26 +277,33 @@ public class ChatService {
   @Path("/group/{caseId}/{clientId}")
   @Consumes(MediaType.TEXT_PLAIN)
   @Produces(MediaType.APPLICATION_JSON)
-  public synchronized Response sendGroupMessage(String messageText, @PathParam("caseId") String caseId,
+  public Response sendGroupMessage(String messageText, @PathParam("caseId") String caseId,
       @PathParam("clientId") String clientId) {
-    String currentUsername = sessionUserName();
-    List<GroupChat> availableGroups = usernameToGroupChats.get(currentUsername);
+    List<GroupChat> availableGroups = usernameToGroupChats.get(sessionUserName());
 
     if (CollectionUtils.isNotEmpty(availableGroups)
         && availableGroups.stream().anyMatch(group -> group.getCaseId() == Long.parseLong(caseId))) {
-      ChatMessage message = new ChatMessage(currentUsername, messageText, caseId);
-      ChatMessageManager.saveGroupMessage(message, caseId);
-      Set<String> members = ChatGroupUtils.getUserNamesFromGroup(Long.parseLong(caseId));
-
-      // Find online users of current group chat to resume new message
-      ChatResponse chatResponse = new ChatResponse(GET_MESSAGES_ACTION, message, clientId);
-      for (String member : members) {
-        resumeAsyncResponse(member, chatResponse, clientId);
-      }
-      ChatMessageManager.storeUnreadMessageInMemoryForGroupChat(message, Long.parseLong(caseId));
+      handleAction(() -> performSendingGroupMessage(messageText, caseId, clientId, sessionUserName(), nodeId),
+          () -> ClusterChatEventSender.sendGroupMessage(messageText, caseId, clientId, nodeId));
       return Response.ok(SUCCESSFUL).build();
     }
     return Response.ok(ERROR).build();
+  }
+
+  public synchronized void performSendingGroupMessage(String messageText, String caseId, String clientId, String actor,
+      long nodeId) {
+    ChatMessage message = new ChatMessage(actor, messageText, caseId);
+    if (ChatService.nodeId == nodeId) {
+      ChatMessageManager.saveGroupMessage(message, caseId);
+    }
+    Set<String> members = ChatGroupUtils.getUserNamesFromGroup(Long.parseLong(caseId));
+
+    // Find online users of current group chat to resume new message
+    ChatResponse chatResponse = new ChatResponse(GET_MESSAGES_ACTION, message, clientId);
+    for (String member : members) {
+      resumeAsyncResponse(member, chatResponse, clientId, actor);
+    }
+    ChatMessageManager.storeUnreadMessageInMemoryForGroupChat(message, Long.parseLong(caseId));
   }
 
   /**
@@ -290,13 +331,19 @@ public class ChatService {
     return ChatGroupUtils.getParticipantsFromGroup(Long.parseLong(caseId));
   }
 
-  public synchronized void handleUserOnline(String username) {
-    updateUserStatus(username, true);
+  public void handleUserOnline(String username) {
+    handleAction(() -> performUpdatingUserStatus(username, true),
+        () -> ClusterChatEventSender.handleUserOnline(username));
   }
 
-  public synchronized void handleUserOffline(String username) {
+  public void handleUserOffline(String username) {
+    handleAction(() -> performHandlingUserOffline(username), () -> ClusterChatEventSender.handleUserOffline(username));
+  }
+
+  public synchronized void performHandlingUserOffline(String username) {
     messageResponses.remove(username);
-    updateUserStatus(username, false);
+    usernameToGroupChats.remove(username);
+    performUpdatingUserStatus(username, false);
   }
 
   @GET
@@ -311,7 +358,11 @@ public class ChatService {
     return Response.ok(SUCCESSFUL).build();
   }
 
-  public synchronized void updateGroupList(GroupChat groupChat) {
+  public void updateGroupList(GroupChat groupChat) {
+    handleAction(() -> performUpdatingGroupList(groupChat), () -> ClusterChatEventSender.updateGroupList(groupChat));
+  }
+
+  public synchronized void performUpdatingGroupList(GroupChat groupChat) {
     Iterator<Entry<String, List<GroupChat>>> it = usernameToGroupChats.entrySet().iterator();
     Set<String> groupUserNames = ChatGroupUtils.getAllUsersFromAssigneeNames(groupChat.getAssigneeNames());
     while (it.hasNext()) {
@@ -321,7 +372,7 @@ public class ChatService {
         List<GroupChat> groupChats = pair.getValue();
         groupChats.add(groupChat);
         ChatResponse chatResponse = new ChatResponse(GET_GROUPS_ACTION, groupChats);
-        resumeAsyncResponse(userName, chatResponse, EMPTY);
+        resumeAsyncResponse(userName, chatResponse, EMPTY, EMPTY);
       }
     }
   }
@@ -329,7 +380,7 @@ public class ChatService {
   private List<GroupChat> findAllChatGroups() {
     ObjectMapper mapper = new ObjectMapper();
     CaseQuery caseQuery = buildCaseQuery();
-    List<ICase> caseWithNoneEmptyGroupChatInfo = Ivy.wf().getCaseQueryExecutor().getResults(caseQuery);
+    List<ICase> caseWithNoneEmptyGroupChatInfo = wf().getCaseQueryExecutor().getResults(caseQuery);
 
     List<GroupChat> result = caseWithNoneEmptyGroupChatInfo.stream()
         .filter(iCase -> isUserInvolvedInGroup(iCase.getId(), sessionUserName())).map(iCase -> {
@@ -338,7 +389,7 @@ public class ChatService {
                 .stringField(AdditionalProperty.PORTAL_GROUP_CHAT_INFO.toString()).get().orElse(StringUtils.EMPTY),
                 GroupChat.class);
           } catch (PersistencyException | IOException e) {
-            Ivy.log().error(e);
+            log().error(e);
             return null;
           }
         }).filter(Objects::nonNull).collect(Collectors.toList());
@@ -346,7 +397,8 @@ public class ChatService {
       Set<SecurityMemberDTO> assignees = new HashSet<>();
       assignees.addAll(group.getAssignees());
       Set<String> assigneeNames = new HashSet<>();
-      assigneeNames.addAll(group.getAssigneeNames().stream().filter(name -> name.startsWith("#")).collect(Collectors.toList()));
+      assigneeNames
+          .addAll(group.getAssigneeNames().stream().filter(name -> name.startsWith("#")).collect(Collectors.toList()));
       assignees.stream().filter(assignee -> assignee.isUser()).forEach(assignee -> {
         for (String name : assigneeNames) {
           if (assignee.getId() == Long.parseLong(name.substring(1))) {
@@ -356,7 +408,7 @@ public class ChatService {
         }
       });
     }
-    
+
     return result;
   }
 
@@ -376,17 +428,17 @@ public class ChatService {
     return false;
   }
 
-  private synchronized void updateUserStatus(String username, boolean isOnline) {
+  public synchronized void performUpdatingUserStatus(String username, boolean isOnline) {
     List<String> contactStrings = new ArrayList<>();
     ChatContact contact = new ChatContact(username, isOnline);
     contactStrings.add(toJson(contact));
     ChatResponse chatResponse = new ChatResponse(UPDATE_USER_STATUS_ACTION, contact);
     for (String receiver : messageResponses.keySet()) {
-      resumeAsyncResponse(receiver, chatResponse, EMPTY);
+      resumeAsyncResponse(receiver, chatResponse, EMPTY, EMPTY);
     }
   }
 
-  private void resumeAsyncResponse(String username, ChatResponse chatResponse, String excludedClientId) {
+  private void resumeAsyncResponse(String username, ChatResponse chatResponse, String excludedClientId, String actor) {
     ConcurrentChatUtils.getRecentChatResponseHistory(username).add(chatResponse);
     Queue<ResponseInfo> responses = getResponses(username);
     if (CollectionUtils.isEmpty(responses)) {
@@ -394,7 +446,7 @@ public class ChatService {
     }
     Queue<ResponseInfo> clonedResponses = new ConcurrentLinkedQueue<>(responses);
     responses.clear();
-    if (username.equals(sessionUserName())) {
+    if (username.equals(actor)) {
       clonedResponses.stream().filter(info -> excludedClientId.equals(info.getClientId())).findFirst()
           .ifPresent(responseInfo -> {
             responses.add(responseInfo);
@@ -451,7 +503,7 @@ public class ChatService {
     try {
       return StringUtils.isNotBlank(chatResponseTimeout) && Long.parseLong(chatResponseTimeout) > 0;
     } catch (NumberFormatException e) {
-      Ivy.log().error("Chat response timeout must be a Long number, check Portal settings again.", e);
+      log().error("Chat response timeout must be a Long number, check Portal settings again.", e);
     }
     return false;
   }
@@ -471,7 +523,7 @@ public class ChatService {
         }
       }
     } catch (NumberFormatException e) {
-      Ivy.log().error("Chat max connection per user must be an Integer number, check Portal settings again.", e);
+      log().error("Chat max connection per user must be an Integer number, check Portal settings again.", e);
     }
     if (maxConnectionNumber == 0) {
       maxConnectionNumber = Integer.parseInt(CHAT_MAX_CONNECTION.getDefaultValue());
@@ -570,6 +622,30 @@ public class ChatService {
   private boolean isDuplicatedAction(String content, ChatResponse lastChatResponse, String action) {
     return lastChatResponse != null && action.equals(lastChatResponse.getAction())
         && content.equals(lastChatResponse.getContent());
+  }
+
+  private ChatResponse getUnhandledResponseWhenRegisteringMessage(String clientId) {
+    return ConcurrentChatUtils.getRecentChatResponseHistory(sessionUserName()).stream()
+        .filter(entry -> isHistoryEntryOnlyForThisClient(clientId, entry)).findFirst().orElse(null);
+  }
+
+  private void handleAction(Runnable actionOnStandardMode, Runnable actionOnClusterMode) {
+    if (IS_STANDARD_MODE) {
+      actionOnStandardMode.run();
+    } else {
+      actionOnClusterMode.run();
+    }
+  }
+
+  private ChatResponse getChatResponseFromHistory(Supplier<ChatResponse> supplier, String actor) {
+    try {
+      return supplier.get();
+    } catch (ClassCastException e) {
+      log().info("PMV could be redeployed", e);
+      Deque<ChatResponse> history = ConcurrentChatUtils.getRecentChatResponseHistory(actor);
+      RedeploymentUtils.filterObjectOfCurrentClassLoader(history, ChatResponse.class);
+      return supplier.get();
+    }
   }
 
 }
