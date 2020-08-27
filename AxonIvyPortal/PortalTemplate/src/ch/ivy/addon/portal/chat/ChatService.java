@@ -177,14 +177,14 @@ public class ChatService {
   @POST
   @Path("/group/read/{caseId}/{clientId}")
   @Produces(MediaType.APPLICATION_JSON)
-  public synchronized Response readGroupMessage(@PathParam("caseId") String caseId,
+  public Response readGroupMessage(@PathParam("caseId") String caseId,
       @PathParam("clientId") String clientId) {
     handleAction(() -> performReadingGroupMessage(caseId, clientId, sessionUserName()),
         () -> ClusterChatEventSender.readGroupMessage(caseId, clientId, sessionUserName()));
     return Response.ok(SUCCESSFUL).build();
   }
 
-  public void performReadingGroupMessage(String caseId, String clientId, String actor) {
+  public synchronized void performReadingGroupMessage(String caseId, String clientId, String actor) {
     ChatMessageManager.deletedReadMessagesInMemoryForGroupChat(Arrays.asList(actor), caseId);
     ChatResponse lastChatResponse = getChatResponseFromHistory(() -> ConcurrentChatUtils.getRecentChatResponseHistory(actor).peekLast(), actor);
     if (lastChatResponse != null && !isDuplicatedAction(caseId, lastChatResponse, READ_GROUP_MESSAGE_ACTION)) {

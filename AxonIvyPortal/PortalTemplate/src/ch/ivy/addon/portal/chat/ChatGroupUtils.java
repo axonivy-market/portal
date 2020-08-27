@@ -26,7 +26,7 @@ import ch.ivyteam.ivy.workflow.ICase;
 
 public class ChatGroupUtils {
 
-  private static final List<String> SYSTEM_USERS = Arrays.asList("SYSTEM", "PortalConnector");
+  private static final List<String> SYSTEM_USERS = Arrays.asList("SYSTEM");
 
   private ChatGroupUtils() {}
 
