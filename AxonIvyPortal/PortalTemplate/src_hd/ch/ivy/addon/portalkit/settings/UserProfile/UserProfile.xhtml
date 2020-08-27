@@ -35,7 +35,8 @@
                     </p:selectOneMenu>
                   </div>
                   <div class="ui-g-6 ui-sm-12">
-                    <p:selectBooleanCheckbox itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/showTutorial')}"
+                    <p:selectBooleanCheckbox id="general-show-tutorial"
+                      itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/showTutorial')}"
                       value="#{data.showTutorial}" disabled="#{data.disableShowTutorial}"
                       styleClass="show-tutorial #{data.disableShowTutorial ? 'ui-state-disabled' : ''}"/>
                   </div>
