@@ -28,7 +28,7 @@ public class GroupChat implements Serializable {
   private Map<String, String> params;
   @JsonIgnore
   private Set<SecurityMemberDTO> assignees;
-  
+
   public Long getCaseId() {
     return caseId;
   }
@@ -36,7 +36,7 @@ public class GroupChat implements Serializable {
   public void setCaseId(Long caseId) {
     this.caseId = caseId;
   }
-  
+
   public Long getVersion() {
     return version;
   }
@@ -80,12 +80,14 @@ public class GroupChat implements Serializable {
   public Set<SecurityMemberDTO> getAssignees() {
     if (CollectionUtils.isEmpty(this.assignees) && CollectionUtils.isNotEmpty(this.assigneeNames)
         && StringUtils.isNotBlank(this.applicationName)) {
-      IApplication app = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(this.applicationName);
- 
+      IApplication app =
+          ServerFactory.getServer().getApplicationConfigurationManager().findApplication(this.applicationName);
+
       this.assignees = new HashSet<>();
       for (String assigneeName : assigneeNames) {
-        ISecurityMember assignee = assigneeName.startsWith("#") ?
-            app.getSecurityContext().users().find(Long.parseLong(assigneeName.substring(1))) : app.getSecurityContext().findSecurityMember(assigneeName);
+        ISecurityMember assignee = assigneeName.startsWith("#")
+            ? app.getSecurityContext().users().find(Long.parseLong(assigneeName.substring(1)))
+            : app.getSecurityContext().findSecurityMember(assigneeName);
         if (assignee != null) {
           this.assignees.add(new SecurityMemberDTO(assignee));
         }
@@ -118,7 +120,7 @@ public class GroupChat implements Serializable {
 
   @Override
   public String toString() {
-    return "{caseId: " + caseId + ", version: " + version + ", applicationName: " + applicationName + ", creator: " + creator
-        + ", assignees: " + assignees + "}";
+    return "{caseId: " + caseId + ", version: " + version + ", applicationName: " + applicationName + ", creator: "
+        + creator + ", assignees: " + assignees + "}";
   }
 }
