@@ -26,7 +26,7 @@ public class ChatResponse {
     this.content = content;
     this.clientId = clientId;
   }
-  
+
   public ChatResponse(String status) {
     this();
     this.status = status;
