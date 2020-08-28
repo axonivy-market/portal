@@ -39,6 +39,14 @@ Language Settings and Administration (for admin only). Details about
 user settings can be found in
 :ref:`Settings <settings>`.
 
+.. note:: 
+
+      frame-8 template does not contains any content of Portal.
+      Therefore, if you want to reuse some Portal content, you must add it manually to your HTML file.
+      
+      For example, if you want to add ivy icon pack, add below code:
+      ``<h:outputStylesheet library="ivy-icons" name="ivy-icon.css" />``
+
 |portal-header|
 
 .. _components-layout-templates-basic-template:
@@ -113,8 +121,11 @@ Inside your UI, you can configure these parameters which will be rendered by the
 	</script>
 
 .. note::
-	Do not use or refer to this template in your Dialog. This will be done automatically by Portal if you use the mentioned IFrame Approach.
-	You can refer to IFrameTaskTemplate.xhtml in PortalTemplate to see more detailed information about how to use and pass params.
+       Do not use or refer to this template in your Dialog. This will be done automatically by Portal if you use the mentioned IFrame Approach.
+       You can refer to IFrameTaskTemplate.xhtml in PortalTemplate to see more detailed information about how to use and pass params.
+
+       When define param processSteps, please make sure that you added jsp function tag to your XHTML file:
+       ``xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions``
 	
 In case your project has navigation button without finishing a task, e.g Cancel, to 
 
