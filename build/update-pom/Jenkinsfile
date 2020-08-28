@@ -64,6 +64,9 @@ pipeline {
 }
 
 def cacheEngine() {
+  powershell '''
+    rmdir C:/Users/wawa/.m2/repository/.cache/ivy/$env:ivyEngineVersion/* -recurse  
+  '''
   bat '''
     mvn clean compile -f AxonIvyPortal/PortalStyle/pom.xml -Divy.engine.directory=C:/Users/wawa/.m2/repository/.cache/ivy/%ivyEngineVersion% %engineDownloadURL%
   '''
