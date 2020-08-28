@@ -42,7 +42,7 @@
         rendered="#{dashboardBean.canEdit}" />
       <p:tabView id="grid-stack-tab-view" value="#{dashboardBean.dashboards}" var="dashboard" dynamic="true" activeIndex="#{dashboardBean.tabActiveIndex}">
         <p:ajax event="tabChange" listener="#{dashboardBean.onTabChange}" oncomplete="loadGrid()" />
-        <p:tab title="#{dashboard.title}" titleStyleClass="#{dashboardBean.dashboards.size() eq 1 ? 'one-dashboard' :''}"
+        <p:tab id="dashboard" title="#{dashboard.title}" titleStyleClass="#{dashboardBean.dashboards.size() eq 1 ? 'one-dashboard' :''}"
           titleStyle="font-size: 18px">
           <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack">
             <ui:repeat id="widgets" var="widget" value="#{dashboard.widgets}" varStatus="status">
@@ -72,7 +72,7 @@
                         </div>
                       </div>
                       <h:panelGroup styleClass="#{widget.id}" style="flex: auto;overflow:auto;margin-bottom: 20px;padding:10px" layout="block">
-                        <ic:ch.ivy.addon.portal.generic.prototype.TaskWidget taskWidget="#{widget}" />
+                        <ic:ch.ivy.addon.portal.generic.prototype.TaskWidget id="task-component" taskWidget="#{widget}" />
                       </h:panelGroup>
                     </h:form>
                   </h:panelGroup>
