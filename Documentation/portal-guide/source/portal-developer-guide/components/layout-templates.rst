@@ -120,11 +120,8 @@ Inside your UI, you can configure these parameters which will be rendered by the
 	</script>
 
 .. note::
-      Do not use or refer to this template in your Dialog. This will be done automatically by Portal if you use the mentioned IFrame Approach.
-      You can refer to IFrameTaskTemplate.xhtml in PortalTemplate to see more detailed information about how to use and pass params.
-
-      When define param processSteps, please make sure that you added jsp function tag to your XHTML file:
-      ``xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions``
+	Do not use or refer to this template in your Dialog. This will be done automatically by Portal if you use the mentioned IFrame Approach.
+	You can refer to IFrameTaskTemplate.xhtml in PortalTemplate to see more detailed information about how to use and pass params.
 	
 In case your project has navigation button without finishing a task, e.g Cancel, to 
 

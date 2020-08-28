@@ -38,14 +38,6 @@ Follow these steps:
 	|                                                      |  - Modena was highly customized by Portal    |
 	|                                                      |  - Different look&feel between Portal and UIs|
 	+------------------------------------------------------+----------------------------------------------+
-
-.. note:: 
-
-      ``frame-8`` template does not contains any content of Portal.
-      Therefore, if you want to reuse some Portal content, you must add it manually to your HTML file.
-      
-      For example, if you want to add ivy icon pack, add below code:
-      ``<h:outputStylesheet library="ivy-icons" name="ivy-icon.css" />``
 	
 2. To pass some supported params in IFrame such as process steps, refer to :ref:`IFrameTaskTemplate <components-layout-templates-iframe-task-template>`
 
