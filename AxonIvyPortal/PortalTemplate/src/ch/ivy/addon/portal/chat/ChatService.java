@@ -364,7 +364,7 @@ public class ChatService {
 
   public synchronized void performUpdatingGroupList(GroupChat groupChat) {
     Iterator<Entry<String, List<GroupChat>>> it = usernameToGroupChats.entrySet().iterator();
-    Set<String> groupUserNames = ChatGroupUtils.getAllUsersFromAssigneeNames(groupChat.getAssigneeNames());
+    Set<String> groupUserNames = ChatGroupUtils.getAllUsersFromUserIdsAndRoleNames(groupChat.getAssigneeNames());
     while (it.hasNext()) {
       Entry<String, List<GroupChat>> pair = it.next();
       String userName = pair.getKey();

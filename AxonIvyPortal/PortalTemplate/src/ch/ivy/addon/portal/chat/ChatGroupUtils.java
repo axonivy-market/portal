@@ -22,6 +22,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
@@ -78,6 +79,19 @@ public class ChatGroupUtils {
     Set<String> roleNamesOnly =
         assigneeNames.stream().filter(name -> !name.startsWith(USER_IDENTIFIER)).collect(Collectors.toSet());
     userNames.addAll(getAllUsersFromRoles(roleNamesOnly));
+    return userNames;
+  }
+
+  public static Set<String> getAllUsersFromUserIdsAndRoleNames(Set<String> assigneeNames) {
+    Set<String> userNames = new HashSet<>();
+    List<String> userNamesOnly = assigneeNames.stream()
+            .filter(name -> name.startsWith(USER_IDENTIFIER))
+            .map(name -> Ivy.wf().getSecurityContext().users().find(Long.parseLong(name.substring(1))).getName()).collect(Collectors.toList());
+
+    Set<String> roleNamesOnly =
+        assigneeNames.stream().filter(name -> !name.startsWith(USER_IDENTIFIER)).collect(Collectors.toSet());
+    userNames.addAll(getAllUsersFromRoles(roleNamesOnly));
+    userNames.addAll(userNamesOnly);
     return userNames;
   }
 
