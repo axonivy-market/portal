@@ -25,7 +25,6 @@ import com.google.gson.Gson;
 
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.RedeploymentUtils;
-import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.scripting.objects.File;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -62,14 +61,14 @@ public final class ChatMessageManager {
   }
 
   private static void replaceSenderAndRecipientNamesByIds(ChatMessage message) {
-    message.setSender(Long.toString(UserUtils.findUserByUsername(message.getSender()).getId()));
+    message.setSender(Long.toString(ChatGroupUtils.findUserByUsername(message.getSender()).getId()));
     message.setRecipients(replaceUsernameByUserId(message.getRecipients()));
   }
 
   private static List<String> replaceUsernameByUserId(List<String> participants) {
     List<String> updatedParticipants = new ArrayList<>();
     for (String participant : participants) {
-      IUser participantUser = UserUtils.findUserByUsername(participant);
+      IUser participantUser = ChatGroupUtils.findUserByUsername(participant);
       updatedParticipants.add(Long.toString(participantUser.getId()));
     }
     return updatedParticipants;
@@ -106,11 +105,11 @@ public final class ChatMessageManager {
         for (String record : records) {
           String decryptedRecord = SecureMessage.decrypt(record, java.io.File.separator + filepath);
           ChatMessage message = new Gson().fromJson(decryptedRecord, ChatMessage.class);
-          message.setSender(Optional.ofNullable(UserUtils.findUserByUserId(Long.parseLong(message.getSender())))
+          message.setSender(Optional.ofNullable(ChatGroupUtils.findUserByUserId(Long.parseLong(message.getSender())))
               .map(IUser::getName).orElse(""));
           List<String> updatedRecipients = new ArrayList<>();
           for (String recipient : message.getRecipients()) {
-            IUser recipientUser = UserUtils.findUserByUserId(Long.parseLong(recipient));
+            IUser recipientUser = ChatGroupUtils.findUserByUserId(Long.parseLong(recipient));
             if (recipientUser != null) {
               updatedRecipients.add(recipientUser.getName());
             }
@@ -134,7 +133,7 @@ public final class ChatMessageManager {
         String[] records = conversation.split(LINE_SEPARATOR);
         for (String record : records) {
           ChatMessage message = new Gson().fromJson(record, ChatMessage.class);
-          message.setSender(UserUtils.findUserByUserId(Long.parseLong(message.getSender().substring(1))).getName());
+          message.setSender(ChatGroupUtils.findUserByUserId(Long.parseLong(message.getSender().substring(1))).getName());
           messages.add(message);
         }
       }
@@ -146,7 +145,7 @@ public final class ChatMessageManager {
 
   private static void saveGroupMessageToFile(ChatMessage message, String filepath) {
     String senderName = message.getSender();
-    message.setSender("#".concat(Long.toString(UserUtils.findUserByUsername(message.getSender()).getId())));
+    message.setSender("#".concat(Long.toString(ChatGroupUtils.findUserByUsername(message.getSender()).getId())));
     String convertedMessage = new Gson().toJson(message);
     try {
       File conversation = new File(filepath);
