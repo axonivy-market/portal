@@ -21,8 +21,6 @@ import org.apache.commons.lang3.math.NumberUtils;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivy.addon.portalkit.util.UserUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
@@ -84,15 +82,23 @@ public class ChatGroupUtils {
 
   public static Set<String> getAllUsersFromUserIdsAndRoleNames(Set<String> assigneeNames) {
     Set<String> userNames = new HashSet<>();
-    List<String> userNamesOnly = assigneeNames.stream()
-            .filter(name -> name.startsWith(USER_IDENTIFIER))
-            .map(name -> Ivy.wf().getSecurityContext().users().find(Long.parseLong(name.substring(1))).getName()).collect(Collectors.toList());
+    List<String> userNamesOnly = assigneeNames.stream().filter(name -> name.startsWith(USER_IDENTIFIER))
+        .map(name -> wf().getSecurityContext().users().find(Long.parseLong(name.substring(1))).getName())
+        .collect(Collectors.toList());
 
     Set<String> roleNamesOnly =
         assigneeNames.stream().filter(name -> !name.startsWith(USER_IDENTIFIER)).collect(Collectors.toSet());
     userNames.addAll(getAllUsersFromRoles(roleNamesOnly));
     userNames.addAll(userNamesOnly);
     return userNames;
+  }
+
+  public static IUser findUserByUserId(Long userId) {
+    return wf().getSecurityContext().users().find(userId);
+  }
+
+  public static IUser findUserByUsername(String username) {
+    return wf().getSecurityContext().users().find(username);
   }
 
   private static Set<String> getAssigneesFromGroup(long caseId) {
@@ -109,7 +115,7 @@ public class ChatGroupUtils {
       Set<String> originalAssignees = Optional.ofNullable(groupChat.getAssigneeNames()).orElse(new HashSet<>());
       originalAssignees.forEach(assigneeName -> {
         if (assigneeName.startsWith(USER_IDENTIFIER) && NumberUtils.isParsable(assigneeName.substring(1))) {
-          IUser user = UserUtils.findUserByUserId(Long.parseLong(assigneeName.substring(1)));
+          IUser user = findUserByUserId(Long.parseLong(assigneeName.substring(1)));
           if (user != null) {
             assignees.add(user.getMemberName());
           }
@@ -134,4 +140,5 @@ public class ChatGroupUtils {
     userNames.removeAll(SYSTEM_USERS);
     return userNames;
   }
+
 }

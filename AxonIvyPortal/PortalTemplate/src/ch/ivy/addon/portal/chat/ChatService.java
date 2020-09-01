@@ -49,7 +49,6 @@ import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.RedeploymentUtils;
-import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.di.restricted.DiCore;
 import ch.ivyteam.ivy.cluster.restricted.IClusterManager;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -232,7 +231,7 @@ public class ChatService {
 
   public synchronized void performSendingPrivateMessage(String messageText, String receiver, String clientId,
       String actor, long nodeId) {
-    if (UserUtils.findUserByUsername(receiver) == null) {
+    if (ChatGroupUtils.findUserByUsername(receiver) == null) {
       return;
     }
     ChatMessage message = new ChatMessage(actor, Arrays.asList(receiver), messageText);
