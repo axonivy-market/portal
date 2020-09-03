@@ -8,9 +8,9 @@ import java.util.concurrent.Callable;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivyteam.di.restricted.DiCore;
+import ch.ivyteam.ivy.application.loader.ClassLoaderService;
 import ch.ivyteam.ivy.persistence.IPersistentTransaction;
 import ch.ivyteam.ivy.persistence.PersistencyException;
-import ch.ivyteam.ivy.scripting.IIvyScriptProjectClassLoader;
 import ch.ivyteam.ivy.security.ISecurityManager;
 import ch.ivyteam.ivy.security.ISession;
 import ch.ivyteam.ivy.security.ISessionExtension;
@@ -91,11 +91,8 @@ public final class PortalSessionExtension implements ISessionExtension {
   }
 
   private boolean isSessionExtensionObsolete() {
-    var classLoader = this.getClass().getClassLoader();
-    if (classLoader instanceof IIvyScriptProjectClassLoader) {
-      if (((IIvyScriptProjectClassLoader) classLoader).isDeprecated()) {
-        return true;
-      }
+    if (ClassLoaderService.hasDeprecatedClassLoader(this)) {
+      return true;
     }
     return false;
   }
