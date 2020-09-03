@@ -34,24 +34,9 @@ pipeline {
     stage('build') {
       steps {
         script {
-          echo "====================Turn off Elasticsearch port from 19200 to 19210===================="
-          powershell '''
-            for (($port = 19200); $port -lt 19210; ($port++)) {
-              Get-NetTCPConnection -LocalPort $port -erroraction 'silentlycontinue'
-              if ( $LastExitCode -eq 0 ) {
-                Stop-Process -Id (Get-NetTCPConnection -LocalPort $port).OwningProcess -Force
-              }
-            }
-          '''
-          echo "====================Stop other engines===================="
-          def windowsEngineServices = ['Axon.ivy Engine - LTS', 'Axon.ivyEngine8.0', 'Axon.ivyEngineTrunk']
-          for (windowsEngineService in windowsEngineServices) {
-            bat """
-              sc query "${windowsEngineService}" | find /i "RUNNING"
-              if not "%ERRORLEVEL%"=="1" ( net stop "${windowsEngineService}")
-            """
-          }
-          
+          def utils = load 'build/common/utils.groovy'
+          utils.stopAllEngines()
+
           if(params.checkoutCodeFromLatestReleaseTag) {
               downloadPortalRelease()
 
@@ -74,11 +59,8 @@ pipeline {
               '''
           }
 
-          echo '====================Extract engine===================='
-          bat '''
-            mvn clean compile -f AxonIvyPortal/PortalTest/pom.xml -Divy.engine.directory=%engineDir% %engineDownloadURL%
-          '''
-          
+          utils.extractEngine(env.engineDir, param.engineDownloadURL)
+
           echo '====================Run script to copy decorate js and css to Portal===================='
           bat "AxonIvyPortal/PortalTest/resources/copy-decorate-js-css.bat"
           
@@ -98,41 +80,17 @@ pipeline {
           '''
 
           node('master') {
-            echo '====================Close all remote desktop connections and setup new remote destop to Portal slave===================='
-            bat '''
-              taskkill -im mstsc.exe -F
-              exit 0
-            '''
-            configFileProvider(
-                [configFile(fileId: 'properties-config', variable: 'PROPERTIES_CONFIG')]) {
-                props = readProperties  file: "${env.PROPERTIES_CONFIG}"
-                //e.g. remoteDesktopCmd=D:/tools/remote-desktop-plus/rdp.exe /v:10.123.1.193 /domain:wawa.vn /u:wawa /p:W4w4@CH$ /w:2560 /h:1440 /noclose
-                bat "${props.remoteDesktopCmd}"
-            }
+            utils.remoteDesktop()
           }
 
-          echo '====================Close opening browsers===================='
-          bat '''
-            taskkill -im dwm.exe -F
-            taskkill -im Taskmgr.exe -F
-            taskkill -im procexp64.exe -F
-            taskkill -im IEDriverServer.exe -F
-            taskkill -im iexplore.exe -F
-            taskkill -im GeckoFireFoxDriver.exe -F
-            taskkill -im firefox.exe -F
-            exit 0
-          '''
+          utils.killUnnecessaryProcessesToRunTest()
 
           echo '====================Execute maven for testing===================='
           def mavenGoal = params.deployToRepo? 'deploy' : 'install'
           bat "mvn clean ${mavenGoal} -f AxonIvyPortal/PortalTest/document_screenshot_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
 
           node('master') {
-            echo '====================Close all remote desktop connections===================='
-            bat '''
-              taskkill -im mstsc.exe -F
-              exit 0
-            '''
+            utils.closeAllRemoteDesktopConnections()
           }
           
           echo "====================Copy ElasticSearch log===================="
