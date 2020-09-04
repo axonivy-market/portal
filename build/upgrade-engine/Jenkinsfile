@@ -68,7 +68,7 @@ pipeline {
             :repeat
             ren "${engineDir}" "${engineName}-bk" || goto :repeat
           """
-          utils.extractEngine(env.engineDir, params.engineDownloadURL)
+          utils.extractEngine(engineDir, params.engineDownloadURL)
           bat """
             echo ====================Copy license, configuration files====================
             copy /D/Y ${renamedEngineDir}\\configuration\\*.lic ${engineDir}\\configuration
