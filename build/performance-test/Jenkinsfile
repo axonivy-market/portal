@@ -24,7 +24,7 @@ pipeline {
     stage('deploy') {
       steps {
         script {
-          def utils = load 'build/common/utils.groovy'
+          utils = load 'build/common/utils.groovy'
           utils.stopAllEngines()
           engineServiceName = 'Axon.ivyEngineTrunk'
           utils.startWindowsService(engineServiceName)
