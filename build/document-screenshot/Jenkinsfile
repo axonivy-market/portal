@@ -59,7 +59,7 @@ pipeline {
               '''
           }
 
-          utils.extractEngine(env.engineDir, param.engineDownloadURL)
+          utils.extractEngine(env.engineDir, params.engineDownloadURL)
 
           echo '====================Run script to copy decorate js and css to Portal===================='
           bat "AxonIvyPortal/PortalTest/resources/copy-decorate-js-css.bat"

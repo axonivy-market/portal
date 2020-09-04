@@ -18,7 +18,7 @@ def stopAllElasticSearchs() {
 
 def stopAllEngines() {
   echo "====================Stop engines===================="
-  def engineServices = ['Axon.ivy Engine - LTS', 'Axon.ivyEngine8.0', 'Axon.ivyEngineTrunk', 'Axon.ivy-master-cluster-1', 'Axon.ivy-master-cluster-1']
+  def engineServices = ['Axon.ivy Engine - LTS', 'Axon.ivyEngine8.0', 'Axon.ivyEngineTrunk', 'Axon.ivy-master-cluster-1', 'Axon.ivy-master-cluster-2', 'Axon.ivyEngineDashboard']
   for (engineService in engineServices) {
     stopWindowsService(engineService)
   }
