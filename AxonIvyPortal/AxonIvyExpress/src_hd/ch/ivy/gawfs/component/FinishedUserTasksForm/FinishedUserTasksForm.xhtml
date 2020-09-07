@@ -63,13 +63,13 @@
               autoResize="false" disabled="true" readonly="true" />
           </pe:dynaFormControl>
 
-          <pe:dynaFormControl type="ManyCheckbox" for="many-checkbox" styleClass="dyna-form-dl-div many-checkbox">
+          <pe:dynaFormControl type="ManyCheckbox" styleClass="dyna-form-dl-div many-checkbox">
             <p:dataList value="#{dynaData.value}" var="checkItem" type="definition">
               <i class="icon ivyicon-check-2" aria-hidden="true" /> #{checkItem}
             </p:dataList>
           </pe:dynaFormControl>
 
-          <pe:dynaFormControl type="OneRadio" for="one-radio" styleClass="dyna-form-dl-div one-radio">
+          <pe:dynaFormControl type="OneRadio" styleClass="dyna-form-dl-div one-radio">
             <p:dataList value="#{dynaData.value}" var="checkItem" type="definition"
               emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}">
               <i class="icon ivyicon-check-circle-1" aria-hidden="true" /> #{checkItem}
