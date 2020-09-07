@@ -74,7 +74,7 @@
           value="#{data.technicalCases.size() gt 20 ? caseWidgetBean.getFirst20Items(data.technicalCases) : data.technicalCases}" var="technicalCase"
           mode="inline" styleClass="case-related-task-case-running">
           <h:panelGroup id="technicalCase" layout="block" class="grid-item-content-list-item related-task-content js-technical-case">
-            <i class="fa fa-folder-open-o fa-fw related-task-list-item-status" />
+            <i class="icon ivyicon-folder-empty related-task-list-item-status" />
             <p:commandLink id="case-name" value="#{empty technicalCase.name ? technicalCase.id : technicalCase.name}"
               actionListener="#{logic.navigateToRelatedCaseDetails(technicalCase,cc.attrs.isWorkingOnTask)}" styleClass="related-task">
             </p:commandLink>

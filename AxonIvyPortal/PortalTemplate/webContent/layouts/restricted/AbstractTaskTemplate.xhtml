@@ -174,6 +174,7 @@
                   onclick="PF('chat-assignee-dialog').hide()" />
                 <p:spacer width="15px" />
                 <p:commandButton id="chat-group-join-button" actionListener="#{chatAssigneeBean.joinGroupChat()}"
+                  icon="#{visibilityBean.generateButtonIcon('icon ivyicon-messages-bubble-square-sync')}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/joinProcessChat')}" process="@this" update="@none" />
               </h:panelGroup>
             </h:form>

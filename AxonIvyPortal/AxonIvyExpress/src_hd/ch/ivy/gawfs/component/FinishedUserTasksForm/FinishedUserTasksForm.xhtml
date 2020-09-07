@@ -65,27 +65,21 @@
 
           <pe:dynaFormControl type="ManyCheckbox" for="many-checkbox" styleClass="dyna-form-dl-div many-checkbox">
             <p:dataList value="#{dynaData.value}" var="checkItem" type="definition">
-              <i class="fa fa-check-square-o" aria-hidden="true" /> #{checkItem}
+              <i class="icon ivyicon-check-2" aria-hidden="true" /> #{checkItem}
             </p:dataList>
           </pe:dynaFormControl>
 
           <pe:dynaFormControl type="OneRadio" for="one-radio" styleClass="dyna-form-dl-div one-radio">
             <p:dataList value="#{dynaData.value}" var="checkItem" type="definition"
               emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}">
-              <i class="fa fa-dot-circle-o" aria-hidden="true" /> #{checkItem}
+              <i class="icon ivyicon-check-circle-1" aria-hidden="true" /> #{checkItem}
             </p:dataList>
           </pe:dynaFormControl>
 
-        <pe:dynaFormControl type="OneRadio" for="oneRadio">
-          <p:dataList value="#{dynaData.value}" var="checkItem" type="definition" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}">
-            <i class="fa fa-dot-circle-o" aria-hidden="true"></i> #{checkItem}
-          </p:dataList>
-        </pe:dynaFormControl>
-        
-        <pe:dynaFormControl type="FileUpload" for="fileUpload">
-          <ic:ch.ivy.addon.portalkit.component.document.DocumentTable id="fileUpload" uploadRendered="false" deleteRendered="false" typeColumnRendered="false"
-            fileLimit="#{dynaData.intSetting}" iCase="#{cc.attrs.expressCase}"/>
-        </pe:dynaFormControl>
+          <pe:dynaFormControl type="FileUpload" for="fileUpload">
+            <ic:ch.ivy.addon.portalkit.component.document.DocumentTable id="fileUpload" uploadRendered="false" deleteRendered="false" typeColumnRendered="false"
+              fileLimit="#{dynaData.intSetting}" iCase="#{cc.attrs.expressCase}"/>
+          </pe:dynaFormControl>
 
           <pe:dynaFormControl type="Spacer" for="spacer">
             <p:spacer width="50" height="16" id="spacer" />
