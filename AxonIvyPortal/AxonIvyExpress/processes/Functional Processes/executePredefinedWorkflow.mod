@@ -124,10 +124,8 @@ Bk4 @PushWFArc f26 '' #zField
 Bk4 @TaskSwitchSimple f43 '' #zField
 Bk4 @TkArc f44 '' #zField
 Bk4 @PushWFArc f45 '' #zField
-Bk4 @GridStep f46 '' #zField
-Bk4 @PushWFArc f47 '' #zField
+Bk4 @PushWFArc f7 '' #zField
 Bk4 @PushWFArc f10 '' #zField
-Bk4 @PushWFArc f48 '' #zField
 >Proto Bk4 Bk0 BpmnUserTask #zField
 Bk5 @TextInP .type .type #zField
 Bk5 @TextInP .processKind .processKind #zField
@@ -216,10 +214,8 @@ Bk8 @PushWFArc f14 '' #zField
 Bk8 @UserDialog f7 '' #zField
 Bk8 @PushWFArc f16 '' #zField
 Bk8 @PushWFArc f15 '' #zField
-Bk8 @GridStep f6 '' #zField
+Bk8 @PushWFArc f6 '' #zField
 Bk8 @PushWFArc f9 '' #zField
-Bk8 @PushWFArc f17 '' #zField
-Bk8 @PushWFArc f19 '' #zField
 >Proto Bk8 Bk4 BpmnUserTask #zField
 ew0 f1 1137 145 30 30 0 15 #rect
 ew0 f1 @|EndSubIcon #fIcon
@@ -614,6 +610,7 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName().substring(1)
+TaskA.SCRIPT=import ch.ivy.addon.portalkit.util.PredefinedWorkflowUtils;\r\nimport ch.ivy.addon.portalkit.enums.AdditionalProperty;\r\nif (in1.originalTaskId \!\= null && in1.originalTaskId > 0) {\r\n  task.customFields().stringField(AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}\r\ntask.setCategoryPath(PredefinedWorkflowUtils.generateExpressTaskCategoryPath(in1.workflowType, in1.workflowName, in1.currentTask.subject));
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3' #txt
 Bk4 f6 template "" #txt
@@ -670,6 +667,7 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName()
+TaskA.SCRIPT=import ch.ivy.addon.portalkit.util.PredefinedWorkflowUtils;\r\nimport ch.ivy.addon.portalkit.enums.AdditionalProperty;\r\nif (in1.originalTaskId \!\= null && in1.originalTaskId > 0) {\r\n  task.customFields().stringField(AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}\r\ntask.setCategoryPath(PredefinedWorkflowUtils.generateExpressTaskCategoryPath(in1.workflowType, in1.workflowName, in1.currentTask.subject));
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=2' #txt
 Bk4 f16 template "" #txt
@@ -1124,39 +1122,14 @@ Bk4 f44 0 0.5125 1 -14 #arcLabel
 Bk4 f45 936 534 304 656 #arcP
 Bk4 f45 1 936 656 #addKink
 Bk4 f45 1 0.4062878430775377 0 0 #arcLabel
-Bk4 f46 actionTable 'out=in;
-' #txt
-Bk4 f46 actionCode 'import ch.ivy.addon.portalkit.util.PredefinedWorkflowUtils;
-import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-
-if (in.originalTaskId != null && in.originalTaskId > 0) {
-  ivy.task.customFields().stringField(AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(AdditionalProperty.ADHOC_EXPRESS_TASK.toString());
-}
-
-ivy.task.setCategoryPath(PredefinedWorkflowUtils.generateExpressTaskCategoryPath(in.workflowType, in.workflowName, in.currentTask.subject));
-' #txt
-Bk4 f46 security system #txt
-Bk4 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>set task category</name>
-    </language>
-</elementInfo>
-' #txt
-Bk4 f46 232 556 112 40 -46 -8 #rect
-Bk4 f46 @|StepIcon #fIcon
-Bk4 f47 expr data #txt
-Bk4 f47 outCond ivp=="TaskA.ivp" #txt
-Bk4 f47 408 534 344 576 #arcP
-Bk4 f47 1 408 576 #addKink
-Bk4 f47 1 0.9852356483344342 0 0 #arcLabel
-Bk4 f10 288 596 288 640 #arcP
-Bk4 f10 0 0.997944767759929 0 0 #arcLabel
-Bk4 f48 expr data #txt
-Bk4 f48 outCond ivp=="TaskA.ivp" #txt
-Bk4 f48 160 534 232 576 #arcP
-Bk4 f48 1 160 576 #addKink
-Bk4 f48 0 0.5055155163921642 0 0 #arcLabel
+Bk4 f7 160 534 288 640 #arcP
+Bk4 f7 1 160 576 #addKink
+Bk4 f7 2 288 576 #addKink
+Bk4 f7 1 0.5265229374189577 0 0 #arcLabel
+Bk4 f10 408 534 288 640 #arcP
+Bk4 f10 1 408 576 #addKink
+Bk4 f10 2 288 576 #addKink
+Bk4 f10 1 0.5651482090681852 0 0 #arcLabel
 >Proto Bk0 0 0 32 24 18 0 #rect
 >Proto Bk0 @|BIcon #fIcon
 Bk5 f28 actionTable 'out=in;
@@ -1558,6 +1531,7 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName()
+TaskA.SCRIPT=import ch.ivy.addon.portalkit.util.PredefinedWorkflowUtils;\r\nimport ch.ivy.addon.portalkit.enums.AdditionalProperty;\r\nif (in1.originalTaskId \!\= null && in1.originalTaskId > 0) {\r\n\ttask.customFields().stringField(AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}\r\ntask.setCategoryPath(PredefinedWorkflowUtils.generateExpressTaskCategoryPath(in1.workflowType, in1.workflowName, in1.currentTask.subject));
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=2' #txt
 Bk8 f18 template "" #txt
@@ -1583,6 +1557,7 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=in1.responsible.getMemberName().substring(1)
+TaskA.SCRIPT=import ch.ivy.addon.portalkit.util.PredefinedWorkflowUtils;\r\nimport ch.ivy.addon.portalkit.enums.AdditionalProperty;\r\nif (in1.originalTaskId \!\= null && in1.originalTaskId > 0) {\r\n\ttask.customFields().stringField(AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(AdditionalProperty.ADHOC_EXPRESS_TASK.toString());\r\n}\r\ntask.setCategoryPath(PredefinedWorkflowUtils.generateExpressTaskCategoryPath(in1.workflowType, in1.workflowName, in1.currentTask.subject));
 TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3' #txt
 Bk8 f20 template "" #txt
@@ -1739,39 +1714,14 @@ Bk8 f16 expr in #txt
 Bk8 f16 320 573 320 618 #arcP
 Bk8 f15 expr out #txt
 Bk8 f15 320 662 320 720 #arcP
-Bk8 f6 actionTable 'out=in;
-' #txt
-Bk8 f6 actionCode 'import ch.ivy.addon.portalkit.util.PredefinedWorkflowUtils;
-import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-
-if (in.originalTaskId != null && in.originalTaskId > 0) {
-	ivy.task.customFields().stringField(AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).set(AdditionalProperty.ADHOC_EXPRESS_TASK.toString());
-}
-
-ivy.task.setCategoryPath(PredefinedWorkflowUtils.generateExpressTaskCategoryPath(in.workflowType, in.workflowName, in.currentTask.subject));
-' #txt
-Bk8 f6 security system #txt
-Bk8 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>set Task category</name>
-    </language>
-</elementInfo>
-' #txt
-Bk8 f6 264 464 112 32 -48 -8 #rect
-Bk8 f6 @|StepIcon #fIcon
-Bk8 f9 expr data #txt
-Bk8 f9 outCond ivp=="TaskA.ivp" #txt
-Bk8 f9 411 428 376 480 #arcP
+Bk8 f6 227 428 320 541 #arcP
+Bk8 f6 1 227 480 #addKink
+Bk8 f6 2 320 480 #addKink
+Bk8 f6 1 0.5483870967741935 0 0 #arcLabel
+Bk8 f9 411 428 320 541 #arcP
 Bk8 f9 1 411 480 #addKink
-Bk8 f9 1 0.8462485657055072 0 0 #arcLabel
-Bk8 f17 320 496 320 541 #arcP
-Bk8 f17 0 0.4264572637497519 0 0 #arcLabel
-Bk8 f19 expr data #txt
-Bk8 f19 outCond ivp=="TaskA.ivp" #txt
-Bk8 f19 227 428 264 480 #arcP
-Bk8 f19 1 227 480 #addKink
-Bk8 f19 1 0.13217932650050215 0 0 #arcLabel
+Bk8 f9 2 320 480 #addKink
+Bk8 f9 1 0.5494505494505495 0 0 #arcLabel
 >Proto Bk4 0 0 32 24 18 0 #rect
 >Proto Bk4 @|BIcon #fIcon
 ew0 f0 mainOut f30 tail #connect
@@ -1874,12 +1824,10 @@ Bk4 f41 out f44 tail #connect
 Bk4 f44 head f43 in #connect
 Bk4 f43 out f45 tail #connect
 Bk4 f45 head f5 in #connect
-Bk4 f6 out f47 tail #connect
-Bk4 f47 head f46 mainIn #connect
-Bk4 f46 mainOut f10 tail #connect
+Bk4 f16 out f7 tail #connect
+Bk4 f7 head f5 in #connect
+Bk4 f6 out f10 tail #connect
 Bk4 f10 head f5 in #connect
-Bk4 f16 out f48 tail #connect
-Bk4 f48 head f46 mainIn #connect
 Bk4 0 0 1152 1280 0 #ivRect
 Bk5 f5 mainOut f29 tail #connect
 Bk5 f29 head f28 mainIn #connect
@@ -1936,10 +1884,8 @@ Bk8 f22 out f16 tail #connect
 Bk8 f16 head f7 mainIn #connect
 Bk8 f7 mainOut f15 tail #connect
 Bk8 f15 head f29 mainIn #connect
+Bk8 f18 out f6 tail #connect
+Bk8 f6 head f22 in #connect
 Bk8 f20 out f9 tail #connect
-Bk8 f9 head f6 mainIn #connect
-Bk8 f6 mainOut f17 tail #connect
-Bk8 f17 head f22 in #connect
-Bk8 f18 out f19 tail #connect
-Bk8 f19 head f6 mainIn #connect
+Bk8 f9 head f22 in #connect
 Bk8 0 0 600 1160 0 #ivRect
