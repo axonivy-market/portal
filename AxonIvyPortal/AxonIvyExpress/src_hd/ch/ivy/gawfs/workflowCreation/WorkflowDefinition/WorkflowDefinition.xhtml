@@ -34,10 +34,10 @@
                         <p:inputText id="process-name" value="#{data.data.processName}" required="true" maxlength="50"
                           disabled="#{data.data.isAdhocProcess}" styleClass="express-workflow-input"
                           requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
-                          <p:ajax event="blur" partialSubmit="true" process="@this" global="false" immediate="true" />
+                          <p:ajax event="blur" partialSubmit="true" process="@this" global="false" immediate="true" update="process-name-message"/>
                         </p:inputText>
                         <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}" for="process-name" />
-                        <p:message for="process-name" />
+                        <p:message id="process-name-message" for="process-name" />
                       </div>
                     </div>
 
@@ -153,10 +153,10 @@
                             <div class="md-inputfield">
                               <p:inputText id="task-name" value="#{gtask.subject}" maxlength="30" required="true" styleClass="express-workflow-input"
                                 requiredMessage="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/TaskSubject')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}">
-                                <p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
+                                <p:ajax event="blur" partialSubmit="true" process="@this" global="false" update="task-name-message"/>
                               </p:inputText>
                               <p:outputLabel id="task-name-label" for="task-name" value="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/TaskSubject')}" />
-                              <p:message for="task-name" />
+                              <p:message id="task-name-message" for="task-name" />
                             </div>
                           </h:panelGroup>
 
@@ -250,11 +250,11 @@
                             <p:inputText id="default-task-name" value="#{gtask.subject}" maxlength="30" required="true"
                               requiredMessage="#{ivy.cms.co('/Labels/Task')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
                               styleClass="express-workflow-input">
-                              <p:ajax event="blur" partialSubmit="true" process="@this" global="false" />
+                              <p:ajax event="blur" partialSubmit="true" process="@this" global="false" update="default-task-name-message"/>
                             </p:inputText>
                             <p:outputLabel id="default-task-name-label" for="default-task-name"
                               value="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/TaskSubject')}" />
-                            <p:message for="default-task-name" />
+                            <p:message id="default-task-name-message" for="default-task-name" />
                           </div>
                         </h:panelGroup>
 
