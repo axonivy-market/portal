@@ -19,7 +19,7 @@
         <p:inputText id="email-recipients" styleClass="ui-g-12" value="#{email.recipients}" required="#{param['skipValidator'] == null}"
           requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailAddress')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
           validatorMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/invalidEmailFormat')}">
-          <f:validateRegex pattern="#{emailBean.emailRegex}" />
+          <f:validateRegex pattern="#{emailBean.emailRegex}" disabled="#{param['skipValidator'] == true}"/>
         </p:inputText>
         <p:outputLabel for="email-recipients" styleClass="ui-g-12"
           value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailAddress')}" />
@@ -29,7 +29,7 @@
       <div class="ui-g-12 md-inputfield">
         <p:inputText id="email-response-to" styleClass="ui-g-12" value="#{email.responseTo}"
            validatorMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/invalidEmailFormat')}">
-          <f:validateRegex pattern="#{emailBean.emailRegex}" />
+          <f:validateRegex pattern="#{emailBean.emailRegex}" disabled="#{param['skipValidator'] == true}"/>
         </p:inputText>
         <p:outputLabel for="email-response-to" styleClass="ui-g-12"
           value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/ResponseTo')}" />
