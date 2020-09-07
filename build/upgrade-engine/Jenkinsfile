@@ -57,19 +57,17 @@ pipeline {
       agent {label nodeToExecute}
       steps {
         script {
+          def utils = load 'build/common/utils.groovy'
+          utils.stopWindowsService(serviceName)
           bat """
             echo ====================Backup data to restore in case build fails====================
             xcopy /s/y/h/e/k/i/q ${engineDir} ${engineBackupDir}\\${engineName}-${today}
-            echo ====================Stop engine====================
-            sc query "${serviceName}" | find /i "RUNNING"
-            if not "%ERRORLEVEL%"=="1" ( net stop "${serviceName}" )
             echo ====================Rename current engine folder====================
             if exist ${renamedEngineDir} rmdir /s /q ${renamedEngineDir}
             :repeat
             ren "${engineDir}" "${engineName}-bk" || goto :repeat
-            echo ====================Extract engine====================
-            mvn clean compile -f AxonIvyPortal/PortalTest/pom.xml -Divy.engine.directory=${engineDir} %engineDownloadURL%
           """
+          utils.extractEngine(engineDir, params.engineDownloadURL)
           bat """
             echo ====================Copy license, configuration files====================
             copy /D/Y ${renamedEngineDir}\\configuration\\*.lic ${engineDir}\\configuration
@@ -82,10 +80,7 @@ pipeline {
             }
             copy -path ${renamedEngineDir}\\misc\\iis -recurse -force -destination ${engineDir}\\misc
           """
-          bat """
-            echo ====================Start engine====================
-            net start "${serviceName}"
-          """
+          utils.startWindowsService(serviceName)
         }
       }
     }
