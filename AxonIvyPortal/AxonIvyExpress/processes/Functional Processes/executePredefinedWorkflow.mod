@@ -1094,7 +1094,7 @@ TaskA.EXTYPE=0
 TaskA.NAM=<%\=in1.currentTask.subject%>
 TaskA.PRI=2
 TaskA.ROL=SELF
-TaskA.SCRIPT=task.setCategoryPath(ch.ivy.addon.portalkit.util.PredefinedWorkflowUtils.convertPathName(in1.workflowName + "/" + in1.currentTask.subject));
+TaskA.SCRIPT=import ch.ivy.gawfs.enums.ProcessType;\r\nimport ch.ivy.addon.portalkit.util.PredefinedWorkflowUtils;\r\ntask.setCategoryPath(PredefinedWorkflowUtils.generateExpressTaskCategoryPath(ProcessType.REPEAT, in1.workflowName, in1.currentTask.subject));
 TaskA.SKIP_TASK_LIST=true
 TaskA.TYPE=0' #txt
 Bk4 f43 template "" #txt
