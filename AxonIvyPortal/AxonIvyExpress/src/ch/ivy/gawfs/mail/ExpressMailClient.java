@@ -28,7 +28,7 @@ public class ExpressMailClient {
 
   public static void send(ExpressUserEmail mail) {
     IvyExecutor.executeAsSystem(() -> {
-      MailMessage message = mappingMailMessage(mail);
+      MailMessage message = mapMailMessage(mail);
       MailClientConfig mailSetupConfig = getMailClientConfig();
 
       // Send Email
@@ -57,7 +57,7 @@ public class ExpressMailClient {
     return emailAttachments;
   }
 
-  private static MailMessage mappingMailMessage(ExpressUserEmail mail) {
+  private static MailMessage mapMailMessage(ExpressUserEmail mail) {
     Builder mailMessageBuilder = MailMessage.create()
             .subject(mail.getSubject())
             .htmlContent(mail.getContent())
