@@ -15,7 +15,9 @@
     <ui:define name="content">
       <h:form id="form" styleClass="express-work-flow">
         <div id="error-container" class="ui-widget-content express-error-container">
-          <p:messages id="error-messages" showDetail="false" closable="true" globalOnly="true"/>
+          <p:messages id="error-messages" showDetail="false" closable="true" globalOnly="true">
+            <p:autoUpdate />
+          </p:messages>
         </div>
 
         <p:fieldset id="process-setting-fieldset" legend="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdetails')}"
@@ -326,7 +328,7 @@
 
         <p:outputPanel styleClass="TexAlRight">
           <h:panelGroup id="express-button-container">
-            <p:commandButton id="save" actionListener="#{logic.close}" update="form form:error-messages"
+            <p:commandButton id="save" actionListener="#{logic.close}" update="form"
               icon="fa #{data.data.isUseDefaultUI ? 'fa-check' : 'fa-arrow-right'}"
               value="#{data.data.isUseDefaultUI ? (data.data.processType eq 'AD_HOC' ? ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow') :
                ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')) : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}">
