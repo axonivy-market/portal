@@ -751,7 +751,7 @@ import javax.faces.application.FacesMessage;
 
 FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/Dialogs/workflowCreation/WorkflowDefinition/ProcessNameExists"), "");
 FacesContext context = FacesContext.getCurrentInstance();
-context.addMessage("", message);
+context.addMessage(null, message);
 context.validationFailed();' #txt
 Fs0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
