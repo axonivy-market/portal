@@ -1,5 +1,5 @@
-co: name={fullTaskList} description={} changed={2020-08-26 05:42:42 CEST} changedby={nqhoan} visualorder={0} guid={17428DB451F70A9C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={fullTaskList} description={} changed={2020-09-09 08:37:43 CEST} changedby={ttthai} visualorder={0} guid={17428DB451F70A9C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={17428DB4522577CD} datatype={} isdefault={true} langid={en} description={} validfrom={2020-08-26 05:41:32 CEST} validto={} changed={2020-08-26 05:41:32 CEST} changedby={nqhoan} properties={} id={}
-val: guid={17428DC539547B7A} datatype={} isdefault={false} langid={es} description={} validfrom={2020-08-26 05:42:36 CEST} validto={} changed={2020-08-26 05:42:42 CEST} changedby={nqhoan} properties={} id={}
-val: guid={17428DC5321F5739} datatype={} isdefault={false} langid={de} description={} validfrom={2020-08-26 05:42:33 CEST} validto={} changed={2020-08-26 05:42:42 CEST} changedby={nqhoan} properties={} id={}
-val: guid={17428DC53D146C66} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-08-26 05:42:31 CEST} validto={} changed={2020-08-26 05:42:42 CEST} changedby={nqhoan} properties={} id={}
+val: guid={17428DC539547B7A} datatype={} isdefault={false} langid={es} description={} validfrom={2020-09-09 08:37:43 CEST} validto={} changed={2020-09-09 08:37:43 CEST} changedby={ttthai} properties={} id={}
+val: guid={17428DC5321F5739} datatype={} isdefault={false} langid={de} description={} validfrom={2020-09-09 08:37:43 CEST} validto={} changed={2020-09-09 08:37:43 CEST} changedby={ttthai} properties={} id={}
+val: guid={17428DC53D146C66} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-09-09 08:37:43 CEST} validto={} changed={2020-09-09 08:37:43 CEST} changedby={ttthai} properties={} id={}
