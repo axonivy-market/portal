@@ -1,5 +1,5 @@
 [Ivy]
-14BDEA64F884ED76 7.5.0 #module
+14BDEA64F884ED76 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ee0 EmailSettingService Big #zClass
 Ee0 B #cInfo
