@@ -96,7 +96,7 @@ public final class PortalNavigator {
       try {
         serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());
       } catch (MalformedURLException e) {
-        Ivy.log().info("Cannot detect server Url" + e.getMessage());
+        Ivy.log().error("Cannot detect server Url" + e.getMessage());
       }
       return serverUrl + customizePortalFriendlyRequestPath;
     }

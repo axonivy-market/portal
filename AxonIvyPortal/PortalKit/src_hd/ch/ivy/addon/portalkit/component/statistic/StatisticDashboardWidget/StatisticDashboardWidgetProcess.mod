@@ -970,7 +970,6 @@ Ss0 f68 inParameterMapAction 'out.isFinishLoadCharts=false;
 out.isReloadChartContent=true;
 out.prevStatisticListSize=null;
 ' #txt
-Ss0 f68 inActionCode 'ivy.log.info("reset indicator");' #txt
 Ss0 f68 outParameterDecl '<> result;' #txt
 Ss0 f68 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
