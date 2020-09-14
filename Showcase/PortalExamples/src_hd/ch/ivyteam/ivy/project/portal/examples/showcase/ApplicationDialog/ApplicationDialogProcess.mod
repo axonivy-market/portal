@@ -116,12 +116,8 @@ import javax.faces.context.FacesContext;
 
 if(!in.isStrongboxProcess){
 	File f = new File(in.selectedGdprFile.getFile().getName());
-	
-	ivy.log.error(in.selectedGdprFile.getFile().getAbsolutePath());
 	FileUtils.copyFile(in.selectedGdprFile.getFile().getJavaFile(), f.getJavaFile());
-
 	in.pdfFilenameUrl = ivy.html.fileref(f);
-
 	if(in.selectedGdprFile.getFile().getName().endsWith(".pdf")){
 		in.renderPdfVeiwer = true;
 	}
