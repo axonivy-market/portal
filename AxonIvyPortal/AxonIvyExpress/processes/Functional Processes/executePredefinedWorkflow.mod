@@ -1153,7 +1153,11 @@ in.definedTasks.add(taskDef);
 
 // Initialize steps
 for(TaskDef task: in.definedTasks) {
-	in.steps.add(task.subject);
+	if (task.getTaskType() != TaskType.EMAIL) {
+		in.steps.add(task.subject);
+	} else {
+		in.steps.add(TaskType.EMAIL.getLabel());
+	}
 }
 
 // Initialize controllers
