@@ -23,10 +23,6 @@ public class DateTimeGlobalSettingService {
     return Ivy.cms().co("/patterns/datePattern");
   }
   
-  public String getDateTimestampPattern() {
-    return Ivy.cms().co("/patterns/dateTimestampPattern");
-  }
-  
   public boolean isHideTime() {
     String dateTimeGlobalSetting = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_TIME.toString());
     return Boolean.valueOf(dateTimeGlobalSetting);
