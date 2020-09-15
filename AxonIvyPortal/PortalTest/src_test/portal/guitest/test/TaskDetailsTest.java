@@ -5,10 +5,14 @@ import static org.junit.Assert.assertTrue;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.DateTimePattern;
@@ -16,6 +20,7 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.common.TestRole;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
+import portal.guitest.page.TaskNoteHistoryPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class TaskDetailsTest extends BaseTest {
@@ -100,7 +105,13 @@ public class TaskDetailsTest extends BaseTest {
     homePage = new HomePage();
     
     taskDetailsPage = openDetailsPageOfFirstTask();
-    String eventData = taskDetailsPage.openWorkflowEventDialog();
+    taskDetailsPage.clickOnShowMoreHistories();
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
+    homePage.switchLastBrowserTab();
+    TaskNoteHistoryPage taskNoteHistoryPage = new TaskNoteHistoryPage();
+    assertTrue(taskNoteHistoryPage.isShowWorkflowEventsLinkDisplayed());
+
+    String eventData = taskNoteHistoryPage.openWorkflowEventDialog();
     assertTrue(eventData.contains("admin"));
   }
 

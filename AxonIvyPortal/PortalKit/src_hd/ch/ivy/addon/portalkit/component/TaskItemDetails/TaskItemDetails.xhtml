@@ -63,16 +63,13 @@
                   renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}" task="#{task}"
                   isDisabled="#{taskActionBean.noActionAvailable(task)}"
                   componentToUpdate="#{cc.clientId}:task-detail-general-container #{cc.clientId}:task-detail-note-container"
-                  onDestroyComplete="PF('destroy-task-dialog').show()" showInTaskList="false"
-                  onDelegateComplete="initDataToDelegate()"
-                  onWorkflowEventComplete="initWorkflowEventData()"/>
+                  onDestroyComplete="PF('destroy-task-dialog').show()" showInTaskList="false" />
               </h:panelGroup>
             </div>
   
             <h:panelGroup id="task-detail-data-description-container" styleClass="ui-g-12 u-padding-0">
               <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="general-information" task="#{task}"
-                componentToUpdate="#{cc.clientId}:task-detail-note-container #{cc.clientId}:task-detail-action-group"
-                onWorkflowEventComplete="initWorkflowEventData()"/>
+                componentToUpdate="#{cc.clientId}:task-detail-note-container #{cc.clientId}:task-detail-action-group" />
             </h:panelGroup>
           </h:panelGroup>
         </div>
@@ -138,12 +135,7 @@
     </ui:define>
   </ui:decorate>
   
-  <!-- Delegate Task Dialog -->
   <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="task-item-delegate-component" task="#{task}"
     componentToUpdate="#{p:component('task-detail-general-container')} #{p:component('task-detail-note-container')} #{p:component('task-detail-data-description-container')}" />
-  
-  <!-- Workflow Event of Task -->
-  <ic:ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents id="workflow-event-component" taskId="#{task.id}"/>
-
 </cc:implementation>
 </html>
