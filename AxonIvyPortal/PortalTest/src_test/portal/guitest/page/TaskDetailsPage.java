@@ -285,31 +285,4 @@ public class TaskDetailsPage extends TemplatePage {
     click(buttonAction.findElement(By.className("ui-inplace-save")));
     WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("span[id$=':delay-form:delay-date_display']").getText().equalsIgnoreCase(tomorrow));
   }
-
-  public boolean isShowWorkflowEventsLinkDisplayed() {
-    return isElementDisplayedById("form:show-workflow-event");
-  }
-
-  public String openWorkflowEventDialog() {
-    openActionPanel();
-    clickOnShowWorkflowEventLink();
-    return getDataOfWorkflowEventsTable();
-  }
-
-  private String getDataOfWorkflowEventsTable() {
-    WebElement eventTable = findElementByCssSelector("tbody[id$='events-table_data']");
-    List<WebElement> cells = eventTable.findElements(By.cssSelector("td"));
-    return String.join(",", cells.stream().map(WebElement::getText).collect(Collectors.toList()));
-  }
-
-  public void clickOnShowWorkflowEventLink() {
-    click(findElementByCssSelector("a[id$=':task-workflow-event-command']"));
-    waitForElementDisplayed(By.cssSelector("div[id$='events-table']"), true);
-  }
-
-  public WebElement getWorkflowEventsTable() {
-    waitForElementDisplayed(By.cssSelector("th[id*='events-table:']"), true);
-    return findElementByCssSelector("div[id$='workflow-events-dialog']");
-  }
-
 }

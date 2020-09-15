@@ -20,6 +20,7 @@ import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
+import portal.guitest.page.TaskNoteHistoryPage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class PortalTaskScreenshotTest extends ScreenshotTest {
@@ -75,7 +76,6 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   
   @Test
   public void screenshotTaskDetails() throws IOException {
-    login(TestAccount.ADMIN_USER);
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
     TaskWidgetPage taskWidget = homePage.openTaskList();
     taskWidget.closeMainMenu();
@@ -106,18 +106,6 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     taskDetails.clickOnDeleteDocumentIcon(0);
     WebElement deleteDocumentDialog = taskDetails.getDeleteDocumentConfirmDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(deleteDocumentDialog, ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-delete-document", new ScreenshotMargin(100, 150));
-
-    refreshPage();
-    taskDetails.waitUtilsTaskDetailsDisplayed();
-    taskDetails.openActionPanel();
-    executeDecorateJs("highlightShowWorkflowEvents()");
-    ScreenshotUtil.captureHalfCenterTopPageScreenShot(ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-show-workflow-event");
-
-    refreshPage();
-    taskDetails.waitUtilsTaskDetailsDisplayed();
-    taskDetails.openWorkflowEventDialog();
-    WebElement workflowEventTable = taskDetails.getWorkflowEventsTable();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(workflowEventTable, ScreenshotUtil.TASK_DETAIL_FOLDER + "workflow-events-table", new ScreenshotMargin(100, 50));
   }
   
   @Test
@@ -140,7 +128,15 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
     homePage.switchLastBrowserTab();
     Sleeper.sleep(3000);
+    TaskNoteHistoryPage taskNoteHistoryPage = new TaskNoteHistoryPage();
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-export-note-details", new Dimension(SCREENSHOT_WIDTH, 1000));
+    
+    executeDecorateJs("highlightShowWorkflowEvents()");
+    ScreenshotUtil.captureHalfTopRightPageScreenShot(ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-show-workflow-event");
+
+    taskNoteHistoryPage.openWorkflowEventDialog();
+    WebElement workflowEventTable = taskNoteHistoryPage.getWorkflowEventsTable();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(workflowEventTable, ScreenshotUtil.TASK_DETAIL_FOLDER + "workflow-events-table", new ScreenshotMargin(100, 50));
   }
   
   @Test
