@@ -24,6 +24,7 @@ import ch.ivy.addon.portalkit.taskfilter.TaskStateFilter;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
 @ViewScoped
@@ -34,6 +35,7 @@ public class TaskWidgetBean implements Serializable {
   private Long taskListRefreshInterval;
   private Long expandedTaskId;
   private Long selectedTaskItemId;
+  private ITask selectedTaskItem;
   private TaskLazyDataModel dataModel;
   private Boolean isTaskDetailOpenning;
   private boolean isShowFullTaskList;
@@ -83,6 +85,17 @@ public class TaskWidgetBean implements Serializable {
   public boolean isDeleteFilterEnabledFor(TaskFilterData filterData) {
     TaskFilterService filterService = new TaskFilterService();
     return filterService.isDeleteFilterEnabledFor(filterData);
+  }
+
+  /**
+   * Find ITask by selectedTaskItemId
+   * @return task is selected
+   */
+  public ITask getSelectedTaskItem() {
+    if (selectedTaskItem == null || selectedTaskItemId != selectedTaskItem.getId()) {
+      selectedTaskItem = TaskUtils.findTaskById(selectedTaskItemId);
+    }
+    return selectedTaskItem;
   }
 
   /**
