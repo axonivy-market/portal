@@ -60,4 +60,9 @@ public class ApplicationMultiLanguage {
     }
     return new ArrayList<>(supportedLanguages);
   }
+
+  public static String getCmsValueByUserLocale(String cmsURI) {
+    Locale currentUserLocale = new Locales().getCurrentLocale();
+    return Ivy.cms().coLocale(cmsURI, currentUserLocale);
+  }
 }
