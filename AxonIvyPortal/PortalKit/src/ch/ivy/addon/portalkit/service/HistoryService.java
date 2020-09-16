@@ -13,6 +13,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.bo.History;
 import ch.ivy.addon.portalkit.bo.History.HistoryType;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -83,25 +84,31 @@ public class HistoryService {
   
   public List<History> createHistoryForTaskWorkflowEvents(ITask task) {
     List<History> histories = new ArrayList<>();
-    if (PermissionUtils.checkReadAllWorkflowEventPermission()) {
-      for (IWorkflowEvent event : task.getWorkflowEvents()) {
-        History history = new History();
-        history.setId(event.getId());
-        history.setDisplayName(event.getEventKind().toString());
-        history.setContent(StringUtils.defaultIfEmpty(
-            String.join(", ", event.getAdditionalInfo().stream().filter(Objects::nonNull).collect(Collectors.toList())),
-            StringUtils.EMPTY));
+    List<IWorkflowEvent> taskEvents = getTaskWorkflowEvents(task);
 
-        history.setTaskState(event.getTaskState());
-        history.setInvolvedUsername(SecurityMemberDisplayNameUtils.generateFullDisplayNameForUser(event.getUser(), event.getUserName()));
+    for (IWorkflowEvent event : taskEvents) {
+      History history = new History();
+      history.setId(event.getId());
+      history.setDisplayName(event.getEventKind().toString());
+      history.setContent(StringUtils.defaultIfEmpty(
+          String.join(", ", event.getAdditionalInfo().stream().filter(Objects::nonNull).collect(Collectors.toList())),
+          StringUtils.EMPTY));
 
-        history.setTimestamp(event.getEventTimestamp());
-        history.setType(HistoryType.EVENT);
-        histories.add(history);
-      }
+      history.setTaskState(event.getTaskState());
+      history.setInvolvedUsername(SecurityMemberDisplayNameUtils.generateFullDisplayNameForUser(event.getUser(), event.getUserName()));
+
+      history.setTimestamp(event.getEventTimestamp());
+      history.setType(HistoryType.EVENT);
+      histories.add(history);
     }
 
     return sortHistoriesByTimeStampDescending(Arrays.asList(histories));
+  }
+
+  private List<IWorkflowEvent> getTaskWorkflowEvents(ITask task) {
+    return IvyExecutor.executeAsSystem(() -> {
+      return PermissionUtils.checkReadAllWorkflowEventPermission() ? task.getWorkflowEvents() : new ArrayList<>();
+    });
   }
 
   public History createHistoryFrom(INote note) {
