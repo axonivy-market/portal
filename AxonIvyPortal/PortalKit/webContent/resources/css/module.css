@@ -1880,6 +1880,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   max-width: 70%;
 }
 
+.task-workflow-event-command {
+  margin-left: 15px;
+}
+
 @media screen and (max-width: 40em) {
   .workflow-events-dialog {
     max-width: 90%;
@@ -1890,7 +1894,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   .workflow-events-dialog {
     max-width: 80%;
   }
-  }
+}
 /********************************** END TASK DETAIL **********************************/
 
 /********************************** CASE DETAIL **********************************/
