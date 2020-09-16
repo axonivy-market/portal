@@ -36,6 +36,7 @@ public class TaskActionBean {
   //This variable control display of side step and create adhoc
   private boolean isShowAdditionalOptions;
   private boolean isShowDestroyTask;
+  private boolean isShowReadWorkflowEvent;
   private static final String BACK_FROM_TASK_DETAILS = "Start Processes/PortalStart/BackFromTaskDetails.ivp";
 
   public TaskActionBean() {
@@ -44,6 +45,7 @@ public class TaskActionBean {
     isShowDelegateTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION);
     isShowAdditionalOptions = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS);
     isShowDestroyTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_DESTROY_ACTION);
+    isShowReadWorkflowEvent = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_WORKFLOW_EVENT_ACTION);
   }
 
   public boolean canReset(ITask task) {
@@ -137,6 +139,10 @@ public class TaskActionBean {
     }
     return hasPermission(task, IPermission.TASK_WRITE_DELAY_TIMESTAMP);
   }
+  
+  public boolean canReadWorkflowEventTask() {
+    return PermissionUtils.checkReadAllWorkflowEventPermission();
+  }
 
   public boolean notHaveExpiryHandleLogic(ITask task) {
     return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP)
@@ -220,6 +226,14 @@ public class TaskActionBean {
     this.isShowDestroyTask = isShowDestroyTask;
   }
 
+  public boolean isShowReadWorkflowEvent() {
+    return isShowReadWorkflowEvent;
+  }
+
+  public void setShowReadWorkflowEvent(boolean isShowReadWorkflowEvent) {
+    this.isShowReadWorkflowEvent = isShowReadWorkflowEvent;
+  }
+
   public void updateSelectedTaskItemId(boolean isShowInTaskList, Long taskId) {
     if (isShowInTaskList) {
       TaskWidgetBean taskWidgetBean = ManagedBeans.get("taskWidgetBean");
@@ -234,7 +248,8 @@ public class TaskActionBean {
   }
 
   public boolean noActionAvailable(ITask task) {
-    return !isNotDone(task) && !canReset(task) && !isTechnicalState(task);
+    boolean hasWorkflowEventLink = isShowReadWorkflowEvent && canReadWorkflowEventTask();
+    return !isNotDone(task) && !canReset(task) && !isTechnicalState(task) && !hasWorkflowEventLink;
   }
   
   public void backToPrevPage(ITask task, boolean isFromTaskList, boolean isTaskStartedInDetails) {
