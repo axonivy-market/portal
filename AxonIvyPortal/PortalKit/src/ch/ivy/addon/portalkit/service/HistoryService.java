@@ -20,7 +20,6 @@ import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.IWorkflowEvent;
-import ch.ivyteam.ivy.workflow.TaskState;
 
 public class HistoryService {
 
@@ -63,7 +62,7 @@ public class HistoryService {
   public History createHistoryFrom(ITask task) {
     History history = new History();
     history.setId(task.getId());
-    history.setContent(generateHistoryContent(task));
+    history.setContent(task.getName());
     history.setTaskState(task.getState());
     history.setInvolvedUsername(task.getWorkerUserName());
     history.setInvolvedUser(task.getWorkerUser());
@@ -73,6 +72,12 @@ public class HistoryService {
     Date historyTimeStamp = task.getEndTimestamp() == null ? task.getStartTimestamp() : task.getEndTimestamp();
     history.setTimestamp(historyTimeStamp);
     history.setType(HistoryType.TASK);
+    return history;
+  }
+  
+  public History createFailedReasonFrom(ITask task) {
+    History history = createHistoryFrom(task);
+    history.setContent(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/taskFailReason", Arrays.asList(task.getFailReason())));
     return history;
   }
   
@@ -96,16 +101,7 @@ public class HistoryService {
       }
     }
 
-    return histories;
-  }
-
-  private String generateHistoryContent(ITask task) {
-    StringBuilder content = new StringBuilder();
-    content.append(task.getName());
-    if (task.getState() == TaskState.FAILED || task.getState() == TaskState.JOIN_FAILED) {
-      content.append("; ").append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/taskFailReason", Arrays.asList(task.getFailReason())));
-    }
-    return content.toString();
+    return sortHistoriesByTimeStampDescending(Arrays.asList(histories));
   }
 
   public History createHistoryFrom(INote note) {

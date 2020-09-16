@@ -248,7 +248,9 @@
             isSelected="#{cc.attrs.selectedTaskId eq task.getId()}"
             compactMode="#{data.dataModel.compactMode}" 
             dataModel="#{data.dataModel}"
-            onDestroyComplete="PF('destroy-task-dialog').show()">
+            onDestroyComplete="PF('destroy-task-dialog').show()"
+            onDelegateComplete="initDataToDelegate()"
+            onWorkflowEventComplete="initWorkflowEventData()">
             <cc:insertFacet name="taskHeader" />
           </ic:ch.ivy.addon.portalkit.component.TaskItem>
         </p:dataScroller>
@@ -388,9 +390,14 @@
     </ui:define>
   </ui:decorate>
 
+  <!-- Delegate Task Dialog -->
   <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="task-item-delegate-component" dataModel="#{data.dataModel}"
-    task="#{taskWidgetBean.getSelectedTaskItem()}"
+    taskId="#{taskWidgetBean.selectedTaskItemId}"
     componentToUpdate="#{p:component('task-start')}" />
+
+  <!-- Workflow Event of Task Dialog -->
+  <ic:ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents id="task-workflow-event-component"
+    taskId="#{taskWidgetBean.selectedTaskItemId}"/>
 
   <!-- hidden row count to update breadcrumb -->
   <h:outputText id="hidden-task-count" styleClass="u-hidden hidden-task-count js-hidden-task-count" value="#{data.dataModel.rowCount}" rendered="#{not data.dataModel.disableTaskCount}" />
