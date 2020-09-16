@@ -49,6 +49,7 @@ if (PermissionUtils.checkReadAllTasksPermission()
 		failedReason.displayName = "";
 		in.workflowEvents.add(failedReason);
 }' #txt
+Ts0 f8 security system #txt
 Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
