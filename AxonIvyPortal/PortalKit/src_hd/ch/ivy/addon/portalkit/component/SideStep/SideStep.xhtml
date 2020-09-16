@@ -16,7 +16,9 @@
   <cc:attribute name="currentPortalPage" default="TASK_LIST" />
   <cc:attribute name="showDetailOption" default="false" shortDescription="Display go to task detail option" />
   <cc:attribute name="dataModel" shortDescription="Data model of task list" />
+  <cc:attribute name="onDelegateComplete" />
   <cc:attribute name="onDestroyComplete" />
+  <cc:attribute name="onWorkflowEventComplete" />
   <cc:attribute name="showInTaskList" type="java.lang.Boolean" default="true" shortDescription="Indicator to display SideStep in TaskList"/>
 </cc:interface>
 
@@ -49,7 +51,7 @@
 
     <p:commandLink id="task-delegate-command" disabled="#{!taskActionBean.canDelegate(task)}" rendered="#{taskActionBean.showDelegateTask}"
       styleClass="option-item" onstart="event.stopPropagation();"
-      oncomplete="initDataToDelegate()"
+      oncomplete="#{cc.attrs.onDelegateComplete}"
       actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
       update="@parent #{cc.attrs.componentToUpdate} @widgetVar(task-delegate-dialog)" global="false">
       <i class="option-action-icon icon ivyicon-road-sign-u-turn-right" />
@@ -74,6 +76,15 @@
       oncomplete="#{cc.attrs.onDestroyComplete}" process="@this" global="false">
       <i class="option-action-icon icon ivyicon-remove" />
       <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}</span>
+    </p:commandLink>
+    
+    <p:commandLink id="task-workflow-event-command" disabled="#{!taskActionBean.canReadWorkflowEventTask()}" rendered="#{taskActionBean.showReadWorkflowEvent}"
+      styleClass="option-item" onstart="event.stopPropagation();" process="@this"
+      update="@parent #{cc.attrs.componentToUpdate} @widgetVar(workflow-events-dialog)"
+      actionListener="#{taskActionBean.updateSelectedTaskItemId(isShowInTaskList, task.id)}"
+      oncomplete="#{cc.attrs.onWorkflowEventComplete}" global="false" >
+      <i class="option-action-icon icon ivyicon-business-contract-handshake-sign" />
+      <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/events')}</span>
     </p:commandLink>
     
     <h:panelGroup id="task-additional-actions" layout="block" rendered="#{cc.attrs.renderedAdditionalAction}">
