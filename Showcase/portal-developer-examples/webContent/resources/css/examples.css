@@ -99,7 +99,11 @@
 	text-align: center;
 }
 
-.customized-login-form {
+.customized-login .error-message {
+	color: #212121;
+}
+
+.customized-login-panel {
 	position: absolute;
 	top: 50%;
 	left: 50%;
@@ -112,13 +116,13 @@
 	box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 6px 10px 0 rgba(0, 0, 0, 0.14);
 }
 
-.customized-login-form .title {
+.customized-login-panel .title {
 	margin: 0;
 	font-size: 2rem;
 	color: #212121;
 }
 
-.customized-login-form .input.ui-inputfield {
+.customized-login-panel .input.ui-inputfield {
 	margin: 18px auto 0;
 	padding: 0 !important;
 	text-align: center;
@@ -128,18 +132,18 @@
 	font-size: 1.8rem;
 }
 
-.customized-login-form .login-command {
+.customized-login-panel .login-command {
 	font-size: 1.4rem;
 	color: black !important;
 	text-decoration: none !important;
 	outline: none !important;
 }
 
-.customized-login-form .ui-messages.ui-messages-noicon ul {
+.customized-login-panel .ui-messages.ui-messages-noicon ul {
 	margin: 0;
 }
 
-.customized-login-form .ui-messages-error {
+.customized-login-panel .ui-messages-error {
 	border: none;
 	margin: 10px 0 0;
 	padding: 0 !important;
