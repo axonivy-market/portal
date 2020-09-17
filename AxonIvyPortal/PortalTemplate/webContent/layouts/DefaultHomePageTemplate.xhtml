@@ -19,7 +19,8 @@
           <ui:insert name="processWidget">
               <ic:ch.ivy.addon.portalkit.component.CompactProcessWidget id="process-widget"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}"
-                mobileTitle="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/myProcesses')}">
+                mobileTitle="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/myProcesses')}"
+                onToggleProcessesComplete="favouritesProcess.setUpScrollBarForCompactProcessLists(false);">
                 <f:facet name="headerToolbar">
                   <ic:ch.ivy.addon.portal.generic.ProcessNavigator id="process-link"
                     label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/seeAllProcesses')}" />
