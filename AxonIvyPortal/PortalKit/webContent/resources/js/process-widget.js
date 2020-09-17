@@ -28,12 +28,12 @@ function ProcessWidget() {
       }
       var announcementMessageContainer = $('.js-announcement-message');
       var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight() - globalSearchBottom;
-      var headerHeight = $('#portal-template-header').outerHeight();
+      var processHeaderHeight = $('#portal-template-header').outerHeight();
       var footerHeight = $('#portal-template-footer').outerHeight();
       var availableHeight = mainScreenHeight - (announcementMessageContainer.outerHeight(true)||0)
                               - (processsHeader.outerHeight(true)||0) - (globalSearchInput.is(":visible") ? globalSearchInput.outerHeight(true) : 0)
                               - (globalSearchTabHeader.outerHeight(true)||0) - error
-                              - headerHeight - footerHeight;
+                              - processHeaderHeight - footerHeight;
       if (!!availableHeight) {
         processStartListContainer.css("max-height", availableHeight + "px");
         this.setupProcessNav(processStartListContainer, availableHeight, announcementMessageContainer);
@@ -75,9 +75,9 @@ function ProcessWidget() {
 
       processNav.css("height", (availableHeight  - excludeMarginBottom) + "px");
       
-      var headerHeight = $('#portal-template-header').outerHeight();
+      var processHeaderHeight = $('#portal-template-header').outerHeight();
       var availableHeightProcessNavTop = (($('.js-process-header').outerHeight(true)||0) + ($('.layout-topbar').outerHeight(true)||0)
-                                          + (announcementMessageContainer.outerHeight(true)||0) + excludeMarginBottom + headerHeight);
+                                          + (announcementMessageContainer.outerHeight(true)||0) + excludeMarginBottom + processHeaderHeight);
       processNav.css("top", availableHeightProcessNavTop + "px");
     },
 
@@ -190,6 +190,7 @@ $(document).ready(function() {
 $(window).resize(function() {
   processWidget = ProcessWidget();
   processWidget.setupScrollbar();
+  favouritesProcess.setUpScrollBarForCompactProcessLists(true);
 });
 
 function expandOrCollapseAllCategories(shouldExpand) {
@@ -270,33 +271,54 @@ var favouritesProcess = {
 	}
   },
 
-  setUpScrollBarUserProcesses : function() {
-    this.scrollBarForUserProcesses();
+  setUpScrollBarForCompactProcessLists : function(isResize) {
+	  if ($('.compact-process-widget').length == 0) {
+	    	return;
+	    }
+	this.setupScrollbar(isResize);
   },
   
-  setUpScrollBarApplicationProcesses : function() {
-	this.scrollBarForApplicationProcesses();
-  },
+  setupScrollbar : function(isResize) {
+    var $mainContent = $('.js-layout-content');
+    var mainContentHeight = $mainContent.height();
 
-  scrollBarForUserProcesses : function() {
-    var userProcessList = $('[id$="process-widget:user-process-container"]');
-    var userProcessListBody = userProcessList.find('.compact-processes-container.widget-content');
-    var userProcessSize = userProcessList.find("form").length;
-    var scrollHeightForProcess = 0;
-    if (userProcessSize > maxItems) {
-    	scrollHeightForProcess = processItemHeight*maxItems + 2;
-    	userProcessListBody.css("max-height", scrollHeightForProcess);
+    // If there is available height, don't setup scrollbar for compact process widget
+    if ($('.compact-process-widget').height() < mainContentHeight && !isResize) {
+      return;
     }
-  },
-  
-  scrollBarForApplicationProcesses : function() {
+
+    // Get height of user process + application process
     var appProcessList = $('[id$="process-widget:user-default-process-list"]');
-    var appProcessListBody = appProcessList.find('.compact-default-processes-container');
-    var appProcessSize = appProcessList.find("form").length;
-    var scrollHeightForProcess = 0;
-    if (appProcessSize > maxItems) {
-    	scrollHeightForProcess = processItemHeight*maxItems + 2;
-    	appProcessListBody.css("max-height", scrollHeightForProcess);
+    var userProcessList = $('[id$="process-widget:user-process-container"]');
+
+    var appProcessListprocessHeaderHeight = appProcessList.find('.js-user-default-process-list-header').height() || 0;
+	var favoriteProcessprocessHeaderHeight = $('.js-favorite-process-header').height() || 0;
+	var processHeaderHeight = ($('.js-process-widget-header').height() || 0) + (parseInt($('.js-process-widget-header').css('padding-top'), 10)) + (parseInt($('.js-process-widget-header').css('padding-bottom'), 10));
+	
+	var headerHeight = $('#portal-template-header').outerHeight() || 0;
+    var footerHeight = $('#portal-template-footer').outerHeight() || 0;
+    var announcementMessageHeight = $('.js-announcement-message').outerHeight(true) || 0;
+	var customizedContentHeight = $('.js-custom-widget-container').outerHeight() || 0
+	
+	var paddingValues = (parseInt($('.layout-topbar').css('padding-top'), 10) || 0) + (parseInt($('.compact-process-widget').css('padding-top'), 10) || 0) + (parseInt($('.compact-process-widget').css('padding-bottom'), 10) || 0);
+
+	var availableHeight = mainContentHeight - appProcessListprocessHeaderHeight - favoriteProcessprocessHeaderHeight - processHeaderHeight - paddingValues - headerHeight - footerHeight - announcementMessageHeight - customizedContentHeight;
+    // If both application process height and user process height are bigger than available height, set up scrollbar for each of them
+    if (appProcessList.height() > availableHeight/2 && userProcessList.height() > availableHeight/2 || isResize) {
+    	userProcessList.find('.compact-processes-container').css('max-height', availableHeight/2);
+    	appProcessList.find('.js-user-default-process-list-content').css('max-height', availableHeight/2);
+    }
+
+    // if application process height is greater than 50% of available height, and user process height is less than 50% of available height, setup scrollbar for application process height
+    if ((appProcessList.height() > availableHeight/2 && userProcessList.height() < availableHeight/2) || isResize) {
+    	var userProcessListHeightAndMargin = (userProcessList.height() || 0) + (parseInt(userProcessList.css('margin-bottom'), 10) || 0);
+    	appProcessList.find('.js-user-default-process-list-content').css('max-height', availableHeight - userProcessListHeightAndMargin);
+    }
+
+    // if user process height is greater than 50% of available height, and application process height is less than 50% of available height, setup scrollbar for user process height
+    if (userProcessList.height() > availableHeight/2 && (appProcessList.height() || 0) < availableHeight/2 || isResize) {
+    	var appProcessListHeight = appProcessList.height() || 0;
+    	userProcessList.find('.compact-processes-container').css('max-height', availableHeight - appProcessListHeight - (parseInt(userProcessList.css('margin-bottom'), 10) || 0));
     }
   }
 }

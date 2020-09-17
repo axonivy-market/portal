@@ -7,7 +7,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition>
-  <div class="ui-g">
+  <div class="ui-g js-favorite-process-header">
     <div jsf:rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled and compactProcessWidgetBean.displayShowAllProcessesLink}" class="favorite-process-title ui-g-12">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/favoriteProcesses')}" />
     </div>
@@ -139,7 +139,7 @@
         <p:commandButton id="add-process-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
           process="@form" actionListener="#{compactProcessWidgetBean.saveNewUserProcess}"
           update="@form #{p:component('process-list')} #{p:component('process-widget-action')}"
-          oncomplete="if(!args.validationFailed){PF('add-new-process-dialog').hide();} favouritesProcess.setUpScrollBarUserProcesses()" />
+          oncomplete="if(!args.validationFailed){PF('add-new-process-dialog').hide();} favouritesProcess.setUpScrollBarForCompactProcessLists(false)" />
         <p:spacer width="5" />
         <p:commandButton id="cancel-adding-process-command" global="false" styleClass="portal-cancel-button"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@none"
@@ -151,7 +151,7 @@
   <script type="text/javascript">
        $(function() {
           favouritesProcess.init();
-          favouritesProcess.setUpScrollBarUserProcesses();
+          favouritesProcess.setUpScrollBarForCompactProcessLists(false);
       });
   </script>
 </ui:composition>
