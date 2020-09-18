@@ -7,9 +7,9 @@
   xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition>
-  <h:panelGroup id="user-default-process-list" layout="block" styleClass="user-default-process-list"
+  <h:panelGroup id="user-default-process-list" layout="block" styleClass="user-default-process-list ui-g"
     rendered="#{not empty compactProcessWidgetBean.defaultUserProcesses}">
-    <div class="ui-g js-user-default-process-list-header">
+    <div class="js-user-default-process-list-header ui-g-12">
       <div class="default-process-title ui-g-12" jsf:rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/defaultProcesses')}" />
       </div>
@@ -28,7 +28,7 @@
       </h:panelGroup>
     </div>
 
-    <h:panelGroup id="default-user-processes-container" styleClass="compact-default-processes-container js-user-default-process-list-content" layout="block">
+    <h:panelGroup id="default-user-processes-container" styleClass="compact-default-processes-container js-user-default-process-list-content ui-g-12" layout="block">
       <ui:repeat varStatus="status" var="process" value="#{compactProcessWidgetBean.defaultUserProcesses}">
         <c:set var="isExternalProcess"
           value="#{!(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}" />
