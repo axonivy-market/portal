@@ -17,9 +17,9 @@ import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
 import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.service.ILanguageService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
-import ch.ivy.addon.portalkit.persistence.dao.ApplicationDao;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
@@ -47,11 +47,15 @@ public class LanguageService implements ILanguageService {
 
       List<PortalIvyDataException> errors = new ArrayList<>();
       List<IvyLanguage> ivyLanguages = new ArrayList<>();
-      List<Application> applications = new ApplicationDao().findByNames(apps);
+      var applicationService = new RegisteredApplicationService();
       for (String appName : apps) {
         try {
-          String appDisplayName = applications.stream().filter(app -> StringUtils.equals(app.getName(), appName))
-              .map(ApplicationMultiLanguage::getDisplayNameInCurrentLocale).findFirst().orElse(appName);
+          String appDisplayName = appName;
+          Application savedApp = applicationService.findByName(appName);
+          if (savedApp != null) {
+            appDisplayName = ApplicationMultiLanguage.getDisplayNameInCurrentLocale(savedApp);
+          }
+
           IvyLanguage ivyLanguage = getIvyLanguage(username, appName, appDisplayName);
           if (ivyLanguage != null) {
             ivyLanguages.add(ivyLanguage);
