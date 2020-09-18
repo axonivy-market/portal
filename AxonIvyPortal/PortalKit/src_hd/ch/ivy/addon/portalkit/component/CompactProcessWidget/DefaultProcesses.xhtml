@@ -7,26 +7,28 @@
   xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <ui:composition>
-  <h:panelGroup id="user-default-process-list" layout="block" styleClass="user-default-process-list ui-g"
+  <h:panelGroup id="user-default-process-list" layout="block" styleClass="user-default-process-list"
     rendered="#{not empty compactProcessWidgetBean.defaultUserProcesses}">
+    <div class="ui-g js-user-default-process-list-header">
+      <div class="default-process-title ui-g-12" jsf:rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/defaultProcesses')}" />
+      </div>
 
-    <div class="default-process-title ui-g-12" jsf:rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/defaultProcesses')}" />
+      <h:panelGroup id="default-process-widget-action" styleClass="process-widget-action ui-g-12 u-no-padding-top" layout="block"
+        rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}">
+        <h:form styleClass="process-button-position process-action-button process-widget-action-form">
+          <h:panelGroup layout="block">
+            <p:commandLink id="default-process-name-sort-command" styleClass="name-sort-command"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/sortByName')}"
+              actionListener="#{compactProcessWidgetBean.sortUserProcessList(compactProcessWidgetBean.defaultUserProcesses)}"
+              update="#{cc.clientId}:user-default-process-list"
+              oncomplete="favouritesProcess.setUpScrollBarForCompactProcessLists(false)" />
+          </h:panelGroup>
+        </h:form>
+      </h:panelGroup>
     </div>
-    
-    <h:panelGroup id="default-process-widget-action" styleClass="process-widget-action ui-g-12 u-no-padding-top"
-      rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}">
-      <h:form styleClass="process-button-position process-action-button process-widget-action-form">
-        <h:panelGroup layout="block">
-          <p:commandLink id="default-process-name-sort-command" styleClass="name-sort-command"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/sortByName')}"
-            actionListener="#{compactProcessWidgetBean.sortUserProcessList(compactProcessWidgetBean.defaultUserProcesses)}"
-            update="#{cc.clientId}:user-default-process-list" oncomplete="favouritesProcess.setUpScrollBarApplicationProcesses()" />
-        </h:panelGroup>
-      </h:form>
-    </h:panelGroup>
 
-    <h:panelGroup id="default-user-processes-container" styleClass="compact-default-processes-container ui-g-12" layout="block">
+    <h:panelGroup id="default-user-processes-container" styleClass="compact-default-processes-container js-user-default-process-list-content" layout="block">
       <ui:repeat varStatus="status" var="process" value="#{compactProcessWidgetBean.defaultUserProcesses}">
         <c:set var="isExternalProcess"
           value="#{!(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}" />
@@ -40,11 +42,5 @@
       </ui:repeat>
     </h:panelGroup>
   </h:panelGroup>
-  <script type="text/javascript">
-       $(function() {
-          favouritesProcess.init();
-          favouritesProcess.setUpScrollBarApplicationProcesses();
-      });
-  </script>
 </ui:composition>
 </html>
