@@ -9,7 +9,8 @@
   <h:panelGroup id="header" styleClass="widget-header ui-g-12 u-no-padding-bottom" layout="block">
     <h:panelGroup class="widget-header-main">
       <p:commandLink id="toggle-processes-link" styleClass="toggle-processes-link ui-lg-hidden ui-xl-hidden ui-md-hidden"
-             global="false" onclick="toggleShowProcessList();">
+             global="false" onclick="toggleShowProcessList();"
+             oncomplete="#{cc.attrs.onToggleProcessesComplete}">
           <i class="icon ivyicon-add-small u-mar-right-5"/>
           <h:outputText value="#{cc.attrs.mobileTitle}" />
       </p:commandLink>
@@ -21,7 +22,7 @@
   </h:panelGroup>
    <script>
      function toggleShowProcessList() {
-       $('[id $= "all-processes-container"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
+       $('[id $= "all-processes-container"]').toggleClass("ui-sm-hidden");
        $('[id $= "toggle-processes-link"] > i').toggleClass("ivyicon-add-small").toggleClass("ivyicon-subtract-small");
      }
    </script>
