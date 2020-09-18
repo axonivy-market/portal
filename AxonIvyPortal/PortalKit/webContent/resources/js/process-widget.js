@@ -197,10 +197,17 @@ $(document).ready(function() {
 });
 
 //Update scroll-bar when window size is changed
+var resizeTimer;
+
 $(window).resize(function() {
   processWidget = ProcessWidget();
   processWidget.setupScrollbar();
-  favouritesProcess.setUpScrollBarForCompactProcessLists(true);
+
+  // To prevent executes many time, just do this  function when resizing has "stopped"
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(function() {
+    favouritesProcess.setUpScrollBarForCompactProcessLists(true);
+  }, 200);
 });
 
 function expandOrCollapseAllCategories(shouldExpand) {
