@@ -277,7 +277,6 @@ function getElementsHaveClassName(displayedFieldSets, invert) {
 
 var compactProcessWidgetClass = '.compact-process-widget';
 var processStartItemClass = '.process-start-list-item';
-var processHeaderClass = '.js-process-widget-header';
 
 var favouritesProcess = {
 
@@ -335,9 +334,9 @@ var favouritesProcess = {
 
   calculateAvailableHeightForFavoriteProcesses : function() {
     var mainContentHeight = $(window).outerHeight() - ($('.layout-topbar').outerHeight() || 0);
-    var appFavoritesProcessHeaderHeight = $('.js-user-default-process-list-header').height() || 0;
-    var userFavoriteProcessHeaderHeight = $('.js-favorite-process-header').height() || 0;
-    var processHeaderHeight = ($(processHeaderClass).height() || 0) + (parseInt($(processHeaderClass).css('padding-top'), 0) || 0) + (parseInt($(processHeaderClass).css('padding-bottom'), 0) || 0);
+    var appFavoritesProcessHeaderHeight = $('.js-user-default-process-list-header').outerHeight() || 0;
+    var userFavoriteProcessHeaderHeight = $('.js-favorite-process-header').outerHeight() || 0;
+    var processHeaderHeight = $('.js-process-widget-header').outerHeight() || 0;
     var headerComponentHeight = $('#portal-template-header').outerHeight() || 0;
     var footerComponentHeight = $('#portal-template-footer').outerHeight() || 0;
     var announcementMessageHeight = $('.js-announcement-message').outerHeight() || 0;
