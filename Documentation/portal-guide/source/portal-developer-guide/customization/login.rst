@@ -26,7 +26,7 @@ To change the default login background image, simply replace the default
 image in ``/PortalStyle/webContent/resources/images/login/login-bg.jpg`` by your image.
 
 Login error page
-----------
+----------------
 
 |login-error-page|
 
