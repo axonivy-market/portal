@@ -172,6 +172,7 @@ Changes in 9.2
 
 - Introduce :ref:`Workflow Events table <how-to-show-workflow-events>`, user who has permission ``WORKFLOW_EVENT_READ_ALL`` can see all ``WORKFLOW_EVENTS``.
 
+- Introduce new global variable named ``PortalLoginPageDisplay`` to show Login page or hide it then show error page instead.
 
 
 Changes in 9.1
