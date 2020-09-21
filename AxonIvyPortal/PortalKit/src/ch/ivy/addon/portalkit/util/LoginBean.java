@@ -8,7 +8,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 @ManagedBean
 @ViewScoped
 public class LoginBean {
-  private String PORTAL_LOGIN_PAGE_DISPLAY = "PortalLoginPageDisplay";
+  private final String PORTAL_LOGIN_PAGE_DISPLAY = "PortalLoginPageDisplay";
   
   public boolean isLoginPageRendered() {
     return Boolean.parseBoolean(Ivy.var().get(PORTAL_LOGIN_PAGE_DISPLAY));
