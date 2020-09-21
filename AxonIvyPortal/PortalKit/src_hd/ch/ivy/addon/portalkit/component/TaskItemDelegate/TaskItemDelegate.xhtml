@@ -4,12 +4,15 @@
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" shortDescription="Task" type="ch.ivyteam.ivy.workflow.ITask" />
+  <cc:attribute name="taskId" shortDescription="Task id" type="java.lang.Long" />
   <cc:attribute name="dataModel" />
   <cc:attribute name="componentToUpdate" />
 </cc:interface>
 
 <cc:implementation>
-  <p:remoteCommand name="initDataToDelegate" actionListener="#{logic.initDataToDelegate(cc.attrs.task)}" global="false" oncomplete="PF('task-delegate-dialog').show()"/>
+  <p:remoteCommand name="initDataToDelegate" actionListener="#{logic.initDataToDelegate(cc.attrs.taskId, cc.attrs.task)}"
+    oncomplete="PF('task-delegate-dialog').show()"
+    update="#{cc.clientId}:task-delegate-dialog"/>
 
   <p:dialog id="task-delegate-dialog" closeOnEscape="true" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/delegateTask')}"
     widgetVar="task-delegate-dialog" dynamic="true" modal="true" showEffect="fade" hideEffect="fade" resizable="false" appendTo="@(body)"
