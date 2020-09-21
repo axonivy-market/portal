@@ -59,7 +59,7 @@
           <li><p:link id="project-info-menu-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/info')}"
               onclick="rcProjectInfo(); $('#user-setting-container').click()" /></li>
 
-          <li jsf:rendered="#{loginUtils.isLoginPageRendered()}">
+          <li jsf:rendered="#{loginBean.isLoginPageRendered()}">
             <ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting
               id="logout-setting" isWorkingOnATask="#{isWorkingOnATask}" task="#{task}" />
           </li>
