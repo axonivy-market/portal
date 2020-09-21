@@ -119,6 +119,8 @@ Migrate 9.1 to 9.2
 
 1. In PortalNavigatorInFrame.java, change the methods from non-static to static.
 
+2. CaseDetails component in PortalTemplate is removed.
+
 Migrate 8.x to 9.1
 ------------------
 
@@ -154,6 +156,7 @@ Migrate 8.x to 9.1
 
 10. ``TaskTemplate-7`` is removed, change it to ``TaskTemplate-8``. ``TaskTemplate`` is also removed, change it to ``frame-8`` (provided by Ivy).
 
+
 .. _installation-release-notes:
 
 Release notes
@@ -171,6 +174,8 @@ Changes in 9.2
 - Include new CaseState ``Destroyed`` in Portal Case list, also in Case State filter.
 
 - Introduce :ref:`Workflow Events table <how-to-show-workflow-events>`, user who has permission ``WORKFLOW_EVENT_READ_ALL`` can see all ``WORKFLOW_EVENTS``.
+
+- Introduce new approach to customize :ref:`Portal Case Item details <customization-case-item-details>`. Now, your case information in Case details page and Case Info dialog is the same
 
 - Introduce new global variable named ``PortalLoginPageDisplay`` to show Login page or hide it then show error page instead.
 
