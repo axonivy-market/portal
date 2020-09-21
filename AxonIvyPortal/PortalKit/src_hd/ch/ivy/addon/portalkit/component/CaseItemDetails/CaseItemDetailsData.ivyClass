@@ -1,4 +1,0 @@
-CaseItemDetailsData #class
-ch.ivy.addon.portalkit.component.CaseItemDetails #namespace
-isHideCaseDocument Boolean #field
-isHideCaseDocument PERSISTENT #fieldModifier

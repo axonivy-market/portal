@@ -1,6 +1,0 @@
-CaseDetailsData #class
-ch.ivy.addon.portal.generic.CaseDetails #namespace
-currentCase ch.ivyteam.ivy.workflow.ICase #field
-currentCase PERSISTENT #fieldModifier
-currentCaseId Number #field
-currentCaseId PERSISTENT #fieldModifier
