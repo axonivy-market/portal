@@ -298,7 +298,7 @@ function highlightShowMoreTaskHistories() {
 }
 
 function highlightShowWorkflowEvents() {
-  createRedMediumOutline($("a[id$=':show-workflow-event']"));
+  createRedMediumOutline($("a[id$=':task-workflow-event-command']"));
 }
 
 function highlightCreateExpressWorkflow() {

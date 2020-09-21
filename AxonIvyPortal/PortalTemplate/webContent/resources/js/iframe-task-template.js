@@ -59,10 +59,9 @@ function resizeIFrame() {
   Portal.updateLayoutContent();
   var taskHeaderContainerHeight = ($('.js-task-header-container').outerHeight(true)||0);
   var announcementMessageContainerHeight = ($('.js-annoucement-in-frame-template').outerHeight(true)||0);
-  var error = 15;
 
   var mainScreenHeight = $('.js-layout-content').outerHeight(true);
-  var availableHeight = mainScreenHeight - taskHeaderContainerHeight - announcementMessageContainerHeight - error;
+  var availableHeight = mainScreenHeight - taskHeaderContainerHeight - announcementMessageContainerHeight;
 
   if (!!availableHeight) {
     $('iframe[id="iFrame"]').height(availableHeight);

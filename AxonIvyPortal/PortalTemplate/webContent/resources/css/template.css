@@ -115,11 +115,10 @@ a.left-sidebar-menu-icon {
 .task-template-container {
   min-height: 400px;
   position: relative;
-  padding: 5px 0;
 }
 
 .task-header-container {
-  margin-bottom: 5px
+  margin-bottom:10px;
 }
 
 .task-template-title {
