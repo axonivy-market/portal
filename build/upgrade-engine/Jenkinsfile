@@ -12,8 +12,8 @@ pipeline {
 
   parameters {
       choice(name: 'engine', choices: ['singleAppEngine', 'performanceTestEngine'], description: 'Which engine to be upgraded?')
-      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/7.0/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
-        -Divy.engine.download.url=https://developer.axonivy.com/permalink/7.0/axonivy-engine-windows.zip for latest release 7.0
+      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-7/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
+        -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-7/axonivy-engine-windows.zip for nightly 7.0
         -Divy.engine.list.url=https://jenkins.ivyteam.io/job/ivy-core-70_product/job/7.0/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 for last successful build 7.0
         -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
       ''')
@@ -32,7 +32,7 @@ pipeline {
           today = new Date().format('dd-MM-yyyy_HH-mm')
 
           config = [singleAppEngine: [engineParentDir: 'D:\\tools\\ivy-server\\', engineName: '7.0', databaseBackupDir: 'D:\\backup\\database', databaseName: '7.0_AxonIvySystemDatabase', serviceName: 'Axon.ivy-7.0']
-          ,performanceTestEngine: [engineParentDir: 'C:\\tools\\ivy-server\\', engineName: 'LTS', databaseBackupDir: 'D:\\backup\\database', databaseName: 'ivy-performance-7.0', serviceName: 'Axon.ivyEngine - LTS']]
+          ,performanceTestEngine: [engineParentDir: 'C:\\tools\\ivy-server\\', engineName: 'LTS', databaseBackupDir: 'D:\\backup\\database', databaseName: 'ivy-performance-7.0', serviceName: 'Axon.ivy Engine - LTS']]
 
           engineParentDir = config[params.engine]['engineParentDir']
           engineName = config[params.engine]['engineName']
