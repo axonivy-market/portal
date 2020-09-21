@@ -12,7 +12,7 @@ import portal.guitest.common.Sleeper;
 
 public class LoginErrorPageScreenshotTest extends ScreenshotTest {
   
-  private String PORTAL_LOGIN_PAGE_DISPLAY = "PortalLoginPageDisplay";
+  private final String PORTAL_LOGIN_PAGE_DISPLAY = "PortalLoginPageDisplay";
   
   @Before
   @Override
