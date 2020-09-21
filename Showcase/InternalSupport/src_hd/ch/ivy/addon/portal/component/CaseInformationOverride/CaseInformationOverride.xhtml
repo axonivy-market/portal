@@ -18,14 +18,14 @@
 
 
     <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      !!!! START: AREA SHOULD BE CUSTOMIZED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      !!!!!!!! START: TO SHOW /HIDDEN ANY SECTIONS OF CASE DETAILS, YOU CAN TURN TRUE/FALSE FOR BELOW PARAMETERS !!!!!!!!!!!!!!!!!!!!!!!!
-      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        Attribute showItemDetailsHeader: To show the header of case details. By default it's true
-        Attribute showItemDetailsHistories: To show the Histories component inside Case details body. By default it's true
-        Attribute showItemDetailDocuments: To show the Documents component inside Case details body. By default, it's true
-        Attribute showItemDetailRelated: To show the RelatedTask component inside Case details. By default, it's true
-      !!!!!!!! END SHOW /HIDDEN SECTIONS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    !!!! START: AREA SHOULD BE CUSTOMIZED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!! START: TO SHOW /HIDDEN ANY SECTIONS OF CASE DETAILS, YOU CAN TURN TRUE/FALSE FOR BELOW PARAMETERS !!!!!!!!!!!!!!!!!!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      Attribute showItemDetailsHeader: To show the header of case details. By default it's true
+      Attribute showItemDetailsHistories: To show the Histories component inside Case details body. By default it's true
+      Attribute showItemDetailDocuments: To show the Documents component inside Case details body. By default, it's true
+      Attribute showItemDetailRelated: To show the RelatedTask component inside Case details. By default, it's true
+    !!!!!!!! END SHOW /HIDDEN SECTIONS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 
     <ui:param name="id" value="#{cc.clientId}" />
     <ui:param name="showItemDetailsHeader" value="#{cc.attrs.showItemDetailsHeader}" />
@@ -37,61 +37,61 @@
 
 
     <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-      !!!!!!!! START: TO ADD YOUR CUSTOMIZATION CODE ON THE CASE DETAILS PAGE, WE PROVIDE 3 SECTIONS AS BELOW HELP YOU CAN DO IT !!!!!!!!
-      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    !!!!!!!! START: TO ADD YOUR CUSTOMIZATION CODE ON THE CASE DETAILS PAGE, WE PROVIDE 3 SECTIONS AS BELOW HELP YOU CAN DO IT !!!!!!!!
+    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 
     <!-- Add a content as a Custom panel for Case Detail on top section -->
     <ui:define name="caseItemDetailCustomTop">
-        <h:panelGroup styleClass="ui-g-12" layout="block">
-          <div class="card card-w-title case-detail-card">
-            <div class="case-detail-section-title u-truncate-text">
-              <h:outputText value="This is custom panel on top section" />
-            </div>
-            <div class="Separator" />
-
-            <div class="custom-task-details-panel-top">
-              <h1>This is custom content on top</h1>
-              <p>Custom height to auto</p>
-              <p>Custom font size to 1.6rem</p>
-            </div>
+      <h:panelGroup styleClass="ui-g-12" layout="block">
+        <div class="card card-w-title case-detail-card">
+          <div class="case-detail-section-title u-truncate-text">
+            <h:outputText value="This is custom panel on top section" />
           </div>
-        </h:panelGroup>
+          <div class="Separator" />
+
+          <div class="custom-task-details-panel-top">
+            <h1>This is custom content on top</h1>
+            <p>Custom height to auto</p>
+            <p>Custom font size to 1.6rem</p>
+          </div>
+        </div>
+      </h:panelGroup>
     </ui:define>
 
     <!-- Add a content as a Custom panel for Case Detail on middle section, below the General & description box -->
     <ui:define name="caseItemDetailCustomMiddle">
-        <h:panelGroup styleClass="ui-g-12" layout="block">
-          <div class="card card-w-title case-detail-card">
-            <div class="case-detail-section-title u-truncate-text">
-              <h:outputText value="This is custom panel on middle section" />
-            </div>
-            <div class="Separator" />
-
-            <div class="custom-task-details-panel-middle">
-              <h1>This is custom content on middle</h1>
-              <p>Custom height to auto</p>
-              <p>Custom font size to 1.6rem</p>
-            </div>
+      <h:panelGroup styleClass="ui-g-12" layout="block">
+        <div class="card card-w-title case-detail-card">
+          <div class="case-detail-section-title u-truncate-text">
+            <h:outputText value="This is custom panel on middle section" />
           </div>
-        </h:panelGroup>
+          <div class="Separator" />
+
+          <div class="custom-task-details-panel-middle">
+            <h1>This is custom content on middle</h1>
+            <p>Custom height to auto</p>
+            <p>Custom font size to 1.6rem</p>
+          </div>
+        </div>
+      </h:panelGroup>
     </ui:define>
 
     <!-- Add a content as a Custom panel for Case Detail on bottom section -->
     <ui:define name="caseItemDetailCustomBottom">
-        <h:panelGroup styleClass="ui-g-12" layout="block">
-          <div class="card card-w-title case-detail-card">
-            <div class="case-detail-section-title u-truncate-text">
-              <h:outputText value="This is custom panel on bottom section" />
-            </div>
-            <div class="Separator" />
-
-            <div class="custom-task-details-panel">
-              <h1>This is custom content on bottom</h1>
-              <p>Custom height to auto</p>
-              <p>Custom font size to 1.6rem</p>
-            </div>
+      <h:panelGroup styleClass="ui-g-12" layout="block">
+        <div class="card card-w-title case-detail-card">
+          <div class="case-detail-section-title u-truncate-text">
+            <h:outputText value="This is custom panel on bottom section" />
           </div>
-        </h:panelGroup>
+          <div class="Separator" />
+
+          <div class="custom-task-details-panel">
+            <h1>This is custom content on bottom</h1>
+            <p>Custom height to auto</p>
+            <p>Custom font size to 1.6rem</p>
+          </div>
+        </div>
+      </h:panelGroup>
     </ui:define>
 
     <!-- !!!!!!!! END ADD YOUR CUSTOMIZATION !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
