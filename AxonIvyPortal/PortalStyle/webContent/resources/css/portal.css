@@ -204,7 +204,7 @@ body .ui-datatable tbody tr.ui-datatable-even {
   background: var(--ivy-primary-color-light);
   box-shadow: none;
   padding-bottom: 0;
-  height: 58px; }
+  height: 62px; }
 
 .layout-wrapper .layout-main .layout-content {
   padding: 0 20px 0 20px;

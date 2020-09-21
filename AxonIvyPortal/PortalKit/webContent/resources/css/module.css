@@ -741,9 +741,18 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   width: 1px;
 }
 
+.case-info-dialog .ui-dialog-content.ui-widget-content {
+  max-width: 80vw;
+  max-height: 80vh !important;
+}
+
 @media (max-width: 768px) {
   .case-info-dialog .case-detail-header {
     display: none;
+  }
+  .case-info-dialog .ui-dialog-content.ui-widget-content {
+    max-width: 90vw;
+    max-height: 90vh !important;
   }
 }
 
@@ -1880,6 +1889,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   max-width: 70%;
 }
 
+.task-workflow-event-command {
+  margin-left: 15px;
+}
+
 @media screen and (max-width: 40em) {
   .workflow-events-dialog {
     max-width: 90%;
@@ -1890,7 +1903,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   .workflow-events-dialog {
     max-width: 80%;
   }
-  }
+}
 /********************************** END TASK DETAIL **********************************/
 
 /********************************** CASE DETAIL **********************************/
