@@ -177,6 +177,8 @@ Changes in 9.2
 
 - Introduce new approach to customize :ref:`Portal Case Item details <customization-case-item-details>`. Now, your case information in Case details page and Case Info dialog is the same
 
+- Introduce new global variable named ``PortalLoginPageDisplay`` to show Login page or hide it then show error page instead.
+
 
 Changes in 9.1
 --------------
