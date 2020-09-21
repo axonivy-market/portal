@@ -7,10 +7,10 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
-public class LoginUtils {
-  public static final String PORTAL_LOGIN_ERROR_MESSAGE_DISPLAY = "PortalLoginPageDisplay";
+public class LoginBean {
+  private String PORTAL_LOGIN_PAGE_DISPLAY = "PortalLoginPageDisplay";
   
   public boolean isLoginPageRendered() {
-    return Boolean.parseBoolean(Ivy.var().get(PORTAL_LOGIN_ERROR_MESSAGE_DISPLAY));
+    return Boolean.parseBoolean(Ivy.var().get(PORTAL_LOGIN_PAGE_DISPLAY));
   }
 }
