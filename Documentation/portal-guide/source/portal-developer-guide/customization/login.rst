@@ -28,9 +28,6 @@ image in ``/PortalStyle/webContent/resources/images/login/login-bg.jpg`` by your
 Login error page
 ----------------
 
-|login-error-page|
-
-
 This page is to show error message instead of Login page when you are using external authentication
 and the user is not created in your application user list.
 
@@ -47,4 +44,3 @@ To replace default login error page, extend existing templates with
 ..
 
 .. |login-default| image:: ../../screenshots/login/login-form.png
-.. |login-error-page| image:: ../../screenshots/login/login-error-page.png
