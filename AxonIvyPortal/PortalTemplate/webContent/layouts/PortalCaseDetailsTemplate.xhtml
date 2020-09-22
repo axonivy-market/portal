@@ -9,7 +9,7 @@
     <ui:define name="title">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/CaseDetailTitle')}</ui:define>
     <ui:define name="pageContent">
 
-    <f:event listener="#{caseDetailsBean.create(caseInfo, isShowBackButton)}" type="preRenderView" />
+    <f:event listener="#{caseDetailsBean.preRender(caseInfo, isShowBackButton)}" type="preRenderView" />
 
     <ic:ch.ivy.addon.portal.component.CaseInformation id="case-item-details"
       descriptionComponentToUpdate="#{descriptionComponentToUpdate}"

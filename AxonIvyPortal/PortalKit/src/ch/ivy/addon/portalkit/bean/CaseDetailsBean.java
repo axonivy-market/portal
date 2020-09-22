@@ -27,6 +27,8 @@ import ch.ivyteam.ivy.workflow.ICase;
 @ViewScoped
 public class CaseDetailsBean implements Serializable {
 
+  private static final long serialVersionUID = 1023540096176033250L;
+
   private static final String OPEN_CASES_LIST = "Start Processes/PortalStart/CaseListPage.ivp";
 
   private boolean isShowCaseDetails;
@@ -43,7 +45,7 @@ public class CaseDetailsBean implements Serializable {
     caseActionBean = ManagedBeans.get("caseActionBean");
   }
   
-  public void create(ICase selectedCase, boolean showBackButton) {
+  public void preRender(ICase selectedCase, boolean showBackButton) {
     this.selectedCase = selectedCase;
     this.showBackButton = showBackButton;
     this.isTaskStartedInDetails = BooleanUtils.toBooleanDefaultIfNull((Boolean) Ivy.session().getAttribute(SessionAttribute.IS_TASK_STARTED_IN_DETAILS.toString()), false);
