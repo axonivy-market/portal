@@ -10,7 +10,7 @@
     <h:panelGroup class="widget-header-main">
       <p:commandLink id="toggle-processes-link" styleClass="toggle-processes-link ui-lg-hidden ui-xl-hidden ui-md-hidden"
              global="false" onclick="toggleShowProcessList();"
-             oncomplete="#{cc.attrs.onToggleProcessesComplete}">
+             oncomplete="FavouritesProcess.setUpScrollBarForCompactProcessLists(false);">
           <i class="icon ivyicon-add-small u-mar-right-5"/>
           <h:outputText value="#{cc.attrs.mobileTitle}" />
       </p:commandLink>
