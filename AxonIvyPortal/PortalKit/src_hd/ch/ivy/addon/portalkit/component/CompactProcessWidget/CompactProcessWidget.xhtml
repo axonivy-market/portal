@@ -9,14 +9,13 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" />
   <cc:attribute name="mobileTitle" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" />
-  <cc:attribute name="onToggleProcessesComplete" />
 </cc:interface>
 
 <cc:implementation>
   <h:outputScript library="js" name="process-widget.js" />
   <div id="#{cc.clientId}" class="widget process-widget ui-g js-compact-process-widget">
     <ui:include src="Header.xhtml" />
-    <div id="all-processes-container" class="ui-g-12 ui-sm-hidden all-processes-container u-no-padding-top">
+    <div id="all-processes-container" class="ui-g-12 ui-sm-hidden all-processes-container u-no-padding-top u-no-padding-bottom">
       <ui:include src="UserProcesses.xhtml" />
       <ui:include src="DefaultProcesses.xhtml" />
     </div>
@@ -24,7 +23,7 @@
   
   <script type="text/javascript">
        $(function() {
-          favouritesProcess.setUpScrollBarForCompactProcessLists(false);
+          FavouritesProcess.setUpScrollBarForCompactProcessLists(false);
       });
   </script>
 </cc:implementation>

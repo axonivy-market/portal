@@ -15,12 +15,11 @@
         value="#{(not empty displayStatisticWidget ? displayStatisticWidget : true) and not statisticBean.hiddenStatisticWidget}" />
 
       <h:panelGroup layout="block" styleClass="ui-g home-page-container">
-        <h:panelGroup layout="block" class="ui-g-3 ui-lg-3 ui-md-4 ui-sm-12 compact-process-widget" rendered="#{displayProcessWidget}">
+        <h:panelGroup layout="block" class="ui-g-3 ui-lg-3 ui-md-4 ui-sm-12 compact-process-widget u-no-padding-bottom" rendered="#{displayProcessWidget}">
           <ui:insert name="processWidget">
               <ic:ch.ivy.addon.portalkit.component.CompactProcessWidget id="process-widget"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}"
-                mobileTitle="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/myProcesses')}"
-                onToggleProcessesComplete="favouritesProcess.setUpScrollBarForCompactProcessLists(false);">
+                mobileTitle="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/myProcesses')}">
                 <f:facet name="headerToolbar">
                   <ic:ch.ivy.addon.portal.generic.ProcessNavigator id="process-link"
                     label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/seeAllProcesses')}" />
@@ -29,7 +28,7 @@
           </ui:insert>
         </h:panelGroup>
         <h:panelGroup layout="block" rendered="#{displayTaskWidget}"
-          styleClass="ui-g-6 ui-lg-6 ui-md-8 ui-sm-12 dashboard-task-widget-container
+          styleClass="ui-g-6 ui-lg-6 ui-md-8 ui-sm-12 dashboard-task-widget-container u-no-padding-bottom
               #{dataModel.compactMode ? 'compact-task-widget' : ''}
               #{not displayProcessWidget or not displayStatisticWidget ? 'ui-g-9 ui-lg-9 ui-md-8' : ''}
               #{not displayProcessWidget and not displayStatisticWidget ? 'ui-g-12 ui-lg-12 ui-md-12' : ''}">
@@ -45,7 +44,7 @@
             </ic:ch.ivy.addon.portalkit.component.TaskWidget>
           </ui:insert>
         </h:panelGroup>
-        <h:panelGroup layout="block" class="ui-g-3 ui-lg-3 ui-md-hidden ui-sm-hidden" rendered="#{displayStatisticWidget}">
+        <h:panelGroup layout="block" class="ui-g-3 ui-lg-3 ui-md-hidden ui-sm-hidden u-no-padding-bottom" rendered="#{displayStatisticWidget}">
           <ui:insert name="statisticWidget">
             <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="true"
               showTaskListImmediately="true" statisticChartList="#{statisticChartList}">
