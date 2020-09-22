@@ -143,7 +143,7 @@
         </h:panelGroup>
 
         <p:remoteCommand name="openCaseInfo"
-           actionListener="#{caseDetailsBean.create(case, false)}"
+           actionListener="#{caseDetailsBean.preRender(case, false)}"
            update="case-info-dialog"
            oncomplete="PF('case-info-dialog').show()" />
         <p:dialog id="case-info-dialog" resizable="false" fitViewport="true"

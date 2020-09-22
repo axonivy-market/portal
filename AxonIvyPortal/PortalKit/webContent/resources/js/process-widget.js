@@ -323,14 +323,13 @@ var FavouritesProcess = {
       
       // if application process height is greater than user process height
       else if (appFavoritesHeight > userFavoritesHeight) {
-        var userFavoritesHeightAndMargin = userFavoritesHeight + this.getUserFavoritesMarginBottom(userProcessList);
-        maxHeightUserProcessList = userFavoritesHeightAndMargin;
-        maxHeightAppProcessList = availableHeight - userFavoritesHeightAndMargin;
+        maxHeightUserProcessList = userFavoritesHeight;
+        maxHeightAppProcessList = availableHeight - maxHeightUserProcessList;
       }
       
       else {
-        var maxHeightUserProcessList = availableHeight - appFavoritesHeight - this.getUserFavoritesMarginBottom(userProcessList);
         var maxHeightAppProcessList = appFavoritesHeight;
+        var maxHeightUserProcessList = availableHeight - maxHeightAppProcessList - this.getUserFavoritesMarginBottom(userProcessList);
         if (appFavoritesHeight === 0) {
           userProcessList.css('margin-bottom', 0);
           maxHeightUserProcessList = availableHeight;
