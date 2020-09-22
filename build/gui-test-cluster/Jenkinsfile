@@ -44,7 +44,7 @@ pipeline {
           }
 
           println powershell(returnStdout: true, script: """
-            dropdb --host=10.123.1.30 --username=postgres --no-password ivy-cluster-master-gui-test
+            dropdb --host=10.123.1.30 --username=postgres --no-password ivy-master-cluster-gui-test
             rmdir ${elasticSearchDataDir}\\* -recurse
             exit 0
           """)
