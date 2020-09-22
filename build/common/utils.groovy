@@ -9,7 +9,6 @@ def stopAllElasticSearchs() {
       }
     }
   '''
-  echo "====================Turn off Elastic Search Windows services===================="
   def elasticSearchServices = ['ivy-elasticsearch-master-cluster']
   for (elasticSearchService in elasticSearchServices) {
     stopWindowsService(elasticSearchService)
@@ -27,15 +26,23 @@ def stopAllEngines() {
 
 def startWindowsService(String serviceName) {
   stopWindowsService(serviceName)
+  echo "====================Start service ${serviceName}===================="
   bat """
+    @echo off
     net start "${serviceName}"
+    if "%ERRORLEVEL%"=="1" (
+      timeout /t 30
+      sc query "${serviceName}" | find /i "RUNNING"
+    )
   """
 }
 
 def stopWindowsService(String serviceName) {
+  echo "====================Stop service ${serviceName}===================="
   bat """
+  @echo off
     sc query "${serviceName}" | find /i "RUNNING"
-    if not "%ERRORLEVEL%"=="1" ( net stop "${serviceName}")
+    if not "%ERRORLEVEL%"=="1" (net stop "${serviceName}")
   """
 }
 
@@ -75,7 +82,7 @@ def killUnnecessaryProcessesToRunTest() {
 def extractEngine(String engineDir, String engineDownloadURL) {
   echo '====================Extract engine===================='
   bat """
-    mvn clean compile -f AxonIvyPortal/PortalTest/pom.xml -Divy.engine.directory=${engineDir} ${engineDownloadURL}
+    mvn clean compile -f AxonIvyPortal/PortalStyle/pom.xml -Divy.engine.directory=${engineDir} ${engineDownloadURL}
   """
 }
 return this
