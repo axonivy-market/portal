@@ -3264,6 +3264,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   border: none;
 }
 
+.statistic-filter-item.ui-scrollpanel .ui-widget.ui-selectmanycheckbox td {
+  white-space: nowrap;
+}
+
 .custom-field-panel.statistic-filter-container {
   height: auto;
   max-height: 18rem;
@@ -3739,6 +3743,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 
 .statistic-filter-accordion-panel .ui-accordion-content {
   overflow-y: hidden !important;
+  max-width: 30.5rem;
 }
 
 .statistic-filter-container.ui-scrollpanel {
