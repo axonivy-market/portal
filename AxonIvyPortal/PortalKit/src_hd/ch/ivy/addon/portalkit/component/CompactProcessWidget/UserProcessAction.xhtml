@@ -20,7 +20,8 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/editProcesses')}"
           actionListener="#{compactProcessWidgetBean.switchEditMode}"
           rendered="#{not empty compactProcessWidgetBean.userProcesses}"
-          update="@form #{cc.clientId}:process-list #{cc.clientId}:header" />
+          update="@form #{cc.clientId}:process-list #{cc.clientId}:header"
+          oncomplete="FavouritesProcess.setUpScrollBarForCompactProcessLists()"/>
         <p:spacer width="10" styleClass="ui-sm-hidden ui-md-hidden" />
         <p:commandLink id="name-sort-command" styleClass="name-sort-command"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/sortByName')}"
