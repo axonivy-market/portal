@@ -291,7 +291,7 @@ var FavouritesProcess = {
   
   setupScrollbar : function(isResize) {
 
-    var availableHeight = this.calculateAvailableHeightForFavoriteProcesses();
+    var availableHeight = this.calculateHeightForFavorites();
     
     // Check is viewport is mobile screen, then include task-compact-widget
     if ($(window).width() < 641) {
@@ -336,8 +336,8 @@ var FavouritesProcess = {
         var maxHeightAppProcessList = appFavoritesHeight;
         var maxHeightUserProcessList = availableHeight - maxHeightAppProcessList;
         if (appFavoritesHeight === 0) {
-          userProcessList.css('margin-bottom', 0);
-          maxHeightUserProcessList = availableHeight;
+          userFavoritesMarginBottom = 0;
+          userProcessList.css('margin-bottom', userFavoritesMarginBottom);
         }
       }
 
@@ -349,7 +349,7 @@ var FavouritesProcess = {
     }
   },
 
-  calculateAvailableHeightForFavoriteProcesses : function() {
+  calculateHeightForFavorites : function() {
     var mainContentHeight = $(window).outerHeight() - ($('.layout-topbar').outerHeight(true) || 0);
     var processHeaderHeight = $('.js-process-widget-header').outerHeight(true) || 0;
     var headerComponentHeight = $('#portal-template-header').outerHeight(true) || 0;
