@@ -15,6 +15,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.RegExUtils;
 import org.apache.commons.lang3.StringUtils;
 
 @ManagedBean
@@ -26,6 +27,7 @@ public class DocumentIconBean {
    */
 
   // Default format for icon class of Font Awesome 4.7.0
+  private static final String FILE_NAME_REGEX = "[\\/:*?\"<>|]";
   private static final String PREFIX = "fa fa-file-";
   private static final String SUFFIX = "-o";
 
@@ -51,7 +53,7 @@ public class DocumentIconBean {
   public static String getIconCssClass(String documentName) {
     String iconClass = StringUtils.EMPTY;
     if (StringUtils.isNotEmpty(documentName)) {
-      String fileExtension = FilenameUtils.getExtension(StringUtils.lowerCase(documentName));
+      String fileExtension = getExtensionByFileName(documentName);
       if (ALLOWED_WORD_FORMAT.contains(fileExtension)) {
         iconClass = WORD;
       } else if (ALLOWED_EXCEL_FORMAT.contains(fileExtension) || CSV_FORMAT.contains(fileExtension)) {
@@ -78,4 +80,9 @@ public class DocumentIconBean {
     return iconClass;
   }
 
+  private static String getExtensionByFileName(String documentName) {
+    String fileName = StringUtils.trimToEmpty(documentName);
+    fileName = RegExUtils.removeAll(fileName, FILE_NAME_REGEX);
+    return FilenameUtils.getExtension(StringUtils.lowerCase(fileName));
+  }
 }

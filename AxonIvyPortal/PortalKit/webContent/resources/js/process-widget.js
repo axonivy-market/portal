@@ -291,7 +291,7 @@ var FavouritesProcess = {
   
   setupScrollbar : function(isResize) {
 
-    var availableHeight = this.calculateAvailableHeightForFavoriteProcesses();
+    var availableHeight = this.calculateHeightForFavorites();
     
     // Check is viewport is mobile screen, then include task-compact-widget
     if ($(window).width() < 641) {
@@ -314,37 +314,46 @@ var FavouritesProcess = {
     // then set up scroll-bar for each of them
 
     if (isResize || (appFavoritesHeight + userFavoritesHeight > availableHeight)) {
+      var appFavoritesProcessHeaderHeight = $('.js-user-default-process-list-header').outerHeight(true) || 0;
+      var userFavoriteProcessHeaderHeight = $('.js-favorite-process-header').outerHeight(true) || 0;
+      var userFavoritesMarginBottom = this.getUserFavoritesMarginBottom(userProcessList);
 
-      if (appFavoritesHeight >= availableHeight/2 && userFavoritesHeight >= availableHeight/2) {
-        availableHeight -= this.getUserFavoritesMarginBottom(userProcessList);
+      var haflOfAvailableHeight = availableHeight/2 - appFavoritesProcessHeaderHeight - userFavoriteProcessHeaderHeight - userFavoritesMarginBottom;
+      if (appFavoritesHeight >= haflOfAvailableHeight && userFavoritesHeight >= haflOfAvailableHeight) {
         maxHeightUserProcessList = availableHeight/2;
         maxHeightAppProcessList = availableHeight/2;
+        maxHeightUserProcessList = maxHeightUserProcessList - userFavoriteProcessHeaderHeight - userFavoritesMarginBottom;
+        maxHeightAppProcessList = maxHeightAppProcessList - appFavoritesProcessHeaderHeight;
       }
-      
+
       // if application process height is greater than user process height
       else if (appFavoritesHeight > userFavoritesHeight) {
+        maxHeightAppProcessList = availableHeight - userFavoritesHeight - appFavoritesProcessHeaderHeight - userFavoriteProcessHeaderHeight - userFavoritesMarginBottom;
         maxHeightUserProcessList = userFavoritesHeight;
-        maxHeightAppProcessList = availableHeight - maxHeightUserProcessList;
-      }
-      
-      else {
-        var maxHeightAppProcessList = appFavoritesHeight;
-        var maxHeightUserProcessList = availableHeight - maxHeightAppProcessList - this.getUserFavoritesMarginBottom(userProcessList);
-        if (appFavoritesHeight === 0) {
-          userProcessList.css('margin-bottom', 0);
-          maxHeightUserProcessList = availableHeight;
-        }
       }
 
-      userProcessList.find('.compact-processes-container').css('max-height', maxHeightUserProcessList);
-      appProcessList.find('.js-user-default-process-list-content').css('max-height', maxHeightAppProcessList);
+      else if (appFavoritesHeight < userFavoritesHeight) {
+        var maxHeightAppProcessList = appFavoritesHeight;
+        var maxHeightUserProcessList = availableHeight - maxHeightAppProcessList;
+        if (appFavoritesHeight === 0) {
+          userFavoritesMarginBottom = 0;
+        }
+        maxHeightUserProcessList = maxHeightUserProcessList - userFavoriteProcessHeaderHeight - userFavoritesMarginBottom - appFavoritesProcessHeaderHeight;
+      }
     }
+
+    if (isResize && (appFavoritesHeight + userFavoritesHeight < availableHeight)) {
+      maxHeightUserProcessList = userFavoritesHeight;
+      maxHeightAppProcessList = appFavoritesHeight;
+    }
+
+    userProcessList.css('margin-bottom', userFavoritesMarginBottom);
+    userProcessList.find('.compact-processes-container').css('height', maxHeightUserProcessList);
+    appProcessList.find('.js-user-default-process-list-content').css('height', maxHeightAppProcessList);
   },
 
-  calculateAvailableHeightForFavoriteProcesses : function() {
+  calculateHeightForFavorites : function() {
     var mainContentHeight = $(window).outerHeight() - ($('.layout-topbar').outerHeight(true) || 0);
-    var appFavoritesProcessHeaderHeight = $('.js-user-default-process-list-header').outerHeight(true) || 0;
-    var userFavoriteProcessHeaderHeight = $('.js-favorite-process-header').outerHeight(true) || 0;
     var processHeaderHeight = $('.js-process-widget-header').outerHeight(true) || 0;
     var headerComponentHeight = $('#portal-template-header').outerHeight(true) || 0;
     var footerComponentHeight = $('#portal-template-footer').outerHeight(true) || 0;
@@ -352,20 +361,18 @@ var FavouritesProcess = {
     var customizedContentHeight = $('.js-custom-widget-container').outerHeight(true) || 0;
     var paddingValues = parseInt($(compactProcessWidgetClass).css('padding-top'), 0) || 0;
 
-    return mainContentHeight - appFavoritesProcessHeaderHeight - userFavoriteProcessHeaderHeight - processHeaderHeight
-           - paddingValues - headerComponentHeight - footerComponentHeight - announcementMessageHeight - customizedContentHeight;
+    return mainContentHeight - announcementMessageHeight - paddingValues - processHeaderHeight
+           - customizedContentHeight - headerComponentHeight - footerComponentHeight;
   },
   
   getHeightOfUserFavorites : function(userProcessList) {
-    var userProcessContainerHeight = userProcessList.outerHeight(true) || 0;
-    var userProcessListHeight = (userProcessList.find(processStartItemClass).length * this.getHeightOfProcessStartItem()) || 0;
-    return Math.max(userProcessContainerHeight, userProcessListHeight);
+    userProcessList.find('.compact-processes-container').css('height', '');
+    return userProcessList.find('.compact-processes-container').outerHeight(true) || 0;
   },
   
   getHeightOfAppFavorites : function(appProcessList) {
-    var appProcessContainerHeight = appProcessList.outerHeight(true) || 0;
-    var appProcessListHeight = (appProcessList.find(processStartItemClass).length * this.getHeightOfProcessStartItem()) || 0;
-    return Math.max(appProcessContainerHeight, appProcessListHeight);
+    appProcessList.find('.js-user-default-process-list-content').css('height', '');
+    return appProcessList.find('.js-user-default-process-list-content').outerHeight(true) || 0;
   },
   
   getHeightOfProcessStartItem : function() {
@@ -375,4 +382,5 @@ var FavouritesProcess = {
   getUserFavoritesMarginBottom : function(userProcessList) {
     return parseInt(userProcessList.css('margin-bottom'), 0) || 0;
   }
+
 };
