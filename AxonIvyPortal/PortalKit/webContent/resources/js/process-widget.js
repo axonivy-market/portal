@@ -343,8 +343,11 @@ var FavouritesProcess = {
 
       if (isResize && !isContentOverPanelContainer
           || !isContentOverPanelContainer) {
-        maxHeightUserProcessList = userFavoritesHeight - userFavoritesMarginBottom;
+        maxHeightUserProcessList = userFavoritesHeight;
         maxHeightAppProcessList = appFavoritesHeight;
+        if (userFavoritesHeight + appFavoritesHeight === availableHeight) {
+          maxHeightUserProcessList -= userFavoritesMarginBottom;
+        }
       }
 
       userProcessList.css('margin-bottom', userFavoritesMarginBottom);
