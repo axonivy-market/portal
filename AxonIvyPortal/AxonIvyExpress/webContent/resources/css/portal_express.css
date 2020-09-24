@@ -663,10 +663,6 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 }
 
 /*end of info button popup*/
-.pe-dynaform-cell .ui-datalist-item {
-  margin-top: -5px !important;
-}
-
 .process-property-container .ui-panelgrid-cell:not(.process-property-input-col) {
   padding: 0 !important;
 }

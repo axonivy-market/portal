@@ -9,14 +9,15 @@
     <ui:define name="title">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/CaseDetailTitle')}</ui:define>
     <ui:define name="pageContent">
 
-      <ic:ch.ivy.addon.portalkit.component.CaseItemDetails id="case-item-details" case="#{caseInfo}"
-        showItemDetailsHeader="#{showItemDetailsHeader}" descriptionComponentToUpdate="#{descriptionComponentToUpdate}"
-        showItemDetailsHistories="#{showItemDetailsHistories}"
-        showItemDetailDocuments="#{showItemDetailDocuments}"
-        showItemDetailRelated="#{showItemDetailRelated}"
-        showItemBackButton="#{isShowBackButton}"
-        isTaskStartedInDetails="#{isTaskStartedInDetails}">
+    <f:event listener="#{caseDetailsBean.preRender(caseInfo, isShowBackButton)}" type="preRenderView" />
 
+    <ic:ch.ivy.addon.portal.component.CaseInformation id="case-item-details"
+      descriptionComponentToUpdate="#{descriptionComponentToUpdate}"
+      showItemDetailsHeader="#{showItemDetailsHeader}"
+      showItemDetailsHistories="#{showItemDetailsHistories}"
+      showItemDetailDocuments="#{showItemDetailDocuments}"
+      showItemDetailRelated="#{showItemDetailRelated}"
+      isWorkingOnTask="#{isWorkingOnTask}">
         <f:facet name="caseItemDetailCustomTop">
           <ui:insert name="caseItemDetailCustomTop" />
         </f:facet>
@@ -28,7 +29,8 @@
         <f:facet name="caseItemDetailCustomBottom">
           <ui:insert name="caseItemDetailCustomBottom" />
         </f:facet>
-      </ic:ch.ivy.addon.portalkit.component.CaseItemDetails>
+      </ic:ch.ivy.addon.portal.component.CaseInformation>
+
     </ui:define>
   </ui:composition>
 </h:body>

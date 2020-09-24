@@ -54,7 +54,7 @@ for (IUser user : users) {
 	in.users.add(userForGuide);
 }' #txt
 Us0 f3 security system #txt
-Us0 f3 168 138 112 44 0 -8 #rect
+Us0 f3 160 138 112 44 0 -8 #rect
 Us0 f3 @|StepIcon #fIcon
 Us0 f5 guid 1725F79C36B6435A #txt
 Us0 f5 method changeGuidePropertyValue(internaltest.UserForGuide) #txt
@@ -107,10 +107,10 @@ Us0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Us0 f10 83 147 26 26 -9 16 #rect
 Us0 f10 @|UdMethodIcon #fIcon
 Us0 f11 109 64 339 64 #arcP
-Us0 f4 109 160 168 160 #arcP
+Us0 f4 109 160 160 160 #arcP
 Us0 f12 339 147 26 26 0 12 #rect
 Us0 f12 @|UdProcessEndIcon #fIcon
-Us0 f13 280 160 339 160 #arcP
+Us0 f13 272 160 339 160 #arcP
 >Proto Us0 .type ch.ivy.addon.portalkit.test.UserGuide.UserGuideData #txt
 >Proto Us0 .processKind HTML_DIALOG #txt
 >Proto Us0 -8 -8 16 16 16 26 #rect

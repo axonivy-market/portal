@@ -1,5 +1,5 @@
 [Ivy]
-14C7834636E63BEA 7.5.0 #module
+14C7834636E63BEA 9.2.0 #module
 >Proto >Proto Collection #zClass
 Fr0 FindApplicationsByUser Big #zClass
 Fr0 B #cInfo

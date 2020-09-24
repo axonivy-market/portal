@@ -175,12 +175,9 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		click(By.id("form:show-preview-button"));
 		waitForElementDisplayed(By.id("form:preview-dialog"), true);
 		WebElement previewDialog = findElementById("form:preview-dialog");
-		// if we have radio button or checkbox, remember multiply with number of options
-		// Example: we have 1 checkbox with 2 options, 1 radio with 3 options. Total we have 5 inputs
 		int numberOfInput = previewDialog.findElements(By.xpath("//table[@id='form:dyna-form']//input")).size();
 		int numberOfTextArea = previewDialog.findElements(By.xpath("//table[@id='form:dyna-form']//textarea")).size();
-		int numberOfUploadFile =
-				previewDialog.findElements(By.xpath("//div[contains(@id,'fileUploadComponent:document-table')]")).size();
+		int numberOfUploadFile = previewDialog.findElements(By.xpath("//div[contains(@id,'fileUploadComponent:document-table')]")).size();
 		return numberOfInput + numberOfTextArea + numberOfUploadFile;
 	}
 

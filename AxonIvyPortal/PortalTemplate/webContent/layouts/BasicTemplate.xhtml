@@ -58,11 +58,23 @@
   <c:set var="isNotRequiredLogin" value="#{isNotRequiredLogin == null ? false : isNotRequiredLogin}" />
   <c:choose>
     <c:when test="#{ivy.wf.securityContext.currentSession.sessionUserUnknown and !isNotRequiredLogin}">
-      <ui:insert name="login">
-        <div class="login-body">
-          <ic:ch.ivy.addon.portalkit.singleapp.general.Login id="login" />
-        </div>
-      </ui:insert>
+      <c:choose>
+        <c:when test="#{loginBean.isLoginPageRendered()}">
+          <ui:insert name="login">
+            <div class="login-body">
+              <ic:ch.ivy.addon.portalkit.singleapp.general.Login
+                id="login" />
+            </div>
+          </ui:insert>
+        </c:when>
+        <c:otherwise>
+          <ui:insert name="loginErrorPage">
+            <div class="login-body login-error-page">
+              <ic:ch.ivy.addon.portalkit.LoginErrorPage />
+            </div>
+          </ui:insert>
+        </c:otherwise>
+      </c:choose>
     </c:when>
     <c:otherwise>
       <!-- CALL THIS METHOD TO INITIALIZE THE APPLICATION BEAN TO SET HIDE PROPERTY FOR ROLE -->

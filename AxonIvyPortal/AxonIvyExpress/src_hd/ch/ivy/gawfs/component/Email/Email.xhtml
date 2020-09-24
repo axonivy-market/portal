@@ -4,7 +4,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="email" required="true" type="ch.ivy.gawmfs.UserEmail" />
+  <cc:attribute name="email" required="true" type="ch.ivy.addon.portalkit.bo.ExpressUserEmail" />
   <cc:attribute name="responsibles" type="java.util.List" />
   <cc:attribute name="isEmpty" type="java.lang.Boolean" />
 </cc:interface>
@@ -17,16 +17,23 @@
     <div class="ui-g card">
       <div class="ui-g-12 md-inputfield">
         <p:inputText id="email-recipients" styleClass="ui-g-12" value="#{email.recipients}" required="#{param['skipValidator'] == null}"
-          requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailAddress')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+          requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailAddress')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+          validatorMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/invalidEmailFormat')}">
+          <f:validateRegex pattern="#{emailBean.emailRegex}" disabled="#{param['skipValidator'] == true}"/>
+        </p:inputText>
         <p:outputLabel for="email-recipients" styleClass="ui-g-12"
           value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailAddress')}" />
         <p:message for="email-recipients" />
       </div>
 
       <div class="ui-g-12 md-inputfield">
-        <p:inputText id="email-response-to" styleClass="ui-g-12" value="#{email.responseTo}" />
+        <p:inputText id="email-response-to" styleClass="ui-g-12" value="#{email.responseTo}"
+           validatorMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/invalidEmailFormat')}">
+          <f:validateRegex pattern="#{emailBean.emailRegex}" disabled="#{param['skipValidator'] == true}"/>
+        </p:inputText>
         <p:outputLabel for="email-response-to" styleClass="ui-g-12"
           value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/ResponseTo')}" />
+        <p:message for="email-response-to" />
       </div>
 
       <div class="ui-g-12 md-inputfield">

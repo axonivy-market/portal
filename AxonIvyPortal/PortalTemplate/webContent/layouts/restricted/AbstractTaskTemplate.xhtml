@@ -32,7 +32,8 @@
             <h:panelGroup id="vertical-task-template-tasks-command" class="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and processChainDirection eq 'VERTICAL'}">
               <p:commandButton id="vertical-case-info" type="button" styleClass="secondary-btn border-with-primary-color"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="icon ivyicon-folder-search"
-                onclick="PF('case-info-dialog').show()" rendered="#{!isHideCaseInfo}" />
+                onclick="openCaseInfo()" rendered="#{!isHideCaseInfo}"
+                global="false"/>
               <p:spacer width="10" />
               <p:commandButton id="vertical-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="secondary-btn border-with-primary-color"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="icon ivyicon-navigation-menu" />
@@ -89,7 +90,8 @@
           <h:panelGroup id="horizontal-task-template-tasks-command" styleClass="task-template-tasks-command" rendered="#{!(isHideCaseInfo and isHideTaskAction) and processChainDirection ne 'VERTICAL'}">
             <p:commandButton id="horizontal-case-info" type="button" styleClass="secondary-btn border-with-primary-color"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" icon="icon ivyicon-folder-search"
-              onclick="PF('case-info-dialog').show()" rendered="#{!isHideCaseInfo}" />
+              onclick="openCaseInfo()" rendered="#{!isHideCaseInfo}"
+              global="false"/>
             <p:spacer width="10" />
             <p:commandButton id="horizontal-task-actions" type="button" rendered="#{!isHideTaskAction}" styleClass="secondary-btn border-with-primary-color"
               title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" icon="icon ivyicon-navigation-menu" />
@@ -140,8 +142,12 @@
           </ui:insert>
         </h:panelGroup>
 
+        <p:remoteCommand name="openCaseInfo"
+           actionListener="#{caseDetailsBean.preRender(case, false)}"
+           update="case-info-dialog"
+           oncomplete="PF('case-info-dialog').show()" />
         <p:dialog id="case-info-dialog" resizable="false" fitViewport="true"
-          header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: #{case.name}" width="95vw" closeOnEscape="true" draggable="false" responsive="true"
+          header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: #{case.name}" closeOnEscape="true" draggable="false" responsive="true"
           widgetVar="case-info-dialog" appendTo="@(body)" modal="true" dynamic="true" styleClass="case-info-dialog">
           <ui:insert name="caseDetails">
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseId')}"
@@ -150,7 +156,7 @@
               styleClass="case-default-widget-container case-details">
               <div class="ui-g">
                 <div class="ui-g-12 u-padding-0">
-                  <ic:ch.ivy.addon.portalkit.component.CaseItemDetails case="#{case}" showItemBackButton="false" isWorkingOnTask="true"/>
+                  <ic:ch.ivy.addon.portal.component.CaseInformation isWorkingOnTask="true"/>
                 </div>
               </div>
             </h:panelGroup>
@@ -174,6 +180,7 @@
                   onclick="PF('chat-assignee-dialog').hide()" />
                 <p:spacer width="15px" />
                 <p:commandButton id="chat-group-join-button" actionListener="#{chatAssigneeBean.joinGroupChat()}"
+                  icon="#{visibilityBean.generateButtonIcon('icon ivyicon-messages-bubble-square-sync')}"
                   value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/chat/joinProcessChat')}" process="@this" update="@none" />
               </h:panelGroup>
             </h:form>

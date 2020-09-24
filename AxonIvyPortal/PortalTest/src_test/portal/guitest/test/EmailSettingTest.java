@@ -26,21 +26,16 @@ public class EmailSettingTest  extends BaseTest{
     UserProfilePage userProfilePage = homePage.openMyProfilePage();
     userProfilePage.switchOnEmailOnTaskAssignmentSetting();
     userProfilePage.switchOnFurtherEmailFromAppSetting();
-    userProfilePage.switchOnReceiveSummarySetting();
     userProfilePage.selectDaysForDailySummary(Arrays.asList(1,2,3,4));
-    userProfilePage.waitUntilSelectedDayUpdated();
-    assertEquals("4 selected day(s)", userProfilePage.getSelectedDaySummary());
+    assertEquals(4, userProfilePage.getSelectedDaySummary());
     userProfilePage = userProfilePage.save();
     assertTrue(userProfilePage.isEmailOnTaskAssignmentSettingSwitchedOn());
     assertTrue(userProfilePage.isFurtherEmailFromAppSettingSwitchedOn());
-    assertTrue(userProfilePage.isReceiveSummarySettingSwitchedOn());
     userProfilePage.switchOffFurtherEmailFromAppSetting();
     userProfilePage.switchOffEmailOnTaskAssignmentSetting();
-    userProfilePage.switchOffReceiveSummarySetting();
     userProfilePage = userProfilePage.save();
     assertFalse(userProfilePage.isEmailOnTaskAssignmentSettingSwitchedOn());
     assertFalse(userProfilePage.isFurtherEmailFromAppSettingSwitchedOn());
-    assertFalse(userProfilePage.isReceiveSummarySettingSwitchedOn());
   }
 
 }

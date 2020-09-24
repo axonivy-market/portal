@@ -7,43 +7,71 @@
     <ui:param name="isNotRequiredLogin" value="false" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/taskHistoryPageTitle')}</ui:define>
     <ui:define name="pageContent">
+      <div class="ui-g" id="task-note-history">
+        <h:panelGrid columns="2"
+          columnClasses="u-text-align-left ui-g-2 ui-lg-1 ui-md-2 ui-sm-4, u-text-align-left ui-g-10 ui-lg-11 ui-md-8 ui-sm-8"
+          styleClass="ui-g-12 u-no-padding-bottom">
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" />
+          <h:outputText id="case-name" value="#{data.task.name}" />
 
-      <h:form id="form" onkeypress="if (event.keyCode == 13) { return false; }" styleClass="note-history-container">
-        <p:dataTable id="notes-table" widgetVar="notesTable" var="note" sortBy="#{note.creationTimestamp.time}"
-          sortOrder="DESCENDING" value="#{data.notes}" filteredValue="#{data.filteredNotes}"
-          emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}" />
+          <h:outputText id="case-id" value="#{data.task.id}" />
 
-          <p:column width="70%" sortBy="#{note.message}" filterBy="#{note.message}" filterMatchMode="contains">
-            <f:facet name="header">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" />
-            </f:facet>
-            <h:outputText value="#{note.message}" styleClass="case-task-note-histories"/>
-          </p:column>
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" />
+          <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="task-activator" securityMember="#{data.task.getActivator()}"
+            securityMemberName="#{data.task.getActivatorName()}" />
 
-          <p:column width="15%" sortBy="#{note.writter.fullName}" filterBy="#{note.writter.fullName}"
-            filterMatchMode="contains" styleClass="note-history-fullname-column">
-            <f:facet name="header">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}" />
-            </f:facet>
-            <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(note.writter, note.writter.name)}" />
-          </p:column>
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
+          <h:panelGroup id="task-detail-state" styleClass="state-cell default-task-cell">
+            <h:panelGroup id="task-detail-state-icon" styleClass="#{taskBean.getStateIcon(data.task.getState())}" />
+            <h:outputText value="#{taskBean.getTranslatedState(data.task.getState())}" styleClass="task-detail-state" />
+          </h:panelGroup>
+        </h:panelGrid>
 
-          <p:column width="20%" sortBy="#{note.creationTimestamp.time}" styleClass="u-hidden-sm-down">
-            <f:facet name="header">
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" />
-            </f:facet>
-            <h:outputText value="#{note.creationTimestamp.time}">
-              <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
-            </h:outputText>
-          </p:column>
-        </p:dataTable>
-        <p:commandButton ajax="false" styleClass="note-history-export-button"
-          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-office-file-xls-1')}"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
-          <p:fileDownload
-            value="#{caseTaskNoteHistoryBean.getExportedFileOfTaskNoteHistory(data.filteredNotes, data.exportedFileName)}" />
-        </p:commandButton>
-      </h:form>
+          <h:form id="form" onkeypress="if (event.keyCode == 13) { return false; }" styleClass="note-history-container ui-g-12 u-no-padding-top">
+            <div class="ui-g-12 TexAlRight u-no-padding-top">
+              <p:commandLink ajax="false" styleClass="note-history-export-button u-mar-right-15">
+                <i class="#{visibilityBean.generateButtonIcon('icon ivyicon-office-file-xls-1')}" />
+                <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}</span>
+                <p:fileDownload value="#{caseTaskNoteHistoryBean.getExportedFileOfTaskNoteHistory(data.filteredNotes, data.exportedFileName)}" />
+              </p:commandLink>
+            </div>
+
+            <div class="ui-g-12">
+              <p:dataTable id="notes-table" widgetVar="notesTable" var="note" sortBy="#{note.creationTimestamp.time}" sortOrder="DESCENDING"
+                value="#{data.notes}" filteredValue="#{data.filteredNotes}"
+                emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+                reflow="true" scrollable="true">
+
+                <p:column sortBy="#{note.message}" filterBy="#{note.message}" filterMatchMode="contains"
+                  width="65%">
+                  <f:facet name="header">
+                    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" />
+                  </f:facet>
+                  <h:outputText value="#{note.message}" styleClass="case-task-note-histories" />
+                </p:column>
+
+                <p:column width="15%" sortBy="#{note.writter.fullName}" filterBy="#{note.writter.fullName}" filterMatchMode="contains"
+                  styleClass="note-history-fullname-column">
+                  <f:facet name="header">
+                    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}" />
+                  </f:facet>
+                  <h:outputText
+                    value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(note.writter, note.writter.name)}" />
+                </p:column>
+
+                <p:column width="20%" sortBy="#{note.creationTimestamp.time}" styleClass="u-hidden-sm-down">
+                  <f:facet name="header">
+                    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" />
+                  </f:facet>
+                  <h:outputText value="#{note.creationTimestamp.time}">
+                    <f:convertDateTime pattern="#{ivy.cms.co('/patterns/dateTimePattern')}" />
+                  </h:outputText>
+                </p:column>
+              </p:dataTable>
+            </div>
+          </h:form>
+        </div>
 
     </ui:define>
   </ui:composition>
