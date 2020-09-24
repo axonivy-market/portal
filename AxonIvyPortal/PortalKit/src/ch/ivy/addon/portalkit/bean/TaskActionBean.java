@@ -36,6 +36,7 @@ public class TaskActionBean {
   //This variable control display of side step and create adhoc
   private boolean isShowAdditionalOptions;
   private boolean isShowDestroyTask;
+  private boolean isShowReadWorkflowEvent;
   private static final String BACK_FROM_TASK_DETAILS = "Start Processes/PortalStart/BackFromTaskDetails.ivp";
 
   public TaskActionBean() {
@@ -44,6 +45,7 @@ public class TaskActionBean {
     isShowDelegateTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION);
     isShowAdditionalOptions = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS);
     isShowDestroyTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_DESTROY_ACTION);
+    isShowReadWorkflowEvent = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_WORKFLOW_EVENT_ACTION);
   }
 
   public boolean canReset(ITask task) {
@@ -51,7 +53,8 @@ public class TaskActionBean {
       return false;
     }
     
-    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.READY_FOR_JOIN);
+    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.READY_FOR_JOIN,
+        TaskState.FAILED);
     if (!taskStates.contains(task.getState())) {
       return false;
     }
@@ -72,7 +75,7 @@ public class TaskActionBean {
     }
     
     EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.DONE, TaskState.FAILED, TaskState.DESTROYED,
-        TaskState.CREATED, TaskState.READY_FOR_JOIN);
+        TaskState.CREATED, TaskState.READY_FOR_JOIN, TaskState.FAILED, TaskState.JOIN_FAILED, TaskState.WAITING_FOR_INTERMEDIATE_EVENT);
     if (taskStates.contains(task.getState())) {
       return false;
     }
@@ -136,6 +139,10 @@ public class TaskActionBean {
     }
     return hasPermission(task, IPermission.TASK_WRITE_DELAY_TIMESTAMP);
   }
+  
+  public boolean canReadWorkflowEventTask() {
+    return PermissionUtils.checkReadAllWorkflowEventPermission();
+  }
 
   public boolean notHaveExpiryHandleLogic(ITask task) {
     return isNotDone(task) && hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP)
@@ -169,8 +176,14 @@ public class TaskActionBean {
     return taskStates.contains(task.getState());
   }
   
+  public boolean isTechnicalState(ITask task) {
+    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.WAITING_FOR_INTERMEDIATE_EVENT, TaskState.FAILED,
+        TaskState.JOIN_FAILED);
+    return taskStates.contains(task.getState());
+  }
+  
   public boolean showAdditionalOptions(ITask task) {
-    return isShowAdditionalOptions && isNotDone(task);
+    return isShowAdditionalOptions && isNotDone(task) && !isTechnicalState(task);
   }
   
   public boolean isShowResetTask() {
@@ -213,6 +226,14 @@ public class TaskActionBean {
     this.isShowDestroyTask = isShowDestroyTask;
   }
 
+  public boolean isShowReadWorkflowEvent() {
+    return isShowReadWorkflowEvent;
+  }
+
+  public void setShowReadWorkflowEvent(boolean isShowReadWorkflowEvent) {
+    this.isShowReadWorkflowEvent = isShowReadWorkflowEvent;
+  }
+
   public void updateSelectedTaskItemId(boolean isShowInTaskList, Long taskId) {
     if (isShowInTaskList) {
       TaskWidgetBean taskWidgetBean = ManagedBeans.get("taskWidgetBean");
@@ -227,7 +248,8 @@ public class TaskActionBean {
   }
 
   public boolean noActionAvailable(ITask task) {
-    return !isNotDone(task) && !canReset(task);
+    boolean hasWorkflowEventLink = isShowReadWorkflowEvent && canReadWorkflowEventTask();
+    return !isNotDone(task) && !canReset(task) && !isTechnicalState(task) && !hasWorkflowEventLink;
   }
   
   public void backToPrevPage(ITask task, boolean isFromTaskList, boolean isTaskStartedInDetails) {

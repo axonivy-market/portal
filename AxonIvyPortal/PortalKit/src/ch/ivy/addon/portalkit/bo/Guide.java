@@ -9,7 +9,7 @@ import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 public class Guide {
 
-  private static final String SHOW_GUIDE = "SHOW_GUIDE";
+  public static final String SHOW_GUIDE = "SHOW_GUIDE";
   private boolean isGuideShown;
   private GlobalSettingService globalSettingService;
 

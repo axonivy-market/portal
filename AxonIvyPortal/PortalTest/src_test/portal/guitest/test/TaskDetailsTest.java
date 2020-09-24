@@ -33,14 +33,11 @@ public class TaskDetailsTest extends BaseTest {
     homePage = new HomePage();
   }
 
-  
   @Test
   public void testDelegateTaskInTaskDetail() {
     login(TestAccount.HR_ROLE_USER);
     homePage = new HomePage();
-    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
-    TaskDetailsPage taskDetailsPage = taskWidgetPage.openTaskDetails(0);
+    taskDetailsPage = openDetailsPageOfFirstTask();
     assertTrue(StringUtils.equalsIgnoreCase(TestRole.EVERYBODY_ROLE, taskDetailsPage.getTaskResponsible()));
     taskDetailsPage.openTaskDelegateDialog();
     taskDetailsPage.selectDelegateResponsible(TestAccount.HR_ROLE_USER.getFullName(), false);
@@ -51,13 +48,17 @@ public class TaskDetailsTest extends BaseTest {
     assertTrue(StringUtils.equalsIgnoreCase(TestRole.HR_ROLE, taskDetailsPage.getTaskResponsible()));
   }
 
+  private TaskDetailsPage openDetailsPageOfFirstTask() {
+    taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.expand();
+    return taskWidgetPage.openTaskDetails(0);
+  }
+
   @Test
   public void testChangeTaskDeadline() {
     String tomorrowStringLiteral = prepareTomorrowAsString();
 
-    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.expand();
-    taskDetailsPage = taskWidgetPage.openTaskDetails(0);
+    taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
     assertTrue(StringUtils.equalsIgnoreCase(tomorrowStringLiteral, taskWidgetPage.getExpiryOfTaskAt()));
   }
@@ -90,6 +91,17 @@ public class TaskDetailsTest extends BaseTest {
     String yesterday = LocalDateTime.now().minusDays(1).format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
     taskDetailsPage.updateDelayTimestamp(yesterday);
     assertTrue(StringUtils.equalsIgnoreCase("SUSPENDED", taskDetailsPage.getTaskState()));
+  }
+
+  @Test
+  public void testShowTaskWorkflowEvent() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(createTechnicalStateUrl);
+    homePage = new HomePage();
+    
+    taskDetailsPage = openDetailsPageOfFirstTask();
+    String eventData = taskDetailsPage.openWorkflowEventDialog();
+    assertTrue(eventData.contains("admin"));
   }
 
   private void openDelayTask() {

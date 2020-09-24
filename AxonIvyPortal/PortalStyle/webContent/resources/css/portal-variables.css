@@ -77,6 +77,8 @@
   --task-state-reserved-color: rgba(black, 0.4);
   --task-state-system-color: rgba(black, 0.4);
   --task-state-zombie-destroyed-color: #ff6464;
+  --task-state-failed-color: #ff6464;
+  --task-state-waiting-color: var(--ivy-tertinary-color-yellow-dark);
   --task-state-reserved-font-size: 1.8rem;
   --task-state-system-font-size: 1.8rem;
   
@@ -469,4 +471,5 @@
   --current-step-opacity: 1; 
   /* Portal Global Ajax Status */
   --ajax-loading-bg: hsla(0, 0%, 100%, 0.9);
+  --general-config-description-color: var(--ivy-primary-color-grey-medium);
   }

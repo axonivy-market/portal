@@ -8,8 +8,6 @@ public class DataCreationHandler {
   private int subCatCounter;
   private int caseCounter;
 
-
-
   public DataCreationHandler(int numOfCats, int numOfSubCats, int numOfCasesPerSubCat) {
     super();
     this.numOfCats = numOfCats;

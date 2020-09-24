@@ -74,6 +74,7 @@ public class BaseTest {
   protected String showTaskNoteHistoryUrl = "portalTemplate/16044EDBC0E23859/showTaskNoteHistory.ivp?selectedTaskId=%s";
   protected String showCaseNoteHistoryUrl = "portalTemplate/1603506A872272C6/showCaseNoteHistory.ivp?caseId=%s";
   protected String createTaskWithSystemState = "portalKitTestHelper/153CACC26D0D4C3D/createTaskWithSystemState.ivp";
+  protected String createTechnicalStateUrl = "portal-developer-examples/162511D2577DBA88/createTechnicalStateTasks.ivp";
   
   @Rule
   public ScreenshotFailedTestRule screenshotTestRule = new ScreenshotFailedTestRule();
@@ -250,6 +251,17 @@ public class BaseTest {
       String encodeSettingValue = URLEncoder.encode(portalSettingValue, "UTF-8");
       String updatePortalSettingLink = "portalKitTestHelper/17208192E0AF4185/updatePortalSetting.ivp?settingName=%s&settingValue=%s";
       redirectToRelativeLink(String.format(updatePortalSettingLink, encodeSettingName, encodeSettingValue));
+    } catch (UnsupportedEncodingException e) {
+      e.printStackTrace();
+    }
+  }
+  
+  public void updateGlobalVariable(String variableName, String variableValue) {
+    try {
+      String encodeVariableName = URLEncoder.encode(variableName, "UTF-8");
+      String encodeVariableValue = URLEncoder.encode(variableValue, "UTF-8");
+      String updateGlobalVariableLink = "portalKitTestHelper/1749B87B8C1B77BE/updateGlobalVariable.ivp?variableName=%s&variableValue=%s";
+      redirectToRelativeLink(String.format(updateGlobalVariableLink, encodeVariableName, encodeVariableValue));
     } catch (UnsupportedEncodingException e) {
       e.printStackTrace();
     }

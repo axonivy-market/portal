@@ -1,5 +1,5 @@
 [Ivy]
-15035F535EFB1618 7.5.0 #module
+15035F535EFB1618 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskWidgetProcess Big #zClass
 Ts0 RD #cInfo
@@ -244,7 +244,6 @@ if(in.taskFilterDataToBeRemoved.type == FilterType.ONLY_ME) {
 	in.taskPublicFilters.remove(in.taskFilterDataToBeRemoved);
 }
 if (in.dataModel.#selectedTaskFilterData is initialized && in.dataModel.isSameTaskFilterData(in.taskFilterDataToBeRemoved)) {
-	ivy.log.error("reset task");
 	in.dataModel.resetFilters();
 	in.keyword = null;
 }' #txt
