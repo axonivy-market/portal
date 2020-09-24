@@ -1,10 +1,15 @@
 package ch.ivy.addon.portalkit.dto;
 
+import java.io.Serializable;
+
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.security.IUser;
 
-public class SecurityMemberDTO {
+// Serializable is required to send system event when creating group chat in cluster mode
+public class SecurityMemberDTO implements Serializable {
+
+  private static final long serialVersionUID = 5152412894300680832L;
   private long id;
   private String name;
   private String displayName;

@@ -30,7 +30,7 @@ public class IvyComponentLogicCaller<T> {
             ClassUtils.toClass(paramValues));
     setTargetComponent(elExpression, component);
 
-    Ivy.log().info("invoking: " + elExpression);
+    Ivy.log().debug("invoking: " + elExpression);
     return (T) elExpression.invoke(el, paramValues);
   }
 

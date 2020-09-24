@@ -81,12 +81,6 @@ public class EmailSettingService implements IEmailSettingService {
     });
   }
 
-  public void clearSelectedDailySummary(IvyEmailSetting emailSetting) {
-    if (!emailSetting.isEnableDailySummary()) {
-      emailSetting.getEmailSendDailyTaskSummary().clear();
-    }
-  }
-
   public void displayDailySummary(IvyEmailSetting emailSetting) {
     if (emailSetting.getEmailSendDailyTaskSummary().size() > 0) {
       emailSetting.setEnableDailySummary(true);

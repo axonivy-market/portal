@@ -28,7 +28,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 public class TaskSearchCriteria {
 
   public final static EnumSet<TaskState> STANDARD_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN);
-  public final static EnumSet<TaskState> ADVANCE_STATES = EnumSet.of(DONE, DELAYED, DESTROYED);
+  public final static EnumSet<TaskState> ADVANCE_STATES = EnumSet.of(DONE, DELAYED, DESTROYED, TaskState.JOIN_FAILED, TaskState.FAILED, TaskState.WAITING_FOR_INTERMEDIATE_EVENT);
   /**
    * No need since 9.2, this value is always session username
    */
@@ -279,7 +279,7 @@ public class TaskSearchCriteria {
     }
     this.includedStates.addAll(includedStates);
   }
-  
+
   public String getKeyword() {
     return keyword;
   }
@@ -389,7 +389,7 @@ public class TaskSearchCriteria {
   public boolean hasIncludedStates() {
     return CollectionUtils.isNotEmpty(includedStates);
   }
-
+  
   public boolean hasKeyword() {
     return StringUtils.isNotEmpty(keyword);
   }

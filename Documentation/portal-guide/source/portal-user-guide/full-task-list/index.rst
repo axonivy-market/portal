@@ -220,6 +220,31 @@ HowTo: Export a task history
 
 |how-to-export-note-details|
 
+
+.. _how-to-show-workflow-events:
+
+HowTo: Show Workflow Events
+---------------------------
+
+.. note:: 
+   User must to has permission ``WORKFLOW_EVENT_READ_ALL`` to see all workflow events of a task
+
+1. Open the task details of a task
+
+2. Click on the |show-more-icon| **Show more** link below the notes section
+
+|how-to-show-note-details|
+
+3. A new page with the task history is opened
+
+4. Click **Workflow Events** link on the right side of page to see Workflow Events dialog
+
+|how-to-show-workflow-event|
+
+**Workflow Events dialog**
+
+|workflow-events-table|
+
 .. include:: ../includes/_common-icon.rst
 
 
@@ -235,3 +260,5 @@ HowTo: Export a task history
 .. |how-to-add-note| image:: ../../screenshots/task-detail/how-to-add-note.png
 .. |how-to-show-note-details| image:: ../../screenshots/task-detail/how-to-show-note-details.png
 .. |how-to-export-note-details| image:: ../../screenshots/task-detail/how-to-export-note-details.png
+.. |how-to-show-workflow-event| image:: ../../screenshots/task-detail/how-to-show-workflow-event.png
+.. |workflow-events-table| image:: ../../screenshots/task-detail/workflow-events-table.png
