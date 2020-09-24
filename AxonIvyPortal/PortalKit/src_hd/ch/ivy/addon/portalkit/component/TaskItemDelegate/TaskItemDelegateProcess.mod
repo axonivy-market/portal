@@ -1,5 +1,5 @@
 [Ivy]
-16EE8CACE2CB2C75 7.5.0 #module
+16EE8CACE2CB2C75 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemDelegateProcess Big #zClass
 Ts0 RD #cInfo
@@ -296,15 +296,19 @@ Ts0 f76 @|StepIcon #fIcon
 Ts0 f88 208 152 32 32 0 16 #rect
 Ts0 f88 @|AlternativeIcon #fIcon
 Ts0 f82 guid 16EE8CC0919DC8DC #txt
-Ts0 f82 method initDataToDelegate(ch.ivyteam.ivy.workflow.ITask) #txt
-Ts0 f82 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task> param;' #txt
+Ts0 f82 method initDataToDelegate(Long,ch.ivyteam.ivy.workflow.ITask) #txt
+Ts0 f82 inParameterDecl '<Long taskId,ch.ivyteam.ivy.workflow.ITask task> param;' #txt
 Ts0 f82 inParameterMapAction 'out.task=param.task;
 ' #txt
+Ts0 f82 inActionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+if (param.task == null) {
+	out.task = TaskUtils.findTaskById(param.taskId);
+}' #txt
 Ts0 f82 outParameterDecl '<> result;' #txt
 Ts0 f82 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>initDataToDelegate(ITask)</name>
+        <name>initDataToDelegate(Long,ITask)</name>
     </language>
 </elementInfo>
 ' #txt

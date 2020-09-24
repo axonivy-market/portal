@@ -17,7 +17,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.TaskState;
 
 @ManagedBean(name = "caseTaskNoteHistoryBean")
 public class CaseTaskNoteHistoryBean implements Serializable {
@@ -51,14 +50,28 @@ public class CaseTaskNoteHistoryBean implements Serializable {
   public String getCaseNoteContent(History history) {
     String content = history.getContent();
     if (history.getType() == HistoryType.TASK) {
-      if (history.getTaskState() == TaskState.DONE) {
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDone") + ": " + content;
-      } else if (history.getTaskState() == TaskState.DESTROYED) {
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDestroyed") + ": " + content;
-      } else if (history.getTaskState() == TaskState.ZOMBIE) {
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsZombie") + ": " + content;
-      } else if (history.getTaskState() == TaskState.CREATED) {
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsCreated") + ": " + content;
+      switch (history.getTaskState()) {
+        case DONE:
+          content = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDone") + ": " + content;
+          break;
+        case DESTROYED:
+          content = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDestroyed") + ": " + content;
+          break;
+        case ZOMBIE:
+          content = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsZombie") + ": " + content;
+          break;
+        case CREATED:
+          content = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsCreated") + ": " + content;
+          break;
+        case FAILED:
+        case JOIN_FAILED:
+          content = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsFailed") + ": " + content;
+          break;
+        case WAITING_FOR_INTERMEDIATE_EVENT:
+          content = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsWaiting") + ": " + content;
+          break;
+        default:
+          break;
       }
     }
     return content; 

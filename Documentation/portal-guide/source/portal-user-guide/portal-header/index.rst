@@ -27,11 +27,20 @@ needs. These features are described in the following sections below.
 My profile
 ----------
 
-Menu entry **My profile** contains user language and email settings.
+Menu entry **My profile** contains general setting, user language and email settings.
 
 |my-profile-save|
 
-|my-profile|
+General settings
+^^^^^^^^^^^^^^^^
+
+**General settings** allows you config the portal according your requirements. This area
+contains :guilabel:`Homepage selection`, :guilabel:`Process list configuration`,
+:guilabel:`Task list configuration`, :guilabel:`Case list configuration` and :guilabel:`Show tutorial`.
+
+
+Language settings
+^^^^^^^^^^^^^^^^^
 
 **Language settings** allows you to specify your
 preferred application language. This setting will affect all Axon.ivy
@@ -59,6 +68,9 @@ Portal:
    as the portal language, your     
    application specific dialogs will
    still be shown in English.    
+
+Email settings
+^^^^^^^^^^^^^^
 
 **Email settings** allows you to configure your
 preferences related to standard email notifications send by the Axon.ivy
@@ -190,7 +202,6 @@ a tab is provided, giving you the results of your search.
 
 .. |portal-header| image:: ../../screenshots/dashboard/portal-header-with-numbering-annotation.png
 .. |my-profile-save| image:: ../../screenshots/my-profile/email-settings.png
-.. |my-profile| image:: ../../screenshots/my-profile/my-profile.png
 .. |portal-absences| image:: ../../screenshots/settings/absence.png
 .. |how-to-add-an-absence| image:: ../../screenshots/settings/new-absence.png
 .. |how-to-set-absence-deputies| image:: ../../screenshots/settings/set-deputy.png

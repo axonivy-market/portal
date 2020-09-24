@@ -24,7 +24,8 @@ public final class TaskUtils {
 
   public static void resetTask(final ITask task) {
     IvyExecutor.executeAsSystem(() -> {
-      if (Arrays.asList(TaskState.RESUMED, TaskState.CREATED, TaskState.PARKED, TaskState.READY_FOR_JOIN, TaskState.FAILED)
+      if (Arrays.asList(TaskState.RESUMED, TaskState.CREATED, TaskState.PARKED, TaskState.READY_FOR_JOIN,
+          TaskState.FAILED)
           .contains(task.getState())) {
         task.reset();
       }

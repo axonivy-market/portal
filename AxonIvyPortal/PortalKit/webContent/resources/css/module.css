@@ -741,9 +741,18 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   width: 1px;
 }
 
+.case-info-dialog .ui-dialog-content.ui-widget-content {
+  max-width: 80vw;
+  max-height: 80vh !important;
+}
+
 @media (max-width: 768px) {
   .case-info-dialog .case-detail-header {
     display: none;
+  }
+  .case-info-dialog .ui-dialog-content.ui-widget-content {
+    max-width: 90vw;
+    max-height: 90vh !important;
   }
 }
 
@@ -1876,6 +1885,25 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   right: -2px;
 }
 
+.workflow-events-dialog {
+  max-width: 70%;
+}
+
+.task-workflow-event-command {
+  margin-left: 15px;
+}
+
+@media screen and (max-width: 40em) {
+  .workflow-events-dialog {
+    max-width: 90%;
+  }
+}
+
+@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
+  .workflow-events-dialog {
+    max-width: 80%;
+  }
+}
 /********************************** END TASK DETAIL **********************************/
 
 /********************************** CASE DETAIL **********************************/
@@ -2773,8 +2801,17 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 /********************************** END CHANGE PASSWORD DIALOG **********************************/
 
 /********************************** USER PROFILE **********************************/
-.md-inputfield .language-selection-label {
-  left: 0;
+@media screen and (max-width: 40em) {
+  .my-profile-container .card {
+    height: auto !important;
+  }
+}
+
+@media screen and (min-width: 90.063em) {
+  .my-profile-container {
+    width: 75%;
+    min-width: 1200px;
+  }
 }
 
 .user-profile-footer {
@@ -2791,7 +2828,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   margin-bottom: 6px
 }
 
-.application-email-setting-row,
 .daily-summary-checkbox.ui-selectcheckboxmenu {
   width: 100%;
 }
@@ -2800,28 +2836,56 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding-left: 3px !important;
 }
 
-.application-email-setting-row tbody tr td {
-  padding-bottom: 10px !important;
+.application-email-panel {
+  width: auto;
+  padding: 0 .5em;
+}
+
+.application-email-setting-label {
+  padding-bottom: 1em;
+  padding-right: 4em;
 }
 
 .my-profile-form {
   margin: 10px;
 }
 
-.my-profile-container.card {
-  padding-left: 15px;
-  padding-right: 15px;
-  margin: 0 auto;
+.my-profile-container {
+  margin: auto;
+  max-width: 1850px;
 }
 
-.user-profile .setting-header {
+.my-profile-container .card {
+  height: 100%;
+  float: left;
+}
+
+.my-profile-container .setting-header {
   margin-bottom: 10px;
 }
 
-.language-selection,
-.email-setting-container {
-  margin-top: 30px;
+.my-profile-container .setting-header h2 {
+  padding: 0;
+  margin-bottom: 8px;
 }
+
+.my-profile-container .setting-header span  {
+  padding: 0 0 0 1px;
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+}
+
+.my-profile-container .show-tutorial,
+.email-setting-container .ui-selectmanycheckbox.daily-summary.ui-grid-responsive .ui-g-12.ui-md-4 {
+  display: inline-flex;
+  word-break: break-word;
+}
+
+.my-profile-container .show-tutorial span.ui-chkbox-label {
+  padding-top: 2px;
+}
+
 /********************************** END USER PROFILE SETTING **********************************/
 
 /********************************** PROCESS STARTS **********************************/
@@ -3143,6 +3207,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .statistic-filter-item.ui-scrollpanel {
   border: none;
+}
+
+.statistic-filter-item.ui-scrollpanel .ui-widget.ui-selectmanycheckbox td {
+  white-space: nowrap;
 }
 
 .custom-field-panel.statistic-filter-container {
@@ -3642,6 +3710,7 @@ body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-c
 
 .statistic-filter-accordion-panel .ui-accordion-content {
   overflow-y: hidden !important;
+  max-width: 30.5rem;
 }
 
 .statistic-filter-container.ui-scrollpanel {

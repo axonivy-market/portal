@@ -17,6 +17,7 @@ import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
+import portal.guitest.common.TestAccount;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
@@ -74,6 +75,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   
   @Test
   public void screenshotTaskDetails() throws IOException {
+    login(TestAccount.ADMIN_USER);
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
     TaskWidgetPage taskWidget = homePage.openTaskList();
     taskWidget.closeMainMenu();
@@ -104,9 +106,33 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     taskDetails.clickOnDeleteDocumentIcon(0);
     WebElement deleteDocumentDialog = taskDetails.getDeleteDocumentConfirmDialog();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(deleteDocumentDialog, ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-delete-document", new ScreenshotMargin(100, 150));
-    
+
     refreshPage();
     taskDetails.waitUtilsTaskDetailsDisplayed();
+    taskDetails.openActionPanel();
+    executeDecorateJs("highlightShowWorkflowEvents()");
+    ScreenshotUtil.captureHalfCenterTopPageScreenShot(ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-show-workflow-event");
+
+    refreshPage();
+    taskDetails.waitUtilsTaskDetailsDisplayed();
+    taskDetails.openWorkflowEventDialog();
+    WebElement workflowEventTable = taskDetails.getWorkflowEventsTable();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(workflowEventTable, ScreenshotUtil.TASK_DETAIL_FOLDER + "workflow-events-table", new ScreenshotMargin(100, 50));
+  }
+  
+  @Test
+  public void screenshotShowMoreTaskHistories() throws IOException {
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
+    login(TestAccount.ADMIN_USER);
+    TaskWidgetPage taskWidget = homePage.openTaskList();
+    taskWidget.closeMainMenu();
+    TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
+    taskDetails.waitUtilsTaskDetailsDisplayed();
+    taskDetails.addNoteToTaskWithContent("Add a note for this task");
+    taskDetails.uploadDocument(getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
+    refreshPage();
+    taskDetails.waitUtilsTaskDetailsDisplayed();
+
     executeDecorateJs("highlightShowMoreTaskHistories()");
     WebElement showMoreTaskHistories = taskDetails.getTaskHistories();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(showMoreTaskHistories, ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-show-note-details", new ScreenshotMargin(100, 50));
@@ -114,7 +140,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
     homePage.switchLastBrowserTab();
     Sleeper.sleep(3000);
-    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-export-note-details", new Dimension(SCREENSHOT_WIDTH, 1000)); 
+    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-export-note-details", new Dimension(SCREENSHOT_WIDTH, 1000));
   }
   
   @Test
