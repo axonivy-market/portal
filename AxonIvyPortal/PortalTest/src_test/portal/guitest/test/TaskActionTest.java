@@ -56,7 +56,6 @@ public class TaskActionTest extends BaseTest {
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
     assertTaskActionsByTaskState("In progress", Arrays.asList("Reserve", "Reset", "Add Ad-hoc Task"));
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
-
   }
 
   @Test
@@ -97,6 +96,25 @@ public class TaskActionTest extends BaseTest {
     // Destroyed
     assertTaskActionsByTaskState("Destroyed", new ArrayList<>());
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
+  }
+  
+  @Test
+  public void testVisibilityTaskActionForTechnicalStates() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(createTechnicalStateUrl);
+    gotoTaskList();
+
+    // Failed
+    assertTaskActionsByTaskState("Failed", Arrays.asList("Reset", "Destroy"));
+    taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
+
+    // Join failed
+    assertTaskActionsByTaskState("Join failed", Arrays.asList("Destroy"));
+    taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
+
+    // waiting for event
+    assertTaskActionsByTaskState("Waiting for event",  Arrays.asList("Destroy"));
+    taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
 
   }
 
@@ -110,18 +128,19 @@ public class TaskActionTest extends BaseTest {
     taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList(state));
     List<String> actionInTaskList = taskWidgetPage.getActiveTaskAction(0);
     actionInTaskList.remove("Details");
-    actionInTaskList.removeAll(taskActionInTaskDetails);
-    assertTrue(actionInTaskList.isEmpty());
+    actionInTaskList.remove("Workflow Events");
+    assertTrue(actionInTaskList.size() == taskActionInTaskDetails.size());
+    assertTrue(actionInTaskList.containsAll(taskActionInTaskDetails));
 
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
     if (taskActionInTaskDetails.isEmpty()) {
-      assertTrue(!taskDetailsPage.isActionLinkEnable());
       return;
     }
     assertTrue(taskDetailsPage.isActionLinkEnable());
     List<String> actionInDetails = taskDetailsPage.getActiveTaskAction();
-    actionInDetails.removeAll(taskActionInTaskDetails);
-    assertTrue(actionInDetails.isEmpty());
+    actionInDetails.remove("Workflow Events");
+    assertTrue(actionInDetails.size() == taskActionInTaskDetails.size());
+    assertTrue(actionInDetails.containsAll(taskActionInTaskDetails));
   }
 
 }

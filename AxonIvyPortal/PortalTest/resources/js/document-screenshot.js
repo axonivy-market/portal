@@ -297,6 +297,10 @@ function highlightShowMoreTaskHistories() {
   createRedMediumOutline($("[id$=':task-notes:show-more-note-link']"));
 }
 
+function highlightShowWorkflowEvents() {
+  createRedMediumOutline($("a[id$=':task-workflow-event-command']"));
+}
+
 function highlightCreateExpressWorkflow() {
   createRedMediumOutline($("[id$='process-widget:create-express-link']"));
 }

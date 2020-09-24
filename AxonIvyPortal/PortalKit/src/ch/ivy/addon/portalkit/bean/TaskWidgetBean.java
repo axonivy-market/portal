@@ -1,6 +1,11 @@
 package ch.ivy.addon.portalkit.bean;
 
+import static ch.ivy.addon.portalkit.filter.AbstractFilter.ALL;
+import static ch.ivyteam.ivy.workflow.TaskState.DELAYED;
+import static ch.ivyteam.ivy.workflow.TaskState.DESTROYED;
+
 import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -13,11 +18,12 @@ import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
+import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
+import ch.ivy.addon.portalkit.taskfilter.TaskStateFilter;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
 @ViewScoped
@@ -28,11 +34,11 @@ public class TaskWidgetBean implements Serializable {
   private Long taskListRefreshInterval;
   private Long expandedTaskId;
   private Long selectedTaskItemId;
-  private ITask selectedTaskItem;
   private TaskLazyDataModel dataModel;
   private Boolean isTaskDetailOpenning;
   private boolean isShowFullTaskList;
   private boolean isGuide;
+  private boolean isAdminTaskStateIncluded;
 
   public TaskWidgetBean() {
     expandedTaskId = -1L;
@@ -80,16 +86,35 @@ public class TaskWidgetBean implements Serializable {
   }
 
   /**
-   * Find ITask by selectedTaskItemId
-   * @return task is selected
+   * If Task State filter is selecting DELAYED or DESTROYED
+   * Then disable option save a filter for all user
+   * @param taskFilters is selected filters
    */
-  public ITask getSelectedTaskItem() {
-    if (selectedTaskItem == null || selectedTaskItemId != selectedTaskItem.getId()) {
-      selectedTaskItem = TaskUtils.findTaskById(selectedTaskItemId);
+  public void verifyTaskStateFilter(List<TaskFilter> taskFilters) {
+    if (!PermissionUtils.checkReadAllTasksPermission()) {
+      isAdminTaskStateIncluded = false;
+      return;
     }
-    return selectedTaskItem;
+    for (TaskFilter filter : taskFilters) {
+      if (filter instanceof TaskStateFilter) {
+        TaskStateFilter taskStateFilter = (TaskStateFilter) filter;
+        if (!taskStateFilter.value().equals(ALL)) {
+          isAdminTaskStateIncluded = taskStateFilter.getSelectedFilteredStates().contains(DELAYED)
+              || taskStateFilter.getSelectedFilteredStates().contains(DESTROYED);
+        }
+        break;
+      }
+    }
   }
-  
+
+  public boolean isAdminTaskStateIncluded() {
+    return isAdminTaskStateIncluded;
+  }
+
+  public void setAdminTaskStateIncluded(boolean isAdminTaskStateIncluded) {
+    this.isAdminTaskStateIncluded = isAdminTaskStateIncluded;
+  }
+
   public Long getTaskListRefreshInterval() {
     return taskListRefreshInterval;
   }

@@ -23,7 +23,7 @@ At first login, an introduction will be shown to introduce all main features of 
 My profile 
 ^^^^^^^^^^
 
-My profile replaces for language setting and email setting.
+My profile replaces for language setting and email setting. Also, introduce the general setting for you can configure the portal according to your requirements
 
 |my-profile|
 

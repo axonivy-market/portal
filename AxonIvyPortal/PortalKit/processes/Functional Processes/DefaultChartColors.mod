@@ -1,5 +1,5 @@
 [Ivy]
-16DAF6D5E1E85FC9 7.5.0 #module
+16DAF6D5E1E85FC9 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ds0 DefaultChartColors Big #zClass
 Ds0 B #cInfo

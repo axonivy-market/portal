@@ -1,0 +1,146 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+<!-- THIS DECORATOR IS ONLY USED BY PORTAL. DON'T MODIFY IT -->
+
+<h:panelGroup styleClass="ui-g-12" rendered="#{showItemDetailsHeader}" layout="block">
+  <h:form id="case-detail-title-form" styleClass="ui-g-12 case-detail-title-header-container">
+    <h:panelGroup id="case-detail-name" styleClass="case-detail-header u-hidden-md-up" layout="block">
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/case')}: "
+        styleClass="case-detail-name-prefix" />
+      <span class="u-truncate-text">#{case.name}</span>
+    </h:panelGroup>
+
+    <p:link id="back-to-cases" href="#" rendered="#{showItemBackButton}"
+      onclick="backToPrevPage(#{!isTaskStartedInDetails})" styleClass="case-details-back-btn">
+      <i class="icon ivyicon-arrow-left-1" />
+      <p:spacer width="3px" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
+    </p:link>
+    <p:remoteCommand name="backToCasesList" actionListener="#{caseBean.backToCasesList()}" process="@this"
+      immediate="true" />
+  </h:form>
+</h:panelGroup>
+
+<div class="case-detail-body ui-g-12 u-padding-0">
+  <div class="ui-g">
+    <!-- Custom panel at top section -->
+    <ui:insert name="caseItemDetailCustomTop" />
+
+    <!-- General & description box -->
+    <div id="case-general-information-card" class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+      <div class="card card-w-title case-detail-card">
+        <div class="ui-g-12 u-padding-0 case-detail-section-title-container">
+          <div class="case-detail-section-title u-truncate-text u-padding-0">
+            <i class="icon ivyicon-single-neutral-actions" />
+            #{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/DataDescription')}
+          </div>
+
+          <h:panelGroup class="u-padding-0 case-history-button-container u-truncate-text"
+            rendered="#{caseWidgetBean.showCaseDetails}" layout="block">
+            <p:commandLink id="destroy-case-link"
+              rendered="#{caseActionBean.canDestroy(case) and case.state ne 'DONE' and case.state ne 'DESTROYED'}"
+              styleClass="additional-case-details-link" immediate="true" onclick="PF('destroy-case-dialog').show()">
+              <span class="action-icon icon ivyicon-remove" />
+              <span class="display-full-text">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/destroyCase')}</span>
+              <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}</span>
+            </p:commandLink>
+            <p:tooltip for="destroy-case-link"
+              value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/destroyCase')}"
+              trackMouse="true" hideEvent="mouseleave click" />
+
+            <p:link id="show-additional-case-details-link" styleClass="additional-case-details-link" target="_blank"
+              href="#{caseWidgetBean.getAdditionalCaseDetailsPageUri(case)}"
+              rendered="#{caseWidgetBean.showCaseDetails}">
+              <i class="icon ivyicon-business-contract-handshake-sign" />
+              <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAdditionalPage')}</span>
+              <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
+            </p:link>
+            <p:tooltip for="show-additional-case-details-link"
+              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAdditionalPage')}" trackMouse="true"
+              hideEvent="mouseleave click" />
+          </h:panelGroup>
+        </div>
+
+        <div class="ui-g-12 u-padding-0">
+          <ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
+        </div>
+        <div class="ui-g-12 u-padding-0">
+          <ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}"
+            descriptionComponentToUpdate="#{descriptionComponentToUpdate}" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Histories box -->
+    <h:panelGroup id="history-container" rendered="#{showItemDetailsHistories}" layout="block"
+      styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+      <div class="card card-w-title case-detail-card case-history-component">
+        <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="case-histories" case="#{case}" />
+      </div>
+    </h:panelGroup>
+
+    <!-- Custom panel at middle section -->
+    <ui:insert name="caseItemDetailCustomMiddle" />
+
+    <!-- Related running box -->
+    <h:panelGroup id="case-details-related-running-tasks-card" rendered="#{showItemDetailRelated}"
+      styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+      <div class="card card-w-title case-detail-card case-related-task-component">
+        <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}"
+          isWorkingOnTask="#{isWorkingOnTask}" />
+      </div>
+    </h:panelGroup>
+
+    <!-- Documents box -->
+    <f:event listener="#{caseDetailsBean.getHideCaseDocumentConfiguration}" type="preRenderComponent" />
+    <h:panelGroup id="case-details-document-card"
+      rendered="#{showItemDetailDocuments and !caseDetailsBean.hideCaseDocument}"
+      styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
+      <div class="card card-w-title case-detail-card case-document-component">
+        <ic:ch.ivy.addon.portalkit.component.CaseItemDocument id="document" case="#{case}"
+          componentToUpdate="#{cc.clientId}:history-container" />
+      </div>
+    </h:panelGroup>
+
+    <!-- Custom panel at bottom section -->
+    <ui:insert name="caseItemDetailCustomBottom" />
+  </div>
+</div>
+
+
+<ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+  <ui:param name="id" value="destroy-case-confirmation-dialog" />
+  <ui:param name="widgetVar" value="destroy-case-dialog" />
+  <ui:param name="appendTo" value="@(body)" />
+  <ui:param name="iconClass" value="icon ivyicon-delete-1" />
+  <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+  <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyCaseHeaderText')}" />
+  <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage')}" />
+
+  <ui:define name="dialogFooter">
+    <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+      onclick="PF('destroy-case-dialog').hide();" styleClass="u-mar-right-15" />
+    <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
+      icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}"
+      actionListener="#{caseWidgetBean.destroyCase(case)}"
+      oncomplete="backToPrevPage(#{caseWidgetBean.willNavigateBack()});" />
+  </ui:define>
+</ui:decorate>
+
+<script type="text/javascript">
+    function backToPrevPage(isHistoryBack) {
+      if (document.referrer &amp;&amp; isHistoryBack) {
+        window.history.back();
+        event.preventDefault();
+      } else {
+        backToCasesList();
+      }
+    }
+</script>
+
+
+</html>

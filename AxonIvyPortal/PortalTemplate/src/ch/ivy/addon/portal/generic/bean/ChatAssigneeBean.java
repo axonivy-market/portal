@@ -26,7 +26,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portal.chat.ChatGroupUtils;
-import ch.ivy.addon.portal.chat.ChatServiceContainer;
+import ch.ivy.addon.portal.chat.ChatReferencesContainer;
 import ch.ivy.addon.portal.chat.CreateGroupChatStatus;
 import ch.ivy.addon.portal.chat.GroupChat;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
@@ -239,7 +239,7 @@ public class ChatAssigneeBean implements Serializable {
       if (createGroupChatStatus == CreateGroupChatStatus.ALREADY_EXIST) {
         message = new FacesMessage(FacesMessage.SEVERITY_ERROR, getGroupChatExistMessage(), null);
       } else if (createGroupChatStatus == CreateGroupChatStatus.SUSCCESS) {
-        ChatServiceContainer.getChatService().updateGroupList(group);
+        ChatReferencesContainer.getChatService().updateGroupList(group);
       } else {
         message = generateErrorMessageWhenCreateGroupChat();
       }

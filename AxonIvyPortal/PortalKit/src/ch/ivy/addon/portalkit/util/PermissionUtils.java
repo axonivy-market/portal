@@ -230,4 +230,12 @@ public class PermissionUtils {
     }
     return hasAtLeastOnePermission;
   }
+  
+  /**
+   * Check if current user has permission to see the WorkflowEvent of task
+   * @return true if current user has permission.
+   */
+  public static boolean checkReadAllWorkflowEventPermission() {
+    return Ivy.session().hasPermission(getSecurityDescriptor(), IPermission.WORKFLOW_EVENT_READ_ALL);
+  }
 }
