@@ -25,14 +25,14 @@
       scrollHeight="300"
       reflow="true">
 
-      <p:column width="350" sortBy="#{event.displayName}" filterBy="#{event.displayName}" filterMatchMode="contains">
+      <p:column width="350" sortBy="#{event.displayName}">
         <f:facet name="header">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/eventType')}" />
         </f:facet>
         <h:outputText value="#{event.displayName}" />
       </p:column>
 
-      <p:column sortBy="#{event.content}" filterBy="#{event.content}" filterMatchMode="contains">
+      <p:column sortBy="#{event.content}">
         <f:facet name="header">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" />
         </f:facet>
@@ -40,7 +40,7 @@
       </p:column>
 
       <c:set var="taskState" value="#{taskBean.getTranslatedState(event.taskState)}" />
-      <p:column width="200" sortBy="#{taskState}" filterBy="#{event.taskState}" filterMatchMode="contains"
+      <p:column width="200" sortBy="#{taskState}"
         styleClass="note-history-fullname-column">
         <f:facet name="header">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
@@ -50,8 +50,8 @@
         </h:panelGroup>
       </p:column>
 
-      <p:column width="200" sortBy="#{event.involvedUsername}" filterBy="#{event.involvedUsername}"
-        filterMatchMode="contains" styleClass="note-history-fullname-column">
+      <p:column width="200" sortBy="#{event.involvedUsername}"
+        styleClass="note-history-fullname-column">
         <f:facet name="header">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}" />
         </f:facet>
