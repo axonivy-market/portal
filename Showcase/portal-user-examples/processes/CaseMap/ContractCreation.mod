@@ -1,5 +1,5 @@
 [Ivy]
-17032234FD387594 7.5.0 #module
+17032234FD387594 9.2.0 #module
 >Proto >Proto Collection #zClass
 Cn0 ContractCreation Big #zClass
 Cn0 B #cInfo
