@@ -279,6 +279,7 @@ function getElementsHaveClassName(displayedFieldSets, invert) {
 
 var compactProcessWidgetClass = '.compact-process-widget';
 var processStartItemClass = '.process-start-list-item';
+var mobileViewPort = 640;
 
 var FavouritesProcess = {
 
@@ -293,9 +294,9 @@ var FavouritesProcess = {
 
       var availableHeight = this.calculateHeightForFavorites();
       
-      // Check is viewport is mobile screen, then include task-compact-widget
-      if ($(window).width() < 641) {
-        // Always show 3 processes for user/application favorites
+      // Check if viewport is mobile screen
+      if ($(window).width() <= mobileViewPort) {
+        // Always show max 7 processes for user/application favorites on mobile screen
         availableHeight = this.getHeightOfProcessStartItem() * 7;
       }
 
@@ -341,8 +342,7 @@ var FavouritesProcess = {
         }
       }
 
-      if (isResize && !isContentOverPanelContainer
-          || !isContentOverPanelContainer) {
+      if (!isContentOverPanelContainer) {
         maxHeightUserProcessList = userFavoritesHeight;
         maxHeightAppProcessList = appFavoritesHeight;
         if (userFavoritesHeight + appFavoritesHeight === availableHeight) {
