@@ -17,13 +17,15 @@
     appendTo="@(body)"
     modal="true" responsive="true" fitViewport="true"
     styleClass="workflow-events-dialog">
+    <p:ajax event="close" update="workflow-events-dialog" />
+
     <p:dataTable id="events-table" widgetVar="events-table" var="event" value="#{data.workflowEvents}"
       sortBy="#{event.timestamp}" sortOrder="DESCENDING"
       emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
       scrollHeight="300"
       reflow="true">
 
-      <p:column sortBy="#{event.displayName}" filterBy="#{event.displayName}" filterMatchMode="contains">
+      <p:column width="350" sortBy="#{event.displayName}" filterBy="#{event.displayName}" filterMatchMode="contains">
         <f:facet name="header">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/eventType')}" />
         </f:facet>
@@ -37,17 +39,18 @@
         <h:outputText value="#{event.content}" styleClass="case-task-note-histories" />
       </p:column>
 
-      <p:column width="120" sortBy="#{event.taskState}" filterBy="#{event.taskState}" filterMatchMode="contains"
+      <c:set var="taskState" value="#{taskBean.getTranslatedState(event.taskState)}" />
+      <p:column width="200" sortBy="#{taskState}" filterBy="#{event.taskState}" filterMatchMode="contains"
         styleClass="note-history-fullname-column">
         <f:facet name="header">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
         </f:facet>
         <h:panelGroup styleClass="state-cell default-task-cell">
-          <h:outputText value="#{taskBean.getTranslatedState(event.taskState)}" styleClass="task-detail-state" />
+          <h:outputText value="#{taskState}" styleClass="task-detail-state" />
         </h:panelGroup>
       </p:column>
 
-      <p:column width="150" sortBy="#{event.involvedUsername}" filterBy="#{event.involvedUsername}"
+      <p:column width="200" sortBy="#{event.involvedUsername}" filterBy="#{event.involvedUsername}"
         filterMatchMode="contains" styleClass="note-history-fullname-column">
         <f:facet name="header">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}" />
