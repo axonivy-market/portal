@@ -69,10 +69,10 @@ function resizeIFrame() {
 }
 
 function updateContentContainerClass() {
-  if ($('.task-name-vertical-process-chain').length > 0) {
-    $('.task-frame-container').addClass('vertical-process-chain');
+  if ($('.js-task-name-vertical-process-chain').length > 0) {
+    $('.js-task-frame-container').addClass('vertical-process-chain');
     if ($('.vertical-chain-shape-line').length > 0) {
-      $('.task-frame-container').addClass('vertical-chain-shape-line');
+      $('.js-task-frame-container').addClass('vertical-chain-shape-line');
     }
   }
   if (!window.announcementInvisible) {
