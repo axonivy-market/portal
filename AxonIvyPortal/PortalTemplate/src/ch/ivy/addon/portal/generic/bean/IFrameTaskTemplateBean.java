@@ -52,14 +52,12 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private boolean isHideCaseInfo = true;
   private boolean isWorkingOnATask = true;
   
-  private PortalNavigator navigator = new PortalNavigator();
-
   public void navigateToEndPage() {
     Map<String, String> requestParamMap = getRequestParameterMap();
     String taskId = requestParamMap.get(TASK_ID_PARAM);
     
     if (StringUtils.isNotBlank(taskId)) {
-      navigator.navigateToPortalEndPage(Long.parseLong(taskId));
+      PortalNavigator.navigateToPortalEndPage(Long.parseLong(taskId));
     }
   }
   

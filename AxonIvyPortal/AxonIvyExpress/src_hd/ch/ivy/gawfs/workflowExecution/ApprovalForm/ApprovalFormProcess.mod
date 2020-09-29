@@ -1,5 +1,5 @@
 [Ivy]
-162F55163FD8DF16 7.5.0 #module
+162F55163FD8DF16 9.2.0 #module
 >Proto >Proto Collection #zClass
 As0 ApprovalFormProcess Big #zClass
 As0 RD #cInfo
@@ -183,9 +183,7 @@ As0 f17 actionTable 'out=in;
 As0 f17 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 TaskUtils.resetTask(ivy.task);
-
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalEndPage();' #txt
+PortalNavigator.navigateToPortalEndPage();' #txt
 As0 f17 security system #txt
 As0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

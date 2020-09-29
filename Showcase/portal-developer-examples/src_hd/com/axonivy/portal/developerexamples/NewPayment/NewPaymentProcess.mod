@@ -1,5 +1,5 @@
 [Ivy]
-172FF89736CD0826 7.5.0 #module
+172FF89736CD0826 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ns0 NewPaymentProcess Big #zClass
 Ns0 RD #cInfo
@@ -68,8 +68,7 @@ Ns0 f7 @|UdProcessEndIcon #fIcon
 Ns0 f9 actionTable 'out=in;
 ' #txt
 Ns0 f9 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalEndPage();
+PortalNavigator.navigateToPortalEndPage();
 ' #txt
 Ns0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

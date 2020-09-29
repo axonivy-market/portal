@@ -1,5 +1,5 @@
 [Ivy]
-16A7BB5465796F04 7.5.0 #module
+16A7BB5465796F04 9.2.0 #module
 >Proto >Proto Collection #zClass
 Gs0 GlobalGrowlProcess Big #zClass
 Gs0 RD #cInfo
@@ -88,8 +88,7 @@ Gs0 f5 360 160 403 160 #arcP
 Gs0 f11 actionTable 'out=in;
 ' #txt
 Gs0 f11 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalEndPage();
+PortalNavigator.navigateToPortalEndPage();
 ' #txt
 Gs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

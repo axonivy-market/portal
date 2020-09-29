@@ -1,5 +1,5 @@
 [Ivy]
-1574EBDBE9576CED 7.5.0 #module
+1574EBDBE9576CED 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ds0 FormDefinitionProcess Big #zClass
 Ds0 RD #cInfo
@@ -726,9 +726,7 @@ Ds0 f69 actionTable 'out=in;
 Ds0 f69 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 TaskUtils.resetTask(ivy.task);
-
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalEndPage();' #txt
+PortalNavigator.navigateToPortalEndPage();' #txt
 Ds0 f69 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
