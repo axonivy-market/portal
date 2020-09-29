@@ -12,9 +12,9 @@ dailySummaryList java.util.List<ch.ivyteam.util.date.Weekday> #field
 dailySummaryList PERSISTENT #fieldModifier
 showTutorial Boolean #field
 showTutorial PERSISTENT #fieldModifier
-homepageSelected String #field
-homepageSelected PERSISTENT #fieldModifier
-homepageSelectionOptions java.util.List<String> #field
-homepageSelectionOptions PERSISTENT #fieldModifier
+selectedHomepage ch.addon.portal.generic.userprofile.Homepage #field
+selectedHomepage PERSISTENT #fieldModifier
+homepages java.util.List<ch.addon.portal.generic.userprofile.Homepage> #field
+homepages PERSISTENT #fieldModifier
 disableShowTutorial Boolean #field
 disableShowTutorial PERSISTENT #fieldModifier

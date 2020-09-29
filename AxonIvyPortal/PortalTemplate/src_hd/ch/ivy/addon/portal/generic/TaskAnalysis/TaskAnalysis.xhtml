@@ -8,7 +8,7 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="taskView" value="#{data.taskView}" />
-    <ui:param name="viewName" value="DASHBOARD" />
+    <ui:param name="viewName" value="STATISTICS" />
     <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskAnalysis')}</ui:define>
 

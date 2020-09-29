@@ -1,5 +1,5 @@
 [Ivy]
-1725F66D3F3CECB5 7.5.0 #module
+1725F66D3F3CECB5 9.2.0 #module
 >Proto >Proto Collection #zClass
 Us0 UserGuideProcess Big #zClass
 Us0 RD #cInfo
@@ -39,7 +39,8 @@ Us0 f1 339 51 26 26 0 12 #rect
 Us0 f1 @|UdProcessEndIcon #fIcon
 Us0 f3 actionTable 'out=in;
 ' #txt
-Us0 f3 actionCode 'import org.apache.commons.lang3.StringUtils;
+Us0 f3 actionCode 'import ch.ivy.addon.portalkit.constant.UserProperty;
+import org.apache.commons.lang3.StringUtils;
 import internaltest.UserForGuide;
 import ch.ivy.addon.portalkit.bo.Guide;
 import ch.ivyteam.ivy.security.IUser;
@@ -49,7 +50,7 @@ List<IUser> users = ivy.wf.getApplication().getSecurityContext().users().paged()
 for (IUser user : users) {
 	UserForGuide userForGuide = new UserForGuide();
 	userForGuide.setName(user.getName());
-	userForGuide.setGuidePropertyValue(user.getProperty("SHOW_GUIDE"));
+	userForGuide.setGuidePropertyValue(user.getProperty(UserProperty.SHOW_GUIDE));
 	userForGuide.setIsGuideShown(StringUtils.isNotBlank(userForGuide.getGuidePropertyValue()) ? Boolean.valueOf(userForGuide.getGuidePropertyValue()) : true);
 	in.users.add(userForGuide);
 }' #txt
@@ -73,7 +74,8 @@ Us0 f5 83 243 26 26 -59 17 #rect
 Us0 f5 @|UdMethodIcon #fIcon
 Us0 f6 actionTable 'out=in;
 ' #txt
-Us0 f6 actionCode 'import ch.ivy.addon.portalkit.bean.GuideBean;
+Us0 f6 actionCode 'import ch.ivy.addon.portalkit.constant.UserProperty;
+import ch.ivy.addon.portalkit.bean.GuideBean;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.bo.Guide;
@@ -83,7 +85,7 @@ if (user.equals(ivy.session.getSessionUser())) {
 	GuideBean guideBean =	ManagedBeans.get("guideBean") as GuideBean;
 	guideBean.setDontShowAgain(!in.user.isGuideShown);
 } else {
-	user.setProperty("SHOW_GUIDE", String.valueOf(in.user.isGuideShown));
+	user.setProperty(UserProperty.SHOW_GUIDE, String.valueOf(in.user.isGuideShown));
 }
 ' #txt
 Us0 f6 security system #txt

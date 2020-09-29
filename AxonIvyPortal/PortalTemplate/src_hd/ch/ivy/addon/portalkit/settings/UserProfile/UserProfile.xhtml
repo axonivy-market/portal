@@ -28,10 +28,8 @@
                 <div class="ui-g-12 u-no-padding-top">
                   <span class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/selectHomepage')}</span>
                   <div class="ui-g-6 ui-sm-12">
-                    <!-- Please update this code when start Homepage selection -->
-                    <p:selectOneMenu value="#{data.homepageSelected}" disabled="true">
-                      <f:selectItems value="#{data.homepageSelectionOptions}" var="homeSelect"
-                        itemValue="#{homeSelect}" itemLabel="#{homeSelect}" />
+                    <p:selectOneMenu id="homepage" value="#{data.selectedHomepage}" converter="pojoConverter">
+                      <f:selectItems value="#{data.homepages}" var="homepage" itemValue="#{homepage}" itemLabel="#{homepage.name}" />
                     </p:selectOneMenu>
                   </div>
                   <div class="ui-g-6 ui-sm-12">

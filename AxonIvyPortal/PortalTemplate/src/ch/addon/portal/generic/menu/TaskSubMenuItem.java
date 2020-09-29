@@ -9,6 +9,6 @@ public class TaskSubMenuItem extends SubMenuItem {
     this.icon = "icon ivyicon-task-list-edit";
     this.menuKind = MenuKind.TASK;
     this.label = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks");
-    this.link = new PortalNavigator().getSubMenuItemUrlOfCurrentApplication(MenuKind.TASK);
+    this.link = PortalNavigator.getSubMenuItemUrlOfCurrentApplication(MenuKind.TASK);
   }
 }

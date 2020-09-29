@@ -28,7 +28,6 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
-import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -42,7 +41,6 @@ import ch.ivyteam.ivy.workflow.TaskState;
 public class UserMenuBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  private static final String USER_PROFILE_FRIENDLY_REQUEST_PATH =  "Business Processes/UserProfile/UserProfile.ivp";
   public static final long TIME_BEFORE_LOST_SESSION = 3 * DateUtils.MILLIS_PER_MINUTE; // 3 minutes
   public static final String TASK_LEAVE_WARNING_COMPONENT = "task-leave-warning-component";
   private String targetPage = StringUtils.EMPTY;
@@ -123,11 +121,10 @@ public class UserMenuBean implements Serializable {
   }
 
   public String getHomePageURL() {
-    PortalNavigator navigator = new PortalNavigator();
     RegisteredApplicationService applicationService = new RegisteredApplicationService();
     // Special handle since this function is call in javascript: window.location = "${userMenuBean.getHomePageURL()}";
     if (CollectionUtils.isEmpty(applicationService.findAllIvyApplications())) {
-      return navigator.getPortalStartUrl();
+      return PortalNavigator.getPortalStartUrl();
     }
 
     String selectedApp = SecurityServiceUtils.getApplicationNameFromSession();
@@ -137,7 +134,7 @@ public class UserMenuBean implements Serializable {
       return SecurityServiceUtils.getDefaultPortalStartUrl();
     }
 
-    return Optional.ofNullable(navigator.getPortalStartUrl(selectedApp)).orElse(StringUtils.EMPTY);
+    return Optional.ofNullable(PortalNavigator.getPortalStartUrl(selectedApp)).orElse(StringUtils.EMPTY);
   }
 
   public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
@@ -202,7 +199,7 @@ public class UserMenuBean implements Serializable {
   }
   
   private String getUserProfileUrl() {
-    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), USER_PROFILE_FRIENDLY_REQUEST_PATH);
+    return PortalNavigator.buildUserProfileUrl();
   }
 
   private boolean isDefaultPortalApp() {
