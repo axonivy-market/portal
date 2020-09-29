@@ -1702,7 +1702,7 @@ Bk1 f54 272 144 32 32 0 16 #rect
 Bk1 f54 @|AlternativeIcon #fIcon
 Bk1 f43 512 160 552 160 #arcP
 Bk1 f6 expr in #txt
-Bk1 f6 outCond '!(in.#homepage is initialized) || in.homepage.#type == ch.addon.portal.generic.userprofile.HomepageType.DASHBOARD' #txt
+Bk1 f6 outCond '!(in.#homepage is initialized) || in.homepage.#type == ch.addon.portal.generic.userprofile.homepage.HomepageType.DASHBOARD' #txt
 Bk1 f6 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1733,7 +1733,7 @@ Bk1 g0 51 147 26 26 0 5 #rect
 Bk1 g0 @|MIGIcon #fIcon
 Bk1 f1 actionTable 'out=in;
 ' #txt
-Bk1 f1 actionCode 'import ch.addon.portal.generic.userprofile.HomepageUtils;
+Bk1 f1 actionCode 'import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 out.homepage = HomepageUtils.getHomepage();' #txt
 Bk1 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

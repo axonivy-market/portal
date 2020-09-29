@@ -373,9 +373,9 @@ Ct3 f2 processCall 'Functional Processes/LoadSubMenuItems:loadSubMenuItems()' #t
 Ct3 f2 requestActionDecl '<> param;' #txt
 Ct3 f2 responseMappingAction 'out=in;
 ' #txt
-Ct3 f2 responseActionCode 'import ch.addon.portal.generic.userprofile.HomepageType;
-import ch.addon.portal.generic.userprofile.Homepage;
-import ch.addon.portal.generic.userprofile.HomepageMapper;
+Ct3 f2 responseActionCode 'import ch.addon.portal.generic.userprofile.homepage.HomepageType;
+import ch.addon.portal.generic.userprofile.homepage.Homepage;
+import ch.addon.portal.generic.userprofile.homepage.HomepageMapper;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.addon.portal.generic.menu.SubMenuItem;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
