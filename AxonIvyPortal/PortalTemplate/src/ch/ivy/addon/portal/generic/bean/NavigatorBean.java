@@ -14,8 +14,7 @@ public class NavigatorBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
   public void navigateToCaseDetail(long caseId) {
-    PortalNavigator portalNavigator = new PortalNavigator();
-    portalNavigator.navigateToPortalCaseDetails(caseId);
+    PortalNavigator.navigateToPortalCaseDetails(caseId);
   }
   
   public String getProcessPage() {
@@ -31,6 +30,6 @@ public class NavigatorBean implements Serializable {
   }
   
   public String getStatisticPage() {
-    return MenuKind.DASHBOARD.toString();
+    return MenuKind.STATISTICS.toString();
   }
 }

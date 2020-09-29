@@ -9,6 +9,6 @@ public class ProcessSubMenuItem extends SubMenuItem {
     this.icon = "icon ivyicon-cog-double-2";
     this.menuKind = MenuKind.PROCESS;
     this.label = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/processes");
-    this.link = new PortalNavigator().getSubMenuItemUrlOfCurrentApplication(MenuKind.PROCESS);
+    this.link = PortalNavigator.getSubMenuItemUrlOfCurrentApplication(MenuKind.PROCESS);
   }
 }

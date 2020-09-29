@@ -1,5 +1,5 @@
 [Ivy]
-172546E1FDEB1FF7 7.5.0 #module
+172546E1FDEB1FF7 9.2.0 #module
 >Proto >Proto Collection #zClass
 Us0 UserProfileProcess Big #zClass
 Us0 RD #cInfo
@@ -53,11 +53,13 @@ Ct3 @TextInP .processKind .processKind #zField
 Ct3 @TextInP .xml .xml #zField
 Ct3 @TextInP .responsibility .responsibility #zField
 Ct3 @GridStep f11 '' #zField
-Ct3 @GridStep f23 '' #zField
-Ct3 @PushWFArc f9 '' #zField
 Ct3 @PushTrueWFInG-01 g0 '' #zField
 Ct3 @PushWFArc f0 '' #zField
 Ct3 @PushTrueWFOutG-01 g1 '' #zField
+Ct3 @CallSub f2 '' #zField
+Ct3 @PushWFArc f3 '' #zField
+Ct3 @GridStep f4 '' #zField
+Ct3 @PushWFArc f5 '' #zField
 Ct3 @PushWFArc f1 '' #zField
 >Proto Ct3 Ct0 Component #zField
 Ct2 @TextInP .type .type #zField
@@ -125,7 +127,7 @@ Us0 S20 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 S20 816 258 112 44 -34 -8 #rect
+Us0 S20 776 258 112 44 -34 -8 #rect
 Us0 S20 @|BIcon #fIcon
 Us0 S20 g0 -56 0 #fFoot
 Us0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -139,7 +141,7 @@ Us0 S10 192 258 112 44 -43 -8 #rect
 Us0 S10 @|BIcon #fIcon
 Us0 f1 211 51 26 26 0 12 #rect
 Us0 f1 @|UdProcessEndIcon #fIcon
-Us0 f8 1043 131 26 26 0 12 #rect
+Us0 f8 1003 131 26 26 0 12 #rect
 Us0 f8 @|UdProcessEndIcon #fIcon
 Us0 f10 actionTable 'out=in;
 ' #txt
@@ -161,7 +163,7 @@ Us0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 f10 808 122 128 44 -57 -8 #rect
+Us0 f10 768 122 128 44 -57 -8 #rect
 Us0 f10 @|StepIcon #fIcon
 Us0 f12 guid 17255599F044D2FD #txt
 Us0 f12 method initSettings() #txt
@@ -215,7 +217,7 @@ Us0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Us0 f39 376 122 112 44 -44 -8 #rect
 Us0 f39 @|CallSubIcon #fIcon
-Us0 f42 1043 267 26 26 0 12 #rect
+Us0 f42 1003 267 26 26 0 12 #rect
 Us0 f42 @|UdProcessEndIcon #fIcon
 Us0 f45 processCall 'Ivy Data Processes/EmailSettingService:saveEmailSetting(String,ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting)' #txt
 Us0 f45 requestActionDecl '<String username,ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting emailSetting> param;' #txt
@@ -274,8 +276,7 @@ Us0 f16 @|UdMethodIcon #fIcon
 Us0 f14 actionTable 'out=in;
 ' #txt
 Us0 f14 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator navigator = new ch.ivy.addon.portal.generic.navigation.PortalNavigator();
-navigator.navigateToPortalEndPage();' #txt
+PortalNavigator.navigateToPortalEndPage();' #txt
 Us0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -290,42 +291,47 @@ Us0 f22 352 392 483 392 #arcP
 Us0 f35 expr out #txt
 Us0 f35 109 280 192 280 #arcP
 Us0 f36 304 280 384 280 #arcP
-Us0 f18 928 280 1043 280 #arcP
-Us0 f20 928 280 1043 280 #arcP
+Us0 f18 888 280 1003 280 #arcP
+Us0 f20 888 280 1003 280 #arcP
 Us0 f28 actionTable 'out=in;
 ' #txt
-Us0 f28 actionCode 'import ch.ivy.addon.portalkit.bean.GuideBean;
+Us0 f28 actionCode 'import ch.ivy.addon.portal.generic.bean.HomepageBean;
+import ch.ivy.addon.portalkit.bean.GuideBean;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 
-// Update GuideBean
 GuideBean guideBean =	ManagedBeans.get("guideBean") as GuideBean;
 guideBean.setDontShowAgain(!in.showTutorial);
+
+HomepageBean homepageBean =	ManagedBeans.get("homepageBean") as HomepageBean;
+homepageBean.saveHomepage(in.selectedHomepage);
 
 ' #txt
 Us0 f28 security system #txt
 Us0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>update show user guide</name>
+        <name>update show user guide&#13;
+and selected homepage</name>
     </language>
 </elementInfo>
 ' #txt
-Us0 f28 568 258 144 44 -66 -8 #rect
+Us0 f28 560 258 160 44 -59 -16 #rect
 Us0 f28 @|StepIcon #fIcon
-Us0 f5 496 280 568 280 #arcP
-Us0 f6 712 280 816 280 #arcP
+Us0 f5 496 280 560 280 #arcP
+Us0 f6 720 280 776 280 #arcP
 Us0 f7 109 144 192 144 #arcP
 Us0 f13 304 144 376 144 #arcP
-Us0 f3 936 144 1043 144 #arcP
+Us0 f3 896 144 1003 144 #arcP
 Us0 f24 488 144 568 144 #arcP
-Us0 f25 680 144 808 144 #arcP
+Us0 f25 680 144 768 144 #arcP
 >Proto Us0 .type ch.ivy.addon.portalkit.settings.UserProfile.UserProfileData #txt
 >Proto Us0 .processKind HTML_DIALOG #txt
 >Proto Us0 -8 -8 16 16 16 26 #rect
 >Proto Us0 '' #fIcon
 Ct3 f11 actionTable 'out=in;
 ' #txt
-Ct3 f11 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
+Ct3 f11 actionCode 'import ch.ivy.addon.portalkit.constant.UserProperty;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.bo.Guide;
 
@@ -334,7 +340,7 @@ GlobalSettingService globalSettingService = new GlobalSettingService();
 in.disableShowTutorial = !Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_USER_GUIDE.toString()));
 
 // Get isShowGuide from IUser
-in.showTutorial = Boolean.valueOf(ivy.session.getSessionUser().getProperty(Guide.SHOW_GUIDE));' #txt
+in.showTutorial = Boolean.valueOf(ivy.session.getSessionUser().getProperty(UserProperty.SHOW_GUIDE));' #txt
 Ct3 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -344,21 +350,6 @@ Ct3 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ct3 f11 176 138 112 44 -41 -8 #rect
 Ct3 f11 @|StepIcon #fIcon
-Ct3 f23 actionTable 'out=in;
-' #txt
-Ct3 f23 actionCode '// Update this code when we start implementing Homepage selection
-in.homepageSelected = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/HomepageSelection/fullTaskList");
-in.homepageSelectionOptions.add(in.homepageSelected);' #txt
-Ct3 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Dummy homepage selection</name>
-    </language>
-</elementInfo>
-' #txt
-Ct3 f23 416 138 176 44 -79 -8 #rect
-Ct3 f23 @|StepIcon #fIcon
-Ct3 f9 288 160 416 160 #arcP
 Ct3 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -376,9 +367,62 @@ Ct3 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ct3 g1 755 147 26 26 0 5 #rect
+Ct3 g1 659 147 26 26 0 5 #rect
 Ct3 g1 @|MOGIcon #fIcon
-Ct3 f1 592 160 755 160 #arcP
+Ct3 f2 processCall 'Functional Processes/LoadSubMenuItems:loadSubMenuItems()' #txt
+Ct3 f2 requestActionDecl '<> param;' #txt
+Ct3 f2 responseMappingAction 'out=in;
+' #txt
+Ct3 f2 responseActionCode 'import ch.addon.portal.generic.userprofile.HomepageType;
+import ch.addon.portal.generic.userprofile.Homepage;
+import ch.addon.portal.generic.userprofile.HomepageMapper;
+import ch.ivy.addon.portalkit.enums.MenuKind;
+import ch.addon.portal.generic.menu.SubMenuItem;
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+
+out.homepages.clear();
+Homepage dashboard = new Homepage();
+dashboard.name = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard");
+dashboard.link = PortalNavigator.getPortalStartUrl();
+dashboard.type = HomepageType.DASHBOARD;
+out.homepages.add(dashboard);
+
+for (SubMenuItem item : result.subMenuItems) {
+	if (item.getMenuKind() != MenuKind.EXTERNAL_LINK) {
+		out.homepages.add(HomepageMapper.toHomepage(item));
+	}
+}' #txt
+Ct3 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>LoadSubMenuItems</name>
+    </language>
+</elementInfo>
+' #txt
+Ct3 f2 336 138 112 44 -51 -8 #rect
+Ct3 f2 @|CallSubIcon #fIcon
+Ct3 f3 288 160 336 160 #arcP
+Ct3 f4 actionTable 'out=in;
+' #txt
+Ct3 f4 actionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portal.generic.bean.HomepageBean;
+
+HomepageBean homepageBean =	ManagedBeans.get("homepageBean") as HomepageBean;
+out.selectedHomepage = homepageBean.readHomepage();' #txt
+Ct3 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Load selected&#13;
+homepage</name>
+    </language>
+</elementInfo>
+' #txt
+Ct3 f4 496 138 112 44 -36 -16 #rect
+Ct3 f4 @|StepIcon #fIcon
+Ct3 f5 448 160 496 160 #arcP
+Ct3 f5 0 0.48579321231254946 0 0 #arcLabel
+Ct3 f1 608 160 659 160 #arcP
+Ct3 f1 0 0.48579321231254946 0 0 #arcLabel
 >Proto Ct0 0 0 32 24 18 0 #rect
 >Proto Ct0 @|BIcon #fIcon
 Ct2 f11 processCall 'Ivy Data Processes/LanguageService:findUserLanguages(String)' #txt
@@ -622,13 +666,15 @@ Us0 f24 head S40 g0 #connect
 Us0 S40 g1 f25 tail #connect
 Us0 f25 head f10 mainIn #connect
 Us0 f39 mainOut f24 tail #connect
-Ct3 f11 mainOut f9 tail #connect
-Ct3 f9 head f23 mainIn #connect
 Ct3 g0 m f0 tail #connect
 Ct3 f0 head f11 mainIn #connect
+Ct3 f11 mainOut f3 tail #connect
+Ct3 f3 head f2 mainIn #connect
+Ct3 f2 mainOut f5 tail #connect
+Ct3 f5 head f4 mainIn #connect
+Ct3 f4 mainOut f1 tail #connect
 Ct3 f1 head g1 m #connect
-Ct3 f23 mainOut f1 tail #connect
-Ct3 0 0 864 464 0 #ivRect
+Ct3 0 0 776 320 0 #ivRect
 Ct2 f11 mainOut f25 tail #connect
 Ct2 f25 head f9 mainIn #connect
 Ct2 g0 m f0 tail #connect
