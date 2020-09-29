@@ -9,6 +9,6 @@ public class CaseSubMenuItem extends SubMenuItem {
     this.icon = "icon ivyicon-layout-bullets";
     this.menuKind = MenuKind.CASE;
     this.label = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/cases");
-    this.link = new PortalNavigator().getSubMenuItemUrlOfCurrentApplication(MenuKind.CASE);
+    this.link = PortalNavigator.getSubMenuItemUrlOfCurrentApplication(MenuKind.CASE);
   }
 }

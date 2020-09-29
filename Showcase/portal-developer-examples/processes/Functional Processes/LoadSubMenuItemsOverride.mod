@@ -1,5 +1,5 @@
 [Ivy]
-1657E6622F0C0122 7.5.0 #module
+1657E6622F0C0122 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ls0 LoadSubMenuItems Big #zClass
 Ls0 B #cInfo
@@ -41,7 +41,7 @@ Ls0 f3 actionCode 'import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.addon.portal.generic.menu.DashboardSubMenuItem;
+import ch.addon.portal.generic.menu.StatisticSubMenuItem;
 import ch.addon.portal.generic.menu.ProcessSubMenuItem;
 import ch.addon.portal.generic.menu.CaseSubMenuItem;
 import ch.addon.portal.generic.menu.TaskSubMenuItem;
@@ -62,14 +62,14 @@ if(PermissionUtils.checkAccessFullStatisticsListPermission()) {
 	String isHideStatisticStr = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET.toString());
 	boolean isHideStatistic = StringUtils.isNotBlank(isHideStatisticStr) ? Boolean.parseBoolean(isHideStatisticStr) : false;
 	if (!isHideStatistic) {
-  	in.subMenuItems.add(new DashboardSubMenuItem());
+  	in.subMenuItems.add(new StatisticSubMenuItem());
 	}
 }
 
 SubMenuItem google = new SubMenuItem();
 google.setIcon("icon ivyicon-bulb");
 google.setLabel("Google");
-google.setMenuKind(MenuKind.CUSTOM);
+google.setMenuKind(MenuKind.EXTERNAL_LINK);
 google.setLink("www.google.com");
 in.subMenuItems.add(google);' #txt
 Ls0 f3 security system #txt

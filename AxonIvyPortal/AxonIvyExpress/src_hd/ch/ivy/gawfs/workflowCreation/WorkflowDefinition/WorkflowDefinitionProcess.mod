@@ -1,5 +1,5 @@
 [Ivy]
-1576FA61C4EDC8B1 7.5.0 #module
+1576FA61C4EDC8B1 9.2.0 #module
 >Proto >Proto Collection #zClass
 Fs0 WorkflowDefinitionProcess Big #zClass
 Fs0 RD #cInfo
@@ -785,9 +785,7 @@ Fs0 f72 actionTable 'out=in;
 Fs0 f72 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 TaskUtils.resetTask(ivy.task);
-
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalEndPage();' #txt
+PortalNavigator.navigateToPortalEndPage();' #txt
 Fs0 f72 security system #txt
 Fs0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

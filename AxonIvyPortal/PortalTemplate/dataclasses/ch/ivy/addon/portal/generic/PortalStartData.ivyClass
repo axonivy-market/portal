@@ -21,3 +21,5 @@ caseName String #field
 keyword String #field
 keyword 'used in global search process' #fieldComment
 embedInIFrame Boolean #field
+homepage ch.addon.portal.generic.userprofile.Homepage #field
+homepage 'selected homepage of user' #fieldComment
