@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.enums;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
 import ch.ivy.addon.portalkit.document.DocumentExtensionConstants;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -36,7 +38,8 @@ public enum GlobalVariable {
   HIDE_CASE_DOCUMENT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseDocument"),
   SHOW_USER_GUIDE(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showUserGuide"),
   SHOW_GLOBAL_SEARCH(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showGlobalSearch"),
-  SHOW_BUTTON_ICON(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showButtonIcon");
+  SHOW_BUTTON_ICON(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showButtonIcon"),
+  DEFAULT_HOMEPAGE(GlobalVariableType.TEXT, StringUtils.EMPTY, "defaultHomepage");
   
   private GlobalVariableType type;
   private String defaultValue;

@@ -40,7 +40,6 @@ public class Homepage {
     }
     Homepage other = (Homepage) obj;
     EqualsBuilder builder = new EqualsBuilder();
-    builder.append(name, other.getName());
     builder.append(link, other.getLink());
     return builder.isEquals();
   }
@@ -48,7 +47,6 @@ public class Homepage {
   @Override
   public int hashCode() {
     HashCodeBuilder builder = new HashCodeBuilder();
-    builder.append(name);
     builder.append(link);
     return builder.toHashCode();
   }
