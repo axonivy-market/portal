@@ -6,18 +6,33 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.UserProperty;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class HomepageUtils {
 
   public static Homepage getHomepage() throws JsonMappingException, JsonProcessingException {
-    String homepageProperty = Ivy.session().getSessionUser().getProperty(UserProperty.HOMEPAGE);
-    if (StringUtils.isBlank(homepageProperty)) {
-      return null;
+    String homepageUrl = Ivy.session().getSessionUser().getProperty(UserProperty.HOMEPAGE);
+    if (StringUtils.isNotBlank(homepageUrl)) {
+      ObjectMapper mapper = new ObjectMapper();
+      return mapper.readValue(homepageUrl, Homepage.class);
     }
     
-    ObjectMapper mapper = new ObjectMapper();
-    return mapper.readValue(homepageProperty, Homepage.class);
+    homepageUrl = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DEFAULT_HOMEPAGE.toString());
+    return StringUtils.isNotBlank(homepageUrl) ? defaultHomepage(homepageUrl) : null;
+  }
+
+  private static Homepage defaultHomepage(String homepageUrl) {
+    Homepage homepage = new Homepage();
+    homepage.setLink(homepageUrl);
+    if (StringUtils.equals(homepageUrl, PortalNavigator.getPortalStartUrl())) {
+      homepage.setType(HomepageType.DASHBOARD);
+    } else {
+      homepage.setType(HomepageType.CUSTOM);
+    }
+    return homepage;
   }
 }
