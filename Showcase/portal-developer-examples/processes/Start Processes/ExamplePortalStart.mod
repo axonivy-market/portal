@@ -1,5 +1,5 @@
 [Ivy]
-164211E97C598DAA 7.5.0 #module
+164211E97C598DAA 9.2.0 #module
 >Proto >Proto Collection #zClass
 Pt0 ExamplePortalStart Big #zClass
 Pt0 B #cInfo
@@ -114,6 +114,11 @@ Pt0 @PushWFArc f20 '' #zField
 Pt0 @PushWFArc f23 '' #zField
 Pt0 @PushWFArc f24 '' #zField
 Pt0 @PushWFArc f77 '' #zField
+Pt0 @UserDialog f44 '' #zField
+Pt0 @StartRequest f38 '' #zField
+Pt0 @EndTask f45 '' #zField
+Pt0 @PushWFArc f46 '' #zField
+Pt0 @PushWFArc f54 '' #zField
 >Proto Pt0 Pt0 ExamplePortalStart #zField
 Bk0 @TextInP .type .type #zField
 Bk0 @TextInP .processKind .processKind #zField
@@ -1100,6 +1105,43 @@ Pt0 f23 0 0.7758746574460319 0 0 #arcLabel
 Pt0 f24 expr out #txt
 Pt0 f24 110 384 192 384 #arcP
 Pt0 f77 111 1248 192 1248 #arcP
+Pt0 f44 dialogId ch.ivy.addon.portalkit.settings.UserProfile #txt
+Pt0 f44 startMethod start() #txt
+Pt0 f44 requestActionDecl '<> param;' #txt
+Pt0 f44 responseMappingAction 'out=in;
+' #txt
+Pt0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>UserProfile</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f44 176 1610 112 44 -31 -8 #rect
+Pt0 f44 @|UserDialogIcon #fIcon
+Pt0 f38 outLink UserProfile.ivp #txt
+Pt0 f38 inParamDecl '<> param;' #txt
+Pt0 f38 requestEnabled true #txt
+Pt0 f38 triggerEnabled false #txt
+Pt0 f38 callSignature UserProfile() #txt
+Pt0 f38 caseData 'businessCase.attach=true
+customFields.STRING.embedInFrame="false"' #txt
+Pt0 f38 wfuser 1 #txt
+Pt0 f38 showInStartList 0 #txt
+Pt0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>UserProfile.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f38 @C|.responsibility Everybody #txt
+Pt0 f38 81 1617 30 30 -21 17 #rect
+Pt0 f38 @|StartRequestIcon #fIcon
+Pt0 f45 337 1617 30 30 0 15 #rect
+Pt0 f45 @|EndIcon #fIcon
+Pt0 f46 288 1632 337 1632 #arcP
+Pt0 f54 111 1632 176 1632 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1707,6 +1749,10 @@ Pt0 f83 mainOut f88 tail #connect
 Pt0 f88 head f86 mainIn #connect
 Pt0 f22 mainOut f43 tail #connect
 Pt0 f43 head f36 mainIn #connect
+Pt0 f38 mainOut f54 tail #connect
+Pt0 f54 head f44 mainIn #connect
+Pt0 f44 mainOut f46 tail #connect
+Pt0 f46 head f45 mainIn #connect
 Bk0 f17 mainOut f26 tail #connect
 Bk0 f26 head f23 mainIn #connect
 Bk0 f19 mainOut f39 tail #connect

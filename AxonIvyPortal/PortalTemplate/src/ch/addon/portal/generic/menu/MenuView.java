@@ -65,7 +65,6 @@ public class MenuView {
 
     RegisteredApplicationService applicationService = new RegisteredApplicationService();
     int numberOfIvyApplications = (int) applicationService.countIvyApplications(applications);
-    PortalNavigator portalNavigator = new PortalNavigator();
 
     for (Application application : applications) {
       Button menuItem = new Button();
@@ -75,7 +74,7 @@ public class MenuView {
         menuItem.getAttributes().put(THIRD_PARTY, true);
         menuItem.setHref(application.getLink());
       } else {
-        menuItem.setHref(portalNavigator.getPortalStartUrl(application.getName()));
+        menuItem.setHref(PortalNavigator.getPortalStartUrl(application.getName()));
       }
       menuItem.getAttributes().put(APP_NAME, application.getName());
       menuItem.setIcon("fa " + application.getMenuIcon());
@@ -93,7 +92,7 @@ public class MenuView {
       menuItem.setValue(Ivy.cms().co(DASHBOARD));
       menuItem.setIcon("icon ivyicon-house-chimney-2");
       if (numberOfIvyApplications == 0) {
-        menuItem.setHref(new PortalNavigator().getPortalStartUrl());
+        menuItem.setHref(PortalNavigator.getPortalStartUrl());
         menuItem.setStyleClass(ACTIVE_MENU);
         menuItems.add(0, menuItem);
       } else {
@@ -174,7 +173,7 @@ public class MenuView {
       case PROCESS:
         buildBreadCrumbForProcess();
         break;
-      case DASHBOARD:
+      case STATISTICS:
         buildBreadCrumbForStatistic();
         break;
       case TASK_DETAIL:
@@ -307,8 +306,8 @@ public class MenuView {
   }
 
   private DefaultMenuItem buildStatisticListMenuItem() {
-    DashboardSubMenuItem dashboardSubMenuItem = new DashboardSubMenuItem();
-    return buildMenuItemFromPortalSubMenuItem(dashboardSubMenuItem);
+    StatisticSubMenuItem statisticSubMenuItem = new StatisticSubMenuItem();
+    return buildMenuItemFromPortalSubMenuItem(statisticSubMenuItem);
   }
 
   private MenuItem buildTaskDetailsMenuItem(ITask userTask) {

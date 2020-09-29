@@ -1,5 +1,5 @@
 [Ivy]
-15FA4CC33E5D866A 7.5.0 #module
+15FA4CC33E5D866A 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ls0 LoadSubMenuItems Big #zClass
 Ls0 B #cInfo
@@ -42,7 +42,7 @@ import Boolean;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.addon.portal.generic.menu.DashboardSubMenuItem;
+import ch.addon.portal.generic.menu.StatisticSubMenuItem;
 import ch.addon.portal.generic.menu.ProcessSubMenuItem;
 import ch.addon.portal.generic.menu.CaseSubMenuItem;
 import ch.addon.portal.generic.menu.TaskSubMenuItem;
@@ -61,7 +61,7 @@ if(PermissionUtils.checkAccessFullStatisticsListPermission()) {
 	String isHideStatisticStr = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET.toString());
 	boolean isHideStatistic = StringUtils.isNotBlank(isHideStatisticStr) ? Boolean.parseBoolean(isHideStatisticStr) : false;
 	if (!isHideStatistic) {
-  	in.subMenuItems.add(new DashboardSubMenuItem());
+  	in.subMenuItems.add(new StatisticSubMenuItem());
 	}
 }' #txt
 Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -87,7 +87,7 @@ Remove  one of these lines:&#13;
 in.subMenuItems.add(new ProcessSubMenuItem());&#13;
 in.subMenuItems.add(new TaskSubMenuItem());&#13;
 in.subMenuItems.add(new CaseSubMenuItem());&#13;
-in.subMenuItems.add(new DashboardSubMenuItem());&#13;
+in.subMenuItems.add(new StatisticSubMenuItem());&#13;
 &#13;
 PERMISSION CHECK TO SEE SUB MENU ITEM&#13;
 In PermissionUtils we provide some methods to check permission to see sub menu item&#13;
@@ -100,7 +100,7 @@ In PermissionUtils we provide some methods to check permission to see sub menu i
 TO CREATE A SUB MENU ITEM:&#13;
 &#13;
 SubMenuItem subMenuItem = new SubMenuItem();&#13;
-subMenuItem.setMenuKind(MenuKind.CUSTOM);&#13;
+subMenuItem.setMenuKind(&lt;MenuKind.CUSTOM&gt; or &lt;MenuKind.EXTERNAL_LINK&gt;);&#13;
 subMenuItem.setIcon(&lt;SUB_MENU_ICON&gt;);&#13;
 subMenuItem.setLabel(&lt;SUB_MENU_LABEL&gt;);&#13;
 subMenuItem.setLink(&lt;SUB_MENU_LINK&gt;);&#13;
@@ -122,14 +122,14 @@ GlobalSettingService globalSettingService = new GlobalSettingService();&#13;
 String isHideStatisticStr = globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET.toString());&#13;
 boolean isHideStatistic = StringUtils.isNotBlank(isHideStatisticStr) ? Boolean.parseBoolean(isHideStatisticStr) : false;&#13;
 if (!isHideStatistic) {&#13;
-  in.subMenuItems.add(new DashboardSubMenuItem());&#13;
+  in.subMenuItems.add(new StatisticSubMenuItem());&#13;
 }</name>
     </language>
 </elementInfo>
 ' #txt
-Ls0 f5 280 50 688 684 -339 -336 #rect
+Ls0 f5 296 50 656 684 -323 -336 #rect
 Ls0 f5 @|IBIcon #fIcon
-Ls0 f6 280 392 96 270 #arcP
+Ls0 f6 296 392 96 270 #arcP
 Ls0 f6 0 0.27018937996533715 0 0 #arcLabel
 >Proto Ls0 .type ch.ivy.addon.portal.generic.LoadSubMenuItemsData #txt
 >Proto Ls0 .processKind CALLABLE_SUB #txt
