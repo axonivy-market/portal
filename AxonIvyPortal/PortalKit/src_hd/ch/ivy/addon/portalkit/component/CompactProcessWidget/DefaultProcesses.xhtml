@@ -32,7 +32,7 @@
       <ui:repeat varStatus="status" var="process" value="#{compactProcessWidgetBean.defaultUserProcesses}">
         <c:set var="isExternalProcess"
           value="#{!(fn:contains(process.link, '.ivp?') or fn:endsWith(process.link, '.ivp') or fn:endsWith(process.link, '.icm'))}" />
-        <h:form id="process-item-form" styleClass="process-start-list-item"
+        <h:form id="process-item-form" styleClass="process-start-list-item js-process-start-list-item"
           rendered="#{!compactProcessWidgetBean.editMode}">
           <ui:include src="ProcessItemLink.xhtml">
             <ui:param name="processLink" value="#{process.link}"></ui:param>
