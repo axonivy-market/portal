@@ -48,8 +48,8 @@ var Portal = {
       fullHeight = 'var(--vh, 1vh) * 100';
     }
 
-    var headerHeight = $('#portal-template-header').outerHeight();
-    var footerHeight = $('#portal-template-footer').outerHeight();
+    var headerHeight = $('.js-portal-template-header').outerHeight();
+    var footerHeight = $('.js-portal-template-footer').outerHeight();
     var headerFooterHeight = headerHeight + footerHeight;
     var layoutTopbarHeight = $('.layout-topbar').outerHeight();
     $('.js-position-topbar').height(layoutTopbarHeight);
