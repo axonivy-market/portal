@@ -15,7 +15,7 @@
 <cc:implementation>
   <h:outputScript library="js" name="process-widget.js" />
   <div class="ui-g">
-    <div id="#{cc.clientId}" class="widget process-widget ui-g-12">
+    <div id="#{cc.clientId}" class="widget process-widget js-process-widget ui-g-12">
       <!-- Process header -->
       <h:panelGroup layout="block" class="process-header js-process-header" rendered="#{!cc.attrs.hideHeader}">
 
@@ -93,7 +93,7 @@
 
 
         <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters().entrySet().toArray()}" var="character">
-          <p:commandLink value="#{character.value}" styleClass="process-nav-item js-process-starts-with-#{character.key}"
+          <p:commandLink value="#{character.value}" styleClass="process-nav-item js-process-nav-item js-process-starts-with-#{character.key}"
             onclick="jumpToProcessGroupByCharacter(event)" global="false" />
         </ui:repeat>
       </h:panelGroup>

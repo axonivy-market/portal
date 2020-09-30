@@ -331,7 +331,7 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public WebElement navigateToProcessIndex(String character) {
-    WebElement processIndex = findElementByCssSelector(".process-nav-item.js-process-starts-with-" + character);
+    WebElement processIndex = findElementByCssSelector(".js-process-nav-item.js-process-starts-with-" + character);
     processIndex.click();
     return processIndex;
   }

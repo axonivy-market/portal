@@ -21,7 +21,7 @@
   
         <h:panelGroup id="header-container" layout="block" styleClass="task-header-container js-task-header-container #{processChainDirection eq 'VERTICAL' ? '' : 'task-template-title-horizontal-container'}">
           <h:panelGroup id="task-template-title" layout="block" rendered="#{task ne null}"
-            styleClass="task-template-title #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
+            styleClass="task-template-title #{processChainDirection eq 'VERTICAL' ? 'task-name-vertical-process-chain js-task-name-vertical-process-chain' : ''} #{processChainShape eq 'LINE' ? 'vertical-chain-shape-line' : ''}">
             <ui:insert name="taskName">
               <ui:fragment rendered="#{!isHideTaskName}">
                 <span class="icon ivyicon-task-list-edit task-template-title-icon" />
