@@ -1,5 +1,5 @@
 [Ivy]
-15FFC669C88F7E0B 7.5.0 #module
+15FFC669C88F7E0B 9.2.0 #module
 >Proto >Proto Collection #zClass
 Cs0 ChartCreationWidgetProcess Big #zClass
 Cs0 RD #cInfo

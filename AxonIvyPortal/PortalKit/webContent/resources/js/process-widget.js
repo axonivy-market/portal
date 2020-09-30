@@ -33,8 +33,8 @@ function ProcessWidget() {
       }
       var announcementMessageContainer = $('.js-announcement-message');
       var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight() - globalSearchBottom;
-      var processHeaderHeight = $('#portal-template-header').outerHeight();
-      var footerHeight = $('#portal-template-footer').outerHeight();
+      var processHeaderHeight = $('.js-portal-template-header').outerHeight();
+      var footerHeight = $('.js-portal-template-footer').outerHeight();
       var availableHeight = mainScreenHeight - (announcementMessageContainer.outerHeight(true)||0)
                               - (processsHeader.outerHeight(true)||0) - (globalSearchInput.is(":visible") ? globalSearchInput.outerHeight(true) : 0)
                               - (globalSearchTabHeader.outerHeight(true)||0) - error
@@ -44,7 +44,7 @@ function ProcessWidget() {
         this.setupProcessNav(processStartListContainer, availableHeight, announcementMessageContainer);
       }
       processStartListContainer.on("scroll", function() {
-        $(".process-nav-item.selected").removeClass("selected");
+        $(".js-process-nav-item.selected").removeClass("selected");
       });
     },
 
@@ -55,7 +55,7 @@ function ProcessWidget() {
         return;
       }
 
-      var searchTab = $('.search-results-tabview');
+      var searchTab = $('.js-search-results-tabview');
       var marginRightProcessWidget = 0;
         // For search form tab
         if (searchTab.length > 0) {
@@ -70,7 +70,7 @@ function ProcessWidget() {
         } else {
           // For process list page
           var layoutContent = $('.layout-content');
-          var processWidget = $('.process-widget');
+          var processWidget = $('.js-process-widget');
           marginRightProcessWidget = extractRightOffsetOfElement(layoutContent) + extractRightOffsetOfElement(processWidget);
 
           var scrollBarWidth = this.detechScrollBarWidth();
@@ -80,7 +80,7 @@ function ProcessWidget() {
 
       processNav.css("height", (availableHeight  - excludeMarginBottom) + "px");
       
-      var processHeaderHeight = $('#portal-template-header').outerHeight();
+      var processHeaderHeight = $('.js-portal-template-header').outerHeight();
       var availableHeightProcessNavTop = (($('.js-process-header').outerHeight(true)||0) + ($('.layout-topbar').outerHeight(true)||0)
                                           + (announcementMessageContainer.outerHeight(true)||0) + excludeMarginBottom + processHeaderHeight);
       processNav.css("top", availableHeightProcessNavTop + "px");
@@ -101,7 +101,7 @@ function ProcessWidget() {
         return;
       }
 
-      $(".process-nav-item.selected").removeClass("selected");
+      $(".js-process-nav-item.selected").removeClass("selected");
       var processItems = $('.js-process-start-list-item');
       $(processItems).show();
       $.each(processItems, function(index) {
@@ -237,7 +237,7 @@ function expandOrCollapseAllCategories(shouldExpand) {
 
 function jumpToProcessGroupByCharacter(event) {
   var clickedCharacter = getClassNameStartsWith(event.target.className, prefixProcessStart).slice(prefixProcessStart.length);
-  $(".process-nav-item.selected").removeClass("selected");
+  $(".js-process-nav-item.selected").removeClass("selected");
   var selectedItem = document.getElementById(event.target.id);
   var processGroupSeleted = document.getElementsByClassName(prefixProcessGroup + clickedCharacter)[0];
   
@@ -277,8 +277,9 @@ function getElementsHaveClassName(displayedFieldSets, invert) {
   }, invert);
 }
 
-var compactProcessWidgetClass = '.compact-process-widget';
-var processStartItemClass = '.process-start-list-item';
+var compactProcessWidgetClass = '.js-compact-process-widget-panel';
+var processStartItemClass = '.js-process-start-list-item';
+var mobileViewPort = 640;
 
 var FavouritesProcess = {
 
@@ -293,9 +294,9 @@ var FavouritesProcess = {
 
     var availableHeight = this.calculateHeightForFavorites();
     
-    // Check is viewport is mobile screen, then include task-compact-widget
-    if ($(window).width() < 641) {
-      // Always show 3 processes for user/application favorites
+    // Check if viewport is mobile screen
+    if ($(window).width() <= mobileViewPort) {
+      // Always show max 7 processes for user/application favorites on mobile screen
       availableHeight = this.getHeightOfProcessStartItem() * 7;
     }
 
@@ -341,8 +342,7 @@ var FavouritesProcess = {
       }
     }
 
-    if (isResize && !isContentOverPanelContainer
-        || !isContentOverPanelContainer) {
+    if (!isContentOverPanelContainer) {
       maxHeightUserProcessList = userFavoritesHeight;
       maxHeightAppProcessList = appFavoritesHeight;
       if (userFavoritesHeight + appFavoritesHeight === availableHeight) {
@@ -351,7 +351,7 @@ var FavouritesProcess = {
     }
 
     userProcessList.css('margin-bottom', userFavoritesMarginBottom);
-    userProcessList.find('.compact-processes-container').css('height', maxHeightUserProcessList);
+    userProcessList.find('.js-compact-processes-container').css('height', maxHeightUserProcessList);
     appProcessList.find('.js-user-default-process-list-content').css('height', maxHeightAppProcessList);
   },
 
@@ -360,8 +360,8 @@ var FavouritesProcess = {
     var processHeaderHeight = $('.js-process-widget-header').outerHeight(true) || 0;
     var favoriteProcessHeaderHeight = $('.js-favorite-process-header').outerHeight(true) || 0;
     var appFavoritesProcessHeaderHeight = $('.js-user-default-process-list-header').outerHeight(true) || 0;
-    var headerComponentHeight = $('#portal-template-header').outerHeight(true) || 0;
-    var footerComponentHeight = $('#portal-template-footer').outerHeight(true) || 0;
+    var headerComponentHeight = $('.js-portal-template-header').outerHeight(true) || 0;
+    var footerComponentHeight = $('.js-portal-template-footer').outerHeight(true) || 0;
     var announcementMessageHeight = $('.js-announcement-message').outerHeight(true) || 0;
     var customizedContentHeight = $('.js-custom-widget-container').outerHeight(true) || 0;
     var paddingValues = parseInt($(compactProcessWidgetClass).css('padding-top'), 0) || 0;
@@ -372,8 +372,8 @@ var FavouritesProcess = {
   },
   
   getHeightOfUserFavorites : function(userProcessList) {
-    userProcessList.find('.compact-processes-container').css('height', '');
-    return userProcessList.find('.compact-processes-container').outerHeight(true) || 0;
+    userProcessList.find('.js-compact-processes-container').css('height', '');
+    return userProcessList.find('.js-compact-processes-container').outerHeight(true) || 0;
   },
   
   getHeightOfAppFavorites : function(appProcessList) {
