@@ -29,6 +29,7 @@ public final class PortalNavigator {
   private static final String PORTAL_RELATED_TASKS_OF_CASE = "Start Processes/PortalStart/RelatedTasksOfCasePage.ivp";
   private static final String PORTAL_TASK_DETAILS = "Start Processes/PortalStart/TaskDetailsPage.ivp";
   private static final String PORTAL_GLOBAL_SEARCH = "Start Processes/PortalStart/GlobalSearchPage.ivp";
+  private static final String PORTAL_USER_PROFILE =  "Business Processes/UserProfile/UserProfile.ivp";
 
   
   public String getPortalStartUrl() {
@@ -158,5 +159,9 @@ public final class PortalNavigator {
         Ivy.log().error(e);
       }
     }
+  }
+  
+  public void navigateToUserProfile() {
+    navigate(PORTAL_USER_PROFILE, new HashMap<>());
   }
 }
