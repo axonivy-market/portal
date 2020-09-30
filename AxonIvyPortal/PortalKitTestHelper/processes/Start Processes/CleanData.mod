@@ -1,5 +1,5 @@
 [Ivy]
-1511A66AF619A768 7.5.0 #module
+1511A66AF619A768 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ca0 CleanData Big #zClass
 Ca0 B #cInfo
@@ -414,7 +414,9 @@ Ca0 f35 51 547 26 26 14 0 #rect
 Ca0 f35 @|EndIcon #fIcon
 Ca0 f36 actionTable 'out=in;
 ' #txt
-Ca0 f36 actionCode 'import org.apache.commons.collections4.CollectionUtils;
+Ca0 f36 actionCode 'import ch.ivy.addon.portalkit.constant.UserProperty;
+import ch.ivyteam.ivy.security.IUser;
+import org.apache.commons.collections4.CollectionUtils;
 import ch.ivy.addon.portalkit.bo.ExternalLink;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.test.util.BusinessDataUtils;
@@ -445,7 +447,12 @@ if (CollectionUtils.isNotEmpty(privateExternalLinks)) {
   }
 }
 
-ExternalLinkService.getInstance().deleteAll(privateExternalLinks);' #txt
+ExternalLinkService.getInstance().deleteAll(privateExternalLinks);
+
+List<IUser> users = SecurityUtils.findAllUsers();
+for (IUser user : users) {
+	user.removeProperty(UserProperty.HOMEPAGE);
+}' #txt
 Ca0 f36 security system #txt
 Ca0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
