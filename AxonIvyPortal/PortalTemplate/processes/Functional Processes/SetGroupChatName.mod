@@ -1,5 +1,5 @@
 [Ivy]
-169B29B5A9636EE8 7.5.0 #module
+169B29B5A9636EE8 9.2.0 #module
 >Proto >Proto Collection #zClass
 Se0 SetGroupChatName Big #zClass
 Se0 B #cInfo
