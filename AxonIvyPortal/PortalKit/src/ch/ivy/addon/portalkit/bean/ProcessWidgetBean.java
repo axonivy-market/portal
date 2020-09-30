@@ -55,7 +55,7 @@ public class ProcessWidgetBean implements Serializable {
   @PostConstruct
   public void init() {
     processWidgetComponentId = Attrs.currentContext().getBuildInAttribute("clientId");
-    ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
+    ProcessStartCollector collector = new ProcessStartCollector();
     createExpressWorkflowProcessStart = collector.findExpressCreationProcess();
 
     portalProcesses = findProcesses();
@@ -113,7 +113,7 @@ public class ProcessWidgetBean implements Serializable {
 
   private List<Process> findExpressProcesses() {
     List<ExpressProcess> processes = new ArrayList<>();
-    ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.request().getApplication());
+    ProcessStartCollector processStartCollector = new ProcessStartCollector();
     String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
     if (StringUtils.isNotBlank(expressStartLink)) {
       List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessOrderByName();
@@ -140,7 +140,7 @@ public class ProcessWidgetBean implements Serializable {
   }
 
   public void editExpressWorkflow(ExpressProcess process) throws IOException {
-    ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
+    ProcessStartCollector collector = new ProcessStartCollector();
     String editLink = collector.findExpressWorkflowEditLink(process.getId());
     FacesContext.getCurrentInstance().getExternalContext().redirect(editLink);
   }

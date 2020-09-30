@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
 
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -12,8 +11,6 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class TaskCategorySearchCriteria {
 
-  private String involvedUsername;
-  private List<String> apps;
   private List<TaskState> includedStates;
   
   private TaskQuery customTaskQuery;
@@ -40,14 +37,6 @@ public class TaskCategorySearchCriteria {
     return stateFieldQuery;
   }
 
-  public List<String> getApps() {
-    return apps;
-  }
-
-  public void setApps(List<String> apps) {
-    this.apps = apps;
-  }
-
   public List<TaskState> getIncludedStates() {
     return includedStates;
   }
@@ -63,14 +52,6 @@ public class TaskCategorySearchCriteria {
     this.includedStates.addAll(includedStates);
   }
 
-  public String getInvolvedUsername() {
-    return involvedUsername;
-  }
-
-  public void setInvolvedUsername(String involvedUsername) {
-    this.involvedUsername = involvedUsername;
-  }
-
   public TaskQuery getCustomTaskQuery() {
     return customTaskQuery;
   }
@@ -82,13 +63,4 @@ public class TaskCategorySearchCriteria {
   public boolean hasIncludedStates() {
     return CollectionUtils.isNotEmpty(includedStates);
   }
-
-  public boolean hasApps() {
-    return CollectionUtils.isNotEmpty(apps);
-  }
-
-  public boolean hasInvolvedUsername() {
-    return StringUtils.isNotBlank(involvedUsername);
-  }
-  
 }

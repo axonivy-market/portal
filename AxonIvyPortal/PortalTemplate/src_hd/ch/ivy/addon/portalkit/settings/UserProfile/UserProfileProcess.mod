@@ -8,13 +8,10 @@ Ct3 Component Big #zClass
 Ct3 B #cInfo
 Ct2 Component Big #zClass
 Ct2 B #cInfo
-Ct1 Component Big #zClass
-Ct1 B #cInfo
 Ct0 Component Big #zClass
 Ct0 B #cInfo
 Us0 Ct3 S40 'Sub 4' #zField
 Us0 Ct2 S30 'Sub 3' #zField
-Us0 Ct1 S20 'Sub 2' #zField
 Us0 Ct0 S10 'Sub 1' #zField
 Us0 @TextInP .type .type #zField
 Us0 @TextInP .processKind .processKind #zField
@@ -22,7 +19,6 @@ Us0 @TextInP .xml .xml #zField
 Us0 @TextInP .responsibility .responsibility #zField
 Us0 @UdProcessEnd f1 '' #zField
 Us0 @UdProcessEnd f8 '' #zField
-Us0 @GridStep f10 '' #zField
 Us0 @UdMethod f12 '' #zField
 Us0 @UdMethod f19 '' #zField
 Us0 @CallSub f39 '' #zField
@@ -37,16 +33,13 @@ Us0 @PushWFArc f15 '' #zField
 Us0 @PushWFArc f22 '' #zField
 Us0 @PushWFArc f35 '' #zField
 Us0 @PushWFArc f36 '' #zField
-Us0 @PushWFArc f18 '' #zField
-Us0 @PushWFArc f20 '' #zField
 Us0 @GridStep f28 '' #zField
 Us0 @PushWFArc f5 '' #zField
-Us0 @PushWFArc f6 '' #zField
 Us0 @PushWFArc f7 '' #zField
 Us0 @PushWFArc f13 '' #zField
-Us0 @PushWFArc f3 '' #zField
 Us0 @PushWFArc f24 '' #zField
-Us0 @PushWFArc f25 '' #zField
+Us0 @PushWFArc f4 '' #zField
+Us0 @PushWFArc f3 '' #zField
 >Proto Us0 Us0 UserProfileProcess #zField
 Ct3 @TextInP .type .type #zField
 Ct3 @TextInP .processKind .processKind #zField
@@ -72,22 +65,6 @@ Ct2 @PushWFArc f0 '' #zField
 Ct2 @PushTrueWFOutG-01 g1 '' #zField
 Ct2 @PushWFArc f1 '' #zField
 >Proto Ct2 Ct1 Component #zField
-Ct1 @TextInP .type .type #zField
-Ct1 @TextInP .processKind .processKind #zField
-Ct1 @TextInP .xml .xml #zField
-Ct1 @TextInP .responsibility .responsibility #zField
-Ct1 @GridStep f5 '' #zField
-Ct1 @PushWFArc f7 '' #zField
-Ct1 @Alternative f37 '' #zField
-Ct1 @GridStep f32 '' #zField
-Ct1 @PushWFArc f47 '' #zField
-Ct1 @PushTrueWFInG-01 g0 '' #zField
-Ct1 @PushWFArc f0 '' #zField
-Ct1 @PushTrueWFOutG-01 g1 '' #zField
-Ct1 @PushWFArc f1 '' #zField
-Ct1 @PushTrueWFOutG-01 g2 '' #zField
-Ct1 @PushWFArc f2 '' #zField
->Proto Ct1 Ct2 Component #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
 Ct0 @TextInP .xml .xml #zField
@@ -118,16 +95,6 @@ Us0 S30 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Us0 S30 192 122 112 44 -37 -8 #rect
 Us0 S30 @|BIcon #fIcon
-Us0 S20 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language lang="en">
-        <name>Handle error</name>
-    </language>
-</elementInfo>
-' #txt
-Us0 S20 816 258 112 44 -34 -8 #rect
-Us0 S20 @|BIcon #fIcon
-Us0 S20 g0 -56 0 #fFoot
 Us0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -139,30 +106,8 @@ Us0 S10 192 258 112 44 -43 -8 #rect
 Us0 S10 @|BIcon #fIcon
 Us0 f1 211 51 26 26 0 12 #rect
 Us0 f1 @|UdProcessEndIcon #fIcon
-Us0 f8 1043 131 26 26 0 12 #rect
+Us0 f8 827 131 26 26 0 12 #rect
 Us0 f8 @|UdProcessEndIcon #fIcon
-Us0 f10 actionTable 'out=in;
-' #txt
-Us0 f10 actionCode 'import org.primefaces.PrimeFaces;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import ch.ivy.addon.portalkit.util.BeanUtils;
-
-BeanUtils.invokeBeanMethodViaMethodExpression("#{errorDisplayBean.displayErrors}", in.errors);
-
-boolean isEmailSettingsEmpty = !in.#emailSetting is initialized;
-if (isEmailSettingsEmpty) {
-	FacesContext.getCurrentInstance().addMessage("errors-message", new FacesMessage(FacesMessage.SEVERITY_WARN, null, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/emailSetting/noSettingMsg")));
-}' #txt
-Us0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Display errors if have</name>
-    </language>
-</elementInfo>
-' #txt
-Us0 f10 808 122 128 44 -57 -8 #rect
-Us0 f10 @|StepIcon #fIcon
 Us0 f12 guid 17255599F044D2FD #txt
 Us0 f12 method initSettings() #txt
 Us0 f12 inParameterDecl '<> param;' #txt
@@ -215,7 +160,7 @@ Us0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Us0 f39 376 122 112 44 -44 -8 #rect
 Us0 f39 @|CallSubIcon #fIcon
-Us0 f42 1043 267 26 26 0 12 #rect
+Us0 f42 843 267 26 26 0 12 #rect
 Us0 f42 @|UdProcessEndIcon #fIcon
 Us0 f45 processCall 'Ivy Data Processes/EmailSettingService:saveEmailSetting(String,ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting)' #txt
 Us0 f45 requestActionDecl '<String username,ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting emailSetting> param;' #txt
@@ -290,8 +235,6 @@ Us0 f22 352 392 483 392 #arcP
 Us0 f35 expr out #txt
 Us0 f35 109 280 192 280 #arcP
 Us0 f36 304 280 384 280 #arcP
-Us0 f18 928 280 1043 280 #arcP
-Us0 f20 928 280 1043 280 #arcP
 Us0 f28 actionTable 'out=in;
 ' #txt
 Us0 f28 actionCode 'import ch.ivy.addon.portalkit.bean.GuideBean;
@@ -313,12 +256,11 @@ Us0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Us0 f28 568 258 144 44 -66 -8 #rect
 Us0 f28 @|StepIcon #fIcon
 Us0 f5 496 280 568 280 #arcP
-Us0 f6 712 280 816 280 #arcP
 Us0 f7 109 144 192 144 #arcP
 Us0 f13 304 144 376 144 #arcP
-Us0 f3 936 144 1043 144 #arcP
 Us0 f24 488 144 568 144 #arcP
-Us0 f25 680 144 808 144 #arcP
+Us0 f4 680 144 827 144 #arcP
+Us0 f3 712 280 843 280 #arcP
 >Proto Us0 .type ch.ivy.addon.portalkit.settings.UserProfile.UserProfileData #txt
 >Proto Us0 .processKind HTML_DIALOG #txt
 >Proto Us0 -8 -8 16 16 16 26 #rect
@@ -441,100 +383,6 @@ Ct2 f1 expr out #txt
 Ct2 f1 400 160 467 160 #arcP
 >Proto Ct1 0 0 32 24 18 0 #rect
 >Proto Ct1 @|BIcon #fIcon
-Ct1 f5 actionTable 'out=in;
-' #txt
-Ct1 f5 actionCode 'import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
-import javax.faces.application.FacesMessage;
-import ch.ivy.addon.portal.generic.bean.UserMenuBean;
-
-
-FacesContext context = FacesContext.getCurrentInstance();
-
-Flash flash = context.getExternalContext().getFlash();
-FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/note"), ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/userProfile/saveUserSettingsSuccessfully"));
-context.addMessage("user-profile-message", message);
-flash.setRedirect(true);
-flash.setKeepMessages(true);
-
-UserMenuBean userMenuBean = context.getApplication().evaluateExpressionGet(context, "#{userMenuBean}", UserMenuBean.class) as UserMenuBean;
-userMenuBean.navigateToUserProfile();
-' #txt
-Ct1 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Show successful message</name>
-    </language>
-</elementInfo>
-' #txt
-Ct1 f5 440 198 160 44 -75 -8 #rect
-Ct1 f5 @|StepIcon #fIcon
-Ct1 f7 expr in #txt
-Ct1 f7 outCond in.errors.isEmpty() #txt
-Ct1 f7 280 220 440 220 #arcP
-Ct1 f7 0 0.43569339242613336 0 0 #arcLabel
-Ct1 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>successful?</name>
-    </language>
-</elementInfo>
-' #txt
-Ct1 f37 248 204 32 32 -28 -35 #rect
-Ct1 f37 @|AlternativeIcon #fIcon
-Ct1 f32 actionTable 'out=in;
-' #txt
-Ct1 f32 actionCode 'import ch.ivy.addon.portalkit.util.BeanUtils;
-
-BeanUtils.invokeBeanMethodViaMethodExpression("#{errorDisplayBean.displayErrors}", in.errors);' #txt
-Ct1 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Display errors if have</name>
-    </language>
-</elementInfo>
-' #txt
-Ct1 f32 440 290 128 44 -57 -8 #rect
-Ct1 f32 @|StepIcon #fIcon
-Ct1 f47 expr in #txt
-Ct1 f47 264 236 440 312 #arcP
-Ct1 f47 1 264 312 #addKink
-Ct1 f47 1 0.6505659106079889 0 0 #arcLabel
-Ct1 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language lang="en">
-        <name>in 1</name>
-    </language>
-</elementInfo>
-' #txt
-Ct1 g0 43 207 26 26 0 5 #rect
-Ct1 g0 @|MIGIcon #fIcon
-Ct1 f0 69 220 248 220 #arcP
-Ct1 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language lang="en">
-        <name>out 1</name>
-    </language>
-</elementInfo>
-' #txt
-Ct1 g1 747 299 26 26 0 5 #rect
-Ct1 g1 @|MOGIcon #fIcon
-Ct1 f1 expr out #txt
-Ct1 f1 568 312 747 312 #arcP
-Ct1 f1 0 0.4931506849315069 0 0 #arcLabel
-Ct1 g2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language lang="en">
-        <name>out 2</name>
-    </language>
-</elementInfo>
-' #txt
-Ct1 g2 755 207 26 26 0 5 #rect
-Ct1 g2 @|MOGIcon #fIcon
-Ct1 f2 600 220 755 220 #arcP
->Proto Ct2 0 0 32 24 18 0 #rect
->Proto Ct2 @|BIcon #fIcon
 Ct0 f31 expr out #txt
 Ct0 f31 248 160 288 160 #arcP
 Ct0 f18 processCall 'Ivy Data Processes/LanguageService:saveUserLanguage(String,ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage)' #txt
@@ -604,24 +452,18 @@ Us0 f35 head S10 g0 #connect
 Us0 S10 g1 f36 tail #connect
 Us0 f36 head f45 mainIn #connect
 Us0 f19 mainOut f35 tail #connect
-Us0 S20 g1 f18 tail #connect
-Us0 f18 head f42 mainIn #connect
-Us0 S20 g2 f20 tail #connect
-Us0 f20 head f42 mainIn #connect
 Us0 f45 mainOut f5 tail #connect
 Us0 f5 head f28 mainIn #connect
-Us0 f28 mainOut f6 tail #connect
-Us0 f6 head S20 g0 #connect
 Us0 f7 head S30 g0 #connect
 Us0 S30 g1 f13 tail #connect
 Us0 f13 head f39 mainIn #connect
 Us0 f12 mainOut f7 tail #connect
-Us0 f10 mainOut f3 tail #connect
-Us0 f3 head f8 mainIn #connect
 Us0 f24 head S40 g0 #connect
-Us0 S40 g1 f25 tail #connect
-Us0 f25 head f10 mainIn #connect
 Us0 f39 mainOut f24 tail #connect
+Us0 S40 g1 f4 tail #connect
+Us0 f4 head f8 mainIn #connect
+Us0 f28 mainOut f3 tail #connect
+Us0 f3 head f42 mainIn #connect
 Ct3 f11 mainOut f9 tail #connect
 Ct3 f9 head f23 mainIn #connect
 Ct3 g0 m f0 tail #connect
@@ -636,17 +478,6 @@ Ct2 f0 head f11 mainIn #connect
 Ct2 f1 head g1 m #connect
 Ct2 f9 mainOut f1 tail #connect
 Ct2 0 0 544 320 0 #ivRect
-Ct1 f47 head f32 mainIn #connect
-Ct1 f37 out f7 tail #connect
-Ct1 f7 head f5 mainIn #connect
-Ct1 f37 out f47 tail #connect
-Ct1 g0 m f0 tail #connect
-Ct1 f0 head f37 in #connect
-Ct1 f1 head g1 m #connect
-Ct1 f2 head g2 m #connect
-Ct1 f5 mainOut f2 tail #connect
-Ct1 f32 mainOut f1 tail #connect
-Ct1 0 0 840 472 0 #ivRect
 Ct0 f18 mainOut f31 tail #connect
 Ct0 f31 head f20 mainIn #connect
 Ct0 g0 m f0 tail #connect
