@@ -85,7 +85,7 @@
         
       <c:set var="showGlobalSearch" value="#{userMenuBean.isShowGlobalSearch}" />
         
-      <div id="portal-template-header">
+      <div id="portal-template-header" class="js-portal-template-header">
         <ic:ch.ivy.addon.portalkit.component.PageHeader />
       </div>
 
@@ -159,7 +159,7 @@
           clientSideTimeOut="#{userMenuBean.clientSideTimeout}" task="#{task}" />
       </div>
       
-      <div id="portal-template-footer">
+      <div id="portal-template-footer" class="js-portal-template-footer">
         <div id="portal-environment" class="js-portal-environment">
           <ic:ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo />
         </div>
