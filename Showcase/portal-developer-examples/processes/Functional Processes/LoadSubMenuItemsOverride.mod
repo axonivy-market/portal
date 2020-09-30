@@ -37,7 +37,8 @@ Ls0 f1 81 361 30 30 0 15 #rect
 Ls0 f1 @|EndSubIcon #fIcon
 Ls0 f3 actionTable 'out=in;
 ' #txt
-Ls0 f3 actionCode 'import org.apache.commons.lang3.StringUtils;
+Ls0 f3 actionCode 'import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -66,8 +67,19 @@ if(PermissionUtils.checkAccessFullStatisticsListPermission()) {
 	}
 }
 
+ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
+String userExampleGuideLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/UserExampleGuide/userExampleGuide.ivp");
+if (!StringUtils.isEmpty(userExampleGuideLink)){	
+	SubMenuItem userExampleGuide = new SubMenuItem();
+	userExampleGuide.setIcon("icon ivyicon-bulb");
+	userExampleGuide.setLabel("User example guide");
+	userExampleGuide.setMenuKind(MenuKind.CUSTOM);
+	userExampleGuide.setLink(userExampleGuideLink);
+	in.subMenuItems.add(userExampleGuide);
+}
+
 SubMenuItem google = new SubMenuItem();
-google.setIcon("icon ivyicon-bulb");
+google.setIcon("icon ivyicon-information-circle");
 google.setLabel("Google");
 google.setMenuKind(MenuKind.EXTERNAL_LINK);
 google.setLink("www.google.com");
