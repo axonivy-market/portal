@@ -577,7 +577,6 @@ param.count=in.count;
 Ts0 f19 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
 ' #txt
 Ts0 f19 responseMappingAction 'out=in;
-out.errors=result.errors;
 out.tasks=result.tasks;
 ' #txt
 Ts0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -619,7 +618,6 @@ Ts0 f7 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
 Ts0 f7 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
 ' #txt
 Ts0 f7 responseMappingAction 'out=in;
-out.errors=result.errors;
 out.totalTasks=result.totalTasks;
 ' #txt
 Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -644,7 +642,6 @@ Ts0 f21 requestMappingAction 'param.taskSearchCriteria=in.newTaskSearchCriteria;
 Ts0 f21 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
 ' #txt
 Ts0 f21 responseMappingAction 'out=in;
-out.errors=result.errors;
 out.numberOfNewTask=result.totalTasks;
 ' #txt
 Ts0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

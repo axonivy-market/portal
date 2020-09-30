@@ -8,11 +8,8 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.IPermission;
-import ch.ivyteam.ivy.security.IPermissionAccess;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.ISecurityDescriptor;
 import ch.ivyteam.ivy.security.ISecurityMember;
@@ -20,6 +17,7 @@ import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 public class PermissionUtils {
   private static final String ADMIN_ROLE = "AXONIVY_PORTAL_ADMIN";
@@ -29,60 +27,58 @@ public class PermissionUtils {
   /**
    * Check if current user has read all tasks permission
    * 
-   * @return True : has read all tasks permission, False : do not have this permission
+   * @return True : has read all tasks permission
    */
   public static boolean checkReadAllTasksPermission() {
-    return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
-        ch.ivyteam.ivy.security.IPermission.TASK_READ_ALL);
+    return Ivy.session().hasPermission(getSecurityDescriptor(), IPermission.TASK_READ_ALL);
+  }
+
+  private static ISecurityDescriptor getSecurityDescriptor() {
+    return Ivy.request().getApplication().getSecurityDescriptor();
   }
   
   /**
    * Check if current user has read all cases permission
    * 
-   * @return True : has read all cases permission, False : do not have this permission
+   * @return True : has read all cases permission
    */
   public static boolean checkReadAllCasesPermission() {
-    return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
-        ch.ivyteam.ivy.security.IPermission.CASE_READ_ALL);
+    return Ivy.session().hasPermission(getSecurityDescriptor(), IPermission.CASE_READ_ALL);
   }
 
   /**
    * Check if current user has task read own case tasks permission
    * 
-   * @return True : has task read own case tasks permission, False : do not have this permission
+   * @return True : has task read own case tasks permission
    */
   public static boolean checkTaskReadOwnCaseTasksPermission() {
-    return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
-        ch.ivyteam.ivy.security.IPermission.TASK_READ_OWN_CASE_TASKS);
+    return Ivy.session().hasPermission(getSecurityDescriptor(), IPermission.TASK_READ_OWN_CASE_TASKS);
   }
 
   /**
    * Check if current user has document write permission
    * 
-   * @return True : has document write permission, False : do not have this permission
+   * @return True : has document write permission
    */
   public static boolean checkDocumentWritePermission() {
-    return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
-        ch.ivyteam.ivy.security.IPermission.DOCUMENT_WRITE);
+    return Ivy.session().hasPermission(getSecurityDescriptor(), IPermission.DOCUMENT_WRITE);
   }
 
   /**
    * Check if current user has document of involved case write permission
    * 
-   * @return True : has task document of involved case write permission, False : do not have this permission
+   * @return True : has task document of involved case write permission
    */
   public static boolean checkDocumentOfInvolvedCaseWritePermission() {
-    return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
-        ch.ivyteam.ivy.security.IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
+    return Ivy.session().hasPermission(getSecurityDescriptor(), IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
   }
 
   /**
    * Check if current user has task destroy permission,
-   * @return True : has task destroy permission, False : do not have this permission
+   * @return True : has task destroy permission
    */
   public static boolean checkDestroyTaskPermission() {
-    return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
-        ch.ivyteam.ivy.security.IPermission.TASK_DESTROY);
+    return Ivy.session().hasPermission(getSecurityDescriptor(), IPermission.TASK_DESTROY);
   }
   
   /**
@@ -143,36 +139,20 @@ public class PermissionUtils {
    * Check if current user has portal permission
    * 
    * @param portalPermission
-   * @return true : portal permission is grated, otherwise false
+   * @return true : portal permission is granted
    */
   public static boolean hasPortalPermission(PortalPermission portalPermission) {
     IPermission iPermission = IPermissionRepository.instance().findByName(portalPermission.getValue());
     if (Objects.isNull(iPermission)) {
       return false;
     }
-    return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(), iPermission);
-  }
-
-  public static boolean hasPermission(IApplication application, String username, IPermission permission) {
-    IPermissionAccess permissionAccess = null;
-    try {
-      IUser user = application.getSecurityContext().users().find(username);
-      ISecurityDescriptor securityDescriptor = application.getSecurityDescriptor();
-      if (user != null) {
-        permissionAccess = securityDescriptor.getPermissionAccess(permission, user);
-        return permissionAccess.isGranted();
-      }
-    } catch (PersistencyException e) {
-      Ivy.log().error(e);
-      return false;
-    }
-    return false;
+    return Ivy.session().hasPermission(getSecurityDescriptor(), iPermission);
   }
 
   /**
    * Check if current user has permission to see full process list
    * 
-   * @return true if user has permission to see full process list, otherwise return false
+   * @return true if user has permission to see full process list
    */
   public static boolean checkAccessFullProcessListPermission() {
     return hasPortalPermission(PortalPermission.ACCESS_FULL_PROCESS_LIST);
@@ -181,7 +161,7 @@ public class PermissionUtils {
   /**
    * Check if current user has permission to see full task list
    * 
-   * @return true if current user has permission to see full task list, otherwise return false
+   * @return true if current user has permission to see full task list
    */
   public static boolean checkAccessFullTaskListPermission() {
     return hasPortalPermission(PortalPermission.ACCESS_FULL_TASK_LIST);
@@ -190,7 +170,7 @@ public class PermissionUtils {
   /**
    * Check if current user has permission to see full case list
    * 
-   * @return true if current user has permission to see full case list, otherwise return false
+   * @return true if current user has permission to see full case list
    */
   public static boolean checkAccessFullCaseListPermission() {
     return hasPortalPermission(PortalPermission.ACCESS_FULL_CASE_LIST);
@@ -199,7 +179,7 @@ public class PermissionUtils {
   /**
    * Check if current user has permission to see full statistic list
    * 
-   * @return true if current user has permission to see full statistic list, otherwise return false
+   * @return true if current user has permission to see full statistic list
    */
   public static boolean checkAccessFullStatisticsListPermission() {
     return hasPortalPermission(PortalPermission.ACCESS_FULL_STATISTICS_LIST);
@@ -208,7 +188,7 @@ public class PermissionUtils {
   /**
    * Check if current user has permission to create public external link
    * 
-   * @return true if current user has permission to create public external link, otherwise return false
+   * @return true if current user has permission to create public external link
    */
   public static boolean checkPublicLinkCreationPermission() {
     return hasPortalPermission(PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK);
@@ -230,12 +210,32 @@ public class PermissionUtils {
     return hasPortalPermission(PortalPermission.TASK_RESET_READY_FOR_JOIN);
   }
   
+  public static boolean hasPermission(IPermission permission) {
+    IWorkflowSession currentSession = Ivy.session();
+    return currentSession.hasPermission(getSecurityDescriptor(), permission);
+  }
+
+  public static boolean hasAllPermissions(IPermission permission, IPermission... permissions) {
+    boolean hasAllPermissions = hasPermission(permission);
+    for (IPermission perm : permissions) {
+      hasAllPermissions &= hasPermission(perm);
+    }
+    return hasAllPermissions;
+  }
+
+  public static boolean hasAtLeastOnePermission(IPermission permission, IPermission... permissions) {
+    boolean hasAtLeastOnePermission = hasPermission(permission);
+    for (IPermission perm : permissions) {
+      hasAtLeastOnePermission |= hasPermission(perm);
+    }
+    return hasAtLeastOnePermission;
+  }
+  
   /**
    * Check if current user has permission to see the WorkflowEvent of task
-   * @return rue if current user has permission.
+   * @return true if current user has permission.
    */
   public static boolean checkReadAllWorkflowEventPermission() {
-    return Ivy.session().hasPermission(Ivy.request().getApplication().getSecurityDescriptor(),
-        ch.ivyteam.ivy.security.IPermission.WORKFLOW_EVENT_READ_ALL);
+    return Ivy.session().hasPermission(getSecurityDescriptor(), IPermission.WORKFLOW_EVENT_READ_ALL);
   }
 }

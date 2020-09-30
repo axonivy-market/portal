@@ -8,8 +8,6 @@ histories List<ch.ivy.addon.portalkit.bo.History> #field
 histories PERSISTENT #fieldModifier
 noteContent String #field
 noteContent PERSISTENT #fieldModifier
-errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
-errors PERSISTENT #fieldModifier
 note ch.ivyteam.ivy.workflow.INote #field
 note PERSISTENT #fieldModifier
 taskSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria #field
