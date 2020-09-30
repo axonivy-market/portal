@@ -94,7 +94,7 @@ private static final long serialVersionUID = -5889375917550618261L;
       return new ArrayList<>();
     }
     
-    List<UserProcess> processes = userProcessService.findByUserId(userId);
+    List<UserProcess> processes = userProcessService.findByUserIdInCurrentApplication(userId);
     processes.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
     removeDeletedExpressWorkflowFromUserProcesses(processes);
     removeDeletedExternalLinkFromUserProcesses(processes);
@@ -158,7 +158,7 @@ private static final long serialVersionUID = -5889375917550618261L;
     }
     
     if (StringUtils.isNotBlank(userProcess.getWorkflowId())) {
-      ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.request().getApplication());
+      ProcessStartCollector processStartCollector = new ProcessStartCollector();
       String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
       if (StringUtils.isNotBlank(expressStartLink)) {
         FacesContext.getCurrentInstance().getExternalContext().redirect(expressStartLink + "?workflowID=" + userProcess.getWorkflowId());

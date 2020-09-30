@@ -30,24 +30,12 @@ public final class PortalNavigator {
   private static final String PORTAL_TASK_DETAILS = "Start Processes/PortalStart/TaskDetailsPage.ivp";
   private static final String PORTAL_GLOBAL_SEARCH = "Start Processes/PortalStart/GlobalSearchPage.ivp";
 
+  
   public String getPortalStartUrl() {
-    return getPortalStartUrl(null);
-  }
-  
-  public String getPortalStartUrl(String application) {
-    String homePage = getDefaultApplicationHomePage();
-    if (StringUtils.isBlank(application)) {
-      return homePage;
-    }
-    
-    return homePage.replaceFirst(Ivy.wf().getApplication().getName(), application);
-  }
-  
-  private String getDefaultApplicationHomePage() {
     return IvyExecutor.executeAsSystem(() ->
       Ivy.wf().getStandardProcessImplementation(StandardProcessType.DefaultApplicationHomePage).getLink().getRelative());
   }
-
+  
   public static void redirect(String url) {
     try {
       FacesContext.getCurrentInstance().getExternalContext().redirect(url);

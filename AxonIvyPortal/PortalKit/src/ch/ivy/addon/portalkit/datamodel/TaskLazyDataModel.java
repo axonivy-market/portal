@@ -28,7 +28,6 @@ import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.service.DummyTaskService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.service.TaskColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.taskfilter.DefaultTaskFilterContainer;
@@ -284,8 +283,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   protected void initializedDataModel(TaskSearchCriteria criteria) {
-    criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
-    setInvolvedApplications();
     data.clear();
     buildQueryToSearchCriteria();
     if (disableTaskCount) {
@@ -310,7 +307,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   protected void buildCriteria() {
     criteria = new TaskSearchCriteria();
-    criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
     criteria.setIncludedStates(new ArrayList<>(TaskSearchCriteria.STANDARD_STATES));
     criteria.setSortField(TaskSortField.ID.toString());
     criteria.setSortDescending(true);
@@ -358,6 +354,11 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     }
   }
 
+  /**
+   * No need since 9.2, always take login username
+   * @param involvedUsername
+   */
+  @Deprecated(forRemoval = true, since = "9.2")
   public void setInvolvedUsername(String involvedUsername) {
     criteria.setInvolvedUsername(involvedUsername);
   }
@@ -580,11 +581,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     TaskQuery taskQuery = buildTaskQuery();
     extendSort(taskQuery);
     criteria.setFinalTaskQuery(taskQuery);
-  }
-
-  protected void setInvolvedApplications() {
-    RegisteredApplicationService service = new RegisteredApplicationService();
-    criteria.setApps(service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName()));
   }
 
   protected void setValuesForStateFilter(TaskSearchCriteria criteria, TaskFilterContainer filterContainer) {

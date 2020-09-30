@@ -99,7 +99,7 @@ public class TaskUtils {
       @Override
       public Void call() {
         TaskQuery taskQuery = TaskQuery.create().where().customField().stringField(customFieldName).isNotNull();
-        ITask selectedTask =  Ivy.wf().getGlobalContext().getTaskQueryExecutor().getFirstResult(taskQuery);
+        ITask selectedTask =  Ivy.wf().getTaskQueryExecutor().getFirstResult(taskQuery);
         if (selectedTask != null) {
           ch.ivy.addon.portalkit.util.TaskUtils.destroyTaskById(selectedTask.getId());
           selectedTask.customFields().stringField(customFieldName).delete();

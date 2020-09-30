@@ -121,7 +121,7 @@ public class TaskActionBean {
     if (task == null || permission == null) {
       return false;
     }
-    return PermissionUtils.hasPermission(task.getApplication(), Ivy.session().getSessionUserName(), permission);
+    return PermissionUtils.hasPermission(permission);
   }
 
   public boolean canChangePriority(ITask task) {
