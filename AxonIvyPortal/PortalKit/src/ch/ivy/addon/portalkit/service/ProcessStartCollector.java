@@ -30,6 +30,14 @@ public class ProcessStartCollector {
       "Start Processes/GenericPredefinedWorkflowStart/GenericEditProcessStart.ivp";
   private static final String EXPRESS_BUSINESS_VIEW_REQUEST_PATH = "Start Processes/ExpressStart/startExpressBusinessView.ivp";
 
+  public ProcessStartCollector() {
+    this.application = Ivy.request().getApplication();
+  }
+  
+  @Deprecated(since = "9.2")
+  /**
+   * Use ProcessStartCollector() instead
+   */
   public ProcessStartCollector(IApplication application) {
     this.application = application;
   }
@@ -128,10 +136,6 @@ public class ProcessStartCollector {
 
   public String findExpressBusinessViewStartLink() {
     return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(application, EXPRESS_BUSINESS_VIEW_REQUEST_PATH);
-  }
-
-  public String findCreateExpressWorkflowStartLink() {
-    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(application, EXPRESS_CREATE_FRIENDLY_REQUEST_PATH);
   }
 
   public IProcessStart findExpressCreationProcess() {

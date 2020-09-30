@@ -1,6 +1,3 @@
 ProcessServiceData #class
 ch.ivyteam.wf.processes #namespace
-apps List<String> #field
-errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
 processes java.util.List<ch.ivyteam.ivy.workflow.start.IWebStartable> #field
-processSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.ProcessSearchCriteria #field

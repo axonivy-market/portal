@@ -4,8 +4,6 @@ count Integer #field
 count PERSISTENT #fieldModifier
 dataModel ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel #field
 dataModel PERSISTENT #fieldModifier
-errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
-errors PERSISTENT #fieldModifier
 startIndex Integer #field
 startIndex PERSISTENT #fieldModifier
 totalTasks Long #field

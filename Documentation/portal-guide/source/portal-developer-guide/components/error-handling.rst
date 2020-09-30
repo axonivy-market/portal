@@ -33,7 +33,7 @@ When an exception occurs, Portal will show an error notification with
 the exception type and message to end user. The exception details are
 available when user clicks on show details button.
 
-Stacktrace on error messages can be showed/hid depend on ivy system
+Stacktrace on error messages can be showed/hidden depend on ivy system
 property ``Errors.ShowDetailsToEndUser``.
 
 .. note:: 

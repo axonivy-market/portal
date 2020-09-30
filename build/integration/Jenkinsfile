@@ -28,7 +28,6 @@ pipeline {
     stage('build') {
       steps {
         script {
-          def utils = load 'build/common/utils.groovy'
           downloadPortalRelease()
 
           echo '====================Check out tag of Portal latest successful release===================='
@@ -51,7 +50,10 @@ pipeline {
 
           downloadPortalRelease()
 
-          utils.extractEngine(env.engineDir, params.engineDownloadURL)
+          echo '====================Extract engine===================='
+          bat '''
+            mvn clean compile -f AxonIvyPortal/PortalTest/pom.xml -Divy.engine.directory=%engineDir% %engineDownloadURL%
+          '''
 
           if (!params.skipReplacePortal) {
             echo '====================Replace Portal in engine===================='
@@ -76,11 +78,30 @@ pipeline {
           }
 
           node('master') {
-            utils.remoteDesktop()
+            echo '====================Close all remote desktop connections and setup new remote destop to Portal slave===================='
+            bat '''
+              taskkill -im mstsc.exe -F
+              exit 0
+            '''
+            configFileProvider(
+                [configFile(fileId: 'properties-config', variable: 'PROPERTIES_CONFIG')]) {
+                props = readProperties  file: "${env.PROPERTIES_CONFIG}"
+                //e.g. remoteDesktopCmd=D:/tools/remote-desktop-plus/rdp.exe /v:10.123.1.193 /domain:wawa.vn /u:wawa /p:W4w4@CH$ /w:2560 /h:1440 /noclose
+                bat "${props.remoteDesktopCmd}"
+            }
           }
 
-          utils.killUnnecessaryProcessesToRunTest()
-
+          echo '====================Close opening browsers===================='
+          bat '''
+            taskkill -im dwm.exe -F
+            taskkill -im Taskmgr.exe -F
+            taskkill -im procexp64.exe -F
+            taskkill -im IEDriverServer.exe -F
+            taskkill -im iexplore.exe -F
+            taskkill -im GeckoFireFoxDriver.exe -F
+            taskkill -im firefox.exe -F
+            exit 0
+          '''
 
           echo '====================Test Portal===================='
           bat """
@@ -88,7 +109,11 @@ pipeline {
           """
 
           node('master') {
-            utils.closeAllRemoteDesktopConnections()
+            echo '====================Close all remote desktop connections===================='
+            bat '''
+              taskkill -im mstsc.exe -F
+              exit 0
+            '''
           }
         }
       }

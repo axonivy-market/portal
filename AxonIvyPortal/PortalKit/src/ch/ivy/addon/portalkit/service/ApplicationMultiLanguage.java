@@ -17,7 +17,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class ApplicationMultiLanguage {
 
-  private static final String SUPPORTED_LANGUAGES_CMS_URI = "/PortalKit/AppInfo/SupportedLanguages";
+  private static final String SUPPORTED_LANGUAGES_CMS_URI = "/AppInfo/SupportedLanguages";
 
   private ApplicationMultiLanguage() {}
 

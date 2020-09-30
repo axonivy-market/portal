@@ -15,19 +15,15 @@ Fr0 @GridStep f3 '' #zField
 Fr0 @PushWFArc f4 '' #zField
 Fr0 @PushWFArc f2 '' #zField
 >Proto Fr0 Fr0 FindApplicationsByUser #zField
-Fr0 f0 inParamDecl '<String username> param;' #txt
-Fr0 f0 inParamTable 'out.username=param.username;
-' #txt
+Fr0 f0 inParamDecl '<> param;' #txt
 Fr0 f0 outParamDecl '<List<ch.ivy.addon.portalkit.persistence.domain.Application> applications> result;' #txt
 Fr0 f0 outParamTable 'result.applications=in.applications;
 ' #txt
-Fr0 f0 callSignature findApplicationsByUser(String) #txt
+Fr0 f0 callSignature findThirdPartyApplications() #txt
 Fr0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findApplicationsByUser(String)</name>
-        <nameStyle>30,5,7
-</nameStyle>
+        <name>findThirdPartyApplications()</name>
     </language>
 </elementInfo>
 ' #txt
@@ -40,7 +36,7 @@ Fr0 f3 actionTable 'out=in;
 Fr0 f3 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 
 RegisteredApplicationService service = new RegisteredApplicationService();
-in.applications = service.findApplicationByUser(in.username);' #txt
+in.applications = service.findAllThirdPartyApplication();' #txt
 Fr0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
