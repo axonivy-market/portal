@@ -39,6 +39,8 @@ Us0 @PushWFArc f7 '' #zField
 Us0 @PushWFArc f13 '' #zField
 Us0 @PushWFArc f24 '' #zField
 Us0 @PushWFArc f4 '' #zField
+Us0 @GridStep f6 '' #zField
+Us0 @PushWFArc f9 '' #zField
 Us0 @PushWFArc f3 '' #zField
 >Proto Us0 Us0 UserProfileProcess #zField
 Ct3 @TextInP .type .type #zField
@@ -134,23 +136,13 @@ Us0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Us0 f19 83 267 26 26 -16 20 #rect
 Us0 f19 @|UdMethodIcon #fIcon
-Us0 f39 processCall 'Ivy Data Processes/EmailSettingService:findEmailSetting(String)' #txt
-Us0 f39 requestActionDecl '<String username> param;' #txt
-Us0 f39 requestMappingAction 'param.username=ivy.session.getSessionUserName();
-' #txt
+Us0 f39 processCall 'Ivy Data Processes/EmailSettingService:findEmailSetting()' #txt
+Us0 f39 requestActionDecl '<> param;' #txt
 Us0 f39 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.EmailSetting.EmailSettingData out;
 ' #txt
 Us0 f39 responseMappingAction 'out=in;
 out.emailSetting=result.ivyEmailSetting;
 ' #txt
-Us0 f39 responseActionCode 'import java.util.ArrayList;
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
-import java.util.Objects;
-if (!out.#errors is initialized) {
-	out.errors = new ArrayList();
-}
-
-out.errors.addAll(result.errors);' #txt
 Us0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -160,22 +152,14 @@ Us0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Us0 f39 376 122 112 44 -44 -8 #rect
 Us0 f39 @|CallSubIcon #fIcon
-Us0 f42 843 267 26 26 0 12 #rect
+Us0 f42 995 267 26 26 0 12 #rect
 Us0 f42 @|UdProcessEndIcon #fIcon
-Us0 f45 processCall 'Ivy Data Processes/EmailSettingService:saveEmailSetting(String,ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting)' #txt
-Us0 f45 requestActionDecl '<String username,ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting emailSetting> param;' #txt
-Us0 f45 requestMappingAction 'param.username=ivy.session.getSessionUserName();
-param.emailSetting=in.emailSetting;
+Us0 f45 processCall 'Ivy Data Processes/EmailSettingService:saveEmailSetting(ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting)' #txt
+Us0 f45 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting emailSetting> param;' #txt
+Us0 f45 requestMappingAction 'param.emailSetting=in.emailSetting;
 ' #txt
 Us0 f45 responseMappingAction 'out=in;
 ' #txt
-Us0 f45 responseActionCode 'import java.util.ArrayList;
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
-import java.util.Objects;
-if (!out.#errors is initialized) {
-	out.errors = new ArrayList();
-}
-out.errors.addAll(result.errors);' #txt
 Us0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -219,7 +203,7 @@ Us0 f16 @|UdMethodIcon #fIcon
 Us0 f14 actionTable 'out=in;
 ' #txt
 Us0 f14 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator navigator = new ch.ivy.addon.portal.generic.navigation.PortalNavigator();
+PortalNavigator navigator = new PortalNavigator();
 navigator.navigateToPortalEndPage();' #txt
 Us0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -260,7 +244,22 @@ Us0 f7 109 144 192 144 #arcP
 Us0 f13 304 144 376 144 #arcP
 Us0 f24 488 144 568 144 #arcP
 Us0 f4 680 144 827 144 #arcP
-Us0 f3 712 280 843 280 #arcP
+Us0 f6 actionTable 'out=in;
+' #txt
+Us0 f6 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+PortalNavigator navigator = new PortalNavigator();
+navigator.navigateToUserProfile();' #txt
+Us0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Reload</name>
+    </language>
+</elementInfo>
+' #txt
+Us0 f6 808 258 112 44 -20 -8 #rect
+Us0 f6 @|StepIcon #fIcon
+Us0 f9 712 280 808 280 #arcP
+Us0 f3 920 280 995 280 #arcP
 >Proto Us0 .type ch.ivy.addon.portalkit.settings.UserProfile.UserProfileData #txt
 >Proto Us0 .processKind HTML_DIALOG #txt
 >Proto Us0 -8 -8 16 16 16 26 #rect
@@ -323,14 +322,11 @@ Ct3 g1 @|MOGIcon #fIcon
 Ct3 f1 592 160 755 160 #arcP
 >Proto Ct0 0 0 32 24 18 0 #rect
 >Proto Ct0 @|BIcon #fIcon
-Ct2 f11 processCall 'Ivy Data Processes/LanguageService:findUserLanguages(String)' #txt
-Ct2 f11 requestActionDecl '<String username> param;' #txt
-Ct2 f11 requestMappingAction 'param.username=ivy.session.getSessionUserName();
-' #txt
+Ct2 f11 processCall 'Ivy Data Processes/LanguageService:findUserLanguages()' #txt
+Ct2 f11 requestActionDecl '<> param;' #txt
 Ct2 f11 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData out;
 ' #txt
 Ct2 f11 responseMappingAction 'out=in;
-out.errors=result.errors;
 out.language=result.language;
 ' #txt
 Ct2 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -385,15 +381,13 @@ Ct2 f1 400 160 467 160 #arcP
 >Proto Ct1 @|BIcon #fIcon
 Ct0 f31 expr out #txt
 Ct0 f31 248 160 288 160 #arcP
-Ct0 f18 processCall 'Ivy Data Processes/LanguageService:saveUserLanguage(String,ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage)' #txt
-Ct0 f18 requestActionDecl '<String username,ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage language> param;' #txt
-Ct0 f18 requestMappingAction 'param.username=ivy.session.getSessionUserName();
-param.language=in.language;
+Ct0 f18 processCall 'Ivy Data Processes/LanguageService:saveUserLanguage(ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage)' #txt
+Ct0 f18 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage language> param;' #txt
+Ct0 f18 requestMappingAction 'param.language=in.language;
 ' #txt
 Ct0 f18 responseActionDecl 'ch.ivy.addon.portalkit.multiapp.settings.CentralLanguage.CentralLanguageData out;
 ' #txt
 Ct0 f18 responseMappingAction 'out=in;
-out.errors=result.errors;
 ' #txt
 Ct0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -462,7 +456,9 @@ Us0 f24 head S40 g0 #connect
 Us0 f39 mainOut f24 tail #connect
 Us0 S40 g1 f4 tail #connect
 Us0 f4 head f8 mainIn #connect
-Us0 f28 mainOut f3 tail #connect
+Us0 f28 mainOut f9 tail #connect
+Us0 f9 head f6 mainIn #connect
+Us0 f6 mainOut f3 tail #connect
 Us0 f3 head f42 mainIn #connect
 Ct3 f11 mainOut f9 tail #connect
 Ct3 f9 head f23 mainIn #connect
