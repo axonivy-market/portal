@@ -8,10 +8,10 @@ import org.openqa.selenium.WebElement;
 
 public class UserProfilePage extends TemplatePage {
   
-  private static String MAIL_NOTI_ON_TASK_ASSIGNMENT_SELECTOR = "div[id$=':mail-notification-on-task-assign']";
-  private static String FURTHER_EMAIL_FROM_APP_SELECTOR = "div[id$=':further-mails-from-application']";
-  private static String SELECTED_DAY_XPATH="//*[@id='my-profile-form:daily-summary']/div/div/div/div[2]";
-  private static String SHOW_TUTORIAL_XPATH = "//*[@id='my-profile-form:general-show-tutorial']/div[2]";
+  private static final String MAIL_NOTI_ON_TASK_ASSIGNMENT_SELECTOR = "div[id$=':mail-notification-on-task-assign']";
+  private static final String FURTHER_EMAIL_FROM_APP_SELECTOR = "div[id$=':further-mails-from-application']";
+  private static final String SELECTED_DAY_XPATH="//*[@id='my-profile-form:daily-summary']/div/div/div/div[2]";
+  private static final String SHOW_TUTORIAL_XPATH = "//*[@id='my-profile-form:general-show-tutorial']/div[2]";
   
   @Override
   protected String getLoadedLocator() {
@@ -114,4 +114,12 @@ public class UserProfilePage extends TemplatePage {
     }
   }
 
+  public void changeHomePageToCase() {
+    String homepageLabel = "my-profile-form:homepage_label";
+    click(By.id(homepageLabel));
+    String caseItemId = "my-profile-form:homepage_3";
+    waitForElementDisplayed(By.id(caseItemId), true);
+    click(By.id(caseItemId));
+    waitUntilTextToBePresentInElement(findElementById(homepageLabel), "Cases", getTimeOutForLocator());
+  }
 }
