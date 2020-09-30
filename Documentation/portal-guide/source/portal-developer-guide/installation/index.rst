@@ -116,10 +116,17 @@ In engine
 
 Migrate 9.1 to 9.2
 ------------------
+1. We remove implementation of Portal multiple applications. So that you need to adapt some points below:
+ 
+ - Adapt start process signature of ``PasswordService`` in ``ChangePassword.mod`` if you overrode this callable.
+ 
+ - If you are using ``ProcessStartCollector``, replace constructor ``ProcessStartCollector(application)`` with ``ProcessStartCollector()``.
 
-1. In PortalNavigatorInFrame.java, change the methods from non-static to static.
+ - If you have TaskLazyDataModel, CaseLazyDataModel customization, remove ``setInvolvedApplications()`` method, ``setInvolvedUsername`` in search criteria.
 
-2. CaseDetails component in PortalTemplate is removed.
+2. In PortalNavigatorInFrame.java, change the methods from non-static to static.
+
+3. CaseDetails component in PortalTemplate is removed.
 
 Migrate 8.x to 9.1
 ------------------

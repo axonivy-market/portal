@@ -14,12 +14,10 @@ import static ch.ivyteam.ivy.workflow.WorkflowPriority.NORMAL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -117,18 +115,9 @@ public class StatisticFilter implements Cloneable {
   @SuppressWarnings("unchecked")
   private List<IRole> findRolesByCallableProcess() {
     return IvyExecutor.executeAsSystem(() -> {
-      if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
-        List<IRole> roles =
-            SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE).withStartName("findRolesOverAllApplications")
-                .call(Ivy.session().getSessionUserName())
-                .get("roles", List.class);
-        return roles.stream()
-            .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(IRole::getName))), ArrayList::new));
-      }
-
       return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
           .withStartName("findRoles")
-          .call(Ivy.request().getApplication())
+          .call()
           .get("roles", List.class);
     });
   }

@@ -5,7 +5,7 @@ public class NumberUtils {
   private NumberUtils() {}
 
   /**
-   * Answers <code>true</code> iff the given number is 'not a number' (i.e., is a <code>Float</code> or
+   * Returns <code>true</code> if the given number is 'not a number' (i.e., is a <code>Float</code> or
    * <code>Double</code> containing one of the predefined constant values representing <code>NaN</code>).
    *
    * @param number
