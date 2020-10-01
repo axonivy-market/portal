@@ -1,7 +1,7 @@
 .. _customization-menu:
 
-Menu
-====
+Menu and default homepage in user profile
+=========================================
 
 .. _customization-menu-introduction:
 
@@ -9,7 +9,8 @@ Introduction
 ------------
 
 By default Portal main menu has 4 items: Processes, Tasks, Cases and
-Statistics. You can remove these items or add your own items.
+Statistics. You can remove these items or add your own items, it will effect to the homepage selection in user profile,
+the menu items, which are not external link, are shown in the homepage selection.
 
 |default-menu-items|
 
