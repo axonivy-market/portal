@@ -9,6 +9,7 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.support.UrlDetector;
 import ch.ivy.addon.portalkit.util.CaseUtils;
@@ -80,6 +81,7 @@ public class CaseBean implements Serializable {
     }
     String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(friendlyRequestPath);
     if (StringUtils.isNotEmpty(requestPath)) {
+      SecurityServiceUtils.removeSessionAttribute(SessionAttribute.NAVIGATE_TO_CASE_LIST.toString());
       TaskUtils.updateTaskStartedAttribute(false);
       UrlDetector urlDetector = new UrlDetector();
       String serverUrl = urlDetector.getBaseURL(FacesContext.getCurrentInstance());

@@ -17,3 +17,5 @@ portalPage 'Page opened Task Details' #fieldComment
 portalPage PERSISTENT #fieldModifier
 isHideTaskDocument Boolean #field
 isHideTaskDocument PERSISTENT #fieldModifier
+isNavigateToCaseList Boolean #field
+isNavigateToCaseList PERSISTENT #fieldModifier

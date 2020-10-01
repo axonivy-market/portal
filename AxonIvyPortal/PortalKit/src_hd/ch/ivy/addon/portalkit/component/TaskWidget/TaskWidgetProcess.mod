@@ -664,7 +664,6 @@ Ts0 f70 456 864 496 864 #arcP
 Ts0 f6 actionTable 'out=in;
 ' #txt
 Ts0 f6 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPage;
-import ch.ivy.addon.portalkit.enums.NavigationHistory;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;

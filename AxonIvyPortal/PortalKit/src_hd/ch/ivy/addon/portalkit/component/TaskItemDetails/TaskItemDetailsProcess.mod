@@ -13,7 +13,6 @@ Cs0 @TextInP .xml .xml #zField
 Cs0 @TextInP .responsibility .responsibility #zField
 Cs0 @UdInit f0 '' #zField
 Cs0 @UdProcessEnd f1 '' #zField
-Cs0 @PushWFArc f2 '' #zField
 Cs0 @UdMethod f6 '' #zField
 Cs0 @UdProcessEnd f7 '' #zField
 Cs0 @GridStep f8 '' #zField
@@ -59,6 +58,9 @@ Cs0 @UdProcessEnd f25 '' #zField
 Cs0 @GridStep f27 '' #zField
 Cs0 @PushWFArc f28 '' #zField
 Cs0 @PushWFArc f26 '' #zField
+Cs0 @GridStep f29 '' #zField
+Cs0 @PushWFArc f31 '' #zField
+Cs0 @PushWFArc f2 '' #zField
 >Proto Cs0 Cs0 TaskItemDetailsProcess #zField
 Cs0 f0 guid 16BBB5787F4A8092 #txt
 Cs0 f0 method start(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage) #txt
@@ -77,10 +79,8 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f0 83 51 26 26 -16 15 #rect
 Cs0 f0 @|UdInitIcon #fIcon
-Cs0 f1 211 51 26 26 0 12 #rect
+Cs0 f1 339 51 26 26 0 12 #rect
 Cs0 f1 @|UdProcessEndIcon #fIcon
-Cs0 f2 expr out #txt
-Cs0 f2 109 64 211 64 #arcP
 Cs0 f6 guid 16C0845B607C6BC7 #txt
 Cs0 f6 method keepOldNameValue(javax.faces.event.ValueChangeEvent) #txt
 Cs0 f6 inParameterDecl '<javax.faces.event.ValueChangeEvent valueChangeEvent> param;' #txt
@@ -215,9 +215,7 @@ Cs0 f66 424 554 112 44 -35 -8 #rect
 Cs0 f66 @|StepIcon #fIcon
 Cs0 f49 actionTable 'out=in;
 ' #txt
-Cs0 f49 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPage;
-import ch.ivy.addon.portalkit.enums.NavigationHistory;
-import ch.ivy.addon.portalkit.dto.TaskEndInfo;
+Cs0 f49 actionCode 'import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import javax.faces.context.FacesContext;
@@ -411,12 +409,28 @@ Cs0 f27 192 906 112 44 -34 -8 #rect
 Cs0 f27 @|StepIcon #fIcon
 Cs0 f28 109 928 192 928 #arcP
 Cs0 f26 304 928 371 928 #arcP
+Cs0 f29 actionTable 'out=in;
+' #txt
+Cs0 f29 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+
+in.isNavigateToCaseList = SecurityServiceUtils.getSessionAttribute(SessionAttribute.NAVIGATE_TO_CASE_LIST.toString()).toBoolean();' #txt
+Cs0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Get session attribute</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f29 160 42 128 44 -57 -8 #rect
+Cs0 f29 @|StepIcon #fIcon
+Cs0 f31 expr out #txt
+Cs0 f31 109 64 160 64 #arcP
+Cs0 f2 288 64 339 64 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.TaskItemDetails.TaskItemDetailsData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
 >Proto Cs0 '' #fIcon
-Cs0 f0 mainOut f2 tail #connect
-Cs0 f2 head f1 mainIn #connect
 Cs0 f6 mainOut f13 tail #connect
 Cs0 f13 head f7 mainIn #connect
 Cs0 f9 mainOut f11 tail #connect
@@ -457,3 +471,7 @@ Cs0 f24 mainOut f28 tail #connect
 Cs0 f28 head f27 mainIn #connect
 Cs0 f27 mainOut f26 tail #connect
 Cs0 f26 head f25 mainIn #connect
+Cs0 f0 mainOut f31 tail #connect
+Cs0 f31 head f29 mainIn #connect
+Cs0 f29 mainOut f2 tail #connect
+Cs0 f2 head f1 mainIn #connect

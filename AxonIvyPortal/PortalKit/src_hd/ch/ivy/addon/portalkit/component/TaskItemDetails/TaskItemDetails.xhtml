@@ -31,13 +31,14 @@
         </p:inplace>
       </h:panelGroup>
 
-      <p:commandLink id="back-to-previous-page" onclick="backToPrevPage(#{cc.attrs.isFromTaskList}, #{cc.attrs.isTaskStartedInDetails})" styleClass="task-details-back-btn">
+      <p:commandLink id="back-to-previous-page" onclick="backToPrevPage(#{cc.attrs.isFromTaskList}, #{cc.attrs.isTaskStartedInDetails}, #{data.isNavigateToCaseList})" styleClass="task-details-back-btn">
         <i class="fa fa-reply-all" />
         <p:spacer width="3px" />
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
       </p:commandLink>
       <p:remoteCommand name="backToTasksList" actionListener="#{taskActionBean.backToTaskList(task)}" process="@this" immediate="true" />
       <p:remoteCommand name="removeTaskAttributesInSession" actionListener="#{taskActionBean.removeTaskAttributesInSession()}" process="@this" immediate="true" />
+      <p:remoteCommand name="backToCasesList" actionListener="#{caseBean.backToCasesList()}" process="@this" immediate="true" />
     </h:form>
   </h:panelGroup>
 
@@ -136,8 +137,10 @@
     componentToUpdate="#{p:component('task-detail-general-container')} #{p:component('task-detail-note-container')} #{p:component('task-detail-data-description-container')}" />
 
   <script type="text/javascript">
-      function backToPrevPage(isFromTaskList, isTaskStartedInDetails) {
-        if (document.referrer &amp;&amp; (isFromTaskList || !isTaskStartedInDetails)) {
+      function backToPrevPage(isFromTaskList, isTaskStartedInDetails, isNavigateToCaseList) {
+        if (isNavigateToCaseList) {
+          backToCasesList();
+        } else if (document.referrer &amp;&amp; (isFromTaskList || !isTaskStartedInDetails)) {
           removeTaskAttributesInSession();
           window.history.back();
         } else {

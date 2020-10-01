@@ -38,22 +38,35 @@ Cs0 @PushWFArc f29 '' #zField
 Cs0 @SJArc f21 '' #zField
 Cs0 @CallSub f31 '' #zField
 Cs0 @UdEvent f30 '' #zField
-Cs0 @GridStep f11 '' #zField
-Cs0 @PushWFArc f16 '' #zField
-Cs0 @GridStep f33 '' #zField
-Cs0 @PushWFArc f34 '' #zField
-Cs0 @GridStep f35 '' #zField
-Cs0 @PushWFArc f27 '' #zField
-Cs0 @GridStep f37 '' #zField
-Cs0 @PushWFArc f24 '' #zField
-Cs0 @PushWFArc f32 '' #zField
-Cs0 @PushWFArc f2 '' #zField
 Cs0 @GridStep f39 '' #zField
-Cs0 @PushWFArc f40 '' #zField
-Cs0 @PushWFArc f36 '' #zField
 Cs0 @GridStep f41 '' #zField
+Cs0 @GridStep f45 '' #zField
+Cs0 @UdProcessEnd f46 '' #zField
+Cs0 @PushWFArc f48 '' #zField
+Cs0 @GridStep f2 '' #zField
+Cs0 @PushWFArc f52 '' #zField
+Cs0 @GridStep f53 '' #zField
+Cs0 @Alternative f58 '' #zField
+Cs0 @GridStep f32 '' #zField
+Cs0 @PushWFArc f34 '' #zField
+Cs0 @GridStep f40 '' #zField
 Cs0 @PushWFArc f42 '' #zField
-Cs0 @PushWFArc f38 '' #zField
+Cs0 @GridStep f47 '' #zField
+Cs0 @PushWFArc f65 '' #zField
+Cs0 @PushWFArc f27 '' #zField
+Cs0 @PushWFArc f64 '' #zField
+Cs0 @PushWFArc f24 '' #zField
+Cs0 @PushWFArc f36 '' #zField
+Cs0 @PushWFArc f43 '' #zField
+Cs0 @PushWFArc f16 '' #zField
+Cs0 @PushWFArc f11 '' #zField
+Cs0 @PushWFArc f33 '' #zField
+Cs0 @PushWFArc f35 '' #zField
+Cs0 @PushWFArc f37 '' #zField
+Cs0 @PushWFArc f44 '' #zField
+Cs0 @PushWFArc f50 '' #zField
+Cs0 @UdMethod f38 '' #zField
+Cs0 @PushWFArc f59 '' #zField
 >Proto Cs0 Cs0 CaseItemRelatedTaskProcess #zField
 Cs0 f0 guid 167E9A75EF3D0909 #txt
 Cs0 f0 method start() #txt
@@ -227,7 +240,7 @@ Cs0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f5 83 371 26 26 -47 15 #rect
+Cs0 f5 83 659 26 26 -47 15 #rect
 Cs0 f5 @|UdEventIcon #fIcon
 Cs0 f4 processCall 'Functional Processes/Navigator:viewTask(Long,ch.ivy.addon.portalkit.dto.GlobalCaseId,String)' #txt
 Cs0 f4 requestActionDecl '<Long taskId,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId,String caseName> param;' #txt
@@ -246,7 +259,7 @@ Cs0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f4 384 362 112 44 -50 -8 #rect
+Cs0 f4 936 650 112 44 -50 -8 #rect
 Cs0 f4 @|CallSubIcon #fIcon
 Cs0 f22 guid 1682B96F9503687C #txt
 Cs0 f22 actionTable 'out=in;
@@ -264,7 +277,7 @@ Cs0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f22 83 683 26 26 -47 15 #rect
+Cs0 f22 83 563 26 26 -47 15 #rect
 Cs0 f22 @|UdEventIcon #fIcon
 Cs0 f23 processCall 'Functional Processes/Navigator:viewCase(ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
 Cs0 f23 requestActionDecl '<ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
@@ -277,11 +290,11 @@ Cs0 f23 responseMappingAction 'out=in;
 Cs0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Navigate to case detail</name>
+        <name>Navigate to related cases</name>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f23 672 674 128 44 -61 -8 #rect
+Cs0 f23 936 554 144 44 -69 -8 #rect
 Cs0 f23 @|CallSubIcon #fIcon
 Cs0 f25 guid 1690E16A5D3AD46C #txt
 Cs0 f25 actionTable 'out=in;
@@ -299,7 +312,7 @@ Cs0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f25 83 579 26 26 -88 17 #rect
+Cs0 f25 83 467 26 26 -88 17 #rect
 Cs0 f25 @|UdEventIcon #fIcon
 Cs0 f26 processCall 'Functional Processes/Navigator:viewTechnicalCasesOfBusniessCase(String,ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
 Cs0 f26 requestActionDecl '<String businessCaseName,ch.ivy.addon.portalkit.dto.GlobalCaseId businessCaseId> param;' #txt
@@ -313,11 +326,11 @@ Cs0 f26 responseMappingAction 'out=in;
 Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Navigate to case detail</name>
+        <name>Navigate to technical case detail</name>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f26 672 570 128 44 -61 -8 #rect
+Cs0 f26 936 458 192 44 -88 -8 #rect
 Cs0 f26 @|CallSubIcon #fIcon
 Cs0 f28 processCall 'Ivy Data Processes/CaseService:countCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)' #txt
 Cs0 f28 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
@@ -359,7 +372,7 @@ Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f31 384 466 144 44 -66 -8 #rect
+Cs0 f31 936 362 144 44 -66 -8 #rect
 Cs0 f31 @|CallSubIcon #fIcon
 Cs0 f30 guid 16D8A8E9B8ABB666 #txt
 Cs0 f30 actionTable 'out=in;
@@ -377,145 +390,8 @@ Cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f30 83 475 26 26 -72 20 #rect
+Cs0 f30 83 371 26 26 -72 20 #rect
 Cs0 f30 @|UdEventIcon #fIcon
-Cs0 f11 actionTable 'out=in;
-' #txt
-Cs0 f11 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import javax.faces.context.Flash;
-import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
-
-if(in.isWorkingOnTask) {
-	String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
-	boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
-	if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
-		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		if (!flash.containsKey("overridePortalGrowl")) {
-			FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
-			FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-		}
-		flash.setRedirect(true);
-		flash.setKeepMessages(true);
-	}
-}' #txt
-Cs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Display message after&#13;
-finish or leave task</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f11 176 362 144 44 -54 -16 #rect
-Cs0 f11 @|StepIcon #fIcon
-Cs0 f16 320 384 384 384 #arcP
-Cs0 f33 actionTable 'out=in;
-' #txt
-Cs0 f33 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
-import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import javax.faces.context.Flash;
-import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
-
-if(in.isWorkingOnTask) {
-	String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
-	boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
-	if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
-		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		if (!flash.containsKey("overridePortalGrowl")) {
-			FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
-			FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-		}
-		flash.setRedirect(true);
-		flash.setKeepMessages(true);
-	}
-}
-
-TaskUtils.updateTaskStartedAttribute(false);' #txt
-Cs0 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Display message after&#13;
-finish or leave task</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f33 176 466 144 44 -54 -16 #rect
-Cs0 f33 @|StepIcon #fIcon
-Cs0 f34 320 488 384 488 #arcP
-Cs0 f35 actionTable 'out=in;
-' #txt
-Cs0 f35 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import javax.faces.context.Flash;
-import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
-
-if(in.isWorkingOnTask) {
-	String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
-	boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
-	if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
-		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		if (!flash.containsKey("overridePortalGrowl")) {
-			FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
-			FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-		}
-		flash.setRedirect(true);
-		flash.setKeepMessages(true);
-	}
-}' #txt
-Cs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Display message after&#13;
-finish or leave task</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f35 288 570 144 44 -54 -16 #rect
-Cs0 f35 @|StepIcon #fIcon
-Cs0 f27 109 592 288 592 #arcP
-Cs0 f37 actionTable 'out=in;
-' #txt
-Cs0 f37 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import javax.faces.context.Flash;
-import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
-
-if(in.isWorkingOnTask) {
-	String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
-	boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
-	if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
-		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		if (!flash.containsKey("overridePortalGrowl")) {
-			FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
-			FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-		}
-		flash.setRedirect(true);
-		flash.setKeepMessages(true);
-	}
-}' #txt
-Cs0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Display message after&#13;
-finish or leave task</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f37 288 674 144 44 -54 -16 #rect
-Cs0 f37 @|StepIcon #fIcon
-Cs0 f24 109 696 288 696 #arcP
-Cs0 f32 109 488 176 488 #arcP
-Cs0 f2 109 384 176 384 #arcP
 Cs0 f39 actionTable 'out=in;
 ' #txt
 Cs0 f39 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
@@ -531,10 +407,8 @@ from related list</name>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f39 488 570 128 44 -41 -16 #rect
+Cs0 f39 464 458 128 44 -41 -16 #rect
 Cs0 f39 @|StepIcon #fIcon
-Cs0 f40 432 592 488 592 #arcP
-Cs0 f36 616 592 672 592 #arcP
 Cs0 f41 actionTable 'out=in;
 ' #txt
 Cs0 f41 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -550,10 +424,158 @@ from related list</name>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f41 488 674 128 44 -41 -16 #rect
+Cs0 f41 464 554 128 44 -41 -16 #rect
 Cs0 f41 @|StepIcon #fIcon
-Cs0 f42 432 696 488 696 #arcP
-Cs0 f38 616 696 672 696 #arcP
+Cs0 f45 actionTable 'out=in;
+' #txt
+Cs0 f45 actionCode 'import org.primefaces.PrimeFaces;
+
+PrimeFaces.current().executeScript("PF(''leave-case-info-warning-dialog'').show()");' #txt
+Cs0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Show warning dialog</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f45 936 746 128 44 -57 -8 #rect
+Cs0 f45 @|StepIcon #fIcon
+Cs0 f46 1147 755 26 26 0 12 #rect
+Cs0 f46 @|UdProcessEndIcon #fIcon
+Cs0 f48 1064 768 1147 768 #arcP
+Cs0 f2 actionTable 'out=in;
+' #txt
+Cs0 f2 actionCode 'import ch.ivy.addon.portalkit.enums.CaseNavigationHistory;
+in.navigationHistory = CaseNavigationHistory.RELATED_TASKS;' #txt
+Cs0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>store navigate history</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f2 232 650 128 44 -58 -8 #rect
+Cs0 f2 @|StepIcon #fIcon
+Cs0 f52 109 672 232 672 #arcP
+Cs0 f53 actionTable 'out=in;
+' #txt
+Cs0 f53 actionCode 'import org.apache.commons.lang3.BooleanUtils;
+import ch.ivy.addon.portalkit.service.StickyTaskListService;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
+
+in.isWorkingOnTask = false;
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.NAVIGATE_TO_CASE_LIST.toString(), true);' #txt
+Cs0 f53 security system #txt
+Cs0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>reset isWorkingOnTask indicator</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f53 232 746 192 44 -89 -8 #rect
+Cs0 f53 @|StepIcon #fIcon
+Cs0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>is working on task?</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f58 728 560 32 32 -37 20 #rect
+Cs0 f58 @|AlternativeIcon #fIcon
+Cs0 f32 actionTable 'out=in;
+' #txt
+Cs0 f32 actionCode 'import ch.ivy.addon.portalkit.enums.CaseNavigationHistory;
+in.navigationHistory = CaseNavigationHistory.TASK_DETAILS;' #txt
+Cs0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>store navigate history</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f32 232 362 128 44 -58 -8 #rect
+Cs0 f32 @|StepIcon #fIcon
+Cs0 f34 109 384 232 384 #arcP
+Cs0 f40 actionTable 'out=in;
+' #txt
+Cs0 f40 actionCode 'import ch.ivy.addon.portalkit.enums.CaseNavigationHistory;
+in.navigationHistory = CaseNavigationHistory.TECHNICAL_CASE_DETAILS;' #txt
+Cs0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>store navigate history</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f40 232 458 128 44 -58 -8 #rect
+Cs0 f40 @|StepIcon #fIcon
+Cs0 f42 109 480 232 480 #arcP
+Cs0 f47 actionTable 'out=in;
+' #txt
+Cs0 f47 actionCode 'import ch.ivy.addon.portalkit.enums.CaseNavigationHistory;
+in.navigationHistory = CaseNavigationHistory.TECHNICAL_CASES;' #txt
+Cs0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>story navigate history</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f47 232 554 128 44 -57 -8 #rect
+Cs0 f47 @|StepIcon #fIcon
+Cs0 f65 109 576 232 576 #arcP
+Cs0 f27 360 576 464 576 #arcP
+Cs0 f64 360 480 464 480 #arcP
+Cs0 f24 592 480 738 566 #arcP
+Cs0 f24 1 680 480 #addKink
+Cs0 f24 1 8.89376781604952E-4 0 0 #arcLabel
+Cs0 f36 360 384 740 564 #arcP
+Cs0 f36 1 680 384 #addKink
+Cs0 f36 1 0.1197715437851424 0 0 #arcLabel
+Cs0 f43 360 672 738 586 #arcP
+Cs0 f43 1 680 672 #addKink
+Cs0 f43 1 0.2425665925194799 0 0 #arcLabel
+Cs0 f16 592 576 728 576 #arcP
+Cs0 f16 0 0.7095738145339603 0 0 #arcLabel
+Cs0 f11 424 768 740 588 #arcP
+Cs0 f11 1 680 768 #addKink
+Cs0 f11 0 0.7661907995468817 0 0 #arcLabel
+Cs0 f33 expr in #txt
+Cs0 f33 outCond in.isWorkingOnTask #txt
+Cs0 f33 749 587 936 768 #arcP
+Cs0 f33 1 840 768 #addKink
+Cs0 f35 expr in #txt
+Cs0 f35 outCond '!in.isWorkingOnTask && in.navigationHistory == ch.ivy.addon.portalkit.enums.CaseNavigationHistory.RELATED_TASKS' #txt
+Cs0 f35 752 584 936 672 #arcP
+Cs0 f35 1 840 672 #addKink
+Cs0 f37 expr in #txt
+Cs0 f37 outCond '!in.isWorkingOnTask && in.navigationHistory == ch.ivy.addon.portalkit.enums.CaseNavigationHistory.TASK_DETAILS' #txt
+Cs0 f37 749 565 936 384 #arcP
+Cs0 f37 1 840 384 #addKink
+Cs0 f44 expr in #txt
+Cs0 f44 outCond '!in.isWorkingOnTask && in.navigationHistory == ch.ivy.addon.portalkit.enums.CaseNavigationHistory.TECHNICAL_CASE_DETAILS' #txt
+Cs0 f44 752 568 936 480 #arcP
+Cs0 f44 1 840 480 #addKink
+Cs0 f50 expr in #txt
+Cs0 f50 outCond !in.isWorkingOnTask #txt
+Cs0 f50 760 576 936 576 #arcP
+Cs0 f38 guid 174DDD33CDAA46B2 #txt
+Cs0 f38 method leaveTask() #txt
+Cs0 f38 inParameterDecl '<> param;' #txt
+Cs0 f38 outParameterDecl '<> result;' #txt
+Cs0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>leaveTask()</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f38 83 755 26 26 -25 15 #rect
+Cs0 f38 @|UdMethodIcon #fIcon
+Cs0 f59 109 768 232 768 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -576,23 +598,39 @@ Cs0 f19 mainOut f29 tail #connect
 Cs0 f29 head f28 mainIn #connect
 Cs0 f28 mainOut f21 tail #connect
 Cs0 f21 head f9 in #connect
-Cs0 f5 mainOut f2 tail #connect
-Cs0 f2 head f11 mainIn #connect
-Cs0 f11 mainOut f16 tail #connect
-Cs0 f16 head f4 mainIn #connect
-Cs0 f30 mainOut f32 tail #connect
-Cs0 f32 head f33 mainIn #connect
-Cs0 f33 mainOut f34 tail #connect
-Cs0 f34 head f31 mainIn #connect
-Cs0 f25 mainOut f27 tail #connect
-Cs0 f27 head f35 mainIn #connect
-Cs0 f22 mainOut f24 tail #connect
-Cs0 f24 head f37 mainIn #connect
-Cs0 f35 mainOut f40 tail #connect
-Cs0 f40 head f39 mainIn #connect
-Cs0 f39 mainOut f36 tail #connect
-Cs0 f36 head f26 mainIn #connect
-Cs0 f37 mainOut f42 tail #connect
-Cs0 f42 head f41 mainIn #connect
-Cs0 f41 mainOut f38 tail #connect
-Cs0 f38 head f23 mainIn #connect
+Cs0 f45 mainOut f48 tail #connect
+Cs0 f48 head f46 mainIn #connect
+Cs0 f5 mainOut f52 tail #connect
+Cs0 f52 head f2 mainIn #connect
+Cs0 f30 mainOut f34 tail #connect
+Cs0 f34 head f32 mainIn #connect
+Cs0 f25 mainOut f42 tail #connect
+Cs0 f42 head f40 mainIn #connect
+Cs0 f22 mainOut f65 tail #connect
+Cs0 f65 head f47 mainIn #connect
+Cs0 f47 mainOut f27 tail #connect
+Cs0 f27 head f41 mainIn #connect
+Cs0 f40 mainOut f64 tail #connect
+Cs0 f64 head f39 mainIn #connect
+Cs0 f39 mainOut f24 tail #connect
+Cs0 f24 head f58 in #connect
+Cs0 f32 mainOut f36 tail #connect
+Cs0 f36 head f58 in #connect
+Cs0 f2 mainOut f43 tail #connect
+Cs0 f43 head f58 in #connect
+Cs0 f41 mainOut f16 tail #connect
+Cs0 f16 head f58 in #connect
+Cs0 f53 mainOut f11 tail #connect
+Cs0 f11 head f58 in #connect
+Cs0 f58 out f33 tail #connect
+Cs0 f33 head f45 mainIn #connect
+Cs0 f58 out f35 tail #connect
+Cs0 f35 head f4 mainIn #connect
+Cs0 f58 out f37 tail #connect
+Cs0 f37 head f31 mainIn #connect
+Cs0 f58 out f44 tail #connect
+Cs0 f44 head f26 mainIn #connect
+Cs0 f58 out f50 tail #connect
+Cs0 f50 head f23 mainIn #connect
+Cs0 f38 mainOut f59 tail #connect
+Cs0 f59 head f53 mainIn #connect
