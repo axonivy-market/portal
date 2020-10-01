@@ -1,5 +1,6 @@
 package ch.addon.portal.generic.menu;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -28,8 +29,9 @@ import ch.ivyteam.ivy.server.ServerFactory;
 
 @ManagedBean
 @ViewScoped
-public class MenuView {
+public class MenuView implements Serializable {
 
+  private static final long serialVersionUID = -3573569104295708900L;
   public final static String LOAD_SUB_MENU_PROCESS = "loadSubMenuItems()";
   public final static String SUB_MENU = "subMenuItems";
   public final static String THIRD_PARTY = "isThirdPartyApp";

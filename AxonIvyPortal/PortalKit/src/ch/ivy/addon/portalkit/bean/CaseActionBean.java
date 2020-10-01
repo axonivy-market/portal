@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
@@ -10,7 +12,9 @@ import ch.ivyteam.ivy.workflow.ICase;
 
 @ManagedBean
 @RequestScoped
-public class CaseActionBean {
+public class CaseActionBean implements Serializable {
+
+  private static final long serialVersionUID = 7468665222036995531L;
 
   public boolean canChangeName(ICase iCase) {
     return hasPermission(iCase, IPermission.CASE_WRITE_NAME);

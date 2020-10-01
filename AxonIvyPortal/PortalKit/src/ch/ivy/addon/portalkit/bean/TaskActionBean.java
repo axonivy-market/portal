@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.MalformedURLException;
 import java.util.Arrays;
 import java.util.EnumSet;
@@ -34,8 +35,9 @@ import ch.ivyteam.ivy.workflow.TaskState;
 
 @ManagedBean
 @ViewScoped
-public class TaskActionBean {
+public class TaskActionBean implements Serializable {
 
+  private static final long serialVersionUID = -7492204954515067995L;
   private boolean isShowResetTask;
   private boolean isShowReserveTask;
   private boolean isShowDelegateTask;
