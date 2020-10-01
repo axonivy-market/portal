@@ -23,7 +23,7 @@
           styleClass="ui-confirmdialog-yes u-mar-right-5" rendered="#{cc.attrs.taskState != 'CREATED'}" />
         <p:tooltip for="reserve-task-button" trackMouse="true" rendered="#{cc.attrs.taskState != 'CREATED'}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/leaveAndReserve')}" />
-        <p:commandButton onclick="PF('#{cc.attrs.widgetVar}').hide()"
+        <p:commandButton id="cancel-leave-task-button" onclick="PF('#{cc.attrs.widgetVar}').hide()"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
           styleClass="ui-confirmdialog-no portal-cancel-button" />
       </h:panelGroup>

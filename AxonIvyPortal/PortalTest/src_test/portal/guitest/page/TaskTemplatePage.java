@@ -13,9 +13,10 @@ public class TaskTemplatePage extends TemplatePage {
     return "id('content-container')";
   }
 
-  public void openCaseInfo() {
+  public CaseInformationPage openCaseInfo() {
     clickByCssSelector("#horizontal-case-info");
     waitForElementDisplayed(By.cssSelector("span[id$='case-info-dialog_title']"), true);
+    return new CaseInformationPage();
   }
 
   public boolean containsCaseDetails() {
