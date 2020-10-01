@@ -4713,12 +4713,6 @@ border-left: 0.14rem dashed;
 .card .description-content{
 height: 260px;	
 }
-.card-layout-content{
-position:absolute;
-top:4.5rem;	
-overflow-y:auto;
-height:95%;
-}
 .case-map-stage hr{
 clear: both;
 }
