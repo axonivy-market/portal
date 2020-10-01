@@ -94,6 +94,9 @@ Process developer can set up global settings of Portal in file ``portal_settings
       # Task/case detail document component setting
       #HIDE_TASK_DOCUMENT = false
       #HIDE_CASE_DOCUMENT = false
+      
+      # Don't input the DefaultApplicationHomePage.ivp process link if it is your default homepage.
+      #DEFAULT_HOMEPAGE = 
 
       # Others
       #SHOW_ENVIRONMENT_INFO = false
