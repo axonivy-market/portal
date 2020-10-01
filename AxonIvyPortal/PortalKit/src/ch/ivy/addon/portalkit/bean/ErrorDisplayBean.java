@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +18,9 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
-public class ErrorDisplayBean {
+public class ErrorDisplayBean implements Serializable {
+
+  private static final long serialVersionUID = 7404542216158627030L;
   private List<PortalIvyDataException> errors;
 
   @PostConstruct

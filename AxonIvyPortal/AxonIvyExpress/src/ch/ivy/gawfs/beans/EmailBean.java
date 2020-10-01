@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -33,8 +34,9 @@ import ch.ivyteam.ivy.scripting.objects.File;
 
 @ManagedBean
 @ViewScoped
-public class EmailBean {
-  
+public class EmailBean implements Serializable {
+
+  private static final long serialVersionUID = 1414718807621628990L;
   private String emailRegex = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 	private ExpressUserEmail userEmail;
 	private StreamedContent file;

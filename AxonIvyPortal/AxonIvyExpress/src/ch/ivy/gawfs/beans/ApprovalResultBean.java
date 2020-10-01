@@ -1,5 +1,6 @@
 package ch.ivy.gawfs.beans;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -12,8 +13,9 @@ import gawfs.ApprovalTaskResult;
 
 @ManagedBean
 @ViewScoped
-public class ApprovalResultBean {
-  
+public class ApprovalResultBean implements Serializable {
+
+  private static final long serialVersionUID = -5526872224029002403L;
   private List<List<ApprovalTaskResult>> approvalResultGroups;
   
   public void groupingApprovalResult(List<ApprovalTaskResult> approvalResults) {

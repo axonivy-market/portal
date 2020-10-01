@@ -7,6 +7,7 @@ import javax.faces.bean.ViewScoped;
 
 @ManagedBean
 @ViewScoped
-public class TaskTemplateBean extends AbstractTaskTemplateBean implements Serializable{
-  private static final long serialVersionUID = 1L;
+public class TaskTemplateBean extends AbstractTaskTemplateBean implements Serializable {
+  private static final long serialVersionUID = -5864157933559524831L;
+
 }
