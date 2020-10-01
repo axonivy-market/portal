@@ -169,7 +169,6 @@ Ts0 f99 @|AlternativeIcon #fIcon
 Ts0 f49 actionTable 'out=in;
 ' #txt
 Ts0 f49 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPage;
-import ch.ivy.addon.portalkit.enums.NavigationHistory;
 import ch.ivy.addon.portalkit.dto.TaskEndInfo;
 import ch.ivy.addon.portalkit.service.StickyTaskListService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;

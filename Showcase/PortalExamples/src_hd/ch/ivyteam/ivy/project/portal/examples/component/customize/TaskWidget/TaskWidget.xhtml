@@ -67,6 +67,10 @@
         filter="#{filterContainer.descriptionFilter}" dataModel="#{taskView.dataModel}" />
       <ic:ch.ivy.addon.portalkit.component.task.filter.TaskResponsibleFilter
         filter="#{filterContainer.responsibleFilter}" dataModel="#{taskView.dataModel}" />
+      <ic:ch.ivy.addon.portalkit.component.task.filter.TaskPriorityFilter
+        filter="#{filterContainer.priorityFilter}" dataModel="#{taskView.dataModel}" />
+      <ic:ch.ivy.addon.portalkit.component.task.filter.TaskCategoryFilter
+        filter="#{filterContainer.categoryFilter}" dataModel="#{taskView.dataModel}" />
 
       <ic:ch.ivy.addon.portalkit.component.task.filter.AdvancedFilter id="customer-name-filter"
         dataModel="#{taskView.dataModel}" taskFilter="#{filterContainer.customerNameFilter}">

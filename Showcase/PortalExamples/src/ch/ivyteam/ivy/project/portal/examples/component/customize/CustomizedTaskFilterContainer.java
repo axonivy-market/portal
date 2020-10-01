@@ -3,10 +3,12 @@ package ch.ivyteam.ivy.project.portal.examples.component.customize;
 import java.util.Collections;
 
 import ch.ivy.addon.portalkit.comparator.TaskFilterComparator;
+import ch.ivy.addon.portalkit.taskfilter.TaskCategoryFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskCreationDateFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskDescriptionFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskExpiredDateFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
+import ch.ivy.addon.portalkit.taskfilter.TaskPriorityFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskResponsibleFilter;
 
 /**
@@ -21,6 +23,8 @@ public class CustomizedTaskFilterContainer extends TaskFilterContainer {
   private TaskResponsibleFilter responsibleFilter = new TaskResponsibleFilter();
   private CustomerNameFilter customerNameFilter = new CustomerNameFilter();
   private ShipmentDateFilter shipmentDateFilter = new ShipmentDateFilter();
+  private TaskPriorityFilter priorityFilter = new TaskPriorityFilter();
+  private TaskCategoryFilter categoryFilter = new TaskCategoryFilter();
 
   public CustomizedTaskFilterContainer() {
     filters.remove(stateFilter);
@@ -30,6 +34,8 @@ public class CustomizedTaskFilterContainer extends TaskFilterContainer {
     filters.add(responsibleFilter);
     filters.add(customerNameFilter);
     filters.add(shipmentDateFilter);
+    filters.add(priorityFilter);
+    filters.add(categoryFilter);
     Collections.sort(filters, new TaskFilterComparator());
   }
   
@@ -79,6 +85,22 @@ public class CustomizedTaskFilterContainer extends TaskFilterContainer {
 
   public void setShipmentDateFilter(ShipmentDateFilter shipmentDateFilter) {
     this.shipmentDateFilter = shipmentDateFilter;
+  }
+
+  public TaskPriorityFilter getPriorityFilter() {
+    return priorityFilter;
+  }
+
+  public void setPriorityFilter(TaskPriorityFilter priorityFilter) {
+    this.priorityFilter = priorityFilter;
+  }
+
+  public TaskCategoryFilter getCategoryFilter() {
+    return categoryFilter;
+  }
+
+  public void setCategoryFilter(TaskCategoryFilter categoryFilter) {
+    this.categoryFilter = categoryFilter;
   }
 
 }

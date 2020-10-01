@@ -94,7 +94,15 @@
     </div>
 
   </div>
-  
+
+  <h:panelGroup rendered="#{cc.attrs.isWorkingOnTask}" layout="block">
+    <ic:ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask componentId="leave-case-info-warning-dialog"
+      widgetVar="leave-case-info-warning-dialog"
+      taskState="CREATED"
+      leaveActionListener="#{logic.leaveTask()}"
+      reserveActionListener="#{logic.leaveTask()}" />
+  </h:panelGroup>
+
   <script type="text/javascript">
        $(function() {
         CaseRelatedTask.init(#{data.relatedTasks.size()}, #{data.technicalCases.size()});

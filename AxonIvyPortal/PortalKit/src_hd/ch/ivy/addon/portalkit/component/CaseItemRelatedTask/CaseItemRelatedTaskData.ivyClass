@@ -20,3 +20,5 @@ isTaskFinished Boolean #field
 isTaskFinished PERSISTENT #fieldModifier
 isWorkingOnTask Boolean #field
 isWorkingOnTask PERSISTENT #fieldModifier
+navigationHistory ch.ivy.addon.portalkit.enums.CaseNavigationHistory #field
+navigationHistory PERSISTENT #fieldModifier

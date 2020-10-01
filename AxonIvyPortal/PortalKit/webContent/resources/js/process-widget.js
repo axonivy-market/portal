@@ -326,7 +326,7 @@ var FavouritesProcess = {
 
         // if application process height is greater than user process height
         else if (appFavoritesHeight > userFavoritesHeight) {
-          maxHeightAppProcessList = availableHeight - userFavoritesHeight - userFavoritesMarginBottom;
+          maxHeightAppProcessList = availableHeight - userFavoritesHeight;
           maxHeightUserProcessList = userFavoritesHeight;
         }
 
