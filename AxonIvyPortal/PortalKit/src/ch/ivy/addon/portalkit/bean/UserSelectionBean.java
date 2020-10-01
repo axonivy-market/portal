@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -14,8 +15,9 @@ import ch.ivy.addon.portalkit.util.UserUtils;
 
 @ManagedBean
 @ViewScoped
-public class UserSelectionBean {
+public class UserSelectionBean implements Serializable {
 
+  private static final long serialVersionUID = -6115408539032175241L;
   private MethodExpression completeUserMethod;
   
   @PostConstruct
