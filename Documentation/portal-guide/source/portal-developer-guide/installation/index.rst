@@ -174,7 +174,7 @@ Changes in 9.2
 
 - Introduce :ref:`Workflow Events table <how-to-show-workflow-events>`, user who has permission ``WORKFLOW_EVENT_READ_ALL`` can see all ``WORKFLOW_EVENTS``.
 
-
+- Introduce the ``DEFAULT_HOMEPAGE`` Portal setting to set the default homepage, each user can change it via user profile. 
 
 Changes in 9.1
 --------------
