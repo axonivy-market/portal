@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -14,8 +15,9 @@ import ch.ivy.addon.portalkit.persistence.domain.Application;
 
 @ManagedBean
 @ViewScoped
-public class AdminSettingBean {
+public class AdminSettingBean implements Serializable {
 
+  private static final long serialVersionUID = 1506137118077215366L;
   private final String ADMIN_TAB_VIEW_ID = "adminui:adminTabView";
 
   public void onTabChange(TabChangeEvent tabChangeEvent) {
