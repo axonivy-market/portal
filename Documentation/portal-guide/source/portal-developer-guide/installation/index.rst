@@ -154,6 +154,8 @@ Migrate 8.x to 9.1
 
 10. ``TaskTemplate-7`` is removed, change it to ``TaskTemplate-8``. ``TaskTemplate`` is also removed, change it to ``frame-8`` (provided by Ivy).
 
+11. The ``MenuKind`` enum has one more entry: EXTERNAL_LINK, use it if your item is an external link, and use CUSTOM if yours is an internal link.
+
 .. _installation-release-notes:
 
 Release notes
