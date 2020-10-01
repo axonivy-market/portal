@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -17,8 +18,9 @@ import ch.ivy.addon.portalkit.service.IvyAdapterService;
 
 @ManagedBean
 @ViewScoped
-public class SideStepBean {
+public class SideStepBean implements Serializable {
 
+  private static final long serialVersionUID = -786782623972036094L;
   private Map<Long, List<IvySideStep>> sideStepOfTasks = new HashMap<>();
   private Map<Long, List<IvySideStep>> sideStepOfCases = new HashMap<>();
   

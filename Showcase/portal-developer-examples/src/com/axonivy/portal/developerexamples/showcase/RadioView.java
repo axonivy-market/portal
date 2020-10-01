@@ -1,12 +1,14 @@
 package com.axonivy.portal.developerexamples.showcase;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import javax.faces.bean.ManagedBean;
 
 @ManagedBean
-public class RadioView {
-     
+public class RadioView implements Serializable {
+
+    private static final long serialVersionUID = -8940915766426442916L;
     private String console;    
     private String city; 
     private String city2; 
