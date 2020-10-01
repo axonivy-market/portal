@@ -18,6 +18,7 @@ import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.WaitHelper;
+import portal.guitest.page.CaseInformationPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NoteHistoryPage;
@@ -81,7 +82,11 @@ public class TaskTemplateTest extends BaseTest {
     createTestDataAndRedirectToHomePage();
     TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
     assertTrue(taskTemplatePage.countRelatedTasks() > 0);
-    TaskDetailsPage taskDetailsPage = taskTemplatePage.openFirstRelatedTaskInHistoryArea();
+    CaseInformationPage caseInfo = new CaseInformationPage();
+    caseInfo.clickOnFirstTaskOfRunningTasks();
+    assertTrue(caseInfo.isConfirmDialogDisplayed());
+    caseInfo.clickOnLeaveButton();
+    TaskDetailsPage taskDetailsPage = new TaskDetailsPage();
     assertEquals("Task Details", taskDetailsPage.getPageTitle());
   }
 
@@ -182,7 +187,40 @@ public class TaskTemplateTest extends BaseTest {
     taskTemplatePage2.clickOnLogo();
     WaitHelper.assertTrueWithWait(() -> taskTemplatePage2.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
   }
-  
+
+  @Test
+  public void testShowWarningDialogByClickOnRelatedTasksAndCases() {
+    redirectToRelativeLink(createTestingCaseMapUrl);
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+    TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
+    CaseInformationPage caseInfo = new CaseInformationPage();
+    // Click on related task
+    caseInfo.clickOnFirstTaskOfRunningTasks();
+    assertTrue(caseInfo.isConfirmDialogDisplayed());
+    caseInfo.clickCancelLeaveTask();
+    
+    // Click on Show more cases
+    caseInfo.clickOnShowMoreCases();
+    assertTrue(caseInfo.isConfirmDialogDisplayed());
+    caseInfo.clickCancelLeaveTask();
+    
+    // Click on technical case
+    caseInfo.clickOnFirstTechCaseOfRunningCases();
+    assertTrue(caseInfo.isConfirmDialogDisplayed());
+    caseInfo.clickCancelLeaveTask();
+    
+    caseInfo.closeCaseInfoDialog();
+    taskTemplatePage.clickSubmitButton();
+
+    taskTemplatePage = startATaskAndOpenCaseInfo();
+    caseInfo = new CaseInformationPage();
+    // Click on show more tasks
+    caseInfo.clickOnShowMoreTasks();
+    assertTrue(caseInfo.isConfirmDialogDisplayed());
+    caseInfo.clickCancelLeaveTask();
+    caseInfo.closeCaseInfoDialog();
+  }
+
   private void createTestDataAndRedirectToHomePage() {
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);

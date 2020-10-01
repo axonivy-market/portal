@@ -140,7 +140,8 @@
 
         <p:dialog id="case-info-dialog" resizable="false" fitViewport="true"
           header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/caseInformation')}" width="95vw" closeOnEscape="true" draggable="false" responsive="true"
-          widgetVar="case-info-dialog" appendTo="@(body)" modal="true" dynamic="true">
+          widgetVar="case-info-dialog" appendTo="@(body)" modal="true" dynamic="true"
+          styleClass="case-info-dialog">
           <ui:insert name="caseDetails">
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portal.generic/CaseDetailsTemplate/noCaseId')}"
               rendered="#{caseWidgetBean.isHiddenCase(case)}" />

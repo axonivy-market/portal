@@ -1923,6 +1923,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 /********************************** END TASK DETAIL **********************************/
 
 /********************************** CASE DETAIL **********************************/
+.case-info-dialog.ui-dialog .ui-dialog-content.ui-widget-content {
+  padding: 0;
+}
+
 .case-details-separator {
   margin-top: 0;
 }
