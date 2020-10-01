@@ -1,5 +1,7 @@
 package ch.ivy.addon.portal.generic.bean;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -7,8 +9,9 @@ import ch.ivy.addon.portalkit.datamodel.CaseHistoryLazyDataModel;
 
 @ManagedBean
 @ViewScoped
-public class ProcessHistoryBean {
+public class ProcessHistoryBean implements Serializable {
 
+  private static final long serialVersionUID = 6256241637974800291L;
   private CaseHistoryLazyDataModel dataModel;
   private String businessEntityId;
 
