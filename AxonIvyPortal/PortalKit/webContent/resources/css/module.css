@@ -728,7 +728,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   float: left;
   padding: 10px;
   margin: 0;
-  width: 160px;
   line-height: 1.4rem;
   box-sizing: content-box;
   text-align: left;
@@ -3050,7 +3049,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
     width: 85%;
   }
   .statistic-details-dialog {
-    width: 500px !important;
+    width: 600px !important;
   }
   .statistic-carousel .statistic-carousel-item {
     max-height: 40rem;
@@ -3349,7 +3348,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .chart-info-container .label-column {
-  width: 30%;
+  width: 40%;
 }
 
 .chart-info-container .list-container {
