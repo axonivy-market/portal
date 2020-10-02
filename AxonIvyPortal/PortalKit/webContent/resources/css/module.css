@@ -969,6 +969,7 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   position: absolute !important;
   right: 0;
   height: auto;
+  margin-top: 30px;
 }
 
 .process-widget .process-nav .process-nav-item {
