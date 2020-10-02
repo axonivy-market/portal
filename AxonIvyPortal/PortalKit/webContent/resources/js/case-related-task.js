@@ -44,6 +44,8 @@ var CaseRelatedTask = {
     if (relatedTaskSize == 0) {
       return;
     }
+    
+    var relatedTaskTableMarginBottom = parseInt($('.case-related-task-table').css('margin-bottom'), 10);
 
     var taskList = $('[id$="related-tasks:tasks"]');
     var taskListBody = taskList.find('.ui-datascroller-content.ui-widget-content.ui-corner-all');
@@ -53,11 +55,11 @@ var CaseRelatedTask = {
       if (isShowScrollBar) {
         taskListBody.addClass("has-scrollbar");
       } else {
-        scrollHeightForTasks += 8;
+        scrollHeightForTasks += relatedTaskTableMarginBottom;
       }
     } else {
         // If data is equal maxItem, need to add padding of Table's DataScroller
-        scrollHeightForTasks = relatedTaskSize * taskItemHeight + 8;
+        scrollHeightForTasks = relatedTaskSize * taskItemHeight + relatedTaskTableMarginBottom;
     }
 
     taskListBody.css("height", scrollHeightForTasks);
@@ -75,12 +77,10 @@ var CaseRelatedTask = {
       scrollHeightForCases = casesPanel + spaceToExpandCasesList;
       if (isShowScrollBar) {
         caseListBody.addClass("has-scrollbar");
-      } else {
-        scrollHeightForCases += 8;
       }
     } else {
         // If data is equal maxItem, need to add padding of Table's DataScroller
-        scrollHeightForCases = technicalCaseSize * caseItemHeight + 8;
+        scrollHeightForCases = technicalCaseSize * caseItemHeight;
     }
 
     caseListBody.css("height", scrollHeightForCases);
@@ -88,12 +88,12 @@ var CaseRelatedTask = {
 
   getHeightOfRelatedTaskRow : function() {
     var taskRow = $('.grid-item-content-list-item.related-task-content.js-related-task');
-    return taskRow.length > 3 ? taskRow[taskRow.length - 2].offsetHeight : 33;
+    return taskRow[taskRow.length - 1].offsetHeight;
   },
 
   getHeightOfTechnicalRow : function() {
     var caseRow = $('.grid-item-content-list-item.related-task-content.js-technical-case');
-    return caseRow.length > 3 ? caseRow[caseRow.length - 2].offsetHeight : 33;
+    return caseRow[caseRow.length - 1].offsetHeight;
   }
 
 }
