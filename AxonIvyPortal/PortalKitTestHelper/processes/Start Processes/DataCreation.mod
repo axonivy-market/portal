@@ -1562,9 +1562,7 @@ Dt0 f151 433 1457 30 30 0 15 #rect
 Dt0 f151 @|EndIcon #fIcon
 Dt0 f152 actionTable 'out=in;
 ' #txt
-Dt0 f152 actionCode 'import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
-import ch.ivy.addon.portalkit.service.IvyCacheService;
-import ch.ivy.addon.portalkit.util.Locales;
+Dt0 f152 actionCode 'import ch.ivy.addon.portalkit.util.Locales;
 import ch.ivy.addon.portalkit.util.DisplayNameConvertor;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
@@ -1582,8 +1580,7 @@ app.name = convertor.toJson();
 RegisteredApplicationService applicationService = new RegisteredApplicationService();
 app = applicationService.save(app) as Application;
 
-IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION);
-IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON);' #txt
+' #txt
 Dt0 f152 security system #txt
 Dt0 f152 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
