@@ -123,7 +123,7 @@ in.relatedTasks.clear();
 int count = 1;
 in.totalRelatedTasks = 0;
 boolean excludeHiddenTasks = Boolean.parseBoolean(ivy.var.get(HiddenTasksCasesConfig.PORTAL_HIDDEN_TASK_CASE_EXCLUDED));
-ISession session = ServiceUtilities.findUserWorkflowSession(ivy.session.getSessionUserName(), in.iCase.getApplication());
+ISession session = ivy.session;
 boolean isOwner = in.iCase.#owner != null ? in.iCase.getOwner().isMember(ivy.session, true) : false;
 boolean ableToSeeAllRelatedTaskOfCase = PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission() || isOwner;
 for (ITask task : in.iCase.getTasks()) {
@@ -166,16 +166,13 @@ Cs0 f13 448 192 632 192 #arcP
 Cs0 f17 actionTable 'out=in;
 ' #txt
 Cs0 f17 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivyteam.ivy.workflow.CaseState;
 import java.util.Arrays;
 
-String currentUser = ivy.session.getSessionUserName();
+
 out.caseSearchCriteria.businessCaseId = in.iCase.getId();
 out.caseSearchCriteria.setIncludedStates(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE));
 out.caseSearchCriteria.technicalCase = true;
-out.caseSearchCriteria.involvedUsername = currentUser;
-out.caseSearchCriteria.apps = new RegisteredApplicationService().findActiveIvyAppsBasedOnConfiguration(currentUser);
 out.caseSearchCriteria.adminQuery = PermissionUtils.checkReadAllCasesPermission();' #txt
 Cs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

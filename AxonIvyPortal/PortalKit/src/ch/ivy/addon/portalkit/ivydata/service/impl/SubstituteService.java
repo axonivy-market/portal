@@ -1,31 +1,19 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
-
 import ch.ivy.addon.portalkit.dto.UserDTO;
-import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.service.ISubstituteService;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
-import ch.ivy.addon.portalkit.persistence.dao.ApplicationDao;
-import ch.ivy.addon.portalkit.persistence.domain.Application;
-import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserSubstitute;
@@ -43,46 +31,24 @@ public class SubstituteService implements ISubstituteService {
   }
   
   @Override
-  public IvySubstituteResultDTO findSubstitutes(String username, List<String> apps) {
-    return findSubstituteSubstitutionOfUser(username, apps, true);
+  public IvySubstituteResultDTO findSubstitutes(String username) {
+    return findSubstituteSubstitutionOfUser(username, true);
   }
   
   @Override
-  public IvySubstituteResultDTO findSubstitutions(String username, List<String> apps) {
-    return findSubstituteSubstitutionOfUser(username, apps, false);
+  public IvySubstituteResultDTO findSubstitutions(String username) {
+    return findSubstituteSubstitutionOfUser(username, false);
   }
   
-  private IvySubstituteResultDTO findSubstituteSubstitutionOfUser(String username, List<String> apps, boolean isFindSubstitute) {
+  private IvySubstituteResultDTO findSubstituteSubstitutionOfUser(String username, boolean isFindSubstitute) {
     return IvyExecutor.executeAsSystem(() -> { 
       IvySubstituteResultDTO result = new IvySubstituteResultDTO();
-      if (CollectionUtils.isEmpty(apps)) {
-        return result;
-      }
 
-      List<PortalIvyDataException> errors = new ArrayList<>();
-      Map<IvyApplication, List<IvySubstitute>> ivySubstitutesByApp = new HashMap<>();
-      List<Application> applications = new ApplicationDao().findByNames(apps);
-      apps.stream().forEach(appName -> {
-        try {
-          String appDisplayName = applications.stream()
-              .filter(app -> StringUtils.equals(app.getName(), appName))
-              .map(ApplicationMultiLanguage::getDisplayNameInCurrentLocale)
-              .findFirst()
-              .orElse(appName);
-          IApplication application = ServiceUtilities.findApp(appName);
-          IUser user = ServiceUtilities.findUser(username, application);
-          List<IvySubstitute> ivySubstitutions = isFindSubstitute? getIvySubstitutes(user) : getIvySubstitutions(user);
-          ivySubstitutesByApp.put(ServiceUtilities.toIvyApplication(appName, appDisplayName), ivySubstitutions);
-        } catch (PortalIvyDataException e) {
-          errors.add(e);
-        } catch (Exception ex) {
-          Ivy.log().error("Error in getting {0} of user {1} within app {2}", ex, isFindSubstitute?"substitutes":"substitutions", username, appName);
-          errors.add(new PortalIvyDataException(appName, 
-              isFindSubstitute?PortalIvyDataErrorType.FAIL_TO_LOAD_SUBSTITUTE.toString():PortalIvyDataErrorType.FAIL_TO_LOAD_SUBSTITUTION.toString()));
-        }
-      });
-      result.setErrors(errors);
-      result.setIvySubstitutesByApp(ivySubstitutesByApp);
+      IApplication application = Ivy.wf().getApplication();
+      IUser user = ServiceUtilities.findUser(username, application);
+      List<IvySubstitute> ivySubstitutions = isFindSubstitute? getIvySubstitutes(user) : getIvySubstitutions(user);
+      
+      result.setIvySubstitutes(ivySubstitutions);
       return result;
     });
   }
@@ -147,7 +113,7 @@ public class SubstituteService implements ISubstituteService {
     return ivySubstitute;
   }
 
-  private void createSubstitutes(List<IvySubstitute> substitutes, IUser user, IApplication application) throws PersistencyException, PortalIvyDataException {
+  private void createSubstitutes(List<IvySubstitute> substitutes, IUser user, IApplication application){
     for (IvySubstitute ivySubstitute : substitutes) {
       if (ivySubstitute.getSubstituteUser() != null) {
         IUser iUser = ServiceUtilities.findUser(ivySubstitute.getSubstituteUser().getName(), application);
@@ -167,58 +133,18 @@ public class SubstituteService implements ISubstituteService {
   }
 
   @Override
-  public IvySubstituteResultDTO saveSubstitutes(Map<String, UserDTO> userPerApplication, Map<IvyApplication, List<IvySubstitute>> ivySubstitutesByApp) {
-    return IvyExecutor.executeAsSystem(() -> { 
-      IvySubstituteResultDTO result = new IvySubstituteResultDTO();
-      if (ivySubstitutesByApp == null) {
-        return result;
+  public void saveSubstitutes(UserDTO userDTO, List<IvySubstitute> ivySubstitutes) {
+    IvyExecutor.executeAsSystem(() -> { 
+      if (userDTO == null) {
+        return Void.class;
       }
 
-      List<PortalIvyDataException> errors = new ArrayList<>();
-      ivySubstitutesByApp.entrySet().stream().forEach(entry -> {
-        String appName = entry.getKey().getName();
-        try {
-          IApplication application = ServiceUtilities.findApp(appName);
-          UserDTO userDTO = userPerApplication.get(appName);
-          IUser user = ServiceUtilities.findUser(userDTO.getName(), application);
-          deleteSubstitutes(user);
-          createSubstitutes(entry.getValue(), user, application);
-        } catch (PortalIvyDataException e) {
-          errors.add(e);
-        } catch (Exception ex) {
-          Ivy.log().error("Error in saving substitutes of user {0} within app {1}", ex, userPerApplication.get(appName), appName);
-          errors.add(new PortalIvyDataException(appName, PortalIvyDataErrorType.FAIL_TO_SAVE_SUBSTITUTE.toString()));
-        }
-      });
-      result.setErrors(errors);
-      return result;
+      IApplication application = Ivy.wf().getApplication();
+      IUser user = ServiceUtilities.findUser(userDTO.getName(), application);
+      deleteSubstitutes(user);
+      createSubstitutes(ivySubstitutes, user, application);
+      return Void.class;
     });
   }
 
-  @Override
-  public IvySubstituteResultDTO findSubstitutesOnApp(String username, String app) {
-    return IvyExecutor.executeAsSystem(() -> { 
-      IvySubstituteResultDTO result = new IvySubstituteResultDTO();
-      if (StringUtils.isEmpty(app)) {
-        return result;
-      }
-
-      List<PortalIvyDataException> errors = new ArrayList<>();
-      Map<IvyApplication, List<IvySubstitute>> ivySubstitutesByApp = new HashMap<>();
-      try {
-        IApplication application = ServiceUtilities.findApp(app);
-        IUser user = ServiceUtilities.findUser(username, application);
-        List<IvySubstitute> ivySubstitutes = getIvySubstitutes(user);
-        ivySubstitutesByApp.put(ServiceUtilities.toIvyApplication(app, ""), ivySubstitutes);
-      } catch (PortalIvyDataException e) {
-        errors.add(e);
-      } catch (Exception ex) {
-        Ivy.log().error("Error in getting substitute of user {0} within app {1}", ex, username, app);
-        errors.add(new PortalIvyDataException(app, PortalIvyDataErrorType.FAIL_TO_LOAD_SUBSTITUTE.toString()));
-      }
-      result.setErrors(errors);
-      result.setIvySubstitutesByApp(ivySubstitutesByApp);
-      return result;
-    });
-  }
 }

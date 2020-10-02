@@ -9,6 +9,7 @@
   <cc:attribute name="priorityComponentToUpdate" />
   <cc:attribute name="componentToUpdate" />
   <cc:attribute name="styleClass" />
+  <cc:attribute name="onWorkflowEventComplete" />
 </cc:interface>
 
 <cc:implementation>
@@ -70,6 +71,14 @@
         <h:panelGroup id="task-detail-state" styleClass="state-cell default-task-cell">
           <h:panelGroup id="task-detail-state-icon" styleClass="#{taskBean.getStateIcon(state)}" />
           <h:outputText value="#{taskBean.getTranslatedState(state)}" styleClass="task-detail-state" />
+          
+          <p:commandLink id="workflow-event-link"
+            styleClass="ui-sm-hidden task-workflow-event-command" onstart="event.stopPropagation();"
+            disabled="#{!taskActionBean.canReadWorkflowEventTask()}" rendered="#{taskActionBean.showReadWorkflowEvent}"
+            oncomplete="#{cc.attrs.onWorkflowEventComplete}" global="false">
+            <i class="option-action-icon icon ivyicon-business-contract-handshake-sign" />
+            <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/events')}</span>
+          </p:commandLink>
         </h:panelGroup>
         <p:tooltip rendered="#{state == 'FAILED' or state == 'JOIN_FAILED'}" for="task-detail-state"
            value="#{taskBean.getTaskFailedReason(task)}" trackMouse="true" hideEvent="mouseleave click" />

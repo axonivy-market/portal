@@ -1,4 +1,0 @@
-CaseItemDetailData #class
-ch.ivy.addon.portal.generic.CaseItemDetail #namespace
-caseInfo ch.ivyteam.ivy.workflow.ICase #field
-caseInfo PERSISTENT #fieldModifier

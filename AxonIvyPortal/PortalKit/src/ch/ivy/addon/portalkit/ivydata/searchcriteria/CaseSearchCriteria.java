@@ -23,8 +23,11 @@ public class CaseSearchCriteria {
 
   public final static EnumSet<CaseState> STANDARD_STATES = EnumSet.of(CREATED, RUNNING);
   public final static EnumSet<CaseState> ADVANCE_STATES = EnumSet.of(DONE, DESTROYED);
+  /**
+   * @deprecated not used anymore, will get current login user for query
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
   private String involvedUsername;
-  private List<String> apps;
   private List<CaseState> includedStates;
   private String keyword;
   private Long caseId;
@@ -235,14 +238,6 @@ public class CaseSearchCriteria {
     }
   }
 
-  public List<String> getApps() {
-    return apps;
-  }
-
-  public void setApps(List<String> apps) {
-    this.apps = apps;
-  }
-
   public List<CaseState> getIncludedStates() {
     return includedStates;
   }
@@ -298,10 +293,20 @@ public class CaseSearchCriteria {
     this.category = category;
   }
 
+  /**
+   * @return String
+   * @deprecated not used anymore, will get current login user for query
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
   public String getInvolvedUsername() {
     return involvedUsername;
   }
 
+  /**
+   * @param involvedUsername 
+   * @deprecated not used anymore, will get current login user for query
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
   public void setInvolvedUsername(String involvedUsername) {
     this.involvedUsername = involvedUsername;
   }
@@ -350,10 +355,6 @@ public class CaseSearchCriteria {
     return CollectionUtils.isNotEmpty(includedStates);
   }
 
-  public boolean hasApps() {
-    return CollectionUtils.isNotEmpty(apps);
-  }
-
   public boolean hasKeyword() {
     return StringUtils.isNotEmpty(keyword);
   }
@@ -380,10 +381,6 @@ public class CaseSearchCriteria {
 
   public void setNewQueryCreated(boolean isNewQueryCreated) {
     this.isNewQueryCreated = isNewQueryCreated;
-  }
-  
-  public boolean hasInvolvedUsername() {
-    return StringUtils.isNotBlank(involvedUsername);
   }
 
   public CaseQuery getFinalCaseQuery() {

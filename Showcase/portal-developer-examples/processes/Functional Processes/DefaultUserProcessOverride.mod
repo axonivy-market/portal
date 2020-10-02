@@ -1,5 +1,5 @@
 [Ivy]
-1657E93190721001 7.5.0 #module
+1657E93190721001 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ds0 DefaultUserProcess Big #zClass
 Ds0 B #cInfo
@@ -41,11 +41,8 @@ Ds0 f3 actionTable 'out=in;
 Ds0 f3 actionCode 'import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
-import ch.ivyteam.ivy.workflow.IProcessStart;
-import ch.ivyteam.ivy.server.ServerFactory;
 
-
-ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
+ProcessStartCollector collector = new ProcessStartCollector();
 
 String createAlphaLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/createAlphaCompany.ivp");
 if (!StringUtils.isEmpty(createAlphaLink)){	
@@ -106,13 +103,13 @@ Ds0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>This process overrides DefaultUserProcess in Portal Kit. 
-It add 5 application favorites processes and determines their order using the setIndex method of UserProcess.</name>
-        <nameStyle>167,7
+It add several application favorites processes and determines their order using the setIndex method of UserProcess.</name>
+        <nameStyle>173,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f5 220 152 648 80 -301 -16 #rect
+Ds0 f5 224 170 640 44 -317 -16 #rect
 Ds0 f5 @|IBIcon #fIcon
 >Proto Ds0 .type _com.axonivy.portal.developerexamples.DefaultUserProcessOverrideData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt

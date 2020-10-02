@@ -6,8 +6,6 @@ compactMode Boolean #field
 compactMode PERSISTENT #fieldModifier
 expandedTask ch.ivyteam.ivy.workflow.ITask #field
 expandedTask PERSISTENT #fieldModifier
-errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
-errors PERSISTENT #fieldModifier
 canUserResumeTask Boolean #field
 canUserResumeTask PERSISTENT #fieldModifier
 callbackUrl String #field
