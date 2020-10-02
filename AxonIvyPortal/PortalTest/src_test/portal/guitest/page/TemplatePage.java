@@ -20,6 +20,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
+import ch.ivyteam.ivy.environment.Ivy;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.UrlHelpers;
 import portal.guitest.common.WaitHelper;
@@ -54,6 +55,7 @@ public abstract class TemplatePage extends AbstractPage {
         return;
       } catch (WebDriverException e) {
         System.out.println("Exception when waiting for element displayed, try again.");
+        Ivy.log().error("Exception at waitForElementDisplayed, localtor: {0}, expected {1} and timeout {2}", e, String.valueOf(locator), expected, timeout);
       }
     });
   }
