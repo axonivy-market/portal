@@ -41,7 +41,7 @@ public class PortalExpressProcess implements Process {
   }
 
   private String generateWorkflowStartLink() {
-    ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.request().getApplication());
+    ProcessStartCollector processStartCollector = new ProcessStartCollector();
     return processStartCollector.findExpressWorkflowStartLink() + EXPRESS_WORKFLOW_ID_PARAM + this.process.getId();
   }
 

@@ -59,6 +59,16 @@
             </div>
           </div>
         </p:fieldset>
+        
+        <p:fieldset legend="Big note" toggleable="true" collapsed="true">
+           <p:inputTextarea rows="30" ></p:inputTextarea>
+        </p:fieldset>
+        
+        <p:fieldset legend="Second Big note" toggleable="true" collapsed="true">
+           <p:inputTextarea rows="30" ></p:inputTextarea>
+        </p:fieldset>
+        
+        
         <div style="width: 100%; margin-bottom: 100px;">
           <p:commandButton id="save-btn" value="Save" update="@(form)" actionListener="#{logic.close}"
             style="float: right; margin-top: 20px;" />

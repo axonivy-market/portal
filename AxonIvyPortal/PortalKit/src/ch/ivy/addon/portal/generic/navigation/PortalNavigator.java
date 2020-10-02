@@ -48,7 +48,7 @@ public final class PortalNavigator {
     return IvyExecutor.executeAsSystem(() ->
       Ivy.wf().getStandardProcessImplementation(StandardProcessType.DefaultApplicationHomePage).getLink().getRelative());
   }
-
+  
   public static void redirect(String url) {
     try {
       FacesContext.getCurrentInstance().getExternalContext().redirect(url);

@@ -1,5 +1,5 @@
 [Ivy]
-1657FC622FD937C4 7.5.0 #module
+1657FC622FD937C4 9.2.0 #module
 >Proto >Proto Collection #zClass
 Cd0 ChangePassword Big #zClass
 Cd0 B #cInfo
@@ -47,15 +47,14 @@ Cd0 f0 169 49 30 30 -86 17 #rect
 Cd0 f0 @|StartSubIcon #fIcon
 Cd0 f1 169 625 30 30 0 15 #rect
 Cd0 f1 @|EndSubIcon #fIcon
-Cd0 f14 processCall 'Ivy Data Processes/PasswordService:updatePassword(String,String)' #txt
-Cd0 f14 requestActionDecl '<String username,String newPassword> param;' #txt
-Cd0 f14 requestMappingAction 'param.username=ivy.session.getSessionUserName();
-param.newPassword=in.newPassword;
+Cd0 f14 processCall 'Ivy Data Processes/PasswordService:updatePassword(String)' #txt
+Cd0 f14 requestActionDecl '<String newPassword> param;' #txt
+Cd0 f14 requestMappingAction 'param.newPassword=in.newPassword;
 ' #txt
 Cd0 f14 responseActionDecl '_com.axonivy.portal.developerexamples.ChangePasswordOverrideData out;
 ' #txt
 Cd0 f14 responseMappingAction 'out=in;
-out.errors=result.errors;
+out.result=result.result;
 ' #txt
 Cd0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -123,13 +122,13 @@ Cd0 f2 184 560 184 625 #arcP
 Cd0 f9 actionTable 'out=in;
 ' #txt
 Cd0 f9 actionCode 'import ch.ivy.addon.portalkit.enums.ChangePasswordStatus;
-if(in.errors.size() > 0) {
-	in.status = ChangePasswordStatus.FAIL;
-	in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/changePasswordWSError");
-}
-else{
+if(in.result) {
 	in.status = ChangePasswordStatus.OK;
 	in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/updatePasswordSuccessfully");
+}
+else{
+	in.status = ChangePasswordStatus.FAIL;
+	in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/changePasswordWSError");
 }' #txt
 Cd0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

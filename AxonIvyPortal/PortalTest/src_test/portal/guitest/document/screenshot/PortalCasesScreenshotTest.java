@@ -154,10 +154,10 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-standard");
     
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 1400));
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+    redirectToRelativeLink(HomePage.PORTAL_INTERNAL_HOME_PAGE_URL);
     caseWidget = homePage.openMainMenu().selectCaseMenu();
     homePage.closeMainMenu();
-    caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Beta Company");
+    caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Leave Request");
     caseDetailsPage.waitForCaseDetailsDisplay();
     executeDecorateJs("highlightCustomCaseDetail()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-top");

@@ -1,5 +1,5 @@
 [Ivy]
-163D97C604D3D4C9 7.5.0 #module
+163D97C604D3D4C9 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskAnalysis Big #zClass
 Ts0 B #cInfo
@@ -110,10 +110,10 @@ Ts0 f7 2 632 112 #addKink
 Ts0 f7 1 0.23529411764705882 0 -10 #arcLabel
 Ts0 f8 actionTable 'out=in;
 ' #txt
-Ts0 f8 actionCode 'import ch.ivy.addon.portalkit.enums.PortalPermission;
-import ch.ivy.addon.portalkit.service.PermissionCheckerService;
-PermissionCheckerService service = new PermissionCheckerService();
-in.hasPermission = service.hasPermission(PortalPermission.STATISTIC_ANALYZE_TASK.getPermission());' #txt
+Ts0 f8 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+
+in.hasPermission = PermissionUtils.hasPermission(PortalPermission.STATISTIC_ANALYZE_TASK.getPermission());' #txt
 Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

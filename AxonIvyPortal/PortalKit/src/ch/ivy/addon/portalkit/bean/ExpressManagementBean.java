@@ -50,7 +50,7 @@ public class ExpressManagementBean implements Serializable {
   @PostConstruct
   public void initManagement() {
     activeMemberList = findAllActiveUser();
-    ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
+    ProcessStartCollector collector = new ProcessStartCollector();
     isShowExpressManagementTab = collector.findExpressCreationProcess() != null;
     expressManagementUtils = new ExpressManagementUtils();
     setExpressProcesses(expressManagementUtils.findExpressProcesses());
@@ -61,7 +61,6 @@ public class ExpressManagementBean implements Serializable {
     if (activeMemberList == null) {
       return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
           .withStartName("findSecurityMembers")
-          .withParam("application", Ivy.request().getApplication())
           .withParam("query", "")
           .withParam("startIndex", 0)
           .withParam("count", PortalConstants.MAX_USERS_IN_AUTOCOMPLETE)
@@ -92,12 +91,8 @@ public class ExpressManagementBean implements Serializable {
         displayName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
       }
     } else {
-      try {
-        IUser user = ServiceUtilities.findUser(activatorName, Ivy.request().getApplication());
-        displayName = StringUtils.isBlank(user.getDisplayName()) ? user.getName() : user.getDisplayName();
-      } catch (Exception ex) {
-        Ivy.log().error("Error in getting users within app {0}", ex, Ivy.request().getApplication());
-      }
+      IUser user = ServiceUtilities.findUser(activatorName, Ivy.request().getApplication());
+      displayName = StringUtils.isBlank(user.getDisplayName()) ? user.getName() : user.getDisplayName();
     }
     return displayName;
   }

@@ -30,11 +30,12 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
   
   @Test
   public void captureScreenshotGrowlMessage() throws IOException {
+    login(TestAccount.ADMIN_USER);
     updatePortalSetting("DISPLAY_MESSAGE_AFTER_FINISH_TASK", "true");
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingCaseContainOneTask);
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 1000));
-    
+
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTaskWithoutUI(0);
     HomePage homePage = new HomePage();

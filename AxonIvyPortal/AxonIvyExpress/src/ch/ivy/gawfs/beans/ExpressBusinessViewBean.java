@@ -10,7 +10,6 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.collections4.CollectionUtils;
 
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils;
@@ -110,13 +109,7 @@ public class ExpressBusinessViewBean implements Serializable {
   }
 
   private IUser findActualApplicantByUsername(String userName) {
-    IUser applicantUser = null;
-    try {
-      applicantUser = ServiceUtilities.findUser(userName, Ivy.wf().getApplication());
-    } catch (PortalIvyDataException e) {
-      e.printStackTrace();
-    }
-    return applicantUser;
+    return ServiceUtilities.findUser(userName, Ivy.wf().getApplication());
   }
 
   public long getCaseId() {

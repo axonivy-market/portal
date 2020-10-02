@@ -1,5 +1,0 @@
-co: name={ivyApplication} description={} changed={2019-02-11 03:13:30 CET} changedby={ntminh01} visualorder={0} guid={15F713A5B1ABE01C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={15F713A5B2744720} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:02 CEST} validto={} changed={2017-10-31 07:59:30 CET} changedby={chnam} properties={} id={}
-val: guid={168DA54B45DA48D5} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:30 CET} validto={} changed={2019-02-11 03:13:30 CET} changedby={ntminh01} properties={} id={}
-val: guid={15F713A5B21957FC} datatype={} isdefault={false} langid={de} description={} validfrom={2016-12-21 15:20:47 CET} validto={} changed={2017-10-31 07:59:30 CET} changedby={chnam} properties={} id={}
-val: guid={15F713A5B1C6C096} datatype={} isdefault={true} langid={en} description={} validfrom={2015-06-11 05:54:49 CEST} validto={} changed={2017-10-31 07:59:30 CET} changedby={chnam} properties={} id={}

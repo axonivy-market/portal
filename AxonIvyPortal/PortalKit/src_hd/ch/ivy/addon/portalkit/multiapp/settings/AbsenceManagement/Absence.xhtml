@@ -18,7 +18,7 @@
           <h:panelGroup layout="block" styleClass="ui-g-12" rendered="#{data.isSupervisor}">
             <ic:ch.ivy.addon.portalkit.component.UserSelection id="absence-selection-component"
               componentId="absence-username" selectedUser="#{data.selectedUser}"
-              isRenderedMessage="false" scrollHeight="200" completeMethod="#{logic.autoCompleteForUser}"
+              isRenderedMessage="false" scrollHeight="200" completeMethod="#{logic.autoCompleteForUserOnApp}"
               isDisabled="#{!data.isCreateMode}" isRequired="true"
               requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/Messages/userNameRequired')}"
               label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/username')}" floatingLabel="true"
@@ -82,7 +82,7 @@
           oncomplete="if (args &amp;&amp; !args.validationFailed)PF('absence').hide();"
           icon="#{visibilityBean.generateButtonIcon('icon ivyicon-floppy-disk')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}" actionListener="#{logic.saveAbsence}"
-          update=":#{p:component('absence-table')} absence-messages :#{p:component('substitue-tab')}" />
+          update=":#{p:component('absence-table')} absence-messages :#{p:component('substitute-table')} :#{p:component('substitution-table')}" />
       </h:panelGroup>
     </h:form>
   </p:dialog>

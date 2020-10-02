@@ -19,18 +19,13 @@ import org.primefaces.model.menu.MenuModel;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
-import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
-import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 
@@ -53,74 +48,33 @@ public class MenuView {
   @PostConstruct
   public void init() {
     RegisteredApplicationService service = new RegisteredApplicationService();
-    List<Application> applications = service.findApplicationByUser(Ivy.session().getSessionUserName());
+    List<Application> applications = service.findAllThirdPartyApplication();
 
     Collections.sort(applications, new ApplicationIndexAscendingComparator());
     buildMenuView(applications);
   }
 
-  public void buildMenuView(List<Application> applications) {
+  public void buildMenuView(List<Application> thirPartyApplications) {
     menuItems = new ArrayList<>();
-    removeAppDataInSession();
-
-    RegisteredApplicationService applicationService = new RegisteredApplicationService();
-    int numberOfIvyApplications = (int) applicationService.countIvyApplications(applications);
-
-    for (Application application : applications) {
+    
+    Button dashboardMenuItem = new Button();
+    dashboardMenuItem.setValue(Ivy.cms().co(DASHBOARD));
+    dashboardMenuItem.setIcon("icon ivyicon-house-chimney-2");
+    dashboardMenuItem.setHref(PortalNavigator.getPortalStartUrl());
+    dashboardMenuItem.setStyleClass(ACTIVE_MENU);
+    menuItems.add(dashboardMenuItem);
+    
+    for (Application application : thirPartyApplications) {
       Button menuItem = new Button();
       menuItem.setValue(ApplicationMultiLanguage.getDisplayNameInCurrentLocale(application));
-      boolean isThirdPartyApp = application.getServerId() == null;
-      if (isThirdPartyApp) {
-        menuItem.getAttributes().put(THIRD_PARTY, true);
-        menuItem.setHref(application.getLink());
-      } else {
-        menuItem.setHref(PortalNavigator.getPortalStartUrl(application.getName()));
-      }
+      menuItem.getAttributes().put(THIRD_PARTY, true);
+      menuItem.setHref(application.getLink());
       menuItem.getAttributes().put(APP_NAME, application.getName());
       menuItem.setIcon("fa " + application.getMenuIcon());
-
       menuItems.add(menuItem);
-      if (application.getName().equals(Ivy.request().getApplication().getName())
-          || (!isThirdPartyApp && numberOfIvyApplications == 1)) {
-        menuItem.setStyleClass("active-menuitem");
-        updateAppDataToSession(application);
-      }
-    }
-
-    if (numberOfIvyApplications > 1 || numberOfIvyApplications == 0) {
-      Button menuItem = new Button();
-      menuItem.setValue(Ivy.cms().co(DASHBOARD));
-      menuItem.setIcon("icon ivyicon-house-chimney-2");
-      if (numberOfIvyApplications == 0) {
-        menuItem.setHref(PortalNavigator.getPortalStartUrl());
-        menuItem.setStyleClass(ACTIVE_MENU);
-        menuItems.add(0, menuItem);
-      } else {
-        IApplication portal = ServerFactory.getServer().getApplicationConfigurationManager()
-            .findApplication(PortalConstants.PORTAL_APPLICATION_NAME);
-        if (portal != null && portal.getActivityState() != ch.ivyteam.ivy.application.ActivityState.INACTIVE
-            && portal.getSecurityContext().users().find(Ivy.session().getSessionUserName()) != null) {
-          menuItem.setHref(SecurityServiceUtils.getDefaultPortalStartUrl());
-          if (PortalConstants.PORTAL_APPLICATION_NAME.equals(Ivy.request().getApplication().getName())) {
-            menuItem.setStyleClass(ACTIVE_MENU);
-          }
-          menuItems.add(0, menuItem);
-        }
-      }
     }
 
     buildSubMenuItems();
-  }
-
-  private void updateAppDataToSession(Application application) {
-    SecurityServiceUtils.setSessionAttribute(SessionAttribute.SELECTED_APP.toString(), application.getName());
-    SecurityServiceUtils.setSessionAttribute(SessionAttribute.SELECTED_APP_DISPLAY_NAME.toString(),
-        application.getDisplayName());
-  }
-
-  private void removeAppDataInSession() {
-    SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SELECTED_APP.toString());
-    SecurityServiceUtils.removeSessionAttribute(SessionAttribute.SELECTED_APP_DISPLAY_NAME.toString());
   }
 
   @SuppressWarnings("unchecked")

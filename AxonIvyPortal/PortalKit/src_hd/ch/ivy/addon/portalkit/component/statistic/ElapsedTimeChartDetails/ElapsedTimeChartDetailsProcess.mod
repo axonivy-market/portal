@@ -1,5 +1,5 @@
 [Ivy]
-161504784DDFCFC7 7.5.0 #module
+161504784DDFCFC7 9.2.0 #module
 >Proto >Proto Collection #zClass
 Es0 ElapsedTimeChartDetailsProcess Big #zClass
 Es0 RD #cInfo

@@ -2,4 +2,3 @@ Data #class
 internaltest #namespace
 cases java.util.List<ch.ivyteam.ivy.workflow.ICase> #field
 apps List<String> #field
-error ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException #field

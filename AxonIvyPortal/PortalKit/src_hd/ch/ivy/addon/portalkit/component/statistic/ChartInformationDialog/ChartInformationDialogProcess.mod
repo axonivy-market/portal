@@ -1,5 +1,5 @@
 [Ivy]
-16247D906B46FE52 7.5.0 #module
+16247D906B46FE52 9.2.0 #module
 >Proto >Proto Collection #zClass
 Cs0 ChartInformationDialogProcess Big #zClass
 Cs0 RD #cInfo

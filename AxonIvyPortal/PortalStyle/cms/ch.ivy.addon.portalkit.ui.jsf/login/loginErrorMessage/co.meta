@@ -1,0 +1,5 @@
+co: name={loginErrorMessage} description={} changed={2020-09-28 04:07:40 CEST} changedby={ttthai} visualorder={0} guid={17494FE986DD5B1B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1749513C56E2EB19} datatype={} isdefault={false} langid={de} description={} validfrom={2020-09-28 04:07:40 CEST} validto={} changed={2020-09-28 04:07:40 CEST} changedby={ttthai} properties={} id={}
+val: guid={17494FE987A884D9} datatype={} isdefault={true} langid={en} description={} validfrom={2020-09-16 05:39:07 CEST} validto={} changed={2020-09-16 06:02:15 CEST} changedby={ttthai} properties={} id={}
+val: guid={1749513C7A2D8CD3} datatype={} isdefault={false} langid={es} description={} validfrom={2020-09-28 04:07:40 CEST} validto={} changed={2020-09-28 04:07:40 CEST} changedby={ttthai} properties={} id={}
+val: guid={1749513C7AFED2FA} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-09-28 04:07:40 CEST} validto={} changed={2020-09-28 04:07:40 CEST} changedby={ttthai} properties={} id={}

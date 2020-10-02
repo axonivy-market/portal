@@ -14,10 +14,8 @@ import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -37,12 +35,6 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
     data = new ArrayList<>();
     criteria = buildInitSearchCriteria();
     setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
-    setInvolvedApplications();
-  }
-
-  protected void setInvolvedApplications() {
-    RegisteredApplicationService service = new RegisteredApplicationService();
-    criteria.setApps(service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName()));
   }
 
   public void setAdminQuery(boolean isAdminQuery) {
@@ -51,7 +43,6 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
 
   private CaseSearchCriteria buildInitSearchCriteria() {
     CaseSearchCriteria crit = new CaseSearchCriteria();
-    crit.setInvolvedUsername(Ivy.session().getSessionUserName());
     crit.setBusinessCase(true);
     crit.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
     crit.setSortField(CaseSortField.ID.toString());

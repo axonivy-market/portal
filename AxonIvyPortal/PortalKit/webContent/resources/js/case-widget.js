@@ -15,7 +15,7 @@ function CaseWidget() {
     var childElements = $('.js-case-item');
     if (childElements.length > 0) {
       var container = $('.js-case-list > .ui-datascroller-content');
-      var caseWidgetHeaderContainer = $('.widget-header');
+      var caseWidgetHeaderContainer = $('.js-case-widget-header');
 
       // temporary hide mobile title to calculate
       var mobileTitle = caseWidgetHeaderContainer.find(".js-widget-title-mobile");
