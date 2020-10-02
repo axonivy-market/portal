@@ -1,0 +1,1 @@
+{/value "true"/description "By default, Portal will redirect to Login Page if login is required and user is unknown.\nIf set to false, redirect to login error page."/environments * }

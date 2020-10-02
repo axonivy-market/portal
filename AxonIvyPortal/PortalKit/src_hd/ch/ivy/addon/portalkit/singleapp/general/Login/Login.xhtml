@@ -8,7 +8,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/welcomToPortal')}" />
+  <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/welcomeToPortal')}" />
 </cc:interface>
 
 <cc:implementation>
@@ -22,7 +22,7 @@
         <p:focus for="username" />
         <div class="ui-g">
           <div class="ui-g-12">
-            <h1>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/welcomToPortal')}</h1>
+            <h1>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/welcomeToPortal')}</h1>
           </div>
           <h:panelGroup styleClass="block" class="ui-g-12" rendered="#{!data.loginOk}">
             <p:messages globalOnly="true" id="login-message" />

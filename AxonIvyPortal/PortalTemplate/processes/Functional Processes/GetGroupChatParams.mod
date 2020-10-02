@@ -1,5 +1,5 @@
 [Ivy]
-169B8DBA8236AA9F 7.5.0 #module
+169B8DBA8236AA9F 9.2.0 #module
 >Proto >Proto Collection #zClass
 Gs0 GetGroupChatParams Big #zClass
 Gs0 B #cInfo

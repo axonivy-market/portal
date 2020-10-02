@@ -1,0 +1,4 @@
+co: name={dateTimestampPattern} description={} changed={2020-09-15 06:26:19 CEST} changedby={nqhoan} visualorder={0} guid={001749001E905F9C} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1749003177EE8A7E} datatype={} isdefault={false} langid={de} description={} validfrom={2020-09-15 06:25:48 CEST} validto={} changed={2020-09-15 06:25:56 CEST} changedby={nqhoan} properties={} id={}
+val: guid={1749003193C61FB6} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-09-15 06:25:38 CEST} validto={} changed={2020-09-15 06:25:56 CEST} changedby={nqhoan} properties={} id={}
+val: guid={1749001E911FE9D5} datatype={} isdefault={true} langid={en} description={} validfrom={2020-09-15 06:24:38 CEST} validto={} changed={2020-09-15 06:25:32 CEST} changedby={nqhoan} properties={} id={}

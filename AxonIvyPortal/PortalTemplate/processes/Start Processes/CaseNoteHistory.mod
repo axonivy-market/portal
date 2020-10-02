@@ -1,5 +1,5 @@
 [Ivy]
-1603506A872272C6 7.5.0 #module
+1603506A872272C6 9.2.0 #module
 >Proto >Proto Collection #zClass
 Cy0 CaseNoteHistory Big #zClass
 Cy0 B #cInfo
@@ -30,7 +30,7 @@ import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivy.addon.portalkit.service.HistoryService;
 
 List<ITask> finishedTasks = new ArrayList();
-in.internalCase = ivy.wf.getGlobalContext().getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(in.caseId)) as ICase;
+in.internalCase = ivy.wf.getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(in.caseId)) as ICase;
 for(ITask task : in.internalCase.getTasks()) {
 	if(task.getState() == TaskState.DONE
 	|| task.getState() == TaskState.CREATED 

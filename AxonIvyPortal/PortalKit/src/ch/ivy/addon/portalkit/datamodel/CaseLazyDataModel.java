@@ -31,7 +31,6 @@ import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.service.CaseColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
@@ -291,11 +290,6 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     filterContainer = new DefaultCaseFilterContainer();
   }
 
-  protected void setInvolvedApplications() {
-    RegisteredApplicationService service = new RegisteredApplicationService();
-    criteria.setApps(service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName()));
-  }
-
   /**
    * Builds and converts CaseQuery to JsonQuery and put it into CaseSearchCriteria.
    */
@@ -386,8 +380,6 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   private void initializedDataModel() {
-    criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
-    setInvolvedApplications();
     data.clear();
     buildQueryToSearchCriteria();
     if (disableCaseCount) {

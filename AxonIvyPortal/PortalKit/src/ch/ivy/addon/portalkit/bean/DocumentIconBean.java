@@ -15,6 +15,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.RegExUtils;
 import org.apache.commons.lang3.StringUtils;
 
 @ManagedBean
@@ -24,6 +25,7 @@ public class DocumentIconBean {
    * DocumentIconBean detects icon class base on Ivy Icons.
    */
 
+  private static final String FILE_NAME_REGEX = "[\\/:*?\"<>|]";
   private static final String PREFIX = "icon ivyicon-office-file-";
   private static final String SUFFIX = "-1";
 
@@ -44,12 +46,12 @@ public class DocumentIconBean {
    * Base on extension of document, getIconCssClass method detects a corresponding ivy icon.
    * 
    * @param documentName is a name of file
-   * @return return css class for icon
+   * @return return CSS class for icon
    */
   public static String getIconCssClass(String documentName) {
     String iconClass = StringUtils.EMPTY;
     if (StringUtils.isNotEmpty(documentName)) {
-      String fileExtension = FilenameUtils.getExtension(StringUtils.lowerCase(documentName));
+      String fileExtension = getExtensionByFileName(documentName);
       if (ALLOWED_WORD_FORMAT.contains(fileExtension)) {
         iconClass = WORD;
       } else if (ALLOWED_EXCEL_FORMAT.contains(fileExtension)) {
@@ -76,6 +78,12 @@ public class DocumentIconBean {
       return PREFIX + iconClass + SUFFIX;
     }
     return iconClass;
+  }
+
+  private static String getExtensionByFileName(String documentName) {
+    String fileName = StringUtils.trimToEmpty(documentName);
+    fileName = RegExUtils.removeAll(fileName, FILE_NAME_REGEX);
+    return FilenameUtils.getExtension(StringUtils.lowerCase(fileName));
   }
 
 }

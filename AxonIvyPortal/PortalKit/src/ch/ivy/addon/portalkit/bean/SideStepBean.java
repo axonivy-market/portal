@@ -14,7 +14,6 @@ import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySideStep;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
-import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
@@ -57,7 +56,6 @@ public class SideStepBean {
   private List<IvySideStep> getSideStepsByCriteria(Long caseId, boolean isAdhocExcluded) {
     SideStepSearchCriteria criteria = new SideStepSearchCriteria();
     criteria.setCaseId(caseId);
-    criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
     criteria.setAdhocExcluded(isAdhocExcluded);
     
     Map<String, Object> params = new HashMap<>();

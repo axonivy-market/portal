@@ -16,8 +16,6 @@ count Integer #field
 count PERSISTENT #fieldModifier
 caseSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria #field
 caseSearchCriteria PERSISTENT #fieldModifier
-errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
-errors PERSISTENT #fieldModifier
 filterSetName String #field
 filterSetName PERSISTENT #fieldModifier
 filterType ch.ivy.addon.portalkit.enums.FilterType #field

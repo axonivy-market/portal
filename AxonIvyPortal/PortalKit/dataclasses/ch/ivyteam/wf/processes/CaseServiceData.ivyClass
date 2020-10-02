@@ -7,7 +7,6 @@ caseStateStatistic ch.ivy.addon.portalkit.bo.CaseStateStatistic #field
 categoryTree ch.ivyteam.ivy.workflow.category.CategoryTree #field
 count Integer #field
 elapsedTimeStatistic ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic #field
-errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
 startIndex Integer #field
 totalCases Long #field
 caseCustomFieldSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria #field
