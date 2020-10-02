@@ -259,7 +259,7 @@
               </h:panelGroup>
             </div>
             <div class="ui-g-3">
-              <p:commandButton rendered="#{data.type == 'IVY_APPLICATION'}" id="addLanguages"
+              <p:commandButton id="addLanguages"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addLanguages')}"
                 process="appName appDisplayName" styleClass="add-languages"
                 update=":#{p:component('applicationName')} appDisplayName appDialogForm"

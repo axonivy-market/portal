@@ -1576,7 +1576,7 @@ As0 f57 1 1072 1680 #addKink
 As0 f57 1 0.40112042914479545 0 0 #arcLabel
 As0 f21 processCall 'Ivy Data Processes/LanguageService:loadSupportedLanguages(String)' #txt
 As0 f21 requestActionDecl '<String appName> param;' #txt
-As0 f21 requestMappingAction 'param.appName=in.selectedApp.name;
+As0 f21 requestMappingAction 'param.appName=in.type == ch.ivy.addon.portalkit.enums.ApplicationType.THIRD_PARTY_APPLICATION ? ivy.wf.getApplication().getName() : in.selectedApp.name;
 ' #txt
 As0 f21 responseActionDecl 'ch.ivy.addon.portalkit.admin.AdminSettings.AdminSettingsData out;
 ' #txt
