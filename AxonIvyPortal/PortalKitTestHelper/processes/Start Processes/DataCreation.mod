@@ -1579,7 +1579,8 @@ app.name = convertor.toJson();
 
 RegisteredApplicationService applicationService = new RegisteredApplicationService();
 app = applicationService.save(app) as Application;
-
+// Invalidate SessionCache
+IvyCacheService.newInstance().invalidateSessionCacheWithGroup(IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS);
 ' #txt
 Dt0 f152 security system #txt
 Dt0 f152 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
