@@ -5,6 +5,13 @@ var Portal = {
     }
     // Update menuitem when access page by direct link
     MainMenu.init(responsiveToolkit);
+    
+    //Add very small timeout when page ready, fix responsive problem for IE 11
+    setTimeout(function() {
+      responsiveToolkit.updateLayoutWithoutAnimation();
+    }, 1);
+    
+    this.updateLayoutContent();
     this.updateBreadcrumb();
     
     // Update screen when window size is changed
@@ -15,14 +22,6 @@ var Portal = {
       }, 250);
       Portal.updateGuide();
     });
-    
-    //Add very small timeout when page ready, fix responsive problem for IE 11
-    setTimeout(function() {
-      responsiveToolkit.updateLayoutWithoutAnimation();
-    }, 1);
-    
-    this.updateLayoutContent();
-    this.updateBreadcrumb();
   },
   
   updateGuide : function() {
@@ -48,8 +47,8 @@ var Portal = {
       fullHeight = 'var(--vh, 1vh) * 100';
     }
 
-    var headerHeight = $('#portal-template-header').outerHeight();
-    var footerHeight = $('#portal-template-footer').outerHeight();
+    var headerHeight = $('.js-portal-template-header').outerHeight();
+    var footerHeight = $('.js-portal-template-footer').outerHeight();
     var headerFooterHeight = headerHeight + footerHeight;
     var layoutTopbarHeight = $('.layout-topbar').outerHeight();
     $('.js-position-topbar').height(layoutTopbarHeight);

@@ -13,7 +13,7 @@ import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
-import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -92,7 +92,6 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
   }
 
   private void initializedDataModel() {
-    criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
     data.clear();
     buildQueryToSearchCriteria();
     setRowCount(getCaseCount(criteria));
@@ -110,6 +109,7 @@ public class ElapsedTimeLazyDataModel extends LazyDataModel<ICase> {
     criteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.DONE)));
     criteria.setSortField(CaseSortField.ID.toString());
     criteria.setSortDescending(true);
+    criteria.setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
   }
   
   private void buildSortCaseQuery(CaseQuery caseQuery) {

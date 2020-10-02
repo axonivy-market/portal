@@ -53,8 +53,7 @@
               <p:menuitem id="menu-item-#{menuItemStatus.index}" rendered="#{empty menuItem.getAttributes().get('isThirdPartyApp')}"
                 actionListener="#{logic.openApp(menuItem.href, task)}" disabled="#{menuItem.disabled}" update="main-menu" process="main-menu"
                 icon="#{menuItem.icon}" value="#{menuItem.value}" iconPos="right"
-                containerStyleClass="#{menuItem.styleClass}" styleClass="#{menuItem.styleClass eq 'active-menuitem' ? 'current-application':''}" 
-                />
+                containerStyleClass="#{menuItem.styleClass}" styleClass="#{menuItem.styleClass eq 'active-menuitem' ? 'current-application':''}" />
 
               <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}" rendered="#{not empty menuItem.getAttributes().get('isThirdPartyApp')}"
                 update="main-menu" process="main-menu" actionListener="#{logic.openApp(menuItem.href, task)}" ajax="false" target="_blank"

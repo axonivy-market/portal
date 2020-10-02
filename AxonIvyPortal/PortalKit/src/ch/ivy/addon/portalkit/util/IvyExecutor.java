@@ -11,13 +11,14 @@ import ch.ivyteam.ivy.application.ActivityOperationState;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.application.ReleaseState;
+import ch.ivyteam.ivy.persistence.PersistencyException;
 import ch.ivyteam.ivy.server.ServerFactory;
 
 public class IvyExecutor {
 
   private IvyExecutor() {}
 
-  public static <T> T executeAsSystem(Callable<T> callable) {
+  public static <T> T executeAsSystem(Callable<T> callable) throws PersistencyException{
     return ServerFactory.getServer().getSecurityManager().executeAsSystem2(callable);
   }
 

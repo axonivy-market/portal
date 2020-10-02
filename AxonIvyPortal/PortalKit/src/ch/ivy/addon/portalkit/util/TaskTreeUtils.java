@@ -17,7 +17,6 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
@@ -31,24 +30,20 @@ public class TaskTreeUtils {
   
   public static CheckboxTreeNode buildTaskCategoryCheckboxTreeRoot() {
     CheckboxTreeNode root = buildRoot();
-    RegisteredApplicationService service = new RegisteredApplicationService();
-    List<String> involvedApplications =
-        service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName());
     TaskQuery taskQuery = IvyExecutor.executeAsSystem(() -> {
       return SubProcessCall.withPath(PortalConstants.BUILD_TASK_QUERY_CALLABLE).withStartSignature("buildTaskQuery()")
           .call().get("taskQuery", TaskQuery.class);
     });
-    CategoryTree allTaskCategoryTree = findAllTaskCategoryTree(involvedApplications, taskQuery);
+    CategoryTree allTaskCategoryTree = findAllTaskCategoryTree(taskQuery);
     convertToCheckboxTreeNode((CheckboxTreeNode) root.getChildren().get(0), allTaskCategoryTree);
     sortNode(root);
     return root;
   }
   
-  private static CategoryTree findAllTaskCategoryTree(List<String> involvedApplications, TaskQuery taskQuery) {
+  private static CategoryTree findAllTaskCategoryTree(TaskQuery taskQuery) {
     Map<String, Object> params = new HashMap<>();
     TaskCategorySearchCriteria criteria = new TaskCategorySearchCriteria();
     criteria.setCustomTaskQuery(taskQuery);
-    criteria.setApps(involvedApplications);
     params.put("taskCategorySearchCriteria", criteria);
     Map<String, Object> response = IvyAdapterService.startSubProcess(
         "findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCategorySearchCriteria)", params,

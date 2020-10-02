@@ -48,9 +48,7 @@ As0 @PushWFArc f33 '' #zField
 As0 @Split f5 '' #zField
 As0 @PushWFArc f6 '' #zField
 As0 @PushWFArc f7 '' #zField
-As0 @UdMethod f4 '' #zField
 As0 @GridStep f25 '' #zField
-As0 @PushWFArc f26 '' #zField
 As0 @UdProcessEnd f9 '' #zField
 As0 @PushWFArc f38 '' #zField
 As0 @PushWFArc f29 '' #zField
@@ -215,10 +213,8 @@ selected app</name>
 ' #txt
 As0 f95 644 512 120 48 -33 -16 #rect
 As0 f95 @|StepIcon #fIcon
-As0 f97 processCall 'Business Processes/FindApplicationsByUser:findApplicationsByUser(String)' #txt
-As0 f97 requestActionDecl '<String username> param;' #txt
-As0 f97 requestMappingAction 'param.username=ivy.session.getSessionUserName();
-' #txt
+As0 f97 processCall 'Business Processes/FindThirdPartyApplications:findThirdPartyApplications()' #txt
+As0 f97 requestActionDecl '<> param;' #txt
 As0 f97 responseActionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt
 As0 f97 responseMappingAction 'out=in;
@@ -391,19 +387,6 @@ As0 f7 expr out #txt
 As0 f7 80 44 152 256 #arcP
 As0 f7 1 80 256 #addKink
 As0 f7 1 0.4001152932228009 0 0 #arcLabel
-As0 f4 guid 16D420B337DFE68F #txt
-As0 f4 method fetchMenuItem() #txt
-As0 f4 inParameterDecl '<> param;' #txt
-As0 f4 outParameterDecl '<> result;' #txt
-As0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>fetchMenuItem</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f4 491 19 26 26 14 6 #rect
-As0 f4 @|UdMethodIcon #fIcon
 As0 f25 actionTable 'out=in;
 ' #txt
 As0 f25 actionCode 'import ch.addon.portal.generic.menu.MenuView;
@@ -414,24 +397,18 @@ As0 f25 security system #txt
 As0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Reload menu when&#xD;
-language changed</name>
+        <name>Build menu view</name>
     </language>
 </elementInfo>
 ' #txt
-As0 f25 104 384 128 48 -55 -16 #rect
+As0 f25 112 386 112 44 -45 -8 #rect
 As0 f25 @|StepIcon #fIcon
-As0 f26 expr out #txt
-As0 f26 504 45 232 408 #arcP
-As0 f26 1 504 304 #addKink
-As0 f26 2 384 408 #addKink
-As0 f26 1 0.5405595343708136 0 0 #arcLabel
 As0 f9 155 507 26 26 0 12 #rect
 As0 f9 @|UdProcessEndIcon #fIcon
 As0 f38 expr out #txt
-As0 f38 168 432 168 507 #arcP
+As0 f38 168 430 168 507 #arcP
 As0 f29 expr out1 #txt
-As0 f29 168 272 168 384 #arcP
+As0 f29 168 272 168 386 #arcP
 As0 f29 0 0.18808549022839285 0 0 #arcLabel
 As0 f3 guid 16E3A96DE4048374 #txt
 As0 f3 method leave(ITask) #txt
@@ -661,8 +638,6 @@ As0 f94 mainOut f6 tail #connect
 As0 f6 head f5 in #connect
 As0 f74 mainOut f7 tail #connect
 As0 f7 head f5 in #connect
-As0 f4 mainOut f26 tail #connect
-As0 f26 head f25 mainIn #connect
 As0 f25 mainOut f38 tail #connect
 As0 f38 head f9 mainIn #connect
 As0 f5 out f29 tail #connect

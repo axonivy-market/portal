@@ -17,7 +17,6 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
@@ -31,24 +30,20 @@ public class CaseTreeUtils {
 
   public static CheckboxTreeNode buildCaseCategoryCheckboxTreeRoot() {
     CheckboxTreeNode root = buildRoot();
-    RegisteredApplicationService service = new RegisteredApplicationService();
-    List<String> involvedApplications =
-        service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName());
     CaseQuery caseQuery = IvyExecutor.executeAsSystem(() -> {
       return SubProcessCall.withPath(PortalConstants.BUILD_CASE_QUERY_CALLABLE).withStartSignature("buildCaseQuery()")
           .call().get("caseQuery", CaseQuery.class);
     });
-    CategoryTree allCaseCategories = findAllCaseCategoryTree(involvedApplications, caseQuery);
+    CategoryTree allCaseCategories = findAllCaseCategoryTree(caseQuery);
     convertToCheckboxTreeNode((CheckboxTreeNode) root.getChildren().get(0), allCaseCategories);
     sortNode(root);
     return root;
   }
 
-  private static CategoryTree findAllCaseCategoryTree(List<String> involvedApplications, CaseQuery caseQuery) {
+  private static CategoryTree findAllCaseCategoryTree(CaseQuery caseQuery) {
     Map<String, Object> params = new HashMap<>();
     CaseCategorySearchCriteria criteria = new CaseCategorySearchCriteria();
     criteria.setCustomCaseQuery(caseQuery);
-    criteria.setApps(involvedApplications);
     params.put("caseCategorySearchCriteria", criteria);
     Map<String, Object> response =
         IvyAdapterService.startSubProcess("findCategoriesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria)", 

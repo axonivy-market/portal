@@ -39,8 +39,8 @@ function TaskWidget() {
           error = 55; // included margin, padding in search page
         }
 
-        var compactProcessWidgetHeight = window.matchMedia("(max-width: 40em)").matches == true ? ($('.compact-process-widget').outerHeight(true) || 0) : 0;
-        var compactTaskWidgetPadding = $('.compact-task-widget').outerHeight(true) - $('.compact-task-widget').height()||0;
+        var compactProcessWidgetHeight = window.matchMedia("(max-width: 40em)").matches == true ? ($('.js-compact-process-widget-panel').outerHeight(true) || 0) : 0;
+        var compactTaskWidgetPadding = $('.js-compact-task-widget').outerHeight(true) - $('.js-compact-task-widget').height()||0;
         var taskViewPadding = $('.js-task-view').outerHeight(true) - $('.js-task-view').height()||0;
         var layoutContentPadding = $('.layout-content').outerHeight(true) - $('.layout-content').height()||0;
         var containerPadding = container.outerHeight(true) - container.height()||0;
