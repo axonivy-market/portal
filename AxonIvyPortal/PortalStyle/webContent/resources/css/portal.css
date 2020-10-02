@@ -65,6 +65,31 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
   width: auto;
   max-width: 100%; }
 
+.login-body.login-error-page {
+  background-image: none;
+  background-color: var(--ivy-primary-color-grey-basic);
+}
+
+.login-body.login-error-page .login-panel {
+  width: 750px;
+  margin-left: -375px;
+}
+
+.login-body.login-error-page .login-panel .login-panel-header {
+  background-color: var(--primary-color);
+}
+
+.login-body.login-error-page .login-panel .login-panel-content {
+  padding: 64px 100px; }
+
+@media (max-width: 640px) {
+  .login-body.login-error-page .login-panel {
+  	width: auto;
+  	margin-left: auto; }
+
+  .login-body.login-error-page .login-panel .login-panel-content {
+    padding: 64px 25px; }
+}
 /* Icon */
 .fa:before {
   font-family: var(--icon-font-family); }
@@ -179,7 +204,7 @@ body .ui-datatable tbody tr.ui-datatable-even {
   background: var(--ivy-primary-color-light);
   box-shadow: none;
   padding-bottom: 0;
-  height: 58px; }
+  height: 62px; }
 
 .layout-wrapper .layout-main .layout-content {
   padding: 0 20px 0 20px;

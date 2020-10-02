@@ -741,9 +741,18 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   width: 1px;
 }
 
+.case-info-dialog .ui-dialog-content.ui-widget-content {
+  max-width: 80vw;
+  max-height: 80vh !important;
+}
+
 @media (max-width: 768px) {
   .case-info-dialog .case-detail-header {
     display: none;
+  }
+  .case-info-dialog .ui-dialog-content.ui-widget-content {
+    max-width: 90vw;
+    max-height: 90vh !important;
   }
 }
 
@@ -1880,6 +1889,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   max-width: 70%;
 }
 
+.task-workflow-event-command {
+  margin-left: 15px;
+}
+
 @media screen and (max-width: 40em) {
   .workflow-events-dialog {
     max-width: 90%;
@@ -1890,7 +1903,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   .workflow-events-dialog {
     max-width: 80%;
   }
-  }
+}
 /********************************** END TASK DETAIL **********************************/
 
 /********************************** CASE DETAIL **********************************/
@@ -2510,7 +2523,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   .settings-table-action-buttons .action-column-icon-button:first-of-type {
     margin-left: 0;
   }
-  .dialog-closing-information, .app-dialog, .select-icon-dialog, .application-selection-dialog,
+  .dialog-closing-information, .app-dialog, .select-icon-dialog,
   .setting-dialog, .project-info-dialog, .deputy-dialog,
   .absence-settings-dialog, .add-absence-dialog {
     min-width: 96vw;
@@ -2535,13 +2548,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 .md-inputfield .absence-user-selection .ui-autocomplete-input.ui-inputfield,
 .substituted-user .ui-autocomplete-input.ui-inputfield {
   width: 100%;
-}
-
-/* Override Reflow stype for Application selection */
-@media (max-width: 640px){
-  .application-selection-container.ui-datatable-reflow .ui-datatable-data td[role="gridcell"] .ui-column-title {
-    width: 160px;
-  }
 }
 
 /******************************** PROJECT INFO DIALOG ******************************/
@@ -2603,7 +2609,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .app-icon {
-  text-align: center;
+  text-align: left;
   height: 42px;
   line-height: 2.5rem;
 }
@@ -2664,12 +2670,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .admin-application {
   margin-top: 10px;
-}
-
-.application-selection-container .ui-datatable-scrollable-body {
-  height: auto;
-  max-height: 60vh !important;
-  overflow-x: hidden;
 }
 
 .admin-table {
@@ -2743,10 +2743,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   width: calc(100% - 20px);
 }
 
-body .substitue-tab.ui-tabs .ui-tabs-panel {
-padding: 0;
-}
-
 @media screen and (max-width: 40em) {
   .absence-management .show-absence-in-the-past-panel {
     width: 72%;
@@ -2791,7 +2787,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   box-sizing: border-box !important;
 }
 
-/********************************** CHANGE PASSWORK DIALOG **********************************/
+/********************************** CHANGE PASSWORD DIALOG **********************************/
 .change-password-dialog {
   max-width: 500px;
   min-width: 350px;
@@ -2802,7 +2798,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
     max-width: 96vw;
   }
 }
-/********************************** END CHANGE PASSWORK DIALOG **********************************/
+/********************************** END CHANGE PASSWORD DIALOG **********************************/
 
 /********************************** USER PROFILE **********************************/
 @media screen and (max-width: 40em) {
@@ -3213,6 +3209,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   border: none;
 }
 
+.statistic-filter-item.ui-scrollpanel .ui-widget.ui-selectmanycheckbox td {
+  white-space: nowrap;
+}
+
 .custom-field-panel.statistic-filter-container {
   height: auto;
   max-height: 18rem;
@@ -3607,13 +3607,13 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   width: 100%;
 }
 
-.preview-users-datatable {
+/* .preview-users-datatable {
   width: 400px;
 }
 
 .preview-users-datatable .ui-datatable-scrollable-body {
   overflow-x: hidden;
-}
+} */
 
 .config-columns-panel {
   min-width: 250px;
@@ -3710,6 +3710,7 @@ body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-c
 
 .statistic-filter-accordion-panel .ui-accordion-content {
   overflow-y: hidden !important;
+  max-width: 30.5rem;
 }
 
 .statistic-filter-container.ui-scrollpanel {

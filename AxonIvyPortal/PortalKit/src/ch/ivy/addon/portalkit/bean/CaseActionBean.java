@@ -4,7 +4,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.workflow.ICase;
 
@@ -33,6 +32,6 @@ public class CaseActionBean {
     if (iCase == null || permission == null) {
       return false;
     }
-    return PermissionUtils.hasPermission(iCase.getApplication(), Ivy.session().getSessionUserName(), permission);
+    return PermissionUtils.hasPermission(permission);
   }
 }

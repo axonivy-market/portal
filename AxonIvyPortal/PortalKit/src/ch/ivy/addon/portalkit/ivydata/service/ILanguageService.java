@@ -6,24 +6,14 @@ import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
 public interface ILanguageService {
 
   /**
-   * Get Languages for the passed user
-   * @param username
+   * Get Languages for the current user
    * @return {@link IvyLanguageResultDTO}
    */
-  IvyLanguageResultDTO findUserLanguages(String username);
+  IvyLanguageResultDTO findUserLanguages();
 
   /**
-   * set Languages for the passed user
-   * @param username
+   * set Languages for the current user
    * @param language
-   * @return {@link IvyLanguageResultDTO}
    */
-  IvyLanguageResultDTO saveUserLanguage(String username, IvyLanguage language);
-
-  /**
-   * get supported languages of application store in portal style
-   * @param appName
-   * @return {@link IvyLanguageResultDTO}
-   */
-  IvyLanguageResultDTO getSupportedLanguages(String appName);
+  void saveUserLanguage(IvyLanguage language);
 }

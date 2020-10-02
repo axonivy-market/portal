@@ -1,9 +1,5 @@
 UserProfileData #class
 ch.ivy.addon.portalkit.settings.UserProfile #namespace
-errorLink String #field
-errorLink PERSISTENT #fieldModifier
-errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
-errors PERSISTENT #fieldModifier
 language ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage #field
 language PERSISTENT #fieldModifier
 emailSetting ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting #field

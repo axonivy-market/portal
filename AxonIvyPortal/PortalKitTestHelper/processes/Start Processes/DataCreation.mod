@@ -1,5 +1,5 @@
 [Ivy]
-153CACC26D0D4C3D 7.5.0 #module
+153CACC26D0D4C3D 9.2.0 #module
 >Proto >Proto Collection #zClass
 Dt0 DataCreation Big #zClass
 Dt0 B #cInfo
@@ -1580,10 +1580,7 @@ app.menuOrdinal = 99;
 app.name = convertor.toJson();
 
 RegisteredApplicationService applicationService = new RegisteredApplicationService();
-app = applicationService.save(app) as Application;
-
-IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION);
-IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON);' #txt
+app = applicationService.save(app) as Application;' #txt
 Dt0 f152 security system #txt
 Dt0 f152 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

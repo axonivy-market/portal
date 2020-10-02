@@ -59,8 +59,10 @@
           <li><p:link id="project-info-menu-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/info')}"
               onclick="rcProjectInfo(); $('#user-setting-container').click()" /></li>
 
-          <li><ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting id="logout-setting" isWorkingOnATask="#{isWorkingOnATask}"
-                task="#{task}" /></li>
+          <li jsf:rendered="#{loginBean.isLoginPageRendered()}">
+            <ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting
+              id="logout-setting" isWorkingOnATask="#{isWorkingOnATask}" task="#{task}" />
+          </li>
         </ul></li>
 
       <li class="ui-sm-hidden ui-md-hidden"><h:form id="global-search-form" prependId="false" rendered="#{showGlobalSearch}">
@@ -98,7 +100,7 @@
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}" closeOnEscape="true" widgetVar="adminUI"
-      id="admin-ui-dialog" resizable="false" styleClass="admin-ui-dialog" modal="true" draggable="true" appendTo="@(body)" dynamic="true"
+      id="admin-ui-dialog" resizable="false" styleClass="admin-ui-dialog" modal="true" draggable="true" appendTo="@(body)" dynamic="true" rendered="#{permissionBean.hasAdminPermission()}"
       onShow="initAdminSettingsData(); PF('adminUI').initPosition();" onHide="PF('dialogClosingInformation').show();" width="80vw" responsive="true" fitViewport="true">
       <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="adminui" onTabChange="PF('adminUI').initPosition();"/>
       <div class="ui-dialog-footer">

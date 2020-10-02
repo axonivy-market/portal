@@ -1,5 +1,5 @@
 [Ivy]
-163729F2CBAE7BE4 7.5.0 #module
+163729F2CBAE7BE4 9.2.0 #module
 >Proto >Proto Collection #zClass
 ew0 executePredefinedWorkflow Big #zClass
 ew0 B #cInfo
@@ -1153,7 +1153,11 @@ in.definedTasks.add(taskDef);
 
 // Initialize steps
 for(TaskDef task: in.definedTasks) {
-	in.steps.add(task.subject);
+	if (task.getTaskType() != TaskType.EMAIL) {
+		in.steps.add(task.subject);
+	} else {
+		in.steps.add(TaskType.EMAIL.getLabel());
+	}
 }
 
 // Initialize controllers

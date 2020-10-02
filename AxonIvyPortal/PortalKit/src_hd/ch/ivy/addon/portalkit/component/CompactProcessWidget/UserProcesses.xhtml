@@ -8,7 +8,7 @@
 
 <ui:composition>
 
-  <div class="ui-g">
+  <div class="ui-g js-favorite-process-header">
     <div jsf:rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled and compactProcessWidgetBean.displayShowAllProcessesLink}" class="favorite-process-title ui-g-12">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/favoriteProcesses')}" />
     </div>
@@ -19,7 +19,7 @@
   </div>
   
 <h:panelGroup id="user-process-container" layout="block" styleClass="user-process-container ui-g" rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}">
-  <h:panelGroup id="process-list" layout="block" styleClass="compact-processes-container widget-content ui-g-12">
+  <h:panelGroup id="process-list" layout="block" styleClass="compact-processes-container js-compact-processes-container widget-content ui-g-12">
     <h:panelGroup styleClass="process-empty-container" layout="block"
       rendered="#{empty compactProcessWidgetBean.userProcesses and compactProcessWidgetBean.isUserFavoritesEnabled and compactProcessWidgetBean.displayShowAllProcessesLink}">
       <p>
@@ -29,7 +29,7 @@
     </h:panelGroup>
     <ui:fragment id="user-favorite-process-list" rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled and compactProcessWidgetBean.displayShowAllProcessesLink}">
       <ui:repeat varStatus="status" var="process" value="#{compactProcessWidgetBean.userProcesses}">
-        <h:form id="process-item-form" styleClass="process-start-list-item"
+        <h:form id="process-item-form" styleClass="process-start-list-item js-process-start-list-item"
           rendered="#{!compactProcessWidgetBean.editMode}">
           <ui:include src="ProcessItemLink.xhtml" />
         </h:form>
@@ -144,16 +144,9 @@
           icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}"
           process="@form" actionListener="#{compactProcessWidgetBean.saveNewUserProcess}"
           update="@form #{p:component('process-list')} #{p:component('process-widget-action')}"
-          oncomplete="if(!args.validationFailed){PF('add-new-process-dialog').hide();} favouritesProcess.setUpScrollBarUserProcesses()" />
+          oncomplete="if(!args.validationFailed){PF('add-new-process-dialog').hide();} FavouritesProcess.setUpScrollBarForCompactProcessLists(false)" />
       </div>
     </h:form>
   </p:dialog>
-  
-  <script type="text/javascript">
-       $(function() {
-          favouritesProcess.init();
-          favouritesProcess.setUpScrollBarUserProcesses();
-      });
-  </script>
 </ui:composition>
 </html>

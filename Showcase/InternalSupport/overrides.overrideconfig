@@ -1,5 +1,7 @@
 {
-  /HTML_DIALOG *
+  /HTML_DIALOG {
+    /ch.ivy.addon.portal.component.CaseInformation "ch.ivy.addon.portal.component.CaseInformationOverride"
+  }
   /PROCESS {
     /Functional-Processes.BuildCaseQuery "Functional Processes/BuildCaseQueryOverride"
   }

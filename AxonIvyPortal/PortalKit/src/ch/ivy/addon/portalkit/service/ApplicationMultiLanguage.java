@@ -17,7 +17,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 public class ApplicationMultiLanguage {
 
-  private static final String SUPPORTED_LANGUAGES_CMS_URI = "/PortalKit/AppInfo/SupportedLanguages";
+  private static final String SUPPORTED_LANGUAGES_CMS_URI = "/AppInfo/SupportedLanguages";
 
   private ApplicationMultiLanguage() {}
 
@@ -59,5 +59,10 @@ public class ApplicationMultiLanguage {
       }
     }
     return new ArrayList<>(supportedLanguages);
+  }
+
+  public static String getCmsValueByUserLocale(String cmsURI) {
+    Locale currentUserLocale = new Locales().getCurrentLocale();
+    return Ivy.cms().coLocale(cmsURI, currentUserLocale);
   }
 }

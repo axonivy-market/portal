@@ -116,8 +116,17 @@ In engine
 
 Migrate 9.1 to 9.2
 ------------------
+1. We remove implementation of Portal multiple applications. So that you need to adapt some points below:
+ 
+ - Adapt start process signature of ``PasswordService`` in ``ChangePassword.mod`` if you overrode this callable.
+ 
+ - If you are using ``ProcessStartCollector``, replace constructor ``ProcessStartCollector(application)`` with ``ProcessStartCollector()``.
 
-1. In PortalNavigatorInFrame.java, change the methods from non-static to static.
+ - If you have TaskLazyDataModel, CaseLazyDataModel customization, remove ``setInvolvedApplications()`` method, ``setInvolvedUsername`` in search criteria.
+
+2. In PortalNavigatorInFrame.java, change the methods from non-static to static.
+
+3. CaseDetails component in PortalTemplate is removed.
 
 Migrate 8.x to 9.1
 ------------------
@@ -175,6 +184,10 @@ Changes in 9.2
 - Introduce :ref:`Workflow Events table <how-to-show-workflow-events>`, user who has permission ``WORKFLOW_EVENT_READ_ALL`` can see all ``WORKFLOW_EVENTS``.
 
 - Introduce the ``DEFAULT_HOMEPAGE`` Portal setting to set the default homepage, each user can change it via user profile. 
+
+- Introduce new approach to customize :ref:`Portal Case Item details <customization-case-item-details>`. Now, your case information in Case details page and Case Info dialog is the same
+
+- Introduce new global variable named ``PortalLoginPageDisplay`` to show Login page or hide it then show error page instead.
 
 Changes in 9.1
 --------------
