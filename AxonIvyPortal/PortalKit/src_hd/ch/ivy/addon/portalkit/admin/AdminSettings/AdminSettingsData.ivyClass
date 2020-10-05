@@ -40,3 +40,5 @@ isDefaultApplicationLanguage Boolean #field
 isDefaultApplicationLanguage PERSISTENT #fieldModifier
 isAnnouncementActivated Boolean #field
 isAnnouncementActivated PERSISTENT #fieldModifier
+isExternalOption Boolean #field
+isExternalOption PERSISTENT #fieldModifier

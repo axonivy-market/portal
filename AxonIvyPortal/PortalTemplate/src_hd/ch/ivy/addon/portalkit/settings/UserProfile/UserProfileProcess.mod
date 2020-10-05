@@ -38,10 +38,16 @@ Us0 @PushWFArc f5 '' #zField
 Us0 @PushWFArc f7 '' #zField
 Us0 @PushWFArc f13 '' #zField
 Us0 @PushWFArc f24 '' #zField
-Us0 @PushWFArc f4 '' #zField
 Us0 @GridStep f6 '' #zField
-Us0 @PushWFArc f9 '' #zField
 Us0 @PushWFArc f3 '' #zField
+Us0 @GridStep f10 '' #zField
+Us0 @PushWFArc f11 '' #zField
+Us0 @GridStep f17 '' #zField
+Us0 @PushWFArc f18 '' #zField
+Us0 @PushWFArc f9 '' #zField
+Us0 @GridStep f20 '' #zField
+Us0 @PushWFArc f23 '' #zField
+Us0 @PushWFArc f4 '' #zField
 >Proto Us0 Us0 UserProfileProcess #zField
 Ct3 @TextInP .type .type #zField
 Ct3 @TextInP .processKind .processKind #zField
@@ -108,7 +114,7 @@ Us0 S10 192 258 112 44 -43 -8 #rect
 Us0 S10 @|BIcon #fIcon
 Us0 f1 211 51 26 26 0 12 #rect
 Us0 f1 @|UdProcessEndIcon #fIcon
-Us0 f8 827 131 26 26 0 12 #rect
+Us0 f8 1107 131 26 26 0 12 #rect
 Us0 f8 @|UdProcessEndIcon #fIcon
 Us0 f12 guid 17255599F044D2FD #txt
 Us0 f12 method initSettings() #txt
@@ -152,7 +158,7 @@ Us0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Us0 f39 376 122 112 44 -44 -8 #rect
 Us0 f39 @|CallSubIcon #fIcon
-Us0 f42 995 267 26 26 0 12 #rect
+Us0 f42 1107 267 26 26 0 12 #rect
 Us0 f42 @|UdProcessEndIcon #fIcon
 Us0 f45 processCall 'Ivy Data Processes/EmailSettingService:saveEmailSetting(ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting)' #txt
 Us0 f45 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting emailSetting> param;' #txt
@@ -243,7 +249,6 @@ Us0 f5 496 280 568 280 #arcP
 Us0 f7 109 144 192 144 #arcP
 Us0 f13 304 144 376 144 #arcP
 Us0 f24 488 144 568 144 #arcP
-Us0 f4 680 144 827 144 #arcP
 Us0 f6 actionTable 'out=in;
 ' #txt
 Us0 f6 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -256,10 +261,108 @@ Us0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 f6 808 258 112 44 -20 -8 #rect
+Us0 f6 936 258 112 44 -20 -8 #rect
 Us0 f6 @|StepIcon #fIcon
-Us0 f9 712 280 808 280 #arcP
-Us0 f3 920 280 995 280 #arcP
+Us0 f3 1048 280 1107 280 #arcP
+Us0 f10 actionTable 'out=in;
+' #txt
+Us0 f10 actionCode 'import org.apache.commons.lang3.StringUtils;
+import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
+import ch.ivy.addon.portalkit.enums.SortDirection;
+import java.util.ArrayList;
+
+if (in.sortDirections == null || in.sortDirections.isEmpty()) {
+	String defaultOption = "DEFAULT";
+
+  in.sortDirections = new ArrayList();
+  in.sortDirections.add(defaultOption);
+  for (SortDirection direction : SortDirection.values()) {
+    in.sortDirections.add(direction.name());
+  }
+
+  in.selectedTaskListSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfTaskList(ivy.session.getSessionUserName());
+  if (StringUtils.isBlank(in.selectedTaskListSortDirection)) {
+    in.selectedTaskListSortDirection = defaultOption;
+  }
+
+  in.selectedCaseListSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfCaseList(ivy.session.getSessionUserName());
+  if (StringUtils.isBlank(in.selectedCaseListSortDirection)) {
+  	in.selectedCaseListSortDirection = defaultOption;
+  }
+}' #txt
+Us0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init sort directions</name>
+    </language>
+</elementInfo>
+' #txt
+Us0 f10 728 122 112 44 -48 -8 #rect
+Us0 f10 @|StepIcon #fIcon
+Us0 f11 680 144 728 144 #arcP
+Us0 f17 actionTable 'out=in;
+' #txt
+Us0 f17 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
+UserSettingService.newInstance().saveDefaultSortFieldOfTaskList(ivy.session.getSessionUserName(), in.selectedTaskListSortField, in.selectedTaskListSortDirection);
+UserSettingService.newInstance().saveDefaultSortFieldOfCaseList(ivy.session.getSessionUserName(), in.selectedCaseListSortField, in.selectedCaseListSortDirection);' #txt
+Us0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Save sort fields</name>
+    </language>
+</elementInfo>
+' #txt
+Us0 f17 776 258 112 44 -42 -8 #rect
+Us0 f17 @|StepIcon #fIcon
+Us0 f18 712 280 776 280 #arcP
+Us0 f9 888 280 936 280 #arcP
+Us0 f20 actionTable 'out=in;
+' #txt
+Us0 f20 actionCode 'import org.apache.commons.lang3.StringUtils;
+import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
+import java.util.Optional;
+import ch.ivy.addon.portalkit.enums.CaseSortField;
+import ch.ivy.addon.portalkit.enums.TaskSortField;
+import java.util.ArrayList;
+
+String defaultOption = "DEFAULT";
+
+if (in.taskListSortFields == null || in.taskListSortFields.isEmpty()) {
+  in.taskListSortFields = new ArrayList();
+  in.taskListSortFields.add(defaultOption);
+
+  for (TaskSortField sortField : TaskSortField.values()) {
+  	if (StringUtils.isNotBlank(sortField.getLabel())) {
+  		in.taskListSortFields.add(sortField.name());
+  	}
+  }
+
+  in.selectedTaskListSortField = Optional.ofNullable(UserSettingService.newInstance().getDefaultSortFieldOfTaskList(ivy.session.getSessionUserName())).orElse(defaultOption) as String;
+}
+
+if (in.caseListSortFields == null || in.caseListSortFields.isEmpty()) {
+  in.caseListSortFields = new ArrayList();
+  in.caseListSortFields.add(defaultOption);
+
+  for (CaseSortField sortField : CaseSortField.values()) {
+    if (StringUtils.isNotBlank(sortField.getLabel())) {
+  		in.caseListSortFields.add(sortField.name());
+  	}
+  }
+
+  in.selectedCaseListSortField = Optional.ofNullable(UserSettingService.newInstance().getDefaultSortFieldOfCaseList(ivy.session.getSessionUserName())).orElse(defaultOption) as String;
+}' #txt
+Us0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Init sort fields</name>
+    </language>
+</elementInfo>
+' #txt
+Us0 f20 888 122 112 44 -36 -8 #rect
+Us0 f20 @|StepIcon #fIcon
+Us0 f23 840 144 888 144 #arcP
+Us0 f4 1000 144 1107 144 #arcP
 >Proto Us0 .type ch.ivy.addon.portalkit.settings.UserProfile.UserProfileData #txt
 >Proto Us0 .processKind HTML_DIALOG #txt
 >Proto Us0 -8 -8 16 16 16 26 #rect
@@ -454,12 +557,18 @@ Us0 f13 head f39 mainIn #connect
 Us0 f12 mainOut f7 tail #connect
 Us0 f24 head S40 g0 #connect
 Us0 f39 mainOut f24 tail #connect
-Us0 S40 g1 f4 tail #connect
-Us0 f4 head f8 mainIn #connect
-Us0 f28 mainOut f9 tail #connect
-Us0 f9 head f6 mainIn #connect
 Us0 f6 mainOut f3 tail #connect
 Us0 f3 head f42 mainIn #connect
+Us0 S40 g1 f11 tail #connect
+Us0 f11 head f10 mainIn #connect
+Us0 f28 mainOut f18 tail #connect
+Us0 f18 head f17 mainIn #connect
+Us0 f17 mainOut f9 tail #connect
+Us0 f9 head f6 mainIn #connect
+Us0 f10 mainOut f23 tail #connect
+Us0 f23 head f20 mainIn #connect
+Us0 f20 mainOut f4 tail #connect
+Us0 f4 head f8 mainIn #connect
 Ct3 f11 mainOut f9 tail #connect
 Ct3 f9 head f23 mainIn #connect
 Ct3 g0 m f0 tail #connect
