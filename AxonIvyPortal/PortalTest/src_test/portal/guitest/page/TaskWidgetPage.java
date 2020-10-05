@@ -258,6 +258,19 @@ public class TaskWidgetPage extends TemplatePage {
     return findElementByCssSelector("span[id$='case-category']").getText();
   }
 
+  public String getPriorityOfTask(int row) {
+    String priorityClassName = findElementByCssSelector("span[id$='" + row +":task-item:task-priority-component:task-priority'] > span").getAttribute("class");
+    if (priorityClassName.contains("task-priority-low")) {
+      return "low";
+    } else if (priorityClassName.contains("task-priority-normal")) {
+      return "normal";
+    } else if (priorityClassName.contains("task-priority-high")) {
+      return "high";
+    } else {
+      return "exception";
+    }
+  }
+
   public boolean isTaskListColumnExist(String columnHeaderText) {
     String taskListHeaderSelector = taskWidgetId + ":task-widget-sort-menu";
     waitForElementDisplayed(By.id(taskListHeaderSelector), true);

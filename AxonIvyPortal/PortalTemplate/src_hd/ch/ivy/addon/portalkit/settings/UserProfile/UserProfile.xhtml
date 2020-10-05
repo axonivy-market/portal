@@ -55,12 +55,40 @@
                   <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/taskListConfiguration')}</h2>
                   <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/taskListConfigDescription')}</span>
                 </div>
+                <div class="ui-g-12 u-no-padding-top">
+                  <span class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/SortFieldSelections/defaultSortFieldLabel')}</span>
+                  <div class="ui-g-12">
+                    <p:selectOneMenu id="task-sort-field-selection" value="#{data.selectedTaskListSortField}" styleClass="sort-field-selection">
+                      <f:selectItems value="#{data.taskListSortFields}" var="taskSortField"
+                        itemValue="#{taskSortField}" itemLabel="#{userProfileBean.getDisplayNameOfTaskSortField(taskSortField)}" />
+                    </p:selectOneMenu>
+                    <p:spacer width="20" height="5" />
+                    <p:selectOneMenu id="task-sort-direction-selection" value="#{data.selectedTaskListSortDirection}" styleClass="ui-sm-12">
+                      <f:selectItems value="#{data.sortDirections}" var="direction"
+                        itemValue="#{direction}" itemLabel="#{userProfileBean.getDisplayNameOfTaskSortDirection(direction)}" />
+                    </p:selectOneMenu>
+                  </div>
+                </div>
               </div>
 
               <div class="ui-g-12">
                 <div class="setting-header ui-g-12">
                   <h2>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/caseListConfiguration')}</h2>
                   <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/caseListConfigDescription')}</span>
+                </div>
+                <div class="ui-g-12 u-no-padding-top">
+                  <span class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/SortFieldSelections/defaultSortFieldLabel')}</span>
+                  <div class="ui-g-12">
+                    <p:selectOneMenu id="case-sort-field-selection" value="#{data.selectedCaseListSortField}" styleClass="sort-field-selection">
+                      <f:selectItems value="#{data.caseListSortFields}" var="caseSortField"
+                        itemValue="#{caseSortField}" itemLabel="#{userProfileBean.getDisplayNameOfCaseSortField(caseSortField)}" />
+                    </p:selectOneMenu>
+                    <p:spacer width="20" height="5" />
+                    <p:selectOneMenu id="case-sort-direction-selection" value="#{data.selectedCaseListSortDirection}" styleClass="ui-sm-12">
+                      <f:selectItems value="#{data.sortDirections}" var="direction"
+                        itemValue="#{direction}" itemLabel="#{userProfileBean.getDisplayNameOfCaseSortDirection(direction)}" />
+                    </p:selectOneMenu>
+                  </div>
                 </div>
               </div>
             </div>
