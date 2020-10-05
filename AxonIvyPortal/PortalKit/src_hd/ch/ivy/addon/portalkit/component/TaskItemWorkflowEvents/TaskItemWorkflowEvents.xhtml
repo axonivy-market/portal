@@ -25,14 +25,14 @@
       scrollHeight="300"
       reflow="true">
 
-      <p:column width="350" sortBy="#{event.displayName}">
+      <p:column width="300" sortBy="#{event.displayName}">
         <f:facet name="header">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/eventType')}" />
         </f:facet>
         <h:outputText value="#{event.displayName}" />
       </p:column>
 
-      <p:column sortBy="#{event.content}">
+      <p:column sortBy="#{event.content}" width="300">
         <f:facet name="header">
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" />
         </f:facet>
