@@ -44,7 +44,11 @@ public class GlobalSetting extends BusinessEntity {
     String defaultValue = GlobalVariable.valueOf(key).getDefaultValue();
     GlobalVariable variable = GlobalVariable.valueOf(key);
     if (variable.getType() == GlobalVariableType.SELECTION) {
-      return GlobalVariable.Option.valueOf(defaultValue).translate();
+      if (variable.getExternalOptions() != null && !variable.getExternalOptions().isEmpty()) {
+        return variable.getExternalOptions().get(defaultValue);
+      } else {
+        return GlobalVariable.Option.valueOf(defaultValue).translate();
+      }
     }
     return defaultValue;
   }
@@ -53,9 +57,23 @@ public class GlobalSetting extends BusinessEntity {
   public String getDisplayValue() {
     GlobalVariable variable = GlobalVariable.valueOf(key);
     if (variable.getType() == GlobalVariableType.SELECTION) {
-      return GlobalVariable.Option.valueOf(StringUtils.upperCase(value)).translate();
+      if (variable.getExternalOptions() != null && !variable.getExternalOptions().isEmpty()) {
+        return variable.getExternalOptions().get(value);
+      } else {
+        return GlobalVariable.Option.valueOf(StringUtils.upperCase(value)).translate();
+      }
     }
     return value;
+  }
+
+  @JsonIgnore
+  public String getDisplayStringOfExternalOption(String optionKey) {
+    GlobalVariable variable = GlobalVariable.valueOf(key);
+    if (variable.getType() == GlobalVariableType.SELECTION && variable.getExternalOptions() != null && !variable.getExternalOptions().isEmpty()) {
+      String displayString = variable.getExternalOptions().get(optionKey);
+      return org.apache.commons.lang3.StringUtils.isBlank(displayString) ? optionKey : displayString;
+    }
+    return optionKey;
   }
 
   public void setValueToDefault() {

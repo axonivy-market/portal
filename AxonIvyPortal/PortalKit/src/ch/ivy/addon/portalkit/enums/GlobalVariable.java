@@ -1,5 +1,10 @@
 package ch.ivy.addon.portalkit.enums;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
+
 import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
 import ch.ivy.addon.portalkit.document.DocumentExtensionConstants;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -36,12 +41,17 @@ public enum GlobalVariable {
   HIDE_CASE_DOCUMENT(GlobalVariableType.SELECTION, Option.FALSE.toString(), "hideCaseDocument"),
   SHOW_USER_GUIDE(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showUserGuide"),
   SHOW_GLOBAL_SEARCH(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showGlobalSearch"),
-  SHOW_BUTTON_ICON(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showButtonIcon");
+  SHOW_BUTTON_ICON(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showButtonIcon"),
+  DEFAULT_SORT_FIELD_OF_TASK_LIST(GlobalVariableType.SELECTION, TaskSortField.ID.name(), "defaultSortFieldOfTaskList", getTaskListSortFields()),
+  DEFAULT_SORT_DIRECTION_OF_TASK_LIST(GlobalVariableType.SELECTION, SortDirection.DESCENDING.name(), "defaultSortDirectionOfTaskList", getSortDirections()),
+  DEFAULT_SORT_FIELD_OF_CASE_LIST(GlobalVariableType.SELECTION, CaseSortField.ID.name(), "defaultSortFieldOfCaseList", getCaseListSortFields()),
+  DEFAULT_SORT_DIRECTION_OF_CASE_LIST(GlobalVariableType.SELECTION, SortDirection.DESCENDING.name(), "defaultSortDirectionOfCaseList", getSortDirections());
   
   private GlobalVariableType type;
   private String defaultValue;
   private String noteCMS;
   private Option[] options;
+  private Map<String, String> externalOptions;
 
   public enum Option {
     FALSE,
@@ -80,6 +90,13 @@ public enum GlobalVariable {
     this.options = options;
   }
   
+  private GlobalVariable(GlobalVariableType type, String defaultValue, String noteCMS, Map<String, String> externalOptions) {
+    this.type = type;
+    this.defaultValue = defaultValue;
+    this.noteCMS = noteCMS;
+    this.externalOptions = externalOptions;
+  }
+  
   public GlobalVariableType getType() {
     return type;
   }
@@ -96,7 +113,43 @@ public enum GlobalVariable {
     return options;
   }
   
+  public Map<String, String> getExternalOptions() {
+    return externalOptions;
+  }
+
+  public void setExternalOptions(Map<String, String> externalOptions) {
+    this.externalOptions = externalOptions;
+  }
+  
   private static Option[] getLoggedInUserFormatOptions() {
     return new Option[] {Option.USERNAME, Option.DISPLAY_NAME, Option.DISPLAY_NAME_USERNAME, Option.USERNAME_DISPLAY_NAME};
+  }
+
+  private static Map<String, String> getTaskListSortFields() {
+    Map<String, String> result = new HashMap<>();
+    for (TaskSortField sortField : TaskSortField.values()) {
+      if (StringUtils.isNotBlank(sortField.getLabel())) {
+        result.put(sortField.name(), sortField.getLabel());
+      }
+    }
+    return result;
+  }
+
+  private static Map<String, String> getCaseListSortFields() {
+    Map<String, String> result = new HashMap<>();
+    for (CaseSortField sortField : CaseSortField.values()) {
+      if (StringUtils.isNotBlank(sortField.getLabel())) {
+        result.put(sortField.name(), sortField.getLabel());
+      }
+    }
+    return result;
+  }
+
+  private static Map<String, String> getSortDirections() {
+    Map<String, String> result = new HashMap<>();
+    for (SortDirection direction : SortDirection.values()) {
+      result.put(direction.name(), direction.getLabel());
+    }
+    return result;
   }
 }

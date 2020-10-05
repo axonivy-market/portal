@@ -13,6 +13,7 @@ import javax.faces.event.ValueChangeEvent;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
@@ -24,10 +25,11 @@ import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
-import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.SortDirection;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
+import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.service.CaseColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -399,11 +401,30 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     criteria = new CaseSearchCriteria();
     criteria.setBusinessCase(true);
     criteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
-    criteria.setSortField(CaseSortField.ID.toString());
-    criteria.setSortDescending(true);
+    criteria.setSortField(getDefaultSortField());
+    criteria.setSortDescending(isSortedDescendingByDefault());
     if (!isNotKeepFilter) {
       criteria.setKeyword(UserUtils.getSessionCaseKeywordFilterAttribute());
     }
+  }
+
+  private String getDefaultSortField() {
+    String defaultSortField = UserSettingService.newInstance().getDefaultSortFieldOfCaseList(Ivy.session().getSessionUserName());
+    if (StringUtils.isBlank(defaultSortField)) {
+      GlobalSettingService globalSettingService = new GlobalSettingService();
+      defaultSortField = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_FIELD_OF_CASE_LIST.name());
+    }
+    return defaultSortField;
+   }
+
+  private boolean isSortedDescendingByDefault() {
+    String defaultSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfCaseList(Ivy.session().getSessionUserName());
+    if (StringUtils.isBlank(defaultSortDirection)) {
+      GlobalSettingService globalSettingService = new GlobalSettingService();
+      defaultSortDirection = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST.name());
+    }
+    
+    return !SortDirection.ASCENDING.name().contentEquals(defaultSortDirection);
   }
 
   private void applyCustomSettings(CaseFilterData caseFilterData) {

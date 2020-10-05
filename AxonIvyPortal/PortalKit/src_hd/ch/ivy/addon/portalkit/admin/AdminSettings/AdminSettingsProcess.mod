@@ -358,7 +358,16 @@ in.isAddMode = false;
 in.dialogTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/editSetting");
 GlobalVariable globalVariable = GlobalVariable.valueOf(in.selectedSetting.key);
 in.settingInputType = globalVariable.getType();
-in.dropDownValues = globalVariable.getOptions();' #txt
+if (globalVariable.getExternalOptions() != null && !globalVariable.getExternalOptions().isEmpty()) {
+	in.dropDownValues.clear();
+	for (String key : globalVariable.getExternalOptions().keySet()) {
+	  in.dropDownValues.add(key);
+	}
+  in.isExternalOption = true;
+} else {
+  in.dropDownValues = globalVariable.getOptions();
+  in.isExternalOption = false;
+}' #txt
 As0 f72 security system #txt
 As0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
