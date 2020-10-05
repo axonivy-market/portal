@@ -15,7 +15,7 @@ import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
 public class GlobalSettingService extends AbstractService<GlobalSetting> {
 
   public GlobalSettingService() {
-    super(GlobalSettingDao.class);
+    super(new GlobalSettingDao());
   }
 
   @Override

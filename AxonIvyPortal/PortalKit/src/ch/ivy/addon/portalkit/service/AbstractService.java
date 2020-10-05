@@ -1,17 +1,12 @@
 package ch.ivy.addon.portalkit.service;
 
-import static ch.ivyteam.ivy.server.ServerFactory.getServer;
 
 import java.lang.reflect.Constructor;
 import java.util.List;
 
 import ch.ivy.addon.portalkit.persistence.dao.AbstractDao;
-import ch.ivy.addon.portalkit.persistence.dao.ExecuteAsSystemDecorator;
 import ch.ivy.addon.portalkit.persistence.domain.BusinessEntity;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
-import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.environment.Ivy;
 
 class AbstractService<T extends BusinessEntity> {
 
@@ -19,29 +14,6 @@ class AbstractService<T extends BusinessEntity> {
   
   public AbstractService(AbstractDao<T> abstractDao) {
     this.dao = abstractDao;
-  }
-
-  /**
-   * Proxy constructor of {@link AbstractService} instance to implicitly 
-   * Application to {@link AbstractDao} property
-   * 
-   * @param daoClassType
-   */
-  public AbstractService(Class<? extends AbstractDao<T>> daoClassType) {
-    IApplication app = getSystemApp();
-    if (app == null) {
-      app = Ivy.request().getApplication();
-    }
-    this.dao = ExecuteAsSystemDecorator.decorate(newInstance(daoClassType), app);
-  }
-  
-  private IApplication getSystemApp() {
-    try {
-      return IvyExecutor.executeAsSystem(() -> getServer().getApplicationConfigurationManager().getSystemApplication());
-    } catch (Exception e) {
-      Ivy.log().error("Can not find system application", e);
-      return null;
-    }
   }
 
   /**
@@ -129,7 +101,6 @@ class AbstractService<T extends BusinessEntity> {
   public void deleteAll(List<T> entities) {
     getDao().deleteAll(entities);
   }
-
 
   public long getIncrementId() {
     return getDao().getIncrementId();
