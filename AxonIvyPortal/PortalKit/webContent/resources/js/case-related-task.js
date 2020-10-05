@@ -17,7 +17,7 @@ var CaseRelatedTask = {
   init : function(relatedTask, technicalCase) {
     relatedTaskSize = relatedTask || 1;
     technicalCaseSize = technicalCase || 0;
-    isShowScrollBar = relatedTaskSize + technicalCaseSize > 5 ? true:false;
+    isShowScrollBar = relatedTaskSize + technicalCaseSize >= maxItems*2 ? true:false;
 
     taskItemHeight = this.getHeightOfRelatedTaskRow();
     caseItemHeight = this.getHeightOfTechnicalRow();
@@ -45,7 +45,7 @@ var CaseRelatedTask = {
       return;
     }
     
-    var relatedTaskTableMarginBottom = parseInt($('.case-related-task-table').css('margin-bottom'), 10);
+    var relatedTaskTableMarginBottom = parseInt($('.case-related-task-table').css('margin-bottom'), 0);
 
     var taskList = $('[id$="related-tasks:tasks"]');
     var taskListBody = taskList.find('.ui-datascroller-content.ui-widget-content.ui-corner-all');

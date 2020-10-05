@@ -962,8 +962,7 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   flex-flow: row wrap;
   justify-content: flex-start;
   overflow: auto;
-  height: auto !important;
-  padding: 0;
+  height: auto;
   -webkit-overflow-scroll: touch;
 }
 
@@ -1540,6 +1539,7 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 
 .task-view-container .ui-datascroller .ui-datascroller-content {
   padding: 2px;
+  padding-bottom: 0;
 }
 
 .task-view-container .Card {
