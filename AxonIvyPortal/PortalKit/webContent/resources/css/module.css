@@ -817,6 +817,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   padding-bottom: 16px;
 }
 
+@media screen and (max-height: 1080px) {
+  .case-detail-body .card {
+    height: 300px;
+  }
+}
+
 .case-history-button-container, .task-history-button-container {
   text-align: right;
 }
@@ -1943,6 +1949,12 @@ _:-ms-input-placeholder, :root .case-details>* {
   overflow-x: hidden;
   word-break: break-all;
   margin-top: 0.2em;
+}
+
+@media screen and (max-height: 1080px) {
+  .case-description-2nd-column {
+    height: 50px;
+  }
 }
 
 .case-details-row-space td:not(.case-details-data-1st-column) {
