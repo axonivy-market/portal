@@ -6,7 +6,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import ch.ivy.addon.portalkit.bo.ExternalLink;
-import ch.ivyteam.ivy.application.IApplication;
 
 public class ExternalLinkDao extends AbstractDao<ExternalLink> {
 
@@ -14,11 +13,6 @@ public class ExternalLinkDao extends AbstractDao<ExternalLink> {
     super();
   }
   
-  public ExternalLinkDao(IApplication application) {
-    super(application);
-  }
-
-  @ExecuteAsSystem
   public List<ExternalLink> findStartableLink(Long userId) {
     return Optional.ofNullable(findAll()).orElse(new ArrayList<>()).stream()
         .filter(externalLink -> Optional.ofNullable(externalLink.getCreatorId()).orElse(-1L).longValue() == userId.longValue() || externalLink.isPublic())
