@@ -42,6 +42,18 @@
   }
 }
 
+@media screen and (min-width: 64.063em) and (max-width: 90.062em) {
+  .chat-panel.active.message-displayed {
+    width: 65vw !important;
+  }
+}
+
+@media screen and (min-width: 90.063em) {
+    .chat-panel.active.message-displayed {
+    width: 50vw !important;
+  }
+}
+
 /* Ends Responsive for Chat */
 
 .chat-panel {
