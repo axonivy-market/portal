@@ -207,7 +207,7 @@ public class AbstractDaoTest {
     BusinessEntity deleteEntity = getNewBusinessEntity(1L);
     when(mockApplication.customProperties()).thenReturn(customProperties);
     
-    AbstractDao<BusinessEntity> dao = new AbstractDao<BusinessEntity>(mockApplication){};
+    AbstractDao<BusinessEntity> dao = new AbstractDao<BusinessEntity>(){};
     
     dao.delete(deleteEntity);
     

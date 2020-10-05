@@ -8,6 +8,7 @@ import java.util.List;
 import ch.ivy.addon.portalkit.persistence.converter.BusinessEntityConverter;
 import ch.ivy.addon.portalkit.persistence.domain.BusinessEntity;
 import ch.ivy.addon.portalkit.persistence.variable.PropertyKey;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.property.ICustomProperties;
 import ch.ivyteam.ivy.application.property.ICustomProperty;
@@ -17,15 +18,10 @@ public abstract class AbstractDao<T extends BusinessEntity> {
 
   protected IApplication ivyApplication;
 
-  public AbstractDao(IApplication application) {
-    this.ivyApplication = application;
-  }
-
   public AbstractDao() {
     this.ivyApplication = Ivy.wf().getApplication();
   }
 
-  @ExecuteAsSystem
   public T findById(long id) {
     T entity = findByIdWithoutRelationship(id);
     return entity;
@@ -33,7 +29,7 @@ public abstract class AbstractDao<T extends BusinessEntity> {
   }
 
   /**
-   * Finded an entity by its Id. This method will not set relationship data for this entity. E.g.:
+   * Find an entity by its Id. This method will not set relationship data for this entity. E.g.:
    * It won't set Server object for Application.
    * 
    * @param id
@@ -46,7 +42,6 @@ public abstract class AbstractDao<T extends BusinessEntity> {
     return parseJsonToObject(jsonValue);
   }
 
-  @ExecuteAsSystem
   public List<T> findAll() {
     List<T> entities = new ArrayList<>();
     String propertyPrefixKey = getPropertyPrefixKey();
@@ -64,14 +59,17 @@ public abstract class AbstractDao<T extends BusinessEntity> {
   }
 
   private String getCustomPropertyValue(ICustomProperty customProperty) {
-    return customProperty.getValue();
+    return IvyExecutor.executeAsSystem(() ->{
+      return customProperty.getValue();
+    });
   }
 
   private List<ICustomProperty> findAllStartingWithPrefix(String entityPropertyKeyPrefix) {
-    return customProperties().findAllStartingWith(entityPropertyKeyPrefix);
+    return IvyExecutor.executeAsSystem(()->{
+      return customProperties().findAllStartingWith(entityPropertyKeyPrefix);
+    });
   }
 
-  @ExecuteAsSystem
   public T save(T entity) {
     String entityValue = "";
     if (isAddMode(entity)) {
@@ -104,19 +102,27 @@ public abstract class AbstractDao<T extends BusinessEntity> {
   }
 
   private void setValueForCustomProperty(String propertyKey, String value) {
-    ICustomProperty property = findPropertyByKey(propertyKey);
-    property.setValue(value);
+    IvyExecutor.executeAsSystem(() -> {
+      ICustomProperty property = findPropertyByKey(propertyKey);
+      property.setValue(value);
+      return Void.class;
+    });
   }
 
   private void setValueForCustomProperty(String propertyKey, long value) {
-    ICustomProperty property = findPropertyByKey(propertyKey);
-    property.setValue(value);
+    IvyExecutor.executeAsSystem(() -> {
+      ICustomProperty property = findPropertyByKey(propertyKey);
+      property.setValue(value);
+      return Void.class;
+    });
   }
 
-  @ExecuteAsSystem
   public void delete(T entity) {
-    String entityPropertyKey = getEntityPropertyKey(entity.getId());
-    customProperties().delete(entityPropertyKey);
+    IvyExecutor.executeAsSystem(() -> {
+      String entityPropertyKey = getEntityPropertyKey(entity.getId());
+      customProperties().delete(entityPropertyKey);
+      return Void.class;
+    });
   }
 
   public List<T> saveAll(List<T> entities) {
@@ -165,10 +171,11 @@ public abstract class AbstractDao<T extends BusinessEntity> {
     return BusinessEntityConverter.jsonValueToEntity(jsonValue, determineEntityType());
   }
 
-  @ExecuteAsSystem
   public long getIncrementId() {
-    ICustomProperty incrementId = findPropertyByKey(PropertyKey.ENTITY_INCREMENT_ID_KEY);
-    return incrementId.getLongValue(1L);
+    return IvyExecutor.executeAsSystem(() -> {
+      ICustomProperty incrementId = findPropertyByKey(PropertyKey.ENTITY_INCREMENT_ID_KEY);
+      return incrementId.getLongValue(1L);
+    });
   }
 
   private void increaseIdPropertyByOne(long latestId) {
