@@ -23,9 +23,10 @@ import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.SortDirection;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
-import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
+import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.service.DummyTaskService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskColumnsConfigurationService;
@@ -78,6 +79,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected boolean disableTaskCount;
   protected Boolean isSelectedDefaultFilter;
   protected boolean isGuide = true;
+  protected List<String> standardSortFields;
 
   public TaskLazyDataModel(String taskWidgetComponentId) {
     super();
@@ -91,7 +93,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       buildDefaultTaskFilterData();
     }
   }
-  
+
   private void loadSessionTaskFiltersAttribute() {
     if (shouldSaveAndLoadSessionFilters()) {
       if (isSameFilterGroupId()) {
@@ -308,11 +310,30 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected void buildCriteria() {
     criteria = new TaskSearchCriteria();
     criteria.setIncludedStates(new ArrayList<>(TaskSearchCriteria.STANDARD_STATES));
-    criteria.setSortField(TaskSortField.ID.toString());
-    criteria.setSortDescending(true);
+    criteria.setSortField(getDefaultSortField());
+    criteria.setSortDescending(isSortedDescendingByDefault());
     if (shouldSaveAndLoadSessionFilters()) {
       criteria.setKeyword(UserUtils.getSessionTaskKeywordFilterAttribute());
     }
+  }
+
+  private String getDefaultSortField() {
+   String defaultSortField = UserSettingService.newInstance().getDefaultSortFieldOfTaskList(Ivy.session().getSessionUserName());
+   if (StringUtils.isBlank(defaultSortField)) {
+     GlobalSettingService globalSettingService = new GlobalSettingService();
+     defaultSortField = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_FIELD_OF_TASK_LIST.name());
+   }
+   return defaultSortField;
+  }
+
+  private boolean isSortedDescendingByDefault() {
+    String defaultSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfCaseList(Ivy.session().getSessionUserName());
+    if (StringUtils.isBlank(defaultSortDirection)) {
+      GlobalSettingService globalSettingService = new GlobalSettingService();
+      defaultSortDirection = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST.name());
+    }
+    
+    return !SortDirection.ASCENDING.name().contentEquals(defaultSortDirection);
   }
 
   /**
@@ -843,6 +864,10 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
         setSortField(sortColumn, !asc);
       }
     }
+  }
+
+  public boolean isSortable(String sortField) {
+    return standardSortFields.contains(sortField);
   }
 
   public boolean getDisableTaskCount() {

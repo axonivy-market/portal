@@ -2898,6 +2898,16 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding-top: 2px;
 }
 
+.my-profile-container .sort-field-selection {
+  width: 160px;
+}
+
+@media screen and (max-width: 40em) {
+  .my-profile-container .sort-field-selection {
+    width: 100%;
+  }
+}
+
 /********************************** END USER PROFILE SETTING **********************************/
 
 /********************************** PROCESS STARTS **********************************/
