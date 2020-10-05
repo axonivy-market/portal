@@ -88,12 +88,12 @@ var CaseRelatedTask = {
 
   getHeightOfRelatedTaskRow : function() {
     var taskRow = $('.grid-item-content-list-item.related-task-content.js-related-task');
-    return taskRow[taskRow.length - 1].offsetHeight;
+    return taskRow.length > 0 ? taskRow[taskRow.length - 1].offsetHeight : 0;
   },
 
   getHeightOfTechnicalRow : function() {
     var caseRow = $('.grid-item-content-list-item.related-task-content.js-technical-case');
-    return caseRow[caseRow.length - 1].offsetHeight;
+    return caseRow.length > 0 ? caseRow[caseRow.length - 1].offsetHeight : 0;
   }
 
 }
