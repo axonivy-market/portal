@@ -9,7 +9,7 @@
 <ui:composition>
   <h:panelGroup id="user-default-process-list" layout="block" styleClass="user-default-process-list ui-g"
     rendered="#{not empty compactProcessWidgetBean.defaultUserProcesses}">
-    <div class="js-user-default-process-list-header ui-g-12">
+    <div class="js-user-default-process-list-header ui-g-12 u-no-padding-left">
       <div class="default-process-title ui-g-12" jsf:rendered="#{compactProcessWidgetBean.isUserFavoritesEnabled}">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/defaultProcesses')}" />
       </div>
