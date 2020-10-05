@@ -135,7 +135,7 @@
                 listener="#{data.dataModel.onKeywordChange()}"
                 placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
                 keywordStoresIn="#{data.dataModel.criteria.keyword}" styleClass="widget-header-filter-input"
-                onCompletedCallback="taskWidget.setupScrollbar(); taskWidget.setupHeader(); taskWidget.updateTaskCountToBreadcrumb();" isFilterToggleRenderedOnMobile="true" onClickIconFilter="taskWidget.toggleTaskFilter(this);taskWidget.setupScrollbar();"/>
+                onCompletedCallback="taskWidget.setupScrollbar(); taskWidget.setupHeader(); taskWidget.updateTaskCountToBreadcrumb();" isFilterToggleRenderedOnMobile="true" onClickIconFilter="taskWidget.toggleTaskFilter();taskWidget.setupScrollbar();"/>
             </h:form>
           </div>
 

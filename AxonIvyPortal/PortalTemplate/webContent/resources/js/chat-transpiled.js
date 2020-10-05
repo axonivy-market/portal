@@ -1107,7 +1107,7 @@ function View(uri) {
   function updateMessageListForIE11() {
     if (isIE11) {
       $(".js-message-list").css("height", "auto");
-      var margin = $('.message-list-content').get(0).offsetHeight - $(".js-message-list").get(0).scrollHeight - 235; // exclude height of chat-send-form
+      var margin = $('.message-list-content').get(0).offsetHeight - $(".js-message-list").get(0).scrollHeight - $('.js-chat-send-form').outerHeight(true);
 
       if (margin < 0) {
         $(".js-message-list").css("margin-top", "");
@@ -1144,7 +1144,7 @@ function View(uri) {
   });
 
   function scrollToLastedMessage() {
-    var margin = $('.message-list-content').get(0).offsetHeight - $(".js-message-list").get(0).scrollHeight - 235; // exclude height of chat-send-form
+    var margin = $('.message-list-content').get(0).offsetHeight - $(".js-message-list").get(0).scrollHeight - $('.js-chat-send-form').outerHeight(true);
 
     if (margin < 0) {
       var messagePanel = document.getElementById("chat-message-list");
