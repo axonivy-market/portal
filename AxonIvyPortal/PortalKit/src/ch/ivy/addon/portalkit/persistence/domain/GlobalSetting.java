@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.GlobalVariableType;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class GlobalSetting extends BusinessEntity {
   private String key;
@@ -45,11 +46,11 @@ public class GlobalSetting extends BusinessEntity {
     String defaultValue = GlobalVariable.valueOf(key).getDefaultValue();
     GlobalVariable variable = GlobalVariable.valueOf(key);
     if (variable.getType() == GlobalVariableType.SELECTION) {
-      if (variable.getExternalOptions() != null && !variable.getExternalOptions().isEmpty()) {
-        return variable.getExternalOptions().get(defaultValue);
-      } else {
-        return GlobalVariable.Option.valueOf(defaultValue).translate();
-      }
+      return GlobalVariable.Option.valueOf(StringUtils.upperCase(defaultValue)).translate();
+    } else if (variable == GlobalVariable.DEFAULT_HOMEPAGE) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard");
+    } else if (variable.getType() == GlobalVariableType.EXTERNAL_SELECTION && variable.getExternalOptions() != null && !variable.getExternalOptions().isEmpty()) {
+      return variable.getExternalOptions().get(defaultValue);
     }
     return defaultValue;
   }
@@ -58,25 +59,13 @@ public class GlobalSetting extends BusinessEntity {
   public String getDisplayValue() {
     GlobalVariable variable = GlobalVariable.valueOf(key);
     if (variable.getType() == GlobalVariableType.SELECTION) {
-      if (variable.getExternalOptions() != null && !variable.getExternalOptions().isEmpty()) {
-        return variable.getExternalOptions().get(value);
-      } else {
-        return GlobalVariable.Option.valueOf(StringUtils.upperCase(value)).translate();
-      }
+      return GlobalVariable.Option.valueOf(StringUtils.upperCase(value)).translate();
     } else if (variable == GlobalVariable.DEFAULT_HOMEPAGE) {
-      return HomepageUtils.getHomepageForAdminSettings().getLabel();
+      return HomepageUtils.findDefaultHomepage().getLabel();
+    } else if (variable.getType() == GlobalVariableType.EXTERNAL_SELECTION && variable.getExternalOptions() != null && !variable.getExternalOptions().isEmpty()) {
+      return variable.getExternalOptions().get(value);
     }
     return value;
-  }
-
-  @JsonIgnore
-  public String getDisplayStringOfExternalOption(String optionKey) {
-    GlobalVariable variable = GlobalVariable.valueOf(key);
-    if (variable.getType() == GlobalVariableType.SELECTION && variable.getExternalOptions() != null && !variable.getExternalOptions().isEmpty()) {
-      String displayString = variable.getExternalOptions().get(optionKey);
-      return org.apache.commons.lang3.StringUtils.isBlank(displayString) ? optionKey : displayString;
-    }
-    return optionKey;
   }
 
   public void setValueToDefault() {

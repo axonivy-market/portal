@@ -14,7 +14,6 @@ import org.primefaces.model.UploadedFile;
 
 import ch.ivy.addon.portalkit.document.DocumentDetector;
 import ch.ivy.addon.portalkit.document.DocumentDetectorFactory;
-import ch.ivy.addon.portalkit.document.DocumentExtensionConstants;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyDocument;
 import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
@@ -141,16 +140,13 @@ public class CaseDocumentService {
 
   private static List<String> getAllowedUploadFileType() {
     GlobalSettingService globalSettingService = new GlobalSettingService();
-    if (globalSettingService.isGlobalSettingAvailable(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION.toString(), true)) {
-      GlobalSetting documentSetting = globalSettingService.findGlobalSettingByKey(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION.toString());
-      if (StringUtils.EMPTY.equals(documentSetting.getValue())) {
-        return new ArrayList<>();
-      } else {
-        String[] supportedFileTypeArr = documentSetting.getValue().toLowerCase().split("\\s*,[,\\s]*");
-        return Arrays.asList(supportedFileTypeArr);
-      }
+    GlobalSetting documentSetting = globalSettingService.findGlobalSettingByKey(GlobalVariable.UPLOAD_DOCUMENT_WHITELIST_EXTENSION.toString());
+    if (StringUtils.isBlank(documentSetting.getValue())) {
+      return new ArrayList<>();
+    } else {
+      String[] supportedFileTypeArr = documentSetting.getValue().toLowerCase().split("\\s*,[,\\s]*");
+      return Arrays.asList(supportedFileTypeArr);
     }
-    return DocumentExtensionConstants.DEFAULT_WHITELIST_EXTENSION;
   }
 
 }
