@@ -84,16 +84,18 @@
         </ui:fragment>
       </h:panelGroup>
       <!-- Process navigator -->
-      <h:panelGroup id="process-nav" styleClass="process-nav js-process-nav" rendered="#{!cc.attrs.hideProcessNavigation}">
-        <p:commandLink id="expand-all-btn" onclick="expandOrCollapseAllCategories(true); return false;"
-          styleClass="expand-collapse-btn process-nav-item expand" />
-        <p:commandLink id="collapse-all-btn" onclick="expandOrCollapseAllCategories(false); return false;"
-          styleClass="expand-collapse-btn process-nav-item collapse" />
+      <h:panelGroup id="process-nav" layout="block" styleClass="process-nav js-process-nav" rendered="#{!cc.attrs.hideProcessNavigation}">
+        <div class="js-character-container character-container">
+          <p:commandLink id="expand-all-btn" onclick="expandOrCollapseAllCategories(true); return false;"
+            styleClass="expand-collapse-btn process-nav-item expand" />
+          <p:commandLink id="collapse-all-btn" onclick="expandOrCollapseAllCategories(false); return false;"
+            styleClass="expand-collapse-btn process-nav-item collapse" />
 
-        <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters().entrySet().toArray()}" var="character">
-          <p:commandLink value="#{character.value}" styleClass="process-nav-item js-process-starts-with-#{character.key}"
-            onclick="jumpToProcessGroupByCharacter(event)" global="false" />
-        </ui:repeat>
+          <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters().entrySet().toArray()}" var="character">
+            <p:commandLink value="#{character.value}" styleClass="process-nav-item js-process-nav-item js-process-starts-with-#{character.key}"
+              onclick="jumpToProcessGroupByCharacter(event)" global="false" />
+          </ui:repeat>
+        </div>
       </h:panelGroup>
     </div>
   </div>
