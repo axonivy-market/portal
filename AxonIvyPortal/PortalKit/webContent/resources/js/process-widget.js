@@ -1,5 +1,6 @@
 var prefixProcessGroup = "js-process-group-";
 var prefixProcessStart = "js-process-starts-with-";
+var numberOfMaximumCharacters = 26; // There are 24 alphabet characters, one "#" character, and expand/collapse icon.
 
 function ProcessWidget() {
 
@@ -84,6 +85,19 @@ function ProcessWidget() {
       var availableHeightProcessNavTop = (($('.js-process-header').outerHeight(true)||0) + ($('.layout-topbar').outerHeight(true)||0)
                                           + (announcementMessageContainer.outerHeight(true)||0) + excludeMarginBottom + processHeaderHeight);
       processNav.css("top", availableHeightProcessNavTop + "px");
+
+      var numberOfDisplayingCharacters = $('.js-process-nav-item').length;
+      var characterContainer = processNav.find('.js-character-container');
+      processNav.width(characterContainer.width());
+
+      // If there is less than 10 characters displayed, calculate height of character container to make UI look better.
+      if (numberOfDisplayingCharacters < 10) {
+        var heightForEachCharacter = processNav.get(0).offsetHeight / numberOfMaximumCharacters;
+        var numberOfDisplayingCharacters = $('.js-process-nav-item').length;
+        characterContainer.height(numberOfDisplayingCharacters * heightForEachCharacter);
+      } else {
+        characterContainer.height(processNav.get(0).offsetHeight);
+      }
     },
 
     detechScrollBarWidth : function() {
