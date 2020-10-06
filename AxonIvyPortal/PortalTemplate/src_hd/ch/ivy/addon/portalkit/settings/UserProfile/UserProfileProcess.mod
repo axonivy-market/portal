@@ -49,11 +49,9 @@ Ct3 @GridStep f11 '' #zField
 Ct3 @PushTrueWFInG-01 g0 '' #zField
 Ct3 @PushWFArc f0 '' #zField
 Ct3 @PushTrueWFOutG-01 g1 '' #zField
-Ct3 @CallSub f2 '' #zField
-Ct3 @PushWFArc f3 '' #zField
 Ct3 @GridStep f4 '' #zField
-Ct3 @PushWFArc f5 '' #zField
 Ct3 @PushWFArc f1 '' #zField
+Ct3 @PushWFArc f2 '' #zField
 >Proto Ct3 Ct0 Component #zField
 Ct2 @TextInP .type .type #zField
 Ct2 @TextInP .processKind .processKind #zField
@@ -291,62 +289,26 @@ Ct3 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ct3 g1 659 147 26 26 0 5 #rect
+Ct3 g1 531 147 26 26 0 5 #rect
 Ct3 g1 @|MOGIcon #fIcon
-Ct3 f2 processCall 'Functional Processes/LoadSubMenuItems:loadSubMenuItems()' #txt
-Ct3 f2 requestActionDecl '<> param;' #txt
-Ct3 f2 responseMappingAction 'out=in;
-' #txt
-Ct3 f2 responseActionCode 'import ch.addon.portal.generic.userprofile.homepage.HomepageType;
-import ch.addon.portal.generic.userprofile.homepage.Homepage;
-import ch.addon.portal.generic.userprofile.homepage.HomepageMapper;
-import ch.ivy.addon.portalkit.enums.MenuKind;
-import ch.addon.portal.generic.menu.SubMenuItem;
-import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-
-out.homepages.clear();
-Homepage dashboard = new Homepage();
-dashboard.name = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/dashboard");
-dashboard.link = PortalNavigator.getPortalStartUrl();
-dashboard.type = HomepageType.DASHBOARD;
-out.homepages.add(dashboard);
-
-for (SubMenuItem item : result.subMenuItems) {
-	if (item.getMenuKind() != MenuKind.EXTERNAL_LINK) {
-		out.homepages.add(HomepageMapper.toHomepage(item));
-	}
-}' #txt
-Ct3 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>LoadSubMenuItems</name>
-    </language>
-</elementInfo>
-' #txt
-Ct3 f2 336 138 112 44 -51 -8 #rect
-Ct3 f2 @|CallSubIcon #fIcon
-Ct3 f3 288 160 336 160 #arcP
 Ct3 f4 actionTable 'out=in;
 ' #txt
-Ct3 f4 actionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
-import ch.ivy.addon.portal.generic.bean.HomepageBean;
+Ct3 f4 actionCode 'import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 
-HomepageBean homepageBean =	ManagedBeans.get("homepageBean") as HomepageBean;
-out.selectedHomepage = homepageBean.readHomepage();' #txt
+out.homepages = HomepageUtils.loadHomepages();
+out.selectedHomepage = HomepageUtils.getHomepage();' #txt
 Ct3 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Load selected&#13;
-homepage</name>
+        <name>Load homepages</name>
     </language>
 </elementInfo>
 ' #txt
-Ct3 f4 496 138 112 44 -36 -16 #rect
+Ct3 f4 352 138 112 44 -45 -8 #rect
 Ct3 f4 @|StepIcon #fIcon
-Ct3 f5 448 160 496 160 #arcP
-Ct3 f5 0 0.48579321231254946 0 0 #arcLabel
-Ct3 f1 608 160 659 160 #arcP
+Ct3 f1 464 160 531 160 #arcP
 Ct3 f1 0 0.48579321231254946 0 0 #arcLabel
+Ct3 f2 288 160 352 160 #arcP
 >Proto Ct0 0 0 32 24 18 0 #rect
 >Proto Ct0 @|BIcon #fIcon
 Ct2 f11 processCall 'Ivy Data Processes/LanguageService:findUserLanguages()' #txt
@@ -487,13 +449,11 @@ Us0 f28 mainOut f3 tail #connect
 Us0 f3 head f42 mainIn #connect
 Ct3 g0 m f0 tail #connect
 Ct3 f0 head f11 mainIn #connect
-Ct3 f11 mainOut f3 tail #connect
-Ct3 f3 head f2 mainIn #connect
-Ct3 f2 mainOut f5 tail #connect
-Ct3 f5 head f4 mainIn #connect
 Ct3 f4 mainOut f1 tail #connect
 Ct3 f1 head g1 m #connect
-Ct3 0 0 776 320 0 #ivRect
+Ct3 f11 mainOut f2 tail #connect
+Ct3 f2 head f4 mainIn #connect
+Ct3 0 0 608 320 0 #ivRect
 Ct2 f11 mainOut f25 tail #connect
 Ct2 f25 head f9 mainIn #connect
 Ct2 g0 m f0 tail #connect

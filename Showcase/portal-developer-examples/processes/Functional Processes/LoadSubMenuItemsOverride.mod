@@ -72,6 +72,7 @@ String userExampleGuideLink = collector.findStartableLinkByUserFriendlyRequestPa
 if (!StringUtils.isEmpty(userExampleGuideLink)){	
 	SubMenuItem userExampleGuide = new SubMenuItem();
 	userExampleGuide.setIcon("icon ivyicon-bulb");
+	userExampleGuide.setName("ExampleGuide");
 	userExampleGuide.setLabel("User example guide");
 	userExampleGuide.setMenuKind(MenuKind.CUSTOM);
 	userExampleGuide.setLink(userExampleGuideLink);
