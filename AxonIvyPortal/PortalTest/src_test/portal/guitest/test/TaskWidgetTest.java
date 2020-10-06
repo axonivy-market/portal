@@ -18,6 +18,7 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
+import portal.guitest.page.UserProfilePage;
 
 public class TaskWidgetTest extends BaseTest {
 
@@ -214,5 +215,32 @@ public class TaskWidgetTest extends BaseTest {
     taskTemplatePage = taskWidgetPage.startTask(1);
     assertEquals(sickRequest, taskTemplatePage.getTaskName());
     taskTemplatePage.clickCancelAndLeftButton();
+  }
+
+  @Test
+  public void testChangeTaskSortingOptions() {
+    HomePage homePage = new HomePage();
+    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+
+    // Change sorting options
+    userProfilePage.selectTaskSortField("Priority");
+    userProfilePage.selectTaskSortDirection("Sort ascending");
+    userProfilePage.save();
+
+    // Check result
+    TaskWidgetPage taskWidgetPage = userProfilePage.openTaskList();
+    assertEquals("low", taskWidgetPage.getPriorityOfTask(0));
+    assertEquals("high", taskWidgetPage.getPriorityOfTask(taskWidgetPage.countTasks() - 1));
+
+    // Change sorting options
+    userProfilePage = taskWidgetPage.openMyProfilePage();
+    userProfilePage.selectTaskSortField("Name");
+    userProfilePage.selectTaskSortDirection("Sort descending");
+    userProfilePage.save();
+
+    // Check result
+    taskWidgetPage = userProfilePage.openTaskList();
+    assertEquals("Sick Leave Request", taskWidgetPage.getNameOfTaskAt(0));
+    assertEquals("Annual Leave Request", taskWidgetPage.getNameOfTaskAt(taskWidgetPage.countTasks() - 1));
   }
 }

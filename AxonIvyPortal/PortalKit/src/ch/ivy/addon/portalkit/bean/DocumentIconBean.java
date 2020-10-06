@@ -11,6 +11,8 @@ import static ch.ivy.addon.portalkit.document.DocumentExtensionConstants.POWER_P
 import static ch.ivy.addon.portalkit.document.DocumentExtensionConstants.TEXT_FORMAT;
 import static ch.ivy.addon.portalkit.document.DocumentExtensionConstants.XML_FORMAT;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
@@ -20,7 +22,9 @@ import org.apache.commons.lang3.StringUtils;
 
 @ManagedBean
 @SessionScoped
-public class DocumentIconBean {
+public class DocumentIconBean implements Serializable {
+
+  private static final long serialVersionUID = -6881737983432982774L;
   /**
    * DocumentIconBean detects icon class base on Ivy Icons.
    */

@@ -13,11 +13,14 @@ var Portal = {
     
     this.updateLayoutContent();
     this.updateBreadcrumb();
-    
+
+    var resizeTimer;
     // Update screen when window size is changed
     $(window).resize(function() {
       Portal.updateLayoutContent();
-      setTimeout(function() {
+
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
         responsiveToolkit.updateLayoutWithoutAnimation();
       }, 250);
       Portal.updateGuide();

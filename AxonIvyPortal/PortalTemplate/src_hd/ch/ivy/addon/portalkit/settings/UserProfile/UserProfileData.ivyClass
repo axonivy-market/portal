@@ -14,3 +14,17 @@ homepages java.util.List<ch.addon.portal.generic.userprofile.homepage.Homepage> 
 homepages PERSISTENT #fieldModifier
 disableShowTutorial Boolean #field
 disableShowTutorial PERSISTENT #fieldModifier
+taskListSortFields java.util.List<String> #field
+taskListSortFields PERSISTENT #fieldModifier
+selectedTaskListSortField String #field
+selectedTaskListSortField PERSISTENT #fieldModifier
+caseListSortFields java.util.List<String> #field
+caseListSortFields PERSISTENT #fieldModifier
+selectedCaseListSortField String #field
+selectedCaseListSortField PERSISTENT #fieldModifier
+sortDirections java.util.List<String> #field
+sortDirections PERSISTENT #fieldModifier
+selectedTaskListSortDirection String #field
+selectedTaskListSortDirection PERSISTENT #fieldModifier
+selectedCaseListSortDirection String #field
+selectedCaseListSortDirection PERSISTENT #fieldModifier
