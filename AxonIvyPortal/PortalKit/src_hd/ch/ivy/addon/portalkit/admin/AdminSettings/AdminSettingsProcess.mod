@@ -365,6 +365,8 @@ if (globalVariable.getType() == GlobalVariableType.SELECTION) {
 	in.dropDownValues = globalVariable.getOptions();
 } else if (globalVariable == GlobalVariable.DEFAULT_HOMEPAGE) {
 	in.externalDropDownValues = HomepageUtils.getHomepageOptionsForAdminSettings();
+} else if (globalVariable.getType() == GlobalVariableType.EXTERNAL_SELECTION) {
+	in.externalDropDownValues = globalVariable.getExternalOptions();
 }' #txt
 As0 f72 security system #txt
 As0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

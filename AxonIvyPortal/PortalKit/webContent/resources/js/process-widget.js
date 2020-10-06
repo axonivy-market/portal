@@ -1,9 +1,8 @@
 var prefixProcessGroup = "js-process-group-";
 var prefixProcessStart = "js-process-starts-with-";
+var numberOfMaximumCharacters = 26; // There are 24 alphabet characters, one "#" character, and expand/collapse icon.
 
 function ProcessWidget() {
-
-  var excludeMarginBottom = 30;
 
   function contain(s, keyword) {
     return s.indexOf(keyword) >= 0;
@@ -21,26 +20,28 @@ function ProcessWidget() {
         return;
       }
 
+      var processWidgetMarginPadding = ($('.js-process-widget').outerHeight(true)||0) - ($('.js-process-widget').height()||0);
       var processsHeader = $('.js-process-header');
       var processStartListContainer = $('.js-process-start-list-container');
-      var error = 0;
-      var globalSearchInput = $('.js-global-search');
-      var globalSearchTabHeader = $('.ui-tabs-nav');
-      var globalSearchBottom = 30;
-      if (globalSearchTabHeader.length > 0) {
-    	globalSearchBottom = 0;
-        error = 55; // included margin, padding in search page
-      }
+
       var announcementMessageContainer = $('.js-announcement-message');
-      var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight() - globalSearchBottom;
+      var mainScreenHeight = $('body').outerHeight() - $('.layout-topbar').outerHeight();
       var processHeaderHeight = $('.js-portal-template-header').outerHeight();
       var footerHeight = $('.js-portal-template-footer').outerHeight();
       var availableHeight = mainScreenHeight - (announcementMessageContainer.outerHeight(true)||0)
-                              - (processsHeader.outerHeight(true)||0) - (globalSearchInput.is(":visible") ? globalSearchInput.outerHeight(true) : 0)
-                              - (globalSearchTabHeader.outerHeight(true)||0) - error
+                              - processWidgetMarginPadding - (processsHeader.outerHeight(true)||0)
                               - processHeaderHeight - footerHeight;
+
+      var globalSearchTabHeader = $('.ui-tabs-nav');
+      if (globalSearchTabHeader.length > 0) {
+        var globalSearchInput = $('.js-global-search');
+        var searchResultMarginPadding = ($('.js-search-results-tabview').outerHeight(true)||0) - ($('.js-search-results-tabview').height()||0);
+        availableHeight = availableHeight - (globalSearchInput.is(":visible") ? globalSearchInput.outerHeight(true) : 0)
+                              - (globalSearchTabHeader.outerHeight(true)||0) - searchResultMarginPadding;
+      }
+
       if (!!availableHeight) {
-        processStartListContainer.css("max-height", availableHeight + "px");
+        processStartListContainer.outerHeight(availableHeight);
         this.setupProcessNav(processStartListContainer, availableHeight, announcementMessageContainer);
       }
       processStartListContainer.on("scroll", function() {
@@ -55,38 +56,40 @@ function ProcessWidget() {
         return;
       }
 
-      var searchTab = $('.js-search-results-tabview');
-      var marginRightProcessWidget = 0;
-        // For search form tab
-        if (searchTab.length > 0) {
-          marginRightProcessWidget = 20;
-          if (searchTab.width() > processStartListContainer.width()) {
-            marginRightProcessWidget = extractRightOffsetOfElement(searchTab) + extractRightOffsetOfElement(processStartListContainer);
-            // if first time call, ignore outer padding
-            if (processStartListContainer.css("margin-right") != "0px") {
-              marginRightProcessWidget = marginRightProcessWidget + 8;
-            }
-          }
-        } else {
-          // For process list page
-          var layoutContent = $('.layout-content');
-          var processWidget = $('.js-process-widget');
-          marginRightProcessWidget = extractRightOffsetOfElement(layoutContent) + extractRightOffsetOfElement(processWidget);
+      // For process list page
+      var layoutContent = $('.layout-content');
+      var processWidget = $('.js-process-widget');
+      marginRightProcessWidget = extractRightOffsetOfElement(layoutContent) + extractRightOffsetOfElement(processWidget);
 
-          var scrollBarWidth = this.detechScrollBarWidth();
-          processNav.css("right", scrollBarWidth + "px");
-        }
-        processStartListContainer.css("width", "calc(100% + " + marginRightProcessWidget + "px)");
-
-      processNav.css("height", (availableHeight  - excludeMarginBottom) + "px");
+      var scrollBarWidth = this.detectScrollBarWidth();
+      processNav.css("right", scrollBarWidth + "px");
+     
+      processStartListContainer.css("width", "calc(100% + " + marginRightProcessWidget + "px)");
+      var processNavOuterHeight = processNav.outerHeight(true) - processNav.outerHeight();
+      processNav.css("height", (availableHeight - processNavOuterHeight) + "px");
       
       var processHeaderHeight = $('.js-portal-template-header').outerHeight();
       var availableHeightProcessNavTop = (($('.js-process-header').outerHeight(true)||0) + ($('.layout-topbar').outerHeight(true)||0)
-                                          + (announcementMessageContainer.outerHeight(true)||0) + excludeMarginBottom + processHeaderHeight);
+                                          + (announcementMessageContainer.outerHeight(true)||0) + processHeaderHeight);
       processNav.css("top", availableHeightProcessNavTop + "px");
+
+      var numberOfDisplayingCharacters = $('.js-process-nav-item').length;
+      var characterContainer = processNav.find('.js-character-container');
+      processNav.width(characterContainer.width());
+
+      // If there is less than 10 characters displayed, calculate height of character container to make UI look better.
+      if (numberOfDisplayingCharacters < 10) {
+        var heightForEachCharacter = processNav.get(0).offsetHeight / numberOfMaximumCharacters;
+        var numberOfDisplayingCharacters = $('.js-process-nav-item').length;
+        characterContainer.height(numberOfDisplayingCharacters * heightForEachCharacter);
+      } else {
+        characterContainer.height(processNav.get(0).offsetHeight);
+      }
+
+
     },
 
-    detechScrollBarWidth : function() {
+    detectScrollBarWidth : function() {
       var scrollbarWidth = 0;
       var processWidget = document.getElementById("process-widget:process-list");
       if (processWidget !== null) {
@@ -116,14 +119,14 @@ function ProcessWidget() {
         		&& $(this.children).hasClass("express-workflow")) {
         	$(this).show();
         }
-        
+
         var externalLinkKeyToSearch = "link";
         if (externalLinkKeyToSearch.toLowerCase() === keyword.trim().toLowerCase()
         		&& $(this.children).hasClass("js-external-link-process-item")) {
         	$(this).show();
         }
       });
-      
+
       var processAlphabetGroups = $('.js-process-index-group');
       $(processAlphabetGroups).show();
       expandOrCollapseAllCategories(true);
@@ -136,7 +139,7 @@ function ProcessWidget() {
           $(this).hide();
         }
       });
-      
+
       var noFoundProcesses = $('.js-no-found-processes');
       var expandCollapseButtons = $('.expand-collapse-btns');
       if (!$(processItems).is(":visible")) {
@@ -146,7 +149,7 @@ function ProcessWidget() {
         $(noFoundProcesses).addClass('u-display-none');
         expandCollapseButtons.removeClass('u-display-none');
       }
-      
+
       if (document.getElementsByClassName('process-nav').length !== 0) {
         disableGroupNavigation();
       }
@@ -279,7 +282,6 @@ function getElementsHaveClassName(displayedFieldSets, invert) {
 
 var compactProcessWidgetClass = '.js-compact-process-widget-panel';
 var processStartItemClass = '.js-process-start-list-item';
-var mobileViewPort = 640;
 
 var FavouritesProcess = {
 
@@ -295,7 +297,7 @@ var FavouritesProcess = {
     var availableHeight = this.calculateHeightForFavorites();
     
     // Check if viewport is mobile screen
-    if ($(window).width() <= mobileViewPort) {
+    if (window.matchMedia("(max-width: 40em)").matches) {
       // Always show max 7 processes for user/application favorites on mobile screen
       availableHeight = this.getHeightOfProcessStartItem() * 7;
     }
@@ -326,7 +328,7 @@ var FavouritesProcess = {
 
       // if application process height is greater than user process height
       else if (appFavoritesHeight > userFavoritesHeight) {
-        maxHeightAppProcessList = availableHeight - userFavoritesHeight - userFavoritesMarginBottom;
+        maxHeightAppProcessList = availableHeight - userFavoritesHeight;
         maxHeightUserProcessList = userFavoritesHeight;
       }
 
@@ -356,15 +358,15 @@ var FavouritesProcess = {
   },
 
   calculateHeightForFavorites : function() {
-    var mainContentHeight = $(window).outerHeight() - ($('.layout-topbar').outerHeight(true) || 0);
-    var processHeaderHeight = $('.js-process-widget-header').outerHeight(true) || 0;
-    var favoriteProcessHeaderHeight = $('.js-favorite-process-header').outerHeight(true) || 0;
-    var appFavoritesProcessHeaderHeight = $('.js-user-default-process-list-header').outerHeight(true) || 0;
-    var headerComponentHeight = $('.js-portal-template-header').outerHeight(true) || 0;
-    var footerComponentHeight = $('.js-portal-template-footer').outerHeight(true) || 0;
-    var announcementMessageHeight = $('.js-announcement-message').outerHeight(true) || 0;
-    var customizedContentHeight = $('.js-custom-widget-container').outerHeight(true) || 0;
-    var paddingValues = parseInt($(compactProcessWidgetClass).css('padding-top'), 0) || 0;
+    var mainContentHeight = $(window).outerHeight() - ($('.layout-topbar').outerHeight(true)||0);
+    var processHeaderHeight = $('.js-process-widget-header').outerHeight(true)||0;
+    var favoriteProcessHeaderHeight = $('.js-favorite-process-header').outerHeight(true)||0;
+    var appFavoritesProcessHeaderHeight = $('.js-user-default-process-list-header').outerHeight(true)||0;
+    var headerComponentHeight = $('.js-portal-template-header').outerHeight(true)||0;
+    var footerComponentHeight = $('.js-portal-template-footer').outerHeight(true)||0;
+    var announcementMessageHeight = $('.js-announcement-message').outerHeight(true)||0;
+    var customizedContentHeight = $('.js-custom-widget-container').outerHeight(true)||0;
+    var paddingValues = parseInt($(compactProcessWidgetClass).css('padding-top'), 0)||0;
 
     return mainContentHeight - announcementMessageHeight - paddingValues
            - processHeaderHeight - favoriteProcessHeaderHeight - appFavoritesProcessHeaderHeight
@@ -373,20 +375,20 @@ var FavouritesProcess = {
   
   getHeightOfUserFavorites : function(userProcessList) {
     userProcessList.find('.js-compact-processes-container').css('height', '');
-    return userProcessList.find('.js-compact-processes-container').outerHeight(true) || 0;
+    return userProcessList.find('.js-compact-processes-container').outerHeight(true)||0;
   },
   
   getHeightOfAppFavorites : function(appProcessList) {
     appProcessList.find('.js-user-default-process-list-content').css('height', '');
-    return appProcessList.find('.js-user-default-process-list-content').outerHeight(true) || 0;
+    return appProcessList.find('.js-user-default-process-list-content').outerHeight(true)||0;
   },
   
   getHeightOfProcessStartItem : function() {
-    return $(processStartItemClass).outerHeight(true) || 0;
+    return $(processStartItemClass).outerHeight(true)||0;
   },
   
   getUserFavoritesMarginBottom : function(userProcessList) {
-    return parseInt(userProcessList.css('margin-bottom'), 0) || 0;
+    return parseInt(userProcessList.css('margin-bottom'), 0)||0;
   }
 
 };

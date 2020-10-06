@@ -223,8 +223,8 @@ out.applications=result.applications;
 As0 f97 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findApplicationsByUser(String)</name>
-        <nameStyle>30,5,7
+        <name>findThirdPartyApplications()</name>
+        <nameStyle>28,5
 </nameStyle>
     </language>
 </elementInfo>
