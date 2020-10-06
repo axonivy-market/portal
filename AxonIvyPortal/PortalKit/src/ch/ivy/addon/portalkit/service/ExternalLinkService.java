@@ -10,7 +10,7 @@ public class ExternalLinkService extends AbstractService<ExternalLink> {
   private static ExternalLinkService externalLinkServiceInstance;
   
   public ExternalLinkService() {
-    super(ExternalLinkDao.class);
+    super(new ExternalLinkDao());
   }
   
   public static ExternalLinkService getInstance() {

@@ -8,10 +8,23 @@ import org.openqa.selenium.WebElement;
 
 public class UserProfilePage extends TemplatePage {
   
-  private static final String MAIL_NOTI_ON_TASK_ASSIGNMENT_SELECTOR = "div[id$=':mail-notification-on-task-assign']";
-  private static final String FURTHER_EMAIL_FROM_APP_SELECTOR = "div[id$=':further-mails-from-application']";
-  private static final String SELECTED_DAY_XPATH="//*[@id='my-profile-form:daily-summary']/div/div/div/div[2]";
-  private static final String SHOW_TUTORIAL_XPATH = "//*[@id='my-profile-form:general-show-tutorial']/div[2]";
+  private static final String CASE_SORT_DIRECTION_SELECTION_ITEMS = "my-profile-form:case-sort-direction-selection_items";
+  private static final String CASE_SORT_DIRECTION_SELECTION_LABEL = "my-profile-form:case-sort-direction-selection_label";
+  private static final String CASE_SORT_DIRECTION_SELECTION = "my-profile-form:case-sort-direction-selection";
+  private static final String CASE_SORT_FIELD_SELECTION_ITEMS = "my-profile-form:case-sort-field-selection_items";
+  private static final String CASE_SORT_FIELD_SELECTION_LABEL = "my-profile-form:case-sort-field-selection_label";
+  private static final String CASE_SORT_FIELD_SELECTION = "my-profile-form:case-sort-field-selection";
+  public static final String TASK_SORT_DIRECTION_SELECTION_ITEMS = "my-profile-form:task-sort-direction-selection_items";
+  private static final String TASK_SORT_DIRECTION_SELECTION_LABEL = "my-profile-form:task-sort-direction-selection_label";
+  public static final String TASK_SORT_FIELD_SELECTION_ITEMS = "my-profile-form:task-sort-field-selection_items";
+  private static final String TASK_SORT_FIELD_SELECTION_LABEL = "my-profile-form:task-sort-field-selection_label";
+  private static final String TASK_SORT_FIELD_SELECTION = "my-profile-form:task-sort-field-selection";
+  private static final String TASK_SORT_DIRECTION_SELECTION = "my-profile-form:task-sort-direction-selection";
+
+  private static String MAIL_NOTI_ON_TASK_ASSIGNMENT_SELECTOR = "div[id$=':mail-notification-on-task-assign']";
+  private static String FURTHER_EMAIL_FROM_APP_SELECTOR = "div[id$=':further-mails-from-application']";
+  private static String SELECTED_DAY_XPATH="//*[@id='my-profile-form:daily-summary']/div/div/div/div[2]";
+  private static String SHOW_TUTORIAL_XPATH = "//*[@id='my-profile-form:general-show-tutorial']/div[2]";
   
   @Override
   protected String getLoadedLocator() {
@@ -29,6 +42,7 @@ public class UserProfilePage extends TemplatePage {
     click(save);
     waitAjaxIndicatorDisappear();
     waitForPageLoaded();
+    ensureNoBackgroundRequest();
     return new UserProfilePage();
   }
   
@@ -112,6 +126,42 @@ public class UserProfilePage extends TemplatePage {
       click(checkbox.findElement(By.cssSelector("span[class='ui-chkbox-label']")));
       waitForElementDisplayed(By.xpath(SHOW_TUTORIAL_XPATH + "/span[@class='ui-chkbox-icon ui-icon ui-c ui-icon-check']"), true);
     }
+  }
+
+  public void selectTaskSortField(String selectValue) {
+    waitForElementDisplayed(By.id(TASK_SORT_FIELD_SELECTION), true);
+    click(findElementById(TASK_SORT_FIELD_SELECTION_LABEL));
+
+    waitForElementDisplayed(By.id(TASK_SORT_FIELD_SELECTION_ITEMS), true);
+    click(findElementByXpath("//*[@id='" + TASK_SORT_FIELD_SELECTION_ITEMS + "']/li[contains(text(),'" + selectValue + "')]"));
+    ensureNoBackgroundRequest();
+  }
+
+  public void selectTaskSortDirection(String selectValue) {
+    waitForElementDisplayed(By.id(TASK_SORT_DIRECTION_SELECTION), true);
+    click(findElementById(TASK_SORT_DIRECTION_SELECTION_LABEL));
+
+    waitForElementDisplayed(By.id(TASK_SORT_DIRECTION_SELECTION_ITEMS), true);
+    click(findElementByXpath("//*[@id='" + TASK_SORT_DIRECTION_SELECTION_ITEMS + "']/li[contains(text(),'" + selectValue + "')]"));
+    ensureNoBackgroundRequest();
+  }
+
+  public void selectCaseSortField(String selectValue) {
+    waitForElementDisplayed(By.id(CASE_SORT_FIELD_SELECTION), true);
+    click(findElementById(CASE_SORT_FIELD_SELECTION_LABEL));
+
+    waitForElementDisplayed(By.id(CASE_SORT_FIELD_SELECTION_ITEMS), true);
+    click(findElementByXpath("//*[@id='" + CASE_SORT_FIELD_SELECTION_ITEMS + "']/li[contains(text(),'" + selectValue + "')]"));
+    ensureNoBackgroundRequest();
+  }
+
+  public void selectCaseSortDirection(String selectValue) {
+    waitForElementDisplayed(By.id(CASE_SORT_DIRECTION_SELECTION), true);
+    click(findElementById(CASE_SORT_DIRECTION_SELECTION_LABEL));
+
+    waitForElementDisplayed(By.id(CASE_SORT_DIRECTION_SELECTION_ITEMS), true);
+    click(findElementByXpath("//*[@id='" + CASE_SORT_DIRECTION_SELECTION_ITEMS + "']/li[contains(text(),'" + selectValue + "')]"));
+    ensureNoBackgroundRequest();
   }
 
   public void changeHomePageToCase() {

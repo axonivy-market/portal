@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -10,8 +12,9 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
-public class GuideBean {
+public class GuideBean implements Serializable {
 
+  private static final long serialVersionUID = 2420978041410219023L;
   private boolean isGuideShown;
   private boolean dontShowAgain;
   private Guide guide;

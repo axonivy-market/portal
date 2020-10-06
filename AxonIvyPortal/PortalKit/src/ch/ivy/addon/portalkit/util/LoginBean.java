@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.util;
 
+import java.io.Serializable;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -7,7 +9,9 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
-public class LoginBean {
+public class LoginBean implements Serializable {
+
+  private static final long serialVersionUID = 2771794439843278846L;
   private final String PORTAL_LOGIN_PAGE_DISPLAY = "PortalLoginPageDisplay";
   
   public boolean isLoginPageRendered() {

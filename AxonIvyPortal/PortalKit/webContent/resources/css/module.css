@@ -728,7 +728,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   float: left;
   padding: 10px;
   margin: 0;
-  width: 160px;
   line-height: 1.4rem;
   box-sizing: content-box;
   text-align: left;
@@ -816,6 +815,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   width: 100%;
   height: 360px;
   padding-bottom: 16px;
+}
+
+@media screen and (max-height: 1080px) {
+  .case-detail-body .card {
+    height: 300px;
+  }
 }
 
 .case-history-button-container, .task-history-button-container {
@@ -957,8 +962,7 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   flex-flow: row wrap;
   justify-content: flex-start;
   overflow: auto;
-  height: auto !important;
-  padding: 0;
+  height: auto;
   -webkit-overflow-scroll: touch;
 }
 
@@ -970,6 +974,17 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   position: absolute !important;
   right: 0;
   height: auto;
+  margin-top: 30px;
+}
+
+.process-widget .process-nav .character-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  text-align: center;
+  position: absolute !important;
+  right: 0;
+  margin-top: 30px;
 }
 
 .process-widget .process-nav .process-nav-item {
@@ -1534,6 +1549,7 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 
 .task-view-container .ui-datascroller .ui-datascroller-content {
   padding: 2px;
+  padding-bottom: 0;
 }
 
 .task-view-container .Card {
@@ -1943,6 +1959,12 @@ _:-ms-input-placeholder, :root .case-details>* {
   overflow-x: hidden;
   word-break: break-all;
   margin-top: 0.2em;
+}
+
+@media screen and (max-height: 1080px) {
+  .case-description-2nd-column {
+    height: 50px;
+  }
 }
 
 .case-details-row-space td:not(.case-details-data-1st-column) {
@@ -2886,6 +2908,16 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding-top: 2px;
 }
 
+.my-profile-container .sort-field-selection {
+  width: 160px;
+}
+
+@media screen and (max-width: 40em) {
+  .my-profile-container .sort-field-selection {
+    width: 100%;
+  }
+}
+
 /********************************** END USER PROFILE SETTING **********************************/
 
 /********************************** PROCESS STARTS **********************************/
@@ -3050,7 +3082,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
     width: 85%;
   }
   .statistic-details-dialog {
-    width: 500px !important;
+    width: 600px !important;
   }
   .statistic-carousel .statistic-carousel-item {
     max-height: 40rem;
@@ -3349,7 +3381,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .chart-info-container .label-column {
-  width: 30%;
+  width: 40%;
 }
 
 .chart-info-container .list-container {
@@ -4712,12 +4744,6 @@ border-left: 0.14rem dashed;
 }
 .card .description-content{
 height: 260px;	
-}
-.card-layout-content{
-position:absolute;
-top:4.5rem;	
-overflow-y:auto;
-height:95%;
 }
 .case-map-stage hr{
 clear: both;

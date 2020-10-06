@@ -15,7 +15,7 @@
 <cc:implementation>
   <h:outputScript library="js" name="process-widget.js" />
   <div class="ui-g">
-    <div id="#{cc.clientId}" class="widget process-widget js-process-widget ui-g-12">
+    <div id="#{cc.clientId}" class="widget process-widget js-process-widget ui-g-12 u-no-padding-bottom">
       <!-- Process header -->
       <h:panelGroup layout="block" class="process-header js-process-header" rendered="#{!cc.attrs.hideHeader}">
 
@@ -52,7 +52,8 @@
       </h:panelGroup>
 
       <!-- Process body -->
-      <h:panelGroup id="process-list" layout="block" styleClass="widget-content process-start-list-container js-process-start-list-container ui-g-12">
+      <h:panelGroup id="process-list" layout="block"
+        styleClass="widget-content process-start-list-container js-process-start-list-container ui-g-12 u-no-padding-top u-no-padding-bottom">
         <ui:fragment id="full-process-list">
           <ui:repeat id="process-group-alphabet" var="entryProcess" value="#{processWidgetBean.processesByAlphabet.entrySet().toArray()}">
             <p:fieldset id="alphabet-process-index-fieldset"
@@ -79,23 +80,22 @@
         </ui:fragment>
       </h:panelGroup>
       <!-- Process navigator -->
-      <h:panelGroup id="process-nav" styleClass="process-nav js-process-nav" rendered="#{!cc.attrs.hideProcessNavigation}">
+      <h:panelGroup id="process-nav" layout="block" styleClass="process-nav js-process-nav" rendered="#{!cc.attrs.hideProcessNavigation}">
+        <div class="js-character-container character-container">
+          <p:commandLink id="expand-all-btn"
+            onclick="expandOrCollapseAllCategories(true); return false;" styleClass="expand-collapse-btn process-nav-item">
+            <i class="icon ivyicon-add" />
+          </p:commandLink>
+          <p:commandLink id="collapse-all-btn"
+            onclick="expandOrCollapseAllCategories(false); return false;" styleClass="expand-collapse-btn process-nav-item">
+            <i class="icon ivyicon-subtract" />
+          </p:commandLink>
 
-
-        <p:commandLink id="expand-all-btn"
-          onclick="expandOrCollapseAllCategories(true); return false;" styleClass="expand-collapse-btn process-nav-item">
-          <i class="icon ivyicon-add" />
-        </p:commandLink>
-        <p:commandLink id="collapse-all-btn"
-          onclick="expandOrCollapseAllCategories(false); return false;" styleClass="expand-collapse-btn process-nav-item">
-          <i class="icon ivyicon-subtract" />
-        </p:commandLink>
-
-
-        <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters().entrySet().toArray()}" var="character">
-          <p:commandLink value="#{character.value}" styleClass="process-nav-item js-process-nav-item js-process-starts-with-#{character.key}"
-            onclick="jumpToProcessGroupByCharacter(event)" global="false" />
-        </ui:repeat>
+          <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters().entrySet().toArray()}" var="character">
+            <p:commandLink value="#{character.value}" styleClass="process-nav-item js-process-nav-item js-process-starts-with-#{character.key}"
+              onclick="jumpToProcessGroupByCharacter(event)" global="false" />
+          </ui:repeat>
+        </div>
       </h:panelGroup>
     </div>
   </div>

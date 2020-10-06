@@ -95,7 +95,8 @@
         <p:dataTable id="settingTable" styleClass="admin-table global-setting-table" value="#{data.settingList}"
           filteredValue="#{data.filteredSettingList}" var="setting" widgetVar="settingTable"
           emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" scrollable="true"
-          scrollHeight="240" reflow="true">
+          scrollHeight="240" reflow="true"
+          sortBy="#{setting.key}">
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/key')}"
             filterBy="#{setting.key}" filterMatchMode="contains" styleClass="settings-table-key-column">
             <h:outputText value="#{setting.key}" styleClass="setting-key" />

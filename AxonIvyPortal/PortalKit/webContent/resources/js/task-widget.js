@@ -2,14 +2,13 @@ function TaskWidget() {
 
   return {
 
-    setupHeader : function() {
+    setupHeader: function() {
       var taskListToolKit = TaskListToolKit();
       taskListToolKit.setupHeader();
     },
 
-    setupScrollbar : function() {
+    setupScrollbar: function() {
       var childElements = $('.js-task-start-list-item');
-      var winHeight = window.innerHeight;
       if (childElements.length > 0) {
         var container = $('.js-task-start-list:not(.js-is-guide) > .ui-datascroller-content');
         var taskWidgetHeaderContainer = $('.js-task-widget-header');
@@ -28,37 +27,41 @@ function TaskWidget() {
         }
         var customWidgetContainer = $('.js-custom-widget-container');
         if (customWidgetContainer.height() > 0) {
-        	customWidgetContainer = customWidgetContainer.outerHeight(true)||0;
+          customWidgetContainer = customWidgetContainer.outerHeight(true)||0;
         } else {
-        	customWidgetContainer = customWidgetContainer.height()||0;
-        }
-        var error = 5;
-        var globalSearchInput = $('.js-global-search');
-        var globalSearchTabHeader = $('.ui-tabs-nav');
-        if (globalSearchTabHeader.length > 0) {
-          error = 55; // included margin, padding in search page
+          customWidgetContainer = customWidgetContainer.height()||0;
         }
 
-        var compactProcessWidgetHeight = window.matchMedia("(max-width: 40em)").matches == true ? ($('.js-compact-process-widget-panel').outerHeight(true) || 0) : 0;
-        var compactTaskWidgetPadding = $('.js-compact-task-widget').outerHeight(true) - $('.js-compact-task-widget').height()||0;
-        var taskViewPadding = $('.js-task-view').outerHeight(true) - $('.js-task-view').height()||0;
-        var layoutContentPadding = $('.layout-content').outerHeight(true) - $('.layout-content').height()||0;
-        var containerPadding = container.outerHeight(true) - container.height()||0;
+        var compactProcessWidgetHeight = window.matchMedia("(max-width: 40em)").matches == true ? ($('.js-compact-process-widget-panel').outerHeight(true)||0) : 0;
+        var compactTaskWidgetPadding = ($('.js-compact-task-widget').outerHeight(true)||0) - ($('.js-compact-task-widget').height()||0);
+        var taskViewPadding = ($('.js-task-view').outerHeight(true)||0) - ($('.js-task-view').height()||0);
+        var layoutContentPadding = ($('.layout-content').outerHeight(true)||0) - ($('.layout-content').height()||0);
 
         var mainScreenHeight = ($('.js-layout-content').outerHeight(true)||0);
         var availableHeight = mainScreenHeight - (taskWidgetHeaderContainer.outerHeight(true)||0)
-            - (announcementMessageContainer.outerHeight(true)||0) - (taskWidgetSortMenuContainer.outerHeight(true)||0)
-            - error - customWidgetContainer
-            - taskViewPadding - layoutContentPadding - compactTaskWidgetPadding - compactProcessWidgetHeight;
+          - (announcementMessageContainer.outerHeight(true)||0) - (taskWidgetSortMenuContainer.outerHeight(true)||0)
+          - customWidgetContainer
+          - taskViewPadding - layoutContentPadding
+          - compactTaskWidgetPadding - compactProcessWidgetHeight;
+
+        var globalSearchTabHeader = $('.ui-tabs-nav');
+        if (globalSearchTabHeader.length > 0) {
+          var globalSearchInput = $('.js-global-search');
+          var globalSearchInputHeight = globalSearchInput.is(":visible") ? (globalSearchInput.outerHeight(true)||0) : 0;
+          var searchResultTabMargin = ($('.js-search-results-tabview').outerHeight(true)||0) - ($('.js-search-results-tabview').outerHeight()||0);
+          var containerMarginPadding = (container.outerHeight(true)||0) - (container.height()||0);
+          availableHeight = availableHeight - (globalSearchTabHeader.outerHeight(true)||0) - globalSearchInputHeight - searchResultTabMargin - containerMarginPadding;
+        }
+
         if (!!availableHeight) {
-            container.height(availableHeight);
-            if (container.outerHeight(true) > availableHeight) {
-              var taskStartItemMarginRight = $('.task-start-list-item').css("margin-right");
-              var scrollbarWidth = container.width() - container.find('.ui-datascroller-list').outerWidth(true);
-              if (scrollbarWidth > 0) {
-                container.css("margin-right", taskStartItemMarginRight);
-              }
+          container.outerHeight(availableHeight);
+          if (container.outerHeight(true) > availableHeight) {
+            var taskStartItemMarginRight = $('.task-start-list-item').css("margin-right");
+            var scrollbarWidth = container.width() - container.find('.ui-datascroller-list').outerWidth(true);
+            if (scrollbarWidth > 0) {
+              container.css("margin-right", taskStartItemMarginRight);
             }
+          }
         }
 
         // show mobile title after calculate
@@ -67,15 +70,15 @@ function TaskWidget() {
         }
       }
     },
-    
-    toggleTaskFilter: function(toggler) {
+
+    toggleTaskFilter: function() {
       $('.js-advanced-filter-component').toggleClass('u-hidden-md-down');
       $('.js-filter-add-action').toggleClass('u-hidden-md-down');
       $('.js-filter-reset-action').toggleClass('u-hidden-md-down');
       $('.js-filter-save-action').toggleClass('u-hidden-md-down');
     },
 
-    updateTaskCountToBreadcrumb : function() {
+    updateTaskCountToBreadcrumb: function() {
       var $breadCrumbTaskElem = $("[id $= ':breadcrumb'] li").last().find(".ui-menuitem-link");
       if ($breadCrumbTaskElem.length == 0) {
         return;
@@ -85,12 +88,12 @@ function TaskWidget() {
         $breadCrumbTaskElem.find("span").addClass("has-count");
         $breadCrumbTaskElem.append('<span class="js-count has-count"> (' + $(".js-hidden-task-count").get(0).innerHTML + ')</span>');
       } else {
-    	  $breadCrumbTaskElem.find(".js-count").get(0).innerHTML = " (" + $(".js-hidden-task-count").get(0).innerHTML + ")";
+        $breadCrumbTaskElem.find(".js-count").get(0).innerHTML = " (" + $(".js-hidden-task-count").get(0).innerHTML + ")";
       }
 
       $(".js-task-count-mobile").get(0).innerHTML = " (" + $(".js-hidden-task-count").get(0).innerHTML + ")";
     }
-  }
+  };
 }
 
 function TaskListToolKit() {
@@ -104,7 +107,7 @@ function TaskListToolKit() {
   }
 
   return {
-    setupHeader : function() {
+    setupHeader: function() {
       var taskSortMenu = $('.js-task-widget-sort-menu');
       var taskEntry = $('.js-task-start-link').first();
       var noEntry = taskEntry.length == 0;
@@ -121,16 +124,15 @@ function TaskListToolKit() {
         });
       }
     },
-    
-    setupScrollbar : function() {
+
+    setupScrollbar: function() {
       var taskWidget = new TaskWidget();
       taskWidget.setupScrollbar();
     },
 
     showHideColumnWhenMenuToggle: function() {
       var $layout = $('.js-layout-wrapper');
-      var $mainMenu = $('.js-left-sidebar');
-      var remainingWidth = $('body').width() - $mainMenu.outerWidth() - 75;//exclude padding and scroll bar
+      var remainingWidth = $('.js-layout-content').outerWidth(true);
       var $hiddenColumns = $('.js-hidden-when-expand-menu');
       if (remainingWidth < 1024 && $layout.hasClass('layout-wrapper-static')) {
         hideColumnWhenExpandMenu($hiddenColumns);
@@ -138,13 +140,14 @@ function TaskListToolKit() {
         displayColumnWhenCollapseMenu($hiddenColumns);
       }
     },
-    
-    responsive : function() {
-        this.setupScrollbar();
-        this.setupHeader();
+
+    responsive: function() {
+      this.setupScrollbar();
+      this.setupHeader();
     }
-  }
-};
+  };
+}
+
 function getTaskListScrollPosition() {
   var scrollPos = $('#task-widget\\:task-view .ui-datascroller-content').scrollTop();
   var scrollPosInputHidden = $('input[id$=scroll-position]');
