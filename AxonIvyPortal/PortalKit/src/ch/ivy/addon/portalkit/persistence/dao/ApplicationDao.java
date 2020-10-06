@@ -11,6 +11,7 @@ public class ApplicationDao extends AbstractDao<Application> {
     super();
   }
 
+  @SuppressWarnings("removal")
   public List<Application> findAllThirdPartyApplications() {
     return findAll().stream() .filter(application -> application.getServerId() == null) .collect(Collectors.toList());
   }
