@@ -1,5 +1,6 @@
 package ch.internalsupport;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Arrays;
@@ -23,8 +24,9 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 @ManagedBean
 @ViewScoped
-public class ChartView {
+public class ChartView implements Serializable {
 
+  private static final long serialVersionUID = 1980559732301424620L;
   private BarChartModel barModel;
   private TaskQuery today;
   private TaskQuery tomorrow;

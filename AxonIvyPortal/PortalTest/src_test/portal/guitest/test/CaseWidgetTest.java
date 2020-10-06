@@ -24,6 +24,7 @@ import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskWidgetPage;
+import portal.guitest.page.UserProfilePage;
 
 public class CaseWidgetTest extends BaseTest {
 
@@ -200,5 +201,33 @@ public class CaseWidgetTest extends BaseTest {
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
     homePage = caseDetailsPage.goToHomeFromBreadcrumb();
     assertTrue(homePage.isDisplayed());
+  }
+
+  @Test
+  public void testChangeCaseSortingOptions() {
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+
+    HomePage homePage = new HomePage();
+    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+
+    // Change sorting options
+    userProfilePage.selectCaseSortField("Name");
+    userProfilePage.selectCaseSortDirection("Sort ascending");
+    userProfilePage.save();
+
+    // Check result
+    CaseWidgetPage caseWidgetPage = userProfilePage.openCaseList();
+    assertEquals("Create 12 Cases with category", caseWidgetPage.getCaseNameAt(0));
+    assertEquals("TestCase", caseWidgetPage.getCaseNameAt(caseWidgetPage.countCases() - 1));
+
+    // Change sorting options
+    userProfilePage = caseWidgetPage.openMyProfilePage();
+    userProfilePage.selectTaskSortField("State");
+    userProfilePage.selectTaskSortDirection("Sort descending");
+    userProfilePage.save();
+
+    // Check result
+    caseWidgetPage = userProfilePage.openCaseList();
+    assertEquals(CaseState.DONE, caseWidgetPage.getCaseState(0));
   }
 }

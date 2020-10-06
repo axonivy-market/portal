@@ -1,63 +1,66 @@
 function CaseWidget() {
-  this.setupHeader = function() {
-    var caseListToolKit = CaseListToolKit();
-    caseListToolKit.setupHeader();
-  }
-  
-  this.toggleCaseFilter = function(toggler) {
-    $('.js-advanced-filter-component').toggleClass('u-hidden-md-down');
-    $('.js-filter-add-action').toggleClass('u-hidden-md-down');
-    $('.js-filter-reset-action').toggleClass('u-hidden-md-down');
-    $('.js-filter-save-action').toggleClass('u-hidden-md-down');
-  }
-  
-  this.setUpScrollbar = function() {
-    var childElements = $('.js-case-item');
-    if (childElements.length > 0) {
-      var container = $('.js-case-list > .ui-datascroller-content');
-      var caseWidgetHeaderContainer = $('.js-case-widget-header');
 
-      // temporary hide mobile title to calculate
-      var mobileTitle = caseWidgetHeaderContainer.find(".js-widget-title-mobile");
-      if (mobileTitle.length > 0) {
-        $(".js-layout-content").css("overflow-y", "hidden");
-        mobileTitle.addClass("u-hidden");
+  return {
+    setupHeader: function() {
+      var caseListToolKit = CaseListToolKit();
+      caseListToolKit.setupHeader();
+    },
+
+    toggleCaseFilter: function() {
+      $('.js-advanced-filter-component').toggleClass('u-hidden-md-down');
+      $('.js-filter-add-action').toggleClass('u-hidden-md-down');
+      $('.js-filter-reset-action').toggleClass('u-hidden-md-down');
+      $('.js-filter-save-action').toggleClass('u-hidden-md-down');
+    },
+
+    setUpScrollbar: function() {
+      var childElements = $('.js-case-item');
+      if (childElements.length > 0) {
+        var container = $('.js-case-list > .ui-datascroller-content');
+        var caseWidgetHeaderContainer = $('.js-case-widget-header');
+
+        // temporary hide mobile title to calculate
+        var mobileTitle = caseWidgetHeaderContainer.find(".js-widget-title-mobile");
+        if (mobileTitle.length > 0) {
+          $(".js-layout-content").css("overflow-y", "hidden");
+          mobileTitle.addClass("u-hidden");
+        }
+
+        var announcementMessageContainer = $('.js-announcement-message');
+        var caseWidgetSortMenuContainer = $('.js-case-widget-column-header');
+        var layoutContentMarginPadding = ($('.js-layout-content').outerHeight(true) - $('.js-layout-content').height())||0;
+        var mainScreenHeight = ($('.js-layout-content').outerHeight(true)||0);
+        var availableHeight = mainScreenHeight - (caseWidgetHeaderContainer.outerHeight(true)||0)
+                        - (caseWidgetSortMenuContainer.outerHeight(true)||0)
+                        - (announcementMessageContainer.outerHeight(true)||0) - layoutContentMarginPadding;
+
+        var globalSearchTabHeader = $('.ui-tabs-nav');
+        if (globalSearchTabHeader.length > 0) {
+          var searchResultMarginPadding = ($('.js-search-results-tabview').outerHeight(true) - $('.js-search-results-tabview').height())||0;
+          var globalSearchInput = $('.js-global-search');
+          availableHeight = availableHeight - searchResultMarginPadding
+                      - (globalSearchInput.is(":visible") ? globalSearchInput.outerHeight(true) : 0)
+                      - (globalSearchTabHeader.outerHeight(true)||0);
+        }
+
+        if (!!availableHeight) {
+          container.outerHeight(availableHeight);
+        }
+
+        // show mobile title after calculate
+        if (mobileTitle.length > 0) {
+          mobileTitle.removeClass("u-hidden");
+        }
       }
+    },
 
-      var announcementMessageContainer = $('.js-announcement-message');
-      var caseWidgetSortMenuContainer = $('.js-case-widget-column-header');
-      var caseWidgetFilterContainer = $('.js-filter-container');
-      var error = 5;
-      var globalSearchInput = $('.js-global-search');
-      var globalSearchTabHeader = $('.ui-tabs-nav');
-      if (globalSearchTabHeader.length > 0) {
-        error = 55; // included margin, padding in search page
-      }
-
-      var layoutContentTopDistance = ($('.js-layout-content').outerHeight(true) - $('.js-layout-content').height())||0;
-      var mainScreenHeight = ($('.js-layout-content').outerHeight(true)||0);
-      var availableHeight = mainScreenHeight - (caseWidgetHeaderContainer.outerHeight(true)||0) - (caseWidgetSortMenuContainer.outerHeight(true)||0)
-          - (globalSearchInput.is(":visible") ? globalSearchInput.outerHeight(true) : 0) - (globalSearchTabHeader.outerHeight(true)||0)
-          - (announcementMessageContainer.outerHeight(true)||0) - error - layoutContentTopDistance;
-
-      if (!!availableHeight) {
-        container.height(availableHeight);
-      }
-
-      // show mobile title after calculate
-      if (mobileTitle.length > 0) {
-        mobileTitle.removeClass("u-hidden");
-      }
-    }
-  };
-
-  this.updateCaseCountToBreadcrumb = function() {
-      var $breadCrumbTaskElem = $("[id $= ':breadcrumb'] li").last().find(".ui-menuitem-link");
-      if ($breadCrumbTaskElem.length == 0) {
+    updateCaseCountToBreadcrumb: function() {
+      var $breadCrumbTaskElem = $("[id$=':breadcrumb'] li").last().find(".ui-menuitem-link");
+      if ($breadCrumbTaskElem.length === 0) {
         return;
       }
 
-      if ($breadCrumbTaskElem.find(".js-count").length == 0) {
+      if ($breadCrumbTaskElem.find(".js-count").length === 0) {
         $breadCrumbTaskElem.find("span").addClass("has-count");
         $breadCrumbTaskElem.append('<span class="js-count has-count"> (' + $(".js-hidden-case-count").get(0).innerHTML + ')</span>');
       } else {
@@ -67,6 +70,7 @@ function CaseWidget() {
         $(".js-case-count-mobile").get(0).innerHTML = " (" + $(".js-hidden-case-count").get(0).innerHTML + ")";
       }
     }
+  };
 }
 
 function CaseListToolKit() {
@@ -77,35 +81,34 @@ function CaseListToolKit() {
   function displayColumnWhenCollapseMenu($columns) {
     $columns.removeClass("u-hidden");
   }
-  
+
   return {
-    setupHeader : function() {
+    setupHeader: function() {
       var caseSortMenu = $('.js-case-widget-column-header');
       var caseEntry = $('.js-case-start-link').first();
-      var noEntry = caseEntry.length == 0;
+      var noEntry = caseEntry.length === 0;
       this.showHideColumnWhenMenuToggle();
       if (noEntry) {
         $(caseSortMenu).hide();
       } else {
         $(caseSortMenu).show();
       }
-      
+
       $.each(caseSortMenu.children('a'), function(i, header) {
         var cell = $(caseEntry).children().get(i);
         $(header).outerWidth($(cell).outerWidth());
       });
-     
+
     },
-    
-    setupScrollbar : function() {
+
+    setupScrollbar: function() {
       var caseWidget = new CaseWidget();
       caseWidget.setUpScrollbar();
     },
-    
+
     showHideColumnWhenMenuToggle: function() {
       var $layout = $('.js-layout-wrapper');
-      var $mainMenu = $('.js-left-sidebar');
-      var remainingWidth = $('body').width() - $mainMenu.outerWidth() - 75;//exclude padding and scroll bar
+      var remainingWidth = $('.js-layout-content').outerWidth(true);
       var $hiddenColumns = $('.js-hidden-when-expand-menu');
       if (remainingWidth < 1024 && $layout.hasClass('layout-wrapper-static')) {
         hideColumnWhenExpandMenu($hiddenColumns);
@@ -113,10 +116,10 @@ function CaseListToolKit() {
         displayColumnWhenCollapseMenu($hiddenColumns);
       }
     },
-    
-    responsive : function() {
-        this.setupScrollbar();
-        this.setupHeader();
+
+    responsive: function() {
+      this.setupScrollbar();
+      this.setupHeader();
     }
-  }
+  };
 }

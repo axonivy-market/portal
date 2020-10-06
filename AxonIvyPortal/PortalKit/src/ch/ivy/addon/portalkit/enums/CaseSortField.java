@@ -1,5 +1,11 @@
 package ch.ivy.addon.portalkit.enums;
 
+import ch.ivyteam.ivy.environment.Ivy;
+
 public enum CaseSortField {
-	NAME, CREATOR, OWNER, ID, CREATION_TIME, FINISHED_TIME, PM, PMV, STATE, PROCESS_NAME, CATEGORY, DESCRIPTION, ELAPSED_TIME;
+  NAME, CREATOR, OWNER, ID, CREATION_TIME, FINISHED_TIME, STATE, ELAPSED_TIME;
+
+  public String getLabel() {
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/" + name());
+  }
 }
