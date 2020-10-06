@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.enums;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
 import ch.ivy.addon.portalkit.document.DocumentExtensionConstants;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -39,7 +40,7 @@ public enum GlobalVariable {
   SHOW_USER_GUIDE(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showUserGuide"),
   SHOW_GLOBAL_SEARCH(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showGlobalSearch"),
   SHOW_BUTTON_ICON(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showButtonIcon"),
-  DEFAULT_HOMEPAGE(GlobalVariableType.TEXT, StringUtils.EMPTY, "defaultHomepage");
+  DEFAULT_HOMEPAGE(GlobalVariableType.EXTERNAL_SELECTION, StringUtils.capitalize(HomepageType.DASHBOARD.name().toLowerCase()), "defaultHomepage");
   
   private GlobalVariableType type;
   private String defaultValue;
@@ -102,4 +103,5 @@ public enum GlobalVariable {
   private static Option[] getLoggedInUserFormatOptions() {
     return new Option[] {Option.USERNAME, Option.DISPLAY_NAME, Option.DISPLAY_NAME_USERNAME, Option.USERNAME_DISPLAY_NAME};
   }
+  
 }

@@ -1734,6 +1734,7 @@ Bk1 g0 @|MIGIcon #fIcon
 Bk1 f1 actionTable 'out=in;
 ' #txt
 Bk1 f1 actionCode 'import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
+
 out.homepage = HomepageUtils.getHomepage();' #txt
 Bk1 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

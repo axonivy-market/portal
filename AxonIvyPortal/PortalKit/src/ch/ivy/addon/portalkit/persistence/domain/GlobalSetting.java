@@ -4,6 +4,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.GlobalVariableType;
 
@@ -54,6 +55,8 @@ public class GlobalSetting extends BusinessEntity {
     GlobalVariable variable = GlobalVariable.valueOf(key);
     if (variable.getType() == GlobalVariableType.SELECTION) {
       return GlobalVariable.Option.valueOf(StringUtils.upperCase(value)).translate();
+    } else if (variable == GlobalVariable.DEFAULT_HOMEPAGE) {
+      return HomepageUtils.getHomepageForAdminSettings().getLabel();
     }
     return value;
   }

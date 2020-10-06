@@ -7,6 +7,7 @@ public class Homepage {
 
   private HomepageType type;
   private String name;
+  private String label;
   private String link;
 
   public HomepageType getType() {
@@ -24,6 +25,14 @@ public class Homepage {
   public void setName(String name) {
     this.name = name;
   }
+  
+  public String getLabel() {
+    return label;
+  }
+  
+  public void setLabel(String label) {
+    this.label = label;
+  }
 
   public String getLink() {
     return link;
@@ -40,14 +49,14 @@ public class Homepage {
     }
     Homepage other = (Homepage) obj;
     EqualsBuilder builder = new EqualsBuilder();
-    builder.append(link, other.getLink());
+    builder.append(name.toLowerCase(), other.getName().toLowerCase());
     return builder.isEquals();
   }
 
   @Override
   public int hashCode() {
     HashCodeBuilder builder = new HashCodeBuilder();
-    builder.append(link);
+    builder.append(name.toLowerCase());
     return builder.toHashCode();
   }
 }
