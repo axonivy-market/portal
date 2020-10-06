@@ -302,6 +302,12 @@
               <f:selectItems value="#{data.dropDownValues}" var="value" itemLabel="#{value.translate()}" />
             </p:selectOneMenu>
           </c:if>
+          
+          <c:if test="#{data.settingInputType.toString() == 'EXTERNAL_SELECTION'}">
+            <p:selectOneMenu value="#{data.selectedSetting.value}" id="valueSetting" styleClass="value-setting-dropdown">
+              <f:selectItems value="#{data.externalDropDownValues.entrySet()}" var="entry" itemValue="#{entry.key}" itemLabel="#{entry.value}" />
+            </p:selectOneMenu>
+          </c:if>
 
           <!-- NOTE -->
           <p:outputLabel styleClass="Fright" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}"

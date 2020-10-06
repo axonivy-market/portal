@@ -29,7 +29,7 @@
                   <span class="ui-g-12">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/MyProfile/selectHomepage')}</span>
                   <div class="ui-g-6 ui-sm-12">
                     <p:selectOneMenu id="homepage" value="#{data.selectedHomepage}" converter="pojoConverter">
-                      <f:selectItems value="#{data.homepages}" var="homepage" itemValue="#{homepage}" itemLabel="#{homepage.name}" />
+                      <f:selectItems value="#{data.homepages}" var="homepage" itemValue="#{homepage}" itemLabel="#{homepage.label}" />
                     </p:selectOneMenu>
                   </div>
                   <div class="ui-g-6 ui-sm-12">
