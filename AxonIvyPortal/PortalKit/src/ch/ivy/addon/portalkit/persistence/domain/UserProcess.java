@@ -127,8 +127,7 @@ public class UserProcess extends BusinessEntity {
   
   @Override
   public String toString() {
-    return "UserProcess {userId=" + userId + ", processName=" + processName + ", icon=" + icon + ", link=" + link
-        + ", isDefaultProcess=" + defaultProcess + ", id=" + getId() + "}";
+    return String.format("UserProcess {userId=%s, processName=%s, icon=%s, link=%s, isDefaultProcess=%s, id=%s}", userId, processName, icon, link, defaultProcess, id);
   }
 
   @Override

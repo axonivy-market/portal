@@ -1,6 +1,5 @@
 package ch.ivy.addon.portalkit.persistence.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -16,8 +15,7 @@ public class UserProcessDao extends AbstractDao<UserProcess> {
 
   public List<UserProcess> findByUserIdInCurrentApplication(Long userId) {
     Long applicationId = Ivy.wf().getApplication().getId();
-    return Optional.ofNullable(findAll())
-        .orElse(new ArrayList<>())
+    return findAll()
         .stream()
         .filter(userProcess -> (
           Optional.ofNullable(userProcess.getUserId()).orElse(-1L).longValue() == userId.longValue() 
