@@ -14,7 +14,8 @@ public class HomepageMapper {
   
   public static Homepage toHomepage(SubMenuItem menuItem) {
     Homepage homepage = new Homepage();
-    homepage.setName(menuItem.getLabel());
+    homepage.setName(menuItem.getName());
+    homepage.setLabel(menuItem.getLabel());
     homepage.setLink(menuItem.buildLink());
     if (menuItem.getMenuKind() == MenuKind.PROCESS) {
       homepage.setType(HomepageType.PROCESS);
@@ -23,7 +24,7 @@ public class HomepageMapper {
     } else if (menuItem.getMenuKind() == MenuKind.CASE) {
       homepage.setType(HomepageType.CASE);
     } else if (menuItem.getMenuKind() == MenuKind.STATISTICS) {
-      homepage.setType(HomepageType.STATISTIC);
+      homepage.setType(HomepageType.STATISTICS);
     } else if (menuItem.getMenuKind() == MenuKind.CUSTOM) {
       homepage.setType(HomepageType.CUSTOM);
     } else {
