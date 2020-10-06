@@ -226,17 +226,15 @@ Us0 f35 109 280 192 280 #arcP
 Us0 f36 304 280 384 280 #arcP
 Us0 f28 actionTable 'out=in;
 ' #txt
-Us0 f28 actionCode 'import ch.ivy.addon.portal.generic.bean.HomepageBean;
+Us0 f28 actionCode 'import ch.ivy.addon.portalkit.bean.UserProfileBean;
 import ch.ivy.addon.portalkit.bean.GuideBean;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 
 GuideBean guideBean =	ManagedBeans.get("guideBean") as GuideBean;
 guideBean.setDontShowAgain(!in.showTutorial);
 
-HomepageBean homepageBean =	ManagedBeans.get("homepageBean") as HomepageBean;
-homepageBean.saveHomepage(in.selectedHomepage);
-
-' #txt
+UserProfileBean userProfileBean =	ManagedBeans.get("userProfileBean") as UserProfileBean;
+userProfileBean.saveHomepage(in.selectedHomepage.getName());' #txt
 Us0 f28 security system #txt
 Us0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -306,8 +304,8 @@ Us0 f11 680 144 728 144 #arcP
 Us0 f17 actionTable 'out=in;
 ' #txt
 Us0 f17 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
-UserSettingService.newInstance().saveDefaultSortFieldOfTaskList(ivy.session.getSessionUserName(), in.selectedTaskListSortField, in.selectedTaskListSortDirection);
-UserSettingService.newInstance().saveDefaultSortFieldOfCaseList(ivy.session.getSessionUserName(), in.selectedCaseListSortField, in.selectedCaseListSortDirection);' #txt
+UserSettingService.newInstance().saveDefaultSortFieldOfTaskList(in.selectedTaskListSortField, in.selectedTaskListSortDirection);
+UserSettingService.newInstance().saveDefaultSortFieldOfCaseList(in.selectedCaseListSortField, in.selectedCaseListSortDirection);' #txt
 Us0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -413,10 +411,15 @@ Ct3 g1 531 147 26 26 0 5 #rect
 Ct3 g1 @|MOGIcon #fIcon
 Ct3 f4 actionTable 'out=in;
 ' #txt
-Ct3 f4 actionCode 'import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
+Ct3 f4 actionCode 'import ch.addon.portal.generic.userprofile.homepage.Homepage;
+import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 
+Homepage defaultHomepage = HomepageUtils.findDefaultHomepage();
+defaultHomepage.setName("");
+defaultHomepage.setLabel(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption", [defaultHomepage.getLabel()]));
 out.homepages = HomepageUtils.loadHomepages();
-out.selectedHomepage = HomepageUtils.getHomepage();' #txt
+out.homepages.add(0, defaultHomepage);
+out.selectedHomepage = HomepageUtils.findHomepageInMyProfile();' #txt
 Ct3 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
