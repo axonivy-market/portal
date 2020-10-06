@@ -12,7 +12,7 @@ import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 public class UserProcessService extends AbstractService<UserProcess> {
 
   public UserProcessService() {
-    super(UserProcessDao.class);
+    super(new UserProcessDao());
   }
 
   @Override

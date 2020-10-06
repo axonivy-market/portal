@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -11,7 +13,9 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 @ManagedBean
 @ViewScoped
-public class VisibilityBean {
+public class VisibilityBean implements Serializable {
+
+  private static final long serialVersionUID = 6402332157509278585L;
   private GlobalSettingService globalSettingService;
   
   @PostConstruct
