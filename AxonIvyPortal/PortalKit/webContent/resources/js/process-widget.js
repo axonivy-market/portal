@@ -90,9 +90,9 @@ function ProcessWidget() {
       var characterContainer = processNav.find('.js-character-container');
       processNav.width(characterContainer.width());
 
-      // If there is less than 10 characters displayed, calculate height of character container to make UI look better.
-      if (numberOfDisplayingCharacters < 10) {
-        var heightForEachCharacter = processNav.get(0).offsetHeight / numberOfMaximumCharacters;
+      // If there is less than 6 characters displayed, calculate height of character container to make UI look better.
+      if (numberOfDisplayingCharacters < 6) {
+    	  var heightForEachCharacter = (processNav.get(0).offsetHeight / numberOfMaximumCharacters) * 2;
         var numberOfDisplayingCharacters = $('.js-process-nav-item').length;
         characterContainer.height(numberOfDisplayingCharacters * heightForEachCharacter);
       } else {
@@ -172,8 +172,8 @@ function ProcessWidget() {
 // Then compare with availableHeight of process widget body
 // Return true if enough space to display navigator
 function shouldDisplayProcessNav(processNav, availableHeight) {
-  if (processNav.length) {
-    var processNavElement = processNav[0];
+  if (processNav.find('.js-character-container').length) {
+    var processNavElement = processNav.find('.js-character-container')[0];
     if (!processNavElement.childElementCount) {
       processNav.css("visibility", "hidden");
       return false;
