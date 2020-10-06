@@ -43,8 +43,21 @@ public class HomepageUtils {
     dashboard.setType(HomepageType.DASHBOARD);
     return dashboard;
   }
+  
+  public static Homepage findHomepageInMyProfile() {
+    Homepage homepage = new Homepage();
+    String homepageName = Ivy.session().getSessionUser().getProperty(UserProperty.HOMEPAGE);
+    if (StringUtils.isBlank(homepageName)) {
+      homepage.setName(StringUtils.EMPTY);
+      return homepage;
+    }
+    
+    List<Homepage> homepages = loadHomepages();
+    homepage.setName(homepageName);
+    return homepages.get(homepages.indexOf(homepage));
+  }
 
-  public static Homepage getHomepage() {
+  public static Homepage findHomepage() {
     List<Homepage> homepages = loadHomepages();
     Homepage homepage = new Homepage();
     homepage.setName(getHomepageName());
@@ -59,7 +72,7 @@ public class HomepageUtils {
     return homepageName;
   }
   
-  public static Homepage getHomepageForAdminSettings() {
+  public static Homepage findDefaultHomepage() {
     List<Homepage> homepages = loadHomepages();
     Homepage homepage = new Homepage();
     homepage.setName(findHomepageSetting());
