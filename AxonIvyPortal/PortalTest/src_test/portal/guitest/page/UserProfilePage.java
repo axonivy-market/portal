@@ -20,21 +20,22 @@ public class UserProfilePage extends TemplatePage {
   private static final String TASK_SORT_FIELD_SELECTION_LABEL = "my-profile-form:task-sort-field-selection_label";
   private static final String TASK_SORT_FIELD_SELECTION = "my-profile-form:task-sort-field-selection";
   private static final String TASK_SORT_DIRECTION_SELECTION = "my-profile-form:task-sort-direction-selection";
+  private static final String LANGUAGE_SELECTION_SELECTOR = "div[id$='language-selection'] div.ui-selectonemenu-trigger"; 
 
   private static String MAIL_NOTI_ON_TASK_ASSIGNMENT_SELECTOR = "div[id$=':mail-notification-on-task-assign']";
   private static String FURTHER_EMAIL_FROM_APP_SELECTOR = "div[id$=':further-mails-from-application']";
   private static String SELECTED_DAY_XPATH="//*[@id='my-profile-form:daily-summary']/div/div/div/div[2]";
   private static String SHOW_TUTORIAL_XPATH = "//*[@id='my-profile-form:general-show-tutorial']/div[2]";
-  
+
   @Override
   protected String getLoadedLocator() {
     return "id('my-profile-form:save-settings')";
   }
   
   public void selectLanguage(int newLanguage) {
-    waitForElementDisplayed(By.cssSelector("div[id$='selection'] div.ui-selectonemenu-trigger"), true);
-    clickByCssSelector("div[id$='selection'] div.ui-selectonemenu-trigger");
-    clickByCssSelector("li[id$='selection_" + newLanguage + "']");
+    waitForElementDisplayed(By.cssSelector(LANGUAGE_SELECTION_SELECTOR), true);
+    clickByCssSelector(LANGUAGE_SELECTION_SELECTOR);
+    clickByCssSelector("li[id$='language-selection_" + newLanguage + "']");
   }
 
   public UserProfilePage save() {
