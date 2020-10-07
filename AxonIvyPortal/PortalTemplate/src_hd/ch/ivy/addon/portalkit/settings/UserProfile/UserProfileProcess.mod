@@ -281,12 +281,12 @@ if (in.sortDirections == null || in.sortDirections.isEmpty()) {
     in.sortDirections.add(direction.name());
   }
 
-  in.selectedTaskListSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfTaskList(ivy.session.getSessionUserName());
+  in.selectedTaskListSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfTaskList();
   if (StringUtils.isBlank(in.selectedTaskListSortDirection)) {
     in.selectedTaskListSortDirection = defaultOption;
   }
 
-  in.selectedCaseListSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfCaseList(ivy.session.getSessionUserName());
+  in.selectedCaseListSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfCaseList();
   if (StringUtils.isBlank(in.selectedCaseListSortDirection)) {
   	in.selectedCaseListSortDirection = defaultOption;
   }
@@ -338,7 +338,7 @@ if (in.taskListSortFields == null || in.taskListSortFields.isEmpty()) {
   	}
   }
 
-  in.selectedTaskListSortField = Optional.ofNullable(UserSettingService.newInstance().getDefaultSortFieldOfTaskList(ivy.session.getSessionUserName())).orElse(defaultOption) as String;
+  in.selectedTaskListSortField = Optional.ofNullable(UserSettingService.newInstance().getDefaultSortFieldOfTaskList()).orElse(defaultOption) as String;
 }
 
 if (in.caseListSortFields == null || in.caseListSortFields.isEmpty()) {
@@ -351,7 +351,7 @@ if (in.caseListSortFields == null || in.caseListSortFields.isEmpty()) {
   	}
   }
 
-  in.selectedCaseListSortField = Optional.ofNullable(UserSettingService.newInstance().getDefaultSortFieldOfCaseList(ivy.session.getSessionUserName())).orElse(defaultOption) as String;
+  in.selectedCaseListSortField = Optional.ofNullable(UserSettingService.newInstance().getDefaultSortFieldOfCaseList()).orElse(defaultOption) as String;
 }' #txt
 Us0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

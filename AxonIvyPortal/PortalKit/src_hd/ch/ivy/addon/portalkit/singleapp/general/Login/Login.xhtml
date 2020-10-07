@@ -43,7 +43,8 @@
           </div>
           <div class="ui-g-12">
             <p:commandButton update="@form" id="login-command" actionListener="#{logic.login}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}"
-              icon="#{visibilityBean.generateButtonIcon('icon ivyicon-login-3')}" oncomplete="if (args &amp;&amp; !args.validationFailed){location.reload()}" />
+              icon="#{visibilityBean.generateButtonIcon('icon ivyicon-login-3')}"
+              oncomplete="if (#{empty data.callbackUrl} === 'true' &amp;&amp; args &amp;&amp; !args.validationFailed) {location.reload()}" />
           </div>
         </div>
       </h:form>

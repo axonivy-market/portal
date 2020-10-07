@@ -61,7 +61,11 @@ public class HomepageUtils {
     List<Homepage> homepages = loadHomepages();
     Homepage homepage = new Homepage();
     homepage.setName(getHomepageName());
-    return homepages.get(homepages.indexOf(homepage));
+    if (homepages.contains(homepage)) {
+      return homepages.get(homepages.indexOf(homepage));
+    } else {
+      return homepage;
+    }
   }
 
   private static String getHomepageName() {
