@@ -47,7 +47,7 @@
         <h:form id="main-navigator">
 
           <!-- Remote-command will be called when language changed -->
-          <p:remoteCommand name="reloadMenuItem" actionListener="#{menuView.init}"
+          <p:remoteCommand name="reloadMenuItem" actionListener="#{menuView.buildMenuView()}"
             oncomplete="if (args &amp;&amp; !args.validationFailed) { window.location.reload();}" immediate="true" process="@this"
             partialSubmit="true"/>
 
