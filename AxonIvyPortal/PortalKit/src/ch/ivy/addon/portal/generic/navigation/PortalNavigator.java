@@ -6,8 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import javax.faces.context.FacesContext;
-
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.MenuKind;
@@ -15,8 +13,10 @@ import ch.ivy.addon.portalkit.enums.SessionAttribute;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
+import ch.ivy.addon.portalkit.util.RequestUtil;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.request.IHttpRequest;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
 
 public final class PortalNavigator {
@@ -29,7 +29,7 @@ public final class PortalNavigator {
   private static final String PORTAL_RELATED_TASKS_OF_CASE = "Start Processes/PortalStart/RelatedTasksOfCasePage.ivp";
   private static final String PORTAL_TASK_DETAILS = "Start Processes/PortalStart/TaskDetailsPage.ivp";
   private static final String PORTAL_GLOBAL_SEARCH = "Start Processes/PortalStart/GlobalSearchPage.ivp";
-  private static final String PORTAL_USER_PROFILE =  "Business Processes/UserProfile/UserProfile.ivp";
+  private static final String PORTAL_USER_PROFILE =  "Start Processes/UserProfile/UserProfile.ivp";
 
   public static String getPortalStartUrl() {
     return getPortalStartUrl(null);
@@ -49,9 +49,15 @@ public final class PortalNavigator {
       Ivy.wf().getStandardProcessImplementation(StandardProcessType.DefaultApplicationHomePage).getLink().getRelative());
   }
   
+  public static void navigateToPortalLoginPage() throws UnsupportedEncodingException {
+    IHttpRequest request = (IHttpRequest) Ivy.request();
+    String loginPage = IvyExecutor.executeAsSystem(() -> Ivy.wf().getStandardProcessImplementation(StandardProcessType.DefaultLoginPage).getLink().getRelative());
+    redirect(String.format("%s?originalUrl=%s", loginPage, java.net.URLEncoder.encode(request.getHttpServletRequest().getRequestURI(), "ISO-8859-1")));
+  }
+  
   public static void redirect(String url) {
     try {
-      FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+      RequestUtil.redirect(url);
     } catch (IOException ex) {
       throw new PortalException(ex);
     }
