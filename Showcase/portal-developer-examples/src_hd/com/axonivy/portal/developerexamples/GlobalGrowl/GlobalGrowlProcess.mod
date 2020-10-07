@@ -88,8 +88,7 @@ Gs0 f5 360 160 403 160 #arcP
 Gs0 f11 actionTable 'out=in;
 ' #txt
 Gs0 f11 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalEndPage();
+PortalNavigator.navigateToPortalEndPage();
 ' #txt
 Gs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
