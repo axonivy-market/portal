@@ -80,7 +80,7 @@ As0 f67 actionTable 'out=in;
 ' #txt
 As0 f67 actionCode 'import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().getExternalContext().redirect(in.selectedSubMenuItem.getExternalLink());' #txt
+FacesContext.getCurrentInstance().getExternalContext().redirect(in.selectedSubMenuItem.buildLink());' #txt
 As0 f67 security system #txt
 As0 f67 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -244,7 +244,7 @@ As0 f109 expr in #txt
 As0 f109 outCond 'in.isWorkingOnATask && in.workingTask.getState() != ch.ivyteam.ivy.workflow.TaskState.DONE' #txt
 As0 f109 1024 208 1024 266 #arcP
 As0 f110 expr in #txt
-As0 f110 outCond 'in.#selectedSubMenuItem.#menuKind  == ch.ivy.addon.portalkit.enums.MenuKind.CUSTOM' #txt
+As0 f110 outCond 'in.#selectedSubMenuItem.#menuKind  == ch.ivy.addon.portalkit.enums.MenuKind.CUSTOM || in.#selectedSubMenuItem.#menuKind  == ch.ivy.addon.portalkit.enums.MenuKind.EXTERNAL_LINK' #txt
 As0 f110 848 384 544 512 #arcP
 As0 f110 1 544 384 #addKink
 As0 f110 0 0.8608001985669408 0 0 #arcLabel
@@ -284,8 +284,7 @@ As0 f16 864 206 864 368 #arcP
 As0 f10 actionTable 'out=in;
 ' #txt
 As0 f10 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalProcess();' #txt
+PortalNavigator.navigateToPortalProcess();' #txt
 As0 f10 security system #txt
 As0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -303,8 +302,7 @@ As0 f11 0 0.32034598197015046 0 0 #arcLabel
 As0 f15 actionTable 'out=in;
 ' #txt
 As0 f15 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalStatistic();' #txt
+PortalNavigator.navigateToPortalStatistic();' #txt
 As0 f15 security system #txt
 As0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -316,7 +314,7 @@ As0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f15 968 512 112 48 -49 -8 #rect
 As0 f15 @|StepIcon #fIcon
 As0 f22 expr in #txt
-As0 f22 outCond 'in.#selectedSubMenuItem.#menuKind == ch.ivy.addon.portalkit.enums.MenuKind.DASHBOARD' #txt
+As0 f22 outCond 'in.#selectedSubMenuItem.#menuKind == ch.ivy.addon.portalkit.enums.MenuKind.STATISTICS' #txt
 As0 f22 875 389 1024 512 #arcP
 As0 f22 1 1024 448 #addKink
 As0 f22 0 0.6303319079715384 0 0 #arcLabel
@@ -327,9 +325,7 @@ As0 f17 actionTable 'out=in;
 As0 f17 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 
 in.destinationBreadcrumbPage = null;
-
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalTask();' #txt
+PortalNavigator.navigateToPortalTask();' #txt
 As0 f17 security system #txt
 As0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -347,8 +343,7 @@ As0 f28 1 0.35157960906624564 0 0 #arcLabel
 As0 f31 actionTable 'out=in;
 ' #txt
 As0 f31 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalCase();' #txt
+PortalNavigator.navigateToPortalCase();' #txt
 As0 f31 security system #txt
 As0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -489,9 +484,7 @@ As0 f32 actionTable 'out=in;
 As0 f32 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 
 in.destinationBreadcrumbPage = null;
-
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalHome();' #txt
+PortalNavigator.navigateToPortalHome();' #txt
 As0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

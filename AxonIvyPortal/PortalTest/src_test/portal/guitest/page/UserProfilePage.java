@@ -164,4 +164,13 @@ public class UserProfilePage extends TemplatePage {
     click(findElementByXpath("//*[@id='" + CASE_SORT_DIRECTION_SELECTION_ITEMS + "']/li[contains(text(),'" + selectValue + "')]"));
     ensureNoBackgroundRequest();
   }
+
+  public void changeHomePageToCase() {
+    String homepageLabel = "my-profile-form:homepage_label";
+    click(By.id(homepageLabel));
+    String caseItemId = "my-profile-form:homepage_3";
+    waitForElementDisplayed(By.id(caseItemId), true);
+    click(By.id(caseItemId));
+    waitUntilTextToBePresentInElement(findElementById(homepageLabel), "Cases", getTimeOutForLocator());
+  }
 }

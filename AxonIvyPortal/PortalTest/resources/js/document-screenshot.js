@@ -146,7 +146,7 @@ function highlightShowMoreNoteLink() {
 }
 
 function highlightStatisticNavigation() {
-   createRedMediumOutline($('.submenu.DASHBOARD'));
+   createRedMediumOutline($('.submenu.STATISTICS'));
    createRedMediumOutline($('#statistics-widget\\:statistic-link\\:statistic-link'));
 }
 

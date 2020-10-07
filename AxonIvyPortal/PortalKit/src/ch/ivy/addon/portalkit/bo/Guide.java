@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.bo;
 
 import java.util.Optional;
 
+import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -9,7 +10,6 @@ import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 public class Guide {
 
-  public static final String SHOW_GUIDE = "SHOW_GUIDE";
   private boolean isGuideShown;
   private GlobalSettingService globalSettingService;
 
@@ -28,7 +28,7 @@ public class Guide {
   
   public void setShowGuideProperty(boolean isGuideShown) {
     this.isGuideShown = isGuideShown;
-    Ivy.session().getSessionUser().setProperty(SHOW_GUIDE, String.valueOf(isGuideShown));
+    Ivy.session().getSessionUser().setProperty(UserProperty.SHOW_GUIDE, String.valueOf(isGuideShown));
   }
   
   public void readShowGuideProperty() {
@@ -39,7 +39,7 @@ public class Guide {
     }
     
     Optional<String> showGuide = Optional.of(Ivy.session()).map(IWorkflowSession::getSessionUser)
-        .map(user -> user.getProperty(SHOW_GUIDE));
+        .map(user -> user.getProperty(UserProperty.SHOW_GUIDE));
     isGuideShown = showGuide.isPresent() ? Boolean.parseBoolean(showGuide.get()) : true;
   }
 }
