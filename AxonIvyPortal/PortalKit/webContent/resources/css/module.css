@@ -740,18 +740,20 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   width: 1px;
 }
 
-.case-info-dialog .ui-dialog-content.ui-widget-content {
-  max-width: 80vw;
-  max-height: 80vh !important;
+.case-info-dialog.ui-dialog {
+  width: 80vw !important;
+}
+
+.case-info-dialog.ui-dialog .ui-dialog-content.ui-widget-content {
+  padding: 0;
 }
 
 @media (max-width: 768px) {
   .case-info-dialog .case-detail-header {
     display: none;
   }
-  .case-info-dialog .ui-dialog-content.ui-widget-content {
-    max-width: 90vw;
-    max-height: 90vh !important;
+  .case-info-dialog.ui-dialog {
+    width: 90vw !important;
   }
 }
 
@@ -811,17 +813,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .case-detail-body .card {
-  margin-bottom: 6px;
+  margin-bottom: 0;
   width: 100%;
-  height: 360px;
-  padding-bottom: 16px;
+  height: 340px;
+  padding-bottom: 14px;
 }
 
-@media screen and (max-height: 1080px) {
-  .case-detail-body .card {
-    height: 300px;
-  }
-}
 
 .case-history-button-container, .task-history-button-container {
   text-align: right;
@@ -1927,7 +1924,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .case-details {
   display: block;
-  padding: 0 15px 15px;
+  padding: 0 15px;
   justify-content: center;
   position: relative
 }
@@ -1951,7 +1948,7 @@ _:-ms-input-placeholder, :root .case-details>* {
 
 .case-description-2nd-column {
   width: calc(100% - 210px);
-  height: 110px;
+  height: 90px;
   margin-left: 2px;
   overflow-y: auto;
   overflow-x: hidden;
@@ -1961,7 +1958,7 @@ _:-ms-input-placeholder, :root .case-details>* {
 
 @media screen and (max-height: 1080px) {
   .case-description-2nd-column {
-    height: 50px;
+    height: 85px;
   }
 }
 
@@ -2023,10 +2020,6 @@ _:-ms-input-placeholder, :root .case-details>* {
   margin: 4px auto auto 3px;
 }
 
-.case-description-2nd-column .ui-inputfield.ui-inputtextarea.ui-widget.case-detail-description-input {
-  padding-top: 2px !important;
-}
-
 .case-details-state {
   margin-left: 5px;
 }
@@ -2047,9 +2040,8 @@ _:-ms-fullscreen, :root .additional-case-details-link {
 }
 
 .case-detail-description-input.ui-inputfield.ui-inputtextarea.ui-widget {
-  width: calc(100% - 5px);
+  width: calc(100% - 75px);
   resize: none;
-  margin-bottom: 2px !important;
 }
 
 .case-detail-field-set {
