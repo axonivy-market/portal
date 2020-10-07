@@ -1,10 +1,12 @@
 package ch.ivy.addon.portalkit.util;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
@@ -16,5 +18,9 @@ public class LoginBean implements Serializable {
   
   public boolean isLoginPageRendered() {
     return Boolean.parseBoolean(Ivy.var().get(PORTAL_LOGIN_PAGE_DISPLAY));
+  }
+  
+  public void navigateToPortalLoginPage() throws IOException {
+    PortalNavigator.navigateToPortalLoginPage();
   }
 }
