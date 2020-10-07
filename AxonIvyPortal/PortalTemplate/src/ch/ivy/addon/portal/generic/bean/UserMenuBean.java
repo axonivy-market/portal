@@ -24,7 +24,6 @@ import ch.ivy.addon.portalkit.service.AnnouncementService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
-import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.ServerFactory;
@@ -37,7 +36,6 @@ import ch.ivyteam.ivy.workflow.TaskState;
 public class UserMenuBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  private static final String USER_PROFILE_FRIENDLY_REQUEST_PATH =  "Business Processes/UserProfile/UserProfile.ivp";
   public static final long TIME_BEFORE_LOST_SESSION = 3 * DateUtils.MILLIS_PER_MINUTE; // 3 minutes
   public static final String TASK_LEAVE_WARNING_COMPONENT = "task-leave-warning-component";
   private String targetPage = StringUtils.EMPTY;
@@ -118,8 +116,7 @@ public class UserMenuBean implements Serializable {
   }
 
   public String getHomePageURL() {
-    PortalNavigator navigator = new PortalNavigator();
-    return navigator.getPortalStartUrl();
+    return PortalNavigator.getPortalStartUrl();
   }
 
   public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
@@ -184,7 +181,7 @@ public class UserMenuBean implements Serializable {
   }
   
   private String getUserProfileUrl() {
-    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), USER_PROFILE_FRIENDLY_REQUEST_PATH);
+    return PortalNavigator.buildUserProfileUrl();
   }
 
   private boolean findShowErrorDetailSystemProperty() {
