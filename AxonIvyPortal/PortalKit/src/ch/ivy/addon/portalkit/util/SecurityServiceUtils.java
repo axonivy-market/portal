@@ -19,9 +19,7 @@ public class SecurityServiceUtils {
    * @return string
    */
   public static String getDefaultPortalStartUrl() {
-    return IvyExecutor.executeAsSystem(() -> {
-      return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), "Start Processes/PortalStart/DefaultApplicationHomePage.ivp");
-    });
+    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath("Start Processes/PortalStart/DefaultApplicationHomePage.ivp");
   }
 
   public static Object getSessionAttribute(String name) {
