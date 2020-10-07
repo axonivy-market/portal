@@ -75,8 +75,7 @@ String url = URLDecoder.decode(in.callbackUrl, "UTF-8");
 if (request != null && StringUtils.isNotBlank(url) && OpenRedirectVulnerabilityUtil.isValid(url, request)){	
 	context.redirect(url);
 } else {
-	PortalNavigator navigator = new PortalNavigator();
-	navigator.navigateToPortalHome();
+	PortalNavigator.navigateToPortalHome();
 }' #txt
 Ps0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

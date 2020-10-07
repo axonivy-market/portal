@@ -183,9 +183,7 @@ As0 f17 actionTable 'out=in;
 As0 f17 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 TaskUtils.resetTask(ivy.task);
-
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalEndPage();' #txt
+PortalNavigator.navigateToPortalEndPage();' #txt
 As0 f17 security system #txt
 As0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

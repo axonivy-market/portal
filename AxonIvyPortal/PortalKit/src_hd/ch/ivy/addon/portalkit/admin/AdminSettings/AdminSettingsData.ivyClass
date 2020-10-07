@@ -29,7 +29,11 @@ resetAllSettings PERSISTENT #fieldModifier
 settingInputType ch.ivy.addon.portalkit.enums.GlobalVariableType #field
 settingInputType PERSISTENT #fieldModifier
 dropDownValues java.util.List<java.lang.Object> #field
+dropDownValues 'internal options, for example: FALSE, TRUE' #fieldComment
 dropDownValues PERSISTENT #fieldModifier
+externalDropDownValues java.util.Map #field
+externalDropDownValues 'external options, for example: homepages, task/case columns sorting' #fieldComment
+externalDropDownValues PERSISTENT #fieldModifier
 filteredSettingList List<ch.ivy.addon.portalkit.persistence.domain.GlobalSetting> #field
 filteredSettingList PERSISTENT #fieldModifier
 settingTabOpened Boolean #field
@@ -40,5 +44,3 @@ isDefaultApplicationLanguage Boolean #field
 isDefaultApplicationLanguage PERSISTENT #fieldModifier
 isAnnouncementActivated Boolean #field
 isAnnouncementActivated PERSISTENT #fieldModifier
-isExternalOption Boolean #field
-isExternalOption PERSISTENT #fieldModifier

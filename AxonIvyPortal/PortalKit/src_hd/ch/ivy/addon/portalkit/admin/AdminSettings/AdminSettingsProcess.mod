@@ -350,7 +350,10 @@ As0 f69 766 1478 20 20 13 0 #rect
 As0 f69 @|UdMethodIcon #fIcon
 As0 f72 actionTable 'out=in;
 ' #txt
-As0 f72 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
+As0 f72 actionCode 'import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.GlobalVariableType;
+import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
 import java.util.Arrays;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 
@@ -358,15 +361,12 @@ in.isAddMode = false;
 in.dialogTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/editSetting");
 GlobalVariable globalVariable = GlobalVariable.valueOf(in.selectedSetting.key);
 in.settingInputType = globalVariable.getType();
-if (globalVariable.getExternalOptions() != null && !globalVariable.getExternalOptions().isEmpty()) {
-	in.dropDownValues.clear();
-	for (String key : globalVariable.getExternalOptions().keySet()) {
-	  in.dropDownValues.add(key);
-	}
-  in.isExternalOption = true;
-} else {
-  in.dropDownValues = globalVariable.getOptions();
-  in.isExternalOption = false;
+if (globalVariable.getType() == GlobalVariableType.SELECTION) {
+	in.dropDownValues = globalVariable.getOptions();
+} else if (globalVariable == GlobalVariable.DEFAULT_HOMEPAGE) {
+	in.externalDropDownValues = HomepageUtils.getHomepageOptionsForAdminSettings();
+} else if (globalVariable.getType() == GlobalVariableType.EXTERNAL_SELECTION) {
+	in.externalDropDownValues = globalVariable.getExternalOptions();
 }' #txt
 As0 f72 security system #txt
 As0 f72 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

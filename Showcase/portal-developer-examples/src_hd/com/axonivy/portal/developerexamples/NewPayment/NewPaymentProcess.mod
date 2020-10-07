@@ -68,8 +68,7 @@ Ns0 f7 @|UdProcessEndIcon #fIcon
 Ns0 f9 actionTable 'out=in;
 ' #txt
 Ns0 f9 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalEndPage();
+PortalNavigator.navigateToPortalEndPage();
 ' #txt
 Ns0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
