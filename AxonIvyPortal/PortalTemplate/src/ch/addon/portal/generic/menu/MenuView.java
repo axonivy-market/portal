@@ -9,7 +9,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 
 import org.primefaces.component.button.Button;
 
@@ -28,7 +28,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.ServerFactory;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class MenuView implements Serializable {
 
   private static final long serialVersionUID = -3573569104295708900L;
