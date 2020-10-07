@@ -407,8 +407,7 @@ Cs0 f4 actionTable 'out=in;
 Cs0 f4 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalRelatedTasksOfCase(in.iCase.getId(), true, PermissionUtils.getCaseName(in.iCase));' #txt
+PortalNavigator.navigateToPortalRelatedTasksOfCase(in.iCase.getId(), true, PermissionUtils.getCaseName(in.iCase));' #txt
 Cs0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -423,8 +422,7 @@ Cs0 f31 actionTable 'out=in;
 ' #txt
 Cs0 f31 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalTaskDetails(in.taskId);' #txt
+PortalNavigator.navigateToPortalTaskDetails(in.taskId);' #txt
 Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

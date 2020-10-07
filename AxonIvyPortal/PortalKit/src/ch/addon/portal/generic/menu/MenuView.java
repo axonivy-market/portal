@@ -62,7 +62,7 @@ public class MenuView implements Serializable {
     Button dashboardMenuItem = new Button();
     dashboardMenuItem.setValue(Ivy.cms().co(DASHBOARD));
     dashboardMenuItem.setIcon("icon ivyicon-house-chimney-2");
-    dashboardMenuItem.setHref(new PortalNavigator().getPortalStartUrl());
+    dashboardMenuItem.setHref(PortalNavigator.getPortalStartUrl());
     dashboardMenuItem.setStyleClass(ACTIVE_MENU);
     menuItems.add(dashboardMenuItem);
     
@@ -129,7 +129,7 @@ public class MenuView implements Serializable {
       case PROCESS:
         buildBreadCrumbForProcess();
         break;
-      case DASHBOARD:
+      case STATISTICS:
         buildBreadCrumbForStatistic();
         break;
       case TASK_DETAIL:
@@ -262,8 +262,8 @@ public class MenuView implements Serializable {
   }
 
   private DefaultMenuItem buildStatisticListMenuItem() {
-    DashboardSubMenuItem dashboardSubMenuItem = new DashboardSubMenuItem();
-    return buildMenuItemFromPortalSubMenuItem(dashboardSubMenuItem);
+    StatisticSubMenuItem statisticSubMenuItem = new StatisticSubMenuItem();
+    return buildMenuItemFromPortalSubMenuItem(statisticSubMenuItem);
   }
 
   private MenuItem buildTaskDetailsMenuItem(ITask userTask) {
