@@ -15,8 +15,12 @@
     <div class="case-details-data-1st-column Fleft">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}</div>
     <div class="case-description-2nd-column Fleft">
       <h:form id="case-description-form" styleClass="case-description-form">
-        <p:inplace id="case-description-inplace" editor="true" disabled="#{!caseActionBean.canChangeDescription(case)}" saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-          cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription')}" styleClass="case-description-edit-inplace">
+        <p:inplace id="case-description-inplace" editor="true" disabled="#{!caseActionBean.canChangeDescription(case)}"
+          saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+          cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription')}"
+          styleClass="case-description-edit-inplace"
+          >
           <p:ajax event="save" update="#{cc.attrs.descriptionComponentToUpdate} case-description-form" />
           <f:facet name="input">
             <p:inputTextarea id="case-description-input" rows="3" styleClass="case-detail-description-input" value="#{case.description}" autoResize="false" />
