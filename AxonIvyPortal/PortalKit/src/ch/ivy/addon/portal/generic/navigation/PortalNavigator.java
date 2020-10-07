@@ -29,7 +29,7 @@ public final class PortalNavigator {
   private static final String PORTAL_RELATED_TASKS_OF_CASE = "Start Processes/PortalStart/RelatedTasksOfCasePage.ivp";
   private static final String PORTAL_TASK_DETAILS = "Start Processes/PortalStart/TaskDetailsPage.ivp";
   private static final String PORTAL_GLOBAL_SEARCH = "Start Processes/PortalStart/GlobalSearchPage.ivp";
-  private static final String PORTAL_USER_PROFILE =  "Start Processes/UserProfile/UserProfile.ivp";
+  private static final String PORTAL_USER_PROFILE =  "Start Processes/PortalStart/UserProfile.ivp";
 
   public static String getPortalStartUrl() {
     return getPortalStartUrl(null);
