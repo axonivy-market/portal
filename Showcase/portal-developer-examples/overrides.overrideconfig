@@ -12,6 +12,7 @@
     /Functional-Processes.InitializeTaskDataModel "Functional Processes/InitializeTaskDataModelOverride"
     /Functional-Processes.GetGroupChatParams "Functional Processes/GetGroupChatParamsOverride"
     /Functional-Processes.OpenPortalSearch "Functional Processes/OpenPortalSearchOverride"
+    /Functional-Processes.LoadSubMenuItems "Functional Processes/LoadSubMenuItemsOverride"
     /Functional-Processes.UploadDocument "Functional Processes/UploadDocumentOverride"
     /Functional-Processes.DownloadDocument "Functional Processes/DownloadDocumentOverride"
     /Functional-Processes.SetGroupChatName "Functional Processes/SetGroupChatNameOverride"

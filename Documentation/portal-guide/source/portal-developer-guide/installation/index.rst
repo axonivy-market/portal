@@ -163,6 +163,7 @@ Migrate 8.x to 9.1
 
 10. ``TaskTemplate-7`` is removed, change it to ``TaskTemplate-8``. ``TaskTemplate`` is also removed, change it to ``frame-8`` (provided by Ivy).
 
+11. The ``MenuKind`` enum has one more entry: EXTERNAL_LINK, use it if your item is an external link, and use CUSTOM if yours is an internal link.
 
 .. _installation-release-notes:
 
@@ -182,10 +183,11 @@ Changes in 9.2
 
 - Introduce :ref:`Workflow Events table <how-to-show-workflow-events>`, user who has permission ``WORKFLOW_EVENT_READ_ALL`` can see all ``WORKFLOW_EVENTS``.
 
+- Introduce the ``DEFAULT_HOMEPAGE`` Portal setting to set the default homepage, each user can change it via user profile. 
+
 - Introduce new approach to customize :ref:`Portal Case Item details <customization-case-item-details>`. Now, your case information in Case details page and Case Info dialog is the same
 
 - Introduce new global variable named ``PortalLoginPageDisplay`` to show Login page or hide it then show error page instead.
-
 
 Changes in 9.1
 --------------
