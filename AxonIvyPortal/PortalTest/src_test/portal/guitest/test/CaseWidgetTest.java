@@ -15,6 +15,7 @@ import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.CaseState;
+import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.AdditionalCaseDetailsPage;
@@ -217,8 +218,8 @@ public class CaseWidgetTest extends BaseTest {
 
     // Check result
     CaseWidgetPage caseWidgetPage = userProfilePage.openCaseList();
-    assertEquals("Create 12 Cases with category", caseWidgetPage.getCaseNameAt(0));
-    assertEquals("TestCase", caseWidgetPage.getCaseNameAt(caseWidgetPage.countCases() - 1));
+    assertEquals("Create 12 Cases with category", caseWidgetPage.getCaseNameAt(13));
+    assertEquals("TestCase", caseWidgetPage.getCaseNameAt(0));
 
     // Change sorting options
     userProfilePage = caseWidgetPage.openMyProfilePage();
@@ -227,7 +228,7 @@ public class CaseWidgetTest extends BaseTest {
     userProfilePage.save();
 
     // Check result
-    caseWidgetPage = userProfilePage.openCaseList();
-    assertEquals(CaseState.DONE, caseWidgetPage.getCaseState(0));
+    TaskWidgetPage taskWidgetPage = userProfilePage.openTaskList();
+    assertEquals(TaskState.OPEN, taskWidgetPage.getTaskState(0));
   }
 }
