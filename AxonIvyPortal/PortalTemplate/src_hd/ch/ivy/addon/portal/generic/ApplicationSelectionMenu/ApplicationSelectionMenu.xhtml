@@ -79,7 +79,7 @@
                   </p:menuitem>
 
                   <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}"
-                    rendered="#{isThirdPartyApp and !isIvyLink}" target="_blank" url="#{subMenuItem.externalLink}" value="#{subMenuItem.label}"
+                    rendered="#{isThirdPartyApp and !isIvyLink}" target="_blank" url="#{subMenuItem.buildLink()}" value="#{subMenuItem.label}"
                     styleClass="submenu" icon="#{subMenuItem.icon}" update="main-menu" process="main-menu"
                     containerStyleClass="submenu-container #{firstSubItem} #{lastSubItem}" />
 

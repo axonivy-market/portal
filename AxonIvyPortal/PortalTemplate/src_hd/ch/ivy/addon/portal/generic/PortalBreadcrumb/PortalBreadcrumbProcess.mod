@@ -87,9 +87,7 @@ Bs0 f28 @|UdMethodIcon #fIcon
 Bs0 f29 actionTable 'out=in;
 ' #txt
 Bs0 f29 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalCase();
+PortalNavigator.navigateToPortalCase();
 ' #txt
 Bs0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -133,8 +131,7 @@ Bs0 f36 actionTable 'out=in;
 ' #txt
 Bs0 f36 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalTask();' #txt
+PortalNavigator.navigateToPortalTask();' #txt
 Bs0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -184,8 +181,7 @@ Bs0 f7 actionTable 'out=in;
 ' #txt
 Bs0 f7 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalHome();' #txt
+PortalNavigator.navigateToPortalHome();' #txt
 Bs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
