@@ -452,6 +452,10 @@ ExternalLinkService.getInstance().deleteAll(privateExternalLinks);
 List<IUser> users = SecurityUtils.findAllUsers();
 for (IUser user : users) {
 	user.removeProperty(UserProperty.HOMEPAGE);
+	user.removeProperty(UserProperty.DEFAULT_SORT_FIELD_OF_TASK_LIST);
+	user.removeProperty(UserProperty.DEFAULT_SORT_DIRECTION_OF_TASK_LIST);
+	user.removeProperty(UserProperty.DEFAULT_SORT_FIELD_OF_CASE_LIST);
+	user.removeProperty(UserProperty.DEFAULT_SORT_DIRECTION_OF_CASE_LIST);
 }' #txt
 Ca0 f36 security system #txt
 Ca0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
