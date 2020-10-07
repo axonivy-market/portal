@@ -27,36 +27,32 @@ public class ProcessStartUtils {
     .isPresent();
   }
 
-  public static IProcessStart findProcessStartByUserFriendlyRequestPath(IApplication application, String requestPath) {
+  public static IProcessStart findProcessStartByUserFriendlyRequestPath(String requestPath) {
     return IvyExecutor.executeAsSystem(() -> {
+      IApplication application = Ivy.wf().getApplication();
       IProcessStart processStart = null;
-      if (isActive(application)) {
-        if (Ivy.request().getApplication().equals(application)) {
-          processStart =
-              findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, Ivy.request().getProcessModelVersion());
-        }
-        if (processStart != null) {
-          return processStart;
-        }
-  
-        List<IProcessModel> processModels = application.getProcessModelsSortedByName();
-  
-        for (IProcessModel processModel : processModels) {
-          Optional<IProcessStart> processStartOptional =
-              Optional.of(processModel).filter(pm -> isActive(pm)).map(IProcessModel::getReleasedProcessModelVersion)
-                  .filter(pmv -> isActive(pmv)).map(p -> findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, p))
-                  .filter(Objects::nonNull);
-          if (processStartOptional.isPresent()) {
-            return processStartOptional.get();
-          }
+      processStart = findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, Ivy.request().getProcessModelVersion());
+      if (processStart != null) {
+        return processStart;
+      }
+
+      List<IProcessModel> processModels = application.getProcessModelsSortedByName();
+
+      for (IProcessModel processModel : processModels) {
+        Optional<IProcessStart> processStartOptional =
+            Optional.of(processModel).filter(pm -> isActive(pm)).map(IProcessModel::getReleasedProcessModelVersion)
+                .filter(pmv -> isActive(pmv)).map(p -> findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, p))
+                .filter(Objects::nonNull);
+        if (processStartOptional.isPresent()) {
+          return processStartOptional.get();
         }
       }
       return processStart;
     });
   }
 
-  public static String findRelativeUrlByProcessStartFriendlyRequestPath(IApplication application, String friendlyRequestPath) {
-    IProcessStart processStart = findProcessStartByUserFriendlyRequestPath(application, friendlyRequestPath);
+  public static String findRelativeUrlByProcessStartFriendlyRequestPath(String friendlyRequestPath) {
+    IProcessStart processStart = findProcessStartByUserFriendlyRequestPath(friendlyRequestPath);
     return processStart != null ? processStart.getLink().getRelative() : StringUtils.EMPTY;
   }
 
@@ -79,9 +75,5 @@ public class ProcessStartUtils {
 
   private static boolean isActive(IProcessModel processModel) {
     return processModel.getActivityState() == ActivityState.ACTIVE;
-  }
-
-  private static boolean isActive(IApplication ivyApplication) {
-    return ivyApplication.getActivityState() == ActivityState.ACTIVE;
   }
 }
