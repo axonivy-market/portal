@@ -93,8 +93,7 @@ Cs0 f31 actionTable 'out=in;
 ' #txt
 Cs0 f31 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalGlobalSearch(in.keyword);' #txt
+PortalNavigator.navigateToPortalGlobalSearch(in.keyword);' #txt
 Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

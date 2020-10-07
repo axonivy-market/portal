@@ -54,12 +54,12 @@ Ct3 @TextInP .processKind .processKind #zField
 Ct3 @TextInP .xml .xml #zField
 Ct3 @TextInP .responsibility .responsibility #zField
 Ct3 @GridStep f11 '' #zField
-Ct3 @GridStep f23 '' #zField
-Ct3 @PushWFArc f9 '' #zField
 Ct3 @PushTrueWFInG-01 g0 '' #zField
 Ct3 @PushWFArc f0 '' #zField
 Ct3 @PushTrueWFOutG-01 g1 '' #zField
+Ct3 @GridStep f4 '' #zField
 Ct3 @PushWFArc f1 '' #zField
+Ct3 @PushWFArc f2 '' #zField
 >Proto Ct3 Ct0 Component #zField
 Ct2 @TextInP .type .type #zField
 Ct2 @TextInP .processKind .processKind #zField
@@ -209,8 +209,7 @@ Us0 f16 @|UdMethodIcon #fIcon
 Us0 f14 actionTable 'out=in;
 ' #txt
 Us0 f14 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalEndPage();' #txt
+PortalNavigator.navigateToPortalEndPage();' #txt
 Us0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -227,23 +226,25 @@ Us0 f35 109 280 192 280 #arcP
 Us0 f36 304 280 384 280 #arcP
 Us0 f28 actionTable 'out=in;
 ' #txt
-Us0 f28 actionCode 'import ch.ivy.addon.portalkit.bean.GuideBean;
+Us0 f28 actionCode 'import ch.ivy.addon.portalkit.bean.UserProfileBean;
+import ch.ivy.addon.portalkit.bean.GuideBean;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 
-// Update GuideBean
 GuideBean guideBean =	ManagedBeans.get("guideBean") as GuideBean;
 guideBean.setDontShowAgain(!in.showTutorial);
 
-' #txt
+UserProfileBean userProfileBean =	ManagedBeans.get("userProfileBean") as UserProfileBean;
+userProfileBean.saveHomepage(in.selectedHomepage.getName());' #txt
 Us0 f28 security system #txt
 Us0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>update show user guide</name>
+        <name>update show user guide&#13;
+and selected homepage</name>
     </language>
 </elementInfo>
 ' #txt
-Us0 f28 568 258 144 44 -66 -8 #rect
+Us0 f28 560 258 160 44 -59 -16 #rect
 Us0 f28 @|StepIcon #fIcon
 Us0 f5 496 280 568 280 #arcP
 Us0 f7 109 144 192 144 #arcP
@@ -303,8 +304,8 @@ Us0 f11 680 144 728 144 #arcP
 Us0 f17 actionTable 'out=in;
 ' #txt
 Us0 f17 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
-UserSettingService.newInstance().saveDefaultSortFieldOfTaskList(ivy.session.getSessionUserName(), in.selectedTaskListSortField, in.selectedTaskListSortDirection);
-UserSettingService.newInstance().saveDefaultSortFieldOfCaseList(ivy.session.getSessionUserName(), in.selectedCaseListSortField, in.selectedCaseListSortDirection);' #txt
+UserSettingService.newInstance().saveDefaultSortFieldOfTaskList(in.selectedTaskListSortField, in.selectedTaskListSortDirection);
+UserSettingService.newInstance().saveDefaultSortFieldOfCaseList(in.selectedCaseListSortField, in.selectedCaseListSortDirection);' #txt
 Us0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -369,7 +370,8 @@ Us0 f4 1000 144 1107 144 #arcP
 >Proto Us0 '' #fIcon
 Ct3 f11 actionTable 'out=in;
 ' #txt
-Ct3 f11 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
+Ct3 f11 actionCode 'import ch.ivy.addon.portalkit.constant.UserProperty;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.bo.Guide;
 
@@ -378,7 +380,7 @@ GlobalSettingService globalSettingService = new GlobalSettingService();
 in.disableShowTutorial = !Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_USER_GUIDE.toString()));
 
 // Get isShowGuide from IUser
-in.showTutorial = Boolean.valueOf(ivy.session.getSessionUser().getProperty(Guide.SHOW_GUIDE));' #txt
+in.showTutorial = Boolean.valueOf(ivy.session.getSessionUser().getProperty(UserProperty.SHOW_GUIDE));' #txt
 Ct3 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -388,21 +390,6 @@ Ct3 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ct3 f11 176 138 112 44 -41 -8 #rect
 Ct3 f11 @|StepIcon #fIcon
-Ct3 f23 actionTable 'out=in;
-' #txt
-Ct3 f23 actionCode '// Update this code when we start implementing Homepage selection
-in.homepageSelected = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/HomepageSelection/fullTaskList");
-in.homepageSelectionOptions.add(in.homepageSelected);' #txt
-Ct3 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Dummy homepage selection</name>
-    </language>
-</elementInfo>
-' #txt
-Ct3 f23 416 138 176 44 -79 -8 #rect
-Ct3 f23 @|StepIcon #fIcon
-Ct3 f9 288 160 416 160 #arcP
 Ct3 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -420,9 +407,31 @@ Ct3 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ct3 g1 755 147 26 26 0 5 #rect
+Ct3 g1 531 147 26 26 0 5 #rect
 Ct3 g1 @|MOGIcon #fIcon
-Ct3 f1 592 160 755 160 #arcP
+Ct3 f4 actionTable 'out=in;
+' #txt
+Ct3 f4 actionCode 'import ch.addon.portal.generic.userprofile.homepage.Homepage;
+import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
+
+Homepage defaultHomepage = HomepageUtils.findDefaultHomepage();
+defaultHomepage.setName("");
+defaultHomepage.setLabel(ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption", [defaultHomepage.getLabel()]));
+out.homepages = HomepageUtils.loadHomepages();
+out.homepages.add(0, defaultHomepage);
+out.selectedHomepage = HomepageUtils.findHomepageInMyProfile();' #txt
+Ct3 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Load homepages</name>
+    </language>
+</elementInfo>
+' #txt
+Ct3 f4 352 138 112 44 -45 -8 #rect
+Ct3 f4 @|StepIcon #fIcon
+Ct3 f1 464 160 531 160 #arcP
+Ct3 f1 0 0.48579321231254946 0 0 #arcLabel
+Ct3 f2 288 160 352 160 #arcP
 >Proto Ct0 0 0 32 24 18 0 #rect
 >Proto Ct0 @|BIcon #fIcon
 Ct2 f11 processCall 'Ivy Data Processes/LanguageService:findUserLanguages()' #txt
@@ -569,13 +578,13 @@ Us0 f10 mainOut f23 tail #connect
 Us0 f23 head f20 mainIn #connect
 Us0 f20 mainOut f4 tail #connect
 Us0 f4 head f8 mainIn #connect
-Ct3 f11 mainOut f9 tail #connect
-Ct3 f9 head f23 mainIn #connect
 Ct3 g0 m f0 tail #connect
 Ct3 f0 head f11 mainIn #connect
+Ct3 f4 mainOut f1 tail #connect
 Ct3 f1 head g1 m #connect
-Ct3 f23 mainOut f1 tail #connect
-Ct3 0 0 864 464 0 #ivRect
+Ct3 f11 mainOut f2 tail #connect
+Ct3 f2 head f4 mainIn #connect
+Ct3 0 0 608 320 0 #ivRect
 Ct2 f11 mainOut f25 tail #connect
 Ct2 f25 head f9 mainIn #connect
 Ct2 g0 m f0 tail #connect

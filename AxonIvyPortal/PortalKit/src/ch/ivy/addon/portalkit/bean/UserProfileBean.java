@@ -9,22 +9,34 @@ import java.util.stream.Stream;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import org.apache.commons.lang3.StringUtils;
+
+import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.SortDirection;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IUser;
 
 @ManagedBean
 @ViewScoped
 public class UserProfileBean implements Serializable {
-  private static final String DEFAULT_OPTION = "/ch.ivy.addon.portalkit.ui.jsf/MyProfile/SortFieldSelections/defaultOption";
+  private static final String DEFAULT_OPTION = "/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption";
   private static final long serialVersionUID = 4952280551311826903L;
   private static final String DEFAULT = "DEFAULT";
-
+  
+  public void saveHomepage(String homepageName) {
+    IUser user = Ivy.session().getSessionUser();
+    if (StringUtils.isBlank(homepageName)) {
+      user.removeProperty(UserProperty.HOMEPAGE);
+    }
+    user.setProperty(UserProperty.HOMEPAGE, homepageName);
+  }
+  
   public String getDisplayNameOfTaskSortField(String sortField) {
-    if (sortField.contentEquals(DEFAULT)) {
+    if (StringUtils.equals(sortField, DEFAULT)) {
       return getDefaultSelection(GlobalVariable.DEFAULT_SORT_FIELD_OF_TASK_LIST);
     }
 
@@ -33,7 +45,7 @@ public class UserProfileBean implements Serializable {
   }
 
   public String getDisplayNameOfCaseSortField(String sortField) {
-    if (sortField.contentEquals(DEFAULT)) {
+    if (StringUtils.equals(sortField, DEFAULT)) {
       return getDefaultSelection(GlobalVariable.DEFAULT_SORT_FIELD_OF_CASE_LIST);
     }
 
@@ -42,7 +54,7 @@ public class UserProfileBean implements Serializable {
   }
 
   public String getDisplayNameOfTaskSortDirection(String sortDirection) {
-    if (sortDirection.contentEquals(DEFAULT)) {
+    if (StringUtils.equals(sortDirection, DEFAULT)) {
       return getDefaultSelection(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST);
     }
 
@@ -51,7 +63,7 @@ public class UserProfileBean implements Serializable {
   }
 
   public String getDisplayNameOfCaseSortDirection(String sortDirection) {
-    if (sortDirection.contentEquals(DEFAULT)) {
+    if (StringUtils.equals(sortDirection, DEFAULT)) {
       return getDefaultSelection(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST);
     }
 
