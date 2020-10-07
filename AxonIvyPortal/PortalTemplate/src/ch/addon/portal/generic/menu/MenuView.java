@@ -9,7 +9,7 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 import org.primefaces.component.button.Button;
 
@@ -28,7 +28,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.ServerFactory;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class MenuView implements Serializable {
 
   private static final long serialVersionUID = -3573569104295708900L;
@@ -44,14 +44,25 @@ public class MenuView implements Serializable {
 
   @PostConstruct
   public void init() {
+    removeAppDataInSession();
+    menuItems = new ArrayList<>();
+    subMenuItems = new ArrayList<>();
+    buildMenuView();
+  }
+
+  public void buildMenuView() {
     RegisteredApplicationService service = new RegisteredApplicationService();
     List<Application> applications = service.findApplicationByUser(Ivy.session().getSessionUserName());
-
     Collections.sort(applications, new ApplicationIndexAscendingComparator());
-    buildMenuView(applications);
+    buildMainMenuItems(applications);
+    buildSubMenuItems();
   }
 
   public void buildMenuView(List<Application> applications) {
+    buildMainMenuItems(applications);
+  }
+
+  private void buildMainMenuItems(List<Application> applications) {
     menuItems = new ArrayList<>();
     removeAppDataInSession();
 
@@ -98,8 +109,6 @@ public class MenuView implements Serializable {
         }
       }
     }
-
-    buildSubMenuItems();
   }
 
   private void updateAppDataToSession(Application application) {
@@ -114,7 +123,8 @@ public class MenuView implements Serializable {
   }
 
   @SuppressWarnings("unchecked")
-  public void buildSubMenuItems() {
+  private void buildSubMenuItems() {
+    Ivy.log().error("Cannot load SubMenuItems {0}");
     subMenuItems = new ArrayList<>();
     Map<String, Object> response = IvyAdapterService.startSubProcess(LOAD_SUB_MENU_PROCESS, null,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
@@ -132,6 +142,5 @@ public class MenuView implements Serializable {
   public List<SubMenuItem> getSubMenuItems() {
     return subMenuItems;
   }
-
 
 }
