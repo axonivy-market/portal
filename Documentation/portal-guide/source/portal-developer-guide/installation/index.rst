@@ -189,6 +189,8 @@ Changes in 9.2
 
 - Introduce new global variable named ``PortalLoginPageDisplay`` to show Login page or hide it then show error page instead.
 
+- No multiple applications anymore, Portal now only works in current application. It means administrator can not add new Ivy application.
+
 Changes in 9.1
 --------------
 

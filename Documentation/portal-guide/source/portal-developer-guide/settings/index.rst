@@ -184,50 +184,13 @@ Permissions can be configured in `Cockpit
 In the security area, you will find all these permission in the Group
 "PortalPermissions"
 
-Absences
---------
+Task permission
+---------------
+- Add note
 
--  READ
+   User needs permission: ``PortalPermission.TASK_CASE_ADD_NOTE``.
 
-   User needs permission :
-   ``IPermission.USER_READ_OWN_ABSENCES`` or
-   ``IPermission.USER_READ_ABSENCES``.
-
--  CREATE/MODIFY
-
-   User needs permission :
-   ``IPermission.USER_CREATE_OWN_ABSENCE`` or
-   ``IPermission.USER_CREATE_ABSENCE``.
-
--  DELETE
-
-   User needs permission :
-   ``IPermission.USER_DELETE_OWN_ABSENCE`` or
-   ``IPermission.USER_DELETE_ABSENCE``.
-
--  MANAGE EVERY USER ABSENCES
-
-   User can read, add, delete absences of all users. User needs all permissions :
-   ``IPermission.USER_CREATE_ABSENCE``,  
-   ``IPermission.USER_DELETE_ABSENCE`` and 
-   ``IPermission.USER_READ_ABSENCES``.
-
-Substitute
-----------
-
--  MANAGE EVERY USER SUBSTITUTES
-
-   User needs all permissions :
-   ``IPermission.USER_CREATE_SUBSTITUTE`` and
-   ``IPermission.USER_READ_SUBSTITUTES``.
-
-Personal task permission
-------------------------
--  ADD NOTE
-
-   Refer to :ref:`Display add note button<display-add-note-button>`.
-
--  DELEGATE
+- Delegate
 
    To show delegate action, user needs permission:
    ``PortalPermission.TASK_DISPLAY_DELEGATE_ACTION``.
@@ -244,7 +207,7 @@ Personal task permission
       Task state cannot be one of the following values:
       CREATED, DONE, DESTROYED, RESUMED, FAILED.
 
--  RESET
+- Reset
 
    To show reset action, user needs permission:
    ``PortalPermission.TASK_DISPLAY_RESET_ACTION``.
@@ -258,7 +221,7 @@ Personal task permission
       Task state has to be one of following values: RESUMED, PARKED, READY_FOR_JOIN, FAILED.
 
    
--  DELETE TASK
+- Delete
 
    User needs permission:
    ``IPermission.TASK_DESTROY``.
@@ -266,7 +229,7 @@ Personal task permission
    .. important::
       Task state isn't DESTROYED or DONE.
 
--  RESERVE
+- Reserve
 
    To show reserve action, user needs permission: 
    ``PortalPermission.TASK_DISPLAY_RESERVE_ACTION``.
@@ -277,7 +240,7 @@ Personal task permission
    .. important::
       Task state has to be one of following values: CREATED, RESUMED, SUSPENDED.
 
--  CHANGE TASK DESCRIPTION
+- Change description
 
    User needs permission: 
    ``IPermission.TASK_WRITE_DESCRIPTION``.
@@ -286,7 +249,7 @@ Personal task permission
       Task state cannot be one of following values:
       DONE, DESTROYED, FAILED.
 
--  CHANGE DEADLINE
+- Change deadline
 
    User needs permission: 
    ``IPermission.TASK_WRITE_EXPIRY_TIMESTAMP``.
@@ -295,7 +258,7 @@ Personal task permission
       Task state cannot be one of following values:
       DONE, DESTROYED, FAILED.
 
--  CHANGE PRIORITY
+- Change priority
 
    User needs permission: 
    ``IPermission.TASK_WRITE_ORIGINAL_PRIORITY``.
@@ -304,19 +267,19 @@ Personal task permission
       Task state cannot be one of following values:
       DONE, DESTROYED, FAILED.
 
--  DISPLAY ADDITIONAL OPTIONS
+- Display additional options
 
    To show additional action, user needs permission: 
    ``PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS``.
 
-Personal case permission
-------------------------
+Case permission
+---------------
 
--  ADD NOTE
+- Add note
 
-   Refer to :ref:`Display add note button<display-add-note-button>`.
+   User needs permission: ``PortalPermission.TASK_CASE_ADD_NOTE``.
 
--  DELETE CASE
+- Delete
 
    User needs permission: 
    ``IPermission.CASE_DESTROY``.
@@ -324,7 +287,7 @@ Personal case permission
    .. important::
       Case state must be RUNNING.
 
--  CHANGE CASE DESCRIPTION
+- Change description
 
    User needs permission: 
    ``IPermission.CASE_WRITE_DESCRIPTION``.
@@ -332,7 +295,7 @@ Personal case permission
    .. important::
       Case state cannot be DESTROYED.
 
--  SEE RELATED TASKS OF CASE
+- See related tasks of case
 
    To show related tasks action, user needs permission: 
    ``PortalPermission.SHOW_ALL_TASKS_OF_CASE`` .
@@ -344,88 +307,11 @@ Personal case permission
    .. important::
       Case state cannot be DESTROYED.
 
--  DISPLAY SHOW DETAILS LINK
+- Display show detail link
 
    User needs permission: 
    ``PortalPermission.SHOW_CASE_DETAILS``.
    This permission is not assigned to role Everybody by default.
-
-Upload/delete document permission
----------------------------------
-
-User needs permission: 
-``IPermission.DOCUMENT_WRITE`` or
-``IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE``.
-
-Express Workflow permission
----------------------------
-
--  CREATE EXPRESS WORKFLOW
-
-   User needs permission: 
-   ``PortalPermission.EXPRESS_CREATE_WORKFLOW`` (This permission belongs
-   to Portal permission group, assigned to role Everybody by default).
-
-Statistics permission
----------------------
-
--  ADD DASHBOARD CHART
-
-   User needs permission: 
-   ``PortalPermission.STATISTIC_ADD_DASHBOARD_CHART`` (This permission
-   belongs to Portal permission group, assigned to role Everybody by
-   default).
-
--  ANALYZE TASK
-
-   Filter tasks and export data to excel for advanced analysis. User needs permission: 
-   ``PortalPermission.STATISTIC_ANALYZE_TASK`` (This permission belongs
-   to Portal permission group and it is not assigned to role Everybody
-   by default).
-
-Portal general permission
--------------------------
-
--  ACCESS TO FULL PROCESS LIST
-
-   User cannot see "Processes" on the left menu and link "Show all
-   processes" (on Dashboard) if he does not have permission
-   ``PortalPermission.ACCESS_FULL_PROCESS_LIST``.
-
--  ACCESS TO FULL TASK LIST
-
-   User cannot see "Tasks" on the left menu and link "Show full task
-   list" (on Dashboard) if he does not have permission
-   ``PortalPermission.ACCESS_FULL_TASK_LIST``.
-
--  ACCESS TO FULL CASE LIST
-
-   User cannot see "Cases" on the left menu if he does not have
-   permission ``PortalPermission.ACCESS_FULL_CASE_LIST``.
-
--  ACCESS TO FULL STATISTIC LIST
-
-   User cannot see "Statistics" on the left menu and link "Show all
-   charts" (on Dashboard) if he does not have permission
-   ``PortalPermission.ACCESS_FULL_STATISTICS_LIST``.
-
-   .. _display-add-note-button:
--  DISPLAY ADD NOTE BUTTON
-
-   "Add note" button will be hidden in Task/Case detail if session user does not have permission
-   ``PortalPermission.TASK_CASE_ADD_NOTE``.
-
--  DISPLAY SHOW MORE NOTE BUTTON
-
-   This button will be hidden if session user does not have permission
-   ``PortalPermission.TASK_CASE_SHOW_MORE_NOTE``.
-
--  CREATE PUBLIC EXTERNAL LINK FOR ALL USERS
-
-   Everyone can add a new external link privately by default.
-   If a user is granted ``PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK``, 
-   he can set an external link as public so that all other users can see this link in full process list
-   and other users can also add it to User Favorites.
 
 Administrator permission can see all tasks/cases in the application
 
@@ -443,6 +329,71 @@ can interact with workflow's task which assigned to him.
 
 Administrator can create, update and deletes all workflows in the
 application.
+
+Other permissions
+-----------------
+
+.. table:: 
+
+ +-----------+---------------------------------+----------------------------------------------------+
+ |           | Action                          | Permission required                                |
+ +===========+=================================+====================================================+
+ | Absence   | Read                            | ``IPermission.USER_READ_OWN_ABSENCES`` or          |
+ |           |                                 | ``IPermission.USER_READ_ABSENCES``                 |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Create, edit                    | ``IPermission.USER_CREATE_OWN_ABSENCE`` or         |
+ |           |                                 | ``IPermission.USER_CREATE_ABSENCE``                |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Delete                          | ``IPermission.USER_DELETE_OWN_ABSENCE`` or         |
+ |           |                                 | ``IPermission.USER_DELETE_ABSENCE``                |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Read, add, delete               | ``IPermission.USER_CREATE_ABSENCE`` and            |
+ |           | absences of all users           | ``IPermission.USER_DELETE_ABSENCE`` and            |
+ |           |                                 | ``IPermission.USER_READ_ABSENCES``                 |
+ +-----------+---------------------------------+----------------------------------------------------+
+ | Substitute| Manage substitute               | ``IPermission.USER_CREATE_SUBSTITUTE`` and         |
+ |           |                                 | ``IPermission.USER_READ_SUBSTITUTES``              |
+ +-----------+---------------------------------+----------------------------------------------------+
+ | Document  | Upload, delete                  | ``IPermission.DOCUMENT_WRITE`` or                  |
+ |           |                                 | ``IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE``    |
+ +-----------+---------------------------------+----------------------------------------------------+
+ | Express   | Create Express workflow         | ``PortalPermission.EXPRESS_CREATE_WORKFLOW``       |
+ |           |                                 | (assigned to role Everybody by default)            |
+ +-----------+---------------------------------+----------------------------------------------------+
+ | Statistics| Add dashboard                   | ``PortalPermission.STATISTIC_ADD_DASHBOARD_CHART`` |
+ |           |                                 | (assigned to role Everybody by default)            |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Analyze, filter tasks           | ``PortalPermission.STATISTIC_ANALYZE_TASK``        |
+ |           | and export data to excel        |                                                    |
+ |           | for advanced analysis           |                                                    |
+ +-----------+---------------------------------+----------------------------------------------------+
+ | Portal    | Access to full process          | ``PortalPermission.ACCESS_FULL_PROCESS_LIST``      |
+ | permission| list, it's "Processes" on the   |                                                    |
+ |           | left menu and link "Show all    |                                                    |
+ |           | processes" on Dashboard         |                                                    |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Access to full task list, it's  | ``PortalPermission.ACCESS_FULL_TASK_LIST``         |
+ |           | "Tasks" on the left menu and    |                                                    | 
+ |           | link "Show full task list" on   |                                                    |
+ |           | Dashboard                       |                                                    |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Access to full case list, it's  | ``PortalPermission.ACCESS_FULL_CASE_LIST``         |
+ |           | "Cases" on the left menu        |                                                    |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Access to statistic, it's       | ``PortalPermission.ACCESS_FULL_STATISTICS_LIST``   |
+ |           | "Statistics" on the left menu   |                                                    |
+ |           | and link "Show all charts" on   |                                                    |
+ |           | Dashboard                       |                                                    |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Add note to task/case           | ``PortalPermission.TASK_CASE_ADD_NOTE``            |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Display show more note          | ``PortalPermission.TASK_CASE_SHOW_MORE_NOTE``      |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Create public external link, all| ``PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK``   |
+ |           | other users can see that link in|                                                    |
+ |           | full process list and can also  |                                                    |
+ |           | add it to User Favorite         |                                                    |
+ +-----------+---------------------------------+----------------------------------------------------+
 
 
 Global variables
