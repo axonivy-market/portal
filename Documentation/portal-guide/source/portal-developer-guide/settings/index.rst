@@ -95,8 +95,9 @@ Process developer can set up global settings of Portal in file ``portal_settings
       #HIDE_TASK_DOCUMENT = false
       #HIDE_CASE_DOCUMENT = false
       
-      # Don't input the DefaultApplicationHomePage.ivp process link if it is your default homepage.
-      #DEFAULT_HOMEPAGE = 
+      # Available standard values: dashboard, process, task, case, statistics.
+      # If you want your customized SubMenuIitem to be the default homepage, fill its name which is set in the overridden LoadSubMenuItems process.
+      #DEFAULT_HOMEPAGE =
 
       # Others
       #SHOW_ENVIRONMENT_INFO = false
