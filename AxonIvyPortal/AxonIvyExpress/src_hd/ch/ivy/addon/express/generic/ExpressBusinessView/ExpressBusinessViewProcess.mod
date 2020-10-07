@@ -58,9 +58,7 @@ import javax.faces.context.Flash;
 Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 flash.put("overridePortalGrowl", true);
 flash.setRedirect(true);
-
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalEndPage();' #txt
+PortalNavigator.navigateToPortalEndPage();' #txt
 Es0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

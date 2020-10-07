@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.addon.portal.generic.userprofile.homepage.HomepageType;
 import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
 import ch.ivy.addon.portalkit.document.DocumentExtensionConstants;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -42,10 +43,11 @@ public enum GlobalVariable {
   SHOW_USER_GUIDE(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showUserGuide"),
   SHOW_GLOBAL_SEARCH(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showGlobalSearch"),
   SHOW_BUTTON_ICON(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showButtonIcon"),
-  DEFAULT_SORT_FIELD_OF_TASK_LIST(GlobalVariableType.SELECTION, TaskSortField.ID.name(), "defaultSortFieldOfTaskList", getTaskListSortFields()),
-  DEFAULT_SORT_DIRECTION_OF_TASK_LIST(GlobalVariableType.SELECTION, SortDirection.DESCENDING.name(), "defaultSortDirectionOfTaskList", getSortDirections()),
-  DEFAULT_SORT_FIELD_OF_CASE_LIST(GlobalVariableType.SELECTION, CaseSortField.ID.name(), "defaultSortFieldOfCaseList", getCaseListSortFields()),
-  DEFAULT_SORT_DIRECTION_OF_CASE_LIST(GlobalVariableType.SELECTION, SortDirection.DESCENDING.name(), "defaultSortDirectionOfCaseList", getSortDirections());
+  DEFAULT_SORT_FIELD_OF_TASK_LIST(GlobalVariableType.EXTERNAL_SELECTION, TaskSortField.ID.name(), "defaultSortFieldOfTaskList", getTaskListSortFields()),
+  DEFAULT_SORT_DIRECTION_OF_TASK_LIST(GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESCENDING.name(), "defaultSortDirectionOfTaskList", getSortDirections()),
+  DEFAULT_SORT_FIELD_OF_CASE_LIST(GlobalVariableType.EXTERNAL_SELECTION, CaseSortField.ID.name(), "defaultSortFieldOfCaseList", getCaseListSortFields()),
+  DEFAULT_SORT_DIRECTION_OF_CASE_LIST(GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESCENDING.name(), "defaultSortDirectionOfCaseList", getSortDirections()),
+  DEFAULT_HOMEPAGE(GlobalVariableType.EXTERNAL_SELECTION, StringUtils.capitalize(HomepageType.DASHBOARD.name().toLowerCase()), "defaultHomepage");
   
   private GlobalVariableType type;
   private String defaultValue;
