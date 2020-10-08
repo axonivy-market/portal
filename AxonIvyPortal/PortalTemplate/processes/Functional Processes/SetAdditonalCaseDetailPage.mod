@@ -41,7 +41,7 @@ Se0 f3 actionCode 'import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 
 String casePageUrl = ProcessStartUtils.
-	findRelativeUrlByProcessStartFriendlyRequestPath(ivy.request.getApplication(), in.linkToAdditonalCaseDetailPage)
+	findRelativeUrlByProcessStartFriendlyRequestPath(in.linkToAdditonalCaseDetailPage)
 		+ "?caseId=" + ivy.case.getId();
 											
 ivy.case.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).set(casePageUrl);' #txt
