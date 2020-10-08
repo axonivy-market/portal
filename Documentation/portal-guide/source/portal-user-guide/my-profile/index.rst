@@ -14,6 +14,47 @@ General settings
 contains :guilabel:`Homepage selection`, :guilabel:`Process list configuration`,
 :guilabel:`Task list configuration`, :guilabel:`Case list configuration` and :guilabel:`Show tutorial`.
 
+Task list configuration
+^^^^^^^^^^^^^^^^^^^^^^^
+
+This section has available options which help you to modified your personal Task list.
+These are options you can modify:
+
+.. table:: 
+
+   +-----------------------+-----------------------------------------------+
+   | Option                | Description                                   |
+   +=======================+===============================================+
+   | Default sort field    | Your default sort field when open a task list.|
+   |                       | Portal will get default value which is defined|
+   |                       | by adminif you don't select any option.       |
+   +-----------------------+-----------------------------------------------+
+   | Default sort direction| Your default sort direction when open a task  |
+   |                       | list.                                         |
+   |                       | Portal will get default value which is defined|
+   |                       | by adminif you don't select any option.       |
+   +-----------------------+-----------------------------------------------+
+
+Case list configuration
+^^^^^^^^^^^^^^^^^^^^^^^
+
+This section has available options which help you to modified your personal Case list.
+These are options you can modify:
+
+.. table:: 
+
+   +-----------------------+-----------------------------------------------+
+   | Option                | Description                                   |
+   +=======================+===============================================+
+   | Default sort field    | Your default sort field when open a case list.|
+   |                       | Portal will get default value which is defined|
+   |                       | by adminif you don't select any option.       |
+   +-----------------------+-----------------------------------------------+
+   | Default sort direction| Your default sort direction when open a case  |
+   |                       | list.                                         |
+   |                       | Portal will get default value which is defined|
+   |                       | by adminif you don't select any option.       |
+   +-----------------------+-----------------------------------------------+
 
 Language settings
 -----------------
@@ -64,4 +105,4 @@ Toggle button **Receive further emails from application** allows you to activate
 Toggle button **Receive daily summary at** allows you to specify the weekdays 
 when you receive a summary of all tasks assigned to you or one of your roles.
 
-.. |my-profile-save| image:: ../../screenshots/my-profile/email-settings.png
+.. |my-profile-save| image:: ../../screenshots/my-profile/my-profile.png
