@@ -268,7 +268,7 @@ public class TaskActionBean implements Serializable {
     if (StringUtils.isEmpty(friendlyRequestPath)) {
       friendlyRequestPath = BACK_FROM_TASK_DETAILS;
     }
-    String requestPath = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), friendlyRequestPath);
+    String requestPath = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
     if (StringUtils.isNotEmpty(requestPath)) {
       TaskUtils.updateTaskStartedAttribute(false);
       PortalNavigator.redirect(requestPath + "?endedTaskId=" + task.getId());
