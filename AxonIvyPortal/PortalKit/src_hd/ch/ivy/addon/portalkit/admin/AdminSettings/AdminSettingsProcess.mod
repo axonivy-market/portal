@@ -1020,7 +1020,6 @@ As0 f10 actionTable 'out=in;
 As0 f10 actionCode 'import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
-import org.apache.commons.collections.CollectionUtils;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
 import java.util.Collections;
