@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.ivydata.service.impl;
 
 import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCasesExcluded;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -131,18 +132,16 @@ public class TaskService implements ITaskService {
     });
   }
   
-  private ExpiryStatistic createExpiryTimeStampToCountMap(Recordset recordSet) {
+  private ExpiryStatistic createExpiryTimeStampToCountMap(Recordset recordSet) throws ParseException {
     ExpiryStatistic expiryStatistic = new ExpiryStatistic();
     Map<Date, Long> numberOfTasksByExpiryTime = new HashMap<>();
     if (recordSet != null) {
       for (Record record : recordSet.getRecords()) {
         if (record.getField("EXPIRYTIMESTAMP") != null) {
-          try { 
-            Date date = DateUtils.parseDate(record.getField("EXPIRYTIMESTAMP").toString(), Ivy.cms().co("/patterns/dateTimePattern"));
-            numberOfTasksByExpiryTime.put(date, Long.valueOf(record.getField("COUNT").toString()));
-          } catch (Exception e) {
-            Ivy.log().error(e);
-          }
+          // must use same format as IVY DB, can not change it to Ivy.cms().co("/patterns/dateTimePattern")
+          String pattern = "yyyy-MM-dd HH:mm:ss.SSS";
+          Date date = DateUtils.parseDate(record.getField("EXPIRYTIMESTAMP").toString(), pattern);
+          numberOfTasksByExpiryTime.put(date, Long.valueOf(record.getField("COUNT").toString()));
         }
       }
     }
