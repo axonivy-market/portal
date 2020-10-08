@@ -427,7 +427,7 @@ Ts0 f5 actionTable 'out=in;
 Ts0 f5 actionCode 'import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import javax.faces.context.FacesContext;
 
-String statisticPageUrl = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(ivy.wf.getApplication(), "Start Processes/PortalStart/StatisticPage.ivp");
+String statisticPageUrl = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath("Start Processes/PortalStart/StatisticPage.ivp");
 FacesContext.getCurrentInstance().getExternalContext().redirect(statisticPageUrl);' #txt
 Ts0 f5 security system #txt
 Ts0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

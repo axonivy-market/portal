@@ -377,7 +377,7 @@ Cs0 f41 actionTable 'out=in;
 Cs0 f41 actionCode 'import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import javax.faces.context.FacesContext;
 
-String taskAnalysisUrl = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(ivy.wf.getApplication(), "Start Processes/TaskAnalysis/start.ivp");
+String taskAnalysisUrl = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath("Start Processes/TaskAnalysis/start.ivp");
 FacesContext.getCurrentInstance().getExternalContext().redirect(taskAnalysisUrl);' #txt
 Cs0 f41 security system #txt
 Cs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

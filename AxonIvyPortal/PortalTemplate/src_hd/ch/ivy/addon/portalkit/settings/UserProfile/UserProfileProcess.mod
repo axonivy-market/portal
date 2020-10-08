@@ -253,8 +253,7 @@ Us0 f24 488 144 568 144 #arcP
 Us0 f6 actionTable 'out=in;
 ' #txt
 Us0 f6 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToUserProfile();' #txt
+PortalNavigator.navigateToUserProfile();' #txt
 Us0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
