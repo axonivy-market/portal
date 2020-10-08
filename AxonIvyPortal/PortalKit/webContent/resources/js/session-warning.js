@@ -3,7 +3,6 @@ var PortalSessionWarning = function() {
   sessionCounterUpdatedOnCookieName = 'ch.ivy.addon.portal.SessionCounterUpdatedOn',
   isLogOutCookieName = 'ch.ivy.addon.portal.IsLogout',
   warningDialogShow = false,
-  logOutCalled = false,
   intervalCheckSessionTimeout, 
   init = function(clientSideTimeOut) {
     timeout = clientSideTimeOut,
