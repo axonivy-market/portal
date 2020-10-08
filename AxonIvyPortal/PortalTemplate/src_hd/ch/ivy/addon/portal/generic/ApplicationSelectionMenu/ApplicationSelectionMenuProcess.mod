@@ -409,9 +409,10 @@ As0 f4 491 19 26 26 14 6 #rect
 As0 f4 @|UdMethodIcon #fIcon
 As0 f25 actionTable 'out=in;
 ' #txt
-As0 f25 actionCode 'import ch.addon.portal.generic.menu.MenuView;
+As0 f25 actionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.addon.portal.generic.menu.MenuView;
 
-MenuView menu = new MenuView();
+MenuView menu = ManagedBeans.get("menuView") as MenuView;
 menu.buildMenuView(in.applications);' #txt
 As0 f25 security system #txt
 As0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
