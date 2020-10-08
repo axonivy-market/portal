@@ -81,7 +81,7 @@ public final class PortalNavigator {
       default:
         break;
     }
-    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), subMenuUrl);
+    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(subMenuUrl);
   }
 
   public static void navigateToPortalEndPage(Long taskId) {
@@ -176,8 +176,7 @@ public final class PortalNavigator {
   }
   
   private static String buildUrl(String friendlyRequestPath, Map<String, String> params) {
-    String requestPath = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(),
-        friendlyRequestPath);
+    String requestPath = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
     if (StringUtils.isEmpty(requestPath)) {
       return StringUtils.EMPTY;
     }
@@ -193,7 +192,7 @@ public final class PortalNavigator {
     return requestPath + (StringUtils.isNotBlank(paramStr) ? "?" + paramStr : StringUtils.EMPTY);
   }
   
-  public void navigateToUserProfile() {
+  public static void navigateToUserProfile() {
     navigate(PORTAL_USER_PROFILE, new HashMap<>());
   }
 }
