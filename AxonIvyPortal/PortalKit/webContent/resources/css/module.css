@@ -4498,6 +4498,7 @@ body .ui-widget-header.portal-breadcrumb a {
 body .ui-widget-header.portal-breadcrumb {
 	border: none;
 	padding-top: 1px;
+	padding-bottom: 1px;
 }
 
 body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled {
