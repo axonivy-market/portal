@@ -45,27 +45,35 @@ public class MenuView implements Serializable {
   private List<Button> menuItems;
   private List<SubMenuItem> subMenuItems;
   private MenuModel breadcrumbModel;
-  
 
   @PostConstruct
   public void init() {
+    List<Application> applications = initThirdPartyApps();
+    buildMainMenuItems(applications);
+    buildSubMenuItems();
+  }
+
+  private List<Application> initThirdPartyApps() {
     RegisteredApplicationService service = new RegisteredApplicationService();
     List<Application> applications = service.findAllThirdPartyApplication();
-
     Collections.sort(applications, new ApplicationIndexAscendingComparator());
-    buildMenuView(applications);
+    return applications;
   }
 
   public void buildMenuView(List<Application> thirPartyApplications) {
+    buildMainMenuItems(thirPartyApplications);
+  }
+
+  private void buildMainMenuItems(List<Application> thirPartyApplications) {
     menuItems = new ArrayList<>();
-    
+
     Button dashboardMenuItem = new Button();
     dashboardMenuItem.setValue(Ivy.cms().co(DASHBOARD));
     dashboardMenuItem.setIcon("icon ivyicon-house-chimney-2");
     dashboardMenuItem.setHref(PortalNavigator.getPortalStartUrl());
     dashboardMenuItem.setStyleClass(ACTIVE_MENU);
     menuItems.add(dashboardMenuItem);
-    
+
     for (Application application : thirPartyApplications) {
       Button menuItem = new Button();
       menuItem.setValue(ApplicationMultiLanguage.getDisplayNameInCurrentLocale(application));
@@ -75,12 +83,15 @@ public class MenuView implements Serializable {
       menuItem.setIcon("fa " + application.getMenuIcon());
       menuItems.add(menuItem);
     }
-
-    buildSubMenuItems();
   }
 
+  /**
+   * Load all submenu items for current app
+   * By call loadSubMenuItems callable process
+   * Then return list of SubMenuItem
+   */
   @SuppressWarnings("unchecked")
-  public void buildSubMenuItems() {
+  private void buildSubMenuItems() {
     subMenuItems = new ArrayList<>();
     Map<String, Object> response = IvyAdapterService.startSubProcess(LOAD_SUB_MENU_PROCESS, null,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
