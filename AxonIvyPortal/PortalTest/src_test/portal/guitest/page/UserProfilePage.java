@@ -168,7 +168,7 @@ public class UserProfilePage extends TemplatePage {
   public void changeHomePageToCase() {
     String homepageLabel = "my-profile-form:homepage_label";
     click(By.id(homepageLabel));
-    String caseItemId = "my-profile-form:homepage_3";
+    String caseItemId = "my-profile-form:homepage_4";
     waitForElementDisplayed(By.id(caseItemId), true);
     click(By.id(caseItemId));
     waitUntilTextToBePresentInElement(findElementById(homepageLabel), "Cases", getTimeOutForLocator());
