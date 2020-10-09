@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.ivyteam.ivy.project.portal</groupId>
   <artifactId>internalSupport</artifactId>
-  <version>1.0.0-m1</version>
+  <version>1.0.0-m198</version>
   <packaging>iar</packaging>
   <properties>
     <build.plugin.version>8.0.5</build.plugin.version>

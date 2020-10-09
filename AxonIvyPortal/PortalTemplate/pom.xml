@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.cs.ivy</groupId>
   <artifactId>portalTemplate</artifactId>
-  <version>8.0.8</version>
+  <version>1.0.0-m198</version>
   <packaging>iar</packaging>
   <properties>
     <build.plugin.version>8.0.5</build.plugin.version>
@@ -20,7 +20,7 @@
     <dependency>
       <groupId>ch.cs.ivy</groupId>
       <artifactId>portalKit</artifactId>
-      <version>8.0.8</version>
+      <version>1.0.0-m198</version>
       <type>iar</type>
     </dependency>
   </dependencies>
