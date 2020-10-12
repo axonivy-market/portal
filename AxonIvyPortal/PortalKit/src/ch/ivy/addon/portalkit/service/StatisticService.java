@@ -967,14 +967,6 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       bgColor.add(statisticColors.getTaskExpiriedThisWeekColor());
       bgColor.add(statisticColors.getTaskExpiriedThisMonthColor());
       bgColor.add(statisticColors.getTaskExpiriedThisYearColor());
-
-      List<String> borderColor = new ArrayList<>();
-      borderColor.add(StatisticColors.DEFAULT_TASK_EXPIRIED_BORDER);
-      borderColor.add(StatisticColors.DEFAULT_TASK_TODAY_BORDER);
-      borderColor.add(StatisticColors.DEFAULT_TASK_WEEK_BORDER);
-      borderColor.add(StatisticColors.DEFAULT_TASK_MONTH_BORDER);
-      borderColor.add(StatisticColors.DEFAULT_TASK_YEAR_BORDER);
-      dataSet.setBorderColor(borderColor);
     }
 
     dataSet.setBackgroundColor(bgColor);
