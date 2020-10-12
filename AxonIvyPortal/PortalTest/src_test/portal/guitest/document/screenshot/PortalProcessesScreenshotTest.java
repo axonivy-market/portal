@@ -34,7 +34,7 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
 
   @Test
   public void screenshotProcessNavigate() throws IOException {
-    homePage.waitForStatisticRendered();
+    homePage.waitForStatisticRendered(HomePage.PORTAL_HOME_PAGE_URL);
     homePage.openMainMenu();
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_HD_WIDTH, 700));
     executeDecorateJs("highlightProcessNavigation()");
