@@ -3,7 +3,8 @@ package portal.guitest.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import portal.guitest.common.WaitHelper;
+import portal.guitest.common.Sleeper;
+import portal.guitest.common.UrlHelpers;
 
 
 public class HomePage extends TemplatePage {
@@ -12,6 +13,7 @@ public class HomePage extends TemplatePage {
 	public final static String PORTAL_EXAMPLES_HOME_PAGE_URL = "portal-developer-examples/164211E97C598DAA/DefaultApplicationHomePage.ivp";
 	public final static String PORTAL_EXAMPLES_PROCESS_CHAIN = "portal-developer-examples/164DB506D12B25CF/showSampleProcessChain.ivp";
 	public final static String PORTAL_INTERNAL_HOME_PAGE_URL = "internalSupport/164211FF9482BB44/DefaultApplicationHomePage.ivp";
+	private static final String PORTAL_STATISTIC_URL = "portalTemplate/1549F58C18A6C562/StatisticPage.ivp";
 	private final static String TASK_SWITCH_MODE_BTN_LOCATOR = "id('task-widget:task-list-link:task-list-link')";
 	private static final String SHOW_ALL_PROCESSES_LINK_ID = "process-widget:process-link:process-link-label";
 	private static final String SHOW_TASK_LIST_LINK_ID = "task-widget:task-list-link:task-list-link-label";
@@ -42,13 +44,21 @@ public class HomePage extends TemplatePage {
 		return isElementDisplayedById(SHOW_ALL_CHARTS_LINK_ID);
 	}
 	
-	public void waitForStatisticRendered() {
-    WaitHelper.assertTrueWithRefreshPage(this, () -> {
+  public void waitForStatisticRendered() {
+    try {
       waitForElementDisplayed(By.cssSelector("a[class$='chart-info']"), true, 2);
-      return true;
-    });
-	}
-	
+    } catch (Exception e) {
+      navigateToUrl(PORTAL_STATISTIC_URL);
+      Sleeper.sleep(500); // To make business data updated correctly
+      navigateToUrl(PORTAL_HOME_PAGE_URL);
+      waitForElementDisplayed(By.cssSelector("a[class$='chart-info']"), true, 2);
+    }
+  }
+
+  private void navigateToUrl(String url) {
+    driver.navigate().to(UrlHelpers.generateAbsoluteProcessStartLink(url));
+  }
+
 	public String getAnnouncementMessage() {
 		waitForElementDisplayed(By.cssSelector("div[class*='announcement-message-customizable']"), true);
 		return driver.findElement(By.cssSelector("div[class*='announcement-message-customizable']")).getText();
