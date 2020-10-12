@@ -9,6 +9,7 @@ import org.openqa.selenium.Dimension;
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
+import portal.guitest.common.Sleeper;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskWidgetPage;
 
@@ -44,6 +45,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     updatePortalSetting("SHOW_ENVIRONMENT_INFO", "true");
     homePage = new HomePage();
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 500));
+    Sleeper.sleep(500); // wait for js render scrollbar
     ScreenshotUtil.captureHalfRightPageScreenShot(ScreenshotUtil.DASHBOARD_FOLDER + "environment-info");
   }
   
