@@ -3,7 +3,6 @@ package portal.guitest.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import portal.guitest.common.Sleeper;
 import portal.guitest.common.UrlHelpers;
 
 
@@ -49,7 +48,7 @@ public class HomePage extends TemplatePage {
       waitForElementDisplayed(By.cssSelector("a[class$='chart-info']"), true, 2);
     } catch (Exception e) {
       navigateToUrl(PORTAL_STATISTIC_URL);
-      Sleeper.sleep(500); // To make business data updated correctly
+      waitForElementDisplayed(By.id("statistics-widget"), true, 2);
       navigateToUrl(PORTAL_HOME_PAGE_URL);
       waitForElementDisplayed(By.cssSelector("a[class$='chart-info']"), true, 2);
     }
