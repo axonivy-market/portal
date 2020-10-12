@@ -30,7 +30,7 @@ public class SettingScreenshotTest extends ScreenshotTest {
     redirectToRelativeLink(createTestingTasksUrl);
     login(TestAccount.ADMIN_USER);
     homePage = new HomePage();
-    homePage.waitForStatisticRendered();
+    homePage.waitForStatisticRendered(HomePage.PORTAL_HOME_PAGE_URL);
     homePage.getUserSettings();
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SETTINGS_FOLDER + "user-settings", new Dimension(1500, 800));
     
@@ -58,7 +58,7 @@ public class SettingScreenshotTest extends ScreenshotTest {
     login(TestAccount.ADMIN_USER);
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));
     homePage = new HomePage();
-    homePage.waitForStatisticRendered();
+    homePage.waitForStatisticRendered(HomePage.PORTAL_HOME_PAGE_URL);
     homePage.getUserSettings();
     Sleeper.sleep(300);//wait for animation finish to capture nice screenshot
     executeDecorateJs("highlightAdminSettings()");
@@ -99,7 +99,7 @@ public class SettingScreenshotTest extends ScreenshotTest {
   
   private void refreshHomePage() {
     refreshPage();
-    homePage.waitForStatisticRendered();
+    homePage.waitForStatisticRendered(HomePage.PORTAL_HOME_PAGE_URL);
   }
   
   private void createAbsenceForCurrentUser(LocalDate from, LocalDate till, String comment, AbsencePage absencePage) {

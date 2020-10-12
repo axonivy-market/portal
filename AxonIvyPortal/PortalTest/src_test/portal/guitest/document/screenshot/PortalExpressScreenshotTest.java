@@ -48,7 +48,7 @@ public class PortalExpressScreenshotTest extends ScreenshotTest {
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createUserFavoriteProcess);
     homePage.clickOnLogo();
-    homePage.waitForStatisticRendered();
+    homePage.waitForStatisticRendered(HomePage.PORTAL_HOME_PAGE_URL);
     ScreenshotUtil.resizeBrowser(new Dimension(1400, 500));
     executeDecorateJs("highlightShowAllProcesses()");
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.EXPRESS_FOLDER + "navigate-to-axon-ivy-express");
