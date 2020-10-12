@@ -43,13 +43,19 @@ public class HomePage extends TemplatePage {
 		return isElementDisplayedById(SHOW_ALL_CHARTS_LINK_ID);
 	}
 	
-  public void waitForStatisticRendered() {
+  /** 
+   * Wait for statistic charts are displayed
+   * If no chart to dislay on first time, it will navigate to Portal Statistic page then comeback to prevPage
+   * @param currentHomePageUrl is url of current home page which is portal started
+   * e.g PORTAL_HOME_PAGE_URL or PORTAL_EXAMPLES_HOME_PAGE_URL
+   */
+  public void waitForStatisticRendered(String currentHomePageUrl) {
     try {
       waitForElementDisplayed(By.cssSelector("a[class$='chart-info']"), true, 2);
     } catch (Exception e) {
       navigateToUrl(PORTAL_STATISTIC_URL);
       waitForElementDisplayed(By.id("statistics-widget"), true, 2);
-      navigateToUrl(PORTAL_HOME_PAGE_URL);
+      navigateToUrl(currentHomePageUrl);
       waitForElementDisplayed(By.cssSelector("a[class$='chart-info']"), true, 2);
     }
   }
