@@ -35,7 +35,8 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
   }
 
   public void saveAll(List<Announcement> announcements) {
-    cleanUpBeforeSave(announcements);
+    List<Announcement> currentAnnouncementsInSystem = getAnnouncements();
+    cleanUpBeforeSave(currentAnnouncementsInSystem.stream().filter(announcement ->!announcements.contains(announcement)).collect(Collectors.toList()));
     for (Announcement announcement : announcements) {
       Announcement announcementUpdate = new Announcement(announcement.getLanguage(), announcement.getValue());
       save(announcementUpdate);
