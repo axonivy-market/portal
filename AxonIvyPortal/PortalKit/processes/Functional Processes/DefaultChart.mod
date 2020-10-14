@@ -47,7 +47,9 @@ StatisticService service = new StatisticService();
 String chartName = "Tasks by Priority";
 StatisticChartType chartType = StatisticChartType.TASK_BY_PRIORITY;
 
-if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName)) {
+if (service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName)) {
+  in.defaultCharts.add(service.findStatisticChartByUserIdAndChartName(ivy.session.getSessionUser().getId(), chartName));
+} else {
   StatisticFilter statisticFilter = new StatisticFilter();
   StatisticChart newChart = service.createStatisticChart(statisticFilter, chartName, chartType, ivy.session.getSessionUser().getId(), true);
   in.defaultCharts.add(newChart);
