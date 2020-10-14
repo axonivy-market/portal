@@ -99,7 +99,6 @@ public class BaseTest {
     browser = Browser.getBrowser();
     launchBrowserAndGotoRelativeLink(cleanupDataLink);
     updatePortalSetting("SHOW_USER_GUIDE", "false");
-    browser.pause(500); // make Portal Setting updated more stable
   }
   
   /**

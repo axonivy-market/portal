@@ -486,6 +486,8 @@ Ss0 f47 1 0.30783775632694704 0 0 #arcLabel
 Ss0 f63 guid 168FFD6C153F13B5 #txt
 Ss0 f63 method generateChartModel() #txt
 Ss0 f63 inParameterDecl '<> param;' #txt
+Ss0 f63 inActionCode '
+' #txt
 Ss0 f63 outParameterDecl '<> result;' #txt
 Ss0 f63 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -532,6 +534,8 @@ Ss0 f70 inParameterMapAction 'out.isBackFromDrilldown=param.isBackFromDrilldown;
 out.isCompactMode=param.isCompactMode;
 out.showTaskListImmediately=param.showTaskListImmediately;
 out.statisticChartList=param.statisticChartList;
+' #txt
+Ss0 f70 inActionCode '
 ' #txt
 Ss0 f70 outParameterDecl '<> result;' #txt
 Ss0 f70 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -896,9 +900,13 @@ Ct0 f74 136 138 112 44 -53 -8 #rect
 Ct0 f74 @|CallSubIcon #fIcon
 Ct0 f73 actionTable 'out=in;
 ' #txt
-Ct0 f73 actionCode 'import java.util.ArrayList;
-in.statisticChartList.addAll(in.defaultCharts);
-in.prevStatisticList = new ArrayList(in.statisticChartList);
+Ct0 f73 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
+import ch.ivy.addon.portalkit.statistics.StatisticChart;
+import java.util.ArrayList;
+
+StatisticService service = new StatisticService();
+in.statisticChartList = service.addListByDistinctCharts(in.statisticChartList, in.defaultCharts);
+
 ' #txt
 Ct0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

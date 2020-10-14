@@ -747,9 +747,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * @param creatorId Id of the creator
    * @param isDefault is a default chart
    * @return Added statistic chart
+   * @throws InterruptedException 
    */
   public StatisticChart createStatisticChart(StatisticFilter filter, String chartName, StatisticChartType chartType,
-      long creatorId, boolean isDefault) {
+      long creatorId, boolean isDefault) throws InterruptedException {
     StatisticChart statisticChart = new StatisticChart();
 
     statisticChart.setUserId(creatorId);
@@ -757,7 +758,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     statisticChart.setName(Optional.ofNullable(chartName).orElse("New chart"));
     statisticChart.setPosition(countStatisticChartsByUserId(creatorId));
     statisticChart.setDefaultChart(String.valueOf(isDefault));
-    
+
     if (filter.getIsAllCaseStatesSelected()) {
       StatisticFilter newFilter = ObjectUtils.clone(filter);
       if (filter.getIsAllRolesSelected()) {
@@ -768,8 +769,19 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       statisticChart.setFilter(filter);
     }
     BusinessDataInfo<StatisticChart> info = save(statisticChart);
-    
-    return findById(info.getId());
+
+    // Check Statistic is updated on ES
+    for (int i = 0; i < 10; i++) {
+      List<StatisticChart> result = findStatisticChartsByUserId(creatorId);
+      Optional<StatisticChart> savedChart = result.stream()
+            .filter(chart -> StringUtils.equalsIgnoreCase(chart.getId(), info.getId()))
+            .findFirst();
+      if (savedChart.isPresent()) {
+        return savedChart.get();
+      }
+      Thread.sleep(200);
+    }
+    return null;
   }
 
   private DonutChartModel createDonutChartModel(Map<String, Number> chartData) {
@@ -1416,5 +1428,18 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       return false;
     }
     return first.stream().allMatch(s -> second.contains(s));
+  }
+
+  public List<StatisticChart> addListByDistinctCharts(List<StatisticChart> targetList, List<StatisticChart> newList) {
+    List<StatisticChart> distinctChart = new ArrayList<StatisticChart>(targetList);
+    List<String> distinctChartNameList = CollectionUtils.emptyIfNull(targetList)
+        .stream()
+        .map(StatisticChart::getName)
+        .collect(Collectors.toList());
+
+    distinctChart.addAll(CollectionUtils.emptyIfNull(newList).stream()
+        .filter(chart -> !distinctChartNameList.contains(chart.getName()))
+        .collect(Collectors.toList()));
+    return distinctChart;
   }
 }

@@ -49,15 +49,21 @@ String chartName1 = "My default chart 1";
 String chartName2 = "My default chart 2";
 long sessionUserId = ivy.session.getSessionUser().getId();
 
-if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName1)) {
-  StatisticChart newChart1 = service.createStatisticChart(statisticFilter, chartName1, StatisticChartType.TASK_BY_EXPIRY, sessionUserId, true);
+if (service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName1)) {
+	in.defaultCharts.add(service.findStatisticChartByUserIdAndChartName(ivy.session.getSessionUser().getId(), chartName1));
+} else {
+	StatisticChart newChart1 = service.createStatisticChart(statisticFilter, chartName1, StatisticChartType.TASK_BY_EXPIRY, sessionUserId, true);
   in.defaultCharts.add(newChart1);		
 }
 
-if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName2)) {
+if (service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName2)) {
+  in.defaultCharts.add(service.findStatisticChartByUserIdAndChartName(ivy.session.getSessionUser().getId(), chartName2));
+} else {
   StatisticChart newChart2 = service.createStatisticChart(statisticFilter, chartName2, StatisticChartType.CASES_BY_STATE, sessionUserId, true);
-  in.defaultCharts.add(newChart2);		
-}' #txt
+  in.defaultCharts.add(newChart2);
+}
+
+' #txt
 Dt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
