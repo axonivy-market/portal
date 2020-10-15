@@ -29,7 +29,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     redirectToRelativeLink(createUserFavoriteProcess);
     refreshPage();
     homePage = new HomePage();
-    homePage.waitForStatisticRendered(HomePage.PORTAL_HOME_PAGE_URL);
+    homePage.waitForStatisticRendered();
   }
   
   @Test
@@ -66,7 +66,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
   @Test
   public void screenshotCustomizedDashBoard() throws IOException {
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
-    homePage.waitForStatisticRendered(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+    homePage.waitForStatisticRendered();
     ScreenshotUtil.resizeBrowserAndCaptureWholeScreen(ScreenshotUtil.DASHBOARD_FOLDER + "page-header-footer", new Dimension(SCREENSHOT_WIDTH, 900));
   }
   
@@ -108,6 +108,6 @@ public class DashboardScreenshotTest extends ScreenshotTest {
 
   private void refreshHomePage() {
     refreshPage();
-    homePage.waitForStatisticRendered(HomePage.PORTAL_HOME_PAGE_URL);
+    homePage.waitForStatisticRendered();
   }
 }

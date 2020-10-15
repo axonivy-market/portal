@@ -3,7 +3,7 @@ package portal.guitest.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-import portal.guitest.common.UrlHelpers;
+import portal.guitest.common.WaitHelper;
 
 
 public class HomePage extends TemplatePage {
@@ -12,7 +12,6 @@ public class HomePage extends TemplatePage {
 	public final static String PORTAL_EXAMPLES_HOME_PAGE_URL = "portal-developer-examples/164211E97C598DAA/DefaultApplicationHomePage.ivp";
 	public final static String PORTAL_EXAMPLES_PROCESS_CHAIN = "portal-developer-examples/164DB506D12B25CF/showSampleProcessChain.ivp";
 	public final static String PORTAL_INTERNAL_HOME_PAGE_URL = "internalSupport/164211FF9482BB44/DefaultApplicationHomePage.ivp";
-	private static final String PORTAL_STATISTIC_URL = "portalTemplate/1549F58C18A6C562/StatisticPage.ivp";
 	private final static String TASK_SWITCH_MODE_BTN_LOCATOR = "id('task-widget:task-list-link:task-list-link')";
 	private static final String SHOW_ALL_PROCESSES_LINK_ID = "process-widget:process-link:process-link-label";
 	private static final String SHOW_TASK_LIST_LINK_ID = "task-widget:task-list-link:task-list-link-label";
@@ -44,24 +43,13 @@ public class HomePage extends TemplatePage {
 	}
 	
   /** 
-   * Wait for statistic charts are displayed
-   * If no chart to dislay on first time, it will navigate to Portal Statistic page then comeback to prevPage
-   * @param currentHomePageUrl is url of current home page which is portal started
-   * e.g PORTAL_HOME_PAGE_URL or PORTAL_EXAMPLES_HOME_PAGE_URL
+   * Wait for statistic charts are displayed in 5s
    */
-  public void waitForStatisticRendered(String currentHomePageUrl) {
-    try {
-      waitForElementDisplayed(By.cssSelector("a[class$='chart-info']"), true, 2);
-    } catch (Exception e) {
-      navigateToUrl(PORTAL_STATISTIC_URL);
-      waitForElementDisplayed(By.id("statistics-widget"), true, 2);
-      navigateToUrl(currentHomePageUrl);
-      waitForElementDisplayed(By.cssSelector("a[class$='chart-info']"), true, 2);
-    }
-  }
-
-  private void navigateToUrl(String url) {
-    driver.navigate().to(UrlHelpers.generateAbsoluteProcessStartLink(url));
+  public void waitForStatisticRendered() {
+    WaitHelper.assertTrueWithRefreshPage(this, () -> {
+      waitForElementDisplayed(By.cssSelector("a[class$='chart-info']"), true, 5);
+      return true;
+    });
   }
 
 	public String getAnnouncementMessage() {
