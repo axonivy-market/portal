@@ -16,7 +16,7 @@ public class GlobalSearchScreenshotTest extends ScreenshotTest {
   @Test
   public void screenshotForGlobalSearch() throws IOException {
     homePage = new HomePage();
-    homePage.waitForStatisticRendered(HomePage.PORTAL_HOME_PAGE_URL);
+    homePage.waitForStatisticRendered();
     GlobalSearch globalSearch = homePage.getGlobalSearch();
     globalSearch.inputSearchKeyword("process");
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));
