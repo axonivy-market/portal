@@ -32,7 +32,7 @@ public class StatisticScreenshotTest extends ScreenshotTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     taskWidgetPage.startTaskWithoutUI(0);
     homePage = new HomePage();
-    homePage.waitForStatisticRendered(HomePage.PORTAL_HOME_PAGE_URL);
+    homePage.waitForStatisticRendered();
     
     mainMenuPage = homePage.openMainMenu();
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));

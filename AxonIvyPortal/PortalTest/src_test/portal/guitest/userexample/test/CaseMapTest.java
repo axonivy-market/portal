@@ -25,11 +25,11 @@ public class CaseMapTest extends BaseTest {
   @Before
   public void setup() {
     super.setup();
+    redirectToRelativeLink(CASE_MAP_URL);
   }
 
   @Test
   public void testCaseMapApprovalWorkflow() {
-    redirectToRelativeLink(CASE_MAP_URL);
     caseMapPage = new CaseMapPage();
     caseMapPage.inputFields("John", "Jack", "1.1.2019", "VN", "20000", "To buy a new car", "80000", "100000");
     caseMapPage.clickSubmitRequestButton();
@@ -61,7 +61,6 @@ public class CaseMapTest extends BaseTest {
 
   @Test
   public void testCaseMapRejectedWorkflow() {
-    redirectToRelativeLink(CASE_MAP_URL);
     caseMapPage = new CaseMapPage();
     caseMapPage.inputFields("John", "Jack", "1.1.2019", "VN", "20000", "To buy a new car", "80000", "100000");
     caseMapPage.clickSubmitRequestButton();
@@ -96,7 +95,6 @@ public class CaseMapTest extends BaseTest {
 
   @Test
   public void testCollectPersonalDataValidation() {
-    redirectToRelativeLink(CASE_MAP_URL);
     caseMapPage = new CaseMapPage();
     caseMapPage.inputFields("", "", "", "", "", "", "", "");
     Assert.assertEquals(
