@@ -124,7 +124,6 @@ public class MenuView implements Serializable {
 
   @SuppressWarnings("unchecked")
   private void buildSubMenuItems() {
-    Ivy.log().error("Cannot load SubMenuItems {0}");
     subMenuItems = new ArrayList<>();
     Map<String, Object> response = IvyAdapterService.startSubProcess(LOAD_SUB_MENU_PROCESS, null,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
