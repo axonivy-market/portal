@@ -23,6 +23,9 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
 
   private static final long serialVersionUID = -6615871274830927272L;
   
+  private static final int QUERY_PAGES = 5;
+  private static final int QUERY_PAGES_AT_FIRST_TIME = 3;
+  
   private DashboardTaskSearchCriteria criteria;
   private boolean isFirstTime = true;
   private List<ITask> tasks;
@@ -49,9 +52,10 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
       if (first == 0) {
         criteria.setSortField(sortField);
         criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
+        Ivy.log().error("abc {0}", sortField);
         query = criteria.buildQuery();
       }
-      tasks = Ivy.wf().getTaskQueryExecutor().getResults(query, first, pageSize * (first <= pageSize ? 5 : 3));
+      tasks = Ivy.wf().getTaskQueryExecutor().getResults(query, first, pageSize * (first <= pageSize ? QUERY_PAGES : QUERY_PAGES_AT_FIRST_TIME));
     }
     int rowCount = tasks.size() + first;
     List<ITask> result = new ArrayList<>();
@@ -67,7 +71,7 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
     Object memento = IvyThreadContext.saveToMemento();
     future = CompletableFuture.runAsync(() -> {
       IvyThreadContext.restoreFromMemento(memento);
-      tasks = Ivy.wf().getTaskQueryExecutor().getResults(query, 0, getPageSize() * 5);
+      tasks = Ivy.wf().getTaskQueryExecutor().getResults(query, 0, getPageSize() * QUERY_PAGES);
       IvyThreadContext.reset();
     });
     isFirstTime = true;

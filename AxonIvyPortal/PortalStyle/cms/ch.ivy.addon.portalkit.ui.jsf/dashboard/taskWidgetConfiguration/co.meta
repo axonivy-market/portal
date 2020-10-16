@@ -1,0 +1,5 @@
+co: name={taskWidgetConfiguration} description={} changed={2020-10-13 10:01:20 CEST} changedby={dhtlong} visualorder={0} guid={17520FA2CC2159BA} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17520FA2CC63E0C3} datatype={} isdefault={false} langid={de} description={} validfrom={2020-10-13 10:01:07 CEST} validto={} changed={2020-10-13 10:01:20 CEST} changedby={dhtlong} properties={} id={}
+val: guid={17520FA2CD62776D} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-10-13 10:01:07 CEST} validto={} changed={2020-10-13 10:01:20 CEST} changedby={dhtlong} properties={} id={}
+val: guid={17520FA2CCEE7017} datatype={} isdefault={true} langid={en} description={} validfrom={2020-10-13 10:01:07 CEST} validto={} changed={2020-10-13 10:01:07 CEST} changedby={dhtlong} properties={} id={}
+val: guid={17520FA2CDECBB6F} datatype={} isdefault={false} langid={es} description={} validfrom={2020-10-13 10:01:07 CEST} validto={} changed={2020-10-13 10:01:20 CEST} changedby={dhtlong} properties={} id={}

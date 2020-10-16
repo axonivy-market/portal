@@ -1,0 +1,12 @@
+TaskWidgetData #class
+ch.ivy.addon.portal.generic.dashboard.TaskWidget #namespace
+tasks java.util.List<ch.ivyteam.ivy.workflow.ITask> #field
+tasks PERSISTENT #fieldModifier
+taskSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria #field
+taskSearchCriteria PERSISTENT #fieldModifier
+taskQuery ch.ivyteam.ivy.workflow.query.TaskQuery #field
+taskQuery PERSISTENT #fieldModifier
+taskWidget ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget #field
+taskWidget PERSISTENT #fieldModifier
+filteredTasks java.util.List<ch.ivyteam.ivy.workflow.ITask> #field
+filteredTasks PERSISTENT #fieldModifier

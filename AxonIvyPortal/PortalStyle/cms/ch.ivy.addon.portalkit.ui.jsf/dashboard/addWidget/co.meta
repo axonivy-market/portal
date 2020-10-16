@@ -1,0 +1,5 @@
+co: name={addWidget} description={} changed={2020-10-14 06:03:02 CEST} changedby={dhtlong} visualorder={0} guid={17520DE11999AE5A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17520DE11B552EEF} datatype={} isdefault={false} langid={es} description={} validfrom={2020-10-13 09:30:25 CEST} validto={} changed={2020-10-14 06:03:02 CEST} changedby={dhtlong} properties={} id={}
+val: guid={17520DE11ADEDDFA} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-10-13 09:30:25 CEST} validto={} changed={2020-10-14 06:03:02 CEST} changedby={dhtlong} properties={} id={}
+val: guid={17520DE119C3E02F} datatype={} isdefault={false} langid={de} description={} validfrom={2020-10-13 09:30:25 CEST} validto={} changed={2020-10-14 06:03:02 CEST} changedby={dhtlong} properties={} id={}
+val: guid={17520DE11A588395} datatype={} isdefault={true} langid={en} description={} validfrom={2020-10-13 09:30:25 CEST} validto={} changed={2020-10-13 09:30:25 CEST} changedby={dhtlong} properties={} id={}

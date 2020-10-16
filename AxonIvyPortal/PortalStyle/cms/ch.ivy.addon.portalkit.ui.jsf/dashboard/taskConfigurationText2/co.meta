@@ -1,0 +1,5 @@
+co: name={taskConfigurationText2} description={} changed={2020-10-14 06:02:37 CEST} changedby={dhtlong} visualorder={0} guid={1752528E222F74D2} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1752528E33A4C31F} datatype={} isdefault={true} langid={en} description={} validfrom={2020-10-14 05:30:38 CEST} validto={} changed={2020-10-14 05:30:38 CEST} changedby={dhtlong} properties={} id={}
+val: guid={1752528E3421BAB0} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-10-14 05:30:38 CEST} validto={} changed={2020-10-14 06:02:37 CEST} changedby={dhtlong} properties={} id={}
+val: guid={1752528E333C5C70} datatype={} isdefault={false} langid={de} description={} validfrom={2020-10-14 05:30:38 CEST} validto={} changed={2020-10-14 06:02:36 CEST} changedby={dhtlong} properties={} id={}
+val: guid={1752528E34B29398} datatype={} isdefault={false} langid={es} description={} validfrom={2020-10-14 05:30:38 CEST} validto={} changed={2020-10-14 06:02:36 CEST} changedby={dhtlong} properties={} id={}
