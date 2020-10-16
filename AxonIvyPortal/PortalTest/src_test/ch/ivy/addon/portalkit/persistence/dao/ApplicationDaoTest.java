@@ -29,10 +29,12 @@ public class ApplicationDaoTest {
     Application thirdPartyApplication = new Application();
     thirdPartyApplication.setId(1L);
     thirdPartyApplication.setDisplayName("test01");
+    thirdPartyApplication.setServerId(null);
 
     Application application = new Application();
     application.setId(2L);
     application.setDisplayName("test02");
+    application.setServerId(1L);
 
     mockReturnAllApplications.add(thirdPartyApplication);
     mockReturnAllApplications.add(application);
@@ -46,5 +48,7 @@ public class ApplicationDaoTest {
 
     Application result = thirdPartyApplications.get(0);
     assertEquals(thirdPartyApplication.getId(), result.getId());
+
   }
+
 }
