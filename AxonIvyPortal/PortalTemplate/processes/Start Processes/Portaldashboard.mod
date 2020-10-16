@@ -33,7 +33,7 @@ Pd0 f0 81 49 30 30 -20 17 #rect
 Pd0 f0 @|StartRequestIcon #fIcon
 Pd0 f1 337 49 30 30 0 15 #rect
 Pd0 f1 @|EndIcon #fIcon
-Pd0 f3 dialogId ch.ivy.addon.portal.generic.PortalDashboard #txt
+Pd0 f3 dialogId ch.ivy.addon.portal.generic.dashboard.PortalDashboard #txt
 Pd0 f3 startMethod start() #txt
 Pd0 f3 requestActionDecl '<> param;' #txt
 Pd0 f3 responseMappingAction 'out=in;

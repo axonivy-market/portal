@@ -1,0 +1,86 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:jsf="http://xmlns.jcp.org/jsf"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="taskWidget" type="ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget" required="true" />
+  <cc:attribute name="renderColumnConfiguration" default="false" />
+</cc:interface>
+<cc:implementation>
+  <p:remoteCommand id="rcLoadTaskFirstTime" autoRun="true" actionListener="#{cc.attrs.taskWidget.dataModel.loadFirstTime()}" 
+    update="dashboard-tasks-container" global="false" async="true" process="@this"
+    oncomplete="$('.js-loading-#{cc.attrs.taskWidget.id}').css('display', 'none');$('.js-dashboard-tasks-container-#{cc.attrs.taskWidget.id}').css('display', '');" />
+  <div class="ui-g">
+    <h:panelGroup id="loading" styleClass="js-loading-#{cc.attrs.taskWidget.id}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/loading')}</h:panelGroup>
+      
+    <h:panelGroup id="dashboard-tasks-container" layout="block" 
+      styleClass="ui-g-12 u-padding-0 js-dashboard-tasks-container-#{cc.attrs.taskWidget.id}" style="display: none">
+      <h:panelGroup id="columns-configuration" layout="block" rendered="#{cc.attrs.renderColumnConfiguration}" styleClass="dashboard-tasks-container__columns-configuration">
+        <p:commandLink id="column-toggler" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}" />
+        <p:columnToggler trigger="column-toggler" datasource="dashboard-tasks">
+          <p:ajax event="toggle" listener="#{taskWidgetConfigurationPrototypeBean.onToggleColumns}" />
+        </p:columnToggler>
+      </h:panelGroup>
+      
+      <p:dataTable id="dashboard-tasks" value="#{cc.attrs.taskWidget.dataModel}" var="task"
+        rows="10" paginator="true" paginatorPosition="bottom" lazy="true" paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
+        pageLinks="5" rowsPerPageTemplate="5,10,15" sortField="#{cc.attrs.taskWidget.sortField}" sortBy="#{cc.attrs.taskWidget.sortField}">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="dashboard-tasks__start" width="50">
+          <p:commandLink>
+            <span class="fa fa-play" />
+          </p:commandLink>
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY')}" 
+          styleClass="dashboard-tasks__priority #{task.priority eq 'EXCEPTION' ? 'dashboard-tasks__priority--exception' : ''}" filterBy="#{task.priority}" sortBy="#{task.priority}"
+          width="80" rendered="#{cc.attrs.taskWidget.taskColumns.contains('PRIORITY')}" field="PRIORITY">
+          <i jsf:rendered="#{task.priority eq 'LOW'}" class="icon ivyicon-navigation-right-circle-1" />
+          <i jsf:rendered="#{task.priority eq 'NORMAL'}" class="icon ivyicon-navigation-right-circle-1" />
+          <i jsf:rendered="#{task.priority eq 'HIGH'}" class="icon ivyicon-navigation-up-circle" />
+          <i jsf:rendered="#{task.priority eq 'EXCEPTION'}" class="icon ivyicon-alert-circle" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}" filterBy="#{task.id}" 
+          sortBy="#{task.id}" rendered="#{cc.attrs.taskWidget.taskColumns.contains('ID')}" field="ID"
+          width="120" styleClass="dashboard-tasks__id">
+          <h:outputText value="#{task.id}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskName')}" filterBy="#{task.name}" sortBy="#{task.name}" rendered="#{cc.attrs.taskWidget.taskColumns.contains('NAME')}" field="NAME">
+          <h:outputText value="#{task.name}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" filterBy="#{task.description}" rendered="#{cc.attrs.taskWidget.taskColumns.contains('DESCRIPTION')}" field="DESCRIPTION">
+          <h:outputText value="#{task.description}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" 
+          filterBy="#{task.activator.displayName}" sortBy="#{task.activator.displayName}" 
+          rendered="#{cc.attrs.taskWidget.taskColumns.contains('ACTIVATOR')}" field="ACTIVATOR"
+          width="150" styleClass="dashboard-tasks__responsible">
+          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activator.memberName)}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" 
+          styleClass="dashboard-tasks__state" filterBy="#{task.state}" sortBy="#{task.state}" rendered="#{cc.attrs.taskWidget.taskColumns.contains('STATE')}" field="STATE"
+          width="100" style="text-align: center">
+          <h:outputText value="#{taskWidgetConfigurationBean.getUserFriendlyTaskState(task.state)}" 
+            styleClass="dashboard-tasks__state-text dashboard-tasks__state-text--#{task.state.toString().toLowerCase()}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME')}" 
+        filterBy="#{task.startTimestamp}" sortBy="#{task.startTimestamp}" rendered="#{cc.attrs.taskWidget.taskColumns.contains('CREATION_TIME')}" field="CREATION_TIME"
+          width="100" styleClass="dashboard-tasks__created-date">
+          <h:outputText value="#{task.startTimestamp}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+          </h:outputText>
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" 
+          filterBy="#{task.expiryTimestamp}" sortBy="#{task.expiryTimestamp}" rendered="#{cc.attrs.taskWidget.taskColumns.contains('EXPIRY_TIME')}" field="EXPIRY_TIME"
+          width="120" styleClass="dashboard-tasks__expiry-date">
+          <h:outputText value="#{task.expiryTimestamp}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+          </h:outputText>
+        </p:column>
+      </p:dataTable>
+    </h:panelGroup>
+  </div>
+</cc:implementation>
+</html>
