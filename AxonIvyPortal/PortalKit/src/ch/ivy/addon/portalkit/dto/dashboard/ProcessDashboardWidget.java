@@ -1,4 +1,4 @@
-package ch.ivy.addon.portalkit.dto;
+package ch.ivy.addon.portalkit.dto.dashboard;
 
 public class ProcessDashboardWidget extends DashboardWidget {
 

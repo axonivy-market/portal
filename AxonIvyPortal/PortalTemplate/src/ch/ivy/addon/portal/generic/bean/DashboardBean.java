@@ -27,15 +27,16 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import ch.ivy.addon.portalkit.dto.Dashboard;
-import ch.ivy.addon.portalkit.dto.DashboardWidget;
-import ch.ivy.addon.portalkit.dto.TaskDashboardWidget;
-import ch.ivy.addon.portalkit.dto.WidgetSample;
+import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
+import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.WidgetSample;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.loader.ResourceLoader;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.application.ILibrary;
+import ch.ivyteam.ivy.application.property.ICustomProperties;
 import ch.ivyteam.ivy.application.property.ICustomProperty;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -49,23 +50,25 @@ public class DashboardBean implements Serializable {
   private List<Dashboard> dashboards;
   private Dashboard selectedDashboard;
   private List<WidgetSample> samples;
-  private String user;
   private ObjectMapper mapper;
   private DashboardWidget widget;
   private boolean isReadOnlyMode;
   private int tabActiveIndex;
   private boolean canEdit;
+  private String dashboardPropertyPrefix;
+  private String switchEditModeText;
+  private String switchViewModeText;
 
   @PostConstruct
   public void init() {
+    dashboardPropertyPrefix = "dashboard.widgets." + Ivy.session().getSessionUserName();
     canEdit = PermissionUtils.hasDashboardWritePermission();
     tabActiveIndex = 0;
     isReadOnlyMode = true;
     dashboards = new ArrayList<>();
     mapper = new ObjectMapper();
     samples = List.of(taskSample(), caseSample(), statisticSample(), processSample());
-    user = Ivy.session().getSessionUserName();
-    List<ICustomProperty> properties = Ivy.wf().getApplication().customProperties().findAllStartingWith("dashboard.widgets." + user);
+    List<ICustomProperty> properties = customProperties().findAllStartingWith(dashboardPropertyPrefix);
     try {
       dashboards = defaultDashboards();
       if (CollectionUtils.isNotEmpty(properties)) {
@@ -78,6 +81,8 @@ public class DashboardBean implements Serializable {
     } catch (IOException e) {
       Ivy.log().error(e);
     }
+    switchEditModeText = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/switchToEditMode");
+    switchViewModeText = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/switchToViewMode");
   }
   
   private List<Dashboard> defaultDashboards() throws IOException {
@@ -99,7 +104,7 @@ public class DashboardBean implements Serializable {
   public TaskDashboardWidget getDefaultTaskDashboardWidget() throws IOException {
     TaskDashboardWidget result = new TaskDashboardWidget();
     result.setId(getNewTaskWidgetId());
-    result.setName("Your Tasks");
+    result.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks"));
     result.setWidth(8);
     result.setHeight(6);
     result.setAutoPosition(true);
@@ -119,9 +124,9 @@ public class DashboardBean implements Serializable {
       updatedWidget.setWidth(widget.getWidth());
       updatedWidget.setHeight(widget.getHeight());
     }
-    Ivy.wf().getApplication().customProperties().property(dashboardProperty(selectedDashboard)).setValue(mapper.writeValueAsString(selectedDashboard));
+    customProperties().property(dashboardProperty(selectedDashboard)).setValue(mapper.writeValueAsString(selectedDashboard));
   }
-  
+
   public void saveWidget() throws JsonProcessingException {
     List<DashboardWidget> widgets = selectedDashboard.getWidgets();
     if (widgets.contains(widget)) {
@@ -130,18 +135,18 @@ public class DashboardBean implements Serializable {
       widgets.add(widget);
     }
     dashboards.set(dashboards.indexOf(selectedDashboard), selectedDashboard);
-    List<ICustomProperty> properties = Ivy.wf().getApplication().customProperties().findAllStartingWith("dashboard.widgets." + user);
+    List<ICustomProperty> properties = customProperties().findAllStartingWith(dashboardPropertyPrefix);
     if (CollectionUtils.isNotEmpty(properties)) {
-      Ivy.wf().getApplication().customProperties().property(dashboardProperty(selectedDashboard)).setValue(mapper.writeValueAsString(selectedDashboard));
+      customProperties().property(dashboardProperty(selectedDashboard)).setValue(mapper.writeValueAsString(selectedDashboard));
     } else {
       for (Dashboard dashboard : dashboards) {
-        Ivy.wf().getApplication().customProperties().property(dashboardProperty(dashboard)).setValue(mapper.writeValueAsString(dashboard));
+        customProperties().property(dashboardProperty(dashboard)).setValue(mapper.writeValueAsString(dashboard));
       }
     }
   }
   
   private String dashboardProperty(Dashboard dashboard) {
-    return "dashboard.widgets." + user + "." + dashboard.getId();
+    return dashboardPropertyPrefix + "." + dashboard.getId();
   }
   
   public void create() throws IOException {
@@ -149,9 +154,9 @@ public class DashboardBean implements Serializable {
   }
   
   public void restore() throws IOException {
-    List<ICustomProperty> properties = Ivy.wf().getApplication().customProperties().findAllStartingWith(dashboardProperty(selectedDashboard));
+    List<ICustomProperty> properties = customProperties().findAllStartingWith(dashboardProperty(selectedDashboard));
     for (ICustomProperty property : properties) {
-      Ivy.wf().getApplication().customProperties().delete(property.getName());
+      customProperties().delete(property.getName());
     }
     List<Dashboard> defaultDashboards = defaultDashboards();
     selectedDashboard = defaultDashboards.get(defaultDashboards.indexOf(selectedDashboard));
@@ -189,19 +194,19 @@ public class DashboardBean implements Serializable {
   }
   
   private WidgetSample taskSample() {
-    return new WidgetSample("Task List", DashboardWidgetType.TASK, "task-widget-prototype.png");
+    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskList"), DashboardWidgetType.TASK, "task-widget-prototype.png");
   }
   
   private WidgetSample caseSample() {
-    return new WidgetSample("Case List", DashboardWidgetType.CASE, "case-widget-prototype.png");
+    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/caseList"), DashboardWidgetType.CASE, "case-widget-prototype.png");
   }
   
   private WidgetSample statisticSample() {
-    return new WidgetSample("Statistic Widget", DashboardWidgetType.STATISTIC, "statistic-widget-prototype.png");
+    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/statisticWidget"), DashboardWidgetType.STATISTIC, "statistic-widget-prototype.png");
   }
   
   private WidgetSample processSample() {
-    return new WidgetSample("Process List", DashboardWidgetType.PROCESS, "process-widget-prototype.png");
+    return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processList"), DashboardWidgetType.PROCESS, "process-widget-prototype.png");
   }
   
   public DashboardWidget getTaskWidget() {
@@ -230,5 +235,17 @@ public class DashboardBean implements Serializable {
   
   public boolean getCanEdit() {
     return canEdit;
+  }
+  
+  public String getSwitchButtonText() {
+    return isReadOnlyMode ? switchEditModeText : switchViewModeText;
+  }
+  
+  private String translate(String cms) {
+    return Ivy.cms().co(cms);
+  }
+  
+  private ICustomProperties customProperties() {
+    return Ivy.wf().getApplication().customProperties();
   }
 }

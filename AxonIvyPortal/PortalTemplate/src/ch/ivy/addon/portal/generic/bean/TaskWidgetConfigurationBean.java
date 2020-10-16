@@ -17,10 +17,9 @@ import org.primefaces.event.ToggleEvent;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
-import ch.ivy.addon.portalkit.dto.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.UserDTO;
+import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.enums.TaskColumn;
-import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -29,7 +28,7 @@ import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
 @ManagedBean
 @ViewScoped
-public class TaskWidgetConfigurationPrototypeBean {
+public class TaskWidgetConfigurationBean {
   private List<TaskState> filteredStates;
   private List<WorkflowPriority> priorities;
   private UserDTO selectedUser;

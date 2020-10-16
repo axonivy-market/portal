@@ -28,7 +28,7 @@ Ts0 f0 @|UdInitIcon #fIcon
 Ts0 f1 243 51 26 26 0 12 #rect
 Ts0 f1 @|UdProcessEndIcon #fIcon
 Ts0 f2 109 64 243 64 #arcP
->Proto Ts0 .type ch.ivy.addon.portal.generic.prototype.TaskWidget.TaskWidgetData #txt
+>Proto Ts0 .type ch.ivy.addon.portal.generic.dashboard.TaskWidget.TaskWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
 >Proto Ts0 '' #fIcon
