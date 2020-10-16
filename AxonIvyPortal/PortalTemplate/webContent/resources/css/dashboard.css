@@ -1,0 +1,241 @@
+.new-widget-dialog__content .ui-grid.ui-grid-responsive {
+  padding: 0;
+  border: none;
+}
+
+.new-widget-dialog__item {
+  text-align: center;
+}
+
+.ui-resizable-handle {
+  color: var(- -primary-color);
+}
+
+.card {
+  padding: 0;
+}
+
+.ui-draggable:not(.ui-draggable-disabled)>.ui-draggable-handle {
+  cursor: move;
+}
+
+.dashboard__switch-mode {
+  top: 10px;
+  float: right;
+  z-index: 995;
+}
+
+.dashboard__tab-title {
+  font-size: 18px;
+}
+
+.dashboard__tab-title--one-dashboard {
+  border: none !important;
+}
+
+.dashboard__tab-title--one-dashboard > a {
+  color: black !important;
+}
+
+.dashboard__widget {
+  display: flex;
+  flex-direction: column;
+}
+
+.widget__header {
+  flex: 0 0 30px;
+  padding: 10px;
+  font-size: 18px;
+  border-bottom: 2px solid lightgrey;
+  font-weight: bold;
+}
+
+.widget__header-actions {
+  float: right;
+}
+
+.widget__content {
+  flex: auto;
+  overflow: auto;
+  margin-bottom: 20px;
+  padding: 10px;
+}
+
+.actions-widget {
+  text-align: center;
+  padding-top: 4px;
+}
+
+.action-widget__add-button {
+  margin-bottom: 5px;
+}
+
+
+.task-configuration {
+	margin-top: 10px;
+}
+
+.prototype.task-widget-panel .task-name {
+	display: inline;
+}
+
+.prototype.task-widget-panel .action-panel {
+	display: inline;
+}
+
+.prototype.task-widget-panel .action-panel .fa {
+	float: right;
+	color: white;
+	margin: 0 5px;
+}
+
+.task-widget-header-main {
+	margin: 10px 10px 0 10px;	
+}
+
+.dashboard-tasks-container__columns-configuration {
+  text-align: right;
+  margin-bottom: 10px;
+}
+
+.dashboard-tasks__start, .dashboard-tasks__priority, .dashboard-tasks__id, .dashboard-tasks__responsible, .dashboard-tasks__created-date, .dashboard-tasks__expiry-date {
+  text-align: center;
+}
+
+/* .dashboard-tasks__start .ui-column-title { */
+/* 	position: relative; */
+/* 	top: -11px; */
+/* } */
+
+.dashboard-tasks__start .fa {
+  text-align: center;
+  display: block;
+}
+
+.dashboard-tasks__priority i {
+  font-size: 18px;
+  display: block;
+}
+
+.dashboard-tasks__priority--exception i {
+  color: red;
+}
+
+.prototype-task-table .default-column {
+	max-width: 300px;
+	width: 300px;
+}
+
+.dashboard-tasks__state-text {
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 1.2rem;
+  width: fit-content;
+  padding: 2px 5px;
+}
+
+.dashboard-tasks__state-text--open,
+.dashboard-tasks__state-text--suspended {
+  background: #DADADA;
+  border: 1.5px solid #DADADA;
+}
+
+.dashboard-tasks__state-text--resumed {
+  background: #FFE896;
+  border: 1.5px solid #FFE896;
+}
+
+.dashboard-tasks__state-text--done {
+  background: #D4EBA2;
+  border: 1.5px solid #D4EBA2;
+}
+
+.dashboard-tasks__state-text--parked {
+  background: #FCC3C3;
+  border: 1.5px solid #FCC3C3;
+}
+
+.task-configuration.card {
+	width: 450px;
+	padding: 20px 15px;
+	margin-right: 20px;
+	border-right: solid 1px var(--ivy-primary-color-grey-light);
+}
+
+.task-configuration__input-text {
+	float: right;
+	width: 90%;
+}
+
+body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu {
+	float: right;
+	background-image: none;
+	width: 90%;
+}
+
+body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
+	top: 5px;
+}
+
+.task-configuration__calendar {
+	float: right;
+	width: 90%;
+	height: 20px;
+}
+
+.task-configuration__calendar input {
+	width: 100%;
+}
+
+.task-configuration__calendar .ui-datepicker-trigger {
+	top: -23px !important;
+	right: -92% !important;
+}
+
+.task-configuration__calendar .ui-button-text {
+	line-height: normal !important;
+}
+
+.task-configuration__column-picker.ui-picklist .ui-picklist-list {
+	width: 190px;
+}
+
+.task-preview {
+	width: calc(100% - 470px);
+	align-items: flex-start;
+	align-self: stretch;
+	padding: 10px !important;
+}
+
+.task-preview__header {
+	margin: 0;
+}
+
+.task-configuration__select-one-menu {
+	float: right;
+	width: 90% !important;
+}
+
+.task-configuration__user-selection > span {
+	width: 90%;
+	float: right;
+}
+
+.task-configuration__user-selection .ui-autocomplete-input {
+	width: 100%;
+}
+
+/* .task-configuration__form { */
+/* 	height: 650px; */
+/* 	overflow-y: auto; */
+/* 	overflow-x: hidden; */
+/* } */
+
+.task-configuration__responsibles.ui-autocomplete {
+  width: 90%;
+  float: right;
+}
+
+.task-configuration__responsibles.ui-autocomplete .ui-inputfield {
+  width: 100%;
+}

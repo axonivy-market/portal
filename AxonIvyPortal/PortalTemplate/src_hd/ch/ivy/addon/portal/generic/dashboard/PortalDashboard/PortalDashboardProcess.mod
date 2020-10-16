@@ -46,7 +46,7 @@ Ps0 f4 211 147 26 26 0 12 #rect
 Ps0 f4 @|UdExitEndIcon #fIcon
 Ps0 f5 109 160 211 160 #arcP
 Ps0 f2 109 64 211 64 #arcP
->Proto Ps0 .type ch.ivy.addon.portal.generic.PortalDashboard.PortalDashboardData #txt
+>Proto Ps0 .type ch.ivy.addon.portal.generic.dashboard.PortalDashboard.PortalDashboardData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
 >Proto Ps0 '' #fIcon

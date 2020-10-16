@@ -1,10 +1,15 @@
-package ch.ivy.addon.portalkit.dto;
+package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.io.Serializable;
+
+import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
+
+import ch.ivyteam.ivy.environment.Ivy;
+
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
@@ -46,6 +51,9 @@ public abstract class DashboardWidget implements Serializable {
   }
 
   public String getName() {
+    if (StringUtils.startsWithIgnoreCase(name, "cms:")) {
+      return Ivy.cms().co(StringUtils.removeStart(name, "cms:"));
+    }
     return name;
   }
 

@@ -1,4 +1,4 @@
-package ch.ivy.addon.portalkit.dto;
+package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,6 +17,8 @@ public class TaskDashboardWidget extends DashboardWidget {
   private static final long serialVersionUID = 3048837559125720787L;
 
   private List<String> taskColumns;
+  private String sortField;
+  private boolean sortAscending;
   
   @JsonIgnore
   private DashboardTaskLazyDataModel dataModel;
@@ -130,6 +132,22 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   public void setTaskColumns(List<String> taskColumns) {
     this.taskColumns = taskColumns;
+  }
+  
+  public String getSortField() {
+    return sortField;
+  }
+  
+  public void setSortField(String sortField) {
+    this.sortField = sortField;
+  }
+  
+  public boolean isSortAscending() {
+    return sortAscending;
+  }
+  
+  public void setSortAscending(boolean sortAscending) {
+    this.sortAscending = sortAscending;
   }
 
   public DashboardTaskLazyDataModel getDataModel() {

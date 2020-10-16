@@ -1,9 +1,13 @@
-package ch.ivy.addon.portalkit.dto;
+package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
+
+import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class Dashboard implements Serializable {
@@ -31,6 +35,9 @@ public class Dashboard implements Serializable {
   }
   
   public String getTitle() {
+    if (StringUtils.startsWithIgnoreCase(title, "cms:")) {
+      return Ivy.cms().co(StringUtils.removeStart(title, "cms:"));
+    }
     return title;
   }
 
