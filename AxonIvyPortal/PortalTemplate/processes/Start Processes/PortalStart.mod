@@ -908,7 +908,7 @@ Pt0 f83 actionCode 'import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.bpm.error.BpmError;
 
 ITask task = ivy.wf.findTask(in.endedTaskId);
-if (!in.callbackUrl.startsWith("/" + task.getApplication().getName() + "/")) {
+if (!in.callbackUrl.startsWith(task.getApplication().getContextPath())) {
   BpmError.create("frame:unsupported:url").withMessage("only relative urls are supported (security reasons)").throwError();
 }' #txt
 Pt0 f83 security system #txt
