@@ -168,9 +168,8 @@
     resizable="false" appendTo="@(body)" responsive="true">
     <c:if test="#{data == null or data.isAllowedToCreateChart}">
       <h:form id="add-statistic-form">
-
+        <p:messages id="names-messages" />
         <h:panelGrid id="chart-name-input-container" columns="1" styleClass="ui-g-12">
-          
           <ui:repeat var="name" value="#{data.chartNames}">
             <h:panelGroup styleClass="md-inputfield add-statistic-panel ui-fluid">
               <p:inputText id="chart-name-input" value="#{name.value}" required="true" maxlength="200" />
