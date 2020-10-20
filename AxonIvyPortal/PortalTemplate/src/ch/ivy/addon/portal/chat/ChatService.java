@@ -602,7 +602,12 @@ public class ChatService {
         if (isHistoryEntryRelatedToCurrentRequest(clientId, currentHistoryEntry)) {
           lastUnhandledHistoryEntry = currentHistoryEntry;
         }
-        currentHistoryEntry = it.next();
+        try {
+          currentHistoryEntry = it.next();
+        } catch (ClassCastException e) {
+          log().info("PMV could be redeployed", e);
+          continue;
+        }
         if (lastResponseId.equals(currentHistoryEntry.getId())) {
           break;
         }
