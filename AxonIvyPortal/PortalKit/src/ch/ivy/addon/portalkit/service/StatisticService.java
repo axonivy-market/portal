@@ -112,9 +112,11 @@ import ch.ivy.addon.portalkit.bo.ExpiryStatistic;
 import ch.ivy.addon.portalkit.bo.PriorityStatistic;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.statistics.Colors;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
@@ -131,7 +133,6 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class StatisticService extends BusinessDataService<StatisticChart> {
 
-  private static final String CHART_NAME = "name";
   private static final String CHART_LEGEND_POSITION_LEFT = "left";
   private static final String CHART_LEGEND_POSITION_BOTTOM = "bottom";
   private static StatisticColors statisticColors = new StatisticColors();
@@ -742,20 +743,21 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    * Add statistic chart to business data
    * 
    * @param filter filter to generate json query for statistic chart
-   * @param chartName chart name
+   * @param chartNames chart names
    * @param chartType chart type
    * @param creatorId Id of the creator
    * @param isDefault is a default chart
    * @return Added statistic chart
    * @throws InterruptedException 
    */
-  public StatisticChart createStatisticChart(StatisticFilter filter, String chartName, StatisticChartType chartType,
+  public StatisticChart createStatisticChart(StatisticFilter filter, List<DisplayName> chartNames, StatisticChartType chartType,
       long creatorId, boolean isDefault) throws InterruptedException {
     StatisticChart statisticChart = new StatisticChart();
 
+    updateChartNamesMap(chartNames);
     statisticChart.setUserId(creatorId);
     statisticChart.setType(chartType);
-    statisticChart.setName(Optional.ofNullable(chartName).orElse("New chart"));
+    statisticChart.setNames(chartNames);
     statisticChart.setPosition(countStatisticChartsByUserId(creatorId));
     statisticChart.setDefaultChart(String.valueOf(isDefault));
 
@@ -782,6 +784,18 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       Thread.sleep(200);
     }
     return null;
+  }
+
+  private void updateChartNamesMap(List<DisplayName> chartNames) {
+    if (chartNames == null) {
+      chartNames = new ArrayList<>();
+    }
+
+    for (DisplayName chartName : chartNames) {
+      if (StringUtils.isBlank(chartName.getValue())) {
+        chartName.setValue("new chart");
+      }
+    }
   }
 
   private DonutChartModel createDonutChartModel(Map<String, Number> chartData) {
@@ -1163,7 +1177,17 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
         default:
           break;
       }
+
+      DisplayName currentDisplayName = getDisplayNameInUserLanguageForChart(statisticChart);
+      statisticChart.setName(currentDisplayName.getValue());
     }
+  }
+
+  public DisplayName getDisplayNameInUserLanguageForChart(StatisticChart statisticChart) {
+    DisplayName currentDisplayName = statisticChart.getNames().stream()
+        .filter(name -> StringUtils.equals(name.getLocale().toLanguageTag(), LanguageService.newInstance().findUserLanguages().getIvyLanguage().getUserLanguage()))
+        .findFirst().get();
+    return currentDisplayName;
   }
 
   /**
@@ -1354,7 +1378,16 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     newStatisticChart.setId(selectedChart.getId() + "_" + selectedValue); // chart with format: id + _ + suffix is lower
                                                                           // level (month/week/day/hour) chart when
                                                                           // drill down
-    newStatisticChart.setName(selectedChart.getName() + " - " + selectedValue);
+
+    List<DisplayName> newNames = new ArrayList<>();
+    for (DisplayName name : selectedChart.getNames()) {
+      DisplayName newName = new DisplayName();
+      newName.setLocale(name.getLocale());
+      newName.setValue(name.getValue().concat(" - ").concat(selectedValue));
+      newNames.add(newName);
+    }
+
+    newStatisticChart.setNames(newNames);
     newStatisticChart.setFilter(selectedChart.getFilter());
     newStatisticChart.setType(StatisticChartType.TASK_BY_EXPIRY);
     newStatisticChart.setUserId(selectedChart.getUserId());
@@ -1387,9 +1420,13 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     }
   }
 
-  public boolean checkStatisticChartNameExisted(long userId, String chartName) {
-   return repo().search(getType()).numberField(USER_ID).isEqualTo(userId)
-       .and().textField(CHART_NAME).isEqualToIgnoringCase(chartName).limit(1).execute().count() > 0;
+  public boolean checkStatisticChartNameExisted(long userId, String chartName, String language) {
+    List<StatisticChart> foundCharts = Optional.ofNullable(repo().search(getType()).numberField(USER_ID).isEqualTo(userId).execute().getAll()).orElse(new ArrayList<>());
+    return foundCharts.stream()
+        .filter(chart -> chart.getNames().stream()
+            .filter(name -> StringUtils.equals(name.getLocale().toLanguageTag(), language) && StringUtils.equals(name.getValue(), chartName))
+            .count() > 0)
+        .count() > 0;
   }
 
   public void removeStatisticChartsByUserId(long userId) throws InterruptedException {
@@ -1414,13 +1451,22 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return statisticCharts.stream().anyMatch(chart -> StringUtils.equalsIgnoreCase("true", chart.getDefaultChart()));
   }
   
-  public boolean checkDefaultStatisticChartNameExisted(long userId, String chartName) {
-   return checkStatisticChartNameExisted(userId, chartName);
-  }
-  
-  public StatisticChart findStatisticChartByUserIdAndChartName(long userId, String chartName) {
-    return repo().search(getType()).numberField(USER_ID).isEqualTo(userId)
-        .and().textField(CHART_NAME).isEqualToIgnoringCase(chartName).limit(1).execute().getFirst();
+  public boolean checkDefaultStatisticChartNameExisted(long userId, String chartName, String language) {
+    return checkStatisticChartNameExisted(userId, chartName, language);
+   }
+
+  public StatisticChart findStatisticChartByUserIdAndChartNameAndLanguage(long userId, String chartName, String language) {
+    List<StatisticChart> foundCharts = Optional.ofNullable(repo().search(getType()).numberField(USER_ID).isEqualTo(userId).execute().getAll()).orElse(new ArrayList<>());
+    for (StatisticChart chart : foundCharts) {
+      String displayChartName = chart.getNames().stream()
+          .filter(name -> StringUtils.equals(name.getLocale().toLanguageTag(), language))
+          .findFirst().orElse(new DisplayName()).getValue();
+
+      if (StringUtils.equals(displayChartName, chartName)) {
+        return chart;
+      }
+    }
+    return null;
   }
 
   public boolean isSame(List<StatisticChart> first, List<StatisticChart> second) {
@@ -1431,15 +1477,42 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   }
 
   public List<StatisticChart> addListByDistinctCharts(List<StatisticChart> targetList, List<StatisticChart> newList) {
-    List<StatisticChart> distinctChart = new ArrayList<StatisticChart>(targetList);
-    List<String> distinctChartNameList = CollectionUtils.emptyIfNull(targetList)
-        .stream()
-        .map(StatisticChart::getName)
-        .collect(Collectors.toList());
+    if (CollectionUtils.isEmpty(newList)) {
+      return targetList;
+    }
 
-    distinctChart.addAll(CollectionUtils.emptyIfNull(newList).stream()
-        .filter(chart -> !distinctChartNameList.contains(chart.getName()))
-        .collect(Collectors.toList()));
+    List<DisplayName> allDisplayNameList = targetList.stream()
+        .map(StatisticChart::getNames)
+        .collect(ArrayList::new, List::addAll, List::addAll);
+
+    allDisplayNameList.addAll(newList.stream()
+        .map(StatisticChart::getNames)
+        .collect(ArrayList::new, List::addAll, List::addAll));
+
+    List<DisplayName> distinctChartNameList = new ArrayList<>();
+    for (DisplayName name : allDisplayNameList) {
+      if (distinctChartNameList.stream()
+          .filter(distinctName -> StringUtils.equals(distinctName.getLocale().toLanguageTag(), name.getLocale().toLanguageTag()) && StringUtils.equals(distinctName.getValue(), name.getValue()))
+          .findFirst().isPresent()) {
+        continue;
+      }
+      distinctChartNameList.add(name);
+    }
+
+    List<StatisticChart> distinctChart = new ArrayList<StatisticChart>(targetList);
+    if (CollectionUtils.isNotEmpty(distinctChartNameList)) {
+      for(StatisticChart newChart : newList) {
+        if (newChart.getNames().stream()
+            .filter(name -> distinctChartNameList.stream().filter(distinctName -> StringUtils.equals(distinctName.getLocale().toLanguageTag(), name.getLocale().toLanguageTag()) && StringUtils.equals(distinctName.getValue(), name.getValue())).findFirst().isPresent())
+            .findFirst().isPresent()) {
+          continue;
+        }
+        distinctChart.add(newChart);
+      }
+    } else {
+      distinctChart.addAll(newList);
+    }
     return distinctChart;
+
   }
 }
