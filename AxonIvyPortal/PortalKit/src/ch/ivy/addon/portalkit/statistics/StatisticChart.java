@@ -1,6 +1,8 @@
 package ch.ivy.addon.portalkit.statistics;
 
 
+import java.util.List;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.primefaces.model.charts.bar.BarChartModel;
@@ -8,11 +10,12 @@ import org.primefaces.model.charts.donut.DonutChartModel;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 
 public class StatisticChart {
   private String id;
-  private String name;
+  private List<DisplayName> names;
   private long userId;
   private String defaultChart;
   private StatisticChartType type;
@@ -25,6 +28,9 @@ public class StatisticChart {
   @JsonIgnore
   private BarChartModel barChartModel;
 
+  @JsonIgnore
+  private String name;
+
   public String getId() {
     return id;
   }
@@ -33,12 +39,12 @@ public class StatisticChart {
     this.id = id;
   }
 
-  public String getName() {
-    return name;
+  public List<DisplayName> getNames() {
+    return names;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setNames(List<DisplayName> names) {
+    this.names = names;
   }
 
   public long getUserId() {
@@ -110,5 +116,13 @@ public class StatisticChart {
     HashCodeBuilder builder = new HashCodeBuilder();
     builder.append(getId());
     return builder.hashCode();
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 }
