@@ -56,7 +56,7 @@ HowTo: Create chart
 
 6. The :guilabel:`Add statistic chart to dashboard` dialog is opened
 
-7. Enter a unique name for the chart
+7. Enter unique names in supported languages for the chart
 
 8. Create the chart with the button **OK**
 
