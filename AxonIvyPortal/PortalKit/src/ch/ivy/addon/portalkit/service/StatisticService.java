@@ -1481,6 +1481,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       return targetList;
     }
 
+    if (CollectionUtils.isEmpty(targetList)) {
+      return new ArrayList<>(newList);
+    }
+
     List<DisplayName> allDisplayNameList = targetList.stream()
         .map(StatisticChart::getNames)
         .collect(ArrayList::new, List::addAll, List::addAll);
