@@ -1,7 +1,7 @@
 package ch.ivy.addon.portal.generic.navigation;
 
+import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 
 import org.primefaces.PrimeFaces;
 
@@ -20,8 +20,8 @@ public final class PortalNavigatorInFrame {
     PrimeFaces.current().executeScript(statement);
   }
 
-  public static void navigateToUrl(String url) {
-    String statement = "parent.redirectToUrlCommand([{name: 'url', value: '" + URLDecoder.decode(url, StandardCharsets.UTF_8) + "'}])";
+  public static void navigateToUrl(String url) throws UnsupportedEncodingException {
+    String statement = "parent.redirectToUrlCommand([{name: 'url', value: '" + URLDecoder.decode(url, "UTF-8") + "'}])";
     PrimeFaces.current().executeScript(statement);
   }
 }
