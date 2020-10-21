@@ -40,7 +40,6 @@ import javax.ws.rs.core.Response;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.GsonBuilder;
@@ -364,13 +363,10 @@ public class ChatService {
 
   public synchronized void performUpdatingGroupList(GroupChat groupChat) {
     Iterator<Entry<String, List<GroupChat>>> it = usernameToGroupChats.entrySet().iterator();
-    log().warn("===groupChat {0}", ToStringBuilder.reflectionToString(groupChat)); //TODO z1 remove soon
     Set<String> groupUserNames = ChatGroupUtils.getAllUsersFromUserIdsAndRoleNames(groupChat.getAssigneeNames());
-    log().warn("===groupUserNames {0}", ToStringBuilder.reflectionToString(groupUserNames));//TODO z1 remove soon
     while (it.hasNext()) {
       Entry<String, List<GroupChat>> pair = it.next();
       String userName = pair.getKey();
-      log().warn("===userName {0}", userName);//TODO z1 remove soon
       if (groupUserNames.contains(userName)) {
         List<GroupChat> groupChats = pair.getValue();
         groupChats.add(groupChat);
@@ -602,7 +598,12 @@ public class ChatService {
         if (isHistoryEntryRelatedToCurrentRequest(clientId, currentHistoryEntry)) {
           lastUnhandledHistoryEntry = currentHistoryEntry;
         }
-        currentHistoryEntry = it.next();
+        try {
+          currentHistoryEntry = it.next();
+        } catch (ClassCastException e) {
+          log().info("PMV could be redeployed", e);
+          continue;
+        }
         if (lastResponseId.equals(currentHistoryEntry.getId())) {
           break;
         }
