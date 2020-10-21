@@ -327,7 +327,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   private boolean isSortedDescendingByDefault() {
-    String defaultSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfCaseList();
+    String defaultSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfTaskList();
     if (StringUtils.isBlank(defaultSortDirection)) {
       GlobalSettingService globalSettingService = new GlobalSettingService();
       defaultSortDirection = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST.name());
