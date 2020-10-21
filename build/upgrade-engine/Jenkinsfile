@@ -12,8 +12,8 @@ pipeline {
 
   parameters {
       choice(name: 'engine', choices: ['singleAppEngine', 'multiAppsEngine', 'performanceTestEngine'], description: 'Which engine to be upgraded?')
-      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/sprint/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
-        -Divy.engine.download.url=-Divy.engine.download.url=https://developer.axonivy.com/permalink/sprint/axonivy-engine-windows.zip for sprint release master
+      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
+        -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip for nightly master
         -Divy.engine.list.url=https://jenkins.ivyteam.io/job/ivy-core_product/job/master/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 for last successful build master
         -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
       ''')
@@ -58,19 +58,17 @@ pipeline {
       agent {label nodeToExecute}
       steps {
         script {
+          def utils = load 'build/common/utils.groovy'
+          utils.stopWindowsService(serviceName)
           bat """
             echo ====================Backup data to restore in case build fails====================
             xcopy /s/y/h/e/k/i/q ${engineDir} ${engineBackupDir}\\${engineName}-${today}
-            echo ====================Stop engine====================
-            sc query "${serviceName}" | find /i "RUNNING"
-            if not "%ERRORLEVEL%"=="1" ( net stop "${serviceName}" )
             echo ====================Rename current engine folder====================
             if exist ${renamedEngineDir} rmdir /s /q ${renamedEngineDir}
             :repeat
             ren "${engineDir}" "${engineName}-bk" || goto :repeat
-            echo ====================Extract engine====================
-            mvn clean compile -f AxonIvyPortal/PortalTest/pom.xml -Divy.engine.directory=${engineDir} %engineDownloadURL%
           """
+          utils.extractEngine(engineDir, params.engineDownloadURL)
           bat """
             echo ====================Copy license, configuration files====================
             copy /D/Y ${renamedEngineDir}\\configuration\\*.lic ${engineDir}\\configuration
@@ -83,10 +81,7 @@ pipeline {
             }
             copy -path ${renamedEngineDir}\\misc\\iis -recurse -force -destination ${engineDir}\\misc
           """
-          bat """
-            echo ====================Start engine====================
-            net start "${serviceName}"
-          """
+          utils.startWindowsService(serviceName)
         }
       }
     }
