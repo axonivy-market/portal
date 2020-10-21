@@ -20,6 +20,7 @@
 
       <script type="text/javascript">
               var userName = "#{ivy.session.getSessionUserName()}";
+              var contextPath = "#{ivy.task.getApplication().getContextPath()}";
               var resource = new IvyUri().rest() + "/chat";
               var isChatGroupEnabled = "#{chatRendererBean.isGroupChatRendered}";
               var isChatPrivateEnabled = "#{chatRendererBean.isPrivateChatRendered}";
