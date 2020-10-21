@@ -162,24 +162,23 @@
     resizable="false" appendTo="@(body)" responsive="true">
     <c:if test="#{data == null or data.isAllowedToCreateChart}">
       <h:form id="add-statistic-form">
-
-        <h:panelGrid columns="1" styleClass="ui-g-12">
-          <p:messages for="chart-name-input">
-            <p:autoUpdate />
-          </p:messages>
-          <h:panelGroup styleClass="md-inputfield add-statistic-panel ui-fluid">
-            <p:inputText id="chart-name-input" value="#{data.chartName}" required="true" maxlength="200" />
-            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" for="chart-name-input" />
-          </h:panelGroup>
+        <p:messages id="names-messages" />
+        <h:panelGrid id="chart-name-input-container" columns="1" styleClass="ui-g-12">
+          <ui:repeat var="name" value="#{data.chartNames}">
+            <h:panelGroup styleClass="md-inputfield add-statistic-panel ui-fluid">
+              <p:inputText id="chart-name-input" value="#{name.value}" required="true" maxlength="200" />
+              <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')} #{name.locale.getDisplayLanguage()}" for="chart-name-input" />
+            </h:panelGroup>
+          </ui:repeat>
         </h:panelGrid>
 
         <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
           <p:commandButton id="chart-save-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="add-statistic-form"
-            update="chart-name-input add-statistic-form" actionListener="#{logic.createStatisticChart(cc.attrs.statisticChartList)}"
+            update="chart-name-input-container add-statistic-form" actionListener="#{logic.createStatisticChart(cc.attrs.statisticChartList)}"
             oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('add-chart-dialog').hide();}" />
           <p:spacer width="5px" />
           <p:commandButton type="button" styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
-            <p:ajax event="click" global="false" update="chart-name-input" listener="#{logic.clearChartInput}"
+            <p:ajax event="click" global="false" update="chart-name-input-container" listener="#{logic.clearChartInput}"
               oncomplete="PF('add-chart-dialog').hide();" />
           </p:commandButton>
         </h:panelGroup>
