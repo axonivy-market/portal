@@ -20,6 +20,7 @@ import portal.guitest.common.WaitHelper;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
+import portal.guitest.page.UserProfilePage;
 
 public class StatisticWidgetTest extends BaseTest {
   private static final String TASK_BY_PRIORITY_DEFAULT_CHART_NAME = "Tasks by Priority";
@@ -105,5 +106,27 @@ public class StatisticWidgetTest extends BaseTest {
     redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
   }
 
+  @Test
+  public void testChartNameMultiLanguage() {
+    resetLanguageOfCurrentUser();
+    grantPermissionToCreateChart();
+    mainMenuPage = homePage.openMainMenu();
+    statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
+
+    statisticWidgetPage.switchCreateMode();
+    statisticWidgetPage.createTaskByPriorityChartMultiLanguage();
+
+    statisticWidgetPage.backToDashboard();
+    WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='1:chart-name-container'] .chart-name").getText().equals("Task by priority chart English"));
+
+    UserProfilePage userProfilePage = statisticWidgetPage.openMyProfilePage();
+    userProfilePage.selectLanguage(0);
+    userProfilePage.save();
+
+    mainMenuPage = userProfilePage.openMainMenu();
+    statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
+    WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='1:chart-name-container'] .chart-name").getText().equals("Task by priority chart German"));
+  }
 
 }
