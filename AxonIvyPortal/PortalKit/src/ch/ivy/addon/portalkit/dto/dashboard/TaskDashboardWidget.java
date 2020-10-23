@@ -2,9 +2,15 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
-import org.apache.commons.collections.CollectionUtils;
+import org.primefaces.event.ToggleEvent;
+import org.primefaces.event.data.SortEvent;
+import org.primefaces.model.Visibility;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -16,7 +22,7 @@ import ch.ivyteam.ivy.workflow.WorkflowPriority;
 public class TaskDashboardWidget extends DashboardWidget {
   private static final long serialVersionUID = 3048837559125720787L;
 
-  private List<String> taskColumns;
+  private Map<String, Boolean> columns;
   private String sortField;
   private boolean sortAscending;
   
@@ -25,6 +31,27 @@ public class TaskDashboardWidget extends DashboardWidget {
   
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
+    columns = new LinkedHashMap<>();
+    for (TaskColumn column : TaskColumn.values()) {
+      columns.put(column.toString().toLowerCase(), true);
+    }
+  }
+  
+  public void onSort(SortEvent event) {
+    setSortField(event.getSortColumn().getField());
+    setSortAscending(event.isAscending());
+  }
+  
+  public void onToggleColumns(ToggleEvent e) {
+    this.columns.put(columns.keySet().toArray(String[]::new)[(int) e.getData() - 1], e.getVisibility() == Visibility.VISIBLE);
+  }
+  
+  public boolean isRendered(String column) {
+    return this.columns.keySet().contains(column.toLowerCase());
+  }
+  
+  public boolean isVisible(String column) {
+    return this.columns.getOrDefault(column.toLowerCase(), false);
   }
   
   @Override
@@ -101,7 +128,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   }
 
   public void setExpiryDateFrom(Date expiryDateFrom) {
-    this.dataModel.setExpiryDateTo(expiryDateFrom);
+    this.dataModel.setExpiryDateFrom(expiryDateFrom);
   }
 
   public Date getExpiryDateTo() {
@@ -112,26 +139,25 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.dataModel.setExpiryDateTo(expiryDateTo);
   }
 
-  public String getCategory() {
-    return this.dataModel.getCategory();
+  public List<String> getCategories() {
+    return this.dataModel.getCategories();
   }
 
-  public void setCategory(String category) {
-    this.dataModel.setCategory(category);
+  public void setCategories(List<String> categories) {
+    this.dataModel.setCategories(categories);
+  }
+  
+  @JsonIgnore
+  public String getDisplayCategories() {
+    return Optional.ofNullable(getCategories()).orElse(new ArrayList<>()).stream().collect(Collectors.joining(", "));
+  }
+  
+  public Map<String, Boolean> getColumns() {
+    return columns;
   }
 
-  public List<String> getTaskColumns() {
-    if (CollectionUtils.isEmpty(taskColumns)) {
-      taskColumns = new ArrayList<>();
-      for(TaskColumn column : TaskColumn.values()) {
-        taskColumns.add(column.toString());
-      }
-    }
-    return taskColumns;
-  }
-
-  public void setTaskColumns(List<String> taskColumns) {
-    this.taskColumns = taskColumns;
+  public void setColumns(Map<String, Boolean> columns) {
+    this.columns = columns;
   }
   
   public String getSortField() {

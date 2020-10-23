@@ -52,7 +52,6 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
       if (first == 0) {
         criteria.setSortField(sortField);
         criteria.setSortDescending(sortOrder == SortOrder.DESCENDING);
-        Ivy.log().error("abc {0}", sortField);
         query = criteria.buildQuery();
       }
       tasks = Ivy.wf().getTaskQueryExecutor().getResults(query, first, pageSize * (first <= pageSize ? QUERY_PAGES : QUERY_PAGES_AT_FIRST_TIME));
@@ -165,12 +164,12 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
     criteria.setExpiryTo(expiryDateTo);
   }
 
-  public String getCategory() {
-    return criteria.getCategory();
+  public List<String> getCategories() {
+    return criteria.getCategories();
   }
 
-  public void setCategory(String category) {
-    criteria.setCategory(category);
+  public void setCategories(List<String> categories) {
+    criteria.setCategories(categories);
   }
   
 }

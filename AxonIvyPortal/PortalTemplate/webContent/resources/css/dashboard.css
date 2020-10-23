@@ -98,14 +98,10 @@
   margin-bottom: 10px;
 }
 
-.dashboard-tasks__start, .dashboard-tasks__priority, .dashboard-tasks__id, .dashboard-tasks__responsible, .dashboard-tasks__created-date, .dashboard-tasks__expiry-date {
-  text-align: center;
+.dashboard-tasks__start, .dashboard-tasks__priority, .dashboard-tasks__id, 
+.dashboard-tasks__state, .dashboard-tasks__created-date, .dashboard-tasks__expiry-date {
+  text-align: center !important;
 }
-
-/* .dashboard-tasks__start .ui-column-title { */
-/* 	position: relative; */
-/* 	top: -11px; */
-/* } */
 
 .dashboard-tasks__start .fa {
   text-align: center;
@@ -225,12 +221,6 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 	width: 100%;
 }
 
-/* .task-configuration__form { */
-/* 	height: 650px; */
-/* 	overflow-y: auto; */
-/* 	overflow-x: hidden; */
-/* } */
-
 .task-configuration__responsibles.ui-autocomplete {
   width: 90%;
   float: right;
@@ -238,4 +228,9 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 
 .task-configuration__responsibles.ui-autocomplete .ui-inputfield {
   width: 100%;
+}
+
+.task-configuration__category-panel-footer {
+  margin-top: 5px;
+  text-align: right;
 }

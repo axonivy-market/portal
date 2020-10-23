@@ -33,12 +33,14 @@ import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetSample;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.loader.ResourceLoader;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.application.property.ICustomProperties;
 import ch.ivyteam.ivy.application.property.ICustomProperty;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
@@ -73,6 +75,7 @@ public class DashboardBean implements Serializable {
       dashboards = defaultDashboards();
       if (CollectionUtils.isNotEmpty(properties)) {
         for (ICustomProperty property : properties) {
+          Ivy.log().error("widget {0}", property.getValue());
           Dashboard d = mapper.readValue(property.getValue(), Dashboard.class);
           dashboards.set(dashboards.indexOf(d), d);
         }
@@ -108,6 +111,8 @@ public class DashboardBean implements Serializable {
     result.setWidth(8);
     result.setHeight(6);
     result.setAutoPosition(true);
+    result.setSortField(TaskSortField.ID.toString());
+    result.setSortAscending(false);
     result.setPriorities(new ArrayList<>(List.of(WorkflowPriority.LOW, WorkflowPriority.NORMAL, WorkflowPriority.HIGH, WorkflowPriority.EXCEPTION)));
     result.setStates(new ArrayList<>(List.of(TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE)));
     return result;
@@ -187,6 +192,10 @@ public class DashboardBean implements Serializable {
     isReadOnlyMode = !isReadOnlyMode;
   }
   
+  public void startTask(ITask task) throws IOException {
+    FacesContext.getCurrentInstance().getExternalContext().redirect(task.getStartLinkEmbedded().getRelative());
+  }
+  
   private Map<String, String> getRequestParameterMap() {
     Map<String, String> requestParamMap =
         FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
@@ -209,11 +218,11 @@ public class DashboardBean implements Serializable {
     return new WidgetSample(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/processList"), DashboardWidgetType.PROCESS, "process-widget-prototype.png");
   }
   
-  public DashboardWidget getTaskWidget() {
+  public DashboardWidget getWidget() {
     return widget;
   }
   
-  public void setTaskWidget(DashboardWidget widget) {
+  public void setWidget(DashboardWidget widget) {
     this.widget = widget;
   }
   
