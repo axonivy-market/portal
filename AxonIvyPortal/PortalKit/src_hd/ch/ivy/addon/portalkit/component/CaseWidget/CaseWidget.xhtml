@@ -153,20 +153,20 @@
               </h:form>
             </p:overlayPanel>
 
-          <!-- Reset filter button -->
-          <h:panelGroup id="reset-filter-button-container"
-            styleClass="reset-filter-button-container #{data.dataModel.selectedFilterData == null and !data.dataModel.isSelectedDefaultFilter() and !cc.attrs.isTechnicalCaseView ? 'filter-reset-action filter-add-container' : ''}"
-            layout="block">
-            <p:commandLink id="filter-reset-action"
-              rendered="#{data.dataModel.selectedFilterData == null and !data.dataModel.isSelectedDefaultFilter() and !cc.attrs.isTechnicalCaseView}"
-              styleClass="u-hidden-md-down js-filter-reset-action" onclick="PF('reset-filter-set-dialog').show();"
-              global="false">
-              <span class="icon ivyicon-button-refresh-arrows u-mar-right-5" />
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" />
-            </p:commandLink>
-          </h:panelGroup>
+            <!-- Reset filter button -->
+            <h:panelGroup id="reset-filter-button-container"
+              styleClass="reset-filter-button-container #{data.dataModel.selectedFilterData == null and !data.dataModel.isSelectedDefaultFilter() and !cc.attrs.isTechnicalCaseView ? 'filter-reset-action filter-add-container' : ''}"
+              layout="block">
+              <p:commandLink id="filter-reset-action"
+                rendered="#{data.dataModel.selectedFilterData == null and !data.dataModel.isSelectedDefaultFilter() and !cc.attrs.isTechnicalCaseView}"
+                styleClass="u-hidden-md-down js-filter-reset-action" onclick="PF('reset-filter-set-dialog').show();"
+                global="false">
+                <span class="icon ivyicon-button-refresh-arrows u-mar-right-5" />
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" />
+              </p:commandLink>
+            </h:panelGroup>
 
-          <!-- Save filter button -->
+            <!-- Save filter button -->
             <p:commandButton id="filter-save-action"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" styleClass="filter-add-button u-hidden-md-down js-filter-save-action"
               icon="#{visibilityBean.generateButtonIcon('icon ivyicon-floppy-disk')}" update="save-filter-set-dialog" resetValues="true"
