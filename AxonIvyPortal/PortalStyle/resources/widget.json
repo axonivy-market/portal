@@ -12,7 +12,7 @@
 				"height": 12,
 				"priorities": ["LOW","NORMAL","HIGH","EXCEPTION"],
 				"states": ["CREATED","SUSPENDED","RESUMED","PARKED","DONE"],
-				"sortField": "ID"
+				"sortField": "name"
 			},
 			{
 				"type": "process",

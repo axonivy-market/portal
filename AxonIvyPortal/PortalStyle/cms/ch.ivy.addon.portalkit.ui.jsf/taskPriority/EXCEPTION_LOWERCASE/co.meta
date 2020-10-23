@@ -1,2 +1,5 @@
-co: name={EXCEPTION_LOWERCASE} description={} changed={2020-06-16 06:55:21 CEST} changedby={mnhnam} visualorder={0} guid={172BB7B54CD75D4B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={EXCEPTION_LOWERCASE} description={} changed={2020-10-20 05:35:57 CEST} changedby={dhtlong} visualorder={0} guid={172BB7B54CD75D4B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={172BB7B54D0DE670} datatype={} isdefault={true} langid={en} description={} validfrom={2020-06-16 06:55:21 CEST} validto={} changed={2020-06-16 06:55:21 CEST} changedby={mnhnam} properties={} id={}
+val: guid={1754413EBAD4836C} datatype={} isdefault={false} langid={de} description={} validfrom={2020-10-20 05:35:36 CEST} validto={} changed={2020-10-20 05:35:57 CEST} changedby={dhtlong} properties={} id={}
+val: guid={1754413EC3CB9178} datatype={} isdefault={false} langid={es} description={} validfrom={2020-10-20 05:35:38 CEST} validto={} changed={2020-10-20 05:35:57 CEST} changedby={dhtlong} properties={} id={}
+val: guid={1754413EC67B7DBF} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-10-20 05:35:34 CEST} validto={} changed={2020-10-20 05:35:57 CEST} changedby={dhtlong} properties={} id={}
