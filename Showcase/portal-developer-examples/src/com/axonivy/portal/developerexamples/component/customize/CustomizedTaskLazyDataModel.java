@@ -12,6 +12,8 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
 
+  public static final String CUSTOM_TIMESTAMP_FIELD12 = "customTimestampField1";
+  public static final String CUSTOM_VAR_CHAR_FIELD5 = "customVarCharField5";
   private static final long serialVersionUID = 7996851327481047161L;
 
   public CustomizedTaskLazyDataModel() {
@@ -27,13 +29,13 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
   // Extend sort fields, include 1 text field and 1 date time field
   @Override
   public void extendSort(TaskQuery taskQuery) {
-    if ("customVarCharField5".equalsIgnoreCase(criteria.getSortField())) {
+    if (CUSTOM_VAR_CHAR_FIELD5.equalsIgnoreCase(criteria.getSortField())) {
       if (criteria.isSortDescending()) {
         taskQuery.orderBy().customField().stringField(CUSTOM_VARCHAR_FIELD5).descending();
       } else {
         taskQuery.orderBy().customField().stringField(CUSTOM_VARCHAR_FIELD5);
       }
-    } else if ("customTimestampField1".equalsIgnoreCase(criteria.getSortField())) {
+    } else if (CUSTOM_TIMESTAMP_FIELD12.equalsIgnoreCase(criteria.getSortField())) {
       if (criteria.isSortDescending()) {
         taskQuery.orderBy().customField().stringField(CUSTOM_TIMESTAMP_FIELD1).descending();
       } else {
@@ -44,7 +46,7 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
   
   @Override
   protected List<String> getDefaultColumns() {
-    return Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "customVarCharField5", "customTimestampField1");
+    return Arrays.asList(TaskLazyDataModel.PRIORITY, TaskLazyDataModel.NAME, TaskLazyDataModel.ACTIVATOR, TaskLazyDataModel.ID, TaskLazyDataModel.CREATION_TIME, TaskLazyDataModel.EXPIRY_TIME, CUSTOM_VAR_CHAR_FIELD5, CUSTOM_TIMESTAMP_FIELD12);
   }
   
   @Override

@@ -14,6 +14,7 @@
     /Functional-Processes.OpenPortalSearch "Functional Processes/OpenPortalSearchOverride"
     /Functional-Processes.LoadSubMenuItems "Functional Processes/LoadSubMenuItemsOverride"
     /Functional-Processes.UploadDocument "Functional Processes/UploadDocumentOverride"
+    /Functional-Processes.ExportTaskToExcel "Functional Processes/ExportTaskToExcelOverride"
     /Functional-Processes.DownloadDocument "Functional Processes/DownloadDocumentOverride"
     /Functional-Processes.SetGroupChatName "Functional Processes/SetGroupChatNameOverride"
     /Functional-Processes.InitializeCaseDataModel "Functional Processes/InitializeCaseDataModelOverride"
