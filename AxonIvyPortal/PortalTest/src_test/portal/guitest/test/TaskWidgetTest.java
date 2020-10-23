@@ -240,7 +240,7 @@ public class TaskWidgetTest extends BaseTest {
 
     // Check result
     taskWidgetPage = userProfilePage.openTaskList();
-    assertEquals("Sick Annual Leave Request", taskWidgetPage.getNameOfTaskAt(0));
+    assertEquals("Sick Leave Request", taskWidgetPage.getNameOfTaskAt(0));
     assertEquals("Annual Leave Request", taskWidgetPage.getNameOfTaskAt(taskWidgetPage.countTasks() - 1));
   }
 }
