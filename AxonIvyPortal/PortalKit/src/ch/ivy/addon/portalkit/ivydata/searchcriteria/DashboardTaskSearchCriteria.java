@@ -24,7 +24,7 @@ public class DashboardTaskSearchCriteria {
   private Date createdTo;
   private Date expiryFrom;
   private Date expiryTo;
-  private String category;
+  private List<String> categories;
   private String sortField;
   private boolean sortDescending;
   
@@ -37,11 +37,41 @@ public class DashboardTaskSearchCriteria {
     queryStates(query);
     queryResponsibles(query);
     queryCategory(query);
+    queryCreatedDate(query);
+    queryExpiryDate(query);
     TaskSortingQueryAppender appender = new TaskSortingQueryAppender(query);
     query = appender.appendSorting(this).toQuery();
     return query;
   }
   
+  private void queryCreatedDate(TaskQuery query) {
+    if (createdFrom != null || expiryTo != null) {
+      TaskQuery subQuery = TaskQuery.create();
+      if (createdFrom != null) {
+        subQuery.where().startTimestamp().isGreaterOrEqualThan(createdFrom);
+      }
+      
+      if (expiryTo != null) {
+        subQuery.where().startTimestamp().isLowerOrEqualThan(expiryTo);
+      }
+      query.where().and(subQuery);
+    }
+  }
+  
+  private void queryExpiryDate(TaskQuery query) {
+    if (expiryFrom != null || expiryTo != null) {
+      TaskQuery subQuery = TaskQuery.create();
+      if (expiryFrom != null) {
+        subQuery.where().expiryTimestamp().isGreaterOrEqualThan(expiryFrom);
+      }
+      
+      if (expiryTo != null) {
+        subQuery.where().expiryTimestamp().isLowerOrEqualThan(expiryTo);
+      }
+      query.where().and(subQuery);
+    }
+  }
+
   private void queryCanWorkOn(TaskQuery query) {
     if (canWorkOn) {
       query.where().currentUserCanWorkOn();
@@ -97,8 +127,14 @@ public class DashboardTaskSearchCriteria {
   }
 
   private void queryCategory(TaskQuery query) {
-    if (StringUtils.isNotBlank(category)) {
-      query.where().category().isLike(String.format("%s%%", category));
+    if (CollectionUtils.isNotEmpty(categories)) {
+      TaskQuery subQuery = TaskQuery.create();
+      IFilterQuery filterQuery = subQuery.where();
+      for (String category : categories) {
+        filterQuery.or().category().isEqual(category);
+      }
+
+      query.where().and(subQuery);
     }
   }
 
@@ -292,12 +328,11 @@ public class DashboardTaskSearchCriteria {
     this.expiryTo = expiryTo;
   }
 
-  public String getCategory() {
-    return category;
+  public List<String> getCategories() {
+    return categories;
   }
 
-  public void setCategory(String category) {
-    this.category = category;
+  public void setCategories(List<String> categories) {
+    this.categories = categories;
   }
-
 }
