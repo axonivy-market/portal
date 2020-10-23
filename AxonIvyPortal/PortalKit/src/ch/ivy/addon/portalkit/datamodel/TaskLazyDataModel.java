@@ -48,7 +48,15 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class TaskLazyDataModel extends LazyDataModel<ITask> {
-
+  public static final String PRIORITY = "PRIORITY";
+  public static final String NAME = "NAME";
+  public static final String DESCRIPTION = "DESCRIPTION";
+  public static final String ACTIVATOR = "ACTIVATOR";
+  public static final String ID = "ID";
+  public static final String CREATION_TIME = "CREATION_TIME";
+  public static final String EXPIRY_TIME = "EXPIRY_TIME";
+  public static final String STATE = "STATE";
+  
   private static final long serialVersionUID = -6615871274830927272L;
 
   protected String taskWidgetComponentId;
@@ -68,8 +76,8 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
   protected List<String> portalDefaultColumns =
-      Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "STATE");
-  protected List<String> portalRequiredColumns = Arrays.asList("NAME");
+      Arrays.asList(PRIORITY, NAME, ACTIVATOR, ID, CREATION_TIME, EXPIRY_TIME, STATE);
+  protected List<String> portalRequiredColumns = Arrays.asList(NAME);
 
   protected boolean compactMode;
   protected boolean isAutoHideColumns;
