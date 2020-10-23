@@ -76,7 +76,7 @@
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
               icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
               actionListener="#{taskFilter.validate()}"
-              update="#{cc.clientId}:filter-open-form @form @(.filter-container) @(.hidden-task-count)"
+              update="#{cc.clientId}:filter-open-form @form @(.reset-filter-button-container) @(.filter-selection-form) @(.filter-buttons-container) @(.hidden-task-count)"
               oncomplete="if (args &amp;&amp; args.validationFailed) PF('#{widgetVarPanel}').show(); #{empty cc.attrs.resultContainerUpdated ? 'taskWidget.setupScrollbar(); taskWidget.setupHeader(); taskWidget.updateTaskCountToBreadcrumb();' : ''}">
               <f:actionListener binding="#{empty cc.attrs.resultContainerUpdated ? logic.updateTasksByFilter(taskContainerId) : ''}" />
               <f:actionListener binding="#{cc.attrs.updateListener}" />
