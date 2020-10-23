@@ -5,6 +5,7 @@ import static ch.ivyteam.ivy.workflow.TaskState.DELAYED;
 import static ch.ivyteam.ivy.workflow.TaskState.DESTROYED;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -22,6 +23,7 @@ import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskStateFilter;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.TaskExporter;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -146,5 +148,23 @@ public class TaskWidgetBean implements Serializable {
   public void destroyTask(Long taskId) {
     TaskUtils.destroyTaskById(taskId);
   }
-  
+
+  public List<String> getColumns() {
+    List<String> visibilityColumns = new ArrayList<>();
+    visibilityColumns.addAll(dataModel.getSelectedColumns());
+
+    /*
+     * In UI we have a column called "Name / Description", but PortalRequiredColumns contains only "Name" column, so
+     * that we need to check and add "Description" to Excel file
+     */
+    List<String> requiredColumns = dataModel.getPortalRequiredColumns();
+    if (requiredColumns != null && requiredColumns.contains(TaskLazyDataModel.NAME)) {
+      visibilityColumns.add(TaskLazyDataModel.DESCRIPTION);
+    }
+    return visibilityColumns;
+  }
+
+  public int getMaxTaskNumberInExcel() {
+    return TaskExporter.MAX_TASK_NUMBER_IN_EXCEL;
+  }
 }
