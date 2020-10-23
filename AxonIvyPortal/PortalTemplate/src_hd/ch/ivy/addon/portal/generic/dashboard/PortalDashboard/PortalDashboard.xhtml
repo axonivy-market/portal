@@ -35,7 +35,7 @@
                             <i class="fa fa-info-circle" />
                           </p:commandLink>
                           <p:commandLink styleClass="u-mar-right-5" oncomplete="PF('task-widget-configuration-dialog').show()" global="false"
-                            actionListener="#{dashboardBean.setTaskWidget(widget)}" update="task-widget-configuration-dialog" rendered="#{!dashboardBean.isReadOnlyMode}">
+                            actionListener="#{dashboardBean.setWidget(widget)}" update="task-widget-configuration-dialog" rendered="#{!dashboardBean.isReadOnlyMode}">
                             <i class="fa fa-pencil" />
                           </p:commandLink>
                           <p:commandLink>
@@ -111,12 +111,12 @@
         header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskWidgetConfiguration')}" appendTo="@(body)" closeOnEscape="true" 
         draggable="false" dynamic="true" fitViewport="true" responsive="true" modal="true" width="80vw">
         <h:form id="task-configuration-form">
-          <ic:ch.ivy.addon.portal.generic.dashboard.TaskWidgetConfiguration taskWidget="#{dashboardBean.taskWidget}" />
+          <ic:ch.ivy.addon.portal.generic.dashboard.TaskWidgetConfiguration taskWidget="#{dashboardBean.widget}" />
         </h:form>
         <f:facet name="footer">
           <p:commandButton id="task-configuration-save-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             actionListener="#{dashboardBean.saveWidget()}"
-            process="#{p:component('task-configuration-form')}" partialSubmit="true"
+            process="@(#{p:component('task-configuration-form')} :not(.task-configuration__category))" partialSubmit="true"
             update="grid-stack-tab-view:0:grid-stack"
             oncomplete="PF('task-widget-configuration-dialog').hide();loadGrid();" />
             

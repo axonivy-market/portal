@@ -4,10 +4,9 @@ public enum TaskColumn {
   PRIORITY,
   ID,
   NAME,
-  ACTIVATOR,
-  CREATION_TIME,
-  EXPIRY_TIME,
-  STATE,
   DESCRIPTION,
-  CATEGORY
+  ACTIVATOR,
+  STATE,
+  CREATED,
+  EXPIRY
 }

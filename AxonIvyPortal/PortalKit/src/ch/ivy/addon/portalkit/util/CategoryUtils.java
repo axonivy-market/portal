@@ -56,7 +56,7 @@ public class CategoryUtils {
   }
 
   private static void recoverSelectedCategories(CheckboxTreeNode node, List<CheckboxTreeNode> selectedCategories, List<String> paths) {
-    if (node == null) {
+    if (node == null || paths == null) {
       return;
     }
     CategoryNode nodeData = (CategoryNode) node.getData();
