@@ -30,7 +30,20 @@
   
   <f:event listener="#{taskWidgetBean.preRender(data.dataModel)}" type="preRenderComponent" />
 
-  <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} ui-g">
+
+	<h:form id="test-form">
+		<p:commandLink ajax="false" styleClass="FRight"
+			onclick="PrimeFaces.monitorDownload(start, stop);">
+			<i class="icon ivyicon-office-file-xls-1 u-mar-right-5" />
+			<h:outputText
+				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
+			<p:fileDownload
+				value="#{logic.getExportedFile(taskWidgetBean.getColumns())}" />
+		</p:commandLink>
+		<p:spacer width="20px"></p:spacer>
+	</h:form>
+
+	<div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} ui-g">
     <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}">
       <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header ui-g-12 u-no-padding-left u-no-padding-bottom"
         layout="block">
@@ -416,9 +429,21 @@
         Portal.init(responsiveToolkit);
         taskWidget.updateTaskCountToBreadcrumb();
       });
+
+      function start() {
+          PF('status-dialog').show();
+      }
+
+      function stop() {
+          PF('status-dialog').hide();
+      }
     </script>
   <h:form id="update-task-count-rc-form">
     <p:remoteCommand id="update-task-count-remote-cmd" name="updateTaskCount" update="#{cc.clientId}:task-widget-title" global="false" process="@this" immediate="true" />
   </h:form>
+  <p:dialog modal="true" id="status-dialog" widgetVar="status-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" draggable="false" closable="false" resizable="false" responsive="true">
+    <div>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/waitingDownloadMessage')}</div>
+    <h:panelGroup layout="block" rendered="#{data.dataModel.rowCount gt taskWidgetBean.getMaxTaskNumberInExcel()}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/downloadZipFileExplanation')}</h:panelGroup>
+  </p:dialog>
 </cc:implementation>
 </html>
