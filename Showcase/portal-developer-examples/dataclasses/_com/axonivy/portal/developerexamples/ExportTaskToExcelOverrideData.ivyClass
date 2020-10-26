@@ -1,5 +1,5 @@
 ExportTaskToExcelOverrideData #class
 _com.axonivy.portal.developerexamples #namespace
 columnsVisibility java.util.List<String> #field
-collectedTasksForExporting List<ch.ivyteam.ivy.workflow.ITask> #field
+collectedTasksForExporting java.util.List<ch.ivyteam.ivy.workflow.ITask> #field
 exportedFile org.primefaces.model.StreamedContent #field

@@ -1,5 +1,0 @@
-co: name={exportedCasesFileName} description={} changed={2020-10-23 09:01:21 CEST} changedby={vtlong} visualorder={0} guid={175544309FE555E7} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={17554430A022EB05} datatype={} isdefault={true} langid={en} description={} validfrom={2018-06-20 09:21:48 CEST} validto={} changed={2020-10-23 09:01:21 CEST} changedby={vtlong} properties={} id={}
-val: guid={17554430A0B50062} datatype={} isdefault={false} langid={de} description={} validfrom={2018-07-18 10:55:37 CEST} validto={} changed={2020-10-23 09:01:21 CEST} changedby={vtlong} properties={} id={}
-val: guid={17554430A22A28B3} datatype={} isdefault={false} langid={es} description={} validfrom={2019-11-26 04:57:25 CET} validto={} changed={2020-10-23 09:01:21 CEST} changedby={vtlong} properties={} id={}
-val: guid={17554430A19A4900} datatype={} isdefault={false} langid={fr} description={} validfrom={2018-08-27 11:51:11 CEST} validto={} changed={2020-10-23 09:01:21 CEST} changedby={vtlong} properties={} id={}
