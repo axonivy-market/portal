@@ -81,7 +81,7 @@ public class StatisticDashboardBean implements Serializable {
 
     String currentLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage().getUserLanguage();
     String chartName = selectedStatisticChart.getNames().stream()
-        .filter(name -> StatisticService.isEqualsDisplayNameLocale(name, currentLanguage))
+        .filter(name -> StatisticService.equalsDisplayNameLocale(name, currentLanguage))
         .map(DisplayName::getValue)
         .findFirst().orElse("");
 
