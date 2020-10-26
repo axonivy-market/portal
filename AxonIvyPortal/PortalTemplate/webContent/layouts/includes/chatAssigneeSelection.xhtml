@@ -12,35 +12,40 @@
     <div class="ui-g-12">
       <p:selectOneRadio id="chat-assignee-type" value="#{chatAssigneeBean.isAssignToUser}">
         <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toUser')}" itemValue="true" />
-        <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toGroup')}" itemValue="false" />
+        <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toGroup')}" itemValue="false"
+          itemDisabled="#{empty chatAssigneeBean.availableRoles}" />
         <p:ajax event="change" listener="#{chatAssigneeBean.changeAssigneeType}" update="chat-assignee-selection-panel" />
       </p:selectOneRadio>
     </div>
 
     <div id="chat-select-assignee" class="ui-g-12">
-      <ic:ch.ivy.addon.portalkit.component.UserSelection id="chat-user-selection-component"
-        componentId="chat-user-selection" queryDelay="500" selectedUser="#{chatAssigneeBean.selectedUser}"
-        isRenderedMessage="false" rendered="#{chatAssigneeBean.isAssignToUser}"
+      <ic:ch.ivy.addon.portalkit.component.UserSelection 
+        id="chat-user-selection-component" 
+        componentId="chat-user-selection" queryDelay="500"
+        selectedUser="#{chatAssigneeBean.selectedUser}"
+        isRenderedMessage="false"
+        rendered="#{chatAssigneeBean.isAssignToUser}"
         autoCompletePanelStyleClass="chat-user-selection">
         <p:column>
           <h:outputText value="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />
         </p:column>
         <f:facet name="event">
-          <p:ajax event="itemSelect" update="chat-assignee-selection-form:chat-add-assignee-button" />
+          <p:ajax event="itemSelect" update="#{p:component('chat-add-assignee-button')}" />
         </f:facet>
       </ic:ch.ivy.addon.portalkit.component.UserSelection>
 
-      <ic:ch.ivy.addon.portalkit.component.RoleSelection id="chat-role-selection-component"
-        componentId="chat-role-selection" selectedRole="#{chatAssigneeBean.selectedRole}" queryDelay="500" cache="true"
-        rendered="#{not chatAssigneeBean.isAssignToUser}" inputStyleClass="chat-role-selection-input" scrollHeight="400"
-        autoCompleteStyleClass="chat-role-selection" isRenderedMessage="false">
-        <f:facet name="event">
-          <p:ajax event="query" global="false" />
-          <p:ajax event="itemSelect" update="chat-assignee-selection-form:chat-add-assignee-button" />
-        </f:facet>
-      </ic:ch.ivy.addon.portalkit.component.RoleSelection>
+      <p:autoComplete id="chat-role-selection" rendered="#{not chatAssigneeBean.isAssignToUser}" scrollHeight="400" dropdown="true"
+        value="#{chatAssigneeBean.selectedRole}" styleClass="chat-role-selection" inputStyleClass="chat-role-selection-input"
+        completeMethod="#{chatAssigneeBean.populateRoleAutoComplete}" var="role"
+        itemLabel="#{role.getDisplayName() != '' ? role.getDisplayName() : role.getMemberName()}" itemValue="#{role}"
+        converter="pojoConverter" cache="true" queryDelay="500" maxResults="100" selectLimit="100"
+        moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
+        <f:event listener="#{chatAssigneeBean.populateRoleAutoComplete}" type="preRenderComponent" />
+        <p:ajax event="query" global="false" />
+        <p:ajax event="itemSelect" update="chat-add-assignee-button" />
+      </p:autoComplete>
     </div>
-
+    
     <div class="ui-g-12 chat-add-assignee-button-grid">
       <p:commandButton id="chat-add-assignee-button"
         icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}"
