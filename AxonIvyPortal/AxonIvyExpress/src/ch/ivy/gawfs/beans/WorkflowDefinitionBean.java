@@ -8,8 +8,11 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
+import ch.ivy.gawfs.Helper;
 import ch.ivy.gawfs.enums.ProcessType;
 import ch.ivy.gawfs.enums.TaskType;
+import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.security.IRole;
 import gawfs.TaskDef;
 
 @ManagedBean
@@ -18,17 +21,12 @@ public class WorkflowDefinitionBean implements Serializable {
 
   private static final long serialVersionUID = 8119703742579630358L;
   private static final String SYSTEM = "SYSTEM";
-  
-  private List<String> excludedRoleNames;
+
+  private List<IRole> availableRoles;
 
   @PostConstruct
   public void init() {
-    initExcludedRoleNames();
-  }
-
-  private void initExcludedRoleNames() {
-    excludedRoleNames = new ArrayList<>();
-    excludedRoleNames.add(SYSTEM);
+    populateAvailableRoles();
   }
 
   public TaskType[] getTaskTypesForFirstWorkflowTask() {
@@ -63,11 +61,32 @@ public class WorkflowDefinitionBean implements Serializable {
     return ProcessType.values();
   }
 
-  public List<String> getExcludedRoleNames() {
-    return excludedRoleNames;
+  /**
+   * Populate available roles
+   */
+  private void populateAvailableRoles() {
+    availableRoles = new ArrayList<>();
+    List<IRole> rolesFromSystem = Ivy.wf().getSecurityContext().getRoles();
+    rolesFromSystem.stream()
+      .filter(role -> role.getName() != SYSTEM)
+      .forEach(role -> availableRoles.add(role));
   }
 
-  public void setExcludedRoleNames(List<String> excludedRoleNames) {
-    this.excludedRoleNames = excludedRoleNames;
+  /**
+   * Populate values for Auto Complete of roles based on given query
+   * 
+   * @param query
+   * @return values of available roles
+   */
+  public List<IRole> populateRoleAutoComplete(String query) {
+    return Helper.filterRoles(getAvailableRoles(), query);
+  }
+
+  public List<IRole> getAvailableRoles() {
+    return availableRoles;
+  }
+
+  public void setAvailableRoles(List<IRole> availableRoles) {
+    this.availableRoles = availableRoles;
   }
 }
