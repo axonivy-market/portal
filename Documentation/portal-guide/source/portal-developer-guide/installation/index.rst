@@ -130,9 +130,9 @@ Migrate 9.1 to 9.2
 
 4. Since 9.2, statistic chart has multiple names for supported languages in application. Therefore you must run a migration process by the following steps:
 
-   - Deploy :download:`MigrateStatisticChartTo9.iar <documents/MigrateStatisticChartTo9.iar>` project to your Ivy application. This project required ``PortalKit`` to run. Migrate project requires project ``PortalKit``.
+   - Deploy :download:`MigrateStatisticChartTo9.iar <documents/MigrateStatisticChartTo9.iar>` project to your Ivy application. This project requires ``PortalKit`` to run.
 
-   - Run ``MigrateStatisticChart/MigrateStatatisticChart.ivp`` to migrate all statistic charts in your application.
+   - Run ``MigrateStatisticChart/MigrateStatisticChart.ivp`` to migrate all statistic charts in your application.
 
    - Restart Ivy engine.
 
