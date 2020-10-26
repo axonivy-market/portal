@@ -367,7 +367,10 @@ Ss0 f7 488 402 112 44 -26 -8 #rect
 Ss0 f7 @|CallSubIcon #fIcon
 Ss0 f36 actionTable 'out=in;
 ' #txt
-Ss0 f36 actionCode 'import org.apache.commons.lang3.StringUtils;
+Ss0 f36 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChartQueryUtils;
@@ -381,7 +384,10 @@ if (StatisticService.selectMonthOfYear(in.selectedItemOfDrilldown))  {
 	in.previousSelectedDay = in.selectedItemOfDrilldown;
 }
 
-in.taskListName = in.selectedStatisticChart.name + " - " + in.selectedItemOfDrilldown;
+StatisticService service = new StatisticService();
+in.chartNameOfCurrentLanguage = service.getDisplayNameInUserLanguageForChart(in.selectedStatisticChart).getValue();
+
+in.taskListName = in.chartNameOfCurrentLanguage + " - " + in.selectedItemOfDrilldown;
 if (StatisticService.selectHourOfDay(in.selectedItemOfDrilldown)) {
 	in.taskListName += " " + ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByExpiry/hour");
 }
@@ -404,7 +410,7 @@ Ss0 f38 1 544 272 #addKink
 Ss0 f38 0 0.7876935071335653 0 0 #arcLabel
 Ss0 f42 processCall 'Functional Processes/Navigator:viewCaseForAnalytic(String,ch.ivyteam.ivy.workflow.query.CaseQuery)' #txt
 Ss0 f42 requestActionDecl '<String chartName,ch.ivyteam.ivy.workflow.query.CaseQuery caseQuery> param;' #txt
-Ss0 f42 requestMappingAction 'param.chartName=in.selectedStatisticChart.name;
+Ss0 f42 requestMappingAction 'param.chartName=in.chartNameOfCurrentLanguage;
 param.caseQuery=in.caseQuery;
 ' #txt
 Ss0 f42 responseActionDecl 'ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData out;
