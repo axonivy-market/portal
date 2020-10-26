@@ -27,6 +27,10 @@ public class TaskDetailsPage extends TemplatePage {
   public String getCreatedOnDateText() {
     return findElementByCssSelector("span[id$='start-date']").getText();
   }
+  
+  public String getDurationTimeText() {
+	return findElementByCssSelector("span[id$='duration-time']").getText();
+  }
 
   public List<String> getTaskNoteAuthors() {
     List<WebElement> noteAuthorElements = findListElementsByCssSelector("td.task-document-author");
