@@ -45,6 +45,22 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
 public class CaseLazyDataModel extends LazyDataModel<ICase> {
+  public static final String STATE = "STATE";
+
+  public static final String FINISHED_TIME = "FINISHED_TIME";
+
+  public static final String CREATION_TIME = "CREATION_TIME";
+
+  public static final String OWNER = "OWNER";
+
+  public static final String CREATOR = "CREATOR";
+
+  public static final String ID = "ID";
+  
+  public static final String DESCRIPTION = "DESCRIPTION";
+
+  public static final String NAME = "NAME";
+
   private static final long serialVersionUID = 1L;
 
   protected final List<ICase> data;
@@ -65,7 +81,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
   private List<String> portalDefaultColumns;
-  private List<String> portalRequiredColumns = Arrays.asList("NAME");
+  private List<String> portalRequiredColumns = Arrays.asList(NAME);
 
   private boolean isAutoHideColumns;
   private boolean isDisableSelectionCheckboxes;
@@ -458,9 +474,9 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   public void initColumnsConfiguration() {
     if (new GlobalSettingService().isCaseOwnerEnabled()) {
-      portalDefaultColumns = List.of("NAME", "ID", "CREATOR", "OWNER", "CREATION_TIME", "FINISHED_TIME", "STATE");
+      portalDefaultColumns = List.of(NAME, ID, CREATOR, OWNER, CREATION_TIME, FINISHED_TIME, STATE);
     } else {
-      portalDefaultColumns = List.of("NAME", "ID", "CREATOR", "CREATION_TIME", "FINISHED_TIME", "STATE");
+      portalDefaultColumns = List.of(NAME, ID, CREATOR, CREATION_TIME, FINISHED_TIME, STATE);
     }
     if (CollectionUtils.isEmpty(allColumns)) {
       allColumns.addAll(getDefaultColumns());

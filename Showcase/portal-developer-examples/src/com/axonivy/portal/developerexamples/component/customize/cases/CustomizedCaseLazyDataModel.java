@@ -11,8 +11,8 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
 
 public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
   private static final long serialVersionUID = 1L;
-	private static final String CUSTOM_TIMESTAMP_FIELD1 = "customTimestampField1";
-	private static final String CUSTOM_VARCHAR_FIELD1 = "customVarCharField1";
+	public static final String CUSTOM_TIMESTAMP_FIELD1 = "customTimestampField1";
+	public static final String CUSTOM_VARCHAR_FIELD1 = "customVarCharField1";
 
 	public CustomizedCaseLazyDataModel() {
 		super();
@@ -45,9 +45,9 @@ public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
 	@Override
 	protected List<String> getDefaultColumns() {
     if (new GlobalSettingService().isCaseOwnerEnabled()) {
-      return Arrays.asList("NAME", "ID", "CREATOR", "OWNER", "CREATION_TIME", "FINISHED_TIME", CUSTOM_VARCHAR_FIELD1, CUSTOM_TIMESTAMP_FIELD1);
+      return Arrays.asList(CaseLazyDataModel.NAME, CaseLazyDataModel.ID, CaseLazyDataModel.CREATOR, CaseLazyDataModel.OWNER, CaseLazyDataModel.CREATION_TIME, CaseLazyDataModel.FINISHED_TIME, CUSTOM_VARCHAR_FIELD1, CUSTOM_TIMESTAMP_FIELD1);
     } else {
-      return Arrays.asList("NAME", "ID", "CREATOR", "CREATION_TIME", "FINISHED_TIME", CUSTOM_VARCHAR_FIELD1, CUSTOM_TIMESTAMP_FIELD1);
+      return Arrays.asList(CaseLazyDataModel.NAME, CaseLazyDataModel.ID, CaseLazyDataModel.CREATOR, CaseLazyDataModel.CREATION_TIME, CaseLazyDataModel.FINISHED_TIME, CUSTOM_VARCHAR_FIELD1, CUSTOM_TIMESTAMP_FIELD1);
     }
 	}
 	
