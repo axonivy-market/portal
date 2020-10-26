@@ -9,6 +9,7 @@ public enum TaskSortField {
   ID, 
   CREATION_TIME, 
   EXPIRY_TIME, 
+  COMPLETED_ON,
   STATE;
 
   public String getLabel() {
