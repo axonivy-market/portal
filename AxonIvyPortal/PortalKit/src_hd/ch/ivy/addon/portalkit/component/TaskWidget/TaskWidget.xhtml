@@ -179,14 +179,19 @@
                 </h:panelGroup>
               </h:form>
             </p:overlayPanel>
-  
+
             <!-- Reset filter button -->
-            <p:commandLink id="filter-reset-action" rendered="#{data.dataModel.selectedTaskFilterData == null and !data.dataModel.isSelectedDefaultFilter()}"
-              styleClass="filter-reset-action js-filter-reset-action u-hidden-md-down"
-              onclick="PF('reset-filter-set-dialog').show();" global="false">
-              <i class="icon ivyicon-button-refresh-arrows u-mar-right-5" />
-              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" />
-            </p:commandLink>
+            <h:panelGroup id="reset-filter-button-container"
+              styleClass="reset-filter-button-container #{data.dataModel.selectedTaskFilterData == null and !data.dataModel.isSelectedDefaultFilter() ? 'filter-reset-action' : ''}"
+              layout="block">
+              <p:commandLink id="filter-reset-action"
+                rendered="#{data.dataModel.selectedTaskFilterData == null and !data.dataModel.isSelectedDefaultFilter()}"
+                styleClass="js-filter-reset-action u-hidden-md-down" onclick="PF('reset-filter-set-dialog').show();"
+                global="false">
+                <i class="icon ivyicon-button-refresh-arrows u-mar-right-5" />
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" />
+              </p:commandLink>
+            </h:panelGroup>
 
             <!-- Save filter button -->
               <p:commandButton id="filter-save-action"
