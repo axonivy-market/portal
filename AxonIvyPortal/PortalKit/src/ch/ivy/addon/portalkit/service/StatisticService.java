@@ -1177,7 +1177,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     List<String> appLanguages = Arrays.asList(Ivy.wf().getApplication().getName());
     String userName = Ivy.session().getSessionUserName();
     DisplayName currentDisplayName = statisticChart.getNames().stream()
-        .filter(name -> StatisticService.isEqualsDisplayNameLocale(name, LanguageService.newInstance().findUserLanguages(userName, appLanguages).getIvyLanguages().get(0).getUserLanguage()))
+        .filter(name -> StatisticService.equalsDisplayNameLocale(name, LanguageService.newInstance().findUserLanguages(userName, appLanguages).getIvyLanguages().get(0).getUserLanguage()))
         .findFirst().get();
     return currentDisplayName;
   }
@@ -1420,11 +1420,11 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
         .count() > 0;
   }
 
-  private boolean isEqualsDisplayName(String chartName, String language, DisplayName displayName) {
-    return isEqualsDisplayNameLocale(displayName, language) && StringUtils.equals(displayName.getValue(), chartName);
+  private boolean equalsDisplayName(String chartName, String language, DisplayName displayName) {
+    return equalsDisplayNameLocale(displayName, language) && StringUtils.equals(displayName.getValue(), chartName);
   }
 
-  public static boolean isEqualsDisplayNameLocale(DisplayName displayName, String language) {
+  public static boolean equalsDisplayNameLocale(DisplayName displayName, String language) {
     return StringUtils.equals(displayName.getLocale().toLanguageTag(), language);
   }
 
@@ -1458,7 +1458,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     List<StatisticChart> foundCharts = Optional.ofNullable(repo().search(getType()).numberField(USER_ID).isEqualTo(userId).execute().getAll()).orElse(new ArrayList<>());
     for (StatisticChart chart : foundCharts) {
       String displayChartName = chart.getNames().stream()
-          .filter(name -> StatisticService.isEqualsDisplayNameLocale(name, language))
+          .filter(name -> StatisticService.equalsDisplayNameLocale(name, language))
           .findFirst().orElse(new DisplayName()).getValue();
 
       if (StringUtils.equals(displayChartName, chartName)) {
@@ -1480,7 +1480,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (CollectionUtils.isNotEmpty(distinctChartNameList)) {
       for(StatisticChart newChart : newList) {
         if (newChart.getNames().stream()
-            .filter(name -> distinctChartNameList.stream().filter(distinctName -> isEqualsDisplayName(name.getValue(), name.getLocale().toLanguageTag(), distinctName)).findFirst().isPresent())
+            .filter(name -> distinctChartNameList.stream().filter(distinctName -> equalsDisplayName(name.getValue(), name.getLocale().toLanguageTag(), distinctName)).findFirst().isPresent())
             .findFirst().isPresent()) {
           continue;
         }

@@ -31,7 +31,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
     String currentLanguage =
         LanguageService.newInstance().findUserLanguages(Ivy.session().getSessionUserName(), Arrays.asList(Ivy.wf().getApplication().getName())).getIvyLanguages().get(0).getUserLanguage();
     chartName = statisticChart.getNames().stream()
-        .filter(name -> StatisticService.isEqualsDisplayNameLocale(name, currentLanguage))
+        .filter(name -> StatisticService.equalsDisplayNameLocale(name, currentLanguage))
         .map(DisplayName::getValue)
         .findFirst().orElse("");
   }
