@@ -68,7 +68,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
   protected List<String> portalDefaultColumns =
-      Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "STATE");
+      Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "COMPLETED_ON", "STATE");
   protected List<String> portalRequiredColumns = Arrays.asList("NAME");
 
   protected boolean compactMode;
