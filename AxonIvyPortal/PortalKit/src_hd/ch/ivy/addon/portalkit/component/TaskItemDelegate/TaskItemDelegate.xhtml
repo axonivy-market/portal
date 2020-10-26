@@ -29,7 +29,7 @@
                 itemDisabled="#{empty data.usersToDelegate}" />
               <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toGroup')}" itemValue="false"
                 itemDisabled="#{empty data.rolesToDelegate}" />
-              <p:ajax event="change" listener="#{logic.changeAssignType}" update="select-delegate-panel" />
+              <p:ajax event="change" listener="#{logic.changeAssignType}" update="select-delegate-panel proceed-task-delegate-command" />
             </p:selectOneRadio>
           </div>
         </h:panelGroup>
