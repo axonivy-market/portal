@@ -43,7 +43,7 @@ public final class PortalNavigator {
   
   public static void navigateToPortalLoginPage() {
     IHttpRequest request = (IHttpRequest) Ivy.request();
-    String loginPage = getRelativeLink(StandardProcessType.DefaultApplicationHomePage);
+    String loginPage = getRelativeLink(StandardProcessType.DefaultLoginPage);
     String originalUrl = URLEncoder.encode(request.getHttpServletRequest().getRequestURI(), StandardCharsets.ISO_8859_1);
     redirect(String.format("%s?originalUrl=%s", loginPage, originalUrl));
   }
