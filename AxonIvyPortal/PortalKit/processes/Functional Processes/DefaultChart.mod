@@ -51,7 +51,7 @@ import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
 StatisticService service = new StatisticService();
-String chartName = "Tasks by Priority";
+String chartName = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/defaultChart/taskByPriority");
 StatisticChartType chartType = StatisticChartType.TASK_BY_PRIORITY;
 
 List<DisplayName> chartNames = new ArrayList();
@@ -104,7 +104,7 @@ import ch.ivy.addon.portalkit.statistics.StatisticChart;&#13;
 import ch.ivy.addon.portalkit.service.StatisticService;&#13;
 &#13;
 StatisticService service = new StatisticService();&#13;
-String chartName = "Tasks by Priority";&#13;
+String chartName = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/defaultChart/taskByPriority");&#13;
 StatisticChartType chartType = StatisticChartType.TASK_BY_PRIORITY;&#13;
 &#13;
 List&lt;DisplayName&gt; chartNames = new ArrayList();&#13;
@@ -112,15 +112,15 @@ IvyLanguage ivyLanguage = LanguageService.newInstance().findUserLanguages(ivy.se
 &#13;
 boolean isExistedDefaultChart = false;&#13;
 for(String language : ivyLanguage.supportedLanguages) {&#13;
-  DisplayName name = new DisplayName();&#13;
-  name.locale = Locale.forLanguageTag(language);&#13;
-  name.value = chartName;&#13;
-  chartNames.add(name);&#13;
+	DisplayName name = new DisplayName();&#13;
+	name.locale = Locale.forLanguageTag(language);&#13;
+	name.value = chartName;&#13;
+	chartNames.add(name);&#13;
 	&#13;
-  if (service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName, language) &amp;&amp; !isExistedDefaultChart) {&#13;
-    in.defaultCharts.add(service.findStatisticChartByUserIdAndChartNameAndLanguage(ivy.session.getSessionUser().getId(), chartName, ivyLanguage.userLanguage));&#13;
-    isExistedDefaultChart = true;&#13;
-  }&#13;
+	if (service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName, language) &amp;&amp; !isExistedDefaultChart) {&#13;
+ 	 in.defaultCharts.add(service.findStatisticChartByUserIdAndChartNameAndLanguage(ivy.session.getSessionUser().getId(), chartName, ivyLanguage.userLanguage));&#13;
+ 	 isExistedDefaultChart = true;&#13;
+	}&#13;
 }&#13;
 &#13;
 if (!isExistedDefaultChart) {&#13;
@@ -128,7 +128,7 @@ if (!isExistedDefaultChart) {&#13;
   StatisticChart newChart = service.createStatisticChart(statisticFilter, chartNames, chartType, ivy.session.getSessionUser().getId(), true);&#13;
   in.defaultCharts.add(newChart);&#13;
 }</name>
-        <nameStyle>1795,5
+        <nameStyle>1850,5
 </nameStyle>
     </language>
 </elementInfo>

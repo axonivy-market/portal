@@ -166,8 +166,9 @@
         <h:panelGrid id="chart-name-input-container" columns="1" styleClass="ui-g-12">
           <ui:repeat var="name" value="#{data.chartNames}">
             <h:panelGroup styleClass="md-inputfield add-statistic-panel ui-fluid">
-              <p:inputText id="chart-name-input" value="#{name.value}" required="true" maxlength="200" />
-              <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')} #{name.locale.getDisplayLanguage()}" for="chart-name-input" />
+              <p:inputText id="chart-name-input" value="#{name.value}" required="true" maxlength="200"
+                requiredMessage="#{name.locale.getDisplayLanguage()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+              <p:outputLabel value="#{name.locale.getDisplayLanguage()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" for="chart-name-input" />
             </h:panelGroup>
           </ui:repeat>
         </h:panelGrid>
