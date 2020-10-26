@@ -50,7 +50,7 @@ import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
 StatisticService service = new StatisticService();
-String chartName = "Tasks by Priority";
+String chartName = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/defaultChart/tasksByPriority");
 
 List<DisplayName> chartNames = new ArrayList();
 IvyLanguage ivyLanguage = LanguageService.newInstance().findUserLanguages().ivyLanguage;
@@ -89,27 +89,48 @@ Dt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>// FOLLOW THIS INSTRUCTION TO CREATE DEFAULT CHART
-
-import ch.ivy.addon.portalkit.statistics.StatisticFilter;
-import ch.ivy.addon.portalkit.enums.StatisticChartType;
-import ch.ivy.addon.portalkit.statistics.StatisticChart;
-import ch.ivy.addon.portalkit.service.StatisticService;
-
-StatisticService service = new StatisticService();
-String chartName = "My default chart";
-StatisticChartType chartType = StatisticChartType.TASK_BY_PRIORITY;
-StatisticFilter statisticFilter = new StatisticFilter();
-
-if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName)) {
-  StatisticChart newChart = service.createStatisticChart(statisticFilter, chartName, chartType, ivy.session.getSessionUser().getId(), true);
-  in.defaultCharts.add(newChart);		
+import org.apache.commons.lang3.StringUtils;&#13;
+import java.util.Locale;&#13;
+import java.util.ArrayList;&#13;
+import ch.ivy.addon.portalkit.dto.DisplayName;&#13;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;&#13;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;&#13;
+import ch.ivy.addon.portalkit.statistics.StatisticFilter;&#13;
+import ch.ivy.addon.portalkit.enums.StatisticChartType;&#13;
+import ch.ivy.addon.portalkit.statistics.StatisticChart;&#13;
+import ch.ivy.addon.portalkit.service.StatisticService;&#13;
+&#13;
+StatisticService service = new StatisticService();&#13;
+String chartName = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/defaultChart/tasksByPriority");&#13;
+&#13;
+List&lt;DisplayName&gt; chartNames = new ArrayList();&#13;
+IvyLanguage ivyLanguage = LanguageService.newInstance().findUserLanguages().ivyLanguage;&#13;
+StatisticChartType chartType = StatisticChartType.TASK_BY_PRIORITY;&#13;
+&#13;
+boolean isExistedDefaultChart = false;&#13;
+for(String language : ivyLanguage.supportedLanguages) {&#13;
+	DisplayName name = new DisplayName();&#13;
+	name.locale = Locale.forLanguageTag(language);&#13;
+	name.value = chartName;&#13;
+	chartNames.add(name);&#13;
+	&#13;
+	if (service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName, language) &amp;&amp; !isExistedDefaultChart) {&#13;
+ 	 in.defaultCharts.add(service.findStatisticChartByUserIdAndChartNameAndLanguage(ivy.session.getSessionUser().getId(), chartName, ivyLanguage.userLanguage));&#13;
+ 	 isExistedDefaultChart = true;&#13;
+	}&#13;
+}&#13;
+&#13;
+if (!isExistedDefaultChart) {&#13;
+  StatisticFilter statisticFilter = new StatisticFilter();&#13;
+  StatisticChart newChart = service.createStatisticChart(statisticFilter, chartNames, chartType, ivy.session.getSessionUser().getId(), true);&#13;
+  in.defaultCharts.add(newChart);&#13;
 }</name>
-        <nameStyle>777,5
+        <nameStyle>1778,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Dt0 f5 288 34 752 268 -368 -128 #rect
+Dt0 f5 200 98 992 620 -489 -304 #rect
 Dt0 f5 @|IBIcon #fIcon
 Dt0 f4 96 79 96 138 #arcP
 >Proto Dt0 .type ch.ivy.addon.portalkit.DefaultChartData #txt
