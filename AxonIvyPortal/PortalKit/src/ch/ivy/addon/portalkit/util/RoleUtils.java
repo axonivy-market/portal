@@ -14,7 +14,9 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.dto.RoleDTO;
+import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivyteam.api.PublicAPI;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
@@ -274,6 +276,7 @@ public final class RoleUtils {
         @Override
         public Void call() throws Exception {
           role.setProperty(key, value);
+          invalidCacheForRoles();
           return null;
         }
       });
@@ -295,12 +298,18 @@ public final class RoleUtils {
         @Override
         public Void call() throws Exception {
           role.removeProperty(key);
+          invalidCacheForRoles();
           return null;
         }
+
       });
     } catch (Exception e) {
       Ivy.log().error(e);
     }
+  }
+
+  private static void invalidCacheForRoles() {
+    IvyCacheService.newInstance().invalidateEntryOfGroup(Ivy.request().getApplication().getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION);
   }
 
   /**
