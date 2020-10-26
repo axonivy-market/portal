@@ -7,8 +7,7 @@
     <p:panelGrid id="assignee-selection-panel" columns="1" styleClass="assignee-selection-panel">
       <p:selectOneRadio id="assignee-type" value="#{data.isAssignToUser}">
         <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toUser')}" itemValue="true" />
-        <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toGroup')}" itemValue="false"
-          itemDisabled="#{empty workflowDefinitionBean.availableRoles}" />
+        <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toGroup')}" itemValue="false" />
         <p:ajax event="change" listener="#{logic.changeAssigneeType}" update="assignee-selection-form" process="@this" />
       </p:selectOneRadio>
 
@@ -21,17 +20,19 @@
             <h:outputText value="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />
           </p:column> 
           <f:facet name="event">
-            <p:ajax event="itemSelect" update="#{p:component('add-assignee-button')}" />
+            <p:ajax event="itemSelect" update="assignee-selection-form:add-assignee-button" />
           </f:facet>
         </ic:ch.ivy.addon.portalkit.component.UserSelection>
-
-        <p:autoComplete id="role-selection" rendered="#{!data.isAssignToUser}" scrollHeight="400" dropdown="true"
-          value="#{data.selectedRole}" completeMethod="#{workflowDefinitionBean.populateRoleAutoComplete}"
-          var="role" itemLabel="#{role.getDisplayName() != '' ? role.getDisplayName() : role.getMemberName()}" itemValue="#{role}"
-          converter="pojoConverter" cache="true" queryDelay="500" maxResults="100" selectLimit="100"
-          moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}...">
-          <p:ajax event="itemSelect" update="add-assignee-button" />
-        </p:autoComplete>
+        
+        <ic:ch.ivy.addon.portalkit.component.RoleSelection id="role-selection-component" scrollHeight="400"
+          componentId="role-selection" selectedRole="#{data.selectedRole}" rendered="#{!data.isAssignToUser}"
+          cache="true" queryDelay="500" excludedRoleNames="#{workflowDefinitionBean.excludedRoleNames}"
+          isRenderedMessage="false">
+          <f:facet name="event">
+            <p:ajax event="itemSelect" update="assignee-selection-form:add-assignee-button" />
+          </f:facet>
+        </ic:ch.ivy.addon.portalkit.component.RoleSelection>
+          
         <p:commandButton id="add-assignee-button" styleClass="add-assignee-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
           disabled="#{data.selectedUser == null and data.selectedRole == null}" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}" actionListener="#{logic.addAssignee}" global="false"
           update="error-message selected-assignee-fieldset" ignoreAutoUpdate="true" />
