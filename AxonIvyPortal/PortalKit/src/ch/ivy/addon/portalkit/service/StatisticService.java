@@ -64,6 +64,7 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TODAY_EX
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TUESDAY_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.USER_ID;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.WEDNESDAY_CMS;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NEW_CHART_CMS;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -82,6 +83,7 @@ import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
@@ -754,7 +756,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       long creatorId, boolean isDefault) throws InterruptedException {
     StatisticChart statisticChart = new StatisticChart();
 
-    updateChartNamesMap(chartNames);
+    updateChartNames(chartNames);
     statisticChart.setUserId(creatorId);
     statisticChart.setType(chartType);
     statisticChart.setNames(chartNames);
@@ -786,14 +788,14 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return null;
   }
 
-  private void updateChartNamesMap(List<DisplayName> chartNames) {
+  private void updateChartNames(List<DisplayName> chartNames) {
     if (chartNames == null) {
       chartNames = new ArrayList<>();
     }
 
     for (DisplayName chartName : chartNames) {
       if (StringUtils.isBlank(chartName.getValue())) {
-        chartName.setValue("new chart");
+        chartName.setValue(Ivy.cms().co(NEW_CHART_CMS));
       }
     }
   }
@@ -1185,7 +1187,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
   public DisplayName getDisplayNameInUserLanguageForChart(StatisticChart statisticChart) {
     DisplayName currentDisplayName = statisticChart.getNames().stream()
-        .filter(name -> StringUtils.equals(name.getLocale().toLanguageTag(), LanguageService.newInstance().findUserLanguages().getIvyLanguage().getUserLanguage()))
+        .filter(name -> StatisticService.isEqualsDisplayNameLocale(name, LanguageService.newInstance().findUserLanguages().getIvyLanguage().getUserLanguage()))
         .findFirst().get();
     return currentDisplayName;
   }
@@ -1424,9 +1426,17 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     List<StatisticChart> foundCharts = Optional.ofNullable(repo().search(getType()).numberField(USER_ID).isEqualTo(userId).execute().getAll()).orElse(new ArrayList<>());
     return foundCharts.stream()
         .filter(chart -> chart.getNames().stream()
-            .filter(name -> StringUtils.equals(name.getLocale().toLanguageTag(), language) && StringUtils.equals(name.getValue(), chartName))
+            .filter(name -> isEqualsDisplayName(chartName, language, name))
             .count() > 0)
         .count() > 0;
+  }
+
+  private boolean isEqualsDisplayName(String chartName, String language, DisplayName displayName) {
+    return isEqualsDisplayNameLocale(displayName, language) && StringUtils.equals(displayName.getValue(), chartName);
+  }
+
+  public static boolean isEqualsDisplayNameLocale(DisplayName displayName, String language) {
+    return StringUtils.equals(displayName.getLocale().toLanguageTag(), language);
   }
 
   public void removeStatisticChartsByUserId(long userId) throws InterruptedException {
@@ -1459,7 +1469,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     List<StatisticChart> foundCharts = Optional.ofNullable(repo().search(getType()).numberField(USER_ID).isEqualTo(userId).execute().getAll()).orElse(new ArrayList<>());
     for (StatisticChart chart : foundCharts) {
       String displayChartName = chart.getNames().stream()
-          .filter(name -> StringUtils.equals(name.getLocale().toLanguageTag(), language))
+          .filter(name -> StatisticService.isEqualsDisplayNameLocale(name, language))
           .findFirst().orElse(new DisplayName()).getValue();
 
       if (StringUtils.equals(displayChartName, chartName)) {
@@ -1473,7 +1483,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (CollectionUtils.isEmpty(first) || CollectionUtils.isEmpty(second) || first.size() != second.size()) {
       return false;
     }
-    return first.stream().allMatch(s -> second.contains(s));
+    return first.stream().allMatch(s -> second.contains(s));  
   }
 
   public List<StatisticChart> addListByDistinctCharts(List<StatisticChart> targetList, List<StatisticChart> newList) {
@@ -1485,29 +1495,14 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       return new ArrayList<>(newList);
     }
 
-    List<DisplayName> allDisplayNameList = targetList.stream()
-        .map(StatisticChart::getNames)
-        .collect(ArrayList::new, List::addAll, List::addAll);
-
-    allDisplayNameList.addAll(newList.stream()
-        .map(StatisticChart::getNames)
-        .collect(ArrayList::new, List::addAll, List::addAll));
-
-    List<DisplayName> distinctChartNameList = new ArrayList<>();
-    for (DisplayName name : allDisplayNameList) {
-      if (distinctChartNameList.stream()
-          .filter(distinctName -> StringUtils.equals(distinctName.getLocale().toLanguageTag(), name.getLocale().toLanguageTag()) && StringUtils.equals(distinctName.getValue(), name.getValue()))
-          .findFirst().isPresent()) {
-        continue;
-      }
-      distinctChartNameList.add(name);
-    }
+    List<DisplayName> distinctChartNameList = Stream.of(targetList, newList).flatMap(List::stream)
+        .map(StatisticChart::getNames).flatMap(List::stream).distinct().collect(Collectors.toList());
 
     List<StatisticChart> distinctChart = new ArrayList<StatisticChart>(targetList);
     if (CollectionUtils.isNotEmpty(distinctChartNameList)) {
       for(StatisticChart newChart : newList) {
         if (newChart.getNames().stream()
-            .filter(name -> distinctChartNameList.stream().filter(distinctName -> StringUtils.equals(distinctName.getLocale().toLanguageTag(), name.getLocale().toLanguageTag()) && StringUtils.equals(distinctName.getValue(), name.getValue())).findFirst().isPresent())
+            .filter(name -> distinctChartNameList.stream().filter(distinctName -> isEqualsDisplayName(name.getValue(), name.getLocale().toLanguageTag(), distinctName)).findFirst().isPresent())
             .findFirst().isPresent()) {
           continue;
         }
