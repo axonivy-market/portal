@@ -24,7 +24,6 @@ Cs0 @PushWFArc f19 '' #zField
 Cs0 @UdProcessEnd f20 '' #zField
 Cs0 @PushWFArc f21 '' #zField
 Cs0 @GridStep f2 '' #zField
-Cs0 @PushWFArc f3 '' #zField
 Cs0 @PushWFArc f4 '' #zField
 Cs0 @UdEvent f5 '' #zField
 Cs0 @Alternative f47 '' #zField
@@ -60,6 +59,25 @@ Cs0 @PushWFArc f38 '' #zField
 Cs0 @UdMethod f71 '' #zField
 Cs0 @UdProcessEnd f73 '' #zField
 Cs0 @PushWFArc f74 '' #zField
+Cs0 @UdMethod f77 '' #zField
+Cs0 @CallSub f81 '' #zField
+Cs0 @CallSub f80 '' #zField
+Cs0 @GridStep f76 '' #zField
+Cs0 @UdProcessEnd f79 '' #zField
+Cs0 @Alternative f78 '' #zField
+Cs0 @GridStep f82 '' #zField
+Cs0 @PushWFArc f87 '' #zField
+Cs0 @PushWFArc f92 '' #zField
+Cs0 @PushWFArc f86 '' #zField
+Cs0 @PushWFArc f91 '' #zField
+Cs0 @PushWFArc f83 '' #zField
+Cs0 @PushWFArc f88 '' #zField
+Cs0 @PushWFArc f90 '' #zField
+Cs0 @PushWFArc f89 '' #zField
+Cs0 @CallSub f75 '' #zField
+Cs0 @GridStep f39 '' #zField
+Cs0 @PushWFArc f41 '' #zField
+Cs0 @PushWFArc f3 '' #zField
 >Proto Cs0 Cs0 CaseWidgetProcess #zField
 Cs0 f0 guid 152E8EDB3E3A6957 #txt
 Cs0 f0 method start(ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel,java.lang.Long) #txt
@@ -184,12 +202,10 @@ Cs0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f2 232 74 112 44 -37 -8 #rect
+Cs0 f2 328 74 112 44 -37 -8 #rect
 Cs0 f2 @|StepIcon #fIcon
-Cs0 f3 expr out #txt
-Cs0 f3 75 96 232 96 #arcP
 Cs0 f4 expr out #txt
-Cs0 f4 344 96 525 96 #arcP
+Cs0 f4 440 96 525 96 #arcP
 Cs0 f5 guid 1680C6A623A9C767 #txt
 Cs0 f5 actionTable 'out=in;
 ' #txt
@@ -470,6 +486,150 @@ Cs0 f71 @|UdMethodIcon #fIcon
 Cs0 f73 339 955 26 26 0 12 #rect
 Cs0 f73 @|UdProcessEndIcon #fIcon
 Cs0 f74 77 968 339 968 #arcP
+Cs0 f77 guid 17554B22FBEBCA3F #txt
+Cs0 f77 method getExportedFile(java.util.List<String>) #txt
+Cs0 f77 inParameterDecl '<java.util.List<String> columnsVisibility> param;' #txt
+Cs0 f77 inParameterMapAction 'out.columnsVisibility=param.columnsVisibility;
+' #txt
+Cs0 f77 outParameterDecl '<org.primefaces.model.StreamedContent exportedFile> result;' #txt
+Cs0 f77 outParameterMapAction 'result.exportedFile=in.exportedFile;
+' #txt
+Cs0 f77 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>getExportedFile(List&lt;String&gt;)</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f77 51 1043 26 26 -46 15 #rect
+Cs0 f77 @|UdMethodIcon #fIcon
+Cs0 f81 processCall 'Functional Processes/ExportCaseToExcel:exportToExcel(java.util.List<ch.ivyteam.ivy.workflow.ICase>,java.util.List<String>)' #txt
+Cs0 f81 requestActionDecl '<java.util.List<ch.ivyteam.ivy.workflow.ICase> collectedCasesForExporting,java.util.List<String> columnsVisibility> param;' #txt
+Cs0 f81 requestMappingAction 'param.collectedCasesForExporting=in.collectedCasesForExporting;
+param.columnsVisibility=in.columnsVisibility;
+' #txt
+Cs0 f81 responseMappingAction 'out=in;
+out.exportedFile=result.exportedFile;
+' #txt
+Cs0 f81 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>export to excel</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f81 584 1034 112 44 -38 -8 #rect
+Cs0 f81 @|CallSubIcon #fIcon
+Cs0 f80 processCall 'Ivy Data Processes/CaseService:countCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria)' #txt
+Cs0 f80 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria> param;' #txt
+Cs0 f80 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
+' #txt
+Cs0 f80 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData out;
+' #txt
+Cs0 f80 responseMappingAction 'out=in;
+out.totalCases=result.totalCases;
+' #txt
+Cs0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>count cases</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f80 144 1034 112 44 -33 -8 #rect
+Cs0 f80 @|CallSubIcon #fIcon
+Cs0 f76 actionTable 'out=in;
+' #txt
+Cs0 f76 actionCode 'import java.util.ArrayList;
+in.loopCounter = 0;
+in.maxResultNumberPerQuery = 100000;
+in.collectedCasesForExporting = new ArrayList();' #txt
+Cs0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>init data</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f76 288 1034 112 44 -21 -8 #rect
+Cs0 f76 @|StepIcon #fIcon
+Cs0 f79 819 1043 26 26 0 12 #rect
+Cs0 f79 @|UdProcessEndIcon #fIcon
+Cs0 f78 432 1040 32 32 0 16 #rect
+Cs0 f78 @|AlternativeIcon #fIcon
+Cs0 f82 actionTable 'out=in;
+' #txt
+Cs0 f82 actionCode in.loopCounter++; #txt
+Cs0 f82 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>counter++</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f82 544 1162 112 44 -27 -8 #rect
+Cs0 f82 @|StepIcon #fIcon
+Cs0 f87 expr out #txt
+Cs0 f87 77 1056 144 1056 #arcP
+Cs0 f92 400 1056 432 1056 #arcP
+Cs0 f86 expr in #txt
+Cs0 f86 464 1056 584 1056 #arcP
+Cs0 f91 600 1162 457 1063 #arcP
+Cs0 f83 256 1056 288 1056 #arcP
+Cs0 f88 696 1056 819 1056 #arcP
+Cs0 f90 expr out #txt
+Cs0 f90 504 1184 544 1184 #arcP
+Cs0 f89 expr in #txt
+Cs0 f89 outCond 'in.loopCounter <= in.totalCases / in.maxResultNumberPerQuery' #txt
+Cs0 f89 448 1072 448 1162 #arcP
+Cs0 f75 processCall 'Ivy Data Processes/CaseService:findCasesByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria,Integer,Integer)' #txt
+Cs0 f75 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria caseSearchCriteria,Integer startIndex,Integer count> param;' #txt
+Cs0 f75 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
+param.startIndex=in.loopCounter * in.maxResultNumberPerQuery;
+param.count=in.maxResultNumberPerQuery;
+' #txt
+Cs0 f75 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData out;
+' #txt
+Cs0 f75 responseMappingAction 'out=in;
+' #txt
+Cs0 f75 responseActionCode in.collectedCasesForExporting.addAll(result.cases); #txt
+Cs0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>find cases</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f75 392 1162 112 44 -28 -8 #rect
+Cs0 f75 @|CallSubIcon #fIcon
+Cs0 f39 actionTable 'out=in;
+' #txt
+Cs0 f39 actionCode 'import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
+import ch.ivy.addon.portalkit.bean.CaseWidgetBean;
+import javax.faces.context.FacesContext;
+
+FacesContext context = FacesContext.getCurrentInstance();
+CaseWidgetBean caseWidgetBean = context.getApplication().evaluateExpressionGet(context, "#{caseWidgetBean}", CaseWidgetBean.class) as CaseWidgetBean;
+if (!in.#dataModel is initialized) {
+	CaseLazyDataModel dataModel = new CaseLazyDataModel();
+	caseWidgetBean.setDataModel(dataModel);
+	in.dataModel = caseWidgetBean.dataModel;
+} else {
+	caseWidgetBean.setDataModel(in.dataModel);
+}' #txt
+Cs0 f39 security system #txt
+Cs0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>init data model</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f39 144 74 112 44 -40 -8 #rect
+Cs0 f39 @|StepIcon #fIcon
+Cs0 f41 expr out #txt
+Cs0 f41 75 96 144 96 #arcP
+Cs0 f3 256 96 328 96 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -482,8 +642,6 @@ Cs0 f15 mainOut f19 tail #connect
 Cs0 f19 head f18 mainIn #connect
 Cs0 f18 mainOut f21 tail #connect
 Cs0 f21 head f20 mainIn #connect
-Cs0 f0 mainOut f3 tail #connect
-Cs0 f3 head f2 mainIn #connect
 Cs0 f2 mainOut f4 tail #connect
 Cs0 f4 head f1 mainIn #connect
 Cs0 f31 mainOut f30 tail #connect
@@ -514,3 +672,23 @@ Cs0 f64 mainOut f38 tail #connect
 Cs0 f38 head f37 mainIn #connect
 Cs0 f71 mainOut f74 tail #connect
 Cs0 f74 head f73 mainIn #connect
+Cs0 f80 mainOut f83 tail #connect
+Cs0 f83 head f76 mainIn #connect
+Cs0 f76 mainOut f92 tail #connect
+Cs0 f92 head f78 in #connect
+Cs0 f89 head f75 mainIn #connect
+Cs0 f75 mainOut f90 tail #connect
+Cs0 f90 head f82 mainIn #connect
+Cs0 f82 mainOut f91 tail #connect
+Cs0 f91 head f78 in #connect
+Cs0 f77 mainOut f87 tail #connect
+Cs0 f87 head f80 mainIn #connect
+Cs0 f78 out f89 tail #connect
+Cs0 f78 out f86 tail #connect
+Cs0 f86 head f81 mainIn #connect
+Cs0 f81 mainOut f88 tail #connect
+Cs0 f88 head f79 mainIn #connect
+Cs0 f0 mainOut f41 tail #connect
+Cs0 f41 head f39 mainIn #connect
+Cs0 f39 mainOut f3 tail #connect
+Cs0 f3 head f2 mainIn #connect
