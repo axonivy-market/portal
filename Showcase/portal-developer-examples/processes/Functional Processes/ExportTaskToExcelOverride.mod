@@ -14,14 +14,14 @@ El0 @GridStep f81 '' #zField
 El0 @PushWFArc f3 '' #zField
 El0 @PushWFArc f2 '' #zField
 >Proto El0 El0 ExportTaskToExcel #zField
-El0 f0 inParamDecl '<List<ch.ivyteam.ivy.workflow.ITask> collectedTasksForExporting,java.util.List<String> columnsVisibility> param;' #txt
+El0 f0 inParamDecl '<java.util.List<ch.ivyteam.ivy.workflow.ITask> collectedTasksForExporting,java.util.List<String> columnsVisibility> param;' #txt
 El0 f0 inParamTable 'out.collectedTasksForExporting=param.collectedTasksForExporting;
 out.columnsVisibility=param.columnsVisibility;
 ' #txt
 El0 f0 outParamDecl '<org.primefaces.model.StreamedContent exportedFile> result;' #txt
 El0 f0 outParamTable 'result.exportedFile=in.exportedFile;
 ' #txt
-El0 f0 callSignature exportToExcel(List<ch.ivyteam.ivy.workflow.ITask>,java.util.List<String>) #txt
+El0 f0 callSignature exportToExcel(java.util.List<ch.ivyteam.ivy.workflow.ITask>,java.util.List<String>) #txt
 El0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
