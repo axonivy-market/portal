@@ -99,7 +99,7 @@ import java.util.Arrays;
 out.isChartNameExisted = false;
 StatisticService service = new StatisticService();
 for (DisplayName name : out.chartNames) {
-	String chartName = name.value as String;
+	String chartName = name.value;
 	if (service.checkStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName.trim(), name.getLocale().toLanguageTag())) {
 	  FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/validationErrors/nameIsExisted"), "");
 	  FacesContext.getCurrentInstance().addMessage("chart-name-input", message);

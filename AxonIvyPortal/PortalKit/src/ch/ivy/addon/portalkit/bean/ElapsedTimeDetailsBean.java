@@ -7,10 +7,9 @@ import java.util.concurrent.TimeUnit;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import org.apache.commons.lang3.StringUtils;
-
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -32,7 +31,7 @@ public class ElapsedTimeDetailsBean implements Serializable {
     String currentLanguage =
         LanguageService.newInstance().findUserLanguages(Ivy.session().getSessionUserName(), Arrays.asList(Ivy.wf().getApplication().getName())).getIvyLanguages().get(0).getUserLanguage();
     chartName = statisticChart.getNames().stream()
-        .filter(name -> StringUtils.equals(name.getLocale().toLanguageTag(), currentLanguage))
+        .filter(name -> StatisticService.isEqualsDisplayNameLocale(name, currentLanguage))
         .map(DisplayName::getValue)
         .findFirst().orElse("");
   }
