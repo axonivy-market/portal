@@ -42,6 +42,7 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.MARCH_CM
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.MAY_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.MONDAY_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NAME;
+import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NEW_CHART_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NORMAL_PRIORITY_KEY;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NOVEMBER_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NO_CATEGORY_CMS;
@@ -64,7 +65,6 @@ import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TODAY_EX
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.TUESDAY_CMS;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.USER_ID;
 import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.WEDNESDAY_CMS;
-import static ch.ivy.addon.portalkit.statistics.StatisticChartConstants.NEW_CHART_CMS;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -1427,8 +1427,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return foundCharts.stream()
         .filter(chart -> chart.getNames().stream()
             .filter(name -> equalsDisplayName(chartName, language, name))
-            .count() > 0)
-        .count() > 0;
+            .findFirst().isPresent())
+        .findFirst().isPresent();
   }
 
   private boolean equalsDisplayName(String chartName, String language, DisplayName displayName) {
