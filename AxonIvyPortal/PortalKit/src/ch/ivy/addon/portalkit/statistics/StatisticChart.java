@@ -28,7 +28,7 @@ public class StatisticChart {
   @JsonIgnore
   private BarChartModel barChartModel;
 
-  @JsonIgnore
+  @Deprecated(forRemoval = true, since = "9.1")
   private String name;
 
   public String getId() {
@@ -118,10 +118,12 @@ public class StatisticChart {
     return builder.hashCode();
   }
 
+  @Deprecated(forRemoval = true, since = "9.1")
   public String getName() {
     return name;
   }
 
+  @Deprecated(forRemoval = true, since = "9.1")
   public void setName(String name) {
     this.name = name;
   }
