@@ -1008,9 +1008,10 @@ Ct0 f74 136 138 112 44 -53 -8 #rect
 Ct0 f74 @|CallSubIcon #fIcon
 Ct0 f73 actionTable 'out=in;
 ' #txt
-Ct0 f73 actionCode 'in.statisticChartList.addAll(in.defaultCharts);
-in.prevStatisticListSize = in.statisticChartList.size();
-' #txt
+Ct0 f73 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
+
+StatisticService service = new StatisticService();
+in.statisticChartList = service.addListByDistinctCharts(in.statisticChartList, in.defaultCharts);' #txt
 Ct0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

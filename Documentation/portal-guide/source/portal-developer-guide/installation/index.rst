@@ -146,6 +146,17 @@ In engine
    project.
 4. Follow detailed migration notes for each version below.
 
+Migrate 8.0.7 to 8.0.8
+----------------------
+
+1. Since 8.0.8, statistic chart has multiple names for supported languages in application. Therefore you must run a migration process by the following steps:
+
+   - Deploy :download:`MigrateStatisticChartTo8.iar <documents/MigrateStatisticChartTo8.iar>` project to your Ivy application. This project requires ``PortalKit`` to run.
+
+   - Run ``MigrateStatisticChart/MigrateStatisticChart.ivp`` to migrate all statistic charts in your application.
+
+   - Restart Ivy engine.
+
 Migrate 8.0.x to 8.0.7
 ----------------------
 

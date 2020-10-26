@@ -17,7 +17,9 @@ import org.openqa.selenium.WebElement;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.HomePage;
+import portal.guitest.page.LanguagePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
 
@@ -111,4 +113,24 @@ public class StatisticWidgetTest extends BaseTest {
   }
 
 
+  @Test
+  public void testChartNameMultiLanguage() {
+    resetLanguageOfCurrentUser();
+    grantPermissionToCreateChart();
+    mainMenuPage = homePage.openMainMenu();
+    statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
+
+    statisticWidgetPage.switchCreateMode();
+    statisticWidgetPage.createTaskByPriorityChartMultiLanguage();
+
+    statisticWidgetPage.backToDashboard();
+    WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='1:chart-name-container'] .chart-name").getText().equals("Task by priority chart English"));
+
+    LanguagePage languagePage = homePage.openLanguagePage();
+    languagePage.selectLanguage(0);
+    languagePage.save();
+
+    WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='1:chart-name-container'] .chart-name").getText().equals("Task by priority chart German"));
+  }
 }

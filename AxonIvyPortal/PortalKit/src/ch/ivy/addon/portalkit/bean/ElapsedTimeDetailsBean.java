@@ -1,11 +1,15 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.concurrent.TimeUnit;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
+import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -24,7 +28,12 @@ public class ElapsedTimeDetailsBean implements Serializable {
 
   public void initialize(String caseCategory, StatisticChart statisticChart) {
     setSelectedCaseCategory(caseCategory);
-    chartName = statisticChart.getName();
+    String currentLanguage =
+        LanguageService.newInstance().findUserLanguages(Ivy.session().getSessionUserName(), Arrays.asList(Ivy.wf().getApplication().getName())).getIvyLanguages().get(0).getUserLanguage();
+    chartName = statisticChart.getNames().stream()
+        .filter(name -> StatisticService.equalsDisplayNameLocale(name, currentLanguage))
+        .map(DisplayName::getValue)
+        .findFirst().orElse("");
   }
 
   public String getSelectedCaseCategory() {
