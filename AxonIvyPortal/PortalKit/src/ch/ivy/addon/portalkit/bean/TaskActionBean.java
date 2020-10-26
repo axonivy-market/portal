@@ -15,6 +15,7 @@ import org.primefaces.PF;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.DummyTask;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivy.addon.portalkit.ivydata.utils.DateTimeFormatter;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
@@ -273,5 +274,9 @@ public class TaskActionBean implements Serializable {
       TaskUtils.updateTaskStartedAttribute(false);
       PortalNavigator.redirect(requestPath + "?endedTaskId=" + task.getId());
     }
+  }
+  
+  public String formatDurationTime(Number secondsValue) {
+    return DateTimeFormatter.formatDateTimeToString(secondsValue);
   }
 }
