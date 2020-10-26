@@ -1738,16 +1738,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .options-panel.expiry-chart-context-menu {
   border: none;
-  width: 120px;
 }
 
 .options-panel.expiry-chart-context-menu .option-item {
   box-sizing: border-box;
   width: 100% !important;
-}
-
-.options-panel.expiry-chart-context-menu .ui-overlaypanel-content {
-  width: 120px !important;
 }
 
 .options-panel.expiry-chart-context-menu a {
