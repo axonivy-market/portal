@@ -96,10 +96,10 @@ public class ExpressProcessPage extends TemplatePage {
 		if (isGroup) {
 			selectCheckbox("assignee-selection-form:assignee-type:1");
 			waitAjaxIndicatorDisappear();
-			waitForElementDisplayed(By.id("assignee-selection-form:role-selection-component:role-selection-select_input"), true);
-			type(By.id("assignee-selection-form:role-selection-component:role-selection-select_input"), responsible);
-			waitForElementDisplayed(By.id("assignee-selection-form:role-selection-component:role-selection-select_panel"), true);
-			click(By.xpath("//*[@id='assignee-selection-form:role-selection-component:role-selection-select_panel']/ul/li/span"));
+			waitForElementDisplayed(By.id("assignee-selection-form:role-selection_input"), true);
+			type(By.id("assignee-selection-form:role-selection_input"), responsible);
+			waitForElementDisplayed(By.id("assignee-selection-form:role-selection_panel"), true);
+			click(By.xpath("//*[@id='assignee-selection-form:role-selection_panel']/ul/li/span"));
 		} else {
 			type(By.id("assignee-selection-form:user-selection-component:user-selection_input"), responsible);
 			waitForElementDisplayed(By.id("assignee-selection-form:user-selection-component:user-selection_panel"), true);
