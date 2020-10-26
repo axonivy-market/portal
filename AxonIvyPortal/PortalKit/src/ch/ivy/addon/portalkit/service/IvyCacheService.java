@@ -51,6 +51,18 @@ public class IvyCacheService {
     }
   }
   
+  public void invalidateEntryOfGroup(String groupIdentifier, String identifier) {
+    Objects.requireNonNull(groupIdentifier, "groupIdentifier shouldn't be null");
+    Objects.requireNonNull(identifier, "identifier shouldn't be null");
+    IDataCacheGroup group = sessionCache().getGroup(groupIdentifier);
+    if (group != null) {
+      IDataCacheEntry entry = sessionCache().getEntry(groupIdentifier, identifier);
+      if (entry != null) {
+        sessionCache().invalidateEntry(group, entry);
+      }
+    }
+  }
+
   public void cacheEntry(String groupName, String entryName, Object value){
     applicationCache().setEntry(groupName, entryName, value);
   }
