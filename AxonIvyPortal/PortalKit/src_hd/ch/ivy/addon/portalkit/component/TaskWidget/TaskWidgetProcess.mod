@@ -886,8 +886,8 @@ Ts0 f90 expr out #txt
 Ts0 f90 536 1504 576 1504 #arcP
 Ts0 f91 632 1482 489 1383 #arcP
 Ts0 f92 432 1376 464 1376 #arcP
-Ts0 f81 processCall 'Functional Processes/ExportTaskToExcel:exportToExcel(List<ch.ivyteam.ivy.workflow.ITask>,java.util.List<String>)' #txt
-Ts0 f81 requestActionDecl '<List<ch.ivyteam.ivy.workflow.ITask> collectedTasksForExporting,java.util.List<String> columnsVisibility> param;' #txt
+Ts0 f81 processCall 'Functional Processes/ExportTaskToExcel:exportToExcel(java.util.List<ch.ivyteam.ivy.workflow.ITask>,java.util.List<String>)' #txt
+Ts0 f81 requestActionDecl '<java.util.List<ch.ivyteam.ivy.workflow.ITask> collectedTasksForExporting,java.util.List<String> columnsVisibility> param;' #txt
 Ts0 f81 requestMappingAction 'param.collectedTasksForExporting=in.collectedTasksForExporting;
 param.columnsVisibility=in.columnsVisibility;
 ' #txt
