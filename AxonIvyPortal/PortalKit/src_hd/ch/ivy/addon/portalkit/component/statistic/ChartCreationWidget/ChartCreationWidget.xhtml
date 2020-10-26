@@ -172,8 +172,9 @@
         <h:panelGrid id="chart-name-input-container" columns="1" styleClass="ui-g-12">
           <ui:repeat id="chart-name-list" var="name" value="#{data.chartNames}" varStatus="status">
             <h:panelGroup id="chart-name-input-panel" styleClass="md-inputfield add-statistic-panel ui-fluid">
-              <p:inputText id="chart-name-input" value="#{name.value}" required="true" maxlength="200" />
-              <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')} #{name.locale.getDisplayLanguage()}" for="chart-name-input" />
+              <p:inputText id="chart-name-input" value="#{name.value}" required="true" maxlength="200"
+                requiredMessage="#{name.locale.getDisplayLanguage()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+              <p:outputLabel value="#{name.locale.getDisplayLanguage()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" for="chart-name-input" />
             </h:panelGroup>
           </ui:repeat>
         </h:panelGrid>
@@ -194,7 +195,7 @@
     <c:if test="#{data != null and !data.isAllowedToCreateChart}">
       <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/notAllowedToCreateChart')}" />
       <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
-        <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" 
+        <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
           onclick="PF('add-chart-dialog').hide();" />
       </h:panelGroup>
