@@ -40,6 +40,8 @@ public class StatisticChartConstants {
   public static final String SATURDAY_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/saturday";
   public static final String SUNDAY_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/barchart/daysOfWeek/sunday";
 
+  public static final String NEW_CHART_CMS = "/ch.ivy.addon.portalkit.ui.jsf/statistic/defaultChart/newChart";
+
   public static final String BEFORE_8 = "<8";
   public static final String IN_8 = "8";
   public static final String IN_9 = "9";

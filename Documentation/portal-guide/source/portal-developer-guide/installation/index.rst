@@ -128,9 +128,9 @@ Migrate 9.1 to 9.2
 
 3. CaseDetails component in PortalTemplate is removed.
 
-4. Since 9.2, statistic chart has multiple names for to each supported languages in application. Therefore you must run a migration process to migrate statistic chart. Please follow these steps to migrate:
+4. Since 9.2, statistic chart has multiple names for supported languages in application. Therefore you must run a migration process by the following steps:
 
-   - Deploy :download:`MigrateStatisticChartTo9.iar <documents/MigrateStatisticChartTo9.iar>` project to your Ivy application. This project required ``PortalKit`` to run. Therefore please make sure that your application has project ``PortalKit``.
+   - Deploy :download:`MigrateStatisticChartTo9.iar <documents/MigrateStatisticChartTo9.iar>` project to your Ivy application. This project required ``PortalKit`` to run. Migrate project requires project ``PortalKit``.
 
    - Run ``MigrateStatisticChart/MigrateStatatisticChart.ivp`` to migrate all statistic charts in your application.
 
