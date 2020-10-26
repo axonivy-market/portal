@@ -14,7 +14,9 @@ import java.util.stream.Stream;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.dto.RoleDTO;
+import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivyteam.api.PublicAPI;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
@@ -246,10 +248,15 @@ public final class RoleUtils {
   public static void setProperty(final IRole role, final String key, final String value) {
     IvyExecutor.executeAsSystem(() ->{
       role.setProperty(key, value);
+      invalidCacheForRoles();
       return Void.class;
     });
   }
 
+  private static void invalidCacheForRoles() {
+    IvyCacheService.newInstance().invalidateEntryOfGroup(Ivy.request().getApplication().getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION);
+  }
+  
   /**
    * Remove property for passed role
    * 
@@ -260,6 +267,7 @@ public final class RoleUtils {
   public static void removeProperty(final IRole role, final String key) {
     IvyExecutor.executeAsSystem(() ->{
       role.removeProperty(key);
+      invalidCacheForRoles();
       return Void.class;
     });
   }
