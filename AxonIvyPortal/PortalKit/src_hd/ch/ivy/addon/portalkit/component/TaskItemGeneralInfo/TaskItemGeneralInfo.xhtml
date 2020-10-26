@@ -236,8 +236,18 @@
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/completedOn')}"/>
       </div>
       <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
-        <h:outputText value="#{task.endTimestamp}" rendered="#{not empty task.endTimestamp}">
+        <h:outputText id="end-date" value="#{task.endTimestamp}" rendered="#{not empty task.endTimestamp}">
           <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+        </h:outputText>
+      </div>
+    </div>
+    
+    <div class="ui-g">
+      <div class="ui-xl-3 ui-lg-4 ui-md-4 ui-sm-5 ui-g-2 u-no-padding-left">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/duration')}"/>
+      </div>
+      <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
+        <h:outputText id="duration-time" value="#{taskActionBean.formatDurationTime(task.getBusinessRuntime().toNumber())}" rendered="#{not empty task.endTimestamp}">
         </h:outputText>
       </div>
     </div>

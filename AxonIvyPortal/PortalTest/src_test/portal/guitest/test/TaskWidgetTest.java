@@ -229,8 +229,8 @@ public class TaskWidgetTest extends BaseTest {
 
     // Check result
     TaskWidgetPage taskWidgetPage = userProfilePage.openTaskList();
-    assertEquals("low", taskWidgetPage.getPriorityOfTask(0));
-    assertEquals("high", taskWidgetPage.getPriorityOfTask(taskWidgetPage.countTasks() - 1));
+    assertEquals("high", taskWidgetPage.getPriorityOfTask(0));
+    assertEquals("low", taskWidgetPage.getPriorityOfTask(taskWidgetPage.countTasks() - 1));
 
     // Change sorting options
     userProfilePage = taskWidgetPage.openMyProfilePage();

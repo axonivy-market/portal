@@ -68,7 +68,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
   protected List<String> portalDefaultColumns =
-      Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "STATE");
+      Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "COMPLETED_ON", "STATE");
   protected List<String> portalRequiredColumns = Arrays.asList("NAME");
 
   protected boolean compactMode;
@@ -327,7 +327,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   private boolean isSortedDescendingByDefault() {
-    String defaultSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfCaseList();
+    String defaultSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfTaskList();
     if (StringUtils.isBlank(defaultSortDirection)) {
       GlobalSettingService globalSettingService = new GlobalSettingService();
       defaultSortDirection = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST.name());

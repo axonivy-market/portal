@@ -200,7 +200,8 @@ Ts0 f107 actionTable 'out=in;
 ' #txt
 Ts0 f107 actionCode 'out.delegatedSecurityMember = null;
 out.disabledDelegateButton = true;
-' #txt
+out.selectedRole = null;
+out.selectedUser = null;' #txt
 Ts0 f107 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
