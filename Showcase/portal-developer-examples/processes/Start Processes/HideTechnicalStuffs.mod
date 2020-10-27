@@ -98,11 +98,12 @@ Hs0 f4 696 320 32 32 0 15 #rect
 Hs0 f4 @|EndIcon #fIcon
 Hs0 f9 actionTable 'out=in;
 ' #txt
-Hs0 f9 actionCode 'import ch.ivy.addon.portalkit.util.RoleUtils;
+Hs0 f9 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivyteam.ivy.security.IRole;
 IRole role = ivy.session.getSecurityContext().findRole("PortalSystem");
 if(#role is initialized) {
-	RoleUtils.setProperty(role, RoleUtils.HIDE, "hide");
+	RoleUtils.setProperty(role, AdditionalProperty.HIDE.toString(), AdditionalProperty.HIDE.toString());
 }' #txt
 Hs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -119,11 +120,12 @@ Hs0 f2 expr out #txt
 Hs0 f2 440 72 545 72 #arcP
 Hs0 f11 actionTable 'out=in;
 ' #txt
-Hs0 f11 actionCode 'import ch.ivy.addon.portalkit.util.RoleUtils;
+Hs0 f11 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivyteam.ivy.security.IRole;
 IRole role = ivy.session.getSecurityContext().findRole("PortalSystem");
 if(#role is initialized) {
-	RoleUtils.removeProperty(role, RoleUtils.HIDE);
+	RoleUtils.removeProperty(role, AdditionalProperty.HIDE.toString());
 }' #txt
 Hs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
