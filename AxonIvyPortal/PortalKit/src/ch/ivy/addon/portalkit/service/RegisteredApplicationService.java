@@ -17,7 +17,6 @@ import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.persistence.dao.ApplicationDao;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class RegisteredApplicationService extends AbstractService<Application> {
@@ -27,20 +26,20 @@ public class RegisteredApplicationService extends AbstractService<Application> {
   }
 
   @Override
-  protected ApplicationDao getDao() {
+  protected ApplicationDao getDao() { 
     return (ApplicationDao) super.getDao();
   }
 
   @SuppressWarnings("unchecked")
   public List<Application> findAllIvyApplications() {
     String sessionUserName = Ivy.session().getSessionUserName();
-    IDataCacheEntry sessionCache = IvyCacheService.newInstance().getSessionCache(sessionUserName, IvyCacheIdentifier.ALL_IVY_APPLICATIONS);
-    if (sessionCache == null) {
+    Optional<Object> resutls = IvyCacheService.newInstance().getSessionCacheValue(sessionUserName, IvyCacheIdentifier.ALL_IVY_APPLICATIONS);
+    if (!resutls.isPresent() || resutls.isEmpty()) {
       List<Application> allIvyApplications = getDao().findAllIvyApplications();
       IvyCacheService.newInstance().setSessionCache(sessionUserName, IvyCacheIdentifier.ALL_IVY_APPLICATIONS, allIvyApplications);
       return allIvyApplications;
     } else {
-      return (List<Application>) sessionCache.getValue();
+      return (List<Application>) resutls.get();
     }
   }
 
@@ -141,8 +140,8 @@ public class RegisteredApplicationService extends AbstractService<Application> {
    */
   @SuppressWarnings("unchecked")
   public List<Application> findApplicationByUser(String username){
-    IDataCacheEntry sessionCache = IvyCacheService.newInstance().getSessionCache(username, IvyCacheIdentifier.ALL_IVY_AND_THIRD_PARTY_APPLICATIONS);
-    if (sessionCache == null) {
+    Optional<Object> results = IvyCacheService.newInstance().getSessionCacheValue(username, IvyCacheIdentifier.ALL_IVY_AND_THIRD_PARTY_APPLICATIONS);
+    if (!results.isPresent() || results.isEmpty()) {
       List<Application> apps = findAllIvyApplications();
       List<Application> applications = CollectionUtils.emptyIfNull(apps)
           .stream()
@@ -152,7 +151,7 @@ public class RegisteredApplicationService extends AbstractService<Application> {
       IvyCacheService.newInstance().setSessionCache(username, IvyCacheIdentifier.ALL_IVY_AND_THIRD_PARTY_APPLICATIONS, applications);
       return applications;
     } else {
-      return (List<Application>) sessionCache.getValue();
+      return (List<Application>) results.get();
     }
     
   }

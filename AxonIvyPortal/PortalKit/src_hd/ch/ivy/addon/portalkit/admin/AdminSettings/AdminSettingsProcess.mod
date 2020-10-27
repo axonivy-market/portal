@@ -1505,8 +1505,8 @@ As0 f26 actionTable 'out=in;
 As0 f26 actionCode 'import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 
-IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION);
-IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON);' #txt
+IvyCacheService.newInstance().invalidateSessionGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION);
+IvyCacheService.newInstance().invalidateSessionGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON);' #txt
 As0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1525,8 +1525,8 @@ As0 f42 actionTable 'out=in;
 As0 f42 actionCode 'import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 
-IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION);
-IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON);
+IvyCacheService.newInstance().invalidateSessionGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION);
+IvyCacheService.newInstance().invalidateSessionGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON);
 ' #txt
 As0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1546,8 +1546,8 @@ As0 f46 actionTable 'out=in;
 As0 f46 actionCode 'import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 
-IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION);
-IvyCacheService.newInstance().invalidateGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON);' #txt
+IvyCacheService.newInstance().invalidateSessionGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_BASED_ON_CONFIGURATION);
+IvyCacheService.newInstance().invalidateSessionGroup(IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON);' #txt
 As0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -787,10 +787,10 @@ Dt0 f54 expr out #txt
 Dt0 f54 927 96 1024 96 #arcP
 Dt0 f58 actionTable 'out=in;
 ' #txt
-Dt0 f58 actionCode 'in.counter = 1;
+Dt0 f58 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 
-String hide = "HIDE";
-ivy.case.customFields().stringField(hide).set(hide);' #txt
+in.counter = 1;
+ivy.case.customFields().stringField(AdditionalProperty.HIDE.toString()).set(AdditionalProperty.HIDE.toString());' #txt
 Dt0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

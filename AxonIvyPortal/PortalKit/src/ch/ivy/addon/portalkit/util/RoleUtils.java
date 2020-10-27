@@ -12,15 +12,16 @@ import java.util.concurrent.Callable;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.dto.RoleDTO;
+import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivyteam.api.PublicAPI;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
-import ch.ivyteam.ivy.security.ISecurityContext;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.server.ServerFactory;
 
@@ -33,10 +34,8 @@ public final class RoleUtils {
 
   private static final String HIDE_IN_DELEGATION = "HIDE_IN_DELEGATION";
   private static final String[] DEFAULT_HIDDEN_ROLES = {"AXONIVY_PORTAL_ADMIN"};
-  public static final String HIDE = "HIDE";
   
-  private RoleUtils() {
-  }
+  private RoleUtils() {}
   
   /**
    * Get all roles of current Ivy Application
@@ -49,8 +48,7 @@ public final class RoleUtils {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<IRole>>() {
         @Override
         public List<IRole> call() throws Exception {
-          ISecurityContext security = Ivy.wf().getSecurityContext();
-          return security.getRoles();
+          return Ivy.wf().getSecurityContext().getRoles();
         }
       });
     } catch (Exception e) {
@@ -71,8 +69,7 @@ public final class RoleUtils {
       return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<IRole>() {
         @Override
         public IRole call() throws Exception {
-          ISecurityContext security = Ivy.wf().getSecurityContext();
-          return security.findRole(name);
+          return Ivy.wf().getSecurityContext().findRole(name);
         }
       });
     } catch (Exception e) {
@@ -89,12 +86,7 @@ public final class RoleUtils {
    */
   @PublicAPI
   public static List<IRole> getAllHiddenRoles() {
-    List<IRole> allRoles = getAllRoles();
-    if (allRoles != null) {
-      return allRoles.stream().filter(isHiddenRole()).collect(Collectors.toList());
-    } else {
-      return new ArrayList<>();
-    }
+    return filterHiddenRoles(getAllRoles());
   }
 
   /**
@@ -105,13 +97,7 @@ public final class RoleUtils {
    */
   @PublicAPI
   public static List<IRole> getAllVisibleRoles() {
-    List<IRole> allRoles = getAllRoles();
-    if (allRoles != null) {
-      return allRoles.stream().filter(isVisibleRole()).collect(Collectors.toList());
-    } else {
-      return new ArrayList<>();
-    }
-   
+    return filterVisibleRoles(getAllRoles());
   }
 
   /**
@@ -123,9 +109,7 @@ public final class RoleUtils {
    */
   @PublicAPI
   public static List<IRole> getHiddenRoles(IUser user) {
-    return user.getRoles().stream()
-        .filter(isHiddenRole())
-        .collect(Collectors.toList());
+    return filterHiddenRoles(user.getRoles());
   }
   
   /**
@@ -137,9 +121,7 @@ public final class RoleUtils {
    */
   @PublicAPI
   public static List<IRole> getAllHiddenRoles(IUser user) {
-    return user.getAllRoles().stream()
-        .filter(isHiddenRole())
-        .collect(Collectors.toList());
+    return filterHiddenRoles(user.getAllRoles());
   }
 
   /**
@@ -152,9 +134,7 @@ public final class RoleUtils {
    */
   @PublicAPI
   public static List<IRole> getHiddenRoles(IRole role) {
-    return role.getRoles().stream()
-        .filter(isHiddenRole())
-        .collect(Collectors.toList());
+    return filterHiddenRoles(role.getRoles());
   }
   
   /**
@@ -167,9 +147,7 @@ public final class RoleUtils {
    */
   @PublicAPI
   public static List<IRole> getAllHiddenRoles(IRole role) {
-    return role.getAllRoles().stream()
-        .filter(isHiddenRole())
-        .collect(Collectors.toList());
+    return filterHiddenRoles(role.getAllRoles());
   }
 
   /**
@@ -181,9 +159,7 @@ public final class RoleUtils {
    */
   @PublicAPI
   public static List<IRole> getVisibleRoles(IUser user) {
-    return user.getRoles().stream()
-        .filter(isVisibleRole())
-        .collect(Collectors.toList());
+    return filterVisibleRoles(user.getRoles());
   }
   
   /**
@@ -195,9 +171,7 @@ public final class RoleUtils {
    */
   @PublicAPI
   public static List<IRole> getAllVisibleRoles(IUser user) {
-    return user.getAllRoles().stream()
-        .filter(isVisibleRole())
-        .collect(Collectors.toList());
+    return filterVisibleRoles(user.getAllRoles());
   }
 
   /**
@@ -210,9 +184,7 @@ public final class RoleUtils {
    */
   @PublicAPI
   public static List<IRole> getVisibleRoles(IRole role) {
-    return role.getRoles().stream()
-        .filter(isVisibleRole())
-        .collect(Collectors.toList());
+    return filterVisibleRoles(role.getRoles());
   }
   
   /**
@@ -225,9 +197,7 @@ public final class RoleUtils {
    */
   @PublicAPI
   public static List<IRole> getAllVisibleRoles(IRole role) {
-    return role.getAllRoles().stream()
-        .filter(isVisibleRole())
-        .collect(Collectors.toList());
+    return filterVisibleRoles(role.getAllRoles());
   }
 
   /**
@@ -243,11 +213,10 @@ public final class RoleUtils {
         @Override
         public List<IRole> call() throws Exception {
           List<IRole> roles = new ArrayList<>();
-          List<IRole> securityRolesTmp = Ivy.wf().getSecurityContext().getRoles();
+          List<IRole> securityRolesTmp = filterVisibleRoles(Ivy.wf().getSecurityContext().getRoles());
           for (IRole role : securityRolesTmp) {
             // Ignore the role has value in property HIDE_IN_DELEGATION
-            // or the role has value in property HIDE
-            if (role.getProperty(HIDE_IN_DELEGATION) != null || role.getProperty(HIDE) != null) {
+            if (role.getProperty(HIDE_IN_DELEGATION) != null) {
               continue;
             }
             // Add entry to visible List
@@ -309,7 +278,7 @@ public final class RoleUtils {
   }
 
   private static void invalidCacheForRoles() {
-    IvyCacheService.newInstance().invalidateEntryOfGroup(Ivy.request().getApplication().getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION);
+    IvyCacheService.newInstance().invalidateSessionEntry(Ivy.request().getApplication().getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION);
   }
 
   /**
@@ -320,18 +289,18 @@ public final class RoleUtils {
     
     defaultHiddenRoleNames.forEach(roleName -> {
       IRole role = findRole(roleName);
-      if (role != null && role.getProperty(HIDE) == null) {
-        setProperty(role, HIDE, HIDE);
+      if (role != null && role.getProperty(AdditionalProperty.HIDE.toString()) == null) {
+        setProperty(role, AdditionalProperty.HIDE.toString(), AdditionalProperty.HIDE.toString());
       }
     });
   }
 
   private static Predicate<IRole> isHiddenRole() {
-    return role -> Objects.nonNull(role.getProperty(HIDE));
+    return role -> Objects.nonNull(role.getProperty(AdditionalProperty.HIDE.toString()));
   }
 
   private static Predicate<IRole> isVisibleRole() {
-    return role -> Objects.isNull(role.getProperty(HIDE));
+    return role -> Objects.isNull(role.getProperty(AdditionalProperty.HIDE.toString()));
   }
 
   /**
@@ -371,4 +340,12 @@ public final class RoleUtils {
     return filterRoles;
   }
   
+  private static List<IRole> filterHiddenRoles(List<IRole> roles) {
+    return CollectionUtils.emptyIfNull(roles).stream().filter(isHiddenRole()).collect(Collectors.toList());
+  }
+
+  private static List<IRole> filterVisibleRoles(List<IRole> roles) {
+    return CollectionUtils.emptyIfNull(roles).stream().filter(isVisibleRole()).collect(Collectors.toList());
+  }
+
 }
