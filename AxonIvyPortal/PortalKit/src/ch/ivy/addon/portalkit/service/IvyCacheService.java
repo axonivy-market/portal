@@ -189,7 +189,7 @@ public class IvyCacheService {
   
   public String getLogoutPageFromCache() {
     Optional<Object> result = getSessionCacheValue(IvyCacheIdentifier.LOGOUT_PAGE_CACHE_GROUP_NAME, IvyCacheIdentifier.LOGOUT_PAGE_CACHE_ENTRY_NAME);
-    if (result.isPresent() && !result.isEmpty()) {
+    if (!result.isEmpty()) {
       return String.valueOf(result.get());
     }
     return StringUtils.EMPTY;
