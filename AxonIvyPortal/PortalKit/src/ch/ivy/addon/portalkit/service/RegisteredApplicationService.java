@@ -26,7 +26,7 @@ public class RegisteredApplicationService extends AbstractService<Application> {
   @SuppressWarnings("unchecked")
   public List<Application> findAllThirdPartyApplication(){
     Optional<Object> sessionCache = IvyCacheService.newInstance().getSessionCacheValue(THIRD_PARTY_APPLICATIONS, THIRD_PARTY_APPLICATIONS);
-    if (!sessionCache.isPresent() || sessionCache.isEmpty()) {
+    if (sessionCache.isEmpty()) {
       List<Application> applications = getDao().findAllThirdPartyApplications();
       IvyCacheService.newInstance().setSessionCache(THIRD_PARTY_APPLICATIONS, THIRD_PARTY_APPLICATIONS, applications);
       return applications;
