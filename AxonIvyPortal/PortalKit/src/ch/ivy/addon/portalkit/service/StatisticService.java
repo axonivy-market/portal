@@ -783,7 +783,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
     for (DisplayName chartName : chartNames) {
       if (StringUtils.isBlank(chartName.getValue())) {
-        chartName.setValue(NEW_CHART_CMS);
+        chartName.setValue(Ivy.cms().co(NEW_CHART_CMS));
       }
     }
   }
