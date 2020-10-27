@@ -614,6 +614,14 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 .ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-item label {
   font-size: var(--large-font-size); }
 
+.task-table {
+  border-right: solid 1px var(--case-related-task-content-border); }
+
+.task-table table thead tr th:last-child ,
+.task-table .ui-datatable-scrollable-body table tbody,
+.task-table .ui-datatable-scrollable-body table tbody tr {
+  border-right: none; }
+
 .chart-info-header {
   font-size: var(--large-font-size);
   font-weight: var(--chart-info-header-font-weight); }
