@@ -5,10 +5,8 @@ package ch.ivy.addon.portalkit.util;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
-import java.util.concurrent.Callable;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -23,7 +21,6 @@ import ch.ivyteam.api.PublicAPI;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 import ch.ivyteam.ivy.security.IUser;
-import ch.ivyteam.ivy.server.ServerFactory;
 
 /**
  * Provide the utilities related to role
@@ -44,17 +41,9 @@ public final class RoleUtils {
    */
   @PublicAPI
   public static List<IRole> getAllRoles() {
-    try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<IRole>>() {
-        @Override
-        public List<IRole> call() throws Exception {
-          return Ivy.wf().getSecurityContext().getRoles();
-        }
-      });
-    } catch (Exception e) {
-      Ivy.log().error(e);
-    }
-    return Collections.emptyList();
+    return IvyExecutor.executeAsSystem(() -> {
+      return Ivy.wf().getSecurityContext().getRoles();
+    });
   }
   
   /**
@@ -65,17 +54,9 @@ public final class RoleUtils {
    */
   @PublicAPI
   public static IRole findRole(String name) {
-    try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<IRole>() {
-        @Override
-        public IRole call() throws Exception {
-          return Ivy.wf().getSecurityContext().findRole(name);
-        }
-      });
-    } catch (Exception e) {
-      Ivy.log().error(e);
-    }
-    return null;
+    return IvyExecutor.executeAsSystem(() -> {
+      return Ivy.wf().getSecurityContext().findRole(name);
+    });
   }
 
   /**
@@ -208,27 +189,19 @@ public final class RoleUtils {
    *         HIDE
    */
   public static List<IRole> getRolesForDelegate() {
-    try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<List<IRole>>() {
-        @Override
-        public List<IRole> call() throws Exception {
-          List<IRole> roles = new ArrayList<>();
-          List<IRole> securityRolesTmp = filterVisibleRoles(Ivy.wf().getSecurityContext().getRoles());
-          for (IRole role : securityRolesTmp) {
-            // Ignore the role has value in property HIDE_IN_DELEGATION
-            if (role.getProperty(HIDE_IN_DELEGATION) != null) {
-              continue;
-            }
-            // Add entry to visible List
-            roles.add(role);
-          }
-          return roles;
+    return IvyExecutor.executeAsSystem(() -> {
+      List<IRole> roles = new ArrayList<>();
+      List<IRole> securityRolesTmp = filterVisibleRoles(Ivy.wf().getSecurityContext().getRoles());
+      for (IRole role : securityRolesTmp) {
+        // Ignore the role has value in property HIDE_IN_DELEGATION
+        if (role.getProperty(HIDE_IN_DELEGATION) != null) {
+          continue;
         }
-      });
-    } catch (Exception e) {
-      Ivy.log().error(e);
-    }
-    return Collections.emptyList();
+        // Add entry to visible List
+        roles.add(role);
+      }
+      return roles;
+    });
   }
 
   /**
@@ -240,18 +213,11 @@ public final class RoleUtils {
    */
   @PublicAPI
   public static void setProperty(final IRole role, final String key, final String value) {
-    try {
-      ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Void>() {
-        @Override
-        public Void call() throws Exception {
-          role.setProperty(key, value);
-          invalidCacheForRoles();
-          return null;
-        }
-      });
-    } catch (Exception e) {
-      Ivy.log().error(e);
-    }
+    IvyExecutor.executeAsSystem(() -> {
+      role.setProperty(key, value);
+      invalidCacheForRoles();
+      return null;
+    });
   }
 
   /**
@@ -262,19 +228,11 @@ public final class RoleUtils {
    */
   @PublicAPI
   public static void removeProperty(final IRole role, final String key) {
-    try {
-      ServerFactory.getServer().getSecurityManager().executeAsSystem(new Callable<Void>() {
-        @Override
-        public Void call() throws Exception {
-          role.removeProperty(key);
-          invalidCacheForRoles();
-          return null;
-        }
-
-      });
-    } catch (Exception e) {
-      Ivy.log().error(e);
-    }
+    IvyExecutor.executeAsSystem(() -> {
+      role.removeProperty(key);
+      invalidCacheForRoles();
+      return null;
+    });
   }
 
   private static void invalidCacheForRoles() {
@@ -286,7 +244,7 @@ public final class RoleUtils {
    */
   public static void setHidePropertyForDefaultHiddenRoles() {
     List<String> defaultHiddenRoleNames = Arrays.asList(DEFAULT_HIDDEN_ROLES);
-    
+
     defaultHiddenRoleNames.forEach(roleName -> {
       IRole role = findRole(roleName);
       if (role != null && role.getProperty(AdditionalProperty.HIDE.toString()) == null) {
