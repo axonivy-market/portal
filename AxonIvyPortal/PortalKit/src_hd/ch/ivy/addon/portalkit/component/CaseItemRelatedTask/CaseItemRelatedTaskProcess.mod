@@ -21,7 +21,6 @@ Cs0 @Join f9 '' #zField
 Cs0 @PushWFArc f10 '' #zField
 Cs0 @PushWFArc f12 '' #zField
 Cs0 @GridStep f14 '' #zField
-Cs0 @PushWFArc f15 '' #zField
 Cs0 @SJArc f13 '' #zField
 Cs0 @GridStep f17 '' #zField
 Cs0 @PushWFArc f18 '' #zField
@@ -54,6 +53,7 @@ Cs0 @UdMethod f2 '' #zField
 Cs0 @PushWFArc f5 '' #zField
 Cs0 @UdMethod f25 '' #zField
 Cs0 @PushWFArc f27 '' #zField
+Cs0 @PushWFArc f15 '' #zField
 >Proto Cs0 Cs0 CaseItemRelatedTaskProcess #zField
 Cs0 f0 guid 167E9A75EF3D0909 #txt
 Cs0 f0 method start() #txt
@@ -126,7 +126,8 @@ boolean excludeHiddenTasks = Boolean.parseBoolean(ivy.var.get(HiddenTasksCasesCo
 ISession session = ivy.session;
 boolean isOwner = in.iCase.#owner != null ? in.iCase.getOwner().isMember(ivy.session, true) : false;
 boolean ableToSeeAllRelatedTaskOfCase = PermissionUtils.checkReadAllTasksPermission() || PermissionUtils.checkTaskReadOwnCaseTasksPermission() || isOwner;
-for (ITask task : in.iCase.getTasks()) {
+
+for (ITask task : in.iCase.tasks().all()) {
 	if ((task.getState() == TaskState.SUSPENDED || task.getState() == TaskState.RESUMED || task.getState() == TaskState.PARKED || task.getState() == TaskState.CREATED)
 				&& (excludeHiddenTasks ? StringUtils.isEmpty(task.customFields().stringField(AdditionalProperty.HIDE.toString()).getOrNull()) : true) && task.isPersistent()) {
 		if (ableToSeeAllRelatedTaskOfCase) {
@@ -157,8 +158,6 @@ Cs0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Cs0 f14 336 170 112 44 -49 -8 #rect
 Cs0 f14 @|StepIcon #fIcon
-Cs0 f15 expr out1 #txt
-Cs0 f15 208 192 336 192 #arcP
 Cs0 f13 expr out #txt
 Cs0 f13 type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 Cs0 f13 var in1 #txt
@@ -538,6 +537,8 @@ Cs0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f25 83 683 26 26 -78 20 #rect
 Cs0 f25 @|UdMethodIcon #fIcon
 Cs0 f27 109 696 264 696 #arcP
+Cs0 f15 expr out1 #txt
+Cs0 f15 208 192 336 192 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseItemRelatedTask.CaseItemRelatedTaskData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -548,11 +549,8 @@ Cs0 f9 mainOut f10 tail #connect
 Cs0 f10 head f7 mainIn #connect
 Cs0 f6 mainOut f12 tail #connect
 Cs0 f12 head f8 in #connect
-Cs0 f8 out f15 tail #connect
-Cs0 f15 head f14 mainIn #connect
 Cs0 f14 mainOut f13 tail #connect
 Cs0 f13 head f9 in #connect
-Cs0 f8 out f18 tail #connect
 Cs0 f18 head f17 mainIn #connect
 Cs0 f17 mainOut f20 tail #connect
 Cs0 f20 head f19 mainIn #connect
@@ -580,3 +578,6 @@ Cs0 f2 mainOut f5 tail #connect
 Cs0 f5 head f35 mainIn #connect
 Cs0 f25 mainOut f27 tail #connect
 Cs0 f27 head f37 mainIn #connect
+Cs0 f8 out f18 tail #connect
+Cs0 f8 out f15 tail #connect
+Cs0 f15 head f14 mainIn #connect
