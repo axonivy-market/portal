@@ -34,7 +34,7 @@ public class RegisteredApplicationService extends AbstractService<Application> {
   public List<Application> findAllIvyApplications() {
     String sessionUserName = Ivy.session().getSessionUserName();
     Optional<Object> resutls = IvyCacheService.newInstance().getSessionCacheValue(sessionUserName, IvyCacheIdentifier.ALL_IVY_APPLICATIONS);
-    if (!resutls.isPresent() || resutls.isEmpty()) {
+    if (resutls.isEmpty()) {
       List<Application> allIvyApplications = getDao().findAllIvyApplications();
       IvyCacheService.newInstance().setSessionCache(sessionUserName, IvyCacheIdentifier.ALL_IVY_APPLICATIONS, allIvyApplications);
       return allIvyApplications;
@@ -141,7 +141,7 @@ public class RegisteredApplicationService extends AbstractService<Application> {
   @SuppressWarnings("unchecked")
   public List<Application> findApplicationByUser(String username){
     Optional<Object> results = IvyCacheService.newInstance().getSessionCacheValue(username, IvyCacheIdentifier.ALL_IVY_AND_THIRD_PARTY_APPLICATIONS);
-    if (!results.isPresent() || results.isEmpty()) {
+    if (results.isEmpty()) {
       List<Application> apps = findAllIvyApplications();
       List<Application> applications = CollectionUtils.emptyIfNull(apps)
           .stream()
