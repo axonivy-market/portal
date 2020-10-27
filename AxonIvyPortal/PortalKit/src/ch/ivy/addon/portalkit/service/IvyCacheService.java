@@ -23,37 +23,55 @@ public class IvyCacheService {
   public static IvyCacheService newInstance() {
     return new IvyCacheService();
   }
-  
+
+  /**
+   * Get value of a session cache based on groupIdentifier and identifier
+   * Will return empty if this key doesn't exist in session or invalid any more
+   * @param groupIdentifier
+   * @param identifier
+   * @return value of cache
+   */
   public Optional<Object> getSessionCacheValue(String groupIdentifier, String identifier) {
-    IDataCacheEntry cacheEntry = getSessionCache(groupIdentifier, identifier);
+    Objects.requireNonNull(groupIdentifier, "groupIdentifier cann't be null");
+    Objects.requireNonNull(identifier, "identifier cann't be null");
+    IDataCacheEntry cacheEntry = sessionCache().getEntry(groupIdentifier, identifier);
     if (cacheEntry != null && cacheEntry.isValid()) {
       return Optional.ofNullable(cacheEntry.getValue());
     }
     return Optional.empty();
   }
-  
-  public IDataCacheEntry getSessionCache(String groupIdentifier, String identifier) {
-    Objects.requireNonNull(groupIdentifier, "groupIdentifier shouldn't be null");
-    Objects.requireNonNull(identifier, "identifier shouldn't be null");
-    return sessionCache().getEntry(groupIdentifier, identifier);
-  }
-  
+
+  /**
+   * Add or update an object to session cache with key is groupIdentifier and identifier
+   * @param groupIdentifier
+   * @param identifier
+   * @param value
+   */
   public void setSessionCache(String groupIdentifier, String identifier, Object value) {
-    Objects.requireNonNull(groupIdentifier, "groupIdentifier shouldn't be null");
-    Objects.requireNonNull(identifier, "identifier shouldn't be null");
+    Objects.requireNonNull(groupIdentifier, "groupIdentifier cann't be null");
+    Objects.requireNonNull(identifier, "identifier cann't be null");
     sessionCache().setEntry(groupIdentifier, identifier, value);
   }
   
-  public void invalidateSessionCacheWithGroup(String groupIdentifier) {
+  /**
+   * Invalidate a group in session with the groupIdentifier
+   * @param groupIdentifier
+   */
+  public void invalidateSessionGroup(String groupIdentifier) {
     IDataCacheGroup group = sessionCache().getGroup(groupIdentifier);
     if (group != null) {
       sessionCache().invalidateGroup(group);
     }
   }
   
-  public void invalidateEntryOfGroup(String groupIdentifier, String identifier) {
-    Objects.requireNonNull(groupIdentifier, "groupIdentifier shouldn't be null");
-    Objects.requireNonNull(identifier, "identifier shouldn't be null");
+  /**
+   * Invalidate the data of entry in session cache entry with key is groupIdentifier and identifier
+   * @param groupIdentifier
+   * @param identifier
+   */
+  public void invalidateSessionEntry(String groupIdentifier, String identifier) {
+    Objects.requireNonNull(groupIdentifier, "groupIdentifier cann't be null");
+    Objects.requireNonNull(identifier, "identifier cann't be null");
     IDataCacheGroup group = sessionCache().getGroup(groupIdentifier);
     if (group != null) {
       IDataCacheEntry entry = sessionCache().getEntry(groupIdentifier, identifier);
@@ -63,31 +81,35 @@ public class IvyCacheService {
     }
   }
 
-  public void cacheEntry(String groupName, String entryName, Object value){
+  /**
+   * Add or update an object to application cache based on groupName and entryName
+   * @param groupName 
+   * @param entryName 
+   * @param value
+   */
+  public void setApplicationCache(String groupName, String entryName, Object value) {
     applicationCache().setEntry(groupName, entryName, value);
   }
   
-  public Object getValueFromCache(String groupName, String entryName){
+  /**
+   * Get an application cache based on groupName and entryName
+   * @param groupName 
+   * @param entryName 
+   * @return value
+   */
+  public Object getApplicationCache(String groupName, String entryName) {
     IDataCacheEntry entry = applicationCache().getEntry(groupName, entryName);
-    return entry == null ? null : entry.getValue();
+    if (entry != null && entry.isValid()) {
+      return entry.getValue();
+    }
+    return null; 
   }
   
-  public String getValueFromCacheAsString(String groupName, String entryName){
-    Object attribute = getValueFromCache(groupName, entryName);
-    return attribute == null ? null : String.valueOf(attribute);
-  }
-  
-  public Object getGlobalSettingFromCache(String attributeName){
-    IDataCacheEntry entry = applicationCache().getEntry(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME, attributeName);
-    return entry == null ? null : entry.getValue();
-  }
-  
-  public Object getAnnouncementSettingsFromCache(String attributeName){
-    IDataCacheEntry entry = applicationCache().getEntry(IvyCacheIdentifier.PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME, attributeName);
-    return entry == null ? null : entry.getValue();
-  }
-  
-  public List<IDataCacheEntry> getAllGlobalSettingsFromCache(){
+  /**
+   * Get all global settings in application cache
+   * @return global settings in cache
+   */
+  public List<IDataCacheEntry> getAllGlobalSettingsFromCache() {
     IDataCacheGroup group = applicationCache().getGroup(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME);
     if (group != null && CollectionUtils.isNotEmpty(group.getEntries())){
       return group.getEntries();
@@ -95,15 +117,28 @@ public class IvyCacheService {
     return null;
   }
   
-  public void cacheGlobalSetting(String name, Object value){
-    applicationCache().setEntry(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME, name, value);
+  /**
+   * Get a global setting from application cache with attributeName
+   * @param attributeName
+   * @return value of global setting
+   */
+  public Object getGlobalSettingFromCache(String attributeName) {
+    return getApplicationCache(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME, attributeName);
   }
-  
-  public void cacheAnnouncementSettings(String name, Object value){
-    applicationCache().setEntry(IvyCacheIdentifier.PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME, name, value);
+
+  /**
+   * Add or update a setting to application cache by name of setting
+   * @param name
+   * @param value
+   */
+  public void cacheGlobalSetting(String name, Object value) {
+    setApplicationCache(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME, name, value);
   }
-  
-  public void invalidateGlobalSettingCache(){
+
+  /**
+   * Invalidate cache of global settings
+   */
+  public void invalidateGlobalSettingCache() {
     invalidateApplicationCacheByGroupName(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME);
   }
 
@@ -122,7 +157,7 @@ public class IvyCacheService {
   //TODO: after switch to application scope for all configuration, we don't need this method, just clear cache on current app
   public void invalidateApplicationCacheForAllAvailableApplications(String cacheGroupName) {
     try {
-      ServerFactory.getServer().getSecurityManager().executeAsSystem(() ->{
+      ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
         List<IApplication> ivyApplications = ServerFactory.getServer().getApplicationConfigurationManager().getApplications();
         ivyApplications.forEach(app -> {
           if(isActive(app)) {
@@ -135,7 +170,6 @@ public class IvyCacheService {
               }
             }
           }
-            
         });
         return Void.class;
       });
@@ -144,16 +178,18 @@ public class IvyCacheService {
     }
   }
   
-  public void cacheLogoutPage(String logoutUrl){
-    sessionCache().setEntry(IvyCacheIdentifier.LOGOUT_PAGE_CACHE_GROUP_NAME, IvyCacheIdentifier.LOGOUT_PAGE_CACHE_ENTRY_NAME, logoutUrl);
+  public void cacheLogoutPage(String logoutUrl) {
+    setSessionCache(IvyCacheIdentifier.LOGOUT_PAGE_CACHE_GROUP_NAME, IvyCacheIdentifier.LOGOUT_PAGE_CACHE_ENTRY_NAME, logoutUrl);
   }
   
-  public String getLogoutPageFromCache(){
-    IDataCacheEntry entry = sessionCache().getEntry(IvyCacheIdentifier.LOGOUT_PAGE_CACHE_GROUP_NAME, IvyCacheIdentifier.LOGOUT_PAGE_CACHE_ENTRY_NAME);
-    return entry == null ? StringUtils.EMPTY : String.valueOf(entry.getValue());
+  public String getLogoutPageFromCache() {
+    Optional<Object> result = getSessionCacheValue(IvyCacheIdentifier.LOGOUT_PAGE_CACHE_GROUP_NAME, IvyCacheIdentifier.LOGOUT_PAGE_CACHE_ENTRY_NAME);
+    if (result.isPresent() && !result.isEmpty()) {
+      return String.valueOf(result.get());
+    }
+    return StringUtils.EMPTY;
   }
-  
-  
+
   private IDataCache sessionCache() {
     return Ivy.datacache().getSessionCache();
   }
