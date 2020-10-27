@@ -552,7 +552,7 @@ ew0 f27 1 1056 64 #addKink
 ew0 f27 1 0.5 0 0 #arcLabel
 ew0 f31 actionTable 'out=in;
 ' #txt
-ew0 f31 actionCode 'out.hasActiveTasks = ivy.case.getActiveTasks().size() > 1;' #txt
+ew0 f31 actionCode 'out.hasActiveTasks = ivy.case.tasks().allActive().size() > 1;' #txt
 ew0 f31 security system #txt
 ew0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

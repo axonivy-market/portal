@@ -31,7 +31,7 @@ import ch.ivy.addon.portalkit.service.HistoryService;
 
 List<ITask> finishedTasks = new ArrayList();
 in.internalCase = ivy.wf.getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(in.caseId)) as ICase;
-for(ITask task : in.internalCase.getTasks()) {
+for(ITask task : in.internalCase.tasks().all()) {
 	if(task.getState() == TaskState.DONE
 	|| task.getState() == TaskState.CREATED 
 	|| task.getState() == TaskState.DESTROYED 
