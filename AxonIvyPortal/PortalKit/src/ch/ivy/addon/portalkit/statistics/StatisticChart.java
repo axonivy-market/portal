@@ -28,7 +28,6 @@ public class StatisticChart {
   @JsonIgnore
   private BarChartModel barChartModel;
 
-  @JsonIgnore
   private String name;
 
   public String getId() {
