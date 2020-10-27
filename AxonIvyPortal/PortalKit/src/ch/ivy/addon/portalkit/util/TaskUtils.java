@@ -68,8 +68,8 @@ public final class TaskUtils {
    */
   public static List<ITask> getFinishedTasksByCase(ICase iCase) {
     List<ITask> currentTasks = new ArrayList<>();
-    if (iCase != null && iCase.getTasks() != null && !iCase.getTasks().isEmpty()) {
-      for (ITask iTask : iCase.getTasks()) {
+    if (iCase != null && iCase.tasks().all() != null && !iCase.tasks().all().isEmpty()) {
+      for (ITask iTask : iCase.tasks().all()) {
         if (iTask != null && TaskState.DONE == iTask.getState()) {
           currentTasks.add(iTask);
         }
