@@ -170,7 +170,7 @@ Pl0 f36 625 225 30 30 16 0 #rect
 Pl0 f36 @|EndIcon #fIcon
 Pl0 f4 actionTable 'out=in;
 ' #txt
-Pl0 f4 actionCode 'out.numberOfTasks = ivy.case.getActiveTasks().size();' #txt
+Pl0 f4 actionCode 'out.numberOfTasks = ivy.case.tasks().allActive().size();' #txt
 Pl0 f4 security system #txt
 Pl0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
