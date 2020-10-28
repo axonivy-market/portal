@@ -32,8 +32,7 @@ public class IvyCacheService {
    * @return value of cache
    */
   public Optional<Object> getSessionCacheValue(String groupIdentifier, String identifier) {
-    Objects.requireNonNull(groupIdentifier, "groupIdentifier cann't be null");
-    Objects.requireNonNull(identifier, "identifier cann't be null");
+    verifyIdentifier(groupIdentifier, identifier);
 
     IDataCacheEntry cacheEntry = sessionCache().getEntry(groupIdentifier, identifier);
     if (cacheEntry != null && cacheEntry.isValid()) {
@@ -49,9 +48,13 @@ public class IvyCacheService {
    * @param value
    */
   public void setSessionCache(String groupIdentifier, String identifier, Object value) {
-    Objects.requireNonNull(groupIdentifier, "groupIdentifier cann't be null");
-    Objects.requireNonNull(identifier, "identifier cann't be null");
+    verifyIdentifier(groupIdentifier, identifier);
     sessionCache().setEntry(groupIdentifier, identifier, value);
+  }
+
+  private void verifyIdentifier(String groupIdentifier, String identifier) {
+    Objects.requireNonNull(groupIdentifier, "groupIdentifier can't be null");
+    Objects.requireNonNull(identifier, "identifier can't be null");
   }
   
   /**
@@ -71,8 +74,7 @@ public class IvyCacheService {
    * @param identifier
    */
   public void invalidateSessionEntry(String groupIdentifier, String identifier) {
-    Objects.requireNonNull(groupIdentifier, "groupIdentifier cann't be null");
-    Objects.requireNonNull(identifier, "identifier cann't be null");
+    verifyIdentifier(groupIdentifier, identifier);
     IDataCacheGroup group = sessionCache().getGroup(groupIdentifier);
     if (group != null) {
       IDataCacheEntry entry = sessionCache().getEntry(groupIdentifier, identifier);

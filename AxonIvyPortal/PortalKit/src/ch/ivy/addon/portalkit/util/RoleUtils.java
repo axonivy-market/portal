@@ -215,7 +215,7 @@ public final class RoleUtils {
   public static void setProperty(final IRole role, final String key, final String value) {
     IvyExecutor.executeAsSystem(() -> {
       role.setProperty(key, value);
-      invalidCacheForRoles();
+      invalidateCacheForRoles();
       return null;
     });
   }
@@ -230,12 +230,12 @@ public final class RoleUtils {
   public static void removeProperty(final IRole role, final String key) {
     IvyExecutor.executeAsSystem(() -> {
       role.removeProperty(key);
-      invalidCacheForRoles();
+      invalidateCacheForRoles();
       return null;
     });
   }
 
-  private static void invalidCacheForRoles() {
+  private static void invalidateCacheForRoles() {
     IvyCacheService.newInstance().invalidateSessionEntry(Ivy.request().getApplication().getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION);
   }
 
@@ -244,21 +244,14 @@ public final class RoleUtils {
    */
   public static void setHidePropertyForDefaultHiddenRoles() {
     List<String> defaultHiddenRoleNames = Arrays.asList(DEFAULT_HIDDEN_ROLES);
+    String hideProperty = AdditionalProperty.HIDE.toString();
 
     defaultHiddenRoleNames.forEach(roleName -> {
       IRole role = findRole(roleName);
-      if (role != null && role.getProperty(AdditionalProperty.HIDE.toString()) == null) {
-        setProperty(role, AdditionalProperty.HIDE.toString(), AdditionalProperty.HIDE.toString());
+      if (role != null && role.getProperty(hideProperty) == null) {
+        setProperty(role, hideProperty, hideProperty);
       }
     });
-  }
-
-  private static Predicate<IRole> isHiddenRole() {
-    return role -> Objects.nonNull(role.getProperty(AdditionalProperty.HIDE.toString()));
-  }
-
-  private static Predicate<IRole> isVisibleRole() {
-    return role -> Objects.isNull(role.getProperty(AdditionalProperty.HIDE.toString()));
   }
 
   /**
@@ -299,11 +292,16 @@ public final class RoleUtils {
   }
   
   private static List<IRole> filterHiddenRoles(List<IRole> roles) {
-    return CollectionUtils.emptyIfNull(roles).stream().filter(isHiddenRole()).collect(Collectors.toList());
+    Predicate<IRole> predicateIsHiddenRole = role -> Objects.nonNull(role.getProperty(AdditionalProperty.HIDE.toString()));
+    return filterRole(roles, predicateIsHiddenRole);
   }
 
   private static List<IRole> filterVisibleRoles(List<IRole> roles) {
-    return CollectionUtils.emptyIfNull(roles).stream().filter(isVisibleRole()).collect(Collectors.toList());
+    Predicate<IRole> predicateIsVisibleRole = role -> Objects.isNull(role.getProperty(AdditionalProperty.HIDE.toString()));
+    return filterRole(roles, predicateIsVisibleRole);
   }
 
+  private static List<IRole> filterRole(List<IRole> roles, Predicate<IRole> predicate) {
+    return CollectionUtils.emptyIfNull(roles).stream().filter(predicate).collect(Collectors.toList());
+  }
 }
