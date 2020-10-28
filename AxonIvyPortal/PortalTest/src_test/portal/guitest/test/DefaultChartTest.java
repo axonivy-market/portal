@@ -18,7 +18,7 @@ public class DefaultChartTest extends BaseTest {
 
   private static final String CREATE_TESTING_TASK_FOR_CUSTOMIZATION_URL 
     = "portalExamples/162511D2577DBA88/createTasksForTaskListCustomization.ivp";
-  private static final String DEFAULT_NAME = "Tasks by Priority";
+  private static final String DEFAULT_NAME = "Tasks by priority";
   private static final String DEFAULT_NAME_1 = "My default chart 1";
   private static final String DEFAULT_NAME_2 = "My default chart 2";
   private static final String RESTORE_DEFAULT = "Restore default";
@@ -67,22 +67,13 @@ public class DefaultChartTest extends BaseTest {
       taskByExpiryChartName3 = statisticWidgetPage.findElementById("statistics-widget:statistic-dashboard-widget:statistic-chart-repeater:2:chart-name");
     } catch (Exception ex) {
     }
-    
     assertEquals(DEFAULT_NAME_1, statisticWidgetPage.getChartName(0));
     assertEquals(DEFAULT_NAME_2, statisticWidgetPage.getChartName(1));
     assertEquals(null, taskByExpiryChartName3);
   }
   
   private void createCaseByFinishedTask(StatisticWidgetPage statisticWidgetPage) {
-    statisticWidgetPage.clickByCssSelector("a[id$='create-case-by-finished-task-link']");
-    statisticWidgetPage.waitAjaxIndicatorDisappear();
-
-    statisticWidgetPage.waitForElementDisplayed(By.cssSelector("div[id$='add-chart-dialog']"), true, 30);
-    WebElement chartNameInput = statisticWidgetPage.findElementByCssSelector("input[id$='chart-name-input']");
-
-    chartNameInput.sendKeys("User chart");
-    statisticWidgetPage.clickByCssSelector("button[id$='chart-save-command']");
-    statisticWidgetPage.waitAjaxIndicatorDisappear();
+	  statisticWidgetPage.createCaseByFinishedTask();
   }
   
   private void grantPermissionToCreateChart() {

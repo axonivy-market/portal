@@ -86,7 +86,7 @@ if (!existedChart2) {
 	for (String language : supportedLanguages) {
 		DisplayName newName = new DisplayName();
 		newName.locale = Locale.forLanguageTag(language);
-		newName.value = chartName1;	
+		newName.value = chartName2;	
 		chartNames2.add(newName);
 	}
 	StatisticChart newChart2 = service.createStatisticChart(statisticFilter, chartNames2, StatisticChartType.CASES_BY_STATE, sessionUserId, true);
