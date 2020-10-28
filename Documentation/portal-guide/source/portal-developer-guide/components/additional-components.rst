@@ -339,6 +339,96 @@ Attributes of this component:
   :class: longtable
   :widths: 1 1 1 3
 
+.. _components-additional-components-role-selection:
+
+Role Selection
+--------------
+
+Introduction
+^^^^^^^^^^^^
+
+This component is used for choosing a role from a role list defined by a role name list.
+If you don't define role name list, all roles will be loaded.
+It includes 1 label, 1 autocomplete and 1 message element to display message related to that autocomplete element.
+
+How to use
+^^^^^^^^^^
+
+You can include this component to any page. This component supports 2 styles of displaying a label.
+
+1. Default style
+
+|role-selection|
+
+Code example:
+
+.. code-block:: html
+
+      <ic:ch.ivy.addon.portalkit.component.RoleSelection
+         componentId="role-from-defined-role-autocomplete"
+         fromRoleNames="#{data.definedRoleNames}"
+         selectedRole="#{data.selectedRoleForDefinedRoles}"
+         isRequired="true"
+         label="Roles from defined role names"/>
+
+2. Floating label
+
+|role-selection-floating-label|
+
+Code example:
+
+.. code-block:: html
+
+      <ic:ch.ivy.addon.portalkit.component.RoleSelection
+         componentId="floating-label-and-exclude-role-autocomplete" hightlight="false"
+         selectedRole="#{data.selectedRole}"
+         label="Loading with all roles (exclude CaseOwner, GeneralManager)"
+         excludedRolenames="#{data.excludedRoleNames}"
+         isRequired="true" floatingLabel="true" />
+
+.. tip::
+   Autocomplete element of role selection component allows inserting children and ajax event (Refer to ``RoleSelection.xtml``).
+   Any child in RoleSelection component will be re-parented into this autocomplete at the point of ``insertChildren`` tag.
+   We introduce a facet named ``event`` for autocomplete so that ajax event can be nested.
+
+For example: 
+
+I want to display role in dropdown list with format <Display Name> (<Member Name>) and when I select a role, a message will be displayed.
+
+|role-selection-with-children-and-ajax-event|
+
+|role-selection-component-ajax-expand|
+
+.. code-block:: html
+
+      <ic:ch.ivy.addon.portalkit.component.RoleSelection
+         id="item-select-event-component"
+         componentId="item-select-event-for-role-selection"
+         fromRoleNames="#{data.definedRoleNames}"
+         selectedRole="#{data.selectedRoleForInsertChildren}"
+         label="Demonstrate facet and children"
+         autoCompleteStyleClass="width-100"
+         autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top"
+         isRequired="true" floatingLabel="true">
+         <p:column>
+            <h:outputText value="#{role.getDisplayName()} (#{role.getMemberName()})" />
+         </p:column>
+         <f:facet name="event">
+            <p:ajax event="itemSelect" listener="#{logic.showSelectedRole}"
+               update="#{p:component('item-select-event-for-role-selection-message')}" />
+         </f:facet>
+      </ic:ch.ivy.addon.portalkit.component.RoleSelection>
+
+Please refer to ``RoleSelectionExample.xhtml`` in ``portal-developer-examples`` for more details.
+
+Attributes of this component:
+
+.. csv-table::
+  :file: documents/additional-components/role_selection_component_attributes.csv
+  :header-rows: 1
+  :class: longtable
+  :widths: 1 1 1 3
+
 Portal cronjob trigger
 ----------------------
 Portal provides a helpful bean ``ch.ivy.addon.portalkit.util.CronByGlobalVariableTriggerStartEventBean`` using the Quartz framework which help trigger cron job by global variable. The global variable should contains the cron job Pattern, to trigger to process on the right time.
@@ -356,3 +446,7 @@ There is a online `Cron Maker <http://www.cronmaker.com>`_ could help you to cre
 .. |user-selection| image:: images/additional-component/user-selection-component.png
 .. |user-selection-floating-label| image:: images/additional-component/user-selection-component-floating-label.png
 .. |user-selection-with-children-and-ajax-event| image:: images/additional-component/user-selection-component-with-children-and-ajax-event.png
+.. |role-selection| image:: images/additional-component/role-selection-component-from-defined-role.png
+.. |role-selection-floating-label| image:: images/additional-component/role-selection-component-floating-label-and-exclude-role.png
+.. |role-selection-with-children-and-ajax-event| image:: images/additional-component/role-selection-component-ajax-event-selected-message.png
+.. |role-selection-component-ajax-expand| image:: images/additional-component/role-selection-component-ajax-expand.png

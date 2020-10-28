@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -31,9 +32,9 @@ public final class RoleUtils {
 
   private static final String HIDE_IN_DELEGATION = "HIDE_IN_DELEGATION";
   private static final String[] DEFAULT_HIDDEN_ROLES = {"AXONIVY_PORTAL_ADMIN"};
-  
+
   private RoleUtils() {}
-  
+
   /**
    * Get all roles of current Ivy Application
    * 
@@ -45,10 +46,10 @@ public final class RoleUtils {
       return Ivy.wf().getSecurityContext().getRoles();
     });
   }
-  
+
   /**
    * Find role by name
-   * @param name 
+   * @param name
    * 
    * @return <IRole> : role
    */
@@ -92,7 +93,7 @@ public final class RoleUtils {
   public static List<IRole> getHiddenRoles(IUser user) {
     return filterHiddenRoles(user.getRoles());
   }
-  
+
   /**
    * <p>Get all hidden roles the user owns (directly and indirectly).</p>
    * <p>The hidden role is the role which has the HIDE property.</p>
@@ -142,7 +143,7 @@ public final class RoleUtils {
   public static List<IRole> getVisibleRoles(IUser user) {
     return filterVisibleRoles(user.getRoles());
   }
-  
+
   /**
    * <p>Get all visible roles the user owns (directly and indirectly).</p>
    * <p>The visible role is the role which doesn't have the HIDE property.</p>
@@ -167,7 +168,7 @@ public final class RoleUtils {
   public static List<IRole> getVisibleRoles(IRole role) {
     return filterVisibleRoles(role.getRoles());
   }
-  
+
   /**
    * <p>Gets all owned visible roles (directly and indirectly) of this role.</p> 
    * <p>It is possible that the role itself is also contained in the list.</p>
@@ -254,6 +255,14 @@ public final class RoleUtils {
     });
   }
 
+  private static Predicate<IRole> predicateIsHiddenRole() {
+    return role -> Objects.nonNull(role.getProperty(AdditionalProperty.HIDE.toString()));
+  }
+
+  private static Predicate<IRole> predicateIsVisibleRole() {
+    return role -> Objects.isNull(role.getProperty(AdditionalProperty.HIDE.toString()));
+  }
+
   /**
    * Filter list of ivy roles by name based on provided query
    * 
@@ -275,7 +284,7 @@ public final class RoleUtils {
 
     return filterRoles;
   }
-  
+
   public static List<RoleDTO> filterRoleDTO(List<RoleDTO> roles, String query) {
     if (StringUtils.isEmpty(query)) {
       return roles;
@@ -290,15 +299,93 @@ public final class RoleUtils {
 
     return filterRoles;
   }
-  
+
+  /**
+   * Finds the roles in current application.
+   * 
+   * @param fromRoles parent role name list
+   * @param excludedRoleNames role name list exclude
+   * @return role list
+   */
+  public static List<RoleDTO> findRoles(List<String> fromRoleNames, List<String> excludedRoleNames, String query) {
+    List<RoleDTO> roles = findAllRolesFromRoles(fromRoleNames);
+
+    if (CollectionUtils.isNotEmpty(roles) && CollectionUtils.isNotEmpty(excludedRoleNames)) {
+      roles = excludeRoleNames(roles, excludedRoleNames);
+    }
+
+    if (CollectionUtils.isNotEmpty(roles) && StringUtils.isNotEmpty(query)) {
+      roles = filterRoleDTO(roles, query);
+    }
+
+    roles.sort((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
+
+    return roles;
+  }
+
+  private static List<RoleDTO> findAllRolesFromRoles(List<String> roleNames) {
+    if (CollectionUtils.isNotEmpty(roleNames)) {
+      return findAllChildrenOfRoles(roleNames);
+    }
+
+    return findVisibleRoleDTOs();
+  }
+
+  private static List<RoleDTO> findAllChildrenOfRoles(List<String> fromRoles) {
+    List<RoleDTO> roles = new ArrayList<>();
+    for (String roleName : fromRoles) {
+      IRole role = findRole(roleName);
+      if (Objects.nonNull(role)) {
+        roles = mergeTwoRoleList(roles, getAllChildrenOfRole(role));
+      }
+    }
+
+    return roles;
+  }
+
+  private static List<RoleDTO> mergeTwoRoleList(List<RoleDTO> firstList, List<RoleDTO> secondList) {
+    return Stream.of(firstList, secondList).flatMap(x -> x.stream()).collect(Collectors.toList());
+  }
+
+  private static List<RoleDTO> getAllChildrenOfRole(IRole role) {
+    return role.getChildRoles().stream().filter(predicateIsVisibleRole()).map(childRole -> new RoleDTO(childRole))
+        .collect(Collectors.toList());
+  }
+
+  private static List<RoleDTO> findVisibleRoleDTOs() {
+    return filterVisibleRoles(getAllRoles()).stream().map(role -> new RoleDTO(role)).collect(Collectors.toList());
+  }
+
+  private static List<RoleDTO> excludeRoleNames(List<RoleDTO> roleDTOs, List<String> excludedRoleNames) {
+    List<RoleDTO> roles = roleDTOs;
+    for (String excludedRoleName : excludedRoleNames) {
+      roles = excludeRoleDTOByName(roles, excludedRoleName);
+    }
+    return roles;
+  }
+
+  private static List<RoleDTO> excludeRoleDTOByName(List<RoleDTO> roleDTOs, String roleName) {
+    List<RoleDTO> roles = new ArrayList<>();
+    for (RoleDTO roleDTO : roleDTOs) {
+      if (!isNameOfRole(roleDTO, roleName)) {
+        roles.add(roleDTO);
+      }
+    }
+    return roles;
+  }
+
+  private static boolean isNameOfRole(RoleDTO roleDTO, String roleName) {
+    return roleDTO.getDisplayName().equalsIgnoreCase(roleName.trim())
+        || roleDTO.getMemberName().equalsIgnoreCase(roleName.trim())
+        || roleDTO.getName().equalsIgnoreCase(roleName.trim());
+  }
+
   private static List<IRole> filterHiddenRoles(List<IRole> roles) {
-    Predicate<IRole> predicateIsHiddenRole = role -> Objects.nonNull(role.getProperty(AdditionalProperty.HIDE.toString()));
-    return filterRole(roles, predicateIsHiddenRole);
+    return filterRole(roles, predicateIsHiddenRole());
   }
 
   private static List<IRole> filterVisibleRoles(List<IRole> roles) {
-    Predicate<IRole> predicateIsVisibleRole = role -> Objects.isNull(role.getProperty(AdditionalProperty.HIDE.toString()));
-    return filterRole(roles, predicateIsVisibleRole);
+    return filterRole(roles, predicateIsVisibleRole());
   }
 
   private static List<IRole> filterRole(List<IRole> roles, Predicate<IRole> predicate) {
