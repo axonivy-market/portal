@@ -303,8 +303,9 @@ public final class RoleUtils {
   /**
    * Finds the roles in current application.
    * 
-   * @param fromRoles parent role name list
+   * @param fromRoleNames parent role name list
    * @param excludedRoleNames role name list exclude
+   * @param query
    * @return role list
    */
   public static List<RoleDTO> findRoles(List<String> fromRoleNames, List<String> excludedRoleNames, String query) {
