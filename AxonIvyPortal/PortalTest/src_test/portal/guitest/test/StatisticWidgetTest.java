@@ -9,6 +9,7 @@ import static portal.guitest.page.StatisticWidgetPage.ELAPSED_TIME_CHART_NAME;
 import static portal.guitest.page.StatisticWidgetPage.TASK_BY_EXPIRY_CHART_NAME;
 import static portal.guitest.page.StatisticWidgetPage.TASK_BY_PRIORITY_CHART_NAME;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -40,6 +41,11 @@ public class StatisticWidgetTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
 
     homePage = new HomePage();
+  }
+
+  @After
+  public void clear() {
+    resetLanguageOfCurrentUser();
   }
 
   @Test
