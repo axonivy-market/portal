@@ -395,4 +395,19 @@ public class CaseWidgetPage extends TemplatePage {
     click(By.cssSelector("button[id$='owner-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
   }
+
+  public WebElement getExportToExcelLink() {
+    return findElementByCssSelector("a[id$=':case-export-to-excel']");
+  }
+
+  public void clickExportToExcelLink() {
+    WebElement downloadLink = getExportToExcelLink();
+    if (downloadLink != null) {
+      downloadLink.click();
+    }
+  }
+
+  public void waitForStatusDialogDisplayed(boolean displayed) {
+    waitForElementDisplayed(By.cssSelector("div[id$=':status-dialog']"), displayed);
+  }
 }

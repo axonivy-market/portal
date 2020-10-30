@@ -244,6 +244,15 @@
   width: 100%;
 }
 
+.task-widget-sub-header .operations-column,
+.case-widget .widget-column-header .operations-column {
+  margin-left: auto;
+  margin-right: auto;
+  font-size: var(--large-font-size);
+  color: var(--task-widget-header-column);
+  font-family: var(--portal-font-family);
+}
+
 .task-widget .in-progress-task-checkbox, .case-widget-container .in-progress-task-checkbox {
   padding-left: 2.4px;
 }
@@ -4070,9 +4079,79 @@ _:-ms-fullscreen, :root .content-link-history {
   align-items: center;
 }
 
+.task-widget .filter-container .applied-filters-container {
+  width: calc(100% - 440px);
+}
+.case-widget .filter-container .applied-filters-container {
+    width: calc(100% - 458px);
+}
+
 @media (max-width: 991px) {
   .filter-container .applied-filters-container {
     width: 100%;
+  }
+  .task-widget .filter-container .applied-filters-container,
+  .case-widget .filter-container .applied-filters-container {
+    width: 100%;
+  }
+}
+
+.task-widget .task-list-actions,
+.case-widget .case-list-actions {
+    display: flex;
+    height: auto;
+    min-height: 100%;
+}
+
+.task-widget .task-export-to-excel-form,
+.case-widget .case-export-to-excel-form {
+  width: 116px;
+}
+
+.task-widget .config-columns-button,
+.case-widget .config-columns-button {
+  width: 132px;
+}
+
+.task-widget .task-list-actions a,
+.case-widget .case-list-actions a {
+    margin-top: 24px;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/*medium*/
+@media (min-width: 992px) and (max-width: 1599px) {
+  .task-widget .filter-container .applied-filters-container {
+    width: calc(100% - 235px);
+  }
+  .case-widget .filter-container .applied-filters-container {
+    width: calc(100% - 253px);
+  }
+  .task-widget .task-export-to-excel-form,
+  .task-widget .config-columns-button,
+  .case-widget .case-export-to-excel-form,
+  .case-widget .config-columns-button {
+    width: auto;
+    height: 25px;
+    margin-top: auto;
+  }
+
+  .task-widget .task-list-actions a,
+  .case-widget .case-list-actions a {
+    margin-top: 0;
+  }
+
+  .task-widget .task-list-actions i,
+  .case-widget .case-list-actions i {
+    font-size: 1.8rem !important;
+  }
+
+  .task-widget .link-text,
+  .case-widget .link-text {
+    display: none;
   }
 }
 

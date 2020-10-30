@@ -29,20 +29,6 @@
   <h:outputScript name="task-widget.js" library="js" />
   
   <f:event listener="#{taskWidgetBean.preRender(data.dataModel)}" type="preRenderComponent" />
-
-
-	<h:form id="test-form">
-		<p:commandLink ajax="false" styleClass="FRight"
-			onclick="PrimeFaces.monitorDownload(start, stop);">
-			<i class="icon ivyicon-office-file-xls-1 u-mar-right-5" />
-			<h:outputText
-				value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
-			<p:fileDownload
-				value="#{logic.getExportedFile(taskWidgetBean.getColumns())}" />
-		</p:commandLink>
-		<p:spacer width="20px"></p:spacer>
-	</h:form>
-
 	<div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} ui-g">
     <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}">
       <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header ui-g-12 u-no-padding-left u-no-padding-bottom"
@@ -208,8 +194,31 @@
                 update="save-filter-set-dialog task-widget:filter-save-form:save-filter-type-radio"
                 actionListener="#{taskWidgetBean.verifyTaskStateFilter(data.dataModel.selectedFilters)}"
                 oncomplete="PF('save-filter-set-dialog').show();" />
-            </div>
-
+          </div>
+          <!-- Export to Excel, Manage Columns -->
+          <div class="task-list-actions u-hidden-md-down ">
+            <p:spacer width="20px"></p:spacer>
+            <h:form id="task-export-to-excel-form" styleClass="task-export-to-excel-form">
+              <p:commandLink ajax="false" id="task-export-to-excel"
+                onclick="PrimeFaces.monitorDownload(start, stop);">
+                <i class="icon ivyicon-office-file-xls-1 u-mar-right-5" />
+                <span class="link-text">
+                  <h:outputText
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
+                </span>
+                <p:fileDownload
+                  value="#{logic.getExportedFile(taskWidgetBean.getColumns())}" />
+                </p:commandLink>
+            </h:form>
+            <p:spacer width="20px"></p:spacer>
+            <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration
+              id="task-columns-configuration"
+              updatedComponent="#{cc.clientId}:task-view-container #{cc.clientId}:task-widget-sort-menu"
+              dataModel="#{data.dataModel}"
+              oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()"
+              configButtonId="task-config-command"
+              overlayPanelId="task-config-columns-panel" />
+          </div>
         </h:panelGroup>
       </h:panelGroup>
     </h:panelGroup>
@@ -220,10 +229,9 @@
         <h:panelGroup rendered="#{!data.dataModel.compactMode}">
           <f:event listener="#{data.dataModel.initColumnsConfiguration()}" type="preRenderComponent" />
           <cc:renderFacet name="taskListHeader" />
-          <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration id="task-columns-configuration"
-            updatedComponent="#{cc.clientId}:task-view-container #{cc.clientId}:task-widget-sort-menu"
-            dataModel="#{data.dataModel}" oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()"
-            configButtonId="task-config-command" overlayPanelId="task-config-columns-panel" />
+          <h:panelGroup id="task-operations-container" layout="block" styleClass="operations-column u-hidden-md-down">
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/operations')}" />
+          </h:panelGroup>
         </h:panelGroup>
       </h:panelGroup>
 
