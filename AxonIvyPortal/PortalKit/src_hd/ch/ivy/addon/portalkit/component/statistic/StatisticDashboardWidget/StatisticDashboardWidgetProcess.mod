@@ -740,6 +740,7 @@ if (in.statisticChartList.size() != 0) {
 in.prevStatisticListSize = in.statisticChartList.size();
 in.isFinishLoadCharts = true;
 ' #txt
+Ss0 f65 security system #txt
 Ss0 f65 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -872,6 +873,7 @@ if (in.statisticChartList.isEmpty()) {
 	in.statisticChartList = new ArrayList<StatisticChart>();
 	in.statisticChartList.add(emptyChart);
 }' #txt
+Ss0 f4 security system #txt
 Ss0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
