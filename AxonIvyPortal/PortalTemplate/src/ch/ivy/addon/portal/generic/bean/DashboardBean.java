@@ -27,10 +27,21 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.CreatedDateColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.Dashboard;
 import ch.ivy.addon.portalkit.dto.dashboard.DashboardWidget;
+import ch.ivy.addon.portalkit.dto.dashboard.DescriptionColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.ExpiryDateColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.IdColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.NameColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.PriorityColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.ResponsibleColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.StartColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.StateColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetSample;
+import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
@@ -75,12 +86,12 @@ public class DashboardBean implements Serializable {
       dashboards = defaultDashboards();
       if (CollectionUtils.isNotEmpty(properties)) {
         for (ICustomProperty property : properties) {
-          Ivy.log().error("widget {0}", property.getValue());
           Dashboard d = mapper.readValue(property.getValue(), Dashboard.class);
           dashboards.set(dashboards.indexOf(d), d);
         }
       }
       selectedDashboard = dashboards.get(0);
+      buildTaskWidgetModel();
     } catch (IOException e) {
       Ivy.log().error(e);
     }
@@ -88,6 +99,56 @@ public class DashboardBean implements Serializable {
     switchViewModeText = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/switchToViewMode");
   }
   
+  private void buildTaskWidgetModel() {
+    for (Dashboard dashboard : dashboards) {
+      for (DashboardWidget widget : dashboard.getWidgets()) {
+        if (widget instanceof TaskDashboardWidget) {
+          TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
+          buildStandardColumns(taskWidget);
+        }
+      }
+    }
+  }
+
+  private void buildStandardColumns(TaskDashboardWidget taskWidget) {
+    List<String> columns = taskWidget.getColumns();
+    if (CollectionUtils.isEmpty(columns)) {
+      columns = new ArrayList<>();
+      columns.add(DashboardStandardTaskColumn.START.toString().toLowerCase());
+      columns.add(DashboardStandardTaskColumn.PRIORITY.toString().toLowerCase());
+      columns.add(DashboardStandardTaskColumn.ID.toString().toLowerCase());
+      columns.add(DashboardStandardTaskColumn.NAME.toString().toLowerCase());
+      columns.add(DashboardStandardTaskColumn.DESCRIPTION.toString().toLowerCase());
+      columns.add(DashboardStandardTaskColumn.RESPONSIBLE.toString().toLowerCase());
+      columns.add(DashboardStandardTaskColumn.STATE.toString().toLowerCase());
+      columns.add(DashboardStandardTaskColumn.CREATED.toString().toLowerCase());
+      columns.add(DashboardStandardTaskColumn.EXPIRY.toString().toLowerCase());
+    }
+    for (String column : columns) {
+      ColumnModel model = null;
+      if (DashboardStandardTaskColumn.START.toString().equalsIgnoreCase(column)) {
+        model = new StartColumnModel();
+      } else if (DashboardStandardTaskColumn.PRIORITY.toString().equalsIgnoreCase(column)) {
+        model = new PriorityColumnModel();
+      } else if (DashboardStandardTaskColumn.ID.toString().equalsIgnoreCase(column)) {
+        model = new IdColumnModel();
+      } else if (DashboardStandardTaskColumn.NAME.toString().equalsIgnoreCase(column)) {
+        model = new NameColumnModel();
+      } else if (DashboardStandardTaskColumn.DESCRIPTION.toString().equalsIgnoreCase(column)) {
+        model = new DescriptionColumnModel();
+      } else if (DashboardStandardTaskColumn.RESPONSIBLE.toString().equalsIgnoreCase(column)) {
+        model = new ResponsibleColumnModel();
+      } else if (DashboardStandardTaskColumn.STATE.toString().equalsIgnoreCase(column)) {
+          model = new StateColumnModel();
+      } else if (DashboardStandardTaskColumn.CREATED.toString().equalsIgnoreCase(column)) {
+        model = new CreatedDateColumnModel();
+      } else if (DashboardStandardTaskColumn.EXPIRY.toString().equalsIgnoreCase(column)) {
+        model = new ExpiryDateColumnModel();
+      }
+      taskWidget.getColumnModels().add(model);
+    }
+  }
+
   private List<Dashboard> defaultDashboards() throws IOException {
     ILibrary portalStyleLib = Ivy.wf().getApplication().findReleasedLibrary(PortalLibrary.PORTAL_STYLE.getValue());
     ResourceLoader loader = new ResourceLoader(portalStyleLib.getProcessModelVersion());
