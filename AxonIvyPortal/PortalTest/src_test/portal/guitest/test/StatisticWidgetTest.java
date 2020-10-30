@@ -25,7 +25,7 @@ import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
 
 public class StatisticWidgetTest extends BaseTest {
-  private static final String TASK_BY_PRIORITY_DEFAULT_CHART_NAME = "Tasks by Priority";
+  private static final String TASK_BY_PRIORITY_DEFAULT_CHART_NAME = "Tasks by priority";
 
 
   private HomePage homePage;
