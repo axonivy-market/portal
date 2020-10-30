@@ -29,6 +29,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
+import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -117,7 +119,10 @@ public class StatisticFilter implements Cloneable {
   @SuppressWarnings("unchecked")
   private List<IRole> findRolesByCallableProcess() {
     return IvyExecutor.executeAsSystem(() -> {
-      if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
+      RegisteredApplicationService service = new RegisteredApplicationService();
+      List<String> apps = service.findAllIvyApplications().stream().map(Application::getName).collect(Collectors.toList());
+      
+      if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME) && !apps.isEmpty()) {
         List<IRole> roles =
             SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE).withStartName("findRolesOverAllApplications")
                 .call(Ivy.session().getSessionUserName())

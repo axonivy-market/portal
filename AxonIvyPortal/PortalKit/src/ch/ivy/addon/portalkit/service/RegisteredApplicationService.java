@@ -117,9 +117,7 @@ public class RegisteredApplicationService extends AbstractService<Application> {
     }
 
     List<String> workOnApps = findInvolvedAppsOfUser(username);
-    if (CollectionUtils.isEmpty(workOnApps)) {
-      return new ArrayList<>();
-    }
+    
     IvyCacheService.newInstance().setSessionCache(IvyCacheIdentifier.ONLINE_APPLICATIONS_USER_CAN_WORK_ON, username, workOnApps);
     return workOnApps;
   }
