@@ -29,7 +29,7 @@
 
         <p:fieldset id="dynaform-fieldset" toggleable="true" legend="#{ivy.cms.co('/Dialogs/WorkflowExecution/UserTaskForm/Formular')}"
           styleClass="express-fieldset fieldset-no-border MarTop10 ui-fluid">
-          <p:messages id="messages-dynaform" showDetail="false" closable="true">
+          <p:messages id="messages-dynaform" showDetail="false" closable="true" redisplay="false">
             <p:autoUpdate />
           </p:messages>
           <div class="card ui-g-12 user-task-dyna-container">
@@ -98,7 +98,7 @@
 
         <br />
         <p:outputPanel styleClass="TexAlRight">
-          <p:commandButton id="ok-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" update="form" process="form"
+          <p:commandButton id="ok-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" update="form form:messages-dynaform" process="form"
             actionListener="#{logic.close}" icon="fa fa-check" />
           <p:spacer width="5" />
           <p:commandButton id="cancel-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="form"
