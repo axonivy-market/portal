@@ -1,4 +1,3 @@
-
 package ch.ivy.addon.portalkit.mapper;
 
 import java.util.List;

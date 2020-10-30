@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
-import ch.ivy.addon.portalkit.enums.TaskSortField;
+import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -178,7 +178,7 @@ public class DashboardTaskSearchCriteria {
     }
 
     private void appendSortByPriorityIfSet(DashboardTaskSearchCriteria criteria) {
-      if (TaskSortField.PRIORITY.toString().equalsIgnoreCase(criteria.getSortField())) {
+      if (DashboardStandardTaskColumn.PRIORITY.toString().equalsIgnoreCase(criteria.getSortField())) {
         if (criteria.isSortDescending()) {
           query.orderBy().priority().descending();
         } else {
@@ -188,7 +188,7 @@ public class DashboardTaskSearchCriteria {
     }
 
     private void appendSortByNameIfSet(DashboardTaskSearchCriteria criteria) {
-      if (TaskSortField.NAME.toString().equalsIgnoreCase(criteria.getSortField())) {
+      if (DashboardStandardTaskColumn.NAME.toString().equalsIgnoreCase(criteria.getSortField())) {
         if (criteria.isSortDescending()) {
           query.orderBy().name().descending();
         } else {
@@ -198,7 +198,7 @@ public class DashboardTaskSearchCriteria {
     }
 
     private void appendSortByActivatorIfSet(DashboardTaskSearchCriteria criteria) {
-      if (TaskSortField.ACTIVATOR.toString().equalsIgnoreCase(criteria.getSortField())) {
+      if (DashboardStandardTaskColumn.RESPONSIBLE.toString().equalsIgnoreCase(criteria.getSortField())) {
         if (criteria.isSortDescending()) {
           query.orderBy().activatorDisplayName().descending();
         } else {
@@ -208,7 +208,7 @@ public class DashboardTaskSearchCriteria {
     }
 
     private void appendSortByIdIfSet(DashboardTaskSearchCriteria criteria) {
-      if (TaskSortField.ID.toString().equalsIgnoreCase(criteria.getSortField())) {
+      if (DashboardStandardTaskColumn.ID.toString().equalsIgnoreCase(criteria.getSortField())) {
         if (criteria.isSortDescending()) {
           query.orderBy().taskId().descending();
         } else {
@@ -218,7 +218,7 @@ public class DashboardTaskSearchCriteria {
     }
 
     private void appendSortByCreationDateIfSet(DashboardTaskSearchCriteria criteria) {
-      if (TaskSortField.CREATION_TIME.toString().equalsIgnoreCase(criteria.getSortField())) {
+      if (DashboardStandardTaskColumn.CREATED.toString().equalsIgnoreCase(criteria.getSortField())) {
         if (criteria.isSortDescending()) {
           query.orderBy().startTimestamp().descending();
         } else {
@@ -228,7 +228,7 @@ public class DashboardTaskSearchCriteria {
     }
 
     private void appendSortByExpiryDateIfSet(DashboardTaskSearchCriteria criteria) {
-      if (TaskSortField.EXPIRY_TIME.toString().equalsIgnoreCase(criteria.getSortField())) {
+      if (DashboardStandardTaskColumn.EXPIRY.toString().equalsIgnoreCase(criteria.getSortField())) {
         if (criteria.isSortDescending()) {
           query.orderBy().expiryTimestamp().descendingNullFirst();
         } else {
@@ -238,7 +238,7 @@ public class DashboardTaskSearchCriteria {
     }
 
     private void appendSortByStateIfSet(DashboardTaskSearchCriteria criteria) {
-      if (TaskSortField.STATE.toString().equalsIgnoreCase(criteria.getSortField())) {
+      if (DashboardStandardTaskColumn.STATE.toString().equalsIgnoreCase(criteria.getSortField())) {
         if (criteria.isSortDescending()) {
           query.orderBy().state().descending();
         } else {
