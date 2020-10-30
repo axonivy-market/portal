@@ -1,5 +1,5 @@
-co: name={downloadZipFileExplanation} description={} changed={2020-10-23 10:12:31 CEST} changedby={vtlong} visualorder={0} guid={17554830D4F5C8F7} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={17554830D5473605} datatype={} isdefault={false} langid={de} description={} validfrom={2020-03-03 09:07:59 CET} validto={} changed={2020-10-23 10:11:16 CEST} changedby={vtlong} properties={} id={}
-val: guid={17554830D768EA12} datatype={} isdefault={false} langid={es} description={} validfrom={2020-03-03 09:07:59 CET} validto={} changed={2020-10-23 10:11:16 CEST} changedby={vtlong} properties={} id={}
-val: guid={17554830D5FE43B3} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-03-03 09:07:59 CET} validto={} changed={2020-10-23 10:11:16 CEST} changedby={vtlong} properties={} id={}
+co: name={downloadZipFileExplanation} description={} changed={2020-10-27 04:15:09 CET} changedby={vtlong} visualorder={0} guid={17554830D4F5C8F7} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17554830D5473605} datatype={} isdefault={false} langid={de} description={} validfrom={2020-03-03 09:07:59 CET} validto={} changed={2020-10-27 04:15:09 CET} changedby={vtlong} properties={} id={}
+val: guid={17554830D768EA12} datatype={} isdefault={false} langid={es} description={} validfrom={2020-03-03 09:07:59 CET} validto={} changed={2020-10-27 04:15:09 CET} changedby={vtlong} properties={} id={}
+val: guid={17554830D5FE43B3} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-03-03 09:07:59 CET} validto={} changed={2020-10-27 04:15:09 CET} changedby={vtlong} properties={} id={}
 val: guid={17554830D6D52F16} datatype={} isdefault={true} langid={en} description={} validfrom={2018-07-11 05:01:44 CEST} validto={} changed={2020-10-23 10:12:31 CEST} changedby={vtlong} properties={} id={}

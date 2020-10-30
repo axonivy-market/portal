@@ -170,4 +170,11 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-customized-bottom");
   }
   
+  @Test
+  public void screenshotExportToExcel() throws IOException {
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 600));
+    caseWidget = homePage.openCaseList();
+    executeDecorateJs("highlightCaseExportToExcelButton()");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_WIDGET_FOLDER + "export-to-excel-button");
+  }
 }

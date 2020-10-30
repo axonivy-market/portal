@@ -88,7 +88,7 @@ public class CaseExporter {
   private String getColumnName(String column) { 
     switch (column) {
       case CaseLazyDataModel.NAME:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/NAME");
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseName");
       case CaseLazyDataModel.DESCRIPTION:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/description");
       case CaseLazyDataModel.ID:
