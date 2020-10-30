@@ -113,7 +113,7 @@
   display: block;
 }
 
-.dashboard-tasks__priority--exception i {
+.dashboard-tasks__priority--exception {
   color: red;
 }
 

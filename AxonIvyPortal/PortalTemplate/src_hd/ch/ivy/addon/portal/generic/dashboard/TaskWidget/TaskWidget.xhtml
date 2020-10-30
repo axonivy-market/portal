@@ -27,73 +27,40 @@
       </h:panelGroup>
       
       <p:dataTable id="dashboard-tasks" value="#{cc.attrs.taskWidget.dataModel}" var="task"
-        rows="10" paginator="true" paginatorPosition="bottom" lazy="true" paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
-        pageLinks="5" rowsPerPageTemplate="5,10,15" sortField="#{cc.attrs.taskWidget.sortField}" sortBy="#{cc.attrs.taskWidget.sortField}"
+        rows="15" paginator="true" paginatorPosition="bottom" lazy="true" paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
+        pageLinks="5" sortField="#{cc.attrs.taskWidget.sortField}" sortBy="#{cc.attrs.taskWidget.sortField}"
         sortOrder="#{cc.attrs.taskWidget.sortAscending ? 'ascending' : 'descending'}" skipChildren="true">
         <p:ajax event="sort" listener="#{cc.attrs.taskWidget.onSort}" />
         
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="dashboard-tasks__start" width="50" toggleable="false">
-          <p:commandLink actionListener="#{dashboardBean.startTask(task)}" disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}">
-            <span class="fa fa-play" />
-          </p:commandLink>
-        </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY')}" 
-          styleClass="dashboard-tasks__priority #{task.priority eq 'EXCEPTION' ? 'dashboard-tasks__priority--exception' : ''}" filterBy="#{task.priority}" sortBy="#{task.priority}"
-          width="80" field="priority"
-          rendered="#{cc.attrs.taskWidget.isRendered('PRIORITY')}"
-          visible="#{cc.attrs.taskWidget.isVisible('PRIORITY')}">
-          <i jsf:rendered="#{task.priority eq 'LOW'}" class="icon ivyicon-navigation-right-circle-1" />
-          <i jsf:rendered="#{task.priority eq 'NORMAL'}" class="icon ivyicon-navigation-right-circle-1" />
-          <i jsf:rendered="#{task.priority eq 'HIGH'}" class="icon ivyicon-navigation-up-circle" />
-          <i jsf:rendered="#{task.priority eq 'EXCEPTION'}" class="icon ivyicon-alert-circle" />
-        </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}" filterBy="#{task.id}" 
-          sortBy="#{task.id}" field="id" width="120" styleClass="dashboard-tasks__id"
-          rendered="#{cc.attrs.taskWidget.isRendered('ID')}"
-          visible="#{cc.attrs.taskWidget.isVisible('ID')}">
-          <h:outputText value="#{task.id}" />
-        </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskName')}" filterBy="#{task.name}" sortBy="#{task.name}" field="name"
-          rendered="#{cc.attrs.taskWidget.isRendered('NAME')}"
-          visible="#{cc.attrs.taskWidget.isVisible('NAME')}">
-          <h:outputText value="#{task.name}" />
-        </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" filterBy="#{task.description}" field="description"
-          rendered="#{cc.attrs.taskWidget.isRendered('DESCRIPTION')}"
-          visible="#{cc.attrs.taskWidget.isVisible('DESCRIPTION')}">
-          <h:outputText value="#{task.description}" />
-        </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" 
-          filterBy="#{task.activator.displayName}" sortBy="#{task.activator.displayName}" field="activator"
-          width="150" rendered="#{cc.attrs.taskWidget.isRendered('ACTIVATOR')}"
-          visible="#{cc.attrs.taskWidget.isVisible('ACTIVATOR')}">
-          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activator.memberName)}" />
-        </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" 
-          styleClass="dashboard-tasks__state" filterBy="#{task.state}" sortBy="#{task.state}" field="state"
-          width="100" rendered="#{cc.attrs.taskWidget.isRendered('STATE')}"
-          visible="#{cc.attrs.taskWidget.isVisible('STATE')}">
-          <h:outputText value="#{taskWidgetConfigurationBean.getUserFriendlyTaskState(task.state)}" 
-            styleClass="dashboard-tasks__state-text dashboard-tasks__state-text--#{task.state.toString().toLowerCase()}" />
-        </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME')}" 
-        filterBy="#{task.startTimestamp}" sortBy="#{task.startTimestamp}" field="created"
-          width="100" styleClass="dashboard-tasks__created-date"
-          rendered="#{cc.attrs.taskWidget.isRendered('CREATED')}"
-          visible="#{cc.attrs.taskWidget.isVisible('CREATED')}">
-          <h:outputText value="#{task.startTimestamp}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
-          </h:outputText>
-        </p:column>
-        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" 
-          filterBy="#{task.expiryTimestamp}" sortBy="#{task.expiryTimestamp}" field="expiry"
-          width="120" styleClass="dashboard-tasks__expiry-date"
-          rendered="#{cc.attrs.taskWidget.isRendered('EXPIRY')}"
-          visible="#{cc.attrs.taskWidget.isVisible('EXPIRY')}">
-          <h:outputText value="#{task.expiryTimestamp}">
-            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
-          </h:outputText>
-        </p:column>
+        <p:columns var="column" value="#{cc.attrs.taskWidget.columnModels}" headerText="#{column.header}" width="#{column.width}" styleClass="#{column.styleClass}"
+          toggleable="#{column.toggleable}" visible="#{column.visible}" field="#{column.field}" 
+          sortBy="#{column.property}" sortable="#{column.sortable}">
+          <h:panelGroup rendered="#{column.field eq 'start'}">
+            <ui:include src="StartCell.xhtml" />
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.field eq 'priority'}">
+            <ui:include src="PriorityCell.xhtml" />
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.field eq 'responsible'}">
+            <ui:include src="ResponsibleCell.xhtml" />
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.field eq 'state'}">
+            <ui:include src="StateCell.xhtml" />
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.type eq 'STRING'}">
+            <h:outputText value="#{column.display(task)}" styleClass="#{column.propertyStyleClass}" />
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.type eq 'DATE'}">
+            <h:outputText value="#{column.display(task)}">
+              <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            </h:outputText>
+          </h:panelGroup>
+        </p:columns>
       </p:dataTable>
     </h:panelGroup>
   </div>
