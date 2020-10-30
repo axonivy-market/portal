@@ -167,5 +167,14 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     executeDecorateJs("highlightCustomTaskDetail()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-bottom");
   }
-  
+
+  @Test
+  public void screenshotExportToExcel() throws IOException {
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 600));
+    TaskWidgetPage taskWidgetPage = homePage.openTaskList();
+    taskWidgetPage.closeMainMenu();
+    Sleeper.sleep(500); // wait for Layout.js renders left menu
+    executeDecorateJs("highlightTaskExportToExcelButton()");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_WIDGET_FOLDER + "export-to-excel-button");
+  }
 }
