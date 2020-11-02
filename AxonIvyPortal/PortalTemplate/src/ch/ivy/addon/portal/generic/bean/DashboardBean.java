@@ -106,6 +106,15 @@ public class DashboardBean implements Serializable {
           TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
           buildStandardColumns(taskWidget);
           buildExtendedColumns(taskWidget);
+          List<String> visibleColumns = new ArrayList<>();
+          for (ColumnModel columnModel : taskWidget.getColumnModels()) {
+            if (columnModel.getVisible()) {
+              String property = columnModel.getProperty();
+              DashboardStandardTaskColumn standardColumn = DashboardStandardTaskColumn.findBy(property);
+              visibleColumns.add(standardColumn == null ? property : standardColumn.toString().toLowerCase());
+            }
+          }
+          taskWidget.setVisibleColumns(visibleColumns);
         }
       }
     }
@@ -134,12 +143,22 @@ public class DashboardBean implements Serializable {
       } else if (DashboardStandardTaskColumn.EXPIRY.toString().equalsIgnoreCase(column)) {
         model = new ExpiryDateColumnModel();
       }
+      
+      if (CollectionUtils.isNotEmpty(taskWidget.getVisibleColumns())) {
+        model.setVisible(taskWidget.getVisibleColumns().contains(column.toLowerCase()));
+      }
       taskWidget.getColumnModels().add(model);
     }
   }
   
   private void buildExtendedColumns(TaskDashboardWidget taskWidget) {
-    taskWidget.getColumnModels().addAll(taskWidget.getExtendedColumns());
+    List<ColumnModel> columnModels = taskWidget.getExtendedColumns();
+    if (CollectionUtils.isNotEmpty(taskWidget.getVisibleColumns())) {
+      for (ColumnModel columnModel : columnModels) {
+        columnModel.setVisible(taskWidget.getVisibleColumns().contains(columnModel.getProperty()));
+      }
+    }
+    taskWidget.getColumnModels().addAll(columnModels);
   }
 
   private List<Dashboard> defaultDashboards() throws IOException {
@@ -166,7 +185,7 @@ public class DashboardBean implements Serializable {
     result.setHeight(6);
     result.setAutoPosition(true);
     result.setSortField(TaskSortField.ID.toString());
-    result.setSortAscending(false);
+    result.setSortDescending(true);
     result.setPriorities(new ArrayList<>(List.of(WorkflowPriority.LOW, WorkflowPriority.NORMAL, WorkflowPriority.HIGH, WorkflowPriority.EXCEPTION)));
     result.setStates(new ArrayList<>(List.of(TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE)));
     return result;

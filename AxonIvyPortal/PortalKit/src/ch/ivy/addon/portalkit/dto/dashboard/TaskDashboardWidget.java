@@ -7,7 +7,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.primefaces.event.ToggleEvent;
-import org.primefaces.event.data.SortEvent;
 import org.primefaces.model.Visibility;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,8 +21,7 @@ public class TaskDashboardWidget extends DashboardWidget {
 
   private List<String> standardColumns;
   private List<ColumnModel> extendedColumns;
-  private String sortField;
-  private boolean sortAscending;
+  private List<String> visibleColumns;
   
   @JsonIgnore
   private DashboardTaskLazyDataModel dataModel;
@@ -38,17 +36,21 @@ public class TaskDashboardWidget extends DashboardWidget {
       standardColumns.add(column.toString().toLowerCase());
     }
     extendedColumns = new ArrayList<>();
+    visibleColumns = new ArrayList<>();
     columnModels = new ArrayList<>();
   }
   
-  public void onSort(SortEvent event) {
-    setSortField(event.getSortColumn().getField());
-    setSortAscending(event.isAscending());
-  }
-  
   public void onToggleColumns(ToggleEvent e) {
-    int pos = (int) e.getData() - 1;
-    columnModels.get(pos).setVisible(e.getVisibility() == Visibility.VISIBLE);
+    int pos = (int) e.getData();
+    boolean isVisible = e.getVisibility() == Visibility.VISIBLE;
+    ColumnModel columnModel = columnModels.get(pos);
+    columnModel.setVisible(isVisible);
+    String property = columnModel.getProperty();
+    if (isVisible) {
+      this.visibleColumns.add(property);
+    } else {
+      this.visibleColumns.remove(property);
+    }
   }
   
   @Override
@@ -165,20 +167,28 @@ public class TaskDashboardWidget extends DashboardWidget {
     this.extendedColumns = extendedColumns;
   }
   
+  public List<String> getVisibleColumns() {
+    return visibleColumns;
+  }
+  
+  public void setVisibleColumns(List<String> visibleColumns) {
+    this.visibleColumns = visibleColumns;
+  }
+  
   public String getSortField() {
-    return sortField;
+    return this.dataModel.getCriteria().getSortField();
   }
   
   public void setSortField(String sortField) {
-    this.sortField = sortField;
+    this.dataModel.getCriteria().setSortField(sortField);
   }
   
-  public boolean isSortAscending() {
-    return sortAscending;
+  public boolean isSortDescending() {
+    return this.dataModel.getCriteria().isSortDescending();
   }
   
-  public void setSortAscending(boolean sortAscending) {
-    this.sortAscending = sortAscending;
+  public void setSortDescending(boolean sortDescending) {
+    this.dataModel.getCriteria().setSortDescending(sortDescending);
   }
 
   public DashboardTaskLazyDataModel getDataModel() {
