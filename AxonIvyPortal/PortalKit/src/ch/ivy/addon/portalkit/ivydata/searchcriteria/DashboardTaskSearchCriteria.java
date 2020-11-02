@@ -9,6 +9,8 @@ import org.apache.commons.lang.StringUtils;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
+import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldNames;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
@@ -174,6 +176,7 @@ public class DashboardTaskSearchCriteria {
       appendSortByCreationDateIfSet(criteria);
       appendSortByExpiryDateIfSet(criteria);
       appendSortByStateIfSet(criteria);
+      appendSortByCustomFieldIfSet(criteria);
       return this;
     }
 
@@ -238,6 +241,16 @@ public class DashboardTaskSearchCriteria {
     }
 
     private void appendSortByStateIfSet(DashboardTaskSearchCriteria criteria) {
+      if (DashboardStandardTaskColumn.STATE.toString().equalsIgnoreCase(criteria.getSortField())) {
+        if (criteria.isSortDescending()) {
+          query.orderBy().state().descending();
+        } else {
+          query.orderBy().state();
+        }
+      }
+    }
+    
+    private void appendSortByCustomFieldIfSet(DashboardTaskSearchCriteria criteria) {
       if (DashboardStandardTaskColumn.STATE.toString().equalsIgnoreCase(criteria.getSortField())) {
         if (criteria.isSortDescending()) {
           query.orderBy().state().descending();

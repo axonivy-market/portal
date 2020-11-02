@@ -13,15 +13,15 @@ import org.primefaces.model.Visibility;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
-import ch.ivy.addon.portalkit.enums.TaskColumn;
+import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
 public class TaskDashboardWidget extends DashboardWidget {
   private static final long serialVersionUID = 3048837559125720787L;
 
-  private List<String> columns;
-  private List<String> visibleColumns;
+  private List<String> standardColumns;
+  private List<ColumnModel> extendedColumns;
   private String sortField;
   private boolean sortAscending;
   
@@ -33,11 +33,11 @@ public class TaskDashboardWidget extends DashboardWidget {
   
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
-    columns = new ArrayList<>();
-    for (TaskColumn column : TaskColumn.values()) {
-      columns.add(column.toString().toLowerCase());
+    standardColumns = new ArrayList<>();
+    for (DashboardStandardTaskColumn column : DashboardStandardTaskColumn.values()) {
+      standardColumns.add(column.toString().toLowerCase());
     }
-    visibleColumns = new ArrayList<>(columns);
+    extendedColumns = new ArrayList<>();
     columnModels = new ArrayList<>();
   }
   
@@ -47,19 +47,8 @@ public class TaskDashboardWidget extends DashboardWidget {
   }
   
   public void onToggleColumns(ToggleEvent e) {
-    if (e.getVisibility() == Visibility.VISIBLE) {
-      this.visibleColumns.add(this.columns.toArray(String[]::new)[(int) e.getData() - 1]);
-    } else {
-      this.visibleColumns.remove((int) e.getData() - 1);
-    }
-  }
-  
-  public boolean isRendered(String column) {
-    return this.columns.contains(column.toLowerCase());
-  }
-  
-  public boolean isVisible(String column) {
-    return this.visibleColumns.contains(column.toLowerCase());
+    int pos = (int) e.getData() - 1;
+    columnModels.get(pos).setVisible(e.getVisibility() == Visibility.VISIBLE);
   }
   
   @Override
@@ -160,20 +149,20 @@ public class TaskDashboardWidget extends DashboardWidget {
     return Optional.ofNullable(getCategories()).orElse(new ArrayList<>()).stream().collect(Collectors.joining(", "));
   }
   
-  public List<String> getColumns() {
-    return columns;
+  public List<String> getStandardColumns() {
+    return standardColumns;
   }
 
-  public void setColumns(List<String> columns) {
-    this.columns = columns;
+  public void setStandardColumns(List<String> columns) {
+    this.standardColumns = columns;
   }
   
-  public List<String> getVisibleColumns() {
-    return visibleColumns;
+  public List<ColumnModel> getExtendedColumns() {
+    return extendedColumns;
   }
   
-  public void setVisibleColumns(List<String> visibleColumns) {
-    this.visibleColumns = visibleColumns;
+  public void setExtendedColumns(List<ColumnModel> extendedColumns) {
+    this.extendedColumns = extendedColumns;
   }
   
   public String getSortField() {

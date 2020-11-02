@@ -7,6 +7,7 @@ import org.apache.commons.lang.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivyteam.ivy.environment.Ivy;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -35,8 +36,8 @@ public class Dashboard implements Serializable {
   }
   
   public String getTitle() {
-    if (StringUtils.startsWithIgnoreCase(title, "cms:")) {
-      return Ivy.cms().co(StringUtils.removeStart(title, "cms:"));
+    if (StringUtils.startsWithIgnoreCase(title, DashboardConfigurationPrefix.CMS)) {
+      return Ivy.cms().co(StringUtils.removeStart(title, DashboardConfigurationPrefix.CMS));
     }
     return title;
   }
