@@ -6,13 +6,13 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
+import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
-import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
-import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldNames;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
+import ch.ivyteam.ivy.workflow.query.TaskQuery.OrderByColumnQuery;
 
 public class DashboardTaskSearchCriteria {
 
@@ -29,7 +29,7 @@ public class DashboardTaskSearchCriteria {
   private List<String> categories;
   private String sortField;
   private boolean sortDescending;
-  
+
   public TaskQuery buildQuery() {
     TaskQuery query = TaskQuery.create();
     queryCanWorkOn(query);
@@ -45,28 +45,28 @@ public class DashboardTaskSearchCriteria {
     query = appender.appendSorting(this).toQuery();
     return query;
   }
-  
+
   private void queryCreatedDate(TaskQuery query) {
     if (createdFrom != null || expiryTo != null) {
       TaskQuery subQuery = TaskQuery.create();
       if (createdFrom != null) {
         subQuery.where().startTimestamp().isGreaterOrEqualThan(createdFrom);
       }
-      
+
       if (expiryTo != null) {
         subQuery.where().startTimestamp().isLowerOrEqualThan(expiryTo);
       }
       query.where().and(subQuery);
     }
   }
-  
+
   private void queryExpiryDate(TaskQuery query) {
     if (expiryFrom != null || expiryTo != null) {
       TaskQuery subQuery = TaskQuery.create();
       if (expiryFrom != null) {
         subQuery.where().expiryTimestamp().isGreaterOrEqualThan(expiryFrom);
       }
-      
+
       if (expiryTo != null) {
         subQuery.where().expiryTimestamp().isLowerOrEqualThan(expiryTo);
       }
@@ -159,6 +159,8 @@ public class DashboardTaskSearchCriteria {
   private class TaskSortingQueryAppender {
 
     private TaskQuery query;
+    private OrderByColumnQuery order;
+    private boolean sortStandardColumn;
 
     public TaskSortingQueryAppender(TaskQuery query) {
       this.query = query;
@@ -177,94 +179,84 @@ public class DashboardTaskSearchCriteria {
       appendSortByExpiryDateIfSet(criteria);
       appendSortByStateIfSet(criteria);
       appendSortByCustomFieldIfSet(criteria);
+      if (criteria.isSortDescending()) {
+        order.descending();
+      }
       return this;
     }
 
     private void appendSortByPriorityIfSet(DashboardTaskSearchCriteria criteria) {
-      if (DashboardStandardTaskColumn.PRIORITY.toString().equalsIgnoreCase(criteria.getSortField())) {
-        if (criteria.isSortDescending()) {
-          query.orderBy().priority().descending();
-        } else {
-          query.orderBy().priority();
-        }
+      if (DashboardStandardTaskColumn.PRIORITY.getProperty().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().priority();
+        sortStandardColumn = true;
       }
     }
 
     private void appendSortByNameIfSet(DashboardTaskSearchCriteria criteria) {
-      if (DashboardStandardTaskColumn.NAME.toString().equalsIgnoreCase(criteria.getSortField())) {
-        if (criteria.isSortDescending()) {
-          query.orderBy().name().descending();
-        } else {
-          query.orderBy().name();
-        }
+      if (DashboardStandardTaskColumn.NAME.getProperty().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().name();
+        sortStandardColumn = true;
       }
     }
 
     private void appendSortByActivatorIfSet(DashboardTaskSearchCriteria criteria) {
-      if (DashboardStandardTaskColumn.RESPONSIBLE.toString().equalsIgnoreCase(criteria.getSortField())) {
-        if (criteria.isSortDescending()) {
-          query.orderBy().activatorDisplayName().descending();
-        } else {
-          query.orderBy().activatorDisplayName();
-        }
+      if (DashboardStandardTaskColumn.RESPONSIBLE.getProperty().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().activatorDisplayName();
+        sortStandardColumn = true;
       }
     }
 
     private void appendSortByIdIfSet(DashboardTaskSearchCriteria criteria) {
-      if (DashboardStandardTaskColumn.ID.toString().equalsIgnoreCase(criteria.getSortField())) {
-        if (criteria.isSortDescending()) {
-          query.orderBy().taskId().descending();
-        } else {
-          query.orderBy().taskId();
-        }
+      if (DashboardStandardTaskColumn.ID.getProperty().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().taskId();
+        sortStandardColumn = true;
       }
     }
 
     private void appendSortByCreationDateIfSet(DashboardTaskSearchCriteria criteria) {
-      if (DashboardStandardTaskColumn.CREATED.toString().equalsIgnoreCase(criteria.getSortField())) {
-        if (criteria.isSortDescending()) {
-          query.orderBy().startTimestamp().descending();
-        } else {
-          query.orderBy().startTimestamp();
-        }
+      if (DashboardStandardTaskColumn.CREATED.getProperty().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().startTimestamp();
+        sortStandardColumn = true;
       }
     }
 
     private void appendSortByExpiryDateIfSet(DashboardTaskSearchCriteria criteria) {
-      if (DashboardStandardTaskColumn.EXPIRY.toString().equalsIgnoreCase(criteria.getSortField())) {
-        if (criteria.isSortDescending()) {
-          query.orderBy().expiryTimestamp().descendingNullFirst();
-        } else {
-          query.orderBy().expiryTimestamp().ascendingNullLast();
-        }
+      if (DashboardStandardTaskColumn.EXPIRY.getProperty().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().expiryTimestamp();
+        sortStandardColumn = true;
       }
     }
 
     private void appendSortByStateIfSet(DashboardTaskSearchCriteria criteria) {
-      if (DashboardStandardTaskColumn.STATE.toString().equalsIgnoreCase(criteria.getSortField())) {
-        if (criteria.isSortDescending()) {
-          query.orderBy().state().descending();
-        } else {
-          query.orderBy().state();
-        }
+      if (DashboardStandardTaskColumn.STATE.getProperty().equalsIgnoreCase(criteria.getSortField())) {
+        order = query.orderBy().state();
+        sortStandardColumn = true;
       }
     }
-    
+
     private void appendSortByCustomFieldIfSet(DashboardTaskSearchCriteria criteria) {
-      if (DashboardStandardTaskColumn.STATE.toString().equalsIgnoreCase(criteria.getSortField())) {
-        if (criteria.isSortDescending()) {
-          query.orderBy().state().descending();
-        } else {
-          query.orderBy().state();
+      if (!sortStandardColumn) {
+        String sortField = criteria.getSortField();
+        if (StringUtils.isNotBlank(sortField)) {
+          if (StringUtils.startsWithIgnoreCase(sortField, DashboardConfigurationPrefix.CUSTOM_FIELD_NUMBER)) {
+            order = query.orderBy().customField().numberField(
+                StringUtils.removeStartIgnoreCase(sortField, DashboardConfigurationPrefix.CUSTOM_FIELD_NUMBER));
+          } else if (StringUtils.startsWithIgnoreCase(sortField, DashboardConfigurationPrefix.CUSTOM_FIELD_TIMESTAMP)) {
+            order = query.orderBy().customField().timestampField(
+                StringUtils.removeStartIgnoreCase(sortField, DashboardConfigurationPrefix.CUSTOM_FIELD_TIMESTAMP));
+          } else {
+            order = query.orderBy().customField().stringField(
+                StringUtils.removeStartIgnoreCase(sortField, DashboardConfigurationPrefix.CUSTOM_FIELD_STRING));
+          }
         }
       }
     }
   }
-  
+
   public boolean getCanWorkOn() {
     return canWorkOn;
   }
-  
+
   public void setCanWorkOn(boolean canWorkOn) {
     this.canWorkOn = canWorkOn;
   }

@@ -29,25 +29,23 @@
       <p:dataTable id="dashboard-tasks" value="#{cc.attrs.taskWidget.dataModel}" var="task"
         rows="15" paginator="true" paginatorPosition="bottom" lazy="true" paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
         pageLinks="5" sortField="#{cc.attrs.taskWidget.sortField}" sortBy="#{cc.attrs.taskWidget.sortField}"
-        sortOrder="#{cc.attrs.taskWidget.sortAscending ? 'ascending' : 'descending'}" skipChildren="true">
-        <p:ajax event="sort" listener="#{cc.attrs.taskWidget.onSort}" />
-        
+        sortOrder="#{cc.attrs.taskWidget.sortDescending ? 'descending' : 'ascending'}">
         <p:columns var="column" value="#{cc.attrs.taskWidget.columnModels}" headerText="#{column.header}" width="#{column.width}" styleClass="#{column.styleClass}"
           toggleable="#{column.toggleable}" visible="#{column.visible}" field="#{column.property}" 
           sortBy="#{column.property}" sortable="#{column.sortable}">
-          <h:panelGroup rendered="#{column.field eq 'start'}">
+          <h:panelGroup rendered="#{column.property eq 'start'}">
             <ui:include src="StartCell.xhtml" />
           </h:panelGroup>
           
-          <h:panelGroup rendered="#{column.field eq 'priority'}">
+          <h:panelGroup rendered="#{column.property eq 'priority'}">
             <ui:include src="PriorityCell.xhtml" />
           </h:panelGroup>
           
-          <h:panelGroup rendered="#{column.field eq 'responsible'}">
+          <h:panelGroup rendered="#{column.property eq 'activator'}">
             <ui:include src="ResponsibleCell.xhtml" />
           </h:panelGroup>
           
-          <h:panelGroup rendered="#{column.field eq 'state'}">
+          <h:panelGroup rendered="#{column.property eq 'state'}">
             <ui:include src="StateCell.xhtml" />
           </h:panelGroup>
           
