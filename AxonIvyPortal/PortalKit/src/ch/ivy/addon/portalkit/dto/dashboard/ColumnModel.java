@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import org.apache.commons.lang3.StringUtils;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -14,40 +16,33 @@ public class ColumnModel implements Serializable {
 
   private static final long serialVersionUID = -4315469062114036720L;
 
-  protected String field;
   protected String header;
   protected String property;
   protected String width;
   protected String styleClass;
   protected String propertyStyleClass;
-  protected boolean visible = true;
   protected boolean toggleable = true;
   protected boolean sortable = true;
   protected DashboardColumnType type = DashboardColumnType.STRING;
   
+  @JsonIgnore
+  protected boolean visible = true;
+  
   public Object display(ITask task) {
     ICustomFields customFields = task.customFields();
     if (StringUtils.startsWithIgnoreCase(property, DashboardConfigurationPrefix.CUSTOM_FIELD_NUMBER)) {
-      return customFields.numberField(property).getOrNull();
+      return customFields.numberField(StringUtils.removeStartIgnoreCase(property, DashboardConfigurationPrefix.CUSTOM_FIELD_NUMBER)).getOrNull();
     } else if (StringUtils.startsWithIgnoreCase(property, DashboardConfigurationPrefix.CUSTOM_FIELD_TIMESTAMP)) {
-      return customFields.timestampField(property).getOrNull();
+      return customFields.timestampField(StringUtils.removeStartIgnoreCase(property, DashboardConfigurationPrefix.CUSTOM_FIELD_TIMESTAMP)).getOrNull();
     } else if (StringUtils.startsWithIgnoreCase(property, DashboardConfigurationPrefix.CUSTOM_FIELD_TEXT)) {
-      return customFields.textField(property).getOrNull();
+      return customFields.textField(StringUtils.removeStartIgnoreCase(property, DashboardConfigurationPrefix.CUSTOM_FIELD_TEXT)).getOrNull();
     } else {
-      return customFields.stringField(property).getOrNull();
+      return customFields.stringField(StringUtils.removeStartIgnoreCase(property, DashboardConfigurationPrefix.CUSTOM_FIELD_STRING)).getOrNull();
     }
   }
   
   protected String cms(String path) {
     return Ivy.cms().co(path);
-  }
-
-  public String getField() {
-    return field;
-  }
-
-  public void setField(String field) {
-    this.field = field;
   }
 
   public String getHeader() {

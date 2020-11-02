@@ -5,6 +5,7 @@ import java.io.Serializable;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
@@ -13,12 +14,11 @@ public class StateColumnModel extends ColumnModel implements Serializable {
   private static final long serialVersionUID = -4315469062114036720L;
 
   public StateColumnModel() {
-    this.field = "state";
     this.header = cms("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE");
     this.width = "100";
     this.styleClass = "dashboard-tasks__state";
     this.propertyStyleClass = "dashboard-tasks__state-text";
-    this.property = "state";
+    this.property = DashboardStandardTaskColumn.STATE.getProperty();
     this.type = DashboardColumnType.STATE;
   }
   
