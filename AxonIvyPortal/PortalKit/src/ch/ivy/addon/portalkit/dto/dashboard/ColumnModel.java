@@ -2,6 +2,9 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.StringUtils;
+
+import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -24,11 +27,11 @@ public class ColumnModel implements Serializable {
   
   public Object display(ITask task) {
     ICustomFields customFields = task.customFields();
-    if (customFields.numberField(property).isPresent()) {
+    if (StringUtils.startsWithIgnoreCase(property, DashboardConfigurationPrefix.CUSTOM_FIELD_NUMBER)) {
       return customFields.numberField(property).getOrNull();
-    } else if (customFields.timestampField(property).isPresent()) {
+    } else if (StringUtils.startsWithIgnoreCase(property, DashboardConfigurationPrefix.CUSTOM_FIELD_TIMESTAMP)) {
       return customFields.timestampField(property).getOrNull();
-    } else if (customFields.textField(property).isPresent()) {
+    } else if (StringUtils.startsWithIgnoreCase(property, DashboardConfigurationPrefix.CUSTOM_FIELD_TEXT)) {
       return customFields.textField(property).getOrNull();
     } else {
       return customFields.stringField(property).getOrNull();
@@ -48,6 +51,9 @@ public class ColumnModel implements Serializable {
   }
 
   public String getHeader() {
+    if (StringUtils.startsWithIgnoreCase(header, DashboardConfigurationPrefix.CMS)) {
+      return Ivy.cms().co(StringUtils.removeStart(header, DashboardConfigurationPrefix.CMS));
+    }
     return header;
   }
 

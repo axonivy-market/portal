@@ -105,25 +105,14 @@ public class DashboardBean implements Serializable {
         if (widget instanceof TaskDashboardWidget) {
           TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
           buildStandardColumns(taskWidget);
+          buildExtendedColumns(taskWidget);
         }
       }
     }
   }
 
   private void buildStandardColumns(TaskDashboardWidget taskWidget) {
-    List<String> columns = taskWidget.getColumns();
-    if (CollectionUtils.isEmpty(columns)) {
-      columns = new ArrayList<>();
-      columns.add(DashboardStandardTaskColumn.START.toString().toLowerCase());
-      columns.add(DashboardStandardTaskColumn.PRIORITY.toString().toLowerCase());
-      columns.add(DashboardStandardTaskColumn.ID.toString().toLowerCase());
-      columns.add(DashboardStandardTaskColumn.NAME.toString().toLowerCase());
-      columns.add(DashboardStandardTaskColumn.DESCRIPTION.toString().toLowerCase());
-      columns.add(DashboardStandardTaskColumn.RESPONSIBLE.toString().toLowerCase());
-      columns.add(DashboardStandardTaskColumn.STATE.toString().toLowerCase());
-      columns.add(DashboardStandardTaskColumn.CREATED.toString().toLowerCase());
-      columns.add(DashboardStandardTaskColumn.EXPIRY.toString().toLowerCase());
-    }
+    List<String> columns = taskWidget.getStandardColumns();
     for (String column : columns) {
       ColumnModel model = null;
       if (DashboardStandardTaskColumn.START.toString().equalsIgnoreCase(column)) {
@@ -147,6 +136,10 @@ public class DashboardBean implements Serializable {
       }
       taskWidget.getColumnModels().add(model);
     }
+  }
+  
+  private void buildExtendedColumns(TaskDashboardWidget taskWidget) {
+    taskWidget.getColumnModels().addAll(taskWidget.getExtendedColumns());
   }
 
   private List<Dashboard> defaultDashboards() throws IOException {
@@ -227,6 +220,7 @@ public class DashboardBean implements Serializable {
     List<Dashboard> defaultDashboards = defaultDashboards();
     selectedDashboard = defaultDashboards.get(defaultDashboards.indexOf(selectedDashboard));
     dashboards.set(dashboards.indexOf(selectedDashboard), selectedDashboard);
+    buildTaskWidgetModel();
   }
   
   public void onTabChange(TabChangeEvent event) {

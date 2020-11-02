@@ -33,7 +33,7 @@
         <p:ajax event="sort" listener="#{cc.attrs.taskWidget.onSort}" />
         
         <p:columns var="column" value="#{cc.attrs.taskWidget.columnModels}" headerText="#{column.header}" width="#{column.width}" styleClass="#{column.styleClass}"
-          toggleable="#{column.toggleable}" visible="#{column.visible}" field="#{column.field}" 
+          toggleable="#{column.toggleable}" visible="#{column.visible}" field="#{column.property}" 
           sortBy="#{column.property}" sortable="#{column.sortable}">
           <h:panelGroup rendered="#{column.field eq 'start'}">
             <ui:include src="StartCell.xhtml" />
