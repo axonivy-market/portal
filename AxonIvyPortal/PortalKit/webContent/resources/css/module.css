@@ -248,6 +248,8 @@
 .case-widget .widget-column-header .operations-column {
   margin-left: auto;
   margin-right: auto;
+  padding-right: 10px;
+  padding-left: 10px;
   font-size: var(--large-font-size);
   color: var(--task-widget-header-column);
   font-family: var(--portal-font-family);
@@ -4074,11 +4076,9 @@ _:-ms-fullscreen, :root .content-link-history {
   align-items: center;
 }
 
-.task-widget .filter-container .applied-filters-container {
-  width: calc(100% - 440px);
-}
+.task-widget .filter-container .applied-filters-container,
 .case-widget .filter-container .applied-filters-container {
-    width: calc(100% - 458px);
+  width: calc(100% - 490px);
 }
 
 @media (max-width: 991px) {
@@ -4096,16 +4096,18 @@ _:-ms-fullscreen, :root .content-link-history {
     display: flex;
     height: auto;
     min-height: 100%;
+    margin-left: auto;
 }
 
 .task-widget .task-export-to-excel-form,
 .case-widget .case-export-to-excel-form {
-  width: 116px;
+  max-width: 166px;
 }
 
 .task-widget .config-columns-button,
 .case-widget .config-columns-button {
-  width: 132px;
+  max-width: 165px;
+  padding-right: 5px;
 }
 
 .task-widget .task-list-actions a,
@@ -4119,11 +4121,9 @@ _:-ms-fullscreen, :root .content-link-history {
 
 /*medium*/
 @media (min-width: 992px) and (max-width: 1599px) {
-  .task-widget .filter-container .applied-filters-container {
-    width: calc(100% - 235px);
-  }
+  .task-widget .filter-container .applied-filters-container,
   .case-widget .filter-container .applied-filters-container {
-    width: calc(100% - 253px);
+    width: calc(100% - 236px);
   }
   .task-widget .task-export-to-excel-form,
   .task-widget .config-columns-button,

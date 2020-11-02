@@ -736,7 +736,12 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   public void saveColumnsConfiguration() {
-    selectedColumns.addAll(portalRequiredColumns);
+    // avoid duplicating
+    for (String requiredColumn : portalRequiredColumns) {
+      if (!selectedColumns.contains(requiredColumn)) {
+        selectedColumns.add(requiredColumn);
+      }
+    }
     setAutoHideColumns(isDisableSelectionCheckboxes);
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
     Long applicationId = Ivy.request().getApplication().getId();
