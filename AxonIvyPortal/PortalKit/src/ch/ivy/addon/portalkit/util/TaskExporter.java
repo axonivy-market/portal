@@ -96,13 +96,15 @@ public class TaskExporter {
       case TaskLazyDataModel.ACTIVATOR:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR");
       case TaskLazyDataModel.PRIORITY:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY");
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY");
       case TaskLazyDataModel.STATE:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE");
       case TaskLazyDataModel.CREATION_TIME:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/create");
       case TaskLazyDataModel.EXPIRY_TIME:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME");
+      case TaskLazyDataModel.COMPLETED_ON:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/COMPLETED_ON");
       default:
         return getCustomColumnName(column);
     }
@@ -134,6 +136,9 @@ public class TaskExporter {
       case TaskLazyDataModel.EXPIRY_TIME:
         Date expiryTimestamp = task.getExpiryTimestamp();
         return expiryTimestamp != null ? formatDate(expiryTimestamp): "";
+      case TaskLazyDataModel.COMPLETED_ON:
+        Date endTimestamp = task.getEndTimestamp();
+        return endTimestamp != null ? formatDate(endTimestamp): "";
       default:
         return getCustomColumnValue(column, task);
     }
