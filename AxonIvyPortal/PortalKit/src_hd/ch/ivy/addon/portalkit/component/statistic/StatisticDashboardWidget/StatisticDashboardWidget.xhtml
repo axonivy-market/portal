@@ -35,17 +35,17 @@
                     <h:panelGroup styleClass="statistics-header-container ui-g-12 u-padding-0">
                       <h:panelGroup id="chart-name-container" styleClass="chart-name-container" layout="block">
                         <h1 id="chart-name-#{chartStatus.index}" class="chart-name">#{chart.name}</h1>
-                        <p:commandLink rendered="#{!(empty chart.filter)}" styleClass="fa fa-info-circle chart-info"
+                        <p:commandLink rendered="#{!(empty chart.filter)}" styleClass="icon ivyicon-information-circle chart-info"
                             actionListener="#{logic.selectChart(chart)}" update="#{p:component('chart-details-dialog')}" oncomplete="PF('chart-details-dialog').show();" />
                       </h:panelGroup>
 
                       <h:panelGroup layout="block" styleClass="chart-actions-container" rendered="#{!cc.attrs.isDrilldownExpiryChart}">
-                        <p:commandLink styleClass="fa fa-arrow-left chart-action ui-sm-hidden" actionListener="#{logic.moveLeft(chart)}"
+                        <p:commandLink styleClass="icon ivyicon-arrow-left-1 chart-action ui-sm-hidden" actionListener="#{logic.moveLeft(chart)}"
                           update="@([id$='statistic-container'])" rendered="#{chartStatus.index != 0}" />
-                        <p:commandLink styleClass="fa fa-arrow-right chart-action ui-sm-hidden" actionListener="#{logic.moveRight(chart)}"
+                        <p:commandLink styleClass="icon ivyicon-arrow-right-1 chart-action ui-sm-hidden" actionListener="#{logic.moveRight(chart)}"
                           update="@([id$='statistic-container'])" rendered="#{chartStatus.index != data.statisticChartList.size() -1 and data.isFinishLoadCharts}" />
 
-                        <p:commandLink id="delete-chart-link" styleClass="fa fa-close chart-action" rendered="#{chart.defaultChart == 'false'}">
+                        <p:commandLink id="delete-chart-link" styleClass="icon ivyicon-remove chart-action" rendered="#{chart.defaultChart == 'false'}">
                           <p:ajax event="click" listener="#{logic.selectChart(chart)}" oncomplete="PF('delete-confirmation-dialog').show();" />
                         </p:commandLink>
                       </h:panelGroup>
@@ -142,21 +142,29 @@
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartInfo/chartDetailsHeader')}" modal="true" closable="true" closeOnEscape="true"
     dynamic="true" styleClass="statistic-details-dialog" resizable="false" fitViewport="true" responsive="true">
     <ic:ch.ivy.addon.portalkit.component.statistic.ChartInformationDialog selectedStatisticChart="#{data.selectedStatisticChart}" />
-    <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
-      <p:commandButton type="button" styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
-        onclick="PF('chart-details-dialog').hide();">
+    <h:panelGroup layout="block" styleClass="ui-dialog-footer u-no-padding-right">
+      <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
+        icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}" onclick="PF('chart-details-dialog').hide();">
       </p:commandButton>
     </h:panelGroup>
   </p:dialog>
 
-  <p:confirmDialog id="delete-confirmation-dialog" rendered="#{!cc.attrs.compactMode}"
-    message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/chartDeletionConfirmation')}"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" widgetVar="delete-confirmation-dialog" appendTo="@(body)"
-    severity="alert">
-    <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" actionListener="#{logic.deleteChart()}"
-      oncomplete="PF('delete-confirmation-dialog').hide();" update="@([id$='statistic-container']) @([id$='statistic-widget-empty-state']) " />
-    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}" onclick="PF('delete-confirmation-dialog').hide();"
-      type="button" styleClass="portal-cancel-button" />
-  </p:confirmDialog>
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="delete-confirmation-dialog" />
+    <ui:param name="widgetVar" value="delete-confirmation-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="icon ivyicon-delete-1" />
+    <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteChartHeaderText')}" />
+    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/statisticWidget/chartDeletionConfirmation')}" />
+    
+    <ui:define name="dialogFooter">
+      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+       onclick="PF('delete-confirmation-dialog').hide();" styleClass="u-mar-right-15"/>
+      <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" actionListener="#{logic.deleteChart()}"
+        icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}"
+        oncomplete="PF('delete-confirmation-dialog').hide();" update="@([id$='statistic-container']) @([id$='statistic-widget-empty-state']) " />
+    </ui:define>
+  </ui:decorate>
 </cc:implementation>
 </html>

@@ -4,7 +4,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="email" required="true" type="ch.ivy.gawmfs.UserEmail" />
+  <cc:attribute name="email" required="true" type="ch.ivy.addon.portalkit.bo.ExpressUserEmail" />
   <cc:attribute name="responsibles" type="java.util.List" />
   <cc:attribute name="isEmpty" type="java.lang.Boolean" />
 </cc:interface>
@@ -13,20 +13,27 @@
   <c:set var="email" value="#{cc.attrs.email}" />
   <f:event listener="#{emailBean.init(email, cc.attrs.responsibles)}" type="preRenderComponent" />
 
-  <h:panelGroup id="email-container" styleClass="express-email-container">
+  <h:panelGroup id="email-container" styleClass="express-email-container" layout="block">
     <div class="ui-g card">
       <div class="ui-g-12 md-inputfield">
         <p:inputText id="email-recipients" styleClass="ui-g-12" value="#{email.recipients}" required="#{param['skipValidator'] == null}"
-          requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailAddress')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+          requiredMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailAddress')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}"
+          validatorMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/invalidEmailFormat')}">
+          <f:validateRegex pattern="#{emailBean.emailRegex}" disabled="#{param['skipValidator'] == true}"/>
+        </p:inputText>
         <p:outputLabel for="email-recipients" styleClass="ui-g-12"
           value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/EmailAddress')}" />
         <p:message for="email-recipients" />
       </div>
 
       <div class="ui-g-12 md-inputfield">
-        <p:inputText id="email-response-to" styleClass="ui-g-12" value="#{email.responseTo}" />
+        <p:inputText id="email-response-to" styleClass="ui-g-12" value="#{email.responseTo}"
+           validatorMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/emailSetting/invalidEmailFormat')}">
+          <f:validateRegex pattern="#{emailBean.emailRegex}" disabled="#{param['skipValidator'] == true}"/>
+        </p:inputText>
         <p:outputLabel for="email-response-to" styleClass="ui-g-12"
           value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/ResponseTo')}" />
+        <p:message for="email-response-to" />
       </div>
 
       <div class="ui-g-12 md-inputfield">
@@ -63,13 +70,14 @@
           <p:outputLabel for="attachment-table" styleClass="ui-g-4 ui-sm-6"
             value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Email/Attachment')}: ">
             <p:commandLink id="attachment-note" global="false">
-              <i class="fa fa-question-circle" />
+              <i class="icon ivyicon-question-circle" />
             </p:commandLink>
             <p:tooltip for="attachment-note" value="#{masterDataBean.getFileUploadInvalidSizeMessage()}" trackMouse="true" hideEvent="mouseleave click"/>
           </p:outputLabel>
 
           <div class="ui-g-8 ui-sm-6 u-padding-0">
             <p:fileUpload id="choose-uploading-file" styleClass="email-attachment email-attachment-upload-btn" mode="advanced" auto="true"
+              chooseIcon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}"
               dragDropSupport="true" previewWidth="30" fileUploadListener="#{emailBean.uploadAttachment}" update="attachment-table document-message"
               label="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/upload')}"
               invalidSizeMessage="#{masterDataBean.getFileUploadInvalidSizeMessage()}"
@@ -93,13 +101,12 @@
             </p:column>
 
             <p:column styleClass="u-text-align-center express-action-button-icon-only" headerText="#{ivy.cms.co('/Dialogs/components/CaseDocument/FileFunctions')}">
-              <p:commandLink id="download" styleClass="fa fa-download MarRight10 email-attachment" immediate="true" ajax="false"
+              <p:commandLink id="download" styleClass="icon ivyicon-download-bottom u-mar-right-10 email-attachment" immediate="true" ajax="false"
                 process="attachmentTableVar" actionListener="#{emailBean.downloadAttachment(attachment)}"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}">
                 <p:fileDownload value="#{emailBean.file}" />
               </p:commandLink>
-              <p:spacer width="20px" />
-              <p:commandLink id="document-delete" styleClass="fa fa-trash-o email-attachment"
+              <p:commandLink id="document-delete" styleClass="icon ivyicon-bin-1 email-attachment"
                 actionListener="#{emailBean.deleteAttachment(attachment)}" immediate="true" update="attachment-table"
                 title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" oncomplete="PF('attachmentTableVar').filter();">
               </p:commandLink>

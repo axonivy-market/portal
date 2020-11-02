@@ -1,5 +1,5 @@
 [Ivy]
-1705C2EB61BD911B 7.5.0 #module
+1705C2EB61BD911B 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ds0 DefaultUserProcess Big #zClass
 Ds0 B #cInfo
@@ -42,7 +42,7 @@ Ds0 f3 actionCode 'import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 
-ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
+ProcessStartCollector collector = new ProcessStartCollector();
 
 String leaveRequestStartLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/UserExampleGuide/userExampleGuide.ivp");
 if (!StringUtils.isEmpty(leaveRequestStartLink)){	
@@ -91,12 +91,12 @@ HINT: how to get a process url&#13;
 - We provide method to get startable link by UserFriendlyRequestPath (If user don''t have permission to start this link, the method will return empty string)
 ProcessStartCollector.findStartableLinkByUserFriendlyRequestPath(...)
 Example: 
-ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
+ProcessStartCollector collector = new ProcessStartCollector();
 String newEmployeeLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/Employee/NewEmployee.ivp");</name>
         <nameStyle>746,5
 226,5
 1,5
-223,5
+195,5
 </nameStyle>
     </language>
 </elementInfo>

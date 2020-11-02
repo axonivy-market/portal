@@ -1,3 +1,7 @@
+$(document).ready(function() {
+  $.removeCookie('serenity_expandeditems', {path: '/'});
+});
+
 loadIframe();
 function loadIframe() {
   var iframe = document.getElementById('iFrame');
@@ -22,6 +26,9 @@ function loadIframe() {
       name : 'isHideTaskAction',
       value : window.isHideTaskAction
     }, {
+      name : 'isWorkingOnATask',
+      value : window.isWorkingOnATask
+    }, {
       name : 'processChainDirection',
       value : window.processChainDirection
     }, {
@@ -31,41 +38,45 @@ function loadIframe() {
       name : 'announcementInvisible',
       value : window.announcementInvisible
     }]);
-    
-    if (!window.announcementInvisible) {
-      $('#announcement-container').removeClass('u-hidden');
-      $('.task-template-container').height($('.task-template-container').outerHeight() - 10);
-    }
-    $('.task-template-container').removeClass('u-hidden');
   });
 }
 
 function checkUrl(iFrame) {
   document.title = iFrame.contentDocument.title;
-  var path = iFrame.contentWindow.location.pathname;
-  if (path.match("/default/end.xhtml$") || path.match("/default/end.jsp$")) {
-    var href = iFrame.contentWindow.location.href;
-    var taskId = href.substring(href.lastIndexOf("=") + 1);
+  var loc = iFrame.contentWindow.location;
+  if (loc.pathname.match("/default/redirect.xhtml$")) {
+    var redirectUrl = new URLSearchParams(loc.search).get("redirectPage");
     iFrame.src = "about:blank";
-    redirectToEndPageCommand([{
-      name : 'taskId',
-      value : taskId
+    redirectToUrlCommand([{
+      name: 'url',
+      value: redirectUrl
     }]);
   }
 }
 
 window.addEventListener("resize", resizeIFrame, false);
-resizeIFrame();
 function resizeIFrame() {
-  var mainPanelHeight = $('.task-frame-container').get(0).offsetHeight;
-  $('iframe[id="iFrame"]').height(mainPanelHeight);
+  Portal.updateLayoutContent();
+  var taskHeaderContainerHeight = ($('.js-task-header-container').outerHeight(true)||0);
+  var announcementMessageContainerHeight = ($('.js-annoucement-in-frame-template').outerHeight(true)||0);
+
+  var mainScreenHeight = $('.js-layout-content').outerHeight(true);
+  var availableHeight = mainScreenHeight - taskHeaderContainerHeight - announcementMessageContainerHeight;
+
+  if (!!availableHeight) {
+    $('iframe[id="iFrame"]').height(availableHeight);
+  }
 }
 
 function updateContentContainerClass() {
-  if ($('.task-name-vertical-process-chain').length > 0) {
-    $('.task-frame-container').addClass('vertical-process-chain');
+  if ($('.js-task-name-vertical-process-chain').length > 0) {
+    $('.js-task-frame-container').addClass('vertical-process-chain');
     if ($('.vertical-chain-shape-line').length > 0) {
-      $('.task-frame-container').addClass('vertical-chain-shape-line');
+      $('.js-task-frame-container').addClass('vertical-chain-shape-line');
     }
   }
+  if (!window.announcementInvisible) {
+    $('#announcement').removeClass('u-invisibility');
+  }
+  $('.task-template-container').removeClass('u-invisibility');
 }

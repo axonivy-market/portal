@@ -41,6 +41,7 @@ public class UserProcessMapper {
   public static UserProcess toUserProcess(ExternalLink externalLink) {
     UserProcess userProcess = new UserProcess();
     userProcess.setProcessName(stripHtmlTags(externalLink.getName()));
+    userProcess.setUserId(externalLink.getCreatorId());
     userProcess.setLink(externalLink.getLink());
     userProcess.setExternalLink(true);
     userProcess.setWorkflowId(externalLink.getId().toString());

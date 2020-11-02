@@ -21,24 +21,6 @@ import ch.ivyteam.ivy.workflow.ITask;
  * This class is to implement method to get information of Ivy
  */
 public class IvyAdapterService {
-  private static final String PORTAL_CALL_WEBSERVICE_MAX_RETRY = "PortalCallWebserviceMaxRetry";
-
-  /**
-   * Get maximum time global variable that portal can retry to synchronize data to other portals, return 0 if global
-   * variable is not defined or the value is not correct format
-   * 
-   * @return maximum times
-   */
-  public Integer getMaximumRetryPortalDataSynchonizationTimes() {
-    String retryTimesLiteral = Ivy.var().get(PORTAL_CALL_WEBSERVICE_MAX_RETRY);
-    try {
-      return Integer.valueOf(retryTimesLiteral);
-    } catch (NumberFormatException e) {
-      String message = String.format("Value of global variable %s  is not number", PORTAL_CALL_WEBSERVICE_MAX_RETRY);
-      Ivy.log().error(message, e);
-    }
-    return 0;
-  }
 
   /**
    * Executes the given {@link Callable} as System-User.

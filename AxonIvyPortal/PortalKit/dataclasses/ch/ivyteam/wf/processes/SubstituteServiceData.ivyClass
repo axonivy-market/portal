@@ -1,8 +1,5 @@
 SubstituteServiceData #class
 ch.ivyteam.wf.processes #namespace
-apps List<String> #field
-errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
-substitutesByApp java.util.Map #field
+substitutes java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute> #field
 username String #field
-userPerApp java.util.Map #field
-appName String #field
+userDTO ch.ivy.addon.portalkit.dto.UserDTO #field

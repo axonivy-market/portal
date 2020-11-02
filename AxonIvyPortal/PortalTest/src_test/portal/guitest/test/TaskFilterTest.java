@@ -5,6 +5,7 @@ import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -53,10 +54,10 @@ public class TaskFilterTest extends BaseTest {
 		assertEquals(3, taskWidgetPage.countTasks());
 
 		String stateFilterValue = taskWidgetPage.getFilterValue("state-filter");
-		assertEquals("State: Created, Suspended, In progress, Reserved", stateFilterValue);
+    assertEquals("State: Created, Ready for joining, Suspended, In progress, Reserved", stateFilterValue);
 
-		taskWidgetPage.openStateFilter();
-		assertEquals("Done", taskWidgetPage.getStateFilterSelection(4));
+    taskWidgetPage.openStateFilter();
+    assertTrue(taskWidgetPage.getListStateFilterSelection().contains("Done"));
 	}
 
 	@Test
@@ -111,31 +112,41 @@ public class TaskFilterTest extends BaseTest {
 	}
 
 	@Test
-	public void testShowUnassignedTaskToPersonHaveTaskReadAllPermission() {
+	public void testShowTaskWithNotExistsedActivatorToPersonHaveTaskReadAllPermission() {
 		login(TestAccount.ADMIN_USER);
-		redirectToRelativeLink(createUnassignedTaskUrl);
+		redirectToRelativeLink(createTaskWithNotExistedActivatorUrl);
 		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     	taskWidgetPage.expand();
 		assertEquals(6, taskWidgetPage.countTasks());
 
-		taskWidgetPage.openStateFilterOverlayPanel();
-		assertEquals("Created,Suspended,In progress,Reserved,Done,Unassigned",
-				taskWidgetPage.getDisplayStateInStateFilter());
+		taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Suspended"));
+		assertEquals(4, taskWidgetPage.countTasks());
+		assertEquals("Not exist user", taskWidgetPage.getResponsibleOfTaskAt(0));
+	}
+	
+	@Test
+	public void testShowSystemStatesFilterForAdminUser() {
+	  List<String> adminStates = Arrays.asList("Created", "Ready for joining", "Suspended", "In progress", "Reserved", "Delayed", "Done", "Destroyed", "Failed", "Join failed", "Waiting for event");
+	  login(TestAccount.ADMIN_USER);
+	  MainMenuPage mainMenuPage = new MainMenuPage();
+	  TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
 
-		taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Created", "Suspended", "In progress", "Reserved", "Done"));
-		assertEquals(1, taskWidgetPage.countTasks());
-		assertEquals("OPEN (Unassigned)", taskWidgetPage.getTaskStateTooltip(0));
+	  String stateFilterValue = taskWidgetPage.getFilterValue("state-filter");
+	  assertEquals("State: All", stateFilterValue);
+
+	  taskWidgetPage.openStateFilter();
+	  List<String> states = taskWidgetPage.getListStateFilterSelection();
+	  assertTrue(states.size() == adminStates.size());
+	  assertTrue(states.containsAll(adminStates));
 	}
 
 	@Test
-	public void testNotShowUnassignedTaskToPersonNotHaveTaskReadAllPermission() {
-		redirectToRelativeLink(createUnassignedTaskUrl);
+	public void testNotShowTaskWithNotExistsedActivatorToPersonNotHaveTaskReadAllPermission() {
+		redirectToRelativeLink(createTaskWithNotExistedActivatorUrl);
 		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
 		taskWidgetPage.expand();
 
 		assertEquals(3, taskWidgetPage.countTasks());
-		taskWidgetPage.openStateFilterOverlayPanel();
-		assertEquals("Created,Suspended,In progress,Reserved,Done", taskWidgetPage.getDisplayStateInStateFilter());
 	}
 
 	@Test
@@ -186,12 +197,12 @@ public class TaskFilterTest extends BaseTest {
 		// Prepare 2 filter
 		String filterResponsible = "Responsible";
 		String filterMaternity = "Maternity";
-		
+
 		MainMenuPage mainMenuPage = new MainMenuPage();
 		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.expand();
-    taskWidgetPage.openAdvancedFilter("Description", "description");
-    taskWidgetPage.filterByResponsible("Everybody");
+		taskWidgetPage.expand();
+		taskWidgetPage.openAdvancedFilter("Description", "description");
+		taskWidgetPage.filterByResponsible("Everybody");
 		taskWidgetPage.filterByDescription(filterMaternity);
 		taskWidgetPage.saveFilter(filterMaternity);
 

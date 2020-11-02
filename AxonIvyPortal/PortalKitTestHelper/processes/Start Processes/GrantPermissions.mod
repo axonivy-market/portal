@@ -1,5 +1,5 @@
 [Ivy]
-14DE09882B540AD5 7.5.0 #module
+14DE09882B540AD5 9.2.0 #module
 >Proto >Proto Collection #zClass
 Is0 GrantPermissions Big #zClass
 Is0 B #cInfo
@@ -91,6 +91,22 @@ Is0 @PushWFArc f72 '' #zField
 Is0 @UserDialog f78 '' #zField
 Is0 @PushWFArc f79 '' #zField
 Is0 @PushWFArc f73 '' #zField
+Is0 @StartRequest f80 '' #zField
+Is0 @GridStep f81 '' #zField
+Is0 @PushWFArc f82 '' #zField
+Is0 @PushWFArc f83 '' #zField
+Is0 @GridStep f84 '' #zField
+Is0 @PushWFArc f85 '' #zField
+Is0 @StartRequest f86 '' #zField
+Is0 @PushWFArc f87 '' #zField
+Is0 @StartRequest f88 '' #zField
+Is0 @GridStep f90 '' #zField
+Is0 @PushWFArc f91 '' #zField
+Is0 @PushWFArc f89 '' #zField
+Is0 @StartRequest f92 '' #zField
+Is0 @GridStep f94 '' #zField
+Is0 @PushWFArc f95 '' #zField
+Is0 @PushWFArc f93 '' #zField
 >Proto Is0 Is0 GrantPermissions #zField
 Is0 f0 outLink grantAllPermissionsToCurrentUser.ivp #txt
 Is0 f0 inParamDecl '<> param;' #txt
@@ -1134,6 +1150,128 @@ Is0 f79 expr out #txt
 Is0 f79 63 1552 104 1552 #arcP
 Is0 f73 expr out #txt
 Is0 f73 248 1552 284 1552 #arcP
+Is0 f80 outLink denyResetTaskReadyForJoin.ivp #txt
+Is0 f80 inParamDecl '<> param;' #txt
+Is0 f80 requestEnabled true #txt
+Is0 f80 triggerEnabled false #txt
+Is0 f80 callSignature denyResetTaskReadyForJoin() #txt
+Is0 f80 caseData businessCase.attach=true #txt
+Is0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>denyResetTaskReadyForJoin.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f80 @C|.responsibility Everybody #txt
+Is0 f80 881 449 30 30 16 0 #rect
+Is0 f80 @|StartRequestIcon #fIcon
+Is0 f81 actionTable 'out=in;
+' #txt
+Is0 f81 actionCode 'import java.util.Objects;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+import ch.ivyteam.ivy.security.IPermission;
+
+IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_RESET_READY_FOR_JOIN.getValue());
+if (Objects.nonNull(iPermission)){
+  ivy.wf.getApplication().getSecurityDescriptor().denyPermission(iPermission, ivy.session.getSessionUser());
+}' #txt
+Is0 f81 security system #txt
+Is0 f81 668 452 40 24 0 -8 #rect
+Is0 f81 @|StepIcon #fIcon
+Is0 f82 881 464 708 464 #arcP
+Is0 f83 668 464 408 513 #arcP
+Is0 f83 1 408 464 #addKink
+Is0 f83 0 0.6184840138519182 0 0 #arcLabel
+Is0 f84 actionTable 'out=in;
+' #txt
+Is0 f84 actionCode 'import java.util.Objects;
+import ch.ivy.addon.portalkit.enums.PortalPermission;
+import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
+import ch.ivyteam.ivy.security.IPermission;
+
+IPermission iPermission = IPermissionRepository.get().findByName(PortalPermission.TASK_RESET_READY_FOR_JOIN.getValue());
+if (Objects.nonNull(iPermission)){
+  ivy.wf.getApplication().getSecurityDescriptor().grantPermission(iPermission, ivy.session.getSessionUser());
+}' #txt
+Is0 f84 security system #txt
+Is0 f84 664 516 48 24 0 -8 #rect
+Is0 f84 @|StepIcon #fIcon
+Is0 f85 664 528 423 528 #arcP
+Is0 f86 outLink grantResetTaskReadyForJoin.ivp #txt
+Is0 f86 inParamDecl '<> param;' #txt
+Is0 f86 requestEnabled true #txt
+Is0 f86 triggerEnabled false #txt
+Is0 f86 callSignature grantResetTaskReadyForJoin() #txt
+Is0 f86 caseData businessCase.attach=true #txt
+Is0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>grantResetTaskReadyForJoin.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f86 @C|.responsibility Everybody #txt
+Is0 f86 881 513 30 30 16 0 #rect
+Is0 f86 @|StartRequestIcon #fIcon
+Is0 f87 881 528 712 528 #arcP
+Is0 f88 outLink grantDestroyTaskPermission.ivp #txt
+Is0 f88 inParamDecl '<> param;' #txt
+Is0 f88 requestEnabled true #txt
+Is0 f88 triggerEnabled false #txt
+Is0 f88 callSignature grantDestroyTaskPermission() #txt
+Is0 f88 caseData businessCase.attach=true #txt
+Is0 f88 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>grantDestroyTaskPermission.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f88 @C|.responsibility Everybody #txt
+Is0 f88 881 577 30 30 16 0 #rect
+Is0 f88 @|StartRequestIcon #fIcon
+Is0 f90 actionTable 'out=in;
+' #txt
+Is0 f90 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+
+ivy.task.getApplication().getSecurityDescriptor().grantPermission(IPermission.TASK_DESTROY, ivy.session.getSessionUser());' #txt
+Is0 f90 security system #txt
+Is0 f90 660 580 56 24 0 -8 #rect
+Is0 f90 @|StepIcon #fIcon
+Is0 f91 881 592 716 592 #arcP
+Is0 f89 660 592 408 543 #arcP
+Is0 f89 1 408 592 #addKink
+Is0 f89 0 0.6133803277414409 0 0 #arcLabel
+Is0 f92 outLink denyDestroyTaskPermission.ivp #txt
+Is0 f92 inParamDecl '<> param;' #txt
+Is0 f92 requestEnabled true #txt
+Is0 f92 triggerEnabled false #txt
+Is0 f92 callSignature denyDestroyTaskPermission() #txt
+Is0 f92 caseData businessCase.attach=true #txt
+Is0 f92 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>denyDestroyTaskPermission.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Is0 f92 @C|.responsibility Everybody #txt
+Is0 f92 881 641 30 30 16 0 #rect
+Is0 f92 @|StartRequestIcon #fIcon
+Is0 f94 actionTable 'out=in;
+' #txt
+Is0 f94 actionCode 'import ch.ivyteam.ivy.security.IPermission;
+
+ivy.task.getApplication().getSecurityDescriptor().denyPermission(IPermission.TASK_DESTROY, ivy.session.getSessionUser());' #txt
+Is0 f94 security system #txt
+Is0 f94 668 644 40 24 0 -8 #rect
+Is0 f94 @|StepIcon #fIcon
+Is0 f95 881 656 708 656 #arcP
+Is0 f93 668 656 408 543 #arcP
+Is0 f93 1 408 656 #addKink
+Is0 f93 0 0.700719777613547 0 0 #arcLabel
 >Proto Is0 .type portalKit_test.GrantPermissionsData #txt
 >Proto Is0 .processKind NORMAL #txt
 >Proto Is0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1226,3 +1364,19 @@ Is0 f70 mainOut f79 tail #connect
 Is0 f79 head f78 mainIn #connect
 Is0 f78 mainOut f73 tail #connect
 Is0 f73 head f71 mainIn #connect
+Is0 f80 mainOut f82 tail #connect
+Is0 f82 head f81 mainIn #connect
+Is0 f81 mainOut f83 tail #connect
+Is0 f83 head f7 mainIn #connect
+Is0 f84 mainOut f85 tail #connect
+Is0 f85 head f7 mainIn #connect
+Is0 f86 mainOut f87 tail #connect
+Is0 f87 head f84 mainIn #connect
+Is0 f88 mainOut f91 tail #connect
+Is0 f91 head f90 mainIn #connect
+Is0 f90 mainOut f89 tail #connect
+Is0 f89 head f7 mainIn #connect
+Is0 f92 mainOut f95 tail #connect
+Is0 f95 head f94 mainIn #connect
+Is0 f94 mainOut f93 tail #connect
+Is0 f93 head f7 mainIn #connect

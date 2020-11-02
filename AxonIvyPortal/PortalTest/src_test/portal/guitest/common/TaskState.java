@@ -2,7 +2,7 @@ package portal.guitest.common;
 
 public enum TaskState {
   
-  OPEN, IN_PROGRESS, RESERVED, DONE;
+  OPEN, IN_PROGRESS, RESERVED, DONE, DESTROYED;
   
   public static TaskState fromClass(String stateClass) {
     switch (stateClass.trim()) {
@@ -17,7 +17,9 @@ public enum TaskState {
         
       case "task-state-done":
         return DONE;
-        
+
+      case "task-state-zombie-destroyed":
+        return DESTROYED;
       default:
         return OPEN;
     }

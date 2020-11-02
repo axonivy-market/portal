@@ -7,7 +7,7 @@ import javax.faces.bean.ManagedBean;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -19,27 +19,31 @@ import ch.ivyteam.ivy.workflow.ICase;
 public class CaseBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  private static final String OPEN_CASE_ITEM_DETAILS = "Start Processes/PortalStart/CaseDetailsPage.ivp";
   private static final String OPEN_CASES_LIST = "Start Processes/PortalStart/CaseListPage.ivp";
 
   /**
-   * Get the font-awesome class of specified CaseState
+   * Get correspondence icon classes and color class for case state
    * 
    * @param state CaseState
-   * @return String CSS class of the caseState
+   * @return css classes for case state
    */
   public String getCaseStateIcon(CaseState state) {
-    if (CaseState.CREATED.equals(state)) {
-      return "fa fa-file-o";
-    } else if (CaseState.DESTROYED.equals(state)) {
-      return "fa fa-times";
-    } else if (CaseState.DONE.equals(state)) {
-      return "fa fa-check";
-    } else if (CaseState.RUNNING.equals(state)) {
-      return "fa fa-spinner";
+    if(state == null)  {
+      return "";
     }
-
-    return "fa-user-secret";
+    switch(state) {
+      case CREATED:
+      case RUNNING:
+        return "icon ivyicon-hourglass case-state-in-progress";
+      case DONE:
+        return "icon ivyicon-check-circle-1 case-state-done";
+      case DESTROYED:
+      case ZOMBIE:
+        return "icon ivyicon-alert-circle case-state-zombie-destroyed";
+      default: 
+        return "";
+    }
+      
   }
 
   /**
@@ -62,24 +66,19 @@ public class CaseBean implements Serializable {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseState/" + caseState);
   }
 
-  public void navigateToCaseDetails(ICase iCase) {
-    String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("CaseDetailsPage.ivp");
-    if (StringUtils.isEmpty(customizePortalFriendlyRequestPath)) {
-      customizePortalFriendlyRequestPath = OPEN_CASE_ITEM_DETAILS;
-    }
-    PortalNavigator.redirect(CaseUtils.getProcessStartUriWithCaseParameters(iCase, customizePortalFriendlyRequestPath));
-  }
-
   public void backToCasesList() {
     String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("CaseListPage.ivp");
     if (StringUtils.isEmpty(friendlyRequestPath)) {
       friendlyRequestPath = OPEN_CASES_LIST;
     }
-    String requestPath = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), friendlyRequestPath);
+    String requestPath = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
     if (StringUtils.isNotEmpty(requestPath)) {
       TaskUtils.updateTaskStartedAttribute(false);
       PortalNavigator.redirect(requestPath);
     }
   }
 
+  public boolean isCaseOwnerEnabled() {
+    return new GlobalSettingService().isCaseOwnerEnabled();
+  }
 }

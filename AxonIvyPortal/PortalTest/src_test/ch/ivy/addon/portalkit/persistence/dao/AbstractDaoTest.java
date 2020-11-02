@@ -19,7 +19,6 @@ import org.powermock.reflect.Whitebox;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.persistence.domain.BusinessEntity;
 import ch.ivyteam.ivy.application.IApplication;
-import ch.ivyteam.ivy.application.property.ICustomProperties;
 import ch.ivyteam.ivy.application.property.ICustomProperty;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IWorkflowContext;
@@ -199,20 +198,6 @@ public class AbstractDaoTest {
     assertEquals(expectedBusinessEntity2, actualBusinessEntities.get(1));
   }
   
-  @Test
-  public void testDeleteProperty() {
-    ICustomProperties customProperties = mock(ICustomProperties.class);
-    IApplication mockApplication = mock(IApplication.class);
-    String deletePropertyKey = "AxonIvyPortal.BusinessEntity.1";
-    BusinessEntity deleteEntity = getNewBusinessEntity(1L);
-    when(mockApplication.customProperties()).thenReturn(customProperties);
-    
-    AbstractDao<BusinessEntity> dao = new AbstractDao<BusinessEntity>(mockApplication){};
-    
-    dao.delete(deleteEntity);
-    
-    Mockito.verify(customProperties).delete(deletePropertyKey);
-  }
   
   @Test
   public void testGetPropertyPrefixKey() throws Exception{

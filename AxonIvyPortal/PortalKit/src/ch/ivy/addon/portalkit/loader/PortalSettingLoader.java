@@ -11,6 +11,7 @@ import java.util.Properties;
 
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.persistence.domain.GlobalSetting;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -60,6 +61,6 @@ public class PortalSettingLoader {
     }
 
     //Invalidate application cache to make new properties effects
-    IvyCacheService.newInstance().invalidateGlobalSettingOnApp(Ivy.request().getApplication().getName());
+    IvyCacheService.newInstance().invalidateApplicationCacheForAllAvailableApplications(IvyCacheIdentifier.GLOBAL_SETTING_CACHE_GROUP_NAME);
   }
 }

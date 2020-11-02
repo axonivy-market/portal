@@ -3,7 +3,6 @@ package ch.ivy.addon.portalkit.ivydata.service.impl;
 import static ch.ivy.addon.portalkit.util.HiddenTasksCasesConfig.isHiddenTasksCasesExcluded;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -17,19 +16,14 @@ import ch.ivy.addon.portalkit.bo.ElapsedTimeStatistic;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyCaseResultDTO;
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataErrorType;
-import ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCategorySearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseCustomFieldSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.ICaseService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
-import ch.ivyteam.ivy.application.ActivityState;
-import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.category.CategoryTree;
@@ -48,13 +42,8 @@ public class CaseService implements ICaseService {
   public IvyCaseResultDTO findCasesByCriteria(CaseSearchCriteria criteria, int startIndex, int count) {
     return IvyExecutor.executeAsSystem(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
-      try {
-        CaseQuery finalQuery = extendQuery(criteria);
-        result.setCases(executeCaseQuery(finalQuery, startIndex, count));
-      } catch (Exception ex) {
-        Ivy.log().error("Error in getting cases", ex);
-        result.setErrors(Arrays.asList(new PortalIvyDataException(PortalIvyDataErrorType.FAIL_TO_LOAD_CASE.toString())));
-      }
+      CaseQuery finalQuery = extendQuery(criteria);
+      result.setCases(executeCaseQuery(finalQuery, startIndex, count));
       return result;
     });
   }
@@ -63,81 +52,58 @@ public class CaseService implements ICaseService {
   public IvyCaseResultDTO countCasesByCriteria(CaseSearchCriteria criteria) {
     return IvyExecutor.executeAsSystem(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
-      try {
-        CaseQuery finalQuery = extendQuery(criteria);
-        result.setTotalCases(countCases(finalQuery));
-      } catch (Exception ex) {
-        Ivy.log().error("Error in counting cases", ex);
-        result.setErrors(Arrays.asList(new PortalIvyDataException(PortalIvyDataErrorType.FAIL_TO_COUNT_CASE.toString())));
-      }
+      CaseQuery finalQuery = extendQuery(criteria);
+      result.setTotalCases(countCases(finalQuery));
+     
       return result;
     });
   }
 
   private List<ICase> executeCaseQuery(CaseQuery query, Integer startIndex, Integer count) {
-    return Ivy.wf().getGlobalContext().getCaseQueryExecutor().getResults(query, startIndex, count);
+    return Ivy.wf().getCaseQueryExecutor().getResults(query, startIndex, count);
   }
 
   private long countCases(CaseQuery query) {
-    return Ivy.wf().getGlobalContext().getCaseQueryExecutor().getCount(query);
+    return Ivy.wf().getCaseQueryExecutor().getCount(query);
   }
   
-  private CaseQuery queryForUsers(String involvedUsername, List<String> apps, boolean isTechnicalCase) {
+  private CaseQuery queryForCurrentUser(boolean isTechnicalCase) {
     boolean isCaseOwnerEnabled = isCaseOwnerEnabled();
-    final CaseQuery caseQuery;
+    CaseQuery caseQuery;
     if (isTechnicalCase) {
       caseQuery = CaseQuery.subCases();
     } else {
       caseQuery = CaseQuery.businessCases();
     }
 
-    apps.forEach(app -> {
-      caseQuery.where().or().userIsInvolved(involvedUsername, app);
-      if (isCaseOwnerEnabled) {
-        caseQuery.where().or().isOwner("#" + involvedUsername, app);
-      }
-    });
+    caseQuery.where().or().currentUserIsInvolved();
+    if (isCaseOwnerEnabled) {
+      caseQuery.where().or().currentUserIsOwner();
+    }
+    
     return caseQuery;
   }
 
   private boolean isCaseOwnerEnabled() {
     return Boolean.parseBoolean(new GlobalSettingService().findGlobalSettingValue(GlobalVariable.ENABLE_CASE_OWNER.toString()));
   }
-
-  private CaseQuery queryForApplications(List<String> apps) {
-    CaseQuery caseQuery = CaseQuery.businessCases();
-    apps.forEach(app -> {
-      IApplication application = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(app);
-      if (application != null && application.getActivityState() == ActivityState.ACTIVE) {
-        caseQuery.where().or().applicationId().isEqual(application.getId());
-      }
-    });
-    return caseQuery;
-  }
   
   @Override
   public IvyCaseResultDTO findCategoriesByCriteria(CaseCategorySearchCriteria criteria) {
     return IvyExecutor.executeAsSystem(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
-      try {
-        CaseQuery finalQuery = criteria.createQuery();
-        
-        if (criteria.hasApps()) {
-          if (criteria.hasInvolvedUsername()) {
-            finalQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps(), false));
-          } else {
-            finalQuery.where().and(queryForApplications(criteria.getApps()));
-          }
-        }
-        if (isHiddenTasksCasesExcluded(criteria.getApps())) {
-          finalQuery.where().and(queryExcludeHiddenCases());
-        }
-        finalQuery.where().and().category().isNotNull().and().category().isNotEqual("Portal");
-        result.setCategoryTree(CategoryTree.createFor(finalQuery));
-      } catch (Exception ex) {
-        Ivy.log().error("Error in getting case category", ex);
-        result.setErrors(Arrays.asList(new PortalIvyDataException(PortalIvyDataErrorType.FAIL_TO_LOAD_CASE_CATEGORY.toString())));
+      CaseQuery finalQuery = criteria.createQuery();
+      
+      if (!criteria.isAdminQuery()) {
+        finalQuery.where().and(queryForCurrentUser(false));
       }
+      
+      if (isHiddenTasksCasesExcluded()) {
+        finalQuery.where().and(queryExcludeHiddenCases());
+      }
+      finalQuery.where().and().category().isNotNull().and().category().isNotEqual("Portal");
+      
+      result.setCategoryTree(CategoryTree.createFor(finalQuery));
       return result;
     });
   }
@@ -146,17 +112,12 @@ public class CaseService implements ICaseService {
   public IvyCaseResultDTO analyzeCaseStateStatistic(CaseSearchCriteria criteria) {
     return IvyExecutor.executeAsSystem(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
-      try {
-        CaseQuery finalQuery = extendQuery(criteria);
-        finalQuery.aggregate().countRows().groupBy().state();
+      CaseQuery finalQuery = extendQuery(criteria);
+      finalQuery.aggregate().countRows().groupBy().state();
 
-        Recordset recordSet = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getRecordset(finalQuery);
-        CaseStateStatistic caseStateStatistic = createCaseStateStatistic(recordSet);
-        result.setCaseStateStatistic(caseStateStatistic);
-      } catch (Exception ex) {
-        Ivy.log().error("Error in getting case state statistic", ex);
-        result.setErrors(Arrays.asList(new PortalIvyDataException(PortalIvyDataErrorType.FAIL_TO_LOAD_CASE_STATE_STATISTIC.toString())));
-      }
+      Recordset recordSet = Ivy.wf().getCaseQueryExecutor().getRecordset(finalQuery);
+      CaseStateStatistic caseStateStatistic = createCaseStateStatistic(recordSet);
+      result.setCaseStateStatistic(caseStateStatistic);
       return result;
     });
   }
@@ -185,18 +146,13 @@ public class CaseService implements ICaseService {
   public IvyCaseResultDTO analyzeElapsedTimeByCaseCategory(CaseSearchCriteria criteria) {
     return IvyExecutor.executeAsSystem(() -> {
       IvyCaseResultDTO result = new IvyCaseResultDTO();
-      try {
-        CaseQuery finalQuery = extendQuery(criteria);
-        finalQuery.where().and().businessRuntime().isNotNull();
-        finalQuery.aggregate().avgBusinessRuntime().groupBy().category();
+      CaseQuery finalQuery = extendQuery(criteria);
+      finalQuery.where().and().businessRuntime().isNotNull();
+      finalQuery.aggregate().avgBusinessRuntime().groupBy().category();
 
-        Recordset recordSet = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getRecordset(finalQuery);
-        ElapsedTimeStatistic elapsedTimeStatistic = createCategoryToAverageElapsedTimeMap(recordSet);
-        result.setElapsedTimeStatistic(elapsedTimeStatistic);
-      } catch (Exception ex) {
-        Ivy.log().error("Error in getting case elapsed time statistic", ex);
-        result.setErrors(Arrays.asList(new PortalIvyDataException(PortalIvyDataErrorType.FAIL_TO_LOAD_CASE_ELAPSED_TIME_STATISTIC.toString())));
-      }
+      Recordset recordSet = Ivy.wf().getCaseQueryExecutor().getRecordset(finalQuery);
+      ElapsedTimeStatistic elapsedTimeStatistic = createCategoryToAverageElapsedTimeMap(recordSet);
+      result.setElapsedTimeStatistic(elapsedTimeStatistic);
       return result;
     });
   }
@@ -223,7 +179,6 @@ public class CaseService implements ICaseService {
         .businessCases()
         .aggregate()
         .countRows()
-        .where().and(queryForApplications(criteria.getApps()))
         .groupBy()
         .customField()
         .stringField(fieldName)
@@ -247,15 +202,11 @@ public class CaseService implements ICaseService {
     CaseQuery finalQuery = criteria.getFinalCaseQuery();
     CaseQuery clonedQuery = CaseQuery.fromJson(finalQuery.asJson()); // clone to keep the final query in CaseSearchCriteria
 
-    if (criteria.hasApps()) {
-      if (criteria.hasInvolvedUsername() && !criteria.isAdminQuery()) {
-        clonedQuery.where().and(queryForUsers(criteria.getInvolvedUsername(), criteria.getApps(), criteria.isTechnicalCase()));
-      } else {
-        clonedQuery.where().and(queryForApplications(criteria.getApps()));
-      }
-    }
+    if (!criteria.isAdminQuery()) {
+      clonedQuery.where().and(queryForCurrentUser(criteria.isTechnicalCase()));
+    } 
     
-    if (isHiddenTasksCasesExcluded(criteria.getApps())) {
+    if (isHiddenTasksCasesExcluded()) {
       clonedQuery.where().and(queryExcludeHiddenCases());
     }
     

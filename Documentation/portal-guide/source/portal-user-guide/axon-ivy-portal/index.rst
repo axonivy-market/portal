@@ -32,7 +32,7 @@ To start your Axon.ivy Portal experience, use the link provided to you by your
 administrator. Following the link, the Axon.ivy Portal will ask for your login
 credentials.
 
-.. figure:: images/login-screen.png
+|login-screen|
    
 .. Hint:: 
    Depending on your company’s infrastructure, you might be automatically logged in
@@ -48,20 +48,25 @@ point. In detail these are:
    configure your personal user account. See  :ref:`portal-header`  for
    details.
    
-.. figure:: images/axon-ivy-portal-header.png
+|axon-ivy-portal-header|
 
 2. The menu on the left side is always available and gives you access to
    all processes, cases, tasks and other features of the Axon.ivy Portal. You
    may enlarge or minimise the menu using the **Toggle Menu** button
    in the top left corner.
    
-.. figure:: images/axon-ivy-portal-menu.png
+|axon-ivy-portal-menu|
 
 3. In the center you see your personal dashboard providing you instant
    access to your processes, tasks and performance indicators. See
    :ref:`dashboard` for a detailed introduction.
 
-.. figure:: images/axon-ivy-portal.png
+|axon-ivy-portal|
 
 .. include:: ../includes/_common-icon.rst
 
+
+.. |login-screen| image:: ../../screenshots/login/login-form.png
+.. |axon-ivy-portal-header| image:: ../../screenshots/dashboard/portal-header.png
+.. |axon-ivy-portal-menu| image:: ../../screenshots/dashboard/left-menu.png
+.. |axon-ivy-portal| image:: ../../screenshots/dashboard/dashboard.png

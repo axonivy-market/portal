@@ -13,7 +13,7 @@
         disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}" rendered="#{task.state != 'RESUMED'}" onstart="event.stopPropagation();"
         styleClass="task-action-item start-task-action">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label u-hidden-md-down" />
-        <i class="tmi-chevorn-right icon-compact-mode" />
+        <i class="icon ivyicon-arrow-right-1 icon-compact-mode" />
       </p:commandLink>
 
       <p:commandLink id="resume-task-action-component" disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}"
@@ -22,13 +22,15 @@
         <p:ajax event="click" listener="#{logic.validate(task, dataModel)}" onstart="event.stopPropagation();"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('reset-task-dialog').show();}" />
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label u-hidden-md-down" />
-        <i class="tmi-chevorn-right icon-compact-mode" />
+        <i class="icon ivyicon-arrow-right-1 icon-compact-mode" />
       </p:commandLink>
 
       <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu"
         panelWidgetVar="task-side-steps-panel-#{rowIndex}" isAdhocExcluded="false" renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}"
         task="#{task}" componentToUpdate="#{p:component('task-start')}" currentPortalPage="#{currentPortalPage}" showDetailOption="#{true}" dataModel="#{dataModel}"
-        buttonStyleClass="u-hidden-md-down" />
+        buttonStyleClass="u-hidden-md-down" onDestroyComplete="#{onDestroyComplete}"
+        onDelegateComplete="#{onDelegateComplete}"
+        onWorkflowEventComplete="#{onWorkflowEventComplete}" />
     </div>
   </div>
 </ui:composition>

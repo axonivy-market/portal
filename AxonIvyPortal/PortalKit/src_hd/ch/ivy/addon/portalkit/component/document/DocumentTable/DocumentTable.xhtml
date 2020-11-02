@@ -11,6 +11,7 @@
   <cc:attribute name="downloadRendered" default="true" />
   <cc:attribute name="deleteRendered" default="true" />
   <cc:attribute name="messageRendered" default="true" />
+  <cc:attribute name="renderChooseUploadIcon" default="true" />
   
   <cc:attribute name="fileLimit" type="Integer" shortDescription="Number of files are in the given ICase" default="-1" />
   <cc:attribute name="uploadText" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/upload')}" />
@@ -18,12 +19,12 @@
 
   <cc:attribute name="downloadText" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}" />
   <cc:attribute name="downloadTitle" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}" />
-  <cc:attribute name="downloadIcon" default="fa-download" />
+  <cc:attribute name="downloadIcon" default="icon ivyicon-download-bottom" />
   <cc:attribute name="downloadStyleClass" />
 
   <cc:attribute name="deleteText" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
   <cc:attribute name="deleteTitle" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
-  <cc:attribute name="deleteIcon" default="fa-trash-o" />
+  <cc:attribute name="deleteIcon" default="icon ivyicon-bin-1" />
   <cc:attribute name="deleteStyleClass" />
   <cc:attribute name="updatedComponentAfterDeleted" />
   
@@ -68,7 +69,7 @@
         <p:commandLink id="document-download" styleClass="#{cc.attrs.downloadStyleClass}"
           immediate="true" ajax="false" process="@none" title="#{cc.attrs.downloadTitle}"
           rendered="#{cc.attrs.downloadRendered}">
-          <i class="fa #{cc.attrs.downloadIcon}" />
+          <i class="#{cc.attrs.downloadIcon}" />
           <p:fileDownload value="#{logic.download(document)}" />
         </p:commandLink>
 
@@ -78,13 +79,14 @@
           actionListener="#{data.setSelectedDocument(document)}" rendered="#{cc.attrs.deleteRendered}"
           update="#{cc.attrs.updatedComponentAfterDeleted}" immediate="true" title="#{cc.attrs.deleteTitle}"
           oncomplete="PF('document-delete-dialog').show()">
-          <i class="fa #{cc.attrs.deleteIcon}" />
+          <i class="#{cc.attrs.deleteIcon}" />
         </p:commandLink>
       </p:column>
     </p:dataTable>
     <div class="ui-g">
       <h:panelGroup layout="block" rendered="#{cc.attrs.typeColumnRendered or cc.attrs.uploadRendered}" styleClass="upload-container ui-g-12">
         <p:fileUpload id="document-upload" mode="advanced" auto="true" dragDropSupport="true"
+          chooseIcon="#{cc.attrs.renderChooseUploadIcon? 'icon ivyicon-add-small' : '' }"
           fileUploadListener="#{logic.upload}"
           rendered="#{cc.attrs.uploadRendered}"
           update="document-table document-messages #{cc.attrs.updatedComponentAfterUploaded}"

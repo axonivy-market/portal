@@ -4,24 +4,21 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.concurrent.TimeUnit;
-
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.jayway.awaitility.Awaitility;
-
 import portal.guitest.common.BaseTest;
-import portal.guitest.common.DateTimePattern;
 import portal.guitest.common.TaskState;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.TestRole;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
+import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
+import portal.guitest.page.UserProfilePage;
 
 public class TaskWidgetTest extends BaseTest {
 
@@ -30,6 +27,8 @@ public class TaskWidgetTest extends BaseTest {
       "portalKitTestHelper/14DE09882B540AD5/grantOnlyDelegateOwnTasksPermission.ivp";
   private static final String DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL =
       "portalKitTestHelper/14DE09882B540AD5/undoOnlyDelegateOwnTasksPermission.ivp";
+  private static final String DENY_DESTROY_TASK_URL = "portalKitTestHelper/14DE09882B540AD5/denyDestroyTaskPermission.ivp";
+  private static final String GRANT_DESTROY_TASK_URL = "portalKitTestHelper/14DE09882B540AD5/grantDestroyTaskPermission.ivp";
 
   private TaskDetailsPage taskDetailsPage;
   
@@ -38,30 +37,6 @@ public class TaskWidgetTest extends BaseTest {
   public void setup() {
     super.setup();
     createTestingTasks();
-  }
-
-  @Test
-  public void testEnterTaskDetailWhenClickOnTaskRowAndGoBack() {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-
-    taskWidgetPage.expand();
-    taskDetailsPage = taskWidgetPage.openTaskDetails(0);
-    assertEquals("Task Details", taskDetailsPage.getPageTitle());
-
-    taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
-    assertEquals("Tasks", taskWidgetPage.getPageTitle());
-  }
-  
-  @Test
-  public void testEnterTaskDetailFromTaskActionAndGoBack() {
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-
-    taskWidgetPage.expand();
-    taskDetailsPage = taskWidgetPage.openTaskDetailsFromActionMenu(0);
-    assertEquals("Task Details", taskDetailsPage.getPageTitle());
-
-    taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
-    assertEquals("Tasks", taskWidgetPage.getPageTitle());
   }
 
   @Test
@@ -92,30 +67,15 @@ public class TaskWidgetTest extends BaseTest {
   }
 
   @Test
-  public void testChangeTaskDeadline() {
-    int firstTask = 0;
-    LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
-    String tomorrowStringLiteral = tomorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
-
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.expand();
-    taskWidgetPage.openTaskDetails(firstTask);
-    taskWidgetPage.waitAjaxIndicatorDisappear();
-    taskWidgetPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
-    taskWidgetPage.waitAjaxIndicatorDisappear();
-    assertEquals(tomorrowStringLiteral, taskWidgetPage.getExpiryOfTaskAt());
-  }
-
-  @Test
   public void testStartButtonStatus() {
     login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.expand();
     taskWidgetPage.filterTasksInExpandedModeBy("Annual Leave Request");
-    Assert.assertFalse(taskWidgetPage.isTaskStartEnabled(0));
+    WaitHelper.assertTrueWithWait(() -> !taskWidgetPage.isTaskStartEnabled(0));
     taskWidgetPage.filterTasksInExpandedModeBy("Sick Leave Request");
-    Awaitility.waitAtMost(5, TimeUnit.SECONDS).until(() -> taskWidgetPage.isTaskStartEnabled(0));
+    WaitHelper.assertTrueWithWait(() -> taskWidgetPage.isTaskStartEnabled(0));
   }
 
   @Test
@@ -128,6 +88,22 @@ public class TaskWidgetTest extends BaseTest {
     assertFalse(taskWidgetPage.isTaskDelegateOptionDisable(1));
     assertTrue(taskWidgetPage.isTaskDelegateOptionDisable(2));
     redirectToRelativeLink(DENY_DELEGATE_OWN_TASK_PERMISSION_PROCESS_URL);
+  }
+  
+  @Test
+  public void testDestroyTask() {
+    login(TestAccount.ADMIN_USER);
+    redirectToRelativeLink(GRANT_DESTROY_TASK_URL);
+    HomePage homePage = new HomePage();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.expand();
+    taskWidgetPage.filterTasksInExpandedModeBy("Annual Leave Request");
+    taskWidgetPage.sideStepMenuOnActionButton(0);
+    Assert.assertTrue(taskWidgetPage.isTaskDestroyEnabled(0));
+    taskWidgetPage.destroyTask(0);
+    taskWidgetPage.confimDestruction();
+    assertEquals(TaskState.DESTROYED, taskWidgetPage.getTaskState(0));
+    redirectToRelativeLink(DENY_DESTROY_TASK_URL);
   }
 
   @Test
@@ -169,8 +145,8 @@ public class TaskWidgetTest extends BaseTest {
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.expand();
-    assertEquals("Tasks", taskWidgetPage.getTextOfCurrentBreadcrumb());
-    taskWidgetPage.clickHomeBreadcrumb();
+    assertEquals("Tasks (3)", taskWidgetPage.getTextOfCurrentBreadcrumb());
+    taskWidgetPage.goToHomeFromBreadcrumb();
     homePage = new HomePage();
     assertEquals(true, homePage.isDisplayed());
   }
@@ -188,8 +164,83 @@ public class TaskWidgetTest extends BaseTest {
     assertEquals(true, taskWidgetPage.isDisplayed());
 
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
-    taskDetailsPage.clickHomeBreadcrumb();
+    taskDetailsPage.goToHomeFromBreadcrumb();
     homePage = new HomePage();
     assertEquals(true, homePage.isDisplayed());
+  }
+  
+  @Test
+  public void testDelegateTask() {
+    login(TestAccount.HR_ROLE_USER);
+    HomePage homePage = new HomePage();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.expand();
+    assertEquals(TestRole.EVERYBODY_ROLE, taskWidgetPage.getResponsibleOfTaskAt(0));
+    taskWidgetPage.openTaskDelegateDialog(0);
+    taskWidgetPage.selectDelegateResponsible(TestAccount.HR_ROLE_USER.getFullName(), false);
+    assertEquals(TestAccount.HR_ROLE_USER.getFullName(), taskWidgetPage.getResponsibleOfTaskAt(0));
+    
+    taskWidgetPage.openTaskDelegateDialog(0);
+    taskWidgetPage.selectDelegateResponsible(TestRole.HR_ROLE, true);
+    assertEquals(TestRole.HR_ROLE, taskWidgetPage.getResponsibleOfTaskAt(0));
+  }
+
+  @Test
+  public void testStartATaskAtHomePage() {
+    HomePage homePage = new HomePage();
+    String maternityRequest = "Maternity Leave Request";
+    String sickRequest = "Sick Leave Request";
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    //Start first task
+    assertFalse(taskWidgetPage.isResumedTask(0));
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    homePage = taskTemplatePage.clickCancelAndLeftButton();
+    
+    // Start first task is resumed
+    taskWidgetPage = homePage.getTaskWidget();
+    assertTrue(taskWidgetPage.isResumedTask(0));
+    taskTemplatePage = taskWidgetPage.startTask(0);
+    assertEquals(maternityRequest, taskTemplatePage.getTaskName());
+    homePage =taskTemplatePage.clickCancelAndLeftButton();
+    
+    taskWidgetPage = homePage.getTaskWidget();
+    //Start second task
+    assertFalse(taskWidgetPage.isResumedTask(1));
+    taskTemplatePage = taskWidgetPage.startTask(1);
+    homePage = taskTemplatePage.clickCancelAndLeftButton();
+    
+    // Start second task is resumed
+    taskWidgetPage = homePage.getTaskWidget();
+    assertTrue(taskWidgetPage.isResumedTask(1));
+    taskTemplatePage = taskWidgetPage.startTask(1);
+    assertEquals(sickRequest, taskTemplatePage.getTaskName());
+    taskTemplatePage.clickCancelAndLeftButton();
+  }
+
+  @Test
+  public void testChangeTaskSortingOptions() {
+    HomePage homePage = new HomePage();
+    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+
+    // Change sorting options
+    userProfilePage.selectTaskSortField("Priority");
+    userProfilePage.selectTaskSortDirection("Sort ascending");
+    userProfilePage.save();
+
+    // Check result
+    TaskWidgetPage taskWidgetPage = userProfilePage.openTaskList();
+    assertEquals("high", taskWidgetPage.getPriorityOfTask(0));
+    assertEquals("low", taskWidgetPage.getPriorityOfTask(taskWidgetPage.countTasks() - 1));
+
+    // Change sorting options
+    userProfilePage = taskWidgetPage.openMyProfilePage();
+    userProfilePage.selectTaskSortField("Name");
+    userProfilePage.selectTaskSortDirection("Sort descending");
+    userProfilePage.save();
+
+    // Check result
+    taskWidgetPage = userProfilePage.openTaskList();
+    assertEquals("Sick Leave Request", taskWidgetPage.getNameOfTaskAt(0));
+    assertEquals("Annual Leave Request", taskWidgetPage.getNameOfTaskAt(taskWidgetPage.countTasks() - 1));
   }
 }

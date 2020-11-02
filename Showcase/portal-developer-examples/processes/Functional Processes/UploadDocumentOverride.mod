@@ -1,5 +1,5 @@
 [Ivy]
-16B448019DA1C83E 7.5.0 #module
+16B448019DA1C83E 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ut0 UploadDocument Big #zClass
 Ut0 B #cInfo
@@ -115,7 +115,7 @@ out.uploadedDocument = CaseDocumentService.newInstance(in.businessCase).upload(f
 
 if (out.#uploadedDocument != null) {	
 	String note = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadDocumentNote", Arrays.asList(ivy.session.getSessionUserName(), fileName));
-	in.businessCase.createNote(ivy.session, "Overridden: " + note);
+	in.businessCase.createNote(ivy.session, "Customized: " + note);
 	out.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadSucceed");
 } else {
 	out.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/uploadFailed");

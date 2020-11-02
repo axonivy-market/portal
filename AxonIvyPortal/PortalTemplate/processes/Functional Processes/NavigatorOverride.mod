@@ -1,5 +1,5 @@
 [Ivy]
-1543D9E65076619B 7.5.0 #module
+1543D9E65076619B 9.2.0 #module
 >Proto >Proto Collection #zClass
 Nr0 Navigator Big #zClass
 Nr0 B #cInfo
@@ -129,8 +129,7 @@ import ch.ivy.addon.portal.generic.view.TaskView;
 import java.util.Arrays;
 import org.apache.commons.lang3.StringUtils;
 
-String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader", Arrays.asList("#" + in.caseId.toString(), in.caseName));
-String titleOnMobile = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle", Arrays.asList("#" + in.caseId.id().toString()));
+String pageTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle", Arrays.asList("#" + in.caseId.id().toString()));
 
 in.taskDataModel.setCaseId(in.caseId.id());
 in.taskDataModel.setSortField(TaskSortField.ID.toString(), true);
@@ -146,10 +145,9 @@ in.taskDataModel.setRelatedTaskDisplayed(true);
 in.taskView = TaskView.create()
 											.canLinkBackCaseDetail(true)
 											.pageTitle(pageTitle)
-											.withTitleOnMobile(titleOnMobile)
 											.showHeaderToolbar(false)
-											.dataModel(in.taskDataModel).createNewTaskView();				
-											' #txt
+											.dataModel(in.taskDataModel)
+											.isRelatedTaskView(true).createNewTaskView();' #txt
 Nr0 f14 security system #txt
 Nr0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -495,17 +493,17 @@ import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portal.generic.view.CaseView;
 import org.apache.commons.lang3.StringUtils;
 
-String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCasesOfBusinessCaseTitle", Arrays.asList(in.caseId.id().toString(), in.caseName));
 // Add a short title for mobile screen
-String titleOnMobile = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle", Arrays.asList(in.caseId.id().toString()));
+String title = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/caseList/headerTitle/technicalCaseOfBusinessCaseAlternativeTitle", Arrays.asList(in.caseId.id().toString()));
 
+in.caseDataModel.getCriteria().setNewQueryCreated(true);
 in.caseDataModel.getCriteria().setKeyword(StringUtils.EMPTY);
 in.caseDataModel.getCriteria().setBusinessCase(false);
 in.caseDataModel.getCriteria().setBusinessCaseId(in.caseId.id());
 in.caseDataModel.getCriteria().setTechnicalCase(true);
 in.caseDataModel.getCriteria().sortField = CaseSortField.NAME.toString();
 in.caseDataModel.setNotKeepFilter(true);
-in.caseView = CaseView.create().dataModel(in.caseDataModel).hideCaseFilter(true).withTitle(title).withTitleOnMobile(titleOnMobile).buildNewView();' #txt
+in.caseView = CaseView.create().dataModel(in.caseDataModel).withTitle(title).setTechnicalCaseView(true).buildNewView();' #txt
 Nr0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -90,7 +90,9 @@ public class PortalPermissionInitBean extends AbstractProcessStartEventBean {
     result.addAll(Arrays.asList(IPermission.TASK_READ_ALL, IPermission.TASK_RESET_OWN_WORKING_TASK,
         IPermission.TASK_RESET, IPermission.TASK_WRITE_ACTIVATOR, IPermission.TASK_PARK_OWN_WORKING_TASK,
         IPermission.TASK_WRITE_EXPIRY_TIMESTAMP, IPermission.TASK_WRITE_ORIGINAL_PRIORITY,
-        IPermission.TASK_WRITE_DESCRIPTION, IPermission.TASK_WRITE_NAME, IPermission.TASK_READ_OWN_CASE_TASKS));
+        IPermission.TASK_WRITE_DESCRIPTION, IPermission.TASK_WRITE_NAME, IPermission.TASK_READ_OWN_CASE_TASKS,
+        IPermission.TASK_DESTROY, IPermission.TASK_WRITE_DELAY_TIMESTAMP,
+        createPermission(PortalPermission.TASK_RESET_READY_FOR_JOIN)));
     return result;
   }
 

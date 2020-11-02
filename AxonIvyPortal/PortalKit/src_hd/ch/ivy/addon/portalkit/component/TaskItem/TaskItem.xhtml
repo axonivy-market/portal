@@ -12,6 +12,9 @@
   <cc:attribute name="onTaskStartCallback" />
   <cc:facet name="taskHeader" shortDescription="Header content of a task item" />
   <cc:attribute name="dataModel" />
+  <cc:attribute name="onDestroyComplete" />
+  <cc:attribute name="onDelegateComplete" />
+  <cc:attribute name="onWorkflowEventComplete" />
 </cc:interface>
 
 <cc:implementation>
@@ -39,6 +42,9 @@
         <ui:include src="TaskAction.xhtml">
           <ui:param name="dataModel" value="#{dataModel}" />
           <ui:param name="currentPortalPage" value="#{data.currentPortalPage}" />
+          <ui:param name="onDestroyComplete" value="#{cc.attrs.onDestroyComplete}" />
+          <ui:param name="onDelegateComplete" value="#{cc.attrs.onDelegateComplete}" />
+          <ui:param name="onWorkflowEventComplete" value="#{cc.attrs.onWorkflowEventComplete}" />
         </ui:include>
       </f:subview>
     </div>

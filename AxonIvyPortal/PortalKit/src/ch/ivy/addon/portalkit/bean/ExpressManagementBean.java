@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import javax.annotation.PostConstruct;
@@ -49,7 +50,7 @@ public class ExpressManagementBean implements Serializable {
   @PostConstruct
   public void initManagement() {
     activeMemberList = findAllActiveUser();
-    ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
+    ProcessStartCollector collector = new ProcessStartCollector();
     isShowExpressManagementTab = collector.findExpressCreationProcess() != null;
     expressManagementUtils = new ExpressManagementUtils();
     setExpressProcesses(expressManagementUtils.findExpressProcesses());
@@ -60,7 +61,6 @@ public class ExpressManagementBean implements Serializable {
     if (activeMemberList == null) {
       return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
           .withStartName("findSecurityMembers")
-          .withParam("application", Ivy.request().getApplication())
           .withParam("query", "")
           .withParam("startIndex", 0)
           .withParam("count", PortalConstants.MAX_USERS_IN_AUTOCOMPLETE)
@@ -91,12 +91,8 @@ public class ExpressManagementBean implements Serializable {
         displayName = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
       }
     } else {
-      try {
-        IUser user = ServiceUtilities.findUser(activatorName, Ivy.request().getApplication());
-        displayName = StringUtils.isBlank(user.getDisplayName()) ? user.getName() : user.getDisplayName();
-      } catch (Exception ex) {
-        Ivy.log().error("Error in getting users within app {0}", ex, Ivy.request().getApplication());
-      }
+      IUser user = ServiceUtilities.findUser(activatorName, Ivy.request().getApplication());
+      displayName = StringUtils.isBlank(user.getDisplayName()) ? user.getName() : user.getDisplayName();
     }
     return displayName;
   }
@@ -139,12 +135,12 @@ public class ExpressManagementBean implements Serializable {
   
   @SuppressWarnings("unchecked")
   private void importExpressProcesses() {
-    List<Object> results = expressManagementUtils.importExpressProcesses(importExpressFile);
+    Map<ExpressMessageType, Object> results = expressManagementUtils.importExpressProcesses(importExpressFile);
     try {
-      importStatus = results.get(0).toString();
-      importOutput = results.get(1).toString();
+      importStatus = results.get(ExpressMessageType.IMPORT_STATUS).toString();
+      importOutput = results.get(ExpressMessageType.IMPORT_RESULT).toString();
       if (!importStatus.equalsIgnoreCase(ExpressMessageType.FAILED.getLabel())) {
-        expressProcesses.addAll((List<ExpressProcess>)results.get(2));
+        expressProcesses.addAll((List<ExpressProcess>) results.get(ExpressMessageType.IMPORT_EXPRESS_PROCESSES));
       }
     } catch (Exception e) {
       importStatus = ExpressMessageType.FAILED.getLabel();

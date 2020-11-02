@@ -1,9 +1,9 @@
 package ch.ivy.addon.portal.chat;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivyteam.ivy.application.IApplication;
+import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.server.ServerFactory;
 
 public class GroupChat implements Serializable {
@@ -27,7 +28,7 @@ public class GroupChat implements Serializable {
   private Map<String, String> params;
   @JsonIgnore
   private Set<SecurityMemberDTO> assignees;
-  
+
   public Long getCaseId() {
     return caseId;
   }
@@ -35,7 +36,7 @@ public class GroupChat implements Serializable {
   public void setCaseId(Long caseId) {
     this.caseId = caseId;
   }
-  
+
   public Long getVersion() {
     return version;
   }
@@ -79,22 +80,36 @@ public class GroupChat implements Serializable {
   public Set<SecurityMemberDTO> getAssignees() {
     if (CollectionUtils.isEmpty(this.assignees) && CollectionUtils.isNotEmpty(this.assigneeNames)
         && StringUtils.isNotBlank(this.applicationName)) {
-      IApplication app = ServerFactory.getServer().getApplicationConfigurationManager().findApplication(this.applicationName);
-      this.assignees = assigneeNames.stream()
-          .map(assigneeName -> app.getSecurityContext().findSecurityMember(assigneeName))
-          .map(assignee -> new SecurityMemberDTO(assignee))
-          .collect(Collectors.toSet());
+      IApplication app =
+          ServerFactory.getServer().getApplicationConfigurationManager().findApplication(this.applicationName);
+
+      this.assignees = new HashSet<>();
+      for (String assigneeName : assigneeNames) {
+        ISecurityMember assignee = assigneeName.startsWith("#")
+            ? app.getSecurityContext().users().find(Long.parseLong(assigneeName.substring(1)))
+            : app.getSecurityContext().findSecurityMember(assigneeName);
+        if (assignee != null) {
+          this.assignees.add(new SecurityMemberDTO(assignee));
+        }
+      }
     }
-    return assignees;
+    return this.assignees;
   }
 
   public void setAssignees(Set<SecurityMemberDTO> assignees) {
     this.assignees = assignees;
     if (CollectionUtils.isNotEmpty(assignees)) {
-      this.assigneeNames = assignees.stream().map(SecurityMemberDTO::getMemberName).collect(Collectors.toSet());
+      this.assigneeNames = new HashSet<>();
+      assignees.forEach(assignee -> {
+        if (assignee.isUser()) {
+          this.assigneeNames.add("#".concat(Long.toString(assignee.getId())));
+        } else {
+          this.assigneeNames.add(assignee.getMemberName());
+        }
+      });
     }
   }
-  
+
   public Map<String, String> getParams() {
     return params;
   }
@@ -105,7 +120,7 @@ public class GroupChat implements Serializable {
 
   @Override
   public String toString() {
-    return "{caseId: " + caseId + ", version: " + version + ", applicationName: " + applicationName + ", creator: " + creator
-        + ", assignees: " + assignees + "}";
+    return "{caseId: " + caseId + ", version: " + version + ", applicationName: " + applicationName + ", creator: "
+        + creator + ", assignees: " + assignees + "}";
   }
 }

@@ -67,4 +67,8 @@ public class LeaveRequestPage extends TaskTemplatePage {
     waitForElementDisplayed(By.cssSelector(approverSelector), true);
     clickByCssSelector(approverSelector);
   }
+
+  public void waitUntilLeaveRequestPageDisplayed() {
+    waitForElementDisplayed(By.id("leave-request:button-submit"), true);
+  }
 }

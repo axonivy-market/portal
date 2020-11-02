@@ -99,6 +99,8 @@ public class TaskAnalysisExporter {
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseCategory");
       case CASE_CREATOR:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseCreator");
+      case CASE_OWNER:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseOwner");
       case CASE_STATE:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseState");
       case TASK_NAME:
@@ -143,6 +145,11 @@ public class TaskAnalysisExporter {
           return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
         }
         return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(task.getCase().getCreatorUser(), task.getCase().getCreatorUserName());
+      case CASE_OWNER:
+        if (task.getCase().getOwnerName() == null) {
+          return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
+        }
+        return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(task.getCase().getOwner(), task.getCase().getOwnerName());
       case CASE_STATE:
         return task.getCase().getState().toString();
       case TASK_NAME:

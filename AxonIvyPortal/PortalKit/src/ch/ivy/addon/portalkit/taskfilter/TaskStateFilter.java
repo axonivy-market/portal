@@ -1,13 +1,13 @@
 package ch.ivy.addon.portalkit.taskfilter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -23,13 +23,15 @@ public class TaskStateFilter extends TaskFilter {
   private List<TaskState> selectedFilteredStatesAtBeginning;
 
   /**
-   * Initialize the values of filteredStates: SUSPENDED, RESUMED, PARKED, DONE
+   * Initialize the values of filteredStates: CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN, DONE
+   * Advance note: if current user is Administrator, will consider to add system states
    */
   public TaskStateFilter() {
-    this.filteredStates = new ArrayList<>();
-    this.filteredStates.addAll(Arrays.asList(TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE));
+    this.filteredStates = new ArrayList<>(TaskSearchCriteria.STANDARD_STATES);
     if(PermissionUtils.checkReadAllTasksPermission()) {
-      this.filteredStates.add(TaskState.UNASSIGNED);
+      this.filteredStates.addAll(TaskSearchCriteria.ADVANCE_STATES);
+    } else {
+      this.filteredStates.add(TaskState.DONE);
     }
     this.selectedFilteredStatesAtBeginning = new ArrayList<>(filteredStates);
     this.selectedFilteredStates = new ArrayList<>();
@@ -58,9 +60,9 @@ public class TaskStateFilter extends TaskFilter {
 
   private boolean isAllStatesSelected() {
     return filteredStates.equals(selectedFilteredStates)
-        //In case only one state is selected and the current user doesn't have that state (happen with UNASSIGNED state)
+        //In case only one state is selected and the current user doesn't have that state (happen with e.g DELAYED, DESTROY state)
         || (selectedFilteredStates.size() == 1 && !filteredStates.contains(selectedFilteredStates.get(0)))
-    // In case the filter is a saved filter from a user who can filter more task state
+        // In case the filter is a saved filter from a user who can filter more task state
         || (filteredStates.size() < selectedFilteredStates.size() && selectedFilteredStates.containsAll(filteredStates));
   }
 

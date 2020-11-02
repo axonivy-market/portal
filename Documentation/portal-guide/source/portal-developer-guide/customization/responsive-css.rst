@@ -20,5 +20,6 @@ These classes was created base on bootstrap responsive.
 
 |responsive-bootstrap-classes|
 
+
 .. |responsive-bootstrap-classes| image:: images/responsive-css/responsive-bootstrap-classes.png
 

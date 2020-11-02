@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.StopWatch;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -68,9 +68,9 @@ public class CleanUpObsoletedUserDataService {
     UserProcessService userProcessService = new UserProcessService();
     List<UserProcess> userProcesses = userProcessService.findByApplicationId(applicationId);
 
-    List<String> userNameList = new ArrayList<>();
+    List<Long> userIdsList = new ArrayList<>();
     if (CollectionUtils.isNotEmpty(userProcesses)) {
-      userNameList.addAll(collectUsersOfCurrentApp());
+      userIdsList.addAll(collectUserIdsOfCurrentApp());
     }
     // In case we got any errors during Collect data phase
     // Then skip clean up User Favorites data
@@ -83,34 +83,34 @@ public class CleanUpObsoletedUserDataService {
         continue;
       }
       
-      if (StringUtils.isBlank(userProcess.getUserName())
-          || (!userNameList.contains(userProcess.getUserName()) && applicationId == userProcess.getApplicationId())) {
-        Ivy.log().info("CLEAN_UP_JOB: Delete UserFavourite {0} of user {1}", userProcess.getProcessName(), userProcess.getUserName());
+      if (userProcess.getUserId() == null
+          || (!userIdsList.contains(userProcess.getUserId()) && applicationId == userProcess.getApplicationId())) {
+        Ivy.log().info("CLEAN_UP_JOB: Delete UserFavourite {0} of user {1}", userProcess.getProcessName(), Optional.ofNullable(UserUtils.findUserByUserId(userProcess.getUserId())).map(IUser::getName).orElse(" "));
         userProcessService.delete(userProcess);
       }
     }
   }
 
-  private List<String> collectUsersOfCurrentApp() {
+  private List<Long> collectUserIdsOfCurrentApp() {
     Ivy.log().info("CLEAN_UP_JOB: Started collecting users of current apps");
-    List<String> userNameList = new ArrayList<>();
+    List<Long> userIdList = new ArrayList<>();
     var userQuery = Ivy.request().getApplication().getSecurityContext().users().query();
     var totalCount = userQuery.executor().count();
     int currentIndex = 0;
     do {
-      findUsersByOffset(userNameList, userQuery, currentIndex);
+      findUsersByOffset(userIdList, userQuery, currentIndex);
       currentIndex += OFFSET_SIZE;
     } while (currentIndex < totalCount);
 
     Ivy.log().info("CLEAN_UP_JOB: Finished collecting users of current apps");
-    return userNameList;
+    return userIdList;
   }
 
-  private void findUsersByOffset(List<String> userNameOnAllApps, UserQuery userQuery, int currentIndex) {
+  private void findUsersByOffset(List<Long> userIdsOnAllApps, UserQuery userQuery, int currentIndex) {
     try {
       IvyExecutor.executeAsSystem(() -> {
         var users = userQuery.executor().results(currentIndex, OFFSET_SIZE);
-        return userNameOnAllApps.addAll(users.stream().map(IUser::getName).collect(Collectors.toList()));
+        return userIdsOnAllApps.addAll(users.stream().map(IUser::getId).collect(Collectors.toList()));
       });
     } catch (Exception e) {
       Ivy.log().error("CLEAN_UP_JOB: findUsersByOffset - cannot find users", e);

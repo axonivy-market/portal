@@ -8,13 +8,15 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="finishedTasks" required="true" />
+  <cc:attribute name="expressCase" type="ch.ivyteam.ivy.workflow.ICase" shortDescription="Case for getting express document"/>
+  <cc:attribute name="expandAllSteps" default="false" />
 </cc:interface>
 <cc:implementation>
   <h:outputLabel id="finished-task-label" styleClass="finished-task-label ui-g-12" for="approval-result"
     value="#{ivy.cms.co('/Dialogs/WorkflowExecution/FinishedTasksForm/FinishedTasks')}" />
   <ui:repeat id="approval-result" var="wfTask" value="#{cc.attrs.finishedTasks}" varStatus="status">
     <p:fieldset id="finished-task-fieldset" styleClass="finished-task-fieldset express-fieldset fieldset-no-border ui-g" toggleable="true"
-      collapsed="#{status.index  == cc.attrs.finishedTasks.size() -1 ? 'false' : 'true'}">
+      collapsed="#{status.index == cc.attrs.finishedTasks.size() -1 or cc.attrs.expandAllSteps ? 'false' : 'true'}">
       <f:facet name="legend">
         <h:outputText id="finished-task-fieldset-legend" value="#{wfTask.subject}" />
       </f:facet>
@@ -61,29 +63,23 @@
               autoResize="false" disabled="true" readonly="true" />
           </pe:dynaFormControl>
 
-          <pe:dynaFormControl type="ManyCheckbox" for="many-checkbox" styleClass="dyna-form-dl-div many-checkbox">
+          <pe:dynaFormControl type="ManyCheckbox" styleClass="dyna-form-dl-div many-checkbox">
             <p:dataList value="#{dynaData.value}" var="checkItem" type="definition">
-              <i class="fa fa-check-square-o" aria-hidden="true" /> #{checkItem}
+              <i class="icon ivyicon-check-2" aria-hidden="true" /> #{checkItem}
             </p:dataList>
           </pe:dynaFormControl>
 
-          <pe:dynaFormControl type="OneRadio" for="one-radio" styleClass="dyna-form-dl-div one-radio">
+          <pe:dynaFormControl type="OneRadio" styleClass="dyna-form-dl-div one-radio">
             <p:dataList value="#{dynaData.value}" var="checkItem" type="definition"
               emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}">
-              <i class="fa fa-dot-circle-o" aria-hidden="true" /> #{checkItem}
+              <i class="icon ivyicon-check-circle-1" aria-hidden="true" /> #{checkItem}
             </p:dataList>
           </pe:dynaFormControl>
 
-        <pe:dynaFormControl type="OneRadio" for="oneRadio">
-          <p:dataList value="#{dynaData.value}" var="checkItem" type="definition" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/NoSelection')}">
-            <i class="fa fa-dot-circle-o" aria-hidden="true"></i> #{checkItem}
-          </p:dataList>
-        </pe:dynaFormControl>
-        
-        <pe:dynaFormControl type="FileUpload" for="fileUpload">
-          <ic:ch.ivy.addon.portalkit.component.document.DocumentTable uploadRendered="false" deleteRendered="false" typeColumnRendered="false"
-            fileLimit="#{dynaData.intSetting}" />
-        </pe:dynaFormControl>
+          <pe:dynaFormControl type="FileUpload" for="fileUpload">
+            <ic:ch.ivy.addon.portalkit.component.document.DocumentTable id="fileUpload" uploadRendered="false" deleteRendered="false" typeColumnRendered="false"
+              fileLimit="#{dynaData.intSetting}" iCase="#{cc.attrs.expressCase}"/>
+          </pe:dynaFormControl>
 
           <pe:dynaFormControl type="Spacer" for="spacer">
             <p:spacer width="50" height="16" id="spacer" />

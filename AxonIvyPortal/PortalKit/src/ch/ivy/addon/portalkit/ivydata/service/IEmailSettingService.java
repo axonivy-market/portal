@@ -6,18 +6,16 @@ import ch.ivy.addon.portalkit.ivydata.dto.IvyEmailSettingResultDTO;
 public interface IEmailSettingService {
 
   /**
-   * Gets email settings for the passed user
-   * @param username
+   * Gets email settings for current user
    * @return IvyEmailSettingResultDTO
    */
-  IvyEmailSettingResultDTO findEmailSetting(String username);
+  IvyEmailSettingResultDTO findEmailSetting();
 
   /**
-   * Sets email setting for the passed user
-   * @param username
+   * Sets email setting for current user
    * @param emailSetting
    * @return IvyEmailSettingResultDTO
    */
-  IvyEmailSettingResultDTO saveEmailSetting(String username, IvyEmailSetting emailSetting);
+  IvyEmailSettingResultDTO saveEmailSetting(IvyEmailSetting emailSetting);
 
 }

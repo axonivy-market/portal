@@ -151,7 +151,6 @@
 }
 
 .layout-wrapper .layout-main .layout-content {
-  height: calc(100vh - 58px);
   overflow-x: hidden;
 }
 
@@ -355,7 +354,7 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
 .task-widget .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer,
 .case-widget-container .ui-overlaypanel.advanced-filter-panel .ui-overlaypanel-footer,
 .task-widget .filter-add-panel .ui-overlaypanel-footer,
-.case-widget-container .filter-add-panel .ui-overlaypanel-footer {
+.case-widget-container .filter-add-panel .ui-overlaypanel-footer{
   padding: 10px;
   text-align: right;
 }
@@ -389,6 +388,7 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   max-height: 75vh;
+  width: 100%;
 }
 
 .ui-selectonelistbox.responsible-list-filter {
@@ -410,8 +410,12 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
   transition: none;
 }
 
-.config-columns-footer {
-  margin-top: 5px;
+.config-columns-panel .ui-overlaypanel-footer {
+  text-align: right;
+}
+
+.config-columns {
+  white-space: nowrap;
 }
 
 /********************************** END ADVANCED FILTER WIDGET **********************************/
@@ -443,6 +447,11 @@ _:-ms-input-placeholder, :root .task-widget .in-progress-task-checkbox, .case-wi
 .case-detail-name-inplace-edit .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save,
 .case-description-edit-inplace .ui-button.ui-widget.ui-button-icon-only.ui-inplace-save {
   margin-right: 0.3em;
+}
+
+.case-description-output-icon {
+  top: 2px;
+  position: relative;
 }
 
 .case-detail-name-input {
@@ -504,14 +513,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   position: absolute;
   top: 2px;
   right: 4px;
-}
-
-.document-deletion-dialog .ui-dialog-buttonpane.ui-dialog-footer.ui-widget-content {
-  padding: 6px;
-}
-
-.document-deletion-dialog .ui-icon.ui-icon-alert.ui-confirm-dialog-severity {
-  margin-left: 0;
 }
 
 /********************************** CASE ITEM SIMILAR TO TASK ITEM CLASSES **********************************/
@@ -623,11 +624,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   align-items: center;
 }
 
-.action-container a.task-action-item .icon-compact-mode, .action-container span.task-action-item .icon-compact-mode {
+/* .action-container a.task-action-item .icon-compact-mode, .action-container span.task-action-item .icon-compact-mode {
   margin-top: 5px;
   margin-right: 3px;
 }
-
+ */
 @media (max-width : 767px) {
   .case-widget-top-header-main-title {
     word-break: break-all;
@@ -719,6 +720,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 
 .action-steps-panel .action-icon {
   margin-right: 5px;
+  float: left;
 }
 
 .action-steps-panel .action-step-item {
@@ -726,7 +728,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   float: left;
   padding: 10px;
   margin: 0;
-  width: 160px;
   line-height: 1.4rem;
   box-sizing: content-box;
   text-align: left;
@@ -737,6 +738,23 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   float: left;
   flex: 1;
   width: 1px;
+}
+
+.case-info-dialog.ui-dialog {
+  width: 80vw !important;
+}
+
+.case-info-dialog.ui-dialog .ui-dialog-content.ui-widget-content {
+  padding: 0;
+}
+
+@media (max-width: 768px) {
+  .case-info-dialog .case-detail-header {
+    display: none;
+  }
+  .case-info-dialog.ui-dialog {
+    width: 90vw !important;
+  }
 }
 
 .case-details-back-btn, .task-details-back-btn {
@@ -795,19 +813,15 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .case-detail-body .card {
-  margin-bottom: 6px;
+  margin-bottom: 0;
   width: 100%;
-  height: 360px;
-  padding-bottom: 16px;
+  height: 340px;
+  padding-bottom: 14px;
 }
+
 
 .case-history-button-container, .task-history-button-container {
   text-align: right;
-}
-
-.layout-content.container .case-detail-body, .layout-content.container .task-item-body-container {
-  padding-bottom: 60px !important;
-  margin-bottom: 60px !important;
 }
 
 .case-task-note-histories {
@@ -891,6 +905,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   height: 36px;
 }
 
+.widget-header-main-title.process-header-title {
+  bottom: 15px;
+  left: 5px;
+}
+
 .process-header .create-express-link {
   display: inline-block;
   margin-left: 12px;
@@ -940,8 +959,7 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   flex-flow: row wrap;
   justify-content: flex-start;
   overflow: auto;
-  height: auto !important;
-  padding: 0;
+  height: auto;
   -webkit-overflow-scroll: touch;
 }
 
@@ -953,6 +971,15 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   position: absolute !important;
   right: 0;
   height: auto;
+}
+
+.process-widget .process-nav .character-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  text-align: center;
+  position: absolute !important;
+  right: 0;
 }
 
 .process-widget .process-nav .process-nav-item {
@@ -1059,14 +1086,9 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   bottom: 2px;
 }
 
-.compact-process-widget .toggle-processes-link.fa-plus:before, .compact-toggle-tasks-link.fa-plus:before {
-  padding-right: 4px;
-  content: '\f067';
-}
-
-.compact-process-widget .toggle-processes-link.fa-minus:before, .compact-toggle-tasks-link.fa-minus:before {
-  padding-right: 4px;
-  content: '\f068';
+.toggle-processes-link .icon,
+.compact-toggle-tasks-link .icon {
+  font-weight: bold !important;
 }
 
 .process-start-list-item-action.is-express {
@@ -1102,9 +1124,8 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 
 .process-start-list-item .open-icon {
   position: absolute;
-  bottom: 27%;
+  bottom: 36.5%;
   right: 15px;
-  padding-top: 5px;
 }
 
 .process-start-list-item .process-start-list-item-action .process-description {
@@ -1134,13 +1155,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   padding-right: 20px;
 }
 
-@media screen and (max-width: 40em) {
-  .process-widget .process-widget-filter {
-    padding-right: 0;
-    width: 93%;
-  }
-}
-
 .process-widget .process-group {
   width: calc(100% - 75px);
   padding-left: 0;
@@ -1151,6 +1165,11 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   width: 100% !important;
   padding-right: 0;
 }
+
+body .ui-tabs.search-results-tabview .ui-tabs-panel {
+  padding-top: 0;
+  padding-bottom: 0;
+} 
 
 .process-widget .default-process-title {
   display: inline-block;
@@ -1208,42 +1227,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 .compact-processes-container .process-start-list-item, .compact-default-processes-container .process-start-list-item {
   margin: auto;
   margin-bottom: 12px;
-}
-
-.process-start-list-item-action>div.express-process-logo {
-  opacity: 0.3;
-  margin: 0 5px;
-}
-
-.express-process-logo {
-  cursor: default;
-  border: none !important;
-  background-repeat: no-repeat;
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-span..express-process-logo {
-  margin: 0 5px;
-}
-
-.express-process-logo .ui-panel-content,
-.is-external-link .ui-panel-content {
-  width: 0.4rem;
-  height: 0.4rem;
-  margin: 0 5px 3px 5px;
-}
-
-_:-ms-input-placeholder, :root .express-process-logo {
-  height: auto;
-  width: auto;
-  margin-right: 5px;
-}
-
-_:-ms-input-placeholder, :root .express-process-logo .ui-panel-content {
-  width: auto;
-  height: auto;
-  margin: 0;
 }
 
 .add-external-link-icon {
@@ -1426,38 +1409,36 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 }
 
 .filter-container .widget-title-mobile {
+  display: block;
   height: 10px;
   position: relative;
   padding: 0;
+  width: 40%;
+}
+
+.has-breadcrumb .filter-container .widget-title-mobile {
+  display: none;
 }
 
 .filter-container .widget-title-mobile .top-header-main-title {
   position: absolute;
-  top: -11px;
+  top: -16px;
   left: 8px;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 2.3rem;
 }
 
 .filter-container .text-filter {
   padding: 0 .5em;
 }
 
-@media (max-width: 991px) {
-  .filter-container .widget-title-mobile {
-    width: 33.33333333%;
-  }
-    .filter-container .text-filter {
-    width: 66.66666667%;
-  }
+.filter-container .technical-case-text-filter {
+  width: 40%;
 }
 
-@media (min-width: 992px) {
-  .filter-container .widget-title-mobile {
-    display: none;
-  }
-  .filter-container .text-filter {
-    width: 16.66666667%;
-  }
-}
 .filter-selection-form {
   margin-right: 5px;
   padding: 0 !important;
@@ -1563,6 +1544,7 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 
 .task-view-container .ui-datascroller .ui-datascroller-content {
   padding: 2px;
+  padding-bottom: 0;
 }
 
 .task-view-container .Card {
@@ -1592,7 +1574,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .icon-compact-mode {
-  vertical-align: middle;
+  vertical-align: middle !important;
 }
 
 .action-icon.icon-compact-mode {
@@ -1756,16 +1738,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .options-panel.expiry-chart-context-menu {
   border: none;
-  width: 120px;
 }
 
 .options-panel.expiry-chart-context-menu .option-item {
   box-sizing: border-box;
   width: 100% !important;
-}
-
-.options-panel.expiry-chart-context-menu .ui-overlaypanel-content {
-  width: 120px !important;
 }
 
 .options-panel.expiry-chart-context-menu a {
@@ -1828,6 +1805,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
     min-width: 96vw;
   }
 }
+
+.task-item-body .task-detail-general-card .state-cell.default-task-cell {
+  display: flex;
+}
 /********************************** END TASK WIDGET **********************************/
 
 /********************************** TASK DETAIL **********************************/
@@ -1875,10 +1856,28 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   padding: 15px;
 }
 
-.no-documents-message {
-  text-align: center;
-  line-height: 2.5px;
+.no-item-panel {
+  margin-top: 4%;
+}
+
+.no-item-panel .icon {
   display: block;
+  text-align: center;
+}
+
+.no-item-panel .no-item-header,
+.no-item-panel .no-item-detail {
+  text-align: center;
+  display: block;
+  width: 100%;
+}
+
+.no-item-panel .no-item-header {
+  margin-top: 20px;
+}
+
+.no-item-panel .no-item-detail {
+  margin-top: 10px;
 }
 
 .task-details-document-download-icon {
@@ -1892,6 +1891,25 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   right: -2px;
 }
 
+.workflow-events-dialog {
+  max-width: 70%;
+}
+
+.task-workflow-event-command {
+  margin-left: 15px;
+}
+
+@media screen and (max-width: 40em) {
+  .workflow-events-dialog {
+    max-width: 90%;
+  }
+}
+
+@media screen and (min-width: 40.063em) and (max-width: 64.062em) {
+  .workflow-events-dialog {
+    max-width: 80%;
+  }
+}
 /********************************** END TASK DETAIL **********************************/
 
 /********************************** CASE DETAIL **********************************/
@@ -1901,7 +1919,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .case-details {
   display: block;
-  padding: 0 15px 15px;
+  padding: 0 15px;
   justify-content: center;
   position: relative
 }
@@ -1925,12 +1943,18 @@ _:-ms-input-placeholder, :root .case-details>* {
 
 .case-description-2nd-column {
   width: calc(100% - 210px);
-  height: 110px;
+  height: 90px;
   margin-left: 2px;
   overflow-y: auto;
   overflow-x: hidden;
   word-break: break-all;
   margin-top: 0.2em;
+}
+
+@media screen and (max-height: 1080px) {
+  .case-description-2nd-column {
+    height: 85px;
+  }
 }
 
 .case-details-row-space td:not(.case-details-data-1st-column) {
@@ -1991,10 +2015,6 @@ _:-ms-input-placeholder, :root .case-details>* {
   margin: 4px auto auto 3px;
 }
 
-.case-description-2nd-column .ui-inputfield.ui-inputtextarea.ui-widget.case-detail-description-input {
-  padding-top: 2px !important;
-}
-
 .case-details-state {
   margin-left: 5px;
 }
@@ -2015,9 +2035,8 @@ _:-ms-fullscreen, :root .additional-case-details-link {
 }
 
 .case-detail-description-input.ui-inputfield.ui-inputtextarea.ui-widget {
-  width: calc(100% - 5px);
+  width: calc(100% - 75px);
   resize: none;
-  margin-bottom: 2px !important;
 }
 
 .case-detail-field-set {
@@ -2045,7 +2064,7 @@ _:-ms-fullscreen, :root .additional-case-details-link {
   padding-left: 2.8em !important;
 }
 
-/*Portal Global Ajax Status */
+/* Portal Global Ajax Status */
 .ajax-status-position {
   display: flex;
   position: fixed;
@@ -2054,46 +2073,77 @@ _:-ms-fullscreen, :root .additional-case-details-link {
   right: 0;
   bottom: 0;
   z-index: 10000;
-  top: 0;
 }
 
-@-webkit-keyframes change-color {
-  0%   { background-color: transparent; color: black;}
-  100% { background-color: rgba(0, 0, 0, 0.46); color: white;}
-}
-@-moz-keyframes change-color {
-  0%   { background-color: transparent; color: black;}
-  100% { background-color: rgba(0, 0, 0, 0.46); color: white;}
-}
-@-o-keyframes change-color {
-  0%   { background-color: transparent; color: black;}
-  100% { background-color: rgba(0, 0, 0, 0.46); color: white;}
-}
-@keyframes change-color {
-  0%   { background-color: transparent; color: black;}
-  100% { background-color: rgba(0, 0, 0, 0.46); color: white;}
+.axonivy-loader {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+  padding: 20px;
 }
 
-.ajax-status-color {
-  -webkit-animation: change-color 1s; /* Safari 4+ */
-  -moz-animation: change-color 1s; /* Fx 5+ */
-  -o-animation: change-color 1s; /* Opera 12+ */
-  animation: change-color 1s; /* IE 10+ */
-  animation-delay: 1s;
-  animation-fill-mode: forwards;
+.axonivy-loader h5 {
+  margin-top: 5px;
+  text-align: center;
 }
 
-.ajax-status .ajax-spinner {
-  margin: auto;
+.axonivy-loader .spinner {
+  margin: 0 auto;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  -webkit-animation: spinloader 2s linear infinite;
+          animation: spinloader 2s linear infinite;
 }
 
-.ajax-status .ajax-spinner:before {
-  content: url("#{resource['images/loader/spinner.gif']}");
+.axonivy-loader .spinner:before {
+  content: "";
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  bottom: 7px;
+  left: 7px;
+  border-radius: 50%;
+  -webkit-animation: spinloader 3s linear infinite;
+          animation: spinloader 3s linear infinite;
 }
 
-.ajax-status span {
-  margin: auto;
-  height: 0;
+.axonivy-loader .spinner:after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  bottom: 15px;
+  left: 15px;
+  border-radius: 50%;
+  -webkit-animation: spinloader 1.5s linear infinite;
+          animation: spinloader 1.5s linear infinite;
+}
+
+@-webkit-keyframes spinloader {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
+}
+@keyframes spinloader {
+  from {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  to {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  }
 }
 
 /* Override Primefaces styles */
@@ -2403,7 +2453,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .task-name-vertical-process-chain {
   margin-left: 140px;
-  margin-top: 10px;
 }
 
 .task-name-vertical-process-chain.vertical-chain-shape-line {
@@ -2481,7 +2530,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   .settings-table-action-buttons .action-column-icon-button:first-of-type {
     margin-left: 0;
   }
-  .dialog-closing-information, .app-dialog, .select-icon-dialog, .application-selection-dialog,
+  .dialog-closing-information, .app-dialog, .select-icon-dialog,
   .setting-dialog, .project-info-dialog, .deputy-dialog,
   .absence-settings-dialog, .add-absence-dialog {
     min-width: 96vw;
@@ -2506,13 +2555,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 .md-inputfield .absence-user-selection .ui-autocomplete-input.ui-inputfield,
 .substituted-user .ui-autocomplete-input.ui-inputfield {
   width: 100%;
-}
-
-/* Override Reflow stype for Application selection */
-@media (max-width: 640px){
-  .application-selection-container.ui-datatable-reflow .ui-datatable-data td[role="gridcell"] .ui-column-title {
-    width: 160px;
-  }
 }
 
 /******************************** PROJECT INFO DIALOG ******************************/
@@ -2574,7 +2616,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .app-icon {
-  text-align: center;
+  text-align: left;
   height: 42px;
   line-height: 2.5rem;
 }
@@ -2623,6 +2665,10 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   width: 100%;
 }
 
+.annoucement-in-frame-template {
+  margin-bottom: 5px;
+}
+
 .announcement-message {
   border-radius: 5px;
   padding: 2px 10px;
@@ -2631,12 +2677,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .admin-application {
   margin-top: 10px;
-}
-
-.application-selection-container .ui-datatable-scrollable-body {
-  height: auto;
-  max-height: 60vh !important;
-  overflow-x: hidden;
 }
 
 .admin-table {
@@ -2670,7 +2710,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .new-app, .ui-dialog-footer button {
-  min-width: 120px;
+  min-width: 90px;
   margin-bottom: 6px;
 }
 
@@ -2710,19 +2750,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   width: calc(100% - 20px);
 }
 
-body .substitue-tab.ui-tabs .ui-tabs-panel {
-padding: 0;
-}
-
 @media screen and (max-width: 40em) {
-  .absence-settings-dialog.ui-dialog .ui-dialog-content {
-    max-height: 90vh;
-  }
-
-  .absence-management .add-absence-panel {
-    width: 12%;
-  }
-
   .absence-management .show-absence-in-the-past-panel {
     width: 72%;
     padding-right: 0;
@@ -2766,26 +2794,31 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   box-sizing: border-box !important;
 }
 
-.delete-absence-confirmation-dialog .confirm-action {
-  outline: none;
-}
-
-/********************************** CHANGE PASSWORK DIALOG **********************************/
+/********************************** CHANGE PASSWORD DIALOG **********************************/
 .change-password-dialog {
-  min-width: 500px;
+  max-width: 500px;
+  min-width: 350px;
 }
 
 @media screen and (max-width: 40em) {
   .change-password-dialog {
-    top: 100px !important;
-    min-width: 96vw;
+    max-width: 96vw;
   }
 }
-/********************************** END CHANGE PASSWORK DIALOG **********************************/
+/********************************** END CHANGE PASSWORD DIALOG **********************************/
 
 /********************************** USER PROFILE **********************************/
-.md-inputfield .language-selection-label {
-  left: 0;
+@media screen and (max-width: 40em) {
+  .my-profile-container .card {
+    height: auto !important;
+  }
+}
+
+@media screen and (min-width: 90.063em) {
+  .my-profile-container {
+    width: 75%;
+    min-width: 1200px;
+  }
 }
 
 .user-profile-footer {
@@ -2802,7 +2835,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   margin-bottom: 6px
 }
 
-.application-email-setting-row,
 .daily-summary-checkbox.ui-selectcheckboxmenu {
   width: 100%;
 }
@@ -2811,22 +2843,66 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding-left: 3px !important;
 }
 
-.application-email-setting-row tbody tr td {
-  padding-bottom: 10px !important;
+.application-email-panel {
+  width: auto;
+  padding: 0 .5em;
+}
+
+.application-email-setting-label {
+  padding-bottom: 1em;
+  padding-right: 4em;
+}
+
+.my-profile-form {
+  margin: 10px;
 }
 
 .my-profile-container {
-  margin: 0 15px;
+  margin: auto;
+  max-width: 1850px;
 }
 
-.user-profile .setting-header {
+.my-profile-container .card {
+  height: 100%;
+  float: left;
+}
+
+.my-profile-container .setting-header {
   margin-bottom: 10px;
 }
 
-.language-selection,
-.email-setting-container {
-  margin-top: 30px;
+.my-profile-container .setting-header h2 {
+  padding: 0;
+  margin-bottom: 8px;
 }
+
+.my-profile-container .setting-header span  {
+  padding: 0 0 0 1px;
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.2rem;
+}
+
+.my-profile-container .show-tutorial,
+.email-setting-container .ui-selectmanycheckbox.daily-summary.ui-grid-responsive .ui-g-12.ui-md-4 {
+  display: inline-flex;
+  word-break: break-word;
+}
+
+.my-profile-container .show-tutorial span.ui-chkbox-label {
+  padding-top: 2px;
+}
+
+.my-profile-container .sort-field-selection {
+  width: 160px;
+}
+
+@media screen and (max-width: 40em) {
+  .my-profile-container .sort-field-selection {
+    width: 100%;
+  }
+}
+
 /********************************** END USER PROFILE SETTING **********************************/
 
 /********************************** PROCESS STARTS **********************************/
@@ -2991,7 +3067,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
     width: 85%;
   }
   .statistic-details-dialog {
-    width: 500px !important;
+    width: 600px !important;
   }
   .statistic-carousel .statistic-carousel-item {
     max-height: 40rem;
@@ -3052,6 +3128,15 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   flex-basis: calc(100% - 100px);
 }
 
+@media screen and (max-width: 40em) {
+  .statistic-actions-panel {
+    margin-top: -16px;
+  }
+  .statistic-actions-panel .chart-link {
+    float: right;
+  }
+}
+
 .statistic-actions-panel .ui-commandlink {
   height: 30px;
   padding: 5px;
@@ -3084,6 +3169,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .chart-list-container .edit-statistic-container {
   padding-right: 33.5rem;
+  padding-top: 0;
 }
 
 .edit-statistic-container .chart-list {
@@ -3138,6 +3224,10 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .statistic-filter-item.ui-scrollpanel {
   border: none;
+}
+
+.statistic-filter-item.ui-scrollpanel .ui-widget.ui-selectmanycheckbox td {
+  white-space: nowrap;
 }
 
 .custom-field-panel.statistic-filter-container {
@@ -3276,7 +3366,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .chart-info-container .label-column {
-  width: 30%;
+  width: 40%;
 }
 
 .chart-info-container .list-container {
@@ -3534,13 +3624,13 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   width: 100%;
 }
 
-.preview-users-datatable {
+/* .preview-users-datatable {
   width: 400px;
 }
 
 .preview-users-datatable .ui-datatable-scrollable-body {
   overflow-x: hidden;
-}
+} */
 
 .config-columns-panel {
   min-width: 250px;
@@ -3548,7 +3638,7 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 }
 
 .config-columns-panel .ui-button.ui-widget {
-  min-width: 120px;
+  min-width: 90px;
 }
 
 .config-columns-button {
@@ -3637,6 +3727,7 @@ body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-c
 
 .statistic-filter-accordion-panel .ui-accordion-content {
   overflow-y: hidden !important;
+  max-width: 30.5rem;
 }
 
 .statistic-filter-container.ui-scrollpanel {
@@ -3656,7 +3747,7 @@ body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-c
 .statistic-case-category-tree .ui-tree-container {
   height: 26rem;
   width: 100%;
-  max-width: 26.5rem;
+  max-width: 282px;
   overflow: auto !important;
 }
 
@@ -3704,15 +3795,6 @@ body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-c
 
 /* Small screen */
 @media (max-width: 1365px) {
-  .chart-list-container .filter-container {
-    width: 25rem !important;
-  }
-  .statistic-case-category-tree .ui-tree-container {
-    max-width: 18.5rem;
-  }
-  .edit-statistic-container {
-    padding-right: 25rem !important;
-  }
   .filter-container .ui-inputfield.hasDatepicker {
     width: 15.5rem !important;
   }
@@ -3796,11 +3878,17 @@ body .ui-widget-content.filter-name-overlay-panel {
   .filter-container {
     padding: 0.5em !important;
   }
-  .statistic-case-category-tree .ui-tree-container {
-    max-width: 19.5rem !important;
-  }
   .filter-widget-input.case-filter-component {
     padding-right: 35px !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .has-breadcrumb .text-filter {
+    width: 100% !important;
+  }
+  .text-filter {
+    width: 60% !important;
   }
 }
 
@@ -4004,6 +4092,10 @@ _:-ms-fullscreen, :root .content-link-history {
   margin-bottom: 9px;
 }
 
+.filter-container .technical-case-text-filter .selected-filters-label {
+  display: none;
+}
+
 .filter-container .advanced-filter-component {
   margin-top: 10px;
 }
@@ -4091,8 +4183,18 @@ _:-ms-fullscreen, :root .content-link-history {
   margin-right: 5px;
 }
 
-.action-button.task-action-item {
-  margin-left: 10px;
+.action-link  {
+  margin: auto 10px;
+  display: flex;
+  align-items: center;
+}
+
+.case-header-action-cell .action-container {
+  padding: 0 10px;
+}
+
+.action-link span {
+  margin-right: 5px;
 }
 
 .task-right-component {
@@ -4158,7 +4260,15 @@ _:-ms-fullscreen, :root .content-link-history {
   text-overflow: ellipsis;
 }
 
-.task-name-edit {
+.task-detail-header .task-name {
+  display: flex;
+}
+
+.has-breadcrumb .task-detail-header .task-name {
+  display: none;
+}
+
+.task-name {
   width: 100%;
 }
 
@@ -4296,6 +4406,15 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
 body .ui-dialog.ui-widget.import-express-dialog,
 body .ui-dialog.ui-widget.export-express-dialog {
   min-width: 450px;
+  max-width: 1000px;
+}
+
+@media screen and (max-width: 40em) {
+  body .ui-dialog.ui-widget.import-express-dialog,
+  body .ui-dialog.ui-widget.export-express-dialog {
+    min-width: 85vw;
+    max-width: 95%;
+  }	
 }
 
 .import-express-dialog .express-import-result {
@@ -4354,27 +4473,9 @@ body .ui-dialog.ui-widget.export-express-dialog {
   overflow: hidden;
 }
 
-@media screen and (max-width: 40em) {
-  body .ui-dialog.ui-widget.import-express-dialog,
-  body .ui-dialog.ui-widget.export-express-dialog {
-    min-width: 96vw;
-    max-width: 100%;
-  }
-}
-
 /*=================== EXPRESS MANAGEMENT END ===================*/
 
-/*=================== NOTE HISTORY START ===================*/
-@media screen and (max-width: 40em) {
-  .note-history-fullname-column {
-    width: 40% !important;
-  }
-}
-/*=================== NOTE HISTORY END ===================*/
-
-
 /*=================== BREADCRUMB ===================*/
-
 body .ui-widget-header.portal-breadcrumb a {
 	outline: none;
 }
@@ -4392,6 +4493,7 @@ body .ui-widget-header.portal-breadcrumb a {
 body .ui-widget-header.portal-breadcrumb {
 	border: none;
 	padding-top: 1px;
+	padding-bottom: 1px;
 }
 
 body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled {
@@ -4405,9 +4507,8 @@ body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled .ui
 }
 
 body .ui-widget-header.portal-breadcrumb ul li:last-child {
-	width: calc(100% - 130px);
+	width: calc(100% - 150px);
 }
-
 
 body .ui-widget-header.portal-breadcrumb a,
 body .ui-widget-header.portal-breadcrumb .ui-breadcrumb-chevron {
@@ -4421,12 +4522,15 @@ body .portal-breadcrumb.ui-breadcrumb ul li {
 body .portal-breadcrumb.ui-breadcrumb ul li .has-count {
 	display: inline;
 }
-/*=================== BREADCRUMB END ===================*/
 
-.position-topbar {
-	height: 58px;
+.ui-breadcrumb .ui-icon-home:before {
+   display: none;
 }
 
+body .ui-breadcrumb li:first-child a span {
+  display: block;
+}
+/*=================== BREADCRUMB END ===================*/
 /*=================== GUIDE ===================*/
 .ui-dialog-mask.ui-widget-overlay.guide-modal {
   background-color: transparent;
@@ -4627,12 +4731,6 @@ border-left: 0.14rem dashed;
 .card .description-content{
 height: 260px;	
 }
-.card-layout-content{
-position:absolute;
-top:4.5rem;	
-overflow-y:auto;
-height:95%;
-}
 .case-map-stage hr{
 clear: both;
 }
@@ -4672,3 +4770,22 @@ overflow-y:auto;
 height:100%;	
 }
 }
+.case-details-row-space span.icon {
+  vertical-align: text-top;
+}
+/** Fix for ivy icon --- Start---- **/
+body a .icon,
+body td .icon {
+  vertical-align: text-top;
+}
+/** Fix for ivy icon --- End---- **/
+
+/** Portal dialog ---- start-----**/
+.portal-dialog .ui-dialog-titlebar {
+  border-bottom: 0 !important;
+}
+
+.portal-dialog-content {
+  margin:20px 0;
+}
+/** Portal dialog ---- end-----**/

@@ -22,6 +22,7 @@ import ch.ivyteam.ivy.casemap.runtime.model.IStage;
 import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
+import ch.ivyteam.ivy.security.query.UserQuery;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
 
@@ -41,7 +42,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   }
 
   public void startAdhoc(Long taskId) {
-    ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
+    ProcessStartCollector processStartCollector = new ProcessStartCollector();
     String url = processStartCollector.findExpressAdhocWFLink();
     url = url + "?originalTaskId=" + taskId;
     PortalNavigator.redirect(url);
@@ -53,7 +54,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   }
 
   public boolean hasExpressAdhocWF() {
-    ProcessStartCollector processStartCollector = new ProcessStartCollector(Ivy.wf().getApplication());
+    ProcessStartCollector processStartCollector = new ProcessStartCollector();
     String adhocUrl = processStartCollector.findExpressAdhocWFLink();
     return !adhocUrl.isEmpty();
   }
@@ -104,13 +105,18 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
     return adhocHistories;
   }
 
-  public static String getUserByUsername(String username) {
+  public static String getUserByUsernameAndExternalName(String username, String externalId) {
     if (StringUtils.isBlank(username)) {
       return "";
     }
 
     return IvyExecutor.executeAsSystem(() -> {
-      IUser user = Ivy.wf().getSecurityContext().users().find(username);
+      IUser user = UserUtils.findUserByUsername(username);
+      if (user == null) {
+        UserQuery query = Ivy.wf().getSecurityContext().users().query();
+        query.where().externalId().isEqual(externalId);
+        user = query.executor().firstResult();
+      }
       return user == null ? "" : UserUtils.getFullName(user);
     });
   }

@@ -259,11 +259,11 @@
           </p:column>
 
           <p:column style="width:65px;text-align: center">
-            <p:commandLink update="#{p:component('detailDialog')}" styleClass="fa fa-edit"
+            <p:commandLink update="#{p:component('detailDialog')}" styleClass="icon ivyicon-graphic-tablet-drawing-pen"
               oncomplete="PF('detailDialog').show()" title="Edit" style="height:20px;" id="dialogEditButton">
               <f:setPropertyActionListener value="#{score}" target="#{data.selectedScore}" />
             </p:commandLink>
-            <p:commandLink update="#{p:component('detailDialog')}" styleClass="fa fa-trash"
+            <p:commandLink update="#{p:component('detailDialog')}" styleClass="icon ivyicon-bin-1"
               oncomplete="PF('detailDialog').show()" title="Delete" style="height:20px;margin-left:10px"
               id="dialogDeleteButton">
               <f:setPropertyActionListener value="#{score}" target="#{data.selectedScore}" />

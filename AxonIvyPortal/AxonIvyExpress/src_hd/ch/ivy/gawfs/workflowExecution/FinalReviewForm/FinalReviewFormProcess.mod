@@ -1,5 +1,5 @@
 [Ivy]
-163051859F226598 7.5.0 #module
+163051859F226598 9.2.0 #module
 >Proto >Proto Collection #zClass
 Fs0 FinalReviewFormProcess Big #zClass
 Fs0 RD #cInfo
@@ -80,12 +80,10 @@ Fs0 f19 525 251 26 26 0 12 #rect
 Fs0 f19 @|UdProcessEndIcon #fIcon
 Fs0 f17 actionTable 'out=in;
 ' #txt
-Fs0 f17 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+Fs0 f17 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 
 ivy.task.reset();
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalEndPage();' #txt
+PortalNavigator.navigateToPortalEndPage();' #txt
 Fs0 f17 security system #txt
 Fs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

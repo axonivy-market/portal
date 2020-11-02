@@ -1,5 +1,5 @@
 [Ivy]
-15035F535EFB1618 7.5.0 #module
+15035F535EFB1618 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskWidgetProcess Big #zClass
 Ts0 RD #cInfo
@@ -243,7 +243,7 @@ if(in.taskFilterDataToBeRemoved.type == FilterType.ONLY_ME) {
 } else {
 	in.taskPublicFilters.remove(in.taskFilterDataToBeRemoved);
 }
-if (in.dataModel.#selectedTaskFilterData is initialized && in.dataModel.selectedTaskFilterData.equals(in.taskFilterDataToBeRemoved)) {
+if (in.dataModel.#selectedTaskFilterData is initialized && in.dataModel.isSameTaskFilterData(in.taskFilterDataToBeRemoved)) {
 	in.dataModel.resetFilters();
 	in.keyword = null;
 }' #txt
@@ -577,7 +577,6 @@ param.count=in.count;
 Ts0 f19 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
 ' #txt
 Ts0 f19 responseMappingAction 'out=in;
-out.errors=result.errors;
 out.tasks=result.tasks;
 ' #txt
 Ts0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -619,7 +618,6 @@ Ts0 f7 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
 Ts0 f7 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
 ' #txt
 Ts0 f7 responseMappingAction 'out=in;
-out.errors=result.errors;
 out.totalTasks=result.totalTasks;
 ' #txt
 Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -644,7 +642,6 @@ Ts0 f21 requestMappingAction 'param.taskSearchCriteria=in.newTaskSearchCriteria;
 Ts0 f21 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData out;
 ' #txt
 Ts0 f21 responseMappingAction 'out=in;
-out.errors=result.errors;
 out.numberOfNewTask=result.totalTasks;
 ' #txt
 Ts0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

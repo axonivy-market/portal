@@ -16,6 +16,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.ProcessWidgetPage.AddNewExternalLinkDialog;
@@ -172,6 +173,7 @@ public class ProcessWidgetTest extends BaseTest {
 
     processWidget.clickEditSwitchLink();
     processWidget.moveFavoriteProcess(1, 3);
+    WaitHelper.assertTrueWithWait(() -> CASE_MAP_LEAVES.equals(processWidget.findElementByCssSelector(".process-start-list-item-name").getText()));
     processWidget.clickSaveProcess();
 
     assertEquals(CASE_MAP_LEAVES, processWidget.getProcessNameFromFavoriteProcessList(0));
@@ -263,7 +265,7 @@ public class ProcessWidgetTest extends BaseTest {
     processWidget.expand();
     assertEquals("Processes", processWidget.getTextOfCurrentBreadcrumb());
 
-    processWidget.clickHomeBreadcrumb();
+    processWidget.goToHomeFromBreadcrumb();
     homePage = new HomePage();
     assertEquals(true, homePage.isDisplayed());
   }

@@ -15,7 +15,7 @@ import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
 public class GlobalSettingService extends AbstractService<GlobalSetting> {
 
   public GlobalSettingService() {
-    super(GlobalSettingDao.class);
+    super(new GlobalSettingDao());
   }
 
   @Override
@@ -28,25 +28,6 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
     return StringUtils.defaultString(setting.getValue(), setting.getDefaultValue());
   }
 
-  public boolean isGlobalSettingAvailable(String variableName) {
-    GlobalSetting setting = findGlobalSettingByKey(variableName);
-    return setting == null ? false : StringUtils.isNotBlank(setting.getValue());
-  }
-  
-  /** Find a Global Setting with option allowEmptyValue
-   * @param variableName key name of setting
-   * @param allowEmptyValue option to check setting allows empty value
-   * @return Global Setting is available or not
-   */
-  public boolean isGlobalSettingAvailable(String variableName, boolean allowEmptyValue) {
-    GlobalSetting setting = findGlobalSettingByKey(variableName);
-    if (setting != null
-        && (StringUtils.isNotEmpty(setting.getValue()) || StringUtils.isEmpty(setting.getValue()) && allowEmptyValue)) {
-      return true;
-    }
-    return false;
-  }
-  
   public GlobalSetting findGlobalSettingByKey(String variableName) {
     Object atttributeValue = IvyCacheService.newInstance().getGlobalSettingFromCache(variableName);
     if (atttributeValue == null) {
@@ -97,16 +78,26 @@ public class GlobalSettingService extends AbstractService<GlobalSetting> {
     GlobalVariable globalVariable =
         PermissionUtils.isSessionUserHasAdminRole() ? GlobalVariable.HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR
             : GlobalVariable.HIDE_SYSTEM_TASKS_FROM_HISTORY;
-    String settingValue = findGlobalSettingValue(globalVariable.toString());
-    return StringUtils.isBlank(settingValue) ? Boolean.valueOf(globalVariable.getDefaultValue()) : Boolean.valueOf(settingValue);
+    return findGlobalSettingValueAsBoolean(globalVariable.toString());
+  }
+  
+  public boolean findHideSystemNotesFromHistorySettingValue() {
+    GlobalVariable globalVariable =
+        PermissionUtils.isSessionUserHasAdminRole() ? GlobalVariable.HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR
+            : GlobalVariable.HIDE_SYSTEM_NOTES_FROM_HISTORY;
+    return findGlobalSettingValueAsBoolean(globalVariable.toString());
+  }
+  
+  public boolean isCaseOwnerEnabled() {
+    return findGlobalSettingValueAsBoolean(GlobalVariable.ENABLE_CASE_OWNER.toString());
   }
   
   @Override
   public GlobalSetting save(GlobalSetting entity) {
     GlobalSetting persistedGlobalSetting = getDao().findGlobalSetting(entity.getKey());
-      if (persistedGlobalSetting != null) {
-        entity.setId(persistedGlobalSetting.getId());
-      }
+    if (persistedGlobalSetting != null) {
+      entity.setId(persistedGlobalSetting.getId());
+    }
     return super.save(entity);
   }
 }

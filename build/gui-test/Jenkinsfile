@@ -2,13 +2,12 @@ pipeline {
   agent {label 'portal-slave'}
   
   options {
-    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
+    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '30'))
   }
 
   triggers {
-    // Firefox guitest is not triggered by SCM change
-    pollSCM env.JOB_NAME.contains('Firefox') ? '0 5 31 2 *' : '0 5 * * *'
-    cron(env.JOB_NAME.contains('Firefox') ? '0 21,23 * * *' : '0 15 * * *')
+    pollSCM '0 5 * * *'
+    cron('0 11,12,15,21 * * *')
   }
 
   tools { 
@@ -33,28 +32,9 @@ pipeline {
     stage('build') {
       steps {
         script {
-          echo "====================Turn off Elasticsearch port from 19200 to 19210===================="
-          powershell '''
-            for (($port = 19200); $port -lt 19210; ($port++)) {
-              Get-NetTCPConnection -LocalPort $port -erroraction 'silentlycontinue'
-              if ( $LastExitCode -eq 0 ) {
-                Stop-Process -Id (Get-NetTCPConnection -LocalPort $port).OwningProcess -Force
-              }
-            }
-          '''
-          echo "====================Stop other engines===================="
-          def windowsEngineServices = ['Axon.ivy Engine - LTS', 'Axon.ivyEngine8.0', 'Axon.ivyEngineTrunk']
-          for (windowsEngineService in windowsEngineServices) {
-            bat """
-              sc query "${windowsEngineService}" | find /i "RUNNING"
-              if not "%ERRORLEVEL%"=="1" ( net stop "${windowsEngineService}")
-            """
-          }
-
-          echo '====================Extract engine===================='
-          bat '''
-            mvn clean compile -f AxonIvyPortal/PortalTest/pom.xml -Divy.engine.directory=%engineDir% %engineDownloadURL%
-          '''
+          def utils = load 'build/common/utils.groovy'
+          utils.stopAllEngines()
+          utils.extractEngine(env.engineDir, params.engineDownloadURL)
 
           echo "====================Build Portal modules===================="
           def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'AxonIvyPortal/PortalApp']
@@ -72,37 +52,16 @@ pipeline {
           '''
 
           node('master') {
-            echo '====================Close all remote desktop connections and setup new remote destop to Portal slave===================='
-            bat '''
-              taskkill -im mstsc.exe -F
-              exit 0
-            '''
-            configFileProvider(
-                [configFile(fileId: 'properties-config', variable: 'PROPERTIES_CONFIG')]) {
-                props = readProperties  file: "${env.PROPERTIES_CONFIG}"
-                //e.g. remoteDesktopCmd=D:/tools/remote-desktop-plus/rdp.exe /v:10.123.1.193 /domain:wawa.vn /u:wawa /p:SAMPLE_TEXT_1 /w:2560 /h:1440 /noclose
-                bat "${props.remoteDesktopCmd}"
-            }
+            utils.remoteDesktop()
           }
 
-          echo '====================Close opening browsers===================='
-          bat '''
-            taskkill -im IEDriverServer.exe -F
-            taskkill -im iexplore.exe -F
-            taskkill -im GeckoFireFoxDriver.exe -F
-            taskkill -im firefox.exe -F
-            exit 0
-          '''
+          utils.killUnnecessaryProcessesToRunTest()
 
           echo '====================Execute maven for testing===================='
           bat "mvn clean test -f AxonIvyPortal/PortalTest/customized_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=${props.browserType} -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
 
           node('master') {
-            echo '====================Close all remote desktop connections===================='
-            bat '''
-              taskkill -im mstsc.exe -F
-              exit 0
-            '''
+            utils.closeAllRemoteDesktopConnections()
           }
         }
       }
@@ -111,7 +70,7 @@ pipeline {
 
   post {
     always {
-      archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/*/*/*.jpg", allowEmptyArchive: true
+      archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/*/*/*.jpg, AxonIvyPortal/PortalTest/target/testEngineOut.log", allowEmptyArchive: true
       junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
     }
   }

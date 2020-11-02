@@ -1,5 +1,5 @@
 [Ivy]
-15EF07D454EF13E4 7.5.0 #module
+15EF07D454EF13E4 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ps0 LogoutSettingProcess Big #zClass
 Ps0 RD #cInfo
@@ -36,17 +36,18 @@ Ps0 @UdProcessEnd f21 '' #zField
 Ps0 @CallSub f22 '' #zField
 Ps0 @PushWFArc f23 '' #zField
 Ps0 @PushWFArc f24 '' #zField
+Ps0 @UdMethod f25 '' #zField
+Ps0 @UdProcessEnd f26 '' #zField
+Ps0 @PushWFArc f27 '' #zField
 >Proto Ps0 Ps0 LogoutSettingProcess #zField
 Ps0 f0 guid 15EF07DBEF876B54 #txt
-Ps0 f0 method start(String) #txt
-Ps0 f0 inParameterDecl '<String isWorkingOnATask> param;' #txt
-Ps0 f0 inParameterMapAction 'out.isWorkingOnATask=param.isWorkingOnATask.toBoolean();
-' #txt
+Ps0 f0 method start() #txt
+Ps0 f0 inParameterDecl '<> param;' #txt
 Ps0 f0 outParameterDecl '<> result;' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(String)</name>
+        <name>start()</name>
     </language>
 </elementInfo>
 ' #txt
@@ -219,6 +220,24 @@ Ps0 f22 @|CallSubIcon #fIcon
 Ps0 f23 expr out #txt
 Ps0 f23 249 352 307 352 #arcP
 Ps0 f24 77 352 137 352 #arcP
+Ps0 f25 guid 1733670A08E65345 #txt
+Ps0 f25 method init(Boolean) #txt
+Ps0 f25 inParameterDecl '<Boolean isWorkingOnATask> param;' #txt
+Ps0 f25 inParameterMapAction 'out.isWorkingOnATask=param.isWorkingOnATask;
+' #txt
+Ps0 f25 outParameterDecl '<> result;' #txt
+Ps0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>init(Boolean)</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f25 435 51 26 26 -23 15 #rect
+Ps0 f25 @|UdMethodIcon #fIcon
+Ps0 f26 627 51 26 26 0 12 #rect
+Ps0 f26 @|UdProcessEndIcon #fIcon
+Ps0 f27 461 64 627 64 #arcP
 >Proto Ps0 .type ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting.LogoutSettingData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
@@ -245,3 +264,5 @@ Ps0 f22 mainOut f23 tail #connect
 Ps0 f23 head f21 mainIn #connect
 Ps0 f20 mainOut f24 tail #connect
 Ps0 f24 head f22 mainIn #connect
+Ps0 f25 mainOut f27 tail #connect
+Ps0 f27 head f26 mainIn #connect

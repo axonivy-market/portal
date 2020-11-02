@@ -1,5 +1,5 @@
 [Ivy]
-1723B30AE7B858C4 7.5.0 #module
+1723B30AE7B858C4 9.2.0 #module
 >Proto >Proto Collection #zClass
 Es0 WelcomePortalDialogProcess Big #zClass
 Es0 RD #cInfo
@@ -53,7 +53,7 @@ String portalGuideLink;
 if (StringUtils.contains(portalVersion, "SNAPSHOT")) {
 	portalGuideLink = latestPortalGuideLink;
 } else {
-	portalGuideLink = String.format("https://developer.axonivy.com/documentation/portal-guide/", portalVersion);
+	portalGuideLink = String.format("https://developer.axonivy.com/documentation/portal-guide/%s", portalVersion);
 }
 
 in.content = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/guide/welcome/content", [portalGuideLink]);' #txt

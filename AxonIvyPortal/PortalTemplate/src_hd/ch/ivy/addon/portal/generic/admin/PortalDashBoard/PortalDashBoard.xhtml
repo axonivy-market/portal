@@ -8,10 +8,10 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="isNotRequiredLogin" value="false" />
-    <ui:param name="viewName" value="DASHBOARD" />
+    <ui:param name="viewName" value="STATISTICS" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard')}</ui:define>
 
-    <ui:define name="simplePageContent">
+    <ui:define name="pageContent">
       <div class="ui-g-12">
       <ic:ch.ivy.addon.portalkit.component.StatisticWidget id="statistics-widget" compactMode="false" showTaskListImmediately="false"
         statisticChartList="#{data.statisticChartList}"/>
