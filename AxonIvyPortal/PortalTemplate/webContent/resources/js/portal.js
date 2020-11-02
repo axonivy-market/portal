@@ -5,16 +5,6 @@ var Portal = {
     }
     // Update menuitem when access page by direct link
     MainMenu.init(responsiveToolkit);
-    this.updateBreadcrumb();
-    
-    // Update screen when window size is changed
-    $(window).resize(function() {
-      Portal.updateLayoutContent();
-      setTimeout(function() {
-        responsiveToolkit.updateLayoutWithoutAnimation();
-      }, 250);
-      Portal.updateGuide();
-    });
     
     //Add very small timeout when page ready, fix responsive problem for IE 11
     setTimeout(function() {
@@ -23,6 +13,18 @@ var Portal = {
     
     this.updateLayoutContent();
     this.updateBreadcrumb();
+
+    var resizeTimer;
+    // Update screen when window size is changed
+    $(window).resize(function() {
+      Portal.updateLayoutContent();
+
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        responsiveToolkit.updateLayoutWithoutAnimation();
+      }, 250);
+      Portal.updateGuide();
+    });
   },
   
   updateGuide : function() {
@@ -39,22 +41,35 @@ var Portal = {
   },
   
   updateLayoutContent : function() {
-    var headerHeight = $('#portal-template-header').outerHeight();
-    var footerHeight = $('#portal-template-footer').outerHeight();
+    var ua = window.navigator.userAgent;
+    var isIE = /MSIE|Trident/.test(ua);
+    var fullHeight= '100vh';
+    if (!isIE) {
+      var vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', vh + 'px');
+      fullHeight = 'var(--vh, 1vh) * 100';
+    }
+
+    var headerHeight = $('.js-portal-template-header').outerHeight(true);
+    var footerHeight = $('.js-portal-template-footer').outerHeight(true);
     var headerFooterHeight = headerHeight + footerHeight;
+    var layoutTopbarHeight = $('.layout-topbar').outerHeight(true);
+    $('.js-position-topbar').height(layoutTopbarHeight);
     if ($('.js-layout-wrapper').hasClass('u-invisibility')) {
       var envHeight = $('#portal-environment').outerHeight();
-      var announcementMessageContainer = $('.js-announcement-message');
     }
 
     $('.js-left-sidebar').css('top', headerHeight + 'px').css('height', 'calc(100vh - ' + (headerFooterHeight - envHeight) + 'px)');
     $('.js-layout-main').css('margin-top', headerHeight + 'px').css('height', 'calc(100vh - ' + headerFooterHeight + 'px)');
     $('.js-layout-wrapper').removeClass('u-invisibility');
-    $('.js-layout-content').css('height', $('.js-layout-main').outerHeight() - $('.layout-topbar').outerHeight() + 'px');
+
+    var topbarWithHeaderFooterHeight = layoutTopbarHeight + headerFooterHeight;
+    $('.js-layout-content').css('height', 'calc(' + fullHeight + ' - ' + topbarWithHeaderFooterHeight + 'px)');
     var chatPanel = $('.js-chat-panel');
-    if (chatPanel.length == 1) {
+    if (chatPanel.length > 0) {
       chatPanel.css('height', 'calc(100% - ' + (headerFooterHeight - envHeight) + 'px)');
       chatPanel.css('top', headerHeight + 'px');
+      chatPanel.css('bottom', footerHeight + 'px');
     }
   },
 
@@ -67,28 +82,42 @@ var Portal = {
       return;
     }
 
-    var usedWidthOfTopMenu = 0;
-    topMenuElements.each(function(i, val) {
-      if (!val.classList.contains("breadcrumb-container")) {
-        usedWidthOfTopMenu += val.offsetWidth + 22;
-      }
-    });
+    var updateBreadcrumbTimeout;
+    clearTimeout(updateBreadcrumbTimeout);
 
-    usedWidthOfTopMenu = usedWidthOfTopMenu + 2;
-    var breadCrumbWidth = "calc(100% - " + usedWidthOfTopMenu + "px)";
-    breadCrumb.css({"display": "block", "width" : breadCrumbWidth});
+    updateBreadcrumbTimeout = setTimeout(function() {
+        var usedWidthOfTopMenu = 0;
+        var layoutWrapper = $('.js-layout-wrapper');
+        topMenuElements.each(function(i, val) {
+          if (!val.classList.contains("breadcrumb-container")) {
+            usedWidthOfTopMenu += $(val).outerWidth(true);
+          }
+        });
 
-    var breadcrumbWidthWithoutCurrentStep = 0;
-    breadCrumbMembers.each(function(i, val) {
-      if (i != breadCrumbMembers.length - 1) {
-        breadcrumbWidthWithoutCurrentStep += val.offsetWidth;
-      }
-    });
-    var currentBreadcrumb = $(breadCrumbMembers.get(breadCrumbMembers.length - 1));
-    currentBreadcrumb.css("max-width", "calc(100% - " + breadcrumbWidthWithoutCurrentStep + "px)");
-    if (currentBreadcrumb.get(0).offsetWidth == 0) {
-      breadCrumb.css("display", "none");
-    }
+        var toggleMenuIcon = $('.left-sidebar-menu-icon');
+        if (toggleMenuIcon.is(":visible")) {
+          usedWidthOfTopMenu += toggleMenuIcon.outerWidth(true);
+        }
+
+        var breadCrumbWidth = "calc(100% - " + usedWidthOfTopMenu + "px)";
+        breadCrumb.css({"display": "block", "width" : breadCrumbWidth});
+        if(!layoutWrapper.hasClass('has-breadcrumb')) {
+          layoutWrapper.addClass('has-breadcrumb');
+        }
+
+        var breadcrumbWidthWithoutCurrentStep = 0;
+        breadCrumbMembers.each(function(i, val) {
+          if (i != breadCrumbMembers.length - 1) {
+            breadcrumbWidthWithoutCurrentStep += val.offsetWidth;
+          }
+        });
+        var currentBreadcrumb = $(breadCrumbMembers.get(breadCrumbMembers.length - 1));
+        currentBreadcrumb.css("max-width", "calc(100% - " + breadcrumbWidthWithoutCurrentStep + "px)");
+        if (currentBreadcrumb.get(0).offsetWidth == 0) {
+          breadCrumb.css("display", "none");
+          layoutWrapper.removeClass('has-breadcrumb');
+        }
+      }, 100);
   }
 }
 
@@ -114,8 +143,8 @@ var MainMenu = {
       ["CaseWidget.xhtml", "CASE"],
       ["PortalCaseDetails.xhtml", "CASE"],
       ["CaseItemDetails.xhtml", "CASE"],
-      ["PortalDashBoard.xhtml", "DASHBOARD"],
-      ["TaskAnalysis.xhtml", "DASHBOARD"]],
+      ["PortalDashBoard.xhtml", "STATISTICS"],
+      ["TaskAnalysis.xhtml", "STATISTICS"]],
 
   init : function(responsiveToolkit) {
     this.highlightMenuItem();

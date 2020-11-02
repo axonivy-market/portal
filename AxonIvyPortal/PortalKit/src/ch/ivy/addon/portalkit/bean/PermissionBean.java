@@ -39,4 +39,5 @@ public class PermissionBean implements Serializable {
       return false;
     }
   }
+
 }

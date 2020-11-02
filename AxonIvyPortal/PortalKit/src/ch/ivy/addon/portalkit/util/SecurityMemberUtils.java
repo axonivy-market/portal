@@ -1,9 +1,6 @@
 package ch.ivy.addon.portalkit.util;
 
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import ch.ivy.addon.portalkit.constant.PortalConstants;
@@ -24,7 +21,7 @@ public class SecurityMemberUtils {
   }
   
   /**
-   * Finds the security members by query. If the current application is Portal, find all users over all applications, otherwise in current application
+   * Finds the security members by query in current application
    * @param query
    * @param startIndex index of the first record is 0
    * @param count use -1 to return all beginning from the startIndex
@@ -33,22 +30,8 @@ public class SecurityMemberUtils {
   @SuppressWarnings("unchecked")
   public static List<SecurityMemberDTO> findSecurityMembers(String query, int startIndex, int count) {
     return IvyExecutor.executeAsSystem(() -> {
-      if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
-        List<SecurityMemberDTO> users = SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
-            .withStartName("findSecurityMembersOverAllApplications")
-            .withParam("username", Ivy.session().getSessionUserName())
-            .withParam("query", query)
-            .withParam("startIndex", startIndex)
-            .withParam("count", count)
-            .call()
-            .get("members", List.class);
-        return users.stream()
-            .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(SecurityMemberDTO::getName))), ArrayList::new));
-      }
-      
       return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
           .withStartName("findSecurityMembers")
-          .withParam("application", Ivy.request().getApplication())
           .withParam("query", query)
           .withParam("startIndex", startIndex)
           .withParam("count", count)
@@ -64,9 +47,7 @@ public class SecurityMemberUtils {
   }
   
   public static ISecurityMember findISecurityMemberFromUserDTO(UserDTO userDTO) {
-    return IvyExecutor.executeAsSystem(() -> {
-        return Ivy.wf().getSecurityContext().users().find(userDTO.getId());
-    });
+    return UserUtils.findUserByUserId(userDTO.getId());
   }
   
   public static ISecurityMember findISecurityMemberFromRoleDTO(RoleDTO roleDTO) {

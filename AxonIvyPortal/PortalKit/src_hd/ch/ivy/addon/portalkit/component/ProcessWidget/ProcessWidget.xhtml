@@ -7,25 +7,28 @@
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="processListStyleClass" />
+  <cc:attribute name="hideHeader" default="false" type="java.lang.Boolean" />
   <cc:attribute name="hideExpressCreation" default="false" />
-  <cc:attribute name="hideProcessNavigation" default="false"></cc:attribute>
+  <cc:attribute name="hideProcessNavigation" default="false" />
 </cc:interface>
 
 <cc:implementation>
   <h:outputScript library="js" name="process-widget.js" />
   <div class="ui-g">
-    <div id="#{cc.clientId}" class="widget process-widget ui-g-12">
+    <div id="#{cc.clientId}" class="widget process-widget js-process-widget ui-g-12 u-no-padding-bottom">
       <!-- Process header -->
-      <div class="process-header js-process-header">
+      <h:panelGroup layout="block" class="process-header js-process-header" rendered="#{!cc.attrs.hideHeader}">
 
         <div class="ui-g-12 u-no-padding-top u-no-padding-left u-no-padding-bottom ui-g">
-          
-          <div class="ui-sm-12 ui-md-10 ui-lg-7 ui-xl-4 process-widget-filter">
+          <div class="ui-sm-3 u-hidden-sm-up">
+            <span class="process-header-title widget-header-main-title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}</span>
+          </div>
+          <div class="ui-sm-9 ui-md-10 ui-lg-7 ui-xl-4 process-widget-filter">
             <ic:ch.ivy.addon.portalkit.component.Filter id="process-search" listener="processWidget.filter()" ajax="false"
                   placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processFilterPlaceHolder')}"
                   styleClass="js-filter-process-widget-list-item" />
           </div>
-          <div class="ui-g u-hidden-md-down MarTop5">
+          <div class="ui-g ui-sm-hidden ui-md-hidden MarTop5">
 	          <h:panelGroup id="create-express-link" layout="block"
 	            rendered="#{!cc.attrs.hideExpressCreation and processWidgetBean.canCreateExpessWorkflow()}"
 	            styleClass="create-express-link">
@@ -40,16 +43,17 @@
 	              actionListener="#{externalLinkBean.addNewExternalLink(cc.clientId)}"
 	              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/addExternalLink')}"
 	              update="#{cc.clientId}:add-external-link-dialog" oncomplete="PF('add-external-link-dialog').show()">
-	              <i class="fa fa-external-link Fleft add-external-link-icon" aria-hidden="true"></i>
+	              <i class="icon ivyicon-hyperlink-3 Fleft add-external-link-icon" aria-hidden="true"></i>
 	            </p:commandLink>
 	            <ui:include src="ExternalLinkDialog.xhtml" />
 	          </h:panelGroup>
 	        </div>
         </div>
-      </div>
+      </h:panelGroup>
 
       <!-- Process body -->
-      <h:panelGroup id="process-list" layout="block" styleClass="widget-content process-start-list-container js-process-start-list-container ui-g-12">
+      <h:panelGroup id="process-list" layout="block"
+        styleClass="widget-content process-start-list-container js-process-start-list-container ui-g-12 u-no-padding-top u-no-padding-bottom">
         <ui:fragment id="full-process-list">
           <ui:repeat id="process-group-alphabet" var="entryProcess" value="#{processWidgetBean.processesByAlphabet.entrySet().toArray()}">
             <p:fieldset id="alphabet-process-index-fieldset"
@@ -76,40 +80,54 @@
         </ui:fragment>
       </h:panelGroup>
       <!-- Process navigator -->
-      <h:panelGroup id="process-nav" styleClass="process-nav js-process-nav" rendered="#{!cc.attrs.hideProcessNavigation}">
+      <h:panelGroup id="process-nav" layout="block" styleClass="process-nav js-process-nav" rendered="#{!cc.attrs.hideProcessNavigation}">
+        <div class="js-character-container character-container">
+          <p:commandLink id="expand-all-btn"
+            onclick="expandOrCollapseAllCategories(true); return false;" styleClass="expand-collapse-btn process-nav-item">
+            <i class="icon ivyicon-add" />
+          </p:commandLink>
+          <p:commandLink id="collapse-all-btn"
+            onclick="expandOrCollapseAllCategories(false); return false;" styleClass="expand-collapse-btn process-nav-item">
+            <i class="icon ivyicon-subtract" />
+          </p:commandLink>
 
-
-        <p:commandLink id="expand-all-btn"
-          onclick="expandOrCollapseAllCategories(true); return false;" styleClass="expand-collapse-btn process-nav-item expand" />
-        <p:commandLink id="collapse-all-btn"
-          onclick="expandOrCollapseAllCategories(false); return false;" styleClass="expand-collapse-btn process-nav-item collapse" />
-
-
-        <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters().entrySet().toArray()}" var="character">
-          <p:commandLink value="#{character.value}" styleClass="process-nav-item js-process-starts-with-#{character.key}"
-            onclick="jumpToProcessGroupByCharacter(event)" global="false" />
-        </ui:repeat>
+          <ui:repeat value="#{processWidgetBean.getAllAlphabeticalCharacters().entrySet().toArray()}" var="character">
+            <p:commandLink value="#{character.value}" styleClass="process-nav-item js-process-nav-item js-process-starts-with-#{character.key}"
+              onclick="jumpToProcessGroupByCharacter(event)" global="false" />
+          </ui:repeat>
+        </div>
       </h:panelGroup>
     </div>
   </div>
 
-  <p:dialog id="remove-express-workflow-dialog" widgetVar="remove-express-workflow-dialog"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemHeader')}" closeOnEscape="true" modal="true"
-    dynamic="true" appendTo="@(body)" resizable="false" responsive="true">
-    <h:form id="delete-workflow-form">
-      <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemConfirmation')}" />
-      <br />
-      <h:outputText value="#{processWidgetBean.deletedExpressProcess.getName()}" styleClass="FontBold" />
-      <div class="ui-dialog-footer u-dialog-footer">
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="remove-express-workflow-dialog" />
+    <ui:param name="widgetVar" value="remove-express-workflow-dialog" />
+    <ui:param name="dynamic" value="true"/>
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="icon ivyicon-delete-1" />
+    <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemHeader')}" />
+    
+    <ui:define name="dialogContentSection">
+      <div class="u-text-align-center portal-dialog-content">
+         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemConfirmation')}" />
+         <br />
+         <h:outputText value="#{processWidgetBean.deletedExpressProcess.getName()}" styleClass="u-font-bold" />
+      </div>
+    </ui:define>
+    
+    <ui:define name="dialogFooter">
+      <h:form id="delete-workflow-form">
+        <p:commandLink onclick="PF('remove-express-workflow-dialog').hide()" styleClass="u-mar-right-15"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" />
         <p:commandButton global="false" process="@this" update="#{cc.clientId}:process-list"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
           actionListener="#{processWidgetBean.deleteExpressWorkflow}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           oncomplete="PF('remove-express-workflow-dialog').hide();" />
-        <p:spacer width="5" />
-        <p:commandButton onclick="PF('remove-express-workflow-dialog').hide()" styleClass="portal-cancel-button"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
-      </div>
-    </h:form>
-  </p:dialog>
+      </h:form>
+    </ui:define>
+  </ui:decorate>
 
   <script>
       var processWidget = new ProcessWidget();

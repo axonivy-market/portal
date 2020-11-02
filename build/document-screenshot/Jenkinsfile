@@ -1,0 +1,122 @@
+pipeline {
+  agent {label 'portal-slave'}
+  
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
+  }
+
+  triggers {
+    cron('0 23 * * *')
+  }
+
+  tools { 
+      maven '3.6' 
+      jdk '11' 
+  }
+
+  parameters {
+      string(name: 'testPatternToRun', defaultValue: 'portal.guitest.document.screenshot.*Test', description: 'Screenshot test pattern')
+      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
+        -Divy.engine.download.url=-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip for nightly master
+        -Divy.engine.list.url=https://jenkins.ivyteam.io/job/ivy-core_product/job/master/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 for last successful build master
+        -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
+      ''')
+       booleanParam(name: 'deployToRepo', defaultValue: false, description: 'Force deploy new version of screenshots. CAUTION: Only enable this option when you run with default test pattern.')
+       booleanParam(name: 'checkoutCodeFromLatestReleaseTag', defaultValue: false, description: 'Turn on when you want to release new Portal screenshots, it will checkout the code from latest release tag')
+  }
+
+  environment {
+    releaseDir = 'archive'
+    engineDir = "$env.WORKSPACE/AxonIvyPortal/PortalTest/engine"
+  }
+
+  stages {
+    stage('build') {
+      steps {
+        script {
+          def utils = load 'build/common/utils.groovy'
+          utils.stopAllEngines()
+
+          if(params.checkoutCodeFromLatestReleaseTag) {
+              downloadPortalRelease()
+
+              echo '====================Check out tag of Portal latest successful release===================='
+              powershell '''
+                $artifactPattern = $env:releaseDir + '/AxonIvyPortal/PortalKit/target/*.iar' 
+                $artifactName = dir $artifactPattern | select -expand BaseName
+                $versionLastestReleasedPortal = $artifactName.substring(10)
+                git fetch --tags
+                git checkout tags/$versionLastestReleasedPortal
+                git reset --hard HEAD
+                git clean -fd
+              '''
+
+              echo '====================Copy patch to workspace if any. Note: this is in a tag and we cannot change code in git repo===================='
+              powershell '''
+                if (Test-Path ../patch/master) {
+                  copy -path ../patch/master -recurse -force -destination .
+                }
+              '''
+          }
+
+          utils.extractEngine(env.engineDir, params.engineDownloadURL)
+
+          echo '====================Run script to copy decorate js and css to Portal===================='
+          bat "AxonIvyPortal/PortalTest/resources/copy-decorate-js-css.bat"
+          
+          echo "====================Build Portal modules===================="
+          def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/PortalKitTestHelper', 'Showcase/portal-user-examples', 'Showcase/portal-developer-examples', 'Showcase/InternalSupport', 'AxonIvyPortal/PortalApp']
+          for (module in modules) {
+            bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir%"
+          }
+
+          echo "====================Deploy Portal modules===================="
+          powershell '''
+            $DEPLOYMENT= $env:engineDir + "/system/demo-applications/demo-portal"
+            rmdir $DEPLOYMENT/* -recurse
+            Copy-Item AxonIvyPortal/PortalApp/target/*zip -Destination $DEPLOYMENT
+            Copy-Item Showcase/portal-developer-examples/target/*iar -Destination $DEPLOYMENT
+            Copy-Item Showcase/portal-user-examples/target/*iar -Destination $DEPLOYMENT
+          '''
+
+          node('master') {
+            utils.remoteDesktop()
+          }
+
+          utils.killUnnecessaryProcessesToRunTest()
+
+          echo '====================Execute maven for testing===================='
+          def mavenGoal = params.deployToRepo? 'deploy' : 'install'
+          bat "mvn clean ${mavenGoal} -f AxonIvyPortal/PortalTest/document_screenshot_pom.xml %engineDownloadURL% -Dtest=${params.testPatternToRun} -DbrowserType=FIREFOX -DtrimStackTrace=false -Divy.engine.directory=engine -Divy.deploy.timeout.seconds=60 -Divy.compiler.engine.start.timeout=120"
+
+          node('master') {
+            utils.closeAllRemoteDesktopConnections()
+          }
+          
+          echo "====================Copy ElasticSearch log===================="
+          powershell '''
+            $LOG= $env:engineDir + "/elasticsearch/logs/ivy-elasticsearch-*.log"
+            Copy-Item $LOG -Destination AxonIvyPortal/PortalTest/target
+          '''
+        }
+      }
+    }
+  }
+
+  post {
+    always {
+      archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/*.zip", allowEmptyArchive: true
+      archiveArtifacts artifacts: "AxonIvyPortal/PortalTest/target/test/*/*.jpg, AxonIvyPortal/PortalTest/target/testEngineOut.log, , AxonIvyPortal/PortalTest/target/ivy-elasticsearch-*.log", allowEmptyArchive: true
+      junit allowEmptyResults: true, testResults: '**/surefire-reports/TEST-*.xml'
+    }
+  }
+}
+
+def downloadPortalRelease() {
+  echo '====================Download Portal latest successful release===================='
+  def branchName = env.BRANCH_NAME.replaceAll("/", "%%2F")
+  withCredentials([usernameColonPassword(credentialsId: 'jenkins-guest-cred', variable: 'jenkinsGuestCred')]) {
+    bat "curl --user ${jenkinsGuestCred} --output archive.zip ${env.JENKINS_URL}job/PortalRelease/job/${branchName}/lastSuccessfulBuild/artifact/*zip*/archive.zip"
+  }
+  unzip zipFile: 'archive.zip', quiet: true
+}

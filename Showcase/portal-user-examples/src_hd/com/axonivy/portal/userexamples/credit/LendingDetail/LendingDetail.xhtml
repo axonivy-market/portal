@@ -11,7 +11,7 @@
       <div class="ui-g-1 ui-xl-1 ui-lg-1 ui-md-2 ui-sm-3">
         <p:graphicImage library="ivy-cms" name="#{caseMapDetail.icon}" />
       </div>
-      <div class="ui-g-11 ui-xl-11 ui-lg-11 ui-md-10 ui-sm-9 TexAlLeft" id="lending-detail-header">
+      <div class="ui-g-11 ui-xl-11 ui-lg-11 ui-md-10 ui-sm-9 u-text-align-left" id="lending-detail-header">
         <h2>#{caseMapDetail.name}</h2>
       </div>
       <div class="ui-g-12">
@@ -47,7 +47,7 @@
     <ui:define name="actionButtons">
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         actionListener="#{logic.cancel}" />
-      <p:spacer width="20rem" />
+      <p:spacer width="20px" />
       <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')} #{caseMapDetail.name}"
         actionListener="#{caseMapDetailBean.startCaseMap(caseMapDetail.startLink)}" />
     </ui:define>

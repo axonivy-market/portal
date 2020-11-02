@@ -1,5 +1,5 @@
 [Ivy]
-16343BD885A12720 7.5.0 #module
+16343BD885A12720 9.2.0 #module
 >Proto >Proto Collection #zClass
 Us0 UserTaskWithMailFormProcess Big #zClass
 Us0 RD #cInfo
@@ -81,8 +81,7 @@ Us0 f9 actionTable 'out=in;
 ' #txt
 Us0 f9 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 ivy.task.reset();
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalEndPage();' #txt
+PortalNavigator.navigateToPortalEndPage();' #txt
 Us0 f9 security system #txt
 Us0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

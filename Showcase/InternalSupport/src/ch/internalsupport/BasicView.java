@@ -1,5 +1,7 @@
 package ch.internalsupport;
 
+import java.io.Serializable;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -13,8 +15,9 @@ import org.primefaces.model.diagram.endpoint.EndPointAnchor;
 
 @ManagedBean(name = "diagramBasicView")
 @RequestScoped
-public class BasicView {
-     
+public class BasicView implements Serializable {
+
+    private static final long serialVersionUID = 6331139845104731221L;
     private DefaultDiagramModel model;
  
     @PostConstruct

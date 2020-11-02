@@ -1,7 +1,14 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
+import static ch.ivyteam.ivy.workflow.CaseState.CREATED;
+import static ch.ivyteam.ivy.workflow.CaseState.DESTROYED;
+import static ch.ivyteam.ivy.workflow.CaseState.DONE;
+import static ch.ivyteam.ivy.workflow.CaseState.RUNNING;
+
 import java.util.ArrayList;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -14,8 +21,13 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery.OrderByColumnQuery;
 
 public class CaseSearchCriteria {
 
+  public final static EnumSet<CaseState> STANDARD_STATES = EnumSet.of(CREATED, RUNNING);
+  public final static EnumSet<CaseState> ADVANCE_STATES = EnumSet.of(DONE, DESTROYED);
+  /**
+   * @deprecated not used anymore, will get current login user for query
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
   private String involvedUsername;
-  private List<String> apps;
   private List<CaseState> includedStates;
   private String keyword;
   private Long caseId;
@@ -130,6 +142,7 @@ public class CaseSearchCriteria {
       appendSortByStartTimeIfSet(criteria);
       appendSortByEndTimeIfSet(criteria);
       appendSortByCreatorIfSet(criteria);
+      appendSortByOwnerIfSet(criteria);
       appendSortByStateIfSet(criteria);
       return this;
     }
@@ -187,6 +200,16 @@ public class CaseSearchCriteria {
         orderByName.descending();
       }
     }
+    
+    private void appendSortByOwnerIfSet(CaseSearchCriteria criteria) {
+      if (!CaseSortField.OWNER.toString().equalsIgnoreCase(criteria.getSortField())) {
+        return;
+      }
+      OrderByColumnQuery orderByName = query.orderBy().ownerDisplayName();
+      if (criteria.isSortDescending()) {
+        orderByName.descending();
+      }
+    }
 
     private void appendSortByStateIfSet(CaseSearchCriteria criteria) {
       if (!CaseSortField.STATE.toString().equalsIgnoreCase(criteria.getSortField())) {
@@ -198,13 +221,21 @@ public class CaseSearchCriteria {
       }
     }
   }
-
-  public List<String> getApps() {
-    return apps;
-  }
-
-  public void setApps(List<String> apps) {
-    this.apps = apps;
+  
+  /** Check if current user can see task in advance state such as
+   * DONE, DESTROYED
+   * Then extend Search query for case criteria
+   * @param hasAdminPermission
+   */
+  public void extendStatesQueryByPermission(boolean hasAdminPermission) {
+    setAdminQuery(hasAdminPermission);
+    if (hasAdminPermission) {
+      List<CaseState> adminStateNotIncluded = ADVANCE_STATES.stream()
+          .filter(state -> !includedStates.contains(state)).collect(Collectors.toList());
+      if (!adminStateNotIncluded.isEmpty()) {
+        addIncludedStates(adminStateNotIncluded);
+      }
+    }
   }
 
   public List<CaseState> getIncludedStates() {
@@ -262,10 +293,20 @@ public class CaseSearchCriteria {
     this.category = category;
   }
 
+  /**
+   * @return String
+   * @deprecated not used anymore, will get current login user for query
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
   public String getInvolvedUsername() {
     return involvedUsername;
   }
 
+  /**
+   * @param involvedUsername 
+   * @deprecated not used anymore, will get current login user for query
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
   public void setInvolvedUsername(String involvedUsername) {
     this.involvedUsername = involvedUsername;
   }
@@ -314,10 +355,6 @@ public class CaseSearchCriteria {
     return CollectionUtils.isNotEmpty(includedStates);
   }
 
-  public boolean hasApps() {
-    return CollectionUtils.isNotEmpty(apps);
-  }
-
   public boolean hasKeyword() {
     return StringUtils.isNotEmpty(keyword);
   }
@@ -345,10 +382,6 @@ public class CaseSearchCriteria {
   public void setNewQueryCreated(boolean isNewQueryCreated) {
     this.isNewQueryCreated = isNewQueryCreated;
   }
-  
-  public boolean hasInvolvedUsername() {
-    return StringUtils.isNotBlank(involvedUsername);
-  }
 
   public CaseQuery getFinalCaseQuery() {
     if (finalCaseQuery == null) {
@@ -360,5 +393,5 @@ public class CaseSearchCriteria {
   public void setFinalCaseQuery(CaseQuery finalCaseQuery) {
     this.finalCaseQuery = finalCaseQuery;
   }
-  
+
 }

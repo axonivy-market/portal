@@ -1,5 +1,5 @@
 [Ivy]
-16812A78CEF8FB1A 7.5.0 #module
+16812A78CEF8FB1A 9.2.0 #module
 >Proto >Proto Collection #zClass
 By0 BuildTaskQuery Big #zClass
 By0 B #cInfo
@@ -50,9 +50,9 @@ If you want to differentiate the customization in home page from customization i
 just check  the attribute isQueryForHomePage
 
 if (in.isQueryForHomePage) { // in home page
-	in.taskQuery = TaskQuery.create().where().activatorUserId().isNotNull();
+	in.taskQuery = TaskQuery.create().where().activatorId().isNotNull();
 }</name>
-        <nameStyle>425,5
+        <nameStyle>421,5
 </nameStyle>
     </language>
 </elementInfo>

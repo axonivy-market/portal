@@ -1,5 +1,5 @@
 [Ivy]
-165801CAE71C2982 7.5.0 #module
+165801CAE71C2982 9.2.0 #module
 >Proto >Proto Collection #zClass
 He0 HandleEndPageOverride Big #zClass
 He0 B #cInfo
@@ -40,7 +40,7 @@ He0 f3 actionCode 'import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 
 String ourNewEndPageFriendlyRequestPath = "Start Processes/ToCustomizedExpressEndPage/start.ivp";
-in.callbackUrl = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(ivy.wf.getApplication(), ourNewEndPageFriendlyRequestPath);' #txt
+in.callbackUrl = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(ourNewEndPageFriendlyRequestPath);' #txt
 He0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

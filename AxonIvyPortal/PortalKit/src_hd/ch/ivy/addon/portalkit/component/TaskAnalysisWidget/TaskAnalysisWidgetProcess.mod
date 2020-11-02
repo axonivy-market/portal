@@ -1,5 +1,5 @@
 [Ivy]
-163DD68942416255 7.5.0 #module
+163DD68942416255 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskAnalysisWidgetProcess Big #zClass
 Ts0 RD #cInfo
@@ -248,7 +248,7 @@ if(in.taskFilterDataToBeRemoved.type == FilterType.ONLY_ME) {
 } else {
 	in.taskPublicFilters.remove(in.taskFilterDataToBeRemoved);
 }
-if (in.dataModel.#selectedTaskAnalysisFilterData is initialized && in.dataModel.selectedTaskAnalysisFilterData.equals(in.taskFilterDataToBeRemoved)) {
+if (in.dataModel.isSameTaskFilterData(in.taskFilterDataToBeRemoved)) {
 	in.dataModel.resetFilters();
 }' #txt
 Ts0 f35 security system #txt
@@ -427,7 +427,7 @@ Ts0 f5 actionTable 'out=in;
 Ts0 f5 actionCode 'import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import javax.faces.context.FacesContext;
 
-String statisticPageUrl = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(ivy.wf.getApplication(), "Start Processes/PortalStart/StatisticPage.ivp");
+String statisticPageUrl = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath("Start Processes/PortalStart/StatisticPage.ivp");
 FacesContext.getCurrentInstance().getExternalContext().redirect(statisticPageUrl);' #txt
 Ts0 f5 security system #txt
 Ts0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -492,7 +492,6 @@ param.count=in.maxResultNumberPerQuery;
 Ts0 f15 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData out;
 ' #txt
 Ts0 f15 responseMappingAction 'out=in;
-out.errors=result.errors;
 ' #txt
 Ts0 f15 responseActionCode in.collectedTasksForExporting.addAll(result.tasks); #txt
 Ts0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -513,7 +512,6 @@ param.count=in.count;
 Ts0 f9 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData out;
 ' #txt
 Ts0 f9 responseMappingAction 'out=in;
-out.errors=result.errors;
 out.tasks=result.tasks;
 ' #txt
 Ts0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -555,7 +553,6 @@ Ts0 f7 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
 Ts0 f7 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData out;
 ' #txt
 Ts0 f7 responseMappingAction 'out=in;
-out.errors=result.errors;
 out.totalTasks=result.totalTasks;
 ' #txt
 Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -580,7 +577,6 @@ Ts0 f52 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
 Ts0 f52 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData out;
 ' #txt
 Ts0 f52 responseMappingAction 'out=in;
-out.errors=result.errors;
 out.totalTasks=result.totalTasks;
 ' #txt
 Ts0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

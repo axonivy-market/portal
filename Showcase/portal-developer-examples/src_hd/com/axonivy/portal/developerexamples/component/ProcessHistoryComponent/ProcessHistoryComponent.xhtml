@@ -6,10 +6,19 @@
 	<ui:composition template="/layouts/BasicTemplate.xhtml">
 		<ui:param name="isNotRequiredLogin" value="false" />
 		<ui:define name="title">Alpha Company Process History</ui:define>
-		<ui:define name="simplePageContent">
+		<ui:define name="pageContent">
 			<h1>Process history of Alpha Company</h1>
 			<ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="alpha" chunkSize="10" scrollHeight="600" />
 		</ui:define>
-	</ui:composition>
+        <ui:define name="footer">
+          <script type="text/javascript">
+            $(function() {
+              var simpleScreen = new CaseListScreenHandler();
+              var responsiveToolkit = ResponsiveToolkit(simpleScreen);
+              Portal.init(responsiveToolkit);
+            });
+          </script>
+        </ui:define>
+  </ui:composition>
 </h:body>
 </html>

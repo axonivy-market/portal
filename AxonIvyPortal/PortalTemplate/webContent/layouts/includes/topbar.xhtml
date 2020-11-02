@@ -21,7 +21,7 @@
 
   <ui:insert name="menu-bar">
     <ul id="top-menu" class="topbar-menu animated js-top-menu">
-      <li class="breadcrumb-container u-hidden-md-down">
+      <li class="breadcrumb-container">
         <ic:ch.ivy.addon.portal.generic.PortalBreadcrumb id="portal-breadcrumb"
         isWorkingOnATask="#{isWorkingOnATask}"
         viewName="#{viewName}"
@@ -30,11 +30,11 @@
       <li jsf:rendered="#{chatRendererBean.isChatRendered}">
         <p:commandLink id="toggle-chat-panel-command" global="false"
           styleClass="notification-badge mod-chat-menu">
-          <i class="fa fa-comment" />
+          <i class="icon ivyicon-messages-bubble" />
         </p:commandLink>
       </li>
 
-      <li class="setting-container" >
+      <li class="setting-container">
         <a href="#" id="user-settings-menu"> <span
           class="user-name">#{userMenuBean.loggedInUser}</span>
         </a>
@@ -59,8 +59,10 @@
           <li><p:link id="project-info-menu-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/info')}"
               onclick="rcProjectInfo(); $('#user-setting-container').click()" /></li>
 
-          <li><ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting id="logout-setting" isWorkingOnATask="#{isWorkingOnATask}"
-                task="#{task}" /></li>
+          <li jsf:rendered="#{loginBean.isLoginPageRendered()}">
+            <ic:ch.ivy.addon.portalkit.multiapp.settings.LogoutSetting
+              id="logout-setting" isWorkingOnATask="#{isWorkingOnATask}" task="#{task}" />
+          </li>
         </ul></li>
 
       <li class="ui-sm-hidden ui-md-hidden"><h:form id="global-search-form" prependId="false" rendered="#{showGlobalSearch}">
@@ -72,7 +74,7 @@
       <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="setting-container-guide-component" targetComponent="setting-container"
         title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/username/title')}" 
         content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/username/content')}"
-        targetCssSelector=".setting-container" icon="fa-user" onNext="PF('statistic-widget-container-guide').show()"
+        targetCssSelector=".setting-container" iconClass="icon ivyicon-single-neutral-actions" onNext="PF('statistic-widget-container-guide').show()"
         my="right bottom-30" at="right top" arrowPosition="top right" onShow="showUsernameGuide()" onHide="hideUsernameGuide()"
         updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}" />
         
@@ -89,7 +91,7 @@
       </script>
     </ui:insert>
 
-    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" width="500" closeOnEscape="true"
+    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}" width="50%" closeOnEscape="true"
       widgetVar="changePasswordDialog" id="change-password-dialog" resizable="false" modal="true" draggable="false" appendTo="@(body)" dynamic="true"
       styleClass="change-password-dialog" responsive="true">
       <h:form id="change-password-form">
@@ -98,13 +100,13 @@
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/adminSettings')}" closeOnEscape="true" widgetVar="adminUI"
-      id="admin-ui-dialog" resizable="false" styleClass="admin-ui-dialog" modal="true" draggable="true" appendTo="@(body)" dynamic="true"
-      onShow="initAdminSettingsData()" onHide="PF('dialogClosingInformation').show();" width="80vw" responsive="true">
-      <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="adminui" />
-      <f:facet name="footer">
+      id="admin-ui-dialog" resizable="false" styleClass="admin-ui-dialog" modal="true" draggable="true" appendTo="@(body)" dynamic="true" rendered="#{permissionBean.hasAdminPermission()}"
+      onShow="initAdminSettingsData(); PF('adminUI').initPosition();" onHide="PF('dialogClosingInformation').show();" width="80vw" responsive="true" fitViewport="true">
+      <ic:ch.ivy.addon.portalkit.admin.AdminSettings id="adminui" onTabChange="PF('adminUI').initPosition();"/>
+      <div class="ui-dialog-footer">
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="close-button" type="button"
-          onclick="clearFilter(); PF('adminUI').hide();" />
-      </f:facet>
+        icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}" onclick="clearFilter(); PF('adminUI').hide();" />
+      </div>
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/dialogHeader')}" width="50%"
@@ -112,13 +114,13 @@
       appendTo="@(body)" dynamic="true" styleClass="dialog-closing-information" responsive="true">
       <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/dialogclosinginformation/informMessage')}" />
       <f:facet name="footer">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" styleClass="portal-ok-button" id="close-dialog-button"
-          type="button" onclick="window.location.reload();" />
+        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" id="close-dialog-button"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}" type="button" onclick="window.location.reload();" />
       </f:facet>
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/absenceAndDeputy')}" 
-      styleClass="absence-settings-dialog"  
+      styleClass="absence-settings-dialog"
       width="80%"
       closeOnEscape="true" 
       widgetVar="absenceManagement" 
@@ -128,17 +130,19 @@
       draggable="true"
       appendTo="@(body)" 
       dynamic="true" 
-      responsive="true">
-      <ic:ch.ivy.addon.portalkit.multiapp.settings.AbsenceManagement id="absence-management" dialogName="absenceManagement" />
+      responsive="true"
+      fitViewport="true"
+      onShow="PF('absenceManagement').initPosition();">
+      <ic:ch.ivy.addon.portalkit.multiapp.settings.AbsenceManagement id="absence-management" dialogName="absenceManagement" onTabChange="PF('absenceManagement').initPosition();"/>
     </p:dialog>
 
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/header')}" styleClass="project-info-dialog" width="1000"
       closeOnEscape="true" widgetVar="project-info-dialog" id="project-info-dialog" resizable="false" modal="true" draggable="false"
       appendTo="@(body)" dynamic="true" responsive="true">
       <ic:ch.ivy.addon.portalkit.component.ProjectVersion id="project-version" />
-      <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer u-email-dialog-footer">
+      <h:panelGroup layout="block" styleClass="ui-g-12 u-text-align-right">
         <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" id="project-version-close-button" type="button"
-          onclick="PF('project-info-dialog').hide();" />
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}" onclick="PF('project-info-dialog').hide();" />
       </h:panelGroup>
     </p:dialog>
 

@@ -39,7 +39,6 @@ function taskByExpiryChartExtender() {
 
 function taskByExpiryChartClickEvent(event, activeElement) {
   var $expiryChartDrillDown = $('.js-expiry-chart-drill-down');
-  var $expiryChartTaskList = $('.js-expiry-chart-task-list');
   if (activeElement[0]) {
     if (activeElement[0]._index === 0) {
       $expiryChartDrillDown.hide();
@@ -147,9 +146,9 @@ function donutExtender() {
   jQuery.extend(true, this.cfg.config.options, options);
 }
 
-var toggleColumn = document.getElementsByClassName("elapsed-time-detail-toggle-column");
+var toggleColumn = document.getElementsByClassName("js-elapsed-time-detail-toggle-column");
 var hiddenColumn =  document.getElementsByClassName("js-elapsed-case");
-var caseTable = document.getElementsByClassName("case-table");
+var caseTable = document.getElementsByClassName("js-case-table");
 
 var elapsedTimeChartDetail = {
 

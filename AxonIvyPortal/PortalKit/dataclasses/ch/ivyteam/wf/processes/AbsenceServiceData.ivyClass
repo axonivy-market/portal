@@ -3,6 +3,4 @@ ch.ivyteam.wf.processes #namespace
 absence ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence #field
 absences java.util.Set #field
 absencesByUser java.util.Map #field
-apps List<String> #field
-errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
 username String #field

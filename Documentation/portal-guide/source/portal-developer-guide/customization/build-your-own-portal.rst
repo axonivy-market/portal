@@ -72,7 +72,7 @@ Build your own portal using PortalKit
         ``location.reload()``. If that happens, add this to your javascript function:
         ``showConfirmDialogBeforeUnload = false;``
 
-.. |custom-portal-home| image:: images/build-your-own-portal/custom-portal-home.png
+.. |custom-portal-home| image:: ../../screenshots/dashboard/dashboard.png
 .. |new-home-page-connect-process| image:: images/build-your-own-portal/new-home-page-connect-process.png
 .. |task-category-config| image:: images/build-your-own-portal/task-category-config.png
 .. |warn-on-closing-browser-tab| image:: images/build-your-own-portal/warn-on-closing-browser-tab.png

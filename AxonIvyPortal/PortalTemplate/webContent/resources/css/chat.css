@@ -42,6 +42,18 @@
   }
 }
 
+@media screen and (min-width: 64.063em) and (max-width: 90.062em) {
+  .chat-panel.active.message-displayed {
+    width: 65vw !important;
+  }
+}
+
+@media screen and (min-width: 90.063em) {
+    .chat-panel.active.message-displayed {
+    width: 50vw !important;
+  }
+}
+
 /* Ends Responsive for Chat */
 
 .chat-panel {
@@ -90,7 +102,7 @@
 
 .chat-contact-content-contact-list {
   overflow-y: auto;
-  max-height: 100vh;
+  height: 100%;
 }
 
 .contact-card {
@@ -480,12 +492,7 @@ _:-ms-fullscreen, :root .chat-message {
   right: 18px;
 }
 
-.close-chat .ui-button.ui-button-icon-only {
-  width: 25px;
-  height: 27px;
-}
-
 .close-chat .ui-button.ui-button-icon-only .ui-icon {
-  margin-left: -9px;
+  margin-left: -8px;
   margin-top: -7px;
 }

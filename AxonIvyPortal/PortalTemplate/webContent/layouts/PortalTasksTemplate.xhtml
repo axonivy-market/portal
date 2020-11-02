@@ -8,7 +8,7 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="taskView" value="#{data.taskView}" />
-    <ui:param name="viewName" value="TASK" />
+    <ui:param name="viewName" value="#{data.taskView.isRelatedTaskView() ? 'RELATED_TASK' : 'TASK'}" />
     <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
     <ui:param name="announcementContainerStyleClass" value="announcement-container-in-task-list" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}</ui:define>
@@ -74,6 +74,8 @@
                   componentId="creation-time" value="#{task.startTimestamp}" responsiveStyleClass="u-hidden-md-down js-hidden-when-expand-menu" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-expiry-date-component" rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}"
                   componentId="expiry-time" value="#{task.expiryTimestamp}" />
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-completed-date-component" rendered="#{taskView.dataModel.isSelectedColumn('COMPLETED_ON')}"
+                  componentId="completed-time" value="#{task.endTimestamp}" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component" dataModel="#{taskView.dataModel}" state="#{task.state}" />
               </ui:fragment>
             </f:facet>

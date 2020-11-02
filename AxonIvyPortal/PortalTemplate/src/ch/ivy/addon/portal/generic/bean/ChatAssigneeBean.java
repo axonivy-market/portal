@@ -26,7 +26,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portal.chat.ChatGroupUtils;
-import ch.ivy.addon.portal.chat.ChatServiceContainer;
+import ch.ivy.addon.portal.chat.ChatReferencesContainer;
 import ch.ivy.addon.portal.chat.CreateGroupChatStatus;
 import ch.ivy.addon.portal.chat.GroupChat;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
@@ -36,10 +36,8 @@ import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
-import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.util.CaseUtils;
-import ch.ivy.addon.portalkit.util.RoleUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
@@ -61,7 +59,6 @@ public class ChatAssigneeBean implements Serializable {
   private static final long serialVersionUID = 4691697531600235758L;
 
   private boolean isAssignToUser = true;
-  private List<RoleDTO> availableRoles;
   private UserDTO selectedUser;
   private RoleDTO selectedRole;
   private Set<SecurityMemberDTO> selectedAssignees = new HashSet<>();
@@ -79,7 +76,7 @@ public class ChatAssigneeBean implements Serializable {
 
   private void checkCaseHasGroupChat() {
     CaseQuery caseQuery = queryCaseHasGroupChat();
-    doesGroupChatExist = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getFirstResult(caseQuery) != null;
+    doesGroupChatExist = Ivy.wf().getCaseQueryExecutor().getFirstResult(caseQuery) != null;
   }
 
   public void handleConfiguredRoleList() {
@@ -117,22 +114,24 @@ public class ChatAssigneeBean implements Serializable {
     }
   }
 
-  public List<RoleDTO> populateRoleAutoComplete(String query) {
-    List<RoleDTO> filteredRoles = RoleUtils.filterRoleDTO(getAvailableRoles(), query);
-    filteredRoles
-        .sort((first, second) -> StringUtils.compareIgnoreCase(first.getDisplayName(), second.getDisplayName()));
-    return filteredRoles;
-  }
-
   public void addAssignee() {
     SecurityMemberDTO selectedAssignee = selectedUser != null ? SecurityMemberDTOMapper.mapFromUserDTO(selectedUser) :  SecurityMemberDTOMapper.mapFromRoleDTO(selectedRole);
-    if (selectedAssignee == null || selectedAssignees.contains(selectedAssignee)) {
+    if (selectedAssignee == null || isSelectedAssigneeExist(selectedAssignee)) {
       FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "",
           Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/errorSelectInvalidAssignee")));
       return;
     }
 
     selectedAssignees.add(selectedAssignee);
+  }
+
+  private boolean isSelectedAssigneeExist(SecurityMemberDTO selectedAssignee) {
+    for (SecurityMemberDTO securityMemberDTO : selectedAssignees) {
+      if (securityMemberDTO.getName().equals(selectedAssignee.getName())) {
+        return true;
+      }
+    }
+    return false;
   }
 
   public void removeAssignee(SecurityMemberDTO assignee) {
@@ -142,7 +141,7 @@ public class ChatAssigneeBean implements Serializable {
   public String getGroupChatExistMessage() {
     if (StringUtils.isBlank(groupChatExistMessage)) {
       CaseQuery caseQuery = queryCaseHasGroupChat();
-      ICase iCase = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getFirstResult(caseQuery);
+      ICase iCase = Ivy.wf().getCaseQueryExecutor().getFirstResult(caseQuery);
       existedGroupChat = mapFromCustomField(iCase);
       groupChatExistMessage = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/processChatWasCreated",
           Arrays.asList(getGroupChatName(existedGroupChat)));
@@ -158,7 +157,7 @@ public class ChatAssigneeBean implements Serializable {
     if (existedGroupChat != null) {
       Set<String> assigneeNames = existedGroupChat.getAssigneeNames();
       if (CollectionUtils.isNotEmpty(assigneeNames)) {
-        assigneeNames.add(Ivy.session().getSessionUser().getMemberName());
+        assigneeNames.add("#".concat(Long.toString(Ivy.session().getSessionUser().getId())));
         FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO,
             Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/chat/joinedProcessChat",
                 Arrays.asList(getGroupChatName(existedGroupChat))), null);
@@ -189,7 +188,9 @@ public class ChatAssigneeBean implements Serializable {
         .orElse(StringUtils.EMPTY);
     try {
       ObjectMapper mapper = new ObjectMapper();
-      return mapper.readValue(groupChatJson, GroupChat.class);
+      GroupChat result = mapper.readValue(groupChatJson, GroupChat.class);
+      result.getAssignees();
+      return result;
     } catch (IOException e) {
       Ivy.log().error("Failed to parse group chat for case {0}, json: {1}", e, iCase.getId(), groupChatJson);
       return null;
@@ -209,9 +210,6 @@ public class ChatAssigneeBean implements Serializable {
     handleConfiguredRoleList();
 
     if (isShowCreateGroupChatDialog) {
-      if (CollectionUtils.isEmpty(availableRoles)) {
-        populateAvailableRoles();
-      }
       PrimeFaces.current().executeScript("PF('chat-assignee-dialog').show()");
     } else if (!doesGroupChatExist) {
       createGroupChat();
@@ -237,7 +235,7 @@ public class ChatAssigneeBean implements Serializable {
       if (createGroupChatStatus == CreateGroupChatStatus.ALREADY_EXIST) {
         message = new FacesMessage(FacesMessage.SEVERITY_ERROR, getGroupChatExistMessage(), null);
       } else if (createGroupChatStatus == CreateGroupChatStatus.SUSCCESS) {
-        ChatServiceContainer.getChatService().updateGroupList(group);
+        ChatReferencesContainer.getChatService().updateGroupList(group);
       } else {
         message = generateErrorMessageWhenCreateGroupChat();
       }
@@ -336,26 +334,12 @@ public class ChatAssigneeBean implements Serializable {
     return roles.stream().filter(role -> !Objects.isNull(role)).collect(Collectors.toList());
   }
 
-  private void populateAvailableRoles() {
-    if (CollectionUtils.isEmpty(availableRoles)) {
-      availableRoles = ServiceUtilities.findAllRoleDTO(task.getApplication());
-    }
-  }
-
   public boolean getIsAssignToUser() {
     return isAssignToUser;
   }
 
   public void setIsAssignToUser(boolean isAssignToUser) {
     this.isAssignToUser = isAssignToUser;
-  }
-
-  public List<RoleDTO> getAvailableRoles() {
-    return availableRoles;
-  }
-
-  public void setAvailableRoles(List<RoleDTO> availableRoles) {
-    this.availableRoles = availableRoles;
   }
 
   public UserDTO getSelectedUser() {

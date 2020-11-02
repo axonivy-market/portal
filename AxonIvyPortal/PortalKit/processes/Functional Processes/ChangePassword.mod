@@ -1,5 +1,5 @@
 [Ivy]
-15E13D0DD56B6D3B 7.5.0 #module
+15E13D0DD56B6D3B 9.2.0 #module
 >Proto >Proto Collection #zClass
 Cd0 ChangePassword Big #zClass
 Cd0 B #cInfo
@@ -97,13 +97,13 @@ Cd0 f2 96 560 96 625 #arcP
 Cd0 f9 actionTable 'out=in;
 ' #txt
 Cd0 f9 actionCode 'import ch.ivy.addon.portalkit.enums.ChangePasswordStatus;
-if(in.errors.size() > 0) {
-	in.status = ChangePasswordStatus.FAIL;
-	in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/changePasswordWSError");
-}
-else{
+if(in.result) {
 	in.status = ChangePasswordStatus.OK;
 	in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/updatePasswordSuccessfully");
+}
+else{
+	in.status = ChangePasswordStatus.FAIL;
+	in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/changePasswordWSError");
 }' #txt
 Cd0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -148,15 +148,14 @@ Cd0 f13 1 240 544 #addKink
 Cd0 f13 1 0.5 0 0 #arcLabel
 Cd0 f12 expr out #txt
 Cd0 f12 96 374 96 426 #arcP
-Cd0 f14 processCall 'Ivy Data Processes/PasswordService:updatePassword(String,String)' #txt
-Cd0 f14 requestActionDecl '<String username,String newPassword> param;' #txt
-Cd0 f14 requestMappingAction 'param.username=ivy.session.getSessionUserName();
-param.newPassword=in.newPassword;
+Cd0 f14 processCall 'Ivy Data Processes/PasswordService:updatePassword(String)' #txt
+Cd0 f14 requestActionDecl '<String newPassword> param;' #txt
+Cd0 f14 requestMappingAction 'param.newPassword=in.newPassword;
 ' #txt
 Cd0 f14 responseActionDecl 'ch.ivy.add.portalkit.ChangePasswordData out;
 ' #txt
 Cd0 f14 responseMappingAction 'out=in;
-out.errors=result.errors;
+out.result=result.result;
 ' #txt
 Cd0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

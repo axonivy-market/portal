@@ -7,11 +7,11 @@ You could find project ``portal-developer-examples`` in engine demo mode or impo
 
 .. note::
 	If you copy ``PortalStart.mod`` to your project for customization, set default pages to your project, follow this chapter to customize standard processes:
-	`Standard Processes <https://developer.axonivy.com/doc/latest/engine-guide/administration/standard-processes.html>`_
+	`Standard Processes <https://developer.axonivy.com/doc/9.1/engine-guide/administration/standard-processes.html>`_
 
-.. figure:: images/customization/engine-demo-mode.png
+|engine-demo-mode|
 
-.. figure:: images/customization/import-portal-examples.png
+|import-portal-examples|
 
 .. toctree::
    :maxdepth: 1
@@ -44,3 +44,6 @@ You could find project ``portal-developer-examples`` in engine demo mode or impo
    user-with-environment-info
    page-header-footer
    
+
+.. |engine-demo-mode| image:: images/customization/engine-demo-mode.png
+.. |import-portal-examples| image:: images/customization/import-portal-examples.png

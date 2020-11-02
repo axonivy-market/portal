@@ -15,9 +15,9 @@
 		<ui:param name="steps"
 			value="#{data.gdprRequest.processState.listForProcessChain}" />
 		<div>
-			<div class="">
+			<div>
 				<ui:define name="taskName">
-					<span class=" fa fa-check-square-o task-template-title-icon"></span>
+					<span class="icon ivyicon-task-list-edit task-template-title-icon"></span>
 					<h:outputText styleClass="task-template-title" id="title"
 						title="#{task.name}" value="#{task.name}" />
 				</ui:define>
@@ -198,7 +198,7 @@
 								style="text-align:center;width:10%">
 								<p:commandButton id="showFileButton" ajax="false"
 									actionListener="#{logic.show(file)}"
-									icon="fa fa-download"
+									icon="icon ivyicon-download-bottom"
 									title="#{ivy.cms.co('/Dialogs/GdprRequest/Labels/tableDownload')}"
 									immediate="true">
 									<p:fileDownload value="#{data.streamedContent}" />
@@ -209,10 +209,13 @@
 								<p:commandButton actionListener="#{logic.delete(file)}"
 									title="#{ivy.cms.co('/Labels/delete')}"
 									update="#{p:component('fileTable')} #{p:component('pdfFileGroup')} form"
-									icon="fa fa-trash" immediate="true" />
+									icon="icon ivyicon-bin-1" immediate="true" />
 							</p:column>
 						</p:dataTable>
 						<p:fileUpload multiple="true" mode="advanced"
+                            chooseIcon="icon ivyicon-touchpad-finger"
+                            uploadIcon="icon ivyicon-add-small"
+                            cancelIcon="icon ivyicon-delete-2"
 							fileUploadListener="#{logic.handleFileUploader}"
 							update="fileTable" dragDropSupport="true" 
 							style="padding:0; margin-top:10px"/>
@@ -226,11 +229,8 @@
 				</div>
 				<p:toolbar>
 					<f:facet name="right">
-						<p:commandButton value="#{ivy.cms.co('/Labels/proceed')}"
+						<p:commandButton icon="icon ivyicon-check-1" value="#{ivy.cms.co('/Labels/proceed')}"
 							actionListener="#{logic.proceed}" update="form" />
-						<p:commandButton value="#{ivy.cms.co('/Labels/cancel')}"
-							actionListener="#{logic.cancel}" immediate="true"
-							styleClass="portal-cancel-button" />
 					</f:facet>
 				</p:toolbar>
 			</h:form>

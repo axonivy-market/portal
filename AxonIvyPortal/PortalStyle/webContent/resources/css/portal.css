@@ -1,13 +1,5 @@
 @charset "UTF-8";
 
-@font-face {
-  font-family: "true-minimalistic-icons";
-  src: url("#{resource['true-minimalistic-icons:true-minimalistic-icons.eot']}");
-  src: url("#{resource['true-minimalistic-icons:true-minimalistic-icons.eot']}?#iefix") format("embedded-opentype"), url("#{resource['true-minimalistic-icons:true-minimalistic-icons.woff']}") format("woff"), url("#{resource['true-minimalistic-icons:true-minimalistic-icons.ttf']}") format("truetype"), url("#{resource['true-minimalistic-icons:true-minimalistic-icons.svg']}#true-minimalistic-icons") format("svg");
-  font-weight: normal;
-  font-style: normal; }
-
-
 /* Add your customizations of theme here */
 /* Generic */
 html {
@@ -73,6 +65,31 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
   width: auto;
   max-width: 100%; }
 
+.login-body.login-error-page {
+  background-image: none;
+  background-color: var(--ivy-primary-color-grey-basic);
+}
+
+.login-body.login-error-page .login-panel {
+  width: 750px;
+  margin-left: -375px;
+}
+
+.login-body.login-error-page .login-panel .login-panel-header {
+  background-color: var(--primary-color);
+}
+
+.login-body.login-error-page .login-panel .login-panel-content {
+  padding: 64px 100px; }
+
+@media (max-width: 640px) {
+  .login-body.login-error-page .login-panel {
+  	width: auto;
+  	margin-left: auto; }
+
+  .login-body.login-error-page .login-panel .login-panel-content {
+    padding: 64px 25px; }
+}
 /* Icon */
 .fa:before {
   font-family: var(--icon-font-family); }
@@ -108,39 +125,6 @@ body .ui-icon {
   line-height: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
-
-[class^="tmi-"]:before,
-[class*=" tmi-"]:before {
-  font-family: var(--true-minimalistic-icon-font-family);
-  font-style: var(--true-minimalistic-icon-font-style);
-  font-weight: var(--true-minimalistic-icon-font-weight);
-  font-variant: var(--true-minimalistic-icon-font-variant);
-  text-transform: none;
-  speak: none;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
-
-.tmi-box-arrow-left:before {
-  content: "\e03c"; }
-
-.tmi-box-arrow-right:before {
-  content: "\e03d"; }
-
-.tmi-box-arrow-toinside:before {
-  content: "\e03e"; }
-
-.tmi-chevorn-right:before {
-  content: "\44"; }
-
-.tmi-ellipsis-h:before,
-.tmi-ellipsis-v:before {
-  content: "\e00f"; }
-
-.tmi-ellipsis-v {
-  -ms-transform: rotate(90deg);
-  -webkit-transform: rotate(90deg);
-  transform: rotate(90deg); }
 
 /* Fieldset */
 .ui-fieldset-content table {
@@ -214,13 +198,13 @@ body .ui-datatable tbody tr.ui-datatable-even {
   height: 65px; }
 
 .layout-wrapper .layout-main .layout-topbar .menu-btn i {
-  font-size: 2.4rem; }
+  font-size: 2.4rem !important; }
 
 .layout-wrapper .layout-main .layout-topbar {
   background: var(--ivy-primary-color-light);
   box-shadow: none;
   padding-bottom: 0;
-  height: 58px; }
+  height: 62px; }
 
 .layout-wrapper .layout-main .layout-content {
   padding: 0 20px 0 20px;
@@ -229,6 +213,10 @@ body .ui-datatable tbody tr.ui-datatable-even {
 
 .topbar-menu li .ui-commandlink {
   font-size: var(--large-font-size); }
+  
+.topbar-menu li .icon {
+  font-size: var(--top-bar-icon-size) !important;
+}
 
 @media screen and (max-height: 500px) {
   .layout-wrapper .layout-main .layout-content {
@@ -496,9 +484,9 @@ body .ui-widget-header.portal-breadcrumb {
   background-color: var(--breadcrumb-background-color) !important;
   font-size: var(--breadcrumb-font-size); }
 
-.layout-wrapper .layout-main .layout-topbar .layout-topbar-menu-wrapper .topbar-menu .ui-widget-header.portal-breadcrumb li a.ui-icon-home {
-  font-size: var(--breadcrumb-home-icon-font-size); }
-
+.portal-breadcrumb .icon {
+  color: var(--breadcrumb-home-icon-color) !important;
+}
 /*Style Email Setting --------------------------------------------------------------------------------*/
 .daily-summary.ui-selectmanycheckbox.ui-widget label {
   margin-left: 0px; }
@@ -549,14 +537,25 @@ body .ui-widget.ui-fieldset.process-group.ui-fieldset .ui-fieldset-legend {
 .task-state-done {
   color: var(--task-state-done-color); }
 
+.case-state-zombie-destroyed,
 .task-state-zombie-destroyed {
   color: var(--task-state-zombie-destroyed-color); }
 
+.task-state-failed {
+  color: var(--task-state-failed-color);}
+
+.task-state-waiting {
+  color: var(--task-state-waiting-color);}
+
 .task-state-reserved {
-  color: var(--task-state-reserved-color); }
+  color: var(--task-state-reserved-color); 
+  font-size: var(--task-state-reserved-font-size) !important;
+}
 
 .task-state-system {
-  color: var(--task-state-system-color); }
+  color: var(--task-state-system-color); 
+  font-size: var(--task-state-system-font-size) !important;
+}
 
 .task-priority-low {
   color: var(--task-priority-low-color); }
@@ -588,7 +587,8 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 .statistic-carousel .ui-carousel-header .ui-carousel-header-title .chart-info,
 .dashboard-chart-panel .chart-actions-container .chart-action,
 .dashboard-chart-panel .chart-info {
-  font-size: 1.5rem; }
+  font-size: 1.5rem !important; 
+}
 
 .statistic-carousel .ui-carousel-header .ui-carousel-header-title .chart-info:hover,
 .dashboard-chart-panel .chart-info:hover,
@@ -701,6 +701,15 @@ body .portal-cancel-button.ui-widget.ui-button .ui-icon,
 
 .ui-widget.ui-button.defined-task-button.ui-state-hover {
   background-color: var(--defined-task-button-actived-or-hover-background-color); }
+  
+.defined-task-container.card,
+.form-elements-container.card,
+.approval-comment-container .card,
+.express-email-container .card,
+.express-fieldset .card,
+.express-view-form .card {
+  box-shadow: var(--card-box-shadow);
+  border-radius: var(--card-border-radius); }
 
 /*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
 .stages-chain .current i {
@@ -798,17 +807,6 @@ body .portal-cancel-button.ui-widget.ui-button .ui-icon,
   background-color: var(--announcement-background-color);
   border: 2px solid var(--announcement-border-color); }
 
-body .ui-button.action-button {
-  box-shadow: none;
-  background-color: transparent;
-  border: 1px solid transparent; }
-
-body .ui-widget.ui-button.action-button span, body .ui-widget.ui-button.action-button span {
-    color: var(--case-task-action-button-color); }
-
-.ui-button.ui-widget.action-button.ui-state-hover {
-  background-color: var(--case-task-action-button-hover-background-color); }
-
 /*Style For Task Detail --------------------------------------------------------------------------------------*/
 body .task-item-body .task-details-item-note .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top, .task-item-body .task-details-item-document .ui-paginator.ui-paginator-top.ui-widget-header.ui-corner-top {
   background-color: var(--task-detail-paginator-header-corner-top-background-color);
@@ -823,7 +821,9 @@ body .task-item-body .task-details-item-note .ui-paginator a.ui-state-active, .t
 body .task-item-body .task-details-item-note .ui-paginator a.ui-paginator-page.ui-state-hover, body .task-item-body .task-details-item-note .ui-paginator a.ui-paginator-page.ui-state-active, body .task-item-body .task-details-item-note .ui-paginator a.ui-paginator-page.ui-state-hover, body .task-item-body .task-details-item-note .ui-paginator a.ui-paginator-page.ui-state-active, body .task-item-body .task-details-item-note a.ui-paginator-first.ui-state-hover, body .task-item-body .task-details-item-note a.ui-paginator-first.ui-state-active, body .task-item-body .task-details-item-note a.ui-paginator-prev.ui-state-hover, body .task-item-body .task-details-item-note a.ui-paginator-prev.ui-state-active, body .task-item-body .task-details-item-note a.ui-paginator-next.ui-state-hover, body .task-item-body .task-details-item-note a.ui-paginator-next.ui-state-active, body .task-item-body .task-details-item-note a.ui-paginator-last.ui-state-hover, body .task-item-body .task-details-item-note a.ui-paginator-last.ui-state-active, .task-item-body .task-details-item-document .ui-paginator a.ui-paginator-page.ui-state-hover, .task-item-body .task-details-item-document .ui-paginator a.ui-paginator-page.ui-state-active, .task-item-body .task-details-item-document .ui-paginator a.ui-paginator-page.ui-state-hover, .task-item-body .task-details-item-document .ui-paginator a.ui-paginator-page.ui-state-active, .task-item-body .task-details-item-document a.ui-paginator-first.ui-state-hover, .task-item-body .task-details-item-document a.ui-paginator-first.ui-state-active, .task-item-body .task-details-item-document a.ui-paginator-prev.ui-state-hover, .task-item-body .task-details-item-document a.ui-paginator-prev.ui-state-active, .task-item-body .task-details-item-document a.ui-paginator-next.ui-state-hover, .task-item-body .task-details-item-document a.ui-paginator-next.ui-state-active, .task-item-body .task-details-item-document a.ui-paginator-last.ui-state-hover, .task-item-body .task-details-item-document a.ui-paginator-last.ui-state-active {
   background-color: var(--task-detail-paginator-hovered-button-background-color); }
 
-.task-description-inplace .ui-inplace-display.ui-state-highlight, .edit-priority-inplace .ui-inplace-display.ui-state-highlight, .task-name-inplace .ui-inplace-display.ui-state-highlight, .expiry-edit-inplace .ui-inplace-display.ui-state-highlight {
+.task-description-inplace .ui-inplace-display.ui-state-highlight, .edit-priority-inplace .ui-inplace-display.ui-state-highlight, .task-name-inplace .ui-inplace-display.ui-state-highlight,
+.expiry-edit-inplace .ui-inplace-display.ui-state-highlight,
+.delay-edit-inplace .ui-inplace-display.ui-state-highlight {
   background-color: var(--task-highlighted-inplace-field-background-color);
   color: var(--task-highlighted-inplace-field-text-color); }
 
@@ -831,11 +831,13 @@ body .ui-inputfield.task-name-input {
   font-size: var(--large-font-size);
   font-weight: var(--task-name-input-font-weight); }
 
-.task-detail-header .task-name-edit {
+.task-detail-header .task-name {
   font-weight: var(--task-detail-header-font-weight); }
 
-.task-detail-section-title {
-  font-weight: var(--task-detail-section-title-font-weight); }
+.task-detail-section-title,
+.task-detail-section-title > i.icon,
+.task-detail-section-title > div > i.icon {
+  font-weight: var(--task-detail-section-title-font-weight) !important; }
 
 .task-item-body .card {
   box-shadow: var(--card-box-shadow);
@@ -1016,7 +1018,7 @@ body .fieldset-no-border {
   border-radius: 2px; }
 
 .case-detail-header,
-.task-detail-header .task-name-edit {
+.task-detail-header .task-name {
   font-size: var(--widget-header-font-size);
   font-weight: var(--widget-header-font-weight);
   line-height: 26px;}
@@ -1123,7 +1125,7 @@ body .fieldset-no-border {
 
 .advanced-filter-icon {
   color: var(--widget-advanced-filter-icon-color);
-  font-size: 1.8rem; }
+  font-size: 1.4rem !important; }
 
 .advanced-filter-icon:hover {
   color: var(--widget-advanced-filter-icon-color-hover);}
@@ -1164,8 +1166,10 @@ body .ui-inputfield.case-detail-name-input {
   font-weight: var(--case-detail-name-input-font-weight); }
 
 .case-detail-section-title, .case-history-button-container,
-.task-history-button-container {
-  font-weight: var(--history-button-container-font-weight); }
+.task-history-button-container,
+.case-detail-section-title > i.icon,
+.case-detail-section-title > div > i.icon {
+  font-weight: var(--history-button-container-font-weight) !important; }
 
 .case-header-action-cell .action-item .ui-button {
   background: var(--case-header-action-cell-button-background-color);
@@ -1224,13 +1228,6 @@ body .ui-inputfield.case-detail-name-input {
 
 .action-steps-panel .action-icon {
   font-size: var(--large-font-size); }
-
-
-.widget-title-mobile {
-  border-bottom: solid 1px var(--widget-header-mobile-border-bottom);
-  height: 100%;
-  margin-top: 1px;
-}
 
 /*Process --------------------------------------*/
 .process-widget .process-nav .process-nav-item {
@@ -1291,8 +1288,7 @@ body .ui-inputfield.case-detail-name-input {
   font-family: var(--icon-font-family);
   font-size: var(--large-font-size); }
 
-.process-header .create-express-workflow-icon,
-body .ui-widget-content .express-process-logo {
+.process-header .create-express-workflow-icon {
   font-size: 1.6rem !important; }
 
 .process-header .create-express-workflow-icon {
@@ -1306,7 +1302,8 @@ body .ui-widget-content .express-process-logo {
 .process-start-list-item .process-start-list-item-action .process-description,
 .process-start-list-item .ui-commandlink.process-item,
 .process-start-list-item .process-start-list-item-action .external-link-icon {
-  font-size: 1.5rem; }
+  font-size: 1.5rem !important; 
+}
 
 /* Task Widget --------------------------------**/
 .filter-selection-form label,
@@ -1508,6 +1505,13 @@ a.compact-task-start-link .task-start-list-item:hover, .task-start-list-item.ful
 .available-elements-action-btn button {
   background-color: var(--express-available-elements-action-button-background-color);
   box-shadow: var(--express-available-elements-action-button-shadow); }
+  
+.express-add-option-panel button {
+  background-color: var(--express-available-elements-action-button-background-color);
+  box-shadow: var(--express-available-elements-action-button-shadow); }
+
+.available-elements-action-btn button:hover, .available-elements-action-btn button:focus, .express-add-option-panel button:hover, .express-add-option-panel button:focus {	
+  background-color:transparent;}
 
 body .available-elements-action-btn .ui-button.ui-button-icon-only .ui-icon {
   color: var(--express-available-elements-action-button-icon-color); }
@@ -1715,7 +1719,7 @@ ul.participants-list li {
   font-size: var(--large-font-size); }
 
 .close-chat button .ui-button-icon-left.ui-icon {
-  font-size: var(--close-chat-font-size); }
+  font-size: var(--close-chat-font-size) !important; }
 
 .close-chat button.ui-button.ui-button-icon-only {
   background: var(--close-chat-button-background-color); }
@@ -1744,9 +1748,12 @@ ul.participants-list li {
 .global-search-icon {
   font-size: var(--large-font-size); }
 
-.action-button.task-action-item i {
+.action-link i {
   font-size: var(--header-font-size); }
-  
+
+.action-link span {
+  font-weight: var(--task-action-item-label-font-weight); }
+
 .task-action-item.start-task-action .task-action-item-label {
   font-weight: var(--task-start-action-font-weight);
 }
@@ -1815,17 +1822,6 @@ body .ui-slider .ui-slider-handle {
   background-color: var(--accent-light-color);
 }
 
-.process-nav .expand-collapse-btn {
-	font-family: var(--icon-font-family);
-}
-
-.process-nav .expand-collapse-btn.expand:before {
-	content: "\f067";
-}
-
-.process-nav .expand-collapse-btn.collapse:before {
-	content: "\f068";
-}
 .side-step-panel .dropdown-content {
 background-color: var(--ivy-primary-color-white);
 }
@@ -1861,4 +1857,68 @@ border-left-color: var(--primary-color);
 .process-first-breadcrumb{
 background-color:var(--primary-color);
 color: var(--button-text-color);
+}
+
+.no-item-panel .icon {
+  font-size: var(--no-item-icon-font-size) !important;
+  color: var(--no-item-icon-color);
+}
+
+.no-item-panel .no-item-header {
+  font-size: var(--no-item-header-font-size);
+}
+
+/* Portal Global Ajax Status */
+.axonivy-loader {
+  background-color: var(--ajax-loading-bg);
+}
+
+.axonivy-loader .spinner,
+.axonivy-loader .spinner:before,
+.axonivy-loader .spinner:after {
+  border: 2px solid transparent;
+  border-top-color: var(--primary-color);
+}
+
+
+.layout-menu .icon  {
+  font-size: var(--left-menu-icon-font-size) !important;
+}
+
+body .ui-button.secondary-btn.ui-state-hover {
+  background-color: var(--item-background-hover);
+}
+body .ui-button.secondary-btn.ui-state-focus {
+  background-color: var(--item-background-hover);
+}
+
+.secondary-btn.border-with-primary-color {
+  border: 1px solid var(--primary-color);
+}
+
+.portal-dialog-icon {
+  font-size: var(--portal-dialog-icon-font-size) !important;
+}
+
+.portal-dialog-info-icon {
+  color: var(--primary-color);
+}
+
+.portal-dialog-warning-icon {
+  color: var(--ivy-tertinary-color-yellow-dark);
+}
+
+.portal-dialog-error-icon {
+  color: var(--ivy-tertinary-color-red-medium);
+}
+
+
+/* My Profile */
+.portal-section-container.card {
+  box-shadow: var(--card-box-shadow);
+  border-radius: var(--card-border-radius);
+}
+
+.my-profile-container .setting-header span {
+  color: var(--general-config-description-color);
 }

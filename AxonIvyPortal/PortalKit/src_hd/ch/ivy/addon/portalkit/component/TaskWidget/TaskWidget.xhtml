@@ -10,7 +10,7 @@
   <cc:attribute name="styleClass" />
   <cc:attribute name="listHeaderStyleClass" />
   <cc:attribute name="dataModel" />
-  <cc:attribute name="chunkSize" shortDescription="Number of items to fetch for each lazy load" default="20" />
+  <cc:attribute name="chunkSize" shortDescription="Number of items to fetch for each lazy load" default="25" />
   <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/tasks')}" />
   <cc:attribute name="compactMode" default="true" type="java.lang.Boolean" />
   <cc:attribute name="hideTaskFilter" default="false" shortDescription="Task filter text field is hidden or not" type="java.lang.Boolean" />
@@ -41,8 +41,11 @@
             <cc:renderFacet name="title" />
             <h:outputText rendered="#{empty cc.facets.title}" 
               value="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}" styleClass="ui-sm-hidden" />
-            <p:commandLink id="toggle-tasks-link" rendered="#{empty cc.facets.title or data.dataModel.compactMode}" styleClass="fa-minus compact-toggle-tasks-link ui-lg-hidden ui-xl-hidden ui-md-hidden"
-              value="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}" global="false" oncomplete="toggleShowTaskList();" />
+            <p:commandLink id="toggle-tasks-link" rendered="#{empty cc.facets.title or data.dataModel.compactMode}" styleClass="compact-toggle-tasks-link ui-lg-hidden ui-xl-hidden ui-md-hidden"
+              global="false" oncomplete="toggleShowTaskList();">
+              <i class="icon ivyicon-subtract-small u-mar-right-5"/>
+              <h:outputText value="#{cc.attrs.title} #{data.dataModel.disableTaskCount ? '' : '('.concat(data.dataModel.rowCount).concat(')')}" />
+            </p:commandLink>
           </h:panelGroup>
 
           <h:panelGroup styleClass="widget-header-main-menu"
@@ -52,7 +55,7 @@
         </div>
 
         <!-- Filter part -->
-        <h:panelGroup id="filter-container" styleClass="filter-container ui-g-12 u-no-padding-bottom"
+        <h:panelGroup id="filter-container" styleClass="filter-container ui-g-12 u-no-padding-bottom js-filter-container"
           rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}">
           <!-- Filter selection -->
           <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group u-hidden-md-down"
@@ -80,7 +83,7 @@
                           value="#{taskFilterData.filterName}" trackMouse="true" />
                         <p:commandLink id="delete-user-defined-filter-command"
                           rendered="#{taskWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
-                          styleClass="fa fa-times-circle delete-user-defined-filter-command"
+                          styleClass="icon ivyicon-delete-2 delete-user-defined-filter-command"
                           actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
                           oncomplete="PF('delete-filter-confirmation-dialog').show();"/>
                       </h:panelGroup>
@@ -103,7 +106,7 @@
                           value="#{taskFilterData.filterName}" trackMouse="true" />
                         <p:commandLink id="delete-user-defined-filter-command"
                           rendered="#{taskWidgetBean.isDeleteFilterEnabledFor(taskFilterData)}"
-                          styleClass="fa fa-times-circle delete-user-defined-filter-command"
+                          styleClass="icon ivyicon-delete-2 delete-user-defined-filter-command"
                           actionListener="#{logic.setFilterToBeDeleted(taskFilterData)}"
                           oncomplete="PF('delete-filter-confirmation-dialog').show();" />
                       </div>
@@ -116,8 +119,8 @@
 
           <div id="applied-filters-container" class="applied-filters-container">
             <!-- Title on mobile -->
-            <div class="ui-sm-4 widget-title-mobile">
-              <span class="top-header-main-title">
+            <div class="widget-title-mobile js-widget-title-mobile">
+              <span class="top-header-main-title widget-header-main-title">
                 <span>#{cc.attrs.title}</span>
                 <h:outputText styleClass="js-task-count-mobile" rendered="#{!data.dataModel.disableTaskCount}" />
               </span>
@@ -127,12 +130,12 @@
           <div id="text-filter" class="text-filter ui-g-2 ui-sm-8">
             <span class="selected-filters-label u-hidden-md-down">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/appliedFilters')} </span>
             <h:form id="expanded-mode-filter-form" onsubmit="return false;">
-              <ic:ch.ivy.addon.portalkit.component.Filter id="expanded-mode-filter-container" icon="fa fa-filter simple-filter-icon"
+              <ic:ch.ivy.addon.portalkit.component.Filter id="expanded-mode-filter-container"
                 updateComponent="#{cc.clientId}:filter-selection-container #{p:component('task-view-container')} #{cc.clientId}:hidden-task-count"
                 listener="#{data.dataModel.onKeywordChange()}"
                 placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
                 keywordStoresIn="#{data.dataModel.criteria.keyword}" styleClass="widget-header-filter-input"
-                onCompletedCallback="taskWidget.setupScrollbar(); taskWidget.setupHeader(); taskWidget.updateTaskCountToBreadcrumb();" iconAsButton="true" onClickIconFilter="taskWidget.toggleTaskFilter(this);taskWidget.setupScrollbar();"/>
+                onCompletedCallback="taskWidget.setupScrollbar(); taskWidget.setupHeader(); taskWidget.updateTaskCountToBreadcrumb();" isFilterToggleRenderedOnMobile="true" onClickIconFilter="taskWidget.toggleTaskFilter();taskWidget.setupScrollbar();"/>
             </h:form>
           </div>
 
@@ -141,8 +144,10 @@
             <cc:renderFacet name="taskFilter" />
   
             <!-- Add more filters link -->
-            <p:commandLink id="filter-add-action"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/moreOptions')}" styleClass="filter-add-button filter-add-container u-hidden-md-down" global="false" />
+            <p:commandLink id="filter-add-action" styleClass="filter-add-button filter-add-container js-filter-add-action u-hidden-md-down" global="false">
+              <i class="icon ivyicon-add u-mar-right-5" />
+              <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/moreOptions')}" />
+            </p:commandLink>
 
             <p:overlayPanel id="filter-add-panel" widgetVar="filter-add-panel" styleClass="filter-add-panel" for="filter-add-action" my="left top"
               at="left bottom" dismissable="false">
@@ -158,37 +163,44 @@
                 </p:scrollPanel>
 
                 <h:panelGroup id="add-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer">
+                  <p:commandLink id="cancel-add-filter-command"
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+                    onclick="PF('filter-add-panel').hide();" global="false" partialSubmit="true" immediate="true"
+                    resetValues="true" process="@this" update="filter-add-form" />
+                  <p:spacer width="15" />
                   <p:commandButton id="update-filter-selected-command"
                     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+                    icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
                     update="@(.filter-container) @(.filter-selection-form) @(.task-view-container) #{cc.clientId}:hidden-task-count"
                     oncomplete="taskWidget.setupScrollbar(); taskWidget.updateTaskCountToBreadcrumb();"
                     process="@(filter-add-form)"
                     actionListener="#{data.dataModel.updateSelectedFilter}">
                   </p:commandButton>
-                  <p:spacer width="5" />
-                  <p:commandButton id="cancel-add-filter-command" styleClass="portal-cancel-button"
-                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-                    onclick="PF('filter-add-panel').hide();" global="false" partialSubmit="true" immediate="true"
-                    resetValues="true" process="@this" update="filter-add-form">
-                  </p:commandButton>
                 </h:panelGroup>
               </h:form>
             </p:overlayPanel>
-  
+
             <!-- Reset filter button -->
-            <p:commandLink id="filter-reset-action" rendered="#{data.dataModel.selectedTaskFilterData == null and !data.dataModel.isSelectedDefaultFilter()}"
-              styleClass="filter-reset-action u-hidden-md-down"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" onclick="PF('reset-filter-set-dialog').show();" global="false">
-              <span class="fa fa-refresh" />
-            </p:commandLink>
+            <h:panelGroup id="reset-filter-button-container"
+              styleClass="reset-filter-button-container #{data.dataModel.selectedTaskFilterData == null and !data.dataModel.isSelectedDefaultFilter() ? 'filter-reset-action' : ''}"
+              layout="block">
+              <p:commandLink id="filter-reset-action"
+                rendered="#{data.dataModel.selectedTaskFilterData == null and !data.dataModel.isSelectedDefaultFilter()}"
+                styleClass="js-filter-reset-action u-hidden-md-down" onclick="PF('reset-filter-set-dialog').show();"
+                global="false">
+                <i class="icon ivyicon-button-refresh-arrows u-mar-right-5" />
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}" />
+              </p:commandLink>
+            </h:panelGroup>
 
             <!-- Save filter button -->
               <p:commandButton id="filter-save-action"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" styleClass="filter-add-button filter-save-action u-hidden-md-down"
-                icon="fa fa-save" iconPos="right" update="save-filter-set-dialog" resetValues="true"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" styleClass="filter-add-button filter-save-action js-filter-save-action u-hidden-md-down"
+                icon="#{visibilityBean.generateButtonIcon('icon ivyicon-floppy-disk')}" resetValues="true"
+                update="save-filter-set-dialog task-widget:filter-save-form:save-filter-type-radio"
+                actionListener="#{taskWidgetBean.verifyTaskStateFilter(data.dataModel.selectedFilters)}"
                 oncomplete="PF('save-filter-set-dialog').show();" />
             </div>
-
 
         </h:panelGroup>
       </h:panelGroup>
@@ -211,7 +223,7 @@
         <h:form id="filter-form" onsubmit="return false;"
           styleClass="widget-header-content-filter Fright"
           rendered="#{!cc.attrs.hideTaskFilter and data.dataModel.compactMode}">
-          <ic:ch.ivy.addon.portalkit.component.Filter id="filter-container" icon="fa fa-filter"
+          <ic:ch.ivy.addon.portalkit.component.Filter id="filter-container"
             updateComponent="#{p:component('task-view-container')}"
             placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/filterTextPlaceholder')}"
             keywordStoresIn="#{data.dataModel.criteria.keyword}" 
@@ -240,7 +252,10 @@
             rowIndex="#{rowIndex}" currentPortalPage="#{cc.attrs.currentPortalPage}"
             isSelected="#{cc.attrs.selectedTaskId eq task.getId()}"
             compactMode="#{data.dataModel.compactMode}" 
-            dataModel="#{data.dataModel}">
+            dataModel="#{data.dataModel}"
+            onDestroyComplete="PF('destroy-task-dialog').show()"
+            onDelegateComplete="initDataToDelegate()"
+            onWorkflowEventComplete="initWorkflowEventData()">
             <cc:insertFacet name="taskHeader" />
           </ic:ch.ivy.addon.portalkit.component.TaskItem>
         </p:dataScroller>
@@ -256,23 +271,6 @@
     </h:panelGroup>
   </div>
 
-  <!-- Reset filter dialog -->
-  <p:confirmDialog id="reset-filter-set-dialog" widgetVar="reset-filter-set-dialog" appendTo="@(body)" rendered="#{!data.dataModel.compactMode}"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/restoreDefaultFilterHeader')}"
-    closeOnEscape="true" styleClass="save-filter-set-dialog" severity="alert"
-    message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/restoreDefaultFilterMessage')}"
-    responsive="true">
-      <p:commandButton id="filter-reset-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-        partialSubmit="true" immediate="true"
-        actionListener="#{logic.restoreDefaultFilterSet}" update="@(.filter-container) @(.filter-selection-form) @(.task-view-container) #{cc.clientId}:hidden-task-count"
-        oncomplete="PF('reset-filter-set-dialog').hide(); taskWidget.setupScrollbar(); taskWidget.setupHeader(); taskWidget.updateTaskCountToBreadcrumb();">
-      </p:commandButton>
-      <p:spacer width="5px" />
-      <p:commandButton type="button" styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        onclick="PF('reset-filter-set-dialog').hide();">
-      </p:commandButton>
-  </p:confirmDialog>
-  
   <!-- Save filter dialog -->
   <p:dialog id="save-filter-set-dialog" widgetVar="save-filter-set-dialog" appendTo="@(body)" rendered="#{!data.dataModel.compactMode}"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" resizable="false"
@@ -293,57 +291,118 @@
           <f:selectItem id="only-me"
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeOnlyMe')}"
             itemValue="ONLY_ME" />
-          <f:selectItem id="all-users" itemDisabled="#{!permissionBean.hasAdminPermission()}"
+          <f:selectItem id="all-users" itemDisabled="#{!permissionBean.hasAdminPermission() or taskWidgetBean.adminTaskStateIncluded}"
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeAllUsers')}"
             itemValue="ALL_USERS" />
         </p:selectOneRadio>
       </h:panelGrid>
       <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
+        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('save-filter-set-dialog').hide();" />
+        <p:spacer width="15px" />
         <p:commandButton id="filter-save-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           process="@form"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('save-filter-set-dialog').hide(); updateFilterContainer();}"
           actionListener="#{logic.saveFilter}" >
         </p:commandButton>
         <p:remoteCommand name="updateFilterContainer" update="#{cc.clientId}:filter-selection-container #{cc.clientId}:filter-save-form #{cc.clientId}:filter-container" 
           actionListener="#{logic.clearSaveFilterDialog}" />
-        <p:spacer width="5px" />
-        <p:commandButton type="button" styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          onclick="PF('save-filter-set-dialog').hide();">
-        </p:commandButton>
       </h:panelGroup>
     </h:form>
   </p:dialog>
+  
+  <!-- Reset filter dialog -->
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="reset-filter-set-dialog" />
+    <ui:param name="widgetVar" value="reset-filter-set-dialog" />
+    <ui:param name="rendered" value="#{!data.dataModel.compactMode}" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetToStandardFilterHeaderText')}" />
+    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/restoreDefaultFilterMessage')}" />
+    
+    <ui:define name="dialogFooter">
+       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          onclick="PF('reset-filter-set-dialog').hide();" styleClass="u-mar-right-15" />
+       <p:commandButton id="filter-reset-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+          partialSubmit="true" immediate="true"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-button-refresh-arrows')}"
+          actionListener="#{logic.restoreDefaultFilterSet}" update="@(.filter-container) @(.filter-selection-form) @(.task-view-container) #{cc.clientId}:hidden-task-count"
+          oncomplete="PF('reset-filter-set-dialog').hide(); taskWidget.setupScrollbar(); taskWidget.setupHeader(); taskWidget.updateTaskCountToBreadcrumb();">
+      </p:commandButton>
+    </ui:define>
+  </ui:decorate>
 
-  <p:confirmDialog id="delete-filter-confirmation-dialog" rendered="#{!data.dataModel.compactMode}"
-    message="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterDeletionConfirmation')}"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}"
-    widgetVar="delete-filter-confirmation-dialog" appendTo="@(body)" severity="alert" responsive="true">
-    <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}"
-      actionListener="#{logic.deleteFilter()}"
-      oncomplete="PF('delete-filter-confirmation-dialog').hide(); taskWidget.setupScrollbar(); taskWidget.updateTaskCountToBreadcrumb();"
-      update="filter-container #{cc.clientId}:filter-container task-view-container filter-add-form #{cc.clientId}:hidden-task-count" />
-    <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
-      onclick="PF('delete-filter-confirmation-dialog').hide();" type="button" styleClass="portal-cancel-button" />
-  </p:confirmDialog>
-
-  <p:confirmDialog id="reset-task-dialog" appendTo="@(body)" widgetVar="reset-task-dialog"
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" closeOnEscape="true" responsive="true">
-    <f:facet name="message">
-      <h:outputText escape="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
-    </f:facet>
-    <div>
+  <!-- Delete filter set dialog -->
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="delete-filter-confirmation-dialog" />
+    <ui:param name="widgetVar" value="delete-filter-confirmation-dialog" />
+    <ui:param name="rendered" value="#{!data.dataModel.compactMode}" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="icon ivyicon-delete-1" />
+    <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteFilterHeaderText')}" />
+    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filterDeletionConfirmation')}" />
+    
+    <ui:define name="dialogFooter">
+       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+          onclick="PF('delete-filter-confirmation-dialog').hide();" styleClass="u-mar-right-15" />
+       <p:commandButton id="confirm-delete" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}"
+          actionListener="#{logic.deleteFilter()}"
+          oncomplete="PF('delete-filter-confirmation-dialog').hide(); taskWidget.setupScrollbar(); taskWidget.updateTaskCountToBreadcrumb();"
+          update="filter-container #{cc.clientId}:filter-container task-view-container filter-add-form #{cc.clientId}:hidden-task-count" />
+    </ui:define>
+  </ui:decorate>
+  
+  <!-- Reset task dialog -->
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="reset-task-dialog" />
+    <ui:param name="widgetVar" value="reset-task-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="icon ivyicon-road-sign-warning" />
+    <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/resetTaskHeaderText')}" />
+    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
+    
+    <ui:define name="dialogFooter">
       <h:form id="reset-task-form">
-        <p:commandButton actionListener="#{logic.resetAndOpenTask(cc.attrs.currentPortalPage, taskWidgetBean.selectedTaskItemId)}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-          onstart="#{cc.attrs.onTaskStartCallback}" />
-        <p:commandButton onclick="PF('reset-task-dialog').hide()" styleClass="portal-cancel-button"
-          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button" />
+        <p:commandLink onclick="PF('reset-task-dialog').hide()"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
+        <p:commandButton id="reset-task-button" actionListener="#{logic.resetAndOpenTask(cc.attrs.currentPortalPage, taskWidgetBean.selectedTaskItemId)}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-road-sign-u-turn-left')}" onstart="#{cc.attrs.onTaskStartCallback}" />
       </h:form>
-    </div>
-  </p:confirmDialog>
+    </ui:define>
+  </ui:decorate>
+  
+  <!-- Destroy task dialog -->
+  <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+    <ui:param name="id" value="destroy-task-confirmation-dialog" />
+    <ui:param name="widgetVar" value="destroy-task-dialog" />
+    <ui:param name="appendTo" value="@(body)" />
+    <ui:param name="iconClass" value="icon ivyicon-delete-1" />
+    <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+    <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyTaskHeaderText')}" />
+    <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage')}" />
+    
+    <ui:define name="dialogFooter">
+      <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        onclick="PF('destroy-task-dialog').hide();" styleClass="u-mar-right-15"/>
+       <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
+        icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}"
+        actionListener="#{taskWidgetBean.destroyTask(taskWidgetBean.selectedTaskItemId)}"
+        oncomplete="taskWidget.setupScrollbar();PF('destroy-task-dialog').hide()"
+        update="#{cc.clientId}:task-view" />
+    </ui:define>
+  </ui:decorate>
 
+  <!-- Delegate Task Dialog -->
   <ic:ch.ivy.addon.portalkit.component.TaskItemDelegate id="task-item-delegate-component" dataModel="#{data.dataModel}"
-    task="#{taskWidgetBean.getSelectedTaskItem()}"
+    taskId="#{taskWidgetBean.selectedTaskItemId}"
     componentToUpdate="#{p:component('task-start')}" />
+
+  <!-- Workflow Event of Task Dialog -->
+  <ic:ch.ivy.addon.portalkit.component.TaskItemWorkflowEvents id="task-workflow-event-component"
+    taskId="#{taskWidgetBean.selectedTaskItemId}"/>
 
   <!-- hidden row count to update breadcrumb -->
   <h:outputText id="hidden-task-count" styleClass="u-hidden hidden-task-count js-hidden-task-count" value="#{data.dataModel.rowCount}" rendered="#{not data.dataModel.disableTaskCount}" />
@@ -353,7 +412,7 @@
       function toggleShowTaskList() {
         $('[id $= "task-widget-sub-header"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
         $('[id $= "task-view"]').toggleClass("ui-sm-hidden").toggleClass("ui-md-hidden");
-        $('[id $= "toggle-tasks-link"]').toggleClass("fa-plus").toggleClass("fa-minus");
+        $('[id $= "toggle-tasks-link"] > i').toggleClass("ivyicon-add-small").toggleClass("ivyicon-subtract-small");
       }
 
       $(function() {

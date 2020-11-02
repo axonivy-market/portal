@@ -1,5 +1,5 @@
 [Ivy]
-16AC49C381377D01 7.5.0 #module
+16AC49C381377D01 9.2.0 #module
 >Proto >Proto Collection #zClass
 Gt0 GetDocumentList Big #zClass
 Gt0 B #cInfo
@@ -53,7 +53,7 @@ if(in.#businessCase is initialized) {
 	CustomizedIvyDocumentTransformer transformer = new CustomizedIvyDocumentTransformer();
 	in.documents = transformer.transform(iDocuments);
 	for(CustomizedIvyDocument doc : in.documents) {
-		doc.setName("Overridden: " + doc.getName());
+		doc.setName("Customized name: " + doc.getName());
 		String typeStringField = DocumentCustomField.TYPE_PREFIX + doc.id;
 		String typeString = in.businessCase.customFields().stringField(typeStringField).getOrNull();
 		if (StringUtils.isNotBlank(typeString)) {

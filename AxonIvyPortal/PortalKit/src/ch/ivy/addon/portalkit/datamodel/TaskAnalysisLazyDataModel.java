@@ -2,7 +2,6 @@ package ch.ivy.addon.portalkit.datamodel;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -28,13 +27,12 @@ import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisTaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
-import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
@@ -60,7 +58,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     isNotKeepFilter = true;
     selectedCaseFilters = new ArrayList<>();
     buildCaseCriteria();
-    setInvolvedApplicationsForCaseCriteria();
     buildDefaultTaskAnalysisFilterData();
   }
 
@@ -103,18 +100,9 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   @Override
   protected void buildCriteria() {
     criteria = new TaskSearchCriteria();
-    criteria.setQueryForUnassignedTask(false);
-    criteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED)));
+    criteria.setIncludedStates(new ArrayList<>(TaskSearchCriteria.STANDARD_STATES));
     criteria.setSortField(TaskSortField.ID.toString());
     criteria.setSortDescending(true);
-  }
-  
-  protected void setInvolvedApplicationsForCaseCriteria() {
-    caseCriteria.setApps(criteria.getApps());
-  }
-
-  public void setApps(List<String> apps) {
-    criteria.setApps(apps);
   }
 
   public List<TaskFilter> getTaskFilters() {
@@ -175,6 +163,15 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
     selectedCaseFilters = new ArrayList<>();
     selectedTaskAnalysisFilterData = null;
     isSelectedDefaultFilter = false;
+  }
+
+  public boolean isSameTaskFilterData(TaskAnalysisFilterData filterToBeRemoved) {
+    if (filterToBeRemoved == null || selectedTaskAnalysisFilterData == null) {
+      return false;
+    }
+    return filterToBeRemoved.getFilterGroupId().equals(selectedTaskAnalysisFilterData.getFilterGroupId())
+        && filterToBeRemoved.getType() == selectedTaskAnalysisFilterData.getType()
+        && filterToBeRemoved.getFilterName().equals(selectedTaskAnalysisFilterData.getFilterName());
   }
 
   /**
@@ -292,9 +289,6 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
         break;
       case TASK_CREATION_TIME:
         orderQuery = taskQuery.orderBy().startTimestamp();
-        break;
-      case TASK_DESCRIPTION:
-        orderQuery =taskQuery.orderBy().description();
         break;
       case TASK_EXPIRY_TIME:
         orderQuery = taskQuery.orderBy().expiryTimestamp();
@@ -419,7 +413,8 @@ public class TaskAnalysisLazyDataModel extends TaskLazyDataModel {
   protected void buildCaseCriteria() {
     caseCriteria = new CaseSearchCriteria();
     caseCriteria.setBusinessCase(true);
-    caseCriteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
+    caseCriteria.setIncludedStates(new ArrayList<>(CaseSearchCriteria.STANDARD_STATES));
+    caseCriteria.extendStatesQueryByPermission(PermissionUtils.checkReadAllCasesPermission());
     caseCriteria.setSortField(CaseSortField.ID.toString());
     caseCriteria.setSortDescending(true);
   }

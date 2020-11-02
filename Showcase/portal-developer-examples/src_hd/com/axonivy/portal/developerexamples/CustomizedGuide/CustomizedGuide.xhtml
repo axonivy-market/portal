@@ -19,7 +19,7 @@
       <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="left-menu-guide-component" targetComponent="left-menu"
         title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/mainMenu/title')}"
         content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/mainMenu/content')}"
-        targetCssSelector="#left-menu" icon="fa-bars" onNext="PF('setting-container-guide').show()" my="left+30 top+70"
+        targetCssSelector="#left-menu" iconClass="icon ivyicon-navigation-menu" onNext="PF('setting-container-guide').show()" my="left+30 top+70"
         at="right top" targetPosition="fixed" arrowPosition="left top"
         updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}" />
     </ui:define>
@@ -28,7 +28,7 @@
       <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="setting-container-guide-component" targetComponent="setting-container"
         title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/username/title')}" 
         content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/username/content')}"
-        targetCssSelector=".setting-container" icon="fa-user" onNext="PF('process-widget-guide').show()"
+        targetCssSelector=".setting-container" iconClass="icon ivyicon-single-neutral-actions" onNext="PF('process-widget-guide').show()"
         my="right bottom-30" at="right top" arrowPosition="top right" onShow="showUsernameGuide()" onHide="hideUsernameGuide()"
         updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}" />
         
@@ -49,7 +49,7 @@
       <ic:ch.ivy.addon.portalkit.component.GuideOverlayPanel id="task-widget-guide-component" targetComponent="task-widget"
         title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/task/title')}" 
         content="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/task/content')}"
-        targetCssSelector="#task-widget" icon="fa-check-square-o"
+        targetCssSelector="#task-widget" iconClass="icon ivyicon-task-list-edit"
         updatedComponentAfterGuide="#{updatedComponentAfterGuide}" rendered="#{guideBean.isGuideShown}" />
     </ui:define>
   </ui:composition>

@@ -1,11 +1,15 @@
 package portal.guitest.page;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import com.jayway.awaitility.Awaitility;
+import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.Sleeper;
 
@@ -59,7 +63,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public void showNoteHistory() {
-    click(caseItem.findElement(By.cssSelector("a[id$='show-more-note-link']")));
+    click(findElementByCssSelector("a[id$='show-more-note-link']"));
   }
 
   public String getLatestHistoryContent() {
@@ -134,7 +138,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public List<String> getCaseNoteAuthors() {
-    List<WebElement> noteAuthorElements = findListElementsByCssSelector(".fa-pencil-square-o + span.history-fullname");
+    List<WebElement> noteAuthorElements = findListElementsByCssSelector(".ivyicon-notes-quill + span.history-fullname");
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 
@@ -222,6 +226,7 @@ public class CaseDetailsPage extends TemplatePage {
 
   public void onClickHistoryIcon() {
     click(findElementById("case-item-details:case-histories:add-note-command"));
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
   public void onClickDestroyCase() {
@@ -233,7 +238,7 @@ public class CaseDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.id(destroyCaseDialogId), true);
     WebElement destroyConfirmationDialog = findElementById(destroyCaseDialogId);
     WebElement confirmButton = findChildElementById(destroyConfirmationDialog, "case-item-details:confirm-destruction");
-    confirmButton.click();
+    click(confirmButton);
   }
   
   @Override
@@ -278,8 +283,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   private void openAddDocumentDialogAndUploadDocument(String pathToFile) {
-    clickByCssSelector("a[id$='add-document-command']");
-    waitForElementDisplayed(By.cssSelector("span[id$='document-upload-dialog_title']"), true);
+    getAddAttachmentDialog();
     findElementByCssSelector("input[id$='document-upload-panel_input']").sendKeys(pathToFile);
     // currently haven't found solution to check when the file upload finish, we have to wait
     Sleeper.sleep(2000);
@@ -288,10 +292,33 @@ public class CaseDetailsPage extends TemplatePage {
   public boolean isDeleteDocumentButtonPresented() {
     return isElementDisplayed(By.cssSelector("a[id$='delete-file']"));
   }
+  
+  public void removeAttachmentInCaseDocument(String filename) {
+    WebElement documentName = findElementByCssSelector("span[class$='js-document-name']");
+    if (documentName.getText().equalsIgnoreCase(filename)) {
+      getDeleteDocumentConfirmDialog();
+      findElementByCssSelector("button[id$='document-deletion-command']").click();
+    }
+  }
+  
+  public WebElement getDeleteDocumentConfirmDialog() {
+    click(findElementByCssSelector("a[id$='delete-file']"));
+    waitForElementDisplayed(By.cssSelector("div[id$='document-deletion-dialog']"), true);
+    return findElementByCssSelector("div[id$='document-deletion-dialog']");
+  }
+
+  public WebElement findDeleteDocumentIcon() {
+    return findElementByCssSelector("a[id$='delete-file']");
+  }
 
   public String getCaseName() {
     return getTextOfCurrentBreadcrumb().replace("Case: ", "");
   }
+  
+  public String getCaseId() {
+    return findElementById("case-item-details:general-information:case-id").getText();
+  }
+  
   public boolean isAddNoteButtonDisplayed() {
     return isElementDisplayedById("case-item-details:case-histories:add-note-command");
   }
@@ -332,9 +359,52 @@ public class CaseDetailsPage extends TemplatePage {
     click(findElementById("case-item-details:case-detail-title-form:back-to-cases"));
   }
 
-  public CaseDetailsPage openRelatedCaseOfBusinessCase(int index) {
+  public void openRelatedCaseOfBusinessCase(int index) {
     click(By.cssSelector("a[id$='related-tasks:cases:" + index + ":case-name']"));
-    return new CaseDetailsPage();
+    waitForPageLoaded();
+  }
+  
+  public void waitForCaseDetailsReload() {
+    waitForPageLoaded();
+    Sleeper.sleep(3000); // currently, cannot find how to navigate to same page
+    waitForElementDisplayed(By.className("case-detail-body"), true);
+  }
+  
+  public void waitForCaseNameChanged(String caseName) {
+    waitForElementDisplayed(findElementByCssSelector(CURRENT_BREADCRUMB_SELECTOR), true);
+    Awaitility.waitAtMost(new Duration(60, TimeUnit.SECONDS)).until(() -> getTextOfCurrentBreadcrumb().contains(caseName));
+  }
+
+  public WebElement getGeneralInforBox() {
+    return findElementByCssSelector("[id$='case-general-information-card']");
+  }
+
+  public WebElement getRelatedRunningTaskBox() {
+    return findElementByCssSelector("[id$='case-details-related-running-tasks-card']");
+  }
+
+  public WebElement getHistoriesBox() {
+    return findElementByCssSelector("[id$='history-container']");
+  }
+
+  public WebElement getDocumentBox() {
+    return findElementByCssSelector("[id$='case-details-document-card']");
+  }
+
+  public WebElement getAddNoteDialog() {
+    onClickHistoryIcon();
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+    return findElementById("case-item-details:case-histories:add-note-dialog");
+  }
+
+  public WebElement getAddAttachmentDialog() {
+    clickByCssSelector("a[id$='add-document-command']");
+    waitForElementDisplayed(By.cssSelector("span[id$='document-upload-dialog_title']"), true);
+    return findElementById("case-item-details:document:document-upload-dialog");
+  }
+  
+  public void waitForCaseDetailsDisplay() {
+    waitForElementDisplayed(By.id("case-item-details:case-detail-title-form"), true);
   }
 
 }

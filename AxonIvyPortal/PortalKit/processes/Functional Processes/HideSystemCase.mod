@@ -1,5 +1,5 @@
 [Ivy]
-15F999559D09FFA4 7.5.0 #module
+15F999559D09FFA4 9.2.0 #module
 >Proto >Proto Collection #zClass
 He0 HideSystemCase Big #zClass
 He0 B #cInfo
@@ -53,7 +53,7 @@ if(selectedCase.isBusinessCase()) {
 	}
 }
 
-for(ITask task : selectedCase.getTasks()) {
+for(ITask task : selectedCase.tasks().all()) {
 	TaskUtils.setHidePropertyToHideInPortal(task);
 }' #txt
 He0 f3 security system #txt

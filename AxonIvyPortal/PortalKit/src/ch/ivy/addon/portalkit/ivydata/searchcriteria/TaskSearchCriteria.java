@@ -1,10 +1,20 @@
 package ch.ivy.addon.portalkit.ivydata.searchcriteria;
 
 import static ch.ivy.addon.portalkit.constant.CustomFields.CUSTOM_TIMESTAMP_FIELD5;
+import static ch.ivyteam.ivy.workflow.TaskState.CREATED;
+import static ch.ivyteam.ivy.workflow.TaskState.DELAYED;
+import static ch.ivyteam.ivy.workflow.TaskState.DESTROYED;
+import static ch.ivyteam.ivy.workflow.TaskState.DONE;
+import static ch.ivyteam.ivy.workflow.TaskState.PARKED;
+import static ch.ivyteam.ivy.workflow.TaskState.READY_FOR_JOIN;
+import static ch.ivyteam.ivy.workflow.TaskState.RESUMED;
+import static ch.ivyteam.ivy.workflow.TaskState.SUSPENDED;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
@@ -17,8 +27,13 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class TaskSearchCriteria {
 
+  public final static EnumSet<TaskState> STANDARD_STATES = EnumSet.of(CREATED, SUSPENDED, RESUMED, PARKED, READY_FOR_JOIN);
+  public final static EnumSet<TaskState> ADVANCE_STATES = EnumSet.of(DONE, DELAYED, DESTROYED, TaskState.JOIN_FAILED, TaskState.FAILED, TaskState.WAITING_FOR_INTERMEDIATE_EVENT);
+  /**
+   * No need since 9.2, this value is always session username
+   */
+  @Deprecated(forRemoval = true, since = "9.2")
   private String involvedUsername;
-  private List<String> apps;
   private List<TaskState> includedStates;
   private boolean isAdminQuery;
   private String keyword;
@@ -29,7 +44,6 @@ public class TaskSearchCriteria {
   private boolean isNewQueryCreated;
   private boolean isQueryByTaskId;
   private boolean isQueryByBusinessCaseId;
-  private boolean isQueryForUnassignedTask;
   private String sortField;
   private boolean sortDescending;
   private boolean isSorted = true;
@@ -65,13 +79,13 @@ public class TaskSearchCriteria {
 
     addCaseIdQuery(finalQuery);
     addKeywordQuery(finalQuery);
-    addAssigneeTypeQuery(finalQuery);
     addCategoryQuery(finalQuery);
 
     if (isSorted) {
       TaskSortingQueryAppender appender = new TaskSortingQueryAppender(finalQuery);
       finalQuery = appender.appendSorting(this).toQuery();
     }
+    
     return finalQuery;
   }
   
@@ -80,23 +94,7 @@ public class TaskSearchCriteria {
       finalQuery.where().and(queryForCategory(getCategory()));
     }
   }
-
-  private void addAssigneeTypeQuery(TaskQuery finalQuery) {
-    if (isQueryForUnassignedTask()) {
-      finalQuery.where().and().activatorUserId().isNull().and().activatorRoleId().isNull();
-    } else if (getTaskAssigneeType() == TaskAssigneeType.ROLE) {
-      finalQuery.where().and().activatorRoleId().isNotNull();
-    } else if (getTaskAssigneeType() == TaskAssigneeType.USER) {
-      TaskQuery personalTaskQuery = TaskQuery.create().where().activatorUserId().isNotNull();
-      if (getIncludedStates().contains(TaskState.PARKED)) {
-        TaskQuery reservedTaskQuery =
-            TaskQuery.create().where().activatorRoleId().isNotNull().and().state().isEqual(TaskState.PARKED);
-        personalTaskQuery.where().or(reservedTaskQuery);
-      }
-      finalQuery.where().and(personalTaskQuery);
-    }
-  }
-
+  
   private void addCaseIdQuery(TaskQuery finalQuery) {
     if (hasCaseId()) {
       if (isQueryByBusinessCaseId()) {
@@ -110,7 +108,7 @@ public class TaskSearchCriteria {
   }
 
   private void addTaskStateQuery(TaskQuery finalQuery) {
-    if (hasIncludedStates() && !isQueryForUnassignedTask()) {
+    if (hasIncludedStates()) {
       finalQuery.where().and(queryForStates(getIncludedStates()));
     }
   }
@@ -176,6 +174,7 @@ public class TaskSearchCriteria {
       appendSortByIdIfSet(criteria);
       appendSortByCreationDateIfSet(criteria);
       appendSortByExpiryDateIfSet(criteria);
+      appendSortByCompletedDateIfSet(criteria);
       appendSortByStateIfSet(criteria);
       return this;
     }
@@ -239,6 +238,16 @@ public class TaskSearchCriteria {
         }
       }
     }
+    
+    private void appendSortByCompletedDateIfSet(TaskSearchCriteria criteria) {
+        if (TaskSortField.COMPLETED_ON.toString().equalsIgnoreCase(criteria.getSortField())) {
+          if (criteria.isSortDescending()) {
+            query.orderBy().endTimestamp().descendingNullFirst();
+          } else {
+            query.orderBy().endTimestamp().ascendingNullLast();
+          }
+        }
+      }
 
     private void appendSortByStateIfSet(TaskSearchCriteria criteria) {
       if (TaskSortField.STATE.toString().equalsIgnoreCase(criteria.getSortField())) {
@@ -247,6 +256,22 @@ public class TaskSearchCriteria {
         } else {
           query.orderBy().state();
         }
+      }
+    }
+  }
+  
+  /** Check if current user can see task in advance state such as
+   * DONE, DELAYED, DESTROYED, READY_FOR_JOIN
+   * Then extend Search query for task criteria
+   * @param isAdminPermission
+   */
+  public void extendStatesQueryByPermission(boolean isAdminPermission) {
+    this.setAdminQuery(isAdminPermission);
+    if (isAdminPermission) {
+      List<TaskState> adminStateNotIncluded = ADVANCE_STATES.stream()
+          .filter(item -> !includedStates.contains(item)).collect(Collectors.toList());
+      if (CollectionUtils.isNotEmpty(adminStateNotIncluded)) {
+        addIncludedStates(adminStateNotIncluded);
       }
     }
   }
@@ -264,14 +289,6 @@ public class TaskSearchCriteria {
       this.includedStates = new ArrayList<>();
     }
     this.includedStates.addAll(includedStates);
-  }
-  
-  public List<String> getApps() {
-    return apps;
-  }
-
-  public void setApps(List<String> apps) {
-    this.apps = apps;
   }
 
   public String getKeyword() {
@@ -314,10 +331,20 @@ public class TaskSearchCriteria {
     this.sortDescending = sortDescending;
   }
 
+  /**
+   * No need since 9.2, always use session username
+   * @return empty String
+   */
+  @Deprecated(forRemoval = true, since = "9.2")
   public String getInvolvedUsername() {
-    return involvedUsername;
+    return "";
   }
 
+  /**
+   * No need since 9.2, always use session username
+   * @param involvedUsername
+   */
+  @Deprecated(forRemoval = true, since = "9.2")
   public void setInvolvedUsername(String involvedUsername) {
     this.involvedUsername = involvedUsername;
   }
@@ -362,14 +389,6 @@ public class TaskSearchCriteria {
     this.isQueryByBusinessCaseId = isQueryByBusinessCaseId;
   }
 
-  public boolean isQueryForUnassignedTask() {
-    return isQueryForUnassignedTask;
-  }
-
-  public void setQueryForUnassignedTask(boolean isQueryForUnassignedTask) {
-    this.isQueryForUnassignedTask = isQueryForUnassignedTask;
-  }
-  
   public TaskQuery getCustomTaskQuery() {
     return customTaskQuery;
   }
@@ -381,11 +400,7 @@ public class TaskSearchCriteria {
   public boolean hasIncludedStates() {
     return CollectionUtils.isNotEmpty(includedStates);
   }
-
-  public boolean hasApps() {
-    return CollectionUtils.isNotEmpty(apps);
-  }
-
+  
   public boolean hasKeyword() {
     return StringUtils.isNotEmpty(keyword);
   }
@@ -402,6 +417,11 @@ public class TaskSearchCriteria {
     return StringUtils.isNotBlank(category);
   }
 
+  /**
+   * No need since 9.2, always true
+   * @return username
+   */
+  @Deprecated(forRemoval = true, since = "9.2")
   public boolean hasInvolvedUsername() {
     return StringUtils.isNotBlank(involvedUsername);
   }

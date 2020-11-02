@@ -1,5 +1,5 @@
 [Ivy]
-1725F66D3F3CECB5 7.5.0 #module
+1725F66D3F3CECB5 9.2.0 #module
 >Proto >Proto Collection #zClass
 Us0 UserGuideProcess Big #zClass
 Us0 RD #cInfo
@@ -39,7 +39,8 @@ Us0 f1 339 51 26 26 0 12 #rect
 Us0 f1 @|UdProcessEndIcon #fIcon
 Us0 f3 actionTable 'out=in;
 ' #txt
-Us0 f3 actionCode 'import org.apache.commons.lang3.StringUtils;
+Us0 f3 actionCode 'import ch.ivy.addon.portalkit.constant.UserProperty;
+import org.apache.commons.lang3.StringUtils;
 import internaltest.UserForGuide;
 import ch.ivy.addon.portalkit.bo.Guide;
 import ch.ivyteam.ivy.security.IUser;
@@ -49,12 +50,12 @@ List<IUser> users = ivy.wf.getApplication().getSecurityContext().users().paged()
 for (IUser user : users) {
 	UserForGuide userForGuide = new UserForGuide();
 	userForGuide.setName(user.getName());
-	userForGuide.setGuidePropertyValue(user.getProperty("SHOW_GUIDE"));
+	userForGuide.setGuidePropertyValue(user.getProperty(UserProperty.SHOW_GUIDE));
 	userForGuide.setIsGuideShown(StringUtils.isNotBlank(userForGuide.getGuidePropertyValue()) ? Boolean.valueOf(userForGuide.getGuidePropertyValue()) : true);
 	in.users.add(userForGuide);
 }' #txt
 Us0 f3 security system #txt
-Us0 f3 168 138 112 44 0 -8 #rect
+Us0 f3 160 138 112 44 0 -8 #rect
 Us0 f3 @|StepIcon #fIcon
 Us0 f5 guid 1725F79C36B6435A #txt
 Us0 f5 method changeGuidePropertyValue(internaltest.UserForGuide) #txt
@@ -73,7 +74,8 @@ Us0 f5 83 243 26 26 -59 17 #rect
 Us0 f5 @|UdMethodIcon #fIcon
 Us0 f6 actionTable 'out=in;
 ' #txt
-Us0 f6 actionCode 'import ch.ivy.addon.portalkit.bean.GuideBean;
+Us0 f6 actionCode 'import ch.ivy.addon.portalkit.constant.UserProperty;
+import ch.ivy.addon.portalkit.bean.GuideBean;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.bo.Guide;
@@ -83,7 +85,7 @@ if (user.equals(ivy.session.getSessionUser())) {
 	GuideBean guideBean =	ManagedBeans.get("guideBean") as GuideBean;
 	guideBean.setDontShowAgain(!in.user.isGuideShown);
 } else {
-	user.setProperty("SHOW_GUIDE", String.valueOf(in.user.isGuideShown));
+	user.setProperty(UserProperty.SHOW_GUIDE, String.valueOf(in.user.isGuideShown));
 }
 ' #txt
 Us0 f6 security system #txt
@@ -107,10 +109,10 @@ Us0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Us0 f10 83 147 26 26 -9 16 #rect
 Us0 f10 @|UdMethodIcon #fIcon
 Us0 f11 109 64 339 64 #arcP
-Us0 f4 109 160 168 160 #arcP
+Us0 f4 109 160 160 160 #arcP
 Us0 f12 339 147 26 26 0 12 #rect
 Us0 f12 @|UdProcessEndIcon #fIcon
-Us0 f13 280 160 339 160 #arcP
+Us0 f13 272 160 339 160 #arcP
 >Proto Us0 .type ch.ivy.addon.portalkit.test.UserGuide.UserGuideData #txt
 >Proto Us0 .processKind HTML_DIALOG #txt
 >Proto Us0 -8 -8 16 16 16 26 #rect

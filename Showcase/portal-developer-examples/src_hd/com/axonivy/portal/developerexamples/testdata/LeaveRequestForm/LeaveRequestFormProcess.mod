@@ -1,5 +1,5 @@
 [Ivy]
-14B33FEBF587FE2D 7.5.0 #module
+14B33FEBF587FE2D 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ss0 LeaveRequestFormProcess Big #zClass
 Ss0 RD #cInfo
@@ -79,8 +79,7 @@ Ss0 f7 @|UdProcessEndIcon #fIcon
 Ss0 f11 actionTable 'out=in;
 ' #txt
 Ss0 f11 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalEndPage();
+PortalNavigator.navigateToPortalEndPage();
 ' #txt
 Ss0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
