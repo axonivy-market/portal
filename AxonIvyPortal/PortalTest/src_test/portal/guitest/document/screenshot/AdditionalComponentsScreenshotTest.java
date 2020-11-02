@@ -14,6 +14,7 @@ import portal.guitest.page.DocumentTableComponentPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.ProcessHistoryPage;
+import portal.guitest.page.RoleSelectionComponentPage;
 import portal.guitest.page.StatisticWidgetPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
@@ -93,7 +94,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
   }
   
   @Test
-  public void captureScreenshotUserSelectionComponenet() throws IOException {
+  public void captureScreenshotUserSelectionComponent() throws IOException {
     redirectToRelativeLink(userSelectionComponentShowcaseUrl);
     ScreenshotUtil.resizeBrowser(new Dimension(1920, 1080));
     UserSelectionComponentPage userSelectionComponentPage = new UserSelectionComponentPage();
@@ -109,5 +110,37 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
     userSelectionComponentPage.openSelectionPanelForAjaxEventUserSelectionComponent(" ");
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(userSelectionComponentPage.getAjaxEventUserSelectionComponent(), ScreenshotUtil.COMPONENTS_FOLDER + "user-selection-component-ajax-expand", new ScreenshotMargin(20, 0, 60, 0));
     
+  }
+
+  @Test
+  public void captureScreenshotRoleSelectionComponent() throws IOException {
+    redirectToRelativeLink(roleSelectionComponentShowcaseUrl);
+    ScreenshotUtil.resizeBrowser(new Dimension(1920, 1080));
+    RoleSelectionComponentPage roleSelectionComponentPage = new RoleSelectionComponentPage();
+
+    roleSelectionComponentPage.selectFirstItemForDefaultRoleSelectionComponent("E");
+    ScreenshotUtil.captureElementScreenshot(roleSelectionComponentPage.getDefaultRoleSelectionComponent(),
+        ScreenshotUtil.COMPONENTS_FOLDER + "role-selection-component");
+
+    roleSelectionComponentPage.selectFirstItemForFloatingLabelAndExcludeRoleSelectionComponent("E");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(
+        roleSelectionComponentPage.getFloatingLabelAndExcludeRoleSelectionComponent(),
+        ScreenshotUtil.COMPONENTS_FOLDER + "role-selection-component-floating-label-and-exclude-role",
+        new ScreenshotMargin(30, 0, 0, 0));
+
+    roleSelectionComponentPage.selectFirstItemForRoleFromDefinedRoleSelectionComponent("E");
+    ScreenshotUtil.captureElementScreenshot(roleSelectionComponentPage.getRoleFromDefinedRoleSelectionComponent(),
+        ScreenshotUtil.COMPONENTS_FOLDER + "role-selection-component-from-defined-role");
+
+    roleSelectionComponentPage.selectFirstItemForAjaxEventRoleSelectionComponent("E");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(
+        roleSelectionComponentPage.getAjaxEventRoleSelectionComponent(),
+        ScreenshotUtil.COMPONENTS_FOLDER + "role-selection-component-ajax-event-selected-message",
+        new ScreenshotMargin(10, 0, 0, 0));
+
+    roleSelectionComponentPage.openSelectionPanelForAjaxEventRoleSelectionComponent(" ");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(
+        roleSelectionComponentPage.getAjaxEventRoleSelectionComponent(),
+        ScreenshotUtil.COMPONENTS_FOLDER + "role-selection-component-ajax-expand", new ScreenshotMargin(20, 0, 60, 0));
   }
 }

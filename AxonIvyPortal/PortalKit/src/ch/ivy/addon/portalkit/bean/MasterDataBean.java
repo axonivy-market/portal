@@ -53,6 +53,10 @@ public class MasterDataBean implements Serializable {
   public String getTaskSortFieldExpiryTime() {
     return TaskSortField.EXPIRY_TIME.toString();
   }
+  
+  public String getTaskSortFieldCompletedTime() {
+	return TaskSortField.COMPLETED_ON.toString();
+  }
 
   public String getTaskSortFieldState() {
     return TaskSortField.STATE.toString();

@@ -70,7 +70,7 @@ GlobalSettingService globalSettingService = new GlobalSettingService();
 GlobalSetting savedSetting = null;
 
 // Check settting is updated, try 10 times
-for (int i = 0; i<=10; i++) {
+for (int i = 0; i<=20; i++) {
 	// Find Setting without via CacheServer
 	for (GlobalSetting globalSetting : globalSettingService.findAll()) {
 		if (StringUtils.equals(globalSetting.getKey(), in.settingName)) {
@@ -88,6 +88,7 @@ for (int i = 0; i<=10; i++) {
 	}
 
 	Thread.sleep(200); // make Portal Setting updated more stable
+	ivy.log.warn("Updating Portal settings - waited 200ms {0} times", i);
 }' #txt
 Pr0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

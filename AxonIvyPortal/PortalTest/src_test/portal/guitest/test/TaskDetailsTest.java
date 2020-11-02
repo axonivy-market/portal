@@ -1,10 +1,15 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 
 import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
@@ -112,5 +117,34 @@ public class TaskDetailsTest extends BaseTest {
     taskWidgetPage.expand();
     taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Delayed"));
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
+  }
+  
+  @Test
+  public void testShowDurationOfDoneTask() {
+    login(TestAccount.ADMIN_USER);
+    homePage = new HomePage();
+    taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.expand();
+    taskWidgetPage.openAdvancedFilter("Completed on (from/to)", "completed");
+    filterByDateType("completed");
+    taskDetailsPage = taskWidgetPage.openTaskDetails(0);
+    assertFalse(StringUtils.equalsIgnoreCase("", taskDetailsPage.getDurationTimeText()));
+  }
+  
+  private void filterByDateType(String dateType) {
+    DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy hh:mm");
+    Calendar calendar = Calendar.getInstance();
+    Date today = new Date();
+    calendar.setTime(today);
+    
+    calendar.add(Calendar.DAY_OF_YEAR, -1);
+    Date yesterday = calendar.getTime();
+    String yesterdayText = dateFormat.format(yesterday);
+    
+    calendar.add(Calendar.DAY_OF_YEAR, 2);
+    Date tomorrow = calendar.getTime();
+    String tomorrowText = dateFormat.format(tomorrow);  
+
+    taskWidgetPage.filterByDate(dateType, yesterdayText, tomorrowText);
   }
 }
