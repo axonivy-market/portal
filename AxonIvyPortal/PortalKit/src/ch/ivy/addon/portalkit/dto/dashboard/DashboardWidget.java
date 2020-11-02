@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 
+import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivyteam.ivy.environment.Ivy;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
@@ -51,8 +52,8 @@ public abstract class DashboardWidget implements Serializable {
   }
 
   public String getName() {
-    if (StringUtils.startsWithIgnoreCase(name, "cms:")) {
-      return Ivy.cms().co(StringUtils.removeStart(name, "cms:"));
+    if (StringUtils.startsWithIgnoreCase(name, DashboardConfigurationPrefix.CMS)) {
+      return Ivy.cms().co(StringUtils.removeStart(name, DashboardConfigurationPrefix.CMS));
     }
     return name;
   }
