@@ -7,6 +7,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import ch.ivy.addon.portalkit.dto.UserDTO;
+import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute;
 import ch.ivy.addon.portalkit.ivydata.dto.IvySubstituteResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.ISubstituteService;
@@ -21,7 +22,6 @@ import ch.ivyteam.ivy.security.IUserSubstitute;
 public class SubstituteService implements ISubstituteService {
 
   private static final String ROLE_EVERYBODY = "Everybody";
-  private static final String HIDE = "HIDE";
   
   private SubstituteService() {
   }
@@ -96,7 +96,7 @@ public class SubstituteService implements ISubstituteService {
       return new ArrayList<>();
     }
     return user.getAllRoles().stream()
-        .filter(role -> !ROLE_EVERYBODY.equals(role.getName()) && Objects.isNull(role.getProperty(HIDE)))
+        .filter(role -> !ROLE_EVERYBODY.equals(role.getName()) && Objects.isNull(role.getProperty(AdditionalProperty.HIDE.toString())))
         .collect(Collectors.toList());
   }
   

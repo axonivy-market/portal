@@ -614,6 +614,9 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 .ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-item label {
   font-size: var(--large-font-size); }
 
+.task-table table thead tr {
+  border-right: solid 1px var(--case-related-task-content-border); }
+
 .chart-info-header {
   font-size: var(--large-font-size);
   font-weight: var(--chart-info-header-font-weight); }

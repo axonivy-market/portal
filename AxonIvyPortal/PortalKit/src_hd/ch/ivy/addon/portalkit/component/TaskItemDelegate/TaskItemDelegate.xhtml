@@ -29,7 +29,7 @@
                 itemDisabled="#{empty data.usersToDelegate}" />
               <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/toGroup')}" itemValue="false"
                 itemDisabled="#{empty data.rolesToDelegate}" />
-              <p:ajax event="change" listener="#{logic.changeAssignType}" update="select-delegate-panel" />
+              <p:ajax event="change" listener="#{logic.changeAssignType}" update="select-delegate-panel proceed-task-delegate-command" />
             </p:selectOneRadio>
           </div>
         </h:panelGroup>
@@ -43,18 +43,19 @@
               <h:outputText value="#{securityMemberDisplayNameFormatBean.generateFullDisplayNameForUserDTO(user)}" />
             </p:column>
             <f:facet name="event">
-              <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}" update="#{p:component('proceed-task-delegate-command')}" />
+              <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}" update="#{cc.clientId}:task-delegate-form:proceed-task-delegate-command" />
            </f:facet>
           </ic:ch.ivy.addon.portalkit.component.UserSelection>
 
-          <p:autoComplete id="group-activator-select" rendered="#{!data.isUserDelegated}" scrollHeight="400" dropdown="true"
-            value="#{data.selectedRole}" completeMethod="#{logic.autoCompleteForRoleDelegate}" var="role"
-            panelStyleClass="delegation-select-panel" itemLabel="#{role.getDisplayName() != '' ? role.getDisplayName() : role.getMemberName()}"
-            itemValue="#{role}" converter="pojoConverter" cache="true" queryDelay="500" maxResults="100"
-            moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..."
-            forceSelection="true">
-            <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}" update="proceed-task-delegate-command" />
-          </p:autoComplete>
+          <ic:ch.ivy.addon.portalkit.component.RoleSelection id="group-activator-select-component" scrollHeight="400"
+            componentId="group-activator-select" selectedRole="#{data.selectedRole}" rendered="#{!data.isUserDelegated}"
+            cache="true" queryDelay="500" completeMethod="#{logic.autoCompleteForRoleDelegate}"
+            isRenderedMessage="false">
+            <f:facet name="event">
+              <p:ajax event="itemSelect" listener="#{data.setDisabledDelegateButton(false)}" update="#{cc.clientId}:task-delegate-form:proceed-task-delegate-command" />
+            </f:facet>
+          </ic:ch.ivy.addon.portalkit.component.RoleSelection>
+          
         </h:panelGroup>
 
         <div class="ui-dialog-footer u-dialog-footer">
