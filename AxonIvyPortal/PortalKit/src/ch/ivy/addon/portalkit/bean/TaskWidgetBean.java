@@ -149,7 +149,10 @@ public class TaskWidgetBean implements Serializable {
     TaskUtils.destroyTaskById(taskId);
   }
 
-  public List<String> getColumns() {
+  /*
+   * When press F5, bean is reinitialized (because of ViewScope), dataModel isn't set again like full flow of opening Task list, we use parameter to void NullPointerExcepion
+   */
+  public List<String> getColumns(TaskLazyDataModel dataModel) {
     List<String> visibilityColumns = new ArrayList<>();
     visibilityColumns.addAll(dataModel.getSelectedColumns());
 
