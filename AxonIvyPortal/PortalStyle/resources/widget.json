@@ -12,7 +12,15 @@
 				"height": 12,
 				"priorities": ["LOW","NORMAL","HIGH","EXCEPTION"],
 				"states": ["CREATED","SUSPENDED","RESUMED","PARKED","DONE"],
-				"sortField": "name"
+				"sortField": "name",
+				"extendedColumns": [
+					{
+						"field": "customer",
+						"header": "Customer",
+						"property": "CustomVarCharField5"
+						
+					}
+				]
 			},
 			{
 				"type": "process",
