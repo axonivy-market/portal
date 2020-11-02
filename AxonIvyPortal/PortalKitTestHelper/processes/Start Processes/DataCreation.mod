@@ -810,10 +810,10 @@ Dt0 f54 expr out #txt
 Dt0 f54 927 96 1024 96 #arcP
 Dt0 f58 actionTable 'out=in;
 ' #txt
-Dt0 f58 actionCode 'in.counter = 1;
+Dt0 f58 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 
-String hide = "HIDE";
-ivy.case.customFields().stringField(hide).set(hide);' #txt
+in.counter = 1;
+ivy.case.customFields().stringField(AdditionalProperty.HIDE.toString()).set(AdditionalProperty.HIDE.toString());' #txt
 Dt0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1147,7 +1147,13 @@ Dt0 f115 449 1193 30 30 0 15 #rect
 Dt0 f115 @|EndIcon #fIcon
 Dt0 f117 actionTable 'out=in;
 ' #txt
-Dt0 f117 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
+Dt0 f117 actionCode 'import java.util.Locale;
+import ch.ivy.addon.portalkit.dto.DisplayName;
+import java.util.ArrayList;
+import java.util.Map;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import java.util.HashMap;
+import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.service.TaskColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.CaseColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
@@ -1225,12 +1231,24 @@ caseService.save(caseConfig);
 
 // Create statistic chart
 StatisticService statisticService = new StatisticService();
+
+
+List<String> languages = LanguageService.newInstance().findUserLanguages().ivyLanguage.supportedLanguages;
+
+
 for (int i = 0; i < 800; i++) {
+	List chartNames = new ArrayList();
+	for (String language : languages) {
+		DisplayName chartName = new DisplayName();
+		chartName.locale = Locale.forLanguageTag(language);
+		chartName.value = "Test chart-" + i;
+		chartNames.add(chartName);
+	}
 	StatisticChart chart = new StatisticChart();
 	chart.setDefaultChart("false");
 	chart.setFilter(new StatisticFilter());
 	chart.setType(StatisticChartType.TASK_BY_PRIORITY);
-	chart.setName("Test chart-" + i);
+	chart.setNames(chartNames);
 	chart.setPosition(i);
 	chart.setUserId(testUserId);
 	statisticService.save(chart);
@@ -1582,7 +1600,7 @@ app.name = convertor.toJson();
 RegisteredApplicationService applicationService = new RegisteredApplicationService();
 app = applicationService.save(app) as Application;
 // Invalidate SessionCache
-IvyCacheService.newInstance().invalidateSessionCacheWithGroup(IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS);
+IvyCacheService.newInstance().invalidateSessionGroup(IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS);
 ' #txt
 Dt0 f152 security system #txt
 Dt0 f152 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

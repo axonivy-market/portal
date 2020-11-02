@@ -427,6 +427,17 @@ public class TaskWidgetPage extends TemplatePage {
     WaitHelper.assertTrueWithWait(() ->
         findElementByCssSelector("[id$=':description-filter:filter-open-form:advanced-filter-command']").getText().contains(text));
   }
+  
+  public void filterByDate(String filterId, String fromDate, String toDate) {
+    click(By.cssSelector("button[id$='" + filterId + "-filter:filter-open-form:advanced-filter-command']"));
+    WebElement toDateInput =
+        findElementByCssSelector("input[id$='" + filterId + "-filter:filter-input-form:from-" + filterId + "-calendar_input']");
+    enterKeys(toDateInput, fromDate);
+    WebElement fromDateInput =
+        findElementByCssSelector("input[id$='" + filterId + "-filter:filter-input-form:to-" + filterId + "-calendar_input']");
+    enterKeys(fromDateInput, toDate);
+    click(By.cssSelector("button[id$='" + filterId + "-filter:filter-input-form:update-command']"));
+  }
 
   public void filterByCustomerName(String text) {
     click(By.cssSelector(
