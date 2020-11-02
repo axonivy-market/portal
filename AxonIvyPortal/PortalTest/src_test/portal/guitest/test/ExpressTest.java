@@ -11,6 +11,7 @@ import org.junit.Test;
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.ExpressApprovalPage;
 import portal.guitest.page.ExpressEndPage;
 import portal.guitest.page.ExpressFormDefinitionPage;
@@ -59,8 +60,7 @@ public class ExpressTest extends BaseTest{
     ExpressFormDefinitionPage formDefinition = expressProcessPage.goToFormDefinition();
     assertEquals("Express Workflow", formDefinition.getTextOfCurrentBreadcrumb());
 
-    formDefinition.clickHomeBreadcrumb();
-    homePage = formDefinition.leave();
+    homePage = formDefinition.goToHomeFromBreadcrumbWithWarning();
     assertEquals(true, homePage.isDisplayed());
   }
   
@@ -84,7 +84,7 @@ public class ExpressTest extends BaseTest{
 
   private void executeExpressProcessWhenMultiApproval() {
     ExpressTaskPage expressTaskPage = new ExpressTaskPage();
-    expressTaskPage.finish();
+    WaitHelper.waitForNavigation(expressTaskPage, () -> expressTaskPage.finish());
     login(TestAccount.ADMIN_USER);
     executeUserTask();
     login(TestAccount.DEMO_USER);

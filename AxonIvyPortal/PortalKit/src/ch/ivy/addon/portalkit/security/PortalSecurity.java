@@ -42,7 +42,10 @@ public enum PortalSecurity {
             IPermission.TASK_WRITE_NAME,
             IPermission.TASK_WRITE_ORIGINAL_PRIORITY,
             IPermission.TASK_WRITE_EXPIRY_TIMESTAMP,
+            IPermission.TASK_WRITE_DELAY_TIMESTAMP,
             IPermission.TASK_RESET_OWN_WORKING_TASK,
+            IPermission.TASK_RESET,
+            IPermission.TASK_DESTROY,
             IPermission.CASE_DESTROY,
             IPermission.CASE_READ_ALL,
             IPermission.CASE_WRITE_DESCRIPTION,
@@ -52,7 +55,8 @@ public enum PortalSecurity {
             IPermission.USER_DELETE_ABSENCE,
             IPermission.USER_READ_ABSENCES,
             IPermission.USER_READ_SUBSTITUTES,
-            IPermission.DOCUMENT_WRITE);
+            IPermission.DOCUMENT_WRITE,
+            IPermission.WORKFLOW_EVENT_READ_ALL);
   
     private static final List<IPermission> DEMO_USER_ADDITIONAL = Arrays.asList(IPermission.DOCUMENT_WRITE);
   
@@ -65,7 +69,7 @@ public enum PortalSecurity {
             IPermission.USER_DELETE_OWN_SUBSTITUTE,
             IPermission.USER_READ_OWN_SUBSTITUTIONS);
   
-    private static final List<PortalPermission> DEVELOPER_USER_ADDTIONAL = Arrays.asList(PortalPermission.values());
+    private static final List<PortalPermission> ALL_PORTAL_PERMISSIONS = Arrays.asList(PortalPermission.values());
     private Permissions() {}
   }
 
@@ -82,9 +86,7 @@ public enum PortalSecurity {
         for (IPermission permission : Permissions.ADMIN_USER_ADDITIONAL) {
           securityDescriptor.grantPermission(permission, adminUser);
         }
-        grantPermissionsToForSecurityMember(Arrays.asList(
-            PortalPermission.STATISTIC_ANALYZE_TASK, PortalPermission.SHOW_CASE_DETAILS, 
-            PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK), adminUser);
+        grantPermissionsToForSecurityMember(Permissions.ALL_PORTAL_PERMISSIONS, adminUser);
       }
 
       IUser demoUser = userRepo.findWithExternalLookup(Username.DEMO);
@@ -103,7 +105,7 @@ public enum PortalSecurity {
       
       IUser developerUser = userRepo.findWithExternalLookup(ISecurityConstants.DEVELOPER_USER_NAME);
       if (developerUser != null) {
-        grantPermissionsToForSecurityMember(Permissions.DEVELOPER_USER_ADDTIONAL, developerUser);
+        grantPermissionsToForSecurityMember(Permissions.ALL_PORTAL_PERMISSIONS, developerUser);
       }
     }
   }

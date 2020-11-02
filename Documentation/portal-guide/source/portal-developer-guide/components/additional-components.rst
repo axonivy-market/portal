@@ -85,7 +85,7 @@ Introduction
 
 Task Analysis component of Portal provides features for the user's own permission StatisticAnalyzeTask in PortalTaskPermissions refer to 
 `Security section in
-Cockpit <http://developer.axonivy.com/doc/latest/engine-guide/tool-reference/engine-cockpit.html#security>`_
+Cockpit <https://developer.axonivy.com/doc/9.1/engine-guide/tool-reference/engine-cockpit/security.html>`_
 to analyze  not only tasks but also cases. These features are:
 
 1. Set of filters for both tasks and cases which allow user to filter
@@ -311,6 +311,8 @@ I want to display user in dropdown list with format <Full name> (<username>) and
 
 |user-selection-with-children-and-ajax-event|
 
+|user-selection-component-ajax-expand|
+
 .. code-block:: html
 
       <ic:ch.ivy.addon.portalkit.component.UserSelection 
@@ -339,14 +341,165 @@ Attributes of this component:
   :class: longtable
   :widths: 1 1 1 3
 
-.. |process-history-example| image:: images/additional-component/process-history-example.png
-.. |process-history-dialog-example| image:: images/additional-component/process-history-dialog-example.png
+.. _components-additional-components-role-selection:
+
+Role Selection
+--------------
+
+Introduction
+^^^^^^^^^^^^
+
+This component is used for choosing a role from a role list defined by a role name list.
+If you don't define role name list, all roles will be loaded.
+It includes 1 label, 1 autocomplete and 1 message element to display message related to that autocomplete element.
+
+How to use
+^^^^^^^^^^
+
+You can include this component to any page. This component supports 2 styles of displaying a label.
+
+1. Default style
+
+|role-selection|
+
+Code example:
+
+.. code-block:: html
+
+      <ic:ch.ivy.addon.portalkit.component.RoleSelection
+         componentId="role-from-defined-role-autocomplete"
+         fromRoleNames="#{data.definedRoleNames}"
+         selectedRole="#{data.selectedRoleForDefinedRoles}"
+         isRequired="true"
+         label="Roles from defined role names"/>
+
+2. Floating label
+
+|role-selection-floating-label|
+
+Code example:
+
+.. code-block:: html
+
+      <ic:ch.ivy.addon.portalkit.component.RoleSelection
+         componentId="floating-label-and-exclude-role-autocomplete" hightlight="false"
+         selectedRole="#{data.selectedRole}"
+         label="Loading with all roles (exclude CaseOwner, GeneralManager)"
+         excludedRolenames="#{data.excludedRoleNames}"
+         isRequired="true" floatingLabel="true" />
+
+.. tip::
+   Autocomplete element of role selection component allows inserting children and ajax event (Refer to ``RoleSelection.xtml``).
+   Any child in RoleSelection component will be re-parented into this autocomplete at the point of ``insertChildren`` tag.
+   We introduce a facet named ``event`` for autocomplete so that ajax event can be nested.
+
+For example: 
+
+I want to display role in dropdown list with format <Display Name> (<Member Name>) and when I select a role, a message will be displayed.
+
+|role-selection-with-children-and-ajax-event|
+
+|role-selection-component-ajax-expand|
+
+.. code-block:: html
+
+      <ic:ch.ivy.addon.portalkit.component.RoleSelection
+         id="item-select-event-component"
+         componentId="item-select-event-for-role-selection"
+         fromRoleNames="#{data.definedRoleNames}"
+         selectedRole="#{data.selectedRoleForInsertChildren}"
+         label="Demonstrate facet and children"
+         autoCompleteStyleClass="width-100"
+         autoCompletePanelStyleClass="ui-g-12 floating-label-margin-top"
+         isRequired="true" floatingLabel="true">
+         <p:column>
+            <h:outputText value="#{role.getDisplayName()} (#{role.getMemberName()})" />
+         </p:column>
+         <f:facet name="event">
+            <p:ajax event="itemSelect" listener="#{logic.showSelectedRole}"
+               update="#{p:component('item-select-event-for-role-selection-message')}" />
+         </f:facet>
+      </ic:ch.ivy.addon.portalkit.component.RoleSelection>
+
+Please refer to ``RoleSelectionExample.xhtml`` in ``portal-developer-examples`` for more details.
+
+Attributes of this component:
+
+.. csv-table::
+  :file: documents/additional-components/role_selection_component_attributes.csv
+  :header-rows: 1
+  :class: longtable
+  :widths: 1 1 1 3
+
+.. _components-additional-portal-dialog-with-icon:
+
+Portal dialog with icon
+-----------------------
+
+Introduction
+^^^^^^^^^^^^
+
+This decorator is used to display dialog with big icon and header in the middle, and below is dialog content.
+
+How to use
+^^^^^^^^^^
+
+.. code-block:: html
+
+      <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
+         <ui:param name="id" value="destroy-task-confirmation-dialog" />
+         <ui:param name="widgetVar" value="destroy-task-dialog" />
+         <ui:param name="appendTo" value="@(body)" />
+         <ui:param name="iconClass" value="icon ivyicon-delete-1" />
+         <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
+         <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage')}" />
+         
+         <ui:define name="dialogFooter">
+            <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+               onclick="PF('destroy-task-dialog').hide();" styleClass="u-mar-right-15"/>
+            <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
+               icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}"
+               actionListener="#{logic.destroyTask(task)}"
+               oncomplete="PF('destroy-task-dialog').hide()"
+               update="#{cc.clientId}:task-detail-general-container"
+               process="@this"/>
+         </ui:define>
+      </ui:decorate>
+
+Please refer to ``PortalDialogExample.xhtml`` in ``portal-developer-examples`` for more examples.
+
+This decorator provide 2 custom sections:
+
+- ``dialogFooter``: you have to define this section, it contains footer of dialog.
+- ``dialogContentSection``: this is optional, if you want to use your custom style for your dialog content, please define this section.
+
+Parameters of this decorator:
+
+.. csv-table::
+  :file: documents/additional-components/portal_dialog_decorator.csv
+  :header-rows: 1
+  :class: longtable
+  :widths: 20 10 25 45
+
+Portal cronjob trigger
+----------------------
+Portal provides a helpful bean ``ch.ivy.addon.portalkit.util.CronByGlobalVariableTriggerStartEventBean`` using the Quartz framework which help trigger cron job by global variable. The global variable should contains the cron job Pattern, to trigger to process on the right time.
+
+There is a online `Cron Maker <http://www.cronmaker.com>`_ could help you to create your own cron job pattern.
+
+.. |process-history-example| image:: ../../screenshots/components/process-history-example.png
+.. |process-history-dialog-example| image:: ../../screenshots/components/process-history-dialog-example.png
 .. |set-business-entity-id-sub-process| image:: images/additional-component/set-business-entity-id-sub-process.png
-.. |task-analysis| image:: images/additional-component/task-analysis.png
-.. |process-chain| image:: images/additional-component/process-chain.png
-.. |example-global-growl-finished-task| image:: images/additional-component/example-global-growl-finished-task.png
-.. |example-global-growl-cancelled-task| image:: images/additional-component/example-global-growl-cancelled-task.png
-.. |document-table| image:: images/additional-component/document-table.png
-.. |user-selection| image:: images/additional-component/user-selection-component.png
-.. |user-selection-floating-label| image:: images/additional-component/user-selection-component-floating-label.png
-.. |user-selection-with-children-and-ajax-event| image:: images/additional-component/user-selection-component-with-children-and-ajax-event.png
+.. |task-analysis| image:: ../../screenshots/components/task-analysis.png
+.. |process-chain| image:: ../../screenshots/components/process-chain.png
+.. |example-global-growl-finished-task| image:: ../../screenshots/components/example-global-growl-finished-task.png
+.. |example-global-growl-cancelled-task| image:: ../../screenshots/components/example-global-growl-cancelled-task.png
+.. |document-table| image:: ../../screenshots/components/document-table.png
+.. |user-selection| image:: ../../screenshots/components/user-selection-component.png
+.. |user-selection-floating-label| image:: ../../screenshots/components/user-selection-component-floating-label.png
+.. |user-selection-with-children-and-ajax-event| image:: ../../screenshots/components/user-selection-component-ajax-event-selected-message.png
+.. |user-selection-component-ajax-expand| image:: ../../screenshots/components/user-selection-component-ajax-expand.png
+.. |role-selection| image:: ../../screenshots/components/role-selection-component-from-defined-role.png
+.. |role-selection-floating-label| image:: ../../screenshots/components/role-selection-component-floating-label-and-exclude-role.png
+.. |role-selection-with-children-and-ajax-event| image:: ../../screenshots/components/role-selection-component-ajax-event-selected-message.png
+.. |role-selection-component-ajax-expand| image:: ../../screenshots/components/role-selection-component-ajax-expand.png

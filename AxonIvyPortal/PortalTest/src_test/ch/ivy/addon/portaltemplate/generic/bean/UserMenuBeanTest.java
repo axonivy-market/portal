@@ -16,6 +16,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 import ch.ivy.addon.portal.generic.bean.UserMenuBean;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivyteam.ivy.cm.IContentManagementSystem;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
@@ -37,11 +38,13 @@ public class UserMenuBeanTest {
     
     mockStatic(Ivy.class);
     IWorkflowSession session = mock(IWorkflowSession.class);
+    IContentManagementSystem icms = mock(IContentManagementSystem.class);
     IUser user = mock(IUser.class);
     when(Ivy.session()).thenReturn(session);
     when(session.getSessionUserName()).thenReturn(testUsername);
     when(session.getSessionUser()).thenReturn(user);
     when(user.getFullName()).thenReturn(testUsername);
+    when(Ivy.cms()).thenReturn(icms);
     
     globalSettingService = mock(GlobalSettingService.class);
     whenNew(GlobalSettingService.class).withNoArguments().thenReturn(globalSettingService);

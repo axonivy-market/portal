@@ -27,15 +27,15 @@ Leave request
 
 2. Select User example guide to open overview page.
 
-.. figure:: images/user-example-guide-link.png
+|user-example-guide-link|
 
 3. At example overview page, start leave request
 
-.. figure:: images/example-overview-leave-request.png
+|example-overview-leave-request|
 
 4. You will go directly to the first task **Create leave request for: <user>**.
 
-.. figure:: images/leave-request-creation.png
+|leave-request-creation|
 
 5. Input your data and submit leave request. Base on your selected approver, next task will be assigned to that user.
 
@@ -50,15 +50,15 @@ Lending (Case Map)
 
 2. Select User example guide to open overview page.
 
-.. figure:: images/user-example-guide-link.png
+|user-example-guide-link|
 
 3. At example overview page, start Lending case
 
-.. figure:: images/example-overview-lending-case.png
+|example-overview-lending-case|
 
 4. You will go directly to the first task **Collect Personal Data**
 
-.. figure:: images/lending-casemap-collect-personal-data.png
+|lending-casemap-collect-personal-data|
 
 By default we'll have dummy data on all fields, or you can input your data and submit the request.
 
@@ -66,11 +66,19 @@ By default we'll have dummy data on all fields, or you can input your data and s
 
 6. In **Internal Solvency Check** task, you can proceed to next task or start **External Solvency Service** sidestep by clicking **External solvency service**.
 
-.. figure:: images/lending-casemap-external-solvency-service.png
+|lending-casemap-external-solvency-service|
 
 7. After finishing Internal Solvency, you will have 1 or 2 approval levels which are depended on Amount and Salary fields. If Amount is greater than or equal to 20% of Salary, you will have 2 approval levels.
 
-.. figure:: images/lending-casemap-approval-task.png
+|lending-casemap-approval-task|
 
 8. In the approval task, you can approve to complete task and go to the last step which is created a contract. Now **Create Contract** task is finished, the case is Done. If we reject task, process will end.
 
+
+.. |example-overview-leave-request| image:: ../../screenshots/demo-processes/example-overview-leave-request.png
+.. |leave-request-creation| image:: ../../screenshots/demo-processes/leave-request-creation.png
+.. |user-example-guide-link| image:: ../../screenshots/demo-processes/user-example-guide-link.png
+.. |example-overview-lending-case| image:: ../../screenshots/demo-processes/example-overview-lending-case.png
+.. |lending-casemap-collect-personal-data| image:: ../../screenshots/demo-processes/lending-casemap-collect-personal-data.png
+.. |lending-casemap-external-solvency-service| image:: ../../screenshots/demo-processes/lending-casemap-external-solvency-service.png
+.. |lending-casemap-approval-task| image:: ../../screenshots/demo-processes/lending-casemap-approval-task.png

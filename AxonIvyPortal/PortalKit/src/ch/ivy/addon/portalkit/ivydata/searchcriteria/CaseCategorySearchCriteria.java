@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivyteam.ivy.workflow.CaseState;
@@ -13,8 +12,12 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
 public class CaseCategorySearchCriteria {
 
+  /**
+   * @deprecated not used anymore, will get current login user for query
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
   private String involvedUsername;
-  private List<String> apps;
+  private boolean isAdminQuery;
   private List<CaseState> includedStates;
   
   private CaseQuery customCaseQuery;
@@ -41,14 +44,6 @@ public class CaseCategorySearchCriteria {
     return stateFieldQuery;
   }
 
-  public List<String> getApps() {
-    return apps;
-  }
-
-  public void setApps(List<String> apps) {
-    this.apps = apps;
-  }
-
   public List<CaseState> getIncludedStates() {
     return includedStates;
   }
@@ -64,10 +59,20 @@ public class CaseCategorySearchCriteria {
     this.includedStates.addAll(includedStates);
   }
 
+  /**
+   * @return String
+   * @deprecated not used anymore, will get current login user for query
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
   public String getInvolvedUsername() {
     return involvedUsername;
   }
-
+  
+  /**
+   * @param involvedUsername 
+   * @deprecated not used anymore, will get current login user for query
+   */
+  @Deprecated(since = "9.2", forRemoval = true)
   public void setInvolvedUsername(String involvedUsername) {
     this.involvedUsername = involvedUsername;
   }
@@ -84,12 +89,12 @@ public class CaseCategorySearchCriteria {
     return CollectionUtils.isNotEmpty(includedStates);
   }
 
-  public boolean hasApps() {
-    return CollectionUtils.isNotEmpty(apps);
+  public boolean isAdminQuery() {
+    return isAdminQuery;
   }
 
-  public boolean hasInvolvedUsername() {
-    return StringUtils.isNotBlank(involvedUsername);
+  public void setAdminQuery(boolean isAdminQuery) {
+    this.isAdminQuery = isAdminQuery;
   }
-  
+
 }

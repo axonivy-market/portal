@@ -18,17 +18,20 @@
     <ui:define name="content">
 
       <h:form id="form" styleClass="ui-g">
-        <ic:ch.ivy.gawfs.component.FinishedUserTasksForm id="finished-tasks-component" finishedTasks="#{data.finishedTasks}" />
+        <div>
+          <ic:ch.ivy.gawfs.component.FinishedUserTasksForm id="finished-tasks-component" finishedTasks="#{data.finishedTasks}" />
+        </div>
+
         <br />
-        <h:panelGrid columns="1" styleClass="case-view-footer ui-g-12 u-no-border">
+        <h:panelGroup styleClass="case-view-footer ui-g-12 u-no-border">
           <h:panelGroup layout="block" styleClass="TexAlRight">
+            <p:commandLink id="cancel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="form"
+              actionListener="#{logic.cancel}" />
+            <p:spacer width="15" />
             <p:commandButton id="acknowledged" value="#{ivy.cms.co('/Dialogs/WorkflowExecution/FinalReviewForm/noticed')}" update="form"
-              icon="fa fa-check" actionListener="#{logic.close}" />
-            <p:spacer width="5" />
-            <p:commandButton id="cancel" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="form"
-              actionListener="#{logic.cancel}" styleClass="portal-cancel-button" icon="fa fa-times" />
+              icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}" actionListener="#{logic.close}" />
           </h:panelGroup>
-        </h:panelGrid>
+        </h:panelGroup>
 
       </h:form>
 

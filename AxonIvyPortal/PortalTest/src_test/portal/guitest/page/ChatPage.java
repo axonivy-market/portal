@@ -8,6 +8,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 
 import portal.guitest.bean.ExpressResponsible;
+import portal.guitest.common.Sleeper;
 
 public class ChatPage extends TemplatePage {
 
@@ -36,7 +37,7 @@ public class ChatPage extends TemplatePage {
     click(findElementByXpath("//span[text()='" + name + "']"));
   }
 
-  public void selectChatGroup() {
+  public void selectPortalDemoUserChatGroup() {
     waitForElementDisplayedByCssSelector("span.js-group-card-name[title$='Portal Demo User']");
     click(findElementByCssSelector("span.js-group-card-name[title$='Portal Demo User']"));
   }
@@ -70,8 +71,8 @@ public class ChatPage extends TemplatePage {
       selectRoleAssigneeCheckbox();
       waitAjaxIndicatorDisappear();
       type(By.cssSelector("input[id$='selection_input']"), responsible);
-      waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-role-selection_panel"), true);
-      click(By.xpath("//*[@id='chat-assignee-selection-form:chat-role-selection_panel']/ul/li/span"));
+      waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-role-selection-component:chat-role-selection_panel"), true);
+      click(By.xpath("//*[@id='chat-assignee-selection-form:chat-role-selection-component:chat-role-selection_panel']/ul/li/span"));
     } else {
       type(By.cssSelector("input[id$='selection_input']"), responsible);
       waitForElementDisplayed(By.cssSelector("span[id$='chat-user-selection_panel']"), true);
@@ -121,11 +122,20 @@ public class ChatPage extends TemplatePage {
   }
 
   public boolean isNotificationBadgeChat() {
-    waitForElementDisplayed(By.cssSelector("a[data-badge=' ']"), true);
+    waitForElementDisplayed(By.cssSelector("a.notification-badge"), true);
     return isElementPresent(By.cssSelector("a[data-badge=' ']"));
   }
 
   public boolean isNotificationContactChat() {
-    return !isElementPresent(By.cssSelector("span[class$='u-hiden']"));
+    return isElementPresent(By.cssSelector("span[class$='js-notification']"));
+  }
+  
+  public void openFirstGroupChat() {
+    waitForElementDisplayed(By.id("chat-form:group-chat-container"), true);
+    List<WebElement> chatGroups = findListElementsByClassName("js-group-card-name");
+    if(!chatGroups.isEmpty()) {
+      click(chatGroups.get(0));
+    }
+    Sleeper.sleep(300);//Wait for animation finish to capture screenshot
   }
 }

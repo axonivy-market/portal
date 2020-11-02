@@ -1,5 +1,5 @@
 [Ivy]
-16D5C32CD8527DA7 7.5.0 #module
+16D5C32CD8527DA7 9.2.0 #module
 >Proto >Proto Collection #zClass
 Os0 OpenPortalTaskDetailsHook Big #zClass
 Os0 B #cInfo

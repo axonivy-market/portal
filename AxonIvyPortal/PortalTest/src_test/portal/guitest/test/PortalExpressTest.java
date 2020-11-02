@@ -13,6 +13,7 @@ import org.junit.Test;
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.DefaultExpresTaskPage;
 import portal.guitest.page.ExpressApprovalPage;
 import portal.guitest.page.ExpressEndPage;
@@ -107,11 +108,8 @@ public class PortalExpressTest extends BaseTest {
 		formDefinition.createTextAreaField("Text area", true);
 		formDefinition.createCheckboxFieldWithDataProvider("Checkbox with data provider");
 		formDefinition.moveAllElementToDragAndDrogPanel();
-		// if we have radio button or checkbox, remember multiply with number of options
-		// Example: we have 1 checkbox with 2 options, 1 radio with 3 options. Total we
-		// have 5 inputs
-		// plus 1 hidden input
-		Assert.assertEquals(15, formDefinition.countNumberOfElementsInPreviewDialog());
+
+		Assert.assertEquals(14, formDefinition.countNumberOfElementsInPreviewDialog());
 		Assert.assertNotNull(formDefinition.findElementByXpath("//label[text()='Data Provider Item 1']"));
 		Assert.assertNotNull(formDefinition.findElementByXpath("//label[text()='Data Provider Item 2']"));
 		Assert.assertNotNull(formDefinition.findElementByXpath("//label[text()='Data Provider Item 3']"));
@@ -399,7 +397,7 @@ public class PortalExpressTest extends BaseTest {
 		userTaskWithMailFormPage.inputData("wawa@axonivy.io", "Task information", "Task is created");
 		userTaskWithMailFormPage.finish();
 		executeApproval("Approved at first level");
-		executeUserTask("Task 4");
+		executeUserTask();
 		String approvalResult = executeReview("Test approval: Final Review");
 		Assert.assertEquals("Portal Demo User,Approved at first level,Yes", approvalResult);
 		new ExpressEndPage().finish();
@@ -426,16 +424,7 @@ public class PortalExpressTest extends BaseTest {
 
 	protected void executeUserTask() {
 		taskWidgetPage = new TaskWidgetPage();
-		taskWidgetPage.startTask(0);
-		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
-		expressTaskPage.finish();
-		HomePage home = new HomePage();
-		home.waitForPageLoaded();
-	}
-
-	protected void executeUserTask(String taskName) {
-		taskWidgetPage = new TaskWidgetPage();
-		taskWidgetPage.filterTasksBy(taskName);
+		WaitHelper.assertTrueWithRefreshPage(taskWidgetPage, () -> taskWidgetPage.countTasks() == 1);
 		taskWidgetPage.startTask(0);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
@@ -451,7 +440,9 @@ public class PortalExpressTest extends BaseTest {
 
 	protected void executeApproval(String comment) {
 		taskWidgetPage = new TaskWidgetPage();
-		taskWidgetPage.filterTasksBy("Task");
+		if (taskWidgetPage.countTasks() == 0) {
+		  taskWidgetPage.filterTasksBy("Task");
+		}
 		taskWidgetPage.startTask(0);
 		ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
 		approvalPage1.comment(comment);

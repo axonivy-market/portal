@@ -2,7 +2,6 @@ package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,7 +27,6 @@ import portal.guitest.page.WorkingTaskDialogPage;
 public class TaskTemplateTest extends BaseTest {
 
   private String createImpersistentTaskUrl = "portal-developer-examples/169BDE2F368D6EC4/PrimefacesElements.ivp";
-  private static final String CUSTOM_PARAMS_TEMPLATE_TASK_URL= "portal-developer-examples/1718293B3F6E5478/start.ivp";
 
   @Override
   @Before
@@ -47,10 +45,9 @@ public class TaskTemplateTest extends BaseTest {
   public void testAddingANote() {
     createTestData();
     TaskTemplatePage taskTemplatePage = startATaskAndOpenCaseInfo();
-    assertEquals(1, taskTemplatePage.countHistoryItems());
+    assertEquals(0, taskTemplatePage.countNoteItems());
     taskTemplatePage.addNewNote("Sample note message");
     assertEquals(1, taskTemplatePage.countNoteItems());
-    assertEquals(1, taskTemplatePage.countHistoryItems());
   }
 
   @Test
@@ -139,28 +136,6 @@ public class TaskTemplateTest extends BaseTest {
     assertEquals(true, taskTemplatePage.isStartAdhocBtnNotExist());
   }
 
-  @Test
-  public void testCustomParamsForTaskTemplate8() {
-    redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy("Task template 8 with custom params");
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTaskWithouWaitForTaskActionPresent(0);
-    assertFalse(taskTemplatePage.isTaskNameDisplayed());
-    assertFalse(taskTemplatePage.isTaskActionDisplayed());
-    assertFalse(taskTemplatePage.isCaseInfoButtonDisplayed());
-  }
-  
-  @Test
-  public void testCustomParamsForIFrameTaskTemplate() {
-    redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.filterTasksBy("IFrame task with custom params");
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTaskWithouWaitForTaskActionPresent(0);
-    assertFalse(taskTemplatePage.isTaskNameDisplayed());
-    assertFalse(taskTemplatePage.isTaskActionDisplayed());
-    assertFalse(taskTemplatePage.isCaseInfoButtonDisplayed());
-  }
-  
   private void createTestData() {
     redirectToRelativeLink(createTestingTasksUrl);
   }

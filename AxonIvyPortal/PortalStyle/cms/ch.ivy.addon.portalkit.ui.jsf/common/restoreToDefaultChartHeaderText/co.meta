@@ -1,0 +1,5 @@
+co: name={restoreToDefaultChartHeaderText} description={} changed={2020-07-27 05:32:46 CEST} changedby={lttung} visualorder={0} guid={1737647A79DB9FE8} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1737648068BD1A48} datatype={} isdefault={false} langid={de} description={} validfrom={2020-07-27 05:32:46 CEST} validto={} changed={2020-07-27 05:32:46 CEST} changedby={lttung} properties={} id={}
+val: guid={173764807269607E} datatype={} isdefault={false} langid={es} description={} validfrom={2020-07-27 05:32:46 CEST} validto={} changed={2020-07-27 05:32:46 CEST} changedby={lttung} properties={} id={}
+val: guid={1737647A7A37E46A} datatype={} isdefault={true} langid={en} description={} validfrom={2020-07-22 13:27:54 CEST} validto={} changed={2020-07-22 13:27:54 CEST} changedby={ldnam} properties={} id={}
+val: guid={173764807506602F} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-07-27 05:32:46 CEST} validto={} changed={2020-07-27 05:32:46 CEST} changedby={lttung} properties={} id={}

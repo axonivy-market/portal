@@ -13,7 +13,7 @@
     <p:inputText id="global-search-data" styleClass="global-search-input" value="#{data.keyword}"
       onkeypress="if (event.keyCode == 13) { portalGlobalSearch(); return false; }" placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/globalSearch')}">
     </p:inputText>
-    <i class="global-search-icon fa fa-search" />
+    <i class="global-search-icon icon ivyicon-search" />
   </h:panelGroup>
   </div>
   <p:remoteCommand id="global-search-remote-cmd" name="portalGlobalSearch" actionListener="#{logic.search(cc.attrs.isWorkingOnATask)}" />

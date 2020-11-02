@@ -1,7 +1,7 @@
 .. _customization-menu:
 
-Menu
-====
+Menu and default homepage in user profile
+=========================================
 
 .. _customization-menu-introduction:
 
@@ -9,7 +9,8 @@ Introduction
 ------------
 
 By default Portal main menu has 4 items: Processes, Tasks, Cases and
-Statistics. You can remove these items or add your own items.
+Statistics. You can remove these items or add your own items, it will effect to the homepage selection in user profile,
+the menu items, which are not external link, are shown in the homepage selection.
 
 |default-menu-items|
 
@@ -29,5 +30,9 @@ Therefore, if you want to hide Statistic widget in your overrided
 process, please take a look on NOTE section of ``LoadSubMenuItems`` in
 PortalTemplate.
 
-.. |default-menu-items| image:: images/menu/default-menu-items.png
+.. tip::
+    | For the Label of SubMenuItem, if you want to show it in multilingual correctly, you should create a cms and use ``ApplicationMultiLanguage.getCmsValueByUserLocale`` method.
+    | e.g: ``subMenuItem.setLabel(ApplicationMultiLanguage.getCmsValueByUserLocale<CMS_URI>));``
+
+.. |default-menu-items| image:: ../../screenshots/dashboard/expanded-left-menu.png
 .. |load-sub-menu-items-process| image:: images/menu/load-sub-menu-items-process.png

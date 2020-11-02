@@ -65,5 +65,5 @@ Customization
 .. |callable-sub-process-result| image:: images/express-external-data-provider/callable-sub-process-result.png
 .. |database| image:: images/express-external-data-provider/database.png
 .. |database-output| image:: images/express-external-data-provider/database-output.png
-.. |express-workflow| image:: images/express-external-data-provider/express-workflow.png
+.. |express-workflow| image:: ../../screenshots/express/express-workflow.png
 

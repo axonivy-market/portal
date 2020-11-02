@@ -1,5 +1,5 @@
 [Ivy]
-169BDE2F368D6EC4 7.5.0 #module
+169BDE2F368D6EC4 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ss0 Showcases Big #zClass
 Ss0 B #cInfo
@@ -38,6 +38,14 @@ Ss0 @PushWFArc f26 '' #zField
 Ss0 @UserDialog f23 '' #zField
 Ss0 @PushWFArc f24 '' #zField
 Ss0 @PushWFArc f22 '' #zField
+Ss0 @StartRequest f32 '' #zField
+Ss0 @EndTask f33 '' #zField
+Ss0 @PushWFArc f34 '' #zField
+Ss0 @StartRequest f35 '' #zField
+Ss0 @EndTask f36 '' #zField
+Ss0 @UserDialog f37 '' #zField
+Ss0 @PushWFArc f38 '' #zField
+Ss0 @PushWFArc f39 '' #zField
 >Proto Ss0 Ss0 Showcases #zField
 Ss0 f0 outLink ApplicationShowcase.ivp #txt
 Ss0 f0 inParamDecl '<> param;' #txt
@@ -272,6 +280,62 @@ Ss0 f23 344 458 112 44 -52 -8 #rect
 Ss0 f23 @|UserDialogIcon #fIcon
 Ss0 f24 280 480 344 480 #arcP
 Ss0 f22 456 480 561 480 #arcP
+Ss0 f32 outLink StartShowIvyErrorPage.ivp #txt
+Ss0 f32 inParamDecl '<> param;' #txt
+Ss0 f32 actionCode 1/0; #txt
+Ss0 f32 requestEnabled true #txt
+Ss0 f32 triggerEnabled false #txt
+Ss0 f32 callSignature StartShowIvyErrorPage() #txt
+Ss0 f32 caseData businessCase.attach=true #txt
+Ss0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>StartShowIvyErrorPage.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f32 @C|.responsibility Everybody #txt
+Ss0 f32 721 145 30 30 -79 19 #rect
+Ss0 f32 @|StartRequestIcon #fIcon
+Ss0 f33 977 145 30 30 0 15 #rect
+Ss0 f33 @|EndIcon #fIcon
+Ss0 f34 751 160 977 160 #arcP
+Ss0 f35 outLink PortalDialogExamples.ivp #txt
+Ss0 f35 inParamDecl '<> param;' #txt
+Ss0 f35 requestEnabled true #txt
+Ss0 f35 triggerEnabled false #txt
+Ss0 f35 callSignature PortalDialogExamples() #txt
+Ss0 f35 startName 'Portal Dialog Examples' #txt
+Ss0 f35 caseData 'businessCase.attach=true
+customFields.STRING.embedInFrame="false"' #txt
+Ss0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>PortalDialogExamples.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f35 @C|.responsibility Everybody #txt
+Ss0 f35 721 241 30 30 -82 18 #rect
+Ss0 f35 @|StartRequestIcon #fIcon
+Ss0 f36 977 241 30 30 0 15 #rect
+Ss0 f36 @|EndIcon #fIcon
+Ss0 f37 dialogId com.axonivy.portal.developerexamples.PortalDialogExample #txt
+Ss0 f37 startMethod start() #txt
+Ss0 f37 requestActionDecl '<> param;' #txt
+Ss0 f37 responseMappingAction 'out=in;
+' #txt
+Ss0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>PortalDialogExample</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f37 800 234 128 44 -58 -8 #rect
+Ss0 f37 @|UserDialogIcon #fIcon
+Ss0 f38 751 256 800 256 #arcP
+Ss0 f39 928 256 977 256 #arcP
 >Proto Ss0 .type com.axonivy.portal.developerexamples.showcase.Data #txt
 >Proto Ss0 .processKind NORMAL #txt
 >Proto Ss0 0 0 32 24 18 0 #rect
@@ -298,3 +362,9 @@ Ss0 f25 mainOut f24 tail #connect
 Ss0 f24 head f23 mainIn #connect
 Ss0 f23 mainOut f22 tail #connect
 Ss0 f22 head f21 mainIn #connect
+Ss0 f32 mainOut f34 tail #connect
+Ss0 f34 head f33 mainIn #connect
+Ss0 f35 mainOut f38 tail #connect
+Ss0 f38 head f37 mainIn #connect
+Ss0 f37 mainOut f39 tail #connect
+Ss0 f39 head f36 mainIn #connect

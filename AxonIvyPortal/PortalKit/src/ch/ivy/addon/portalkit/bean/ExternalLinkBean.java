@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -17,7 +18,9 @@ import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
-public class ExternalLinkBean {
+public class ExternalLinkBean implements Serializable {
+
+  private static final long serialVersionUID = 4772777911430826945L;
   private ExternalLink externalLink;
   private ExternalLinkService externaLinkService;
   
@@ -32,7 +35,7 @@ public class ExternalLinkBean {
   }
   
   public ExternalLink saveNewExternalLink() {
-    externalLink.setCreator(Ivy.session().getSessionUserName());
+    externalLink.setCreatorId(Ivy.session().getSessionUser().getId());
     correctLink();
     externaLinkService.save(externalLink);
     return externalLink;

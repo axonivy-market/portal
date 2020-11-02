@@ -1,5 +1,5 @@
 [Ivy]
-15493BD80A4C7D12 7.5.0 #module
+15493BD80A4C7D12 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemNotesProcess Big #zClass
 Ts0 RD #cInfo
@@ -67,8 +67,8 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 ICase iCase = in.task.getCase().getBusinessCase();
 GlobalSettingService globalSettingService = new GlobalSettingService();
-boolean excludeTechnicalHistory = globalSettingService.findHideSystemTasksFromHistorySettingValue();
-out.notes = CaseUtils.findNotes(iCase, excludeTechnicalHistory);
+boolean excludeSystemNotes = globalSettingService.findHideSystemNotesFromHistorySettingValue();
+out.notes = CaseUtils.findNotes(iCase, excludeSystemNotes);
 ' #txt
 Ts0 f4 security system #txt
 Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

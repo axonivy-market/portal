@@ -12,10 +12,7 @@ This section covers Portal role, permissions and some settings in User menu
 Admin settings
 ==============
 
-User needs to have role ``AXONIVY_PORTAL_ADMIN`` to see this menu item,
-it is used to configure Portal configuration, see different Portal
-configurations in
-:ref:`Portal mode <installation-basic-portal-mode>`
+User needs to have role ``AXONIVY_PORTAL_ADMIN`` to see this menu.
 
 How to open Admin Settings
 --------------------------
@@ -23,7 +20,7 @@ How to open Admin Settings
 Open ``Admin Settings`` by selecting the item in ``UserMenu`` on the
 topbar, if your page using layout of ``PortalTemplate`` .
 
-|multi-portal-open-settings|
+|select-admin-settings|
 
 .. important:: 
    If your application does not use templates of PortalTemplate project, you
@@ -65,10 +62,15 @@ Process developer can set up global settings of Portal in file ``portal_settings
       #HIDE_SYSTEM_TASKS_FROM_HISTORY = true
       #HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR = false
 
+      #System notes visibility
+      #HIDE_SYSTEM_NOTES_FROM_HISTORY = true
+      #HIDE_SYSTEM_NOTES_FROM_HISTORY_ADMINISTRATOR = false
+
       # Portal chat settings
       #ENABLE_GROUP_CHAT = false
       #ENABLE_PRIVATE_CHAT = false
       #CHAT_RESPONSE_TIMEOUT =
+      #CHAT_MAX_CONNECTION = 3
 
       # Documents security settings
       #ENABLE_SCRIPT_CHECKING_FOR_UPLOADED_DOCUMENT = false
@@ -92,6 +94,10 @@ Process developer can set up global settings of Portal in file ``portal_settings
       # Task/case detail document component setting
       #HIDE_TASK_DOCUMENT = false
       #HIDE_CASE_DOCUMENT = false
+      
+      # Available standard values: dashboard, process, task, case, statistics.
+      # If you want your customized SubMenuIitem to be the default homepage, fill its name which is set in the overridden LoadSubMenuItems process.
+      #DEFAULT_HOMEPAGE =
 
       # Others
       #SHOW_ENVIRONMENT_INFO = false
@@ -104,89 +110,13 @@ Process developer can set up global settings of Portal in file ``portal_settings
       #ENABLE_USER_FAVORITES = true
       #DISPLAY_MESSAGE_AFTER_FINISH_TASK = true
       #SHOW_USER_GUIDE = true
+      #SHOW_GLOBAL_SEARCH = true
+      #SHOW_BUTTON_ICON = true
 
 This file already contains list of settings with their default values.
 These settings will be applied once you start Portal.
 
 If you change configuration file while coding, please stop engine in designer and start engine again to apply changes.
-
-.. _settings-admin-settings-setup-multi-portals:
-
-Setup Portal multi applications
--------------------------------
-
-Portal provides two types of multi applications: ``Multi applications with overview`` and ``Multi applications (without overview)``
-
-Multi applications with overview
-""""""""""""""""""""""""""""""""
-.. important::
-
-   Used for related applications App1, App2, App3... of which we need to see all
-   tasks/cases in one page. Task/Case list of application named ``Portal`` would display all
-   tasks/cases of applications App1, App2, App3...
-
-|multi-application-with-portal|
-
-
--  Create a new application named ``Portal``. Deploy portal (kit,
-   template ..) to this application.
-
--  Create new applications: App1, App2, App3... Deploy portal
-   (kit, template ..) to new applications.
-
--  Configure multi-apps Portal: login by Portal
-   Admin, configure applications: App1,
-   App2, App3...
-
--  Note that, ``do not`` add the application named ``Portal``, it is reserved
-   for displaying all tasks/cases... from all configured
-   applications.
-
--  Dashboard menu item is only visible when logged-in user exists in
-   Portal application.
-
-Multi applications (without overview)
-"""""""""""""""""""""""""""""""""""""
-.. important::
-
-   Used for independent applications App1, App2, App3... of which we ``do not`` need to see all
-   tasks/cases in one page.
-
-
-|multi-application-without-portal|
-
--  Create new applications: App1, App2, App3... Deploy portal(kit,
-   template ..) to new applications. Note: must not create an
-   application named ``Portal``.
-
--  Configure multi-apps Portal: login by Portal
-   Admin, configure applications: App1,
-   App2, App3...
-
-How to add a new application
-""""""""""""""""""""""""""""
-
-Choose ``Application`` tab on ``Admin Settings`` dialog and click on
-``New`` button to add new application. Here you can choose application
-type either as Ivy application or Third Party application.
-
-|multi-portal-add-application|
-
-.. tip::
-
-   -  ``Application name`` is the name of the application when you
-      create it. ``Display name`` is the name of the application to be
-      shown on Portal UI.
-
-   -  For multiple languages of application display name, you need to
-      create the "AppInfo/SupportedLanguages" CMS which defines how many
-      languages your application supports. See the below "Language
-      settings" for more details.
-      
-   -  If your application has new homepage, create a new process start named ``DefaultApplicationHomePage.ivp``.
-      It's recommended that you should copy the whole ``PortalStart`` process. To let portal know about your new portal home, 
-      you have to set default pages to your project, follow this chapter to customize standard processes:
-      `Standard Processes <https://developer.axonivy.com/doc/latest/engine-guide/administration/standard-processes.html>`_
 
 .. _settings-language:
 
@@ -197,27 +127,19 @@ Language settings
 
    |language-precedence|
 
-   If user email language setting is application default, language would
-   be applied by application email language setting.
+If user email language setting is application default, language would be applied by application email language setting.
 
-   If user selects a language in email setting, language would be
-   appplied by this selection.
+If user selects a language in email setting, language would be appplied by this selection.
 
--  To configure languages of Portal applications, select
-   ``Language Settings`` in ``User Settings`` .
+To configure languages of Portal applications, select ``My profile`` . 
 
--  UI reads current languages settings for all applications.
-
--  To change language for application, select one in the languages
-   dropdown list of application. When the change is saved, the language
-   will be set for application (Click on the application in header menu
-   to reload application and see the change of language).
+Select one in dropdown list of ``Selected language``. After the change is saved, new language will be set for whole application.
 
    |language-settings|
 
 -  For multiple languages, the CMS key ``/AppInfo/SupportedLanguages``
-   must exist in your application. From Portal 7.1, this CMS entry is
-   moved to Portal Style. It contains list of all languages supported by
+   must exist in your application. This CMS entry is
+   in Portal Style. It contains list of all languages supported by
    your application, separated by comma.
 
    -  Must not contain spaces
@@ -258,268 +180,140 @@ Permission settings
 ===================
 
 Permissions can be configured in `Cockpit
-<http://developer.axonivy.com/doc/latest/engine-guide/tool-reference/engine-cockpit.html#security>`_.
+<https://developer.axonivy.com/doc/9.1/engine-guide/tool-reference/engine-cockpit/security.html>`_.
 In the security area, you will find all these permission in the Group
 "PortalPermissions"
 
-Absences
---------
+Task permission
+---------------
+- Add note
 
--  READ
+   User needs permission: ``PortalPermission.TASK_CASE_ADD_NOTE``.
 
-   This function will be disabled if session user does not have
-   ``IPermission.USER_READ_OWN_ABSENCES`` and
-   ``IPermission.USER_READ_ABSENCES``.
+- Delegate
 
--  CREATE/MODIFY
+   To show delegate action, user needs permission:
+   ``PortalPermission.TASK_DISPLAY_DELEGATE_ACTION``.
 
-   This function will be disabled if session user does not have
-   ``IPermission.USER_CREATE_OWN_ABSENCE`` and
-   ``IPermission.USER_CREATE_ABSENCE``.
-
--  DELETE
-
-   This function will be disabled if session user does not have
-   ``IPermission.USER_DELETE_OWN_ABSENCE`` and
-   ``IPermission.USER_DELETE_ABSENCE``.
-
--  MANAGE EVERY USER ABSENCES
-
-   User can read, add, delete absences of all users. This function will
-   be disabled if session user does not have all of the following
-   permissions: ``IPermission.USER_CREATE_ABSENCE`` ,
-   ``IPermission.USER_DELETE_ABSENCE`` ,
-   ``IPermission.USER_READ_ABSENCES``.
-
-Substitute
-----------
-
--  CREATE OWN SUBSTITUTE
-
-   This function will be disabled if session user does not have
-   ``IPermission.USER_CREATE_OWN_SUBSTITUTE`` and
-   ``IPermission.USER_CREATE_SUBSTITUTE``.
-
--  MANAGE EVERY USER SUBSTITUTES
-
-   This function will be disabled if session user does not have
-   ``IPermission.USER_CREATE_SUBSTITUTE`` or
-   ``IPermission.USER_READ_SUBSTITUTES``.
-
-Personal task permission
-------------------------
--  ADD NOTE
-
-   Refer to :ref:`Display add note button<display-add-note-button>`.
-
--  DELEGATE
-
-   User can delegate his personal or group tasks if he has permission
+   To delegate personal or group tasks, user needs permission:
    ``TaskWriteActivatorOwnTasks`` (This permission belongs to Portal
    permission group and it is not assigned to role Everybody by
-   default). User can delegate all the tasks he see in his task list if
-   he has permission ``IPermission.TASK_WRITE_ACTIVATOR``.
+   default). 
+   
+   To delegate all tasks in task list, user needs permission:
+   ``IPermission.TASK_WRITE_ACTIVATOR``.
 
    .. important::
       Task state cannot be one of the following values:
       CREATED, DONE, DESTROYED, RESUMED, FAILED.
 
-   This function will be hidden if session user does not have permission
-   ``PortalPermission.TASK_DISPLAY_DELEGATE_ACTION``.
+- Reset
 
--  RESET
+   To show reset action, user needs permission:
+   ``PortalPermission.TASK_DISPLAY_RESET_ACTION``.
 
-   This function will be enabled if session user has permission
+   To reset task, user needs permission:
    ``IPermission.TASK_RESET_OWN_WORKING_TASK`` or
+   ``PortalPermission.TASK_RESET_READY_FOR_JOIN`` or
    ``IPermission.TASK_RESET``.
 
    .. important::
-      Task state has to be one of following values: RESUMED, PARKED.
+      Task state has to be one of following values: RESUMED, PARKED, READY_FOR_JOIN, FAILED.
 
-   This function will be hidden if session user does not have permission
-   ``PortalPermission.TASK_DISPLAY_RESET_ACTION``.
+   
+- Delete
 
--  RESERVE
+   User needs permission:
+   ``IPermission.TASK_DESTROY``.
 
-   This function will be enabled if session user has permission
+   .. important::
+      Task state isn't DESTROYED or DONE.
+
+- Reserve
+
+   To show reserve action, user needs permission: 
+   ``PortalPermission.TASK_DISPLAY_RESERVE_ACTION``.
+
+   To reserve task, user needs permission: 
    ``IPermission.TASK_PARK_OWN_WORKING_TASK``.
 
    .. important::
       Task state has to be one of following values: CREATED, RESUMED, SUSPENDED.
 
-   This function will be hidden if session user does not have permission
-   ``PortalPermission.TASK_DISPLAY_RESERVE_ACTION``.
+- Change description
 
--  CHANGE TASK NAME
-
-   This function will be enabled if session user has
-   ``IPermission.TASK_WRITE_NAME``.
-
-   .. important::
-      Task state cannot be one of following values: 
-      DONE, DESTROYED, FAILED.
-
--  CHANGE TASK DESCRIPTION
-
-   This function will be enabled if session user has
+   User needs permission: 
    ``IPermission.TASK_WRITE_DESCRIPTION``.
 
    .. important::
       Task state cannot be one of following values:
       DONE, DESTROYED, FAILED.
 
--  CHANGE DEADLINE
+- Change deadline
 
-   This function will be enabled if session user has
+   User needs permission: 
    ``IPermission.TASK_WRITE_EXPIRY_TIMESTAMP``.
 
    .. important::
       Task state cannot be one of following values:
       DONE, DESTROYED, FAILED.
 
--  CHANGE PRIORITY
+- Change priority
 
-   This function will be disabled if session user does not have
+   User needs permission: 
    ``IPermission.TASK_WRITE_ORIGINAL_PRIORITY``.
 
    .. important::
       Task state cannot be one of following values:
       DONE, DESTROYED, FAILED.
 
--  DISPLAY ADDITIONAL OPTIONS
+- Display additional options
 
-   This function will be hidden if session user does not have permission
+   To show additional action, user needs permission: 
    ``PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS``.
 
-Personal case permission
-------------------------
+Case permission
+---------------
 
--  ADD NOTE
+- Add note
 
-   Refer to :ref:`Display add note button<display-add-note-button>`.
+   User needs permission: ``PortalPermission.TASK_CASE_ADD_NOTE``.
 
--  DELETE CASE
+- Delete
 
-   Delete case function will be enabled if session user has
+   User needs permission: 
    ``IPermission.CASE_DESTROY``.
 
    .. important::
-      Case state has to be RUNNING.
+      Case state must be RUNNING.
 
--  CHANGE CASE NAME
+- Change description
 
-   Delete case function will be enabled if session user has
-   ``IPermission.CASE_WRITE_NAME``.
-
-   .. important::
-      Case state cannot be DONE, DESTROYED.
-
--  CHANGE CASE DESCRIPTION
-
-   Delete case function will be enabled if session user has
+   User needs permission: 
    ``IPermission.CASE_WRITE_DESCRIPTION``.
 
    .. important::
       Case state cannot be DESTROYED.
 
--  SEE RELATED TASKS OF CASE
+- See related tasks of case
 
-   Session user can see all related tasks of case if he has
+   To show related tasks action, user needs permission: 
+   ``PortalPermission.SHOW_ALL_TASKS_OF_CASE`` .
+
+   To see related tasks, user needs permission: 
    ``IPermission.TASK_READ_OWN_CASE_TASKS`` or
    ``IPermission.TASK_READ_ALL``.
 
    .. important::
       Case state cannot be DESTROYED.
 
-   Link to show all tasks of case will be hidden if session user does
-   not have permission ``PortalPermission.SHOW_ALL_TASKS_OF_CASE`` .
-   
--  DISPLAY SHOW DETAILS LINK
+- Display show detail link
 
-   This link will be hidden if session user does not have permission
+   User needs permission: 
    ``PortalPermission.SHOW_CASE_DETAILS``.
    This permission is not assigned to role Everybody by default.
 
-Upload/delete document permission
----------------------------------
-
-Upload/delete document function will be enabled if session user has
-``IPermission.DOCUMENT_WRITE`` or
-``IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE``.
-
-Express Workflow permission
----------------------------
-
--  CREATE EXPRESS WORKFLOW
-
-   Create Express Workflow function will be enabled if session user has
-   ``PortalPermission.EXPRESS_CREATE_WORKFLOW`` (This permission belongs
-   to Portal permission group, assigned to role Everybody by default).
-
-Statistics permission
----------------------
-
--  ADD DASHBOARD CHART
-
-   Add new charts function will be enabled if session user has
-   ``PortalPermission.STATISTIC_ADD_DASHBOARD_CHART`` (This permission
-   belongs to Portal permission group, assigned to role Everybody by
-   default).
-
--  ANALYZE TASK
-
-   Filter tasks and export data to excel for advanced analysis. This
-   function will be enabled if session user has
-   ``PortalPermission.STATISTIC_ANALYZE_TASK`` (This permission belongs
-   to Portal permission group and it is not assigned to role Everybody
-   by default).
-
-Portal general permission
--------------------------
-
--  ACCESS TO FULL PROCESS LIST
-
-   User cannot see "Processes" on the left menu and link "Show all
-   processes" (on Dashboard) if he does not have permission
-   ``PortalPermission.ACCESS_FULL_PROCESS_LIST``.
-
--  ACCESS TO FULL TASK LIST
-
-   User cannot see "Tasks" on the left menu and link "Show full task
-   list" (on Dashboard) if he does not have permission
-   ``PortalPermission.ACCESS_FULL_TASK_LIST``.
-
--  ACCESS TO FULL CASE LIST
-
-   User cannot see "Cases" on the left menu if he does not have
-   permission ``PortalPermission.ACCESS_FULL_CASE_LIST``.
-
--  ACCESS TO FULL STATISTIC LIST
-
-   User cannot see "Statistics" on the left menu and link "Show all
-   charts" (on Dashboard) if he does not have permission
-   ``PortalPermission.ACCESS_FULL_STATISTICS_LIST``.
-
-   .. _display-add-note-button:
--  DISPLAY ADD NOTE BUTTON
-
-   "Add note" button will be hidden in Task/Case detail if session user does not have permission
-   ``PortalPermission.TASK_CASE_ADD_NOTE``.
-
--  DISPLAY SHOW MORE NOTE BUTTON
-
-   This button will be hidden if session user does not have permission
-   ``PortalPermission.TASK_CASE_SHOW_MORE_NOTE``.
-
--  CREATE PUBLIC EXTERNAL LINK FOR ALL USERS
-
-   Everyone can add a new external link privately by default.
-   If a user is granted ``PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK``, 
-   he can set an external link as public so that all other users can see this link in full process list
-   and other users can also add it to User Favorites.
-
 Administrator permission can see all tasks/cases in the application
--------------------------------------------------------------------
 
 Normal users can only see their tasks/cases they can work on.
 
@@ -529,13 +323,77 @@ Permissions needed: ``IPermission.TASK_READ_ALL`` ,
 ``IPermission.CASE_READ_ALL`` .
 
 Administrator permission can interact with all workflows in the application
----------------------------------------------------------------------------
 
-Normal users can updates and deletes workflows which created by him and
+Normal user can update and delete workflow which created by him and
 can interact with workflow's task which assigned to him.
 
-Administrator can creates, updates and deletes all workflows in the
+Administrator can create, update and deletes all workflows in the
 application.
+
+Other permissions
+-----------------
+
+.. table:: 
+
+ +-----------+---------------------------------+----------------------------------------------------+
+ |           | Action                          | Permission required                                |
+ +===========+=================================+====================================================+
+ | Absence   | Read                            | ``IPermission.USER_READ_OWN_ABSENCES`` or          |
+ |           |                                 | ``IPermission.USER_READ_ABSENCES``                 |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Create, edit                    | ``IPermission.USER_CREATE_OWN_ABSENCE`` or         |
+ |           |                                 | ``IPermission.USER_CREATE_ABSENCE``                |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Delete                          | ``IPermission.USER_DELETE_OWN_ABSENCE`` or         |
+ |           |                                 | ``IPermission.USER_DELETE_ABSENCE``                |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Read, add, delete               | ``IPermission.USER_CREATE_ABSENCE`` and            |
+ |           | absences of all users           | ``IPermission.USER_DELETE_ABSENCE`` and            |
+ |           |                                 | ``IPermission.USER_READ_ABSENCES``                 |
+ +-----------+---------------------------------+----------------------------------------------------+
+ | Substitute| Manage substitute               | ``IPermission.USER_CREATE_SUBSTITUTE`` and         |
+ |           |                                 | ``IPermission.USER_READ_SUBSTITUTES``              |
+ +-----------+---------------------------------+----------------------------------------------------+
+ | Document  | Upload, delete                  | ``IPermission.DOCUMENT_WRITE`` or                  |
+ |           |                                 | ``IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE``    |
+ +-----------+---------------------------------+----------------------------------------------------+
+ | Express   | Create Express workflow         | ``PortalPermission.EXPRESS_CREATE_WORKFLOW``       |
+ |           |                                 | (assigned to role Everybody by default)            |
+ +-----------+---------------------------------+----------------------------------------------------+
+ | Statistics| Add dashboard                   | ``PortalPermission.STATISTIC_ADD_DASHBOARD_CHART`` |
+ |           |                                 | (assigned to role Everybody by default)            |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Analyze, filter tasks           | ``PortalPermission.STATISTIC_ANALYZE_TASK``        |
+ |           | and export data to excel        |                                                    |
+ |           | for advanced analysis           |                                                    |
+ +-----------+---------------------------------+----------------------------------------------------+
+ | Portal    | Access to full process          | ``PortalPermission.ACCESS_FULL_PROCESS_LIST``      |
+ | permission| list, it's "Processes" on the   |                                                    |
+ |           | left menu and link "Show all    |                                                    |
+ |           | processes" on Dashboard         |                                                    |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Access to full task list, it's  | ``PortalPermission.ACCESS_FULL_TASK_LIST``         |
+ |           | "Tasks" on the left menu and    |                                                    | 
+ |           | link "Show full task list" on   |                                                    |
+ |           | Dashboard                       |                                                    |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Access to full case list, it's  | ``PortalPermission.ACCESS_FULL_CASE_LIST``         |
+ |           | "Cases" on the left menu        |                                                    |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Access to statistic, it's       | ``PortalPermission.ACCESS_FULL_STATISTICS_LIST``   |
+ |           | "Statistics" on the left menu   |                                                    |
+ |           | and link "Show all charts" on   |                                                    |
+ |           | Dashboard                       |                                                    |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Add note to task/case           | ``PortalPermission.TASK_CASE_ADD_NOTE``            |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Display show more note          | ``PortalPermission.TASK_CASE_SHOW_MORE_NOTE``      |
+ |           +---------------------------------+----------------------------------------------------+
+ |           | Create public external link, all| ``PortalPermission.CREATE_PUBLIC_EXTERNAL_LINK``   |
+ |           | other users can see that link in|                                                    |
+ |           | full process list and can also  |                                                    |
+ |           | add it to User Favorite         |                                                    |
+ +-----------+---------------------------------+----------------------------------------------------+
 
 
 Global variables
@@ -543,56 +401,66 @@ Global variables
 
 .. table:: 
 
-   +---------------------------+-------------+---------------------------+
-   | Variable                  | Default     | Description               |
-   |                           | value       |                           |
-   +===========================+=============+===========================+
-   | PortalStartTimeCleanObsol | 0 0 6 \* \* | Cron expression define    |
-   | etedDataExpression        | ?           | the time to clean up data |
-   |                           |             | of obsoleted users. E.g.: |
-   |                           |             | expression for at 6AM     |
-   |                           |             | every day is              |
-   |                           |             | ``0 0 6 * * ?`` . Refer   |
-   |                           |             | to                        |
-   |                           |             | `crontrigger <http://quar |
-   |                           |             | tz-scheduler.org/document |
-   |                           |             | ation/quartz-2.1.x/tutori |
-   |                           |             | als/crontrigger>`__       |
-   |                           |             | . Restart Ivy engine      |
-   |                           |             | after changing this       |
-   |                           |             | variable.                 |
-   +---------------------------+-------------+---------------------------+
-   | PortalDeleteAllFinishedHi | false       | If set to ``true``, the   |
-   | ddenCases                 |             | cron job runs daily (at   |
-   |                           |             | 6.AM as default) will     |
-   |                           |             | clean all finished hidden |
-   |                           |             | cases in engine.          |
-   |                           |             | Otherwise, just hidden    |
-   |                           |             | cases which were          |
-   |                           |             | generated by Portal will  |
-   |                           |             | be deleted.               |
-   +---------------------------+-------------+---------------------------+
-   | PortalGroupId             | ch.ivyteam. | Maven group id of Portal. |
-   |                           | ivy.project |                           |
-   |                           | .portal     |                           |
-   +---------------------------+-------------+---------------------------+
-   | PortalHiddenTaskCaseExclu | true        | By default, Portal will   |
-   | ded                       |             | query tasks and cases     |
-   |                           |             | which don't have hide     |
-   |                           |             | information. Set it to    |
-   |                           |             | ``false``, portal will    |
-   |                           |             | ignore this additional    |
-   |                           |             | property.                 |
-   +---------------------------+-------------+---------------------------+
+   +---------------------------------------------+-------------+-----------------------------+
+   | Variable                                    | Default     | Description                 |
+   |                                             | value       |                             |
+   +=============================================+=============+=============================+
+   | PortalStartTimeCleanObsoletedDataExpression | 0 0 6 \* \* | Cron expression define      |
+   |                                             | ?           | the time to clean up data   |
+   |                                             |             | of obsoleted users. E.g.:   |
+   |                                             |             | expression for at 6AM       |
+   |                                             |             | every day is                |
+   |                                             |             | ``0 0 6 * * ?`` . Refer     |
+   |                                             |             | to                          |
+   |                                             |             | `crontrigger <http://quar   |
+   |                                             |             | tz-scheduler.org/document   |
+   |                                             |             | ation/quartz-2.1.7/tutori   |
+   |                                             |             | als/tutorial-lesson-06.htm  |
+   |                                             |             | l>`__                       |
+   |                                             |             | . Restart Ivy engine        |
+   |                                             |             | after changing this         |
+   |                                             |             | variable.                   |
+   +---------------------------------------------+-------------+-----------------------------+
+   | PortalDeleteAllFinishedHiddenCases          | false       | If set to ``true``, the     |
+   |                                             |             | cron job runs daily (at     |
+   |                                             |             | 6.AM as default) will       |
+   |                                             |             | clean all finished hidden   |
+   |                                             |             | cases in engine.            |
+   |                                             |             | Otherwise, just hidden      |
+   |                                             |             | cases which were            |
+   |                                             |             | generated by Portal will    |
+   |                                             |             | be deleted.                 |
+   +---------------------------------------------+-------------+-----------------------------+
+   | PortalGroupId                               | ch.ivyteam. | Maven group id of Portal.   |
+   |                                             | ivy.project |                             |
+   |                                             | .portal     |                             |
+   +---------------------------------------------+-------------+-----------------------------+
+   | PortalHiddenTaskCaseExcluded                | true        | By default, Portal will     |
+   |                                             |             | query tasks and cases       |
+   |                                             |             | which don't have hide       |
+   |                                             |             | information. Set it to      |
+   |                                             |             | ``false``, portal will      |
+   |                                             |             | ignore this additional      |
+   |                                             |             | property.                   |
+   +---------------------------------------------+-------------+-----------------------------+
+   |PortalLoginPageDisplay                       |true         |By default, Portal will      |
+   |                                             |             |redirect to Login Page if    |
+   |                                             |             |login is required and user   |
+   |                                             |             |is unknown. Set it to false  |
+   |                                             |             |to redirect to login error   |
+   |                                             |             |page and hide Logout in      |
+   |                                             |             |User menu when you are using |
+   |                                             |             |external authentication and  |
+   |                                             |             |the user is not created in   |
+   |                                             |             |your application user list.  |
+   +---------------------------------------------+-------------+-----------------------------+
 
-.. |portal-header| image:: images/settings/portal-header.png
-.. |global-settings| image:: images/settings/global-settings.png
-.. |global-setting-edit| image:: images/settings/global-setting-edit.png
-.. |multi-application-with-portal| image:: images/settings/multi-application-with-portal.png
-.. |multi-application-without-portal| image:: images/settings/multi-application-without-portal.png
+
+.. |portal-header| image:: ../../screenshots/settings/user-settings.png
+.. |global-settings| image:: ../../screenshots/settings/global-settings.png
+.. |global-setting-edit| image:: ../../screenshots/settings/edit-global-settings.png
 .. |language-precedence| image:: images/settings/language-precedence.png
-.. |language-settings| image:: images/settings/language-settings.png
+.. |language-settings| image:: ../../screenshots/my-profile/my-profile.png
 .. |add-new-language| image:: images/settings/add-new-language.png
-.. |multi-portal-open-settings| image:: images/settings/multi-portal-open-settings.png
-.. |multi-portal-add-application| image:: images/settings/multi-portal-add-application.png
+.. |select-admin-settings| image:: ../../screenshots/settings/select-admin-settings.png
 

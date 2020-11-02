@@ -23,6 +23,11 @@
 		responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down"
 		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" 
 		dataModel="#{dataModel}" sortable="true" sortedField="CREATOR" />
+    
+    <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="owner-column-header" 
+      responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/OWNER')}" 
+      dataModel="#{dataModel}" sortable="true" sortedField="OWNER" rendered="#{caseBean.isCaseOwnerEnabled()}" />
 
 	<ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="created-date-column-header" 
 		styleClass="TexAlCenter"

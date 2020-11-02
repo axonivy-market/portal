@@ -1,1 +1,1 @@
-Task expiry timestamp should not be in the past.
+Task expiry timestamp cannot be in the past.

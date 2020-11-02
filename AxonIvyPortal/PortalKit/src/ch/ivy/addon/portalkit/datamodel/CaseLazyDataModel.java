@@ -12,6 +12,8 @@ import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.ObjectUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
@@ -23,14 +25,14 @@ import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
-import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.SortDirection;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
+import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.service.CaseColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
@@ -53,7 +55,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   protected List<CaseFilter> filters;
   protected List<CaseFilter> selectedFilters;
-  protected List<CaseFilter> oldSelectedFilters;
+  protected List<CaseFilter> oldSelectedFilters = new ArrayList<>();
   protected CaseFilterContainer filterContainer;
   protected CaseFilterData selectedFilterData;
   protected CaseFilterData defaultCaseFilterData;
@@ -62,7 +64,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
-  private List<String> portalDefaultColumns = Arrays.asList("NAME", "ID", "CREATOR", "CREATION_TIME", "FINISHED_TIME", "STATE");
+  private List<String> portalDefaultColumns;
   private List<String> portalRequiredColumns = Arrays.asList("NAME");
 
   private boolean isAutoHideColumns;
@@ -100,7 +102,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   
   private boolean isSameFilterGroupId() {
     filterGroupId = UserUtils.getSessionFilterGroupIdAttribute();
-    return filterGroupId == null || filterGroupId == Ivy.request().getProcessModel().getId();
+    return filterGroupId == null || filterGroupId.equals(Ivy.request().getProcessModel().getId());
   }
 
   public CaseFilterData buildDefaultCaseFilterData() {
@@ -155,14 +157,8 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   private void collectFiltersForDefaultFilterSet() {
     if (defaultCaseFilterData != null && CollectionUtils.isEmpty(defaultCaseFilterData.getFilters())) {
-      CaseFilterContainer tempFilterContainer = null;
-      if (this.filterContainer == null) {
-        tempFilterContainer = new DefaultCaseFilterContainer();
-      } else {
-        tempFilterContainer = this.filterContainer;
-      }
+      CaseFilterContainer tempFilterContainer = ObjectUtils.defaultIfNull(this.filterContainer, new DefaultCaseFilterContainer());  
       setValuesForCaseStateFilter(criteria, tempFilterContainer);
-
       defaultCaseFilterData.setFilters(tempFilterContainer.getFilters().stream().filter(CaseFilter::defaultFilter).collect(Collectors.toList()));
     }
   }
@@ -209,12 +205,20 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     resetFilterData();
   }
 
-  public void resetFilters() {
+  public void resetFilters() throws ReflectiveOperationException {
     for (CaseFilter selectedFilter : selectedFilters) {
       selectedFilter.resetValues();
     }
-    selectedFilters = new ArrayList<>();
-    selectedFilterData = null;
+    applyFilter(buildDefaultCaseFilterData());
+  }
+
+  public boolean isSameCaseFilterData(CaseFilterData filterToBeRemoved) {
+    if (filterToBeRemoved == null || selectedFilterData == null) {
+      return false;
+    }
+    return filterToBeRemoved.getFilterGroupId().equals(selectedFilterData.getFilterGroupId())
+        && filterToBeRemoved.getType() == selectedFilterData.getType()
+        && filterToBeRemoved.getFilterName().equals(selectedFilterData.getFilterName());
   }
 
   public void setSorting(String sortedField, boolean descending) {
@@ -223,9 +227,8 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   public void setAdminQuery(boolean isAdminQuery) {
-    criteria.setAdminQuery(isAdminQuery);
-    if (isAdminQuery && !criteria.getIncludedStates().contains(CaseState.DONE)) {
-      criteria.addIncludedStates(Arrays.asList(CaseState.DONE));
+    criteria.extendStatesQueryByPermission(isAdminQuery);
+    if (isAdminQuery) {
       setValuesForCaseStateFilter(criteria, filterContainer);
     }
   }
@@ -287,11 +290,6 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
    */
   protected void initFilterContainer() {
     filterContainer = new DefaultCaseFilterContainer();
-  }
-
-  protected void setInvolvedApplications() {
-    RegisteredApplicationService service = new RegisteredApplicationService();
-    criteria.setApps(service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName()));
   }
 
   /**
@@ -384,8 +382,6 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   private void initializedDataModel() {
-    criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
-    setInvolvedApplications();
     data.clear();
     buildQueryToSearchCriteria();
     if (disableCaseCount) {
@@ -405,11 +401,30 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     criteria = new CaseSearchCriteria();
     criteria.setBusinessCase(true);
     criteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
-    criteria.setSortField(CaseSortField.ID.toString());
-    criteria.setSortDescending(true);
+    criteria.setSortField(getDefaultSortField());
+    criteria.setSortDescending(isSortedDescendingByDefault());
     if (!isNotKeepFilter) {
       criteria.setKeyword(UserUtils.getSessionCaseKeywordFilterAttribute());
     }
+  }
+
+  private String getDefaultSortField() {
+    String defaultSortField = UserSettingService.newInstance().getDefaultSortFieldOfCaseList();
+    if (StringUtils.isBlank(defaultSortField)) {
+      GlobalSettingService globalSettingService = new GlobalSettingService();
+      defaultSortField = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_FIELD_OF_CASE_LIST.name());
+    }
+    return defaultSortField;
+   }
+
+  private boolean isSortedDescendingByDefault() {
+    String defaultSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfCaseList();
+    if (StringUtils.isBlank(defaultSortDirection)) {
+      GlobalSettingService globalSettingService = new GlobalSettingService();
+      defaultSortDirection = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST.name());
+    }
+    
+    return !SortDirection.ASCENDING.name().contentEquals(defaultSortDirection);
   }
 
   private void applyCustomSettings(CaseFilterData caseFilterData) {
@@ -442,6 +457,11 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   public void initColumnsConfiguration() {
+    if (new GlobalSettingService().isCaseOwnerEnabled()) {
+      portalDefaultColumns = List.of("NAME", "ID", "CREATOR", "OWNER", "CREATION_TIME", "FINISHED_TIME", "STATE");
+    } else {
+      portalDefaultColumns = List.of("NAME", "ID", "CREATOR", "CREATION_TIME", "FINISHED_TIME", "STATE");
+    }
     if (CollectionUtils.isEmpty(allColumns)) {
       allColumns.addAll(getDefaultColumns());
       initSelectedColumns();

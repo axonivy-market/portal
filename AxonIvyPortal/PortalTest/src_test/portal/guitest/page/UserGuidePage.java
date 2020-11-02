@@ -45,4 +45,8 @@ public class UserGuidePage extends TemplatePage {
     click(By.id(STATISTIC_FINISH_BTN_ID));
     waitForElementDisplayed(By.className("no-task-message"), true);
   }
+  
+  public boolean isFinishButtonDisplay() {
+    return isElementDisplayedById(STATISTIC_FINISH_BTN_ID);
+  }
 }

@@ -1,5 +1,0 @@
-co: name={Destroy} description={} changed={2019-02-11 03:13:27 CET} changedby={ntminh01} visualorder={0} guid={15F713B2942B808E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={168DA54A91794EF6} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:27 CET} validto={} changed={2019-02-11 03:13:27 CET} changedby={ntminh01} properties={} id={}
-val: guid={15F713B2948AC923} datatype={} isdefault={true} langid={en} description={} validfrom={2016-02-17 09:32:20 CET} validto={} changed={2017-10-31 08:00:23 CET} changedby={chnam} properties={} id={}
-val: guid={15F713B2944FEC0B} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:00 CEST} validto={} changed={2017-10-31 08:00:23 CET} changedby={chnam} properties={} id={}
-val: guid={15F713B294DD0AF0} datatype={} isdefault={false} langid={de} description={} validfrom={2016-02-17 09:36:42 CET} validto={} changed={2017-10-31 08:00:23 CET} changedby={chnam} properties={} id={}

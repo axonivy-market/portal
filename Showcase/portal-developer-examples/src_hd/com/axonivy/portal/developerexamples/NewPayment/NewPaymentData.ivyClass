@@ -1,0 +1,6 @@
+NewPaymentData #class
+com.axonivy.portal.developerexamples.NewPayment #namespace
+actualStepIndex Number #field
+actualStepIndex PERSISTENT #fieldModifier
+steps java.util.List<String> #field
+steps PERSISTENT #fieldModifier

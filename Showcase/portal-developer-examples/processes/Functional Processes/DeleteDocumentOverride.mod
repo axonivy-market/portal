@@ -1,5 +1,5 @@
 [Ivy]
-16AD85A0D0880667 7.5.0 #module
+16AD85A0D0880667 9.2.0 #module
 >Proto >Proto Collection #zClass
 Dt0 DeleteDocument Big #zClass
 Dt0 B #cInfo
@@ -46,7 +46,7 @@ in.businessCase.documents().delete(Long.valueOf(in.document.id));
 
 String note = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/documentFiles/deleteDocumentNote", Arrays.asList(ivy.session.getSessionUserName(), in.document.getName()));
 in.businessCase.createNote(ivy.session, note);
-in.message = "Overridden: " + ivy.cms.co("/Dialogs/components/CaseDocument/deleteSucceed");' #txt
+in.message = "Customized: " + ivy.cms.co("/Dialogs/components/CaseDocument/deleteSucceed");' #txt
 Dt0 f3 security system #txt
 Dt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

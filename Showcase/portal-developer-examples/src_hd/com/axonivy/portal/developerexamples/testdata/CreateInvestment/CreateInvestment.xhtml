@@ -3,12 +3,16 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions">
 <h:body>
-  <ui:composition template="/layouts/basic.xhtml">
+  <ui:composition template="/layouts/frame-8.xhtml">
     <ui:define name="title">Create Investment</ui:define>
     <ui:define name="content">
+      <h:outputStylesheet library="ivy-icons" name="ivy-icon.css" />
       <h:form id="form">
         <div class="ui-g">
           <div class="ui-g-2">
+            <h3>
+            <i class="icon ivyicon-check-1" />
+          </h3>
             <h:outputLabel id="id-label" for="id" value="Investment ID" />
           </div>
           <div class="ui-g-4">
@@ -55,6 +59,7 @@
             </div>
           </div>
         </p:fieldset>
+        
         <div style="width: 100%; margin-bottom: 100px;">
           <p:commandButton id="save-btn" value="Save" update="@(form)" actionListener="#{logic.close}"
             style="float: right; margin-top: 20px;" />

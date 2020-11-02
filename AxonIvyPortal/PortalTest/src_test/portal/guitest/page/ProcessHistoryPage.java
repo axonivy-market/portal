@@ -20,4 +20,10 @@ public class ProcessHistoryPage extends TemplatePage {
     WebElement caseList = findElementByClassName("ui-datascroller-list");
     return caseList.findElements(By.className("ui-datascroller-item")).size();
   }
+  
+  public WebElement getProcessHistoryDialog() {
+    click(findElementById("process-history-dialog-button"));
+    waitForElementDisplayed(By.id("process-history-dialog"), true);
+    return findElementById("process-history-dialog");
+  }
 }

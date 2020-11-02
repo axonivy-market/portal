@@ -198,6 +198,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     }
     click(filterContainer.findElement(By.linkText(filterSetName)));
     waitAjaxIndicatorDisappear();
+    ensureNoBackgroundRequest();
   }
   
   public String getFilterName() {
@@ -235,7 +236,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     WebElement responsible = findElementByCssSelector("input[id*='"+filterIdName+"-filter:filter-input-form:']");
     type(responsible, user);
     waitAjaxIndicatorDisappear();
-    waitForElementExisted("i[class*='fa-user']", true, 5);
+    waitForElementExisted("i[class*='ivyicon-single-neutral-actions']", true, 5);
     click(By.cssSelector("tr[class$='ui-state-highlight']"));
     waitAjaxIndicatorDisappear();
     click(By.cssSelector("button[id$='"+filterIdName+"-filter:filter-input-form:update-command']"));
@@ -274,12 +275,26 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     //enterKeys(responsible, text);
     type(responsible,user);
     waitForElementDisplayedByCssSelector("span[id$='responsible-filter:filter-input-form:responsible_panel']");
-    waitForElementDisplayedByCssSelector("i[class*='fa-user']",5);
-    click(By.cssSelector("i[class*='fa-user']"));
+    waitForElementDisplayedByCssSelector("i[class*='ivyicon-single-neutral-actions']",5);
+    click(By.cssSelector("i[class*='ivyicon-single-neutral-actions']"));
     waitAjaxIndicatorDisappear();
     click(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
   }
+  
+  public void filterByOwner(String user) {
+    openAdvancedCaseFilter("Owner", "owner");
+    click(By.cssSelector("button[id$='owner-filter:filter-open-form:advanced-filter-command']"));
+    WebElement owner =
+        findElementByCssSelector("input[id$='owner-filter:filter-input-form:owner_input']");
+    type(owner, user);
+    waitForElementDisplayedByCssSelector("span[id$='owner-filter:filter-input-form:owner_panel']");
+    waitForElementDisplayedByCssSelector("i[class*='ivyicon-single-neutral-actions']", 5);
+    click(By.cssSelector("i[class*='ivyicon-single-neutral-actions']"));
+    click(By.cssSelector("button[id$='owner-filter:filter-input-form:update-command']"));
+    waitAjaxIndicatorDisappear();
+  }
+  
   public String getUser(String filterName) {
     waitForElementDisplayed(By.cssSelector("button[id$='" + filterName + "-filter:filter-open-form:advanced-filter-command']"),true,DEFAULT_TIMEOUT);
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
@@ -288,5 +303,21 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
                 .length() > 1);
     return findElementByCssSelector(
         "button[id$='" + filterName + "-filter:filter-open-form:advanced-filter-command'] > span").getText();
+  }
+  
+  public List<WebElement> getRowsInTaskTable() {
+    return findElementById("task-widget:statistic-result-form:task-table_data").findElements(By.cssSelector("tr[role='row']"));
+  }
+  
+  public void clickApplyFilter() {
+    click(By.cssSelector("button[id$='task-widget:apply-filter']"));
+    waitAjaxIndicatorDisappear();
+    ensureNoBackgroundRequest();
+  }
+  
+  public void waitForTaskDataChangeToSpecificSize(int size) {
+    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
+      return getRowsInTaskTable().size() == size;
+    });
   }
 }

@@ -1,5 +1,5 @@
 [Ivy]
-16B3FA08E0ADDCE6 7.5.0 #module
+16B3FA08E0ADDCE6 9.2.0 #module
 >Proto >Proto Collection #zClass
 At0 AssignRolesGroupChat Big #zClass
 At0 B #cInfo

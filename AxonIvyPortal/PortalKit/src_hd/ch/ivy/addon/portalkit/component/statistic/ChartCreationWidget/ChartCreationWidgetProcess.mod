@@ -1,5 +1,5 @@
 [Ivy]
-15FFC669C88F7E0B 7.5.0 #module
+15FFC669C88F7E0B 9.2.0 #module
 >Proto >Proto Collection #zClass
 Cs0 ChartCreationWidgetProcess Big #zClass
 Cs0 RD #cInfo
@@ -88,7 +88,10 @@ Cs0 f35 method createStatisticChart(java.util.List<ch.ivy.addon.portalkit.statis
 Cs0 f35 inParameterDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList> param;' #txt
 Cs0 f35 inParameterMapAction 'out.statisticChartList=param.statisticChartList;
 ' #txt
-Cs0 f35 inActionCode 'import org.apache.commons.lang3.StringUtils;
+Cs0 f35 inActionCode 'import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import java.util.Map.Entry;
+import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
@@ -98,21 +101,24 @@ import java.util.Arrays;
 
 out.isChartNameExisted = false;
 StatisticService service = new StatisticService();
-out.chartName = out.chartName.trim();
-if (service.checkStatisticChartNameExisted(ivy.session.getSessionUser().getId(), out.chartName)) {
-	FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/validationErrors/nameIsExisted"), "");
-	FacesContext.getCurrentInstance().addMessage("chart-name-input", message);
-	FacesContext.getCurrentInstance().validationFailed();
-	out.isChartNameExisted = true;
-} else {
-	StatisticChart newChart = service.createStatisticChart(out.statisticFilter, out.chartName, out.chartType, ivy.session.getSessionUser().getId(), false);
+for (DisplayName name : out.chartNames) {
+	String chartName = name.value;
+	if (service.checkStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName.trim(), name.getLocale().toLanguageTag())) {
+	  FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/validationErrors/nameIsExisted"), "");
+	  FacesContext.getCurrentInstance().addMessage("chart-name-input", message);
+  	FacesContext.getCurrentInstance().validationFailed();
+	  out.isChartNameExisted = true;
+	  break;
+  }
+}
+
+if (!out.isChartNameExisted) {
+	StatisticChart newChart = service.createStatisticChart(out.statisticFilter, out.chartNames, out.chartType, ivy.session.getSessionUser().getId(), false);
 	param.statisticChartList.add(newChart);
-	
 	String growlTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/chartCreationSuccessTitle");
-	String growlDetail = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/chartCreationSuccessDetailMsg", Arrays.asList(out.chartName));
+	String growlDetail = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/chartCreationSuccessDetailMsg", Arrays.asList(service.getDisplayNameInUserLanguageForChart(newChart).value));
 	FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_INFO, growlTitle, growlDetail);
 	FacesContext.getCurrentInstance().addMessage("chart-creation-growl", message);
-	
 }' #txt
 Cs0 f35 outParameterDecl '<> result;' #txt
 Cs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -205,7 +211,11 @@ Cs0 f6 99 243 26 26 -26 15 #rect
 Cs0 f6 @|UdMethodIcon #fIcon
 Cs0 f15 actionTable 'out=in;
 ' #txt
-Cs0 f15 actionCode 'import org.apache.commons.lang3.ObjectUtils;
+Cs0 f15 actionCode 'import java.util.Locale;
+import ch.ivy.addon.portalkit.dto.DisplayName;
+import java.util.ArrayList;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import org.apache.commons.lang3.ObjectUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
 import java.util.ArrayList;
 
@@ -213,8 +223,17 @@ if (!(in.statisticChartList is initialized)) {
 	in.statisticChartList = new ArrayList();
 }
 
-in.statisticFilter = new StatisticFilter().init();
+in.statisticFilter = new StatisticFilter();
+in.statisticFilter.init();
 in.oldStatisticFilter = ObjectUtils.clone(in.statisticFilter) as StatisticFilter;
+
+in.chartNames = new ArrayList();
+for(String lang : LanguageService.newInstance().findUserLanguages().ivyLanguage.supportedLanguages) {
+  DisplayName displayName = new DisplayName();
+  displayName.locale = Locale.forLanguageTag(lang);
+  displayName.value = "";
+  in.chartNames.add(displayName);
+}
 ' #txt
 Cs0 f15 security system #txt
 Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -266,7 +285,19 @@ Cs0 f41 99 339 26 26 -90 15 #rect
 Cs0 f41 @|UdMethodIcon #fIcon
 Cs0 f13 actionTable 'out=in;
 ' #txt
-Cs0 f13 actionCode 'in.chartName = "";' #txt
+Cs0 f13 actionCode 'import java.util.Locale;
+import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+
+in.chartNames.clear();
+
+for(String lang : LanguageService.newInstance().findUserLanguages().ivyLanguage.supportedLanguages) {
+  DisplayName displayName = new DisplayName();
+  displayName.locale = Locale.forLanguageTag(lang);
+  displayName.value = "";
+  in.chartNames.add(displayName);
+}
+' #txt
 Cs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

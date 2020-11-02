@@ -8,68 +8,41 @@ Portal so that it could fit customer needs.
 
 .. _introduction-new-and-note-worthy:
 
-New and Noteworthy
+New & Noteworthy
 ------------------
 
 .. _introduction-new-and-note-worthy-portal-group-chat:
 
-Portal Group Chat
-^^^^^^^^^^^^^^^^^
+Overlay guide
+^^^^^^^^^^^^^
 
-|portal-group-chat|
+At first login, an introduction will be shown to introduce all main features of Portal.
 
--  Specific Case Related Chat
+|overlay-guide|
 
--  Activate/Deactivate independently
+My profile 
+^^^^^^^^^^
 
--  Define a Chat Group on runtime
+My profile replaces for language setting and email setting. Also, introduce the general setting for you can configure the portal according to your requirements
 
--  Define a Chat Group during design
+|my-profile|
 
--  Customize the Group Chat Name
+New absence management
+^^^^^^^^^^^^^^^^^^^^^^
 
--  Chat information is stored and can be used for reporting
+New UI and user can choose deputy as permanent or temporary for personal task.
 
-.. _introduction-new-and-note-worthy-data-provider-express:
-
-Data Provider for Express
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-|data-provider-express|
-
--  Developers can prepare several Data Providers for Express
-
--  Developers can use these libraries as Data Provider in Express
-   Workflow creation
-
-.. _introduction-new-and-note-worthy-announcement-portal:
-
-Announcements in Portal
-^^^^^^^^^^^^^^^^^^^^^^^
-
-|announcement-portal|
-
--  Announce some important information like Downtimes directly in the
-   portal
-
--  Multilanguage support
+|absence|
 
 .. _introduction-new-and-note-worthy-further-improvement:
 
-Further Improvements
+Further improvements
 ^^^^^^^^^^^^^^^^^^^^
 
--  Enhance Filter Selection in Task and Case List
+Filter case by owner in case list and task analysis if case owner is enabled.
 
--  Chart Title in Dashboard
+.. |overlay-guide| image:: ../../screenshots/dashboard/overlay-guide.png
+.. |my-profile| image:: ../../screenshots/my-profile/my-profile.png
+.. |absence| image:: ../../screenshots/settings/absence.png
 
--  Visibility of Done Tasks and Cases
-
--  Enhanced Process List Navigation
-
--  Integrated AdHoc Workflows available
-
-.. |portal-group-chat| image:: images/portal-group-chat.png
-.. |data-provider-express| image:: images/data-provider-express.png
-.. |announcement-portal| image:: images/announcement-portal.png
 

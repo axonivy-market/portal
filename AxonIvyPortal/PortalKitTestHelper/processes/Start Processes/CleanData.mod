@@ -1,5 +1,5 @@
 [Ivy]
-1511A66AF619A768 7.5.0 #module
+1511A66AF619A768 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ca0 CleanData Big #zClass
 Ca0 B #cInfo
@@ -414,7 +414,9 @@ Ca0 f35 51 547 26 26 14 0 #rect
 Ca0 f35 @|EndIcon #fIcon
 Ca0 f36 actionTable 'out=in;
 ' #txt
-Ca0 f36 actionCode 'import org.apache.commons.collections4.CollectionUtils;
+Ca0 f36 actionCode 'import ch.ivy.addon.portalkit.constant.UserProperty;
+import ch.ivyteam.ivy.security.IUser;
+import org.apache.commons.collections4.CollectionUtils;
 import ch.ivy.addon.portalkit.bo.ExternalLink;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.test.util.BusinessDataUtils;
@@ -436,7 +438,7 @@ GlobalSettingService globalSettingService = new GlobalSettingService();
 globalSettingService.deleteAll(globalSettingService.findAll());
 
 
-List<ExternalLink> privateExternalLinks = ExternalLinkService.getInstance().findStartableLink("demo");
+List<ExternalLink> privateExternalLinks = ExternalLinkService.getInstance().findStartableLink(ivy.wf.getSecurityContext().users().find("demo").getId());
 if (CollectionUtils.isNotEmpty(privateExternalLinks)) {
   for (int i = 0; i < privateExternalLinks.size(); i++) {
     if (privateExternalLinks.get(i).isPublic()) {
@@ -445,7 +447,16 @@ if (CollectionUtils.isNotEmpty(privateExternalLinks)) {
   }
 }
 
-ExternalLinkService.getInstance().deleteAll(privateExternalLinks);' #txt
+ExternalLinkService.getInstance().deleteAll(privateExternalLinks);
+
+List<IUser> users = SecurityUtils.findAllUsers();
+for (IUser user : users) {
+	user.removeProperty(UserProperty.HOMEPAGE);
+	user.removeProperty(UserProperty.DEFAULT_SORT_FIELD_OF_TASK_LIST);
+	user.removeProperty(UserProperty.DEFAULT_SORT_DIRECTION_OF_TASK_LIST);
+	user.removeProperty(UserProperty.DEFAULT_SORT_FIELD_OF_CASE_LIST);
+	user.removeProperty(UserProperty.DEFAULT_SORT_DIRECTION_OF_CASE_LIST);
+}' #txt
 Ca0 f36 security system #txt
 Ca0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -489,6 +500,20 @@ import javax.faces.application.FacesMessage;
 import ch.ivyteam.ivy.security.IUser;
 import java.util.Locale;
 ivy.session.loginSessionUser("demo", "demo");
+for (int i = 0; i < 5; i++) {
+	if (ivy.wf.getSecurityContext().getCurrentSession().isSessionUserUnknown()) {
+		if (i == 5) {
+			ivy.log.warn("Unsuccessful login after retry (in clean data)");
+		} else {
+		  ivy.log.warn("Unsuccessful login, retry (in clean data)");
+		  ivy.session.loginSessionUser("demo", "demo");
+		  Thread.sleep(500);
+	  }
+	} else {
+		break;
+	}
+}
+
 //set language from user settings or application details
 IUser sessionUser = ivy.session.getSessionUser();
 
@@ -505,7 +530,10 @@ if (sessionUser.getEMailLanguage() != null &&
 	Locale l = new Locale(language, country, "APPLICATION_DEFAULT");
 	ivy.session.setContentLocale(l);
 	ivy.session.setFormattingLocale(l);
-}' #txt
+}
+
+
+' #txt
 Ca0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public class UserProcess extends BusinessEntity {
   private long applicationId = Long.MIN_VALUE;
-  private String userName;
+  private Long userId;
   private String processName;
   private String link;
   private String icon;
@@ -15,18 +15,42 @@ public class UserProcess extends BusinessEntity {
   private Integer index;
   private boolean defaultProcess;
   private boolean isExternalLink;
-  
+
+  /**
+   *  Since 9.1, we use userId to store user process instead of userName.
+   */
+  @Deprecated
+  private String userName;
+
   @JsonIgnore
   private String description;
 
   public UserProcess() {
   }
 
-  public UserProcess(String processName, long applicationId, String userName, String link) {
+  public UserProcess(String processName, long applicationId, long userId, String link) {
     this.processName = processName;
     this.applicationId = applicationId;
-    this.userName = userName;
+    this.userId = userId;
     this.link = link;
+  }
+
+  public Long getUserId() {
+    return userId;
+  }
+
+  public void setUserId(Long userId) {
+    this.userId = userId;
+  }
+
+  @Deprecated
+  public String getUserName() {
+    return userName;
+  }
+
+  @Deprecated
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
   public long getApplicationId() {
@@ -35,14 +59,6 @@ public class UserProcess extends BusinessEntity {
 
   public void setApplicationId(long applicationId) {
     this.applicationId = applicationId;
-  }
-
-  public String getUserName() {
-    return userName;
-  }
-
-  public void setUserName(String userName) {
-    this.userName = userName;
   }
 
   public String getProcessName() {
@@ -111,13 +127,12 @@ public class UserProcess extends BusinessEntity {
   
   @Override
   public String toString() {
-    return "UserProcess {userName=" + userName + ", processName=" + processName + ", icon=" + icon + ", link=" + link
-        + ", isDefaultProcess=" + defaultProcess + ", id=" + getId() + "}";
+    return String.format("UserProcess {userId=%s, processName=%s, icon=%s, link=%s, isDefaultProcess=%s, id=%s}", userId, processName, icon, link, defaultProcess, id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(defaultProcess, icon, link, processName, userName);
+    return Objects.hash(defaultProcess, icon, link, processName, userId);
   }
 
   @Override

@@ -1,97 +1,88 @@
 package portal.guitest.test;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
+import org.openqa.selenium.By;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.MainMenuPage;
-import portal.guitest.page.ProcessWidgetPage;
-import portal.guitest.page.TaskTemplateIFramePage;
+import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
 
 public class TaskTemplateIFrameTest extends BaseTest {
 
-	@Override
-	@Before
-	public void setup() {
-		super.setup();
-		redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
-	}
+  private static final String CUSTOM_PARAMS_TEMPLATE_TASK_URL= "portal-developer-examples/1718293B3F6E5478/start.ivp";
+  private static final String IFRAME_TASK_URL= "portal-developer-examples/16E5DB746865BCEC/CreateInvestment.ivp?embedInFrame";
+  
+  @Override
+  @Before
+  public void setup() {
+    super.setup();
+    redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
+  }
+  
+  @Test
+  public void testCustomParamsForTaskTemplate8() {
+    redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.filterTasksBy("Task template 8 with custom params");
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTaskWithouWaitForTaskActionPresent(0);
+    assertFalse(taskTemplatePage.isTaskNameDisplayed());
+    assertFalse(taskTemplatePage.isTaskActionDisplayed());
+    assertFalse(taskTemplatePage.isCaseInfoButtonDisplayed());
+  }
+  
+  @Test
+  public void testCustomParamsForIFrameTaskTemplate() {
+    redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    taskWidgetPage.filterTasksBy("IFrame task with custom params");
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTaskWithouWaitForTaskActionPresent(0);
+    assertFalse(taskTemplatePage.isTaskNameDisplayed());
+    assertFalse(taskTemplatePage.isTaskActionDisplayed());
+    assertFalse(taskTemplatePage.isCaseInfoButtonDisplayed());
+  }
 
-	private void createIFrameTaskLevel() {
-		HomePage homePage = new HomePage();
-		MainMenuPage mainMenuPage = homePage.openMainMenu();
-		ProcessWidgetPage processWidgetPage = mainMenuPage.selectProcessesMenu();
-		processWidgetPage.enterSearchKeyword("IFrame");
-		processWidgetPage.startProcess("Create Investment (IFrame + Task custom fields)");
-	}
-
-	private TaskTemplateIFramePage inputDataForTaskTemplateIFrame() {
-		TaskTemplateIFramePage taskTemplateIFramePage = new TaskTemplateIFramePage();
-		taskTemplateIFramePage.switchToIFrame("iFrame");
-		taskTemplateIFramePage.inputDataCreateInvestmentTask();
-		return taskTemplateIFramePage;
-	}
-
-	@Ignore
-	@Test
-	public void testDeprecatedModenaTaskTemplate() {
-		createIFrameTaskLevel();
-		TaskTemplateIFramePage taskTemplateIFramePage = inputDataForTaskTemplateIFrame();
-		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-		taskWidgetPage.startTask(0);
-		assertTrue("Verify iframe tag created", taskTemplateIFramePage.isIFrameTagDisplayed());
-		taskTemplateIFramePage.switchToIFrame("iFrame");
-		taskTemplateIFramePage.proceedDeprecateModenaTaskTemplate();
-	}
-
-	@Ignore
-	@Test
-	public void testDeprecatedTaskTemplate() {
-		createIFrameTaskLevel();
-		TaskTemplateIFramePage taskTemplateIFramePage = inputDataForTaskTemplateIFrame();
-		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-		taskWidgetPage.startDeprecatedTaskTemplate(1);
-		assertTrue("Verify no iframe tag created", taskTemplateIFramePage.isIFrameTagDisplayed() == false);
-		taskTemplateIFramePage.proceedDeprecatedTaskTemplate();
-	}
-	
-	@Ignore
-	@Test
-	public void testSerenityTaskTemplate() {
-		createIFrameTaskLevel();
-		TaskTemplateIFramePage taskTemplateIFramePage = inputDataForTaskTemplateIFrame();
-		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-		taskWidgetPage.startTask(2);
-		assertTrue("Verify no iframe tag created", taskTemplateIFramePage.isIFrameTagDisplayed() == false);
-		taskTemplateIFramePage.proceedSerenityTaskTemplate();
-	}
-	
-	@Ignore
-	@Test
-	public void testTaskInIFrame() {
-		createIFrameTaskLevel();
-		TaskTemplateIFramePage taskTemplateIFramePage = inputDataForTaskTemplateIFrame();
-		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-		taskWidgetPage.startTask(3);
-		assertTrue("Verify iframe tag created", taskTemplateIFramePage.isIFrameTagDisplayed());
-		taskTemplateIFramePage.switchToIFrame("iFrame");
-		taskTemplateIFramePage.approveInvestmentTask();
-	}
-
-	@Ignore
-	@Test
-	public void testCaseLevelInIFrame() {
-		redirectToRelativeLink("internalSupport/14B2FC03D2E87141/IFrameInCaseLevel.ivp");
-		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-		taskWidgetPage.startTask(0);
-		TaskTemplateIFramePage taskTemplateIFramePage = new TaskTemplateIFramePage();
-		assertTrue("Verify iframe tag created", taskTemplateIFramePage.isIFrameTagDisplayed());
-		taskTemplateIFramePage.switchToIFrame("iFrame");
-		taskTemplateIFramePage.proceedTaskInCaseLevelIFrame();
-	}
+  @Test
+  public void testDisplayWarningInIFrameTaskTemplate() {
+    redirectToRelativeLink(IFRAME_TASK_URL);
+    final TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
+    taskTemplatePage.clickOnLogo();
+    By leaveButton = By.id("task-leave-warning-component:leave-button");
+    WaitHelper.assertTrueWithWait(() -> taskTemplatePage.isElementDisplayed(leaveButton));
+  }
+  
+  @Test
+  public void testNotDisplayWarningInIFrameTaskTemplate() {
+    redirectToRelativeLink(IFRAME_TASK_URL);
+    TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
+    TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
+    TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(1);
+    taskTemplatePage2.clickOnLogo();
+    WaitHelper.assertTrueWithWait(() -> taskTemplatePage2.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
+  }
+  
+  @Test
+  public void testRedirectToApplicationHome() {
+    redirectToRelativeLink(IFRAME_TASK_URL);
+    TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
+    TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
+    TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(1);
+    HomePage homePage = taskTemplatePage2.backToHomeInIFrameApprovalTask();
+    WaitHelper.assertTrueWithWait(() -> homePage.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
+  }
+  
+  @Test
+  public void testStickyTaskList() {
+    redirectToRelativeLink(IFRAME_TASK_URL);
+    TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
+    TaskWidgetPage taskWidgetPage1 = taskTemplatePage1.finishCreateInvestmentTask();
+    taskWidgetPage1 = taskWidgetPage1.openTaskList();
+    TaskTemplatePage taskTemplatePage2 = taskWidgetPage1.startTask(1);
+    TaskWidgetPage taskWidgetPage2 = taskTemplatePage2.finishIFrameApprovalTask();
+    WaitHelper.assertTrueWithWait(() -> taskWidgetPage2.isElementDisplayed(By.cssSelector("[id$='task-config-command']")));
+  }
 }

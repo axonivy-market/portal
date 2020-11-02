@@ -1,5 +1,9 @@
 package ch.ivy.addon.portal.chat;
 
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.getApplication;
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.log;
+import static ch.ivy.addon.portal.chat.ChatReferencesContainer.wf;
+
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -9,6 +13,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -16,21 +21,24 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
-import ch.ivy.addon.portalkit.util.CaseUtils;
-import ch.ivyteam.ivy.environment.Ivy;
+import com.google.gson.Gson;
+
+import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivy.addon.portalkit.util.RedeploymentUtils;
 import ch.ivyteam.ivy.scripting.objects.File;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
-
-import com.google.gson.Gson;
 
 public final class ChatMessageManager {
 
   private static final String UNDER_SCORE = "_";
   private static final String FILE_NAME_ENCRYPT_ALGORITHM = "MD5";
   private static final String LINE_SEPARATOR = System.getProperty("line.separator");
-  private static final String CONVERSATION_FILE_PATH = StringUtils.join("conversations", java.io.File.separator, "%s.token");
-  private static final String GROUP_CONVERSATION_FILE_PATH = StringUtils.join("group_conversations", java.io.File.separator, "%s.txt");
+  private static final String CONVERSATION_FILE_PATH =
+      StringUtils.join("conversations", java.io.File.separator, "%s.token");
+  private static final String GROUP_CONVERSATION_FILE_PATH =
+      StringUtils.join("group_conversations", java.io.File.separator, "%s.txt");
   private static final String UTF_8 = StandardCharsets.UTF_8.name();
   private static final String GROUP_CHAT_FILE_FORMAT = "Case_%s";
   private static final String GROUP_CHAT_PREFIX = "Case-%s";
@@ -40,15 +48,30 @@ public final class ChatMessageManager {
   private ChatMessageManager() {}
 
   public static List<ChatMessage> loadPersonalMessages(List<String> participants) {
-    String filename = generateFileName(participants);
+    String filename = generateFileName(replaceUsernameByUserId(participants));
     String filepath = generateFilePath(filename);
     return loadEncryptedMessagesFromFilePath(filepath);
   }
 
   public static void savePersonalMessage(ChatMessage message) {
+    replaceSenderAndRecipientNamesByIds(message);
     String filename = prepareFilename(message);
     String filepath = generateFilePath(filename);
     encryptAndSaveMessageToFile(message, filepath);
+  }
+
+  private static void replaceSenderAndRecipientNamesByIds(ChatMessage message) {
+    message.setSender(Long.toString(ChatGroupUtils.findUserByUsername(message.getSender()).getId()));
+    message.setRecipients(replaceUsernameByUserId(message.getRecipients()));
+  }
+
+  private static List<String> replaceUsernameByUserId(List<String> participants) {
+    List<String> updatedParticipants = new ArrayList<>();
+    for (String participant : participants) {
+      IUser participantUser = ChatGroupUtils.findUserByUsername(participant);
+      updatedParticipants.add(Long.toString(participantUser.getId()));
+    }
+    return updatedParticipants;
   }
 
   /**
@@ -82,11 +105,21 @@ public final class ChatMessageManager {
         for (String record : records) {
           String decryptedRecord = SecureMessage.decrypt(record, java.io.File.separator + filepath);
           ChatMessage message = new Gson().fromJson(decryptedRecord, ChatMessage.class);
+          message.setSender(Optional.ofNullable(ChatGroupUtils.findUserByUserId(Long.parseLong(message.getSender())))
+              .map(IUser::getName).orElse(""));
+          List<String> updatedRecipients = new ArrayList<>();
+          for (String recipient : message.getRecipients()) {
+            IUser recipientUser = ChatGroupUtils.findUserByUserId(Long.parseLong(recipient));
+            if (recipientUser != null) {
+              updatedRecipients.add(recipientUser.getName());
+            }
+          }
+          message.setRecipients(updatedRecipients);
           messages.add(message);
         }
       }
     } catch (IOException e) {
-      Ivy.log().warn("Could not load previous conversation. Chat history file could not be decoded", e);
+      log().warn("Could not load previous conversation. Chat history file could not be decoded", e);
     }
     return messages;
   }
@@ -100,16 +133,19 @@ public final class ChatMessageManager {
         String[] records = conversation.split(LINE_SEPARATOR);
         for (String record : records) {
           ChatMessage message = new Gson().fromJson(record, ChatMessage.class);
+          message.setSender(ChatGroupUtils.findUserByUserId(Long.parseLong(message.getSender().substring(1))).getName());
           messages.add(message);
         }
       }
     } catch (IOException e) {
-      Ivy.log().warn("Chat history file could not be loaded", e);
+      log().warn("Chat history file could not be loaded", e);
     }
     return messages;
   }
 
   private static void saveGroupMessageToFile(ChatMessage message, String filepath) {
+    String senderName = message.getSender();
+    message.setSender("#".concat(Long.toString(ChatGroupUtils.findUserByUsername(message.getSender()).getId())));
     String convertedMessage = new Gson().toJson(message);
     try {
       File conversation = new File(filepath);
@@ -125,14 +161,16 @@ public final class ChatMessageManager {
       }
     } catch (IOException e) {
       String template = "Could not save the current conversation from [%s] to file [%s].";
-      String errorMessage = String.format(template, message.getSender(), filepath);
-      Ivy.log().warn(errorMessage, e);
+      String errorMessage = String.format(template, senderName, filepath);
+      log().warn(errorMessage, e);
     }
+    message.setSender(senderName);
   }
 
   private static void encryptAndSaveMessageToFile(ChatMessage message, String filepath) {
     String convertedMessage = new Gson().toJson(message);
-    String encryptedMessage = SecureMessage.encrypt(convertedMessage, StringUtils.join(java.io.File.separator, filepath));
+    String encryptedMessage =
+        SecureMessage.encrypt(convertedMessage, StringUtils.join(java.io.File.separator, filepath));
     try {
       File conversation = new File(filepath);
 
@@ -148,7 +186,7 @@ public final class ChatMessageManager {
     } catch (IOException e) {
       String template = "Could not save the current conversation between [%s] and [%s].";
       String errorMessage = String.format(template, message.getSender(), message.getRecipients());
-      Ivy.log().warn(errorMessage, e);
+      log().warn(errorMessage, e);
     }
   }
 
@@ -179,7 +217,7 @@ public final class ChatMessageManager {
       }
       return sb.toString();
     } catch (NoSuchAlgorithmException e) {
-      Ivy.log().warn("Could not generate file name.", e);
+      log().warn("Could not generate file name.", e);
     }
     return String.valueOf(StringUtils.join(participants.toArray()).hashCode());
   }
@@ -189,9 +227,9 @@ public final class ChatMessageManager {
     synchronized (getCommon(attrName)) {
       List<ChatMessage> messages = getUnreadMessagesInMemory(message.getRecipients());
       if (messages.stream().noneMatch(msg -> msg.getSender().equals(message.getSender()))) {
-    	  messages.add(new ChatMessage(message.getSender(), message.getRecipients()));
+        messages.add(new ChatMessage(message.getSender(), message.getRecipients()));
       }
-      Ivy.wf().getApplication().setAttribute(attrName, messages);
+      getApplication().setAttribute(attrName, messages);
     }
   }
 
@@ -206,38 +244,46 @@ public final class ChatMessageManager {
     }
   }
 
-  @SuppressWarnings("unchecked")
+  @SuppressWarnings({"unchecked"})
   public static List<ChatMessage> getUnreadMessagesInMemory(List<String> participants) {
     String attrName = messageAttribute(participants);
-    List<ChatMessage> unreadMessages = (List<ChatMessage>) ObjectUtils.defaultIfNull(Ivy.wf().getApplication().getAttribute(attrName),
-          new ArrayList<>());
-    
-    unreadMessages.removeAll(unreadMessages.stream().filter(x -> isDestroyedOrDoneCase(x.getSender())).collect(Collectors.toList()));
-    Ivy.wf().getApplication().setAttribute(attrName, unreadMessages);
+    List<ChatMessage> unreadMessages =
+        (List<ChatMessage>) ObjectUtils.defaultIfNull(getApplication().getAttribute(attrName), new ArrayList<>());
+
+    try {
+      unreadMessages.removeAll(
+          unreadMessages.stream().filter(x -> isDestroyedOrDoneCase(x.getSender())).collect(Collectors.toList()));
+    } catch (ClassCastException e) {
+      log().info("PMV could be redeployed", e);
+      RedeploymentUtils.filterObjectOfCurrentClassLoader(unreadMessages, ChatMessage.class);
+      unreadMessages.removeAll(
+          unreadMessages.stream().filter(x -> isDestroyedOrDoneCase(x.getSender())).collect(Collectors.toList()));
+    }
+    getApplication().setAttribute(attrName, unreadMessages);
     return unreadMessages;
   }
-  
-  private static boolean isDestroyedOrDoneCase(String sender){
+
+  private static boolean isDestroyedOrDoneCase(String sender) {
     String caseId = getCaseId(sender);
-    if (StringUtils.isNotBlank(caseId)){
+    if (StringUtils.isNotBlank(caseId)) {
       ICase findcase = findCase(caseId);
-      if (findcase != null && (findcase.getState() == CaseState.DESTROYED || findcase.getState() == CaseState.DONE)){
+      if (findcase != null && (findcase.getState() == CaseState.DESTROYED || findcase.getState() == CaseState.DONE)) {
         return true;
       }
     }
     return false;
   }
-  
-  private static ICase findCase(String caseId){
-    if (NumberUtils.isCreatable(caseId)){
-      return CaseUtils.findCase(Long.valueOf(caseId));
+
+  private static ICase findCase(String caseId) {
+    if (NumberUtils.isCreatable(caseId)) {
+      return IvyExecutor.executeAsSystem(() -> wf().findCase(Long.valueOf(caseId)));
     }
     return null;
   }
-  
-  private static String getCaseId(String name){
+
+  private static String getCaseId(String name) {
     String groupChatPrefix = "Case-";
-    if (name.startsWith(groupChatPrefix)){
+    if (name.startsWith(groupChatPrefix)) {
       return StringUtils.substringAfter(name, groupChatPrefix);
     }
     return StringUtils.EMPTY;
@@ -247,11 +293,8 @@ public final class ChatMessageManager {
     String attrName = messageAttribute(participants);
     List<ChatMessage> messages = getUnreadMessagesInMemory(participants);
     messages.removeAll(
-        messages
-        .stream()
-        .filter(message -> message.getSender().equals(sender))
-        .collect(Collectors.toList()));
-    Ivy.wf().getApplication().setAttribute(attrName, messages);
+        messages.stream().filter(message -> message.getSender().equals(sender)).collect(Collectors.toList()));
+    getApplication().setAttribute(attrName, messages);
   }
 
   public static void deletedReadMessagesInMemoryForGroupChat(List<String> participants, String caseId) {

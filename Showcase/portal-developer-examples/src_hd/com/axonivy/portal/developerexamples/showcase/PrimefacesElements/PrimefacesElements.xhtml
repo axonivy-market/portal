@@ -192,7 +192,7 @@
 							<p:outputLabel value="Dialog" />
 						</div>
 						<div class="ui-g-12 ui-md-9 ui-lg-4">
-							<p:commandButton id="dialog" value="Show" icon="fa fa-eye"
+							<p:commandButton id="dialog" value="Show" icon="icon ivyicon-expand-6"
 								type="button" onclick="PF('dlg').show()" />
 						</div>
 					</div>
@@ -212,7 +212,7 @@
 						</div>
 						<div class="ui-g-12 ui-md-9 ui-lg-4">
 							<p:selectBooleanButton id="booleanBtn" onLabel="Yes"
-								offLabel="No" onIcon="fa fa-check" offIcon="fa fa-close" />
+								offLabel="No" onIcon="icon ivyicon-check-1" offIcon="icon ivyicon-remove" />
 						</div>
 					</div>
 					<div class="ui-g">
@@ -340,9 +340,9 @@
 
 		<ui:define name="centerButtons">
 			<p:commandButton actionListener="#{logic.close}" value="Proceed"
-				update="form" icon="fa fa-check" />
+				update="form" icon="icon ivyicon-check-1" />
 			<p:commandButton actionListener="#{logic.close}" value="Cancel"
-				update="form" icon="fa fa-close" />
+				update="form" icon="icon ivyicon-remove" />
 		</ui:define>
 	</ui:composition>
 </h:body>

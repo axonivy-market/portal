@@ -61,9 +61,22 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 		ensureNoBackgroundRequest();
 	}
-
+	
+	public void switchToCheckBoxTab() {
+	  click(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"));
+    ensureNoBackgroundRequest();
+    waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-options"), true, TIME_OUT);
+	}
+	
 	public void createCheckboxFieldWithDataProvider(String label) {
-		click(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"));
+		fillDataForCheckboxProvider(label);
+		click(By.id("form:create-tabs:add-checkbox-btn"));
+		waitAjaxIndicatorDisappear();
+		ensureNoBackgroundRequest();
+	}
+
+  public void fillDataForCheckboxProvider(String label) {
+    click(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"));
 		ensureNoBackgroundRequest();
 		waitForElementDisplayed(By.id("form:create-tabs:create-many-checkbox-tab"), true, TIME_OUT);
 		click(By.id("form:create-tabs:DataProvider_label"));
@@ -71,10 +84,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 		waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-label"), true, TIME_OUT);
 		type(By.id("form:create-tabs:many-checkbox-label"), label);
-		click(By.id("form:create-tabs:add-checkbox-btn"));
-		waitAjaxIndicatorDisappear();
-		ensureNoBackgroundRequest();
-	}
+		waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
 
 	public void createRadioButtonField(String label, int numberOfOption) {
 		click(By.xpath("//*[@id='form:create-tabs']/ul/li[4]"));
@@ -164,12 +175,9 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		click(By.id("form:show-preview-button"));
 		waitForElementDisplayed(By.id("form:preview-dialog"), true);
 		WebElement previewDialog = findElementById("form:preview-dialog");
-		// if we have radio button or checkbox, remember multiply with number of options
-		// Example: we have 1 checkbox with 2 options, 1 radio with 3 options. Total we have 5 inputs
 		int numberOfInput = previewDialog.findElements(By.xpath("//table[@id='form:dyna-form']//input")).size();
 		int numberOfTextArea = previewDialog.findElements(By.xpath("//table[@id='form:dyna-form']//textarea")).size();
-		int numberOfUploadFile =
-				previewDialog.findElements(By.xpath("//div[contains(@id,'fileUploadComponent:document-table')]")).size();
+		int numberOfUploadFile = previewDialog.findElements(By.xpath("//div[contains(@id,'fileUploadComponent:document-table')]")).size();
 		return numberOfInput + numberOfTextArea + numberOfUploadFile;
 	}
 
@@ -214,6 +222,18 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 
   public HomePage leave() {
     click(By.id("user-menu-required-login:leave-button"));
+    return new HomePage();
+  }
+  
+  public HomePage cancel() {
+    click(By.id("cancel-button"));
+    waitForElementDisplayed(By.id("yes-button"), true);
+    click(By.id("yes-button"));
+    return new HomePage();
+  }
+  
+  public HomePage save() {
+    click(By.id("save-button"));
     return new HomePage();
   }
 }

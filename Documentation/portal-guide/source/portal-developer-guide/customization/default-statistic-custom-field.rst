@@ -28,4 +28,4 @@ default custom fields.
 |custom-field|
 
 .. |custom-field| image:: images/default-statistic-custom-field/custom-field.png
-.. |default-custom-field| image:: images/default-statistic-custom-field/default-custom-field.png
+.. |default-custom-field| image:: ../../screenshots/statistic/chart-creation-page.png

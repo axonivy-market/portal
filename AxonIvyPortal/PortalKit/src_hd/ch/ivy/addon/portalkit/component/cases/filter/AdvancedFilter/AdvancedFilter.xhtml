@@ -44,9 +44,9 @@
           value="#{cc.attrs.caseFilter.label()}: #{cc.attrs.caseFilter.value()}"
           styleClass="advanced-filter-command #{cc.attrs.buttonStyleClass} #{facesContext.validationFailed ? 'error-filter' : ''} #{cc.attrs.buttonStyleClass}" />
         <p:commandLink id="advanced-filter-remove-command"
-          styleClass="fa fa-times-circle advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
+          styleClass="icon ivyicon-delete-2 advanced-filter-icon #{cc.attrs.removeIconStyleClass}"
           actionListener="#{dataModel.removeFilter(caseFilter)}" global="false"
-          update="@(.filter-container) @(.filter-add-container) @(.filter-selection-form) @(.case-list) @(.filter-buttons-container) @(.hidden-case-count)"
+          update="@(.filter-container) @(.advanced-filter-container) @(.filter-add-container) @(.filter-selection-form) @(.case-list) @(.hidden-case-count)"
           oncomplete="#{empty cc.attrs.resultContainerUpdated ? 'caseWidget.setUpScrollbar();caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();' : ''}">
           <f:actionListener binding="#{cc.attrs.removeListener}" />
         </p:commandLink>
@@ -65,19 +65,19 @@
 
         <h:panelGroup id="advanced-filter-panel-footer" layout="block" styleClass="ui-overlaypanel-footer"
           rendered="#{cc.attrs.displayFooterButtons}">
+          <p:commandLink id="cancel-command" process="@this" global="false"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="#{cc.clientId}:filter-open-form @form" resetValues="true"
+            oncomplete="PF('#{widgetVarPanel}').hide(); #{facesContext.validationFailed ? caseFilter.resetValues() : ''};" />
+          <p:spacer width="15" />
           <p:commandButton id="update-command"
+            icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             actionListener="#{caseFilter.validate()}"
-            update="#{cc.clientId}:filter-open-form @form @(.filter-buttons-container) @(.filter-selection-form) @(.filter-buttons-container)  @(.hidden-case-count)"
+            update="#{cc.clientId}:filter-open-form @form @(.reset-filter-button-container) @(.filter-selection-form) @(.filter-buttons-container) @(.hidden-case-count)"
             oncomplete="if (args &amp;&amp; args.validationFailed) PF('#{widgetVarPanel}').show(); #{empty cc.attrs.resultContainerUpdated ? 'caseWidget.setUpScrollbar();caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();' : ''}">
             <f:actionListener binding="#{empty cc.attrs.resultContainerUpdated ? logic.updateCasesByFilter(caseContainerId) : ''}" />
             <f:actionListener binding="#{cc.attrs.updateListener}" />
             <f:actionListener binding="#{args.validationFailed ? '':dataModel.onFilterApply()}" />
-          </p:commandButton>
-          <p:spacer width="5" />
-          <p:commandButton id="cancel-command" styleClass="portal-cancel-button" process="@this" global="false"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="#{cc.clientId}:filter-open-form @form" resetValues="true"
-            oncomplete="PF('#{widgetVarPanel}').hide(); #{facesContext.validationFailed ? caseFilter.resetValues() : ''};">
           </p:commandButton>
         </h:panelGroup>
       </p:overlayPanel>

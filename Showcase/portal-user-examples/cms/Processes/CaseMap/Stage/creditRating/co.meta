@@ -1,5 +1,5 @@
-co: name={creditRating} description={} changed={2020-05-29 14:27:14 CEST} changedby={chnam} visualorder={0} guid={1726002C67CEEA1E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={172606690D486AED} datatype={} isdefault={false} langid={es} description={} validfrom={2020-05-29 14:27:06 CEST} validto={} changed={2020-05-29 14:27:14 CEST} changedby={chnam} properties={} id={}
-val: guid={172606690013F079} datatype={} isdefault={false} langid={de} description={} validfrom={2020-05-29 14:27:03 CEST} validto={} changed={2020-05-29 14:27:13 CEST} changedby={chnam} properties={} id={}
-val: guid={172606690DFA5D28} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-05-29 14:26:59 CEST} validto={} changed={2020-05-29 14:27:14 CEST} changedby={chnam} properties={} id={}
+co: name={creditRating} description={} changed={2020-06-15 03:36:56 CEST} changedby={nqhoan} visualorder={0} guid={1726002C67CEEA1E} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={172606690D486AED} datatype={} isdefault={false} langid={es} description={} validfrom={2020-06-15 03:36:56 CEST} validto={} changed={2020-06-15 03:36:56 CEST} changedby={nqhoan} properties={} id={}
+val: guid={172606690013F079} datatype={} isdefault={false} langid={de} description={} validfrom={2020-06-15 03:36:56 CEST} validto={} changed={2020-06-15 03:36:56 CEST} changedby={nqhoan} properties={} id={}
+val: guid={172606690DFA5D28} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-06-15 03:36:56 CEST} validto={} changed={2020-06-15 03:36:56 CEST} changedby={nqhoan} properties={} id={}
 val: guid={1726002C67F99648} datatype={} isdefault={true} langid={en} description={} validfrom={2020-05-29 12:38:14 CEST} validto={} changed={2020-05-29 12:38:14 CEST} changedby={chnam} properties={} id={}

@@ -9,13 +9,17 @@ the page by either using the **Processes** link in the
 Axon.ivy Portal menu or the quick link **Show all processes** in your
 dashboard.
 
-.. figure:: images/navigate-to-full-process-list.png
+|navigate-to-full-process-list|
 
 On the :guilabel:`Full Process List` page, you see a list of all processes. They
 are sorted alphabetically and grouped by their initial character. 
 Express workflows are described in detail in :ref:`axon-ivy-express`.
 
-.. figure:: images/portal-full-process-list-page.png
+|portal-full-process-list-page|
+
+   1. Search for a process, input your keyword here
+   2. Express workfow icon
+   3. External link icon
 
 If you’re looking for a specific process, you can search your keyword in search field 
 marked in the image above. The search will look up your keyword in process names 
@@ -49,7 +53,9 @@ HowTo: Add an external link
 
 6. Confirm your configuration with the button **Add**.
 
-.. figure:: images/how-to-add-a-new-external-link.png
+|how-to-add-a-new-external-link|
+
+|add-external-link-dialog|
 
 
 .. hint:: 
@@ -59,3 +65,9 @@ HowTo: Add an external link
    dashboard. See :ref:`howto-add-a-process-as-a-user-favorite` for an instruction.
 
 .. include:: ../includes/_common-icon.rst
+
+
+.. |navigate-to-full-process-list| image:: ../../screenshots/process/navigate-to-full-process-list.png
+.. |portal-full-process-list-page| image:: ../../screenshots/process/portal-full-process-list-page.png
+.. |how-to-add-a-new-external-link| image:: ../../screenshots/process/how-to-add-a-new-external-link.png
+.. |add-external-link-dialog| image:: ../../screenshots/process/add-external-link-dialog.png

@@ -1,5 +1,5 @@
 [Ivy]
-1603506A872272C6 7.5.0 #module
+1603506A872272C6 9.2.0 #module
 >Proto >Proto Collection #zClass
 Cy0 CaseNoteHistory Big #zClass
 Cy0 B #cInfo
@@ -30,9 +30,10 @@ import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivy.addon.portalkit.service.HistoryService;
 
 List<ITask> finishedTasks = new ArrayList();
-in.internalCase = ivy.wf.getGlobalContext().getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(in.caseId)) as ICase;
-for(ITask task : in.internalCase.getTasks()) {
-	if(task.getState() == TaskState.DONE 
+in.internalCase = ivy.wf.getCaseQueryExecutor().getFirstResult(CaseQuery.create().where().caseId().isEqual(in.caseId)) as ICase;
+for(ITask task : in.internalCase.tasks().all()) {
+	if(task.getState() == TaskState.DONE
+	|| task.getState() == TaskState.CREATED 
 	|| task.getState() == TaskState.DESTROYED 
 	|| task.getState() == TaskState.ZOMBIE) {
 		finishedTasks.add(task);
@@ -41,8 +42,9 @@ for(ITask task : in.internalCase.getTasks()) {
 
 HistoryService historyService = new HistoryService();
 GlobalSettingService globalSettingService = new GlobalSettingService();
-boolean excludeTechnicalHistory = globalSettingService.findHideSystemTasksFromHistorySettingValue();
-in.histories = historyService.getHistories(finishedTasks, in.internalCase.getNotes(), excludeTechnicalHistory);' #txt
+boolean excludeSystemTasks = globalSettingService.findHideSystemTasksFromHistorySettingValue();
+boolean excludeSystemNotes = globalSettingService.findHideSystemNotesFromHistorySettingValue();
+in.histories = historyService.getHistories(finishedTasks, in.internalCase.getNotes(), excludeSystemTasks, excludeSystemNotes);' #txt
 Cy0 f17 security system #txt
 Cy0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

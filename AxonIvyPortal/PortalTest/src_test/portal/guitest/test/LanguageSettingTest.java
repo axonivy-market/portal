@@ -36,14 +36,14 @@ public class LanguageSettingTest extends BaseTest {
   public void testChangeLanguage() {
     HomePage homePage = new HomePage();
     UserProfilePage userProfilePage = homePage.openMyProfilePage();
-    userProfilePage.selectLanguage(1);
+    userProfilePage.selectLanguage(0);
     userProfilePage.save();  
     userProfilePage.clickOnLogo();
     homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
     assertEquals("Prozesse", mainMenuPage.getProcessMenuItemText());
     userProfilePage = homePage.openMyProfilePage();
-    userProfilePage.selectLanguage(2);
+    userProfilePage.selectLanguage(1);
     userProfilePage.save();
     mainMenuPage = userProfilePage.openMainMenu();
     assertEquals("Processes", mainMenuPage.getProcessMenuItemText());

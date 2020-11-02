@@ -30,6 +30,11 @@ are disabled by default.
    setting **CHAT_RESPONSE_TIMEOUT** a number less than Nginx timeout to
    make chat work properly.
 
+4. Each tab uses one long-polling request for chat. Browsers limit the number of long-polling request for one domain, max number could be six or more.
+   To handle this limitation, Portal introduces Global setting **CHAT_MAX_CONNECTION**, default value is 3. 
+   If fourth tab is open, chat in one inactive tab will be deactivated. If you select deactivated chat tab again, all chat information will be refreshed and chat is activated again, 
+   then chat in another tab will be deactivated.
+
 
 How to create a group chat
 --------------------------
@@ -52,13 +57,10 @@ Click on group chat icon, the dialog will appear to choose members of group chat
 Limitation of current Portal chat
 ---------------------------------
 
-1. Do not support multiple tabs. For each browser, user is able to open
-   1 Portal tab if he enables Portal chat.
+Portal Chat does not support cross application chat. That means user is
+able to chat with other users in the current application, but he cannot chat
+with users in other application.
 
-2. Portal Chat does not support cross application chat. That means user is
-   able to chat with other users in the current application, but he cannot chat
-   with users in other application.
-
-.. |chat| image:: images/portal-chat/chat.png
-.. |chat-group-assignee| image:: images/portal-chat/chat-group-assignee.png
-.. |create-new-group-chat| image:: images/portal-chat/create-new-group-chat.png
+.. |chat| image:: ../../screenshots/chat/chat.png
+.. |chat-group-assignee| image:: ../../screenshots/chat/chat-group-assignee.png
+.. |create-new-group-chat| image:: ../../screenshots/chat/create-new-group-chat.png
