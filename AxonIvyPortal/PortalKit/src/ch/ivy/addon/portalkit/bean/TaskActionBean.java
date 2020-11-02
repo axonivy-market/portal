@@ -1,38 +1,45 @@
 package ch.ivy.addon.portalkit.bean;
 
+import java.io.Serializable;
+import java.util.Arrays;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Objects;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang.StringUtils;
+import org.primefaces.PF;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.DummyTask;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
-import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
+import ch.ivy.addon.portalkit.ivydata.utils.DateTimeFormatter;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
-import ch.ivyteam.ivy.security.ISecurityContext;
-import ch.ivyteam.ivy.security.ISession;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.restricted.permission.IPermissionRepository;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
 @ManagedBean
 @ViewScoped
-public class TaskActionBean {
+public class TaskActionBean implements Serializable {
 
+  private static final long serialVersionUID = 7247809679085338843L;
   private boolean isShowResetTask;
   private boolean isShowReserveTask;
   private boolean isShowDelegateTask;
   //This variable control display of side step and create adhoc
   private boolean isShowAdditionalOptions;
+  private boolean isShowDestroyTask;
+  private boolean isShowReadWorkflowEvent;
   private static final String BACK_FROM_TASK_DETAILS = "Start Processes/PortalStart/BackFromTaskDetails.ivp";
 
   public TaskActionBean() {
@@ -40,6 +47,8 @@ public class TaskActionBean {
     isShowReserveTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_RESERVE_ACTION);
     isShowDelegateTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_DELEGATE_ACTION);
     isShowAdditionalOptions = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_ADDITIONAL_OPTIONS);
+    isShowDestroyTask = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_DESTROY_ACTION);
+    isShowReadWorkflowEvent = PermissionUtils.hasPortalPermission(PortalPermission.TASK_DISPLAY_WORKFLOW_EVENT_ACTION);
   }
 
   public boolean canReset(ITask task) {
@@ -47,10 +56,17 @@ public class TaskActionBean {
       return false;
     }
     
-    TaskState taskState = task.getState();
-    if (taskState != TaskState.RESUMED && taskState != TaskState.PARKED) {
+    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.READY_FOR_JOIN,
+        TaskState.FAILED);
+    if (!taskStates.contains(task.getState())) {
       return false;
     }
+    
+    if (task.getState() == TaskState.READY_FOR_JOIN) {
+      IPermission resetTaskReadyForJoin = IPermissionRepository.instance().findByName(PortalPermission.TASK_RESET_READY_FOR_JOIN.getValue());
+      return hasPermission(task, resetTaskReadyForJoin);
+    }
+  
 
     return (hasPermission(task, IPermission.TASK_RESET_OWN_WORKING_TASK) && canResume(task))
         || hasPermission(task, IPermission.TASK_RESET);
@@ -61,8 +77,8 @@ public class TaskActionBean {
       return false;
     }
     
-    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.DONE, TaskState.FAILED, TaskState.DESTROYED, TaskState.CREATED);
-   
+    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.DONE, TaskState.FAILED, TaskState.DESTROYED,
+        TaskState.CREATED, TaskState.READY_FOR_JOIN, TaskState.FAILED, TaskState.JOIN_FAILED, TaskState.WAITING_FOR_INTERMEDIATE_EVENT);
     if (taskStates.contains(task.getState())) {
       return false;
     }
@@ -87,17 +103,11 @@ public class TaskActionBean {
     if (task == null) {
       return false;
     }
-    
-    ISession session = null;
-    try {
-      session = ServiceUtilities.findUserWorkflowSession(Ivy.session().getSessionUserName(), task.getApplication());
-      return task.canUserResumeTask(session).wasSuccessful() || StringUtils.equals(task.getName(), DummyTask.TASK_NAME);
-    } finally {
-      if (session != null && !Objects.equals(Ivy.wf().getApplication(), task.getApplication())) {
-        ISecurityContext securityContext = task.getApplication().getSecurityContext();
-        securityContext.destroySession(session.getIdentifier());
-      }
+    if(StringUtils.equals(task.getName(), DummyTask.TASK_NAME)) {
+      return true;
     }
+    IUser sessionUser = Ivy.session().getSessionUser();
+    return sessionUser != null? task.canUserResumeTask(sessionUser.getUserToken()).wasSuccessful() : false;
   }
 
   public boolean canPark(ITask task) {
@@ -114,7 +124,7 @@ public class TaskActionBean {
     if (task == null || permission == null) {
       return false;
     }
-    return PermissionUtils.hasPermission(task.getApplication(), Ivy.session().getSessionUserName(), permission);
+    return PermissionUtils.hasPermission(permission);
   }
 
   public boolean canChangePriority(ITask task) {
@@ -124,6 +134,17 @@ public class TaskActionBean {
   public boolean canChangeExpiry(ITask task) {
     return (hasPermission(task, IPermission.TASK_WRITE_EXPIRY_TIMESTAMP) && task.getExpiryActivator() != null)
         || (task != null && StringUtils.isNotBlank(task.getExpiryTaskStartElementPid()));
+  }
+  
+  public boolean canChangeDelayTimestamp(ITask task) {
+    if (TaskState.DELAYED != task.getState()) {
+      return false;
+    }
+    return hasPermission(task, IPermission.TASK_WRITE_DELAY_TIMESTAMP);
+  }
+  
+  public boolean canReadWorkflowEventTask() {
+    return PermissionUtils.checkReadAllWorkflowEventPermission();
   }
 
   public boolean notHaveExpiryHandleLogic(ITask task) {
@@ -144,17 +165,28 @@ public class TaskActionBean {
         || hasPermission(task, IPermission.DOCUMENT_OF_INVOLVED_CASE_WRITE);
   }
 
+  public boolean canDestroyTask(ITask task) {
+    List<TaskState> taskStates = Arrays.asList(TaskState.DONE, TaskState.DESTROYED);
+    return hasPermission(task, IPermission.TASK_DESTROY) && !taskStates.contains(task.getState());
+  }
+
   public boolean isNotDone(ITask task) {
     if (task == null) {
       return false;
     }
-    EnumSet<TaskState> taskStates =
-        EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED, TaskState.UNASSIGNED, TaskState.CREATED);
+    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.RESUMED, TaskState.PARKED, TaskState.SUSPENDED,
+        TaskState.CREATED, TaskState.DELAYED);
+    return taskStates.contains(task.getState());
+  }
+  
+  public boolean isTechnicalState(ITask task) {
+    EnumSet<TaskState> taskStates = EnumSet.of(TaskState.WAITING_FOR_INTERMEDIATE_EVENT, TaskState.FAILED,
+        TaskState.JOIN_FAILED);
     return taskStates.contains(task.getState());
   }
   
   public boolean showAdditionalOptions(ITask task) {
-    return isShowAdditionalOptions && isNotDone(task);
+    return isShowAdditionalOptions && isNotDone(task) && !isTechnicalState(task);
   }
   
   public boolean isShowResetTask() {
@@ -189,20 +221,62 @@ public class TaskActionBean {
     this.isShowAdditionalOptions = isShowAdditionalOptions;
   }
 
-  public void backToTaskList(ITask task) {
+  public boolean isShowDestroyTask() {
+    return isShowDestroyTask;
+  }
+
+  public void setShowDestroyTask(boolean isShowDestroyTask) {
+    this.isShowDestroyTask = isShowDestroyTask;
+  }
+
+  public boolean isShowReadWorkflowEvent() {
+    return isShowReadWorkflowEvent;
+  }
+
+  public void setShowReadWorkflowEvent(boolean isShowReadWorkflowEvent) {
+    this.isShowReadWorkflowEvent = isShowReadWorkflowEvent;
+  }
+
+  public void updateSelectedTaskItemId(boolean isShowInTaskList, Long taskId) {
+    if (isShowInTaskList) {
+      TaskWidgetBean taskWidgetBean = ManagedBeans.get("taskWidgetBean");
+      if (taskWidgetBean != null) {
+        taskWidgetBean.setSelectedTaskItemId(taskId);
+      }
+    }
+  }
+
+  public boolean showClearDelayTime(ITask task) {
+    return TaskState.DELAYED.equals(task.getState()) && task.getDelayTimestamp() != null;
+  }
+
+  public boolean noActionAvailable(ITask task) {
+    boolean hasWorkflowEventLink = isShowReadWorkflowEvent && canReadWorkflowEventTask();
+    return !isNotDone(task) && !canReset(task) && !isTechnicalState(task) && !hasWorkflowEventLink;
+  }
+  
+  public void backToPrevPage(ITask task, boolean isFromTaskList, boolean isTaskStartedInDetails) {
+    if (isFromTaskList || !isTaskStartedInDetails) {
+      TaskUtils.updateTaskStartedAttribute(false);
+      PF.current().executeScript("window.history.back()");
+    } else {
+      backToTaskList(task);
+    }
+  }
+  
+  private void backToTaskList(ITask task) {
     String friendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("BackFromTaskDetails.ivp");
     if (StringUtils.isEmpty(friendlyRequestPath)) {
       friendlyRequestPath = BACK_FROM_TASK_DETAILS;
     }
-    String requestPath = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), friendlyRequestPath);
+    String requestPath = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
     if (StringUtils.isNotEmpty(requestPath)) {
       TaskUtils.updateTaskStartedAttribute(false);
       PortalNavigator.redirect(requestPath + "?endedTaskId=" + task.getId());
     }
   }
   
-  public void removeTaskAttributesInSession() {
-    TaskUtils.updateTaskStartedAttribute(false);
+  public String formatDurationTime(Number secondsValue) {
+    return DateTimeFormatter.formatDateTimeToString(secondsValue);
   }
-
 }

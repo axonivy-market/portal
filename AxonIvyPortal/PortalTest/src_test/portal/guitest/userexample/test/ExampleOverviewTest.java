@@ -8,30 +8,26 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.page.ExampleOverviewPage;
-import portal.guitest.page.HomePage;
 import portal.guitest.page.LeaveRequestOverviewPage;
 import portal.guitest.page.LendingDetailPage;
 import portal.guitest.page.LendingOverviewPage;
-import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.userexamples.page.CaseMapPage;
 import portal.guitest.userexamples.page.LeaveRequestPage;
 
 public class ExampleOverviewTest extends BaseTest {
-  private HomePage homePage;
-  private ProcessWidgetPage processWidget;
-  String EXAMPLE_PROCESS_NAME = "User example guide";
+  public final static String PORTAL_EXAMPLES_PROCESS_CHAIN = "portal-user-examples/17236DB1D3DA14C0/userExampleGuide.ivp";
+  private ExampleOverviewPage exampleOverviewPage;
   
   @Before
   @Override
   public void setup() {
     super.setup();
-    homePage = new HomePage();
+    redirectToRelativeLink(PORTAL_EXAMPLES_PROCESS_CHAIN);
+    exampleOverviewPage = new ExampleOverviewPage();
   }
   
   @Test
   public void testOverviewLeaveRequest() {
-    processWidget = homePage.getProcessWidget();
-    ExampleOverviewPage exampleOverviewPage = processWidget.openExampleOverviewPage(EXAMPLE_PROCESS_NAME);
     LeaveRequestOverviewPage leaveRequestOverview = exampleOverviewPage.openLeaveRequestOverview();
     assertEquals("Leave Request", leaveRequestOverview.getHearText());
     assertEquals("Creation", leaveRequestOverview.getStepName(0));
@@ -44,9 +40,6 @@ public class ExampleOverviewTest extends BaseTest {
   
   @Test
   public void testOverviewLending() {
-    processWidget = homePage.getProcessWidget();
-    ExampleOverviewPage exampleOverviewPage = processWidget.openExampleOverviewPage(EXAMPLE_PROCESS_NAME);
-    
     LendingOverviewPage lendingOverview = exampleOverviewPage.openLendingOverview();
     assertEquals("Lending (Case Map)", lendingOverview.getHearText());
     assertEquals("Identification", lendingOverview.getStageName(0));
@@ -69,9 +62,6 @@ public class ExampleOverviewTest extends BaseTest {
   
   @Test
   public void testOverviewDetailNavigate() {
-    processWidget = homePage.getProcessWidget();
-    ExampleOverviewPage exampleOverviewPage = processWidget.openExampleOverviewPage(EXAMPLE_PROCESS_NAME);
-    
     LendingOverviewPage lendingOverview = exampleOverviewPage.openLendingOverview();
     
     LendingDetailPage identification = lendingOverview.navigateToStageDetail(0);

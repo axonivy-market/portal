@@ -6,20 +6,20 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="isNotRequiredLogin" value="false" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/caseHistoryPageTitle')}</ui:define>
-    <ui:define name="simplePageContent">
+    <ui:define name="pageContent">
       <h:form id="form" onkeypress="if (event.keyCode == 13) { return false; }" styleClass="note-history-container">
         <div class="ui-g">
           <div class="ui-g-2 ui-sm-3">
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" />
           </div>
           <div class="ui-g-10 ui-sm-9">
-            <h:outputText value="#{data.ivyCase.name}" />
+            <h:outputText id="case-name" value="#{data.ivyCase.name}" />
           </div>
           <div class="ui-g-2 ui-sm-3">
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" />
           </div>
           <div class="ui-g-10 ui-sm-9">
-            <h:outputText value="#{data.ivyCase.id}" />
+            <h:outputText id="case-id" value="#{data.ivyCase.id}" />
           </div>
           <div class="ui-g-2 ui-sm-3">
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" />
@@ -31,15 +31,18 @@
             <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" />
           </div>
           <div class="ui-g-10 ui-sm-9">
-            <h:outputText value="#{caseBean.getState(data.ivyCase)}" />
+            <h:outputText id="case-state" value="#{caseBean.getState(data.ivyCase)}" />
           </div>
         </div>
         
+        <div class="ui-g">
+        <div class="ui-g-12">
         <p:dataTable id="notes-table" widgetVar="notesTable" var="history" sortBy="#{history.timestamp}"
           sortOrder="DESCENDING" value="#{data.histories}" filteredValue="#{data.filteredHistories}"
-          emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}">
+          emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+          reflow="true">
           <p:column sortBy="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}"
-            filterBy="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}" filterMatchMode="contains" styleClass="u-truncate-text history-note ui-sm-12">
+            filterBy="#{caseTaskNoteHistoryBean.getCaseNoteContent(history)}" filterMatchMode="contains" styleClass="u-truncate-text history-note">
             <f:facet name="header">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnContent')}" />
             </f:facet>
@@ -51,9 +54,9 @@
             <f:facet name="header">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/author')}" />
             </f:facet>
-            <h:outputText value="#{history.displayName}" />
+            <h:outputText value="#{history.displayName}" styleClass="case-task-note-histories" />
           </p:column>
-          <p:column width="20%" sortBy="#{history.timestamp}" styleClass="u-hidden-sm-down">
+          <p:column width="20%" sortBy="#{history.timestamp}">
             <f:facet name="header">
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/creationDate')}" />
             </f:facet>
@@ -62,8 +65,11 @@
             </h:outputText>
           </p:column>
         </p:dataTable>
+        </div>
+        </div>
         
         <p:commandButton ajax="false" styleClass="note-history-export-button"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-office-file-xls-1')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}">
           <p:fileDownload value="#{caseTaskNoteHistoryBean.getStreamedContentOfCaseNoteHistory(data.filteredHistories, data.ivyCase, data.exportedFileName)}" />
         </p:commandButton>

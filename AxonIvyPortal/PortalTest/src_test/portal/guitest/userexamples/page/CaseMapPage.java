@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskTemplatePage;
+import portal.guitest.page.TaskWidgetPage;
 
 public class CaseMapPage extends TaskTemplatePage {
 
@@ -83,6 +84,10 @@ public class CaseMapPage extends TaskTemplatePage {
     return StringUtils.join(messages.stream().map(WebElement::getText).collect(Collectors.toList()), ",");
   }
 
+  public void waitUntilCaseMapPageDisplayed() {
+    waitForElementDisplayed(By.id("form:submit-request"), true);
+  }
+  
   @Override
   public HomePage clickSubmitButton() {
     clickByCssSelector("button[id$='submit-button']");
@@ -111,5 +116,10 @@ public class CaseMapPage extends TaskTemplatePage {
   
   public String getTitle() {
     return findElementByCssSelector("[id$='title']").getText();
+  }
+  
+  public TaskWidgetPage clickSubmitButtonAndBackToTaskList() {
+    clickByCssSelector("button[id$='submit-button']");
+    return new TaskWidgetPage();
   }
 }

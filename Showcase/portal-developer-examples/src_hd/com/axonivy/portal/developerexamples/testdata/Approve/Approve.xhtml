@@ -3,11 +3,11 @@
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions" >
 <h:body>
-  <ui:composition template="/layouts/basic.xhtml">
+  <ui:composition template="/layouts/frame-8.xhtml">
     <ui:define name="title">Approve</ui:define>
     <ui:define name="content">
       <h:form id="content-form" style="padding-bottom: 100px;">
-      	<p:tabView>
+      	<p:tabView id="content-tab-view">
       		<p:tab title="Investment">
 		        <div class="ui-g">
 		          <div class="ui-g-2">
@@ -94,15 +94,18 @@
 	        	Additional information
 	        </p:tab>
         </p:tabView>
-        <div style="width: 100%">
-          <p:commandButton id="approve-btn" value="Approve" actionListener="#{logic.close}" update="@(form)" 
-           style="float: right; margin-top: 20px;" />
+        <div style="width: 100%; margin-top: 20px; float: right">
+          <p:commandButton id="approve-btn" value="Approve" actionListener="#{logic.close}" update="@(form)" />
+         
+          <p:commandButton id="home-btn" value="Back to Home" actionListener="#{logic.home}" immediate="true" />
         </div>
       </h:form>
       <script>
         window.processSteps = ["Create Investment Request", "Approve Investment Request", "Step 3", "Step 4", "Step 5"];
         window.currentProcessStep = 1;
         window.isShowAllSteps = true;
+        window.isWorkingOnATask = false;
+        window.announcementInvisible = false;
       </script>
     </ui:define>
   </ui:composition>

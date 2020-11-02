@@ -4,40 +4,75 @@ pipeline {
   options {
     buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '5'))
   }
-  
+
+  tools { 
+      maven '3.6' 
+      jdk '11' 
+  }
+
   parameters {
       string(name: 'buildPluginVersion', defaultValue: '8.0.4', description: 'Axon.ivy build plugin version of all pom will be updated to.')
       string(name: 'ivyEngineVersion', defaultValue: '9.1.0', description: 'Axon.ivy engine version of all pom will be updated to.')
+      string(name: 'engineDownloadURL', defaultValue: '-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip', description: '''Where to download engine? e.g.
+        -Divy.engine.download.url=-Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly/axonivy-engine-windows.zip for nightly master
+        -Divy.engine.list.url=https://jenkins.ivyteam.io/job/ivy-core_product/job/master/lastSuccessfulBuild/artifact/workspace/ch.ivyteam.ivy.server.product/target/products/ -Divy.engine.os.arch=Windows_x64 for last successful build master
+        -Divy.engine.download.url=file:///C:/wawa/engine/AxonIvyEngineX.X.X.X_Windows_x64.zip for downloaded engine
+      ''')
   }
 
   stages {
     stage('build') {
       steps {
         script {
-          echo "====================Update properties build.plugin.version, ivy.engine.version of all pom===================="
-          powershell '''
-            $utf8WithoutBom = New-Object System.Text.UTF8Encoding($false)
-            $files = get-childitem AxonIvyPortal/*/pom.xml,Showcase/*/pom.xml,AxonIvyPortal/PortalTest/customized_pom.xml
-            foreach($file in $files) {
-              $xml = new-object xml
-              $xml.load($file)
-              if ($xml.project.properties.'build.plugin.version') {
-                $xml.project.properties.'build.plugin.version' = $env:buildPluginVersion
-              }
-              if ($xml.project.properties.'ivy.engine.version') {
-                $xml.project.properties.'ivy.engine.version' = $env:ivyEngineVersion
-              }
-              $sw = New-Object System.IO.StreamWriter($file, $false, $utf8WithoutBom)
-              $xml.Save($sw)
-            }
-          '''
+          updateVersions()
           echo "====================Commit to GIT===================="
           bat """
             git commit -a -m "Updated all pom build.plugin.version=${buildPluginVersion}, ivy.engine.version=${ivyEngineVersion}"
             git push origin ${env.BRANCH_NAME}
           """
+          echo "====================Cache engine in local repository===================="
+          cacheEngine()
+        }
+      }
+    }
+
+    stage('cache-engine-on-performance-server') {
+      agent {label 'portal-slave'}
+      steps {
+        script {
+          updateVersions()
+          cacheEngine()
         }
       }
     }
   }
+}
+
+def updateVersions() {
+  echo "====================Update properties build.plugin.version, ivy.engine.version of all pom===================="
+  powershell '''
+    $utf8WithoutBom = New-Object System.Text.UTF8Encoding($false)
+    $files = get-childitem AxonIvyPortal\\*\\pom.xml,Showcase\\*\\pom.xml,AxonIvyPortal\\PortalTest\\customized_pom.xml,AxonIvyPortal\\PortalTest\\document_screenshot_pom.xml
+    foreach($file in $files) {
+      $xml = new-object xml
+      $xml.load($file)
+      if ($xml.project.properties.'build.plugin.version') {
+        $xml.project.properties.'build.plugin.version' = $env:buildPluginVersion
+      }
+      if ($xml.project.properties.'ivy.engine.version') {
+        $xml.project.properties.'ivy.engine.version' = $env:ivyEngineVersion
+      }
+      $sw = New-Object System.IO.StreamWriter($file, $false, $utf8WithoutBom)
+      $xml.Save($sw)
+    }
+  '''
+}
+
+def cacheEngine() {
+  powershell '''
+    rmdir C:\\Users\\wawa\\.m2\\repository\\.cache\\ivy\\$env:ivyEngineVersion\\* -recurse -force -errorAction SilentlyContinue
+  '''
+  bat '''
+    mvn clean compile -f AxonIvyPortal\\PortalStyle\\pom.xml -Divy.engine.directory=C:\\Users\\wawa\\.m2\\repository\\.cache\\ivy\\%ivyEngineVersion% %engineDownloadURL%
+  '''
 }

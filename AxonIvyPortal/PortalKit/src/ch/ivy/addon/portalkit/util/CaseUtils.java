@@ -42,7 +42,7 @@ public final class CaseUtils {
 
   public static String getProcessStartUriWithCaseParameters(ICase iCase, String requestPath) {
     String urlParameters = "?caseId=" + iCase.getId();
-    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.request().getApplication(), requestPath) + urlParameters;
+    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(requestPath) + urlParameters;
   }
   
   public static List<INote> findNotes(ICase iCase, boolean excludeSystemNotes) {
@@ -58,5 +58,12 @@ public final class CaseUtils {
 
   public static CaseQuery createBusinessCaseQuery() {
     return CaseQuery.businessCases();
+  }
+  
+  public static void destroyCase(ICase selectedCase) {
+    IvyExecutor.executeAsSystem(() -> {
+      selectedCase.destroy();
+      return Void.class;
+    });
   }
 }

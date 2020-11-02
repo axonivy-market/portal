@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Map;
-import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -12,7 +11,6 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
-import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -20,16 +18,12 @@ import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
-import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
-import ch.ivy.addon.portalkit.util.ProcessStartUtils;
-import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.ServerFactory;
@@ -42,12 +36,12 @@ import ch.ivyteam.ivy.workflow.TaskState;
 public class UserMenuBean implements Serializable {
   private static final long serialVersionUID = 1L;
 
-  private static final String USER_PROFILE_FRIENDLY_REQUEST_PATH =  "Business Processes/UserProfile/UserProfile.ivp";
   public static final long TIME_BEFORE_LOST_SESSION = 3 * DateUtils.MILLIS_PER_MINUTE; // 3 minutes
   public static final String TASK_LEAVE_WARNING_COMPONENT = "task-leave-warning-component";
   private String targetPage = StringUtils.EMPTY;
 
   private String loggedInUser;
+  private boolean isShowGlobalSearch;
   GlobalSettingService globalSettingService;
 
   public String getLoggedInUser() {
@@ -78,6 +72,7 @@ public class UserMenuBean implements Serializable {
           break;
       }
     }
+    isShowGlobalSearch = Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_GLOBAL_SEARCH.toString()));
   }
 
   public boolean isShowServerInformation() {
@@ -94,6 +89,10 @@ public class UserMenuBean implements Serializable {
 
   public boolean isHiddenStatisticWidget() {
     return BooleanUtils.toBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.HIDE_STATISTIC_WIDGET.toString()));
+  }
+  
+  public boolean getIsShowGlobalSearch() {
+    return isShowGlobalSearch;
   }
 
   public long getClientSideTimeout() {
@@ -117,21 +116,7 @@ public class UserMenuBean implements Serializable {
   }
 
   public String getHomePageURL() {
-    PortalNavigator navigator = new PortalNavigator();
-    RegisteredApplicationService applicationService = new RegisteredApplicationService();
-    // Special handle since this function is call in javascript: window.location = "${userMenuBean.getHomePageURL()}";
-    if (CollectionUtils.isEmpty(applicationService.findAllIvyApplications())) {
-      return navigator.getPortalStartUrl();
-    }
-
-    String selectedApp = SecurityServiceUtils.getApplicationNameFromSession();
-    String selectedAppDisplayName = SecurityServiceUtils.getApplicationDisplayNameFromSession();
-
-    if (isDefaultPortalApp() || selectedApp == null || selectedAppDisplayName == null) {
-      return SecurityServiceUtils.getDefaultPortalStartUrl();
-    }
-
-    return Optional.ofNullable(navigator.getPortalStartUrl(selectedApp)).orElse(StringUtils.EMPTY);
+    return PortalNavigator.getPortalStartUrl();
   }
 
   public void navigateToHomePageOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
@@ -196,11 +181,7 @@ public class UserMenuBean implements Serializable {
   }
   
   private String getUserProfileUrl() {
-    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.wf().getApplication(), USER_PROFILE_FRIENDLY_REQUEST_PATH);
-  }
-
-  private boolean isDefaultPortalApp() {
-    return PortalConstants.PORTAL_APPLICATION_NAME.equals(Ivy.wf().getApplication().getName());
+    return PortalNavigator.buildUserProfileUrl();
   }
 
   private boolean findShowErrorDetailSystemProperty() {

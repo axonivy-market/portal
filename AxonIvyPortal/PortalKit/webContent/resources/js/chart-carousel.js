@@ -1,7 +1,7 @@
 // Override Carousel Header of Primeface
 $(document).ready(function() {
   var statisticContainer = $('.js-statistic-widget-container.compact-mode');
-  var statisticCarousel = statisticContainer.find('.statistic-carousel');
+  var statisticCarousel = statisticContainer.find('.js-statistic-carousel');
   var charSize = statisticCarousel.find('.ui-carousel-viewport').children(".ui-carousel-items").children("li").length;
   if (statisticCarousel.length == 0 || charSize == 0) {
     return;
@@ -21,7 +21,7 @@ $(document).ready(function() {
 
   // Set default chart header titles
   var headerTitle = statisticCarousel.find('.ui-carousel-header-title');
-  var itemsContainer = statisticCarousel.find('.ui-carousel-items .statistic-carousel-item')[index];
+  var itemsContainer = statisticCarousel.find('.ui-carousel-items .js-statistic-carousel-item')[index];
   headerTitle.append($(itemsContainer).find('[id$="chart-name-container"]').clone());
 
   // On click event of Carousel-nav

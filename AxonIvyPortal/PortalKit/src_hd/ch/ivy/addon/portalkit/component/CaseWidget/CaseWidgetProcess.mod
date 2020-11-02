@@ -1,5 +1,5 @@
 [Ivy]
-152E8EDB33C1BDC1 7.5.0 #module
+152E8EDB33C1BDC1 9.2.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseWidgetProcess Big #zClass
 Cs0 RD #cInfo
@@ -110,7 +110,6 @@ Cs0 f7 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidge
 ' #txt
 Cs0 f7 responseMappingAction 'out=in;
 out.cases=result.cases;
-out.errors=result.errors;
 ' #txt
 Cs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -151,7 +150,6 @@ Cs0 f18 requestMappingAction 'param.caseSearchCriteria=in.caseSearchCriteria;
 Cs0 f18 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData out;
 ' #txt
 Cs0 f18 responseMappingAction 'out=in;
-out.errors=result.errors;
 out.totalCases=result.totalCases;
 ' #txt
 Cs0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -353,7 +351,7 @@ if(in.filterDataToBeDeleted.type == FilterType.ONLY_ME) {
 	in.publicFilters.remove(in.filterDataToBeDeleted);
 }
 
-if (in.dataModel.#selectedFilterData is initialized && in.dataModel.selectedFilterData.equals(in.filterDataToBeDeleted)) {
+if (in.dataModel.#selectedFilterData is initialized && in.dataModel.isSameCaseFilterData(in.filterDataToBeDeleted)) {
 	in.dataModel.resetFilters();
 	in.filteringKeyword = null;
 }' #txt

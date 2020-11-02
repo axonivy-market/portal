@@ -1,5 +1,7 @@
 package portal.guitest.page;
 
+import static portal.guitest.common.WaitHelper.waitForNavigation;
+
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -18,7 +20,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
+import portal.guitest.common.Sleeper;
 import portal.guitest.common.UrlHelpers;
+import portal.guitest.common.WaitHelper;
 import vn.wawa.guitest.base.page.AbstractPage;
 
 public abstract class TemplatePage extends AbstractPage {
@@ -26,7 +30,7 @@ public abstract class TemplatePage extends AbstractPage {
   private static final String TEMPLATE_PAGE_LOCATOR = "id('global-search-component:global-search-data')";
   public static final String CLASS_PROPERTY = "class";
   private static final String HOME_BREADCRUMB_SELECTOR = ".portal-breadcrumb .ui-menuitem-link:first-child";
-  private static final String CURRENT_BREADCRUMB_SELECTOR = ".portal-breadcrumb li:last-child .ui-menuitem-link.ui-state-disabled";
+  public static final String CURRENT_BREADCRUMB_SELECTOR = ".portal-breadcrumb li:last-child .ui-menuitem-link.ui-state-disabled";
 
   public TemplatePage() {
     waitForLocatorDisplayed(getLoadedLocator());
@@ -90,6 +94,7 @@ public abstract class TemplatePage extends AbstractPage {
     try {
       wait.until(myFunction);
     } catch (WebDriverException e) {
+      e.printStackTrace();
       System.out.println("ERROR when ensuring not background request");
     }
   }
@@ -100,7 +105,13 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void waitAjaxIndicatorDisappear() {
-    WebElement ajaxIndicatorStartState = findElementById("ajax-indicator:ajax-indicator-ajax-indicator_start");
+    WebElement ajaxIndicatorStartState;
+    try {
+      ajaxIndicatorStartState = findElementById("ajax-indicator:ajax-indicator-ajax-indicator_start");
+    } catch (Exception e2) {
+      System.out.println("ERROR waitAjaxIndicatorDisappear, maybe page is reloading");
+      return;
+    }
     boolean displayed = false;
     try {
       displayed = ajaxIndicatorStartState.isDisplayed();
@@ -251,7 +262,7 @@ public abstract class TemplatePage extends AbstractPage {
 
   public TaskWidgetPage openTaskList() {
     openMainMenu();
-    clickByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu");
+    waitForNavigation(this, () -> clickByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu"));
     waitForElementDisplayed(By.cssSelector("[id$='task-config-command']"), true);
     return new TaskWidgetPage();
   }
@@ -262,6 +273,11 @@ public abstract class TemplatePage extends AbstractPage {
 
   public String getGlobalGrowlMessage() {
     return findElementById("portal-global-growl_container").getText();
+  }
+  
+  public void waitForGrowlMessageDisplayClearly() {
+    waitForElementDisplayed(By.id("portal-global-growl_container"), true);
+    Sleeper.sleep(500);//wait for animation finish to capture screenshot
   }
 
   public GlobalSearch getGlobalSearch() {
@@ -285,8 +301,19 @@ public abstract class TemplatePage extends AbstractPage {
     }
 
     public SearchResultPage inputSearchKeyword(String keyword) {
-      type(getSearchInput(), keyword + Keys.ENTER);
+      click(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR));
+      WaitHelper.typeWithRetry(new AbstractPage() {
+        @Override
+        protected String getLoadedLocator() {
+          return TEMPLATE_PAGE_LOCATOR;
+        }
+      }, GLOBAL_SEARCH_INPUT_SELECTOR, keyword);
+      getSearchInput().sendKeys(Keys.ENTER.toString());
       return new SearchResultPage();
+    }
+    
+    public boolean isPresent() {
+      return isElementPresent(By.cssSelector(GLOBAL_SEARCH_INPUT_SELECTOR));
     }
   }
   
@@ -298,7 +325,7 @@ public abstract class TemplatePage extends AbstractPage {
   protected void refreshAndWaitElement(String cssSelector) {
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> {
       if ((findListElementsByCssSelector(cssSelector).isEmpty())) {
-        refresh();
+        WaitHelper.waitForNavigation(this, () -> refresh());
         return false;
       } else {
         return true;
@@ -306,12 +333,20 @@ public abstract class TemplatePage extends AbstractPage {
     });
   }
 
-  public void clickHomeBreadcrumb() {
+  public HomePage goToHomeFromBreadcrumb() {
     waitForElementDisplayed(By.cssSelector(HOME_BREADCRUMB_SELECTOR), true);
     click(By.cssSelector(HOME_BREADCRUMB_SELECTOR));
-    ensureNoBackgroundRequest();
+    return new HomePage();
   }
-
+  
+  public HomePage goToHomeFromBreadcrumbWithWarning() {
+    waitForElementDisplayed(By.cssSelector(HOME_BREADCRUMB_SELECTOR), true);
+    click(By.cssSelector(HOME_BREADCRUMB_SELECTOR));
+    waitForElementDisplayed(By.id("user-menu-required-login:leave-button"), true);
+    click(By.id("user-menu-required-login:leave-button"));
+    return new HomePage();
+  }
+  
   public String getTextOfCurrentBreadcrumb() {
     WebElement breadcrumb = findElementByCssSelector(CURRENT_BREADCRUMB_SELECTOR);
     String result = "";
@@ -326,5 +361,45 @@ public abstract class TemplatePage extends AbstractPage {
   
   public String getLoggedInUserFormat() {
     return getText(By.id("user-settings-menu"));
+  }
+
+  public  ChatPage getChat() {
+    waitForElementDisplayed(By.id("toggle-chat-panel-command"), true, 5);
+    click(findElementById("toggle-chat-panel-command"));
+    return new ChatPage();
+  }  
+  public WebElement getAbsenceManagementDialog() {
+    return findElementById("absence-management-dialog");
+  }
+  
+  public WebElement getUserSettings() {
+    waitForElementDisplayed(By.id("user-settings-menu"), true);
+    click(findElementById("user-settings-menu"));
+    waitForElementDisplayed(By.id("logout-setting:logout-menu-item"), true);
+    return findElementById("user-setting-container");
+  }
+  
+  public WebElement getTopBar() {
+    return findElementById("top-menu");
+  }
+  
+  public void waitUntilLayoutWrapperDisplayed() {
+    waitForElementDisplayed(By.className("layout-wrapper"), true);
+  }
+  
+  public void waitUntilErrorMessageShowUp() {
+    waitForElementDisplayed(By.className("notification-container"), true);
+  }
+  
+  public void clickOnShowMoreLinkOfErrorMessages() {
+    click(findElementByCssSelector("a[class$='notification-content-action-more-details']"));
+  }
+  
+  public void waitUntilErrorContainerDisplayed() {
+    waitForElementDisplayed(By.className("error-container"), true);
+  }
+
+  public boolean isWelcomeDialogExisted() {
+    return CollectionUtils.isNotEmpty(findListElementsByCssSelector("div[id$='welcome-portal-guide']"));
   }
 }

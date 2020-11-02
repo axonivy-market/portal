@@ -17,7 +17,7 @@
         emptyMessage="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/NoFormelementsAvailable')}"
         value="#{data.dragAndDropController.availableFormelements}" columns="1">
         <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
-          <div class="TexAlLeft ui-g-12">
+          <div class="u-text-align-left ui-g-12">
             <div class="ui-g">
               <div class="ui-g-12 u-padding-0">
                 <div class="available-elements-image">
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="available-elements-action-btn">
-                  <p:commandButton icon="fa fa-trash-o fa-3x" styleClass="placement-form-element-remove-btn"
+                  <p:commandButton icon="icon ivyicon-bin-1" styleClass="placement-form-element-remove-btn"
                     actionListener="#{data.dragAndDropController.deleteFormelement(formelement)}" process="form:available-form-elements"
                     update="form:available-form-elements">
                   </p:commandButton>
@@ -45,7 +45,7 @@
     <p:fieldset id="selected-formelements-field" styleClass="selected-formelements-field"
       legend="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetFormelementsPlacing')}">
       <p:commandButton id="show-preview-button" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/Preview')}"
-        styleClass="Fright show-preview-button" icon="fa fa-search" oncomplete="PF('preview-dialog').show();"
+        styleClass="Fright show-preview-button" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-search')}" oncomplete="PF('preview-dialog').show();"
         actionListener="#{data.dragAndDropController.updateForm}" process="@this" />
 
       <p:panelGrid styleClass="ui-g-12 form-definition-table">
@@ -65,7 +65,7 @@
                 value="#{data.dragAndDropController.selectedFormelementsHeader}"
                 rendered="#{not empty data.dragAndDropController.selectedFormelementsHeader}" columns="1">
                 <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
-                  <div class="TexAlLeft ui-g-12">
+                  <div class="u-text-align-left ui-g-12">
                     <div class="ui-g">
                       <div class="ui-g-12 u-padding-0">
                         <div class="available-elements-image">
@@ -73,7 +73,7 @@
                         </div>
 
                         <div class="available-elements-action-btn">
-                          <p:commandButton icon="fa fa-trash-o fa-3x" styleClass="placement-form-element-remove-btn"
+                          <p:commandButton icon="icon ivyicon-bin-1" styleClass="placement-form-element-remove-btn"
                             actionListener="#{data.dragAndDropController.resetFormelementHeader(formelement)}"
                             process="form:selected-formelements-header" update="form">
                           </p:commandButton>
@@ -115,7 +115,7 @@
                 rendered="#{not empty data.dragAndDropController.selectedFormelementsLeftPanel}">
 
                 <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
-                  <div class="TexAlLeft ui-g-12">
+                  <div class="u-text-align-left ui-g-12">
                     <div class="ui-g">
                       <div class="ui-g-12 u-padding-0">
                         <div class="available-elements-image">
@@ -123,7 +123,7 @@
                         </div>
 
                         <div class="available-elements-action-btn">
-                          <p:commandButton icon="fa fa-trash-o fa-3x" styleClass="placement-form-element-remove-btn"
+                          <p:commandButton icon="icon ivyicon-bin-1" styleClass="placement-form-element-remove-btn"
                             actionListener="#{data.dragAndDropController.resetFormelementLeftPanel(formelement)}"
                             process="form:selected-formelements-left-panel" update="form">
                           </p:commandButton>
@@ -163,7 +163,7 @@
                 rendered="#{not empty data.dragAndDropController.selectedFormelementsRightPanel}">
 
                 <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
-                  <div class="TexAlLeft ui-g-12">
+                  <div class="u-text-align-left ui-g-12">
                     <div class="ui-g">
                       <div class="ui-g-12 u-padding-0">
                         <div class="available-elements-image">
@@ -171,7 +171,7 @@
                         </div>
 
                         <div class="available-elements-action-btn">
-                          <p:commandButton icon="fa fa-trash-o fa-3x" styleClass="placement-form-element-remove-btn"
+                          <p:commandButton icon="icon ivyicon-bin-1" styleClass="placement-form-element-remove-btn"
                             actionListener="#{data.dragAndDropController.resetFormelementRightPanel(formelement)}"
                             process="form:selected-formelements-right-panel" update="form">
                           </p:commandButton>
@@ -214,7 +214,7 @@
                 styleClass="no-border TexAlCenter selected-form-elements-footer" columns="1">
 
                 <p:panel id="pnl" styleClass="TexAlCenter vertical-align-middle available-elements-panel ui-g card">
-                  <div class="TexAlLeft ui-g-12">
+                  <div class="u-text-align-left ui-g-12">
                     <div class="ui-g">
                       <div class="ui-g-12 u-padding-0">
                         <div class="available-elements-image">
@@ -222,7 +222,7 @@
                         </div>
 
                         <div class="available-elements-action-btn">
-                          <p:commandButton icon="fa fa-trash-o fa-3x" styleClass="placement-form-element-remove-btn"
+                          <p:commandButton icon="icon ivyicon-bin-1" styleClass="placement-form-element-remove-btn"
                             actionListener="#{data.dragAndDropController.resetFormelementFooter(formelement)}"
                             process="form:selected-formelements-footer" update="form">
                           </p:commandButton>
@@ -256,7 +256,8 @@
     position="center" appendTo="@(body)" onShow="ExpressDynaform();" responsive="true">
     <ui:include src="PreviewFieldset.xhtml" />
     <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
-      <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" onclick="PF('preview-dialog').hide();" />
+      <p:commandButton type="button" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" onclick="PF('preview-dialog').hide();" />
     </h:panelGroup>
   </p:dialog>
 

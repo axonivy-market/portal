@@ -7,7 +7,7 @@
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="caseView" value="#{data.caseView}" />
-    <ui:param name="viewName" value="CASE" />
+    <ui:param name="viewName" value="#{data.caseView.isTechnicalCaseView() ? 'TECHNICAL_CASE' : 'CASE'}" />
     <ui:param name="filterGroupId" value="#{ivy.request.processModel.id}" />
     <ui:param name="announcementContainerStyleClass" value="announcement-container-in-case-list" />
 
@@ -21,7 +21,7 @@
             dataModel="#{caseView.getDataModel()}"
             hideCaseFilter="#{caseView.hideCaseFilter or not empty caseView.getKeyword()}"
             autoSelectCaseId="#{caseView.getAutoSelectCaseId()}" filterGroupId="#{filterGroupId}"
-            hideWidgetHeader="#{hideWidgetHeader}">
+            hideWidgetHeader="#{hideWidgetHeader}" isTechnicalCaseView="#{data.caseView.isTechnicalCaseView()}">
 
             <f:facet name="caseListHeader">
               <ui:fragment rendered="#{useOverrideListHeader}">
@@ -49,6 +49,9 @@
                   dataModel="#{caseView.getDataModel()}" />
                 <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator componentId="case-creator-cell"
                   case="#{case}" dataModel="#{caseView.getDataModel()}" />
+                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseOwner componentId="case-owner-cell"
+                  case="#{case}" dataModel="#{caseView.getDataModel()}" rendered="#{caseBean.isCaseOwnerEnabled()}"
+                  responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down" />
                 <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-date-cell"
                   rendered="#{caseView.dataModel.isSelectedColumn('CREATION_TIME')}" value="#{case.startTimestamp}" />
                 <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-expiry-date-cell"

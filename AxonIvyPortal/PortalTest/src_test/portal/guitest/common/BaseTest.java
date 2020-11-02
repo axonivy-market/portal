@@ -4,12 +4,12 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.rules.TestWatcher;
 import org.junit.runner.Description;
+import org.openqa.selenium.JavascriptExecutor;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
@@ -27,7 +27,7 @@ import vn.wawa.guitest.base.enums.BrowserType;
 public class BaseTest {
   private Browser browser;
 
-  private String designerLogoutUrl = "http://localhost:8081/wf/logout.jsp";
+  private String designerLogoutUrl = "http://localhost:8081/designer/logout";
   private final static String LOGIN_URL_PATTERN = "portalKitTestHelper/1636734E13CEC872/login.ivp?username=%s&password=%s";
   private BrowserType browserType;
 
@@ -49,17 +49,33 @@ public class BaseTest {
   }
   
   protected String createTestingTasksUrl = "portal-developer-examples/162511D2577DBA88/CategoriedLeaveRequest.ivp";
+  protected String create12CasesWithCategoryUrl = "internalSupport/15C7B30FB93C827E/create12CasesWithCategory.ivp";
   protected String businessCaseUrl = "internalSupport/15B1EA24CCF377E8/updateCheckInTime.ivp";
   protected String hideCaseUrl = "portal-developer-examples/16583F0F73864543/createHiddenTechnicalCase.ivp";
   protected String createTestingCaseMapUrl = "internalSupport/764871e4-cf70-401f-83fb-9e99fa897fc4.icm";
   protected String createTestingCaseUrlForCustomizationAdditionalCaseDetails = "portal-developer-examples/1624D1F5CBEA5332/createInvestmentRequest.ivp";
   protected String createTestingCaseUrlForDefaultAdditionalCaseDetails = "internalSupport/14B2FC03D2E87141/DefaultAdditionalCaseDetails.ivp";
   protected String createTestingCaseContainOneTask = "internalSupport/14B2FC03D2E87141/CreateSupportTicket.ivp";
-  protected String createUnassignedTaskUrl = "internalSupport/14B2FC03D2E87141/createUnassignedTask.ivp";
+  protected String createTaskWithNotExistedActivatorUrl = "internalSupport/14B2FC03D2E87141/createTaskWithNotExistedActivator.ivp";
   protected String expressStartLink = "axonIvyExpress/15798655494F25E1/AxonIvyExpressWF.ivp";
   protected String cleanupDataLink = "portalKitTestHelper/1511A66AF619A768/cleanData.ivp";
+  protected String createAlphaCompanyUrl = "portal-developer-examples/1624C1C79661758C/createAlphaCompany.ivp";
   protected String createBetaCompanyUrl = "portal-developer-examples/1624C1C79661758C/createBetaCompany.ivp";
+  protected String viewAlphaCompanyProcessHistoryUrl = "portal-developer-examples/1624C1C79661758C/viewProcessHistoryOfAlphaCompany.ivp";
+  protected String viewBetaCompanyProcessHistoryUrl = "portal-developer-examples/1624C1C79661758C/viewProcessHistoryOfBetaCompany.ivp";
+  protected String documentTableComponentUrl = "portal-developer-examples/16B447235433958E/start.ivp";
   protected String cleanUpAbsencesAndSubstituesLink = "portalKitTestHelper/1511A66AF619A768/cleanAbsencesAndSubstitues.ivp";
+  protected String createUserFavoriteProcess = "portalKitTestHelper/153CACC26D0D4C3D/createTestUserFavoriteProcess.ivp";
+  protected String createCasesForCaseListCustomization = "portal-developer-examples/162511D2577DBA88/createCasesForCaseListCustomization.ivp";
+  protected String processChainShowcaseUrl = "portal-developer-examples/164DB506D12B25CF/showSampleProcessChain.ivp";
+  protected String userSelectionComponentShowcaseUrl = "portal-developer-examples/170514494945ADB9/start.ivp";
+  protected String roleSelectionComponentShowcaseUrl = "portal-developer-examples/175495F02A2BCEB2/start.ivp";
+  protected String startUserExampleProcess = "portal-user-examples/17236DB1D3DA14C0/userExampleGuide.ivp";
+  protected String userIsOwnerUrl = "internalSupport/16A68510A341BE6E/userIsOwner.ivp";
+  protected String showTaskNoteHistoryUrl = "portalTemplate/16044EDBC0E23859/showTaskNoteHistory.ivp?selectedTaskId=%s";
+  protected String showCaseNoteHistoryUrl = "portalTemplate/1603506A872272C6/showCaseNoteHistory.ivp?caseId=%s";
+  protected String createTaskWithSystemState = "portalKitTestHelper/153CACC26D0D4C3D/createTaskWithSystemState.ivp";
+  protected String createTechnicalStateUrl = "portal-developer-examples/162511D2577DBA88/createTechnicalStateTasks.ivp";
   
   @Rule
   public ScreenshotFailedTestRule screenshotTestRule = new ScreenshotFailedTestRule();
@@ -178,6 +194,11 @@ public class BaseTest {
     redirectToRelativeLink("portalKitTestHelper/1511A66AF619A768/resetLanguageOfCurrentUser.ivp");
   }
   
+  public void createThirdPartyApp() {
+	  redirectToRelativeLink("PortalKitTestHelper/153CACC26D0D4C3D/createThirdPartyApp.ivp");
+    
+  }
+  
   public void refreshPage(){
     browser.getDriver().navigate().refresh();
   }
@@ -189,22 +210,19 @@ public class BaseTest {
       username = URLEncoder.encode(testAccount.getUsername(), "UTF-8");
       password = URLEncoder.encode(testAccount.getPassword(), "UTF-8");
 
-      AtomicBoolean isLoginSuccess = new AtomicBoolean(false);
       Awaitility.await().atMost(new Duration(60, TimeUnit.SECONDS)).until(() -> {
         try {
           redirectToRelativeLink(String.format(LOGIN_URL_PATTERN, username, password));
-          new HomePage() {
+          return new HomePage() {
             @Override
             protected long getTimeOutForLocator() {
               return 10L;
             }
-          }.isDisplayed();
-          isLoginSuccess.set(true);
+          }.findElementByCssSelector(".user-name").getText().equals(testAccount.getFullName());
         } catch (Exception e) {
           System.out.println("*****Login unsuccessfully. Try again if not timeout.");
         }
-        return isLoginSuccess.get();
-
+        return false;
       });
 
     } catch (UnsupportedEncodingException e) {
@@ -237,5 +255,30 @@ public class BaseTest {
       e.printStackTrace();
     }
   }
+  
+  public void updateGlobalVariable(String variableName, String variableValue) {
+    try {
+      String encodeVariableName = URLEncoder.encode(variableName, "UTF-8");
+      String encodeVariableValue = URLEncoder.encode(variableValue, "UTF-8");
+      String updateGlobalVariableLink = "portalKitTestHelper/1749B87B8C1B77BE/updateGlobalVariable.ivp?variableName=%s&variableValue=%s";
+      redirectToRelativeLink(String.format(updateGlobalVariableLink, encodeVariableName, encodeVariableValue));
+    } catch (UnsupportedEncodingException e) {
+      e.printStackTrace();
+    }
+  }
+  
+  public void goToTaskNoteHistoryPage(String taskId) {
+     redirectToRelativeLink(String.format(showTaskNoteHistoryUrl, taskId));
+  }
+  
+  public void goToCaseNoteHistoryPage(String caseId) {
+    redirectToRelativeLink(String.format(showCaseNoteHistoryUrl, caseId));
+ }
 
+  
+  public void executeDecorateJs(String function) {
+    ((JavascriptExecutor) getBrowser().getDriver()).executeScript(function);
+    Sleeper.sleep(200);
+  }
+  
 }

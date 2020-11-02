@@ -1,7 +1,6 @@
 package portal.guitest.page;
 
-import static org.junit.Assert.assertTrue;
-
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -20,14 +19,14 @@ public class ExpressManagementPage extends TemplatePage {
   }
 
   public void openImportDialog() {
-    WebElement importButton = findElementByCssSelector("*[id$=':import-express-btn']");
-    click(importButton);
-    refreshAndWaitElement("div[id$=':import-express-dialog']");
-    Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
-        .until(() -> assertTrue(findElementByCssSelector("div[id$=':import-express-dialog']").isDisplayed()));
-    //assertTrue(isImportDialogDisplayed());
+    click(findElementByCssSelector("button[id$=':express-management-form:import-express-btn']"));
+    waitForElementDisplayed(findElementByCssSelector("[id$=':import-express-form:express-process-upload_label']"), true);
   }
 
+  public WebElement getImportExpressDialog() {
+    return findElementByCssSelector("[id$=':express-management-component:import-express-dialog']");
+  }
+  
   public boolean isImportDialogDisplayed() {
     WebElement webElement = findElementByCssSelector("div[id$=':import-express-dialog']");
     return webElement.isDisplayed();
@@ -43,18 +42,53 @@ public class ExpressManagementPage extends TemplatePage {
     WebElement closeButton = findElementByCssSelector("*[id$=':close-import-express']");
     Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> closeButton.isEnabled());
     click(closeButton);
+    waitForElementDisplayed(By.cssSelector("*[id$=':close-import-express']"), false);
   }
 
   public void clickOnDeployExpress() {
-    WebElement deployButton = findElementByCssSelector(".ui-fileupload-upload");
-    Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> deployButton.isEnabled());
+    WebElement deployButton = waitForDeployButtonEnabled();
     click(deployButton);
     waitForElementDisplayed(By.id("adminui:adminTabView:express-management-component:import-express-form:impress-export-output"), true);
+    waitForElementEnabled(By.id("adminui:adminTabView:express-management-component:close-import-express"), true, DEFAULT_TIMEOUT);
+  }
+
+  public WebElement waitForDeployButtonEnabled() {
+    WebElement deployButton = findElementByCssSelector(".ui-fileupload-upload");
+    waitForElementDisplayed(deployButton, true);
+    return deployButton;
   }
 
   public String getUploadMessage() {
     waitForElementDisplayed(By.cssSelector("div[class$='ui-fileupload-messages'] span[class$='ui-messages-error-summary']"), true);
     return driver.findElement(By.cssSelector("div[class$='ui-fileupload-messages'] span[class$='ui-messages-error-summary']")).getText();
+  }
+  
+  public void clickOnSelectAllExpresses() {
+    selectExpressCheckboxByIndex(0);
+  }
+
+  public void selectExpressCheckboxByIndex(int index) {
+    WebElement expressTable = findElementByCssSelector("[id$=':express-management-component:express-management-form:express-workflow-summary-table']");
+    List<WebElement> checkboxSelections = findChildElementsByClassName(expressTable, "express-selection-column");
+    if (checkboxSelections.size() > index) {
+      click(findChildElementByClassName(checkboxSelections.get(index), "ui-chkbox-box"));
+      waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+    }
+  }
+
+  public void clickOnExportButton() {
+    waitForElementEnabled(By.cssSelector("[id$=':express-management-component:express-management-form:export-express-btn']"), true, DEFAULT_TIMEOUT);
+    click(findElementByCssSelector("[id$=':express-management-component:express-management-form:export-express-btn']"));
+    waitForElementDisplayed(By.id("adminui:adminTabView:express-management-component:export-express-dialog"), true);
+  }
+
+  public WebElement getExportExpressDialog() {
+    return findElementByCssSelector("[id$=':express-management-component:export-express-dialog']");
+  }
+
+  public void deployExpressFile() {
+    clickOnDeployExpress();
+    clickOnCloseButton();
   }
 
 }

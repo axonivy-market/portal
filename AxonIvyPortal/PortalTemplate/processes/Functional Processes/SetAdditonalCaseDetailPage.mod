@@ -1,5 +1,5 @@
 [Ivy]
-1624CFE2532EF6BE 7.5.0 #module
+1624CFE2532EF6BE 9.2.0 #module
 >Proto >Proto Collection #zClass
 Se0 SetAdditonalCaseDetailPage Big #zClass
 Se0 B #cInfo
@@ -41,7 +41,7 @@ Se0 f3 actionCode 'import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 
 String casePageUrl = ProcessStartUtils.
-	findRelativeUrlByProcessStartFriendlyRequestPath(ivy.request.getApplication(), in.linkToAdditonalCaseDetailPage)
+	findRelativeUrlByProcessStartFriendlyRequestPath(in.linkToAdditonalCaseDetailPage)
 		+ "?caseId=" + ivy.case.getId();
 											
 ivy.case.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).set(casePageUrl);' #txt

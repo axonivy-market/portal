@@ -17,7 +17,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.TaskState;
 
 @ManagedBean(name = "caseTaskNoteHistoryBean")
 public class CaseTaskNoteHistoryBean implements Serializable {
@@ -35,8 +34,8 @@ public class CaseTaskNoteHistoryBean implements Serializable {
   }
 
   public String getTaskNoteHistoryLink(ITask task) {
-    String url = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.request().getApplication(), SHOW_TASK_NOTE_HISTORY_FRIENDLY_REQUEST_PATH);
-    return url + "?selectedTaskId=" + String.valueOf(task.getId());
+    String url = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(SHOW_TASK_NOTE_HISTORY_FRIENDLY_REQUEST_PATH);
+    return String.format("%s?selectedTaskId=%s", url, task.getId());
   }
 
   public String getCaseNoteHistoryLink(ICase iCase) {
@@ -44,33 +43,45 @@ public class CaseTaskNoteHistoryBean implements Serializable {
   }
   
   public String getCaseNoteHistoryLink(Long caseId) {
-    String link = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(Ivy.request().getApplication(), SHOW_CASE_NOTE_HISTORY_FRIENDLY_REQUEST_PATH);
-    return link + "?caseId=" + String.valueOf(caseId);
+    String link = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(SHOW_CASE_NOTE_HISTORY_FRIENDLY_REQUEST_PATH);
+    return String.format("%s?caseId=%s", link, caseId);
   }
 
   public String getCaseNoteContent(History history) {
     String content = history.getContent();
     if (history.getType() == HistoryType.TASK) {
-      if (history.getTaskState() == TaskState.DONE) {
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDone") + ": " + content;
-      } else if (history.getTaskState() == TaskState.DESTROYED) {
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDestroyed") + ": " + content;
-      } else if (history.getTaskState() == TaskState.ZOMBIE) {
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsZombie") + ": " + content;
-      } else if (history.getTaskState() == TaskState.CREATED) {
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsCreated") + ": " + content;
+      switch (history.getTaskState()) {
+        case DONE:
+          return createContentWithTaskState("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDone", content);
+        case DESTROYED:
+          return createContentWithTaskState("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsDestroyed", content);
+        case ZOMBIE:
+          return createContentWithTaskState("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsZombie", content);
+        case CREATED:
+          return createContentWithTaskState("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskStateIsCreated", content);
+        case FAILED:
+        case JOIN_FAILED:
+          return createContentWithTaskState("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsFailed", content);
+        case WAITING_FOR_INTERMEDIATE_EVENT:
+          return createContentWithTaskState("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/taskIsWaiting", content);
+        default:
+          break;
       }
     }
     return content; 
   }
+  
+  private String createContentWithTaskState(String taskStateCmsUrl, String content) {
+    return String.format("%s: %s", Ivy.cms().co(taskStateCmsUrl), content);
+  }
     
-    public StreamedContent getExportedFileOfTaskNoteHistory(List<INote> taskNoteHistory, String fileName) {
-      NoteHistoryExporter exporter = new NoteHistoryExporter();
-      return exporter.getStreamedContentOfTaskNoteHistory(taskNoteHistory, fileName + ".xlsx");
-    }
+  public StreamedContent getExportedFileOfTaskNoteHistory(List<INote> taskNoteHistory, String fileName) {
+    NoteHistoryExporter exporter = new NoteHistoryExporter();
+    return exporter.getStreamedContentOfTaskNoteHistory(taskNoteHistory, fileName + ".xlsx");
+  }
 
-    public StreamedContent getStreamedContentOfCaseNoteHistory(List<History> caseNoteHistory, ICase iCase, String fileName) {
-      NoteHistoryExporter exporter = new NoteHistoryExporter();
-      return exporter.getStreamedContentOfCaseNoteHistory(caseNoteHistory, iCase, fileName + ".xlsx");
-    }
+  public StreamedContent getStreamedContentOfCaseNoteHistory(List<History> caseNoteHistory, ICase iCase, String fileName) {
+    NoteHistoryExporter exporter = new NoteHistoryExporter();
+    return exporter.getStreamedContentOfCaseNoteHistory(caseNoteHistory, iCase, fileName + ".xlsx");
+  }
 }

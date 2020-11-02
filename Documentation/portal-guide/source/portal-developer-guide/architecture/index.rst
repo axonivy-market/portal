@@ -39,7 +39,7 @@ focus/hover color by providing a lot of variables.
 .. note:: 
 
       This module is prepared for process developers to override and keep
-      customer styles by editing SCSS files.
+      customer styles by editing CSS files.
 
 .. _architecture-portal-template:
 
@@ -69,3 +69,5 @@ This project is an extended project from PortalTemplate. It provides:
 
 .. |process-module-structure| image:: images/process-module-structure.png
 
+Axon.ivy Express also provides an AdHoc process feature. When Express is deployed, user can start an AdHoc process from any task. 
+Adhoc allows user to define more process steps and will be executed before current task.

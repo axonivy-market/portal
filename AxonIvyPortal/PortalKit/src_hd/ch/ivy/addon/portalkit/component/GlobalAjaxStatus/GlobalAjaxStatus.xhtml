@@ -8,20 +8,23 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="styleClass" />
   <cc:attribute name="widgetVar" />
-  <cc:attribute name="style" />
-  <cc:attribute name="waitingIcon" default="fa fa-spinner" shortDescription="style class icon of Font Awesome" />
+  <cc:attribute name="startLoadingText" shortDescription="The text is showing when start ajax loading indicator"/>
 </cc:interface>
 <cc:implementation>
   <c:set var="renderDetail" value="#{userMenuBean.errorDetailToEndUser}" />
   <h:outputStylesheet library="css" name="module.css" />
-  <p:ajaxStatus id="#{cc.clientId}-#{cc.id}" widgetVar="#{cc.attrs.widgetVar}" onerror="handleError(PrimeFaces.ajax.Queue.xhrs[0], #{renderDetail})">
+  
+  <p:ajaxStatus id="#{cc.clientId}-#{cc.id}" widgetVar="#{cc.attrs.widgetVar}" onerror="handleError(PrimeFaces.ajax.Queue.xhrs[0], #{renderDetail})" styleClass="portal-ajax-loader">
     <f:facet name="start">
-      <div class="ajax-status ajax-status-position ajax-status-color #{cc.attrs.styleClass}" >
-        <span> <i class="#{cc.attrs.waitingIcon} fa-3x fa-spin" />
-        </span>
+      <div class="ajax-status-position #{cc.attrs.styleClass}">
+        <div class="axonivy-loader">
+          <div class="spinner" />
+          <h5>#{empty cc.attrs.startLoadingText ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/loading') : cc.attrs.startLoadingText}...</h5>
+        </div>
       </div>
     </f:facet>
   </p:ajaxStatus>
+  
   <p:dialog id="#{cc.clientId}-error-ajax-dialog" widgetVar="error-ajax-dialog" closable="true" onShow="debugger;" closeOnEscape="true"
     modal="true" resizable="false" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}"
     responsive="true">

@@ -12,6 +12,7 @@ import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.LazyDataModel;
@@ -22,12 +23,12 @@ import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.SortDirection;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
-import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
+import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.service.DummyTaskService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.service.TaskColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.taskfilter.DefaultTaskFilterContainer;
@@ -67,7 +68,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
   protected List<String> portalDefaultColumns =
-      Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "STATE");
+      Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "COMPLETED_ON", "STATE");
   protected List<String> portalRequiredColumns = Arrays.asList("NAME");
 
   protected boolean compactMode;
@@ -78,6 +79,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected boolean disableTaskCount;
   protected Boolean isSelectedDefaultFilter;
   protected boolean isGuide = true;
+  protected List<String> standardSortFields;
 
   public TaskLazyDataModel(String taskWidgetComponentId) {
     super();
@@ -91,7 +93,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
       buildDefaultTaskFilterData();
     }
   }
-  
+
   private void loadSessionTaskFiltersAttribute() {
     if (shouldSaveAndLoadSessionFilters()) {
       if (isSameFilterGroupId()) {
@@ -106,14 +108,14 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   private boolean isSameFilterGroupId() {
     filterGroupId = UserUtils.getSessionFilterGroupIdAttribute();
-    return filterGroupId == null || filterGroupId == Ivy.request().getProcessModel().getId();
+    return filterGroupId == null || filterGroupId.equals(Ivy.request().getProcessModel().getId());
   }
 
   public TaskFilterData buildDefaultTaskFilterData() {
     if (defaultTaskFilterData == null) {
       defaultTaskFilterData = new TaskFilterData();
-      defaultTaskFilterData.setFilterName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultFilter"));
       defaultTaskFilterData.setType(FilterType.DEFAULT);
+      defaultTaskFilterData.setFilterName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultFilter"));
       collectFiltersForDefaultFilterSet();
     }
     isSelectedDefaultFilter = isSelectedDefaultFilter == null ? true: isSelectedDefaultFilter;
@@ -164,24 +166,15 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   protected void updateStateForTaskCriteria() {
-    if (isRelatedTaskDisplayed) {
-      if (!criteria.getIncludedStates().contains(TaskState.DONE)) {
-        criteria.addIncludedStates(Arrays.asList(TaskState.DONE));
-      }
-      if (!criteria.getIncludedStates().contains(TaskState.UNASSIGNED)) {
-        criteria.addIncludedStates(Arrays.asList(TaskState.UNASSIGNED));
-      }
+    if (isRelatedTaskDisplayed && !criteria.getIncludedStates().contains(TaskState.DONE)) {
+      criteria.addIncludedStates(Arrays.asList(TaskState.DONE));
     }
   }
 
   public void collectFiltersForDefaultFilterSet() {
     if (defaultTaskFilterData != null && CollectionUtils.isEmpty(defaultTaskFilterData.getFilters())) {
       TaskFilterContainer tempFilterContainer = null;
-      if (this.filterContainer == null) {
-        tempFilterContainer = new DefaultTaskFilterContainer();
-      } else {
-        tempFilterContainer = this.filterContainer;
-      }
+      tempFilterContainer = ObjectUtils.defaultIfNull(this.filterContainer, new DefaultTaskFilterContainer()); 
       updateStateForTaskCriteria();
       setValuesForStateFilter(criteria, tempFilterContainer);
       buildTaskStateFilter(tempFilterContainer);
@@ -223,9 +216,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   private boolean shouldSaveAndLoadSessionFilters() {
-    boolean isValidCriteria =
-        (this.criteria == null) || (this.criteria != null && !this.criteria.isQueryForUnassignedTask());
-    return isValidCriteria && !isRelatedTaskDisplayed && !isNotKeepFilter;
+    return !isRelatedTaskDisplayed && !isNotKeepFilter;
   }
 
   @Override
@@ -294,8 +285,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   protected void initializedDataModel(TaskSearchCriteria criteria) {
-    criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
-    setInvolvedApplications();
     data.clear();
     buildQueryToSearchCriteria();
     if (disableTaskCount) {
@@ -320,15 +309,31 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   protected void buildCriteria() {
     criteria = new TaskSearchCriteria();
-    criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
-    criteria.setQueryForUnassignedTask(false);
-    criteria
-        .setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED)));
-    criteria.setSortField(TaskSortField.ID.toString());
-    criteria.setSortDescending(true);
+    criteria.setIncludedStates(new ArrayList<>(TaskSearchCriteria.STANDARD_STATES));
+    criteria.setSortField(getDefaultSortField());
+    criteria.setSortDescending(isSortedDescendingByDefault());
     if (shouldSaveAndLoadSessionFilters()) {
       criteria.setKeyword(UserUtils.getSessionTaskKeywordFilterAttribute());
     }
+  }
+
+  private String getDefaultSortField() {
+   String defaultSortField = UserSettingService.newInstance().getDefaultSortFieldOfTaskList();
+   if (StringUtils.isBlank(defaultSortField)) {
+     GlobalSettingService globalSettingService = new GlobalSettingService();
+     defaultSortField = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_FIELD_OF_TASK_LIST.name());
+   }
+   return defaultSortField;
+  }
+
+  private boolean isSortedDescendingByDefault() {
+    String defaultSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfTaskList();
+    if (StringUtils.isBlank(defaultSortDirection)) {
+      GlobalSettingService globalSettingService = new GlobalSettingService();
+      defaultSortDirection = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST.name());
+    }
+    
+    return !SortDirection.ASCENDING.name().contentEquals(defaultSortDirection);
   }
 
   /**
@@ -364,18 +369,17 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   public void setAdminQuery(boolean isAdminQuery) {
-    List<TaskState> includedStates = criteria.getIncludedStates();
-    List<TaskState> adminStateNotIncluded = Arrays.asList(TaskState.DONE, TaskState.UNASSIGNED)
-        .stream()
-        .filter(item -> !includedStates.contains(item))
-        .collect(Collectors.toList());
-    if (isAdminQuery && !adminStateNotIncluded.isEmpty()) {
-      criteria.addIncludedStates(adminStateNotIncluded);
+    criteria.extendStatesQueryByPermission(isAdminQuery);
+    if (isAdminQuery) {
       setValuesForStateFilter(criteria, this.filterContainer);
     }
-    criteria.setAdminQuery(isAdminQuery);
   }
 
+  /**
+   * No need since 9.2, always take login username
+   * @param involvedUsername
+   */
+  @Deprecated(forRemoval = true, since = "9.2")
   public void setInvolvedUsername(String involvedUsername) {
     criteria.setInvolvedUsername(involvedUsername);
   }
@@ -477,12 +481,21 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     resetFilterData();
   }
 
-  public void resetFilters() {
+  public void resetFilters() throws ReflectiveOperationException {
     for (TaskFilter selectedFilter : selectedFilters) {
       selectedFilter.resetValues();
     }
-    selectedFilters = new ArrayList<>();
-    selectedTaskFilterData = null;
+
+    applyFilter(buildDefaultTaskFilterData());
+  }
+
+  public boolean isSameTaskFilterData(TaskFilterData filterToBeRemoved) {
+    if (filterToBeRemoved == null || selectedTaskFilterData == null) {
+      return false;
+    }
+    return filterToBeRemoved.getFilterGroupId().equals(selectedTaskFilterData.getFilterGroupId())
+        && filterToBeRemoved.getType() == selectedTaskFilterData.getType()
+        && filterToBeRemoved.getFilterName().equals(selectedTaskFilterData.getFilterName());
   }
 
   /**
@@ -589,11 +602,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     TaskQuery taskQuery = buildTaskQuery();
     extendSort(taskQuery);
     criteria.setFinalTaskQuery(taskQuery);
-  }
-
-  protected void setInvolvedApplications() {
-    RegisteredApplicationService service = new RegisteredApplicationService();
-    criteria.setApps(service.findActiveIvyAppsBasedOnConfiguration(Ivy.session().getSessionUserName()));
   }
 
   protected void setValuesForStateFilter(TaskSearchCriteria criteria, TaskFilterContainer filterContainer) {
@@ -807,10 +815,6 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     this.isSelectedDefaultFilter = false;
   }
 
-  public void setQueryForUnassignedTask(boolean isQueryForOnlyUnassignedTask) {
-    this.criteria.setQueryForUnassignedTask(isQueryForOnlyUnassignedTask);
-  }
-
   /**
    * This is default of sort item, override it if you want to customize it
    * 
@@ -860,6 +864,10 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
         setSortField(sortColumn, !asc);
       }
     }
+  }
+
+  public boolean isSortable(String sortField) {
+    return standardSortFields.contains(sortField);
   }
 
   public boolean getDisableTaskCount() {

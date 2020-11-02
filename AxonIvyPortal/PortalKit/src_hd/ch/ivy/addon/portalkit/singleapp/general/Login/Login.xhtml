@@ -8,7 +8,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/welcomToPortal')}" />
+  <cc:attribute name="title" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/welcomeToPortal')}" />
 </cc:interface>
 
 <cc:implementation>
@@ -22,7 +22,7 @@
         <p:focus for="username" />
         <div class="ui-g">
           <div class="ui-g-12">
-            <h1>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/welcomToPortal')}</h1>
+            <h1>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/welcomeToPortal')}</h1>
           </div>
           <h:panelGroup styleClass="block" class="ui-g-12" rendered="#{!data.loginOk}">
             <p:messages globalOnly="true" id="login-message" />
@@ -43,7 +43,8 @@
           </div>
           <div class="ui-g-12">
             <p:commandButton update="@form" id="login-command" actionListener="#{logic.login}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/login/login')}"
-              icon="ui-icon-person" oncomplete="if (args &amp;&amp; !args.validationFailed){location.reload()}" />
+              icon="#{visibilityBean.generateButtonIcon('icon ivyicon-login-3')}"
+              oncomplete="if (#{empty data.callbackUrl} === 'true' &amp;&amp; args &amp;&amp; !args.validationFailed) {location.reload()}" />
           </div>
         </div>
       </h:form>

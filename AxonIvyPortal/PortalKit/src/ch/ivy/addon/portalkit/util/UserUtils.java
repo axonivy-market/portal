@@ -3,11 +3,9 @@ package ch.ivy.addon.portalkit.util;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.TreeSet;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -24,7 +22,6 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.IUserAbsence;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.IWorkflowSession;
 
 public class UserUtils {
@@ -47,25 +44,21 @@ public class UserUtils {
    * Set locale for session from user setting or application default
    */
   public static void setLanguague() {
-    try {
-      ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> {
-        IUser sessionUser = getIvySession().getSessionUser();
-        Locale l = null;
-        if (sessionUser.getEMailLanguage() != null) {
-          l = sessionUser.getEMailLanguage();
-        } else {
-          // Application Default
-          Locale defaultApplicationLocal = Ivy.request().getApplication().getDefaultEMailLanguage();
-          l = new Locale(defaultApplicationLocal.getLanguage(), defaultApplicationLocal.getCountry(),
-              APPLICATION_DEFAULT);
-        }
-        getIvySession().setContentLocale(l);
-        getIvySession().setFormattingLocale(l);
-        return null;
-      });
-    } catch (Exception e) {
-      Ivy.log().error(e);
-    }
+    IvyExecutor.executeAsSystem(()->{
+      IUser sessionUser = getIvySession().getSessionUser();
+      Locale l = null;
+      if (sessionUser.getEMailLanguage() != null) {
+        l = sessionUser.getEMailLanguage();
+      } else {
+        // Application Default
+        Locale defaultApplicationLocal = Ivy.request().getApplication().getDefaultEMailLanguage();
+        l = new Locale(defaultApplicationLocal.getLanguage(), defaultApplicationLocal.getCountry(),
+            APPLICATION_DEFAULT);
+      }
+      getIvySession().setContentLocale(l);
+      getIvySession().setFormattingLocale(l);
+      return null;
+    });
   }
 
   public static String getSessionUserName() {
@@ -125,7 +118,8 @@ public class UserUtils {
   }
 
   public static TaskFilterData getSessionSelectedTaskFilterSetAttribute() {
-    return (TaskFilterData) Ivy.session().getAttribute(SELECTED_TASK_FILTER_SET);
+    Object sessionObject = Ivy.session().getAttribute(SELECTED_TASK_FILTER_SET);
+    return sessionObject instanceof TaskFilterData ? (TaskFilterData) sessionObject : null;
   }
   
   public static Long getSessionFilterGroupIdAttribute() {
@@ -138,9 +132,11 @@ public class UserUtils {
 
   @SuppressWarnings("unchecked")
   public static List<TaskFilter> getSessionTaskAdvancedFilterAttribute() {
-    List<TaskFilter> filters = (List<TaskFilter>) Ivy.session().getAttribute(SELECTED_TASK_FILTER);
-    if (CollectionUtils.isEmpty(filters)) {
-      return new ArrayList<>();
+    List<TaskFilter> filters = new ArrayList<>();
+    List<?> obj = (List<?>) Ivy.session().getAttribute(SELECTED_TASK_FILTER);
+    
+    if (CollectionUtils.isNotEmpty(obj) && obj.get(0) instanceof TaskFilter) {
+      return (List<TaskFilter>)obj;
     }
     return filters;
   }
@@ -170,14 +166,17 @@ public class UserUtils {
   }
   
   public static CaseFilterData getSessionSelectedCaseFilterSetAttribute() {
-    return (CaseFilterData) Ivy.session().getAttribute(SELECTED_CASE_FILTER_SET);
+    Object sessionObject = Ivy.session().getAttribute(SELECTED_CASE_FILTER_SET);
+    return sessionObject instanceof CaseFilterData ? (CaseFilterData) sessionObject : null;
   }
 
   @SuppressWarnings("unchecked")
   public static List<CaseFilter> getSessionCaseAdvancedFilterAttribute() {
-    List<CaseFilter> filters = (List<CaseFilter>) Ivy.session().getAttribute(SELECTED_CASE_FILTER);
-    if (CollectionUtils.isEmpty(filters)) {
-      return new ArrayList<>();
+    List<CaseFilter> filters = new ArrayList<>();
+    List<?> obj = (List<?>) Ivy.session().getAttribute(SELECTED_CASE_FILTER);
+    
+    if (CollectionUtils.isNotEmpty(obj) && obj.get(0) instanceof CaseFilter) {
+      return (List<CaseFilter>)obj;
     }
     return filters;
   }
@@ -191,7 +190,7 @@ public class UserUtils {
   }
   
   /**
-   * Finds the users who have the given roles. If the current application is Portal, find all users over all applications, otherwise in current application
+   * Finds the users who have the given roles in current application.
    * @param query
    * @param startIndex index of the first record is 0
    * @param count use -1 to return all beginning from the startIndex
@@ -202,24 +201,8 @@ public class UserUtils {
   @SuppressWarnings("unchecked")
   public static List<UserDTO> findUsers(String query, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
     return IvyExecutor.executeAsSystem(() -> {
-      if (Ivy.request().getApplication().getName().equals(PortalConstants.PORTAL_APPLICATION_NAME)) {
-        List<UserDTO> users = SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
-            .withStartName("findUsersOverAllApplications")
-            .withParam("username", getSessionUserName())
-            .withParam("query", query)
-            .withParam("startIndex", startIndex)
-            .withParam("count", count)
-            .withParam("fromRoles", fromRoles)
-            .withParam("excludedUsernames", excludedUsernames)
-            .call()
-            .get("users", List.class);
-        return users.stream()
-            .collect(Collectors.collectingAndThen(Collectors.toCollection(() -> new TreeSet<>(Comparator.comparing(UserDTO::getName))), ArrayList::new));
-      }
-      
       return SubProcessCall.withPath(PortalConstants.SECURITY_SERVICE_CALLABLE)
           .withStartName("findUsers")
-          .withParam("application", Ivy.request().getApplication())
           .withParam("query", query)
           .withParam("startIndex", startIndex)
           .withParam("count", count)
@@ -246,4 +229,15 @@ public class UserUtils {
     });
   }
 
+  public static IUser findUserByUsername(String username) {
+    return IvyExecutor.executeAsSystem(() -> {
+      return Ivy.wf().getSecurityContext().users().find(username);
+    });
+  }
+
+  public static IUser findUserByUserId(Long userId) {
+    return IvyExecutor.executeAsSystem(() -> {
+      return Ivy.wf().getSecurityContext().users().find(userId);
+    });
+  }
 }

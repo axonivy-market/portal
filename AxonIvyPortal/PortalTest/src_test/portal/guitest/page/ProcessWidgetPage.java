@@ -55,12 +55,7 @@ public class ProcessWidgetPage extends TemplatePage {
   
   public WebElement getProcess(String processName) {
     WebElement processListElement = findElementById(processWidgetId + ":process-list");
-    WebElement processItemElement = null;
-    try {
-      processItemElement =
-          findChildElementByXpathExpression(processListElement, "//a[.//text() = '" + processName + "']");
-    } catch (Exception e) {
-    }
+    WebElement processItemElement = findChildElementByXpathExpression(processListElement, "//a[.//text() = '" + processName + "']");
     return processItemElement;
   }
   
@@ -128,6 +123,7 @@ public class ProcessWidgetPage extends TemplatePage {
   public AddNewExternalLinkDialog openNewExternalLinkDialog() {
     waitForElementDisplayed(By.id(processWidgetId + ":add-external-link-command"), true);
     click(By.id("process-widget:add-external-link-command"));
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
     return new AddNewExternalLinkDialog();
   }
 
@@ -141,9 +137,9 @@ public class ProcessWidgetPage extends TemplatePage {
   public boolean isDeleteProcessItemSelected(int itemIndex) {
     WebElement deleteItem = findDeleteIcons().get(itemIndex);
 
-    WebElement deleteItemCheckBox = findChildElementByClassName(deleteItem, "fa");
+    WebElement deleteItemCheckBox = findChildElementByClassName(deleteItem, "icon");
     String styleClass = deleteItemCheckBox.getAttribute("class");
-    return styleClass.contains("fa-undo");
+    return styleClass.contains("ivyicon-undo");
   }
 
   public void checkDeleteItem(int itemIndex) {
@@ -301,9 +297,10 @@ public class ProcessWidgetPage extends TemplatePage {
     }
   }
   
-  public void openExpressPage() {
+  public ExpressProcessPage openExpressPage() {
     waitForElementDisplayed(By.id(processWidgetId + ":create-express-workflow"), true);
     click(By.id("process-widget:create-express-workflow"));
+    return new ExpressProcessPage();
   }
   
   public boolean isProcessEmpty() {
@@ -324,8 +321,23 @@ public class ProcessWidgetPage extends TemplatePage {
   }
 
   public ExampleOverviewPage openExampleOverviewPage(String exampleProcessName) {
-    getProcess(exampleProcessName).click();
+    click(getProcess(exampleProcessName));
     waitAjaxIndicatorDisappear();
     return new ExampleOverviewPage();
   }
+
+  public WebElement getAddExternalLinkDialog() {
+    return findElementById("process-widget:add-external-link-dialog");
+  }
+
+  public WebElement navigateToProcessIndex(String character) {
+    WebElement processIndex = findElementByCssSelector(".js-process-nav-item.js-process-starts-with-" + character);
+    processIndex.click();
+    return processIndex;
+  }
+  
+  public void waitUtilProcessWidgetDisplayed() {
+    waitForElementDisplayed(By.id("process-widget"), true);
+  }
+
 }

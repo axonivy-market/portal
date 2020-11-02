@@ -14,6 +14,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.CaseState;
 import portal.guitest.common.TestAccount;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.AdditionalCaseDetailsPage;
@@ -22,8 +23,8 @@ import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.TaskDetailsPage;
-import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
+import portal.guitest.page.UserProfilePage;
 
 public class CaseWidgetTest extends BaseTest {
 
@@ -67,11 +68,11 @@ public class CaseWidgetTest extends BaseTest {
     initHomePage(TestAccount.ADMIN_USER);
     mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
-    int numberOfCasesBeforeDestroying = casePage.getNumberOfCases();
     casePage.clickDestroyButton();
     casePage.confimDestruction();
     casePage.waitAjaxIndicatorDisappear();
-    assertEquals(numberOfCasesBeforeDestroying - 1, casePage.getNumberOfCases());
+    CaseState caseState = casePage.getCaseState(0);
+    assertEquals(CaseState.DESTROYED, caseState);
 
   }
 
@@ -125,40 +126,6 @@ public class CaseWidgetTest extends BaseTest {
     casePage.clickApplyButton();
     WaitHelper.assertTrueWithWait(() -> casePage.isCaseListColumnExist(CREATED_COLUMN_HEADER));
     WaitHelper.assertTrueWithWait(() -> !casePage.isCaseListColumnExist(STATE_COLUMN_HEADER));
-  }
-  
-  @Test
-  public void testEnterCaseDetailFromActionMenuAndGoBack() {
-    initHomePage(TestAccount.DEMO_USER);
-    mainMenuPage = homePage.openMainMenu();
-    casePage = mainMenuPage.selectCaseMenu();
-    caseDetailsPage = casePage.openCaseDetailsFromActionMenuByCaseName(LEAVE_REQUEST_CASE_NAME);
-    assertEquals("Case Details", caseDetailsPage.getPageTitle());
-    casePage = caseDetailsPage.goBackToCaseListFromCaseDetails();
-    assertEquals("Cases", casePage.getPageTitle());
-  }
-
-  @Test
-  public void testFinishTaskFromCaseDetailAndGoBack() {
-    initHomePage(TestAccount.DEMO_USER);
-    mainMenuPage = homePage.openMainMenu();
-    casePage = mainMenuPage.selectCaseMenu();
-
-    caseDetailsPage = casePage.openCaseDetailsFromActionMenuByCaseName(LEAVE_REQUEST_CASE_NAME);
-    assertEquals("Case Details", caseDetailsPage.getPageTitle());
-
-    TaskDetailsPage taskDetailsPage = caseDetailsPage.openTasksOfCasePage(0);
-    assertEquals("Task Details", taskDetailsPage.getPageTitle());
-
-    TaskTemplatePage taskTemplatePage = taskDetailsPage.clickStartTask();
-    taskTemplatePage.inputFields("tester", "16.05.2019", "17.05.2019", "tester");
-    taskTemplatePage.findElementById("leave-request:button-submit").click();
-
-    caseDetailsPage = new CaseDetailsPage();
-    assertEquals("Case Details", caseDetailsPage.getPageTitle());
-
-    casePage = caseDetailsPage.goBackToCaseListFromCaseDetails();
-    assertEquals("Cases", casePage.getPageTitle());
   }
 
   private void openAdditionalCaseDetailsPage(String initDataUrl, String caseName){
@@ -214,10 +181,9 @@ public class CaseWidgetTest extends BaseTest {
     initHomePage(TestAccount.DEMO_USER);
     mainMenuPage = homePage.openMainMenu();
     casePage = mainMenuPage.selectCaseMenu();
-    assertEquals("Cases", casePage.getTextOfCurrentBreadcrumb());
-    casePage.clickHomeBreadcrumb();
-    homePage = new HomePage();
-    assertEquals(true, homePage.isDisplayed());
+    assertEquals("Cases (1)", casePage.getTextOfCurrentBreadcrumb());
+    homePage = casePage.goToHomeFromBreadcrumb();
+    assertTrue(homePage.isDisplayed());
   }
 
   @Test
@@ -230,11 +196,38 @@ public class CaseWidgetTest extends BaseTest {
 
     caseDetailsPage.clickCaseListBreadCrumb();
     casePage = new CaseWidgetPage();
-    assertEquals(true, casePage.isDisplayed());
+    assertTrue(casePage.isDisplayed());
 
     caseDetailsPage = casePage.openDetailsOfCaseHasName("Leave Request");
-    caseDetailsPage.clickHomeBreadcrumb();
-    homePage = new HomePage();
-    assertEquals(true, homePage.isDisplayed());
+    homePage = caseDetailsPage.goToHomeFromBreadcrumb();
+    assertTrue(homePage.isDisplayed());
+  }
+
+  @Test
+  public void testChangeCaseSortingOptions() {
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+
+    HomePage homePage = new HomePage();
+    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+
+    // Change sorting options
+    userProfilePage.selectCaseSortField("Name");
+    userProfilePage.selectCaseSortDirection("Sort ascending");
+    userProfilePage.save();
+
+    // Check result
+    CaseWidgetPage caseWidgetPage = userProfilePage.openCaseList();
+    assertEquals("Create 12 Cases with category", caseWidgetPage.getCaseNameAt(0));
+    assertEquals("TestCase", caseWidgetPage.getCaseNameAt(13));
+
+    // Change sorting options
+    userProfilePage = caseWidgetPage.openMyProfilePage();
+    userProfilePage.selectCaseSortField("State");
+    userProfilePage.selectCaseSortDirection("Sort descending");
+    userProfilePage.save();
+
+    // Check result
+    caseWidgetPage = userProfilePage.openCaseList();
+    assertEquals(CaseState.DONE, caseWidgetPage.getCaseState(0));
   }
 }

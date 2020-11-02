@@ -34,14 +34,14 @@ You can reach the page by either using the **Processes** link
 in the Axon.ivy Portal menu or the quick link **Show all processes** in
 your dashboard.
 
-.. figure:: images/navigate-to-axon-ivy-express.png
+|navigate-to-axon-ivy-express|
 
 Below the heading **Processes**, you see the link **Create express
 workflow**. This feature is explained in detail in `Axon.ivy Express`_. Below
 you find the process category :guilabel:`Express Workflows` with a list of
 already defined processes.
 
-.. figure:: images/start-link-for-axon-ivy-express.png
+|start-link-for-axon-ivy-express|
 
 HowTo: Create an Express Workflow
 ---------------------------------
@@ -73,7 +73,7 @@ HowTo: Create an Express Workflow
    encourage you to use the description to provide details about your
    process.
 
-.. figure:: images/express-workflow-process-properties.png
+|express-workflow-process-properties|
 
 7.  The first process step is already available for your configuration
 
@@ -93,18 +93,18 @@ HowTo: Create an Express Workflow
 13. For *One time* process type, the first process step define the users or roles under
     **Able to start** who can start the process
 
-.. figure:: images/express-able-to-start.png
+|express-able-to-start|
 
 14. For all other process steps define under **Responsible** the user or roles who are responsible to execute the task.
 
-.. figure:: images/express-task-responsible.png
+|express-task-responsible|
 
 15. For each process step except the first define under **Expiry in
     days** the time before the task expires
 
 16. End the configuration of your process steps with the button **Next**
 
-.. figure:: images/define-express-workflow-process-steps.png
+|define-express-workflow-process-steps|
 
 
 .. centered:: _`Express Workflow task types`
@@ -144,7 +144,7 @@ HowTo: Create an Express Workflow
 
 21. Select if the input of this date is required or not
 
-22. Use the button |arrow-down-icon| **Create** to create the input element
+22. Use the button |add-icon| **Create** to create the input element
 
 23. The created element appears in the list **Available form elements**
 
@@ -161,7 +161,7 @@ HowTo: Create an Express Workflow
 
 28. Use the button |arrow-right-icon| **Next** to define the next process step
 
-.. figure:: images/express-workflow-dialog-editor.png
+|express-workflow-dialog-editor|
 
 .. hint:: 
    The results of all previous tasks are included in follow-on tasks in a
@@ -225,9 +225,31 @@ Define an information email
    the user must define a comma separated list of addresses. In
    addition, the user can define a “response to” email.
 
-.. figure:: images/express-workflow-email-editor.png
+|express-workflow-email-editor|
 
 .. include:: ../includes/_common-icon.rst
+
+
+Express Business Summary
+------------------------
+
+For express case, after you had done a workflow, you can recheck the summary data of the process by accessing to ``Business Details`` page of Express case.
+|express-business-summary|
+
+HowTo: Show Business summary
+""""""""""""""""""""""""""""
+
+    1. Firstly, you should go to the :ref:`Case List <full-case-list>` page and open ``Action`` link of your case.
+
+    2. Find the ``Show Business details`` link and click on it.
+
+    |express-case|
+
+    3. Then the ``Express form`` will be shown up via read-only mode.
+
+    |express-business-summary|
+
+.. note:: In case, your process is running, you will only see the data of what express task had done on the ``Summary`` page
 
 
 Axon Express Management
@@ -236,7 +258,7 @@ Axon Express Management
 With Axon Express Management, administrator can import/export Express workflows in JSON format.
 This feature is put in :ref:`Admin Settings <settings-admin-settings>`.
 
-.. figure:: images/express-management-tab.png
+|express-management-tab|
 
 .. note:: 
   To use this feature, user needs to have role :guilabel:`AXONIVY_PORTAL_ADMIN`.
@@ -246,13 +268,16 @@ HowTo: Export Express process
 """""""""""""""""""""""""""""
 
 First, you need to choose workflows in Express workflows table, selected workflows will be export to the JSON file.
-You can select multi workflows by click checkbox :guilabel:`ALL`.
 
-.. figure:: images/express-export-tab.png
+|express-export-tab|
 
-After selected workflows, click :guilabel:`Export Express` button, export dialog will display and you can see workflows list will be exported.
+    1. You can select multi workflows by click checkbox :guilabel:`ALL`.
 
-.. figure:: images/export-list-summary.png
+    2. After selected workflows, click :guilabel:`Export Express` button.
+
+Export dialog will display and you can see workflows list will be exported.
+
+|export-list-summary|
 
 After reviewed and make sure workflows are collected, press :guilabel:`Download` button to download these workflows.
 
@@ -271,14 +296,73 @@ Import Express is a function to help Administrator can import the Express proces
 Press :guilabel:`Import Express` button, Import Express dialog will display.
 Once :guilabel:`Import Express` dialog is open, press :guilabel:`Select` button and choose the Express JSON file which store workflows you want to import.
 
-.. figure:: images/import-selection.png
+|import-selection|
 
 Then press the :guilabel:`Deploy` button and wait for the deployment process.
 
-.. figure:: images/import-deployment.png
+|import-deployment|
 
 After the deploy process is finished, an output log panel will be displayed, you can see all information which collected during the deployment process.
 
 Now, if the deployment process is success, your workflows are imported and administrator can check, edit them before they are ready to use by user.
 
-.. figure:: images/deployment-result.png
+|deployment-result|
+
+AdHoc process
+-------------
+
+Axon.ivy Express also provides an AdHoc process feature. When Express is deployed, user can start an AdHoc process from any task. 
+Adhoc allows user to define more process steps and will be executed before current task.
+
+Start Adhoc by clicking on top right menu icon in your task then select :guilabel:`Start Adhoc`
+
+|adhoc-start|
+
+.. important:: 
+
+  Save your data on working task before start Adhoc
+..
+
+Then define your Adhoc process
+
+|adhoc-define|
+
+After start process, Adhoc tasks will be executed before for your current task
+
+|adhoc-first-task|
+
+Finish all created Adhoc tasks to return to original task
+
+|adhoc-finish|
+
+When start your original task, you will see summary about the Adhoc process for your task. 
+
+|adhoc-process-history|
+
+You can also view it again by clicking menu icon then select :guilabel:`Adhoc history`.
+
+|adhoc-show-history|
+
+
+.. |navigate-to-axon-ivy-express| image:: ../../screenshots/express/navigate-to-axon-ivy-express.png
+.. |start-link-for-axon-ivy-express| image:: ../../screenshots/express/start-link-for-axon-ivy-express.png
+.. |express-workflow-process-properties| image:: ../../screenshots/express/express-workflow-process-properties.png
+.. |express-able-to-start| image:: ../../screenshots/express/express-able-to-start.png
+.. |express-task-responsible| image:: ../../screenshots/express/express-task-responsible.png
+.. |define-express-workflow-process-steps| image:: ../../screenshots/express/define-express-workflow-process-steps.png
+.. |express-workflow-dialog-editor| image:: ../../screenshots/express/express-workflow-dialog-editor.png
+.. |express-workflow-email-editor| image:: ../../screenshots/express/express-workflow-email-editor.png
+.. |express-management-tab| image:: ../../screenshots/express-management/express-management-tab.png
+.. |express-export-tab| image:: ../../screenshots/express-management/express-export-tab.png
+.. |export-list-summary| image:: ../../screenshots/express-management/export-list-summary.png
+.. |import-selection| image:: ../../screenshots/express-management/import-selection.png
+.. |import-deployment| image:: ../../screenshots/express-management/import-deployment.png
+.. |deployment-result| image:: ../../screenshots/express-management/deployment-result.png
+.. |adhoc-start| image:: ../../screenshots/express/adhoc-start.png
+.. |adhoc-define| image:: ../../screenshots/express/adhoc-define.png
+.. |adhoc-first-task| image:: ../../screenshots/express/adhoc-first-task.png
+.. |adhoc-finish| image:: ../../screenshots/express/adhoc-finish.png
+.. |adhoc-process-history| image:: ../../screenshots/express/adhoc-process-history.png
+.. |adhoc-show-history| image:: ../../screenshots/express/adhoc-show-history.png
+.. |express-case| image:: ../../screenshots/express/express-case.png
+.. |express-business-summary| image:: ../../screenshots/express/express-business-summary.png

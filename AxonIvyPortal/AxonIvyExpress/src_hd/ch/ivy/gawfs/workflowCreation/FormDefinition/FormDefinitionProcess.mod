@@ -1,5 +1,5 @@
 [Ivy]
-1574EBDBE9576CED 7.5.0 #module
+1574EBDBE9576CED 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ds0 FormDefinitionProcess Big #zClass
 Ds0 RD #cInfo
@@ -80,13 +80,9 @@ Ds0 @PushWFArc f68 '' #zField
 Ds0 @GridStep f69 '' #zField
 Ds0 @PushWFArc f70 '' #zField
 Ds0 @PushWFArc f54 '' #zField
-Ds0 @GridStep f91 '' #zField
 Ds0 @PushWFArc f71 '' #zField
 Ds0 @GridStep f64 '' #zField
 Ds0 @PushWFArc f72 '' #zField
-Ds0 @PushWFArc f73 '' #zField
-Ds0 @GridStep f74 '' #zField
-Ds0 @PushWFArc f75 '' #zField
 Ds0 @PushWFArc f30 '' #zField
 >Proto Ds0 Ds0 FormDefinitionProcess #zField
 Ds0 f0 guid 156E35E680453115 #txt
@@ -441,7 +437,7 @@ Ds0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f48 216 794 112 44 -37 -8 #rect
+Ds0 f48 272 794 112 44 -37 -8 #rect
 Ds0 f48 @|StepIcon #fIcon
 Ds0 f46 actionTable 'out=in;
 ' #txt
@@ -730,9 +726,7 @@ Ds0 f69 actionTable 'out=in;
 Ds0 f69 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 TaskUtils.resetTask(ivy.task);
-
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalEndPage();' #txt
+PortalNavigator.navigateToPortalEndPage();' #txt
 Ds0 f69 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -748,90 +742,32 @@ Ds0 f70 outCond in.data.savedFlag #txt
 Ds0 f70 208 736 280 736 #arcP
 Ds0 f70 0 0.20328842452716808 0 0 #arcLabel
 Ds0 f54 expr in #txt
-Ds0 f54 192 752 216 816 #arcP
+Ds0 f54 192 752 272 816 #arcP
 Ds0 f54 1 192 816 #addKink
 Ds0 f54 1 0.1487695459411198 0 0 #arcLabel
-Ds0 f91 actionTable 'out=in;
-' #txt
-Ds0 f91 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import javax.faces.context.Flash;
-import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
-
-String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
-boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
-if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
-	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-	if (!flash.containsKey("overridePortalGrowl")) {
-		FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
-		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-	}
-	flash.setRedirect(true);
-	flash.setKeepMessages(true);
-}' #txt
-Ds0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Display message after&#13;
-finish or leave task</name>
-    </language>
-</elementInfo>
-' #txt
-Ds0 f91 552 794 144 44 -54 -16 #rect
-Ds0 f91 @|StepIcon #fIcon
-Ds0 f71 696 816 720 621 #arcP
-Ds0 f71 1 720 816 #addKink
-Ds0 f71 1 0.17953158540422498 0 0 #arcLabel
+Ds0 f71 592 968 720 926 #arcP
+Ds0 f71 1 720 968 #addKink
+Ds0 f71 0 0.79256232539932 0 0 #arcLabel
 Ds0 f64 actionTable 'out=in;
 ' #txt
-Ds0 f64 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import javax.faces.context.Flash;
-import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
-
-String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
-boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
-if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
-	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-	if (!flash.containsKey("overridePortalGrowl")) {
-		FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
-		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-	}
-	flash.setRedirect(true);
-	flash.setKeepMessages(true);
-}' #txt
+Ds0 f64 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
+SecurityServiceUtils.setSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);' #txt
 Ds0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Display message after&#13;
-finish or leave task</name>
+        <name>Set attr to know&#13;
+that task is cancelled</name>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f64 648 946 144 44 -54 -16 #rect
+Ds0 f64 440 794 144 44 -51 -16 #rect
 Ds0 f64 @|StepIcon #fIcon
-Ds0 f72 592 968 648 968 #arcP
-Ds0 f73 720 946 720 926 #arcP
-Ds0 f74 actionTable 'out=in;
-' #txt
-Ds0 f74 actionCode 'import ch.ivy.addon.portalkit.enums.SessionAttribute;
-
-ivy.session.setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);' #txt
-Ds0 f74 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Set task is finished</name>
-    </language>
-</elementInfo>
-' #txt
-Ds0 f74 376 794 112 44 -52 -8 #rect
-Ds0 f74 @|StepIcon #fIcon
-Ds0 f75 328 816 376 816 #arcP
-Ds0 f30 488 816 552 816 #arcP
+Ds0 f72 384 816 440 816 #arcP
+Ds0 f72 0 0.7876920328136172 0 0 #arcLabel
+Ds0 f30 584 816 720 621 #arcP
+Ds0 f30 1 720 816 #addKink
+Ds0 f30 0 0.7876920328136172 0 0 #arcLabel
 >Proto Ds0 .type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 >Proto Ds0 .processKind HTML_DIALOG #txt
 >Proto Ds0 -8 -8 16 16 16 26 #rect
@@ -900,13 +836,9 @@ Ds0 f67 out f70 tail #connect
 Ds0 f70 head f69 mainIn #connect
 Ds0 f67 out f54 tail #connect
 Ds0 f54 head f48 mainIn #connect
-Ds0 f91 mainOut f71 tail #connect
-Ds0 f71 head f4 mainIn #connect
-Ds0 f63 mainOut f72 tail #connect
+Ds0 f63 mainOut f71 tail #connect
+Ds0 f71 head f53 mainIn #connect
+Ds0 f48 mainOut f72 tail #connect
 Ds0 f72 head f64 mainIn #connect
-Ds0 f64 mainOut f73 tail #connect
-Ds0 f73 head f53 mainIn #connect
-Ds0 f48 mainOut f75 tail #connect
-Ds0 f75 head f74 mainIn #connect
-Ds0 f74 mainOut f30 tail #connect
-Ds0 f30 head f91 mainIn #connect
+Ds0 f64 mainOut f30 tail #connect
+Ds0 f30 head f4 mainIn #connect

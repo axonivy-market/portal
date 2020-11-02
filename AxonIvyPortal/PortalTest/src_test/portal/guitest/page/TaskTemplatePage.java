@@ -17,6 +17,10 @@ public class TaskTemplatePage extends TemplatePage {
     clickByCssSelector("#horizontal-case-info");
     waitForElementDisplayed(By.cssSelector("span[id$='case-info-dialog_title']"), true);
   }
+  
+  public void clickOnAdditionalBusinessDetailLink() {
+    click(findElementByCssSelector("a[id$=':show-additional-case-details-link']"));
+  }
 
   public boolean containsCaseDetails() {
     WebElement caseDetails = findDisplayedElementByCssSelector("div[id$='case-details-panel']");
@@ -29,6 +33,7 @@ public class TaskTemplatePage extends TemplatePage {
     findElementByCssSelector("textarea[id$='note-content']").sendKeys(content);
     clickByCssSelector("button[id$='save-add-note-command']");
     waitAjaxIndicatorDisappear();
+    waitForElementDisplayed(By.cssSelector("div[id$='add-note-dialog']"), false);
   }
 
   public void openDocumentUploadingDialog() {
@@ -89,8 +94,8 @@ public class TaskTemplatePage extends TemplatePage {
     return findListElementsByCssSelector("a[id$='side-step-item']").size();
   }
   
-  public void clickCancelButton() {
-    click(driver.findElement(By.className("portal-cancel-button")));
+  public void clickCancelLink() {
+    click(By.linkText("Cancel"));
   }
   
   public void showNoteHistory() {
@@ -98,13 +103,21 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public String getCaseName(){
-    return findElementById("case-item:case-name-component:case-header-name-cell").getText();
+    return findElementByCssSelector("span[id$='case-info-dialog_title']").getText().split(":")[1].trim();
+  }
+  
+  public String getCaseId(){
+    return findElementByCssSelector("span[id$='case-id']").getText();
   }
   
   public void clickAdhocCreationButton() {
     clickByCssSelector("#horizontal-task-actions");
     clickByCssSelector("a[id$='start-adhoc']");
     waitAjaxIndicatorDisappear();
+  }
+  
+  public void clickActionMenuButton() {
+    clickByCssSelector("#horizontal-task-actions");
   }
   
   public void clickAdhocOkButton() {
@@ -154,18 +167,22 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public String getAdhocCreationMessage() {
-    String adhocCreationMessageCSSSelector = "span[id$='adhoc-creation-message']";
+    String adhocCreationMessageCSSSelector = "div[id$='adhoc-creation-message']";
     return findDisplayedElementByCssSelector(adhocCreationMessageCSSSelector).getText();
   }
 
   public HomePage clickSubmitButton() {
-    String submitButton = "button[id$='button-submit']";
-    clickByCssSelector(submitButton);
+    clickOnSubmitButton();
     return new HomePage();
   }
   
+  public void clickOnSubmitButton() {
+    String submitButton = "button[id$='button-submit']";
+    clickByCssSelector(submitButton);
+  }
+  
   public HomePage clickCancelAndLeftButton() {
-    String cancelButton = "button[id$='button-cancel']";
+    String cancelButton = "a[id$='button-cancel']";
     clickByCssSelector(cancelButton);
     return new HomePage();
   }
@@ -176,6 +193,7 @@ public class TaskTemplatePage extends TemplatePage {
   
   public void clickChatGroup(boolean growlMessageExpected) {
     String chatGroup = "a[id$='chat-group']";
+    waitForElementDisplayed(By.cssSelector(chatGroup), true);
     clickByCssSelector(chatGroup);
     if (growlMessageExpected) {
       waitForElementDisplayedByCssSelector("span.ui-growl-title");
@@ -205,5 +223,51 @@ public class TaskTemplatePage extends TemplatePage {
   
   public boolean isTaskActionDisplayed() {
     return isElementDisplayedById("horizontal-task-actions");
+  }
+  
+  public WebElement getAddMemberToChatDialog() {
+    waitForElementDisplayed(By.id("chat-assignee-dialog"), true);
+    return findElementById("chat-assignee-dialog");
+  }
+  
+  public void clickCreateGroupChatBtn() {
+    click(By.id("chat-assignee-selection-form:chat-group-create-button"));
+    waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), false);
+  }
+
+  public String getTaskName() {
+    return getTextOfCurrentBreadcrumb().replace("Task: ", "");
+  }
+  
+  public void clickLeaveTaskOnWarningDialog() {
+    By leaveButton = By.id("task-leave-warning-component:leave-button");
+    waitForElementDisplayed(leaveButton, true);
+    click(leaveButton);
+  }
+  
+  public TaskWidgetPage finishCreateInvestmentTask() {
+    driver.switchTo().frame("iFrame");
+    waitForElementDisplayed(By.id("form:invested-amount"), true);
+    type(By.id("form:invested-amount"), "1");
+    click(By.id("form:save-btn"));
+    driver.switchTo().defaultContent();
+    return new TaskWidgetPage();
+  }
+  
+  public HomePage backToHomeInIFrameApprovalTask() {
+    driver.switchTo().frame("iFrame");
+    waitForElementDisplayed(By.id("content-form:home-btn"), true);
+    click(By.id("content-form:home-btn"));
+    driver.switchTo().defaultContent();
+    return new HomePage();
+  }
+  
+  public TaskWidgetPage finishIFrameApprovalTask() {
+    driver.switchTo().frame("iFrame");
+    waitForElementDisplayed(By.id("content-form:approve-btn"), true);
+    type(By.id("content-form:content-tab-view:approval-note"), "1");
+    click(By.id("content-form:approve-btn"));
+    driver.switchTo().defaultContent();
+    return new TaskWidgetPage();
   }
 }

@@ -12,7 +12,6 @@ displayNameInCurrentLanguage String #field
 displayNameInCurrentLanguage 'Display application name in current portal language' #fieldComment
 duplicateApp Boolean #field
 duplicateApp PERSISTENT #fieldModifier
-effectedApplications List<ch.ivy.addon.portalkit.persistence.domain.Application> #field
 isAddMode Boolean #field
 isAddMode PERSISTENT #fieldModifier
 languages List<String> #field
@@ -25,33 +24,23 @@ settingList PERSISTENT #fieldModifier
 supportedLanguages List<ch.ivy.addon.portalkit.dto.DisplayName> #field
 tabIndexActive java.lang.Integer #field
 tabIndexActive PERSISTENT #fieldModifier
-type ch.ivy.addon.portalkit.enums.ApplicationType #field
-type PERSISTENT #fieldModifier
 resetAllSettings Boolean #field
 resetAllSettings PERSISTENT #fieldModifier
 settingInputType ch.ivy.addon.portalkit.enums.GlobalVariableType #field
 settingInputType PERSISTENT #fieldModifier
 dropDownValues java.util.List<java.lang.Object> #field
+dropDownValues 'internal options, for example: FALSE, TRUE' #fieldComment
 dropDownValues PERSISTENT #fieldModifier
+externalDropDownValues java.util.Map #field
+externalDropDownValues 'external options, for example: homepages, task/case columns sorting' #fieldComment
+externalDropDownValues PERSISTENT #fieldModifier
 filteredSettingList List<ch.ivy.addon.portalkit.persistence.domain.GlobalSetting> #field
 filteredSettingList PERSISTENT #fieldModifier
 settingTabOpened Boolean #field
 settingTabOpened PERSISTENT #fieldModifier
-selectedIvyApplication ch.ivy.addon.portalkit.ivydata.bo.IvyApplication #field
-selectedIvyApplication PERSISTENT #fieldModifier
-ivyApplications java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyApplication> #field
-ivyApplications PERSISTENT #fieldModifier
-errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field
-errors PERSISTENT #fieldModifier
-app ch.ivyteam.ivy.application.IApplication #field
-app PERSISTENT #fieldModifier
 announcements java.util.List<ch.ivy.addon.portalkit.bo.Announcement> #field
 announcements PERSISTENT #fieldModifier
 isDefaultApplicationLanguage Boolean #field
 isDefaultApplicationLanguage PERSISTENT #fieldModifier
 isAnnouncementActivated Boolean #field
 isAnnouncementActivated PERSISTENT #fieldModifier
-userLazyDataModel ch.ivy.addon.portalkit.datamodel.UserLazyDataModel #field
-userLazyDataModel PERSISTENT #fieldModifier
-tempApplicationName String #field
-tempApplicationName PERSISTENT #fieldModifier

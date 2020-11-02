@@ -1,5 +1,7 @@
 package portal.guitest.page;
 
+import static portal.guitest.common.WaitHelper.assertTrueWithWait;
+
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -12,6 +14,7 @@ import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
 import com.jayway.awaitility.core.ConditionTimeoutException;
 
+import portal.guitest.common.CaseState;
 import portal.guitest.common.WaitHelper;
 
 public class CaseWidgetPage extends TemplatePage {
@@ -51,15 +54,21 @@ public class CaseWidgetPage extends TemplatePage {
 	}
 
 	private WebElement getDestroyButtonOfCaseItem() {
-		clickByCssSelector("button[id$='action-steps-menu']");
+		openActionStepMenu();
 		waitForElementDisplayed(By.cssSelector("a[id$='destroy-case']"), true);
 		Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
 				.until(() -> findElementByCssSelector("a[id$='destroy-case']").isDisplayed());
 		return findElementByCssSelector("a[id$='destroy-case']");
 	}
 
+  public void openActionStepMenu() {
+    waitForElementDisplayed(By.cssSelector("[id$=':case-item:case-item-action-form']"), true);
+    clickByCssSelector("a[id$='action-steps-menu']");
+    waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
+  }
+
 	private WebElement getMoreActionsPanel() {
-		clickByCssSelector("button[id$='action-steps-menu']");
+		openActionStepMenu();
 		waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
 		Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
 				.until(() -> findElementByCssSelector("div[id$='action-steps-panel']").isDisplayed());
@@ -73,7 +82,7 @@ public class CaseWidgetPage extends TemplatePage {
 
 	public boolean isDestroyButtonVisible() {
 		try {
-		  clickByCssSelector("button[id$='action-steps-menu']");
+		  openActionStepMenu();
 		  waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
 	    return isElementDisplayed(By.cssSelector("a[id$='destroy-case'"));
 		} catch (Exception ex) {
@@ -104,7 +113,7 @@ public class CaseWidgetPage extends TemplatePage {
 		List<WebElement> caseItems = findListElementsByCssSelector(CASE_ITEM_LIST_SELECTOR);
 		for (WebElement caseItem : caseItems) {
 			if (caseItem.findElement(By.cssSelector(CASE_NAME_CSS_SELECTOR)).getText().equals(caseName)) {
-				caseItem.findElement(By.cssSelector("button[id*='action-steps-menu']")).click();
+				caseItem.findElement(By.cssSelector("a[id*='action-steps-menu']")).click();
 				waitForElementDisplayed(By.cssSelector("div[id$='action-steps-panel']"), true);
 				findElementByCssSelector("a[id$='case-item-open-detail-link']").click();
 				return new CaseDetailsPage();
@@ -138,11 +147,18 @@ public class CaseWidgetPage extends TemplatePage {
 	}
 
 	public String getCaseId() {
-		waitForElementDisplayed(By.cssSelector("*[id$='case-list']"), true);
+		waitForElementDisplayed(By.cssSelector("*[id$=':case-list']"), true);
 		WebElement selectedCaseElement = findElementByCssSelector(".case-list-item-expanded");
 		WebElement selectedCaseIdElement = selectedCaseElement.findElement(By.cssSelector(".case-header-id-cell"));
 		return selectedCaseIdElement.getText();
 	}
+	
+  public String getCaseId(int caseIndex) {
+    waitForElementDisplayed(By.cssSelector("*[id$=':case-list']"), true);
+    WebElement selectedCaseElement = findElementByCssSelector(String.format("[id$='case-list-scroller:%d:case-item:case-item-container']", caseIndex));
+    WebElement selectedCaseIdElement = selectedCaseElement.findElement(By.cssSelector("[id$=':case-id-cell']"));
+    return selectedCaseIdElement.getText();
+  }
 
 	public boolean isCaseDisplayed(String name) {
 		List<WebElement> caseNameElements = findListElementsByClassName("case-header-name-cell");
@@ -163,6 +179,7 @@ public class CaseWidgetPage extends TemplatePage {
 		click(By.id(caseWidgetId + ":filter-add-action"));
 		WebElement filterSelectionElement = findElementById(caseWidgetId + ":filter-add-form:filter-selection");
 
+		System.out.println(filterSelectionElement.getTagName());
 		List<WebElement> elements = findChildElementsByTagName(filterSelectionElement, "LABEL");
 		for (WebElement element : elements) {
 			if (element.getText().equals(filterName)) {
@@ -187,14 +204,20 @@ public class CaseWidgetPage extends TemplatePage {
 	}
 
 	public void saveFilter(String filterName) {
-		click(By.id(caseWidgetId + ":filter-save-action"));
-		waitAjaxIndicatorDisappear();
-		waitForElementDisplayed(By.id(caseWidgetId + ":filter-save-form:save-filter-set-name-input"), true);
+		getSaveFilterDialog();
 		WebElement filterNameInput = findElementById(caseWidgetId + ":filter-save-form:save-filter-set-name-input");
 		enterKeys(filterNameInput, filterName);
 		click(findElementById(caseWidgetId + ":filter-save-form:filter-save-command"));
 		waitAjaxIndicatorDisappear();
+		ensureNoBackgroundRequest();
 	}
+
+  public WebElement getSaveFilterDialog() {
+    click(By.id(caseWidgetId + ":filter-save-action"));
+		waitAjaxIndicatorDisappear();
+		waitForElementDisplayed(By.id(caseWidgetId + ":filter-save-form:save-filter-set-name-input"), true);
+		return findElementById(caseWidgetId + ":save-filter-set-dialog");
+  }
 
 	public String getFilterName() {
 		WebElement filterName = findElementByCssSelector("[id$='case-widget:filter-selection-form:filter-name'] > span");
@@ -299,8 +322,8 @@ public class CaseWidgetPage extends TemplatePage {
 		WebElement responsible = findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']");
 		type(responsible, text);
 		waitAjaxIndicatorDisappear();
-		waitForElementDisplayedByCssSelector("i[class*='fa-user']");
-		click(By.cssSelector("i[class*='fa-user']"));
+		waitForElementDisplayedByCssSelector("i[class*='ivyicon-single-neutral-actions']");
+		click(By.cssSelector("i[class*='ivyicon-single-neutral-actions']"));
 		waitAjaxIndicatorDisappear();
 		click(By.cssSelector("button[id$='creator-filter:filter-input-form:update-command']"));
 		waitAjaxIndicatorDisappear();
@@ -329,11 +352,7 @@ public class CaseWidgetPage extends TemplatePage {
     for (WebElement filter : saveFilters) {
       if (filter.getText().equals(filterName)) {
         click(filter);
-        waitAjaxIndicatorDisappear();
-        refreshAndWaitElement("[id$='case-widget:filter-selection-form:filter-name'] > span)");
-        Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(
-            () -> findElementByCssSelector("[id$='case-widget:filter-selection-form:filter-name'] > span")
-                .getText().contains(filterName));
+        assertTrueWithWait(() -> findElementByCssSelector(".filter-name").getText().equals(filterName));
         return;
       }
     }
@@ -353,5 +372,27 @@ public class CaseWidgetPage extends TemplatePage {
 		waitForElementDisplayed(By.cssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']"),true);
 		return findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']")
         .getAttribute("value");
+  }
+	
+	public void waitUntilCaseFilterDisplayed() {
+	  waitForElementDisplayed(By.id("case-widget:filter-container"), true);
+	}
+
+  public CaseState getCaseState(int caseIndex) {
+    List<WebElement> caseStateCells = findListElementsByCssSelector("span[id$=':case-state-cell']");
+    String stateClass = caseStateCells.get(caseIndex).findElement(By.className("icon")).getAttribute("class");
+    return CaseState.fromClass(stateClass.substring(stateClass.indexOf("case-state-")));
+  }
+  
+  public void filterByOwner(String text) {
+    click(By.cssSelector("button[id$='owner-filter:filter-open-form:advanced-filter-command']"));
+    WebElement owner = findElementByCssSelector("input[id$='owner-filter:filter-input-form:owner_input']");
+    type(owner, text);
+    waitAjaxIndicatorDisappear();
+    waitForElementDisplayedByCssSelector("i[class*='ivyicon-single-neutral-actions']");
+    click(By.cssSelector("i[class*='ivyicon-single-neutral-actions']"));
+    waitAjaxIndicatorDisappear();
+    click(By.cssSelector("button[id$='owner-filter:filter-input-form:update-command']"));
+    waitAjaxIndicatorDisappear();
   }
 }

@@ -1,5 +1,5 @@
 [Ivy]
-150CB86EFC2F2972 7.5.0 #module
+150CB86EFC2F2972 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TaskItemProcess Big #zClass
 Ts0 RD #cInfo
@@ -80,6 +80,13 @@ Ts0 f108 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.porta
 Ts0 f108 inParameterMapAction 'out.dataModel=param.dataModel;
 out.task=param.task;
 ' #txt
+Ts0 f108 inActionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.bean.TaskWidgetBean;
+
+TaskWidgetBean taskWidgetBean = ManagedBeans.get("taskWidgetBean") as TaskWidgetBean;
+if (taskWidgetBean != null) {
+  taskWidgetBean.setSelectedTaskItemId(param.task.getId());
+}' #txt
 Ts0 f108 outParameterDecl '<> result;' #txt
 Ts0 f108 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -94,10 +101,12 @@ Ts0 f87 expr out #txt
 Ts0 f87 288 424 336 424 #arcP
 Ts0 f80 actionTable 'out=in;
 ' #txt
-Ts0 f80 actionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+Ts0 f80 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.bean.TaskActionBean;
 
 TaskActionBean taskActionBean = ManagedBeans.get("taskActionBean") as TaskActionBean;
+in.task = TaskUtils.findTaskById(in.task.getId());
 out.canUserResumeTask = taskActionBean.canResume(in.task);' #txt
 Ts0 f80 security system #txt
 Ts0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -128,7 +137,7 @@ if(in.task.getState() == TaskState.DONE){
 	if (worker != null){
 		String fullName = worker.getFullName();
 		String workerName = StringUtils.isBlank(fullName) ? worker.getName() : worker.getFullName() + " (" + worker.getName() + ")";
-		notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/isAnotherUserWorking", [in.task.name, in.task.getId(), worker]);
+		notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/isAnotherUserWorking", [in.task.name, in.task.getId(), workerName]);
 	} else {
 		notification = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/cannotStartMessages/noPermission", [in.task.getName()]);
 	}
@@ -223,10 +232,12 @@ Ts0 f58 expr out #txt
 Ts0 f58 109 232 160 232 #arcP
 Ts0 f45 actionTable 'out=in;
 ' #txt
-Ts0 f45 actionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+Ts0 f45 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.bean.TaskActionBean;
 
 TaskActionBean taskActionBean = ManagedBeans.get("taskActionBean") as TaskActionBean;
+in.task = TaskUtils.findTaskById(in.task.getId());
 out.canUserResumeTask = taskActionBean.canResume(in.task);' #txt
 Ts0 f45 security system #txt
 Ts0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

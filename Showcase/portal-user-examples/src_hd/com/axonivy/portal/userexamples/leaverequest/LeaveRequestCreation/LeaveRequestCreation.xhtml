@@ -16,7 +16,7 @@
 
           <div class="ui-g-12 ui-md-12 ui-lg-1 ui-xl-3"></div>
           <p:panel class="card ui-g-12 ui-md-12 ui-lg-10 ui-xl-6">
-            <h:panelGrid columns="1" columnClasses="TexAlLeft" styleClass="ui-g-12">
+            <h:panelGrid columns="1" columnClasses="u-text-align-left" styleClass="ui-g-12">
               <p:messages id="leave-request-validation-msg" styleClass="ui-g-12" />
 
               <h:panelGroup class="md-inputfield MarTop10">
@@ -71,7 +71,7 @@
               </h:panelGroup>
 
               <h:panelGroup layout="block" styleClass="MarTop5 Fright" id="command-group">
-                <p:commandButton value="#{ivy.cms.co('/Labels/LeaveRequest/submitLeaveRequest')}" icon="fa fa-send-o"
+                <p:commandButton value="#{ivy.cms.co('/Labels/LeaveRequest/submitLeaveRequest')}" icon="icon ivyicon-check-1"
                   partialSubmit="true" id="button-submit" actionListener="#{logic.close}" process=":leave-request"
                   update=":leave-request" />
               </h:panelGroup>
