@@ -1,11 +1,12 @@
 package ch.ivy.addon.portalkit.service;
 
-import java.util.List;
-
 import static ch.ivy.addon.portalkit.constant.IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS;
+
+import java.util.List;
+import java.util.Optional;
+
 import ch.ivy.addon.portalkit.persistence.dao.ApplicationDao;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
-import ch.ivyteam.ivy.data.cache.IDataCacheEntry;
 
 public class RegisteredApplicationService extends AbstractService<Application> {
 
@@ -24,13 +25,13 @@ public class RegisteredApplicationService extends AbstractService<Application> {
    */
   @SuppressWarnings("unchecked")
   public List<Application> findAllThirdPartyApplication(){
-    IDataCacheEntry sessionCache = IvyCacheService.newInstance().getSessionCache(THIRD_PARTY_APPLICATIONS, THIRD_PARTY_APPLICATIONS);
-    if (sessionCache == null) {
+    Optional<Object> sessionCache = IvyCacheService.newInstance().getSessionCacheValue(THIRD_PARTY_APPLICATIONS, THIRD_PARTY_APPLICATIONS);
+    if (sessionCache.isEmpty()) {
       List<Application> applications = getDao().findAllThirdPartyApplications();
       IvyCacheService.newInstance().setSessionCache(THIRD_PARTY_APPLICATIONS, THIRD_PARTY_APPLICATIONS, applications);
       return applications;
     } else {
-      return (List<Application>) sessionCache.getValue();
+      return (List<Application>) sessionCache.get();
     }
   }
 }

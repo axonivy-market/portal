@@ -2,8 +2,6 @@ ChartCreationWidgetData #class
 ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget #namespace
 statisticFilter ch.ivy.addon.portalkit.statistics.StatisticFilter #field
 statisticFilter PERSISTENT #fieldModifier
-chartName String #field
-chartName PERSISTENT #fieldModifier
 chartType ch.ivy.addon.portalkit.enums.StatisticChartType #field
 chartType PERSISTENT #fieldModifier
 isChartNameExisted Boolean #field
@@ -16,3 +14,5 @@ oldStatisticFilter ch.ivy.addon.portalkit.statistics.StatisticFilter #field
 oldStatisticFilter PERSISTENT #fieldModifier
 customFields java.util.List<String> #field
 customFields PERSISTENT #fieldModifier
+chartNames java.util.List<ch.ivy.addon.portalkit.dto.DisplayName> #field
+chartNames PERSISTENT #fieldModifier

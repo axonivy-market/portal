@@ -53,7 +53,7 @@ if(selectedCase.isBusinessCase()) {
 	}
 }
 
-for(ITask task : selectedCase.getTasks()) {
+for(ITask task : selectedCase.tasks().all()) {
 	TaskUtils.setHidePropertyToHideInPortal(task);
 }' #txt
 He0 f3 security system #txt
