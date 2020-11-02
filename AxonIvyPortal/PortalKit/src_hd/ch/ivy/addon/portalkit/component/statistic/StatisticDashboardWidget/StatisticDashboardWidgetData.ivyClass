@@ -44,3 +44,5 @@ isGuide Boolean #field
 isGuide PERSISTENT #fieldModifier
 prevStatisticList java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> #field
 prevStatisticList PERSISTENT #fieldModifier
+chartNameOfCurrentLanguage String #field
+chartNameOfCurrentLanguage PERSISTENT #fieldModifier

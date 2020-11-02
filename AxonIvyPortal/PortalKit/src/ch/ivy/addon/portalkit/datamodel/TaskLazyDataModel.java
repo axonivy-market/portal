@@ -55,6 +55,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   public static final String ID = "ID";
   public static final String CREATION_TIME = "CREATION_TIME";
   public static final String EXPIRY_TIME = "EXPIRY_TIME";
+  public static final String COMPLETED_ON = "COMPLETED_ON";
   public static final String STATE = "STATE";
   
   private static final long serialVersionUID = -6615871274830927272L;
@@ -76,7 +77,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
   protected List<String> portalDefaultColumns =
-      Arrays.asList(PRIORITY, NAME, ACTIVATOR, ID, CREATION_TIME, EXPIRY_TIME, STATE);
+      Arrays.asList(PRIORITY, NAME, ACTIVATOR, ID, CREATION_TIME, EXPIRY_TIME, COMPLETED_ON, STATE);
   protected List<String> portalRequiredColumns = Arrays.asList(NAME);
 
   protected boolean compactMode;

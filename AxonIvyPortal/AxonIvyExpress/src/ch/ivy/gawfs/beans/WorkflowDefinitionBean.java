@@ -8,11 +8,8 @@ import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 
-import ch.ivy.gawfs.Helper;
 import ch.ivy.gawfs.enums.ProcessType;
 import ch.ivy.gawfs.enums.TaskType;
-import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.security.IRole;
 import gawfs.TaskDef;
 
 @ManagedBean
@@ -21,12 +18,17 @@ public class WorkflowDefinitionBean implements Serializable {
 
   private static final long serialVersionUID = 8119703742579630358L;
   private static final String SYSTEM = "SYSTEM";
-
-  private List<IRole> availableRoles;
+  
+  private List<String> excludedRoleNames;
 
   @PostConstruct
   public void init() {
-    populateAvailableRoles();
+    initExcludedRoleNames();
+  }
+
+  private void initExcludedRoleNames() {
+    excludedRoleNames = new ArrayList<>();
+    excludedRoleNames.add(SYSTEM);
   }
 
   public TaskType[] getTaskTypesForFirstWorkflowTask() {
@@ -61,32 +63,11 @@ public class WorkflowDefinitionBean implements Serializable {
     return ProcessType.values();
   }
 
-  /**
-   * Populate available roles
-   */
-  private void populateAvailableRoles() {
-    availableRoles = new ArrayList<>();
-    List<IRole> rolesFromSystem = Ivy.wf().getSecurityContext().getRoles();
-    rolesFromSystem.stream()
-      .filter(role -> role.getName() != SYSTEM)
-      .forEach(role -> availableRoles.add(role));
+  public List<String> getExcludedRoleNames() {
+    return excludedRoleNames;
   }
 
-  /**
-   * Populate values for Auto Complete of roles based on given query
-   * 
-   * @param query
-   * @return values of available roles
-   */
-  public List<IRole> populateRoleAutoComplete(String query) {
-    return Helper.filterRoles(getAvailableRoles(), query);
-  }
-
-  public List<IRole> getAvailableRoles() {
-    return availableRoles;
-  }
-
-  public void setAvailableRoles(List<IRole> availableRoles) {
-    this.availableRoles = availableRoles;
+  public void setExcludedRoleNames(List<String> excludedRoleNames) {
+    this.excludedRoleNames = excludedRoleNames;
   }
 }
