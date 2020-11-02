@@ -503,7 +503,12 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   public void saveColumnsConfiguration() {
-    selectedColumns.addAll(portalRequiredColumns);
+    // avoid duplicating
+    for (String requiredColumn : portalRequiredColumns) {
+      if (!selectedColumns.contains(requiredColumn)) {
+        selectedColumns.add(requiredColumn);
+      }
+    }
     setAutoHideColumns(isDisableSelectionCheckboxes);
     CaseColumnsConfigurationService service = new CaseColumnsConfigurationService();
     Long applicationId = Ivy.request().getApplication().getId();

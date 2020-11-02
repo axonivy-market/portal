@@ -192,7 +192,10 @@ public class CaseWidgetBean implements Serializable {
     this.dataModel = dataModel;
   }
 
-  public List<String> getColumns() {
+  /*
+   * When press F5, bean is reinitialized (because of ViewScope), dataModel isn't set again like full flow of opening Task list, we use parameter to void NullPointerExcepion
+   */
+  public List<String> getColumns(CaseLazyDataModel dataModel) {
     List<String> visibilityColumns = new ArrayList<>();
     visibilityColumns.addAll(dataModel.getSelectedColumns());
 
