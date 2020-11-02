@@ -12,14 +12,15 @@ import static portal.guitest.page.StatisticWidgetPage.TASK_BY_PRIORITY_CHART_NAM
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
+import portal.guitest.page.UserProfilePage;
 
 public class StatisticWidgetTest extends BaseTest {
   private static final String TASK_BY_PRIORITY_DEFAULT_CHART_NAME = "Tasks by Priority";
@@ -75,29 +76,13 @@ public class StatisticWidgetTest extends BaseTest {
     statisticWidgetPage.createCaseByFinishTime();
 
     statisticWidgetPage.backToDashboard();
-    statisticWidgetPage.waitForElementDisplayed(By.cssSelector("div[id$='6:chart-name-container'] .chart-name"), true);
-    WebElement taskByPriorityDefaultChartName
-    = statisticWidgetPage.findElementByCssSelector("div[id$='0:chart-name-container'] .chart-name");
-    WebElement taskByPriorityChartName
-      = statisticWidgetPage.findElementByCssSelector("div[id$='1:chart-name-container'] .chart-name");
-    WebElement taskByExpiryChartName
-      = statisticWidgetPage.findElementByCssSelector("div[id$='2:chart-name-container'] .chart-name");
-    WebElement caseByStateChartName
-      = statisticWidgetPage.findElementByCssSelector("div[id$='3:chart-name-container'] .chart-name");
-    WebElement elapsedTimeChartName
-      = statisticWidgetPage.findElementByCssSelector("div[id$='4:chart-name-container'] .chart-name");
-    WebElement caseByFinishedTaskChartName
-      = statisticWidgetPage.findElementByCssSelector("div[id$='5:chart-name-container'] .chart-name");
-    WebElement caseByFinishedTimeChartName
-      = statisticWidgetPage.findElementByCssSelector("div[id$='6:chart-name-container'] .chart-name");
-
-    assertEquals(TASK_BY_PRIORITY_DEFAULT_CHART_NAME, taskByPriorityDefaultChartName.getText());
-    assertEquals(TASK_BY_PRIORITY_CHART_NAME, taskByPriorityChartName.getText());
-    assertEquals(TASK_BY_EXPIRY_CHART_NAME, taskByExpiryChartName.getText());
-    assertEquals(CASE_BY_STATE_CHART_NAME, caseByStateChartName.getText());
-    assertEquals(ELAPSED_TIME_CHART_NAME, elapsedTimeChartName.getText());
-    assertEquals(CASE_BY_FINISHED_TASK_CHART_NAME, caseByFinishedTaskChartName.getText());
-    assertEquals(CASE_BY_FINISHED_TIME_CHART_NAME, caseByFinishedTimeChartName.getText());
+    WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='0:chart-name-container'] .chart-name").getText().equals(TASK_BY_PRIORITY_DEFAULT_CHART_NAME));
+    WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='1:chart-name-container'] .chart-name").getText().equals(TASK_BY_PRIORITY_CHART_NAME));
+    WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='2:chart-name-container'] .chart-name").getText().equals(TASK_BY_EXPIRY_CHART_NAME));
+    WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='3:chart-name-container'] .chart-name").getText().equals(CASE_BY_STATE_CHART_NAME));
+    WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='4:chart-name-container'] .chart-name").getText().equals(ELAPSED_TIME_CHART_NAME));
+    WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='5:chart-name-container'] .chart-name").getText().equals(CASE_BY_FINISHED_TASK_CHART_NAME));
+    WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='6:chart-name-container'] .chart-name").getText().equals(CASE_BY_FINISHED_TIME_CHART_NAME));
   }
 
   @Test
@@ -111,7 +96,7 @@ public class StatisticWidgetTest extends BaseTest {
     statisticWidgetPage.switchCreateMode();
     assertEquals("Statistics", statisticWidgetPage.getTextOfCurrentBreadcrumb());
 
-    statisticWidgetPage.clickHomeBreadcrumb();
+    statisticWidgetPage.goToHomeFromBreadcrumb();
     homePage = new HomePage();
     assertEquals(true, homePage.isDisplayed());
   }
@@ -121,5 +106,27 @@ public class StatisticWidgetTest extends BaseTest {
     redirectToRelativeLink(grantAllPermissionsForAdminUserURL);
   }
 
+  @Test
+  public void testChartNameMultiLanguage() {
+    resetLanguageOfCurrentUser();
+    grantPermissionToCreateChart();
+    mainMenuPage = homePage.openMainMenu();
+    statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
+    statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
+
+    statisticWidgetPage.switchCreateMode();
+    statisticWidgetPage.createTaskByPriorityChartMultiLanguage();
+
+    statisticWidgetPage.backToDashboard();
+    WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='1:chart-name-container'] .chart-name").getText().equals("Task by priority chart English"));
+
+    UserProfilePage userProfilePage = statisticWidgetPage.openMyProfilePage();
+    userProfilePage.selectLanguage(0);
+    userProfilePage.save();
+
+    mainMenuPage = userProfilePage.openMainMenu();
+    statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
+    WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='1:chart-name-container'] .chart-name").getText().equals("Task by priority chart German"));
+  }
 
 }

@@ -12,7 +12,7 @@ isAssignToUser Boolean #field
 isAssignToUser PERSISTENT #fieldModifier
 selectedUser ch.ivy.addon.portalkit.dto.UserDTO #field
 selectedUser PERSISTENT #fieldModifier
-selectedRole ch.ivyteam.ivy.security.IRole #field
+selectedRole ch.ivy.addon.portalkit.dto.RoleDTO #field
 selectedRole PERSISTENT #fieldModifier
 isValidAssignee Boolean #field
 isValidAssignee PERSISTENT #fieldModifier

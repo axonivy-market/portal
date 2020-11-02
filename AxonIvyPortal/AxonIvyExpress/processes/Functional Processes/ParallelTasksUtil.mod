@@ -1,5 +1,5 @@
 [Ivy]
-1549EAD7E9C3125A 7.5.0 #module
+1549EAD7E9C3125A 9.2.0 #module
 >Proto >Proto Collection #zClass
 Pl0 ParallelTasksUtil Big #zClass
 Pl0 B #cInfo
@@ -170,7 +170,7 @@ Pl0 f36 625 225 30 30 16 0 #rect
 Pl0 f36 @|EndIcon #fIcon
 Pl0 f4 actionTable 'out=in;
 ' #txt
-Pl0 f4 actionCode 'out.numberOfTasks = ivy.case.getActiveTasks().size();' #txt
+Pl0 f4 actionCode 'out.numberOfTasks = ivy.case.tasks().allActive().size();' #txt
 Pl0 f4 security system #txt
 Pl0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

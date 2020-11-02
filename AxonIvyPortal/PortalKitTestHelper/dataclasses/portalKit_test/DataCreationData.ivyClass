@@ -17,3 +17,5 @@ caseStructureInfo 'contain information of category, sub category of tasks. E.g. 
 attachToBusinessCase Boolean #field
 caseCatagories java.util.List<String> #field
 caseCategory String #field
+selectedTaskId Long #field
+expressExportFilePath String #field

@@ -29,12 +29,12 @@
             <p:fieldset id="dyna-form-fieldset" toggleable="true" legend="#{ivy.cms.co('/Dialogs/WorkflowExecution/UserTaskForm/Formular')}"
               styleClass="express-fieldset fieldset-no-border">
   
-              <div class="ui-g-12 card MarTop10">
+              <div class="ui-g-12 card express-fieldset-content">
                 <pe:dynaForm id="dyna-form" value="#{data.executePredefinedWorkflowData.currentTask.dynaFormController.model}" var="dynaData"
                   columnClasses="label-container, field-container" styleClass="user-task-dyna-form ui-fluid">
   
                   <pe:dynaFormControl type="InputFieldText" for="hidden-input-field-text" styleClass="input-text-field">
-                    <h:inputHidden id="hidden-input-field-text" />
+                    <h:inputHidden id="hidden-input-field-text" rendered="false"/>
   
                     <h:panelGroup styleClass="md-inputfield">
                       <p:inputText id="inputFieldText" value="#{dynaData.value}" required="#{dynaData.required}"
@@ -59,9 +59,9 @@
                       autoResize="false" requiredMessage="#{dynaData.label} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
                   </pe:dynaFormControl>
   
-                  <pe:dynaFormControl type="FileUpload" for="file-upload">
+                  <pe:dynaFormControl type="FileUpload" for="fileUploadComponent">
                     <ic:ch.ivy.addon.portalkit.component.document.DocumentTable id="fileUploadComponent" typeColumnRendered="false"
-                      messageRendered="false"
+                      messageRendered="false" renderChooseUploadIcon="#{visibilityBean.showButtonIcon}"
                       fileLimit="#{dynaData.intSetting}" />
                   </pe:dynaFormControl>
   
@@ -99,11 +99,11 @@
           </p:tab>
         </p:tabView>
         <p:outputPanel styleClass="TexAlRight">
+          <p:commandLink id="cancel-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true"
+            actionListener="#{logic.cancel}" />
+          <p:spacer width="15" />
           <p:commandButton id="ok-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-            icon="fa fa-check" update="@form" actionListener="#{logic.close}" />
-          <p:spacer width="5" />
-          <p:commandButton id="cancel-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true"
-            actionListener="#{logic.cancel}" styleClass="portal-cancel-button" icon="fa fa-times" />
+            icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}" update="@form" actionListener="#{logic.close}" />
         </p:outputPanel>
       </h:form>
     </ui:define>

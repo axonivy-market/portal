@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,12 +15,12 @@ import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.ivydata.bo.IvySideStep;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.SideStepSearchCriteria;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
-import ch.ivyteam.ivy.environment.Ivy;
 
 @ManagedBean
 @ViewScoped
-public class SideStepBean {
+public class SideStepBean implements Serializable {
 
+  private static final long serialVersionUID = -786782623972036094L;
   private Map<Long, List<IvySideStep>> sideStepOfTasks = new HashMap<>();
   private Map<Long, List<IvySideStep>> sideStepOfCases = new HashMap<>();
   
@@ -57,7 +58,6 @@ public class SideStepBean {
   private List<IvySideStep> getSideStepsByCriteria(Long caseId, boolean isAdhocExcluded) {
     SideStepSearchCriteria criteria = new SideStepSearchCriteria();
     criteria.setCaseId(caseId);
-    criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
     criteria.setAdhocExcluded(isAdhocExcluded);
     
     Map<String, Object> params = new HashMap<>();

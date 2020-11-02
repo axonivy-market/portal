@@ -5,32 +5,28 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.History;
 import ch.ivy.addon.portalkit.bo.History.HistoryType;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.ITask;
+import ch.ivyteam.ivy.workflow.IWorkflowEvent;
 
 public class HistoryService {
 
-  public List<History> getHistories(List<ITask> tasks, List<INote> notes, boolean excludeTechnicalHistory) {
-    return excludeTechnicalHistory ? getNonTechnicalHistories(tasks, notes) : getHistories(tasks, notes);
-  }
-
-  public List<History> getHistories(List<ITask> tasks, List<INote> notes) {
-    List<History> historiesRelatedToTasks = createHistoriesFromITasks(tasks);
-    List<History> historiesRelatedToNotes = createToHistoriesFromINotes(notes);
-    return sortHistoriesByTimeStampDescending(Arrays.asList(historiesRelatedToTasks, historiesRelatedToNotes));
-  }
-
-  public List<History> getNonTechnicalHistories(List<ITask> tasks, List<INote> notes) {
-    List<History> historiesRelatedToTasks = createHistoriesFromNonTechnicalITasks(tasks);
-    List<History> historiesRelatedToNotes = createToHistoriesFromNonTechnicalINotes(notes);
+  public List<History> getHistories(List<ITask> tasks, List<INote> notes, boolean excludeSystemTasks, boolean excludeSystemNotes) {
+    List<History> historiesRelatedToTasks = createHistoriesFromITasks(tasks, excludeSystemTasks);
+    List<History> historiesRelatedToNotes = createHistoriesFromINotes(notes, excludeSystemNotes);
     return sortHistoriesByTimeStampDescending(Arrays.asList(historiesRelatedToTasks, historiesRelatedToNotes));
   }
 
@@ -43,27 +39,28 @@ public class HistoryService {
     return allHistories;
   }
 
-  private List<History> createHistoriesFromITasks(List<ITask> tasks) {
-    return tasks.stream().filter(task -> task.customFields().stringField(AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).getOrNull() == null).map(this::createHistoryFrom).collect(Collectors.toList());
-  }
-
-  private List<History> createHistoriesFromNonTechnicalITasks(List<ITask> tasks) {
+  private List<History> createHistoriesFromITasks(List<ITask> tasks, boolean excludeSystemTasks) {
+    if(excludeSystemTasks) {
+      return tasks.stream()
+          .filter(task -> !StringUtils.equals(task.getWorkerUserName(), ISecurityConstants.SYSTEM_USER_NAME))
+          .filter(task -> task.customFields().stringField(AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).getOrNull() == null)
+          .map(this::createHistoryFrom).collect(Collectors.toList());
+    }
     return tasks.stream()
-        .filter(task -> !StringUtils.equals(task.getWorkerUserName(), ISecurityConstants.SYSTEM_USER_NAME))
         .filter(task -> task.customFields().stringField(AdditionalProperty.ADHOC_EXPRESS_TASK.toString()).getOrNull() == null)
         .map(this::createHistoryFrom).collect(Collectors.toList());
   }
 
-  private List<History> createToHistoriesFromINotes(List<INote> notes) {
+  public List<History> createHistoriesFromINotes(List<INote> notes, boolean excludeSystemNotes) {
+    if(excludeSystemNotes) {
+      return notes.stream()
+          .filter(note -> !StringUtils.equals(note.getWritterName(), ISecurityConstants.SYSTEM_USER_NAME))
+          .map(this::createHistoryFrom).collect(Collectors.toList());
+    }
     return notes.stream().map(this::createHistoryFrom).collect(Collectors.toList());
   }
 
-  private List<History> createToHistoriesFromNonTechnicalINotes(List<INote> notes) {
-    return notes.stream().filter(note -> !StringUtils.equals(note.getWritterName(), ISecurityConstants.SYSTEM_USER_NAME))
-        .map(this::createHistoryFrom).collect(Collectors.toList());
-  }
-
-  private History createHistoryFrom(ITask task) {
+  public History createHistoryFrom(ITask task) {
     History history = new History();
     history.setId(task.getId());
     history.setContent(task.getName());
@@ -77,6 +74,41 @@ public class HistoryService {
     history.setTimestamp(historyTimeStamp);
     history.setType(HistoryType.TASK);
     return history;
+  }
+  
+  public History createFailedReasonFrom(ITask task) {
+    History history = createHistoryFrom(task);
+    history.setContent(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/noteHistory/taskFailReason", Arrays.asList(task.getFailReason())));
+    return history;
+  }
+  
+  public List<History> createHistoryForTaskWorkflowEvents(ITask task) {
+    List<History> histories = new ArrayList<>();
+    List<IWorkflowEvent> taskEvents = getTaskWorkflowEvents(task);
+
+    for (IWorkflowEvent event : taskEvents) {
+      History history = new History();
+      history.setId(event.getId());
+      history.setDisplayName(event.getEventKind().toString());
+      history.setContent(StringUtils.defaultIfEmpty(
+          String.join(", ", event.getAdditionalInfo().stream().filter(Objects::nonNull).collect(Collectors.toList())),
+          StringUtils.EMPTY));
+
+      history.setTaskState(event.getTaskState());
+      history.setInvolvedUsername(SecurityMemberDisplayNameUtils.generateFullDisplayNameForUser(event.getUser(), event.getUserName()));
+
+      history.setTimestamp(event.getEventTimestamp());
+      history.setType(HistoryType.EVENT);
+      histories.add(history);
+    }
+
+    return sortHistoriesByTimeStampDescending(Arrays.asList(histories));
+  }
+
+  private List<IWorkflowEvent> getTaskWorkflowEvents(ITask task) {
+    return IvyExecutor.executeAsSystem(() -> {
+      return PermissionUtils.checkReadAllWorkflowEventPermission() ? task.getWorkflowEvents() : new ArrayList<>();
+    });
   }
 
   public History createHistoryFrom(INote note) {

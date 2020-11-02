@@ -5,3 +5,7 @@ source/_build/**
 /target/
 
 /.vscode/
+
+source/.vscode/**
+
+source/screenshots/**

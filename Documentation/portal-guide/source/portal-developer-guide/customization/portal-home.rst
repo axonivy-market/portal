@@ -17,7 +17,7 @@ Introduction
 ------------
 
 The default home page of Portal has three built-in widgets in order:
-``Process widget``, ``Task widget``, ``Statistic widget``. If it does
+``Process widget (1)``, ``Task widget (2)``, ``Statistic widget (3)``. If it does
 not fit your needs, you can replace it by your own one. We decided that
 based on screen size, widget may become hidden, not smaller.
 
@@ -45,13 +45,11 @@ Following these steps to have your own Portal Home:
       </ui:define>
       </ui:composition>
 
-2. In case of single Portal: Create a new process start named ``DefaultApplicationHomePage.ivp`` for the new
+2. Create a new process start named ``DefaultApplicationHomePage.ivp`` for the new
    home page. Now you will use this process start as the entry point of
    your portal instead of the default one. To let portal know about
    your new portal home, you have to set default pages to your project, follow this chapter to customize standard processes:
-   `Standard Processes <https://developer.axonivy.com/doc/latest/engine-guide/administration/standard-processes.html>`_
-   
-   *In case of multi Portal:* refer to :ref:`Setup multi portals <settings-admin-settings>` to setup.
+   `Standard Processes <https://developer.axonivy.com/doc/9.1/engine-guide/administration/standard-processes.html>`_      
 
 
 .. _customization-portal-home-advanced-usage:
@@ -169,4 +167,4 @@ The supported sections: ``welcomeGuide``, ``mainMenuGuide``, ``processWidgetGuid
 ..
 
 
-.. |home-page-template| image:: images/portal-home/home-page-template.png
+.. |home-page-template| image:: ../../screenshots/dashboard/dashboard-3-sections.png

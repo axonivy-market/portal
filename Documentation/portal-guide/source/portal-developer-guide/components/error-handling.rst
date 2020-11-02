@@ -25,7 +25,7 @@ Ajax error handling
 .. _components-error-handling-ajax-error-handling-introduction:
 
 Introduction
-------------
+^^^^^^^^^^^^
 
 By default, Portal handles all exceptions from ajax requests.
 
@@ -33,7 +33,7 @@ When an exception occurs, Portal will show an error notification with
 the exception type and message to end user. The exception details are
 available when user clicks on show details button.
 
-Stacktrace on error messages can be showed/hid depend on ivy system
+Stacktrace on error messages can be showed/hidden depend on ivy system
 property ``Errors.ShowDetailsToEndUser``.
 
 .. note:: 
@@ -45,7 +45,7 @@ property ``Errors.ShowDetailsToEndUser``.
 .. _components-error-handling-ajax-error-handling-result:
 
 Result
-------
+^^^^^^
 
 |portal-ajax-error-handler|
 
@@ -57,7 +57,7 @@ Non-ajax error handling
 .. _components-error-handling-nonajax-error-handling-introduction:
 
 Introduction
-------------
+^^^^^^^^^^^^
 
 By default, when the server has any error such as : ``HTTP 404``,
 ``HTTP 500``, or exception while page's loading, AxonIvyEngine will show
@@ -74,7 +74,7 @@ alternative solution to make this page nicer.
 .. _components-error-handling-nonajax-error-handling-howtoconfigure:
 
 How to configure
-----------------
+^^^^^^^^^^^^^^^^
 
 Download the zip file below to configure on your own engine (or
 designer).
@@ -86,7 +86,7 @@ designer).
 .. _components-error-handling-nonajax-error-handling-result:
 
 Result
-------
+^^^^^^
 
 HTTP 404 Page Not Found
 
@@ -100,8 +100,8 @@ Example testing URL: 500
 
 |500|
 
-.. |portal-ajax-error-handler| image:: images/error-handling/portal-ajax-error-handler.png
-.. |default-ivy-error| image:: images/error-handling/default-ivy-error.png
-.. |404| image:: images/error-handling/404.png
-.. |500| image:: images/error-handling/500.png
+.. |portal-ajax-error-handler| image:: ../../screenshots/error-handling/portal-ajax-error-handler.png
+.. |default-ivy-error| image:: ../../screenshots/error-handling/default-ivy-error.png
+.. |404| image:: ../../screenshots/error-handling/404.png
+.. |500| image:: ../../screenshots/error-handling/500.png
 

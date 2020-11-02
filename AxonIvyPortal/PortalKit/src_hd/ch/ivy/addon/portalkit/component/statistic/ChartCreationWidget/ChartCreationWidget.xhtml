@@ -47,8 +47,9 @@
             <div class="ui-g-12">
               <p:outputLabel id="task-by-priority-label" styleClass="label"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}" />
-              <p:commandLink id="create-task-by-priority-link" styleClass="add-link fa fa-plus-circle" global="false"
-                value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
+              <p:commandLink id="create-task-by-priority-link" styleClass="add-link" global="false">
+                <i class="icon ivyicon-add u-mar-right-5" />
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}"/>
                 <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
                   listener="#{logic.updateBeforeAddTaskByPriority}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandLink>
@@ -65,8 +66,9 @@
             <div class="ui-g-12">
               <p:outputLabel id="case-by-state-label" styleClass="label"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')}" />
-              <p:commandLink id="create-case-by-state-link" styleClass="add-link fa fa-plus-circle" global="false"
-                value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
+              <p:commandLink id="create-case-by-state-link" styleClass="add-link" global="false">
+                <i class="icon ivyicon-add u-mar-right-5" />
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}"/>
                 <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
                   listener="#{logic.updateBeforeAddCaseByState}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandLink>
@@ -83,8 +85,9 @@
             <div class="ui-g-12">
               <p:outputLabel id="task-by-expiry-label" styleClass="label"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}" />
-              <p:commandLink id="create-task-by-expiry-link" styleClass="add-link fa fa-plus-circle" global="false"
-                value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
+              <p:commandLink id="create-task-by-expiry-link" styleClass="add-link" global="false">
+                <i class="icon ivyicon-add u-mar-right-5" />
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}"/>
                 <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
                   listener="#{logic.updateBeforeAddTaskByExpiry}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandLink>
@@ -101,8 +104,9 @@
             <div class="ui-g-12">
               <p:outputLabel id="elapsed-time-by-case-category-label" styleClass="label"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')}" />
-              <p:commandLink id="create-elapsed-time-link" styleClass="add-link fa fa-plus-circle" global="false"
-                value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
+              <p:commandLink id="create-elapsed-time-link" styleClass="add-link" global="false">
+                <i class="icon ivyicon-add u-mar-right-5" />
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}"/>
                 <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
                   listener="#{logic.updateBeforeAddElapsedTime}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandLink>
@@ -119,8 +123,9 @@
             <div class="ui-g-12">
               <p:outputLabel id="case-by-finished-task-label" styleClass="label"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}" />
-              <p:commandLink id="create-case-by-finished-task-link" styleClass="add-link fa fa-plus-circle" global="false"
-                value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
+              <p:commandLink id="create-case-by-finished-task-link" styleClass="add-link" global="false">
+                <i class="icon ivyicon-add u-mar-right-5" />
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}"/>
                 <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
                   listener="#{logic.updateBeforeAddCaseByFinishedTask}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandLink>
@@ -137,8 +142,9 @@
             <div class="ui-g-12">
               <p:outputLabel id="case-by-finished-time-label" styleClass="label"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')}" />
-              <p:commandLink id="create-case-by-finished-time-link" styleClass="add-link fa fa-plus-circle" global="false"
-                value=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
+              <p:commandLink id="create-case-by-finished-time-link" styleClass="add-link" global="false">
+                <i class="icon ivyicon-add u-mar-right-5" />
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}"/>
                 <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
                   listener="#{logic.updateBeforeAddCaseByFinishedTime}" oncomplete="PF('add-chart-dialog').show();" />
               </p:commandLink>
@@ -162,33 +168,36 @@
     resizable="false" appendTo="@(body)" responsive="true">
     <c:if test="#{data == null or data.isAllowedToCreateChart}">
       <h:form id="add-statistic-form">
-
-        <h:panelGrid columns="1" styleClass="ui-g-12">
-          <p:messages for="chart-name-input">
-            <p:autoUpdate />
-          </p:messages>
-          <h:panelGroup styleClass="md-inputfield add-statistic-panel ui-fluid">
-            <p:inputText id="chart-name-input" value="#{data.chartName}" required="true" maxlength="200" />
-            <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" for="chart-name-input" />
-          </h:panelGroup>
+        <p:messages id="names-messages" />
+        <h:panelGrid id="chart-name-input-container" columns="1" styleClass="ui-g-12">
+          <ui:repeat id="chart-name-list" var="name" value="#{data.chartNames}" varStatus="status">
+            <h:panelGroup id="chart-name-input-panel" styleClass="md-inputfield add-statistic-panel ui-fluid">
+              <p:inputText id="chart-name-input" value="#{name.value}" required="true" maxlength="200"
+                requiredMessage="#{name.locale.getDisplayLanguage()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}: #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/requiredFieldMessage')}" />
+              <p:outputLabel value="#{name.locale.getDisplayLanguage()} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/name')}" for="chart-name-input" />
+            </h:panelGroup>
+          </ui:repeat>
         </h:panelGrid>
 
         <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
-          <p:commandButton id="chart-save-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="add-statistic-form"
-            update="chart-name-input add-statistic-form" actionListener="#{logic.createStatisticChart(cc.attrs.statisticChartList)}"
-            oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('add-chart-dialog').hide();}" />
-          <p:spacer width="5px" />
-          <p:commandButton type="button" styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
-            <p:ajax event="click" global="false" update="chart-name-input" listener="#{logic.clearChartInput}"
+          <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}">
+            <p:ajax event="click" global="false" update="chart-name-input-container" listener="#{logic.clearChartInput}"
               oncomplete="PF('add-chart-dialog').hide();" />
-          </p:commandButton>
+          </p:commandLink>
+          <p:spacer width="15px" />
+          <p:commandButton id="chart-save-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="add-statistic-form"
+            icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
+            update="chart-name-input-container add-statistic-form" actionListener="#{logic.createStatisticChart(cc.attrs.statisticChartList)}"
+            oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('add-chart-dialog').hide();}" />
         </h:panelGroup>
       </h:form>
     </c:if>
     <c:if test="#{data != null and !data.isAllowedToCreateChart}">
       <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/notAllowedToCreateChart')}" />
       <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
-        <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="PF('add-chart-dialog').hide();" />
+        <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
+          onclick="PF('add-chart-dialog').hide();" />
       </h:panelGroup>
     </c:if>
   </p:dialog>

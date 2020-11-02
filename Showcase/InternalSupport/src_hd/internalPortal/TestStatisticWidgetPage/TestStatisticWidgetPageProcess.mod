@@ -1,5 +1,5 @@
 [Ivy]
-16150F8167BC0EF5 7.5.0 #module
+16150F8167BC0EF5 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ts0 TestStatisticWidgetPageProcess Big #zClass
 Ts0 RD #cInfo
@@ -11,34 +11,14 @@ Ts0 @MessageFlowInP-0n messageIn messageIn #zField
 Ts0 @MessageFlowOutP-0n messageOut messageOut #zField
 Ts0 @TextInP .xml .xml #zField
 Ts0 @TextInP .responsibility .responsibility #zField
-Ts0 @GridStep f4 '' #zField
 Ts0 @GridStep f2 '' #zField
 Ts0 @UdInit f0 '' #zField
 Ts0 @UdProcessEnd f1 '' #zField
 Ts0 @CallSub f8 '' #zField
-Ts0 @PushWFArc f10 '' #zField
-Ts0 @PushWFArc f5 '' #zField
 Ts0 @PushWFArc f9 '' #zField
 Ts0 @PushWFArc f3 '' #zField
+Ts0 @PushWFArc f4 '' #zField
 >Proto Ts0 Ts0 TestStatisticWidgetPageProcess #zField
-Ts0 f4 actionTable 'out=in;
-' #txt
-Ts0 f4 actionCode 'import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
-
-RegisteredApplicationService service = new RegisteredApplicationService();
-java.util.List apps = service.findActiveIvyAppsBasedOnConfiguration(ivy.session.getSessionUserName());
-in.involvedApplications = apps;' #txt
-Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>get selected apps</name>
-        <nameStyle>17
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ts0 f4 162 54 36 24 -47 19 #rect
-Ts0 f4 @|StepIcon #fIcon
 Ts0 f2 actionTable 'out=in;
 ' #txt
 Ts0 f2 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
@@ -88,23 +68,18 @@ Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f8 314 54 36 24 -51 18 #rect
 Ts0 f8 @|CallSubIcon #fIcon
-Ts0 f10 expr out #txt
-Ts0 f10 198 66 314 66 #arcP
-Ts0 f5 expr out #txt
-Ts0 f5 79 66 162 66 #arcP
 Ts0 f9 expr out #txt
 Ts0 f9 489 66 569 66 #arcP
 Ts0 f3 expr out #txt
 Ts0 f3 350 66 453 66 #arcP
+Ts0 f4 79 66 314 66 #arcP
 >Proto Ts0 .type internalPortal.TestStatisticWidgetPage.TestStatisticWidgetPageData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
 >Proto Ts0 '' #fIcon
-Ts0 f0 mainOut f5 tail #connect
-Ts0 f5 head f4 mainIn #connect
-Ts0 f4 mainOut f10 tail #connect
-Ts0 f10 head f8 mainIn #connect
 Ts0 f8 mainOut f3 tail #connect
 Ts0 f3 head f2 mainIn #connect
 Ts0 f2 mainOut f9 tail #connect
 Ts0 f9 head f1 mainIn #connect
+Ts0 f0 mainOut f4 tail #connect
+Ts0 f4 head f8 mainIn #connect

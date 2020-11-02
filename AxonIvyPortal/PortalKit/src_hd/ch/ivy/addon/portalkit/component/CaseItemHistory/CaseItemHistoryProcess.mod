@@ -1,5 +1,5 @@
 [Ivy]
-153362B0AC312EFB 7.5.0 #module
+153362B0AC312EFB 9.2.0 #module
 >Proto >Proto Collection #zClass
 Cs0 CaseItemHistoryProcess Big #zClass
 Cs0 RD #cInfo
@@ -62,13 +62,16 @@ Cs0 f18 83 179 26 26 -41 15 #rect
 Cs0 f18 @|UdMethodIcon #fIcon
 Cs0 f19 actionTable 'out=in;
 ' #txt
-Cs0 f19 actionCode 'import ch.ivyteam.ivy.workflow.TaskState;
+Cs0 f19 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivyteam.ivy.workflow.TaskState;
 
-out.taskSearchCriteria.includedStates = [TaskState.DONE, TaskState.DESTROYED, TaskState.ZOMBIE, TaskState.CREATED];
+out.taskSearchCriteria.setAdminQuery(PermissionUtils.checkReadAllTasksPermission());
+out.taskSearchCriteria.includedStates = [TaskState.DONE, TaskState.DESTROYED];
 out.taskSearchCriteria.caseId = in.iCase.getId();
 out.taskSearchCriteria.queryByBusinessCaseId = in.iCase.isBusinessCase();
 out.taskSearchCriteria.newQueryCreated = true;
-out.taskSearchCriteria.finalTaskQuery = out.taskSearchCriteria.createQuery();' #txt
+out.taskSearchCriteria.finalTaskQuery = out.taskSearchCriteria.createQuery();
+' #txt
 Cs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -90,7 +93,6 @@ param.count=-1;
 Cs0 f21 responseActionDecl 'ch.ivy.addon.portalkit.component.CaseItemHistory.CaseItemHistoryData out;
 ' #txt
 Cs0 f21 responseMappingAction 'out=in;
-out.errors=result.errors;
 out.tasks=result.tasks;
 ' #txt
 Cs0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -111,8 +113,9 @@ import ch.ivy.addon.portalkit.service.GlobalSettingService;
 
 HistoryService historyService = new HistoryService();
 GlobalSettingService globalSettingService = new GlobalSettingService();
-boolean excludeTechnicalHistory = globalSettingService.findHideSystemTasksFromHistorySettingValue();
-in.histories = historyService.getHistories(in.tasks, in.iCase.getNotes(), excludeTechnicalHistory);' #txt
+boolean excludeSystemTasks = globalSettingService.findHideSystemTasksFromHistorySettingValue();
+boolean excludeSystemNotes = globalSettingService.findHideSystemNotesFromHistorySettingValue();
+in.histories = historyService.getHistories(in.tasks, in.iCase.getNotes(), excludeSystemTasks, excludeSystemNotes);' #txt
 Cs0 f26 security system #txt
 Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

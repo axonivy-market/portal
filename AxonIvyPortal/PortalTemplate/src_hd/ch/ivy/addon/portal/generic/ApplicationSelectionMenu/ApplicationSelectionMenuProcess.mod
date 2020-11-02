@@ -1,5 +1,5 @@
 [Ivy]
-156A1AA176DE2A21 7.5.0 #module
+156A1AA176DE2A21 9.2.0 #module
 >Proto >Proto Collection #zClass
 As0 ApplicationSelectionMenuProcess Big #zClass
 As0 RD #cInfo
@@ -48,9 +48,7 @@ As0 @PushWFArc f33 '' #zField
 As0 @Split f5 '' #zField
 As0 @PushWFArc f6 '' #zField
 As0 @PushWFArc f7 '' #zField
-As0 @UdMethod f4 '' #zField
 As0 @GridStep f25 '' #zField
-As0 @PushWFArc f26 '' #zField
 As0 @UdProcessEnd f9 '' #zField
 As0 @PushWFArc f38 '' #zField
 As0 @PushWFArc f29 '' #zField
@@ -74,12 +72,15 @@ As0 @UdProcessEnd f41 '' #zField
 As0 @GridStep f43 '' #zField
 As0 @PushWFArc f44 '' #zField
 As0 @PushWFArc f42 '' #zField
+As0 @UdMethod f45 '' #zField
+As0 @UdProcessEnd f46 '' #zField
+As0 @PushWFArc f47 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f67 actionTable 'out=in;
 ' #txt
 As0 f67 actionCode 'import javax.faces.context.FacesContext;
 
-FacesContext.getCurrentInstance().getExternalContext().redirect(in.selectedSubMenuItem.getExternalLink());' #txt
+FacesContext.getCurrentInstance().getExternalContext().redirect(in.selectedSubMenuItem.buildLink());' #txt
 As0 f67 security system #txt
 As0 f67 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -135,7 +136,7 @@ As0 f83 actionTable 'out=in;
 ' #txt
 As0 f83 actionCode 'import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
 
-PrimeFacesUtils.executeScript("removeHighlightedMenuItem(); PF(''task-losing-confirmation-dialog'').show()");' #txt
+PrimeFacesUtils.executeScript("PF(''task-losing-confirmation-dialog'').show()");' #txt
 As0 f83 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -149,15 +150,13 @@ dialog</name>
 As0 f83 960 266 128 44 -42 -16 #rect
 As0 f83 @|StepIcon #fIcon
 As0 f87 guid 15FB36E87031CAD2 #txt
-As0 f87 method start(String) #txt
-As0 f87 inParameterDecl '<String isWorkingOnATask> param;' #txt
-As0 f87 inParameterMapAction 'out.isWorkingOnATask=Boolean.parseBoolean(param.isWorkingOnATask);
-' #txt
+As0 f87 method start() #txt
+As0 f87 inParameterDecl '<> param;' #txt
 As0 f87 outParameterDecl '<> result;' #txt
 As0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(String)</name>
+        <name>start()</name>
     </language>
 </elementInfo>
 ' #txt
@@ -214,10 +213,8 @@ selected app</name>
 ' #txt
 As0 f95 644 512 120 48 -33 -16 #rect
 As0 f95 @|StepIcon #fIcon
-As0 f97 processCall 'Business Processes/FindApplicationsByUser:findApplicationsByUser(String)' #txt
-As0 f97 requestActionDecl '<String username> param;' #txt
-As0 f97 requestMappingAction 'param.username=ivy.session.getSessionUserName();
-' #txt
+As0 f97 processCall 'Business Processes/FindThirdPartyApplications:findThirdPartyApplications()' #txt
+As0 f97 requestActionDecl '<> param;' #txt
 As0 f97 responseActionDecl 'ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData out;
 ' #txt
 As0 f97 responseMappingAction 'out=in;
@@ -226,8 +223,8 @@ out.applications=result.applications;
 As0 f97 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>findApplicationsByUser(String)</name>
-        <nameStyle>30,5,7
+        <name>findThirdPartyApplications()</name>
+        <nameStyle>28,5
 </nameStyle>
     </language>
 </elementInfo>
@@ -247,7 +244,7 @@ As0 f109 expr in #txt
 As0 f109 outCond 'in.isWorkingOnATask && in.workingTask.getState() != ch.ivyteam.ivy.workflow.TaskState.DONE' #txt
 As0 f109 1024 208 1024 266 #arcP
 As0 f110 expr in #txt
-As0 f110 outCond 'in.#selectedSubMenuItem.#menuKind  == ch.ivy.addon.portalkit.enums.MenuKind.CUSTOM' #txt
+As0 f110 outCond 'in.#selectedSubMenuItem.#menuKind  == ch.ivy.addon.portalkit.enums.MenuKind.CUSTOM || in.#selectedSubMenuItem.#menuKind  == ch.ivy.addon.portalkit.enums.MenuKind.EXTERNAL_LINK' #txt
 As0 f110 848 384 544 512 #arcP
 As0 f110 1 544 384 #addKink
 As0 f110 0 0.8608001985669408 0 0 #arcLabel
@@ -287,8 +284,7 @@ As0 f16 864 206 864 368 #arcP
 As0 f10 actionTable 'out=in;
 ' #txt
 As0 f10 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalProcess();' #txt
+PortalNavigator.navigateToPortalProcess();' #txt
 As0 f10 security system #txt
 As0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -306,8 +302,7 @@ As0 f11 0 0.32034598197015046 0 0 #arcLabel
 As0 f15 actionTable 'out=in;
 ' #txt
 As0 f15 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalStatistic();' #txt
+PortalNavigator.navigateToPortalStatistic();' #txt
 As0 f15 security system #txt
 As0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -319,7 +314,7 @@ As0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 As0 f15 968 512 112 48 -49 -8 #rect
 As0 f15 @|StepIcon #fIcon
 As0 f22 expr in #txt
-As0 f22 outCond 'in.#selectedSubMenuItem.#menuKind == ch.ivy.addon.portalkit.enums.MenuKind.DASHBOARD' #txt
+As0 f22 outCond 'in.#selectedSubMenuItem.#menuKind == ch.ivy.addon.portalkit.enums.MenuKind.STATISTICS' #txt
 As0 f22 875 389 1024 512 #arcP
 As0 f22 1 1024 448 #addKink
 As0 f22 0 0.6303319079715384 0 0 #arcLabel
@@ -330,9 +325,7 @@ As0 f17 actionTable 'out=in;
 As0 f17 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 
 in.destinationBreadcrumbPage = null;
-
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalTask();' #txt
+PortalNavigator.navigateToPortalTask();' #txt
 As0 f17 security system #txt
 As0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -350,8 +343,7 @@ As0 f28 1 0.35157960906624564 0 0 #arcLabel
 As0 f31 actionTable 'out=in;
 ' #txt
 As0 f31 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalCase();' #txt
+PortalNavigator.navigateToPortalCase();' #txt
 As0 f31 security system #txt
 As0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -395,47 +387,29 @@ As0 f7 expr out #txt
 As0 f7 80 44 152 256 #arcP
 As0 f7 1 80 256 #addKink
 As0 f7 1 0.4001152932228009 0 0 #arcLabel
-As0 f4 guid 16D420B337DFE68F #txt
-As0 f4 method fetchMenuItem() #txt
-As0 f4 inParameterDecl '<> param;' #txt
-As0 f4 outParameterDecl '<> result;' #txt
-As0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>fetchMenuItem</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f4 491 19 26 26 14 6 #rect
-As0 f4 @|UdMethodIcon #fIcon
 As0 f25 actionTable 'out=in;
 ' #txt
-As0 f25 actionCode 'import ch.addon.portal.generic.menu.MenuView;
+As0 f25 actionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.addon.portal.generic.menu.MenuView;
 
-MenuView menu = new MenuView();
+MenuView menu = ManagedBeans.get("menuView") as MenuView;
 menu.buildMenuView(in.applications);' #txt
 As0 f25 security system #txt
 As0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Reload menu when&#xD;
-language changed</name>
+        <name>Build menu view</name>
     </language>
 </elementInfo>
 ' #txt
-As0 f25 104 384 128 48 -55 -16 #rect
+As0 f25 112 386 112 44 -45 -8 #rect
 As0 f25 @|StepIcon #fIcon
-As0 f26 expr out #txt
-As0 f26 504 45 232 408 #arcP
-As0 f26 1 504 304 #addKink
-As0 f26 2 384 408 #addKink
-As0 f26 1 0.5405595343708136 0 0 #arcLabel
 As0 f9 155 507 26 26 0 12 #rect
 As0 f9 @|UdProcessEndIcon #fIcon
 As0 f38 expr out #txt
-As0 f38 168 432 168 507 #arcP
+As0 f38 168 430 168 507 #arcP
 As0 f29 expr out1 #txt
-As0 f29 168 272 168 384 #arcP
+As0 f29 168 272 168 386 #arcP
 As0 f29 0 0.18808549022839285 0 0 #arcLabel
 As0 f3 guid 16E3A96DE4048374 #txt
 As0 f3 method leave(ITask) #txt
@@ -511,9 +485,7 @@ As0 f32 actionTable 'out=in;
 As0 f32 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 
 in.destinationBreadcrumbPage = null;
-
-PortalNavigator navigator = new PortalNavigator();
-navigator.navigateToPortalHome();' #txt
+PortalNavigator.navigateToPortalHome();' #txt
 As0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -589,6 +561,24 @@ As0 f43 1480 106 112 44 -43 -8 #rect
 As0 f43 @|StepIcon #fIcon
 As0 f44 1536 45 1536 106 #arcP
 As0 f42 1536 150 1536 211 #arcP
+As0 f45 guid 1734B654FF31BF39 #txt
+As0 f45 method init(Boolean) #txt
+As0 f45 inParameterDecl '<Boolean isWorkingOnATask> param;' #txt
+As0 f45 inParameterMapAction 'out.isWorkingOnATask=param.isWorkingOnATask;
+' #txt
+As0 f45 outParameterDecl '<> result;' #txt
+As0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>init(Boolean)</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f45 83 659 26 26 -23 15 #rect
+As0 f45 @|UdMethodIcon #fIcon
+As0 f46 307 659 26 26 0 12 #rect
+As0 f46 @|UdProcessEndIcon #fIcon
+As0 f47 109 672 307 672 #arcP
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -649,8 +639,6 @@ As0 f94 mainOut f6 tail #connect
 As0 f6 head f5 in #connect
 As0 f74 mainOut f7 tail #connect
 As0 f7 head f5 in #connect
-As0 f4 mainOut f26 tail #connect
-As0 f26 head f25 mainIn #connect
 As0 f25 mainOut f38 tail #connect
 As0 f38 head f9 mainIn #connect
 As0 f5 out f29 tail #connect
@@ -679,3 +667,5 @@ As0 f2 mainOut f44 tail #connect
 As0 f44 head f43 mainIn #connect
 As0 f43 mainOut f42 tail #connect
 As0 f42 head f41 mainIn #connect
+As0 f45 mainOut f47 tail #connect
+As0 f47 head f46 mainIn #connect

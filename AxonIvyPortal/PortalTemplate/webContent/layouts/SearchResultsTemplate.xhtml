@@ -8,7 +8,7 @@
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:param name="dataModel" value="#{data.dataModel}" />
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/searchResults')}</ui:define>
-    <ui:define name="simplePageContent">
+    <ui:define name="pageContent">
       <c:set var="isShowResultTabView" value="#{compactProcessWidgetBean.displayShowAllProcessesLink or taskWidgetBean.showFullTaskList or caseWidgetBean.showFullCaseList}"></c:set>
       <h:form id="global-search-form-in-page">
         <div id="global-search-container-in-page" class="global-search ui-lg-hidden ui-xl-hidden js-global-search">
@@ -17,7 +17,7 @@
               onkeypress="if (event.keyCode == 13) { portalGlobalSearchInPage(); return false; }">
             </p:inputText>
             <p:outputLabel for="global-search-data" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/search')}" />
-            <i class="global-search-icon fa fa-search" />
+            <i class="global-search-icon icon ivyicon-search" />
           </h:panelGroup>
         </div>
         <p:remoteCommand name="portalGlobalSearchInPage" actionListener="#{dataModel.search}"
@@ -28,7 +28,7 @@
       	<h:outputText styleClass="not-display-result-tab-view" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/searchResult/notDisplayResultTabView')}."/>
       </c:if>
       <div id="search-results-tabview-container" class="search-results-tabview-container">
-        <p:tabView id="search-results-tabview" widgetVar="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview"
+        <p:tabView id="search-results-tabview" widgetVar="search-results-tabview" onTabShow="onTabShow()" dynamic="true" styleClass="search-results-tabview js-search-results-tabview"
           rendered="#{isShowResultTabView}">
           <p:tab id="process-tab" title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/processes')}" titleStyleClass="process-tab-title"
             rendered="#{compactProcessWidgetBean.displayShowAllProcessesLink}">
@@ -118,6 +118,9 @@
   	                </div>
   	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseId componentId="case-id-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}" />
   	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCreator componentId="case-creator-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}" />
+                    <ic:ch.ivy.addon.portalkit.component.cases.column.CaseOwner componentId="case-owner-cell"
+                      case="#{case}" dataModel="#{dataModel.caseDataModel}" rendered="#{caseBean.isCaseOwnerEnabled()}"
+                      responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down" />
   	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-date-cell" 
   	                  rendered="#{dataModel.caseDataModel.isSelectedColumn('CREATION_TIME')}" value="#{case.startTimestamp}" />
   	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-expiry-date-cell"

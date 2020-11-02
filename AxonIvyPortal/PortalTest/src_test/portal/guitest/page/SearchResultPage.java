@@ -41,7 +41,12 @@ public class SearchResultPage extends TemplatePage {
 	}
 
 	public String getTaskResult(int index) {
-		TaskWidgetPage taskWidgetPage = new TaskWidgetPage("search-results-tabview:task-results");
+    TaskWidgetPage taskWidgetPage = new TaskWidgetPage("search-results-tabview:task-results") {
+      @Override
+      protected String getLoadedLocator() {
+        return "//*[contains(@id,'task-results:task-view')]";
+      }
+    };
 		return taskWidgetPage.getNameOfTaskAt(index);
 	}
 
@@ -73,22 +78,22 @@ public class SearchResultPage extends TemplatePage {
 
 	public boolean isInfoWorkflowIcon() {
 		WebElement element = findElementByCssSelector(INFO_EXPRESS_WORKFlOW);	
-		return element.getAttribute("class").contains("fa-info-circle");
+		return element.getAttribute("class").contains("ivyicon-information-circle");
 	}
 	
 	public boolean isEditExpressWorkflow() {
 		WebElement element = findElementByCssSelector(EDIT_EXPRESS_WORKFlOW);
-		return element.getAttribute("class").contains("fa-pencil");
+		return element.getAttribute("class").contains("ivyicon-graphic-tablet-drawing-pen");
 	}
 	
 	public boolean isDeleteExpressWorkflown() {
 		WebElement element = findElementByCssSelector(DELETE_EXPRESS_WORKFlOW);
-		return element.getAttribute("class").contains("fa-trash");
+		return element.getAttribute("class").contains("ivyicon-bin-1");
 	}
 	
 	public boolean isExpressProcessLogo() {
 		WebElement element = findElementByCssSelector(EXPRESS_PROCESS_LOGO);
-		return element.getAttribute("class").contains("express-process-logo");
+		return element.getAttribute("class").contains("ivyicon-startup-launch");
 	}
 	
 }

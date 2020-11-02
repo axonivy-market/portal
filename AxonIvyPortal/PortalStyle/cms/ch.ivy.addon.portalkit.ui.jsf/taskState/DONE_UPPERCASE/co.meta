@@ -1,5 +1,5 @@
-co: name={DONE_UPPERCASE} description={} changed={2019-02-11 03:13:37 CET} changedby={ntminh01} visualorder={0} guid={1622D24E795FFA7F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={DONE_UPPERCASE} description={} changed={2020-07-03 12:01:06 CEST} changedby={chnam} visualorder={0} guid={1622D24E795FFA7F} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
 val: guid={1622D24E7AA23D10} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:07 CEST} validto={} changed={2018-03-16 05:56:56 CET} changedby={nttai} properties={} id={}
 val: guid={1622D24E798F2173} datatype={} isdefault={false} langid={de} description={} validfrom={2015-04-23 11:12:08 CEST} validto={} changed={2018-03-16 05:56:56 CET} changedby={nttai} properties={} id={}
 val: guid={1622D24E7A28F826} datatype={} isdefault={true} langid={en} description={} validfrom={2015-04-23 11:11:49 CEST} validto={} changed={2018-03-16 05:56:56 CET} changedby={nttai} properties={} id={}
-val: guid={168DA54D01D1DBA8} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:37 CET} validto={} changed={2019-02-11 03:13:37 CET} changedby={ntminh01} properties={} id={}
+val: guid={168DA54D01D1DBA8} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:37 CET} validto={} changed={2020-07-03 12:01:06 CEST} changedby={chnam} properties={} id={}

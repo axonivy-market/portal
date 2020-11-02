@@ -10,11 +10,11 @@ public enum TestAccount {
 
 	ADMIN_USER(nameOfAdminUser(), passwordOfAdminUser(), "Portal Admin User"),
 	
-	HR_ROLE_USER(nameOfHrRoleUser(), passwordOfHrRoleUser(), "Portal Hr Role User"),
+	HR_ROLE_USER(nameOfHrRoleUser(), passwordOfHrRoleUser(), "david"),
 
-	TEST_CHANGE_PASSWORD_USER("test_change_password_user", "123", "test_change_password_user"),
+	TEST_CHANGE_PASSWORD_USER("test_change_password_user", "123", "Elton"),
 
-	TEST_RELATED_TASKS_USER("test_related_tasks_user", "+d3m0++", "test_related_tasks_user"),
+	TEST_RELATED_TASKS_USER("test_related_tasks_user", "+d3m0++", "Related Tasks User"),
   
   CASE_OWNER_USER("caseOwnerUser", "caseOwnerUser", "caseOwnerUser");
 

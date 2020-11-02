@@ -49,9 +49,13 @@ public class MainMenuPage extends TemplatePage {
 
   public StatisticWidgetPage selectStatisticDashboard() {
     clickByCssSelector("li.submenu-container:nth-child(5) > a.ripplelink.submenu");
-    ensureNoBackgroundRequest();
-    waitForPageLoaded();
+    waitForElementDisplayed(By.className("statistic-dashboard-expand-mode"), true);
     return new StatisticWidgetPage();
+  }
+
+  public void clickThirdPartyAppByIndex(int index) {
+    waitForElementDisplayed(By.cssSelector("[id *= ':thirdparty-menu-item-" + index + "'] > a"), true);
+    clickByCssSelector("[id *= ':thirdparty-menu-item-" + index + "'] > a");
   }
 
   private void waitForProcessesPageAfterSelectProcessesCategory() {

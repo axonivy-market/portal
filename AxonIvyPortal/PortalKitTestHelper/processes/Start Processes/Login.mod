@@ -1,5 +1,5 @@
 [Ivy]
-1636734E13CEC872 7.5.0 #module
+1636734E13CEC872 9.2.0 #module
 >Proto >Proto Collection #zClass
 Ln0 Login Big #zClass
 Ln0 B #cInfo
@@ -21,7 +21,20 @@ Ln0 f1 337 49 30 30 0 15 #rect
 Ln0 f1 @|EndIcon #fIcon
 Ln0 f3 actionTable 'out=in;
 ' #txt
-Ln0 f3 actionCode 'ivy.session.loginSessionUser(in.username, in.password);
+Ln0 f3 actionCode 'boolean isLoggedIn = ivy.session.loginSessionUser(in.username, in.password);
+for (int i = 0; i < 10; i++) {
+	if (isLoggedIn) {
+		break;
+	}
+	
+	if (i == 10) {
+		ivy.log.warn("Unsuccessful login after retry");
+	} else {
+	  ivy.log.warn("Unsuccessful login, retry");
+	  isLoggedIn = ivy.session.loginSessionUser(in.username, in.password);
+	  Thread.sleep(500);
+  }
+}
 ' #txt
 Ln0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

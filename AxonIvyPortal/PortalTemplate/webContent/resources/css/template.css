@@ -21,6 +21,10 @@
   margin: 5px 0 0 0px;
 }
 
+a.left-sidebar-menu-icon {
+  cursor: pointer;
+}
+
 .global-search-icon {
   position: absolute;
   top: 25%;
@@ -110,23 +114,25 @@
 /*Task template*/
 .task-template-container {
   min-height: 400px;
-  margin-bottom: 20px !important;
   position: relative;
+}
+
+.task-header-container {
+  margin-bottom:10px;
 }
 
 .task-template-title {
   display: flex;
   align-items: center;
-  margin-top: 5px;
   flex: 1 0 auto;
 }
 
 .task-template-title-icon {
   margin-right: 5px;
+  font-weight: bold !important;
 }
 
 .task-template-content {
-  margin: 10px auto;
   position: relative;
 }
 
@@ -142,14 +148,8 @@
   }
 }
 
-@media  screen and (max-height: 500px) {
-  .layout-wrapper .layout-main .layout-content.frame-container {
-    height: 100%;
-  }
-}
-
-.task-frame-container {
-  height: calc(100vh - 160px);
+.layout-wrapper .layout-main .layout-content.frame-container {
+  overflow-y: hidden;
 }
 
 .task-frame {

@@ -1,5 +1,5 @@
 [Ivy]
-1705146890E1843C 7.5.0 #module
+1705146890E1843C 9.2.0 #module
 >Proto >Proto Collection #zClass
 Us0 UserSelectionExampleProcess Big #zClass
 Us0 RD #cInfo
@@ -71,7 +71,7 @@ if (costObject1 == null) {
   }
 }
 in.selectedUserForReadOnlyField = new UserDTO(costObject1);
-in.excludedUsernames = Arrays.asList("gm2");' #txt
+in.excludedUsernames = Arrays.asList("gm1", "gm2", "admin");' #txt
 Us0 f6 security system #txt
 Us0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

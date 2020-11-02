@@ -15,7 +15,7 @@
 			message="#{session.isNew()? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/sessionExpried') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/viewExpired')}"
 			widgetVar="view-expired-exception-dialog" appendTo="@(body)" closable="false" responsive="true">
 			<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" onclick="redirectDefaultPage();"
-				type="button" />
+				icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}" type="button" />
 		</p:confirmDialog>
 
 		<!--  Exception Handler for any other Exception -->

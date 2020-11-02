@@ -8,8 +8,8 @@ Layout templates
 Templates for development
 -------------------------
 
-Your Portal Project is dependent on PortalTemplate project, in which there are 7 templates that can be used directly without iframes. 
-In addition 3 templates are described to be used with iframes.
+Your Portal Project is dependent on PortalTemplate project, in which there are several templates that can be used directly without iframes. 
+In addition 2 templates are described to be used with iframes.
 
 Templates without IFrames:
 
@@ -17,33 +17,35 @@ Templates without IFrames:
 
 2. :ref:`Task template 8 <components-layout-templates-task-template-8>`
 
-3. :ref:`Deprecated task template 7 (Deprecated) <components-layout-templates-task-template-7>`
+3. :ref:`Task list template <components-layout-templates-task-list-template>`
 
-4. :ref:`Two column template (Deprecated) <components-layout-templates-two-column-template>`
+4. :ref:`Case list template <components-layout-templates-case-list-template>`
 
-5. :ref:`Task list template <components-layout-templates-task-list-template>`
-
-6. :ref:`Case list template <components-layout-templates-case-list-template>`
-
-7. :ref:`Default homepage template <components-layout-templates-default-homepage-template>`
+5. :ref:`Default homepage template <components-layout-templates-default-homepage-template>`
 
 Templates to use with IFrame:
 
 1. :ref:`IFrame Task template <components-layout-templates-iframe-task-template>` (Template used internally by portal to configure iframes)
 
-2. :ref:`Task template (Deprecated) <components-layout-templates-task-template>`
-
-3. frame-8 template (Provided by core, use Serenity theme)
+2. frame-8 template (Provided by core, use Serenity theme)
 
 These templates have the same header, which is a menu of applications
 that you configure in Administration page. Since version 8.0, Portal
 officially supports responsiveness, every templates has its default
 responsiveness, you can refer to
 :ref:`Responsiveness <components-layout-templates-responsiveness>`
-to override it. Besides, there are user settings like: Absences, Email,
-Language Settings and Administration (for admin only). Details about
+to override it. Besides, there are user settings like: My Profile, Absences, Email
+and Administration (for admin only). Details about
 user settings can be found in
 :ref:`Settings <settings>`.
+
+.. note:: 
+
+      frame-8 template does not contains any content of Portal.
+      Therefore, if you want to reuse some Portal content, you must add it manually to your HTML file.
+      
+      For example, if you want to add ivy icon pack, add below code:
+      ``<h:outputStylesheet library="ivy-icons" name="ivy-icon.css" />``
 
 |portal-header|
 
@@ -63,15 +65,14 @@ How to use Basic template
 
 1. Create a new HTML User Dialog and then use ``ui:composition`` to
    define the template inside and reuse the default responsiveness
-   behavior. To override it, please use ``pageContent`` instead of
-   ``simplePageContent`` and
+   behavior. Define the ``pageContent`` section and
    :ref:`Responsiveness <components-layout-templates-responsiveness>`.
 
    .. code-block:: html
    
       <ui:composition template="/layouts/BasicTemplate.xhtml">
       <ui:define name="title">Sample Page</ui:define>
-      <ui:define name="simplePageContent">
+      <ui:define name="pageContent">
       This is sample content.
       </ui:define>
       </ui:composition>
@@ -113,71 +114,24 @@ Inside your UI, you can configure these parameters which will be rendered by the
 		window.isHideTaskName= false;
 		window.isHideTaskAction = false;
 		window.isHideCaseInfo = false;
+		window.isWorkingOnATask = false;
 		window.processChainDirection = "VERTICAL";
 		window.processChainShape = "LINE";
 		window.announcementInvisible = false;
 	</script>
 
 .. note::
-	Do not use or refer to this template in your Dialog. This will be done automatically by Portal if you use the mentioned IFrame Approach.
-	You can refer to IFrameTaskTemplate.xhtml in PortalTemplate to see more detailed information about how to use and pass params.
+       Do not use or refer to this template in your Dialog. This will be done automatically by Portal if you use the mentioned IFrame Approach.
+       You can refer to IFrameTaskTemplate.xhtml in PortalTemplate to see more detailed information about how to use and pass params.
+
+       When define param processSteps, please make sure that you added jsp function tag to your XHTML file:
+       ``xmlns:fn="http://xmlns.jcp.org/jsp/jstl/functions``
 	
 In case your project has navigation button without finishing a task, e.g Cancel, to 
 
--  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrame``.
+-  One of default page (app home, task list, process list, etc.): in your HTMLDialog, redirect to the page you want
 -  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame``.
 -  A specific url: call ``navigateToUrl(String url)`` from class ``PortalNavigatorInFrame``.
-
-.. _components-layout-templates-task-template:
-
-Task template (Deprecated)
---------------------------
-
-Task template is used for displaying task functionality and related
-information to support completing the task. There are a lot of regions
-to be filled with your custom content
-
-This template is dedicated for iFrame and Modena theme, so all Modena styles need to be provided in your project.
-
-.. warning::
-	There should be no encouragement to stay on modena - unless you want to follow a dead path on purpose.
-
-.. important::
-	This template must be used inside IFrame. Refer to :ref:`IFrame in Portal <iframe-in-portal>`.
-
-.. _components-layout-templates-task-template-how-to-use-task-template:
-
-How to use TaskTemplate
-^^^^^^^^^^^^^^^^^^^^^^^
-
-Create a new HTML User Dialog and then use ``ui:composition`` to  define template which you use inside.
-
-  .. code-block:: html
-  
-     <ui:composition template="/layouts/TaskTemplate.xhtml">
-
-  |task-name-template|
-
-In case your project has navigation button without finishing a task, e.g Cancel, to 
-
--  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrame``.
--  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame``.
--  A specific url: call ``navigateToUrl(String url)`` from class ``PortalNavigatorInFrame``.
-
-.. _components-layout-templates-task-template-how-to-migrate-task-template:
-
-How to migrate TaskTemplate
-^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Your style customization in PortalStyle hasn't effected anymore, you should include it yourself in your HTML dialog
-
-+----------------------------------------------+------------------------------------------------------+
-| Pros                                         | Cons                                                 |
-+==============================================+======================================================+
-|  - Keep the old look&feel since Portal 7     |  - Modena is out of support by Primefaces            |
-|  - Less migration effort                     |  - Modena was highly customized by Portal            |
-|                                              |  - Different look&feel between Portal and UIs        |
-+----------------------------------------------+------------------------------------------------------+
 
 .. _components-layout-templates-task-template-8:
 
@@ -231,87 +185,6 @@ Refer to ``TaskTemplate-8.xhtml`` for params and template areas.
 | - Consistent look&feel with Portal     |                               |
 | - UI styles are taken over from Portal |                               |
 +----------------------------------------+-------------------------------+
-
-.. _components-layout-templates-task-template-7:
-
-TaskTemplate-7 (Deprecated)
----------------------------
-
-Task template 7 is old task template with Serenity theme. If your project wants to apply new theme, 
-but keep the TabView (e.g. Case Information, dynamic tabs), you can use this template.
-
-.. warning::
-	Portal styles are included, your HTML dialogs are also effected. Therefore, it could spend some migration effort in future.
-	It's highly recommended to use :ref:`IFrame in Portal <iframe-in-portal>`.
-	
-.. important::
-	This template must not be used inside IFrame.
-
-.. _components-layout-templates-task-template-how-to-use-task-template-7:
-
-How to use TaskTemplate-7
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Create a new HTML User Dialog and then use ``ui:composition`` to define
-template.
-
-.. code-block:: html
-
-      <ui:composition template="/layouts/TaskTemplate-7.xhtml">
-
-In case your project has navigation button without finishing a task, e.g Cancel, to 
-
--  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigator``.
--  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigator``.
-
-How to migrate TaskTemplate-7
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Adapt the ``ui:composition`` template to this template.
-
-+--------------------------------------------+------------------------------------------------+
-| Pros                                       | Cons                                           |
-+============================================+================================================+
-| - Keep the old structure for UIs (TabView) | - Template is deprecated (will remove in v9.0  |
-| - Use Serenity theme from Portal           | - Few migration effort                         |
-| - Consistent look&feel with Portal         |                                                |
-| - UI styles are taken over from Portal     |                                                |
-+--------------------------------------------+------------------------------------------------+
-
-.. _components-layout-templates-two-column-template:
-
-Two column template (Deprecated)
---------------------------------
-
-Two column template inherits Basic Template. It has 2 columns which user
-can customize their contents. Normally, the first column is for
-navigation, the second for displaying corresponding content.
-
-.. _components-layout-templates-two-column-template-how-to-use-two-columntemplate:
-
-How to use Two column template
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-1. Create a HTML User Dialog, define template in ``ui:composition`` and
-   insert content of second column and third column using ``ui:define``.
-
-  .. code-block:: html
-     :linenos:
-     :emphasize-lines: 4,7
-
-     <ui:composition template="/layouts/TwoColumnTemplate.xhtml">
-     <ui:define name="title">Sample Page</ui:define>
-     <ui:define name="navigationRegion">
-     Navigation Region
-     </ui:define>
-     <ui:define name="contentRegion">
-     Content Region
-     </ui:define>
-     </ui:composition>
-
-2. See the result after using Two column template for example:
-
-  |two-column-template|
 
 .. _components-layout-templates-task-list-template:
 
@@ -484,14 +357,11 @@ E.g. Initialize ``ResponsiveToolkit`` for TaskList page.
       </script>
       </ui:define>
 
-.. |basic-template| image:: images/layout-templates/basic-template.png
-.. |case-list-template| image:: images/layout-templates/case-list-template.png
-.. |portal-header| image:: images/layout-templates/portal-header.png
-.. |process-chain-shape| image:: images/layout-templates/process-chain-shape.png
-.. |task-list-template| image:: images/layout-templates/task-list-template.png
-.. |task-name-template| image:: images/layout-templates/task-name-template.png
-.. |task-template-process-chain| image:: images/layout-templates/task-template-process-chain.png
-.. |task-template-task-form| image:: images/layout-templates/task-template-task-form.png
-.. |two-column-template| image:: images/layout-templates/two-column-template.png
+.. |basic-template| image:: ../../screenshots/layout-template/basic-template.png
+.. |case-list-template| image:: ../../screenshots/case/case-key-information.png
+.. |portal-header| image:: ../../screenshots/settings/user-settings.png
+.. |task-list-template| image:: ../../screenshots/task/task-key-information.png
+.. |task-name-template| image:: ../../screenshots/layout-template/task-template.png
+
 
 

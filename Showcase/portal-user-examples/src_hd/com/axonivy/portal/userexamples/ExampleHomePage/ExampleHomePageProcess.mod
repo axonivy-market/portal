@@ -1,5 +1,5 @@
 [Ivy]
-1723A6F0283D003D 7.5.0 #module
+1723A6F0283D003D 9.2.0 #module
 >Proto >Proto Collection #zClass
 Hs0 ExampleHomePageProcess Big #zClass
 Hs0 RD #cInfo
@@ -65,7 +65,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 
-ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
+ProcessStartCollector collector = new ProcessStartCollector();
 
 String leaveRequestStartLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/LeaveRequest/start.ivp");
 if (!StringUtils.isEmpty(leaveRequestStartLink)){	

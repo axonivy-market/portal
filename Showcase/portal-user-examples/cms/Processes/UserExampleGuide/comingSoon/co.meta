@@ -1,5 +1,5 @@
-co: name={comingSoon} description={} changed={2020-05-26 13:21:27 CEST} changedby={chnam} visualorder={0} guid={1724F16D79887FB7} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1724F173E5F53F5F} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-05-26 05:46:45 CEST} validto={} changed={2020-05-26 13:21:27 CEST} changedby={chnam} properties={} id={}
-val: guid={1724F173D7A7A44F} datatype={} isdefault={false} langid={de} description={} validfrom={2020-05-26 05:46:49 CEST} validto={} changed={2020-05-26 13:21:26 CEST} changedby={chnam} properties={} id={}
-val: guid={1724F16D7A7E7CE2} datatype={} isdefault={true} langid={en} description={} validfrom={2020-05-26 05:46:36 CEST} validto={} changed={2020-05-26 13:21:27 CEST} changedby={chnam} properties={} id={}
-val: guid={1724F173E55F13FE} datatype={} isdefault={false} langid={es} description={} validfrom={2020-05-26 05:46:52 CEST} validto={} changed={2020-05-26 13:21:26 CEST} changedby={chnam} properties={} id={}
+co: name={comingSoon} description={} changed={2020-10-15 11:10:15 CEST} changedby={nqhoan} visualorder={0} guid={1724F16D79887FB7} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1724F173E5F53F5F} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-10-15 11:10:15 CEST} validto={} changed={2020-10-15 11:10:15 CEST} changedby={nqhoan} properties={} id={}
+val: guid={1724F173D7A7A44F} datatype={} isdefault={false} langid={de} description={} validfrom={2020-06-15 03:36:57 CEST} validto={} changed={2020-06-15 03:36:57 CEST} changedby={nqhoan} properties={} id={}
+val: guid={1724F16D7A7E7CE2} datatype={} isdefault={true} langid={en} description={} validfrom={2020-06-15 03:36:57 CEST} validto={} changed={2020-06-15 03:36:57 CEST} changedby={nqhoan} properties={} id={}
+val: guid={1724F173E55F13FE} datatype={} isdefault={false} langid={es} description={} validfrom={2020-06-15 03:36:57 CEST} validto={} changed={2020-06-15 03:36:57 CEST} changedby={nqhoan} properties={} id={}

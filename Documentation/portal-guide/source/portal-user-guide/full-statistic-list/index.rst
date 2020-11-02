@@ -16,19 +16,19 @@ charts** quick link in the statistics section of your dashboard.
    from your processes is not available in these statistics and must be
    considered separately.                      
 
-.. figure:: images/navigate-to-full-statistics-page.png
+|navigate-to-full-statistics-page|
 
 On the :guilabel:`Full Statistics` page you see all charts that were previously
 created. Each chart provides you with the following features:
 
-.. figure:: images/full-statistics-page-chart-detail.png
+|full-statistics-page-chart-detail|
 
 1. The heading of the chart
 
 2. An |info-icon| **Info** button, providing you with the configuration of
    the chart
 
-.. figure:: images/full-statistics-page-chart-info-detail.png
+|full-statistics-page-chart-info-detail|
 
 3. Arrow buttons (|arrow-right-icon|, |arrow-left-icon|) depending
    on the position of the chart to allow you rearrangement according to
@@ -56,15 +56,15 @@ HowTo: Create chart
 
 6. The :guilabel:`Add statistic chart to dashboard` dialog is opened
 
-7. Enter a unique name for the chart
+7. Enter unique names in supported languages for the chart
 
 8. Create the chart with the button **OK**
 
-.. figure:: images/charts-configuration-page.png
+|charts-configuration-page|
 
 **Available charts**
 
-.. figure:: images/full-statistics-page.png
+|full-statistics-page|
 
 .. centered:: Chart types
 
@@ -175,3 +175,10 @@ HowTo: Create chart
 
 
 .. include:: ../includes/_common-icon.rst
+
+
+.. |navigate-to-full-statistics-page| image:: ../../screenshots/statistic/navigate-to-full-statistics-page.png
+.. |full-statistics-page-chart-detail| image:: ../../screenshots/statistic/chart-detail-with-annotation.png
+.. |full-statistics-page-chart-info-detail| image:: ../../screenshots/statistic/chart-info-dialog.png
+.. |charts-configuration-page| image:: ../../screenshots/statistic/chart-creation-dialog.png
+.. |full-statistics-page| image:: ../../screenshots/statistic/available-charts.png

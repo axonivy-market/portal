@@ -47,7 +47,7 @@ public class DeleteFinishedHiddenCasesService {
     	caseQuery.where().and(pmvQuery);
     }
     caseQuery.orderBy().caseId().ascending();
-    List<ICase> cases = Ivy.wf().getGlobalContext().getCaseQueryExecutor().getResults(caseQuery, 0, -1);
+    List<ICase> cases = Ivy.wf().getCaseQueryExecutor().getResults(caseQuery, 0, -1);
 
     int numOfDeletedCases = 0;
     for (int i = cases.size()-1; i >= 0; i--) {
