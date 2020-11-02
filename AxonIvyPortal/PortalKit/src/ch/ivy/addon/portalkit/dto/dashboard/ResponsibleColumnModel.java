@@ -5,6 +5,7 @@ import java.io.Serializable;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.security.ISecurityMember;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -14,10 +15,9 @@ public class ResponsibleColumnModel extends ColumnModel implements Serializable 
   private static final long serialVersionUID = -4315469062114036720L;
 
   public ResponsibleColumnModel() {
-    this.field = "responsible";
     this.header = cms("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR");
     this.width = "150";
-    this.property = "activator";
+    this.property = DashboardStandardTaskColumn.RESPONSIBLE.getProperty();
     this.type = DashboardColumnType.RESPONSIBLE;
   }
   
