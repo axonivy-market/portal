@@ -35,9 +35,9 @@ El0 f1 433 49 30 30 0 15 #rect
 El0 f1 @|EndSubIcon #fIcon
 El0 f81 actionTable 'out=in;
 ' #txt
-El0 f81 actionCode 'import ch.ivy.addon.portalkit.util.TaskExporter;
-import com.axonivy.portal.developerexamples.util.TaskExporterOverride;
-TaskExporter exporter = new TaskExporterOverride(in.columnsVisibility);
+El0 f81 actionCode 'import ch.ivy.addon.portalkit.exporter.TaskExporter;
+import com.axonivy.portal.developerexamples.exporter.CustomizedTaskExporter;
+TaskExporter exporter = new CustomizedTaskExporter(in.columnsVisibility);
 in.exportedFile = exporter.getStreamedContent(in.collectedTasksForExporting);
 ' #txt
 El0 f81 security system #txt
