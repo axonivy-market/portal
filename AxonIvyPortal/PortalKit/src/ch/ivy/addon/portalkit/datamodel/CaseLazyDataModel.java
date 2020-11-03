@@ -25,6 +25,7 @@ import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.SortDirection;
@@ -45,21 +46,7 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
 public class CaseLazyDataModel extends LazyDataModel<ICase> {
-  public static final String STATE = "STATE";
-
-  public static final String FINISHED_TIME = "FINISHED_TIME";
-
-  public static final String CREATION_TIME = "CREATION_TIME";
-
-  public static final String OWNER = "OWNER";
-
-  public static final String CREATOR = "CREATOR";
-
-  public static final String ID = "ID";
-  
   public static final String DESCRIPTION = "DESCRIPTION";
-
-  public static final String NAME = "NAME";
 
   private static final long serialVersionUID = 1L;
 
@@ -81,7 +68,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
   private List<String> portalDefaultColumns;
-  private List<String> portalRequiredColumns = Arrays.asList(NAME);
+  private List<String> portalRequiredColumns = Arrays.asList(CaseSortField.NAME.name());
 
   private boolean isAutoHideColumns;
   private boolean isDisableSelectionCheckboxes;
@@ -474,9 +461,9 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   public void initColumnsConfiguration() {
     if (new GlobalSettingService().isCaseOwnerEnabled()) {
-      portalDefaultColumns = List.of(NAME, ID, CREATOR, OWNER, CREATION_TIME, FINISHED_TIME, STATE);
+      portalDefaultColumns = List.of(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.OWNER.name(), CaseSortField.CREATION_TIME.name(), CaseSortField.FINISHED_TIME.name(), CaseSortField.STATE.name());
     } else {
-      portalDefaultColumns = List.of(NAME, ID, CREATOR, CREATION_TIME, FINISHED_TIME, STATE);
+      portalDefaultColumns = List.of(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.CREATION_TIME.name(), CaseSortField.FINISHED_TIME.name(), CaseSortField.STATE.name());
     }
     if (CollectionUtils.isEmpty(allColumns)) {
       allColumns.addAll(getDefaultColumns());

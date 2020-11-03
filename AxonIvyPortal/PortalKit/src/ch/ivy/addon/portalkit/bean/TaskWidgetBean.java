@@ -16,6 +16,8 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.bo.GuidePool;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.TaskSortField;
+import ch.ivy.addon.portalkit.exporter.TaskExporter;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
@@ -23,7 +25,6 @@ import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.TaskStateFilter;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.TaskExporter;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -149,8 +150,12 @@ public class TaskWidgetBean implements Serializable {
     TaskUtils.destroyTaskById(taskId);
   }
 
-  /*
-   * When press F5, bean is reinitialized (because of ViewScope), dataModel isn't set again like full flow of opening Task list, we use parameter to void NullPointerExcepion
+  /**
+   * Gets visible columns on Task list page.
+   * When press F5, bean is reinitialized (because of @ViewScope), dataModel isn't set again like full flow of opening Task list page, we use parameter to void NullPointerExcepion.
+   * 
+   * @param dataModel
+   * @return visible columns
    */
   public List<String> getColumns(TaskLazyDataModel dataModel) {
     List<String> visibilityColumns = new ArrayList<>();
@@ -161,7 +166,7 @@ public class TaskWidgetBean implements Serializable {
      * that we need to check and add "Description" to Excel file
      */
     List<String> requiredColumns = dataModel.getPortalRequiredColumns();
-    if (requiredColumns != null && requiredColumns.contains(TaskLazyDataModel.NAME)) {
+    if (requiredColumns != null && requiredColumns.contains(TaskSortField.NAME.name())) {
       visibilityColumns.add(TaskLazyDataModel.DESCRIPTION);
     }
     return visibilityColumns;
