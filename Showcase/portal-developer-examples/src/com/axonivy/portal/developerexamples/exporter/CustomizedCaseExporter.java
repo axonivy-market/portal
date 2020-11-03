@@ -1,4 +1,4 @@
-package com.axonivy.portal.developerexamples.util;
+package com.axonivy.portal.developerexamples.exporter;
 
 import java.util.Date;
 import java.util.List;
@@ -6,30 +6,25 @@ import java.util.List;
 import com.axonivy.portal.developerexamples.component.customize.cases.CustomizedCaseLazyDataModel;
 
 import ch.ivy.addon.portalkit.constant.CustomFields;
-import ch.ivy.addon.portalkit.util.CaseExporter;
+import ch.ivy.addon.portalkit.exporter.CaseExporter;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 
-public class CaseExporterOverride extends CaseExporter {
+public class CustomizedCaseExporter extends CaseExporter {
 
-  public CaseExporterOverride(List<String> columnsVisibility) {
+  public CustomizedCaseExporter(List<String> columnsVisibility) {
     super(columnsVisibility);
   }
 
   @Override
-  protected String getCustomColumnName(String column) {
-    switch (column) {
-      case CustomizedCaseLazyDataModel.CUSTOM_VARCHAR_FIELD1:
-        return Ivy.cms().co("/DefaultColumns/caseList/customVarCharField1");
-      case CustomizedCaseLazyDataModel.CUSTOM_TIMESTAMP_FIELD1:
-        return Ivy.cms().co("/DefaultColumns/caseList/customTimestampField1");
-      default:
-        return "";
-    }
+  protected String getColumnName(String column) {
+    String columnName = getSpecialColumnName(column);
+    return columnName != null ? columnName
+        : Ivy.cms().co("/DefaultColumns/caseList/" + column);
   }
 
   @Override
-  protected String getCustomColumnValue(String column, ICase caseItem) {
+  protected String getColumnValue(String column, ICase caseItem) {
     switch (column) {
       case CustomizedCaseLazyDataModel.CUSTOM_VARCHAR_FIELD1:
         return caseItem.customFields().stringField(CustomFields.CUSTOM_VARCHAR_FIELD1).getOrNull();
@@ -37,7 +32,7 @@ public class CaseExporterOverride extends CaseExporter {
         Date customTimeStamp = caseItem.customFields().timestampField(CustomFields.CUSTOM_TIMESTAMP_FIELD1).getOrNull();
         return customTimeStamp != null ? formatDate(customTimeStamp) : "";
       default:
-        return "";
+        return getCommonColumnValue(column, caseItem);
     }
   }
 }

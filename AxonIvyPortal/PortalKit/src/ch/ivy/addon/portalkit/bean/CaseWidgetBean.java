@@ -18,12 +18,13 @@ import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.casefilter.CaseStateFilter;
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.exporter.CaseExporter;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.support.HtmlParser;
-import ch.ivy.addon.portalkit.util.CaseExporter;
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivy.addon.portalkit.util.NumberUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -192,8 +193,12 @@ public class CaseWidgetBean implements Serializable {
     this.dataModel = dataModel;
   }
 
-  /*
-   * When press F5, bean is reinitialized (because of ViewScope), dataModel isn't set again like full flow of opening Task list, we use parameter to void NullPointerExcepion
+  /**
+   * Gets visible columns on Case list page.
+   * When press F5, bean is reinitialized (because of @ViewScope), dataModel isn't set again like full flow of opening Case list page, we use parameter to void NullPointerExcepion.
+   * 
+   * @param dataModel
+   * @return visible columns
    */
   public List<String> getColumns(CaseLazyDataModel dataModel) {
     List<String> visibilityColumns = new ArrayList<>();
@@ -204,13 +209,13 @@ public class CaseWidgetBean implements Serializable {
      * that we need to check and add "Description" to Excel file
      */
     List<String> requiredColumns = dataModel.getPortalRequiredColumns();
-    if (requiredColumns != null && requiredColumns.contains(CaseLazyDataModel.NAME)) {
+    if (requiredColumns != null && requiredColumns.contains(CaseSortField.NAME.name())) {
       visibilityColumns.add(CaseLazyDataModel.DESCRIPTION);
     }
     return visibilityColumns;
   }
 
-  public int getMaxTaskNumberInExcel() {
+  public int getMaxCaseNumberInExcel() {
     return CaseExporter.MAX_CASE_NUMBER_IN_EXCEL;
   }
 }

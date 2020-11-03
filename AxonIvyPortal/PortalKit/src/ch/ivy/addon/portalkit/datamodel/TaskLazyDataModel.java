@@ -25,6 +25,7 @@ import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.SortDirection;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
+import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.service.DummyTaskService;
@@ -48,15 +49,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class TaskLazyDataModel extends LazyDataModel<ITask> {
-  public static final String PRIORITY = "PRIORITY";
-  public static final String NAME = "NAME";
   public static final String DESCRIPTION = "DESCRIPTION";
-  public static final String ACTIVATOR = "ACTIVATOR";
-  public static final String ID = "ID";
-  public static final String CREATION_TIME = "CREATION_TIME";
-  public static final String EXPIRY_TIME = "EXPIRY_TIME";
-  public static final String COMPLETED_ON = "COMPLETED_ON";
-  public static final String STATE = "STATE";
   
   private static final long serialVersionUID = -6615871274830927272L;
 
@@ -77,8 +70,8 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
   protected List<String> portalDefaultColumns =
-      Arrays.asList(PRIORITY, NAME, ACTIVATOR, ID, CREATION_TIME, EXPIRY_TIME, COMPLETED_ON, STATE);
-  protected List<String> portalRequiredColumns = Arrays.asList(NAME);
+      Arrays.asList(TaskSortField.PRIORITY.name(), TaskSortField.NAME.name(), TaskSortField.ACTIVATOR.name(), TaskSortField.ID.name(), TaskSortField.CREATION_TIME.name(), TaskSortField.EXPIRY_TIME.name(), TaskSortField.COMPLETED_ON.name(), TaskSortField.STATE.name());
+  protected List<String> portalRequiredColumns = Arrays.asList(TaskSortField.NAME.name());
 
   protected boolean compactMode;
   protected boolean isAutoHideColumns;

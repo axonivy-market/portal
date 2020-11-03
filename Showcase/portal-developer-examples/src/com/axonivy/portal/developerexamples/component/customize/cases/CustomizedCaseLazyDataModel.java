@@ -5,6 +5,7 @@ import java.util.List;
 
 import ch.ivy.addon.portalkit.constant.CustomFields;
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
+import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -45,9 +46,9 @@ public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
 	@Override
 	protected List<String> getDefaultColumns() {
     if (new GlobalSettingService().isCaseOwnerEnabled()) {
-      return Arrays.asList(CaseLazyDataModel.NAME, CaseLazyDataModel.ID, CaseLazyDataModel.CREATOR, CaseLazyDataModel.OWNER, CaseLazyDataModel.CREATION_TIME, CaseLazyDataModel.FINISHED_TIME, CUSTOM_VARCHAR_FIELD1, CUSTOM_TIMESTAMP_FIELD1);
+      return Arrays.asList(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.OWNER.name(), CaseSortField.CREATION_TIME.name(), CaseSortField.FINISHED_TIME.name(), CUSTOM_VARCHAR_FIELD1, CUSTOM_TIMESTAMP_FIELD1);
     } else {
-      return Arrays.asList(CaseLazyDataModel.NAME, CaseLazyDataModel.ID, CaseLazyDataModel.CREATOR, CaseLazyDataModel.CREATION_TIME, CaseLazyDataModel.FINISHED_TIME, CUSTOM_VARCHAR_FIELD1, CUSTOM_TIMESTAMP_FIELD1);
+      return Arrays.asList(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.CREATION_TIME.name(), CaseSortField.FINISHED_TIME.name(), CUSTOM_VARCHAR_FIELD1, CUSTOM_TIMESTAMP_FIELD1);
     }
 	}
 	

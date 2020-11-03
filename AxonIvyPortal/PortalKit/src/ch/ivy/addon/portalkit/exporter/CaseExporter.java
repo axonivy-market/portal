@@ -1,4 +1,4 @@
-package ch.ivy.addon.portalkit.util;
+package ch.ivy.addon.portalkit.exporter;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -19,6 +19,9 @@ import org.primefaces.model.StreamedContent;
 
 import ch.ivy.addon.portalkit.bo.ExcelExportSheet;
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
+import ch.ivy.addon.portalkit.enums.CaseSortField;
+import ch.ivy.addon.portalkit.util.ExcelExport;
+import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 
@@ -58,7 +61,7 @@ public class CaseExporter {
           zipOutputStream.write(content);
           zipOutputStream.closeEntry();
         } catch (IOException e) {
-          Ivy.log().error("The " + excelFileName + " file can't be exported", e);
+          Ivy.log().error("The {0} file can't be exported", e, excelFileName);
         }
       }
       zipOutputStream.close();
@@ -84,68 +87,87 @@ public class CaseExporter {
     }
     return headers;
   }
-  
-  private String getColumnName(String column) { 
-    switch (column) {
-      case CaseLazyDataModel.NAME:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseName");
-      case CaseLazyDataModel.DESCRIPTION:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/description");
-      case CaseLazyDataModel.ID:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID");
-      case CaseLazyDataModel.CREATOR:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR");
-      case CaseLazyDataModel.OWNER:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/OWNER");
-      case CaseLazyDataModel.CREATION_TIME:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATION_TIME");
-      case CaseLazyDataModel.FINISHED_TIME:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/FINISHED_TIME");
-      case CaseLazyDataModel.STATE:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE");
-      default:
-        return getCustomColumnName(column);
-    }
-  }
-  
-  protected String getCustomColumnName(String column) {
-    return "";
+
+  /**
+   * <p>
+   * Gets column name.
+   * </p>
+   * <p>
+   * In case you adds new columns, these columns need cms to show in excel file
+   * </p>
+   * <p>
+   * You can either add new entry to default folder below in PortalStyle or override this method to create your own
+   * folder column must be the same with sortField
+   * </p>
+   * 
+   * @param column
+   * @return column name
+   */
+  protected String getColumnName(String column) {
+    String columnName = getSpecialColumnName(column);
+    return columnName != null ? columnName
+        : Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/" + column);
   }
 
-  private String getColumnValue(String column, ICase caseItem) { 
-    switch (column) {
-      case CaseLazyDataModel.NAME:
+  /**
+   * Gets column name that is differ from UI.
+   * 
+   * @param column
+   * @return column name
+   */
+  protected String getSpecialColumnName(String column) {
+    if (CaseSortField.NAME.name().equals(column)) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseName");
+    } else if (CaseLazyDataModel.DESCRIPTION.equals(column)) {
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/description");
+    }
+    return null;
+  }
+
+  /**
+   * Gets case column value.
+   * 
+   * @param column
+   * @param caseItem
+   * @return case column value
+   */
+  protected String getColumnValue(String column, ICase caseItem) {
+    return getCommonColumnValue(column, caseItem);
+  }
+
+  protected String getCommonColumnValue(String column, ICase caseItem) {
+    if (StringUtils.equals(column, CaseLazyDataModel.DESCRIPTION)) {
+      return caseItem.getDescription();
+    }
+
+    CaseSortField sortField = CaseSortField.valueOf(column);
+    switch (sortField) {
+      case NAME:
         return StringUtils.isEmpty(caseItem.getName()) ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") : caseItem.getName();
-      case CaseLazyDataModel.DESCRIPTION:
-        return caseItem.getDescription();
-      case CaseLazyDataModel.ID:
+      case ID:
         return String.valueOf(caseItem.getId());
-      case CaseLazyDataModel.CREATOR:
+      case CREATOR:
         if (caseItem.getCreatorUserName() == null) {
           return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
         }
         return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getCreatorUser(), caseItem.getCreatorUserName());
-      case CaseLazyDataModel.OWNER:
+      case OWNER:
         if (caseItem.getOwnerName() == null) {
           return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
         }
         return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getOwner(), caseItem.getOwnerName());
-      case CaseLazyDataModel.CREATION_TIME:
+      case CREATION_TIME:
         return formatDate(caseItem.getStartTimestamp());
-      case CaseLazyDataModel.FINISHED_TIME:
+      case FINISHED_TIME:
         Date endTimestamp = caseItem.getEndTimestamp();
         return endTimestamp != null ? formatDate(endTimestamp): "";
-      case CaseLazyDataModel.STATE:
+      case STATE:
         return caseItem.getState().toString();
       default:
-        return getCustomColumnValue(column, caseItem);
+        return "";
     }
   }
-  
-  protected String getCustomColumnValue(String column, ICase caseItem) {
-    return "";
-  }
-  
+
   private List<List<Object>> generateData(List<ICase> cases) {
     List<List<Object>> rows = new ArrayList<>();
     for (ICase caseItem : cases) {

@@ -1,4 +1,4 @@
-package ch.ivy.addon.portalkit.util;
+package ch.ivy.addon.portalkit.exporter;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -18,18 +19,20 @@ import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
 
 import ch.ivy.addon.portalkit.bo.ExcelExportSheet;
-import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
+import ch.ivy.addon.portalkit.enums.TaskAndCaseAnalysisColumn;
+import ch.ivy.addon.portalkit.util.ExcelExport;
+import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 
-public class TaskExporter {
+public class TaskAnalysisExporter {
   private static final String ZIP = "zip";
   private static final String XLSX = "xlsx";
   public static final int MAX_TASK_NUMBER_IN_EXCEL = 1048575; // = MAX ROWS (1048576) - 1 (for header row)
   private static final String FILE_NAME_SUFFIX_FOR_EXCEL_IN_ZIP = "_%s";
-  private List<String> columnsVisibility;
+  private Map<String, Boolean> columnsVisibility;
   
-  public TaskExporter(List<String> columnsVisibility) {
+  public TaskAnalysisExporter(Map<String, Boolean> columnsVisibility) {
     this.columnsVisibility = columnsVisibility;
   }
 
@@ -79,80 +82,118 @@ public class TaskExporter {
 
   private List<String> generateHeaders() {
     List<String> headers = new ArrayList<>();
-    for (String column : columnsVisibility) {
+    for (TaskAndCaseAnalysisColumn column : TaskAndCaseAnalysisColumn.values()) {
+      if (isColumnVisible(column))
       headers.add(getColumnName(column));
     }
     return headers;
   }
   
-  private String getColumnName(String column) { 
+  private String getColumnName(TaskAndCaseAnalysisColumn column) { 
     switch (column) {
-      case TaskLazyDataModel.NAME:
+      case CASE_NAME:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseName");
+      case CASE_DESCRIPTION:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseDescription");
+      case CASE_ID:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseID");
+      case CASE_CATEGORY:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseCategory");
+      case CASE_CREATOR:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseCreator");
+      case CASE_OWNER:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseOwner");
+      case CASE_STATE:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseState");
+      case TASK_NAME:
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/taskName");
-      case TaskLazyDataModel.DESCRIPTION:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/description");
-      case TaskLazyDataModel.ID:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID");
-      case TaskLazyDataModel.ACTIVATOR:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR");
-      case TaskLazyDataModel.PRIORITY:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY");
-      case TaskLazyDataModel.STATE:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE");
-      case TaskLazyDataModel.CREATION_TIME:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/create");
-      case TaskLazyDataModel.EXPIRY_TIME:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME");
-      case TaskLazyDataModel.COMPLETED_ON:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/COMPLETED_ON");
+      case TASK_ID:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskID");
+      case TASK_CATEGORY:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskCategory");
+      case TASK_DESCRIPTION:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskDescription");
+      case TASK_ACTIVATOR:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskResponsible");
+      case TASK_WORKER:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskWorker");
+      case TASK_PRIORITY:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskPriority");
+      case TASK_STATE:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskState");
+      case TASK_CREATION_TIME:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskCreationTime");
+      case TASK_EXPIRY_TIME:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskExpiryTime");
+      case TASK_FINISHED_TIME:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskFinishedTime");
       default:
-        return getCustomColumnName(column);
+        return "";
     }
   }
-  
-  protected String getCustomColumnName(String column) {
-    return "";
-  }
 
-  private String getColumnValue(String column, ITask task) { 
+  private String getColumnValue(TaskAndCaseAnalysisColumn column, ITask task) { 
     switch (column) {
-      case TaskLazyDataModel.NAME:
+      case CASE_NAME:
+        return StringUtils.isEmpty(task.getCase().getName()) ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") : task.getCase().getName();
+      case CASE_DESCRIPTION:
+        return task.getCase().getDescription();
+      case CASE_ID:
+        return String.valueOf(task.getCase().getId());
+      case CASE_CATEGORY:
+        return task.getCase().getCategoryPath();
+      case CASE_CREATOR:
+        if (task.getCase().getCreatorUserName() == null) {
+          return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
+        }
+        return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(task.getCase().getCreatorUser(), task.getCase().getCreatorUserName());
+      case CASE_OWNER:
+        if (task.getCase().getOwnerName() == null) {
+          return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
+        }
+        return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(task.getCase().getOwner(), task.getCase().getOwnerName());
+      case CASE_STATE:
+        return task.getCase().getState().toString();
+      case TASK_NAME:
         return StringUtils.isEmpty(task.getName()) ? Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable") : task.getName();
-      case TaskLazyDataModel.DESCRIPTION:
-        return task.getDescription();
-      case TaskLazyDataModel.ID:
+      case TASK_ID:
         return String.valueOf(task.getId());
-      case TaskLazyDataModel.ACTIVATOR:
+      case TASK_CATEGORY:
+        return task.getCategoryPath();
+      case TASK_DESCRIPTION:
+        return task.getDescription();
+      case TASK_ACTIVATOR:
         if (task.getActivatorName() == null) {
           return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
         }
         return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(task.getActivator(), task.getActivatorName());
-      case TaskLazyDataModel.PRIORITY:
+      case TASK_WORKER:
+        if (task.getWorkerUserName() == null) {
+          return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
+        }
+        return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForUser(task.getWorkerUser(), task.getWorkerUserName());
+      case TASK_PRIORITY:
         return task.getPriority().toString();
-      case TaskLazyDataModel.STATE:
+      case TASK_STATE:
         return task.getState().toString();
-      case TaskLazyDataModel.CREATION_TIME:
+      case TASK_CREATION_TIME:
         return formatDate(task.getStartTimestamp());
-      case TaskLazyDataModel.EXPIRY_TIME:
+      case TASK_EXPIRY_TIME:
         Date expiryTimestamp = task.getExpiryTimestamp();
         return expiryTimestamp != null ? formatDate(expiryTimestamp): "";
-      case TaskLazyDataModel.COMPLETED_ON:
+      case TASK_FINISHED_TIME:
         Date endTimestamp = task.getEndTimestamp();
         return endTimestamp != null ? formatDate(endTimestamp): "";
       default:
-        return getCustomColumnValue(column, task);
+        return "";
     }
   }
-  
-  protected String getCustomColumnValue(String column, ITask task) {
-    return "";
-  }
-  
   private List<List<Object>> generateData(List<ITask> tasks) {
     List<List<Object>> rows = new ArrayList<>();
     for (ITask task : tasks) {
       List<Object> row = new ArrayList<>();
-      for (String column : columnsVisibility) {
+      for (TaskAndCaseAnalysisColumn column : TaskAndCaseAnalysisColumn.values()) {
+        if (isColumnVisible(column))
         row.add(getColumnValue(column, task));
       }
         rows.add(row);
@@ -169,11 +210,15 @@ public class TaskExporter {
     SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy_HHmm");
     Date createdFileTime = creationDate != null ? creationDate : new Date();
     String fileNameSuffix = suffix == null ? dateFormat.format(createdFileTime) : dateFormat.format(createdFileTime) + suffix; 
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/exportedTasksFileName",
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/exportedTasksCasesFileName",
         Arrays.asList(fileNameSuffix, extension));
   }
   
-  protected String formatDate(Date datetime) {
+  private boolean isColumnVisible(TaskAndCaseAnalysisColumn column) {
+    return columnsVisibility.get(column.name());
+  }
+  
+  private String formatDate(Date datetime) {
     String pattern =
         Ivy.cms().findContentObjectValue("/patterns/dateTimePattern", Locale.ENGLISH).getContentAsString();
     return new SimpleDateFormat(pattern).format(datetime);
