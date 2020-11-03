@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
+import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
@@ -46,7 +47,7 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
   
   @Override
   protected List<String> getDefaultColumns() {
-    return Arrays.asList(TaskLazyDataModel.PRIORITY, TaskLazyDataModel.NAME, TaskLazyDataModel.ACTIVATOR, TaskLazyDataModel.ID, TaskLazyDataModel.CREATION_TIME, TaskLazyDataModel.EXPIRY_TIME, CUSTOM_VAR_CHAR_FIELD5, CUSTOM_TIMESTAMP_FIELD12);
+    return Arrays.asList(TaskSortField.PRIORITY.name(), TaskSortField.NAME.name(), TaskSortField.ACTIVATOR.name(), TaskSortField.ID.name(), TaskSortField.CREATION_TIME.name(), TaskSortField.EXPIRY_TIME.name(), CUSTOM_VAR_CHAR_FIELD5, CUSTOM_TIMESTAMP_FIELD12);
   }
   
   @Override

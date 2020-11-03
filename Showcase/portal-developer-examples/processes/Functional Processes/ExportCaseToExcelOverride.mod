@@ -35,9 +35,9 @@ El0 f1 433 49 30 30 0 15 #rect
 El0 f1 @|EndSubIcon #fIcon
 El0 f81 actionTable 'out=in;
 ' #txt
-El0 f81 actionCode 'import com.axonivy.portal.developerexamples.util.CaseExporterOverride;
-import ch.ivy.addon.portalkit.util.CaseExporter;
-CaseExporter exporter = new CaseExporterOverride(in.columnsVisibility);
+El0 f81 actionCode 'import com.axonivy.portal.developerexamples.exporter.CustomizedCaseExporter;
+import ch.ivy.addon.portalkit.exporter.CaseExporter;
+CaseExporter exporter = new CustomizedCaseExporter(in.columnsVisibility);
 in.exportedFile = exporter.getStreamedContent(in.collectedCasesForExporting);
 ' #txt
 El0 f81 security system #txt

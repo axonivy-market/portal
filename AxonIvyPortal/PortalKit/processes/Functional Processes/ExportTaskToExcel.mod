@@ -35,7 +35,7 @@ El0 f1 433 49 30 30 0 15 #rect
 El0 f1 @|EndSubIcon #fIcon
 El0 f81 actionTable 'out=in;
 ' #txt
-El0 f81 actionCode 'import ch.ivy.addon.portalkit.util.TaskExporter;
+El0 f81 actionCode 'import ch.ivy.addon.portalkit.exporter.TaskExporter;
 TaskExporter exporter = new TaskExporter(in.columnsVisibility);
 in.exportedFile = exporter.getStreamedContent(in.collectedTasksForExporting);
 ' #txt
