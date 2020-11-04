@@ -164,7 +164,11 @@ if (in.#selectedUser != null) {
 
 String oldResponsibleName = in.task.getActivator() != null? in.task.getActivator().getDisplayName() : StringUtils.stripStart(in.task.getActivatorName(), "#");
 
-in.delegateComment = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateComment", [in.task.getId(), oldResponsibleName, newResponsibleName]);' #txt
+in.delegateComment = StringUtils.isBlank(in.#taskDelegationComment) ?
+	ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateComment", [in.task.getId(), oldResponsibleName, newResponsibleName])
+	: ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateReasonIncludedComment", [in.task.getId(), oldResponsibleName, newResponsibleName, in.#taskDelegationComment.trim()]);
+	
+in.taskDelegationComment = "";' #txt
 Ts0 f80 security system #txt
 Ts0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

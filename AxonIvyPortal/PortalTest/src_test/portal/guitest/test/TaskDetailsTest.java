@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 
+import org.apache.commons.lang.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -20,6 +21,7 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class TaskDetailsTest extends BaseTest {
 
+  private static final String COMMENT_CONTENT = "Test comment";
   private HomePage homePage;
   private TaskWidgetPage taskWidgetPage;
   private TaskDetailsPage taskDetailsPage;
@@ -47,8 +49,10 @@ public class TaskDetailsTest extends BaseTest {
     assertEquals(TestAccount.HR_ROLE_USER.getFullName(), taskDetailsPage.getTaskResponsible());
     
     taskDetailsPage.openTaskDelegateDialog();
+    taskDetailsPage.addCommentOnTaskDelegationDialog(COMMENT_CONTENT);
     taskDetailsPage.selectDelegateResponsible(TestRole.HR_ROLE, true);
     assertEquals(TestRole.HR_ROLE, taskDetailsPage.getTaskResponsible());
+    assertTrue(StringUtils.contains(taskDetailsPage.getFirstTaskNoteComment(), COMMENT_CONTENT));
   }
   
 
