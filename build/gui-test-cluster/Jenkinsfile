@@ -27,8 +27,8 @@ pipeline {
     stage('build') {
       steps {
         script {
-          configs = [node1: [engineDir: "$env.WORKSPACE\\AxonIvyPortal\\PortalTest\\engine1", engineService: "Axon.ivy-8-tmp-cluster-gui-test-1", configDir: "8-cluster-node1"], 
-            node2: [engineDir: "$env.WORKSPACE\\AxonIvyPortal\\PortalTest\\engine2", engineService: "Axon.ivy-8-tmp-cluster-gui-test-2", configDir: "8-cluster-node2"]]
+          configs = [node1: [engineDir: "$env.WORKSPACE\\AxonIvyPortal\\PortalTest\\engine1", engineService: "Axon.ivy-8-cluster-gui-test-1", configDir: "8-cluster-node1"], 
+            node2: [engineDir: "$env.WORKSPACE\\AxonIvyPortal\\PortalTest\\engine2", engineService: "Axon.ivy-8-cluster-gui-test-2", configDir: "8-cluster-node2"]]
           masterNode = configs['node1']
           masterNodeDir = masterNode['engineDir']
           elasticSearchDataDir = 'C:\\tools\\external-elastic-search\\elasticsearch-8-cluster\\data'
