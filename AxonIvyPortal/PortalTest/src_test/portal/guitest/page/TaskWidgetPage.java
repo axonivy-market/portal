@@ -805,4 +805,19 @@ public class TaskWidgetPage extends TemplatePage {
   public void waitForActionGroupDisplay() {
     waitForElementDisplayed(By.cssSelector("div[class='action-container']"), true);
   }
+
+  public WebElement getExportToExcelLink() {
+    return findElementByCssSelector("a[id$=':task-export-to-excel']");
+  }
+
+  public void clickExportToExcelLink() {
+    WebElement downloadLink = getExportToExcelLink();
+    if (downloadLink != null) {
+      downloadLink.click();
+    }
+  }
+
+  public void waitForStatusDialogDisplayed(boolean displayed) {
+    waitForElementDisplayed(By.cssSelector("div[id$=':status-dialog']"), displayed);
+  }
 }
