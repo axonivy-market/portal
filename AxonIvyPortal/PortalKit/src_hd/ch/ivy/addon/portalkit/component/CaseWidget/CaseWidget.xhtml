@@ -25,6 +25,8 @@
 
 <cc:implementation>
   <h:outputScript name="case-widget.js" library="js" />
+
+  <f:event listener="#{data.dataModel.initColumnsConfiguration()}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="widget case-widget case-widget-container ui-g">
       <h:panelGroup id="case-widget-header" layout="block"
         styleClass="widget-header ui-g-12 ui-g u-no-padding-left u-no-padding-bottom js-case-widget-header"
@@ -173,17 +175,36 @@
               oncomplete="PF('save-filter-set-dialog').show();" rendered="#{!cc.attrs.isTechnicalCaseView}"
               actionListener="#{caseWidgetBean.verifyCaseStateFilter(data.dataModel.selectedFilters)}" />
         </div>
+        <!-- Export to Excel, Manage Columns -->
+        <h:panelGroup id="case-list-actions" styleClass="case-list-actions u-hidden-md-down ">
+          <p:spacer width="20px"></p:spacer>
+          <h:form id="case-export-to-excel-form" styleClass="case-export-to-excel-form">
+            <p:commandLink ajax="false" id="case-export-to-excel"
+              onclick="PrimeFaces.monitorDownload(start, stop);">
+              <i class="icon ivyicon-office-file-xls-1 u-mar-right-5" />
+              <span class="link-text">
+                <h:outputText
+                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
+              </span>
+              <p:fileDownload
+                value="#{logic.getExportedFile(caseWidgetBean.getColumns(data.dataModel))}" />
+              </p:commandLink>
+          </h:form>
+          <p:spacer width="20px"></p:spacer>
+          <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration id="case-columns-configuration"
+                updatedComponent="#{cc.clientId}:case-view #{cc.clientId}:widget-column-header #{cc.clientId}:hidden-case-count #{cc.clientId}:case-list-actions"
+                dataModel="#{data.dataModel}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();"
+                configButtonId="case-config-button" overlayPanelId="case-config-columns-panel" />
+        </h:panelGroup>
       </h:panelGroup>
     </h:panelGroup>
 
     <h:panelGroup id="widget-column-header"
       class="widget-column-header js-case-widget-column-header #{cc.attrs.listHeaderStyleClass}">
-      <f:event listener="#{data.dataModel.initColumnsConfiguration()}" type="preRenderComponent" />
       <cc:renderFacet name="caseListHeader" />
-      <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration id="case-columns-configuration"
-            updatedComponent="#{cc.clientId}:case-view #{cc.clientId}:widget-column-header #{cc.clientId}:hidden-case-count"
-            dataModel="#{data.dataModel}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();"
-            configButtonId="case-config-button" overlayPanelId="case-config-columns-panel" />
+      <h:panelGroup id="case-operations-container" layout="block" styleClass="operations-column u-hidden-md-down">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/operations')}" />
+      </h:panelGroup>
     </h:panelGroup>
     <h:panelGroup id="case-view" layout="block" class="ui-g-12 case-view">
       <h:panelGroup id="case-list" layout="block" styleClass="case-list">
@@ -313,10 +334,22 @@
       $(function() {
         caseWidget.updateCaseCountToBreadcrumb();
       });
+
+      function start() {
+          PF('status-dialog').show();
+      }
+
+      function stop() {
+          PF('status-dialog').hide();
+      }
   </script>
 
   <h:form id="update-case-count-rc-form">
     <p:remoteCommand id="update-case-count-remote-cmd" name="updateCaseCount" global="false" process="@this" immediate="true" />
   </h:form>
+  <p:dialog modal="true" id="status-dialog" widgetVar="status-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" draggable="false" closable="false" resizable="false" responsive="true">
+    <div>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/waitingDownloadMessage')}</div>
+    <h:panelGroup layout="block" rendered="#{data.dataModel.rowCount gt caseWidgetBean.getMaxCaseNumberInExcel()}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/downloadZipFileExplanation')}</h:panelGroup>
+  </p:dialog>
 </cc:implementation>
 </html>

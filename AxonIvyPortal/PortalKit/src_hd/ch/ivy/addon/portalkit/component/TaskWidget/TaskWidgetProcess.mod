@@ -88,6 +88,22 @@ Ts0 @PushWFArc f69 '' #zField
 Ts0 @UdMethod f71 '' #zField
 Ts0 @UdProcessEnd f73 '' #zField
 Ts0 @PushWFArc f74 '' #zField
+Ts0 @CallSub f75 '' #zField
+Ts0 @GridStep f76 '' #zField
+Ts0 @UdMethod f77 '' #zField
+Ts0 @Alternative f78 '' #zField
+Ts0 @UdProcessEnd f79 '' #zField
+Ts0 @CallSub f80 '' #zField
+Ts0 @GridStep f82 '' #zField
+Ts0 @PushWFArc f83 '' #zField
+Ts0 @PushWFArc f87 '' #zField
+Ts0 @PushWFArc f89 '' #zField
+Ts0 @PushWFArc f90 '' #zField
+Ts0 @PushWFArc f91 '' #zField
+Ts0 @PushWFArc f92 '' #zField
+Ts0 @CallSub f81 '' #zField
+Ts0 @PushWFArc f86 '' #zField
+Ts0 @PushWFArc f88 '' #zField
 >Proto Ts0 Ts0 TaskWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 method start(String,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,Long) #txt
@@ -774,6 +790,121 @@ Ts0 f71 @|UdMethodIcon #fIcon
 Ts0 f73 371 1267 26 26 0 12 #rect
 Ts0 f73 @|UdProcessEndIcon #fIcon
 Ts0 f74 109 1280 371 1280 #arcP
+Ts0 f75 processCall 'Ivy Data Processes/TaskService:findTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria,Integer,Integer)' #txt
+Ts0 f75 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria,Integer startIndex,Integer count> param;' #txt
+Ts0 f75 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
+param.startIndex=in.loopCounter * in.maxResultNumberPerQuery;
+param.count=in.maxResultNumberPerQuery;
+' #txt
+Ts0 f75 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData out;
+' #txt
+Ts0 f75 responseMappingAction 'out=in;
+' #txt
+Ts0 f75 responseActionCode in.collectedTasksForExporting.addAll(result.tasks); #txt
+Ts0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>find tasks</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f75 424 1482 112 44 -26 -8 #rect
+Ts0 f75 @|CallSubIcon #fIcon
+Ts0 f76 actionTable 'out=in;
+' #txt
+Ts0 f76 actionCode 'import java.util.ArrayList;
+in.loopCounter = 0;
+in.maxResultNumberPerQuery = 100000;
+in.collectedTasksForExporting = new ArrayList();' #txt
+Ts0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>init data</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f76 320 1354 112 44 -21 -8 #rect
+Ts0 f76 @|StepIcon #fIcon
+Ts0 f77 guid 1754981C30568C07 #txt
+Ts0 f77 method getExportedFile(java.util.List<String>) #txt
+Ts0 f77 inParameterDecl '<java.util.List<String> columnsVisibility> param;' #txt
+Ts0 f77 inParameterMapAction 'out.columnsVisibility=param.columnsVisibility;
+' #txt
+Ts0 f77 outParameterDecl '<org.primefaces.model.StreamedContent exportedFile> result;' #txt
+Ts0 f77 outParameterMapAction 'result.exportedFile=in.exportedFile;
+' #txt
+Ts0 f77 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>getExportedFile(List&lt;String&gt;)</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f77 83 1363 26 26 -46 15 #rect
+Ts0 f77 @|UdMethodIcon #fIcon
+Ts0 f78 464 1360 32 32 0 16 #rect
+Ts0 f78 @|AlternativeIcon #fIcon
+Ts0 f79 851 1363 26 26 0 12 #rect
+Ts0 f79 @|UdProcessEndIcon #fIcon
+Ts0 f80 processCall 'Ivy Data Processes/TaskService:countTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)' #txt
+Ts0 f80 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria> param;' #txt
+Ts0 f80 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
+' #txt
+Ts0 f80 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData out;
+' #txt
+Ts0 f80 responseMappingAction 'out=in;
+out.totalTasks=result.totalTasks;
+' #txt
+Ts0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>count tasks</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f80 176 1354 112 44 -31 -8 #rect
+Ts0 f80 @|CallSubIcon #fIcon
+Ts0 f82 actionTable 'out=in;
+' #txt
+Ts0 f82 actionCode in.loopCounter++; #txt
+Ts0 f82 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>counter++</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f82 576 1482 112 44 -27 -8 #rect
+Ts0 f82 @|StepIcon #fIcon
+Ts0 f83 288 1376 320 1376 #arcP
+Ts0 f87 expr out #txt
+Ts0 f87 109 1376 176 1376 #arcP
+Ts0 f89 expr in #txt
+Ts0 f89 outCond 'in.loopCounter <= in.totalTasks / in.maxResultNumberPerQuery' #txt
+Ts0 f89 480 1392 480 1482 #arcP
+Ts0 f90 expr out #txt
+Ts0 f90 536 1504 576 1504 #arcP
+Ts0 f91 632 1482 489 1383 #arcP
+Ts0 f92 432 1376 464 1376 #arcP
+Ts0 f81 processCall 'Functional Processes/ExportTaskToExcel:exportToExcel(java.util.List<ch.ivyteam.ivy.workflow.ITask>,java.util.List<String>)' #txt
+Ts0 f81 requestActionDecl '<java.util.List<ch.ivyteam.ivy.workflow.ITask> collectedTasksForExporting,java.util.List<String> columnsVisibility> param;' #txt
+Ts0 f81 requestMappingAction 'param.collectedTasksForExporting=in.collectedTasksForExporting;
+param.columnsVisibility=in.columnsVisibility;
+' #txt
+Ts0 f81 responseMappingAction 'out=in;
+out.exportedFile=result.exportedFile;
+' #txt
+Ts0 f81 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>export to excel</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f81 616 1354 112 44 -38 -8 #rect
+Ts0 f81 @|CallSubIcon #fIcon
+Ts0 f86 496 1376 616 1376 #arcP
+Ts0 f88 728 1376 851 1376 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -844,3 +975,19 @@ Ts0 f64 mainOut f69 tail #connect
 Ts0 f69 head f68 mainIn #connect
 Ts0 f71 mainOut f74 tail #connect
 Ts0 f74 head f73 mainIn #connect
+Ts0 f80 mainOut f83 tail #connect
+Ts0 f83 head f76 mainIn #connect
+Ts0 f76 mainOut f92 tail #connect
+Ts0 f92 head f78 in #connect
+Ts0 f89 head f75 mainIn #connect
+Ts0 f75 mainOut f90 tail #connect
+Ts0 f90 head f82 mainIn #connect
+Ts0 f82 mainOut f91 tail #connect
+Ts0 f91 head f78 in #connect
+Ts0 f77 mainOut f87 tail #connect
+Ts0 f87 head f80 mainIn #connect
+Ts0 f78 out f89 tail #connect
+Ts0 f78 out f86 tail #connect
+Ts0 f86 head f81 mainIn #connect
+Ts0 f81 mainOut f88 tail #connect
+Ts0 f88 head f79 mainIn #connect
