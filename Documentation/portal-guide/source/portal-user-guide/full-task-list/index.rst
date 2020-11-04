@@ -245,6 +245,13 @@ HowTo: Show Workflow Events
 
 |workflow-events-table|
 
+HowTo: Export Task List
+-----------------------
+
+You may export the Task List by clicking on the button **Export to Excel**
+
+|export-to-excel-button|
+
 .. include:: ../includes/_common-icon.rst
 
 
@@ -262,3 +269,4 @@ HowTo: Show Workflow Events
 .. |how-to-export-note-details| image:: ../../screenshots/task-detail/how-to-export-note-details.png
 .. |how-to-show-workflow-event| image:: ../../screenshots/task-detail/how-to-show-workflow-event.png
 .. |workflow-events-table| image:: ../../screenshots/task-detail/workflow-events-table.png
+.. |export-to-excel-button| image:: ../../screenshots/task/export-to-excel-button.png
