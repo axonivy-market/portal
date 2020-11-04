@@ -229,6 +229,13 @@ HowTo: Export a case history
 
 |export-case-history|
 
+HowTo: Export Case List
+-----------------------
+
+You may export the Case List by clicking on the button **Export to Excel**
+
+|export-to-excel-button|
+
 .. include:: ../includes/_common-icon.rst
 
 .. |navigate-to-full-cases-list-page| image:: ../../screenshots/case/navigate-to-full-cases-list-page.png
@@ -245,3 +252,4 @@ HowTo: Export a case history
 .. |how-to-add-task-note| image:: ../../screenshots/case-detail/how-to-add-task-note.png
 .. |how-to-show-note-details| image:: ../../screenshots/case-detail/how-to-show-note-details.png
 .. |export-case-history| image:: ../../screenshots/case/export-case-history.png
+.. |export-to-excel-button| image:: ../../screenshots/case/export-to-excel-button.png
