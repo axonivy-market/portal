@@ -14,6 +14,7 @@ import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.DefaultExpresTaskPage;
 import portal.guitest.page.ExpressApprovalPage;
 import portal.guitest.page.ExpressEndPage;
@@ -283,7 +284,7 @@ public class PortalExpressTest extends BaseTest {
 		ExpressProcessPage expressProcessPage = new ExpressProcessPage();
 		expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
 		ExpressFormDefinitionPage formDefinition = configureComplexProcess(expressProcessPage);
-		formDefinition.executeWorkflow();
+		formDefinition.executeWorkflowAndWaitForUserTaskWithEmailDisplay();
 		executeComplexProcess();
 	}
 
@@ -429,6 +430,7 @@ public class PortalExpressTest extends BaseTest {
 
 	protected void executeUserTask() {
 		taskWidgetPage = new TaskWidgetPage();
+    WaitHelper.assertTrueWithRefreshPage(taskWidgetPage, () -> taskWidgetPage.countTasks() == 1);
 		taskWidgetPage.startTask(0);
 		ExpressTaskPage expressTaskPage = new ExpressTaskPage();
 		expressTaskPage.finish();
@@ -455,6 +457,7 @@ public class PortalExpressTest extends BaseTest {
 
 	protected void executeApproval(String comment) {
 		taskWidgetPage = new TaskWidgetPage();
+    WaitHelper.assertTrueWithRefreshPage(taskWidgetPage, () -> taskWidgetPage.countTasks() == 1);
 		taskWidgetPage.startTask(0);
 		ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
 		approvalPage1.comment(comment);

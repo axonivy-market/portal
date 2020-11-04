@@ -11,6 +11,7 @@ import org.junit.Test;
 import portal.guitest.bean.ExpressResponsible;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.ExpressApprovalPage;
 import portal.guitest.page.ExpressEndPage;
 import portal.guitest.page.ExpressFormDefinitionPage;
@@ -112,6 +113,7 @@ public class ExpressTest extends BaseTest{
   
   private void executeApproval(String comment) {
     taskWidgetPage = new TaskWidgetPage();
+    WaitHelper.assertTrueWithRefreshPage(taskWidgetPage, () -> taskWidgetPage.countTasks() == 1);
     taskWidgetPage.startTask(0);
     ExpressApprovalPage approvalPage1 = new ExpressApprovalPage();
     approvalPage1.comment(comment);
