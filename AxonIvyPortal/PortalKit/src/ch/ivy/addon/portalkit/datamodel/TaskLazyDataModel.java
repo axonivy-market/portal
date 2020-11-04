@@ -25,6 +25,7 @@ import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.SortDirection;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
+import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.service.DummyTaskService;
@@ -48,7 +49,8 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
 public class TaskLazyDataModel extends LazyDataModel<ITask> {
-
+  public static final String DESCRIPTION = "DESCRIPTION";
+  
   private static final long serialVersionUID = -6615871274830927272L;
 
   protected String taskWidgetComponentId;
@@ -68,8 +70,8 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected List<String> allColumns = new ArrayList<>();
   protected List<String> selectedColumns = new ArrayList<>();
   protected List<String> portalDefaultColumns =
-      Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "COMPLETED_ON", "STATE");
-  protected List<String> portalRequiredColumns = Arrays.asList("NAME");
+      Arrays.asList(TaskSortField.PRIORITY.name(), TaskSortField.NAME.name(), TaskSortField.ACTIVATOR.name(), TaskSortField.ID.name(), TaskSortField.CREATION_TIME.name(), TaskSortField.EXPIRY_TIME.name(), TaskSortField.COMPLETED_ON.name(), TaskSortField.STATE.name());
+  protected List<String> portalRequiredColumns = Arrays.asList(TaskSortField.NAME.name());
 
   protected boolean compactMode;
   protected boolean isAutoHideColumns;
@@ -727,7 +729,12 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   public void saveColumnsConfiguration() {
-    selectedColumns.addAll(portalRequiredColumns);
+    // avoid duplicating
+    for (String requiredColumn : portalRequiredColumns) {
+      if (!selectedColumns.contains(requiredColumn)) {
+        selectedColumns.add(requiredColumn);
+      }
+    }
     setAutoHideColumns(isDisableSelectionCheckboxes);
     TaskColumnsConfigurationService service = new TaskColumnsConfigurationService();
     Long applicationId = Ivy.request().getApplication().getId();

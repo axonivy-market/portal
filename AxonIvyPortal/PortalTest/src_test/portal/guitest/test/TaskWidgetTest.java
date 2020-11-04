@@ -243,4 +243,18 @@ public class TaskWidgetTest extends BaseTest {
     assertEquals("Sick Leave Request", taskWidgetPage.getNameOfTaskAt(0));
     assertEquals("Annual Leave Request", taskWidgetPage.getNameOfTaskAt(taskWidgetPage.countTasks() - 1));
   }
+
+  @Test
+  public void testExportToExcel() {
+    login(TestAccount.ADMIN_USER);
+    HomePage homePage = new HomePage();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.expand();
+
+    taskWidgetPage.clickExportToExcelLink();
+
+    taskWidgetPage.waitForStatusDialogDisplayed(true);
+
+    taskWidgetPage.waitForStatusDialogDisplayed(false);
+  }
 }

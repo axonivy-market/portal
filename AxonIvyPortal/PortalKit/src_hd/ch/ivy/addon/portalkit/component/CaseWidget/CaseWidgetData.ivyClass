@@ -30,3 +30,13 @@ privateFilters java.util.List<ch.ivy.addon.portalkit.casefilter.CaseFilterData> 
 privateFilters PERSISTENT #fieldModifier
 filterDataToBeDeleted ch.ivy.addon.portalkit.casefilter.CaseFilterData #field
 filterDataToBeDeleted PERSISTENT #fieldModifier
+columnsVisibility java.util.List<String> #field
+columnsVisibility PERSISTENT #fieldModifier
+exportedFile org.primefaces.model.StreamedContent #field
+exportedFile PERSISTENT #fieldModifier
+loopCounter Integer #field
+loopCounter PERSISTENT #fieldModifier
+maxResultNumberPerQuery Integer #field
+maxResultNumberPerQuery PERSISTENT #fieldModifier
+collectedCasesForExporting java.util.List<ch.ivyteam.ivy.workflow.ICase> #field
+collectedCasesForExporting PERSISTENT #fieldModifier
