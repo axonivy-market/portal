@@ -182,8 +182,13 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 
 	public void executeWorkflow() {
 		click(By.id("execute-button"));
-		waitAjaxIndicatorDisappear();
+    waitForElementDisplayed(By.id("form:dynaform-fieldset"), true);
 	}
+
+  public void executeWorkflowAndWaitForUserTaskWithEmailDisplay() {
+    click(By.id("execute-button"));
+    waitForElementDisplayed(By.id("task-form:task-view:dyna-form-fieldset"), true);
+  }
 
 	public void nextStep() {
 		click(By.id("next-button"));

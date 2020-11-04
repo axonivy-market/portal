@@ -10,7 +10,7 @@ def stopAllElasticSearchs() {
     }
   '''
   echo "====================Turn off Elastic Search Windows services===================="
-  def elasticSearchServices = ['ivy-elasticsearch-master-cluster']
+  def elasticSearchServices = ['ivy-elasticsearch-master-cluster', 'ivy-elasticsearch-8-cluster']
   for (elasticSearchService in elasticSearchServices) {
     stopWindowsService(elasticSearchService)
   }
@@ -18,11 +18,25 @@ def stopAllElasticSearchs() {
 
 def stopAllEngines() {
   echo "====================Stop engines===================="
-  def engineServices = ['Axon.ivy Engine - LTS', 'Axon.ivyEngine8.0', 'Axon.ivyEngineTrunk', 'Axon.ivy-master-cluster-1', 'Axon.ivy-master-cluster-2', 'Axon.ivyEngineDashboard']
+  def engineServices = ['Axon.ivy Engine - LTS', 'Axon.ivyEngine8.0', 'Axon.ivyEngineTrunk', 'Axon.ivy-master-cluster-gui-test-1', 'Axon.ivy-master-cluste-gui-test-2', 'Axon.ivy-master-tmp-cluster-gui-test-1', 'Axon.ivy-master-tmp-cluste-gui-test-2', 'Axon.ivy-8-tmp-cluster-gui-test-1', 'Axon.ivy-8-tmp-cluster-gui-test-2', 'Axon.ivy-8-cluster-gui-test-1', 'Axon.ivy-8-cluster-gui-test-2', 'Axon.ivyEngineDashboard']
   for (engineService in engineServices) {
     stopWindowsService(engineService)
   }
   stopAllElasticSearchs()
+}
+
+def stopIIS() {
+  echo "====================Stop IIS===================="
+  bat """
+    iisreset /stop
+  """
+}
+
+def startIIS() {
+  echo "====================Start IIS===================="
+  bat """
+    iisreset /start
+  """
 }
 
 def startWindowsService(String serviceName) {
