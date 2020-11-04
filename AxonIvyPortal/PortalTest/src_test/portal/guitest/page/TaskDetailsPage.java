@@ -95,8 +95,12 @@ public class TaskDetailsPage extends TemplatePage {
   public String getTaskId() {
     return findElementById("task-id").getText();
   }
-  
-  
+
+  public String getFirstTaskNoteComment() {
+    return findElementByCssSelector("a[id$='task-detail-template:task-notes:task-note-table:0:note-message']")
+        .getText();
+  }
+
   public void openTaskDelegateDialog() {
     openActionPanel();
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
@@ -121,7 +125,13 @@ public class TaskDetailsPage extends TemplatePage {
     WebElement actionPanel = findElementByCssSelector("div[id$='task-detail-template:additional-options:side-steps-panel']");
     return actionPanel.findElements(By.cssSelector("a[class*='option-item']")).stream().map(WebElement::getText).collect(Collectors.toList());
   }
-  
+
+  public void addCommentOnTaskDelegationDialog(String comment) {
+    type(By.cssSelector(
+        "textarea[id$='task-detail-template:task-item-delegate-component:task-delegate-form:input-text-area-delegate-message']"),
+        comment);
+  }
+
   public void selectDelegateResponsible(String responsibleName, boolean isRole) {
     if(isRole) {
       List<WebElement> radioButtonLabels = findListElementsByCssSelector("table[id$='activator-type-select'] label");
