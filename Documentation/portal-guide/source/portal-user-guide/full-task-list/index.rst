@@ -248,7 +248,7 @@ HowTo: Show Workflow Events
 HowTo: Export Task List
 -----------------------
 
-You may export the Task List by clicking on the button **Export to Excel**
+You may export the Task List by clicking on the button **Export to Excel**.
 
 |export-to-excel-button|
 
