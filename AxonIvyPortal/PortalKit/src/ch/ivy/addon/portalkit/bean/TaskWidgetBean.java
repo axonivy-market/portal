@@ -152,7 +152,6 @@ public class TaskWidgetBean implements Serializable {
 
   /**
    * Gets visible columns on Task list page.
-   * When press F5, bean is reinitialized (because of @ViewScope), dataModel isn't set again like full flow of opening Task list page, we use parameter to void NullPointerExcepion.
    * 
    * @param dataModel
    * @return visible columns
