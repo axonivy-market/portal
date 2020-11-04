@@ -5,6 +5,7 @@ import static ch.ivyteam.ivy.workflow.TaskState.DELAYED;
 import static ch.ivyteam.ivy.workflow.TaskState.DESTROYED;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ManagedBean;
@@ -15,6 +16,8 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.bo.GuidePool;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.enums.TaskSortField;
+import ch.ivy.addon.portalkit.exporter.TaskExporter;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 import ch.ivy.addon.portalkit.support.HtmlParser;
@@ -146,5 +149,29 @@ public class TaskWidgetBean implements Serializable {
   public void destroyTask(Long taskId) {
     TaskUtils.destroyTaskById(taskId);
   }
-  
+
+  /**
+   * Gets visible columns on Task list page.
+   * 
+   * @param dataModel
+   * @return visible columns
+   */
+  public List<String> getColumns(TaskLazyDataModel dataModel) {
+    List<String> visibilityColumns = new ArrayList<>();
+    visibilityColumns.addAll(dataModel.getSelectedColumns());
+
+    /*
+     * In UI we have a column called "Name / Description", but PortalRequiredColumns contains only "Name" column, so
+     * that we need to check and add "Description" to Excel file
+     */
+    List<String> requiredColumns = dataModel.getPortalRequiredColumns();
+    if (requiredColumns != null && requiredColumns.contains(TaskSortField.NAME.name())) {
+      visibilityColumns.add(TaskLazyDataModel.DESCRIPTION);
+    }
+    return visibilityColumns;
+  }
+
+  public int getMaxTaskNumberInExcel() {
+    return TaskExporter.MAX_TASK_NUMBER_IN_EXCEL;
+  }
 }
