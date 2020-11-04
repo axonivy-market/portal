@@ -232,7 +232,7 @@ HowTo: Export a case history
 HowTo: Export Case List
 -----------------------
 
-You may export the Case List by clicking on the button **Export to Excel**
+You may export the Case List by clicking on the button **Export to Excel**.
 
 |export-to-excel-button|
 
