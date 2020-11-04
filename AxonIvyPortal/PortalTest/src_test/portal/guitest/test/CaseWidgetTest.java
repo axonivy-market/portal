@@ -230,4 +230,17 @@ public class CaseWidgetTest extends BaseTest {
     caseWidgetPage = userProfilePage.openCaseList();
     assertEquals(CaseState.DONE, caseWidgetPage.getCaseState(0));
   }
+
+  @Test
+  public void testExportToExcel() {
+    login(TestAccount.ADMIN_USER);
+    HomePage homePage = new HomePage();
+    CaseWidgetPage caseWidgetPage = homePage.openCaseList();
+
+    caseWidgetPage.clickExportToExcelLink();
+
+    caseWidgetPage.waitForStatusDialogDisplayed(true);
+
+    caseWidgetPage.waitForStatusDialogDisplayed(false);
+  }
 }

@@ -29,8 +29,8 @@
   <h:outputScript name="task-widget.js" library="js" />
   
   <f:event listener="#{taskWidgetBean.preRender(data.dataModel)}" type="preRenderComponent" />
-
-  <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} ui-g">
+  <f:event listener="#{data.dataModel.initColumnsConfiguration()}" type="preRenderComponent" />
+	<div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} ui-g">
     <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}">
       <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header ui-g-12 u-no-padding-left u-no-padding-bottom"
         layout="block">
@@ -200,8 +200,31 @@
                 update="save-filter-set-dialog task-widget:filter-save-form:save-filter-type-radio"
                 actionListener="#{taskWidgetBean.verifyTaskStateFilter(data.dataModel.selectedFilters)}"
                 oncomplete="PF('save-filter-set-dialog').show();" />
-            </div>
-
+          </div>
+          <!-- Export to Excel, Manage Columns -->
+          <h:panelGroup id="task-list-actions" styleClass="task-list-actions u-hidden-md-down ">
+            <p:spacer width="20px"></p:spacer>
+            <h:form id="task-export-to-excel-form" styleClass="task-export-to-excel-form">
+              <p:commandLink ajax="false" id="task-export-to-excel"
+                onclick="PrimeFaces.monitorDownload(start, stop);">
+                <i class="icon ivyicon-office-file-xls-1 u-mar-right-5" />
+                <span class="link-text">
+                  <h:outputText
+                    value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
+                </span>
+                <p:fileDownload
+                  value="#{logic.getExportedFile(taskWidgetBean.getColumns(data.dataModel))}" />
+                </p:commandLink>
+            </h:form>
+            <p:spacer width="20px"></p:spacer>
+            <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration
+              id="task-columns-configuration"
+              updatedComponent="#{cc.clientId}:task-view-container #{cc.clientId}:task-widget-sort-menu #{cc.clientId}:task-list-actions"
+              dataModel="#{data.dataModel}"
+              oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()"
+              configButtonId="task-config-command"
+              overlayPanelId="task-config-columns-panel" />
+          </h:panelGroup>
         </h:panelGroup>
       </h:panelGroup>
     </h:panelGroup>
@@ -210,12 +233,10 @@
       <h:panelGroup id="task-widget-sort-menu" layout="block" rendered="#{!data.dataModel.compactMode}"
         styleClass="widget-sort-menu js-task-widget-sort-menu full-mode #{cc.attrs.listHeaderStyleClass}">
         <h:panelGroup rendered="#{!data.dataModel.compactMode}">
-          <f:event listener="#{data.dataModel.initColumnsConfiguration()}" type="preRenderComponent" />
           <cc:renderFacet name="taskListHeader" />
-          <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration id="task-columns-configuration"
-            updatedComponent="#{cc.clientId}:task-view-container #{cc.clientId}:task-widget-sort-menu"
-            dataModel="#{data.dataModel}" oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()"
-            configButtonId="task-config-command" overlayPanelId="task-config-columns-panel" />
+          <h:panelGroup id="task-operations-container" layout="block" styleClass="operations-column u-hidden-md-down">
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/operations')}" />
+          </h:panelGroup>
         </h:panelGroup>
       </h:panelGroup>
 
@@ -421,9 +442,21 @@
         Portal.init(responsiveToolkit);
         taskWidget.updateTaskCountToBreadcrumb();
       });
+
+      function start() {
+          PF('status-dialog').show();
+      }
+
+      function stop() {
+          PF('status-dialog').hide();
+      }
     </script>
   <h:form id="update-task-count-rc-form">
     <p:remoteCommand id="update-task-count-remote-cmd" name="updateTaskCount" update="#{cc.clientId}:task-widget-title" global="false" process="@this" immediate="true" />
   </h:form>
+  <p:dialog modal="true" id="status-dialog" widgetVar="status-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" draggable="false" closable="false" resizable="false" responsive="true">
+    <div>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/waitingDownloadMessage')}</div>
+    <h:panelGroup layout="block" rendered="#{data.dataModel.rowCount gt taskWidgetBean.getMaxTaskNumberInExcel()}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/downloadZipFileExplanation')}</h:panelGroup>
+  </p:dialog>
 </cc:implementation>
 </html>
