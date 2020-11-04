@@ -1287,11 +1287,25 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 }
 
 .select-delegate-panel {
-  margin: 5px 0 20px 0;
+  margin: 5px 0 10px 0;
 }
 
 .select-delegate-panel .ui-autocomplete, .select-delegate-panel .ui-autocomplete .ui-autocomplete-input {
   width: 100%;
+}
+
+.delegate-comment-panel {
+  margin: 0 0 20px 0;
+}
+
+.delegate-comment-panel .input-text-area-delegate-message-container {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.delegate-comment-panel .input-text-area-delegate-message-container .input-text-area-delegate-message {
+  width: 100%;
+  resize: none;
 }
 
 .delegate-type-container .ui-selectoneradio.ui-widget td {
