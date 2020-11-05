@@ -248,7 +248,7 @@
       </div>
       <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
         <h:outputText id="duration-time"
-          value="#{taskActionBean.formatDurationTime(task.getBusinessRuntime().toNumber())}">
+          value="#{taskActionBean.formatToShortTime(task.getBusinessRuntime().toNumber())}">
         </h:outputText>
       </div>
     </h:panelGroup>
@@ -265,6 +265,7 @@
   <p:tooltip for="related-technical-case" value="##{task.getCase().id} #{task.getCase().name} (#{caseBean.getState(task.getCase()).toUpperCase()})" trackMouse="true" hideEvent="mouseleave click"/>
   <p:tooltip for="no-expiry-available expiry-task-time" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/taskExpiryDisable')}" trackMouse="true" hideEvent="mouseleave click"
     rendered="#{taskBean.isNotDone(task) and taskActionBean.notHaveExpiryHandleLogic(task)}" />
+  <p:tooltip for="duration-time" value="#{taskActionBean.formatToExactTime(task.getBusinessRuntime().toNumber())}" trackMouse="true" hideEvent="mouseleave" />
 
 </cc:implementation>
 </html>
