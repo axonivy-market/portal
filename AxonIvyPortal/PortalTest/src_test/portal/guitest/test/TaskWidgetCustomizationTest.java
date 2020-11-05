@@ -52,7 +52,7 @@ public class TaskWidgetCustomizationTest extends BaseTest {
     MainMenuPage mainMenuPage = new MainMenuPage();
     TaskWidgetPage taskWidgetPage = mainMenuPage.selectTaskMenu();
     taskWidgetPage.waitAjaxIndicatorDisappear();
-    taskWidgetPage.filterTasksInExpendedModeBy("Order");
+    taskWidgetPage.filterTasksInExpendedModeBy("Order", 3);
     taskWidgetPage.sortTaskListByColumn(CUSTOMER_NAME_COLUMN_HEADER);
     taskWidgetPage.waitAjaxIndicatorDisappear();
     assertTrue("Florian".equals(taskWidgetPage.getTaskListCustomCellValue(0, CUSTOMER_NAME_COLUMN_ID)));

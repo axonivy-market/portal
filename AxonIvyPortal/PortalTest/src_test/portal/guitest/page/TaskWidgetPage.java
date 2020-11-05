@@ -16,6 +16,7 @@ import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TaskState;
+import portal.guitest.common.WaitHelper;
 
 public class TaskWidgetPage extends TemplatePage {
 
@@ -132,13 +133,12 @@ public class TaskWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
-	public void filterTasksInExpendedModeBy(String keyword) {
+	public void filterTasksInExpendedModeBy(String keyword, int... expectedNumberOfTasksAfterFiltering) {
 		waitForElementDisplayed(By.cssSelector(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE), true);
 		WebElement keywordFilter = findElementByCssSelector(KEYWORD_FILTER_SELECTOR_EXPANDED_MODE);
 		keywordFilter.clear();
 		keywordFilter.sendKeys(keyword);
-		Sleeper.sleep(2000);
-		waitAjaxIndicatorDisappear();
+    waitForNumberOfTasks(expectedNumberOfTasksAfterFiltering);
 	}
 
 	public CaseDetailsPage openRelatedCaseOfTask() {
@@ -724,5 +724,20 @@ public class TaskWidgetPage extends TemplatePage {
     click(findElementByCssSelector(String.format("a[id$='task-list-scroller:%d:task-item:task-action:additional-options:task-side-steps-menu'", taskIndex)));
     waitForElementDisplayed(By.cssSelector(String.format("div[id$='task-list-scroller:%d:task-item:task-action:additional-options:side-steps-panel'", taskIndex)), true);
   }
-  
+
+
+  private void waitForNumberOfTasks(int... expectedNumberOfTasksAfterFiltering) {
+    int expectedNumber = getExpectedNumberOfTasks(expectedNumberOfTasksAfterFiltering);
+    WaitHelper.assertTrueWithWait(() -> this.countTasks() == expectedNumber);
+  }
+
+  private int getExpectedNumberOfTasks(int... expectedNumberOfTasksAfterFiltering) {
+    int expectedNumber;
+    if (expectedNumberOfTasksAfterFiltering.length == 0) {
+      expectedNumber = 1;
+    } else {
+      expectedNumber = expectedNumberOfTasksAfterFiltering[0];
+    }
+    return expectedNumber;
+  }
 }
