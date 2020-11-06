@@ -332,7 +332,7 @@ if (in.statisticChartList.size() != 0) {
 
 in.isFinishLoadCharts = true;
 in.prevStatisticList = new ArrayList(in.statisticChartList);
-' #txt
+in.defaultCharts.clear();' #txt
 Ss0 f30 security system #txt
 Ss0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -521,7 +521,7 @@ if (in.statisticChartList.size() != 0) {
 
 in.prevStatisticList = new ArrayList(in.statisticChartList);
 in.isFinishLoadCharts = true;
-' #txt
+in.defaultCharts.clear();' #txt
 Ss0 f65 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
