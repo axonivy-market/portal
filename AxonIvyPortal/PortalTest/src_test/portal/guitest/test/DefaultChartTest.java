@@ -43,6 +43,9 @@ public class DefaultChartTest extends BaseTest {
   @Test
   public void testCreateDefaultChart() {
     grantPermissionToCreateChart();
+    HomePage home = new HomePage();
+    home.waitForStatisticRendered();
+
     MainMenuPage mainMenuPage = new MainMenuPage();
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
