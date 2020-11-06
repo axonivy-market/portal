@@ -136,7 +136,24 @@ public class UserMenuBean implements Serializable {
       navigateToUserProfile();
     }
   }
-  
+
+  public void navigateToAbsencesOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      PrimeFaces.current().executeScript("PF('logo-task-losing-confirmation-dialog').show()");
+      targetPage = getAbsencesUrl();
+    } else {
+      navigateToAbsences();
+    }
+  }
+
+  private String getAbsencesUrl() {
+    return PortalNavigator.buildAbsencesUrl();
+  }
+
+  public void navigateToAbsences() throws IOException {
+    getExternalContext().redirect(getAbsencesUrl());
+  }
+
   public void reserveTaskAndNavigateWithGrowl(ITask task) throws IOException {
     IvyComponentLogicCaller<ITask> reserveTask = new IvyComponentLogicCaller<>();
     reserveTask.invokeComponentLogic(TASK_LEAVE_WARNING_COMPONENT, "#{logic.reserve}", new Object[] {});
