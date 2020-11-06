@@ -1,0 +1,5 @@
+co: name={saveAbsenceSetting} description={} changed={2020-11-02 11:23:01 CET} changedby={nqhoan} visualorder={0} guid={175887A77C2D7902} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={175887B4414AA422} datatype={} isdefault={false} langid={de} description={} validfrom={2020-11-02 11:22:53 CET} validto={} changed={2020-11-02 11:23:01 CET} changedby={nqhoan} properties={} id={}
+val: guid={175887B448CEEC80} datatype={} isdefault={false} langid={es} description={} validfrom={2020-11-02 11:22:56 CET} validto={} changed={2020-11-02 11:23:01 CET} changedby={nqhoan} properties={} id={}
+val: guid={175887B44C2DEA1D} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-11-02 11:22:51 CET} validto={} changed={2020-11-02 11:23:01 CET} changedby={nqhoan} properties={} id={}
+val: guid={175887A77C6311CC} datatype={} isdefault={true} langid={en} description={} validfrom={2020-11-02 11:22:08 CET} validto={} changed={2020-11-02 11:22:08 CET} changedby={nqhoan} properties={} id={}

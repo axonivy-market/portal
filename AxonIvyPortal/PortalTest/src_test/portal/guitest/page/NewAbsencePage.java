@@ -15,7 +15,7 @@ public class NewAbsencePage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('absence-management:absence-dialog_title')";
+    return "id('absence-dialog_title')";
   }
   
   public void input(LocalDate absenceFrom, LocalDate absenceTill, String comment) {

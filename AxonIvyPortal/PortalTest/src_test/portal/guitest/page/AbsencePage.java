@@ -14,7 +14,7 @@ public class AbsencePage extends TemplatePage {
 
 	@Override
 	protected String getLoadedLocator() {
-		return "id('absence-management-dialog_title')";
+		return "id('absences-management-form')";
 	}
 
 	public NewAbsencePage openNewAbsenceDialog() {
@@ -76,7 +76,7 @@ public class AbsencePage extends TemplatePage {
 	}
 
 	public void setSubstitutedByAdmin(String substitutedUser) {
-		String substitutedUserInput = "input[id$='substituted-user_input']";
+		String substitutedUserInput = "input[id$=':substituted-user-selection-component:substituted-user_input']";
 		waitForElementDisplayed(By.cssSelector(substitutedUserInput), true);
 		WebElement substituted = findElementByCssSelector(substitutedUserInput);
 		substituted.clear();
@@ -93,11 +93,16 @@ public class AbsencePage extends TemplatePage {
 	}
 	
   public void saveSubstitute() {
-    clickByCssSelector("button[id*='absence-management:save-substitute']");
+    clickByCssSelector("button[id$='absences-management-form:save-substitute']");
     waitAjaxIndicatorDisappear();
   }
   
-  public WebElement getAbsenceDialog() {
-    return findElementById("absence-management-dialog");
+  public WebElement getAbsenceForm() {
+    return findElementById("absences-management-form");
+  }
+
+  public void waitForAbsencesGrowlMessageDisplay() {
+    WebElement growlMessage = findElementByCssSelector("div[id$='absences-management-form:absences-management-info_container']");
+    waitForElementDisplayed(growlMessage.findElement(By.className("ui-growl-item-container")), true, 5);
   }
 }
