@@ -50,6 +50,7 @@ public class HomePage extends TemplatePage {
       waitForElementDisplayed(By.cssSelector("a[class$='chart-info']"), true, 5);
       return true;
     });
+    ensureNoBackgroundRequest();
   }
 
 	public String getAnnouncementMessage() {

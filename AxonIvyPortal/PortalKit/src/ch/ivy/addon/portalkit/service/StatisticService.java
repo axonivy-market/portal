@@ -1511,6 +1511,11 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     } else {
       distinctChart.addAll(newList);
     }
+
+    if (CollectionUtils.isEqualCollection(targetList, distinctChart)) {
+      distinctChart.addAll(newList);
+    }
+
     return distinctChart;
 
   }
