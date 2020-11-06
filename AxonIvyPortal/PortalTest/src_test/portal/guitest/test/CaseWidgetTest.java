@@ -239,8 +239,6 @@ public class CaseWidgetTest extends BaseTest {
 
     caseWidgetPage.clickExportToExcelLink();
 
-    caseWidgetPage.waitForStatusDialogDisplayed(true);
-
-    caseWidgetPage.waitForStatusDialogDisplayed(false);
+    assertTrue(caseWidgetPage.isDownloadCompleted());
   }
 }
