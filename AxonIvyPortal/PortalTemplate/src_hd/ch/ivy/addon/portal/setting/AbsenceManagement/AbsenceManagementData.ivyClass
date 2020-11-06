@@ -1,5 +1,5 @@
 AbsenceManagementData #class
-ch.ivy.addon.portalkit.multiapp.settings.AbsenceManagement #namespace
+ch.ivy.addon.portal.setting.AbsenceManagement #namespace
 absencesByUser java.util.Map #field
 absencesByUser PERSISTENT #fieldModifier
 backupAbsence ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence #field
@@ -30,3 +30,5 @@ substitutes java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute> #fie
 substitutes PERSISTENT #fieldModifier
 substitutions java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute> #field
 substitutions PERSISTENT #fieldModifier
+message String #field
+message PERSISTENT #fieldModifier

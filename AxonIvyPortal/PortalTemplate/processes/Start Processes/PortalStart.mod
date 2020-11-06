@@ -123,6 +123,11 @@ Pt0 @PushWFArc f49 '' #zField
 Pt0 @PushWFArc f47 '' #zField
 Pt0 @PushWFArc f29 '' #zField
 Pt0 @PushWFArc f48 '' #zField
+Pt0 @StartRequest f12 '' #zField
+Pt0 @EndTask f52 '' #zField
+Pt0 @UserDialog f54 '' #zField
+Pt0 @PushWFArc f55 '' #zField
+Pt0 @PushWFArc f53 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk0 @TextInP .type .type #zField
 Bk0 @TextInP .processKind .processKind #zField
@@ -990,7 +995,7 @@ Pt0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f38 @C|.responsibility Everybody #txt
 Pt0 f38 81 1681 30 30 -21 17 #rect
 Pt0 f38 @|StartRequestIcon #fIcon
-Pt0 f44 dialogId ch.ivy.addon.portalkit.settings.UserProfile #txt
+Pt0 f44 dialogId ch.ivy.addon.portal.setting.UserProfile #txt
 Pt0 f44 startMethod start() #txt
 Pt0 f44 requestActionDecl '<> param;' #txt
 Pt0 f44 responseMappingAction 'out=in;
@@ -1137,6 +1142,41 @@ Pt0 f48 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f48 208 256 264 256 #arcP
 Pt0 f48 0 0.4642857142857143 0 -10 #arcLabel
+Pt0 f12 outLink AbsenceManagement.ivp #txt
+Pt0 f12 inParamDecl '<> param;' #txt
+Pt0 f12 requestEnabled true #txt
+Pt0 f12 triggerEnabled false #txt
+Pt0 f12 callSignature AbsenceManagement() #txt
+Pt0 f12 caseData businessCase.attach=true #txt
+Pt0 f12 showInStartList 0 #txt
+Pt0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>AbsenceManagement.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f12 @C|.responsibility Everybody #txt
+Pt0 f12 81 1777 30 30 -61 25 #rect
+Pt0 f12 @|StartRequestIcon #fIcon
+Pt0 f52 321 1777 30 30 0 15 #rect
+Pt0 f52 @|EndIcon #fIcon
+Pt0 f54 dialogId ch.ivy.addon.portal.setting.AbsenceManagement #txt
+Pt0 f54 startMethod start() #txt
+Pt0 f54 requestActionDecl '<> param;' #txt
+Pt0 f54 responseMappingAction 'out=in;
+' #txt
+Pt0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>AbsenceManagement</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f54 160 1770 128 44 -60 -8 #rect
+Pt0 f54 @|UserDialogIcon #fIcon
+Pt0 f55 111 1792 160 1792 #arcP
+Pt0 f53 288 1792 321 1792 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -1968,6 +2008,10 @@ Pt0 f4 out f29 tail #connect
 Pt0 f29 head f31 mainIn #connect
 Pt0 f4 out f48 tail #connect
 Pt0 f48 head f11 mainIn #connect
+Pt0 f12 mainOut f55 tail #connect
+Pt0 f55 head f54 mainIn #connect
+Pt0 f54 mainOut f53 tail #connect
+Pt0 f53 head f52 mainIn #connect
 Bk0 f17 mainOut f26 tail #connect
 Bk0 f26 head f23 mainIn #connect
 Bk0 f19 mainOut f39 tail #connect

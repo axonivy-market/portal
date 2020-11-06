@@ -31,6 +31,7 @@ public final class PortalNavigator {
   private static final String PORTAL_TASK_DETAILS = "Start Processes/PortalStart/TaskDetailsPage.ivp";
   private static final String PORTAL_GLOBAL_SEARCH = "Start Processes/PortalStart/GlobalSearchPage.ivp";
   private static final String PORTAL_USER_PROFILE =  "Start Processes/PortalStart/UserProfile.ivp";
+  private static final String PORTAL_ABSENCE_MANAGEMENT =  "Start Processes/PortalStart/AbsenceManagement.ivp";
   
   public static String getPortalStartUrl() {
     return getRelativeLink(StandardProcessType.DefaultApplicationHomePage);
@@ -138,8 +139,16 @@ public final class PortalNavigator {
     navigateByKeyword("GlobalSearchPage.ivp", PORTAL_GLOBAL_SEARCH, params);
   }
   
+  public static void navigateToUserProfile() {
+    navigate(PORTAL_USER_PROFILE, new HashMap<>());
+  }
+
   public static String buildUserProfileUrl() {
     return buildUrlByKeyword("UserProfile.ivp", PORTAL_USER_PROFILE, new HashMap<>());
+  }
+
+  public static String buildAbsencesUrl() {
+    return buildUrlByKeyword("AbsenceManagement.ivp", PORTAL_ABSENCE_MANAGEMENT, new HashMap<>());
   }
 
   public static String buildUrlByKeyword(String keyword, String defaultFriendlyRequestPath, Map<String, String> param) {
@@ -165,9 +174,5 @@ public final class PortalNavigator {
       return e.getKey() + "=" + URLEncoder.encode(e.getValue(), StandardCharsets.ISO_8859_1);
     }).collect(Collectors.joining("&"));
     return requestPath + (StringUtils.isNotBlank(paramStr) ? "?" + paramStr : StringUtils.EMPTY);
-  }
-  
-  public static void navigateToUserProfile() {
-    navigate(PORTAL_USER_PROFILE, new HashMap<>());
   }
 }

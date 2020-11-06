@@ -2557,7 +2557,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
   .dialog-closing-information, .app-dialog, .select-icon-dialog,
   .setting-dialog, .project-info-dialog, .deputy-dialog,
-  .absence-settings-dialog, .add-absence-dialog {
+  .add-absence-dialog {
     min-width: 96vw;
   }
   .task-template-container, .task-template-button {
@@ -2578,7 +2578,8 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .md-inputfield .absence-user-selection .ui-autocomplete-input.ui-inputfield,
-.substituted-user .ui-autocomplete-input.ui-inputfield {
+.ui-fluid.substituted-user .ui-autocomplete-input.ui-inputfield,
+.ui-fluid .md-inputfield.user-selection-autocomplete-panel .ui-autocomplete-input.ui-inputfield {
   width: 100%;
 }
 
@@ -2748,7 +2749,8 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 /********************************** ABSENCES AND DEPUTY **********************************/
-.absences-table-action-column {
+.absences-table-action-column,
+.ui-datatable thead th.absences-table-action-column {
   text-align: center;
   width: 130px;
 }
@@ -2772,12 +2774,11 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .add-absences-dialog-input-comment {
-  width: calc(100% - 20px);
+  resize: none;
 }
 
 @media screen and (max-width: 40em) {
   .absence-management .show-absence-in-the-past-panel {
-    width: 72%;
     padding-right: 0;
   }
 
@@ -2929,6 +2930,55 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 /********************************** END USER PROFILE SETTING **********************************/
+
+/********************************** ABSENCES SETTING *********************************************/
+
+.absences-management-form {
+  margin: auto;
+  max-width: 1850px;
+  padding: 0 20px;
+}
+
+.absences-management-form .portal-section-container.card {
+  height: 100%;
+}
+
+.absences-management-form .add-absence-panel {
+  text-align: right;
+}
+
+.deputy-for-active-period,
+.deputy-for-next-absence {
+  width: inherit;
+}
+
+.substitute-table .active-period-option {
+  padding: 3px 0;
+}
+
+@media screen and (max-width: 40em) {
+  .absences-management-form .add-absence-panel {
+    text-align: left;
+  }
+
+  .absences-management-form {
+    padding: 0;
+  }
+  
+  .absences-management-form .portal-section-container.card {
+    padding: 0;
+  }
+}
+
+@media screen and (min-width: 90.063em) {
+  .deputy-for-active-period,
+  .deputy-for-next-absence {
+    width: 250px;
+  }
+
+}
+
+/********************************* END ABSENCES SETTING *****************************/
 
 /********************************** PROCESS STARTS **********************************/
 .process-start-container {
