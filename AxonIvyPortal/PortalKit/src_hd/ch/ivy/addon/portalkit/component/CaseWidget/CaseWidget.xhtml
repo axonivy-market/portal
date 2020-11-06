@@ -336,11 +336,15 @@
       });
 
       function start() {
-          PF('status-dialog').show();
+          var statusDialog = PF('status-dialog');
+          statusDialog.jq.removeAttr("download-status");
+          statusDialog.show();
       }
 
       function stop() {
-          PF('status-dialog').hide();
+          var statusDialog = PF('status-dialog');
+          statusDialog.jq.attr("download-status","completed");
+          statusDialog.hide();
       }
   </script>
 
