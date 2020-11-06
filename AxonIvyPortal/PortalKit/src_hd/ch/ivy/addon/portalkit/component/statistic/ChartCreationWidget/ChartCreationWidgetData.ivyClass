@@ -16,3 +16,7 @@ customFields java.util.List<String> #field
 customFields PERSISTENT #fieldModifier
 chartNames java.util.List<ch.ivy.addon.portalkit.dto.DisplayName> #field
 chartNames PERSISTENT #fieldModifier
+isDefaultApplicationLanguage Boolean #field
+isDefaultApplicationLanguage PERSISTENT #fieldModifier
+language String #field
+language PERSISTENT #fieldModifier
