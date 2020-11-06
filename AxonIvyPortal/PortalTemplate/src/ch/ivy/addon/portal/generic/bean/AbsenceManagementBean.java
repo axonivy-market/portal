@@ -1,4 +1,4 @@
-package ch.ivy.addon.portalkit.bean;
+package ch.ivy.addon.portal.generic.bean;
 
 import static ch.ivyteam.ivy.security.IPermission.USER_CREATE_ABSENCE;
 import static ch.ivyteam.ivy.security.IPermission.USER_CREATE_OWN_ABSENCE;
@@ -80,11 +80,6 @@ public class AbsenceManagementBean implements Serializable{
   
   public String findNextAbsence(IUser iUser) {
     return iUser != null ? UserUtils.findNextAbsenceOfUser(iUser) : "";
-  }
-  
-  public void loadData() {
-    IvyComponentLogicCaller<String> reserveTask = new IvyComponentLogicCaller<>();
-    reserveTask.invokeComponentLogic("absence-management", "#{logic.loadData}", new Object[] {});
   }
 
   public boolean isSubstitutionCapable() {
