@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
@@ -811,13 +812,21 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void clickExportToExcelLink() {
+    // Ensure that attribute is removed before downloading
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    WebElement statusDialog = driver.findElement(By.cssSelector("div[id$=':status-dialog']"));
+    js.executeScript("arguments[0].removeAttribute('download-status')", statusDialog);
+
+    // click download
     WebElement downloadLink = getExportToExcelLink();
     if (downloadLink != null) {
       downloadLink.click();
     }
   }
 
-  public void waitForStatusDialogDisplayed(boolean displayed) {
-    waitForElementDisplayed(By.cssSelector("div[id$=':status-dialog']"), displayed);
+  public boolean isDownloadCompleted() {
+    WebElement statusDialog = driver.findElement(By.cssSelector("div[id$=':status-dialog']"));
+    WaitHelper.assertTrueWithWait(() -> StringUtils.isNotBlank(statusDialog.getAttribute("download-status")));
+    return StringUtils.equals(statusDialog.getAttribute("download-status"), "completed");
   }
 }

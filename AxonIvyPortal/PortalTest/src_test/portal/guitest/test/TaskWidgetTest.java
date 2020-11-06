@@ -253,8 +253,6 @@ public class TaskWidgetTest extends BaseTest {
 
     taskWidgetPage.clickExportToExcelLink();
 
-    taskWidgetPage.waitForStatusDialogDisplayed(true);
-
-    taskWidgetPage.waitForStatusDialogDisplayed(false);
+    assertTrue(taskWidgetPage.isDownloadCompleted());
   }
 }
