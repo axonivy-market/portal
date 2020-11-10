@@ -1,5 +1,5 @@
-co: name={addNewAbsence} description={} changed={2020-11-02 11:29:46 CET} changedby={nqhoan} visualorder={0} guid={175887D3689235C9} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={175887E40B8EF1BC} datatype={} isdefault={false} langid={es} description={} validfrom={2020-11-02 11:26:11 CET} validto={} changed={2020-11-02 11:29:46 CET} changedby={nqhoan} properties={} id={}
+co: name={addNewAbsence} description={} changed={2020-11-10 02:58:41 CET} changedby={chnam} visualorder={0} guid={175887D3689235C9} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={175887E40B8EF1BC} datatype={} isdefault={false} langid={es} description={} validfrom={2020-11-10 02:58:41 CET} validto={} changed={2020-11-10 02:58:41 CET} changedby={chnam} properties={} id={}
 val: guid={175887D368C919F8} datatype={} isdefault={true} langid={en} description={} validfrom={2020-11-02 11:25:08 CET} validto={} changed={2020-11-02 11:29:46 CET} changedby={nqhoan} properties={} id={}
-val: guid={175887E40451A0C7} datatype={} isdefault={false} langid={de} description={} validfrom={2020-11-02 11:26:08 CET} validto={} changed={2020-11-02 11:29:46 CET} changedby={nqhoan} properties={} id={}
-val: guid={175887E40F25B8C0} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-11-02 11:26:06 CET} validto={} changed={2020-11-02 11:29:46 CET} changedby={nqhoan} properties={} id={}
+val: guid={175887E40451A0C7} datatype={} isdefault={false} langid={de} description={} validfrom={2020-11-10 02:58:41 CET} validto={} changed={2020-11-10 02:58:41 CET} changedby={chnam} properties={} id={}
+val: guid={175887E40F25B8C0} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-11-10 02:58:41 CET} validto={} changed={2020-11-10 02:58:41 CET} changedby={chnam} properties={} id={}
