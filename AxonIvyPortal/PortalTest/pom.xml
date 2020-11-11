@@ -6,7 +6,7 @@
   <version>7.0.0.0-SNAPSHOT</version>
   <packaging>iar</packaging>
   <properties>
-    <ivy.engine.version>7.0.21</ivy.engine.version>
+    <ivy.engine.version>7.0.17</ivy.engine.version>
     <powermock.version>1.6.6</powermock.version>
     <build.plugin.version>7.0.4</build.plugin.version>
   </properties>
