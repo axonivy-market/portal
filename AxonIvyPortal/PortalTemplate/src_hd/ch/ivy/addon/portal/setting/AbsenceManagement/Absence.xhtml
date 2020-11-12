@@ -6,7 +6,7 @@
   xmlns:pe="http://primefaces.org/ui/extensions">
 
 <ui:composition>
-  <p:dialog widgetVar="absence"
+  <p:dialog widgetVar="absence-dialog"
     id="absence-dialog"
     modal="true"
     dynamic="true"
@@ -92,24 +92,24 @@
         <p:commandLink id="close-add-absence-dialog"
           rendered="#{data.isCreateMode}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" 
-          onclick="PF('absence').hide();"
+          onclick="PF('absence-dialog').hide();"
           styleClass="u-mar-right-15"/>
 
         <p:commandLink id="close-edit-absence-dialog"
           actionListener="#{logic.cancel}"
           rendered="#{!data.isCreateMode}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-          oncomplete="PF('absence').hide();"
+          oncomplete="PF('absence-dialog').hide();"
           styleClass="u-mar-right-15"/>
 
         <p:commandButton process="@form"
           id="save-absence"
           disabled="#{data.validationError}"
-          oncomplete="if (args &amp;&amp; !args.validationFailed)PF('absence').hide();"
+          oncomplete="if (args &amp;&amp; !args.validationFailed)PF('absence-dialog').hide();"
           icon="#{visibilityBean.generateButtonIcon('icon ivyicon-floppy-disk')}"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           actionListener="#{logic.saveAbsence}"
-          update="absences-management-form:absence-table absence-messages absences-management-form:substitute-table absences-management-form:substitution-table"/>
+          update="@(.absence-table) absence-messages @(.substitute-table) @(.substitution-table)"/>
       </h:panelGroup>
     </h:form>
   </p:dialog>
