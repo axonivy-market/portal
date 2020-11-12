@@ -9,11 +9,12 @@ public class IdColumnModel extends ColumnModel implements Serializable {
 
   private static final long serialVersionUID = -4315469062114036720L;
 
-  public IdColumnModel() {
-    this.header = cms("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID");
-    this.width = "120";
-    this.styleClass = "dashboard-tasks__id";
-    this.property = DashboardStandardTaskColumn.ID.getProperty();
+  @Override
+  public void initDefaultValue() {
+    this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID"));
+    this.field = DashboardStandardTaskColumn.ID.getField();
+    this.style = defaultIfEmpty(this.style, "width: 120px");
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__id");
   }
   
   @Override
