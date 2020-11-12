@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
@@ -12,14 +12,15 @@ import ch.ivyteam.ivy.workflow.TaskState;
 public class StateColumnModel extends ColumnModel implements Serializable {
 
   private static final long serialVersionUID = -4315469062114036720L;
-
-  public StateColumnModel() {
-    this.header = cms("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE");
-    this.width = "100";
-    this.styleClass = "dashboard-tasks__state";
-    this.propertyStyleClass = "dashboard-tasks__state-text";
-    this.property = DashboardStandardTaskColumn.STATE.getProperty();
-    this.type = DashboardColumnType.STATE;
+  
+  @Override
+  public void initDefaultValue() {
+    this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE"));
+    this.field = DashboardStandardTaskColumn.STATE.getField();
+    this.style = defaultIfEmpty(this.style, "width: 100px");
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__state");
+    this.fieldStyleClass = defaultIfEmpty(this.fieldStyleClass, "dashboard-tasks__state-text");
+    this.format = DashboardColumnFormat.CUSTOM;
   }
   
   @Override

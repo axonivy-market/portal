@@ -2,7 +2,7 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.io.Serializable;
 
-import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.workflow.ITask;
 
@@ -10,12 +10,13 @@ public class PriorityColumnModel extends ColumnModel implements Serializable {
 
   private static final long serialVersionUID = -4315469062114036720L;
 
-  public PriorityColumnModel() {
-    this.header = cms("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY");
-    this.width = "80";
-    this.styleClass = "dashboard-tasks__priority";
-    this.property = DashboardStandardTaskColumn.PRIORITY.getProperty();
-    this.type = DashboardColumnType.PRIORITY;
+  @Override
+  public void initDefaultValue() {
+    this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY"));
+    this.field = DashboardStandardTaskColumn.PRIORITY.getField();
+    this.style = defaultIfEmpty(this.style, "width: 80px");
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__priority");
+    this.format = DashboardColumnFormat.CUSTOM;
   }
   
   @Override
