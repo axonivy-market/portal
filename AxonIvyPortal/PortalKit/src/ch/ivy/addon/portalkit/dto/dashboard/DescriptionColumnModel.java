@@ -9,9 +9,10 @@ public class DescriptionColumnModel extends ColumnModel implements Serializable 
 
   private static final long serialVersionUID = -4315469062114036720L;
 
-  public DescriptionColumnModel() {
-    this.header = cms("/ch.ivy.addon.portalkit.ui.jsf/common/description");
-    this.property = DashboardStandardTaskColumn.DESCRIPTION.getProperty();
+  @Override
+  public void initDefaultValue() {
+    this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/common/description"));
+    this.field = DashboardStandardTaskColumn.DESCRIPTION.getField();
     this.sortable = false;
   }
   

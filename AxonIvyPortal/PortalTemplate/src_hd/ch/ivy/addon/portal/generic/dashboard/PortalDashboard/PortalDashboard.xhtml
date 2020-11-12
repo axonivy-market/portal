@@ -109,14 +109,14 @@
       
       <p:dialog id="task-widget-configuration-dialog" widgetVar="task-widget-configuration-dialog"
         header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskWidgetConfiguration')}" appendTo="@(body)" closeOnEscape="true" 
-        draggable="false" dynamic="true" fitViewport="true" responsive="true" modal="true" width="80vw">
+        draggable="false" dynamic="true" fitViewport="true" responsive="true" modal="true" width="95vw">
         <h:form id="task-configuration-form">
-          <ic:ch.ivy.addon.portal.generic.dashboard.TaskWidgetConfiguration taskWidget="#{dashboardBean.widget}" />
+          <ic:ch.ivy.addon.portal.generic.dashboard.TaskWidgetConfiguration id="task-widget-configuration-component" taskWidget="#{dashboardBean.widget}" />
         </h:form>
         <f:facet name="footer">
           <p:commandButton id="task-configuration-save-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             actionListener="#{dashboardBean.saveWidget()}"
-            process="@(#{p:component('task-configuration-form')} :not(.task-configuration__category))" partialSubmit="true"
+            process="@(#task-configuration-form :not(.task-configuration__category) :not(.task-configuration__category-panel))" partialSubmit="true"
             update="grid-stack-tab-view:0:grid-stack"
             oncomplete="PF('task-widget-configuration-dialog').hide();loadGrid();" />
             

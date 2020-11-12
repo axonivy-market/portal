@@ -30,32 +30,40 @@
         rows="15" paginator="true" paginatorPosition="bottom" lazy="true" paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
         pageLinks="5" sortField="#{cc.attrs.taskWidget.sortField}" sortBy="#{cc.attrs.taskWidget.sortField}"
         sortOrder="#{cc.attrs.taskWidget.sortDescending ? 'descending' : 'ascending'}">
-        <p:columns var="column" value="#{cc.attrs.taskWidget.columnModels}" headerText="#{column.header}" width="#{column.width}" styleClass="#{column.styleClass}"
-          toggleable="#{column.toggleable}" visible="#{column.visible}" field="#{column.property}" 
-          sortBy="#{column.property}" sortable="#{column.sortable}">
-          <h:panelGroup rendered="#{column.property eq 'start'}">
+        <p:columns var="column" value="#{cc.attrs.taskWidget.columns}" headerText="#{column.header}" styleClass="#{column.styleClass}"
+          toggleable="#{column.toggleable}" visible="#{column.visible}" field="#{column.field}" 
+          sortBy="#{column.field}" sortable="#{column.sortable}" 
+          style="#{column.format eq 'DATE' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.style}">
+          
+          <h:panelGroup rendered="#{column.field eq 'start'}">
             <ui:include src="StartCell.xhtml" />
           </h:panelGroup>
           
-          <h:panelGroup rendered="#{column.property eq 'priority'}">
+          <h:panelGroup rendered="#{column.field eq 'priority'}">
             <ui:include src="PriorityCell.xhtml" />
           </h:panelGroup>
           
-          <h:panelGroup rendered="#{column.property eq 'activator'}">
+          <h:panelGroup rendered="#{column.field eq 'activator'}">
             <ui:include src="ResponsibleCell.xhtml" />
           </h:panelGroup>
           
-          <h:panelGroup rendered="#{column.property eq 'state'}">
+          <h:panelGroup rendered="#{column.field eq 'state'}">
             <ui:include src="StateCell.xhtml" />
           </h:panelGroup>
           
-          <h:panelGroup rendered="#{column.type eq 'STRING'}">
-            <h:outputText value="#{column.display(task)}" styleClass="#{column.propertyStyleClass}" />
+          <h:panelGroup rendered="#{column.format eq 'STRING' or column.format eq 'TEXT'}">
+            <h:outputText value="#{column.display(task)}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}" />
           </h:panelGroup>
           
-          <h:panelGroup rendered="#{column.type eq 'DATE'}">
-            <h:outputText value="#{column.display(task)}">
+          <h:panelGroup rendered="#{column.format eq 'DATE'}">
+            <h:outputText value="#{column.display(task)}" style="#{column.fieldStyle}">
               <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+            </h:outputText>
+          </h:panelGroup>
+          
+          <h:panelGroup rendered="#{column.format eq 'NUMBER'}">
+            <h:outputText value="#{column.display(task)}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}">
+              <f:convertNumber pattern="#{column.pattern}" />
             </h:outputText>
           </h:panelGroup>
         </p:columns>

@@ -35,126 +35,80 @@
         <p:commandButton id="preview-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}"
           styleClass="Fright" update="task-preview" process="@(form :not(.task-configuration__category) :not(.task-configuration__category-panel))" />
       </div>
-
-      <div class="ui-g-3">
-        <p:outputLabel for="name" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/taskName')}" />
-      </div>
-      <div class="ui-g-9">
-        <p:inputText id="name" styleClass="task-configuration__input-text"
-          value="#{cc.attrs.taskWidget.taskName}" />
-      </div>
   
-      <div class="ui-g-3">
-        <p:outputLabel for="description" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" />
-      </div>
-      <div class="ui-g-9">
-        <p:inputText id="description" styleClass="task-configuration__input-text"
-          value="#{cc.attrs.taskWidget.description}" />
-      </div>
-  
-      <div class="ui-g-3">
-        <p:outputLabel for="priorities" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/PRIORITY')}" />
-      </div>
-      <div class="ui-g-9">
-        <p:selectCheckboxMenu id="priorities" value="#{cc.attrs.taskWidget.priorities}" multiple="true"
-          filter="true" filterMatchMode="startsWith" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
-          <f:selectItems value="#{taskWidgetConfigurationBean.priorities}" var="priority" itemValue="#{priority}" 
-            itemLabel="#{taskWidgetConfigurationBean.getUserFriendlyTaskPriority(priority)}" />
-        </p:selectCheckboxMenu>
-      </div>
-  
-      <div class="ui-g-3">
-        <p:outputLabel for="states" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" />
-      </div>
-      <div class="ui-g-9">
-        <p:selectCheckboxMenu id="states" value="#{cc.attrs.taskWidget.states}" multiple="true"
-          filter="true" filterMatchMode="startsWith" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
-          <f:selectItems value="#{taskWidgetConfigurationBean.filteredStates}" var="state" itemValue="#{state}" 
-            itemLabel="#{taskWidgetConfigurationBean.getUserFriendlyTaskState(state)}" />
-        </p:selectCheckboxMenu>
-      </div>
-  
-      <div class="ui-g-3">
-        <p:outputLabel for="responsibles" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" />
-      </div>
-      <div class="ui-g-9">
-        <p:autoComplete id="responsibles" scrollHeight="210" dropdown="true" size="35"
-          completeMethod="#{taskWidgetConfigurationBean.completeResponsibles}" value="#{cc.attrs.taskWidget.responsibles}"
-          var="responsible" itemValue="#{responsible.name}" itemLabel="#{responsible.briefDisplayNameWithState}"
-          converter="pojoConverter" cache="true" maxResults="100" multiple="true"
-          moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true"
-          styleClass="task-configuration__responsibles" forceSelection="true">
-          <p:column>
-            <i class="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-            <h:outputText value="#{taskWidgetConfigurationBean.formatName(responsible)}" />
-          </p:column>
-        </p:autoComplete>
-      </div>
-      <div class="ui-g-3" />
-      <div class="ui-g-9">
-        <span style="width: 10%; display: inline-block" />
-        <p:selectBooleanCheckbox id="can-work-on" value="#{cc.attrs.taskWidget.canWorkOn}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/canWorkOn')}" />
-      </div>
-
-      <div class="ui-g-3">
-        <p:outputLabel for="created-from" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/createdFrom')}" />
-      </div>
-      <div class="ui-g-9">
-        <p:calendar id="created-from" showOn="button" styleClass="task-configuration__calendar"
-          value="#{cc.attrs.taskWidget.createdDateFrom}" pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
-      </div>
-  
-      <div class="ui-g-3">
-        <p:outputLabel for="created-to" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/createdTo')}" />
-      </div>
-      <div class="ui-g-9">
-        <p:calendar id="created-to" showOn="button" styleClass="task-configuration__calendar"
-          value="#{cc.attrs.taskWidget.createdDateTo}" pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
-      </div>
-  
-      <div class="ui-g-3">
-        <p:outputLabel for="expiry-from" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/expiryFrom')}" />
-      </div>
-      <div class="ui-g-9">
-        <p:calendar id="expiry-from" showOn="button" styleClass="task-configuration__calendar"
-          value="#{cc.attrs.taskWidget.expiryDateFrom}" pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
-      </div>
-  
-      <div class="ui-g-3">
-        <p:outputLabel for="expiry-to" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/expiryTo')}" />
-      </div>
-      <div class="ui-g-9">
-        <p:calendar id="expiry-to" showOn="button" styleClass="task-configuration__calendar"
-          value="#{cc.attrs.taskWidget.expiryDateTo}" pattern="#{dateTimePatternBean.configuredPattern}" locale="#{localeBean.locale}" />
-      </div>
-      
-      <div class="ui-g-3">
+      <ui:repeat var="field" value="#{cc.attrs.taskWidget.filterableColumns}">
+        <h:panelGroup rendered="#{field.format eq 'STRING' or field.format eq 'TEXT'}">
+          <div class="ui-g-3">
+            <p:outputLabel value="#{field.header}" />
+          </div>
+          <div class="ui-g-9">
+            <p:inputText id="text-field-input" styleClass="task-configuration__input-text" value="#{field.filter}" />
+          </div>
+        </h:panelGroup>
+        
+        <h:panelGroup rendered="#{field.format eq 'NUMBER'}">
+          <div class="ui-g-3">
+            <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
+          </div>
+          <div class="ui-g-9">
+            <p:inputText id="from-number-field-input" styleClass="task-configuration__input-text" value="#{field.filterFrom}" />
+          </div>
+          
+          <div class="ui-g-3">
+            <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
+          </div>
+          <div class="ui-g-9">
+            <p:inputText id="to-number-field-input" styleClass="task-configuration__input-text" value="#{field.filterTo}" />
+          </div>
+        </h:panelGroup>
+        
+        <h:panelGroup rendered="#{field.format eq 'DATE'}">
+          <div class="ui-g-3">
+            <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
+          </div>
+          <div class="ui-g-9">
+            <p:calendar id="from-date-field-input" showOn="button" styleClass="task-configuration__calendar"
+              value="#{field.filterFrom}" pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
+          </div>
+          
+          <div class="ui-g-3">
+            <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
+          </div>
+          <div class="ui-g-9">
+            <p:calendar id="to-date-field-input" showOn="button" styleClass="task-configuration__calendar"
+              value="#{field.filterTo}" pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
+          </div>
+        </h:panelGroup>
+      </ui:repeat>
+    
+    
+       <div class="ui-g-3">
         <p:outputLabel for="category" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/category')}" />
       </div>
       <div class="ui-g-9">
-      <h:panelGroup id="category-container" styleClass="task-configuration__category">
-        <p:inputText id="category" styleClass="task-configuration__input-text" value="#{cc.attrs.taskWidget.getDisplayCategories()}" readonly="true" />
-        <p:overlayPanel id="category-panel" widgetVar="category-panel" for="category" appendTo="category-container" styleClass="task-configuration__category-panel"
-          onHide="$(this.targetElement).parents('.task-configuration__category').find('.portal-cancel-button').click();">
-          <p:tree id="task-category-filter-tree" value="#{taskWidgetConfigurationBean.categoryTree}" var="node" selectionMode="checkbox"
-            selection="#{taskWidgetConfigurationBean.categoryNodes}" filterMatchMode="contains" filterBy="#{node}">
-            <p:treeNode>
-              <h:outputText value="#{node.value}" />
-            </p:treeNode>
-          </p:tree>
-          
-          <h:panelGroup id="category-panel-footer" layout="block" styleClass="task-configuration__category-panel-footer">
-            <p:commandButton id="update-command"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-              process="category-panel" partialSubmit="true" update="category-container">
-            </p:commandButton>
-            <p:spacer width="5" />
-            <p:commandButton id="cancel-command" styleClass="portal-cancel-button" process="@this" global="false"
-              value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="category-container">
-            </p:commandButton>
-          </h:panelGroup>
-        </p:overlayPanel>
-      </h:panelGroup>
+        <h:panelGroup id="category-container" styleClass="task-configuration__category">
+          <p:inputText id="category" styleClass="task-configuration__input-text" value="#{cc.attrs.taskWidget.getDisplayCategories()}" readonly="true" />
+          <p:overlayPanel id="category-panel" widgetVar="category-panel" for="category" appendTo="category-container" styleClass="task-configuration__category-panel"
+            onHide="$(this.targetElement).parents('.task-configuration__category').find('.portal-cancel-button').click();">
+            <p:tree id="task-category-filter-tree" value="#{taskWidgetConfigurationBean.categoryTree}" var="node" selectionMode="checkbox"
+              selection="#{taskWidgetConfigurationBean.categoryNodes}" filterMatchMode="contains" filterBy="#{node}">
+              <p:treeNode>
+                <h:outputText value="#{node.value}" />
+              </p:treeNode>
+            </p:tree>
+            
+            <h:panelGroup id="category-panel-footer" layout="block" styleClass="task-configuration__category-panel-footer">
+              <p:commandButton id="update-command"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
+                process="category-panel" partialSubmit="true" update="category-container">
+              </p:commandButton>
+              <p:spacer width="5" />
+              <p:commandButton id="cancel-command" styleClass="portal-cancel-button" process="@this" global="false"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="category-container">
+              </p:commandButton>
+            </h:panelGroup>
+          </p:overlayPanel>
+        </h:panelGroup>
       </div>
     </div>
     

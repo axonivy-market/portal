@@ -25,6 +25,7 @@ import org.primefaces.event.TabChangeEvent;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
@@ -52,8 +53,6 @@ import ch.ivyteam.ivy.application.property.ICustomProperties;
 import ch.ivyteam.ivy.application.property.ICustomProperty;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivyteam.ivy.workflow.TaskState;
-import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
 @ViewScoped
 @ManagedBean
@@ -80,6 +79,7 @@ public class DashboardBean implements Serializable {
     isReadOnlyMode = true;
     dashboards = new ArrayList<>();
     mapper = new ObjectMapper();
+    mapper.enable(MapperFeature.ACCEPT_CASE_INSENSITIVE_ENUMS);
     samples = List.of(taskSample(), caseSample(), statisticSample(), processSample());
     List<ICustomProperty> properties = customProperties().findAllStartingWith(dashboardPropertyPrefix);
     try {
@@ -91,7 +91,7 @@ public class DashboardBean implements Serializable {
         }
       }
       selectedDashboard = dashboards.get(0);
-      buildTaskWidgetModel();
+      buildWidgetModels();
     } catch (IOException e) {
       Ivy.log().error(e);
     }
@@ -99,68 +99,46 @@ public class DashboardBean implements Serializable {
     switchViewModeText = translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/switchToViewMode");
   }
   
-  private void buildTaskWidgetModel() {
+  private void buildWidgetModels() {
     for (Dashboard dashboard : dashboards) {
       for (DashboardWidget widget : dashboard.getWidgets()) {
         if (widget instanceof TaskDashboardWidget) {
           TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
-          buildStandardColumns(taskWidget);
-          buildExtendedColumns(taskWidget);
-          List<String> visibleColumns = new ArrayList<>();
-          for (ColumnModel columnModel : taskWidget.getColumnModels()) {
-            if (columnModel.getVisible()) {
-              String property = columnModel.getProperty();
-              DashboardStandardTaskColumn standardColumn = DashboardStandardTaskColumn.findBy(property);
-              visibleColumns.add(standardColumn == null ? property : standardColumn.toString().toLowerCase());
-            }
-          }
-          taskWidget.setVisibleColumns(visibleColumns);
+          buildColumns(taskWidget);
         }
       }
     }
   }
-
-  private void buildStandardColumns(TaskDashboardWidget taskWidget) {
-    List<String> columns = taskWidget.getStandardColumns();
-    for (String column : columns) {
-      ColumnModel model = null;
-      if (DashboardStandardTaskColumn.START.toString().equalsIgnoreCase(column)) {
-        model = new StartColumnModel();
-      } else if (DashboardStandardTaskColumn.PRIORITY.toString().equalsIgnoreCase(column)) {
-        model = new PriorityColumnModel();
-      } else if (DashboardStandardTaskColumn.ID.toString().equalsIgnoreCase(column)) {
-        model = new IdColumnModel();
-      } else if (DashboardStandardTaskColumn.NAME.toString().equalsIgnoreCase(column)) {
-        model = new NameColumnModel();
-      } else if (DashboardStandardTaskColumn.DESCRIPTION.toString().equalsIgnoreCase(column)) {
-        model = new DescriptionColumnModel();
-      } else if (DashboardStandardTaskColumn.RESPONSIBLE.toString().equalsIgnoreCase(column)) {
-        model = new ResponsibleColumnModel();
-      } else if (DashboardStandardTaskColumn.STATE.toString().equalsIgnoreCase(column)) {
-          model = new StateColumnModel();
-      } else if (DashboardStandardTaskColumn.CREATED.toString().equalsIgnoreCase(column)) {
-        model = new CreatedDateColumnModel();
-      } else if (DashboardStandardTaskColumn.EXPIRY.toString().equalsIgnoreCase(column)) {
-        model = new ExpiryDateColumnModel();
+  
+  private void buildColumns(TaskDashboardWidget taskWidget) {
+    List<ColumnModel> columns = taskWidget.getColumns();
+    for (int i = 0; i < columns.size(); i++) {
+      ColumnModel column = columns.get(i);
+      String field = column.getField();
+      if (DashboardStandardTaskColumn.START.toString().equalsIgnoreCase(field)) {
+        column = mapper.convertValue(column, StartColumnModel.class);
+      } else if (DashboardStandardTaskColumn.PRIORITY.toString().equalsIgnoreCase(field)) {
+        column = mapper.convertValue(column, PriorityColumnModel.class);
+      } else if (DashboardStandardTaskColumn.ID.toString().equalsIgnoreCase(field)) {
+        column = mapper.convertValue(column, IdColumnModel.class);
+      } else if (DashboardStandardTaskColumn.NAME.toString().equalsIgnoreCase(field)) {
+        column = mapper.convertValue(column, NameColumnModel.class);
+      } else if (DashboardStandardTaskColumn.DESCRIPTION.toString().equalsIgnoreCase(field)) {
+        column = mapper.convertValue(column, DescriptionColumnModel.class);
+      } else if (DashboardStandardTaskColumn.RESPONSIBLE.toString().equalsIgnoreCase(field)) {
+        column = mapper.convertValue(column, ResponsibleColumnModel.class);
+      } else if (DashboardStandardTaskColumn.STATE.toString().equalsIgnoreCase(field)) {
+        column = mapper.convertValue(column, StateColumnModel.class);
+      } else if (DashboardStandardTaskColumn.CREATED.toString().equalsIgnoreCase(field)) {
+        column = mapper.convertValue(column, CreatedDateColumnModel.class);
+      } else if (DashboardStandardTaskColumn.EXPIRY.toString().equalsIgnoreCase(field)) {
+        column = mapper.convertValue(column, ExpiryDateColumnModel.class);
       }
-      
-      if (CollectionUtils.isNotEmpty(taskWidget.getVisibleColumns())) {
-        model.setVisible(taskWidget.getVisibleColumns().contains(column.toLowerCase()));
-      }
-      taskWidget.getColumnModels().add(model);
+      column.initDefaultValue();
+      columns.set(i, column);
     }
   }
   
-  private void buildExtendedColumns(TaskDashboardWidget taskWidget) {
-    List<ColumnModel> columnModels = taskWidget.getExtendedColumns();
-    if (CollectionUtils.isNotEmpty(taskWidget.getVisibleColumns())) {
-      for (ColumnModel columnModel : columnModels) {
-        columnModel.setVisible(taskWidget.getVisibleColumns().contains(columnModel.getProperty()));
-      }
-    }
-    taskWidget.getColumnModels().addAll(columnModels);
-  }
-
   private List<Dashboard> defaultDashboards() throws IOException {
     ILibrary portalStyleLib = Ivy.wf().getApplication().findReleasedLibrary(PortalLibrary.PORTAL_STYLE.getValue());
     ResourceLoader loader = new ResourceLoader(portalStyleLib.getProcessModelVersion());
@@ -186,8 +164,7 @@ public class DashboardBean implements Serializable {
     result.setAutoPosition(true);
     result.setSortField(TaskSortField.ID.toString());
     result.setSortDescending(true);
-    result.setPriorities(new ArrayList<>(List.of(WorkflowPriority.LOW, WorkflowPriority.NORMAL, WorkflowPriority.HIGH, WorkflowPriority.EXCEPTION)));
-    result.setStates(new ArrayList<>(List.of(TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE)));
+    buildColumns(result);
     return result;
   }
   
@@ -239,7 +216,12 @@ public class DashboardBean implements Serializable {
     List<Dashboard> defaultDashboards = defaultDashboards();
     selectedDashboard = defaultDashboards.get(defaultDashboards.indexOf(selectedDashboard));
     dashboards.set(dashboards.indexOf(selectedDashboard), selectedDashboard);
-    buildTaskWidgetModel();
+    for (DashboardWidget widget : selectedDashboard.getWidgets()) {
+      if (widget instanceof TaskDashboardWidget) {
+        TaskDashboardWidget taskWidget = (TaskDashboardWidget) widget;
+        buildColumns(taskWidget);
+      }
+    }
   }
   
   public void onTabChange(TabChangeEvent event) {

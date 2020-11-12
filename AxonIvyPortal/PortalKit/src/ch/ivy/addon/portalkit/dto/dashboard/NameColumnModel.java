@@ -9,9 +9,10 @@ public class NameColumnModel extends ColumnModel implements Serializable {
 
   private static final long serialVersionUID = -4315469062114036720L;
 
-  public NameColumnModel() {
-    this.header = cms("/ch.ivy.addon.portalkit.ui.jsf/common/taskName");
-    this.property = DashboardStandardTaskColumn.NAME.getProperty();
+  @Override
+  public void initDefaultValue() {
+    this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/common/taskName"));
+    this.field = DashboardStandardTaskColumn.NAME.getField();
   }
   
   @Override
