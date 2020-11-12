@@ -177,7 +177,7 @@
                             layout="custom">
                             <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/always')}"
                               itemValue="PERMANENT" />
-                            <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/duringTheAbsence')}"
+                            <f:selectItem itemLabel="#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/duringTheAbsence' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/duringMyAbsence')}"
                               itemValue="ON_ABSENCE" />
                           </p:selectOneRadio>
                           <div class="ui-g" jsf:rendered="#{empty substitute.substitionRole}">
@@ -187,7 +187,7 @@
                             </span>
                             <span class="active-period-option">
                             <p:radioButton id="on-absence-option" for="active-period" itemIndex="1" />
-                            <h:outputLabel for="on-absence-option" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/duringTheAbsence')}" />
+                            <h:outputLabel for="on-absence-option" value="#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/duringTheAbsence' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/duringMyAbsence')}" />
                             </span>
                           </div>
                         </div>
