@@ -516,16 +516,18 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     caseColumnsConfiguration.setProcessModelId(Ivy.request().getProcessModel().getId());
     caseColumnsConfiguration.setUserId(Ivy.session().getSessionUser().getId());
     caseColumnsConfiguration.setApplicationId(Ivy.request().getApplication().getId());
+    caseColumnsConfiguration.setSelectedColumns(new ArrayList<>());
     updateCaseColumnsConfiguration(caseColumnsConfiguration);
     return caseColumnsConfiguration;
   }
 
   private void updateCaseColumnsConfiguration(CaseColumnsConfiguration caseColumnsConfigurationData) {
     caseColumnsConfigurationData.setAutoHideColumns(isAutoHideColumns);
+    caseColumnsConfigurationData.getSelectedColumns().clear();
     if (isAutoHideColumns) {
-      caseColumnsConfigurationData.setSelectedColumns(getDefaultColumns());
+      caseColumnsConfigurationData.getSelectedColumns().addAll(getDefaultColumns());
     } else {
-      caseColumnsConfigurationData.setSelectedColumns(selectedColumns);
+      caseColumnsConfigurationData.getSelectedColumns().addAll(selectedColumns);
     }
   }
 
