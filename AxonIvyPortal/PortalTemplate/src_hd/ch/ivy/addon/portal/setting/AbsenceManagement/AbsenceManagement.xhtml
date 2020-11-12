@@ -48,7 +48,6 @@
                   <div class="#{data.isSupervisor ? 'ui-g-8 ui-xl-8 ui-lg-8 ui-md-7 ui-sm-12' : 'ui-g-12'} add-absence-panel">
                     <div class="ui-g-6 ui-lg-6 ui-md-8 ui-sm-8 u-padding-0 u-text-align-left">
                       <p:selectBooleanCheckbox id="show-absence-in-the-past"
-                        rendered="#{data.isSupervisor}"
                         value="#{data.absenceInThePastShown}"
                         styleClass="show-absence-in-the-past-panel"
                         itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/showAbsencesInThePast')}">
@@ -59,7 +58,7 @@
                       </p:selectBooleanCheckbox>
                     </div>
 
-                    <div class="#{data.isSupervisor ? 'ui-g-6 ui-lg-6 ui-md-4 ui-sm-4' : 'ui-g-12'} u-padding-0">
+                    <div class="ui-g-6 ui-lg-6 ui-md-4 ui-sm-4 u-padding-0">
                       <p:commandButton id="add-absence"
                         styleClass="#{data.isSupervisor ? 'small-add-absence' :''} Fright"
                         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence')}"
