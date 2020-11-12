@@ -1,44 +1,77 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
+import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
 
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ColumnModel implements Serializable {
 
   private static final long serialVersionUID = -4315469062114036720L;
 
   protected String header;
-  protected String property;
-  protected String width;
+  protected String field;
+  protected DashboardColumnType type = DashboardColumnType.STANDARD;
   protected String styleClass;
-  protected String propertyStyleClass;
+  protected String fieldStyleClass;
+  protected String style;
+  protected String fieldStyle;
+  protected boolean visible = true;
   protected boolean toggleable = true;
   protected boolean sortable = true;
-  protected DashboardColumnType type = DashboardColumnType.STRING;
+  protected DashboardColumnFormat format = DashboardColumnFormat.STRING;
+  protected String pattern;
+  protected String filter;
+  protected List<String> filterList = new ArrayList<>();
+  protected String filterFrom;
+  protected String filterTo;
+  protected boolean sorted;
+  protected boolean sortDescending;
   
-  @JsonIgnore
-  protected boolean visible = true;
+  public void initDefaultValue() {};
   
   public Object display(ITask task) {
     ICustomFields customFields = task.customFields();
-    if (StringUtils.startsWithIgnoreCase(property, DashboardConfigurationPrefix.CUSTOM_FIELD_NUMBER)) {
-      return customFields.numberField(StringUtils.removeStartIgnoreCase(property, DashboardConfigurationPrefix.CUSTOM_FIELD_NUMBER)).getOrNull();
-    } else if (StringUtils.startsWithIgnoreCase(property, DashboardConfigurationPrefix.CUSTOM_FIELD_TIMESTAMP)) {
-      return customFields.timestampField(StringUtils.removeStartIgnoreCase(property, DashboardConfigurationPrefix.CUSTOM_FIELD_TIMESTAMP)).getOrNull();
-    } else if (StringUtils.startsWithIgnoreCase(property, DashboardConfigurationPrefix.CUSTOM_FIELD_TEXT)) {
-      return customFields.textField(StringUtils.removeStartIgnoreCase(property, DashboardConfigurationPrefix.CUSTOM_FIELD_TEXT)).getOrNull();
+    if (isNumber()) {
+      return customFields.numberField(field).getOrNull();
+    } else if (isDate()) {
+      return customFields.timestampField(field).getOrNull();
+    } else if (isText()) {
+      return customFields.textField(field).getOrNull();
     } else {
-      return customFields.stringField(StringUtils.removeStartIgnoreCase(property, DashboardConfigurationPrefix.CUSTOM_FIELD_STRING)).getOrNull();
+      return customFields.stringField(field).getOrNull();
     }
+  }
+  
+  @JsonIgnore
+  public boolean isNumber() {
+    return format == DashboardColumnFormat.NUMBER;
+  }
+  
+  @JsonIgnore
+  public boolean isDate() {
+    return format == DashboardColumnFormat.DATE;
+  }
+  
+  @JsonIgnore
+  public boolean isText() {
+    return format == DashboardColumnFormat.TEXT;
+  }
+  
+  protected <T> T defaultIfEmpty(T value, T defaultValue) {
+    return value != null ? value : defaultValue;
   }
   
   protected String cms(String path) {
@@ -56,20 +89,20 @@ public class ColumnModel implements Serializable {
     this.header = header;
   }
 
-  public String getProperty() {
-    return property;
+  public String getField() {
+    return field;
   }
 
-  public void setProperty(String property) {
-    this.property = property;
+  public void setField(String field) {
+    this.field = field;
   }
 
-  public String getWidth() {
-    return width;
+  public DashboardColumnType getType() {
+    return type;
   }
 
-  public void setWidth(String width) {
-    this.width = width;
+  public void setType(DashboardColumnType type) {
+    this.type = type;
   }
 
   public String getStyleClass() {
@@ -79,21 +112,29 @@ public class ColumnModel implements Serializable {
   public void setStyleClass(String styleClass) {
     this.styleClass = styleClass;
   }
-  
-  public String getPropertyStyleClass() {
-    return propertyStyleClass;
-  }
-  
-  public void setPropertyStyleClass(String propertyStyleClass) {
-    this.propertyStyleClass = propertyStyleClass;
-  }
-  
-  public boolean getVisible() {
-    return visible;
+
+  public String getFieldStyleClass() {
+    return fieldStyleClass;
   }
 
-  public void setVisible(boolean visible) {
-    this.visible = visible;
+  public void setFieldStyleClass(String fieldStyleClass) {
+    this.fieldStyleClass = fieldStyleClass;
+  }
+
+  public String getStyle() {
+    return style;
+  }
+
+  public void setStyle(String style) {
+    this.style = style;
+  }
+
+  public String getFieldStyle() {
+    return fieldStyle;
+  }
+
+  public void setFieldStyle(String fieldStyle) {
+    this.fieldStyle = fieldStyle;
   }
 
   public boolean getToggleable() {
@@ -103,20 +144,68 @@ public class ColumnModel implements Serializable {
   public void setToggleable(boolean toggleable) {
     this.toggleable = toggleable;
   }
-  
+
   public boolean getSortable() {
     return sortable;
   }
-  
+
   public void setSortable(boolean sortable) {
     this.sortable = sortable;
   }
 
-  public DashboardColumnType getType() {
-    return type;
+  public DashboardColumnFormat getFormat() {
+    return format;
+  }
+
+  public void setFormat(DashboardColumnFormat format) {
+    this.format = format;
+  }
+
+  public String getPattern() {
+    return pattern;
+  }
+
+  public void setPattern(String pattern) {
+    this.pattern = pattern;
+  }
+
+  public String getFilter() {
+    return filter;
+  }
+
+  public void setFilter(String filter) {
+    this.filter = filter;
   }
   
-  public void setType(DashboardColumnType type) {
-    this.type = type;
+  public List<String> getFilterList() {
+    return filterList;
+  }
+  
+  public void setFilterList(List<String> filterList) {
+    this.filterList = filterList;
+  }
+  
+  public String getFilterFrom() {
+    return filterFrom;
+  }
+  
+  public void setFilterFrom(String filterFrom) {
+    this.filterFrom = filterFrom;
+  }
+  
+  public String getFilterTo() {
+    return filterTo;
+  }
+  
+  public void setFilterTo(String filterTo) {
+    this.filterTo = filterTo;
+  }
+
+  public boolean getVisible() {
+    return visible;
+  }
+
+  public void setVisible(boolean visible) {
+    this.visible = visible;
   }
 }
