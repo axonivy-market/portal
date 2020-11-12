@@ -2799,12 +2799,71 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
     width: 100%;
   }
 
-  .substitution-table.ui-datatable-reflow .ui-datatable-data td[role="gridcell"] .ui-column-title {
-    width: 142px;
+  .absence-management .add-absence-panel button.small-add-absence {
+    max-width: 75px;
+  }
+  
+  .absence-management .add-absence-panel button.small-add-absence span.ui-button-text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .absences-management-container tbody.ui-datatable-data span.ui-column-title,
+  .absences-management-container tbody.ui-datatable-data .absence-column-value {
+    vertical-align: top;
+    float: left;
+  }
+
+  .absences-management-container tbody.ui-datatable-data span.ui-column-title {
+    width: 40%;
+  }
+  
+  .absences-management-container tbody.ui-datatable-data .absence-column-value {
+    width: calc(60% - 4px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .absences-management-container .ui-datatable-reflow .ui-datatable-data td[role="gridcell"] .ui-column-title {
     margin-right: 4px;
   }
+  
+  .absences-management-container .ui-datatable.ui-datatable-reflow label.ui-reflow-label,
+  .absences-management-container .ui-datatable.ui-datatable-reflow select.ui-reflow-dropdown {
+    display: none;
+  }
+
+  .absences-management-container .ui-datatable.ui-datatable-reflow tbody td[role="gridcell"]:not(:first-child) {
+    padding-top: 0;
+   }
+   
+   .absences-management-container .ui-datatable.ui-datatable-reflow div.ui-datatable-tablewrapper {
+     overflow: auto;
+     overflow-x: hidden;
+     max-height: 150px;
+   }
 }
 
+.absences-management-container .absence-period {
+  width: 210px;
+}
+
+.absence-management .show-absence-in-the-past-panel.ui-chkbox {
+  min-width: 100%;
+  margin-right: 0;
+}
+
+.absence-management .show-absence-in-the-past-panel .ui-chkbox-box.ui-corner-all,
+.absence-management .show-absence-in-the-past-panel span.ui-chkbox-label {
+  float: left;
+}
+
+.absence-management .show-absence-in-the-past-panel span.ui-chkbox-label {
+  width: calc(100% - 45px);
+  margin-right: 0;
+}
 /**********************************END ABSENCES AND DEPUTY **********************************/
 .application-language-header {
   width: 20%;

@@ -1925,3 +1925,10 @@ body .ui-button.secondary-btn.ui-state-focus {
 .my-profile-container .setting-header span {
   color: var(--general-config-description-color);
 }
+
+/* Absences Management */
+@media screen and (max-width: 40em) {
+  .absences-management-container tbody.ui-datatable-data span.ui-column-title {
+    font-weight: bold;
+  }
+}
