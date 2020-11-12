@@ -1,0 +1,5 @@
+co: name={duringMyAbsence} description={} changed={2020-03-03 09:07:58 CET} changedby={lttung} visualorder={0} guid={16FFA6971CF74A00} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={16FFA69DBC583EC3} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-03-03 09:07:58 CET} validto={} changed={2020-03-03 09:07:58 CET} changedby={lttung} properties={} id={}
+val: guid={16FFA69DBB9FCC29} datatype={} isdefault={false} langid={es} description={} validfrom={2020-03-03 09:07:58 CET} validto={} changed={2020-03-03 09:07:58 CET} changedby={lttung} properties={} id={}
+val: guid={16FFA6971D3FEF70} datatype={} isdefault={true} langid={en} description={} validfrom={2020-01-31 08:03:32 CET} validto={} changed={2020-01-31 08:03:32 CET} changedby={chnam} properties={} id={}
+val: guid={16FFA69DAFBB267B} datatype={} isdefault={false} langid={de} description={} validfrom={2020-03-03 09:07:58 CET} validto={} changed={2020-03-03 09:07:58 CET} changedby={lttung} properties={} id={}
