@@ -6,11 +6,13 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
+	<cc:attribute name="disableGrowlMessage" default="false" />
+	<cc:attribute name="disableAddDocument" default="false" />
 </cc:interface>
 
 <cc:implementation>
   <div class="grid-item" id="#{cc.clientId}">
-    <p:growl id="case-document-global-messages" />
+    <p:growl id="case-document-global-messages" rendered="#{!cc.attrs.disableGrowlMessage}" />
     <h2 class="grid-item-header">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/documents')}</h2>
     <div class="grid-item-content-with-box">
       <h:panelGroup layout="block" id="case-details-documents"
@@ -37,7 +39,7 @@
       </h:panelGroup>
     </div>
     <h:panelGroup layout="block" styleClass="grid-item-footer">
-      <p:commandLink id="add-document-command" process="@this" oncomplete="PF('document-upload-dialog').show()">
+      <p:commandLink id="add-document-command" process="@this" oncomplete="PF('document-upload-dialog').show()" rendered="#{!cc.attrs.disableAddDocument}">
         <i class="fa fa-plus-circle grid-item-footer-icon" />
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addDocument')}" />
       </p:commandLink>
@@ -69,7 +71,7 @@
       header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" appendTo="@(body)" severity="alert">
       <p:commandButton styleClass="document-deletion-command" id="document-deletion-command"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" process="@this"
-        update="case-details-documents #{p:component('case-document-global-messages')}" actionListener="#{logic.deleteDocument}"
+        update="case-details-documents #{cc.attrs.disableGrowlMessage ? '' : p:component('case-document-global-messages')}" actionListener="#{logic.deleteDocument}"
         oncomplete="PF('document-deletion-dialog').hide()" />
       <p:commandButton id="document-deletion-cancellation-command" type="button"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"

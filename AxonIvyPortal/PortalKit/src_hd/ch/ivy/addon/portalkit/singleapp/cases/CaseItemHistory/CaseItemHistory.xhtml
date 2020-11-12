@@ -6,6 +6,7 @@
   xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
+	<cc:attribute name="disableAddNote" default="false" />
 </cc:interface>
 
 <cc:implementation>
@@ -60,7 +61,7 @@
       </div>
 
       <h:panelGroup layout="block" styleClass="grid-item-footer">
-        <p:commandLink id="add-note-command" onclick="PF('add-note-dialog').show()">
+        <p:commandLink id="add-note-command" onclick="PF('add-note-dialog').show()" rendered="#{!cc.attrs.disableAddNote}">
           <i class="fa fa-plus-circle grid-item-footer-icon" />
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}" />
         </p:commandLink>

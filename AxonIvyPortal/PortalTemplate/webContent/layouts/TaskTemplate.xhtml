@@ -85,7 +85,7 @@
                     <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItem caseId="#{caseId}" id="case-item">
                       <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItemGeneralInformation id="general-information" caseId="#{caseId}" />
                       <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItemRelatedTasks id="related-tasks" caseId="#{caseId}" />
-                      <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItemHistory id="history" caseId="#{caseId}">
+                      <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItemHistory id="history" caseId="#{caseId}" disableAddNote="#{disableAddNote}">
                         <f:facet name="showCaseNoteHistory">
                           <p:link id="show-more-note-link" href="#{caseTaskNoteHistoryBean.getCaseNoteHistoryLink(caseId)}"
                             styleClass="case-details-document-add-link note-show-more-link" target="_blank">
@@ -94,7 +94,7 @@
                           </p:link>
                         </f:facet>
                       </ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItemHistory>
-                      <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument id="document" caseId="#{caseId}" />
+                      <ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItemDocument id="document" caseId="#{caseId}" disableGrowlMessage="#{disableGrowlMessage}" disableAddDocument="#{disableAddDocument}" />
                     </ic:ch.ivy.addon.portalkit.singleapp.cases.CaseItem>
                   </h:form>
                 </c:otherwise>

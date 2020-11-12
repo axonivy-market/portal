@@ -16,6 +16,12 @@
 		<ui:param name="actualStepIndex"
 			value="#{data.executePredefinedWorkflowData.actualStepIndex}" />
 		<ui:param name="isNotRequiredLogin" value="false" />
+
+		<!-- TEMPORARY FIX FOR WRONG INVOCATION OF DYNAFORM -->
+		<ui:param name="disableGrowlMessage" value="true" />
+		<ui:param name="disableAddNote" value="true" />
+		<ui:param name="disableAddDocument" value="true" />
+>
 		<ui:define name="title"></ui:define>
 		<ui:define name="taskForm">
 
