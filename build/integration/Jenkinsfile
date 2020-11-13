@@ -55,7 +55,7 @@ pipeline {
 
           if (!params.skipReplacePortal) {
             echo '====================Replace Portal in engine===================='
-            def modules = ['AxonIvyPortal/PortalConnector', 'AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/SelfServiceBPM', 'Showcase/PortalExamples']
+            def modules = ['AxonIvyPortal/PortalConnector', 'AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress', 'AxonIvyPortal/SelfServiceBPM']
             for (module in modules) {
               def deployedApplication = module.contains('PortalConnector') ? 'System' : 'Portal'
               deployModuleToEngine(deployedApplication, module, env.releaseDir)
@@ -63,7 +63,7 @@ pipeline {
           }
 
           echo '====================Deploy PortalKitTestHelper and InternalSupport===================='
-          def extraModules = ['AxonIvyPortal/PortalKitTestHelper', 'Showcase/InternalSupport']
+          def extraModules = ['AxonIvyPortal/PortalKitTestHelper', 'Showcase/PortalExamples', 'Showcase/InternalSupport']
           for (module in extraModules) {
             bat "mvn clean install -f ${module}/pom.xml -Divy.engine.directory=%engineDir% -Divy.compiler.engine.start.timeout=120"
             deployModuleToEngine('Portal', module, env.WORKSPACE)
