@@ -232,13 +232,12 @@ How to override export feature
    .. code-block:: java
 
       @Override
-      protected String getColumnValue(String column, ITask task) {
+      protected Object getColumnValue(String column, ITask task) {
          switch (column) {
             case CustomizedTaskLazyDataModel.CUSTOM_VAR_CHAR_FIELD5:
                return task.customFields().stringField(CUSTOM_VARCHAR_FIELD5).getOrNull();
             case CustomizedTaskLazyDataModel.CUSTOM_TIMESTAMP_FIELD12:
-               Date customTimeStamp = task.customFields().timestampField(CUSTOM_TIMESTAMP_FIELD1).getOrNull();
-               return customTimeStamp != null ? formatDate(customTimeStamp) : "";
+               return task.customFields().timestampField(CUSTOM_TIMESTAMP_FIELD1).getOrNull();
             default:
                return getCommonColumnValue(column, task);
          }
