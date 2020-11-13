@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -131,11 +130,11 @@ public class TaskExporter {
    * @param task
    * @return task column value
    */
-  protected String getColumnValue(String column, ITask task) {
+  protected Object getColumnValue(String column, ITask task) {
     return getCommonColumnValue(column, task);
   }
 
-  protected String getCommonColumnValue(String column, ITask task) {
+  protected Object getCommonColumnValue(String column, ITask task) {
     if (StringUtils.equals(column, TaskLazyDataModel.DESCRIPTION)) {
       return task.getDescription();
     }
@@ -156,13 +155,11 @@ public class TaskExporter {
       case STATE:
         return task.getState().toString();
       case CREATION_TIME:
-        return formatDate(task.getStartTimestamp());
+        return task.getStartTimestamp();
       case EXPIRY_TIME:
-        Date expiryTimestamp = task.getExpiryTimestamp();
-        return expiryTimestamp != null ? formatDate(expiryTimestamp): "";
+        return task.getExpiryTimestamp();
       case COMPLETED_ON:
-        Date endTimestamp = task.getEndTimestamp();
-        return endTimestamp != null ? formatDate(endTimestamp): "";
+        return task.getEndTimestamp();
       default:
         return "";
     }
@@ -191,11 +188,5 @@ public class TaskExporter {
     String fileNameSuffix = suffix == null ? dateFormat.format(createdFileTime) : dateFormat.format(createdFileTime) + suffix; 
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/exportedTasksFileName",
         Arrays.asList(fileNameSuffix, extension));
-  }
-  
-  protected String formatDate(Date datetime) {
-    String pattern =
-        Ivy.cms().findContentObjectValue("/patterns/dateTimePattern", Locale.ENGLISH).getContentAsString();
-    return new SimpleDateFormat(pattern).format(datetime);
   }
 }
