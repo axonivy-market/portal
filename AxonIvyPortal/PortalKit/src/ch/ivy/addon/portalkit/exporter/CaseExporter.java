@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
@@ -131,11 +130,11 @@ public class CaseExporter {
    * @param caseItem
    * @return case column value
    */
-  protected String getColumnValue(String column, ICase caseItem) {
+  protected Object getColumnValue(String column, ICase caseItem) {
     return getCommonColumnValue(column, caseItem);
   }
 
-  protected String getCommonColumnValue(String column, ICase caseItem) {
+  protected Object getCommonColumnValue(String column, ICase caseItem) {
     if (StringUtils.equals(column, CaseLazyDataModel.DESCRIPTION)) {
       return caseItem.getDescription();
     }
@@ -157,10 +156,9 @@ public class CaseExporter {
         }
         return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(caseItem.getOwner(), caseItem.getOwnerName());
       case CREATION_TIME:
-        return formatDate(caseItem.getStartTimestamp());
+        return caseItem.getStartTimestamp();
       case FINISHED_TIME:
-        Date endTimestamp = caseItem.getEndTimestamp();
-        return endTimestamp != null ? formatDate(endTimestamp): "";
+        return caseItem.getEndTimestamp();
       case STATE:
         return caseItem.getState().toString();
       default:
@@ -191,11 +189,5 @@ public class CaseExporter {
     String fileNameSuffix = suffix == null ? dateFormat.format(createdFileTime) : dateFormat.format(createdFileTime) + suffix; 
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/exportedCasesFileName",
         Arrays.asList(fileNameSuffix, extension));
-  }
-  
-  protected String formatDate(Date datetime) {
-    String pattern =
-        Ivy.cms().findContentObjectValue("/patterns/dateTimePattern", Locale.ENGLISH).getContentAsString();
-    return new SimpleDateFormat(pattern).format(datetime);
   }
 }
