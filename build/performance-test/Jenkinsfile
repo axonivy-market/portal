@@ -21,6 +21,18 @@ pipeline {
   }
 
   stages {
+    stage('restore-database') {
+      agent {label 'master'}
+      steps {
+        script {
+          bat """
+            echo ====================Restore database====================
+            pg_restore -U postgres --dbname=ivy-performance-7.0 --clean D:\\backup\\database\\IVY-PERFORMANCE-7.0.backup
+          """
+        }
+      }
+    }
+
     stage('deploy') {
       steps {
         script {
