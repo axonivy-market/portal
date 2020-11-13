@@ -1,6 +1,5 @@
 package com.axonivy.portal.developerexamples.exporter;
 
-import java.util.Date;
 import java.util.List;
 
 import com.axonivy.portal.developerexamples.component.customize.cases.CustomizedCaseLazyDataModel;
@@ -24,13 +23,12 @@ public class CustomizedCaseExporter extends CaseExporter {
   }
 
   @Override
-  protected String getColumnValue(String column, ICase caseItem) {
+  protected Object getColumnValue(String column, ICase caseItem) {
     switch (column) {
       case CustomizedCaseLazyDataModel.CUSTOM_VARCHAR_FIELD1:
         return caseItem.customFields().stringField(CustomFields.CUSTOM_VARCHAR_FIELD1).getOrNull();
       case CustomizedCaseLazyDataModel.CUSTOM_TIMESTAMP_FIELD1:
-        Date customTimeStamp = caseItem.customFields().timestampField(CustomFields.CUSTOM_TIMESTAMP_FIELD1).getOrNull();
-        return customTimeStamp != null ? formatDate(customTimeStamp) : "";
+        return caseItem.customFields().timestampField(CustomFields.CUSTOM_TIMESTAMP_FIELD1).getOrNull();
       default:
         return getCommonColumnValue(column, caseItem);
     }
