@@ -37,12 +37,68 @@
       </div>
   
       <ui:repeat var="field" value="#{cc.attrs.taskWidget.filterableColumns}">
+        <h:panelGroup rendered="#{field.field eq 'priority'}">
+          <div class="ui-g-3">
+            <p:outputLabel value="#{field.header}" />
+          </div>
+          <div class="ui-g-9">
+            <p:selectCheckboxMenu id="priorities" value="#{field.priorities}" multiple="true"
+              panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
+              <f:selectItems value="#{taskWidgetConfigurationBean.priorities}" var="priority" itemValue="#{priority}" 
+                itemLabel="#{taskWidgetConfigurationBean.getUserFriendlyTaskPriority(priority)}" />
+            </p:selectCheckboxMenu>
+          </div>
+        </h:panelGroup>
+        
+        <h:panelGroup rendered="#{field.field eq 'state'}">
+          <div class="ui-g-3">
+            <p:outputLabel value="#{field.header}" />
+          </div>
+          <div class="ui-g-9">
+            <p:selectCheckboxMenu id="states" value="#{field.states}" multiple="true"
+              filter="true" filterMatchMode="contains" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
+              <f:selectItems value="#{taskWidgetConfigurationBean.states}" var="state" itemValue="#{state}" 
+                itemLabel="#{taskWidgetConfigurationBean.getUserFriendlyTaskState(state)}" />
+            </p:selectCheckboxMenu>
+          </div>
+        </h:panelGroup>
+        
+        <h:panelGroup rendered="#{field.field eq 'activator'}">
+          <div class="ui-g-3">
+            <p:outputLabel value="#{field.header}" />
+          </div>
+          <div class="ui-g-9">
+            <p:autoComplete id="responsibles" scrollHeight="210" dropdown="true" size="35"
+              completeMethod="#{taskWidgetConfigurationBean.completeResponsibles}" value="#{field.filterList}"
+              var="responsible" itemValue="#{responsible.name}" itemLabel="#{responsible.briefDisplayNameWithState}"
+              converter="pojoConverter" cache="true" maxResults="100" multiple="true"
+              moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true"
+              styleClass="task-configuration__responsibles" forceSelection="true">
+              <p:column>
+                <i class="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+                <h:outputText value="#{taskWidgetConfigurationBean.formatName(responsible)}" />
+              </p:column>
+            </p:autoComplete>
+          </div>
+          <div class="ui-g-3" />
+          <div class="ui-g-9">
+            <span style="width: 10%; display: inline-block" />
+            <p:selectBooleanCheckbox id="can-work-on" value="#{cc.attrs.taskWidget.canWorkOn}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/canWorkOn')}" />
+          </div>
+        </h:panelGroup>
+        
         <h:panelGroup rendered="#{field.format eq 'STRING' or field.format eq 'TEXT'}">
           <div class="ui-g-3">
             <p:outputLabel value="#{field.header}" />
           </div>
           <div class="ui-g-9">
-            <p:inputText id="text-field-input" styleClass="task-configuration__input-text" value="#{field.filter}" />
+            <p:inputText id="text-field-input" styleClass="task-configuration__input-text" value="#{field.filter}" rendered="#{field.filterType eq 'LIKE'}" />
+            
+            <p:selectCheckboxMenu id="text-field-selection" value="#{field.filterList}" multiple="true"
+              filter="true" filterMatchMode="contains" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu"
+              rendered="#{field.filterType eq 'SELECTION'}">
+              <f:selectItems value="#{field.filterListOptions}" />
+            </p:selectCheckboxMenu>
           </div>
         </h:panelGroup>
         

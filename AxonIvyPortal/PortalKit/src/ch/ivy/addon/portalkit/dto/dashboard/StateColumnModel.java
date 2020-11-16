@@ -1,6 +1,8 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -35,23 +37,14 @@ public class StateColumnModel extends ColumnModel implements Serializable {
     if (state == null) {
       return StringUtils.EMPTY;
     }
-    switch (state) {
-      case SUSPENDED:
-        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/SUSPENDED");
-      case CREATED:
-        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/CREATED");
-      case RESUMED:
-        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/RESUMED");
-      case DONE:
-        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/DONE");
-      case PARKED:
-        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/PARKED");
-      case DESTROYED:
-        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/DESTROYED");
-      case ZOMBIE:
-        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/ZOMBIE");
-      default:
-        return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM");
-    }
+    return cms("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + state.toString());
+  }
+  
+  public List<TaskState> getStates() {
+    return this.filterList.stream().map(String::toUpperCase).map(TaskState::valueOf).collect(Collectors.toList());
+  }
+  
+  public void setStates(List<TaskState> states) {
+    this.filterList = states.stream().map(TaskState::toString).collect(Collectors.toList());
   }
 }
