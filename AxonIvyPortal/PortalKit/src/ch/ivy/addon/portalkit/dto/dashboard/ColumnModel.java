@@ -3,6 +3,8 @@ package ch.ivy.addon.portalkit.dto.dashboard;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -12,9 +14,12 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardFilterType;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFields;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ColumnModel implements Serializable {
@@ -37,8 +42,12 @@ public class ColumnModel implements Serializable {
   protected List<String> filterList = new ArrayList<>();
   protected String filterFrom;
   protected String filterTo;
+  protected DashboardFilterType filterType = DashboardFilterType.LIKE;
   protected boolean sorted;
   protected boolean sortDescending;
+  
+  @JsonIgnore
+  private List<String> filterListOptions;
   
   public void initDefaultValue() {};
   
@@ -200,6 +209,14 @@ public class ColumnModel implements Serializable {
   public void setFilterTo(String filterTo) {
     this.filterTo = filterTo;
   }
+  
+  public DashboardFilterType getFilterType() {
+    return filterType;
+  }
+  
+  public void setFilterType(DashboardFilterType filterType) {
+    this.filterType = filterType;
+  }
 
   public boolean getVisible() {
     return visible;
@@ -207,5 +224,17 @@ public class ColumnModel implements Serializable {
 
   public void setVisible(boolean visible) {
     this.visible = visible;
+  }
+  
+  public List<String> getFilterListOptions() {
+    if (filterListOptions == null) {
+      Recordset recordset = TaskQuery.create().groupBy().customField().stringField(field).executor().recordset();
+      filterListOptions = recordset.getColumn(field).stream().filter(Objects::nonNull).map(Object::toString).sorted(StringUtils::compareIgnoreCase).collect(Collectors.toList());
+    }
+    return filterListOptions;
+  }
+  
+  public void setFilterListOptions(List<String> filterListOptions) {
+    this.filterListOptions = filterListOptions;
   }
 }
