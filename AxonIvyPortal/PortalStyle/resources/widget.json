@@ -52,6 +52,8 @@
 						"type": "custom",
 						"header": "Employee",
 						"field": "CustomVarCharField5",
+						"filterType": "selection",
+						"filterList": ["Long Do"],
 						"style": "width: 110px"
 					},
 					{

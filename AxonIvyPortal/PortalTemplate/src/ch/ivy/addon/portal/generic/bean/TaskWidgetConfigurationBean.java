@@ -25,7 +25,7 @@ import ch.ivyteam.ivy.workflow.WorkflowPriority;
 @ManagedBean
 @ViewScoped
 public class TaskWidgetConfigurationBean {
-  private List<TaskState> filteredStates;
+  private List<TaskState> states;
   private List<WorkflowPriority> priorities;
   private UserDTO selectedUser;
   private List<SecurityMemberDTO> responsibles;
@@ -35,9 +35,8 @@ public class TaskWidgetConfigurationBean {
 
   @PostConstruct
   public void init() {
-    this.filteredStates = Arrays.asList(TaskState.CREATED, TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED, TaskState.DONE);
-    this.priorities =
-        Arrays.asList(WorkflowPriority.EXCEPTION, WorkflowPriority.HIGH, WorkflowPriority.NORMAL, WorkflowPriority.LOW);
+    this.states = Arrays.asList(TaskState.values());
+    this.priorities = Arrays.asList(WorkflowPriority.values());
     this.responsibles = new ArrayList<>();
   }
   
@@ -81,24 +80,7 @@ public class TaskWidgetConfigurationBean {
     if (state == null) {
       return StringUtils.EMPTY;
     }
-    switch (state) {
-      case SUSPENDED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/SUSPENDED");
-      case CREATED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/CREATED");
-      case RESUMED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/RESUMED");
-      case DONE:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DONE");
-      case PARKED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/PARKED");
-      case DESTROYED:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DESTROYED");
-      case ZOMBIE:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/ZOMBIE");
-      default:
-        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM");
-    }
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState" + state.toString());
   }
 
   public String getUserFriendlyTaskPriority(WorkflowPriority priority) {
@@ -119,12 +101,12 @@ public class TaskWidgetConfigurationBean {
     }
   }
 
-  public List<TaskState> getFilteredStates() {
-    return filteredStates;
+  public List<TaskState> getStates() {
+    return states;
   }
 
-  public void setFilteredStates(List<TaskState> filteredStates) {
-    this.filteredStates = filteredStates;
+  public void setStates(List<TaskState> states) {
+    this.states = states;
   }
 
   public List<WorkflowPriority> getPriorities() {
