@@ -114,14 +114,16 @@
           <ic:ch.ivy.addon.portal.generic.dashboard.TaskWidgetConfiguration id="task-widget-configuration-component" taskWidget="#{dashboardBean.widget}" />
         </h:form>
         <f:facet name="footer">
+          <p:commandLink id="task-configuration-cancel-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+            styleClass="u-mar-right-10"
+            onclick="PF('task-widget-configuration-dialog').hide()" />
+            
           <p:commandButton id="task-configuration-save-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             actionListener="#{dashboardBean.saveWidget()}"
             process="@(#task-configuration-form :not(.task-configuration__category) :not(.task-configuration__category-panel))" partialSubmit="true"
             update="grid-stack-tab-view:0:grid-stack"
             oncomplete="PF('task-widget-configuration-dialog').hide();loadGrid();" />
             
-          <p:commandButton id="task-configuration-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" type="button"
-            onclick="PF('task-widget-configuration-dialog').hide()" />
         </f:facet>
       </p:dialog>
       

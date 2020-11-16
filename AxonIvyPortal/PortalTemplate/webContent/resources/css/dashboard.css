@@ -234,3 +234,15 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   margin-top: 5px;
   text-align: right;
 }
+
+.custom-field-dialog__label {
+  text-align: right;
+}
+
+.custom-field-dialog__input {
+  width: 100%;
+}
+
+.custom-field-dialog__number-pattern-container {
+  padding: 0;
+}

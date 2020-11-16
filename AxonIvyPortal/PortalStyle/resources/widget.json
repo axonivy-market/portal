@@ -52,8 +52,6 @@
 						"type": "custom",
 						"header": "Employee",
 						"field": "CustomVarCharField5",
-						"filterType": "selection",
-						"filterList": ["Long Do"],
 						"style": "width: 110px"
 					},
 					{
@@ -68,7 +66,7 @@
 						"header": "Start Date",
 						"field": "CustomTimestampField1",
 						"style": "width: 120px",
-						"format": "date"
+						"format": "timestamp"
 					}
 				]
 			},

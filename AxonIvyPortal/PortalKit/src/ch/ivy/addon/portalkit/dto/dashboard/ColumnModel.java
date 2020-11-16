@@ -71,7 +71,7 @@ public class ColumnModel implements Serializable {
   
   @JsonIgnore
   public boolean isDate() {
-    return format == DashboardColumnFormat.DATE;
+    return format == DashboardColumnFormat.TIMESTAMP;
   }
   
   @JsonIgnore
