@@ -3,6 +3,7 @@ package ch.ivy.addon.portal.generic.bean;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -14,13 +15,19 @@ import org.primefaces.model.CheckboxTreeNode;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.UserDTO;
+import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
+import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
+import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivy.addon.portalkit.util.TaskTreeUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
+import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldNames;
+import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldNames.Result;
 
 @ManagedBean
 @ViewScoped
@@ -32,17 +39,46 @@ public class TaskWidgetConfigurationBean {
   private CheckboxTreeNode categoryTree;
   private CheckboxTreeNode[] categoryNodes;
   private TaskDashboardWidget widget;
+  
+  private List<CustomFieldType> customFieldTypes;
+  private CustomFieldType selectedCustomFieldType;
+  private List<Result> customFieldNames;
+  private Result selectedCustomFieldName;
+  private String customNumberFieldPattern;
+  private String customFieldDisplayName;
 
   @PostConstruct
   public void init() {
     this.states = Arrays.asList(TaskState.values());
     this.priorities = Arrays.asList(WorkflowPriority.values());
     this.responsibles = new ArrayList<>();
+    this.customFieldTypes = Arrays.asList(CustomFieldType.STRING, CustomFieldType.TEXT, CustomFieldType.NUMBER, CustomFieldType.TIMESTAMP);
+    this.selectedCustomFieldType = CustomFieldType.STRING;
   }
   
   public void preRender(TaskDashboardWidget widget) {
     this.widget = widget;
+    fetchCustomFieldNames();
     buildCategoryTree();
+  }
+  
+  public void addCustomField() {
+    ColumnModel columnModel = new ColumnModel();
+    columnModel.setType(DashboardColumnType.CUSTOM);
+    columnModel.setHeader(this.customFieldDisplayName);
+    columnModel.setField(this.selectedCustomFieldName.name());
+    columnModel.setFormat(DashboardColumnFormat.valueOf(this.selectedCustomFieldType.name()));
+    columnModel.setPattern(customNumberFieldPattern);
+    this.widget.getColumns().add(columnModel);
+  }
+  
+  public void fetchCustomFieldNames() {
+    List<Result> customFieldNames = ICustomFieldNames.tasks().type(selectedCustomFieldType).executor().results();
+    this.customFieldNames = customFieldNames.stream().filter(this::doesNotExist).collect(Collectors.toList());
+  }
+  
+  private boolean doesNotExist(Result customFieldName) {
+    return !this.widget.getColumns().stream().map(ColumnModel::getField).anyMatch(f -> StringUtils.equals(f, customFieldName.name()));
   }
   
   public CheckboxTreeNode[] getCategoryNodes() {
@@ -139,5 +175,53 @@ public class TaskWidgetConfigurationBean {
   
   public void setCategoryTree(CheckboxTreeNode categoryTree) {
     this.categoryTree = categoryTree;
+  }
+
+  public List<CustomFieldType> getCustomFieldTypes() {
+    return customFieldTypes;
+  }
+
+  public void setCustomFieldTypes(List<CustomFieldType> customFieldTypes) {
+    this.customFieldTypes = customFieldTypes;
+  }
+
+  public CustomFieldType getSelectedCustomFieldType() {
+    return selectedCustomFieldType;
+  }
+
+  public void setSelectedCustomFieldType(CustomFieldType selectedCustomFieldType) {
+    this.selectedCustomFieldType = selectedCustomFieldType;
+  }
+
+  public List<Result> getCustomFieldNames() {
+    return customFieldNames;
+  }
+
+  public void setCustomFieldNames(List<Result> customFieldNames) {
+    this.customFieldNames = customFieldNames;
+  }
+  
+  public Result getSelectedCustomFieldName() {
+    return selectedCustomFieldName;
+  }
+  
+  public void setSelectedCustomFieldName(Result selectedCustomFieldName) {
+    this.selectedCustomFieldName = selectedCustomFieldName;
+  }
+  
+  public String getCustomNumberFieldPattern() {
+    return customNumberFieldPattern;
+  }
+
+  public void setCustomNumberFieldPattern(String customNumberFieldPattern) {
+    this.customNumberFieldPattern = customNumberFieldPattern;
+  }
+  
+  public String getCustomFieldDisplayName() {
+    return customFieldDisplayName;
+  }
+  
+  public void setCustomFieldDisplayName(String customFieldDisplayName) {
+    this.customFieldDisplayName = customFieldDisplayName;
   }
 }

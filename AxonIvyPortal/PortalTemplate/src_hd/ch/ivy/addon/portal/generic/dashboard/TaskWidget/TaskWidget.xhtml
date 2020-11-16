@@ -33,7 +33,7 @@
         <p:columns var="column" value="#{cc.attrs.taskWidget.columns}" headerText="#{column.header}" styleClass="#{column.styleClass}"
           toggleable="#{column.toggleable}" visible="#{column.visible}" field="#{column.field}" 
           sortBy="#{column.field}" sortable="#{column.sortable}" 
-          style="#{column.format eq 'DATE' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.style}">
+          style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.style}">
           
           <h:panelGroup rendered="#{column.field eq 'start'}">
             <ui:include src="StartCell.xhtml" />
@@ -55,7 +55,7 @@
             <h:outputText value="#{column.display(task)}" styleClass="#{column.fieldStyleClass}" style="#{column.fieldStyle}" />
           </h:panelGroup>
           
-          <h:panelGroup rendered="#{column.format eq 'DATE'}">
+          <h:panelGroup rendered="#{column.format eq 'TIMESTAMP'}">
             <h:outputText value="#{column.display(task)}" style="#{column.fieldStyle}">
               <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
             </h:outputText>

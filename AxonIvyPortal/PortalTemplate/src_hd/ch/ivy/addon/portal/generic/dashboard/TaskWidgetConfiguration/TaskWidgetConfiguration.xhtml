@@ -118,7 +118,7 @@
           </div>
         </h:panelGroup>
         
-        <h:panelGroup rendered="#{field.format eq 'DATE'}">
+        <h:panelGroup rendered="#{field.format eq 'TIMESTAMP'}">
           <div class="ui-g-3">
             <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
           </div>
@@ -154,17 +154,19 @@
             </p:tree>
             
             <h:panelGroup id="category-panel-footer" layout="block" styleClass="task-configuration__category-panel-footer">
+              <p:commandLink id="cancel-command" styleClass="portal-cancel-button u-mar-right-10" process="@this" global="false"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="category-container" />
+                
               <p:commandButton id="update-command"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-                process="category-panel" partialSubmit="true" update="category-container">
-              </p:commandButton>
-              <p:spacer width="5" />
-              <p:commandButton id="cancel-command" styleClass="portal-cancel-button" process="@this" global="false"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" update="category-container">
-              </p:commandButton>
+                process="category-panel" partialSubmit="true" update="category-container" />
             </h:panelGroup>
           </p:overlayPanel>
         </h:panelGroup>
+      </div>
+      
+      <div class="ui-g-12" align="right">
+        <p:commandButton id="custom-field-btn" value="Add custom field" type="button" onclick="PF('custom-field-add-dialog').show()" />
       </div>
     </div>
     
@@ -175,5 +177,7 @@
       </div>
     </h:panelGroup>
   </div>
+  
+  <ui:include src="CustomFieldAddDialog.xhtml" />
 </cc:implementation>
 </html>
