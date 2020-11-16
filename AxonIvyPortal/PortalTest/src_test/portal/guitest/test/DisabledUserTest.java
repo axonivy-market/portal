@@ -88,8 +88,10 @@ public class DisabledUserTest extends BaseTest {
     absencePage.setDeputy(TestAccount.DEMO_USER.getFullName());
     absencePage.saveSubstitute();
     absencePage.openAbsencePage();
+    absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
+    assertEquals(DISABLED_VISIBILITY_USER_BRIEF_DISPLAY_NAME, absencePage.getSubstitutedByAdmin(0));
+    absencePage.openAbsencePage();
     absencePage.setSubstitutedByAdmin(VISIBILITY_USER_FULL_NAME);
-    assertEquals(DISABLED_VISIBILITY_USER_BRIEF_DISPLAY_NAME, absencePage.getSubstitutedByAdmin());
     assertEquals(TestAccount.DEMO_USER.getFullName(), absencePage.getMyDeputy());
   }
 }

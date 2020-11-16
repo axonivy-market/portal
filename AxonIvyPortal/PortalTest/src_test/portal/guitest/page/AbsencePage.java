@@ -76,9 +76,9 @@ public class AbsencePage extends TemplatePage {
 	}
 
 	public void setSubstitutedByAdmin(String substitutedUser) {
-		String substitutedUserInput = "input[id$=':substituted-user-selection-component:substituted-user_input']";
-		waitForElementDisplayed(By.cssSelector(substitutedUserInput), true);
-		WebElement substituted = findElementByCssSelector(substitutedUserInput);
+		String selectedUserInput = "input[id$=':user-absence-selection-component:user-absence_input']";
+		waitForElementDisplayed(By.cssSelector(selectedUserInput), true);
+		WebElement substituted = findElementByCssSelector(selectedUserInput);
 		substituted.clear();
 		substituted.sendKeys(substitutedUser);
 		waitAjaxIndicatorDisappear();
@@ -88,8 +88,10 @@ public class AbsencePage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 	}
 	
-	public String getSubstitutedByAdmin() {
-	  return findElementByCssSelector("input[id$='substituted-user_input']").getAttribute("value");
+	public String getSubstitutedByAdmin(int rowIndex) {
+	  WebElement deputyForTable = findElementByCssSelector("[id$=':substitution-table']");
+	  WebElement deputyFor = deputyForTable.findElement(By.cssSelector(String.format("[id$='%d:substitution-for']", rowIndex)));
+	  return deputyFor.getText();
 	}
 	
   public void saveSubstitute() {
