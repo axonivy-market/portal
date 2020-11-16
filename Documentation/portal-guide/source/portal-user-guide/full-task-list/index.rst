@@ -50,7 +50,7 @@ handling tasks:
 
 2. Delegate Task
 
-3. Reverse
+3. Reserve
 
 4. Destroy Task
 
