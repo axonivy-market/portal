@@ -11,6 +11,7 @@ import org.apache.commons.lang3.time.DateUtils;
 
 import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.enums.DashboardFilterType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
@@ -29,9 +30,9 @@ public class DashboardTaskSearchCriteria {
 
   public TaskQuery buildQuery() throws ParseException {
     TaskQuery query = TaskQuery.create();
+    queryFilters(query);
     queryCanWorkOn(query);
     queryCategory(query);
-    queryFilters(query);
     TaskSortingQueryAppender appender = new TaskSortingQueryAppender(query);
     query = appender.appendSorting(this).toQuery();
     return query;
@@ -131,6 +132,18 @@ public class DashboardTaskSearchCriteria {
     }
   }
   
+  private void queryCustomFieldSelection(TaskQuery query, String field, List<String> filterList) {
+    if (CollectionUtils.isNotEmpty(filterList)) {
+      TaskQuery subQuery = TaskQuery.create();
+      IFilterQuery filterQuery = subQuery.where();
+      for (String filter : filterList) {
+        filterQuery.or().customField().stringField(field).isEqual(filter);
+      }
+      
+      query.where().and(subQuery);
+    }
+  }
+  
   private void queryFilters(TaskQuery query) throws ParseException {
     for (ColumnModel column : columns) {
       String field = column.getField();
@@ -165,28 +178,30 @@ public class DashboardTaskSearchCriteria {
         Date from = parse(filterFrom);
         Date to = parse(filterTo);
         queryExpiryDate(query, from, to);
+      } else if (column.getFilterType() == DashboardFilterType.SELECTION || CollectionUtils.isNotEmpty(filterList)) {
+        queryCustomFieldSelection(query, field, filterList);
       } else {
         TaskQuery subQuery = TaskQuery.create();
         ICustomFieldFilterQuery filterQuery = subQuery.where().customField();
-        if (StringUtils.isNotBlank(filter) || CollectionUtils.isNotEmpty(filterList) || filterFrom != null || filterTo != null) {
+        if (StringUtils.isNotBlank(filter) || StringUtils.isNotBlank(filterFrom) || StringUtils.isNotBlank(filterTo)) {
           if (column.isNumber()) {
-            if (filterFrom != null) {
+            if (StringUtils.isNotBlank(filterFrom)) {
               Number from = Double.parseDouble(filterFrom.toString());
               filterQuery.numberField(field).isGreaterOrEqualThan(from);
             }
   
-            if (filterTo != null) {
+            if (StringUtils.isNotBlank(filterTo)) {
               Number to = Double.parseDouble(filterTo.toString());
               filterQuery.numberField(field).isLowerOrEqualThan(to);
             }
           } else if (column.isDate()) {
             Date from = parse(filterFrom);
             Date to = parse(filterTo);
-            if (filterFrom != null) {
+            if (from != null) {
               filterQuery.timestampField(field).isGreaterOrEqualThan(from);
             }
   
-            if (filterTo != null) {
+            if (to != null) {
               filterQuery.timestampField(field).isLowerOrEqualThan(DateUtils.addDays(to, 1));
             }
           } else if (column.isText()) {
