@@ -16,7 +16,7 @@ public class ExpiryDateColumnModel extends ColumnModel implements Serializable {
     this.field = DashboardStandardTaskColumn.EXPIRY.getField();
     this.style = defaultIfEmpty(this.style, "width: 120px");
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__expiry-date");
-    this.format = DashboardColumnFormat.DATE;
+    this.format = DashboardColumnFormat.TIMESTAMP;
   }
   
   @Override

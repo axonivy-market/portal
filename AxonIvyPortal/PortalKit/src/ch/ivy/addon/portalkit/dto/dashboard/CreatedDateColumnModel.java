@@ -16,7 +16,7 @@ public class CreatedDateColumnModel extends ColumnModel implements Serializable 
     this.field = DashboardStandardTaskColumn.CREATED.getField();
     this.style = defaultIfEmpty(this.style, "width: 100px");
     this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__created-date");
-    this.format = DashboardColumnFormat.DATE;
+    this.format = DashboardColumnFormat.TIMESTAMP;
   }
   
   @Override
