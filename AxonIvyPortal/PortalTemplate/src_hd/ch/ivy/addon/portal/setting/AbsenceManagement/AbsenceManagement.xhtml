@@ -223,7 +223,7 @@
                     currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
                     <p:column headerText="#{ivy.cms.co(data.isSupervisor ? '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/selectedDeputyFor' : '/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/deputyFor')}"
                       sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(substitution.ownerUser, substitution.ownerUser.name)}">
-                      <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(substitution.ownerUser, substitution.ownerUser.name)}" styleClass="absence-column-value"/>
+                      <h:outputText id="substitution-for" value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(substitution.ownerUser, substitution.ownerUser.name)}" styleClass="absence-column-value"/>
                     </p:column>
                     <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/applicationAndRole')}"
                       sortBy="#{substitution.substitionRoleDisplayName}">
