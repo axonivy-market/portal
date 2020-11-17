@@ -156,10 +156,10 @@ String newResponsibleName = "";
 
 if (in.#selectedUser != null) {
 	newResponsibleName = in.#selectedUser.#displayName;
-	in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromUserDTO(in.selectedUser);
+	in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromUserDTO(in.selectedUser, in.application);
 } else if (in.#selectedRole != null) {
 	newResponsibleName = in.#selectedRole.#displayName;
-	in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(in.selectedRole);
+	in.delegatedSecurityMember = SecurityMemberUtils.findISecurityMemberFromRoleDTO(in.selectedRole, in.application);
 }
 
 String oldResponsibleName = in.task.getActivator() != null? in.task.getActivator().getDisplayName() : StringUtils.stripStart(in.task.getActivatorName(), "#");

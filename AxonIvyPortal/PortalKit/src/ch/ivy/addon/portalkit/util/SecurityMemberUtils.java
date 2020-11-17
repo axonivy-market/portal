@@ -7,6 +7,7 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.RoleDTO;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.UserDTO;
+import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IRole;
@@ -74,10 +75,22 @@ public class SecurityMemberUtils {
         return Ivy.wf().getSecurityContext().findUser(userDTO.getId());
     });
   }
+
+  public static ISecurityMember findISecurityMemberFromUserDTO(UserDTO userDTO, IApplication application) {
+    return IvyExecutor.executeAsSystem(() -> {
+      return application.getSecurityContext().findUser(userDTO.getId());
+    });
+  }
   
   public static ISecurityMember findISecurityMemberFromRoleDTO(RoleDTO roleDTO) {
     return IvyExecutor.executeAsSystem(() -> {
         return Ivy.wf().getSecurityContext().findRole(roleDTO.getId());
+    });
+  }
+
+  public static ISecurityMember findISecurityMemberFromRoleDTO(RoleDTO roleDTO, IApplication application) {
+    return IvyExecutor.executeAsSystem(() -> {
+      return application.getSecurityContext().findRole(roleDTO.getId());
     });
   }
 }
