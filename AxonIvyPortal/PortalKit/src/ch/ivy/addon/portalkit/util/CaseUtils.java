@@ -16,6 +16,7 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.ICaseQueryExecutor;
 import ch.ivyteam.util.Pair;
 
 public final class CaseUtils {
@@ -70,7 +71,11 @@ public final class CaseUtils {
   public static CaseQuery createBusinessCaseQuery() {
     return CaseQuery.businessCases();
   }
-  
+
+  public static CaseQuery createBusinessCaseQuery(ICaseQueryExecutor caseExecutor) {
+    return CaseQuery.businessCases(caseExecutor);
+  }
+
   public static void destroyCase(ICase selectedCase) {
     IvyExecutor.executeAsSystem(() -> {
       selectedCase.destroy();
