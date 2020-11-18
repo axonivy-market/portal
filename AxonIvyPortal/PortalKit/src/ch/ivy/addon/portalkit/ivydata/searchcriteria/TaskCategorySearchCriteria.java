@@ -7,6 +7,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivyteam.ivy.workflow.TaskState;
+import ch.ivyteam.ivy.workflow.query.ITaskQueryExecutor;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
@@ -31,7 +32,21 @@ public class TaskCategorySearchCriteria {
 
     return query;
   }
-  
+
+  @SuppressWarnings("deprecation")
+  public TaskQuery createQuery(ITaskQueryExecutor taskExecutor) {
+    TaskQuery query = TaskQuery.create(taskExecutor);
+    if (customTaskQuery != null) {
+      query = TaskQuery.fromJson(customTaskQuery.asJson()); // clone to keep the original custom query
+    }
+
+    if (hasIncludedStates()) {
+      query.where().and(queryForStates(getIncludedStates()));
+    }
+
+    return query;
+  }
+
   private TaskQuery queryForStates(List<TaskState> states) {
     TaskQuery stateFieldQuery = TaskQuery.create();
     IFilterQuery filterQuery = stateFieldQuery.where();

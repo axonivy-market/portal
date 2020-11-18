@@ -10,6 +10,7 @@ import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
+import ch.ivyteam.ivy.workflow.query.ICaseQueryExecutor;
 
 public class CaseCategorySearchCriteria {
 
@@ -32,7 +33,21 @@ public class CaseCategorySearchCriteria {
 
     return finalQuery;
   }
-  
+
+  @SuppressWarnings("deprecation")
+  public CaseQuery createQuery(ICaseQueryExecutor caseExecutor) {
+    CaseQuery finalQuery = CaseUtils.createBusinessCaseQuery(caseExecutor);
+    if (customCaseQuery != null) {
+      finalQuery = CaseQuery.fromJson(customCaseQuery.asJson()); // clone to keep the original custom query
+    }
+
+    if (hasIncludedStates()) {
+      finalQuery.where().and(queryForStates(getIncludedStates()));
+    }
+
+    return finalQuery;
+  }
+
   private CaseQuery queryForStates(List<CaseState> states) {
     CaseQuery stateFieldQuery = CaseUtils.createBusinessCaseQuery();
     IFilterQuery filterQuery = stateFieldQuery.where();
