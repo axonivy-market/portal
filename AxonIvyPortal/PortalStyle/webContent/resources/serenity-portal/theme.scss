@@ -1743,3 +1743,10 @@ ul.participants-list li {
   border: 2px solid transparent;
   border-top-color: $ajaxLoaderBorderColor;
 }
+
+/* Portal Exception */
+.code-block {
+  background: $ajaxExceptionBackgroundColor;
+  color: $ajaxExceptionTextColor;
+  border: $ajaxExceptionBorderColor;
+}

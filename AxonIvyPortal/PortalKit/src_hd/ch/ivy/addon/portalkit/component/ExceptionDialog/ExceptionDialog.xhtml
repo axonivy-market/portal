@@ -1,23 +1,64 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
-  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:pm="http://primefaces.org/mobile"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="message" required="true" shortDescription="Message Of Exception" />
-  <cc:attribute name="stackTrace" required="true" shortDescription="Stack trace Of Exception" />
-  <cc:attribute name="widgetVar" required="false" shortDescription="Primefaces widget variable" />
+  <cc:attribute name="message" shortDescription="Message Of Exception" />
+  <cc:attribute name="stackTrace" shortDescription="Stack trace Of Exception" />
+  <cc:attribute name="widgetVar" shortDescription="Primefaces widget variable" />
+  <cc:attribute name="pfException" required="true" shortDescription="Primeface Exception"/>
 </cc:interface>
 
 <cc:implementation>
+  <c:set var="exception" value="#{cc.attrs.pfException}" />
+
   <p:dialog closeOnEscape="true" id="#{cc.id}" widgetVar="#{cc.attrs.widgetVar}" modal="true" resizable="false"
-    header=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" width="800px">
-    <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/message')}: #{cc.attrs.message}" />
-    <h:panelGroup layout="block" rendered="#{userMenuBean.errorDetailToEndUser}">
-    <p>#{ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/stackTrace")}:</p>
-    <div class="exception-handler-stacktrace">
-      <h:outputText styleClass="exception-handler-stacktrace-text" value="#{cc.attrs.stackTrace}" readonly="true" escape="false"/>
-    </div>
+    header=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" width="800px" fitViewport="true" responsive="true"
+    >
+    <h:panelGrid columns="2" columnClasses="error-label, error-value" styleClass="ui-g-12">
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/errorType')}" />
+      <h:outputText value="#{exception.type}" />
+
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/timestamp')}" />
+      <h:outputText value="#{exception.formattedTimestamp}" />
+
+      <!-- Unique ID -->
+      <c:set var="uniqueId" value="#{portalExceptionBean.getUniqueId(exception)}" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/uniqueId')}" rendered="#{not empty uniqueId}" />
+      <h:panelGroup rendered="#{not empty uniqueId}">
+        <code id="unique-id" class="code-block">#{uniqueId}</code>
+        <p:commandLink onclick="copyToClipboard('unique-id')" global="false">
+          <i class="fa fa-copy" />
+          <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/copyCode')}</span>
+        </p:commandLink>
+      </h:panelGroup>
+
+      <!-- Process Element ID -->
+      <c:set var="processElementId" value="#{portalExceptionBean.getProcessElementId(exception)}"/>
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/processElementId')}" rendered="#{not empty processElementId}"/>
+      <h:panelGroup rendered="#{not empty processElementId}">
+       <code id="process-element-id" class="code-block">#{processElementId}</code>
+       <p:commandLink onclick="copyToClipboard('process-element-id')" global="false">
+        <i class="fa fa-copy"/>
+        <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/copyCode')}</span>
+       </p:commandLink>
+      </h:panelGroup>
+
+      <!-- PMV -->
+      <c:set var="pmv" value="#{portalExceptionBean.getPmvName(exception)}"/>
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/pmv')}" rendered="#{not empty pmv}"/>
+      <h:outputText rendered="#{not empty pmv}" value="#{pmv}" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/message')}" />
+      <h:outputText value="#{exception.message}" />
+    </h:panelGrid>
+    <h:panelGroup layout="block" rendered="#{userMenuBean.errorDetailToEndUser}" styleClass="ui-g-12 MarTop10">
+      <h:outputText styleClass="error-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/stackTrace')}:" />
+      <div class="exception-handler-stacktrace error-value">
+        <h:outputText styleClass="exception-handler-stacktrace-text" value="#{exception.formattedStackTrace}" readonly="true" escape="false" />
+      </div>
     </h:panelGroup>
     <f:facet name="footer">
       <div class="exception-handler-command">
@@ -25,6 +66,31 @@
       </div>
     </f:facet>
     
+    <script>
+      function copyToClipboard(elementId) {
+        var range, selection, element;
+        element = document.getElementById(elementId);
+
+        if (document.body.createTextRange) {
+          range = document.body.createTextRange();
+          range.moveToElementText(element);
+          range.select();
+        } else if (window.getSelection) {
+          selection = window.getSelection();
+          range = document.createRange();
+          range.selectNodeContents(element);
+          selection.removeAllRanges();
+          selection.addRange(range);
+        }
+
+        try {
+          document.execCommand('copy');
+        } catch (err) {
+          console.log('unable to copy text');
+        }
+      }
+    </script>
   </p:dialog>
+
 </cc:implementation>
 </html>
