@@ -18,7 +18,7 @@
   <p:dialog closeOnEscape="true" id="#{cc.id}" widgetVar="#{cc.attrs.widgetVar}" modal="true" resizable="false"
     header=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" width="800px" fitViewport="true" responsive="true">
     <h:panelGrid columns="2" columnClasses="error-label, error-value" styleClass="Wid100 MarBot10">
-      <h:outputText value="ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorDialog/errorType')" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/errorDialog/errorType')}" />
       <h:outputText value="#{exception.type}" />
 
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/columnTimestamp')}" />
