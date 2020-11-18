@@ -17,10 +17,12 @@ import org.primefaces.context.RequestContext;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
+import ch.ivy.addon.portalkit.bean.PortalExceptionBean;
 import ch.ivy.addon.portalkit.bo.RemoteCase;
 import ch.ivy.addon.portalkit.bo.RemoteTask;
 import ch.ivy.addon.portalkit.bo.RemoteWebStartable;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.persistence.variable.GlobalVariable;
 import ch.ivy.addon.portalkit.service.ApplicationService;
@@ -33,8 +35,6 @@ import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.process.call.SubProcessCallResult;
-import ch.ivyteam.ivy.server.ServerFactory;
-import ch.ivyteam.ivy.system.ISystemProperty;
 import ch.ivyteam.ivy.workflow.ITask;
 
 @ManagedBean
@@ -256,18 +256,18 @@ public class UserMenuBean implements Serializable {
     return hasNoRecordsFound;
   }
 
+  /**
+   * We moved this method to PortalExceptionBean#getErrorDetailToEndUser
+   * @return system configuration of ErrorDetailToEndUser
+   */
+  @Deprecated
   public boolean getErrorDetailToEndUser() {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> findShowErrorDetailSystemProperty());
+      PortalExceptionBean portalExceptionBean = (PortalExceptionBean) ManagedBeans.find("portalExceptionBean").get();
+      portalExceptionBean.getErrorDetailToEndUser();
     } catch (Exception e) {
       Ivy.log().error(e);
     }
     return true;
-  }
-
-  private boolean findShowErrorDetailSystemProperty() {
-    ISystemProperty systemProp =
-        ServerFactory.getServer().getApplicationConfigurationManager().getSystemProp("Errors.ShowDetailsToEndUser");
-    return systemProp.getBooleanValue();
   }
 }

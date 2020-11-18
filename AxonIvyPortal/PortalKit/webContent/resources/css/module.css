@@ -5253,3 +5253,22 @@ margin-top
   font-size: 14px !important;
 } 
 /* =================== END MESSAGES ========================= */
+
+/* =================== START EXCEPTION ===================== */
+.code-block {
+  padding: 5px 8px;
+  margin-right: 5px;
+  background: rgba(226, 226, 226, 0.50);
+  color: black;
+  border: transparent;
+  border-radius: 3px;
+}
+
+.error-label {
+  margin-right: 5px;
+}
+
+.error-label, .error-value {
+  padding: 6px 0;
+}
+/* ===================== END EXCEPTION ===================== */
