@@ -40,8 +40,6 @@ As0 @GridStep f117 '' #zField
 As0 @PushWFArc f118 '' #zField
 As0 @UdProcessEnd f119 '' #zField
 As0 @PushWFArc f120 '' #zField
-As0 @UdProcessEnd f127 '' #zField
-As0 @UdEvent f138 '' #zField
 As0 @GridStep f156 '' #zField
 As0 @UdProcessEnd f157 '' #zField
 As0 @UdMethod f158 '' #zField
@@ -137,9 +135,6 @@ As0 @PushWFArc f100 '' #zField
 As0 @UdProcessEnd f98 '' #zField
 As0 @PushWFArc f102 '' #zField
 As0 @PushWFArc f5 '' #zField
-As0 @GridStep f23 '' #zField
-As0 @PushWFArc f24 '' #zField
-As0 @PushWFArc f25 '' #zField
 As0 @GridStep f3 '' #zField
 As0 @PushWFArc f27 '' #zField
 As0 @PushWFArc f39 '' #zField
@@ -263,6 +258,7 @@ As0 f35 actionTable 'out=in;
 ' #txt
 As0 f35 actionCode 'import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.enums.ApplicationType;
+import ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService;
 
 in.selectedApp = new Application();
 if (in.applicationList.size() > 0) {
@@ -275,7 +271,8 @@ in.dialogTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/adminSettings/addNew
 
 in.type = ApplicationType.IVY_APPLICATION;
 in.displayNameInCurrentLanguage = null;
-in.supportedLanguages = new List();' #txt
+in.supportedLanguages = new List();
+in.ivyApplications = ApplicationService.newInstance().findAll();' #txt
 As0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -342,7 +339,8 @@ As0 f52 182 260 36 24 20 -2 #rect
 As0 f52 @|StepIcon #fIcon
 As0 f54 actionTable 'out=in;
 ' #txt
-As0 f54 actionCode 'import ch.ivy.addon.portalkit.enums.ApplicationType;
+As0 f54 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService;
+import ch.ivy.addon.portalkit.enums.ApplicationType;
 import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;
 import java.util.Locale;
 import ch.ivy.addon.portalkit.util.Locales;
@@ -358,7 +356,8 @@ if(in.selectedApp.#serverId is initialized){
 Locale currentLocale = new Locales().getCurrentLocale();
 DisplayNameAdaptor displayNameAdaptor = new DisplayNameAdaptor(in.selectedApp.displayName, currentLocale);
 in.displayNameInCurrentLanguage = displayNameAdaptor.getDisplayNameAsString();
-in.supportedLanguages = new List();' #txt
+in.supportedLanguages = new List();
+in.ivyApplications = ApplicationService.newInstance().findAll();' #txt
 As0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -554,25 +553,8 @@ As0 f119 686 606 20 20 13 0 #rect
 As0 f119 @|UdProcessEndIcon #fIcon
 As0 f120 expr out #txt
 As0 f120 696 580 696 606 #arcP
-As0 f127 1510 1062 20 20 13 0 #rect
-As0 f127 @|UdProcessEndIcon #fIcon
-As0 f138 guid 14CC094CD70A6996 #txt
-As0 f138 actionTable 'out=in;
-' #txt
-As0 f138 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>getApplicationList</name>
-        <nameStyle>18,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-As0 f138 1510 846 20 20 13 0 #rect
-As0 f138 @|UdEventIcon #fIcon
 As0 f156 actionTable 'out=in;
 ' #txt
-As0 f156 actionCode 'in.selectedApp.name = in.selectedIvyApplication.name;' #txt
 As0 f156 security system #txt
 As0 f156 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -587,15 +569,13 @@ As0 f156 @|StepIcon #fIcon
 As0 f157 838 1142 20 20 13 0 #rect
 As0 f157 @|UdProcessEndIcon #fIcon
 As0 f158 guid 14CC66EBC28A586A #txt
-As0 f158 method selectApplication(ch.ivy.addon.portalkit.ivydata.bo.IvyApplication) #txt
-As0 f158 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyApplication app> param;' #txt
-As0 f158 inParameterMapAction 'out.selectedIvyApplication=param.app;
-' #txt
+As0 f158 method selectApplication() #txt
+As0 f158 inParameterDecl '<> param;' #txt
 As0 f158 outParameterDecl '<> result;' #txt
 As0 f158 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>selectApplication(IvyApplication)</name>
+        <name>selectApplication()</name>
     </language>
 </elementInfo>
 ' #txt
@@ -1444,24 +1424,6 @@ As0 f102 expr out #txt
 As0 f102 1576 1638 1576 1691 #arcP
 As0 f5 expr in #txt
 As0 f5 544 1038 544 1084 #arcP
-As0 f23 actionTable 'out=in;
-' #txt
-As0 f23 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.ApplicationService;
-in.ivyApplications = ApplicationService.newInstance().findAll();
-' #txt
-As0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>get all ivy apps</name>
-    </language>
-</elementInfo>
-' #txt
-As0 f23 1464 954 112 44 -40 -8 #rect
-As0 f23 @|StepIcon #fIcon
-As0 f24 expr out #txt
-As0 f24 1520 866 1520 954 #arcP
-As0 f25 expr out #txt
-As0 f25 1520 998 1520 1062 #arcP
 As0 f3 actionTable 'out=in;
 ' #txt
 As0 f3 actionCode in.selectedApp.setServerId(Long.valueOf(1)); #txt
@@ -1766,7 +1728,8 @@ As0 f16 192 877 192 938 #arcP
 As0 f13 192 982 192 1043 #arcP
 As0 f20 actionTable 'out=in;
 ' #txt
-As0 f20 actionCode 'import ch.ivy.addon.portalkit.enums.ApplicationType;
+As0 f20 actionCode 'import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivy.addon.portalkit.enums.ApplicationType;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivyteam.ivy.checking.CommonFormats;
@@ -1985,10 +1948,6 @@ As0 f55 mainOut f102 tail #connect
 As0 f102 head f98 mainIn #connect
 As0 f103 out f5 tail #connect
 As0 f5 head f40 mainIn #connect
-As0 f138 mainOut f24 tail #connect
-As0 f24 head f23 mainIn #connect
-As0 f23 mainOut f25 tail #connect
-As0 f25 head f127 mainIn #connect
 As0 f3 mainOut f27 tail #connect
 As0 f27 head f103 in #connect
 As0 f11 mainOut f39 tail #connect

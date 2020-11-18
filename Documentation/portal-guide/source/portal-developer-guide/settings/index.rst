@@ -181,8 +181,7 @@ type either as Ivy application or Third Party application.
 
 .. tip::
 
-   -  ``Application name`` is the name of the application when you
-      create it. ``Display name`` is the name of the application to be
+   -  Select ``Application`` from dropdown list (see :ref:`Setup Portal multi applications <settings-admin-settings-setup-multi-portals>`). ``Display name`` is the name of the application to be
       shown on Portal UI.
 
    -  ``Portal link`` specifies the link will be redirected when

@@ -2562,7 +2562,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   .settings-table-action-buttons, .app-icon {
     text-align: left !important;
   }
-  .dialog-closing-information, .app-dialog, .select-icon-dialog, .application-selection-dialog,
+  .dialog-closing-information, .app-dialog, .select-icon-dialog,
   .setting-dialog, .project-info-dialog, .deputy-dialog,
   .absence-settings-dialog, .add-new-absence-dialog {
     min-width: 96vw;
@@ -2572,12 +2572,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
 }
 
-/* Override Reflow stype for Application selection */
-@media (max-width: 640px){
-  .application-selection-container.ui-datatable-reflow .ui-datatable-data td[role="gridcell"] .ui-column-title {
-    width: 160px;
-  }
-}
 @media screen and (min-width: 40.063em) and (max-width: 64.062em) {
   .admin-ui-dialog {
     max-width: 90vw;
@@ -2637,7 +2631,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   margin: 0 5px;
 }
 
-.setting-tab-action-buttons, .application-tab-action-buttons, .application-selection-action-buttons,
+.setting-tab-action-buttons, .application-tab-action-buttons,
 .announcement-tab-action-buttons {
   text-align: right;
   margin: 5px 0;
@@ -2721,12 +2715,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   margin-top: 10px;
 }
 
-.application-selection-container .ui-datatable-scrollable-body {
-  height: auto;
-  max-height: 60vh !important;
-  overflow-x: hidden;
-}
-
 .admin-table {
   display: inline-block;
 }
@@ -2764,10 +2752,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 
 .selection-app-type {
   width: 100%;
-}
-
-.application-name-column {
-  width: 50%;
 }
 
 /********************************** ABSENCES AND DEPUTY **********************************/

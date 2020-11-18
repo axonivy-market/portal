@@ -42,8 +42,6 @@ filteredSettingList List<ch.ivy.addon.portalkit.persistence.domain.GlobalSetting
 filteredSettingList PERSISTENT #fieldModifier
 settingTabOpened Boolean #field
 settingTabOpened PERSISTENT #fieldModifier
-selectedIvyApplication ch.ivy.addon.portalkit.ivydata.bo.IvyApplication #field
-selectedIvyApplication PERSISTENT #fieldModifier
 ivyApplications java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvyApplication> #field
 ivyApplications PERSISTENT #fieldModifier
 errors java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> #field

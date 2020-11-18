@@ -196,7 +196,7 @@
   <!-- APPLICATION DIALOG-->
   <p:dialog header="#{data.dialogTitle}" id="appDialog" onShow="$('body').css({overflow:'hidden'})"
     styleClass="app-dialog" onHide="$('body').css({overflow:'inherit'})" widgetVar="appDialog" dynamic="true"
-    modal="true" resizable="false" appendTo="@(body)" width="50vw"
+    modal="true" resizable="false" appendTo="@(body)" width="36vw"
     responsive="true" fitViewport="true" position="center center" positionType="absolute">
     <h:form prependId="false" id="appDialogForm">
       <p:messages id="messages" closable="true" />
@@ -224,22 +224,17 @@
           <!--Select Application -->
           <h:panelGroup id="applicationSelection" styleClass="ui-g" layout="block"
             rendered="#{data.type == 'IVY_APPLICATION'}">
-            <div class="ui-g-9">
-              <h:panelGroup styleClass="admin-application md-inputfield">
-                <p:inputText value="#{data.selectedApp.name}" id="appName" disabled="#{!data.isAddMode}" required="true"
-                  styleClass="admin-settings-form-input application-input-with-button"
-                  requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appNameRequiredMsg')}"
-                  validatorMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appNameCharactersLimit')}">
-                </p:inputText>
-                <p:outputLabel styleClass="admin-settings-form-input-label"
-                  value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationName')}" for="appName" />
+            <div class="ui-g-12">
+              <h:panelGroup styleClass="admin-application">
+                <p:selectOneMenu value="#{data.selectedApp.name}" id="appName" disabled="#{!data.isAddMode}" required="true"
+                  styleClass="ui-g-12"
+                    requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appNameRequiredMsg')}"
+                    validatorMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/appNameCharactersLimit')}">
+                  <f:selectItem itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/selectApplication')}" noSelectionOption="true" itemDisabled="true" />
+                  <f:selectItems value="#{data.ivyApplications}" var="app" itemLabel="#{app.name}" itemValue="#{app.name}" />
+                  <p:ajax event="change" listener="#{logic.selectApplication}" update="${cc.clientId}:appDialogForm" />
+                </p:selectOneMenu>
               </h:panelGroup>
-            </div>
-            <div class="ui-g-3">
-              <p:commandButton styleClass="app-setting-button"
-                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
-                oncomplete="PF('applicationSelectionDialog').show()" process="@this"
-                actionListener="#{logic.getApplicationList}" />
             </div>
           </h:panelGroup>
 
@@ -463,34 +458,6 @@
         </p:column>
       </p:dataTable>
     </h:form>
-  </p:dialog>
-
-  <!-- APPLICATION SELECTION LIST DIALOG -->
-  <p:dialog
-    header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationList/applicationSelectionHeader')}"
-    styleClass="application-selection-dialog" id="application-selection-dialog" widgetVar="applicationSelectionDialog"
-    dynamic="true" modal="true" resizable="false" appendTo="@(body)" width="60%"
-    responsive="true" fitViewport="true" position="center" positionType="absolute">
-    <p:dataTable value="#{data.ivyApplications}" var="app" scrollable="true" reflow="true"
-      emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
-      styleClass="application-selection-container">
-      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/applicationName')}" styleClass="u-truncate-text application-name-column">
-        <h:outputText value="#{app.name}" />
-      </p:column>
-      <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/active')}">
-        <h:outputText value="#{app.active}" />
-      </p:column>
-      <p:column>
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/select')}"
-          actionListener="#{logic.selectApplication(app)}" update="${cc.clientId}:appDialogForm" resetValues="true"
-          oncomplete="PF('applicationSelectionDialog').hide()" />
-      </p:column>
-    </p:dataTable>
-    <h:panelGroup layout="block" styleClass="u-dialog-footer ui-dialog-footer">
-      <p:commandButton type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-        onclick="PF('applicationSelectionDialog').hide();"
-        styleClass="application-selection-action-buttons portal-cancel-button" />
-    </h:panelGroup>
   </p:dialog>
 
   <p:dialog appendTo="@(body)" styleClass="application-name-language"
