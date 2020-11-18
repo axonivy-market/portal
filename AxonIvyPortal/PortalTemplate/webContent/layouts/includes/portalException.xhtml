@@ -24,7 +24,7 @@
 		<p:ajaxExceptionHandler update="exception-dialog:exception-dialog"
 			onexception="portal.notifyError('#{defaultNotificationMessage}', '#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}')" />
 		<ic:ch.ivy.addon.portalkit.component.ExceptionDialog id="exception-dialog" widgetVar="exception-dialog"
-			message="#{pfExceptionHandler.message}" stackTrace="#{pfExceptionHandler.formattedStackTrace}" />
+			pfException="#{pfExceptionHandler}" />
 			
 		<script type="text/javascript">
 			var redirectPage = "#{userMenuBean.homePageURL}";

@@ -4466,3 +4466,21 @@ body .ui-dialog.ui-widget.export-express-dialog {
   }
 }
 /*=================== NOTE HISTORY END ===================*/
+
+/*================= START EXCEPTION ===================== */
+.code-block {
+  padding: 5px 8px;
+  margin-right: 5px;
+  border-radius: 3px;
+}
+
+.error-label {
+  margin-right: 5px;
+  display: inline-block;
+  width: max-content
+}
+
+.error-label, .error-value {
+  padding: 6px 0;
+}
+/*==================== END EXCEPTION ===================*/
