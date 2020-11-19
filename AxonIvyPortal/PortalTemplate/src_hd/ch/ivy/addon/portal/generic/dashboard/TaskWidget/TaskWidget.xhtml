@@ -20,10 +20,9 @@
     <h:panelGroup id="dashboard-tasks-container" layout="block" 
       styleClass="ui-g-12 u-padding-0 js-dashboard-tasks-container-#{cc.attrs.taskWidget.id}" style="display: none">
       <h:panelGroup id="columns-configuration" layout="block" rendered="#{cc.attrs.renderColumnConfiguration}" styleClass="dashboard-tasks-container__columns-configuration">
-        <p:commandLink id="column-toggler" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}" />
-        <p:columnToggler trigger="column-toggler" datasource="dashboard-tasks">
-          <p:ajax event="toggle" listener="#{cc.attrs.taskWidget.onToggleColumns}" />
-        </p:columnToggler>
+        <p:commandLink id="column-toggler" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}"
+          onclick="PF('column-management-dialog').show()" />
+        <ui:include src="ColumnManagement.xhtml" />
       </h:panelGroup>
       
       <p:dataTable id="dashboard-tasks" value="#{cc.attrs.taskWidget.dataModel}" var="task"
