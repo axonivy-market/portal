@@ -8,7 +8,7 @@
   <properties>
     <powermock.version>1.6.6</powermock.version>
     <build.plugin.version>7.0.4</build.plugin.version>
-    <ivy.engine.version>7.0.21</ivy.engine.version>
+    <ivy.engine.version>7.0.22</ivy.engine.version>
   </properties>
   <dependencies>
     <dependency>
