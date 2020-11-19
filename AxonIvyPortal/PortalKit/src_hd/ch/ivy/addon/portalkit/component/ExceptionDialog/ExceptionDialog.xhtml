@@ -54,7 +54,7 @@
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/message')}" />
       <h:outputText value="#{exception.message}" />
     </h:panelGrid>
-    <h:panelGroup layout="block" rendered="#{userMenuBean.errorDetailToEndUser}" styleClass="ui-g-12 MarTop10">
+    <h:panelGroup layout="block" rendered="#{portalExceptionBean.errorDetailToEndUser}" styleClass="ui-g-12 MarTop10">
       <h:outputText styleClass="error-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/stackTrace')}:" />
       <div class="exception-handler-stacktrace error-value">
         <h:outputText styleClass="exception-handler-stacktrace-text" value="#{exception.formattedStackTrace}" readonly="true" escape="false" />
