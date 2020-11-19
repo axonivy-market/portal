@@ -38,7 +38,10 @@ Dt0 f1 81 241 30 30 0 15 #rect
 Dt0 f1 @|EndSubIcon #fIcon
 Dt0 f3 actionTable 'out=in;
 ' #txt
-Dt0 f3 actionCode 'import java.util.Locale;
+Dt0 f3 actionCode 'import java.util.stream.Collectors;
+import java.util.stream.Collectors;
+import java.util.Collections;
+import java.util.Locale;
 import java.util.ArrayList;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import java.util.HashMap;
@@ -87,7 +90,7 @@ if (!existedChart2) {
 	for (String language : supportedLanguages) {
 		DisplayName newName = new DisplayName();
 		newName.locale = Locale.forLanguageTag(language);
-		newName.value = chartName1;	
+		newName.value = chartName2;
 		chartNames2.add(newName);
 	}
 	StatisticChart newChart2 = service.createStatisticChart(statisticFilter, chartNames2, StatisticChartType.CASES_BY_STATE, sessionUserId, true);

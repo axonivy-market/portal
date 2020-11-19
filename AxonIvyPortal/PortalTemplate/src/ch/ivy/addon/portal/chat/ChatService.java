@@ -108,7 +108,7 @@ public class ChatService {
       ChatReferencesContainer.registerIvyExtension();
       if (!IS_STANDARD_MODE) {
         ClusterChatEventListener.register();
-        nodeId = DiCore.getGlobalInjector().getInstance(IClusterManager.class).getLocalClusterNode().getId();
+//        nodeId = DiCore.getGlobalInjector().getInstance(IClusterManager.class).getLocalClusterNode().getId(); TODO ask ivyTeam for new API/solution
       }
     }
     Queue<ResponseInfo> responses = getResponses();
