@@ -176,7 +176,7 @@ public class UserMenuBean implements Serializable {
   public boolean getErrorDetailToEndUser() {
     try {
       PortalExceptionBean portalExceptionBean = (PortalExceptionBean) ManagedBeans.find("portalExceptionBean").get();
-      portalExceptionBean.getErrorDetailToEndUser();
+      return portalExceptionBean.getErrorDetailToEndUser();
     } catch (Exception e) {
       Ivy.log().error(e);
     }
