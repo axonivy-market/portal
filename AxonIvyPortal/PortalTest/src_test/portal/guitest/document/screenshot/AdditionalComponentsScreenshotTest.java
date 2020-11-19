@@ -94,7 +94,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
   }
   
   @Test
-  public void captureScreenshotUserSelectionComponenet() throws IOException {
+  public void captureScreenshotUserSelectionComponent() throws IOException {
     redirectToRelativeLink(userSelectionComponentShowcaseUrl);
     ScreenshotUtil.resizeBrowser(new Dimension(1920, 1080));
     UserSelectionComponentPage userSelectionComponentPage = new UserSelectionComponentPage();
@@ -113,7 +113,7 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
   }
 
   @Test
-  public void captureScreenshotRoleSelectionComponenet() throws IOException {
+  public void captureScreenshotRoleSelectionComponent() throws IOException {
     redirectToRelativeLink(roleSelectionComponentShowcaseUrl);
     ScreenshotUtil.resizeBrowser(new Dimension(1920, 1080));
     RoleSelectionComponentPage roleSelectionComponentPage = new RoleSelectionComponentPage();
