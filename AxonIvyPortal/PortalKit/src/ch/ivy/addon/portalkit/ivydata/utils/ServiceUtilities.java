@@ -13,6 +13,7 @@ import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.dto.RoleDTO;
 import ch.ivy.addon.portalkit.dto.SecurityMemberDTO;
 import ch.ivy.addon.portalkit.dto.UserDTO;
+import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyApplication;
 import ch.ivy.addon.portalkit.ivydata.mapper.SecurityMemberDTOMapper;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
@@ -76,7 +77,7 @@ public class ServiceUtilities {
     }
 
     List<IRole> roles = new ArrayList<>(app.getSecurityContext().getRoles());
-    roles.removeIf(role -> role.getProperty("HIDE") != null);
+    roles.removeIf(role -> role.getProperty(AdditionalProperty.HIDE.toString()) != null);
 
     IvyCacheService.newInstance().setSessionCache(app.getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION, roles);
     return roles;
@@ -118,7 +119,7 @@ public class ServiceUtilities {
     return IvyExecutor.executeAsSystem(() -> {
       return CollectionUtils.emptyIfNull(app.getSecurityContext().getRoles())
           .stream()
-          .filter(role -> role.getProperty("HIDE") == null)
+          .filter(role -> role.getProperty(AdditionalProperty.HIDE.toString()) == null)
           .map(role -> new RoleDTO(role))
           .collect(Collectors.toList());
     });

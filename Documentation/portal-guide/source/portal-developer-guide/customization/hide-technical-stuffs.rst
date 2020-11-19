@@ -16,9 +16,9 @@ value to the role.
 .. tip:: Use the utility method of Portal:
       
       - Set property:
-         ch.ivy.addon.portalkit.util.RoleUtils.setProperty([YOUR_ROLE], ch.ivy.addon.portalkit.util.RoleUtils.HIDE, [ANY_VALUE])
+         ch.ivy.addon.portalkit.util.RoleUtils.setProperty([YOUR_ROLE], ch.ivy.addon.portalkit.enums.AdditionalProperty.HIDE.toString(), "HIDE")
       - Reverse it:
-         ch.ivy.addon.portalkit.util.RoleUtils.removeProperty([YOUR_ROLE], ch.ivy.addon.portalkit.util.RoleUtils.HIDE)
+         ch.ivy.addon.portalkit.util.RoleUtils.removeProperty([YOUR_ROLE], ch.ivy.addon.portalkit.enums.AdditionalProperty.HIDE.toString())
 
 
 Hide technical tasks
