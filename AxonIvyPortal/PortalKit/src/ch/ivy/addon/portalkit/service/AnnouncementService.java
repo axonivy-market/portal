@@ -126,17 +126,21 @@ public class AnnouncementService extends BusinessDataService<Announcement> {
       Ivy.log().error("Announcement status is not up to date");
     }
     invalidateCache();
-    IvyCacheService.newInstance().cacheAnnouncementSettings(ANNOUNCEMENT_ACTIVATED, expectedValue);
+    updateStatusToApplicationCache(expectedValue);
   }
 
   public boolean isAnnouncementActivated() {
-    Boolean announcementActivated =
-        (Boolean) IvyCacheService.newInstance().getAnnouncementSettingsFromCache(ANNOUNCEMENT_ACTIVATED);
+    Boolean announcementActivated = (Boolean) IvyCacheService.newInstance().getApplicationCache(IvyCacheIdentifier.PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME, ANNOUNCEMENT_ACTIVATED);
     if (announcementActivated == null) {
       announcementActivated = AnnouncementStatusService.getInstance().getAnnouncementStatus();
-      IvyCacheService.newInstance().cacheAnnouncementSettings(ANNOUNCEMENT_ACTIVATED, announcementActivated);
+      updateStatusToApplicationCache(announcementActivated);
     }
     return announcementActivated;
+  }
+
+  private void updateStatusToApplicationCache(Boolean status) {
+    IvyCacheService.newInstance().setApplicationCache(IvyCacheIdentifier.PORTAL_ANNOUNCEMENT_CACHE_GROUP_NAME,
+        ANNOUNCEMENT_ACTIVATED, status);
   }
 
   public void invalidateCache() {
