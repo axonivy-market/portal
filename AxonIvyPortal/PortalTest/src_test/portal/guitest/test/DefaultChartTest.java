@@ -2,6 +2,7 @@ package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -32,6 +33,11 @@ public class DefaultChartTest extends BaseTest {
     redirectToRelativeLink(CREATE_TESTING_TASK_FOR_CUSTOMIZATION_URL);
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+  }
+
+  @After
+  public void clear() {
+    resetLanguageOfCurrentUser();
   }
 
   @Test

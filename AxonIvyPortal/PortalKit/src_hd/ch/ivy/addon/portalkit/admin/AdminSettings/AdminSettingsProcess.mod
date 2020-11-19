@@ -1104,7 +1104,7 @@ As0 f26 actionTable 'out=in;
 As0 f26 actionCode 'import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 
-IvyCacheService.newInstance().invalidateSessionCacheWithGroup(IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS);' #txt
+IvyCacheService.newInstance().invalidateSessionGroup(IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS);' #txt
 As0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1123,7 +1123,7 @@ As0 f42 actionTable 'out=in;
 As0 f42 actionCode 'import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 
-IvyCacheService.newInstance().invalidateSessionCacheWithGroup(IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS);
+IvyCacheService.newInstance().invalidateSessionGroup(IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS);
 
 ' #txt
 As0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1144,7 +1144,7 @@ As0 f46 actionTable 'out=in;
 As0 f46 actionCode 'import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 
-IvyCacheService.newInstance().invalidateSessionCacheWithGroup(IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS);' #txt
+IvyCacheService.newInstance().invalidateSessionGroup(IvyCacheIdentifier.THIRD_PARTY_APPLICATIONS);' #txt
 As0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
