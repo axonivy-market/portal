@@ -235,14 +235,14 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
   text-align: right;
 }
 
-.custom-field-dialog__label {
+.field-add-fieldset__label {
   text-align: right;
 }
 
-.custom-field-dialog__input {
+.field-add-fieldset__input {
   width: 100%;
 }
 
-.custom-field-dialog__number-pattern-container {
+.field-add-fieldset__custom-field-type-container, .field-add-fieldset__number-pattern-container {
   padding: 0;
 }

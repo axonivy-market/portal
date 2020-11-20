@@ -19,6 +19,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
+import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.SecurityMemberUtils;
 import ch.ivy.addon.portalkit.util.TaskTreeUtils;
@@ -40,41 +41,58 @@ public class TaskWidgetConfigurationBean {
   private CheckboxTreeNode[] categoryNodes;
   private TaskDashboardWidget widget;
   
+  private List<DashboardColumnType> fieldTypes;
+  private DashboardColumnType selectedFieldType;
   private List<CustomFieldType> customFieldTypes;
   private CustomFieldType selectedCustomFieldType;
-  private List<Result> customFieldNames;
-  private Result selectedCustomFieldName;
-  private String customNumberFieldPattern;
-  private String customFieldDisplayName;
+  private List<String> fields;
+  private String selectedField;
+  private String numberFieldPattern;
+  private String fieldDisplayName;
 
   @PostConstruct
   public void init() {
     this.states = Arrays.asList(TaskState.values());
     this.priorities = Arrays.asList(WorkflowPriority.values());
     this.responsibles = new ArrayList<>();
+    this.fieldTypes = Arrays.asList(DashboardColumnType.STANDARD, DashboardColumnType.CUSTOM);
+    this.selectedFieldType = DashboardColumnType.STANDARD;
     this.customFieldTypes = Arrays.asList(CustomFieldType.STRING, CustomFieldType.TEXT, CustomFieldType.NUMBER, CustomFieldType.TIMESTAMP);
     this.selectedCustomFieldType = CustomFieldType.STRING;
   }
   
   public void preRender(TaskDashboardWidget widget) {
     this.widget = widget;
-    fetchCustomFieldNames();
+    fetchFields();
     buildCategoryTree();
+  }
+  
+  private List<String> standardFields() {
+    List<String> standardFields = new ArrayList<>();
+    for (DashboardStandardTaskColumn col : DashboardStandardTaskColumn.values()) {
+      standardFields.add(col.getField());
+    }
+    return standardFields;
   }
   
   public void addCustomField() {
     ColumnModel columnModel = new ColumnModel();
-    columnModel.setType(DashboardColumnType.CUSTOM);
-    columnModel.setHeader(this.customFieldDisplayName);
-    columnModel.setField(this.selectedCustomFieldName.name());
+    columnModel.setType(this.selectedFieldType);
+    columnModel.setHeader(this.fieldDisplayName);
+    columnModel.setField(this.selectedField);
     columnModel.setFormat(DashboardColumnFormat.valueOf(this.selectedCustomFieldType.name()));
-    columnModel.setPattern(customNumberFieldPattern);
+    columnModel.setPattern(numberFieldPattern);
     this.widget.getColumns().add(columnModel);
   }
   
-  public void fetchCustomFieldNames() {
-    List<Result> customFieldNames = ICustomFieldNames.tasks().type(selectedCustomFieldType).executor().results();
-    this.customFieldNames = customFieldNames.stream().filter(this::doesNotExist).collect(Collectors.toList());
+  public void fetchFields() {
+    Ivy.log().error("aa {0}", this.selectedFieldType);
+    if (this.selectedFieldType == DashboardColumnType.STANDARD) {
+      this.fields = standardFields();
+    } else {
+      List<Result> customFieldNames = ICustomFieldNames.tasks().type(selectedCustomFieldType).executor().results();
+      this.fields = customFieldNames.stream().filter(this::doesNotExist).map(Result::name).collect(Collectors.toList());
+    }
   }
   
   private boolean doesNotExist(Result customFieldName) {
@@ -176,6 +194,22 @@ public class TaskWidgetConfigurationBean {
   public void setCategoryTree(CheckboxTreeNode categoryTree) {
     this.categoryTree = categoryTree;
   }
+  
+  public List<DashboardColumnType> getFieldTypes() {
+    return fieldTypes;
+  }
+  
+  public void setFieldTypes(List<DashboardColumnType> fieldTypes) {
+    this.fieldTypes = fieldTypes;
+  }
+  
+  public DashboardColumnType getSelectedFieldType() {
+    return selectedFieldType;
+  }
+  
+  public void setSelectedFieldType(DashboardColumnType selectedFieldType) {
+    this.selectedFieldType = selectedFieldType;
+  }
 
   public List<CustomFieldType> getCustomFieldTypes() {
     return customFieldTypes;
@@ -192,36 +226,36 @@ public class TaskWidgetConfigurationBean {
   public void setSelectedCustomFieldType(CustomFieldType selectedCustomFieldType) {
     this.selectedCustomFieldType = selectedCustomFieldType;
   }
+  
+  public List<String> getFields() {
+    return fields;
+  }
+  
+  public void setStandardFields(List<String> fields) {
+    this.fields = fields;
+  }
+  
+  public String getSelectedField() {
+    return selectedField;
+  }
+  
+  public void setSelectedField(String selectedField) {
+    this.selectedField = selectedField;
+  }
+  
+  public String getNumberFieldPattern() {
+    return numberFieldPattern;
+  }
 
-  public List<Result> getCustomFieldNames() {
-    return customFieldNames;
-  }
-
-  public void setCustomFieldNames(List<Result> customFieldNames) {
-    this.customFieldNames = customFieldNames;
+  public void setNumberFieldPattern(String numberFieldPattern) {
+    this.numberFieldPattern = numberFieldPattern;
   }
   
-  public Result getSelectedCustomFieldName() {
-    return selectedCustomFieldName;
+  public String getFieldDisplayName() {
+    return fieldDisplayName;
   }
   
-  public void setSelectedCustomFieldName(Result selectedCustomFieldName) {
-    this.selectedCustomFieldName = selectedCustomFieldName;
-  }
-  
-  public String getCustomNumberFieldPattern() {
-    return customNumberFieldPattern;
-  }
-
-  public void setCustomNumberFieldPattern(String customNumberFieldPattern) {
-    this.customNumberFieldPattern = customNumberFieldPattern;
-  }
-  
-  public String getCustomFieldDisplayName() {
-    return customFieldDisplayName;
-  }
-  
-  public void setCustomFieldDisplayName(String customFieldDisplayName) {
-    this.customFieldDisplayName = customFieldDisplayName;
+  public void setFieldDisplayName(String fieldDisplayName) {
+    this.fieldDisplayName = fieldDisplayName;
   }
 }
