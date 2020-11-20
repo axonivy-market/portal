@@ -185,7 +185,7 @@ HowTo: Remove an attachment from the case
 
 3. A :guilabel:`Confirmation` dialog is opened
 
-4. Confirm the deletion with the button **Yes**
+4. Confirm the deletion with the button **Delete**
 
 |how-to-delete-document|
 
