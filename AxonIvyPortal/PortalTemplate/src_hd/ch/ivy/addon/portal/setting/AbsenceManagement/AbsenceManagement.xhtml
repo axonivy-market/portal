@@ -24,7 +24,7 @@
                 </div>
 
                 <div class="ui-g-12 u-no-padding-top">
-                  <div class="ui-g-4 ui-xl-4 ui-lg-4 ui-md-5 ui-sm-12 u-padding-0" jsf:rendered="#{data.isSupervisor}">
+                  <div class="ui-g-4 ui-xl-4 ui-lg-4 ui-md-12 ui-sm-12 u-padding-0" jsf:rendered="#{data.isSupervisor}">
                     <ic:ch.ivy.addon.portalkit.component.UserSelection id="user-absence-selection-component"
                       componentId="user-absence"
                       selectedUser="#{data.selectedAbsenceUser}"
@@ -45,8 +45,8 @@
                       </f:facet>
                     </ic:ch.ivy.addon.portalkit.component.UserSelection>
                   </div>
-                  <div class="#{data.isSupervisor ? 'ui-g-8 ui-xl-8 ui-lg-8 ui-md-7 ui-sm-12' : 'ui-g-12'} add-absence-panel">
-                    <div class="ui-g-6 ui-lg-6 ui-md-8 ui-sm-8 u-padding-0 u-text-align-left">
+                  <div class="#{data.isSupervisor ? 'ui-g-8 ui-xl-8 ui-lg-8 ui-md-12 ui-sm-12' : 'ui-g-12'} add-absence-panel">
+                    <div class="ui-g-6 ui-lg-6 ui-md-8 ui-sm-11 u-padding-0 u-text-align-left">
                       <p:selectBooleanCheckbox id="show-absence-in-the-past"
                         value="#{data.absenceInThePastShown}"
                         styleClass="show-absence-in-the-past-panel"
@@ -58,16 +58,25 @@
                       </p:selectBooleanCheckbox>
                     </div>
 
-                    <div class="ui-g-6 ui-lg-6 ui-md-4 ui-sm-4 u-padding-0">
-                      <p:commandButton id="add-absence"
-                        styleClass="#{data.isSupervisor ? 'small-add-absence' :''} Fright"
-                        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence')}"
-                        process="@this"
-                        oncomplete="PF('absence-dialog').show()"
-                        actionListener="#{logic.add}"
-                        icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}"
-                        update="@widgetVar(absence-dialog)"
-                        rendered="#{absenceManagementBean.ownAbsencesCreatable}" />
+                    <div class="ui-g-6 ui-lg-6 ui-md-4 ui-sm-1 u-padding-0">
+                        <p:commandButton id="add-absence"
+                          styleClass="Fright ui-sm-hidden"
+                          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/addAbsence')}"
+                          process="@this"
+                          oncomplete="PF('absence-dialog').show()"
+                          actionListener="#{logic.add}"
+                          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}"
+                          update="@widgetVar(absence-dialog)"
+                          rendered="#{absenceManagementBean.ownAbsencesCreatable}" />
+                        <!-- Show on Mobile screen - Only show icon -->
+                        <p:commandButton id="add-absence-icon-only"
+                          styleClass="Fright ui-md-hidden ui-lg-hidden ui-xl-hidden"
+                          process="@this"
+                          oncomplete="PF('absence-dialog').show()"
+                          actionListener="#{logic.add}"
+                          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}"
+                          update="@widgetVar(absence-dialog)"
+                          rendered="#{absenceManagementBean.ownAbsencesCreatable}" />
                       </div>
                   </div>
 
