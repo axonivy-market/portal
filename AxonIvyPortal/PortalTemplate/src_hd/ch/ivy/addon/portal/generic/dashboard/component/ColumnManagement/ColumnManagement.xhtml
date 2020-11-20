@@ -1,0 +1,56 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions">
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="taskWidget" type="ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget" required="true" />
+</cc:interface>
+
+<cc:implementation>
+  <f:event listener="#{columnManagementBean.preRender(cc.attrs.taskWidget)}" type="preRenderComponent" />
+  
+  <p:dialog id="column-management-dialog" widgetVar="column-management-dialog" header="Column management"
+    appendTo="@(body)" fitViewport="true" width="700" closeOnEscape="true" draggable="false" dynamic="true"
+    responsive="true" modal="true">
+    <h:form id="column-management-form">
+      <ui:include src="FieldAdd.xhtml" />
+
+      <p:dataTable id="column-management-datatable" value="#{columnManagementBean.columnsBeforeSave}" var="column"
+        draggableRows="true" rowDragSelector="i.fa-arrows-v">
+        <p:ajax event="rowReorder" global="false" />
+        <p:column headerText="Visible" width="70" style="text-align: center">
+          <p:selectBooleanCheckbox id="column-visibility-checkbox" value="#{column.visible}">
+            <p:ajax event="change" global="false" />
+          </p:selectBooleanCheckbox>
+        </p:column>
+        <p:column headerText="Field">
+          #{column.field}
+        </p:column>
+          <p:column headerText="Display Name">
+          #{column.header}
+        </p:column>
+        <p:column headerText="Reorder" width="70" style="text-align: center">
+          <i class="fa fa-arrows-v" />
+        </p:column>
+        <p:column headerText="Remove" width="70" style="text-align: center">
+          <p:commandLink id="remove-link" actionListener="#{columnManagementBean.remove(column)}" global="false" process="@this" update="column-management-datatable">
+            <i class="icon ivyicon-bin-1" />
+          </p:commandLink>
+        </p:column>
+      </p:dataTable>
+    </h:form>
+    <f:facet name="footer">
+      <p:link id="column-management-cancel-link" styleClass="u-mar-right-10" href="#"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+        onclick="PF('column-management-dialog').hide()" />
+
+      <p:commandButton id="column-management-save-btn"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+        actionListener="#{columnManagementBean.save}" update="task-configuration-form"
+        oncomplete="PF('column-management-dialog').hide();" />
+    </f:facet>
+  </p:dialog>
+
+
+</cc:implementation>
+</html>

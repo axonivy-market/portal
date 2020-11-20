@@ -159,13 +159,24 @@ public class DashboardBean implements Serializable {
     TaskDashboardWidget result = new TaskDashboardWidget();
     result.setId(getNewTaskWidgetId());
     result.setName(translate("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks"));
-    result.setWidth(8);
+    result.setWidth(10);
     result.setHeight(6);
     result.setAutoPosition(true);
     result.setSortField(TaskSortField.ID.toString());
     result.setSortDescending(true);
+    initStandardColumns(result);
     buildColumns(result);
     return result;
+  }
+  
+  private void initStandardColumns(TaskDashboardWidget widget) {
+    List<ColumnModel> columnModels = new ArrayList<>();
+    for (DashboardStandardTaskColumn col : DashboardStandardTaskColumn.values()) {
+      ColumnModel columnModel = new ColumnModel();
+      columnModel.setField(col.getField());
+      columnModels.add(columnModel);
+    }
+    widget.setColumns(columnModels);
   }
   
   public void save() throws JsonParseException, JsonMappingException, IOException {
