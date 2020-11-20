@@ -34,7 +34,7 @@
 					},
 					{
 						"type": "standard",
-						"field": "responsible"
+						"field": "activator"
 					},
 					{
 						"type": "standard",
@@ -42,11 +42,11 @@
 					},
 					{
 						"type": "standard",
-						"field": "created"
+						"field": "startTimestamp"
 					},
 					{
 						"type": "standard",
-						"field": "expiry"
+						"field": "expiryTimestamp"
 					},
 					{
 						"type": "custom",
