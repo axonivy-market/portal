@@ -6,8 +6,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.event.ToggleEvent;
-import org.primefaces.model.Visibility;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -23,13 +21,6 @@ public class TaskDashboardWidget extends DashboardWidget {
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
     setColumns(new ArrayList<>());
-  }
-  
-  public void onToggleColumns(ToggleEvent e) {
-    int pos = (int) e.getData();
-    boolean isVisible = e.getVisibility() == Visibility.VISIBLE;
-    ColumnModel columnModel = getColumns().get(pos);
-    columnModel.setVisible(isVisible);
   }
   
   @JsonIgnore
