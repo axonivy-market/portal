@@ -98,7 +98,7 @@
 
         <br />
         <p:outputPanel styleClass="TexAlRight">
-          <p:commandButton id="ok-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" update="form form:messages-dynaform" process="form"
+          <p:commandButton id="ok-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" update="form" process="form"
             actionListener="#{logic.close}" icon="fa fa-check" />
           <p:spacer width="5" />
           <p:commandButton id="cancel-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="form"
