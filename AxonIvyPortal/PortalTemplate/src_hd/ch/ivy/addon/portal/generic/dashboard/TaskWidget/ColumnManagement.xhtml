@@ -4,21 +4,28 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <p:dialog id="column-management-dialog" widgetVar="column-management-dialog"
-  header="Column management" appendTo="@(body)" fitViewport="true" width="500"
+  header="Column management" appendTo="@(body)" fitViewport="true" width="700"
   closeOnEscape="true" draggable="false" dynamic="true" responsive="true" modal="true">
   <h:form id="column-management-form">
+    <ui:include src="FieldAdd.xhtml" />
+    
     <p:dataTable id="column-management-datatable" value="#{cc.attrs.taskWidget.columns}" var="column" draggableRows="true" rowDragSelector="i.fa-arrows-v">
       <p:column headerText="Visible" width="70" style="text-align: center">
         <p:selectBooleanCheckbox id="column-visibility-checkbox" value="#{column.visible}" />
       </p:column>
-      <p:column headerText="Column">
+      <p:column headerText="Field">
+        #{column.field}
+      </p:column>
+      <p:column headerText="Display Name">
         #{column.header}
       </p:column>
       <p:column headerText="Reorder" width="70" style="text-align: center">
         <i class="fa fa-arrows-v" />
       </p:column>
       <p:column headerText="Remove" width="70" style="text-align: center">
-        <i class="si si-bin-1" />
+        <p:commandLink id="remove-link">
+          <i class="icon ivyicon-bin-1" />
+        </p:commandLink>
       </p:column>
     </p:dataTable>
   </h:form>
