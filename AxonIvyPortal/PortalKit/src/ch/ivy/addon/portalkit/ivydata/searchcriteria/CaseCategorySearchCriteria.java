@@ -20,23 +20,16 @@ public class CaseCategorySearchCriteria {
   
   private CaseQuery customCaseQuery;
   
-  @SuppressWarnings("deprecation")
   public CaseQuery createQuery() {
-    CaseQuery finalQuery = CaseUtils.createBusinessCaseQuery();
-    if (customCaseQuery != null) {
-      finalQuery = CaseQuery.fromJson(customCaseQuery.asJson()); // clone to keep the original custom query
-    }
+    return updateQuery(CaseUtils.createBusinessCaseQuery());
+  }
 
-    if (hasIncludedStates()) {
-      finalQuery.where().and(queryForStates(getIncludedStates()));
-    }
-
-    return finalQuery;
+  public CaseQuery createQuery(ICaseQueryExecutor caseExecutor) {
+    return updateQuery(CaseUtils.createBusinessCaseQuery(caseExecutor));
   }
 
   @SuppressWarnings("deprecation")
-  public CaseQuery createQuery(ICaseQueryExecutor caseExecutor) {
-    CaseQuery finalQuery = CaseUtils.createBusinessCaseQuery(caseExecutor);
+  private CaseQuery updateQuery(CaseQuery finalQuery) {
     if (customCaseQuery != null) {
       finalQuery = CaseQuery.fromJson(customCaseQuery.asJson()); // clone to keep the original custom query
     }
