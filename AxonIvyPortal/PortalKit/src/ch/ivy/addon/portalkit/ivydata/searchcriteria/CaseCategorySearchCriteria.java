@@ -19,26 +19,28 @@ public class CaseCategorySearchCriteria {
   private List<CaseState> includedStates;
   
   private CaseQuery customCaseQuery;
-  
+
   public CaseQuery createQuery() {
-    return updateQuery(CaseUtils.createBusinessCaseQuery());
+    CaseQuery finalQuery = customCaseQuery != null ? createCustomQuery() : CaseUtils.createBusinessCaseQuery();
+    updateQuery(finalQuery);
+    return finalQuery;
   }
 
   public CaseQuery createQuery(ICaseQueryExecutor caseExecutor) {
-    return updateQuery(CaseUtils.createBusinessCaseQuery(caseExecutor));
+    CaseQuery finalQuery = customCaseQuery != null ? createCustomQuery() : CaseUtils.createBusinessCaseQuery(caseExecutor);
+    updateQuery(finalQuery);
+    return finalQuery;
   }
 
   @SuppressWarnings("deprecation")
-  private CaseQuery updateQuery(CaseQuery finalQuery) {
-    if (customCaseQuery != null) {
-      finalQuery = CaseQuery.fromJson(customCaseQuery.asJson()); // clone to keep the original custom query
-    }
+  private CaseQuery createCustomQuery() {
+    return CaseQuery.fromJson(customCaseQuery.asJson());// clone to keep the original custom query
+  }
 
+  private void updateQuery(CaseQuery finalQuery) {
     if (hasIncludedStates()) {
       finalQuery.where().and(queryForStates(getIncludedStates()));
     }
-
-    return finalQuery;
   }
 
   private CaseQuery queryForStates(List<CaseState> states) {

@@ -18,26 +18,28 @@ public class TaskCategorySearchCriteria {
   private List<TaskState> includedStates;
   
   private TaskQuery customTaskQuery;
-  
+
   public TaskQuery createQuery() {
-    return updateQuery(TaskQuery.create());
+    TaskQuery query = customTaskQuery != null ? createCustomQuery() : TaskQuery.create();
+    updateQuery(query);
+    return query;
   }
 
   public TaskQuery createQuery(ITaskQueryExecutor taskExecutor) {
-    return updateQuery(TaskQuery.create(taskExecutor));
+    TaskQuery query = customTaskQuery != null ? createCustomQuery() : TaskQuery.create(taskExecutor);
+    updateQuery(query);
+    return query;
   }
 
   @SuppressWarnings("deprecation")
-  private TaskQuery updateQuery(TaskQuery query) {
-    if (customTaskQuery != null) {
-      query = TaskQuery.fromJson(customTaskQuery.asJson()); // clone to keep the original custom query
-    }
+  private TaskQuery createCustomQuery() {
+    return TaskQuery.fromJson(customTaskQuery.asJson());// clone to keep the original custom query
+  }
 
+  private void updateQuery(TaskQuery query) {
     if (hasIncludedStates()) {
       query.where().and(queryForStates(getIncludedStates()));
     }
-
-    return query;
   }
 
   private TaskQuery queryForStates(List<TaskState> states) {
