@@ -246,3 +246,7 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 .field-add-fieldset__custom-field-type-container, .field-add-fieldset__number-pattern-container {
   padding: 0;
 }
+
+.field-add-fieldset__autocomplete-input {
+  width: 100%;
+}
