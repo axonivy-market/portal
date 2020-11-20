@@ -15,6 +15,12 @@
   padding-right: 0 !important;
 }
 
+@media screen and (max-width: 40em) {
+  .document-table-component .upload-container {
+    padding-right: 0.5em !important;
+  }
+}
+
 .document-table-component .upload-container > * {
   float: right;
 }
@@ -70,7 +76,10 @@
   width: 200px;
 }
 
+.document-table-component .document-name-column span,
 .document-table-component .document-type-column span {
+  display: block;
+  overflow: hidden;
   text-overflow: ellipsis;
 }
 
@@ -92,10 +101,23 @@
 }
 
 @media screen and (max-width: 40em) {
-  .document-table-component .document-size-column,
+  .document-table-component .document-size-column {
+    display: none;
+  }
+
+  .document-table-component .document-name-column,
   .document-table-component .document-type-column,
   .document-table-component .document-action-column {
-    width: auto;
+    width: 33.5%;
   }
 }
 
+@media screen and (max-width: 28em) {
+  .document-table-component .document-type-column {
+    width: 145px;
+  }
+}
+
+.document-table-component .upload-container .ui-fileupload-files {
+  margin-top: 20px;
+}
