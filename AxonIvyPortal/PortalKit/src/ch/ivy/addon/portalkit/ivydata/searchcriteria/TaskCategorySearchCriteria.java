@@ -19,23 +19,16 @@ public class TaskCategorySearchCriteria {
   
   private TaskQuery customTaskQuery;
   
-  @SuppressWarnings("deprecation")
   public TaskQuery createQuery() {
-    TaskQuery query = TaskQuery.create();
-    if (customTaskQuery != null) {
-      query = TaskQuery.fromJson(customTaskQuery.asJson()); // clone to keep the original custom query
-    }
+    return updateQuery(TaskQuery.create());
+  }
 
-    if (hasIncludedStates()) {
-      query.where().and(queryForStates(getIncludedStates()));
-    }
-
-    return query;
+  public TaskQuery createQuery(ITaskQueryExecutor taskExecutor) {
+    return updateQuery(TaskQuery.create(taskExecutor));
   }
 
   @SuppressWarnings("deprecation")
-  public TaskQuery createQuery(ITaskQueryExecutor taskExecutor) {
-    TaskQuery query = TaskQuery.create(taskExecutor);
+  private TaskQuery updateQuery(TaskQuery query) {
     if (customTaskQuery != null) {
       query = TaskQuery.fromJson(customTaskQuery.asJson()); // clone to keep the original custom query
     }
