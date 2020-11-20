@@ -115,23 +115,23 @@ public class DashboardBean implements Serializable {
     for (int i = 0; i < columns.size(); i++) {
       ColumnModel column = columns.get(i);
       String field = column.getField();
-      if (DashboardStandardTaskColumn.START.toString().equalsIgnoreCase(field)) {
+      if (DashboardStandardTaskColumn.START.getField().equalsIgnoreCase(field)) {
         column = mapper.convertValue(column, StartColumnModel.class);
-      } else if (DashboardStandardTaskColumn.PRIORITY.toString().equalsIgnoreCase(field)) {
+      } else if (DashboardStandardTaskColumn.PRIORITY.getField().equalsIgnoreCase(field)) {
         column = mapper.convertValue(column, PriorityColumnModel.class);
-      } else if (DashboardStandardTaskColumn.ID.toString().equalsIgnoreCase(field)) {
+      } else if (DashboardStandardTaskColumn.ID.getField().equalsIgnoreCase(field)) {
         column = mapper.convertValue(column, IdColumnModel.class);
-      } else if (DashboardStandardTaskColumn.NAME.toString().equalsIgnoreCase(field)) {
+      } else if (DashboardStandardTaskColumn.NAME.getField().equalsIgnoreCase(field)) {
         column = mapper.convertValue(column, NameColumnModel.class);
-      } else if (DashboardStandardTaskColumn.DESCRIPTION.toString().equalsIgnoreCase(field)) {
+      } else if (DashboardStandardTaskColumn.DESCRIPTION.getField().equalsIgnoreCase(field)) {
         column = mapper.convertValue(column, DescriptionColumnModel.class);
-      } else if (DashboardStandardTaskColumn.RESPONSIBLE.toString().equalsIgnoreCase(field)) {
+      } else if (DashboardStandardTaskColumn.RESPONSIBLE.getField().equalsIgnoreCase(field)) {
         column = mapper.convertValue(column, ResponsibleColumnModel.class);
-      } else if (DashboardStandardTaskColumn.STATE.toString().equalsIgnoreCase(field)) {
+      } else if (DashboardStandardTaskColumn.STATE.getField().equalsIgnoreCase(field)) {
         column = mapper.convertValue(column, StateColumnModel.class);
-      } else if (DashboardStandardTaskColumn.CREATED.toString().equalsIgnoreCase(field)) {
+      } else if (DashboardStandardTaskColumn.CREATED.getField().equalsIgnoreCase(field)) {
         column = mapper.convertValue(column, CreatedDateColumnModel.class);
-      } else if (DashboardStandardTaskColumn.EXPIRY.toString().equalsIgnoreCase(field)) {
+      } else if (DashboardStandardTaskColumn.EXPIRY.getField().equalsIgnoreCase(field)) {
         column = mapper.convertValue(column, ExpiryDateColumnModel.class);
       }
       column.initDefaultValue();
