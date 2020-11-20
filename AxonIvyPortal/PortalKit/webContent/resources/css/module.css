@@ -2803,12 +2803,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
     max-width: 75px;
   }
   
-  .absence-management .add-absence-panel button.small-add-absence span.ui-button-text {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-
   .absences-management-container tbody.ui-datatable-data span.ui-column-title,
   .absences-management-container tbody.ui-datatable-data .absence-column-value {
     vertical-align: top;
@@ -2861,7 +2855,6 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .absence-management .show-absence-in-the-past-panel span.ui-chkbox-label {
-  width: calc(100% - 45px);
   margin-right: 0;
 }
 /**********************************END ABSENCES AND DEPUTY **********************************/
@@ -3018,6 +3011,18 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 @media screen and (max-width: 40em) {
   .absences-management-form .add-absence-panel {
     text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .add-absence-dialog {
+    max-width: 98vw;
+  }
+  
+  .add-absence-dialog .ui-dialog-content.ui-widget-content,
+  .add-absence-dialog .u-dialog-footer.ui-dialog-footer {
+    padding-bottom: 0;
   }
 
   .absences-management-form {
