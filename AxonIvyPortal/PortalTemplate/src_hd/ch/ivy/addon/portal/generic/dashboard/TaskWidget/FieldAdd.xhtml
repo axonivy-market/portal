@@ -1,0 +1,70 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+  <p:fieldset id="field-add-fieldset" legend="Add Field" style="margin-bottom: 10px">
+    <div class="ui-g">
+      <div class="ui-g-3 field-add-fieldset__label">
+        <p:outputLabel for="field-type-selection" value="Type" />
+      </div>
+      <div class="ui-g-9 field-add-fieldset__label">
+        <p:selectOneMenu id="field-type-selection" value="#{taskWidgetConfigurationBean.selectedFieldType}" styleClass="field-add-fieldset__input">
+          <f:selectItems value="#{taskWidgetConfigurationBean.fieldTypes}" />
+          
+          <p:ajax listener="#{taskWidgetConfigurationBean.fetchFields}" update="field-add-fieldset" />
+        </p:selectOneMenu>
+      </div>
+      
+      <h:panelGroup id="custom-field-type-container" 
+        styleClass="#{taskWidgetConfigurationBean.selectedFieldType eq 'CUSTOM' ? 'ui-g-12 field-add-fieldset__custom-field-type-container' : ''}"
+        rendered="#{taskWidgetConfigurationBean.selectedFieldType eq 'CUSTOM'}">
+        <div class="ui-g-3 field-add-fieldset__label">
+          <p:outputLabel for="custom-field-type-selection" value="Custom Field Type" />
+        </div>
+        <div class="ui-g-9 field-add-fieldset__label">
+          <p:selectOneMenu id="custom-field-type-selection" value="#{taskWidgetConfigurationBean.selectedCustomFieldType}" styleClass="field-add-fieldset__input">
+            <f:selectItems value="#{taskWidgetConfigurationBean.customFieldTypes}" />
+            
+            <p:ajax listener="#{taskWidgetConfigurationBean.fetchFields}" update="field-selection number-pattern-container" />
+          </p:selectOneMenu>
+        </div>
+      </h:panelGroup>
+      
+      <div class="ui-g-3 field-add-fieldset__label">
+        <p:outputLabel for="field-selection" value="Field" />
+      </div>
+      <div class="ui-g-9">
+        <p:selectOneMenu id="field-selection" value="#{taskWidgetConfigurationBean.selectedField}" styleClass="field-add-fieldset__input"
+          required="true" requiredMessage="Field #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}">
+          <f:selectItems value="#{taskWidgetConfigurationBean.fields}" var="field" itemValue="#{field}" itemLabel="#{field}" />
+        </p:selectOneMenu>
+        <p:message for="field-selection" />
+      </div>
+      
+      <h:panelGroup id="number-pattern-container" 
+        styleClass="#{taskWidgetConfigurationBean.selectedCustomFieldType eq 'NUMBER' ? 'ui-g-12 field-add-fieldset__number-pattern-container' : ''}">
+        <h:panelGroup styleClass="ui-g-3 field-add-fieldset__label" rendered="#{taskWidgetConfigurationBean.selectedCustomFieldType eq 'NUMBER'}">
+          <p:outputLabel for="custom-number-field-pattern" value="Number Pattern" />
+        </h:panelGroup>
+        <h:panelGroup styleClass="ui-g-9" rendered="#{taskWidgetConfigurationBean.selectedCustomFieldType eq 'NUMBER'}">
+          <p:inputText id="custom-number-field-pattern" value="#{taskWidgetConfigurationBean.numberFieldPattern}"
+            styleClass="field-add-fieldset__input" />
+        </h:panelGroup>
+      </h:panelGroup>
+      
+      <div class="ui-g-3 field-add-fieldset__label">
+        <p:outputLabel for="field-display-name" value="Display Name" />
+      </div>
+      <div class="ui-g-9">
+        <p:inputText id="field-display-name" value="#{taskWidgetConfigurationBean.fieldDisplayName}" styleClass="field-add-fieldset__input"
+           required="true" requiredMessage="Display Name #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}" />
+        <p:message for="field-display-name" />
+      </div>
+      
+      <div class="ui-g-12" style="text-align: right">
+        <p:commandButton id="field-add-btn" value="Add field" />
+      </div>
+    </div>
+  </p:fieldset>
+</html>
