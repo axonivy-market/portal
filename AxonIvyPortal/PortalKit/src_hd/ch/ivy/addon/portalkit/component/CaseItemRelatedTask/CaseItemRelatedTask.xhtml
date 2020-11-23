@@ -8,6 +8,8 @@
   <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
   <cc:attribute name="styleClass" />
   <cc:attribute name="isWorkingOnTask" type="java.lang.Boolean"/>
+  <cc:attribute name="inFrame" type="java.lang.Boolean" default="false"/>
+  <cc:attribute name="readOnly" type="java.lang.Boolean" default="false"/>
 </cc:interface>
 
 <cc:implementation>
@@ -23,8 +25,8 @@
       <h:panelGroup styleClass="ui-g-12 u-padding-0 case-related-running">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/runningTasks')} (#{data.totalRelatedTasks})" styleClass="Fleft" />
         <h:panelGroup id="more-related-tasks" layout="block" styleClass="Fright show-more-technical-cases-container u-truncate-text">
-          <p:commandLink id="show-more-related-tasks" actionListener="#{logic.navigateToRelatedTasksOfCase(cc.attrs.isWorkingOnTask)}" styleClass="case-related-command-link" 
-              rendered="#{caseWidgetBean.showAllTasksOfCase and cc.attrs.case.state != 'CREATED'}">
+          <p:commandLink id="show-more-related-tasks" actionListener="#{logic.navigateToRelatedTasksOfCase(cc.attrs.isWorkingOnTask, cc.attrs.inFrame)}" styleClass="case-related-command-link" 
+              rendered="#{caseWidgetBean.showAllTasksOfCase and cc.attrs.case.state != 'CREATED' and !cc.attrs.readOnly}">
             <span class="icon ivyicon-expand-6" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTasks')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
@@ -39,9 +41,9 @@
           chunkSize="10" var="task" styleClass="case-related-task-case-running">
           <h:panelGroup id="task" layout="block" class="grid-item-content-list-item related-task-content js-related-task">
             <i class="#{taskBean.getStateIcon(task.state)} related-task-list-item-status" />
-            <p:commandLink id="task-name"
+            <p:commandLink id="task-name" disabled="#{cc.attrs.readOnly}"
               value="#{empty task.name ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskStart/taskNameNotAvailable') : task.name}"
-              styleClass="related-task" actionListener="#{logic.navigateToSelectedTaskDetails(task.getId(), cc.attrs.isWorkingOnTask)}">
+              styleClass="related-task" actionListener="#{logic.navigateToSelectedTaskDetails(task.getId(), cc.attrs.isWorkingOnTask, cc.attrs.inFrame)}">
             </p:commandLink>
           </h:panelGroup>
           <p:tooltip for="task" value="#{taskBean.displayRelatedTaskToolTip(task)}" trackMouse="true" hideEvent="mouseleave click"/>
@@ -59,8 +61,8 @@
       <h:panelGroup rendered="#{not empty data.technicalCases}" styleClass="case-related-running ui-g-12 u-padding-0">
         <h:outputText styleClass="Fleft" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/cases')} (#{data.totalRelatedCases})" />
         <h:panelGroup id="more-related-cases" layout="block" styleClass="Fright show-more-technical-cases-container u-truncate-text">
-          <p:commandLink id="show-more-related-cases" styleClass="case-related-command-link" rendered="#{not empty data.technicalCases}"
-            actionListener="#{logic.navigateToTechnicalCasesOfBusinessCase(cc.attrs.case,cc.attrs.isWorkingOnTask)}">
+          <p:commandLink id="show-more-related-cases" styleClass="case-related-command-link" rendered="#{(not empty data.technicalCases) and !cc.attrs.readOnly}"
+            actionListener="#{logic.navigateToTechnicalCasesOfBusinessCase(cc.attrs.case,cc.attrs.isWorkingOnTask, cc.attrs.inFrame)}">
             <span class="icon ivyicon-expand-6" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTechnicalCases')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
@@ -75,8 +77,8 @@
           mode="inline" styleClass="case-related-task-case-running">
           <h:panelGroup id="technicalCase" layout="block" class="grid-item-content-list-item related-task-content js-technical-case">
             <i class="icon ivyicon-folder-empty related-task-list-item-status" />
-            <p:commandLink id="case-name" value="#{empty technicalCase.name ? technicalCase.id : technicalCase.name}"
-              actionListener="#{logic.navigateToRelatedCaseDetails(technicalCase,cc.attrs.isWorkingOnTask)}" styleClass="related-task">
+            <p:commandLink id="case-name" value="#{empty technicalCase.name ? technicalCase.id : technicalCase.name}" disabled="#{cc.attrs.readOnly}"
+              actionListener="#{logic.navigateToRelatedCaseDetails(technicalCase,cc.attrs.isWorkingOnTask, cc.attrs.inFrame)}" styleClass="related-task">
             </p:commandLink>
           </h:panelGroup>
           <p:tooltip for="technicalCase"

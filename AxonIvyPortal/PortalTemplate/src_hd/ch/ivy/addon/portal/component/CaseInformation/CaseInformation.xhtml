@@ -10,6 +10,8 @@
   <cc:attribute name="showItemDetailDocuments" />
   <cc:attribute name="descriptionComponentToUpdate" />
   <cc:attribute name="isWorkingOnTask" />
+  <cc:attribute name="inFrame" type="java.lang.Boolean" default="false"/>
+  <cc:attribute name="readOnly" type="java.lang.Boolean" default="false"/>
 </cc:interface>
 
 <cc:implementation>
@@ -24,6 +26,8 @@
       Attribute showItemDetailsHistories: To show the Histories component inside Case details body. By default it's true
       Attribute showItemDetailDocuments: To show the Documents component inside Case details body. By default, it's true
       Attribute showItemDetailRelated: To show the RelatedTask component inside Case details. By default, it's true
+      Attribute inFrame: To marked case information is displayed inside an IFrame, default is false
+      Attribute readOnly: To marked case information is read only
     !!!!!!!! END SHOW /HIDDEN SECTIONS !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 
     <ui:param name="id" value="#{cc.clientId}" />
@@ -33,6 +37,8 @@
     <ui:param name="showItemDetailRelated" value="#{cc.attrs.showItemDetailRelated}" />
     <ui:param name="descriptionComponentToUpdate" value="#{cc.attrs.descriptionComponentToUpdate}" />
     <ui:param name="isWorkingOnTask" value="#{cc.attrs.isWorkingOnTask}" />
+    <ui:param name="inFrame" value="#{cc.attrs.inFrame}" />
+    <ui:param name="readOnly" value="#{cc.attrs.readOnly}" />
 
 
     <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!

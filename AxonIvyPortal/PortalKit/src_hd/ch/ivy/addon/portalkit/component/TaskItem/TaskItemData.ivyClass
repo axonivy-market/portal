@@ -15,3 +15,5 @@ dataModel ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel #field
 dataModel PERSISTENT #fieldModifier
 currentPortalPage String #field
 currentPortalPage PERSISTENT #fieldModifier
+inFrame Boolean #field
+inFrame PERSISTENT #fieldModifier

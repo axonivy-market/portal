@@ -39,6 +39,22 @@ Nr0 @InfoButton f23 '' #zField
 Nr0 @StartSub f24 '' #zField
 Nr0 @EndSub f25 '' #zField
 Nr0 @PushWFArc f26 '' #zField
+Nr0 @InfoButton f27 '' #zField
+Nr0 @EndSub f28 '' #zField
+Nr0 @StartSub f29 '' #zField
+Nr0 @PushWFArc f30 '' #zField
+Nr0 @StartSub f32 '' #zField
+Nr0 @EndSub f33 '' #zField
+Nr0 @PushWFArc f34 '' #zField
+Nr0 @AnnotationArc f31 '' #zField
+Nr0 @EndSub f35 '' #zField
+Nr0 @InfoButton f36 '' #zField
+Nr0 @StartSub f37 '' #zField
+Nr0 @PushWFArc f38 '' #zField
+Nr0 @EndSub f39 '' #zField
+Nr0 @InfoButton f40 '' #zField
+Nr0 @StartSub f41 '' #zField
+Nr0 @PushWFArc f42 '' #zField
 >Proto Nr0 Nr0 Navigator #zField
 Nr0 f0 inParamDecl '<ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
 Nr0 f0 outParamDecl '<> result;' #txt
@@ -267,6 +283,136 @@ Nr0 f25 1523 555 26 26 14 0 #rect
 Nr0 f25 @|EndSubIcon #fIcon
 Nr0 f26 expr out #txt
 Nr0 f26 1536 437 1536 555 #arcP
+Nr0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Technical Note
+
+This callable is introduced for clients of PortalKit
+to override and implement the functionality
+of redirecting into a HtmlDialog for viewing task.
+
+By default, this is doing nothing. The default implementation, however,
+is put in PortalTemplate.</name>
+        <nameStyle>15,0,5,8
+1,5,8
+246,5,8
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f27 128 842 496 172 -238 -84 #rect
+Nr0 f27 @|IBIcon #fIcon
+Nr0 f28 51 899 26 26 14 0 #rect
+Nr0 f28 @|EndSubIcon #fIcon
+Nr0 f29 inParamDecl '<Long taskId,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId,String caseName> param;' #txt
+Nr0 f29 outParamDecl '<> result;' #txt
+Nr0 f29 callSignature viewTaskInFrame(Long,ch.ivy.addon.portalkit.dto.GlobalCaseId,String) #txt
+Nr0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>viewTaskInFrame(String,GlobalCaseId,String)</name>
+        <nameStyle>15,5
+28,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f29 51 755 26 26 14 0 #rect
+Nr0 f29 @|StartSubIcon #fIcon
+Nr0 f30 expr out #txt
+Nr0 f30 64 781 64 899 #arcP
+Nr0 f32 inParamDecl '<ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
+Nr0 f32 outParamDecl '<> result;' #txt
+Nr0 f32 callSignature viewCaseItemDetailsInIFrame(ch.ivy.addon.portalkit.dto.GlobalCaseId) #txt
+Nr0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>viewCaseItemDetailsInIFrame(GlobalCaseId)</name>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f32 724 751 26 26 14 0 #rect
+Nr0 f32 @|StartSubIcon #fIcon
+Nr0 f33 724 895 26 26 14 0 #rect
+Nr0 f33 @|EndSubIcon #fIcon
+Nr0 f34 expr out #txt
+Nr0 f34 737 777 737 895 #arcP
+Nr0 f31 128 928 64 840 #arcP
+Nr0 f35 1523 899 26 26 14 0 #rect
+Nr0 f35 @|EndSubIcon #fIcon
+Nr0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Technical Note
+
+This callable is introduced for clients of PortalKit
+to override and implement the functionality
+of redirecting into a HtmlDialog for viewing task.
+
+By default, this is doing nothing. The default implementation, however,
+is put in PortalTemplate.</name>
+        <nameStyle>15,0,5,8
+1,5,8
+246,5,8
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f36 1600 842 496 172 -238 -84 #rect
+Nr0 f36 @|IBIcon #fIcon
+Nr0 f37 inParamDecl '<Long taskId> param;' #txt
+Nr0 f37 outParamDecl '<> result;' #txt
+Nr0 f37 callSignature viewRelatedTaskInFrame(Long) #txt
+Nr0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>viewRelatedTaskInFrame(String)</name>
+        <nameStyle>22,5
+8,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f37 1523 755 26 26 14 0 #rect
+Nr0 f37 @|StartSubIcon #fIcon
+Nr0 f38 expr out #txt
+Nr0 f38 1536 781 1536 899 #arcP
+Nr0 f39 49 1329 30 30 0 15 #rect
+Nr0 f39 @|EndSubIcon #fIcon
+Nr0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Technical Note
+
+This callable is introduced for clients of PortalKit&#xD;
+to override and implement the functionality&#xD;
+of redirecting into a HtmlDialog for viewing case.&#xD;
+&#xD;
+By default, this is doing nothing. The default implementation, however,&#xD;
+is put in PortalTemplate.</name>
+        <nameStyle>15,5,8,0
+252,5,8
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f40 160 1139 496 172 -238 -84 #rect
+Nr0 f40 @|IBIcon #fIcon
+Nr0 f41 inParamDecl '<String businessCaseName,ch.ivy.addon.portalkit.dto.GlobalCaseId businessCaseId> param;' #txt
+Nr0 f41 outParamDecl '<> result;' #txt
+Nr0 f41 callSignature viewTechnicalCasesOfBusniessCaseInFrame(String,ch.ivy.addon.portalkit.dto.GlobalCaseId) #txt
+Nr0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>viewTechnicalCasesOfBusniessCaseInFrame(String,GlobalCaseId)</name>
+    </language>
+</elementInfo>
+' #txt
+Nr0 f41 49 1073 30 30 34 3 #rect
+Nr0 f41 @|StartSubIcon #fIcon
+Nr0 f42 expr out #txt
+Nr0 f42 64 1103 64 1329 #arcP
 >Proto Nr0 .type ch.ivy.add.portalkit.NavigatorData #txt
 >Proto Nr0 .processKind CALLABLE_SUB #txt
 >Proto Nr0 0 0 32 24 18 0 #rect
@@ -291,3 +437,13 @@ Nr0 f20 mainOut f22 tail #connect
 Nr0 f22 head f21 mainIn #connect
 Nr0 f24 mainOut f26 tail #connect
 Nr0 f26 head f25 mainIn #connect
+Nr0 f29 mainOut f30 tail #connect
+Nr0 f30 head f28 mainIn #connect
+Nr0 f32 mainOut f34 tail #connect
+Nr0 f34 head f33 mainIn #connect
+Nr0 f27 ao f31 tail #connect
+Nr0 f31 head f30 ai #connect
+Nr0 f37 mainOut f38 tail #connect
+Nr0 f38 head f35 mainIn #connect
+Nr0 f41 mainOut f42 tail #connect
+Nr0 f42 head f39 mainIn #connect

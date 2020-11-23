@@ -16,6 +16,11 @@ Ot0 @EndSub f1 '' #zField
 Ot0 @UserDialog f3 '' #zField
 Ot0 @PushWFArc f4 '' #zField
 Ot0 @PushWFArc f2 '' #zField
+Ot0 @StartSub f5 '' #zField
+Ot0 @EndSub f6 '' #zField
+Ot0 @UserDialog f7 '' #zField
+Ot0 @PushWFArc f8 '' #zField
+Ot0 @PushWFArc f9 '' #zField
 >Proto Ot0 Ot0 OpenPortalCases #zField
 Ot0 f0 inParamDecl '<ch.ivy.addon.portal.generic.view.CaseView view> param;' #txt
 Ot0 f0 inParamTable 'out.view=param.view;
@@ -48,6 +53,37 @@ Ot0 f4 expr out #txt
 Ot0 f4 192 109 192 196 #arcP
 Ot0 f2 expr out #txt
 Ot0 f2 192 220 192 307 #arcP
+Ot0 f5 inParamDecl '<ch.ivy.addon.portal.generic.view.CaseView view> param;' #txt
+Ot0 f5 inParamTable 'out.view=param.view;
+' #txt
+Ot0 f5 outParamDecl '<> result;' #txt
+Ot0 f5 callSignature useViewInFrame(ch.ivy.addon.portal.generic.view.CaseView) #txt
+Ot0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>useViewInFrame(CaseView)</name>
+    </language>
+</elementInfo>
+' #txt
+Ot0 f5 427 91 26 26 14 0 #rect
+Ot0 f5 @|StartSubIcon #fIcon
+Ot0 f6 427 315 26 26 14 0 #rect
+Ot0 f6 @|EndSubIcon #fIcon
+Ot0 f7 dialogId ch.ivy.addon.portal.component.iframe.PortalCaseListInFrame #txt
+Ot0 f7 startMethod useView(ch.ivy.addon.portal.generic.view.CaseView) #txt
+Ot0 f7 requestActionDecl '<ch.ivy.addon.portal.generic.view.CaseView caseView> param;' #txt
+Ot0 f7 requestMappingAction 'param.caseView=in.view;
+' #txt
+Ot0 f7 responseActionDecl 'ch.ivy.addon.portal.generic.OpenPortalCasesData out;
+' #txt
+Ot0 f7 responseMappingAction 'out=in;
+' #txt
+Ot0 f7 422 196 36 24 20 -2 #rect
+Ot0 f7 @|UserDialogIcon #fIcon
+Ot0 f8 expr out #txt
+Ot0 f8 440 220 440 315 #arcP
+Ot0 f9 expr out #txt
+Ot0 f9 440 117 440 196 #arcP
 >Proto Ot0 .type ch.ivy.addon.portal.generic.OpenPortalCasesData #txt
 >Proto Ot0 .processKind CALLABLE_SUB #txt
 >Proto Ot0 0 0 32 24 18 0 #rect
@@ -56,3 +92,7 @@ Ot0 f0 mainOut f4 tail #connect
 Ot0 f4 head f3 mainIn #connect
 Ot0 f3 mainOut f2 tail #connect
 Ot0 f2 head f1 mainIn #connect
+Ot0 f5 mainOut f9 tail #connect
+Ot0 f9 head f7 mainIn #connect
+Ot0 f7 mainOut f8 tail #connect
+Ot0 f8 head f6 mainIn #connect

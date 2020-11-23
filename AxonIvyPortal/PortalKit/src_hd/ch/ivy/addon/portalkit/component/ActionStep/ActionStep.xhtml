@@ -13,10 +13,11 @@
   <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
   <cc:attribute name="onDestroyComplete" />
   <cc:attribute name="renderShowDetailAction" default="true" type="java.lang.Boolean" />
+  <cc:attribute name="readOnly" default="false" />
 </cc:interface>
 
 <cc:implementation>
-  <p:link id="#{cc.attrs.actionLinkId}" href="#" styleClass="#{cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId} action-link">
+  <p:link id="#{cc.attrs.actionLinkId}" href="#" styleClass="#{cc.attrs.actionLinkStyleClass} #{cc.attrs.taskId} action-link" disabled="#{cc.attrs.readOnly}">
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/action')}" styleClass="task-action-item-label" />
       <i class="icon ivyicon-arrow-down-1" />
     </p:link>

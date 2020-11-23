@@ -20,6 +20,8 @@
   <cc:attribute name="hideWidgetHeader" default="false" type="java.lang.Boolean" />
   <cc:attribute name="listHeaderStyleClass" />
   <cc:attribute name="isTechnicalCaseView" default="false" />
+  <cc:attribute name="readOnly" default="false" />
+  <cc:attribute name="inFrame" default="false" />
   <cc:facet name="emptyMessage" />
 </cc:interface>
 
@@ -30,7 +32,7 @@
   <div id="#{cc.clientId}" class="widget case-widget case-widget-container ui-g">
       <h:panelGroup id="case-widget-header" layout="block"
         styleClass="widget-header ui-g-12 ui-g u-no-padding-left u-no-padding-bottom js-case-widget-header"
-        rendered="#{!cc.attrs.hideWidgetHeader and !cc.attrs.hideCaseFilter}">
+        rendered="#{!cc.attrs.hideWidgetHeader}">
         <h:panelGroup id="filter-container" styleClass="filter-container js-filter-container ui-g-12 u-no-padding-bottom"
         rendered="#{!cc.attrs.hideCaseFilter}">
         <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group  u-hidden-md-down"
@@ -197,6 +199,14 @@
                 configButtonId="case-config-button" overlayPanelId="case-config-columns-panel" />
         </h:panelGroup>
       </h:panelGroup>
+      <h:panelGroup layout="block">
+		<p:link id="back-link" href="#" rendered="#{cc.attrs.inFrame}" onclick="backToCaseDetails()" styleClass="list-back-link js-back-link">
+          <i class="icon ivyicon-arrow-left-1" />
+          <p:spacer width="3px"/>
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"/>
+        </p:link>
+        <p:remoteCommand name="backToCaseDetails" actionListener="#{logic.backToCaseDetails()}" process="@this" immediate="true" />
+	</h:panelGroup>
     </h:panelGroup>
 
     <h:panelGroup id="widget-column-header"
@@ -212,7 +222,7 @@
           lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list" widgetVar="case-list-scroller">
           <ic:ch.ivy.addon.portalkit.component.CaseItem case="#{case}" id="case-item"
             onDestroyComplete="PF('destroy-case-dialog').show()" rowIndex="#{rowIndex}"
-            itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}">
+            itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}" readOnly="#{cc.attrs.readOnly}" inFrame="#{cc.attrs.inFrame}">
             <cc:insertFacet name="caseHeader" />
           </ic:ch.ivy.addon.portalkit.component.CaseItem>
         </p:dataScroller>
@@ -332,7 +342,11 @@
   <script type="text/javascript">
       var caseWidget = new CaseWidget();
       $(function() {
+        var simpleScreen = new CaseListScreenHandler();
+        var responsiveToolkit = ResponsiveToolkit(simpleScreen);
+        Portal.init(responsiveToolkit);
         caseWidget.updateCaseCountToBreadcrumb();
+        caseWidget.setupHeader();
       });
 
       function start() {

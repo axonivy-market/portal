@@ -32,6 +32,8 @@ filterDataToBeDeleted ch.ivy.addon.portalkit.casefilter.CaseFilterData #field
 filterDataToBeDeleted PERSISTENT #fieldModifier
 columnsVisibility java.util.List<String> #field
 columnsVisibility PERSISTENT #fieldModifier
+globalCaseId ch.ivy.addon.portalkit.dto.GlobalCaseId #field
+globalCaseId PERSISTENT #fieldModifier
 exportedFile org.primefaces.model.StreamedContent #field
 exportedFile PERSISTENT #fieldModifier
 loopCounter Integer #field

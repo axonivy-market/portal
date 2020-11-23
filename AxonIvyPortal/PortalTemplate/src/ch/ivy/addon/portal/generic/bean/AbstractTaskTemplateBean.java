@@ -11,7 +11,9 @@ import org.primefaces.PrimeFaces;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bo.AdhocHistory;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.AdhocHistoryService;
+import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.TaskUtils;
@@ -21,6 +23,7 @@ import ch.ivyteam.ivy.casemap.runtime.model.ICaseMap;
 import ch.ivyteam.ivy.casemap.runtime.model.IStage;
 import ch.ivyteam.ivy.casemap.runtime.model.IStartableSideStep;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.htmldialog.IHtmlDialogContext;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.security.query.UserQuery;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -32,6 +35,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   protected List<IStartableSideStep> sideStepList;
   protected IStartableSideStep selectedSideStep;
   protected List<AdhocHistory> adhocHistories;
+  protected String caseDetailsLink;
 
   public List<IStartableSideStep> getSideStepList() {
     return sideStepList;
@@ -178,5 +182,30 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
     }
     return -1;
   }
-  
+
+  public void generateCaseDetailInFrame(ICase currentCase) {
+    IHtmlDialogContext context = IHtmlDialogContext.current();
+    String requestPath = context.startRef("Start Processes/PortalStart/CaseDetailsInIFrame.ivp");
+
+    String paramStr = "caseId=" +  currentCase.getId() + "&embedInFrame=true";
+    setCaseDetailsLink(requestPath + "?" + paramStr);
+    }
+
+  public Long getIntervalForPollingWhenOpenCaseDetails() {
+    String clientSideTimeoutInMinute = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.CLIENT_SIDE_TIMEOUT.toString());
+      if (StringUtils.isNotBlank(clientSideTimeoutInMinute)) {
+        // interval value should be one minute and 5 seconds before client side timeout to hide Extend session dialog
+        Long intervalValue = (Long.valueOf(clientSideTimeoutInMinute) - 1)*60 - 5;
+        return intervalValue < 0 ? null : intervalValue;
+      }
+    return null;
+  }
+
+  public String getCaseDetailsLink() {
+    return caseDetailsLink;
+  }
+
+  public void setCaseDetailsLink(String caseDetailsLink) {
+    this.caseDetailsLink = caseDetailsLink;
+  }
 }
