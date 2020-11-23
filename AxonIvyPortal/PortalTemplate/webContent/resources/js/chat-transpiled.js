@@ -36,11 +36,7 @@ function IvyUri() {
   this.rest = function () {
     var baseUri = window.location.origin; // e.g. http://localhost:8080
 
-    var path = window.location.pathname.split("/"); // assume faces uri
-
-    var webAppCtxt = path[1]; // app name e.g. /designer
-
-    return baseUri + "/" + webAppCtxt + "/api";
+    return baseUri + contextPath + "/api";
   };
 }
 
@@ -561,9 +557,9 @@ function View(uri) {
 
   function updateUserOnline(user) {
     if (user) {
-      var contactCardStatus = $(".contact-card.js-show-chat-message").find(".contact-card-name").filter(function () {
+      var contactCardStatus = $(".contact-card.js-show-chat-message").find(".js-contact-card-name").filter(function () {
         return $(this).text() === user.name;
-      }).parent().find(".contact-card-status");
+      }).parent().find(".js-contact-card-status");
 
       if (user.isOnline) {
         contactCardStatus.removeClass("is-offline");

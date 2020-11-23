@@ -24,17 +24,10 @@ pipeline {
     stage('deploy') {
       steps {
         script {
-          engines = ['Axon.ivy Engine - LTS', 'Axon.ivyEngine8.0', 'Axon.ivyEngineTrunk']
-          for (engine in engines) {
-            bat """
-              net stop "${engine}"
-              exit 0
-            """
-          }
-          bat """
-            net start "${engines[2]}"
-            exit 0
-          """
+          utils = load 'build/common/utils.groovy'
+          utils.stopAllEngines()
+          engineServiceName = 'Axon.ivyEngineTrunk'
+          utils.startWindowsService(engineServiceName)
 
           def buildPluginVersion = readMavenPom(file: 'AxonIvyPortal/PortalStyle/pom.xml').getProperties().getProperty("build.plugin.version")
           def modules = ['AxonIvyPortal/PortalStyle', 'AxonIvyPortal/PortalKit', 'AxonIvyPortal/PortalTemplate', 'AxonIvyPortal/AxonIvyExpress']
@@ -77,10 +70,9 @@ pipeline {
 
   post {
     always {
-      bat """
-        net stop "${engines[2]}"
-        exit 0
-      """
+      script {
+        utils.stopWindowsService(engineServiceName)
+      }
       node('master') {
         archiveArtifacts artifacts: "D:/PerformanceResult/${today}/*/*.jtl", allowEmptyArchive: true
         perfReport sourceDataFiles: "D:/PerformanceResult/${today}/*/*.jtl", compareBuildPrevious :true, ignoreFailedBuilds: true, ignoreUnstableBuilds: true

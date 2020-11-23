@@ -244,6 +244,17 @@
   width: 100%;
 }
 
+.task-widget-sub-header .operations-column,
+.case-widget .widget-column-header .operations-column {
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-size: var(--large-font-size);
+  color: var(--task-widget-header-column);
+  font-family: var(--portal-font-family);
+}
+
 .task-widget .in-progress-task-checkbox, .case-widget-container .in-progress-task-checkbox {
   padding-left: 2.4px;
 }
@@ -1276,11 +1287,25 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 }
 
 .select-delegate-panel {
-  margin: 5px 0 20px 0;
+  margin: 5px 0 10px 0;
 }
 
 .select-delegate-panel .ui-autocomplete, .select-delegate-panel .ui-autocomplete .ui-autocomplete-input {
   width: 100%;
+}
+
+.delegate-comment-panel {
+  margin: 0 0 20px 0;
+}
+
+.delegate-comment-panel .input-text-area-delegate-message-container {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.delegate-comment-panel .input-text-area-delegate-message-container .input-text-area-delegate-message {
+  width: 100%;
+  resize: none;
 }
 
 .delegate-type-container .ui-selectoneradio.ui-widget td {
@@ -1738,16 +1763,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .options-panel.expiry-chart-context-menu {
   border: none;
-  width: 120px;
 }
 
 .options-panel.expiry-chart-context-menu .option-item {
   box-sizing: border-box;
   width: 100% !important;
-}
-
-.options-panel.expiry-chart-context-menu .ui-overlaypanel-content {
-  width: 120px !important;
 }
 
 .options-panel.expiry-chart-context-menu a {
@@ -2537,7 +2557,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
   .dialog-closing-information, .app-dialog, .select-icon-dialog,
   .setting-dialog, .project-info-dialog, .deputy-dialog,
-  .absence-settings-dialog, .add-absence-dialog {
+  .add-absence-dialog {
     min-width: 96vw;
   }
   .task-template-container, .task-template-button {
@@ -2558,7 +2578,8 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .md-inputfield .absence-user-selection .ui-autocomplete-input.ui-inputfield,
-.substituted-user .ui-autocomplete-input.ui-inputfield {
+.ui-fluid.substituted-user .ui-autocomplete-input.ui-inputfield,
+.ui-fluid .md-inputfield.user-selection-autocomplete-panel .ui-autocomplete-input.ui-inputfield {
   width: 100%;
 }
 
@@ -2728,7 +2749,8 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 /********************************** ABSENCES AND DEPUTY **********************************/
-.absences-table-action-column {
+.absences-table-action-column,
+.ui-datatable thead th.absences-table-action-column {
   text-align: center;
   width: 130px;
 }
@@ -2752,12 +2774,11 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .add-absences-dialog-input-comment {
-  width: calc(100% - 20px);
+  resize: none;
 }
 
 @media screen and (max-width: 40em) {
   .absence-management .show-absence-in-the-past-panel {
-    width: 72%;
     padding-right: 0;
   }
 
@@ -2778,12 +2799,64 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
     width: 100%;
   }
 
-  .substitution-table.ui-datatable-reflow .ui-datatable-data td[role="gridcell"] .ui-column-title {
-    width: 142px;
+  .absence-management .add-absence-panel button.small-add-absence {
+    max-width: 75px;
+  }
+  
+  .absences-management-container tbody.ui-datatable-data span.ui-column-title,
+  .absences-management-container tbody.ui-datatable-data .absence-column-value {
+    vertical-align: top;
+    float: left;
+  }
+
+  .absences-management-container tbody.ui-datatable-data span.ui-column-title {
+    width: 40%;
+  }
+  
+  .absences-management-container tbody.ui-datatable-data .absence-column-value {
+    width: calc(60% - 4px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .absences-management-container .ui-datatable-reflow .ui-datatable-data td[role="gridcell"] .ui-column-title {
     margin-right: 4px;
   }
+  
+  .absences-management-container .ui-datatable.ui-datatable-reflow label.ui-reflow-label,
+  .absences-management-container .ui-datatable.ui-datatable-reflow select.ui-reflow-dropdown {
+    display: none;
+  }
+
+  .absences-management-container .ui-datatable.ui-datatable-reflow tbody td[role="gridcell"]:not(:first-child) {
+    padding-top: 0;
+   }
+   
+   .absences-management-container .ui-datatable.ui-datatable-reflow div.ui-datatable-tablewrapper {
+     overflow: auto;
+     overflow-x: hidden;
+     max-height: 150px;
+   }
 }
 
+.absences-management-container .absence-period {
+  width: 210px;
+}
+
+.absence-management .show-absence-in-the-past-panel.ui-chkbox {
+  min-width: 100%;
+  margin-right: 0;
+}
+
+.absence-management .show-absence-in-the-past-panel .ui-chkbox-box.ui-corner-all,
+.absence-management .show-absence-in-the-past-panel span.ui-chkbox-label {
+  float: left;
+}
+
+.absence-management .show-absence-in-the-past-panel span.ui-chkbox-label {
+  margin-right: 0;
+}
 /**********************************END ABSENCES AND DEPUTY **********************************/
 .application-language-header {
   width: 20%;
@@ -2909,6 +2982,67 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 /********************************** END USER PROFILE SETTING **********************************/
+
+/********************************** ABSENCES SETTING *********************************************/
+
+.absences-management-form {
+  margin: auto;
+  max-width: 1850px;
+  padding: 0 20px;
+}
+
+.absences-management-form .portal-section-container.card {
+  height: 100%;
+}
+
+.absences-management-form .add-absence-panel {
+  text-align: right;
+}
+
+.deputy-for-active-period,
+.deputy-for-next-absence {
+  width: inherit;
+}
+
+.substitute-table .active-period-option {
+  padding: 3px 0;
+}
+
+@media screen and (max-width: 40em) {
+  .absences-management-form .add-absence-panel {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .add-absence-dialog {
+    max-width: 98vw;
+  }
+  
+  .add-absence-dialog .ui-dialog-content.ui-widget-content,
+  .add-absence-dialog .u-dialog-footer.ui-dialog-footer {
+    padding-bottom: 0;
+  }
+
+  .absences-management-form {
+    padding: 0;
+  }
+  
+  .absences-management-form .portal-section-container.card {
+    padding: 0;
+  }
+}
+
+@media screen and (min-width: 90.063em) {
+  .deputy-for-active-period,
+  .deputy-for-next-absence {
+    width: 250px;
+  }
+
+}
+
+/********************************* END ABSENCES SETTING *****************************/
 
 /********************************** PROCESS STARTS **********************************/
 .process-start-container {
@@ -3328,7 +3462,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .add-statistic-panel {
   width: 100%;
-  margin: 2rem auto 1rem;
+  margin: 2rem auto 3rem;
 }
 
 .statistic-dashboard-expand-mode {
@@ -4070,9 +4204,77 @@ _:-ms-fullscreen, :root .content-link-history {
   align-items: center;
 }
 
+.task-widget .filter-container .applied-filters-container,
+.case-widget .filter-container .applied-filters-container {
+  width: calc(100% - 490px);
+}
+
 @media (max-width: 991px) {
   .filter-container .applied-filters-container {
     width: 100%;
+  }
+  .task-widget .filter-container .applied-filters-container,
+  .case-widget .filter-container .applied-filters-container {
+    width: 100%;
+  }
+}
+
+.task-widget .task-list-actions,
+.case-widget .case-list-actions {
+    display: flex;
+    height: auto;
+    min-height: 100%;
+    margin-left: auto;
+}
+
+.task-widget .task-export-to-excel-form,
+.case-widget .case-export-to-excel-form {
+  max-width: 166px;
+}
+
+.task-widget .config-columns-button,
+.case-widget .config-columns-button {
+  max-width: 165px;
+  padding-right: 5px;
+}
+
+.task-widget .task-list-actions a,
+.case-widget .case-list-actions a {
+    margin-top: 24px;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/*medium*/
+@media (min-width: 992px) and (max-width: 1599px) {
+  .task-widget .filter-container .applied-filters-container,
+  .case-widget .filter-container .applied-filters-container {
+    width: calc(100% - 236px);
+  }
+  .task-widget .task-export-to-excel-form,
+  .task-widget .config-columns-button,
+  .case-widget .case-export-to-excel-form,
+  .case-widget .config-columns-button {
+    width: auto;
+    height: 30px;
+    margin-top: auto;
+  }
+
+  .task-widget .task-list-actions a,
+  .case-widget .case-list-actions a {
+    margin-top: 0;
+  }
+
+  .task-widget .task-list-actions i,
+  .case-widget .case-list-actions i {
+    font-size: 1.8rem !important;
+  }
+
+  .task-widget .link-text,
+  .case-widget .link-text {
+    display: none;
   }
 }
 
@@ -4794,3 +4996,25 @@ body td .icon {
   margin:20px 0;
 }
 /** Portal dialog ---- end-----**/
+
+/* =================== START EXCEPTION ===================== */
+.code-block {
+  padding: 5px 8px;
+  margin-right: 5px;
+  border-radius: 3px;
+}
+
+.error-label {
+  margin-right: 5px;
+  display: inline-block;
+  width: max-content;
+}
+
+.error-value {
+  word-break: break-word;
+}
+
+.error-label, .error-value {
+  padding: 6px 0;
+}
+/* ===================== END EXCEPTION ===================== */

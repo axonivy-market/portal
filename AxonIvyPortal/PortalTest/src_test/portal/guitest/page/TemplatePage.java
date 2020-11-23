@@ -398,4 +398,8 @@ public abstract class TemplatePage extends AbstractPage {
   public void waitUntilErrorContainerDisplayed() {
     waitForElementDisplayed(By.className("error-container"), true);
   }
+
+  public boolean isWelcomeDialogExisted() {
+    return CollectionUtils.isNotEmpty(findListElementsByCssSelector("div[id$='welcome-portal-guide']"));
+  }
 }

@@ -90,9 +90,10 @@ function ProcessWidget() {
     },
 
     detectScrollBarWidth : function() {
+      var scrollbarWidth = 0;
       var processWidget = document.getElementById("process-widget:process-list");
       if (processWidget !== null) {
-        var scrollbarWidth= processWidget.offsetWidth - processWidget.clientWidth;
+        scrollbarWidth = processWidget.offsetWidth - processWidget.clientWidth;
       }
       return scrollbarWidth;
     },

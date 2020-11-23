@@ -197,6 +197,45 @@ case list after navigating to case list from your page:
       out.caseView = CaseView.create().dataModel(dataModel)
       .withTitle("My Cases").buildNewView();
                
+.. _customization-case-widget-how-to-override-export-feature:
+
+How to override export feature
+------------------------------
+
+1. Extend the CaseExporter java class of PortalKit.
+
+   -  Override the ``getColumnName`` method.
+
+   .. code-block:: java
+
+      @Override
+      protected String getColumnName(String column) {
+         String columnName = getSpecialColumnName(column);
+         return columnName != null ? columnName : Ivy.cms().co("/DefaultColumns/caseList/" + column);
+      }
+
+   -  Override the ``getColumnValue`` method.
+
+   .. code-block:: java
+
+      @Override
+      protected Object getColumnValue(String column, ICase caseItem) {
+         switch (column) {
+            case CustomizedCaseLazyDataModel.CUSTOM_VARCHAR_FIELD1:
+               return caseItem.customFields().stringField(CustomFields.CUSTOM_VARCHAR_FIELD1).getOrNull();
+            case CustomizedCaseLazyDataModel.CUSTOM_TIMESTAMP_FIELD1:
+               return caseItem.customFields().timestampField(CustomFields.CUSTOM_TIMESTAMP_FIELD1).getOrNull();
+            default:
+               return getCommonColumnValue(column, caseItem);
+         }
+      }
+
+2. Override the ExportCaseToExcel callable process and apply your extended CaseExporter java class.
+
+   .. code-block:: java
+
+      CaseExporter exporter = new CustomizedCaseExporter(in.columnsVisibility);
+      in.exportedFile = exporter.getStreamedContent(in.collectedCasesForExporting);
 
 .. _customization-case-widget-responsive-layout:
 

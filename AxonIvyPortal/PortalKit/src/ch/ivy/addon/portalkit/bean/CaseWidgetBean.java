@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.bean;
 import static ch.ivy.addon.portalkit.filter.AbstractFilter.ALL;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,9 +16,12 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.casefilter.CaseStateFilter;
+import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.exporter.CaseExporter;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.support.HtmlParser;
@@ -41,6 +45,7 @@ public class CaseWidgetBean implements Serializable {
   private boolean isShowAllTasksOfCase;
   private boolean isShowFullCaseList;
   private boolean isAdminCaseStateIncluded;
+  private CaseLazyDataModel dataModel;
 
   public CaseWidgetBean() {
     expandedCaseId = -1L;
@@ -179,5 +184,37 @@ public class CaseWidgetBean implements Serializable {
     }
     return false;
   }
-  
+
+  public CaseLazyDataModel getDataModel() {
+    return dataModel;
+  }
+
+  public void setDataModel(CaseLazyDataModel dataModel) {
+    this.dataModel = dataModel;
+  }
+
+  /**
+   * Gets visible columns on Case list page.
+   * 
+   * @param dataModel
+   * @return visible columns
+   */
+  public List<String> getColumns(CaseLazyDataModel dataModel) {
+    List<String> visibilityColumns = new ArrayList<>();
+    visibilityColumns.addAll(dataModel.getSelectedColumns());
+
+    /*
+     * In UI we have a column called "Name / Description", but PortalRequiredColumns contains only "Name" column, so
+     * that we need to check and add "Description" to Excel file
+     */
+    List<String> requiredColumns = dataModel.getPortalRequiredColumns();
+    if (requiredColumns != null && requiredColumns.contains(CaseSortField.NAME.name())) {
+      visibilityColumns.add(CaseLazyDataModel.DESCRIPTION);
+    }
+    return visibilityColumns;
+  }
+
+  public int getMaxCaseNumberInExcel() {
+    return CaseExporter.MAX_CASE_NUMBER_IN_EXCEL;
+  }
 }

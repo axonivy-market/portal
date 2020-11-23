@@ -19,13 +19,13 @@ import ch.ivyteam.ivy.event.SystemEvent;
 public class ClusterChatEventSender {
 
 
-  public static void sendPrivateMessage(String messageText, String receiver, String clientId, long nodeId) {
-    ClusterChatEventParameter param = forSendMessage(messageText, receiver, clientId, sessionUserName(), nodeId);
+  public static void sendPrivateMessage(String messageText, String receiver, String clientId, String nodeName) {
+    ClusterChatEventParameter param = forSendMessage(messageText, receiver, clientId, sessionUserName(), nodeName);
     broadcastClusterChat(PORTAL_CHAT_SEND_PRIVATE_MESSAGE, param);
   }
 
-  public static void sendGroupMessage(String messageText, String caseId, String clientId, long nodeId) {
-    ClusterChatEventParameter param = forSendMessage(messageText, caseId, clientId, sessionUserName(), nodeId);
+  public static void sendGroupMessage(String messageText, String caseId, String clientId, String nodeName) {
+    ClusterChatEventParameter param = forSendMessage(messageText, caseId, clientId, sessionUserName(), nodeName);
     broadcastClusterChat(ClusterChatAction.PORTAL_CHAT_SEND_GROUP_MESSAGE, param);
   }
 

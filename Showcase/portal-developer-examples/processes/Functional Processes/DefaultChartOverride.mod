@@ -38,7 +38,16 @@ Dt0 f1 81 241 30 30 0 15 #rect
 Dt0 f1 @|EndSubIcon #fIcon
 Dt0 f3 actionTable 'out=in;
 ' #txt
-Dt0 f3 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticFilter;
+Dt0 f3 actionCode 'import java.util.stream.Collectors;
+import java.util.stream.Collectors;
+import java.util.Collections;
+import java.util.Locale;
+import java.util.ArrayList;
+import ch.ivy.addon.portalkit.dto.DisplayName;
+import java.util.HashMap;
+import java.util.Map;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.statistics.StatisticFilter;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
@@ -49,14 +58,43 @@ String chartName1 = "My default chart 1";
 String chartName2 = "My default chart 2";
 long sessionUserId = ivy.session.getSessionUser().getId();
 
-if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName1)) {
-  StatisticChart newChart1 = service.createStatisticChart(statisticFilter, chartName1, StatisticChartType.TASK_BY_EXPIRY, sessionUserId, true);
+List supportedLanguages = LanguageService.newInstance().findUserLanguages().ivyLanguage.supportedLanguages;
+boolean existedChart1 = false;
+boolean existedChart2 = false;
+
+for (String language : supportedLanguages) {
+	if (service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName1, language) && !existedChart1) {
+		existedChart1 = true;
+		in.defaultCharts.add(service.findStatisticChartByUserIdAndChartNameAndLanguage(ivy.session.getSessionUser().getId(), chartName1, language));
+	}
+	if (service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName2, language) && !existedChart2) {
+		existedChart2 = true;
+		in.defaultCharts.add(service.findStatisticChartByUserIdAndChartNameAndLanguage(ivy.session.getSessionUser().getId(), chartName2, language));
+	}
+}
+
+if (!existedChart1) {
+	List<DisplayName> chartNames1 = new ArrayList();
+	for (String language : supportedLanguages) {
+		DisplayName newName = new DisplayName();
+		newName.locale = Locale.forLanguageTag(language);
+		newName.value = chartName1;	
+		chartNames1.add(newName);
+	}
+	StatisticChart newChart1 = service.createStatisticChart(statisticFilter, chartNames1, StatisticChartType.TASK_BY_EXPIRY, sessionUserId, true);
   in.defaultCharts.add(newChart1);		
 }
 
-if (!service.checkDefaultStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName2)) {
-  StatisticChart newChart2 = service.createStatisticChart(statisticFilter, chartName2, StatisticChartType.CASES_BY_STATE, sessionUserId, true);
-  in.defaultCharts.add(newChart2);		
+if (!existedChart2) {
+	List<DisplayName> chartNames2 = new ArrayList();
+	for (String language : supportedLanguages) {
+		DisplayName newName = new DisplayName();
+		newName.locale = Locale.forLanguageTag(language);
+		newName.value = chartName2;
+		chartNames2.add(newName);
+	}
+	StatisticChart newChart2 = service.createStatisticChart(statisticFilter, chartNames2, StatisticChartType.CASES_BY_STATE, sessionUserId, true);
+  in.defaultCharts.add(newChart2);
 }' #txt
 Dt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
