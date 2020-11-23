@@ -1,4 +1,4 @@
-package ch.ivy.addon.portalkit.util;
+package ch.ivy.addon.portalkit.exporter;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
@@ -20,6 +19,8 @@ import org.primefaces.model.StreamedContent;
 
 import ch.ivy.addon.portalkit.bo.ExcelExportSheet;
 import ch.ivy.addon.portalkit.enums.TaskAndCaseAnalysisColumn;
+import ch.ivy.addon.portalkit.util.ExcelExport;
+import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 
@@ -130,7 +131,7 @@ public class TaskAnalysisExporter {
     }
   }
 
-  private String getColumnValue(TaskAndCaseAnalysisColumn column, ITask task) { 
+  private Object getColumnValue(TaskAndCaseAnalysisColumn column, ITask task) {
     switch (column) {
       case CASE_NAME:
         return StringUtils.isEmpty(task.getCase().getName()) ? Ivy.cms().co("/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/caseNameNotAvailable") : task.getCase().getName();
@@ -175,13 +176,11 @@ public class TaskAnalysisExporter {
       case TASK_STATE:
         return task.getState().toString();
       case TASK_CREATION_TIME:
-        return formatDate(task.getStartTimestamp());
+        return task.getStartTimestamp();
       case TASK_EXPIRY_TIME:
-        Date expiryTimestamp = task.getExpiryTimestamp();
-        return expiryTimestamp != null ? formatDate(expiryTimestamp): "";
+        return task.getExpiryTimestamp();
       case TASK_FINISHED_TIME:
-        Date endTimestamp = task.getEndTimestamp();
-        return endTimestamp != null ? formatDate(endTimestamp): "";
+        return task.getEndTimestamp();
       default:
         return "";
     }
@@ -214,11 +213,5 @@ public class TaskAnalysisExporter {
   
   private boolean isColumnVisible(TaskAndCaseAnalysisColumn column) {
     return columnsVisibility.get(column.name());
-  }
-  
-  private String formatDate(Date datetime) {
-    String pattern =
-        Ivy.cms().findContentObjectValue("/patterns/dateTimePattern", Locale.ENGLISH).getContentAsString();
-    return new SimpleDateFormat(pattern).format(datetime);
   }
 }

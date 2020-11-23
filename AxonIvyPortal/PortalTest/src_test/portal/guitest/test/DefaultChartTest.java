@@ -2,6 +2,7 @@ package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -34,9 +35,17 @@ public class DefaultChartTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
   }
 
+  @After
+  public void clear() {
+    resetLanguageOfCurrentUser();
+  }
+
   @Test
   public void testCreateDefaultChart() {
     grantPermissionToCreateChart();
+    HomePage home = new HomePage();
+    home.waitForStatisticRendered();
+
     MainMenuPage mainMenuPage = new MainMenuPage();
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);

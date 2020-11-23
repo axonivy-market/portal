@@ -1,4 +1,4 @@
-package ch.ivy.addon.portalkit.bean;
+package ch.ivy.addon.portal.generic.bean;
 
 import static ch.ivyteam.ivy.security.IPermission.USER_CREATE_ABSENCE;
 import static ch.ivyteam.ivy.security.IPermission.USER_CREATE_OWN_ABSENCE;
@@ -8,7 +8,6 @@ import static ch.ivyteam.ivy.security.IPermission.USER_DELETE_ABSENCE;
 import static ch.ivyteam.ivy.security.IPermission.USER_DELETE_OWN_ABSENCE;
 import static ch.ivyteam.ivy.security.IPermission.USER_READ_ABSENCES;
 import static ch.ivyteam.ivy.security.IPermission.USER_READ_OWN_ABSENCES;
-import static ch.ivyteam.ivy.security.IPermission.USER_READ_SUBSTITUTES;
 
 import java.io.Serializable;
 
@@ -32,7 +31,6 @@ public class AbsenceManagementBean implements Serializable{
   private boolean ownAbsencesDeletable;
   private boolean absencesInThePastCreatable;
   private boolean absencesInThePastDeletable;
-  private boolean substitutionManagementCapable;
   private boolean substitutionCapable;
   
   @PostConstruct
@@ -44,7 +42,6 @@ public class AbsenceManagementBean implements Serializable{
     absencesInThePastCreatable = PermissionUtils.hasPermission(USER_CREATE_ABSENCE);
     absencesInThePastDeletable = PermissionUtils.hasPermission(USER_DELETE_ABSENCE);
 
-    substitutionManagementCapable = PermissionUtils.hasAllPermissions(USER_CREATE_SUBSTITUTE, USER_READ_SUBSTITUTES);
     substitutionCapable = PermissionUtils.hasAtLeastOnePermission(USER_CREATE_OWN_SUBSTITUTE, USER_CREATE_SUBSTITUTE);
   }
 
@@ -58,10 +55,6 @@ public class AbsenceManagementBean implements Serializable{
 
   public boolean isOwnAbsencesDeletable() {
     return ownAbsencesDeletable;
-  }
-
-  public boolean isSubstitutionManagementCapable() {
-    return substitutionManagementCapable;
   }
 
   public boolean isAbsenceEditable(IvyAbsence absence) {
@@ -80,11 +73,6 @@ public class AbsenceManagementBean implements Serializable{
   
   public String findNextAbsence(IUser iUser) {
     return iUser != null ? UserUtils.findNextAbsenceOfUser(iUser) : "";
-  }
-  
-  public void loadData() {
-    IvyComponentLogicCaller<String> reserveTask = new IvyComponentLogicCaller<>();
-    reserveTask.invokeComponentLogic("absence-management", "#{logic.loadData}", new Object[] {});
   }
 
   public boolean isSubstitutionCapable() {

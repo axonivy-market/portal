@@ -12,6 +12,7 @@ public class DefaultTaskFilterContainer extends TaskFilterContainer {
   private TaskExpiredDateFilter expiredDateFilter = new TaskExpiredDateFilter();
   private TaskResponsibleFilter responsibleFilter = new TaskResponsibleFilter();
   private TaskCategoryFilter categoryFilter = new TaskCategoryFilter();
+  private TaskCompletedDateFilter completedDateFilter = new TaskCompletedDateFilter();
 
 
   public DefaultTaskFilterContainer() {
@@ -21,6 +22,7 @@ public class DefaultTaskFilterContainer extends TaskFilterContainer {
     filters.add(creationDateFilter);
     filters.add(expiredDateFilter);
     filters.add(responsibleFilter);
+    filters.add(completedDateFilter);
     filters.add(categoryFilter);
     Collections.sort(filters, new TaskFilterComparator());
   }
@@ -56,6 +58,15 @@ public class DefaultTaskFilterContainer extends TaskFilterContainer {
   public void setExpiredDateFilter(TaskExpiredDateFilter expiredDateFilter) {
     this.expiredDateFilter = expiredDateFilter;
   }
+  
+  public TaskCompletedDateFilter getCompletedDateFilter() {
+	return completedDateFilter;
+  }
+
+  public void setCompletedDateFilter(TaskCompletedDateFilter CompletedDateFilter) {
+    this.completedDateFilter = CompletedDateFilter;
+  }
+
 
   public TaskResponsibleFilter getResponsibleFilter() {
     return responsibleFilter;

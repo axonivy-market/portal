@@ -24,3 +24,5 @@ selectedUser ch.ivy.addon.portalkit.dto.UserDTO #field
 selectedUser PERSISTENT #fieldModifier
 selectedRole ch.ivy.addon.portalkit.dto.RoleDTO #field
 selectedRole PERSISTENT #fieldModifier
+taskDelegationComment String #field
+taskDelegationComment PERSISTENT #fieldModifier

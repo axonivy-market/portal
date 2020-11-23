@@ -48,7 +48,6 @@ public class ApplicationDaoTest {
 
     Application result = thirdPartyApplications.get(0);
     assertEquals(thirdPartyApplication.getId(), result.getId());
-    assertEquals(thirdPartyApplication.getServerId(), result.getServerId());
 
   }
 

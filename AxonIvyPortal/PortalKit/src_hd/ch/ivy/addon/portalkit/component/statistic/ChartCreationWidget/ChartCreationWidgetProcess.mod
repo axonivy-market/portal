@@ -33,9 +33,6 @@ Cs0 @PushWFArc f12 '' #zField
 Cs0 @UdMethod f17 '' #zField
 Cs0 @PushWFArc f18 '' #zField
 Cs0 @Alternative f21 '' #zField
-Cs0 @PushWFArc f16 '' #zField
-Cs0 @PushWFArc f19 '' #zField
-Cs0 @PushWFArc f20 '' #zField
 Cs0 @PushWFArc f14 '' #zField
 Cs0 @UdEvent f10 '' #zField
 Cs0 @UdMethod f22 '' #zField
@@ -49,6 +46,18 @@ Cs0 @GridStep f28 '' #zField
 Cs0 @PushWFArc f29 '' #zField
 Cs0 @PushWFArc f2 '' #zField
 Cs0 @PushWFArc f33 '' #zField
+Cs0 @UdMethod f87 '' #zField
+Cs0 @UdProcessEnd f89 '' #zField
+Cs0 @GridStep f26 '' #zField
+Cs0 @PushWFArc f30 '' #zField
+Cs0 @PushWFArc f16 '' #zField
+Cs0 @PushWFArc f20 '' #zField
+Cs0 @GridStep f31 '' #zField
+Cs0 @PushWFArc f32 '' #zField
+Cs0 @PushWFArc f19 '' #zField
+Cs0 @GridStep f34 '' #zField
+Cs0 @PushWFArc f36 '' #zField
+Cs0 @PushWFArc f37 '' #zField
 >Proto Cs0 Cs0 ChartCreationWidgetProcess #zField
 Cs0 f0 guid 15FFC669CAD8BE32 #txt
 Cs0 f0 method start() #txt
@@ -88,32 +97,6 @@ Cs0 f35 method createStatisticChart(java.util.List<ch.ivy.addon.portalkit.statis
 Cs0 f35 inParameterDecl '<java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChart> statisticChartList> param;' #txt
 Cs0 f35 inParameterMapAction 'out.statisticChartList=param.statisticChartList;
 ' #txt
-Cs0 f35 inActionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.statistics.StatisticChart;
-import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
-import ch.ivy.addon.portalkit.service.StatisticService;
-
-import java.util.Arrays;
-
-out.isChartNameExisted = false;
-StatisticService service = new StatisticService();
-out.chartName = out.chartName.trim();
-if (service.checkStatisticChartNameExisted(ivy.session.getSessionUser().getId(), out.chartName)) {
-	FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/validationErrors/nameIsExisted"), "");
-	FacesContext.getCurrentInstance().addMessage("chart-name-input", message);
-	FacesContext.getCurrentInstance().validationFailed();
-	out.isChartNameExisted = true;
-} else {
-	StatisticChart newChart = service.createStatisticChart(out.statisticFilter, out.chartName, out.chartType, ivy.session.getSessionUser().getId(), false);
-	param.statisticChartList.add(newChart);
-	
-	String growlTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/chartCreationSuccessTitle");
-	String growlDetail = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/chartCreationSuccessDetailMsg", Arrays.asList(out.chartName));
-	FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_INFO, growlTitle, growlDetail);
-	FacesContext.getCurrentInstance().addMessage("chart-creation-growl", message);
-	
-}' #txt
 Cs0 f35 outParameterDecl '<> result;' #txt
 Cs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -124,7 +107,7 @@ Cs0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f35 99 915 26 26 -111 15 #rect
+Cs0 f35 99 915 26 26 -98 29 #rect
 Cs0 f35 @|UdMethodIcon #fIcon
 Cs0 f40 guid 1601F9BADD2EC1C0 #txt
 Cs0 f40 method updateBeforeAddCaseByState() #txt
@@ -205,7 +188,11 @@ Cs0 f6 99 243 26 26 -26 15 #rect
 Cs0 f6 @|UdMethodIcon #fIcon
 Cs0 f15 actionTable 'out=in;
 ' #txt
-Cs0 f15 actionCode 'import org.apache.commons.lang3.ObjectUtils;
+Cs0 f15 actionCode 'import java.util.Locale;
+import ch.ivy.addon.portalkit.dto.DisplayName;
+import java.util.ArrayList;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import org.apache.commons.lang3.ObjectUtils;
 import ch.ivy.addon.portalkit.statistics.StatisticFilter;
 import java.util.ArrayList;
 
@@ -216,6 +203,14 @@ if (!(in.statisticChartList is initialized)) {
 in.statisticFilter = new StatisticFilter();
 in.statisticFilter.init();
 in.oldStatisticFilter = ObjectUtils.clone(in.statisticFilter) as StatisticFilter;
+
+in.chartNames = new ArrayList();
+for(String lang : LanguageService.newInstance().findUserLanguages().ivyLanguage.supportedLanguages) {
+  DisplayName displayName = new DisplayName();
+  displayName.locale = Locale.forLanguageTag(lang);
+  displayName.value = "";
+  in.chartNames.add(displayName);
+}
 ' #txt
 Cs0 f15 security system #txt
 Cs0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -231,7 +226,7 @@ Cs0 f15 254 42 112 44 -22 -8 #rect
 Cs0 f15 @|StepIcon #fIcon
 Cs0 f7 435 243 26 26 0 12 #rect
 Cs0 f7 @|UdProcessEndIcon #fIcon
-Cs0 f11 435 1011 26 26 0 12 #rect
+Cs0 f11 659 1107 26 26 0 12 #rect
 Cs0 f11 @|UdProcessEndIcon #fIcon
 Cs0 f44 expr out #txt
 Cs0 f44 125 352 448 483 #arcP
@@ -267,7 +262,19 @@ Cs0 f41 99 339 26 26 -90 15 #rect
 Cs0 f41 @|UdMethodIcon #fIcon
 Cs0 f13 actionTable 'out=in;
 ' #txt
-Cs0 f13 actionCode 'in.chartName = "";' #txt
+Cs0 f13 actionCode 'import java.util.Locale;
+import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+
+in.chartNames.clear();
+
+for(String lang : LanguageService.newInstance().findUserLanguages().ivyLanguage.supportedLanguages) {
+  DisplayName displayName = new DisplayName();
+  displayName.locale = Locale.forLanguageTag(lang);
+  displayName.value = "";
+  in.chartNames.add(displayName);
+}
+' #txt
 Cs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -277,10 +284,10 @@ Cs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f13 232 1002 112 44 -47 -8 #rect
+Cs0 f13 360 1098 112 44 -47 -8 #rect
 Cs0 f13 @|StepIcon #fIcon
 Cs0 f12 expr out #txt
-Cs0 f12 344 1024 435 1024 #arcP
+Cs0 f12 472 1120 659 1120 #arcP
 Cs0 f17 guid 160485D2143D0001 #txt
 Cs0 f17 method updateBeforeAddElapsedTime() #txt
 Cs0 f17 inParameterDecl '<> param;' #txt
@@ -311,19 +318,10 @@ Cs0 f18 expr out #txt
 Cs0 f18 125 640 448 509 #arcP
 Cs0 f18 1 448 640 #addKink
 Cs0 f18 0 0.8015192349629681 0 0 #arcLabel
-Cs0 f21 272 912 32 32 0 16 #rect
+Cs0 f21 400 912 32 32 0 16 #rect
 Cs0 f21 @|AlternativeIcon #fIcon
-Cs0 f16 expr out #txt
-Cs0 f16 125 928 272 928 #arcP
-Cs0 f19 expr in #txt
-Cs0 f19 outCond !in.isChartNameExisted #txt
-Cs0 f19 288 944 288 1002 #arcP
-Cs0 f20 expr in #txt
-Cs0 f20 304 928 448 1011 #arcP
-Cs0 f20 1 448 928 #addKink
-Cs0 f20 0 0.7991119562493567 0 0 #arcLabel
 Cs0 f14 expr out #txt
-Cs0 f14 125 1024 232 1024 #arcP
+Cs0 f14 125 1120 360 1120 #arcP
 Cs0 f10 guid 160911F3882D9937 #txt
 Cs0 f10 actionTable 'out=in;
 ' #txt
@@ -336,7 +334,7 @@ Cs0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f10 99 1011 26 26 -42 15 #rect
+Cs0 f10 99 1107 26 26 -42 15 #rect
 Cs0 f10 @|UdEventIcon #fIcon
 Cs0 f22 guid 1621EDBADBEB0978 #txt
 Cs0 f22 method updateBeforeAddCaseByFinishedTask() #txt
@@ -441,6 +439,129 @@ Cs0 f2 expr out #txt
 Cs0 f2 760 64 835 64 #arcP
 Cs0 f33 expr out #txt
 Cs0 f33 125 64 254 64 #arcP
+Cs0 f87 guid 17597ECF890D0A64 #txt
+Cs0 f87 method isApplicationDefaultEmailLanguage(String) #txt
+Cs0 f87 inParameterDecl '<String language> param;' #txt
+Cs0 f87 inParameterMapAction 'out.language=param.language;
+' #txt
+Cs0 f87 outParameterDecl '<Boolean result> result;' #txt
+Cs0 f87 outParameterMapAction 'result.result=in.isDefaultApplicationLanguage;
+' #txt
+Cs0 f87 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>isApplicationDefaultEmailLanguage(String)</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f87 99 1243 26 26 -97 16 #rect
+Cs0 f87 @|UdMethodIcon #fIcon
+Cs0 f89 435 1243 26 26 0 12 #rect
+Cs0 f89 @|UdProcessEndIcon #fIcon
+Cs0 f26 actionTable 'out=in;
+' #txt
+Cs0 f26 actionCode 'import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
+import ch.ivy.addon.portalkit.service.StatisticService;
+
+
+in.isChartNameExisted = false;
+
+StatisticService service = new StatisticService();
+for (DisplayName name : out.chartNames) {
+	String chartName = name.value;
+	if (service.checkStatisticChartNameExisted(ivy.session.getSessionUser().getId(), chartName.trim(), name.getLocale().toLanguageTag())) {
+	  FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/validationErrors/nameIsExisted"), "");
+	  FacesContext.getCurrentInstance().addMessage("chart-name-input", message);
+  	FacesContext.getCurrentInstance().validationFailed();
+	  in.isChartNameExisted = true;
+	  break;
+  }
+}' #txt
+Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Check chart name is existed</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f26 200 906 160 44 -77 -8 #rect
+Cs0 f26 @|StepIcon #fIcon
+Cs0 f30 expr out #txt
+Cs0 f30 125 928 200 928 #arcP
+Cs0 f16 360 928 400 928 #arcP
+Cs0 f20 432 928 672 1107 #arcP
+Cs0 f20 1 672 928 #addKink
+Cs0 f20 0 0.7005718634260301 0 0 #arcLabel
+Cs0 f31 actionTable 'out=in;
+' #txt
+Cs0 f31 actionCode 'import org.apache.commons.lang3.StringUtils;
+import java.util.HashMap;
+import java.util.Map;
+import ch.ivy.addon.portalkit.dto.DisplayName;
+import java.util.Arrays;
+import javax.faces.context.FacesContext;
+import javax.faces.application.FacesMessage;
+import ch.ivy.addon.portalkit.service.StatisticService;
+import ch.ivy.addon.portalkit.statistics.StatisticChart;
+
+
+// Update empty chart name
+String defaultEmailLanguage = ivy.wf.getApplication().getDefaultEMailLanguage().getLanguage();
+String defaultChartName = "";
+for (DisplayName name : in.chartNames) {
+  if (defaultEmailLanguage.equalsIgnoreCase(name.locale.toLanguageTag())) {
+    defaultChartName = name.value;
+  }
+}
+
+for (DisplayName name : in.chartNames) {
+  if (!defaultEmailLanguage.equalsIgnoreCase(name.locale.toLanguageTag()) && StringUtils.isBlank(name.value)) {
+    name.value = defaultChartName;
+  }
+}
+
+StatisticService service = new StatisticService();
+StatisticChart newChart = service.createStatisticChart(in.statisticFilter, in.chartNames, in.chartType, ivy.session.getSessionUser().getId(), false);
+in.statisticChartList.add(newChart);
+
+String growlTitle = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/chartCreationSuccessTitle");
+String growlDetail = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/chartCreationSuccessDetailMsg", Arrays.asList(service.getDisplayNameInUserLanguageForChart(newChart).value));
+FacesMessage message = new FacesMessage( FacesMessage.SEVERITY_INFO, growlTitle, growlDetail);
+FacesContext.getCurrentInstance().addMessage("chart-creation-growl", message);' #txt
+Cs0 f31 security system #txt
+Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Save and&#13;
+show growl message</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f31 344 1002 144 44 -53 -16 #rect
+Cs0 f31 @|StepIcon #fIcon
+Cs0 f32 expr in #txt
+Cs0 f32 outCond !in.isChartNameExisted #txt
+Cs0 f32 416 944 416 1002 #arcP
+Cs0 f19 416 1046 416 1098 #arcP
+Cs0 f34 actionTable 'out=in;
+' #txt
+Cs0 f34 actionCode 'in.isDefaultApplicationLanguage = ivy.wf.getApplication().getDefaultEMailLanguage().getLanguage().equalsIgnoreCase(in.language);' #txt
+Cs0 f34 security system #txt
+Cs0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Check language</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f34 248 1234 112 44 -45 -8 #rect
+Cs0 f34 @|StepIcon #fIcon
+Cs0 f36 expr out #txt
+Cs0 f36 125 1256 248 1256 #arcP
+Cs0 f37 360 1256 435 1256 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -463,12 +584,6 @@ Cs0 f13 mainOut f12 tail #connect
 Cs0 f12 head f11 mainIn #connect
 Cs0 f17 mainOut f18 tail #connect
 Cs0 f18 head f43 mainIn #connect
-Cs0 f35 mainOut f16 tail #connect
-Cs0 f16 head f21 in #connect
-Cs0 f21 out f19 tail #connect
-Cs0 f19 head f13 mainIn #connect
-Cs0 f21 out f20 tail #connect
-Cs0 f20 head f11 mainIn #connect
 Cs0 f10 mainOut f14 tail #connect
 Cs0 f14 head f13 mainIn #connect
 Cs0 f22 mainOut f23 tail #connect
@@ -485,3 +600,17 @@ Cs0 f28 mainOut f2 tail #connect
 Cs0 f2 head f1 mainIn #connect
 Cs0 f0 mainOut f33 tail #connect
 Cs0 f33 head f15 mainIn #connect
+Cs0 f35 mainOut f30 tail #connect
+Cs0 f30 head f26 mainIn #connect
+Cs0 f26 mainOut f16 tail #connect
+Cs0 f16 head f21 in #connect
+Cs0 f20 head f11 mainIn #connect
+Cs0 f21 out f32 tail #connect
+Cs0 f32 head f31 mainIn #connect
+Cs0 f21 out f20 tail #connect
+Cs0 f31 mainOut f19 tail #connect
+Cs0 f19 head f13 mainIn #connect
+Cs0 f87 mainOut f36 tail #connect
+Cs0 f36 head f34 mainIn #connect
+Cs0 f34 mainOut f37 tail #connect
+Cs0 f37 head f89 mainIn #connect

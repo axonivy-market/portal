@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -14,8 +15,11 @@ import org.apache.commons.lang3.StringUtils;
 import org.primefaces.event.ItemSelectEvent;
 import org.primefaces.model.charts.donut.DonutChartModel;
 
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.StatisticChartType;
 import ch.ivy.addon.portalkit.enums.StatisticTimePeriodSelection;
+import ch.ivy.addon.portalkit.ivydata.bo.IvyLanguage;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.service.StatisticService;
@@ -75,9 +79,15 @@ public class StatisticDashboardBean implements Serializable {
     TaskQuery taskQuery =
         StatisticChartQueryUtils.getQueryForSelectedItemOfTaskByPriorityChart(event, selectedStatisticChart);
 
+    String currentLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage().getUserLanguage();
+    String chartName = selectedStatisticChart.getNames().stream()
+        .filter(name -> StatisticService.equalsDisplayNameLocale(name, currentLanguage))
+        .map(DisplayName::getValue)
+        .findFirst().orElse("");
+
     IvyComponentLogicCaller<String> drillDownTaskByPriority = new IvyComponentLogicCaller<>();
     drillDownTaskByPriority.invokeComponentLogic(STATISTIC_DASHBOARD_WIDGET_COMPONENT_ID,
-        "#{logic.drilldownTaskByPriority}", new Object[] {selectedStatisticChart.getName(), taskQuery});
+        "#{logic.drilldownTaskByPriority}", new Object[] {chartName, taskQuery});
   }
 
   public void drilldownCaseByState(ItemSelectEvent event) {
@@ -135,7 +145,7 @@ public class StatisticDashboardBean implements Serializable {
   
   public StatisticChart createDefaultEmptyChart() {
     StatisticChart emptyChart = new StatisticChart();
-    emptyChart.setName(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statistics"));
+    emptyChart.setNames(generateNamesForEmptyChart());
     emptyChart.setType(StatisticChartType.TASK_BY_PRIORITY);
     StatisticService service = new StatisticService();
     DonutChartModel model = service.createDonutChartPlaceholder();
@@ -143,7 +153,19 @@ public class StatisticDashboardBean implements Serializable {
     emptyChart.setDonutChartModel(model);
     return emptyChart;
   }
-  
+
+  private List<DisplayName> generateNamesForEmptyChart() {
+    List<DisplayName> namesForEmptyChart = new ArrayList<>();
+    IvyLanguage ivyLanguage = LanguageService.newInstance().findUserLanguages().getIvyLanguage();
+    for (String language : ivyLanguage.getSupportedLanguages()) {
+      DisplayName name = new DisplayName();
+      name.setLocale(Locale.forLanguageTag(language));
+      name.setValue(Ivy.cms().coLocale(("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statistics"), language));
+      namesForEmptyChart.add(name);
+    }
+    return namesForEmptyChart;
+  }
+
   private static StatisticChart getSelectedStatisticChart(ItemSelectEvent event) {
     String selectedChartId = (String) event.getComponent().getAttributes().get("selectedChartId");
     List<StatisticChart> statisticCharts =

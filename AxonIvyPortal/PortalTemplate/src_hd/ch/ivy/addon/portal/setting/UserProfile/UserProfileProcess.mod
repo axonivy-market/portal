@@ -226,7 +226,7 @@ Us0 f35 109 280 192 280 #arcP
 Us0 f36 304 280 384 280 #arcP
 Us0 f28 actionTable 'out=in;
 ' #txt
-Us0 f28 actionCode 'import ch.ivy.addon.portalkit.bean.UserProfileBean;
+Us0 f28 actionCode 'import ch.ivy.addon.portal.generic.bean.UserProfileBean;
 import ch.ivy.addon.portalkit.bean.GuideBean;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 
@@ -363,7 +363,7 @@ Us0 f20 888 122 112 44 -36 -8 #rect
 Us0 f20 @|StepIcon #fIcon
 Us0 f23 840 144 888 144 #arcP
 Us0 f4 1000 144 1107 144 #arcP
->Proto Us0 .type ch.ivy.addon.portalkit.settings.UserProfile.UserProfileData #txt
+>Proto Us0 .type ch.ivy.addon.portal.setting.UserProfile.UserProfileData #txt
 >Proto Us0 .processKind HTML_DIALOG #txt
 >Proto Us0 -8 -8 16 16 16 26 #rect
 >Proto Us0 '' #fIcon

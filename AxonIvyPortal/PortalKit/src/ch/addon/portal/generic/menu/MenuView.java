@@ -158,6 +158,9 @@ public class MenuView implements Serializable {
       case EXPRESS_BUSINESS:
         buildBreadCrumbForExpressBusiness(userCase);
         break;
+      case ABSENCES_MANAGEMENT:
+        buildBreadCrumbForAbsences();
+        break;
       default:
         break;
     }
@@ -165,7 +168,12 @@ public class MenuView implements Serializable {
 
   private void buildBreadCrumbForUserProfile() {
     setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements().add(buildUserProfileMenuItem());
+    breadcrumbModel.getElements().add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle"));
+  }
+
+  private void buildBreadCrumbForAbsences() {
+    setPortalHomeMenuToBreadcrumbModel();
+    breadcrumbModel.getElements().add(buildGenericMenuItem("/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/absenceAndDeputy"));
   }
 
   private void buildBreadCrumbForTaskList() {
@@ -231,7 +239,7 @@ public class MenuView implements Serializable {
 
   private void buildBreadCrumbForExpress() {
     setPortalHomeMenuToBreadcrumbModel();
-    breadcrumbModel.getElements().add(buildExpressMenuItem());
+    breadcrumbModel.getElements().add(buildGenericMenuItem("/Categories/ExpressWorkflow/name"));
   }
   
   private void buildBreadCrumbForExpressBusiness(ICase userCase) {
@@ -294,14 +302,6 @@ public class MenuView implements Serializable {
     return menuItem;
   }
 
-  private MenuItem buildExpressMenuItem() {
-    DefaultMenuItem menuItem = new DefaultMenuItem();
-    menuItem.setValue(Ivy.cms().co("/Categories/ExpressWorkflow/name"));
-    menuItem.setUrl("#");
-    menuItem.setDisabled(true);
-    return menuItem;
-  }
-
   private MenuItem buildExpressBusinessMenuItem(String caseId) {
     DefaultMenuItem menuItem = new DefaultMenuItem();
     menuItem.setValue(Ivy.cms().co("/Dialogs/ch/ivy/addon/express/generic/expressWorkflowName", Arrays.asList(caseId)));
@@ -310,9 +310,9 @@ public class MenuView implements Serializable {
     return menuItem;
   }
 
-  private MenuItem buildUserProfileMenuItem() {
+  private MenuItem buildGenericMenuItem(String cms) {
     DefaultMenuItem menuItem = new DefaultMenuItem();
-    menuItem.setValue(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/userProfile/myProfileTitle"));
+    menuItem.setValue(Ivy.cms().co(cms));
     menuItem.setUrl("#");
     menuItem.setDisabled(true);
     return menuItem;

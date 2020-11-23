@@ -46,8 +46,9 @@
               onclick="PF('adminUI').show(); $('#user-setting-container').click()" rendered="#{permissionBean.hasAdminPermission()}" />
           </li>
 
-          <li><p:link id="absence-menu-item" href="#" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
-              onclick="rcAbsenceManagement(); $('#user-setting-container').click()" rendered="#{absenceManagementBean.ownAbsencesReadable}" /></li>
+          <li><p:commandLink id="absence-menu-item" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceAndDeputy/absences')}"
+                actionListener="#{userMenuBean.navigateToAbsencesOrDisplayWorkingTaskWarning(isWorkingOnATask, task)}"
+                rendered="#{absenceManagementBean.ownAbsencesReadable}" /></li>
 
           <li><p:commandLink id="change-password-menu-item"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/applicationMenuHeader/changePassword')}"
@@ -119,23 +120,6 @@
       </f:facet>
     </p:dialog>
 
-    <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/AbsenceManagement/absenceAndDeputy')}" 
-      styleClass="absence-settings-dialog"
-      width="80%"
-      closeOnEscape="true" 
-      widgetVar="absenceManagement" 
-      id="absence-management-dialog" 
-      resizable="false" 
-      modal="true" 
-      draggable="true"
-      appendTo="@(body)" 
-      dynamic="true" 
-      responsive="true"
-      fitViewport="true"
-      onShow="PF('absenceManagement').initPosition();">
-      <ic:ch.ivy.addon.portalkit.multiapp.settings.AbsenceManagement id="absence-management" dialogName="absenceManagement" onTabChange="PF('absenceManagement').initPosition();"/>
-    </p:dialog>
-
     <p:dialog header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/projectInfo/header')}" styleClass="project-info-dialog" width="1000"
       closeOnEscape="true" widgetVar="project-info-dialog" id="project-info-dialog" resizable="false" modal="true" draggable="false"
       appendTo="@(body)" dynamic="true" responsive="true">
@@ -149,8 +133,6 @@
     <h:form>
       <p:remoteCommand name="rcProjectInfo" actionListener="#{projectVersionBean.loadProjectVesion}" oncomplete="PF('project-info-dialog').show()"
         update="project-info-dialog" />
-      <p:remoteCommand name="rcAbsenceManagement" actionListener="#{absenceManagementBean.loadData}" oncomplete="PF('absenceManagement').show()"
-        update="absence-management-dialog" />
     </h:form>
   </ui:insert>
   <c:if test="#{chatRendererBean.isChatRendered}">
