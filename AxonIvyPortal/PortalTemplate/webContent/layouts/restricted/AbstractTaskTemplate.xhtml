@@ -160,7 +160,7 @@
               styleClass="case-default-widget-container case-details case-details-panel">
               <div class="ui-g js-iframe-container">
                 <div class="ui-g-12 u-padding-0">
-                  <iframe id="i-frame-case-details" src="#{taskTemplateBean.caseDetailsLink}"
+                  <iframe id="i-frame-case-details" src="#{taskTemplateBean.caseDetailsLink}" onload="setupHeightForIFrame();"
                     class="case-information-frame  js-iFrame-case-details" scrolling="no" frameborder="0"/>
                   <p:poll rendered="#{taskTemplateBean.intervalForPollingWhenOpenCaseDetails ne null}" interval="#{taskTemplateBean.intervalForPollingWhenOpenCaseDetails}"
                   	process="@this" update="@this"
@@ -303,12 +303,21 @@
           }
         }
 
+        function setupHeightForIFrame() {
+          var dialogHeight = $('.js-iframe-container').closest('.ui-dialog-content').get(0).offsetHeight || 0;
+          $('.js-iframe-container').height(dialogHeight);
+        };
+
         function reloadIFrame() {
           var frame = document.getElementById('i-frame-case-details');
           var link = frame.src;
           frame.src = '';
           frame.src = link;
         }
+
+        $(window).resize(function() {
+          setupHeightForIFrame();
+        });
       </script>
       <ui:insert name="javascript" />
     </ui:define>
