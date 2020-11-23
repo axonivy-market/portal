@@ -163,7 +163,11 @@ if (in.#selectedUser != null) {
 
 String oldResponsibleName = in.task.getActivator() != null? in.task.getActivator().getDisplayName() : StringUtils.stripStart(in.task.getActivatorName(), "#");
 
-in.delegateComment = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateComment", [in.task.getId(), oldResponsibleName, newResponsibleName]);' #txt
+in.delegateComment = StringUtils.isBlank(in.#taskDelegationComment) ?
+	ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateComment", [in.task.getId(), oldResponsibleName, newResponsibleName])
+	: ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/taskDelegate/delegateReasonIncludedComment", [in.task.getId(), oldResponsibleName, newResponsibleName, in.#taskDelegationComment.trim()]);
+
+in.taskDelegationComment = "";' #txt
 Ts0 f80 security system #txt
 Ts0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -172,7 +176,7 @@ Ts0 f80 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f80 336 506 112 44 -32 -8 #rect
+Ts0 f80 336 504 112 48 -32 -8 #rect
 Ts0 f80 @|StepIcon #fIcon
 Ts0 f87 actionTable 'out=in;
 ' #txt
@@ -200,7 +204,8 @@ Ts0 f107 actionTable 'out=in;
 ' #txt
 Ts0 f107 actionCode 'out.delegatedSecurityMember = null;
 out.disabledDelegateButton = true;
-' #txt
+out.selectedRole = null;
+out.selectedUser = null;' #txt
 Ts0 f107 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
