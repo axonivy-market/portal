@@ -17,7 +17,9 @@
   <h:panelGroup id="config-columns-container" layout="block" styleClass="config-columns-button u-hidden-md-down">
     <p:commandLink id="#{cc.attrs.configButtonId}" styleClass="config-columns">
       <i class="icon ivyicon-layers-grid-settings u-mar-right-5" />
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}" />
+      <span class="link-text">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}" />
+      </span>
     </p:commandLink>
   </h:panelGroup>
 

@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
@@ -427,6 +428,17 @@ public class TaskWidgetPage extends TemplatePage {
     WaitHelper.assertTrueWithWait(() ->
         findElementByCssSelector("[id$=':description-filter:filter-open-form:advanced-filter-command']").getText().contains(text));
   }
+  
+  public void filterByDate(String filterId, String fromDate, String toDate) {
+    click(By.cssSelector("button[id$='" + filterId + "-filter:filter-open-form:advanced-filter-command']"));
+    WebElement toDateInput =
+        findElementByCssSelector("input[id$='" + filterId + "-filter:filter-input-form:from-" + filterId + "-calendar_input']");
+    enterKeys(toDateInput, fromDate);
+    WebElement fromDateInput =
+        findElementByCssSelector("input[id$='" + filterId + "-filter:filter-input-form:to-" + filterId + "-calendar_input']");
+    enterKeys(fromDateInput, toDate);
+    click(By.cssSelector("button[id$='" + filterId + "-filter:filter-input-form:update-command']"));
+  }
 
   public void filterByCustomerName(String text) {
     click(By.cssSelector(
@@ -793,5 +805,28 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void waitForActionGroupDisplay() {
     waitForElementDisplayed(By.cssSelector("div[class='action-container']"), true);
+  }
+
+  public WebElement getExportToExcelLink() {
+    return findElementByCssSelector("a[id$=':task-export-to-excel']");
+  }
+
+  public void clickExportToExcelLink() {
+    // Ensure that attribute is removed before downloading
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    WebElement statusDialog = driver.findElement(By.cssSelector("div[id$=':status-dialog']"));
+    js.executeScript("arguments[0].removeAttribute('download-status')", statusDialog);
+
+    // click download
+    WebElement downloadLink = getExportToExcelLink();
+    if (downloadLink != null) {
+      downloadLink.click();
+    }
+  }
+
+  public boolean isDownloadCompleted() {
+    WebElement statusDialog = driver.findElement(By.cssSelector("div[id$=':status-dialog']"));
+    WaitHelper.assertTrueWithWait(() -> StringUtils.isNotBlank(statusDialog.getAttribute("download-status")));
+    return StringUtils.equals(statusDialog.getAttribute("download-status"), "completed");
   }
 }

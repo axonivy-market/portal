@@ -42,13 +42,17 @@ public class HomePage extends TemplatePage {
 		return isElementDisplayedById(SHOW_ALL_CHARTS_LINK_ID);
 	}
 	
-	public void waitForStatisticRendered() {
+  /** 
+   * Wait for statistic charts are displayed in 5s
+   */
+  public void waitForStatisticRendered() {
     WaitHelper.assertTrueWithRefreshPage(this, () -> {
-      waitForElementDisplayed(By.cssSelector("a[class$='chart-info']"), true, 2);
+      waitForElementDisplayed(By.cssSelector("a[class$='chart-info']"), true, 5);
       return true;
     });
-	}
-	
+    ensureNoBackgroundRequest();
+  }
+
 	public String getAnnouncementMessage() {
 		waitForElementDisplayed(By.cssSelector("div[class*='announcement-message-customizable']"), true);
 		return driver.findElement(By.cssSelector("div[class*='announcement-message-customizable']")).getText();

@@ -1,5 +1,5 @@
 AbsenceManagementData #class
-ch.ivy.addon.portalkit.multiapp.settings.AbsenceManagement #namespace
+ch.ivy.addon.portal.setting.AbsenceManagement #namespace
 absencesByUser java.util.Map #field
 absencesByUser PERSISTENT #fieldModifier
 backupAbsence ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence #field
@@ -23,10 +23,9 @@ selectedUser ch.ivy.addon.portalkit.dto.UserDTO #field
 selectedUser PERSISTENT #fieldModifier
 isCreateMode Boolean #field
 isCreateMode PERSISTENT #fieldModifier
-substituteUser ch.ivy.addon.portalkit.dto.UserDTO #field
-substituteUser 'user bind to autocomplete in my deputy' #fieldComment
-substituteUser PERSISTENT #fieldModifier
 substitutes java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute> #field
 substitutes PERSISTENT #fieldModifier
 substitutions java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute> #field
 substitutions PERSISTENT #fieldModifier
+message String #field
+message PERSISTENT #fieldModifier

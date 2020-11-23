@@ -401,3 +401,11 @@ function highlightShowAllProcesses() {
 function highlightShowAdditionalLink() {
   createRedMediumOutline($("[id$='case-item:case-item-action-form:action-step-component:show-additional-case-details-link']"));
 }
+
+function highlightTaskExportToExcelButton() {
+  createRedMediumOutline($("a[id$=':task-export-to-excel']"));
+}
+
+function highlightCaseExportToExcelButton() {
+  createRedMediumOutline($("a[id$=':case-export-to-excel']"));
+}

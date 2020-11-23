@@ -25,7 +25,7 @@ public class IvyProcess implements Process {
 
   @Override
   public String getName() {
-    return process.getName();
+    return process.getDisplayName();
   }
 
   @Override
