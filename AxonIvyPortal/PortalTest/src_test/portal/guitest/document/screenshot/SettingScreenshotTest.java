@@ -80,21 +80,21 @@ public class SettingScreenshotTest extends ScreenshotTest {
   @Test
   public void screenshotAbsence() throws IOException {
     login(TestAccount.HR_ROLE_USER);
-    ScreenshotUtil.resizeBrowser(new Dimension(1500, 900));
+    ScreenshotUtil.resizeBrowser(new Dimension(1500, 1200));
     redirectToRelativeLink(cleanUpAbsencesAndSubstituesLink);
     homePage = new HomePage();
     AbsencePage absencePage = homePage.openAbsencePage();
     createAbsenceForCurrentUser(TODAY, TODAY, "Personal leave", absencePage);
     createAbsenceForCurrentUser(TOMORROW, TOMORROW, "Vacation", absencePage);
-    ScreenshotUtil.captureElementScreenshot(absencePage.getAbsenceDialog(), ScreenshotUtil.SETTINGS_FOLDER + "absence");
+    ScreenshotUtil.captureElementScreenshot(absencePage.getAbsenceForm(), ScreenshotUtil.SETTINGS_FOLDER + "absence");
     absencePage.openNewAbsenceDialog();
     Sleeper.sleep(1000);//wait for animation finish to capture nice screenshot
-    ScreenshotUtil.captureElementScreenshot(absencePage.getAbsenceDialog(), ScreenshotUtil.SETTINGS_FOLDER + "new-absence");
+    ScreenshotUtil.captureElementScreenshot(absencePage.getAbsenceForm(), ScreenshotUtil.SETTINGS_FOLDER + "new-absence");
     
     refreshPage();
     absencePage = homePage.openAbsencePage();
     absencePage.setDeputy(TestAccount.DEMO_USER.getFullName());
-    ScreenshotUtil.captureElementScreenshot(absencePage.getAbsenceDialog(), ScreenshotUtil.SETTINGS_FOLDER + "set-deputy");
+    ScreenshotUtil.captureElementScreenshot(absencePage.getAbsenceForm(), ScreenshotUtil.SETTINGS_FOLDER + "set-deputy");
   }
   
   private void refreshHomePage() {

@@ -38,6 +38,8 @@
           componentId="creation-time" value="#{task.startTimestamp}" responsiveStyleClass="u-hidden-sm-down js-hidden-when-expand-menu" />
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate rendered="#{taskView.dataModel.isSelectedColumn('EXPIRY_TIME')}"
           componentId="expiry-time" value="#{task.expiryTimestamp}" />
+        <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate rendered="#{taskView.dataModel.isSelectedColumn('COMPLETED_ON')}"
+          componentId="completed-time" value="#{task.endTimestamp}" />
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskState dataModel="#{taskView.dataModel}" state="#{task.state}" />
 
         <!-- New field -->

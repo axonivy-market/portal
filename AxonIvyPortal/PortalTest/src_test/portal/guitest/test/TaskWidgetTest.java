@@ -229,8 +229,8 @@ public class TaskWidgetTest extends BaseTest {
 
     // Check result
     TaskWidgetPage taskWidgetPage = userProfilePage.openTaskList();
-    assertEquals("low", taskWidgetPage.getPriorityOfTask(0));
-    assertEquals("high", taskWidgetPage.getPriorityOfTask(taskWidgetPage.countTasks() - 1));
+    assertEquals("high", taskWidgetPage.getPriorityOfTask(0));
+    assertEquals("low", taskWidgetPage.getPriorityOfTask(taskWidgetPage.countTasks() - 1));
 
     // Change sorting options
     userProfilePage = taskWidgetPage.openMyProfilePage();
@@ -242,5 +242,17 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage = userProfilePage.openTaskList();
     assertEquals("Sick Leave Request", taskWidgetPage.getNameOfTaskAt(0));
     assertEquals("Annual Leave Request", taskWidgetPage.getNameOfTaskAt(taskWidgetPage.countTasks() - 1));
+  }
+
+  @Test
+  public void testExportToExcel() {
+    login(TestAccount.ADMIN_USER);
+    HomePage homePage = new HomePage();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.expand();
+
+    taskWidgetPage.clickExportToExcelLink();
+
+    assertTrue(taskWidgetPage.isDownloadCompleted());
   }
 }

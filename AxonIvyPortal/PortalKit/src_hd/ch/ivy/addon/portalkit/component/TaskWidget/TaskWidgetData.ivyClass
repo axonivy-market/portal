@@ -51,3 +51,13 @@ selectedTask 'Task is selected for reset or delegate' #fieldComment
 selectedTask PERSISTENT #fieldModifier
 currentPortalPage String #field
 currentPortalPage PERSISTENT #fieldModifier
+exportedFile org.primefaces.model.StreamedContent #field
+exportedFile PERSISTENT #fieldModifier
+loopCounter Integer #field
+loopCounter PERSISTENT #fieldModifier
+maxResultNumberPerQuery Integer #field
+maxResultNumberPerQuery PERSISTENT #fieldModifier
+collectedTasksForExporting List<ch.ivyteam.ivy.workflow.ITask> #field
+collectedTasksForExporting PERSISTENT #fieldModifier
+columnsVisibility List<String> #field
+columnsVisibility PERSISTENT #fieldModifier

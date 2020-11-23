@@ -128,6 +128,18 @@ Migrate 9.1 to 9.2
 
 3. CaseDetails component in PortalTemplate is removed.
 
+4. Since 9.2, statistic chart has multiple names for supported languages in application. Therefore you must run a migration process by the following steps:
+
+   - Deploy :download:`MigrateStatisticChartTo9.iar <documents/MigrateStatisticChartTo9.iar>` project to your Ivy application. This project requires ``PortalKit`` to run.
+
+   - Run ``MigrateStatisticChart/MigrateStatisticChart.ivp`` to migrate all statistic charts in your application.
+
+   - Restart Ivy engine.
+
+5. If you have TaskLazyDataModel, CaseLazyDataModel customization, follow :ref:`How to override export feature of Task list <customization-task-widget-how-to-override-export-feature>`
+and :ref:`How to override export feature of Case list <customization-case-widget-how-to-override-export-feature>` to customize label and value of custom columns that will be exported.
+
+
 Migrate 8.x to 9.1
 ------------------
 
@@ -190,6 +202,8 @@ Changes in 9.2
 - Introduce new global variable named ``PortalLoginPageDisplay`` to show Login page or hide it then show error page instead.
 
 - No multiple applications anymore, Portal now only works in current application. It means administrator can not add new Ivy application.
+
+- Statistic charts support multiple names for each supported languages.
 
 Changes in 9.1
 --------------

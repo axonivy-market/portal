@@ -10,6 +10,7 @@ import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
@@ -23,7 +24,6 @@ public class StatisticScreenshotTest extends ScreenshotTest {
   @Override
   public void setup() {
     super.setup();
-    Sleeper.sleep(2000); // To make business data updated correctly 
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createTestingCaseContainOneTask);
   }
@@ -31,6 +31,7 @@ public class StatisticScreenshotTest extends ScreenshotTest {
   @Test
   public void screenshotForStatistic() throws IOException {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    WaitHelper.assertTrueWithRefreshPage(taskWidgetPage, () -> !taskWidgetPage.isWelcomeDialogExisted());
     taskWidgetPage.startTaskWithoutUI(0);
     homePage = new HomePage();
     homePage.waitForStatisticRendered();

@@ -1,7 +1,8 @@
 package ch.ivy.addon.portal.generic.navigation;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -30,29 +31,22 @@ public final class PortalNavigator {
   private static final String PORTAL_TASK_DETAILS = "Start Processes/PortalStart/TaskDetailsPage.ivp";
   private static final String PORTAL_GLOBAL_SEARCH = "Start Processes/PortalStart/GlobalSearchPage.ivp";
   private static final String PORTAL_USER_PROFILE =  "Start Processes/PortalStart/UserProfile.ivp";
-
+  private static final String PORTAL_ABSENCE_MANAGEMENT =  "Start Processes/PortalStart/AbsenceManagement.ivp";
+  
   public static String getPortalStartUrl() {
-    return getPortalStartUrl(null);
+    return getRelativeLink(StandardProcessType.DefaultApplicationHomePage);
   }
   
-  public static String getPortalStartUrl(String application) {
-    String homePage = getDefaultApplicationHomePage();
-    if (StringUtils.isBlank(application)) {
-      return homePage;
-    }
-    
-    return homePage.replaceFirst(Ivy.wf().getApplication().getName(), application);
-  }
-  
-  private static String getDefaultApplicationHomePage() {
+  private static String getRelativeLink(StandardProcessType standardProcess) {
     return IvyExecutor.executeAsSystem(() ->
-      Ivy.wf().getStandardProcessImplementation(StandardProcessType.DefaultApplicationHomePage).getLink().getRelative());
+      Ivy.wf().getStandardProcessImplementation(standardProcess).getLink().getRelative());
   }
   
-  public static void navigateToPortalLoginPage() throws UnsupportedEncodingException {
+  public static void navigateToPortalLoginPage() {
     IHttpRequest request = (IHttpRequest) Ivy.request();
-    String loginPage = IvyExecutor.executeAsSystem(() -> Ivy.wf().getStandardProcessImplementation(StandardProcessType.DefaultLoginPage).getLink().getRelative());
-    redirect(String.format("%s?originalUrl=%s", loginPage, java.net.URLEncoder.encode(request.getHttpServletRequest().getRequestURI(), "ISO-8859-1")));
+    String loginPage = getRelativeLink(StandardProcessType.DefaultLoginPage);
+    String originalUrl = URLEncoder.encode(request.getHttpServletRequest().getRequestURI(), StandardCharsets.ISO_8859_1);
+    redirect(String.format("%s?originalUrl=%s", loginPage, originalUrl));
   }
   
   public static void redirect(String url) {
@@ -85,9 +79,9 @@ public final class PortalNavigator {
   }
 
   public static void navigateToPortalEndPage(Long taskId) {
-    String customizePortalEndPage = getDefaultEndPage();
-    redirect(customizePortalEndPage + "?endedTaskId=" + taskId);
+    String customizePortalEndPage = getRelativeLink(StandardProcessType.DefaultEndPage);
     Ivy.session().setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);
+    redirect(String.format("%s?endedTaskId=%s", customizePortalEndPage, taskId));
   }
 
   /**
@@ -98,10 +92,6 @@ public final class PortalNavigator {
     navigateToPortalEndPage(Ivy.wfTask().getId());
   }
 
-  private static String getDefaultEndPage() {
-    return IvyExecutor.executeAsSystem(() ->
-        Ivy.wf().getStandardProcessImplementation(StandardProcessType.DefaultEndPage).getLink().getRelative());
-  }
 
   public static void navigateToPortalProcess() {
     navigateByKeyword("DefaultProcessStartListPage.ivp", PORTAL_PROCESS, new HashMap<>());
@@ -149,26 +139,26 @@ public final class PortalNavigator {
     navigateByKeyword("GlobalSearchPage.ivp", PORTAL_GLOBAL_SEARCH, params);
   }
   
+  public static void navigateToUserProfile() {
+    navigate(PORTAL_USER_PROFILE, new HashMap<>());
+  }
+
   public static String buildUserProfileUrl() {
     return buildUrlByKeyword("UserProfile.ivp", PORTAL_USER_PROFILE, new HashMap<>());
   }
 
+  public static String buildAbsencesUrl() {
+    return buildUrlByKeyword("AbsenceManagement.ivp", PORTAL_ABSENCE_MANAGEMENT, new HashMap<>());
+  }
+
   public static String buildUrlByKeyword(String keyword, String defaultFriendlyRequestPath, Map<String, String> param) {
     String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);
-    if (StringUtils.isNotEmpty(customizePortalFriendlyRequestPath)) {
-      return buildUrl(customizePortalFriendlyRequestPath, param);
-    } else {
-      return buildUrl(defaultFriendlyRequestPath, param);
-    }
+    return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, defaultFriendlyRequestPath), param);
   }
   
   private static void navigateByKeyword(String keyword, String defaultFriendlyRequestPath, Map<String, String> param) {
     String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);
-    if (StringUtils.isNotEmpty(customizePortalFriendlyRequestPath)) {
-      navigate(customizePortalFriendlyRequestPath, param);
-    } else {
-      navigate(defaultFriendlyRequestPath, param);
-    }
+    navigate(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, defaultFriendlyRequestPath), param);
   }
 
   private static void navigate(String friendlyRequestPath, Map<String, String> params) {
@@ -181,18 +171,8 @@ public final class PortalNavigator {
       return StringUtils.EMPTY;
     }
     String paramStr = params.entrySet().stream().map(e -> {
-      String param = e.getKey() + "=";
-      try {
-        return param + java.net.URLEncoder.encode(e.getValue(), "ISO-8859-1");
-      } catch (UnsupportedEncodingException e1) {
-        Ivy.log().error("Failed to encode param {0} with value {1}", e1, e.getKey(), e.getValue());
-        return param + e.getValue();
-      }
+      return e.getKey() + "=" + URLEncoder.encode(e.getValue(), StandardCharsets.ISO_8859_1);
     }).collect(Collectors.joining("&"));
     return requestPath + (StringUtils.isNotBlank(paramStr) ? "?" + paramStr : StringUtils.EMPTY);
-  }
-  
-  public static void navigateToUserProfile() {
-    navigate(PORTAL_USER_PROFILE, new HashMap<>());
   }
 }

@@ -389,9 +389,10 @@ As0 f7 1 80 256 #addKink
 As0 f7 1 0.4001152932228009 0 0 #arcLabel
 As0 f25 actionTable 'out=in;
 ' #txt
-As0 f25 actionCode 'import ch.addon.portal.generic.menu.MenuView;
+As0 f25 actionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.addon.portal.generic.menu.MenuView;
 
-MenuView menu = new MenuView();
+MenuView menu = ManagedBeans.get("menuView") as MenuView;
 menu.buildMenuView(in.applications);' #txt
 As0 f25 security system #txt
 As0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

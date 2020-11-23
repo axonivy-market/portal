@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <richDialogDescriptor>
     <property>
-        <name>guid</name>
-        <value>16FCB335E6A3A4C0</value>
-    </property>
-    <property>
-        <name>version</name>
-        <value>1</value>
-    </property>
-    <property>
         <name>viewTechnology</name>
         <value>JSF</value>
     </property>
