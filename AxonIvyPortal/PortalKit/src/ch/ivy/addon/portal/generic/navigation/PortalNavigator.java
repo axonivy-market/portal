@@ -28,7 +28,9 @@ public final class PortalNavigator {
   private static final String PORTAL_STATISTIC = "Start Processes/PortalStart/StatisticPage.ivp";
   private static final String PORTAL_CASE_DETAILS = "Start Processes/PortalStart/CaseDetailsPage.ivp";
   private static final String PORTAL_RELATED_TASKS_OF_CASE = "Start Processes/PortalStart/RelatedTasksOfCasePage.ivp";
+  private static final String PORTAL_RELATED_TASKS_OF_CASE_IN_FRAME = "Start Processes/PortalStart/RelatedTasksOfCasePageInFrame.ivp";
   private static final String PORTAL_TASK_DETAILS = "Start Processes/PortalStart/TaskDetailsPage.ivp";
+  private static final String PORTAL_TASK_DETAILS_IN_FRAME = "Start Processes/PortalStart/TaskDetailsPageInFrame.ivp";
   private static final String PORTAL_GLOBAL_SEARCH = "Start Processes/PortalStart/GlobalSearchPage.ivp";
   private static final String PORTAL_USER_PROFILE =  "Start Processes/PortalStart/UserProfile.ivp";
   private static final String PORTAL_ABSENCE_MANAGEMENT =  "Start Processes/PortalStart/AbsenceManagement.ivp";
@@ -127,10 +129,24 @@ public final class PortalNavigator {
     navigateByKeyword("RelatedTasksOfCasePage.ivp", PORTAL_RELATED_TASKS_OF_CASE, params);
   }
 
+  public static void navigateToPortalRelatedTasksOfCaseInFrame(Long caseId, boolean isBusinessCase, String caseName) {
+    Map<String, String> params = new HashMap<>();
+    params.put("caseId", String.valueOf(caseId));
+    params.put("isBusinessCase", String.valueOf(isBusinessCase));
+    params.put("caseName", caseName);
+    navigateByKeyword("RelatedTasksOfCasePageInFrame.ivp", PORTAL_RELATED_TASKS_OF_CASE_IN_FRAME, params);
+  }
+
   public static void navigateToPortalTaskDetails(Long taskId) {
     Map<String, String> params = new HashMap<>();
     params.put("selectedTaskId", String.valueOf(taskId));
     navigateByKeyword("TaskDetailsPage.ivp", PORTAL_TASK_DETAILS, params);
+  }
+
+  public static void navigateToPortalTaskDetailsInFrame(Long taskId) {
+    Map<String, String> params = new HashMap<>();
+    params.put("selectedTaskId", String.valueOf(taskId));
+    navigateByKeyword("TaskDetailsPageInFrame.ivp", PORTAL_TASK_DETAILS_IN_FRAME, params);
   }
 
   public static void navigateToPortalGlobalSearch(String keyword) {

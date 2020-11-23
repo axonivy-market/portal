@@ -10,14 +10,14 @@
   <div id="action-cell-#{rowIndex}" class="task-header-action-cell">
     <div class="action-container">
       <p:commandLink id="task-action-component" actionListener="#{logic.openTask(task,dataModel)}"
-        disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}" rendered="#{task.state != 'RESUMED'}" onstart="event.stopPropagation();"
+        disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}" rendered="#{task.state != 'RESUMED' and !cc.attrs.readOnly}" onstart="event.stopPropagation();"
         styleClass="task-action-item start-task-action">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label u-hidden-md-down" />
         <i class="icon ivyicon-arrow-right-1 icon-compact-mode" />
       </p:commandLink>
 
       <p:commandLink id="resume-task-action-component" disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}"
-        rendered="#{task.state == 'RESUMED'}" styleClass="task-action-item start-task-action">
+        rendered="#{task.state == 'RESUMED' and !cc.attrs.readOnly}" styleClass="task-action-item start-task-action">
         <f:setPropertyActionListener value="#{task.id}" target="#{taskWidgetBean.selectedTaskItemId}"/>
         <p:ajax event="click" listener="#{logic.validate(task, dataModel)}" onstart="event.stopPropagation();"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('reset-task-dialog').show();}" />
@@ -26,6 +26,7 @@
       </p:commandLink>
 
       <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-side-steps-menu"
+        isDisabled="#{cc.attrs.readOnly}"
         panelWidgetVar="task-side-steps-panel-#{rowIndex}" isAdhocExcluded="false" renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}"
         task="#{task}" componentToUpdate="#{p:component('task-start')}" currentPortalPage="#{currentPortalPage}" showDetailOption="#{true}" dataModel="#{dataModel}"
         buttonStyleClass="u-hidden-md-down" onDestroyComplete="#{onDestroyComplete}"

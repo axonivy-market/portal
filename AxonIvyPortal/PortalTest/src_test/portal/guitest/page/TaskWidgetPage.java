@@ -428,7 +428,7 @@ public class TaskWidgetPage extends TemplatePage {
     WaitHelper.assertTrueWithWait(() ->
         findElementByCssSelector("[id$=':description-filter:filter-open-form:advanced-filter-command']").getText().contains(text));
   }
-  
+
   public void filterByDate(String filterId, String fromDate, String toDate) {
     click(By.cssSelector("button[id$='" + filterId + "-filter:filter-open-form:advanced-filter-command']"));
     WebElement toDateInput =
@@ -809,6 +809,12 @@ public class TaskWidgetPage extends TemplatePage {
 
   public WebElement getExportToExcelLink() {
     return findElementByCssSelector("a[id$=':task-export-to-excel']");
+  }
+
+  public void clickBack() {
+    waitForElementDisplayed(By.id("task-widget:back-link"), true);
+    click(By.id("task-widget:back-link"));
+
   }
 
   public void clickExportToExcelLink() {

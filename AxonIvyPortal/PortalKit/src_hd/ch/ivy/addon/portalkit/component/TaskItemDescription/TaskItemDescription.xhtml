@@ -5,6 +5,7 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
   <cc:attribute name="labelStyleClasses" />
+  <cc:attribute name="readOnly" default="false" />
 </cc:interface>
 
 <cc:implementation>
@@ -17,7 +18,7 @@
       <h:form id="task-detail-description-form">
         <div class="scroll-panel OvAuto">
           <p:inplace id="task-description-inplace" editor="true" styleClass="task-description-inplace"
-            disabled="#{!taskActionBean.canChangeDescription(task)}"
+            disabled="#{!taskActionBean.canChangeDescription(task) or cc.attrs.readOnly}"
             saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
             cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noDescription')}">
@@ -29,7 +30,7 @@
             <f:facet name="output">
               <h:outputText id="task-description-output" escape="false" styleClass="task-detail-description-output"
                 value="#{taskWidgetBean.sanitizeHTML(task.description)} " />
-              <i jsf:rendered="#{taskActionBean.canChangeDescription(task)}" class="icon ivyicon-graphic-tablet-drawing-pen" />
+              <i jsf:rendered="#{taskActionBean.canChangeDescription(task) and !cc.attrs.readOnly}" class="icon ivyicon-graphic-tablet-drawing-pen" />
             </f:facet>
           </p:inplace>
         </div>
