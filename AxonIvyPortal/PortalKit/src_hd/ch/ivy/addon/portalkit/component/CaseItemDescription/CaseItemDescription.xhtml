@@ -6,6 +6,7 @@
   <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
   <cc:attribute name="styleClass" />
   <cc:attribute name="descriptionComponentToUpdate" />
+  <cc:attribute name="readOnly" type="java.lang.Boolean" default="false"/>
 </cc:interface>
 
 <cc:implementation>
@@ -15,7 +16,7 @@
     <div class="case-details-data-1st-column Fleft">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}</div>
     <div class="case-description-2nd-column Fleft">
       <h:form id="case-description-form" styleClass="case-description-form">
-        <p:inplace id="case-description-inplace" editor="true" disabled="#{!caseActionBean.canChangeDescription(case)}"
+        <p:inplace id="case-description-inplace" editor="true" disabled="#{!caseActionBean.canChangeDescription(case) or cc.attrs.readOnly}"
           saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
           cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription')}"
@@ -27,7 +28,7 @@
           </f:facet>
           <f:facet name="output">
             <h:outputText id="case-description-output" escape="false" value="#{caseWidgetBean.sanitizeHTML(case.description)} " />
-            <i jsf:rendered="#{caseActionBean.canChangeDescription(case)}" class="icon ivyicon-graphic-tablet-drawing-pen case-description-output-icon" />
+            <i jsf:rendered="#{caseActionBean.canChangeDescription(case) and !cc.attrs.readOnly}" class="icon ivyicon-graphic-tablet-drawing-pen case-description-output-icon" />
           </f:facet>
         </p:inplace>
       </h:form>

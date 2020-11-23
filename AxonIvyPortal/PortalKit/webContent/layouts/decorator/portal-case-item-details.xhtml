@@ -20,8 +20,6 @@
       <p:spacer width="3px" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
     </p:link>
-    <p:remoteCommand name="backToCasesList" actionListener="#{caseBean.backToCasesList()}" process="@this"
-      immediate="true" />
   </h:form>
 </h:panelGroup>
 
@@ -29,6 +27,10 @@
   <div class="ui-g">
     <!-- Custom panel at top section -->
     <ui:insert name="caseItemDetailCustomTop" />
+    <h:form>
+      <p:remoteCommand name="backToCasesList" actionListener="#{caseBean.backToCasesList()}" process="@this"
+        immediate="true" />
+    </h:form>
 
     <!-- General & description box -->
     <div id="case-general-information-card" class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
@@ -43,7 +45,7 @@
             rendered="#{caseWidgetBean.showCaseDetails}" layout="block">
             <p:commandLink id="destroy-case-link"
               rendered="#{caseActionBean.canDestroy(case) and case.state ne 'DONE' and case.state ne 'DESTROYED'}"
-              styleClass="additional-case-details-link" immediate="true" onclick="PF('destroy-case-dialog').show()">
+              styleClass="additional-case-details-link" immediate="true" onclick="PF('destroy-case-dialog').show()" disabled="#{readOnly}">
               <span class="action-icon icon ivyicon-remove" />
               <span class="display-full-text">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/destroyCase')}</span>
               <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}</span>
@@ -70,7 +72,7 @@
         </div>
         <div class="ui-g-12 u-padding-0">
           <ic:ch.ivy.addon.portalkit.component.CaseItemDescription id="description" case="#{case}"
-            descriptionComponentToUpdate="#{descriptionComponentToUpdate}" />
+            descriptionComponentToUpdate="#{descriptionComponentToUpdate}" readOnly="#{readOnly}" />
         </div>
       </div>
     </div>
@@ -91,7 +93,7 @@
       styleClass="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12">
       <div class="card card-w-title case-detail-card case-related-task-component">
         <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}"
-          isWorkingOnTask="#{isWorkingOnTask}" />
+          isWorkingOnTask="#{isWorkingOnTask}" inFrame="#{inFrame}" readOnly="#{readOnly}" />
       </div>
     </h:panelGroup>
 
@@ -115,7 +117,7 @@
 <ui:decorate template="/layouts/decorator/portal-dialog-with-icon.xhtml">
   <ui:param name="id" value="destroy-case-confirmation-dialog" />
   <ui:param name="widgetVar" value="destroy-case-dialog" />
-  <ui:param name="appendTo" value="@(body)" />
+  
   <ui:param name="iconClass" value="icon ivyicon-delete-1" />
   <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
   <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyCaseHeaderText')}" />
@@ -133,6 +135,10 @@
 
 <script type="text/javascript">
     function backToPrevPage(isHistoryBack) {
+      if (#{inFrame} == true) {
+        window.parent.backToPrevPage(isHistoryBack);
+        return;
+      }
       if (document.referrer &amp;&amp; isHistoryBack) {
         window.history.back();
         event.preventDefault();

@@ -5018,3 +5018,21 @@ body td .icon {
   padding: 6px 0;
 }
 /* ===================== END EXCEPTION ===================== */
+
+/** Case information iframe ---- Start-----**/
+
+.iframe-body .layout-main,
+.iframe-body .layout-content {
+  height: 100%;
+}
+
+.iframe-body .layout-content {
+  padding: 0 10px;
+}
+
+.iframe-body .case-view,
+.ui-dialog-content .case-details {
+  padding: 0;
+}
+
+/** Case information iframe ---- end-----**/

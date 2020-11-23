@@ -12,11 +12,13 @@
     <ui:param name="case" value="#{caseDetailsBean.selectedCase}" />
     <ui:param name="showItemBackButton" value="#{caseDetailsBean.showBackButton}"/>
     <ui:param name="isTaskStartedInDetails" value="#{caseDetailsBean.taskStartedInDetails}" />
+    <ui:param name="inFrame" value="#{inFrame == null ? false : inFrame}" />
   
     <ui:param name="showItemDetailsHeader" value="#{showItemDetailsHeader == null ? true:showItemDetailsHeader}" />
     <ui:param name="showItemDetailRelated" value="#{showItemDetailRelated == null ? true:showItemDetailRelated}"/>
     <ui:param name="showItemDetailsHistories" value="#{showItemDetailsHistories == null ?  true:showItemDetailsHistories}"/>
     <ui:param name="showItemDetailDocuments" value="#{showItemDetailDocuments == null ? true:showItemDetailDocuments}"/>
+    <ui:param name="readOnly" value="#{readOnly == null ? false:readOnly}"/>
     
   </ui:decorate>
 </div>
