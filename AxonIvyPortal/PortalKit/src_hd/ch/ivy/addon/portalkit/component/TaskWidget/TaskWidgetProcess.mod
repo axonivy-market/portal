@@ -104,6 +104,13 @@ Ts0 @PushWFArc f92 '' #zField
 Ts0 @CallSub f81 '' #zField
 Ts0 @PushWFArc f86 '' #zField
 Ts0 @PushWFArc f88 '' #zField
+Ts0 @UdMethod f93 '' #zField
+Ts0 @GridStep f94 '' #zField
+Ts0 @UdProcessEnd f95 '' #zField
+Ts0 @CallSub f96 '' #zField
+Ts0 @PushWFArc f97 '' #zField
+Ts0 @PushWFArc f98 '' #zField
+Ts0 @PushWFArc f99 '' #zField
 >Proto Ts0 Ts0 TaskWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 method start(String,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,Long) #txt
@@ -905,6 +912,56 @@ Ts0 f81 616 1354 112 44 -38 -8 #rect
 Ts0 f81 @|CallSubIcon #fIcon
 Ts0 f86 496 1376 616 1376 #arcP
 Ts0 f88 728 1376 851 1376 #arcP
+Ts0 f93 guid 17592BEDC29E5908 #txt
+Ts0 f93 method backToCaseDetails() #txt
+Ts0 f93 inParameterDecl '<> param;' #txt
+Ts0 f93 outParameterDecl '<> result;' #txt
+Ts0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>backToCaseDetails()</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f93 947 83 26 26 -25 15 #rect
+Ts0 f93 @|UdMethodIcon #fIcon
+Ts0 f94 actionTable 'out=in;
+' #txt
+Ts0 f94 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivy.addon.portalkit.dto.GlobalCaseId;
+
+ICase foundCase = ivy.wf.findCase(in.dataModel.criteria.caseId);
+in.caseId = new GlobalCaseId(foundCase.getId(), foundCase.isBusinessCase());' #txt
+Ts0 f94 security system #txt
+Ts0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Initialize</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f94 1048 74 112 44 -22 -8 #rect
+Ts0 f94 @|StepIcon #fIcon
+Ts0 f95 1427 83 26 26 0 12 #rect
+Ts0 f95 @|UdProcessEndIcon #fIcon
+Ts0 f96 processCall 'Functional Processes/Navigator:viewCaseItemDetailsInIFrame(ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
+Ts0 f96 requestActionDecl '<ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
+Ts0 f96 requestMappingAction 'param.caseId=in.caseId;
+' #txt
+Ts0 f96 responseMappingAction 'out=in;
+' #txt
+Ts0 f96 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>backToCaseDetails</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f96 1216 74 128 44 -54 -8 #rect
+Ts0 f96 @|CallSubIcon #fIcon
+Ts0 f97 973 96 1048 96 #arcP
+Ts0 f98 1160 96 1216 96 #arcP
+Ts0 f99 1344 96 1427 96 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -991,3 +1048,9 @@ Ts0 f78 out f86 tail #connect
 Ts0 f86 head f81 mainIn #connect
 Ts0 f81 mainOut f88 tail #connect
 Ts0 f88 head f79 mainIn #connect
+Ts0 f93 mainOut f97 tail #connect
+Ts0 f97 head f94 mainIn #connect
+Ts0 f94 mainOut f98 tail #connect
+Ts0 f98 head f96 mainIn #connect
+Ts0 f96 mainOut f99 tail #connect
+Ts0 f99 head f95 mainIn #connect

@@ -15,6 +15,7 @@
   <cc:attribute name="onDestroyComplete" />
   <cc:attribute name="onDelegateComplete" />
   <cc:attribute name="onWorkflowEventComplete" />
+  <cc:attribute name="inFrame" default="false" />
 </cc:interface>
 
 <cc:implementation>
@@ -34,7 +35,7 @@
     styleClass="#{rowIndex % 2 == 0 ? 'task-even-row' : 'task-odd-row'} full-mode task-start-list-item js-task-start-list-item">
 
     <h:panelGroup id="task-info" styleClass="task-start-link js-task-start-link" layout="block">
-      <p:ajax event="click" listener="#{logic.openDetails(task,dataModel)}" onstart="#{cc.attrs.onTaskStartCallback}" />
+      <p:ajax event="click" listener="#{logic.openDetails(task,dataModel, cc.attrs.inFrame)}" onstart="#{cc.attrs.onTaskStartCallback}" />
       <cc:renderFacet name="taskHeader" />
     </h:panelGroup>
     <div class="task-item-header-actions">

@@ -1,0 +1,4 @@
+PortalTaskListInFrameData #class
+ch.ivy.addon.portal.component.iframe.PortalTaskListInFrame #namespace
+taskView ch.ivy.addon.portal.generic.view.TaskView #field
+taskView PERSISTENT #fieldModifier

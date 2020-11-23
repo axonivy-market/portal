@@ -1932,6 +1932,9 @@ body .ui-button.secondary-btn.ui-state-focus {
     font-weight: bold;
   }
 }
+body.in-dialog .ui-widget-overlay {
+  background-color: transparent;
+}
 
 /* Portal Exception */
 .code-block {

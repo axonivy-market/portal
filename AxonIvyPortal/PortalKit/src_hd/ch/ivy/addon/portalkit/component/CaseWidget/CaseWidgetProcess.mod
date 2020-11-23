@@ -78,6 +78,13 @@ Cs0 @CallSub f75 '' #zField
 Cs0 @GridStep f39 '' #zField
 Cs0 @PushWFArc f41 '' #zField
 Cs0 @PushWFArc f3 '' #zField
+Cs0 @CallSub f96 '' #zField
+Cs0 @UdMethod f93 '' #zField
+Cs0 @UdProcessEnd f95 '' #zField
+Cs0 @GridStep f94 '' #zField
+Cs0 @PushWFArc f98 '' #zField
+Cs0 @PushWFArc f99 '' #zField
+Cs0 @PushWFArc f97 '' #zField
 >Proto Cs0 Cs0 CaseWidgetProcess #zField
 Cs0 f0 guid 152E8EDB3E3A6957 #txt
 Cs0 f0 method start(ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel,java.lang.Long) #txt
@@ -630,6 +637,56 @@ Cs0 f39 @|StepIcon #fIcon
 Cs0 f41 expr out #txt
 Cs0 f41 75 96 144 96 #arcP
 Cs0 f3 256 96 328 96 #arcP
+Cs0 f96 processCall 'Functional Processes/Navigator:viewCaseItemDetailsInIFrame(ch.ivy.addon.portalkit.dto.GlobalCaseId)' #txt
+Cs0 f96 requestActionDecl '<ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
+Cs0 f96 requestMappingAction 'param.caseId=in.globalCaseId;
+' #txt
+Cs0 f96 responseMappingAction 'out=in;
+' #txt
+Cs0 f96 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>backToCaseDetails</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f96 1088 74 128 44 -54 -8 #rect
+Cs0 f96 @|CallSubIcon #fIcon
+Cs0 f93 guid 17592C22E751C221 #txt
+Cs0 f93 method backToCaseDetails() #txt
+Cs0 f93 inParameterDecl '<> param;' #txt
+Cs0 f93 outParameterDecl '<> result;' #txt
+Cs0 f93 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>backToCaseDetails()</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f93 819 83 26 26 -25 15 #rect
+Cs0 f93 @|UdMethodIcon #fIcon
+Cs0 f95 1299 83 26 26 0 12 #rect
+Cs0 f95 @|UdProcessEndIcon #fIcon
+Cs0 f94 actionTable 'out=in;
+' #txt
+Cs0 f94 actionCode 'import ch.ivyteam.ivy.workflow.ICase;
+import ch.ivy.addon.portalkit.dto.GlobalCaseId;
+
+ICase foundCase = ivy.wf.findCase(in.dataModel.criteria.businessCaseId);
+in.globalCaseId = new GlobalCaseId(foundCase.getId(), foundCase.isBusinessCase());' #txt
+Cs0 f94 security system #txt
+Cs0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Initialize</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f94 920 74 112 44 -22 -8 #rect
+Cs0 f94 @|StepIcon #fIcon
+Cs0 f98 1032 96 1088 96 #arcP
+Cs0 f99 1216 96 1299 96 #arcP
+Cs0 f97 845 96 920 96 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.CaseWidget.CaseWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -692,3 +749,9 @@ Cs0 f0 mainOut f41 tail #connect
 Cs0 f41 head f39 mainIn #connect
 Cs0 f39 mainOut f3 tail #connect
 Cs0 f3 head f2 mainIn #connect
+Cs0 f93 mainOut f97 tail #connect
+Cs0 f97 head f94 mainIn #connect
+Cs0 f94 mainOut f98 tail #connect
+Cs0 f98 head f96 mainIn #connect
+Cs0 f96 mainOut f99 tail #connect
+Cs0 f99 head f95 mainIn #connect

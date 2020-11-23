@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 public class TaskTemplatePage extends TemplatePage {
 
   private static final String ADHOC_HISTORY_TABLE_CSS_SELECTOR = "div[id*='adhoc-task-history-table'] table>tbody>tr";
+  private static final String CASE_INFO_IFRAME_ID = "i-frame-case-details";
 
   @Override
   protected String getLoadedLocator() {
@@ -15,10 +16,17 @@ public class TaskTemplatePage extends TemplatePage {
 
   public void openCaseInfo() {
     clickByCssSelector("#horizontal-case-info");
-    waitForElementDisplayed(By.cssSelector("span[id$='case-info-dialog_title']"), true);
+    waitForElementDisplayed(By.cssSelector("[id$='i-frame-case-details']"), true);
+    driver.switchTo().defaultContent();
   }
-  
+
+  public void switchToCaseInfoIframe() {
+    waitAjaxIndicatorDisappear();
+    driver.switchTo().frame(CASE_INFO_IFRAME_ID);
+  }
+
   public void clickOnAdditionalBusinessDetailLink() {
+    switchToCaseInfoIframe();
     click(findElementByCssSelector("a[id$=':show-additional-case-details-link']"));
   }
 
@@ -28,6 +36,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void addNewNote(String content) {
+    switchToCaseInfoIframe();
     clickByCssSelector("a[id$='add-note-command']");
     waitForElementDisplayed(By.cssSelector("div[id$='add-note-dialog']"), true);
     findElementByCssSelector("textarea[id$='note-content']").sendKeys(content);
@@ -37,7 +46,9 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void openDocumentUploadingDialog() {
-    clickByCssSelector("a[id$='add-document-command']");
+    switchToCaseInfoIframe();
+    waitForElementDisplayed(By.cssSelector("a[id$='add-document-command']"), true);
+    click(By.cssSelector("a[id$='add-document-command']"));
     waitForElementDisplayed(By.cssSelector("div[id$='document-upload-dialog']"), true);
   }
 
@@ -71,7 +82,16 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public int countRelatedTasks() {
+    switchToCaseInfoIframe();
+    waitForElementDisplayed(By.cssSelector("a[id$='task-name']"), true);
     return findListElementsByCssSelector("a[id$='task-name']").size();
+  }
+
+  public TaskWidgetPage openRelatedTaskList() {
+    switchToCaseInfoIframe();
+    waitForElementDisplayed(By.cssSelector("a[id$='show-more-related-tasks']"), true);
+    click(By.cssSelector("a[id$='show-more-related-tasks']"));
+    return new TaskWidgetPage();
   }
 
   public void openActionMenu() {
@@ -103,10 +123,12 @@ public class TaskTemplatePage extends TemplatePage {
   }
   
   public String getCaseName(){
+    driver.switchTo().defaultContent();
     return findElementByCssSelector("span[id$='case-info-dialog_title']").getText().split(":")[1].trim();
   }
   
   public String getCaseId(){
+    switchToCaseInfoIframe();
     return findElementByCssSelector("span[id$='case-id']").getText();
   }
   

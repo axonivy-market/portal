@@ -116,10 +116,16 @@ public class TaskDetailsPage extends TemplatePage {
     return breadcrumbTexts[0].trim();
   }
   
+  public String getTaskNameInDialog() {
+    waitForElementDisplayed(By.id("task-detail-template:task-detail-title-form:task-name-edit-form"), true);
+    return findElementById("task-detail-template:task-detail-title-form:task-name-edit-form").findElement(By.cssSelector(".u-truncate-text")).getText();
+  }
+  
   public CaseDetailsPage backToCaseDetails() {
     clickBackButton();
     return new CaseDetailsPage();
   }
+
 
   public WebElement getTaskGeneralInformation() {
     return findElementByCssSelector("[id$='task-detail-template:task-detail-general-container']");

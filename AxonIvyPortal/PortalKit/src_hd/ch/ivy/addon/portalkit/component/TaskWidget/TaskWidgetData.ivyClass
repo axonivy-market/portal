@@ -53,6 +53,8 @@ currentPortalPage String #field
 currentPortalPage PERSISTENT #fieldModifier
 exportedFile org.primefaces.model.StreamedContent #field
 exportedFile PERSISTENT #fieldModifier
+caseId ch.ivy.addon.portalkit.dto.GlobalCaseId #field
+caseId PERSISTENT #fieldModifier
 loopCounter Integer #field
 loopCounter PERSISTENT #fieldModifier
 maxResultNumberPerQuery Integer #field
