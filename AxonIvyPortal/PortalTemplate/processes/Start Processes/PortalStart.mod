@@ -124,10 +124,21 @@ Pt0 @PushWFArc f47 '' #zField
 Pt0 @PushWFArc f29 '' #zField
 Pt0 @PushWFArc f48 '' #zField
 Pt0 @StartRequest f12 '' #zField
-Pt0 @EndTask f52 '' #zField
-Pt0 @UserDialog f54 '' #zField
-Pt0 @PushWFArc f55 '' #zField
+Pt0 @UserDialog f52 '' #zField
 Pt0 @PushWFArc f53 '' #zField
+Pt0 @EndTask f54 '' #zField
+Pt0 @PushWFArc f55 '' #zField
+Pt0 @StartRequest f94 '' #zField
+Pt0 @CallSub f56 '' #zField
+Pt0 @PushWFArc f96 '' #zField
+Pt0 @CallSub f95 '' #zField
+Pt0 @StartRequest f97 '' #zField
+Pt0 @PushWFArc f98 '' #zField
+Pt0 @StartRequest f99 '' #zField
+Pt0 @EndTask f100 '' #zField
+Pt0 @UserDialog f101 '' #zField
+Pt0 @PushWFArc f102 '' #zField
+Pt0 @PushWFArc f104 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk0 @TextInP .type .type #zField
 Bk0 @TextInP .processKind .processKind #zField
@@ -1007,12 +1018,12 @@ Pt0 f44 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f44 160 1674 112 44 -31 -8 #rect
+Pt0 f44 224 1674 112 44 -31 -8 #rect
 Pt0 f44 @|UserDialogIcon #fIcon
-Pt0 f45 321 1681 30 30 0 15 #rect
+Pt0 f45 465 1681 30 30 0 15 #rect
 Pt0 f45 @|EndIcon #fIcon
-Pt0 f46 272 1696 321 1696 #arcP
-Pt0 f93 111 1696 160 1696 #arcP
+Pt0 f46 336 1696 465 1696 #arcP
+Pt0 f93 111 1696 224 1696 #arcP
 Pt0 f92 736 96 768 96 #arcP
 Pt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1142,41 +1153,154 @@ Pt0 f48 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f48 208 256 264 256 #arcP
 Pt0 f48 0 0.4642857142857143 0 -10 #arcLabel
-Pt0 f12 outLink AbsenceManagement.ivp #txt
-Pt0 f12 inParamDecl '<> param;' #txt
+Pt0 f12 outLink CaseDetailsInIFrame.ivp #txt
+Pt0 f12 inParamDecl '<Long caseId> param;' #txt
+Pt0 f12 inParamTable 'out.caseId=param.caseId;
+' #txt
 Pt0 f12 requestEnabled true #txt
 Pt0 f12 triggerEnabled false #txt
-Pt0 f12 callSignature AbsenceManagement() #txt
+Pt0 f12 callSignature CaseDetailsInIFrame(Long) #txt
 Pt0 f12 caseData businessCase.attach=true #txt
 Pt0 f12 showInStartList 0 #txt
 Pt0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>CaseDetailsInIFrame.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f12 @C|.responsibility Everybody #txt
+Pt0 f12 81 1809 30 30 -21 17 #rect
+Pt0 f12 @|StartRequestIcon #fIcon
+Pt0 f52 dialogId ch.ivy.addon.portal.component.iframe.CaseInformationInIFrame #txt
+Pt0 f52 startMethod start(Long,Boolean) #txt
+Pt0 f52 requestActionDecl '<Long caseId,Boolean showBackButton> param;' #txt
+Pt0 f52 requestMappingAction 'param.caseId=in.caseId;
+param.showBackButton=false;
+' #txt
+Pt0 f52 responseMappingAction 'out=in;
+' #txt
+Pt0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>CaseInformationInIFrame</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f52 224 1802 160 44 -70 -8 #rect
+Pt0 f52 @|UserDialogIcon #fIcon
+Pt0 f53 111 1824 224 1824 #arcP
+Pt0 f54 465 1809 30 30 0 15 #rect
+Pt0 f54 @|EndIcon #fIcon
+Pt0 f55 384 1824 465 1824 #arcP
+Pt0 f94 outLink RelatedTasksOfCasePageInFrame.ivp #txt
+Pt0 f94 inParamDecl '<Long caseId,Boolean isBusinessCase,String caseName> param;' #txt
+Pt0 f94 inParamTable 'out.caseId=param.caseId;
+out.caseName=param.caseName;
+out.isBusinessCase=param.isBusinessCase;
+' #txt
+Pt0 f94 requestEnabled true #txt
+Pt0 f94 triggerEnabled false #txt
+Pt0 f94 callSignature RelatedTasksOfCasePageInFrame(Long,Boolean,String) #txt
+Pt0 f94 caseData businessCase.attach=true #txt
+Pt0 f94 showInStartList 0 #txt
+Pt0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>RelatedTasksOfCasePageInFrame.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f94 @C|.responsibility Everybody #txt
+Pt0 f94 81 1937 30 30 -77 17 #rect
+Pt0 f94 @|StartRequestIcon #fIcon
+Pt0 f56 processCall 'Functional Processes/Navigator:viewTaskInFrame(Long,ch.ivy.addon.portalkit.dto.GlobalCaseId,String)' #txt
+Pt0 f56 requestActionDecl '<Long taskId,ch.ivy.addon.portalkit.dto.GlobalCaseId caseId,String caseName> param;' #txt
+Pt0 f56 requestMappingAction 'param.caseId=ch.ivy.addon.portalkit.dto.GlobalCaseId.caseId(in.caseId).isBusinessCase(in.isBusinessCase).build();
+param.caseName=in.caseName;
+' #txt
+Pt0 f56 responseMappingAction 'out=in;
+' #txt
+Pt0 f56 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Functional Processes/Navigator</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f56 224 1930 192 44 -87 -8 #rect
+Pt0 f56 @|CallSubIcon #fIcon
+Pt0 f96 111 1952 224 1952 #arcP
+Pt0 f95 processCall 'Functional Processes/Navigator:viewRelatedTaskInFrame(Long)' #txt
+Pt0 f95 requestActionDecl '<Long taskId> param;' #txt
+Pt0 f95 requestMappingAction 'param.taskId=in.selectedTaskId;
+' #txt
+Pt0 f95 responseMappingAction 'out=in;
+' #txt
+Pt0 f95 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Functional Processes/Navigator</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f95 168 2058 176 44 -83 -8 #rect
+Pt0 f95 @|CallSubIcon #fIcon
+Pt0 f97 outLink TaskDetailsPageInFrame.ivp #txt
+Pt0 f97 inParamDecl '<Long selectedTaskId> param;' #txt
+Pt0 f97 inParamTable 'out.selectedTaskId=param.selectedTaskId;
+' #txt
+Pt0 f97 requestEnabled true #txt
+Pt0 f97 triggerEnabled false #txt
+Pt0 f97 callSignature TaskDetailsPageInFrame(Long) #txt
+Pt0 f97 caseData businessCase.attach=true #txt
+Pt0 f97 showInStartList 0 #txt
+Pt0 f97 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>TaskDetailsPageInFrame.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f97 @C|.responsibility Everybody #txt
+Pt0 f97 81 2065 30 30 -68 21 #rect
+Pt0 f97 @|StartRequestIcon #fIcon
+Pt0 f98 111 2080 168 2080 #arcP
+Pt0 f99 outLink AbsenceManagement.ivp #txt
+Pt0 f99 inParamDecl '<> param;' #txt
+Pt0 f99 requestEnabled true #txt
+Pt0 f99 triggerEnabled false #txt
+Pt0 f99 callSignature AbsenceManagement() #txt
+Pt0 f99 caseData businessCase.attach=true #txt
+Pt0 f99 showInStartList 0 #txt
+Pt0 f99 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>AbsenceManagement.ivp</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f12 @C|.responsibility Everybody #txt
-Pt0 f12 81 1777 30 30 -61 25 #rect
-Pt0 f12 @|StartRequestIcon #fIcon
-Pt0 f52 321 1777 30 30 0 15 #rect
-Pt0 f52 @|EndIcon #fIcon
-Pt0 f54 dialogId ch.ivy.addon.portal.setting.AbsenceManagement #txt
-Pt0 f54 startMethod start() #txt
-Pt0 f54 requestActionDecl '<> param;' #txt
-Pt0 f54 responseMappingAction 'out=in;
+Pt0 f99 @C|.responsibility Everybody #txt
+Pt0 f99 81 2193 30 30 -61 25 #rect
+Pt0 f99 @|StartRequestIcon #fIcon
+Pt0 f100 321 2193 30 30 0 15 #rect
+Pt0 f100 @|EndIcon #fIcon
+Pt0 f101 dialogId ch.ivy.addon.portal.setting.AbsenceManagement #txt
+Pt0 f101 startMethod start() #txt
+Pt0 f101 requestActionDecl '<> param;' #txt
+Pt0 f101 responseMappingAction 'out=in;
 ' #txt
-Pt0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+Pt0 f101 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>AbsenceManagement</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f54 160 1770 128 44 -60 -8 #rect
-Pt0 f54 @|UserDialogIcon #fIcon
-Pt0 f55 111 1792 160 1792 #arcP
-Pt0 f53 288 1792 321 1792 #arcP
+Pt0 f101 160 2186 128 44 -60 -8 #rect
+Pt0 f101 @|UserDialogIcon #fIcon
+Pt0 f102 288 2208 321 2208 #arcP
+Pt0 f104 111 2208 160 2208 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -2008,10 +2132,18 @@ Pt0 f4 out f29 tail #connect
 Pt0 f29 head f31 mainIn #connect
 Pt0 f4 out f48 tail #connect
 Pt0 f48 head f11 mainIn #connect
-Pt0 f12 mainOut f55 tail #connect
-Pt0 f55 head f54 mainIn #connect
-Pt0 f54 mainOut f53 tail #connect
+Pt0 f12 mainOut f53 tail #connect
 Pt0 f53 head f52 mainIn #connect
+Pt0 f52 mainOut f55 tail #connect
+Pt0 f55 head f54 mainIn #connect
+Pt0 f94 mainOut f96 tail #connect
+Pt0 f96 head f56 mainIn #connect
+Pt0 f97 mainOut f98 tail #connect
+Pt0 f98 head f95 mainIn #connect
+Pt0 f99 mainOut f104 tail #connect
+Pt0 f104 head f101 mainIn #connect
+Pt0 f101 mainOut f102 tail #connect
+Pt0 f102 head f100 mainIn #connect
 Bk0 f17 mainOut f26 tail #connect
 Bk0 f26 head f23 mainIn #connect
 Bk0 f19 mainOut f39 tail #connect

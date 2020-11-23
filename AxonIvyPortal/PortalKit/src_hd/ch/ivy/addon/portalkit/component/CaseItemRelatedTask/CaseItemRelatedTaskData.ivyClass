@@ -20,3 +20,5 @@ isTaskFinished Boolean #field
 isTaskFinished PERSISTENT #fieldModifier
 isWorkingOnTask Boolean #field
 isWorkingOnTask PERSISTENT #fieldModifier
+inFrame Boolean #field
+inFrame PERSISTENT #fieldModifier

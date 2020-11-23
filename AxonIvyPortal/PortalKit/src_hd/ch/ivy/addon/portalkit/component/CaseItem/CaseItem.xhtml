@@ -12,6 +12,8 @@
   <cc:attribute name="enableCaseAction" default="true" />
   <cc:attribute name="canDestroyCase" default="true" />
   <cc:attribute name="rowIndex" />
+  <cc:attribute name="readOnly" default="false" />
+  <cc:attribute name="inFrame" default="false" />
   <cc:facet name="caseHeader" shortDescription="Header content of one case item" />
 </cc:interface>
 
@@ -24,7 +26,7 @@
   <div id="#{cc.clientId}" class="js-case-item case-list-item #{cc.attrs.itemStyleClass}">
     <h:panelGroup id="case-item-container" styleClass="case-header-container case-header-data" layout="block">
       <h:panelGroup id="case-info-row" styleClass="case-info-row js-case-start-link">
-        <p:ajax event="click" listener="#{logic.openDetails(case)}" />
+        <p:ajax event="click" listener="#{logic.openDetails(case, cc.attrs.inFrame)}" />
         <cc:renderFacet name="caseHeader" />
       </h:panelGroup>
 
@@ -33,7 +35,7 @@
           <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" actionLinkId="action-steps-menu"
             actionLinkStyleClass="ui-button-text-only" panelWidgetVar="case-action-steps-panel-#{rowIndex}" isAdhocExcluded="true"
             renderDestroyAction="#{renderDestroyAction}" update="#{cc.attrs.update}" onDestroyComplete="#{cc.attrs.onDestroyComplete}"
-            case="#{cc.attrs.case}" />
+            case="#{cc.attrs.case}" readOnly="#{cc.attrs.readOnly}" />
         </h:panelGroup>
        </h:form>
 

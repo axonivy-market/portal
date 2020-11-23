@@ -50,10 +50,10 @@ var Portal = {
       fullHeight = 'var(--vh, 1vh) * 100';
     }
 
-    var headerHeight = $('.js-portal-template-header').outerHeight(true);
-    var footerHeight = $('.js-portal-template-footer').outerHeight(true);
+    var headerHeight = $('.js-portal-template-header').outerHeight(true)||0;
+    var footerHeight = $('.js-portal-template-footer').outerHeight(true)||0;
     var headerFooterHeight = headerHeight + footerHeight;
-    var layoutTopbarHeight = $('.layout-topbar').outerHeight(true);
+    var layoutTopbarHeight = $('.layout-topbar').outerHeight(true)||0;
     $('.js-position-topbar').height(layoutTopbarHeight);
     if ($('.js-layout-wrapper').hasClass('u-invisibility')) {
       var envHeight = $('#portal-environment').outerHeight();
@@ -63,7 +63,7 @@ var Portal = {
     $('.js-layout-main').css('margin-top', headerHeight + 'px').css('height', 'calc(100vh - ' + headerFooterHeight + 'px)');
     $('.js-layout-wrapper').removeClass('u-invisibility');
 
-    var topbarWithHeaderFooterHeight = layoutTopbarHeight + headerFooterHeight;
+    var topbarWithHeaderFooterHeight = (layoutTopbarHeight + headerFooterHeight);
     $('.js-layout-content').css('height', 'calc(' + fullHeight + ' - ' + topbarWithHeaderFooterHeight + 'px)');
     var chatPanel = $('.js-chat-panel');
     if (chatPanel.length > 0) {

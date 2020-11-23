@@ -10,6 +10,7 @@
   <cc:attribute name="showItemDetailsNotes" default="true" />
   <cc:attribute name="isFromTaskList" />
   <cc:attribute name="isTaskStartedInDetails" default="false"/>
+  <cc:attribute name="readOnly" default="false"/>
 </cc:interface>
 
 <cc:implementation>
@@ -44,13 +45,13 @@
             <div class="task-detail-section-title u-truncate-text ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
               <i class="icon ivyicon-single-neutral-actions" /> #{ivy.cms.co('/Dialogs/Tasks/TaskDetail/DataDescription')}
               <h:panelGroup id="task-detail-action-group" class="task-details-action-container action-container" layout="block">
-                <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task)}"
+                <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task) or cc.attrs.readOnly}"
                   styleClass="task-action-item start-task-action" rendered="#{task.state != 'RESUMED'}" actionListener="#{logic.openTask()}">
                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label" />
                   <i class="icon ivyicon-arrow-right-1 icon-compact-mode" />
                 </p:commandLink>
 
-                <p:commandLink id="resume-task-detail-start-command" disabled="#{!taskActionBean.canResume(task)}"
+                <p:commandLink id="resume-task-detail-start-command" disabled="#{!taskActionBean.canResume(task) or cc.attrs.readOnly}"
                   styleClass="task-action-item start-task-action" rendered="#{task.state == 'RESUMED'}">
                   <p:ajax event="click" listener="#{logic.validate(task)}" onstart="event.stopPropagation();"
                     oncomplete="if (args &amp;&amp; !args.validationFailed) PF('reset-task-dialog').show()" />
@@ -61,7 +62,7 @@
                 <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-detail-more-step"
                   panelWidgetVar="task-side-steps-panel-#{rowIndex}" isAdhocExcluded="false"
                   renderedAdditionalAction="#{taskActionBean.showAdditionalOptions(task)}" task="#{task}"
-                  isDisabled="#{taskActionBean.noActionAvailable(task)}"
+                  isDisabled="#{taskActionBean.noActionAvailable(task) or cc.attrs.readOnly}"
                   componentToUpdate="#{cc.clientId}:task-detail-general-container #{cc.clientId}:task-detail-note-container"
                   onDestroyComplete="PF('destroy-task-dialog').show()" showInTaskList="false"
                   onDelegateComplete="initDataToDelegate()"
@@ -72,7 +73,8 @@
             <h:panelGroup id="task-detail-data-description-container" styleClass="ui-g-12 u-padding-0">
               <ic:ch.ivy.addon.portalkit.component.TaskItemGeneralInfo id="general-information" task="#{task}"
                 componentToUpdate="#{cc.clientId}:task-detail-note-container #{cc.clientId}:task-detail-action-group"
-                onWorkflowEventComplete="initWorkflowEventData()"/>
+                onWorkflowEventComplete="initWorkflowEventData()"
+                readOnly="#{cc.attrs.readOnly}" />
             </h:panelGroup>
           </h:panelGroup>
         </div>
