@@ -8,13 +8,11 @@ import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
@@ -64,6 +62,7 @@ public class MenuTest extends BaseTest {
     WebDriver driver = Browser.getBrowser().getDriver();
     ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
     driver.switchTo().window(tabs.get(1));
+    WaitHelper.assertTrueWithWait(() -> "Google".equals(driver.getTitle()));
     assertEquals("https://www.google.com/", driver.getCurrentUrl());
   }
 }
