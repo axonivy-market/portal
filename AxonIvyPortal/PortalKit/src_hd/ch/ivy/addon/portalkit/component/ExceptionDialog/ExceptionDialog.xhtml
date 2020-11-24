@@ -27,7 +27,7 @@
 
       <!-- Unique ID -->
       <c:set var="uniqueId" value="#{portalExceptionBean.getUniqueId(exception)}" />
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/uniqueId')}" rendered="#{not empty uniqueId}" />
+      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/errorId')}" rendered="#{not empty uniqueId}" />
       <h:panelGroup rendered="#{not empty uniqueId}">
         <code id="unique-id" class="code-block">#{uniqueId}</code>
         <p:commandLink onclick="copyToClipboard('unique-id')" global="false">
