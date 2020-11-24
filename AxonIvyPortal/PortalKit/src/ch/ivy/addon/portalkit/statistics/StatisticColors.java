@@ -10,24 +10,18 @@ public class StatisticColors implements Serializable {
   public static final String DEFAULT_NORMAL_PRIORITY_COLOR = "rgb(150, 220, 130)";
   public static final String DEFAULT_LOW_PRIORITY_COLOR = "rgb(212, 212, 212)";
 
-  public static final String DEFAULT_CREATED_CASE_COLOR = "rgb(150,220,130)";
-  public static final String DEFAULT_RUNNING_CASE_COLOR = "rgb(75,178,197)";
-  public static final String DEFAULT_DONE_CASE_COLOR = "rgb(234,162,40)";
-  public static final String DEFAULT_FAILED_CASE_COLOR = "rgb(197,180,127)";
+  public static final String DEFAULT_CREATED_CASE_COLOR = "rgb(0,112,149)";
+  public static final String DEFAULT_RUNNING_CASE_COLOR = "rgb(255,206,41)";
+  public static final String DEFAULT_DONE_CASE_COLOR = "rgb(150,220,130)";
+  public static final String DEFAULT_FAILED_CASE_COLOR = "rgb(210,54,54)";
 
-  public static final String DEFAULT_ELAPSED_TIME_COLOR = "rgba(54, 162, 235, 0.2)";
+  public static final String DEFAULT_ELAPSED_TIME_COLOR = "rgb(144, 221, 233)";
 
-  public static final String DEFAULT_TASK_EXPIRIED_COLOR = "rgba(255, 99, 132, 0.2)";
-  public static final String DEFAULT_TASK_TODAY_COLOR = "rgba(255, 159, 64, 0.2)";
-  public static final String DEFAULT_TASK_WEEK_COLOR = "rgba(255, 205, 86, 0.2)";
-  public static final String DEFAULT_TASK_MONTH_COLOR = "rgba(75, 192, 192, 0.2)";
-  public static final String DEFAULT_TASK_YEAR_COLOR = "rgba(54, 162, 235, 0.2)";
-  public static final String DEFAULT_TASK_EXPIRIED_BORDER = "rgb(255, 99, 132)";
-  public static final String DEFAULT_TASK_TODAY_BORDER = "rgb(255, 159, 64)";
-  public static final String DEFAULT_TASK_WEEK_BORDER = "rgb(255, 205, 86)";
-  public static final String DEFAULT_TASK_MONTH_BORDER = "rgb(75, 192, 192)";
-  public static final String DEFAULT_TASK_YEAR_BORDER = "rgb(54, 162, 235)";
-
+  public static final String DEFAULT_TASK_EXPIRIED_COLOR = "rgb(144, 221, 233)";
+  public static final String DEFAULT_TASK_TODAY_COLOR = DEFAULT_TASK_EXPIRIED_COLOR;
+  public static final String DEFAULT_TASK_WEEK_COLOR = DEFAULT_TASK_EXPIRIED_COLOR;
+  public static final String DEFAULT_TASK_MONTH_COLOR = DEFAULT_TASK_EXPIRIED_COLOR;
+  public static final String DEFAULT_TASK_YEAR_COLOR = DEFAULT_TASK_EXPIRIED_COLOR;
   public static final String DEFAULT_LEGEND_COLOR = "#212121";
 
   // Color for Legend and DataSet label
