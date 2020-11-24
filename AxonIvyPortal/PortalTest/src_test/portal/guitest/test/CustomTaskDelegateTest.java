@@ -8,6 +8,7 @@ import org.junit.Test;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskWidgetPage;
 
@@ -28,7 +29,7 @@ public class CustomTaskDelegateTest extends BaseTest {
     taskWidgetPage.expand();
 
     taskWidgetPage.openTaskDelegateDialog(0);
-    assertTrue(taskWidgetPage.isDelegateTypeSelectAvailable());
+    WaitHelper.assertTrueWithWait(() -> taskWidgetPage.isDelegateTypeSelectAvailable());
     // Radio button "User" is enabled
     assertTrue(taskWidgetPage.isDelegateTypeDisabled(0));
     // Radio button "Group" is disabled
@@ -44,7 +45,7 @@ public class CustomTaskDelegateTest extends BaseTest {
     taskWidgetPage.expand();
 
     taskWidgetPage.openTaskDelegateDialog(1);
-    assertTrue(taskWidgetPage.isDelegateTypeSelectAvailable());
+    WaitHelper.assertTrueWithWait(() -> taskWidgetPage.isDelegateTypeSelectAvailable());
     assertTrue(taskWidgetPage.isDelegateListSelectionAvailable());
   }
 
