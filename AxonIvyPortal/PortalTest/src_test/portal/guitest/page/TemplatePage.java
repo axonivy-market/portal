@@ -309,6 +309,12 @@ public abstract class TemplatePage extends AbstractPage {
         }
       }, GLOBAL_SEARCH_INPUT_SELECTOR, keyword);
       getSearchInput().sendKeys(Keys.ENTER.toString());
+      try {
+        waitForElementDisplayed(By.id("search-results-tabview"), true);
+      } catch (Exception e) {
+        System.out.println("Exception when waiting for search page displayed, press Enter again.");
+        getSearchInput().sendKeys(Keys.ENTER.toString());
+      }
       return new SearchResultPage();
     }
     
