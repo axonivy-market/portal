@@ -762,7 +762,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     statisticChart.setNames(chartNames);
     statisticChart.setPosition(countStatisticChartsByUserId(creatorId));
     statisticChart.setDefaultChart(String.valueOf(isDefault));
-
+    
     if (filter.getIsAllCaseStatesSelected()) {
       StatisticFilter newFilter = ObjectUtils.clone(filter);
       if (filter.getIsAllRolesSelected()) {
@@ -773,7 +773,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       statisticChart.setFilter(filter);
     }
     BusinessDataInfo<StatisticChart> info = save(statisticChart);
-
+    
     // Check Statistic is updated on ES
     for (int i = 0; i < 10; i++) {
       List<StatisticChart> result = findStatisticChartsByUserId(creatorId);
@@ -782,7 +782,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
             .findFirst();
       if (savedChart.isPresent()) {
         return savedChart.get();
-      }
+  }
       Thread.sleep(200);
     }
     return null;
@@ -995,14 +995,6 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       bgColor.add(statisticColors.getTaskExpiriedThisWeekColor());
       bgColor.add(statisticColors.getTaskExpiriedThisMonthColor());
       bgColor.add(statisticColors.getTaskExpiriedThisYearColor());
-
-      List<String> borderColor = new ArrayList<>();
-      borderColor.add(StatisticColors.DEFAULT_TASK_EXPIRIED_BORDER);
-      borderColor.add(StatisticColors.DEFAULT_TASK_TODAY_BORDER);
-      borderColor.add(StatisticColors.DEFAULT_TASK_WEEK_BORDER);
-      borderColor.add(StatisticColors.DEFAULT_TASK_MONTH_BORDER);
-      borderColor.add(StatisticColors.DEFAULT_TASK_YEAR_BORDER);
-      dataSet.setBorderColor(borderColor);
     }
 
     dataSet.setBackgroundColor(bgColor);
@@ -1463,8 +1455,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   
   public boolean checkDefaultStatisticChartNameExisted(long userId, String chartName, String language) {
     return checkStatisticChartNameExisted(userId, chartName, language);
-   }
-
+  }
+  
   public StatisticChart findStatisticChartByUserIdAndChartNameAndLanguage(long userId, String chartName, String language) {
     List<StatisticChart> foundCharts = Optional.ofNullable(repo().search(getType()).numberField(USER_ID).isEqualTo(userId).execute().getAll()).orElse(new ArrayList<>());
     for (StatisticChart chart : foundCharts) {
@@ -1474,7 +1466,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
       if (StringUtils.equals(displayChartName, chartName)) {
         return chart;
-      }
+  }
     }
     return null;
   }
@@ -1483,13 +1475,13 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (CollectionUtils.isEmpty(first) || CollectionUtils.isEmpty(second) || first.size() != second.size()) {
       return false;
     }
-    return first.stream().allMatch(s -> second.contains(s));  
+    return first.stream().allMatch(s -> second.contains(s));
   }
 
   public List<StatisticChart> addListByDistinctCharts(List<StatisticChart> targetList, List<StatisticChart> newList) {
     if (CollectionUtils.isEmpty(newList)) {
       return targetList;
-    }
+}
 
     if (CollectionUtils.isEmpty(targetList)) {
       return new ArrayList<>(newList);
