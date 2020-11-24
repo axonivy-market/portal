@@ -64,10 +64,6 @@ public class MenuTest extends BaseTest {
     WebDriver driver = Browser.getBrowser().getDriver();
     ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
     driver.switchTo().window(tabs.get(1));
-
-    WebDriverWait wait = new WebDriverWait(driver, 15);
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[id='viewport']")));
-
     assertEquals("https://www.google.com/", driver.getCurrentUrl());
   }
 }

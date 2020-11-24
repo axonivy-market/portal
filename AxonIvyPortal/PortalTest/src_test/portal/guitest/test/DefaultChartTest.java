@@ -1,6 +1,10 @@
 package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+
+import java.util.Arrays;
+import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -49,10 +53,11 @@ public class DefaultChartTest extends BaseTest {
     MainMenuPage mainMenuPage = new MainMenuPage();
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
-    
-    assertEquals(DEFAULT_NAME, statisticWidgetPage.getChartName(0));
-    assertEquals(DEFAULT_NAME_1, statisticWidgetPage.getChartName(1));
-    assertEquals(DEFAULT_NAME_2, statisticWidgetPage.getChartName(2));
+    List<String> chartNames = Arrays.asList(statisticWidgetPage.getChartName(0), statisticWidgetPage.getChartName(1),
+        statisticWidgetPage.getChartName(2));
+    assertTrue(chartNames.contains(DEFAULT_NAME));
+    assertTrue(chartNames.contains(DEFAULT_NAME_1));
+    assertTrue(chartNames.contains(DEFAULT_NAME_2));
     assertEquals(RESTORE_DEFAULT, statisticWidgetPage.getRestoreDefaultButtonName());
   }
   
