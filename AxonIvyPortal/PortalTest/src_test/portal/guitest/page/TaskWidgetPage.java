@@ -306,7 +306,7 @@ public class TaskWidgetPage extends TemplatePage {
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS))
         .until(() -> findElementByCssSelector("a[id$='\\:task-delegate-command']").isDisplayed());
     clickByCssSelector("a[id$='\\:task-delegate-command']");
-    waitForElementDisplayed(By.cssSelector("div[id$='task-delegate-dialog']"), true);
+    waitForElementDisplayed(By.cssSelector("div[id$=':activator-panel']"), true);
   }
 
   public void waitUntilTaskCountDifferentThanZero() {
