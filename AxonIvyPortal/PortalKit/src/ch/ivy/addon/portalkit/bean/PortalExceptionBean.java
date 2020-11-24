@@ -22,7 +22,7 @@ public class PortalExceptionBean implements Serializable {
   private static final String PMV = "pmv";
   private static final String PROCESS_ELEMENT = "processElement";
   private static final String SHOW_STACK_TRACE = "Errors.ShowDetailsToEndUser";
-  private String uniqueId;
+  private String errorId;
 
   public boolean getErrorDetailToEndUser() {
     try {
@@ -41,26 +41,26 @@ public class PortalExceptionBean implements Serializable {
 
   public Object findExceptionValueByKey(ExceptionInfo exceptionInfo, String key) {
     Object value = EMPTY;
-    this.uniqueId = null;
+    this.errorId = null;
     if (exceptionInfo == null) {
       return value;
     }
 
     if (exceptionInfo.getException().getCause() instanceof BpmError) {
       BpmError bpmError = (BpmError) exceptionInfo.getException().getCause();
-      this.uniqueId = bpmError.getId();
+      this.errorId = bpmError.getId();
       value = bpmError.getThreadLocalValue(key);
     } else {
       IvyRuntimeException ivyRuntimeException = new IvyRuntimeException(exceptionInfo.getException());
-      this.uniqueId = ivyRuntimeException.getId();
+      this.errorId = ivyRuntimeException.getId();
       value = ivyRuntimeException.getThreadLocalValue(key);
     }
     return value;
   }
 
-  public Object getUniqueId(ExceptionInfo exceptionInfo) {
+  public Object getErrorId(ExceptionInfo exceptionInfo) {
     findExceptionValueByKey(exceptionInfo, EMPTY);
-    return this.uniqueId;
+    return this.errorId;
   }
 
   public Object getPmvName(ExceptionInfo exceptionInfo) {
