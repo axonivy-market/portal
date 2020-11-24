@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import portal.guitest.common.BaseTest;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseDetailsPage;
 import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
@@ -51,7 +52,7 @@ public class PortalPermissionTest extends BaseTest{
     
     grantAccessFullListPermissions();
     homePage = new HomePage();
-    Assert.assertTrue(mainMenuPage.isProcessesDisplayed());
+    WaitHelper.assertTrueWithWait(() -> mainMenuPage.isProcessesDisplayed());
     Assert.assertTrue(mainMenuPage.isTasksDisplayed());
     Assert.assertTrue(mainMenuPage.isCasesDisplayed());
     Assert.assertTrue(mainMenuPage.isStatisticsDisplayed());

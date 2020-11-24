@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import portal.guitest.common.WaitHelper;
+
 public class UserProfilePage extends TemplatePage {
   
   private static final String CASE_SORT_DIRECTION_SELECTION_ITEMS = "my-profile-form:case-sort-direction-selection_items";
@@ -40,10 +42,7 @@ public class UserProfilePage extends TemplatePage {
 
   public UserProfilePage save() {
     WebElement save = findElementByCssSelector("button[id$='save-settings']");
-    click(save);
-    waitAjaxIndicatorDisappear();
-    waitForPageLoaded();
-    ensureNoBackgroundRequest();
+    WaitHelper.waitForNavigation(new UserProfilePage(), () -> click(save));
     return new UserProfilePage();
   }
   
