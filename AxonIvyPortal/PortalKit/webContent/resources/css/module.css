@@ -777,6 +777,10 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   .case-details-back-btn, .task-details-back-btn {
     text-align: left;
   }
+
+  .iframe-body .task-details-back-btn {
+    text-align: right;
+  }
 }
 
 .case-detail-title-header-container {
