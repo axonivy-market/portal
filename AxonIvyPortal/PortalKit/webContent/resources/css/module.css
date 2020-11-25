@@ -590,6 +590,11 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   border-radius: 0;
 }
 
+.case-list .case-custom-field-cell {
+  flex: 0 0 150px;
+  word-break: break-word;
+  word-wrap: break-word;
+}
 .case-header-name-desc-cell {
   flex: 1;
   padding-left: 10px;
@@ -1706,6 +1711,8 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-start-list .task-custom-field-cell {
   flex: 0 0 150px;
+  word-break: break-word;
+  word-wrap: break-word;
 }
 
 .task-start-list .action-cell .action-container {
