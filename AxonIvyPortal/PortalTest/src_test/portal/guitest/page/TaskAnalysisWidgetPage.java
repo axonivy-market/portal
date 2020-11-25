@@ -39,14 +39,12 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
 
   private WebElement findTaskFilterButton() {
-    refreshAndWaitElement("[id$='task-widget:task-filter-add-action']");
     String taskFilterButtonId = "task-widget:task-filter-add-action";
     waitForElementDisplayed(By.id(taskFilterButtonId), true);
     return findElementById(taskFilterButtonId);
   }
 
   private WebElement findCaseFilterButton() {
-    refreshAndWaitElement("[id$='task-widget:case-filter-add-action']");
     String caseFilterButtonId = "task-widget:case-filter-add-action";
     waitForElementDisplayed(By.id(caseFilterButtonId), true);
     return findElementById(caseFilterButtonId);
@@ -70,7 +68,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
         break;
       }
     }
-    refreshAndWaitElement("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']");
     waitForElementDisplayed(
         By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"), true);
   }
@@ -87,7 +84,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
         break;
       }
     }
-    refreshAndWaitElement("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']");
     waitForElementDisplayed(
         By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"), true);
   }
@@ -220,7 +216,6 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$='task-widget:filter-reset-command']"), true);
     click(By.cssSelector("[id$='task-widget:filter-reset-command']"));
     waitAjaxIndicatorDisappear();
-    refreshAndWaitElement("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)");
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(
         () -> findElementByCssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)")
             .getText().contains("Default"));  
