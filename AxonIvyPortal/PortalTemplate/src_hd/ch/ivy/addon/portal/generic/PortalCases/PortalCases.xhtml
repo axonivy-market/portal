@@ -77,11 +77,11 @@
 				<!-- New field -->
 				<h:panelGroup styleClass="customized-case-header-column">
 					<h:outputText value="#{case.customFields().stringField('CustomVarcharField1').getOrNull()}" 
-                    styleClass="case-header-default-cell customized-case-header-column js-hidden-when-expand-menu u-hidden-lg-down" />
+                    styleClass="case-header-default-cell customized-case-header-column case-custom-field-cell js-hidden-when-expand-menu u-hidden-lg-down" />
 				</h:panelGroup>
 				<h:panelGroup styleClass="customized-case-header-column">
 					<h:outputText value="#{case.customFields().timestampField('CustomTimestampField1').getOrNull()}" 
-                    styleClass="case-header-default-cell customized-case-header-column js-hidden-when-expand-menu u-hidden-lg-down">
+                    styleClass="case-header-default-cell customized-case-header-column case-custom-field-cell js-hidden-when-expand-menu u-hidden-lg-down">
 						<f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
 					</h:outputText>
 				</h:panelGroup>
