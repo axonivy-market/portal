@@ -19,17 +19,19 @@ pipeline {
         dir ('Documentation') {
             script {
                 def version = 'dev'
-                docker.image('maven:3.6.2-jdk-11-slim').inside {
+                docker.withRegistry('', 'docker.io') {
+                  docker.image('maven:3.6.3-jdk-11-slim').inside {
                     version = getCurrentVersion()
-                }
+                  }
 
-                docker.image('axonivy/build-container:read-the-docs-1.2').inside {
+                  docker.image('axonivy/build-container:read-the-docs-1.2').inside {
                     sh "make -C /doc-build html BASEDIR='${env.WORKSPACE}/Documentation/portal-guide' VERSION=${version}"             
-                }
+                  }
 
-                docker.image('maven:3.6.2-jdk-11-slim').inside {
+                  docker.image('maven:3.6.3-jdk-11-slim').inside {
                     def phase = env.BRANCH_NAME == 'release/8.0' ? 'deploy' : 'install'
                     maven cmd: "clean ${phase}"
+                  }
                 }
             }
             archiveArtifacts '*/build/html/**/*, */target/*.zip'
