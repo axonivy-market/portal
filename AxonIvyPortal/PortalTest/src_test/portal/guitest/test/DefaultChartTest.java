@@ -3,8 +3,8 @@ package portal.guitest.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.junit.After;
 import org.junit.Before;
@@ -53,8 +53,9 @@ public class DefaultChartTest extends BaseTest {
     MainMenuPage mainMenuPage = new MainMenuPage();
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);
-    List<String> chartNames = Arrays.asList(statisticWidgetPage.getChartName(0), statisticWidgetPage.getChartName(1),
-        statisticWidgetPage.getChartName(2));
+    Set<String> chartNames = statisticWidgetPage.getAllChartNames();
+    statisticWidgetPage.findListElementsByCssSelector("div[id$=':chart-name-container'] .chart-name").stream().map(e -> e.getText()).collect(Collectors.toSet());
+    System.out.println("All default chart names " + chartNames);
     assertTrue(chartNames.contains(DEFAULT_NAME));
     assertTrue(chartNames.contains(DEFAULT_NAME_1));
     assertTrue(chartNames.contains(DEFAULT_NAME_2));
