@@ -1,7 +1,9 @@
 package portal.guitest.page;
 
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
@@ -83,7 +85,12 @@ public class StatisticWidgetPage extends TemplatePage {
     WebElement chartName = findElementByCssSelector(String.format("div[id$='%d:chart-name-container'] .chart-name", chartIndex));
     return chartName.getText();
   }
-  
+
+  public Set<String> getAllChartNames() {
+    return findListElementsByCssSelector("div[id$=':chart-name-container'] .chart-name").stream().map(e -> e.getText())
+        .collect(Collectors.toSet());
+  }
+
   public String getRestoreDefaultButtonName() {
     return findElementByCssSelector("span[id$='restore-default-chart-link-label']").getText();
   }
