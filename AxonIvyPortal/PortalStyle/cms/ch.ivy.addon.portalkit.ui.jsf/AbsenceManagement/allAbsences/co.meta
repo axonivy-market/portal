@@ -1,5 +1,5 @@
-co: name={allAbsences} description={} changed={2020-11-10 11:35:19 CET} changedby={nqhoan} visualorder={0} guid={1703C69267C64889} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1703C69F61848292} datatype={} isdefault={false} langid={es} description={} validfrom={2020-03-03 09:07:58 CET} validto={} changed={2020-11-10 11:35:19 CET} changedby={nqhoan} properties={} id={}
-val: guid={1703C69F521F987D} datatype={} isdefault={false} langid={de} description={} validfrom={2020-03-03 09:07:58 CET} validto={} changed={2020-11-10 11:35:18 CET} changedby={nqhoan} properties={} id={}
-val: guid={1703C69F625DB99D} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-03-03 09:07:58 CET} validto={} changed={2020-11-10 11:35:19 CET} changedby={nqhoan} properties={} id={}
+co: name={allAbsences} description={} changed={2020-12-01 02:55:58 CET} changedby={lttung} visualorder={0} guid={1703C69267C64889} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1703C69F61848292} datatype={} isdefault={false} langid={es} description={} validfrom={2020-12-01 02:55:58 CET} validto={} changed={2020-12-01 02:55:58 CET} changedby={lttung} properties={} id={}
+val: guid={1703C69F521F987D} datatype={} isdefault={false} langid={de} description={} validfrom={2020-12-01 02:55:58 CET} validto={} changed={2020-12-01 02:55:58 CET} changedby={lttung} properties={} id={}
+val: guid={1703C69F625DB99D} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-12-01 02:55:58 CET} validto={} changed={2020-12-01 02:55:58 CET} changedby={lttung} properties={} id={}
 val: guid={1703C69268940C47} datatype={} isdefault={true} langid={en} description={} validfrom={2020-02-13 03:38:09 CET} validto={} changed={2020-11-10 11:35:19 CET} changedby={nqhoan} properties={} id={}
