@@ -590,11 +590,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   border-radius: 0;
 }
 
-.case-list .case-custom-field-cell {
-  flex: 0 0 150px;
-  word-break: break-word;
-  word-wrap: break-word;
-}
 .case-header-name-desc-cell {
   flex: 1;
   padding-left: 10px;
@@ -1711,8 +1706,6 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-start-list .task-custom-field-cell {
   flex: 0 0 150px;
-  word-break: break-word;
-  word-wrap: break-word;
 }
 
 .task-start-list .action-cell .action-container {
@@ -4473,21 +4466,3 @@ body .ui-dialog.ui-widget.export-express-dialog {
   }
 }
 /*=================== NOTE HISTORY END ===================*/
-
-/*================= START EXCEPTION ===================== */
-.code-block {
-  padding: 5px 8px;
-  margin-right: 5px;
-  border-radius: 3px;
-}
-
-.error-label {
-  margin-right: 5px;
-  display: inline-block;
-  width: max-content
-}
-
-.error-label, .error-value {
-  padding: 6px 0;
-}
-/*==================== END EXCEPTION ===================*/

@@ -21,11 +21,9 @@ import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
-import ch.ivy.addon.portalkit.bean.PortalExceptionBean;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
-import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -35,6 +33,8 @@ import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.server.ServerFactory;
+import ch.ivyteam.ivy.system.ISystemProperty;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
@@ -181,15 +181,9 @@ public class UserMenuBean implements Serializable {
     navigateToHomePage();
   }
   
-  /**
-   * We moved this method to PortalExceptionBean#getErrorDetailToEndUser
-   * @return system configuration of ErrorDetailToEndUser
-   */
-  @Deprecated
   public boolean getErrorDetailToEndUser() {
     try {
-      PortalExceptionBean portalExceptionBean = (PortalExceptionBean) ManagedBeans.find("portalExceptionBean").get();
-      return portalExceptionBean.getErrorDetailToEndUser();
+      return ServerFactory.getServer().getSecurityManager().executeAsSystem(this::findShowErrorDetailSystemProperty);
     } catch (Exception e) {
       Ivy.log().error(e);
     }
@@ -210,6 +204,12 @@ public class UserMenuBean implements Serializable {
 
   private boolean isDefaultPortalApp() {
     return PortalConstants.PORTAL_APPLICATION_NAME.equals(Ivy.wf().getApplication().getName());
+  }
+
+  private boolean findShowErrorDetailSystemProperty() {
+    ISystemProperty systemProp =
+        ServerFactory.getServer().getApplicationConfigurationManager().getSystemProp("Errors.ShowDetailsToEndUser");
+    return systemProp.getBooleanValue();
   }
   
   private long getDefaultClientSideTimeout() {
