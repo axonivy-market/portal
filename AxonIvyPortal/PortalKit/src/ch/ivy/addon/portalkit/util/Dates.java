@@ -1,5 +1,6 @@
 package ch.ivy.addon.portalkit.util;
 
+import java.text.ParseException;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -9,9 +10,14 @@ import java.time.temporal.TemporalAdjusters;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
 public final class Dates {
+
+  private static final String GERMAN_DATE_FORMAT = "dd.MM.yyyy";
+  private static final String ENGLISH_DATE_FORMAT = "MM/dd/yyyy";
 
   private Dates() {}
 
@@ -118,5 +124,21 @@ public final class Dates {
 
   private static Date getLocalDateWithTime(LocalDate localDate, LocalTime localTime) {
     return Date.from(LocalDateTime.of(localDate, localTime).atZone(ZoneId.systemDefault()).toInstant());
+  }
+  
+  public static Date parse(String dateInString) throws ParseException {
+    if (StringUtils.isBlank(dateInString)) {
+      return null;
+    }
+    
+    return DateUtils.parseDate(dateInString, ENGLISH_DATE_FORMAT, GERMAN_DATE_FORMAT);
+  }
+  
+  public static String format(Date date) {
+    if (date == null) {
+      return null;
+    }
+    
+    return DateFormatUtils.format(date, ENGLISH_DATE_FORMAT);
   }
 }

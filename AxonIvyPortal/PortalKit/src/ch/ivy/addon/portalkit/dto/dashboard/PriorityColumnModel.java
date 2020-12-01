@@ -1,8 +1,13 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.apache.commons.collections.CollectionUtils;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
@@ -30,11 +35,32 @@ public class PriorityColumnModel extends ColumnModel implements Serializable {
     return task.getPriority();
   }
   
+  @JsonIgnore
   public List<WorkflowPriority> getPriorities() {
     return this.filterList.stream().map(String::toUpperCase).map(WorkflowPriority::valueOf).collect(Collectors.toList());
   }
   
+  @JsonIgnore
   public void setPriorities(List<WorkflowPriority> priorities) {
     this.filterList = priorities.stream().map(WorkflowPriority::toString).collect(Collectors.toList());
+  }
+  
+  @JsonIgnore
+  public List<WorkflowPriority> getUserFilterPriorityOptions() {
+    List<WorkflowPriority> options = getPriorities();
+    if (CollectionUtils.isEmpty(options)) {
+      options = Arrays.asList(WorkflowPriority.values());
+    }
+    return options;
+  }
+  
+  @JsonIgnore
+  public List<WorkflowPriority> getUserFilterPriorities() {
+    return this.userFilterList.stream().map(String::toUpperCase).map(WorkflowPriority::valueOf).collect(Collectors.toList());
+  }
+  
+  @JsonIgnore
+  public void setUserFilterPriorities(List<WorkflowPriority> priorities) {
+    this.userFilterList = priorities.stream().map(WorkflowPriority::toString).collect(Collectors.toList());
   }
 }

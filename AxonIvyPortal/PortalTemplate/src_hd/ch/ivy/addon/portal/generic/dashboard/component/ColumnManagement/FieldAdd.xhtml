@@ -4,6 +4,7 @@
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
 
   <p:fieldset id="field-add-fieldset" legend="Add Field" style="margin-bottom: 10px">
+    <p:messages id="field-msg" closable="true" showDetail="false" severity="info" />
     <div class="ui-g">
       <div class="ui-g-3 field-add-fieldset__label">
         <p:outputLabel for="field-type-selection" value="Type" />
@@ -72,7 +73,7 @@
       </div>
       
       <div class="ui-g-12" style="text-align: right">
-        <p:commandButton id="field-add-btn" value="Add field" actionListener="#{columnManagementBean.add}" update="column-management-datatable"
+        <p:commandButton id="field-add-btn" value="Add field" actionListener="#{columnManagementBean.add}" update="field-add-fieldset column-management-datatable"
           oncomplete="PF('column-management-dialog').initPosition();" />
       </div>
     </div>
