@@ -18,6 +18,7 @@ public class Dashboard implements Serializable {
   private String id;
   private String title;
   private List<DashboardWidget> widgets;
+  private List<String> permissions;
 
   public Dashboard() {}
 
@@ -52,6 +53,14 @@ public class Dashboard implements Serializable {
 
   public void setWidgets(List<DashboardWidget> widgets) {
     this.widgets = widgets;
+  }
+  
+  public List<String> getPermissions() {
+    return permissions;
+  }
+  
+  public void setPermissions(List<String> permissions) {
+    this.permissions = permissions;
   }
 
   @Override
