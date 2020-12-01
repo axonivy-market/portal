@@ -29,7 +29,7 @@
         pageLinks="5" sortField="#{cc.attrs.taskWidget.sortField}" sortBy="#{cc.attrs.taskWidget.sortField}"
         sortOrder="#{cc.attrs.taskWidget.sortDescending ? 'descending' : 'ascending'}">
         <p:columns var="column" value="#{cc.attrs.taskWidget.columns}" headerText="#{column.header}" styleClass="#{column.styleClass}"
-          toggleable="#{column.toggleable}" visible="#{column.visible}" field="#{column.field}" 
+          visible="#{column.visible}" field="#{column.field}" 
           sortBy="#{column.field}" sortable="#{column.sortable}" 
           style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.style}">
           

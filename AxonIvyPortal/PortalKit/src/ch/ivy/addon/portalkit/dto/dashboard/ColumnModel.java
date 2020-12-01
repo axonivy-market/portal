@@ -1,7 +1,9 @@
 package ch.ivy.addon.portalkit.dto.dashboard;
 
 import java.io.Serializable;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -15,6 +17,7 @@ import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardFilterType;
+import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.scripting.objects.Recordset;
 import ch.ivyteam.ivy.workflow.ITask;
@@ -34,7 +37,6 @@ public class ColumnModel implements Serializable {
   protected String style;
   protected String fieldStyle;
   protected boolean visible = true;
-  protected boolean toggleable = true;
   protected boolean sortable = true;
   protected DashboardColumnFormat format = DashboardColumnFormat.STRING;
   protected String pattern;
@@ -47,7 +49,23 @@ public class ColumnModel implements Serializable {
   protected boolean sortDescending;
   
   @JsonIgnore
-  private List<String> filterListOptions;
+  protected String userFilter;
+  @JsonIgnore
+  protected List<String> userFilterList = new ArrayList<>();
+  @JsonIgnore
+  protected String userFilterFrom;
+  @JsonIgnore
+  protected String userFilterTo;
+  @JsonIgnore
+  protected List<String> filterListOptions;
+  @JsonIgnore
+  protected Date dateFilterFrom;
+  @JsonIgnore
+  protected Date dateFilterTo;
+  @JsonIgnore
+  protected Date userDateFilterFrom;
+  @JsonIgnore
+  protected Date userDateFilterTo;
   
   public void initDefaultValue() {};
   
@@ -146,12 +164,12 @@ public class ColumnModel implements Serializable {
     this.fieldStyle = fieldStyle;
   }
 
-  public boolean getToggleable() {
-    return toggleable;
+  public boolean getVisible() {
+    return visible;
   }
-
-  public void setToggleable(boolean toggleable) {
-    this.toggleable = toggleable;
+  
+  public void setVisible(boolean visible) {
+    this.visible = visible;
   }
 
   public boolean getSortable() {
@@ -218,14 +236,38 @@ public class ColumnModel implements Serializable {
     this.filterType = filterType;
   }
 
-  public boolean getVisible() {
-    return visible;
+  public String getUserFilter() {
+    return userFilter;
   }
 
-  public void setVisible(boolean visible) {
-    this.visible = visible;
+  public void setUserFilter(String userFilter) {
+    this.userFilter = userFilter;
   }
-  
+
+  public List<String> getUserFilterList() {
+    return userFilterList;
+  }
+
+  public void setUserFilterList(List<String> userFilterList) {
+    this.userFilterList = userFilterList;
+  }
+
+  public String getUserFilterFrom() {
+    return userFilterFrom;
+  }
+
+  public void setUserFilterFrom(String userFilterFrom) {
+    this.userFilterFrom = userFilterFrom;
+  }
+
+  public String getUserFilterTo() {
+    return userFilterTo;
+  }
+
+  public void setUserFilterTo(String userFilterTo) {
+    this.userFilterTo = userFilterTo;
+  }
+
   public List<String> getFilterListOptions() {
     if (filterListOptions == null) {
       Recordset recordset = TaskQuery.create().groupBy().customField().stringField(field).executor().recordset();
@@ -237,4 +279,53 @@ public class ColumnModel implements Serializable {
   public void setFilterListOptions(List<String> filterListOptions) {
     this.filterListOptions = filterListOptions;
   }
+
+  public Date getDateFilterFrom() throws ParseException {
+    if (dateFilterFrom == null && filterFrom != null) {
+      dateFilterFrom = Dates.parse(filterFrom);
+    }
+    return dateFilterFrom;
+  }
+
+  public void setDateFilterFrom(Date dateFilterFrom) {
+    this.dateFilterFrom = dateFilterFrom;
+    this.filterFrom = Dates.format(dateFilterFrom);
+  }
+
+  public Date getDateFilterTo() throws ParseException {
+    if (dateFilterTo == null && filterTo != null) {
+      dateFilterTo = Dates.parse(filterTo);
+    }
+    return dateFilterTo;
+  }
+
+  public void setDateFilterTo(Date dateFilterTo) {
+    this.dateFilterTo = dateFilterTo;
+    this.filterTo = Dates.format(dateFilterTo);
+  }
+
+  public Date getUserDateFilterFrom() throws ParseException {
+    if (userDateFilterFrom == null && userFilterFrom != null) {
+      userDateFilterFrom = Dates.parse(userFilterFrom);
+    }
+    return userDateFilterFrom;
+  }
+
+  public void setUserDateFilterFrom(Date userDateFilterFrom) {
+    this.userDateFilterFrom = userDateFilterFrom;
+    this.userFilterFrom = Dates.format(userDateFilterFrom);
+  }
+
+  public Date getUserDateFilterTo() throws ParseException {
+    if (userDateFilterTo == null && userFilterTo != null) {
+      userDateFilterTo = Dates.parse(userFilterTo);
+    }
+    return userDateFilterTo;
+  }
+
+  public void setUserDateFilterTo(Date userDateFilterTo) {
+    this.userDateFilterTo = userDateFilterTo;
+    this.userFilterTo = Dates.format(userDateFilterTo);
+  }
+  
 }

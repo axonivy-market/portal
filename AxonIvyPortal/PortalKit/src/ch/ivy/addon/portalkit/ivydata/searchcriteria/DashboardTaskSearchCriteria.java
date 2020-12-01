@@ -13,6 +13,7 @@ import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
 import ch.ivy.addon.portalkit.enums.DashboardFilterType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivy.addon.portalkit.util.Dates;
 import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.WorkflowPriority;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
@@ -144,13 +145,34 @@ public class DashboardTaskSearchCriteria {
     }
   }
   
+  private void queryTextField(ICustomFieldFilterQuery filterQuery, String field, String filter) {
+    if (StringUtils.isNotBlank(filter)) {
+      filterQuery.textField(field).isLikeIgnoreCase(String.format("%%%s%%", filter));
+    }
+  }
+  
+  private void queryStringField(ICustomFieldFilterQuery filterQuery, String field, String filter) {
+    if (StringUtils.isNotBlank(filter)) {
+      filterQuery.stringField(field).isLikeIgnoreCase(String.format("%%%s%%", filter));
+    }
+  }
+  
   private void queryFilters(TaskQuery query) throws ParseException {
     for (ColumnModel column : columns) {
       String field = column.getField();
-      String filter = column.getFilter();
-      List<String> filterList = column.getFilterList();
-      String filterFrom = column.getFilterFrom();
-      String filterTo = column.getFilterTo();
+      String configuredFilter = column.getFilter();
+      List<String> configuredFilterList = column.getFilterList();
+      String configuredFilterFrom = column.getFilterFrom();
+      String configuredFilterTo = column.getFilterTo();
+      
+      String userFilter = column.getUserFilter();
+      List<String> userFilterList = column.getUserFilterList();
+      String userFilterFrom = column.getUserFilterFrom();
+      String userFilterTo = column.getUserFilterTo();
+      
+      List<String> filterList = CollectionUtils.isNotEmpty(userFilterList) ? userFilterList : configuredFilterList;
+      String filterFrom = StringUtils.isNotBlank(userFilterFrom) ? userFilterFrom : configuredFilterFrom;
+      String filterTo = StringUtils.isNotBlank(userFilterTo) ? userFilterTo : configuredFilterTo;
       
       if (StringUtils.equals(DashboardStandardTaskColumn.PRIORITY.getField(), column.getField())) {
         List<WorkflowPriority> priorities = new ArrayList<>();
@@ -159,9 +181,11 @@ public class DashboardTaskSearchCriteria {
         }
         queryPriorities(query, priorities);
       } else if (StringUtils.equals(DashboardStandardTaskColumn.NAME.getField(), column.getField())) {
-        queryName(query, filter);
+        queryName(query, configuredFilter);
+        queryName(query, userFilter);
       } else if (StringUtils.equals(DashboardStandardTaskColumn.DESCRIPTION.getField(), column.getField())) {
-        queryDescription(query, filter);
+        queryDescription(query, configuredFilter);
+        queryDescription(query, userFilter);
       } else if (StringUtils.equals(DashboardStandardTaskColumn.STATE.getField(), column.getField())) {
         List<TaskState> states = new ArrayList<>();
         for (String state : filterList) {
@@ -171,19 +195,19 @@ public class DashboardTaskSearchCriteria {
       } else if (StringUtils.equals(DashboardStandardTaskColumn.RESPONSIBLE.getField(), column.getField())) {
         queryResponsibles(query, filterList);
       } else if (StringUtils.equals(DashboardStandardTaskColumn.CREATED.getField(), column.getField())) {
-        Date from = parse(filterFrom);
-        Date to = parse(filterTo);
+        Date from = Dates.parse(filterFrom);
+        Date to = Dates.parse(filterTo);
         queryCreatedDate(query, from, to);
       } else if (StringUtils.equals(DashboardStandardTaskColumn.EXPIRY.getField(), column.getField())) {
-        Date from = parse(filterFrom);
-        Date to = parse(filterTo);
+        Date from = Dates.parse(filterFrom);
+        Date to = Dates.parse(filterTo);
         queryExpiryDate(query, from, to);
       } else if (column.getFilterType() == DashboardFilterType.SELECTION || CollectionUtils.isNotEmpty(filterList)) {
         queryCustomFieldSelection(query, field, filterList);
       } else {
         TaskQuery subQuery = TaskQuery.create();
         ICustomFieldFilterQuery filterQuery = subQuery.where().customField();
-        if (StringUtils.isNotBlank(filter) || StringUtils.isNotBlank(filterFrom) || StringUtils.isNotBlank(filterTo)) {
+        if (StringUtils.isNotBlank(configuredFilter) || StringUtils.isNotBlank(userFilter) || StringUtils.isNotBlank(filterFrom) || StringUtils.isNotBlank(filterTo)) {
           if (column.isNumber()) {
             if (StringUtils.isNotBlank(filterFrom)) {
               Number from = Double.parseDouble(filterFrom.toString());
@@ -195,8 +219,8 @@ public class DashboardTaskSearchCriteria {
               filterQuery.numberField(field).isLowerOrEqualThan(to);
             }
           } else if (column.isDate()) {
-            Date from = parse(filterFrom);
-            Date to = parse(filterTo);
+            Date from = Dates.parse(filterFrom);
+            Date to = Dates.parse(filterTo);
             if (from != null) {
               filterQuery.timestampField(field).isGreaterOrEqualThan(from);
             }
@@ -205,9 +229,11 @@ public class DashboardTaskSearchCriteria {
               filterQuery.timestampField(field).isLowerOrEqualThan(DateUtils.addDays(to, 1));
             }
           } else if (column.isText()) {
-            filterQuery.textField(field).isLikeIgnoreCase(String.format("%%%s%%", filter));
+            queryTextField(filterQuery, field, configuredFilter);
+            queryTextField(filterQuery, field, userFilter);
           } else {
-            filterQuery.stringField(field).isLikeIgnoreCase(String.format("%%%s%%", filter));
+            queryStringField(filterQuery, field, configuredFilter);
+            queryStringField(filterQuery, field, userFilter);
           }
           query.where().and(subQuery);
         }
@@ -215,14 +241,6 @@ public class DashboardTaskSearchCriteria {
     }
   }
   
-  private Date parse(String dateInString) throws ParseException {
-    if (StringUtils.isBlank(dateInString)) {
-      return null;
-    }
-    
-    return DateUtils.parseDate(dateInString, "MM/dd/yyyy", "dd.MM.yyyy");
-  }
-
   public String getSortField() {
     return sortField;
   }

@@ -10,7 +10,7 @@
   <cc:attribute name="taskWidget" />
 </cc:interface>
 <cc:implementation>
-  <f:event listener="#{taskWidgetConfigurationBean.preRender(cc.attrs.taskWidget)}" type="preRenderComponent" />
+  <f:event listener="#{dashboardTaskFilterBean.preRender(cc.attrs.taskWidget)}" type="preRenderComponent" />
   <div class="ui-g">
     <div class="task-configuration filter-container card">
       <div class="ui-g-12">
@@ -44,8 +44,8 @@
           <div class="ui-g-9">
             <p:selectCheckboxMenu id="priorities" value="#{field.priorities}" multiple="true"
               panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
-              <f:selectItems value="#{taskWidgetConfigurationBean.priorities}" var="priority" itemValue="#{priority}" 
-                itemLabel="#{taskWidgetConfigurationBean.getUserFriendlyTaskPriority(priority)}" />
+              <f:selectItems value="#{dashboardTaskFilterBean.priorities}" var="priority" itemValue="#{priority}" 
+                itemLabel="#{dashboardTaskFilterBean.getUserFriendlyTaskPriority(priority)}" />
             </p:selectCheckboxMenu>
           </div>
         </h:panelGroup>
@@ -57,8 +57,8 @@
           <div class="ui-g-9">
             <p:selectCheckboxMenu id="states" value="#{field.states}" multiple="true"
               filter="true" filterMatchMode="contains" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
-              <f:selectItems value="#{taskWidgetConfigurationBean.states}" var="state" itemValue="#{state}" 
-                itemLabel="#{taskWidgetConfigurationBean.getUserFriendlyTaskState(state)}" />
+              <f:selectItems value="#{dashboardTaskFilterBean.states}" var="state" itemValue="#{state}" 
+                itemLabel="#{dashboardTaskFilterBean.getUserFriendlyTaskState(state)}" />
             </p:selectCheckboxMenu>
           </div>
         </h:panelGroup>
@@ -69,14 +69,14 @@
           </div>
           <div class="ui-g-9">
             <p:autoComplete id="responsibles" scrollHeight="210" dropdown="true" size="35"
-              completeMethod="#{taskWidgetConfigurationBean.completeResponsibles}" value="#{field.filterList}"
-              var="responsible" itemValue="#{responsible.name}" itemLabel="#{responsible.briefDisplayNameWithState}"
+              completeMethod="#{dashboardTaskFilterBean.completeResponsibles}" value="#{field.responsibles}"
+              var="responsible" itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}"
               converter="pojoConverter" cache="true" maxResults="100" multiple="true"
               moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true"
               styleClass="task-configuration__responsibles" forceSelection="true">
               <p:column>
                 <i class="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-                <h:outputText value="#{taskWidgetConfigurationBean.formatName(responsible)}" />
+                <h:outputText value="#{dashboardTaskFilterBean.formatName(responsible)}" />
               </p:column>
             </p:autoComplete>
           </div>
@@ -124,7 +124,7 @@
           </div>
           <div class="ui-g-9">
             <p:calendar id="from-date-field-input" showOn="button" styleClass="task-configuration__calendar"
-              value="#{field.filterFrom}" pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
+              value="#{field.dateFilterFrom}" pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
           </div>
           
           <div class="ui-g-3">
@@ -132,7 +132,7 @@
           </div>
           <div class="ui-g-9">
             <p:calendar id="to-date-field-input" showOn="button" styleClass="task-configuration__calendar"
-              value="#{field.filterTo}" pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
+              value="#{field.dateFilterTo}" pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
           </div>
         </h:panelGroup>
       </ui:repeat>
@@ -146,8 +146,8 @@
           <p:inputText id="category" styleClass="task-configuration__input-text" value="#{cc.attrs.taskWidget.getDisplayCategories()}" readonly="true" />
           <p:overlayPanel id="category-panel" widgetVar="category-panel" for="category" appendTo="category-container" styleClass="task-configuration__category-panel"
             onHide="$(this.targetElement).parents('.task-configuration__category').find('.portal-cancel-button').click();">
-            <p:tree id="task-category-filter-tree" value="#{taskWidgetConfigurationBean.categoryTree}" var="node" selectionMode="checkbox"
-              selection="#{taskWidgetConfigurationBean.categoryNodes}" filterMatchMode="contains" filterBy="#{node}">
+            <p:tree id="task-category-filter-tree" value="#{dashboardTaskFilterBean.categoryTree}" var="node" selectionMode="checkbox"
+              selection="#{dashboardTaskFilterBean.categoryNodes}" filterMatchMode="contains" filterBy="#{node}">
               <p:treeNode>
                 <h:outputText value="#{node.value}" />
               </p:treeNode>
