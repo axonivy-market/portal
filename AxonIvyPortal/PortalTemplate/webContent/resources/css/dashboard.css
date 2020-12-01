@@ -61,6 +61,33 @@
   padding: 10px;
 }
 
+.widget__filter-sidebar-mask {
+  background-color: lightgray;
+  z-index: 99;
+  width: 100%;
+  height: calc(100% - 49px);
+  position: absolute;
+  left: 0;
+  margin: -10px 0;
+  display: none;
+  opacity: 0.5;
+}
+
+.widget__filter-sidebar {
+  position: absolute;
+  height: calc(100% - 49px);
+  width: 450px;
+  background-color: white;
+  right: 0;
+  margin: -10px 0;
+  z-index: 100;
+  border-left: solid 1px lightgray;
+  padding: 15px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: none;
+}
+
 .actions-widget {
   text-align: center;
   padding-top: 4px;

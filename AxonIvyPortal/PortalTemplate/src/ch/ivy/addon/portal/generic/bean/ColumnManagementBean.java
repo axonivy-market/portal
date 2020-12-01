@@ -6,8 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -33,6 +35,7 @@ public class ColumnManagementBean {
   private String selectedField;
   private String numberFieldPattern;
   private String fieldDisplayName;
+  private List<String> standardFields;
   
   @PostConstruct
   public void init() {
@@ -40,6 +43,7 @@ public class ColumnManagementBean {
     this.selectedFieldType = DashboardColumnType.STANDARD;
     this.customFieldTypes = Arrays.asList(CustomFieldType.STRING, CustomFieldType.TEXT, CustomFieldType.NUMBER, CustomFieldType.TIMESTAMP);
     this.selectedCustomFieldType = CustomFieldType.STRING;
+    this.standardFields = standardFields();
   }
   
   public void preRender(TaskDashboardWidget widget) {
@@ -61,6 +65,7 @@ public class ColumnManagementBean {
     for (DashboardStandardTaskColumn col : DashboardStandardTaskColumn.values()) {
       standardFields.add(col.getField());
     }
+    standardFields.sort(StringUtils::compare);
     return standardFields;
   }
   
@@ -74,14 +79,16 @@ public class ColumnManagementBean {
       columnModel.setPattern(numberFieldPattern);
     }
     this.columnsBeforeSave.add(columnModel);
+    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "The " + columnModel.getField() + " field is added", null);
+    FacesContext.getCurrentInstance().addMessage("field-msg", msg);
   }
   
   public void fetchFields() {
     if (this.selectedFieldType == DashboardColumnType.STANDARD) {
-      this.fields = standardFields();
+      this.fields = this.standardFields;
     } else {
       List<Result> customFieldNames = ICustomFieldNames.tasks().type(selectedCustomFieldType).executor().results();
-      this.fields = customFieldNames.stream().filter(this::doesNotExist).map(Result::name).collect(Collectors.toList());
+      this.fields = customFieldNames.stream().filter(this::doesNotExist).map(Result::name).sorted(StringUtils::compareIgnoreCase).collect(Collectors.toList());
     }
   }
   

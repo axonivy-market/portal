@@ -90,7 +90,9 @@ public class DashboardBean implements Serializable {
           dashboards.set(dashboards.indexOf(d), d);
         }
       }
-      selectedDashboard = dashboards.get(0);
+      if (CollectionUtils.isNotEmpty(dashboards)) {
+        selectedDashboard = dashboards.get(0);
+      }
       buildWidgetModels();
     } catch (IOException e) {
       Ivy.log().error(e);
@@ -144,7 +146,20 @@ public class DashboardBean implements Serializable {
     ResourceLoader loader = new ResourceLoader(portalStyleLib.getProcessModelVersion());
     Optional<Path> path = loader.getWidgetConfiguration();
     String read = String.join("\n", Files.readAllLines(path.get()));
-    return new ArrayList<>(Arrays.asList(mapper.readValue(read, Dashboard[].class)));
+    List<Dashboard> dashboards = new ArrayList<>(Arrays.asList(mapper.readValue(read, Dashboard[].class)));
+    for (int i = 0; i < dashboards.size(); i++) {
+      boolean canRead = false;
+      for (String permission : dashboards.get(i).getPermissions()) {
+        canRead = StringUtils.startsWith(permission, "#") ? StringUtils.equals(Ivy.session().getSessionUser().getMemberName(), permission) : PermissionUtils.doesSessionUserHaveRole(permission);
+        if (canRead) {
+          break;
+        }
+      }
+      if (!canRead) {
+        dashboards.remove(i);
+      }
+    }
+    return dashboards;
   }
   
   public List<Dashboard> getDashboards() {

@@ -31,7 +31,7 @@ public class ResourceLoader {
   }
   
   public Optional<Path> getWidgetConfiguration() {
-    return Optional.ofNullable(pmv.getProject().getFile("resources/widget.json")).map(IFile::getLocationURI)
+    return Optional.ofNullable(pmv.getProject().getFile("resources/dashboard.json")).map(IFile::getLocationURI)
         .map(Paths::get).filter(Files::exists);
   }
 

@@ -134,6 +134,12 @@ public class PermissionUtils {
   public static boolean isSessionUserHasAdminRole() {
     return Ivy.session().hasRole(Ivy.request().getApplication().getSecurityContext().findRole(ADMIN_ROLE), false);
   }
+  
+  public static boolean doesSessionUserHaveRole(String roleName) {
+    IRole role = Ivy.request().getApplication().getSecurityContext().findRole(roleName);
+    return role != null ? Ivy.session().hasRole(role, false) : false;
+    
+  }
 
   /**
    * Check if current user has portal permission
@@ -242,4 +248,5 @@ public class PermissionUtils {
   public static boolean checkReadAllWorkflowEventPermission() {
     return Ivy.session().hasPermission(getSecurityDescriptor(), IPermission.WORKFLOW_EVENT_READ_ALL);
   }
+  
 }
