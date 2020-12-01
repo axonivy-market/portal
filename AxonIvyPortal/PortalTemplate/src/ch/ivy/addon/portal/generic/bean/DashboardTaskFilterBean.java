@@ -3,6 +3,7 @@ package ch.ivy.addon.portal.generic.bean;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
@@ -24,7 +25,7 @@ import ch.ivyteam.ivy.workflow.WorkflowPriority;
 
 @ManagedBean
 @ViewScoped
-public class TaskWidgetConfigurationBean {
+public class DashboardTaskFilterBean {
   private List<TaskState> states;
   private List<WorkflowPriority> priorities;
   private UserDTO selectedUser;
@@ -35,7 +36,7 @@ public class TaskWidgetConfigurationBean {
   
   @PostConstruct
   public void init() {
-    this.states = Arrays.asList(TaskState.values());
+    this.states = Arrays.asList(TaskState.values()).stream().sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).collect(Collectors.toList());
     this.priorities = Arrays.asList(WorkflowPriority.values());
     this.responsibles = new ArrayList<>();
   }
@@ -51,7 +52,9 @@ public class TaskWidgetConfigurationBean {
 
   public void setCategoryNodes(CheckboxTreeNode[] categoryNodes) {
     this.categoryNodes = categoryNodes;
-    this.widget.setCategories(CategoryUtils.getCategoryPaths(categoryNodes));
+    if (this.widget != null) {
+      this.widget.setCategories(CategoryUtils.getCategoryPaths(categoryNodes));
+    }
   }
   
   private void buildCategoryTree() {

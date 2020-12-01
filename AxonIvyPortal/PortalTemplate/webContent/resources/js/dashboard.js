@@ -29,3 +29,8 @@ function loadGrid() {
     });
   });
 }
+
+function toggleFilterSidebar(element) {
+  $(element).closest('.widget__header').siblings('.widget__content').children('.widget__filter-sidebar').toggle('slide', {direction: 'right'});
+  $(element).closest('.widget__header').siblings('.widget__content').children('.widget__filter-sidebar-mask').toggle();
+}
