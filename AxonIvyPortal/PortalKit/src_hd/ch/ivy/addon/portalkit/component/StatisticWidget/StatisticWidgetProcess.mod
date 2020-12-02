@@ -247,7 +247,7 @@ Cs0 f24 @|CallSubIcon #fIcon
 Cs0 f26 actionTable 'out=in;
 ' #txt
 Cs0 f26 actionCode 'in.statisticChartList.addAll(in.defaultCharts);
-Thread.sleep(1000);' #txt
+' #txt
 Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
