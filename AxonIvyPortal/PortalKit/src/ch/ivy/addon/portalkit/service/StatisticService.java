@@ -83,7 +83,6 @@ import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
@@ -1478,37 +1477,33 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     return first.stream().allMatch(s -> second.contains(s));
   }
 
-  public List<StatisticChart> addListByDistinctCharts(List<StatisticChart> targetList, List<StatisticChart> newList) {
-    if (CollectionUtils.isEmpty(newList)) {
-      return targetList;
-}
-
-    if (CollectionUtils.isEmpty(targetList)) {
-      return new ArrayList<>(newList);
+  public List<StatisticChart> updateExistedChartsWithNewCharts(List<StatisticChart> existedCharts, List<StatisticChart> newCharts) {
+    if (CollectionUtils.isEmpty(newCharts)) {
+      return existedCharts;
+    }
+    if (CollectionUtils.isEmpty(existedCharts)) {
+      return new ArrayList<>(newCharts);
     }
 
-    List<DisplayName> distinctChartNameList = Stream.of(targetList, newList).flatMap(List::stream)
-        .map(StatisticChart::getNames).flatMap(List::stream).distinct().collect(Collectors.toList());
+    List<StatisticChart> obsoletedCharts = filterExistedChartsByNewCharts(existedCharts, newCharts);
+    existedCharts.removeAll(obsoletedCharts);
+    existedCharts.addAll(newCharts);
 
-    List<StatisticChart> distinctChart = new ArrayList<StatisticChart>(targetList);
-    if (CollectionUtils.isNotEmpty(distinctChartNameList)) {
-      for(StatisticChart newChart : newList) {
-        if (newChart.getNames().stream()
-            .filter(name -> distinctChartNameList.stream().filter(distinctName -> equalsDisplayName(name.getValue(), name.getLocale().toLanguageTag(), distinctName)).findFirst().isPresent())
-            .findFirst().isPresent()) {
-          continue;
-        }
-        distinctChart.add(newChart);
+    return existedCharts;
+  }
+
+  private List<StatisticChart> filterExistedChartsByNewCharts(List<StatisticChart> targetList, List<StatisticChart> newCharts) {
+    List<StatisticChart> obsoletedCharts = new ArrayList<>();
+    for (StatisticChart newChart : newCharts) {
+      if (newChart.getId() == null) {
+        continue;
       }
-    } else {
-      distinctChart.addAll(newList);
+      targetList.forEach(existedChart -> {
+        if (existedChart.getId().equals(newChart.getId())) {
+          obsoletedCharts.add(existedChart);
+        }
+      });
     }
-
-    if (CollectionUtils.isEqualCollection(targetList, distinctChart)) {
-      distinctChart.addAll(newList);
-    }
-
-    return distinctChart;
-
+    return obsoletedCharts;
   }
 }

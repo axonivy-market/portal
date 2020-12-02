@@ -17,17 +17,11 @@ Ss0 @TextInP .responsibility .responsibility #zField
 Ss0 @UdInit f11 '' #zField
 Ss0 @UdProcessEnd f14 '' #zField
 Ss0 @UdProcessEnd f2 '' #zField
-Ss0 @UdMethod f13 '' #zField
-Ss0 @UdMethod f15 '' #zField
 Ss0 @UdMethod f16 '' #zField
 Ss0 @UdMethod f17 '' #zField
 Ss0 @UdProcessEnd f18 '' #zField
 Ss0 @GridStep f19 '' #zField
 Ss0 @PushWFArc f20 '' #zField
-Ss0 @PushWFArc f21 '' #zField
-Ss0 @PushWFArc f22 '' #zField
-Ss0 @PushWFArc f23 '' #zField
-Ss0 @PushWFArc f24 '' #zField
 Ss0 @UdMethod f25 '' #zField
 Ss0 @GridStep f26 '' #zField
 Ss0 @PushWFArc f27 '' #zField
@@ -91,6 +85,12 @@ Ss0 @PushWFArc f54 '' #zField
 Ss0 @PushWFArc f56 '' #zField
 Ss0 @PushWFArc f57 '' #zField
 Ss0 @PushWFArc f12 '' #zField
+Ss0 @GridStep f13 '' #zField
+Ss0 @PushWFArc f15 '' #zField
+Ss0 @PushWFArc f21 '' #zField
+Ss0 @GridStep f22 '' #zField
+Ss0 @PushWFArc f23 '' #zField
+Ss0 @PushWFArc f24 '' #zField
 >Proto Ss0 Ss0 StatisticDashboardWidgetProcess #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
@@ -104,11 +104,13 @@ Ct0 @PushTrueWFOutG-01 g2 '' #zField
 Ct0 @PushWFArc f1 '' #zField
 Ct0 @PushWFArc f2 '' #zField
 Ct0 @Alternative f0 '' #zField
-Ct0 @PushWFArc f3 '' #zField
-Ct0 @PushWFArc f4 '' #zField
 Ct0 @Alternative f5 '' #zField
 Ct0 @PushWFArc f6 '' #zField
 Ct0 @PushWFArc f7 '' #zField
+Ct0 @GridStep f9 '' #zField
+Ct0 @PushWFArc f10 '' #zField
+Ct0 @PushWFArc f3 '' #zField
+Ct0 @PushWFArc f11 '' #zField
 Ct0 @PushWFArc f8 '' #zField
 >Proto Ct0 Ct0 Component #zField
 Ss0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -142,58 +144,11 @@ Ss0 f14 275 51 26 26 0 12 #rect
 Ss0 f14 @|UdProcessEndIcon #fIcon
 Ss0 f2 1395 275 26 26 0 12 #rect
 Ss0 f2 @|UdProcessEndIcon #fIcon
-Ss0 f13 guid 16052B0A98BF3B09 #txt
-Ss0 f13 method moveUp(ch.ivy.addon.portalkit.statistics.StatisticChart) #txt
-Ss0 f13 inParameterDecl '<ch.ivy.addon.portalkit.statistics.StatisticChart statisticChart> param;' #txt
-Ss0 f13 inParameterMapAction 'out.selectedStatisticChart=param.statisticChart;
-' #txt
-Ss0 f13 inActionCode 'import java.util.Collections;
-
-int index = out.statisticChartList.indexOf(out.selectedStatisticChart);
-Collections.swap(out.statisticChartList, index, index - 2);' #txt
-Ss0 f13 outParameterDecl '<> result;' #txt
-Ss0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>moveUp(StatisticChart)</name>
-        <nameStyle>22,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f13 115 659 26 26 -63 15 #rect
-Ss0 f13 @|UdMethodIcon #fIcon
-Ss0 f15 guid 16052B0AD987D1FF #txt
-Ss0 f15 method moveDown(ch.ivy.addon.portalkit.statistics.StatisticChart) #txt
-Ss0 f15 inParameterDecl '<ch.ivy.addon.portalkit.statistics.StatisticChart statisticChart> param;' #txt
-Ss0 f15 inParameterMapAction 'out.selectedStatisticChart=param.statisticChart;
-' #txt
-Ss0 f15 inActionCode 'import java.util.Collections;
-
-int index = out.statisticChartList.indexOf(out.selectedStatisticChart);
-Collections.swap(out.statisticChartList, index, index + 2);
-' #txt
-Ss0 f15 outParameterDecl '<> result;' #txt
-Ss0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>moveDown(StatisticChart)</name>
-        <nameStyle>24,5,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Ss0 f15 115 755 26 26 -71 15 #rect
-Ss0 f15 @|UdMethodIcon #fIcon
 Ss0 f16 guid 16052B0B212D3060 #txt
 Ss0 f16 method moveLeft(ch.ivy.addon.portalkit.statistics.StatisticChart) #txt
 Ss0 f16 inParameterDecl '<ch.ivy.addon.portalkit.statistics.StatisticChart statisticChart> param;' #txt
 Ss0 f16 inParameterMapAction 'out.selectedStatisticChart=param.statisticChart;
 ' #txt
-Ss0 f16 inActionCode 'import java.util.Collections;
-
-int index = out.statisticChartList.indexOf(out.selectedStatisticChart);
-Collections.swap(out.statisticChartList, index, index -1);' #txt
 Ss0 f16 outParameterDecl '<> result;' #txt
 Ss0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -204,17 +159,13 @@ Ss0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f16 115 851 26 26 -65 15 #rect
+Ss0 f16 691 659 26 26 -65 15 #rect
 Ss0 f16 @|UdMethodIcon #fIcon
 Ss0 f17 guid 16052B0B70AD24B1 #txt
 Ss0 f17 method moveRight(ch.ivy.addon.portalkit.statistics.StatisticChart) #txt
 Ss0 f17 inParameterDecl '<ch.ivy.addon.portalkit.statistics.StatisticChart statisticChart> param;' #txt
 Ss0 f17 inParameterMapAction 'out.selectedStatisticChart=param.statisticChart;
 ' #txt
-Ss0 f17 inActionCode 'import java.util.Collections;
-
-int index = out.statisticChartList.indexOf(out.selectedStatisticChart);
-Collections.swap(out.statisticChartList, index, index + 1);' #txt
 Ss0 f17 outParameterDecl '<> result;' #txt
 Ss0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -225,9 +176,9 @@ Ss0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f17 115 947 26 26 -70 15 #rect
+Ss0 f17 691 755 26 26 -70 15 #rect
 Ss0 f17 @|UdMethodIcon #fIcon
-Ss0 f18 483 659 26 26 0 12 #rect
+Ss0 f18 1123 659 26 26 0 12 #rect
 Ss0 f18 @|UdProcessEndIcon #fIcon
 Ss0 f19 actionTable 'out=in;
 ' #txt
@@ -237,8 +188,11 @@ import ch.ivy.addon.portalkit.statistics.StatisticChart;
 StatisticService service = new StatisticService();
 
 for(StatisticChart chart : in.statisticChartList) {
-    chart.setPosition(in.statisticChartList.indexOf(chart));
-    service.save(chart);
+		int newPosition = in.statisticChartList.indexOf(chart);
+		if (chart.position != newPosition) {
+			chart.setPosition(newPosition);
+			service.save(chart);
+		}
 }' #txt
 Ss0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -249,25 +203,10 @@ Ss0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f19 288 650 128 44 -61 -8 #rect
+Ss0 f19 928 650 128 44 -61 -8 #rect
 Ss0 f19 @|StepIcon #fIcon
 Ss0 f20 expr out #txt
-Ss0 f20 416 672 483 672 #arcP
-Ss0 f21 expr out #txt
-Ss0 f21 141 672 288 672 #arcP
-Ss0 f21 0 0.8266142598914986 0 0 #arcLabel
-Ss0 f22 expr out #txt
-Ss0 f22 141 768 352 694 #arcP
-Ss0 f22 1 352 768 #addKink
-Ss0 f22 0 0.9814183125561957 0 0 #arcLabel
-Ss0 f23 expr out #txt
-Ss0 f23 141 864 352 694 #arcP
-Ss0 f23 1 352 864 #addKink
-Ss0 f23 0 0.6753694528085658 0 0 #arcLabel
-Ss0 f24 expr out #txt
-Ss0 f24 141 960 352 694 #arcP
-Ss0 f24 1 352 960 #addKink
-Ss0 f24 0 0.7583859937504577 0 0 #arcLabel
+Ss0 f20 1056 672 1123 672 #arcP
 Ss0 f25 guid 16052B8CCBF953C6 #txt
 Ss0 f25 method deleteChart() #txt
 Ss0 f25 inParameterDecl '<> param;' #txt
@@ -281,7 +220,7 @@ Ss0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f25 123 1011 26 26 -72 15 #rect
+Ss0 f25 115 659 26 26 -72 15 #rect
 Ss0 f25 @|UdMethodIcon #fIcon
 Ss0 f26 actionTable 'out=in;
 ' #txt
@@ -306,18 +245,17 @@ Ss0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f26 296 1002 112 44 -33 -8 #rect
+Ss0 f26 256 650 112 44 -33 -8 #rect
 Ss0 f26 @|StepIcon #fIcon
 Ss0 f27 expr out #txt
-Ss0 f27 149 1024 296 1024 #arcP
-Ss0 f28 483 1011 26 26 0 12 #rect
+Ss0 f27 141 672 256 672 #arcP
+Ss0 f28 475 659 26 26 0 12 #rect
 Ss0 f28 @|UdProcessEndIcon #fIcon
 Ss0 f29 expr out #txt
-Ss0 f29 408 1024 483 1024 #arcP
+Ss0 f29 368 672 475 672 #arcP
 Ss0 f30 actionTable 'out=in;
 ' #txt
 Ss0 f30 actionCode 'import java.util.ArrayList;
-import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
 StatisticService service = new StatisticService();
@@ -443,12 +381,12 @@ Ss0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ss0 f32 123 1107 26 26 -72 15 #rect
+Ss0 f32 115 755 26 26 -72 15 #rect
 Ss0 f32 @|UdMethodIcon #fIcon
-Ss0 f33 483 1107 26 26 0 12 #rect
+Ss0 f33 475 755 26 26 0 12 #rect
 Ss0 f33 @|UdProcessEndIcon #fIcon
 Ss0 f34 expr out #txt
-Ss0 f34 149 1120 483 1120 #arcP
+Ss0 f34 141 768 475 768 #arcP
 Ss0 f39 216 256 32 32 0 16 #rect
 Ss0 f39 @|AlternativeIcon #fIcon
 Ss0 f37 expr in #txt
@@ -882,6 +820,52 @@ Ss0 f57 1024 288 1136 288 #arcP
 Ss0 f12 1264 448 1408 301 #arcP
 Ss0 f12 1 1408 448 #addKink
 Ss0 f12 0 0.6951177187602995 0 0 #arcLabel
+Ss0 f13 actionTable 'out=in;
+' #txt
+Ss0 f13 actionCode 'import java.util.Collections;
+
+int currentIndex = out.statisticChartList.indexOf(out.selectedStatisticChart);
+if (currentIndex > 0) {
+	Collections.swap(out.statisticChartList, currentIndex, currentIndex - 1);
+}
+' #txt
+Ss0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Move left</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f13 776 650 112 44 -23 -8 #rect
+Ss0 f13 @|StepIcon #fIcon
+Ss0 f15 expr out #txt
+Ss0 f15 717 672 776 672 #arcP
+Ss0 f15 0 0.6448097490615718 0 0 #arcLabel
+Ss0 f21 888 672 928 672 #arcP
+Ss0 f21 0 0.6448097490615718 0 0 #arcLabel
+Ss0 f22 actionTable 'out=in;
+' #txt
+Ss0 f22 actionCode 'import java.util.Collections;
+
+int currentIndex = in.statisticChartList.indexOf(in.selectedStatisticChart);
+if (currentIndex < in.statisticChartList.size()) {
+	Collections.swap(in.statisticChartList, currentIndex, currentIndex + 1);
+}' #txt
+Ss0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Move right</name>
+    </language>
+</elementInfo>
+' #txt
+Ss0 f22 776 746 112 44 -27 -8 #rect
+Ss0 f22 @|StepIcon #fIcon
+Ss0 f23 expr out #txt
+Ss0 f23 717 768 776 768 #arcP
+Ss0 f23 0 0.7583859937504577 0 0 #arcLabel
+Ss0 f24 888 768 992 694 #arcP
+Ss0 f24 1 992 768 #addKink
+Ss0 f24 0 0.7583859937504577 0 0 #arcLabel
 >Proto Ss0 .type ch.ivy.addon.portalkit.component.statistic.StatisticDashboardWidget.StatisticDashboardWidgetData #txt
 >Proto Ss0 .processKind HTML_DIALOG #txt
 >Proto Ss0 -8 -8 16 16 16 26 #rect
@@ -911,8 +895,7 @@ import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import java.util.ArrayList;
 
 StatisticService service = new StatisticService();
-in.statisticChartList = service.addListByDistinctCharts(in.statisticChartList, in.defaultCharts);
-
+in.statisticChartList = service.updateExistedChartsWithNewCharts(in.statisticChartList, in.defaultCharts);
 ' #txt
 Ct0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -921,7 +904,7 @@ Ct0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ct0 f73 648 138 112 44 -41 -8 #rect
+Ct0 f73 856 138 112 44 -41 -8 #rect
 Ct0 f73 @|StepIcon #fIcon
 Ct0 f60 processCall 'Functional Processes/DefaultChart:createDefaultChart()' #txt
 Ct0 f60 requestActionDecl '<> param;' #txt
@@ -939,42 +922,56 @@ Ct0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ct0 f60 392 138 112 44 -34 -8 #rect
+Ct0 f60 600 138 112 44 -34 -8 #rect
 Ct0 f60 @|CallSubIcon #fIcon
 Ct0 g0 51 147 26 26 -1 -55 #rect
 Ct0 g0 @|MIGIcon #fIcon
-Ct0 g2 787 147 26 26 0 5 #rect
+Ct0 g2 1107 147 26 26 0 5 #rect
 Ct0 g2 @|MOGIcon #fIcon
 Ct0 f1 77 160 136 160 #arcP
-Ct0 f2 760 160 787 160 #arcP
-Ct0 f0 304 144 32 32 0 16 #rect
+Ct0 f2 968 160 1107 160 #arcP
+Ct0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>has default chart?</name>
+    </language>
+</elementInfo>
+' #txt
+Ct0 f0 464 144 32 32 -40 19 #rect
 Ct0 f0 @|AlternativeIcon #fIcon
-Ct0 f3 248 160 304 160 #arcP
-Ct0 f4 expr in #txt
-Ct0 f4 outCond in.defaultCharts.isEmpty() #txt
-Ct0 f4 336 160 392 160 #arcP
-Ct0 f5 560 144 32 32 0 16 #rect
+Ct0 f5 768 144 32 32 0 16 #rect
 Ct0 f5 @|AlternativeIcon #fIcon
 Ct0 f6 expr out #txt
-Ct0 f6 504 160 560 160 #arcP
-Ct0 f7 592 160 648 160 #arcP
+Ct0 f6 712 160 768 160 #arcP
+Ct0 f7 800 160 856 160 #arcP
+Ct0 f9 actionTable 'out=in;
+' #txt
+Ct0 f9 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
+
+StatisticService service = new StatisticService();
+in.hasDefaultCharts = service.isDefaultChart(in.statisticChartList);' #txt
+Ct0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Check default chart</name>
+    </language>
+</elementInfo>
+' #txt
+Ct0 f9 296 138 112 44 -52 -8 #rect
+Ct0 f9 @|StepIcon #fIcon
+Ct0 f10 248 160 296 160 #arcP
+Ct0 f3 408 160 464 160 #arcP
+Ct0 f11 expr in #txt
+Ct0 f11 outCond in.hasDefaultCharts #txt
+Ct0 f11 480 144 784 144 #arcP
+Ct0 f11 1 480 96 #addKink
+Ct0 f11 2 784 96 #addKink
 Ct0 f8 expr in #txt
-Ct0 f8 320 144 576 144 #arcP
-Ct0 f8 1 320 96 #addKink
-Ct0 f8 2 576 96 #addKink
-Ct0 f8 1 0.4566663876663031 0 0 #arcLabel
+Ct0 f8 496 160 600 160 #arcP
 >Proto Ct0 0 0 32 24 18 0 #rect
 >Proto Ct0 @|BIcon #fIcon
 Ss0 f19 mainOut f20 tail #connect
 Ss0 f20 head f18 mainIn #connect
-Ss0 f13 mainOut f21 tail #connect
-Ss0 f21 head f19 mainIn #connect
-Ss0 f15 mainOut f22 tail #connect
-Ss0 f22 head f19 mainIn #connect
-Ss0 f16 mainOut f23 tail #connect
-Ss0 f23 head f19 mainIn #connect
-Ss0 f17 mainOut f24 tail #connect
-Ss0 f24 head f19 mainIn #connect
 Ss0 f25 mainOut f27 tail #connect
 Ss0 f27 head f26 mainIn #connect
 Ss0 f26 mainOut f29 tail #connect
@@ -1039,18 +1036,28 @@ Ss0 f3 out f57 tail #connect
 Ss0 f57 head f30 mainIn #connect
 Ss0 f49 mainOut f12 tail #connect
 Ss0 f12 head f2 mainIn #connect
+Ss0 f16 mainOut f15 tail #connect
+Ss0 f15 head f13 mainIn #connect
+Ss0 f13 mainOut f21 tail #connect
+Ss0 f21 head f19 mainIn #connect
+Ss0 f17 mainOut f23 tail #connect
+Ss0 f23 head f22 mainIn #connect
+Ss0 f22 mainOut f24 tail #connect
+Ss0 f24 head f19 mainIn #connect
 Ct0 g0 m f1 tail #connect
 Ct0 f1 head f74 mainIn #connect
 Ct0 f73 mainOut f2 tail #connect
 Ct0 f2 head g2 m #connect
-Ct0 f74 mainOut f3 tail #connect
-Ct0 f3 head f0 in #connect
-Ct0 f0 out f4 tail #connect
-Ct0 f4 head f60 mainIn #connect
 Ct0 f60 mainOut f6 tail #connect
 Ct0 f6 head f5 in #connect
 Ct0 f5 out f7 tail #connect
 Ct0 f7 head f73 mainIn #connect
+Ct0 f74 mainOut f10 tail #connect
+Ct0 f10 head f9 mainIn #connect
+Ct0 f9 mainOut f3 tail #connect
+Ct0 f3 head f0 in #connect
+Ct0 f0 out f11 tail #connect
+Ct0 f11 head f5 in #connect
 Ct0 f0 out f8 tail #connect
-Ct0 f8 head f5 in #connect
-Ct0 0 0 832 320 0 #ivRect
+Ct0 f8 head f60 mainIn #connect
+Ct0 0 0 1304 344 0 #ivRect
