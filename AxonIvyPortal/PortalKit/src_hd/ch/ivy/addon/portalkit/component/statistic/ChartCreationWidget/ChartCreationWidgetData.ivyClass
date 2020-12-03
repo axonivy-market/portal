@@ -16,3 +16,7 @@ oldStatisticFilter ch.ivy.addon.portalkit.statistics.StatisticFilter #field
 oldStatisticFilter PERSISTENT #fieldModifier
 customFields java.util.List<String> #field
 customFields PERSISTENT #fieldModifier
+isDefaultApplicationLanguage Boolean #field
+isDefaultApplicationLanguage PERSISTENT #fieldModifier
+language String #field
+language PERSISTENT #fieldModifier
