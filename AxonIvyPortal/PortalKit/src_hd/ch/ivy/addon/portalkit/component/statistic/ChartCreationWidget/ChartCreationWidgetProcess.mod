@@ -49,6 +49,11 @@ Cs0 @GridStep f28 '' #zField
 Cs0 @PushWFArc f29 '' #zField
 Cs0 @PushWFArc f2 '' #zField
 Cs0 @PushWFArc f26 '' #zField
+Cs0 @UdMethod f30 '' #zField
+Cs0 @GridStep f31 '' #zField
+Cs0 @PushWFArc f32 '' #zField
+Cs0 @UdProcessEnd f33 '' #zField
+Cs0 @PushWFArc f34 '' #zField
 >Proto Cs0 Cs0 ChartCreationWidgetProcess #zField
 Cs0 f0 guid 15FFC669CAD8BE32 #txt
 Cs0 f0 method start() #txt
@@ -466,6 +471,41 @@ Cs0 f29 560 64 640 64 #arcP
 Cs0 f2 expr out #txt
 Cs0 f2 752 64 827 64 #arcP
 Cs0 f26 125 64 246 64 #arcP
+Cs0 f30 guid 17626B68E4372FE2 #txt
+Cs0 f30 method isApplicationDefaultEmailLanguage(String) #txt
+Cs0 f30 inParameterDecl '<String language> param;' #txt
+Cs0 f30 inParameterMapAction 'out.language=param.language;
+' #txt
+Cs0 f30 outParameterDecl '<Boolean isDefaultLanguage> result;' #txt
+Cs0 f30 outParameterMapAction 'result.isDefaultLanguage=in.isDefaultApplicationLanguage;
+' #txt
+Cs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>isApplicationDefaultEmailLanguage(String)</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f30 83 1139 26 26 -71 21 #rect
+Cs0 f30 @|UdMethodIcon #fIcon
+Cs0 f31 actionTable 'out=in;
+' #txt
+Cs0 f31 actionCode 'in.isDefaultApplicationLanguage = ivy.wf.getApplication().getDefaultEMailLanguage().getLanguage().equalsIgnoreCase(in.language);
+
+ivy.log.error(in.language + " " + in.isDefaultApplicationLanguage);' #txt
+Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Check language</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f31 248 1130 112 44 -45 -8 #rect
+Cs0 f31 @|StepIcon #fIcon
+Cs0 f32 109 1152 248 1152 #arcP
+Cs0 f33 435 1139 26 26 0 12 #rect
+Cs0 f33 @|UdProcessEndIcon #fIcon
+Cs0 f34 360 1152 435 1152 #arcP
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.statistic.ChartCreationWidget.ChartCreationWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -510,3 +550,7 @@ Cs0 f28 mainOut f2 tail #connect
 Cs0 f2 head f1 mainIn #connect
 Cs0 f0 mainOut f26 tail #connect
 Cs0 f26 head f15 mainIn #connect
+Cs0 f30 mainOut f32 tail #connect
+Cs0 f32 head f31 mainIn #connect
+Cs0 f31 mainOut f34 tail #connect
+Cs0 f34 head f33 mainIn #connect
