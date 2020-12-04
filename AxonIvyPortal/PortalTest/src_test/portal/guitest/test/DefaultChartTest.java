@@ -21,21 +21,17 @@ import portal.guitest.page.StatisticWidgetPage;
 
 public class DefaultChartTest extends BaseTest {
 
-  private static final String CREATE_TESTING_TASK_FOR_CUSTOMIZATION_URL 
-    = "portal-developer-examples/162511D2577DBA88/createTasksForTaskListCustomization.ivp";
-  private static final String DEFAULT_NAME = "Tasks by Priority";
   private static final String DEFAULT_NAME_1 = "My default chart 1";
   private static final String DEFAULT_NAME_2 = "My default chart 2";
   private static final String RESTORE_DEFAULT = "Restore default";
-  
   
   @Override
   @Before
   public void setup() {
     super.setup();
     Sleeper.sleep(2000); // To make Firefox test more stable, make business data updated correctly 
-    redirectToRelativeLink(CREATE_TESTING_TASK_FOR_CUSTOMIZATION_URL);
     login(TestAccount.ADMIN_USER);
+    grantPermissionToCreateChart();
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
   }
 
@@ -46,7 +42,6 @@ public class DefaultChartTest extends BaseTest {
 
   @Test
   public void testCreateDefaultChart() {
-    grantPermissionToCreateChart();
     HomePage home = new HomePage();
     home.waitForStatisticRendered();
 
@@ -56,7 +51,6 @@ public class DefaultChartTest extends BaseTest {
     Set<String> chartNames = statisticWidgetPage.getAllChartNames();
     statisticWidgetPage.findListElementsByCssSelector("div[id$=':chart-name-container'] .chart-name").stream().map(e -> e.getText()).collect(Collectors.toSet());
     System.out.println("All default chart names " + chartNames);
-    assertTrue(chartNames.contains(DEFAULT_NAME));
     assertTrue(chartNames.contains(DEFAULT_NAME_1));
     assertTrue(chartNames.contains(DEFAULT_NAME_2));
     assertEquals(RESTORE_DEFAULT, statisticWidgetPage.getRestoreDefaultButtonName());
@@ -64,7 +58,6 @@ public class DefaultChartTest extends BaseTest {
   
   @Test
   public void testRestoreDefaultChart() {
-    grantPermissionToCreateChart();
     MainMenuPage mainMenuPage = new MainMenuPage();
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.waitForElementDisplayed(By.id("statistics-widget:widget-container"), true);

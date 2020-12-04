@@ -103,15 +103,8 @@ Ct0 @PushTrueWFInG-01 g0 '' #zField
 Ct0 @PushTrueWFOutG-01 g2 '' #zField
 Ct0 @PushWFArc f1 '' #zField
 Ct0 @PushWFArc f2 '' #zField
-Ct0 @Alternative f0 '' #zField
-Ct0 @Alternative f5 '' #zField
-Ct0 @PushWFArc f6 '' #zField
-Ct0 @PushWFArc f7 '' #zField
-Ct0 @GridStep f9 '' #zField
-Ct0 @PushWFArc f10 '' #zField
+Ct0 @PushWFArc f0 '' #zField
 Ct0 @PushWFArc f3 '' #zField
-Ct0 @PushWFArc f11 '' #zField
-Ct0 @PushWFArc f8 '' #zField
 >Proto Ct0 Ct0 Component #zField
 Ss0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -904,7 +897,7 @@ Ct0 f73 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ct0 f73 856 138 112 44 -41 -8 #rect
+Ct0 f73 512 138 112 44 -41 -8 #rect
 Ct0 f73 @|StepIcon #fIcon
 Ct0 f60 processCall 'Functional Processes/DefaultChart:createDefaultChart()' #txt
 Ct0 f60 requestActionDecl '<> param;' #txt
@@ -922,52 +915,16 @@ Ct0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ct0 f60 600 138 112 44 -34 -8 #rect
+Ct0 f60 320 138 112 44 -34 -8 #rect
 Ct0 f60 @|CallSubIcon #fIcon
 Ct0 g0 51 147 26 26 -1 -55 #rect
 Ct0 g0 @|MIGIcon #fIcon
-Ct0 g2 1107 147 26 26 0 5 #rect
+Ct0 g2 723 147 26 26 0 5 #rect
 Ct0 g2 @|MOGIcon #fIcon
 Ct0 f1 77 160 136 160 #arcP
-Ct0 f2 968 160 1107 160 #arcP
-Ct0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>has default chart?</name>
-    </language>
-</elementInfo>
-' #txt
-Ct0 f0 464 144 32 32 -40 19 #rect
-Ct0 f0 @|AlternativeIcon #fIcon
-Ct0 f5 768 144 32 32 0 16 #rect
-Ct0 f5 @|AlternativeIcon #fIcon
-Ct0 f6 expr out #txt
-Ct0 f6 712 160 768 160 #arcP
-Ct0 f7 800 160 856 160 #arcP
-Ct0 f9 actionTable 'out=in;
-' #txt
-Ct0 f9 actionCode 'import ch.ivy.addon.portalkit.service.StatisticService;
-
-StatisticService service = new StatisticService();
-in.hasDefaultCharts = service.isDefaultChart(in.statisticChartList);' #txt
-Ct0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Check default chart</name>
-    </language>
-</elementInfo>
-' #txt
-Ct0 f9 296 138 112 44 -52 -8 #rect
-Ct0 f9 @|StepIcon #fIcon
-Ct0 f10 248 160 296 160 #arcP
-Ct0 f3 408 160 464 160 #arcP
-Ct0 f11 expr in #txt
-Ct0 f11 outCond in.hasDefaultCharts #txt
-Ct0 f11 480 144 784 144 #arcP
-Ct0 f11 1 480 96 #addKink
-Ct0 f11 2 784 96 #addKink
-Ct0 f8 expr in #txt
-Ct0 f8 496 160 600 160 #arcP
+Ct0 f2 624 160 723 160 #arcP
+Ct0 f0 248 160 320 160 #arcP
+Ct0 f3 432 160 512 160 #arcP
 >Proto Ct0 0 0 32 24 18 0 #rect
 >Proto Ct0 @|BIcon #fIcon
 Ss0 f19 mainOut f20 tail #connect
@@ -1048,16 +1005,8 @@ Ct0 g0 m f1 tail #connect
 Ct0 f1 head f74 mainIn #connect
 Ct0 f73 mainOut f2 tail #connect
 Ct0 f2 head g2 m #connect
-Ct0 f60 mainOut f6 tail #connect
-Ct0 f6 head f5 in #connect
-Ct0 f5 out f7 tail #connect
-Ct0 f7 head f73 mainIn #connect
-Ct0 f74 mainOut f10 tail #connect
-Ct0 f10 head f9 mainIn #connect
-Ct0 f9 mainOut f3 tail #connect
-Ct0 f3 head f0 in #connect
-Ct0 f0 out f11 tail #connect
-Ct0 f11 head f5 in #connect
-Ct0 f0 out f8 tail #connect
-Ct0 f8 head f60 mainIn #connect
-Ct0 0 0 1304 344 0 #ivRect
+Ct0 f74 mainOut f0 tail #connect
+Ct0 f0 head f60 mainIn #connect
+Ct0 f60 mainOut f3 tail #connect
+Ct0 f3 head f73 mainIn #connect
+Ct0 0 0 928 328 0 #ivRect
