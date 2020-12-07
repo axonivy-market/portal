@@ -1,14 +1,22 @@
 package ch.ivy.addon.portalkit.persistence.domain;
 
+import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
+import org.apache.commons.collections4.CollectionUtils;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.util.Locales;
 
 
 public class UserProcess extends BusinessEntity {
   private long applicationId = Long.MIN_VALUE;
   private Long userId;
   private String processName;
+  private List<DisplayName> names;
   private String link;
   private String icon;
   private String workflowId;
@@ -61,12 +69,34 @@ public class UserProcess extends BusinessEntity {
     this.applicationId = applicationId;
   }
 
+  /**
+   * Gets the display name of process by current active locale
+   * @return process name
+   */
   public String getProcessName() {
+    if (CollectionUtils.isNotEmpty(this.names)) {
+      return getActiveDisplayName();
+    }
     return processName;
+  }
+
+  private String getActiveDisplayName() {
+    Locale currentLocale = new Locales().getCurrentLocale();
+    return names.stream().filter(displayName -> displayName.getLocale().equals(currentLocale))
+        .map(DisplayName::getValue)
+        .findFirst().orElse(this.processName);
   }
 
   public void setProcessName(String processName) {
     this.processName = processName;
+  }
+
+  public List<DisplayName> getNames() {
+    return names;
+  }
+
+  public void setNames(List<DisplayName> names) {
+    this.names = names;
   }
 
   public String getIcon() {
