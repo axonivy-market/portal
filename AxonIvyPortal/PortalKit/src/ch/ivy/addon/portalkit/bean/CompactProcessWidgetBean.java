@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -15,12 +16,13 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.GuidePool;
 import ch.ivy.addon.portalkit.comparator.UserProcessIndexComparator;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
@@ -30,6 +32,7 @@ import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.UserProcessService;
+import ch.ivy.addon.portalkit.util.Locales;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -46,15 +49,18 @@ private static final long serialVersionUID = -5889375917550618261L;
   
   private UserProcessService userProcessService;
   private UserProcess editingProcess;
+  private String processNameOfCurrentLanguage;
   private Long userId;
   
   private boolean editMode;
   private boolean isUserFavoritesEnabled;
   private boolean isDisplayShowAllProcessesLink;
   private boolean isGuide;
+  private Locale currentLocale;
   
   @PostConstruct
   public void init() {
+    currentLocale = new Locales().getCurrentLocale();
     // used in global search page
     isDisplayShowAllProcessesLink = PermissionUtils.checkAccessFullProcessListPermission();
   }
@@ -109,15 +115,40 @@ private static final long serialVersionUID = -5889375917550618261L;
     }
   }
 
-  public void addNewUserProcess(String clientId) {
+  public void onselectUserProcess() {
+    setProcessNameOfCurrentLanguage(this.editingProcess.getProcessName());
+  }
+
+  public void addNewUserProcess() {
     this.editingProcess = new UserProcess();
-    PrimeFaces.current().resetInputs(clientId + ":add-new-process-dialog");
+    setProcessNameOfCurrentLanguage("");
     initDataForProcessAutoComplete();
   }
   
+  public boolean canAddProcessLanguages() {
+    return StringUtils.isNotBlank(this.editingProcess.getProcessName());
+  }
+
+  public List<DisplayName> getSupportedLanguage(List<String> languages) {
+    List<DisplayName> supportedlanguages = new ArrayList<>();
+    for (String language : languages) {
+      DisplayName displayName = new DisplayName();
+      displayName.setLocale(new Locale(language));
+      displayName.setValue(this.processNameOfCurrentLanguage);
+      supportedlanguages.add(displayName);
+    }
+    return supportedlanguages;
+  }
+
+  public boolean isRequiredLanguage(Locale locale) {
+    return this.currentLocale.equals(locale);
+  }
+  
   private void initDataForProcessAutoComplete() {
-    this.processesToAdd = collectProcesses();
-    sortUserProcessList(processesToAdd);
+    if (CollectionUtils.isEmpty(this.processesToAdd)) {
+      this.processesToAdd = collectProcesses();
+      sortUserProcessList(processesToAdd);
+    }
   }
   
   private List<UserProcess> collectProcesses() {
@@ -197,7 +228,15 @@ private static final long serialVersionUID = -5889375917550618261L;
   public List<UserProcess> getUserProcesses() {
     return userProcesses;
   }
-  
+
+  public String getProcessNameOfCurrentLanguage() {
+    return processNameOfCurrentLanguage;
+  }
+
+  public void setProcessNameOfCurrentLanguage(String processNameOfCurrentLanguage) {
+    this.processNameOfCurrentLanguage = processNameOfCurrentLanguage;
+  }
+
   public void switchEditMode() {
     editMode = !editMode;
     userProcesses.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
