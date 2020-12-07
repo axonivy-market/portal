@@ -1364,7 +1364,7 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 
 /******************END DELEGATE DIALOG********************/
 .new-process-dialog {
-  max-width: 850px;
+  max-width: 800px;
 }
 
 .favorite-process-name {
