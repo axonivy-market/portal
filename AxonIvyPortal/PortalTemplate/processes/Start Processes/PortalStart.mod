@@ -1362,7 +1362,8 @@ Pt0 f108 1112 810 112 44 -45 -8 #rect
 Pt0 f108 @|UserDialogIcon #fIcon
 Pt0 f109 actionTable 'out=in;
 ' #txt
-Pt0 f109 actionCode 'import javax.faces.application.FacesMessage;
+Pt0 f109 actionCode 'import java.util.Calendar;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.util.UserUtils;
@@ -1375,7 +1376,9 @@ IUser user = StringUtils.isNotBlank(in.passwordResetUsername) ? UserUtils.findUs
 if (user != null) {
 	// validate token
   String token = user.getProperty(UserProperty.RESET_PASSWORD_TOKEN);
-	if(StringUtils.isNotBlank(in.passwordResetToken) && in.passwordResetToken.equals(token)) { // TODO token expiry
+	long expiryTime = Long.valueOf(user.getProperty(UserProperty.RESET_PASSWORD_TOKEN_EXPIRY));
+	long currentTime = Calendar.getInstance().getTimeInMillis();
+	if(StringUtils.isNotBlank(in.passwordResetToken) && in.passwordResetToken.equals(token) && currentTime < expiryTime) {
 		in.isValidResetUrl = true;
 	}
 }
