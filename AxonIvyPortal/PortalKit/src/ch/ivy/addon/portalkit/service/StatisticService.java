@@ -1489,7 +1489,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     existedCharts.removeAll(obsoletedCharts);
     existedCharts.addAll(newCharts);
 
-    return existedCharts;
+    return existedCharts.stream().sorted(Comparator.comparingLong(StatisticChart::getPosition)).collect(Collectors.toList());
   }
 
   private List<StatisticChart> filterExistedChartsByNewCharts(List<StatisticChart> targetList, List<StatisticChart> newCharts) {
