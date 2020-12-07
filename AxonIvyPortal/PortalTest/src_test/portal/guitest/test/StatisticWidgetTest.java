@@ -124,7 +124,7 @@ public class StatisticWidgetTest extends BaseTest {
     statisticWidgetPage.createTaskByPriorityChartMultiLanguage();
 
     statisticWidgetPage.backToDashboard();
-    WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='0:chart-name-container'] .chart-name").getText().equals("Task by priority chart English"));
+    WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='1:chart-name-container'] .chart-name").getText().equals("Task by priority chart English"));
 
     UserProfilePage userProfilePage = statisticWidgetPage.openMyProfilePage();
     userProfilePage.selectLanguage(0);
@@ -132,7 +132,7 @@ public class StatisticWidgetTest extends BaseTest {
 
     mainMenuPage = userProfilePage.openMainMenu();
     statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
-    WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='0:chart-name-container'] .chart-name").getText().equals("Task by priority chart German"));
+    WaitHelper.assertTrueWithWait(() -> statisticWidgetPage.findElementByCssSelector("div[id$='1:chart-name-container'] .chart-name").getText().equals("Task by priority chart German"));
   }
 
 }
