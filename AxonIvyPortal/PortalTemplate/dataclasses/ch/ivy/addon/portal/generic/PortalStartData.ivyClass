@@ -23,3 +23,7 @@ keyword 'used in global search process' #fieldComment
 embedInIFrame Boolean #field
 homepage ch.addon.portal.generic.userprofile.homepage.Homepage #field
 homepage 'selected homepage of user' #fieldComment
+passwordResetToken String #field
+passwordResetUsername String #field
+isValidResetUrl Boolean #field
+passwordResetMessage String #field
