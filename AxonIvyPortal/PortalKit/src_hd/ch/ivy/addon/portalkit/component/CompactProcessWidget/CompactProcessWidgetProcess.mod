@@ -23,6 +23,23 @@ Ps0 @GridStep f12 '' #zField
 Ps0 @PushWFArc f9 '' #zField
 Ps0 @PushWFArc f13 '' #zField
 Ps0 @PushWFArc f14 '' #zField
+Ps0 @UdMethod f2 '' #zField
+Ps0 @GridStep f5 '' #zField
+Ps0 @PushWFArc f7 '' #zField
+Ps0 @UdProcessEnd f15 '' #zField
+Ps0 @Alternative f17 '' #zField
+Ps0 @PushWFArc f18 '' #zField
+Ps0 @CallSub f19 '' #zField
+Ps0 @PushWFArc f20 '' #zField
+Ps0 @GridStep f21 '' #zField
+Ps0 @PushWFArc f22 '' #zField
+Ps0 @PushWFArc f16 '' #zField
+Ps0 @PushWFArc f23 '' #zField
+Ps0 @UdMethod f24 '' #zField
+Ps0 @UdProcessEnd f25 '' #zField
+Ps0 @GridStep f27 '' #zField
+Ps0 @PushWFArc f28 '' #zField
+Ps0 @PushWFArc f26 '' #zField
 >Proto Ps0 Ps0 CompactProcessWidgetProcess #zField
 Ps0 f1 guid 167CEF3C0BEA1F15 #txt
 Ps0 f1 method start() #txt
@@ -129,6 +146,127 @@ Ps0 f9 456 192 504 192 #arcP
 Ps0 f13 632 192 667 192 #arcP
 Ps0 f14 expr out #txt
 Ps0 f14 109 192 176 192 #arcP
+Ps0 f2 guid 1762D3ECC0BAE855 #txt
+Ps0 f2 method getSupportLanguageList() #txt
+Ps0 f2 inParameterDecl '<> param;' #txt
+Ps0 f2 outParameterDecl '<> result;' #txt
+Ps0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>getSupportLanguageList()</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f2 83 307 26 26 -65 16 #rect
+Ps0 f2 @|UdMethodIcon #fIcon
+Ps0 f5 actionTable 'out=in;
+' #txt
+Ps0 f5 actionCode 'import ch.ivy.addon.portalkit.bean.CompactProcessWidgetBean;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+
+CompactProcessWidgetBean compactProcessWidgetBean = ManagedBeans.get("compactProcessWidgetBean") as CompactProcessWidgetBean;
+in.canAddLanguages = compactProcessWidgetBean.canAddProcessLanguages();
+if (in.canAddLanguages) {
+	compactProcessWidgetBean.getEditingProcess().setNames(new List());
+}
+' #txt
+Ps0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Can add languages</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f5 184 298 128 44 -54 -8 #rect
+Ps0 f5 @|StepIcon #fIcon
+Ps0 f7 109 320 184 320 #arcP
+Ps0 f15 827 307 26 26 0 12 #rect
+Ps0 f15 @|UdProcessEndIcon #fIcon
+Ps0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>is provided process name?</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f17 368 304 32 32 -70 -40 #rect
+Ps0 f17 @|AlternativeIcon #fIcon
+Ps0 f18 312 320 368 320 #arcP
+Ps0 f19 processCall 'Ivy Data Processes/LanguageService:loadSupportedLanguages()' #txt
+Ps0 f19 requestActionDecl '<> param;' #txt
+Ps0 f19 responseMappingAction 'out=in;
+out.languages=result.supportedLanguge.supportedLanguages;
+' #txt
+Ps0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>LanguageService</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f19 456 298 112 44 -48 -8 #rect
+Ps0 f19 @|CallSubIcon #fIcon
+Ps0 f20 expr in #txt
+Ps0 f20 outCond 'in.#canAddLanguages' #txt
+Ps0 f20 400 320 456 320 #arcP
+Ps0 f21 actionTable 'out=in;
+' #txt
+Ps0 f21 actionCode 'import ch.ivy.addon.portalkit.bean.CompactProcessWidgetBean;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+
+CompactProcessWidgetBean compactProcessWidgetBean = ManagedBeans.get("compactProcessWidgetBean") as CompactProcessWidgetBean;
+in.supportedLanguages = compactProcessWidgetBean.getSupportedLanguage(in.languages);
+' #txt
+Ps0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Get supported languages</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f21 640 298 144 44 -69 -8 #rect
+Ps0 f21 @|StepIcon #fIcon
+Ps0 f22 568 320 640 320 #arcP
+Ps0 f16 784 320 827 320 #arcP
+Ps0 f23 expr in #txt
+Ps0 f23 384 336 840 333 #arcP
+Ps0 f23 1 384 368 #addKink
+Ps0 f23 2 840 368 #addKink
+Ps0 f23 1 0.5036057692307693 0 0 #arcLabel
+Ps0 f24 guid 1762D45E9B96E592 #txt
+Ps0 f24 method processLanguage() #txt
+Ps0 f24 inParameterDecl '<> param;' #txt
+Ps0 f24 outParameterDecl '<> result;' #txt
+Ps0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>processLanguage()</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f24 83 435 26 26 -72 20 #rect
+Ps0 f24 @|UdMethodIcon #fIcon
+Ps0 f25 419 435 26 26 0 12 #rect
+Ps0 f25 @|UdProcessEndIcon #fIcon
+Ps0 f27 actionTable 'out=in;
+' #txt
+Ps0 f27 actionCode 'import ch.ivy.addon.portalkit.bean.CompactProcessWidgetBean;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+
+CompactProcessWidgetBean compactProcessWidgetBean = ManagedBeans.get("compactProcessWidgetBean") as CompactProcessWidgetBean;
+compactProcessWidgetBean.getEditingProcess().setNames(in.supportedLanguages);
+' #txt
+Ps0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Update support language</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f27 184 426 144 44 -69 -8 #rect
+Ps0 f27 @|StepIcon #fIcon
+Ps0 f28 109 448 184 448 #arcP
+Ps0 f26 328 448 419 448 #arcP
 >Proto Ps0 .type ch.ivy.addon.portalkit.component.CompactProcessWidget.CompactProcessWidgetData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
@@ -143,3 +281,19 @@ Ps0 f12 mainOut f13 tail #connect
 Ps0 f13 head f8 mainIn #connect
 Ps0 f0 mainOut f14 tail #connect
 Ps0 f14 head f6 mainIn #connect
+Ps0 f2 mainOut f7 tail #connect
+Ps0 f7 head f5 mainIn #connect
+Ps0 f5 mainOut f18 tail #connect
+Ps0 f18 head f17 in #connect
+Ps0 f17 out f20 tail #connect
+Ps0 f20 head f19 mainIn #connect
+Ps0 f19 mainOut f22 tail #connect
+Ps0 f22 head f21 mainIn #connect
+Ps0 f21 mainOut f16 tail #connect
+Ps0 f16 head f15 mainIn #connect
+Ps0 f17 out f23 tail #connect
+Ps0 f23 head f15 mainIn #connect
+Ps0 f24 mainOut f28 tail #connect
+Ps0 f28 head f27 mainIn #connect
+Ps0 f27 mainOut f26 tail #connect
+Ps0 f26 head f25 mainIn #connect
