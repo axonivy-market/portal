@@ -56,7 +56,8 @@ Ps0 f4 @|UdExitEndIcon #fIcon
 Ps0 f5 109 160 211 160 #arcP
 Ps0 f16 actionTable 'out=in;
 ' #txt
-Ps0 f16 actionCode 'import ch.ivy.addon.portalkit.constant.UserProperty;
+Ps0 f16 actionCode 'import java.util.Calendar;
+import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivyteam.ivy.server.ServerFactory;
 import java.util.Arrays;
 import javax.faces.application.FacesMessage;
@@ -73,13 +74,16 @@ try {
 	if (user != null) {
 		// validate token
 	  String token = user.getProperty(UserProperty.RESET_PASSWORD_TOKEN);
-		if(StringUtils.isNotBlank(in.token) && in.token.equals(token)) { // TODO token expiry
+		long expiryTime = Long.valueOf(user.getProperty(UserProperty.RESET_PASSWORD_TOKEN_EXPIRY));
+		long currentTime = Calendar.getInstance().getTimeInMillis();
+		if(StringUtils.isNotBlank(in.token) && in.token.equals(token) && currentTime < expiryTime) {
 			// validate new password
 			if(StringUtils.isNotBlank(in.newPassword)) {
 				if(in.newPassword.equals(in.passwordConfirmation)) {
 					// update user password
 					user.setPassword(in.newPassword);
 					user.setProperty(UserProperty.RESET_PASSWORD_TOKEN, "");
+					user.setProperty(UserProperty.RESET_PASSWORD_TOKEN_EXPIRY, "");
 					in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/passwordResetSuccess");
 					in.resetSuccess = true;
 				} else {
