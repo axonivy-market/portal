@@ -139,6 +139,14 @@ Pt0 @EndTask f100 '' #zField
 Pt0 @UserDialog f101 '' #zField
 Pt0 @PushWFArc f102 '' #zField
 Pt0 @PushWFArc f104 '' #zField
+Pt0 @StartRequest f106 '' #zField
+Pt0 @StartRequest f107 '' #zField
+Pt0 @UserDialog f108 '' #zField
+Pt0 @GridStep f109 '' #zField
+Pt0 @UserDialog f110 '' #zField
+Pt0 @PushWFArc f111 '' #zField
+Pt0 @PushWFArc f112 '' #zField
+Pt0 @PushWFArc f113 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk0 @TextInP .type .type #zField
 Bk0 @TextInP .processKind .processKind #zField
@@ -1301,6 +1309,113 @@ Pt0 f101 160 2186 128 44 -60 -8 #rect
 Pt0 f101 @|UserDialogIcon #fIcon
 Pt0 f102 288 2208 321 2208 #arcP
 Pt0 f104 111 2208 160 2208 #arcP
+Pt0 f106 outLink PasswordResetPage.ivp #txt
+Pt0 f106 inParamDecl '<String token,String username> param;' #txt
+Pt0 f106 inParamTable 'out.passwordResetToken=param.token;
+out.passwordResetUsername=param.username;
+' #txt
+Pt0 f106 requestEnabled true #txt
+Pt0 f106 triggerEnabled false #txt
+Pt0 f106 callSignature PasswordResetPage(String,String) #txt
+Pt0 f106 caseData businessCase.attach=true #txt
+Pt0 f106 showInStartList 0 #txt
+Pt0 f106 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>PasswordResetPage.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f106 @C|.responsibility Everybody #txt
+Pt0 f106 785 913 30 30 -21 17 #rect
+Pt0 f106 @|StartRequestIcon #fIcon
+Pt0 f107 outLink ForgotPasswordPage.ivp #txt
+Pt0 f107 inParamDecl '<> param;' #txt
+Pt0 f107 requestEnabled true #txt
+Pt0 f107 triggerEnabled false #txt
+Pt0 f107 callSignature ForgotPasswordPage() #txt
+Pt0 f107 caseData businessCase.attach=true #txt
+Pt0 f107 showInStartList 0 #txt
+Pt0 f107 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ForgotPasswordPage.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f107 @C|.responsibility Everybody #txt
+Pt0 f107 785 817 30 30 -21 17 #rect
+Pt0 f107 @|StartRequestIcon #fIcon
+Pt0 f108 dialogId ch.ivy.addon.portal.generic.ForgotPassword #txt
+Pt0 f108 startMethod start() #txt
+Pt0 f108 requestActionDecl '<> param;' #txt
+Pt0 f108 responseMappingAction 'out=in;
+' #txt
+Pt0 f108 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ForgotPassword</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f108 1112 810 112 44 -45 -8 #rect
+Pt0 f108 @|UserDialogIcon #fIcon
+Pt0 f109 actionTable 'out=in;
+' #txt
+Pt0 f109 actionCode 'import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.constant.UserProperty;
+import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.environment.Ivy;
+import org.apache.commons.lang.StringUtils;
+import ch.ivyteam.ivy.security.IUser;
+in.isValidResetUrl = false;
+// find user by username
+IUser user = StringUtils.isNotBlank(in.passwordResetUsername) ? UserUtils.findUserByUsername(in.passwordResetUsername) : null;
+if (user != null) {
+	// validate token
+  String token = user.getProperty(UserProperty.RESET_PASSWORD_TOKEN);
+	if(StringUtils.isNotBlank(in.passwordResetToken) && in.passwordResetToken.equals(token)) { // TODO token expiry
+		in.isValidResetUrl = true;
+	}
+}
+if (!in.isValidResetUrl) {
+	in.passwordResetMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/invalidResetUrl");
+} else {
+	in.passwordResetMessage = "";
+}' #txt
+Pt0 f109 security system #txt
+Pt0 f109 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>load url</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f109 904 906 112 44 -20 -8 #rect
+Pt0 f109 @|StepIcon #fIcon
+Pt0 f110 dialogId ch.ivy.addon.portal.generic.PasswordReset #txt
+Pt0 f110 startMethod start(String,String,Boolean,String) #txt
+Pt0 f110 requestActionDecl '<String token,String username,Boolean isValidResetUrl,String message> param;' #txt
+Pt0 f110 requestMappingAction 'param.token=in.passwordResetToken;
+param.username=in.passwordResetUsername;
+param.isValidResetUrl=in.isValidResetUrl;
+param.message=in.passwordResetMessage;
+' #txt
+Pt0 f110 responseMappingAction 'out=in;
+' #txt
+Pt0 f110 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>PasswordReset</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f110 1112 906 112 44 -44 -8 #rect
+Pt0 f110 @|UserDialogIcon #fIcon
+Pt0 f111 1016 928 1112 928 #arcP
+Pt0 f112 815 832 1112 832 #arcP
+Pt0 f113 815 928 904 928 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -2144,6 +2259,12 @@ Pt0 f99 mainOut f104 tail #connect
 Pt0 f104 head f101 mainIn #connect
 Pt0 f101 mainOut f102 tail #connect
 Pt0 f102 head f100 mainIn #connect
+Pt0 f107 mainOut f112 tail #connect
+Pt0 f112 head f108 mainIn #connect
+Pt0 f106 mainOut f113 tail #connect
+Pt0 f113 head f109 mainIn #connect
+Pt0 f109 mainOut f111 tail #connect
+Pt0 f111 head f110 mainIn #connect
 Bk0 f17 mainOut f26 tail #connect
 Bk0 f26 head f23 mainIn #connect
 Bk0 f19 mainOut f39 tail #connect
