@@ -1375,8 +1375,9 @@ in.isValidResetUrl = false;
 IUser user = StringUtils.isNotBlank(in.passwordResetUsername) ? UserUtils.findUserByUsername(in.passwordResetUsername) : null;
 if (user != null) {
 	// validate token
-  String token = user.getProperty(UserProperty.RESET_PASSWORD_TOKEN);
-	long expiryTime = Long.valueOf(user.getProperty(UserProperty.RESET_PASSWORD_TOKEN_EXPIRY));
+	String token = user.getProperty(UserProperty.RESET_PASSWORD_TOKEN);
+	String tokenExpiry = user.getProperty(UserProperty.RESET_PASSWORD_TOKEN_EXPIRY);
+	long expiryTime = StringUtils.isNotBlank(tokenExpiry) ? Long.valueOf(tokenExpiry) : 0;
 	long currentTime = Calendar.getInstance().getTimeInMillis();
 	if(StringUtils.isNotBlank(in.passwordResetToken) && in.passwordResetToken.equals(token) && currentTime < expiryTime) {
 		in.isValidResetUrl = true;
