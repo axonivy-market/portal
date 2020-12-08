@@ -6,21 +6,51 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.primefaces.model.CheckboxTreeNode;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivy.addon.portalkit.util.CategoryUtils;
+import ch.ivy.addon.portalkit.util.TaskTreeUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 
 public class TaskDashboardWidget extends DashboardWidget {
   private static final long serialVersionUID = 3048837559125720787L;
 
   @JsonIgnore
   private DashboardTaskLazyDataModel dataModel;
+  @JsonIgnore
+  private CheckboxTreeNode categoryTree;
+  @JsonIgnore
+  private CheckboxTreeNode[] categoryNodes;
   
   public TaskDashboardWidget() {
     dataModel = new DashboardTaskLazyDataModel();
     setColumns(new ArrayList<>());
+  }
+  
+  public CheckboxTreeNode[] getCategoryNodes() {
+    return categoryNodes;
+  }
+
+  public void setCategoryNodes(CheckboxTreeNode[] categoryNodes) {
+    this.categoryNodes = categoryNodes;
+    setUserFilterCategories(CategoryUtils.getCategoryPaths(categoryNodes));
+  }
+  
+  public CheckboxTreeNode getCategoryTree() {
+    return categoryTree;
+  }
+  
+  public void setCategoryTree(CheckboxTreeNode categoryTree) {
+    this.categoryTree = categoryTree;
+  }
+  
+  public void buildCategoryTree() {
+    this.categoryTree = TaskTreeUtils.buildTaskCategoryCheckboxTreeRoot();
+    this.categoryNodes = CategoryUtils.recoverSelectedCategories(this.categoryTree, getUserFilterCategories());
   }
   
   @JsonIgnore
@@ -50,6 +80,20 @@ public class TaskDashboardWidget extends DashboardWidget {
   @JsonIgnore
   public String getDisplayCategories() {
     return Optional.ofNullable(getCategories()).orElse(new ArrayList<>()).stream().collect(Collectors.joining(", "));
+  }
+  
+  @JsonIgnore
+  public List<String> getUserFilterCategories() {
+    return this.dataModel.getUserFilterCategories();
+  }
+
+  public void setUserFilterCategories(List<String> categories) {
+    this.dataModel.setUserFilterCategories(categories);
+  }
+  
+  @JsonIgnore
+  public String getUserFilterDisplayCategories() {
+    return Optional.ofNullable(getUserFilterCategories()).orElse(new ArrayList<>()).stream().collect(Collectors.joining(", "));
   }
   
   public String getSortField() {
@@ -87,5 +131,14 @@ public class TaskDashboardWidget extends DashboardWidget {
   @JsonIgnore
   public int getTaskCount() {
     return getDataModel().getRowCount();
+  }
+  
+  @JsonIgnore
+  public boolean isInConfiguration() {
+    return this.dataModel.getCriteria().isInConfiguration();
+  }
+  
+  public void setInConfiguration(boolean isInConfiguration) {
+    this.dataModel.getCriteria().setInConfiguration(isInConfiguration);
   }
 }
