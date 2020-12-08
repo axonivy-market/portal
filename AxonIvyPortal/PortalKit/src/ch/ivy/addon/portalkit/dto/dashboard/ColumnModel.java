@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -66,6 +67,8 @@ public class ColumnModel implements Serializable {
   protected Date userDateFilterFrom;
   @JsonIgnore
   protected Date userDateFilterTo;
+  @JsonIgnore
+  protected List<String> userFilterListOptions;
   
   public void initDefaultValue() {};
   
@@ -210,6 +213,7 @@ public class ColumnModel implements Serializable {
   
   public void setFilterList(List<String> filterList) {
     this.filterList = filterList;
+    this.userFilterListOptions = filterList;
   }
   
   public String getFilterFrom() {
@@ -278,6 +282,17 @@ public class ColumnModel implements Serializable {
   
   public void setFilterListOptions(List<String> filterListOptions) {
     this.filterListOptions = filterListOptions;
+  }
+  
+  public List<String> getUserFilterListOptions() {
+    if (userFilterListOptions == null) {
+      userFilterListOptions = CollectionUtils.isEmpty(filterList) ? getFilterListOptions() : filterList;
+    }
+    return userFilterListOptions;
+  }
+  
+  public void setUserFilterListOptions(List<String> userFilterListOptions) {
+    this.userFilterListOptions = userFilterListOptions;
   }
 
   public Date getDateFilterFrom() throws ParseException {
