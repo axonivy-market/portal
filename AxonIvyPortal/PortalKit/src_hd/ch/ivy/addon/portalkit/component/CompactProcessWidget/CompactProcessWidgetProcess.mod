@@ -236,7 +236,6 @@ for (DisplayName name : processDisplayNames) {
 				name.setValue(defaultProcessName);
 		}
 }
-ivy.log.warn("Diplay name {0}", processDisplayNames.size());
 compactProcessWidgetBean.getEditingProcess().setNames(processDisplayNames);
 
 ' #txt
