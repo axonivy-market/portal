@@ -74,7 +74,8 @@ try {
 	if (user != null) {
 		// validate token
 	  String token = user.getProperty(UserProperty.RESET_PASSWORD_TOKEN);
-		long expiryTime = Long.valueOf(user.getProperty(UserProperty.RESET_PASSWORD_TOKEN_EXPIRY));
+		String tokenExpiry = user.getProperty(UserProperty.RESET_PASSWORD_TOKEN_EXPIRY);
+		long expiryTime = StringUtils.isNotBlank(tokenExpiry) ? Long.valueOf(tokenExpiry) : 0;
 		long currentTime = Calendar.getInstance().getTimeInMillis();
 		if(StringUtils.isNotBlank(in.token) && in.token.equals(token) && currentTime < expiryTime) {
 			// validate new password

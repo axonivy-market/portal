@@ -11,7 +11,7 @@ public class HashUtils {
   private static final String SHA_256 = "SHA-256";
 
   public static String hash(String value) throws NoSuchAlgorithmException {
-    byte[] salt = new byte[8];
+    byte[] salt = new byte[16];
     SecureRandom random = new SecureRandom();
     random.nextBytes(salt);
 
