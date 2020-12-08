@@ -145,10 +145,19 @@ Pt0 @UserDialog f108 '' #zField
 Pt0 @GridStep f109 '' #zField
 Pt0 @UserDialog f110 '' #zField
 Pt0 @PushWFArc f111 '' #zField
-Pt0 @PushWFArc f113 '' #zField
+Pt0 @GridStep f118 '' #zField
 Pt0 @GridStep f112 '' #zField
 Pt0 @PushWFArc f114 '' #zField
-Pt0 @PushWFArc f115 '' #zField
+Pt0 @Alternative f115 '' #zField
+Pt0 @PushWFArc f116 '' #zField
+Pt0 @GridStep f119 '' #zField
+Pt0 @PushWFArc f120 '' #zField
+Pt0 @Alternative f121 '' #zField
+Pt0 @PushWFArc f122 '' #zField
+Pt0 @PushWFArc f113 '' #zField
+Pt0 @PushWFArc f124 '' #zField
+Pt0 @PushWFArc f123 '' #zField
+Pt0 @PushWFArc f117 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk0 @TextInP .type .type #zField
 Bk0 @TextInP .processKind .processKind #zField
@@ -1329,7 +1338,7 @@ Pt0 f106 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f106 @C|.responsibility Everybody #txt
-Pt0 f106 785 913 30 30 -21 17 #rect
+Pt0 f106 785 1009 30 30 -21 17 #rect
 Pt0 f106 @|StartRequestIcon #fIcon
 Pt0 f107 outLink ForgotPasswordPage.ivp #txt
 Pt0 f107 inParamDecl '<> param;' #txt
@@ -1360,7 +1369,7 @@ Pt0 f108 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f108 1112 810 112 44 -45 -8 #rect
+Pt0 f108 1312 810 112 44 -45 -8 #rect
 Pt0 f108 @|UserDialogIcon #fIcon
 Pt0 f109 actionTable 'out=in;
 ' #txt
@@ -1390,7 +1399,7 @@ Pt0 f109 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f109 904 906 112 44 -20 -8 #rect
+Pt0 f109 1304 1002 112 44 -20 -8 #rect
 Pt0 f109 @|StepIcon #fIcon
 Pt0 f110 dialogId ch.ivy.addon.portal.generic.PasswordReset #txt
 Pt0 f110 startMethod start(String,String,Boolean,String) #txt
@@ -1409,24 +1418,86 @@ Pt0 f110 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f110 1112 906 112 44 -44 -8 #rect
+Pt0 f110 1512 1002 112 44 -44 -8 #rect
 Pt0 f110 @|UserDialogIcon #fIcon
-Pt0 f111 1016 928 1112 928 #arcP
-Pt0 f113 815 928 904 928 #arcP
-Pt0 f112 actionTable 'out=in;
+Pt0 f111 1416 1024 1512 1024 #arcP
+Pt0 f118 actionTable 'out=in;
 ' #txt
-Pt0 f112 actionCode '// TODO check if the ivy Security System is used' #txt
-Pt0 f112 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+Pt0 f118 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+PortalNavigator.navigateToPortalHome();' #txt
+Pt0 f118 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>load url</name>
+        <name>redirect to home page</name>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f112 904 810 112 44 -20 -8 #rect
+Pt0 f118 1296 906 128 44 -60 -8 #rect
+Pt0 f118 @|StepIcon #fIcon
+Pt0 f112 actionTable 'out=in;
+' #txt
+Pt0 f112 actionCode 'import ch.ivy.addon.portalkit.util.SecuritySystemUtils;
+in.isIvySecuritySystem = SecuritySystemUtils.isIvySecuritySystem();' #txt
+Pt0 f112 security system #txt
+Pt0 f112 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>check Ivy Security System</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f112 920 1002 144 44 -69 -8 #rect
 Pt0 f112 @|StepIcon #fIcon
-Pt0 f114 815 832 904 832 #arcP
-Pt0 f115 1016 832 1112 832 #arcP
+Pt0 f114 815 1024 920 1024 #arcP
+Pt0 f115 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>isIvySecuritySystem?</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f115 1168 1008 32 32 0 16 #rect
+Pt0 f115 @|AlternativeIcon #fIcon
+Pt0 f116 1064 1024 1168 1024 #arcP
+Pt0 f119 actionTable 'out=in;
+' #txt
+Pt0 f119 actionCode 'import ch.ivy.addon.portalkit.util.SecuritySystemUtils;
+in.isIvySecuritySystem = SecuritySystemUtils.isIvySecuritySystem();' #txt
+Pt0 f119 security system #txt
+Pt0 f119 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>check Ivy Security System</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f119 920 810 144 44 -69 -8 #rect
+Pt0 f119 @|StepIcon #fIcon
+Pt0 f120 815 832 920 832 #arcP
+Pt0 f121 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>isIvySecuritySystem?</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f121 1168 816 32 32 0 16 #rect
+Pt0 f121 @|AlternativeIcon #fIcon
+Pt0 f122 1064 832 1168 832 #arcP
+Pt0 f113 expr in #txt
+Pt0 f113 outCond in.isIvySecuritySystem #txt
+Pt0 f113 1200 832 1312 832 #arcP
+Pt0 f124 expr in #txt
+Pt0 f124 outCond in.isIvySecuritySystem #txt
+Pt0 f124 1200 1024 1304 1024 #arcP
+Pt0 f123 expr in #txt
+Pt0 f123 1184 1008 1296 928 #arcP
+Pt0 f123 1 1184 928 #addKink
+Pt0 f123 1 0.18918337471700586 0 0 #arcLabel
+Pt0 f117 expr in #txt
+Pt0 f117 1184 848 1296 928 #arcP
+Pt0 f117 1 1184 928 #addKink
+Pt0 f117 1 0.24473129722455964 0 0 #arcLabel
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -2270,14 +2341,24 @@ Pt0 f99 mainOut f104 tail #connect
 Pt0 f104 head f101 mainIn #connect
 Pt0 f101 mainOut f102 tail #connect
 Pt0 f102 head f100 mainIn #connect
-Pt0 f106 mainOut f113 tail #connect
-Pt0 f113 head f109 mainIn #connect
 Pt0 f109 mainOut f111 tail #connect
 Pt0 f111 head f110 mainIn #connect
-Pt0 f107 mainOut f114 tail #connect
+Pt0 f106 mainOut f114 tail #connect
 Pt0 f114 head f112 mainIn #connect
-Pt0 f112 mainOut f115 tail #connect
-Pt0 f115 head f108 mainIn #connect
+Pt0 f112 mainOut f116 tail #connect
+Pt0 f116 head f115 in #connect
+Pt0 f107 mainOut f120 tail #connect
+Pt0 f120 head f119 mainIn #connect
+Pt0 f119 mainOut f122 tail #connect
+Pt0 f122 head f121 in #connect
+Pt0 f121 out f113 tail #connect
+Pt0 f113 head f108 mainIn #connect
+Pt0 f115 out f124 tail #connect
+Pt0 f124 head f109 mainIn #connect
+Pt0 f115 out f123 tail #connect
+Pt0 f123 head f118 mainIn #connect
+Pt0 f121 out f117 tail #connect
+Pt0 f117 head f118 mainIn #connect
 Bk0 f17 mainOut f26 tail #connect
 Bk0 f26 head f23 mainIn #connect
 Bk0 f19 mainOut f39 tail #connect
