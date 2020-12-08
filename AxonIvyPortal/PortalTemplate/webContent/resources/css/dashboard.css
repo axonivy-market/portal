@@ -179,73 +179,77 @@
 }
 
 .task-configuration.card {
-	width: 450px;
-	padding: 20px 15px;
-	margin-right: 20px;
-	border-right: solid 1px var(--ivy-primary-color-grey-light);
+  width: 450px;
+  padding: 20px 15px;
+  margin-right: 20px;
+  border-right: solid 1px var(- -ivy-primary-color-grey-light);
 }
 
 .task-configuration__input-text {
-	float: right;
-	width: 90%;
+  float: right;
+  width: 90%;
+}
+
+.task-configuration__input-number {
+  width: 100%;
 }
 
 body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu {
-	float: right;
-	background-image: none;
-	width: 90%;
+  float: right;
+  background-image: none;
+  width: 90%;
 }
 
 body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectcheckboxmenu-trigger .ui-icon {
-	top: 5px;
+  top: 5px;
 }
 
 .task-configuration__calendar {
-	float: right;
-	width: 90%;
-	height: 20px;
+  float: right;
+  width: 90%;
+  height: 20px;
 }
 
 .task-configuration__calendar input {
-	width: 100%;
+  width: 100%;
 }
 
 .task-configuration__calendar .ui-datepicker-trigger {
-	top: -23px !important;
-	right: -92% !important;
+  top: -23px !important;
+  right: -92% !important;
 }
 
 .task-configuration__calendar .ui-button-text {
-	line-height: normal !important;
+  line-height: normal !important;
 }
 
 .task-configuration__column-picker.ui-picklist .ui-picklist-list {
-	width: 190px;
+  width: 190px;
 }
 
 .task-preview {
-	width: calc(100% - 470px);
-	align-items: flex-start;
-	align-self: stretch;
-	padding: 10px !important;
+  width: calc(100% - 470px);
+  align-items: flex-start;
+  align-self: stretch;
+  padding: 10px !important;
 }
 
 .task-preview__header {
-	margin: 0;
+  margin: 0;
 }
 
 .task-configuration__select-one-menu {
-	float: right;
-	width: 90% !important;
+  float: right;
+  width: 90% !important;
 }
 
-.task-configuration__user-selection > span {
-	width: 90%;
-	float: right;
+.task-configuration__user-selection>span {
+  width: 90%;
+  float: right;
 }
 
 .task-configuration__user-selection .ui-autocomplete-input {
-	width: 100%;
+  width: 100%;
 }
 
 .task-configuration__responsibles.ui-autocomplete {

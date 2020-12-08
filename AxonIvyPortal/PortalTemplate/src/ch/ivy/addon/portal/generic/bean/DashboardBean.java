@@ -210,6 +210,7 @@ public class DashboardBean implements Serializable {
 
   public void saveWidget() throws JsonProcessingException {
     List<DashboardWidget> widgets = selectedDashboard.getWidgets();
+    resetUserFilters();
     if (widgets.contains(widget)) {
       widgets.set(widgets.indexOf(widget), widget);
     } else {
@@ -222,6 +223,19 @@ public class DashboardBean implements Serializable {
     } else {
       for (Dashboard dashboard : dashboards) {
         customProperties().property(dashboardProperty(dashboard)).setValue(mapper.writeValueAsString(dashboard));
+      }
+    }
+  }
+  
+  private void resetUserFilters() {
+    if (widget instanceof TaskDashboardWidget) {
+      TaskDashboardWidget taskWidget = ((TaskDashboardWidget) widget);
+      taskWidget.setInConfiguration(false);
+      for (ColumnModel column : taskWidget.getColumns()) {
+        column.setUserFilter(StringUtils.EMPTY);
+        column.setUserFilterList(new ArrayList<>());
+        column.setUserFilterFrom(StringUtils.EMPTY);
+        column.setUserFilterTo(StringUtils.EMPTY);
       }
     }
   }
