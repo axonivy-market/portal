@@ -2,9 +2,7 @@ CompactProcessWidgetData #class
 ch.ivy.addon.portalkit.component.CompactProcessWidget #namespace
 userProcesses List<ch.ivy.addon.portalkit.persistence.domain.UserProcess> #field
 userProcesses PERSISTENT #fieldModifier
-supportedLanguages List<ch.ivy.addon.portalkit.dto.DisplayName> #field
-supportedLanguages PERSISTENT #fieldModifier
+displayNames List<ch.ivy.addon.portalkit.dto.DisplayName> #field
+displayNames PERSISTENT #fieldModifier
 canAddLanguages Boolean #field
 canAddLanguages PERSISTENT #fieldModifier
-languages java.util.List<String> #field
-languages PERSISTENT #fieldModifier

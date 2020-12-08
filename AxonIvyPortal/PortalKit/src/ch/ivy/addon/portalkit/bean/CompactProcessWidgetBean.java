@@ -24,6 +24,8 @@ import ch.ivy.addon.portalkit.bo.GuidePool;
 import ch.ivy.addon.portalkit.comparator.UserProcessIndexComparator;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.DummyProcessService;
@@ -116,33 +118,42 @@ private static final long serialVersionUID = -5889375917550618261L;
   }
 
   public void onSelectUserProcess() throws CloneNotSupportedException {
-    this.editingProcess = new UserProcess();
     this.editingProcess = this.selectedProcess.clone();
   }
 
+  public void clearProcessDisplayNames() {
+    this.editingProcess.setNames(new ArrayList<>());
+  }
+  
   public void addNewUserProcess() {
     this.selectedProcess = new UserProcess();
     this.editingProcess = new UserProcess();
     initDataForProcessAutoComplete();
   }
-  
-  public boolean canAddProcessLanguages() {
-    return StringUtils.isNotBlank(this.editingProcess.getProcessName());
-  }
 
-  public List<DisplayName> getSupportedLanguage(List<String> languages) {
+  public List<DisplayName> generateProcessDisplayNames() {
     if (CollectionUtils.isNotEmpty(this.editingProcess.getNames())) {
       return this.editingProcess.getNames();
     }
 
-    List<DisplayName> supportedlanguages = new ArrayList<>();
+    List<String> languages = getSupportedLanguage();
+    List<DisplayName> displayNames = new ArrayList<>();
     for (String language : languages) {
       DisplayName displayName = new DisplayName();
       displayName.setLocale(new Locale(language));
       displayName.setValue(this.editingProcess.getProcessName());
-      supportedlanguages.add(displayName);
+      displayNames.add(displayName);
     }
-    return supportedlanguages;
+    return displayNames;
+  }
+
+  private List<String> getSupportedLanguage() {
+    List<String> languages = new ArrayList<>();
+    IvyLanguageResultDTO ivyLanguageResult = LanguageService.newInstance().findUserLanguages();
+    if (ivyLanguageResult.getIvyLanguage() != null) {
+      languages = ivyLanguageResult.getIvyLanguage().getSupportedLanguages();
+    }
+    return languages;
   }
 
   public boolean isRequiredLanguage(Locale locale) {
