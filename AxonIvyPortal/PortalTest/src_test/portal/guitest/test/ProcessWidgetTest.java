@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.concurrent.TimeUnit;
 
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -222,8 +223,6 @@ public class ProcessWidgetTest extends BaseTest {
 
   @Test
   public void testAddProcessWithMultilingual() {
-    // Change language to German
-    changeLanguage(0);
     processWidget = homePage.getProcessWidget();
     UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.selectProcessByName(APPRAISAL);
@@ -231,13 +230,13 @@ public class ProcessWidgetTest extends BaseTest {
     settingProcessLanguageDialog.fillProcessNamesByLocaleName();
     addNewProcessDialog.submitForm();
     
-    assertNotNull(processWidget.getProcess(String.format("%s - %s", APPRAISAL, "German*")));
+    assertNotNull(processWidget.getProcess(String.format("%s - %s", APPRAISAL, "English*")));
     
-    // Change language to English
-    changeLanguage(1);
+    // Change language to German
+    changeLanguage(0);
     
     processWidget = homePage.getProcessWidget();
-    assertNotNull(processWidget.getProcess(String.format("%s - %s", APPRAISAL, "English")));
+    assertNotNull(processWidget.getProcess(String.format("%s - %s", APPRAISAL, "German")));
   }
 
   private void changeLanguage(int selectionIndex) {
@@ -316,5 +315,10 @@ public class ProcessWidgetTest extends BaseTest {
   @BeforeClass
   public static void cleanUpBrowsers() {
     killBrowsers();
+  }
+  
+  @After
+  public void revertChanges() {
+    resetLanguageOfCurrentUser();
   }
 }
