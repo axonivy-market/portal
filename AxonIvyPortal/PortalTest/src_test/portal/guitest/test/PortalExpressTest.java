@@ -206,6 +206,7 @@ public class PortalExpressTest extends BaseTest {
 	@Test
 	public void testAbleToStartAdministratedWorkflow() {
 		createAdministratedWorkflow("Test approval", Arrays.asList(responsible1, groupHr), false);
+		assertEquals("You have finished the task successfully", new HomePage().getGlobalGrowlMessage());
 		// responsible1, groupHr is able to start process
 		login(TestAccount.ADMIN_USER);
 		startExpressProcess("Test approval");

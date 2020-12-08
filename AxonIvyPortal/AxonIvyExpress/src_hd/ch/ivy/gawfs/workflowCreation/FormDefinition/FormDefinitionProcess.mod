@@ -88,6 +88,10 @@ Ds0 @PushWFArc f75 '' #zField
 Ds0 @PushWFArc f30 '' #zField
 Ds0 @UdExitEnd f3 '' #zField
 Ds0 @PushWFArc f5 '' #zField
+Ds0 @InfoButton f76 '' #zField
+Ds0 @AnnotationArc f77 '' #zField
+Ds0 @InfoButton f78 '' #zField
+Ds0 @AnnotationArc f79 '' #zField
 >Proto Ds0 Ds0 FormDefinitionProcess #zField
 Ds0 f0 guid 156E35E680453115 #txt
 Ds0 f0 method start(gawfs.Data) #txt
@@ -749,24 +753,9 @@ Ds0 f54 1 192 816 #addKink
 Ds0 f54 1 0.1487695459411198 0 0 #arcLabel
 Ds0 f91 actionTable 'out=in;
 ' #txt
-Ds0 f91 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import javax.faces.context.Flash;
-import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
+Ds0 f91 actionCode 'import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 
-String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
-boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
-if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
-	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-	if (!flash.containsKey("overridePortalGrowl")) {
-		FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
-		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-	}
-	flash.setRedirect(true);
-	flash.setKeepMessages(true);
-}' #txt
+GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished);' #txt
 Ds0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -782,24 +771,12 @@ Ds0 f71 1 720 816 #addKink
 Ds0 f71 1 0.17953158540422498 0 0 #arcLabel
 Ds0 f64 actionTable 'out=in;
 ' #txt
-Ds0 f64 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import javax.faces.context.Flash;
-import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
+Ds0 f64 actionCode 'import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 
-String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
-boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
-if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown() && !ivy.task.isPersistent()) {
-	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-	if (!flash.containsKey("overridePortalGrowl")) {
-		FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
-		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-	}
-	flash.setRedirect(true);
-	flash.setKeepMessages(true);
-}' #txt
+if (!ivy.task.isPersistent()) {
+	GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished);
+}
+' #txt
 Ds0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -831,6 +808,28 @@ Ds0 f30 488 816 552 816 #arcP
 Ds0 f3 867 891 26 26 0 12 #rect
 Ds0 f3 @|UdExitEndIcon #fIcon
 Ds0 f5 800 904 867 904 #arcP
+Ds0 f76 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Sample scenario to test&#13;
+create express process &gt; finish creation</name>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f76 832 962 224 44 -109 -16 #rect
+Ds0 f76 @|IBIcon #fIcon
+Ds0 f77 832 984 792 968 #arcP
+Ds0 f78 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Sample scenario to test&#13;
+create express process &gt; on form creation, click Cancel</name>
+    </language>
+</elementInfo>
+' #txt
+Ds0 f78 736 826 320 44 -151 -16 #rect
+Ds0 f78 @|IBIcon #fIcon
+Ds0 f79 736 848 696 837 #arcP
 >Proto Ds0 .type ch.ivy.gawfs.workflowCreation.FormDefinition.FormDefinitionData #txt
 >Proto Ds0 .processKind HTML_DIALOG #txt
 >Proto Ds0 -8 -8 16 16 16 26 #rect
@@ -909,3 +908,7 @@ Ds0 f74 mainOut f30 tail #connect
 Ds0 f30 head f91 mainIn #connect
 Ds0 f53 mainOut f5 tail #connect
 Ds0 f5 head f3 mainIn #connect
+Ds0 f76 ao f77 tail #connect
+Ds0 f77 head f64 @CG|ai #connect
+Ds0 f78 ao f79 tail #connect
+Ds0 f79 head f91 @CG|ai #connect

@@ -69,6 +69,8 @@ As0 @PushWFArc f30 '' #zField
 As0 @UdMethod f32 '' #zField
 As0 @UdProcessEnd f36 '' #zField
 As0 @PushWFArc f39 '' #zField
+As0 @InfoButton f40 '' #zField
+As0 @AnnotationArc f41 '' #zField
 >Proto As0 As0 ApplicationSelectionMenuProcess #zField
 As0 f67 actionTable 'out=in;
 ' #txt
@@ -496,24 +498,9 @@ As0 f1 1171 19 26 26 16 -3 #rect
 As0 f1 @|UdEventIcon #fIcon
 As0 f19 actionTable 'out=in;
 ' #txt
-As0 f19 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import javax.faces.context.Flash;
-import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
+As0 f19 actionCode 'import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 
-String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
-boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
-if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
-	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-	if (!flash.containsKey("overridePortalGrowl")) {
-		FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
-		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-	}
-	flash.setRedirect(true);
-	flash.setKeepMessages(true);
-}' #txt
+GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, (in.#workingTask != null ? in.workingTask : ivy.task).getCase());' #txt
 As0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -549,6 +536,17 @@ As0 f32 @|UdMethodIcon #fIcon
 As0 f36 275 627 26 26 0 12 #rect
 As0 f36 @|UdProcessEndIcon #fIcon
 As0 f39 141 640 275 640 #arcP
+As0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Sample scenario to test&#13;
+start a task &gt; click on menu &gt; leave the task</name>
+    </language>
+</elementInfo>
+' #txt
+As0 f40 560 194 256 44 -118 -16 #rect
+As0 f40 @|IBIcon #fIcon
+As0 f41 688 194 655 174 #arcP
 >Proto As0 .type ch.ivy.addon.portal.generic.ApplicationSelectionMenu.ApplicationSelectionMenuData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -633,3 +631,5 @@ As0 f19 mainOut f30 tail #connect
 As0 f30 head f98 in #connect
 As0 f32 mainOut f39 tail #connect
 As0 f39 head f36 mainIn #connect
+As0 f40 ao f41 tail #connect
+As0 f41 head f19 @CG|ai #connect

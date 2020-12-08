@@ -78,6 +78,11 @@ public class ExpressProcessPage extends TemplatePage {
 		return new ExpressFormDefinitionPage();
 	}
 
+  public HomePage cancel() {
+    click(By.cssSelector("button[id$='cancel-workflow-button']"));
+    return new HomePage();
+  }
+	
 	public void addNewTask(int currentTaskIndex) {
 		click(By.id(String.format("form:defined-tasks-list:%d:add-step-button", currentTaskIndex)));
 		ensureNoBackgroundRequest();

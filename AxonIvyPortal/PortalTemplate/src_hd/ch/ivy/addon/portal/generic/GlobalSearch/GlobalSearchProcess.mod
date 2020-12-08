@@ -64,26 +64,12 @@ Cs0 f5 expr out #txt
 Cs0 f5 512 224 571 224 #arcP
 Cs0 f8 actionTable 'out=in;
 ' #txt
-Cs0 f8 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import javax.faces.context.Flash;
-import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
+Cs0 f8 actionCode 'import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 
 if(in.isWorkingOnTask) {
-	String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
-	boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
-	if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
-		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		if (!flash.containsKey("overridePortalGrowl")) {
-			FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
-			FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-		}
-		flash.setRedirect(true);
-		flash.setKeepMessages(true);
-	}
-}' #txt
+	GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, ivy.task.getCase());
+}
+' #txt
 Cs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

@@ -180,6 +180,13 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		new HomePage().isDisplayed();
 	}
 
+  public HomePage cancel() {
+    click(By.cssSelector("button[id='cancel-button']"));
+    waitForElementDisplayed(By.cssSelector("button[id$='yes-button']"), true);
+    click(By.cssSelector("button[id='yes-button']"));
+    return new HomePage();
+  }
+	
 	public void executeWorkflow() {
 		click(By.id("execute-button"));
     waitForElementDisplayed(By.id("form:dynaform-fieldset"), true);

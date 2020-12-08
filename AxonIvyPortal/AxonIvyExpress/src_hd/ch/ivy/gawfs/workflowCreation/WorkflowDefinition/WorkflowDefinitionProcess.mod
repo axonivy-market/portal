@@ -106,6 +106,8 @@ Fs0 @PushWFArc f92 '' #zField
 Fs0 @GridStep f93 '' #zField
 Fs0 @PushWFArc f31 '' #zField
 Fs0 @PushWFArc f94 '' #zField
+Fs0 @InfoButton f95 '' #zField
+Fs0 @AnnotationArc f96 '' #zField
 >Proto Fs0 Fs0 WorkflowDefinitionProcess #zField
 Fs0 f0 guid 1576FA61C9D81A51 #txt
 Fs0 f0 method start(gawfs.Data) #txt
@@ -967,24 +969,9 @@ Fs0 f75 1 552 160 #addKink
 Fs0 f75 0 0.7191176064037719 0 0 #arcLabel
 Fs0 f91 actionTable 'out=in;
 ' #txt
-Fs0 f91 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import javax.faces.context.Flash;
-import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
+Fs0 f91 actionCode 'import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 
-String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
-boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
-if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
-	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-	if (!flash.containsKey("overridePortalGrowl")) {
-		FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
-		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-	}
-	flash.setRedirect(true);
-	flash.setKeepMessages(true);
-}' #txt
+GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished);' #txt
 Fs0 f91 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1012,6 +999,17 @@ Fs0 f93 424 602 112 44 -52 -8 #rect
 Fs0 f93 @|StepIcon #fIcon
 Fs0 f31 376 624 424 624 #arcP
 Fs0 f94 536 624 576 624 #arcP
+Fs0 f95 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Sample scenario to test&#13;
+create express process &gt; on workflow creation, click Cancel</name>
+    </language>
+</elementInfo>
+' #txt
+Fs0 f95 624 666 336 44 -163 -16 #rect
+Fs0 f95 @|IBIcon #fIcon
+Fs0 f96 792 666 648 646 #arcP
 >Proto Fs0 .type ch.ivy.gawfs.workflowCreation.WorkflowDefinition.WorkflowDefinitionData #txt
 >Proto Fs0 .processKind HTML_DIALOG #txt
 >Proto Fs0 -8 -8 16 16 16 26 #rect
@@ -1102,3 +1100,5 @@ Fs0 f28 mainOut f31 tail #connect
 Fs0 f31 head f93 mainIn #connect
 Fs0 f93 mainOut f94 tail #connect
 Fs0 f94 head f91 mainIn #connect
+Fs0 f95 ao f96 tail #connect
+Fs0 f96 head f91 @CG|ai #connect
