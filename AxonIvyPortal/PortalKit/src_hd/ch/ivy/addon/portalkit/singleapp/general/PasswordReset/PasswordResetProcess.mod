@@ -14,11 +14,11 @@ Ps0 @PushWFArc f2 '' #zField
 Ps0 @UdEvent f3 '' #zField
 Ps0 @UdExitEnd f4 '' #zField
 Ps0 @PushWFArc f5 '' #zField
-Ps0 @GridStep f16 '' #zField
 Ps0 @UdProcessEnd f6 '' #zField
 Ps0 @UdEvent f10 '' #zField
-Ps0 @PushWFArc f7 '' #zField
+Ps0 @CallSub f7 '' #zField
 Ps0 @PushWFArc f8 '' #zField
+Ps0 @PushWFArc f9 '' #zField
 >Proto Ps0 Ps0 PasswordResetProcess #zField
 Ps0 f0 guid 175F970030C8B97C #txt
 Ps0 f0 method start(String,String) #txt
@@ -54,75 +54,6 @@ Ps0 f3 @|UdEventIcon #fIcon
 Ps0 f4 211 147 26 26 0 12 #rect
 Ps0 f4 @|UdExitEndIcon #fIcon
 Ps0 f5 109 160 211 160 #arcP
-Ps0 f16 actionTable 'out=in;
-' #txt
-Ps0 f16 actionCode 'import java.util.Calendar;
-import ch.ivy.addon.portalkit.constant.UserProperty;
-import ch.ivyteam.ivy.server.ServerFactory;
-import java.util.Arrays;
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-import org.apache.commons.lang.StringUtils;
-import ch.ivyteam.ivy.security.IUser;
-import ch.ivy.addon.portalkit.util.UserUtils;
-import ch.ivyteam.ivy.environment.Ivy;
-in.message = "";
-in.resetSuccess = false;
-try {
-	// find user by username
-	IUser user = StringUtils.isNotBlank(in.username) ? UserUtils.findUserByUsername(in.username) : null;
-	if (user != null) {
-		// validate token
-		String token = user.getProperty(UserProperty.RESET_PASSWORD_TOKEN);
-		String tokenExpiry = user.getProperty(UserProperty.RESET_PASSWORD_TOKEN_EXPIRY);
-		long expiryTime = StringUtils.isNotBlank(tokenExpiry) ? Long.valueOf(tokenExpiry) : 0;
-		long currentTime = Calendar.getInstance().getTimeInMillis();
-		if(StringUtils.isNotBlank(in.token) && in.token.equals(token) && currentTime < expiryTime) {
-			// validate new password
-			if(StringUtils.isNotBlank(in.newPassword)) {
-				if(in.newPassword.equals(in.passwordConfirmation)) {
-					// update user password
-					user.setPassword(in.newPassword);
-					user.setProperty(UserProperty.RESET_PASSWORD_TOKEN, "");
-					user.setProperty(UserProperty.RESET_PASSWORD_TOKEN_EXPIRY, "");
-					in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/passwordResetSuccess");
-					in.resetSuccess = true;
-				} else {
-					in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/confirmPasswordHaveMatch");
-				}
-			} else {
-				in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/requireNewPassword");
-			}
-		} else {
-			in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/invalidToken");
-		}
-	} else {
-	  in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/userNotFound");
-	}
-} catch (Exception e) {
-	Ivy.log().error("An error occurred while changing your password: {0}", e.getMessage());
-	in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/changePasswordWSError");
-}
-if (!in.resetSuccess) {
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, in.message, null));
-	FacesContext.getCurrentInstance().validationFailed();
-} else {
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, in.message, null));
-}
-
-
-
-' #txt
-Ps0 f16 security system #txt
-Ps0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>reset password</name>
-    </language>
-</elementInfo>
-' #txt
-Ps0 f16 200 234 112 44 -43 -8 #rect
-Ps0 f16 @|StepIcon #fIcon
 Ps0 f6 403 243 26 26 0 12 #rect
 Ps0 f6 @|UdProcessEndIcon #fIcon
 Ps0 f10 guid 176217D65744540F #txt
@@ -138,8 +69,28 @@ Ps0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ps0 f10 83 243 26 26 -14 15 #rect
 Ps0 f10 @|UdEventIcon #fIcon
-Ps0 f7 109 256 200 256 #arcP
-Ps0 f8 312 256 403 256 #arcP
+Ps0 f7 processCall 'Functional Processes/ResetPassword:call(String,String,String,String)' #txt
+Ps0 f7 requestActionDecl '<String newPassword,String passwordConfirmation,String token,String username> param;' #txt
+Ps0 f7 requestMappingAction 'param.newPassword=in.newPassword;
+param.passwordConfirmation=in.passwordConfirmation;
+param.token=in.token;
+param.username=in.username;
+' #txt
+Ps0 f7 responseMappingAction 'out=in;
+out.message=result.message;
+out.resetSuccess=result.resetSuccess;
+' #txt
+Ps0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>reset password</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f7 200 234 112 44 -43 -8 #rect
+Ps0 f7 @|CallSubIcon #fIcon
+Ps0 f8 109 256 200 256 #arcP
+Ps0 f9 312 256 403 256 #arcP
 >Proto Ps0 .type ch.ivy.addon.portalkit.singleapp.general.PasswordReset.PasswordResetData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
@@ -148,7 +99,7 @@ Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
 Ps0 f3 mainOut f5 tail #connect
 Ps0 f5 head f4 mainIn #connect
-Ps0 f10 mainOut f7 tail #connect
-Ps0 f7 head f16 mainIn #connect
-Ps0 f16 mainOut f8 tail #connect
-Ps0 f8 head f6 mainIn #connect
+Ps0 f10 mainOut f8 tail #connect
+Ps0 f8 head f7 mainIn #connect
+Ps0 f7 mainOut f9 tail #connect
+Ps0 f9 head f6 mainIn #connect
