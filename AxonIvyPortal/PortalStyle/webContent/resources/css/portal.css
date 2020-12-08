@@ -520,6 +520,11 @@ body .ui-widget.ui-fieldset.process-group.ui-fieldset .ui-fieldset-legend {
   background-image: none;
   text-indent: 0; }
 
+.new-process-dialog .md-inputfield .md-inputwrapper-focus ~ label.new-process-name-label,
+.new-process-dialog .md-inputfield .md-inputwrapper-filled ~ label.new-process-name-label {
+  font-size: var(--small-font-size);
+}
+
 /*Style For Task Widget ----------------------------------------------------------------------------------*/
 .filter-selection-form .filter-name:hover,
 .filter-selection-form .filter-name-overlay-panel .user-defined-filter-container .delete-user-defined-filter-command:hover {
