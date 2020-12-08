@@ -25,9 +25,11 @@ public class DashboardTaskSearchCriteria {
 
   private boolean canWorkOn;
   private List<String> categories;
+  private List<String> userFilterCategories;
   private List<ColumnModel> columns;
   private String sortField;
   private boolean sortDescending;
+  private boolean isInConfiguration;
 
   public TaskQuery buildQuery() throws ParseException {
     TaskQuery query = TaskQuery.create();
@@ -122,6 +124,7 @@ public class DashboardTaskSearchCriteria {
   }
 
   private void queryCategory(TaskQuery query) {
+    List<String> categories = CollectionUtils.isNotEmpty(userFilterCategories) ? userFilterCategories : this.categories;
     if (CollectionUtils.isNotEmpty(categories)) {
       TaskQuery subQuery = TaskQuery.create();
       IFilterQuery filterQuery = subQuery.where();
@@ -170,9 +173,9 @@ public class DashboardTaskSearchCriteria {
       String userFilterFrom = column.getUserFilterFrom();
       String userFilterTo = column.getUserFilterTo();
       
-      List<String> filterList = CollectionUtils.isNotEmpty(userFilterList) ? userFilterList : configuredFilterList;
-      String filterFrom = StringUtils.isNotBlank(userFilterFrom) ? userFilterFrom : configuredFilterFrom;
-      String filterTo = StringUtils.isNotBlank(userFilterTo) ? userFilterTo : configuredFilterTo;
+      List<String> filterList = CollectionUtils.isNotEmpty(userFilterList) && !isInConfiguration ? userFilterList : configuredFilterList;
+      String filterFrom = StringUtils.isNotBlank(userFilterFrom) && !isInConfiguration ? userFilterFrom : configuredFilterFrom;
+      String filterTo = StringUtils.isNotBlank(userFilterTo) && !isInConfiguration ? userFilterTo : configuredFilterTo;
       
       if (StringUtils.equals(DashboardStandardTaskColumn.PRIORITY.getField(), column.getField())) {
         List<WorkflowPriority> priorities = new ArrayList<>();
@@ -182,10 +185,14 @@ public class DashboardTaskSearchCriteria {
         queryPriorities(query, priorities);
       } else if (StringUtils.equals(DashboardStandardTaskColumn.NAME.getField(), column.getField())) {
         queryName(query, configuredFilter);
-        queryName(query, userFilter);
+        if (!isInConfiguration) {
+          queryName(query, userFilter);
+        }
       } else if (StringUtils.equals(DashboardStandardTaskColumn.DESCRIPTION.getField(), column.getField())) {
         queryDescription(query, configuredFilter);
-        queryDescription(query, userFilter);
+        if (!isInConfiguration) {
+          queryDescription(query, userFilter);
+        }
       } else if (StringUtils.equals(DashboardStandardTaskColumn.STATE.getField(), column.getField())) {
         List<TaskState> states = new ArrayList<>();
         for (String state : filterList) {
@@ -230,10 +237,14 @@ public class DashboardTaskSearchCriteria {
             }
           } else if (column.isText()) {
             queryTextField(filterQuery, field, configuredFilter);
-            queryTextField(filterQuery, field, userFilter);
+            if (!isInConfiguration) {
+              queryTextField(filterQuery, field, userFilter);
+            }
           } else {
             queryStringField(filterQuery, field, configuredFilter);
-            queryStringField(filterQuery, field, userFilter);
+            if (!isInConfiguration) {
+              queryStringField(filterQuery, field, userFilter);
+            }
           }
           query.where().and(subQuery);
         }
@@ -255,6 +266,14 @@ public class DashboardTaskSearchCriteria {
 
   public void setSortDescending(boolean sortDescending) {
     this.sortDescending = sortDescending;
+  }
+  
+  public boolean isInConfiguration() {
+    return isInConfiguration;
+  }
+  
+  public void setInConfiguration(boolean isInConfiguration) {
+    this.isInConfiguration = isInConfiguration;
   }
 
   private class TaskSortingQueryAppender {
@@ -368,6 +387,14 @@ public class DashboardTaskSearchCriteria {
 
   public void setCategories(List<String> categories) {
     this.categories = categories;
+  }
+  
+  public List<String> getUserFilterCategories() {
+    return userFilterCategories;
+  }
+
+  public void setUserFilterCategories(List<String> categories) {
+    this.userFilterCategories = categories;
   }
   
   public List<ColumnModel> getColumns() {
