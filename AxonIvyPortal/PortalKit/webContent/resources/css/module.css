@@ -863,6 +863,14 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   min-width: 600px;
 }
 
+.process-add-languages {
+  width: 100%;
+}
+
+.process-start-icon-label {
+  margin-right: 25px;
+}
+
 /* Mobile screen */
 @media screen and (max-width: 40em) {
   .process-widget .process-nav .process-nav-item {
@@ -1356,7 +1364,16 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 
 /******************END DELEGATE DIALOG********************/
 .new-process-dialog {
-  min-width: 600px;
+  max-width: 800px;
+}
+
+.favorite-process-name {
+  max-width: 400px;
+}
+
+.support-process-language-field {
+  margin-top: 25px;
+  margin-bottom: 5px;
 }
 
 .field-group {
@@ -1381,9 +1398,6 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 @media screen and (max-width: 40em) {
   .field-group>.field-group-label {
     text-align: left !important;
-  }
-  .new-process-dialog {
-    min-width: 96vw;
   }
 }
 
