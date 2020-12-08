@@ -209,16 +209,19 @@ function highlightAddFavoriteProcess() {
   var addNewProcessTitle = $("[id$='process-widget:add-new-process-dialog_title']");
   appendStepAnnotation(addNewProcessTitle, "2", 0, addNewProcessTitle.width() + 2);
   
-  var addNewProcessName = $("label[for$='process-widget:new-process-name_input']");
-  appendStepAnnotation(addNewProcessName, "3", -10, addNewProcessName.width() + 2);
+  var addNewProcessName = $("label[for$='process-widget:new-process-name_input']").find("span[class$='ui-outputlabel-rfi']");
+  appendStepAnnotation(addNewProcessName, "3", -10, addNewProcessName.width());
+  
+  var addNewProcessDisplayName = $("label[for$='process-widget:process-display-name']").find("span[class$='ui-outputlabel-rfi']");
+  appendStepAnnotation(addNewProcessDisplayName, "4", -10, addNewProcessName.width());
   
   var addProcessStartLink = $("label[for$='process-widget:process-start-link']");
-  appendStepAnnotation(addProcessStartLink, "4", -10, addProcessStartLink.width() + 2);
+  appendStepAnnotation(addProcessStartLink, "5", -10, 65);
   
   var addProcessIcon = $(".ui-commandlink.select-awesome-icon-button");
-  appendStepAnnotation(addProcessIcon, "5", -10, addProcessIcon.width() + 2)
+  appendStepAnnotation(addProcessIcon, "6", -10, addProcessIcon.width() + 2)
   
-  appendStepAnnotation($("[id$='process-widget:add-process-command']"), "6", -5, -40);
+  appendStepAnnotation($("[id$='process-widget:add-process-command']"), "7", -5, 0);
 }
 
 function highlightEditSwitchProcessButton() {
