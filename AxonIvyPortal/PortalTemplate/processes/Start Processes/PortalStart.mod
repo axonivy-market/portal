@@ -145,8 +145,10 @@ Pt0 @UserDialog f108 '' #zField
 Pt0 @GridStep f109 '' #zField
 Pt0 @UserDialog f110 '' #zField
 Pt0 @PushWFArc f111 '' #zField
-Pt0 @PushWFArc f112 '' #zField
 Pt0 @PushWFArc f113 '' #zField
+Pt0 @GridStep f112 '' #zField
+Pt0 @PushWFArc f114 '' #zField
+Pt0 @PushWFArc f115 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk0 @TextInP .type .type #zField
 Bk0 @TextInP .processKind .processKind #zField
@@ -1371,18 +1373,10 @@ import ch.ivyteam.ivy.environment.Ivy;
 import org.apache.commons.lang.StringUtils;
 import ch.ivyteam.ivy.security.IUser;
 in.isValidResetUrl = false;
+// TODO check if the ivy Security System is used
 // find user by username
 IUser user = StringUtils.isNotBlank(in.passwordResetUsername) ? UserUtils.findUserByUsername(in.passwordResetUsername) : null;
-if (user != null) {
-	// validate token
-	String token = user.getProperty(UserProperty.RESET_PASSWORD_TOKEN);
-	String tokenExpiry = user.getProperty(UserProperty.RESET_PASSWORD_TOKEN_EXPIRY);
-	long expiryTime = StringUtils.isNotBlank(tokenExpiry) ? Long.valueOf(tokenExpiry) : 0;
-	long currentTime = Calendar.getInstance().getTimeInMillis();
-	if(StringUtils.isNotBlank(in.passwordResetToken) && in.passwordResetToken.equals(token) && currentTime < expiryTime) {
-		in.isValidResetUrl = true;
-	}
-}
+in.isValidResetUrl = UserUtils.isValidPasswordResetToken(in.passwordResetToken, user);
 if (!in.isValidResetUrl) {
 	in.passwordResetMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/invalidResetUrl");
 } else {
@@ -1418,8 +1412,21 @@ Pt0 f110 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Pt0 f110 1112 906 112 44 -44 -8 #rect
 Pt0 f110 @|UserDialogIcon #fIcon
 Pt0 f111 1016 928 1112 928 #arcP
-Pt0 f112 815 832 1112 832 #arcP
 Pt0 f113 815 928 904 928 #arcP
+Pt0 f112 actionTable 'out=in;
+' #txt
+Pt0 f112 actionCode '// TODO check if the ivy Security System is used' #txt
+Pt0 f112 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>load url</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f112 904 810 112 44 -20 -8 #rect
+Pt0 f112 @|StepIcon #fIcon
+Pt0 f114 815 832 904 832 #arcP
+Pt0 f115 1016 832 1112 832 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -2263,12 +2270,14 @@ Pt0 f99 mainOut f104 tail #connect
 Pt0 f104 head f101 mainIn #connect
 Pt0 f101 mainOut f102 tail #connect
 Pt0 f102 head f100 mainIn #connect
-Pt0 f107 mainOut f112 tail #connect
-Pt0 f112 head f108 mainIn #connect
 Pt0 f106 mainOut f113 tail #connect
 Pt0 f113 head f109 mainIn #connect
 Pt0 f109 mainOut f111 tail #connect
 Pt0 f111 head f110 mainIn #connect
+Pt0 f107 mainOut f114 tail #connect
+Pt0 f114 head f112 mainIn #connect
+Pt0 f112 mainOut f115 tail #connect
+Pt0 f115 head f108 mainIn #connect
 Bk0 f17 mainOut f26 tail #connect
 Bk0 f26 head f23 mainIn #connect
 Bk0 f19 mainOut f39 tail #connect
