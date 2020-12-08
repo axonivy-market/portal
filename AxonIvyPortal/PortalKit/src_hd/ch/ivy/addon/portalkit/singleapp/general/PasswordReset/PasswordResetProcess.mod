@@ -73,7 +73,7 @@ try {
 	IUser user = StringUtils.isNotBlank(in.username) ? UserUtils.findUserByUsername(in.username) : null;
 	if (user != null) {
 		// validate token
-	  String token = user.getProperty(UserProperty.RESET_PASSWORD_TOKEN);
+		String token = user.getProperty(UserProperty.RESET_PASSWORD_TOKEN);
 		String tokenExpiry = user.getProperty(UserProperty.RESET_PASSWORD_TOKEN_EXPIRY);
 		long expiryTime = StringUtils.isNotBlank(tokenExpiry) ? Long.valueOf(tokenExpiry) : 0;
 		long currentTime = Calendar.getInstance().getTimeInMillis();
