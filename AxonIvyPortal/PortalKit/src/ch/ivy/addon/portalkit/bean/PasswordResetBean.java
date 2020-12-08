@@ -1,4 +1,4 @@
-package ch.ivy.addon.portalkit.util;
+package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 
@@ -9,11 +9,11 @@ import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 
 @ManagedBean
 @ViewScoped
-public class ForgotPasswordBean implements Serializable {
-
+public class PasswordResetBean implements Serializable {
+  
   private static final long serialVersionUID = 1L;
   
-  public String getForgotPasswordUrl() {
-    return PortalNavigator.getForgotPasswordUrl();
+  public String getHomePageURL() {
+    return PortalNavigator.getPortalStartUrl();
   }
 }
