@@ -101,4 +101,11 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
     criteria.setCategories(categories);
   }
   
+  public List<String> getUserFilterCategories() {
+    return criteria.getUserFilterCategories();
+  }
+
+  public void setUserFilterCategories(List<String> categories) {
+    criteria.setUserFilterCategories(categories);
+  }
 }

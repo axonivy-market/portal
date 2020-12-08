@@ -43,6 +43,7 @@ public class DashboardTaskFilterBean {
   
   public void preRender(TaskDashboardWidget widget) {
     this.widget = widget;
+    this.widget.setInConfiguration(true);
     buildCategoryTree();
   }
   

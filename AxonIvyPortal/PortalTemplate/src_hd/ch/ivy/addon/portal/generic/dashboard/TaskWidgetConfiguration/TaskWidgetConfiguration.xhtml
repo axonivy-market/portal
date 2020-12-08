@@ -107,14 +107,16 @@
             <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
           </div>
           <div class="ui-g-9">
-            <p:inputText id="from-number-field-input" styleClass="task-configuration__input-text" value="#{field.filterFrom}" />
+            <p:inputNumber id="from-number-field-input" styleClass="task-configuration__input-text" value="#{field.filterFrom}"
+              minValue="#{field.filterFrom}" inputStyleClass="task-configuration__input-number" />
           </div>
           
           <div class="ui-g-3">
             <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
           </div>
           <div class="ui-g-9">
-            <p:inputText id="to-number-field-input" styleClass="task-configuration__input-text" value="#{field.filterTo}" />
+            <p:inputNumber id="to-number-field-input" styleClass="task-configuration__input-text" value="#{field.filterTo}"
+              inputStyleClass="task-configuration__input-number" />
           </div>
         </h:panelGroup>
         
