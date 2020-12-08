@@ -99,7 +99,7 @@ try {
 		String resetUrl = ServerFactory.getServer().getServerInfo().getInfoPageUrl() + PortalNavigator.getPasswordResetUrl(token, in.user.getName());
 		in.emailContent = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/passwordResetEmailContent", Arrays.asList(resetUrl));
 		in.isValid = true;
-	} else if (users == null) {
+	} else if (users == null || users.size() == 0) {
 		message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/userNotFound");
 	} else {
 		message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/usersHaveSameEmail");
