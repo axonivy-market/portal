@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -15,13 +16,16 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.GuidePool;
 import ch.ivy.addon.portalkit.comparator.UserProcessIndexComparator;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.DummyProcessService;
@@ -30,6 +34,7 @@ import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.UserProcessService;
+import ch.ivy.addon.portalkit.util.Locales;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -46,15 +51,18 @@ private static final long serialVersionUID = -5889375917550618261L;
   
   private UserProcessService userProcessService;
   private UserProcess editingProcess;
+  private UserProcess selectedProcess;
   private Long userId;
   
   private boolean editMode;
   private boolean isUserFavoritesEnabled;
   private boolean isDisplayShowAllProcessesLink;
   private boolean isGuide;
+  private Locale currentLocale;
   
   @PostConstruct
   public void init() {
+    currentLocale = new Locales().getCurrentLocale();
     // used in global search page
     isDisplayShowAllProcessesLink = PermissionUtils.checkAccessFullProcessListPermission();
   }
@@ -109,15 +117,54 @@ private static final long serialVersionUID = -5889375917550618261L;
     }
   }
 
-  public void addNewUserProcess(String clientId) {
+  public void onSelectUserProcess() throws CloneNotSupportedException {
+    this.editingProcess = this.selectedProcess.clone();
+  }
+
+  public void clearProcessDisplayNames() {
+    this.editingProcess.setNames(new ArrayList<>());
+  }
+  
+  public void addNewUserProcess() {
+    this.selectedProcess = new UserProcess();
     this.editingProcess = new UserProcess();
-    PrimeFaces.current().resetInputs(clientId + ":add-new-process-dialog");
     initDataForProcessAutoComplete();
+  }
+
+  public List<DisplayName> generateProcessDisplayNames() {
+    if (CollectionUtils.isNotEmpty(this.editingProcess.getNames())) {
+      return this.editingProcess.getNames();
+    }
+
+    List<String> languages = getSupportedLanguage();
+    List<DisplayName> displayNames = new ArrayList<>();
+    for (String language : languages) {
+      DisplayName displayName = new DisplayName();
+      displayName.setLocale(new Locale(language));
+      displayName.setValue(this.editingProcess.getProcessName());
+      displayNames.add(displayName);
+    }
+    return displayNames;
+  }
+
+  private List<String> getSupportedLanguage() {
+    List<String> languages = new ArrayList<>();
+    IvyLanguageResultDTO ivyLanguageResult = LanguageService.newInstance().findUserLanguages();
+    if (ivyLanguageResult.getIvyLanguage() != null) {
+      languages = ivyLanguageResult.getIvyLanguage().getSupportedLanguages();
+    }
+    return languages;
+  }
+
+  public boolean isRequiredLanguage(Locale locale) {
+    return this.currentLocale.equals(locale);
   }
   
   private void initDataForProcessAutoComplete() {
-    this.processesToAdd = collectProcesses();
-    sortUserProcessList(processesToAdd);
+    if (CollectionUtils.isEmpty(this.processesToAdd)) {
+      this.processesToAdd = collectProcesses();
+      sortUserProcessList(processesToAdd);
+    }
   }
   
   private List<UserProcess> collectProcesses() {
@@ -197,7 +244,15 @@ private static final long serialVersionUID = -5889375917550618261L;
   public List<UserProcess> getUserProcesses() {
     return userProcesses;
   }
-  
+
+  public UserProcess getSelectedProcess() {
+    return selectedProcess;
+  }
+
+  public void setSelectedProcess(UserProcess selectedProcess) {
+    this.selectedProcess = selectedProcess;
+  }
+
   public void switchEditMode() {
     editMode = !editMode;
     userProcesses.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
