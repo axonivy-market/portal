@@ -313,9 +313,6 @@ body .ui-inputfield {
   font-size: var(--large-font-size);
   color: var(--ui-input-field-text-color); }
 
-body .md-inputfield label:not(.ui-selectonemenu-label) {
-  font-size: var(--large-font-size); }
-
 body .md-inputfield input.ui-state-filled ~ label,
 body .md-inputfield input:focus ~ label {
   font-size: var(--small-font-size); }
