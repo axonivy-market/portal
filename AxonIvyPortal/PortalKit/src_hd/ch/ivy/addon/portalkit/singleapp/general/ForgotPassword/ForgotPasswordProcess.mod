@@ -89,18 +89,20 @@ try {
 	// generate token and set to user
   UserQuery query = Ivy.wf().getSecurityContext().users().query();
   query.where().eMailAddress().isEqualIgnoreCase(in.email);
-	IUser user = query.executor().firstResult() as IUser;
-	if (user != null) {
-		in.user = user;
-		String token = HashUtils.hash(user.getName());
+	List<IUser> users = query.executor().results();
+	if (users != null && users.size() == 1) {
+		in.user = users.get(0);
+		String token = HashUtils.hash(in.user.getName());
 		long expiryTime = Calendar.getInstance().getTimeInMillis() + 5*60000;
-		user.setProperty(UserProperty.RESET_PASSWORD_TOKEN, token);
-		user.setProperty(UserProperty.RESET_PASSWORD_TOKEN_EXPIRY, String.valueOf(expiryTime));
-		String resetUrl = ServerFactory.getServer().getServerInfo().getInfoPageUrl() + PortalNavigator.getPasswordResetUrl(token, user.getName());
+		in.user.setProperty(UserProperty.RESET_PASSWORD_TOKEN, token);
+		in.user.setProperty(UserProperty.RESET_PASSWORD_TOKEN_EXPIRY, String.valueOf(expiryTime));
+		String resetUrl = ServerFactory.getServer().getServerInfo().getInfoPageUrl() + PortalNavigator.getPasswordResetUrl(token, in.user.getName());
 		in.emailContent = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/passwordResetEmailContent", Arrays.asList(resetUrl));
 		in.isValid = true;
+	} else if (users == null) {
+		message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/userNotFound");
 	} else {
-	  message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/userNotFound");
+		message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/usersHaveSameEmail");
 	}
 } catch (Exception e) {
 	Ivy.log().error("An error occurred while processing forgot password request: {0}", e.getMessage());
