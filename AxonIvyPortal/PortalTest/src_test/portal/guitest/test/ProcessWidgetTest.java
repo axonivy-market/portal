@@ -20,12 +20,15 @@ import portal.guitest.common.WaitHelper;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.ProcessWidgetPage.AddNewExternalLinkDialog;
-import portal.guitest.page.ProcessWidgetPage.AddNewProcessDialog;
+import portal.guitest.page.UserFavoriteProcessPage;
+import portal.guitest.page.UserProfilePage;
+import portal.guitest.page.UserFavoriteProcessPage.SettingProcessLanguageDialog;
 
 public class ProcessWidgetTest extends BaseTest {
 
   private static final String CLEAN_ALL_FAVORITE_PROCESSES = "(For autotest) Clean all favorite processes";
   private static final String CASE_MAP_LEAVES = "Case Map: Leave Request";
+  private static final String APPRAISAL = "Appraisal";
   private static final String AGOOGLE_LINK = "AGoogle";
   private static final String AAGOOGLE_LINK = "AAGoogle";
 
@@ -69,7 +72,7 @@ public class ProcessWidgetTest extends BaseTest {
     createExternalTestProcess(processName, processLink, false);
     
     backToCompactProcessWidget();
-    AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
+    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.selectProcessByName(AAGOOGLE_LINK);
     addNewProcessDialog.submitForm();
     
@@ -101,7 +104,7 @@ public class ProcessWidgetTest extends BaseTest {
     processWidget.expand();
     createExternalTestProcess(processName, processLink, false);
     backToCompactProcessWidget();
-    AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
+    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.selectProcessByName(CASE_MAP_LEAVES);
     addNewProcessDialog.submitForm();
     addNewProcessDialog = processWidget.openNewProcessDialog();
@@ -159,7 +162,7 @@ public class ProcessWidgetTest extends BaseTest {
     createExternalTestProcess(processName, processLink, false);
     
     backToCompactProcessWidget();
-    AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
+    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.selectProcessByName(AGOOGLE_LINK);
     addNewProcessDialog.submitForm();
     
@@ -195,7 +198,7 @@ public class ProcessWidgetTest extends BaseTest {
     createExternalTestProcess(processName, processLink, false);
     
     backToCompactProcessWidget();
-    AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
+    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.selectProcessByName(AGOOGLE_LINK);
     addNewProcessDialog.submitForm();
     
@@ -211,24 +214,51 @@ public class ProcessWidgetTest extends BaseTest {
   @Test
   public void testAddProcessBySelectingIvyProcess() {
     processWidget = homePage.getProcessWidget();
-    AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
+    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.selectProcessByName(CLEAN_ALL_FAVORITE_PROCESSES);
     addNewProcessDialog.submitForm();
     assertNotNull(processWidget.getProcess(CLEAN_ALL_FAVORITE_PROCESSES));
   }
 
   @Test
+  public void testAddProcessWithMultilingual() {
+    // Change language to German
+    changeLanguage(0);
+    processWidget = homePage.getProcessWidget();
+    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
+    addNewProcessDialog.selectProcessByName(APPRAISAL);
+    SettingProcessLanguageDialog settingProcessLanguageDialog = addNewProcessDialog.openAddlanguageDialog();
+    settingProcessLanguageDialog.fillProcessNamesByLocaleName();
+    addNewProcessDialog.submitForm();
+    
+    assertNotNull(processWidget.getProcess(String.format("%s - %s", APPRAISAL, "German*")));
+    
+    // Change language to English
+    changeLanguage(1);
+    
+    processWidget = homePage.getProcessWidget();
+    assertNotNull(processWidget.getProcess(String.format("%s - %s", APPRAISAL, "English")));
+  }
+
+  private void changeLanguage(int selectionIndex) {
+    UserProfilePage userProfilePage = homePage.openMyProfilePage();
+    userProfilePage.selectLanguage(selectionIndex);
+    userProfilePage.save();
+    homePage = userProfilePage.clickOnCancelLink();
+  }
+  
+  @Test
   public void testDefaultProcessIsExcludedFromSearchProcessToAdd() {
     processWidget = homePage.getProcessWidget();
     String processName = "Axon.ivy Selfservice";
-    AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
+    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
     assertFalse(addNewProcessDialog.isIvyProcessByNameSearchable(processName));
   }
 
   @Test
   public void testAddCaseMapBySelectingCaseMap() {
     processWidget = homePage.getProcessWidget();
-    AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
+    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.selectProcessByName(CASE_MAP_LEAVES);
     addNewProcessDialog.submitForm();
     assertNotNull(processWidget.getProcess(CASE_MAP_LEAVES));
@@ -237,14 +267,14 @@ public class ProcessWidgetTest extends BaseTest {
   @Test
   public void testDefaultIconOfANewFavoriteProcess() {
     processWidget = homePage.getProcessWidget();
-    AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
+    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
     assertTrue(addNewProcessDialog.isDefaultIcon());
   }
 
   @Test
   public void testSearchAnExistedIcon() {
     processWidget = homePage.getProcessWidget();
-    AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
+    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.clickChangeIconButton();
     addNewProcessDialog.inputSearchedIconName("area chart");
     assertEquals(1, addNewProcessDialog.getDisplayedIconAmount());
@@ -253,7 +283,7 @@ public class ProcessWidgetTest extends BaseTest {
   @Test
   public void testSearchANonExistedIcon() {
     processWidget = homePage.getProcessWidget();
-    AddNewProcessDialog addNewProcessDialog = processWidget.openNewProcessDialog();
+    UserFavoriteProcessPage addNewProcessDialog = processWidget.openNewProcessDialog();
     addNewProcessDialog.clickChangeIconButton();
     addNewProcessDialog.inputSearchedIconName("chart1");
     assertEquals(0, addNewProcessDialog.getDisplayedIconAmount());
