@@ -13,7 +13,7 @@
   <c:set value="#{cc.attrs.case}" var="case" />
   <f:event listener="#{logic.initData(case)}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass} ui-g">
-    <p:growl id="case-document-global-messages" />
+    <p:growl id="case-document-global-messages" escape="false"/>
     <h:form id="case-document-form" prependId="false" styleClass="ui-g-12 u-padding-0">
       <div class="case-detail-section-title ui-g-12">
         <div class="ui-g-5 u-truncate-text u-padding-0">
