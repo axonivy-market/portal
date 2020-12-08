@@ -3,6 +3,7 @@ package ch.ivy.addon.portalkit.util;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
@@ -14,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
+import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
@@ -239,5 +241,16 @@ public class UserUtils {
     return IvyExecutor.executeAsSystem(() -> {
       return Ivy.wf().getSecurityContext().users().find(userId);
     });
+  }
+
+  public static boolean isValidPasswordResetToken(String token, IUser user) {
+    if (user != null && StringUtils.isNotBlank(token)) {
+      String tokenInDb = user.getProperty(UserProperty.RESET_PASSWORD_TOKEN);
+      String tokenExpiryInDb = user.getProperty(UserProperty.RESET_PASSWORD_TOKEN_EXPIRY);
+      long expiryTime = StringUtils.isNotBlank(tokenExpiryInDb) ? Long.valueOf(tokenExpiryInDb) : 0l;
+      long currentTime = Calendar.getInstance().getTimeInMillis();
+      return token.equals(tokenInDb) && currentTime < expiryTime;
+    }
+    return false;
   }
 }
