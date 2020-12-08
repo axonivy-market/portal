@@ -1743,3 +1743,9 @@ ul.participants-list li {
   border: 2px solid transparent;
   border-top-color: $ajaxLoaderBorderColor;
 }
+
+/* Portal Growl message */
+body .ui-growl .ui-growl-item .ui-growl-message a {
+  color: #ffffff;
+  text-decoration: underline;
+}

@@ -1,10 +1,11 @@
 package ch.ivy.addon.portal.generic.navigation;
 
+import static ch.ivy.addon.portalkit.util.ProcessUtils.getURLByKeyword;
+
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import javax.faces.context.FacesContext;
 
@@ -20,10 +21,10 @@ import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.RequestUriFactory;
-import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
 
 public final class PortalNavigator {
+  private static final String PORTAL_CASE_DETAILS_SHORT_NAME = "CaseDetailsPage.ivp";
   private static final String PORTAL_PROCESS_START_NAME = "Start Processes/PortalStart/DefaultApplicationHomePage.ivp";
   private static final String PORTAL_PROCESS = "Start Processes/PortalStart/DefaultProcessStartListPage.ivp";
   private static final String PORTAL_TASK = "Start Processes/PortalStart/DefaultTaskListPage.ivp";
@@ -145,31 +146,14 @@ public final class PortalNavigator {
   public void navigateToPortalCaseDetails(Long caseId) {
     Map<String, String> params = new HashMap<>();
     params.put("caseId", String.valueOf(caseId));
-    navigateByKeyword("CaseDetailsPage.ivp", PORTAL_CASE_DETAILS, params);
+    navigateByKeyword(PORTAL_CASE_DETAILS_SHORT_NAME, PORTAL_CASE_DETAILS, params);
   }
 
   private void navigateByKeyword(String keyword, String defaultFriendlyRequestPath, Map<String, String> param) {
-    String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);
-    if (StringUtils.isNotEmpty(customizePortalFriendlyRequestPath)) {
-      navigate(customizePortalFriendlyRequestPath, param);
-    } else {
-      navigate(defaultFriendlyRequestPath, param);
+    String url = getURLByKeyword(keyword, defaultFriendlyRequestPath, param);
+    if (StringUtils.isNotBlank(url)) {
+      redirect(url);
     }
   }
 
-  private void navigate(String friendlyRequestPath, Map<String, String> params) {
-    String requestPath = SecurityServiceUtils.findProcessByUserFriendlyRequestPath(friendlyRequestPath);
-    if (StringUtils.isNotEmpty(requestPath)) {
-      try {
-        String ivyContextName = ServerFactory.getServer().getSecurityManager().executeAsSystem(
-            () -> RequestUriFactory.getIvyContextName());
-        String paramStr = params.entrySet().stream()
-            .map(e -> e.getKey()+"="+e.getValue())
-            .collect(Collectors.joining("&"));
-        redirect(SLASH + ivyContextName + requestPath + (StringUtils.isNotBlank(paramStr) ? "?" + paramStr : StringUtils.EMPTY));
-      } catch (Exception e) {
-        Ivy.log().error(e);
-      }
-    }
-  }
 }

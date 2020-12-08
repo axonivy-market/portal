@@ -108,9 +108,9 @@
         message="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/cancelCreateForm')}" appendTo="@(body)"
         header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/warning')}" severity="alert"
         responsive="true">
-        <p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" actionListener="#{logic.cancel}"
+        <p:commandButton id="yes-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/yes')}" actionListener="#{logic.cancel}"
           oncomplete="PF('cancel-dialog').hide()" update="form" global="false" />
-        <p:commandButton styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
+        <p:commandButton id="no-button" styleClass="portal-cancel-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/no')}"
           oncomplete="PF('cancel-dialog').hide()" />
       </p:confirmDialog>
     </ui:define>

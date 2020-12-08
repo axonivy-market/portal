@@ -263,6 +263,7 @@ if (#task is initialized) {
 		in.isFirstTask = true;
 		in.portalPage = PortalPage.HOME_PAGE;
 	}
+	in.caseSelected = task.getCase();
 }
 
 in.isTaskFinished = #task is initialized && task.getEndTimestamp() is initialized;
@@ -458,9 +459,10 @@ Pt0 f0 @|AlternativeIcon #fIcon
 Pt0 f16 464 96 1224 96 #arcP
 Pt0 f6 1256 96 1296 96 #arcP
 Pt0 f12 dialogId ch.ivy.addon.portal.generic.PortalFinishTaskHandle #txt
-Pt0 f12 startMethod start(Boolean) #txt
-Pt0 f12 requestActionDecl '<Boolean isTaskFinished> param;' #txt
+Pt0 f12 startMethod start(Boolean,ch.ivyteam.ivy.workflow.ICase) #txt
+Pt0 f12 requestActionDecl '<Boolean isTaskFinished,ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
 Pt0 f12 requestMappingAction 'param.isTaskFinished=in.isTaskFinished;
+param.iCase=in.caseSelected;
 ' #txt
 Pt0 f12 responseMappingAction 'out=in;
 ' #txt

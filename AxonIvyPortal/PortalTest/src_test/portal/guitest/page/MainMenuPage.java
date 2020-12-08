@@ -60,4 +60,9 @@ public class MainMenuPage extends TemplatePage {
     return new CaseWidgetPage();
   }
 
+  public WorkingTaskDialogPageOfApplicationMenu selectDashboardMenu() {
+    clickByCssSelector("a.ripplelink.current-application");
+    return new WorkingTaskDialogPageOfApplicationMenu();
+  }
+  
 }
