@@ -27,3 +27,4 @@ passwordResetToken String #field
 passwordResetUsername String #field
 isValidResetUrl Boolean #field
 passwordResetMessage String #field
+isIvySecuritySystem Boolean #field
