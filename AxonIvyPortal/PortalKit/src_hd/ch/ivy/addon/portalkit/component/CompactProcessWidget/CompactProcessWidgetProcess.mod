@@ -166,9 +166,6 @@ import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 
 CompactProcessWidgetBean compactProcessWidgetBean = ManagedBeans.get("compactProcessWidgetBean") as CompactProcessWidgetBean;
 in.canAddLanguages = compactProcessWidgetBean.canAddProcessLanguages();
-if (in.canAddLanguages) {
-	compactProcessWidgetBean.getEditingProcess().setNames(new List());
-}
 ' #txt
 Ps0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

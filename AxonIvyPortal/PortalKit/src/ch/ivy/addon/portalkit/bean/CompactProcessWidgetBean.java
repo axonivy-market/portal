@@ -49,7 +49,7 @@ private static final long serialVersionUID = -5889375917550618261L;
   
   private UserProcessService userProcessService;
   private UserProcess editingProcess;
-  private String processNameOfCurrentLanguage;
+  private UserProcess selectedProcess;
   private Long userId;
   
   private boolean editMode;
@@ -115,13 +115,14 @@ private static final long serialVersionUID = -5889375917550618261L;
     }
   }
 
-  public void onselectUserProcess() {
-    setProcessNameOfCurrentLanguage(this.editingProcess.getProcessName());
+  public void onSelectUserProcess() throws CloneNotSupportedException {
+    this.editingProcess = new UserProcess();
+    this.editingProcess = this.selectedProcess.clone();
   }
 
   public void addNewUserProcess() {
+    this.selectedProcess = new UserProcess();
     this.editingProcess = new UserProcess();
-    setProcessNameOfCurrentLanguage("");
     initDataForProcessAutoComplete();
   }
   
@@ -130,11 +131,15 @@ private static final long serialVersionUID = -5889375917550618261L;
   }
 
   public List<DisplayName> getSupportedLanguage(List<String> languages) {
+    if (CollectionUtils.isNotEmpty(this.editingProcess.getNames())) {
+      return this.editingProcess.getNames();
+    }
+
     List<DisplayName> supportedlanguages = new ArrayList<>();
     for (String language : languages) {
       DisplayName displayName = new DisplayName();
       displayName.setLocale(new Locale(language));
-      displayName.setValue(this.processNameOfCurrentLanguage);
+      displayName.setValue(this.editingProcess.getProcessName());
       supportedlanguages.add(displayName);
     }
     return supportedlanguages;
@@ -229,12 +234,12 @@ private static final long serialVersionUID = -5889375917550618261L;
     return userProcesses;
   }
 
-  public String getProcessNameOfCurrentLanguage() {
-    return processNameOfCurrentLanguage;
+  public UserProcess getSelectedProcess() {
+    return selectedProcess;
   }
 
-  public void setProcessNameOfCurrentLanguage(String processNameOfCurrentLanguage) {
-    this.processNameOfCurrentLanguage = processNameOfCurrentLanguage;
+  public void setSelectedProcess(UserProcess selectedProcess) {
+    this.selectedProcess = selectedProcess;
   }
 
   public void switchEditMode() {

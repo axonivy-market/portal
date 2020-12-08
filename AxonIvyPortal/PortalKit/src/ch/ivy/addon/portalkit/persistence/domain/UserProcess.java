@@ -12,7 +12,7 @@ import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.util.Locales;
 
 
-public class UserProcess extends BusinessEntity {
+public class UserProcess extends BusinessEntity implements Cloneable {
   private long applicationId = Long.MIN_VALUE;
   private Long userId;
   private String processName;
@@ -193,4 +193,10 @@ public class UserProcess extends BusinessEntity {
     }
     return true;
   }
+
+  @Override
+  public UserProcess clone() throws CloneNotSupportedException {
+    return (UserProcess) super.clone();
+  }
+
 }

@@ -89,13 +89,13 @@
                 dropdown="true" scrollHeight="300" forceSelection="true"
                 requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/theProcess')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
                 completeMethod="#{compactProcessWidgetBean.completeUserProcess}"
-                value="#{compactProcessWidgetBean.editingProcess}"
+                value="#{compactProcessWidgetBean.selectedProcess}"
                 var="userProcess" itemValue="#{userProcess}" itemLabel="#{userProcess.processName}"
                 queryDelay="500" cache="true" minQueryLength="2"
                 itemtipAtPosition="right top"
                 converter="userProcessAutoCompleteConverter">
                 <p:ajax event="query" global="false" />
-                <p:ajax event="itemSelect" update="@form" resetValues="true" listener="#{compactProcessWidgetBean.onselectUserProcess}"/>
+                <p:ajax event="itemSelect" update="@form" resetValues="true" listener="#{compactProcessWidgetBean.onSelectUserProcess}"/>
                 <p:column>
                   <h:outputText styleClass="autocomplete-tooltip" value="#{userProcess.processName}"
                     title="#{userProcess.description}" />
@@ -111,10 +111,11 @@
           </div>
           <div class="ui-g-12">
             <div class="md-inputfield ui-g-8">
-              <p:inputText id="process-display-name" value="#{compactProcessWidgetBean.processNameOfCurrentLanguage}"
+              <p:inputText id="process-display-name" value="#{compactProcessWidgetBean.editingProcess.processName}"
                 styleClass="ui-g-12"
                 required="true"
                 requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}">
+                <p:ajax event="blur" listener="#{compactProcessWidgetBean.editingProcess.setNames(null)}" global="false" immediate="true" partialSubmit="true"/>
               </p:inputText>
               <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}"
                 styleClass="ui-g-12" for="process-display-name" />
@@ -187,9 +188,10 @@
         <p:commandLink styleClass="portal-cancel-button u-mar-right-15" 
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" onclick="PF('favorite-process-name').hide();" />
 
-        <p:commandButton styleClass="portal-ok-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
+        <p:commandButton id="add-supported-language-command"
+          styleClass="portal-ok-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
           icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
-          process="@form" update="@this"
+          process="@form" update="@this #{cc.clientId}:process-specific-input-container"
           oncomplete="PF('favorite-process-name').hide();" actionListener="#{logic.processLanguage}"
           rendered="#{!data.supportedLanguages.isEmpty()}" />
       </div>
