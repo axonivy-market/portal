@@ -261,4 +261,22 @@ public class ProcessWidgetPage extends TemplatePage {
     externalCheckboxLabel.click();
     waitAjaxIndicatorDisappear();
   }
+
+  public void loadAllProcessesPage() {
+    waitForElementDisplayed(By.id("process-widget:process-link:process-link"), true);
+    click(By.id("process-widget:process-link:process-link"));
+    this.waitForPageLoaded();
+  }
+  
+  public void goToNewExpressWorkFlowPage() {
+    waitForElementDisplayed(By.cssSelector("a[id$='process-widget:process-widget-action-form:create-express-workflow']"), true);
+    click(By.cssSelector("a[id$='process-widget:process-widget-action-form:create-express-workflow']"));
+    this.waitForPageLoaded();
+  }
+  
+  public void goToCreatedExpressWorkFlowPage() {
+    waitForElementDisplayed(By.id("process-widget:express-process-list:0:express-process-item-form:process-item"), true);
+    click(By.id("process-widget:express-process-list:0:express-process-item-form:process-item"));
+    this.waitForPageLoaded();
+  }
 }

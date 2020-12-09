@@ -178,7 +178,7 @@
 				</p:fieldset>
 				<br/>
 				<p:outputPanel styleClass="TexAlRight">
-					<p:commandButton value="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/StartWF')}" update="form"
+					<p:commandButton value="#{ivy.cms.co('/Dialogs/agileBPM/define_WF/StartWF')}" update="form" id="start-workflow-button"
 						actionListener="#{logic.close}" styleClass="buttonDelegate" icon="fa fa-check"/>
 					<p:spacer width="5" />
 					<p:commandButton value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" immediate="true" update="form"

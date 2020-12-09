@@ -91,7 +91,7 @@
 										<p:column colspan="4" styleClass="create-input-field-panel-grid-action-btn">
 											<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
 												actionListener="#{logic.createInputField()}" styleClass="buttonDelegate"
-												icon="fa fa-arrow-down"
+												icon="fa fa-arrow-down" id="create-element-button"
 												update="form:availableFormelements form:createTabs"
 												process="form:createTabs:createInputFieldTab" />
 										</p:column>
@@ -838,12 +838,12 @@
 						update="form:selectedFormelementsField" styleClass="buttonDelegate floatLeft" process="form:selectedFormelementsField" actionListener="#{logic.back}"/>
 					<p:spacer width="5"></p:spacer>
 
-					<p:commandButton  value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')}" icon="fa fa-save"
+					<p:commandButton value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/SaveWorkflow')}" icon="fa fa-save" id="save-workflow-button"
 						styleClass="buttonDelegate" update="form:selectedFormelementsField" process="form:selectedFormelementsField" actionListener="#{logic.close}"/>
 					<p:spacer width="5" rendered="#{data.data.processType eq 'AHWF'}"></p:spacer>
 
 					<p:commandButton rendered="#{data.data.processType eq 'AHWF'}" icon="fa fa-check" styleClass="buttonDelegate"
-						value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow')}"
+						value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/ExecuteWorkflow')}" id="execute-workflow-directly-button"
 						update="form:selectedFormelementsField" process="form:selectedFormelementsField" actionListener="#{logic.directExecution}"/>
 					<p:spacer width="5"></p:spacer>
 
