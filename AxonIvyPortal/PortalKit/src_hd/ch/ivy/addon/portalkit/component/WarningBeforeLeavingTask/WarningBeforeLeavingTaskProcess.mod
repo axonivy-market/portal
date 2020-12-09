@@ -71,7 +71,7 @@ Ws0 f8 actionTable 'out=in;
 ' #txt
 Ws0 f8 actionCode 'import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 
-GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, ivy.task.getCase());' #txt
+GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, ivy.case);' #txt
 Ws0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

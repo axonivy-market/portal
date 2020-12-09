@@ -21,6 +21,8 @@ Cs0 @GridStep f8 '' #zField
 Cs0 @PushWFArc f7 '' #zField
 Cs0 @UdMethod f3 '' #zField
 Cs0 @PushWFArc f9 '' #zField
+Cs0 @InfoButton f10 '' #zField
+Cs0 @AnnotationArc f11 '' #zField
 >Proto Cs0 Cs0 GlobalSearchProcess #zField
 Cs0 f0 guid 163AFD8B43132CEB #txt
 Cs0 f0 method start() #txt
@@ -67,7 +69,7 @@ Cs0 f8 actionTable 'out=in;
 Cs0 f8 actionCode 'import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 
 if(in.isWorkingOnTask) {
-	GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, ivy.task.getCase());
+	GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, ivy.case);
 }
 ' #txt
 Cs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -97,6 +99,17 @@ Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f3 51 211 26 26 -25 15 #rect
 Cs0 f3 @|UdMethodIcon #fIcon
 Cs0 f9 77 224 144 224 #arcP
+Cs0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Sample scenario to test&#13;
+start a task &gt; perform global search</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f10 192 282 208 44 -97 -16 #rect
+Cs0 f10 @|IBIcon #fIcon
+Cs0 f11 296 282 216 246 #arcP
 >Proto Cs0 .type ch.ivy.addon.portal.generic.GlobalSearch.GlobalSearchData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -109,3 +122,5 @@ Cs0 f8 mainOut f7 tail #connect
 Cs0 f7 head f6 mainIn #connect
 Cs0 f3 mainOut f9 tail #connect
 Cs0 f9 head f8 mainIn #connect
+Cs0 f10 ao f11 tail #connect
+Cs0 f11 head f8 @CG|ai #connect

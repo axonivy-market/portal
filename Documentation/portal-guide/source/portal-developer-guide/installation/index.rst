@@ -146,6 +146,13 @@ In engine
    project.
 4. Follow detailed migration notes for each version below.
 
+Migrate 8.0.11 to 8.0.12
+------------------------
+
+When a task is finished, Portal could show a link to case details in Global Growl. Due to this new feature, PortalStart.mod file is changed. If you have
+customized this process in your project, copy new PortalStart from
+Portal Template to your project and re-apply your customization.
+
 Migrate 8.0.7 to 8.0.8
 ----------------------
 
