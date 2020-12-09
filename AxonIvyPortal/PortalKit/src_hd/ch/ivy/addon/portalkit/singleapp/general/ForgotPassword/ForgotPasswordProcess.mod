@@ -18,8 +18,6 @@ Fs0 @UdEvent f18 '' #zField
 Fs0 @UdProcessEnd f6 '' #zField
 Fs0 @CallSub f7 '' #zField
 Fs0 @PushWFArc f8 '' #zField
-Fs0 @GridStep f11 '' #zField
-Fs0 @PushWFArc f10 '' #zField
 Fs0 @PushWFArc f9 '' #zField
 >Proto Fs0 Fs0 ForgotPasswordProcess #zField
 Fs0 f0 guid 175F90CDEF7A1E5C #txt
@@ -65,7 +63,7 @@ Fs0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Fs0 f18 83 243 26 26 -14 15 #rect
 Fs0 f18 @|UdEventIcon #fIcon
-Fs0 f6 627 243 26 26 0 12 #rect
+Fs0 f6 403 243 26 26 0 12 #rect
 Fs0 f6 @|UdProcessEndIcon #fIcon
 Fs0 f7 processCall 'Functional Processes/SendPasswordResetEmail:call(String)' #txt
 Fs0 f7 requestActionDecl '<String email> param;' #txt
@@ -85,28 +83,7 @@ Fs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Fs0 f7 200 234 112 44 -31 -8 #rect
 Fs0 f7 @|CallSubIcon #fIcon
 Fs0 f8 109 256 200 256 #arcP
-Fs0 f11 actionTable 'out=in;
-' #txt
-Fs0 f11 actionCode 'import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
-if (!in.isValid) {
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, in.message, ""));
-	FacesContext.getCurrentInstance().validationFailed();
-} else {
-	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, in.message, ""));
-}' #txt
-Fs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>show result</name>
-    </language>
-</elementInfo>
-' #txt
-Fs0 f11 408 234 112 44 -32 -8 #rect
-Fs0 f11 @|StepIcon #fIcon
-Fs0 f10 312 256 408 256 #arcP
-Fs0 f9 520 256 627 256 #arcP
+Fs0 f9 312 256 403 256 #arcP
 >Proto Fs0 .type ch.ivy.addon.portalkit.singleapp.general.ForgotPassword.ForgotPasswordData #txt
 >Proto Fs0 .processKind HTML_DIALOG #txt
 >Proto Fs0 -8 -8 16 16 16 26 #rect
@@ -117,7 +94,5 @@ Fs0 f3 mainOut f5 tail #connect
 Fs0 f5 head f4 mainIn #connect
 Fs0 f18 mainOut f8 tail #connect
 Fs0 f8 head f7 mainIn #connect
-Fs0 f7 mainOut f10 tail #connect
-Fs0 f10 head f11 mainIn #connect
-Fs0 f11 mainOut f9 tail #connect
+Fs0 f7 mainOut f9 tail #connect
 Fs0 f9 head f6 mainIn #connect
