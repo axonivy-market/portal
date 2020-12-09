@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
+import portal.guitest.common.WaitHelper;
 
 public class UserFavoriteProcessPage extends TemplatePage {
 
@@ -94,8 +95,9 @@ public class UserFavoriteProcessPage extends TemplatePage {
       WebElement submitButton =
           settingLanguageDialog.findElement(By.cssSelector("button[id$=':add-supported-language-command']"));
       click(submitButton);
-      waitUntilAttributeChanged(By.cssSelector("input[id$='process-widget:process-display-name']"), "value",
-          defaultDisplayNameText, DEFAULT_TIMEOUT);
+
+      WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector("input[id$='process-widget:process-display-name']")
+          .getAttribute("value").equalsIgnoreCase(defaultDisplayNameText));
     }
   }
 }
