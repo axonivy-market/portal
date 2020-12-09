@@ -72,4 +72,8 @@ public class MainMenuPage extends TemplatePage {
     return findElementByCssSelector(PROCESS_MENU_ITEM_CSS_SELECTOR).getText();
   }
 
+  public HomePage backToHomeByClickOnBreadcrumb() {
+    click(findElementByCssSelector("a.ui-menuitem-link.ui-icon.ui-icon-home"));
+    return new HomePage();
+  }
 }
