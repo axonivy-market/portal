@@ -146,18 +146,18 @@ Pt0 @GridStep f109 '' #zField
 Pt0 @UserDialog f110 '' #zField
 Pt0 @PushWFArc f111 '' #zField
 Pt0 @GridStep f118 '' #zField
-Pt0 @GridStep f112 '' #zField
-Pt0 @PushWFArc f114 '' #zField
 Pt0 @Alternative f115 '' #zField
-Pt0 @PushWFArc f116 '' #zField
-Pt0 @GridStep f119 '' #zField
-Pt0 @PushWFArc f120 '' #zField
 Pt0 @Alternative f121 '' #zField
-Pt0 @PushWFArc f122 '' #zField
 Pt0 @PushWFArc f113 '' #zField
 Pt0 @PushWFArc f124 '' #zField
 Pt0 @PushWFArc f123 '' #zField
 Pt0 @PushWFArc f117 '' #zField
+Pt0 @CallSub f112 '' #zField
+Pt0 @PushWFArc f114 '' #zField
+Pt0 @PushWFArc f116 '' #zField
+Pt0 @CallSub f119 '' #zField
+Pt0 @PushWFArc f120 '' #zField
+Pt0 @PushWFArc f122 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk0 @TextInP .type .type #zField
 Bk0 @TextInP .processKind .processKind #zField
@@ -1369,7 +1369,7 @@ Pt0 f108 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f108 1312 810 112 44 -45 -8 #rect
+Pt0 f108 1304 810 112 44 -45 -8 #rect
 Pt0 f108 @|UserDialogIcon #fIcon
 Pt0 f109 actionTable 'out=in;
 ' #txt
@@ -1434,21 +1434,6 @@ Pt0 f118 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f118 1296 906 128 44 -60 -8 #rect
 Pt0 f118 @|StepIcon #fIcon
-Pt0 f112 actionTable 'out=in;
-' #txt
-Pt0 f112 actionCode 'import ch.ivy.addon.portalkit.util.SecuritySystemUtils;
-in.isIvySecuritySystem = SecuritySystemUtils.isIvySecuritySystem();' #txt
-Pt0 f112 security system #txt
-Pt0 f112 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>check Ivy Security System</name>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f112 920 1002 144 44 -69 -8 #rect
-Pt0 f112 @|StepIcon #fIcon
-Pt0 f114 815 1024 920 1024 #arcP
 Pt0 f115 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1458,22 +1443,6 @@ Pt0 f115 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f115 1168 1008 32 32 0 16 #rect
 Pt0 f115 @|AlternativeIcon #fIcon
-Pt0 f116 1064 1024 1168 1024 #arcP
-Pt0 f119 actionTable 'out=in;
-' #txt
-Pt0 f119 actionCode 'import ch.ivy.addon.portalkit.util.SecuritySystemUtils;
-in.isIvySecuritySystem = SecuritySystemUtils.isIvySecuritySystem();' #txt
-Pt0 f119 security system #txt
-Pt0 f119 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>check Ivy Security System</name>
-    </language>
-</elementInfo>
-' #txt
-Pt0 f119 920 810 144 44 -69 -8 #rect
-Pt0 f119 @|StepIcon #fIcon
-Pt0 f120 815 832 920 832 #arcP
 Pt0 f121 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1483,10 +1452,9 @@ Pt0 f121 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Pt0 f121 1168 816 32 32 0 16 #rect
 Pt0 f121 @|AlternativeIcon #fIcon
-Pt0 f122 1064 832 1168 832 #arcP
 Pt0 f113 expr in #txt
 Pt0 f113 outCond in.isIvySecuritySystem #txt
-Pt0 f113 1200 832 1312 832 #arcP
+Pt0 f113 1200 832 1304 832 #arcP
 Pt0 f124 expr in #txt
 Pt0 f124 outCond in.isIvySecuritySystem #txt
 Pt0 f124 1200 1024 1304 1024 #arcP
@@ -1498,6 +1466,38 @@ Pt0 f117 expr in #txt
 Pt0 f117 1184 848 1296 928 #arcP
 Pt0 f117 1 1184 928 #addKink
 Pt0 f117 1 0.24473129722455964 0 0 #arcLabel
+Pt0 f112 processCall 'Functional Processes/CheckIvySecuritySystem:call()' #txt
+Pt0 f112 requestActionDecl '<> param;' #txt
+Pt0 f112 responseMappingAction 'out=in;
+out.isIvySecuritySystem=result.isIvySecuritySystem;
+' #txt
+Pt0 f112 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Check Ivy Security System</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f112 912 1002 160 44 -70 -8 #rect
+Pt0 f112 @|CallSubIcon #fIcon
+Pt0 f114 815 1024 912 1024 #arcP
+Pt0 f116 1072 1024 1168 1024 #arcP
+Pt0 f119 processCall 'Functional Processes/CheckIvySecuritySystem:call()' #txt
+Pt0 f119 requestActionDecl '<> param;' #txt
+Pt0 f119 responseMappingAction 'out=in;
+out.isIvySecuritySystem=result.isIvySecuritySystem;
+' #txt
+Pt0 f119 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Check Ivy Security System</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f119 912 810 160 44 -70 -8 #rect
+Pt0 f119 @|CallSubIcon #fIcon
+Pt0 f120 815 832 912 832 #arcP
+Pt0 f122 1072 832 1168 832 #arcP
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -2343,14 +2343,6 @@ Pt0 f101 mainOut f102 tail #connect
 Pt0 f102 head f100 mainIn #connect
 Pt0 f109 mainOut f111 tail #connect
 Pt0 f111 head f110 mainIn #connect
-Pt0 f106 mainOut f114 tail #connect
-Pt0 f114 head f112 mainIn #connect
-Pt0 f112 mainOut f116 tail #connect
-Pt0 f116 head f115 in #connect
-Pt0 f107 mainOut f120 tail #connect
-Pt0 f120 head f119 mainIn #connect
-Pt0 f119 mainOut f122 tail #connect
-Pt0 f122 head f121 in #connect
 Pt0 f121 out f113 tail #connect
 Pt0 f113 head f108 mainIn #connect
 Pt0 f115 out f124 tail #connect
@@ -2359,6 +2351,14 @@ Pt0 f115 out f123 tail #connect
 Pt0 f123 head f118 mainIn #connect
 Pt0 f121 out f117 tail #connect
 Pt0 f117 head f118 mainIn #connect
+Pt0 f106 mainOut f114 tail #connect
+Pt0 f114 head f112 mainIn #connect
+Pt0 f112 mainOut f116 tail #connect
+Pt0 f116 head f115 in #connect
+Pt0 f107 mainOut f120 tail #connect
+Pt0 f120 head f119 mainIn #connect
+Pt0 f119 mainOut f122 tail #connect
+Pt0 f122 head f121 in #connect
 Bk0 f17 mainOut f26 tail #connect
 Bk0 f26 head f23 mainIn #connect
 Bk0 f19 mainOut f39 tail #connect
