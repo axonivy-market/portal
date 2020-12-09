@@ -37,7 +37,7 @@ public class StatisticScreenshotTest extends ScreenshotTest {
     homePage.waitForStatisticRendered();
     
     mainMenuPage = homePage.openMainMenu();
-    ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 800));
     executeDecorateJs("highlightStatisticNavigation()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "navigate-to-full-statistics-page");
     ScreenshotUtil.maximizeBrowser();
@@ -45,11 +45,14 @@ public class StatisticScreenshotTest extends ScreenshotTest {
     StatisticWidgetPage statisticWidgetPage = mainMenuPage.selectStatisticDashboard();
     statisticWidgetPage.switchCreateMode();
     statisticWidgetPage.waitForAllChartLoaded();
+    statisticWidgetPage.closeMainMenu();
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1200));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "chart-creation-page");
     statisticWidgetPage.createTaskByPriorityChart();
     statisticWidgetPage.createTaskByExpiryChart();
     ScreenshotUtil.captureElementScreenshot(statisticWidgetPage.getChartCreationContainer(), ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "available-charts");
-    
+    ScreenshotUtil.maximizeBrowser();
+
     WebElement chartCreationDialog = statisticWidgetPage.getCaseByFinishedTaskCreationDialog();
     Sleeper.sleep(1000);//Wait for focus animation finish before capture screenshot
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(chartCreationDialog, ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "chart-creation-dialog", new ScreenshotMargin(100, 100));
@@ -60,7 +63,7 @@ public class StatisticScreenshotTest extends ScreenshotTest {
     statisticWidgetPage.waitForAllChartLoaded();
     executeDecorateJs("numberingChartPanel()");
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(statisticWidgetPage.getChartPanelByIndex(1), ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "chart-detail-with-annotation", new ScreenshotMargin(20, 10));
-    ScreenshotUtil.captureElementScreenshot(statisticWidgetPage.getChartInfoDialogOfChart(1), ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "chart-info-dialog");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(statisticWidgetPage.getChartInfoDialogOfChart(1), ScreenshotUtil.STATISTIC_WIDGET_FOLDER + "chart-info-dialog", new ScreenshotMargin(20, 10));
   }
   
 }
