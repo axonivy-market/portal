@@ -77,6 +77,10 @@ try {
 } catch (Exception e) {
 	Ivy.log().error("An error occurred while processing forgot password request: {0}", e.getMessage());
 	in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/forgotPasswordError");
+}
+if (!in.isValid) {
+	FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, in.message, ""));
+	FacesContext.getCurrentInstance().validationFailed();
 }' #txt
 Sl0 f16 security system #txt
 Sl0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -89,8 +93,12 @@ Sl0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Sl0 f16 216 42 112 44 -41 -8 #rect
 Sl0 f16 @|StepIcon #fIcon
 Sl0 f11 actionTable 'out=in;
-out.message=ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/passwordResetEmailSent");
 ' #txt
+Sl0 f11 actionCode 'import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
+in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/passwordResetEmailSent");
+FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, in.message, ""));' #txt
 Sl0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
