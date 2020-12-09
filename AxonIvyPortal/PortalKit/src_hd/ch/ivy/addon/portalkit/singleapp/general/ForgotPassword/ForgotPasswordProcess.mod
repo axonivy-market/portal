@@ -70,8 +70,6 @@ Fs0 f7 requestActionDecl '<String email> param;' #txt
 Fs0 f7 requestMappingAction 'param.email=in.email;
 ' #txt
 Fs0 f7 responseMappingAction 'out=in;
-out.isValid=result.isValid;
-out.message=result.message;
 ' #txt
 Fs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

@@ -24,10 +24,7 @@ Sl0 @PushWFArc f4 '' #zField
 Sl0 f0 inParamDecl '<String email> param;' #txt
 Sl0 f0 inParamTable 'out.email=param.email;
 ' #txt
-Sl0 f0 outParamDecl '<String message,Boolean isValid> result;' #txt
-Sl0 f0 outParamTable 'result.message=in.message;
-result.isValid=in.isValid;
-' #txt
+Sl0 f0 outParamDecl '<> result;' #txt
 Sl0 f0 callSignature call(String) #txt
 Sl0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
