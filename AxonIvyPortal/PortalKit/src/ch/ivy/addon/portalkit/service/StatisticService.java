@@ -1485,14 +1485,13 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       return new ArrayList<>(newCharts);
     }
 
-    List<StatisticChart> obsoletedCharts = filterExistedChartsByNewCharts(existedCharts, newCharts);
-    existedCharts.removeAll(obsoletedCharts);
+    existedCharts.removeAll(filterObsoletedChartsByNewCharts(existedCharts, newCharts));
     existedCharts.addAll(newCharts);
 
     return existedCharts.stream().sorted(Comparator.comparingLong(StatisticChart::getPosition)).collect(Collectors.toList());
   }
 
-  private List<StatisticChart> filterExistedChartsByNewCharts(List<StatisticChart> targetList, List<StatisticChart> newCharts) {
+  private List<StatisticChart> filterObsoletedChartsByNewCharts(List<StatisticChart> targetList, List<StatisticChart> newCharts) {
     List<StatisticChart> obsoletedCharts = new ArrayList<>();
     for (StatisticChart newChart : newCharts) {
       if (newChart.getId() == null) {
