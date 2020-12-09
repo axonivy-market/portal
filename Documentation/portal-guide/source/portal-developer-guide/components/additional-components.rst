@@ -183,7 +183,7 @@ use it to display your messages in Portal.
 
 .. code-block:: html
 
-    <p:growl id="portal-global-growl" widgetVar="portal-global-growl" for="portal-global-growl-message" />
+    <p:growl id="portal-global-growl" widgetVar="portal-global-growl" for="portal-global-growl-message" escape="false" />
 
 
 Display growl after finishing a task

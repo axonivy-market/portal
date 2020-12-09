@@ -4,7 +4,6 @@ import static ch.ivy.addon.portalkit.enums.GlobalVariable.DISPLAY_MESSAGE_AFTER_
 import static ch.ivy.addon.portalkit.util.ProcessUtils.getURLPortalCaseDetails;
 
 import java.util.Arrays;
-import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -54,13 +53,12 @@ public final class GrowlMessageUtils {
   }
 
   private static FacesMessage addMessageWithoutCaseDetails(boolean isTaskFinished) {
-    return new FacesMessage(isTaskFinished ? Ivy.cms().co(TASK_FINISHED) : Ivy.cms().co(TASK_LEFT));
+    return new FacesMessage(Ivy.cms().co(isTaskFinished ? TASK_FINISHED : TASK_LEFT));
   }
 
   private static FacesMessage addMessageWithCaseDetails(boolean isTaskFinished, String caseDetailsUrl) {
-    List<Object> caseDetailsParam = Arrays.asList(caseDetailsUrl);
-    return new FacesMessage(isTaskFinished ? Ivy.cms().co(TASK_FINISHED_WITH_DETAILS, caseDetailsParam)
-        : Ivy.cms().co(TASK_LEFT_WITH_DETAILS, caseDetailsParam));
+    return new FacesMessage(Ivy.cms().co(isTaskFinished ? TASK_FINISHED_WITH_DETAILS : TASK_LEFT_WITH_DETAILS,
+        Arrays.asList(caseDetailsUrl)));
   }
 
   private static boolean isCaseDetailsAvailable(ICase iCase, String caseDetailsUrl) {
