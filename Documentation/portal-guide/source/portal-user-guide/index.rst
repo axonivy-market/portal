@@ -6,6 +6,7 @@ User Guide
    :caption: Portal User Guide
 
    axon-ivy-portal/index
+   forgot-password/index
    dashboard/index
    portal-header/index
    full-process-list/index
