@@ -1,13 +1,22 @@
 package ch.ivy.addon.portalkit.persistence.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
+
+import org.apache.commons.collections4.CollectionUtils;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.util.Locales;
 
-public class UserProcess extends BusinessEntity {
+
+public class UserProcess extends BusinessEntity implements Cloneable {
   private String userName;
   private String processName;
+  private List<DisplayName> names;
   private String icon;
   private String link;
   private String workflowId;
@@ -18,14 +27,23 @@ public class UserProcess extends BusinessEntity {
   @JsonIgnore
   private String description;
 
-  public UserProcess() {
-
-  }
+  public UserProcess() {}
 
   public UserProcess(String processName, String userName, String link) {
     this.processName = processName;
     this.userName = userName;
     this.link = link;
+    generateDisplayNames(processName);
+  }
+
+  private void generateDisplayNames(String processName) {
+    if (this.names == null) {
+      this.names = new ArrayList<>();
+    }
+    DisplayName currentLocaleDisplayName = new DisplayName();
+    currentLocaleDisplayName.setLocale(new Locales().getCurrentLocale());
+    currentLocaleDisplayName.setValue(processName);
+    this.names.add(currentLocaleDisplayName);
   }
 
   public String getUserName() {
@@ -36,12 +54,34 @@ public class UserProcess extends BusinessEntity {
     this.userName = userName;
   }
 
+  /**
+   * Gets the display name of process by current active locale
+   * @return process name
+   */
   public String getProcessName() {
+    if (CollectionUtils.isNotEmpty(this.names)) {
+      return getActiveDisplayName();
+    }
     return processName;
+  }
+
+  private String getActiveDisplayName() {
+    Locale currentLocale = new Locales().getCurrentLocale();
+    return names.stream().filter(displayName -> displayName.getLocale().equals(currentLocale))
+        .map(DisplayName::getValue)
+        .findFirst().orElse(this.processName);
   }
 
   public void setProcessName(String processName) {
     this.processName = processName;
+  }
+
+  public List<DisplayName> getNames() {
+    return names;
+  }
+
+  public void setNames(List<DisplayName> names) {
+    this.names = names;
   }
 
   public String getIcon() {
@@ -138,5 +178,10 @@ public class UserProcess extends BusinessEntity {
       return false;
     }
     return true;
+  }
+
+  @Override
+  public UserProcess clone() throws CloneNotSupportedException {
+    return (UserProcess) super.clone();
   }
 }

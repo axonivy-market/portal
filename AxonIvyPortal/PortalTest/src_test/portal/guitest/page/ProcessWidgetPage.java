@@ -2,7 +2,6 @@ package portal.guitest.page;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
@@ -12,8 +11,6 @@ import org.openqa.selenium.interactions.Actions;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
-
-import ch.ivy.addon.portalkit.masterdata.AwesomeIcon;
 
 public class ProcessWidgetPage extends TemplatePage {
 
@@ -104,10 +101,10 @@ public class ProcessWidgetPage extends TemplatePage {
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
-  public AddNewProcessDialog openNewProcessDialog() {
+  public UserFavoriteProcessPage openNewProcessDialog() {
     click(findChildElementByCssSelector(processWidget, "[id$='show-adding-dialog-commmand']"));
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-    return new AddNewProcessDialog();
+    return new UserFavoriteProcessPage();
   }
   
   public AddNewExternalLinkDialog openNewExternalLinkDialog() {
@@ -194,61 +191,6 @@ public class ProcessWidgetPage extends TemplatePage {
     Action moveProcessSequence =
         builder.clickAndHold(processToMove).moveToElement(destinationProcess).release(processToMove).build();
     moveProcessSequence.perform();
-  }
-
-  public class AddNewProcessDialog {
-    private WebElement processDialog;
-    private final String PROCESS_DIALOG_ID = processWidgetId + ":add-new-process-dialog";
-    private final String SEARCH_ICON_NAME_CSS_SELECTOR = "input[id$='search-icon-name-field']";
-    private final String DEFAULT_ICON_CSS_SELECTOR = "span[id$='awesome-icon-display']";
-    private final String ICON_CSS_SELECTOR = "a[id$='awesome-icon']";
-
-    private AddNewProcessDialog() {
-      processDialog = findElementById(PROCESS_DIALOG_ID);
-    }
-
-    public void submitForm() {
-      WebElement submitButton = findChildElementById(processDialog, processWidgetId + ":add-process-command");
-      submitButton.click();
-      waitAjaxIndicatorDisappear();
-    }
-
-    public void selectProcessByName(String ivyProcessName) {
-      findElementByClassName("ui-autocomplete-dropdown").click();
-      String processSelector = "tr[data-item-label='" + ivyProcessName + "']";
-      waitForElementDisplayed(By.cssSelector(processSelector), true);
-      clickByCssSelector(processSelector);
-      waitAjaxIndicatorDisappear();
-    }
-
-    public boolean isIvyProcessByNameSearchable(String ivyProcessName) {
-      findElementByClassName("ui-autocomplete-dropdown").click();
-      String processSelector = "tr[data-item-label='" + ivyProcessName + "']";
-      waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-      return isElementPresent(By.cssSelector(processSelector));
-    }
-
-    public void clickChangeIconButton() {
-      waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-      clickByCssSelector("a[class*='select-awesome-icon-button']");
-    }
-    
-    public void inputSearchedIconName(String keyword) {
-      WebElement searchIconNameField = findDisplayedElementByCssSelector(SEARCH_ICON_NAME_CSS_SELECTOR);
-      searchIconNameField.sendKeys(keyword);
-      waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-    }
-    
-    public int getDisplayedIconAmount() {
-    	waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
-    	List<WebElement> icons = findListElementsByCssSelector(ICON_CSS_SELECTOR);
-    	return icons.stream().filter(icon -> !icon.getCssValue("display").equals("none")).collect(Collectors.toList()).size();
-    }
-    
-    public boolean isDefaultIcon() {
-    	WebElement element = findDisplayedElementByCssSelector(DEFAULT_ICON_CSS_SELECTOR);
-    	return element.getAttribute("class").contains(AwesomeIcon.DEFAULT_ICON);
-    }
   }
   
   public class AddNewExternalLinkDialog {

@@ -149,9 +149,16 @@ In engine
 Migrate 8.0.x to 8.0.12
 ------------------------
 
-When a task is finished, Portal could show a link to case details in Global Growl. Due to this new feature, PortalStart.mod file is changed. If you have
+1. When a task is finished, Portal could show a link to case details in Global Growl. Due to this new feature, PortalStart.mod file is changed. If you have
 customized this process in your project, copy new PortalStart from
 Portal Template to your project and re-apply your customization.
+
+
+2. Since 8.0.12, user favorite process has multiple names for supported languages in application. Therefore you must run a migration process by the following steps:
+
+   - Deploy :download:`MigrateUserProcessToMultilingual.iar <documents/MigrateUserProcessToMultilingual.iar>` project to your Ivy application. This project requires ``PortalKit`` to run.
+
+   - Run ``Start Processes/MigrateUserProcess/MigrateUserProcess.ivp`` to migrate all favorite processes in your application.
 
 Migrate 8.0.7 to 8.0.8
 ----------------------
@@ -476,6 +483,10 @@ Release notes
 
 This part lists all relevant changes since the last official product
 releases of Axon.ivy.
+
+Changes in 8.0.12
+-----------------
+-  Portal supports multilingual user favorites
 
 Changes in 8.0.8
 ----------------

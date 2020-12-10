@@ -60,24 +60,31 @@ HowTo: Add a process as a user favorite
 
 2. The dialog :guilabel:`Add new user process` is opened.
 
-3. For the **Process name** use the dropdown menu to select the process
+3. For the **Selected process** use the dropdown menu to select the process
    you want to add.
 
-4. The **Start link** is automatically filled by the Axon.ivy Portal.
+4. The **Display name** is default process name, to add multilingual for favorite process, use **Add languages** button
 
-5. You may change the **Icon** for the process by using the link
+5. The **Start link** is automatically filled by the Axon.ivy Portal.
+
+6. You may change the **Icon** for the process by using the link
    |change-icon| **Change** and selecting your preferred icon.
 
-6. Confirm your configuration with the button **Add**.
+7. Confirm your configuration with the button **Add**.
 
 .. figure:: images/how-to-add-process-favorite.png
 
 .. hint:: 
-   The list of processes in the dropdown menu shows only the processes which are
-   accessible to you depending on your roles.     
-                                 
-   Furthermore, the list shows only processes which are not added to your user
-   favorites so far. You cannot add a process multiple time.
+   -  The list of processes in the dropdown menu shows only the processes which are
+      accessible to you depending on your roles.
+                                    
+      Furthermore, the list shows only processes which are not added to your user
+      favorites so far. You cannot add a process multiple time.
+
+   -  For multiple languages of favorite process display name, you need to
+      create the "AppInfo/SupportedLanguages" CMS which defines how many
+      languages your application supports. See the below "Language
+      settings" for more details.
 
 HowTo: Delete a process as a user favorite
 ------------------------------------------
