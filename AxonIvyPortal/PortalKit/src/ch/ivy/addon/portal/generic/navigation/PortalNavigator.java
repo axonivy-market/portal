@@ -167,6 +167,12 @@ public final class PortalNavigator {
     return buildUrlByKeyword("AbsenceManagement.ivp", PORTAL_ABSENCE_MANAGEMENT, new HashMap<>());
   }
 
+  public static String buildPortalCaseDetailsUrl(Long caseId) {
+    Map<String, String> params = new HashMap<>();
+    params.put("caseId", String.valueOf(caseId));
+    return buildUrlByKeyword("CaseDetailsPage.ivp", PORTAL_CASE_DETAILS, params);
+  }
+  
   public static String buildUrlByKeyword(String keyword, String defaultFriendlyRequestPath, Map<String, String> param) {
     String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);
     return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, defaultFriendlyRequestPath), param);
