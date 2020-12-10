@@ -66,7 +66,12 @@ public class MainMenuPage extends TemplatePage {
     clickByCssSelector("li.submenu-container:nth-child(4) > a.ripplelink.submenu");
     return new CaseWidgetPage();
   }
-  
+
+  public WorkingTaskDialogPageOfApplicationMenu selectDashboardMenu() {
+    clickByCssSelector("a.ripplelink.current-application");
+    return new WorkingTaskDialogPageOfApplicationMenu();
+  }
+
   public String getProcessMenuItemText() {
     openMainMenu();
     return findElementByCssSelector(PROCESS_MENU_ITEM_CSS_SELECTOR).getText();

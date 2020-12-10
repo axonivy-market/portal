@@ -255,6 +255,11 @@ body .ui-selectonelistbox .ui-selectlistbox-item.ui-state-hover {
 .ui-growl-item .ui-growl-message .ui-growl-title {
   padding: 10px 0px 0px 0px; }
 
+.ui-growl-item .ui-growl-message a {
+  color: var(--message-info-text-color);
+  text-decoration: underline;
+}
+
 .message .message-header {
   font-size: var(--large-font-size); }
 
