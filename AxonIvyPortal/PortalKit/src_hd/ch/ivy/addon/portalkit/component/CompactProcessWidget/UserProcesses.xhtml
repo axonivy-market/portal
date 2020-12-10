@@ -115,11 +115,12 @@
                 styleClass="ui-g-12"
                 required="true"
                 requiredMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}">
-                <p:ajax event="blur" listener="#{compactProcessWidgetBean.clearProcessDisplayNames()}" global="false" immediate="true" partialSubmit="true"/>
+                <p:ajax event="change" listener="#{compactProcessWidgetBean.clearProcessDisplayNames()}" global="false" partialSubmit="true"
+                  update="#{cc.clientId}:process-display-name-message"/>
               </p:inputText>
               <p:outputLabel value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}"
                 styleClass="ui-g-12" for="process-display-name" />
-              <p:message for="process-display-name" styleClass="ui-g-12"/>
+              <p:message id="process-display-name-message" for="process-display-name" styleClass="ui-g-12"/>
             </div>
 
             <h:panelGroup id="add-languages-panel" styleClass="ui-g-4">
