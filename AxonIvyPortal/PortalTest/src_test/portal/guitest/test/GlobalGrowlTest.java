@@ -11,15 +11,23 @@ import portal.guitest.common.WaitHelper;
 import portal.guitest.page.ExpressFormDefinitionPage;
 import portal.guitest.page.ExpressProcessPage;
 import portal.guitest.page.HomePage;
+import portal.guitest.page.MainMenuPage;
+import portal.guitest.page.SearchResultPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
+import portal.guitest.page.TemplatePage;
+import portal.guitest.page.TemplatePage.GlobalSearch;
+import portal.guitest.page.WorkingTaskDialogPage;
+import portal.guitest.page.WorkingTaskDialogPageOfApplicationMenu;
 
 public class GlobalGrowlTest extends BaseTest {
 
-  private static final String CUSTOM_FINISH_MESSAGE = "Task is done successfully";
+  private static final String CUSTOM_FINISH_MESSAGE = "Task is done successfully\nClick here for details.";
   private static final String FINISH_MESSAGE = "You have finished the task successfully";
-  private static final String CUSTOM_CANCEL_MESSAGE = "You have cancelled and left the task successfully";
+  private static final String FINISH_MESSAGE_WITH_DETAILS = "You have finished the task successfully.\nClick here for details.";
+  private static final String CUSTOM_CANCEL_MESSAGE = "You have cancelled and left the task successfully\nClick here for details.";
   private static final String CANCEL_MESSAGE = "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.";
+  private static final String CANCEL_MESSAGE_WITH_DETAILS = "You have cancelled and left the task successfully. You can find the task in the dashboard or your task list.\nClick here for details.";
   private static final String CUSTOM_GROWL_URL = "portal-developer-examples/16A7BB2ADC9580A8/start.ivp";
   private static final String SKIP_TASK_LIST_URL = "portal-developer-examples/16FA8B451814E32A/start.ivp";
   
@@ -39,7 +47,7 @@ public class GlobalGrowlTest extends BaseTest {
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.inputFields("Employee", "1.1.2019", "1.1.2019", "Representation");
     HomePage homePage = taskTemplatePage.clickSubmitButton();
-    assertGrowlMessage(homePage, FINISH_MESSAGE);
+    assertGrowlMessage(homePage, FINISH_MESSAGE_WITH_DETAILS);
   }
   
   @Test
@@ -48,7 +56,7 @@ public class GlobalGrowlTest extends BaseTest {
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     taskTemplatePage.inputFields("Employee", "1.1.2019", "1.1.2019", "Representation");
     HomePage homePage = taskTemplatePage.clickSubmitButton();
-    assertGrowlMessage(homePage, FINISH_MESSAGE);
+    assertGrowlMessage(homePage, FINISH_MESSAGE_WITH_DETAILS);
   }
 
   @Test
@@ -57,7 +65,7 @@ public class GlobalGrowlTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     HomePage homePage = taskTemplatePage.clickCancelAndLeftButton();
-    assertGrowlMessage(homePage, CANCEL_MESSAGE); 
+    assertGrowlMessage(homePage, CANCEL_MESSAGE_WITH_DETAILS); 
   }
   
   @Test
@@ -74,27 +82,9 @@ public class GlobalGrowlTest extends BaseTest {
     redirectToRelativeLink(SKIP_TASK_LIST_URL);
     TaskTemplatePage taskTemplatePage = new TaskTemplatePage();
     HomePage homePage = taskTemplatePage.clickCancelAndLeftButton();
-    assertGrowlMessage(homePage, CANCEL_MESSAGE);
+    assertGrowlMessage(homePage, CANCEL_MESSAGE_WITH_DETAILS);
   }
-  
-  @Test
-  public void testCancelExpressWorkflowDefinition() {
-    redirectToRelativeLink(expressStartLink);
-    ExpressProcessPage expressProcessPage = new ExpressProcessPage();
-    HomePage homePage = expressProcessPage.cancelWorkflowDefinition();
-    assertGrowlMessage(homePage, CANCEL_MESSAGE); 
-  }
-  
-  @Test
-  public void testCancelExpressFormDefinition() {
-    redirectToRelativeLink(expressStartLink);
-    ExpressProcessPage expressProcessPage = new ExpressProcessPage();
-    expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
-    ExpressFormDefinitionPage formDefinition = configureExpressProcess(expressProcessPage);
-    HomePage homePage = formDefinition.cancel();
-    assertGrowlMessage(homePage, CANCEL_MESSAGE);
-  }
-  
+
   @Test
   public void testSaveExpressFormDefinition() {
     redirectToRelativeLink(expressStartLink);
@@ -102,7 +92,7 @@ public class GlobalGrowlTest extends BaseTest {
     expressProcessPage.fillProcessProperties(false, true, "Test approval", "Test description");
     ExpressFormDefinitionPage formDefinition = configureExpressProcess(expressProcessPage);
     HomePage homePage = formDefinition.save();
-    assertGrowlMessage(homePage, FINISH_MESSAGE);
+    assertGrowlMessage(homePage, FINISH_MESSAGE_WITH_DETAILS);
   }
   
   @Test
@@ -124,8 +114,61 @@ public class GlobalGrowlTest extends BaseTest {
     formDefinition.moveAllElementToDragAndDrogPanel();
     return formDefinition;
   }
-  
-  private void assertGrowlMessage(HomePage homePage, String message) {
-    WaitHelper.assertTrueWithWait(() -> homePage.getGlobalGrowlMessage().equals(message));
+
+  @Test
+  public void testTaskLeft() {
+    leftTaskWhenClickingOnLogo();
+    leftTaskWhenClickingOnMenu();
+    leftTaskWhenGlobalSearch();
+    leftExpressWorkflowDefinition();
+    leftExpressFormDefinition();
+  }
+
+  private void leftExpressFormDefinition() {
+    redirectToRelativeLink(createExpressProcess);
+    ExpressProcessPage expressProcessPage = new ExpressProcessPage();
+    expressProcessPage.fillProcessProperties(true, true, "Test approval", "Test description");
+    expressProcessPage.createTask(0, 0, "Task 1", "Task 1 description",
+        Arrays.asList(new ExpressResponsible(TestAccount.DEMO_USER.getUsername(), false)));
+    ExpressFormDefinitionPage expressFormDefinitionPage = expressProcessPage.goToFormDefinition();
+    HomePage homePage = expressFormDefinitionPage.cancel();
+    assertGrowlMessage(homePage, CANCEL_MESSAGE);
+  }
+
+  private void leftExpressWorkflowDefinition() {
+    redirectToRelativeLink(createExpressProcess);
+    ExpressProcessPage expressProcessPage = new ExpressProcessPage();
+    HomePage homePage = expressProcessPage.cancelWorkflowDefinition();
+    assertGrowlMessage(homePage, CANCEL_MESSAGE);
+  }
+
+  private void leftTaskWhenGlobalSearch() {
+    redirectToRelativeLink(createExpressProcess);
+    ExpressProcessPage expressProcessPage = new ExpressProcessPage();
+    GlobalSearch globalSearch = expressProcessPage.getGlobalSearch();
+    SearchResultPage searchResultPage = globalSearch.inputSearchKeyword("a");
+    assertGrowlMessage(searchResultPage, CANCEL_MESSAGE);
+  }
+
+  private void leftTaskWhenClickingOnMenu() {
+    redirectToRelativeLink(createExpressProcess);
+    ExpressProcessPage expressProcessPage = new ExpressProcessPage();
+    MainMenuPage mainMenuPage = expressProcessPage.openMainMenu();
+    WorkingTaskDialogPageOfApplicationMenu leaveTaskDialogOfMenu = mainMenuPage.selectDashboardMenu();
+    HomePage homePage = leaveTaskDialogOfMenu.leaveTask();
+    assertGrowlMessage(homePage, CANCEL_MESSAGE);
+  }
+
+  private void leftTaskWhenClickingOnLogo() {
+    redirectToRelativeLink(createExpressProcess);
+    ExpressProcessPage expressProcessPage = new ExpressProcessPage();
+    expressProcessPage.clickOnLogo();
+    WorkingTaskDialogPage dialogPage = new WorkingTaskDialogPage();
+    HomePage homePage = dialogPage.leaveTask();
+    assertGrowlMessage(homePage, CANCEL_MESSAGE);
+  }
+
+  private void assertGrowlMessage(TemplatePage templatePage, String message) {
+    WaitHelper.assertTrueWithWait(() -> templatePage.getGlobalGrowlMessage().equals(message));
   }
 }
