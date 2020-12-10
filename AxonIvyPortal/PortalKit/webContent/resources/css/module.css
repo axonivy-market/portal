@@ -1367,10 +1367,6 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
   max-width: 800px;
 }
 
-.favorite-process-name {
-  max-width: 400px;
-}
-
 .support-process-language-field {
   margin-top: 25px;
   margin-bottom: 5px;
