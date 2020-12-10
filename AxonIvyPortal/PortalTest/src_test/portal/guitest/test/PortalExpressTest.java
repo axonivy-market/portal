@@ -31,11 +31,11 @@ public class PortalExpressTest extends BaseTest {
     taskWidgetPage = new TaskWidgetPage();
     processWidgetPage = new ProcessWidgetPage();
     processWidgetPage.loadAllProcessesPage();
-    processWidgetPage.goToNewExpressWorkFlowPage();
   }
 
   @Test
   public void createAdHocWorkFlowProcess() {
+    processWidgetPage.goToNewExpressWorkFlowPage();
     expressProcessPage = new ExpressProcessPage();
     expressProcessPage.fillProcessProperties(true, "Ad-hoc Workflow process", "Ad-hoc Workflow process description");
     createTasksAndMoveNextStep();
@@ -73,6 +73,7 @@ public class PortalExpressTest extends BaseTest {
 
   @Test
   public void createAdministratedWorkFlowProcess() {
+    processWidgetPage.goToNewExpressWorkFlowPage();
     expressProcessPage = new ExpressProcessPage();
     expressProcessPage.fillProcessProperties(false, "Administrated Workflow process",
         "Administrated Workflow process description");
