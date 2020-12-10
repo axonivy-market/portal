@@ -21,6 +21,8 @@ Cs0 @PushWFArc f9 '' #zField
 Cs0 @GridStep f31 '' #zField
 Cs0 @PushWFArc f5 '' #zField
 Cs0 @PushWFArc f6 '' #zField
+Cs0 @InfoButton f7 '' #zField
+Cs0 @AnnotationArc f10 '' #zField
 >Proto Cs0 Cs0 GlobalSearchProcess #zField
 Cs0 f0 guid 163AFD8B43132CEB #txt
 Cs0 f0 method start() #txt
@@ -43,25 +45,10 @@ Cs0 f4 571 211 26 26 0 12 #rect
 Cs0 f4 @|UdProcessEndIcon #fIcon
 Cs0 f8 actionTable 'out=in;
 ' #txt
-Cs0 f8 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import javax.faces.context.Flash;
-import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
+Cs0 f8 actionCode 'import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 
 if(in.isWorkingOnTask) {
-	String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
-	boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
-	if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
-		Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-		if (!flash.containsKey("overridePortalGrowl")) {
-			FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
-			FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-		}
-		flash.setRedirect(true);
-		flash.setKeepMessages(true);
-	}
+	GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, ivy.case);
 }' #txt
 Cs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -105,6 +92,17 @@ Cs0 f31 352 202 128 44 -59 -8 #rect
 Cs0 f31 @|StepIcon #fIcon
 Cs0 f5 288 224 352 224 #arcP
 Cs0 f6 480 224 571 224 #arcP
+Cs0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Sample scenario to test&#13;
+start a task &gt; perform global search</name>
+    </language>
+</elementInfo>
+' #txt
+Cs0 f7 152 266 208 44 -97 -16 #rect
+Cs0 f7 @|IBIcon #fIcon
+Cs0 f10 256 266 216 246 #arcP
 >Proto Cs0 .type ch.ivy.addon.portal.generic.GlobalSearch.GlobalSearchData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
@@ -117,3 +115,5 @@ Cs0 f8 mainOut f5 tail #connect
 Cs0 f5 head f31 mainIn #connect
 Cs0 f31 mainOut f6 tail #connect
 Cs0 f6 head f4 mainIn #connect
+Cs0 f7 ao f10 tail #connect
+Cs0 f10 head f8 @CG|ai #connect
