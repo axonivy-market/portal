@@ -3,7 +3,9 @@ package ch.ivy.addon.portalkit.bean;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -15,18 +17,22 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.comparator.UserProcessIndexComparator;
+import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
+import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
+import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.ExpressServiceRegistry;
 import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.UserProcessService;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -44,14 +50,17 @@ private static final long serialVersionUID = -5889375917550618261L;
   
   private UserProcessService userProcessService;
   private UserProcess editingProcess;
+  private UserProcess selectedProcess;
   private String userName;
   
   private boolean editMode;
   private boolean isUserFavoritesEnabled;
   private boolean isDisplayShowAllProcessesLink;
+  private Locale currentLocale;
   
   @PostConstruct
   public void init() {
+    currentLocale = getApplicationDefaultLanguage();
     userProcessService = new UserProcessService();
     selectedUserProcesses = new ArrayList<>();
     userName = UserUtils.getSessionUserName();
@@ -89,15 +98,53 @@ private static final long serialVersionUID = -5889375917550618261L;
     }
   }
 
-  public void addNewUserProcess(String clientId) {
+  public void addNewUserProcess() {
     this.editingProcess = new UserProcess();
-    PrimeFaces.current().resetInputs(clientId + ":add-new-process-dialog");
+    this.selectedProcess = new UserProcess();
     initDataForProcessAutoComplete();
   }
   
+  public boolean canAddProcessLanguages() {
+    return StringUtils.isNotBlank(this.editingProcess.getProcessName());
+  }
+
+  public List<DisplayName> generateProcessDisplayNames() {
+    if (CollectionUtils.isNotEmpty(this.editingProcess.getNames())) {
+      return this.editingProcess.getNames();
+    }
+
+    List<String> languages = getSupportedLanguage();
+    List<DisplayName> displayNames = new ArrayList<>();
+    for (String language : languages) {
+      DisplayName displayName = new DisplayName();
+      displayName.setLocale(new Locale(language));
+      displayName.setValue(this.editingProcess.getProcessName());
+      displayNames.add(displayName);
+    }
+    return displayNames;
+  }
+
+  private List<String> getSupportedLanguage() {
+    return IvyExecutor.executeAsSystem(() -> {
+      List<String> languages = new ArrayList<>();
+      IvyLanguageResultDTO ivyLanguageResult = LanguageService.newInstance()
+          .findUserLanguages(Ivy.session().getSessionUserName(), Arrays.asList(Ivy.wf().getApplication().getName()));
+      if (CollectionUtils.isNotEmpty(ivyLanguageResult.getIvyLanguages())) {
+        languages = ivyLanguageResult.getIvyLanguages().get(0).getSupportedLanguages();
+      }
+      return languages;
+    });
+  }
+
+  public boolean isRequiredLanguage(Locale locale) {
+    return this.currentLocale.equals(locale);
+  }
+  
   public void initDataForProcessAutoComplete() {
-    this.processesToAdd = collectProcesses();
-    sortUserProcessList(processesToAdd);
+    if (CollectionUtils.isEmpty(this.processesToAdd)) {
+      this.processesToAdd = collectProcesses();
+      sortUserProcessList(processesToAdd);
+    }
   }
   
   private List<UserProcess> collectProcesses() {
@@ -122,6 +169,14 @@ private static final long serialVersionUID = -5889375917550618261L;
             && !isUserProcess(processToAdd) && !isExternalLinkUserProcess(processToAdd) 
             && !isDefaultUserProcess(processToAdd))
         .collect(Collectors.toList());
+  }
+
+  public void onSelectUserProcess() throws CloneNotSupportedException {
+    this.editingProcess = this.selectedProcess.clone();
+  }
+
+  public void clearProcessDisplayNames() {
+    this.editingProcess.setNames(new ArrayList<>());
   }
 
   public void sortUserProcessList(List<UserProcess> processes) {
@@ -167,7 +222,15 @@ private static final long serialVersionUID = -5889375917550618261L;
   public List<UserProcess> getUserProcesses() {
     return userProcesses;
   }
-  
+
+  public UserProcess getSelectedProcess() {
+    return selectedProcess;
+  }
+
+  public void setSelectedProcess(UserProcess selectedProcess) {
+    this.selectedProcess = selectedProcess;
+  }
+
   public void switchEditMode() {
     editMode = !editMode;
     userProcesses.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
@@ -305,5 +368,11 @@ private static final long serialVersionUID = -5889375917550618261L;
       target="_blank";
     }
     return target;
+  }
+
+  private Locale getApplicationDefaultLanguage() {
+    return IvyExecutor.executeAsSystem(() -> {
+      return Ivy.wf().getApplication().getDefaultEMailLanguage();
+    });
   }
 }

@@ -6,3 +6,7 @@ processSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.ProcessSearc
 processSearchCriteria PERSISTENT #fieldModifier
 userProcesses List<ch.ivy.addon.portalkit.persistence.domain.UserProcess> #field
 userProcesses PERSISTENT #fieldModifier
+displayNames List<ch.ivy.addon.portalkit.dto.DisplayName> #field
+displayNames PERSISTENT #fieldModifier
+canAddLanguages Boolean #field
+canAddLanguages PERSISTENT #fieldModifier
