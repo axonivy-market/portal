@@ -154,12 +154,6 @@ customized this process in your project, copy new PortalStart from
 Portal Template to your project and re-apply your customization.
 
 
-2. Since 8.0.12, user favorite process has multiple names for supported languages in application. Therefore you must run a migration process by the following steps:
-
-   - Deploy :download:`MigrateUserProcessToMultilingual.iar <documents/MigrateUserProcessToMultilingual.iar>` project to your Ivy application. This project requires ``PortalKit`` to run.
-
-   - Run ``Start Processes/MigrateUserProcess/MigrateUserProcess.ivp`` to migrate all favorite processes in your application.
-
 Migrate 8.0.7 to 8.0.8
 ----------------------
 
