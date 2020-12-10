@@ -230,13 +230,13 @@ public class ProcessWidgetTest extends BaseTest {
     settingProcessLanguageDialog.fillProcessNamesByLocaleName();
     addNewProcessDialog.submitForm();
     
-    assertNotNull(processWidget.getProcess(String.format("%s - %s", APPRAISAL, "English*")));
+    assertNotNull(processWidget.getProcess(String.format("%s - %s", APPRAISAL, "English Name*")));
     
     // Change language to German
     changeLanguage(0);
     
     processWidget = homePage.getProcessWidget();
-    assertNotNull(processWidget.getProcess(String.format("%s - %s", APPRAISAL, "German")));
+    assertNotNull(processWidget.getProcess(String.format("%s - %s", APPRAISAL, "German Name")));
   }
 
   private void changeLanguage(int selectionIndex) {
