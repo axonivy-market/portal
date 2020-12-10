@@ -34,7 +34,7 @@ import ch.ivy.addon.portalkit.service.ExternalLinkService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.UserProcessService;
-import ch.ivy.addon.portalkit.util.Locales;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 
@@ -62,7 +62,7 @@ private static final long serialVersionUID = -5889375917550618261L;
   
   @PostConstruct
   public void init() {
-    currentLocale = new Locales().getCurrentLocale();
+    currentLocale = getApplicationDefaultLanguage();
     // used in global search page
     isDisplayShowAllProcessesLink = PermissionUtils.checkAccessFullProcessListPermission();
   }
@@ -390,5 +390,11 @@ private static final long serialVersionUID = -5889375917550618261L;
       target="_blank";
     }
     return target;
+  }
+
+  private Locale getApplicationDefaultLanguage() {
+    return IvyExecutor.executeAsSystem(() -> {
+      return Ivy.wf().getApplication().getDefaultEMailLanguage();
+    });
   }
 }

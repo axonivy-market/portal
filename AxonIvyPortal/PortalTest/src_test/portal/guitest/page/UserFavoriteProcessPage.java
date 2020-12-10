@@ -66,7 +66,7 @@ public class UserFavoriteProcessPage extends TemplatePage {
 
   public SettingProcessLanguageDialog openAddlanguageDialog() {
     click(findElementByCssSelector("button[id$='process-widget:add-languages']"));
-    waitForElementDisplayed(By.cssSelector("input[data-p-label='English']"), true);
+    waitForElementDisplayed(By.cssSelector("input[data-p-label*='English']"), true);
     return new SettingProcessLanguageDialog();
   }
 
