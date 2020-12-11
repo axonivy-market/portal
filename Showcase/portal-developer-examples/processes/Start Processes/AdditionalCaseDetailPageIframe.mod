@@ -22,6 +22,7 @@ Ae0 @PushWFArc f2 '' #zField
 Ae0 @PushWFArc f12 '' #zField
 Ae0 @TkArc f4 '' #zField
 Ae0 @PushWFArc f11 '' #zField
+Ae0 @InfoButton f13 '' #zField
 >Proto Ae0 Ae0 AdditionalCaseDetailPageIframe #zField
 Ae0 f10 actionTable 'out=in;
 ' #txt
@@ -171,6 +172,36 @@ Ae0 f4 var in1 #txt
 Ae0 f4 456 184 489 184 #arcP
 Ae0 f11 expr out #txt
 Ae0 f11 668 64 701 64 #arcP
+Ae0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>HOW TO CUSTOMIZE CASE DETAIL PAGE USING IFRAME:
+We need to do 3 steps:
+
+1. Create the process for the customize case detail page. In this example, it is showInvestmentRequestCustomFieldIframe.ivp&#13;
+&#13;
+2. Create custom string field name for case with name : "embedInFrame" and value is "true"
+
+3. Store the URL of custom page to "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE" additonal property.
+We provide  the callable process "SetAdditionalCaseDetailPage" to do this
+Input for this process is the friendly URL of your customized case detail page. &#13;
+For this example, it''s : Start Processes/AdditionalCaseDetailPageIframe/showInvestmentRequestCustomFieldIframe.ivp
+
+HOW TO RUN THIS EXAMPLE:&#13;
+
+1. Run createInvestmentRequestIframe.ivp
+
+2. In Portal case list, expand "Investment request with custom case detail using iFrame" case, then click to "Show details" button
+
+</name>
+        <nameStyle>48,5
+816,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ae0 f13 776 18 704 316 -348 -152 #rect
+Ae0 f13 @|IBIcon #fIcon
 >Proto Ae0 .type com.axonivy.portal.developerexamples.customization.AdditionalCaseDetailPageIframeData #txt
 >Proto Ae0 .processKind NORMAL #txt
 >Proto Ae0 0 0 32 24 18 0 #rect
