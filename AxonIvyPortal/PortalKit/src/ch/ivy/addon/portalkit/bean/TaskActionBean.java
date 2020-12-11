@@ -2,6 +2,7 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
@@ -15,12 +16,13 @@ import org.primefaces.PF;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.constant.DummyTask;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
-import ch.ivy.addon.portalkit.util.DateTimeFormatterUtils;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.util.DateTimeFormatterUtils;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.TimesUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IPermission;
 import ch.ivyteam.ivy.security.IUser;
@@ -275,12 +277,33 @@ public class TaskActionBean implements Serializable {
       PortalNavigator.redirect(requestPath + "?endedTaskId=" + task.getId());
     }
   }
-  
-  public String formatToExactTime(Number secondsValue) {
-    return DateTimeFormatterUtils.formatToExactTime(secondsValue);
+
+  public String getDurationOfTask(ITask task) {
+    return task.getEndTimestamp() != null ? getElapsedTimeForDoneTask(task) : getElapsedTimeForRunningTask(task);
   }
-  
-  public String formatToShortTime(Number secondsValue) {
-    return DateTimeFormatterUtils.formatToShortTimeString(secondsValue);
+
+  private String getElapsedTimeForDoneTask(ITask task) {
+    long duration = TimesUtils.getDurationInSeconds(task.getStartTimestamp(), task.getEndTimestamp());
+    return DateTimeFormatterUtils.formatToShortTimeString(duration);
+  }
+
+  private String getElapsedTimeForRunningTask(ITask task) {
+    long duration = TimesUtils.getDurationInSeconds(task.getStartTimestamp(), new Date());
+    return DateTimeFormatterUtils.formatToShortTimeString(duration);
+  }
+
+  public String getDurationOfTaskOnTooltip(ITask task) {
+    return task.getEndTimestamp() != null ? getElapsedTimeForDoneTaskOnTooltip(task)
+        : getElapsedTimeForRunningTaskOnTooltip(task);
+  }
+
+  private String getElapsedTimeForDoneTaskOnTooltip(ITask task) {
+    long duration = TimesUtils.getDurationInSeconds(task.getStartTimestamp(), task.getEndTimestamp());
+    return DateTimeFormatterUtils.formatToExactTime(duration); 
+  }
+
+  private String getElapsedTimeForRunningTaskOnTooltip(ITask task) {
+    long duration = TimesUtils.getDurationInSeconds(task.getStartTimestamp(), new Date());
+    return DateTimeFormatterUtils.formatToExactTime(duration);
   }
 }
