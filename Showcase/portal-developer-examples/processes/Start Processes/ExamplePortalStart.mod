@@ -409,7 +409,8 @@ if (#task is initialized) {
 		if (in.isTaskFinished) {
 			in.callbackUrl = taskWithTaskEndInfo.customFields().stringField(CustomFields.EXPRESS_END_PAGE_URL.toString()).getOrDefault("");
 		}
-	} 
+	}
+	in.caseSelected = task.getCase();
 } else {
 	Boolean isTaskFinished = SecurityServiceUtils.getSessionAttribute(SessionAttribute.IS_TASK_FINISHED.toString()).toBoolean();
 	in.isTaskFinished = #isTaskFinished is initialized ? isTaskFinished : true;
@@ -1579,9 +1580,10 @@ Bk9 f4 240 138 144 44 -65 -8 #rect
 Bk9 f4 @|CallSubIcon #fIcon
 Bk9 f31 384 160 440 160 #arcP
 Bk9 f12 dialogId ch.ivy.addon.portal.generic.PortalFinishTaskHandle #txt
-Bk9 f12 startMethod start(Boolean) #txt
-Bk9 f12 requestActionDecl '<Boolean isTaskFinished> param;' #txt
+Bk9 f12 startMethod start(Boolean,ch.ivyteam.ivy.workflow.ICase) #txt
+Bk9 f12 requestActionDecl '<Boolean isTaskFinished,ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
 Bk9 f12 requestMappingAction 'param.isTaskFinished=in.isTaskFinished;
+param.iCase=in.caseSelected;
 ' #txt
 Bk9 f12 responseMappingAction 'out=in;
 ' #txt

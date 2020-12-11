@@ -19,17 +19,20 @@ Ps0 @UdExitEnd f4 '' #zField
 Ps0 @PushWFArc f5 '' #zField
 Ps0 @UdMethod f3 '' #zField
 Ps0 @PushWFArc f6 '' #zField
+Ps0 @InfoButton f7 '' #zField
+Ps0 @AnnotationArc f9 '' #zField
 >Proto Ps0 Ps0 PortalFinishTaskHandleProcess #zField
 Ps0 f0 guid 15C67E57F20669EF #txt
-Ps0 f0 method start(Boolean) #txt
-Ps0 f0 inParameterDecl '<Boolean isTaskFinished> param;' #txt
-Ps0 f0 inParameterMapAction 'out.isTaskFinished=param.isTaskFinished;
+Ps0 f0 method start(Boolean,ch.ivyteam.ivy.workflow.ICase) #txt
+Ps0 f0 inParameterDecl '<Boolean isTaskFinished,ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
+Ps0 f0 inParameterMapAction 'out.iCase=param.iCase;
+out.isTaskFinished=param.isTaskFinished;
 ' #txt
 Ps0 f0 outParameterDecl '<> result;' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(Boolean)</name>
+        <name>start(isTaskFinished, iCase)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -41,24 +44,9 @@ Ps0 f2 expr out #txt
 Ps0 f2 109 64 211 64 #arcP
 Ps0 f8 actionTable 'out=in;
 ' #txt
-Ps0 f8 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import javax.faces.context.Flash;
-import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
+Ps0 f8 actionCode 'import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 
-String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
-boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
-if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
-	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-	if (!flash.containsKey("overridePortalGrowl")) {
-		FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
-		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-	}
-	flash.setRedirect(true);
-	flash.setKeepMessages(true);
-}' #txt
+GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, in.iCase);' #txt
 Ps0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -86,6 +74,17 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ps0 f3 83 147 26 26 -23 15 #rect
 Ps0 f3 @|UdMethodIcon #fIcon
 Ps0 f6 109 160 152 160 #arcP
+Ps0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Sample scenario to test&#13;
+start a task &gt; finish the task</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f7 184 202 160 44 -74 -16 #rect
+Ps0 f7 @|IBIcon #fIcon
+Ps0 f9 264 202 224 182 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.PortalFinishTaskHandle.PortalFinishTaskHandleData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
@@ -96,3 +95,5 @@ Ps0 f8 mainOut f5 tail #connect
 Ps0 f5 head f4 mainIn #connect
 Ps0 f3 mainOut f6 tail #connect
 Ps0 f6 head f8 mainIn #connect
+Ps0 f7 ao f9 tail #connect
+Ps0 f9 head f8 @CG|ai #connect
