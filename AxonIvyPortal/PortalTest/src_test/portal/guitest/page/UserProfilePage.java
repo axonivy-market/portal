@@ -172,4 +172,10 @@ public class UserProfilePage extends TemplatePage {
     click(By.id(caseItemId));
     waitUntilTextToBePresentInElement(findElementById(homepageLabel), "Cases", getTimeOutForLocator());
   }
+  
+  public HomePage clickOnCancelLink() {
+    click(findElementByCssSelector("a[id^='my-profile-form:']"));
+    waitForPageLoaded();
+    return new HomePage();
+  }
 }

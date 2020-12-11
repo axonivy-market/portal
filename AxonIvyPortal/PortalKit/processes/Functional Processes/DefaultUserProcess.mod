@@ -32,7 +32,7 @@ Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f0 51 83 26 26 14 0 #rect
+Ds0 f0 51 83 26 26 -54 -39 #rect
 Ds0 f0 @|StartSubIcon #fIcon
 Ds0 f1 51 339 26 26 14 0 #rect
 Ds0 f1 @|EndSubIcon #fIcon
@@ -61,7 +61,7 @@ Ds0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 
 UserProcess userProcess = new UserProcess();
 userProcess.setLink(&lt;PROCESS_LINK&gt;); //Absolute path or relative path starts with: /&lt;CONTEXT_PATH&gt;/pro/...
-userProcess.setProcessName(&lt;PROCESS_NAME&gt;);
+userProcess.setProcessName(&lt;PROCESS_NAME&gt;);  // Use a CMS for defining multilingual process name
 userProcess.setIcon(&lt;PROCESS_ICON&gt;); //Icons in Font Awesome
 userProcess.setIndex(1); // Set the index of the process on the default process list
 
@@ -77,7 +77,7 @@ ProcessStartCollector.findStartableLinkByUserFriendlyRequestPath(...)
 Example: 
 ProcessStartCollector collector = new ProcessStartCollector();
 String newEmployeeLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/Employee/NewEmployee.ivp");</name>
-        <nameStyle>744,5
+        <nameStyle>797,5
 226,5
 1,5
 195,5
@@ -85,7 +85,7 @@ String newEmployeeLink = collector.findStartableLinkByUserFriendlyRequestPath("S
     </language>
 </elementInfo>
 ' #txt
-Ds0 f5 264 58 832 332 -413 -160 #rect
+Ds0 f5 176 58 832 332 -413 -160 #rect
 Ds0 f5 @|IBIcon #fIcon
 >Proto Ds0 .type ch.ivy.add.portalkit.DefaultUserProcessData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt
