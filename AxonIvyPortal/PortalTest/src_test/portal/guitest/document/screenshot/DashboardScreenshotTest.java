@@ -57,6 +57,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureElementScreenshot(homePage.getProcessWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "process-widget");
     ScreenshotUtil.captureElementScreenshot(homePage.getStatisticWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "statistic-widget");
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_HD_WIDTH, 800));
+    Sleeper.sleep(500); // wait for js calculate height of task widget done
     ScreenshotUtil.captureElementScreenshot(homePage.getTaskWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "task-widget");
     homePage.openMainMenu();
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));

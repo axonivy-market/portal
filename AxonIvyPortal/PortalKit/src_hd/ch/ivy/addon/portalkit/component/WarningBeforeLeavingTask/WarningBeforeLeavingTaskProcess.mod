@@ -21,6 +21,8 @@ Ws0 @UdProcessEnd f5 '' #zField
 Ws0 @PushWFArc f6 '' #zField
 Ws0 @PushWFArc f7 '' #zField
 Ws0 @PushWFArc f9 '' #zField
+Ws0 @InfoButton f10 '' #zField
+Ws0 @AnnotationArc f11 '' #zField
 >Proto Ws0 Ws0 WarningBeforeLeavingTaskProcess #zField
 Ws0 f0 guid 15F80B73AFE43AE4 #txt
 Ws0 f0 method start() #txt
@@ -67,24 +69,9 @@ Ws0 f4 83 243 26 26 -28 15 #rect
 Ws0 f4 @|UdMethodIcon #fIcon
 Ws0 f8 actionTable 'out=in;
 ' #txt
-Ws0 f8 actionCode 'import org.apache.commons.lang3.StringUtils;
-import ch.ivy.addon.portalkit.service.GlobalSettingService;
-import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import javax.faces.context.Flash;
-import javax.faces.context.FacesContext;
-import javax.faces.application.FacesMessage;
+Ws0 f8 actionCode 'import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 
-String displayMessageAfterFinishOrLeaveTaskVariable = new GlobalSettingService().findGlobalSettingValue(GlobalVariable.DISPLAY_MESSAGE_AFTER_FINISH_TASK.toString());
-boolean displayMessageAfterFinishOrLeaveTask = StringUtils.isNotBlank(displayMessageAfterFinishOrLeaveTaskVariable) ? Boolean.parseBoolean(displayMessageAfterFinishOrLeaveTaskVariable) : true;
-if (displayMessageAfterFinishOrLeaveTask && !ivy.session.isSessionUserUnknown()) {
-	Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
-	if (!flash.containsKey("overridePortalGrowl")) {
-		FacesMessage message = new FacesMessage(in.isTaskFinished ? ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskFinishedSuccessfully") : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/taskCanceledAndLeftSuccessfully"));
-		FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-	}
-	flash.setRedirect(true);
-	flash.setKeepMessages(true);
-}' #txt
+GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, ivy.case);' #txt
 Ws0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -102,6 +89,17 @@ Ws0 f7 376 192 499 192 #arcP
 Ws0 f9 109 256 304 214 #arcP
 Ws0 f9 1 304 256 #addKink
 Ws0 f9 0 0.7103960471811249 0 0 #arcLabel
+Ws0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Sample scenario to test&#13;
+start a task &gt; click on logo &gt; leave the task</name>
+    </language>
+</elementInfo>
+' #txt
+Ws0 f10 280 106 240 44 -114 -16 #rect
+Ws0 f10 @|IBIcon #fIcon
+Ws0 f11 400 150 304 170 #arcP
 >Proto Ws0 .type ch.ivy.addon.portalkit.component.WarningBeforeLeavingTask.WarningBeforeLeavingTaskData #txt
 >Proto Ws0 .processKind HTML_DIALOG #txt
 >Proto Ws0 -8 -8 16 16 16 26 #rect
@@ -114,3 +112,5 @@ Ws0 f8 mainOut f7 tail #connect
 Ws0 f7 head f5 mainIn #connect
 Ws0 f4 mainOut f9 tail #connect
 Ws0 f9 head f8 mainIn #connect
+Ws0 f10 ao f11 tail #connect
+Ws0 f11 head f8 @CG|ai #connect
