@@ -103,6 +103,10 @@ public class AbsencePage extends TemplatePage {
     return findElementById("absences-management-form");
   }
 
+  public WebElement getAddAbsenceDialog() {
+    return findElementById("absence-dialog");
+  }
+  
   public void waitForAbsencesGrowlMessageDisplay() {
     WebElement growlMessage = findElementByCssSelector("div[id$='absences-management-form:absences-management-info_container']");
     waitForElementDisplayed(growlMessage.findElement(By.className("ui-growl-item-container")), true, 5);

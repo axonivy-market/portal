@@ -263,6 +263,11 @@ body .ui-selectonelistbox .ui-selectlistbox-item.ui-state-hover {
 .ui-growl-item .ui-growl-message .ui-growl-title {
   padding: 10px 0px 0px 0px; }
 
+.ui-growl-item .ui-growl-message a {
+  color: var(--message-info-text-color);
+  text-decoration: underline;
+}
+
 .message .message-header {
   font-size: var(--large-font-size); }
 
@@ -320,9 +325,6 @@ body .md-inputfield span.md-inputwrapper-focus ~ label, body .md-inputfield span
 body .ui-inputfield {
   font-size: var(--large-font-size);
   color: var(--ui-input-field-text-color); }
-
-body .md-inputfield label:not(.ui-selectonemenu-label) {
-  font-size: var(--large-font-size); }
 
 body .md-inputfield input.ui-state-filled ~ label,
 body .md-inputfield input:focus ~ label {
@@ -527,6 +529,11 @@ body .ui-widget.ui-fieldset.process-group.ui-fieldset .ui-fieldset-legend {
 .process-widget .process-group .ui-fieldset-toggler {
   background-image: none;
   text-indent: 0; }
+
+.new-process-dialog .md-inputfield .md-inputwrapper-focus ~ label.new-process-name-label,
+.new-process-dialog .md-inputfield .md-inputwrapper-filled ~ label.new-process-name-label {
+  font-size: var(--small-font-size);
+}
 
 /*Style For Task Widget ----------------------------------------------------------------------------------*/
 .filter-selection-form .filter-name:hover,
