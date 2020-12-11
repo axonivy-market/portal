@@ -53,21 +53,12 @@ try {
 	IUser user = StringUtils.isNotBlank(in.username) ? UserUtils.findUserByUsername(in.username) : null;
 	// validate token
 	if (UserUtils.isValidPasswordResetToken(in.token, user)) {
-		// validate new password
-		if (StringUtils.isNotBlank(in.newPassword)) {
-			if (in.newPassword.equals(in.passwordConfirmation)) {
-				// update user password
-				user.setPassword(in.newPassword);
-				user.setProperty(UserProperty.RESET_PASSWORD_TOKEN, "");
-				user.setProperty(UserProperty.RESET_PASSWORD_TOKEN_EXPIRY, "");
-				in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/passwordResetSuccess");
-				in.resetSuccess = true;
-			} else {
-				in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/confirmPasswordHaveMatch");
-			}
-		} else {
-			in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/passwordSetting/requireNewPassword");
-		}
+		// update user password
+		user.setPassword(in.newPassword);
+		user.setProperty(UserProperty.RESET_PASSWORD_TOKEN, "");
+		user.setProperty(UserProperty.RESET_PASSWORD_TOKEN_EXPIRY, "");
+		in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/passwordResetSuccess");
+		in.resetSuccess = true;
 	} else {
 		in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/invalidToken");
 	}
