@@ -85,7 +85,7 @@ public class PortalExpressScreenshotTest extends ScreenshotTest {
     WebElement taskStep2 = expressProcessPage.getDefineTaskStep(1);
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskStep2, ScreenshotUtil.EXPRESS_FOLDER + "express-task-responsible", new ScreenshotMargin(20, 20, 0, 20));
     
-    ScreenshotUtil.resizeBrowser(new Dimension(1100, 1000));
+    ScreenshotUtil.resizeBrowser(new Dimension(1100, 1100));
     refreshPage();
     expressProcessPage.waitUntilExpressProcessDisplay();
     Sleeper.sleep(500);
@@ -180,7 +180,7 @@ public class PortalExpressScreenshotTest extends ScreenshotTest {
     
     String caseId = caseWidgetPage.getCaseId(0);
     redirectToRelativeLink(expressAdditionalBusinessUrl + "?caseId=" + caseId);
-    ScreenshotUtil.resizeBrowser(new Dimension(1050, 1100));
+    ScreenshotUtil.resizeBrowser(new Dimension(1050, 1000));
     ExpressBusinessViewPage expressBusinessView = new ExpressBusinessViewPage();
     expressBusinessView.clickOnLegendOfFieldset(1);
     expressBusinessView.clickOnLegendOfFieldset(2);
