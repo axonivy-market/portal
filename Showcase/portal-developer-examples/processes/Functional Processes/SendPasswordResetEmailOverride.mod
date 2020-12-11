@@ -39,7 +39,8 @@ Sl0 f1 945 49 30 30 0 15 #rect
 Sl0 f1 @|EndSubIcon #fIcon
 Sl0 f16 actionTable 'out=in;
 ' #txt
-Sl0 f16 actionCode 'import java.util.Calendar;
+Sl0 f16 actionCode 'import org.apache.commons.collections.CollectionUtils;
+import java.util.Calendar;
 import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivyteam.ivy.server.ServerFactory;
 import java.util.Arrays;
@@ -57,7 +58,9 @@ try {
 	UserQuery query = Ivy.wf().getSecurityContext().users().query();
 	query.where().eMailAddress().isEqualIgnoreCase(in.email);
 	List<IUser> users = query.executor().results();
-	if (users != null && users.size() == 1) {
+	if (CollectionUtils.isEmpty(users)) {
+		in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/userNotFound");
+	} if (users.size() == 1) {
 		in.user = users.get(0);
 		String token = "123";
 		long expiryTime = Calendar.getInstance().getTimeInMillis() + 5*60000;
@@ -66,8 +69,6 @@ try {
 		String resetUrl = ServerFactory.getServer().getServerInfo().getInfoPageUrl() + PortalNavigator.getPasswordResetUrl(token, in.user.getName());
 		in.emailContent = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/passwordResetEmailContent", Arrays.asList(in.user.getFullName(), resetUrl));
 		in.isValid = true;
-	} else if (users == null || users.size() == 0) {
-		in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/userNotFound");
 	} else {
 		in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/usersHaveSameEmail");
 	}
