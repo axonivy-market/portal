@@ -1,5 +1,5 @@
-co: name={goToLogin} description={} changed={2020-12-10 05:46:52 CET} changedby={vtlong} visualorder={0} guid={1764AF7E1F6207A1} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1764AF7E20EF1BB5} datatype={} isdefault={true} langid={en} description={} validfrom={2014-07-21 14:44:47 CEST} validto={} changed={2020-12-10 05:46:52 CET} changedby={vtlong} properties={} id={}
-val: guid={1764AF7E229C7D68} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:05 CEST} validto={} changed={2020-12-10 05:46:52 CET} changedby={vtlong} properties={} id={}
-val: guid={1764AF7E21B8A06B} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:33 CET} validto={} changed={2020-12-10 05:46:52 CET} changedby={vtlong} properties={} id={}
-val: guid={1764AF7E202F76FB} datatype={} isdefault={false} langid={de} description={} validfrom={2015-11-20 15:55:35 CET} validto={} changed={2020-12-10 05:46:51 CET} changedby={vtlong} properties={} id={}
+co: name={goToLogin} description={} changed={2020-12-11 10:48:34 CET} changedby={vtlong} visualorder={0} guid={1764AF7E1F6207A1} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1764AF7E20EF1BB5} datatype={} isdefault={true} langid={en} description={} validfrom={2014-07-21 14:44:47 CEST} validto={} changed={2020-12-11 10:48:34 CET} changedby={vtlong} properties={} id={}
+val: guid={1764AF7E229C7D68} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:05 CEST} validto={} changed={2020-12-11 10:48:34 CET} changedby={vtlong} properties={} id={}
+val: guid={1764AF7E21B8A06B} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:33 CET} validto={} changed={2020-12-11 10:48:33 CET} changedby={vtlong} properties={} id={}
+val: guid={1764AF7E202F76FB} datatype={} isdefault={false} langid={de} description={} validfrom={2015-11-20 15:55:35 CET} validto={} changed={2020-12-11 10:48:33 CET} changedby={vtlong} properties={} id={}
