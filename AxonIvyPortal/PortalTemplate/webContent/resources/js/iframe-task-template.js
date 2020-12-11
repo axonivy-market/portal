@@ -37,6 +37,9 @@ function loadIframe() {
     }, {
       name : 'announcementInvisible',
       value : window.announcementInvisible
+    }, {
+      name : 'viewName',
+      value : window.viewName
     }]);
   });
 }
