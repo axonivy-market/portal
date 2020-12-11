@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
+  xmlns:pe="http://primefaces.org/ui/extensions">
+<h:body>
+  <ui:composition template="/layouts/frame-8.xhtml">
+    <ui:define name="title">Investment request case detail </ui:define>
+
+    <ui:define name="content">
+      <h:panelGrid columns="1">
+      
+      <h2>This is custom case detail page using iframe</h2>
+      <p:dataTable id="additional-case-detail-table" value="#{data.ivyCase.customFields().all()}" var="item"
+        reflow="true">
+        <f:facet name="header">
+          <h:outputText value="Investment Request Custom Fields" />
+        </f:facet>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}">
+          <h:outputText id="name" value="#{item.name()}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/value')}">
+          <h:outputText id="number-value" value="#{item.getOrNull()}" rendered="#{item.type() eq 'NUMBER'}">
+            <f:convertNumber type="number" integerOnly="true" pattern="#,##0.00" />
+          </h:outputText>
+          <h:outputText id="timestamp-value" value="#{item.getOrNull()}" rendered="#{item.type() eq 'TIMESTAMP'}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+          </h:outputText>
+          <h:outputText id="value" value="#{item.getOrNull()}"
+            rendered="#{item.type() ne 'TIMESTAMP' and item.type() ne 'NUMBER'}" />
+        </p:column>
+      </p:dataTable>
+      </h:panelGrid>
+      <script>
+          window.isHideCaseInfo = true;
+          window.isHideTaskAction = true;
+          window.isHideTaskName = true;
+          window.isWorkingOnATask = false;
+          window.viewName = '';
+      </script>
+      
+    </ui:define>
+
+  </ui:composition>
+</h:body>
+</html>
