@@ -304,7 +304,7 @@
         }
 
         function setupHeightForIFrame() {
-          var dialogHeight = $('.js-iframe-container').closest('.ui-dialog-content').get(0).offsetHeight || 0;
+          var dialogHeight = $('.js-iframe-container').closest('.ui-dialog-content').outerHeight(true) || 0;
           $('.js-iframe-container').height(dialogHeight);
         };
 
@@ -316,8 +316,8 @@
         }
 
         $(window).resize(function() {
-          setupHeightForIFrame();
-        }, 250);
+          setTimeout(setupHeightForIFrame(), 1);
+        });
       </script>
       <ui:insert name="javascript" />
     </ui:define>

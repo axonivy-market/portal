@@ -46,11 +46,30 @@ public class HomePage extends TemplatePage {
    * Wait for statistic charts are displayed in 5s
    */
   public void waitForStatisticRendered() {
-    WaitHelper.assertTrueWithRefreshPage(this, () -> {
-      waitForElementDisplayed(By.cssSelector("a[class$='chart-info']"), true, 5);
-      return true;
-    });
+    try {
+      WaitHelper.assertTrueWithRefreshPage(this, () -> {
+        waitForElementDisplayed(By.cssSelector("a[class$='chart-info']"), true, 5);
+        return true;
+      });
+    } catch (Exception e) {
+      System.out.println("**ERROR when waitForStatisticRendered - chart info isn't rendered");
+      refreshStatisticChartData();
+    }
     ensureNoBackgroundRequest();
+  }
+
+  /**
+   * Try to refresh Statistic chart list
+   * First, go to StatisticPage to read statistic chart from DB again
+   * Wait for no background request
+   * Then click on bread-crumb to back to homepage
+   */
+  private void refreshStatisticChartData() {
+    MainMenuPage mainMenuPage = new MainMenuPage();
+    mainMenuPage.selectStatisticDashboard();
+    ensureNoBackgroundRequest();
+    mainMenuPage = new MainMenuPage();
+    mainMenuPage.backToHomeByClickOnBreadcrumb();
   }
 
 	public String getAnnouncementMessage() {
