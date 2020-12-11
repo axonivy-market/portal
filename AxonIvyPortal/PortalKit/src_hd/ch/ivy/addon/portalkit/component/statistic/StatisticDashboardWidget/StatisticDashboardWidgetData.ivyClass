@@ -46,5 +46,3 @@ prevStatisticList java.util.List<ch.ivy.addon.portalkit.statistics.StatisticChar
 prevStatisticList PERSISTENT #fieldModifier
 chartNameOfCurrentLanguage String #field
 chartNameOfCurrentLanguage PERSISTENT #fieldModifier
-hasDefaultCharts Boolean #field
-hasDefaultCharts PERSISTENT #fieldModifier

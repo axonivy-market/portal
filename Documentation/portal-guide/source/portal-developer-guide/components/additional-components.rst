@@ -183,7 +183,7 @@ use it to display your messages in Portal.
 
 .. code-block:: html
 
-    <p:growl id="portal-global-growl" widgetVar="portal-global-growl" for="portal-global-growl-message" />
+    <p:growl id="portal-global-growl" widgetVar="portal-global-growl" for="portal-global-growl-message" escape="false" showDetail="true" />
 
 
 Display growl after finishing a task
@@ -224,13 +224,15 @@ It's enough if you want to turn it off. To override the message, add
 
 ::
 
+   import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
    import javax.faces.context.Flash;
    import javax.faces.context.FacesContext;
    import javax.faces.application.FacesMessage;
-
-   FacesMessage message = new FacesMessage("Task is done successfully");
+   
+   FacesMessage message = new FacesMessage("Task is done successfully", ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/linkToCaseDetails", 
+   	[PortalNavigator.buildPortalCaseDetailsUrl(ivy.case.getBusinessCase().getId())]));
    FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
-
+   
    Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
    flash.put("overridePortalGrowl", true);
    flash.setRedirect(true);
