@@ -139,7 +139,6 @@ Migrate 9.1 to 9.2
 5. If you have TaskLazyDataModel, CaseLazyDataModel customization, follow :ref:`How to override export feature of Task list <customization-task-widget-how-to-override-export-feature>`
 and :ref:`How to override export feature of Case list <customization-case-widget-how-to-override-export-feature>` to customize label and value of custom columns that will be exported.
 
-
 Migrate 8.x to 9.1
 ------------------
 
@@ -204,6 +203,8 @@ Changes in 9.2
 - No multiple applications anymore, Portal now only works in current application. It means administrator can not add new Ivy application.
 
 - Statistic charts support multiple names for each supported languages.
+
+- Portal supports multilingual user favorites
 
 Changes in 9.1
 --------------

@@ -80,7 +80,7 @@ public class PortalProcessesScreenshotTest extends ScreenshotTest {
   
   @Test
   public void screenshotHowtoEditUserProcess() throws IOException {
-    ScreenshotUtil.resizeBrowser(new Dimension(1920, SCREENSHOT_MOBILE_HEIGHT));
+    ScreenshotUtil.resizeBrowser(new Dimension(1920, 800));
     processWidget = homePage.getProcessWidget();
     executeDecorateJs("highlightEditSwitchProcessButton()");
     ScreenshotUtil.captureHalfLeftPageScreenShot(ScreenshotUtil.PROCESSES_WIDGET_FOLDER + "how-to-edit-process-favorites");
