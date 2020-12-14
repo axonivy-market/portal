@@ -17,14 +17,14 @@ Cs0 @UdEvent f3 '' #zField
 Cs0 @GridStep f6 '' #zField
 Cs0 @PushWFArc f7 '' #zField
 Cs0 @PushWFArc f2 '' #zField
-Cs0 @PushWFArc f5 '' #zField
 Cs0 @UdExitEnd f4 '' #zField
+Cs0 @PushWFArc f5 '' #zField
 >Proto Cs0 Cs0 CreateInvestmentProcess #zField
 Cs0 f0 guid 16B3F8C452E79D83 #txt
 Cs0 f0 method start() #txt
 Cs0 f0 inParameterDecl '<> param;' #txt
-Cs0 f0 outParameterDecl '<com.axonivy.portal.developerexamples.Investment investment> result;' #txt
-Cs0 f0 outParameterMapAction 'result.investment=in.selectedInvestment;
+Cs0 f0 outParameterDecl '<com.axonivy.portal.developerexamples.ExampleIFrameData requestData> result;' #txt
+Cs0 f0 outParameterMapAction 'result.requestData=in.investmentRequest;
 ' #txt
 Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -39,6 +39,7 @@ Cs0 f1 339 51 26 26 0 12 #rect
 Cs0 f1 @|UdProcessEndIcon #fIcon
 Cs0 f3 guid 16B3F8C455B51909 #txt
 Cs0 f3 actionTable 'out=in;
+out.investmentRequest=in.investmentRequest;
 ' #txt
 Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -50,19 +51,16 @@ Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Cs0 f3 83 195 26 26 -15 12 #rect
 Cs0 f3 @|UdEventIcon #fIcon
 Cs0 f6 actionTable 'out=in;
+out.investmentRequest=in.investmentRequest;
+out.investmentRequest.decision=in.investmentRequest.decision;
+out.investmentRequest.decision.isApproved=true;
+out.investmentRequest.investment=in.investmentRequest.investment;
+out.investmentRequest.investment.company.description="Our Agile software development process is designed based on the fundamentals of Agile methodology.";
+out.investmentRequest.investment.company.id="0001";
+out.investmentRequest.investment.company.name="Axon Active";
+out.investmentRequest.investment.id="00001";
 ' #txt
-Cs0 f6 actionCode 'import com.axonivy.portal.developerexamples.Company;
-
-Company company1 = new Company();
-company1.id = "0001";
-company1.name = "Axon Active";
-company1.description = "Our Agile software development process is designed based on the fundamentals of Agile methodology.";
-
-
-in.selectedInvestment.id = "00001";
-in.selectedInvestment.company = company1;
-
-in.steps = ["Create Investment Request", "Approve Investment Request"];' #txt
+Cs0 f6 actionCode 'in.steps = ["Create Investment Request", "Approve Investment Request", "Review Request"];' #txt
 Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -76,17 +74,16 @@ Cs0 f7 expr out #txt
 Cs0 f7 109 64 168 64 #arcP
 Cs0 f2 expr out #txt
 Cs0 f2 280 64 339 64 #arcP
-Cs0 f5 expr out #txt
-Cs0 f5 109 208 339 208 #arcP
 Cs0 f4 339 195 26 26 0 12 #rect
 Cs0 f4 @|UdExitEndIcon #fIcon
+Cs0 f5 109 208 339 208 #arcP
 >Proto Cs0 .type com.axonivy.portal.developerexamples.testdata.CreateInvestment.CreateInvestmentData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
 >Proto Cs0 '' #fIcon
-Cs0 f3 mainOut f5 tail #connect
-Cs0 f5 head f4 mainIn #connect
 Cs0 f0 mainOut f7 tail #connect
 Cs0 f7 head f6 mainIn #connect
 Cs0 f6 mainOut f2 tail #connect
 Cs0 f2 head f1 mainIn #connect
+Cs0 f3 mainOut f5 tail #connect
+Cs0 f5 head f4 mainIn #connect
