@@ -20,6 +20,10 @@ Sl0 @PushWFArc f12 '' #zField
 Sl0 @PushWFArc f3 '' #zField
 Sl0 @PushWFArc f2 '' #zField
 Sl0 @PushWFArc f4 '' #zField
+Sl0 @GridStep f6 '' #zField
+Sl0 @ErrorBoundaryEvent f5 '' #zField
+Sl0 @PushWFArc f7 '' #zField
+Sl0 @PushWFArc f8 '' #zField
 >Proto Sl0 Sl0 SendPasswordResetEmail #zField
 Sl0 f0 inParamDecl '<String email> param;' #txt
 Sl0 f0 inParamTable 'out.email=param.email;
@@ -136,10 +140,37 @@ Sl0 f12 664 64 736 64 #arcP
 Sl0 f3 111 64 216 64 #arcP
 Sl0 f2 864 64 945 64 #arcP
 Sl0 f4 expr in #txt
-Sl0 f4 432 80 960 79 #arcP
-Sl0 f4 1 432 112 #addKink
-Sl0 f4 2 960 112 #addKink
+Sl0 f4 432 48 960 49 #arcP
+Sl0 f4 1 432 32 #addKink
+Sl0 f4 2 960 32 #addKink
 Sl0 f4 1 0.5022590361445783 0 0 #arcLabel
+Sl0 f6 actionTable 'out=in;
+' #txt
+Sl0 f6 actionCode 'import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+
+in.message = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/passwordResetEmailCantSend");
+FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, in.message, ""));' #txt
+Sl0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>set email sending exception message</name>
+    </language>
+</elementInfo>
+' #txt
+Sl0 f6 688 106 224 44 -105 -8 #rect
+Sl0 f6 @|StepIcon #fIcon
+Sl0 f5 actionTable 'out=in;
+' #txt
+Sl0 f5 attachedToRef 1764BD49A4B3CE69-f9 #txt
+Sl0 f5 625 81 30 30 0 15 #rect
+Sl0 f5 @|ErrorBoundaryEventIcon #fIcon
+Sl0 f7 640 111 688 128 #arcP
+Sl0 f7 1 640 128 #addKink
+Sl0 f7 1 0.19697680567278672 0 0 #arcLabel
+Sl0 f8 912 128 960 79 #arcP
+Sl0 f8 1 960 128 #addKink
+Sl0 f8 0 0.6877282896898732 0 0 #arcLabel
 >Proto Sl0 .type _com.axonivy.portal.developerexamples.SendPasswordResetEmailOverrideData #txt
 >Proto Sl0 .processKind CALLABLE_SUB #txt
 >Proto Sl0 0 0 32 24 18 0 #rect
@@ -156,3 +187,7 @@ Sl0 f11 mainOut f2 tail #connect
 Sl0 f2 head f1 mainIn #connect
 Sl0 f13 out f4 tail #connect
 Sl0 f4 head f1 mainIn #connect
+Sl0 f5 mainOut f7 tail #connect
+Sl0 f7 head f6 mainIn #connect
+Sl0 f6 mainOut f8 tail #connect
+Sl0 f8 head f1 mainIn #connect
