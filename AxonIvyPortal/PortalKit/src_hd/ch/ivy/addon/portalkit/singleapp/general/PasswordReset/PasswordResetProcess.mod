@@ -17,8 +17,12 @@ Ps0 @PushWFArc f5 '' #zField
 Ps0 @UdProcessEnd f6 '' #zField
 Ps0 @UdEvent f10 '' #zField
 Ps0 @CallSub f7 '' #zField
-Ps0 @PushWFArc f8 '' #zField
 Ps0 @PushWFArc f9 '' #zField
+Ps0 @Alternative f11 '' #zField
+Ps0 @PushWFArc f12 '' #zField
+Ps0 @PushWFArc f8 '' #zField
+Ps0 @GridStep f118 '' #zField
+Ps0 @PushWFArc f13 '' #zField
 >Proto Ps0 Ps0 PasswordResetProcess #zField
 Ps0 f0 guid 175F970030C8B97C #txt
 Ps0 f0 method start(String,String) #txt
@@ -54,7 +58,7 @@ Ps0 f3 @|UdEventIcon #fIcon
 Ps0 f4 211 147 26 26 0 12 #rect
 Ps0 f4 @|UdExitEndIcon #fIcon
 Ps0 f5 109 160 211 160 #arcP
-Ps0 f6 403 243 26 26 0 12 #rect
+Ps0 f6 547 243 26 26 0 12 #rect
 Ps0 f6 @|UdProcessEndIcon #fIcon
 Ps0 f10 guid 176217D65744540F #txt
 Ps0 f10 actionTable 'out=in;
@@ -87,10 +91,39 @@ Ps0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f7 200 234 112 44 -43 -8 #rect
+Ps0 f7 344 234 112 44 -43 -8 #rect
 Ps0 f7 @|CallSubIcon #fIcon
-Ps0 f8 109 256 200 256 #arcP
-Ps0 f9 312 256 403 256 #arcP
+Ps0 f9 456 256 547 256 #arcP
+Ps0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>logged in?</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f11 208 240 32 32 8 16 #rect
+Ps0 f11 @|AlternativeIcon #fIcon
+Ps0 f12 109 256 208 256 #arcP
+Ps0 f8 expr in #txt
+Ps0 f8 outCond ivy.session.isSessionUserUnknown() #txt
+Ps0 f8 240 256 344 256 #arcP
+Ps0 f118 actionTable 'out=in;
+' #txt
+Ps0 f118 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+PortalNavigator.navigateToPortalHome();' #txt
+Ps0 f118 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>redirect to home page</name>
+    </language>
+</elementInfo>
+' #txt
+Ps0 f118 336 298 128 44 -60 -8 #rect
+Ps0 f118 @|StepIcon #fIcon
+Ps0 f13 expr in #txt
+Ps0 f13 224 272 336 320 #arcP
+Ps0 f13 1 224 320 #addKink
+Ps0 f13 1 0.24087665727845922 0 0 #arcLabel
 >Proto Ps0 .type ch.ivy.addon.portalkit.singleapp.general.PasswordReset.PasswordResetData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
@@ -99,7 +132,11 @@ Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
 Ps0 f3 mainOut f5 tail #connect
 Ps0 f5 head f4 mainIn #connect
-Ps0 f10 mainOut f8 tail #connect
-Ps0 f8 head f7 mainIn #connect
 Ps0 f7 mainOut f9 tail #connect
 Ps0 f9 head f6 mainIn #connect
+Ps0 f10 mainOut f12 tail #connect
+Ps0 f12 head f11 in #connect
+Ps0 f11 out f8 tail #connect
+Ps0 f8 head f7 mainIn #connect
+Ps0 f11 out f13 tail #connect
+Ps0 f13 head f118 mainIn #connect
