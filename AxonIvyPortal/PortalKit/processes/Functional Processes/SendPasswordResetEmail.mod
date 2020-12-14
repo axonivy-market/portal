@@ -70,7 +70,7 @@ try {
 		long expiryTime = Calendar.getInstance().getTimeInMillis() + 5*60000;
 		in.user.setProperty(UserProperty.RESET_PASSWORD_TOKEN, token);
 		in.user.setProperty(UserProperty.RESET_PASSWORD_TOKEN_EXPIRY, String.valueOf(expiryTime));
-		String resetUrl = ServerFactory.getServer().getServerInfo().getInfoPageUrl() + PortalNavigator.getPasswordResetUrl(token, in.user.getName());
+		String resetUrl = ServerFactory.getServer().getServerInfo().getInfoPageUrl().replaceAll("/+$$", "") + PortalNavigator.getPasswordResetUrl(token, in.user.getName());
 		in.emailContent = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/passwordResetEmailContent", Arrays.asList(in.user.getFullName(), resetUrl));
 		in.isValid = true;
 	} else {
