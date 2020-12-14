@@ -153,11 +153,17 @@ Pt0 @PushWFArc f124 '' #zField
 Pt0 @PushWFArc f123 '' #zField
 Pt0 @PushWFArc f117 '' #zField
 Pt0 @CallSub f112 '' #zField
-Pt0 @PushWFArc f114 '' #zField
 Pt0 @PushWFArc f116 '' #zField
 Pt0 @CallSub f119 '' #zField
-Pt0 @PushWFArc f120 '' #zField
 Pt0 @PushWFArc f122 '' #zField
+Pt0 @Alternative f125 '' #zField
+Pt0 @PushWFArc f126 '' #zField
+Pt0 @PushWFArc f120 '' #zField
+Pt0 @Alternative f127 '' #zField
+Pt0 @PushWFArc f128 '' #zField
+Pt0 @PushWFArc f114 '' #zField
+Pt0 @PushWFArc f129 '' #zField
+Pt0 @PushWFArc f130 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk0 @TextInP .type .type #zField
 Bk0 @TextInP .processKind .processKind #zField
@@ -1339,7 +1345,7 @@ Pt0 f106 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f106 @C|.responsibility Everybody #txt
-Pt0 f106 785 1009 30 30 -21 17 #rect
+Pt0 f106 753 1009 30 30 -21 17 #rect
 Pt0 f106 @|StartRequestIcon #fIcon
 Pt0 f107 outLink ForgotPasswordPage.ivp #txt
 Pt0 f107 inParamDecl '<> param;' #txt
@@ -1356,7 +1362,7 @@ Pt0 f107 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f107 @C|.responsibility Everybody #txt
-Pt0 f107 785 817 30 30 -21 17 #rect
+Pt0 f107 753 817 30 30 -21 17 #rect
 Pt0 f107 @|StartRequestIcon #fIcon
 Pt0 f108 dialogId ch.ivy.addon.portal.generic.ForgotPassword #txt
 Pt0 f108 startMethod start() #txt
@@ -1370,7 +1376,7 @@ Pt0 f108 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f108 1304 810 112 44 -45 -8 #rect
+Pt0 f108 1400 810 112 44 -45 -8 #rect
 Pt0 f108 @|UserDialogIcon #fIcon
 Pt0 f109 actionTable 'out=in;
 ' #txt
@@ -1400,7 +1406,7 @@ Pt0 f109 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f109 1304 1002 112 44 -20 -8 #rect
+Pt0 f109 1400 1002 112 44 -20 -8 #rect
 Pt0 f109 @|StepIcon #fIcon
 Pt0 f110 dialogId ch.ivy.addon.portal.generic.PasswordReset #txt
 Pt0 f110 startMethod start(String,String,Boolean,String) #txt
@@ -1419,9 +1425,9 @@ Pt0 f110 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f110 1512 1002 112 44 -44 -8 #rect
+Pt0 f110 1608 1002 112 44 -44 -8 #rect
 Pt0 f110 @|UserDialogIcon #fIcon
-Pt0 f111 1416 1024 1512 1024 #arcP
+Pt0 f111 1512 1024 1608 1024 #arcP
 Pt0 f118 actionTable 'out=in;
 ' #txt
 Pt0 f118 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
@@ -1433,7 +1439,7 @@ Pt0 f118 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f118 1296 906 128 44 -60 -8 #rect
+Pt0 f118 1392 906 128 44 -60 -8 #rect
 Pt0 f118 @|StepIcon #fIcon
 Pt0 f115 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1442,7 +1448,7 @@ Pt0 f115 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f115 1168 1008 32 32 0 16 #rect
+Pt0 f115 1264 1008 32 32 0 16 #rect
 Pt0 f115 @|AlternativeIcon #fIcon
 Pt0 f121 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1451,21 +1457,21 @@ Pt0 f121 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f121 1168 816 32 32 0 16 #rect
+Pt0 f121 1264 816 32 32 0 16 #rect
 Pt0 f121 @|AlternativeIcon #fIcon
 Pt0 f113 expr in #txt
 Pt0 f113 outCond in.isIvySecuritySystem #txt
-Pt0 f113 1200 832 1304 832 #arcP
+Pt0 f113 1296 832 1400 832 #arcP
 Pt0 f124 expr in #txt
 Pt0 f124 outCond in.isIvySecuritySystem #txt
-Pt0 f124 1200 1024 1304 1024 #arcP
+Pt0 f124 1296 1024 1400 1024 #arcP
 Pt0 f123 expr in #txt
-Pt0 f123 1184 1008 1296 928 #arcP
-Pt0 f123 1 1184 928 #addKink
+Pt0 f123 1280 1008 1392 928 #arcP
+Pt0 f123 1 1280 928 #addKink
 Pt0 f123 1 0.18918337471700586 0 0 #arcLabel
 Pt0 f117 expr in #txt
-Pt0 f117 1184 848 1296 928 #arcP
-Pt0 f117 1 1184 928 #addKink
+Pt0 f117 1280 848 1392 928 #arcP
+Pt0 f117 1 1280 928 #addKink
 Pt0 f117 1 0.24473129722455964 0 0 #arcLabel
 Pt0 f112 processCall 'Functional Processes/CheckIvySecuritySystem:call()' #txt
 Pt0 f112 requestActionDecl '<> param;' #txt
@@ -1479,10 +1485,9 @@ Pt0 f112 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f112 912 1002 160 44 -70 -8 #rect
+Pt0 f112 1008 1002 160 44 -70 -8 #rect
 Pt0 f112 @|CallSubIcon #fIcon
-Pt0 f114 815 1024 912 1024 #arcP
-Pt0 f116 1072 1024 1168 1024 #arcP
+Pt0 f116 1168 1024 1264 1024 #arcP
 Pt0 f119 processCall 'Functional Processes/CheckIvySecuritySystem:call()' #txt
 Pt0 f119 requestActionDecl '<> param;' #txt
 Pt0 f119 responseMappingAction 'out=in;
@@ -1495,10 +1500,43 @@ Pt0 f119 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f119 912 810 160 44 -70 -8 #rect
+Pt0 f119 1008 810 160 44 -70 -8 #rect
 Pt0 f119 @|CallSubIcon #fIcon
-Pt0 f120 815 832 912 832 #arcP
-Pt0 f122 1072 832 1168 832 #arcP
+Pt0 f122 1168 832 1264 832 #arcP
+Pt0 f125 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>logged in?</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f125 880 816 32 32 9 16 #rect
+Pt0 f125 @|AlternativeIcon #fIcon
+Pt0 f126 783 832 880 832 #arcP
+Pt0 f120 expr in #txt
+Pt0 f120 outCond ivy.session.isSessionUserUnknown() #txt
+Pt0 f120 912 832 1008 832 #arcP
+Pt0 f127 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>logged in?</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f127 880 1008 32 32 8 15 #rect
+Pt0 f127 @|AlternativeIcon #fIcon
+Pt0 f128 783 1024 880 1024 #arcP
+Pt0 f114 expr in #txt
+Pt0 f114 outCond ivy.session.isSessionUserUnknown() #txt
+Pt0 f114 912 1024 1008 1024 #arcP
+Pt0 f129 expr in #txt
+Pt0 f129 896 848 1392 928 #arcP
+Pt0 f129 1 896 928 #addKink
+Pt0 f129 1 0.42857142857142855 0 0 #arcLabel
+Pt0 f130 expr in #txt
+Pt0 f130 896 1008 1392 928 #arcP
+Pt0 f130 1 896 928 #addKink
+Pt0 f130 1 0.42857142857142855 0 0 #arcLabel
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -2353,14 +2391,22 @@ Pt0 f115 out f123 tail #connect
 Pt0 f123 head f118 mainIn #connect
 Pt0 f121 out f117 tail #connect
 Pt0 f117 head f118 mainIn #connect
-Pt0 f106 mainOut f114 tail #connect
-Pt0 f114 head f112 mainIn #connect
 Pt0 f112 mainOut f116 tail #connect
 Pt0 f116 head f115 in #connect
-Pt0 f107 mainOut f120 tail #connect
-Pt0 f120 head f119 mainIn #connect
 Pt0 f119 mainOut f122 tail #connect
 Pt0 f122 head f121 in #connect
+Pt0 f107 mainOut f126 tail #connect
+Pt0 f126 head f125 in #connect
+Pt0 f125 out f120 tail #connect
+Pt0 f120 head f119 mainIn #connect
+Pt0 f106 mainOut f128 tail #connect
+Pt0 f128 head f127 in #connect
+Pt0 f127 out f114 tail #connect
+Pt0 f114 head f112 mainIn #connect
+Pt0 f125 out f129 tail #connect
+Pt0 f129 head f118 mainIn #connect
+Pt0 f127 out f130 tail #connect
+Pt0 f130 head f118 mainIn #connect
 Bk0 f17 mainOut f26 tail #connect
 Bk0 f26 head f23 mainIn #connect
 Bk0 f19 mainOut f39 tail #connect
