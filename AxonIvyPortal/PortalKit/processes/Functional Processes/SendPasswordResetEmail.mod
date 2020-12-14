@@ -43,7 +43,8 @@ Sl0 f1 945 49 30 30 0 15 #rect
 Sl0 f1 @|EndSubIcon #fIcon
 Sl0 f16 actionTable 'out=in;
 ' #txt
-Sl0 f16 actionCode 'import org.apache.commons.collections.CollectionUtils;
+Sl0 f16 actionCode 'import ch.ivy.addon.portalkit.util.UrlUtils;
+import org.apache.commons.collections.CollectionUtils;
 import java.util.Calendar;
 import ch.ivy.addon.portalkit.constant.UserProperty;
 import ch.ivyteam.ivy.server.ServerFactory;
@@ -70,7 +71,7 @@ try {
 		long expiryTime = Calendar.getInstance().getTimeInMillis() + 5*60000;
 		in.user.setProperty(UserProperty.RESET_PASSWORD_TOKEN, token);
 		in.user.setProperty(UserProperty.RESET_PASSWORD_TOKEN_EXPIRY, String.valueOf(expiryTime));
-		String resetUrl = ServerFactory.getServer().getServerInfo().getInfoPageUrl().replaceAll("/+$$", "") + PortalNavigator.getPasswordResetUrl(token, in.user.getName());
+		String resetUrl = UrlUtils.getServerUrl() + PortalNavigator.getPasswordResetUrl(token, in.user.getName());
 		in.emailContent = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/passwordResetEmailContent", Arrays.asList(in.user.getFullName(), resetUrl));
 		in.isValid = true;
 	} else {
