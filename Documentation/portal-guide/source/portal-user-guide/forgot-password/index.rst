@@ -11,13 +11,13 @@ To reset your password, click on **Forgot my password** and you will be navigate
 
 |send-email-screen|
 
-Input your registered email address and click on **Send** button. If successfull, an email
+Input your registered email address and click on **Send** button. If successful, an email
 with a link will be sent to this email address. By clicking on this link, you
 will be navigated to below page.
 
 |reset-password-screen|
 
-Input new password and password confirmation then click on **Continue** button. If successfull,
+Input new password and password confirmation then click on **Continue** button. If successful,
 below page will be displayed.
 
 |reset-password-success-screen|
