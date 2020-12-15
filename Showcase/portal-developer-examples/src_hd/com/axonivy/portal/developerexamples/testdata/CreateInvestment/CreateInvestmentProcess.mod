@@ -64,11 +64,11 @@ Cs0 f6 actionCode 'in.steps = ["Create Investment Request", "Approve Investment 
 Cs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Init fake data</name>
+        <name>Init dummy data</name>
     </language>
 </elementInfo>
 ' #txt
-Cs0 f6 168 42 112 44 -34 -8 #rect
+Cs0 f6 168 42 112 44 -43 -8 #rect
 Cs0 f6 @|StepIcon #fIcon
 Cs0 f7 expr out #txt
 Cs0 f7 109 64 168 64 #arcP
