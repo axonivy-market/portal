@@ -19,6 +19,7 @@ You could find project ``portal-developer-examples`` in engine demo mode or impo
    build-your-own-portal
    portal-style-customization-logos-colors-date-patterns
    login
+   forgot-password
    menu
    portal-home
    task-widget
