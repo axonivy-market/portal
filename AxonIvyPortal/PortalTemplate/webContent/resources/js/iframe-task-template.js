@@ -51,6 +51,11 @@ function checkUrl(iFrame) {
       name: 'url',
       value: redirectUrl
     }]);
+  } else {
+    useTaskInIFrame([{
+      name: 'url',
+      value: loc.pathname
+    }]);
   }
 }
 

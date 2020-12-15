@@ -36,6 +36,7 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
   protected IStartableSideStep selectedSideStep;
   protected List<AdhocHistory> adhocHistories;
   protected String caseDetailsLink;
+  protected ITask task;
 
   public List<IStartableSideStep> getSideStepList() {
     return sideStepList;
@@ -207,5 +208,13 @@ public abstract class AbstractTaskTemplateBean implements Serializable {
 
   public void setCaseDetailsLink(String caseDetailsLink) {
     this.caseDetailsLink = caseDetailsLink;
+  }
+
+  public ITask getTask() {
+    return task;
+  }
+
+  public void setTask(ITask task) {
+    this.task = task;
   }
 }
