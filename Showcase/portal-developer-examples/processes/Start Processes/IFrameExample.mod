@@ -73,10 +73,10 @@ Ie0 f12 triggerEnabled false #txt
 Ie0 f12 callSignature CreateInvestment() #txt
 Ie0 f12 persist false #txt
 Ie0 f12 startName 'Create Investment (IFrame + Task custom fields)' #txt
-Ie0 f12 taskData 'TaskTriggered.NAM=Create Investment
-TaskTriggered.customFields.STRING.embedInFrame="true"' #txt
+Ie0 f12 taskData 'TaskTriggered.NAM=Create Investment' #txt
 Ie0 f12 caseData 'businessCase.attach=true
-case.name=Investment Creation (IFrame + Task custom fields)' #txt
+case.name=Investment Creation (IFrame + Task custom fields)
+customFields.STRING.embedInFrame="true"' #txt
 Ie0 f12 showInStartList 1 #txt
 Ie0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
