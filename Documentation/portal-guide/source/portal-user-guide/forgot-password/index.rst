@@ -7,7 +7,7 @@ If ivy Security System is used, on Login page, you will see a **Forgot my passwo
 
 |login-screen|
 
-To reset your password, click on **Forgot my password** and you will be navigated below page.
+To reset your password, click on **Forgot my password** and you will be navigated to below page.
 
 |send-email-screen|
 
