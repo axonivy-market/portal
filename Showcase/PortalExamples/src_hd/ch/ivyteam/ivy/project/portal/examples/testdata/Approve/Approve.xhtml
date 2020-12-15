@@ -7,8 +7,8 @@
     <ui:define name="title">Approve</ui:define>
     <ui:define name="content">
       <h:form id="content-form" style="padding-bottom: 100px;">
-      	<p:tabView>
-      		<p:tab title="Investment">
+      	<p:tabView id="investment-info">
+      		<p:tab title="Investment" id="investment-info-tab">
 		        <div class="ui-g">
 		          <div class="ui-g-2">
 		            <h:outputLabel id="id-label" for="id" value="Investment ID" />
@@ -100,7 +100,7 @@
         </div>
       </h:form>
       <script>
-        window.processSteps = ["Create Investment Request", "Approve Investment Request", "Step 3", "Step 4", "Step 5"];
+        window.processSteps = ["Create Investment Request", "Approve Investment Request", "Review Investment Request"];
         window.currentProcessStep = 1;
         window.isShowAllSteps = true;
         window.isWorkingOnATask = false;

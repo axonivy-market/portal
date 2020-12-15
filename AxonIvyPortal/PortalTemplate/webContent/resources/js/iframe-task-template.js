@@ -48,6 +48,11 @@ function checkUrl(iFrame) {
       name : 'taskId',
       value : taskId
     }]);
+  } else {
+    useTaskInIFrame([{
+      name: 'url',
+      value: path
+    }]);
   }
 }
 

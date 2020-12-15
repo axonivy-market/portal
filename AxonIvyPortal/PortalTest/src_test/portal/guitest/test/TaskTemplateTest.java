@@ -232,4 +232,13 @@ public class TaskTemplateTest extends BaseTest {
     taskTemplatePage.openCaseInfo();
     return taskTemplatePage;
   }
+
+  @Test
+  public void testTextOutIFrameChangedWithSkipTaskList() {
+    redirectToRelativeLink(IFRAME_TASK_URL);
+    TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
+    TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
+    TaskTemplatePage approveTaskPage = taskWidgetPage.startTask(3);
+    assertTrue(approveTaskPage.isTextOutIFrameChangedWithSkipTaskList());
+  }
 }

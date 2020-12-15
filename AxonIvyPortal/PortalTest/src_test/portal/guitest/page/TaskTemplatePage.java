@@ -229,4 +229,24 @@ public class TaskTemplatePage extends TemplatePage {
     driver.switchTo().defaultContent();
     return new TaskWidgetPage();
   }
+
+  public boolean isTextOutIFrameChangedWithSkipTaskList() {
+    String taskNameOutIFrameCssSelector = "span[id$='title']";
+    String approveTaskNameOutIFrame = findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
+    processDataFromApproveToReview();
+    waitAjaxIndicatorDisappear();
+    String reviewTaskNameOutIFrame = findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
+    return !approveTaskNameOutIFrame.equals(reviewTaskNameOutIFrame); 
+  }
+
+  private void processDataFromApproveToReview() {
+    driver.switchTo().frame("iFrame");
+    click(By.id("content-form:investment-info:is-approved:0"));
+    type(By.id("content-form:investment-info:approval-note"), "OK");
+    waitForElementDisplayed(By.id("content-form:approve-btn"), true);
+    clickByCssSelector("button[id$='content-form:approve-btn']");
+    waitForElementDisplayed(By.id("content-form:close-btn"), true);
+    clickByCssSelector("button[id$='content-form:close-btn']");
+    driver.switchTo().defaultContent();
+  }
 }
