@@ -39,6 +39,9 @@ credentials.
    by the single-sign-on (SSO). In this case you’ll directly be forwarded to the
    Axon.ivy Portal Dashboard. 
 
+   If ivy Security System is used, you can click on **Forgot my password** to reset
+   in case you forget it.
+
 After successful login, you’ll see the Axon.ivy Portal Homepage and your
 personal dashboard. All your activities can be managed from this central entry
 point. In detail these are:

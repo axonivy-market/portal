@@ -1,0 +1,5 @@
+co: name={passwordConfirmation} description={} changed={2020-11-24 09:52:31 CET} changedby={vtlong} visualorder={0} guid={175F9741792DBF63} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={175F97417A0D153D} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:33 CET} validto={} changed={2020-11-24 09:52:31 CET} changedby={vtlong} properties={} id={}
+val: guid={175F97417AE3A4EB} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:05 CEST} validto={} changed={2020-11-24 09:52:31 CET} changedby={vtlong} properties={} id={}
+val: guid={175F97417971A283} datatype={} isdefault={false} langid={de} description={} validfrom={2015-11-20 15:55:35 CET} validto={} changed={2020-11-24 09:52:31 CET} changedby={vtlong} properties={} id={}
+val: guid={175F97417B8179D3} datatype={} isdefault={true} langid={en} description={} validfrom={2014-07-21 14:44:47 CEST} validto={} changed={2020-11-24 09:52:31 CET} changedby={vtlong} properties={} id={}

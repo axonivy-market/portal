@@ -1,0 +1,5 @@
+co: name={passwordReset} description={} changed={2020-11-24 09:43:16 CET} changedby={vtlong} visualorder={0} guid={175F9108026F22D1} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={175F910803A5DD74} datatype={} isdefault={false} langid={de} description={} validfrom={2015-11-20 15:55:35 CET} validto={} changed={2020-11-24 09:43:16 CET} changedby={vtlong} properties={} id={}
+val: guid={175F910804E7C869} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:33 CET} validto={} changed={2020-11-24 09:43:16 CET} changedby={vtlong} properties={} id={}
+val: guid={175F91080302D373} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:05 CEST} validto={} changed={2020-11-24 09:43:16 CET} changedby={vtlong} properties={} id={}
+val: guid={175F910804313329} datatype={} isdefault={true} langid={en} description={} validfrom={2014-07-21 14:44:47 CEST} validto={} changed={2020-11-24 09:43:16 CET} changedby={vtlong} properties={} id={}

@@ -139,6 +139,27 @@ Pt0 @EndTask f100 '' #zField
 Pt0 @UserDialog f101 '' #zField
 Pt0 @PushWFArc f102 '' #zField
 Pt0 @PushWFArc f104 '' #zField
+Pt0 @StartRequest f106 '' #zField
+Pt0 @StartRequest f107 '' #zField
+Pt0 @UserDialog f108 '' #zField
+Pt0 @GridStep f109 '' #zField
+Pt0 @UserDialog f110 '' #zField
+Pt0 @PushWFArc f111 '' #zField
+Pt0 @GridStep f118 '' #zField
+Pt0 @Alternative f115 '' #zField
+Pt0 @Alternative f121 '' #zField
+Pt0 @PushWFArc f113 '' #zField
+Pt0 @PushWFArc f124 '' #zField
+Pt0 @PushWFArc f123 '' #zField
+Pt0 @PushWFArc f117 '' #zField
+Pt0 @Alternative f125 '' #zField
+Pt0 @PushWFArc f126 '' #zField
+Pt0 @Alternative f127 '' #zField
+Pt0 @PushWFArc f128 '' #zField
+Pt0 @PushWFArc f116 '' #zField
+Pt0 @PushWFArc f112 '' #zField
+Pt0 @PushWFArc f119 '' #zField
+Pt0 @PushWFArc f114 '' #zField
 >Proto Pt0 Pt0 PortalStart #zField
 Bk0 @TextInP .type .type #zField
 Bk0 @TextInP .processKind .processKind #zField
@@ -1302,6 +1323,184 @@ Pt0 f101 160 2186 128 44 -60 -8 #rect
 Pt0 f101 @|UserDialogIcon #fIcon
 Pt0 f102 288 2208 321 2208 #arcP
 Pt0 f104 111 2208 160 2208 #arcP
+Pt0 f106 outLink PasswordResetPage.ivp #txt
+Pt0 f106 inParamDecl '<String token,String username> param;' #txt
+Pt0 f106 inParamTable 'out.passwordResetToken=param.token;
+out.passwordResetUsername=param.username;
+' #txt
+Pt0 f106 requestEnabled true #txt
+Pt0 f106 triggerEnabled false #txt
+Pt0 f106 callSignature PasswordResetPage(String,String) #txt
+Pt0 f106 caseData businessCase.attach=true #txt
+Pt0 f106 showInStartList 0 #txt
+Pt0 f106 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>PasswordResetPage.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f106 @C|.responsibility Everybody #txt
+Pt0 f106 753 1009 30 30 -21 17 #rect
+Pt0 f106 @|StartRequestIcon #fIcon
+Pt0 f107 outLink ForgotPasswordPage.ivp #txt
+Pt0 f107 inParamDecl '<> param;' #txt
+Pt0 f107 requestEnabled true #txt
+Pt0 f107 triggerEnabled false #txt
+Pt0 f107 callSignature ForgotPasswordPage() #txt
+Pt0 f107 caseData businessCase.attach=true #txt
+Pt0 f107 showInStartList 0 #txt
+Pt0 f107 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ForgotPasswordPage.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f107 @C|.responsibility Everybody #txt
+Pt0 f107 753 817 30 30 -21 17 #rect
+Pt0 f107 @|StartRequestIcon #fIcon
+Pt0 f108 dialogId ch.ivy.addon.portal.generic.ForgotPassword #txt
+Pt0 f108 startMethod start() #txt
+Pt0 f108 requestActionDecl '<> param;' #txt
+Pt0 f108 responseMappingAction 'out=in;
+' #txt
+Pt0 f108 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ForgotPassword</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f108 1144 810 112 44 -45 -8 #rect
+Pt0 f108 @|UserDialogIcon #fIcon
+Pt0 f109 actionTable 'out=in;
+' #txt
+Pt0 f109 actionCode 'import java.util.Calendar;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import ch.ivy.addon.portalkit.constant.UserProperty;
+import ch.ivy.addon.portalkit.util.UserUtils;
+import ch.ivyteam.ivy.environment.Ivy;
+import org.apache.commons.lang.StringUtils;
+import ch.ivyteam.ivy.security.IUser;
+in.isValidResetUrl = false;
+// TODO check if the ivy Security System is used
+// find user by username
+IUser user = StringUtils.isNotBlank(in.passwordResetUsername) ? UserUtils.findUserByUsername(in.passwordResetUsername) : null;
+in.isValidResetUrl = UserUtils.isValidPasswordResetToken(in.passwordResetToken, user);
+if (!in.isValidResetUrl) {
+	in.passwordResetMessage = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/invalidResetUrl");
+} else {
+	in.passwordResetMessage = "";
+}' #txt
+Pt0 f109 security system #txt
+Pt0 f109 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>load url</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f109 1144 1002 112 44 -20 -8 #rect
+Pt0 f109 @|StepIcon #fIcon
+Pt0 f110 dialogId ch.ivy.addon.portal.generic.PasswordReset #txt
+Pt0 f110 startMethod start(String,String,Boolean,String) #txt
+Pt0 f110 requestActionDecl '<String token,String username,Boolean isValidResetUrl,String message> param;' #txt
+Pt0 f110 requestMappingAction 'param.token=in.passwordResetToken;
+param.username=in.passwordResetUsername;
+param.isValidResetUrl=in.isValidResetUrl;
+param.message=in.passwordResetMessage;
+' #txt
+Pt0 f110 responseMappingAction 'out=in;
+' #txt
+Pt0 f110 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>PasswordReset</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f110 1352 1002 112 44 -44 -8 #rect
+Pt0 f110 @|UserDialogIcon #fIcon
+Pt0 f111 1256 1024 1352 1024 #arcP
+Pt0 f118 actionTable 'out=in;
+' #txt
+Pt0 f118 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+PortalNavigator.navigateToPortalHome();' #txt
+Pt0 f118 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>redirect to home page</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f118 1136 906 128 44 -60 -8 #rect
+Pt0 f118 @|StepIcon #fIcon
+Pt0 f115 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>isIvySecuritySystem?</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f115 1008 1008 32 32 0 16 #rect
+Pt0 f115 @|AlternativeIcon #fIcon
+Pt0 f121 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>isIvySecuritySystem?</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f121 1008 816 32 32 0 16 #rect
+Pt0 f121 @|AlternativeIcon #fIcon
+Pt0 f113 expr in #txt
+Pt0 f113 outCond ch.ivy.addon.portalkit.util.SecuritySystemUtils.isIvySecuritySystem() #txt
+Pt0 f113 1040 832 1144 832 #arcP
+Pt0 f124 expr in #txt
+Pt0 f124 outCond ch.ivy.addon.portalkit.util.SecuritySystemUtils.isIvySecuritySystem() #txt
+Pt0 f124 1040 1024 1144 1024 #arcP
+Pt0 f123 expr in #txt
+Pt0 f123 1024 1008 1136 928 #arcP
+Pt0 f123 1 1024 928 #addKink
+Pt0 f123 1 0.18918337471700586 0 0 #arcLabel
+Pt0 f117 expr in #txt
+Pt0 f117 1024 848 1136 928 #arcP
+Pt0 f117 1 1024 928 #addKink
+Pt0 f117 1 0.24473129722455964 0 0 #arcLabel
+Pt0 f125 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>logged in?</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f125 880 816 32 32 9 16 #rect
+Pt0 f125 @|AlternativeIcon #fIcon
+Pt0 f126 783 832 880 832 #arcP
+Pt0 f127 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>logged in?</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f127 880 1008 32 32 8 15 #rect
+Pt0 f127 @|AlternativeIcon #fIcon
+Pt0 f128 783 1024 880 1024 #arcP
+Pt0 f116 expr in #txt
+Pt0 f116 outCond ivy.session.isSessionUserUnknown() #txt
+Pt0 f116 912 832 1008 832 #arcP
+Pt0 f112 expr in #txt
+Pt0 f112 896 848 1136 928 #arcP
+Pt0 f112 1 896 928 #addKink
+Pt0 f119 expr in #txt
+Pt0 f119 outCond ivy.session.isSessionUserUnknown() #txt
+Pt0 f119 912 1024 1008 1024 #arcP
+Pt0 f114 expr in #txt
+Pt0 f114 896 1008 1136 928 #arcP
+Pt0 f114 1 896 928 #addKink
 >Proto Pt0 .type ch.ivy.addon.portal.generic.PortalStartData #txt
 >Proto Pt0 .processKind NORMAL #txt
 >Proto Pt0 0 0 32 24 18 0 #rect
@@ -2146,6 +2345,28 @@ Pt0 f99 mainOut f104 tail #connect
 Pt0 f104 head f101 mainIn #connect
 Pt0 f101 mainOut f102 tail #connect
 Pt0 f102 head f100 mainIn #connect
+Pt0 f109 mainOut f111 tail #connect
+Pt0 f111 head f110 mainIn #connect
+Pt0 f121 out f113 tail #connect
+Pt0 f113 head f108 mainIn #connect
+Pt0 f115 out f124 tail #connect
+Pt0 f124 head f109 mainIn #connect
+Pt0 f115 out f123 tail #connect
+Pt0 f123 head f118 mainIn #connect
+Pt0 f121 out f117 tail #connect
+Pt0 f117 head f118 mainIn #connect
+Pt0 f107 mainOut f126 tail #connect
+Pt0 f126 head f125 in #connect
+Pt0 f106 mainOut f128 tail #connect
+Pt0 f128 head f127 in #connect
+Pt0 f125 out f116 tail #connect
+Pt0 f116 head f121 in #connect
+Pt0 f125 out f112 tail #connect
+Pt0 f112 head f118 mainIn #connect
+Pt0 f127 out f119 tail #connect
+Pt0 f119 head f115 in #connect
+Pt0 f127 out f114 tail #connect
+Pt0 f114 head f118 mainIn #connect
 Bk0 f17 mainOut f26 tail #connect
 Bk0 f26 head f23 mainIn #connect
 Bk0 f19 mainOut f39 tail #connect

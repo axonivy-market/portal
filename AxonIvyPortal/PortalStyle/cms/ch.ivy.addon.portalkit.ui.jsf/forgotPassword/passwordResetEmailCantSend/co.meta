@@ -1,0 +1,5 @@
+co: name={passwordResetEmailCantSend} description={} changed={2020-12-14 04:29:07 CET} changedby={vtlong} visualorder={0} guid={1765F3108163A241} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1765F31083BE9A81} datatype={} isdefault={false} langid={de} description={} validfrom={2020-09-28 04:07:40 CEST} validto={} changed={2020-12-14 04:29:06 CET} changedby={vtlong} properties={} id={}
+val: guid={1765F3108315DD23} datatype={} isdefault={true} langid={en} description={} validfrom={2020-09-16 05:39:07 CEST} validto={} changed={2020-12-14 04:29:07 CET} changedby={vtlong} properties={} id={}
+val: guid={1765F3108451EE7A} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-09-28 04:07:40 CEST} validto={} changed={2020-12-14 04:29:06 CET} changedby={vtlong} properties={} id={}
+val: guid={1765F3108254DC66} datatype={} isdefault={false} langid={es} description={} validfrom={2020-09-28 04:07:40 CEST} validto={} changed={2020-12-14 04:29:06 CET} changedby={vtlong} properties={} id={}
