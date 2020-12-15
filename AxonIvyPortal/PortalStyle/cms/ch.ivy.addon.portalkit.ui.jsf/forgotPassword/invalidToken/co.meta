@@ -1,0 +1,5 @@
+co: name={invalidToken} description={} changed={2020-12-03 03:33:46 CET} changedby={vtlong} visualorder={0} guid={17626728353FAE01} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={17626728366A3312} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:05 CEST} validto={} changed={2020-12-03 03:33:46 CET} changedby={vtlong} properties={} id={}
+val: guid={1762672835DAB88F} datatype={} isdefault={true} langid={en} description={} validfrom={2014-07-21 14:44:47 CEST} validto={} changed={2020-12-03 03:33:46 CET} changedby={vtlong} properties={} id={}
+val: guid={1762672837C7D6EA} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:33 CET} validto={} changed={2020-12-03 03:33:46 CET} changedby={vtlong} properties={} id={}
+val: guid={1762672837292C98} datatype={} isdefault={false} langid={de} description={} validfrom={2015-11-20 15:55:35 CET} validto={} changed={2020-12-03 03:33:46 CET} changedby={vtlong} properties={} id={}

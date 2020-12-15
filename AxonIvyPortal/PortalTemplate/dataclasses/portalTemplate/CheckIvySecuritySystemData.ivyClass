@@ -1,0 +1,3 @@
+CheckIvySecuritySystemData #class
+portalTemplate #namespace
+isIvySecuritySystem Boolean #field
