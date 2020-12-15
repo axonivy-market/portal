@@ -18,6 +18,7 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivyteam.ivy.dialog.execution.api.DialogInstance;
 import ch.ivyteam.ivy.request.OpenRedirectVulnerabilityUtil;
 
 @ManagedBean(name = "iFrameTaskTemplateBean")
@@ -57,7 +58,15 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   public void navigateToHomePage() {
     navigator.navigateToPortalHome();
   }
-  
+
+  public void useTaskInIFrame() {
+    Map<String, String> requestParamMap = getRequestParameterMap();
+    String url = requestParamMap.get(URL_PARAM);
+    if (StringUtils.isNotBlank(url)) {
+      super.setTask(DialogInstance.of(url).task());
+    }
+  }
+
   public void navigateToEndPage() {
     Map<String, String> requestParamMap = getRequestParameterMap();
     String taskId = requestParamMap.get(TASK_ID_PARAM);
