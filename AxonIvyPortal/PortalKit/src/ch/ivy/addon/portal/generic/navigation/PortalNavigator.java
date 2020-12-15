@@ -34,6 +34,8 @@ public final class PortalNavigator {
   private static final String PORTAL_GLOBAL_SEARCH = "Start Processes/PortalStart/GlobalSearchPage.ivp";
   private static final String PORTAL_USER_PROFILE =  "Start Processes/PortalStart/UserProfile.ivp";
   private static final String PORTAL_ABSENCE_MANAGEMENT =  "Start Processes/PortalStart/AbsenceManagement.ivp";
+  private static final String PORTAL_FORGOT_PASSWORD = "Start Processes/PortalStart/ForgotPasswordPage.ivp";
+  private static final String PORTAL_PASSWORD_RESET = "Start Processes/PortalStart/PasswordResetPage.ivp";
   
   public static String getPortalStartUrl() {
     return getRelativeLink(StandardProcessType.DefaultApplicationHomePage);
@@ -50,7 +52,19 @@ public final class PortalNavigator {
     String originalUrl = URLEncoder.encode(request.getHttpServletRequest().getRequestURI(), StandardCharsets.ISO_8859_1);
     redirect(String.format("%s?originalUrl=%s", loginPage, originalUrl));
   }
-  
+
+  public static String getForgotPasswordUrl() {
+    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(PORTAL_FORGOT_PASSWORD);
+  }
+
+
+  public static String getPasswordResetUrl(String token, String username) {
+    Map<String, String> params = new HashMap<>();
+    params.put("token", token);
+    params.put("username", username);
+    return buildUrl(PORTAL_PASSWORD_RESET, params);
+  }
+
   public static void redirect(String url) {
     try {
       RequestUtil.redirect(url);
