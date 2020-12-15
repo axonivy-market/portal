@@ -93,11 +93,11 @@
           <c:choose>
             <c:when test="#{isNotRequiredLogin}">
               <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu startMethod="StartNotRequiredLogin" id="user-menu-without-login" isWorkingOnATask="#{isWorkingOnATask}" 
-                showGlobalSearch="#{showGlobalSearch}" task="#{task}" />
+                showGlobalSearch="#{showGlobalSearch}" task="#{not empty currentTask ? currentTask : task}" />
             </c:when>
             <c:otherwise>
               <ic:ch.ivy.addon.portal.generic.ApplicationSelectionMenu id="user-menu-required-login" isWorkingOnATask="#{isWorkingOnATask}" 
-                showGlobalSearch="#{showGlobalSearch}" task="#{task}" />
+                showGlobalSearch="#{showGlobalSearch}" task="#{not empty currentTask ? currentTask : task}" />
             </c:otherwise>
           </c:choose>
         </h:panelGroup>
@@ -116,9 +116,9 @@
             <a class="menu-btn left-sidebar-menu-icon">
               <i class="icon ivyicon-navigation-menu left-sidebar-menu-icon left-sidebar-menu-icon-font-size" />
             </a>
-            <div class="layout-topbar-menu-wrapper">
+            <h:panelGroup layout="block" id="layout-topbar-menu-wrapper" styleClass="layout-topbar-menu-wrapper">
               <ui:decorate template="/layouts/includes/topbar.xhtml">
-                <ui:param name="task" value="#{task}" />
+                <ui:param name="task" value="#{not empty currentTask ? currentTask : task}" />
                 <ui:param name="isWorkingOnATask" value="#{isWorkingOnATask}" />
                 <ui:param name="isNotRequiredLogin" value="#{isNotRequiredLogin}" />
                 <ui:param name="hasMainMenu" value="#{empty hasMainMenu ? true : hasMainMenu}" />
@@ -133,7 +133,7 @@
                 <div class="second-header-bar" />
                 <div class="third-header-bar" />
               </div>
-            </div>
+            </h:panelGroup>
           </div>
 
           <!-- div for positioning layout, don't modify it -->
@@ -155,7 +155,7 @@
         </div>
 
         <ic:ch.ivy.addon.portalkit.component.WarningBeforeLostSession id="warning-before-lost-session"
-          clientSideTimeOut="#{userMenuBean.clientSideTimeout}" task="#{task}" />
+          clientSideTimeOut="#{userMenuBean.clientSideTimeout}" task="#{not empty currentTask ? currentTask : task}" />
       </div>
       
       <div id="portal-template-footer" class="js-portal-template-footer">
