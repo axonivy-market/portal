@@ -472,7 +472,7 @@
   /* Portal Global Ajax Status */
   --ajax-loading-bg: hsla(0, 0%, 100%, 0.9);
   --general-config-description-color: var(--ivy-primary-color-grey-medium);
-  --ajax-exception-bg: var(--ivy-primary-color-grey-light);
+  --ajax-exception-bg: var(--ivy-primary-color-grey-pale);
   --ajax-exception-border: transparent;
-  --ajax-exception-text: var(----ivy-primary-color-black);
+  --ajax-exception-text: var(--ivy-primary-color-black);
   }
