@@ -3552,7 +3552,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   top: 60px;
   left: 25%;
   right: 25%;
-  z-index: 999;
+  z-index: 1001;
 }
 
 .notification {
@@ -5016,23 +5016,24 @@ body td .icon {
 /** Portal dialog ---- end-----**/
 
 /* =================== START EXCEPTION ===================== */
-.code-block {
+.portal-exception-detail-group .code-block {
   padding: 5px 8px;
   margin-right: 5px;
   border-radius: 3px;
 }
 
-.error-label {
+.portal-exception-detail-group .error-label {
   margin-right: 5px;
   display: inline-block;
   width: max-content;
 }
 
-.error-value {
-  word-break: break-word;
+.portal-exception-detail-group .error-value {
+  word-break: break-all;
 }
 
-.error-label, .error-value {
+.portal-exception-detail-group .error-label,
+.portal-exception-detail-group .error-value {
   padding: 6px 0;
 }
 /* ===================== END EXCEPTION ===================== */
