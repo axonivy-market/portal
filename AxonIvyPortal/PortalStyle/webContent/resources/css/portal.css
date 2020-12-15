@@ -60,6 +60,14 @@ _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlin
 .login-body .login-panel .login-panel-content h1 {
   font-size: 1.6rem; }
 
+.login-body .login-panel .login-panel-content .ui-g-12.forgot-link a.ui-link {
+  color: var(--primary-color);
+}
+
+.login-body .login-panel .login-panel-content .result-message {
+  text-align: center;
+}
+
 .login-body .login-panel .login-panel-header img {
   vertical-align: middle;
   width: auto;
