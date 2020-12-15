@@ -18,14 +18,15 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivyteam.ivy.dialog.execution.api.DialogInstance;
 import ch.ivyteam.ivy.request.OpenRedirectVulnerabilityUtil;
 
 @ManagedBean(name = "iFrameTaskTemplateBean")
 @ViewScoped
 public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements Serializable {
-  
+
   private static final long serialVersionUID = 1L;
-  
+
   private static final String TASK_ID_PARAM = "taskId";
   private static final String URL_PARAM = "url";
   private static final String IS_SHOW_ALL_STEPS_PARAM = "isShowAllSteps";
@@ -39,7 +40,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private static final String IS_HIDE_TASK_ACTION = "isHideTaskAction";
   private static final String IS_WORKING_ON_A_TASK = "isWorkingOnATask";
   private static final String VIEW_NAME = "viewName";
-  
+
   private int currentProcessStep;
   private List<String> processSteps;
   private boolean isShowAllSteps;
@@ -52,7 +53,15 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private boolean isHideTaskName = true;
   private boolean isHideCaseInfo = true;
   private boolean isWorkingOnATask = true;
-  
+
+  public void useTaskInIFrame() {
+    Map<String, String> requestParamMap = getRequestParameterMap();
+    String url = requestParamMap.get(URL_PARAM);
+    if (StringUtils.isNotBlank(url)) {
+      super.setTask(DialogInstance.of(url).task());
+    }
+  }
+
   public void navigateToEndPage() {
     Map<String, String> requestParamMap = getRequestParameterMap();
     String taskId = requestParamMap.get(TASK_ID_PARAM);
@@ -61,7 +70,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
       PortalNavigator.navigateToPortalEndPage(Long.parseLong(taskId));
     }
   }
-  
+
   public void navigateToUrl() throws IOException {
     Map<String, String> requestParamMap = getRequestParameterMap();
     String url = requestParamMap.get(URL_PARAM);
@@ -75,7 +84,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
       FacesContext.getCurrentInstance().getExternalContext().redirect(url);
     }
   }
-  
+
   public void getDataFromIFrame() throws Exception {
     Map<String, String> requestParamMap = getRequestParameterMap();
     currentProcessStep = Optional.ofNullable(requestParamMap.get(CURRENT_PROCESS_STEP_PARAM))
@@ -91,11 +100,6 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
     isHideTaskName = Optional.ofNullable(requestParamMap.get(IS_HIDE_TASK_NAME)).map(BooleanUtils::toBoolean).orElse(false);
     isHideTaskAction = Optional.ofNullable(requestParamMap.get(IS_HIDE_TASK_ACTION)).map(BooleanUtils::toBoolean).orElse(false);
     isWorkingOnATask = Optional.ofNullable(requestParamMap.get(IS_WORKING_ON_A_TASK)).map(p -> StringUtils.isNotBlank(p) ? BooleanUtils.toBoolean(p) : true).get();
-  }
-  
-  public String getViewName() {
-    Map<String, String> requestParamMap = getRequestParameterMap();
-    return StringUtils.defaultString(requestParamMap.get(VIEW_NAME));
   }
 
   private Map<String, String> getRequestParameterMap() {
@@ -143,8 +147,13 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   public boolean getIsHideCaseInfo() {
     return isHideCaseInfo;
   }
-  
+
   public boolean getIsWorkingOnATask() {
     return isWorkingOnATask;
+  }
+  
+  public String getViewName() {
+    Map<String, String> requestParamMap = getRequestParameterMap();
+    return StringUtils.defaultString(requestParamMap.get(VIEW_NAME));
   }
 }
