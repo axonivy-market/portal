@@ -23,5 +23,5 @@ Please examine below example in portal-developer-examples project:
 
 |password-resetting|
 
-.. |token-generation-and-email-sending| image:: images/forgot-password/token-generation-and-email-sending.png
-.. |password-resetting| image:: images/forgot-password/password-resetting.png
+.. |token-generation-and-email-sending| image:: images/forgot-password/generate-token-and-send-email.png
+.. |password-resetting| image:: images/forgot-password/reset-password.png
