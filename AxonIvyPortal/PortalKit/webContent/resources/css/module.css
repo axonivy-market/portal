@@ -4735,10 +4735,6 @@ body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled .ui
 	overflow: hidden;
 }
 
-body .ui-widget-header.portal-breadcrumb ul li:last-child {
-	width: calc(100% - 150px);
-}
-
 body .ui-widget-header.portal-breadcrumb a,
 body .ui-widget-header.portal-breadcrumb .ui-breadcrumb-chevron {
 	color: black;

@@ -53,13 +53,13 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public Boolean isDocumentUploadingDialogDisplayed() {
-	return findElementByCssSelector("div[id$='document-upload-dialog']").isDisplayed();
+    return findElementByCssSelector("div[id$='document-upload-dialog']").isDisplayed();
   }
 
   public void openFinishedTaskInHistoryArea() {
     WebElement element = findElementById("case-item:history:show-more-note-link");
     String url = element.getAttribute("href");
-    ((JavascriptExecutor) driver).executeScript("window.open('"+ url +"','_blank');");
+    ((JavascriptExecutor) driver).executeScript("window.open('" + url + "','_blank');");
   }
 
   public TaskDetailsPage openFirstRelatedTaskInHistoryArea() {
@@ -77,8 +77,7 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public int countHistoryItems() {
-    return findListElementsByCssSelector("a[id$='show-task-note-link']")
-        .size();
+    return findListElementsByCssSelector("a[id$='show-task-note-link']").size();
   }
 
   public int countRelatedTasks() {
@@ -99,7 +98,7 @@ public class TaskTemplatePage extends TemplatePage {
     waitForElementDisplayed(By.id(actionButtonId), true);
     click(findElementById(actionButtonId));
   }
-  
+
   public void startSideStep() {
     String actionPanelId = "horizontal-task-action-form:horizontal-task-action-menu";
     waitForElementDisplayed(By.id(actionPanelId), true);
@@ -113,40 +112,40 @@ public class TaskTemplatePage extends TemplatePage {
     waitForElementDisplayed(By.id(sideStepPanelId), true);
     return findListElementsByCssSelector("a[id$='side-step-item']").size();
   }
-  
+
   public void clickCancelLink() {
     click(By.linkText("Cancel"));
   }
-  
+
   public void showNoteHistory() {
     click(driver.findElement(By.cssSelector("a[id$='show-more-note-link']")));
   }
-  
-  public String getCaseName(){
+
+  public String getCaseName() {
     driver.switchTo().defaultContent();
     return findElementByCssSelector("span[id$='case-info-dialog_title']").getText().split(":")[1].trim();
   }
-  
-  public String getCaseId(){
+
+  public String getCaseId() {
     switchToCaseInfoIframe();
     return findElementByCssSelector("span[id$='case-id']").getText();
   }
-  
+
   public void clickAdhocCreationButton() {
     clickByCssSelector("#horizontal-task-actions");
     clickByCssSelector("a[id$='start-adhoc']");
     waitAjaxIndicatorDisappear();
   }
-  
+
   public void clickActionMenuButton() {
     clickByCssSelector("#horizontal-task-actions");
   }
-  
+
   public void clickAdhocOkButton() {
     clickByCssSelector("button[id$='start-adhoc-ok-button']");
     waitAjaxIndicatorDisappear();
   }
-  
+
   public boolean isShowAdhocHistoryBtnNotExist() {
     String adhocHistoryBtnCSSSelection = "a[id$='show-adhoc-history']";
     return driver.findElements(By.cssSelector(adhocHistoryBtnCSSSelection)).isEmpty();
@@ -161,11 +160,11 @@ public class TaskTemplatePage extends TemplatePage {
     waitAjaxIndicatorDisappear();
     return findElementByCssSelector("div[id$='adhoc-task-history-dialog']").isDisplayed();
   }
-  
+
   public boolean isAdhocHistoryDialogExist() {
     return findElementByCssSelector("div[id$='adhoc-task-history-dialog']").isDisplayed();
   }
-  
+
   public void clickShowAdhocHistoryBtn() {
     clickByCssSelector("#horizontal-task-actions");
     waitForElementDisplayed(By.cssSelector("a[id$='show-adhoc-history']"), true);
@@ -177,17 +176,17 @@ public class TaskTemplatePage extends TemplatePage {
     WebElement row = driver.findElements(By.cssSelector(ADHOC_HISTORY_TABLE_CSS_SELECTOR)).get(index);
     return row.findElements(By.xpath("td")).get(2).getText();
   }
-  
+
   public String getCommentOfAdhocHistoryRow(int index) {
     WebElement row = driver.findElements(By.cssSelector(ADHOC_HISTORY_TABLE_CSS_SELECTOR)).get(index);
     return row.findElements(By.xpath("td")).get(3).getText();
   }
-  
+
   public void closeAdhocHistoryDialog() {
     clickByCssSelector("button[id$='close-adhoc-dialog-button']");
     waitAjaxIndicatorDisappear();
   }
-  
+
   public String getAdhocCreationMessage() {
     String adhocCreationMessageCSSSelector = "div[id$='adhoc-creation-message']";
     return findDisplayedElementByCssSelector(adhocCreationMessageCSSSelector).getText();
@@ -197,22 +196,23 @@ public class TaskTemplatePage extends TemplatePage {
     clickOnSubmitButton();
     return new HomePage();
   }
-  
+
   public void clickOnSubmitButton() {
     String submitButton = "button[id$='button-submit']";
     clickByCssSelector(submitButton);
   }
-  
+
   public HomePage clickCancelAndLeftButton() {
     String cancelButton = "a[id$='button-cancel']";
     clickByCssSelector(cancelButton);
     return new HomePage();
   }
+
   public void clickTaskActionMenu() {
-	    String taskAction = "button[id$='horizontal-task-actions']";
-	    clickByCssSelector(taskAction);
-}
-  
+    String taskAction = "button[id$='horizontal-task-actions']";
+    clickByCssSelector(taskAction);
+  }
+
   public void clickChatGroup(boolean growlMessageExpected) {
     String chatGroup = "a[id$='chat-group']";
     waitForElementDisplayed(By.cssSelector(chatGroup), true);
@@ -221,37 +221,37 @@ public class TaskTemplatePage extends TemplatePage {
       waitForElementDisplayedByCssSelector("span.ui-growl-title");
     }
   }
-  
+
   public void joinProcessChatAlreadyCreated() {
-  	waitForElementDisplayed(By.id("chat-group-join-form:chat-group-join-button"), true);
-  	click(By.id("chat-group-join-form:chat-group-join-button"));
-  	waitAjaxIndicatorDisappear();
+    waitForElementDisplayed(By.id("chat-group-join-form:chat-group-join-button"), true);
+    click(By.id("chat-group-join-form:chat-group-join-button"));
+    waitAjaxIndicatorDisappear();
   }
-  
+
   public void inputFields(String employee, String from, String to, String representation) {
     type(By.id("leave-request:fullname"), employee);
     type(By.id("leave-request:from_input"), from);
     type(By.id("leave-request:to_input"), to);
     type(By.id("leave-request:substitute"), representation);
   }
-  
+
   public boolean isTaskNameDisplayed() {
     return isElementDisplayedById("title");
   }
-  
+
   public boolean isCaseInfoButtonDisplayed() {
     return isElementDisplayedById("horizontal-case-info");
   }
-  
+
   public boolean isTaskActionDisplayed() {
     return isElementDisplayedById("horizontal-task-actions");
   }
-  
+
   public WebElement getAddMemberToChatDialog() {
     waitForElementDisplayed(By.id("chat-assignee-dialog"), true);
     return findElementById("chat-assignee-dialog");
   }
-  
+
   public void clickCreateGroupChatBtn() {
     click(By.id("chat-assignee-selection-form:chat-group-create-button"));
     waitForElementDisplayed(By.id("chat-assignee-selection-form:chat-group-create-button"), false);
@@ -260,13 +260,13 @@ public class TaskTemplatePage extends TemplatePage {
   public String getTaskName() {
     return getTextOfCurrentBreadcrumb().replace("Task: ", "");
   }
-  
+
   public void clickLeaveTaskOnWarningDialog() {
     By leaveButton = By.id("task-leave-warning-component:leave-button");
     waitForElementDisplayed(leaveButton, true);
     click(leaveButton);
   }
-  
+
   public TaskWidgetPage finishCreateInvestmentTask() {
     driver.switchTo().frame("iFrame");
     waitForElementDisplayed(By.id("form:invested-amount"), true);
@@ -275,7 +275,7 @@ public class TaskTemplatePage extends TemplatePage {
     driver.switchTo().defaultContent();
     return new TaskWidgetPage();
   }
-  
+
   public HomePage backToHomeInIFrameApprovalTask() {
     driver.switchTo().frame("iFrame");
     waitForElementDisplayed(By.id("content-form:home-btn"), true);
@@ -283,13 +283,34 @@ public class TaskTemplatePage extends TemplatePage {
     driver.switchTo().defaultContent();
     return new HomePage();
   }
-  
-  public TaskWidgetPage finishIFrameApprovalTask() {
+
+  public TaskWidgetPage finishIFrameReviewTask() {
+    waitForCloseButtonDisplayAfterInputedAprrovalNote("1");
+    closeReviewPage();
+    return new TaskWidgetPage();
+  }
+
+  public boolean isTextOutIFrameChangedWithSkipTaskList() {
+    String taskNameOutIFrameCssSelector = "span[id$='title']";
+    String approveTaskNameOutIFrame = findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
+    waitForCloseButtonDisplayAfterInputedAprrovalNote("1");
+    driver.switchTo().defaultContent();
+    String finishTaskNameOutIFrame = findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
+    driver.switchTo().frame("iFrame");
+    closeReviewPage();
+    return !approveTaskNameOutIFrame.equals(finishTaskNameOutIFrame);
+  }
+
+  private void waitForCloseButtonDisplayAfterInputedAprrovalNote(String approvalNote) {
     driver.switchTo().frame("iFrame");
     waitForElementDisplayed(By.id("content-form:approve-btn"), true);
-    type(By.id("content-form:content-tab-view:approval-note"), "1");
+    type(By.id("content-form:content-tab-view:approval-note"), approvalNote);
     click(By.id("content-form:approve-btn"));
+    waitForElementDisplayed(By.id("content-form:close-btn"), true);
+  }
+
+  private void closeReviewPage() {
+    click(By.id("content-form:close-btn"));
     driver.switchTo().defaultContent();
-    return new TaskWidgetPage();
   }
 }
