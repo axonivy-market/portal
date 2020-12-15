@@ -30,7 +30,7 @@ public class ForgotPasswordTest extends BaseTest {
 
   @Test
   public void testForgotPassword() {
-    forgotPasswordPage = new ForgotPasswordPage(TestAccount.TEST_FORGOT_PASSWORD_USER);
+    forgotPasswordPage = new ForgotPasswordPage(TestAccount.TEST_FORGOT_PASSWORD_USER); 
     forgotPasswordPage.send();
     assertTrue(forgotPasswordPage.isProcessed());
   }
