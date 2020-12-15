@@ -191,16 +191,16 @@ HOW TO RUN THIS EXAMPLE:&#13;
 
 1. Run createInvestmentRequestIframe.ivp
 
-2. In Portal case list, expand "Investment request with custom case detail using iFrame" case, then click to "Show details" button
+2. In Portal case list, expand "Investment request with custom case detail using iFrame" case, then click to "Show business details" button
 
 </name>
         <nameStyle>48,5
-816,5
+825,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ae0 f13 776 18 704 316 -348 -152 #rect
+Ae0 f13 744 18 768 316 -375 -152 #rect
 Ae0 f13 @|IBIcon #fIcon
 >Proto Ae0 .type com.axonivy.portal.developerexamples.customization.AdditionalCaseDetailPageIframeData #txt
 >Proto Ae0 .processKind NORMAL #txt
