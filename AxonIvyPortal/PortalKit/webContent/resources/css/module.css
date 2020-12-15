@@ -3455,7 +3455,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   top: 60px;
   left: 25%;
   right: 25%;
-  z-index: 999;
+  z-index: 1001;
 }
 
 .notification {
@@ -4477,3 +4477,26 @@ body .ui-dialog.ui-widget.export-express-dialog {
   }
 }
 /*=================== NOTE HISTORY END ===================*/
+
+/*================= START EXCEPTION ===================== */
+.portal-exception-detail-group .code-block {
+  padding: 5px 8px;
+  margin-right: 5px;
+  border-radius: 3px;
+}
+
+.portal-exception-detail-group .error-label {
+  margin-right: 5px;
+  display: inline-block;
+  width: max-content
+}
+
+.portal-exception-detail-group .error-label,
+.portal-exception-detail-group .error-value {
+  padding: 6px 0;
+}
+
+.portal-exception-detail-group .error-value {
+  word-break: break-all;
+}
+/*==================== END EXCEPTION ===================*/

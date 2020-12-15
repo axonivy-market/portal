@@ -1754,3 +1754,10 @@ body .ui-growl .ui-growl-item .ui-growl-message a {
   color: #ffffff;
   text-decoration: underline;
 }
+
+/* Portal Exception */
+.code-block {
+  background: $ajaxExceptionBackgroundColor;
+  color: $ajaxExceptionTextColor;
+  border: $ajaxExceptionBorderColor;
+}
