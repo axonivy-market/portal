@@ -1,0 +1,68 @@
+/* Basic */
+body {
+  background-color: #fff;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+.container {
+  padding: 0 15px;
+  margin: 0 auto;
+}
+.ui-layout-container,
+.ui-layout-unit,
+.ui-layout-unit-content {
+  -moz-box-sizing: content-box;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+.ui-g div[class^="ui-g-"],
+.ui-g div[class^="ui-md-"],
+.ui-g div[class^="ui-lg-"] {
+  padding: 0.25em;
+}
+.container td,
+.ui-layout-unit-content td {
+  padding: 0.5em;
+}
+
+/* Header */
+.ivy-logo img {
+  height: 46px;
+  margin: 16px 25px 16px 0;  
+}
+.ui-layout-container .ivy-logo img {
+  margin: 4px 25px 4px 0; 
+}
+
+/* Form */
+.container .ui-g .ui-inputfield,
+.container table .ui-inputfield,
+.ui-layout-unit-content .ui-inputfield {
+  width: 100%;
+}
+.command-btns {
+  float: right;
+  margin-bottom: 20px;
+}
+
+/* Footer */
+hr {
+  clear: both;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1px solid #eee;
+}
