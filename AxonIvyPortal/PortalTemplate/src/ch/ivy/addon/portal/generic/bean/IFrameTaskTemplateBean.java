@@ -39,6 +39,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private static final String IS_HIDE_TASK_NAME = "isHideTaskName";
   private static final String IS_HIDE_TASK_ACTION = "isHideTaskAction";
   private static final String IS_WORKING_ON_A_TASK = "isWorkingOnATask";
+  private static final String VIEW_NAME = "viewName";
 
   private int currentProcessStep;
   private List<String> processSteps;
@@ -149,5 +150,10 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
 
   public boolean getIsWorkingOnATask() {
     return isWorkingOnATask;
+  }
+  
+  public String getViewName() {
+    Map<String, String> requestParamMap = getRequestParameterMap();
+    return StringUtils.defaultString(requestParamMap.get(VIEW_NAME));
   }
 }

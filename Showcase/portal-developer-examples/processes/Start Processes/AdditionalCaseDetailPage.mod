@@ -177,17 +177,17 @@ Input for this process is the friendly URL of your customized case detail page. 
 HOW TO RUN THIS EXAMPLE:
 1. Run createInvestmentRequest.ivp process
 
-2. Enter Portal case list, expand Investment Request case, then click to "Show details" button. New tab will open, showing customized case detail page.
+2. Enter Portal case list, expand Investment Request case, then click to "Show business details" button. New tab will open, showing customized case detail page.
 
 
 </name>
-        <nameStyle>35,7
-783,7
+        <nameStyle>35,5
+792,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ae0 f13 784 2 896 268 -438 -128 #rect
+Ae0 f13 784 2 896 268 -439 -128 #rect
 Ae0 f13 @|IBIcon #fIcon
 Ae0 f10 actionTable 'out=in;
 ' #txt
