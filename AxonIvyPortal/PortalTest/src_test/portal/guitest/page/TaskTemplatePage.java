@@ -244,8 +244,9 @@ public class TaskTemplatePage extends TemplatePage {
     driver.switchTo().frame("iFrame");
     waitForElementDisplayed(By.id("content-form:investment-info:approval-note"), true);
     type(By.id("content-form:investment-info:approval-note"), "OK");
-    waitForElementDisplayed(By.id("content-form:investment-info:is-approved:0"), true);
-    click(By.id("content-form:investment-info:is-approved:0"));
+    WebElement approveButtonGroupElement = findDisplayedElementByCssSelector("table[id$='content-form:investment-info:is-approved']");
+    WebElement approveButtonLabelElement = approveButtonGroupElement.findElement(By.cssSelector("label"));
+    approveButtonLabelElement.click();
     waitForElementDisplayed(By.id("content-form:approve-btn"), true);
     clickByCssSelector("button[id$='content-form:approve-btn']");
     driver.switchTo().defaultContent();
