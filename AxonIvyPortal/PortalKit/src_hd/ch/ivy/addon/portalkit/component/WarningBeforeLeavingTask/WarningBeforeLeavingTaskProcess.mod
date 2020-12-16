@@ -44,6 +44,8 @@ Ws0 f2 109 64 211 64 #arcP
 Ws0 f3 guid 16FA866C14936E0D #txt
 Ws0 f3 method leave(ch.ivyteam.ivy.workflow.ICase) #txt
 Ws0 f3 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
+Ws0 f3 inParameterMapAction 'out.iCase=param.iCase;
+' #txt
 Ws0 f3 outParameterDecl '<> result;' #txt
 Ws0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
