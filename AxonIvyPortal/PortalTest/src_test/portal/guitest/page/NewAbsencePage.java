@@ -67,4 +67,9 @@ public class NewAbsencePage extends TemplatePage {
     clickByCssSelector("button[id*='save-absence']");
     waitAjaxIndicatorDisappear();
   }
+
+  public void closeAddAbsenceDialog() {
+    clickByCssSelector("a[id*='close-add-absence-dialog']");
+    waitAjaxIndicatorDisappear();
+  }
 }
