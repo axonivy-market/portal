@@ -11,7 +11,6 @@ import ch.ivy.addon.portalkit.util.ScreenshotUtil;
 import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
-import portal.guitest.common.WaitHelper;
 import portal.guitest.page.AbsencePage;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.ChangePasswordPage;
