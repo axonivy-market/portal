@@ -42,26 +42,28 @@ Ws0 f1 @|UdProcessEndIcon #fIcon
 Ws0 f2 expr out #txt
 Ws0 f2 109 64 211 64 #arcP
 Ws0 f3 guid 16FA866C14936E0D #txt
-Ws0 f3 method leave() #txt
-Ws0 f3 inParameterDecl '<> param;' #txt
+Ws0 f3 method leave(ch.ivyteam.ivy.workflow.ICase) #txt
+Ws0 f3 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
 Ws0 f3 outParameterDecl '<> result;' #txt
 Ws0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>leave()</name>
+        <name>leave(ICase)</name>
     </language>
 </elementInfo>
 ' #txt
 Ws0 f3 83 179 26 26 -25 15 #rect
 Ws0 f3 @|UdMethodIcon #fIcon
 Ws0 f4 guid 16FA866CC3BA9742 #txt
-Ws0 f4 method reserve() #txt
-Ws0 f4 inParameterDecl '<> param;' #txt
+Ws0 f4 method reserve(ch.ivyteam.ivy.workflow.ICase) #txt
+Ws0 f4 inParameterDecl '<ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
+Ws0 f4 inParameterMapAction 'out.iCase=param.iCase;
+' #txt
 Ws0 f4 outParameterDecl '<> result;' #txt
 Ws0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>reserve()</name>
+        <name>reserve(ICase)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -71,7 +73,7 @@ Ws0 f8 actionTable 'out=in;
 ' #txt
 Ws0 f8 actionCode 'import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 
-GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, ivy.case);' #txt
+GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, in.iCase);' #txt
 Ws0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
