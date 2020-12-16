@@ -57,6 +57,7 @@ import ch.ivyteam.ivy.server.restricted.EngineMode;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import io.swagger.v3.oas.annotations.Hidden;
 
 /**
  * Chat service uses asynchronous REST communication:
@@ -75,6 +76,7 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
  * </ul>
  */
 @SuppressWarnings("restriction")
+@Hidden
 @Path("chat")
 @Singleton
 public class ChatService {
