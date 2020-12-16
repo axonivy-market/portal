@@ -48,8 +48,9 @@ Cs0 f8 actionTable 'out=in;
 Cs0 f8 actionCode 'import ch.ivy.addon.portalkit.util.GrowlMessageUtils;
 
 if(in.isWorkingOnTask) {
-	GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, ivy.case);
-}' #txt
+	GrowlMessageUtils.addFeedbackMessage(in.isTaskFinished, in.iCase);
+}
+' #txt
 Cs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -61,15 +62,16 @@ finish or leave task</name>
 Cs0 f8 144 202 144 44 -54 -16 #rect
 Cs0 f8 @|StepIcon #fIcon
 Cs0 f3 guid 16FA88E321FFCEB1 #txt
-Cs0 f3 method search(Boolean) #txt
-Cs0 f3 inParameterDecl '<Boolean isWorkingOnTask> param;' #txt
-Cs0 f3 inParameterMapAction 'out.isWorkingOnTask=param.isWorkingOnTask;
+Cs0 f3 method search(Boolean,ch.ivyteam.ivy.workflow.ICase) #txt
+Cs0 f3 inParameterDecl '<Boolean isWorkingOnTask,ch.ivyteam.ivy.workflow.ICase iCase> param;' #txt
+Cs0 f3 inParameterMapAction 'out.iCase=param.iCase;
+out.isWorkingOnTask=param.isWorkingOnTask;
 ' #txt
 Cs0 f3 outParameterDecl '<> result;' #txt
 Cs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>search(Boolean)</name>
+        <name>search(Boolean,ICase)</name>
     </language>
 </elementInfo>
 ' #txt
