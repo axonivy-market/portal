@@ -67,7 +67,7 @@ public class CaseWidgetBean implements Serializable {
     if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
       additionalCaseDetailsPageUri = CaseUtils.getProcessStartUriWithCaseParameters(iCase, START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE);
     }
-    return additionalCaseDetailsPageUri;
+    return additionalCaseDetailsPageUri + "&embedInFrame";
   }
 
   public boolean isNaN(Number number){
