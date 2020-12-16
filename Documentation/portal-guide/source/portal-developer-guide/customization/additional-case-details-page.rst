@@ -1,6 +1,6 @@
 .. _customization-additionalcasedetailspage:
 
-Additional case details page
+Additional case detail page
 ============================
 
 .. _customization-additionalcasedetailspage.introduction:
@@ -8,8 +8,8 @@ Additional case details page
 Introduction
 ------------
 
-The additional case details page shows all custom fields of a case by
-clicking on "Show business details" link in case details.
+The additional case detail page shows all custom fields of a case by
+clicking on ``Show business details`` link in case detail.
 
 You can customize this page for each case by providing a relative URL to
 case.
@@ -19,29 +19,36 @@ case.
 Customization
 -------------
 
-1. Create a new additional case details UI and a start process which
+1. Create a new additional case detail UI and a start process which
    will display the new UI.
 
    |customization-additional-case-details-page|
 
-2. Store the URL of start process in
-   "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE" custom fields of case. You
+2. When create task, store the URL of start process in
+   ``CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE`` custom fields of case. You
    could use ``SetAdditonalCaseDetailPage.mod`` callable process, and input the
    friendly URL of process as parameter.
 
    |set-additonal-case-detail-page-callable-process|
 
-   .. tip:: If you want to redirect user to external link, simply store that
-      external link to "CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE"
-      custom fields of case.
 
-   For example: redirect user to Google search.
+3. Only if your custom additional case page uses iFrame, then you need some more settings
+Window property in your page 
 
-   .. code-block:: java
+- window.isHideCaseInfo = true;
+- window.isHideTaskAction = true;
+- window.isHideTaskName = true;
+- window.isWorkingOnATask = false;
+- window.viewName = '';
 
-      ivy.case.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).set(https://www.google.com/);
+|customization-additional-case-details-page-iframe|
 
-   ..
+In your custom star process, create a custom string field name for case with name : ``embedInFrame``, value ``true``
 
+|start-case-details-page-iframe|
+
+
+.. |start-case-details-page-iframe| image:: images/additional-case-details-page/start-case-details-page-iframe.png
+.. |customization-additional-case-details-page-iframe| image:: images/additional-case-details-page/customization-additional-case-details-page-iframe.png
 .. |customization-additional-case-details-page| image:: images/additional-case-details-page/customization-additional-case-details-page.png
 .. |set-additonal-case-detail-page-callable-process| image:: images/additional-case-details-page/set-additonal-case-detail-page-callable-process.png
