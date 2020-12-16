@@ -89,11 +89,10 @@ public class SettingScreenshotTest extends ScreenshotTest {
     AbsencePage absencePage = homePage.openAbsencePage();
     createAbsenceForCurrentUser(TODAY, TODAY, "Personal leave", absencePage);
     createAbsenceForCurrentUser(TOMORROW, TOMORROW, "Vacation", absencePage);
-    absencePage.openNewAbsenceDialog();
+    NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
     Sleeper.sleep(1000);//wait for animation finish to capture nice screenshot
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(absencePage.getAddAbsenceDialog(), ScreenshotUtil.SETTINGS_FOLDER + "new-absence", new ScreenshotMargin(20));
-    WaitHelper.waitForNavigation(absencePage, () -> refreshPage());
-    absencePage = homePage.openAbsencePage();
+    newAbsencePage.closeAddAbsenceDialog();
     ScreenshotUtil.captureElementScreenshot(absencePage.getAbsenceForm(), ScreenshotUtil.SETTINGS_FOLDER + "absence");
     absencePage.setDeputy(TestAccount.DEMO_USER.getFullName());
     ScreenshotUtil.captureElementScreenshot(absencePage.getAbsenceForm(), ScreenshotUtil.SETTINGS_FOLDER + "set-deputy");
