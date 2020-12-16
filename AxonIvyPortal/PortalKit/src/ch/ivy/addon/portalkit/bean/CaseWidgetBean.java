@@ -86,7 +86,8 @@ public class CaseWidgetBean implements Serializable {
         additionalCaseDetailsPageUri = CaseUtils.getProcessStartUriWithCaseParameters(iCase, START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE);
       }
     }
-    return additionalCaseDetailsPageUri;
+    // support open in iFrame 
+    return additionalCaseDetailsPageUri + "&embedInFrame";
   }
 
   /**
