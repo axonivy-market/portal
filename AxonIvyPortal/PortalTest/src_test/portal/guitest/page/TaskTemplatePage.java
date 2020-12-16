@@ -242,8 +242,9 @@ public class TaskTemplatePage extends TemplatePage {
 
   private void processDataFromApproveToReview() {
     driver.switchTo().frame("iFrame");
-    click(By.id("content-form:investment-info:is-approved:0"));
+    waitForElementDisplayed(By.id("content-form:investment-info:approval-note"), true);
     type(By.id("content-form:investment-info:approval-note"), "OK");
+    click(By.id("content-form:investment-info:is-approved:0"));
     waitForElementDisplayed(By.id("content-form:approve-btn"), true);
     clickByCssSelector("button[id$='content-form:approve-btn']");
     driver.switchTo().defaultContent();
