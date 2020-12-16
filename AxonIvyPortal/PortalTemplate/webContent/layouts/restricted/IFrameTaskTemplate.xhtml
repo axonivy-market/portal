@@ -66,6 +66,7 @@
     <ui:param name="announcementInvisible" value="#{iFrameTaskTemplateBean.announcementInvisible}" />
     <ui:param name="announcementStyleClass" value="annoucement-in-frame-template js-annoucement-in-frame-template u-invisibility" />
     <ui:param name="taskTemplateContainerStyleClass" value="u-invisibility" />
+    <ui:param name="viewName" value="#{iFrameTaskTemplateBean.viewName}"/>
 
     <ui:define name="content">
       <h:form>
@@ -73,7 +74,7 @@
         <p:remoteCommand name="redirectToUrlCommand" actionListener="#{iFrameTaskTemplateBean.navigateToUrl()}" />
         <p:remoteCommand name="useTaskInIFrame" actionListener="#{iFrameTaskTemplateBean.useTaskInIFrame()}" update="@([id$='layout-topbar-menu-wrapper']) @([id$='title'])"/>
         <p:remoteCommand name="getDataFromIFrame" actionListener="#{iFrameTaskTemplateBean.getDataFromIFrame()}"
-          update="@([id$='header-container']) @([id$='announcement-container']) @([id$='task-leave-warning-dialog']) @([id$='task-leave-warning-component']) @([id$='left-menu']) @([id$='logout-setting'])" 
+          update="@([id$='header-container']) @([id$='announcement-container']) @([id$='task-leave-warning-dialog']) @([id$='task-leave-warning-component']) @([id$='left-menu']) @([id$='logout-setting']) @([id$='breadcrumb-container'])" 
           oncomplete="resizeIFrame();updateContentContainerClass()" global="false" />
       </h:form>
       
