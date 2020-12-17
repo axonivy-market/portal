@@ -83,8 +83,10 @@ public class CaseWidgetBean implements Serializable {
     } else {
       additionalCaseDetailsPageUri = iCase.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).getOrNull();
       if (StringUtils.isEmpty(additionalCaseDetailsPageUri)) {
-        // support open in iFrame 
         additionalCaseDetailsPageUri = CaseUtils.getProcessStartUriWithCaseParameters(iCase, START_PROCESSES_SHOW_ADDITIONAL_CASE_DETAILS_PAGE) + "&embedInFrame";
+      } else {
+        // support open in iFrame 
+        additionalCaseDetailsPageUri = additionalCaseDetailsPageUri + "&embedInFrame";
       }
     }
     return additionalCaseDetailsPageUri;
