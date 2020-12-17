@@ -1950,10 +1950,3 @@ body .ui-button.secondary-btn.ui-state-focus {
 body.in-dialog .ui-widget-overlay {
   background-color: transparent;
 }
-
-/* Portal Exception */
-.code-block {
-  background: var(--ajax-exception-bg);
-  color: var(--ajax-exception-text);
-  border: var(--ajax-exception-border);
-}
