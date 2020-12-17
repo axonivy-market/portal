@@ -22,10 +22,17 @@
 		<c:set var="defaultNotificationMessage"
 			value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/defaultNotificationMessage')}" />
 		<p:ajaxExceptionHandler update="exception-dialog:exception-dialog"
-			onexception="portal.notifyError('#{defaultNotificationMessage}', '#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}')" />
+			onexception="onAjaxExceptionHandler()" />
 		<ic:ch.ivy.addon.portalkit.component.ExceptionDialog id="exception-dialog" widgetVar="exception-dialog"
 			pfException="#{pfExceptionHandler}" />
-			
+
+        <h:form>
+          <p:remoteCommand name="onAjaxExceptionHandler"
+            oncomplete="portal.notifyError('#{defaultNotificationMessage}', '#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}')"
+            update="exception-dialog:exception-dialog"
+            immediate="true" partialSubmit="true" global="false"/>
+        </h:form>
+
 		<script type="text/javascript">
 			var redirectPage = "#{userMenuBean.homePageURL}";
 			function redirectDefaultPage() {
