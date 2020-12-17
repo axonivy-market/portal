@@ -96,26 +96,57 @@ public class ServiceUtilities {
   }
 
   /**
-   * Finds all of the users within the given app, except the roles have the HIDE property
+   * Finds all of the roles within the given app, except the roles have the HIDE property
    * 
    * @param app
    * @return roles
    */
-  @SuppressWarnings("unchecked")
   public static List<IRole> findAllRoles(IApplication app) {
     requireNonNull(app);
+    List<IRole> roles = getRolesInSessionCache(app);
+    return CollectionUtils.isEmpty(roles) ? getAllVisibleRolesWithCaching(app) : roles;
+  }
 
+  /**
+   * Finds all of the roles within the given app, except the roles have the HIDE property, sort by display name
+   * 
+   * @param app
+   * @return roles
+   */
+  public static List<IRole> findAllRolesWithSortingByDisplayName(IApplication app) {
+    requireNonNull(app);
+    List<IRole> roles = getRolesInSessionCache(app);
+    return CollectionUtils.isEmpty(roles) ? getAllVisibleRolesWithCachingAndSorting(app) : roles;
+  }
+
+  @SuppressWarnings("unchecked")
+  private static List<IRole> getRolesInSessionCache(IApplication app) {
     Optional<Object> cacheValueOpt =
         IvyCacheService.newInstance().getSessionCacheValue(app.getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION);
-    if (cacheValueOpt.isPresent()) {
-      return (List<IRole>) cacheValueOpt.get();
-    }
+    return cacheValueOpt.isPresent() ? (List<IRole>) cacheValueOpt.get() : new ArrayList<IRole>();
+  }
 
+  private static List<IRole> getAllVisibleRolesWithCaching(IApplication app) {
+    List<IRole> roles = getAllVisibleIvyRoles(app);
+    cacheRolesInSessionCache(app, roles);
+    return roles;
+  }
+
+  private static List<IRole> getAllVisibleRolesWithCachingAndSorting(IApplication app) {
+    List<IRole> roles = getAllVisibleIvyRoles(app);
+    roles.sort((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName()));
+    cacheRolesInSessionCache(app, roles);
+    return roles;
+  }
+
+  private static List<IRole> getAllVisibleIvyRoles(IApplication app) {
     List<IRole> roles = new ArrayList<>(app.getSecurityContext().getRoles());
     roles.removeIf(role -> role.getProperty(AdditionalProperty.HIDE.toString()) != null);
-
-    IvyCacheService.newInstance().setSessionCache(app.getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION, roles);
     return roles;
+  }
+
+  private static void cacheRolesInSessionCache(IApplication app, List<IRole> roles) {
+    IvyCacheService.newInstance().setSessionCache(app.getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION, roles);
   }
 
   public static List<IProcessModelVersion> getActiveReleasedPmvs(IApplication app) {
