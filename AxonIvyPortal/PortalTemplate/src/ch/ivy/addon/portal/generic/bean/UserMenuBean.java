@@ -164,8 +164,9 @@ public class UserMenuBean implements Serializable {
 
   public void resetTaskAndNavigateToHomePageWithGrowl(ITask task) throws IOException {
     IvyComponentLogicCaller<ITask> leaveTask = new IvyComponentLogicCaller<>();
-    leaveTask.invokeComponentLogic(TASK_LEAVE_WARNING_COMPONENT, "#{logic.leave}", new Object[] {});
-    TaskUtils.resetTask(task != null ? task : Ivy.wfTask());
+    ITask relatedTask = task != null ? task : Ivy.wfTask();
+    leaveTask.invokeComponentLogic(TASK_LEAVE_WARNING_COMPONENT, "#{logic.leave}", new Object[] {relatedTask.getCase()});
+    TaskUtils.resetTask(relatedTask);
     navigateToHomePage();
   }
 
@@ -176,8 +177,9 @@ public class UserMenuBean implements Serializable {
   
   public void reserveTaskAndNavigateToHomePageWithGrowl(ITask task) throws IOException {
     IvyComponentLogicCaller<ITask> reserveTask = new IvyComponentLogicCaller<>();
-    reserveTask.invokeComponentLogic(TASK_LEAVE_WARNING_COMPONENT, "#{logic.reserve}", new Object[] {});
-    TaskUtils.parkTask(task != null ? task : Ivy.wfTask());
+    ITask relatedTask = task != null ? task : Ivy.wfTask();
+    reserveTask.invokeComponentLogic(TASK_LEAVE_WARNING_COMPONENT, "#{logic.reserve}", new Object[] {relatedTask.getCase()});
+    TaskUtils.parkTask(relatedTask);
     navigateToHomePage();
   }
   
