@@ -15,43 +15,40 @@
   <c:set var="exception" value="#{cc.attrs.pfException}" />
 
   <p:dialog closeOnEscape="true" id="#{cc.id}" widgetVar="#{cc.attrs.widgetVar}" modal="true" resizable="false"
-    header=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" width="800px" fitViewport="true" responsive="true">
+    header=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" width="800px" fitViewport="true" responsive="true"
+    onShow="#{portalExceptionBean.buildExceptionDialog(exception)}">
     <p:ajax event="close" listener="#{data.setIsCopied(false)}" update="exception-handler-command" global="false" immediate="true"/>
     <h:panelGroup id="portal-exception-detail-group" styleClass="portal-exception-detail-group">
       <h:panelGrid columns="2" columnClasses="error-label, error-value" styleClass="ui-g-12">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/errorType')}" />
-        <h:outputText value="#{exception.type}" />
+        <h:outputText value="#{portalExceptionBean.exceptionInfo.type}" />
 
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/timestamp')}" />
-        <h:outputText value="#{exception.formattedTimestamp}" />
+        <h:outputText value="#{portalExceptionBean.exceptionInfo.formattedTimestamp}" />
 
         <!-- Error ID -->
-        <c:set var="errorId" value="#{portalExceptionBean.getErrorId(exception)}" />
+        <c:set var="errorId" value="#{portalExceptionBean.errorId}" />
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/errorId')}" rendered="#{not empty errorId}" />
-        <h:panelGroup rendered="#{not empty errorId}">
-          <code id="unique-id" class="code-block">#{errorId}</code>
-        </h:panelGroup>
+        <h:outputText rendered="#{not empty errorId}" value="#{errorId}" />
 
         <!-- Process Element ID -->
-        <c:set var="processElementId" value="#{portalExceptionBean.getProcessElementId(exception)}"/>
+        <c:set var="processElementId" value="#{portalExceptionBean.processElement}"/>
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/processElementId')}" rendered="#{not empty processElementId}"/>
-        <h:panelGroup rendered="#{not empty processElementId}">
-         <code id="process-element-id" class="code-block">#{processElementId}</code>
-        </h:panelGroup>
+        <h:outputText rendered="#{not empty processElementId}" value="#{processElementId}" />
 
         <!-- PMV -->
-        <c:set var="pmv" value="#{portalExceptionBean.getPmvName(exception)}"/>
+        <c:set var="pmv" value="#{portalExceptionBean.pmv}"/>
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/pmv')}" rendered="#{not empty pmv}"/>
         <h:outputText rendered="#{not empty pmv}" value="#{pmv}" />
 
         <!-- Message -->
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/message')}" />
-        <h:outputText value="#{exception.message}" />
+        <h:outputText value="#{portalExceptionBean.exceptionInfo.message}" />
       </h:panelGrid>
       <h:panelGroup layout="block" rendered="#{portalExceptionBean.errorDetailToEndUser}" styleClass="ui-g-12 MarTop10">
         <h:outputText styleClass="error-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/stackTrace')}:" />
         <div class="exception-handler-stacktrace error-value">
-          <h:outputText styleClass="exception-handler-stacktrace-text" value="#{exception.formattedStackTrace}" readonly="true" escape="false" />
+          <h:outputText styleClass="exception-handler-stacktrace-text" value="#{portalExceptionBean.exceptionInfo.formattedStackTrace}" readonly="true" escape="false" />
         </div>
       </h:panelGroup>
     </h:panelGroup>
@@ -62,7 +59,7 @@
 
         <p:commandButton id="copy-error-detail-button"
           icon="#{visibilityBean.generateButtonIcon(data.isCopied ? 'icon ivyicon-check-1' : 'icon ivyicon-copy-paste')}"
-          value="#{ivy.cms.co(data.isCopied ? '/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/copied' : '/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/copyCode')}"
+          value="#{ivy.cms.co(data.isCopied ? '/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/copied' : '/ch.ivy.addon.portalkit.ui.jsf/exceptionDialog/copyError')}"
           type="button"/>
 
         <pe:clipboard id="clipboard-copy-error" trigger="copy-error-detail-button"
