@@ -103,7 +103,6 @@ public class SecurityService implements ISecurityService {
       IvySecurityResultDTO result = new IvySecurityResultDTO();
       IApplication app = Ivy.wf().getApplication();
       List<IRole> roles = ServiceUtilities.findAllRoles(app);
-      roles.sort((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName()));
       result.setRoles(roles);
       return result;
     });
