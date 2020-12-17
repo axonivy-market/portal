@@ -14,7 +14,6 @@ import ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.CategoryUtils;
 import ch.ivy.addon.portalkit.util.TaskTreeUtils;
-import ch.ivyteam.ivy.environment.Ivy;
 
 public class TaskDashboardWidget extends DashboardWidget {
   private static final long serialVersionUID = 3048837559125720787L;
@@ -50,7 +49,7 @@ public class TaskDashboardWidget extends DashboardWidget {
   
   public void buildCategoryTree() {
     this.categoryTree = TaskTreeUtils.buildTaskCategoryCheckboxTreeRoot();
-    this.categoryNodes = CategoryUtils.recoverSelectedCategories(this.categoryTree, getUserFilterCategories());
+    CategoryUtils.disableSelectionExcept(this.categoryTree, getCategories());
   }
   
   @JsonIgnore
