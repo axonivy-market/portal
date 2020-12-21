@@ -134,9 +134,8 @@ public class ExpressProcessPage extends TemplatePage {
     click(By.id("form:save-workflow-button"));
   }
 
-  public boolean isStartWorkFlowButtonDisplayed() {
-    WebElement startWorkFlowButtonElement = findElementById("form:start-workflow-button");
-    return startWorkFlowButtonElement.isDisplayed();
+  public void waitStartWorkFlowButtonDisplayed() {
+    waitForElementDisplayed(By.cssSelector("button[id$='form:start-workflow-button']"), true);
   }
 
   public void acknowledgedTask() {

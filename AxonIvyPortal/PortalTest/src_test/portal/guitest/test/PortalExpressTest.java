@@ -43,8 +43,7 @@ public class PortalExpressTest extends BaseTest {
     createElementsAndMoveToPanel();
     assertTrue(expressProcessPage.hasElementsInPanel());
     expressProcessPage.executeWorkflowDirectly();
-    expressProcessPage.waitForElementDisplayed(By.cssSelector("fieldset[id$='form:applicantFieldSet']"), true);
-    assertTrue(expressProcessPage.isStartWorkFlowButtonDisplayed());
+    expressProcessPage.waitStartWorkFlowButtonDisplayed();
     expressProcessPage.startWorkflow();
     homePage.waitForElementPresent(By.cssSelector("div[id$='task-widget:task-view']"), true);
     taskWidgetPage.startTask(0);
@@ -85,8 +84,7 @@ public class PortalExpressTest extends BaseTest {
     homePage.waitForElementPresent(By.cssSelector("div[id$='task-widget:task-view']"), true);
     processWidgetPage.loadAllProcessesPage();
     processWidgetPage.goToCreatedExpressWorkFlowPage();
-    expressProcessPage.waitForElementDisplayed(By.cssSelector("fieldset[id$='form:applicantFieldSet']"), true);
-    assertTrue(expressProcessPage.isStartWorkFlowButtonDisplayed());
+    expressProcessPage.waitStartWorkFlowButtonDisplayed();
     expressProcessPage.startWorkflow();
     homePage.waitForElementPresent(By.cssSelector("div[id$='task-widget:task-view']"), true);
     taskWidgetPage.startTask(0);
