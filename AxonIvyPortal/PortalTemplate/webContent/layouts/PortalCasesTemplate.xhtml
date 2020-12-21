@@ -59,6 +59,8 @@
                   responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down" />
                 <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}"
                   dataModel="#{caseView.getDataModel()}" />
+                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCategory componentId="case-category-cell" 
+                  dataModel="#{caseView.getDataModel()}" value="#{case.getCategory().getName()}" />
               </ui:fragment>
             </f:facet>
 
