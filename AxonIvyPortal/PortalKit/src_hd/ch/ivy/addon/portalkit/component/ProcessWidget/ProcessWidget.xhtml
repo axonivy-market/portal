@@ -72,7 +72,7 @@
 						update="@form #{cc.clientId}:process-list #{cc.clientId}:header" />
 				</h:panelGroup>
 			</h:form>
-			<h:form rendered="#{not processWidgetBean.compactMode}" id="process-widget-action-form"
+			<h:form rendered="#{not processWidgetBean.compactMode}"
 				styleClass="process-button-position process-action-button action-create-experss-workflow">
 				<h:panelGroup layout="block" rendered="#{processWidgetBean.canCreateExpessWorkflow()}">
 					<p:commandLink id="create-express-workflow" value="#{processWidgetBean.createExpressWorkflowProcessStart.name}"
@@ -157,7 +157,7 @@
 			<ui:fragment id="full-process-list" rendered="#{!processWidgetBean.compactMode}">
 				<p:fieldset id="express-fieldset" legend="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/expressWorkflowGroupTitle')}" toggleable="true" styleClass="process-group js-process-index-group" rendered="#{not empty processWidgetBean.expressProcesses}">
                   <h:panelGroup id="express-process-container" layout="block" styleClass="process-start-list">
-                    <ui:repeat id="express-process-list" var="process" value="#{processWidgetBean.expressProcesses}">
+                    <ui:repeat var="process" value="#{processWidgetBean.expressProcesses}">
                       <h:form id="express-process-item-form"
                         styleClass="#{cc.attrs.processCardStyle} process-start-list-item-wrapper js-process-start-list-item process-start-list-item express-workflow #{process.link eq cc.attrs.highlightedProcessStartLink ? 'highlighted-item' : ''}"
                         style="#{cc.attrs.processCardStyleClass}" rendered="#{!processWidgetBean.editMode}">
@@ -355,7 +355,7 @@
 			<h:outputText value="#{processWidgetBean.editingProcess.processName}" styleClass="FontBold" />
 			<div class="ui-dialog-footer u-dialog-footer">
 				<p:commandButton styleClass="" global="false" process="@this" update="#{cc.clientId}:process-list"
-					actionListener="#{processWidgetBean.deleteExpressWorkflow}" id="remove-express-workflow-button"
+					actionListener="#{processWidgetBean.deleteExpressWorkflow}"
 					value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
 					oncomplete="PF('remove-express-workflow-dialog').hide();callSynchronizeDataToPortalServer();" />
 				<p:spacer width="5" />

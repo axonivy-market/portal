@@ -120,32 +120,28 @@ public class ExpressProcessPage extends TemplatePage {
   }
 
   public void executeWorkflowDirectly() {
-    waitForElementDisplayed(By.id("form:execute-workflow-directly-button"), true);
-    click(By.id("form:execute-workflow-directly-button"));
+    waitForElementDisplayed(By.cssSelector("button[id$='execute-workflow-directly-button']"), true);
+    click(By.cssSelector("button[id$='execute-workflow-directly-button']"));
   }
 
   public void startWorkflow() {
-    waitForElementDisplayed(By.id("form:start-workflow-button"), true);
-    click(By.id("form:start-workflow-button"));
+    waitForElementDisplayed(By.cssSelector("button[id$='start-workflow-button']"), true);
+    click(By.cssSelector("button[id$='start-workflow-button']"));
   }
 
   public void saveWorkflow() {
-    waitForElementDisplayed(By.id("form:save-workflow-button"), true);
-    click(By.id("form:save-workflow-button"));
-  }
-
-  public void waitStartWorkFlowButtonDisplayed() {
-    waitForElementDisplayed(By.cssSelector("button[id$='form:start-workflow-button']"), true);
+    waitForElementDisplayed(By.cssSelector("button[id$='save-workflow-button']"), true);
+    click(By.cssSelector("button[id$='save-workflow-button']"));
   }
 
   public void acknowledgedTask() {
-    waitForElementDisplayed(By.id("form:acknowledged-button"), true);
-    click(By.id("form:acknowledged-button"));
+    waitForElementDisplayed(By.cssSelector("button[id$='acknowledged-button']"), true);
+    click(By.cssSelector("button[id$='acknowledged-button']"));
   }
 
   public void closeWorkflow() {
-    waitForElementDisplayed(By.id("form:close-button"), true);
-    click(By.id("form:close-button"));
+    waitForElementDisplayed(By.cssSelector("button[id$='close-button']"), true);
+    click(By.cssSelector("button[id$='close-button']"));
   }
 
   public void deleteCreatedExpressWorkFlowProcess() {
