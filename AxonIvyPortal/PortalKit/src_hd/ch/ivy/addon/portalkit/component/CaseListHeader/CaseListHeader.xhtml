@@ -46,5 +46,10 @@
         responsiveStyleClass="u-hidden-sm-down"  
 		value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" 
 		dataModel="#{dataModel}" sortable="true" sortedField="STATE" />
+    
+    <ic:ch.ivy.addon.portalkit.component.cases.column.CaseColumnHeader id="category-column-header" 
+      responsiveStyleClass="js-hidden-when-expand-menu u-hidden-lg-down"
+      value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CATEGORY')}" 
+      dataModel="#{dataModel}" sortable="true" sortedField="CATEGORY" />
 </cc:implementation>
 </html>
