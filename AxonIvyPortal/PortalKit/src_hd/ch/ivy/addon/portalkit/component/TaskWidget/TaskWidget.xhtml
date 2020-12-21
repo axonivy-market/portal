@@ -205,7 +205,7 @@
           </div>
           <!-- Export to Excel, Manage Columns -->
           <h:panelGroup id="task-list-actions" styleClass="task-list-actions u-hidden-md-down ">
-            <p:spacer width="20px"></p:spacer>
+            <p:spacer width="20px" />
             <h:form id="task-export-to-excel-form" styleClass="task-export-to-excel-form">
               <p:commandLink ajax="false" id="task-export-to-excel"
                 onclick="PrimeFaces.monitorDownload(start, stop);">
@@ -218,7 +218,7 @@
                   value="#{logic.getExportedFile(taskWidgetBean.getColumns(data.dataModel))}" />
                 </p:commandLink>
             </h:form>
-            <p:spacer width="20px"></p:spacer>
+            <p:spacer width="20px" />
             <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration
               id="task-columns-configuration"
               updatedComponent="#{cc.clientId}:task-view-container #{cc.clientId}:task-widget-sort-menu #{cc.clientId}:task-list-actions"
