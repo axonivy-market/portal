@@ -8,6 +8,8 @@ import portal.guitest.common.TestAccount;
 import vn.wawa.guitest.base.page.AbstractPage;
 
 public class ForgotPasswordPage extends AbstractPage {
+  private static final String RESULT_MESSAGE_SELECTOR = "span[class='ui-messages-info-summary'], span[class='ui-messages-error-summary']";
+
   private static final long FORGOT_PASSWORD_TIMEOUT = 60;
 
   private WebElement emailTextField;
@@ -33,11 +35,11 @@ public class ForgotPasswordPage extends AbstractPage {
   public void send() {
     emailTextField.sendKeys(testAccount.getEmail());
     click(sendButton);
-    waitForElementDisplayed(By.id("forgot-password:forgot-password-form:forgot-password-message"), true, FORGOT_PASSWORD_TIMEOUT);
+    waitForElementDisplayed(By.cssSelector(RESULT_MESSAGE_SELECTOR), true, FORGOT_PASSWORD_TIMEOUT);
   }
 
   public boolean isProcessed() {
-    WebElement summayMessageSpan = findElementByCssSelector("span[class='ui-messages-info-summary'], span[class='ui-messages-error-summary']");
+    WebElement summayMessageSpan = findElementByCssSelector(RESULT_MESSAGE_SELECTOR);
     return summayMessageSpan != null && StringUtils.isNotBlank(summayMessageSpan.getText());
   }
 }
