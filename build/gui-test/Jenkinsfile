@@ -2,7 +2,7 @@ pipeline {
   agent {label 'portal-slave'}
   
   options {
-    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '30'))
+    buildDiscarder(logRotator(numToKeepStr: '60', artifactNumToKeepStr: '60'))
   }
 
   triggers {
