@@ -1,5 +1,5 @@
-co: name={settingFavoriteProcessName} description={} changed={2020-12-07 03:08:51 CET} changedby={nqhoan} visualorder={0} guid={1763AF4C689E1F1B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1763AF56DF55B231} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-12-07 03:08:43 CET} validto={} changed={2020-12-07 03:08:51 CET} changedby={nqhoan} properties={} id={}
-val: guid={1763AF4C68B382C8} datatype={} isdefault={true} langid={en} description={} validfrom={2020-12-07 03:07:40 CET} validto={} changed={2020-12-07 03:08:08 CET} changedby={nqhoan} properties={} id={}
-val: guid={1763AF56DBA6AE63} datatype={} isdefault={false} langid={es} description={} validfrom={2020-12-07 03:08:47 CET} validto={} changed={2020-12-07 03:08:51 CET} changedby={nqhoan} properties={} id={}
-val: guid={1763AF56D416396E} datatype={} isdefault={false} langid={de} description={} validfrom={2020-12-07 03:08:45 CET} validto={} changed={2020-12-07 03:08:51 CET} changedby={nqhoan} properties={} id={}
+co: name={settingFavoriteProcessName} description={} changed={2020-12-21 10:19:23 CET} changedby={nqhoan} visualorder={0} guid={1763AF4C689E1F1B} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1763AF56DF55B231} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-12-07 03:08:43 CET} validto={} changed={2020-12-21 10:19:23 CET} changedby={nqhoan} properties={} id={}
+val: guid={1763AF4C68B382C8} datatype={} isdefault={true} langid={en} description={} validfrom={2020-12-07 03:07:40 CET} validto={} changed={2020-12-21 10:19:23 CET} changedby={nqhoan} properties={} id={}
+val: guid={1763AF56DBA6AE63} datatype={} isdefault={false} langid={es} description={} validfrom={2020-12-07 03:08:47 CET} validto={} changed={2020-12-21 10:19:23 CET} changedby={nqhoan} properties={} id={}
+val: guid={1763AF56D416396E} datatype={} isdefault={false} langid={de} description={} validfrom={2020-12-07 03:08:45 CET} validto={} changed={2020-12-21 10:19:23 CET} changedby={nqhoan} properties={} id={}
