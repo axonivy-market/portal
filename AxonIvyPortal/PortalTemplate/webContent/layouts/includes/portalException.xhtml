@@ -22,15 +22,15 @@
     <!--  Exception Handler for any other Exception -->
     <c:set var="defaultNotificationMessage"
       value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/defaultNotificationMessage')}" />
-    <p:ajaxExceptionHandler update="exception-dialog:exception-dialog"
+    <p:ajaxExceptionHandler update="exception-dialog"
       onexception="onAjaxExceptionHandler()" />
     <ic:ch.ivy.addon.portalkit.component.ExceptionDialog id="exception-dialog" widgetVar="exception-dialog"
       pfException="#{pfExceptionHandler}"/>
 
-    <h:form>
-      <p:remoteCommand name="onAjaxExceptionHandler"
+    <h:form id="portal-ajax-exception-form" prependId="false">
+      <p:remoteCommand name="onAjaxExceptionHandler" id="portal-ajax-exception-handler"
         oncomplete="portal.notifyError('#{defaultNotificationMessage}', '#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}'); "
-        update="exception-dialog:exception-dialog"
+        update=":exception-dialog:portal-exception-dialog"
         immediate="true" partialSubmit="true" global="false"/>
     </h:form>
 

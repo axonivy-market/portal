@@ -14,7 +14,7 @@
 <cc:implementation>
   <c:set var="exception" value="#{cc.attrs.pfException}" />
 
-  <p:dialog closeOnEscape="true" id="#{cc.id}" widgetVar="#{cc.attrs.widgetVar}" modal="true" resizable="false"
+  <p:dialog closeOnEscape="true" id="portal-exception-dialog" widgetVar="#{cc.attrs.widgetVar}" modal="true" resizable="false"
     header=" #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/detail')}" width="800px" fitViewport="true" responsive="true"
     onShow="#{portalExceptionBean.buildExceptionDialog(exception)}">
     <h:panelGroup id="portal-exception-detail-group" layout="block" styleClass="portal-exception-detail-group">
