@@ -37,15 +37,13 @@ public class TaskAnalysisExporter {
 
   public StreamedContent getStreamedContent(List<ITask> tasks) throws IOException {
     Date creationDate = new Date();
-    StreamedContent file;
     if (tasks.size() > MAX_TASK_NUMBER_IN_EXCEL) {
       ByteArrayInputStream inputStream = new ByteArrayInputStream(generateZipContent(tasks, creationDate));
-      file = new DefaultStreamedContent(inputStream, "application/zip", getFileName(creationDate, ZIP));
+      return new DefaultStreamedContent(inputStream, "application/zip", getFileName(creationDate, ZIP));
     } else {
       ByteArrayInputStream inputStream = new ByteArrayInputStream(generateExcelContent(tasks));
-      file = new DefaultStreamedContent(inputStream, "application/xlsx", getFileName(creationDate, XLSX));
+      return new DefaultStreamedContent(inputStream, "application/xlsx", getFileName(creationDate, XLSX));
     }
-    return file;
   }
 
   private byte[] generateZipContent(List<ITask> tasks, Date creationDate) throws IOException {
