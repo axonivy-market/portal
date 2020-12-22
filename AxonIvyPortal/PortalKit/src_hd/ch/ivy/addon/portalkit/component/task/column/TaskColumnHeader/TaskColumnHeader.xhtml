@@ -10,7 +10,7 @@
   <cc:attribute name="isSelected" />
   <cc:attribute name="componentToBeUpdated" />
   <cc:attribute name="responsiveStyleClass" />
-  <cc:attribute name="renderSort" default="true" />
+  <cc:attribute name="sortable" default="true" />
 </cc:interface>
 
 <cc:implementation>
@@ -20,7 +20,7 @@
   <p:commandLink id="#{cc.attrs.componentId}" styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} #{isSelected ? 'is-selected' : ''}"
     update="#{cc.attrs.componentToBeUpdated} #{p:component('task-view-container')} #{p:component('task-widget-sort-menu')}" 
     oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()" 
-    rendered="#{cc.attrs.renderSort and data.dataModel.isSelectedColumn(sortField)}" >
+    rendered="#{cc.attrs.sortable and data.dataModel.isSelectedColumn(sortField)}" >
     <f:actionListener
       binding="#{logic.sort(sortField, isSelected and !data.dataModel.sortDescending)}" />
     <f:actionListener binding="#{taskWidgetBean.setExpandedTaskId(0, false)}" />
@@ -30,7 +30,8 @@
     <i class="sort-icon fa fa-angle-up"
       jsf:rendered="#{isSelected and !data.dataModel.sortDescending}" />
   </p:commandLink>
-  <h:outputText styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" 
-    rendered="#{!cc.attrs.renderSort and data.dataModel.isSelectedColumn(sortField)}" value="#{cc.attrs.value}" />
+  <h:panelGroup rendered="#{!cc.attrs.sortable}" styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} case-list-unsortable-header-cell">
+    <h:outputText value="#{cc.attrs.value}" />
+  </h:panelGroup>
 </cc:implementation>
 </html>
