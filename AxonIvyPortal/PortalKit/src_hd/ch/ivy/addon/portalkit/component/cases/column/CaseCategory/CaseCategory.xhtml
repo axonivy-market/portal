@@ -8,11 +8,12 @@
   <cc:attribute name="componentId" default="case-category-cell" />
   <cc:attribute name="dataModel" />
   <cc:attribute name="styleClass" />
+  <cc:attribute name="tooltip" />
   <cc:attribute name="responsiveStyleClass" default="js-hidden-when-expand-menu u-hidden-md-down" />
 </cc:interface>
 
 <cc:implementation>
-  <h:outputText id="#{cc.attrs.caseNameId}" styleClass="case-header-creator-cell #{cc.attrs.nameStyleClass} #{cc.attrs.responsiveStyleClass}" 
-    rendered="#{cc.attrs.dataModel.isSelectedColumn('NAME')}" value="#{cc.attrs.value}" />
+  <h:outputText id="#{cc.attrs.componentId}" styleClass="case-header-creator-cell #{cc.attrs.nameStyleClass} #{cc.attrs.responsiveStyleClass}" 
+    rendered="#{cc.attrs.dataModel.isSelectedColumn('CATEGORY')}" value="#{cc.attrs.value}" title="#{cc.attrs.tooltip}" />
 </cc:implementation>
 </html>

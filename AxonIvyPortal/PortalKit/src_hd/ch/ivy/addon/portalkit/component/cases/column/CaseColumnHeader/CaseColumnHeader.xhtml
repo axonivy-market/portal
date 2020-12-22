@@ -8,7 +8,7 @@
 	<cc:attribute name="styleClass" />
 	<cc:attribute name="componentToBeUpdated" />
 	<cc:attribute name="sortedField" />
-	<cc:attribute name="sortable" />
+	<cc:attribute name="sortable" default="true"/>
 	<cc:attribute name="value" />
     <cc:attribute name="responsiveStyleClass" />
 </cc:interface>
@@ -24,14 +24,14 @@
 	<f:event listener="#{data.setDataModel(dataModel)}" type="preRenderComponent" />
 	<p:commandLink id="#{id}" styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} #{dataModel.sortField eq sortedField ? 'is-selected' : ''}" 
 		update="#{componentToBeUpdated} #{p:component('widget-column-header')} #{p:component('case-list')} #{p:component('case-list-scroller')} @(.hidden-case-count)"
-		rendered="#{dataModel.isSelectedColumn(sortedField)}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();">
+		rendered="#{sortable and dataModel.isSelectedColumn(sortedField)}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();">
 		<f:actionListener binding="#{logic.sort(sortedField, dataModel.sortField eq sortedField and !dataModel.isSortDescending())}" />
 		<f:actionListener binding="#{caseWidgetBean.setExpandedCaseId(0,false)}" />
 		<h:outputText value="#{value}" />
 		<i class="sort-icon fa fa-angle-down" jsf:rendered="#{dataModel.sortField eq sortedField and dataModel.isSortDescending()}" />
 		<i class="sort-icon fa fa-angle-up" jsf:rendered="#{dataModel.sortField eq sortedField and !dataModel.isSortDescending()}" />
 	</p:commandLink>
-	<h:panelGroup rendered="#{sortable ne true}" styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} case-list-unsortable-header-cell">
+	<h:panelGroup rendered="#{!sortable}" styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} case-list-unsortable-header-cell">
 		<h:outputText value="#{value}" />
 	</h:panelGroup>
 </cc:implementation>
