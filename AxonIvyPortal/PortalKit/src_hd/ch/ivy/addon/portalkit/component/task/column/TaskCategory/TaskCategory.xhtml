@@ -3,18 +3,21 @@
   xmlns:p="http://primefaces.org/ui" xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
   
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="componentId" default="task-category"/>
+  <cc:attribute name="componentId" default="task-category-cell"/>
   <cc:attribute name="value" required="true" />
   <cc:attribute name="tooltip" />
   <cc:attribute name="styleClass" />
-  <cc:attribute name="isSelected" />
-  <cc:attribute name="componentToBeUpdated" />
   <cc:attribute name="responsiveStyleClass" default="u-hidden-md-down js-hidden-when-expand-menu"/>
+  <cc:attribute name="categoryTooltipStyleClass" />
   <cc:attribute name="rendered" />
 </cc:interface>
 
 <cc:implementation>
-  <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.value}" rendered="#{cc.attrs.rendered}" title="#{cc.attrs.tooltip}"
-    styleClass="responsible-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" />
+  <h:panelGroup rendered="#{cc.attrs.rendered}">
+    <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.value}"
+      styleClass="responsible-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" />
+    <p:tooltip id="category-tooltip" for="#{cc.attrs.componentId}"
+      value="#{cc.attrs.tooltip}" styleClass="#{cc.attrs.categoryTooltipStyleClass}" trackMouse="true" hideEvent="mouseleave click"/>
+  </h:panelGroup>
 </cc:implementation>
 </html>
