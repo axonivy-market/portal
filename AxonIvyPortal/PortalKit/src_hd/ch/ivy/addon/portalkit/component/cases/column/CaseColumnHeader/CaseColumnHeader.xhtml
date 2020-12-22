@@ -31,7 +31,7 @@
 		<i class="sort-icon fa fa-angle-down" jsf:rendered="#{dataModel.sortField eq sortedField and dataModel.isSortDescending()}" />
 		<i class="sort-icon fa fa-angle-up" jsf:rendered="#{dataModel.sortField eq sortedField and !dataModel.isSortDescending()}" />
 	</p:commandLink>
-	<h:panelGroup rendered="#{!sortable}" styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} case-list-unsortable-header-cell">
+	<h:panelGroup rendered="#{!sortable and dataModel.isSelectedColumn(sortedField)}" styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} case-list-unsortable-header-cell">
 		<h:outputText value="#{value}" />
 	</h:panelGroup>
 </cc:implementation>
