@@ -4,16 +4,21 @@
   xmlns:ic="http://ivyteam.ch/jsf/component">
 
 <cc:interface componentType="IvyComponent">
-  <cc:attribute name="value" />
   <cc:attribute name="componentId" default="case-category-cell" />
-  <cc:attribute name="dataModel" />
+  <cc:attribute name="value" />
   <cc:attribute name="styleClass" />
   <cc:attribute name="tooltip" />
   <cc:attribute name="responsiveStyleClass" default="js-hidden-when-expand-menu u-hidden-md-down" />
+  <cc:attribute name="categoryTooltipStyleClass" />
+  <cc:attribute name="rendered" />
 </cc:interface>
 
 <cc:implementation>
-  <h:outputText id="#{cc.attrs.componentId}" styleClass="case-header-creator-cell #{cc.attrs.nameStyleClass} #{cc.attrs.responsiveStyleClass}" 
-    rendered="#{cc.attrs.dataModel.isSelectedColumn('CATEGORY')}" value="#{cc.attrs.value}" title="#{cc.attrs.tooltip}" />
+  <h:panelGroup rendered="#{cc.attrs.rendered}">
+    <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.value}" 
+      styleClass="case-header-creator-cell #{cc.attrs.nameStyleClass} #{cc.attrs.responsiveStyleClass}" />
+    <p:tooltip id="category-tooltip" for="#{cc.attrs.componentId}" 
+      value="#{cc.attrs.tooltip}" styleClass="#{cc.attrs.categoryTooltipStyleClass}" trackMouse="true" hideEvent="mouseleave click"/>
+  </h:panelGroup>
 </cc:implementation>
 </html>
