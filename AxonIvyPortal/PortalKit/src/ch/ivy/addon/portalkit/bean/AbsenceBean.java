@@ -35,7 +35,7 @@ public class AbsenceBean implements Serializable {
   private boolean substitutionManagementCapable;
 
   public AbsenceBean() {
-    permissionCheckerService = new PermissionCheckerService();
+    permissionCheckerService = new PermissionCheckerService(); 
     ownAbsencesReadable = permissionCheckerService.hasAtLeaseOnePermission(USER_READ_OWN_ABSENCES, USER_READ_ABSENCES);
     ownAbsencesCreatable =
         permissionCheckerService.hasAtLeaseOnePermission(USER_CREATE_OWN_ABSENCE, USER_CREATE_ABSENCE);
