@@ -54,14 +54,10 @@ public class TaskExporter {
       List<List<ITask>> tasksInFiles = ListUtils.partition(tasks, MAX_TASK_NUMBER_IN_EXCEL);
       for (int i = 0; i < tasksInFiles.size(); i++) {
         String excelFileName = getFileName(creationDate, XLSX, String.format(FILE_NAME_SUFFIX_FOR_EXCEL_IN_ZIP, i + 1));
-        try {
-          byte[] content = generateExcelContent(tasksInFiles.get(i));
-          zipOutputStream.putNextEntry(new ZipEntry(excelFileName));
-          zipOutputStream.write(content);
-          zipOutputStream.closeEntry();
-        } catch (IOException e) {
-          Ivy.log().error("The {0} file can't be exported", e, excelFileName);
-        }
+        byte[] content = generateExcelContent(tasksInFiles.get(i));
+        zipOutputStream.putNextEntry(new ZipEntry(excelFileName));
+        zipOutputStream.write(content);
+        zipOutputStream.closeEntry();
       }
       zipOutputStream.close();
       return outputStream.toByteArray();
@@ -160,6 +156,8 @@ public class TaskExporter {
         return task.getExpiryTimestamp();
       case COMPLETED_ON:
         return task.getEndTimestamp();
+      case CATEGORY:
+        return task.getCategoryPath();
       default:
         return "";
     }
