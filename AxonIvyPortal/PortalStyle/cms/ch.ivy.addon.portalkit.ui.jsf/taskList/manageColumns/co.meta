@@ -1,5 +1,5 @@
-co: name={manageColumns} description={} changed={2020-06-15 03:35:41 CEST} changedby={nqhoan} visualorder={0} guid={1610C5C16D91B65A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1610C5C16E69E735} datatype={} isdefault={true} langid={en} description={} validfrom={2018-01-19 04:00:17 CET} validto={} changed={2020-05-25 12:03:23 CEST} changedby={mnhnam} properties={} id={}
+co: name={manageColumns} description={} changed={2020-12-22 08:50:39 CET} changedby={chnam} visualorder={0} guid={1610C5C16D91B65A} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1610C5C16E69E735} datatype={} isdefault={true} langid={en} description={} validfrom={2018-01-19 04:00:17 CET} validto={} changed={2020-12-22 08:50:39 CET} changedby={chnam} properties={} id={}
 val: guid={1610C5CC69438939} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-06-15 03:35:41 CEST} validto={} changed={2020-06-15 03:35:41 CEST} changedby={nqhoan} properties={} id={}
 val: guid={168DA54CE8C2F65F} datatype={} isdefault={false} langid={es} description={} validfrom={2020-06-15 03:35:41 CEST} validto={} changed={2020-06-15 03:35:41 CEST} changedby={nqhoan} properties={} id={}
 val: guid={1610C5CC4FE2E925} datatype={} isdefault={false} langid={de} description={} validfrom={2020-06-15 03:35:41 CEST} validto={} changed={2020-06-15 03:35:41 CEST} changedby={nqhoan} properties={} id={}
