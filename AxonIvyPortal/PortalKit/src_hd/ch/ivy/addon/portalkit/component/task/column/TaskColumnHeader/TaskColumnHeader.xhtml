@@ -30,7 +30,7 @@
     <i class="sort-icon fa fa-angle-up"
       jsf:rendered="#{isSelected and !data.dataModel.sortDescending}" />
   </p:commandLink>
-  <h:panelGroup rendered="#{!cc.attrs.sortable}" styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} case-list-unsortable-header-cell">
+  <h:panelGroup rendered="#{!cc.attrs.sortable and data.dataModel.isSelectedColumn(sortField)}" styleClass="#{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass} case-list-unsortable-header-cell">
     <h:outputText value="#{cc.attrs.value}" />
   </h:panelGroup>
 </cc:implementation>
