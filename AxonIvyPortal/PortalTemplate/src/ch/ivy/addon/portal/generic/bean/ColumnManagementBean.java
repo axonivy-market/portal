@@ -51,6 +51,12 @@ public class ColumnManagementBean {
     this.columnsBeforeSave = new ArrayList<>(this.widget.getColumns());
     fetchFields();
   }
+
+  private void resetValues() {
+    this.selectedField = null;
+    this.fieldDisplayName = null;
+    this.numberFieldPattern = null;
+  }
   
   public void save() {
     this.widget.setColumns(columnsBeforeSave);
@@ -81,6 +87,7 @@ public class ColumnManagementBean {
     this.columnsBeforeSave.add(columnModel);
     FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "The " + this.selectedField + " field is added", null);
     FacesContext.getCurrentInstance().addMessage("field-msg", msg);
+    resetValues();
   }
   
   public void fetchFields() {
