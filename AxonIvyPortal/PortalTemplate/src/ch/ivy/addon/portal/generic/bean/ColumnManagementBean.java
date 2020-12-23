@@ -79,7 +79,7 @@ public class ColumnManagementBean {
       columnModel.setPattern(numberFieldPattern);
     }
     this.columnsBeforeSave.add(columnModel);
-    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "The " + columnModel.getField() + " field is added", null);
+    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "The " + this.selectedField + " field is added", null);
     FacesContext.getCurrentInstance().addMessage("field-msg", msg);
   }
   
@@ -170,5 +170,9 @@ public class ColumnManagementBean {
   
   public void setFieldDisplayName(String fieldDisplayName) {
     this.fieldDisplayName = fieldDisplayName;
+  }
+  
+  public List<String> getExistingFields() {
+    return this.columnsBeforeSave.stream().map(ColumnModel::getField).collect(Collectors.toList());
   }
 }
