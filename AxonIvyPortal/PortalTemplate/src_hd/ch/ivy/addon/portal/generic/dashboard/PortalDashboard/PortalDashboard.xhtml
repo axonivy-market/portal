@@ -124,7 +124,7 @@
           <h:form id="task-configuration-form">
             <ic:ch.ivy.addon.portal.generic.dashboard.TaskWidgetConfiguration id="task-widget-configuration-component" taskWidget="#{dashboardBean.widget}" />
           </h:form>
-          <ic:ch.ivy.addon.portal.generic.dashboard.component.ColumnManagement taskWidget="#{dashboardBean.widget}" />
+          <ic:ch.ivy.addon.portal.generic.dashboard.component.ColumnManagement id="column-management-component" taskWidget="#{dashboardBean.widget}" />
           <f:facet name="footer">
             <p:link id="task-configuration-cancel-link" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               styleClass="u-mar-right-10" href="#"
