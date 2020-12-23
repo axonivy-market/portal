@@ -39,15 +39,18 @@
       <div class="ui-g-9">
         <p:selectOneMenu id="standard-field-selection" value="#{columnManagementBean.selectedField}" styleClass="field-add-fieldset__input"
           required="true" requiredMessage="Field #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
-          rendered="#{columnManagementBean.selectedFieldType eq 'STANDARD'}">
+          rendered="#{columnManagementBean.selectedFieldType eq 'STANDARD'}" validator="duplicateFieldValidator">
+          <f:attribute name="existingFields" value="#{columnManagementBean.existingFields}" />
           <f:selectItems value="#{columnManagementBean.fields}" var="field" itemValue="#{field}" itemLabel="#{field}" />
         </p:selectOneMenu>
+        <p:message for="standard-field-selection" rendered="#{columnManagementBean.selectedFieldType eq 'STANDARD'}" />
         
         <p:autoComplete id="custom-field-selection" value="#{columnManagementBean.selectedField}" styleClass="field-add-fieldset__input"
           cache="true" dynamic="true" completeMethod="#{columnManagementBean.completeCustomFields}" dropdown="true"
           required="true" requiredMessage="Field #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/isRequiredMessage')}"
-          inputStyleClass="field-add-fieldset__autocomplete-input"
+          inputStyleClass="field-add-fieldset__autocomplete-input" validator="duplicateFieldValidator"
           rendered="#{columnManagementBean.selectedFieldType eq 'CUSTOM'}">
+          <f:attribute name="existingFields" value="#{columnManagementBean.existingFields}" />
         </p:autoComplete>
         <p:message for="custom-field-selection" rendered="#{columnManagementBean.selectedFieldType eq 'CUSTOM'}" />
       </div>
