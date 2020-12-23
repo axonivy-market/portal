@@ -12,7 +12,7 @@
       <p:commandLink id="task-action-component" actionListener="#{logic.openTask(task,dataModel)}"
         disabled="#{!taskActionBean.isNotDone(task) or !taskActionBean.canResume(task)}" rendered="#{task.state != 'RESUMED' and !cc.attrs.readOnly}" onstart="event.stopPropagation();"
         styleClass="task-action-item start-task-action">
-        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label u-hidden-md-down" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label u-hidden-lg-down" />
         <i class="icon ivyicon-arrow-right-1 icon-compact-mode" />
       </p:commandLink>
 

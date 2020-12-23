@@ -13,9 +13,9 @@
 </cc:interface>
 
 <cc:implementation>
-  <h:panelGroup rendered="#{cc.attrs.rendered}">
-    <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.value}"
-      styleClass="responsible-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" />
+  <h:panelGroup rendered="#{cc.attrs.rendered}" styleClass="task-category-info">
+    <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.value}" 
+      styleClass="name-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" />
     <p:tooltip id="category-tooltip" for="#{cc.attrs.componentId}"
       value="#{cc.attrs.tooltip}" styleClass="#{cc.attrs.categoryTooltipStyleClass}" trackMouse="true" hideEvent="mouseleave click"/>
   </h:panelGroup>
