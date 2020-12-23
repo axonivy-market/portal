@@ -1666,6 +1666,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   min-width: 105px;
 }
 
+.task-category-info{
+  padding-right: 10px;
+  width: 80px;	
+}
+
 .task-start-info-header-full-mode {
   padding-left: 7px;
 }
@@ -1693,7 +1698,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .task-start-list .responsible-cell {
-  flex: 0 0 135px;
+  flex: 0 0 100px;
 }
 
 .task-start-list .name-cell, .task-start-list .description-cell, .task-start-list .responsible-cell {
