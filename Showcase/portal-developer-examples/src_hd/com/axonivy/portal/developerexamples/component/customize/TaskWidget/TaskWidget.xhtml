@@ -32,8 +32,7 @@
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskName task="#{task}" dataModel="#{taskView.dataModel}" />
       </div>
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible dataModel="#{taskView.dataModel}"
-        responsibleName="#{task.getActivatorName()}" responsible="#{task.getActivator()}"
-        styleClass="activatior-column" />
+        responsibleName="#{task.getActivatorName()}" responsible="#{task.getActivator()}"/>
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.getId()}" dataModel="#{taskView.dataModel}" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate
         rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}" componentId="creation-time"

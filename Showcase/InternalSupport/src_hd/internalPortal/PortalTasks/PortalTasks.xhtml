@@ -23,7 +23,7 @@
 
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{taskView.dataModel}"
         componentId="responsible-column-header"
-        styleClass="responsible-column-header activatior-column #{taskView.dataModel.isAutoHideColumns()?'js-responsible-column-header hidden-sm':''}"
+        styleClass="responsible-column-header #{taskView.dataModel.isAutoHideColumns()?'js-responsible-column-header hidden-sm':''}"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
         sortField="#{masterDataBean.taskSortFieldActivator}" />
 
@@ -59,7 +59,7 @@
       </div>
 
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible responsibleName="#{task.activatorName}"
-        responsbile="#{task.activator}" styleClass="activatior-column #{taskView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" 
+        responsbile="#{task.activator}" styleClass="#{taskView.dataModel.isAutoHideColumns()? 'hidden-sm':''}" 
         dataModel="#{taskView.dataModel}" />
       <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.getId()}" dataModel="#{taskView.dataModel}" />
 
