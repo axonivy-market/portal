@@ -32,7 +32,7 @@
           <ic:ch.ivy.addon.portalkit.component.task.column.TaskName task="#{task}" dataModel="#{taskView.dataModel}" />
         </div>
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible dataModel="#{taskView.dataModel}"
-          userName="#{task.getActivatorName()}" fullName="#{task.getActivator().getDisplayName()}" styleClass="activatior-column" />
+          userName="#{task.getActivatorName()}" fullName="#{task.getActivator().getDisplayName()}" />
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskId value="#{task.getId()}" dataModel="#{taskView.dataModel}" />
         <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}"
           componentId="creation-time" value="#{task.startTimestamp}" responsiveStyleClass="u-hidden-sm-down js-hidden-when-expand-menu" />

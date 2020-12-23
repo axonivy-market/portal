@@ -70,7 +70,7 @@
                 </div>
                 
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component" dataModel="#{taskView.dataModel}"
-                  responsibleName="#{task.getActivatorName()}" responsible="#{task.getActivator()}" styleClass="activatior-column" />
+                  responsibleName="#{task.getActivatorName()}" responsible="#{task.getActivator()}" />
                 
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.getId()}" dataModel="#{taskView.dataModel}" />
                 
@@ -85,8 +85,9 @@
                 
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component" dataModel="#{taskView.dataModel}" state="#{task.state}" />
                 
-                <ic:ch.ivy.addon.portalkit.component.task.column.TaskCategory id="task-category-component" tooltip="#{task.getCategoryPath()}"
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskCategory id="task-category-component" tooltip="#{task.getCategoryPath()}" 
                   value="#{task.getCategory().getName()}" rendered="#{taskView.dataModel.isSelectedColumn('CATEGORY')}"/>
+                  
               </ui:fragment>
             </f:facet>
 
