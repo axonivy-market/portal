@@ -20,7 +20,6 @@
 
   <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
     componentId="responsible-column-header"
-    styleClass="activatior-column"
     responsiveStyleClass="u-hidden-md-down js-hidden-when-expand-menu"
     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}"
     sortField="#{masterDataBean.taskSortFieldActivator}" />
@@ -56,8 +55,8 @@
     sortField="#{masterDataBean.taskSortFieldState}" />
     
   <ic:ch.ivy.addon.portalkit.component.task.column.TaskColumnHeader dataModel="#{cc.attrs.dataModel}"
-    componentId="category-column-header" styleClass="TexAlCenter"
-    responsiveStyleClass="u-hidden-md-down js-hidden-when-expand-menu"
+    componentId="category-column-header" 
+    responsiveStyleClass="u-hidden-md-down"
     value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CATEGORY')}"
     sortField="#{masterDataBean.taskSortFieldCategory}" sortable="false"/>
 </cc:implementation>
