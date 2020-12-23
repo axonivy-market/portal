@@ -135,6 +135,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 public class StatisticService extends BusinessDataService<StatisticChart> {
 
   private static final String CHART_LEGEND_POSITION_LEFT = "left";
+  private static final String CHART_LEGEND_POSITION_RIGHT = "right";
   private static final String CHART_LEGEND_POSITION_BOTTOM = "bottom";
   private static StatisticColors statisticColors = new StatisticColors();
   private String LOADING_MESSAGE = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/loadingCharts");
@@ -804,7 +805,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     ChartData data = new ChartData();
     DonutChartOptions options = new DonutChartOptions();
     data.setLabels(chartData.keySet().stream().collect(Collectors.toList()));
-    options.setLegend(buildChartLegend(CHART_LEGEND_POSITION_LEFT, true));
+    options.setLegend(buildChartLegend(CHART_LEGEND_POSITION_RIGHT, true));
 
     model.setData(data);
     model.setOptions(options);
