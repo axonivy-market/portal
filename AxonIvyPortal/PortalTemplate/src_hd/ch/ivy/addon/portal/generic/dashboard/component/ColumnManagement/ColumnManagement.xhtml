@@ -8,7 +8,6 @@
 
 <cc:implementation>
   <f:event listener="#{columnManagementBean.preRender(cc.attrs.taskWidget)}" type="preRenderComponent" />
-  
   <p:dialog id="column-management-dialog" widgetVar="column-management-dialog" header="Column management"
     appendTo="@(body)" fitViewport="true" width="700" closeOnEscape="true" draggable="false" dynamic="true"
     responsive="true" modal="true">
@@ -50,7 +49,5 @@
         oncomplete="PF('column-management-dialog').hide();" />
     </f:facet>
   </p:dialog>
-
-
 </cc:implementation>
 </html>
