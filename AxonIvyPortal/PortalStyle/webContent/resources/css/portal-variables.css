@@ -28,6 +28,9 @@
   --ivy-tertinary-color-yellow-light: hsl(47, 100%, 79%);
   --ivy-portal-blue-light: #90DDE9;
 
+  --ivy-new-blue-dark: #007095;
+  --ivy-new-color-black: #1B1B1B;
+
   --accent-color: var(--ivy-portal-blue-light);
   --accent-text-color: var(--primary-dark-text-color);
 
@@ -152,18 +155,18 @@
   --statistic-panel-header: var(--ivy-primary-color-white);
   --statistic-panel-header-border: var(--ivy-primary-color-white);
   --statistic-filter-accordion-panel-border: var(--ivy-primary-color-grey-light);
-  --dashboard-chart-panel-chart-name-font-weight: 400;
   --chart-info-header-font-weight: bold;
   --chart-info-label-font-weight: bold;
-  --chart-name-font-size: 1.4rem;
+  --chart-name-font-size: 1.6rem;
+  --chart-name-line-height: 2rem;
   --chart-filter-header-font-size: 2rem;
-  --chart-container-add-link-font-size: 1.2rem;
-  --dashboard-chart-name-font-size: 2rem;
   --statistic-carousel-header-button-hover-color: var(--ivy-primary-color-grey-dark);
   --statistic-carousel-header-button-color: var(--ivy-primary-color-grey-medium);
-  --statistic-carousel-header-color: var(--ivy-primary-color-grey-dark);
+  --statistic-carousel-header-color: var(--ivy-new-color-black);
   --statistic-link-hover-backround-color: var(--ivy-primary-color-grey-pale);
   --statistic-link-hover-border: var(--ivy-primary-color-grey-light);
+  --chart-container-separator-border: 1px solid #F4F4F4;
+  --chart-container-separator-border-radius: 0;
 
   /* Start Menu Item */
   --menu-item-current-application-border-bottom-color: transparent;
