@@ -191,14 +191,22 @@ Ts0 f26 expr out #txt
 Ts0 f26 480 406 480 458 #arcP
 Ts0 f27 actionTable 'out=in;
 ' #txt
-Ts0 f27 actionCode 'import ch.ivy.addon.portalkit.bean.PermissionBean;
+Ts0 f27 actionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.bean.PermissionBean;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 
 if(!in.dataModel.compactMode) {
 	TaskFilterService taskFilterService = new TaskFilterService();
 	in.taskPrivateFilters = taskFilterService.getPrivateFilterForCurrentUser(in.taskFilterGroupId) as List;
-	in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId) as List;
+
+	PermissionBean permissionBean = ManagedBeans.get("permissionBean") as PermissionBean;
+	if (permissionBean.hasAdminPermission()) {
+		in.taskPublicFilters = taskFilterService.getPublicFilterForAdmin(in.taskFilterGroupId) as List;
+	} else {
+		in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId) as List;
+	}
+
 	in.taskPublicFilters.add(in.dataModel.buildDefaultTaskFilterData());
 	in.filterType = FilterType.ONLY_ME;
 }
@@ -284,9 +292,22 @@ Ts0 f42 @|UdProcessEndIcon #fIcon
 Ts0 f43 109 672 371 672 #arcP
 Ts0 f45 actionTable 'out=in;
 ' #txt
-Ts0 f45 actionCode 'import javax.faces.application.FacesMessage;
+Ts0 f45 actionCode 'import ch.ivy.addon.portalkit.bean.PermissionBean;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.enums.FilterType;
+import ch.ivy.addon.portalkit.enums.FilterType;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
+
+if (in.filterType == FilterType.ALL_USERS) {
+	PermissionBean permissionBean = ManagedBeans.get("permissionBean") as PermissionBean;
+  permissionBean.verifyTaskStateFilter(in.dataModel.selectedFilters);
+	if (permissionBean.isAdminTaskStateIncluded()) {
+		in.filterType = FilterType.ALL_ADMINS;
+	}
+}
+
 TaskFilterService service = new TaskFilterService();
 in.isFilterExisted = false;
 if (service.isFilterExisted(in.filterSetName, in.filterType, in.taskFilterGroupId)) {
