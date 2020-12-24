@@ -31,7 +31,7 @@
       </h:panelGroup>
 
       <h:form id="case-item-action-form" styleClass="case-header-action-cell">
-        <h:panelGroup styleClass="u-hidden-sm-down action-container" rendered="#{cc.attrs.enableCaseAction}">
+        <h:panelGroup styleClass="u-hidden-sm-down action-container" rendered="#{cc.attrs.enableCaseAction and !cc.attrs.readOnly}">
           <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" actionLinkId="action-steps-menu"
             actionLinkStyleClass="ui-button-text-only" panelWidgetVar="case-action-steps-panel-#{rowIndex}" isAdhocExcluded="true"
             renderDestroyAction="#{renderDestroyAction}" update="#{cc.attrs.update}" onDestroyComplete="#{cc.attrs.onDestroyComplete}"

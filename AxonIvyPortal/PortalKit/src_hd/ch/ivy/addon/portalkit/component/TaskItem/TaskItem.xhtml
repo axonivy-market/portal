@@ -16,6 +16,7 @@
   <cc:attribute name="onDelegateComplete" />
   <cc:attribute name="onWorkflowEventComplete" />
   <cc:attribute name="inFrame" default="false" />
+  <cc:attribute name="readOnly" default="true" />
 </cc:interface>
 
 <cc:implementation>
@@ -38,7 +39,7 @@
       <p:ajax event="click" listener="#{logic.openDetails(task,dataModel, cc.attrs.inFrame)}" onstart="#{cc.attrs.onTaskStartCallback}" />
       <cc:renderFacet name="taskHeader" />
     </h:panelGroup>
-    <div class="task-item-header-actions">
+    <div class="task-item-header-actions" jsf:rendered="#{!compactMode and !cc.attrs.readOnly}">
       <f:subview id="task-action">
         <ui:include src="TaskAction.xhtml">
           <ui:param name="dataModel" value="#{dataModel}" />
