@@ -3155,21 +3155,15 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   float: left;
   margin-left: 5px;
   vertical-align: middle;
-  color: #007095;
 }
 
-.statistic-carousel .ui-carousel-header-title .chart-name-container .chart-name {
+.statistic-carousel .ui-carousel-header-title .chart-name {
   max-width: calc(98% - 20px);
   white-space: nowrap;
   text-overflow: ellipsis;
   text-align: left;
   float: left;
   overflow: hidden;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #1B1B1B;
 }
 
 .statistic-carousel.card .ui-carousel-header.ui-widget-header {
@@ -3355,18 +3349,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   justify-content: space-between;
 }
 
-.edit-statistic-container .chart-list .card.chart-container .label {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #1B1B1B;
-}
-
 .edit-statistic-container .chart-list .chart-container .separator {
   margin: 0px -23px 16px -23px;
-  border: 1px solid #F4F4F4;
-  border-radius: 0;
 }
 
 .edit-statistic-container .chart-list .chart-container .label, .chart-filter-header-text {
@@ -3375,16 +3359,11 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .edit-statistic-container .chart-list .chart-container .add-button {
   display: block;
-  border-radius: 5px;
   margin: 16px 0px 0px auto;
 }
 
 .edit-statistic-container td:not(.align-bottom) {
   vertical-align: top;
-}
-
-.add-chart-dialog .ok-button {
-  border-radius: 5px;
 }
 
 .chart-filter-info-icon {
@@ -3476,7 +3455,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   align-self: baseline;
   margin-left: 5px;
   vertical-align: middle;
-  color: #007095;
 }
 
 .dashboard-chart-panel .card, .edit-statistic-container .card, .statistic-widget.compact-mode .statistic-carousel.card {
@@ -3495,11 +3473,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   overflow: hidden;
   text-overflow: ellipsis;
   float: left;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  line-height: 20px;
-  color: #1B1B1B;
 }
 
 .add-statistic-panel {
@@ -3882,7 +3855,6 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
 .chart-list-container .filter-container .apply-filters-btn {
   float: right;
   margin-right: 16px;
-  border-radius: 5px;
 }
 
 .statistic-filter-accordion-panel {
