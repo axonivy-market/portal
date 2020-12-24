@@ -86,6 +86,8 @@
                       value="#{task.endTimestamp}" />
                     <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component"
                       dataModel="#{dataModel.taskDataModel}" state="#{task.state}" />
+                    <ic:ch.ivy.addon.portalkit.component.task.column.TaskCategory id="task-category-component" tooltip="#{task.getCategoryPath()}" 
+                      rendered="#{dataModel.taskDataModel.isSelectedColumn('CATEGORY')}" value="#{task.getCategory().getName()}"  />
                   </ui:fragment>
                 </f:facet>
               </ic:ch.ivy.addon.portalkit.component.TaskWidget>
@@ -129,6 +131,8 @@
                         responsiveStyleClass="js-hidden-when-expand-menu u-hidden-md-down"
   	                  rendered="#{dataModel.caseDataModel.isSelectedColumn('FINISHED_TIME')}" value="#{case.endTimestamp}" />
   	                <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}" dataModel="#{dataModel.caseDataModel}"/>
+                    <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCategory componentId="case-category-cell" 
+                      rendered="#{dataModel.caseDataModel.isSelectedColumn('CATEGORY')}" value="#{case.getCategory().getName()}" tooltip="#{case.getCategoryPath()}" />
                 	</ui:fragment>
                 </f:facet>
               </ic:ch.ivy.addon.portalkit.component.CaseWidget>
