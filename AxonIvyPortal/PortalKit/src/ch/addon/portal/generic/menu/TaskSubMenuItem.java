@@ -7,7 +7,7 @@ import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 
 public class TaskSubMenuItem extends SubMenuItem {
   public TaskSubMenuItem() {
-    this.icon = "icon ivyicon-task-list-edit";
+    this.icon = "si si-task-list-edit";
     this.menuKind = MenuKind.TASK;
     this.label = ApplicationMultiLanguage.getCmsValueByUserLocale("/ch.ivy.addon.portalkit.ui.jsf/common/tasks");
     this.name = HomepageType.TASK.name();

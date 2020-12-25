@@ -15,9 +15,8 @@
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{logic.init(cc.attrs.isWorkingOnATask)}" type="preRenderComponent" />
-
   <c:set var="task" value="#{not empty cc.attrs.task ? cc.attrs.task : ivy.task}" />
+  <f:event listener="#{logic.init(cc.attrs.isWorkingOnATask, task)}" type="preRenderComponent" />
 
   <!-- LOGO  -->
   <div class="sidebar-logo">
@@ -45,57 +44,16 @@
 
         <!-- Application menu -->
         <h:form id="main-navigator">
+          <!-- Portal Main Menu -->
+          <pm:menu id="main-menu" widgetVar="main-menu" model="#{menuView.mainMenuModel}" />
 
-          <pm:menu id="main-menu" widgetVar="main-menu">
-            <!-- Loop menu applications -->
-            <c:forEach var="menuItem" items="#{menuView.menuItems}" varStatus="menuItemStatus">
-
-              <p:menuitem id="menu-item-#{menuItemStatus.index}" rendered="#{empty menuItem.getAttributes().get('isThirdPartyApp')}"
-                actionListener="#{logic.openApp(menuItem.href, task)}" disabled="#{menuItem.disabled}" update="main-menu" process="main-menu"
-                icon="#{menuItem.icon}" value="#{menuItem.value}" iconPos="right"
-                containerStyleClass="#{menuItem.styleClass}" styleClass="#{menuItem.styleClass eq 'active-menuitem' ? 'current-application':''}" />
-
-              <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}" rendered="#{not empty menuItem.getAttributes().get('isThirdPartyApp')}"
-                update="main-menu" process="main-menu" actionListener="#{logic.openApp(menuItem.href, task)}" ajax="false" target="_blank"
-                disabled="#{menuItem.disabled}" icon="#{menuItem.icon}"
-                value="#{menuItem.value}" iconPos="right" containerStyleClass="#{menuItem.styleClass}" />
-
-              <!-- Loop sub-menu based on application -->
-              <!-- Only show submenu for current application -->
-              <c:if test="#{menuItem.styleClass eq 'active-menuitem'}">
-                <c:set var="subMenuItemNumber" value="#{menuView.subMenuItems.size() - 1}" />
-
-                <c:forEach var="subMenuItem" items="#{menuView.subMenuItems}" varStatus="subMenuItemStatus">
-                  <c:set var="isThirdPartyApp" value="#{empty menuItem.getAttributes().get('isThirdPartyApp')}" />
-                  <c:set var="firstSubItem" value="#{subMenuItemStatus.index == 0 ? 'first-sub-item':''}" />
-                  <c:set var="lastSubItem" value="#{subMenuItemStatus.index == subMenuItemNumber ? 'last-sub-item':''}" />
-                  <c:set var="isIvyLink"
-                    value="#{(fn:contains(subMenuItem.link, '.ivp?') or fn:endsWith(subMenuItem.link, '.ivp') or fn:endsWith(subMenuItem.link, '.icm')) or subMenuItem.link eq NULL}" />
-
-                  <p:menuitem id="menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}" 
-                    rendered="#{isThirdPartyApp and isIvyLink}" actionListener="#{logic.onClickSubMenuItem(subMenuItem,task)}" value="#{subMenuItem.label}"
-                    icon="#{subMenuItem.icon}" iconPos="right" styleClass="submenu #{subMenuItem.menuKind}" update="main-menu" process="main-menu"
-                    containerStyleClass="submenu-container #{firstSubItem} #{lastSubItem}" global="false">
-                  </p:menuitem>
-
-                  <p:menuitem id="thirdparty-menu-item-#{menuItemStatus.index}-sub-menu-item-#{subMenuItemStatus.index}"
-                    rendered="#{isThirdPartyApp and !isIvyLink}" target="_blank" url="#{subMenuItem.buildLink()}" value="#{subMenuItem.label}"
-                    styleClass="submenu" icon="#{subMenuItem.icon}" update="main-menu" process="main-menu"
-                    containerStyleClass="submenu-container #{firstSubItem} #{lastSubItem}" />
-
-                </c:forEach>
-              </c:if>
-
-            </c:forEach>
-          </pm:menu>
-
-	        <!-- Remote commands for breadcrumb -->
-	        <p:remoteCommand name="navigateToTaskListFromBreadcrumb" immediate="true"
-	          actionListener="#{data.setDestinationBreadcrumbPage('TASK')}"
-	          oncomplete="PF('task-losing-confirmation-dialog').show();" />
-	        <p:remoteCommand name="navigateToHomeFromBreadcrumb" immediate="true"
-	          actionListener="#{data.setDestinationBreadcrumbPage('HOME')}"
-	          oncomplete="PF('task-losing-confirmation-dialog').show();" />
+          <!-- Remote commands for breadcrumb -->
+          <p:remoteCommand name="navigateToTaskListFromBreadcrumb" immediate="true"
+            actionListener="#{logic.clickBreadcrumb('TASK')}"
+            oncomplete="PF('task-losing-confirmation-dialog').show();" />
+          <p:remoteCommand name="navigateToHomeFromBreadcrumb" immediate="true"
+            actionListener="#{logic.clickBreadcrumb('HOME')}"
+            oncomplete="PF('task-losing-confirmation-dialog').show();" />
         </h:form>
       </div>
     </div>
@@ -109,6 +67,7 @@
   <p:dialog id="task-leave-warning-dialog" rendered="#{data.isWorkingOnATask}" 
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmation')}" modal="true"
     widgetVar="task-losing-confirmation-dialog" appendTo="@(body)" closeOnEscape="true" responsive="true">
+    <p:ajax event="close" listener="#{logic.continueWorkingOnTask}" global="false" immediate="true"/>
     <h:form prependId="false">
         <span class="ui-icon ui-icon-alert ui-confirm-dialog-severity"></span>
         <h:outputText escape="false" styleClass="ui-confirm-dialog-message"

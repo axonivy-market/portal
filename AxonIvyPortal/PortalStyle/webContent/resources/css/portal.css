@@ -191,10 +191,6 @@ body .ui-datatable tbody tr.ui-datatable-even {
   .ui-datatable-reflow .ui-reflow-dropdown {
     font-size: var(--large-font-size); } }
 
-/* Layout sidebar*/
-.submenu-container {
-  background-color: var(--submenu-bg-color); }
-
 /*Layout topbar*/
 .layout-wrapper .layout-main .layout-topbar {
   z-index: 997; }
@@ -1109,10 +1105,6 @@ body .fieldset-no-border {
 .compact-toggle-tasks-link {
   padding-left: 8px;
 }
-
-/* Style for Start Menu Item-----------------------------*/
-.layout-wrapper .layout-sidebar .layout-menu > li > a.current-application {
-  border-bottom: 1px solid --menu-item-current-application-border-bottom-color; }
 
 /* Style for Filter Widget -----------------------------**/
 .task-widget .advanced-filter:hover,
