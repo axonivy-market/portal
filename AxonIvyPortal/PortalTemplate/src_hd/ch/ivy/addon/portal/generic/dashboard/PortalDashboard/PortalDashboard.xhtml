@@ -136,7 +136,7 @@
             <p:commandButton id="task-configuration-save-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
               actionListener="#{dashboardBean.saveWidget()}"
               process="@(#task-configuration-form :not(.task-configuration__category) :not(.task-configuration__category-panel))" partialSubmit="true"
-              update="grid-stack-tab-view:0:grid-stack"
+              update="grid-stack-tab-view:#{dashboardBean.getCurrentTabIndex()}:grid-stack"
               oncomplete="PF('task-widget-configuration-dialog').hide();loadGrid();" />
               
           </f:facet>
