@@ -615,7 +615,7 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 .edit-statistic-container .chart-list .chart-container .label {
   color: var(--statistic-carousel-header-color);
   font-size: var(--chart-name-font-size);
-  font-weight: var(--chart-info-label-font-weight);
+  font-weight: var(--chart-name-font-weight);
   line-height: var(--chart-name-line-height); }
 
 .edit-statistic-container .chart-list .chart-container .separator {
@@ -641,7 +641,7 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
   font-weight: var(--chart-info-header-font-weight); }
 
 .chart-info-container label {
-  font-weight: var(--chart-info-label-font-weight); }
+  font-weight: var(--chart-name-font-weight); }
 
 .dashboard-chart-panel .card,
 .edit-statistic-container .card,
