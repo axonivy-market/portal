@@ -603,7 +603,7 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 .dashboard-chart-panel .chart-actions-container .chart-action,
 .dashboard-chart-panel .chart-info {
   font-size: 1.5rem !important; 
-  color: var(--ivy-new-blue-dark); }
+  color: var(--ivy-portal-blue-dark); }
 
 .statistic-carousel .ui-carousel-header .ui-carousel-header-title .chart-info:hover,
 .dashboard-chart-panel .chart-info:hover,
