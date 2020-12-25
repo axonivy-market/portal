@@ -76,6 +76,8 @@
         <p:remoteCommand name="getDataFromIFrame" actionListener="#{iFrameTaskTemplateBean.getDataFromIFrame()}"
           update="@([id$='header-container']) @([id$='announcement-container']) @([id$='task-leave-warning-dialog']) @([id$='task-leave-warning-component']) @([id$='left-menu']) @([id$='logout-setting'])" 
           oncomplete="resizeIFrame();updateContentContainerClass()" global="false" />
+        <p:remoteCommand name="keepSessionInIFrame" global="false" process="@this" update="@this"
+          oncomplete="PortalSessionWarning.resetCounterAndTimeout();" />
       </h:form>
       
       <iframe id="iFrame" src="#{url}" class="task-frame" onload="checkUrl(this)" />

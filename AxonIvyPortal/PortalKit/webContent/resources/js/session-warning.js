@@ -4,6 +4,7 @@ var PortalSessionWarning = function() {
   isLogOutCookieName = 'ch.ivy.addon.portal.IsLogout',
   warningDialogShow = false,
   logOutCalled = false,
+  isInteractedInIframeTaskTemplate = false,
   intervalCheckSessionTimeout, 
   init = function(clientSideTimeOut) {
     timeout = clientSideTimeOut,
@@ -17,6 +18,16 @@ var PortalSessionWarning = function() {
     document.onmousedown = resetCounterAndTimeout;
     document.ontouchstart = resetCounterAndTimeout;
     document.onscroll = resetCounterAndTimeout;
+
+    // Using IFrame Task template
+    if ($("#iFrame").length > 0) {
+      $("#iFrame").get(0).onload = updateInteractionStatusInIFrame;
+      $("#iFrame").get(0).onkeypress = updateInteractionStatusInIFrame;
+      $("#iFrame").get(0).onclick = updateInteractionStatusInIFrame;
+      $("#iFrame").get(0).onmousedown = updateInteractionStatusInIFrame;
+      $("#iFrame").get(0).ontouchstart = updateInteractionStatusInIFrame;
+      $("#iFrame").get(0).onscroll = updateInteractionStatusInIFrame;
+    }
   },
 
   timerDecrement = function() {
@@ -52,7 +63,11 @@ var PortalSessionWarning = function() {
     }
 
     if (timeOutSeconds < 60) {
-      if (warningDialogShow == false) {
+      if ($("#iFrame").length > 0 && isInteractedInIframeTaskTemplate == true) {
+        warningDialogShow = false;
+        isInteractedInIframeTaskTemplate = false;
+        keepSessionInIFrame();
+      } else if (warningDialogShow == false) {
         warningDialogShow = true;
         PF('timeout-warning-dialog').show();
       }
@@ -67,6 +82,10 @@ var PortalSessionWarning = function() {
       timeOutSeconds = timeout / 1000;
       setCookie(sessionCounterCookieName, timeOutSeconds);
     }
+  },
+
+  updateInteractionStatusInIFrame = function() {
+    isInteractedInIframeTaskTemplate = true;
   },
 
   hideWarningDialog = function() {
