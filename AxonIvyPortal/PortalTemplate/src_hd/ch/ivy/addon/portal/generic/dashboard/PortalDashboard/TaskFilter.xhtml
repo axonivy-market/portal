@@ -10,111 +10,112 @@
   </div>
   <div class="ui-g-8">
     <p:commandButton id="apply-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
-      styleClass="Fright" update="#{component.parent.clientId}"
-      process="@(form :not(.task-configuration__category) :not(.task-configuration__category-panel))" partialSubmit="true" />
+      styleClass="Fright" update="#{updateComponent}" process="filter-container" partialSubmit="true"
+      oncomplete="#{onCompleteApplyingFilters}" />
   </div>
 </div>
-
-<ui:repeat var="field" value="#{widget.filterableColumns}">
-  <div class="ui-g">
-    <h:panelGroup rendered="#{field.field eq 'priority'}">
-      <div class="ui-g-3">
-        <p:outputLabel value="#{field.header}" />
-      </div>
-      <div class="ui-g-9">
-        <p:selectCheckboxMenu id="priorities" value="#{field.userFilterPriorities}" multiple="true" panelStyle="width:300px"
-          styleClass="task-configuration__selectcheckboxmenu">
-          <f:selectItems value="#{field.userFilterPriorityOptions}" var="priority" itemValue="#{priority}"
-            itemLabel="#{dashboardTaskFilterBean.getUserFriendlyTaskPriority(priority)}" />
-        </p:selectCheckboxMenu>
-      </div>
-    </h:panelGroup>
-  
-    <h:panelGroup rendered="#{field.field eq 'state'}">
-      <div class="ui-g-3">
-        <p:outputLabel value="#{field.header}" />
-      </div>
-      <div class="ui-g-9">
-        <p:selectCheckboxMenu id="states" value="#{field.userFilterStates}" multiple="true" filter="true" filterMatchMode="contains"
-          panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
-          <f:selectItems value="#{field.userFilterStateOptions}" var="state" itemValue="#{state}"
-            itemLabel="#{dashboardTaskFilterBean.getUserFriendlyTaskState(state)}" />
-        </p:selectCheckboxMenu>
-      </div>
-    </h:panelGroup>
-  
-    <h:panelGroup rendered="#{field.field eq 'activator'}">
-      <div class="ui-g-3">
-        <p:outputLabel value="#{field.header}" />
-      </div>
-      <div class="ui-g-9">
-        <p:autoComplete id="responsibles" scrollHeight="210" dropdown="true" size="35"
-          completeMethod="#{field.completeUserFilterResponsibles}" value="#{field.userFilterResponsibles}"
-          var="responsible" itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}"
-          converter="pojoConverter" cache="true" maxResults="100" multiple="true"
-          moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true"
-          styleClass="task-configuration__responsibles" forceSelection="true">
-          <p:column>
-            <i class="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-            <h:outputText value="#{dashboardTaskFilterBean.formatName(responsible)}" />
-          </p:column>
-        </p:autoComplete>
-      </div>
-    </h:panelGroup>
-  
-    <h:panelGroup rendered="#{field.format eq 'STRING' or field.format eq 'TEXT'}">
-      <div class="ui-g-3">
-        <p:outputLabel value="#{field.header}" />
-      </div>
-      <div class="ui-g-9">
-        <p:inputText id="text-field-input" styleClass="task-configuration__input-text" value="#{field.userFilter}"
-          rendered="#{field.filterType eq 'LIKE'}" />
-  
-        <p:selectCheckboxMenu id="text-field-selection" value="#{field.userFilterList}" multiple="true" filter="true"
-          filterMatchMode="contains" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu"
-          rendered="#{field.filterType eq 'SELECTION'}">
-          <f:selectItems value="#{field.userFilterListOptions}" />
-        </p:selectCheckboxMenu>
-      </div>
-    </h:panelGroup>
-  
-    <h:panelGroup rendered="#{field.format eq 'NUMBER'}">
-      <div class="ui-g-3">
-        <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
-      </div>
-      <div class="ui-g-9">
-        <p:inputNumber id="from-number-field-input" styleClass="task-configuration__input-text" value="#{field.userFilterFrom}"
-          inputStyleClass="task-configuration__input-number" />
-      </div>
-  
-      <div class="ui-g-3">
-        <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
-      </div>
-      <div class="ui-g-9">
-        <p:inputNumber id="to-number-field-input" styleClass="task-configuration__input-text" value="#{field.userFilterTo}"
-          inputStyleClass="task-configuration__input-number" />
-      </div>
-    </h:panelGroup>
-  
-    <h:panelGroup rendered="#{field.format eq 'TIMESTAMP'}">
-      <div class="ui-g-3">
-        <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
-      </div>
-      <div class="ui-g-9">
-        <p:calendar id="from-date-field-input" showOn="button" styleClass="task-configuration__calendar" mindate="#{field.dateFilterFrom}"
-          value="#{field.userDateFilterFrom}" pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
-      </div>
-  
-      <div class="ui-g-3">
-        <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
-      </div>
-      <div class="ui-g-9">
-        <p:calendar id="to-date-field-input" showOn="button" styleClass="task-configuration__calendar" maxdate="#{field.dateFilterTo}"
-          value="#{field.userDateFilterTo}" pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
-      </div>
-    </h:panelGroup>
-  </div>
-</ui:repeat>
+<h:panelGroup id="filter-container" layout="block">
+  <ui:repeat var="field" value="#{widget.filterableColumns}">
+    <div class="ui-g">
+      <h:panelGroup rendered="#{field.field eq 'priority'}">
+        <div class="ui-g-3">
+          <p:outputLabel value="#{field.header}" />
+        </div>
+        <div class="ui-g-9">
+          <p:selectCheckboxMenu id="priorities" value="#{field.userFilterPriorities}" multiple="true" panelStyle="width:300px"
+            styleClass="task-configuration__selectcheckboxmenu">
+            <f:selectItems value="#{field.userFilterPriorityOptions}" var="priority" itemValue="#{priority}"
+              itemLabel="#{dashboardTaskFilterBean.getUserFriendlyTaskPriority(priority)}" />
+          </p:selectCheckboxMenu>
+        </div>
+      </h:panelGroup>
+    
+      <h:panelGroup rendered="#{field.field eq 'state'}">
+        <div class="ui-g-3">
+          <p:outputLabel value="#{field.header}" />
+        </div>
+        <div class="ui-g-9">
+          <p:selectCheckboxMenu id="states" value="#{field.userFilterStates}" multiple="true" filter="true" filterMatchMode="contains"
+            panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
+            <f:selectItems value="#{field.userFilterStateOptions}" var="state" itemValue="#{state}"
+              itemLabel="#{dashboardTaskFilterBean.getUserFriendlyTaskState(state)}" />
+          </p:selectCheckboxMenu>
+        </div>
+      </h:panelGroup>
+    
+      <h:panelGroup rendered="#{field.field eq 'activator'}">
+        <div class="ui-g-3">
+          <p:outputLabel value="#{field.header}" />
+        </div>
+        <div class="ui-g-9">
+          <p:autoComplete id="responsibles" scrollHeight="210" dropdown="true" size="35"
+            completeMethod="#{field.completeUserFilterResponsibles}" value="#{field.userFilterResponsibles}"
+            var="responsible" itemValue="#{responsible}" itemLabel="#{responsible.briefDisplayNameWithState}"
+            converter="pojoConverter" cache="true" maxResults="100" multiple="true"
+            moreText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}..." dynamic="true"
+            styleClass="task-configuration__responsibles" forceSelection="true">
+            <p:column>
+              <i class="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+              <h:outputText value="#{dashboardTaskFilterBean.formatName(responsible)}" />
+            </p:column>
+          </p:autoComplete>
+        </div>
+      </h:panelGroup>
+    
+      <h:panelGroup rendered="#{field.format eq 'STRING' or field.format eq 'TEXT'}">
+        <div class="ui-g-3">
+          <p:outputLabel value="#{field.header}" />
+        </div>
+        <div class="ui-g-9">
+          <p:inputText id="text-field-input" styleClass="task-configuration__input-text" value="#{field.userFilter}"
+            rendered="#{field.filterType eq 'LIKE'}" />
+    
+          <p:selectCheckboxMenu id="text-field-selection" value="#{field.userFilterList}" multiple="true" filter="true"
+            filterMatchMode="contains" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu"
+            rendered="#{field.filterType eq 'SELECTION'}">
+            <f:selectItems value="#{field.userFilterListOptions}" />
+          </p:selectCheckboxMenu>
+        </div>
+      </h:panelGroup>
+    
+      <h:panelGroup rendered="#{field.format eq 'NUMBER'}">
+        <div class="ui-g-3">
+          <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
+        </div>
+        <div class="ui-g-9">
+          <p:inputNumber id="from-number-field-input" styleClass="task-configuration__input-text" value="#{field.userFilterFrom}"
+            inputStyleClass="task-configuration__input-number" />
+        </div>
+    
+        <div class="ui-g-3">
+          <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
+        </div>
+        <div class="ui-g-9">
+          <p:inputNumber id="to-number-field-input" styleClass="task-configuration__input-text" value="#{field.userFilterTo}"
+            inputStyleClass="task-configuration__input-number" />
+        </div>
+      </h:panelGroup>
+    
+      <h:panelGroup rendered="#{field.format eq 'TIMESTAMP'}">
+        <div class="ui-g-3">
+          <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
+        </div>
+        <div class="ui-g-9">
+          <p:calendar id="from-date-field-input" showOn="button" styleClass="task-configuration__calendar" mindate="#{field.dateFilterFrom}"
+            value="#{field.userDateFilterFrom}" pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
+        </div>
+    
+        <div class="ui-g-3">
+          <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
+        </div>
+        <div class="ui-g-9">
+          <p:calendar id="to-date-field-input" showOn="button" styleClass="task-configuration__calendar" maxdate="#{field.dateFilterTo}"
+            value="#{field.userDateFilterTo}" pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
+        </div>
+      </h:panelGroup>
+    </div>
+  </ui:repeat>
+</h:panelGroup>
 
 <div class="ui-g">
   <div class="ui-g-3">
