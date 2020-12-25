@@ -5,24 +5,25 @@ import java.io.Serializable;
 public class StatisticColors implements Serializable {
 
   private static final long serialVersionUID = -3714369331118699382L;
-  public static final String DEFAULT_EXCEPTION_PRIORITY_COLOR = "rgb(255, 90, 90)";
-  public static final String DEFAULT_HIGH_PRIORITY_COLOR = "rgb(255, 192, 192)";
-  public static final String DEFAULT_NORMAL_PRIORITY_COLOR = "rgb(150, 220, 130)";
-  public static final String DEFAULT_LOW_PRIORITY_COLOR = "rgb(212, 212, 212)";
+  public static final String DEFAULT_EXCEPTION_PRIORITY_COLOR = "#EE4A52";
+  public static final String DEFAULT_HIGH_PRIORITY_COLOR = "#007095";
+  public static final String DEFAULT_NORMAL_PRIORITY_COLOR = "#49BAD6";
+  public static final String DEFAULT_LOW_PRIORITY_COLOR = "#90DDE9";
 
-  public static final String DEFAULT_CREATED_CASE_COLOR = "rgb(0,112,149)";
-  public static final String DEFAULT_RUNNING_CASE_COLOR = "rgb(255,206,41)";
-  public static final String DEFAULT_DONE_CASE_COLOR = "rgb(150,220,130)";
-  public static final String DEFAULT_FAILED_CASE_COLOR = "rgb(210,54,54)";
+  public static final String DEFAULT_CREATED_CASE_COLOR = "#C9C9C9";
+  public static final String DEFAULT_RUNNING_CASE_COLOR = "#007095";
+  public static final String DEFAULT_DONE_CASE_COLOR = "#48C46B";
+  public static final String DEFAULT_FAILED_CASE_COLOR = "#EE4A52";
 
-  public static final String DEFAULT_ELAPSED_TIME_COLOR = "rgb(144, 221, 233)";
+  public static final String DEFAULT_ELAPSED_TIME_COLOR = "#007095";
 
-  public static final String DEFAULT_TASK_EXPIRIED_COLOR = "rgb(144, 221, 233)";
-  public static final String DEFAULT_TASK_TODAY_COLOR = DEFAULT_TASK_EXPIRIED_COLOR;
-  public static final String DEFAULT_TASK_WEEK_COLOR = DEFAULT_TASK_EXPIRIED_COLOR;
-  public static final String DEFAULT_TASK_MONTH_COLOR = DEFAULT_TASK_EXPIRIED_COLOR;
-  public static final String DEFAULT_TASK_YEAR_COLOR = DEFAULT_TASK_EXPIRIED_COLOR;
-  public static final String DEFAULT_LEGEND_COLOR = "#212121";
+  public static final String DEFAULT_TASK_EXPIRIED_COLOR = "#EE4A52";
+  public static final String DEFAULT_TASK_TODAY_COLOR = "#007095";
+  public static final String DEFAULT_TASK_WEEK_COLOR = "#007095";
+  public static final String DEFAULT_TASK_MONTH_COLOR = "#49BAD6";
+  public static final String DEFAULT_TASK_YEAR_COLOR = "#49BAD6";
+
+  public static final String DEFAULT_LEGEND_COLOR = "#1B1B1B";
 
   // Color for Legend and DataSet label
   private String legendColor = DEFAULT_LEGEND_COLOR;
