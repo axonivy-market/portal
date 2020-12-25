@@ -57,7 +57,7 @@ public class MenuTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
-    mainMenuPage.clickThirdPartyAppByIndex(1);
+    mainMenuPage.clickThirdPartyAppByIndex(0);
 
     WebDriver driver = Browser.getBrowser().getDriver();
     ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());

@@ -135,7 +135,8 @@ function searchIconByName(element) {
 }
 
 var MainMenu = {
-  urlToMenu : [["Processes.xhtml", "PROCESS"],
+  urlToMenu : [["PortalHome.xhtml", "DASHBOARD"],
+      ["Processes.xhtml", "PROCESS"],
       ["PortalTasks.xhtml", "TASK"],
       ["TaskWidget.xhtml", "TASK"],
       ["PortalTaskDetails.xhtml", "TASK"],
@@ -166,36 +167,24 @@ var MainMenu = {
   },
 
   highlightMenuItem : function() {
-    var firstLevelMenu = MainMenu.getMenuBasedOnPageUrl();
-    var parentActiveMenuId = MainMenu.getFirstParentMenuActive();
-
-    var $activeMenuItem = $(".layout-menu li[id^='" + parentActiveMenuId + "'] .submenu").filter(
-        function(index) {
-          if (firstLevelMenu) {
-            return $(this).hasClass(firstLevelMenu);
-          }
-        });
-    $activeMenuItem.parent().addClass('active-menuitem');
+    var menuKind = MainMenu.getMenuBasedOnPageUrl();
+    var $activeMenuItem = $(".layout-menu").find("a.ripplelink." + menuKind);
+    if ($activeMenuItem.length > 0) {
+      var activeMenuItems = $(".layout-menu .active-menuitem").not(".submenu-container");
+      if ($activeMenuItem.parent().hasClass('active-menuitem') && activeMenuItems.length === 1) {
+        return;
+      }
+      this.removeActiveMenu(activeMenuItems);
+      $activeMenuItem.parent().addClass('active-menuitem');
+      PF('main-menu').addMenuitem($activeMenuItem.parent().attr('id'));
+    }
   },
 
-  getFirstParentMenuActive : function() {
-    var parentId = "";
-    var parentMenuActive = $(".layout-menu .active-menuitem").not(".submenu-container");
-    if (parentMenuActive.length > 0) {
-      parentId = parentMenuActive[0].id;
-      MainMenu.getSubMenuActive();
-    }
-    return parentId;
-  },
-
-  getSubMenuActive : function() {
-    var subMenuActive = $(".layout-menu .active-menuitem.submenu-container");
-
-    for (var i = 0; i < subMenuActive.length; i++) {
-      var item = subMenuActive.get(i);
-      $(item).removeClass('active-menuitem');
-    }
-
+  removeActiveMenu : function(activeMenuItems) {
+    $.each( activeMenuItems, function( i, menuItem ) {
+      $(menuItem).removeClass('active-menuitem');
+      PF('main-menu').removeMenuitem(menuItem.id);
+    });
   },
 
   getMenuBasedOnPageUrl : function() {

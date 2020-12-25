@@ -7,7 +7,7 @@ import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 
 public class StatisticSubMenuItem extends SubMenuItem {
   public StatisticSubMenuItem() {
-    this.icon = "icon ivyicon-pie-line-graph";
+    this.icon = "si si-pie-line-graph";
     this.menuKind = MenuKind.STATISTICS;
     this.label = ApplicationMultiLanguage.getCmsValueByUserLocale("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/statistics");
     this.name = HomepageType.STATISTICS.name();
