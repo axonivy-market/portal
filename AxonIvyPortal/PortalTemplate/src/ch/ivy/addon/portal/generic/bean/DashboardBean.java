@@ -291,7 +291,11 @@ public class DashboardBean implements Serializable {
   public void startTask(ITask task) throws IOException {
     FacesContext.getCurrentInstance().getExternalContext().redirect(task.getStartLinkEmbedded().getRelative());
   }
-  
+
+  public int getCurrentTabIndex() {
+    return dashboards.indexOf(selectedDashboard);
+  }
+
   private Map<String, String> getRequestParameterMap() {
     Map<String, String> requestParamMap =
         FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
