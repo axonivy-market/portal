@@ -51,8 +51,6 @@
   --accordion-header-active-background-color: var(--ivy-primary-color-grey-light);
   --accordion-header-background-color: var(--ivy-primary-color-grey-light);
   --case-task-state-done-or-resume-green: #4eb41c;
-  --portal-sub-menu-background-color: rgba(255,255,255,0.6);
-  --portal-sub-menu-item-link-background-color: rgba(0,0,0,0);
   --box-shadow-color: hsla(0, 0%, 15%, 0.2);
   --portal-border-radius: 5px;
   --item-background-hover: rgba(144, 221, 233, 0.24);
@@ -165,21 +163,15 @@
   --statistic-link-hover-backround-color: var(--ivy-primary-color-grey-pale);
   --statistic-link-hover-border: var(--ivy-primary-color-grey-light);
 
-  /* Start Menu Item */
-  --menu-item-current-application-border-bottom-color: transparent;
-
   /* Sidebar */
   --sidebar-app-text-color: var(--menuitem-text-color);
-  --menuitem-active-text-color: var(--primary-color);
-  --menuitem-active-icon-text-color: var(--primary-color);
-  --menuitem-hover-icon-text-color: var(--menuitem-text-color);
   --sidebar-app-text-color: var(--primary-color);
-  --menuitem-active-text-color: var(--primary-color);
-  --menuitem-active-bg-color: transparent;
-  --menuitem-hover-bg-color: var(--ivy-primary-color-grey-light);
-  --menuitem-hover-text-color: var(--menuitem-text-color);
-  --submenu-bg-color: rgba(255,255,255,0.6);
   --sidebar-mobile-menu-icon-font-size: 2.4rem;
+  --menuitem-active-bg-color: var(--primary-color);
+  --menuitem-hover-icon-text-color: var(--primary-color);
+  --menuitem-hover-bg-color: var(--ivy-primary-color-grey-light);
+  --menuitem-hover-text-color: var(--primary-color);
+
 
   /* Filter Widget */
   --advanced-filter-error-color: var(--ivy-tertinary-color-red-medium);
