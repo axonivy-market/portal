@@ -38,7 +38,7 @@ Ps0 f3 inParameterDecl '<java.util.List<String> steps,Integer currentStep> param
 Ps0 f3 inActionCode 'import java.util.Arrays;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
-if (param.currentStep < 0 || param.currentStep >= param.steps.size()) {
+if (param.currentStep < 0 || param.currentStep >= param.steps.size() && !(param.currentStep == 0 && param.steps.size() ==0)) {
 	FacesMessage error = new javax.faces.application.FacesMessage(FacesMessage.SEVERITY_ERROR, ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/processChain/currentStepIsNotDefined", Arrays.asList(param.currentStep)), ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/processChain/currentStepIsNotDefined", Arrays.asList(param.currentStep)));
 	FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", error);
 	FacesContext.getCurrentInstance().validationFailed();
