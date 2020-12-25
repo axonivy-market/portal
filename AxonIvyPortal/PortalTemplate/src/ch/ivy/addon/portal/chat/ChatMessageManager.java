@@ -1,8 +1,8 @@
 package ch.ivy.addon.portal.chat;
 
-import static ch.ivy.addon.portal.chat.ChatReferencesContainer.getApplication;
 import static ch.ivy.addon.portal.chat.ChatReferencesContainer.log;
 import static ch.ivy.addon.portal.chat.ChatReferencesContainer.wf;
+import static ch.ivy.addon.portalkit.persistence.converter.UserEntityConverter.entitiesToJson;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -16,20 +16,22 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
 import com.google.gson.Gson;
 
+import ch.ivy.addon.portalkit.persistence.converter.UserEntityConverter;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.RedeploymentUtils;
 import ch.ivyteam.ivy.scripting.objects.File;
+import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 
 public final class ChatMessageManager {
 
+  private static final String PORTAL_CHAT_UNREAD_MESSAGES = "PORTAL_CHAT_UNREAD_MESSAGES";
   private static final String UNDER_SCORE = "_";
   private static final String FILE_NAME_ENCRYPT_ALGORITHM = "MD5";
   private static final String LINE_SEPARATOR = System.getProperty("line.separator");
@@ -193,33 +195,34 @@ public final class ChatMessageManager {
     return String.valueOf(StringUtils.join(participants.toArray()).hashCode());
   }
 
-  public static void storeUnreadMessageInMemory(ChatMessage message) {
-    String attrName = messageAttribute(message.getRecipients());
-    synchronized (getCommon(attrName)) {
-      List<ChatMessage> messages = getUnreadMessagesInMemory(message.getRecipients());
+  public static void storeUnreadMessage(ChatMessage message) {
+    String recipient = message.getRecipients().get(0);
+    synchronized (getCommon(recipient)) {
+      List<ChatMessage> messages = getUnreadMessages(recipient);
       if (messages.stream().noneMatch(msg -> msg.getSender().equals(message.getSender()))) {
         messages.add(new ChatMessage(message.getSender(), message.getRecipients()));
       }
-      getApplication().setAttribute(attrName, messages);
+      String messagesAsJson = entitiesToJson(messages);
+      setUserProperty(recipient, messagesAsJson);
     }
   }
 
-  public static void storeUnreadMessageInMemoryForGroupChat(ChatMessage message, long caseId) {
+  public static void storeUnreadMessageForGroupChat(ChatMessage message, long caseId) {
     ChatMessage clonedMessage = message.copy();
     Set<String> usernames = ChatGroupUtils.getUserNamesFromGroup(caseId);
     usernames.remove(clonedMessage.getSender());
     clonedMessage.setSender(String.format(GROUP_CHAT_PREFIX, caseId));
     for (String username : usernames) {
       clonedMessage.setRecipients(Arrays.asList(username));
-      storeUnreadMessageInMemory(clonedMessage);
+      storeUnreadMessage(clonedMessage);
     }
   }
 
-  @SuppressWarnings({"unchecked"})
-  public static List<ChatMessage> getUnreadMessagesInMemory(List<String> participants) {
-    String attrName = messageAttribute(participants);
+  public static List<ChatMessage> getUnreadMessages(String participant) {
+    String userProperty = getUserProperty(participant);
     List<ChatMessage> unreadMessages =
-        (List<ChatMessage>) ObjectUtils.defaultIfNull(getApplication().getAttribute(attrName), new ArrayList<>());
+        StringUtils.isNotBlank(userProperty) ? UserEntityConverter.jsonToEntities(userProperty, ChatMessage.class)
+            : new ArrayList<>();
 
     try {
       unreadMessages.removeAll(
@@ -230,7 +233,8 @@ public final class ChatMessageManager {
       unreadMessages.removeAll(
           unreadMessages.stream().filter(x -> isDestroyedOrDoneCase(x.getSender())).collect(Collectors.toList()));
     }
-    getApplication().setAttribute(attrName, unreadMessages);
+    String messagesAsJson = entitiesToJson(unreadMessages);
+    setUserProperty(participant, messagesAsJson);
     return unreadMessages;
   }
 
@@ -260,20 +264,16 @@ public final class ChatMessageManager {
     return StringUtils.EMPTY;
   }
 
-  public static void deletedReadMessagesInMemory(List<String> participants, String sender) {
-    String attrName = messageAttribute(participants);
-    List<ChatMessage> messages = getUnreadMessagesInMemory(participants);
+  public static void deletedReadMessages(String participant, String sender) {
+    List<ChatMessage> messages = getUnreadMessages(participant);
     messages.removeAll(
         messages.stream().filter(message -> message.getSender().equals(sender)).collect(Collectors.toList()));
-    getApplication().setAttribute(attrName, messages);
+    String messagesAsJson = entitiesToJson(messages);
+    setUserProperty(participant, messagesAsJson);
   }
 
-  public static void deletedReadMessagesInMemoryForGroupChat(List<String> participants, String caseId) {
-    deletedReadMessagesInMemory(participants, String.format(GROUP_CHAT_PREFIX, caseId));
-  }
-
-  private static String messageAttribute(List<String> participants) {
-    return StringUtils.join("Portal_Chat_", generateFileName(participants));
+  public static void deletedReadMessagesForGroupChat(String participant, String caseId) {
+    deletedReadMessages(participant, String.format(GROUP_CHAT_PREFIX, caseId));
   }
 
   private static Object getCommon(String value) {
@@ -285,5 +285,24 @@ public final class ChatMessageManager {
       }
       return common;
     }
+  }
+
+  private static String getUserProperty(String username) {
+    IUser user = findUser(username);
+    if (user != null) {
+      return user.getProperty(PORTAL_CHAT_UNREAD_MESSAGES);
+    }
+    return "";
+  }
+
+  private static void setUserProperty(String username, String jsonMessages) {
+    IUser user = findUser(username);
+    if (user != null) {
+      user.setProperty(PORTAL_CHAT_UNREAD_MESSAGES, jsonMessages);
+    }
+  }
+
+  private static IUser findUser(String username) {
+    return wf().getSecurityContext().findUser(username);
   }
 }
