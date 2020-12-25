@@ -53,9 +53,12 @@
                         <h:panelGroup id="widget-content" styleClass="widget__content #{widget.id}" layout="block">
                           <div class="widget__filter-sidebar-mask" />
                           <div class="widget__filter-sidebar card">
-                            <ui:include src="TaskFilter.xhtml" />
+                            <ui:include src="TaskFilter.xhtml">
+                              <ui:param name="updateComponent" value="#{component.parent.namingContainer.clientId}:task-component:dashboard-tasks" />
+                              <ui:param name="onCompleteApplyingFilters" value="toggleFilterSidebar($('.widget__filter-sidebar-link'))" />
+                            </ui:include>
                           </div>
-                            <ic:ch.ivy.addon.portal.generic.dashboard.TaskWidget id="task-component" taskWidget="#{widget}" />
+                            <ic:ch.ivy.addon.portal.generic.dashboard.TaskWidget id="task-component" taskWidget="#{widget}"/>
                         </h:panelGroup>
                       </h:form>
                     </h:panelGroup>
