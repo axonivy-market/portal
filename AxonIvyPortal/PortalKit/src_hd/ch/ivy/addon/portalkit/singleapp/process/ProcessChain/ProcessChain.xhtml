@@ -32,6 +32,7 @@
 </cc:interface>
 
 <cc:implementation>
+  <f:event listener="#{logic.validate(cc.attrs.steps, cc.attrs.actualStepIndex)}" type="preRenderComponent" />
   <!-- Process chain of axon express -->
   <c:set var="isShapeCircle" value="#{cc.attrs.shape eq 'CIRCLE'}" />
   <c:set var="isDirectionHorizontal" value="#{cc.attrs.direction eq 'HORIZONTAL'}" />
@@ -105,7 +106,7 @@
       rendered="#{not empty cc.attrs.steps}">
       <c:set var="currentIndex" value="#{cc.attrs.actualStepIndex}" />
       <c:set var="stepSize" value="#{cc.attrs.steps.size()}" />
-      <c:set var="stepName" value="#{cc.attrs.steps.get(currentIndex)}" />
+      <c:set var="stepName" value="#{currentIndex gt cc.attrs.steps.size() ? '' : cc.attrs.steps.get(currentIndex)}" />
       <c:set var="isHideLeftSteps" value="#{currentIndex eq 0}" />
       <c:set var="isHideRightSteps" value="#{currentIndex eq (stepSize - 1)}" />
 
