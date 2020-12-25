@@ -603,28 +603,32 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 .dashboard-chart-panel .chart-actions-container .chart-action,
 .dashboard-chart-panel .chart-info {
   font-size: 1.5rem !important; 
-}
+  color: var(--ivy-portal-blue-dark); }
 
 .statistic-carousel .ui-carousel-header .ui-carousel-header-title .chart-info:hover,
 .dashboard-chart-panel .chart-info:hover,
 .dashboard-chart-panel .chart-actions-container .chart-action:hover {
   color: var(--statistic-carousel-header-button-hover-color); }
 
-.statistic-carousel .ui-carousel-header-title .chart-name {
+.statistic-carousel .ui-carousel-header-title .chart-name,
+.dashboard-chart-panel .chart-name,
+.edit-statistic-container .chart-list .chart-container .label {
   color: var(--statistic-carousel-header-color);
-  font-size: var(--chart-name-font-size); }
+  font-size: var(--chart-name-font-size);
+  font-weight: var(--chart-name-font-weight);
+  line-height: var(--chart-name-line-height); }
 
-.dashboard-chart-panel .chart-name {
-  color: var(--statistic-carousel-header-color);
-  font-size: var(--dashboard-chart-name-font-size);
-  font-weight: var(--dashboard-chart-panel-chart-name-font-weight); }
+.edit-statistic-container .chart-list .chart-container .separator {
+  border: var(--chart-container-separator-border);
+  border-radius: var(--chart-container-separator-border-radius); }
 
-.edit-statistic-container .chart-list .chart-container .label,
+.edit-statistic-container .chart-list .chart-container .add-button,
+.add-chart-dialog .ok-button,
+.chart-list-container .filter-container .apply-filters-btn {
+  border-radius: var(--portal-border-radius); }
+
 .chart-filter-header-text {
   font-size: var(--chart-filter-header-font-size); }
-
-.edit-statistic-container .chart-list .chart-container .add-link {
-  font-size: var(--chart-container-add-link-font-size); }
 
 .ui-columntoggler[id$='task-table-toggler'] .ui-columntoggler-item label {
   font-size: var(--large-font-size); }
@@ -637,7 +641,7 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
   font-weight: var(--chart-info-header-font-weight); }
 
 .chart-info-container label {
-  font-weight: var(--chart-info-label-font-weight); }
+  font-weight: var(--chart-name-font-weight); }
 
 .dashboard-chart-panel .card,
 .edit-statistic-container .card,

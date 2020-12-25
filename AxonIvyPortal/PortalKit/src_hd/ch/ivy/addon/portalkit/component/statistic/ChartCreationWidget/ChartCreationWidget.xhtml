@@ -47,15 +47,18 @@
             <div class="ui-g-12">
               <p:outputLabel id="task-by-priority-label" styleClass="label"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByPriority')}" />
-              <p:commandLink id="create-task-by-priority-link" styleClass="add-link" global="false">
-                <i class="icon ivyicon-add u-mar-right-5" />
-                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}"/>
-                <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
-                  listener="#{logic.updateBeforeAddTaskByPriority}" oncomplete="PF('add-chart-dialog').show();" />
-              </p:commandLink>
             </div>
             <h:panelGroup styleClass="ui-g-12" layout="block">
-              <p:donutChart model="#{taskByPriorityModel}" styleClass="statistic-chart" style="width: 100%; height: 300px;" />
+              <p:donutChart model="#{taskByPriorityModel}" styleClass="statistic-chart" style="width: 100%; height: 340px;" />
+            </h:panelGroup>
+            <h:panelGroup styleClass="ui-g-12" layout="block">
+              <p:separator styleClass="separator" />
+              <p:commandButton id="create-task-by-priority-link" styleClass="add-button" global="false"
+                icon="icon ivyicon-add-small u-mar-right-5"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}" >
+                <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
+                  listener="#{logic.updateBeforeAddTaskByPriority}" oncomplete="PF('add-chart-dialog').show();" />
+              </p:commandButton>
             </h:panelGroup>
           </div>
         </h:panelGroup>
@@ -66,15 +69,18 @@
             <div class="ui-g-12">
               <p:outputLabel id="case-by-state-label" styleClass="label"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByState')}" />
-              <p:commandLink id="create-case-by-state-link" styleClass="add-link" global="false">
-                <i class="icon ivyicon-add u-mar-right-5" />
-                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}"/>
-                <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
-                  listener="#{logic.updateBeforeAddCaseByState}" oncomplete="PF('add-chart-dialog').show();" />
-              </p:commandLink>
             </div>
             <h:panelGroup styleClass="ui-g-12" layout="block">
-              <p:donutChart model="#{caseByStateModel}" styleClass="statistic-chart" style="width: 100%; height: 300px;" />
+              <p:donutChart model="#{caseByStateModel}" styleClass="statistic-chart" style="width: 100%; height: 340px;" />
+            </h:panelGroup>
+            <h:panelGroup styleClass="ui-g-12" layout="block">
+              <p:separator styleClass="separator" />
+              <p:commandButton id="create-case-by-state-link" styleClass="add-button" global="false"
+                icon="icon ivyicon-add-small u-mar-right-5"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
+                <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
+                  listener="#{logic.updateBeforeAddCaseByState}" oncomplete="PF('add-chart-dialog').show();" />
+              </p:commandButton>
             </h:panelGroup>
           </div>
         </h:panelGroup>
@@ -85,15 +91,18 @@
             <div class="ui-g-12">
               <p:outputLabel id="task-by-expiry-label" styleClass="label"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/taskByExpiry')}" />
-              <p:commandLink id="create-task-by-expiry-link" styleClass="add-link" global="false">
-                <i class="icon ivyicon-add u-mar-right-5" />
-                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}"/>
-                <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
-                  listener="#{logic.updateBeforeAddTaskByExpiry}" oncomplete="PF('add-chart-dialog').show();" />
-              </p:commandLink>
             </div>
             <h:panelGroup styleClass="ui-g-12" layout="block">
-              <p:barChart model="#{taskByExpiryModel}" styleClass="statistic-chart" style="width: 100%; height: 320px;" />
+              <p:barChart model="#{taskByExpiryModel}" styleClass="statistic-chart" style="width: 100%; height: 340px;" />
+            </h:panelGroup>
+            <h:panelGroup styleClass="ui-g-12" layout="block">
+              <p:separator styleClass="separator" />
+              <p:commandButton id="create-task-by-expiry-link" styleClass="add-button" global="false"
+                icon="icon ivyicon-add-small u-mar-right-5"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
+                <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
+                  listener="#{logic.updateBeforeAddTaskByExpiry}" oncomplete="PF('add-chart-dialog').show();" />
+              </p:commandButton>
             </h:panelGroup>
           </div>
         </h:panelGroup>
@@ -104,15 +113,18 @@
             <div class="ui-g-12">
               <p:outputLabel id="elapsed-time-by-case-category-label" styleClass="label"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/elapsedTimeByCaseCategory')}" />
-              <p:commandLink id="create-elapsed-time-link" styleClass="add-link" global="false">
-                <i class="icon ivyicon-add u-mar-right-5" />
-                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}"/>
-                <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
-                  listener="#{logic.updateBeforeAddElapsedTime}" oncomplete="PF('add-chart-dialog').show();" />
-              </p:commandLink>
             </div>
             <h:panelGroup styleClass="ui-g-12" layout="block">
               <p:barChart model="#{elapsedTimeModel}" styleClass="statistic-chart" style="width: 100%; height: 340px;" />
+            </h:panelGroup>
+            <h:panelGroup styleClass="ui-g-12" layout="block">
+              <p:separator styleClass="separator" />
+              <p:commandButton id="create-elapsed-time-link" styleClass="add-button" global="false"
+                icon="icon ivyicon-add-small u-mar-right-5"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
+                <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
+                  listener="#{logic.updateBeforeAddElapsedTime}" oncomplete="PF('add-chart-dialog').show();" />
+              </p:commandButton>
             </h:panelGroup>
           </div>
         </h:panelGroup>
@@ -123,15 +135,18 @@
             <div class="ui-g-12">
               <p:outputLabel id="case-by-finished-task-label" styleClass="label"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTask')}" />
-              <p:commandLink id="create-case-by-finished-task-link" styleClass="add-link" global="false">
-                <i class="icon ivyicon-add u-mar-right-5" />
-                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}"/>
-                <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
-                  listener="#{logic.updateBeforeAddCaseByFinishedTask}" oncomplete="PF('add-chart-dialog').show();" />
-              </p:commandLink>
             </div>
             <h:panelGroup styleClass="ui-g-12" layout="block">
-              <p:donutChart model="#{caseByFinishedTaskModel}" styleClass="statistic-chart" style="width: 100%; height: 300px;" />
+              <p:donutChart model="#{caseByFinishedTaskModel}" styleClass="statistic-chart" style="width: 100%; height: 340px;" />
+            </h:panelGroup>
+            <h:panelGroup styleClass="ui-g-12" layout="block">
+              <p:separator styleClass="separator" />
+              <p:commandButton id="create-case-by-finished-task-link" styleClass="add-button" global="false"
+                icon="icon ivyicon-add-small u-mar-right-5"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
+                <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
+                  listener="#{logic.updateBeforeAddCaseByFinishedTask}" oncomplete="PF('add-chart-dialog').show();" />
+              </p:commandButton>
             </h:panelGroup>
           </div>
         </h:panelGroup>
@@ -142,15 +157,18 @@
             <div class="ui-g-12">
               <p:outputLabel id="case-by-finished-time-label" styleClass="label"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chartType/caseByFinishedTime')}" />
-              <p:commandLink id="create-case-by-finished-time-link" styleClass="add-link" global="false">
-                <i class="icon ivyicon-add u-mar-right-5" />
-                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}"/>
-                <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
-                  listener="#{logic.updateBeforeAddCaseByFinishedTime}" oncomplete="PF('add-chart-dialog').show();" />
-              </p:commandLink>
             </div>
             <h:panelGroup styleClass="ui-g-12" layout="block">
-              <p:donutChart model="#{caseByFinishedTimeModel}" styleClass="statistic-chart" style="width: 100%; height: 300px;" />
+              <p:donutChart model="#{caseByFinishedTimeModel}" styleClass="statistic-chart" style="width: 100%; height: 340px;" />
+            </h:panelGroup>
+            <h:panelGroup styleClass="ui-g-12" layout="block">
+              <p:separator styleClass="separator" />
+              <p:commandButton id="create-case-by-finished-time-link" styleClass="add-button" global="false"
+                icon="icon ivyicon-add-small u-mar-right-5"
+                value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/taskByPriority/addToDashboardLink')}">
+                <p:ajax event="click" update="#{p:component('add-chart-dialog')}" resetValues="true" global="false"
+                  listener="#{logic.updateBeforeAddCaseByFinishedTime}" oncomplete="PF('add-chart-dialog').show();" />
+              </p:commandButton>
             </h:panelGroup>
           </div>
         </h:panelGroup>
@@ -187,7 +205,7 @@
           </p:commandLink>
           <p:spacer width="15px" />
           <p:commandButton id="chart-save-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="add-statistic-form"
-            icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
+            icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}" styleClass="ok-button"
             update="chart-name-input-container add-statistic-form" actionListener="#{logic.createStatisticChart(cc.attrs.statisticChartList)}"
             oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('add-chart-dialog').hide();}" />
         </h:panelGroup>
