@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 
 public class MainMenuPage extends TemplatePage {
   
-  private static String PROCESS_MENU_ITEM_CSS_SELECTOR = "li.submenu-container:nth-child(2) > a.ripplelink.submenu";
+  private static String PROCESS_MENU_ITEM_CSS_SELECTOR = ".layout-menu li[role='menuitem'] a.ripplelink.PROCESS";
 
   @Override
   protected String getLoadedLocator() {
@@ -17,7 +17,7 @@ public class MainMenuPage extends TemplatePage {
   }
 
   private boolean isMenuItemDisplayed(String menuItemName) {
-    return findListElementsByCssSelector("li.submenu-container").stream()
+    return findListElementsByCssSelector("li[role='menuitem']").stream()
         .filter(element -> element.getText().equals(menuItemName)).findFirst().map(WebElement::isDisplayed)
         .orElse(false);
   }
@@ -42,20 +42,21 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public TaskWidgetPage selectTaskMenu() {
-    clickByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu");
+    clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.TASK");
     ensureNoBackgroundRequest();
     return new TaskWidgetPage();
   }
 
   public StatisticWidgetPage selectStatisticDashboard() {
-    clickByCssSelector("li.submenu-container:nth-child(5) > a.ripplelink.submenu");
+    clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.STATISTICS");
     waitForElementDisplayed(By.className("statistic-dashboard-expand-mode"), true);
     return new StatisticWidgetPage();
   }
 
   public void clickThirdPartyAppByIndex(int index) {
-    waitForElementDisplayed(By.cssSelector("[id *= ':thirdparty-menu-item-" + index + "'] > a"), true);
-    clickByCssSelector("[id *= ':thirdparty-menu-item-" + index + "'] > a");
+    String thirdpartyCssSelector = String.format("li[class*='thirdparty-menu-item-%d'] > a", index);
+    waitForElementDisplayed(By.cssSelector(thirdpartyCssSelector), true);
+    clickByCssSelector(thirdpartyCssSelector);
   }
 
   private void waitForProcessesPageAfterSelectProcessesCategory() {
@@ -63,12 +64,12 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public CaseWidgetPage selectCaseMenu() {
-    clickByCssSelector("li.submenu-container:nth-child(4) > a.ripplelink.submenu");
+    clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.CASE");
     return new CaseWidgetPage();
   }
 
   public WorkingTaskDialogPageOfApplicationMenu selectDashboardMenu() {
-    clickByCssSelector("a.ripplelink.current-application");
+    clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.DASHBOARD");
     return new WorkingTaskDialogPageOfApplicationMenu();
   }
 

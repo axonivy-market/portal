@@ -1,26 +1,12 @@
 ApplicationSelectionMenuData #class
 ch.ivy.addon.portal.generic.ApplicationSelectionMenu #namespace
-applications List<ch.ivy.addon.portalkit.persistence.domain.Application> #field
-applications PERSISTENT #fieldModifier
 isNotRequiredLogin Boolean #field
 isNotRequiredLogin PERSISTENT #fieldModifier
-menuItems java.util.List<org.primefaces.component.button.Button> #field
-menuItems PERSISTENT #fieldModifier
-applicationUrl String #field
-applicationUrl PERSISTENT #fieldModifier
 isWorkingOnATask Boolean #field
 isWorkingOnATask PERSISTENT #fieldModifier
-menuKinds ch.ivy.addon.portalkit.enums.MenuKind #field
-menuKinds PERSISTENT #fieldModifier
-subMenuItems List<ch.addon.portal.generic.menu.SubMenuItem> #field
-subMenuItems PERSISTENT #fieldModifier
-selectedSubMenuItem ch.addon.portal.generic.menu.SubMenuItem #field
-selectedSubMenuItem PERSISTENT #fieldModifier
-menuModel org.primefaces.model.menu.MenuModel #field
-menuModel PERSISTENT #fieldModifier
 workingTask ch.ivyteam.ivy.workflow.ITask #field
 workingTask PERSISTENT #fieldModifier
-isTaskFinished Boolean #field
-isTaskFinished PERSISTENT #fieldModifier
 destinationBreadcrumbPage String #field
 destinationBreadcrumbPage PERSISTENT #fieldModifier
+isClickOnBreadcrumb Boolean #field
+isClickOnBreadcrumb PERSISTENT #fieldModifier

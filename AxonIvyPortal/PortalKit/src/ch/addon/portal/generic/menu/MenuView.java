@@ -4,31 +4,39 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.component.button.Button;
 import org.primefaces.model.menu.DefaultMenuItem;
 import org.primefaces.model.menu.DefaultMenuModel;
 import org.primefaces.model.menu.MenuItem;
 import org.primefaces.model.menu.MenuModel;
 
+import ch.addon.portal.generic.userprofile.homepage.HomepageType;
+import ch.addon.portal.generic.userprofile.homepage.HomepageUtils;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.bean.ApplicationSelectionMenuBean;
 import ch.ivy.addon.portalkit.comparator.ApplicationIndexAscendingComparator;
 import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
+import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
+import ch.ivy.addon.portalkit.util.UrlUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.ITask;
+
+import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 @ManagedBean
 @ViewScoped
@@ -37,62 +45,141 @@ public class MenuView implements Serializable {
   private static final long serialVersionUID = 3188259472933435953L;
   public final static String LOAD_SUB_MENU_PROCESS = "loadSubMenuItems()";
   public final static String SUB_MENU = "subMenuItems";
-  public final static String THIRD_PARTY = "isThirdPartyApp";
-  public final static String ACTIVE_MENU = "active-menuitem";
-  public final static String APP_NAME = "appName";
+  /* Menu Parameters */
+  public final static String MENU_KIND = "menuKind";
+  public final static String MENU_URL = "menuUrl";
+  public final static String TASK_ID = "taskId";
+  public final static String IS_WORKING_ON_TASK = "isWorkingOnATask";
+  /* Menu id format */
+  public final static String MENU_ID_FORMAT = "menu-item-%d";
+  public final static String SUB_MENU_ID_FORMAT = "sub-menu-item-%d";
+  public final static String THIRD_PARTY_MENU_ID_FORMAT = "thirdparty-menu-item-%d";
+  public final static String EXTERNAL_MENU_ID_FORMAT = "external-menu-item-%d";
+  
+  public final static String ICON_POSITION = "right";
+  public final static String DEFAULT_MENU_PROCESS = "@this";
+  public final static String EXTERNAL_MENU_TARGET = "_blank";
+  
+  public final static String DASHBOARD_PARAM = "isShowDashboard";
+  public final static String DASHBOARD_ICON = "si si-layout-dashboard";
   public final static String DASHBOARD = "/ch.ivy.addon.portalkit.ui.jsf/common/dashboard";
 
-  private List<Button> menuItems;
-  private List<SubMenuItem> subMenuItems;
+  private DefaultMenuModel mainMenuModel;
   private MenuModel breadcrumbModel;
+  private long workingTaskId;
+  private boolean isWorkingOnATask;
 
   @PostConstruct
-  public void init() {
-    List<Application> applications = initThirdPartyApps();
-    buildMainMenuItems(applications);
-    buildSubMenuItems();
+  public void init() {}
+
+  public void buildPortalLeftMenu(ITask workingTask, boolean isWorkingOnATask) {
+    initTaskParams(workingTask, isWorkingOnATask);
+    
+    mainMenuModel = new DefaultMenuModel();
+    mainMenuModel.addElement(buildDashboardItem());
+    
+    List<SubMenuItem> subMenuItems = callSubMenuItemsProcess();
+    for (SubMenuItem subMenu : subMenuItems) {
+      DefaultMenuItem item = buildSubMenuItem(subMenuItems.indexOf(subMenu), subMenu);
+      mainMenuModel.addElement(item);
+    }
+
+    List<Application> thirdPartyApps = getThirdPartyApps();
+    for (Application app : thirdPartyApps) {
+      DefaultMenuItem item = buildThirdPartyItem(thirdPartyApps.indexOf(app), app);
+      mainMenuModel.addElement(item);
+    }
   }
 
-  private List<Application> initThirdPartyApps() {
+  private void initTaskParams(ITask workingTask, boolean isWorkingOnATask) {
+    this.workingTaskId = Objects.isNull(workingTask) ? Ivy.wfTask().getId() : workingTask.getId();
+    this.isWorkingOnATask = isWorkingOnATask;
+  }
+
+  private DefaultMenuItem buildRegularMenuItem(String id, String name, MenuKind menuKind, String url, String iconClass) {
+    DefaultMenuItem item = new DefaultMenuItem(name);
+    item.setId(id);
+    item.setIcon(iconClass);
+    item.setIconPos(ICON_POSITION);
+    item.setStyleClass(menuKind.name());
+    item.setContainerStyleClass(id);
+    item.setUrl(url);
+    item.setUpdate(DEFAULT_MENU_PROCESS);
+    item.setProcess(DEFAULT_MENU_PROCESS);
+    item.setPartialSubmit(true);
+    item.setImmediate(true);
+    item.setGlobal(true);
+    item.setCommand(ApplicationSelectionMenuBean.MENU_COMMAND_METHOD);
+
+    item.setParam(TASK_ID, this.workingTaskId);
+    item.setParam(IS_WORKING_ON_TASK, this.isWorkingOnATask);
+    item.setParam(MENU_KIND, menuKind);
+    item.setParam(MENU_URL, StringUtils.defaultIfEmpty(url, EMPTY));
+    return item;
+  }
+
+  private DefaultMenuItem buildSubMenuItem(int index, SubMenuItem subMenuItem) {
+    DefaultMenuItem item = buildRegularMenuItem(String.format(SUB_MENU_ID_FORMAT, index),
+        subMenuItem.getLabel(),
+        subMenuItem.getMenuKind(),
+        subMenuItem.buildLink(),
+        subMenuItem.getIcon());
+
+    if (subMenuItem.getMenuKind() == MenuKind.EXTERNAL_LINK
+        || subMenuItem.getMenuKind() == MenuKind.THIRD_PARTY
+        || !UrlUtils.isIvyUrl(subMenuItem.getLink())) {
+      item.getParams().clear();
+      item.setTarget(EXTERNAL_MENU_TARGET);
+      item.setId(String.format(EXTERNAL_MENU_ID_FORMAT, index));
+    } else {
+      item.setUrl(null);
+    }
+
+    return item;
+  }
+
+  private DefaultMenuItem buildThirdPartyItem(int menuIndex, Application application) {
+    String iconClass = String.format("fa %s", application.getMenuIcon());
+    DefaultMenuItem item = buildRegularMenuItem(String.format(THIRD_PARTY_MENU_ID_FORMAT, menuIndex),
+        ApplicationMultiLanguage.getDisplayNameInCurrentLocale(application),
+        MenuKind.THIRD_PARTY,
+        UrlUtils.buildUrl(application.getLink()),
+        iconClass);
+
+    item.setTarget(EXTERNAL_MENU_TARGET);
+    item.getParams().clear();
+    return item;
+  }
+
+  private DefaultMenuItem buildDashboardItem() {
+    String dashboardLink = PortalNavigator.getPortalStartUrl();
+    String defaultHomepageConfig = HomepageUtils.getHomepageName();
+    HomepageType configHomepageType = HomepageType.getType(defaultHomepageConfig);
+    if (HomepageType.DASHBOARD != configHomepageType) {
+      Map<String, String> params = new HashMap<>();
+      params.put(DASHBOARD_PARAM, Boolean.TRUE.toString());
+      dashboardLink = PortalNavigator.getPortalDashboardPageUrl(params);
+    }
+    DefaultMenuItem dashboardItem = buildRegularMenuItem(String.format(MENU_ID_FORMAT, 0),
+        Ivy.cms().co(DASHBOARD),
+        MenuKind.DASHBOARD,
+        dashboardLink,
+        DASHBOARD_ICON);
+
+    dashboardItem.setUrl(null);
+    return dashboardItem;
+  }
+
+  private List<Application> getThirdPartyApps() {
     RegisteredApplicationService service = new RegisteredApplicationService();
     List<Application> applications = service.findAllThirdPartyApplication();
     Collections.sort(applications, new ApplicationIndexAscendingComparator());
     return applications;
   }
 
-  public void buildMenuView(List<Application> thirPartyApplications) {
-    buildMainMenuItems(thirPartyApplications);
-  }
-
-  private void buildMainMenuItems(List<Application> thirPartyApplications) {
-    menuItems = new ArrayList<>();
-
-    Button dashboardMenuItem = new Button();
-    dashboardMenuItem.setValue(Ivy.cms().co(DASHBOARD));
-    dashboardMenuItem.setIcon("icon ivyicon-house-chimney-2");
-    dashboardMenuItem.setHref(PortalNavigator.getPortalStartUrl());
-    dashboardMenuItem.setStyleClass(ACTIVE_MENU);
-    menuItems.add(dashboardMenuItem);
-
-    for (Application application : thirPartyApplications) {
-      Button menuItem = new Button();
-      menuItem.setValue(ApplicationMultiLanguage.getDisplayNameInCurrentLocale(application));
-      menuItem.getAttributes().put(THIRD_PARTY, true);
-      menuItem.setHref(application.getLink());
-      menuItem.getAttributes().put(APP_NAME, application.getName());
-      menuItem.setIcon("fa " + application.getMenuIcon());
-      menuItems.add(menuItem);
-    }
-  }
-
-  /**
-   * Load all submenu items for current app
-   * By call loadSubMenuItems callable process
-   * Then return list of SubMenuItem
-   */
   @SuppressWarnings("unchecked")
-  private void buildSubMenuItems() {
-    subMenuItems = new ArrayList<>();
+  private List<SubMenuItem> callSubMenuItemsProcess() {
+    List<SubMenuItem> subMenuItems = new ArrayList<>();
     Map<String, Object> response = IvyAdapterService.startSubProcess(LOAD_SUB_MENU_PROCESS, null,
         Arrays.asList(PortalLibrary.PORTAL_TEMPLATE.getValue()));
     try {
@@ -100,14 +187,11 @@ public class MenuView implements Serializable {
     } catch (Exception e) {
       Ivy.log().error("Cannot load SubMenuItems {0}", e.getMessage());
     }
-  }
-
-  public List<Button> getMenuItems() {
-    return menuItems;
-  }
-
-  public List<SubMenuItem> getSubMenuItems() {
     return subMenuItems;
+  }
+
+  public MenuModel getMainMenuModel() {
+    return mainMenuModel;
   }
 
   public MenuModel getBreadcrumbModel() {
