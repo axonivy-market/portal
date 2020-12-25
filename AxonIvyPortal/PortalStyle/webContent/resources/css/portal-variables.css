@@ -157,7 +157,7 @@
   --statistic-panel-header-border: var(--ivy-primary-color-white);
   --statistic-filter-accordion-panel-border: var(--ivy-primary-color-grey-light);
   --chart-info-header-font-weight: bold;
-  --chart-info-label-font-weight: bold;
+  --chart-name-font-weight: bold;
   --chart-name-font-size: 1.6rem;
   --chart-name-line-height: 2rem;
   --chart-filter-header-font-size: 2rem;
