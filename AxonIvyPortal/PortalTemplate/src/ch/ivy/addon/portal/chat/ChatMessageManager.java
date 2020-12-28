@@ -23,7 +23,6 @@ import com.google.gson.Gson;
 
 import ch.ivy.addon.portalkit.persistence.converter.UserEntityConverter;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
-import ch.ivy.addon.portalkit.util.RedeploymentUtils;
 import ch.ivyteam.ivy.scripting.objects.File;
 import ch.ivyteam.ivy.security.IUser;
 import ch.ivyteam.ivy.workflow.CaseState;
