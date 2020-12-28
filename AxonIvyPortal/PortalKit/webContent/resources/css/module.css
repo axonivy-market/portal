@@ -4479,12 +4479,6 @@ body .ui-dialog.ui-widget.export-express-dialog {
 /*=================== NOTE HISTORY END ===================*/
 
 /*================= START EXCEPTION ===================== */
-.portal-exception-detail-group .code-block {
-  padding: 5px 8px;
-  margin-right: 5px;
-  border-radius: 3px;
-}
-
 .portal-exception-detail-group .error-label {
   margin-right: 5px;
   display: inline-block;

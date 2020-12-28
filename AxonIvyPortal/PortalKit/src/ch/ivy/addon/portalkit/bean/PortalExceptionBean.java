@@ -1,15 +1,16 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
-import static org.apache.commons.lang3.StringUtils.EMPTY;
+import org.apache.commons.lang3.StringUtils;
 import org.primefaces.application.exceptionhandler.ExceptionInfo;
 
+import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.bpm.error.BpmError;
-import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.ServerFactory;
 import ch.ivyteam.ivy.system.ISystemProperty;
 import ch.ivyteam.util.IvyRuntimeException;
@@ -23,14 +24,12 @@ public class PortalExceptionBean implements Serializable {
   private static final String PROCESS_ELEMENT = "processElement";
   private static final String SHOW_STACK_TRACE = "Errors.ShowDetailsToEndUser";
   private String uniqueId;
+  private String pmv;
+  private String processElement;
+  private ExceptionInfo exceptionInfo;
 
   public boolean getErrorDetailToEndUser() {
-    try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(() -> findShowErrorDetailSystemProperty());
-    } catch (Exception e) {
-      Ivy.log().error(e);
-    }
-    return true;
+    return IvyExecutor.executeAsSystem(() -> findShowErrorDetailSystemProperty());
   }
 
   private boolean findShowErrorDetailSystemProperty() {
@@ -39,35 +38,45 @@ public class PortalExceptionBean implements Serializable {
     return systemProp.getBooleanValue();
   }
 
-  public Object findExceptionValueByKey(ExceptionInfo exceptionInfo, String key) {
-    Object value = EMPTY;
-    this.uniqueId = null;
-    if (exceptionInfo == null) {
-      return value;
+  public void buildExceptionDialog(ExceptionInfo exceptionInfo) {
+    if (exceptionInfo != null) {
+      this.exceptionInfo = exceptionInfo;
+
+      if (exceptionInfo.getException() != null) {
+        Throwable exception = this.exceptionInfo.getException();
+        if (exception.getCause() instanceof BpmError) {
+          BpmError bpmError = (BpmError) exception.getCause();
+          this.uniqueId = bpmError.getId();
+          this.processElement = getStringValue(bpmError.getThreadLocalValue(PROCESS_ELEMENT));
+          this.pmv = getStringValue(bpmError.getThreadLocalValue(PMV));
+        } else {
+          IvyRuntimeException ivyRuntimeException = new IvyRuntimeException(exception);
+          this.uniqueId = ivyRuntimeException.getId();
+          this.processElement = getStringValue(ivyRuntimeException.getThreadLocalValue(PROCESS_ELEMENT));
+          this.pmv = getStringValue(ivyRuntimeException.getThreadLocalValue(PMV));
+        }
+      }
     }
-
-    if (exceptionInfo.getException().getCause() instanceof BpmError) {
-      BpmError bpmError = (BpmError) exceptionInfo.getException().getCause();
-      this.uniqueId = bpmError.getId();
-      value = bpmError.getThreadLocalValue(key);
-    } else {
-      IvyRuntimeException ivyRuntimeException = new IvyRuntimeException(exceptionInfo.getException());
-      this.uniqueId = ivyRuntimeException.getId();
-      value = ivyRuntimeException.getThreadLocalValue(key);
-    }
-    return value;
+  }
+  
+  private String getStringValue(Object object) {
+    return Objects.toString(object, "");
   }
 
-  public Object getUniqueId(ExceptionInfo exceptionInfo) {
-    findExceptionValueByKey(exceptionInfo, EMPTY);
-    return this.uniqueId;
+  public ExceptionInfo getExceptionInfo() {
+    return exceptionInfo;
   }
 
-  public Object getPmvName(ExceptionInfo exceptionInfo) {
-    return findExceptionValueByKey(exceptionInfo, PMV);
+  public String getUniqueId() {
+    return uniqueId;
   }
 
-  public Object getProcessElementId(ExceptionInfo exceptionInfo) {
-    return findExceptionValueByKey(exceptionInfo, PROCESS_ELEMENT);
+  public String getPmv() {
+    return StringUtils.replaceChars(pmv, "$", "/");
   }
+
+  public String getProcessElement() {
+    return processElement;
+  }
+
 }
