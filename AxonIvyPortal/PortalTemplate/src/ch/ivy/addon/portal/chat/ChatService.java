@@ -111,7 +111,8 @@ public class ChatService {
     }
     Queue<ResponseInfo> responses = getResponses();
     // unhandled chat responses happen because of clicking chat button before async response is created
-    ChatResponse unhandledChatResponse = getChatResponseFromHistory(() -> getUnhandledResponseWhenRegisteringMessage(clientId), sessionUserName());
+    ChatResponse unhandledChatResponse =
+        getChatResponseFromHistory(() -> getUnhandledResponseWhenRegisteringMessage(clientId), sessionUserName());
     if (unhandledChatResponse != null) {
       response.resume(toJson(unhandledChatResponse));
     } else {
@@ -150,10 +151,9 @@ public class ChatService {
   @Path("/unread/senders")
   @Produces(MediaType.APPLICATION_JSON)
   public List<String> getSendersOfUnreadMessages() {
-    List<String> participants = Arrays.asList(sessionUserName());
-    List<ChatMessage> unreadMessagesInMemory = ChatMessageManager.getUnreadMessagesInMemory(participants);
+    List<ChatMessage> unreadMessages = ChatMessageManager.getUnreadMessages(sessionUserName());
 
-    return ListUtils.emptyIfNull(unreadMessagesInMemory).stream().map(ChatMessage::getSender).distinct()
+    return ListUtils.emptyIfNull(unreadMessages).stream().map(ChatMessage::getSender).distinct()
         .collect(Collectors.toList());
   }
 
@@ -167,8 +167,9 @@ public class ChatService {
   }
 
   public synchronized void performReadingMessage(String participant, String clientId, String actor) {
-    ChatMessageManager.deletedReadMessagesInMemory(Arrays.asList(actor), participant);
-    ChatResponse lastChatResponse = getChatResponseFromHistory(() -> ConcurrentChatUtils.getRecentChatResponseHistory(actor).peekLast(), actor);
+    ChatMessageManager.deletedReadMessages(actor, participant);
+    ChatResponse lastChatResponse =
+        getChatResponseFromHistory(() -> ConcurrentChatUtils.getRecentChatResponseHistory(actor).peekLast(), actor);
     if (lastChatResponse != null && !isDuplicatedAction(participant, lastChatResponse, READ_PRIVATE_MESSAGE_ACTION)) {
       resumeAsyncResponse(actor, new ChatResponse(READ_PRIVATE_MESSAGE_ACTION, participant), clientId, actor);
     }
@@ -177,16 +178,16 @@ public class ChatService {
   @POST
   @Path("/group/read/{caseId}/{clientId}")
   @Produces(MediaType.APPLICATION_JSON)
-  public Response readGroupMessage(@PathParam("caseId") String caseId,
-      @PathParam("clientId") String clientId) {
+  public Response readGroupMessage(@PathParam("caseId") String caseId, @PathParam("clientId") String clientId) {
     handleAction(() -> performReadingGroupMessage(caseId, clientId, sessionUserName()),
         () -> ClusterChatEventSender.readGroupMessage(caseId, clientId, sessionUserName()));
     return Response.ok(SUCCESSFUL).build();
   }
 
   public synchronized void performReadingGroupMessage(String caseId, String clientId, String actor) {
-    ChatMessageManager.deletedReadMessagesInMemoryForGroupChat(Arrays.asList(actor), caseId);
-    ChatResponse lastChatResponse = getChatResponseFromHistory(() -> ConcurrentChatUtils.getRecentChatResponseHistory(actor).peekLast(), actor);
+    ChatMessageManager.deletedReadMessagesForGroupChat(actor, caseId);
+    ChatResponse lastChatResponse =
+        getChatResponseFromHistory(() -> ConcurrentChatUtils.getRecentChatResponseHistory(actor).peekLast(), actor);
     if (lastChatResponse != null && !isDuplicatedAction(caseId, lastChatResponse, READ_GROUP_MESSAGE_ACTION)) {
       resumeAsyncResponse(actor, new ChatResponse(READ_GROUP_MESSAGE_ACTION, caseId), clientId, actor);
     }
@@ -228,7 +229,7 @@ public class ChatService {
   public synchronized void performSendingPrivateMessage(String messageText, String receiver, String clientId,
       String actor, long nodeId) {
     ChatMessage message = new ChatMessage(actor, Arrays.asList(receiver), messageText);
-    ChatMessageManager.storeUnreadMessageInMemory(message);
+    ChatMessageManager.storeUnreadMessage(message);
 
     ChatResponse chatResponse = new ChatResponse(GET_MESSAGES_ACTION, message, clientId);
     // If receiver is online, send message directly to receiver's response.
@@ -295,7 +296,7 @@ public class ChatService {
     for (String member : members) {
       resumeAsyncResponse(member, chatResponse, clientId, actor);
     }
-    ChatMessageManager.storeUnreadMessageInMemoryForGroupChat(message, Long.parseLong(caseId));
+    ChatMessageManager.storeUnreadMessageForGroupChat(message, Long.parseLong(caseId));
   }
 
   /**
@@ -622,5 +623,5 @@ public class ChatService {
       return supplier.get();
     }
   }
-  
+
 }

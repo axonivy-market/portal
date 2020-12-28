@@ -1,6 +1,6 @@
 package ch.ivy.addon.portalkit.service;
 
-
+import static ch.ivy.addon.portalkit.enums.FilterType.ALL_ADMINS;
 import static ch.ivy.addon.portalkit.enums.FilterType.ALL_USERS;
 import static ch.ivy.addon.portalkit.enums.FilterType.ONLY_ME;
 
@@ -35,6 +35,23 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
     try {
       Filter<T> publicFilterQuery =
           repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ALL_USERS.name()).and()
+              .numberField(FILTER_GROUP_ID).isEqualTo(filterGroupId);
+      Result<T> queryResult = publicFilterQuery.orderBy().textField(FILTER_NAME).ascending().limit(LIMIT_20).execute();
+      long totalCount = queryResult.totalCount();
+      if(totalCount > LIMIT_20) {
+        queryResult = publicFilterQuery.orderBy().textField(FILTER_NAME).ascending().limit(Math.toIntExact(totalCount)).execute();
+      }
+      return queryResult.getAll();
+    } catch (Exception e) {
+      Ivy.log().error(e);
+      return new ArrayList<>();
+    }
+  }
+
+  public List<T> getPublicFilterForAdmin(Long filterGroupId) {
+    try {
+      Filter<T> publicFilterQuery =
+          repo().search(getType()).textField(FILTER_TYPE).isEqualToIgnoringCase(ALL_USERS.name()).or().textField(FILTER_TYPE).isEqualToIgnoringCase(ALL_ADMINS.name()).and()
               .numberField(FILTER_GROUP_ID).isEqualTo(filterGroupId);
       Result<T> queryResult = publicFilterQuery.orderBy().textField(FILTER_NAME).ascending().limit(LIMIT_20).execute();
       long totalCount = queryResult.totalCount();
@@ -83,14 +100,19 @@ public abstract class AbstractFilterService<T extends AbstractFilterData<?>> ext
   }
 
   public boolean isFilterExisted(String name, FilterType type, Long filterGroupId) {
-    if (FilterType.ONLY_ME == type) {
-      return repo().search(getType()).numberField(USER_ID).isEqualTo(Ivy.session().getSessionUser().getId()).and()
-          .textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name()).and().textField(FILTER_NAME)
-          .isEqualToIgnoringCase(name).and().numberField(FILTER_GROUP_ID).isEqualTo(filterGroupId).limit(1).execute().count() > 0;
-    } else {
-      return repo().search(getType()).textField(FILTER_NAME).isEqualToIgnoringCase(name).and().textField(FILTER_TYPE)
-          .isEqualToIgnoringCase(ALL_USERS.name()).and().numberField(FILTER_GROUP_ID).isEqualTo(filterGroupId).limit(1)
-          .execute().count() > 0;
+    switch (type) {
+      case ONLY_ME:
+        return repo().search(getType()).numberField(USER_ID).isEqualTo(Ivy.session().getSessionUser().getId()).and()
+            .textField(FILTER_TYPE).isEqualToIgnoringCase(ONLY_ME.name()).and().textField(FILTER_NAME)
+            .isEqualToIgnoringCase(name).and().numberField(FILTER_GROUP_ID).isEqualTo(filterGroupId).limit(1).execute().count() > 0;
+      case ALL_ADMINS:
+        return repo().search(getType()).textField(FILTER_NAME).isEqualToIgnoringCase(name).and().textField(FILTER_TYPE)
+            .isEqualToIgnoringCase(ALL_ADMINS.name()).and().numberField(FILTER_GROUP_ID).isEqualTo(filterGroupId).limit(1)
+            .execute().count() > 0;
+      default:
+        return repo().search(getType()).textField(FILTER_NAME).isEqualToIgnoringCase(name).and().textField(FILTER_TYPE)
+            .isEqualToIgnoringCase(ALL_USERS.name()).and().numberField(FILTER_GROUP_ID).isEqualTo(filterGroupId).limit(1)
+            .execute().count() > 0;
     }
   }
 

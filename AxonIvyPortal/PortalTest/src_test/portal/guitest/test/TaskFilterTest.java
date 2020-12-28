@@ -5,10 +5,13 @@ import static junit.framework.Assert.assertFalse;
 import static junit.framework.Assert.assertTrue;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.commons.codec.binary.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
@@ -101,6 +104,38 @@ public class TaskFilterTest extends BaseTest {
 		taskWidgetPage.saveFilter(filterName);
 		assertEquals(filterName, taskWidgetPage.getFilterName());
 	}
+
+	@Test
+	public void testSaveTaskFilterForAdmin() {
+		List<String> adminStates = Arrays.asList("Ready for joining", "Suspended", "In progress", "Reserved", "Delayed", "Done", "Destroyed");
+		login(TestAccount.ADMIN_USER);
+
+		MainMenuPage mainMenuPage = new MainMenuPage();
+		TaskWidgetPage taskWidgetPage = mainMenuPage.openTaskList();
+
+		String filterName = "For admins";
+		taskWidgetPage.openAdvancedFilter("Description", "description");
+		taskWidgetPage.filterByDescription("Maternity");
+
+		WebElement saveFilterDialog = taskWidgetPage.openSaveFilterDialog();
+		assertEquals("All users", saveFilterDialog.findElement(By.cssSelector("label[for='task-widget:filter-save-form:save-filter-type-radio:1']")).getText());
+		taskWidgetPage.click(saveFilterDialog.findElement(By.cssSelector("a")));
+		taskWidgetPage.waitAjaxIndicatorDisappear();
+
+    taskWidgetPage.filterByStates(adminStates);
+
+    saveFilterDialog = taskWidgetPage.openSaveFilterDialog();
+    assertEquals("All administrators", saveFilterDialog.findElement(By.cssSelector("label[for='task-widget:filter-save-form:save-filter-type-radio:1']")).getText());
+    taskWidgetPage.click(saveFilterDialog.findElement(By.cssSelector("a")));
+    taskWidgetPage.waitAjaxIndicatorDisappear();
+
+    taskWidgetPage.saveAdminFilter(filterName);
+
+    login(TestAccount.DEMO_USER);
+    mainMenuPage = new MainMenuPage();
+    taskWidgetPage = mainMenuPage.openTaskList();
+    assertFalse(taskWidgetPage.isExistedFilter(filterName));
+  }
 
 	@Test
 	public void testSaveTaskFilterOnDifferentTaskList() {
