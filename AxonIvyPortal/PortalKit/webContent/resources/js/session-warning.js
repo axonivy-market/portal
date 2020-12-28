@@ -21,11 +21,12 @@ var PortalSessionWarning = function() {
 
     // Using IFrame Task template
     if ($("#iFrame").length > 0) {
-      $("#iFrame").get(0).onkeypress = updateInteractionStatusInIFrame;
-      $("#iFrame").get(0).onclick = updateInteractionStatusInIFrame;
-      $("#iFrame").get(0).onmousedown = updateInteractionStatusInIFrame;
-      $("#iFrame").get(0).ontouchstart = updateInteractionStatusInIFrame;
-      $("#iFrame").get(0).onscroll = updateInteractionStatusInIFrame;
+      $("#iFrame").get(0).contentDocument.onload = updateInteractionStatusInIFrame;
+      $("#iFrame").get(0).contentDocument.onkeypress = updateInteractionStatusInIFrame;
+      $("#iFrame").get(0).contentDocument.onclick = updateInteractionStatusInIFrame;
+      $("#iFrame").get(0).contentDocument.onmousedown = updateInteractionStatusInIFrame;
+      $("#iFrame").get(0).contentDocument.ontouchstart = updateInteractionStatusInIFrame;
+      $("#iFrame").get(0).contentDocument.onscroll = updateInteractionStatusInIFrame;
     }
   },
 
