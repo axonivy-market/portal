@@ -212,11 +212,11 @@ As0 f7 116 96 307 96 #arcP
 As0 f7 0 0.11179083649811018 0 0 #arcLabel
 As0 f5 actionTable 'out=in;
 ' #txt
-As0 f5 actionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
-import ch.ivy.addon.portalkit.bean.ApplicationSelectionMenuBean;
+As0 f5 actionCode 'import ch.addon.portal.generic.menu.MenuView;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 
-ApplicationSelectionMenuBean applicationSelectionMenuBean = ManagedBeans.get("applicationSelectionMenuBean") as ApplicationSelectionMenuBean;
-applicationSelectionMenuBean.navigateToTargetPage(in.isClickOnBreadcrumb, in.destinationBreadcrumbPage);' #txt
+MenuView menuView = ManagedBeans.get("menuView") as MenuView;
+menuView.navigateToTargetPage(in.isClickOnBreadcrumb, in.destinationBreadcrumbPage);' #txt
 As0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
