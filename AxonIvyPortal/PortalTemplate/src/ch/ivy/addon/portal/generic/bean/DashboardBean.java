@@ -149,10 +149,15 @@ public class DashboardBean implements Serializable {
     List<Dashboard> dashboards = new ArrayList<>(Arrays.asList(mapper.readValue(read, Dashboard[].class)));
     for (int i = 0; i < dashboards.size(); i++) {
       boolean canRead = false;
-      for (String permission : dashboards.get(i).getPermissions()) {
-        canRead = StringUtils.startsWith(permission, "#") ? StringUtils.equals(Ivy.session().getSessionUser().getMemberName(), permission) : PermissionUtils.doesSessionUserHaveRole(permission);
-        if (canRead) {
-          break;
+      List<String> permissions = dashboards.get(i).getPermissions();
+      if (permissions == null) {
+        canRead = true;
+      } else {
+        for (String permission : permissions) {
+          canRead = StringUtils.startsWith(permission, "#") ? StringUtils.equals(Ivy.session().getSessionUser().getMemberName(), permission) : PermissionUtils.doesSessionUserHaveRole(permission);
+          if (canRead) {
+            break;
+          }
         }
       }
       if (!canRead) {
@@ -275,11 +280,15 @@ public class DashboardBean implements Serializable {
         .filter(widget -> widget.getId().startsWith("task_"))
         .map(DashboardWidget::getId).collect(Collectors.toList());
 
-    Integer maxId = Collections.max(ids.stream().map(id -> Integer.parseInt(id.replace("task_", ""))).collect(Collectors.toList()));
-    if (maxId == null || maxId < 0) {
+    if (CollectionUtils.isEmpty(ids)) {
       result = "task_0";
     } else {
-      result = "task_".concat(Integer.toString(maxId + 1));
+      Integer maxId = Collections.max(ids.stream().map(id -> Integer.parseInt(id.replace("task_", ""))).collect(Collectors.toList()));
+      if (maxId == null || maxId < 0) {
+        result = "task_0";
+      } else {
+        result = "task_".concat(Integer.toString(maxId + 1));
+      }
     }
     return result;
   }
