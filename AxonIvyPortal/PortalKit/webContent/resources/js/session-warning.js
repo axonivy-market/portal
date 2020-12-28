@@ -21,7 +21,6 @@ var PortalSessionWarning = function() {
 
     // Using IFrame Task template
     if ($("#iFrame").length > 0) {
-      $("#iFrame").get(0).onload = updateInteractionStatusInIFrame;
       $("#iFrame").get(0).onkeypress = updateInteractionStatusInIFrame;
       $("#iFrame").get(0).onclick = updateInteractionStatusInIFrame;
       $("#iFrame").get(0).onmousedown = updateInteractionStatusInIFrame;
