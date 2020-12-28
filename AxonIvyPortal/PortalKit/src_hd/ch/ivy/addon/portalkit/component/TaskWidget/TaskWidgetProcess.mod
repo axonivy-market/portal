@@ -214,14 +214,22 @@ Ts0 f26 expr out #txt
 Ts0 f26 480 406 480 458 #arcP
 Ts0 f27 actionTable 'out=in;
 ' #txt
-Ts0 f27 actionCode 'import ch.ivy.addon.portalkit.bean.PermissionBean;
+Ts0 f27 actionCode 'import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.bean.PermissionBean;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 
 if(!in.dataModel.compactMode) {
 	TaskFilterService taskFilterService = new TaskFilterService();
 	in.taskPrivateFilters = taskFilterService.getPrivateFilterForCurrentUser(in.taskFilterGroupId) as List;
-	in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId) as List;
+
+	PermissionBean permissionBean = ManagedBeans.get("permissionBean") as PermissionBean;
+	if (permissionBean.hasAdminPermission()) {
+		in.taskPublicFilters = taskFilterService.getPublicFilterForAdmin(in.taskFilterGroupId) as List;
+	} else {
+		in.taskPublicFilters = taskFilterService.getPublicFilter(in.taskFilterGroupId) as List;
+	}
+
 	in.taskPublicFilters.add(in.dataModel.buildDefaultTaskFilterData());
 	in.filterType = FilterType.ONLY_ME;
 }
