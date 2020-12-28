@@ -3135,8 +3135,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .statistic-carousel.ui-carousel .ui-carousel-header .ui-carousel-header-title .chart-info {
   float: left;
-  width: 20px;
-  height: 20px;
+  margin-left: 5px;
+  vertical-align: middle;
 }
 
 .statistic-carousel .ui-carousel-header-title .chart-name {
@@ -3146,7 +3146,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   text-align: left;
   float: left;
   overflow: hidden;
-  margin-top: 2px;
 }
 
 .statistic-carousel.card .ui-carousel-header.ui-widget-header {
@@ -3326,24 +3325,23 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   margin-left: -.5em;
 }
 
-.edit-statistic-container .chart-container {
-  height: 100%;
+.edit-statistic-container .card.chart-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.edit-statistic-container .chart-list .chart-container .separator {
+  margin: 0px -23px 16px -23px;
 }
 
 .edit-statistic-container .chart-list .chart-container .label, .chart-filter-header-text {
   text-align: left;
 }
 
-.edit-statistic-container .chart-list .chart-container .add-link {
-  text-align: right;
-}
-
-.edit-statistic-container .chart-list .chart-container .label, .edit-statistic-container .chart-list .chart-container .add-link
-  {
+.edit-statistic-container .chart-list .chart-container .add-button {
   display: block;
-  margin-top: 5px;
-  width: 50%;
-  float: left;
+  margin: 16px 0px 0px auto;
 }
 
 .edit-statistic-container td:not(.align-bottom) {
@@ -3386,7 +3384,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .statistic-chart {
-  margin-bottom: -16px;
   position: relative;
   width: 100%;
   height: 100%;
@@ -3423,15 +3420,12 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   width: 80px;
   float: right;
   text-align: right;
-  margin-top: 12px;
 }
 
 .dashboard-chart-panel .chart-actions-container .chart-action {
   display: inline;
-}
-
-.dashboard-chart-panel .chart-actions-container .chart-action {
   margin: 4px;
+  vertical-align: middle;
 }
 
 .dashboard-chart-panel .chart-actions-container .chart-action.fa-close {
@@ -3441,8 +3435,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .dashboard-chart-panel .chart-info {
   margin-right: 10px;
   align-self: baseline;
-  margin-top: 0.5em;
-  margin-left: 3px;
+  margin-left: 5px;
+  vertical-align: middle;
 }
 
 .dashboard-chart-panel .card, .edit-statistic-container .card, .statistic-widget.compact-mode .statistic-carousel.card {
@@ -3453,9 +3447,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding: 0 0 0.5em 0 !important;
 }
 
-.dashboard-chart-panel .chart-name {
-  margin-top: 8px !important;
-  margin-bottom: 0;
+.dashboard-chart-panel .card .chart-name {
+  margin: 0px;
   display: inline-block;
   max-width: calc(100% - 30px);
   white-space: nowrap;
