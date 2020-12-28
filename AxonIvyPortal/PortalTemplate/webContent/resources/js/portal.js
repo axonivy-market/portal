@@ -151,6 +151,7 @@ var MainMenu = {
     this.highlightMenuItem();
     this.responsiveToolkit = responsiveToolkit;
     this.$mainMenuToggle = $('.sidebar-anchor');
+    this.menulinks = $('.layout-sidebar .layout-menu a');
     this.bindEvents();
   },
   
@@ -164,20 +165,29 @@ var MainMenu = {
         updateStatisticCarousel();
       }
     });
+
+    this.menulinks.on('click', function(e) {
+      // If click on Thirdparty menu -> remove active class of itself
+      if (MainMenu.isThirdPartyMenu(e)) {
+        MainMenu.highlightMenuItem();
+      }
+    });
   },
 
   highlightMenuItem : function() {
-    var menuKind = MainMenu.getMenuBasedOnPageUrl();
-    var $activeMenuItem = $(".layout-menu").find("a.ripplelink." + menuKind);
-    if ($activeMenuItem.length > 0) {
-      var activeMenuItems = $(".layout-menu .active-menuitem").not(".submenu-container");
-      if ($activeMenuItem.parent().hasClass('active-menuitem') && activeMenuItems.length === 1) {
+    let $currentPageMenu = this.getMenuItemByCurrentPage();
+    let activeMenuItemList = this.getActiveMenu();
+
+    if ($currentPageMenu.length > 0) {
+      if ($currentPageMenu.parent().hasClass('active-menuitem') && activeMenuItemList.length === 1) {
         return;
       }
-      this.removeActiveMenu(activeMenuItems);
-      $activeMenuItem.parent().addClass('active-menuitem');
-      PF('main-menu').addMenuitem($activeMenuItem.parent().attr('id'));
+      this.removeActiveMenu(activeMenuItemList);
+      $currentPageMenu.parent().addClass('active-menuitem');
+      PF('main-menu').addMenuitem($currentPageMenu.parent().attr('id'));
     }
+    // Remove active class for thirdparty menu
+    this.removeActiveOnExternalMenu();
   },
 
   removeActiveMenu : function(activeMenuItems) {
@@ -187,13 +197,40 @@ var MainMenu = {
     });
   },
 
-  getMenuBasedOnPageUrl : function() {
-    var pageUrl = window.location.pathname;
+  getCurentPageByPageUrl : function() {
+    let pageUrl = window.location.pathname;
     for (var i = 0; i < MainMenu.urlToMenu.length; i++) {
       if (pageUrl.indexOf(MainMenu.urlToMenu[i][0]) > -1) {
         return MainMenu.urlToMenu[i][1];
       }
     }
+  },
+
+  getMenuItemByCurrentPage : function() {
+    let currentPage = this.getCurentPageByPageUrl();
+    return $(".layout-menu").find("a.ripplelink." + currentPage);
+  },
+
+  getActiveMenu : function() {
+    return $(".layout-menu li.active-menuitem");
+  },
+
+  removeActiveOnExternalMenu : function() {
+    // Thirdparty
+    let thirdPartyActiveMenus = $(".layout-menu li.active-menuitem[class*='thirdparty-menu-item']");
+    this.removeActiveMenu(thirdPartyActiveMenus);
+
+    // External
+    let exteralActiveMenus = $(".layout-menu li.active-menuitem[class*='external-menu-item-']");
+    this.removeActiveMenu(exteralActiveMenus);
+  },
+
+  isThirdPartyMenu : function(e) {
+    let menuClass = e.currentTarget.className;
+    if (menuClass && (menuClass.indexOf('THIRD_PARTY') !== -1 || menuClass.indexOf('EXTERNAL_LINK') !== -1)) {
+      return true;
+    }
+    return false;
   }
 }
 
