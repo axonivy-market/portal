@@ -1,5 +1,5 @@
-co: name={passwordResetSuccess} description={} changed={2020-12-11 09:41:58 CET} changedby={vtlong} visualorder={0} guid={176285382072D570} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1762853820B438EE} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:33 CET} validto={} changed={2020-12-11 09:41:58 CET} changedby={vtlong} properties={} id={}
-val: guid={1762853822B509BD} datatype={} isdefault={false} langid={fr} description={} validfrom={2017-07-24 11:49:05 CEST} validto={} changed={2020-12-11 09:41:58 CET} changedby={vtlong} properties={} id={}
+co: name={passwordResetSuccess} description={} changed={2020-12-22 04:35:58 CET} changedby={dhtlong} visualorder={0} guid={176285382072D570} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1762853820B438EE} datatype={} isdefault={false} langid={es} description={} validfrom={2020-12-22 04:35:58 CET} validto={} changed={2020-12-22 04:35:58 CET} changedby={dhtlong} properties={} id={}
+val: guid={1762853822B509BD} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-12-22 04:35:58 CET} validto={} changed={2020-12-22 04:35:58 CET} changedby={dhtlong} properties={} id={}
 val: guid={176285382147D5BF} datatype={} isdefault={true} langid={en} description={} validfrom={2014-07-21 14:44:47 CEST} validto={} changed={2020-12-11 09:41:58 CET} changedby={vtlong} properties={} id={}
-val: guid={1762853822182848} datatype={} isdefault={false} langid={de} description={} validfrom={2015-11-20 15:55:35 CET} validto={} changed={2020-12-11 09:41:57 CET} changedby={vtlong} properties={} id={}
+val: guid={1762853822182848} datatype={} isdefault={false} langid={de} description={} validfrom={2020-12-22 04:35:58 CET} validto={} changed={2020-12-22 04:35:58 CET} changedby={dhtlong} properties={} id={}

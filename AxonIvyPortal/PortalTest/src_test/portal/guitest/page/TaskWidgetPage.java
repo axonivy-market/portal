@@ -467,6 +467,33 @@ public class TaskWidgetPage extends TemplatePage {
     ensureNoBackgroundRequest();
   }
 
+  public void filterByStates(List<String> selectedStates) {
+    waitForElementDisplayed(By.cssSelector("button[id$='state-filter:filter-open-form:advanced-filter-command']"),
+        true);
+    click(By.cssSelector("button[id$='state-filter:filter-open-form:advanced-filter-command']"));
+
+    waitForElementDisplayed(By.cssSelector("[id$='state-filter:filter-input-form:state-selection']"),
+        true);
+    WebElement stateContainer = findElementByCssSelector("[id$='state-filter:filter-input-form:state-selection']");
+    stateContainer.findElements(By.cssSelector("td")).forEach(checkbox -> {
+      WebElement label = checkbox.findElement(By.cssSelector("label"));
+      if (selectedStates.stream().anyMatch(state -> StringUtils.equals(state, label.getText())) && checkbox.findElement(By.cssSelector(".ui-chkbox-box.ui-state-active")) == null) {
+        click(checkbox.findElement(By.cssSelector(".ui-chkbox-box.ui-state-default")));
+        waitAjaxIndicatorDisappear();
+        ensureNoBackgroundRequest();
+      }
+      if (!selectedStates.stream().anyMatch(state -> StringUtils.equals(state, label.getText())) && checkbox.findElement(By.cssSelector(".ui-chkbox-box.ui-state-active")) != null) {
+        click(checkbox.findElement(By.cssSelector(".ui-chkbox-box.ui-state-active")));
+        waitAjaxIndicatorDisappear();
+        ensureNoBackgroundRequest();
+      }
+    });
+    
+    click(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"));
+    waitAjaxIndicatorDisappear();
+    ensureNoBackgroundRequest();
+  }
+
   public void removeResponsibleFilter() {
     waitForElementDisplayed(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"),
         true);
@@ -527,14 +554,29 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void saveFilter(String filterName) {
-    click(By.id(taskWidgetId + ":filter-save-action"));
-    waitAjaxIndicatorDisappear();
-    waitForElementDisplayed(By.id(taskWidgetId + ":filter-save-form:save-filter-set-name-input"), true);
+    openSaveFilterDialog();
     WebElement filterNameInput = findElementById(taskWidgetId + ":filter-save-form:save-filter-set-name-input");
     enterKeys(filterNameInput, filterName);
     click(findElementById(taskWidgetId + ":filter-save-form:filter-save-command"));
     waitAjaxIndicatorDisappear();
     ensureNoBackgroundRequest();
+  }
+
+  public void saveAdminFilter(String filterName) {
+    openSaveFilterDialog();
+    WebElement filterNameInput = findElementById(taskWidgetId + ":filter-save-form:save-filter-set-name-input");
+    enterKeys(filterNameInput, filterName);
+    click(findElementByCssSelector("label[for='task-widget:filter-save-form:save-filter-type-radio:1']"));
+    click(findElementById(taskWidgetId + ":filter-save-form:filter-save-command"));
+    waitAjaxIndicatorDisappear();
+    ensureNoBackgroundRequest();
+  }
+
+  public WebElement openSaveFilterDialog() {
+    click(By.id(taskWidgetId + ":filter-save-action"));
+    waitAjaxIndicatorDisappear();
+    waitForElementDisplayed(By.id(taskWidgetId + ":filter-save-form:save-filter-set-name-input"), true);
+    return findElementById("task-widget:save-filter-set-dialog");
   }
 
   public void openSavedFilters(String filterName) {
@@ -547,6 +589,12 @@ public class TaskWidgetPage extends TemplatePage {
         return;
       }
     }
+  }
+
+  public boolean isExistedFilter(String filterName) {
+    click(findElementById("task-widget:filter-selection-form:filter-name"));
+    List<WebElement> saveFilters = findListElementsByCssSelector("a[id$='user-defined-filter']");
+    return saveFilters.stream().anyMatch(filter -> StringUtils.equals(filter.getText(), filterName));
   }
 
   public String getResponsible() {

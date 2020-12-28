@@ -1,5 +1,5 @@
-co: name={stackTrace} description={} changed={2020-12-10 08:52:50 CET} changedby={nqhoan} visualorder={0} guid={15F714422EA905C9} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={1764BA36C05C57DE} datatype={} isdefault={false} langid={de} description={} validfrom={2020-12-10 08:52:35 CET} validto={} changed={2020-12-10 08:52:49 CET} changedby={nqhoan} properties={} id={}
+co: name={stackTrace} description={} changed={2020-12-22 04:35:57 CET} changedby={dhtlong} visualorder={0} guid={15F714422EA905C9} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1764BA36C05C57DE} datatype={} isdefault={false} langid={de} description={} validfrom={2020-12-22 04:35:57 CET} validto={} changed={2020-12-22 04:35:57 CET} changedby={dhtlong} properties={} id={}
 val: guid={15F714422ED2B25B} datatype={} isdefault={true} langid={en} description={} validfrom={2016-01-22 12:17:37 CET} validto={} changed={2017-10-31 08:10:11 CET} changedby={chnam} properties={} id={}
-val: guid={1764BA36C7EC2286} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-12-10 08:52:32 CET} validto={} changed={2020-12-10 08:52:50 CET} changedby={nqhoan} properties={} id={}
+val: guid={1764BA36C7EC2286} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-12-22 04:35:57 CET} validto={} changed={2020-12-22 04:35:57 CET} changedby={dhtlong} properties={} id={}
 val: guid={168DA54BFEB693CF} datatype={} isdefault={false} langid={es} description={} validfrom={2019-02-11 03:13:33 CET} validto={} changed={2019-02-11 03:13:33 CET} changedby={ntminh01} properties={} id={}
