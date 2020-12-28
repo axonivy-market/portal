@@ -1,5 +1,5 @@
-co: name={forgotPasswordError} description={} changed={2020-12-03 04:50:39 CET} changedby={vtlong} visualorder={0} guid={175F98C5F0F605BA} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
-val: guid={175F98C5F2EEB3B7} datatype={} isdefault={false} langid={es} description={} validfrom={2020-09-28 04:07:40 CEST} validto={} changed={2020-12-03 04:50:39 CET} changedby={vtlong} properties={} id={}
+co: name={forgotPasswordError} description={} changed={2020-12-22 04:35:57 CET} changedby={dhtlong} visualorder={0} guid={175F98C5F0F605BA} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={175F98C5F2EEB3B7} datatype={} isdefault={false} langid={es} description={} validfrom={2020-12-22 04:35:57 CET} validto={} changed={2020-12-22 04:35:57 CET} changedby={dhtlong} properties={} id={}
 val: guid={175F98C5F1E3E5C5} datatype={} isdefault={true} langid={en} description={} validfrom={2020-09-16 05:39:07 CEST} validto={} changed={2020-12-03 04:50:39 CET} changedby={vtlong} properties={} id={}
-val: guid={175F98C5F14AB019} datatype={} isdefault={false} langid={de} description={} validfrom={2020-09-28 04:07:40 CEST} validto={} changed={2020-12-03 04:50:39 CET} changedby={vtlong} properties={} id={}
-val: guid={175F98C5F38FF1CD} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-09-28 04:07:40 CEST} validto={} changed={2020-12-03 04:50:39 CET} changedby={vtlong} properties={} id={}
+val: guid={175F98C5F14AB019} datatype={} isdefault={false} langid={de} description={} validfrom={2020-12-22 04:35:57 CET} validto={} changed={2020-12-22 04:35:57 CET} changedby={dhtlong} properties={} id={}
+val: guid={175F98C5F38FF1CD} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-12-22 04:35:57 CET} validto={} changed={2020-12-22 04:35:57 CET} changedby={dhtlong} properties={} id={}

@@ -70,7 +70,7 @@
                 </p:commandLink>
                 <p:overlayPanel id="filter-name-overlay-panel" styleClass="filter-name-overlay-panel" for="filter-name"
                   hideEffect="fade" my="left top" at="left bottom">
-                  <h:panelGroup id="private-filters" rendered="#{not empty data.taskPublicFilters}">
+                  <h:panelGroup id="public-filters" rendered="#{not empty data.taskPublicFilters}">
                     <div class="filter-type-label">
                       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/publicFilter')}</span>
                     </div>
@@ -93,7 +93,7 @@
                   </h:panelGroup>
                   <p:separator rendered="#{not empty data.taskPublicFilters and not empty data.taskPrivateFilters}"
                     styleClass="filter-separator" />
-                  <h:panelGroup id="public-filters" rendered="#{not empty data.taskPrivateFilters}">
+                  <h:panelGroup id="private-filters" rendered="#{not empty data.taskPrivateFilters}">
                     <div class="filter-type-label">
                       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/privateFilter')}</span>
                     </div>
@@ -310,6 +310,15 @@
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" resizable="false"
     modal="true" closeOnEscape="true" styleClass="save-filter-set-dialog" responsive="true">
     <p:ajax event="close" listener="#{logic.clearSaveFilterDialog}" resetValues="true" />
+
+    <p:outputPanel styleClass="ui-messages ui-widget" rendered="#{taskWidgetBean.adminTaskStateIncluded}">
+      <p:outputPanel styleClass="ui-messages-info ui-corner-all">
+        <span class="ui-messages-info-icon" />
+        <h:outputText styleClass="ui-messages-info-summary"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/adminFilterSetWarning')}" />
+      </p:outputPanel>
+    </p:outputPanel>
+
     <p:messages id="save-task-filter-message">
       <p:autoUpdate />
     </p:messages>
@@ -325,9 +334,9 @@
           <f:selectItem id="only-me"
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeOnlyMe')}"
             itemValue="ONLY_ME" />
-          <f:selectItem id="all-users" itemDisabled="#{!permissionBean.hasAdminPermission() or taskWidgetBean.adminTaskStateIncluded}"
-            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeAllUsers')}"
-            itemValue="ALL_USERS" />
+          <f:selectItem id="all-users" itemDisabled="#{!permissionBean.hasAdminPermission()}"
+            itemLabel="#{taskWidgetBean.adminTaskStateIncluded ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeAdmin') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeAllUsers')}"
+            itemValue="#{taskWidgetBean.adminTaskStateIncluded ? 'ALL_ADMINS' : 'ALL_USERS'}" />
         </p:selectOneRadio>
       </h:panelGrid>
       <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">

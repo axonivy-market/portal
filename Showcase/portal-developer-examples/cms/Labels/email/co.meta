@@ -1,3 +1,5 @@
-co: name={email} description={} changed={2020-03-09 10:33:38 CET} changedby={nvthang01} visualorder={0} guid={16711D02C71AD679} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+co: name={email} description={} changed={2020-12-22 04:36:17 CET} changedby={dhtlong} visualorder={0} guid={16711D02C71AD679} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1768884DC29714FB} datatype={} isdefault={false} langid={de} description={} validfrom={2020-12-22 04:36:17 CET} validto={} changed={2020-12-22 04:36:17 CET} changedby={dhtlong} properties={} id={}
 val: guid={170BEA4866EDC4D2} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-03-09 10:33:38 CET} validto={} changed={2020-03-09 10:33:38 CET} changedby={nvthang01} properties={} id={}
 val: guid={16711D02C743CEF5} datatype={} isdefault={true} langid={en} description={} validfrom={2018-11-14 11:41:54 CET} validto={} changed={2018-11-14 11:41:54 CET} changedby={Oliver} properties={} id={}
+val: guid={1768884DC4B4A040} datatype={} isdefault={false} langid={es} description={} validfrom={2020-12-22 04:36:17 CET} validto={} changed={2020-12-22 04:36:17 CET} changedby={dhtlong} properties={} id={}
