@@ -156,10 +156,10 @@ function numberingChartPanel() {
   var chartInfo = $('.chart-info:eq(1)');
   appendStepAnnotation(chartInfo, "2", -20, 25);
   var chartActions = $('.chart-actions-container:eq(1)');
-  appendStepAnnotation(chartActions, "3", chartActions.height(), chartActions.width()/2);
+  appendStepAnnotation(chartActions, "3", -20, -25);
   var chartCanvas = $('.chartjs-render-monitor:eq(1)');
   appendStepAnnotation(chartCanvas, "4", chartCanvas.width()/4, chartCanvas.height()/2 + 10);
-  appendStepAnnotation(chartCanvas, "5", 15, chartCanvas.height()/2 - 50);
+  appendStepAnnotation(chartCanvas, "5", 15, chartCanvas.width()*0.8);
 }
 
 function highlightCustomCaseList() {
