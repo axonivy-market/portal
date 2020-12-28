@@ -223,16 +223,8 @@ public final class ChatMessageManager {
     List<ChatMessage> unreadMessages =
         StringUtils.isNotBlank(userProperty) ? UserEntityConverter.jsonToEntities(userProperty, ChatMessage.class)
             : new ArrayList<>();
-
-    try {
-      unreadMessages.removeAll(
-          unreadMessages.stream().filter(x -> isDestroyedOrDoneCase(x.getSender())).collect(Collectors.toList()));
-    } catch (ClassCastException e) {
-      log().info("PMV could be redeployed", e);
-      RedeploymentUtils.filterObjectOfCurrentClassLoader(unreadMessages, ChatMessage.class);
-      unreadMessages.removeAll(
-          unreadMessages.stream().filter(x -> isDestroyedOrDoneCase(x.getSender())).collect(Collectors.toList()));
-    }
+    unreadMessages.removeAll(
+        unreadMessages.stream().filter(x -> isDestroyedOrDoneCase(x.getSender())).collect(Collectors.toList()));
     String messagesAsJson = entitiesToJson(unreadMessages);
     setUserProperty(participant, messagesAsJson);
     return unreadMessages;
