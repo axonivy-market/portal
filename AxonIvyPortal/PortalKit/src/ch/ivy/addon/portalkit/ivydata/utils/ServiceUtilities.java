@@ -104,7 +104,7 @@ public class ServiceUtilities {
   public static List<IRole> findAllRoles(IApplication app) {
     requireNonNull(app);
     List<IRole> roles = getRolesInSessionCache(app);
-    return CollectionUtils.isEmpty(roles) ? getAllVisibleRolesWithCaching(app) : roles;
+    return CollectionUtils.isEmpty(roles) ? getAllVisibleRoles(app) : roles;
   }
 
   /**
@@ -116,7 +116,7 @@ public class ServiceUtilities {
   public static List<IRole> findAllRolesWithSortingByDisplayName(IApplication app) {
     requireNonNull(app);
     List<IRole> roles = getRolesInSessionCache(app);
-    return CollectionUtils.isEmpty(roles) ? getAllVisibleRolesWithCachingAndSorting(app) : roles;
+    return CollectionUtils.isEmpty(roles) ? getAllVisibleRolesWithSortingByDisplayName(app) : roles;
   }
 
   @SuppressWarnings("unchecked")
@@ -126,13 +126,13 @@ public class ServiceUtilities {
     return cacheValueOpt.isPresent() ? (List<IRole>) cacheValueOpt.get() : new ArrayList<IRole>();
   }
 
-  private static List<IRole> getAllVisibleRolesWithCaching(IApplication app) {
+  private static List<IRole> getAllVisibleRoles(IApplication app) {
     List<IRole> roles = getAllVisibleIvyRoles(app);
     cacheRolesInSessionCache(app, roles);
     return roles;
   }
 
-  private static List<IRole> getAllVisibleRolesWithCachingAndSorting(IApplication app) {
+  private static List<IRole> getAllVisibleRolesWithSortingByDisplayName(IApplication app) {
     List<IRole> roles = getAllVisibleIvyRoles(app);
     roles.sort((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName()));
     cacheRolesInSessionCache(app, roles);
