@@ -729,9 +729,15 @@ body .portal-cancel-button.ui-widget.ui-button .ui-icon,
 .approval-comment-container .card,
 .express-email-container .card,
 .express-fieldset .card,
-.express-view-form .card {
+.express-view-form .card,
+.available-form-elements .available-elements-panel.card,
+.form-definition-table .available-elements-panel.card {
   box-shadow: var(--card-box-shadow);
   border-radius: var(--card-border-radius); }
+
+.available-form-elements .available-elements-panel.card,
+.form-definition-table .available-elements-panel.card {
+  border-color: transparent;}
 
 /*Style for stages breadcrumb --------------------------------------------------------------------------------------*/
 .stages-chain .current i {
