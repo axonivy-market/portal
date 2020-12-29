@@ -151,10 +151,9 @@ public class ChatService {
   @Path("/unread/senders")
   @Produces(MediaType.APPLICATION_JSON)
   public List<String> getSendersOfUnreadMessages() {
-    List<ChatMessage> unreadMessages = ChatMessageManager.getUnreadMessages(sessionUserName());
-
-    return ListUtils.emptyIfNull(unreadMessages).stream().map(ChatMessage::getSender).distinct()
-        .collect(Collectors.toList());
+    List<UnreadChatMessage> unreadMessages = ChatMessageManager.getUnreadMessages(sessionUserName());
+    return ListUtils.emptyIfNull(unreadMessages).stream().map(UnreadChatMessage::getSenderId)
+        .map(senderId -> ChatMessageManager.getSender(senderId)).distinct().collect(Collectors.toList());
   }
 
   @POST
