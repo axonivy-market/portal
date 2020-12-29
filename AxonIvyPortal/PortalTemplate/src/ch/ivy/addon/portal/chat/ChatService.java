@@ -153,7 +153,8 @@ public class ChatService {
   public List<String> getSendersOfUnreadMessages() {
     List<UnreadChatMessage> unreadMessages = ChatMessageManager.getUnreadMessages(sessionUserName());
     return ListUtils.emptyIfNull(unreadMessages).stream().map(UnreadChatMessage::getSenderId)
-        .map(senderId -> ChatMessageManager.getSender(senderId)).distinct().collect(Collectors.toList());
+        .map(senderId -> ChatMessageManager.getSender(senderId)).filter(Objects::nonNull).distinct()
+        .collect(Collectors.toList());
   }
 
   @POST

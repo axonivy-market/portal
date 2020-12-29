@@ -13,6 +13,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -217,7 +218,7 @@ public final class ChatMessageManager {
 
   static String getSender(String senderId) {
     if (StringUtils.isNotBlank(senderId) && !isGroupChat(senderId)) {
-      return findUserById(senderId).getName();
+      return Optional.ofNullable(findUserById(senderId)).map(IUser::getName).orElse(null);
     }
     return senderId;
   }
@@ -256,8 +257,6 @@ public final class ChatMessageManager {
       if (findcase != null && (findcase.getState() == CaseState.DESTROYED || findcase.getState() == CaseState.DONE)) {
         return true;
       }
-    } else if (findUserById(senderId) == null) {
-      return true;
     }
     return false;
   }
