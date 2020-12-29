@@ -246,7 +246,7 @@ public final class ChatMessageManager {
 
   static String getSender(String senderId) {
     if (StringUtils.isNotBlank(senderId) && !isGroupChat(senderId)) {
-      return findUserById(senderId).getName();
+      return Optional.ofNullable(findUserById(senderId)).map(IUser::getName).orElse(null);
     }
     return senderId;
   }
