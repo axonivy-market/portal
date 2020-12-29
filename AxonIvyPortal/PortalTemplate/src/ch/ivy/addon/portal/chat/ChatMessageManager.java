@@ -285,8 +285,6 @@ public final class ChatMessageManager {
       if (findcase != null && (findcase.getState() == CaseState.DESTROYED || findcase.getState() == CaseState.DONE)) {
         return true;
       }
-    } else if (findUserById(senderId) == null) {
-      return true;
     }
     return false;
   }
