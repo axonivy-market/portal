@@ -1,3 +1,7 @@
+.layout-content .task-template-content {
+  padding-bottom: 30px;
+}
+
 /* Override fieldset */
 .ui-fieldset-legend {
   padding: 10px !important;
@@ -237,6 +241,13 @@
 .form-elements-container .ui-panelgrid-content.ui-widget-content.ui-grid.ui-grid-responsive {
   padding-left: 0;
   padding-right: 0;
+  border-color: transparent;
+  border-radius: 5px;
+}
+
+.form-definition-table .available-elements-panel.card,
+.available-form-elements .available-elements-panel.card {
+  border-color: transparent;
 }
 
 .available-form-elements .ui-datagrid-content.ui-widget-content {
