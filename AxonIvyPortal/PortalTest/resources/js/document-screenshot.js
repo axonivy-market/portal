@@ -20,6 +20,11 @@ function createRedMediumOutline($element) {
   $element.addClass("red-medium-outline");
 }
 
+function createRedThickOutlineWithOffset($element) {
+  $element.addClass("red-thick-outline");
+  $element.addClass("red-outline-thick-offset");
+}
+
 /***IMPLEMENTATION TO DECORATE PAGES - WHICH ARE CALLED IN SELENIUM****/
 function highlightDashboardWidget() {
   createRedMediumOutline($("#task-widget"));
@@ -85,7 +90,7 @@ function numberingTaskFilterAndSort() {
 }
 
 function highlightProcessNavigation() {
-  createRedThickOutline($('.submenu.PROCESS'));
+  createRedThickOutlineWithOffset($('.ripplelink.PROCESS'));
   createRedThickOutline($('.widget.process-widget'));
 }
 
@@ -138,7 +143,7 @@ function highlightAdminSettings() {
 }
 
 function highlightCaseMenuItem() {
-  createRedThickOutline($('.submenu.CASE'));
+  createRedThickOutlineWithOffset($('.ripplelink.CASE'));
 }
 
 function highlightShowMoreNoteLink() {
@@ -146,7 +151,7 @@ function highlightShowMoreNoteLink() {
 }
 
 function highlightStatisticNavigation() {
-   createRedMediumOutline($('.submenu.STATISTICS'));
+   createRedThickOutlineWithOffset($('.ripplelink.STATISTICS'));
    createRedMediumOutline($('#statistics-widget\\:statistic-link\\:statistic-link'));
 }
 
@@ -397,7 +402,7 @@ function highlightTaskActionItem(taskIndex, actionIndex) {
 }
 
 function highlightShowAllProcesses() {
-  createRedThickOutline($('.submenu.PROCESS'));
+  createRedThickOutlineWithOffset($('.ripplelink.PROCESS'));
   createRedMediumOutline($("[id$='process-widget:process-link:process-link']"));
 }
 
