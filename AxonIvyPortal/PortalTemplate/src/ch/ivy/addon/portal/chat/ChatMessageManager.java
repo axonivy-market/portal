@@ -17,6 +17,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
@@ -243,10 +244,13 @@ public final class ChatMessageManager {
     List<UnreadChatMessage> unreadMessages =
         StringUtils.isNotBlank(userProperty) ? UserEntityConverter.jsonToEntities(userProperty, UnreadChatMessage.class)
             : new ArrayList<>();
-    unreadMessages
-        .removeAll(unreadMessages.stream().filter(x -> isObsoleteSender(x.getSenderId())).collect(Collectors.toList()));
-    String messagesAsJson = entitiesToJson(unreadMessages);
-    setUnreadMessagesToUserProperty(participant, messagesAsJson);
+    List<UnreadChatMessage> obsoleteUnreadMessages =
+        unreadMessages.stream().filter(x -> isObsoleteSender(x.getSenderId())).collect(Collectors.toList());
+    if (CollectionUtils.isNotEmpty(obsoleteUnreadMessages)) {
+      unreadMessages.removeAll(obsoleteUnreadMessages);
+      String messagesAsJson = entitiesToJson(unreadMessages);
+      setUnreadMessagesToUserProperty(participant, messagesAsJson);
+    }
     return unreadMessages;
   }
 
