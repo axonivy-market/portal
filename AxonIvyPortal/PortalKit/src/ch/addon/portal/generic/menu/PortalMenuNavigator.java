@@ -1,5 +1,6 @@
 package ch.addon.portal.generic.menu;
 
+import static java.util.Objects.isNull;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.io.IOException;
@@ -8,7 +9,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -38,6 +38,10 @@ public class PortalMenuNavigator {
 
   public static void navigateToTargetPage(Map<String, List<String>> params) throws IOException {
     MenuKind selectedMenuKind = MenuKind.getKind(getMenuParam(params, PortalMenuItem.MENU_KIND));
+    if (isNull(selectedMenuKind)) {
+      return;
+    }
+
     switch (selectedMenuKind) {
       case DASHBOARD:
       case CUSTOM:
@@ -67,7 +71,7 @@ public class PortalMenuNavigator {
   }
 
   public static boolean showWarningDialog(Map<String, List<String>> params) {
-    boolean isWorkingOnATask = Boolean.valueOf(getMenuParam(params, PortalMenuItem.IS_WORKING_ON_TASK));
+    boolean isWorkingOnATask = Boolean.valueOf(getMenuParam(params, PortalMenuItem.WORKING_ON_TASK));
     TaskState workingTaskState = getWorkingTaskState(params);
     if (isWorkingOnATask && workingTaskState != TaskState.DONE) {
       PrimeFacesUtils.executeScript("PF('task-losing-confirmation-dialog').show()");
@@ -78,11 +82,11 @@ public class PortalMenuNavigator {
 
   private static TaskState getWorkingTaskState(Map<String, List<String>> params) {
     ITask workingTask = TaskUtils.findTaskById(Long.valueOf(getMenuParam(params, PortalMenuItem.TASK_ID)));
-    return Objects.isNull(workingTask) ? Ivy.wfTask().getState() : workingTask.getState();
+    return isNull(workingTask) ? Ivy.wfTask().getState() : workingTask.getState();
   }
 
   private static String getMenuParam(Map<String, List<String>> params, String key) {
-    if (params != null) {
+    if (!isNull(params)) {
       List<String> values = params.get(key);
       return CollectionUtils.isEmpty(values) ? null : values.get(0);
     }

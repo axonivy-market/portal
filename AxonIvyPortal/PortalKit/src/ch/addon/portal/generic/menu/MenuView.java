@@ -1,12 +1,13 @@
 package ch.addon.portal.generic.menu;
 
+import static java.util.Objects.isNull;
+
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -36,8 +37,8 @@ import ch.ivyteam.ivy.workflow.ITask;
 public class MenuView implements Serializable {
   private static final long serialVersionUID = 3188259472933435953L;
 
-  public final static String DASHBOARD_PARAM = "isShowDashboard";
-  public final static String DASHBOARD = "/ch.ivy.addon.portalkit.ui.jsf/common/dashboard";
+  private final static String DASHBOARD_PARAM = "isShowDashboard";
+  private final static String DASHBOARD = "/ch.ivy.addon.portalkit.ui.jsf/common/dashboard";
 
   private DefaultMenuModel mainMenuModel;
   private MenuModel breadcrumbModel;
@@ -77,41 +78,38 @@ public class MenuView implements Serializable {
   }
 
   private void initTaskParams(ITask workingTask, boolean isWorkingOnATask) {
-    this.workingTaskId = Objects.isNull(workingTask) ? Ivy.wfTask().getId() : workingTask.getId();
+    this.workingTaskId = isNull(workingTask) ? Ivy.wfTask().getId() : workingTask.getId();
     this.isWorkingOnATask = isWorkingOnATask;
   }
 
   private DefaultMenuItem buildSubMenuItem(SubMenuItem subMenuItem) {
-    DefaultMenuItem item = null;
-    if (subMenuItem.getMenuKind() == MenuKind.EXTERNAL_LINK
-        || subMenuItem.getMenuKind() == MenuKind.THIRD_PARTY
-        || !UrlUtils.isIvyUrl(subMenuItem.getLink())) {
-      item = new PortalMenuBuilder(subMenuItem.getLabel(), subMenuItem.getMenuKind(), isWorkingOnATask)
-          .url(subMenuItem.buildLink())
-          .icon(subMenuItem.getIcon())
-          .onClick(PortalMenuItem.DEFAULT_EXTERNAL_ON_CLICK_METHOD)
-          .target(PortalMenuItem.DEFAULT_EXTERNAL_MENU_TARGET)
-          .build();
-      item.getParams().clear();
-    } else {
-      item = new PortalMenuBuilder(subMenuItem.getLabel(), subMenuItem.getMenuKind(), isWorkingOnATask)
-          .url(subMenuItem.buildLink())
-          .icon(subMenuItem.getIcon())
-          .build();
-      item.setUrl(null);
+    boolean isExternalLink = isExternalLink(subMenuItem);
+    DefaultMenuItem item = new PortalMenuBuilder(subMenuItem.getLabel(), subMenuItem.getMenuKind(), isWorkingOnATask)
+        .url(subMenuItem.buildLink())
+        .icon(subMenuItem.getIcon())
+        .cleanParam(isExternalLink)
+        .build();
+
+    if (isExternalLink) {
+      item.setOnclick(PortalMenuItem.DEFAULT_EXTERNAL_MENU_TARGET);
+      item.setTarget(PortalMenuItem.DEFAULT_EXTERNAL_MENU_TARGET);
     }
     return item;
   }
 
+  private boolean isExternalLink(SubMenuItem subMenuItem) {
+    return subMenuItem.getMenuKind() == MenuKind.EXTERNAL_LINK || subMenuItem.getMenuKind() == MenuKind.THIRD_PARTY
+        || !UrlUtils.isIvyUrl(subMenuItem.getLink());
+  }
+
   private DefaultMenuItem buildThirdPartyItem(Application application) {
     String iconClass = String.format("fa %s", application.getMenuIcon());
-    DefaultMenuItem item = new PortalMenuBuilder(ApplicationMultiLanguage.getDisplayNameInCurrentLocale(application), MenuKind.THIRD_PARTY, this.isWorkingOnATask)
+    return new PortalMenuBuilder(ApplicationMultiLanguage.getDisplayNameInCurrentLocale(application), MenuKind.THIRD_PARTY, this.isWorkingOnATask)
         .icon(iconClass)
         .url(UrlUtils.buildUrl(application.getLink()))
         .workingTaskId(this.workingTaskId)
+        .cleanParam(true)
         .build();
-    item.getParams().clear();
-    return item;
   }
 
   private DefaultMenuItem buildDashboardItem() {
@@ -124,13 +122,11 @@ public class MenuView implements Serializable {
       dashboardLink = PortalNavigator.getPortalDashboardPageUrl(params);
     }
 
-    PortalMenuItem item = new PortalMenuBuilder(Ivy.cms().co(DASHBOARD), MenuKind.DASHBOARD, this.isWorkingOnATask)
+    return new PortalMenuBuilder(Ivy.cms().co(DASHBOARD), MenuKind.DASHBOARD, this.isWorkingOnATask)
         .icon(PortalMenuItem.DEFAULT_DASHBOARD_ICON)
         .url(dashboardLink)
         .workingTaskId(this.workingTaskId)
         .build();
-    item.setUrl(null);
-    return item;
   }
 
   public MenuModel getMainMenuModel() {
