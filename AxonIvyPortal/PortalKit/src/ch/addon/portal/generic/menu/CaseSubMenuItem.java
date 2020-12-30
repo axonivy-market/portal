@@ -7,7 +7,7 @@ import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 
 public class CaseSubMenuItem extends SubMenuItem {
   public CaseSubMenuItem() {
-    this.icon = "icon ivyicon-layout-bullets";
+    this.icon = "si si-layout-bullets";
     this.menuKind = MenuKind.CASE;
     this.label = ApplicationMultiLanguage.getCmsValueByUserLocale("/ch.ivy.addon.portalkit.ui.jsf/caseList/cases");
     this.name = HomepageType.CASE.name();
