@@ -53,10 +53,9 @@ public class MainMenuPage extends TemplatePage {
     return new StatisticWidgetPage();
   }
 
-  public void clickThirdPartyAppByIndex(int index) {
-    String thirdpartyCssSelector = String.format("li[class*='thirdparty-menu-item-%d'] > a", index);
-    waitForElementDisplayed(By.cssSelector(thirdpartyCssSelector), true);
-    clickByCssSelector(thirdpartyCssSelector);
+  public void clickThirdPartyApp() {
+    waitForElementDisplayed(By.cssSelector("li[class*='thirdparty-menu-item'] > a"), true);
+    clickByCssSelector("li[class*='thirdparty-menu-item'] > a");
   }
 
   private void waitForProcessesPageAfterSelectProcessesCategory() {
