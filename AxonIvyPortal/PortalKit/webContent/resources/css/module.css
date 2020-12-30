@@ -4498,3 +4498,8 @@ body .ui-dialog.ui-widget.export-express-dialog {
   word-break: break-all;
 }
 /*==================== END EXCEPTION ===================*/
+
+/* Fix bug: calendar button jumped when clicked (Edge, Chrome) */
+.ui-fluid .ui-calendar, .ui-fluid .ui-calendar input {
+  display: block;
+}
