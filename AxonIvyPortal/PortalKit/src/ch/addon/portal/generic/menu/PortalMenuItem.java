@@ -1,5 +1,6 @@
 package ch.addon.portal.generic.menu;
 
+import static java.util.Objects.isNull;
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
 import java.util.Map;
@@ -18,16 +19,16 @@ public class PortalMenuItem extends DefaultMenuItem {
   public final static String MENU_KIND = "menuKind";
   public final static String MENU_URL = "menuUrl";
   public final static String TASK_ID = "taskId";
-  public final static String IS_WORKING_ON_TASK = "isWorkingOnATask";
+  public final static String WORKING_ON_TASK = "isWorkingOnATask";
   /* Menu id format */
   public final static String MENU_ID_FORMAT = "menu-item-%s";
   public final static String SUB_MENU_ID_FORMAT = "sub-menu-item-%s";
   public final static String THIRD_PARTY_MENU_ID_FORMAT = "thirdparty-menu-item-%s";
   public final static String EXTERNAL_MENU_ID_FORMAT = "external-menu-item-%s";
   public final static String MENU_CLASS_FORMAT = "%s %s";
-
-  public final static String ICON_POSITION = "right";
   public final static String MENU_CLASS_SUFFIX = "-menu-js";
+  
+  public final static String DEFAULT_ICON_POSITION = "right";
   public final static String DEFAULT_MENU_PROCESS = "@this";
   public final static String DEFAULT_EXTERNAL_MENU_TARGET = "_blank";
 
@@ -35,23 +36,21 @@ public class PortalMenuItem extends DefaultMenuItem {
   public static final String DEFAULT_EXTERNAL_ON_CLICK_METHOD = "MainMenu.removeActiveOnExternalMenu()";
 
   public final static String BREADCRUMB_DESTINATION = "destination";
-  public final static String DASHBOARD_PARAM = "isShowDashboard";
   public final static String DEFAULT_DASHBOARD_ICON = "si si-layout-dashboard";
-  public final static String DASHBOARD = "/ch.ivy.addon.portalkit.ui.jsf/common/dashboard";
 
   private MenuKind menuKind;
 
   public PortalMenuItem(PortalMenuBuilder builder) {
     this.setValue(builder.name);
     this.setIcon(builder.icon);
-    this.setIconPos(ICON_POSITION);
+    this.setIconPos(DEFAULT_ICON_POSITION);
 
-    this.setId(builder.id == null ? generateMenuId(builder.menuKind) : builder.id);
+    this.setId(isNull(builder.id) ? generateMenuId(builder.menuKind) : builder.id);
     this.setStyleClass(String.format(MENU_CLASS_FORMAT, StringUtils.defaultIfEmpty(builder.styleClass, EMPTY), builder.menuKind.name()));
     this.setContainerStyleClass(String.format(MENU_CLASS_FORMAT, StringUtils.defaultIfEmpty(builder.containerStyleClass, EMPTY), this.getId()));
-    this.setUpdate(builder.update == null ? DEFAULT_MENU_PROCESS : builder.update);
-    this.setProcess(builder.process == null ? DEFAULT_MENU_PROCESS : builder.process);
-    this.setCommand(builder.commandMethod == null ? DEFAULT_MENU_COMMAND_METHOD : builder.commandMethod);
+    this.setUpdate(isNull(builder.update) ? DEFAULT_MENU_PROCESS : builder.update);
+    this.setProcess(isNull(builder.process) ? DEFAULT_MENU_PROCESS : builder.process);
+    this.setCommand(isNull(builder.commandMethod) ? DEFAULT_MENU_COMMAND_METHOD : builder.commandMethod);
 
     this.setPartialSubmit(true);
     this.setImmediate(true);
@@ -59,21 +58,22 @@ public class PortalMenuItem extends DefaultMenuItem {
     this.setDisabled(builder.disabled);
     this.setUrl(builder.url);
 
-    if (builder.onClick == null && (builder.menuKind == MenuKind.EXTERNAL_LINK || builder.menuKind == MenuKind.THIRD_PARTY)) {
+    this.setOnclick(builder.onClick);
+    if (isNull(builder.onClick) && (builder.menuKind == MenuKind.EXTERNAL_LINK || builder.menuKind == MenuKind.THIRD_PARTY)) {
       this.setOnclick(DEFAULT_EXTERNAL_ON_CLICK_METHOD);
     }
-    else {
-      this.setOnclick(builder.onClick);
-    }
 
-    if (builder.target == null
-        && (builder.menuKind == MenuKind.EXTERNAL_LINK || builder.menuKind == MenuKind.THIRD_PARTY)) {
+    this.setTarget(builder.target);
+    if (isNull(builder.target) && (builder.menuKind == MenuKind.EXTERNAL_LINK || builder.menuKind == MenuKind.THIRD_PARTY)) {
       this.setTarget(DEFAULT_EXTERNAL_MENU_TARGET);
-    } else {
-      this.setTarget(builder.target);
     }
 
-    generateMenuParams(builder);
+    if (builder.isCleanParams) {
+      this.setParams(null);
+    } else {
+      generateMenuParams(builder);
+      this.setUrl(null);
+    }
   }
 
   public MenuKind getMenuKind() {
@@ -81,14 +81,14 @@ public class PortalMenuItem extends DefaultMenuItem {
   }
 
   private void generateMenuParams(PortalMenuBuilder builder) {
-    long workingTaskId = builder.workingTaskId == null ? Ivy.wfTask().getId() : builder.workingTaskId;
+    long workingTaskId = isNull(builder.workingTaskId) ? Ivy.wfTask().getId() : builder.workingTaskId;
     this.setParam(TASK_ID, workingTaskId);
-    this.setParam(IS_WORKING_ON_TASK, builder.isWorkingOnATask);
+    this.setParam(WORKING_ON_TASK, builder.isWorkingOnATask);
     this.setParam(MENU_KIND, builder.menuKind);
     this.setParam(MENU_URL, StringUtils.defaultIfEmpty(builder.url, EMPTY));
 
     Map<String, Object> customParams = builder.params;
-    if (customParams == null) {
+    if (isNull(customParams)) {
       return;
     }
 
@@ -139,6 +139,7 @@ public class PortalMenuItem extends DefaultMenuItem {
     private Long workingTaskId;
     private boolean isWorkingOnATask;
     private boolean disabled;
+    private boolean isCleanParams;
 
     public PortalMenuBuilder(String name, MenuKind menuKind, boolean isWorkingOnATask) {
       this.name = name;
@@ -203,6 +204,11 @@ public class PortalMenuItem extends DefaultMenuItem {
     
     public PortalMenuBuilder disabled(boolean disabled) {
       this.disabled = disabled;
+      return this;
+    }
+
+    public PortalMenuBuilder cleanParam(boolean isCleanParams) {
+      this.isCleanParams = isCleanParams;
       return this;
     }
 
