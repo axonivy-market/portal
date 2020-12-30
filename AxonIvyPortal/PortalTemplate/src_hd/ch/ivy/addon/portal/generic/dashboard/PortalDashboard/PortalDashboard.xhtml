@@ -2,7 +2,7 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
-  xmlns:jsf="http://xmlns.jcp.org/jsf">
+  xmlns:jsf="http://xmlns.jcp.org/jsf" xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 <h:body>
   <ui:composition template="/layouts/BasicTemplate.xhtml">
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard')}</ui:define>
@@ -21,7 +21,7 @@
           <p:tab id="dashboard" title="#{dashboard.title}" 
             titleStyleClass="dashboard__tab-title #{dashboardBean.dashboards.size() eq 1 ? 'dashboard__tab-title--one-dashboard' :''}">
             <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack">
-              <p:repeat id="widgets" var="widget" value="#{dashboard.widgets}" varStatus="status">
+              <ui:repeat id="widgets" var="widget" value="#{dashboard.widgets}" varStatus="status">
                 <div class="grid-stack-item" data-gs-x="#{widget.x}" data-gs-y="#{widget.y}" data-gs-id="#{widget.id}"
                   data-gs-width="#{widget.width}" data-gs-height="#{widget.height}" data-gs-autoPosition="#{widget.autoPosition}"
                   data-gs-no-resize="#{dashboardBean.isReadOnlyMode}" data-gs-no-move="#{dashboardBean.isReadOnlyMode}"
@@ -58,7 +58,7 @@
                               <ui:param name="onCompleteApplyingFilters" value="toggleFilterSidebar($('.widget__filter-sidebar-link'))" />
                             </ui:include>
                           </div>
-                          <ic:ch.ivy.addon.portal.generic.dashboard.TaskWidget id="task-component" taskWidget="#{widget}"/>
+                          <ic:ch.ivy.addon.portal.generic.dashboard.TaskWidget id="task-component" taskWidget="#{widget}" />
                         </h:panelGroup>
                       </h:form>
                     </h:panelGroup>
@@ -89,7 +89,7 @@
                     </h:panelGroup>
                   </div>
                 </div>
-              </p:repeat>
+              </ui:repeat>
             </h:panelGroup>
           </p:tab>
         </p:tabView>
