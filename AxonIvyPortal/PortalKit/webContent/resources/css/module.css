@@ -154,25 +154,7 @@
   overflow-x: hidden;
 }
 
-.layout-wrapper .layout-sidebar .layout-menu li {
-  width: auto;
-}
-
 /********************** END MENU ITEM ***********************/
-
-/********************** START SUBMENU ITEM ***********************/
-.layout-wrapper .layout-sidebar .layout-menu li.submenu-container {
-  box-shadow: none;
-  margin: auto 10px;
-  padding-right: 0;
-  padding-left: 0;
-}
-
-.layout-wrapper .layout-sidebar .layout-menu li.submenu-container a {
-  box-shadow: none;
-}
-
-/********************** END SUBMENU ITEM ***********************/
 
 /********************** START CASE BOX ***********************/
 .grid-item-content-list-item {
