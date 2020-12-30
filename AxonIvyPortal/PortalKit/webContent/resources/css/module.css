@@ -3853,6 +3853,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   .custom-val-selection .ui-autocomplete-input {
     width: 86%;
   }
+  
+  .statistic-filter-accordion-panel .ui-accordion-content {
+    max-width: 22rem;
+  }
 }
 
 .value-setting-dropdown .ui-selectonemenu-trigger.ui-state-default.ui-corner-right {
