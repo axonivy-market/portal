@@ -176,7 +176,17 @@ public class ServiceUtilities {
       }
     });
   }
-  
+
+  public static boolean isUserExistingInApp(String username, String appName) {
+    return IvyExecutor.executeAsSystem(() -> {
+      try {
+        IApplication app = findApp(appName);
+        return findUser(username, app) != null;
+      } catch (PortalIvyDataException e) {
+        return false;
+      }
+    });
+  }
 
   public static IWorkflowSession findUserWorkflowSession(String username, IApplication app) {
     if (Objects.equals(Ivy.wf().getApplication(), app)) {
