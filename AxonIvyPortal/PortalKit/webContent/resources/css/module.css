@@ -5024,3 +5024,8 @@ body td .icon {
 }
 
 /** Case information iframe ---- end-----**/
+
+/* Fix bug: calendar button jumped when clicked (Edge, Chrome) */
+.ui-fluid .ui-calendar, .ui-fluid .ui-calendar input {
+  display: block;
+}
