@@ -71,7 +71,7 @@ ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getAppli
 String userExampleGuideLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/UserExampleGuide/userExampleGuide.ivp");
 if (!StringUtils.isEmpty(userExampleGuideLink)){	
 	SubMenuItem userExampleGuide = new SubMenuItem();
-	userExampleGuide.setIcon("icon ivyicon-bulb");
+	userExampleGuide.setIcon("si si-bulb");
 	userExampleGuide.setName("ExampleGuide");
 	userExampleGuide.setLabel("User example guide");
 	userExampleGuide.setMenuKind(MenuKind.CUSTOM);
@@ -80,7 +80,7 @@ if (!StringUtils.isEmpty(userExampleGuideLink)){
 }
 
 SubMenuItem google = new SubMenuItem();
-google.setIcon("icon ivyicon-information-circle");
+google.setIcon("si si-information-circle");
 google.setLabel("Google");
 google.setMenuKind(MenuKind.EXTERNAL_LINK);
 google.setLink("www.google.com");
