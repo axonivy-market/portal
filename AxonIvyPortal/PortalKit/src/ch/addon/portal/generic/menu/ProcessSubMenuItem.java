@@ -7,7 +7,7 @@ import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 
 public class ProcessSubMenuItem extends SubMenuItem {
   public ProcessSubMenuItem() {
-    this.icon = "icon ivyicon-cog-double-2";
+    this.icon = "si si-cog-double-2";
     this.menuKind = MenuKind.PROCESS;
     this.label = ApplicationMultiLanguage.getCmsValueByUserLocale("/ch.ivy.addon.portalkit.ui.jsf/common/processes");
     this.name = HomepageType.PROCESS.name();
