@@ -35,7 +35,7 @@
                           </span>
                           
                           <div class="widget__header-actions">
-                            <p:link href="#" styleClass="widget__filter-sidebar-link u-mar-right-5" onclick="toggleFilterSidebar(this)">
+                            <p:link id="filter-sidebar-link" href="#" styleClass="widget__filter-sidebar-link u-mar-right-5" onclick="toggleFilterSidebar(this)">
                               <i class="fa fa-filter" />
                             </p:link>
                             <p:commandLink styleClass="u-mar-right-5">
@@ -55,7 +55,8 @@
                           <div class="widget__filter-sidebar card">
                             <ui:include src="TaskFilter.xhtml">
                               <ui:param name="updateComponent" value="#{component.parent.namingContainer.clientId}:task-component:dashboard-tasks" />
-                              <ui:param name="onCompleteApplyingFilters" value="toggleFilterSidebar($('.widget__filter-sidebar-link'))" />
+                              <ui:param name="onCompleteApplyingFilters"
+                                value="toggleFilterSidebar(document.getElementById('#{component.parent.namingContainer.clientId}:filter-sidebar-link'))" />
                             </ui:include>
                           </div>
                           <ic:ch.ivy.addon.portal.generic.dashboard.TaskWidget id="task-component" taskWidget="#{widget}" />
