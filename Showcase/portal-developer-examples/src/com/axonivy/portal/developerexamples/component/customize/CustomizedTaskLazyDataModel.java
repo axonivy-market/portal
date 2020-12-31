@@ -38,16 +38,17 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
       }
     } else if (CUSTOM_TIMESTAMP_FIELD12.equalsIgnoreCase(criteria.getSortField())) {
       if (criteria.isSortDescending()) {
-        taskQuery.orderBy().customField().stringField(CUSTOM_TIMESTAMP_FIELD1).descending();
+        taskQuery.orderBy().customField().timestampField(CUSTOM_TIMESTAMP_FIELD1).descending();
       } else {
-        taskQuery.orderBy().customField().stringField(CUSTOM_TIMESTAMP_FIELD1);
+        taskQuery.orderBy().customField().timestampField(CUSTOM_TIMESTAMP_FIELD1);
       }
     }
   }
   
   @Override
   protected List<String> getDefaultColumns() {
-    return Arrays.asList(TaskSortField.PRIORITY.name(), TaskSortField.NAME.name(), TaskSortField.ACTIVATOR.name(), TaskSortField.ID.name(), TaskSortField.CREATION_TIME.name(), TaskSortField.EXPIRY_TIME.name(), CUSTOM_VAR_CHAR_FIELD5, CUSTOM_TIMESTAMP_FIELD12);
+    return Arrays.asList(TaskSortField.PRIORITY.name(), TaskSortField.NAME.name(), TaskSortField.ACTIVATOR.name(), TaskSortField.ID.name(), 
+        TaskSortField.CREATION_TIME.name(), TaskSortField.EXPIRY_TIME.name(), CUSTOM_VAR_CHAR_FIELD5, CUSTOM_TIMESTAMP_FIELD12);
   }
   
   @Override

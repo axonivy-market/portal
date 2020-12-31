@@ -176,6 +176,7 @@ public class TaskSearchCriteria {
       appendSortByExpiryDateIfSet(criteria);
       appendSortByCompletedDateIfSet(criteria);
       appendSortByStateIfSet(criteria);
+      appendSortByCategoryIfSet(criteria);
       return this;
     }
 
@@ -257,6 +258,16 @@ public class TaskSearchCriteria {
           query.orderBy().state();
         }
       }
+    }
+    
+    private void appendSortByCategoryIfSet(TaskSearchCriteria criteria) {
+//      if (TaskSortField.CATEGORY.toString().equalsIgnoreCase(criteria.getSortField())) {
+//        if (criteria.isSortDescending()) {
+//          query.orderBy().category().descending();
+//        } else {
+//          query.orderBy().category();
+//        }
+//      }
     }
   }
   

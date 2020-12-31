@@ -70,7 +70,7 @@
                   <ic:ch.ivy.addon.portalkit.component.task.column.TaskName id="task-name-component" task="#{task}" dataModel="#{taskView.dataModel}" />
                 </div>
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskResponsible id="task-responsible-component" dataModel="#{taskView.dataModel}"
-                  responsibleName="#{task.getActivatorName()}" responsible="#{task.getActivator()}" styleClass="activatior-column" />
+                  responsibleName="#{task.getActivatorName()}" responsible="#{task.getActivator()}" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskId id="task-id-component" value="#{task.getId()}" dataModel="#{taskView.dataModel}" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate id="task-creation-date-component" rendered="#{taskView.dataModel.isSelectedColumn('CREATION_TIME')}"
                   componentId="creation-time" value="#{task.startTimestamp}" responsiveStyleClass="u-hidden-md-down js-hidden-when-expand-menu" />
@@ -79,6 +79,8 @@
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskDate rendered="#{taskView.dataModel.isSelectedColumn('COMPLETED_ON')}"
                   componentId="completed-time" value="#{task.endTimestamp}" />
                 <ic:ch.ivy.addon.portalkit.component.task.column.TaskState id="task-state-component" dataModel="#{taskView.dataModel}" state="#{task.state}" />
+                <ic:ch.ivy.addon.portalkit.component.task.column.TaskCategory id="task-category-component" tooltip="#{task.getCategory().getPath()}" 
+                  rendered="#{taskView.dataModel.isSelectedColumn('CATEGORY')}" value="#{task.getCategory().getName()}"  />
               </ui:fragment>
             </f:facet>
 
