@@ -155,10 +155,9 @@ public class ChatService {
   @Path("/unread/senders")
   @Produces(MediaType.APPLICATION_JSON)
   public List<String> getSendersOfUnreadMessages() {
-    List<String> participants = Arrays.asList(sessionUserName());
-    List<ChatMessage> unreadMessagesInMemory = ChatMessageManager.getUnreadMessagesInMemory(participants);
-
-    return ListUtils.emptyIfNull(unreadMessagesInMemory).stream().map(ChatMessage::getSender).distinct()
+    List<UnreadChatMessage> unreadMessages = ChatMessageManager.getUnreadMessages(sessionUserName());
+    return ListUtils.emptyIfNull(unreadMessages).stream().map(UnreadChatMessage::getSenderId)
+        .map(senderId -> ChatMessageManager.getSender(senderId)).filter(Objects::nonNull).distinct()
         .collect(Collectors.toList());
   }
 
@@ -172,7 +171,7 @@ public class ChatService {
   }
 
   public synchronized void performReadingMessage(String participant, String clientId, String actor) {
-    ChatMessageManager.deletedReadMessagesInMemory(Arrays.asList(actor), participant);
+    ChatMessageManager.deletedReadMessages(actor, participant);
     ChatResponse lastChatResponse =
         getChatResponseFromHistory(() -> ConcurrentChatUtils.getRecentChatResponseHistory(actor).peekLast(), actor);
     if (lastChatResponse != null && !isDuplicatedAction(participant, lastChatResponse, READ_PRIVATE_MESSAGE_ACTION)) {
@@ -190,7 +189,7 @@ public class ChatService {
   }
 
   public synchronized void performReadingGroupMessage(String caseId, String clientId, String actor) {
-    ChatMessageManager.deletedReadMessagesInMemoryForGroupChat(Arrays.asList(actor), caseId);
+    ChatMessageManager.deletedReadMessagesForGroupChat(actor, caseId);
     ChatResponse lastChatResponse =
         getChatResponseFromHistory(() -> ConcurrentChatUtils.getRecentChatResponseHistory(actor).peekLast(), actor);
     if (lastChatResponse != null && !isDuplicatedAction(caseId, lastChatResponse, READ_GROUP_MESSAGE_ACTION)) {
@@ -237,7 +236,7 @@ public class ChatService {
       return;
     }
     ChatMessage message = new ChatMessage(actor, Arrays.asList(receiver), messageText);
-    ChatMessageManager.storeUnreadMessageInMemory(message);
+    ChatMessageManager.storeUnreadMessage(message);
 
     ChatResponse chatResponse = new ChatResponse(GET_MESSAGES_ACTION, message, clientId);
     // If receiver is online, send message directly to receiver's response.
@@ -304,7 +303,7 @@ public class ChatService {
     for (String member : members) {
       resumeAsyncResponse(member, chatResponse, clientId, actor);
     }
-    ChatMessageManager.storeUnreadMessageInMemoryForGroupChat(message, Long.parseLong(caseId));
+    ChatMessageManager.storeUnreadMessageForGroupChat(message, Long.parseLong(caseId));
   }
 
   /**

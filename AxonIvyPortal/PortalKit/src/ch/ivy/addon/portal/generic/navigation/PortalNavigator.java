@@ -22,6 +22,7 @@ import ch.ivyteam.ivy.workflow.StandardProcessType;
 
 public final class PortalNavigator {
   private static final String PORTAL_PROCESS_START_NAME = "Start Processes/PortalStart/DefaultApplicationHomePage.ivp";
+  private static final String PORTAL_DASHBOARD = "Start Processes/PortalStart/DefaultDashboardPage.ivp";
   private static final String PORTAL_PROCESS = "Start Processes/PortalStart/DefaultProcessStartListPage.ivp";
   private static final String PORTAL_TASK = "Start Processes/PortalStart/DefaultTaskListPage.ivp";
   private static final String PORTAL_CASE = "Start Processes/PortalStart/CaseListPage.ivp";
@@ -40,7 +41,12 @@ public final class PortalNavigator {
   public static String getPortalStartUrl() {
     return getRelativeLink(StandardProcessType.DefaultApplicationHomePage);
   }
-  
+
+  public static String getPortalDashboardPageUrl(Map<String, String> params) {
+    String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("DefaultDashboardPage.ivp");
+    return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, PORTAL_DASHBOARD), params);
+  }
+
   private static String getRelativeLink(StandardProcessType standardProcess) {
     return IvyExecutor.executeAsSystem(() ->
       Ivy.wf().getStandardProcessImplementation(standardProcess).getLink().getRelative());
@@ -107,7 +113,6 @@ public final class PortalNavigator {
   public static void navigateToPortalEndPage() {
     navigateToPortalEndPage(Ivy.wfTask().getId());
   }
-
 
   public static void navigateToPortalProcess() {
     navigateByKeyword("DefaultProcessStartListPage.ivp", PORTAL_PROCESS, new HashMap<>());
