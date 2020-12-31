@@ -125,7 +125,7 @@
     <h:panelGroup id="user-filter-category-container" styleClass="task-configuration__category">
       <p:inputText id="user-filter-category" styleClass="task-configuration__input-text"
         value="#{widget.getUserFilterDisplayCategories()}" readonly="true" />
-      <p:overlayPanel id="user-filter-category-panel" widgetVar="user-filter-category-panel" for="user-filter-category" appendTo="@(body)"
+      <p:overlayPanel id="user-filter-category-panel" for="user-filter-category" appendTo="@(body)"
         styleClass="task-configuration__category-panel"
         onHide="$(this.targetElement).parents('.task-configuration__category').find('.portal-cancel-button').click();">
         <p:tree id="task-category-filter-tree" value="#{widget.categoryTree}" var="node"
