@@ -37,15 +37,13 @@ public class TaskAnalysisExporter {
 
   public StreamedContent getStreamedContent(List<ITask> tasks) throws IOException {
     Date creationDate = new Date();
-    StreamedContent file;
     if (tasks.size() > MAX_TASK_NUMBER_IN_EXCEL) {
       ByteArrayInputStream inputStream = new ByteArrayInputStream(generateZipContent(tasks, creationDate));
-      file = new DefaultStreamedContent(inputStream, "application/zip", getFileName(creationDate, ZIP));
+      return new DefaultStreamedContent(inputStream, "application/zip", getFileName(creationDate, ZIP));
     } else {
       ByteArrayInputStream inputStream = new ByteArrayInputStream(generateExcelContent(tasks));
-      file = new DefaultStreamedContent(inputStream, "application/xlsx", getFileName(creationDate, XLSX));
+      return new DefaultStreamedContent(inputStream, "application/xlsx", getFileName(creationDate, XLSX));
     }
-    return file;
   }
 
   private byte[] generateZipContent(List<ITask> tasks, Date creationDate) throws IOException {
@@ -54,14 +52,10 @@ public class TaskAnalysisExporter {
       List<List<ITask>> tasksInFiles = ListUtils.partition(tasks, MAX_TASK_NUMBER_IN_EXCEL);
       for (int i = 0; i < tasksInFiles.size(); i++) {
         String excelFileName = getFileName(creationDate, XLSX, String.format(FILE_NAME_SUFFIX_FOR_EXCEL_IN_ZIP, i + 1));
-        try {
-          byte[] content = generateExcelContent(tasksInFiles.get(i));
-          zipOutputStream.putNextEntry(new ZipEntry(excelFileName));
-          zipOutputStream.write(content);
-          zipOutputStream.closeEntry();
-        } catch (IOException e) {
-          Ivy.log().error("The " + excelFileName + " file can't be exported", e);
-        }
+        byte[] content = generateExcelContent(tasksInFiles.get(i));
+        zipOutputStream.putNextEntry(new ZipEntry(excelFileName));
+        zipOutputStream.write(content);
+        zipOutputStream.closeEntry();
       }
       zipOutputStream.close();
       return outputStream.toByteArray();
@@ -140,7 +134,7 @@ public class TaskAnalysisExporter {
       case CASE_ID:
         return String.valueOf(task.getCase().getId());
       case CASE_CATEGORY:
-        return task.getCase().getCategoryPath();
+        return task.getCase().getCategory().getPath();
       case CASE_CREATOR:
         if (task.getCase().getCreatorUserName() == null) {
           return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
@@ -158,7 +152,7 @@ public class TaskAnalysisExporter {
       case TASK_ID:
         return String.valueOf(task.getId());
       case TASK_CATEGORY:
-        return task.getCategoryPath();
+        return task.getCategory().getPath();
       case TASK_DESCRIPTION:
         return task.getDescription();
       case TASK_ACTIVATOR:
