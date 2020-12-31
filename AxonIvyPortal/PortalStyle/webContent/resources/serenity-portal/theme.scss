@@ -1761,3 +1761,9 @@ body .ui-growl .ui-growl-item .ui-growl-message a {
   color: #ffffff;
   text-decoration: underline;
 }
+
+/* Portal generic card style */
+.portal-card-container .card {
+  box-shadow: $statisticCardBoxShadow;
+  border-radius: $statisticCardBorderRadius;
+}
