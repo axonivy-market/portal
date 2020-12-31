@@ -134,8 +134,8 @@ function numberingStatisticWidget() {
   var chartInfo = $('.chart-info:eq(0)');
   appendStepAnnotation(chartInfo, "1", -10, 25);
   var chartCanvas = $('.chartjs-render-monitor');
-  appendStepAnnotation(chartCanvas, "2", 0, chartCanvas.height()/2 - 30);
-  appendStepAnnotation(chartCanvas, "3", chartCanvas.width()/4, chartCanvas.height()/2 + 10);
+  appendStepAnnotation(chartCanvas, "2", chartCanvas.width()/4, chartCanvas.height()/2 + 10);
+  appendStepAnnotation(chartCanvas, "3", 15, chartCanvas.width()*0.75);
 }
 
 function highlightAdminSettings() {
