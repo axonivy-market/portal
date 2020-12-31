@@ -22,27 +22,27 @@
           <p:outputLabel value="#{field.header}" />
         </div>
         <div class="ui-g-9">
-          <p:selectCheckboxMenu id="priorities" value="#{field.userFilterPriorities}" multiple="true" panelStyle="width:300px"
-            styleClass="task-configuration__selectcheckboxmenu">
+          <p:selectCheckboxMenu id="priorities" value="#{field.userFilterPriorities}" multiple="true"
+            panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
             <f:selectItems value="#{field.userFilterPriorityOptions}" var="priority" itemValue="#{priority}"
               itemLabel="#{dashboardTaskFilterBean.getUserFriendlyTaskPriority(priority)}" />
           </p:selectCheckboxMenu>
         </div>
       </h:panelGroup>
-    
+
       <h:panelGroup rendered="#{field.field eq 'state'}">
         <div class="ui-g-3">
           <p:outputLabel value="#{field.header}" />
         </div>
         <div class="ui-g-9">
-          <p:selectCheckboxMenu id="states" value="#{field.userFilterStates}" multiple="true" filter="true" filterMatchMode="contains"
-            panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
+          <p:selectCheckboxMenu id="states" value="#{field.userFilterStates}" multiple="true" filter="true"
+            filterMatchMode="contains" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
             <f:selectItems value="#{field.userFilterStateOptions}" var="state" itemValue="#{state}"
               itemLabel="#{dashboardTaskFilterBean.getUserFriendlyTaskState(state)}" />
           </p:selectCheckboxMenu>
         </div>
       </h:panelGroup>
-    
+
       <h:panelGroup rendered="#{field.field eq 'activator'}">
         <div class="ui-g-3">
           <p:outputLabel value="#{field.header}" />
@@ -61,7 +61,7 @@
           </p:autoComplete>
         </div>
       </h:panelGroup>
-    
+
       <h:panelGroup rendered="#{field.format eq 'STRING' or field.format eq 'TEXT'}">
         <div class="ui-g-3">
           <p:outputLabel value="#{field.header}" />
@@ -69,7 +69,7 @@
         <div class="ui-g-9">
           <p:inputText id="text-field-input" styleClass="task-configuration__input-text" value="#{field.userFilter}"
             rendered="#{field.filterType eq 'LIKE'}" />
-    
+
           <p:selectCheckboxMenu id="text-field-selection" value="#{field.userFilterList}" multiple="true" filter="true"
             filterMatchMode="contains" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu"
             rendered="#{field.filterType eq 'SELECTION'}">
@@ -77,7 +77,7 @@
           </p:selectCheckboxMenu>
         </div>
       </h:panelGroup>
-    
+
       <h:panelGroup rendered="#{field.format eq 'NUMBER'}">
         <div class="ui-g-3">
           <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
@@ -88,7 +88,7 @@
             <f:convertNumber pattern="#{field.pattern}" />
           </p:inputNumber>
         </div>
-    
+
         <div class="ui-g-3">
           <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
         </div>
@@ -99,22 +99,24 @@
           </p:inputNumber>
         </div>
       </h:panelGroup>
-    
+
       <h:panelGroup rendered="#{field.format eq 'TIMESTAMP'}">
         <div class="ui-g-3">
           <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
         </div>
         <div class="ui-g-9">
-          <p:calendar id="from-date-field-input" showOn="button" styleClass="task-configuration__calendar" mindate="#{field.dateFilterFrom}"
-            value="#{field.userDateFilterFrom}" pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
+          <p:calendar id="from-date-field-input" showOn="button" styleClass="task-configuration__calendar"
+            mindate="#{field.dateFilterFrom}" value="#{field.userDateFilterFrom}"
+            pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
         </div>
-    
+
         <div class="ui-g-3">
           <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/to')}" />
         </div>
         <div class="ui-g-9">
-          <p:calendar id="to-date-field-input" showOn="button" styleClass="task-configuration__calendar" maxdate="#{field.dateFilterTo}"
-            value="#{field.userDateFilterTo}" pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
+          <p:calendar id="to-date-field-input" showOn="button" styleClass="task-configuration__calendar"
+            maxdate="#{field.dateFilterTo}" value="#{field.userDateFilterTo}"
+            pattern="#{dateTimePatternBean.datePattern}" locale="#{localeBean.locale}" />
         </div>
       </h:panelGroup>
     </div>
@@ -130,21 +132,21 @@
       <p:inputText id="user-filter-category" styleClass="task-configuration__input-text"
         value="#{widget.getUserFilterDisplayCategories()}" readonly="true" />
       <p:overlayPanel id="user-filter-category-panel" for="user-filter-category" appendTo="@(body)"
-        styleClass="task-configuration__category-panel"
+        styleClass="task-configuration__category-panel" dynamic="true"
         onHide="$(this.targetElement).parents('.task-configuration__category').find('.portal-cancel-button').click();">
-        <p:tree id="task-category-filter-tree" value="#{widget.categoryTree}" var="node"
-          selectionMode="checkbox" selection="#{widget.categoryNodes}" filterMatchMode="contains"
-          filterBy="#{node}" showUnselectableCheckbox="true">
+        <p:tree id="task-category-filter-tree" value="#{widget.categoryTree}" var="node" selectionMode="checkbox"
+          selection="#{widget.categoryNodes}" filterMatchMode="contains" filterBy="#{node}"
+          showUnselectableCheckbox="true">
           <p:treeNode>
             <h:outputText value="#{node.value}" />
           </p:treeNode>
         </p:tree>
-  
+
         <h:panelGroup id="category-panel-footer" layout="block" styleClass="task-configuration__category-panel-footer">
           <p:commandLink id="cancel-command" styleClass="portal-cancel-button u-mar-right-10" process="@this"
             global="false" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
             update="user-filter-category-container" />
-  
+
           <p:commandButton id="update-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             process="user-filter-category-panel" partialSubmit="true" update="user-filter-category-container" />
         </h:panelGroup>
