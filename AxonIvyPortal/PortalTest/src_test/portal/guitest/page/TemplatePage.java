@@ -259,6 +259,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public TaskWidgetPage openTaskList() {
+    waitForPageLoaded();
     openMainMenu().selectTaskMenu();
     waitForElementDisplayed(By.cssSelector("[id$='task-config-command']"), true);
     return new TaskWidgetPage();
