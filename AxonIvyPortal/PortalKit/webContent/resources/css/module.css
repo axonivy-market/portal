@@ -3853,6 +3853,10 @@ _:-ms-input-placeholder, :root .ui-panelgrid .ui-panelgrid-content .ui-grid-row 
   .custom-val-selection .ui-autocomplete-input {
     width: 86%;
   }
+  
+  .statistic-filter-accordion-panel .ui-accordion-content {
+    max-width: 22rem;
+  }
 }
 
 .value-setting-dropdown .ui-selectonemenu-trigger.ui-state-default.ui-corner-right {
@@ -4494,3 +4498,8 @@ body .ui-dialog.ui-widget.export-express-dialog {
   word-break: break-all;
 }
 /*==================== END EXCEPTION ===================*/
+
+/* Fix bug: calendar button jumped when clicked (Edge, Chrome) */
+.ui-fluid .ui-calendar, .ui-fluid .ui-calendar input {
+  display: block;
+}
