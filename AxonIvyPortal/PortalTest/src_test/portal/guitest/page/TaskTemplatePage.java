@@ -290,15 +290,15 @@ public class TaskTemplatePage extends TemplatePage {
     return new TaskWidgetPage();
   }
 
-  public boolean isTextOutIFrameChangedWithSkipTaskList() {
-    String taskNameOutIFrameCssSelector = "span[id$='title']";
-    String approveTaskNameOutIFrame = findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
+  public String getTaskNameOutIFrame() {
+    return findDisplayedElementByCssSelector("span[id$='title']").getText();
+  }
+  
+  public boolean isTextOutIFrameChangedWithSkipTaskList(String startTaskName) {
     waitForCloseButtonDisplayAfterInputedAprrovalNote("1");
     driver.switchTo().defaultContent();
-    String finishTaskNameOutIFrame = findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
-    driver.switchTo().frame("iFrame");
-    closeReviewPage();
-    return !approveTaskNameOutIFrame.equals(finishTaskNameOutIFrame);
+    waitUntilAttributeChanged(By.cssSelector("span.task-title"), "title", startTaskName, DEFAULT_TIMEOUT);
+    return !startTaskName.equals(getTaskNameOutIFrame());
   }
 
   private void waitForCloseButtonDisplayAfterInputedAprrovalNote(String approvalNote) {
@@ -306,6 +306,8 @@ public class TaskTemplatePage extends TemplatePage {
     waitForElementDisplayed(By.id("content-form:approve-btn"), true);
     type(By.id("content-form:content-tab-view:approval-note"), approvalNote);
     click(By.id("content-form:approve-btn"));
+    waitAjaxIndicatorDisappear();
+    waitUntilAttributeChanged(By.cssSelector("label[for$='content-tab-view:is-approved:0']"), "class", "", DEFAULT_TIMEOUT);
     waitForElementDisplayed(By.id("content-form:close-btn"), true);
   }
 
