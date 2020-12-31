@@ -4,7 +4,7 @@
 <h:body>
   <ui:composition template="/layouts/TaskTemplate-8.xhtml">
     <ui:param name="steps" value="#{data.data.steps}" />
-    <ui:param name="actualStepIndex" value="1" />
+    <ui:param name="actualStepIndex" value="#{data.data.isAdhocProcess ? 0 : 1}" />
     <ui:param name="isShowStartAdhocButton" value="false" />
     <ui:param name="processChainShape" value="LINE" />
 

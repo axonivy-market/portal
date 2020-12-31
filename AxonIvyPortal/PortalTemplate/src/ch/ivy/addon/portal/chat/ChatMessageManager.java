@@ -13,9 +13,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.math.NumberUtils;
 
@@ -41,6 +43,7 @@ public final class ChatMessageManager {
   private static final String UTF_8 = StandardCharsets.UTF_8.name();
   private static final String GROUP_CHAT_FILE_FORMAT = "Case_%s";
   private static final String GROUP_CHAT_PREFIX = "Case-%s";
+  private static final String GROUP_CHAT_SENDER_PREFIX = "Case-";
 
   private static Map<String, Object> lockMap = new HashMap<>();
 
@@ -196,14 +199,33 @@ public final class ChatMessageManager {
 
   public static void storeUnreadMessage(ChatMessage message) {
     String recipient = message.getRecipients().get(0);
+    String senderId = getSenderId(message.getSender());
     synchronized (getCommon(recipient)) {
-      List<ChatMessage> messages = getUnreadMessages(recipient);
-      if (messages.stream().noneMatch(msg -> msg.getSender().equals(message.getSender()))) {
-        messages.add(new ChatMessage(message.getSender(), message.getRecipients()));
+      List<UnreadChatMessage> unreadMessages = getUnreadMessages(recipient);
+      if (unreadMessages.stream().noneMatch(msg -> msg.getSenderId().equals(senderId))) {
+        unreadMessages.add(new UnreadChatMessage(senderId));
       }
-      String messagesAsJson = entitiesToJson(messages);
-      setUserProperty(recipient, messagesAsJson);
+      String messagesAsJson = entitiesToJson(unreadMessages);
+      setUnreadMessagesToUserProperty(recipient, messagesAsJson);
     }
+  }
+
+  private static String getSenderId(String sender) {
+    if (StringUtils.isNotBlank(sender) && !isGroupChat(sender)) {
+      return Long.toString(findUser(sender).getId());
+    }
+    return sender;
+  }
+
+  static String getSender(String senderId) {
+    if (StringUtils.isNotBlank(senderId) && !isGroupChat(senderId)) {
+      return Optional.ofNullable(findUserById(senderId)).map(IUser::getName).orElse(null);
+    }
+    return senderId;
+  }
+
+  private static IUser findUserById(String senderId) {
+    return wf().getSecurityContext().users().find(Long.valueOf(senderId));
   }
 
   public static void storeUnreadMessageForGroupChat(ChatMessage message, long caseId) {
@@ -217,20 +239,23 @@ public final class ChatMessageManager {
     }
   }
 
-  public static List<ChatMessage> getUnreadMessages(String participant) {
-    String userProperty = getUserProperty(participant);
-    List<ChatMessage> unreadMessages =
-        StringUtils.isNotBlank(userProperty) ? UserEntityConverter.jsonToEntities(userProperty, ChatMessage.class)
+  public static List<UnreadChatMessage> getUnreadMessages(String participant) {
+    String userProperty = getUnreadMessagesFromUserProperty(participant);
+    List<UnreadChatMessage> unreadMessages =
+        StringUtils.isNotBlank(userProperty) ? UserEntityConverter.jsonToEntities(userProperty, UnreadChatMessage.class)
             : new ArrayList<>();
-    unreadMessages.removeAll(
-        unreadMessages.stream().filter(x -> isDestroyedOrDoneCase(x.getSender())).collect(Collectors.toList()));
-    String messagesAsJson = entitiesToJson(unreadMessages);
-    setUserProperty(participant, messagesAsJson);
+    List<UnreadChatMessage> obsoleteUnreadMessages =
+        unreadMessages.stream().filter(x -> isObsoleteSender(x.getSenderId())).collect(Collectors.toList());
+    if (CollectionUtils.isNotEmpty(obsoleteUnreadMessages)) {
+      unreadMessages.removeAll(obsoleteUnreadMessages);
+      String messagesAsJson = entitiesToJson(unreadMessages);
+      setUnreadMessagesToUserProperty(participant, messagesAsJson);
+    }
     return unreadMessages;
   }
 
-  private static boolean isDestroyedOrDoneCase(String sender) {
-    String caseId = getCaseId(sender);
+  private static boolean isObsoleteSender(String senderId) {
+    String caseId = getCaseId(senderId);
     if (StringUtils.isNotBlank(caseId)) {
       ICase findcase = findCase(caseId);
       if (findcase != null && (findcase.getState() == CaseState.DESTROYED || findcase.getState() == CaseState.DONE)) {
@@ -248,19 +273,19 @@ public final class ChatMessageManager {
   }
 
   private static String getCaseId(String name) {
-    String groupChatPrefix = "Case-";
-    if (name.startsWith(groupChatPrefix)) {
-      return StringUtils.substringAfter(name, groupChatPrefix);
+    if (isGroupChat(name)) {
+      return StringUtils.substringAfter(name, GROUP_CHAT_SENDER_PREFIX);
     }
     return StringUtils.EMPTY;
   }
 
   public static void deletedReadMessages(String participant, String sender) {
-    List<ChatMessage> messages = getUnreadMessages(participant);
-    messages.removeAll(
-        messages.stream().filter(message -> message.getSender().equals(sender)).collect(Collectors.toList()));
-    String messagesAsJson = entitiesToJson(messages);
-    setUserProperty(participant, messagesAsJson);
+    List<UnreadChatMessage> unreadMessages = getUnreadMessages(participant);
+    String senderId = getSenderId(sender);
+    unreadMessages.removeAll(
+        unreadMessages.stream().filter(message -> message.getSenderId().equals(senderId)).collect(Collectors.toList()));
+    String messagesAsJson = entitiesToJson(unreadMessages);
+    setUnreadMessagesToUserProperty(participant, messagesAsJson);
   }
 
   public static void deletedReadMessagesForGroupChat(String participant, String caseId) {
@@ -278,7 +303,7 @@ public final class ChatMessageManager {
     }
   }
 
-  private static String getUserProperty(String username) {
+  private static String getUnreadMessagesFromUserProperty(String username) {
     IUser user = findUser(username);
     if (user != null) {
       return user.getProperty(PORTAL_CHAT_UNREAD_MESSAGES);
@@ -286,7 +311,7 @@ public final class ChatMessageManager {
     return "";
   }
 
-  private static void setUserProperty(String username, String jsonMessages) {
+  private static void setUnreadMessagesToUserProperty(String username, String jsonMessages) {
     IUser user = findUser(username);
     if (user != null) {
       user.setProperty(PORTAL_CHAT_UNREAD_MESSAGES, jsonMessages);
@@ -295,5 +320,9 @@ public final class ChatMessageManager {
 
   private static IUser findUser(String username) {
     return wf().getSecurityContext().findUser(username);
+  }
+
+  private static boolean isGroupChat(String sender) {
+    return sender.startsWith(GROUP_CHAT_SENDER_PREFIX);
   }
 }

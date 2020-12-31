@@ -143,7 +143,7 @@ public class RegisteredApplicationService extends AbstractService<Application> {
       List<Application> apps = findAllIvyApplications();
       List<Application> applications = CollectionUtils.emptyIfNull(apps)
           .stream()
-          .filter(app -> ServiceUtilities.findUser(username, app.getName()) != null)
+          .filter(app -> ServiceUtilities.isUserExistingInApp(username, app.getName()))
           .collect(Collectors.toList());
       applications.addAll(getDao().findAllThirdPartyApplications());
       IvyCacheService.newInstance().setSessionCache(username, IvyCacheIdentifier.ALL_IVY_AND_THIRD_PARTY_APPLICATIONS, applications);

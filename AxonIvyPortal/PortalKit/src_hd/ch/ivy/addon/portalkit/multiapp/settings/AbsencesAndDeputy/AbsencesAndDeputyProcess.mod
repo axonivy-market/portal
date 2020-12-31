@@ -945,7 +945,6 @@ As0 f103 1344 352 1419 352 #arcP
 As0 f106 actionTable 'out=in;
 ' #txt
 As0 f106 actionCode 'import ch.ivy.addon.portalkit.dto.UserDTO;
-import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 out.selectedUser = new UserDTO(ivy.session.getSessionUser());' #txt
 As0 f106 security system #txt
 As0 f106 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1184,8 +1183,7 @@ As0 f14 expr out #txt
 As0 f14 109 800 200 800 #arcP
 As0 f5 actionTable 'out=in;
 ' #txt
-As0 f5 actionCode 'import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
-import ch.ivy.addon.portalkit.dto.UserDTO;
+As0 f5 actionCode 'import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
 
 UserDTO currentUserDTO = new UserDTO(ivy.session.getSessionUser());
