@@ -1,7 +1,5 @@
 package portal.guitest.page;
 
-import static portal.guitest.common.WaitHelper.waitForNavigation;
-
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -261,8 +259,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public TaskWidgetPage openTaskList() {
-    openMainMenu();
-    waitForNavigation(this, () -> clickByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu"));
+    openMainMenu().selectTaskMenu();
     waitForElementDisplayed(By.cssSelector("[id$='task-config-command']"), true);
     return new TaskWidgetPage();
   }
