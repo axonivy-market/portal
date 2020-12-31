@@ -47,10 +47,10 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public void expand() {
-    waitForElementExisted("a[id$=':task-list-link:task-list-link']", true, 5);
+    waitForElementExisted("a[id$=':task-list-link:task-list-link']", true, DEFAULT_TIMEOUT);
     WebElement fullModeButton = findElementById(taskWidgetId + ":task-list-link:task-list-link");
     click(fullModeButton);
-    waitForElementExisted("[id$=':filter-save-action']", true, 10);
+    waitForElementExisted("[id$=':filter-save-action']", true, DEFAULT_TIMEOUT);
     waitForLocatorDisplayed("id('" + taskWidgetId + ":filter-save-action')");
   }
 
