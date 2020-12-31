@@ -20,6 +20,11 @@ function createRedMediumOutline($element) {
   $element.addClass("red-medium-outline");
 }
 
+function createRedThickOutlineWithOffset($element) {
+  $element.addClass("red-thick-outline");
+  $element.addClass("red-outline-thick-offset");
+}
+
 /***IMPLEMENTATION TO DECORATE PAGES - WHICH ARE CALLED IN SELENIUM****/
 function highlightDashboardWidget() {
   createRedMediumOutline($("#task-widget"));
@@ -85,7 +90,7 @@ function numberingTaskFilterAndSort() {
 }
 
 function highlightProcessNavigation() {
-  createRedThickOutline($('.submenu.PROCESS'));
+  createRedThickOutlineWithOffset($('.ripplelink.PROCESS'));
   createRedThickOutline($('.widget.process-widget'));
 }
 
@@ -138,7 +143,7 @@ function highlightAdminSettings() {
 }
 
 function highlightCaseMenuItem() {
-  createRedThickOutline($('.submenu.CASE'));
+  createRedThickOutlineWithOffset($('.ripplelink.CASE'));
 }
 
 function highlightShowMoreNoteLink() {
@@ -146,7 +151,7 @@ function highlightShowMoreNoteLink() {
 }
 
 function highlightStatisticNavigation() {
-   createRedMediumOutline($('.submenu.STATISTICS'));
+   createRedThickOutlineWithOffset($('.ripplelink.STATISTICS'));
    createRedMediumOutline($('#statistics-widget\\:statistic-link\\:statistic-link'));
 }
 
@@ -156,10 +161,10 @@ function numberingChartPanel() {
   var chartInfo = $('.chart-info:eq(1)');
   appendStepAnnotation(chartInfo, "2", -20, 25);
   var chartActions = $('.chart-actions-container:eq(1)');
-  appendStepAnnotation(chartActions, "3", chartActions.height(), chartActions.width()/2);
+  appendStepAnnotation(chartActions, "3", -20, -25);
   var chartCanvas = $('.chartjs-render-monitor:eq(1)');
   appendStepAnnotation(chartCanvas, "4", chartCanvas.width()/4, chartCanvas.height()/2 + 10);
-  appendStepAnnotation(chartCanvas, "5", 15, chartCanvas.height()/2 - 50);
+  appendStepAnnotation(chartCanvas, "5", 15, chartCanvas.width()*0.8);
 }
 
 function highlightCustomCaseList() {
@@ -397,7 +402,7 @@ function highlightTaskActionItem(taskIndex, actionIndex) {
 }
 
 function highlightShowAllProcesses() {
-  createRedThickOutline($('.submenu.PROCESS'));
+  createRedThickOutlineWithOffset($('.ripplelink.PROCESS'));
   createRedMediumOutline($("[id$='process-widget:process-link:process-link']"));
 }
 

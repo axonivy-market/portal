@@ -3,6 +3,9 @@ package ch.ivy.addon.portalkit.util;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.apache.commons.lang3.StringUtils;
+
+import ch.ivy.addon.portalkit.enums.Protocol;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class UrlUtils {
@@ -14,4 +17,31 @@ public class UrlUtils {
     }
     return builder.toString();
   }
+
+  public static boolean isIvyUrl(String url) {
+    return url == null
+        || (StringUtils.contains(url, ".ivp?")
+            || StringUtils.endsWith(url, ".ivp")
+            || StringUtils.endsWith(url, ".icm"));
+  }
+
+  public static String buildUrl(String url) {
+    return correctProcessUrl(url);
+  }
+
+  private static String correctProcessUrl(String url) {
+    String processUrl = url;
+    if (processUrl != null && !hasProtocolOrIsARelativeUrl(processUrl)) {
+      processUrl = Protocol.HTTP.getValue() + processUrl;
+    }
+    return processUrl;
+  }
+
+  private static boolean hasProtocolOrIsARelativeUrl(String url) {
+    String urlInLowerCase = url.toLowerCase();
+    return urlInLowerCase.startsWith(Protocol.HTTP.getValue())
+        || urlInLowerCase.startsWith(Protocol.HTTPS.getValue())
+        || urlInLowerCase.startsWith("/");
+  }
+
 }
