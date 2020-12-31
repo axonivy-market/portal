@@ -158,7 +158,7 @@ public class CaseExporter {
       case STATE:
         return caseItem.getState().toString();
       case CATEGORY:
-        return caseItem.getCategoryPath();
+        return caseItem.getCategory().getPath();
       default:
         return "";
     }
