@@ -157,7 +157,7 @@ public class TaskExporter {
       case COMPLETED_ON:
         return task.getEndTimestamp();
       case CATEGORY:
-        return task.getCategoryPath();
+        return task.getCategory().getPath();
       default:
         return "";
     }
