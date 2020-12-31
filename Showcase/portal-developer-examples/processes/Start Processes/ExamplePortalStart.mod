@@ -1730,7 +1730,7 @@ Bk3 f1 596 160 659 160 #arcP
 >Proto Bk1 0 0 32 24 18 0 #rect
 >Proto Bk1 @|BIcon #fIcon
 Bk4 f8 704 160 660 160 #arcP
-Bk4 f36 dialogId ch.ivy.addon.portal.generic.PortalHome #txt
+Bk4 f36 dialogId com.axonivy.portal.developerexamples.PortalHome #txt
 Bk4 f36 startMethod start(ch.ivy.addon.portal.generic.view.TaskView) #txt
 Bk4 f36 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
 Bk4 f36 requestMappingAction 'param.taskView=in.taskView;
