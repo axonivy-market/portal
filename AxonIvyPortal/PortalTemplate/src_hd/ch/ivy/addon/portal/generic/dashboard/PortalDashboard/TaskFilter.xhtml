@@ -84,7 +84,9 @@
         </div>
         <div class="ui-g-9">
           <p:inputNumber id="from-number-field-input" styleClass="task-configuration__input-text" value="#{field.userFilterFrom}"
-            inputStyleClass="task-configuration__input-number" />
+            inputStyleClass="task-configuration__input-number" minValue="#{field.filterFrom}">
+            <f:convertNumber pattern="#{field.pattern}" />
+          </p:inputNumber>
         </div>
     
         <div class="ui-g-3">
@@ -92,7 +94,9 @@
         </div>
         <div class="ui-g-9">
           <p:inputNumber id="to-number-field-input" styleClass="task-configuration__input-text" value="#{field.userFilterTo}"
-            inputStyleClass="task-configuration__input-number" />
+            inputStyleClass="task-configuration__input-number" maxValue="#{field.filterTo}">
+            <f:convertNumber pattern="#{field.pattern}" />
+          </p:inputNumber>
         </div>
       </h:panelGroup>
     
