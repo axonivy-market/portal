@@ -153,7 +153,7 @@
           <p:overlayPanel id="category-panel" for="category" appendTo="category-container"
             styleClass="task-configuration__category-panel"
             onHide="$(this.targetElement).parents('.task-configuration__category').find('.portal-cancel-button').click();"
-            dynamic="false">
+            dynamic="true">
             <p:tree id="task-category-filter-tree" value="#{dashboardTaskFilterBean.categoryTree}" var="node"
               selectionMode="checkbox" selection="#{dashboardTaskFilterBean.categoryNodes}" filterMatchMode="contains"
               filterBy="#{node}">
