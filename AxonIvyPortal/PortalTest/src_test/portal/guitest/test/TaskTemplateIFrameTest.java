@@ -94,6 +94,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     TaskWidgetPage taskWidgetPage1 = taskTemplatePage1.finishCreateInvestmentTask();
     taskWidgetPage1 = taskWidgetPage1.openTaskList();
     TaskTemplatePage taskTemplatePage2 = taskWidgetPage1.startTask(1);
-    assertTrue(taskTemplatePage2.isTextOutIFrameChangedWithSkipTaskList());
+    String startTaskName = taskTemplatePage2.getTaskNameOutIFrame();
+    assertTrue(taskTemplatePage2.isTextOutIFrameChangedWithSkipTaskList(startTaskName));
   }
 }
