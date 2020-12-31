@@ -26,7 +26,11 @@
   --ivy-tertinary-color-yellow-dark: hsl(46, 100%, 58%);
   --ivy-tertinary-color-yellow-medium: hsl(49, 99%, 65%);
   --ivy-tertinary-color-yellow-light: hsl(47, 100%, 79%);
+
+  /* Colors for Portal */
   --ivy-portal-blue-light: #90DDE9;
+  --ivy-portal-blue-dark: #007095;
+  --ivy-portal-color-black: #1B1B1B;
 
   --accent-color: var(--ivy-portal-blue-light);
   --accent-text-color: var(--primary-dark-text-color);
@@ -51,8 +55,6 @@
   --accordion-header-active-background-color: var(--ivy-primary-color-grey-light);
   --accordion-header-background-color: var(--ivy-primary-color-grey-light);
   --case-task-state-done-or-resume-green: #4eb41c;
-  --portal-sub-menu-background-color: rgba(255,255,255,0.6);
-  --portal-sub-menu-item-link-background-color: rgba(0,0,0,0);
   --box-shadow-color: hsla(0, 0%, 15%, 0.2);
   --portal-border-radius: 5px;
   --item-background-hover: rgba(144, 221, 233, 0.24);
@@ -152,34 +154,28 @@
   --statistic-panel-header: var(--ivy-primary-color-white);
   --statistic-panel-header-border: var(--ivy-primary-color-white);
   --statistic-filter-accordion-panel-border: var(--ivy-primary-color-grey-light);
-  --dashboard-chart-panel-chart-name-font-weight: 400;
   --chart-info-header-font-weight: bold;
-  --chart-info-label-font-weight: bold;
-  --chart-name-font-size: 1.4rem;
+  --chart-name-font-weight: bold;
+  --chart-name-font-size: 1.6rem;
+  --chart-name-line-height: 2rem;
   --chart-filter-header-font-size: 2rem;
-  --chart-container-add-link-font-size: 1.2rem;
-  --dashboard-chart-name-font-size: 2rem;
   --statistic-carousel-header-button-hover-color: var(--ivy-primary-color-grey-dark);
   --statistic-carousel-header-button-color: var(--ivy-primary-color-grey-medium);
-  --statistic-carousel-header-color: var(--ivy-primary-color-grey-dark);
+  --statistic-carousel-header-color: var(--ivy-portal-color-black);
   --statistic-link-hover-backround-color: var(--ivy-primary-color-grey-pale);
   --statistic-link-hover-border: var(--ivy-primary-color-grey-light);
-
-  /* Start Menu Item */
-  --menu-item-current-application-border-bottom-color: transparent;
+  --chart-container-separator-border: 1px solid #F4F4F4;
+  --chart-container-separator-border-radius: 0;
 
   /* Sidebar */
   --sidebar-app-text-color: var(--menuitem-text-color);
-  --menuitem-active-text-color: var(--primary-color);
-  --menuitem-active-icon-text-color: var(--primary-color);
-  --menuitem-hover-icon-text-color: var(--menuitem-text-color);
   --sidebar-app-text-color: var(--primary-color);
-  --menuitem-active-text-color: var(--primary-color);
-  --menuitem-active-bg-color: transparent;
-  --menuitem-hover-bg-color: var(--ivy-primary-color-grey-light);
-  --menuitem-hover-text-color: var(--menuitem-text-color);
-  --submenu-bg-color: rgba(255,255,255,0.6);
   --sidebar-mobile-menu-icon-font-size: 2.4rem;
+  --menuitem-active-bg-color: var(--primary-color);
+  --menuitem-hover-icon-text-color: var(--primary-color);
+  --menuitem-hover-bg-color: var(--ivy-primary-color-grey-light);
+  --menuitem-hover-text-color: var(--primary-color);
+
 
   /* Filter Widget */
   --advanced-filter-error-color: var(--ivy-tertinary-color-red-medium);
