@@ -7,13 +7,12 @@
   <cc:attribute name="value" required="true" />
   <cc:attribute name="tooltip" />
   <cc:attribute name="styleClass" />
-  <cc:attribute name="responsiveStyleClass" default="u-hidden-md-down js-hidden-when-expand-menu"/>
+  <cc:attribute name="responsiveStyleClass" default="u-hidden-md-down"/>
   <cc:attribute name="categoryTooltipStyleClass" />
-  <cc:attribute name="rendered" />
 </cc:interface>
 
 <cc:implementation>
-  <h:panelGroup rendered="#{cc.attrs.rendered}" styleClass="task-category-info">
+  <h:panelGroup styleClass="task-category-info">
     <h:outputText id="#{cc.attrs.componentId}" value="#{cc.attrs.value}" 
       styleClass="name-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" />
     <p:tooltip id="category-tooltip" for="#{cc.attrs.componentId}"

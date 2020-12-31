@@ -134,7 +134,7 @@ public class TaskAnalysisExporter {
       case CASE_ID:
         return String.valueOf(task.getCase().getId());
       case CASE_CATEGORY:
-        return task.getCase().getCategoryPath();
+        return task.getCase().getCategory().getPath();
       case CASE_CREATOR:
         if (task.getCase().getCreatorUserName() == null) {
           return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable");
@@ -152,7 +152,7 @@ public class TaskAnalysisExporter {
       case TASK_ID:
         return String.valueOf(task.getId());
       case TASK_CATEGORY:
-        return task.getCategoryPath();
+        return task.getCategory().getPath();
       case TASK_DESCRIPTION:
         return task.getDescription();
       case TASK_ACTIVATOR:

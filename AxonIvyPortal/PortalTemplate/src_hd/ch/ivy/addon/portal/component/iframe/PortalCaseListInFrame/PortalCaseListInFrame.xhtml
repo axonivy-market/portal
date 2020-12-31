@@ -60,7 +60,7 @@
                 <ic:ch.ivy.addon.portalkit.component.cases.column.CaseState componentId="case-state-cell" case="#{case}"
                   dataModel="#{data.caseView.getDataModel()}" />
                 <ic:ch.ivy.addon.portalkit.component.cases.column.CaseCategory componentId="case-category-cell" 
-                  rendered="#{data.caseView.dataModel.isSelectedColumn('CATEGORY')}" value="#{case.getCategory().getName()}" tooltip="#{case.getCategoryPath()}" />
+                  rendered="#{data.caseView.dataModel.isSelectedColumn('CATEGORY')}" value="#{case.getCategory().getName()}" tooltip="#{case.getCategory().getPath()}" />
               </ui:fragment>
             </f:facet>
 
