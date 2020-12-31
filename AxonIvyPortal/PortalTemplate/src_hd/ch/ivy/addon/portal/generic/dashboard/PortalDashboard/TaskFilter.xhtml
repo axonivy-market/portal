@@ -126,11 +126,11 @@
       <p:inputText id="user-filter-category" styleClass="task-configuration__input-text"
         value="#{widget.getUserFilterDisplayCategories()}" readonly="true" />
       <p:overlayPanel id="user-filter-category-panel" for="user-filter-category" appendTo="@(body)"
-        styleClass="task-configuration__category-panel"
+        styleClass="task-configuration__category-panel" dynamic="true"
         onHide="$(this.targetElement).parents('.task-configuration__category').find('.portal-cancel-button').click();">
         <p:tree id="task-category-filter-tree" value="#{widget.categoryTree}" var="node"
           selectionMode="checkbox" selection="#{widget.categoryNodes}" filterMatchMode="contains"
-          filterBy="#{node}" showUnselectableCheckbox="true">
+          filterBy="#{node}" showUnselectableCheckbox="true" >
           <p:treeNode>
             <h:outputText value="#{node.value}" />
           </p:treeNode>
