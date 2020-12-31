@@ -1,3 +1,7 @@
+.task-template-container .task-template-content {
+  margin-bottom: 30px;
+}
+
 /* Override fieldset */
 .ui-fieldset-legend {
   padding: 10px !important;
