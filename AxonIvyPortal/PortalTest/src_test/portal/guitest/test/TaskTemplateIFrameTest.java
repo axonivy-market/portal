@@ -1,5 +1,6 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -94,6 +95,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     TaskWidgetPage taskWidgetPage1 = taskTemplatePage1.finishCreateInvestmentTask();
     taskWidgetPage1 = taskWidgetPage1.openTaskList();
     TaskTemplatePage taskTemplatePage2 = taskWidgetPage1.startTask(1);
-    assertTrue(taskTemplatePage2.isTextOutIFrameChangedWithSkipTaskList());
+    assertEquals("Review Request (Skip Tasklist in IFrame)",
+        taskTemplatePage2.getTaskNameOutsideIFrameWithSkipTaskList());
   }
 }
