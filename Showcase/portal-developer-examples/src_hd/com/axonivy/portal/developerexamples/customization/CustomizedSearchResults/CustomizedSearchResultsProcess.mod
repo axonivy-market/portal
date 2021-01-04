@@ -34,18 +34,18 @@ Ps0 f0 outParameterDecl '<> result;' #txt
 Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start()</name>
-        <nameStyle>7,5,7
+        <name>start(keyword)</name>
+        <nameStyle>14,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f0 53 85 22 22 -16 13 #rect
+Ps0 f0 109 85 22 22 -16 13 #rect
 Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f1 333 85 22 22 14 0 #rect
 Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f2 expr out #txt
-Ps0 f2 75 96 333 96 #arcP
+Ps0 f2 131 96 333 96 #arcP
 Ps0 f6 guid 163B5B169EAD48FF #txt
 Ps0 f6 method start(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number) #txt
 Ps0 f6 inParameterDecl '<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel searchResultsDataModel,Number activeTabIndex> param;' #txt
@@ -56,18 +56,18 @@ Ps0 f6 outParameterDecl '<> result;' #txt
 Ps0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start(SearchResultsDataModel)</name>
-        <nameStyle>29,5,7
+        <name>start(SearchResultsDataModel, activeTabIndex)</name>
+        <nameStyle>45,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ps0 f6 52 179 26 26 -52 19 #rect
+Ps0 f6 108 179 26 26 -52 19 #rect
 Ps0 f6 @|UdInitIcon #fIcon
-Ps0 f7 340 179 26 26 0 12 #rect
+Ps0 f7 331 179 26 26 0 12 #rect
 Ps0 f7 @|UdProcessEndIcon #fIcon
 Ps0 f8 expr out #txt
-Ps0 f8 78 192 340 192 #arcP
+Ps0 f8 134 192 331 192 #arcP
 >Proto Ps0 .type com.axonivy.portal.developerexamples.customization.CustomizedSearchResults.CustomizedSearchResultsData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
