@@ -88,7 +88,8 @@ public class TaskFilterTest extends BaseTest {
 		assertEquals(filterName, taskWidgetPage.getFilterName());
 	}
 
-	@Test
+	@SuppressWarnings("deprecation")
+  @Test
 	public void testSaveTaskFilterForAdmin() {
 	  List<String> adminStates = Arrays.asList("Ready for joining", "Suspended", "In progress", "Reserved", "Delayed", "Done", "Destroyed", "Failed", "Join failed", "Waiting for event");
     login(TestAccount.ADMIN_USER);

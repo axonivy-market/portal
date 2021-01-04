@@ -9,6 +9,7 @@ public class ExampleOverviewPage extends TemplatePage {
     return "id('example-header')";
   }
   
+  @SuppressWarnings("deprecation")
   public LeaveRequestOverviewPage openLeaveRequestOverview() {
     WebElement element = findElementByCssSelector("[id$='0:more-info']");
     element.click();
@@ -16,6 +17,7 @@ public class ExampleOverviewPage extends TemplatePage {
     return new LeaveRequestOverviewPage();
   }
   
+  @SuppressWarnings("deprecation")
   public LendingOverviewPage openLendingOverview() {
     WebElement element = findElementByCssSelector("[id$='1:more-info']");
     element.click();

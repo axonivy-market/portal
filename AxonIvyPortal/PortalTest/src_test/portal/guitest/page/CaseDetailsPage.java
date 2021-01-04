@@ -244,6 +244,7 @@ public class CaseDetailsPage extends TemplatePage {
     click(confirmButton);
   }
   
+  @SuppressWarnings("deprecation")
   @Override
   public void waitAjaxIndicatorDisappear() {
     WebElement ajaxIndicatorStartState = findElementById("ajax-indicator:ajax-indicator-ajax-indicator_start");

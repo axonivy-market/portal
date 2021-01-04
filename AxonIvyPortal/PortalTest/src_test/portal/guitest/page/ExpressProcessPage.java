@@ -31,13 +31,15 @@ public class ExpressProcessPage extends TemplatePage {
 		type(By.id("form:process-description"), processDescription);
 	}
 
-	private void selectCheckbox(String forAttribute) {
+	@SuppressWarnings("deprecation")
+  private void selectCheckbox(String forAttribute) {
 		WebElement checkboxLabel = findElementByXpath(String.format("//label[@for='%s']", forAttribute));
 		click(checkboxLabel);
 		waitAjaxIndicatorDisappear();
 	}
 
-	public void createTask(int taskIndex, int typeIndex, String taskName, String taskDescription,
+	@SuppressWarnings("deprecation")
+  public void createTask(int taskIndex, int typeIndex, String taskName, String taskDescription,
 			List<ExpressResponsible> responsibles) {
 		chooseTaskType(taskIndex, typeIndex);
 		Sleeper.sleep(1000);
@@ -64,7 +66,8 @@ public class ExpressProcessPage extends TemplatePage {
 		addResponsible(responsibles);
 	}
 
-	private void addResponsible(List<ExpressResponsible> responsibles) {
+	@SuppressWarnings("deprecation")
+  private void addResponsible(List<ExpressResponsible> responsibles) {
 		waitAjaxIndicatorDisappear();
 		waitForElementDisplayed(By.id("choose-responsible-dialog"), true);
 		for (ExpressResponsible responsible : responsibles) {
@@ -78,7 +81,8 @@ public class ExpressProcessPage extends TemplatePage {
 		return new ExpressFormDefinitionPage();
 	}
 
-	public void addNewTask(int currentTaskIndex) {
+	@SuppressWarnings("deprecation")
+  public void addNewTask(int currentTaskIndex) {
 		click(By.id(String.format("form:defined-tasks-list:%d:add-step-button", currentTaskIndex)));
 		ensureNoBackgroundRequest();
 	}
@@ -92,7 +96,8 @@ public class ExpressProcessPage extends TemplatePage {
 		addResponsible(responsibles);
 	}
 
-	private void chooseResponsible(String responsible, boolean isGroup) {
+	@SuppressWarnings("deprecation")
+  private void chooseResponsible(String responsible, boolean isGroup) {
 		if (isGroup) {
 			selectCheckbox("assignee-selection-form:assignee-type:1");
 			waitAjaxIndicatorDisappear();
@@ -119,7 +124,8 @@ public class ExpressProcessPage extends TemplatePage {
         findElementByCssSelector(String.format("label[id$='%d:task-type_label']", taskIndex, taskIndex)).getText()));
   }
 
-	private void agreeToDeleteAllDefineTasks() {
+	@SuppressWarnings("deprecation")
+  private void agreeToDeleteAllDefineTasks() {
 		waitForElementDisplayed(By.id("delete-all-defined-tasks-warning"), true);
 		click(By.id("delete-all-defined-tasks-warning-ok"));
 		waitAjaxIndicatorDisappear();
