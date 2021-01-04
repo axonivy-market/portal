@@ -78,7 +78,7 @@ Pt0 f0 129 49 30 30 -111 17 #rect
 Pt0 f0 @|StartRequestIcon #fIcon
 Pt0 f1 617 49 30 30 0 15 #rect
 Pt0 f1 @|EndIcon #fIcon
-Pt0 f3 dialogId com.axonivy.portal.developerexamples.component.ProcessHistoryComponent #txt
+Pt0 f3 dialogId com.axonivy.portal.developerexamples.customization.ProcessHistoryComponent #txt
 Pt0 f3 startMethod start() #txt
 Pt0 f3 requestActionDecl '<> param;' #txt
 Pt0 f3 responseActionDecl 'com.axonivy.portal.developerexamples.component.ProcessHistoryComponentData out;
@@ -199,7 +199,7 @@ Pt0 f11 outCond ivp=="TaskA.ivp" #txt
 Pt0 f11 710 169 808 169 #arcP
 Pt0 f12 617 321 30 30 0 15 #rect
 Pt0 f12 @|EndIcon #fIcon
-Pt0 f13 dialogId com.axonivy.portal.developerexamples.component.ProcessHistoryDialogComponent #txt
+Pt0 f13 dialogId com.axonivy.portal.developerexamples.customization.ProcessHistoryDialogComponent #txt
 Pt0 f13 startMethod start() #txt
 Pt0 f13 requestActionDecl '<> param;' #txt
 Pt0 f13 responseActionDecl 'com.axonivy.portal.developerexamples.component.ProcessHistoryComponentData out;
