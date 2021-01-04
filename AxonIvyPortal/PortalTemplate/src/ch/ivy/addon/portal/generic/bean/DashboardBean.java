@@ -296,7 +296,11 @@ public class DashboardBean implements Serializable {
   public void toggleMode() {
     isReadOnlyMode = !isReadOnlyMode;
   }
-  
+
+  public String getTaskStateDisplayName(String state) {
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/".concat(state));
+  }
+
   public void startTask(ITask task) throws IOException {
     FacesContext.getCurrentInstance().getExternalContext().redirect(task.getStartLinkEmbedded().getRelative());
   }
@@ -366,4 +370,5 @@ public class DashboardBean implements Serializable {
   private ICustomProperties customProperties() {
     return Ivy.wf().getApplication().customProperties();
   }
+
 }

@@ -61,7 +61,8 @@
   padding: 10px;
 }
 
-.widget__filter-sidebar-mask {
+.widget__filter-sidebar-mask,
+.widget__info-sidebar-mask {
   background-color: lightgray;
   z-index: 99;
   width: 100%;
@@ -73,7 +74,8 @@
   opacity: 0.5;
 }
 
-.widget__filter-sidebar {
+.widget__filter-sidebar,
+.widget__info-sidebar {
   position: absolute;
   height: calc(100% - 49px);
   width: 450px;
