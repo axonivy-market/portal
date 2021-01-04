@@ -631,6 +631,9 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
   box-shadow: var(--card-box-shadow);
   border-radius: var(--card-border-radius); }
 
+.dashboard-widget-panel-container .card {
+  box-shadow: var(--card-box-shadow); }
+
 .statistic-filter-accordion-panel .ui-accordion-content {
   border: solid 1px var(--statistic-filter-accordion-panel-border); }
 
