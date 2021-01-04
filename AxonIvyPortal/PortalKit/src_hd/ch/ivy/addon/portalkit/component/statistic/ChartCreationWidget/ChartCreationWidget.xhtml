@@ -8,7 +8,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <h:form id="chart-management-form">
+  <h:form id="chart-management-form" styleClass="portal-card-container">
     <!-- Init Data for chart - auto run -->
     <p:remoteCommand id="init-filter-command" name="initFilter" autoRun="true" update="statistic-filter" global="false" immediate="true"
       action="#{statisticChartCreationBean.updateFilters(data.statisticFilter, data.oldStatisticFilter)}" oncomplete="updateChartModels();" />
@@ -39,7 +39,7 @@
       <p:autoUpdate />
     </p:growl>
 
-    <h:panelGroup id="edit-statistic-container" styleClass="edit-statistic-container ui-g-12 u-padding-0">
+    <h:panelGroup id="edit-statistic-container" styleClass="edit-statistic-container ui-g-12 u-padding-0 portal-card-container">
       <h:panelGroup id="chart-list" layout="block" styleClass="chart-list ui-g">
         <c:set var="taskByPriorityModel" value="#{statisticChartCreationBean.taskByPriorityModel}" />
         <h:panelGroup id="task-by-priority-chart" layout="block" styleClass="ui-g-4 ui-xl-4 ui-lg-6 ui-md-12 ui-sm-12">

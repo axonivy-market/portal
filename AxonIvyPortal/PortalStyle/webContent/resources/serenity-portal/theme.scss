@@ -71,6 +71,12 @@ body .layout-wrapper .layout-sidebar .sidebar-logo .portal-home-logo-small img {
     margin-left: 10px;
 }
 
+/* Portal generic card style */
+.portal-card-container .card {
+  box-shadow: $statisticCardBoxShadow;
+  border-radius: $statisticCardBorderRadius;
+}
+
 /*Style Email Setting --------------------------------------------------------------------------------*/
 .daily-summary.ui-selectmanycheckbox.ui-widget label {
     margin-left: 0px;
@@ -241,24 +247,6 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 
 .chart-info-container label {
   font-weight: $chartInfoLabelFontWeight;
-}
-
-.dashboard-chart-panel .card,
-.edit-statistic-container .card,
-.statistic-widget.compact-mode .statistic-carousel.card,
-.filter-container.card,
-.case-detail-card.card,
-.task-detail-card.card,
-.task-detail-general-card.card,
-.express-fieldset .ui-fieldset-content .card,
-.defined-task-container.card,
-.form-elements-container.card,
-.form-definition-table .available-elements-panel.card,
-.available-form-elements .available-elements-panel.card,
-.express-email-container .card,
-.express-form .card {
-  box-shadow: $statisticCardBoxShadow;
-  border-radius: $statisticCardBorderRadius;
 }
 
 .statistic-filter-accordion-panel .ui-accordion-content {
@@ -1760,10 +1748,4 @@ ul.participants-list li {
 body .ui-growl .ui-growl-item .ui-growl-message a {
   color: #ffffff;
   text-decoration: underline;
-}
-
-/* Portal generic card style */
-.portal-card-container .card {
-  box-shadow: $statisticCardBoxShadow;
-  border-radius: $statisticCardBorderRadius;
 }
