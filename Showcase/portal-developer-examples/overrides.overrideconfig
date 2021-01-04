@@ -3,12 +3,10 @@
     /ch.ivy.addon.portalkit.component.PageHeader "com.axonivy.portal.developerexamples.customization.component.PageHeaderOverride"
     /ch.ivy.addon.portal.component.CaseInformation "com.axonivy.portal.developerexamples.customization.component.CaseInformationOverride"
     /ch.ivy.addon.portalkit.component.UserWithEnvironmentInfo "com.axonivy.portal.developerexamples.customization.component.UserWithEnvironmentInfoOverride"
-    /ch.ivy.addon.portalkit.LoginErrorPage "com.axonivy.portal.developerexamples.customization.component.CustomizedLoginErrorPage"
     /ch.ivy.addon.portal.generic.PortalCases "com.axonivy.portal.developerexamples.customization.component.CaseWidget"
     /ch.ivy.addon.portalkit.component.PageFooter "com.axonivy.portal.developerexamples.customization.component.PageFooterOverride"
-    /ch.ivy.addon.portalkit.singleapp.general.Login "com.axonivy.portal.developerexamples.customization.component.CustomizedLoginPage"
-    /ch.ivy.addon.portal.generic.PortalTasks "com.axonivy.portal.developerexamples.customization.component.TaskWidget"
     /ch.ivy.addon.portal.generic.SearchResults "com.axonivy.portal.developerexamples.customization.SearchResults"
+    /ch.ivy.addon.portal.generic.PortalTasks "com.axonivy.portal.developerexamples.customization.component.TaskWidget"
     /ch.ivy.addon.portal.generic.PortalTaskDetails "com.axonivy.portal.developerexamples.customization.component.TaskItemDetails"
     /ch.ivy.addon.portal.generic.PortalCaseDetails "com.axonivy.portal.developerexamples.customization.component.CaseItemDetails"
   }
