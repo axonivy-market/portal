@@ -30,6 +30,7 @@ public class TaskActionTest extends BaseTest {
     homePage = new HomePage();
   }
 
+  @SuppressWarnings("deprecation")
   @Test
   public void testVisibilityTaskActionForNormalUser() {
     login(TestAccount.DEMO_USER);
@@ -58,6 +59,7 @@ public class TaskActionTest extends BaseTest {
     taskWidgetPage = taskDetailsPage.goBackToTaskListFromTaskDetails();
   }
 
+  @SuppressWarnings("deprecation")
   @Test
   public void testVisibilityTaskActionForAdminUser() {
     login(TestAccount.ADMIN_USER);
