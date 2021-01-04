@@ -48,4 +48,8 @@ function toggleInfoSidebar(element) {
 
   widgetContent.children('.widget__info-sidebar').toggle('slide', {direction: 'right'});
   widgetContent.children('.widget__info-sidebar-mask').toggle();
+  
+  if (widgetContent.children('.widget__info-sidebar-mask').is(':visible')) {
+    buildStatisticInfos();
+  }
 }
