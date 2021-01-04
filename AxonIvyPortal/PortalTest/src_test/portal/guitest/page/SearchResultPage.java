@@ -15,16 +15,19 @@ public class SearchResultPage extends TemplatePage {
 		return "id('search-results-tabview')";
 	}
 
+  @SuppressWarnings("deprecation")
 	public void openTaskTab() {
 		click(By.cssSelector("li[class*='task-tab-title']"));
 		waitAjaxIndicatorDisappear();
 	}
 
+  @SuppressWarnings("deprecation")
 	public void openCaseTab() {
 		click(By.cssSelector("li[class*='case-tab-title']"));
 		waitAjaxIndicatorDisappear();
 	}
 
+  @SuppressWarnings("deprecation")
 	public void openEmployeeTab() {
 		click(By.xpath("//div[@id='search-results-tabview']/ul/li[4]"));
 		waitAjaxIndicatorDisappear();

@@ -55,6 +55,7 @@ public class ChatPage extends TemplatePage {
     return findListElementsByClassName("js-message").stream().map(WebElement::getText).collect(Collectors.joining(","));
   }
 
+  @SuppressWarnings("deprecation")
   public void addUserToChatGroup(List<ExpressResponsible> responsibles) {
     ensureNoBackgroundRequest();
     waitForElementDisplayed(By.id("chat-assignee-dialog"), true);
@@ -66,6 +67,7 @@ public class ChatPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
+  @SuppressWarnings("deprecation")
   private void chooseResponsible(String responsible, boolean isGroup) {
     if (isGroup) {
       selectRoleAssigneeCheckbox();
@@ -84,6 +86,7 @@ public class ChatPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
+  @SuppressWarnings("deprecation")
   private void selectRoleAssigneeCheckbox() {
     WebElement checkboxLabel =
         findElementByXpath(String.format("//label[@for='%s']", "chat-assignee-selection-form:chat-assignee-type:1"));
@@ -92,6 +95,7 @@ public class ChatPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("input[id$='role-selection_input']"), true);
   }
 
+  @SuppressWarnings("deprecation")
   public String getAllParticipants() {
     waitForElementDisplayed(By.cssSelector("a[id$='show-participants-link']"), true);
     click(By.cssSelector("a[id$='show-participants-link']"));

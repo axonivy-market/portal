@@ -52,6 +52,7 @@ public class TaskWidgetTest extends BaseTest {
     assertTrue(relatedCaseName.contains(caseName));
   }
 
+  @SuppressWarnings("deprecation")
   @Test
   public void testReserveTask() {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
