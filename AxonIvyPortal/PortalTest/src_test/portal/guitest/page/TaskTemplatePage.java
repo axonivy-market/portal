@@ -22,6 +22,7 @@ public class TaskTemplatePage extends TemplatePage {
     driver.switchTo().defaultContent();
   }
 
+  @SuppressWarnings("deprecation")
   public void switchToCaseInfoIframe() {
     waitAjaxIndicatorDisappear();
     driver.switchTo().frame(CASE_INFO_IFRAME_ID);
@@ -37,6 +38,7 @@ public class TaskTemplatePage extends TemplatePage {
     return caseDetails.isDisplayed();
   }
 
+  @SuppressWarnings("deprecation")
   public void addNewNote(String content) {
     switchToCaseInfoIframe();
     clickByCssSelector("a[id$='add-note-command']");
@@ -133,6 +135,7 @@ public class TaskTemplatePage extends TemplatePage {
     return findElementByCssSelector("span[id$='case-id']").getText();
   }
 
+  @SuppressWarnings("deprecation")
   public void clickAdhocCreationButton() {
     clickByCssSelector("#horizontal-task-actions");
     clickByCssSelector("a[id$='start-adhoc']");
@@ -143,6 +146,7 @@ public class TaskTemplatePage extends TemplatePage {
     clickByCssSelector("#horizontal-task-actions");
   }
 
+  @SuppressWarnings("deprecation")
   public void clickAdhocOkButton() {
     clickByCssSelector("button[id$='start-adhoc-ok-button']");
     waitAjaxIndicatorDisappear();
@@ -158,6 +162,7 @@ public class TaskTemplatePage extends TemplatePage {
     return driver.findElements(By.cssSelector(startAdhocBtnCSSSelection)).isEmpty();
   }
 
+  @SuppressWarnings("deprecation")
   public boolean isAdhocHistoryDialogExistWhenOpenTaskFirstTime() {
     waitAjaxIndicatorDisappear();
     return findElementByCssSelector("div[id$='adhoc-task-history-dialog']").isDisplayed();
@@ -167,6 +172,7 @@ public class TaskTemplatePage extends TemplatePage {
     return findElementByCssSelector("div[id$='adhoc-task-history-dialog']").isDisplayed();
   }
 
+  @SuppressWarnings("deprecation")
   public void clickShowAdhocHistoryBtn() {
     clickByCssSelector("#horizontal-task-actions");
     waitForElementDisplayed(By.cssSelector("a[id$='show-adhoc-history']"), true);
@@ -184,6 +190,7 @@ public class TaskTemplatePage extends TemplatePage {
     return row.findElements(By.xpath("td")).get(3).getText();
   }
 
+  @SuppressWarnings("deprecation")
   public void closeAdhocHistoryDialog() {
     clickByCssSelector("button[id$='close-adhoc-dialog-button']");
     waitAjaxIndicatorDisappear();
@@ -224,6 +231,7 @@ public class TaskTemplatePage extends TemplatePage {
     }
   }
 
+  @SuppressWarnings("deprecation")
   public void joinProcessChatAlreadyCreated() {
     waitForElementDisplayed(By.id("chat-group-join-form:chat-group-join-button"), true);
     click(By.id("chat-group-join-form:chat-group-join-button"));

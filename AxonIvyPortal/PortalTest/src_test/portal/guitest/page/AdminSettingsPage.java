@@ -26,6 +26,7 @@ public class AdminSettingsPage extends TemplatePage {
     return findElementById(DIALOG_TITLE).isDisplayed();
   }
 
+  @SuppressWarnings("deprecation")
   public void openSettingTab() {
     WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:settingTab']");
     click(settingTabLink);
@@ -106,6 +107,7 @@ public class AdminSettingsPage extends TemplatePage {
     return isElementDisplayed(By.id("warning-before-lost-session:timeout-dialog"));
   }
 
+  @SuppressWarnings("deprecation")
   public AnnouncementPage openAnnouncementTab() {
     WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:announcement-tab']");
     click(settingTabLink);
@@ -114,6 +116,7 @@ public class AdminSettingsPage extends TemplatePage {
     return new AnnouncementPage();
   }
 
+  @SuppressWarnings("deprecation")
   public ExpressManagementPage openExpressManagementTab() {
     WebElement settingTabLink = findElementByXpath("//a[@href='#adminui:adminTabView:express-management-tab']");
     click(settingTabLink);
