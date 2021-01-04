@@ -209,8 +209,8 @@ public class TaskFilterTest extends BaseTest {
 		
 		MainMenuPage mainMenuPage = new MainMenuPage();
 		TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    taskWidgetPage.expand();
-    taskWidgetPage.openAdvancedFilter("Description", "description");
+    	taskWidgetPage.expand();
+    	taskWidgetPage.openAdvancedFilter("Description", "description");
 		taskWidgetPage.filterByDescription(filterMaternity);
 		taskWidgetPage.saveFilter(filterMaternity);
 
