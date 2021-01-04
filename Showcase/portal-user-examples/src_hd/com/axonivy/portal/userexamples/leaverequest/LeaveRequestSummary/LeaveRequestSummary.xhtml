@@ -9,7 +9,7 @@
     <ui:param name="steps" value="#{[ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/creation'),ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/approval'), ivy.cms.co('/Labels/LeaveRequest/LeaveSteps/approvalResult')]}" />
     <ui:define name="content">
       <h:form id="leave-request">
-        <h:panelGroup styleClass="ui-g ui-fluid">
+        <h:panelGroup styleClass="ui-g ui-fluid portal-card-container">
           <div class="ui-g-12 ui-md-12 ui-lg-1 ui-xl-3"></div>
           <p:panel class="card ui-g-12 ui-md-12 ui-lg-10 ui-xl-6">
             <p>#{ivy.cms.co('/Labels/LeaveRequest/approvalResultTaskIntro')}</p>
