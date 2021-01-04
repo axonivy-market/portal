@@ -3713,6 +3713,10 @@ body .ui-accordion.statistic-filter-accordion-panel .ui-accordion-header.ui-stat
   background: transparent;
   padding-left: 25px;
   font-weight: bold;
+}
+
+body .ui-accordion.statistic-filter-accordion-panel .ui-accordion-header,
+body .ui-accordion.statistic-filter-accordion-panel .ui-accordion-header.ui-state-active {
   border: solid 1px transparent;
 }
 
@@ -4789,3 +4793,7 @@ body td .icon {
   margin:20px 0;
 }
 /** Portal dialog ---- end-----**/
+
+.widget-info-panel.statistic-filter-accordion-panel .ui-accordion-content {
+  max-width: 100%;
+}

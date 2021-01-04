@@ -368,3 +368,7 @@
   font-weight: bold;
 }
 /* For Serenity theme - End */
+
+.u-default-cursor {
+  cursor: default;
+}
