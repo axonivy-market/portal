@@ -42,23 +42,9 @@ Refer to ``portal-developer-examples`` project for examples
    previous step. This process is new home page and administrator should
    register this link by Portal's Admin Settings.
 
-4. Override Case widget in: CaseList page, Case Search result.
+4. Use `Axon.ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``PortalCases`` HTML dialog.
 
-   -  Introduce a new HTMLDialog which uses template
-      ``/layouts/PortalCasesTemplate.xhtml`` (refer to
-      :ref:`Responsiveness <components-layout-templates-responsiveness>`
-      to override responsiveness). You can take a look at
-      ``PortalCases.xhtml`` to see how to customize it.
-
-      .. tip:: Highly recommend to copy the ``PortalCases`` HTMLDialog in
-         PortalTemplate and change the copied one's view.
-
-   -  Use Axon.ivy Override to override the ``OpenPortalCases`` callable. The
-      original implementation of this callable is
-      calling ``PortalCases``, change it to call the customized Page introduced in
-      the step above. The signature of this callable is ``useView(CaseView)`` and
-      customized page must receive this ``CaseView`` instance, put in the dialog's
-      ``Data`` with the exact name ``caseView`` .
+   .. tip:: This action will override ``Case widget`` in: CaseList page, Case Search result.
 
 5. After previous steps, you can override :ref:`CaseHeader and
    CaseListHeader <customization-case-widget-how-to-override-ui-case-header>`
