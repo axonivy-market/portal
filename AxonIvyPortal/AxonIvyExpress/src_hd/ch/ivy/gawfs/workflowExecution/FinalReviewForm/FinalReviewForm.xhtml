@@ -18,7 +18,9 @@
     <ui:define name="content">
 
       <h:form id="form" styleClass="ui-g">
-        <ic:ch.ivy.gawfs.component.FinishedUserTasksForm id="finished-tasks-component" finishedTasks="#{data.finishedTasks}" />
+        <div>
+          <ic:ch.ivy.gawfs.component.FinishedUserTasksForm id="finished-tasks-component" finishedTasks="#{data.finishedTasks}" />
+        </div>
         <br />
         <h:panelGrid columns="1" styleClass="case-view-footer ui-g-12 u-no-border">
           <h:panelGroup layout="block" styleClass="TexAlRight">
