@@ -35,6 +35,12 @@ body .ui-selectonemenu .ui-selectonemenu-label.ui-inputfield {
 _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlink {
   display: inline-block; }
 
+/* Portal generic card style */
+.portal-card-container .card {
+  box-shadow: var(--card-box-shadow);
+  border-radius: var(--card-border-radius);
+}
+
 /* Login page */
 .login-body .login-panel {
   height: auto; }
@@ -639,13 +645,6 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 .chart-info-container label {
   font-weight: var(--chart-name-font-weight); }
 
-.dashboard-chart-panel .card,
-.edit-statistic-container .card,
-.statistic-widget.compact-mode .statistic-carousel.card,
-.filter-container.card {
-  box-shadow: var(--card-box-shadow);
-  border-radius: var(--card-border-radius); }
-
 .statistic-filter-accordion-panel .ui-accordion-content {
   border: solid 1px var(--statistic-filter-accordion-panel-border); }
 
@@ -719,17 +718,6 @@ body .portal-cancel-button.ui-widget.ui-button .ui-icon,
 
 .ui-widget.ui-button.defined-task-button.ui-state-hover {
   background-color: var(--defined-task-button-actived-or-hover-background-color); }
-  
-.defined-task-container.card,
-.form-elements-container.card,
-.approval-comment-container .card,
-.express-email-container .card,
-.express-fieldset .card,
-.express-view-form .card,
-.available-form-elements .available-elements-panel.card,
-.form-definition-table .available-elements-panel.card {
-  box-shadow: var(--card-box-shadow);
-  border-radius: var(--card-border-radius); }
 
 .available-form-elements .available-elements-panel.card,
 .form-definition-table .available-elements-panel.card {
@@ -863,11 +851,6 @@ body .ui-inputfield.task-name-input {
 .task-detail-section-title > div > i.icon {
   font-weight: var(--task-detail-section-title-font-weight) !important; }
 
-.task-item-body .card {
-  box-shadow: var(--card-box-shadow);
-  border-radius: var(--card-border-radius);
-}
-
 .task-action-item:hover {
   background-color: var(--task-detail-action-item-hover-background-color); }
 
@@ -956,11 +939,6 @@ body .fieldset-no-border {
   border-bottom: 1px solid var(--widget-sort-menu-border-bottom-color); }
 
 /*Style for Case Detail --------------------------------------------------------------------------------------*/
-.case-detail-body .card {
-  box-shadow: var(--card-box-shadow);
-  border-radius: var(--card-border-radius);
-}
-
 .process-empty-container,
 .process-start-list-item-action,
 .process-start-list-item-name {
@@ -1934,11 +1912,6 @@ body .ui-button.secondary-btn.ui-state-focus {
 
 
 /* My Profile */
-.portal-section-container.card {
-  box-shadow: var(--card-box-shadow);
-  border-radius: var(--card-border-radius);
-}
-
 .my-profile-container .setting-header span {
   color: var(--general-config-description-color);
 }
@@ -1951,10 +1924,4 @@ body .ui-button.secondary-btn.ui-state-focus {
 }
 body.in-dialog .ui-widget-overlay {
   background-color: transparent;
-}
-
-/* Portal generic card style */
-.portal-card-container .card {
-  box-shadow: var(--card-box-shadow);
-  border-radius: var(--card-border-radius);
 }
