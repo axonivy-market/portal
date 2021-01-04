@@ -249,7 +249,14 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 .filter-container.card,
 .case-detail-card.card,
 .task-detail-card.card,
-.task-detail-general-card.card {
+.task-detail-general-card.card,
+.express-fieldset .ui-fieldset-content .card,
+.defined-task-container.card,
+.form-elements-container.card,
+.form-definition-table .available-elements-panel.card,
+.available-form-elements .available-elements-panel.card,
+.express-email-container .card,
+.express-form .card {
   box-shadow: $statisticCardBoxShadow;
   border-radius: $statisticCardBorderRadius;
 }
@@ -1753,4 +1760,10 @@ ul.participants-list li {
 body .ui-growl .ui-growl-item .ui-growl-message a {
   color: #ffffff;
   text-decoration: underline;
+}
+
+/* Portal generic card style */
+.portal-card-container .card {
+  box-shadow: $statisticCardBoxShadow;
+  border-radius: $statisticCardBorderRadius;
 }

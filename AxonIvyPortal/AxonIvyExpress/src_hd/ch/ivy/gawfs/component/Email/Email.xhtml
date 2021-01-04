@@ -13,7 +13,7 @@
   <c:set var="email" value="#{cc.attrs.email}" />
   <f:event listener="#{emailBean.init(email, cc.attrs.responsibles)}" type="preRenderComponent" />
 
-  <h:panelGroup id="email-container" styleClass="express-email-container">
+  <h:panelGroup id="email-container" styleClass="express-email-container" layout="block">
     <div class="ui-g card">
       <div class="ui-g-12 md-inputfield">
         <p:inputText id="email-recipients" styleClass="ui-g-12" value="#{email.recipients}" required="#{param['skipValidator'] == null}"
