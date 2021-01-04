@@ -292,15 +292,14 @@ public class TaskTemplatePage extends TemplatePage {
     return new TaskWidgetPage();
   }
 
-  public boolean isTextOutIFrameChangedWithSkipTaskList() {
+  public String getTaskNameOutsideIFrameWithSkipTaskList() {
     String taskNameOutIFrameCssSelector = "span[id$='title']";
     String approveTaskNameOutIFrame = findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
     waitForCloseButtonDisplayAfterInputedAprrovalNote("1");
     driver.switchTo().defaultContent();
     WaitHelper.assertTrueWithWait(() -> !approveTaskNameOutIFrame
         .equals(findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText()));
-    String finishTaskNameOutIFrame = findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
-    return !approveTaskNameOutIFrame.equals(finishTaskNameOutIFrame);
+    return findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
   }
 
   private void waitForCloseButtonDisplayAfterInputedAprrovalNote(String approvalNote) {
