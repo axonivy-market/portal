@@ -1731,6 +1731,8 @@ Bk4 f8 704 160 660 160 #arcP
 Bk4 f36 dialogId com.axonivy.portal.developerexamples.customization.PortalHome #txt
 Bk4 f36 startMethod start(ch.ivy.addon.portal.generic.view.TaskView) #txt
 Bk4 f36 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
+Bk4 f36 requestMappingAction 'param.taskView=in.taskView;
+' #txt
 Bk4 f36 responseMappingAction 'out=in;
 ' #txt
 Bk4 f36 responseActionCode '
