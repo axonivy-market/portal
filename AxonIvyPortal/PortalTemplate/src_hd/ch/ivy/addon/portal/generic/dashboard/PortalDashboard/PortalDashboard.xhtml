@@ -38,9 +38,10 @@
                             <p:link id="filter-sidebar-link" href="#" styleClass="widget__filter-sidebar-link u-mar-right-5" onclick="toggleFilterSidebar(this)">
                               <i class="fa fa-filter" />
                             </p:link>
-                            <p:commandLink styleClass="u-mar-right-5">
+                            <p:link href="#" styleClass="u-mar-right-5" onclick="buildStatisticInfos(); toggleInfoSidebar(this);">
                               <i class="fa fa-info-circle" />
-                            </p:commandLink>
+                            </p:link>
+                            <p:remoteCommand name="buildStatisticInfos" actionListener="#{widget.buildStatisticInfos}" update="statistic-filter-accordion-panel" global="false" />
                             <p:commandLink styleClass="u-mar-right-5" oncomplete="PF('task-widget-configuration-dialog').show()" global="false"
                               actionListener="#{dashboardBean.setWidget(widget)}" update="task-widget-configuration-dialog" rendered="#{!dashboardBean.isReadOnlyMode}">
                               <i class="fa fa-pencil" />
@@ -51,14 +52,20 @@
                           </div>
                         </div>
                         <h:panelGroup id="widget-content" styleClass="widget__content #{widget.id}" layout="block">
-                          <div class="widget__filter-sidebar-mask" />
-                          <div class="widget__filter-sidebar card">
+                          <div class="widget__filter-sidebar-mask js-widget-mask" />
+                          <div class="widget__filter-sidebar card js-widget-card">
                             <ui:include src="TaskFilter.xhtml">
                               <ui:param name="updateComponent" value="#{component.parent.namingContainer.clientId}:task-component:dashboard-tasks" />
                               <ui:param name="onCompleteApplyingFilters"
                                 value="toggleFilterSidebar(document.getElementById('#{component.parent.namingContainer.clientId}:filter-sidebar-link'))" />
                             </ui:include>
                           </div>
+
+                          <div class="widget__info-sidebar-mask js-widget-mask" />
+                          <div class="widget__info-sidebar card js-widget-card">
+                              <ui:include src="TaskInfo.xhtml" />
+                          </div>
+
                           <ic:ch.ivy.addon.portal.generic.dashboard.TaskWidget id="task-component" taskWidget="#{widget}" />
                         </h:panelGroup>
                       </h:form>
@@ -142,7 +149,6 @@
               
           </f:facet>
         </p:dialog>
-        
         <h:outputScript library="js" name="dashboard.js" />
       </ui:fragment>
     </ui:define>

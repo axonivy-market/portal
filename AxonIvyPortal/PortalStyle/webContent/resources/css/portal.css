@@ -640,7 +640,8 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
 
   body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-header.ui-tabs-outline,
   body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-header.ui-state-hover,
-  body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-header.ui-state-active.ui-tabs-outline {
+  body .ui-accordion.statistic-filter-accordion-panel.ui-accordion .ui-accordion-header.ui-state-active.ui-tabs-outline,
+  body .widget-info-panel.statistic-filter-accordion-panel .ui-accordion-header:hover {
     background: var(--compact-task-start-list-item-hover-background-color);
     border: var(--compact-task-start-list-item-hover-border);
   }
