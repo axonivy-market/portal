@@ -32,12 +32,17 @@ public class DashboardTaskSearchCriteria {
   private boolean isInConfiguration;
 
   public TaskQuery buildQuery() throws ParseException {
+    TaskQuery query = buildQueryWithoutOrderByClause();
+    TaskSortingQueryAppender appender = new TaskSortingQueryAppender(query);
+    query = appender.appendSorting(this).toQuery();
+    return query;
+  }
+
+  public TaskQuery buildQueryWithoutOrderByClause() throws ParseException {
     TaskQuery query = TaskQuery.create();
     queryFilters(query);
     queryCanWorkOn(query);
     queryCategory(query);
-    TaskSortingQueryAppender appender = new TaskSortingQueryAppender(query);
-    query = appender.appendSorting(this).toQuery();
     return query;
   }
 

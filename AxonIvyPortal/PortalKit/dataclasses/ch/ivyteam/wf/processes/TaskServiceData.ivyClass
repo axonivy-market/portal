@@ -10,3 +10,6 @@ taskCategorySearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskCat
 tasks java.util.List<ch.ivyteam.ivy.workflow.ITask> #field
 taskSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria #field
 totalTasks Long #field
+taskStateStatistic ch.ivy.addon.portalkit.bo.TaskStateStatistic #field
+taskQuery ch.ivyteam.ivy.workflow.query.TaskQuery #field
+taskCategoryStatistic ch.ivy.addon.portalkit.bo.TaskCategoryStatistic #field
