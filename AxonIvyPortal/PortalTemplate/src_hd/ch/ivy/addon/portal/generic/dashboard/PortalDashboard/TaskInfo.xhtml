@@ -63,7 +63,7 @@
          <ui:repeat var="field" value="#{widget.filterableColumns}">
 
            <!-- priority -->
-           <h:panelGroup rendered="#{field.field eq 'priority'}">
+           <h:panelGroup rendered="#{field.field eq 'priority' and not empty field.priorities}">
              <div class="ui-g-4">
                <p:outputLabel value="#{field.header}" />
              </div>
@@ -75,7 +75,7 @@
            </h:panelGroup>
 
            <!-- state -->
-           <h:panelGroup rendered="#{field.field eq 'state'}">
+           <h:panelGroup rendered="#{field.field eq 'state' and not empty field.states}">
              <div class="ui-g-4">
                <p:outputLabel value="#{field.header}" />
              </div>
@@ -87,7 +87,7 @@
            </h:panelGroup>
 
            <!-- activator -->
-           <h:panelGroup rendered="#{field.field eq 'activator'}">
+           <h:panelGroup rendered="#{field.field eq 'activator' and not empty field.responsibles}">
              <div class="ui-g-4">
                <p:outputLabel value="#{field.header}" />
              </div>
@@ -100,7 +100,7 @@
            </h:panelGroup>
            
            <!-- Text and String -->
-           <h:panelGroup rendered="#{field.format eq 'STRING' or field.format eq 'TEXT'}">
+           <h:panelGroup rendered="#{field.format eq 'STRING' or field.format eq 'TEXT' and not (empty field.filterList and empty field.filter)}">
              <div class="ui-g-4">
                <p:outputLabel value="#{field.header}" />
              </div>
@@ -113,7 +113,7 @@
            </h:panelGroup>
 
            <!-- Number -->
-           <h:panelGroup rendered="#{field.format eq 'NUMBER'}">
+           <h:panelGroup rendered="#{field.format eq 'NUMBER' and not (empty field.filterFrom and empty field.filterTo)}">
              <div class="ui-g-4">
                <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
              </div>
@@ -129,7 +129,7 @@
            </h:panelGroup>
 
            <!-- Timestamp -->
-           <h:panelGroup rendered="#{field.format eq 'TIMESTAMP'}">
+           <h:panelGroup rendered="#{field.format eq 'TIMESTAMP' and not (empty field.dateFilterFrom and empty field.dateFilterTo)}">
              <div class="ui-g-4">
                <p:outputLabel value="#{field.header} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/from')}" />
              </div>
@@ -147,12 +147,12 @@
              </div>
            </h:panelGroup>
          </ui:repeat>
-         <div class="ui-g-4">
+         <h:panelGroup layout="block" styleClass="ui-g-4" rendered="#{not empty widget.getDisplayCategories()}">
            <p:outputLabel for="category" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/category')}" />
-         </div>
-         <div class="ui-g-8">
+         </h:panelGroup>
+         <h:panelGroup layout="block" styleClass="ui-g-8" rendered="#{not empty widget.getDisplayCategories()}">
              <h:outputText id="category" value="#{widget.getDisplayCategories()}" />
-        </div>
+        </h:panelGroup>
       </div>
     </p:tab>
   </p:accordionPanel>
