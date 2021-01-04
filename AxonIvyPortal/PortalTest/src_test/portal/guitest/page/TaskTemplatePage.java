@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
+import portal.guitest.common.WaitHelper;
+
 public class TaskTemplatePage extends TemplatePage {
 
   private static final String ADHOC_HISTORY_TABLE_CSS_SELECTOR = "div[id*='adhoc-task-history-table'] table>tbody>tr";
@@ -295,9 +297,9 @@ public class TaskTemplatePage extends TemplatePage {
     String approveTaskNameOutIFrame = findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
     waitForCloseButtonDisplayAfterInputedAprrovalNote("1");
     driver.switchTo().defaultContent();
+    WaitHelper.assertTrueWithWait(() -> !approveTaskNameOutIFrame
+        .equals(findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText()));
     String finishTaskNameOutIFrame = findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
-    driver.switchTo().frame("iFrame");
-    closeReviewPage();
     return !approveTaskNameOutIFrame.equals(finishTaskNameOutIFrame);
   }
 
