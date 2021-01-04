@@ -79,6 +79,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     buildTaskByStateStatistic();
     buildTaskExpiryStatistic();
     buildTaskByCategoryStatistic();
+    List<ColumnModel> aaa = getFilterableColumns();
   }
   
   private void buildTaskByStateStatistic() throws ParseException {
