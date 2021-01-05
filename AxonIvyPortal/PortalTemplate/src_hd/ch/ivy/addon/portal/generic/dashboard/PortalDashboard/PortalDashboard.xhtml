@@ -35,10 +35,10 @@
                           </span>
                           
                           <div class="widget__header-actions">
-                            <p:link id="filter-sidebar-link" href="#" styleClass="widget__filter-sidebar-link u-mar-right-5" onclick="toggleFilterSidebar(this)">
+                            <p:link id="filter-sidebar-link" href="#" styleClass="widget__filter-sidebar-link u-mar-right-5">
                               <i class="fa fa-filter" />
                             </p:link>
-                            <p:link href="#" styleClass="u-mar-right-5" onclick="toggleInfoSidebar(this);">
+                            <p:link id="info-sidebar-link" href="#" styleClass="u-mar-right-5">
                               <i class="fa fa-info-circle" />
                             </p:link>
                             <p:remoteCommand name="buildStatisticInfos" actionListener="#{widget.buildStatisticInfos}" update="statistic-filter-accordion-panel" global="false" />
@@ -49,23 +49,20 @@
                             <p:commandLink>
                               <i class="fa fa-arrow-right" />
                             </p:commandLink>
+
+                            <p:overlayPanel widgetVar="info-overlay-panel" for="info-sidebar-link" appendTo="@(body)" styleClass="info-overlay-panel" onShow="buildStatisticInfos();">
+                              <ui:include src="TaskInfo.xhtml" />
+                            </p:overlayPanel>
+                            <p:overlayPanel widgetVar="filter-overlay-panel" for="filter-sidebar-link" appendTo="@(body)" styleClass="info-overlay-panel" dismissable="false">
+                              <ui:include src="TaskFilter.xhtml">
+                                <ui:param name="updateComponent" value="#{component.parent.namingContainer.clientId}:task-component:dashboard-tasks" />
+                                <ui:param name="onCompleteApplyingFilters"
+                                  value="PF('filter-overlay-panel').hide();" />
+                            </ui:include>
+                            </p:overlayPanel>
                           </div>
                         </div>
                         <h:panelGroup id="widget-content" styleClass="widget__content #{widget.id} dashboard-widget-panel-container" layout="block">
-                          <div class="widget__filter-sidebar-mask js-widget-mask" />
-                          <div class="widget__filter-sidebar card js-widget-card">
-                            <ui:include src="TaskFilter.xhtml">
-                              <ui:param name="updateComponent" value="#{component.parent.namingContainer.clientId}:task-component:dashboard-tasks" />
-                              <ui:param name="onCompleteApplyingFilters"
-                                value="toggleFilterSidebar(document.getElementById('#{component.parent.namingContainer.clientId}:filter-sidebar-link'))" />
-                            </ui:include>
-                          </div>
-
-                          <div class="widget__info-sidebar-mask js-widget-mask" />
-                          <div class="widget__info-sidebar card js-widget-card">
-                              <ui:include src="TaskInfo.xhtml" />
-                          </div>
-
                           <ic:ch.ivy.addon.portal.generic.dashboard.TaskWidget id="task-component" taskWidget="#{widget}" />
                         </h:panelGroup>
                       </h:form>

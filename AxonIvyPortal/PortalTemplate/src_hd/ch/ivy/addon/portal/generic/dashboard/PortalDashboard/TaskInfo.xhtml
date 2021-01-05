@@ -93,8 +93,10 @@
              </div>
              <div class="ui-g-8">
                <ui:repeat var="responsible" value="#{field.responsibles}">
-                 <i class="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
-                 <h:outputText value="#{dashboardTaskFilterBean.formatName(responsible)}" />
+                 <div>
+                   <i class="fa #{responsible.isUser() ? 'fa-user' : 'fa-users'} u-mar-right-5" />
+                   <h:outputText value="#{dashboardTaskFilterBean.formatName(responsible)}" />
+                 </div>
                </ui:repeat>
              </div>
            </h:panelGroup>

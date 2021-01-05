@@ -14,7 +14,7 @@
       oncomplete="#{onCompleteApplyingFilters}" />
   </div>
 </div>
-<h:panelGroup id="filter-container" layout="block">
+<h:panelGroup id="filter-container" layout="block" styleClass="widget-filter-panel">
   <ui:repeat var="field" value="#{widget.filterableColumns}">
     <div class="ui-g">
       <h:panelGroup rendered="#{field.field eq 'priority'}">

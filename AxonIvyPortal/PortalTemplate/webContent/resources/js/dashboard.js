@@ -29,27 +29,3 @@ function loadGrid() {
     });
   });
 }
-
-function toggleFilterSidebar(element) {
-  var widgetContent = $(element).closest('.widget__header').siblings('.widget__content');
-
-  widgetContent.children('.js-widget-mask').not('.widget__filter-sidebar-mask').hide();
-  widgetContent.children('.js-widget-card').not('.widget__filter-sidebar').hide();
-
-  widgetContent.children('.widget__filter-sidebar').toggle('slide', {direction: 'right'});
-  widgetContent.children('.widget__filter-sidebar-mask').toggle();
-}
-
-function toggleInfoSidebar(element) {
-  var widgetContent = $(element).closest('.widget__header').siblings('.widget__content');
-
-  widgetContent.children('.js-widget-mask').not('.widget__info-sidebar-mask').hide();
-  widgetContent.children('.js-widget-card').not('.widget__info-sidebar').hide();
-
-  widgetContent.children('.widget__info-sidebar').toggle('slide', {direction: 'right'});
-  widgetContent.children('.widget__info-sidebar-mask').toggle();
-  
-  if (widgetContent.children('.widget__info-sidebar-mask').is(':visible')) {
-    buildStatisticInfos();
-  }
-}
