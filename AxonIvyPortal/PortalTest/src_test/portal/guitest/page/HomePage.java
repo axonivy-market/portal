@@ -45,6 +45,7 @@ public class HomePage extends TemplatePage {
   /** 
    * Wait for statistic charts are displayed in 5s
    */
+  @SuppressWarnings("deprecation")
   public void waitForStatisticRendered() {
     try {
       WaitHelper.assertTrueWithRefreshPage(this, () -> {
@@ -64,6 +65,7 @@ public class HomePage extends TemplatePage {
    * Wait for no background request
    * Then click on bread-crumb to back to homepage
    */
+  @SuppressWarnings("deprecation")
   private void refreshStatisticChartData() {
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.selectStatisticDashboard();
