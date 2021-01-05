@@ -210,6 +210,46 @@ How to override task widget's data query
       out.taskView = TaskView.create().dataModel(dataModel)
       .showHeaderToolbar(false).createNewTaskView();
 
+.. _customization-task-widget-how-to-override-export-feature:
+
+How to override export feature
+------------------------------
+
+1. Extend the TaskExporter java class of PortalKit.
+
+   -  Override the ``getColumnName`` method.
+
+   .. code-block:: java
+
+      @Override
+      protected String getColumnName(String column) {
+         String columnName = getSpecialColumnName(column);
+         return columnName != null ? columnName : Ivy.cms().co("/DefaultColumns/".concat(column));
+      }
+
+   -  Override the ``getColumnValue`` method.
+
+   .. code-block:: java
+
+      @Override
+      protected Object getColumnValue(String column, ITask task) {
+         switch (column) {
+            case CustomizedTaskLazyDataModel.CUSTOM_VAR_CHAR_FIELD5:
+               return task.customFields().stringField(CUSTOM_VARCHAR_FIELD5).getOrNull();
+            case CustomizedTaskLazyDataModel.CUSTOM_TIMESTAMP_FIELD12:
+               return task.customFields().timestampField(CUSTOM_TIMESTAMP_FIELD1).getOrNull();
+            default:
+               return getCommonColumnValue(column, task);
+         }
+      }
+
+2. Override the ExportTaskToExcel callable process and apply your extended TaskExporter java class.
+
+   .. code-block:: java
+
+      TaskExporter exporter = new CustomizedTaskExporter(in.columnsVisibility);
+      in.exportedFile = exporter.getStreamedContent(in.collectedTasksForExporting);
+
 .. _customization-task-widget-custom-task-delegate:
 
 Custom task delegate

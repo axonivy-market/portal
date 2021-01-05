@@ -195,3 +195,11 @@
 .user-selection-component-header {
 	margin-left: 10px;
 }
+
+@media screen and (max-width: 40em) {
+  .document-table-component .document-creator-column,
+  .document-table-component .document-created-column,
+  .document-table-component .document-customer-column {
+    display: none;
+  }
+}

@@ -18,16 +18,16 @@ import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
+import ch.ivy.addon.portalkit.bean.PortalExceptionBean;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
+import ch.ivy.addon.portalkit.jsf.ManagedBeans;
 import ch.ivy.addon.portalkit.service.AnnouncementService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.environment.Ivy;
-import ch.ivyteam.ivy.server.ServerFactory;
-import ch.ivyteam.ivy.system.ISystemProperty;
 import ch.ivyteam.ivy.workflow.ITask;
 import ch.ivyteam.ivy.workflow.TaskState;
 
@@ -73,6 +73,14 @@ public class UserMenuBean implements Serializable {
       }
     }
     isShowGlobalSearch = Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_GLOBAL_SEARCH.toString()));
+  }
+
+  public boolean isShowTaskDurationTime() {
+    return Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_TASK_DURATION_TIME.toString()));
+  }
+
+  public boolean isShowCaseDurationTime() {
+    return Boolean.parseBoolean(globalSettingService.findGlobalSettingValue(GlobalVariable.SHOW_CASE_DURATION_TIME.toString()));
   }
 
   public boolean isShowServerInformation() {
@@ -136,24 +144,49 @@ public class UserMenuBean implements Serializable {
       navigateToUserProfile();
     }
   }
-  
+
+  public void navigateToAbsencesOrDisplayWorkingTaskWarning(boolean isWorkingOnATask, ITask task) throws IOException {
+    if (isWorkingOnATask && task.getState() != TaskState.DONE) {
+      PrimeFaces.current().executeScript("PF('logo-task-losing-confirmation-dialog').show()");
+      targetPage = getAbsencesUrl();
+    } else {
+      navigateToAbsences();
+    }
+  }
+
+  private String getAbsencesUrl() {
+    return PortalNavigator.buildAbsencesUrl();
+  }
+
+  public void navigateToAbsences() throws IOException {
+    getExternalContext().redirect(getAbsencesUrl());
+  }
+
   public void reserveTaskAndNavigateWithGrowl(ITask task) throws IOException {
     IvyComponentLogicCaller<ITask> reserveTask = new IvyComponentLogicCaller<>();
-    reserveTask.invokeComponentLogic(TASK_LEAVE_WARNING_COMPONENT, "#{logic.reserve}", new Object[] {});
-    TaskUtils.parkTask(task != null ? task : Ivy.wfTask());
+    ITask relatedTask = task != null ? task : Ivy.wfTask();
+    reserveTask.invokeComponentLogic(TASK_LEAVE_WARNING_COMPONENT, "#{logic.reserve}", new Object[] {relatedTask.getCase()});
+    TaskUtils.parkTask(relatedTask);
     navigateToTargetPage();
   }
   
   public void resetTaskAndNavigateWithGrowl(ITask task) throws IOException {
     IvyComponentLogicCaller<ITask> leaveTask = new IvyComponentLogicCaller<>();
-    leaveTask.invokeComponentLogic(TASK_LEAVE_WARNING_COMPONENT, "#{logic.leave}", new Object[] {});
-    TaskUtils.resetTask(task != null ? task : Ivy.wfTask());
+    ITask relatedTask = task != null ? task : Ivy.wfTask();
+    leaveTask.invokeComponentLogic(TASK_LEAVE_WARNING_COMPONENT, "#{logic.leave}", new Object[] {relatedTask.getCase()});
+    TaskUtils.resetTask(relatedTask);
     navigateToTargetPage();
   }
   
+  /**
+   * We moved this method to PortalExceptionBean#getErrorDetailToEndUser
+   * @return system configuration of ErrorDetailToEndUser
+   */
+  @Deprecated
   public boolean getErrorDetailToEndUser() {
     try {
-      return ServerFactory.getServer().getSecurityManager().executeAsSystem(this::findShowErrorDetailSystemProperty);
+      PortalExceptionBean portalExceptionBean = (PortalExceptionBean) ManagedBeans.find("portalExceptionBean").get();
+      return portalExceptionBean.getErrorDetailToEndUser();
     } catch (Exception e) {
       Ivy.log().error(e);
     }
@@ -182,12 +215,6 @@ public class UserMenuBean implements Serializable {
   
   private String getUserProfileUrl() {
     return PortalNavigator.buildUserProfileUrl();
-  }
-
-  private boolean findShowErrorDetailSystemProperty() {
-    ISystemProperty systemProp =
-        ServerFactory.getServer().getApplicationConfigurationManager().getSystemProp("Errors.ShowDetailsToEndUser");
-    return systemProp.getBooleanValue();
   }
   
   private long getDefaultClientSideTimeout() {

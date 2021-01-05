@@ -32,25 +32,25 @@ public class SettingScreenshotTest extends ScreenshotTest {
     homePage = new HomePage();
     homePage.waitForStatisticRendered();
     homePage.getUserSettings();
-    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SETTINGS_FOLDER + "user-settings", new Dimension(1500, 800));
+    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.SETTINGS_FOLDER + "user-settings", new Dimension(1366, 800));
     
     refreshHomePage();
     AdminSettingsPage adminSettingsPage = homePage.openAdminSettings();
-    ScreenshotUtil.captureElementScreenshot(adminSettingsPage.getAddApplicationDialog(), ScreenshotUtil.SETTINGS_FOLDER + "add-application");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAddApplicationDialog(), ScreenshotUtil.SETTINGS_FOLDER + "add-application", new ScreenshotMargin(20));
     
     refreshHomePage();
     adminSettingsPage = homePage.openAdminSettings();
     adminSettingsPage.openSettingTab();
-    ScreenshotUtil.captureElementScreenshot(adminSettingsPage.getAdminSettingDialog(), ScreenshotUtil.SETTINGS_FOLDER + "global-settings");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getAdminSettingDialog(), ScreenshotUtil.SETTINGS_FOLDER + "global-settings", new ScreenshotMargin(20));
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(adminSettingsPage.getEditSettingDialogOfFirstRow(), ScreenshotUtil.SETTINGS_FOLDER + "edit-global-settings", new ScreenshotMargin(20));
     
     refreshHomePage();
     ChangePasswordPage changePasswordPage = homePage.openChangePasswordPage();
-    ScreenshotUtil.captureElementScreenshot(changePasswordPage.getChangePasswordDialog(), ScreenshotUtil.SETTINGS_FOLDER + "change-password");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(changePasswordPage.getChangePasswordDialog(), ScreenshotUtil.SETTINGS_FOLDER + "change-password", new ScreenshotMargin(20));
     
     refreshHomePage();
     ProjectVersionPage projectVersionPage = homePage.openProjectVersionPage();
-    ScreenshotUtil.captureElementScreenshot(projectVersionPage.getProjectVersionDialog(), ScreenshotUtil.SETTINGS_FOLDER + "portal-version-information");
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(projectVersionPage.getProjectVersionDialog(), ScreenshotUtil.SETTINGS_FOLDER + "portal-version-information", new ScreenshotMargin(20));
   }
   
   @Test
@@ -69,32 +69,32 @@ public class SettingScreenshotTest extends ScreenshotTest {
   public void screenshotMyProfile() throws IOException {
     homePage = new HomePage();
     UserProfilePage userProfilePage = homePage.openMyProfilePage();
-    ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));
-    Sleeper.sleep(1000);//Wait for focus animation finish before capture screenshot
+    ScreenshotUtil.resizeBrowser(new Dimension(1400, 1400));
+    Sleeper.sleep(500);//Wait for focus animation finish before capture screenshot
     ScreenshotUtil.captureElementScreenshot(userProfilePage.getUserSettingCard(), ScreenshotUtil.MY_PROFILE_FOLDER + "my-profile");
+    ScreenshotUtil.resizeBrowser(new Dimension(1500, 800));
     userProfilePage.switchOnEmailOnTaskAssignmentSetting();
     userProfilePage.switchOnFurtherEmailFromAppSetting();
+    Sleeper.sleep(500);//Wait for focus animation finish before capture screenshot
     ScreenshotUtil.captureElementScreenshot(userProfilePage.getUserSettingCard(), ScreenshotUtil.MY_PROFILE_FOLDER + "email-settings");
   }
   
   @Test
   public void screenshotAbsence() throws IOException {
     login(TestAccount.HR_ROLE_USER);
-    ScreenshotUtil.resizeBrowser(new Dimension(1500, 900));
+    ScreenshotUtil.resizeBrowser(new Dimension(1500, 1200));
     redirectToRelativeLink(cleanUpAbsencesAndSubstituesLink);
     homePage = new HomePage();
     AbsencePage absencePage = homePage.openAbsencePage();
     createAbsenceForCurrentUser(TODAY, TODAY, "Personal leave", absencePage);
     createAbsenceForCurrentUser(TOMORROW, TOMORROW, "Vacation", absencePage);
-    ScreenshotUtil.captureElementScreenshot(absencePage.getAbsenceDialog(), ScreenshotUtil.SETTINGS_FOLDER + "absence");
-    absencePage.openNewAbsenceDialog();
+    NewAbsencePage newAbsencePage = absencePage.openNewAbsenceDialog();
     Sleeper.sleep(1000);//wait for animation finish to capture nice screenshot
-    ScreenshotUtil.captureElementScreenshot(absencePage.getAbsenceDialog(), ScreenshotUtil.SETTINGS_FOLDER + "new-absence");
-    
-    refreshPage();
-    absencePage = homePage.openAbsencePage();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(absencePage.getAddAbsenceDialog(), ScreenshotUtil.SETTINGS_FOLDER + "new-absence", new ScreenshotMargin(20));
+    newAbsencePage.closeAddAbsenceDialog();
+    ScreenshotUtil.captureElementScreenshot(absencePage.getAbsenceForm(), ScreenshotUtil.SETTINGS_FOLDER + "absence");
     absencePage.setDeputy(TestAccount.DEMO_USER.getFullName());
-    ScreenshotUtil.captureElementScreenshot(absencePage.getAbsenceDialog(), ScreenshotUtil.SETTINGS_FOLDER + "set-deputy");
+    ScreenshotUtil.captureElementScreenshot(absencePage.getAbsenceForm(), ScreenshotUtil.SETTINGS_FOLDER + "set-deputy");
   }
   
   private void refreshHomePage() {

@@ -542,7 +542,7 @@
               </elementProp>
               <elementProp name="javax.faces.source" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">user-menu-required-login:main-navigator:menu-item-0-sub-menu-item-1</stringProp>
+                <stringProp name="Argument.value">user-menu-required-login:main-navigator:main-menu</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.source</stringProp>
@@ -561,12 +561,47 @@
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.render</stringProp>
               </elementProp>
-              <elementProp name="user-menu-required-login:main-navigator:menu-item-0-sub-menu-item-1" elementType="HTTPArgument">
+              <elementProp name="user-menu-required-login:main-navigator:main-menu" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">user-menu-required-login:main-navigator:menu-item-0-sub-menu-item-1</stringProp>
+                <stringProp name="Argument.value">user-menu-required-login:main-navigator:main-menu</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">user-menu-required-login:main-navigator:menu-item-0-sub-menu-item-1</stringProp>
+                <stringProp name="Argument.name">user-menu-required-login:main-navigator:main-menu</stringProp>
+              </elementProp>
+              <elementProp name="taskId" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">taskId</stringProp>
+              </elementProp>
+              <elementProp name="isWorkingOnATask" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">false</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">isWorkingOnATask</stringProp>
+              </elementProp>
+              <elementProp name="menuKind" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">task</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">menuKind</stringProp>
+              </elementProp>
+              <elementProp name="menuUrl" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">menuUrl</stringProp>
+              </elementProp>
+              <elementProp name="user-menu-required-login:main-navigator:main-menu_menuid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">2</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">user-menu-required-login:main-navigator:main-menu_menuid</stringProp>
               </elementProp>
               <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -574,13 +609,6 @@
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.ViewState</stringProp>
-              </elementProp>
-              <elementProp name="user-menu-required-login:main-navigator_SUBMIT" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">1</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">user-menu-required-login:main-navigator_SUBMIT</stringProp>
               </elementProp>
             </collectionProp>
           </elementProp>
@@ -1028,7 +1056,7 @@
               </elementProp>
               <elementProp name="javax.faces.source" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">user-menu-required-login:main-navigator:menu-item-0-sub-menu-item-2</stringProp>
+                <stringProp name="Argument.value">user-menu-required-login:main-navigator:main-menu</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.source</stringProp>
@@ -1047,19 +1075,12 @@
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.render</stringProp>
               </elementProp>
-              <elementProp name="user-menu-required-login:main-navigator:menu-item-0-sub-menu-item-2" elementType="HTTPArgument">
+              <elementProp name="user-menu-required-login:main-navigator:main-menu" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">user-menu-required-login:main-navigator:menu-item-0-sub-menu-item-2</stringProp>
+                <stringProp name="Argument.value">user-menu-required-login:main-navigator:main-menu</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">user-menu-required-login:main-navigator:menu-item-0-sub-menu-item-2</stringProp>
-              </elementProp>
-              <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
-                <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">${viewState}</stringProp>
-                <stringProp name="Argument.metadata">=</stringProp>
-                <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">javax.faces.ViewState</stringProp>
+                <stringProp name="Argument.name">user-menu-required-login:main-navigator:main-menu</stringProp>
               </elementProp>
               <elementProp name="user-menu-required-login:main-navigator_SUBMIT" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -1067,6 +1088,48 @@
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">user-menu-required-login:main-navigator_SUBMIT</stringProp>
+              </elementProp>
+              <elementProp name="taskId" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">taskId</stringProp>
+              </elementProp>
+              <elementProp name="isWorkingOnATask" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">false</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">isWorkingOnATask</stringProp>
+              </elementProp>
+              <elementProp name="menuKind" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">case</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">menuKind</stringProp>
+              </elementProp>
+              <elementProp name="menuUrl" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">menuUrl</stringProp>
+              </elementProp>
+              <elementProp name="user-menu-required-login:main-navigator:main-menu_menuid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">3</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">user-menu-required-login:main-navigator:main-menu_menuid</stringProp>
+              </elementProp>
+              <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">${viewState}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">javax.faces.ViewState</stringProp>
               </elementProp>
             </collectionProp>
           </elementProp>
@@ -1669,7 +1732,7 @@
               </elementProp>
               <elementProp name="javax.faces.source" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">user-menu-required-login:main-navigator:menu-item-0-sub-menu-item-3</stringProp>
+                <stringProp name="Argument.value">user-menu-required-login:main-navigator:main-menu</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.source</stringProp>
@@ -1688,19 +1751,47 @@
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
                 <stringProp name="Argument.name">javax.faces.partial.render</stringProp>
               </elementProp>
-              <elementProp name="user-menu-required-login:main-navigator:menu-item-0-sub-menu-item-3" elementType="HTTPArgument">
+              <elementProp name="user-menu-required-login:main-navigator:main-menu" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
-                <stringProp name="Argument.value">user-menu-required-login:main-navigator:menu-item-0-sub-menu-item-3</stringProp>
+                <stringProp name="Argument.value">user-menu-required-login:main-navigator:main-menu</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">user-menu-required-login:main-navigator:menu-item-0-sub-menu-item-3</stringProp>
+                <stringProp name="Argument.name">user-menu-required-login:main-navigator:main-menu</stringProp>
               </elementProp>
-              <elementProp name="user-menu-required-login:main-navigator_SUBMIT" elementType="HTTPArgument">
+              <elementProp name="taskId" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
                 <stringProp name="Argument.value">1</stringProp>
                 <stringProp name="Argument.metadata">=</stringProp>
                 <boolProp name="HTTPArgument.use_equals">true</boolProp>
-                <stringProp name="Argument.name">user-menu-required-login:main-navigator_SUBMIT</stringProp>
+                <stringProp name="Argument.name">taskId</stringProp>
+              </elementProp>
+              <elementProp name="isWorkingOnATask" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">false</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">isWorkingOnATask</stringProp>
+              </elementProp>
+              <elementProp name="menuKind" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">statistics</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">menuKind</stringProp>
+              </elementProp>
+              <elementProp name="menuUrl" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value"></stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">menuUrl</stringProp>
+              </elementProp>
+              <elementProp name="user-menu-required-login:main-navigator:main-menu_menuid" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">true</boolProp>
+                <stringProp name="Argument.value">4</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+                <boolProp name="HTTPArgument.use_equals">true</boolProp>
+                <stringProp name="Argument.name">user-menu-required-login:main-navigator:main-menu_menuid</stringProp>
               </elementProp>
               <elementProp name="javax.faces.ViewState" elementType="HTTPArgument">
                 <boolProp name="HTTPArgument.always_encode">true</boolProp>
@@ -5826,13 +5917,13 @@
           </DurationAssertion>
           <hashTree/>
         </hashTree>
-        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="false">
+        <DebugSampler guiclass="TestBeanGUI" testclass="DebugSampler" testname="Debug Sampler" enabled="true">
           <boolProp name="displayJMeterProperties">false</boolProp>
           <boolProp name="displayJMeterVariables">true</boolProp>
           <boolProp name="displaySystemProperties">false</boolProp>
         </DebugSampler>
         <hashTree/>
-        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="false">
+        <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -5868,7 +5959,7 @@
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="false">
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>
@@ -5904,7 +5995,7 @@
           <stringProp name="filename"></stringProp>
         </ResultCollector>
         <hashTree/>
-        <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="false">
+        <ResultCollector guiclass="SimpleDataWriter" testclass="ResultCollector" testname="Simple Data Writer" enabled="true">
           <boolProp name="ResultCollector.error_logging">false</boolProp>
           <objProp>
             <name>saveConfig</name>

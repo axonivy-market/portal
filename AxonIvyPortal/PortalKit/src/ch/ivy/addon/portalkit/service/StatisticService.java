@@ -83,7 +83,6 @@ import java.util.Map.Entry;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
@@ -136,6 +135,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery;
 public class StatisticService extends BusinessDataService<StatisticChart> {
 
   private static final String CHART_LEGEND_POSITION_LEFT = "left";
+  private static final String CHART_LEGEND_POSITION_RIGHT = "right";
   private static final String CHART_LEGEND_POSITION_BOTTOM = "bottom";
   private static StatisticColors statisticColors = new StatisticColors();
   private String LOADING_MESSAGE = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/loadingCharts");
@@ -762,7 +762,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     statisticChart.setNames(chartNames);
     statisticChart.setPosition(countStatisticChartsByUserId(creatorId));
     statisticChart.setDefaultChart(String.valueOf(isDefault));
-
+    
     if (filter.getIsAllCaseStatesSelected()) {
       StatisticFilter newFilter = ObjectUtils.clone(filter);
       if (filter.getIsAllRolesSelected()) {
@@ -773,7 +773,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       statisticChart.setFilter(filter);
     }
     BusinessDataInfo<StatisticChart> info = save(statisticChart);
-
+    
     // Check Statistic is updated on ES
     for (int i = 0; i < 10; i++) {
       List<StatisticChart> result = findStatisticChartsByUserId(creatorId);
@@ -782,7 +782,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
             .findFirst();
       if (savedChart.isPresent()) {
         return savedChart.get();
-      }
+  }
       Thread.sleep(200);
     }
     return null;
@@ -805,7 +805,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     ChartData data = new ChartData();
     DonutChartOptions options = new DonutChartOptions();
     data.setLabels(chartData.keySet().stream().collect(Collectors.toList()));
-    options.setLegend(buildChartLegend(CHART_LEGEND_POSITION_LEFT, true));
+    options.setLegend(buildChartLegend(CHART_LEGEND_POSITION_RIGHT, true));
 
     model.setData(data);
     model.setOptions(options);
@@ -995,14 +995,6 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       bgColor.add(statisticColors.getTaskExpiriedThisWeekColor());
       bgColor.add(statisticColors.getTaskExpiriedThisMonthColor());
       bgColor.add(statisticColors.getTaskExpiriedThisYearColor());
-
-      List<String> borderColor = new ArrayList<>();
-      borderColor.add(StatisticColors.DEFAULT_TASK_EXPIRIED_BORDER);
-      borderColor.add(StatisticColors.DEFAULT_TASK_TODAY_BORDER);
-      borderColor.add(StatisticColors.DEFAULT_TASK_WEEK_BORDER);
-      borderColor.add(StatisticColors.DEFAULT_TASK_MONTH_BORDER);
-      borderColor.add(StatisticColors.DEFAULT_TASK_YEAR_BORDER);
-      dataSet.setBorderColor(borderColor);
     }
 
     dataSet.setBackgroundColor(bgColor);
@@ -1463,8 +1455,8 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
   
   public boolean checkDefaultStatisticChartNameExisted(long userId, String chartName, String language) {
     return checkStatisticChartNameExisted(userId, chartName, language);
-   }
-
+  }
+  
   public StatisticChart findStatisticChartByUserIdAndChartNameAndLanguage(long userId, String chartName, String language) {
     List<StatisticChart> foundCharts = Optional.ofNullable(repo().search(getType()).numberField(USER_ID).isEqualTo(userId).execute().getAll()).orElse(new ArrayList<>());
     for (StatisticChart chart : foundCharts) {
@@ -1474,7 +1466,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
       if (StringUtils.equals(displayChartName, chartName)) {
         return chart;
-      }
+  }
     }
     return null;
   }
@@ -1483,35 +1475,35 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     if (CollectionUtils.isEmpty(first) || CollectionUtils.isEmpty(second) || first.size() != second.size()) {
       return false;
     }
-    return first.stream().allMatch(s -> second.contains(s));  
+    return first.stream().allMatch(s -> second.contains(s));
   }
 
-  public List<StatisticChart> addListByDistinctCharts(List<StatisticChart> targetList, List<StatisticChart> newList) {
-    if (CollectionUtils.isEmpty(newList)) {
-      return targetList;
+  public List<StatisticChart> updateExistedChartsWithNewCharts(List<StatisticChart> existedCharts, List<StatisticChart> newCharts) {
+    if (CollectionUtils.isEmpty(newCharts)) {
+      return existedCharts;
+    }
+    if (CollectionUtils.isEmpty(existedCharts)) {
+      return new ArrayList<>(newCharts);
     }
 
-    if (CollectionUtils.isEmpty(targetList)) {
-      return new ArrayList<>(newList);
-    }
+    existedCharts.removeAll(filterObsoletedChartsByNewCharts(existedCharts, newCharts));
+    existedCharts.addAll(newCharts);
 
-    List<DisplayName> distinctChartNameList = Stream.of(targetList, newList).flatMap(List::stream)
-        .map(StatisticChart::getNames).flatMap(List::stream).distinct().collect(Collectors.toList());
+    return existedCharts.stream().sorted(Comparator.comparingLong(StatisticChart::getPosition)).collect(Collectors.toList());
+  }
 
-    List<StatisticChart> distinctChart = new ArrayList<StatisticChart>(targetList);
-    if (CollectionUtils.isNotEmpty(distinctChartNameList)) {
-      for(StatisticChart newChart : newList) {
-        if (newChart.getNames().stream()
-            .filter(name -> distinctChartNameList.stream().filter(distinctName -> equalsDisplayName(name.getValue(), name.getLocale().toLanguageTag(), distinctName)).findFirst().isPresent())
-            .findFirst().isPresent()) {
-          continue;
-        }
-        distinctChart.add(newChart);
+  private List<StatisticChart> filterObsoletedChartsByNewCharts(List<StatisticChart> targetList, List<StatisticChart> newCharts) {
+    List<StatisticChart> obsoletedCharts = new ArrayList<>();
+    for (StatisticChart newChart : newCharts) {
+      if (newChart.getId() == null) {
+        continue;
       }
-    } else {
-      distinctChart.addAll(newList);
+      targetList.forEach(existedChart -> {
+        if (existedChart.getId().equals(newChart.getId())) {
+          obsoletedCharts.add(existedChart);
+        }
+      });
     }
-    return distinctChart;
-
+    return obsoletedCharts;
   }
 }

@@ -50,10 +50,10 @@ var Portal = {
       fullHeight = 'var(--vh, 1vh) * 100';
     }
 
-    var headerHeight = $('.js-portal-template-header').outerHeight(true);
-    var footerHeight = $('.js-portal-template-footer').outerHeight(true);
+    var headerHeight = $('.js-portal-template-header').outerHeight(true)||0;
+    var footerHeight = $('.js-portal-template-footer').outerHeight(true)||0;
     var headerFooterHeight = headerHeight + footerHeight;
-    var layoutTopbarHeight = $('.layout-topbar').outerHeight(true);
+    var layoutTopbarHeight = $('.layout-topbar').outerHeight(true)||0;
     $('.js-position-topbar').height(layoutTopbarHeight);
     if ($('.js-layout-wrapper').hasClass('u-invisibility')) {
       var envHeight = $('#portal-environment').outerHeight();
@@ -63,7 +63,7 @@ var Portal = {
     $('.js-layout-main').css('margin-top', headerHeight + 'px').css('height', 'calc(100vh - ' + headerFooterHeight + 'px)');
     $('.js-layout-wrapper').removeClass('u-invisibility');
 
-    var topbarWithHeaderFooterHeight = layoutTopbarHeight + headerFooterHeight;
+    var topbarWithHeaderFooterHeight = (layoutTopbarHeight + headerFooterHeight);
     $('.js-layout-content').css('height', 'calc(' + fullHeight + ' - ' + topbarWithHeaderFooterHeight + 'px)');
     var chatPanel = $('.js-chat-panel');
     if (chatPanel.length > 0) {
@@ -135,7 +135,8 @@ function searchIconByName(element) {
 }
 
 var MainMenu = {
-  urlToMenu : [["Processes.xhtml", "PROCESS"],
+  urlToMenu : [["PortalHome.xhtml", "DASHBOARD"],
+      ["Processes.xhtml", "PROCESS"],
       ["PortalTasks.xhtml", "TASK"],
       ["TaskWidget.xhtml", "TASK"],
       ["PortalTaskDetails.xhtml", "TASK"],
@@ -150,6 +151,7 @@ var MainMenu = {
     this.highlightMenuItem();
     this.responsiveToolkit = responsiveToolkit;
     this.$mainMenuToggle = $('.sidebar-anchor');
+    this.menulinks = $('.layout-sidebar .layout-menu a');
     this.bindEvents();
   },
   
@@ -163,48 +165,72 @@ var MainMenu = {
         updateStatisticCarousel();
       }
     });
+
+    this.menulinks.on('click', function(e) {
+      // If click on Thirdparty menu -> remove active class of itself
+      if (MainMenu.isThirdPartyMenu(e)) {
+        MainMenu.highlightMenuItem();
+      }
+    });
   },
 
   highlightMenuItem : function() {
-    var firstLevelMenu = MainMenu.getMenuBasedOnPageUrl();
-    var parentActiveMenuId = MainMenu.getFirstParentMenuActive();
+    let $currentPageMenu = this.getMenuItemByCurrentPage();
+    let activeMenuItemList = this.getActiveMenu();
 
-    var $activeMenuItem = $(".layout-menu li[id^='" + parentActiveMenuId + "'] .submenu").filter(
-        function(index) {
-          if (firstLevelMenu) {
-            return $(this).hasClass(firstLevelMenu);
-          }
-        });
-    $activeMenuItem.parent().addClass('active-menuitem');
-  },
-
-  getFirstParentMenuActive : function() {
-    var parentId = "";
-    var parentMenuActive = $(".layout-menu .active-menuitem").not(".submenu-container");
-    if (parentMenuActive.length > 0) {
-      parentId = parentMenuActive[0].id;
-      MainMenu.getSubMenuActive();
+    if ($currentPageMenu.length > 0) {
+      if ($currentPageMenu.parent().hasClass('active-menuitem') && activeMenuItemList.length === 1) {
+        return;
+      }
+      this.removeActiveMenu(activeMenuItemList);
+      $currentPageMenu.parent().addClass('active-menuitem');
+      PF('main-menu').addMenuitem($currentPageMenu.parent().attr('id'));
     }
-    return parentId;
+    // Remove active class for thirdparty menu
+    this.removeActiveOnExternalMenu();
   },
 
-  getSubMenuActive : function() {
-    var subMenuActive = $(".layout-menu .active-menuitem.submenu-container");
-
-    for (var i = 0; i < subMenuActive.length; i++) {
-      var item = subMenuActive.get(i);
-      $(item).removeClass('active-menuitem');
-    }
-
+  removeActiveMenu : function(activeMenuItems) {
+    $.each( activeMenuItems, function( i, menuItem ) {
+      $(menuItem).removeClass('active-menuitem');
+      PF('main-menu').removeMenuitem(menuItem.id);
+    });
   },
 
-  getMenuBasedOnPageUrl : function() {
-    var pageUrl = window.location.pathname;
+  getCurentPageByPageUrl : function() {
+    let pageUrl = window.location.pathname;
     for (var i = 0; i < MainMenu.urlToMenu.length; i++) {
       if (pageUrl.indexOf(MainMenu.urlToMenu[i][0]) > -1) {
         return MainMenu.urlToMenu[i][1];
       }
     }
+  },
+
+  getMenuItemByCurrentPage : function() {
+    let currentPage = this.getCurentPageByPageUrl();
+    return $(".layout-menu").find("a.ripplelink." + currentPage);
+  },
+
+  getActiveMenu : function() {
+    return $(".layout-menu li.active-menuitem");
+  },
+
+  removeActiveOnExternalMenu : function() {
+    // Thirdparty
+    let thirdPartyActiveMenus = $(".layout-menu li.active-menuitem[class*='thirdparty-menu-item']");
+    this.removeActiveMenu(thirdPartyActiveMenus);
+
+    // External
+    let exteralActiveMenus = $(".layout-menu li.active-menuitem[class*='external-menu-item-']");
+    this.removeActiveMenu(exteralActiveMenus);
+  },
+
+  isThirdPartyMenu : function(e) {
+    let menuClass = e.currentTarget.className;
+    if (menuClass && (menuClass.indexOf('THIRD_PARTY') !== -1 || menuClass.indexOf('EXTERNAL_LINK') !== -1)) {
+      return true;
+    }
+    return false;
   }
 }
 

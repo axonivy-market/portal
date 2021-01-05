@@ -12,6 +12,7 @@ public class ChangePasswordPage extends TemplatePage {
     return "id('change-password-dialog_title')";
   }
 
+  @SuppressWarnings("deprecation")
   public void changePassword(String currentPassword, String newPassword) {
     inputCurrentPassword(currentPassword);
     inputConfirmNewPassword(newPassword);

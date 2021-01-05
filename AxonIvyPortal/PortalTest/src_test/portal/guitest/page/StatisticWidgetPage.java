@@ -1,7 +1,9 @@
 package portal.guitest.page;
 
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriverException;
@@ -83,11 +85,17 @@ public class StatisticWidgetPage extends TemplatePage {
     WebElement chartName = findElementByCssSelector(String.format("div[id$='%d:chart-name-container'] .chart-name", chartIndex));
     return chartName.getText();
   }
-  
+
+  public Set<String> getAllChartNames() {
+    return findListElementsByCssSelector("div[id$=':chart-name-container'] .chart-name").stream().map(e -> e.getText())
+        .collect(Collectors.toSet());
+  }
+
   public String getRestoreDefaultButtonName() {
     return findElementByCssSelector("span[id$='restore-default-chart-link-label']").getText();
   }
 
+  @SuppressWarnings("deprecation")
   public void restoreDefaultCharts() {
     Awaitility.await().atMost(new Duration(10, TimeUnit.SECONDS)).until(() -> {
       WebElement restoreDefault = findElementByCssSelector("span[id$='restore-default-chart-link-label']");
@@ -112,6 +120,7 @@ public class StatisticWidgetPage extends TemplatePage {
     }
   }
 
+  @SuppressWarnings("deprecation")
   public void createTaskByPriorityChart() {
     waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-task-by-priority-link"), true, 30);
     click(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-task-by-priority-link"));
@@ -124,6 +133,7 @@ public class StatisticWidgetPage extends TemplatePage {
     waitForElementExisted("span[class='ui-growl-title']", true, DEFAULT_TIMEOUT);
   }
 
+  @SuppressWarnings("deprecation")
   public void createTaskByPriorityChartMultiLanguage() {
     waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-task-by-priority-link"), true, 30);
     click(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-task-by-priority-link"));
@@ -142,6 +152,7 @@ public class StatisticWidgetPage extends TemplatePage {
   }
   
 
+  @SuppressWarnings("deprecation")
   public void createCaseByStateChart() {
     waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-state-link"), true, 30);
     WebElement createCaseByStateLink
@@ -158,6 +169,7 @@ public class StatisticWidgetPage extends TemplatePage {
     waitForElementExisted("span[class='ui-growl-title']", true, DEFAULT_TIMEOUT);
   }
 
+  @SuppressWarnings("deprecation")
   public void createTaskByExpiryChart() {
     waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-task-by-expiry-link"), true, 30);
     WebElement createTaskByExpiryLink
@@ -173,6 +185,7 @@ public class StatisticWidgetPage extends TemplatePage {
     waitForElementExisted("span[class='ui-growl-title']", true, DEFAULT_TIMEOUT);
   }
 
+  @SuppressWarnings("deprecation")
   public void createElapsedTimeChart() {
     waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-elapsed-time-link"), true, 30);
     WebElement createElapsedTimeLink
@@ -187,7 +200,8 @@ public class StatisticWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
     waitForElementExisted("span[class='ui-growl-title']", true, DEFAULT_TIMEOUT);
   }
-  
+
+  @SuppressWarnings("deprecation")
   public void createCaseByFinishedTask() {
     waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-task-link"), true, 30);
     WebElement createCaseByFinishedTaskLink
@@ -202,7 +216,8 @@ public class StatisticWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
     waitForElementExisted("span[class='ui-growl-title']", true, DEFAULT_TIMEOUT);
   }
-  
+
+  @SuppressWarnings("deprecation")
   public void createCaseByFinishTime() {
     waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-time-link"), true, 30);
     WebElement createCaseByFinishedTaskLink
@@ -221,7 +236,8 @@ public class StatisticWidgetPage extends TemplatePage {
   public WebElement getChartCreationContainer() {
     return findElementById("statistics-widget:chart-creation-widget:chart-management-form:chart-list");
   }
-  
+
+  @SuppressWarnings("deprecation")
   public WebElement getCaseByFinishedTaskCreationDialog() {
     waitForElementDisplayed(By.id("statistics-widget:chart-creation-widget:chart-management-form:create-case-by-finished-task-link"), true, 30);
     WebElement createCaseByFinishedTaskLink
@@ -235,7 +251,8 @@ public class StatisticWidgetPage extends TemplatePage {
   public void waitForChartCreationPageRendered() {
     waitForElementDisplayed(By.id("statistics-widget:back-from-chart-creation"), true);
   }
-  
+
+  @SuppressWarnings("deprecation")
   public void waitForAllChartLoaded() {
     ensureNoBackgroundRequest();
     Sleeper.sleep(5000);//wait for last chart animation finish
