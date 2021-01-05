@@ -23,9 +23,12 @@ list of user processes. Follow instruction to create default processes.
 |default-process-return|
 |default-user-processes|
 
-.. tip:: We provide the method to generate link from UserFriendlyRequestPath
-   in  ``ProcessStartCollector``  class: ``findStartableLinkByUserFriendlyRequestPath(String requestPath)``  . This method
-   will return startable link if user has permission to start the process, otherwise return emtpy string.
+.. tip::
+    - We provide the method to generate link from UserFriendlyRequestPath
+      in  ``ProcessStartCollector``  class: ``findStartableLinkByUserFriendlyRequestPath(String requestPath)`` . This method
+      will return startable link if user has permission to start the process, otherwise return emtpy string.
+
+    - To display process name with multilingual, define a **CMS** and set it for **UserProcess#setProcessName**
 
 .. |default-process-return| image:: images/default-user-process/default-process-return.png
 .. |default-user-processes| image:: images/default-user-process/default-user-processes.png

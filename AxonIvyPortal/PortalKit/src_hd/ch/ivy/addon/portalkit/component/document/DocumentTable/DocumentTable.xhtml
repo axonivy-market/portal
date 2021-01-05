@@ -52,7 +52,7 @@
       <f:event type="preRenderComponent" listener="#{logic.renderTable()}" />
 
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}"
-        rendered="#{cc.attrs.nameColumnRendered}">
+        rendered="#{cc.attrs.nameColumnRendered}" styleClass="document-name-column">
         <h:outputText id="name" value="#{document.name}" title="#{document.name}" />
       </p:column>
       <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/size')}"

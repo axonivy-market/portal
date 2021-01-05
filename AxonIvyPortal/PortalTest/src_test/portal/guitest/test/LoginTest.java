@@ -8,6 +8,7 @@ import org.junit.Test;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.SystemProperties;
 import portal.guitest.common.TestAccount;
+import portal.guitest.page.ForgotPasswordPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.LoginPage;
 import vn.wawa.guitest.base.client.Browser;
@@ -33,4 +34,11 @@ public class LoginTest extends BaseTest {
     assertTrue(homePage.isDisplayed());
   }
 
+  @Test
+  public void testForgotPassword() {
+    loginPage = new LoginPage();
+    loginPage.forgotPassword();
+    ForgotPasswordPage forgotPasswordPage = new ForgotPasswordPage();
+    assertTrue(forgotPasswordPage.isDisplayed());
+  }
 }

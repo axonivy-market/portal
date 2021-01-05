@@ -20,15 +20,19 @@
   <cc:attribute name="hideWidgetHeader" default="false" type="java.lang.Boolean" />
   <cc:attribute name="listHeaderStyleClass" />
   <cc:attribute name="isTechnicalCaseView" default="false" />
+  <cc:attribute name="readOnly" default="false" />
+  <cc:attribute name="inFrame" default="false" />
   <cc:facet name="emptyMessage" />
 </cc:interface>
 
 <cc:implementation>
   <h:outputScript name="case-widget.js" library="js" />
+
+  <f:event listener="#{data.dataModel.initColumnsConfiguration()}" type="preRenderComponent" />
   <div id="#{cc.clientId}" class="widget case-widget case-widget-container ui-g">
       <h:panelGroup id="case-widget-header" layout="block"
         styleClass="widget-header ui-g-12 ui-g u-no-padding-left u-no-padding-bottom js-case-widget-header"
-        rendered="#{!cc.attrs.hideWidgetHeader and !cc.attrs.hideCaseFilter}">
+        rendered="#{!cc.attrs.hideWidgetHeader}">
         <h:panelGroup id="filter-container" styleClass="filter-container js-filter-container ui-g-12 u-no-padding-bottom"
         rendered="#{!cc.attrs.hideCaseFilter}">
         <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group  u-hidden-md-down"
@@ -62,8 +66,7 @@
                     </div>
                   </ui:repeat>
                 </h:panelGroup>
-                <p:separator rendered="#{not empty data.publicFilters and not empty data.privateFilters}"
-                  styleClass="filter-separator" />
+                <p:separator rendered="#{not empty data.publicFilters and not empty data.privateFilters}" styleClass="filter-separator" />
                 <h:panelGroup id="public-filters" rendered="#{not empty data.privateFilters}">
                   <div class="filter-type-label">
                     <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/privateFilter')}</span>
@@ -112,7 +115,6 @@
           </h:form>
         </div>
 
-
             <f:event listener="#{data.dataModel.initFilters()}" type="preRenderComponent" />
 
             <!-- Advanced filters -->
@@ -131,8 +133,7 @@
                   <p:selectManyCheckbox id="filter-selection" layout="pageDirection"
                     value="#{data.dataModel.selectedFilters}" converter="pojoConverter"
                     valueChangeListener="#{data.dataModel.onFilterChange}">
-                    <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
-                      itemValue="#{filter}" />
+                    <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}" itemValue="#{filter}" />
                   </p:selectManyCheckbox>
                 </p:scrollPanel>
 
@@ -173,17 +174,42 @@
               oncomplete="PF('save-filter-set-dialog').show();" rendered="#{!cc.attrs.isTechnicalCaseView}"
               actionListener="#{caseWidgetBean.verifyCaseStateFilter(data.dataModel.selectedFilters)}" />
         </div>
+        <!-- Export to Excel, Manage Columns -->
+        <h:panelGroup id="case-list-actions" styleClass="case-list-actions u-hidden-md-down ">
+          <p:spacer width="20px"></p:spacer>
+          <h:form id="case-export-to-excel-form" styleClass="case-export-to-excel-form">
+            <p:commandLink ajax="false" id="case-export-to-excel"
+              onclick="PrimeFaces.monitorDownload(start, stop);">
+              <i class="icon ivyicon-office-file-xls-1 u-mar-right-5" />
+              <span class="link-text">
+                <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
+              </span>
+              <p:fileDownload value="#{logic.getExportedFile(caseWidgetBean.getColumns(data.dataModel))}" />
+            </p:commandLink>
+          </h:form>
+          <p:spacer width="20px" />
+          <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration id="case-columns-configuration"
+                updatedComponent="#{cc.clientId}:case-view #{cc.clientId}:widget-column-header #{cc.clientId}:hidden-case-count #{cc.clientId}:case-list-actions"
+                dataModel="#{data.dataModel}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();"
+                configButtonId="case-config-button" overlayPanelId="case-config-columns-panel" />
+        </h:panelGroup>
+      </h:panelGroup>
+      <h:panelGroup layout="block">
+		<p:link id="back-link" href="#" rendered="#{cc.attrs.inFrame}" onclick="backToCaseDetails()" styleClass="list-back-link js-back-link">
+          <i class="icon ivyicon-arrow-left-1" />
+          <p:spacer width="3px"/>
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"/>
+        </p:link>
+        <p:remoteCommand name="backToCaseDetails" actionListener="#{logic.backToCaseDetails()}" process="@this" immediate="true" />
       </h:panelGroup>
     </h:panelGroup>
 
     <h:panelGroup id="widget-column-header"
       class="widget-column-header js-case-widget-column-header #{cc.attrs.listHeaderStyleClass}">
-      <f:event listener="#{data.dataModel.initColumnsConfiguration()}" type="preRenderComponent" />
       <cc:renderFacet name="caseListHeader" />
-      <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration id="case-columns-configuration"
-            updatedComponent="#{cc.clientId}:case-view #{cc.clientId}:widget-column-header #{cc.clientId}:hidden-case-count"
-            dataModel="#{data.dataModel}" oncomplete="caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();"
-            configButtonId="case-config-button" overlayPanelId="case-config-columns-panel" />
+      <h:panelGroup id="case-operations-container" layout="block" styleClass="operations-column u-hidden-md-down" rendered="#{!cc.attrs.readOnly}">
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" />
+      </h:panelGroup>
     </h:panelGroup>
     <h:panelGroup id="case-view" layout="block" class="ui-g-12 case-view">
       <h:panelGroup id="case-list" layout="block" styleClass="case-list">
@@ -191,13 +217,12 @@
           lazy="true" mode="inline" rowIndexVar="rowIndex" styleClass="js-case-list" widgetVar="case-list-scroller">
           <ic:ch.ivy.addon.portalkit.component.CaseItem case="#{case}" id="case-item"
             onDestroyComplete="PF('destroy-case-dialog').show()" rowIndex="#{rowIndex}"
-            itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}">
+            itemStyleClass="#{rowIndex % 2 == 0 ? 'case-even-row' : 'case-odd-row'}" readOnly="#{cc.attrs.readOnly}" inFrame="#{cc.attrs.inFrame}">
             <cc:insertFacet name="caseHeader" />
           </ic:ch.ivy.addon.portalkit.component.CaseItem>
         </p:dataScroller>
         <div jsf:rendered="#{data.dataModel.rowCount eq 0}" class="case-widget-empty-message">
-          <p:outputLabel id="case-empty-message" rendered="#{empty cc.facets.emptyMessage}"
-            value="#{cc.attrs.emptyMessage}" />
+          <p:outputLabel id="case-empty-message" rendered="#{empty cc.facets.emptyMessage}" value="#{cc.attrs.emptyMessage}" />
           <cc:renderFacet name="emptyMessage" />
         </div>
       </h:panelGroup>
@@ -219,8 +244,7 @@
         icon="#{visibilityBean.generateButtonIcon('icon ivyicon-button-refresh-arrows')}"
         partialSubmit="true" immediate="true"
         actionListener="#{logic.restoreDefaultFilterSet}" update="@(.filter-container) @(.filter-add-action) @(.filter-selection-form) @(.case-list) #{cc.clientId}:hidden-case-count"
-        oncomplete="PF('reset-filter-set-dialog').hide(); caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();">
-       </p:commandButton>
+        oncomplete="PF('reset-filter-set-dialog').hide(); caseWidget.setUpScrollbar(); caseWidget.setupHeader(); caseWidget.updateCaseCountToBreadcrumb();" />
     </ui:define>
   </ui:decorate>
   
@@ -257,8 +281,7 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" process="@form"
           icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
           oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('save-filter-set-dialog').hide(); updateFilterContainer();}"
-          actionListener="#{logic.saveFilter}">
-        </p:commandButton>
+          actionListener="#{logic.saveFilter}" />
         <p:remoteCommand name="updateFilterContainer" update="#{cc.clientId}:filter-selection-container #{cc.clientId}:filter-save-form #{cc.clientId}:filter-container" 
           actionListener="#{logic.clearSaveFilterDialog}"/>
       </div>
@@ -311,12 +334,32 @@
   <script type="text/javascript">
       var caseWidget = new CaseWidget();
       $(function() {
+        var simpleScreen = new CaseListScreenHandler();
+        var responsiveToolkit = ResponsiveToolkit(simpleScreen);
+        Portal.init(responsiveToolkit);
         caseWidget.updateCaseCountToBreadcrumb();
+        caseWidget.setupHeader();
       });
+
+      function start() {
+          var statusDialog = PF('status-dialog');
+          statusDialog.jq.removeAttr("download-status");
+          statusDialog.show();
+      }
+
+      function stop() {
+          var statusDialog = PF('status-dialog');
+          statusDialog.jq.attr("download-status","completed");
+          statusDialog.hide();
+      }
   </script>
 
   <h:form id="update-case-count-rc-form">
     <p:remoteCommand id="update-case-count-remote-cmd" name="updateCaseCount" global="false" process="@this" immediate="true" />
   </h:form>
+  <p:dialog modal="true" id="status-dialog" widgetVar="status-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" draggable="false" closable="false" resizable="false" responsive="true">
+    <div>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/waitingDownloadMessage')}</div>
+    <h:panelGroup layout="block" rendered="#{data.dataModel.rowCount gt caseWidgetBean.getMaxCaseNumberInExcel()}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/downloadZipFileExplanation')}</h:panelGroup>
+  </p:dialog>
 </cc:implementation>
 </html>

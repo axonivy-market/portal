@@ -18,13 +18,13 @@
               This is customized document table component header
             </h2>
           </f:facet>
-          <p:column headerText="Creator">
+          <p:column headerText="Creator" styleClass="document-creator-column">
             <h:outputText id="creator" value="#{document.creation.userName}" title="#{document.creation.userName}" />
           </p:column>
-          <p:column headerText="Created time">
+          <p:column headerText="Created time" styleClass="document-created-column">
             <h:outputText id="created-time" value="#{document.creation.timestamp}" title="#{document.creation.timestamp}" />
           </p:column>
-          <p:column headerText="Customer">
+          <p:column headerText="Customer" styleClass="document-customer-column">
             <h:outputText id="customer" value="#{document.customer}" title="#{document.customer}" />
           </p:column>
           <f:facet name="componentFooter">
@@ -35,6 +35,9 @@
         </ic:ch.ivy.addon.portalkit.component.document.DocumentTable>
       </h:form>
 
+    </ui:define>
+    <ui:define name="css">
+      <h:outputStylesheet library="css" name="examples.css" />
     </ui:define>
   </ui:composition>
 </h:body>

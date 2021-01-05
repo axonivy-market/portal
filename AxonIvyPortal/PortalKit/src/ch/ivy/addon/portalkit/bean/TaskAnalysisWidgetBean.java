@@ -13,10 +13,10 @@ import org.primefaces.model.Visibility;
 
 import ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel;
 import ch.ivy.addon.portalkit.enums.TaskAndCaseAnalysisColumn;
+import ch.ivy.addon.portalkit.exporter.TaskAnalysisExporter;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
 import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData;
-import ch.ivy.addon.portalkit.util.TaskAnalysisExporter;
 
 @ManagedBean
 @ViewScoped

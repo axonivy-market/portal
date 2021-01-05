@@ -40,10 +40,14 @@ Ts0 @GridStep f45 '' #zField
 Ts0 @UdInit f0 '' #zField
 Ts0 @UdMethod f6 '' #zField
 Ts0 @CallSub f7 '' #zField
-Ts0 @PushWFArc f8 '' #zField
 Ts0 @PushWFArc f9 '' #zField
 Ts0 @PushWFArc f2 '' #zField
 Ts0 @PushWFArc f11 '' #zField
+Ts0 @Alternative f3 '' #zField
+Ts0 @PushWFArc f4 '' #zField
+Ts0 @CallSub f8 '' #zField
+Ts0 @PushWFArc f10 '' #zField
+Ts0 @PushWFArc f5 '' #zField
 >Proto Ts0 Ts0 TaskItemProcess #zField
 Ts0 f46 587 219 26 26 0 12 #rect
 Ts0 f46 @|UdProcessEndIcon #fIcon
@@ -265,22 +269,23 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Ts0 f0 83 83 26 26 -16 15 #rect
 Ts0 f0 @|UdInitIcon #fIcon
 Ts0 f6 guid 16D28868336F21A0 #txt
-Ts0 f6 method openDetails(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel) #txt
-Ts0 f6 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel> param;' #txt
+Ts0 f6 method openDetails(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,Boolean) #txt
+Ts0 f6 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,Boolean inFrame> param;' #txt
 Ts0 f6 inParameterMapAction 'out.dataModel=param.dataModel;
+out.inFrame=param.inFrame;
 out.task=param.task;
 ' #txt
 Ts0 f6 outParameterDecl '<> result;' #txt
 Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>openDetails(ITask,TaskLazyDataModel)</name>
+        <name>openDetails(ITask,TaskLazyDataModel,Boolean)</name>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f6 83 643 26 26 -70 15 #rect
+Ts0 f6 83 627 26 26 -70 15 #rect
 Ts0 f6 @|UdMethodIcon #fIcon
-Ts0 f7 processCall 'Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)' #txt
+Ts0 f7 processCall 'Functional Processes/OpenPortalTaskDetailsHook:callInFrame(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)' #txt
 Ts0 f7 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
 Ts0 f7 requestMappingAction 'param.task=in.task;
 param.dataModel=in.dataModel;
@@ -298,15 +303,44 @@ Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ts0 f7 264 634 144 44 -64 -8 #rect
+Ts0 f7 416 618 144 44 -64 -8 #rect
 Ts0 f7 @|CallSubIcon #fIcon
-Ts0 f8 expr out #txt
-Ts0 f8 109 656 264 656 #arcP
 Ts0 f9 544 232 587 232 #arcP
 Ts0 f2 109 96 339 96 #arcP
 Ts0 f11 expr in #txt
 Ts0 f11 outCond in.canUserResumeTask #txt
 Ts0 f11 366 232 416 232 #arcP
+Ts0 f3 272 624 32 32 0 16 #rect
+Ts0 f3 @|AlternativeIcon #fIcon
+Ts0 f4 expr out #txt
+Ts0 f4 109 640 272 640 #arcP
+Ts0 f8 processCall 'Functional Processes/OpenPortalTaskDetailsHook:call(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean)' #txt
+Ts0 f8 requestActionDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
+Ts0 f8 requestMappingAction 'param.task=in.task;
+param.dataModel=in.dataModel;
+param.portalPage=ch.ivy.addon.portalkit.enums.PortalPage.valueOf(in.currentPortalPage);
+param.isFromTaskList=true;
+' #txt
+Ts0 f8 responseActionDecl 'ch.ivy.addon.portalkit.component.TaskItem.TaskItemData out;
+' #txt
+Ts0 f8 responseMappingAction 'out=in;
+' #txt
+Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>OpenPortalTaskDetails</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f8 416 730 144 44 -64 -8 #rect
+Ts0 f8 @|CallSubIcon #fIcon
+Ts0 f10 expr in #txt
+Ts0 f10 outCond !in.inFrame #txt
+Ts0 f10 288 656 416 752 #arcP
+Ts0 f10 1 288 752 #addKink
+Ts0 f10 1 0.1737415691246871 0 0 #arcLabel
+Ts0 f5 expr in #txt
+Ts0 f5 304 640 416 640 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskItem.TaskItemData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -330,8 +364,6 @@ Ts0 f99 out f67 tail #connect
 Ts0 f67 head f66 mainIn #connect
 Ts0 f79 out f101 tail #connect
 Ts0 f101 head f99 in #connect
-Ts0 f6 mainOut f8 tail #connect
-Ts0 f8 head f7 mainIn #connect
 Ts0 f49 mainOut f9 tail #connect
 Ts0 f9 head f46 mainIn #connect
 Ts0 f0 mainOut f2 tail #connect
@@ -339,3 +371,9 @@ Ts0 f2 head f1 mainIn #connect
 Ts0 f77 out f11 tail #connect
 Ts0 f11 head f49 mainIn #connect
 Ts0 f77 out f100 tail #connect
+Ts0 f6 mainOut f4 tail #connect
+Ts0 f4 head f3 in #connect
+Ts0 f3 out f10 tail #connect
+Ts0 f10 head f8 mainIn #connect
+Ts0 f3 out f5 tail #connect
+Ts0 f5 head f7 mainIn #connect

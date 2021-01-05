@@ -95,7 +95,7 @@ public class ExpressManagementTest extends BaseTest {
 
   private void importExpressFile(String pathName) throws UnsupportedEncodingException {
     String filepath = URLEncoder.encode(pathName, "UTF-8");
-    redirectToRelativeLink("PortalKitTestHelper/153CACC26D0D4C3D/createSampleExpressWorkflowProcess.ivp" + "?filePath=" + filepath);
+    redirectToRelativeLink("PortalKitTestHelper/153CACC26D0D4C3D/createSampleExpressWorkflowProcess.ivp?filePath=" + filepath);
   }
   
   @Test

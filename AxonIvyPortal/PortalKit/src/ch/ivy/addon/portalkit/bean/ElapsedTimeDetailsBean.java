@@ -7,7 +7,7 @@ import javax.faces.bean.ViewScoped;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
-import ch.ivy.addon.portalkit.ivydata.utils.DateTimeFormatter;
+import ch.ivy.addon.portalkit.util.DateTimeFormatterUtils;
 import ch.ivy.addon.portalkit.service.StatisticService;
 import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
@@ -46,8 +46,8 @@ public class ElapsedTimeDetailsBean implements Serializable {
     }
     return fileName;
   }
-  
+
   public String calculateElapsedTime(Number secondsValue) {
-    return DateTimeFormatter.formatDateTimeToString(secondsValue);
-    }
-    }
+    return DateTimeFormatterUtils.formatToExactTime(secondsValue);
+  }
+}

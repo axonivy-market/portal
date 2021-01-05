@@ -73,6 +73,7 @@ public class CaseMapPage extends TaskTemplatePage {
     return findElementByCssSelector("textarea[id$='internal-comment']").getText();
   }
 
+  @SuppressWarnings("deprecation")
   public String clickSubmitAndGetValidationMsg() {
     clickByCssSelector("button[id$='submit-request']");
     waitAjaxIndicatorDisappear();

@@ -22,20 +22,31 @@ import ch.ivyteam.ivy.workflow.StandardProcessType;
 
 public final class PortalNavigator {
   private static final String PORTAL_PROCESS_START_NAME = "Start Processes/PortalStart/DefaultApplicationHomePage.ivp";
+  private static final String PORTAL_DASHBOARD = "Start Processes/PortalStart/DefaultDashboardPage.ivp";
   private static final String PORTAL_PROCESS = "Start Processes/PortalStart/DefaultProcessStartListPage.ivp";
   private static final String PORTAL_TASK = "Start Processes/PortalStart/DefaultTaskListPage.ivp";
   private static final String PORTAL_CASE = "Start Processes/PortalStart/CaseListPage.ivp";
   private static final String PORTAL_STATISTIC = "Start Processes/PortalStart/StatisticPage.ivp";
   private static final String PORTAL_CASE_DETAILS = "Start Processes/PortalStart/CaseDetailsPage.ivp";
   private static final String PORTAL_RELATED_TASKS_OF_CASE = "Start Processes/PortalStart/RelatedTasksOfCasePage.ivp";
+  private static final String PORTAL_RELATED_TASKS_OF_CASE_IN_FRAME = "Start Processes/PortalStart/RelatedTasksOfCasePageInFrame.ivp";
   private static final String PORTAL_TASK_DETAILS = "Start Processes/PortalStart/TaskDetailsPage.ivp";
+  private static final String PORTAL_TASK_DETAILS_IN_FRAME = "Start Processes/PortalStart/TaskDetailsPageInFrame.ivp";
   private static final String PORTAL_GLOBAL_SEARCH = "Start Processes/PortalStart/GlobalSearchPage.ivp";
   private static final String PORTAL_USER_PROFILE =  "Start Processes/PortalStart/UserProfile.ivp";
+  private static final String PORTAL_ABSENCE_MANAGEMENT =  "Start Processes/PortalStart/AbsenceManagement.ivp";
+  private static final String PORTAL_FORGOT_PASSWORD = "Start Processes/PortalStart/ForgotPasswordPage.ivp";
+  private static final String PORTAL_PASSWORD_RESET = "Start Processes/PortalStart/PasswordResetPage.ivp";
   
   public static String getPortalStartUrl() {
     return getRelativeLink(StandardProcessType.DefaultApplicationHomePage);
   }
-  
+
+  public static String getPortalDashboardPageUrl(Map<String, String> params) {
+    String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword("DefaultDashboardPage.ivp");
+    return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, PORTAL_DASHBOARD), params);
+  }
+
   private static String getRelativeLink(StandardProcessType standardProcess) {
     return IvyExecutor.executeAsSystem(() ->
       Ivy.wf().getStandardProcessImplementation(standardProcess).getLink().getRelative());
@@ -47,7 +58,19 @@ public final class PortalNavigator {
     String originalUrl = URLEncoder.encode(request.getHttpServletRequest().getRequestURI(), StandardCharsets.ISO_8859_1);
     redirect(String.format("%s?originalUrl=%s", loginPage, originalUrl));
   }
-  
+
+  public static String getForgotPasswordUrl() {
+    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(PORTAL_FORGOT_PASSWORD);
+  }
+
+
+  public static String getPasswordResetUrl(String token, String username) {
+    Map<String, String> params = new HashMap<>();
+    params.put("token", token);
+    params.put("username", username);
+    return buildUrl(PORTAL_PASSWORD_RESET, params);
+  }
+
   public static void redirect(String url) {
     try {
       RequestUtil.redirect(url);
@@ -91,7 +114,6 @@ public final class PortalNavigator {
     navigateToPortalEndPage(Ivy.wfTask().getId());
   }
 
-
   public static void navigateToPortalProcess() {
     navigateByKeyword("DefaultProcessStartListPage.ivp", PORTAL_PROCESS, new HashMap<>());
   }
@@ -126,10 +148,24 @@ public final class PortalNavigator {
     navigateByKeyword("RelatedTasksOfCasePage.ivp", PORTAL_RELATED_TASKS_OF_CASE, params);
   }
 
+  public static void navigateToPortalRelatedTasksOfCaseInFrame(Long caseId, boolean isBusinessCase, String caseName) {
+    Map<String, String> params = new HashMap<>();
+    params.put("caseId", String.valueOf(caseId));
+    params.put("isBusinessCase", String.valueOf(isBusinessCase));
+    params.put("caseName", caseName);
+    navigateByKeyword("RelatedTasksOfCasePageInFrame.ivp", PORTAL_RELATED_TASKS_OF_CASE_IN_FRAME, params);
+  }
+
   public static void navigateToPortalTaskDetails(Long taskId) {
     Map<String, String> params = new HashMap<>();
     params.put("selectedTaskId", String.valueOf(taskId));
     navigateByKeyword("TaskDetailsPage.ivp", PORTAL_TASK_DETAILS, params);
+  }
+
+  public static void navigateToPortalTaskDetailsInFrame(Long taskId) {
+    Map<String, String> params = new HashMap<>();
+    params.put("selectedTaskId", String.valueOf(taskId));
+    navigateByKeyword("TaskDetailsPageInFrame.ivp", PORTAL_TASK_DETAILS_IN_FRAME, params);
   }
 
   public static void navigateToPortalGlobalSearch(String keyword) {
@@ -138,10 +174,24 @@ public final class PortalNavigator {
     navigateByKeyword("GlobalSearchPage.ivp", PORTAL_GLOBAL_SEARCH, params);
   }
   
+  public static void navigateToUserProfile() {
+    navigate(PORTAL_USER_PROFILE, new HashMap<>());
+  }
+
   public static String buildUserProfileUrl() {
     return buildUrlByKeyword("UserProfile.ivp", PORTAL_USER_PROFILE, new HashMap<>());
   }
 
+  public static String buildAbsencesUrl() {
+    return buildUrlByKeyword("AbsenceManagement.ivp", PORTAL_ABSENCE_MANAGEMENT, new HashMap<>());
+  }
+
+  public static String buildPortalCaseDetailsUrl(Long caseId) {
+    Map<String, String> params = new HashMap<>();
+    params.put("caseId", String.valueOf(caseId));
+    return buildUrlByKeyword("CaseDetailsPage.ivp", PORTAL_CASE_DETAILS, params);
+  }
+  
   public static String buildUrlByKeyword(String keyword, String defaultFriendlyRequestPath, Map<String, String> param) {
     String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);
     return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, defaultFriendlyRequestPath), param);
@@ -165,9 +215,5 @@ public final class PortalNavigator {
       return e.getKey() + "=" + URLEncoder.encode(e.getValue(), StandardCharsets.ISO_8859_1);
     }).collect(Collectors.joining("&"));
     return requestPath + (StringUtils.isNotBlank(paramStr) ? "?" + paramStr : StringUtils.EMPTY);
-  }
-  
-  public static void navigateToUserProfile() {
-    navigate(PORTAL_USER_PROFILE, new HashMap<>());
   }
 }

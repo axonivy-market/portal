@@ -30,9 +30,13 @@ function CaseWidget() {
         var caseWidgetSortMenuContainer = $('.js-case-widget-column-header');
         var layoutContentMarginPadding = ($('.js-layout-content').outerHeight(true) - $('.js-layout-content').height())||0;
         var mainScreenHeight = ($('.js-layout-content').outerHeight(true)||0);
+
+        // When open task list inside case information dialog, back link is displayed. So we should subtract its height also
+        var backlinkHeight = $('.js-back-link').outerHeight(true)||0;
+
         var availableHeight = mainScreenHeight - (caseWidgetHeaderContainer.outerHeight(true)||0)
                         - (caseWidgetSortMenuContainer.outerHeight(true)||0)
-                        - (announcementMessageContainer.outerHeight(true)||0) - layoutContentMarginPadding;
+                        - (announcementMessageContainer.outerHeight(true)||0) - layoutContentMarginPadding - backlinkHeight;
 
         var globalSearchTabHeader = $('.ui-tabs-nav');
         if (globalSearchTabHeader.length > 0) {

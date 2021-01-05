@@ -36,21 +36,21 @@
                           
                           <div class="widget__header-actions">
                             <p:link id="filter-sidebar-link" href="#" styleClass="widget__filter-sidebar-link u-mar-right-5">
-                              <i class="fa fa-filter" />
+                              <i class="icon ui-icon ivyicon-filter-1" />
                             </p:link>
                             <p:link id="info-sidebar-link" href="#" styleClass="u-mar-right-5">
-                              <i class="fa fa-info-circle" />
+                              <i class="icon ui-icon ivyicon-information-circle" />
                             </p:link>
-                            <p:remoteCommand name="buildStatisticInfos" actionListener="#{widget.buildStatisticInfos}" update="statistic-filter-accordion-panel" global="false" />
+                            <p:remoteCommand name="buildStatisticInfos" actionListener="#{widget.buildStatisticInfos}" update="statistic-filter-accordion-panel" />
                             <p:commandLink styleClass="u-mar-right-5" oncomplete="PF('task-widget-configuration-dialog').show()" global="false"
                               actionListener="#{dashboardBean.setWidget(widget)}" update="task-widget-configuration-dialog" rendered="#{!dashboardBean.isReadOnlyMode}">
-                              <i class="fa fa-pencil" />
+                              <i class="icon ui-icon ivyicon-pencil" />
                             </p:commandLink>
                             <p:commandLink>
-                              <i class="fa fa-arrow-right" />
+                              <i class="si si-arrow-right" />
                             </p:commandLink>
 
-                            <p:overlayPanel widgetVar="info-overlay-panel" for="info-sidebar-link" appendTo="@(body)" styleClass="info-overlay-panel" onShow="buildStatisticInfos();">
+                            <p:overlayPanel widgetVar="info-overlay-panel" for="info-sidebar-link" appendTo="@(body)" styleClass="info-overlay-panel" onShow="buildStatisticInfos();" dismissable="false">
                               <ui:include src="TaskInfo.xhtml" />
                             </p:overlayPanel>
                             <p:overlayPanel widgetVar="filter-overlay-panel" for="filter-sidebar-link" appendTo="@(body)" styleClass="info-overlay-panel" dismissable="false">
@@ -76,7 +76,7 @@
                         
                         <div class="widget__header-actions">
                           <p:commandLink>
-                            <i class="fa fa-arrow-right" />
+                            <i class="si si-arrow-right" />
                           </p:commandLink>
                         </div>
                       </div>
