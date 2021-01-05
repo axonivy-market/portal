@@ -20,7 +20,9 @@
     <ui:define name="content">
 
       <h:form id="form" styleClass="ui-g express-form portal-card-container">
-        <ic:ch.ivy.gawfs.component.FinishedUserTasksForm id="finished-tasks-component" finishedTasks="#{data.finishedTasks}" />
+        <div class="ui-g-12 u-padding-0">
+          <ic:ch.ivy.gawfs.component.FinishedUserTasksForm id="finished-tasks-component" finishedTasks="#{data.finishedTasks}" />
+        </div>
 
         <div class="approval-comment-container ui-g-12 u-padding-0">
           <h:panelGroup styleClass="ui-g-12 card">
