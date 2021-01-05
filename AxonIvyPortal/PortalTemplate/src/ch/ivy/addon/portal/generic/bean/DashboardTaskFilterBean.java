@@ -84,7 +84,7 @@ public class DashboardTaskFilterBean {
     if (state == null) {
       return StringUtils.EMPTY;
     }
-    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState" + state.toString());
+    return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/" + state.toString());
   }
 
   public String getUserFriendlyTaskPriority(WorkflowPriority priority) {
