@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.bean;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 
@@ -8,9 +9,11 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
+import ch.ivy.addon.portalkit.util.DateTimeFormatterUtils;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.util.TimesUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -80,5 +83,34 @@ public class CaseBean implements Serializable {
 
   public boolean isCaseOwnerEnabled() {
     return new GlobalSettingService().isCaseOwnerEnabled();
+  }
+
+  public String getDurationOfCase(ICase iCase) {
+    return iCase.getEndTimestamp() != null ? getElapsedTimeForDoneCase(iCase) : getElapsedTimeForRunningCase(iCase);
+  }
+
+  private String getElapsedTimeForDoneCase(ICase iCase) {
+    long duration = TimesUtils.getDurationInSeconds(iCase.getStartTimestamp(), iCase.getEndTimestamp());
+    return DateTimeFormatterUtils.formatToShortTimeString(duration);
+  }
+
+  private String getElapsedTimeForRunningCase(ICase iCase) {
+    long duration = TimesUtils.getDurationInSeconds(iCase.getStartTimestamp(), new Date());
+    return DateTimeFormatterUtils.formatToShortTimeString(duration);
+  }
+
+  public String getDurationOfCaseOnTooltip(ICase iCase) {
+    return iCase.getEndTimestamp() != null ? getElapsedTimeForDoneCaseOnTooltip(iCase)
+        : getElapsedTimeForRunningCaseOnTooltip(iCase);
+  }
+
+  private String getElapsedTimeForDoneCaseOnTooltip(ICase iCase) {
+    long duration = TimesUtils.getDurationInSeconds(iCase.getStartTimestamp(), iCase.getEndTimestamp());
+    return DateTimeFormatterUtils.formatToExactTime(duration);
+  }
+
+  private String getElapsedTimeForRunningCaseOnTooltip(ICase iCase) {
+    long duration = TimesUtils.getDurationInSeconds(iCase.getStartTimestamp(), new Date());
+    return DateTimeFormatterUtils.formatToExactTime(duration);
   }
 }

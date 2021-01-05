@@ -50,7 +50,7 @@ import ch.ivy.addon.portalkit.statistics.StatisticChart;
 import ch.ivy.addon.portalkit.service.StatisticService;
 
 StatisticService service = new StatisticService();
-String chartName = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/defaultChart/tasksByPriority");
+String chartName = ivy.cms.coLocale("/ch.ivy.addon.portalkit.ui.jsf/statistic/defaultChart/tasksByPriority", ivy.wf.getApplication().getDefaultEMailLanguage());
 
 List<DisplayName> chartNames = new ArrayList();
 IvyLanguage ivyLanguage = LanguageService.newInstance().findUserLanguages().ivyLanguage;
@@ -101,7 +101,7 @@ import ch.ivy.addon.portalkit.statistics.StatisticChart;&#13;
 import ch.ivy.addon.portalkit.service.StatisticService;&#13;
 &#13;
 StatisticService service = new StatisticService();&#13;
-String chartName = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/statistic/defaultChart/tasksByPriority");&#13;
+String chartName = ivy.cms.coLocale("/ch.ivy.addon.portalkit.ui.jsf/statistic/defaultChart/tasksByPriority", ivy.wf.getApplication().getDefaultEMailLanguage());&#13;
 &#13;
 List&lt;DisplayName&gt; chartNames = new ArrayList();&#13;
 IvyLanguage ivyLanguage = LanguageService.newInstance().findUserLanguages().ivyLanguage;&#13;
@@ -125,7 +125,7 @@ if (!isExistedDefaultChart) {&#13;
   StatisticChart newChart = service.createStatisticChart(statisticFilter, chartNames, chartType, ivy.session.getSessionUser().getId(), true);&#13;
   in.defaultCharts.add(newChart);&#13;
 }</name>
-        <nameStyle>1778,5
+        <nameStyle>1835,5
 </nameStyle>
     </language>
 </elementInfo>

@@ -4,7 +4,7 @@
 <h:body>
   <ui:composition template="/layouts/TaskTemplate-8.xhtml">
     <ui:param name="steps" value="#{data.data.steps}" />
-    <ui:param name="actualStepIndex" value="1" />
+    <ui:param name="actualStepIndex" value="#{data.data.isAdhocProcess ? 0 : 1}" />
     <ui:param name="isShowStartAdhocButton" value="false" />
     <ui:param name="processChainShape" value="LINE" />
     <ui:param name="viewName" value="EXPRESS" />
@@ -22,7 +22,7 @@
         </div>
 
         <p:fieldset id="process-setting-fieldset" legend="#{ivy.cms.co('/Dialogs/workflowCreation/WorkflowDefinition/Processdetails')}"
-          toggleable="true" styleClass="MarTop5 express-fieldset fieldset-no-border">
+          toggleable="true" styleClass="MarTop5 express-fieldset fieldset-no-border portal-card-container">
 
           <div class="ui-g-12 card">
             <div id="process-setting-grid" class="process-property-container u-no-padding-top">
@@ -138,7 +138,7 @@
 
         <h:panelGroup id="defined-tasks-list-container">
           <ui:repeat id="defined-tasks-list" value="#{data.data.definedTasks}" var="gtask" varStatus="status">
-            <p:fieldset id="process-flow-field" toggleable="true" styleClass="express-fieldset fieldset-no-border"
+            <p:fieldset id="process-flow-field" toggleable="true" styleClass="express-fieldset fieldset-no-border portal-card-container"
               legend="#{ivy.cms.co('/Dialogs/workflowCreation/processStep')} #{gtask.position}">
               <h:panelGroup styleClass="ui-g-12 card">
 

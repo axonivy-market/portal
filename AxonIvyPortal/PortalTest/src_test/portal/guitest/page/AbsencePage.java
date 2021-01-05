@@ -14,10 +14,11 @@ public class AbsencePage extends TemplatePage {
 
 	@Override
 	protected String getLoadedLocator() {
-		return "id('absence-management-dialog_title')";
+		return "id('absences-management-form')";
 	}
 
-	public NewAbsencePage openNewAbsenceDialog() {
+	@SuppressWarnings("deprecation")
+  public NewAbsencePage openNewAbsenceDialog() {
 		String selector = "button[id*='add-absence']";
 		waitForElementDisplayed(By.cssSelector(selector), true);
 		clickByCssSelector(selector);
@@ -30,7 +31,8 @@ public class AbsencePage extends TemplatePage {
 		return findListElementsByCssSelector("td.absences-table-action-column").size();
 	}
 
-	public void showAbsencesInThePast(boolean shown) {
+	@SuppressWarnings("deprecation")
+  public void showAbsencesInThePast(boolean shown) {
 		WebElement checkBox = findElementByCssSelector("input[id*='show-absence-in-the-past']");
 		boolean checkBoxSelected = checkBox.isSelected();
 		if (checkBoxSelected != shown) {
@@ -49,7 +51,8 @@ public class AbsencePage extends TemplatePage {
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
   
-	public void setDeputy(String fullName) {
+	@SuppressWarnings("deprecation")
+  public void setDeputy(String fullName) {
 		String usernameSelector = "input[id$='substitute-username_input']";
 		waitForElementPresent(By.cssSelector(usernameSelector), true);
 		WebElement usernameInput = findElementByCssSelector(usernameSelector);
@@ -75,10 +78,11 @@ public class AbsencePage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 	}
 
-	public void setSubstitutedByAdmin(String substitutedUser) {
-		String substitutedUserInput = "input[id$='substituted-user_input']";
-		waitForElementDisplayed(By.cssSelector(substitutedUserInput), true);
-		WebElement substituted = findElementByCssSelector(substitutedUserInput);
+	@SuppressWarnings("deprecation")
+  public void setSubstitutedByAdmin(String substitutedUser) {
+		String selectedUserInput = "input[id$=':user-absence-selection-component:user-absence_input']";
+		waitForElementDisplayed(By.cssSelector(selectedUserInput), true);
+		WebElement substituted = findElementByCssSelector(selectedUserInput);
 		substituted.clear();
 		substituted.sendKeys(substitutedUser);
 		waitAjaxIndicatorDisappear();
@@ -88,16 +92,28 @@ public class AbsencePage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 	}
 	
-	public String getSubstitutedByAdmin() {
-	  return findElementByCssSelector("input[id$='substituted-user_input']").getAttribute("value");
+	public String getSubstitutedByAdmin(int rowIndex) {
+	  WebElement deputyForTable = findElementByCssSelector("[id$=':substitution-table']");
+	  WebElement deputyFor = deputyForTable.findElement(By.cssSelector(String.format("[id$='%d:substitution-for']", rowIndex)));
+	  return deputyFor.getText();
 	}
 	
+  @SuppressWarnings("deprecation")
   public void saveSubstitute() {
-    clickByCssSelector("button[id*='absence-management:save-substitute']");
+    clickByCssSelector("button[id$='absences-management-form:save-substitute']");
     waitAjaxIndicatorDisappear();
   }
   
-  public WebElement getAbsenceDialog() {
-    return findElementById("absence-management-dialog");
+  public WebElement getAbsenceForm() {
+    return findElementById("absences-management-form");
+  }
+
+  public WebElement getAddAbsenceDialog() {
+    return findElementById("absence-dialog");
+  }
+  
+  public void waitForAbsencesGrowlMessageDisplay() {
+    WebElement growlMessage = findElementByCssSelector("div[id$='absences-management-form:absences-management-info_container']");
+    waitForElementDisplayed(growlMessage.findElement(By.className("ui-growl-item-container")), true, 5);
   }
 }

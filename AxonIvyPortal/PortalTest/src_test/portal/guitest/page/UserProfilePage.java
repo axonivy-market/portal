@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import portal.guitest.common.WaitHelper;
+
 public class UserProfilePage extends TemplatePage {
   
   private static final String CASE_SORT_DIRECTION_SELECTION_ITEMS = "my-profile-form:case-sort-direction-selection_items";
@@ -40,10 +42,7 @@ public class UserProfilePage extends TemplatePage {
 
   public UserProfilePage save() {
     WebElement save = findElementByCssSelector("button[id$='save-settings']");
-    click(save);
-    waitAjaxIndicatorDisappear();
-    waitForPageLoaded();
-    ensureNoBackgroundRequest();
+    WaitHelper.waitForNavigation(new UserProfilePage(), () -> click(save));
     return new UserProfilePage();
   }
   
@@ -129,6 +128,7 @@ public class UserProfilePage extends TemplatePage {
     }
   }
 
+  @SuppressWarnings("deprecation")
   public void selectTaskSortField(String selectValue) {
     waitForElementDisplayed(By.id(TASK_SORT_FIELD_SELECTION), true);
     click(findElementById(TASK_SORT_FIELD_SELECTION_LABEL));
@@ -138,6 +138,7 @@ public class UserProfilePage extends TemplatePage {
     ensureNoBackgroundRequest();
   }
 
+  @SuppressWarnings("deprecation")
   public void selectTaskSortDirection(String selectValue) {
     waitForElementDisplayed(By.id(TASK_SORT_DIRECTION_SELECTION), true);
     click(findElementById(TASK_SORT_DIRECTION_SELECTION_LABEL));
@@ -147,6 +148,7 @@ public class UserProfilePage extends TemplatePage {
     ensureNoBackgroundRequest();
   }
 
+  @SuppressWarnings("deprecation")
   public void selectCaseSortField(String selectValue) {
     waitForElementDisplayed(By.id(CASE_SORT_FIELD_SELECTION), true);
     click(findElementById(CASE_SORT_FIELD_SELECTION_LABEL));
@@ -156,6 +158,7 @@ public class UserProfilePage extends TemplatePage {
     ensureNoBackgroundRequest();
   }
 
+  @SuppressWarnings("deprecation")
   public void selectCaseSortDirection(String selectValue) {
     waitForElementDisplayed(By.id(CASE_SORT_DIRECTION_SELECTION), true);
     click(findElementById(CASE_SORT_DIRECTION_SELECTION_LABEL));
@@ -172,5 +175,11 @@ public class UserProfilePage extends TemplatePage {
     waitForElementDisplayed(By.id(caseItemId), true);
     click(By.id(caseItemId));
     waitUntilTextToBePresentInElement(findElementById(homepageLabel), "Cases", getTimeOutForLocator());
+  }
+  
+  public HomePage clickOnCancelLink() {
+    click(findElementByCssSelector("a[id^='my-profile-form:']"));
+    waitForPageLoaded();
+    return new HomePage();
   }
 }

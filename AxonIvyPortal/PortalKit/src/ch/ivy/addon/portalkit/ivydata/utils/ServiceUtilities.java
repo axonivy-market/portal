@@ -78,6 +78,7 @@ public class ServiceUtilities {
 
     List<IRole> roles = new ArrayList<>(app.getSecurityContext().getRoles());
     roles.removeIf(role -> role.getProperty(AdditionalProperty.HIDE.toString()) != null);
+    roles.sort((u1, u2) -> StringUtils.compareIgnoreCase(u1.getDisplayName(), u2.getDisplayName()));
 
     IvyCacheService.newInstance().setSessionCache(app.getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION, roles);
     return roles;

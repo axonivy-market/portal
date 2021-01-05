@@ -1,0 +1,4 @@
+InvestmentRequestCaseDetailPageIframeData #class
+com.axonivy.portal.developerexamples.customization.InvestmentRequestCaseDetailPageIframe #namespace
+ivyCase ch.ivyteam.ivy.workflow.ICase #field
+ivyCase PERSISTENT #fieldModifier

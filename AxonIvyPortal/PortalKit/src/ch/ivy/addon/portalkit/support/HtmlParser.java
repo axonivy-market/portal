@@ -8,13 +8,10 @@ import org.jsoup.safety.Whitelist;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class HtmlParser {
-
-  private static String NO_DESC = Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription");
-
   public static String sanitizeHTML(String text) {
     String sanitizedText = sanitize(text);
     if (StringUtils.isBlank(parseTextFromHtml(text))) {
-      return NO_DESC;
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription");
     }
     return sanitizedText;
   }
@@ -22,7 +19,7 @@ public class HtmlParser {
   public static String extractTextFromHtml(String text) {
     String extractedText = parseTextFromHtml(text);
     if (StringUtils.isBlank(extractedText)) {
-      return NO_DESC;
+      return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseDetails/noDescription");
     }
     return extractedText;
   }

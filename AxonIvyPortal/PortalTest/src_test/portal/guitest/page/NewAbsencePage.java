@@ -15,7 +15,7 @@ public class NewAbsencePage extends TemplatePage {
 
   @Override
   protected String getLoadedLocator() {
-    return "id('absence-management:absence-dialog_title')";
+    return "id('absence-dialog_title')";
   }
   
   public void input(LocalDate absenceFrom, LocalDate absenceTill, String comment) {
@@ -26,6 +26,7 @@ public class NewAbsencePage extends TemplatePage {
     commentInput.sendKeys(comment);
   }
 
+  @SuppressWarnings("deprecation")
   public void input(String fullName, LocalDate absenceFrom, LocalDate absenceTill, String comment) {
     if (StringUtils.isNotEmpty(fullName)) {
       String usernameSelector = "input[id*='absence-username']";
@@ -63,8 +64,15 @@ public class NewAbsencePage extends TemplatePage {
     return errorMessage.getText();
   }
 
+  @SuppressWarnings("deprecation")
   public void proceed() {
     clickByCssSelector("button[id*='save-absence']");
+    waitAjaxIndicatorDisappear();
+  }
+
+  @SuppressWarnings("deprecation")
+  public void closeAddAbsenceDialog() {
+    clickByCssSelector("a[id*='close-add-absence-dialog']");
     waitAjaxIndicatorDisappear();
   }
 }

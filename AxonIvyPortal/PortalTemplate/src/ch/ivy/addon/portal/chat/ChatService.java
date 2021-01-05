@@ -57,6 +57,7 @@ import ch.ivyteam.ivy.server.restricted.EngineMode;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import io.swagger.v3.oas.annotations.Hidden;
 
 /**
  * Chat service uses asynchronous REST communication:
@@ -75,6 +76,7 @@ import ch.ivyteam.ivy.workflow.query.CaseQuery;
  * </ul>
  */
 @SuppressWarnings("restriction")
+@Hidden
 @Path("chat")
 @Singleton
 public class ChatService {
@@ -95,7 +97,7 @@ public class ChatService {
   private Map<String, List<GroupChat>> usernameToGroupChats = new ConcurrentHashMap<>();
   private Map<String, Integer> reachedLimitedConnectionCounters = new ConcurrentHashMap<>();
   /** Only necessary if in cluster */
-  private static long nodeId;
+  private static String nodeName;
   public static final boolean IS_STANDARD_MODE = EngineMode.isNot(EngineMode.ENTERPRISE);
 
   @POST
@@ -108,7 +110,7 @@ public class ChatService {
       ChatReferencesContainer.registerIvyExtension();
       if (!IS_STANDARD_MODE) {
         ClusterChatEventListener.register();
-//        nodeId = DiCore.getGlobalInjector().getInstance(IClusterManager.class).getLocalClusterNode().getId(); TODO ask ivyTeam for new API/solution
+        nodeName = DiCore.getGlobalInjector().getInstance(IClusterManager.class).getLocalClusterNode().getName();
       }
     }
     Queue<ResponseInfo> responses = getResponses();
@@ -153,10 +155,9 @@ public class ChatService {
   @Path("/unread/senders")
   @Produces(MediaType.APPLICATION_JSON)
   public List<String> getSendersOfUnreadMessages() {
-    List<String> participants = Arrays.asList(sessionUserName());
-    List<ChatMessage> unreadMessagesInMemory = ChatMessageManager.getUnreadMessagesInMemory(participants);
-
-    return ListUtils.emptyIfNull(unreadMessagesInMemory).stream().map(ChatMessage::getSender).distinct()
+    List<UnreadChatMessage> unreadMessages = ChatMessageManager.getUnreadMessages(sessionUserName());
+    return ListUtils.emptyIfNull(unreadMessages).stream().map(UnreadChatMessage::getSenderId)
+        .map(senderId -> ChatMessageManager.getSender(senderId)).filter(Objects::nonNull).distinct()
         .collect(Collectors.toList());
   }
 
@@ -170,7 +171,7 @@ public class ChatService {
   }
 
   public synchronized void performReadingMessage(String participant, String clientId, String actor) {
-    ChatMessageManager.deletedReadMessagesInMemory(Arrays.asList(actor), participant);
+    ChatMessageManager.deletedReadMessages(actor, participant);
     ChatResponse lastChatResponse =
         getChatResponseFromHistory(() -> ConcurrentChatUtils.getRecentChatResponseHistory(actor).peekLast(), actor);
     if (lastChatResponse != null && !isDuplicatedAction(participant, lastChatResponse, READ_PRIVATE_MESSAGE_ACTION)) {
@@ -188,7 +189,7 @@ public class ChatService {
   }
 
   public synchronized void performReadingGroupMessage(String caseId, String clientId, String actor) {
-    ChatMessageManager.deletedReadMessagesInMemoryForGroupChat(Arrays.asList(actor), caseId);
+    ChatMessageManager.deletedReadMessagesForGroupChat(actor, caseId);
     ChatResponse lastChatResponse =
         getChatResponseFromHistory(() -> ConcurrentChatUtils.getRecentChatResponseHistory(actor).peekLast(), actor);
     if (lastChatResponse != null && !isDuplicatedAction(caseId, lastChatResponse, READ_GROUP_MESSAGE_ACTION)) {
@@ -224,24 +225,24 @@ public class ChatService {
   @Produces(MediaType.APPLICATION_JSON)
   public Response sendPrivateMessage(String messageText, @PathParam("receiver") String receiver,
       @PathParam("clientId") String clientId) {
-    handleAction(() -> performSendingPrivateMessage(messageText, receiver, clientId, sessionUserName(), nodeId),
-        () -> ClusterChatEventSender.sendPrivateMessage(messageText, receiver, clientId, nodeId));
+    handleAction(() -> performSendingPrivateMessage(messageText, receiver, clientId, sessionUserName(), nodeName),
+        () -> ClusterChatEventSender.sendPrivateMessage(messageText, receiver, clientId, nodeName));
     return Response.ok(SUCCESSFUL).build();
   }
 
   public synchronized void performSendingPrivateMessage(String messageText, String receiver, String clientId,
-      String actor, long nodeId) {
+      String actor, String nodeName) {
     if (ChatGroupUtils.findUserByUsername(receiver) == null) {
       return;
     }
     ChatMessage message = new ChatMessage(actor, Arrays.asList(receiver), messageText);
-    ChatMessageManager.storeUnreadMessageInMemory(message);
+    ChatMessageManager.storeUnreadMessage(message);
 
     ChatResponse chatResponse = new ChatResponse(GET_MESSAGES_ACTION, message, clientId);
     // If receiver is online, send message directly to receiver's response.
     resumeAsyncResponse(receiver, chatResponse, clientId, actor);
     resumeAsyncResponse(actor, chatResponse, clientId, actor);
-    if (ChatService.nodeId == nodeId) {
+    if (StringUtils.equals(ChatService.nodeName, nodeName)) {
       ChatMessageManager.savePersonalMessage(message);
     }
   }
@@ -282,17 +283,17 @@ public class ChatService {
 
     if (CollectionUtils.isNotEmpty(availableGroups)
         && availableGroups.stream().anyMatch(group -> group.getCaseId() == Long.parseLong(caseId))) {
-      handleAction(() -> performSendingGroupMessage(messageText, caseId, clientId, sessionUserName(), nodeId),
-          () -> ClusterChatEventSender.sendGroupMessage(messageText, caseId, clientId, nodeId));
+      handleAction(() -> performSendingGroupMessage(messageText, caseId, clientId, sessionUserName(), nodeName),
+          () -> ClusterChatEventSender.sendGroupMessage(messageText, caseId, clientId, nodeName));
       return Response.ok(SUCCESSFUL).build();
     }
     return Response.ok(ERROR).build();
   }
 
   public synchronized void performSendingGroupMessage(String messageText, String caseId, String clientId, String actor,
-      long nodeId) {
+      String nodeName) {
     ChatMessage message = new ChatMessage(actor, messageText, caseId);
-    if (ChatService.nodeId == nodeId) {
+    if (StringUtils.equals(ChatService.nodeName, nodeName)) {
       ChatMessageManager.saveGroupMessage(message, caseId);
     }
     Set<String> members = ChatGroupUtils.getUserNamesFromGroup(Long.parseLong(caseId));
@@ -302,7 +303,7 @@ public class ChatService {
     for (String member : members) {
       resumeAsyncResponse(member, chatResponse, clientId, actor);
     }
-    ChatMessageManager.storeUnreadMessageInMemoryForGroupChat(message, Long.parseLong(caseId));
+    ChatMessageManager.storeUnreadMessageForGroupChat(message, Long.parseLong(caseId));
   }
 
   /**

@@ -466,7 +466,7 @@ Ts0 f14 763 979 26 26 0 12 #rect
 Ts0 f14 @|UdProcessEndIcon #fIcon
 Ts0 f37 actionTable 'out=in;
 ' #txt
-Ts0 f37 actionCode 'import ch.ivy.addon.portalkit.util.TaskAnalysisExporter;
+Ts0 f37 actionCode 'import ch.ivy.addon.portalkit.exporter.TaskAnalysisExporter;
 TaskAnalysisExporter exporter = new TaskAnalysisExporter(in.columnsVisibility);
 in.exportedFile = exporter.getStreamedContent(in.collectedTasksForExporting);
 ' #txt
