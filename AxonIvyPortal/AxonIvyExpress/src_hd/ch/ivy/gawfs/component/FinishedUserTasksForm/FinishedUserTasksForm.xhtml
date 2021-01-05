@@ -12,6 +12,7 @@
 <cc:implementation>
   <h:outputLabel id="finished-task-label" styleClass="finished-task-label ui-g-12" for="approval-result"
     value="#{ivy.cms.co('/Dialogs/WorkflowExecution/FinishedTasksForm/FinishedTasks')}" />
+  <div id="finished-task-fieldset-container" class="ui-g-12 u-padding-0">
   <ui:repeat id="approval-result" var="wfTask" value="#{cc.attrs.finishedTasks}" varStatus="status">
     <p:fieldset id="finished-task-fieldset" styleClass="finished-task-fieldset express-fieldset fieldset-no-border ui-g portal-card-container" toggleable="true"
       collapsed="#{status.index  == cc.attrs.finishedTasks.size() -1 ? 'false' : 'true'}">
@@ -94,5 +95,6 @@
     <p:tooltip id="finished-task-fieldset-tooltip" value="#{wfTask.subject}" for="finished-task-fieldset-legend" trackMouse="true" 
       hideEvent="mouseleave click"/>
   </ui:repeat>
+  </div>
 </cc:implementation>
 </html>
