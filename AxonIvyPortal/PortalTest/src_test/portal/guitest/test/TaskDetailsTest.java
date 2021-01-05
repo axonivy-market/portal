@@ -25,10 +25,11 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class TaskDetailsTest extends BaseTest {
 
+  private static final String COMMENT_CONTENT = "Test comment";
   private HomePage homePage;
   private TaskWidgetPage taskWidgetPage;
   private TaskDetailsPage taskDetailsPage;
-  
+
   @Override
   @Before
   public void setup() {
@@ -47,10 +48,12 @@ public class TaskDetailsTest extends BaseTest {
     taskDetailsPage.openTaskDelegateDialog();
     taskDetailsPage.selectDelegateResponsible(TestAccount.HR_ROLE_USER.getFullName(), false);
     assertTrue(StringUtils.equalsIgnoreCase(TestAccount.HR_ROLE_USER.getFullName(), taskDetailsPage.getTaskResponsible()));
-    
+
     taskDetailsPage.openTaskDelegateDialog();
+    taskDetailsPage.addCommentOnTaskDelegationDialog(COMMENT_CONTENT);
     taskDetailsPage.selectDelegateResponsible(TestRole.HR_ROLE, true);
     assertTrue(StringUtils.equalsIgnoreCase(TestRole.HR_ROLE, taskDetailsPage.getTaskResponsible()));
+    assertTrue(StringUtils.contains(taskDetailsPage.getFirstTaskNoteComment(), COMMENT_CONTENT));
   }
 
   private TaskDetailsPage openDetailsPageOfFirstTask() {
@@ -72,7 +75,7 @@ public class TaskDetailsTest extends BaseTest {
     LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
     return tomorrow.format(DateTimeFormatter.ofPattern(DateTimePattern.DATE_TIME_PATTERN));
   }
-  
+
   @Test
   public void testClearTheDelayTimestampOfTask() {
     openDelayTask();
@@ -83,7 +86,7 @@ public class TaskDetailsTest extends BaseTest {
     assertTrue(StringUtils.equalsIgnoreCase("SUSPENDED", taskDetailsPage.getTaskState()));
     assertTrue(StringUtils.equalsIgnoreCase("NA", taskDetailsPage.getTaskDelayTime()));
   }
-  
+
   @Test
   public void testChangeDelayTimestamp() {
     openDelayTask();
@@ -103,7 +106,7 @@ public class TaskDetailsTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     redirectToRelativeLink(createTechnicalStateUrl);
     homePage = new HomePage();
-    
+
     taskDetailsPage = openDetailsPageOfFirstTask();
     String eventData = taskDetailsPage.openWorkflowEventDialog();
     assertTrue(eventData.contains("admin"));
@@ -118,7 +121,7 @@ public class TaskDetailsTest extends BaseTest {
     taskWidgetPage.clickOnTaskStatesAndApply(Arrays.asList("Delayed"));
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
   }
-  
+
   @Test
   public void testShowDurationOfDoneTask() {
     login(TestAccount.ADMIN_USER);
@@ -130,20 +133,20 @@ public class TaskDetailsTest extends BaseTest {
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
     assertFalse(StringUtils.equalsIgnoreCase("", taskDetailsPage.getDurationTimeText()));
   }
-  
+
   private void filterByDateType(String dateType) {
     DateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy hh:mm");
     Calendar calendar = Calendar.getInstance();
     Date today = new Date();
     calendar.setTime(today);
-    
+
     calendar.add(Calendar.DAY_OF_YEAR, -1);
     Date yesterday = calendar.getTime();
     String yesterdayText = dateFormat.format(yesterday);
-    
+
     calendar.add(Calendar.DAY_OF_YEAR, 2);
     Date tomorrow = calendar.getTime();
-    String tomorrowText = dateFormat.format(tomorrow);  
+    String tomorrowText = dateFormat.format(tomorrow);
 
     taskWidgetPage.filterByDate(dateType, yesterdayText, tomorrowText);
   }

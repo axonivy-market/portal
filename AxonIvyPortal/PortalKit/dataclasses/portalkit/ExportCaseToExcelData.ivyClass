@@ -1,0 +1,5 @@
+ExportCaseToExcelData #class
+portalkit #namespace
+columnsVisibility List<String> #field
+collectedCasesForExporting java.util.List<ch.ivyteam.ivy.workflow.ICase> #field
+exportedFile org.primefaces.model.StreamedContent #field

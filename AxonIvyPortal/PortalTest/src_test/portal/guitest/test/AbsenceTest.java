@@ -68,7 +68,7 @@ public class AbsenceTest extends BaseTest {
     AbsencePage absencePage = openAbsencePage();
     absencePage.setDeputy("caseOwnerUser");
     absencePage.saveSubstitute();
-    absencePage.openAbsencePage();
+    absencePage.waitForAbsencesGrowlMessageDisplay();
     assertEquals("caseOwnerUser", absencePage.getMyDeputy());
   }
 
@@ -79,7 +79,7 @@ public class AbsenceTest extends BaseTest {
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     absencePage.setDeputy("caseOwnerUser");
     absencePage.saveSubstitute();
-    absencePage.openAbsencePage();
+    absencePage.waitForAbsencesGrowlMessageDisplay();
     absencePage.setSubstitutedByAdmin(TestAccount.DEMO_USER.getFullName());
     assertEquals("caseOwnerUser", absencePage.getMyDeputy());
   }
@@ -93,7 +93,7 @@ public class AbsenceTest extends BaseTest {
     absencePage.setDeputy(TestAccount.DEMO_USER.getFullName());
     absencePage.saveSubstitute();
     login(TestAccount.DEMO_USER);
-    absencePage.openAbsencePage();
+    absencePage = openAbsencePage();
     assertTrue(absencePage.getIAMDeputyFor().contains(TestAccount.ADMIN_USER.getFullName()));
   }
 

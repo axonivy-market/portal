@@ -46,6 +46,12 @@
               icon="#{visibilityBean.generateButtonIcon('icon ivyicon-login-3')}"
               oncomplete="if (#{empty data.callbackUrl} === 'true' &amp;&amp; args &amp;&amp; !args.validationFailed) {location.reload()}" />
           </div>
+          <h:panelGroup styleClass="ui-g-12 forgot-link u-text-align-right" rendered="#{forgotPasswordBean.isForgotPasswordRendered()}">
+            <p:link id="forgot-password-link" href="#{forgotPasswordBean.getForgotPasswordUrl()}">
+               <i class="icon ivyicon-question-circle u-mar-right-5" />
+               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/forgotPassword/forgotPassword')}" />
+            </p:link>
+          </h:panelGroup>
         </div>
       </h:form>
     </div>

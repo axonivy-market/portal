@@ -34,9 +34,10 @@ public class DashboardScreenshotTest extends ScreenshotTest {
   
   @Test
   public void takeScreenshotOverlayGuide() throws IOException {
+    ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
     updatePortalSetting("SHOW_USER_GUIDE", "true");
     homePage = new HomePage();
-    ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
+    Sleeper.sleep(500); // wait for js calculate resize event
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DASHBOARD_FOLDER + "overlay-guide");
   }
   
@@ -57,6 +58,7 @@ public class DashboardScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.captureElementScreenshot(homePage.getProcessWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "process-widget");
     ScreenshotUtil.captureElementScreenshot(homePage.getStatisticWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "statistic-widget");
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_HD_WIDTH, 800));
+    Sleeper.sleep(500); // wait for js calculate height of task widget done
     ScreenshotUtil.captureElementScreenshot(homePage.getTaskWidgetElement(), ScreenshotUtil.DASHBOARD_FOLDER + "task-widget");
     homePage.openMainMenu();
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));

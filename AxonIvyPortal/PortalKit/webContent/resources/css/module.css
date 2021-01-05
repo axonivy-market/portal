@@ -154,25 +154,7 @@
   overflow-x: hidden;
 }
 
-.layout-wrapper .layout-sidebar .layout-menu li {
-  width: auto;
-}
-
 /********************** END MENU ITEM ***********************/
-
-/********************** START SUBMENU ITEM ***********************/
-.layout-wrapper .layout-sidebar .layout-menu li.submenu-container {
-  box-shadow: none;
-  margin: auto 10px;
-  padding-right: 0;
-  padding-left: 0;
-}
-
-.layout-wrapper .layout-sidebar .layout-menu li.submenu-container a {
-  box-shadow: none;
-}
-
-/********************** END SUBMENU ITEM ***********************/
 
 /********************** START CASE BOX ***********************/
 .grid-item-content-list-item {
@@ -242,6 +224,17 @@
 
 .task-widget-sub-header {
   width: 100%;
+}
+
+.task-widget-sub-header .operations-column,
+.case-widget .widget-column-header .operations-column {
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-size: var(--large-font-size);
+  color: var(--task-widget-header-column);
+  font-family: var(--portal-font-family);
 }
 
 .task-widget .in-progress-task-checkbox, .case-widget-container .in-progress-task-checkbox {
@@ -582,6 +575,12 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   border-radius: 0;
 }
 
+.case-list .case-custom-field-cell {
+  flex: 0 0 150px;
+  word-break: break-word;
+  word-wrap: break-word;
+}
+
 .case-header-name-desc-cell {
   flex: 1;
   padding-left: 10px;
@@ -766,6 +765,10 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   .case-details-back-btn, .task-details-back-btn {
     text-align: left;
   }
+
+  .iframe-body .task-details-back-btn {
+    text-align: right;
+  }
 }
 
 .case-detail-title-header-container {
@@ -840,6 +843,14 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 /********************************** START PROCESSES **********************************/
 .add-external-link-dialog {
   min-width: 600px;
+}
+
+.process-add-languages {
+  width: 100%;
+}
+
+.process-start-icon-label {
+  margin-right: 25px;
 }
 
 /* Mobile screen */
@@ -1276,11 +1287,25 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 }
 
 .select-delegate-panel {
-  margin: 5px 0 20px 0;
+  margin: 5px 0 10px 0;
 }
 
 .select-delegate-panel .ui-autocomplete, .select-delegate-panel .ui-autocomplete .ui-autocomplete-input {
   width: 100%;
+}
+
+.delegate-comment-panel {
+  margin: 0 0 20px 0;
+}
+
+.delegate-comment-panel .input-text-area-delegate-message-container {
+  width: 100%;
+  margin-top: 5px;
+}
+
+.delegate-comment-panel .input-text-area-delegate-message-container .input-text-area-delegate-message {
+  width: 100%;
+  resize: none;
 }
 
 .delegate-type-container .ui-selectoneradio.ui-widget td {
@@ -1321,7 +1346,12 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 
 /******************END DELEGATE DIALOG********************/
 .new-process-dialog {
-  min-width: 600px;
+  max-width: 800px;
+}
+
+.support-process-language-field {
+  margin-top: 25px;
+  margin-bottom: 5px;
 }
 
 .field-group {
@@ -1346,9 +1376,6 @@ _:-ms-input-placeholder, :root .add-external-link-form .ui-g .ui-outputlabel:not
 @media screen and (max-width: 40em) {
   .field-group>.field-group-label {
     text-align: left !important;
-  }
-  .new-process-dialog {
-    min-width: 96vw;
   }
 }
 
@@ -1621,6 +1648,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   min-width: 105px;
 }
 
+.task-category-info{
+  padding-right: 10px;
+  width: 80px;	
+}
+
 .task-start-info-header-full-mode {
   padding-left: 7px;
 }
@@ -1648,7 +1680,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .task-start-list .responsible-cell {
-  flex: 0 0 135px;
+  flex: 0 0 110px;
 }
 
 .task-start-list .name-cell, .task-start-list .description-cell, .task-start-list .responsible-cell {
@@ -1664,6 +1696,8 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-start-list .task-custom-field-cell {
   flex: 0 0 150px;
+  word-break: break-word;
+  word-wrap: break-word;
 }
 
 .task-start-list .action-cell .action-container {
@@ -2532,7 +2566,7 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
   }
   .dialog-closing-information, .app-dialog, .select-icon-dialog,
   .setting-dialog, .project-info-dialog, .deputy-dialog,
-  .absence-settings-dialog, .add-absence-dialog {
+  .add-absence-dialog {
     min-width: 96vw;
   }
   .task-template-container, .task-template-button {
@@ -2553,7 +2587,8 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .md-inputfield .absence-user-selection .ui-autocomplete-input.ui-inputfield,
-.substituted-user .ui-autocomplete-input.ui-inputfield {
+.ui-fluid.substituted-user .ui-autocomplete-input.ui-inputfield,
+.ui-fluid .md-inputfield.user-selection-autocomplete-panel .ui-autocomplete-input.ui-inputfield {
   width: 100%;
 }
 
@@ -2723,7 +2758,8 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 /********************************** ABSENCES AND DEPUTY **********************************/
-.absences-table-action-column {
+.absences-table-action-column,
+.ui-datatable thead th.absences-table-action-column {
   text-align: center;
   width: 130px;
 }
@@ -2747,12 +2783,11 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 }
 
 .add-absences-dialog-input-comment {
-  width: calc(100% - 20px);
+  resize: none;
 }
 
 @media screen and (max-width: 40em) {
   .absence-management .show-absence-in-the-past-panel {
-    width: 72%;
     padding-right: 0;
   }
 
@@ -2773,12 +2808,64 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
     width: 100%;
   }
 
-  .substitution-table.ui-datatable-reflow .ui-datatable-data td[role="gridcell"] .ui-column-title {
-    width: 142px;
+  .absence-management .add-absence-panel button.small-add-absence {
+    max-width: 75px;
+  }
+  
+  .absences-management-container tbody.ui-datatable-data span.ui-column-title,
+  .absences-management-container tbody.ui-datatable-data .absence-column-value {
+    vertical-align: top;
+    float: left;
+  }
+
+  .absences-management-container tbody.ui-datatable-data span.ui-column-title {
+    width: 40%;
+  }
+  
+  .absences-management-container tbody.ui-datatable-data .absence-column-value {
+    width: calc(60% - 4px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  .absences-management-container .ui-datatable-reflow .ui-datatable-data td[role="gridcell"] .ui-column-title {
     margin-right: 4px;
   }
+  
+  .absences-management-container .ui-datatable.ui-datatable-reflow label.ui-reflow-label,
+  .absences-management-container .ui-datatable.ui-datatable-reflow select.ui-reflow-dropdown {
+    display: none;
+  }
+
+  .absences-management-container .ui-datatable.ui-datatable-reflow tbody td[role="gridcell"]:not(:first-child) {
+    padding-top: 0;
+   }
+   
+   .absences-management-container .ui-datatable.ui-datatable-reflow div.ui-datatable-tablewrapper {
+     overflow: auto;
+     overflow-x: hidden;
+     max-height: 150px;
+   }
 }
 
+.absences-management-container .absence-period {
+  width: 210px;
+}
+
+.absence-management .show-absence-in-the-past-panel.ui-chkbox {
+  min-width: 100%;
+  margin-right: 0;
+}
+
+.absence-management .show-absence-in-the-past-panel .ui-chkbox-box.ui-corner-all,
+.absence-management .show-absence-in-the-past-panel span.ui-chkbox-label {
+  float: left;
+}
+
+.absence-management .show-absence-in-the-past-panel span.ui-chkbox-label {
+  margin-right: 0;
+}
 /**********************************END ABSENCES AND DEPUTY **********************************/
 .application-language-header {
   width: 20%;
@@ -2905,6 +2992,67 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 /********************************** END USER PROFILE SETTING **********************************/
 
+/********************************** ABSENCES SETTING *********************************************/
+
+.absences-management-form {
+  margin: auto;
+  max-width: 1850px;
+  padding: 0 20px;
+}
+
+.absences-management-form .portal-section-container.card {
+  height: 100%;
+}
+
+.absences-management-form .add-absence-panel {
+  text-align: right;
+}
+
+.deputy-for-active-period,
+.deputy-for-next-absence {
+  width: inherit;
+}
+
+.substitute-table .active-period-option {
+  padding: 3px 0;
+}
+
+@media screen and (max-width: 40em) {
+  .absences-management-form .add-absence-panel {
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .add-absence-dialog {
+    max-width: 98vw;
+  }
+  
+  .add-absence-dialog .ui-dialog-content.ui-widget-content,
+  .add-absence-dialog .u-dialog-footer.ui-dialog-footer {
+    padding-bottom: 0;
+  }
+
+  .absences-management-form {
+    padding: 0;
+  }
+  
+  .absences-management-form .portal-section-container.card {
+    padding: 0;
+  }
+}
+
+@media screen and (min-width: 90.063em) {
+  .deputy-for-active-period,
+  .deputy-for-next-absence {
+    width: 250px;
+  }
+
+}
+
+/********************************* END ABSENCES SETTING *****************************/
+
 /********************************** PROCESS STARTS **********************************/
 .process-start-container {
   float: left;
@@ -2992,8 +3140,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .statistic-carousel.ui-carousel .ui-carousel-header .ui-carousel-header-title .chart-info {
   float: left;
-  width: 20px;
-  height: 20px;
+  margin-left: 5px;
+  vertical-align: middle;
 }
 
 .statistic-carousel .ui-carousel-header-title .chart-name {
@@ -3003,7 +3151,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   text-align: left;
   float: left;
   overflow: hidden;
-  margin-top: 2px;
 }
 
 .statistic-carousel.card .ui-carousel-header.ui-widget-header {
@@ -3183,24 +3330,23 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   margin-left: -.5em;
 }
 
-.edit-statistic-container .chart-container {
-  height: 100%;
+.edit-statistic-container .card.chart-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.edit-statistic-container .chart-list .chart-container .separator {
+  margin: 0px -23px 16px -23px;
 }
 
 .edit-statistic-container .chart-list .chart-container .label, .chart-filter-header-text {
   text-align: left;
 }
 
-.edit-statistic-container .chart-list .chart-container .add-link {
-  text-align: right;
-}
-
-.edit-statistic-container .chart-list .chart-container .label, .edit-statistic-container .chart-list .chart-container .add-link
-  {
+.edit-statistic-container .chart-list .chart-container .add-button {
   display: block;
-  margin-top: 5px;
-  width: 50%;
-  float: left;
+  margin: 16px 0px 0px auto;
 }
 
 .edit-statistic-container td:not(.align-bottom) {
@@ -3243,7 +3389,6 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 }
 
 .statistic-chart {
-  margin-bottom: -16px;
   position: relative;
   width: 100%;
   height: 100%;
@@ -3280,15 +3425,12 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   width: 80px;
   float: right;
   text-align: right;
-  margin-top: 12px;
 }
 
 .dashboard-chart-panel .chart-actions-container .chart-action {
   display: inline;
-}
-
-.dashboard-chart-panel .chart-actions-container .chart-action {
   margin: 4px;
+  vertical-align: middle;
 }
 
 .dashboard-chart-panel .chart-actions-container .chart-action.fa-close {
@@ -3298,8 +3440,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 .dashboard-chart-panel .chart-info {
   margin-right: 10px;
   align-self: baseline;
-  margin-top: 0.5em;
-  margin-left: 3px;
+  margin-left: 5px;
+  vertical-align: middle;
 }
 
 .dashboard-chart-panel .card, .edit-statistic-container .card, .statistic-widget.compact-mode .statistic-carousel.card {
@@ -3310,9 +3452,8 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   padding: 0 0 0.5em 0 !important;
 }
 
-.dashboard-chart-panel .chart-name {
-  margin-top: 8px !important;
-  margin-bottom: 0;
+.dashboard-chart-panel .card .chart-name {
+  margin: 0px;
   display: inline-block;
   max-width: calc(100% - 30px);
   white-space: nowrap;
@@ -3323,7 +3464,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
 
 .add-statistic-panel {
   width: 100%;
-  margin: 2rem auto 1rem;
+  margin: 2rem auto 3rem;
 }
 
 .statistic-dashboard-expand-mode {
@@ -3391,7 +3532,7 @@ _:-ms-fullscreen, :root .new-absence-messages .ui-messages-error {
   top: 60px;
   left: 25%;
   right: 25%;
-  z-index: 999;
+  z-index: 1001;
 }
 
 .notification {
@@ -3713,10 +3854,6 @@ body .ui-accordion.statistic-filter-accordion-panel .ui-accordion-header.ui-stat
   background: transparent;
   padding-left: 25px;
   font-weight: bold;
-}
-
-body .ui-accordion.statistic-filter-accordion-panel .ui-accordion-header,
-body .ui-accordion.statistic-filter-accordion-panel .ui-accordion-header.ui-state-active {
   border: solid 1px transparent;
 }
 
@@ -4069,9 +4206,77 @@ _:-ms-fullscreen, :root .content-link-history {
   align-items: center;
 }
 
+.task-widget .filter-container .applied-filters-container,
+.case-widget .filter-container .applied-filters-container {
+  width: calc(100% - 490px);
+}
+
 @media (max-width: 991px) {
   .filter-container .applied-filters-container {
     width: 100%;
+  }
+  .task-widget .filter-container .applied-filters-container,
+  .case-widget .filter-container .applied-filters-container {
+    width: 100%;
+  }
+}
+
+.task-widget .task-list-actions,
+.case-widget .case-list-actions {
+    display: flex;
+    height: auto;
+    min-height: 100%;
+    margin-left: auto;
+}
+
+.task-widget .task-export-to-excel-form,
+.case-widget .case-export-to-excel-form {
+  max-width: 166px;
+}
+
+.task-widget .config-columns-button,
+.case-widget .config-columns-button {
+  max-width: 165px;
+  padding-right: 5px;
+}
+
+.task-widget .task-list-actions a,
+.case-widget .case-list-actions a {
+    margin-top: 24px;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+/*medium*/
+@media (min-width: 992px) and (max-width: 1599px) {
+  .task-widget .filter-container .applied-filters-container,
+  .case-widget .filter-container .applied-filters-container {
+    width: calc(100% - 236px);
+  }
+  .task-widget .task-export-to-excel-form,
+  .task-widget .config-columns-button,
+  .case-widget .case-export-to-excel-form,
+  .case-widget .config-columns-button {
+    width: auto;
+    height: 30px;
+    margin-top: auto;
+  }
+
+  .task-widget .task-list-actions a,
+  .case-widget .case-list-actions a {
+    margin-top: 0;
+  }
+
+  .task-widget .task-list-actions i,
+  .case-widget .case-list-actions i {
+    font-size: 1.8rem !important;
+  }
+
+  .task-widget .link-text,
+  .case-widget .link-text {
+    display: none;
   }
 }
 
@@ -4510,10 +4715,6 @@ body .ui-widget-header.portal-breadcrumb .ui-menuitem-link.ui-state-disabled .ui
 	overflow: hidden;
 }
 
-body .ui-widget-header.portal-breadcrumb ul li:last-child {
-	width: calc(100% - 150px);
-}
-
 body .ui-widget-header.portal-breadcrumb a,
 body .ui-widget-header.portal-breadcrumb .ui-breadcrumb-chevron {
 	color: black;
@@ -4794,6 +4995,42 @@ body td .icon {
 }
 /** Portal dialog ---- end-----**/
 
-.widget-info-panel.statistic-filter-accordion-panel .ui-accordion-content {
-  max-width: 100%;
+/* =================== START EXCEPTION ===================== */
+.portal-exception-detail-group .error-label {
+  margin-right: 5px;
+  display: inline-block;
+  width: max-content;
+}
+
+.portal-exception-detail-group .error-value {
+  word-break: break-all;
+}
+
+.portal-exception-detail-group .error-label,
+.portal-exception-detail-group .error-value {
+  padding: 6px 0;
+}
+/* ===================== END EXCEPTION ===================== */
+
+/** Case information iframe ---- Start-----**/
+
+.iframe-body .layout-main,
+.iframe-body .layout-content {
+  height: 100%;
+}
+
+.iframe-body .layout-content {
+  padding: 0 10px;
+}
+
+.iframe-body .case-view,
+.ui-dialog-content .case-details {
+  padding: 0;
+}
+
+/** Case information iframe ---- end-----**/
+
+/* Fix bug: calendar button jumped when clicked (Edge, Chrome) */
+.ui-fluid .ui-calendar, .ui-fluid .ui-calendar input {
+  display: block;
 }

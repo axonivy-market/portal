@@ -48,7 +48,7 @@
   padding: 10px;
   font-size: 18px;
   border-bottom: 2px solid lightgrey;
-  font-weight: bold;
+  font-weight: bold;	
 }
 
 .widget__header-actions {
@@ -153,7 +153,7 @@
 }
 
 .dashboard-tasks__state-text {
-  border-radius: 8px;
+  border-radius: 2rem;
   box-sizing: border-box;
   font-size: 1.2rem;
   width: fit-content;
@@ -294,4 +294,12 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 .widget-info-panel,
 .widget-filter-panel {
   width: 400px;
+}
+
+.widget-info-panel.statistic-filter-accordion-panel .ui-accordion-content {
+  max-width: 100%;
+}
+
+body .ui-widget-content .dashboard-widget-icon {
+  font-size: 2rem !important;
 }

@@ -68,7 +68,7 @@ public class HomepageUtils {
     }
   }
 
-  private static String getHomepageName() {
+  public static String getHomepageName() {
     String homepageName = Ivy.session().getSessionUser().getProperty(UserProperty.HOMEPAGE);
     if (StringUtils.isBlank(homepageName)) {
       homepageName = findHomepageSetting();
@@ -93,5 +93,9 @@ public class HomepageUtils {
       result.put(StringUtils.capitalize(homepage.getName().toLowerCase()), homepage.getLabel());
     }
     return result;
+  }
+  
+  public static boolean isShowDashboard(Homepage homepage, boolean isClickOnDashboard) {
+    return homepage == null || homepage.getType() == HomepageType.DASHBOARD || isClickOnDashboard;
   }
 }

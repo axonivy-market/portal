@@ -1,6 +1,6 @@
 CreateInvestmentData #class
 com.axonivy.portal.developerexamples.testdata.CreateInvestment #namespace
-selectedInvestment com.axonivy.portal.developerexamples.Investment #field
-selectedInvestment PERSISTENT #fieldModifier
 steps java.util.List<String> #field
 steps PERSISTENT #fieldModifier
+investmentRequest com.axonivy.portal.developerexamples.ExampleIFrameData #field
+investmentRequest PERSISTENT #fieldModifier

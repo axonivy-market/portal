@@ -39,14 +39,12 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   }
 
   private WebElement findTaskFilterButton() {
-    refreshAndWaitElement("[id$='task-widget:task-filter-add-action']");
     String taskFilterButtonId = "task-widget:task-filter-add-action";
     waitForElementDisplayed(By.id(taskFilterButtonId), true);
     return findElementById(taskFilterButtonId);
   }
 
   private WebElement findCaseFilterButton() {
-    refreshAndWaitElement("[id$='task-widget:case-filter-add-action']");
     String caseFilterButtonId = "task-widget:case-filter-add-action";
     waitForElementDisplayed(By.id(caseFilterButtonId), true);
     return findElementById(caseFilterButtonId);
@@ -58,6 +56,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     return findElementById(applyFilterButtonId);
   }
 
+  @SuppressWarnings("deprecation")
   public void openAdvancedTaskFilter(String filterName, String filterIdName) {
     click(findTaskFilterButton());
     WebElement filterSelectionElement = findElementById("task-widget:task-filter-add-form:task-filter-selection");
@@ -70,11 +69,11 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
         break;
       }
     }
-    refreshAndWaitElement("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']");
     waitForElementDisplayed(
         By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"), true);
   }
 
+  @SuppressWarnings("deprecation")
   public void openAdvancedCaseFilter(String filterName, String filterIdName) {
     click(findCaseFilterButton());
     WebElement filterSelectionElement = findElementById("task-widget:case-filter-add-form:case-filter-selection");
@@ -87,11 +86,11 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
         break;
       }
     }
-    refreshAndWaitElement("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']");
     waitForElementDisplayed(
         By.cssSelector("span[id$='" + filterIdName + "-filter:filter-open-form:advanced-filter-item-container']"), true);
   }
 
+  @SuppressWarnings("deprecation")
   public void filterByTaskName(String text) {
     click(By.cssSelector("[id$='task-name-filter:filter-open-form:advanced-filter-command']"));
     WebElement nameInput =
@@ -101,6 +100,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
+  @SuppressWarnings("deprecation")
   public void filterByTaskPriority(List<String> selectedPriorities) {
     click(By.cssSelector("[id$='priority-filter:filter-open-form:advanced-filter-command']"));
     WebElement selectionElement = findElementByCssSelector("[id$='priority-filter:filter-input-form:advanced-filter-panel-content']");
@@ -114,6 +114,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
+  @SuppressWarnings("deprecation")
   public void filterByTaskCategory(String selectedCategory) {
     click(By.cssSelector("[id$='task-category-filter:filter-open-form:advanced-filter-command']"));
     WebElement selectionElement = findElementByCssSelector("[id$='task-category-filter:filter-input-form:advanced-filter-panel-content']");
@@ -131,6 +132,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
+  @SuppressWarnings("deprecation")
   public void filterByCaseName(String text) {
     click(By.cssSelector("[id$='case-name-filter:filter-open-form:advanced-filter-command']"));
     WebElement nameInput =
@@ -140,6 +142,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
+  @SuppressWarnings("deprecation")
   public void filterByCaseState(List<String> selectedPriorities) {
     click(By.cssSelector("div[id$='task-widget:case-filters-container'] button[id$='state-filter:filter-open-form:advanced-filter-command']"));
     WebElement selectionElement = findElementByCssSelector("div[id$='task-widget:case-filters-container'] div[id$='state-filter:filter-input-form:advanced-filter-panel-content']");
@@ -153,6 +156,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
+  @SuppressWarnings("deprecation")
   public void filterByCaseCategory(String selectedCategory) {
     click(By.cssSelector("[id$='case-category-filter:filter-open-form:advanced-filter-command']"));
     WebElement selectionElement = findElementByCssSelector("[id$='case-category-filter:filter-input-form:advanced-filter-panel-content']");
@@ -170,6 +174,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
+  @SuppressWarnings("deprecation")
   public void saveFilterSet(String filterSetName, boolean isPersonalFilter) {
     click(By.id("task-widget:filter-save-action"));
     waitAjaxIndicatorDisappear();
@@ -187,6 +192,7 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
+  @SuppressWarnings("deprecation")
   public void loadFilterSet(String filterSetName, boolean isPersonalFilter) {
     waitForElementDisplayed(By.id("task-widget:filter-selection-form:filter-name"), true);
     click(By.id("task-widget:filter-selection-form:filter-name"));
@@ -214,13 +220,13 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     return  isElementDisplayed(By.cssSelector("[id$='task-widget:filter-reset-action']"));
   }
 
+  @SuppressWarnings("deprecation")
   public void resetFilter() {
     click(By.cssSelector("[id$='task-widget:filter-reset-action']"));
     waitAjaxIndicatorDisappear();
     waitForElementDisplayed(By.cssSelector("[id$='task-widget:filter-reset-command']"), true);
     click(By.cssSelector("[id$='task-widget:filter-reset-command']"));
     waitAjaxIndicatorDisappear();
-    refreshAndWaitElement("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)");
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(
         () -> findElementByCssSelector("a[id$='task-widget:filter-selection-form:filter-name'] > span:nth-child(2)")
             .getText().contains("Default"));  
@@ -230,7 +236,8 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     openAdvancedCaseFilter(filterName, filterIdName);
     filterByUserName(user, filterIdName);
   }
-  
+
+  @SuppressWarnings("deprecation")
   private void filterByUserName(String user, String filterIdName) {
     click(By.cssSelector("button[id$='"+filterIdName+"-filter:filter-open-form:advanced-filter-command']"));
     WebElement responsible = findElementByCssSelector("input[id*='"+filterIdName+"-filter:filter-input-form:']");
@@ -242,7 +249,8 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     click(By.cssSelector("button[id$='"+filterIdName+"-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
   }
-  
+
+  @SuppressWarnings("deprecation")
   public void removeUserInFilter() {
     waitForElementDisplayed(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"),
         true);
@@ -254,7 +262,8 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     click(By.cssSelector("button[id$='creator-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
   }
-  
+
+  @SuppressWarnings("deprecation")
   public void removeResponsible() {
     waitForElementDisplayed(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"),
         true);
@@ -266,7 +275,8 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     click(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
   }
-  
+
+  @SuppressWarnings("deprecation")
   public void filterByResponsible(String user, String filterName,String filterIdName) {
     openAdvancedTaskFilter(filterName, filterIdName);
     click(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"));
@@ -281,7 +291,8 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
     click(By.cssSelector("button[id$='responsible-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
   }
-  
+
+  @SuppressWarnings("deprecation")
   public void filterByOwner(String user) {
     openAdvancedCaseFilter("Owner", "owner");
     click(By.cssSelector("button[id$='owner-filter:filter-open-form:advanced-filter-command']"));
@@ -308,7 +319,8 @@ public class TaskAnalysisWidgetPage extends TemplatePage {
   public List<WebElement> getRowsInTaskTable() {
     return findElementById("task-widget:statistic-result-form:task-table_data").findElements(By.cssSelector("tr[role='row']"));
   }
-  
+
+  @SuppressWarnings("deprecation")
   public void clickApplyFilter() {
     click(By.cssSelector("button[id$='task-widget:apply-filter']"));
     waitAjaxIndicatorDisappear();

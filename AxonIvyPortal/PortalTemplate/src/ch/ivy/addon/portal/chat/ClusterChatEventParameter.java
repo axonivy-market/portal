@@ -10,19 +10,19 @@ public class ClusterChatEventParameter implements Serializable {
   private String actor; // sender if sending message; reader if reading message; user if online/offline
   private String participant; // participant if reading private message or caseId if read group message
   private boolean isOnline;
-  private long nodeId;
+  private String nodeName;
   private GroupChat groupChat;
 
   private ClusterChatEventParameter() {}
 
   public static ClusterChatEventParameter forSendMessage(String messageText, String receiver, String clientId,
-      String actor, long nodeId) {
+      String actor, String nodeName) {
     ClusterChatEventParameter instance = new ClusterChatEventParameter();
     instance.setClientId(clientId);
     instance.setMessageText(messageText);
     instance.setReceiver(receiver);
     instance.setActor(actor);
-    instance.setNodeId(nodeId);
+    instance.setNodeName(nodeName);
     return instance;
   }
 
@@ -95,12 +95,12 @@ public class ClusterChatEventParameter implements Serializable {
     this.isOnline = isOnline;
   }
 
-  public long getNodeId() {
-    return nodeId;
+  public String getNodeName() {
+    return nodeName;
   }
 
-  public void setNodeId(long nodeId) {
-    this.nodeId = nodeId;
+  public void setNodeName(String nodeName) {
+    this.nodeName = nodeName;
   }
 
   public GroupChat getGroupChat() {

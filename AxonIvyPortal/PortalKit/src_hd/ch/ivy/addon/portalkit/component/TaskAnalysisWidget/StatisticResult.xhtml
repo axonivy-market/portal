@@ -33,7 +33,7 @@
           <h:outputText value="#{task.case.description}" />
         </p:column>
 
-        <p:column id="case-id" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseID')}" sortable="false" width="120"
+        <p:column id="case-id" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseID')}" sortable="false" width="120" 
           visible="#{taskAnalysisWidgetBean.columns['CASE_ID']}" exportable="#{taskAnalysisWidgetBean.columns['CASE_ID']}">
           <h:outputText value="#{task.case.getId()}" />
         </p:column>
@@ -48,12 +48,6 @@
           <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.case.creatorUser, task.case.creatorUserName)}" />
         </p:column>
         
-        <p:column id="case-owner" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseOwner')}" sortable="false" width="200"
-          visible="#{taskAnalysisWidgetBean.columns['CASE_OWNER']}" exportable="#{taskAnalysisWidgetBean.columns['CASE_OWNER']}"
-          rendered="#{taskAnalysisWidgetBean.isCaseOwnerEnabled()}">
-          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.case.owner, task.case.ownerName)}" />
-        </p:column>
-
         <p:column id="case-state" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseState')}" sortable="false" width="120"
           visible="#{taskAnalysisWidgetBean.columns['CASE_STATE']}" exportable="#{taskAnalysisWidgetBean.columns['CASE_STATE']}">
           <h:outputText value="#{task.getCase().getState().toString()}" />
@@ -127,6 +121,11 @@
           </h:outputText>
         </p:column>
 
+        <p:column id="case-owner" headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/caseOwner')}" sortable="false" width="200"
+          visible="#{taskAnalysisWidgetBean.columns['CASE_OWNER']}" exportable="#{taskAnalysisWidgetBean.columns['CASE_OWNER']}"
+          rendered="#{taskAnalysisWidgetBean.isCaseOwnerEnabled()}">
+          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.case.owner, task.case.ownerName)}" />
+        </p:column>
       </p:dataTable>
     </h:form>
 
