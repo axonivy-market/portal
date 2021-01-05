@@ -60,6 +60,7 @@ public class MenuTest extends BaseTest {
     mainMenuPage.clickThirdPartyApp();
 
     WebDriver driver = Browser.getBrowser().getDriver();
+    WaitHelper.assertTrueWithWait(() -> driver.getWindowHandles().size() > 1);
     ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
     driver.switchTo().window(tabs.get(1));
     WaitHelper.assertTrueWithWait(() -> "Google".equals(driver.getTitle()));
