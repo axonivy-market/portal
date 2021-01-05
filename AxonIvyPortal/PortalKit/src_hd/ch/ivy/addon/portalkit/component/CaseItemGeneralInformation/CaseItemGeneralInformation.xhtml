@@ -45,11 +45,15 @@
             <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
           </h:outputText>
 
+          <h:outputText rendered="#{not empty case and userMenuBean.showCaseDurationTime}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/duration')}" />
+          <h:outputText rendered="#{not empty case and userMenuBean.showCaseDurationTime}" id="case-duration-time" value="#{caseBean.getDurationOfCase(case)}"/>
+          
           <h:outputText value="#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseCategory')}" />
           <h:outputText id="case-category" value="#{case.categoryPath}" />
         </h:panelGrid>
       </div>
     </div>
   </div>
+  <p:tooltip for="case-duration-time" value="#{caseBean.getDurationOfCaseOnTooltip(case)}" trackMouse="true" hideEvent="mouseleave click" />
 </cc:implementation>
 </html>

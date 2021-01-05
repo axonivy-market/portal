@@ -19,6 +19,8 @@
   <cc:attribute name="noTaskFoundMessage" />
   <cc:attribute name="hideWidgetHeader" default="false" type="java.lang.Boolean" />
   <cc:attribute name="currentPortalPage" default="TASK_LIST" shortDescription="Sticky task list after finish task" />
+  <cc:attribute name="readOnly" default="false" />
+  <cc:attribute name="inCaseInformationFrame" default="false" />
   <cc:facet name="taskListHeader" shortDescription="Header of task list" />
 </cc:interface>
 
@@ -29,8 +31,8 @@
   <h:outputScript name="task-widget.js" library="js" />
   
   <f:event listener="#{taskWidgetBean.preRender(data.dataModel)}" type="preRenderComponent" />
-
-  <div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} ui-g">
+  <f:event listener="#{data.dataModel.initColumnsConfiguration()}" type="preRenderComponent" />
+	<div id="#{cc.clientId}" class="widget task-widget #{cc.attrs.styleClass} ui-g">
     <h:panelGroup rendered="#{!cc.attrs.hideWidgetHeader}">
       <h:panelGroup id="task-widget-header" styleClass="widget-header task-widget-header js-task-widget-header ui-g-12 u-no-padding-left u-no-padding-bottom"
         layout="block">
@@ -59,7 +61,7 @@
           rendered="#{!data.dataModel.compactMode and !cc.attrs.hideTaskFilter}">
           <!-- Filter selection -->
           <h:panelGroup id="filter-selection-container" styleClass="filter-selection-container-group u-hidden-md-down"
-            rendered="#{(not empty data.taskPrivateFilters or not empty data.taskPublicFilters) and not data.dataModel.compactMode}"> 
+            rendered="#{(not empty data.taskPrivateFilters or not empty data.taskPublicFilters) and not data.dataModel.compactMode}">
             <span class="filter-selection-label">#{ivy.cms.co(data.dataModel.isSelectedDefaultFilter() or data.dataModel.selectedTaskFilterData == null ? '/ch.ivy.addon.portalkit.ui.jsf/components/taskView/filter' : '/ch.ivy.addon.portalkit.ui.jsf/components/taskView/savedFilters')} </span>
             <h:form id="filter-selection-form" class="filter-selection-form filter-selection-container">
               <h:panelGroup id="filter-selection-panel" layout="block">
@@ -68,7 +70,7 @@
                 </p:commandLink>
                 <p:overlayPanel id="filter-name-overlay-panel" styleClass="filter-name-overlay-panel" for="filter-name"
                   hideEffect="fade" my="left top" at="left bottom">
-                  <h:panelGroup id="private-filters" rendered="#{not empty data.taskPublicFilters}">
+                  <h:panelGroup id="public-filters" rendered="#{not empty data.taskPublicFilters}">
                     <div class="filter-type-label">
                       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/publicFilter')}</span>
                     </div>
@@ -89,9 +91,8 @@
                       </h:panelGroup>
                     </ui:repeat>
                   </h:panelGroup>
-                  <p:separator rendered="#{not empty data.taskPublicFilters and not empty data.taskPrivateFilters}"
-                    styleClass="filter-separator" />
-                  <h:panelGroup id="public-filters" rendered="#{not empty data.taskPrivateFilters}">
+                  <p:separator rendered="#{not empty data.taskPublicFilters and not empty data.taskPrivateFilters}" styleClass="filter-separator" />
+                  <h:panelGroup id="private-filters" rendered="#{not empty data.taskPrivateFilters}">
                     <div class="filter-type-label">
                       <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/privateFilter')}</span>
                     </div>
@@ -157,8 +158,7 @@
                     value="#{data.dataModel.selectedFilters}"
                     converter="pojoConverter"
                     valueChangeListener="#{data.dataModel.onFilterChange}">
-                    <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}"
-                      itemValue="#{filter}" />
+                    <f:selectItems value="#{data.dataModel.filters}" var="filter" itemLabel="#{filter.label()}" itemValue="#{filter}" />
                   </p:selectManyCheckbox>
                 </p:scrollPanel>
 
@@ -174,8 +174,7 @@
                     update="@(.filter-container) @(.filter-selection-form) @(.task-view-container) #{cc.clientId}:hidden-task-count"
                     oncomplete="taskWidget.setupScrollbar(); taskWidget.updateTaskCountToBreadcrumb();"
                     process="@(filter-add-form)"
-                    actionListener="#{data.dataModel.updateSelectedFilter}">
-                  </p:commandButton>
+                    actionListener="#{data.dataModel.updateSelectedFilter}" />
                 </h:panelGroup>
               </h:form>
             </p:overlayPanel>
@@ -200,22 +199,49 @@
                 update="save-filter-set-dialog task-widget:filter-save-form:save-filter-type-radio"
                 actionListener="#{taskWidgetBean.verifyTaskStateFilter(data.dataModel.selectedFilters)}"
                 oncomplete="PF('save-filter-set-dialog').show();" />
-            </div>
-
+          </div>
+          <!-- Export to Excel, Manage Columns -->
+          <h:panelGroup id="task-list-actions" styleClass="task-list-actions u-hidden-md-down ">
+            <p:spacer width="20px" />
+            <h:form id="task-export-to-excel-form" styleClass="task-export-to-excel-form">
+              <p:commandLink ajax="false" id="task-export-to-excel"
+                onclick="PrimeFaces.monitorDownload(start, stop);">
+                <i class="icon ivyicon-office-file-xls-1 u-mar-right-5" />
+                <span class="link-text">
+                  <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
+                </span>
+                <p:fileDownload value="#{logic.getExportedFile(taskWidgetBean.getColumns(data.dataModel))}" />
+                </p:commandLink>
+            </h:form>
+            <p:spacer width="20px" />
+            <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration
+              id="task-columns-configuration"
+              updatedComponent="#{cc.clientId}:task-view-container #{cc.clientId}:task-widget-sort-menu #{cc.clientId}:task-list-actions"
+              dataModel="#{data.dataModel}"
+              oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()"
+              configButtonId="task-config-command"
+              overlayPanelId="task-config-columns-panel" />
+          </h:panelGroup>
         </h:panelGroup>
       </h:panelGroup>
+    </h:panelGroup>
+
+    <h:panelGroup layout="block">
+      <p:link id="back-link" href="#" rendered="#{cc.attrs.inFrame}" onclick="backToCaseDetails()" styleClass="list-back-link js-back-link">
+        <i class="icon ivyicon-arrow-left-1" />
+        <p:spacer width="3px"/>
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"/>
+      </p:link>
+      <p:remoteCommand name="backToCaseDetails" actionListener="#{logic.backToCaseDetails()}" process="@this" immediate="true" />
     </h:panelGroup>
 
     <h:panelGroup id="task-widget-sub-header" layout="block" styleClass="js-task-widget-sub-header ui-g task-widget-sub-header">
       <h:panelGroup id="task-widget-sort-menu" layout="block" rendered="#{!data.dataModel.compactMode}"
         styleClass="widget-sort-menu js-task-widget-sort-menu full-mode #{cc.attrs.listHeaderStyleClass}">
-        <h:panelGroup rendered="#{!data.dataModel.compactMode}">
-          <f:event listener="#{data.dataModel.initColumnsConfiguration()}" type="preRenderComponent" />
-          <cc:renderFacet name="taskListHeader" />
-          <ic:ch.ivy.addon.portalkit.component.ColumnsConfiguration id="task-columns-configuration"
-            updatedComponent="#{cc.clientId}:task-view-container #{cc.clientId}:task-widget-sort-menu"
-            dataModel="#{data.dataModel}" oncomplete="taskWidget.setupScrollbar(); taskWidget.setupHeader()"
-            configButtonId="task-config-command" overlayPanelId="task-config-columns-panel" />
+        <cc:renderFacet name="taskListHeader" />
+        <h:panelGroup id="task-operations-container" layout="block" styleClass="operations-column u-hidden-md-down" 
+          rendered="#{!data.dataModel.compactMode and !cc.attrs.readOnly}">
+          <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" />
         </h:panelGroup>
       </h:panelGroup>
 
@@ -255,7 +281,9 @@
             dataModel="#{data.dataModel}"
             onDestroyComplete="PF('destroy-task-dialog').show()"
             onDelegateComplete="initDataToDelegate()"
-            onWorkflowEventComplete="initWorkflowEventData()">
+            onWorkflowEventComplete="initWorkflowEventData()"
+            readOnly="#{cc.attrs.readOnly}"
+            inFrame="#{cc.attrs.inFrame}">>
             <cc:insertFacet name="taskHeader" />
           </ic:ch.ivy.addon.portalkit.component.TaskItem>
         </p:dataScroller>
@@ -276,6 +304,15 @@
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskView/saveFilter')}" resizable="false"
     modal="true" closeOnEscape="true" styleClass="save-filter-set-dialog" responsive="true">
     <p:ajax event="close" listener="#{logic.clearSaveFilterDialog}" resetValues="true" />
+
+    <p:outputPanel styleClass="ui-messages ui-widget" rendered="#{taskWidgetBean.adminTaskStateIncluded}">
+      <p:outputPanel styleClass="ui-messages-info ui-corner-all">
+        <span class="ui-messages-info-icon" />
+        <h:outputText styleClass="ui-messages-info-summary"
+          value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/taskView/adminFilterSetWarning')}" />
+      </p:outputPanel>
+    </p:outputPanel>
+
     <p:messages id="save-task-filter-message">
       <p:autoUpdate />
     </p:messages>
@@ -291,9 +328,9 @@
           <f:selectItem id="only-me"
             itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeOnlyMe')}"
             itemValue="ONLY_ME" />
-          <f:selectItem id="all-users" itemDisabled="#{!permissionBean.hasAdminPermission() or taskWidgetBean.adminTaskStateIncluded}"
-            itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeAllUsers')}"
-            itemValue="ALL_USERS" />
+          <f:selectItem id="all-users" itemDisabled="#{!permissionBean.hasAdminPermission()}"
+            itemLabel="#{taskWidgetBean.adminTaskStateIncluded ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeAdmin') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/typeAllUsers')}"
+            itemValue="#{taskWidgetBean.adminTaskStateIncluded ? 'ALL_ADMINS' : 'ALL_USERS'}" />
         </p:selectOneRadio>
       </h:panelGrid>
       <h:panelGroup layout="block" class="u-dialog-footer ui-dialog-footer">
@@ -421,9 +458,25 @@
         Portal.init(responsiveToolkit);
         taskWidget.updateTaskCountToBreadcrumb();
       });
+
+      function start() {
+          var statusDialog = PF('status-dialog');
+          statusDialog.jq.removeAttr("download-status");
+          statusDialog.show();
+      }
+
+      function stop() {
+          var statusDialog = PF('status-dialog');
+          statusDialog.jq.attr("download-status","completed");
+          statusDialog.hide();
+      }
     </script>
   <h:form id="update-task-count-rc-form">
     <p:remoteCommand id="update-task-count-remote-cmd" name="updateTaskCount" update="#{cc.clientId}:task-widget-title" global="false" process="@this" immediate="true" />
   </h:form>
+  <p:dialog modal="true" id="status-dialog" widgetVar="status-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/status')}" draggable="false" closable="false" resizable="false" responsive="true">
+    <div>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/waitingDownloadMessage')}</div>
+    <h:panelGroup layout="block" rendered="#{data.dataModel.rowCount gt taskWidgetBean.getMaxTaskNumberInExcel()}">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/downloadZipFileExplanation')}</h:panelGroup>
+  </p:dialog>
 </cc:implementation>
 </html>

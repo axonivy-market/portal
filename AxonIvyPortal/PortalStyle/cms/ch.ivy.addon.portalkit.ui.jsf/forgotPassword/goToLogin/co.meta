@@ -1,0 +1,5 @@
+co: name={goToLogin} description={} changed={2020-12-22 04:35:57 CET} changedby={dhtlong} visualorder={0} guid={1764AF7E1F6207A1} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={1764AF7E20EF1BB5} datatype={} isdefault={true} langid={en} description={} validfrom={2020-12-22 04:35:57 CET} validto={} changed={2020-12-22 04:35:57 CET} changedby={dhtlong} properties={} id={}
+val: guid={1764AF7E229C7D68} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-12-22 04:35:57 CET} validto={} changed={2020-12-22 04:35:57 CET} changedby={dhtlong} properties={} id={}
+val: guid={1764AF7E21B8A06B} datatype={} isdefault={false} langid={es} description={} validfrom={2020-12-22 04:35:57 CET} validto={} changed={2020-12-22 04:35:57 CET} changedby={dhtlong} properties={} id={}
+val: guid={1764AF7E202F76FB} datatype={} isdefault={false} langid={de} description={} validfrom={2020-12-22 04:35:57 CET} validto={} changed={2020-12-22 04:35:57 CET} changedby={dhtlong} properties={} id={}

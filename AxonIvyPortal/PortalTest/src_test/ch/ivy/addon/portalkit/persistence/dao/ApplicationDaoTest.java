@@ -23,6 +23,7 @@ public class ApplicationDaoTest {
     applicationDao = PowerMockito.mock(ApplicationDao.class);
   }
 
+  @SuppressWarnings("removal")
   @Test
   public void testFindAllThirdPartyApplications() {
     List<Application> mockReturnAllApplications = new ArrayList<Application>();

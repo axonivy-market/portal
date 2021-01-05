@@ -6,3 +6,5 @@ isTaskFinished Boolean #field
 isTaskFinished PERSISTENT #fieldModifier
 isWorkingOnTask Boolean #field
 isWorkingOnTask PERSISTENT #fieldModifier
+iCase ch.ivyteam.ivy.workflow.ICase #field
+iCase PERSISTENT #fieldModifier

@@ -8,13 +8,11 @@ import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.TestAccount;
+import portal.guitest.common.WaitHelper;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.StatisticWidgetPage;
@@ -59,15 +57,13 @@ public class MenuTest extends BaseTest {
     login(TestAccount.ADMIN_USER);
     HomePage homePage = new HomePage();
     MainMenuPage mainMenuPage = homePage.openMainMenu();
-    mainMenuPage.clickThirdPartyAppByIndex(1);
+    mainMenuPage.clickThirdPartyApp();
 
     WebDriver driver = Browser.getBrowser().getDriver();
+    WaitHelper.assertTrueWithWait(() -> driver.getWindowHandles().size() > 1);
     ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
     driver.switchTo().window(tabs.get(1));
-
-    WebDriverWait wait = new WebDriverWait(driver, 15);
-    wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("div[id='viewport']")));
-
+    WaitHelper.assertTrueWithWait(() -> "Google".equals(driver.getTitle()));
     assertEquals("https://www.google.com/", driver.getCurrentUrl());
   }
 }

@@ -52,6 +52,7 @@ public class TaskWidgetTest extends BaseTest {
     assertTrue(relatedCaseName.contains(caseName));
   }
 
+  @SuppressWarnings("deprecation")
   @Test
   public void testReserveTask() {
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
@@ -177,6 +178,7 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage.expand();
     assertEquals(TestRole.EVERYBODY_ROLE, taskWidgetPage.getResponsibleOfTaskAt(0));
     taskWidgetPage.openTaskDelegateDialog(0);
+    WaitHelper.assertTrueWithWait(() -> taskWidgetPage.isDelegateTypeSelectAvailable());
     taskWidgetPage.selectDelegateResponsible(TestAccount.HR_ROLE_USER.getFullName(), false);
     assertEquals(TestAccount.HR_ROLE_USER.getFullName(), taskWidgetPage.getResponsibleOfTaskAt(0));
     
@@ -242,5 +244,17 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage = userProfilePage.openTaskList();
     assertEquals("Sick Leave Request", taskWidgetPage.getNameOfTaskAt(0));
     assertEquals("Annual Leave Request", taskWidgetPage.getNameOfTaskAt(taskWidgetPage.countTasks() - 1));
+  }
+
+  @Test
+  public void testExportToExcel() {
+    login(TestAccount.ADMIN_USER);
+    HomePage homePage = new HomePage();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.expand();
+
+    taskWidgetPage.clickExportToExcelLink();
+
+    assertTrue(taskWidgetPage.isDownloadCompleted());
   }
 }

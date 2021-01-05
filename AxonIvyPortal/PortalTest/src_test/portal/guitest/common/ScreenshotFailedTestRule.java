@@ -39,14 +39,14 @@ public class ScreenshotFailedTestRule implements MethodRule {
             System.out.println("Exception " + new Date());
             if (e instanceof WebDriverException) {
               System.out.println("ERROR maybe browsers are killed before shutdown");
-              return;
+            } else {
+              e.printStackTrace();
+              captureScreenshot(frameworkMethod.getName() + "-shutdown-error");
+              System.out.println("captureScreenshot " + new Date());
+              Sleeper.sleep(5000);
+              Browser.getBrowser().shutdown();
+              System.out.println("shutdown" + new Date());
             }
-            e.printStackTrace();
-            captureScreenshot(frameworkMethod.getName() + "-shutdown-error");
-            System.out.println("captureScreenshot "+ new Date());
-            Sleeper.sleep(5000);
-            Browser.getBrowser().shutdown();
-            System.out.println("shutdown" + new Date());
           }
         }
       }

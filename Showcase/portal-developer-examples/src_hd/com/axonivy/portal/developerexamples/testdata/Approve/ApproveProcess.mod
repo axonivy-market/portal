@@ -13,24 +13,26 @@ As0 @TextInP .xml .xml #zField
 As0 @TextInP .responsibility .responsibility #zField
 As0 @UdInit f0 '' #zField
 As0 @UdProcessEnd f1 '' #zField
-As0 @PushWFArc f2 '' #zField
 As0 @UdEvent f3 '' #zField
 As0 @UdExitEnd f4 '' #zField
-As0 @PushWFArc f5 '' #zField
 As0 @UdEvent f6 '' #zField
 As0 @GridStep f7 '' #zField
 As0 @PushWFArc f8 '' #zField
+As0 @PushWFArc f5 '' #zField
+As0 @PushWFArc f2 '' #zField
 >Proto As0 As0 ApproveProcess #zField
 As0 f0 guid 16B3FAF670F512D6 #txt
-As0 f0 method start(com.axonivy.portal.developerexamples.Investment) #txt
-As0 f0 inParameterDecl '<com.axonivy.portal.developerexamples.Investment investment> param;' #txt
-As0 f0 inParameterMapAction 'out.selectedInvestment=param.investment;
+As0 f0 method start(com.axonivy.portal.developerexamples.ExampleIFrameData) #txt
+As0 f0 inParameterDecl '<com.axonivy.portal.developerexamples.ExampleIFrameData investmentRequest> param;' #txt
+As0 f0 inParameterMapAction 'out.investmentRequest=param.investmentRequest;
 ' #txt
-As0 f0 outParameterDecl '<> result;' #txt
+As0 f0 outParameterDecl '<com.axonivy.portal.developerexamples.ExampleIFrameData investmentRequest> result;' #txt
+As0 f0 outParameterMapAction 'result.investmentRequest=in.investmentRequest;
+' #txt
 As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>start()</name>
+        <name>start(ExampleIFrameData)</name>
     </language>
 </elementInfo>
 ' #txt
@@ -38,10 +40,9 @@ As0 f0 83 51 26 26 -16 15 #rect
 As0 f0 @|UdInitIcon #fIcon
 As0 f1 211 51 26 26 0 12 #rect
 As0 f1 @|UdProcessEndIcon #fIcon
-As0 f2 expr out #txt
-As0 f2 109 64 211 64 #arcP
 As0 f3 guid 16B3FAF673CD7CD2 #txt
 As0 f3 actionTable 'out=in;
+out.investmentRequest=in.investmentRequest;
 ' #txt
 As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -54,8 +55,6 @@ As0 f3 83 147 26 26 -15 12 #rect
 As0 f3 @|UdEventIcon #fIcon
 As0 f4 211 147 26 26 0 12 #rect
 As0 f4 @|UdExitEndIcon #fIcon
-As0 f5 expr out #txt
-As0 f5 109 160 211 160 #arcP
 As0 f6 guid 1734C8917D863C2E #txt
 As0 f6 actionTable 'out=in;
 ' #txt
@@ -76,13 +75,15 @@ FacesContext.getCurrentInstance().getExternalContext().redirect(ivy.html.applica
 As0 f7 168 234 112 44 0 -8 #rect
 As0 f7 @|StepIcon #fIcon
 As0 f8 109 256 168 256 #arcP
+As0 f5 109 160 211 160 #arcP
+As0 f2 109 64 211 64 #arcP
 >Proto As0 .type com.axonivy.portal.developerexamples.testdata.Approve.ApproveData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 -8 -8 16 16 16 26 #rect
 >Proto As0 '' #fIcon
-As0 f0 mainOut f2 tail #connect
-As0 f2 head f1 mainIn #connect
-As0 f3 mainOut f5 tail #connect
-As0 f5 head f4 mainIn #connect
 As0 f6 mainOut f8 tail #connect
 As0 f8 head f7 mainIn #connect
+As0 f3 mainOut f5 tail #connect
+As0 f5 head f4 mainIn #connect
+As0 f0 mainOut f2 tail #connect
+As0 f2 head f1 mainIn #connect

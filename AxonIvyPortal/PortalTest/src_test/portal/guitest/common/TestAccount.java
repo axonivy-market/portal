@@ -16,16 +16,24 @@ public enum TestAccount {
 
 	TEST_RELATED_TASKS_USER("test_related_tasks_user", "+d3m0++", "Related Tasks User"),
   
-  CASE_OWNER_USER("caseOwnerUser", "caseOwnerUser", "caseOwnerUser");
+  CASE_OWNER_USER("caseOwnerUser", "caseOwnerUser", "caseOwnerUser"),
+  
+  TEST_FORGOT_PASSWORD_USER("test_forgot_password_user", "123", "Forgot Password User", "wawa@axonivy.io");
 
 	private String username;
 	private String password;
 	private String fullName;
+	private String email;
 
 	private TestAccount(String username, String password, String fullName) {
 		this.username = username;
 		this.password = password;
 		this.fullName = fullName;
+	}
+
+	private TestAccount(String username, String password, String fullName, String email) {
+	  this(username, password, fullName);
+	  this.email = email;
 	}
 
 	private static String nameOfGuestUser() {
@@ -78,5 +86,9 @@ public enum TestAccount {
 
 	public String getFullName() {
 		return fullName;
+	}
+
+	public String getEmail() {
+	  return email;
 	}
 }

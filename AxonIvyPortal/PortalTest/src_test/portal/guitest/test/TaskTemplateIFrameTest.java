@@ -1,5 +1,6 @@
 package portal.guitest.test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 import org.junit.Before;
@@ -14,16 +15,17 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class TaskTemplateIFrameTest extends BaseTest {
 
-  private static final String CUSTOM_PARAMS_TEMPLATE_TASK_URL= "portal-developer-examples/1718293B3F6E5478/start.ivp";
-  private static final String IFRAME_TASK_URL= "portal-developer-examples/16E5DB746865BCEC/CreateInvestment.ivp?embedInFrame";
-  
+  private static final String CUSTOM_PARAMS_TEMPLATE_TASK_URL = "portal-developer-examples/1718293B3F6E5478/start.ivp";
+  private static final String IFRAME_TASK_URL =
+      "portal-developer-examples/16E5DB746865BCEC/CreateInvestment.ivp?embedInFrame";
+
   @Override
   @Before
   public void setup() {
     super.setup();
     redirectToRelativeLink(HomePage.PORTAL_HOME_PAGE_URL);
   }
-  
+
   @Test
   public void testCustomParamsForTaskTemplate8() {
     redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
@@ -34,7 +36,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     assertFalse(taskTemplatePage.isTaskActionDisplayed());
     assertFalse(taskTemplatePage.isCaseInfoButtonDisplayed());
   }
-  
+
   @Test
   public void testCustomParamsForIFrameTaskTemplate() {
     redirectToRelativeLink(CUSTOM_PARAMS_TEMPLATE_TASK_URL);
@@ -54,7 +56,7 @@ public class TaskTemplateIFrameTest extends BaseTest {
     By leaveButton = By.id("task-leave-warning-component:leave-button");
     WaitHelper.assertTrueWithWait(() -> taskTemplatePage.isElementDisplayed(leaveButton));
   }
-  
+
   @Test
   public void testNotDisplayWarningInIFrameTaskTemplate() {
     redirectToRelativeLink(IFRAME_TASK_URL);
@@ -62,9 +64,10 @@ public class TaskTemplateIFrameTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
     TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(1);
     taskTemplatePage2.clickOnLogo();
-    WaitHelper.assertTrueWithWait(() -> taskTemplatePage2.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
+    WaitHelper.assertTrueWithWait(
+        () -> taskTemplatePage2.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
   }
-  
+
   @Test
   public void testRedirectToApplicationHome() {
     redirectToRelativeLink(IFRAME_TASK_URL);
@@ -72,9 +75,10 @@ public class TaskTemplateIFrameTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
     TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(1);
     HomePage homePage = taskTemplatePage2.backToHomeInIFrameApprovalTask();
-    WaitHelper.assertTrueWithWait(() -> homePage.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
+    WaitHelper
+        .assertTrueWithWait(() -> homePage.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
   }
-  
+
   @Test
   public void testStickyTaskList() {
     redirectToRelativeLink(IFRAME_TASK_URL);
@@ -82,7 +86,19 @@ public class TaskTemplateIFrameTest extends BaseTest {
     TaskWidgetPage taskWidgetPage1 = taskTemplatePage1.finishCreateInvestmentTask();
     taskWidgetPage1 = taskWidgetPage1.openTaskList();
     TaskTemplatePage taskTemplatePage2 = taskWidgetPage1.startTask(1);
-    TaskWidgetPage taskWidgetPage2 = taskTemplatePage2.finishIFrameApprovalTask();
-    WaitHelper.assertTrueWithWait(() -> taskWidgetPage2.isElementDisplayed(By.cssSelector("[id$='task-config-command']")));
+    TaskWidgetPage taskWidgetPage2 = taskTemplatePage2.finishIFrameReviewTask();
+    WaitHelper
+        .assertTrueWithWait(() -> taskWidgetPage2.isElementDisplayed(By.cssSelector("[id$='task-config-command']")));
+  }
+
+  @Test
+  public void testTextOutIFrameChangeWithSkipTaskList() {
+    redirectToRelativeLink(IFRAME_TASK_URL);
+    TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
+    TaskWidgetPage taskWidgetPage1 = taskTemplatePage1.finishCreateInvestmentTask();
+    taskWidgetPage1 = taskWidgetPage1.openTaskList();
+    TaskTemplatePage taskTemplatePage2 = taskWidgetPage1.startTask(1);
+    assertEquals("Review Request (Skip Tasklist in IFrame)",
+        taskTemplatePage2.getTaskNameOutsideIFrameWithSkipTaskList());
   }
 }

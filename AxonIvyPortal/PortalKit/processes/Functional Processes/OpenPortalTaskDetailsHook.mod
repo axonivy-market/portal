@@ -14,6 +14,9 @@ Os0 @TextInP .responsibility .responsibility #zField
 Os0 @StartSub f0 '' #zField
 Os0 @EndSub f1 '' #zField
 Os0 @PushWFArc f2 '' #zField
+Os0 @EndSub f3 '' #zField
+Os0 @StartSub f4 '' #zField
+Os0 @PushWFArc f5 '' #zField
 >Proto Os0 Os0 OpenPortalTaskDetailsHook #zField
 Os0 f0 inParamDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
 Os0 f0 inParamTable 'out.dataModel=param.dataModel;
@@ -36,9 +39,32 @@ Os0 f1 337 49 30 30 0 15 #rect
 Os0 f1 @|EndSubIcon #fIcon
 Os0 f2 expr out #txt
 Os0 f2 111 64 337 64 #arcP
+Os0 f3 337 145 30 30 0 15 #rect
+Os0 f3 @|EndSubIcon #fIcon
+Os0 f4 inParamDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
+Os0 f4 inParamTable 'out.dataModel=param.dataModel;
+out.isFromTaskList=param.#isFromTaskList is initialized ? param.isFromTaskList : true;
+out.portalPage=param.portalPage;
+out.task=param.task;
+' #txt
+Os0 f4 outParamDecl '<> result;' #txt
+Os0 f4 callSignature callInFrame(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean) #txt
+Os0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>callInFrame(ITask,TaskLazyDataModel,PortalPage,Boolean)</name>
+    </language>
+</elementInfo>
+' #txt
+Os0 f4 81 145 30 30 -64 15 #rect
+Os0 f4 @|StartSubIcon #fIcon
+Os0 f5 expr out #txt
+Os0 f5 111 160 337 160 #arcP
 >Proto Os0 .type ch.ivy.add.portalkit.OpenPortalTaskDetailsData #txt
 >Proto Os0 .processKind CALLABLE_SUB #txt
 >Proto Os0 0 0 32 24 18 0 #rect
 >Proto Os0 @|BIcon #fIcon
 Os0 f0 mainOut f2 tail #connect
 Os0 f2 head f1 mainIn #connect
+Os0 f4 mainOut f5 tail #connect
+Os0 f5 head f3 mainIn #connect

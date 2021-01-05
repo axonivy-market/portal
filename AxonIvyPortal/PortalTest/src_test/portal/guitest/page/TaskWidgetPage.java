@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
@@ -236,6 +237,7 @@ public class TaskWidgetPage extends TemplatePage {
         String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-name-edit-form:task-name-input", index)));
   }
 
+  @SuppressWarnings("deprecation")
   public void changeDescriptionOfTask(String description) {
     clickByCssSelector("span[id$='task-description-output']");
     WebElement taskNameInput = findElementByCssSelector("textarea[id$='task-description-input']");
@@ -328,6 +330,7 @@ public class TaskWidgetPage extends TemplatePage {
     return isElementPresent(By.cssSelector("div[id$='select-delegate-panel']"));
   }
 
+  @SuppressWarnings("deprecation")
   public AdhocPage addAdhoc(int taskIndex) {
     clickByCssSelector(ID_END + taskIndex + ":task-item:task-side-steps-menu']");
     waitAjaxIndicatorDisappear();
@@ -373,6 +376,7 @@ public class TaskWidgetPage extends TemplatePage {
     return isElementPresent(By.id(taskWidgetId + ":filter-selection-form:filter-selection-panel"));
   }
 
+  @SuppressWarnings("deprecation")
   public void openAdvancedFilter(String filterName, String filterIdName) {
     click(By.cssSelector("[id$='filter-add-action']"));
     WebElement filterSelectionElement = findElementById(taskWidgetId + ":filter-add-form:filter-selection");
@@ -427,7 +431,7 @@ public class TaskWidgetPage extends TemplatePage {
     WaitHelper.assertTrueWithWait(() ->
         findElementByCssSelector("[id$=':description-filter:filter-open-form:advanced-filter-command']").getText().contains(text));
   }
-  
+
   public void filterByDate(String filterId, String fromDate, String toDate) {
     click(By.cssSelector("button[id$='" + filterId + "-filter:filter-open-form:advanced-filter-command']"));
     WebElement toDateInput =
@@ -439,6 +443,7 @@ public class TaskWidgetPage extends TemplatePage {
     click(By.cssSelector("button[id$='" + filterId + "-filter:filter-input-form:update-command']"));
   }
 
+  @SuppressWarnings("deprecation")
   public void filterByCustomerName(String text) {
     click(By.cssSelector(
         "button[id$='" + taskWidgetId + ":customer-name-filter:filter-open-form:advanced-filter-command']"));
@@ -449,6 +454,7 @@ public class TaskWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
+  @SuppressWarnings("deprecation")
   public void filterByResponsible(String text) {
     waitForElementDisplayed(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"),
         true);
@@ -466,6 +472,35 @@ public class TaskWidgetPage extends TemplatePage {
     ensureNoBackgroundRequest();
   }
 
+  @SuppressWarnings("deprecation")
+  public void filterByStates(List<String> selectedStates) {
+    waitForElementDisplayed(By.cssSelector("button[id$='state-filter:filter-open-form:advanced-filter-command']"),
+        true);
+    click(By.cssSelector("button[id$='state-filter:filter-open-form:advanced-filter-command']"));
+
+    waitForElementDisplayed(By.cssSelector("[id$='state-filter:filter-input-form:state-selection']"),
+        true);
+    WebElement stateContainer = findElementByCssSelector("[id$='state-filter:filter-input-form:state-selection']");
+    stateContainer.findElements(By.cssSelector("td")).forEach(checkbox -> {
+      WebElement label = checkbox.findElement(By.cssSelector("label"));
+      if (selectedStates.stream().anyMatch(state -> StringUtils.equals(state, label.getText())) && checkbox.findElement(By.cssSelector(".ui-chkbox-box.ui-state-active")) == null) {
+        click(checkbox.findElement(By.cssSelector(".ui-chkbox-box.ui-state-default")));
+        waitAjaxIndicatorDisappear();
+        ensureNoBackgroundRequest();
+      }
+      if (!selectedStates.stream().anyMatch(state -> StringUtils.equals(state, label.getText())) && checkbox.findElement(By.cssSelector(".ui-chkbox-box.ui-state-active")) != null) {
+        click(checkbox.findElement(By.cssSelector(".ui-chkbox-box.ui-state-active")));
+        waitAjaxIndicatorDisappear();
+        ensureNoBackgroundRequest();
+      }
+    });
+    
+    click(By.cssSelector("button[id$='state-filter:filter-input-form:update-command']"));
+    waitAjaxIndicatorDisappear();
+    ensureNoBackgroundRequest();
+  }
+
+  @SuppressWarnings("deprecation")
   public void removeResponsibleFilter() {
     waitForElementDisplayed(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"),
         true);
@@ -525,15 +560,33 @@ public class TaskWidgetPage extends TemplatePage {
     click(findElementByCssSelector(startLinkId));
   }
 
+  @SuppressWarnings("deprecation")
   public void saveFilter(String filterName) {
-    click(By.id(taskWidgetId + ":filter-save-action"));
-    waitAjaxIndicatorDisappear();
-    waitForElementDisplayed(By.id(taskWidgetId + ":filter-save-form:save-filter-set-name-input"), true);
+    openSaveFilterDialog();
     WebElement filterNameInput = findElementById(taskWidgetId + ":filter-save-form:save-filter-set-name-input");
     enterKeys(filterNameInput, filterName);
     click(findElementById(taskWidgetId + ":filter-save-form:filter-save-command"));
     waitAjaxIndicatorDisappear();
     ensureNoBackgroundRequest();
+  }
+
+  @SuppressWarnings("deprecation")
+  public void saveAdminFilter(String filterName) {
+    openSaveFilterDialog();
+    WebElement filterNameInput = findElementById(taskWidgetId + ":filter-save-form:save-filter-set-name-input");
+    enterKeys(filterNameInput, filterName);
+    click(findElementByCssSelector("label[for='task-widget:filter-save-form:save-filter-type-radio:1']"));
+    click(findElementById(taskWidgetId + ":filter-save-form:filter-save-command"));
+    waitAjaxIndicatorDisappear();
+    ensureNoBackgroundRequest();
+  }
+
+  @SuppressWarnings("deprecation")
+  public WebElement openSaveFilterDialog() {
+    click(By.id(taskWidgetId + ":filter-save-action"));
+    waitAjaxIndicatorDisappear();
+    waitForElementDisplayed(By.id(taskWidgetId + ":filter-save-form:save-filter-set-name-input"), true);
+    return findElementById("task-widget:save-filter-set-dialog");
   }
 
   public void openSavedFilters(String filterName) {
@@ -546,6 +599,12 @@ public class TaskWidgetPage extends TemplatePage {
         return;
       }
     }
+  }
+
+  public boolean isExistedFilter(String filterName) {
+    click(findElementById("task-widget:filter-selection-form:filter-name"));
+    List<WebElement> saveFilters = findListElementsByCssSelector("a[id$='user-defined-filter']");
+    return saveFilters.stream().anyMatch(filter -> StringUtils.equals(filter.getText(), filterName));
   }
 
   public String getResponsible() {
@@ -704,11 +763,13 @@ public class TaskWidgetPage extends TemplatePage {
     }
   }
 
+  @SuppressWarnings("deprecation")
   public void applyCategoryFilter() {
     click(By.cssSelector("button[id$='task-category-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
   }
 
+  @SuppressWarnings("deprecation")
   public void resetFilter() {
     click(By.cssSelector("[id$='task-widget:filter-reset-action']"));
     waitAjaxIndicatorDisappear();
@@ -749,6 +810,7 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("div[id$='sort-task-menu_panel']"), true);
   }
 
+  @SuppressWarnings("deprecation")
   public WebElement getSaveFilterDialog() {
     click(By.id(taskWidgetId + ":filter-save-action"));
     waitAjaxIndicatorDisappear();
@@ -761,6 +823,7 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementDisplayedByCssSelector("label[for$=':columns-checkbox:3']");
   }
 
+  @SuppressWarnings("deprecation")
   public void selectDelegateResponsible(String responsibleName, boolean isRole) {
     if (isRole) {
       List<WebElement> radioButtonLabels = findListElementsByCssSelector("table[id$='activator-type-select'] label");
@@ -804,5 +867,34 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void waitForActionGroupDisplay() {
     waitForElementDisplayed(By.cssSelector("div[class='action-container']"), true);
+  }
+
+  public WebElement getExportToExcelLink() {
+    return findElementByCssSelector("a[id$=':task-export-to-excel']");
+  }
+
+  public void clickBack() {
+    waitForElementDisplayed(By.id("task-widget:back-link"), true);
+    click(By.id("task-widget:back-link"));
+
+  }
+
+  public void clickExportToExcelLink() {
+    // Ensure that attribute is removed before downloading
+    JavascriptExecutor js = (JavascriptExecutor) driver;
+    WebElement statusDialog = driver.findElement(By.cssSelector("div[id$=':status-dialog']"));
+    js.executeScript("arguments[0].removeAttribute('download-status')", statusDialog);
+
+    // click download
+    WebElement downloadLink = getExportToExcelLink();
+    if (downloadLink != null) {
+      downloadLink.click();
+    }
+  }
+
+  public boolean isDownloadCompleted() {
+    WebElement statusDialog = driver.findElement(By.cssSelector("div[id$=':status-dialog']"));
+    WaitHelper.assertTrueWithWait(() -> StringUtils.isNotBlank(statusDialog.getAttribute("download-status")));
+    return StringUtils.equals(statusDialog.getAttribute("download-status"), "completed");
   }
 }

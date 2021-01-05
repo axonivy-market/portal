@@ -7,6 +7,7 @@ function loadIframe() {
   var iframe = document.getElementById('iFrame');
   var window = iframe.contentWindow;
   $(iframe).on('load', function() {
+    checkUrl(iframe);
     getDataFromIFrame([{
       name : 'currentProcessStep',
       value : window.currentProcessStep
@@ -37,6 +38,9 @@ function loadIframe() {
     }, {
       name : 'announcementInvisible',
       value : window.announcementInvisible
+    }, {
+      name : 'viewName',
+      value : window.viewName
     }]);
   });
 }
@@ -50,6 +54,11 @@ function checkUrl(iFrame) {
     redirectToUrlCommand([{
       name: 'url',
       value: redirectUrl
+    }]);
+  } else {
+    useTaskInIFrame([{
+      name: 'url',
+      value: loc.pathname
     }]);
   }
 }

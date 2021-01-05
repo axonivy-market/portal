@@ -36,6 +36,9 @@ public class CaseDetailsPage extends TemplatePage {
     this.caseItem = findElementByCssSelector("#main-area-panel");
   }
 
+  public String getCaseDuration() {
+    return caseItem.findElement(By.cssSelector("span[id$='case-duration-time']")).getText();
+  }
 
   public String getCaseCategory() {
     return caseItem.findElement(By.cssSelector("span[id$='case-category']")).getText();
@@ -241,6 +244,7 @@ public class CaseDetailsPage extends TemplatePage {
     click(confirmButton);
   }
   
+  @SuppressWarnings("deprecation")
   @Override
   public void waitAjaxIndicatorDisappear() {
     WebElement ajaxIndicatorStartState = findElementById("ajax-indicator:ajax-indicator-ajax-indicator_start");
