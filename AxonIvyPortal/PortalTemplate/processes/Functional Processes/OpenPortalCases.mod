@@ -21,6 +21,10 @@ Ot0 @EndSub f6 '' #zField
 Ot0 @UserDialog f7 '' #zField
 Ot0 @PushWFArc f8 '' #zField
 Ot0 @PushWFArc f9 '' #zField
+Ot0 @InfoButton f10 '' #zField
+Ot0 @AnnotationArc f11 '' #zField
+Ot0 @InfoButton f12 '' #zField
+Ot0 @AnnotationArc f13 '' #zField
 >Proto Ot0 Ot0 OpenPortalCases #zField
 Ot0 f0 inParamDecl '<ch.ivy.addon.portal.generic.view.CaseView view> param;' #txt
 Ot0 f0 inParamTable 'out.view=param.view;
@@ -34,9 +38,9 @@ Ot0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ot0 f0 179 83 26 26 14 0 #rect
+Ot0 f0 179 115 26 26 -41 -31 #rect
 Ot0 f0 @|StartSubIcon #fIcon
-Ot0 f1 179 307 26 26 14 0 #rect
+Ot0 f1 851 115 26 26 14 0 #rect
 Ot0 f1 @|EndSubIcon #fIcon
 Ot0 f3 dialogId ch.ivy.addon.portal.generic.PortalCases #txt
 Ot0 f3 startMethod useView(CaseView) #txt
@@ -47,12 +51,19 @@ Ot0 f3 responseActionDecl 'ch.ivy.addon.portal.generic.OpenPortalCasesData out;
 ' #txt
 Ot0 f3 responseMappingAction 'out=in;
 ' #txt
-Ot0 f3 174 196 36 24 20 -2 #rect
+Ot0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>PortalCases</name>
+    </language>
+</elementInfo>
+' #txt
+Ot0 f3 456 106 112 44 -34 -8 #rect
 Ot0 f3 @|UserDialogIcon #fIcon
 Ot0 f4 expr out #txt
-Ot0 f4 192 109 192 196 #arcP
+Ot0 f4 205 128 456 128 #arcP
 Ot0 f2 expr out #txt
-Ot0 f2 192 220 192 307 #arcP
+Ot0 f2 568 128 851 128 #arcP
 Ot0 f5 inParamDecl '<ch.ivy.addon.portal.generic.view.CaseView view> param;' #txt
 Ot0 f5 inParamTable 'out.view=param.view;
 ' #txt
@@ -65,9 +76,9 @@ Ot0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ot0 f5 427 91 26 26 14 0 #rect
+Ot0 f5 179 523 26 26 -54 -32 #rect
 Ot0 f5 @|StartSubIcon #fIcon
-Ot0 f6 427 315 26 26 14 0 #rect
+Ot0 f6 851 523 26 26 14 0 #rect
 Ot0 f6 @|EndSubIcon #fIcon
 Ot0 f7 dialogId ch.ivy.addon.portal.component.iframe.PortalCaseListInFrame #txt
 Ot0 f7 startMethod useView(ch.ivy.addon.portal.generic.view.CaseView) #txt
@@ -78,12 +89,55 @@ Ot0 f7 responseActionDecl 'ch.ivy.addon.portal.generic.OpenPortalCasesData out;
 ' #txt
 Ot0 f7 responseMappingAction 'out=in;
 ' #txt
-Ot0 f7 422 196 36 24 20 -2 #rect
+Ot0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>PortalCaseListInFrame</name>
+    </language>
+</elementInfo>
+' #txt
+Ot0 f7 440 514 144 44 -64 -8 #rect
 Ot0 f7 @|UserDialogIcon #fIcon
 Ot0 f8 expr out #txt
-Ot0 f8 440 220 440 315 #arcP
+Ot0 f8 584 536 851 536 #arcP
 Ot0 f9 expr out #txt
-Ot0 f9 440 117 440 196 #arcP
+Ot0 f9 205 536 440 536 #arcP
+Ot0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Deprecated Note&#13;
+&#13;
+This callable will be removed in the future.&#13;
+To override Portal case widget''s UI: you should use Axon.ivy HTMLOverride Dialog to override the PortalCases Html dialog.</name>
+        <nameStyle>15,5,8,0
+4,5
+44,5,0
+123,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ot0 f10 264 194 672 76 -332 -34 #rect
+Ot0 f10 @|IBIcon #fIcon
+Ot0 f11 264 232 199 138 #arcP
+Ot0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Deprecated Note&#13;
+&#13;
+This callable will be removed in the future.&#13;
+To override Portal case widget''s UI: you should use Axon.ivy HTMLOverride Dialog to override the PortalCaseListInFrame Html dialog.</name>
+        <nameStyle>15,5,8,0
+4,5
+44,5,0
+133,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Ot0 f12 264 610 736 76 -362 -34 #rect
+Ot0 f12 @|IBIcon #fIcon
+Ot0 f13 264 648 199 546 #arcP
 >Proto Ot0 .type ch.ivy.addon.portal.generic.OpenPortalCasesData #txt
 >Proto Ot0 .processKind CALLABLE_SUB #txt
 >Proto Ot0 0 0 32 24 18 0 #rect
@@ -96,3 +150,7 @@ Ot0 f5 mainOut f9 tail #connect
 Ot0 f9 head f7 mainIn #connect
 Ot0 f7 mainOut f8 tail #connect
 Ot0 f8 head f6 mainIn #connect
+Ot0 f10 ao f11 tail #connect
+Ot0 f11 head f0 @CG|ai #connect
+Ot0 f12 ao f13 tail #connect
+Ot0 f13 head f5 @CG|ai #connect
