@@ -232,6 +232,7 @@ public class ProcessWidgetPage extends TemplatePage {
       }
     }
 
+    @SuppressWarnings("deprecation")
     public void submitForm() {
       WebElement submitButton = findElementByCssSelector(ADD_EXTERNAL_LINK_BUTTON_INPUT_CSS_SELECTOR);
       submitButton.click();
@@ -252,7 +253,8 @@ public class ProcessWidgetPage extends TemplatePage {
   public boolean hasCreateNewExpressWorkflowLink() {
     return isElementPresent(By.id("process-widget:create-express-workflow"));
   }
-  
+
+  @SuppressWarnings("deprecation")
   public void deleteExternalLinkByFieldsetIndexAndIndex(int fieldsetIndex, int index) {
     String deleteExternalLinkIconCssSelector = String.format("a[id$='%d:processes:%d:process-item-form:delete-external-link']", fieldsetIndex, index);
     WebElement deleteExternalIcon = findElementByCssSelector(deleteExternalLinkIconCssSelector);
@@ -262,6 +264,7 @@ public class ProcessWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
+  @SuppressWarnings("deprecation")
   public ExampleOverviewPage openExampleOverviewPage(String exampleProcessName) {
     click(getProcess(exampleProcessName));
     waitAjaxIndicatorDisappear();
