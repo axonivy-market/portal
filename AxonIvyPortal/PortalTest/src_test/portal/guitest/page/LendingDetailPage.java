@@ -48,6 +48,7 @@ public class LendingDetailPage extends TemplatePage {
     return new LendingDetailPage(index - 1);
   }
   
+  @SuppressWarnings("deprecation")
   public LendingDetailPage navigateToNextDetail() {
     WebElement element = findElementByCssSelector("[id$='next-stage']");
     element.click();

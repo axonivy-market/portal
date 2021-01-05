@@ -63,6 +63,7 @@ public class CaseWidgetTest extends BaseTest {
     assertFalse(casePage.isCaseDisplayed("Repair Computer"));
   }
 
+  @SuppressWarnings("deprecation")
   @Test
   public void testDestroyCaseWithPermission() {
     initHomePage(TestAccount.ADMIN_USER);
