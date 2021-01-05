@@ -3,6 +3,7 @@ function loadIframe() {
   var iframe = document.getElementById('iFrame');
   var window = iframe.contentWindow;
   $(iframe).on('load', function() {
+    checkUrl(iFrame);
     getDataFromIFrame([{
       name : 'currentProcessStep',
       value : window.currentProcessStep
