@@ -37,7 +37,7 @@ public class TaskDetailsPage extends TemplatePage {
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 
-
+  @SuppressWarnings("deprecation")
   public void changePriorityOfTask(int priorityValue) {
     click(findElementById("task-detail-template:general-information:priority-form:edit-priority-inplace_display"));
     waitForElementDisplayed(By.id("task-detail-template:general-information:priority-form:priority-select-menu_label"),
@@ -56,6 +56,7 @@ public class TaskDetailsPage extends TemplatePage {
     return findElementByCssSelector("span[id$='edit-priority-inplace_display']").getText();
   }
 
+  @SuppressWarnings("deprecation")
   public void changeNameOfTask(String name) {
     clickByCssSelector("span[id$='task-name-inplace_display']");
     WebElement taskNameInput = findElementByCssSelector("input[id$='task-name-input']");
@@ -102,6 +103,7 @@ public class TaskDetailsPage extends TemplatePage {
     return new TaskTemplatePage();
   }
 
+  @SuppressWarnings("deprecation")
   public void clickTaskListBreadCrumb() {
     click(By.cssSelector(".portal-breadcrumb ul li:nth-of-type(3) .ui-menuitem-link"));
     ensureNoBackgroundRequest();
@@ -145,6 +147,7 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.id("task-detail-template:task-documents:document-upload-dialog"), true);
   }
 
+  @SuppressWarnings("deprecation")
   public void addNoteToTaskWithContent(String content) {
     openAddNoteDialog();
     waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
@@ -240,6 +243,7 @@ public class TaskDetailsPage extends TemplatePage {
     type(By.cssSelector("textarea[id$='task-detail-template:task-item-delegate-component:task-delegate-form:input-text-area-delegate-message']"), comment);
   }
 
+  @SuppressWarnings("deprecation")
   public void selectDelegateResponsible(String responsibleName, boolean isRole) {
     if(isRole) {
       List<WebElement> radioButtonLabels = findListElementsByCssSelector("table[id$='activator-type-select'] label");

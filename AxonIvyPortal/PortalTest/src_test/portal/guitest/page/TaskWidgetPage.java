@@ -237,6 +237,7 @@ public class TaskWidgetPage extends TemplatePage {
         String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-name-edit-form:task-name-input", index)));
   }
 
+  @SuppressWarnings("deprecation")
   public void changeDescriptionOfTask(String description) {
     clickByCssSelector("span[id$='task-description-output']");
     WebElement taskNameInput = findElementByCssSelector("textarea[id$='task-description-input']");
@@ -329,6 +330,7 @@ public class TaskWidgetPage extends TemplatePage {
     return isElementPresent(By.cssSelector("div[id$='select-delegate-panel']"));
   }
 
+  @SuppressWarnings("deprecation")
   public AdhocPage addAdhoc(int taskIndex) {
     clickByCssSelector(ID_END + taskIndex + ":task-item:task-side-steps-menu']");
     waitAjaxIndicatorDisappear();
@@ -374,6 +376,7 @@ public class TaskWidgetPage extends TemplatePage {
     return isElementPresent(By.id(taskWidgetId + ":filter-selection-form:filter-selection-panel"));
   }
 
+  @SuppressWarnings("deprecation")
   public void openAdvancedFilter(String filterName, String filterIdName) {
     click(By.cssSelector("[id$='filter-add-action']"));
     WebElement filterSelectionElement = findElementById(taskWidgetId + ":filter-add-form:filter-selection");
@@ -440,6 +443,7 @@ public class TaskWidgetPage extends TemplatePage {
     click(By.cssSelector("button[id$='" + filterId + "-filter:filter-input-form:update-command']"));
   }
 
+  @SuppressWarnings("deprecation")
   public void filterByCustomerName(String text) {
     click(By.cssSelector(
         "button[id$='" + taskWidgetId + ":customer-name-filter:filter-open-form:advanced-filter-command']"));
@@ -450,6 +454,7 @@ public class TaskWidgetPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
+  @SuppressWarnings("deprecation")
   public void filterByResponsible(String text) {
     waitForElementDisplayed(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"),
         true);
@@ -467,6 +472,7 @@ public class TaskWidgetPage extends TemplatePage {
     ensureNoBackgroundRequest();
   }
 
+  @SuppressWarnings("deprecation")
   public void filterByStates(List<String> selectedStates) {
     waitForElementDisplayed(By.cssSelector("button[id$='state-filter:filter-open-form:advanced-filter-command']"),
         true);
@@ -494,6 +500,7 @@ public class TaskWidgetPage extends TemplatePage {
     ensureNoBackgroundRequest();
   }
 
+  @SuppressWarnings("deprecation")
   public void removeResponsibleFilter() {
     waitForElementDisplayed(By.cssSelector("button[id$='responsible-filter:filter-open-form:advanced-filter-command']"),
         true);
@@ -553,6 +560,7 @@ public class TaskWidgetPage extends TemplatePage {
     click(findElementByCssSelector(startLinkId));
   }
 
+  @SuppressWarnings("deprecation")
   public void saveFilter(String filterName) {
     openSaveFilterDialog();
     WebElement filterNameInput = findElementById(taskWidgetId + ":filter-save-form:save-filter-set-name-input");
@@ -562,6 +570,7 @@ public class TaskWidgetPage extends TemplatePage {
     ensureNoBackgroundRequest();
   }
 
+  @SuppressWarnings("deprecation")
   public void saveAdminFilter(String filterName) {
     openSaveFilterDialog();
     WebElement filterNameInput = findElementById(taskWidgetId + ":filter-save-form:save-filter-set-name-input");
@@ -572,6 +581,7 @@ public class TaskWidgetPage extends TemplatePage {
     ensureNoBackgroundRequest();
   }
 
+  @SuppressWarnings("deprecation")
   public WebElement openSaveFilterDialog() {
     click(By.id(taskWidgetId + ":filter-save-action"));
     waitAjaxIndicatorDisappear();
@@ -753,11 +763,13 @@ public class TaskWidgetPage extends TemplatePage {
     }
   }
 
+  @SuppressWarnings("deprecation")
   public void applyCategoryFilter() {
     click(By.cssSelector("button[id$='task-category-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
   }
 
+  @SuppressWarnings("deprecation")
   public void resetFilter() {
     click(By.cssSelector("[id$='task-widget:filter-reset-action']"));
     waitAjaxIndicatorDisappear();
@@ -798,6 +810,7 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("div[id$='sort-task-menu_panel']"), true);
   }
 
+  @SuppressWarnings("deprecation")
   public WebElement getSaveFilterDialog() {
     click(By.id(taskWidgetId + ":filter-save-action"));
     waitAjaxIndicatorDisappear();
@@ -810,6 +823,7 @@ public class TaskWidgetPage extends TemplatePage {
     waitForElementDisplayedByCssSelector("label[for$=':columns-checkbox:3']");
   }
 
+  @SuppressWarnings("deprecation")
   public void selectDelegateResponsible(String responsibleName, boolean isRole) {
     if (isRole) {
       List<WebElement> radioButtonLabels = findListElementsByCssSelector("table[id$='activator-type-select'] label");

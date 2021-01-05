@@ -13,11 +13,13 @@ public class AnnouncementPage extends TemplatePage {
     return driver.findElement(By.cssSelector("div[id$='messages'] span[class$='summary']")).getText();
   }
 
+  @SuppressWarnings("deprecation")
   public void publish() {
     clickByCssSelector("button[id$='publish-announcement']");
     waitAjaxIndicatorDisappear();
   }
 
+  @SuppressWarnings("deprecation")
   public void dePublish() {
     clickByCssSelector("button[id$='delete-announcement']");
     waitAjaxIndicatorDisappear();
