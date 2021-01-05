@@ -40,6 +40,7 @@
 .dashboard__widget {
   display: flex;
   flex-direction: column;
+  box-shadow: var(--card-box-shadow);
 }
 
 .widget__header {
@@ -282,4 +283,15 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 
 .field-add-fieldset__autocomplete-input {
   width: 100%;
+}
+
+.ui-widget-content.info-overlay-panel {
+  max-height: 80vh;
+  overflow: auto;
+  padding: 0;
+}
+
+.widget-info-panel,
+.widget-filter-panel {
+  width: 400px;
 }
