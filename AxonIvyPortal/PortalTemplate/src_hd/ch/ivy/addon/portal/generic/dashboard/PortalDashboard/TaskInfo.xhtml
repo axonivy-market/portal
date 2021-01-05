@@ -102,7 +102,7 @@
            </h:panelGroup>
            
            <!-- Text and String -->
-           <h:panelGroup rendered="#{field.format eq 'STRING' or field.format eq 'TEXT' and not (empty field.filterList and empty field.filter)}">
+           <h:panelGroup rendered="#{(field.format eq 'STRING' or field.format eq 'TEXT') and not (empty field.filterList and empty field.filter)}">
              <div class="ui-g-4">
                <p:outputLabel value="#{field.header}" />
              </div>
