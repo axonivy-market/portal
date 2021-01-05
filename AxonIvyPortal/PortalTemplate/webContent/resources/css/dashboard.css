@@ -100,11 +100,6 @@
   margin-bottom: 5px;
 }
 
-
-.task-configuration {
-	margin-top: 10px;
-}
-
 .prototype.task-widget-panel .task-name {
 	display: inline;
 }
@@ -186,6 +181,11 @@
   padding: 20px 15px;
   margin-right: 20px;
   border-right: solid 1px var(- -ivy-primary-color-grey-light);
+}
+
+.task-configuration.card,
+.task-preview.card {
+  box-shadow: var(--card-box-shadow);
 }
 
 .task-configuration__input-text {
