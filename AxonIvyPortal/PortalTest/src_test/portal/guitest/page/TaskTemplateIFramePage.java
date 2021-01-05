@@ -13,6 +13,7 @@ public class TaskTemplateIFramePage extends TemplatePage {
 		clickByCssSelector("#horizontal-case-info");
 	}
 
+  @SuppressWarnings("deprecation")
 	public void inputDataCreateInvestmentTask() {
 		type(By.id("form:invested-amount"), "12345");
 		clickByCssSelector("button[id$='form:save-btn']");
@@ -28,6 +29,7 @@ public class TaskTemplateIFramePage extends TemplatePage {
 		driver.switchTo().defaultContent();
 	}
 
+  @SuppressWarnings("deprecation")
 	public void approveInvestmentTask() {
 		waitForElementDisplayed(By.xpath("//label[contains(text(),'Approve')]"), true);
 		click(findElementByXpath("//label[contains(text(),'Approve')]"));
@@ -37,6 +39,7 @@ public class TaskTemplateIFramePage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 	}
 
+  @SuppressWarnings("deprecation")
 	public void proceedTaskInCaseLevelIFrame() {
 		waitForElementDisplayed(By.xpath("//span[contains(text(),'Proceed')]"), true);
 		click(findElementByXpath("//span[contains(text(),'Proceed')]"));
@@ -44,6 +47,7 @@ public class TaskTemplateIFramePage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 	}
 
+  @SuppressWarnings("deprecation")
 	public void proceedSerenityTaskTemplate() {
 		waitForElementDisplayed(By.cssSelector("button[id^='form']"), true);
 		clickByCssSelector("button[id^='form']");
@@ -51,6 +55,7 @@ public class TaskTemplateIFramePage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 	}
 
+  @SuppressWarnings("deprecation")
 	public void proceedDeprecateModenaTaskTemplate() {
 		waitForElementDisplayed(By.xpath("//span[contains(text(),'Proceed')]"), true);
 		type(By.cssSelector("input[id$='form:input']"), "input text");
@@ -60,6 +65,7 @@ public class TaskTemplateIFramePage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 	}
 
+  @SuppressWarnings("deprecation")
 	public void proceedDeprecatedTaskTemplate() {
 		waitForElementDisplayed(By.xpath("//span[contains(text(),'Proceed')]"), true);
 		type(By.cssSelector("input[id$='form:input']"), "input text");

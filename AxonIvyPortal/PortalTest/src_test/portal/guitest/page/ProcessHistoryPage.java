@@ -14,6 +14,7 @@ public class ProcessHistoryPage extends TemplatePage {
     return isElementDisplayed(By.className("process-history-empty-message"));
   }
   
+  @SuppressWarnings("deprecation")
   public int openDialogAndCountCases() {
     click(findElementById("process-history-dialog-button"));
     waitAjaxIndicatorDisappear();

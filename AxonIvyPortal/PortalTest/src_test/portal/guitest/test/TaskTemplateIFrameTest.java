@@ -2,7 +2,6 @@ package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,8 +15,9 @@ import portal.guitest.page.TaskWidgetPage;
 
 public class TaskTemplateIFrameTest extends BaseTest {
 
-  private static final String CUSTOM_PARAMS_TEMPLATE_TASK_URL= "portal-developer-examples/1718293B3F6E5478/start.ivp";
-  private static final String IFRAME_TASK_URL= "portal-developer-examples/16E5DB746865BCEC/CreateInvestment.ivp?embedInFrame";
+  private static final String CUSTOM_PARAMS_TEMPLATE_TASK_URL = "portal-developer-examples/1718293B3F6E5478/start.ivp";
+  private static final String IFRAME_TASK_URL =
+      "portal-developer-examples/16E5DB746865BCEC/CreateInvestment.ivp?embedInFrame";
 
   @Override
   @Before
@@ -64,7 +64,8 @@ public class TaskTemplateIFrameTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
     TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(1);
     taskTemplatePage2.clickOnLogo();
-    WaitHelper.assertTrueWithWait(() -> taskTemplatePage2.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
+    WaitHelper.assertTrueWithWait(
+        () -> taskTemplatePage2.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
   }
 
   @Test
@@ -74,7 +75,8 @@ public class TaskTemplateIFrameTest extends BaseTest {
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
     TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(1);
     HomePage homePage = taskTemplatePage2.backToHomeInIFrameApprovalTask();
-    WaitHelper.assertTrueWithWait(() -> homePage.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
+    WaitHelper
+        .assertTrueWithWait(() -> homePage.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
   }
 
   @Test
@@ -85,7 +87,8 @@ public class TaskTemplateIFrameTest extends BaseTest {
     taskWidgetPage1 = taskWidgetPage1.openTaskList();
     TaskTemplatePage taskTemplatePage2 = taskWidgetPage1.startTask(1);
     TaskWidgetPage taskWidgetPage2 = taskTemplatePage2.finishIFrameReviewTask();
-    WaitHelper.assertTrueWithWait(() -> taskWidgetPage2.isElementDisplayed(By.cssSelector("[id$='task-config-command']")));
+    WaitHelper
+        .assertTrueWithWait(() -> taskWidgetPage2.isElementDisplayed(By.cssSelector("[id$='task-config-command']")));
   }
 
   @Test
