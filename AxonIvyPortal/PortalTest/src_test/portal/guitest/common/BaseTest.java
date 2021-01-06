@@ -255,7 +255,7 @@ public class BaseTest {
       String encodeSettingValue = URLEncoder.encode(portalSettingValue, "UTF-8");
       String updatePortalSettingLink = "portalKitTestHelper/17208192E0AF4185/updatePortalSetting.ivp?settingName=%s&settingValue=%s";
       redirectToRelativeLink(String.format(updatePortalSettingLink, encodeSettingName, encodeSettingValue));
-      new AutoDialogPage().proceed();
+      new AutoDialogPage().waitContentDisplayed();
     } catch (UnsupportedEncodingException e) {
       e.printStackTrace();
     }
