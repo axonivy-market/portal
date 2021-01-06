@@ -33,6 +33,7 @@ public class SearchCaseTest extends BaseTest {
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(caseName);
     searchResultPage.openCaseTab();
     assertEquals(caseName, searchResultPage.getCaseResult(0));
+    assertTrue(searchResultPage.isCaseCategoryColumnDisplayed());
   }
 
   @Test
