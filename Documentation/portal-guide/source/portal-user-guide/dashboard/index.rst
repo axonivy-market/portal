@@ -65,12 +65,10 @@ HowTo: Add a process as a user favorite
 
 4. The **Display name** is default process name, to add multilingual for favorite process, use **Add languages** button
 
-5. The **Start link** is automatically filled by the Axon.ivy Portal.
-
-6. You may change the **Icon** for the process by using the link
+5. You may change the **Icon** for the process by using the link
    |change-icon| **Change** and selecting your preferred icon.
 
-7. Confirm your configuration with the button **Add**.
+6. Confirm your configuration with the button **Add**.
 
 |how-to-add-process-favorite|
 
