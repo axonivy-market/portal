@@ -34,11 +34,15 @@ public class DashboardScreenshotTest extends ScreenshotTest {
   
   @Test
   public void takeScreenshotOverlayGuide() throws IOException {
-    ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
-    updatePortalSetting("SHOW_USER_GUIDE", "true");
-    homePage = new HomePage();
-    Sleeper.sleep(500); // wait for js calculate resize event
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DASHBOARD_FOLDER + "overlay-guide");
+    try {
+      ScreenshotUtil.resizeBrowser(new Dimension(1200, 800));
+      updatePortalSetting("SHOW_USER_GUIDE", "true");
+      homePage = new HomePage();
+      Sleeper.sleep(500); // wait for js calculate resize event
+      ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.DASHBOARD_FOLDER + "overlay-guide");
+    } finally {
+      updatePortalSetting("SHOW_USER_GUIDE", "false");
+    }
   }
   
   @Test
