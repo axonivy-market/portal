@@ -2,6 +2,7 @@ package portal.guitest.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,6 +10,7 @@ import org.openqa.selenium.By;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.WaitHelper;
+import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
@@ -100,5 +102,27 @@ public class TaskTemplateIFrameTest extends BaseTest {
     TaskTemplatePage taskTemplatePage2 = taskWidgetPage1.startTask(1);
     assertEquals("Review Request (Skip Tasklist in IFrame)",
         taskTemplatePage2.getTaskNameOutsideIFrameWithSkipTaskList());
+  }
+  
+  @Test
+  public void testShowCategoryInTaskByDefaultIframe() {
+    redirectToRelativeLink("InternalSupport/15B1EA24CCF377E8/saleAndInform.ivp");
+    HomePage homePage = new HomePage();
+    TaskWidgetPage taskWidget = homePage.openTaskList();
+    TaskTemplatePage startTask = taskWidget.startTask(1);
+    startTask.openCaseInfo();
+    TaskWidgetPage openRelatedTask = startTask.openRelatedTask();
+    assertTrue(openRelatedTask.isCategoryColumnDisplayed());
+  }
+  
+  @Test
+  public void testShowCategoryInCaseByDefaultIframe() {
+    redirectToRelativeLink("InternalSupport/15B1EA24CCF377E8/saleAndInform.ivp");
+    HomePage homePage = new HomePage();
+    TaskWidgetPage taskWidget = homePage.openTaskList();
+    TaskTemplatePage startTask = taskWidget.startTask(1);
+    startTask.openCaseInfo();
+    CaseWidgetPage openRelatedTask = startTask.openRelatedCase();
+    assertTrue(openRelatedTask.isCategoryColumnDisplayed());
   }
 }

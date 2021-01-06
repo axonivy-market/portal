@@ -99,4 +99,11 @@ public class SearchResultPage extends TemplatePage {
 		return element.getAttribute("class").contains("ivyicon-startup-launch");
 	}
 	
+	public boolean isTaskCategoryColumnDisplayed() {
+	  return findElementByCssSelector("span[id$=':task-category-cell']").isDisplayed();
+  }
+	
+	public boolean isCaseCategoryColumnDisplayed() {
+    return findElementByCssSelector("span[id$=':case-category-cell']").isDisplayed();
+  }
 }
