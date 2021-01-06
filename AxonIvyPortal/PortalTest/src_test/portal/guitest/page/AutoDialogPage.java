@@ -1,12 +1,10 @@
 package portal.guitest.page;
 
-import org.openqa.selenium.By;
-
 import vn.wawa.guitest.base.page.AbstractPage;
 
 public class AutoDialogPage extends AbstractPage {
 
-  private static final String TEMPLATE_PAGE_LOCATOR = "id('closeButton')";
+  private static final String TEMPLATE_PAGE_LOCATOR = "id('Caption')";
 
   public AutoDialogPage() {
     waitForLocatorDisplayed(getLoadedLocator());
@@ -16,8 +14,8 @@ public class AutoDialogPage extends AbstractPage {
     waitForElementDisplayed(locator, true, DEFAULT_TIMEOUT);
   }
 
-  public void proceed() {
-    click(By.cssSelector("#closeButton"));
+  public void waitContentDisplayed() {
+    waitForElementDisplayedByCssSelector("#Content");
   }
 
   @Override
