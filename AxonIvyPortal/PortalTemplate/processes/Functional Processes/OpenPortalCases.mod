@@ -107,11 +107,11 @@ Ot0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Deprecated Note&#13;
 &#13;
-This callable will be removed in the future.&#13;
+This callable will be removed from Portal 11.&#13;
 To override Portal case widget''s UI: you should use Axon.ivy HTMLOverride Dialog to override the PortalCases Html dialog.</name>
         <nameStyle>15,5,8,0
 4,5
-44,5,0
+45,5,0
 123,5
 </nameStyle>
     </language>
@@ -125,11 +125,11 @@ Ot0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Deprecated Note&#13;
 &#13;
-This callable will be removed in the future.&#13;
+This callable will be removed from Portal 11.&#13;
 To override Portal case widget''s UI: you should use Axon.ivy HTMLOverride Dialog to override the PortalCaseListInFrame Html dialog.</name>
         <nameStyle>15,5,8,0
 4,5
-44,5,0
+45,5,0
 133,5
 </nameStyle>
     </language>

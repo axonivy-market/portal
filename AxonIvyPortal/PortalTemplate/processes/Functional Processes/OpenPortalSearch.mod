@@ -115,11 +115,11 @@ Oh0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Deprecated Note&#13;
 &#13;
-This callable will be removed in the future.&#13;
+This callable will be removed from Portal 11.&#13;
 To override Portal search results UI: you should use Axon.ivy HTMLOverride Dialog to override the SearchResults Html dialog.</name>
         <nameStyle>15,5,8,0
 4,5
-44,5,0
+45,5,0
 126,5
 </nameStyle>
     </language>
@@ -132,11 +132,11 @@ Oh0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>Deprecated Note&#13;
 &#13;
-This callable will be removed in the future.&#13;
+This callable will be removed from Portal 11.&#13;
 To override Portal search results UI: you should use Axon.ivy HTMLOverride Dialog to override the SearchResults Html dialog.</name>
         <nameStyle>15,5,8,0
 4,5
-44,5,0
+45,5,0
 126,5
 </nameStyle>
     </language>

@@ -42,7 +42,7 @@ Refer to ``portal-developer-examples`` project for examples
 
 4. Use `Axon.ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``PortalTasks`` HTML dialog.
 
-   .. tip:: This action will override ``Task widget`` in: TaskList page, Task Search result.
+   .. tip:: This action overrides ``Task widget`` in: TaskList page, Task Search result.
 
 5. After previous steps, you can override :ref:`TaskListHeader and
    TaskHeader <customization-task-widget-how-to-overide-ui-task-header>`
