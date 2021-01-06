@@ -137,7 +137,7 @@ Migrate 9.1 to 9.2
 
 6. Deprecated callable processes: ``OpenPortalSearch.mod``, ``OpenPortalTasks.mod``, ``OpenPortalTaskDetails.mod``, ``OpenPortalCases.mod``, ``OpenPortalCaseDetails.mod`` process.
 
-   Portal recommend using `Axon.ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to customize ``Portal HTML Dialog``
+   Portal recommends using `Axon.ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to customize ``Portal HTML Dialog``
 
    .. important:: The callable process which is supporting to open customization dialog will be removed in the future, do not use it in the new project
 
