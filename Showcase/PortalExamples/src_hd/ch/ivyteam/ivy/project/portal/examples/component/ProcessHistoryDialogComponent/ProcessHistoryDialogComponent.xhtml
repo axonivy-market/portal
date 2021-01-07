@@ -11,8 +11,8 @@
 			<p:commandButton id="process-history-dialog-button" value="Open process history dialog" process="@this" oncomplete="PF('process-history-dialog').show()"
 				update="process-history-dialog" />
 			<p:dialog widgetVar="process-history-dialog" id="process-history-dialog" width="800" height="500" resizable="false"
-				header="Process history of Beta Company" modal="true" onShow="caseWidget.setupHeader();">
-				<ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="beta" chunkSize="6" scrollHeight="400" />
+				header="Process history of Beta Company" modal="true" onShow="processHistory.setup();">
+				<ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="beta" chunkSize="6" scrollHeight="300" />
 			</p:dialog>
 		</ui:define>
 	</ui:composition>
