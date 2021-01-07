@@ -1,8 +1,0 @@
-CustomizedSearchResultsData #class
-com.axonivy.portal.developerexamples.customization.CustomizedSearchResults #namespace
-dataModel com.axonivy.portal.developerexamples.component.customize.CustomizedSearchResultsDataModel #field
-dataModel PERSISTENT #fieldModifier
-emp com.axonivy.portal.developerexamples.Employee #field
-emp PERSISTENT #fieldModifier
-activeTabIndex Number #field
-activeTabIndex PERSISTENT #fieldModifier
