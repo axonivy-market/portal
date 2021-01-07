@@ -897,4 +897,8 @@ public class TaskWidgetPage extends TemplatePage {
     WaitHelper.assertTrueWithWait(() -> StringUtils.isNotBlank(statusDialog.getAttribute("download-status")));
     return StringUtils.equals(statusDialog.getAttribute("download-status"), "completed");
   }
+  
+  public boolean isCategoryColumnDisplayed() {
+    return findElementByCssSelector("span[id$=':task-category-cell']").isDisplayed();
+  }
 }

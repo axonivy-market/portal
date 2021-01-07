@@ -47,7 +47,7 @@ Te0 f0 81 49 30 30 -92 17 #rect
 Te0 f0 @|StartRequestIcon #fIcon
 Te0 f1 433 49 30 30 0 15 #rect
 Te0 f1 @|EndIcon #fIcon
-Te0 f3 dialogId com.axonivy.portal.developerexamples.WelcomePage #txt
+Te0 f3 dialogId com.axonivy.portal.developerexamples.customization.WelcomePage #txt
 Te0 f3 startMethod start() #txt
 Te0 f3 requestActionDecl '<> param;' #txt
 Te0 f3 responseActionDecl 'com.axonivy.portal.developerexamples.Data out;
