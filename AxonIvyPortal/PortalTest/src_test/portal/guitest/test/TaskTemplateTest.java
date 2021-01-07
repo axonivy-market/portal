@@ -175,4 +175,12 @@ public class TaskTemplateTest extends BaseTest {
     taskTemplatePage.openCaseInfo();
     return taskTemplatePage;
   }
+  
+  @Test
+  public void testShowCategoryColummnByDefault() {
+    createTestData();
+    HomePage homePage = new HomePage();
+    TaskWidgetPage taskList = homePage.openTaskList();
+    assertTrue(taskList.isCategoryColumnDisplayed());
+  }
 }

@@ -12,7 +12,7 @@ import ch.ivy.addon.portalkit.datamodel.CaseHistoryLazyDataModel;
 public class ProcessHistoryBean implements Serializable {
 
   private static final long serialVersionUID = 6256241637974800291L;
-  private CaseHistoryLazyDataModel dataModel;
+  private CaseHistoryLazyDataModel dataModel = new CaseHistoryLazyDataModel("");
   private String businessEntityId;
 
   public void initData(String businessEntityId) {
