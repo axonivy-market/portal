@@ -1,21 +1,5 @@
-
-// Add a ScreenHandler listener to Portal Menu event
-var responsiveToolkit = ResponsiveToolkit(new CaseListScreenHandler());
-MainMenu.init(responsiveToolkit);
-Portal.updateLayoutContent();
 // Define CaseWidget for sorting event callback
 var caseWidget = new CaseWidget();
-setupCaseHeader();
-
-
-var resizeTimer;
-// Update screen when window size is changed
-$(window).resize(function() {
-  Portal.updateLayoutContent();
-
-  clearTimeout(resizeTimer);
-  resizeTimer = setupCaseHeader();
-});
 
 /* For opening ProcessHistory component in a dialog
     - Check the case list data then hide the header if data empty
@@ -35,11 +19,31 @@ var processHistory = {
       $header.hide();
       $list.hide();
     }
+  },
+
+  // For binding event of tooggle menu
+  updateLayoutWithAnimation : function() {
+    setupCaseHeader();
   }
 }
+
+Portal.updateLayoutContent();
+setupCaseHeader();
+
+var resizeTimer;
+// Update screen when window size is changed
+$(window).resize(function() {
+  Portal.updateLayoutContent();
+
+  clearTimeout(resizeTimer);
+  resizeTimer = setupCaseHeader();
+});
 
 function setupCaseHeader() {
   setTimeout(function() {
     caseWidget.setupHeader();
   }, 250);
 }
+
+// Add a ScreenHandler listener to Portal Menu event
+MainMenu.init(processHistory);
