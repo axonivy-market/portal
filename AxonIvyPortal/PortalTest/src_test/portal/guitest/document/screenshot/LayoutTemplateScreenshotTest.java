@@ -21,7 +21,7 @@ public class LayoutTemplateScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 700));
     HomePage homePage = new HomePage();
     
-    redirectToRelativeLink(viewBetaCompanyProcessHistoryUrl);
+    redirectToRelativeLink(viewAlphaCompanyProcessHistoryUrl);
     homePage.waitUntilLayoutWrapperDisplayed();
     Sleeper.sleep(500); // wait for Layout.js renders left menu
     ScreenshotUtil.capturePageScreenshot(LAYOUT_FOLDER + "basic-template");

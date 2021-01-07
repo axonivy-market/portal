@@ -54,33 +54,23 @@ if (!StringUtils.isEmpty(createAlphaLink)){
 	in.defaultUserProcesses.add(userProcess);
 }
 
-String createBetaLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/createBetaCompany.ivp");
-if (!StringUtils.isEmpty(createBetaLink)){	
-	UserProcess userProcess = new UserProcess();
-	userProcess.setLink(createBetaLink);
-	userProcess.setProcessName(ivy.cms.co("/Processes/ProcessHistoryComponent/BetaCompany/name"));
-	userProcess.setIcon("fa-gavel");
-	userProcess.setIndex(2);
-	in.defaultUserProcesses.add(userProcess);
-}
-
 String viewAlphaHistoryLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompany.ivp");
 if (!StringUtils.isEmpty(viewAlphaHistoryLink)){	
 	UserProcess userProcess = new UserProcess();
 	userProcess.setLink(viewAlphaHistoryLink);
 	userProcess.setProcessName(ivy.cms.co("/Processes/ProcessHistoryComponent/ProcessHistoryOfAlphaCompany/name"));
 	userProcess.setIcon("fa-magic");
-	userProcess.setIndex(3);
+	userProcess.setIndex(2);
 	in.defaultUserProcesses.add(userProcess);
 }
 
-String viewBetaHistoryLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfBetaCompany.ivp");
+String viewBetaHistoryLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompanyInDialog.ivp");
 if (!StringUtils.isEmpty(viewBetaHistoryLink)){	
 	UserProcess userProcess = new UserProcess();
 	userProcess.setLink(viewBetaHistoryLink);
 	userProcess.setProcessName(ivy.cms.co("/Processes/ProcessHistoryComponent/ProcessHistoryOfBetaCompany/name"));
 	userProcess.setIcon("fa-asterisk");
-	userProcess.setIndex(4);
+	userProcess.setIndex(3);
 	in.defaultUserProcesses.add(userProcess);
 }' #txt
 Ds0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -102,7 +92,7 @@ Ds0 f2 64 220 64 339 #arcP
 Ds0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>This process overrides DefaultUserProcess in Portal Kit. 
+        <name>This process overrides DefaultUserProcess in Portal Kit. &#13;
 It add several application favorites processes and determines their order using the setIndex method of UserProcess.&#13;
 &#13;
 Code Example:&#13;
@@ -118,41 +108,29 @@ if (!StringUtils.isEmpty(createAlphaLink)){	&#13;
 	in.defaultUserProcesses.add(userProcess);&#13;
 }&#13;
 &#13;
-String createBetaLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/createBetaCompany.ivp");&#13;
-if (!StringUtils.isEmpty(createBetaLink)){	&#13;
-	UserProcess userProcess = new UserProcess();&#13;
-	userProcess.setLink(createBetaLink);&#13;
-	userProcess.setProcessName(ivy.cms.co("/Processes/ProcessHistoryComponent/BetaCompany/name"));&#13;
-	userProcess.setIcon("fa-gavel");&#13;
-	userProcess.setIndex(2);&#13;
-	in.defaultUserProcesses.add(userProcess);&#13;
-}&#13;
-&#13;
 String viewAlphaHistoryLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompany.ivp");&#13;
 if (!StringUtils.isEmpty(viewAlphaHistoryLink)){	&#13;
 	UserProcess userProcess = new UserProcess();&#13;
 	userProcess.setLink(viewAlphaHistoryLink);&#13;
 	userProcess.setProcessName(ivy.cms.co("/Processes/ProcessHistoryComponent/ProcessHistoryOfAlphaCompany/name"));&#13;
 	userProcess.setIcon("fa-magic");&#13;
-	userProcess.setIndex(3);&#13;
+	userProcess.setIndex(2);&#13;
 	in.defaultUserProcesses.add(userProcess);&#13;
 }&#13;
 &#13;
-String viewBetaHistoryLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfBetaCompany.ivp");&#13;
+String viewBetaHistoryLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompanyInDialog.ivp");&#13;
 if (!StringUtils.isEmpty(viewBetaHistoryLink)){	&#13;
 	UserProcess userProcess = new UserProcess();&#13;
 	userProcess.setLink(viewBetaHistoryLink);&#13;
 	userProcess.setProcessName(ivy.cms.co("/Processes/ProcessHistoryComponent/ProcessHistoryOfBetaCompany/name"));&#13;
 	userProcess.setIcon("fa-asterisk");&#13;
-	userProcess.setIndex(4);&#13;
+	userProcess.setIndex(3);&#13;
 	in.defaultUserProcesses.add(userProcess);&#13;
 }</name>
-        <nameStyle>2286,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f5 264 66 960 732 -472 -360 #rect
+Ds0 f5 256 82 992 572 -492 -280 #rect
 Ds0 f5 @|IBIcon #fIcon
 >Proto Ds0 .type _com.axonivy.portal.developerexamples.DefaultUserProcessOverrideData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt
