@@ -1,4 +1,0 @@
-OpenPortalTasksOverrideData #class
-_com.axonivy.portal.developerexamples #namespace
-taskView ch.ivy.addon.portal.generic.view.TaskView #field
-taskQuery ch.ivyteam.ivy.workflow.query.TaskQuery #field
