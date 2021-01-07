@@ -27,10 +27,9 @@ Follow these steps to customize the global search page:
    .. note:: It is recommended that lazy loading or pagination should be
     applied for custom tabs to have a good performance.
 
-5. Create the HTML dialog using
-   ``/layouts/SearchResultsTemplate.xhtml``, recommended to copy the
-   ``SearchResults`` HTML dialog in PortalTemplate. In dataclass, change
-   the ``dataModel`` to the above one, and in logic, also cast it.
+5. Use `Axon.ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``SearchResults`` HTML dialog.
+
+   In dataclass, change the ``dataModel`` to the above one, and in logic, also cast it.
 
    |customized-data-model-cast|
 

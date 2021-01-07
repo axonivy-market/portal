@@ -116,13 +116,12 @@ In engine
 
 Migrate 9.1 to 9.2
 ------------------
-1. We remove implementation of Portal multiple applications. So that you need to adapt some points below:
- 
- - Adapt start process signature of ``PasswordService`` in ``ChangePassword.mod`` if you overrode this callable.
- 
- - If you are using ``ProcessStartCollector``, replace constructor ``ProcessStartCollector(application)`` with ``ProcessStartCollector()``.
 
- - If you have TaskLazyDataModel, CaseLazyDataModel customization, remove ``setInvolvedApplications()`` method, ``setInvolvedUsername`` in search criteria.
+1. We remove implementation of Portal multiple applications. So that you need to adapt some points below:
+
+   - Adapt start process signature of ``PasswordService`` in ``ChangePassword.mod`` if you overrode this callable.
+   - If you are using ``ProcessStartCollector``, replace constructor ``ProcessStartCollector(application)`` with ``ProcessStartCollector()``.
+   - If you have TaskLazyDataModel, CaseLazyDataModel customization, remove ``setInvolvedApplications()`` method, ``setInvolvedUsername`` in search criteria.
 
 2. In PortalNavigatorInFrame.java, change the methods from non-static to static.
 
@@ -131,13 +130,17 @@ Migrate 9.1 to 9.2
 4. Since 9.2, statistic chart has multiple names for supported languages in application. Therefore you must run a migration process by the following steps:
 
    - Deploy :download:`MigrateStatisticChartTo9.iar <documents/MigrateStatisticChartTo9.iar>` project to your Ivy application. This project requires ``PortalKit`` to run.
-
    - Run ``MigrateStatisticChart/MigrateStatisticChart.ivp`` to migrate all statistic charts in your application.
-
    - Restart Ivy engine.
 
-5. If you have TaskLazyDataModel, CaseLazyDataModel customization, follow :ref:`How to override export feature of Task list <customization-task-widget-how-to-override-export-feature>`
-and :ref:`How to override export feature of Case list <customization-case-widget-how-to-override-export-feature>` to customize label and value of custom columns that will be exported.
+5. If you have TaskLazyDataModel, CaseLazyDataModel customization, follow :ref:`How to override export feature of Task list <customization-task-widget-how-to-override-export-feature>` and :ref:`How to override export feature of Case list <customization-case-widget-how-to-override-export-feature>` to customize label and value of custom columns that will be exported.
+
+6. Deprecated callable processes: ``OpenPortalSearch.mod``, ``OpenPortalTasks.mod``, ``OpenPortalTaskDetails.mod``, ``OpenPortalCases.mod``, ``OpenPortalCaseDetails.mod`` process.
+
+   Portal recommends using `Axon.ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to customize ``Portal HTML Dialog``
+
+   .. important:: The callable process which is supporting to open customization dialog will be removed in the future, do not use it in the new project
+
 
 Migrate 8.x to 9.1
 ------------------
