@@ -21,7 +21,7 @@ var processHistory = {
     }
   },
 
-  // For binding event of tooggle menu
+  // For binding event of toggle menu
   updateLayoutWithAnimation : function() {
     setupCaseHeader();
   }
