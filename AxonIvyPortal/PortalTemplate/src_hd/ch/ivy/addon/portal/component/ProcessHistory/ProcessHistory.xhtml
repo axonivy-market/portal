@@ -93,19 +93,13 @@
 		class="process-history-empty-message">
 		<p:outputLabel value="#{cc.attrs.emptyMessage}" />
 	</h:panelGroup>
-	<h:outputScript name="process-history.js" library="js" />
-	<script type="text/javascript">
-		var caseWidget = new CaseWidget();
-		caseWidget.hideListIfEmptyCase(#{processHistoryBean.dataModel.rowCount eq 0});
-	</script>
 
-	<!-- Responsive Case list -->
-	<h:outputScript name="case-widget.js" library="js" />
-	<script type="text/javascript">
-		var caseWidget = new CaseWidget();
-		$(function() {
-			caseWidget.setupHeader();
-		});
-	</script>
+  <!-- Responsive Case list -->
+  <h:outputScript name="case-widget.js" library="js" />
+  <h:outputScript name="process-history.js" library="js" />
+  <script type="text/javascript">
+    processHistory.setup(#{processHistoryBean.dataModel.rowCount eq 0});
+  </script>
+
 </cc:implementation>
 </html>
