@@ -1,4 +1,0 @@
-OpenPortalCaseDetailsOverrideData #class
-_com.axonivy.portal.developerexamples #namespace
-caseView ch.ivyteam.ivy.workflow.ICase #field
-isShowBackButton Boolean #field

@@ -1723,14 +1723,12 @@ Bk3 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Bk3 g1 659 147 26 26 0 5 #rect
+Bk3 g1 -3 -3 6 6 10 16 #rect
 Bk3 g1 @|MOGIcon #fIcon
-Bk3 f1 expr out #txt
-Bk3 f1 596 160 659 160 #arcP
->Proto Bk1 0 0 32 24 18 0 #rect
->Proto Bk1 @|BIcon #fIcon
+>Proto Bk1 -8 -8 16 16 16 26 #rect
+>Proto Bk1 '' #fIcon
 Bk4 f8 704 160 660 160 #arcP
-Bk4 f36 dialogId com.axonivy.portal.developerexamples.PortalHome #txt
+Bk4 f36 dialogId com.axonivy.portal.developerexamples.customization.PortalHome #txt
 Bk4 f36 startMethod start(ch.ivy.addon.portal.generic.view.TaskView) #txt
 Bk4 f36 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
 Bk4 f36 requestMappingAction 'param.taskView=in.taskView;

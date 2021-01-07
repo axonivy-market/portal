@@ -95,10 +95,9 @@ Portal introduces **StatisticColors** object. We use it to build **DataSet** col
 ..
 
 
-In Portal home, you can override color of Statistic Carousel header by re-define value of below variables in ``customization.scss``:
+In Portal home, you can override color of Statistic Carousel header by re-define value of below variables in ``customization.css``:
 
- - ``$statisticPanelHeader`` to override background color of Carousel header
- - ``$statisticPanelHeaderBorder`` to override border color of Carousel header
- - ``$statisticPanelHeaderText`` to override text color of Carousel header
+ - ``--statistic-panel-header`` to override background color of Carousel header
+ - ``--statistic-panel-header-border`` to override border color of Carousel header
 
 .. |default-chart-color| image:: images/default-chart-colors/default-chart-color.png
