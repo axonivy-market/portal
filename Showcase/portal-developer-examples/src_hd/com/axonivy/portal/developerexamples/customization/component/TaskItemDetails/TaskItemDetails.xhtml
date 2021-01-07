@@ -11,25 +11,23 @@
     <ui:param name="dataModel" value="#{data.dataModel}" />
     <ui:param name="portalPage" value="#{data.portalPage}" />
     <ui:param name="isFromTaskList" value="#{data.isFromTaskList}" />
-    <ui:param name="isFromTaskList" value="#{data.isFromTaskList}" />
     <ui:param name="isTaskStartedInDetails" value="#{data.isTaskStartedInDetails}" />
-    <ui:define name="title">#{ivy.cms.co('/Labels/TaskItemDetail')}</ui:define>
-
-        <!-- To show/hidden any sections of Task detail, you can turn true/false for below parameters -->
+    <!-- To show/hidden any sections of Task detail, you can turn true/false for below parameters -->
     <!-- To show the Header component inside Task details body. By default it's true -->
     <ui:param name="showItemDetailsHeader" value="true" />
     <!-- To show the Notes component inside Task details body. By default it's true -->
     <ui:param name="showItemDetailsNotes" value="true" />
     <!-- To show the Documents component inside Task details body. By default, it's true -->
     <ui:param name="showItemDetailDocuments" value="true" />
-    
-    
-    <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
-    !!!!!!!!!!! TO ADD YOUR CUSTOMIZATION CODE ON THE TASK DETAILS PAGE, WE PROVIDE 2 SECTIONS AS BELOW HELP YOU CAN DO IT !!!!!!!!!!!!
-    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <!-- Add a content as a Custom panel for Task Detail on top section -->
+    <ui:define name="title">#{ivy.cms.co('/Labels/TaskItemDetail')}</ui:define>
+  
+    <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      !!!!!BELOW IS SAMPLE CODE FOR CUSTOMIZATION, WRAPPED IN <ui:remove> TAG. TO ACTIVATE THE CUSTOMIZATION, REMOVE <ui:remove> TAG!!!!!
+      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 
-        <!-- Add a content as Custom panel for Task Detail on top -->
+    <!-- Add a content as Custom panel for Task Detail on top -->
     <ui:define name="taskItemDetailCustomPanelTop">
       <h:panelGroup styleClass="ui-g-12 ui-sm-12 custom-task-panel">
         <div class="card card-w-title ">
@@ -47,7 +45,7 @@
       </h:panelGroup>
     </ui:define>
 
-        <!-- Add content as Custom panel for Task Detail on bottom-->
+    <!-- Add content as Custom panel for Task Detail on bottom-->
     <ui:define name="taskItemDetailCustomPanelBottom">
       <h:panelGroup styleClass="ui-g-12 ui-sm-12 custom-task-panel">
         <div class="card card-w-title #{cc.attrs.customPanelStyleClass}">
@@ -56,7 +54,7 @@
           </div>
           <div class="Separator" />
 
-          <div class="custom-task-details-panel custom-task-details-panel-bottom">
+          <div class="custom-task-details-panel">
             <h1>This is custom content bottom</h1>
             <p>Custom height to auto</p>
             <p>Custom font size to 1.6rem</p>
@@ -64,7 +62,7 @@
         </div>
       </h:panelGroup>
     </ui:define>
-    
+
     <ui:define name="css">
       <h:outputStylesheet library="css" name="examples.css" />
     </ui:define>
