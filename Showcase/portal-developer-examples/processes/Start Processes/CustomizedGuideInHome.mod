@@ -52,7 +52,7 @@ Ce0 f22 352 42 112 44 -38 -8 #rect
 Ce0 f22 @|StepIcon #fIcon
 Ce0 f1 689 49 30 30 0 15 #rect
 Ce0 f1 @|EndIcon #fIcon
-Ce0 f3 dialogId com.axonivy.portal.developerexamples.CustomizedGuide #txt
+Ce0 f3 dialogId com.axonivy.portal.developerexamples.customization.CustomizedGuide #txt
 Ce0 f3 startMethod start(ch.ivy.addon.portal.generic.view.TaskView) #txt
 Ce0 f3 requestActionDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
 Ce0 f3 requestMappingAction 'param.taskView=in.taskView;

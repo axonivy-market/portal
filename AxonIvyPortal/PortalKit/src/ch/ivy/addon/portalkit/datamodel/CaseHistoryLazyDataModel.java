@@ -45,7 +45,7 @@ public class CaseHistoryLazyDataModel extends LazyDataModel<ICase> {
     CaseSearchCriteria crit = new CaseSearchCriteria();
     crit.setBusinessCase(true);
     crit.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
-    crit.setSortField(CaseSortField.ID.toString());
+    crit.setSortField(CaseSortField.ID.name());
     crit.setSortDescending(true);
     return crit;
   }

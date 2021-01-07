@@ -15,8 +15,6 @@ contains 2 parts:
    query <customization-task-widget-how-to-override-data-query>`:
    display the tasks as you want
 
-..
-
 .. important::
    - Task header customization currently support responsive design. Refer to :ref:`this part <customization-task-widget-responsive-layout>` for more detail.
                   
@@ -42,22 +40,9 @@ Refer to ``portal-developer-examples`` project for examples
    previous step. This process is new home page and administrator should
    register this link by Portal's Admin Settings.
 
-4. Override Task widget in: TaskList page, Task Search result.
+4. Use `Axon.ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``PortalTasks`` HTML dialog.
 
-   -  Introduce a new HTMLDialog which uses template
-      ``/layouts/PortalTasksTemplate.xhtml`` (refer to
-      :ref:`Responsiveness <components-layout-templates-responsiveness>`
-      to override responsiveness). You can take a look at
-      ``PortalTasks.xhtml`` to see how to customize it.
-
-      .. tip:: Highly recommend to copy the ``PortalTasks`` HTMLDialog in
-         PortalTemplate and change the copied one's view.
-
-   -  Use Axon.ivy Override to override the ``OpenPortalTasks``  callable. The original implementation 
-      of this callable is calling  ``PortalTasks`` , change it to call the customized Page introduced in
-      the step above. The signature of this callable is u ``seView(TaskView)``
-      and customized page must receive this  ``TaskView``  instance, put in the
-      dialog's ``Data``  with the exact name  ``taskView``.
+   .. tip:: This action overrides ``Task widget`` in: TaskList page, Task Search result.
 
 5. After previous steps, you can override :ref:`TaskListHeader and
    TaskHeader <customization-task-widget-how-to-overide-ui-task-header>`
