@@ -126,14 +126,12 @@ public class ProcessWidgetTest extends BaseTest {
     homePage = new HomePage();
     processWidget = homePage.getProcessWidget();
     String alphaHistoryTask = "Alpha Company Task";
-    String betaHistoryTask = "Beta Company Task";
     String viewAlphaHistory = "View Alpha Process History";
     String viewBetaHistory = "View Beta Process History";
     processWidget.clickSortDefaultProcessByName();
     assertEquals(alphaHistoryTask, processWidget.getProcessNameFromDefaultProcessList(0));
-    assertEquals(betaHistoryTask, processWidget.getProcessNameFromDefaultProcessList(1));
-    assertEquals(viewAlphaHistory, processWidget.getProcessNameFromDefaultProcessList(2));
-    assertEquals(viewBetaHistory, processWidget.getProcessNameFromDefaultProcessList(3));
+    assertEquals(viewAlphaHistory, processWidget.getProcessNameFromDefaultProcessList(1));
+    assertEquals(viewBetaHistory, processWidget.getProcessNameFromDefaultProcessList(2));
   }
 
   @Test
@@ -141,14 +139,12 @@ public class ProcessWidgetTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     homePage = new HomePage();
     String alphaHistoryTask = "Alpha Company Task";
-    String betaHistoryTask = "Beta Company Task";
     String viewAlphaHistory = "View Alpha Process History";
     String viewBetaHistory = "View Beta Process History";
     processWidget = homePage.getProcessWidget();
     assertEquals(alphaHistoryTask, processWidget.getProcessNameFromDefaultProcessList(0));
-    assertEquals(betaHistoryTask, processWidget.getProcessNameFromDefaultProcessList(1));
-    assertEquals(viewAlphaHistory, processWidget.getProcessNameFromDefaultProcessList(2));
-    assertEquals(viewBetaHistory, processWidget.getProcessNameFromDefaultProcessList(3));
+    assertEquals(viewAlphaHistory, processWidget.getProcessNameFromDefaultProcessList(1));
+    assertEquals(viewBetaHistory, processWidget.getProcessNameFromDefaultProcessList(2));
   }
 
   @Test
