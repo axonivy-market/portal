@@ -53,19 +53,15 @@ public class AdditionalComponentsScreenshotTest extends ScreenshotTest {
   @Test
   public void captureScreenshotProcessHistoryComponent() throws IOException {
     redirectToRelativeLink(createAlphaCompanyUrl);
-    redirectToRelativeLink(createAlphaCompanyUrl);
-    redirectToRelativeLink(createBetaCompanyUrl);
-    redirectToRelativeLink(createBetaCompanyUrl);
     
     redirectToRelativeLink(viewAlphaCompanyProcessHistoryUrl);
     ProcessHistoryPage processHistoryPage = new ProcessHistoryPage();
     ScreenshotUtil.resizeBrowser(new Dimension(1500, 1000));
-    ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.COMPONENTS_FOLDER + "process-history-example");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.COMPONENTS_FOLDER + "process-history-example");
     
-    redirectToRelativeLink(viewBetaCompanyProcessHistoryUrl);
+    redirectToRelativeLink(viewAlphaCompanyProcessHistoryInDialogUrl);
     processHistoryPage = new ProcessHistoryPage();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(processHistoryPage.getProcessHistoryDialog(), ScreenshotUtil.COMPONENTS_FOLDER + "process-history-dialog-example", new ScreenshotMargin(100, 30));
-    
   }
   
   @Test
