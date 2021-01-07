@@ -37,7 +37,7 @@ Re0 f0 81 49 30 30 -21 17 #rect
 Re0 f0 @|StartRequestIcon #fIcon
 Re0 f1 433 49 30 30 0 15 #rect
 Re0 f1 @|EndIcon #fIcon
-Re0 f3 dialogId com.axonivy.portal.developerexamples.RoleSelectionExample #txt
+Re0 f3 dialogId com.axonivy.portal.developerexamples.showcase.RoleSelectionExample #txt
 Re0 f3 startMethod start() #txt
 Re0 f3 requestActionDecl '<> param;' #txt
 Re0 f3 responseMappingAction 'out=in;
