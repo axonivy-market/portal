@@ -80,7 +80,7 @@
           oncomplete="PortalSessionWarning.resetCounterAndTimeout();" />
       </h:form>
       
-      <iframe id="iFrame" src="#{url}" class="task-frame" />
+      <iframe id="iFrame" src="#{url}" class="task-frame" onload="checkUrl(this)" />
     </ui:define>
 
     <ui:define name="javascript">
