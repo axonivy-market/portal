@@ -22,8 +22,7 @@ Each CaseItemDetails contains
 
 |case-standard|
 
-.. important:: "Data and Description" panel always displays, we cannot override its
-                 content or hide/show this panel.
+.. important:: "Data and Description" panel always displays, we cannot override its content or hide/show this panel.
    
 .. _customization-case-item-details-how-to-override-ui:
 
@@ -45,12 +44,7 @@ Refer to ``portal-developer-examples`` project for examples.
    previous step. This process is new home page and administrator should
    register this link by Portal's Admin Settings.
 
-4. Custom the Case item details:
-
-   -  Use Axon.ivy ``Html Dialog Overrides`` to override the
-      ``ic:ch.ivy.addon.portal.component.CaseInformation`` HTML dialog.
-      The original implementation of this html dialog is showing data of case with default styling,
-      change the parameters and content inside ui:define tag to show your customization.
+4. Use `Axon.ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``CaseInformation`` HTML dialog.
 
 5. After previous steps, you can override Case item details UI elements
    as shown/hidden element by keywords:

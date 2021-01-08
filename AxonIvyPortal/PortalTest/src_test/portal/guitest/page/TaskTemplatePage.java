@@ -322,4 +322,16 @@ public class TaskTemplatePage extends TemplatePage {
     click(By.id("content-form:close-btn"));
     driver.switchTo().defaultContent();
   }
+  
+  public TaskWidgetPage openRelatedTask() {
+    switchToCaseInfoIframe();
+    clickByCssSelector("a[id$='show-more-related-tasks']");
+    return new TaskWidgetPage();
+  }
+  
+  public CaseWidgetPage openRelatedCase() {
+    switchToCaseInfoIframe();
+    clickByCssSelector("a[id$='show-more-related-cases']");
+    return new CaseWidgetPage();
+  }
 }
