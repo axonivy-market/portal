@@ -79,7 +79,6 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     login(TestAccount.ADMIN_USER);
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
     TaskWidgetPage taskWidget = homePage.openTaskList();
-    taskWidget.closeMainMenu();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
     WebElement generalInfo = taskDetails.getTaskGeneralInformation();
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(generalInfo, ScreenshotUtil.TASK_DETAIL_FOLDER + "detailed-task-information-data-description", new ScreenshotMargin(20));
@@ -126,7 +125,6 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
     login(TestAccount.ADMIN_USER);
     TaskWidgetPage taskWidget = homePage.openTaskList();
-    taskWidget.closeMainMenu();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
     taskDetails.addNoteToTaskWithContent("Add a note for this task");
