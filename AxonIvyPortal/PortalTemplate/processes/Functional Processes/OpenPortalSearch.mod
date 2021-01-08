@@ -21,6 +21,10 @@ Oh0 @EndSub f6 '' #zField
 Oh0 @UserDialog f7 '' #zField
 Oh0 @PushWFArc f8 '' #zField
 Oh0 @PushWFArc f9 '' #zField
+Oh0 @InfoButton f10 '' #zField
+Oh0 @InfoButton f11 '' #zField
+Oh0 @AnnotationArc f12 '' #zField
+Oh0 @AnnotationArc f13 '' #zField
 >Proto Oh0 Oh0 OpenPortalSearch #zField
 Oh0 f0 inParamDecl '<String keyword> param;' #txt
 Oh0 f0 inParamTable 'out.keyword=param.keyword;
@@ -34,9 +38,9 @@ Oh0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Oh0 f0 81 49 30 30 -29 17 #rect
+Oh0 f0 81 113 30 30 -24 -35 #rect
 Oh0 f0 @|StartSubIcon #fIcon
-Oh0 f1 337 49 30 30 0 15 #rect
+Oh0 f1 753 113 30 30 0 15 #rect
 Oh0 f1 @|EndSubIcon #fIcon
 Oh0 f3 dialogId ch.ivy.addon.portal.generic.SearchResults #txt
 Oh0 f3 startMethod start(String) #txt
@@ -56,12 +60,12 @@ Oh0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Oh0 f3 168 42 112 44 -41 -8 #rect
+Oh0 f3 392 106 112 44 -41 -8 #rect
 Oh0 f3 @|UserDialogIcon #fIcon
 Oh0 f4 expr out #txt
-Oh0 f4 111 64 168 64 #arcP
+Oh0 f4 111 128 392 128 #arcP
 Oh0 f2 expr out #txt
-Oh0 f2 280 64 337 64 #arcP
+Oh0 f2 504 128 753 128 #arcP
 Oh0 f5 inParamDecl '<ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel searchResultsDataModel,Number activeTabIndex> param;' #txt
 Oh0 f5 inParamTable 'out.activeTabIndex=param.activeTabIndex;
 out.searchResultsDataModel=param.searchResultsDataModel;
@@ -77,9 +81,9 @@ Oh0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Oh0 f5 81 177 30 30 -69 19 #rect
+Oh0 f5 81 497 30 30 -62 -36 #rect
 Oh0 f5 @|StartSubIcon #fIcon
-Oh0 f6 337 177 30 30 0 15 #rect
+Oh0 f6 753 497 30 30 0 15 #rect
 Oh0 f6 @|EndSubIcon #fIcon
 Oh0 f7 dialogId ch.ivy.addon.portal.generic.SearchResults #txt
 Oh0 f7 startMethod start(ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel,Number) #txt
@@ -100,12 +104,48 @@ Oh0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Oh0 f7 162 170 112 44 -41 -8 #rect
+Oh0 f7 386 490 112 44 -41 -8 #rect
 Oh0 f7 @|UserDialogIcon #fIcon
 Oh0 f8 expr out #txt
-Oh0 f8 111 192 162 192 #arcP
+Oh0 f8 111 512 386 512 #arcP
 Oh0 f9 expr out #txt
-Oh0 f9 274 192 337 192 #arcP
+Oh0 f9 498 512 753 512 #arcP
+Oh0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Deprecated Note&#13;
+&#13;
+This callable will be removed from Portal 11.&#13;
+To override Portal search results UI: you should use Axon.ivy HTMLOverride Dialog to override the SearchResults Html dialog.</name>
+        <nameStyle>15,5,8,0
+4,5
+45,5,0
+126,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Oh0 f10 168 194 688 76 -341 -34 #rect
+Oh0 f10 @|IBIcon #fIcon
+Oh0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Deprecated Note&#13;
+&#13;
+This callable will be removed from Portal 11.&#13;
+To override Portal search results UI: you should use Axon.ivy HTMLOverride Dialog to override the SearchResults Html dialog.</name>
+        <nameStyle>15,5,8,0
+4,5
+45,5,0
+126,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Oh0 f11 168 586 688 76 -341 -34 #rect
+Oh0 f11 @|IBIcon #fIcon
+Oh0 f12 168 232 104 140 #arcP
+Oh0 f13 168 624 104 524 #arcP
 >Proto Oh0 .type ch.ivy.addon.portal.generic.OpenPortalSearchData #txt
 >Proto Oh0 .processKind CALLABLE_SUB #txt
 >Proto Oh0 0 0 32 24 18 0 #rect
@@ -118,3 +158,7 @@ Oh0 f5 mainOut f8 tail #connect
 Oh0 f8 head f7 mainIn #connect
 Oh0 f7 mainOut f9 tail #connect
 Oh0 f9 head f6 mainIn #connect
+Oh0 f10 ao f12 tail #connect
+Oh0 f12 head f0 @CG|ai #connect
+Oh0 f11 ao f13 tail #connect
+Oh0 f13 head f5 @CG|ai #connect

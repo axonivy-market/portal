@@ -41,20 +41,7 @@ Refer to ``portal-developer-examples`` project for examples.
    previous step. This process is new home page and administrator should
    register this link by Portal's Admin Settings.
 
-4. Custom the Task item details:
-
-   -  Introduce a new HTMLDialog which uses template
-      ``/layouts/PortalTaskDetailsTemplate.xhtml``. You can take a look
-      at ``PortalTaskDetails.xhtml`` to see how to customize it.
-
-      .. tip:: Highly recommend to copy the ``PortalTaskDetails`` HTMLDialog
-               in PortalTemplate. Remove ``ui:remove`` and change the copied
-               one's view.
-
-   -  Use Axon.ivy Override to override the ``OpenPortalTaskDetail``  callable. The original implementation of this
-      callable is calling  ``PortalTaskDetails`` , change it to call the customized
-      Page introduced in the step above. The signature of this callable is ``call(ITask)``  and customized page must receive this  ``ITask``  instance, put in
-      the dialog's  ``Data``  with the exact name  ``taskData``  .
+4. Use `Axon.ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``PortalTaskDetails`` HTML dialog.
 
 5. After previous steps, you can override Task item details UI elements
    as shown/hidden element by keywords:
