@@ -41,10 +41,8 @@ public class MainMenuPage extends TemplatePage {
     return new ProcessWidgetPage();
   }
 
-  @SuppressWarnings("deprecation")
   public TaskWidgetPage selectTaskMenu() {
     clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.TASK");
-    ensureNoBackgroundRequest();
     return new TaskWidgetPage();
   }
 
