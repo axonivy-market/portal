@@ -22,12 +22,9 @@ public class BackNavigationTest extends BaseTest {
   private static final String TASK_LIST_TITLE = "Tasks";
   private static final String TASK_DETAILS_TITLE = "Task Details";
 
-  private static final String BETA_CASE_NAME = "Beta Company";
   private static final String LEAVE_REQUEST_CASE_NAME = "Leave Request";
   private static final String PAYMENT_CASE_NAME = "Create New Payment";
   private static final String PAYMENT_TASK_NAME = "Do New Payment";
-
-  private String createNewPaymentUrl = "portal-developer-examples/162511D2577DBA88/createNewPayment.ivp";
 
   private HomePage homePage;
   private CaseDetailsPage caseDetailsPage;
@@ -94,19 +91,19 @@ public class BackNavigationTest extends BaseTest {
 
   @Test
   public void testNavigateFromTechToBusinessCase() {
-    redirectToRelativeLink(createBetaCompanyUrl);
+    redirectToRelativeLink(createNewPaymentUrl);
     caseWidgetPage = homePage.openCaseList();
 
-    caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName(BETA_CASE_NAME);
+    caseDetailsPage = caseWidgetPage.openDetailsOfCaseHasName(PAYMENT_CASE_NAME);
     assertEquals(CASE_DETAILS_TITLE, caseDetailsPage.getPageTitle());
 
     caseDetailsPage.openRelatedCaseOfBusinessCase(0);
     caseDetailsPage.waitForCaseDetailsReload();
-    assertEquals("Signal create Beta Company", caseDetailsPage.getCaseName());
+    assertEquals("Signal create New Payment", caseDetailsPage.getCaseName());
 
     caseDetailsPage.clickBackButton();
     caseDetailsPage.waitForCaseDetailsReload();
-    assertEquals(BETA_CASE_NAME, caseDetailsPage.getCaseName());
+    assertEquals(PAYMENT_CASE_NAME, caseDetailsPage.getCaseName());
 
     caseWidgetPage = caseDetailsPage.goBackToCaseListFromCaseDetails();
     assertEquals(CASE_LIST_TITLE, caseWidgetPage.getPageTitle());
