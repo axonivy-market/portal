@@ -41,7 +41,7 @@
 .custom-task-details-panel, .custom-task-details-panel-top,.custom-task-details-panel-middle {	
 	text-align: center;
 	font-size: 1.2rem;
-	height: 245px;
+	padding: 1rem;
 }
 
 .custom-case-details-panel-override-height {
