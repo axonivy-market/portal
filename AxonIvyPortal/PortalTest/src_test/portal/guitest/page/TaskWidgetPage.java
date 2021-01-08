@@ -566,8 +566,7 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement filterNameInput = findElementById(taskWidgetId + ":filter-save-form:save-filter-set-name-input");
     enterKeys(filterNameInput, filterName);
     click(findElementById(taskWidgetId + ":filter-save-form:filter-save-command"));
-    waitAjaxIndicatorDisappear();
-    ensureNoBackgroundRequest();
+    waitForElementDisplayed(By.id(taskWidgetId + ":filter-save-form:filter-save-command"), false);
   }
 
   @SuppressWarnings("deprecation")
