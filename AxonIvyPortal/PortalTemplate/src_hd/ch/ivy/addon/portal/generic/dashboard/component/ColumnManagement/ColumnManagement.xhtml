@@ -43,7 +43,7 @@
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         onclick="PF('column-management-dialog').hide()" />
 
-      <p:commandButton id="column-management-save-btn"
+      <p:commandButton id="column-management-save-btn" icon="si si-floppy-disk"
         value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
         actionListener="#{columnManagementBean.save}" update="task-configuration-form"
         oncomplete="PF('column-management-dialog').hide();" />

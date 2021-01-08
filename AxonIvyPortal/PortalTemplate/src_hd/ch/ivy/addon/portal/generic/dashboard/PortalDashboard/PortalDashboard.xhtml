@@ -15,7 +15,8 @@
         <h:outputStylesheet library="css" name="dashboard.css" />
         <p:commandButton id="switch-mode" value="#{dashboardBean.switchButtonText}" styleClass="dashboard__switch-mode"
           actionListener="#{dashboardBean.toggleMode}" update="grid-stack-tab-view @this" process="@this" partialSubmit="true" oncomplete="loadGrid()"
-          rendered="#{dashboardBean.canEdit}" />
+          rendered="#{dashboardBean.canEdit}"
+          icon="si #{dashboardBean.isReadOnlyMode ? 'si-pencil' : 'si-view-1'}" />
         <p:tabView id="grid-stack-tab-view" value="#{dashboardBean.dashboards}" var="dashboard" dynamic="true" activeIndex="#{dashboardBean.tabActiveIndex}">
           <p:ajax event="tabChange" listener="#{dashboardBean.onTabChange}" oncomplete="loadGrid()" />
           <p:tab id="dashboard" title="#{dashboard.title}" 
@@ -87,7 +88,7 @@
                     
                     <h:panelGroup id="actions" layout="block" styleClass="actions-widget" rendered="#{widget.id eq 'action'}">
                       <p:commandButton id="add-widget-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/addWidget')}" type="button" 
-                        styleClass="action-widget__add-button" onclick="PF('new-widget-dialog').show()" />
+                        styleClass="action-widget__add-button" onclick="PF('new-widget-dialog').show()" icon="si si-add" />
                       <br />
                       <p:commandLink id="restore-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/restoreWidget')}" actionListener="#{dashboardBean.restore()}"
                         update="grid-stack-tab-view:#{dashboardBean.dashboards.indexOf(dashboard)}:grid-stack" oncomplete="loadGrid()" />
@@ -139,7 +140,7 @@
               onclick="PF('task-widget-configuration-dialog').hide()" />
               
             <p:commandButton id="task-configuration-save-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-              actionListener="#{dashboardBean.saveWidget()}"
+              actionListener="#{dashboardBean.saveWidget()}" icon="si si-floppy-disk"
               process="task-configuration-form:task-widget-configuration-component:filter-container" partialSubmit="true"
               update="grid-stack-tab-view:#{dashboardBean.getCurrentTabIndex()}:grid-stack"
               oncomplete="PF('task-widget-configuration-dialog').hide();loadGrid();" />
