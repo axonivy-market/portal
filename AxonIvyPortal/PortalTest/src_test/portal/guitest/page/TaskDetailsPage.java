@@ -240,6 +240,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void addCommentOnTaskDelegationDialog(String comment) {
+    waitForElementDisplayed(By.cssSelector("textarea[id$='task-detail-template:task-item-delegate-component:task-delegate-form:input-text-area-delegate-message']"), true);
     type(By.cssSelector("textarea[id$='task-detail-template:task-item-delegate-component:task-delegate-form:input-text-area-delegate-message']"), comment);
   }
 
