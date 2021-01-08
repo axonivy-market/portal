@@ -38,7 +38,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     grantSpecificPortalPermission(PortalPermission.TASK_CASE_ADD_NOTE);
     redirectToRelativeLink(createTestingTasksUrl);
     redirectToRelativeLink(createUserFavoriteProcess);
-    redirectToRelativeLink(createBetaCompanyUrl);
+    redirectToRelativeLink(createAlphaCompanyUrl);
     redirectToRelativeLink(createTestingCaseMapUrl);
     refreshPage();
     homePage = new HomePage();
@@ -69,7 +69,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     caseWidget = homePage.openCaseList();
     homePage.closeMainMenu();
     ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
-    CaseDetailsPage detailsPage = caseWidget.openDetailsOfCaseHasName("Beta Company");
+    CaseDetailsPage detailsPage = caseWidget.openDetailsOfCaseHasName("Choose Alpha business name");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_FOLDER + "case-details");
     
     WebElement generalInfor = detailsPage.getGeneralInforBox();
@@ -81,7 +81,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     WebElement addNote = detailsPage.getAddNoteDialog();
     Sleeper.sleep(2000);//wait for focus animation to capture screenshot
     ScreenshotUtil.captureElementWithMarginOptionScreenshot(addNote, ScreenshotUtil.CASE_DETAIL_FOLDER + "how-to-add-task-note", new ScreenshotMargin(30, 50));
-    detailsPage.addNote("Beta Company");
+    detailsPage.addNote("Alpha Company");
     
     WebElement addDocument = detailsPage.getAddAttachmentDialog();
     Sleeper.sleep(2000);//wait for focus animation to capture screenshot
@@ -148,7 +148,7 @@ public class PortalCasesScreenshotTest extends ScreenshotTest {
     login(TestAccount.ADMIN_USER);
     caseWidget = homePage.openMainMenu().selectCaseMenu();
     homePage.closeMainMenu();
-    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Beta Company");
+    CaseDetailsPage caseDetailsPage = caseWidget.openDetailsOfCaseHasName("Choose Alpha business name");
     caseDetailsPage.waitForCaseDetailsDisplay();
     executeDecorateJs("highlightCaseDetailComponents()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.CASE_DETAIL_CUSTOMIZATION_FOLDER + "case-standard");

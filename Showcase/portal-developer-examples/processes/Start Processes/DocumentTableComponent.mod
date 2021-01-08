@@ -39,19 +39,26 @@ Dt0 f0 81 49 30 30 -21 17 #rect
 Dt0 f0 @|StartRequestIcon #fIcon
 Dt0 f1 337 49 30 30 0 15 #rect
 Dt0 f1 @|EndIcon #fIcon
-Dt0 f3 dialogId com.axonivy.portal.developerexamples.DocumentTableUsage #txt
+Dt0 f3 dialogId com.axonivy.portal.developerexamples.showcase.DocumentTableUsage #txt
 Dt0 f3 startMethod start() #txt
 Dt0 f3 requestActionDecl '<> param;' #txt
 Dt0 f3 responseActionDecl 'com.axonivy.portal.developerexamples.DocumentTableComponentData out;
 ' #txt
 Dt0 f3 responseMappingAction 'out=in;
 ' #txt
-Dt0 f3 168 42 112 44 0 -8 #rect
+Dt0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>DocumentTableUsage</name>
+    </language>
+</elementInfo>
+' #txt
+Dt0 f3 152 42 144 44 -62 -8 #rect
 Dt0 f3 @|UserDialogIcon #fIcon
 Dt0 f4 expr out #txt
-Dt0 f4 111 64 168 64 #arcP
+Dt0 f4 111 64 152 64 #arcP
 Dt0 f2 expr out #txt
-Dt0 f2 280 64 337 64 #arcP
+Dt0 f2 296 64 337 64 #arcP
 >Proto Dt0 .type com.axonivy.portal.developerexamples.DocumentTableComponentData #txt
 >Proto Dt0 .processKind NORMAL #txt
 >Proto Dt0 0 0 32 24 18 0 #rect

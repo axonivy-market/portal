@@ -203,3 +203,11 @@
     display: none;
   }
 }
+
+.process-history-component div.card {
+  padding: 1rem 2rem;
+}
+
+.process-history-component .process-history-title {
+  font-size: 16px;
+}

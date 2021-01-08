@@ -21,6 +21,10 @@ Os0 @EndSub f5 '' #zField
 Os0 @UserDialog f6 '' #zField
 Os0 @PushWFArc f8 '' #zField
 Os0 @PushWFArc f9 '' #zField
+Os0 @InfoButton f10 '' #zField
+Os0 @AnnotationArc f11 '' #zField
+Os0 @InfoButton f12 '' #zField
+Os0 @AnnotationArc f13 '' #zField
 >Proto Os0 Os0 OpenPortalTasks #zField
 Os0 f0 inParamDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
 Os0 f0 inParamTable 'out.taskView=param.taskView;
@@ -34,9 +38,9 @@ Os0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Os0 f0 83 99 26 26 14 0 #rect
+Os0 f0 83 99 26 26 14 -22 #rect
 Os0 f0 @|StartSubIcon #fIcon
-Os0 f1 83 259 26 26 14 0 #rect
+Os0 f1 627 99 26 26 14 0 #rect
 Os0 f1 @|EndSubIcon #fIcon
 Os0 f3 dialogId ch.ivy.addon.portal.generic.PortalTasks #txt
 Os0 f3 startMethod useTaskView(TaskView) #txt
@@ -47,12 +51,20 @@ Os0 f3 responseActionDecl 'ch.ivy.addon.portal.generic.OpenPortalTasksData out;
 ' #txt
 Os0 f3 responseMappingAction 'out=in;
 ' #txt
-Os0 f3 78 178 36 24 20 -2 #rect
+Os0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>PortalTasks</name>
+    </language>
+</elementInfo>
+' #txt
+Os0 f3 312 90 112 44 -33 -8 #rect
 Os0 f3 @|UserDialogIcon #fIcon
 Os0 f2 expr out #txt
-Os0 f2 96 202 96 259 #arcP
+Os0 f2 424 112 627 112 #arcP
+Os0 f2 0 0.49728593711698305 0 0 #arcLabel
 Os0 f7 expr out #txt
-Os0 f7 96 125 96 178 #arcP
+Os0 f7 109 112 312 112 #arcP
 Os0 f4 inParamDecl '<ch.ivy.addon.portal.generic.view.TaskView taskView> param;' #txt
 Os0 f4 inParamTable 'out.taskView=param.taskView;
 ' #txt
@@ -65,9 +77,9 @@ Os0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Os0 f4 275 99 26 26 14 0 #rect
+Os0 f4 83 371 26 26 9 -30 #rect
 Os0 f4 @|StartSubIcon #fIcon
-Os0 f5 275 259 26 26 14 0 #rect
+Os0 f5 627 371 26 26 14 0 #rect
 Os0 f5 @|EndSubIcon #fIcon
 Os0 f6 dialogId ch.ivy.addon.portal.component.iframe.PortalTaskListInFrame #txt
 Os0 f6 startMethod start(ch.ivy.addon.portal.generic.view.TaskView) #txt
@@ -78,12 +90,56 @@ Os0 f6 responseActionDecl 'ch.ivy.addon.portal.generic.OpenPortalTasksData out;
 ' #txt
 Os0 f6 responseMappingAction 'out=in;
 ' #txt
-Os0 f6 270 178 36 24 20 -2 #rect
+Os0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>PortalTaskListInFrame</name>
+    </language>
+</elementInfo>
+' #txt
+Os0 f6 304 362 144 44 -62 -8 #rect
 Os0 f6 @|UserDialogIcon #fIcon
 Os0 f8 expr out #txt
-Os0 f8 288 125 288 178 #arcP
+Os0 f8 109 384 304 384 #arcP
+Os0 f8 0 0.5000000000000001 0 0 #arcLabel
 Os0 f9 expr out #txt
-Os0 f9 288 202 288 259 #arcP
+Os0 f9 448 384 627 384 #arcP
+Os0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Deprecated Note&#13;
+&#13;
+This callable will be removed from Portal 11.&#13;
+To override Portal task widget''s UI: you should use Axon.ivy HTMLOverride Dialog to override the PortalTaskListInFrame Html dialog.</name>
+        <nameStyle>15,5,8,0
+4,5
+47,5,0
+131,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Os0 f10 144 458 736 76 -358 -34 #rect
+Os0 f10 @|IBIcon #fIcon
+Os0 f11 144 496 101 395 #arcP
+Os0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Deprecated Note&#13;
+&#13;
+This callable will be removed from Portal 11.&#13;
+To override Portal task widget''s UI: you should use Axon.ivy HTMLOverride Dialog to override the PortalTasks Html dialog.</name>
+        <nameStyle>15,5,8,0
+4,5
+47,5,0
+121,5
+</nameStyle>
+    </language>
+</elementInfo>
+' #txt
+Os0 f12 152 170 672 76 -329 -34 #rect
+Os0 f12 @|IBIcon #fIcon
+Os0 f13 152 208 102 123 #arcP
 >Proto Os0 .type ch.ivy.addon.portal.generic.OpenPortalTasksData #txt
 >Proto Os0 .processKind CALLABLE_SUB #txt
 >Proto Os0 0 0 32 24 18 0 #rect
@@ -96,3 +152,7 @@ Os0 f6 mainOut f9 tail #connect
 Os0 f9 head f5 mainIn #connect
 Os0 f4 mainOut f8 tail #connect
 Os0 f8 head f6 mainIn #connect
+Os0 f10 ao f11 tail #connect
+Os0 f11 head f4 @CG|ai #connect
+Os0 f12 ao f13 tail #connect
+Os0 f13 head f0 @CG|ai #connect
