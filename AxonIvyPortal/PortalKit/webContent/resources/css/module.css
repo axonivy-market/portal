@@ -4612,6 +4612,10 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   display: none;
 }
 
+.express-helper-loading-container .si-lg {
+  font-size: var(--express-helper-loading-container-si-lg-font-size);
+}
+
 body .ui-dialog.ui-widget.import-express-dialog,
 body .ui-dialog.ui-widget.export-express-dialog {
   min-width: 450px;
