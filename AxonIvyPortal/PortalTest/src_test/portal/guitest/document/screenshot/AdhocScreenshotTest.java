@@ -34,11 +34,11 @@ public class AdhocScreenshotTest extends ScreenshotTest {
     String defaultTaskComment2 = "Inform team";
     
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(1);
-    taskTemplatePage.clickActionMenuButton();
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 580));
+    taskTemplatePage.clickTaskActionMenu();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "adhoc-start");
-    taskTemplatePage.clickAdhocCreationButton();
+    taskTemplatePage.clickOnStartAdhocLink();
     taskTemplatePage.clickAdhocOkButton();
     
     //create tasks in adhoc page
@@ -49,7 +49,7 @@ public class AdhocScreenshotTest extends ScreenshotTest {
     expressPage.addNewTask(0);
     expressPage.createDefaultTask(1, defaultTaskName2, responsibles);
     Sleeper.sleep(2000);//wait for select user
-    ScreenshotUtil.resizeBrowser(new Dimension(1500, 900));
+    ScreenshotUtil.resizeBrowser(new Dimension(1500, 1000));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "adhoc-define");
     expressPage.executeDirectly();
     
@@ -78,7 +78,7 @@ public class AdhocScreenshotTest extends ScreenshotTest {
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "adhoc-process-history");
     
     taskTemplatePage.closeAdhocHistoryDialog();
-    taskTemplatePage.clickActionMenuButton();
+    taskTemplatePage.clickTaskActionMenu();
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 580));
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "adhoc-show-history");
     

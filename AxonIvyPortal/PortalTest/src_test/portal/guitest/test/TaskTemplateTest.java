@@ -150,7 +150,7 @@ public class TaskTemplateTest extends BaseTest {
     processWidgetPage.startProcess("Case Map: Leave Request");
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    taskTemplatePage.openActionMenu();
+    taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.startSideStep();
     TaskWidgetPage taskWidget = new TaskWidgetPage();
     taskWidget.expand();
