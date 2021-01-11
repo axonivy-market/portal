@@ -22,7 +22,7 @@
             titleStyleClass="dashboard__tab-title #{dashboardBean.dashboards.size() eq 1 ? 'dashboard__tab-title--one-dashboard' :''}">
             <h:panelGroup id="grid-stack" layout="block" styleClass="grid-stack">
               <ui:repeat id="widgets" var="widget" value="#{dashboard.widgets}" varStatus="status">
-                <div class="grid-stack-item" data-gs-x="#{widget.x}" data-gs-y="#{widget.y}" data-gs-id="#{widget.id}"
+                <div class="grid-stack-item" data-gs-x="#{widget.axisX}" data-gs-y="#{widget.axisY}" data-gs-id="#{widget.id}"
                   data-gs-width="#{widget.width}" data-gs-height="#{widget.height}" data-gs-autoPosition="#{widget.autoPosition}"
                   data-gs-no-resize="#{dashboardBean.isReadOnlyMode}" data-gs-no-move="#{dashboardBean.isReadOnlyMode}"
                   jsf:rendered="#{widget.id ne 'action' or (widget.id eq 'action' and !dashboardBean.isReadOnlyMode)}">

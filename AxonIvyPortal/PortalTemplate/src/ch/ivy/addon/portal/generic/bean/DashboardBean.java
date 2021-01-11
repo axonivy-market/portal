@@ -205,8 +205,8 @@ public class DashboardBean implements Serializable {
     List<DashboardWidget> widgets = Arrays.asList(mapper.readValue(nodes, DashboardWidget[].class));
     for (DashboardWidget widget : widgets) {
       DashboardWidget updatedWidget = selectedDashboard.getWidgets().get(selectedDashboard.getWidgets().indexOf(widget));
-      updatedWidget.setX(widget.getX());
-      updatedWidget.setY(widget.getY());
+      updatedWidget.setAxisX(widget.getAxisX());
+      updatedWidget.setAxisY(widget.getAxisY());
       updatedWidget.setWidth(widget.getWidth());
       updatedWidget.setHeight(widget.getHeight());
     }

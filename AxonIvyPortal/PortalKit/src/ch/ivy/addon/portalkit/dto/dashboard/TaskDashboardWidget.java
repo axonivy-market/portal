@@ -31,6 +31,8 @@ import ch.ivy.addon.portalkit.util.TaskTreeUtils;
 import ch.ivyteam.ivy.workflow.TaskState;
 
 public class TaskDashboardWidget extends DashboardWidget {
+  private static final String CRITERIA_PARAM = "criteria";
+
   private static final long serialVersionUID = 3048837559125720787L;
 
   @JsonIgnore
@@ -85,7 +87,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     taskByStateStatistic = new HashMap<>();
 
     Map<String, Object> params = new HashMap<>();
-    params.put("criteria", generateTaskSearchCriteriaWithoutOrderByClause());
+    params.put(CRITERIA_PARAM, generateTaskSearchCriteriaWithoutOrderByClause());
 
     Map<String, Object> response =
         IvyAdapterService.startSubProcess("analyzeTaskStateStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)", params,
@@ -93,10 +95,9 @@ public class TaskDashboardWidget extends DashboardWidget {
 
     TaskStateStatistic taskStateStatistic = (TaskStateStatistic) response.get("taskStateStatistic");
     for (Entry<Integer, Long> entry : taskStateStatistic.getNumberOfTasksByState().entrySet()) {
-      if (entry.getValue() == 0) {
-        continue;
+      if (entry.getValue() != 0) {
+        taskByStateStatistic.put(TaskState.valueOf(entry.getKey()).name(), entry.getValue());
       }
-      taskByStateStatistic.put(TaskState.valueOf(entry.getKey()).name(), entry.getValue());
     }
   }
 
@@ -116,9 +117,7 @@ public class TaskDashboardWidget extends DashboardWidget {
       if (DateUtils.isSameDay(new Date(), entry.getKey())) {
         numberOfTasksExpireToday++;
         numberOfTasksExpireThisWeek++;
-        continue;
-      }
-      if (isDateInCurrentWeek(entry.getKey())) {
+      } else if (isDateInCurrentWeek(entry.getKey())) {
         numberOfTasksExpireThisWeek++;
       }
     }
@@ -128,7 +127,7 @@ public class TaskDashboardWidget extends DashboardWidget {
     taskByCategoryStatistic = new HashMap<>();
 
     Map<String, Object> params = new HashMap<>();
-    params.put("criteria", generateTaskSearchCriteriaWithoutOrderByClause());
+    params.put(CRITERIA_PARAM, generateTaskSearchCriteriaWithoutOrderByClause());
 
     Map<String, Object> response =
         IvyAdapterService.startSubProcess("analyzeTaskCategoryStatistic(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)", params,
