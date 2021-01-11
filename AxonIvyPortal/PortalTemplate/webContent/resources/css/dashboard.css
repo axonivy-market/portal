@@ -55,6 +55,10 @@
   float: right;
 }
 
+.widget__header-actions .si {
+  color: #757575;
+}
+
 .widget__content {
   flex: auto;
   overflow: auto;
