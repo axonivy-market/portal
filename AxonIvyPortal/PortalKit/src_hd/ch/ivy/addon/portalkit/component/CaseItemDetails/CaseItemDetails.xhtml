@@ -23,7 +23,7 @@
   <c:set var="showItemDetailsHistories" value="#{cc.attrs.showItemDetailsHistories == null ?  true:cc.attrs.showItemDetailsHistories}"/>
   <c:set var="showItemDetailDocuments" value="#{cc.attrs.showItemDetailDocuments == null ? true:cc.attrs.showItemDetailDocuments}"/>
   <c:set var="showItemBackButton" value="#{cc.attrs.showItemBackButton == null ? true:cc.attrs.showItemBackButton}"/>
-  <c:set var="isTaskStartedInDetails" value="#{cc.attrs.isTaskStartedInDetails == null ? false:cc.attrs.showItemBackButton}"/>
+  <c:set var="isTaskStartedInDetails" value="#{cc.attrs.isTaskStartedInDetails == null ? false:cc.attrs.isTaskStartedInDetails}"/>
   <div class="ui-g portal-card-container">
 
     <h:panelGroup styleClass="ui-g-12" rendered="#{showItemDetailsHeader}" layout="block">
@@ -151,6 +151,7 @@
 
   <script type="text/javascript">
       function backToPrevPage(isTaskStartedInDetails, isNavigateToCaseList) {
+        debugger;
         if (document.referrer &amp;&amp; !isTaskStartedInDetails &amp;&amp; !isNavigateToCaseList) {
           window.history.back();
         } else {
