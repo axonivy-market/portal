@@ -141,6 +141,7 @@ Migrate 9.1 to 9.2
 
    .. important:: The callable process which is supporting to open customization dialog will be removed in the future, do not use it in the new project
 
+7. We remove ivy-icon.css and replace current classes with new onces from `Streamline icons <https://dev.demo.ivyteam.io/demo-app/faces/view/html-dialog-demos$1/icons.xhtml>`_. So that you need to update your html files that are using classes in ivy-icon.css.
 
 Migrate 8.x to 9.1
 ------------------
