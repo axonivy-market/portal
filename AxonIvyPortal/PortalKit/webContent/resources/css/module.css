@@ -1097,8 +1097,8 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   bottom: 2px;
 }
 
-.toggle-processes-link .icon,
-.compact-toggle-tasks-link .icon {
+.toggle-processes-link .si,
+.compact-toggle-tasks-link .si {
   font-weight: bold !important;
 }
 
@@ -1894,7 +1894,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   margin-top: 4%;
 }
 
-.no-item-panel .icon {
+.no-item-panel .si {
   display: block;
   text-align: center;
 }
@@ -4975,12 +4975,12 @@ overflow-y:auto;
 height:100%;	
 }
 }
-.case-details-row-space span.icon {
+.case-details-row-space span.si {
   vertical-align: text-top;
 }
 /** Fix for ivy icon --- Start---- **/
-body a .icon,
-body td .icon {
+body a .si,
+body td .si {
   vertical-align: text-top;
 }
 /** Fix for ivy icon --- End---- **/

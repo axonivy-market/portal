@@ -65,7 +65,7 @@
                           process="@this"
                           oncomplete="PF('absence-dialog').show()"
                           actionListener="#{logic.add}"
-                          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}"
+                          icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
                           update="@widgetVar(absence-dialog)"
                           rendered="#{absenceManagementBean.ownAbsencesCreatable}" />
                         <!-- Show on Mobile screen - Only show icon -->
@@ -74,7 +74,7 @@
                           process="@this"
                           oncomplete="PF('absence-dialog').show()"
                           actionListener="#{logic.add}"
-                          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}"
+                          icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
                           update="@widgetVar(absence-dialog)"
                           rendered="#{absenceManagementBean.ownAbsencesCreatable}" />
                       </div>
@@ -113,7 +113,7 @@
                             update="@widgetVar(absence-dialog)"
                             title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/edit')}"
                             rendered="#{absenceManagementBean.isAbsenceEditable(absence) }">
-                            <span class="icon ivyicon-graphic-tablet-drawing-pen" />
+                            <span class="si si-graphic-tablet-drawing-pen" />
                           </p:commandLink>
                           <p:commandLink id="delete-absence"
                             actionListener="#{logic.preDelete(absence)}"
@@ -121,7 +121,7 @@
                             styleClass="absences-table-action-column-icon-button"
                             rendered="#{absenceManagementBean.isAbsenceDeletable(absence)}"
                             title="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}">
-                            <span class="icon ivyicon-bin-1" />
+                            <span class="si si-bin-1" />
                           </p:commandLink>
                         </div>
                       </p:column>
@@ -263,7 +263,7 @@
 
             <p:commandButton id="save-substitute" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
               rendered="#{absenceManagementBean.substitutionCapable}"
-              icon="#{visibilityBean.generateButtonIcon('icon ivyicon-floppy-disk')}"
+              icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
               actionListener="#{logic.saveSubstitutes}"
               process="absences-management-form"
               partialSubmit="true" update="absences-management-form"
@@ -272,7 +272,7 @@
             <p:commandButton id="close-subsitute"
               type="button"
               rendered="#{!absenceManagementBean.substitutionCapable}"
-              icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}"
+              icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
               value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}"
               actionListener="#{logic.backToHome()}" />
           </div>
@@ -283,7 +283,7 @@
         <ui:param name="id" value="delete-absence-confirmation-dialog" />
         <ui:param name="widgetVar" value="deleteAbsenceConfirmation" />
         <ui:param name="appendTo" value="@(body)" />
-        <ui:param name="iconClass" value="icon ivyicon-delete-1" />
+        <ui:param name="iconClass" value="si si-delete-1" />
         <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
         <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/deleteAbsenceHeaderText')}" />
         <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/confirmForDelete')}" />
@@ -295,7 +295,7 @@
             styleClass="u-mar-right-15" />
 
           <p:commandButton id="confirm-action" process="@this"
-            icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}"
+            icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}"
             actionListener="#{logic.deleteAbsence}"
             oncomplete="PF('deleteAbsenceConfirmation').hide();"
