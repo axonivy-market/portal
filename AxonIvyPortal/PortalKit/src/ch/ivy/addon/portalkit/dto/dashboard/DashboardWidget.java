@@ -26,19 +26,19 @@ public abstract class DashboardWidget implements Serializable {
 
   protected String id;
   protected String name;
-  protected int x;
-  protected int y;
+  protected int axisX;
+  protected int axisY;
   protected int width;
   protected int height;
   protected boolean autoPosition;
 
   public DashboardWidget() {}
 
-  public DashboardWidget(String id, String name, int x, int y, int width, int height) {
+  public DashboardWidget(String id, String name, int axisX, int axisY, int width, int height) {
     this.id = id;
     this.name = name;
-    this.x = x;
-    this.y = y;
+    this.axisX = axisX;
+    this.axisY = axisY;
     this.width = width;
     this.height = height;
   }
@@ -62,20 +62,20 @@ public abstract class DashboardWidget implements Serializable {
     this.name = name;
   }
 
-  public int getX() {
-    return x;
+  public int getAxisX() {
+    return axisX;
   }
 
-  public void setX(int x) {
-    this.x = x;
+  public void setAxisX(int axisX) {
+    this.axisX = axisX;
   }
 
-  public int getY() {
-    return y;
+  public int getAxisY() {
+    return axisY;
   }
 
-  public void setY(int y) {
-    this.y = y;
+  public void setAxisY(int axisY) {
+    this.axisY = axisY;
   }
 
   public int getWidth() {
