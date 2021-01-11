@@ -590,6 +590,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void openSavedFilters(String filterName) {
     click(findElementById("task-widget:filter-selection-form:filter-name"));
+    waitForElementDisplayedByCssSelector("span[id$='private-filters']");
     List<WebElement> saveFilters = findListElementsByCssSelector("a[id$='user-defined-filter']");
     for (WebElement filter : saveFilters) {
       if (filter.getText().equals(filterName)) {
