@@ -34,7 +34,7 @@ Ps0 f2 77 133 22 22 -36 17 #rect
 Ps0 f2 @|UdInitIcon #fIcon
 Ps0 f3 expr out #txt
 Ps0 f3 99 144 229 144 #arcP
->Proto Ps0 .type com.axonivy.portal.developerexamples.customization.component.TaskWidget.TaskWidgetData #txt
+>Proto Ps0 .type com.axonivy.portal.developerexamples.customization.TaskWidget.TaskWidgetData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
 >Proto Ps0 '' #fIcon

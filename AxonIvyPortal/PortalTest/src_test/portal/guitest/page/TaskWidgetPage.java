@@ -561,7 +561,6 @@ public class TaskWidgetPage extends TemplatePage {
     click(findElementByCssSelector(startLinkId));
   }
 
-  @SuppressWarnings("deprecation")
   public void saveFilter(String filterName) {
     openSaveFilterDialog();
     WebElement filterNameInput = findElementById(taskWidgetId + ":filter-save-form:save-filter-set-name-input");
