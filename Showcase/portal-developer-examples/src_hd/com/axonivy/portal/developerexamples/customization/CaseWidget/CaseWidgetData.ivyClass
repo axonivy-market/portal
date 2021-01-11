@@ -1,4 +1,4 @@
 CaseWidgetData #class
-com.axonivy.portal.developerexamples.customization.component.CaseWidget #namespace
+com.axonivy.portal.developerexamples.customization.CaseWidget #namespace
 caseView ch.ivy.addon.portal.generic.view.CaseView #field
 caseView PERSISTENT #fieldModifier

@@ -1,7 +1,7 @@
 [Ivy]
 176CBB4874D688E6 9.2.0 #module
 >Proto >Proto Collection #zClass
-Ps0 TaskItemDetailsProcess Big #zClass
+Ps0 PortalTaskDetailsOverrideProcess Big #zClass
 Ps0 RD #cInfo
 Ps0 #process
 Ps0 @TextInP .type .type #zField
@@ -19,7 +19,7 @@ Ps0 @PushWFArc f2 '' #zField
 Ps0 @GridStep f6 '' #zField
 Ps0 @PushWFArc f7 '' #zField
 Ps0 @PushWFArc f5 '' #zField
->Proto Ps0 Ps0 TaskItemDetailsProcess #zField
+>Proto Ps0 Ps0 PortalTaskDetailsOverrideProcess #zField
 Ps0 f0 guid 16C421FBB76376F6 #txt
 Ps0 f0 method start(ch.ivyteam.ivy.workflow.ITask,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,ch.ivy.addon.portalkit.enums.PortalPage,Boolean) #txt
 Ps0 f0 inParameterDecl '<ch.ivyteam.ivy.workflow.ITask task,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel dataModel,ch.ivy.addon.portalkit.enums.PortalPage portalPage,Boolean isFromTaskList> param;' #txt
@@ -73,7 +73,7 @@ Ps0 f6 @|StepIcon #fIcon
 Ps0 f7 expr out #txt
 Ps0 f7 109 96 192 96 #arcP
 Ps0 f5 320 96 411 96 #arcP
->Proto Ps0 .type com.axonivy.portal.developerexamples.customization.component.TaskItemDetails.TaskItemDetailsData #txt
+>Proto Ps0 .type com.axonivy.portal.developerexamples.customization.PortalTaskDetailsOverride.PortalTaskDetailsOverrideData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
 >Proto Ps0 '' #fIcon
