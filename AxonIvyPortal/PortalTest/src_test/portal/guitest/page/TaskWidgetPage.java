@@ -566,7 +566,7 @@ public class TaskWidgetPage extends TemplatePage {
     WebElement filterNameInput = findElementById(taskWidgetId + ":filter-save-form:save-filter-set-name-input");
     enterKeys(filterNameInput, filterName);
     click(findElementById(taskWidgetId + ":filter-save-form:filter-save-command"));
-    waitForElementDisplayed(By.id(taskWidgetId + ":filter-save-form:filter-save-command"), false);
+    WaitHelper.assertTrueWithWait(() -> filterName.equals(findElementByCssSelector("a[id$='filter-name']").getText()));
   }
 
   @SuppressWarnings("deprecation")
