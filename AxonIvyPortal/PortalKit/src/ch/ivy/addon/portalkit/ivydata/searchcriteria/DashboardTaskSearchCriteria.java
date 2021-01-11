@@ -23,6 +23,7 @@ import ch.ivyteam.ivy.workflow.query.TaskQuery.OrderByColumnQuery;
 
 public class DashboardTaskSearchCriteria {
 
+  private static final String LIKE_FORMAT = "%%%s%%";
   private boolean canWorkOn;
   private List<String> categories;
   private List<String> userFilterCategories;
@@ -82,13 +83,13 @@ public class DashboardTaskSearchCriteria {
 
   private void queryName(TaskQuery query, String name) {
     if (StringUtils.isNotBlank(name)) {
-      query.where().name().isLikeIgnoreCase(String.format("%%%s%%", name));
+      query.where().name().isLikeIgnoreCase(String.format(LIKE_FORMAT, name));
     }
   }
 
   private void queryDescription(TaskQuery query, String description) {
     if (StringUtils.isNotBlank(description)) {
-      query.where().description().isLikeIgnoreCase(String.format("%%%s%%", description));
+      query.where().description().isLikeIgnoreCase(String.format(LIKE_FORMAT, description));
     }
   }
 
@@ -155,13 +156,13 @@ public class DashboardTaskSearchCriteria {
   
   private void queryTextField(ICustomFieldFilterQuery filterQuery, String field, String filter) {
     if (StringUtils.isNotBlank(filter)) {
-      filterQuery.textField(field).isLikeIgnoreCase(String.format("%%%s%%", filter));
+      filterQuery.textField(field).isLikeIgnoreCase(String.format(LIKE_FORMAT, filter));
     }
   }
   
   private void queryStringField(ICustomFieldFilterQuery filterQuery, String field, String filter) {
     if (StringUtils.isNotBlank(filter)) {
-      filterQuery.stringField(field).isLikeIgnoreCase(String.format("%%%s%%", filter));
+      filterQuery.stringField(field).isLikeIgnoreCase(String.format(LIKE_FORMAT, filter));
     }
   }
   

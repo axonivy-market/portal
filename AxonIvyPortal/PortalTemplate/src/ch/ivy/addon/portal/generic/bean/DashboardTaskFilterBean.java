@@ -69,7 +69,7 @@ public class DashboardTaskFilterBean {
       if (StringUtils.isBlank(responsible.getDisplayName())) {
         responsibleName = responsible.getName();
       } else {
-        responsibleName = responsible.getDisplayName() + " (" + responsible.getName() + ")";
+        responsibleName = String.format("%s (%s)", responsible.getDisplayName(), responsible.getName());
       }
       return responsible.isEnabled()? responsibleName : Ivy.cms().co("/Labels/disabledUserPrefix") + " " + responsibleName;
     }
