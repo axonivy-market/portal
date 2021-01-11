@@ -10,6 +10,8 @@
   <cc:attribute name="showItemDetailDocuments" />
   <cc:attribute name="descriptionComponentToUpdate" />
   <cc:attribute name="isWorkingOnTask" />
+  <cc:attribute name="inFrame" type="java.lang.Boolean" default="false"/>
+  <cc:attribute name="readOnly" type="java.lang.Boolean" default="false"/>
 </cc:interface>
 
 <cc:implementation>
@@ -34,6 +36,8 @@
     <ui:param name="showItemDetailRelated" value="#{cc.attrs.showItemDetailRelated}" />
     <ui:param name="descriptionComponentToUpdate" value="#{cc.attrs.descriptionComponentToUpdate}" />
     <ui:param name="isWorkingOnTask" value="#{cc.attrs.isWorkingOnTask}" />
+    <ui:param name="inFrame" value="#{cc.attrs.inFrame}" />
+    <ui:param name="readOnly" value="#{cc.attrs.readOnly}" />
 
 
     <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -42,38 +46,44 @@
 
     <!-- Add a content as a Custom panel for Case Detail on top section -->
     <ui:define name="caseItemDetailCustomTop">
-      <h:panelGroup styleClass="ui-g-12" layout="block">
-        <div class="card card-w-title case-detail-card">
-          <div class="case-detail-section-title u-truncate-text">
-            <h:outputText value="This is custom panel on top section" />
-          </div>
-          <div class="Separator" />
 
-          <div class="custom-task-details-panel-top">
-            <h1>This is custom content on top</h1>
-            <p>Custom height to auto</p>
-            <p>Custom font size to 1.6rem</p>
+      <ui:remove>
+        <h:panelGroup styleClass="ui-g-12" layout="block">
+          <div class="card card-w-title case-detail-card">
+            <div class="case-detail-section-title u-truncate-text">
+              <h:outputText value="This is custom panel on top section" />
+            </div>
+            <div class="Separator" />
+
+            <div class="custom-task-details-panel-top">
+              <h1>This is custom content on top</h1>
+              <p>Custom height to auto</p>
+              <p>Custom font size to 1.6rem</p>
+            </div>
           </div>
-        </div>
-      </h:panelGroup>
+        </h:panelGroup>
+      </ui:remove>
     </ui:define>
 
     <!-- Add a content as a Custom panel for Case Detail on middle section, below the General & description box -->
     <ui:define name="caseItemDetailCustomMiddle">
-      <h:panelGroup styleClass="ui-g-12" layout="block">
-        <div class="card card-w-title case-detail-card">
-          <div class="case-detail-section-title u-truncate-text">
-            <h:outputText value="This is custom panel on middle section" />
-          </div>
-          <div class="Separator" />
 
-          <div class="custom-task-details-panel-middle">
-            <h1>This is custom content on middle</h1>
-            <p>Custom height to auto</p>
-            <p>Custom font size to 1.6rem</p>
+      <ui:remove>
+        <h:panelGroup styleClass="ui-g-12" layout="block">
+          <div class="card card-w-title case-detail-card">
+            <div class="case-detail-section-title u-truncate-text">
+              <h:outputText value="This is custom panel on middle section" />
+            </div>
+            <div class="Separator" />
+
+            <div class="custom-task-details-panel-middle">
+              <h1>This is custom content on middle</h1>
+              <p>Custom height to auto</p>
+              <p>Custom font size to 1.6rem</p>
+            </div>
           </div>
-        </div>
-      </h:panelGroup>
+        </h:panelGroup>
+      </ui:remove>
     </ui:define>
 
     <!-- Add a content as a Custom panel for Case Detail on bottom section -->
