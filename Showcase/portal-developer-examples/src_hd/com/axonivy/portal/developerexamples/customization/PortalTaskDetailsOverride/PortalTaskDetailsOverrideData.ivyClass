@@ -1,5 +1,5 @@
-TaskItemDetailsData #class
-com.axonivy.portal.developerexamples.customization.component.TaskItemDetails #namespace
+PortalTaskDetailsOverrideData #class
+com.axonivy.portal.developerexamples.customization.PortalTaskDetailsOverride #namespace
 task ch.ivyteam.ivy.workflow.ITask #field
 task PERSISTENT #fieldModifier
 portalPage ch.ivy.addon.portalkit.enums.PortalPage #field
