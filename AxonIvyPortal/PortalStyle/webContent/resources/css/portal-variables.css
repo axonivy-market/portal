@@ -31,6 +31,7 @@
   --ivy-portal-blue-light: #90DDE9;
   --ivy-portal-blue-dark: #007095;
   --ivy-portal-color-black: #1B1B1B;
+  --ivy-portal-color-gray-dark: #565656;
 
   --accent-color: var(--ivy-portal-blue-light);
   --accent-text-color: var(--primary-dark-text-color);

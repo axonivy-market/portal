@@ -1,5 +1,7 @@
 var topValue;
 var leftValue;
+var ivyPrimaryColorWhite = getComputedStyle(document.documentElement).getPropertyValue('--ivy-primary-color-white');
+var ivyPortalColorGrayDark = getComputedStyle(document.documentElement).getPropertyValue('--ivy-portal-color-gray-dark');
 
 function updateDrillDownPanelPosition(panel) {
   var widgetVar = panel.widgetVar;
@@ -10,7 +12,7 @@ function updateDrillDownPanelPosition(panel) {
   });
 }
 
-var taskByExpiryLabelsColor = "#FFFFFF";
+var taskByExpiryLabelsColor = ivyPrimaryColorWhite;
 
 function taskByExpiryChartExtender() {
   // copy the config options into a variable
@@ -60,7 +62,7 @@ function taskByExpiryChartClickEvent(event, activeElement) {
   }
 }
 
-var elapsedTimeLabelsColor = "#FFFFFF";
+var elapsedTimeLabelsColor = ivyPrimaryColorWhite;
 
 function elapsedTimeChartExtender() {
   // copy the config options into a variable
@@ -131,7 +133,7 @@ function donutChartDataLabelsFormatter(value, context) {
 }
 
 // EXCEPTION, HIGH, NORMAL, LOW: colors order/length must be the same as returned data order/length of generateDataForTaskByPriorityChart in StatisticService.java
-var taskByPriorityLabelsColor = ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#565656"];
+var taskByPriorityLabelsColor = [ivyPrimaryColorWhite, ivyPrimaryColorWhite, ivyPrimaryColorWhite, ivyPortalColorGrayDark];
 
 function taskByPriorityChartDataLabelsColor(context) {
   var index = context.dataIndex;
@@ -167,7 +169,7 @@ function taskByPriorityChartExtender() {
 }
 
 // CREATED, RUNNING, DONE, FAILED: colors order/length must be the same as returned data order/length of generateDataForCaseStateChart in StatisticService.java
-var caseByStateLabelsColor = ["#565656", "#FFFFFF", "#FFFFFF", "#FFFFFF"];
+var caseByStateLabelsColor = [ivyPortalColorGrayDark, ivyPrimaryColorWhite, ivyPrimaryColorWhite, ivyPrimaryColorWhite];
 
 function caseByStateChartDataLabelsColor(context) {
   var index = context.dataIndex;
