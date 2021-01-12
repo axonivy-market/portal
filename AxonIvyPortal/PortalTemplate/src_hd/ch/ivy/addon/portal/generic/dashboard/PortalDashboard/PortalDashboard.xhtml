@@ -8,7 +8,7 @@
     <ui:define name="title">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/dashboard')}</ui:define>
     <ui:define name="pageContent">
       <ui:fragment rendered="#{empty dashboardBean.dashboards}">
-        <h1>You don't have permissions to see dashboards.</h1>
+        <h1>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/noPermission')}</h1>
       </ui:fragment>
       
       <ui:fragment rendered="#{not empty dashboardBean.dashboards}">
@@ -27,9 +27,9 @@
                   data-gs-width="#{widget.width}" data-gs-height="#{widget.height}" data-gs-autoPosition="#{widget.autoPosition}"
                   data-gs-no-resize="#{dashboardBean.isReadOnlyMode}" data-gs-no-move="#{dashboardBean.isReadOnlyMode}"
                   jsf:rendered="#{widget.id ne 'action' or (widget.id eq 'action' and !dashboardBean.isReadOnlyMode)}">
-                  <div class="grid-stack-item-content card dashboard__widget">
+                  <div class="grid-stack-item-content card dashboard-card dashboard__widget">
                     <h:panelGroup rendered="#{fn:startsWith(widget.id, 'task')}">
-                      <h:form id="task-form" style="display: contents">
+                      <h:form id="task-form">
                         <div class="widget__header">
                           <span>
                             #{not empty widget.name ? widget.name : ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/yourTasks")}
@@ -45,7 +45,7 @@
                             <p:remoteCommand name="buildStatisticInfos" actionListener="#{widget.buildStatisticInfos}" update="statistic-filter-accordion-panel" />
                             <p:commandLink styleClass="u-mar-right-5" oncomplete="PF('task-widget-configuration-dialog').show()" global="false"
                               actionListener="#{dashboardBean.setWidget(widget)}" update="task-widget-configuration-dialog" rendered="#{!dashboardBean.isReadOnlyMode}">
-                              <i class="icon ui-icon ivyicon-pencil" />
+                              <i class="si si-pencil" />
                             </p:commandLink>
                             <p:commandLink>
                               <i class="si si-arrow-right" />
