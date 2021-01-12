@@ -10,6 +10,8 @@ function updateDrillDownPanelPosition(panel) {
   });
 }
 
+var taskByExpiryLabelsColor = "#FFFFFF";
+
 function taskByExpiryChartExtender() {
   // copy the config options into a variable
   let options = jQuery.extend(true, {}, this.cfg.config.options);
@@ -24,10 +26,9 @@ function taskByExpiryChartExtender() {
     plugins: {
       datalabels: {
         color: function(context) {
-          let legendColor = context.chart.legend.options.labels.fontColor;
           var index = context.dataIndex;
           var value = context.dataset.data[index];
-          return value <= 0 ? 'transparent' : legendColor;
+          return value <= 0 ? 'transparent' : taskByExpiryLabelsColor;
           },
       }
     }
@@ -58,6 +59,8 @@ function taskByExpiryChartClickEvent(event, activeElement) {
     leftValue = event.offsetX;
   }
 }
+
+var elapsedTimeLabelsColor = "#FFFFFF";
 
 function elapsedTimeChartExtender() {
   // copy the config options into a variable
@@ -96,10 +99,9 @@ function elapsedTimeChartExtender() {
     plugins: {
       datalabels: {
         color: function(context) {
-          let legendColor = context.chart.legend.options.labels.fontColor;
           var index = context.dataIndex;
           var value = context.dataset.data[index];
-          return value <= 0 ? 'transparent' : legendColor;
+          return value <= 0 ? 'transparent' : elapsedTimeLabelsColor;
           },
       }
     }
@@ -109,35 +111,89 @@ function elapsedTimeChartExtender() {
   jQuery.extend(true, this.cfg.config.options, options);
 }
 
-function donutExtender() {
+function donutChartLegendLabelsFilter(legendItem, data) {
+  return data.datasets[0].data[legendItem.index] != 0;
+}
+
+function donutChartHoverEvent(event, activeElement) {
+  event.target.style.cursor = activeElement[0] ? 'pointer' : 'default';
+}
+
+function donutChartDataLabelsFormatter(value, context) {
+  let sum = 0;
+  let dataArr = context.dataset.data;
+  for (var index = 0;index < dataArr.length; index++) {
+      sum += dataArr[index];
+  }
+
+  let percentage = (value*100 / sum).toFixed(2)+"%";
+  return percentage;
+}
+
+// EXCEPTION, HIGH, NORMAL, LOW: colors order/length must be the same as returned data order/length of generateDataForTaskByPriorityChart in StatisticService.java
+var taskByPriorityLabelsColor = ["#FFFFFF", "#FFFFFF", "#FFFFFF", "#565656"];
+
+function taskByPriorityChartDataLabelsColor(context) {
+  var index = context.dataIndex;
+  var value = context.dataset.data[index];
+  return value <= 0 ? 'transparent' : taskByPriorityLabelsColor[index];
+}
+
+function taskByPriorityChartExtender() {
   // copy the config options into a variable
   let options = jQuery.extend(true, {}, this.cfg.config.options);
   options = {
-    hover : {
-      onHover : function(event, activeElement) {
-        event.target.style.cursor = activeElement[0] ? 'pointer' : 'default';
+    legend: {
+      labels: {
+        filter: donutChartLegendLabelsFilter
       }
+    },
+
+    hover : {
+      onHover : donutChartHoverEvent
     },
 
     plugins: {
         datalabels: {
-          color: function(context) {
-            let legendColor = context.chart.legend.options.labels.fontColor;
-            var index = context.dataIndex;
-            var value = context.dataset.data[index];
-            return value <= 0 ? 'transparent' : legendColor;
-            },
+          color: taskByPriorityChartDataLabelsColor,
 
-            formatter: function(value, context) {
-              let sum = 0;
-              let dataArr = context.dataset.data;
-              for (var index = 0;index < dataArr.length; index++) {
-                  sum += dataArr[index];
-              }
+          formatter: donutChartDataLabelsFormatter
+        }
+    }
+  };
 
-              let percentage = (value*100 / sum).toFixed(2)+"%";
-              return percentage;
-            }
+  // merge all options into the main chart options
+  jQuery.extend(true, this.cfg.config.options, options);
+}
+
+// CREATED, RUNNING, DONE, FAILED: colors order/length must be the same as returned data order/length of generateDataForCaseStateChart in StatisticService.java
+var caseByStateLabelsColor = ["#565656", "#FFFFFF", "#FFFFFF", "#FFFFFF"];
+
+function caseByStateChartDataLabelsColor(context) {
+  var index = context.dataIndex;
+  var value = context.dataset.data[index];
+  return value <= 0 ? 'transparent' : caseByStateLabelsColor[index];
+}
+
+function caseByStateChartExtender() {
+  // copy the config options into a variable
+  let options = jQuery.extend(true, {}, this.cfg.config.options);
+  options = {
+    legend: {
+      labels: {
+        filter: donutChartLegendLabelsFilter
+      }
+    },
+
+    hover : {
+      onHover : donutChartHoverEvent
+    },
+
+    plugins: {
+        datalabels: {
+          color: caseByStateChartDataLabelsColor,
+
+          formatter: donutChartDataLabelsFormatter
         }
     }
   };
