@@ -11,21 +11,13 @@
       <div class="ui-g portal-card-container MarTop20 process-history-component">
         <div class="card ui-g-12">
           <h1><i class="si si-buildings-1 u-padding-right-5"/>Alpha Company - Process history</h1>
-
-          <h:panelGroup rendered="#{!data.emptyData}">
-            <h3><i class="si si-advertising-megaphone-2 u-padding-right-5"/>Congratulations !</h3>
-            <p>It's time to cut the big ribbon. Alpha company is officially open. Now, focus on managing and growing your business.</p>
-          </h:panelGroup>
-          <h:panelGroup rendered="#{data.emptyData}">
-            <h4>Please run <strong>#{ivy.cms.co('/Processes/ProcessHistoryComponent/AlphaCompany/name')}</strong> process first !</h4>
-          </h:panelGroup>
+          <h3><i class="si si-advertising-megaphone-2 u-padding-right-5"/>Congratulations !</h3>
+          <p>It's time to cut the big ribbon. Alpha company is officially open. Now, focus on managing and growing your business.</p>
 
           <br/>
           <p:commandButton id="process-history-dialog-button" value="Open history dialog" process="@this"
             oncomplete="PF('process-history-dialog').show()" update="process-history-dialog" icon="si si-task-list-approve"/>
-          <br/>
-          <br/>
-          
+
           <p:dialog widgetVar="process-history-dialog" id="process-history-dialog" width="800" height="400" resizable="false"
             header="Below is the history of the process to open Alpha company" modal="true" onShow="processHistory.setup();">
             <ic:ch.ivy.addon.portal.component.ProcessHistory businessEntityId="alpha" chunkSize="10" scrollHeight="300" />
