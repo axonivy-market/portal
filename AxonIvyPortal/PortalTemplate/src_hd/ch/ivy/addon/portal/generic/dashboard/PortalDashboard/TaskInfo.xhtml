@@ -57,7 +57,7 @@
     </p:tab>
     <p:tab id="filter-tab">
       <f:facet name="title">
-        <h:outputText value="Predefined filters" />
+        <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/predefinedFilters')}" />
       </f:facet>
       <div class="ui-g">
          <ui:repeat var="field" value="#{widget.filterableColumns}">
