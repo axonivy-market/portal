@@ -11,7 +11,7 @@
 <cc:implementation>
   <f:event listener="#{dashboardTaskFilterBean.preRender(cc.attrs.taskWidget)}" type="preRenderComponent" />
   <div class="ui-g MarTop10">
-    <div class="task-configuration filter-container card">
+    <div class="task-configuration filter-container card dashboard-card">
       <h:panelGroup id="filter-container" layout="block" styleClass="ui-g">
         <div class="ui-g-12">
           #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/taskConfigurationText1')} <br />
@@ -82,7 +82,7 @@
             </div>
             <div class="ui-g-3" />
             <div class="ui-g-9">
-              <span style="width: 10%; display: inline-block" />
+              <span class="task-configuration__chbox-work-on" />
               <p:selectBooleanCheckbox id="can-work-on" value="#{cc.attrs.taskWidget.canWorkOn}"
                 itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/canWorkOn')}" />
             </div>
@@ -112,7 +112,7 @@
               <p:inputNumber id="from-number-field-input" styleClass="task-configuration__input-text" value="#{field.filterFrom}"
                 inputStyleClass="task-configuration__input-number">
                 <f:convertNumber pattern="#{field.pattern}" />
-            </p:inputNumber>
+              </p:inputNumber>
             </div>
 
             <div class="ui-g-3">
@@ -122,7 +122,7 @@
               <p:inputNumber id="to-number-field-input" styleClass="task-configuration__input-text" value="#{field.filterTo}"
                 inputStyleClass="task-configuration__input-number">
                 <f:convertNumber pattern="#{field.pattern}" />
-          </p:inputNumber>
+              </p:inputNumber>
             </div>
           </h:panelGroup>
 

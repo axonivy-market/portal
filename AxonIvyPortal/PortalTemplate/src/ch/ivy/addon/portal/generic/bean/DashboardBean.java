@@ -275,19 +275,20 @@ public class DashboardBean implements Serializable {
   }
   
   public String getNewTaskWidgetId() {
+    final String taskIdPrefix = "task_";
     String result = "";
     List<String> ids = selectedDashboard.getWidgets().stream()
-        .filter(widget -> widget.getId().startsWith("task_"))
+        .filter(widget -> widget.getId().startsWith(taskIdPrefix))
         .map(DashboardWidget::getId).collect(Collectors.toList());
 
     if (CollectionUtils.isEmpty(ids)) {
-      result = "task_0";
+      result = taskIdPrefix + "0";
     } else {
-      Integer maxId = Collections.max(ids.stream().map(id -> Integer.parseInt(id.replace("task_", ""))).collect(Collectors.toList()));
+      Integer maxId = Collections.max(ids.stream().map(id -> Integer.parseInt(id.replace(taskIdPrefix, ""))).collect(Collectors.toList()));
       if (maxId == null || maxId < 0) {
-        result = "task_0";
+        result = taskIdPrefix + "0";
       } else {
-        result = "task_".concat(Integer.toString(maxId + 1));
+        result = taskIdPrefix.concat(Integer.toString(maxId + 1));
       }
     }
     return result;

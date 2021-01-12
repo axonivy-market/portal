@@ -18,6 +18,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.custom.field.CustomFieldType;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldNames;
 import ch.ivyteam.ivy.workflow.custom.field.ICustomFieldNames.Result;
@@ -85,7 +86,7 @@ public class ColumnManagementBean {
       columnModel.setPattern(numberFieldPattern);
     }
     this.columnsBeforeSave.add(columnModel);
-    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "The " + this.selectedField + " field is added", null);
+    FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/fieldIsAdded", Arrays.asList(this.selectedField)), null);
     FacesContext.getCurrentInstance().addMessage("field-msg", msg);
     resetValues();
   }

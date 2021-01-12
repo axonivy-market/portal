@@ -8,7 +8,7 @@
 
 <cc:implementation>
   <f:event listener="#{columnManagementBean.preRender(cc.attrs.taskWidget)}" type="preRenderComponent" />
-  <p:dialog id="column-management-dialog" widgetVar="column-management-dialog" header="Column management"
+  <p:dialog id="column-management-dialog" widgetVar="column-management-dialog" header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/columnManagement')}"
     appendTo="@(body)" fitViewport="true" width="700" closeOnEscape="true" draggable="false" dynamic="true"
     responsive="true" modal="true">
     <h:form id="column-management-form">
@@ -17,21 +17,21 @@
       <p:dataTable id="column-management-datatable" value="#{columnManagementBean.columnsBeforeSave}" var="column"
         draggableRows="true" rowDragSelector="i.fa-arrows-v">
         <p:ajax event="rowReorder" global="false" />
-        <p:column headerText="Visible" width="70" style="text-align: center">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/visible')}" width="70" styleClass="u-text-align-center">
           <p:selectBooleanCheckbox id="column-visibility-checkbox" value="#{column.visible}">
             <p:ajax event="change" global="false" />
           </p:selectBooleanCheckbox>
         </p:column>
-        <p:column headerText="Field">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/field')}">
           #{column.field}
         </p:column>
-          <p:column headerText="Display Name">
+          <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/displayName')}">
           #{column.header}
         </p:column>
-        <p:column headerText="Reorder" width="70" style="text-align: center">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reorder')}" width="70" styleClass="u-text-align-center">
           <i class="fa fa-arrows-v" />
         </p:column>
-        <p:column headerText="Remove" width="70" style="text-align: center">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/remove')}" width="70" styleClass="u-text-align-center">
           <p:commandLink id="remove-link" actionListener="#{columnManagementBean.remove(column)}" global="false" process="@this" update="column-management-datatable">
             <i class="icon ivyicon-bin-1" />
           </p:commandLink>
