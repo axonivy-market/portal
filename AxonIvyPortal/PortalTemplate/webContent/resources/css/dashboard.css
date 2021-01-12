@@ -11,7 +11,7 @@
   color: var(- -primary-color);
 }
 
-.card {
+.dashboard-card {
   padding: 0;
 }
 
@@ -192,6 +192,11 @@
   box-shadow: var(--card-box-shadow);
 }
 
+.task-configuration__chbox-work-on {
+  width: 10%; 
+  display: inline-block;
+}
+
 .task-configuration__input-text {
   float: right;
   width: 90%;
@@ -271,6 +276,10 @@ body .ui-selectcheckboxmenu.task-configuration__selectcheckboxmenu .ui-selectche
 .task-configuration__category-panel-footer {
   margin-top: 5px;
   text-align: right;
+}
+
+.field-add-fieldset {
+  margin-bottom: 10px;
 }
 
 .field-add-fieldset__label {
