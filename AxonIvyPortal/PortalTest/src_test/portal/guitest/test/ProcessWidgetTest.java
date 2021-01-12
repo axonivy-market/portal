@@ -32,9 +32,6 @@ public class ProcessWidgetTest extends BaseTest {
   private static final String APPRAISAL = "Appraisal";
   private static final String AGOOGLE_LINK = "AGoogle";
   private static final String AAGOOGLE_LINK = "AAGoogle";
-  private static final String ALPHA_HISTORY_TASK = "Alpha Company Task";
-  private static final String VIEW_ALPHA_HISTORY = "View Alpha Process History";
-  private static final String VIEW_ALPHA_HISTORY_IN_DIALOG = "View Alpha Process History in Dialog";
 
   private HomePage homePage;
   ProcessWidgetPage processWidget;
@@ -128,20 +125,26 @@ public class ProcessWidgetTest extends BaseTest {
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     homePage = new HomePage();
     processWidget = homePage.getProcessWidget();
+    String alphaHistoryTask = "Alpha Company Task";
+    String viewAlphaHistory = "View Alpha Process History";
+    String viewBetaHistory = "View Beta Process History";
     processWidget.clickSortDefaultProcessByName();
-    assertEquals(ALPHA_HISTORY_TASK, processWidget.getProcessNameFromDefaultProcessList(0));
-    assertEquals(VIEW_ALPHA_HISTORY, processWidget.getProcessNameFromDefaultProcessList(1));
-    assertEquals(VIEW_ALPHA_HISTORY_IN_DIALOG, processWidget.getProcessNameFromDefaultProcessList(2));
+    assertEquals(alphaHistoryTask, processWidget.getProcessNameFromDefaultProcessList(0));
+    assertEquals(viewAlphaHistory, processWidget.getProcessNameFromDefaultProcessList(1));
+    assertEquals(viewBetaHistory, processWidget.getProcessNameFromDefaultProcessList(2));
   }
 
   @Test
   public void testSortDefaultProcessByIndex() {
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     homePage = new HomePage();
+    String alphaHistoryTask = "Alpha Company Task";
+    String viewAlphaHistory = "View Alpha Process History";
+    String viewBetaHistory = "View Beta Process History";
     processWidget = homePage.getProcessWidget();
-    assertEquals(ALPHA_HISTORY_TASK, processWidget.getProcessNameFromDefaultProcessList(0));
-    assertEquals(VIEW_ALPHA_HISTORY, processWidget.getProcessNameFromDefaultProcessList(1));
-    assertEquals(VIEW_ALPHA_HISTORY_IN_DIALOG, processWidget.getProcessNameFromDefaultProcessList(2));
+    assertEquals(alphaHistoryTask, processWidget.getProcessNameFromDefaultProcessList(0));
+    assertEquals(viewAlphaHistory, processWidget.getProcessNameFromDefaultProcessList(1));
+    assertEquals(viewBetaHistory, processWidget.getProcessNameFromDefaultProcessList(2));
   }
 
   @Test
