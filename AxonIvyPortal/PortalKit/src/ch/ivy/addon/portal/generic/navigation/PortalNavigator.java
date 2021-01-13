@@ -130,6 +130,9 @@ public final class PortalNavigator {
     navigateByKeyword("StatisticPage.ivp", PORTAL_STATISTIC, new HashMap<>());
   }
 
+  /**
+   * Navigate to Portal home
+   */
   public static void navigateToPortalHome() {
     navigateByKeyword("DefaultApplicationHomePage.ivp", PORTAL_PROCESS_START_NAME, new HashMap<>());
   }
