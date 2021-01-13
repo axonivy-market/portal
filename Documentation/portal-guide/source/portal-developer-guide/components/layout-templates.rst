@@ -494,8 +494,6 @@ E.g. Initialize ``ResponsiveToolkit`` for TaskList page.
 .. |process-chain-shape| image:: images/layout-templates/process-chain-shape.png
 .. |task-list-template| image:: images/layout-templates/task-list-template.png
 .. |task-name-template| image:: images/layout-templates/task-name-template.png
-.. |task-template-process-chain| image:: images/layout-templates/task-template-process-chain.png
-.. |task-template-task-form| image:: images/layout-templates/task-template-task-form.png
 .. |two-column-template| image:: images/layout-templates/two-column-template.png
 
 
