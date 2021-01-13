@@ -24,7 +24,7 @@ pipeline {
                     version = getCurrentVersion()
                   }
 
-                  docker.image('axonivy/build-container:read-the-docs-1.2').inside {
+                  docker.image('axonivy/build-container:read-the-docs-2').inside {
                     sh "make -C /doc-build html BASEDIR='${env.WORKSPACE}/Documentation/portal-guide' VERSION=${version}"             
                   }
 
