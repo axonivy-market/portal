@@ -262,7 +262,7 @@ Ss0 f25 136 458 144 44 -67 -8 #rect
 Ss0 f25 @|StepIcon #fIcon
 Ss0 f26 expr out #txt
 Ss0 f26 95 480 136 480 #arcP
-Ss0 f23 dialogId com.axonivy.portal.developerexamples.CustomTaskTemplate #txt
+Ss0 f23 dialogId com.axonivy.portal.developerexamples.showcase.CustomTaskTemplate #txt
 Ss0 f23 startMethod start(com.axonivy.portal.developerexamples.showcase.Data) #txt
 Ss0 f23 requestActionDecl '<com.axonivy.portal.developerexamples.showcase.Data data> param;' #txt
 Ss0 f23 requestMappingAction 'param.data=in;
@@ -320,7 +320,7 @@ Ss0 f35 721 241 30 30 -82 18 #rect
 Ss0 f35 @|StartRequestIcon #fIcon
 Ss0 f36 977 241 30 30 0 15 #rect
 Ss0 f36 @|EndIcon #fIcon
-Ss0 f37 dialogId com.axonivy.portal.developerexamples.PortalDialogExample #txt
+Ss0 f37 dialogId com.axonivy.portal.developerexamples.showcase.PortalDialogExample #txt
 Ss0 f37 startMethod start() #txt
 Ss0 f37 requestActionDecl '<> param;' #txt
 Ss0 f37 responseMappingAction 'out=in;

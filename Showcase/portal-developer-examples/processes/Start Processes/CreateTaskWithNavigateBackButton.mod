@@ -68,7 +68,7 @@ Cn0 f4 expr out #txt
 Cn0 f4 type com.axonivy.portal.developerexamples.Data #txt
 Cn0 f4 var in1 #txt
 Cn0 f4 199 64 337 64 #arcP
-Cn0 f5 dialogId com.axonivy.portal.developerexamples.NavigateBackTaskPage #txt
+Cn0 f5 dialogId com.axonivy.portal.developerexamples.showcase.NavigateBackTaskPage #txt
 Cn0 f5 startMethod start() #txt
 Cn0 f5 requestActionDecl '<> param;' #txt
 Cn0 f5 responseActionDecl 'com.axonivy.portal.developerexamples.Data out;
