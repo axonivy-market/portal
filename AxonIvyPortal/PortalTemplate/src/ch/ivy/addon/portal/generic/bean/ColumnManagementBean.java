@@ -14,6 +14,15 @@ import javax.faces.context.FacesContext;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.CreatedDateColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.DescriptionColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.ExpiryDateColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.IdColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.NameColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.PriorityColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.ResponsibleColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.StartColumnModel;
+import ch.ivy.addon.portalkit.dto.dashboard.StateColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardColumnType;
@@ -77,7 +86,7 @@ public class ColumnManagementBean {
   }
   
   public void add() {
-    ColumnModel columnModel = new ColumnModel();
+    ColumnModel columnModel = constructColumn();
     columnModel.setType(this.selectedFieldType);
     columnModel.setHeader(this.fieldDisplayName);
     columnModel.setField(this.selectedField);
@@ -89,6 +98,32 @@ public class ColumnManagementBean {
     FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/dashboard/fieldIsAdded", Arrays.asList(this.selectedField)), null);
     FacesContext.getCurrentInstance().addMessage("field-msg", msg);
     resetValues();
+  }
+  
+  private ColumnModel constructColumn() {
+    ColumnModel column = new ColumnModel();
+    if (this.selectedFieldType == DashboardColumnType.STANDARD) {
+      if (DashboardStandardTaskColumn.START.getField().equalsIgnoreCase(this.selectedField)) {
+        column = new StartColumnModel();
+      } else if (DashboardStandardTaskColumn.PRIORITY.getField().equalsIgnoreCase(this.selectedField)) {
+        column = new PriorityColumnModel();
+      } else if (DashboardStandardTaskColumn.ID.getField().equalsIgnoreCase(this.selectedField)) {
+        column = new IdColumnModel();
+      } else if (DashboardStandardTaskColumn.NAME.getField().equalsIgnoreCase(this.selectedField)) {
+        column = new NameColumnModel();
+      } else if (DashboardStandardTaskColumn.DESCRIPTION.getField().equalsIgnoreCase(this.selectedField)) {
+        column = new DescriptionColumnModel();
+      } else if (DashboardStandardTaskColumn.RESPONSIBLE.getField().equalsIgnoreCase(this.selectedField)) {
+        column = new ResponsibleColumnModel();
+      } else if (DashboardStandardTaskColumn.STATE.getField().equalsIgnoreCase(this.selectedField)) {
+        column = new StateColumnModel();
+      } else if (DashboardStandardTaskColumn.CREATED.getField().equalsIgnoreCase(this.selectedField)) {
+        column = new CreatedDateColumnModel();
+      } else if (DashboardStandardTaskColumn.EXPIRY.getField().equalsIgnoreCase(this.selectedField)) {
+        column = new ExpiryDateColumnModel();
+      }
+    }
+    return column;
   }
   
   public void fetchFields() {
