@@ -57,8 +57,7 @@
                             <p:overlayPanel widgetVar="filter-overlay-panel" for="filter-sidebar-link" appendTo="@(body)" styleClass="info-overlay-panel" dismissable="false">
                               <ui:include src="TaskFilter.xhtml">
                                 <ui:param name="updateComponent" value="#{component.parent.namingContainer.clientId}:task-component:dashboard-tasks" />
-                                <ui:param name="onCompleteApplyingFilters"
-                                  value="PF('filter-overlay-panel').hide();" />
+                                <ui:param name="onCompleteApplyingFilters" value="PF('filter-overlay-panel').hide(); PF('dashboard-tasks-#{widget.id}').filter()" />
                             </ui:include>
                             </p:overlayPanel>
                           </div>
