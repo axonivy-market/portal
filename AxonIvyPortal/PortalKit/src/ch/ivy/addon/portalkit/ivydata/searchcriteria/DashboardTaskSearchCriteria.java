@@ -9,8 +9,8 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang3.time.DateUtils;
 
-import ch.ivy.addon.portalkit.constant.DashboardConfigurationPrefix;
 import ch.ivy.addon.portalkit.dto.dashboard.ColumnModel;
+import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardFilterType;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.util.Dates;
@@ -364,15 +364,15 @@ public class DashboardTaskSearchCriteria {
       if (!sortStandardColumn) {
         String sortField = criteria.getSortField();
         if (StringUtils.isNotBlank(sortField)) {
-          if (StringUtils.startsWithIgnoreCase(sortField, DashboardConfigurationPrefix.CUSTOM_FIELD_NUMBER)) {
-            order = query.orderBy().customField().numberField(
-                StringUtils.removeStartIgnoreCase(sortField, DashboardConfigurationPrefix.CUSTOM_FIELD_NUMBER));
-          } else if (StringUtils.startsWithIgnoreCase(sortField, DashboardConfigurationPrefix.CUSTOM_FIELD_TIMESTAMP)) {
-            order = query.orderBy().customField().timestampField(
-                StringUtils.removeStartIgnoreCase(sortField, DashboardConfigurationPrefix.CUSTOM_FIELD_TIMESTAMP));
+          DashboardColumnFormat format = columns.stream()
+              .filter(c -> StringUtils.equalsIgnoreCase(sortField, c.getField())).map(ColumnModel::getFormat)
+              .findFirst().orElse(DashboardColumnFormat.STRING);
+          if (format == DashboardColumnFormat.NUMBER) {
+            order = query.orderBy().customField().numberField(sortField);
+          } else if (format == DashboardColumnFormat.TIMESTAMP) {
+            order = query.orderBy().customField().timestampField(sortField);
           } else {
-            order = query.orderBy().customField().stringField(
-                StringUtils.removeStartIgnoreCase(sortField, DashboardConfigurationPrefix.CUSTOM_FIELD_STRING));
+            order = query.orderBy().customField().stringField(sortField);
           }
         }
       }
