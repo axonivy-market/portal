@@ -897,7 +897,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     options.setScales(scales);
     model.setData(data);
     model.setOptions(options);
-    model.setExtender("taskByExpiryChartExtender");
+    model.setExtender(getTaskByExpiryChartExtenderBySelectedValue(selectedValue));
 
     return model;
   }
@@ -974,6 +974,26 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     dataSet.setBackgroundColor(bgColor);
     dataSet.setBorderWidth(1);
     return dataSet;
+  }
+
+  private String getTaskByExpiryChartExtenderBySelectedValue(String selectedValue) {
+    String extender = "";
+    String today = Ivy.cms().co(TODAY_EXPIRY_KEY);
+    String week = Ivy.cms().co(THIS_WEEK_EXPIRY_KEY);
+    String month = Ivy.cms().co(THIS_MONTH_EXPIRY_KEY);
+    String year = Ivy.cms().co(THIS_YEAR_EXPIRY_KEY);
+    if (selectedValue.equalsIgnoreCase(today)) {
+      extender = "taskByExpiryChartTodayExtender";
+    } else if (selectedValue.equalsIgnoreCase(week)) {
+      extender = "taskByExpiryChartThisWeekExtender";
+    } else if (selectedValue.equalsIgnoreCase(month)) {
+      extender = "taskByExpiryChartThisMonthExtender";
+    } else if (selectedValue.equalsIgnoreCase(year)) {
+      extender = "taskByExpiryChartThisYearExtender";
+    } else {
+      extender = "taskByExpiryChartDefaultExtender";
+    }
+    return extender;
   }
 
   private CartesianLinearAxes createLinearAxes(String position, String axesLabel) {

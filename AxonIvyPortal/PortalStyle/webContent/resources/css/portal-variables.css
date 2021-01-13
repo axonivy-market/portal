@@ -167,6 +167,20 @@
   --statistic-link-hover-border: var(--ivy-primary-color-grey-light);
   --chart-container-separator-border: 1px solid #F4F4F4;
   --chart-container-separator-border-radius: 0;
+  --chart-label-default-exception-priority-color: var(--ivy-primary-color-white);
+  --chart-label-default-high-priority-color: var(--ivy-primary-color-white);
+  --chart-label-default-normal-priority-color: var(--ivy-primary-color-white);
+  --chart-label-default-low-priority-color: var(--ivy-portal-color-gray-dark);
+  --chart-label-default-created-case-color: var(--ivy-portal-color-gray-dark);
+  --chart-label-default-running-case-color: var(--ivy-primary-color-white);
+  --chart-label-default-done-case-color: var(--ivy-primary-color-white);
+  --chart-label-default-failed-case-color: var(--ivy-primary-color-white);
+  --chart-label-default-elapsed-time-color: var(--ivy-primary-color-white);
+  --chart-label-default-task-expiried-color: var(--ivy-primary-color-white);
+  --chart-label-default-task-today-color: var(--ivy-primary-color-white);
+  --chart-label-default-task-week-color: var(--ivy-primary-color-white);
+  --chart-label-default-task-month-color: var(--ivy-primary-color-white);
+  --chart-label-default-task-year-color: var(--ivy-primary-color-white);
 
   /* Sidebar */
   --sidebar-app-text-color: var(--menuitem-text-color);
