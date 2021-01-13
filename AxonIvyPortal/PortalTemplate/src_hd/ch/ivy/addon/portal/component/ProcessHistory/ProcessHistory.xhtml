@@ -31,9 +31,9 @@
 		<ui:include src="ColumnHeader.xhtml">
 			<ui:param name="id" value="pm-column-header" />
 			<ui:param name="styleClass" value="process-history-list-header-default process-history-list-width-120 u-hidden-sm-down" />
-			<ui:param name="sortedField" value="PROCESS_NAME" />
+			<ui:param name="sortedField" value="CATEGORY" />
 			<ui:param name="sortable" value="true" />
-			<ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/processName')}" />
+			<ui:param name="value" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CATEGORY')}" />
 		</ui:include>
 		<ui:include src="ColumnHeader.xhtml">
 			<ui:param name="id" value="created-date-column-header" />
@@ -74,7 +74,7 @@
 					<ic:ch.ivy.addon.portalkit.component.cases.column.CaseId case="#{case}" dataModel="#{processHistoryBean.dataModel}"
 						styleClass="process-history process-history-list process-history-list-cell-default"
 						responsiveStyleClass="u-hidden-sm-down"/>
-					<h:outputText value="#{case.processName}"
+					<h:outputText value="#{case.category}"
 						styleClass="process-history process-history-list process-history-list-cell-default process-history-list-width-120 u-hidden-sm-down" />
 					<ic:ch.ivy.addon.portalkit.component.cases.column.CaseDate componentId="case-creation-time-cell" value="#{case.startTimestamp}"
 						styleClass="process-history process-history-list process-history-list-cell-default"
@@ -93,19 +93,13 @@
 		class="process-history-empty-message">
 		<p:outputLabel value="#{cc.attrs.emptyMessage}" />
 	</h:panelGroup>
-	<h:outputScript name="process-history.js" library="js" />
-	<script type="text/javascript">
-		var caseWidget = new CaseWidget();
-		caseWidget.hideListIfEmptyCase(#{processHistoryBean.dataModel.rowCount eq 0});
-	</script>
 
-	<!-- Responsive Case list -->
-	<h:outputScript name="case-widget.js" library="js" />
-	<script type="text/javascript">
-		var caseWidget = new CaseWidget();
-		$(function() {
-			caseWidget.setupHeader();
-		});
-	</script>
+  <!-- Responsive Case list -->
+  <h:outputScript name="case-widget.js" library="js" />
+  <h:outputScript name="process-history.js" library="js" />
+  <script type="text/javascript">
+    processHistory.setup(#{processHistoryBean.dataModel.rowCount eq 0});
+  </script>
+
 </cc:implementation>
 </html>

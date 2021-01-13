@@ -55,6 +55,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public TaskDetailsPage openTaskDetails(int index) {
+    waitForElementDisplayed(By.cssSelector("a[id$='task-columns-configuration:task-config-command']"), true);
     return clickOnTaskEntryInFullMode(index);
   }
 
@@ -560,14 +561,12 @@ public class TaskWidgetPage extends TemplatePage {
     click(findElementByCssSelector(startLinkId));
   }
 
-  @SuppressWarnings("deprecation")
   public void saveFilter(String filterName) {
     openSaveFilterDialog();
     WebElement filterNameInput = findElementById(taskWidgetId + ":filter-save-form:save-filter-set-name-input");
     enterKeys(filterNameInput, filterName);
     click(findElementById(taskWidgetId + ":filter-save-form:filter-save-command"));
-    waitAjaxIndicatorDisappear();
-    ensureNoBackgroundRequest();
+    WaitHelper.assertTrueWithWait(() -> filterName.equals(findElementByCssSelector("a[id$='filter-name']").getText()));
   }
 
   @SuppressWarnings("deprecation")
@@ -591,6 +590,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void openSavedFilters(String filterName) {
     click(findElementById("task-widget:filter-selection-form:filter-name"));
+    waitForElementDisplayed(By.cssSelector("span[id$='private-filters']"), true);
     List<WebElement> saveFilters = findListElementsByCssSelector("a[id$='user-defined-filter']");
     for (WebElement filter : saveFilters) {
       if (filter.getText().equals(filterName)) {
