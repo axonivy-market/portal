@@ -55,6 +55,10 @@ Nr0 @EndSub f39 '' #zField
 Nr0 @InfoButton f40 '' #zField
 Nr0 @StartSub f41 '' #zField
 Nr0 @PushWFArc f42 '' #zField
+Nr0 @AnnotationArc f43 '' #zField
+Nr0 @AnnotationArc f44 '' #zField
+Nr0 @AnnotationArc f45 '' #zField
+Nr0 @AnnotationArc f46 '' #zField
 >Proto Nr0 Nr0 Navigator #zField
 Nr0 f0 inParamDecl '<ch.ivy.addon.portalkit.dto.GlobalCaseId caseId> param;' #txt
 Nr0 f0 outParamDecl '<> result;' #txt
@@ -413,6 +417,12 @@ Nr0 f41 49 1073 30 30 34 3 #rect
 Nr0 f41 @|StartSubIcon #fIcon
 Nr0 f42 expr out #txt
 Nr0 f42 64 1103 64 1329 #arcP
+Nr0 f43 1600 584 1536 496 #arcP
+Nr0 f44 1600 928 1536 840 #arcP
+Nr0 f45 1632 233 1536 224 #arcP
+Nr0 f45 1 1536 192 #addKink
+Nr0 f45 0 0.6532732997428413 0 0 #arcLabel
+Nr0 f46 160 1225 64 1216 #arcP
 >Proto Nr0 .type ch.ivy.add.portalkit.NavigatorData #txt
 >Proto Nr0 .processKind CALLABLE_SUB #txt
 >Proto Nr0 0 0 32 24 18 0 #rect
@@ -447,3 +457,11 @@ Nr0 f37 mainOut f38 tail #connect
 Nr0 f38 head f35 mainIn #connect
 Nr0 f41 mainOut f42 tail #connect
 Nr0 f42 head f39 mainIn #connect
+Nr0 f23 ao f43 tail #connect
+Nr0 f43 head f26 ai #connect
+Nr0 f36 ao f44 tail #connect
+Nr0 f44 head f38 ai #connect
+Nr0 f53 ao f45 tail #connect
+Nr0 f45 head f22 ai #connect
+Nr0 f40 ao f46 tail #connect
+Nr0 f46 head f42 ai #connect

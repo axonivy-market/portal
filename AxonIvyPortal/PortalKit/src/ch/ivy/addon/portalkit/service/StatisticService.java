@@ -332,23 +332,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    */
   public Map<String, Number> generateDataForTaskByPriorityChart(PriorityStatistic priorityStatistic) {
     Map<String, Number> chartData = new LinkedHashMap<>();
-
-    if (priorityStatistic.getException() > 0) {
-      chartData.put(Ivy.cms().co(EXCEPTION_PRIORITY_KEY), priorityStatistic.getException());
-    }
-
-    if (priorityStatistic.getHigh() > 0) {
-      chartData.put(Ivy.cms().co(HIGH_PRIORITY_KEY), priorityStatistic.getHigh());
-    }
-
-    if (priorityStatistic.getNormal() > 0) {
-      chartData.put(Ivy.cms().co(NORMAL_PRIORITY_KEY), priorityStatistic.getNormal());
-    }
-
-    if (priorityStatistic.getLow() > 0) {
-      chartData.put(Ivy.cms().co(LOW_PRIORITY_KEY), priorityStatistic.getLow());
-    }
-
+    chartData.put(Ivy.cms().co(EXCEPTION_PRIORITY_KEY), priorityStatistic.getException());
+    chartData.put(Ivy.cms().co(HIGH_PRIORITY_KEY), priorityStatistic.getHigh());
+    chartData.put(Ivy.cms().co(NORMAL_PRIORITY_KEY), priorityStatistic.getNormal());
+    chartData.put(Ivy.cms().co(LOW_PRIORITY_KEY), priorityStatistic.getLow());
     return chartData;
   }
 
@@ -701,23 +688,10 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
    */
   public Map<String, Number> generateDataForCaseStateChart(CaseStateStatistic caseStateStatistic) {
     Map<String, Number> chartData = new LinkedHashMap<>();
-
-    if (caseStateStatistic.getCreated() > 0) {
-      chartData.put(Ivy.cms().co(CREATED_CASE_KEY), caseStateStatistic.getCreated());
-    }
-
-    if (caseStateStatistic.getRunning() > 0) {
-      chartData.put(Ivy.cms().co(RUNNING_CASE_KEY), caseStateStatistic.getRunning());
-    }
-    
-    if (caseStateStatistic.getDone() > 0) {
-      chartData.put(Ivy.cms().co(DONE_CASE_KEY), caseStateStatistic.getDone());
-    }
-
-    if (caseStateStatistic.getFailed() > 0) {
-      chartData.put(Ivy.cms().co(FAILED_CASE_KEY), caseStateStatistic.getFailed());
-    }
-
+    chartData.put(Ivy.cms().co(CREATED_CASE_KEY), caseStateStatistic.getCreated());
+    chartData.put(Ivy.cms().co(RUNNING_CASE_KEY), caseStateStatistic.getRunning());
+    chartData.put(Ivy.cms().co(DONE_CASE_KEY), caseStateStatistic.getDone());
+    chartData.put(Ivy.cms().co(FAILED_CASE_KEY), caseStateStatistic.getFailed());
     return chartData;
   }
 
@@ -800,7 +774,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     }
   }
 
-  private DonutChartModel createDonutChartModel(Map<String, Number> chartData) {
+  private DonutChartModel createDonutChartModel(Map<String, Number> chartData, StatisticChartType chartType) {
     DonutChartModel model = new DonutChartModel();
     ChartData data = new ChartData();
     DonutChartOptions options = new DonutChartOptions();
@@ -809,7 +783,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
 
     model.setData(data);
     model.setOptions(options);
-    model.setExtender("donutExtender");
+    model.setExtender(chartType == StatisticChartType.TASK_BY_PRIORITY ? "taskByPriorityChartExtender" : "caseByStateChartExtender");
 
     return model;
   }
@@ -839,7 +813,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/common/tasks"), 0);
     }
 
-    DonutChartModel model = createDonutChartModel(chartData);
+    DonutChartModel model = createDonutChartModel(chartData, StatisticChartType.TASK_BY_PRIORITY);
     DonutChartDataSet dataSet = createDonutChartDataSet(Colors.PRIORITY_COLOR, chartData, isEmptyData);
     model.getData().addChartDataSet(dataSet);
 
@@ -864,9 +838,9 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
     dataSet.setData(chartData.values().stream().collect(Collectors.toList()));
     if (!isEmptyData) {
       if (priorityColor == Colors.PRIORITY_COLOR) {
-        dataSet.setBackgroundColor(Colors.getPriorityColors(chartData, statisticColors));
+        dataSet.setBackgroundColor(Colors.getPriorityColors(statisticColors));
       } else {
-        dataSet.setBackgroundColor(Colors.getCaseStateColors(chartData, statisticColors));
+        dataSet.setBackgroundColor(Colors.getCaseStateColors(statisticColors));
       }
     }
     return dataSet;
@@ -1035,7 +1009,7 @@ public class StatisticService extends BusinessDataService<StatisticChart> {
       chartData.put(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/cases"), 0);
     }
 
-    DonutChartModel model = createDonutChartModel(chartData);
+    DonutChartModel model = createDonutChartModel(chartData, chartType);
     DonutChartDataSet dataSet = createDonutChartDataSet(Colors.STATE_COLOR, chartData, isEmptyData);
     model.getData().addChartDataSet(dataSet);
     if (isSetDefaultName) {
