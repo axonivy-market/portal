@@ -97,12 +97,6 @@ public class TaskTemplatePage extends TemplatePage {
     return new TaskWidgetPage();
   }
 
-  public void openActionMenu() {
-    String actionButtonId = "horizontal-task-actions";
-    waitForElementDisplayed(By.id(actionButtonId), true);
-    click(findElementById(actionButtonId));
-  }
-
   public void startSideStep() {
     String actionPanelId = "horizontal-task-action-form:horizontal-task-action-menu";
     waitForElementDisplayed(By.id(actionPanelId), true);
@@ -135,15 +129,9 @@ public class TaskTemplatePage extends TemplatePage {
     return findElementByCssSelector("span[id$='case-id']").getText();
   }
 
-  @SuppressWarnings("deprecation")
   public void clickAdhocCreationButton() {
-    clickByCssSelector("#horizontal-task-actions");
-    clickByCssSelector("a[id$='start-adhoc']");
-    waitAjaxIndicatorDisappear();
-  }
-
-  public void clickActionMenuButton() {
-    clickByCssSelector("#horizontal-task-actions");
+    clickTaskActionMenu();
+    clickOnStartAdhocLink();
   }
 
   @SuppressWarnings("deprecation")
@@ -218,8 +206,13 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void clickTaskActionMenu() {
-    String taskAction = "button[id$='horizontal-task-actions']";
-    clickByCssSelector(taskAction);
+    clickByCssSelector("button[id$='horizontal-task-actions']");
+  }
+
+  public void clickOnStartAdhocLink() {
+    waitForElementDisplayed(By.cssSelector("div[id$='horizontal-task-action-form:horizontal-task-action-menu']"), true);
+    clickByCssSelector("a[id$='start-adhoc']");
+    waitForElementDisplayed(By.cssSelector("div[id$='adhoc-task-reset-confirmation-dialog_content']"), true);
   }
 
   public void clickChatGroup(boolean growlMessageExpected) {
