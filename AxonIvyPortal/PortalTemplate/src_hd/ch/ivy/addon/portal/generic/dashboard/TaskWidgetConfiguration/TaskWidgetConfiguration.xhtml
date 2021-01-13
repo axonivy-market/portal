@@ -33,7 +33,8 @@
         </div>
         <div class="ui-g-8">
           <p:commandButton id="preview-button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/preview')}"
-            styleClass="Fright" update="#{cc.clientId}:task-widget-preview:dashboard-tasks" process="filter-container" icon="si si-search" />
+            styleClass="Fright" update="#{cc.clientId}:task-widget-preview:dashboard-tasks" process="filter-container" icon="si si-search"
+            oncomplete="PF('dashboard-tasks-#{cc.attrs.taskWidget.id}').filter()" />
         </div>
 
         <ui:repeat var="field" value="#{cc.attrs.taskWidget.filterableColumns}">
