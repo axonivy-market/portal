@@ -3,6 +3,8 @@ package portal.guitest.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import portal.guitest.common.WaitHelper;
+
 public class MainMenuPage extends TemplatePage {
   
   private static String PROCESS_MENU_ITEM_CSS_SELECTOR = ".layout-menu li[role='menuitem'] a.ripplelink.PROCESS";
@@ -41,10 +43,8 @@ public class MainMenuPage extends TemplatePage {
     return new ProcessWidgetPage();
   }
 
-  @SuppressWarnings("deprecation")
   public TaskWidgetPage selectTaskMenu() {
-    clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.TASK");
-    ensureNoBackgroundRequest();
+    WaitHelper.waitForNavigation(this, () -> clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.TASK"));
     return new TaskWidgetPage();
   }
 

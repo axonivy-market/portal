@@ -17,7 +17,7 @@ public class SystemTaskHistoryVisibilityTest extends BaseTest {
   @Override
   public void setup() {
     super.setup();
-    redirectToRelativeLink(createBetaCompanyUrl);
+    redirectToRelativeLink(createNewPaymentUrl);
   }
 
   @Test
@@ -25,7 +25,7 @@ public class SystemTaskHistoryVisibilityTest extends BaseTest {
     updatePortalSetting("HIDE_SYSTEM_TASKS_FROM_HISTORY", "true");
     HomePage homePage = new HomePage();
     CaseWidgetPage caseWidgetPage = homePage.openCaseList();
-    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName("Beta Company");
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName("Create New Payment");
     String caseId = caseDetailsPage.getCaseId();
     goToCaseNoteHistoryPage(caseId);
     NoteHistoryPage noteHistoryPage = new NoteHistoryPage();
@@ -44,7 +44,7 @@ public class SystemTaskHistoryVisibilityTest extends BaseTest {
     updatePortalSetting("HIDE_SYSTEM_TASKS_FROM_HISTORY_ADMINISTRATOR", "false");
     HomePage homePage = new HomePage();
     CaseWidgetPage caseWidgetPage = homePage.openCaseList();
-    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName("Beta Company");
+    CaseDetailsPage caseDetailsPage = caseWidgetPage.openCaseDetailsFromActionMenuByCaseName("Create New Payment");
     String caseId = caseDetailsPage.getCaseId();
     WaitHelper.assertTrueWithRefreshPage(homePage, () -> {
       goToCaseNoteHistoryPage(caseId);
