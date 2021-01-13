@@ -20,6 +20,10 @@ public final class PortalNavigatorInFrame {
     PrimeFaces.current().executeScript(statement);
   }
 
+  /**
+   * Navigate to target url
+   * @param url
+   */
   public static void navigateToUrl(String url) {
     String statement = "parent.redirectToUrlCommand([{name: 'url', value: '" + URLDecoder.decode(url, StandardCharsets.UTF_8) + "'}])";
     PrimeFaces.current().executeScript(statement);

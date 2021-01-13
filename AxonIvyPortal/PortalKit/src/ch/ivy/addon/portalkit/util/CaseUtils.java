@@ -23,18 +23,16 @@ public final class CaseUtils {
   }
 
   /**
-   * Sets the "HIDE" property to the given case to hide it in case list of Portal.
-   * 
-   * @param iCase
+   * Set the "HIDE" property to the given case to hide it in case list of Portal.
+   * @param iCase target case
    */
   public static void setHidePropertyToHideInPortal(ICase iCase) {
     iCase.customFields().stringField(AdditionalProperty.HIDE.toString()).set(AdditionalProperty.HIDE.toString());
   }
 
   /**
-   * Removes the "HIDE" property to the given case to display it in case list of Portal.
-   * 
-   * @param iCase
+   * Remove the "HIDE" property to the given case to display it in case list of Portal.
+   * @param iCase target case
    */
   public static void removeHidePropertyToDisplayInPortal(ICase iCase) {
     iCase.customFields().stringField(AdditionalProperty.HIDE.toString()).set(null);
