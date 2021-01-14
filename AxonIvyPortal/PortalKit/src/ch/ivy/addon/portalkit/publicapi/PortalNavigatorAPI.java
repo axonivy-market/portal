@@ -16,7 +16,7 @@ import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
 
 /**
- * Portal API for navigator not in iFrame
+ * Portal API for navigation not in iFrame
  *
  */
 public final class PortalNavigatorAPI {

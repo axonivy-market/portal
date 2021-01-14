@@ -311,10 +311,10 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   /**
    * Save all filter settings to business data
-   * 
-   * @param filterName
-   * @param filterType
-   * @param filterGroupId
+   * @hidden
+   * @param filterName filer name
+   * @param filterType filter type
+   * @param filterGroupId filter group id
    * @return saved CaseFilterData
    */
   public CaseFilterData saveFilter(String filterName, FilterType filterType, Long filterGroupId) {
