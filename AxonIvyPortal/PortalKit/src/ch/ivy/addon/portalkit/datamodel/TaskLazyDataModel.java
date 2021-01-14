@@ -797,6 +797,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     setDisableSelectionCheckboxes(isAutoHideColumns);
   }
 
+  /**
+   * @hidden
+   */
   @Override
   public void setRowIndex(int index) {
     int idx = index;
@@ -806,6 +809,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     this.rowIndex = idx;
   }
 
+  /**
+   * @hidden
+   */
   @Override
   public ITask getRowData() {
     if (rowIndex >= 0 && rowIndex < data.size()) {
@@ -815,6 +821,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     }
   }
 
+  /**
+   * @hidden
+   */
   @Override
   public boolean isRowAvailable() {
     if (data == null) {

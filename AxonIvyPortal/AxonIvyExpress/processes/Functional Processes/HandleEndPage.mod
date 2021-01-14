@@ -61,7 +61,7 @@ Ce0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     <language>
         <name>HOW TO CREATE CUSTOM END PAGE FOR EXPRESS PROCESS&#13;
 &#13;
-import ch.ivy.addon.portal.publicapi.ProcessStartAPI;&#13;
+import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;&#13;
 &#13;
 String ourNewEndPageFriendlyRequestPath = "Start Processes/NewEndPageOfExpress/startCustomEndPage.ivp";&#13;
 in.callbackUrl = ProcessStartAPI.findLinkByFriendlyRequestPath(ivy.wf.getApplication(), ourNewEndPageFriendlyRequestPath);&#13;

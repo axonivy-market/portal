@@ -112,7 +112,7 @@ OUT: subMenuItems: List&lt;SubMenuItem&gt;&#13;
 HINT: how to build a menu link&#13;
 Axon.Ivy link&#13;
 - Absolute path: ivy.html.startref(...)&#13;
-- Relative path: RequestUriFactory.createProcessStartUri(...)&#13;
+- Relative path: ProcessStartAPI.findLinkByFriendlyRequestPath(...)&#13;
 External link: &#13;
 - www.yourexternallink.com&#13;
 - http://www.yourexternallink.com&#13;
@@ -129,10 +129,10 @@ if (!isHideStatistic) {&#13;
     </language>
 </elementInfo>
 ' #txt
-Ls0 f5 296 34 656 716 -323 -352 #rect
+Ls0 f5 224 34 688 716 -339 -352 #rect
 Ls0 f5 @|IBIcon #fIcon
-Ls0 f6 296 392 152 248 #arcP
-Ls0 f6 1 296 248 #addKink
+Ls0 f6 224 392 152 248 #arcP
+Ls0 f6 1 224 248 #addKink
 Ls0 f6 1 0.22725934349270996 0 0 #arcLabel
 >Proto Ls0 .type ch.ivy.addon.portal.generic.LoadSubMenuItemsData #txt
 >Proto Ls0 .processKind CALLABLE_SUB #txt
