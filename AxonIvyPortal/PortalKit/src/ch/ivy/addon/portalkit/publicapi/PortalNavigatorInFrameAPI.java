@@ -16,7 +16,7 @@ public final class PortalNavigatorInFrameAPI {
   private PortalNavigatorInFrameAPI() {}
   
   /**
-   * Navigates to PortalEndPage without finishing a task, e.g. clicking on Cancel button then back to previous page: task list or task details or global search
+   * Navigate to PortalEndPage without finishing a task, e.g. clicking on Cancel button then back to previous page: task list or task details or global search
    */
   public static void navigateToPortalEndPage() {
     Ivy.session().setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);

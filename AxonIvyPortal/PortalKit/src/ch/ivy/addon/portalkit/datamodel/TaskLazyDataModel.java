@@ -610,7 +610,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   /**
    * Save all filter settings to business data
-   * 
+   * @hidden
    * @param filterName
    * @param filterType
    * @param taskFilterGroupId
