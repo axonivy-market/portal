@@ -3,13 +3,13 @@ package ch.ivyteam.ivy.project.portal.examples.component.customize;
 import java.util.Collections;
 
 import ch.ivy.addon.portalkit.comparator.TaskFilterComparator;
-import ch.ivy.addon.portalkit.taskfilter.TaskCategoryFilter;
-import ch.ivy.addon.portalkit.taskfilter.TaskCreationDateFilter;
-import ch.ivy.addon.portalkit.taskfilter.TaskDescriptionFilter;
-import ch.ivy.addon.portalkit.taskfilter.TaskExpiredDateFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
-import ch.ivy.addon.portalkit.taskfilter.TaskPriorityFilter;
-import ch.ivy.addon.portalkit.taskfilter.TaskResponsibleFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskCategoryFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskCreationDateFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskDescriptionFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskExpiredDateFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskPriorityFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskResponsibleFilter;
 
 /**
  * @author tntanh

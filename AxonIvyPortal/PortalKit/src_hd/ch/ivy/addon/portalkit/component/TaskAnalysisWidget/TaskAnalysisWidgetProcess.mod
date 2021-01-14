@@ -82,8 +82,8 @@ Ts0 @PushWFArc f67 '' #zField
 Ts0 @PushWFArc f64 '' #zField
 >Proto Ts0 Ts0 TaskAnalysisWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
-Ts0 f0 method start(ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel,java.lang.Long) #txt
-Ts0 f0 inParameterDecl '<ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel dataModel,Long filterGroupId> param;' #txt
+Ts0 f0 method start(ch.ivy.addon.portalkit.datamodel.internal.TaskAnalysisLazyDataModel,Long) #txt
+Ts0 f0 inParameterDecl '<ch.ivy.addon.portalkit.datamodel.internal.TaskAnalysisLazyDataModel dataModel,Long filterGroupId> param;' #txt
 Ts0 f0 inParameterMapAction 'out.taskFilterGroupId=param.filterGroupId;
 ' #txt
 Ts0 f0 inActionCode 'if (param.#dataModel is initialized){
@@ -94,8 +94,6 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start(TaskAnalysisLazyDataModel,Long)</name>
-        <nameStyle>37,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -137,7 +135,7 @@ Ts0 f23 @|UdEventIcon #fIcon
 Ts0 f24 actionTable 'out=in;
 ' #txt
 Ts0 f24 actionCode 'import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
-import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData;
 import ch.ivy.addon.portalkit.enums.FilterType;
 TaskAnalysisFilterService taskFilterService = new TaskAnalysisFilterService();
 TaskAnalysisFilterData taskFilterData = in.dataModel.saveTaskAnalysisFilter(in.filterSetName, in.filterType, in.taskFilterGroupId);
@@ -239,7 +237,7 @@ Ts0 f34 @|UdMethodIcon #fIcon
 Ts0 f35 actionTable 'out=in;
 ' #txt
 Ts0 f35 actionCode 'import ch.ivy.addon.portalkit.enums.FilterType;
-import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData;
 import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
 TaskAnalysisFilterService service = new TaskAnalysisFilterService();
 service.delete(in.taskFilterDataToBeRemoved.getId());
@@ -270,8 +268,8 @@ Ts0 f39 93 576 176 576 #arcP
 Ts0 f40 expr out #txt
 Ts0 f40 288 576 387 576 #arcP
 Ts0 f41 guid 15F5C9F2AA5C9BA1 #txt
-Ts0 f41 method setFilterToBeDeleted(ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData) #txt
-Ts0 f41 inParameterDecl '<ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData taskFilterData> param;' #txt
+Ts0 f41 method setFilterToBeDeleted(ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData) #txt
+Ts0 f41 inParameterDecl '<ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData taskFilterData> param;' #txt
 Ts0 f41 inParameterMapAction 'out.taskFilterDataToBeRemoved=param.taskFilterData;
 ' #txt
 Ts0 f41 outParameterDecl '<> result;' #txt
@@ -357,8 +355,8 @@ Ts0 f51 336 368 579 336 #arcP
 Ts0 f51 1 336 336 #addKink
 Ts0 f51 1 0.3018284624086855 0 0 #arcLabel
 Ts0 f16 guid 15F772190BB92384 #txt
-Ts0 f16 method applyFilter(ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData) #txt
-Ts0 f16 inParameterDecl '<ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData taskFilterData> param;' #txt
+Ts0 f16 method applyFilter(ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData) #txt
+Ts0 f16 inParameterDecl '<ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData taskFilterData> param;' #txt
 Ts0 f16 inActionCode out.dataModel.applyFilter(param.taskFilterData); #txt
 Ts0 f16 outParameterDecl '<> result;' #txt
 Ts0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -379,7 +377,7 @@ Ts0 f57 expr out #txt
 Ts0 f57 436 64 467 64 #arcP
 Ts0 f8 actionTable 'out=in;
 ' #txt
-Ts0 f8 actionCode 'import ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel;
+Ts0 f8 actionCode 'import ch.ivy.addon.portalkit.datamodel.internal.TaskAnalysisLazyDataModel;
 import ch.ivy.addon.portalkit.bean.TaskAnalysisWidgetBean;
 import javax.faces.context.FacesContext;
 

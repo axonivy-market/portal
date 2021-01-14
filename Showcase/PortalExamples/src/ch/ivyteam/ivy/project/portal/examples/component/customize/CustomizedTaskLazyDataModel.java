@@ -43,7 +43,7 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
   }
   
   @Override
-  protected List<String> getDefaultColumns() {
+  public List<String> getDefaultColumns() {
     return Arrays.asList("PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME", "EXPIRY_TIME", "customVarCharField5", "customTimestampField1");
   }
   
@@ -55,7 +55,7 @@ public class CustomizedTaskLazyDataModel extends TaskLazyDataModel {
 //  ===================Extend filters====================
   
   @Override
-  protected void initFilterContainer() {
+  public void initFilterContainer() {
     filterContainer = new CustomizedTaskFilterContainer();
   }
   

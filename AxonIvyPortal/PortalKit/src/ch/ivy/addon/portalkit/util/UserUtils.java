@@ -12,12 +12,12 @@ import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
-import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
+import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
-import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.security.IUser;

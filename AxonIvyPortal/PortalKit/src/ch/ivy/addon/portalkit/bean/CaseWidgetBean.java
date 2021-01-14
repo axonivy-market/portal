@@ -9,7 +9,7 @@ import javax.faces.bean.ViewScoped;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
+import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;

@@ -127,7 +127,7 @@ Ts0 f23 @|UdEventIcon #fIcon
 Ts0 f24 actionTable 'out=in;
 ' #txt
 Ts0 f24 actionCode 'import ch.ivy.addon.portalkit.service.TaskFilterService;
-import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
 import ch.ivy.addon.portalkit.enums.FilterType;
 TaskFilterService taskFilterService = new TaskFilterService();
 TaskFilterData taskFilterData = in.dataModel.saveFilter(in.filterSetName, in.filterType, in.taskFilterGroupId);
@@ -242,7 +242,7 @@ Ts0 f34 @|UdMethodIcon #fIcon
 Ts0 f35 actionTable 'out=in;
 ' #txt
 Ts0 f35 actionCode 'import ch.ivy.addon.portalkit.enums.FilterType;
-import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 TaskFilterService service = new TaskFilterService();
 service.delete(in.taskFilterDataToBeRemoved.getId());
@@ -273,8 +273,8 @@ Ts0 f39 109 576 192 576 #arcP
 Ts0 f40 expr out #txt
 Ts0 f40 304 576 371 576 #arcP
 Ts0 f41 guid 15F5C9F2AA5C9BA1 #txt
-Ts0 f41 method setFilterToBeDeleted(ch.ivy.addon.portalkit.taskfilter.TaskFilterData) #txt
-Ts0 f41 inParameterDecl '<ch.ivy.addon.portalkit.taskfilter.TaskFilterData taskFilterData> param;' #txt
+Ts0 f41 method setFilterToBeDeleted(ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData) #txt
+Ts0 f41 inParameterDecl '<ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData taskFilterData> param;' #txt
 Ts0 f41 inParameterMapAction 'out.taskFilterDataToBeRemoved=param.taskFilterData;
 ' #txt
 Ts0 f41 outParameterDecl '<> result;' #txt
@@ -372,8 +372,8 @@ Ts0 f51 352 368 595 336 #arcP
 Ts0 f51 1 352 336 #addKink
 Ts0 f51 1 0.5061728395061729 0 -11 #arcLabel
 Ts0 f16 guid 15F772190BB92384 #txt
-Ts0 f16 method applyFilter(ch.ivy.addon.portalkit.taskfilter.TaskFilterData) #txt
-Ts0 f16 inParameterDecl '<ch.ivy.addon.portalkit.taskfilter.TaskFilterData taskFilterData> param;' #txt
+Ts0 f16 method applyFilter(ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData) #txt
+Ts0 f16 inParameterDecl '<ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData taskFilterData> param;' #txt
 Ts0 f16 inParameterMapAction 'out.keyword=param.taskFilterData.keyword;
 ' #txt
 Ts0 f16 inActionCode out.dataModel.applyFilter(param.taskFilterData); #txt
@@ -382,8 +382,6 @@ Ts0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>applyFilter(TaskFilterData)</name>
-        <nameStyle>27,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt

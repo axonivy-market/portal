@@ -34,13 +34,13 @@ sortField String #field
 sortField PERSISTENT #fieldModifier
 startIndex Integer #field
 startIndex PERSISTENT #fieldModifier
-taskFilterDataToBeRemoved ch.ivy.addon.portalkit.taskfilter.TaskFilterData #field
+taskFilterDataToBeRemoved ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData #field
 taskFilterDataToBeRemoved PERSISTENT #fieldModifier
 taskFilterGroupId Long #field
 taskFilterGroupId PERSISTENT #fieldModifier
-taskPrivateFilters List<ch.ivy.addon.portalkit.taskfilter.TaskFilterData> #field
+taskPrivateFilters List<ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData> #field
 taskPrivateFilters PERSISTENT #fieldModifier
-taskPublicFilters List<ch.ivy.addon.portalkit.taskfilter.TaskFilterData> #field
+taskPublicFilters List<ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData> #field
 taskPublicFilters PERSISTENT #fieldModifier
 tasks java.util.List<ch.ivyteam.ivy.workflow.ITask> #field
 tasks PERSISTENT #fieldModifier
