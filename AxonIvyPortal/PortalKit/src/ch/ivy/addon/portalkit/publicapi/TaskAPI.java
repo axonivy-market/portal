@@ -11,7 +11,7 @@ public final class TaskAPI {
   private TaskAPI() {}
   
   /**
-   * Set the "HIDE" additional property to the given task to hide it in any task list of Portal.
+   * Set the "HIDE" additional property to the given task to hide it in task list of Portal.
    * @param task {@link ITask} target task
    */
   public static void setHidePropertyToHideInPortal(ITask task) {
@@ -19,7 +19,7 @@ public final class TaskAPI {
   }
   
   /**
-   * Remove the "HIDE" property to the given task to display it in any task list of Portal.
+   * Remove the "HIDE" additional property to the given task to display it in task list of Portal.
    * @param task target task
    */
   public static void removeHidePropertyToDisplayInPortal(ITask task) {
