@@ -128,9 +128,9 @@ Inside your UI, you can configure these parameters which will be rendered by the
 	
 In case your project has navigation button without finishing a task, e.g Cancel, to 
 
--  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrame``.
--  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame``.
--  A specific url: call ``navigateToUrl(String url)`` from class ``PortalNavigatorInFrame``.
+-  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrameAPI``.
+-  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrameAPI``.
+-  A specific url: call ``navigateToUrl(String url)`` from class ``PortalNavigatorInFrameAPI``.
 
 .. _components-layout-templates-task-template:
 
@@ -164,9 +164,9 @@ Create a new HTML User Dialog and then use ``ui:composition`` to  define templat
 
 In case your project has navigation button without finishing a task, e.g Cancel, to 
 
--  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrame``.
--  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrame``.
--  A specific url: call ``navigateToUrl(String url)`` from class ``PortalNavigatorInFrame``.
+-  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorInFrameAPI``.
+-  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorInFrameAPI``.
+-  A specific url: call ``navigateToUrl(String url)`` from class ``PortalNavigatorInFrameAPI``.
 
 .. _components-layout-templates-task-template-how-to-migrate-task-template:
 
@@ -214,8 +214,8 @@ Refer to ``TaskTemplate-8.xhtml`` for params and template areas.
 
 In case your project has navigation button without finishing a task, e.g Cancel, to 
 
--  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigator``.
--  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigator``.
+-  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorAPI``.
+-  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorAPI``.
 
 How to migrate TaskTemplate-8
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -265,8 +265,8 @@ template.
 
 In case your project has navigation button without finishing a task, e.g Cancel, to 
 
--  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigator``.
--  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigator``.
+-  Home page: call ``navigateToPortalHome()`` from class ``PortalNavigatorAPI``.
+-  Previous page: call ``navigateToPortalEndPage()`` from class ``PortalNavigatorAPI``.
 
 How to migrate TaskTemplate-7
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

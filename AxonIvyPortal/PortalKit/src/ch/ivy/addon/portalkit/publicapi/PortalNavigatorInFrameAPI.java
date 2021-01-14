@@ -18,14 +18,26 @@ public final class PortalNavigatorInFrameAPI {
   /**
    * Navigates to PortalEndPage without finishing a task, e.g. clicking on Cancel button then back to previous page: task list or task details or global search
    */
-  public void navigateToPortalEndPage() {
+  public static void navigateToPortalEndPage() {
     Ivy.session().setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);
     String statement = "parent.redirectToEndPageCommand([{name: 'taskId', value: " + Ivy.wfTask().getId() + "}]);";
     PrimeFaces.current().executeScript(statement);
   }
 
-  public void navigateToUrl(String url) {
+  /**
+   * Navigate to target url
+   * @param url target url
+   */ 
+  public static void navigateToUrl(String url) {
     String statement = "parent.redirectToUrlCommand([{name: 'url', value: '" + URLDecoder.decode(url, StandardCharsets.UTF_8) + "'}])";
+    PrimeFaces.current().executeScript(statement);
+  }
+  
+  /**
+   * Navigate to portal home
+   */
+  public static void navigateToPortalHome() {
+    String statement = "parent.redirectToHomePageCommand()";
     PrimeFaces.current().executeScript(statement);
   }
 }

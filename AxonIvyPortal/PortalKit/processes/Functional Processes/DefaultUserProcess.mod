@@ -32,9 +32,9 @@ Ds0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f0 51 83 26 26 -57 -36 #rect
+Ds0 f0 51 43 26 26 -57 -36 #rect
 Ds0 f0 @|StartSubIcon #fIcon
-Ds0 f1 51 339 26 26 14 0 #rect
+Ds0 f1 51 299 26 26 14 0 #rect
 Ds0 f1 @|EndSubIcon #fIcon
 Ds0 f3 actionTable 'out=in;
 ' #txt
@@ -48,12 +48,12 @@ processes</name>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f3 46 196 36 24 20 -2 #rect
+Ds0 f3 46 156 36 24 20 -2 #rect
 Ds0 f3 @|StepIcon #fIcon
 Ds0 f4 expr out #txt
-Ds0 f4 64 109 64 196 #arcP
+Ds0 f4 64 69 64 156 #arcP
 Ds0 f2 expr out #txt
-Ds0 f2 64 220 64 339 #arcP
+Ds0 f2 64 180 64 299 #arcP
 Ds0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -75,11 +75,11 @@ HINT: how to get a process url&#13;
 - We provide method to get startable link by user friendly request path (If user don''t have permission to start this link, the method will return empty string)&#13;
 ch.ivy.addon.portalkit.publicapi.ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(...)&#13;
 Example: &#13;
-String newEmployeeLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/Employee/NewEmployee.ivp");</name>
+String newEmployeeLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(ivy.wf.getApplication(), "Start Processes/Employee/NewEmployee.ivp");</name>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f5 176 82 832 316 -412 -152 #rect
+Ds0 f5 184 74 880 316 -437 -152 #rect
 Ds0 f5 @|IBIcon #fIcon
 >Proto Ds0 .type ch.ivy.add.portalkit.DefaultUserProcessData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt

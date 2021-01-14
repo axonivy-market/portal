@@ -24,7 +24,7 @@ list of user processes. Follow instruction to create default processes.
 
 .. tip::
    - We provide the method to generate link from UserFriendlyRequestPath
-     in  ``ProcessStartAPI``  class: ``findStartableLinkByUserFriendlyRequestPath(String requestPath)`` . This method
+     in  ``ProcessStartAPI``  class: ``findStartableLinkByUserFriendlyRequestPath(IApplication application, String requestPath)`` . This method
      will return startable link if user has permission to start the process, otherwise return emtpy string.
 
    - To display process name with multilingual, define a **CMS** and set it for **UserProcess#setProcessName**
