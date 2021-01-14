@@ -491,8 +491,7 @@ Cs0 f30 @|UdMethodIcon #fIcon
 Cs0 f31 actionTable 'out=in;
 ' #txt
 Cs0 f31 actionCode 'in.isDefaultApplicationLanguage = ivy.wf.getApplication().getDefaultEMailLanguage().getLanguage().equalsIgnoreCase(in.language);
-
-ivy.log.error(in.language + " " + in.isDefaultApplicationLanguage);' #txt
+' #txt
 Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
