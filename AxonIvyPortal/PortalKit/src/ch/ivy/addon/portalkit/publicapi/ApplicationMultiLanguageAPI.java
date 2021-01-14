@@ -3,7 +3,7 @@ package ch.ivy.addon.portalkit.publicapi;
 import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
 
 /**
- * Portal API for support multi language menu
+ * Portal API for support multilingual menu
  *
  */
 public final class ApplicationMultiLanguageAPI {
