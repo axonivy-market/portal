@@ -22,7 +22,7 @@ public final class PortalNavigatorInFrame {
 
   /**
    * Navigate to target url
-   * @param url
+   * @param url target url
    */
   public static void navigateToUrl(String url) {
     String statement = "parent.redirectToUrlCommand([{name: 'url', value: '" + URLDecoder.decode(url, StandardCharsets.UTF_8) + "'}])";
