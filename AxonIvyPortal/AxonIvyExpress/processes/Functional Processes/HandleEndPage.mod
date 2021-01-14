@@ -59,21 +59,18 @@ Ce0 f7 321 248 378 248 #arcP
 Ce0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>HOW TO CREATE CUSTOM END PAGE FOR EXPRESS PROCESS
-
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
-
-ProcessStartCollector collector = new ProcessStartCollector(ivy.wf.getApplication());
-String ourNewEndPageFriendlyRequestPath = "Start Processes/NewEndPageOfExpress/startCustomEndPage.ivp";
-in.callbackUrl = collector.findLinkByFriendlyRequestPath(ourNewEndPageFriendlyRequestPath);
-
+        <name>HOW TO CREATE CUSTOM END PAGE FOR EXPRESS PROCESS&#13;
+&#13;
+import ch.ivy.addon.portal.publicapi.ProcessStartAPI;&#13;
+&#13;
+String ourNewEndPageFriendlyRequestPath = "Start Processes/NewEndPageOfExpress/startCustomEndPage.ivp";&#13;
+in.callbackUrl = ProcessStartAPI.findLinkByFriendlyRequestPath(ivy.wf.getApplication(), ourNewEndPageFriendlyRequestPath);&#13;
+&#13;
 OUT: callbackUrl : String</name>
-        <nameStyle>421
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ce0 f0 24 18 640 156 -316 -72 #rect
+Ce0 f0 16 42 704 140 -346 -64 #rect
 Ce0 f0 @|IBIcon #fIcon
 >Proto Ce0 .type ch.ivy.addon.express.generic.HandleEndPageData #txt
 >Proto Ce0 .processKind CALLABLE_SUB #txt

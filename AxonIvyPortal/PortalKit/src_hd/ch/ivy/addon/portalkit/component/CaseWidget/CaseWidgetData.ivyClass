@@ -26,9 +26,9 @@ isFilterExisted Boolean #field
 isFilterExisted PERSISTENT #fieldModifier
 filterGroupId Long #field
 filterGroupId PERSISTENT #fieldModifier
-publicFilters java.util.List<ch.ivy.addon.portalkit.casefilter.CaseFilterData> #field
+publicFilters java.util.List<ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData> #field
 publicFilters PERSISTENT #fieldModifier
-privateFilters java.util.List<ch.ivy.addon.portalkit.casefilter.CaseFilterData> #field
+privateFilters java.util.List<ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData> #field
 privateFilters PERSISTENT #fieldModifier
-filterDataToBeDeleted ch.ivy.addon.portalkit.casefilter.CaseFilterData #field
+filterDataToBeDeleted ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData #field
 filterDataToBeDeleted PERSISTENT #fieldModifier

@@ -171,7 +171,7 @@ Es0 f13 563 435 26 26 0 12 #rect
 Es0 f13 @|UdProcessEndIcon #fIcon
 Es0 f16 actionTable 'out=in;
 ' #txt
-Es0 f16 actionCode 'import ch.ivy.addon.portalkit.datamodel.ElapsedTimeLazyDataModel;
+Es0 f16 actionCode 'import ch.ivy.addon.portalkit.datamodel.internal.ElapsedTimeLazyDataModel;
 import ch.ivy.addon.portalkit.statistics.StatisticChartConstants;
 
 in.dataModel = new ElapsedTimeLazyDataModel();

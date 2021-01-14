@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
-import ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel;
-import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData;
+import ch.ivy.addon.portalkit.datamodel.internal.TaskAnalysisLazyDataModel;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData;
 
 public class TaskAnalysisFilterService extends AbstractFilterService<TaskAnalysisFilterData> {
   @Override

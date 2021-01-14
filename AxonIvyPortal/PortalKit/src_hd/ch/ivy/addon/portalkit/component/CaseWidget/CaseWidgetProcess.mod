@@ -264,7 +264,7 @@ Cs0 f31 @|StepIcon #fIcon
 Cs0 f24 actionTable 'out=in;
 ' #txt
 Cs0 f24 actionCode 'import ch.ivy.addon.portalkit.service.CaseFilterService;
-import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
+import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
 import ch.ivy.addon.portalkit.enums.FilterType;
 
 CaseFilterService filterService = new CaseFilterService();
@@ -341,7 +341,7 @@ Cs0 f12 77 480 376 480 #arcP
 Cs0 f35 actionTable 'out=in;
 ' #txt
 Cs0 f35 actionCode 'import ch.ivy.addon.portalkit.enums.FilterType;
-import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
+import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 
 CaseFilterService service = new CaseFilterService();
@@ -387,8 +387,8 @@ Cs0 f13 @|UdEventIcon #fIcon
 Cs0 f14 expr out #txt
 Cs0 f14 77 576 160 576 #arcP
 Cs0 f16 guid 1680C78D11AA28AB #txt
-Cs0 f16 method applyFilter(ch.ivy.addon.portalkit.casefilter.CaseFilterData) #txt
-Cs0 f16 inParameterDecl '<ch.ivy.addon.portalkit.casefilter.CaseFilterData filterData> param;' #txt
+Cs0 f16 method applyFilter(ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData) #txt
+Cs0 f16 inParameterDecl '<ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData filterData> param;' #txt
 Cs0 f16 inParameterMapAction 'out.filteringKeyword=param.filterData.keyword;
 ' #txt
 Cs0 f16 inActionCode out.dataModel.applyFilter(param.filterData); #txt
@@ -407,8 +407,8 @@ Cs0 f17 @|UdProcessEndIcon #fIcon
 Cs0 f22 expr out #txt
 Cs0 f22 77 672 339 672 #arcP
 Cs0 f23 guid 168A2BE8E0F76EC9 #txt
-Cs0 f23 method setFilterToBeDeleted(ch.ivy.addon.portalkit.casefilter.CaseFilterData) #txt
-Cs0 f23 inParameterDecl '<ch.ivy.addon.portalkit.casefilter.CaseFilterData caseFilterData> param;' #txt
+Cs0 f23 method setFilterToBeDeleted(ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData) #txt
+Cs0 f23 inParameterDecl '<ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData caseFilterData> param;' #txt
 Cs0 f23 inParameterMapAction 'out.filterDataToBeDeleted=param.caseFilterData;
 ' #txt
 Cs0 f23 outParameterDecl '<> result;' #txt

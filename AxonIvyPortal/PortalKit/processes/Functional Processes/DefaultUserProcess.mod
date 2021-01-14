@@ -69,19 +69,17 @@ in.defaultUserProcesses.add(userProcess);&#13;
 &#13;
 OUT: defaultUserProcesses: List&lt;UserProcess&gt;&#13;
 &#13;
-HINT: how to build a process url&#13;
-- Absolute path: ivy.html.startref(...)&#13;
-- Relative path: RequestUriFactory.createProcessStartUri(...)&#13;
+HINT: how to get a process url&#13;
+- Use IProcessStart#getLink() to get absolute/relative path (Refer to Axon.ivy Public API document)&#13;
 - The default processes are sorted by their index attribute. If this attribute is not set, the process will be put at the bottom of the list.&#13;
-- We provide method to get startable link by UserFriendlyRequestPath (If user don''t have permission to start this link, the method will return empty string)&#13;
-ProcessStartCollector.findStartableLinkByUserFriendlyRequestPath(...)&#13;
+- We provide method to get startable link by user friendly request path (If user don''t have permission to start this link, the method will return empty string)&#13;
+ch.ivy.addon.portal.publicapi.ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(...)&#13;
 Example: &#13;
-ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());&#13;
-String newEmployeeLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/Employee/NewEmployee.ivp");</name>
+String newEmployeeLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/Employee/NewEmployee.ivp");</name>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f5 176 66 832 348 -413 -168 #rect
+Ds0 f5 176 82 832 316 -412 -152 #rect
 Ds0 f5 @|IBIcon #fIcon
 >Proto Ds0 .type ch.ivy.add.portalkit.DefaultUserProcessData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt
