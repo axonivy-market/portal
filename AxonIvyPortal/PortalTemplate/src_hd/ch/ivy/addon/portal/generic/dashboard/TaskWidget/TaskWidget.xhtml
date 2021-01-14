@@ -33,7 +33,7 @@
         <p:columns var="column" value="#{cc.attrs.taskWidget.columns}" headerText="#{column.header}" styleClass="#{column.styleClass}"
           visible="#{column.visible}" field="#{column.field}" 
           sortBy="#{column.field}" sortable="#{column.sortable}" 
-          style="#{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''} #{column.style}">
+          style="#{column.style} #{column.format eq 'TIMESTAMP' or column.format eq 'NUMBER' ? 'text-align: center;' : ''}">
           
           <h:panelGroup rendered="#{column.field eq 'start'}">
             <ui:include src="StartCell.xhtml" />
