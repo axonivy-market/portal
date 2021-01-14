@@ -59,6 +59,7 @@
               <name>standardized.maven.processor.classpath</name>
               <value>${ivy.engine.core.classpath}</value>
               <regex>,</regex>
+              <!--On Windows, replace character : by character ;-->
               <replacement>:</replacement>
               <failIfNoMatch>false</failIfNoMatch>
             </configuration>
@@ -75,6 +76,7 @@
             ch.ivy.addon.portalkit.taskfilter, ch.ivy.addon.portalkit.casefilter, ch.ivy.addon.portalkit.filter</subpackages>
           <additionalOptions>
             <additionalOption>-classpath</additionalOption>
+            <!--On Windows, replace character : by character ;-->
             <additionalOption>../../../../../AxonIvyPortal/PortalKit/lib/itextpdf-5.5.13.jar:../../../../../AxonIvyPortal/PortalKit/lib/jsoup-1.10.3.jar:../../../../../AxonIvyPortal/PortalKit/lib/quartz-2.1.1.jar:${standardized.maven.processor.classpath}</additionalOption>
           </additionalOptions>
           <show>public</show>
