@@ -82,16 +82,6 @@ Cs0 @GridStep f68 '' #zField
 Cs0 @PushWFArc f39 '' #zField
 Cs0 @PushWFArc f62 '' #zField
 Cs0 @PushWFArc f63 '' #zField
-Cs0 @UserDialog f37 '' #zField
-Cs0 @PushWFArc f38 '' #zField
-Cs0 @PushWFArc f40 '' #zField
-Cs0 @StartRequest f64 '' #zField
-Cs0 @EndTask f65 '' #zField
-Cs0 @GridStep f70 '' #zField
-Cs0 @PushWFArc f71 '' #zField
-Cs0 @UserDialog f66 '' #zField
-Cs0 @PushWFArc f67 '' #zField
-Cs0 @PushWFArc f69 '' #zField
 >Proto Cs0 Cs0 CreateTestData #zField
 Ct2 @TextInP .type .type #zField
 Ct2 @TextInP .processKind .processKind #zField
@@ -464,68 +454,58 @@ Cs0 f11 326 508 36 24 20 -2 #rect
 Cs0 f11 @|UserDialogIcon #fIcon
 Cs0 f12 actionTable 'out=in1;
 ' #txt
-Cs0 f12 outLinks "TaskB.ivp","TaskA.ivp","TaskD.ivp","TaskC.ivp" #txt
+Cs0 f12 outLinks "TaskB.ivp","TaskA.ivp","TaskC.ivp" #txt
 Cs0 f12 caseData 'case.category=LeaveRequest
 case.name=Leave Request
 customFields.NUMBER.CustomDecimalField2=36' #txt
-Cs0 f12 taskData 'TaskB.EXROL=Everybody
-TaskB.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()
-TaskB.NAM=Sick Leave Request
-TaskB.EXPRI=2
-TaskB.EXTYPE=0
-TaskB.EXP=new Duration("1D")
-TaskB.SKIP_TASK_LIST=false
+Cs0 f12 taskData 'TaskB.CATEGORY=OtherLeave/SickLeave/Long
 TaskB.DESC=Sick Leave Request Description
+TaskB.EXP=new Duration("1D")
+TaskB.EXPRI=2
+TaskB.EXROL=Everybody
+TaskB.EXTYPE=0
+TaskB.NAM=Sick Leave Request
+TaskB.PRI=1
+TaskB.ROL=Everybody
+TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0
 TaskB.customFields.NUMBER.CustomDecimalField2=14
-TaskB.PRI=1
-TaskB.customFields.STRING.CustomVarCharField5="Tung Le"
-TaskB.CATEGORY=OtherLeave/SickLeave/Long
-TaskB.customFields.STRING.embedInFrame="false"
 TaskB.customFields.STRING.CustomVarCharField1="Interior"
-TaskB.ROL=Everybody
+TaskB.customFields.STRING.CustomVarCharField5="Tung Le"
+TaskB.customFields.STRING.embedInFrame="false"
+TaskB.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()
+TaskA.CATEGORY=AnnualLeave
+TaskA.DESC=Annual Leave Request Description
+TaskA.EXP=new Duration("3H")
 TaskA.EXPRI=2
-TaskA.PRI=2
 TaskA.EXROL=Everybody
-TaskA.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()
 TaskA.EXTYPE=0
+TaskA.NAM=Annual Leave Request
+TaskA.PRI=2
 TaskA.ROL="demo"
+TaskA.SKIP_TASK_LIST=false
 TaskA.TYPE=3
 TaskA.customFields.NUMBER.CustomDecimalField2=7
-TaskA.EXP=new Duration("3H")
-TaskA.CATEGORY=AnnualLeave
-TaskA.customFields.STRING.CustomVarCharField5="Long Do"
-TaskA.NAM=Annual Leave Request
-TaskA.SKIP_TASK_LIST=false
 TaskA.customFields.STRING.CustomVarCharField1="Exterior"
+TaskA.customFields.STRING.CustomVarCharField5="Long Do"
 TaskA.customFields.STRING.embedInFrame="false"
-TaskA.DESC=Annual Leave Request Description
-TaskD.CATEGORY=OtherLeave/Exception
-TaskD.DESC=Exception Leave Request Description
-TaskD.EXP=new Duration("1D")
-TaskD.NAM=Exception Leave Request
-TaskD.PRI=0
-TaskD.customFields.NUMBER.CustomDecimalField2=13
-TaskD.customFields.STRING.CustomVarCharField1="Interior"
-TaskD.customFields.STRING.CustomVarCharField5="Anh Nguyen"
-TaskD.customFields.STRING.embedInFrame="false"
-TaskD.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()\t
-TaskC.EXP=new Duration("2D")
-TaskC.DESC=Maternity Leave Request Description
-TaskC.NAM=Maternity Leave Request
-TaskC.TYPE=0
-TaskC.EXTYPE=0
-TaskC.SKIP_TASK_LIST=false
-TaskC.ROL=Everybody
+TaskA.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()
 TaskC.CATEGORY=OtherLeave/Maternity
-TaskC.customFields.NUMBER.CustomDecimalField2=13
+TaskC.DESC=Maternity Leave Request Description
+TaskC.EXP=new Duration("2D")
 TaskC.EXPRI=2
-TaskC.customFields.STRING.CustomVarCharField5="Anh Nguyen"
-TaskC.PRI=3
-TaskC.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()
 TaskC.EXROL=Everybody
+TaskC.EXTYPE=0
+TaskC.NAM=Maternity Leave Request
+TaskC.PRI=3
+TaskC.ROL=Everybody
+TaskC.SKIP_TASK_LIST=false
+TaskC.TYPE=0
+TaskC.customFields.NUMBER.CustomDecimalField2=13
 TaskC.customFields.STRING.CustomVarCharField1="Interior"
-TaskC.customFields.STRING.embedInFrame="false"' #txt
+TaskC.customFields.STRING.CustomVarCharField5="Anh Nguyen"
+TaskC.customFields.STRING.embedInFrame="false"
+TaskC.customFields.TIMESTAMP.CustomTimestampField1=new DateTime()' #txt
 Cs0 f12 template "" #txt
 Cs0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -794,84 +774,6 @@ Cs0 f62 348 1032 448 1032 #arcP
 Cs0 f62 0 0.3511512534965784 0 0 #arcLabel
 Cs0 f63 expr out2 #txt
 Cs0 f63 240 936 516 936 #arcP
-Cs0 f37 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
-Cs0 f37 startMethod start() #txt
-Cs0 f37 requestActionDecl '<> param;' #txt
-Cs0 f37 responseActionDecl 'internaltest.Data out;
-' #txt
-Cs0 f37 responseMappingAction 'out=in;
-' #txt
-Cs0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Show 
-Task Form</name>
-        <nameStyle>15,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f37 326 628 36 24 20 -2 #rect
-Cs0 f37 @|UserDialogIcon #fIcon
-Cs0 f38 expr data #txt
-Cs0 f38 outCond ivp=="TaskD.ivp" #txt
-Cs0 f38 216 534 326 640 #arcP
-Cs0 f38 1 216 640 #addKink
-Cs0 f38 0 0.9764007907117279 0 0 #arcLabel
-Cs0 f40 362 640 608 533 #arcP
-Cs0 f40 1 608 640 #addKink
-Cs0 f40 0 0.7350089266062861 0 0 #arcLabel
-Cs0 f64 outLink createCreatedCaseState.ivp #txt
-Cs0 f64 inParamDecl '<> param;' #txt
-Cs0 f64 requestEnabled true #txt
-Cs0 f64 triggerEnabled false #txt
-Cs0 f64 callSignature createCreatedCaseState() #txt
-Cs0 f64 persist false #txt
-Cs0 f64 taskData 'TaskTriggered.DESC=Created Task Description
-TaskTriggered.NAM=Created Task
-TaskTriggered.PRI=0
-TaskTriggered.customFields.STRING.embedInFrame="true"' #txt
-Cs0 f64 caseData businessCase.attach=true #txt
-Cs0 f64 wfuser 1 #txt
-Cs0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>createCreatedCaseState.ivp</name>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f64 @C|.responsibility Everybody #txt
-Cs0 f64 81 1105 30 30 -21 17 #rect
-Cs0 f64 @|StartRequestIcon #fIcon
-Cs0 f65 529 1105 30 30 0 15 #rect
-Cs0 f65 @|EndIcon #fIcon
-Cs0 f70 actionTable 'out=in;
-' #txt
-Cs0 f70 actionCode 'ivy.case.createNote(ivy.session, "message");' #txt
-Cs0 f70 208 1098 112 44 0 -8 #rect
-Cs0 f70 @|StepIcon #fIcon
-Cs0 f71 111 1120 208 1120 #arcP
-Cs0 f66 dialogId com.axonivy.portal.developerexamples.testdata.LeaveRequestForm #txt
-Cs0 f66 startMethod start() #txt
-Cs0 f66 requestActionDecl '<> param;' #txt
-Cs0 f66 responseActionDecl 'internaltest.Data out;
-' #txt
-Cs0 f66 responseMappingAction 'out=in;
-' #txt
-Cs0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<elementInfo>
-    <language>
-        <name>Show 
-Task Form</name>
-        <nameStyle>15,7
-</nameStyle>
-    </language>
-</elementInfo>
-' #txt
-Cs0 f66 382 1108 36 24 20 -2 #rect
-Cs0 f66 @|UserDialogIcon #fIcon
-Cs0 f67 320 1120 382 1120 #arcP
-Cs0 f69 418 1120 529 1120 #arcP
 >Proto Cs0 .type com.axonivy.portal.developerexamples.Data #txt
 >Proto Cs0 .processKind NORMAL #txt
 >Proto Cs0 0 0 32 24 18 0 #rect
@@ -1117,16 +1019,6 @@ Cs0 f68 mainOut f62 tail #connect
 Cs0 f62 head S30 g2 #connect
 Cs0 f51 out f63 tail #connect
 Cs0 f63 head S20 g2 #connect
-Cs0 f12 out f38 tail #connect
-Cs0 f38 head f37 mainIn #connect
-Cs0 f37 mainOut f40 tail #connect
-Cs0 f40 head f16 mainIn #connect
-Cs0 f64 mainOut f71 tail #connect
-Cs0 f71 head f70 mainIn #connect
-Cs0 f70 mainOut f67 tail #connect
-Cs0 f67 head f66 mainIn #connect
-Cs0 f66 mainOut f69 tail #connect
-Cs0 f69 head f65 mainIn #connect
 Ct2 f2 mainOut f0 tail #connect
 Ct2 f0 head f63 in #connect
 Ct2 g2 m f4 tail #connect
