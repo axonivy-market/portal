@@ -3,7 +3,7 @@ package ch.ivy.addon.portalkit.publicapi;
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 
 /**
- * Portal API for navigator not in iFrame
+ * Portal API for navigation not in iFrame
  *
  */
 public final class PortalNavigatorAPI {
