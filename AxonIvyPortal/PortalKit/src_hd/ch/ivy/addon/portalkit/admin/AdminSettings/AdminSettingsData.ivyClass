@@ -54,7 +54,7 @@ isDefaultApplicationLanguage Boolean #field
 isDefaultApplicationLanguage PERSISTENT #fieldModifier
 isAnnouncementActivated Boolean #field
 isAnnouncementActivated PERSISTENT #fieldModifier
-userLazyDataModel ch.ivy.addon.portalkit.datamodel.UserLazyDataModel #field
+userLazyDataModel ch.ivy.addon.portalkit.datamodel.internal.UserLazyDataModel #field
 userLazyDataModel PERSISTENT #fieldModifier
 tempApplicationName String #field
 tempApplicationName PERSISTENT #fieldModifier
