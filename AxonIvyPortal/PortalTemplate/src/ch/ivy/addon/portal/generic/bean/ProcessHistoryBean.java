@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import ch.ivy.addon.portalkit.datamodel.CaseHistoryLazyDataModel;
+import ch.ivy.addon.portalkit.datamodel.internal.CaseHistoryLazyDataModel;
 
 @ManagedBean
 @ViewScoped

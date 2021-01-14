@@ -11,10 +11,10 @@ import javax.faces.bean.ViewScoped;
 import org.primefaces.event.ToggleEvent;
 import org.primefaces.model.Visibility;
 
-import ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel;
+import ch.ivy.addon.portalkit.datamodel.internal.TaskAnalysisLazyDataModel;
 import ch.ivy.addon.portalkit.enums.TaskAndCaseAnalysisColumn;
 import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
-import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData;
 import ch.ivy.addon.portalkit.util.TaskAnalysisExporter;
 
 @ManagedBean

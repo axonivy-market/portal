@@ -2,8 +2,8 @@ package ch.internalsupport;
 
 import java.util.Collections;
 
-import ch.ivy.addon.portalkit.casefilter.CaseDescriptionFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
+import ch.ivy.addon.portalkit.casefilter.impl.CaseDescriptionFilter;
 import ch.ivy.addon.portalkit.comparator.CaseFilterComparator;
 
 public class CustomizedCaseFilterContainer extends CaseFilterContainer{

@@ -42,7 +42,7 @@ public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
 	}
 
 	@Override
-	protected List<String> getDefaultColumns() {
+  public List<String> getDefaultColumns() {
 	  return Arrays.asList("NAME", "ID", "CREATOR", "CREATION_TIME", "FINISHED_TIME", CUSTOM_VARCHAR_FIELD1, CUSTOM_TIMESTAMP_FIELD1);
 	}
 	
@@ -52,7 +52,7 @@ public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
   }
 
 	@Override
-	protected void initFilterContainer() {
+  public void initFilterContainer() {
 		filterContainer = new CustomizedCaseFilterContainer();
 	}
 }

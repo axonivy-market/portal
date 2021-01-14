@@ -2,7 +2,7 @@ package ch.ivyteam.ivy.project.portal.examples.component.customize.cases;
 
 import java.util.Collections;
 
-import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
+import ch.ivy.addon.portalkit.casefilter.impl.DefaultCaseFilterContainer;
 import ch.ivy.addon.portalkit.comparator.CaseFilterComparator;
 
 public class CustomizedCaseFilterContainer extends DefaultCaseFilterContainer {
