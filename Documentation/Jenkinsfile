@@ -1,5 +1,4 @@
 pipeline {
-
   agent {
     label 'docker'
   }
@@ -9,47 +8,45 @@ pipeline {
   }
 
   triggers {
-    pollSCM 'H/10 * * * *'
+    pollSCM 'H/2 * * * *'
     cron '@midnight'
   }
 
-  stages {    
+  stages {
     stage('build') {
-      steps {        
-        dir ('Documentation') {
-            script {
-                def version = 'dev'
-                docker.withRegistry('', 'docker.io') {
-                  docker.image('maven:3.6.3-jdk-11-slim').inside {
-                    version = getCurrentVersion()
-					maven cmd: 'clean process-resources -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-8/axonivy-engine.zip -f public-api/pom.xml'
-					maven cmd: 'clean generate-resources -f pom.xml'
-                  }
-
-                  docker.image('axonivy/build-container:read-the-docs-2').inside {
-                    sh "make -C /doc-build html BASEDIR='${env.WORKSPACE}/Documentation/portal-guide' VERSION=${version}"             
-                  }
-
-                  docker.image('maven:3.6.3-jdk-11-slim').inside {
-                    def phase = env.BRANCH_NAME == 'release/8.0' ? 'deploy' : 'install'
-                    maven cmd: "clean ${phase}"
-                  }
-                }
+      steps {
+        script {
+          def version = 'dev'
+          docker.withRegistry('', 'docker.io') {
+            docker.image('maven:3.6.3-jdk-11-slim').inside {
+              version = getCurrentVersion()
+              maven cmd: 'clean process-resources -Divy.engine.download.url=https://developer.axonivy.com/permalink/nightly-8/axonivy-engine.zip -f Documentation/public-api/pom.xml'
+              maven cmd: 'clean generate-resources -f Documentation/pom.xml'
             }
-            archiveArtifacts '*/build/html/**/*, */target/*.zip'
-            recordIssues tools: [sphinxBuild()], unstableTotalAll: 1
+            
+            docker.image('axonivy/build-container:read-the-docs-2').inside {
+              sh "make -C /doc-build html BASEDIR='${env.WORKSPACE}/Documentation/portal-guide' VERSION=${version}"
+            }
+
+            docker.image('maven:3.6.3-jdk-11-slim').inside {
+              def phase = env.BRANCH_NAME == 'release/8.0' ? 'deploy' : 'install'
+              maven cmd: "clean ${phase} -f Documentation/pom.xml"
+            }
+          }
         }
+        archiveArtifacts 'Documentation/*/build/html/**/*, Documentation/*/target/*.zip'
+        recordIssues tools: [sphinxBuild()], unstableTotalAll: 1
       }
     }
   }
 }
 
 def getCurrentVersion() {
-  def cmd = "mvn help:evaluate -Dexpression=revision -q -DforceStdout"
-	def value = sh (script: cmd, returnStdout: true)
-	echo "version is $value"
-	if (value == "null object or invalid expression") {
-	  throw new Exception("could not evaluate maven revision property");
-	}
-	return value
+  def cmd = 'mvn help:evaluate -Dexpression=revision -q -DforceStdout -f Documentation/pom.xml'
+  def value = sh (script: cmd, returnStdout: true)
+  echo "version is $value"
+  if (value == 'null object or invalid expression') {
+    throw new Exception('could not evaluate maven revision property');
+  }
+  return value
 }
