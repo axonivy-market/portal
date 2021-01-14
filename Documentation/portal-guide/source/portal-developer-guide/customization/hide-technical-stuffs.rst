@@ -16,9 +16,9 @@ value to the role.
 .. tip:: Use the utility method of Portal:
       
       - Set property:
-         ch.ivy.addon.portal.publicapi.RoleAPI.setProperty([YOUR_ROLE], ch.ivy.addon.portalkit.enums.AdditionalProperty.HIDE.toString(), "HIDE")
+         ch.ivy.addon.portalkit.publicapi.RoleAPI.setProperty([YOUR_ROLE], ch.ivy.addon.portalkit.enums.AdditionalProperty.HIDE.toString(), "HIDE")
       - Reverse it:
-         ch.ivy.addon.portal.publicapi.RoleAPI.removeProperty([YOUR_ROLE], ch.ivy.addon.portalkit.enums.AdditionalProperty.HIDE.toString())
+         ch.ivy.addon.portalkit.publicapi.RoleAPI.removeProperty([YOUR_ROLE], ch.ivy.addon.portalkit.enums.AdditionalProperty.HIDE.toString())
 
 
 Hide technical tasks
@@ -30,9 +30,9 @@ Portal.
 .. tip:: Use the utility methods of Portal:
       
       - Set task as technical:
-         ch.ivy.addon.portal.publicapi.util.TaskAPI.setHidePropertyToHideInPortal(ITask)
+         ch.ivy.addon.portalkit.publicapi.TaskAPI.setHidePropertyToHideInPortal(ITask)
       - Reverse it:
-         ch.ivy.addon.portal.publicapi.TaskAPI.removeHidePropertyToDisplayInPortal(ITask)
+         ch.ivy.addon.portalkit.publicapi.TaskAPI.removeHidePropertyToDisplayInPortal(ITask)
 
 Hide technical cases
 --------------------
@@ -49,6 +49,6 @@ To mark a case as a technical case, make sure Ivy global variable
 .. tip:: Use the utility methods of Portal:
 
       - Set case as technical:
-         ch.ivy.addon.portal.publicapi.CaseAPI.setHidePropertyToHideInPortal(ICase)
+         ch.ivy.addon.portalkit.publicapi.CaseAPI.setHidePropertyToHideInPortal(ICase)
       - Reverse it:
-         ch.ivy.addon.portal.publicapi.CaseAPI.removeHidePropertyToDisplayInPortal(ICase)
+         ch.ivy.addon.portalkit.publicapi.CaseAPI.removeHidePropertyToDisplayInPortal(ICase)
