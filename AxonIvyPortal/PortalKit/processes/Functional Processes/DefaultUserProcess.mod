@@ -73,7 +73,7 @@ HINT: how to get a process url&#13;
 - Use IProcessStart#getLink() to get absolute/relative path (Refer to Axon.ivy Public API document)&#13;
 - The default processes are sorted by their index attribute. If this attribute is not set, the process will be put at the bottom of the list.&#13;
 - We provide method to get startable link by user friendly request path (If user don''t have permission to start this link, the method will return empty string)&#13;
-ch.ivy.addon.portal.publicapi.ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(...)&#13;
+ch.ivy.addon.portalkit.publicapi.ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(...)&#13;
 Example: &#13;
 String newEmployeeLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/Employee/NewEmployee.ivp");</name>
     </language>

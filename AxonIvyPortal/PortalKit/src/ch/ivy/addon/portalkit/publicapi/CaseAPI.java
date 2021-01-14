@@ -1,4 +1,4 @@
-package ch.ivy.addon.portal.publicapi;
+package ch.ivy.addon.portalkit.publicapi;
 
 import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivyteam.ivy.workflow.ICase;

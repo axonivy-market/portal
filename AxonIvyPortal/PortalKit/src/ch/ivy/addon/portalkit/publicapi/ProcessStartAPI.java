@@ -1,4 +1,4 @@
-package ch.ivy.addon.portal.publicapi;
+package ch.ivy.addon.portalkit.publicapi;
 
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.application.IApplication;
