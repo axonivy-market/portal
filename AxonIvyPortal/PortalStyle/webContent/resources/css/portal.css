@@ -32,12 +32,6 @@ input, body .ui-widget, body .ui-widget .ui-widget,
 body .ui-selectonemenu .ui-selectonemenu-label.ui-inputfield {
   font-family: var(--portal-font-family); }
 
-/* This is a fix from Portal - DO NOT DELETE - Sync size with primefaces icons */
-.ui-icon.si {
-  font-size: var(--streamline-icons-ui-icon-font-size);
-  line-height: var(--streamline-icons-ui-icon-line-height);
-}
-
 .ui-widget.si::before {
   font-family: var(--streamline-icons-font-family);
 }
