@@ -1,14 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-  xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>ch.ivyteam.ivy.project.portal</groupId>
   <artifactId>public-api</artifactId>
   <version>9.1.0.0-SNAPSHOT</version>
-
   <properties>
-    <build.plugin.version>9.1.0</build.plugin.version>
-    <ivy.engine.version>9.2.0</ivy.engine.version>
+    <build.plugin.version>9.2.0</build.plugin.version>
+    <ivy.engine.version>9.3.0</ivy.engine.version>
   </properties>
   <distributionManagement>
     <repository>
@@ -46,7 +44,6 @@
           </execution>
         </executions>
       </plugin>
-
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
@@ -68,7 +65,6 @@
           </execution>
         </executions>
       </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
@@ -84,15 +80,9 @@
           <show>public</show>
           <doclint>none</doclint>
           <windowtitle>Axon.ivy Public API</windowtitle>
-          <doctitle>
-      <![CDATA[<h1>Portal Public API</h1>]]>
-          </doctitle>
-          <header>
-      <![CDATA[<i><b>Portal Public API<br>Version ${project.version}</b></i>]]>
-          </header>
-          <footer>
-      <![CDATA[<i><b>Portal Public API<br>Version ${project.version}</b></i>]]>
-          </footer>
+          <doctitle><![CDATA[<h1>Portal Public API</h1>]]></doctitle>
+          <header><![CDATA[<i><b>Portal Public API<br>Version ${project.version}</b></i>]]></header>
+          <footer><![CDATA[<i><b>Portal Public API<br>Version ${project.version}</b></i>]]></footer>
         </configuration>
         <executions>
           <execution>
@@ -103,7 +93,6 @@
           </execution>
         </executions>
       </plugin>
-
     </plugins>
   </build>
 </project>
