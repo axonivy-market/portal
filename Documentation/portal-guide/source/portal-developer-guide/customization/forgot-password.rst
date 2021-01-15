@@ -8,8 +8,8 @@ Forgot Password
 How to override token generation and email sending
 --------------------------------------------------
 
-Create a new callable process to override the SendPasswordResetEmail callable process.
-Please examine below example in portal-developer-examples project:
+Create a new callable process to override the ``SendPasswordResetEmail`` callable process.
+Please examine below example in ``portal-developer-examples`` project:
 
 |token-generation-and-email-sending|
 
@@ -18,8 +18,8 @@ Please examine below example in portal-developer-examples project:
 How to override password resetting
 ----------------------------------
 
-Create a new callable process to override the ResetPassword callable process.
-Please examine below example in portal-developer-examples project:
+Create a new callable process to override the ``ResetPassword`` callable process.
+Please examine below example in ``portal-developer-examples`` project:
 
 |password-resetting|
 

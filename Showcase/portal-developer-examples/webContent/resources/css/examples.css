@@ -211,3 +211,7 @@
 .process-history-component .process-history-title {
   font-size: 16px;
 }
+
+.process-history-component .process-history-dialog .ui-dialog-content.ui-widget-content {
+  padding: 0;
+}
