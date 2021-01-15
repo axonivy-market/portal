@@ -15,3 +15,4 @@ Developer Guide
    iframe/index
    customization/index
    troubleshooting/index
+   public-api/index

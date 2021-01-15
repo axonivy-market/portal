@@ -628,11 +628,6 @@ _::-moz-progress-bar, body:last-child .statistic-carousel .ui-carousel-header .u
   border: var(--chart-container-separator-border);
   border-radius: var(--chart-container-separator-border-radius); }
 
-.edit-statistic-container .chart-list .chart-container .add-button,
-.add-chart-dialog .ok-button,
-.chart-list-container .filter-container .apply-filters-btn {
-  border-radius: var(--portal-border-radius); }
-
 .chart-filter-header-text {
   font-size: var(--chart-filter-header-font-size); }
 

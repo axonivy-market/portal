@@ -135,7 +135,7 @@ To configure languages of Portal applications, select ``My profile`` .
 
 Select one in dropdown list of ``Selected language``. After the change is saved, new language will be set for whole application.
 
-   |language-settings|
+|language-settings|
 
 -  For multiple languages, the CMS key ``/AppInfo/SupportedLanguages``
    must exist in your application. This CMS entry is
@@ -155,7 +155,7 @@ Select one in dropdown list of ``Selected language``. After the change is saved,
    -  Import file excel back, then redeploy Portal Style
    -  This is sample how to add new Spanish to portal
 
-      |add-new-language|
+|add-new-language|
 
 Role configuration
 ==================
