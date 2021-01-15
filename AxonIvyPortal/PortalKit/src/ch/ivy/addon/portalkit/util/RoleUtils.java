@@ -207,12 +207,10 @@ public final class RoleUtils {
 
   /**
    * Set property for passed role
-   * 
    * @param role role for setting property
    * @param key property key
    * @param value property value
    */
-  @PublicAPI
   public static void setProperty(final IRole role, final String key, final String value) {
     IvyExecutor.executeAsSystem(() -> {
       role.setProperty(key, value);
@@ -227,11 +225,9 @@ public final class RoleUtils {
   
   /**
    * Remove property for passed role
-   * 
    * @param role role to remove property
    * @param key key to remove property
    */
-  @PublicAPI
   public static void removeProperty(final IRole role, final String key) {
     IvyExecutor.executeAsSystem(() -> {
       role.removeProperty(key);

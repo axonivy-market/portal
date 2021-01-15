@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   builder:
-    image: axonivy/build-container:read-the-docs-1.2
+    image: axonivy/build-container:read-the-docs-2
     ports:
      - "8000:8000"
     volumes:
