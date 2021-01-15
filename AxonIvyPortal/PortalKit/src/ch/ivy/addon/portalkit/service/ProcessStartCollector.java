@@ -16,7 +16,6 @@ import ch.ivyteam.ivy.application.IProcessModelVersion;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
-import ch.ivyteam.ivy.workflow.WorkflowNavigationUtil;
 
 public class ProcessStartCollector {
   private final IApplication application;
@@ -33,10 +32,11 @@ public class ProcessStartCollector {
     this.application = Ivy.request().getApplication();
   }
   
-  @Deprecated(since = "9.2")
   /**
-   * Use ProcessStartCollector() instead
+   * @param application 
+   * @deprecated Since 9.2 use ProcessStartCollector() instead
    */
+  @Deprecated(since = "9.2")
   public ProcessStartCollector(IApplication application) {
     this.application = application;
   }
@@ -82,7 +82,7 @@ public class ProcessStartCollector {
     return StringUtils.EMPTY;
   }
 
-  public IProcessStart findStartableProcessStartByUserFriendlyRequestPath(String requestPath) {
+  private IProcessStart findStartableProcessStartByUserFriendlyRequestPath(String requestPath) {
     List<IProcessModel> processModels = application.getProcessModelsSortedByName();
     for (IProcessModel processModel : processModels) {
       Optional<IProcessStart> processStartOptional = Optional.of(processModel)
@@ -99,8 +99,7 @@ public class ProcessStartCollector {
   }
 
   private IProcessStart getProcessStart(String requestPath, IProcessModelVersion processModelVersion) {
-    IWorkflowProcessModelVersion workflowPmv =
-        WorkflowNavigationUtil.getWorkflowProcessModelVersion(processModelVersion);
+    IWorkflowProcessModelVersion workflowPmv = IWorkflowProcessModelVersion.of(processModelVersion);
     return workflowPmv.findStartElementByUserFriendlyRequestPath(requestPath);
   }
   
@@ -114,8 +113,7 @@ public class ProcessStartCollector {
 
   private List<IProcessStart> findProcessStartRequestPathContainsKeywordAndPmv(String keyword,
       IProcessModelVersion processModelVersion) {
-    IWorkflowProcessModelVersion workflowPmv =
-        WorkflowNavigationUtil.getWorkflowProcessModelVersion(processModelVersion);
+    IWorkflowProcessModelVersion workflowPmv = IWorkflowProcessModelVersion.of(processModelVersion);
     return workflowPmv
         .getProcessStarts()
         .stream()
@@ -147,6 +145,11 @@ public class ProcessStartCollector {
     return StringUtils.EMPTY;
   }
 
+  /**
+   * Find start link from friendly request pathO
+   * @param requestPath 
+   * @return start link or empty string
+   */
   public String findStartableLinkByUserFriendlyRequestPath(String requestPath) {
     return IvyExecutor.executeAsSystem(() -> {
       IProcessStart processStart = findStartableProcessStartByUserFriendlyRequestPath(requestPath);

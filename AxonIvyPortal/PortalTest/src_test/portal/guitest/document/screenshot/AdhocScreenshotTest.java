@@ -34,7 +34,7 @@ public class AdhocScreenshotTest extends ScreenshotTest {
     String defaultTaskComment2 = "Inform team";
     
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(1);
     ScreenshotUtil.resizeBrowser(new Dimension(1200, 580));
     taskTemplatePage.clickTaskActionMenu();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.EXPRESS_FOLDER + "adhoc-start");
