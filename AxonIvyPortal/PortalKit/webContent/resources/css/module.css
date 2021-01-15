@@ -1649,8 +1649,11 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 }
 
 .task-category-info{
-  padding-right: 10px;
-  width: 80px;	
+  text-align: left;	
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .task-start-info-header-full-mode {
