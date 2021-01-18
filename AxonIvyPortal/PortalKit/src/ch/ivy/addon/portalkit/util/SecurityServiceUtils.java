@@ -1,6 +1,7 @@
 package ch.ivy.addon.portalkit.util;
 
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.server.restricted.EngineMode;
@@ -19,7 +20,7 @@ public class SecurityServiceUtils {
    * @return string
    */
   public static String getDefaultPortalStartUrl() {
-    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath("Start Processes/PortalStart/DefaultApplicationHomePage.ivp");
+    return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath("Start Processes/PortalStart/DefaultApplicationHomePage.ivp");
   }
 
   public static Object getSessionAttribute(String name) {

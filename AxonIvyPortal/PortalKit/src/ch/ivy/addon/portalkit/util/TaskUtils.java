@@ -95,20 +95,20 @@ public final class TaskUtils {
 
   /**
    * Sets the "HIDE" additional property to the given task to hide it in any task lists of Portal.
-   * @deprecated since 9.2 use {@link TaskAPI#setHidePropertyToHideInPortal(ITask)} instead
+   * @deprecated Use {@link TaskAPI#setHidePropertyToHideInPortal(ITask)} instead
    * @param task
    */
-  @Deprecated(since = "9.2")
+  @Deprecated
   public static void setHidePropertyToHideInPortal(ITask task) {
     task.customFields().stringField(AdditionalProperty.HIDE.toString()).set(AdditionalProperty.HIDE.toString());
   }
 
   /**
    * Removes the "HIDE" property to the given task to display it in any task lists of Portal.
-   * @deprecated use {@link TaskAPI#removeHidePropertyToDisplayInPortal(ITask)}
+   * @deprecated Use {@link TaskAPI#removeHidePropertyToDisplayInPortal(ITask)} instead
    * @param task
    */
-  @Deprecated(since = "9.2")
+  @Deprecated
   public static void removeHidePropertyToDisplayInPortal(ITask task) {
     task.customFields().stringField(AdditionalProperty.HIDE.toString()).set(null);
   }

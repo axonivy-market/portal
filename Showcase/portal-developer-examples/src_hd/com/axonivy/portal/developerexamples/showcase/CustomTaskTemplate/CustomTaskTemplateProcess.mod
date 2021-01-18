@@ -49,9 +49,7 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f0 83 51 26 26 -29 15 #rect
-Ts0 f0 @|UdInitIcon #fIcon
 Ts0 f1 339 51 26 26 0 12 #rect
-Ts0 f1 @|UdProcessEndIcon #fIcon
 Ts0 f3 guid 16C837433A29385A #txt
 Ts0 f3 actionTable 'out=in;
 ' #txt
@@ -63,9 +61,7 @@ Ts0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f3 83 147 26 26 -15 12 #rect
-Ts0 f3 @|UdEventIcon #fIcon
 Ts0 f4 211 147 26 26 0 12 #rect
-Ts0 f4 @|UdExitEndIcon #fIcon
 Ts0 f5 expr out #txt
 Ts0 f5 109 160 211 160 #arcP
 Ts0 f6 actionTable 'out=in;
@@ -87,7 +83,6 @@ Ts0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f6 168 42 112 44 -21 -8 #rect
-Ts0 f6 @|StepIcon #fIcon
 Ts0 f7 expr out #txt
 Ts0 f7 109 64 168 64 #arcP
 Ts0 f2 expr out #txt
@@ -104,9 +99,7 @@ Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f8 83 259 26 26 -47 15 #rect
-Ts0 f8 @|UdMethodIcon #fIcon
 Ts0 f9 339 259 26 26 0 12 #rect
-Ts0 f9 @|UdProcessEndIcon #fIcon
 Ts0 f11 actionTable 'out=in;
 ' #txt
 Ts0 f11 actionCode 'ivy.session.setAttribute("taskConfigExampleActualStepIndex", in.actualStepIndex - 1);
@@ -120,14 +113,13 @@ Ts0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f11 168 250 112 44 -31 -8 #rect
-Ts0 f11 @|StepIcon #fIcon
 Ts0 f12 expr out #txt
 Ts0 f12 109 272 168 272 #arcP
 Ts0 f10 expr out #txt
 Ts0 f10 280 272 339 272 #arcP
 Ts0 f21 actionTable 'out=in;
 ' #txt
-Ts0 f21 actionCode 'import ch.ivy.addon.portalkit.util.ProcessStartUtils;
+Ts0 f21 actionCode 'import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.util.RequestUtil;
 import javax.faces.context.FacesContext;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
@@ -138,7 +130,7 @@ if (StringUtils.isEmpty(friendlyRequestPath)) {
     friendlyRequestPath = "Start Processes/Showcases/CustomizedTaskTemplate.ivp";
 }
 
-String requestPath = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
+String requestPath = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
 if (StringUtils.isNotEmpty(requestPath)) {
     FacesContext.getCurrentInstance().getExternalContext().redirect(requestPath);
 }
@@ -152,7 +144,6 @@ Ts0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f21 176 362 112 44 -41 -8 #rect
-Ts0 f21 @|StepIcon #fIcon
 Ts0 f18 guid 16C98491C1920D90 #txt
 Ts0 f18 method reload() #txt
 Ts0 f18 inParameterDecl '<> param;' #txt
@@ -165,17 +156,14 @@ Ts0 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f18 75 371 26 26 -21 15 #rect
-Ts0 f18 @|UdMethodIcon #fIcon
 Ts0 f22 expr out #txt
 Ts0 f22 101 384 176 384 #arcP
 Ts0 f19 379 371 26 26 0 12 #rect
-Ts0 f19 @|UdProcessEndIcon #fIcon
 Ts0 f20 expr out #txt
 Ts0 f20 288 384 379 384 #arcP
 >Proto Ts0 .type com.axonivy.portal.developerexamples.showcase.CustomTaskTemplate.CustomTaskTemplateData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
->Proto Ts0 '' #fIcon
 Ts0 f3 mainOut f5 tail #connect
 Ts0 f5 head f4 mainIn #connect
 Ts0 f0 mainOut f7 tail #connect

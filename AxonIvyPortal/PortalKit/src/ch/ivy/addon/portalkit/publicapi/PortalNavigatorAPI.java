@@ -1,19 +1,26 @@
 package ch.ivy.addon.portalkit.publicapi;
 
-import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import java.util.HashMap;
+
+import ch.ivy.addon.portal.generic.navigation.BaseNavigator;
+import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.StandardProcessType;
 
 /**
  * Portal API for navigation not in iFrame
  *
  */
-public final class PortalNavigatorAPI {
+public final class PortalNavigatorAPI extends BaseNavigator{
+  private static final String PORTAL_PROCESS_START_NAME = "Start Processes/PortalStart/DefaultApplicationHomePage.ivp";
   private PortalNavigatorAPI() {}
   
   /**
    * Navigate to Portal home
    */
   public static void navigateToPortalHome() {
-    PortalNavigator.navigateToPortalHome();
+//    PortalNavigator.navigateToPortalHome();
+    navigateByKeyword("DefaultApplicationHomePage.ivp", PORTAL_PROCESS_START_NAME, new HashMap<>());
   }
 
   /**
@@ -21,6 +28,9 @@ public final class PortalNavigatorAPI {
    * task list or task details or global search NOTES: is only used for the task not started in Portal IFrame
    */
   public static void navigateToPortalEndPage() {
-    PortalNavigator.navigateToPortalEndPage();
+//    PortalNavigator.navigateToPortalEndPage();
+    String customizePortalEndPage = getRelativeLink(StandardProcessType.DefaultEndPage);
+    Ivy.session().setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);
+    redirect(String.format("%s?endedTaskId=%s", customizePortalEndPage, Ivy.wfTask().getId()));
   }
 }
