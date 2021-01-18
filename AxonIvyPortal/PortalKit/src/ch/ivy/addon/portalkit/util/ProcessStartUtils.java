@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
+import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
 import ch.ivyteam.ivy.application.IProcessModel;
@@ -50,23 +51,22 @@ public class ProcessStartUtils {
       return processStart;
     });
   }
-
+  
+  /**
+   * Find start link from friendly request path
+   * @deprecated Use {@link ProcessStartAPI#findRelativeUrlByProcessStartFriendlyRequestPath(String)} instead
+   * @param friendlyRequestPath
+   * @return start link or empty string
+   */
+  @Deprecated
   public static String findRelativeUrlByProcessStartFriendlyRequestPath(String friendlyRequestPath) {
     IProcessStart processStart = findProcessStartByUserFriendlyRequestPath(friendlyRequestPath);
     return processStart != null ? processStart.getLink().getRelative() : StringUtils.EMPTY;
   }
 
-  private static IWorkflowProcessModelVersion getWorkflowProcessModelVersion(IProcessModelVersion processModelVersion) {
-    if (processModelVersion == null) {
-      return null;
-    }
-    return processModelVersion.getAdapter(IWorkflowProcessModelVersion.class);
-  }
-
   private static IProcessStart findProcessStartByUserFriendlyRequestPathAndPmv(String requestPath,
       IProcessModelVersion processModelVersion) {
-    IWorkflowProcessModelVersion workflowPmv = getWorkflowProcessModelVersion(processModelVersion);
-    return workflowPmv.findStartElementByUserFriendlyRequestPath(requestPath);
+    return IWorkflowProcessModelVersion.of(processModelVersion).findStartElementByUserFriendlyRequestPath(requestPath); 
   }
   
   private static boolean isActive(IProcessModelVersion processModelVersion) {
