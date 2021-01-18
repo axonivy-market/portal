@@ -25,16 +25,9 @@
   z-index: 995;
 }
 
-.dashboard__tab-title {
+.dashboard__title {
   font-size: 18px;
-}
-
-.dashboard__tab-title--one-dashboard {
-  border: none !important;
-}
-
-.dashboard__tab-title--one-dashboard > a {
-  color: black !important;
+  margin: 0 10px 10px 10px;
 }
 
 .dashboard__widget {
