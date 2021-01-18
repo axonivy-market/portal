@@ -11,7 +11,7 @@ public class SortFieldUtil {
   public static final String SORT_FORMAT = "%s_%s";
 
   /**<p>
-   * Build a SortField with pattern: column name + "_ASC" or column name + "_DESC"
+   * Build a SortField with pattern: column name + "_ASCENDING" or column name + "_DESCENDING"
    * </p>
    * <p>
    * E.g your column is "PRIORITY" and ascending sort: PRIORITY_ASC
@@ -21,7 +21,7 @@ public class SortFieldUtil {
    * @return SortField
    */
   public static String buildSortField(String column, boolean isSortDescending) {
-    return String.format(SORT_FORMAT, column, getSortDirectionValue(isSortDescending));
+    return String.format(SORT_FORMAT, column, getSortDirectionValue(isSortDescending).name());
   }
 
   /**<p>
@@ -39,7 +39,7 @@ public class SortFieldUtil {
   }
 
   private static SortDirection getSortDirectionValue(boolean isSortDescending) {
-    return isSortDescending ? SortDirection.DESC : SortDirection.ASC;
+    return isSortDescending ? SortDirection.DESCENDING : SortDirection.ASCENDING;
   }
 
   /**
@@ -63,7 +63,6 @@ public class SortFieldUtil {
    * <p>
    * E.g:
    * <ul>
-   * <li> sortField = "ASC" => true</li>
    * <li> sortField = "_ASC" => true</li>
    * <li> sortField = "PRIORITY_ASC" => true</li>
    * </ul>
@@ -77,8 +76,8 @@ public class SortFieldUtil {
       return false;
     }
     String sortDirection = StringUtils.substring(sortField, sortField.length() - 3);
-    return StringUtils.equalsIgnoreCase(sortDirection, SortDirection.ASC.name())
-        || StringUtils.startsWithIgnoreCase(sortField, SortDirection.ASC.name());
+    return StringUtils.equalsIgnoreCase(sortDirection, SortDirection.ASCENDING.name())
+        || StringUtils.startsWithIgnoreCase(SortDirection.ASCENDING.name(), sortField);
   }
 
 }
