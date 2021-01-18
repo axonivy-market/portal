@@ -774,7 +774,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
     if (compactMode) {
       criteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED)));
-      if (!getPortalTaskSort().contains(UserUtils.getSessionTaskSortAttribute())) {
+      if (SortFieldUtil.invalidSortField(UserUtils.getSessionTaskSortAttribute(), getPortalTaskSort())) {
         buildCompactModeTaskSort();
       }
     } else {
@@ -795,7 +795,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   private void buildCompactModeTaskSort() {
     String firstSortOption = getFirstPortalTaskSortOption();
     boolean asc = SortFieldUtil.isAscendingSort(firstSortOption);
-    String sortColumn = SortFieldUtil.extractSortColumn(firstSortOption, asc);
+    String sortColumn = SortFieldUtil.extractSortColumn(firstSortOption);
     updateSortCriteria(sortColumn, !asc, false);
   }
 
@@ -1133,10 +1133,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * @param sortField
    */
   public void sort(String sortField) {
-    boolean asc = SortFieldUtil.isAscendingSort(sortField);
-    String sortColumn = SortFieldUtil.extractSortColumn(sortField, asc);
+    String sortColumn = SortFieldUtil.extractSortColumn(sortField);
     if (getDefaultColumns().contains(sortColumn)) {
-      setSortField(sortColumn, !asc);
+      setSortField(sortColumn, !SortFieldUtil.isAscendingSort(sortField));
       return;
     }
 
