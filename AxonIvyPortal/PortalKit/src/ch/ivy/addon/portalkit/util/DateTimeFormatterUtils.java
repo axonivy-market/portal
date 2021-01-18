@@ -22,7 +22,7 @@ public class DateTimeFormatterUtils {
   }
 
   private static String prepareShortYearDisplayText(long days) {
-    long years = (long) days / DAYS_IN_A_YEAR;
+    long years = days / DAYS_IN_A_YEAR;
     long remainingDays = days - years * DAYS_IN_A_YEAR;
     String dayDisplayText = remainingDays > 0
         ? DASH_SPACE + prepareShortDateTimeDisplayText(remainingDays, CmsDateTimeUnitService.getCmsDayUnit())

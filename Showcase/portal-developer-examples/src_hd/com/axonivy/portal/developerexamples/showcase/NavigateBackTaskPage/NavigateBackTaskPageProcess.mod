@@ -37,9 +37,7 @@ Ns0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ns0 f0 83 51 26 26 -16 15 #rect
-Ns0 f0 @|UdInitIcon #fIcon
 Ns0 f1 211 51 26 26 0 12 #rect
-Ns0 f1 @|UdProcessEndIcon #fIcon
 Ns0 f2 expr out #txt
 Ns0 f2 109 64 211 64 #arcP
 Ns0 f3 guid 16583DC1B11CF51A #txt
@@ -53,7 +51,6 @@ Ns0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ns0 f3 83 187 26 26 -15 12 #rect
-Ns0 f3 @|UdEventIcon #fIcon
 Ns0 f6 guid 16583E3EA1B37F47 #txt
 Ns0 f6 actionTable 'out=in;
 ' #txt
@@ -65,17 +62,15 @@ Ns0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ns0 f6 83 115 26 26 -19 17 #rect
-Ns0 f6 @|UdEventIcon #fIcon
 Ns0 f7 211 115 26 26 0 12 #rect
-Ns0 f7 @|UdExitEndIcon #fIcon
 Ns0 f8 expr out #txt
 Ns0 f8 109 128 211 128 #arcP
 Ns0 f4 339 187 26 26 0 12 #rect
-Ns0 f4 @|UdProcessEndIcon #fIcon
 Ns0 f9 actionTable 'out=in;
 ' #txt
-Ns0 f9 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator.navigateToPortalEndPage();' #txt
+Ns0 f9 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
+
+PortalNavigatorAPI.navigateToPortalEndPage();' #txt
 Ns0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -84,7 +79,6 @@ Ns0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ns0 f9 176 178 112 44 -38 -8 #rect
-Ns0 f9 @|StepIcon #fIcon
 Ns0 f10 expr out #txt
 Ns0 f10 109 200 176 200 #arcP
 Ns0 f5 expr out #txt
@@ -92,19 +86,17 @@ Ns0 f5 288 200 339 200 #arcP
 Ns0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>Call the method navigateToPortalEndPage of PortalNavigator to navigate back to the previous task list.</name>
-        <nameStyle>102,7
+        <name>Call the method navigateToPortalEndPage of PortalNavigatorAPI to navigate back to the previous task list.</name>
+        <nameStyle>105,5
 </nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ns0 f11 168 265 560 30 -277 -8 #rect
-Ns0 f11 @|IBIcon #fIcon
+Ns0 f11 152 265 592 30 -286 -8 #rect
 Ns0 f12 448 265 232 222 #arcP
 >Proto Ns0 .type com.axonivy.portal.developerexamples.showcase.NavigateBackTaskPage.NavigateBackTaskPageData #txt
 >Proto Ns0 .processKind HTML_DIALOG #txt
 >Proto Ns0 -8 -8 16 16 16 26 #rect
->Proto Ns0 '' #fIcon
 Ns0 f0 mainOut f2 tail #connect
 Ns0 f2 head f1 mainIn #connect
 Ns0 f6 mainOut f8 tail #connect

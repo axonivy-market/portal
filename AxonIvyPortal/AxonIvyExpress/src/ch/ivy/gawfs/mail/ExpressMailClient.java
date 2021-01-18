@@ -21,7 +21,7 @@ import ch.ivyteam.ivy.mail.MailMessage.Builder;
 import ch.ivyteam.ivy.project.IIvyProject;
 import ch.ivyteam.ivy.project.IvyProjectUtil;
 import ch.ivyteam.ivy.scripting.objects.File;
-import ch.ivyteam.ivy.workflow.WorkflowNavigationUtil;
+import ch.ivyteam.ivy.workflow.IWorkflowProcessModelVersion;
 
 @SuppressWarnings("restriction")
 public class ExpressMailClient {
@@ -89,7 +89,7 @@ public class ExpressMailClient {
   }
 
   private static String getProjectName() {
-    return WorkflowNavigationUtil.getWorkflowProcessModelVersion(Ivy.request().getProcessModelVersion()).getProject().getName();
+    return IWorkflowProcessModelVersion.of(Ivy.request().getProcessModelVersion()).getProjectName();
   }
 
 }
