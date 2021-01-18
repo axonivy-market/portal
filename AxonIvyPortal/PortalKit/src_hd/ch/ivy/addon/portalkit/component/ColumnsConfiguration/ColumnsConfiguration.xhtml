@@ -16,7 +16,7 @@
   <c:set var="dataModel" value="#{cc.attrs.dataModel}" />
   <h:panelGroup id="config-columns-container" layout="block" styleClass="config-columns-button u-hidden-md-down">
     <p:commandLink id="#{cc.attrs.configButtonId}" styleClass="config-columns">
-      <i class="icon ivyicon-layers-grid-settings u-mar-right-5" />
+      <i class="si si-layers-grid-settings u-mar-right-5" />
       <span class="link-text">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}" />
       </span>
@@ -49,7 +49,7 @@
             actionListener="#{dataModel.setDisableSelectionCheckboxes(dataModel.autoHideColumns)}" />
           <p:spacer width="15" />
           <p:commandButton id="update-command" global="true"
-            icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
+            icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/apply')}"
             actionListener="#{dataModel.saveColumnsConfiguration()}"
             update="#{cc.clientId}:config-columns-container @form #{cc.attrs.updatedComponent}"

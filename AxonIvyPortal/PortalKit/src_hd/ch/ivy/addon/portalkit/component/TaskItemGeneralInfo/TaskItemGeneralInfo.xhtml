@@ -43,7 +43,7 @@
                   <h:panelGroup id="priority-icon">
                     <h:panelGroup styleClass="fa fa-circle task-priority-#{task.priority.toString().toLowerCase()} task-details-data-priority-icon" />
                     <h:outputText value="#{taskBean.getPriority(task.priority)}" />
-                    <i jsf:rendered="#{!cc.attrs.readOnly}" class="icon ivyicon-graphic-tablet-drawing-pen" />
+                    <i jsf:rendered="#{!cc.attrs.readOnly}" class="si si-graphic-tablet-drawing-pen" />
                   </h:panelGroup>
                 </f:facet>
                 <p:ajax event="save" update="priority-form" />
@@ -77,7 +77,7 @@
             styleClass="ui-sm-hidden task-workflow-event-command" onstart="event.stopPropagation();"
             disabled="#{!taskActionBean.canReadWorkflowEventTask()}" rendered="#{taskActionBean.showReadWorkflowEvent}"
             oncomplete="#{cc.attrs.onWorkflowEventComplete}" global="false">
-            <i class="option-action-icon icon ivyicon-business-contract-handshake-sign" />
+            <i class="option-action-icon si si-business-contract-handshake-sign" />
             <span class="option-item-label">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/events')}</span>
           </p:commandLink>
         </h:panelGroup>
@@ -179,7 +179,7 @@
               rendered="#{taskActionBean.canChangeExpiry(task)}">
               <f:facet name="output">
                 <h:outputText value="#{formattingNullWrapperBean.format(task.expiryTimestamp)}" />
-                <i jsf:rendered="#{!cc.attrs.readOnly}" class="icon ivyicon-graphic-tablet-drawing-pen" />
+                <i jsf:rendered="#{!cc.attrs.readOnly}" class="si si-graphic-tablet-drawing-pen" />
               </f:facet>
               
               <p:ajax event="save" listener="#{logic.updateDeadline(task)}" update="expiry-form #{cc.attrs.componentToUpdate}" />
@@ -217,7 +217,7 @@
             disabled="#{!taskActionBean.canChangeDelayTimestamp(task) or cc.attrs.readOnly}">
             <f:facet name="output">
               <h:outputText value="#{formattingNullWrapperBean.format(task.getDelayTimestamp())} " />
-              <i jsf:rendered="#{taskActionBean.canChangeDelayTimestamp(task)}" class="icon ivyicon-graphic-tablet-drawing-pen" />
+              <i jsf:rendered="#{taskActionBean.canChangeDelayTimestamp(task)}" class="si si-graphic-tablet-drawing-pen" />
             </f:facet>
             
             <p:ajax event="save" listener="#{logic.updateDelayTimestamp(task)}"

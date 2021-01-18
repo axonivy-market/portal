@@ -37,12 +37,12 @@ public class CaseBean implements Serializable {
     switch(state) {
       case CREATED:
       case RUNNING:
-        return "icon ivyicon-hourglass case-state-in-progress";
+        return "si si-hourglass case-state-in-progress";
       case DONE:
-        return "icon ivyicon-check-circle-1 case-state-done";
+        return "si si-check-circle-1 case-state-done";
       case DESTROYED:
       case ZOMBIE:
-        return "icon ivyicon-alert-circle case-state-zombie-destroyed";
+        return "si si-alert-circle case-state-zombie-destroyed";
       default: 
         return "";
     }

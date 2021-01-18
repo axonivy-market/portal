@@ -32,6 +32,18 @@ input, body .ui-widget, body .ui-widget .ui-widget,
 body .ui-selectonemenu .ui-selectonemenu-label.ui-inputfield {
   font-family: var(--portal-font-family); }
 
+.portal-icon.ui-widget.si,
+.portal-icon-container .ui-widget.si,
+.ui-widget.si::before {
+  font-family: var(--portal-icon-font-family);
+}
+
+.portal-icon.ui-icon.si,
+.portal-icon-container .ui-icon.si {
+  font-size: var(--portal-icon-ui-icon-font-size);
+  line-height: var(--portal-icon-line-height);
+}
+
 _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlink {
   display: inline-block; }
 
@@ -224,7 +236,7 @@ body .ui-datatable tbody tr.ui-datatable-even {
 .topbar-menu li .ui-commandlink {
   font-size: var(--large-font-size); }
   
-.topbar-menu li .icon {
+.topbar-menu li .si {
   font-size: var(--top-bar-icon-size) !important;
 }
 
@@ -496,7 +508,7 @@ body .ui-widget-header.portal-breadcrumb {
   background-color: var(--breadcrumb-background-color) !important;
   font-size: var(--breadcrumb-font-size); }
 
-.portal-breadcrumb .icon {
+.portal-breadcrumb .si {
   color: var(--breadcrumb-home-icon-color) !important;
 }
 /*Style Email Setting --------------------------------------------------------------------------------*/
@@ -842,8 +854,8 @@ body .ui-inputfield.task-name-input {
   font-weight: var(--task-detail-header-font-weight); }
 
 .task-detail-section-title,
-.task-detail-section-title > i.icon,
-.task-detail-section-title > div > i.icon {
+.task-detail-section-title > i.si,
+.task-detail-section-title > div > i.si {
   font-weight: var(--task-detail-section-title-font-weight) !important; }
 
 .task-action-item:hover {
@@ -1160,8 +1172,8 @@ body .ui-inputfield.case-detail-name-input {
 
 .case-detail-section-title, .case-history-button-container,
 .task-history-button-container,
-.case-detail-section-title > i.icon,
-.case-detail-section-title > div > i.icon {
+.case-detail-section-title > i.si,
+.case-detail-section-title > div > i.si {
   font-weight: var(--history-button-container-font-weight) !important; }
 
 .case-header-action-cell .action-item .ui-button {
@@ -1852,7 +1864,7 @@ background-color:var(--primary-color);
 color: var(--button-text-color);
 }
 
-.no-item-panel .icon {
+.no-item-panel .si {
   font-size: var(--no-item-icon-font-size) !important;
   color: var(--no-item-icon-color);
 }
@@ -1874,7 +1886,7 @@ color: var(--button-text-color);
 }
 
 
-.layout-menu .icon  {
+.layout-menu .si  {
   font-size: var(--left-menu-icon-font-size) !important;
 }
 
@@ -1919,4 +1931,9 @@ body .ui-button.secondary-btn.ui-state-focus {
 }
 body.in-dialog .ui-widget-overlay {
   background-color: transparent;
+}
+
+.portal-icon.action-icon.icon-compact-mode,
+.portal-icon.action-link i {
+  font-size: var(--portal-icon-font-size);
 }
