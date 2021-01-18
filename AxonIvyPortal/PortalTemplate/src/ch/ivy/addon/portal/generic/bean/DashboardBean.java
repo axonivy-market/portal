@@ -19,8 +19,6 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.component.tabview.TabView;
-import org.primefaces.event.TabChangeEvent;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -65,7 +63,7 @@ public class DashboardBean implements Serializable {
   private ObjectMapper mapper;
   private DashboardWidget widget;
   private boolean isReadOnlyMode;
-  private int tabActiveIndex;
+  private int currentDashboardIndex;
   private boolean canEdit;
   private String dashboardPropertyPrefix;
   private String switchEditModeText;
@@ -75,7 +73,7 @@ public class DashboardBean implements Serializable {
   public void init() {
     dashboardPropertyPrefix = "dashboard.widgets." + Ivy.session().getSessionUserName();
     canEdit = PermissionUtils.hasDashboardWritePermission();
-    tabActiveIndex = 0;
+    currentDashboardIndex = 0;
     isReadOnlyMode = true;
     dashboards = new ArrayList<>();
     mapper = new ObjectMapper();
@@ -269,9 +267,9 @@ public class DashboardBean implements Serializable {
     }
   }
   
-  public void onTabChange(TabChangeEvent event) {
-    selectedDashboard = (Dashboard) event.getData();
-    tabActiveIndex = ((TabView) event.getSource()).getIndex();
+  public void onDashboardChange(int index) {
+    currentDashboardIndex = index;
+    selectedDashboard = dashboards.get(index);
   }
   
   public String getNewTaskWidgetId() {
@@ -348,12 +346,12 @@ public class DashboardBean implements Serializable {
     this.isReadOnlyMode = isReadOnlyMode;
   }
   
-  public int getTabActiveIndex() {
-    return tabActiveIndex;
+  public int getCurrentDashboardIndex() {
+    return currentDashboardIndex;
   }
   
-  public void setTabActiveIndex(int tabActiveIndex) {
-    this.tabActiveIndex = tabActiveIndex;
+  public void setCurrentDashboardIndex(int currentDashboardIndex) {
+    this.currentDashboardIndex = currentDashboardIndex;
   }
   
   public boolean getCanEdit() {
@@ -372,4 +370,7 @@ public class DashboardBean implements Serializable {
     return Ivy.wf().getApplication().customProperties();
   }
 
+  public Dashboard getSelectedDashboard() {
+    return selectedDashboard;
+  }
 }
