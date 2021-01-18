@@ -28,7 +28,7 @@
           </f:facet>
           <f:facet name="output">
             <h:outputText id="case-description-output" escape="false" value="#{caseWidgetBean.sanitizeHTML(case.description)} " />
-            <i jsf:rendered="#{caseActionBean.canChangeDescription(case) and !cc.attrs.readOnly}" class="icon ivyicon-graphic-tablet-drawing-pen case-description-output-icon" />
+            <i jsf:rendered="#{caseActionBean.canChangeDescription(case) and !cc.attrs.readOnly}" class="si si-graphic-tablet-drawing-pen case-description-output-icon" />
           </f:facet>
         </p:inplace>
       </h:form>

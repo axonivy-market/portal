@@ -7,13 +7,13 @@
     <h:form id="statistic-result-form">
       <h:panelGroup layout="block" id="statistic-result-buttons-container" styleClass="ui-g statistic-result-buttons-container MarTop10">
         <p:commandLink ajax="false" styleClass="FRight" onclick="PrimeFaces.monitorDownload(start, stop);">
-          <i class="icon ivyicon-office-file-xls-1 u-mar-right-5" />
+          <i class="si si-office-file-xls-1 u-mar-right-5" />
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/exportButton')}" />
           <p:fileDownload value="#{logic.getExportedFile(taskAnalysisWidgetBean.getColumns())}" />
         </p:commandLink>
         <p:spacer width="20px" ></p:spacer>
         <p:commandLink id="toggler">
-          <i class="icon ivyicon-layers-grid-settings u-mar-right-5" />
+          <i class="si si-layers-grid-settings u-mar-right-5" />
           <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/manageColumns')}" />
         </p:commandLink>
         <p:columnToggler id="task-table-toggler" datasource="task-table" trigger="toggler">
