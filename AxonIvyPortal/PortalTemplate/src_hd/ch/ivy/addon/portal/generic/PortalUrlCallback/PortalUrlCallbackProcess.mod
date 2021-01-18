@@ -36,9 +36,7 @@ Ps0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f0 83 51 26 26 -16 15 #rect
-Ps0 f0 @|UdInitIcon #fIcon
 Ps0 f1 211 51 26 26 0 12 #rect
-Ps0 f1 @|UdProcessEndIcon #fIcon
 Ps0 f2 expr out #txt
 Ps0 f2 109 64 211 64 #arcP
 Ps0 f3 guid 15C67E8753E2C68C #txt
@@ -53,12 +51,11 @@ Ps0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f3 83 147 26 26 -24 15 #rect
-Ps0 f3 @|UdMethodIcon #fIcon
 Ps0 f4 actionTable 'out=in;
 ' #txt
-Ps0 f4 actionCode 'import org.apache.commons.lang3.StringUtils;
+Ps0 f4 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
+import org.apache.commons.lang3.StringUtils;
 import javax.faces.context.ExternalContext;
-import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import ch.ivyteam.ivy.request.OpenRedirectVulnerabilityUtil;
@@ -75,7 +72,7 @@ String url = URLDecoder.decode(in.callbackUrl, "UTF-8");
 if (request != null && StringUtils.isNotBlank(url) && OpenRedirectVulnerabilityUtil.isValid(url, request)){	
 	context.redirect(url);
 } else {
-	PortalNavigator.navigateToPortalHome();
+	PortalNavigatorAPI.navigateToPortalHome();
 }' #txt
 Ps0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -85,16 +82,13 @@ Ps0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ps0 f4 160 138 128 44 -58 -8 #rect
-Ps0 f4 @|StepIcon #fIcon
 Ps0 f6 339 147 26 26 0 12 #rect
-Ps0 f6 @|UdProcessEndIcon #fIcon
 Ps0 f7 expr out #txt
 Ps0 f7 288 160 339 160 #arcP
 Ps0 f5 109 160 160 160 #arcP
 >Proto Ps0 .type ch.ivy.addon.portal.generic.PortalUrlCallback.PortalUrlCallbackData #txt
 >Proto Ps0 .processKind HTML_DIALOG #txt
 >Proto Ps0 -8 -8 16 16 16 26 #rect
->Proto Ps0 '' #fIcon
 Ps0 f0 mainOut f2 tail #connect
 Ps0 f2 head f1 mainIn #connect
 Ps0 f4 mainOut f7 tail #connect
