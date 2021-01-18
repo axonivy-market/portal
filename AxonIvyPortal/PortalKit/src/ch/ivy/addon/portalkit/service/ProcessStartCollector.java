@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivyteam.ivy.application.ActivityState;
@@ -34,14 +35,15 @@ public class ProcessStartCollector {
   
   /**
    * @param application 
-   * @deprecated Since 9.2 use ProcessStartCollector() instead
+   * @deprecated Use ProcessStartCollector() instead
    */
-  @Deprecated(since = "9.2")
+  @Deprecated
   public ProcessStartCollector(IApplication application) {
     this.application = application;
   }
 
-  public List<IProcessStart> findProcessStartRequestPathContainsKeyword(String keyword) {
+  @SuppressWarnings("unused")
+  private List<IProcessStart> findProcessStartRequestPathContainsKeyword(String keyword) {
     List<IProcessStart> processStarts = findProcessStartRequestPathContainsKeywordAndPmv(keyword, Ivy.wfTask().getProcessModelVersion());
     if (CollectionUtils.isNotEmpty(processStarts)) {
       return processStarts;
@@ -122,15 +124,15 @@ public class ProcessStartCollector {
   }
   
   public String findExpressAdhocWFLink() {
-    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(EXPRESS_ADHOC_WF_FRIENDLY_REQUEST_PATH);
+    return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(EXPRESS_ADHOC_WF_FRIENDLY_REQUEST_PATH); 
   }
 
   public String findExpressWorkflowStartLink() {
-    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(EXPRESS_WORKFLOW_FRIENDLY_REQUEST_PATH);
+    return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(EXPRESS_WORKFLOW_FRIENDLY_REQUEST_PATH);
   }
 
   public String findExpressBusinessViewStartLink() {
-    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(EXPRESS_BUSINESS_VIEW_REQUEST_PATH);
+    return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(EXPRESS_BUSINESS_VIEW_REQUEST_PATH);
   }
 
   public IProcessStart findExpressCreationProcess() {
@@ -138,7 +140,7 @@ public class ProcessStartCollector {
   }
 
   public String findExpressWorkflowEditLink(String workflowId) {
-    String url = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(EXPRESS_WORKFLOW_EDIT_REQUEST_PATH);
+    String url = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(EXPRESS_WORKFLOW_EDIT_REQUEST_PATH);
     if (StringUtils.isNotBlank(url)) {
       return  String.format("%s?workflowID=%s", url, workflowId);
     }
@@ -146,10 +148,12 @@ public class ProcessStartCollector {
   }
 
   /**
-   * Find start link from friendly request pathO
+   * Find start link from friendly request path
+   * @deprecated Use {@link ProcessStartAPI#findStartableLinkByUserFriendlyRequestPath(String)} instead
    * @param requestPath 
    * @return start link or empty string
    */
+  @Deprecated
   public String findStartableLinkByUserFriendlyRequestPath(String requestPath) {
     return IvyExecutor.executeAsSystem(() -> {
       IProcessStart processStart = findStartableProcessStartByUserFriendlyRequestPath(requestPath);

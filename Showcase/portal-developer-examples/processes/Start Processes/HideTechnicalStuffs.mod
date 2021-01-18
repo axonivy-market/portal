@@ -66,9 +66,7 @@ Hs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Hs0 f0 @C|.responsibility Everybody #txt
 Hs0 f0 153 57 30 30 -61 17 #rect
-Hs0 f0 @|StartRequestIcon #fIcon
 Hs0 f1 545 57 30 30 0 15 #rect
-Hs0 f1 @|EndIcon #fIcon
 Hs0 f3 outLink createHiddenTechnicalTask.ivp #txt
 Hs0 f3 inParamDecl '<> param;' #txt
 Hs0 f3 requestEnabled true #txt
@@ -93,17 +91,15 @@ Hs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Hs0 f3 @C|.responsibility Everybody #txt
 Hs0 f3 144 320 32 32 -86 17 #rect
-Hs0 f3 @|StartRequestIcon #fIcon
 Hs0 f4 696 320 32 32 0 15 #rect
-Hs0 f4 @|EndIcon #fIcon
 Hs0 f9 actionTable 'out=in;
 ' #txt
 Hs0 f9 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivy.addon.portalkit.util.RoleUtils;
+import ch.ivy.addon.portalkit.publicapi.RoleAPI;
 import ch.ivyteam.ivy.security.IRole;
 IRole role = ivy.session.getSecurityContext().findRole("PortalSystem");
 if(#role is initialized) {
-	RoleUtils.setProperty(role, AdditionalProperty.HIDE.toString(), AdditionalProperty.HIDE.toString());
+	RoleAPI.setProperty(role, AdditionalProperty.HIDE.toString(), AdditionalProperty.HIDE.toString());
 }' #txt
 Hs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -113,7 +109,6 @@ Hs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Hs0 f9 296 50 144 44 -67 -8 #rect
-Hs0 f9 @|StepIcon #fIcon
 Hs0 f10 expr out #txt
 Hs0 f10 183 72 296 72 #arcP
 Hs0 f2 expr out #txt
@@ -121,11 +116,11 @@ Hs0 f2 440 72 545 72 #arcP
 Hs0 f11 actionTable 'out=in;
 ' #txt
 Hs0 f11 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivy.addon.portalkit.util.RoleUtils;
+import ch.ivy.addon.portalkit.publicapi.RoleAPI;
 import ch.ivyteam.ivy.security.IRole;
 IRole role = ivy.session.getSecurityContext().findRole("PortalSystem");
 if(#role is initialized) {
-	RoleUtils.removeProperty(role, AdditionalProperty.HIDE.toString());
+	RoleAPI.removeProperty(role, AdditionalProperty.HIDE.toString());
 }' #txt
 Hs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -135,7 +130,6 @@ Hs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Hs0 f11 287 151 160 44 -74 -8 #rect
-Hs0 f11 @|StepIcon #fIcon
 Hs0 f12 outLink UnhideTechnicalRole.ivp #txt
 Hs0 f12 inParamDecl '<> param;' #txt
 Hs0 f12 requestEnabled true #txt
@@ -160,17 +154,15 @@ Hs0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Hs0 f12 @C|.responsibility Everybody #txt
 Hs0 f12 152 158 30 30 -68 17 #rect
-Hs0 f12 @|StartRequestIcon #fIcon
 Hs0 f13 544 158 30 30 0 15 #rect
-Hs0 f13 @|EndIcon #fIcon
 Hs0 f14 expr out #txt
 Hs0 f14 182 173 287 173 #arcP
 Hs0 f15 expr out #txt
 Hs0 f15 447 173 544 173 #arcP
 Hs0 f16 actionTable 'out=in;
 ' #txt
-Hs0 f16 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
-TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
+Hs0 f16 actionCode 'import ch.ivy.addon.portalkit.publicapi.TaskAPI;
+TaskAPI.setHidePropertyToHideInPortal(ivy.task);' #txt
 Hs0 f16 security system #txt
 Hs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -180,7 +172,6 @@ Hs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Hs0 f16 508 312 120 48 -26 -8 #rect
-Hs0 f16 @|StepIcon #fIcon
 Hs0 f18 actionTable 'out=in1;
 ' #txt
 Hs0 f18 outLinks "TaskA.ivp" #txt
@@ -196,7 +187,6 @@ TaskA.SKIP_TASK_LIST=true
 TaskA.TYPE=0' #txt
 Hs0 f18 template "" #txt
 Hs0 f18 424 320 32 32 0 16 #rect
-Hs0 f18 @|TaskSwitchSimpleIcon #fIcon
 Hs0 f20 expr data #txt
 Hs0 f20 outCond ivp=="TaskA.ivp" #txt
 Hs0 f20 456 336 508 336 #arcP
@@ -205,8 +195,8 @@ Hs0 f21 628 336 696 336 #arcP
 Hs0 f21 0 0.4999999999999999 0 0 #arcLabel
 Hs0 f17 actionTable 'out=in;
 ' #txt
-Hs0 f17 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
-TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
+Hs0 f17 actionCode 'import ch.ivy.addon.portalkit.publicapi.TaskAPI;
+TaskAPI.setHidePropertyToHideInPortal(ivy.task);' #txt
 Hs0 f17 security system #txt
 Hs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -216,7 +206,6 @@ Hs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Hs0 f17 268 312 104 48 -26 -8 #rect
-Hs0 f17 @|StepIcon #fIcon
 Hs0 f5 expr out #txt
 Hs0 f5 176 336 268 336 #arcP
 Hs0 f19 expr out #txt
@@ -240,7 +229,6 @@ Run UnhideTechnicalRole.ivp to unhide the role. You should see the role again in
 </elementInfo>
 ' #txt
 Hs0 f22 792 58 528 124 -259 -56 #rect
-Hs0 f22 @|IBIcon #fIcon
 Hs0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -256,7 +244,6 @@ Afterwards, login with a user with TASK_READ_ALL permission to see DONE tasks, t
 </elementInfo>
 ' #txt
 Hs0 f23 792 266 752 92 -373 -40 #rect
-Hs0 f23 @|IBIcon #fIcon
 Hs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -273,7 +260,6 @@ The tasks of the case should be hidden also in every Portal task lists. </name>
 </elementInfo>
 ' #txt
 Hs0 f26 798 452 960 108 -477 -48 #rect
-Hs0 f26 @|IBIcon #fIcon
 Hs0 f27 outLink createHiddenTechnicalCase.ivp #txt
 Hs0 f27 inParamDecl '<> param;' #txt
 Hs0 f27 requestEnabled true #txt
@@ -299,9 +285,7 @@ Hs0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Hs0 f27 @C|.responsibility Everybody #txt
 Hs0 f27 121 471 30 30 -87 17 #rect
-Hs0 f27 @|StartRequestIcon #fIcon
 Hs0 f29 713 471 30 30 0 15 #rect
-Hs0 f29 @|EndIcon #fIcon
 Hs0 f30 processCall 'Functional Processes/HideSystemCase:call(Boolean)' #txt
 Hs0 f30 requestActionDecl '<Boolean hideBusinessCase> param;' #txt
 Hs0 f30 requestMappingAction 'param.hideBusinessCase=true;
@@ -320,7 +304,6 @@ Hs0 f30 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Hs0 f30 536 464 112 44 -48 -8 #rect
-Hs0 f30 @|CallSubIcon #fIcon
 Hs0 f31 actionTable 'out=in1;
 ' #txt
 Hs0 f31 outLinks "TaskA.ivp","TaskB.ivp" #txt
@@ -344,7 +327,6 @@ TaskB.SKIP_TASK_LIST=false
 TaskB.TYPE=0' #txt
 Hs0 f31 template "" #txt
 Hs0 f31 456 470 32 32 0 16 #rect
-Hs0 f31 @|TaskSwitchIcon #fIcon
 Hs0 f33 expr data #txt
 Hs0 f33 outCond ivp=="TaskB.ivp" #txt
 Hs0 f33 472 502 728 501 #arcP
