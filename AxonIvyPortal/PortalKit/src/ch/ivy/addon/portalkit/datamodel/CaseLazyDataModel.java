@@ -35,6 +35,7 @@ import ch.ivy.addon.portalkit.service.CaseColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -99,6 +100,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     data = new ArrayList<>();
     selectedFilters = new ArrayList<>();
     this.caseWidgetComponentId = caseWidgetComponentId;
+    initColumnsConfiguration();
     buildCriteria();
     setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
     loadSessionCaseFiltersAttribute();
@@ -286,6 +288,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   public void setSorting(String sortedField, boolean descending) {
     criteria.setSortField(sortedField);
     criteria.setSortDescending(descending);
+    UserUtils.setSessionCaseSortAttribute(SortFieldUtil.buildSortField(sortedField, descending));
   }
 
   /**
@@ -381,6 +384,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
         criteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
       }
     }
+    buildSort();
     CaseQuery caseQuery = buildCaseQuery();
     extendSort(caseQuery);
     this.criteria.setFinalCaseQuery(caseQuery);
@@ -471,11 +475,22 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     criteria = new CaseSearchCriteria();
     criteria.setBusinessCase(true);
     criteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
-    criteria.setSortField(getDefaultSortField());
-    criteria.setSortDescending(isSortedDescendingByDefault());
+    buildSort();
+
     if (!isNotKeepFilter) {
       criteria.setKeyword(UserUtils.getSessionCaseKeywordFilterAttribute());
     }
+  }
+
+  private void buildSort() {
+    String sortField = UserUtils.getSessionCaseSortAttribute();
+    boolean isDescSort = !SortFieldUtil.isAscendingSort(sortField);
+    String sortColumn = SortFieldUtil.extractSortColumn(sortField, !isDescSort);
+    if (StringUtils.isBlank(sortColumn) || !getAllColumns().contains(sortColumn)) {
+      sortColumn = getDefaultSortField();
+      isDescSort = isSortedDescendingByDefault();
+    }
+    setSorting(sortColumn, isDescSort);
   }
 
   private String getDefaultSortField() {
@@ -494,7 +509,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
       defaultSortDirection = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST.name());
     }
     
-    return !SortDirection.ASCENDING.name().contentEquals(defaultSortDirection);
+    return !SortDirection.ASC.name().contentEquals(defaultSortDirection);
   }
 
   private void applyCustomSettings(CaseFilterData caseFilterData) {

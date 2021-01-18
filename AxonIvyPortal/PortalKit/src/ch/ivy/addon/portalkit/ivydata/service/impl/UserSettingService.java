@@ -3,6 +3,8 @@ package ch.ivy.addon.portalkit.ivydata.service.impl;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.constant.UserProperty;
+import ch.ivy.addon.portalkit.util.SortFieldUtil;
+import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
@@ -25,6 +27,8 @@ public class UserSettingService {
     
     user.setProperty(UserProperty.DEFAULT_SORT_FIELD_OF_TASK_LIST, fieldName);
     user.setProperty(UserProperty.DEFAULT_SORT_DIRECTION_OF_TASK_LIST, sortDirection);
+
+    UserUtils.setSessionTaskSortAttribute(SortFieldUtil.buildSortField(fieldName, sortDirection));
   }
 
   public String getDefaultSortFieldOfTaskList() {
@@ -44,6 +48,8 @@ public class UserSettingService {
 
     user.setProperty(UserProperty.DEFAULT_SORT_FIELD_OF_CASE_LIST, fieldName);
     user.setProperty(UserProperty.DEFAULT_SORT_DIRECTION_OF_CASE_LIST, sortDirection);
+
+    UserUtils.setSessionCaseSortAttribute(SortFieldUtil.buildSortField(fieldName, sortDirection));
   }
 
   public String getDefaultSortFieldOfCaseList() {
