@@ -18,7 +18,7 @@
 
   <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
     <div class="case-detail-section-title">
-      <i class="icon ivyicon-expand-6" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/relatedTasksAndCases')}
+      <i class="si si-expand-6" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/relatedTasksAndCases')}
     </div>
 
     <div class="ui-g-12 u-padding-0 case-detail-related-table">
@@ -27,7 +27,7 @@
         <h:panelGroup id="more-related-tasks" layout="block" styleClass="Fright show-more-technical-cases-container u-truncate-text">
           <p:commandLink id="show-more-related-tasks" actionListener="#{logic.navigateToRelatedTasksOfCase(cc.attrs.isWorkingOnTask, cc.attrs.inFrame)}" styleClass="case-related-command-link" 
               rendered="#{caseWidgetBean.showAllTasksOfCase and cc.attrs.case.state != 'CREATED' and !cc.attrs.readOnly}">
-            <span class="icon ivyicon-expand-6" />
+            <span class="si si-expand-6" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTasks')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:commandLink>
@@ -63,7 +63,7 @@
         <h:panelGroup id="more-related-cases" layout="block" styleClass="Fright show-more-technical-cases-container u-truncate-text">
           <p:commandLink id="show-more-related-cases" styleClass="case-related-command-link" rendered="#{(not empty data.technicalCases) and !cc.attrs.readOnly}"
             actionListener="#{logic.navigateToTechnicalCasesOfBusinessCase(cc.attrs.case,cc.attrs.isWorkingOnTask, cc.attrs.inFrame)}">
-            <span class="icon ivyicon-expand-6" />
+            <span class="si si-expand-6" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showMoreTechnicalCases')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:commandLink>
@@ -76,7 +76,7 @@
           value="#{data.technicalCases.size() gt 20 ? caseWidgetBean.getFirst20Items(data.technicalCases) : data.technicalCases}" var="technicalCase"
           mode="inline" styleClass="case-related-task-case-running">
           <h:panelGroup id="technicalCase" layout="block" class="grid-item-content-list-item related-task-content js-technical-case">
-            <i class="icon ivyicon-folder-empty related-task-list-item-status" />
+            <i class="si si-folder-empty related-task-list-item-status" />
             <p:commandLink id="case-name" value="#{empty technicalCase.name ? technicalCase.id : technicalCase.name}" disabled="#{cc.attrs.readOnly}"
               actionListener="#{logic.navigateToRelatedCaseDetails(technicalCase,cc.attrs.isWorkingOnTask, cc.attrs.inFrame)}" styleClass="related-task">
             </p:commandLink>

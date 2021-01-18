@@ -121,11 +121,11 @@ function highlightProcessItems() {
   createRedMediumOutline(processSearch);
   appendStepAnnotation(processSearch, "1", -5, processSearch.width() - 40);
   
-  var expressLogo = $('.express-process-logo.ivyicon-startup-launch');
+  var expressLogo = $('.express-process-logo.si-startup-launch');
   createRedMediumOutline(expressLogo);
   appendStepAnnotation(expressLogo, "2", -45, -10);
   
-  var externalLink = $('.ivyicon-hyperlink-3.external-link-icon:eq(0)');
+  var externalLink = $('.si-hyperlink-3.external-link-icon:eq(0)');
   createRedMediumOutline(externalLink);
   appendStepAnnotation(externalLink, "3", -45, -10);
 }

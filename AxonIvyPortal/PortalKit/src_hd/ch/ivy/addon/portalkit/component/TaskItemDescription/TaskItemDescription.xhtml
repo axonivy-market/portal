@@ -30,7 +30,7 @@
             <f:facet name="output">
               <h:outputText id="task-description-output" escape="false" styleClass="task-detail-description-output"
                 value="#{taskWidgetBean.sanitizeHTML(task.description)} " />
-              <i jsf:rendered="#{taskActionBean.canChangeDescription(task) and !cc.attrs.readOnly}" class="icon ivyicon-graphic-tablet-drawing-pen" />
+              <i jsf:rendered="#{taskActionBean.canChangeDescription(task) and !cc.attrs.readOnly}" class="si si-graphic-tablet-drawing-pen" />
             </f:facet>
           </p:inplace>
         </div>
