@@ -272,7 +272,7 @@ public class MenuView implements Serializable {
 
   private MenuItem buildPortalHomeMenuItem() {
     DefaultMenuItem menuItem = new DefaultMenuItem();
-    menuItem.setIcon("si si-house-chimney-2");
+    menuItem.setIcon("si si-house-chimney-2 portal-icon");
     menuItem.setOnclick("navigateToPortalHome();");
     return menuItem;
   }
