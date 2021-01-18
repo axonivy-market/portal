@@ -54,10 +54,10 @@
           </h:panelGrid>
         </h:panelGroup>
         <h:panelGroup styleClass="MarTop5 DispBlock Fright" id="command-group">
-          <p:commandLink value="Cancel" icon="icon ivyicon-remove"
+          <p:commandLink value="Cancel" icon="si si-remove"
             id="button-cancel" actionListener="#{logic.cancel}" partialSubmit="true" process="@this" />
           <p:spacer width="15px" />
-          <p:commandButton value="Send" icon="icon ivyicon-check-1" partialSubmit="true" id="button-submit"
+          <p:commandButton value="Send" icon="si si-check-1" partialSubmit="true" id="button-submit"
             actionListener="#{logic.close}" process=":leave-request" update=":leave-request" />
         </h:panelGroup>
       </h:form>
