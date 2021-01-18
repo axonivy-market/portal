@@ -483,13 +483,12 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   private void buildSort() {
     String sortField = UserUtils.getSessionCaseSortAttribute();
-    boolean isDescSort = !SortFieldUtil.isAscendingSort(sortField);
-    String sortColumn = SortFieldUtil.extractSortColumn(sortField, !isDescSort);
+    String sortColumn = SortFieldUtil.extractSortColumn(sortField);
     if (StringUtils.isBlank(sortColumn) || !getAllColumns().contains(sortColumn)) {
-      sortColumn = getDefaultSortField();
-      isDescSort = isSortedDescendingByDefault();
+      setSorting(getDefaultSortField(), isSortedDescendingByDefault());
+      return;
     }
-    setSorting(sortColumn, isDescSort);
+    setSorting(sortColumn, !SortFieldUtil.isAscendingSort(sortField));
   }
 
   private String getDefaultSortField() {
