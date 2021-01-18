@@ -804,10 +804,30 @@ public class TaskWidgetPage extends TemplatePage {
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
-
   public void openCompactSortMenu() {
     click(By.cssSelector("[id$='sort-task-menu_label']"));
     waitForElementDisplayed(By.cssSelector("div[id$='sort-task-menu_panel']"), true);
+  }
+
+  public void selectCompactSortByName(String sortName, int rowIndex, String expectedValue) {
+    waitForElementDisplayed(By.cssSelector("[id$='sort-task-form:sort-task-menu_items']"), true);
+    String compactSortFormat = "[id$='sort-task-form:sort-task-menu_items'] li[data-label*='%s']";
+    clickByCssSelector(String.format(compactSortFormat, sortName));
+    WaitHelper.assertTrueWithWait(() -> getCompactTaskCellValue(rowIndex).equalsIgnoreCase(expectedValue));
+  }
+
+  public String getCompactTaskCellValue(int rowIndex) {
+    String taskStartFormat = this.taskWidgetId + ":task-list-scroller:%d:task-item:task-start-item-view:task-start-task-name";
+    return findElementById(String.format(taskStartFormat, rowIndex)).getText();
+  }
+
+  public String getSelectedSortColumn() {
+    return findElementByCssSelector(".js-task-widget-sort-menu.full-mode a.ui-commandlink.is-selected").getText();
+  }
+
+  public String getSelectedCompactSortLable() {
+    waitForElementDisplayed(By.id("task-widget:sort-task-form"), true);
+    return findElementByCssSelector("label[id$='task-widget:sort-task-form:sort-task-menu_label']").getText();
   }
 
   @SuppressWarnings("deprecation")
