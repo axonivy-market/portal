@@ -28,7 +28,6 @@ import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.enums.SortDirection;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.service.CaseColumnsConfigurationService;
@@ -509,7 +508,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
       defaultSortDirection = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST.name());
     }
     
-    return !SortDirection.ASC.name().contentEquals(defaultSortDirection);
+    return !SortFieldUtil.isAscendingSort(defaultSortDirection);
   }
 
   private void applyCustomSettings(CaseFilterData caseFilterData) {
