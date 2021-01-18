@@ -55,7 +55,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public TaskDetailsPage openTaskDetails(int index) {
-    waitForElementDisplayed(By.cssSelector("a[id$='task-columns-configuration:task-config-command']"), true);
+    waitForElementDisplayed(By.cssSelector("div.js-task-start-list"), true);
     return clickOnTaskEntryInFullMode(index);
   }
 

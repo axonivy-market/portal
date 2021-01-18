@@ -192,7 +192,7 @@ public class TaskWidgetTest extends BaseTest {
   @Test
   public void testStartATaskAtHomePage() {
     HomePage homePage = new HomePage();
-    String maternityRequest = "Maternity Leave Request";
+    String annualLeaveRequest = "Annual Leave Request";
     String sickRequest = "Sick Leave Request";
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     //Start first task
@@ -204,8 +204,8 @@ public class TaskWidgetTest extends BaseTest {
     taskWidgetPage = homePage.getTaskWidget();
     assertTrue(taskWidgetPage.isResumedTask(0));
     taskTemplatePage = taskWidgetPage.startTask(0);
-    assertEquals(maternityRequest, taskTemplatePage.getTaskName());
-    homePage =taskTemplatePage.clickCancelAndLeftButton();
+    assertEquals(annualLeaveRequest, taskTemplatePage.getTaskName());
+    homePage = taskTemplatePage.clickCancelAndLeftButton();
     
     taskWidgetPage = homePage.getTaskWidget();
     //Start second task

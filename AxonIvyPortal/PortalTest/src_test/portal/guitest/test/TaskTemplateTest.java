@@ -137,7 +137,7 @@ public class TaskTemplateTest extends BaseTest {
     dialogPage.reserveTask();
     TaskWidgetPage taskWidget = new TaskWidgetPage();
     taskWidget.expand();
-    Assert.assertTrue(taskWidget.isTaskStateReserved(0));
+    Assert.assertTrue(taskWidget.isTaskStateReserved(2));
   }
   
   @Test
