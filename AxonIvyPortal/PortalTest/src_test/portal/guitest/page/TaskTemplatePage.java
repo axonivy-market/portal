@@ -38,15 +38,14 @@ public class TaskTemplatePage extends TemplatePage {
     return caseDetails.isDisplayed();
   }
 
-  @SuppressWarnings("deprecation")
   public void addNewNote(String content) {
     switchToCaseInfoIframe();
     clickByCssSelector("a[id$='add-note-command']");
     waitForElementDisplayed(By.cssSelector("div[id$='add-note-dialog']"), true);
     findElementByCssSelector("textarea[id$='note-content']").sendKeys(content);
+    int beginCounts = countNoteItems();
     clickByCssSelector("button[id$='save-add-note-command']");
-    waitAjaxIndicatorDisappear();
-    waitForElementDisplayed(By.cssSelector("div[id$='add-note-dialog']"), false);
+    WaitHelper.assertTrueWithWait(() -> countNoteItems() != beginCounts);
   }
 
   public void openDocumentUploadingDialog() {
