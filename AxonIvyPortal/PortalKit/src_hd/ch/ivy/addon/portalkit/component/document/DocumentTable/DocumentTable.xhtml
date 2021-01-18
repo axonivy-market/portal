@@ -19,12 +19,12 @@
 
   <cc:attribute name="downloadText" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}" />
   <cc:attribute name="downloadTitle" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/download')}" />
-  <cc:attribute name="downloadIcon" default="icon ivyicon-download-bottom" />
+  <cc:attribute name="downloadIcon" default="si si-download-bottom" />
   <cc:attribute name="downloadStyleClass" />
 
   <cc:attribute name="deleteText" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
   <cc:attribute name="deleteTitle" default="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/delete')}" />
-  <cc:attribute name="deleteIcon" default="icon ivyicon-bin-1" />
+  <cc:attribute name="deleteIcon" default="si si-bin-1" />
   <cc:attribute name="deleteStyleClass" />
   <cc:attribute name="updatedComponentAfterDeleted" />
   
@@ -86,7 +86,7 @@
     <div class="ui-g">
       <h:panelGroup layout="block" rendered="#{cc.attrs.typeColumnRendered or cc.attrs.uploadRendered}" styleClass="upload-container ui-g-12">
         <p:fileUpload id="document-upload" mode="advanced" auto="true" dragDropSupport="true"
-          chooseIcon="#{cc.attrs.renderChooseUploadIcon? 'icon ivyicon-add-small' : '' }"
+          chooseIcon="#{cc.attrs.renderChooseUploadIcon? 'si si-add-small' : '' }"
           fileUploadListener="#{logic.upload}"
           rendered="#{cc.attrs.uploadRendered}"
           update="document-table document-messages #{cc.attrs.updatedComponentAfterUploaded}"
