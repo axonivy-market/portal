@@ -44,7 +44,10 @@
   --header-font-size: 2rem;
   --left-menu-icon-font-size: 1.8rem;  
   --portal-font-family: "Roboto";
-  --streamline-icons-font-family: "StreamlineIcons";
+  --portal-icon-font-family: "StreamlineIcons";
+  --portal-icon-font-size: 1em;
+  --portal-icon-line-height: 1;
+  --portal-icon-ui-icon-font-size: 1.8rem;
   --default-font-style: normal;
   --default-font-weight: 400;
   --inplace-edit-icon-font-size: 1.8rem;
