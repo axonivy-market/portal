@@ -206,7 +206,7 @@ public class TaskWidgetPage extends TemplatePage {
   public TaskState getTaskState(int taskRowIndex) {
     WebElement stateCell = findElementById(String.format(TASK_STATE_COMPONENT_ID, taskRowIndex));
     if (stateCell != null) {
-      String stateClass = stateCell.findElement(By.className("icon")).getAttribute(CLASS);
+      String stateClass = stateCell.findElement(By.className("si")).getAttribute(CLASS);
       return TaskState.fromClass(stateClass.substring(stateClass.indexOf("task-state-")));
     }
     return null;

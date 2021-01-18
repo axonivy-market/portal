@@ -134,9 +134,9 @@ public class ProcessWidgetPage extends TemplatePage {
   public boolean isDeleteProcessItemSelected(int itemIndex) {
     WebElement deleteItem = findDeleteIcons().get(itemIndex);
 
-    WebElement deleteItemCheckBox = findChildElementByClassName(deleteItem, "icon");
+    WebElement deleteItemCheckBox = findChildElementByClassName(deleteItem, "si");
     String styleClass = deleteItemCheckBox.getAttribute("class");
-    return styleClass.contains("ivyicon-undo");
+    return styleClass.contains("si-undo");
   }
 
   public void checkDeleteItem(int itemIndex) {

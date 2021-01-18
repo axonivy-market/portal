@@ -26,7 +26,7 @@
   
       <p:commandLink id="back-to-previous-page" actionListener="#{taskActionBean.backToPrevPage(cc.attrs.task, cc.attrs.isFromTaskList, cc.attrs.isTaskStartedInDetails)}" 
         styleClass="task-details-back-btn" process="@this">
-        <i class="icon ivyicon-arrow-left-1" />
+        <i class="si si-arrow-left-1" />
         <p:spacer width="3px" />
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
       </p:commandLink>
@@ -42,12 +42,12 @@
         <div class="ui-g-6 ui-xl-6 ui-lg-6 ui-md-12 ui-sm-12 custom-task-left-component">
           <h:panelGroup id="task-detail-general-container" layout="block" styleClass="card card-w-title task-detail-general-card custom-general-panel">
             <div class="task-detail-section-title u-truncate-text ui-g-12 ui-xl-12 ui-lg-12 ui-md-12 ui-sm-12 u-padding-0">
-              <i class="icon ivyicon-single-neutral-actions" /> #{ivy.cms.co('/Dialogs/Tasks/TaskDetail/DataDescription')}
+              <i class="si si-single-neutral-actions" /> #{ivy.cms.co('/Dialogs/Tasks/TaskDetail/DataDescription')}
               <h:panelGroup id="task-detail-action-group" class="task-details-action-container action-container" layout="block">
                 <p:commandLink id="task-detail-start-command" disabled="#{!taskActionBean.canResume(task) or cc.attrs.readOnly}"
                   styleClass="task-action-item start-task-action" rendered="#{task.state != 'RESUMED'}" actionListener="#{logic.openTask()}">
                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label" />
-                  <i class="icon ivyicon-arrow-right-1 icon-compact-mode" />
+                  <i class="si si-arrow-right-1 icon-compact-mode" />
                 </p:commandLink>
 
                 <p:commandLink id="resume-task-detail-start-command" disabled="#{!taskActionBean.canResume(task) or cc.attrs.readOnly}"
@@ -55,7 +55,7 @@
                   <p:ajax event="click" listener="#{logic.validate(task)}" onstart="event.stopPropagation();"
                     oncomplete="if (args &amp;&amp; !args.validationFailed) PF('reset-task-dialog').show()" />
                   <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/start')}" styleClass="task-action-item-label" />
-                  <i class="icon ivyicon-arrow-right-1 icon-compact-mode" />
+                  <i class="si si-arrow-right-1 icon-compact-mode" />
                 </p:commandLink>
 
                 <ic:ch.ivy.addon.portalkit.component.SideStep id="additional-options" actionLinkId="task-detail-more-step"
@@ -102,7 +102,7 @@
     <ui:param name="id" value="reset-task-dialog" />
     <ui:param name="widgetVar" value="reset-task-dialog" />
     <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="icon ivyicon-road-sign-warning" />
+    <ui:param name="iconClass" value="si si-road-sign-warning" />
     <ui:param name="iconStyleClass" value="portal-dialog-warning-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/restTaskHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/resetTaskWarning')}" />
@@ -112,7 +112,7 @@
         <p:commandLink onclick="PF('reset-task-dialog').hide()"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
         <p:commandButton actionListener="#{logic.resetAndOpenTask}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset')}"
-          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-road-sign-u-turn-left')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-road-sign-u-turn-left')}"
           onstart="#{cc.attrs.onTaskStartCallback}" />
       </h:form>
     </ui:define>
@@ -122,7 +122,7 @@
     <ui:param name="id" value="destroy-task-confirmation-dialog" />
     <ui:param name="widgetVar" value="destroy-task-dialog" />
     <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="icon ivyicon-delete-1" />
+    <ui:param name="iconClass" value="si si-delete-1" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyTaskHeaderText')}" />
     <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/destroyTaskMessage')}" />
@@ -131,7 +131,7 @@
       <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
         onclick="PF('destroy-task-dialog').hide();" styleClass="u-mar-right-15"/>
        <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
-        icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}"
+        icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
         actionListener="#{logic.destroyTask(task)}"
         oncomplete="PF('destroy-task-dialog').hide()"
         update="#{cc.clientId}:task-detail-general-container"
