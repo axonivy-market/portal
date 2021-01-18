@@ -12,6 +12,7 @@ import ch.ivy.addon.portalkit.enums.SortDirection;
 public class SortFieldUtil {
 
   public static final String SORT_FORMAT = "%s_%s";
+  public static final String SORT_SEPARATOR = "_";
 
   /**<p>
    * Build a SortField with pattern: column name + "_ASCENDING" or column name + "_DESCENDING"
@@ -55,7 +56,7 @@ public class SortFieldUtil {
     if (StringUtils.isBlank(sortField) || sortField.length() < 4) {
       return EMPTY;
     }
-    int directionIndex = sortField.lastIndexOf("_");
+    int directionIndex = sortField.lastIndexOf(SORT_SEPARATOR);
     return StringUtils.substring(sortField, 0, directionIndex);
   }
 
@@ -79,9 +80,14 @@ public class SortFieldUtil {
     if (StringUtils.isBlank(sortField) || sortField.length() < 3) {
       return false;
     }
-    String sortDirection = StringUtils.substring(sortField, sortField.length() - 3);
-    return StringUtils.equalsIgnoreCase(sortDirection, SortDirection.ASCENDING.name())
-        || StringUtils.startsWithIgnoreCase(SortDirection.ASCENDING.name(), sortDirection);
+    if (sortField.contains(SORT_SEPARATOR)) {
+      int directionIndex = sortField.lastIndexOf(SORT_SEPARATOR);
+      String sortDirection = StringUtils.substring(sortField, directionIndex + 1);
+      return StringUtils.equalsIgnoreCase(sortDirection, SortDirection.ASCENDING.name())
+          || StringUtils.startsWithIgnoreCase(SortDirection.ASCENDING.name(), sortDirection);
+    }
+    return StringUtils.equalsIgnoreCase(sortField, SortDirection.ASCENDING.name())
+        || StringUtils.startsWithIgnoreCase(SortDirection.ASCENDING.name(), sortField);
   }
 
   public static boolean invalidSortField(String sortField, List<String> columns) {
