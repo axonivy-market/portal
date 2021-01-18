@@ -2,6 +2,9 @@ package ch.ivy.addon.portalkit.util;
 
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.SortDirection;
@@ -21,7 +24,7 @@ public class SortFieldUtil {
    * @return SortField
    */
   public static String buildSortField(String column, boolean isSortDescending) {
-    return String.format(SORT_FORMAT, column, getSortDirectionValue(isSortDescending).name());
+    return String.format(SORT_FORMAT, column, getSortDirectionValue(isSortDescending));
   }
 
   /**<p>
@@ -38,21 +41,22 @@ public class SortFieldUtil {
     return String.format(SORT_FORMAT, column, sortDirection);
   }
 
-  private static SortDirection getSortDirectionValue(boolean isSortDescending) {
-    return isSortDescending ? SortDirection.DESCENDING : SortDirection.ASCENDING;
+  private static String getSortDirectionValue(boolean isSortDescending) {
+    return isSortDescending ? SortDirection.DESCENDING.name().substring(0, 4)
+        : SortDirection.ASCENDING.name().substring(0, 3);
   }
 
   /**
    * Extracts column name from SortField by sort direction
    * @param sortField
-   * @param isAscSort
    * @return column name
    */
-  public static String extractSortColumn(String sortField, boolean isAscSort) {
+  public static String extractSortColumn(String sortField) {
     if (StringUtils.isBlank(sortField) || sortField.length() < 4) {
       return EMPTY;
     }
-    return StringUtils.substring(sortField, 0, isAscSort ? sortField.length() - 4 : sortField.length() - 5);
+    int directionIndex = sortField.lastIndexOf("_");
+    return StringUtils.substring(sortField, 0, directionIndex);
   }
 
   /**<p>
@@ -77,7 +81,14 @@ public class SortFieldUtil {
     }
     String sortDirection = StringUtils.substring(sortField, sortField.length() - 3);
     return StringUtils.equalsIgnoreCase(sortDirection, SortDirection.ASCENDING.name())
-        || StringUtils.startsWithIgnoreCase(SortDirection.ASCENDING.name(), sortField);
+        || StringUtils.startsWithIgnoreCase(SortDirection.ASCENDING.name(), sortDirection);
   }
 
+  public static boolean invalidSortField(String sortField, List<String> columns) {
+    String compareSort = extractSortColumn(sortField);
+    return columns.stream().map(column -> extractSortColumn(column))
+        .filter(extractedColumn -> extractedColumn.equalsIgnoreCase(compareSort))
+        .collect(Collectors.toList())
+        .isEmpty();
+  }
 }
