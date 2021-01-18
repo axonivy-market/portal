@@ -32,8 +32,16 @@ input, body .ui-widget, body .ui-widget .ui-widget,
 body .ui-selectonemenu .ui-selectonemenu-label.ui-inputfield {
   font-family: var(--portal-font-family); }
 
+.portal-icon.ui-widget.si,
+.portal-icon-container .ui-widget.si,
 .ui-widget.si::before {
-  font-family: var(--streamline-icons-font-family);
+  font-family: var(--portal-icon-font-family);
+}
+
+.portal-icon.ui-icon.si,
+.portal-icon-container .ui-icon.si {
+  font-size: var(--portal-icon-ui-icon-font-size);
+  line-height: var(--portal-icon-line-height);
 }
 
 _:-ms-input-placeholder, :root .ui-g .ui-outputlabel, :root .ui-g .ui-commandlink {
@@ -1923,4 +1931,9 @@ body .ui-button.secondary-btn.ui-state-focus {
 }
 body.in-dialog .ui-widget-overlay {
   background-color: transparent;
+}
+
+.portal-icon.action-icon.icon-compact-mode,
+.portal-icon.action-link i {
+  font-size: var(--portal-icon-font-size);
 }
