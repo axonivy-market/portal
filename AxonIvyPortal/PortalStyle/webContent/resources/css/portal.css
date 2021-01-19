@@ -1869,6 +1869,11 @@ color: var(--button-text-color);
   color: var(--no-item-icon-color);
 }
 
+.no-item-panel .si {
+  font-size: var(--no-item-icon-font-size) !important;
+  color: var(--no-item-icon-color);
+}
+
 .no-item-panel .no-item-header {
   font-size: var(--no-item-header-font-size);
 }
@@ -1931,6 +1936,26 @@ body .ui-button.secondary-btn.ui-state-focus {
 }
 body.in-dialog .ui-widget-overlay {
   background-color: transparent;
+}
+
+.time-information .si-graphic-tablet-drawing-pen,
+.general-information .si-graphic-tablet-drawing-pen,
+.task-detail-description .si-add-circle,
+.task-detail-description .si-subtract-circle {
+  margin-left: 5px;
+  color: var(--primary-color);
+}
+
+.task-details-description-title .si-graphic-tablet-drawing-pen {
+  margin: 0 2px;
+  color: var(--primary-color);
+}
+
+.time-information .si-information-circle {
+  margin-left: 5px;
+  top: 2px;
+  color: var(--primary-color);
+  position: relative;
 }
 
 .portal-icon.action-icon.icon-compact-mode,
