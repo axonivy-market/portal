@@ -15,6 +15,7 @@ import com.jayway.awaitility.Duration;
 
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
+import portal.guitest.common.FileHelper;
 import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
@@ -77,7 +78,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   @Test
   public void screenshotTaskDetails() throws IOException {
     login(TestAccount.ADMIN_USER);
-    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
+    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
     TaskWidgetPage taskWidget = homePage.openTaskList();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
     WebElement generalInfo = taskDetails.getTaskGeneralInformation();
@@ -127,7 +128,9 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     TaskWidgetPage taskWidget = homePage.openTaskList();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
+    taskDetails.openAddNoteDialog();
     taskDetails.addNoteToTaskWithContent("Add a note for this task");
+    taskDetails.openAddAttachmentDialog();
     taskDetails.uploadDocument(getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
     refreshPage();
     taskDetails.waitUtilsTaskDetailsDisplayed();
@@ -144,14 +147,16 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   
   @Test
   public void screenshotCustomTaskDetails() throws IOException {
-    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1200));
+    updatePortalSetting("APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS", "false");
+
     TaskWidgetPage taskWidget = homePage.openTaskList();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_FOLDER + "detailed-task-information");
     executeDecorateJs("highlightTaskDetailComponent()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-standard");
-    
+
     redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
     taskWidget = homePage.openTaskList();
     taskDetails = taskWidget.openTaskDetails(0);
@@ -165,6 +170,20 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     Sleeper.sleep(500);
     executeDecorateJs("highlightCustomTaskDetail()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-bottom");
+  }
+
+  @Test
+  public void screenshotCustomTaskDetailsWithApplyingJSONConfigurationFile() throws IOException {
+    FileHelper.copyAndReplaceExistingFile("./resources/task-details/task-details-custom-widgets.json", "../PortalStyle/resources/task-details.json");
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
+    TaskWidgetPage taskWidget = homePage.openTaskList();
+    TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
+    taskDetails.waitUtilsTaskDetailsDisplayed();
+    executeDecorateJs("scrollToBottomOfLayoutContent()");
+    executeDecorateJs("highlightCustomTaskDetailWithNewStyle()");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "customized-tasks-new-style");
+    FileHelper.copyAndReplaceExistingFile("./resources/task-details/task-details-basic.json", "../PortalStyle/resources/task-details.json");
   }
 
   @Test
