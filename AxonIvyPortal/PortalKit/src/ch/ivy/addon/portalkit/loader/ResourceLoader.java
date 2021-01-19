@@ -30,6 +30,11 @@ public class ResourceLoader {
         .map(Paths::get).filter(Files::exists);
   }
 
+  public Optional<Path> getTaskDetailsWidgetConfiguration() {
+   return Optional.ofNullable(pmv.getProject().getFile("resources/task-details.json")).map(IFile::getLocationURI)
+       .map(Paths::get).filter(Files::exists);
+  }
+
   private Optional<IFolder> getWebContentFolder() {
     try {
       return Optional.ofNullable(ServerFactory.getServer().getSecurityManager().executeAsSystem(

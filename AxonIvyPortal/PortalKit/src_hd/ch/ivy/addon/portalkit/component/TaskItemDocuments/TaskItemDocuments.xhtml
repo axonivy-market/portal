@@ -17,7 +17,7 @@
   <div id="#{cc.clientId}" class="task-details-item-document ui-g">
     <h:form id="task-document-form" prependId="false" styleClass="ui-g-12 u-padding-0">
       <div class="task-detail-section-title ui-g-12">
-        <div class="ui-g-6 u-truncate-text u-padding-0">
+        <div class="task-details-document-title ui-g-6 u-truncate-text u-padding-0 task-details-panel-title">
           <i class="si si-common-file-text" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/documents')}
         </div>
         <h:panelGroup layout="block" styleClass="task-details-document-add ui-g-6 u-padding-0">
@@ -33,7 +33,7 @@
 
       <div class="ui-g-12 u-padding-0">
         <p:dataTable id="task-details-documents" var="document" rendered="#{not empty data.documents}" value="#{data.documents}" paginator="true" paginatorAlwaysVisible="false" pageLinks="3"
-          rows="5" paginatorPosition="top" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
+          rows="8" paginatorPosition="top" emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}"
           paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
           currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
           <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/documentFiles/name')}" sortBy="#{document.name}"
@@ -115,5 +115,6 @@
     </ui:define>
   </ui:decorate>
 
+  <h:outputScript name="task-item-document.js" library="js" />
 </cc:implementation>
 </html>
