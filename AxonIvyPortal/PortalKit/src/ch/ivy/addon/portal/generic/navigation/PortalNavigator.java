@@ -44,11 +44,6 @@ public final class PortalNavigator extends BaseNavigator{
     return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, PORTAL_DASHBOARD), params);
   }
 
-//  private static String getRelativeLink(StandardProcessType standardProcess) {
-//    return IvyExecutor.executeAsSystem(() ->
-//      Ivy.wf().getStandardProcessImplementation(standardProcess).getLink().getRelative());
-//  }
-  
   public static void navigateToPortalLoginPage() {
     IHttpRequest request = (IHttpRequest) Ivy.request();
     String loginPage = getRelativeLink(StandardProcessType.DefaultLoginPage);
@@ -69,12 +64,7 @@ public final class PortalNavigator extends BaseNavigator{
   }
 
   public static void redirect(String url) {
-    redirect(url);
-//    try {
-//      RequestUtil.redirect(url);
-//    } catch (IOException ex) {
-//      throw new PortalException(ex);
-//    }
+    redirectURL(url);
   }
 
   public static String getSubMenuItemUrlOfCurrentApplication(MenuKind menuKind) {
@@ -201,15 +191,6 @@ public final class PortalNavigator extends BaseNavigator{
     String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);
     return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, defaultFriendlyRequestPath), param);
   }
-  
-//  private static void navigateByKeyword(String keyword, String defaultFriendlyRequestPath, Map<String, String> param) {
-//    String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);
-//    navigate(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, defaultFriendlyRequestPath), param);
-//  }
-
-//  private static void navigate(String friendlyRequestPath, Map<String, String> params) {
-//    redirect(buildUrl(friendlyRequestPath, params));
-//  }
   
   private static String buildUrl(String friendlyRequestPath, Map<String, String> params) {
     String requestPath = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);

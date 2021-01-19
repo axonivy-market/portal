@@ -31,6 +31,6 @@ public final class PortalNavigatorAPI extends BaseNavigator{
 //    PortalNavigator.navigateToPortalEndPage();
     String customizePortalEndPage = getRelativeLink(StandardProcessType.DefaultEndPage);
     Ivy.session().setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);
-    redirect(String.format("%s?endedTaskId=%s", customizePortalEndPage, Ivy.wfTask().getId()));
+    redirectURL(String.format("%s?endedTaskId=%s", customizePortalEndPage, Ivy.wfTask().getId()));
   }
 }
