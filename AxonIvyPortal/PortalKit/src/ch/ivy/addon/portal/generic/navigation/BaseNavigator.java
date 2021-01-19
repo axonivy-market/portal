@@ -20,14 +20,14 @@ public class BaseNavigator {
   protected static void navigateByKeyword(String keyword, String defaultFriendlyRequestPath, Map<String, String> param) {
     String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);
     String friendlyRequestPath = StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, defaultFriendlyRequestPath);
-    redirect(buildUrl(friendlyRequestPath, param));
+    redirectURL(buildUrl(friendlyRequestPath, param));
   }
   
   protected static void navigate(String friendlyRequestPath, Map<String, String> params) {
-    redirect(buildUrl(friendlyRequestPath, params));
+    redirectURL(buildUrl(friendlyRequestPath, params));
   }
   
-  protected static void redirect(String url) {
+  protected static void redirectURL(String url) {
     try {
       RequestUtil.redirect(url);
     } catch (IOException ex) {
