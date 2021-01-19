@@ -1,3 +1,8 @@
+.dashboar__header {
+	height: 60px;
+	padding: 0 10px;
+}
+
 .new-widget-dialog__content .ui-grid.ui-grid-responsive {
   padding: 0;
   border: none;
@@ -26,8 +31,7 @@
 }
 
 .dashboard__title {
-  font-size: 18px;
-  margin: 0 10px 10px 10px;
+  font-size: 1.8rem;
 }
 
 .dashboard__widget {
@@ -41,15 +45,11 @@
   padding: 10px;
   font-size: 18px;
   border-bottom: 2px solid lightgrey;
-  font-weight: bold;	
+  font-weight: bold;
 }
 
 .widget__header-actions {
   float: right;
-}
-
-.widget__header-actions .si {
-  color: #757575;
 }
 
 .widget__content {

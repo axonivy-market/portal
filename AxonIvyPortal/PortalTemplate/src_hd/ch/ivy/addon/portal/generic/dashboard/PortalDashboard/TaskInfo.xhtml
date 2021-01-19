@@ -2,7 +2,7 @@
   xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
   xmlns:pe="http://primefaces.org/ui/extensions" xmlns:jsf="http://xmlns.jcp.org/jsf">
-  <p:accordionPanel id="statistic-filter-accordion-panel" styleClass="statistic-filter-accordion-panel widget-info-panel ui-g-12 ui-fluid" multiple="true" activeIndex="0,1">
+  <p:accordionPanel id="statistic-filter-accordion-panel" styleClass="statistic-filter-accordion-panel widget-info-panel ui-g-12 ui-fluid" multiple="true" activeIndex="">
     <p:tab id="expiry-tab">
       <f:facet name="title">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/expiry')}" />
@@ -55,7 +55,7 @@
         </ui:repeat>
       </div>
     </p:tab>
-    <p:tab id="filter-tab">
+    <p:tab id="filter-tab" rendered="#{dashboardBean.hasPredefinedFilter(widget)}">
       <f:facet name="title">
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/dashboard/tasWidgetkInfo/predefinedFilters')}" />
       </f:facet>

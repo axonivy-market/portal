@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -40,6 +41,7 @@ import ch.ivy.addon.portalkit.dto.dashboard.StartColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.StateColumnModel;
 import ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget;
 import ch.ivy.addon.portalkit.dto.dashboard.WidgetSample;
+import ch.ivy.addon.portalkit.enums.DashboardColumnFormat;
 import ch.ivy.addon.portalkit.enums.DashboardStandardTaskColumn;
 import ch.ivy.addon.portalkit.enums.DashboardWidgetType;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
@@ -291,7 +293,34 @@ public class DashboardBean implements Serializable {
     }
     return result;
   }
-  
+
+  public boolean hasPredefinedFilter(TaskDashboardWidget taskWidget) throws ParseException {
+    if (CollectionUtils.isEmpty(taskWidget.getFilterableColumns())) {
+      return false;
+    }
+    for (ColumnModel col : taskWidget.getFilterableColumns()) {
+      if (col instanceof PriorityColumnModel && !CollectionUtils.isEmpty(((PriorityColumnModel) col).getPriorities())) {
+        return true;
+      }
+      if (col instanceof StateColumnModel && !CollectionUtils.isEmpty(((StateColumnModel) col).getStates())) {
+        return true;
+      }
+      if (col instanceof ResponsibleColumnModel && !CollectionUtils.isEmpty(((ResponsibleColumnModel) col).getResponsibles())) {
+        return true;
+      }
+      if ((col.getFormat() == DashboardColumnFormat.TEXT || col.getFormat() == DashboardColumnFormat.STRING) && !(CollectionUtils.isEmpty(col.getFilterList()) && StringUtils.isBlank(col.getFilter()))) {
+        return true;
+      }
+      if (col.getFormat() == DashboardColumnFormat.NUMBER && !(StringUtils.isBlank(col.getFilterFrom()) && StringUtils.isBlank(col.getFilterTo()))) {
+        return true;
+      }
+      if (col.getFormat() == DashboardColumnFormat.TIMESTAMP && !(col.getDateFilterFrom() == null && col.getDateFilterTo() == null)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
   public void toggleMode() {
     isReadOnlyMode = !isReadOnlyMode;
   }
