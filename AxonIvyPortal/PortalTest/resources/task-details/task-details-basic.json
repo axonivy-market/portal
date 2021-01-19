@@ -1,0 +1,29 @@
+{
+  "widgets": 
+  [
+    {
+      "type": "information",
+      "id": "information",
+      "axisX": 0,
+      "axisY": 0,
+      "width": 6,
+      "height": 12
+    },
+    {
+      "type": "document",
+      "id": "document",
+      "axisX": 6,
+      "axisY": 0,
+      "width": 6,
+      "height": 6
+    },
+    {
+      "type": "history",
+      "id": "history",
+      "axisX": 6,
+      "axisY": 6,
+      "width": 6,
+      "height": 6
+    }
+  ]
+}

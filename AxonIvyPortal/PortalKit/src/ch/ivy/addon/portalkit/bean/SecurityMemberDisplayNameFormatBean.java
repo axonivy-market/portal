@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 
 import ch.ivy.addon.portalkit.dto.UserDTO;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityMember;
 
 @ManagedBean
@@ -17,7 +18,8 @@ import ch.ivyteam.ivy.security.ISecurityMember;
  */
 public class SecurityMemberDisplayNameFormatBean implements Serializable {
   private static final long serialVersionUID = 1L;
-  
+  private static final String NOT_AVAILABLE_CMS = "/ch.ivy.addon.portalkit.ui.jsf/common/notAvailable";
+
   public String generateBriefDisplayNameForSecurityMember(ISecurityMember member, String securityMemberName) {
     return SecurityMemberDisplayNameUtils.generateBriefDisplayNameForSecurityMember(member, securityMemberName);
   }
@@ -28,5 +30,10 @@ public class SecurityMemberDisplayNameFormatBean implements Serializable {
   
   public String generateFullDisplayNameForUserDTO(UserDTO user) {
     return SecurityMemberDisplayNameUtils.generateFullDisplayNameForUserDTO(user);
+  }
+
+  public boolean isDisplayNameNotAvailable(ISecurityMember member, String securityMemberName) {
+    String generatedBriefDisplayName =  generateBriefDisplayNameForSecurityMember(member, securityMemberName);
+    return Ivy.cms().co(NOT_AVAILABLE_CMS).equals(generatedBriefDisplayName);
   }
 }

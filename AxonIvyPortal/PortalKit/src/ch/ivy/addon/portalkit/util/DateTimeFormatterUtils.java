@@ -25,9 +25,9 @@ public class DateTimeFormatterUtils {
     long years = days / DAYS_IN_A_YEAR;
     long remainingDays = days - years * DAYS_IN_A_YEAR;
     String dayDisplayText = remainingDays > 0
-        ? DASH_SPACE + prepareShortDateTimeDisplayText(remainingDays, CmsDateTimeUnitService.getCmsDayUnit())
+        ? DASH_SPACE + prepareShortDateTimeDisplayText(remainingDays, CmsDateTimeUnitService.getCmsDayUnit(remainingDays))
         : StringUtils.EMPTY;
-    return prepareDateTimeDisplayText(years, CmsDateTimeUnitService.getCmsYearUnit(), true) + dayDisplayText;
+    return prepareDateTimeDisplayText(years, CmsDateTimeUnitService.getCmsYearUnit(years), true) + dayDisplayText;
   }
 
   private static String makeExactDateTimeDisplayText(long timeInSeconds) {
@@ -39,15 +39,15 @@ public class DateTimeFormatterUtils {
         TimeUnit.SECONDS.toSeconds(timeInSeconds) - (TimeUnit.SECONDS.toMinutes(timeInSeconds) * SECONDS_IN_A_MINUTE);
     StringBuilder time = new StringBuilder();
     if (days > 0) {
-      time.append(prepareDateTimeDisplayText(days, CmsDateTimeUnitService.getCmsDayUnit(), false));
+      time.append(prepareDateTimeDisplayText(days, CmsDateTimeUnitService.getCmsDayUnit(days), false));
     }
     if (hours > 0) {
-      time.append(prepareDateTimeDisplayText(hours, CmsDateTimeUnitService.getCmsHourUnit(), false));
+      time.append(prepareDateTimeDisplayText(hours, CmsDateTimeUnitService.getCmsHourUnit(hours), false));
     }
     if (minutes > 0) {
-      time.append(prepareDateTimeDisplayText(minutes, CmsDateTimeUnitService.getCmsMinuteUnit(), false));
+      time.append(prepareDateTimeDisplayText(minutes, CmsDateTimeUnitService.getCmsMinuteUnit(minutes), false));
     }
-    time.append(prepareDateTimeDisplayText(seconds, CmsDateTimeUnitService.getCmsSecondUnit(), true));
+    time.append(prepareDateTimeDisplayText(seconds, CmsDateTimeUnitService.getCmsSecondUnit(seconds), true));
 
     return time.toString();
   }
@@ -64,7 +64,7 @@ public class DateTimeFormatterUtils {
 
   private static String makeDaysDisplayText(long days) {
     return days >= DAYS_IN_A_YEAR ? prepareShortYearDisplayText(days)
-        : prepareShortDateTimeDisplayText(days, CmsDateTimeUnitService.getCmsDayUnit());
+        : prepareShortDateTimeDisplayText(days, CmsDateTimeUnitService.getCmsDayUnit(days));
   }
 
   private static String prepareShortDateTimeDisplayText(long time, String unit) {
@@ -77,11 +77,11 @@ public class DateTimeFormatterUtils {
   }
 
   private static String makeHoursDisplayText(long hours) {
-    return prepareShortDateTimeDisplayText(hours, CmsDateTimeUnitService.getCmsHourUnit());
+    return prepareShortDateTimeDisplayText(hours, CmsDateTimeUnitService.getCmsHourUnit(hours));
   }
 
   private static String makeMinutesDisplayText(long seconds) {
     long minutes = TimeUnit.SECONDS.toMinutes(seconds) - (TimeUnit.SECONDS.toHours(seconds) * MINUTES_IN_A_HOUR);
-    return prepareShortDateTimeDisplayText(minutes, CmsDateTimeUnitService.getCmsMinuteUnit());
+    return prepareShortDateTimeDisplayText(minutes, CmsDateTimeUnitService.getCmsMinuteUnit(minutes));
   }
 }
