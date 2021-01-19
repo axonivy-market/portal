@@ -65,10 +65,9 @@ public class TaskDetailsTest extends BaseTest {
   @Test
   public void testChangeTaskDeadline() {
     String tomorrowStringLiteral = prepareTomorrowAsString();
-
     taskDetailsPage = openDetailsPageOfFirstTask();
     taskDetailsPage.changeExpiryOfTaskAt(tomorrowStringLiteral);
-    assertTrue(StringUtils.equalsIgnoreCase(tomorrowStringLiteral, taskWidgetPage.getExpiryOfTaskAt()));
+    assertTrue(StringUtils.equalsIgnoreCase(tomorrowStringLiteral, taskDetailsPage.getExpiryOfTaskAt()));
   }
 
   private String prepareTomorrowAsString() {
@@ -125,13 +124,17 @@ public class TaskDetailsTest extends BaseTest {
   @Test
   public void testShowDurationOfDoneTask() {
     login(TestAccount.ADMIN_USER);
+    openFirstTaskInCompletedTasks();
+    assertFalse(StringUtils.equalsIgnoreCase("", taskDetailsPage.getDurationTimeText()));
+  }
+
+  private void openFirstTaskInCompletedTasks() {
     homePage = new HomePage();
     taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.expand();
     taskWidgetPage.openAdvancedFilter("Completed on (from/to)", "completed");
     filterByDateType("completed");
     taskDetailsPage = taskWidgetPage.openTaskDetails(0);
-    assertFalse(StringUtils.equalsIgnoreCase("", taskDetailsPage.getDurationTimeText()));
   }
 
   private void filterByDateType(String dateType) {
@@ -149,5 +152,33 @@ public class TaskDetailsTest extends BaseTest {
     String tomorrowText = dateFormat.format(tomorrow);
 
     taskWidgetPage.filterByDate(dateType, yesterdayText, tomorrowText);
+  }
+
+  @Test
+  public void testShowNotAvailableValues() {
+    login(TestAccount.ADMIN_USER);
+    openFirstTaskInTaskList();
+    assertTrue(StringUtils.equalsIgnoreCase(taskDetailsPage.getTaskDelayTime(), "NA")); 
+    
+    login(TestAccount.GUEST_USER);
+    openFirstTaskInTaskList();
+    assertFalse(taskDetailsPage.isDelayTimeDisplayed());
+  }
+
+  private void openFirstTaskInTaskList() {
+    homePage = new HomePage();
+    taskWidgetPage = homePage.getTaskWidget();
+    taskWidgetPage.expand();
+    taskDetailsPage = taskWidgetPage.openTaskDetails(0);
+  }
+
+  @Test
+  public void testDragDropWidgets() {
+    openFirstTaskInTaskList();
+    taskDetailsPage.clickOnSwitchToEditModeButton();
+    taskDetailsPage.waitForSwitchToViewModeButtonDisplayed();
+    taskDetailsPage.drapAndDropWidgets();
+    taskDetailsPage.drapAndDropWidgets();
+    assertTrue(taskDetailsPage.isResetButtonDisplayed());
   }
 }
