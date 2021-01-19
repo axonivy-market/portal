@@ -15,7 +15,7 @@ public class SortFieldUtil {
   public static final String SORT_SEPARATOR = "_";
 
   /**<p>
-   * Build a SortField with pattern: column name + "_ASCENDING" or column name + "_DESCENDING"
+   * Build a SortField with pattern: column name + "_ASC" or column name + "_DESC"
    * </p>
    * <p>
    * E.g your column is "PRIORITY" and ascending sort: PRIORITY_ASC
@@ -25,7 +25,7 @@ public class SortFieldUtil {
    * @return SortField
    */
   public static String buildSortField(String column, boolean isSortDescending) {
-    return String.format(SORT_FORMAT, column, getSortDirectionValue(isSortDescending));
+    return String.format(SORT_FORMAT, column, getSortDirectionValue(isSortDescending).name());
   }
 
   /**<p>
@@ -42,9 +42,8 @@ public class SortFieldUtil {
     return String.format(SORT_FORMAT, column, sortDirection);
   }
 
-  private static String getSortDirectionValue(boolean isSortDescending) {
-    return isSortDescending ? SortDirection.DESCENDING.name().substring(0, 4)
-        : SortDirection.ASCENDING.name().substring(0, 3);
+  private static SortDirection getSortDirectionValue(boolean isSortDescending) {
+    return isSortDescending ? SortDirection.DESC : SortDirection.ASC;
   }
 
   /**
@@ -53,7 +52,7 @@ public class SortFieldUtil {
    * @return column name
    */
   public static String extractSortColumn(String sortField) {
-    if (StringUtils.isBlank(sortField) || sortField.length() < 4) {
+    if (StringUtils.isBlank(sortField)) {
       return EMPTY;
     }
     int directionIndex = sortField.lastIndexOf(SORT_SEPARATOR);
@@ -83,11 +82,11 @@ public class SortFieldUtil {
     if (sortField.contains(SORT_SEPARATOR)) {
       int directionIndex = sortField.lastIndexOf(SORT_SEPARATOR);
       String sortDirection = StringUtils.substring(sortField, directionIndex + 1);
-      return StringUtils.equalsIgnoreCase(sortDirection, SortDirection.ASCENDING.name())
-          || StringUtils.startsWithIgnoreCase(SortDirection.ASCENDING.name(), sortDirection);
+      return StringUtils.equalsIgnoreCase(sortDirection, SortDirection.ASC.name())
+          || StringUtils.startsWithIgnoreCase(SortDirection.ASC.name(), sortDirection);
     }
-    return StringUtils.equalsIgnoreCase(sortField, SortDirection.ASCENDING.name())
-        || StringUtils.startsWithIgnoreCase(SortDirection.ASCENDING.name(), sortField);
+    return StringUtils.equalsIgnoreCase(sortField, SortDirection.ASC.name())
+        || StringUtils.startsWithIgnoreCase(SortDirection.ASC.name(), sortField);
   }
 
   public static boolean invalidSortField(String sortField, List<String> columns) {
