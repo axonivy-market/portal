@@ -5,7 +5,10 @@ import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 
 import com.jayway.awaitility.Awaitility;
 import com.jayway.awaitility.Duration;
@@ -39,16 +42,16 @@ public class TaskDetailsPage extends TemplatePage {
 
   @SuppressWarnings("deprecation")
   public void changePriorityOfTask(int priorityValue) {
-    click(findElementById("task-detail-template:general-information:priority-form:edit-priority-inplace_display"));
-    waitForElementDisplayed(By.id("task-detail-template:general-information:priority-form:priority-select-menu_label"),
+    click(findElementByCssSelector("[id$=':general-information:priority-form:edit-priority-inplace_display']"));
+    waitForElementDisplayed(By.cssSelector("[id$=':general-information:priority-form:priority-select-menu_label']"),
         true);
-    click(findElementById("task-detail-template:general-information:priority-form:priority-select-menu_label"));
-    WebElement prioritySelectElement = findElementById(
-        String.format("task-detail-template:general-information:priority-form:priority-select-menu_%d", priorityValue));
+    click(findElementByCssSelector("[id$=':general-information:priority-form:priority-select-menu_label']"));
+    WebElement prioritySelectElement = findElementByCssSelector(
+        String.format("[id$=':general-information:priority-form:priority-select-menu_%d']", priorityValue));
     waitForElementDisplayed(prioritySelectElement, true);
     click(prioritySelectElement);
     clickByCssSelector(
-        "#task-detail-template\\:general-information\\:priority-form\\:edit-priority-inplace_editor .ui-inplace-save");
+        "#:general-information\\:priority-form\\:edit-priority-inplace_editor .ui-inplace-save");
     waitAjaxIndicatorDisappear();
   }
 
@@ -64,7 +67,7 @@ public class TaskDetailsPage extends TemplatePage {
     taskNameInput.clear();
     taskNameInput.sendKeys(name);
     clickByCssSelector(
-        "#task-detail-template\\:task-detail-title-form\\:task-name-inplace_editor .ui-inplace-save");
+        "#:task-detail-title-form\\:task-name-inplace_editor .ui-inplace-save");
     waitAjaxIndicatorDisappear();
   }
 
@@ -74,15 +77,15 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public boolean isAddNoteButtonDisplayed() {
-    return isElementDisplayedById("task-detail-template:task-notes:add-note-command");
+    return isElementDisplayed(By.cssSelector("[id$=':task-notes:add-note-command']"));
   }
 
   public boolean isShowMoreNoteButtonDisplayed() {
-    return isElementDisplayedById("task-detail-template:task-notes:show-more-note-link");
+    return isElementDisplayed(By.cssSelector("[id$=':task-notes:show-more-note-link']"));
   }
 
   public boolean isAddDocumentLinkDisplayed() {
-    return isElementDisplayedById("task-detail-template:task-documents:add-document-command");
+    return isElementDisplayed(By.cssSelector("[id$=':task-documents:add-document-command']"));
   }
   
   public TaskWidgetPage goBackToTaskListFromTaskDetails() {
@@ -91,15 +94,15 @@ public class TaskDetailsPage extends TemplatePage {
   }
   
   public boolean isBackButtonPresented() {
-    return findElementById("task-detail-template:task-detail-title-form:back-to-previous-page").isDisplayed();
+    return findElementByCssSelector("[id$=':task-detail-title-form:back-to-previous-page']").isDisplayed();
   }
   
   public void clickBackButton() {
-    click(By.id("task-detail-template:task-detail-title-form:back-to-previous-page"));
+    click(By.cssSelector("[id$=':task-detail-title-form:back-to-previous-page']"));
   }
 
   public TaskTemplatePage clickStartTask() {
-    findElementById("task-detail-template:task-detail-start-command").click();
+    findElementByCssSelector("[id$=':task-detail-start-command']").click();
     return new TaskTemplatePage();
   }
 
@@ -119,8 +122,8 @@ public class TaskDetailsPage extends TemplatePage {
   }
   
   public String getTaskNameInDialog() {
-    waitForElementDisplayed(By.id("task-detail-template:task-detail-title-form:task-name-edit-form"), true);
-    return findElementById("task-detail-template:task-detail-title-form:task-name-edit-form").findElement(By.cssSelector(".u-truncate-text")).getText();
+    waitForElementDisplayed(By.cssSelector("id$=':task-detail-title-form:task-name-edit-form']"), true);
+    return findElementByCssSelector("[id$=':task-detail-title-form:task-name-edit-form']").findElement(By.cssSelector(".u-truncate-text")).getText();
   }
   
   public CaseDetailsPage backToCaseDetails() {
@@ -130,26 +133,25 @@ public class TaskDetailsPage extends TemplatePage {
 
 
   public WebElement getTaskGeneralInformation() {
-    return findElementByCssSelector("[id$='task-detail-template:task-detail-general-container']");
+    return findElementByCssSelector("[id$=':task-detail-general-container']");
   }
 
   public void openAddNoteDialog() {
-    click(findElementByCssSelector("[id$='task-detail-template:task-notes:add-note-command']"));
-    waitForElementDisplayed(By.id("task-detail-template:task-notes:add-new-note-dialog"), true);
+    findElementByCssSelector("[id$=':task-notes:add-note-command']").click();
+    waitForElementDisplayed(By.cssSelector("[id$=':task-notes:add-new-note-dialog']"), true);
   }
 
   public WebElement getAddNoteDialog() {
-    return findElementByCssSelector("[id$='task-detail-template:task-notes:add-new-note-dialog']");
+    return findElementByCssSelector("[id$=':task-notes:add-new-note-dialog']");
   }
 
   public void openAddAttachmentDialog() {
-    click(findElementByCssSelector("[id$='task-detail-template:task-documents:add-document-command']"));
-    waitForElementDisplayed(By.id("task-detail-template:task-documents:document-upload-dialog"), true);
+    findElementByCssSelector("[id$=':task-documents:add-document-command']").click();
+    waitForElementDisplayed(By.cssSelector("[id$=':task-documents:document-upload-dialog']"), true);
   }
 
   @SuppressWarnings("deprecation")
   public void addNoteToTaskWithContent(String content) {
-    openAddNoteDialog();
     waitForElementDisplayed(By.cssSelector("div.ui-dialog[aria-hidden='false']"), true);
     WebElement addNoteDialog = findElementByCssSelector("div.ui-dialog[aria-hidden='false']");
     waitForElementDisplayed(addNoteDialog, true);
@@ -159,8 +161,6 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void uploadDocument(String path) {
-    Sleeper.sleep(500);//slow down a bit for FF
-    openAddAttachmentDialog();
     Sleeper.sleep(500);
     uploadDocumentByPath(path);
     waitForElementDisplayed(By.cssSelector("span[class$='ui-messages-info-summary']"), true);
@@ -172,25 +172,25 @@ public class TaskDetailsPage extends TemplatePage {
   }
   
   public void waitUtilsTaskDetailsDisplayed() {
-    waitForElementDisplayed(By.id("task-detail-template:task-detail-container"), true);
+    waitForElementDisplayed(By.cssSelector("[id$=':task-detail-container']"), true);
   }
 
   public WebElement getTaskHistories() {
-    return findElementByCssSelector("[id$='task-detail-template:task-detail-note-container']");
+    return findElementByCssSelector("[id$=':task-detail-note-container']");
   }
 
   public WebElement getTaskAttachment() {
-    return findElementByCssSelector("[id$='task-detail-template:task-detail-document-container']");
+    return findElementByCssSelector("[id$=':task-detail-document-container']");
   }
 
   public WebElement getAddAttachmentDialog() {
-    return findElementByCssSelector("[id$='task-detail-template:task-documents:document-upload-dialog']");
+    return findElementByCssSelector("[id$=':task-documents:document-upload-dialog']");
   }
 
   public void clickOnDeleteDocumentIcon(int index) {
     String deleteIconId = String.format("[id$=':task-documents:task-details-documents:%s:delete-file']", index);
-    click(findElementByCssSelector(deleteIconId));
-    waitForElementDisplayed(By.id("task-detail-template:task-documents:document-deletion-dialog_content"), true);
+    findElementByCssSelector(deleteIconId).click();
+    waitForElementDisplayed(By.cssSelector("[id$=':task-documents:document-deletion-dialog_content']"), true);
   }
 
   public WebElement getDeleteDocumentConfirmDialog() {
@@ -198,11 +198,11 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void clickOnShowMoreHistories() {
-    click(findElementByCssSelector("[id$=':task-notes:show-more-note-link']"));
+    findElementByCssSelector("[id$=':task-notes:show-more-note-link']").click();
   }
   
   public String getTaskResponsible() {
-    return findElementById("task-detail-template:general-information:task-activator:user").getText();
+    return findElementByCssSelector("[id$=':task-activator:user']").getText();
   }
   
   public String getTaskId() {
@@ -210,8 +210,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public String getFirstTaskNoteComment() {
-    return findElementByCssSelector("a[id$='task-detail-template:task-notes:task-note-table:0:note-message']")
-        .getText();
+    return findElementByCssSelector("a[id$=':task-notes:task-note-table:0:note-message']").getText();
   }
 
   public void openTaskDelegateDialog() {
@@ -223,10 +222,9 @@ public class TaskDetailsPage extends TemplatePage {
   }
   
   public void openActionPanel() {
-    String actionButtonId = "task-detail-template:additional-options:task-detail-more-step";
-    waitForElementDisplayed(By.id(actionButtonId), true);
-    click(By.id(actionButtonId));
-    waitForElementDisplayed(By.id("task-detail-template:additional-options:side-steps-panel"),true);
+    waitForElementDisplayed(By.cssSelector("[id$=':additional-options:task-detail-more-step']"), true);
+    click(By.cssSelector("[id$=':additional-options:task-detail-more-step']"));
+    waitForElementDisplayed(By.cssSelector("[id$=':additional-options:side-steps-panel']"),true);
   }
   
   public boolean isActionLinkEnable() {
@@ -235,13 +233,13 @@ public class TaskDetailsPage extends TemplatePage {
   
   public List<String> getActiveTaskAction() {
     openActionPanel();
-    WebElement actionPanel = findElementByCssSelector("div[id$='task-detail-template:additional-options:side-steps-panel']");
+    WebElement actionPanel = findElementByCssSelector("div[id$=':additional-options:side-steps-panel']");
     return actionPanel.findElements(By.cssSelector("a[class*='option-item']")).stream().map(WebElement::getText).collect(Collectors.toList());
   }
 
   public void addCommentOnTaskDelegationDialog(String comment) {
-    waitForElementDisplayed(By.cssSelector("textarea[id$='task-detail-template:task-item-delegate-component:task-delegate-form:input-text-area-delegate-message']"), true);
-    type(By.cssSelector("textarea[id$='task-detail-template:task-item-delegate-component:task-delegate-form:input-text-area-delegate-message']"), comment);
+    waitForElementDisplayed(By.cssSelector("textarea[id$=':task-item-delegate-component:task-delegate-form:input-text-area-delegate-message']"), true);
+    type(By.cssSelector("textarea[id$=':task-item-delegate-component:task-delegate-form:input-text-area-delegate-message']"), comment);
   }
 
   @SuppressWarnings("deprecation")
@@ -269,24 +267,32 @@ public class TaskDetailsPage extends TemplatePage {
   }
   
   public void changeExpiryOfTaskAt(String dateStringLiteral) {
-    click(findElementById("task-detail-template:general-information:expiry-form:edit-inplace_display"));
-    waitForElementDisplayed(By.id("task-detail-template:general-information:expiry-form:expiry-calendar"), true);
-    WebElement taskExpiryInlineEdit =
-        findElementById("task-detail-template:general-information:expiry-form:expiry-calendar_input");
+    click(By.cssSelector("[id$=':expiry-form:edit-inplace_display']"));
+    
+    waitForElementDisplayed(By.cssSelector("[id$=':expiry-form:expiry-calendar']"), true);
+    WebElement taskExpiryInlineEdit = findElementByCssSelector("[id$=':expiry-form:expiry-calendar_input']");
     taskExpiryInlineEdit.sendKeys(dateStringLiteral);
 
-    WebElement editor = findElementById("task-detail-template:general-information:expiry-form:edit-inplace_editor");
+    WebElement editor = findElementByCssSelector("[id$=':expiry-form:edit-inplace_editor']");
     WebElement saveButton = findChildElementByClassName(editor, UI_INPLACE_SAVE);
     saveButton.click();
     waitForElementDisplayed(By.cssSelector("[id$=':expiry-form:edit-inplace_editor']"), false);
   }
 
   public boolean isClearDelayTimeDisplayed() {
-    return isElementDisplayedById("task-detail-template:additional-options:task-clear-delay-command");
+    return isElementDisplayed(findElementByCssSelector("[id$=':additional-options:task-clear-delay-command']"));
+  }
+  
+  public boolean isDelayTimeDisplayed() {
+    try {
+      return isElementDisplayed(findElementByCssSelector("[id$=':delay-form:delay-date']"));
+    } catch (NoSuchElementException ex) {
+      return false;
+    }
   }
   
   public void clickOnClearDelayTime() {
-    click(findElementByCssSelector("a[id$=':additional-options:task-clear-delay-command']"));
+    findElementByCssSelector("a[id$=':additional-options:task-clear-delay-command']").click();
     waitForElementDisplayed(By.cssSelector("[id$=':additional-options:side-steps-panel']"), false);
   }
 
@@ -300,12 +306,12 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void updateDelayTimestamp(String tomorrow) {
-    click(findElementByCssSelector("span[id$='general-information:delay-form:delay-date_display']"));
+    findElementByCssSelector("span[id$='general-information:delay-form:delay-date_display']").click();
     waitForElementDisplayed(By.id("ui-datepicker-div"), true);
     WebElement delayInput = findElementByCssSelector("[id$='delay-form:delay-date-calendar_input']");
     delayInput.sendKeys(tomorrow);
     WebElement buttonAction = findElementByCssSelector("[id$='delay-form:delay-date_editor']");
-    click(buttonAction.findElement(By.className("ui-inplace-save")));
+    buttonAction.findElement(By.className("ui-inplace-save")).click();
     WaitHelper.assertTrueWithWait(() -> findElementByCssSelector("span[id$=':delay-form:delay-date_display']").getText().equalsIgnoreCase(tomorrow));
   }
 
@@ -326,7 +332,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void clickOnShowWorkflowEventLink() {
-    click(findElementByCssSelector("a[id$=':task-workflow-event-command']"));
+    findElementByCssSelector("a[id$=':task-workflow-event-command']").click();
     waitForElementDisplayed(By.cssSelector("div[id$='events-table']"), true);
   }
 
@@ -335,4 +341,36 @@ public class TaskDetailsPage extends TemplatePage {
     return findElementByCssSelector("div[id$='workflow-events-dialog']");
   }
 
+  public String getExpiryOfTaskAt() {
+    waitForElementDisplayed(By.cssSelector("[id$=':expiry-form:edit-inplace_display']"), true);
+    WebElement taskExpiry = findElementByCssSelector("[id$=':expiry-form:edit-inplace_display']");
+    return taskExpiry.getText();
+  }
+
+  public void clickOnSwitchToEditModeButton() {
+    waitForElementDisplayed(By.cssSelector("[id$=':switch-to-edit-mode-button']"), true);
+    click(By.cssSelector("[id$=':switch-to-edit-mode-button']"));
+  }
+
+  public void waitForSwitchToViewModeButtonDisplayed() {
+    waitForElementDisplayed(By.cssSelector("[id$=':switch-to-view-mode-button']"), true);
+  }
+
+  public void drapAndDropWidgets() {
+    waitForElementDisplayed(By.cssSelector("[id$=':task-detail-note-container']"), true);
+    WebElement historyWidget = findElementByCssSelector("[id$=':task-detail-note-container']");
+    waitForElementDisplayed(By.cssSelector("[id$=':task-detail-document-container']"), true);
+    WebElement documentWidget = findElementByCssSelector("[id$=':task-detail-document-container']");
+    Actions actions = new Actions(driver);
+    Action moveWidget = actions.dragAndDrop(historyWidget, documentWidget).build();
+    moveWidget.perform();
+  }
+
+  public boolean isResetButtonDisplayed() {
+    try {
+      return isElementDisplayed(findElementByCssSelector("[id$=':reset-task-details-settings-button']"));
+    } catch (NoSuchElementException ex) {
+      return false;
+    }
+  }
 }
