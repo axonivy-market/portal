@@ -1,0 +1,5 @@
+co: name={applyJsonConfigurationFileForTaskDetails} description={} changed={2020-12-31 09:32:38 CET} changedby={phhung} visualorder={0} guid={176B7D3BBF95ED95} parentguid={} typeguid={E6AFEA2034301F66} id={} parentid={} typeid={}
+val: guid={176B7D3BC15D34D9} datatype={} isdefault={false} langid={de} description={} validfrom={2020-07-27 05:32:45 CEST} validto={} changed={2020-12-31 09:32:38 CET} changedby={phhung} properties={} id={}
+val: guid={176B7D3BC1E281B1} datatype={} isdefault={false} langid={fr} description={} validfrom={2020-07-27 05:32:45 CEST} validto={} changed={2020-12-31 09:32:38 CET} changedby={phhung} properties={} id={}
+val: guid={176B7D3BC085AB33} datatype={} isdefault={true} langid={en} description={} validfrom={2020-07-22 08:41:09 CEST} validto={} changed={2020-12-31 09:32:38 CET} changedby={phhung} properties={} id={}
+val: guid={176B7D3BBFD82B0B} datatype={} isdefault={false} langid={es} description={} validfrom={2020-07-27 05:32:45 CEST} validto={} changed={2020-12-31 09:32:38 CET} changedby={phhung} properties={} id={}

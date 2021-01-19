@@ -221,13 +221,6 @@ public class TaskWidgetPage extends TemplatePage {
     return StringUtils.EMPTY;
   }
 
-  public String getExpiryOfTaskAt() {
-    waitForElementDisplayed(By.id("task-detail-template:general-information:expiry-form:edit-inplace_display"), true);
-    WebElement taskExpiry =
-        findElementById("task-detail-template:general-information:expiry-form:edit-inplace_display");
-    return taskExpiry.getText();
-  }
-
   public boolean isTaskPriorityChangeComponentPresented(int index) {
     return isElementPresent(By.id(String.format(
         taskWidgetId + ":task-list-scroller:%d:task-item:general-info:priority-form:edit-priority-inplace", index)));
