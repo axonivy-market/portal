@@ -46,9 +46,9 @@ public enum GlobalVariable {
   SHOW_GLOBAL_SEARCH(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showGlobalSearch"),
   SHOW_BUTTON_ICON(GlobalVariableType.SELECTION, Option.TRUE.toString(), "showButtonIcon"),
   DEFAULT_SORT_FIELD_OF_TASK_LIST(GlobalVariableType.EXTERNAL_SELECTION, TaskSortField.ID.name(), "defaultSortFieldOfTaskList", getTaskListSortFields()),
-  DEFAULT_SORT_DIRECTION_OF_TASK_LIST(GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESCENDING.name(), "defaultSortDirectionOfTaskList", getSortDirections()),
+  DEFAULT_SORT_DIRECTION_OF_TASK_LIST(GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESC.name(), "defaultSortDirectionOfTaskList", getSortDirections()),
   DEFAULT_SORT_FIELD_OF_CASE_LIST(GlobalVariableType.EXTERNAL_SELECTION, CaseSortField.ID.name(), "defaultSortFieldOfCaseList", getCaseListSortFields()),
-  DEFAULT_SORT_DIRECTION_OF_CASE_LIST(GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESCENDING.name(), "defaultSortDirectionOfCaseList", getSortDirections()),
+  DEFAULT_SORT_DIRECTION_OF_CASE_LIST(GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESC.name(), "defaultSortDirectionOfCaseList", getSortDirections()),
   DEFAULT_HOMEPAGE(GlobalVariableType.EXTERNAL_SELECTION, StringUtils.capitalize(HomepageType.DASHBOARD.name().toLowerCase()), "defaultHomepage");
   
   private GlobalVariableType type;
