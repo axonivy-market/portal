@@ -516,12 +516,13 @@ ew0 f8 0 0.43902439024390244 0 -13 #arcLabel
 ew0 f28 actionTable 'out=in;
 ' #txt
 ew0 f28 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.publicapi.TaskAPI;
 import ch.ivyteam.ivy.workflow.ITask;
 
 if(in.isAdhocProcess){
 	ITask originalTask = ivy.wf.findTask(in.originalTaskId);
 	if(originalTask != null){
-		TaskUtils.removeHidePropertyToDisplayInPortal(originalTask);
+		TaskAPI.removeHidePropertyToDisplayInPortal(originalTask);
 		TaskUtils.resetTask(originalTask);
 	}
 }' #txt
@@ -1015,8 +1016,8 @@ Bk4 f36 696 448 793 448 #arcP
 Bk4 f36 0 0.4845360824742268 0 -8 #arcLabel
 Bk4 f37 actionTable 'out=in;
 ' #txt
-Bk4 f37 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
-TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
+Bk4 f37 actionCode 'import ch.ivy.addon.portalkit.publicapi.TaskAPI;
+TaskAPI.setHidePropertyToHideInPortal(ivy.task);' #txt
 Bk4 f37 security system #txt
 Bk4 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1034,8 +1035,8 @@ Bk4 f34 expr out #txt
 Bk4 f34 680 374 680 432 #arcP
 Bk4 f39 actionTable 'out=in;
 ' #txt
-Bk4 f39 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
-TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
+Bk4 f39 actionCode 'import ch.ivy.addon.portalkit.publicapi.TaskAPI;
+TaskAPI.setHidePropertyToHideInPortal(ivy.task);' #txt
 Bk4 f39 security system #txt
 Bk4 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

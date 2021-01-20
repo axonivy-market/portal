@@ -6,6 +6,7 @@ import java.nio.charset.StandardCharsets;
 import org.primefaces.PrimeFaces;
 
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.publicapi.PortalNavigatorInFrameAPI;
 import ch.ivyteam.ivy.environment.Ivy;
 
 /**
@@ -15,19 +16,31 @@ public final class PortalNavigatorInFrame {
   
   /**
    * Navigates to PortalEndPage without finishing a task, e.g. clicking on Cancel button then back to previous page: task list or task details or global search
+   * @deprecated Use {@link PortalNavigatorInFrameAPI#navigateToPortalEndPage()} instead
    */
+  @Deprecated(since="8.0.13", forRemoval = true)
   public void navigateToPortalEndPage() {
     Ivy.session().setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);
     String statement = "parent.redirectToEndPageCommand([{name: 'taskId', value: " + Ivy.wfTask().getId() + "}]);";
     PrimeFaces.current().executeScript(statement);
   }
   
+  /**
+   * Navigate to Portal home
+   * @deprecated Use {@link PortalNavigatorInFrameAPI#navigateToPortalHome()} instead
+   */
+  @Deprecated(since="8.0.13", forRemoval = true)
   public void navigateToPortalHome() {
     String statement = "parent.redirectToHomePageCommand()";
     PrimeFaces.current().executeScript(statement);
   }
-  
 
+  /**
+   * Navigate to target url
+   * @deprecated Use {@link PortalNavigatorInFrameAPI#navigateToUrl(String)} instead
+   * @param url url
+   */
+  @Deprecated(since="8.0.13", forRemoval = true)
   public void navigateToUrl(String url) {
     String statement = "parent.redirectToUrlCommand([{name: 'url', value: '" + URLDecoder.decode(url, StandardCharsets.UTF_8) + "'}])";
     PrimeFaces.current().executeScript(statement);

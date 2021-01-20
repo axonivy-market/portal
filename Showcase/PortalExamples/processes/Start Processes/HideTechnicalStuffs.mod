@@ -99,11 +99,11 @@ Hs0 f4 @|EndIcon #fIcon
 Hs0 f9 actionTable 'out=in;
 ' #txt
 Hs0 f9 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivy.addon.portalkit.util.RoleUtils;
+import ch.ivy.addon.portalkit.publicapi.RoleAPI;
 import ch.ivyteam.ivy.security.IRole;
 IRole role = ivy.session.getSecurityContext().findRole("PortalSystem");
 if(#role is initialized) {
-	RoleUtils.setProperty(role, AdditionalProperty.HIDE.toString(), AdditionalProperty.HIDE.toString());
+	RoleAPI.setProperty(role, AdditionalProperty.HIDE.toString(), AdditionalProperty.HIDE.toString());
 }' #txt
 Hs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -121,11 +121,11 @@ Hs0 f2 440 72 545 72 #arcP
 Hs0 f11 actionTable 'out=in;
 ' #txt
 Hs0 f11 actionCode 'import ch.ivy.addon.portalkit.enums.AdditionalProperty;
-import ch.ivy.addon.portalkit.util.RoleUtils;
+import ch.ivy.addon.portalkit.publicapi.RoleAPI;
 import ch.ivyteam.ivy.security.IRole;
 IRole role = ivy.session.getSecurityContext().findRole("PortalSystem");
 if(#role is initialized) {
-	RoleUtils.removeProperty(role, AdditionalProperty.HIDE.toString());
+	RoleAPI.removeProperty(role, AdditionalProperty.HIDE.toString());
 }' #txt
 Hs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -169,8 +169,8 @@ Hs0 f15 expr out #txt
 Hs0 f15 447 173 544 173 #arcP
 Hs0 f16 actionTable 'out=in;
 ' #txt
-Hs0 f16 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
-TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
+Hs0 f16 actionCode 'import ch.ivy.addon.portalkit.publicapi.TaskAPI;
+TaskAPI.setHidePropertyToHideInPortal(ivy.task);' #txt
 Hs0 f16 security system #txt
 Hs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -205,8 +205,8 @@ Hs0 f21 628 336 696 336 #arcP
 Hs0 f21 0 0.4999999999999999 0 0 #arcLabel
 Hs0 f17 actionTable 'out=in;
 ' #txt
-Hs0 f17 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
-TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
+Hs0 f17 actionCode 'import ch.ivy.addon.portalkit.publicapi.TaskAPI;
+TaskAPI.setHidePropertyToHideInPortal(ivy.task);' #txt
 Hs0 f17 security system #txt
 Hs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

@@ -37,12 +37,12 @@ Se0 f1 337 49 30 30 0 15 #rect
 Se0 f1 @|EndSubIcon #fIcon
 Se0 f3 actionTable 'out=in;
 ' #txt
-Se0 f3 actionCode 'import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+Se0 f3 actionCode 'import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
+import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.support.UrlDetector;
 
-ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
-String casePageUrl = collector.findLinkByFriendlyRequestPath(in.linkToAdditonalCaseDetailPage)  
+String casePageUrl = ProcessStartAPI.findLinkByFriendlyRequestPath(ivy.request.getApplication(), in.linkToAdditonalCaseDetailPage)  
 											+ "?caseId=" + ivy.case.getId();
 											
 ivy.case.customFields().textField(AdditionalProperty.CUSTOMIZATION_ADDITIONAL_CASE_DETAILS_PAGE.toString()).set(casePageUrl);' #txt

@@ -1,6 +1,9 @@
 package ch.ivy.addon.portalkit.publicapi;
 
-import ch.ivy.addon.portalkit.util.RoleUtils;
+import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
+import ch.ivy.addon.portalkit.service.IvyCacheService;
+import ch.ivy.addon.portalkit.util.IvyExecutor;
+import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IRole;
 
 /**
@@ -18,7 +21,11 @@ public final class RoleAPI {
    * @param value property value
    */
   public static void setProperty(IRole role, String key, String value) {
-    RoleUtils.setProperty(role, key, value);
+    IvyExecutor.executeAsSystem(() -> {
+      role.setProperty(key, value);
+      IvyCacheService.newInstance().invalidateSessionEntry(Ivy.request().getApplication().getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION);
+      return null;
+    });
   }
   
   /**
@@ -28,6 +35,10 @@ public final class RoleAPI {
    * @param key key to remove property
    */
   public static void removeProperty(IRole role, String key) {
-    RoleUtils.removeProperty(role, key);
+    IvyExecutor.executeAsSystem(() -> {
+      role.removeProperty(key);
+      IvyCacheService.newInstance().invalidateSessionEntry(Ivy.request().getApplication().getName(), IvyCacheIdentifier.ROLES_IN_APPLICATION);
+      return null;
+    });
   }
 }

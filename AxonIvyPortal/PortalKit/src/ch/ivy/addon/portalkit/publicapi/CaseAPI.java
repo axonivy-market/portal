@@ -1,6 +1,6 @@
 package ch.ivy.addon.portalkit.publicapi;
 
-import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivyteam.ivy.workflow.ICase;
 
 /**
@@ -16,7 +16,7 @@ public final class CaseAPI {
    * @param iCase target case
    */
   public static void setHidePropertyToHideInPortal(ICase iCase) {
-    CaseUtils.setHidePropertyToHideInPortal(iCase);
+    iCase.customFields().stringField(AdditionalProperty.HIDE.toString()).set(AdditionalProperty.HIDE.toString());
   }
   
   /**
@@ -25,6 +25,6 @@ public final class CaseAPI {
    * @param iCase target case
    */
   public static void removeHidePropertyToDisplayInPortal(ICase iCase) {
-    CaseUtils.removeHidePropertyToDisplayInPortal(iCase);
+    iCase.customFields().stringField(AdditionalProperty.HIDE.toString()).set(null);
   }
 }
