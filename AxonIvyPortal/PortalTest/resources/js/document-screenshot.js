@@ -20,6 +20,11 @@ function createRedMediumOutline($element) {
   $element.addClass("red-medium-outline");
 }
 
+function createRedThickOutlineWithOffset($element) {
+  $element.addClass("red-thick-outline");
+  $element.addClass("red-outline-thick-offset");
+}
+
 /***IMPLEMENTATION TO DECORATE PAGES - WHICH ARE CALLED IN SELENIUM****/
 function highlightDashboardWidget() {
   createRedMediumOutline($("#task-widget"));
@@ -85,7 +90,7 @@ function numberingTaskFilterAndSort() {
 }
 
 function highlightProcessNavigation() {
-  createRedThickOutline($('.submenu.PROCESS'));
+  createRedThickOutlineWithOffset($('.ripplelink.PROCESS'));
   createRedThickOutline($('.widget.process-widget'));
 }
 
@@ -116,11 +121,11 @@ function highlightProcessItems() {
   createRedMediumOutline(processSearch);
   appendStepAnnotation(processSearch, "1", -5, processSearch.width() - 40);
   
-  var expressLogo = $('.express-process-logo.ivyicon-startup-launch');
+  var expressLogo = $('.express-process-logo.si-startup-launch');
   createRedMediumOutline(expressLogo);
   appendStepAnnotation(expressLogo, "2", -45, -10);
   
-  var externalLink = $('.ivyicon-hyperlink-3.external-link-icon:eq(0)');
+  var externalLink = $('.si-hyperlink-3.external-link-icon:eq(0)');
   createRedMediumOutline(externalLink);
   appendStepAnnotation(externalLink, "3", -45, -10);
 }
@@ -129,8 +134,8 @@ function numberingStatisticWidget() {
   var chartInfo = $('.chart-info:eq(0)');
   appendStepAnnotation(chartInfo, "1", -10, 25);
   var chartCanvas = $('.chartjs-render-monitor');
-  appendStepAnnotation(chartCanvas, "2", 0, chartCanvas.height()/2 - 30);
-  appendStepAnnotation(chartCanvas, "3", chartCanvas.width()/4, chartCanvas.height()/2 + 10);
+  appendStepAnnotation(chartCanvas, "2", chartCanvas.width()/4, chartCanvas.height()/2 + 10);
+  appendStepAnnotation(chartCanvas, "3", 15, chartCanvas.width()*0.75);
 }
 
 function highlightAdminSettings() {
@@ -138,7 +143,7 @@ function highlightAdminSettings() {
 }
 
 function highlightCaseMenuItem() {
-  createRedThickOutline($('.submenu.CASE'));
+  createRedThickOutlineWithOffset($('.ripplelink.CASE'));
 }
 
 function highlightShowMoreNoteLink() {
@@ -146,7 +151,7 @@ function highlightShowMoreNoteLink() {
 }
 
 function highlightStatisticNavigation() {
-   createRedMediumOutline($('.submenu.STATISTICS'));
+   createRedThickOutlineWithOffset($('.ripplelink.STATISTICS'));
    createRedMediumOutline($('#statistics-widget\\:statistic-link\\:statistic-link'));
 }
 
@@ -156,10 +161,10 @@ function numberingChartPanel() {
   var chartInfo = $('.chart-info:eq(1)');
   appendStepAnnotation(chartInfo, "2", -20, 25);
   var chartActions = $('.chart-actions-container:eq(1)');
-  appendStepAnnotation(chartActions, "3", chartActions.height(), chartActions.width()/2);
+  appendStepAnnotation(chartActions, "3", -20, -25);
   var chartCanvas = $('.chartjs-render-monitor:eq(1)');
   appendStepAnnotation(chartCanvas, "4", chartCanvas.width()/4, chartCanvas.height()/2 + 10);
-  appendStepAnnotation(chartCanvas, "5", 15, chartCanvas.height()/2 - 50);
+  appendStepAnnotation(chartCanvas, "5", 15, chartCanvas.width()*0.8);
 }
 
 function highlightCustomCaseList() {
@@ -352,11 +357,25 @@ function highlightCustomCaseDetail() {
 }
 
 function highlightCustomTaskDetail() {
-  var customTop = $('.custom-task-details-panel-top');
-  appendStepAnnotation(customTop, 1, -45, customTop.width()/2);
+  var customTop = $('.custom-task-details');
+  appendStepAnnotation(customTop, 1, 10, customTop.width()/2);
   
   var customBottom = $('.custom-task-details-panel-bottom');
-  appendStepAnnotation(customBottom, 2, -45, customBottom.width()/2);
+  appendStepAnnotation(customBottom, 2, 10, customBottom.width()/2);
+}
+
+function highlightCustomTaskDetailWithNewStyle() {
+  var customPanel1 = $('.custom-task-panel-1');
+  appendStepAnnotation(customPanel1, 1, -10, customPanel1.width()/2);
+  
+  var customPanel2 = $('.custom-task-panel-2');
+  appendStepAnnotation(customPanel2, 2, -10, customPanel2.width()/2);
+
+  var customPanel3 = $('.custom-task-panel-3');
+  appendStepAnnotation(customPanel3, 3, -10, customPanel3.width()/2);
+  
+  var customPanel4 = $('.custom-task-panel-4');
+  appendStepAnnotation(customPanel4, 4, -10, customPanel4.width()/2);
 }
 
 function highlightCaseDetailComponents() {
@@ -374,11 +393,11 @@ function highlightCaseDetailComponents() {
 }
 
 function highlightTaskDetailComponent() {
-  var histories = $('#task-detail-template\\:task-detail-note-container');
-  appendStepAnnotation(histories, 1, 0, histories.width()/2);
-  
   var document = $('#task-detail-template\\:task-detail-document-container');
-  appendStepAnnotation(document, 2, 0, document.width()/2);
+  appendStepAnnotation(document, 1, 0, document.width()/2);
+
+  var histories = $('#task-detail-template\\:task-detail-note-container');
+  appendStepAnnotation(histories, 2, 0, histories.width()/2);
 }
 
 function highlightUserExampleCard(cardIndex) {
@@ -394,7 +413,7 @@ function highlightTaskActionItem(taskIndex, actionIndex) {
 }
 
 function highlightShowAllProcesses() {
-  createRedThickOutline($('.submenu.PROCESS'));
+  createRedThickOutlineWithOffset($('.ripplelink.PROCESS'));
   createRedMediumOutline($("[id$='process-widget:process-link:process-link']"));
 }
 

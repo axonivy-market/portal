@@ -54,14 +54,21 @@ Gl0 f3 @|TaskSwitchIcon #fIcon
 Gl0 f4 expr out #txt
 Gl0 f4 var in1 #txt
 Gl0 f4 111 64 208 64 #arcP
-Gl0 f5 dialogId com.axonivy.portal.developerexamples.GlobalGrowl #txt
+Gl0 f5 dialogId com.axonivy.portal.developerexamples.showcase.GlobalGrowl #txt
 Gl0 f5 startMethod start() #txt
 Gl0 f5 requestActionDecl '<> param;' #txt
 Gl0 f5 responseActionDecl 'com.axonivy.portal.developerexamples.GlobalGrowlData out;
 ' #txt
 Gl0 f5 responseMappingAction 'out=in;
 ' #txt
-Gl0 f5 296 42 112 44 0 -8 #rect
+Gl0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>GlobalGrowl</name>
+    </language>
+</elementInfo>
+' #txt
+Gl0 f5 296 42 112 44 -34 -8 #rect
 Gl0 f5 @|UserDialogIcon #fIcon
 Gl0 f6 expr data #txt
 Gl0 f6 outCond ivp=="TaskA.ivp" #txt

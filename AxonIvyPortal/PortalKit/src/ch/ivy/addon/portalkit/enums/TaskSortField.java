@@ -10,7 +10,8 @@ public enum TaskSortField {
   CREATION_TIME, 
   EXPIRY_TIME, 
   COMPLETED_ON,
-  STATE;
+  STATE,
+  CATEGORY;
 
   public String getLabel() {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/" + name());

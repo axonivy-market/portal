@@ -16,6 +16,7 @@ public class LeaveRequestPage extends TaskTemplatePage {
     click(By.id("leave-request:button-submit"));
   }
   
+  @SuppressWarnings("deprecation")
   public String clickSubmitAndGetValidationMsg() {
     clickSubmitLeaveRequest();
     waitAjaxIndicatorDisappear();

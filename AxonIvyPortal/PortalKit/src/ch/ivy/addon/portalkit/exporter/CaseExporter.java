@@ -1,95 +1,35 @@
 package ch.ivy.addon.portalkit.exporter;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
-import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
 
-import ch.ivy.addon.portalkit.bo.ExcelExportSheet;
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
-import ch.ivy.addon.portalkit.util.ExcelExport;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 
-public class CaseExporter {
-  private static final String ZIP = "zip";
-  private static final String XLSX = "xlsx";
-  public static final int MAX_CASE_NUMBER_IN_EXCEL = 1048575; // = MAX ROWS (1048576) - 1 (for header row)
-  private static final String FILE_NAME_SUFFIX_FOR_EXCEL_IN_ZIP = "_%s";
-  private List<String> columnsVisibility;
+/**
+ * Export Portal case list to Excel
+ *
+ */
+public class CaseExporter extends Exporter{
   
+  /**
+   * Constructor
+   * @param columnsVisibility list of columns to export
+   */
   public CaseExporter(List<String> columnsVisibility) {
-    this.columnsVisibility = columnsVisibility;
-  }
-
-  public StreamedContent getStreamedContent(List<ICase> cases) throws IOException {
-    Date creationDate = new Date();
-    StreamedContent file;
-    if (cases.size() > MAX_CASE_NUMBER_IN_EXCEL) {
-      ByteArrayInputStream inputStream = new ByteArrayInputStream(generateZipContent(cases, creationDate));
-      file = new DefaultStreamedContent(inputStream, "application/zip", getFileName(creationDate, ZIP));
-    } else {
-      ByteArrayInputStream inputStream = new ByteArrayInputStream(generateExcelContent(cases));
-      file = new DefaultStreamedContent(inputStream, "application/xlsx", getFileName(creationDate, XLSX));
-    }
-    return file;
-  }
-
-  private byte[] generateZipContent(List<ICase> cases, Date creationDate) throws IOException {
-    try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream)) {
-      List<List<ICase>> casesInFiles = ListUtils.partition(cases, MAX_CASE_NUMBER_IN_EXCEL);
-      for (int i = 0; i < casesInFiles.size(); i++) {
-        String excelFileName = getFileName(creationDate, XLSX, String.format(FILE_NAME_SUFFIX_FOR_EXCEL_IN_ZIP, i + 1));
-        try {
-          byte[] content = generateExcelContent(casesInFiles.get(i));
-          zipOutputStream.putNextEntry(new ZipEntry(excelFileName));
-          zipOutputStream.write(content);
-          zipOutputStream.closeEntry();
-        } catch (IOException e) {
-          Ivy.log().error("The {0} file can't be exported", e, excelFileName);
-        }
-      }
-      zipOutputStream.close();
-      return outputStream.toByteArray();
-    }
-  }
-
-  private byte[] generateExcelContent(List<ICase> cases) throws IOException {
-    List<List<Object>> rows = generateData(cases);
-    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    ExcelExportSheet sheet = new ExcelExportSheet();
-    sheet.setHeaders(generateHeaders());
-    sheet.setRows(rows);
-    List<ExcelExportSheet> sheets = Arrays.asList(sheet);
-    ExcelExport.exportListAsExcel(sheets, outputStream);
-    return outputStream.toByteArray();
-  }
-
-  private List<String> generateHeaders() {
-    List<String> headers = new ArrayList<>();
-    for (String column : columnsVisibility) {
-      headers.add(getColumnName(column));
-    }
-    return headers;
+    super(columnsVisibility);
   }
 
   /**
    * <p>
-   * Gets column name.
+   * Gets column label.
    * </p>
    * <p>
    * In case you adds new columns, these columns need cms to show in excel file
@@ -99,10 +39,11 @@ public class CaseExporter {
    * folder column must be the same with sortField
    * </p>
    * 
-   * @param column
-   * @return column name
+   * @param column column name
+   * @return column column label
    */
-  protected String getColumnName(String column) {
+  @Override
+  public String getColumnName(String column) {
     String columnName = getSpecialColumnName(column);
     return columnName != null ? columnName
         : Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/" + column);
@@ -111,8 +52,8 @@ public class CaseExporter {
   /**
    * Gets column name that is differ from UI.
    * 
-   * @param column
-   * @return column name
+   * @param column 
+   * @return column name based on session language
    */
   protected String getSpecialColumnName(String column) {
     if (CaseSortField.NAME.name().equals(column)) {
@@ -126,14 +67,20 @@ public class CaseExporter {
   /**
    * Gets case column value.
    * 
+   * @param column case field like "NAME", "CREATOR", "CREATION_TIME"..
+   * @param caseItem target case
+   * @return case column value
+   */
+  public Object getColumnValue(String column, ICase caseItem) {
+    return getCommonColumnValue(column, caseItem);
+  }
+
+  /**
+   * Get common column value
    * @param column
    * @param caseItem
    * @return case column value
    */
-  protected Object getColumnValue(String column, ICase caseItem) {
-    return getCommonColumnValue(column, caseItem);
-  }
-
   protected Object getCommonColumnValue(String column, ICase caseItem) {
     if (StringUtils.equals(column, CaseLazyDataModel.DESCRIPTION)) {
       return caseItem.getDescription();
@@ -161,32 +108,38 @@ public class CaseExporter {
         return caseItem.getEndTimestamp();
       case STATE:
         return caseItem.getState().toString();
+      case CATEGORY:
+        return caseItem.getCategory().getPath();
       default:
         return "";
     }
   }
 
-  private List<List<Object>> generateData(List<ICase> cases) {
+  /**
+   * Generate data for export
+   */
+  @Override
+  protected <T> List<List<Object>> generateData(List<T> cases) {
     List<List<Object>> rows = new ArrayList<>();
-    for (ICase caseItem : cases) {
-      List<Object> row = new ArrayList<>();
-      for (String column : columnsVisibility) {
-        row.add(getColumnValue(column, caseItem));
-      }
+    for (T t : cases) {
+      if (t instanceof ICase) {
+        List<Object> row = new ArrayList<>();
+        for (String column : columnsVisibility) {
+          row.add(getColumnValue(column, (ICase)t));
+        }
         rows.add(row);
+      }
     }
     return rows;
 
   }
 
-  private String getFileName(Date creationDate, String extension) {
-    return getFileName(creationDate, extension, null);
-  }
-
-  private String getFileName(Date creationDate, String extension, String suffix) {
-    SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy_HHmm");
-    Date createdFileTime = creationDate != null ? creationDate : new Date();
-    String fileNameSuffix = suffix == null ? dateFormat.format(createdFileTime) : dateFormat.format(createdFileTime) + suffix; 
+  /**
+   * File name for export
+   */
+  @Override
+  protected String generateFileName(Date creationDate, String extension, String suffix) {
+    String fileNameSuffix = createFileNameSuffix(creationDate, suffix); 
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/exportedCasesFileName",
         Arrays.asList(fileNameSuffix, extension));
   }

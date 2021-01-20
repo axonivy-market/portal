@@ -18,14 +18,14 @@ public class CustomizedTaskExporter extends TaskExporter {
   }
 
   @Override
-  protected String getColumnName(String column) {
+  public String getColumnName(String column) {
     String columnName = getSpecialColumnName(column);
     return columnName != null ? columnName : Ivy.cms().co("/DefaultColumns/".concat(column));
 
   }
 
   @Override
-  protected Object getColumnValue(String column, ITask task) {
+  public Object getColumnValue(String column, ITask task) {
     switch (column) {
       case CustomizedTaskLazyDataModel.CUSTOM_VAR_CHAR_FIELD5:
         return task.customFields().stringField(CUSTOM_VARCHAR_FIELD5).getOrNull();

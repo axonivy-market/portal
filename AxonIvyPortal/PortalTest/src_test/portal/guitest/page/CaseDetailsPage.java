@@ -141,7 +141,7 @@ public class CaseDetailsPage extends TemplatePage {
   }
 
   public List<String> getCaseNoteAuthors() {
-    List<WebElement> noteAuthorElements = findListElementsByCssSelector(".ivyicon-notes-quill + span.history-fullname");
+    List<WebElement> noteAuthorElements = findListElementsByCssSelector(".si-notes-quill + span.history-fullname");
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 
@@ -244,6 +244,7 @@ public class CaseDetailsPage extends TemplatePage {
     click(confirmButton);
   }
   
+  @SuppressWarnings("deprecation")
   @Override
   public void waitAjaxIndicatorDisappear() {
     WebElement ajaxIndicatorStartState = findElementById("ajax-indicator:ajax-indicator-ajax-indicator_start");

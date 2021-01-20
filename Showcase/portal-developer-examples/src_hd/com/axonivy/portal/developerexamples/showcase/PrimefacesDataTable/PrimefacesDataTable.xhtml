@@ -7,7 +7,7 @@
     <ui:define name="title">Datatable</ui:define>
 
     <ui:define name="content">
-      <h:form id="form">
+      <h:form id="form" styleClass="portal-card-container">
         <p:tabView>
           <p:tab title="Demo">
             <ui:include src="DemoTab.xhtml" />
@@ -22,7 +22,7 @@
         </p:tabView>
         <div class="MarTop20 Fright">
           <p:commandLink actionListener="#{logic.close}" value="Cancel" update="form" process="@this" styleClass="u-mar-right-15" />
-          <p:commandButton actionListener="#{logic.close}" value="Proceed" update="form" icon="icon ivyicon-check-1" process="@this" />
+          <p:commandButton actionListener="#{logic.close}" value="Proceed" update="form" icon="si si-check-1" process="@this" />
         </div>
       </h:form>
     </ui:define>

@@ -57,7 +57,7 @@ Ts0 f6 actionTable 'out=in;
 ' #txt
 Ts0 f6 actionCode 'import ch.ivy.addon.portal.generic.view.TaskAnalysisView;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
-import ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel;
+import ch.ivy.addon.portalkit.datamodel.internal.TaskAnalysisLazyDataModel;
 
 TaskAnalysisLazyDataModel dataModel = new TaskAnalysisLazyDataModel();
 dataModel.getCriteria().setNewQueryCreated(true);

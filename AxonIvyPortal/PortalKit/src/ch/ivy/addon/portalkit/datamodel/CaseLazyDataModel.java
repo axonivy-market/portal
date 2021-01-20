@@ -22,19 +22,19 @@ import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
 import ch.ivy.addon.portalkit.bo.CaseColumnsConfiguration;
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
 import ch.ivy.addon.portalkit.casefilter.CaseFilterContainer;
-import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
-import ch.ivy.addon.portalkit.casefilter.DefaultCaseFilterContainer;
+import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
+import ch.ivy.addon.portalkit.casefilter.impl.DefaultCaseFilterContainer;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.enums.SortDirection;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.service.CaseColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -45,7 +45,14 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.query.CaseQuery.IFilterQuery;
 
+/**
+ * Lazy data model for case. Only override method which is mentioned in Portal document
+ *
+ */
 public class CaseLazyDataModel extends LazyDataModel<ICase> {
+  /**
+   * @hidden
+   */
   public static final String DESCRIPTION = "DESCRIPTION";
 
   private static final long serialVersionUID = 1L;
@@ -76,15 +83,23 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
   protected boolean disableCaseCount;
   protected Boolean isSelectedDefaultFilter;
 
+  /**
+   * @hidden
+   */
   public CaseLazyDataModel() {
     this("case-widget");
   }
 
+  /**
+   * @hidden
+   * @param caseWidgetComponentId
+   */
   public CaseLazyDataModel(String caseWidgetComponentId) {
     super();
     data = new ArrayList<>();
     selectedFilters = new ArrayList<>();
     this.caseWidgetComponentId = caseWidgetComponentId;
+    initColumnsConfiguration();
     buildCriteria();
     setAdminQuery(PermissionUtils.checkReadAllCasesPermission());
     loadSessionCaseFiltersAttribute();
@@ -108,6 +123,10 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     return filterGroupId == null || filterGroupId.equals(Ivy.request().getProcessModel().getId());
   }
 
+  /**
+   * @hidden
+   * @return defaultCaseFilterData
+   */
   public CaseFilterData buildDefaultCaseFilterData() {
     if (defaultCaseFilterData == null) {
       defaultCaseFilterData = new CaseFilterData();
@@ -119,10 +138,16 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     return defaultCaseFilterData;
   }
 
+  /**
+   * @hidden
+   */
   public void updateDisableCaseCount() {
     disableCaseCount = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_CASE_COUNT.toString());
   }
 
+  /**
+   * @hidden
+   */
   @Override
   public List<ICase> load(int first, int pageSize, String sortField, SortOrder sortOrder,
       Map<String, Object> filters) {
@@ -148,6 +173,10 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     return foundCases;
   }
 
+  /**
+   * @hidden
+   * @throws ReflectiveOperationException
+   */
   public void initFilters() throws ReflectiveOperationException {
     if (filterContainer == null) {
       initColumnsConfiguration();
@@ -166,11 +195,18 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     }
   }
 
+  /**
+   * @hidden
+   * @param event
+   */
   @SuppressWarnings("unchecked")
   public void onFilterChange(ValueChangeEvent event) {
     oldSelectedFilters = (List<CaseFilter>) event.getOldValue();
   }
 
+  /**
+   * @hidden
+   */
   @SuppressWarnings("unchecked")
   public void updateSelectedFilter() {
     List<CaseFilter> toggleFilters;
@@ -187,10 +223,16 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     storeCaseFiltersIntoSession();
   }
   
+  /**
+   * @hidden
+   */
   public void onFilterApply() {
     resetFilterData();
   }
 
+  /**
+   * @hidden
+   */
   public void onKeywordChange() {
     resetFilterData();
   }
@@ -202,12 +244,20 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     this.isSelectedDefaultFilter = false;
   }
 
+  /**
+   * @hidden
+   * @param filter
+   */
   public void removeFilter(CaseFilter filter) {
     filter.resetValues();
     selectedFilters.remove(filter);
     resetFilterData();
   }
 
+  /**
+   * @hidden
+   * @throws ReflectiveOperationException
+   */
   public void resetFilters() throws ReflectiveOperationException {
     for (CaseFilter selectedFilter : selectedFilters) {
       selectedFilter.resetValues();
@@ -215,6 +265,11 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     applyFilter(buildDefaultCaseFilterData());
   }
 
+  /**
+   * @hidden
+   * @param filterToBeRemoved
+   * @return isSameCaseFilterData
+   */
   public boolean isSameCaseFilterData(CaseFilterData filterToBeRemoved) {
     if (filterToBeRemoved == null || selectedFilterData == null) {
       return false;
@@ -224,11 +279,21 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
         && filterToBeRemoved.getFilterName().equals(selectedFilterData.getFilterName());
   }
 
+  /**
+   * @hidden
+   * @param sortedField
+   * @param descending
+   */
   public void setSorting(String sortedField, boolean descending) {
     criteria.setSortField(sortedField);
     criteria.setSortDescending(descending);
+    UserUtils.setSessionCaseSortAttribute(SortFieldUtil.buildSortField(sortedField, descending));
   }
 
+  /**
+   * @hidden
+   * @param isAdminQuery
+   */
   public void setAdminQuery(boolean isAdminQuery) {
     criteria.extendStatesQueryByPermission(isAdminQuery);
     if (isAdminQuery) {
@@ -236,6 +301,10 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     }
   }
 
+  /**
+   * @hidden
+   * @param caseId
+   */
   public void setCaseId(Long caseId) {
     criteria.setCaseId(caseId);
     criteria.setIncludedStates(new ArrayList<>());
@@ -244,7 +313,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   /**
    * Save all filter settings to business data
-   * 
+   * @hidden
    * @param filterName
    * @param filterType
    * @param filterGroupId
@@ -270,7 +339,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   /**
    * Apply filter settings loaded from business data to this {@link #CaseLazyDataModel}
-   * 
+   * @hidden
    * @param caseFilterData
    * @throws ReflectiveOperationException
    */
@@ -291,7 +360,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
    * </pre></code>
    * </p>
    */
-  protected void initFilterContainer() {
+  public void initFilterContainer() {
     filterContainer = new DefaultCaseFilterContainer();
   }
 
@@ -314,6 +383,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
         criteria.setIncludedStates(filterContainer.getStateFilter().getSelectedFilteredStates());
       }
     }
+    buildSort();
     CaseQuery caseQuery = buildCaseQuery();
     extendSort(caseQuery);
     this.criteria.setFinalCaseQuery(caseQuery);
@@ -336,9 +406,9 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
    * </pre></code>
    * </p>
    * 
-   * @param caseQuery
+   * @param caseQuery case query {@link CaseQuery}
    */
-  protected void extendSort(@SuppressWarnings("unused") CaseQuery caseQuery) {
+  public void extendSort(@SuppressWarnings("unused") CaseQuery caseQuery) {
     // Placeholder for customization
   }
 
@@ -404,11 +474,21 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     criteria = new CaseSearchCriteria();
     criteria.setBusinessCase(true);
     criteria.setIncludedStates(new ArrayList<>(Arrays.asList(CaseState.CREATED, CaseState.RUNNING, CaseState.DONE)));
-    criteria.setSortField(getDefaultSortField());
-    criteria.setSortDescending(isSortedDescendingByDefault());
+    buildSort();
+
     if (!isNotKeepFilter) {
       criteria.setKeyword(UserUtils.getSessionCaseKeywordFilterAttribute());
     }
+  }
+
+  private void buildSort() {
+    String sortField = UserUtils.getSessionCaseSortAttribute();
+    String sortColumn = SortFieldUtil.extractSortColumn(sortField);
+    if (StringUtils.isBlank(sortColumn) || !getAllColumns().contains(sortColumn)) {
+      setSorting(getDefaultSortField(), isSortedDescendingByDefault());
+      return;
+    }
+    setSorting(sortColumn, !SortFieldUtil.isAscendingSort(sortField));
   }
 
   private String getDefaultSortField() {
@@ -427,7 +507,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
       defaultSortDirection = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST.name());
     }
     
-    return !SortDirection.ASCENDING.name().contentEquals(defaultSortDirection);
+    return !SortFieldUtil.isAscendingSort(defaultSortDirection);
   }
 
   private void applyCustomSettings(CaseFilterData caseFilterData) {
@@ -459,11 +539,16 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     }
   }
 
+  /**
+   * @hidden
+   */
   public void initColumnsConfiguration() {
     if (new GlobalSettingService().isCaseOwnerEnabled()) {
-      portalDefaultColumns = List.of(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.OWNER.name(), CaseSortField.CREATION_TIME.name(), CaseSortField.FINISHED_TIME.name(), CaseSortField.STATE.name());
+      portalDefaultColumns = List.of(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.OWNER.name(), CaseSortField.CREATION_TIME.name(), 
+          CaseSortField.FINISHED_TIME.name(), CaseSortField.STATE.name(), CaseSortField.CATEGORY.name());
     } else {
-      portalDefaultColumns = List.of(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.CREATION_TIME.name(), CaseSortField.FINISHED_TIME.name(), CaseSortField.STATE.name());
+      portalDefaultColumns = List.of(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.CREATION_TIME.name(), CaseSortField.FINISHED_TIME.name(), 
+          CaseSortField.STATE.name(), CaseSortField.CATEGORY.name());
     }
     if (CollectionUtils.isEmpty(allColumns)) {
       allColumns.addAll(getDefaultColumns());
@@ -489,6 +574,9 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     setDisableSelectionCheckboxes(isAutoHideColumns);
   }
 
+  /**
+   * @hidden
+   */
   public void saveColumnsConfiguration() {
     // avoid duplicating
     for (String requiredColumn : portalRequiredColumns) {
@@ -547,7 +635,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
    * 
    * @return default columns
    */
-  protected List<String> getDefaultColumns() {
+  public List<String> getDefaultColumns() {
     return portalDefaultColumns;
   }
 
@@ -560,7 +648,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
    * folder column must be the same with sortField
    * </p>
    * 
-   * @param column
+   * @param column column name
    * 
    * @return column label
    */
@@ -568,108 +656,212 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/" + column);
   }
 
+  /**
+   * @hidden
+   * @return isDisableSelectionCheckboxes
+   */
   public boolean isDisableSelectionCheckboxes() {
     return isDisableSelectionCheckboxes;
   }
 
+  /**
+   * @hidden
+   * @param isDisableSelectionCheckboxes
+   */
   public void setDisableSelectionCheckboxes(boolean isDisableSelectionCheckboxes) {
     this.isDisableSelectionCheckboxes = isDisableSelectionCheckboxes;
   }
 
+  /**
+   * @hidden 
+   * @return selectedFilterData
+   */
   public CaseFilterData getSelectedFilterData() {
     return selectedFilterData;
   }
 
+  /**
+   * @hidden
+   * @param selectedFilterData
+   */
   public void setSelectedFilterData(CaseFilterData selectedFilterData) {
     this.selectedFilterData = selectedFilterData;
   }
 
+  /**
+   * @hidden
+   * @return isNotKeepFilter
+   */
   public boolean isNotKeepFilter() {
     return isNotKeepFilter;
   }
 
+  /**
+   * @hidden
+   * @param isNotKeepFilter
+   */
   public void setNotKeepFilter(boolean isNotKeepFilter) {
     this.isNotKeepFilter = isNotKeepFilter;
     this.selectedFilterData = null;
     this.isSelectedDefaultFilter = false;
   }
 
+  /**
+   * @hidden
+   * @return filters
+   */
   public List<CaseFilter> getFilters() {
     return filters;
   }
 
+  /**
+   * @hidden
+   * @param filters
+   */
   public void setFilters(List<CaseFilter> filters) {
     this.filters = filters;
   }
 
+  /**
+   * @hidden
+   * @return filterContainer
+   */
   public CaseFilterContainer getFilterContainer() {
     return filterContainer;
   }
 
+  /**
+   * @hidden
+   * @param filterContainer
+   */
   public void setFilterContainer(CaseFilterContainer filterContainer) {
     this.filterContainer = filterContainer;
   }
 
+  /**
+   * @hidden
+   * @return selectedFilters
+   */
   public List<CaseFilter> getSelectedFilters() {
     return selectedFilters;
   }
 
+  /**
+   * @hidden
+   * @param selectedFilters
+   */
   public void setSelectedFilters(List<CaseFilter> selectedFilters) {
     this.selectedFilters = selectedFilters;
   }
 
+  /**
+   * @hidden
+   * @param category
+   */
   public void setCategory(String category) {
     criteria.setCategory(category);
   }
 
+  /**
+   * @hidden
+   * @return criteria.getSortField()
+   */
   public String getSortField() {
     return criteria.getSortField();
   }
 
+  /**
+   * @hidden
+   * @return criteria.isSortDescending()
+   */
   public boolean isSortDescending() {
     return criteria.isSortDescending();
   }
 
+  /**
+   * @hidden
+   * @return selectedColumns
+   */
   public List<String> getSelectedColumns() {
     return selectedColumns;
   }
 
+  /**
+   * @hidden
+   * @param selectedColumns
+   */
   public void setSelectedColumns(List<String> selectedColumns) {
     this.selectedColumns = selectedColumns;
   }
 
+  /**
+   * @hidden
+   * @return allColumns
+   */
   public List<String> getAllColumns() {
     return allColumns;
   }
 
+  /**
+   * @hidden
+   * @return portalRequiredColumns
+   */
   public List<String> getPortalRequiredColumns() {
     return portalRequiredColumns;
   }
 
+  /**
+   * @hidden
+   * @return isAutoHideColumns
+   */
   public boolean isAutoHideColumns() {
     return isAutoHideColumns;
   }
 
+  /**
+   * @hidden
+   * @param isAutoHideColumns
+   */
   public void setAutoHideColumns(boolean isAutoHideColumns) {
     this.isAutoHideColumns = isAutoHideColumns;
   }
   
+  /**
+   * Check if your column is selected
+   * @param column column name
+   * @return is column selected
+   */
   public boolean isSelectedColumn(String column) {
     return selectedColumns.stream().anyMatch(selectedcolumn -> selectedcolumn.equalsIgnoreCase(column));
   }
   
+  /**
+   * @hidden
+   * @param isAdminQuery
+   */
   public void setIsAdminQuery(boolean isAdminQuery) {
     criteria.setAdminQuery(isAdminQuery);
   }
 
+  /**
+   * Getter for case search criteria
+   * @return criteria search criteria type {@link CaseSearchCriteria}
+   */
   public CaseSearchCriteria getCriteria() {
     return criteria;
   }
 
+  /**
+   * @hidden
+   * @param criteria
+   */
   public void setCriteria(CaseSearchCriteria criteria) {
     this.criteria = criteria;
   }
   
+  /**
+   * @hidden
+   */
   @Override
   public void setRowIndex(int index) {
     int idx = index;
@@ -679,11 +871,17 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     this.rowIndex = idx;
   }
 
+  /**
+   * @hidden
+   */
   @Override
   public ICase getRowData() {
     return data.get(rowIndex);
   }
 
+  /**
+   * @hidden
+   */
   @Override
   public boolean isRowAvailable() {
     if (data == null) {
@@ -692,28 +890,51 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
     return rowIndex >= 0 && rowIndex < data.size();
   }
   
+  /**
+   * @hidden
+   * @return disableCaseCount
+   */
   public boolean getDisableCaseCount() {
     return disableCaseCount;
   }
 
+  /**
+   * @hidden
+   * @param disableCaseCount
+   */
   public void setDisableCaseCount(boolean disableCaseCount) {
     this.disableCaseCount = disableCaseCount;
   }
 
+  /**
+   * @hidden
+   * @return defaultCaseFilterData
+   */
   public CaseFilterData getDefaultCaseFilterData() {
     return defaultCaseFilterData;
   }
 
+  /**
+   * @hidden
+   * @param defaultCaseFilterData
+   */
   public void setDefaultCaseFilterData(CaseFilterData defaultCaseFilterData) {
     this.defaultCaseFilterData = defaultCaseFilterData;
   }
 
+  /**
+   * @hidden
+   * @return isSelectedDefaultFilter
+   */
   public boolean isSelectedDefaultFilter() {
     return isSelectedDefaultFilter;
   }
 
+  /**
+   * @hidden
+   * @param isSelectedDefaultFilter
+   */
   public void setSelectedDefaultFilter(boolean isSelectedDefaultFilter) {
     this.isSelectedDefaultFilter = isSelectedDefaultFilter;
   }
-
 }

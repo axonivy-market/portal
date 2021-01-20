@@ -47,31 +47,31 @@ public class TaskBean implements Serializable {
     switch (state) {
     // Open
       case SUSPENDED:
-        return "icon ivyicon-controls-play task-state-open";
+        return "si si-controls-play task-state-open";
         // In progress
       case CREATED:
       case RESUMED:
-        return "icon ivyicon-hourglass task-state-in-progress";
+        return "si si-hourglass task-state-in-progress";
         // Reserved
       case PARKED:
-        return "icon ivyicon-touch-finger_1 task-state-reserved";
+        return "si si-touch-finger_1 task-state-reserved";
         // Done
       case DONE:
-        return "icon ivyicon-check-circle-1 task-state-done";
+        return "si si-check-circle-1 task-state-done";
         // Destroy
       case DELAYED:
-        return "icon ivyicon-alarm-bell-timer task-state-delayed";
+        return "si si-alarm-bell-timer task-state-delayed";
       case DESTROYED:
       case ZOMBIE:
-        return "icon ivyicon-alert-circle task-state-zombie-destroyed";
+        return "si si-alert-circle task-state-zombie-destroyed";
       case FAILED:
       case JOIN_FAILED:
-        return "icon ivyicon-mood-warning task-state-failed";
+        return "si si-mood-warning task-state-failed";
       case WAITING_FOR_INTERMEDIATE_EVENT:
-        return "icon ivyicon-synchronize-arrow-clock task-state-waiting";
+        return "si si-synchronize-arrow-clock task-state-waiting";
         // System
       default:
-        return "icon ivyicon-synchronize-arrows task-state-system";
+        return "si si-synchronize-arrows task-state-system";
     }
 
   }
