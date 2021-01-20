@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.publicapi.CaseAPI;
+import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.ISecurityConstants;
 import ch.ivyteam.ivy.workflow.ICase;
@@ -23,26 +25,28 @@ public final class CaseUtils {
   }
 
   /**
-   * Sets the "HIDE" property to the given case to hide it in case list of Portal.
-   * 
-   * @param iCase
+   * Set the "HIDE" property to the given case to hide it in case list of Portal.
+   * @deprecated Use {@link CaseAPI#setHidePropertyToHideInPortal(ICase)} instead
+   * @param iCase target case
    */
+  @Deprecated
   public static void setHidePropertyToHideInPortal(ICase iCase) {
     iCase.customFields().stringField(AdditionalProperty.HIDE.toString()).set(AdditionalProperty.HIDE.toString());
   }
 
   /**
-   * Removes the "HIDE" property to the given case to display it in case list of Portal.
-   * 
-   * @param iCase
+   * Remove the "HIDE" property to the given case to display it in case list of Portal.
+   * @deprecated Use {@link CaseAPI#removeHidePropertyToDisplayInPortal(ICase)} instead
+   * @param iCase target case
    */
+  @Deprecated
   public static void removeHidePropertyToDisplayInPortal(ICase iCase) {
     iCase.customFields().stringField(AdditionalProperty.HIDE.toString()).set(null);
   }
 
   public static String getProcessStartUriWithCaseParameters(ICase iCase, String requestPath) {
     String urlParameters = "?caseId=" + iCase.getId();
-    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(requestPath) + urlParameters;
+    return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(requestPath) + urlParameters;
   }
   
   public static List<INote> findNotes(ICase iCase, boolean excludeSystemNotes) {

@@ -14,7 +14,7 @@
       <h3>#{ivy.cms.co('/Labels/CaseMap/Credit/creditRequest')}</h3>
 
       <h:form id="form">
-        <h:panelGroup styleClass="ui-g ui-fluid">
+        <h:panelGroup styleClass="ui-g ui-fluid portal-card-container">
           <p:panel class="card ui-g-12 ui-md-12">
             <h:panelGroup styleClass="ui-g" layout="block">
               <p:messages styleClass="ui-g-12" />
@@ -91,7 +91,7 @@
           </p:panel>
         </h:panelGroup>
         <p:commandButton id="submit-request" actionListener="#{logic.close}"
-          value="#{ivy.cms.co('/Labels/CaseMap/Credit/submitRequest')}" update="form" icon="icon ivyicon-check-1"
+          value="#{ivy.cms.co('/Labels/CaseMap/Credit/submitRequest')}" update="form" icon="si si-check-1"
           styleClass="Fright" />
       </h:form>
 

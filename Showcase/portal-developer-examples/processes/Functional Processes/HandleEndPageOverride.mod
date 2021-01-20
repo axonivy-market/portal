@@ -31,16 +31,12 @@ He0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 He0 f0 81 49 30 30 -48 17 #rect
-He0 f0 @|StartSubIcon #fIcon
 He0 f1 337 49 30 30 0 15 #rect
-He0 f1 @|EndSubIcon #fIcon
 He0 f3 actionTable 'out=in;
 ' #txt
-He0 f3 actionCode 'import ch.ivy.addon.portalkit.util.ProcessStartUtils;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+He0 f3 actionCode 'import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 
-String ourNewEndPageFriendlyRequestPath = "Start Processes/ToCustomizedExpressEndPage/start.ivp";
-in.callbackUrl = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(ourNewEndPageFriendlyRequestPath);' #txt
+in.callbackUrl = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath("Start Processes/ToCustomizedExpressEndPage/start.ivp");' #txt
 He0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -49,7 +45,6 @@ He0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 He0 f3 168 42 112 44 -37 -8 #rect
-He0 f3 @|StepIcon #fIcon
 He0 f4 expr out #txt
 He0 f4 111 64 168 64 #arcP
 He0 f2 expr out #txt
@@ -66,7 +61,6 @@ Express workflow, he will be redirected to the customized express end page of th
 </elementInfo>
 ' #txt
 He0 f5 420 28 608 60 -297 -24 #rect
-He0 f5 @|IBIcon #fIcon
 >Proto He0 .type com.axonivy.portal.developerexamples.HandleEndPageData #txt
 >Proto He0 .processKind CALLABLE_SUB #txt
 >Proto He0 0 0 32 24 18 0 #rect

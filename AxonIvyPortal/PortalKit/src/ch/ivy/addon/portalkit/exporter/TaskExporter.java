@@ -1,95 +1,31 @@
 package ch.ivy.addon.portalkit.exporter;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
 
-import org.apache.commons.collections4.ListUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.model.DefaultStreamedContent;
-import org.primefaces.model.StreamedContent;
 
-import ch.ivy.addon.portalkit.bo.ExcelExportSheet;
 import ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
-import ch.ivy.addon.portalkit.util.ExcelExport;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ITask;
 
-public class TaskExporter {
-  private static final String ZIP = "zip";
-  private static final String XLSX = "xlsx";
-  public static final int MAX_TASK_NUMBER_IN_EXCEL = 1048575; // = MAX ROWS (1048576) - 1 (for header row)
-  private static final String FILE_NAME_SUFFIX_FOR_EXCEL_IN_ZIP = "_%s";
-  private List<String> columnsVisibility;
+/**
+ * Export Portal task list to Excel
+ *
+ */
+public class TaskExporter extends Exporter {
   
   public TaskExporter(List<String> columnsVisibility) {
-    this.columnsVisibility = columnsVisibility;
-  }
-
-  public StreamedContent getStreamedContent(List<ITask> tasks) throws IOException {
-    Date creationDate = new Date();
-    StreamedContent file;
-    if (tasks.size() > MAX_TASK_NUMBER_IN_EXCEL) {
-      ByteArrayInputStream inputStream = new ByteArrayInputStream(generateZipContent(tasks, creationDate));
-      file = new DefaultStreamedContent(inputStream, "application/zip", getFileName(creationDate, ZIP));
-    } else {
-      ByteArrayInputStream inputStream = new ByteArrayInputStream(generateExcelContent(tasks));
-      file = new DefaultStreamedContent(inputStream, "application/xlsx", getFileName(creationDate, XLSX));
-    }
-    return file;
-  }
-
-  private byte[] generateZipContent(List<ITask> tasks, Date creationDate) throws IOException {
-    try (ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        ZipOutputStream zipOutputStream = new ZipOutputStream(outputStream)) {
-      List<List<ITask>> tasksInFiles = ListUtils.partition(tasks, MAX_TASK_NUMBER_IN_EXCEL);
-      for (int i = 0; i < tasksInFiles.size(); i++) {
-        String excelFileName = getFileName(creationDate, XLSX, String.format(FILE_NAME_SUFFIX_FOR_EXCEL_IN_ZIP, i + 1));
-        try {
-          byte[] content = generateExcelContent(tasksInFiles.get(i));
-          zipOutputStream.putNextEntry(new ZipEntry(excelFileName));
-          zipOutputStream.write(content);
-          zipOutputStream.closeEntry();
-        } catch (IOException e) {
-          Ivy.log().error("The {0} file can't be exported", e, excelFileName);
-        }
-      }
-      zipOutputStream.close();
-      return outputStream.toByteArray();
-    }
-  }
-
-  private byte[] generateExcelContent(List<ITask> tasks) throws IOException {
-    List<List<Object>> rows = generateData(tasks);
-    ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-    ExcelExportSheet sheet = new ExcelExportSheet();
-    sheet.setHeaders(generateHeaders());
-    sheet.setRows(rows);
-    List<ExcelExportSheet> sheets = Arrays.asList(sheet);
-    ExcelExport.exportListAsExcel(sheets, outputStream);
-    return outputStream.toByteArray();
-  }
-
-  private List<String> generateHeaders() {
-    List<String> headers = new ArrayList<>();
-    for (String column : columnsVisibility) {
-      headers.add(getColumnName(column));
-    }
-    return headers;
+    super(columnsVisibility);
   }
 
   /**
    * <p>
-   * Gets column name.
+   * Gets column label.
    * </p>
    * <p>
    * In case you adds new columns, these columns need cms to show in excel file
@@ -99,10 +35,11 @@ public class TaskExporter {
    * folder column must be the same with sortField
    * </p>
    * 
-   * @param column
-   * @return column name
+   * @param column column name
+   * @return column column label
    */
-  protected String getColumnName(String column) {
+  @Override
+  public String getColumnName(String column) {
     String columnName = getSpecialColumnName(column);
     return columnName != null ? columnName
         : Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/".concat(column));
@@ -112,7 +49,7 @@ public class TaskExporter {
    * Gets column name that is differ from UI.
    * 
    * @param column
-   * @return column name
+   * @return column name based on session language
    */
   protected String getSpecialColumnName(String column) {
     if (TaskSortField.NAME.name().equals(column)) {
@@ -126,11 +63,11 @@ public class TaskExporter {
   /**
    * Gets task column value.
    * 
-   * @param column
-   * @param task
+   * @param column task field like "PRIORITY", "NAME", "ACTIVATOR", "ID", "CREATION_TIME".. 
+   * @param task target task
    * @return task column value
    */
-  protected Object getColumnValue(String column, ITask task) {
+  public Object getColumnValue(String column, ITask task) {
     return getCommonColumnValue(column, task);
   }
 
@@ -160,32 +97,37 @@ public class TaskExporter {
         return task.getExpiryTimestamp();
       case COMPLETED_ON:
         return task.getEndTimestamp();
+      case CATEGORY:
+        return task.getCategory().getPath();
       default:
         return "";
     }
   }
 
-  private List<List<Object>> generateData(List<ITask> tasks) {
+  /**
+   * Generate data for export
+   */
+  @Override
+  protected <T> List<List<Object>> generateData(List<T> tasks) {
     List<List<Object>> rows = new ArrayList<>();
-    for (ITask task : tasks) {
-      List<Object> row = new ArrayList<>();
-      for (String column : columnsVisibility) {
-        row.add(getColumnValue(column, task));
+    for (T t : tasks) {
+      if (t instanceof ITask) {
+        List<Object> row = new ArrayList<>();
+        for (String column : columnsVisibility) {
+          row.add(getColumnValue(column, (ITask)t));
+        }
+      rows.add(row);
       }
-        rows.add(row);
     }
     return rows;
-
   }
 
-  private String getFileName(Date creationDate, String extension) {
-    return getFileName(creationDate, extension, null);
-  }
-
-  private String getFileName(Date creationDate, String extension, String suffix) {
-    SimpleDateFormat dateFormat = new SimpleDateFormat("ddMMyyyy_HHmm");
-    Date createdFileTime = creationDate != null ? creationDate : new Date();
-    String fileNameSuffix = suffix == null ? dateFormat.format(createdFileTime) : dateFormat.format(createdFileTime) + suffix; 
+  /**
+   * File name for export
+   */
+  @Override
+  protected String generateFileName(Date creationDate, String extension, String suffix) {
+    String fileNameSuffix = createFileNameSuffix(creationDate, suffix); 
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/components/taskView/exportedTasksFileName",
         Arrays.asList(fileNameSuffix, extension));
   }

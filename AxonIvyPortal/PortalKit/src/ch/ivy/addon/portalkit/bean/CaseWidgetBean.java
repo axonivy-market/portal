@@ -14,14 +14,14 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.casefilter.CaseFilter;
-import ch.ivy.addon.portalkit.casefilter.CaseFilterData;
-import ch.ivy.addon.portalkit.casefilter.CaseStateFilter;
+import ch.ivy.addon.portalkit.casefilter.impl.CaseFilterData;
+import ch.ivy.addon.portalkit.casefilter.impl.CaseStateFilter;
 import ch.ivy.addon.portalkit.datamodel.CaseLazyDataModel;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.exporter.CaseExporter;
+import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.service.CaseFilterService;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.support.HtmlParser;
@@ -218,6 +218,6 @@ public class CaseWidgetBean implements Serializable {
   }
 
   public int getMaxCaseNumberInExcel() {
-    return CaseExporter.MAX_CASE_NUMBER_IN_EXCEL;
+    return Exporter.MAX_ROW_NUMBER_IN_EXCEL;
   }
 }

@@ -10,9 +10,9 @@ import org.primefaces.model.StreamedContent;
 import ch.ivy.addon.portalkit.bo.History;
 import ch.ivy.addon.portalkit.bo.History.HistoryType;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
-import ch.ivy.addon.portalkit.exporter.NoteHistoryExporter;
+import ch.ivy.addon.portalkit.exporter.internal.NoteHistoryExporter;
+import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivy.addon.portalkit.util.ProcessStartUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
@@ -34,7 +34,7 @@ public class CaseTaskNoteHistoryBean implements Serializable {
   }
 
   public String getTaskNoteHistoryLink(ITask task) {
-    String url = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(SHOW_TASK_NOTE_HISTORY_FRIENDLY_REQUEST_PATH);
+    String url = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(SHOW_TASK_NOTE_HISTORY_FRIENDLY_REQUEST_PATH);
     return String.format("%s?selectedTaskId=%s", url, task.getId());
   }
 
@@ -43,7 +43,7 @@ public class CaseTaskNoteHistoryBean implements Serializable {
   }
   
   public String getCaseNoteHistoryLink(Long caseId) {
-    String link = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(SHOW_CASE_NOTE_HISTORY_FRIENDLY_REQUEST_PATH);
+    String link = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(SHOW_CASE_NOTE_HISTORY_FRIENDLY_REQUEST_PATH);
     return String.format("%s?caseId=%s", link, caseId);
   }
 

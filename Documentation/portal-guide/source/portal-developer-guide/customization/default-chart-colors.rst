@@ -94,11 +94,26 @@ Portal introduces **StatisticColors** object. We use it to build **DataSet** col
 
 ..
 
+You can override data labels color by re-define value of below variables in ``customization.css``:
 
-In Portal home, you can override color of Statistic Carousel header by re-define value of below variables in ``customization.scss``:
+ - ``--chart-label-default-exception-priority-color`` to override label color of exception priority task
+ - ``--chart-label-default-high-priority-color`` to override label color of high priority task
+ - ``--chart-label-default-normal-priority-color`` to override label color of normal priority task
+ - ``--chart-label-default-low-priority-color`` to override label color of low priority task
+ - ``--chart-label-default-created-case-color`` to override label color of created case
+ - ``--chart-label-default-running-case-color`` to override label color of running case
+ - ``--chart-label-default-done-case-color`` to override label color of done case
+ - ``--chart-label-default-failed-case-color`` to override label color of failed case
+ - ``--chart-label-default-elapsed-time-color`` to override label color of elapsed time of done cases
+ - ``--chart-label-default-task-expiried-color`` to override label color of expired task
+ - ``--chart-label-default-task-today-color`` to override label color of today task
+ - ``--chart-label-default-task-week-color`` to override label color of this week task
+ - ``--chart-label-default-task-month-color`` to override label color of this month task
+ - ``--chart-label-default-task-year-color`` to override label color of this year task
 
- - ``$statisticPanelHeader`` to override background color of Carousel header
- - ``$statisticPanelHeaderBorder`` to override border color of Carousel header
- - ``$statisticPanelHeaderText`` to override text color of Carousel header
+In Portal home, you can override color of Statistic Carousel header by re-define value of below variables in ``customization.css``:
+
+ - ``--statistic-panel-header`` to override background color of Carousel header
+ - ``--statistic-panel-header-border`` to override border color of Carousel header
 
 .. |default-chart-color| image:: images/default-chart-colors/default-chart-color.png

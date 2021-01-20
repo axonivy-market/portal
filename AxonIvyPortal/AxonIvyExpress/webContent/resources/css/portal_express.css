@@ -1,3 +1,7 @@
+.task-template-container .task-template-content {
+  margin-bottom: 30px;
+}
+
 /* Override fieldset */
 .ui-fieldset-legend {
   padding: 10px !important;
@@ -603,10 +607,6 @@ td.email-attachment-text {
 
 .ui-selectmanycheckbox.ui-widget td:first-child, .ui-selectoneradio.ui-widget td:first-child {
   min-width: 165px;
-}
-
-.approval-comment-container {
-  margin: auto 16px;
 }
 
 .approval-result-table {

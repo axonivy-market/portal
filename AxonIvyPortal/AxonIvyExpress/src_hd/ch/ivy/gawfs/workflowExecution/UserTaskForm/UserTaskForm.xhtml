@@ -28,7 +28,7 @@
         </h:panelGroup>
 
         <p:fieldset id="dynaform-fieldset" toggleable="true" legend="#{ivy.cms.co('/Dialogs/WorkflowExecution/UserTaskForm/Formular')}"
-          styleClass="express-fieldset fieldset-no-border MarTop10 ui-fluid">
+          styleClass="express-fieldset fieldset-no-border MarTop10 ui-fluid portal-card-container">
           <p:messages id="messages-dynaform" showDetail="false" closable="true" redisplay="false">
             <p:autoUpdate />
           </p:messages>
@@ -102,7 +102,7 @@
             actionListener="#{logic.cancel}" />
           <p:spacer width="15" />
           <p:commandButton id="ok-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}" update="form" process="form"
-            actionListener="#{logic.close}" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}" />
+            actionListener="#{logic.close}" icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" />
         </p:outputPanel>
       </h:form>
     </ui:define>
