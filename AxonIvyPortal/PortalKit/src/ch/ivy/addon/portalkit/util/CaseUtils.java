@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.publicapi.CaseAPI;
+import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.RequestUriFactory;
@@ -29,18 +31,20 @@ public final class CaseUtils {
 
   /**
    * Sets the "HIDE" property to the given case to hide it in case list of Portal.
-   * 
+   * @deprecated Use {@link CaseAPI#setHidePropertyToHideInPortal(ICase)} instead
    * @param iCase
    */
+  @Deprecated(since="8.0.13", forRemoval = true)
   public static void setHidePropertyToHideInPortal(ICase iCase) {
     iCase.customFields().stringField(AdditionalProperty.HIDE.toString()).set(AdditionalProperty.HIDE.toString());
   }
 
   /**
    * Removes the "HIDE" property to the given case to display it in case list of Portal.
-   * 
+   * @deprecated Use {@link CaseAPI#removeHidePropertyToDisplayInPortal(ICase)} instead
    * @param iCase
    */
+  @Deprecated(since="8.0.13", forRemoval = true)
   public static void removeHidePropertyToDisplayInPortal(ICase iCase) {
     iCase.customFields().stringField(AdditionalProperty.HIDE.toString()).set(null);
   }
@@ -49,7 +53,7 @@ public final class CaseUtils {
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
     String urlParameters = "?caseId=" + iCase.getId();
     try {
-      return collector.findLinkByFriendlyRequestPath(requestPath) + urlParameters;
+      return ProcessStartAPI.findLinkByFriendlyRequestPath(Ivy.request().getApplication(), requestPath) + urlParameters; //collector.findLinkByFriendlyRequestPath(requestPath) + urlParameters;
     } catch (Exception e) {
       Ivy.log().error(e);
       IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);

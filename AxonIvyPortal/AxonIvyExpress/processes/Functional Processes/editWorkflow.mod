@@ -549,13 +549,13 @@ ew0 f54 actionTable 'out=in;
 ew0 f54 actionCode 'import ch.ivy.addon.portalkit.util.AdhocUtils;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.publicapi.TaskAPI;
 import ch.ivyteam.ivy.workflow.ITask;
 
 if(in.isAdhocProcess){
 	ITask originalTask = ivy.wf.findTask(in.originalTaskId);
 	if(originalTask != null){
-		TaskUtils.setHidePropertyToHideInPortal(originalTask);
+		TaskAPI.setHidePropertyToHideInPortal(originalTask);
 		//Mark task as adhoc express
 		originalTask.customFields().stringField(AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString()).set(AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString());
 		originalTask.customFields().stringField(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()).set(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString());

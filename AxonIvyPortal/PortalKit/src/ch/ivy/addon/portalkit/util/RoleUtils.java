@@ -17,6 +17,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.constant.IvyCacheIdentifier;
 import ch.ivy.addon.portalkit.dto.RoleDTO;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
+import ch.ivy.addon.portalkit.publicapi.RoleAPI;
 import ch.ivy.addon.portalkit.service.IvyCacheService;
 import ch.ivyteam.api.PublicAPI;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -207,12 +208,12 @@ public final class RoleUtils {
 
   /**
    * Set property for passed role
-   * 
+   * @deprecated Use {@link RoleAPI#setProperty(IRole, String, String)} instead
    * @param role role for setting property
    * @param key property key
    * @param value property value
    */
-  @PublicAPI
+  @Deprecated(since="8.0.13", forRemoval = true)
   public static void setProperty(final IRole role, final String key, final String value) {
     IvyExecutor.executeAsSystem(() -> {
       role.setProperty(key, value);
@@ -223,11 +224,11 @@ public final class RoleUtils {
 
   /**
    * Remove property for passed role
-   * 
+   * @deprecated Use {@link RoleAPI#removeProperty(IRole, String)} instead
    * @param role role to remove property
    * @param key key to remove property
    */
-  @PublicAPI
+  @Deprecated(since="8.0.13", forRemoval = true)
   public static void removeProperty(final IRole role, final String key) {
     IvyExecutor.executeAsSystem(() -> {
       role.removeProperty(key);

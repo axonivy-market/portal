@@ -18,6 +18,7 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
 import ch.ivyteam.ivy.dialog.execution.api.DialogInstance;
 import ch.ivyteam.ivy.request.OpenRedirectVulnerabilityUtil;
 
@@ -56,7 +57,7 @@ public class IFrameTaskTemplateBean extends AbstractTaskTemplateBean implements 
   private PortalNavigator navigator = new PortalNavigator();
 
   public void navigateToHomePage() {
-    navigator.navigateToPortalHome();
+    PortalNavigatorAPI.navigateToPortalHome();
   }
 
   public void useTaskInIFrame() {

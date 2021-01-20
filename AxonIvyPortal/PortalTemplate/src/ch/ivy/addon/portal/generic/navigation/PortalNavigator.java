@@ -14,6 +14,7 @@ import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
+import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.support.UrlDetector;
@@ -112,7 +113,9 @@ public final class PortalNavigator {
   /**
    * Navigates to PortalEndPage without finishing a task, e.g. clicking on Cancel button then back to previous page: task list or task details or global search
    * NOTES: is only used for the task not started in Portal IFrame
+   * @deprecated Use {@link PortalNavigatorAPI#navigateToPortalEndPage()} instead
    */
+  @Deprecated(since="8.0.13", forRemoval = true)
   public void navigateToPortalEndPage() {
     String defaultEndPage = getDefaultEndPage(); 
     redirect(defaultEndPage + "?endedTaskId=" + Ivy.wfTask().getId());
@@ -139,6 +142,11 @@ public final class PortalNavigator {
     navigateByKeyword("StatisticPage.ivp", PORTAL_STATISTIC, new HashMap<>());
   }
   
+  /**
+   * Navigate to Portal home
+   * @deprecated Use {@link PortalNavigatorAPI#navigateToPortalHome()} instead
+   */
+  @Deprecated(since="8.0.13", forRemoval = true)
   public void navigateToPortalHome() {
     navigateByKeyword("DefaultApplicationHomePage.ivp", PORTAL_PROCESS_START_NAME, new HashMap<>());
   }

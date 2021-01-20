@@ -36,11 +36,10 @@ He0 f1 337 49 30 30 0 15 #rect
 He0 f1 @|EndSubIcon #fIcon
 He0 f3 actionTable 'out=in;
 ' #txt
-He0 f3 actionCode 'import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+He0 f3 actionCode 'import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 
-ProcessStartCollector collector = new ProcessStartCollector(ivy.wf.getApplication());
 String ourNewEndPageFriendlyRequestPath = "Start Processes/ToCustomizedExpressEndPage/start.ivp";
-in.callbackUrl = collector.findLinkByFriendlyRequestPath(ourNewEndPageFriendlyRequestPath);' #txt
+in.callbackUrl = ProcessStartAPI.findLinkByFriendlyRequestPath(ivy.wf.getApplication(), ourNewEndPageFriendlyRequestPath);' #txt
 He0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>

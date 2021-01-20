@@ -38,17 +38,16 @@ Ds0 f1 51 339 26 26 14 0 #rect
 Ds0 f1 @|EndSubIcon #fIcon
 Ds0 f3 actionTable 'out=in;
 ' #txt
-Ds0 f3 actionCode 'import org.apache.commons.lang3.StringUtils;
+Ds0 f3 actionCode 'import ch.ivyteam.ivy.application.IApplication;
+import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
+import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivyteam.ivy.workflow.IProcessStart;
 import ch.ivyteam.ivy.request.RequestUriFactory;
 import ch.ivyteam.ivy.server.ServerFactory;
 
-
-ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
-
-String createAlphaLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/createAlphaCompany.ivp");
+IApplication app = ivy.request.getApplication();
+String createAlphaLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(app, "Start Processes/ProcessHistoryComponent/createAlphaCompany.ivp");
 if (!StringUtils.isEmpty(createAlphaLink)){	
 	UserProcess userProcess = new UserProcess();
 	userProcess.setLink(createAlphaLink);
@@ -58,7 +57,7 @@ if (!StringUtils.isEmpty(createAlphaLink)){
 	in.defaultUserProcesses.add(userProcess);
 }
 
-String createBetaLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/createBetaCompany.ivp");
+String createBetaLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(app, "Start Processes/ProcessHistoryComponent/createBetaCompany.ivp");
 if (!StringUtils.isEmpty(createBetaLink)){	
 	UserProcess userProcess = new UserProcess();
 	userProcess.setLink(createBetaLink);
@@ -68,7 +67,7 @@ if (!StringUtils.isEmpty(createBetaLink)){
 	in.defaultUserProcesses.add(userProcess);
 }
 
-String viewAlphaHistoryLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompany.ivp");
+String viewAlphaHistoryLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(app, "Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompany.ivp");
 if (!StringUtils.isEmpty(viewAlphaHistoryLink)){	
 	UserProcess userProcess = new UserProcess();
 	userProcess.setLink(viewAlphaHistoryLink);
@@ -78,7 +77,7 @@ if (!StringUtils.isEmpty(viewAlphaHistoryLink)){
 	in.defaultUserProcesses.add(userProcess);
 }
 
-String viewBetaHistoryLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfBetaCompany.ivp");
+String viewBetaHistoryLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(app, "Start Processes/ProcessHistoryComponent/viewProcessHistoryOfBetaCompany.ivp");
 if (!StringUtils.isEmpty(viewBetaHistoryLink)){	
 	UserProcess userProcess = new UserProcess();
 	userProcess.setLink(viewBetaHistoryLink);
@@ -106,13 +105,15 @@ Ds0 f2 64 220 64 339 #arcP
 Ds0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
-        <name>This process overrides DefaultUserProcess in Portal Kit. 
+        <name>ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(app, &#13;
+&#13;
+&#13;
+This process overrides DefaultUserProcess in Portal Kit. &#13;
 It add 5 application favorites processes and determines their order using the setIndex method of UserProcess.&#13;
 &#13;
 Code Example:&#13;
-ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());&#13;
 &#13;
-String createAlphaLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/createAlphaCompany.ivp");&#13;
+String createAlphaLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(app, "Start Processes/ProcessHistoryComponent/createAlphaCompany.ivp");&#13;
 if (!StringUtils.isEmpty(createAlphaLink)){	&#13;
 	UserProcess userProcess = new UserProcess();&#13;
 	userProcess.setLink(createAlphaLink);&#13;
@@ -122,7 +123,7 @@ if (!StringUtils.isEmpty(createAlphaLink)){	&#13;
 	in.defaultUserProcesses.add(userProcess);&#13;
 }&#13;
 &#13;
-String createBetaLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/createBetaCompany.ivp");&#13;
+String createBetaLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(app, "Start Processes/ProcessHistoryComponent/createBetaCompany.ivp");&#13;
 if (!StringUtils.isEmpty(createBetaLink)){	&#13;
 	UserProcess userProcess = new UserProcess();&#13;
 	userProcess.setLink(createBetaLink);&#13;
@@ -132,7 +133,7 @@ if (!StringUtils.isEmpty(createBetaLink)){	&#13;
 	in.defaultUserProcesses.add(userProcess);&#13;
 }&#13;
 &#13;
-String viewAlphaHistoryLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompany.ivp");&#13;
+String viewAlphaHistoryLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(app, "Start Processes/ProcessHistoryComponent/viewProcessHistoryOfAlphaCompany.ivp");&#13;
 if (!StringUtils.isEmpty(viewAlphaHistoryLink)){	&#13;
 	UserProcess userProcess = new UserProcess();&#13;
 	userProcess.setLink(viewAlphaHistoryLink);&#13;
@@ -142,7 +143,7 @@ if (!StringUtils.isEmpty(viewAlphaHistoryLink)){	&#13;
 	in.defaultUserProcesses.add(userProcess);&#13;
 }&#13;
 &#13;
-String viewBetaHistoryLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/ProcessHistoryComponent/viewProcessHistoryOfBetaCompany.ivp");&#13;
+String viewBetaHistoryLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath(app, "Start Processes/ProcessHistoryComponent/viewProcessHistoryOfBetaCompany.ivp");&#13;
 if (!StringUtils.isEmpty(viewBetaHistoryLink)){	&#13;
 	UserProcess userProcess = new UserProcess();&#13;
 	userProcess.setLink(viewBetaHistoryLink);&#13;
@@ -151,12 +152,10 @@ if (!StringUtils.isEmpty(viewBetaHistoryLink)){	&#13;
 	userProcess.setIndex(4);&#13;
 	in.defaultUserProcesses.add(userProcess);&#13;
 }</name>
-        <nameStyle>2308,5
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
-Ds0 f5 296 42 960 732 -472 -360 #rect
+Ds0 f5 264 26 1024 764 -507 -376 #rect
 Ds0 f5 @|IBIcon #fIcon
 >Proto Ds0 .type _ch.ivyteam.ivy.project.portal.examples.DefaultUserProcessOverrideData #txt
 >Proto Ds0 .processKind CALLABLE_SUB #txt

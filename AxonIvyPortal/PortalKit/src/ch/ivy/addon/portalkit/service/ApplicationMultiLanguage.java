@@ -11,6 +11,7 @@ import java.util.Set;
 import org.primefaces.json.JSONException;
 
 import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.publicapi.ApplicationMultiLanguageAPI;
 import ch.ivy.addon.portalkit.util.DisplayNameAdaptor;
 import ch.ivy.addon.portalkit.util.Locales;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -61,6 +62,12 @@ public class ApplicationMultiLanguage {
     return new ArrayList<>(supportedLanguages);
   }
 
+  /**
+   * @deprecated Use {@link ApplicationMultiLanguageAPI#getCmsValueByUserLocale(String)} instead
+   * @param cmsURI CMS uri
+   * @return value at CMS uri
+   */
+  @Deprecated(since="8.0.13", forRemoval = true)
   public static String getCmsValueByUserLocale(String cmsURI) {
     Locale currentUserLocale = new Locales().getCurrentLocale();
     return Ivy.cms().coLocale(cmsURI, currentUserLocale);

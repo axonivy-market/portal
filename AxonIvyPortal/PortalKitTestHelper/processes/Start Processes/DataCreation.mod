@@ -643,10 +643,10 @@ Dt0 f57 expr out #txt
 Dt0 f57 848 384 904 384 #arcP
 Dt0 f39 actionTable 'out=in;
 ' #txt
-Dt0 f39 actionCode 'import ch.ivy.addon.portalkit.util.CaseUtils;
-import ch.ivy.addon.portalkit.util.TaskUtils;
-TaskUtils.setHidePropertyToHideInPortal(ivy.task);
-CaseUtils.setHidePropertyToHideInPortal(ivy.case);' #txt
+Dt0 f39 actionCode 'import ch.ivy.addon.portalkit.publicapi.CaseAPI;
+import ch.ivy.addon.portalkit.publicapi.TaskAPI;
+TaskAPI.setHidePropertyToHideInPortal(ivy.task);
+CaseAPI.setHidePropertyToHideInPortal(ivy.case);' #txt
 Dt0 f39 security system #txt
 Dt0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -679,8 +679,8 @@ Dt0 f44 1073 561 30 30 0 15 #rect
 Dt0 f44 @|EndIcon #fIcon
 Dt0 f45 actionTable 'out=in;
 ' #txt
-Dt0 f45 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
-TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
+Dt0 f45 actionCode 'import ch.ivy.addon.portalkit.publicapi.TaskAPI;
+TaskAPI.setHidePropertyToHideInPortal(ivy.task);' #txt
 Dt0 f45 security system #txt
 Dt0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>

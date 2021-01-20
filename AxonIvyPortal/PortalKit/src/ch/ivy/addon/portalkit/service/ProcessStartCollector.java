@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 
+import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivyteam.ivy.application.ActivityState;
 import ch.ivyteam.ivy.application.IApplication;
@@ -113,7 +114,7 @@ public class ProcessStartCollector {
       for (IProcessModel processModel : processModels) {
         Optional<IProcessStart> processStartOptional =
             Optional.of(processModel).filter(this::isActive).map(IProcessModel::getReleasedProcessModelVersion)
-                .filter(this::isActive).map(p -> getProcessStart(requestPath, p))
+                .filter(this::isActive).map(p -> findProcessStartByUserFriendlyRequestPathAndPmv(requestPath, p))
                 .filter(processStart -> Ivy.session().getStartableProcessStarts().contains(processStart));
         if (processStartOptional.isPresent()) {
           return processStartOptional.get();
@@ -121,12 +122,6 @@ public class ProcessStartCollector {
       }
     }
     return null;
-  }
-
-  private IProcessStart getProcessStart(String requestPath, IProcessModelVersion processModelVersion) {
-    IWorkflowProcessModelVersion workflowPmv =
-        WorkflowNavigationUtil.getWorkflowProcessModelVersion(processModelVersion);
-    return workflowPmv.findProcessStartByUserFriendlyRequestPath(requestPath);
   }
 
   private IProcessStart findProcessStartByUserFriendlyRequestPathAndPmv(String requestPath,
@@ -146,32 +141,20 @@ public class ProcessStartCollector {
   }
 
   public String findACMLink() {
-    return findLinkByFriendlyRequestPath(ACM_FRIENDLY_REQUEST_PATH);
+    return ProcessStartAPI.findLinkByFriendlyRequestPath(application, ACM_FRIENDLY_REQUEST_PATH);
   }
   
   public String findExpressAdhocWFLink() {
-    return findLinkByFriendlyRequestPath(EXPRESS_ADHOC_WF_FRIENDLY_REQUEST_PATH);
+    return ProcessStartAPI.findLinkByFriendlyRequestPath(application, EXPRESS_ADHOC_WF_FRIENDLY_REQUEST_PATH);
   }
 
   public String findExpressWorkflowStartLink() {
-    return findLinkByFriendlyRequestPath(EXPRESS_WORKFLOW_FRIENDLY_REQUEST_PATH);
+    return ProcessStartAPI.findLinkByFriendlyRequestPath(application, EXPRESS_WORKFLOW_FRIENDLY_REQUEST_PATH);
   }
 
   public String findCreateExpressWorkflowStartLink() {
-    return findLinkByFriendlyRequestPath(EXPRESS_CREATE_FRIENDLY_REQUEST_PATH);
+    return ProcessStartAPI.findLinkByFriendlyRequestPath(application, EXPRESS_CREATE_FRIENDLY_REQUEST_PATH);
   }
-
-  public String findLinkByFriendlyRequestPath(String friendlyRequestPath) {
-    return IvyExecutor.executeAsSystem(() -> {
-      ProcessStartCollector collector = new ProcessStartCollector(application);
-      IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(friendlyRequestPath);
-      if (process != null) {
-        return RequestUriFactory.createProcessStartUri(process).toASCIIString();
-      }
-      return StringUtils.EMPTY;
-    });
-  }
-
 
   public IProcessStart findExpressCreationProcess() {
     return IvyExecutor.executeAsSystem(() -> {
@@ -191,7 +174,30 @@ public class ProcessStartCollector {
       return StringUtils.EMPTY;
     });
   }
+  
+  /**
+   * @deprecated Use {@link ProcessStartAPI#findLinkByFriendlyRequestPath(IApplication, String)} instead
+   * @param friendlyRequestPath
+   * @return link
+   */
+  @Deprecated(since="8.0.13", forRemoval = true)
+  public String findLinkByFriendlyRequestPath(String friendlyRequestPath) {
+    return IvyExecutor.executeAsSystem(() -> {
+      ProcessStartCollector collector = new ProcessStartCollector(application);
+      IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(friendlyRequestPath);
+      if (process != null) {
+        return RequestUriFactory.createProcessStartUri(process).toASCIIString();
+      }
+      return StringUtils.EMPTY;
+    });
+  }
 
+  /**
+   * @deprecated Use {@link ProcessStartAPI#findStartableLinkByUserFriendlyRequestPath(IApplication, String)} instead
+   * @param requestPath
+   * @return link which login user can start
+   */
+  @Deprecated(since="8.0.13", forRemoval = true)
   public String findStartableLinkByUserFriendlyRequestPath(String requestPath) {
     return IvyExecutor.executeAsSystem(() -> {
       IProcessStart processStart = findStartableProcessStartByUserFriendlyRequestPath(requestPath);

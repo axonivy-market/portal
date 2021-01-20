@@ -37,24 +37,24 @@ He0 f3 actionTable 'out=in;
 ' #txt
 He0 f3 actionCode 'import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.publicapi.TaskAPI;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.publicapi.CaseAPI;
 
 ICase selectedCase = in.hideBusinessCase ? ivy.wf.findCase(ivy.case.getBusinessCase().getId()) : ivy.case;
-CaseUtils.setHidePropertyToHideInPortal(selectedCase);
+CaseAPI.setHidePropertyToHideInPortal(selectedCase);
 
 if(selectedCase.isBusinessCase()) {
 	CaseQuery query = CaseQuery.create();
 	query.where().and().isNotBusinessCase().and().businessCaseId().isEqual(selectedCase.getId());
 	List technicalCases = ivy.wf.getCaseQueryExecutor().getResults(query) as List;
 	for(ICase technicalCase : technicalCases) {
-		CaseUtils.setHidePropertyToHideInPortal(technicalCase);
+		CaseAPI.setHidePropertyToHideInPortal(technicalCase);
 	}
 }
 
 for(ITask task : selectedCase.getTasks()) {
-	TaskUtils.setHidePropertyToHideInPortal(task);
+	TaskAPI.setHidePropertyToHideInPortal(task);
 }' #txt
 He0 f3 security system #txt
 He0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>

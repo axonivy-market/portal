@@ -1,6 +1,9 @@
 package ch.ivy.addon.portalkit.publicapi;
 
-import ch.ivy.addon.portalkit.service.ApplicationMultiLanguage;
+import java.util.Locale;
+
+import ch.ivy.addon.portalkit.util.Locales;
+import ch.ivyteam.ivy.environment.Ivy;
 
 /**
  * Portal API for support multi language menu
@@ -15,6 +18,7 @@ public final class ApplicationMultiLanguageAPI {
    * @return value at CMS uri
    */
   public static String getCmsValueByUserLocale(String cmsURI) {
-    return ApplicationMultiLanguage.getCmsValueByUserLocale(cmsURI);
+    Locale currentUserLocale = new Locales().getCurrentLocale();
+    return Ivy.cms().coLocale(cmsURI, currentUserLocale);
   }
 }

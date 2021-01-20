@@ -17,6 +17,7 @@ import org.apache.commons.lang.StringUtils;
 import ch.ivy.addon.portalkit.enums.PortalPermission;
 import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
 import ch.ivy.addon.portalkit.jsf.ManagedBeans;
+import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 import ch.ivy.addon.portalkit.service.exception.PortalException;
 import ch.ivy.addon.portalkit.support.UrlDetector;
@@ -231,12 +232,11 @@ public class TaskActionBean implements Serializable {
     ProcessStartCollector collector = new ProcessStartCollector(Ivy.request().getApplication());
     String urlParameters = "?TaskId=" + iTask.getId();
     try {
-      return collector.findLinkByFriendlyRequestPath(requestPath) + urlParameters;
+      return ProcessStartAPI.findLinkByFriendlyRequestPath(Ivy.request().getApplication(), requestPath) + urlParameters; //collector.findLinkByFriendlyRequestPath(requestPath) + urlParameters;
     } catch (Exception e) {
       Ivy.log().error(e);
       IProcessStart process = collector.findProcessStartByUserFriendlyRequestPath(requestPath);
-      return RequestUriFactory.createProcessStartUri(process).toASCIIString()
-          + urlParameters;
+      return RequestUriFactory.createProcessStartUri(process).toASCIIString() + urlParameters;
     }
   }
   

@@ -71,8 +71,8 @@ Hk0 f3 321 49 30 30 0 16 #rect
 Hk0 f3 @|TaskSwitchSimpleIcon #fIcon
 Hk0 f5 actionTable 'out=in;
 ' #txt
-Hk0 f5 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
-TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
+Hk0 f5 actionCode 'import ch.ivy.addon.portalkit.publicapi.TaskAPI;
+TaskAPI.setHidePropertyToHideInPortal(ivy.task);' #txt
 Hk0 f5 security system #txt
 Hk0 f5 160 42 112 44 0 -8 #rect
 Hk0 f5 @|StepIcon #fIcon
@@ -84,8 +84,8 @@ Hk0 f4 var in1 #txt
 Hk0 f4 272 64 321 64 #arcP
 Hk0 f6 actionTable 'out=in;
 ' #txt
-Hk0 f6 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
-TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
+Hk0 f6 actionCode 'import ch.ivy.addon.portalkit.publicapi.TaskAPI;
+TaskAPI.setHidePropertyToHideInPortal(ivy.task);' #txt
 Hk0 f6 security system #txt
 Hk0 f6 394 42 112 44 0 -8 #rect
 Hk0 f6 @|StepIcon #fIcon
