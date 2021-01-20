@@ -43,9 +43,7 @@ Fs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f0 83 51 26 26 -16 15 #rect
-Fs0 f0 @|UdInitIcon #fIcon
 Fs0 f1 531 51 26 26 0 12 #rect
-Fs0 f1 @|UdProcessEndIcon #fIcon
 Fs0 f3 guid 16305185A2B30A9B #txt
 Fs0 f3 actionTable 'out=in;
 ' #txt
@@ -57,9 +55,7 @@ Fs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f3 83 147 26 26 -15 12 #rect
-Fs0 f3 @|UdEventIcon #fIcon
 Fs0 f4 211 147 26 26 0 12 #rect
-Fs0 f4 @|UdExitEndIcon #fIcon
 Fs0 f5 expr out #txt
 Fs0 f5 109 160 211 160 #arcP
 Fs0 f16 guid 16348C318DEC020D #txt
@@ -75,15 +71,14 @@ Fs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f16 77 251 26 26 -18 15 #rect
-Fs0 f16 @|UdEventIcon #fIcon
 Fs0 f19 525 251 26 26 0 12 #rect
-Fs0 f19 @|UdProcessEndIcon #fIcon
 Fs0 f17 actionTable 'out=in;
 ' #txt
-Fs0 f17 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+Fs0 f17 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
 
-ivy.task.reset();
-PortalNavigator.navigateToPortalEndPage();' #txt
+TaskUtils.resetTask(ivy.task);
+PortalNavigatorAPI.navigateToPortalEndPage();' #txt
 Fs0 f17 security system #txt
 Fs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -93,7 +88,6 @@ Fs0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f17 250 242 112 44 -29 -8 #rect
-Fs0 f17 @|StepIcon #fIcon
 Fs0 f20 expr out #txt
 Fs0 f20 362 264 525 264 #arcP
 Fs0 f18 expr out #txt
@@ -114,7 +108,6 @@ Fs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Fs0 f6 229 41 112 44 -22 -8 #rect
-Fs0 f6 @|StepIcon #fIcon
 Fs0 f7 expr out #txt
 Fs0 f7 108 63 229 63 #arcP
 Fs0 f2 expr out #txt
@@ -122,7 +115,6 @@ Fs0 f2 341 63 531 63 #arcP
 >Proto Fs0 .type ch.ivy.gawfs.workflowExecution.FinalReviewForm.FinalReviewFormData #txt
 >Proto Fs0 .processKind HTML_DIALOG #txt
 >Proto Fs0 -8 -8 16 16 16 26 #rect
->Proto Fs0 '' #fIcon
 Fs0 f3 mainOut f5 tail #connect
 Fs0 f5 head f4 mainIn #connect
 Fs0 f16 mainOut f18 tail #connect

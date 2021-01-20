@@ -31,5 +31,6 @@ public class SearchTaskTest extends BaseTest {
     SearchResultPage searchResultPage = globalSearch.inputSearchKeyword(taskName);
     searchResultPage.openTaskTab();
     assertEquals(taskName, searchResultPage.getTaskResult(0));
+    assertTrue(searchResultPage.isTaskCategoryColumnDisplayed());
   }
 }

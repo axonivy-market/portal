@@ -28,27 +28,27 @@
           <h:panelGroup layout="block" rendered="#{!data.createMode}" styleClass="ui-g-12 u-padding-0">
             <p:commandLink id="create-chart-link" actionListener="#{logic.switchCreateMode}" update="widget-container create-chart-header header"
               rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart and data.canCreateNewCharts}" styleClass="u-hidden-md-down chart-link">
-              <i class="icon ivyicon-add" />
+              <i class="si si-add" />
               <p:spacer width="3px" />
               <h:outputText id="create-chart-link-label" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/chart/addChart')}" />
             </p:commandLink>
             <p:commandLink id="restore-default-chart-link" onclick="PF('restore-confirmation-dialog').show();"
               rendered="#{!data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart 
             and data.hasDefaultChart and data.canCreateNewCharts}" styleClass="chart-link">
-              <i class="icon ivyicon-button-refresh-arrows" />
+              <i class="si si-button-refresh-arrows" />
               <p:spacer width="3px" />
               <h:outputText id="restore-default-chart-link-label"
                 value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/restoreDefaultFilterHeader')}" />
             </p:commandLink>
             <p:commandLink id="back-from-drilldown-link" actionListener="#{logic.switchDrilldownMode}" rendered="#{data.isDrilldownElapsedTime}"
               update="#{p:component('widget-container')} create-chart-header" styleClass="Fright">
-              <i class="icon ivyicon-arrow-left-1" />
+              <i class="si si-arrow-left-1" />
               <p:spacer width="3px" />
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
             </p:commandLink>
             <p:commandLink id="back-from-drilldown-expiry-chart-link" actionListener="#{logic.switchDrilldownExpiryChartMode}"
               rendered="#{data.isDrilldownExpiryChart}" update="#{p:component('widget-container')} create-chart-header" styleClass="Fright">
-              <i class="icon ivyicon-arrow-left-1" />
+              <i class="si si-arrow-left-1" />
               <p:spacer width="3px" />
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
             </p:commandLink>
@@ -58,7 +58,7 @@
   
             <p:commandLink id="task-analysis-page-navigation-link" actionListener="#{logic.navigateToTaskAnalysisPage}"
               rendered="#{data.canAnalyzeTask and !data.isDrilldownElapsedTime and !data.isDrilldownExpiryChart}" styleClass="task-analysis-page-navigation-link u-hidden-md-down Fright">
-              <i class="icon ivyicon-analytics-board-graph-line u-mar-right-5" />
+              <i class="si si-analytics-board-graph-line u-mar-right-5" />
               <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/statistic/taskAnalysis/taskAnalysis')}" />
             </p:commandLink>
           </h:panelGroup>
@@ -67,7 +67,7 @@
               <p:commandLink id="back-from-chart-creation" action="#{statisticChartCreationBean.clearChartModels()}"
                 styleClass="back-button Fright" actionListener="#{logic.switchCreateMode}"
                 update="create-chart-header header widget-container" global="false">
-                <i class="icon ivyicon-arrow-left-1" />
+                <i class="si si-arrow-left-1" />
                 <p:spacer width="3px" />
                 <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}"/>
               </p:commandLink>
@@ -109,7 +109,7 @@
        <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
           onclick="PF('restore-confirmation-dialog').hide();" styleClass="u-mar-right-15" />
        <p:commandButton id="confirm-restore" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/filter/restoreDefaultFilterHeader')}" update="widget-container"
-          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-button-refresh-arrows')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-button-refresh-arrows')}"
           oncomplete="PF('restore-confirmation-dialog').hide();" actionListener="#{logic.restoreDefault}" />
     </ui:define>
   </ui:decorate>

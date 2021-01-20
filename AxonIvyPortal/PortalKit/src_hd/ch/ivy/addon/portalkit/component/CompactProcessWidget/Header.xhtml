@@ -11,7 +11,7 @@
       <p:commandLink id="toggle-processes-link" styleClass="toggle-processes-link ui-lg-hidden ui-xl-hidden ui-md-hidden"
              global="false" onclick="toggleShowProcessList();"
              oncomplete="FavouritesProcess.setUpScrollBarForCompactProcessLists(false);">
-          <i class="icon ivyicon-add-small u-mar-right-5"/>
+          <i class="si si-add-small u-mar-right-5"/>
           <h:outputText value="#{cc.attrs.mobileTitle}" />
       </p:commandLink>
       <span class="widget-header-main-title ui-sm-hidden">#{cc.attrs.title}</span>
@@ -23,7 +23,7 @@
    <script>
      function toggleShowProcessList() {
        $('[id $= "all-processes-container"]').toggleClass("ui-sm-hidden");
-       $('[id $= "toggle-processes-link"] > i').toggleClass("ivyicon-add-small").toggleClass("ivyicon-subtract-small");
+       $('[id $= "toggle-processes-link"] > i').toggleClass("si-add-small").toggleClass("si-subtract-small");
      }
    </script>
 </ui:composition>

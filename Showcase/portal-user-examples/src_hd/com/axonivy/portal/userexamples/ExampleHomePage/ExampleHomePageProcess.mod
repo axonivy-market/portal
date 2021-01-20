@@ -40,9 +40,7 @@ Hs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Hs0 f0 83 51 26 26 -16 15 #rect
-Hs0 f0 @|UdInitIcon #fIcon
 Hs0 f1 403 51 26 26 0 12 #rect
-Hs0 f1 @|UdProcessEndIcon #fIcon
 Hs0 f3 guid 1723A6F02C055ED2 #txt
 Hs0 f3 actionTable 'out=in;
 ' #txt
@@ -54,20 +52,16 @@ Hs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Hs0 f3 83 147 26 26 -15 15 #rect
-Hs0 f3 @|UdEventIcon #fIcon
 Hs0 f4 251 147 26 26 0 12 #rect
-Hs0 f4 @|UdExitEndIcon #fIcon
 Hs0 f5 109 160 251 160 #arcP
 Hs0 f6 actionTable 'out=in;
 ' #txt
-Hs0 f6 actionCode 'import ch.ivyteam.ivy.workflow.start.IWebStartable;
+Hs0 f6 actionCode 'import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
-import ch.ivy.addon.portalkit.service.ProcessStartCollector;
 
-ProcessStartCollector collector = new ProcessStartCollector();
-
-String leaveRequestStartLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/LeaveRequest/start.ivp");
+String leaveRequestStartLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/LeaveRequest/start.ivp");
 if (!StringUtils.isEmpty(leaveRequestStartLink)){	
 	UserProcess userProcess = new UserProcess();
 	userProcess.setLink(leaveRequestStartLink);
@@ -123,7 +117,6 @@ Hs0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Hs0 f6 208 42 112 44 -35 -8 #rect
-Hs0 f6 @|StepIcon #fIcon
 Hs0 f7 109 64 208 64 #arcP
 Hs0 f2 320 64 403 64 #arcP
 Hs0 f9 dialogId com.axonivy.portal.userexamples.leaverequest.LeaveRequestOverview #txt
@@ -142,9 +135,7 @@ Overview</name>
 </elementInfo>
 ' #txt
 Hs0 f9 408 234 128 44 -40 -16 #rect
-Hs0 f9 @|UserDialogIcon #fIcon
 Hs0 f11 659 339 26 26 0 12 #rect
-Hs0 f11 @|UdProcessEndIcon #fIcon
 Hs0 f12 536 256 672 339 #arcP
 Hs0 f12 1 672 256 #addKink
 Hs0 f12 0 0.7256302308797495 0 0 #arcLabel
@@ -162,9 +153,7 @@ Hs0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Hs0 f13 83 339 26 26 -25 15 #rect
-Hs0 f13 @|UdMethodIcon #fIcon
 Hs0 f14 272 336 32 32 0 16 #rect
-Hs0 f14 @|AlternativeIcon #fIcon
 Hs0 f15 expr in #txt
 Hs0 f15 outCond ivy.cms.co("/Processes/LeaveRequest/name").equals(in.process.processName) #txt
 Hs0 f15 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -193,7 +182,6 @@ Hs0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Hs0 f8 408 330 112 44 -47 -8 #rect
-Hs0 f8 @|UserDialogIcon #fIcon
 Hs0 f10 expr in #txt
 Hs0 f10 outCond ivy.cms.co("/Processes/CaseMap/name").equals(in.process.processName) #txt
 Hs0 f10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -215,7 +203,6 @@ Hs0 f18 1 0.6127782473457252 0 0 #arcLabel
 >Proto Hs0 .type com.axonivy.portal.userexamples.ExampleHomePage.ExampleHomePageData #txt
 >Proto Hs0 .processKind HTML_DIALOG #txt
 >Proto Hs0 -8 -8 16 16 16 26 #rect
->Proto Hs0 '' #fIcon
 Hs0 f3 mainOut f5 tail #connect
 Hs0 f5 head f4 mainIn #connect
 Hs0 f0 mainOut f7 tail #connect

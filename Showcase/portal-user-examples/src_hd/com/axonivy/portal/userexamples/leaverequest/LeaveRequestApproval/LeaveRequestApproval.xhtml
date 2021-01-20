@@ -11,7 +11,7 @@
     <ui:define name="content">
 
       <h:form id="leave-request">
-        <h:panelGroup styleClass="ui-g ui-fluid">
+        <h:panelGroup styleClass="ui-g ui-fluid portal-card-container">
           <div class="ui-g-12 ui-md-12 ui-lg-1 ui-xl-3"></div>
           <p:panel class="card ui-g-12 ui-md-12 ui-lg-10 ui-xl-6">
             <p>#{ivy.cms.co('/Labels/LeaveRequest/approvalTaskIntro')}</p>
@@ -63,11 +63,11 @@
             </h:panelGrid>
 
             <h:panelGroup layout="block" styleClass="MarTop5 ui-g-12" id="command-group">
-              <p:commandButton value="#{ivy.cms.co('/Dialog/Common/approve')}" icon="icon ivyicon-check-1" styleClass="Fright"
+              <p:commandButton value="#{ivy.cms.co('/Dialog/Common/approve')}" icon="si si-check-1" styleClass="Fright"
                 partialSubmit="true" id="approved-btn" actionListener="#{logic.approved}" process=":leave-request"
                 update=":leave-request" style="width: auto" />
               <p:spacer width="5px" styleClass="Fright" />
-              <p:commandButton value="#{ivy.cms.co('/Dialog/Common/reject')}" icon="icon ivyicon-delete" partialSubmit="true"
+              <p:commandButton value="#{ivy.cms.co('/Dialog/Common/reject')}" icon="si si-delete" partialSubmit="true"
                 id="rejected-btn" styleClass="secondary-btn Fright" actionListener="#{logic.rejected}"
                 process=":leave-request" update=":leave-request" style="width: auto" />
             </h:panelGroup>

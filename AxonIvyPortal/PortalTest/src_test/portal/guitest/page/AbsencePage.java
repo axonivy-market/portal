@@ -17,7 +17,8 @@ public class AbsencePage extends TemplatePage {
 		return "id('absences-management-form')";
 	}
 
-	public NewAbsencePage openNewAbsenceDialog() {
+	@SuppressWarnings("deprecation")
+  public NewAbsencePage openNewAbsenceDialog() {
 		String selector = "button[id*='add-absence']";
 		waitForElementDisplayed(By.cssSelector(selector), true);
 		clickByCssSelector(selector);
@@ -30,7 +31,8 @@ public class AbsencePage extends TemplatePage {
 		return findListElementsByCssSelector("td.absences-table-action-column").size();
 	}
 
-	public void showAbsencesInThePast(boolean shown) {
+	@SuppressWarnings("deprecation")
+  public void showAbsencesInThePast(boolean shown) {
 		WebElement checkBox = findElementByCssSelector("input[id*='show-absence-in-the-past']");
 		boolean checkBoxSelected = checkBox.isSelected();
 		if (checkBoxSelected != shown) {
@@ -49,7 +51,8 @@ public class AbsencePage extends TemplatePage {
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
   
-	public void setDeputy(String fullName) {
+	@SuppressWarnings("deprecation")
+  public void setDeputy(String fullName) {
 		String usernameSelector = "input[id$='substitute-username_input']";
 		waitForElementPresent(By.cssSelector(usernameSelector), true);
 		WebElement usernameInput = findElementByCssSelector(usernameSelector);
@@ -75,7 +78,8 @@ public class AbsencePage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 	}
 
-	public void setSubstitutedByAdmin(String substitutedUser) {
+	@SuppressWarnings("deprecation")
+  public void setSubstitutedByAdmin(String substitutedUser) {
 		String selectedUserInput = "input[id$=':user-absence-selection-component:user-absence_input']";
 		waitForElementDisplayed(By.cssSelector(selectedUserInput), true);
 		WebElement substituted = findElementByCssSelector(selectedUserInput);
@@ -94,6 +98,7 @@ public class AbsencePage extends TemplatePage {
 	  return deputyFor.getText();
 	}
 	
+  @SuppressWarnings("deprecation")
   public void saveSubstitute() {
     clickByCssSelector("button[id$='absences-management-form:save-substitute']");
     waitAjaxIndicatorDisappear();

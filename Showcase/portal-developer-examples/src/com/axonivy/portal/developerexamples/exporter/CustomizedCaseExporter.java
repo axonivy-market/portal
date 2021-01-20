@@ -16,14 +16,14 @@ public class CustomizedCaseExporter extends CaseExporter {
   }
 
   @Override
-  protected String getColumnName(String column) {
+  public String getColumnName(String column) {
     String columnName = getSpecialColumnName(column);
     return columnName != null ? columnName
         : Ivy.cms().co("/DefaultColumns/caseList/" + column);
   }
 
   @Override
-  protected Object getColumnValue(String column, ICase caseItem) {
+  public Object getColumnValue(String column, ICase caseItem) {
     switch (column) {
       case CustomizedCaseLazyDataModel.CUSTOM_VARCHAR_FIELD1:
         return caseItem.customFields().stringField(CustomFields.CUSTOM_VARCHAR_FIELD1).getOrNull();

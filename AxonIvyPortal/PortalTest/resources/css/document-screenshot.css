@@ -30,3 +30,7 @@
   outline-color: red;
   outline-width: medium;
 }
+
+.red-outline-thick-offset {
+  outline-offset: -5px;
+}

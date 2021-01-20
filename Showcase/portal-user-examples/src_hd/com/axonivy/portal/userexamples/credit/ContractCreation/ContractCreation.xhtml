@@ -11,7 +11,7 @@
     </ui:define>
     <ui:define name="content">
       <h:form id="form">
-        <h:panelGroup styleClass="ui-g ui-fluid">
+        <h:panelGroup styleClass="ui-g ui-fluid portal-card-container">
           <p:panel class="card ui-g-12 ui-md-12">
             <h:panelGroup layout="block" styleClass="ui-g">
               <h:outputText value="CREDIT AGREEMENT" styleClass="credit-agreement-label" />
@@ -78,7 +78,7 @@
           </p:panel>
         </h:panelGroup>
         <p:commandButton id="submit-contract-button" actionListener="#{logic.close}"
-          value="#{ivy.cms.co('/Dialog/Common/submit')}" update="form" icon="icon ivyicon-check-1"
+          value="#{ivy.cms.co('/Dialog/Common/submit')}" update="form" icon="si si-check-1"
           styleClass="Fright" />
       </h:form>
 

@@ -20,6 +20,7 @@ public class UserFavoriteProcessPage extends TemplatePage {
     return "id('process-widget:add-new-process-dialog')";
   }
 
+  @SuppressWarnings("deprecation")
   public void submitForm() {
     WebElement processDialog = findElementByCssSelector("div[id$='process-widget:add-new-process-dialog']");
     WebElement submitButton = findChildElementById(processDialog, "process-widget:add-process-command");
@@ -27,6 +28,7 @@ public class UserFavoriteProcessPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
+  @SuppressWarnings("deprecation")
   public void selectProcessByName(String ivyProcessName) {
     findElementByClassName("ui-autocomplete-dropdown").click();
     String processSelector = "tr[data-item-label='" + ivyProcessName + "']";

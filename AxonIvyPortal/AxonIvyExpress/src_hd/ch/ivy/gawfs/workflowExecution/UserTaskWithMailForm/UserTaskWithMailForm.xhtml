@@ -27,9 +27,9 @@
             </h:panelGroup>
   
             <p:fieldset id="dyna-form-fieldset" toggleable="true" legend="#{ivy.cms.co('/Dialogs/WorkflowExecution/UserTaskForm/Formular')}"
-              styleClass="express-fieldset fieldset-no-border">
+              styleClass="express-fieldset fieldset-no-border portal-card-container">
   
-              <div class="ui-g-12 card express-fieldset-content">
+              <div class="ui-g-12 card express-fieldset-content portal-card-container">
                 <pe:dynaForm id="dyna-form" value="#{data.executePredefinedWorkflowData.currentTask.dynaFormController.model}" var="dynaData"
                   columnClasses="label-container, field-container" styleClass="user-task-dyna-form ui-fluid">
   
@@ -103,7 +103,7 @@
             actionListener="#{logic.cancel}" />
           <p:spacer width="15" />
           <p:commandButton id="ok-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-            icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}" update="@form" actionListener="#{logic.close}" />
+            icon="#{visibilityBean.generateButtonIcon('si si-check-1')}" update="@form" actionListener="#{logic.close}" />
         </p:outputPanel>
       </h:form>
     </ui:define>

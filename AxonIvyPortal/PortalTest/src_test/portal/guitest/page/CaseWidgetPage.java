@@ -176,7 +176,8 @@ public class CaseWidgetPage extends TemplatePage {
 		return false;
 	}
 
-	public void openAdvancedFilter(String filterName, String filterIdName) {
+	@SuppressWarnings("deprecation")
+  public void openAdvancedFilter(String filterName, String filterIdName) {
 		click(By.id(caseWidgetId + ":filter-add-action"));
 		WebElement filterSelectionElement = findElementById(caseWidgetId + ":filter-add-form:filter-selection");
 
@@ -195,7 +196,8 @@ public class CaseWidgetPage extends TemplatePage {
 				true);
 	}
 
-	public void filterByDescription(String text) {
+	@SuppressWarnings("deprecation")
+  public void filterByDescription(String text) {
 		click(By.cssSelector("button[id$='description-filter:filter-open-form:advanced-filter-command']"));
 		WebElement descriptionInput =
 				findElementByCssSelector("input[id$='description-filter:filter-input-form:description']");
@@ -204,7 +206,8 @@ public class CaseWidgetPage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 	}
 
-	public void saveFilter(String filterName) {
+	@SuppressWarnings("deprecation")
+  public void saveFilter(String filterName) {
 		getSaveFilterDialog();
 		WebElement filterNameInput = findElementById(caseWidgetId + ":filter-save-form:save-filter-set-name-input");
 		enterKeys(filterNameInput, filterName);
@@ -213,6 +216,7 @@ public class CaseWidgetPage extends TemplatePage {
 		ensureNoBackgroundRequest();
 	}
 
+  @SuppressWarnings("deprecation")
   public WebElement getSaveFilterDialog() {
     click(By.id(caseWidgetId + ":filter-save-action"));
 		waitAjaxIndicatorDisappear();
@@ -239,10 +243,16 @@ public class CaseWidgetPage extends TemplatePage {
 		return isElementDisplayed(By.id("search-results-tabview:case-results:case-empty-message"));
 	}
 
-	public void sortCaseListByColumn(String columnId) {
+	@SuppressWarnings("deprecation")
+  public void sortCaseListByColumn(String columnId) {
 		WebElement columnHeader = findElementById(columnId);
 		columnHeader.click();
 		waitAjaxIndicatorDisappear();
+	}
+
+	public String getSelectedSortColumn() {
+	  waitForElementDisplayed(By.cssSelector(".js-case-widget-column-header"), true);
+	  return findElementByCssSelector(".js-case-widget-column-header a.ui-commandlink.is-selected").getText();
 	}
 
 	public String getCaseListFirstCustomCellValue() {
@@ -286,7 +296,8 @@ public class CaseWidgetPage extends TemplatePage {
 		WaitHelper.assertTrueWithWait(() -> !findElementByCssSelector("label[for$='columns-checkbox:3']").getAttribute("class").equals("ui-state-disabled"));
 	}
 
-	public void clickApplyButton() {
+	@SuppressWarnings("deprecation")
+  public void clickApplyButton() {
 		click(By.cssSelector(APPLY_BUTTON_CSS_SELECTOR));
 		waitAjaxIndicatorDisappear();
 	}
@@ -313,24 +324,27 @@ public class CaseWidgetPage extends TemplatePage {
 		}
 	}
 
-	public void applyCategoryFilter() {
+	@SuppressWarnings("deprecation")
+  public void applyCategoryFilter() {
 		click(By.cssSelector("button[id$='case-category-filter:filter-input-form:update-command']"));
 		waitAjaxIndicatorDisappear();
 	}
 
-	public void filterByCreator(String text) {
+	@SuppressWarnings("deprecation")
+  public void filterByCreator(String text) {
 		click(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
 		WebElement responsible = findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']");
 		type(responsible, text);
 		waitAjaxIndicatorDisappear();
-		waitForElementDisplayedByCssSelector("i[class*='ivyicon-single-neutral-actions']");
-		click(By.cssSelector("i[class*='ivyicon-single-neutral-actions']"));
+		waitForElementDisplayedByCssSelector("i[class*='si-single-neutral-actions']");
+		click(By.cssSelector("i[class*='si-single-neutral-actions']"));
 		waitAjaxIndicatorDisappear();
 		click(By.cssSelector("button[id$='creator-filter:filter-input-form:update-command']"));
 		waitAjaxIndicatorDisappear();
 	}
 	
-	public boolean isUserDisplayInCreatorFilter(String userFullName) {
+	@SuppressWarnings("deprecation")
+  public boolean isUserDisplayInCreatorFilter(String userFullName) {
     click(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
     WebElement responsible =
         findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']");
@@ -359,7 +373,8 @@ public class CaseWidgetPage extends TemplatePage {
     }
   }
 
-	public void removeResponsibleFilter() {
+	@SuppressWarnings("deprecation")
+  public void removeResponsibleFilter() {
 		click(By.cssSelector("button[id$='creator-filter:filter-open-form:advanced-filter-command']"));
 		waitForElementDisplayed(By.cssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']"), true);
 		findElementByCssSelector("input[id$='creator-filter:filter-input-form:creator-component:creator-select_input']").clear();
@@ -381,17 +396,18 @@ public class CaseWidgetPage extends TemplatePage {
 
   public CaseState getCaseState(int caseIndex) {
     List<WebElement> caseStateCells = findListElementsByCssSelector("span[id$=':case-state-cell']");
-    String stateClass = caseStateCells.get(caseIndex).findElement(By.className("icon")).getAttribute("class");
+    String stateClass = caseStateCells.get(caseIndex).findElement(By.className("si")).getAttribute("class");
     return CaseState.fromClass(stateClass.substring(stateClass.indexOf("case-state-")));
   }
   
+  @SuppressWarnings("deprecation")
   public void filterByOwner(String text) {
     click(By.cssSelector("button[id$='owner-filter:filter-open-form:advanced-filter-command']"));
     WebElement owner = findElementByCssSelector("input[id$='owner-filter:filter-input-form:owner_input']");
     type(owner, text);
     waitAjaxIndicatorDisappear();
-    waitForElementDisplayedByCssSelector("i[class*='ivyicon-single-neutral-actions']");
-    click(By.cssSelector("i[class*='ivyicon-single-neutral-actions']"));
+    waitForElementDisplayedByCssSelector("i[class*='si-single-neutral-actions']");
+    click(By.cssSelector("i[class*='si-single-neutral-actions']"));
     waitAjaxIndicatorDisappear();
     click(By.cssSelector("button[id$='owner-filter:filter-input-form:update-command']"));
     waitAjaxIndicatorDisappear();
@@ -418,5 +434,9 @@ public class CaseWidgetPage extends TemplatePage {
     WebElement statusDialog = driver.findElement(By.cssSelector("div[id$=':status-dialog']"));
     WaitHelper.assertTrueWithWait(() -> StringUtils.isNotBlank(statusDialog.getAttribute("download-status")));
     return StringUtils.equals(statusDialog.getAttribute("download-status"), "completed");
+  }
+  
+  public boolean isCategoryColumnDisplayed() {
+    return findElementByCssSelector("span[id$=':case-category-cell']").isDisplayed();
   }
 }

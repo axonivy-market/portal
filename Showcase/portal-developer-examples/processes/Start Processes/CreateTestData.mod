@@ -705,7 +705,7 @@ Cs0 f34 783 688 856 688 #arcP
 Cs0 f35 expr out #txt
 Cs0 f35 424 688 593 688 #arcP
 Cs0 f30 111 688 248 688 #arcP
-Cs0 f32 dialogId com.axonivy.portal.developerexamples.NewPayment #txt
+Cs0 f32 dialogId com.axonivy.portal.developerexamples.testdata.NewPayment #txt
 Cs0 f32 startMethod start() #txt
 Cs0 f32 requestActionDecl '<> param;' #txt
 Cs0 f32 responseMappingAction 'out=in;

@@ -137,7 +137,7 @@ public class TaskTemplateTest extends BaseTest {
     dialogPage.reserveTask();
     TaskWidgetPage taskWidget = new TaskWidgetPage();
     taskWidget.expand();
-    Assert.assertTrue(taskWidget.isTaskStateReserved(0));
+    Assert.assertTrue(taskWidget.isTaskStateReserved(2));
   }
   
   @Test
@@ -150,7 +150,7 @@ public class TaskTemplateTest extends BaseTest {
     processWidgetPage.startProcess("Case Map: Leave Request");
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    taskTemplatePage.openActionMenu();
+    taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.startSideStep();
     TaskWidgetPage taskWidget = new TaskWidgetPage();
     taskWidget.expand();
@@ -174,5 +174,13 @@ public class TaskTemplateTest extends BaseTest {
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.openCaseInfo();
     return taskTemplatePage;
+  }
+  
+  @Test
+  public void testShowCategoryColummnByDefault() {
+    createTestData();
+    HomePage homePage = new HomePage();
+    TaskWidgetPage taskList = homePage.openTaskList();
+    assertTrue(taskList.isCategoryColumnDisplayed());
   }
 }

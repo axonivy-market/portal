@@ -192,6 +192,7 @@ public class TaskAnalysisWidgetTest extends BaseTest {
     updatePortalSetting("ENABLE_CASE_OWNER", "false");
   }
   
+  @SuppressWarnings("deprecation")
   @Test
   public void testAddCaseOwnerColumn() {
     updatePortalSetting("ENABLE_CASE_OWNER", "true");
