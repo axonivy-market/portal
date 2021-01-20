@@ -25,7 +25,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		return "id('form:create-tabs')";
 	}
 
-	public void createTextInputField(String label, int inputFieldTypeIndex, boolean isRequired) {
+	@SuppressWarnings("deprecation")
+  public void createTextInputField(String label, int inputFieldTypeIndex, boolean isRequired) {
 		click(By.xpath("//*[@id='form:create-tabs']/ul/li[1]"));
 		waitForElementDisplayed(By.id("form:create-tabs:create-input-field-tab"), true, TIME_OUT);
 		type(By.id("form:create-tabs:input-field-label"), label);
@@ -38,7 +39,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		ensureNoBackgroundRequest();
 	}
 
-	public void createTextAreaField(String label, boolean isRequired) {
+	@SuppressWarnings("deprecation")
+  public void createTextAreaField(String label, boolean isRequired) {
 		click(By.xpath("//*[@id='form:create-tabs']/ul/li[2]"));
 		ensureNoBackgroundRequest();
 		waitForElementDisplayed(By.id("form:create-tabs:create-input-area-tab"), true, TIME_OUT);
@@ -51,7 +53,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		ensureNoBackgroundRequest();
 	}
 
-	public void createCheckboxField(String label, int numberOfSelection) {
+	@SuppressWarnings("deprecation")
+  public void createCheckboxField(String label, int numberOfSelection) {
 		click(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"));
 		ensureNoBackgroundRequest();
 		waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-options"), true, TIME_OUT);
@@ -62,19 +65,22 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		ensureNoBackgroundRequest();
 	}
 	
-	public void switchToCheckBoxTab() {
+	@SuppressWarnings("deprecation")
+  public void switchToCheckBoxTab() {
 	  click(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"));
     ensureNoBackgroundRequest();
     waitForElementDisplayed(By.id("form:create-tabs:many-checkbox-options"), true, TIME_OUT);
 	}
 	
-	public void createCheckboxFieldWithDataProvider(String label) {
+	@SuppressWarnings("deprecation")
+  public void createCheckboxFieldWithDataProvider(String label) {
 		fillDataForCheckboxProvider(label);
 		click(By.id("form:create-tabs:add-checkbox-btn"));
 		waitAjaxIndicatorDisappear();
 		ensureNoBackgroundRequest();
 	}
 
+  @SuppressWarnings("deprecation")
   public void fillDataForCheckboxProvider(String label) {
     click(By.xpath("//*[@id='form:create-tabs']/ul/li[3]"));
 		ensureNoBackgroundRequest();
@@ -87,7 +93,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
-	public void createRadioButtonField(String label, int numberOfOption) {
+	@SuppressWarnings("deprecation")
+  public void createRadioButtonField(String label, int numberOfOption) {
 		click(By.xpath("//*[@id='form:create-tabs']/ul/li[4]"));
 		ensureNoBackgroundRequest();
 		waitForElementDisplayed(By.id("form:create-tabs:one-radio-label"), true, TIME_OUT);
@@ -98,7 +105,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		ensureNoBackgroundRequest();
 	}
 
-	public void createUploadComponent(String label) {
+	@SuppressWarnings("deprecation")
+  public void createUploadComponent(String label) {
 		click(By.xpath("//*[@id='form:create-tabs']/ul/li[5]"));
 		ensureNoBackgroundRequest();
 		waitForElementDisplayed(By.id("form:create-tabs:create-file-upload-tab"), true, TIME_OUT);
@@ -108,7 +116,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		ensureNoBackgroundRequest();
 	}
 
-	private void addRadioOptions(int numberOfOptions) {
+	@SuppressWarnings("deprecation")
+  private void addRadioOptions(int numberOfOptions) {
 		for (int i = 1; i <= numberOfOptions; i++) {
 			click(By.id("form:create-tabs:one-radio-options:add-radio-option-btn"));
 			waitAjaxIndicatorDisappear();
@@ -116,7 +125,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		}
 	}
 
-	private void addCheckboxOptions(int numberOfSelection) {
+	@SuppressWarnings("deprecation")
+  private void addCheckboxOptions(int numberOfSelection) {
 		for (int i = 1; i <= numberOfSelection; i++) {
 			click(By.id("form:create-tabs:many-checkbox-options:add-checkbox-option-btn"));
 			waitAjaxIndicatorDisappear();
@@ -145,7 +155,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
 		}
 	}
 
-	private void moveFormElementToPanel(int index, String position) {
+	@SuppressWarnings("deprecation")
+  private void moveFormElementToPanel(int index, String position) {
 		WebElement formElement = findElementById(String.format("form:available-form-elements:%d:pnl_content", index));
 		// If elements is FileUpload, move to footer
 		if (formElementIsFileUpload(formElement)) {
@@ -200,7 +211,8 @@ public class ExpressFormDefinitionPage extends TemplatePage {
     waitForElementDisplayed(By.id("task-form:task-view:dyna-form-fieldset"), true);
 	}
 
-	public void nextStep() {
+	@SuppressWarnings("deprecation")
+  public void nextStep() {
 		click(By.id("next-button"));
 		ensureNoBackgroundRequest();
 	}

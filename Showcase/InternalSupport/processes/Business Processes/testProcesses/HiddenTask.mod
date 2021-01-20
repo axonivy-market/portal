@@ -50,9 +50,7 @@ Hk0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Hk0 f0 @C|.responsibility Everybody #txt
 Hk0 f0 81 49 30 30 -21 17 #rect
-Hk0 f0 @|StartRequestIcon #fIcon
 Hk0 f1 529 49 30 30 0 15 #rect
-Hk0 f1 @|EndIcon #fIcon
 Hk0 f3 actionTable 'out=in1;
 ' #txt
 Hk0 f3 outLinks "TaskA.ivp" #txt
@@ -68,14 +66,12 @@ TaskA.SKIP_TASK_LIST=true
 TaskA.TYPE=0' #txt
 Hk0 f3 template "" #txt
 Hk0 f3 321 49 30 30 0 16 #rect
-Hk0 f3 @|TaskSwitchSimpleIcon #fIcon
 Hk0 f5 actionTable 'out=in;
 ' #txt
-Hk0 f5 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
-TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
+Hk0 f5 actionCode 'import ch.ivy.addon.portalkit.publicapi.TaskAPI;
+TaskAPI.setHidePropertyToHideInPortal(ivy.task);' #txt
 Hk0 f5 security system #txt
 Hk0 f5 160 42 112 44 0 -8 #rect
-Hk0 f5 @|StepIcon #fIcon
 Hk0 f9 expr out #txt
 Hk0 f9 111 64 160 64 #arcP
 Hk0 f4 expr out #txt
@@ -84,11 +80,10 @@ Hk0 f4 var in1 #txt
 Hk0 f4 272 64 321 64 #arcP
 Hk0 f6 actionTable 'out=in;
 ' #txt
-Hk0 f6 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
-TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
+Hk0 f6 actionCode 'import ch.ivy.addon.portalkit.publicapi.TaskAPI;
+TaskAPI.setHidePropertyToHideInPortal(ivy.task);' #txt
 Hk0 f6 security system #txt
 Hk0 f6 394 42 112 44 0 -8 #rect
-Hk0 f6 @|StepIcon #fIcon
 Hk0 f7 expr data #txt
 Hk0 f7 outCond ivp=="TaskA.ivp" #txt
 Hk0 f7 351 64 394 64 #arcP

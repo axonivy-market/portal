@@ -1,9 +1,19 @@
 package ch.ivy.addon.portalkit.filter;
 
 import ch.ivyteam.ivy.persistence.query.Query;
+import ch.ivyteam.ivy.workflow.query.CaseQuery;
+import ch.ivyteam.ivy.workflow.query.TaskQuery;
 
+/**
+ * Base class for Filter
+ *
+ * @param <T> {@link TaskQuery} or {@link CaseQuery}
+ */
 public abstract class AbstractFilter<T extends Query<?>> {
 
+  /**
+   * All options in filter are selected e.g all states
+   */
   public static final String ALL = "All";
   protected static final String COMMA = ", ";
   protected static final String GREATER_EQUAL = ">= %s";

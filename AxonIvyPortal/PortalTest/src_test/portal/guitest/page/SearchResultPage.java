@@ -15,16 +15,19 @@ public class SearchResultPage extends TemplatePage {
 		return "id('search-results-tabview')";
 	}
 
+  @SuppressWarnings("deprecation")
 	public void openTaskTab() {
 		click(By.cssSelector("li[class*='task-tab-title']"));
 		waitAjaxIndicatorDisappear();
 	}
 
+  @SuppressWarnings("deprecation")
 	public void openCaseTab() {
 		click(By.cssSelector("li[class*='case-tab-title']"));
 		waitAjaxIndicatorDisappear();
 	}
 
+  @SuppressWarnings("deprecation")
 	public void openEmployeeTab() {
 		click(By.xpath("//div[@id='search-results-tabview']/ul/li[4]"));
 		waitAjaxIndicatorDisappear();
@@ -78,22 +81,29 @@ public class SearchResultPage extends TemplatePage {
 
 	public boolean isInfoWorkflowIcon() {
 		WebElement element = findElementByCssSelector(INFO_EXPRESS_WORKFlOW);	
-		return element.getAttribute("class").contains("ivyicon-information-circle");
+		return element.getAttribute("class").contains("si-information-circle");
 	}
 	
 	public boolean isEditExpressWorkflow() {
 		WebElement element = findElementByCssSelector(EDIT_EXPRESS_WORKFlOW);
-		return element.getAttribute("class").contains("ivyicon-graphic-tablet-drawing-pen");
+		return element.getAttribute("class").contains("si-graphic-tablet-drawing-pen");
 	}
 	
 	public boolean isDeleteExpressWorkflown() {
 		WebElement element = findElementByCssSelector(DELETE_EXPRESS_WORKFlOW);
-		return element.getAttribute("class").contains("ivyicon-bin-1");
+		return element.getAttribute("class").contains("si-bin-1");
 	}
 	
 	public boolean isExpressProcessLogo() {
 		WebElement element = findElementByCssSelector(EXPRESS_PROCESS_LOGO);
-		return element.getAttribute("class").contains("ivyicon-startup-launch");
+		return element.getAttribute("class").contains("si-startup-launch");
 	}
 	
+	public boolean isTaskCategoryColumnDisplayed() {
+	  return findElementByCssSelector("span[id$=':task-category-cell']").isDisplayed();
+  }
+	
+	public boolean isCaseCategoryColumnDisplayed() {
+    return findElementByCssSelector("span[id$=':case-category-cell']").isDisplayed();
+  }
 }

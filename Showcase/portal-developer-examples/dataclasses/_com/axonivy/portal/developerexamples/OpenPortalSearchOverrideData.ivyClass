@@ -1,5 +1,0 @@
-OpenPortalSearchOverrideData #class
-_com.axonivy.portal.developerexamples #namespace
-keyword String #field
-searchResultsDataModel ch.ivy.addon.portalkit.datamodel.SearchResultsDataModel #field
-activeTabIndex Number #field

@@ -1,6 +1,7 @@
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component" xmlns:p="http://primefaces.org/ui"
-  xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions" xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:jsf="http://xmlns.jcp.org/jsf">
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
@@ -10,32 +11,46 @@
 
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
-  <div class="ui-g">
-    <div class="ui-xl-3 ui-lg-4 ui-md-4 ui-sm-5 ui-g-2 task-detail-description-label #{cc.attrs.labelStyleClasses}">
-      <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" rendered="true" />
+  <div class="ui-g task-details-description-title">
+    <div class="task-detail-title #{cc.attrs.labelStyleClasses} text-ellipsis task-description-title">
+      #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}
+      <p:commandLink onclick="PF('widget-description-inplace').show(); hideIconLessLink(); hideIconMoreLink(); return false;"
+        rendered="#{taskActionBean.canChangeDescription(task) and !cc.attrs.readOnly}" id="edit-description-link">
+        <i class="si si-graphic-tablet-drawing-pen" />
+      </p:commandLink>
+      
     </div>
-    <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4 task-detail-description">
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-sm-12 ui-md-12 ui-lg-12 u-no-padding-left task-details-description-content">
       <h:form id="task-detail-description-form">
-        <div class="scroll-panel OvAuto">
-          <p:inplace id="task-description-inplace" editor="true" styleClass="task-description-inplace"
-            disabled="#{!taskActionBean.canChangeDescription(task) or cc.attrs.readOnly}"
-            saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-            cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
-            emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noDescription')}">
-            <p:ajax event="save" update="task-detail-description-form" />
-            <f:facet name="input">
-              <p:inputTextarea id="task-description-input" rows="3" styleClass="task-detail-description-input" value="#{task.description}"
-                autoResize="false" />
-            </f:facet>
-            <f:facet name="output">
-              <h:outputText id="task-description-output" escape="false" styleClass="task-detail-description-output"
-                value="#{taskWidgetBean.sanitizeHTML(task.description)} " />
-              <i jsf:rendered="#{taskActionBean.canChangeDescription(task) and !cc.attrs.readOnly}" class="icon ivyicon-graphic-tablet-drawing-pen" />
-            </f:facet>
-          </p:inplace>
+        <div class="ui-g-12 task-detail-description">
+          <div id="description-content" class="scroll-panel OvAuto short-description">
+            <p:inplace id="task-description-inplace" editor="true" styleClass="task-description-inplace" effectSpeed="fast"
+              widgetVar="widget-description-inplace" disabled="#{!taskActionBean.canChangeDescription(task) or cc.attrs.readOnly}"
+              saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
+              cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
+              emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noDescription')}" >
+              <p:ajax event="save" oncomplete="handleDisplayIconMoreLink()" update="task-detail-description-form" />
+              <p:ajax event="cancel" oncomplete="handleDisplayIconMoreLink()" update="task-detail-description-form" process="@none" />
+              <f:facet name="input">
+                <p:inputTextarea id="task-description-input" cols="250" rows="6" styleClass="task-detail-description-input"
+                  value="#{task.description}" autoResize="false" />
+              </f:facet>
+              <f:facet name="output">
+                <div id="task-description-output" onclick="hideIconMoreLink(); hideIconLessLink();" class="#{!taskActionBean.canChangeDescription(task) or cc.attrs.readOnly ? 'pointer-event-none' : ''}">
+                  <h:outputText escape="false" styleClass="task-detail-description-output" value="#{taskWidgetBean.sanitizeHTML(task.description)}" />
+                </div>
+              </f:facet>
+            </p:inplace>
+          </div>
+          <a href="#" onclick="displayMoreText()" id="icon-more-link" class="icon-more-link"><i class="si si-add-circle si-add-circle-task-description" /></a>
+          <a href="#" onclick="displayLessText()" id="icon-less-link" class="icon-less-link"><i class="si si-subtract-circle" /></a>
         </div>
       </h:form>
     </div>
   </div>
+  <h:outputScript name="description-task-detail.js" library="js" />
 </cc:implementation>
 </html>

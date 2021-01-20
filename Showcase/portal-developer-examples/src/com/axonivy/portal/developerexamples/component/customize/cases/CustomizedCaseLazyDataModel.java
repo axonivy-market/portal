@@ -44,7 +44,7 @@ public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
 	}
 
 	@Override
-	protected List<String> getDefaultColumns() {
+	public List<String> getDefaultColumns() {
     if (new GlobalSettingService().isCaseOwnerEnabled()) {
       return Arrays.asList(CaseSortField.NAME.name(), CaseSortField.ID.name(), CaseSortField.CREATOR.name(), CaseSortField.OWNER.name(), CaseSortField.CREATION_TIME.name(), CaseSortField.FINISHED_TIME.name(), CUSTOM_VARCHAR_FIELD1, CUSTOM_TIMESTAMP_FIELD1);
     } else {
@@ -58,7 +58,7 @@ public class CustomizedCaseLazyDataModel extends CaseLazyDataModel {
   }
 
 	@Override
-	protected void initFilterContainer() {
+	public void initFilterContainer() {
 		filterContainer = new CustomizedCaseFilterContainer();
 	}
 }

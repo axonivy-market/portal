@@ -16,14 +16,14 @@
 
     <p:link id="back-to-cases" href="#" rendered="#{showItemBackButton}"
       onclick="backToPrevPage(#{!isTaskStartedInDetails})" styleClass="case-details-back-btn">
-      <i class="icon ivyicon-arrow-left-1" />
+      <i class="si si-arrow-left-1" />
       <p:spacer width="3px" />
       <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/back')}" />
     </p:link>
   </h:form>
 </h:panelGroup>
 
-<div class="case-detail-body ui-g-12 u-padding-0">
+<div class="case-detail-body ui-g-12 u-padding-0 portal-card-container">
   <div class="ui-g">
     <!-- Custom panel at top section -->
     <ui:insert name="caseItemDetailCustomTop" />
@@ -37,7 +37,7 @@
       <div class="card card-w-title case-detail-card">
         <div class="ui-g-12 u-padding-0 case-detail-section-title-container">
           <div class="case-detail-section-title u-truncate-text u-padding-0">
-            <i class="icon ivyicon-single-neutral-actions" />
+            <i class="si si-single-neutral-actions" />
             #{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/DataDescription')}
           </div>
 
@@ -46,7 +46,7 @@
             <p:commandLink id="destroy-case-link"
               rendered="#{caseActionBean.canDestroy(case) and case.state ne 'DONE' and case.state ne 'DESTROYED'}"
               styleClass="additional-case-details-link" immediate="true" onclick="PF('destroy-case-dialog').show()" disabled="#{readOnly}">
-              <span class="action-icon icon ivyicon-remove" />
+              <span class="action-icon si si-remove" />
               <span class="display-full-text">#{ivy.cms.co('/Dialogs/ch/ivy/addon/portalkit/component/CaseWidget/CaseDetail/destroyCase')}</span>
               <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}</span>
             </p:commandLink>
@@ -57,7 +57,7 @@
             <p:link id="show-additional-case-details-link" styleClass="additional-case-details-link" target="_blank"
               href="#{caseWidgetBean.getAdditionalCaseDetailsPageUri(case)}"
               rendered="#{caseWidgetBean.showCaseDetails}">
-              <i class="icon ivyicon-business-contract-handshake-sign" />
+              <i class="si si-business-contract-handshake-sign" />
               <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseDetails/showAdditionalPage')}</span>
               <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
             </p:link>
@@ -118,7 +118,7 @@
   <ui:param name="id" value="destroy-case-confirmation-dialog" />
   <ui:param name="widgetVar" value="destroy-case-dialog" />
   
-  <ui:param name="iconClass" value="icon ivyicon-delete-1" />
+  <ui:param name="iconClass" value="si si-delete-1" />
   <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
   <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroyCaseHeaderText')}" />
   <ui:param name="dialogContent" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/destroyCaseMessage')}" />
@@ -127,7 +127,7 @@
     <p:commandLink value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
       onclick="PF('destroy-case-dialog').hide();" styleClass="u-mar-right-15" />
     <p:commandButton id="confirm-destruction" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/destroy')}"
-      icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}"
+      icon="#{visibilityBean.generateButtonIcon('si si-remove')}"
       actionListener="#{caseWidgetBean.destroyCase(case)}"
       oncomplete="backToPrevPage(#{caseWidgetBean.willNavigateBack()});" />
   </ui:define>

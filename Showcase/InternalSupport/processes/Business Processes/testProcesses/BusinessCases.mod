@@ -47,6 +47,18 @@ Be0 @PushWFArc f31 '' #zField
 Be0 @TaskSwitch f34 '' #zField
 Be0 @TkArc f35 '' #zField
 Be0 @PushWFArc f26 '' #zField
+Be0 @StartRequest f36 '' #zField
+Be0 @UserTask f37 '' #zField
+Be0 @EndTask f39 '' #zField
+Be0 @PushWFArc f40 '' #zField
+Be0 @GridStep f41 '' #zField
+Be0 @PushWFArc f42 '' #zField
+Be0 @TkArc f38 '' #zField
+Be0 @SignalStartEvent f43 '' #zField
+Be0 @TaskSwitchSimple f44 '' #zField
+Be0 @EndTask f45 '' #zField
+Be0 @TkArc f46 '' #zField
+Be0 @PushWFArc f47 '' #zField
 >Proto Be0 Be0 BusinessCases #zField
 Be0 f0 outLink updateCheckInTime.ivp #txt
 Be0 f0 inParamDecl '<> param;' #txt
@@ -371,6 +383,82 @@ Be0 f35 896 109 896 210 #arcP
 Be0 f26 expr data #txt
 Be0 f26 outCond ivp=="TaskA.ivp" #txt
 Be0 f26 896 238 896 339 #arcP
+Be0 f36 outLink saleAndInform.ivp #txt
+Be0 f36 inParamDecl '<> param;' #txt
+Be0 f36 requestEnabled true #txt
+Be0 f36 triggerEnabled false #txt
+Be0 f36 callSignature saleAndInform() #txt
+Be0 f36 startName 'Sale and inform' #txt
+Be0 f36 startDescription 'Task with UI and trigger signal' #txt
+Be0 f36 caseData 'businessCase.attach=true
+case.name=Sale and inform
+customFields.STRING.embedInFrame="false"' #txt
+Be0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>saleAndInform.ivp</name>
+    </language>
+</elementInfo>
+' #txt
+Be0 f36 @C|.responsibility Everybody #txt
+Be0 f36 1105 81 30 30 16 0 #rect
+Be0 f36 @|StartRequestIcon #fIcon
+Be0 f37 dialogId internaltest.ui.SaleDepartment #txt
+Be0 f37 startMethod start() #txt
+Be0 f37 requestActionDecl '<> param;' #txt
+Be0 f37 responseMappingAction 'out=in;
+' #txt
+Be0 f37 caseData customFields.STRING.embedInFrame="false" #txt
+Be0 f37 taskData 'TaskA.CATEGORY=SALE/SIGNCONTRACT
+TaskA.NAM=Work with sale department' #txt
+Be0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>SaleDepartment</name>
+    </language>
+</elementInfo>
+' #txt
+Be0 f37 1064 266 112 44 -45 -8 #rect
+Be0 f37 @|UserTaskIcon #fIcon
+Be0 f39 1105 401 30 30 16 0 #rect
+Be0 f39 @|EndIcon #fIcon
+Be0 f40 1120 310 1120 401 #arcP
+Be0 f41 actionTable 'out=in;
+' #txt
+Be0 f41 actionCode ivy.wf.signals().send("sale:inform"); #txt
+Be0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>trigger signal</name>
+    </language>
+</elementInfo>
+' #txt
+Be0 f41 1064 170 112 44 -36 -8 #rect
+Be0 f41 @|StepIcon #fIcon
+Be0 f42 1120 111 1120 170 #arcP
+Be0 f38 1120 214 1120 266 #arcP
+Be0 f43 signalCode sale:inform #txt
+Be0 f43 attachToBusinessCase true #txt
+Be0 f43 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Send mail</name>
+    </language>
+</elementInfo>
+' #txt
+Be0 f43 1281 81 30 30 16 0 #rect
+Be0 f43 @|SignalStartEventIcon #fIcon
+Be0 f44 actionTable 'out=in1;
+' #txt
+Be0 f44 caseData 'case.category=SALE/SENDMAIL
+case.name=Send mail inform' #txt
+Be0 f44 taskData 'TaskA.NAM=Send email inform ' #txt
+Be0 f44 1281 177 30 30 15 0 #rect
+Be0 f44 @|TaskSwitchSimpleIcon #fIcon
+Be0 f45 1281 401 30 30 16 0 #rect
+Be0 f45 @|EndIcon #fIcon
+Be0 f46 1296 111 1296 177 #arcP
+Be0 f47 1296 207 1296 401 #arcP
 >Proto Be0 .type internaltest.Data #txt
 >Proto Be0 .processKind NORMAL #txt
 >Proto Be0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -422,3 +510,13 @@ Be0 f24 mainOut f35 tail #connect
 Be0 f35 head f34 in #connect
 Be0 f34 out f26 tail #connect
 Be0 f26 head f25 mainIn #connect
+Be0 f37 out f40 tail #connect
+Be0 f40 head f39 mainIn #connect
+Be0 f36 mainOut f42 tail #connect
+Be0 f42 head f41 mainIn #connect
+Be0 f41 mainOut f38 tail #connect
+Be0 f38 head f37 in #connect
+Be0 f43 mainOut f46 tail #connect
+Be0 f46 head f44 in #connect
+Be0 f44 out f47 tail #connect
+Be0 f47 head f45 mainIn #connect

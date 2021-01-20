@@ -14,7 +14,7 @@
 </cc:interface>
 
 <cc:implementation>
-  <ui:param name="icon" value="#{empty cc.attrs.icon ? 'icon ivyicon-bulb' : cc.attrs.icon}" />
+  <ui:param name="icon" value="#{empty cc.attrs.icon ? 'si si-bulb' : cc.attrs.icon}" />
   <ui:param name="title" value="#{empty cc.attrs.title ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/guide/welcome/title') : cc.attrs.title}" />
   <ui:param name="content" value="#{empty cc.attrs.content ? logic.buildContent() : cc.attrs.content}" />
   <ui:param name="mobileContent" value="#{empty cc.attrs.mobileContent ? logic.buildMobileContent() : cc.attrs.mobileContent}" />
@@ -36,11 +36,11 @@
           oncomplete="PF('welcome-portal-guide').hide();" styleClass="guide-panel__cancel u-hidden-1024-down"
           rendered="#{not guideBean.dontShowAgain}" />
         <p:commandButton id="welcome-guide-next" type="button" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/next')}"
-          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-arrow-right-1-small')}" 
+          icon="#{visibilityBean.generateButtonIcon('si si-arrow-right-1-small')}" 
           onclick="PF('welcome-portal-guide').hide(); #{cc.attrs.onNext}"
           rendered="#{not guideBean.dontShowAgain}" styleClass="u-hidden-1024-down" />
         <p:commandButton id="finish" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/finish')}"
-          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
           process="@this" update="#{cc.attrs.updatedComponentAfterGuide}"
           actionListener="#{guideBean.updateToLoadRealData()}" partialSubmit="true"
           oncomplete="PF('welcome-portal-guide').hide();"

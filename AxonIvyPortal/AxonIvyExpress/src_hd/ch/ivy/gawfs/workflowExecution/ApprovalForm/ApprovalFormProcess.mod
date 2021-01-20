@@ -57,9 +57,7 @@ As0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f0 83 51 26 26 -16 15 #rect
-As0 f0 @|UdInitIcon #fIcon
 As0 f1 435 51 26 26 0 12 #rect
-As0 f1 @|UdProcessEndIcon #fIcon
 As0 f6 guid 163066332FC888BC #txt
 As0 f6 actionTable 'out=in;
 ' #txt
@@ -73,7 +71,6 @@ As0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f6 83 147 26 26 -37 15 #rect
-As0 f6 @|UdEventIcon #fIcon
 As0 f7 guid 1630663828B44965 #txt
 As0 f7 actionTable 'out=in;
 ' #txt
@@ -87,7 +84,6 @@ As0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f7 83 243 26 26 -29 15 #rect
-As0 f7 @|UdEventIcon #fIcon
 As0 f3 actionTable 'out=in;
 ' #txt
 As0 f3 actionCode 'import ch.ivy.addon.portalkit.util.AdhocUtils;
@@ -108,9 +104,7 @@ As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f3 352 138 112 44 -39 -8 #rect
-As0 f3 @|StepIcon #fIcon
 As0 f5 691 147 26 26 0 12 #rect
-As0 f5 @|UdExitEndIcon #fIcon
 As0 f9 actionTable 'out=in;
 ' #txt
 As0 f9 actionCode in.approvalResult.setIsApproved(false); #txt
@@ -122,7 +116,6 @@ As0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f9 160 234 112 44 -37 -8 #rect
-As0 f9 @|StepIcon #fIcon
 As0 f10 actionTable 'out=in;
 ' #txt
 As0 f10 actionCode in.approvalResult.setIsApproved(true); #txt
@@ -134,7 +127,6 @@ As0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f10 160 138 112 44 -37 -8 #rect
-As0 f10 @|StepIcon #fIcon
 As0 f11 expr out #txt
 As0 f11 109 160 160 160 #arcP
 As0 f4 expr out #txt
@@ -161,7 +153,6 @@ As0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f13 352 234 112 44 -39 -8 #rect
-As0 f13 @|StepIcon #fIcon
 As0 f14 expr out #txt
 As0 f14 272 256 352 256 #arcP
 As0 f16 guid 163066874021794C #txt
@@ -177,13 +168,13 @@ As0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f16 83 339 26 26 -18 15 #rect
-As0 f16 @|UdEventIcon #fIcon
 As0 f17 actionTable 'out=in;
 ' #txt
-As0 f17 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
-import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+As0 f17 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
+import ch.ivy.addon.portalkit.util.TaskUtils;
+
 TaskUtils.resetTask(ivy.task);
-PortalNavigator.navigateToPortalEndPage();' #txt
+PortalNavigatorAPI.navigateToPortalEndPage();' #txt
 As0 f17 security system #txt
 As0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -193,11 +184,9 @@ As0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f17 256 330 112 44 -29 -8 #rect
-As0 f17 @|StepIcon #fIcon
 As0 f18 expr out #txt
 As0 f18 109 352 256 352 #arcP
 As0 f19 435 339 26 26 0 12 #rect
-As0 f19 @|UdProcessEndIcon #fIcon
 As0 f20 expr out #txt
 As0 f20 368 352 435 352 #arcP
 As0 f21 actionTable 'out=in;
@@ -217,7 +206,6 @@ information</name>
 </elementInfo>
 ' #txt
 As0 f21 512 138 128 44 -42 -16 #rect
-As0 f21 @|StepIcon #fIcon
 As0 f22 expr out #txt
 As0 f22 464 160 512 160 #arcP
 As0 f8 expr out #txt
@@ -242,7 +230,6 @@ As0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f15 160 43 112 44 -22 -8 #rect
-As0 f15 @|StepIcon #fIcon
 As0 f24 expr out #txt
 As0 f24 108 64 160 65 #arcP
 As0 f2 expr out #txt
@@ -250,7 +237,6 @@ As0 f2 272 65 435 64 #arcP
 >Proto As0 .type ch.ivy.gawfs.workflowExecution.ApprovalForm.ApprovalFormData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 -8 -8 16 16 16 26 #rect
->Proto As0 '' #fIcon
 As0 f6 mainOut f11 tail #connect
 As0 f11 head f10 mainIn #connect
 As0 f10 mainOut f4 tail #connect

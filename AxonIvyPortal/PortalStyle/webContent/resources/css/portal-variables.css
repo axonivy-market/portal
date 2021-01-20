@@ -31,6 +31,7 @@
   --ivy-portal-blue-light: #90DDE9;
   --ivy-portal-blue-dark: #007095;
   --ivy-portal-color-black: #1B1B1B;
+  --ivy-portal-color-gray-dark: #565656;
 
   --accent-color: var(--ivy-portal-blue-light);
   --accent-text-color: var(--primary-dark-text-color);
@@ -43,6 +44,10 @@
   --header-font-size: 2rem;
   --left-menu-icon-font-size: 1.8rem;  
   --portal-font-family: "Roboto";
+  --portal-icon-font-family: "StreamlineIcons";
+  --portal-icon-font-size: 1em;
+  --portal-icon-line-height: 1;
+  --portal-icon-ui-icon-font-size: 1.8rem;
   --default-font-style: normal;
   --default-font-weight: 400;
   --inplace-edit-icon-font-size: 1.8rem;
@@ -55,8 +60,6 @@
   --accordion-header-active-background-color: var(--ivy-primary-color-grey-light);
   --accordion-header-background-color: var(--ivy-primary-color-grey-light);
   --case-task-state-done-or-resume-green: #4eb41c;
-  --portal-sub-menu-background-color: rgba(255,255,255,0.6);
-  --portal-sub-menu-item-link-background-color: rgba(0,0,0,0);
   --box-shadow-color: hsla(0, 0%, 15%, 0.2);
   --portal-border-radius: 5px;
   --item-background-hover: rgba(144, 221, 233, 0.24);
@@ -168,22 +171,30 @@
   --statistic-link-hover-border: var(--ivy-primary-color-grey-light);
   --chart-container-separator-border: 1px solid #F4F4F4;
   --chart-container-separator-border-radius: 0;
-
-  /* Start Menu Item */
-  --menu-item-current-application-border-bottom-color: transparent;
+  --chart-label-default-exception-priority-color: var(--ivy-primary-color-white);
+  --chart-label-default-high-priority-color: var(--ivy-primary-color-white);
+  --chart-label-default-normal-priority-color: var(--ivy-primary-color-white);
+  --chart-label-default-low-priority-color: var(--ivy-portal-color-gray-dark);
+  --chart-label-default-created-case-color: var(--ivy-portal-color-gray-dark);
+  --chart-label-default-running-case-color: var(--ivy-primary-color-white);
+  --chart-label-default-done-case-color: var(--ivy-primary-color-white);
+  --chart-label-default-failed-case-color: var(--ivy-primary-color-white);
+  --chart-label-default-elapsed-time-color: var(--ivy-primary-color-white);
+  --chart-label-default-task-expiried-color: var(--ivy-primary-color-white);
+  --chart-label-default-task-today-color: var(--ivy-primary-color-white);
+  --chart-label-default-task-week-color: var(--ivy-primary-color-white);
+  --chart-label-default-task-month-color: var(--ivy-primary-color-white);
+  --chart-label-default-task-year-color: var(--ivy-primary-color-white);
 
   /* Sidebar */
   --sidebar-app-text-color: var(--menuitem-text-color);
-  --menuitem-active-text-color: var(--primary-color);
-  --menuitem-active-icon-text-color: var(--primary-color);
-  --menuitem-hover-icon-text-color: var(--menuitem-text-color);
   --sidebar-app-text-color: var(--primary-color);
-  --menuitem-active-text-color: var(--primary-color);
-  --menuitem-active-bg-color: transparent;
-  --menuitem-hover-bg-color: var(--ivy-primary-color-grey-light);
-  --menuitem-hover-text-color: var(--menuitem-text-color);
-  --submenu-bg-color: rgba(255,255,255,0.6);
   --sidebar-mobile-menu-icon-font-size: 2.4rem;
+  --menuitem-active-bg-color: var(--primary-color);
+  --menuitem-hover-icon-text-color: var(--primary-color);
+  --menuitem-hover-bg-color: var(--ivy-primary-color-grey-light);
+  --menuitem-hover-text-color: var(--primary-color);
+
 
   /* Filter Widget */
   --advanced-filter-error-color: var(--ivy-tertinary-color-red-medium);
@@ -365,6 +376,7 @@
   --express-import-paginator-background-color: hsla(180, 1%, 85%,0.5);
   --express-import-paginator-hover-button-background-color: hsla(180, 1%, 85%,0.5);
   --express-import-paginator-text-color: var(--ivy-primary-color-black);
+  --express-helper-loading-container-si-lg-font-size: 1.2em;
   /* Chat */
   --chat-panel-background-color: var(--ivy-primary-color-grey-dark);
   --no-group-chat-color: var(--ivy-primary-color-white);
