@@ -19,7 +19,6 @@ public final class PortalNavigatorAPI extends BaseNavigator{
    * Navigate to Portal home
    */
   public static void navigateToPortalHome() {
-//    PortalNavigator.navigateToPortalHome();
     navigateByKeyword("DefaultApplicationHomePage.ivp", PORTAL_PROCESS_START_NAME, new HashMap<>());
   }
 
@@ -28,7 +27,6 @@ public final class PortalNavigatorAPI extends BaseNavigator{
    * task list or task details or global search NOTES: is only used for the task not started in Portal IFrame
    */
   public static void navigateToPortalEndPage() {
-//    PortalNavigator.navigateToPortalEndPage();
     String customizePortalEndPage = getRelativeLink(StandardProcessType.DefaultEndPage);
     Ivy.session().setAttribute(SessionAttribute.IS_TASK_FINISHED.toString(), false);
     redirectURL(String.format("%s?endedTaskId=%s", customizePortalEndPage, Ivy.wfTask().getId()));
