@@ -16,7 +16,9 @@ different resolutions.
 Bootstrap based responsive css
 ------------------------------
 
-These classes was created base on bootstrap responsive.
+These classes was created base on bootstrap responsive. For more detail, refer to
+`Bootstrap <https://v4-alpha.getbootstrap.com/layout/responsive-utilities/#available-classes>`_
+
 
 |responsive-bootstrap-classes|
 

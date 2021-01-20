@@ -16,14 +16,14 @@ public class ProcessHistoryPage extends TemplatePage {
   
   public int openDialogAndCountCases() {
     click(findElementById("process-history-dialog-button"));
-    waitAjaxIndicatorDisappear();
+    waitForElementDisplayed(By.cssSelector("ul.ui-datascroller-list li div.js-case-item.case-list-item"), true);
     WebElement caseList = findElementByClassName("ui-datascroller-list");
     return caseList.findElements(By.className("ui-datascroller-item")).size();
   }
   
   public WebElement getProcessHistoryDialog() {
     click(findElementById("process-history-dialog-button"));
-    waitForElementDisplayed(By.id("process-history-dialog"), true);
+    waitForElementDisplayed(By.id("process-history-dialog_content"), true);
     return findElementById("process-history-dialog");
   }
 }

@@ -3,11 +3,14 @@ package com.axonivy.portal.developerexamples.component.customize;
 import java.util.Collections;
 
 import ch.ivy.addon.portalkit.comparator.TaskFilterComparator;
-import ch.ivy.addon.portalkit.taskfilter.TaskCreationDateFilter;
-import ch.ivy.addon.portalkit.taskfilter.TaskDescriptionFilter;
-import ch.ivy.addon.portalkit.taskfilter.TaskExpiredDateFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
-import ch.ivy.addon.portalkit.taskfilter.TaskResponsibleFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskCategoryFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskCompletedDateFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskCreationDateFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskDescriptionFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskExpiredDateFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskPriorityFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskResponsibleFilter;
 
 /**
  * @author tntanh
@@ -15,15 +18,20 @@ import ch.ivy.addon.portalkit.taskfilter.TaskResponsibleFilter;
  */
 public class CustomizedTaskFilterContainer extends TaskFilterContainer {
 
+  private TaskPriorityFilter priorityFilter = new TaskPriorityFilter();
   private TaskDescriptionFilter descriptionFilter = new TaskDescriptionFilter();
   private TaskCreationDateFilter creationDateFilter = new TaskCreationDateFilter();
   private TaskExpiredDateFilter expiredDateFilter = new TaskExpiredDateFilter();
   private TaskResponsibleFilter responsibleFilter = new TaskResponsibleFilter();
   private CustomerNameFilter customerNameFilter = new CustomerNameFilter();
   private ShipmentDateFilter shipmentDateFilter = new ShipmentDateFilter();
-
+  private TaskCategoryFilter categoryFilter = new TaskCategoryFilter();
+  private TaskCompletedDateFilter completedDateFilter = new TaskCompletedDateFilter();
+  
   public CustomizedTaskFilterContainer() {
-    filters.remove(stateFilter);
+    filters.add(priorityFilter);
+    filters.add(completedDateFilter);
+    filters.add(categoryFilter);
     filters.add(descriptionFilter);
     filters.add(creationDateFilter);
     filters.add(expiredDateFilter);
@@ -32,7 +40,15 @@ public class CustomizedTaskFilterContainer extends TaskFilterContainer {
     filters.add(shipmentDateFilter);
     Collections.sort(filters, new TaskFilterComparator());
   }
-  
+
+  public TaskPriorityFilter getPriorityFilter() {
+    return priorityFilter;
+  }
+
+  public void setPriorityFilter(TaskPriorityFilter priorityFilter) {
+    this.priorityFilter = priorityFilter;
+  }
+
   public TaskDescriptionFilter getDescriptionFilter() {
     return descriptionFilter;
   }
@@ -79,6 +95,22 @@ public class CustomizedTaskFilterContainer extends TaskFilterContainer {
 
   public void setShipmentDateFilter(ShipmentDateFilter shipmentDateFilter) {
     this.shipmentDateFilter = shipmentDateFilter;
+  }
+
+  public TaskCategoryFilter getCategoryFilter() {
+    return categoryFilter;
+  }
+
+  public void setCategoryFilter(TaskCategoryFilter categoryFilter) {
+    this.categoryFilter = categoryFilter;
+  }
+
+  public TaskCompletedDateFilter getCompletedDateFilter() {
+    return completedDateFilter;
+  }
+
+  public void setCompletedDateFilter(TaskCompletedDateFilter completedDateFilter) {
+    this.completedDateFilter = completedDateFilter;
   }
 
 }

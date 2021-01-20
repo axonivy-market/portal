@@ -45,9 +45,7 @@ Us0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Us0 f0 83 51 26 26 -16 15 #rect
-Us0 f0 @|UdInitIcon #fIcon
 Us0 f1 403 51 26 26 0 12 #rect
-Us0 f1 @|UdProcessEndIcon #fIcon
 Us0 f3 guid 162F0A4FA24F861A #txt
 Us0 f3 actionTable 'out=in;
 ' #txt
@@ -59,9 +57,7 @@ Us0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Us0 f3 83 147 26 26 -15 12 #rect
-Us0 f3 @|UdEventIcon #fIcon
 Us0 f4 403 147 26 26 0 12 #rect
-Us0 f4 @|UdExitEndIcon #fIcon
 Us0 f6 actionTable 'out=in;
 ' #txt
 Us0 f6 actionCode 'import ch.ivyteam.ivy.security.IUser;
@@ -81,7 +77,6 @@ Us0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Us0 f6 192 42 112 44 -22 -8 #rect
-Us0 f6 @|StepIcon #fIcon
 Us0 f7 expr out #txt
 Us0 f7 109 64 192 64 #arcP
 Us0 f2 expr out #txt
@@ -98,12 +93,13 @@ Us0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Us0 f8 83 243 26 26 -22 15 #rect
-Us0 f8 @|UdMethodIcon #fIcon
 Us0 f9 actionTable 'out=in;
 ' #txt
-Us0 f9 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-ivy.task.reset();
-PortalNavigator.navigateToPortalEndPage();' #txt
+Us0 f9 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
+
+TaskUtils.resetTask(ivy.task);
+PortalNavigatorAPI.navigateToPortalEndPage();' #txt
 Us0 f9 security system #txt
 Us0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -113,11 +109,9 @@ Us0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Us0 f9 192 234 112 44 -29 -8 #rect
-Us0 f9 @|StepIcon #fIcon
 Us0 f10 expr out #txt
 Us0 f10 109 256 192 256 #arcP
 Us0 f11 403 243 26 26 0 12 #rect
-Us0 f11 @|UdProcessEndIcon #fIcon
 Us0 f14 expr out #txt
 Us0 f14 304 256 403 256 #arcP
 Us0 f12 actionTable 'out=in;
@@ -140,7 +134,6 @@ information</name>
 </elementInfo>
 ' #txt
 Us0 f12 192 138 128 44 -43 -16 #rect
-Us0 f12 @|StepIcon #fIcon
 Us0 f13 expr out #txt
 Us0 f13 109 160 192 160 #arcP
 Us0 f5 expr out #txt
@@ -148,7 +141,6 @@ Us0 f5 320 160 403 160 #arcP
 >Proto Us0 .type ch.ivy.gawfs.workflowExecution.UserTaskForm.UserTaskFormData #txt
 >Proto Us0 .processKind HTML_DIALOG #txt
 >Proto Us0 -8 -8 16 16 16 26 #rect
->Proto Us0 '' #fIcon
 Us0 f0 mainOut f7 tail #connect
 Us0 f7 head f6 mainIn #connect
 Us0 f6 mainOut f2 tail #connect

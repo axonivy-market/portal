@@ -128,6 +128,7 @@ public class UserProfilePage extends TemplatePage {
     }
   }
 
+  @SuppressWarnings("deprecation")
   public void selectTaskSortField(String selectValue) {
     waitForElementDisplayed(By.id(TASK_SORT_FIELD_SELECTION), true);
     click(findElementById(TASK_SORT_FIELD_SELECTION_LABEL));
@@ -137,6 +138,7 @@ public class UserProfilePage extends TemplatePage {
     ensureNoBackgroundRequest();
   }
 
+  @SuppressWarnings("deprecation")
   public void selectTaskSortDirection(String selectValue) {
     waitForElementDisplayed(By.id(TASK_SORT_DIRECTION_SELECTION), true);
     click(findElementById(TASK_SORT_DIRECTION_SELECTION_LABEL));
@@ -146,6 +148,7 @@ public class UserProfilePage extends TemplatePage {
     ensureNoBackgroundRequest();
   }
 
+  @SuppressWarnings("deprecation")
   public void selectCaseSortField(String selectValue) {
     waitForElementDisplayed(By.id(CASE_SORT_FIELD_SELECTION), true);
     click(findElementById(CASE_SORT_FIELD_SELECTION_LABEL));
@@ -155,6 +158,7 @@ public class UserProfilePage extends TemplatePage {
     ensureNoBackgroundRequest();
   }
 
+  @SuppressWarnings("deprecation")
   public void selectCaseSortDirection(String selectValue) {
     waitForElementDisplayed(By.id(CASE_SORT_DIRECTION_SELECTION), true);
     click(findElementById(CASE_SORT_DIRECTION_SELECTION_LABEL));

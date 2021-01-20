@@ -119,7 +119,7 @@ Ct2 @PushTrueWFInG-01 g0 '' #zField
 Ct2 @PushWFArc f0 '' #zField
 Ct2 @PushTrueWFOutG-01 g1 '' #zField
 Ct2 @PushWFArc f1 '' #zField
->Proto Ct2 Ct1 Component #zField
+>Proto Ct2 Ct0 Component #zField
 Ct0 @TextInP .type .type #zField
 Ct0 @TextInP .processKind .processKind #zField
 Ct0 @TextInP .xml .xml #zField
@@ -135,7 +135,7 @@ Ct0 @PushTrueWFOutG-01 g1 '' #zField
 Ct0 @PushWFArc f1 '' #zField
 Ct0 @PushTrueWFInG-01 g2 '' #zField
 Ct0 @PushWFArc f3 '' #zField
->Proto Ct0 Ct0 Component #zField
+>Proto Ct0 Ct1 Component #zField
 As0 S20 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -178,7 +178,6 @@ As0 f86 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f86 1088 570 112 44 -32 -8 #rect
-As0 f86 @|StepIcon #fIcon
 As0 f98 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -187,7 +186,6 @@ As0 f98 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f98 176 568 32 32 22 -15 #rect
-As0 f98 @|AlternativeIcon #fIcon
 As0 f37 actionTable 'out=in;
 ' #txt
 As0 f37 actionCode 'in.backupAbsence.setUser(in.selectedAbsence.getUser());
@@ -204,9 +202,7 @@ As0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f37 208 842 112 44 -46 -8 #rect
-As0 f37 @|StepIcon #fIcon
 As0 f117 891 83 26 26 0 12 #rect
-As0 f117 @|UdProcessEndIcon #fIcon
 As0 f55 actionTable 'out=in;
 ' #txt
 As0 f55 actionCode 'out.selectedAbsence.setUser(in.backupAbsence.getUser());
@@ -222,7 +218,6 @@ As0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f55 208 938 112 44 -16 -8 #rect
-As0 f55 @|StepIcon #fIcon
 As0 f39 processCall 'Ivy Data Processes/AbsenceService:deleteAbsence(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence)' #txt
 As0 f39 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence ivyAbsence> param;' #txt
 As0 f39 requestMappingAction 'param.ivyAbsence=in.selectedAbsence;
@@ -239,9 +234,7 @@ As0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f39 472 298 112 44 -44 -8 #rect
-As0 f39 @|CallSubIcon #fIcon
 As0 f23 211 307 26 26 0 12 #rect
-As0 f23 @|UdProcessEndIcon #fIcon
 As0 f96 guid 1756E446A9C4FC28 #txt
 As0 f96 actionTable 'out=in;
 ' #txt
@@ -253,7 +246,6 @@ As0 f96 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f96 91 411 26 26 -47 15 #rect
-As0 f96 @|UdEventIcon #fIcon
 As0 f9 actionTable 'out=in;
 ' #txt
 As0 f9 actionCode 'import java.util.Arrays;
@@ -279,9 +271,7 @@ As0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f9 660 298 112 44 -46 -8 #rect
-As0 f9 @|StepIcon #fIcon
 As0 f19 1235 755 26 26 0 12 #rect
-As0 f19 @|UdProcessEndIcon #fIcon
 As0 f138 actionTable 'out=in;
 ' #txt
 As0 f138 actionCode 'import java.util.Set;
@@ -316,7 +306,6 @@ As0 f138 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f138 660 618 112 44 -27 -8 #rect
-As0 f138 @|StepIcon #fIcon
 As0 f17 guid 1756E446A9CC288A #txt
 As0 f17 method autoCompleteForSubstituteOnApp(String) #txt
 As0 f17 inParameterDecl '<String query> param;' #txt
@@ -338,11 +327,8 @@ As0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f17 691 755 26 26 -114 15 #rect
-As0 f17 @|UdMethodIcon #fIcon
 As0 f122 1235 947 26 26 0 12 #rect
-As0 f122 @|UdProcessEndIcon #fIcon
 As0 f130 371 851 26 26 0 12 #rect
-As0 f130 @|UdProcessEndIcon #fIcon
 As0 f54 guid 1756E446A9C95213 #txt
 As0 f54 actionTable 'out=in;
 ' #txt
@@ -354,7 +340,6 @@ As0 f54 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f54 83 947 26 26 -19 16 #rect
-As0 f54 @|UdEventIcon #fIcon
 As0 f11 guid 1756E446A9C6B05E #txt
 As0 f11 method editAbsence(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence) #txt
 As0 f11 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence selectedAbsence> param;' #txt
@@ -370,7 +355,6 @@ As0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f11 83 851 26 26 -68 15 #rect
-As0 f11 @|UdMethodIcon #fIcon
 As0 f38 guid 1756E446A9D95FC1 #txt
 As0 f38 actionTable 'out=in;
 ' #txt
@@ -382,7 +366,6 @@ As0 f38 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f38 323 307 26 26 -47 15 #rect
-As0 f38 @|UdEventIcon #fIcon
 As0 f6 guid 1756E446A9DE09BB #txt
 As0 f6 actionTable 'out=in;
 ' #txt
@@ -394,7 +377,6 @@ As0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f6 691 947 26 26 -36 15 #rect
-As0 f6 @|UdEventIcon #fIcon
 As0 f7 guid 1756E446A9DF005A #txt
 As0 f7 method start() #txt
 As0 f7 inParameterDecl '<> param;' #txt
@@ -407,7 +389,6 @@ As0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f7 83 83 26 26 -16 15 #rect
-As0 f7 @|UdInitIcon #fIcon
 As0 f8 actionTable 'out=in;
 ' #txt
 As0 f8 actionCode 'import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
@@ -435,7 +416,6 @@ As0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f8 208 746 112 44 -8 -8 #rect
-As0 f8 @|StepIcon #fIcon
 As0 f53 guid 1756E446A9D252D7 #txt
 As0 f53 method autoCompleteForUserOnApp(String) #txt
 As0 f53 inParameterDecl '<String query> param;' #txt
@@ -452,9 +432,7 @@ As0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f53 691 851 26 26 -82 22 #rect
-As0 f53 @|UdMethodIcon #fIcon
 As0 f90 792 944 32 32 0 16 #rect
-As0 f90 @|AlternativeIcon #fIcon
 As0 f157 guid 1756E446A9DB886F #txt
 As0 f157 actionTable 'out=in;
 ' #txt
@@ -466,9 +444,7 @@ As0 f157 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f157 691 1043 26 26 -48 14 #rect
-As0 f157 @|UdEventIcon #fIcon
 As0 f136 1235 667 26 26 0 12 #rect
-As0 f136 @|UdProcessEndIcon #fIcon
 As0 f140 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -477,7 +453,6 @@ As0 f140 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f140 824 624 32 32 20 -13 #rect
-As0 f140 @|AlternativeIcon #fIcon
 As0 f31 guid 1756E446A9D175DA #txt
 As0 f31 actionTable 'out=in;
 ' #txt
@@ -489,7 +464,6 @@ As0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f31 83 755 26 26 -10 15 #rect
-As0 f31 @|UdEventIcon #fIcon
 As0 f12 guid 1756E446A9D3C830 #txt
 As0 f12 method preDelete(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence) #txt
 As0 f12 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence selectedAbsence> param;' #txt
@@ -504,9 +478,7 @@ As0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f12 91 307 26 26 -61 15 #rect
-As0 f12 @|UdMethodIcon #fIcon
 As0 f57 371 947 26 26 0 12 #rect
-As0 f57 @|UdProcessEndIcon #fIcon
 As0 f111 processCall 'Ivy Data Processes/AbsenceService:updateAbsences(String,java.util.Set)' #txt
 As0 f111 requestActionDecl '<String username,java.util.Set ivyAbsences> param;' #txt
 As0 f111 requestMappingAction 'param.username=in.selectedAbsenceUser.getName();
@@ -524,7 +496,6 @@ As0 f111 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f111 280 506 112 44 -44 -8 #rect
-As0 f111 @|CallSubIcon #fIcon
 As0 f121 actionTable 'out=in;
 ' #txt
 As0 f121 actionCode 'import java.util.Set;
@@ -540,7 +511,6 @@ As0 f121 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f121 472 506 112 44 -32 -8 #rect
-As0 f121 @|StepIcon #fIcon
 As0 f137 actionTable 'out=in;
 ' #txt
 As0 f137 actionCode 'import ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence;
@@ -559,7 +529,6 @@ to selected absence</name>
 </elementInfo>
 ' #txt
 As0 f137 264 618 144 44 -51 -16 #rect
-As0 f137 @|StepIcon #fIcon
 As0 f147 processCall 'Ivy Data Processes/AbsenceService:findAbsences(String)' #txt
 As0 f147 requestActionDecl '<String username> param;' #txt
 As0 f147 requestMappingAction 'param.username=in.selectedAbsence.getUsername();
@@ -578,9 +547,7 @@ user''s absences</name>
 </elementInfo>
 ' #txt
 As0 f147 472 618 112 44 -46 -20 #rect
-As0 f147 @|CallSubIcon #fIcon
 As0 f100 1363 411 26 26 0 12 #rect
-As0 f100 @|UdProcessEndIcon #fIcon
 As0 f45 processCall 'Ivy Data Processes/SecurityService:findUsers(String,Integer,Integer,java.util.List<String>,java.util.List<String>)' #txt
 As0 f45 requestActionDecl '<String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
 As0 f45 requestMappingAction 'param.query=in.queryAutoComplete;
@@ -598,9 +565,7 @@ As0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f45 864 842 192 44 -93 -8 #rect
-As0 f45 @|CallSubIcon #fIcon
 As0 f10 1235 851 26 26 0 12 #rect
-As0 f10 @|UdProcessEndIcon #fIcon
 As0 f13 actionTable 'out=in;
 ' #txt
 As0 f13 actionCode 'import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
@@ -625,7 +590,6 @@ As0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f13 1056 938 112 44 -47 -8 #rect
-As0 f13 @|StepIcon #fIcon
 As0 f14 actionTable 'out=in;
 ' #txt
 As0 f14 actionCode 'import ch.ivy.addon.portalkit.util.AbsenceAndSubstituteUtils;
@@ -653,7 +617,6 @@ As0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f14 864 938 112 44 -40 -8 #rect
-As0 f14 @|StepIcon #fIcon
 As0 f52 guid 1756E446A9D22ECA #txt
 As0 f52 method saveAbsence() #txt
 As0 f52 inParameterDecl '<> param;' #txt
@@ -666,7 +629,6 @@ As0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f52 83 571 26 26 -25 15 #rect
-As0 f52 @|UdMethodIcon #fIcon
 As0 f129 processCall 'Ivy Data Processes/AbsenceService:createAbsence(ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence)' #txt
 As0 f129 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyAbsence absence> param;' #txt
 As0 f129 requestMappingAction 'param.absence=in.selectedAbsence;
@@ -683,7 +645,6 @@ As0 f129 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f129 912 570 112 44 -44 -8 #rect
-As0 f129 @|CallSubIcon #fIcon
 As0 f101 processCall 'Ivy Data Processes/SubstituteService:saveSubstitutes(ch.ivy.addon.portalkit.dto.UserDTO,java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute>)' #txt
 As0 f101 requestActionDecl '<ch.ivy.addon.portalkit.dto.UserDTO userDTO,java.util.List<ch.ivy.addon.portalkit.ivydata.bo.IvySubstitute> substitutes> param;' #txt
 As0 f101 requestMappingAction 'param.userDTO=in.selectedAbsenceUser;
@@ -701,7 +662,6 @@ As0 f101 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f101 280 402 112 44 -45 -8 #rect
-As0 f101 @|CallSubIcon #fIcon
 As0 f48 processCall 'Ivy Data Processes/SecurityService:findUsers(String,Integer,Integer,java.util.List<String>,java.util.List<String>)' #txt
 As0 f48 requestActionDecl '<String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
 As0 f48 requestMappingAction 'param.query=in.queryAutoComplete;
@@ -719,7 +679,6 @@ As0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f48 864 746 112 44 -28 -8 #rect
-As0 f48 @|CallSubIcon #fIcon
 As0 f102 actionTable 'out=in;
 ' #txt
 As0 f102 actionCode 'import ch.ivy.addon.portalkit.dto.UserDTO;
@@ -736,9 +695,7 @@ As0 f102 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f102 220 74 112 44 -43 -8 #rect
-As0 f102 @|StepIcon #fIcon
 As0 f35 371 755 26 26 0 12 #rect
-As0 f35 @|UdProcessEndIcon #fIcon
 As0 f15 1056 864 1235 864 #arcP
 As0 f131 expr out #txt
 As0 f131 109 864 208 864 #arcP
@@ -807,7 +764,6 @@ As0 f0 expr out #txt
 As0 f0 109 96 220 96 #arcP
 As0 f0 0 0.7501964716426519 0 0 #arcLabel
 As0 f1 1595 83 26 26 0 12 #rect
-As0 f1 @|UdProcessEndIcon #fIcon
 As0 f2 guid 1756E4AF3567EC52 #txt
 As0 f2 method backToHome() #txt
 As0 f2 inParameterDecl '<> param;' #txt
@@ -820,19 +776,19 @@ As0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f2 1195 83 26 26 -25 15 #rect
-As0 f2 @|UdMethodIcon #fIcon
 As0 f3 actionTable 'out=in;
 ' #txt
-As0 f3 actionCode 'import javax.faces.context.FacesContext;
+As0 f3 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
+import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
-import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+
 
 // Turn off growl message
 Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 flash.put("overridePortalGrowl", true);
 flash.setRedirect(true);
 
-PortalNavigator.navigateToPortalEndPage();' #txt
+PortalNavigatorAPI.navigateToPortalEndPage();' #txt
 As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -841,7 +797,6 @@ As0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f3 1304 74 160 44 -77 -8 #rect
-As0 f3 @|StepIcon #fIcon
 As0 f4 1464 96 1595 96 #arcP
 As0 f5 1221 96 1304 96 #arcP
 As0 f47 actionTable 'out=in;
@@ -859,7 +814,6 @@ As0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f47 1192 402 112 44 -43 -8 #rect
-As0 f47 @|StepIcon #fIcon
 As0 f18 1304 424 1363 424 #arcP
 As0 f50 expr out #txt
 As0 f50 772 320 1248 402 #arcP
@@ -876,7 +830,6 @@ As0 f32 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f32 660 402 112 44 -38 -8 #rect
-As0 f32 @|StepIcon #fIcon
 As0 f49 772 424 1192 424 #arcP
 As0 f58 1200 592 1248 446 #arcP
 As0 f58 1 1248 592 #addKink
@@ -892,7 +845,6 @@ As0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f28 660 506 112 44 -38 -8 #rect
-As0 f28 @|StepIcon #fIcon
 As0 f60 584 528 660 528 #arcP
 As0 f60 0 0.6621446032546272 0 0 #arcLabel
 As0 f27 772 528 1248 446 #arcP
@@ -914,7 +866,6 @@ As0 f66 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 As0 f66 83 203 26 26 -89 20 #rect
-As0 f66 @|UdMethodIcon #fIcon
 As0 f26 332 96 400 96 #arcP
 As0 f25 expr out #txt
 As0 f25 109 216 456 118 #arcP
@@ -926,7 +877,6 @@ As0 f24 392 424 660 424 #arcP
 >Proto As0 .type ch.ivy.addon.portal.setting.AbsenceManagement.AbsenceManagementData #txt
 >Proto As0 .processKind HTML_DIALOG #txt
 >Proto As0 -8 -8 16 16 16 26 #rect
->Proto As0 '' #fIcon
 Ct2 f105 processCall 'Ivy Data Processes/SubstituteService:findSubstitutions(String)' #txt
 Ct2 f105 requestActionDecl '<String username> param;' #txt
 Ct2 f105 requestMappingAction 'param.username=in.selectedAbsenceUser.name;
@@ -942,7 +892,6 @@ Ct2 f105 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct2 f105 408 138 112 44 -47 -8 #rect
-Ct2 f105 @|CallSubIcon #fIcon
 Ct2 f115 processCall 'Ivy Data Processes/SubstituteService:findSubstitutes(String)' #txt
 Ct2 f115 requestActionDecl '<String username> param;' #txt
 Ct2 f115 requestMappingAction 'param.username=in.selectedAbsenceUser.name;
@@ -960,7 +909,6 @@ Ct2 f115 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct2 f115 192 138 112 44 -42 -8 #rect
-Ct2 f115 @|CallSubIcon #fIcon
 Ct2 f29 expr out #txt
 Ct2 f29 304 160 408 160 #arcP
 Ct2 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -971,7 +919,6 @@ Ct2 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct2 g0 51 147 26 26 -17 22 #rect
-Ct2 g0 @|MIGIcon #fIcon
 Ct2 f0 77 160 192 160 #arcP
 Ct2 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -981,10 +928,9 @@ Ct2 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct2 g1 627 147 26 26 0 12 #rect
-Ct2 g1 @|MOGIcon #fIcon
 Ct2 f1 520 160 627 160 #arcP
->Proto Ct1 0 0 32 24 18 0 #rect
->Proto Ct1 @|BIcon #fIcon
+>Proto Ct0 0 0 32 24 18 0 #rect
+>Proto Ct0 @|BIcon #fIcon
 Ct0 f71 actionTable 'out=in;
 ' #txt
 Ct0 f71 actionCode 'import ch.ivy.addon.portalkit.util.PermissionUtils;
@@ -1000,7 +946,6 @@ can manage other users'' absences</name>
 </elementInfo>
 ' #txt
 Ct0 f71 160 138 224 44 -92 -16 #rect
-Ct0 f71 @|StepIcon #fIcon
 Ct0 f77 expr out #txt
 Ct0 f77 592 160 688 160 #arcP
 Ct0 f77 0 0.6865900143900335 0 0 #arcLabel
@@ -1035,7 +980,6 @@ of current user</name>
 </elementInfo>
 ' #txt
 Ct0 f70 688 138 128 44 -44 -16 #rect
-Ct0 f70 @|StepIcon #fIcon
 Ct0 f75 384 160 480 160 #arcP
 Ct0 f67 processCall 'Ivy Data Processes/AbsenceService:findAbsences(String)' #txt
 Ct0 f67 requestActionDecl '<String username> param;' #txt
@@ -1055,7 +999,6 @@ user''s absences</name>
 </elementInfo>
 ' #txt
 Ct0 f67 480 138 112 44 -46 -20 #rect
-Ct0 f67 @|CallSubIcon #fIcon
 Ct0 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -1064,7 +1007,6 @@ Ct0 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct0 g0 51 147 26 26 -22 18 #rect
-Ct0 g0 @|MIGIcon #fIcon
 Ct0 f0 77 160 160 160 #arcP
 Ct0 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1074,15 +1016,13 @@ Ct0 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct0 g1 915 147 26 26 0 5 #rect
-Ct0 g1 @|MOGIcon #fIcon
 Ct0 f1 816 160 915 160 #arcP
 Ct0 g2 59 59 26 26 0 5 #rect
-Ct0 g2 @|MIGIcon #fIcon
 Ct0 f3 85 72 272 138 #arcP
 Ct0 f3 1 272 72 #addKink
 Ct0 f3 0 0.6999082358290764 0 0 #arcLabel
->Proto Ct0 0 0 32 24 18 0 #rect
->Proto Ct0 @|BIcon #fIcon
+>Proto Ct1 0 0 32 24 18 0 #rect
+>Proto Ct1 @|BIcon #fIcon
 As0 f11 mainOut f131 tail #connect
 As0 f131 head f37 mainIn #connect
 As0 f37 mainOut f132 tail #connect

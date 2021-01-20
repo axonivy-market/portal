@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 
+import portal.guitest.common.WaitHelper;
+
 public class TaskTemplatePage extends TemplatePage {
 
   private static final String ADHOC_HISTORY_TABLE_CSS_SELECTOR = "div[id*='adhoc-task-history-table'] table>tbody>tr";
@@ -20,6 +22,7 @@ public class TaskTemplatePage extends TemplatePage {
     driver.switchTo().defaultContent();
   }
 
+  @SuppressWarnings("deprecation")
   public void switchToCaseInfoIframe() {
     waitAjaxIndicatorDisappear();
     driver.switchTo().frame(CASE_INFO_IFRAME_ID);
@@ -40,9 +43,9 @@ public class TaskTemplatePage extends TemplatePage {
     clickByCssSelector("a[id$='add-note-command']");
     waitForElementDisplayed(By.cssSelector("div[id$='add-note-dialog']"), true);
     findElementByCssSelector("textarea[id$='note-content']").sendKeys(content);
+    int beginCounts = countNoteItems();
     clickByCssSelector("button[id$='save-add-note-command']");
-    waitAjaxIndicatorDisappear();
-    waitForElementDisplayed(By.cssSelector("div[id$='add-note-dialog']"), false);
+    WaitHelper.assertTrueWithWait(() -> countNoteItems() != beginCounts);
   }
 
   public void openDocumentUploadingDialog() {
@@ -93,12 +96,6 @@ public class TaskTemplatePage extends TemplatePage {
     return new TaskWidgetPage();
   }
 
-  public void openActionMenu() {
-    String actionButtonId = "horizontal-task-actions";
-    waitForElementDisplayed(By.id(actionButtonId), true);
-    click(findElementById(actionButtonId));
-  }
-
   public void startSideStep() {
     String actionPanelId = "horizontal-task-action-form:horizontal-task-action-menu";
     waitForElementDisplayed(By.id(actionPanelId), true);
@@ -132,15 +129,11 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void clickAdhocCreationButton() {
-    clickByCssSelector("#horizontal-task-actions");
-    clickByCssSelector("a[id$='start-adhoc']");
-    waitAjaxIndicatorDisappear();
+    clickTaskActionMenu();
+    clickOnStartAdhocLink();
   }
 
-  public void clickActionMenuButton() {
-    clickByCssSelector("#horizontal-task-actions");
-  }
-
+  @SuppressWarnings("deprecation")
   public void clickAdhocOkButton() {
     clickByCssSelector("button[id$='start-adhoc-ok-button']");
     waitAjaxIndicatorDisappear();
@@ -156,6 +149,7 @@ public class TaskTemplatePage extends TemplatePage {
     return driver.findElements(By.cssSelector(startAdhocBtnCSSSelection)).isEmpty();
   }
 
+  @SuppressWarnings("deprecation")
   public boolean isAdhocHistoryDialogExistWhenOpenTaskFirstTime() {
     waitAjaxIndicatorDisappear();
     return findElementByCssSelector("div[id$='adhoc-task-history-dialog']").isDisplayed();
@@ -165,6 +159,7 @@ public class TaskTemplatePage extends TemplatePage {
     return findElementByCssSelector("div[id$='adhoc-task-history-dialog']").isDisplayed();
   }
 
+  @SuppressWarnings("deprecation")
   public void clickShowAdhocHistoryBtn() {
     clickByCssSelector("#horizontal-task-actions");
     waitForElementDisplayed(By.cssSelector("a[id$='show-adhoc-history']"), true);
@@ -182,6 +177,7 @@ public class TaskTemplatePage extends TemplatePage {
     return row.findElements(By.xpath("td")).get(3).getText();
   }
 
+  @SuppressWarnings("deprecation")
   public void closeAdhocHistoryDialog() {
     clickByCssSelector("button[id$='close-adhoc-dialog-button']");
     waitAjaxIndicatorDisappear();
@@ -209,8 +205,13 @@ public class TaskTemplatePage extends TemplatePage {
   }
 
   public void clickTaskActionMenu() {
-    String taskAction = "button[id$='horizontal-task-actions']";
-    clickByCssSelector(taskAction);
+    clickByCssSelector("button[id$='horizontal-task-actions']");
+  }
+
+  public void clickOnStartAdhocLink() {
+    waitForElementDisplayed(By.cssSelector("div[id$='horizontal-task-action-form:horizontal-task-action-menu']"), true);
+    clickByCssSelector("a[id$='start-adhoc']");
+    waitForElementDisplayed(By.cssSelector("div[id$='adhoc-task-reset-confirmation-dialog_content']"), true);
   }
 
   public void clickChatGroup(boolean growlMessageExpected) {
@@ -222,6 +223,7 @@ public class TaskTemplatePage extends TemplatePage {
     }
   }
 
+  @SuppressWarnings("deprecation")
   public void joinProcessChatAlreadyCreated() {
     waitForElementDisplayed(By.id("chat-group-join-form:chat-group-join-button"), true);
     click(By.id("chat-group-join-form:chat-group-join-button"));
@@ -290,15 +292,14 @@ public class TaskTemplatePage extends TemplatePage {
     return new TaskWidgetPage();
   }
 
-  public boolean isTextOutIFrameChangedWithSkipTaskList() {
+  public String getTaskNameOutsideIFrameWithSkipTaskList() {
     String taskNameOutIFrameCssSelector = "span[id$='title']";
     String approveTaskNameOutIFrame = findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
     waitForCloseButtonDisplayAfterInputedAprrovalNote("1");
     driver.switchTo().defaultContent();
-    String finishTaskNameOutIFrame = findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
-    driver.switchTo().frame("iFrame");
-    closeReviewPage();
-    return !approveTaskNameOutIFrame.equals(finishTaskNameOutIFrame);
+    WaitHelper.assertTrueWithWait(() -> !approveTaskNameOutIFrame
+        .equals(findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText()));
+    return findDisplayedElementByCssSelector(taskNameOutIFrameCssSelector).getText();
   }
 
   private void waitForCloseButtonDisplayAfterInputedAprrovalNote(String approvalNote) {
@@ -312,5 +313,17 @@ public class TaskTemplatePage extends TemplatePage {
   private void closeReviewPage() {
     click(By.id("content-form:close-btn"));
     driver.switchTo().defaultContent();
+  }
+  
+  public TaskWidgetPage openRelatedTask() {
+    switchToCaseInfoIframe();
+    clickByCssSelector("a[id$='show-more-related-tasks']");
+    return new TaskWidgetPage();
+  }
+  
+  public CaseWidgetPage openRelatedCase() {
+    switchToCaseInfoIframe();
+    clickByCssSelector("a[id$='show-more-related-cases']");
+    return new CaseWidgetPage();
   }
 }

@@ -1,7 +1,5 @@
 package portal.guitest.page;
 
-import static portal.guitest.common.WaitHelper.waitForNavigation;
-
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
@@ -73,6 +71,11 @@ public abstract class TemplatePage extends AbstractPage {
     return StringUtils.isNotEmpty(System.getProperty("test.engine.url"));
   }
 
+  /**
+   * This method cannot make sure UI is updated as expected. Instead of using this method, wait for expected UI, e.g. buttons appear, label changed...
+   * In case you really want to use it, ask your team first. 
+   */
+  @Deprecated
   protected void ensureNoBackgroundRequest() {
     ensureNoBackgroundRequest(500, 30);
   }
@@ -104,6 +107,11 @@ public abstract class TemplatePage extends AbstractPage {
     return TEMPLATE_PAGE_LOCATOR;
   }
 
+  /**
+   * This method cannot make sure UI is updated as expected. Instead of using this method, wait for expected UI, e.g. buttons appear, label changed...
+   * In case you really want to use it, ask your team first. 
+   */
+  @Deprecated
   public void waitAjaxIndicatorDisappear() {
     WebElement ajaxIndicatorStartState;
     try {
@@ -261,10 +269,7 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public TaskWidgetPage openTaskList() {
-    openMainMenu();
-    waitForNavigation(this, () -> clickByCssSelector("li.submenu-container:nth-child(3) > a.ripplelink.submenu"));
-    waitForElementDisplayed(By.cssSelector("[id$='task-config-command']"), true);
-    return new TaskWidgetPage();
+    return openMainMenu().selectTaskMenu();
   }
 
   public CaseWidgetPage openCaseList() {

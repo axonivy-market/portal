@@ -85,7 +85,6 @@ Cs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f0 81 51 26 26 -69 15 #rect
-Cs0 f0 @|UdInitIcon #fIcon
 Cs0 f1 guid 16034D80ACC379F5 #txt
 Cs0 f1 method switchMode() #txt
 Cs0 f1 inParameterDecl '<> param;' #txt
@@ -101,9 +100,7 @@ Cs0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f1 81 243 26 26 -36 15 #rect
-Cs0 f1 @|UdMethodIcon #fIcon
 Cs0 f2 251 243 26 26 0 12 #rect
-Cs0 f2 @|UdProcessEndIcon #fIcon
 Cs0 f3 expr out #txt
 Cs0 f3 107 256 251 256 #arcP
 Cs0 f4 guid 16034D8582DD119E #txt
@@ -122,13 +119,9 @@ Cs0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f4 81 371 26 26 -75 15 #rect
-Cs0 f4 @|UdMethodIcon #fIcon
 Cs0 f5 723 371 26 26 0 12 #rect
-Cs0 f5 @|UdProcessEndIcon #fIcon
 Cs0 f7 963 147 26 26 0 12 #rect
-Cs0 f7 @|UdProcessEndIcon #fIcon
 Cs0 f10 251 435 26 26 0 12 #rect
-Cs0 f10 @|UdProcessEndIcon #fIcon
 Cs0 f12 guid 16048C1223A5C53A #txt
 Cs0 f12 actionTable 'out=in;
 ' #txt
@@ -143,11 +136,9 @@ Cs0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f12 81 435 26 26 -51 15 #rect
-Cs0 f12 @|UdEventIcon #fIcon
 Cs0 f13 expr out #txt
 Cs0 f13 107 448 251 448 #arcP
 Cs0 f15 251 500 26 26 0 12 #rect
-Cs0 f15 @|UdProcessEndIcon #fIcon
 Cs0 f16 guid 161BBCEDA1C24D09 #txt
 Cs0 f16 actionTable 'out=in;
 out.isDrilldownElapsedTime=false;
@@ -162,11 +153,9 @@ Cs0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f16 81 500 26 26 -58 15 #rect
-Cs0 f16 @|UdEventIcon #fIcon
 Cs0 f17 expr out #txt
 Cs0 f17 107 513 251 513 #arcP
 Cs0 f18 251 564 26 26 0 12 #rect
-Cs0 f18 @|UdProcessEndIcon #fIcon
 Cs0 f19 guid 161BBD78F902AFC2 #txt
 Cs0 f19 actionTable 'out=in;
 out.isDrilldownElapsedTime=true;
@@ -181,7 +170,6 @@ Cs0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f19 81 564 26 26 -84 15 #rect
-Cs0 f19 @|UdEventIcon #fIcon
 Cs0 f20 expr out #txt
 Cs0 f20 107 577 251 577 #arcP
 Cs0 f9 guid 16250B3D0BF56AEB #txt
@@ -199,9 +187,7 @@ Cs0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f9 81 626 26 26 -89 15 #rect
-Cs0 f9 @|UdEventIcon #fIcon
 Cs0 f11 251 626 26 26 0 12 #rect
-Cs0 f11 @|UdProcessEndIcon #fIcon
 Cs0 f14 expr out #txt
 Cs0 f14 107 639 251 639 #arcP
 Cs0 f21 guid 1625100B1C7D96D2 #txt
@@ -221,9 +207,7 @@ Cs0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f21 81 691 26 26 -68 15 #rect
-Cs0 f21 @|UdMethodIcon #fIcon
 Cs0 f22 251 691 26 26 0 12 #rect
-Cs0 f22 @|UdProcessEndIcon #fIcon
 Cs0 f23 expr out #txt
 Cs0 f23 107 704 251 704 #arcP
 Cs0 f24 processCall 'Functional Processes/DefaultChart:createDefaultChart()' #txt
@@ -243,7 +227,6 @@ Cs0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f24 592 138 112 44 -34 -8 #rect
-Cs0 f24 @|CallSubIcon #fIcon
 Cs0 f26 actionTable 'out=in;
 ' #txt
 Cs0 f26 actionCode 'in.statisticChartList.addAll(in.defaultCharts);
@@ -256,7 +239,6 @@ Cs0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f26 768 138 112 44 -41 -8 #rect
-Cs0 f26 @|StepIcon #fIcon
 Cs0 f27 expr out #txt
 Cs0 f27 704 160 768 160 #arcP
 Cs0 f28 guid 163AF4A8A1BFD729 #txt
@@ -270,7 +252,6 @@ Cs0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f28 81 147 26 26 -39 12 #rect
-Cs0 f28 @|UdEventIcon #fIcon
 Cs0 f31 actionTable 'out=in;
 ' #txt
 Cs0 f31 actionCode 'import ch.ivy.addon.portalkit.statistics.StatisticChart;
@@ -289,7 +270,6 @@ Cs0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f31 196 136 120 48 -58 -8 #rect
-Cs0 f31 @|StepIcon #fIcon
 Cs0 f32 expr out #txt
 Cs0 f32 107 160 196 160 #arcP
 Cs0 f30 actionTable 'out=in;
@@ -309,7 +289,6 @@ to creating new charts</name>
 </elementInfo>
 ' #txt
 Cs0 f30 488 298 144 44 -54 -16 #rect
-Cs0 f30 @|StepIcon #fIcon
 Cs0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -320,7 +299,6 @@ Cs0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f34 248 368 32 32 -46 14 #rect
-Cs0 f34 @|AlternativeIcon #fIcon
 Cs0 f35 expr out #txt
 Cs0 f35 107 384 248 384 #arcP
 Cs0 f36 actionTable 'out=in;
@@ -342,7 +320,6 @@ Cs0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f36 328 298 112 44 -51 -8 #rect
-Cs0 f36 @|StepIcon #fIcon
 Cs0 f38 expr in #txt
 Cs0 f38 264 368 328 320 #arcP
 Cs0 f38 1 264 320 #addKink
@@ -369,15 +346,13 @@ Cs0 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f29 83 771 26 26 -81 15 #rect
-Cs0 f29 @|UdEventIcon #fIcon
 Cs0 f37 467 771 26 26 0 12 #rect
-Cs0 f37 @|UdProcessEndIcon #fIcon
 Cs0 f41 actionTable 'out=in;
 ' #txt
-Cs0 f41 actionCode 'import ch.ivy.addon.portalkit.util.ProcessStartUtils;
+Cs0 f41 actionCode 'import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import javax.faces.context.FacesContext;
 
-String taskAnalysisUrl = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath("Start Processes/TaskAnalysis/start.ivp");
+String taskAnalysisUrl = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath("Start Processes/TaskAnalysis/start.ivp");
 FacesContext.getCurrentInstance().getExternalContext().redirect(taskAnalysisUrl);' #txt
 Cs0 f41 security system #txt
 Cs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -388,7 +363,6 @@ Cs0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f41 216 762 144 44 -69 -8 #rect
-Cs0 f41 @|StepIcon #fIcon
 Cs0 f42 expr out #txt
 Cs0 f42 109 784 216 784 #arcP
 Cs0 f40 expr out #txt
@@ -406,7 +380,6 @@ to see show all chart link</name>
 </elementInfo>
 ' #txt
 Cs0 f44 400 362 160 44 -61 -16 #rect
-Cs0 f44 @|StepIcon #fIcon
 Cs0 f45 expr in #txt
 Cs0 f45 outCond in.compactMode #txt
 Cs0 f45 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -440,19 +413,16 @@ Cs0 f46 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Cs0 f46 376 138 112 44 -53 -8 #rect
-Cs0 f46 @|CallSubIcon #fIcon
 Cs0 f48 expr out #txt
 Cs0 f48 316 160 376 160 #arcP
 Cs0 f8 488 160 592 160 #arcP
 Cs0 f47 251 51 26 26 0 12 #rect
-Cs0 f47 @|UdProcessEndIcon #fIcon
 Cs0 f49 expr out #txt
 Cs0 f49 107 64 251 64 #arcP
 Cs0 f49 0 0.5808494517759799 0 0 #arcLabel
 >Proto Cs0 .type ch.ivy.addon.portalkit.component.StatisticWidget.StatisticWidgetData #txt
 >Proto Cs0 .processKind HTML_DIALOG #txt
 >Proto Cs0 -8 -8 16 16 16 26 #rect
->Proto Cs0 '' #fIcon
 Cs0 f1 mainOut f3 tail #connect
 Cs0 f3 head f2 mainIn #connect
 Cs0 f12 mainOut f13 tail #connect

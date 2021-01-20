@@ -13,7 +13,7 @@
       <h3>Credit Request Approval Level 1&#160;</h3>
 
       <h:form id="form">
-        <h:panelGroup styleClass="ui-g ui-fluid">
+        <h:panelGroup styleClass="ui-g ui-fluid portal-card-container">
           <p:panel class="card ui-g-12 ui-md-12">
             <h:panelGroup styleClass="ui-g" layout="block">
               <p:messages styleClass="ui-g-12" />
@@ -102,11 +102,11 @@
           </p:panel>
         </h:panelGroup>
         <p:commandButton id="rejected-button" actionListener="#{logic.rejected}"
-          value="#{ivy.cms.co('/Dialog/Common/reject')}" update="form" icon="icon ivyicon-delete"
+          value="#{ivy.cms.co('/Dialog/Common/reject')}" update="form" icon="si si-delete"
           styleClass="Fright secondary-btn" />
         <p:spacer width="10px" styleClass="Fright" />
         <p:commandButton id="approval-button" actionListener="#{logic.approved}" styleClass="Fright"
-          value="#{ivy.cms.co('/Dialog/Common/approve')}" update="form" icon="icon ivyicon-check-1" />
+          value="#{ivy.cms.co('/Dialog/Common/approve')}" update="form" icon="si si-check-1" />
 
 
       </h:form>

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.TimeoutException;
@@ -63,6 +64,7 @@ public class CaseWidgetTest extends BaseTest {
     assertFalse(casePage.isCaseDisplayed("Repair Computer"));
   }
 
+  @SuppressWarnings("deprecation")
   @Test
   public void testDestroyCaseWithPermission() {
     initHomePage(TestAccount.ADMIN_USER);
@@ -240,5 +242,31 @@ public class CaseWidgetTest extends BaseTest {
     caseWidgetPage.clickExportToExcelLink();
 
     assertTrue(caseWidgetPage.isDownloadCompleted());
+  }
+
+  @Test
+  public void testStickySortCaseList() {
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    HomePage homePage = new HomePage();
+    CaseWidgetPage caseWidgetPage = homePage.openCaseList();
+    caseWidgetPage.sortCaseListByColumn("case-widget:case-list-header:created-date-column-header:created-date-column-header");
+    caseWidgetPage.clickOnLogo();
+    homePage = new HomePage();
+    caseWidgetPage = homePage.openCaseList();
+    String selectedSortColumn = caseWidgetPage.getSelectedSortColumn();
+    assertTrue(StringUtils.equalsIgnoreCase("Created", selectedSortColumn));
+    String caseName = caseWidgetPage.getCaseNameAt(0);
+    assertTrue(StringUtils.equalsIgnoreCase("Leave Request", caseName));
+    // Change sorting options
+    UserProfilePage userProfilePage = caseWidgetPage.openMyProfilePage();
+    userProfilePage.selectCaseSortField("State");
+    userProfilePage.selectCaseSortDirection("Sort descending");
+    userProfilePage.save();
+    
+    // Check result
+    caseWidgetPage = userProfilePage.openCaseList();
+    selectedSortColumn = caseWidgetPage.getSelectedSortColumn();
+    assertTrue(StringUtils.equalsIgnoreCase("State", selectedSortColumn));
+    assertEquals(CaseState.DONE, caseWidgetPage.getCaseState(0));
   }
 }

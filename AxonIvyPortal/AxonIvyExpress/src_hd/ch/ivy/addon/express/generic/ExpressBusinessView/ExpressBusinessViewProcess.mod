@@ -31,9 +31,7 @@ Es0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Es0 f0 83 51 26 26 -33 25 #rect
-Es0 f0 @|UdInitIcon #fIcon
 Es0 f1 403 51 26 26 0 12 #rect
-Es0 f1 @|UdProcessEndIcon #fIcon
 Es0 f10 guid 1732C155871EAA16 #txt
 Es0 f10 method cancel() #txt
 Es0 f10 inParameterDecl '<> param;' #txt
@@ -46,19 +44,17 @@ Es0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Es0 f10 83 179 26 26 -25 15 #rect
-Es0 f10 @|UdMethodIcon #fIcon
 Es0 f11 403 179 26 26 0 12 #rect
-Es0 f11 @|UdProcessEndIcon #fIcon
 Es0 f13 actionTable 'out=in;
 ' #txt
-Es0 f13 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+Es0 f13 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 
 Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
 flash.put("overridePortalGrowl", true);
 flash.setRedirect(true);
-PortalNavigator.navigateToPortalEndPage();' #txt
+PortalNavigatorAPI.navigateToPortalEndPage();' #txt
 Es0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -67,14 +63,12 @@ Es0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Es0 f13 208 170 112 44 -46 -8 #rect
-Es0 f13 @|StepIcon #fIcon
 Es0 f12 320 192 403 192 #arcP
 Es0 f3 109 64 403 64 #arcP
 Es0 f2 109 192 208 192 #arcP
 >Proto Es0 .type ch.ivy.addon.express.generic.ExpressBusinessView.ExpressBusinessViewData #txt
 >Proto Es0 .processKind HTML_DIALOG #txt
 >Proto Es0 -8 -8 16 16 16 26 #rect
->Proto Es0 '' #fIcon
 Es0 f13 mainOut f12 tail #connect
 Es0 f12 head f11 mainIn #connect
 Es0 f0 mainOut f3 tail #connect
