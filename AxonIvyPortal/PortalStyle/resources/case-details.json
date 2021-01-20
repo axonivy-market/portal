@@ -1,0 +1,45 @@
+{
+  "widgets": 
+  [
+    {
+      "type": "information",
+      "id": "information",
+      "axisX": 0,
+      "axisY": 0,
+      "width": 6,
+      "height": 8
+    },
+    {
+      "type": "document",
+      "id": "document",
+      "axisX": 6,
+      "axisY": 0,
+      "width": 6,
+      "height": 8
+    },
+    {
+      "type": "relatedTask",
+      "id": "relatedTask",
+      "axisX": 0,
+      "axisY": 9,
+      "width": 12,
+      "height": 6
+    },
+    {
+      "type": "technicalCase",
+      "id": "technicalCase",
+      "axisX": 0,
+      "axisY": 16,
+      "width": 12,
+      "height": 6
+    },
+    {
+      "type": "history",
+      "id": "history",
+      "axisX": 0,
+      "axisY": 23,
+      "width": 12,
+      "height": 6
+    }
+  ]
+}
