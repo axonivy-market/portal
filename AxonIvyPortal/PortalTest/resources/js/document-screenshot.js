@@ -372,11 +372,11 @@ function highlightCustomCaseDetail() {
 }
 
 function highlightCustomTaskDetail() {
-  var customTop = $('.custom-task-details');
-  appendStepAnnotation(customTop, 1, 10, customTop.width()/2);
+  var customTop = $('.custom-task-details-panel-top');
+  appendStepAnnotation(customTop, 1, -45, customTop.width()/2);
   
   var customBottom = $('.custom-task-details-panel-bottom');
-  appendStepAnnotation(customBottom, 2, 10, customBottom.width()/2);
+  appendStepAnnotation(customBottom, 2, -45, customBottom.width()/2);
 }
 
 function highlightCustomTaskDetailWithNewStyle() {
