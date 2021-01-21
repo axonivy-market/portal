@@ -15,7 +15,6 @@ import com.jayway.awaitility.Duration;
 
 import ch.ivy.addon.portalkit.util.ScreenshotMargin;
 import ch.ivy.addon.portalkit.util.ScreenshotUtil;
-import portal.guitest.common.FileHelper;
 import portal.guitest.common.ScreenshotTest;
 import portal.guitest.common.Sleeper;
 import portal.guitest.common.TestAccount;
@@ -223,30 +222,6 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     Sleeper.sleep(2000);// wait for focus animation to capture screenshot
     executeDecorateJs("highlightCustomTaskDetail()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-bottom");
-  }
-
-  @Test
-  public void screenshotCustomTaskDetailsWithApplyingJSONConfigurationFile() throws Exception {
-    try {
-      FileHelper.copyAndReplaceExistingFile("./resources/task-details/task-details-custom-widgets.json",
-          "../PortalStyle/resources/task-details.json");
-      redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
-      ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1000));
-      TaskWidgetPage taskWidget = homePage.openTaskList();
-      TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
-      taskDetails.waitUtilsTaskDetailsDisplayed();
-      refreshPage();
-      Sleeper.sleep(2000);
-      executeDecorateJs("scrollToBottomOfLayoutContent()");
-      executeDecorateJs("highlightCustomTaskDetailWithNewStyle()");
-      ScreenshotUtil
-          .capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "customized-tasks-new-style");
-    } catch (Exception e) {
-      throw new Exception(e);
-    } finally {
-      FileHelper.copyAndReplaceExistingFile("./resources/task-details/task-details-basic.json",
-          "../PortalStyle/resources/task-details.json");
-    }
   }
 
   @Test
