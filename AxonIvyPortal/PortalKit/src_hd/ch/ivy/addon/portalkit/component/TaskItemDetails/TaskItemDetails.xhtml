@@ -35,7 +35,7 @@
         </p:commandLink>
       </h:form>
     </h:panelGroup>
-    <h:panelGroup id="task-details-actions" rendered="#{not cc.attrs.readOnly and taskDetailsBean.applyJsonConfigurationFile}"
+    <h:panelGroup id="task-details-actions" rendered="#{not cc.attrs.readOnly and taskDetailsBean.applyJsonConfigurationFile and cc.attrs.showItemDetailsHeader}"
       styleClass="switch-and-reset-buttons-area ui-g-12">
       <p:commandButton id="switch-to-view-mode-button" rendered="#{not taskDetailsBean.readOnlyMode}"
         value="#{ivy.cms.co('/Dialogs/Tasks/TaskDetail/switchToViewMode')}" actionListener="#{taskDetailsBean.switchToViewMode()}"
@@ -54,7 +54,7 @@
 
   <h:panelGroup layout="block" styleClass="task-item-body portal-card-container" id="task-item-body">
     <h:panelGroup class="task-item-body-container task-details-widgets u-padding-0 grid-stack" id="task-details-widgets"
-      rendered="#{not cc.attrs.readOnly and taskDetailsBean.applyJsonConfigurationFile and not empty taskDetailsBean.widgets}">
+      rendered="#{taskDetailsBean.applyJsonConfigurationFile and not empty taskDetailsBean.widgets}">
 
       <c:if test="#{taskDetailsBean.getWidgetPositionByType('TaskDetailsInformationWidget') gt -1}">
         <c:set var="informationWidgetComponent"
@@ -164,7 +164,7 @@
       </ui:repeat>
     </h:panelGroup>
 
-    <h:panelGroup layout="block" class="u-padding-0 ui-g" rendered="#{cc.attrs.readOnly or not taskDetailsBean.applyJsonConfigurationFile}">
+    <h:panelGroup layout="block" class="u-padding-0 ui-g" rendered="#{not taskDetailsBean.applyJsonConfigurationFile}">
       <!-- Custom panel -->
       <cc:renderFacet name="taskItemDetailCustomPanelTop" />
 

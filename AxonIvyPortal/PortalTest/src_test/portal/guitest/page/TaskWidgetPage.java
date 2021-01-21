@@ -233,17 +233,17 @@ public class TaskWidgetPage extends TemplatePage {
 
   @SuppressWarnings("deprecation")
   public void changeDescriptionOfTask(String description) {
-    clickByCssSelector("span[id$='task-description-output']");
-    WebElement taskNameInput = findElementByCssSelector("textarea[id$='task-description-input']");
+    clickByCssSelector("div[id$='task-description-output']");
+    WebElement taskNameInput = findElementByCssSelector("textarea[id$=':task-description-input']");
     waitForElementDisplayed(taskNameInput, true);
     taskNameInput.clear();
     taskNameInput.sendKeys(description);
-    clickByCssSelector("span[id$='task-description-inplace_editor']  .ui-inplace-save");
-    waitAjaxIndicatorDisappear();
+    clickByCssSelector("span[id$=':task-description-inplace_editor']  .ui-inplace-save");
+    waitForElementDisplayed(findElementByCssSelector("div[id$='task-description-output']"), true);
   }
 
   public String getTaskDescription() {
-    return findElementByCssSelector("span[id$='task-description-output']").getText();
+    return findElementByCssSelector("div[id$='task-description-output'] .task-detail-description-output").getText();
   }
 
   public String getTaskCategory() {
