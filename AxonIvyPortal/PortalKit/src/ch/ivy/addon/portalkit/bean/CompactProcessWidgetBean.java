@@ -115,8 +115,9 @@ private static final long serialVersionUID = -5889375917550618261L;
     List<UserProcess> processes = userProcessService.findByUserIdInCurrentApplication(userId);
 
     /*
-     * Update link because since 9.2, saved user favorite processes didn't store this value.
+     * 1. Update link because since 9.2, saved user favorite processes didn't store this value.
      * For old user favorite processes (processID is blank), not change it's value
+     * 2. Check if link is broken.
      */
     Map<String, Process> ivyProcesses = findProcesses();
     Map<String, Process> expressProcesses = findExpressProcesses();
@@ -140,7 +141,27 @@ private static final long serialVersionUID = -5889375917550618261L;
             break;
         }
         userProcess.setLink(process == null ? "" : process.getStartLink());
+      } else {
+        /*
+         *  For old user favorite processes:
+         *  1. ivy process link has the same value as new processId field.
+         *  2. Express process id is stored to workflowId of user favorite process.
+         *  3. External link id is stored to workflowId of user favorite process and isExternal field equals true.
+         */
+        if(StringUtils.isNotBlank(userProcess.getWorkflowId())) {
+          if(userProcess.isExternalLink()) {
+            // External link
+            process = externalLinks.get(userProcess.getWorkflowId());
+          } else {
+            // Express process
+            process = expressProcesses.get(userProcess.getWorkflowId());
+          }
+        } else {
+          // ivy process
+          process = ivyProcesses.get(userProcess.getLink());
+        }
       }
+      userProcess.setBrokenLink(process == null);
     }
 
     processes.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
