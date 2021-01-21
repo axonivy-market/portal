@@ -220,7 +220,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     refreshPage();
     taskDetails.waitUtilsTaskDetailsDisplayed();
     executeDecorateJs("scrollToBottomOfLayoutContent()");
-    Sleeper.sleep(500);
+    Sleeper.sleep(2000);// wait for focus animation to capture screenshot
     executeDecorateJs("highlightCustomTaskDetail()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-bottom");
   }
@@ -236,6 +236,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
       TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
       taskDetails.waitUtilsTaskDetailsDisplayed();
       executeDecorateJs("scrollToBottomOfLayoutContent()");
+      Sleeper.sleep(500);
       executeDecorateJs("highlightCustomTaskDetailWithNewStyle()");
       ScreenshotUtil
           .capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "customized-tasks-new-style");
