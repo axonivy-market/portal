@@ -28,7 +28,7 @@ function saveChangedPosition() {
   caseDetailsGrid.on("change", function () {
     var serializedData = [];
     caseDetailsGrid.engine.nodes.forEach((node) => {
-      let widgetType = getcaseDetailsWidgetType(node.el.getAttribute("widget-type"));
+      let widgetType = getCaseDetailsWidgetType(node.el.getAttribute("widget-type"));
       serializedData.push({
         type: widgetType,
         id: node.id,
@@ -53,6 +53,8 @@ function getCaseDetailsWidgetType(caseDetailsWidgetName) {
   switch (caseDetailsWidgetName) {
     case "CaseDetailsInformationWidget": type = "information"; break;
     case "CaseDetailsDocumentWidget": type = "document"; break;
+    case "CaseDetailsTechnicalCaseWidget": type = "technicalCase"; break;
+    case "CaseDetailsRelatedTaskWidget": type = "relatedTask"; break;
     case "CaseDetailsHistoryWidget": type = "history"; break;
     case "CaseDetailsCustomWidget": type = "custom"; break;
     default:
