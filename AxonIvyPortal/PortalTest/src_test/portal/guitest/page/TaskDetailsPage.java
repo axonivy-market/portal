@@ -51,8 +51,8 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementDisplayed(prioritySelectElement, true);
     click(prioritySelectElement);
     clickByCssSelector(
-        "#:general-information\\:priority-form\\:edit-priority-inplace_editor .ui-inplace-save");
-    waitAjaxIndicatorDisappear();
+        "[id$=':general-information:priority-form:edit-priority-inplace_editor'] .ui-inplace-save");
+    waitForElementDisplayed(By.cssSelector("[id$=':general-information:priority-form:edit-priority-inplace_editor'] .ui-inplace-save"), false);
   }
 
   public String getPriorityOfTask() {
@@ -122,8 +122,8 @@ public class TaskDetailsPage extends TemplatePage {
   }
   
   public String getTaskNameInDialog() {
-    waitForElementDisplayed(By.cssSelector("id$=':task-detail-title-form:task-name-edit-form']"), true);
-    return findElementByCssSelector("[id$=':task-detail-title-form:task-name-edit-form']").findElement(By.cssSelector(".u-truncate-text")).getText();
+    waitForElementDisplayed(By.cssSelector("[id$=':task-detail-title-form:task-name-edit-form']"), true);
+    return findElementByCssSelector("[id$=':task-detail-title-form:task-name-edit-form']").getText();
   }
   
   public CaseDetailsPage backToCaseDetails() {
@@ -183,6 +183,18 @@ public class TaskDetailsPage extends TemplatePage {
     return findElementByCssSelector("[id$=':task-detail-document-container']");
   }
 
+  public WebElement getSwitchToEditModeButtonElement() {
+    return findElementByCssSelector("[id$=':switch-to-edit-mode-button']");
+  }
+  
+  public WebElement getSwitchToViewModeButtonElement() {
+    return findElementByCssSelector("[id$=':switch-to-view-mode-button']");
+  }
+  
+  public WebElement getResetButtonElement() {
+    return findElementByCssSelector("[id$=':reset-task-details-settings-button']");
+  }
+
   public WebElement getAddAttachmentDialog() {
     return findElementByCssSelector("[id$=':task-documents:document-upload-dialog']");
   }
@@ -206,7 +218,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
   
   public String getTaskId() {
-    return findElementById("task-id").getText();
+    return findElementByCssSelector("[id$=':task-id']").getText();
   }
 
   public String getFirstTaskNoteComment() {
@@ -347,6 +359,11 @@ public class TaskDetailsPage extends TemplatePage {
     return taskExpiry.getText();
   }
 
+  public void clickOnResetToDefaultButton() {
+    waitForElementDisplayed(By.cssSelector("[id$=':reset-task-details-settings-button']"), true);
+    click(By.cssSelector("[id$=':reset-task-details-settings-button']"));
+  }
+  
   public void clickOnSwitchToEditModeButton() {
     waitForElementDisplayed(By.cssSelector("[id$=':switch-to-edit-mode-button']"), true);
     click(By.cssSelector("[id$=':switch-to-edit-mode-button']"));
