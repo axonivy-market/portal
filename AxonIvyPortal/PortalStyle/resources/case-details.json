@@ -18,16 +18,16 @@
       "height": 8
     },
     {
-      "type": "relatedTask",
-      "id": "relatedTask",
+      "type": "technicalCase",
+      "id": "technicalCase",
       "axisX": 0,
       "axisY": 9,
       "width": 12,
       "height": 6
     },
     {
-      "type": "technicalCase",
-      "id": "technicalCase",
+      "type": "relatedTask",
+      "id": "relatedTask",
       "axisX": 0,
       "axisY": 16,
       "width": 12,
