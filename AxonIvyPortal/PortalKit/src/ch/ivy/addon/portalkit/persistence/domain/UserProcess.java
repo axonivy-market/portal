@@ -26,6 +26,7 @@ public class UserProcess extends BusinessEntity implements Cloneable {
   private Integer index;
   private boolean defaultProcess;
   private boolean isExternalLink;
+  private boolean isBrokenLink = false;
 
   /**
    *  Since 9.1, we use userId to store user process instead of userName.
@@ -156,6 +157,14 @@ public class UserProcess extends BusinessEntity implements Cloneable {
 
   public void setExternalLink(boolean isExternalLink) {
     this.isExternalLink = isExternalLink;
+  }
+
+  public boolean isBrokenLink() {
+    return isBrokenLink;
+  }
+
+  public void setBrokenLink(boolean isBrokenLink) {
+    this.isBrokenLink = isBrokenLink;
   }
 
   public Integer getIndex() {
