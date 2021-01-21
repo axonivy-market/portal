@@ -352,6 +352,6 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
 .. |task-standard| image:: ../../screenshots/task-detail/customization/task-standard.png
 .. |task-customized-top| image:: ../../screenshots/task-detail/customization/task-customized-top.png
 .. |task-customized-bottom| image:: ../../screenshots/task-detail/customization/task-customized-bottom.png
-.. |task-customized-new-style| image:: ../../screenshots/task-detail/customization/customized-tasks-new-style.png
+.. |task-customized-new-style| image:: images/customization/customized-tasks-new-style.png
 
 
