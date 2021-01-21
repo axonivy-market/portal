@@ -1083,7 +1083,7 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 .compact-processes-container .process-start-list-item-name,
 .compact-default-processes-container .process-start-list-item-name {
   padding-left: 0 !important;
-  width: calc(100% - 55px) !important;
+  width: calc(100% - 75px) !important;
 }
 
 .process-start-list-item-action {
@@ -1128,6 +1128,13 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
   vertical-align: middle;
   height: 100%;
   right: 18px;
+}
+
+.process-start-list-item .warning-icon,
+.order-list-item  .warning-icon {
+  color: var(--process-warning-icon-color);
+  font-size: var(--process-icon-font-size);
+  font-weight: var(--process-warning-icon-font-weight);
 }
 
 .process-start-list-item .process-item-action-container .open-icon {
@@ -1233,6 +1240,10 @@ body .ui-tabs.search-results-tabview .ui-tabs-panel {
 .process-widget .ui-orderlist .ui-orderlist-list .order-list-item .order-list-item-name {
   width: 100%;
   padding-right: 5px;
+}
+
+.process-widget .ui-orderlist .ui-orderlist-list .order-list-item .action-icon {
+  font-size: var(--process-icon-font-size);
 }
 
 .compact-processes-container, .compact-default-processes-container {

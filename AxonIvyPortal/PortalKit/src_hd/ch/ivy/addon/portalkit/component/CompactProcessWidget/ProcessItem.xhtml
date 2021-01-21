@@ -14,6 +14,13 @@
       styleClass="process-start-list-item-name-text u-truncate-text js-process-start-list-item-name" />
     <p:tooltip for="process-name-#{processType}" value="#{process.processName}" trackMouse="true" hideEvent="mouseleave click"/>
   </div>
-  <span id="open-process-start" class="si si-arrow-right-1 open-icon" />
+  <div class="process-item-action-container">
+    <h:panelGroup styleClass="process-start-list-item-action" rendered="#{process.isBrokenLink()}">
+      <h:outputText id="warning-icon" styleClass="si si-road-sign-warning warning-icon" />
+      <p:tooltip id="warning-icon-tooltip" for="warning-icon"
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/brokenLinkProcess')}" position="top" trackMouse="true" hideEvent="mouseleave click" />
+    </h:panelGroup>
+    <h:panelGroup id="open-process-start" class="si si-arrow-right-1 open-icon" rendered="#{!process.isBrokenLink()}" />
+  </div>
 </ui:composition>
 </html>
