@@ -11,14 +11,14 @@
 
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
+  <c:set var="canChangeDescription" value="#{taskActionBean.canChangeDescription(task)}" />
   <div class="ui-g task-details-description-title">
     <div class="task-detail-title #{cc.attrs.labelStyleClasses} text-ellipsis task-description-title">
       #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}
       <p:commandLink onclick="PF('widget-description-inplace').show(); hideIconLessLink(); hideIconMoreLink(); return false;"
-        rendered="#{taskActionBean.canChangeDescription(task) and !cc.attrs.readOnly}" id="edit-description-link">
+        rendered="#{canChangeDescription and !cc.attrs.readOnly}" id="edit-description-link">
         <i class="si si-graphic-tablet-drawing-pen" />
       </p:commandLink>
-      
     </div>
   </div>
 
@@ -28,7 +28,7 @@
         <div class="ui-g-12 task-detail-description">
           <div id="description-content" class="scroll-panel OvAuto short-description">
             <p:inplace id="task-description-inplace" editor="true" styleClass="task-description-inplace" effectSpeed="fast"
-              widgetVar="widget-description-inplace" disabled="#{!taskActionBean.canChangeDescription(task) or cc.attrs.readOnly}"
+              widgetVar="widget-description-inplace" disabled="#{!canChangeDescription or cc.attrs.readOnly}"
               saveLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
               cancelLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}"
               emptyLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/noDescription')}" >

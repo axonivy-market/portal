@@ -5196,18 +5196,9 @@ body td .si {
   }
 }
 
-.ui-widget.action-link .si-arrow-down-1 {
-  position: relative;
-  top: 2px;  
-}
-
 /* Fix bug: calendar button jumped when clicked (Edge, Chrome) */
 .ui-fluid .ui-calendar, .ui-fluid .ui-calendar input {
   display: block;
-}
-
-.ivyicon-arrow-down-1 {
-  vertical-align: middle;
 }
 
 .task-item-body-container .card {

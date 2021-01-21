@@ -77,7 +77,7 @@ public class TaskTemplateTest extends BaseTest {
 
     assertTrue(taskTemplatePage.countRelatedTasks() > 0);
     TaskDetailsPage taskDetailsPage = taskTemplatePage.openFirstRelatedTaskInHistoryArea();
-    assertEquals("Annual Leave Request", taskDetailsPage.getTaskNameInDialog());
+    assertEquals("Task: Annual Leave Request", taskDetailsPage.getTaskNameInDialog());
 
     taskDetailsPage.clickBackButton();
     getBrowser().getDriver().switchTo().defaultContent();
@@ -96,7 +96,7 @@ public class TaskTemplateTest extends BaseTest {
     assertTrue(taskWidgetPage.countTasks() > 0);
 
     TaskDetailsPage taskDetailsPage = taskWidgetPage.openTaskDetails(1);
-    assertEquals("Sick Leave Request", taskDetailsPage.getTaskNameInDialog());
+    assertEquals("Task: Sick Leave Request", taskDetailsPage.getTaskNameInDialog());
 
     taskDetailsPage.clickBackButton();
     taskWidgetPage = new TaskWidgetPage();
