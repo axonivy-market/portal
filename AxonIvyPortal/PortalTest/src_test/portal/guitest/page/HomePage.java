@@ -45,18 +45,16 @@ public class HomePage extends TemplatePage {
   /** 
    * Wait for statistic charts are displayed in 5s
    */
-  @SuppressWarnings("deprecation")
   public void waitForStatisticRendered() {
     try {
       WaitHelper.assertTrueWithRefreshPage(this, () -> {
-        waitForElementDisplayed(By.cssSelector("a[class$='chart-info']"), true, 5);
+        waitForElementDisplayed(By.cssSelector("span[id$=':statistic-carousel:0:chart-name']"), true, 5);
         return true;
       });
     } catch (Exception e) {
       System.out.println("**ERROR when waitForStatisticRendered - chart info isn't rendered");
       refreshStatisticChartData();
     }
-    ensureNoBackgroundRequest();
   }
 
   /**
@@ -65,12 +63,9 @@ public class HomePage extends TemplatePage {
    * Wait for no background request
    * Then click on bread-crumb to back to homepage
    */
-  @SuppressWarnings("deprecation")
   private void refreshStatisticChartData() {
     MainMenuPage mainMenuPage = new MainMenuPage();
     mainMenuPage.selectStatisticDashboard();
-    ensureNoBackgroundRequest();
-    mainMenuPage = new MainMenuPage();
     mainMenuPage.backToHomeByClickOnBreadcrumb();
   }
 
