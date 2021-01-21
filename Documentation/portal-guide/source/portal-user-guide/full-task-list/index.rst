@@ -66,17 +66,18 @@ The task details are separated in 3 different sections:
 
 |detailed-task-information-data-description|
 
-2. Note, you may add additional notes which is described below
+2. Histories, you may add additional notes which is described below
 
 |detailed-task-information-note|
 
-3. Document, these documents once attached to the case are
+3. Documents, these documents once attached to the case are
    available on all tasks. You may add or delete documents which his
    described in the HowTo’s below.
 
 |detailed-task-information-documents|
 
 |detailed-task-information|
+
 
 HowTo: Use existing filter
 --------------------------
@@ -158,6 +159,30 @@ HowTo: Create new filter
    Depending on your permissions you
    might only be allowed to save    
    filters for yourself.            
+
+
+HowTo: Move and Resize Widgets
+------------------------------
+
+.. hint:: 
+   Depending on applying configuration file,
+   we can move and resize    
+   widgets for yourself.
+
+1. Click on the **Switch to Edit Mode** button to drag, drop and resize widgets.
+
+|how-to-switch-to-edit-mode|
+
+
+2. Click on the **Switch to View Mode** button to switch page to readonly mode.
+
+|how-to-switch-to-view-mode|
+
+
+3. Click **Reset** button to reset to default configuration, this button is only shown if any changes.
+
+|how-to-reset-to-default|
+
 
 HowTo: Attach a document to the case
 ------------------------------------
@@ -270,3 +295,6 @@ You may export the Task List by clicking on the button **Export to Excel**.
 .. |how-to-show-workflow-event| image:: ../../screenshots/task-detail/how-to-show-workflow-event.png
 .. |workflow-events-table| image:: ../../screenshots/task-detail/workflow-events-table.png
 .. |export-to-excel-button| image:: ../../screenshots/task/export-to-excel-button.png
+.. |how-to-switch-to-view-mode| image:: ../../screenshots/task-detail/how-to-switch-to-view-mode.png
+.. |how-to-switch-to-edit-mode| image:: ../../screenshots/task-detail/how-to-switch-to-edit-mode.png
+.. |how-to-reset-to-default| image:: ../../screenshots/task-detail/how-to-reset-to-default.png
