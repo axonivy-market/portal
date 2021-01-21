@@ -393,20 +393,6 @@ function highlightCustomTaskDetailWithNewStyle() {
   appendStepAnnotation(customPanel4, 4, -10, customPanel4.width()/2);
 }
 
-function highlightCustomTaskDetailWithNewStyle() {
-  var customPanel1 = $('.custom-task-panel-1');
-  appendStepAnnotation(customPanel1, 1, -10, customPanel1.width()/2);
-  
-  var customPanel2 = $('.custom-task-panel-2');
-  appendStepAnnotation(customPanel2, 2, -10, customPanel2.width()/2);
-
-  var customPanel3 = $('.custom-task-panel-3');
-  appendStepAnnotation(customPanel3, 3, -10, customPanel3.width()/2);
-  
-  var customPanel4 = $('.custom-task-panel-4');
-  appendStepAnnotation(customPanel4, 4, -10, customPanel4.width()/2);
-}
-
 function highlightCaseDetailComponents() {
   var general = $('#case-general-information-card');
   appendStepAnnotation(general, 1, 0, general.width()/2);
