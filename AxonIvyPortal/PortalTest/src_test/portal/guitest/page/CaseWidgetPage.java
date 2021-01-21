@@ -216,6 +216,11 @@ public class CaseWidgetPage extends TemplatePage {
 		waitAjaxIndicatorDisappear();
 	}
 
+	public String getSelectedSortColumn() {
+	    waitForElementDisplayed(By.cssSelector(".js-case-widget-column-header"), true);
+	    return findElementByCssSelector(".js-case-widget-column-header a.ui-commandlink.is-selected").getText();
+	}
+
 	public String getCaseListFirstCustomCellValue() {
 		return findElementByCssSelector(
 				"div[id$=':0\\:case-item\\:case-item-container'] span.customized-case-header-column").getText();

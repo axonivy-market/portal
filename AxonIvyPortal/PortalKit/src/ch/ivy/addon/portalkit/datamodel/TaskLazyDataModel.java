@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.datamodel;
 
+import static org.apache.commons.lang3.StringUtils.EMPTY;
+
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -12,7 +14,6 @@ import javax.faces.event.ValueChangeEvent;
 
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.primefaces.PrimeFaces;
 import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
@@ -35,6 +36,7 @@ import ch.ivy.addon.portalkit.taskfilter.impl.DefaultTaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
 import ch.ivy.addon.portalkit.taskfilter.impl.TaskStateFilter;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -331,8 +333,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     criteria.setInvolvedUsername(Ivy.session().getSessionUserName());
     criteria.setQueryForUnassignedTask(false);
     criteria.setIncludedStates(new ArrayList<>(TaskSearchCriteria.STANDARD_STATES));
-    criteria.setSortField(TaskSortField.ID.toString());
-    criteria.setSortDescending(true);
+    sort(UserUtils.getSessionTaskSortAttribute());
     if (shouldSaveAndLoadSessionFilters()) {
       criteria.setKeyword(UserUtils.getSessionTaskKeywordFilterAttribute());
     }
@@ -367,8 +368,15 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * @param sortDescending
    */
   public void setSortField(String sortField, boolean sortDescending) {
+    updateSortCriteria(sortField, sortDescending, true);
+  }
+
+  private void updateSortCriteria(String sortField, boolean sortDescending, boolean updateCache) {
     criteria.setSortField(sortField);
     criteria.setSortDescending(sortDescending);
+    if (updateCache) {
+      storeTaskSortIntoSession(sortField, sortDescending);
+    }
   }
 
   /**
@@ -531,6 +539,10 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    */
   public List<TaskFilter> getSelectedFilters() {
     return selectedFilters;
+  }
+
+  public String getSelectedCompactSort() {
+    return SortFieldUtil.buildSortField(criteria.getSortField(), criteria.isSortDescending());
   }
 
   /**
@@ -716,6 +728,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
     if (compactMode) {
       criteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED)));
+      if (!getPortalTaskSort().contains(UserUtils.getSessionTaskSortAttribute())) {
+        buildCompactModeTaskSort();
+      }
     } else {
       if (filterContainer != null) {
         if (selectedFilters.contains(filterContainer.getStateFilter())) {
@@ -729,6 +744,17 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     TaskQuery taskQuery = buildTaskQuery();
     extendSort(taskQuery);
     criteria.setFinalTaskQuery(taskQuery);
+  }
+
+  private void buildCompactModeTaskSort() {
+    String firstSortOption = getFirstPortalTaskSortOption();
+    boolean asc = SortFieldUtil.isAscendingSort(firstSortOption);
+    String sortColumn = SortFieldUtil.extractSortColumn(firstSortOption);
+    updateSortCriteria(sortColumn, !asc, false);
+  }
+
+  private String getFirstPortalTaskSortOption() {
+    return CollectionUtils.isEmpty(getPortalTaskSort()) ? EMPTY : getPortalTaskSort().get(0);
   }
 
   protected void setInvolvedApplications() {
@@ -1068,13 +1094,18 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * @param sortField
    */
   public void sort(String sortField) {
-    if (StringUtils.isNotBlank(sortField) && sortField.length() > 3) {
-      boolean asc = StringUtils.equalsIgnoreCase("asc", sortField.substring(sortField.length() - 3));
-      String sortColumn = StringUtils.substring(sortField, 0, asc ? sortField.length() - 4 : sortField.length() - 5);
-      if (getDefaultColumns().contains(sortColumn)) {
-        setSortField(sortColumn, !asc);
-      }
+    String sortColumn = SortFieldUtil.extractSortColumn(sortField);
+    if (getDefaultColumns().contains(sortColumn)) {
+      setSortField(sortColumn, !SortFieldUtil.isAscendingSort(sortField));
+      return;
     }
+
+    criteria.setSortField(TaskSortField.ID.toString());
+    criteria.setSortDescending(true);
+  }
+
+  private void storeTaskSortIntoSession(String sortColumn, boolean sortDescending) {
+    UserUtils.setSessionTaskSortAttribute(SortFieldUtil.buildSortField(sortColumn, sortDescending));
   }
 
   /**
