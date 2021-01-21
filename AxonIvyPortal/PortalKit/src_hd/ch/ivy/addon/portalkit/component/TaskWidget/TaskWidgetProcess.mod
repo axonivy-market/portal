@@ -49,7 +49,6 @@ Ts0 @PushWFArc f49 '' #zField
 Ts0 @PushWFArc f72 '' #zField
 Ts0 @UdMethod f13 '' #zField
 Ts0 @PushWFArc f15 '' #zField
-Ts0 @PushWFArc f57 '' #zField
 Ts0 @PushWFArc f18 '' #zField
 Ts0 @PushWFArc f63 '' #zField
 Ts0 @GridStep f8 '' #zField
@@ -88,6 +87,9 @@ Ts0 @PushWFArc f69 '' #zField
 Ts0 @UdMethod f71 '' #zField
 Ts0 @UdProcessEnd f73 '' #zField
 Ts0 @PushWFArc f74 '' #zField
+Ts0 @GridStep f75 '' #zField
+Ts0 @PushWFArc f76 '' #zField
+Ts0 @PushWFArc f57 '' #zField
 >Proto Ts0 Ts0 TaskWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 method start(String,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,Long) #txt
@@ -224,7 +226,7 @@ configuration</name>
 ' #txt
 Ts0 f27 320 66 128 60 -41 -24 #rect
 Ts0 f27 @|StepIcon #fIcon
-Ts0 f3 499 83 26 26 0 12 #rect
+Ts0 f3 659 83 26 26 0 12 #rect
 Ts0 f3 @|UdProcessEndIcon #fIcon
 Ts0 f34 guid 15F5C0F9B77406B4 #txt
 Ts0 f34 method deleteFilter() #txt
@@ -496,8 +498,6 @@ Ts0 f13 83 851 26 26 -61 15 #rect
 Ts0 f13 @|UdMethodIcon #fIcon
 Ts0 f15 expr out #txt
 Ts0 f15 696 864 736 864 #arcP
-Ts0 f57 expr out #txt
-Ts0 f57 448 96 499 96 #arcP
 Ts0 f18 expr out #txt
 Ts0 f18 109 864 172 864 #arcP
 Ts0 f63 expr in #txt
@@ -794,6 +794,25 @@ Ts0 f71 @|UdMethodIcon #fIcon
 Ts0 f73 371 1267 26 26 0 12 #rect
 Ts0 f73 @|UdProcessEndIcon #fIcon
 Ts0 f74 109 1280 371 1280 #arcP
+Ts0 f75 actionTable 'out=in;
+' #txt
+Ts0 f75 actionCode '
+if(in.dataModel.compactMode) {
+	in.selectedSort = in.dataModel.getSelectedCompactSort();
+}
+' #txt
+Ts0 f75 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>update sort field</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f75 496 74 112 44 -44 -8 #rect
+Ts0 f75 @|StepIcon #fIcon
+Ts0 f76 expr out #txt
+Ts0 f76 448 96 496 96 #arcP
+Ts0 f57 608 96 659 96 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -826,8 +845,6 @@ Ts0 f54 out f72 tail #connect
 Ts0 f72 head f56 mainIn #connect
 Ts0 f56 mainOut f15 tail #connect
 Ts0 f15 head f59 mainIn #connect
-Ts0 f27 mainOut f57 tail #connect
-Ts0 f57 head f3 mainIn #connect
 Ts0 f13 mainOut f18 tail #connect
 Ts0 f18 head f65 mainIn #connect
 Ts0 f54 out f63 tail #connect
@@ -864,3 +881,7 @@ Ts0 f64 mainOut f69 tail #connect
 Ts0 f69 head f68 mainIn #connect
 Ts0 f71 mainOut f74 tail #connect
 Ts0 f74 head f73 mainIn #connect
+Ts0 f27 mainOut f76 tail #connect
+Ts0 f76 head f75 mainIn #connect
+Ts0 f75 mainOut f57 tail #connect
+Ts0 f57 head f3 mainIn #connect

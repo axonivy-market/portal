@@ -6,6 +6,7 @@ import static junit.framework.Assert.assertTrue;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.TimeoutException;
@@ -211,5 +212,19 @@ public class CaseWidgetTest extends BaseTest {
     casePage = mainMenuPage.selectCaseMenu();
     assertEquals("Case count is not disabled", null, casePage.getCaseCount());
   }
-  
+
+  @Test
+  public void testStickySortCaseList() {
+    redirectToRelativeLink(create12CasesWithCategoryUrl);
+    HomePage homePage = new HomePage();
+    CaseWidgetPage caseWidgetPage = homePage.openCaseList();
+    caseWidgetPage.sortCaseListByColumn("case-widget:case-list-header:created-date-column-header:created-date-column-header");
+    caseWidgetPage.clickOnLogo();
+    homePage = new HomePage();
+    caseWidgetPage = homePage.openCaseList();
+    String selectedSortColumn = caseWidgetPage.getSelectedSortColumn();
+    assertTrue(StringUtils.equalsIgnoreCase("Created", selectedSortColumn));
+    String caseName = caseWidgetPage.getCaseNameAt(0);
+    assertTrue(StringUtils.equalsIgnoreCase("Leave Request", caseName));
+  }
 }

@@ -34,6 +34,8 @@ public class UserUtils {
   private static final String SELECTED_CASE_FILTER_SET = "SELECTED_CASE_FILTER_SET";
   private static final String SELECTED_CASE_FILTER = "SELECTED_CASE_FILTER";
   private static final String CASE_KEYWORD_FILTER = "CASE_KEYWORD_FILTER";
+  private static final String TASK_SORT_FIELD = "TASK_SORT_FIELD";
+  private static final String CASE_SORT_FIELD = "CASE_SORT_FIELD";
   private static final String FILTER_GROUP_ID = "FILTER_GROUP_ID";
   private static final String SELECTED_DEFAULT_TASK_FILTER_SET = "SELECTED_DEFAULT_TASK_FILTER_SET";
   private static final String SELECTED_DEFAULT_CASE_FILTER_SET = "SELECTED_DEFAULT_CASE_FILTER_SET";
@@ -126,6 +128,10 @@ public class UserUtils {
     setSessionAttribute(TASK_KEYWORD_FILTER, keyword);
   }
 
+  public static void setSessionTaskSortAttribute(String sortField) {
+    setSessionAttribute(TASK_SORT_FIELD, sortField);
+  }
+
   public static TaskFilterData getSessionSelectedTaskFilterSetAttribute() {
     Object sessionObject = Ivy.session().getAttribute(SELECTED_TASK_FILTER_SET);
     return sessionObject instanceof TaskFilterData ? (TaskFilterData) sessionObject : null;
@@ -154,6 +160,10 @@ public class UserUtils {
     return StringUtils.defaultIfBlank((String) Ivy.session().getAttribute(TASK_KEYWORD_FILTER), "");
   }
 
+  public static String getSessionTaskSortAttribute() {
+    return (String) Ivy.session().getAttribute(TASK_SORT_FIELD);
+  }
+
   public static void setSessionSelectedCaseFilterSetAttribute(CaseFilterData value) {
     setSessionAttribute(SELECTED_CASE_FILTER_SET, value);
   }
@@ -173,7 +183,11 @@ public class UserUtils {
   public static void setSessionSelectedDefaultCaseFilterSetAttribute(Boolean value) {
     setSessionAttribute(SELECTED_DEFAULT_CASE_FILTER_SET, value);
   }
-  
+
+  public static void setSessionCaseSortAttribute(String sortField) {
+    setSessionAttribute(CASE_SORT_FIELD, sortField);
+  }
+
   public static CaseFilterData getSessionSelectedCaseFilterSetAttribute() {
     Object sessionObject = Ivy.session().getAttribute(SELECTED_CASE_FILTER_SET);
     return sessionObject instanceof CaseFilterData ? (CaseFilterData) sessionObject : null;
@@ -197,7 +211,11 @@ public class UserUtils {
   public static Boolean getSessionSelectedDefaultCaseFilterSetAttribute() {
     return (Boolean) Ivy.session().getAttribute(SELECTED_DEFAULT_CASE_FILTER_SET);
   }
-  
+
+  public static String getSessionCaseSortAttribute() {
+    return (String) Ivy.session().getAttribute(CASE_SORT_FIELD);
+  }
+
   /**
    * Finds users who have given roles. If current application is Portal, find all users over all applications, otherwise in current application
    * @param query

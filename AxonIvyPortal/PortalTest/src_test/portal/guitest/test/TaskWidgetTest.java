@@ -6,6 +6,7 @@ import static junit.framework.Assert.assertTrue;
 
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,6 +19,7 @@ import portal.guitest.common.TestAccount;
 import portal.guitest.common.TestRole;
 import portal.guitest.page.AdminSettingsPage;
 import portal.guitest.page.CaseDetailsPage;
+import portal.guitest.page.CaseWidgetPage;
 import portal.guitest.page.HomePage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskTemplatePage;
@@ -223,5 +225,31 @@ public class TaskWidgetTest extends BaseTest {
     assertEquals(sickRequest, taskTemplatePage.getTaskName());
     taskTemplatePage.clickCancelAndLeftButton();
   }
-  
+
+  @Test
+  public void testStickySortTaskList() {
+    HomePage homePage = new HomePage();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    // Sort task on Dashboard
+    taskWidgetPage.openCompactSortMenu();
+    taskWidgetPage.selectCompactSortByName("Expiry (Newest first)", 0, "Maternity Leave Request");
+    // Navigate around Portal
+    CaseWidgetPage caseWidgetPage = taskWidgetPage.openCaseList();
+    // Check result at full Task List
+    taskWidgetPage = caseWidgetPage.openTaskList();
+    String selectedSortColumn = taskWidgetPage.getSelectedSortColumn();
+    assertTrue(StringUtils.equalsIgnoreCase("Expiry", selectedSortColumn));
+    String taskName = taskWidgetPage.getTaskListCustomCellValue(0, "task-name");
+    assertTrue(StringUtils.equalsIgnoreCase("Maternity Leave Request", taskName));
+    // Change to another column - which is not include at compact task list
+    taskWidgetPage.sortTaskListByColumn("Name / Description");
+    // Back to Dashboard - compact task list will sort by default column
+    taskWidgetPage.clickOnLogo();
+    homePage = new HomePage();
+    taskWidgetPage = homePage.getTaskWidget();
+    selectedSortColumn = taskWidgetPage.getSelectedCompactSortLable();
+    assertTrue(StringUtils.equalsIgnoreCase("Creation date (Oldest first)", selectedSortColumn));
+    taskName = taskWidgetPage.getCompactTaskCellValue(0);
+    assertTrue(StringUtils.equalsIgnoreCase("Annual Leave Request", taskName));
+  }
 }
