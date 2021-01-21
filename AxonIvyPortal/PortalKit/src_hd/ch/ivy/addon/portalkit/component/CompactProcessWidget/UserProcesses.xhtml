@@ -48,12 +48,15 @@
                 	<h:outputText value="#{process.processName}" title="#{process.processName}" />
                 </span>
               </div>
+              <h:panelGroup styleClass="process-start-list-item-action" rendered="#{process.isBrokenLink()}">
+                <h:outputText id="warning-icon" styleClass="si si-road-sign-warning warning-icon" />
+              </h:panelGroup>
               <div class="process-start-list-item-action">
                 <p:commandLink
                   title="#{compactProcessWidgetBean.isProcessMarkedAsDeleting(process.id) ? ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/reset') : ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/remove')}"
                   actionListener="#{compactProcessWidgetBean.selectDeletingProcess}" process="@form"
                   update="#{p:component('order-list-items')}" id="process-delete-link">
-                  <i class="si #{compactProcessWidgetBean.isProcessMarkedAsDeleting(process.id) ? 'si-undo' : 'si-bin-1'}" />
+                  <i class="si #{compactProcessWidgetBean.isProcessMarkedAsDeleting(process.id) ? 'si-undo' : 'si-bin-1'} action-icon" />
                   <f:param name="processId" value="#{process.id}" />
                 </p:commandLink>
               </div>
