@@ -146,15 +146,16 @@ private static final long serialVersionUID = -5889375917550618261L;
          *  For old user favorite processes:
          *  1. ivy process link has the same value as new processId field.
          *  2. Express process id is stored to workflowId of user favorite process.
-         *  3. External link id is stored to workflowId of user favorite process and isExternal field equals true.
+         *  3. External link id is stored to workflowId of user favorite process and isExternalLink field equals true.
          */
-        if(StringUtils.isNotBlank(userProcess.getWorkflowId())) {
+        String workflowId = userProcess.getWorkflowId();
+        if(StringUtils.isNotBlank(workflowId)) {
           if(userProcess.isExternalLink()) {
             // External link
-            process = externalLinks.get(userProcess.getWorkflowId());
+            process = externalLinks.get(workflowId);
           } else {
             // Express process
-            process = expressProcesses.get(userProcess.getWorkflowId());
+            process = expressProcesses.get(workflowId);
           }
         } else {
           // ivy process
