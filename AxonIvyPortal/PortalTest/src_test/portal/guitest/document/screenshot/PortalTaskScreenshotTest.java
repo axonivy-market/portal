@@ -235,8 +235,9 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
       TaskWidgetPage taskWidget = homePage.openTaskList();
       TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
       taskDetails.waitUtilsTaskDetailsDisplayed();
+      refreshPage();
+      Sleeper.sleep(2000);
       executeDecorateJs("scrollToBottomOfLayoutContent()");
-      Sleeper.sleep(500);
       executeDecorateJs("highlightCustomTaskDetailWithNewStyle()");
       ScreenshotUtil
           .capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "customized-tasks-new-style");
