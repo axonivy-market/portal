@@ -86,7 +86,7 @@ Task Details JSON Configuration File:
 .. _customization-task-item-details-how-to-overide-ui:
 
 How to customize Task item details UI
-----------------------------------
+-------------------------------------
 
 Refer to ``portal-developer-examples`` project for examples.
 
