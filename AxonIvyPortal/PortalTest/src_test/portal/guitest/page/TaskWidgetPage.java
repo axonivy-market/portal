@@ -231,7 +231,6 @@ public class TaskWidgetPage extends TemplatePage {
         String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-name-edit-form:task-name-input", index)));
   }
 
-  @SuppressWarnings("deprecation")
   public void changeDescriptionOfTask(String description) {
     clickByCssSelector("div[id$='task-description-output']");
     WebElement taskNameInput = findElementByCssSelector("textarea[id$=':task-description-input']");
@@ -912,6 +911,12 @@ public class TaskWidgetPage extends TemplatePage {
   }
   
   public boolean isCategoryColumnDisplayed() {
-    return findElementByCssSelector("span[id$=':task-category-cell']").isDisplayed();
+    List<WebElement> taskCategoryCells = findListElementsByCssSelector("span[id$=':task-category-cell']");
+    for (WebElement categoryCell : taskCategoryCells) {
+      if (categoryCell.isDisplayed()) {
+        return true;
+      }
+    }
+    return false;
   }
 }
