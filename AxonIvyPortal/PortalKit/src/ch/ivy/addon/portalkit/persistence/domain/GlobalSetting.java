@@ -10,6 +10,7 @@ import ch.ivy.addon.portalkit.enums.GlobalVariableType;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class GlobalSetting extends BusinessEntity {
+  private long applicationId = Long.MIN_VALUE;
   private String key;
   private String value;
   
@@ -80,6 +81,14 @@ public class GlobalSetting extends BusinessEntity {
   @Override
   public String toString() {
     return "GlobalSetting [key=" + key + ", value=" + value + ", id=" + getId() + "]";
+  }
+
+  public long getApplicationId() {
+    return applicationId;
+  }
+
+  public void setApplicationId(long applicationId) {
+    this.applicationId = applicationId;
   }
 
 }
