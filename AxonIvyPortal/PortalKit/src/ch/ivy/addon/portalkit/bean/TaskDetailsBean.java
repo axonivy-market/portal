@@ -43,7 +43,7 @@ public class TaskDetailsBean implements Serializable {
   private boolean hasShowNotAvailableData;
   private boolean hasApplyJsonConfigurationFile;
   private boolean hasShowDurationTime;
-  private GlobalSettingService globalSettingService = new GlobalSettingService();;
+  private GlobalSettingService globalSettingService = new GlobalSettingService();
 
   @PostConstruct
   public void init() {
