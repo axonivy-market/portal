@@ -141,7 +141,13 @@ Migrate 9.1 to 9.2
 
    .. important:: The callable process which is supporting to open customization dialog will be removed in the future, do not use it in the new project
 
-7. We remove ivy-icon.css and replace current classes with new classes from `Streamline icons <https://dev.demo.ivyteam.io/demo-app/faces/view/html-dialog-demos$1/icons.xhtml>`_. So that you need to update your html files that are using classes in ivy-icon.css.
+7. We remove ivy-icon.css and replace current classes with new classes from `Streamline icons <https://dev.demo.ivyteam.io/demo-app/faces/view/html-dialog-demos$1/icons.xhtml>`_. So that you need to update your files that are using classes in ivy-icon.css.
+
+8. For :guilabel:`User Favorites`, we will store processId and processType instead of start link and use them to find it's latest link. Therefore you must run a migration process by the following steps:
+
+   - Deploy :download:`UserFavoriteProcessesMigration.iar <documents/UserFavoriteProcessesMigration.iar>` project to your Ivy application. This project requires ``PortalKit`` to run.
+   - Log in with user that MUST have permission to start all processes of your application (not only favorite processes) to avoid wrong migration.
+   - Run ``MigrateUserFavoriteProcesses/migrateUserFavoriteProcesses.ivp`` to migrate all user favorite processes in your application.
 
 Migrate 8.x to 9.1
 ------------------
