@@ -256,7 +256,7 @@ private static final long serialVersionUID = -5889375917550618261L;
     editingProcess.setUserId(userId);
     editingProcess.setIndex(userProcesses.size());
 
-    // Since 9.2, we will store processId and processType instead of a link and use them to find it's latest link.
+    // Since 9.2, we will store processId and processType instead of start link and use them to find it's latest link.
     String link = editingProcess.getLink();
     editingProcess.setLink("");
 
