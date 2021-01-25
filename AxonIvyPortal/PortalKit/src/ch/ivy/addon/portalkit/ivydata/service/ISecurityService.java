@@ -71,4 +71,16 @@ public interface ISecurityService {
    * @return {@link IvySecurityResultDTO}
    */
   IvySecurityResultDTO findRoleDTOs(IApplication app);
+  
+  /**
+   * Finds all users which own given roles and in the given application
+   * @param app
+   * @param startIndex 0..n. The index of the first record is 0
+   * @param count 0..n. Use -1 to return all beginning from the startIndex
+   * @param fromRoles
+   * @param excludedUsernames
+   * @return {@link IvySecurityResultDTO}
+   */
+  IvySecurityResultDTO findAllUsersOfRoles(IApplication app, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames);
+
 }

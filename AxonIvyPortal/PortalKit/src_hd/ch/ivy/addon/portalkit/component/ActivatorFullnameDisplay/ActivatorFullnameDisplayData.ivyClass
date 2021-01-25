@@ -1,0 +1,10 @@
+ActivatorFullnameDisplayData #class
+ch.ivy.addon.portalkit.component.ActivatorFullnameDisplay #namespace
+memberNames java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> #field
+memberNames PERSISTENT #fieldModifier
+roleName String #field
+roleName PERSISTENT #fieldModifier
+keyword String #field
+keyword PERSISTENT #fieldModifier
+isShowAllUser Boolean #field
+isShowAllUser PERSISTENT #fieldModifier

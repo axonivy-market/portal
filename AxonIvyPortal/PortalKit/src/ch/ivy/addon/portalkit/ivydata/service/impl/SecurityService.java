@@ -304,4 +304,35 @@ public class SecurityService implements ISecurityService {
     result.setErrors(Arrays.asList(new PortalIvyDataException(appName, PortalIvyDataErrorType.APP_NOT_FOUND.toString())));
     return result;
   }
+
+  @Override
+  public IvySecurityResultDTO findAllUsersOfRoles(IApplication app, int startIndex, int count, List<String> fromRoles,
+      List<String> excludedUsernames) {
+    return IvyExecutor.executeAsSystem(() -> { 
+      IvySecurityResultDTO result = new IvySecurityResultDTO();
+      if (app == null) {
+        return result;
+      }
+      result.setUsers(queryAllUsers(app, startIndex, count, fromRoles, excludedUsernames)); 
+      return result;
+    });
+  }
+
+  private List<UserDTO> queryAllUsers(IApplication application, int startIndex, int count, List<String> fromRoles, List<String> excludedUsernames) {
+    IUserQueryExecutor executor = ServerFactory.getServer().getSecurityManager().getUserQueryExecutor();
+    UserQuery userQuery = executor.createUserQuery().groupBy().name().fullName().orderBy().fullName();
+    IFilterQuery filterQuery = userQuery.where();
+    
+    if (CollectionUtils.isNotEmpty(fromRoles)) {
+      UserQuery hasRolesQuery = UserQuery.create().where().or(queryHasRoles(application, fromRoles));
+      filterQuery.andOverall(hasRolesQuery);
+    }
+    excludeUsername(excludedUsernames, filterQuery);
+    
+    Recordset recordset = executor.getRecordset(userQuery, startIndex, count);
+    return recordset.getRecords()
+        .stream()
+        .map(UserDTO::new)
+        .collect(Collectors.toList());
+  }
 }
