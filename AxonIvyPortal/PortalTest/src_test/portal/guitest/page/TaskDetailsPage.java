@@ -40,7 +40,6 @@ public class TaskDetailsPage extends TemplatePage {
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
 
-  @SuppressWarnings("deprecation")
   public void changePriorityOfTask(int priorityValue) {
     click(findElementByCssSelector("[id$=':general-information:priority-form:edit-priority-inplace_display']"));
     waitForElementDisplayed(By.cssSelector("[id$=':general-information:priority-form:priority-select-menu_label']"),
