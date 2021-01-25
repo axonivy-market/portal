@@ -10,4 +10,6 @@ public class UserProperty {
   public static final String DEFAULT_SORT_DIRECTION_OF_CASE_LIST = "DEFAULT_SORT_DIRECTION_OF_CASE_LIST";
   public static final String RESET_PASSWORD_TOKEN = "RESET_PASSWORD_TOKEN";
   public static final String RESET_PASSWORD_TOKEN_EXPIRY = "RESET_PASSWORD_TOKEN_EXPIRY";
+  public static final String ENABLE_CUSTOM_MAIL = "useCustomMails";
+  public static final String PORTAL_CHAT_UNREAD_MESSAGES = "PORTAL_CHAT_UNREAD_MESSAGES";
 }
