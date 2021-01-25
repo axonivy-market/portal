@@ -12,3 +12,7 @@ notes java.util.List<ch.ivyteam.ivy.workflow.INote> #field
 notes PERSISTENT #fieldModifier
 task ch.ivyteam.ivy.workflow.ITask #field
 task PERSISTENT #fieldModifier
+showSystemNotes Boolean #field
+showSystemNotes PERSISTENT #fieldModifier
+showSystemNotesChkbox Boolean #field
+showSystemNotesChkbox PERSISTENT #fieldModifier
