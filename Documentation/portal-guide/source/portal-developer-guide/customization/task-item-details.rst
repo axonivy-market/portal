@@ -26,9 +26,10 @@ Each TaskItemDetails contains
 
 .. _task-details-json-configuration-file:
 
-Task Details JSON Configuration File:
----------------------------------------------
+Task Details JSON Configuration File
+------------------------------------
 
+-  File's name is **PORTAL_TASK_DETAILS.json**.
 -  This JSON Configuration File contains settings of all visible widgets on page.
 -  Default JSON Configuration File:
 
@@ -72,16 +73,24 @@ Task Details JSON Configuration File:
 
    ``id``: It's used for detecting custom widgets.
 
-   ``axisX``: HTML DOM Style ``top`` will be calculated by fomula ``axisX / 12 * 100%``
+   ``axisX``: HTML DOM Style ``left`` will be calculated by formula ``axisX / 12 * 100%``
 
-   ``axisY``: HTML DOM Style ``left`` will be calculated by fomula ``axisY / 12 * 100%``
+   ``axisY``: HTML DOM Style ``top`` will be calculated by formula ``axisY / 12 * 100%``
 
    ``width``: HTML DOM Style ``width`` will be calculated by formula ``60 * width + 20 * (width - 1)``
 
    ``height``: HTML DOM Style ``height`` will be calculated by formula ``60 * height + 20 * (height - 1)``
 
-.. important:: Please do not change **type** and **id** of widgets.
-            You can change **axisX**, **axisY**, **width** and **height** for updating size and position of widgets.
+   ``styleClass``: add CSS Classes to HTML DOM
+
+   ``style``: add inline style to HTML DOM
+
+.. important::
+   -  Please **do not change** ``type`` and ``id`` of widgets.
+      You can change ``axisX``, ``axisY``, ``width`` and ``height`` for updating size and position of widgets.
+   -  ``axisX``, ``axisY``, ``width`` and ``height`` must be **integers**.
+   -  Value of ``axisX + width`` must be **not larger** than **12**.
+
 
 .. _customization-task-item-details-how-to-overide-ui:
 
@@ -262,9 +271,10 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
       </ui:composition>
    ..
 
--  You have to overwrite :ref:`task-details.json<task-details-json-configuration-file>` for adding custom panels.
+-  In order to add custom panels, you have to **override file** :ref:`PORTAL_TASK_DETAILS.json<task-details-json-configuration-file>`
+   for **global variable** ``PORTAL_TASK_DETAILS``.
 
-   You can add up to 6 custom widgets. In :ref:`Task Details JSON Configuration File<task-details-json-configuration-file>`:
+   You can add up to 6 custom widgets. In file :ref:`PORTAL_TASK_DETAILS.json<task-details-json-configuration-file>`:
 
    Id must be one in
    ``custom-widget-1``, ``custom-widget-2``,
@@ -275,7 +285,7 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
 
    Type must be ``custom``.
 
--  Example Task Details JSON Configuration File:
+-  Example PORTAL_TASK_DETAILS.json file for adding 4 custom widgets:
 
    .. code-block:: html
 
@@ -343,7 +353,7 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
 
    ..
 
--  After applied above example xhtml code and JSON Configuration File to your custom page, the custom panels
+-  After applied above example xhtml code and PORTAL_TASK_DETAILS.json to your custom page, the custom panels
    will display as below
 
    |task-customized-new-style|
