@@ -529,11 +529,22 @@ a.compact-task-start-link .task-start-list-item {
 .process-start-list-item:hover .process-start-list-item-icon {
   color: var(--hovered-process-start-list-item-i-con-color); }
 
+.process-start-list-item .warning-icon,
+.order-list-item  .warning-icon {
+  color: var(--process-warning-icon-color);
+  font-size: var(--process-icon-font-size);
+  font-weight: var(--process-warning-icon-font-weight);
+}
+
 .process-start-list-item-icon {
   font-size: 2rem; }
 
 .process-widget .order-list-items.ui-orderlist .ui-orderlist-list .ui-orderlist-item:hover .process-start-list-item-icon {
   color: var(--hovered-user-process-start-list-item-icon-color); }
+
+.process-widget .ui-orderlist .ui-orderlist-list .order-list-item .action-icon {
+  font-size: var(--process-icon-font-size);
+}
 
 body .ui-widget.ui-fieldset.process-group.ui-fieldset .ui-fieldset-legend {
   font-size: var(--large-font-size);
@@ -1154,6 +1165,13 @@ body .fieldset-no-border {
 
 :-ms-input-placeholder, :root .case-detail-body .history-note a {
   display: inline; }
+
+.task-widget-sub-header .operations-column,
+.case-widget .widget-column-header .operations-column {
+  font-size: var(--large-font-size);
+  color: var(--task-widget-header-column);
+  font-family: var(--portal-font-family);
+}
 
 /*Style for Case Item --------------------------------------------------------------------------------------*/
 .case-list-unsortable-header-cell {
@@ -1818,6 +1836,10 @@ ul.participants-list li {
 .express-workflow-summary-table tr.ui-datatable-selectable.ui-state-hover td:not(:last-child) {
   border-right-color: var(--ivy-primary-color-grey-medium); }
 
+.express-helper-loading-container .si-lg {
+  font-size: var(--express-helper-loading-container-si-lg-font-size);
+}
+
 /* Modify style because accent color of Portal so light */
 body .ui-datepicker tbody td.ui-datepicker-today a, body .ui-datepicker tbody td.ui-datepicker-today span {
   border: solid 1px var(--accent-light-color);
@@ -1830,6 +1852,11 @@ body .ui-slider .ui-slider-handle {
 .side-step-panel .dropdown-content {
 background-color: var(--ivy-primary-color-white);
 }
+
+.side-step-panel .dropdown-content a {
+color: var(--ivy-primary-color-black);
+}
+
 .case-map-stage .line-right:after, .case-map-stage .line-left:before {
 border-top: 0.2rem solid var(--primary-color);   
 }
@@ -1838,6 +1865,7 @@ background-color: var(--primary-color);
 }
 .case-stage-icon{
 background-color:var(--primary-color);
+color:var(--ivy-primary-color-white);
 }
 .case-stage-detail{
 background-color:var(--ivy-primary-color-white);	

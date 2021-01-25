@@ -233,6 +233,10 @@
   --process-nav-item-disable-color: hsla(0, 0%, 11%, 0.3);
   --hovered-process-start-list-item-i-con-color: var(--primary-color);
   --hovered-user-process-start-list-item-icon-color: var(--primary-color);
+  --process-warning-icon-color: var(--ivy-tertinary-color-red-medium);
+  --process-warning-icon-font-weight: bold;
+  --process-icon-font-size: 1.5rem;
+
   /* Case Detail */
   --case-related-task-color: var(--ivy-primary-color-black);
   --case-related-task-hover-color: var(--ivy-primary-color-grey-dark);

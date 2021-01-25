@@ -220,13 +220,10 @@ function highlightAddFavoriteProcess() {
   var addNewProcessDisplayName = $("label[for$='process-widget:process-display-name']").find("span[class$='ui-outputlabel-rfi']");
   appendStepAnnotation(addNewProcessDisplayName, "4", -10, addNewProcessName.width());
   
-  var addProcessStartLink = $("label[for$='process-widget:process-start-link']");
-  appendStepAnnotation(addProcessStartLink, "5", -10, 65);
-  
   var addProcessIcon = $(".ui-commandlink.select-awesome-icon-button");
-  appendStepAnnotation(addProcessIcon, "6", -10, addProcessIcon.width() + 2)
+  appendStepAnnotation(addProcessIcon, "5", -10, addProcessIcon.width() + 2)
   
-  appendStepAnnotation($("[id$='process-widget:add-process-command']"), "7", -5, 0);
+  appendStepAnnotation($("[id$='process-widget:add-process-command']"), "6", -5, 0);
 }
 
 function highlightEditSwitchProcessButton() {
