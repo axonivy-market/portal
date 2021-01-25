@@ -1,4 +1,4 @@
-package ch.ivy.addon.portal.generic.bean;
+package ch.ivy.addon.portalkit.bean;
 
 import java.io.IOException;
 import java.io.Serializable;

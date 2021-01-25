@@ -4,34 +4,96 @@ Task item details
 =================
 
 TaskItemDetails is a built-in component of Portal which contains the
-case info which users can interact with. In order to show needed task's
-information, Portal supports overriding concept for TaskItemDetails.
+role, user, task, case and time information which users can interact with.
+In order to show needed task's information,
+Portal supports overriding concept for TaskItemDetails.
 
 Each TaskItemDetails contains
 
--  ``showItemDetailsNotes (1)``
+-  **Data and Description** ``1``
 
--  ``showItemDetailDocuments (2)``
+-  **Documents** ``2``
 
--  TaskItemDetail custom panel: taskItemDetailCustomPanelTop,
-   taskItemDetailCustomPanelBottom
+-  **Histories** ``3``
+
+-  **Custom panels**
 
 |task-standard|
 
-.. important:: Task Data and Description box always display, we cannot override the
-            content or hidden/show (they stay where they are)
+.. important:: All visible widgets will be configured in
+            :ref:`Task Details JSON Configuration File<task-details-json-configuration-file>`.
+
+
+.. _task-details-json-configuration-file:
+
+Task Details JSON Configuration File:
+---------------------------------------------
+
+-  This JSON Configuration File contains settings of all visible widgets on page.
+-  Default JSON Configuration File:
+
+   .. code-block:: html
+
+      {
+         "widgets": 
+         [
+            {
+               "type": "information",
+               "id": "information",
+               "axisX": 0,
+               "axisY": 0,
+               "width": 6,
+               "height": 12
+            },
+            {
+               "type": "document",
+               "id": "document",
+               "axisX": 6,
+               "axisY": 0,
+               "width": 6,
+               "height": 6
+            },
+            {
+               "type": "history",
+               "id": "history",
+               "axisX": 6,
+               "axisY": 6,
+               "width": 6,
+               "height": 6
+            }
+         ]
+      }
+
+   ..
+
+-  Structure of each widget in JSON Configuration File:
+
+   ``type``: There are 4 types: ``information``, ``document``, ``history``, ``custom``
+
+   ``id``: It's used for detecting custom widgets.
+
+   ``axisX``: HTML DOM Style ``top`` will be calculated by fomula ``axisX / 12 * 100%``
+
+   ``axisY``: HTML DOM Style ``left`` will be calculated by fomula ``axisY / 12 * 100%``
+
+   ``width``: HTML DOM Style ``width`` will be calculated by formula ``60 * width + 20 * (width - 1)``
+
+   ``height``: HTML DOM Style ``height`` will be calculated by formula ``60 * height + 20 * (height - 1)``
+
+.. important:: Please do not change **type** and **id** of widgets.
+            You can change **axisX**, **axisY**, **width** and **height** for updating size and position of widgets.
 
 .. _customization-task-item-details-how-to-overide-ui:
 
-How to custom Task item details UI
-----------------------------------
+How to customize Task item details UI
+-------------------------------------
 
 Refer to ``portal-developer-examples`` project for examples.
 
 1. Introduce an Axon.ivy project which has ``PortalTemplate`` as a
    required library.
 
-2. To customize task item detail, you must customize Portal Home first.
+2. To customize task item details, you must customize Portal Home first.
    Refer to :ref:`Customize Portal
    home <customization-portal-home>` to set new home
    page.
@@ -44,39 +106,30 @@ Refer to ``portal-developer-examples`` project for examples.
 4. Use `Axon.ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``PortalTaskDetails`` HTML dialog.
 
 5. After previous steps, you can override Task item details UI elements
-   as shown/hidden element by keywords:
+   to show or hide elements.
 
-   To show/hide, please using ``showItemDetailsHeader``,
-   ``showItemDetailsNotes``, ``showItemDetailDocuments`` code. For more
-   details, please refer to :ref:`Show/Hide
-   components <customization-task-item-details-how-to-overide-ui-show-hidden-ui>`.
+   To show or hide elements, please refer to :ref:`Show or hide
+   elements <customization-task-item-details-how-to-overide-ui-show-hidden-ui>`.
 
    And to add a new elements, please refer to  :ref:`Add new Custom
    panel <customization-task-item-details-how-to-overide-ui-custom-body>`
-   code
+   code.
 
 .. _customization-task-item-details-how-to-overide-ui-show-hidden-ui:
 
-Show/Hide components by keywords
+Show or hide elements
 --------------------------------
 
 Refer to the ``ui`` tag list in ``PortalTaskDetails.xhtml`` of
-PortalTemplate. In case, we want to show/hide any elements on
-TaskItemDetails, we should override value of ``ui:param``
+PortalTemplate. If you want to show or hide any elements on
+TaskItemDetails, you must override value of ``ui:param``
 
-List valid parameters:
+List valid ui parameters:
 
 -  ``ui:param name="showItemDetailsHeader" value="true"``
 
-   To show/hide Task header, by default it's true.
+   To show or hide Task Header, use ``showItemDetailsHeader``. Default value is true.
 
--  ``ui:param name="showItemDetailsNotes" value="true">``
-
-   To show/hide Task Notes component, by default it's true.
-
--  ``ui:param name="showItemDetailDocuments" value="true"``
-
-   To show/hide Task Documents component, by default it's true.
 
 .. _customization-task-item-details-how-to-overide-ui-custom-body:
 
@@ -86,23 +139,28 @@ Add new Custom panel
 Refer to the ``taskItemDetailCustomPanel*`` section in
 ``PortalTaskDetails.xhtml`` of PortalTemplate.
 
--  We need to define the ``ui:define`` with the valid name such as
-   ``taskItemDetailCustomPanelTop`` and
-   ``taskItemDetailCustomPanelBottom``.
 
-   The ``taskItemDetailCustomPanelTop``: will be shown on the top of the
-   component
+-  You need to define the ``ui:define`` with the valid name such as
+   ``taskItemDetailCustomPanel1``,
+   ``taskItemDetailCustomPanel2``,
+   ``taskItemDetailCustomPanel3``,
+   ``taskItemDetailCustomPanel4``,
+   ``taskItemDetailCustomPanel5`` and
+   ``taskItemDetailCustomPanel6``.
 
-   The ``taskItemDetailCustomPanelBottom``: will be shown on the bottom
-   of the component
+   The ``taskItemDetailCustomPanel1``, ``taskItemDetailCustomPanel2``,
+   The ``taskItemDetailCustomPanel3``, ``taskItemDetailCustomPanel4``,
+   The ``taskItemDetailCustomPanel5`` and ``taskItemDetailCustomPanel6``
+   will be shown base on values in :ref:`Task Details JSON Configuration File<task-details-json-configuration-file>`.
+
 
 -  Add your custom code into that tag
 
--  Finally, your custom panel will be displayed inside of
+-  Finally, your custom panel will be displayed on
    :ref:`TaskItemDetails <customization-task-item-details>`
    page
 
--  Below is example code for override custom panel box of task details
+-  Example code for overriding custom panel box of task details:
 
    .. code-block:: html
 
@@ -120,71 +178,180 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
       <!-- To show/hidden any sections of Task detail, you can turn true/false for below parameters -->
       <!-- To show the Header component inside Task details body. By default it's true -->
       <ui:param name="showItemDetailsHeader" value="true" />
-      <!-- To show the Notes component inside Task details body. By default it's true -->
-      <ui:param name="showItemDetailsNotes" value="true" />
-      <!-- To show the Documents component inside Task details body. By default, it's true -->
-      <ui:param name="showItemDetailDocuments" value="true" />
-      
       
       <!--!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! 
       !!!!!!!!!!! TO ADD YOUR CUSTOMIZATION CODE ON THE TASK DETAILS PAGE, WE PROVIDE 2 SECTIONS AS BELOW HELP YOU CAN DO IT !!!!!!!!!!!!
       !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-      <!-- Add a content as a Custom panel for Task Detail on top section -->
-
-      <!-- Add a content as Custom panel for Task Detail on top -->
-      <ui:define name="taskItemDetailCustomPanelTop">
-            <h:panelGroup styleClass="ui-g-12 ui-sm-12 custom-task-panel">
-            <div class="card card-w-title ">
+      
+      <!-- Add a content as Custom panel for Task Detail-->
+      <ui:define name="taskItemDetailCustomPanel1">
+      <h:panelGroup styleClass="ui-g-12 ui-sm-12 custom-task-panel-1">
+         <div class="card card-w-title ">
             <div class="task-detail-section-title u-truncate-text">
-                  <h:outputText value="This is custom panel on top section" />
-            </div>
-            <div class="Separator" />
-
-            <div class="custom-task-details-panel-top">
-                  <h1>This is custom content on top</h1>
-                  <p>Custom height to auto</p>
-                  <p>Custom font size to 1.6rem</p>
-            </div>
-            </div>
-            </h:panelGroup>
-      </ui:define>
-
-            <!-- Add content as Custom panel for Task Detail on bottom-->
-      <ui:define name="taskItemDetailCustomPanelBottom">
-            <h:panelGroup styleClass="ui-g-12 ui-sm-12 custom-task-panel">
-            <div class="card card-w-title #{cc.attrs.customPanelStyleClass}">
-            <div class="task-detail-section-title u-truncate-text">
-                  <h:outputText value="This is custom panel bottom section" />
+            <h:outputText value="This is custom panel section 1" />
             </div>
             <div class="Separator" />
 
             <div class="custom-task-details-panel">
-                  <h1>This is custom content bottom</h1>
-                  <p>Custom height to auto</p>
-                  <p>Custom font size to 1.6rem</p>
+            <h1>This is custom content 1</h1>
+            <p>Custom height to auto</p>
+            <p>Custom font size to 1.6rem</p>
             </div>
-            </div>
-            </h:panelGroup>
+         </div>
+      </h:panelGroup>
       </ui:define>
-      
+
+      <!-- Add a content as Custom panel for Task Detail-->
+      <ui:define name="taskItemDetailCustomPanel2">
+      <h:panelGroup styleClass="ui-g-12 ui-sm-12 custom-task-panel-2">
+         <div class="card card-w-title ">
+            <div class="task-detail-section-title u-truncate-text-2">
+            <h:outputText value="This is custom panel section 2" />
+            </div>
+            <div class="Separator" />
+
+            <div class="custom-task-details-panel">
+            <h1>This is custom content 2</h1>
+            <p>Custom height to auto</p>
+            <p>Custom font size to 1.6rem</p>
+            </div>
+         </div>
+      </h:panelGroup>
+      </ui:define>
+
+      <!-- Add a content as Custom panel for Task Detail-->
+      <ui:define name="taskItemDetailCustomPanel3">
+      <h:panelGroup styleClass="ui-g-12 ui-sm-12 custom-task-panel-3">
+         <div class="card card-w-title ">
+            <div class="task-detail-section-title u-truncate-text">
+            <h:outputText value="This is custom panel section 3" />
+            </div>
+            <div class="Separator" />
+
+            <div class="custom-task-details-panel">
+            <h1>This is custom content 3</h1>
+            <p>Custom height to auto</p>
+            <p>Custom font size to 1.6rem</p>
+            </div>
+         </div>
+      </h:panelGroup>
+      </ui:define>
+
+
+      <!-- Add a content as Custom panel for Task Detail-->
+      <ui:define name="taskItemDetailCustomPanel4">
+      <h:panelGroup styleClass="ui-g-12 ui-sm-12 custom-task-panel-4">
+         <div class="card card-w-title ">
+            <div class="task-detail-section-title u-truncate-text">
+            <h:outputText value="This is custom panel section 4" />
+            </div>
+            <div class="Separator" />
+
+            <div class="custom-task-details-panel">
+            <h1>This is custom content 4</h1>
+            <p>Custom height to auto</p>
+            <p>Custom font size to 1.6rem</p>
+            </div>
+         </div>
+      </h:panelGroup>
+      </ui:define>
+
       <ui:define name="css">
-            <h:outputStylesheet library="css" name="examples.css" />
+         <h:outputStylesheet library="css" name="examples.css" />
       </ui:define>
       </ui:composition>
    ..
 
--  After applied above code to your custom page, the custom panel will
-   display as below
+-  You have to overwrite :ref:`task-details.json<task-details-json-configuration-file>` for adding custom panels.
 
-   1. ``taskItemDetailCustomPanelTop (1)`` panel box.
-   2. ``taskItemDetailCustomPanelBottom (2)`` panel box.
+   You can add up to 6 custom widgets. In :ref:`Task Details JSON Configuration File<task-details-json-configuration-file>`:
 
-   |task-customized-top|
+   Id must be one in
+   ``custom-widget-1``, ``custom-widget-2``,
+   ``custom-widget-3``, ``custom-widget-4``,
+   ``custom-widget-5`` and ``custom-widget-6``.
 
-   |task-customized-bottom|
+   Each id ``custom-widget-*`` corresponds to each defined ui ``taskItemDetailCustomPanel*``
+
+   Type must be ``custom``.
+
+-  Example Task Details JSON Configuration File:
+
+   .. code-block:: html
+
+      {
+         "widgets": 
+         [
+            {
+               "type": "information",
+               "id": "information",
+               "axisX": 0,
+               "axisY": 0,
+               "width": 6,
+               "height": 12
+            },
+            {
+               "type": "document",
+               "id": "document",
+               "axisX": 6,
+               "axisY": 0,
+               "width": 6,
+               "height": 6
+            },
+            {
+               "type": "history",
+               "id": "history",
+               "axisX": 6,
+               "axisY": 6,
+               "width": 6,
+               "height": 6
+            },
+            {
+               "type": "custom",
+               "id": "custom-widget-1",
+               "axisX": 0,
+               "axisY": 12,
+               "width": 6,
+               "height": 5
+            },
+            {
+               "type": "custom",
+               "id": "custom-widget-2",
+               "axisX": 6,
+               "axisY": 12,
+               "width": 6,
+               "height": 5
+            },
+            {
+               "type": "custom",
+               "id": "custom-widget-3",
+               "axisX": 0,
+               "axisY": 17,
+               "width": 6,
+               "height": 5
+            },
+            {
+               "type": "custom",
+               "id": "custom-widget-4",
+               "axisX": 6,
+               "axisY": 17,
+               "width": 6,
+               "height": 5
+            }
+         ]
+      }
+
+   ..
+
+-  After applied above example xhtml code and JSON Configuration File to your custom page, the custom panels
+   will display as below
+
+   |task-customized-new-style|
 
 
 .. |task-standard| image:: ../../screenshots/task-detail/customization/task-standard.png
 .. |task-customized-top| image:: ../../screenshots/task-detail/customization/task-customized-top.png
 .. |task-customized-bottom| image:: ../../screenshots/task-detail/customization/task-customized-bottom.png
+.. |task-customized-new-style| image:: images/customization/customized-tasks-new-style.png
+
 
