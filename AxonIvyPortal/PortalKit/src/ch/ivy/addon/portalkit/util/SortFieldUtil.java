@@ -2,6 +2,9 @@ package ch.ivy.addon.portalkit.util;
 
 import static org.apache.commons.lang3.StringUtils.EMPTY;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.SortDirection;
@@ -9,6 +12,7 @@ import ch.ivy.addon.portalkit.enums.SortDirection;
 public class SortFieldUtil {
 
   public static final String SORT_FORMAT = "%s_%s";
+  public static final String SORT_SEPARATOR = "_";
 
   /**<p>
    * Build a SortField with pattern: column name + "_ASC" or column name + "_DESC"
@@ -51,7 +55,7 @@ public class SortFieldUtil {
     if (StringUtils.isBlank(sortField)) {
       return EMPTY;
     }
-    int directionIndex = sortField.lastIndexOf("_");
+    int directionIndex = sortField.lastIndexOf(SORT_SEPARATOR);
     return StringUtils.substring(sortField, 0, directionIndex);
   }
 
@@ -75,8 +79,21 @@ public class SortFieldUtil {
     if (StringUtils.isBlank(sortField) || sortField.length() < 3) {
       return false;
     }
-    String sortDirection = StringUtils.substring(sortField, sortField.length() - 3);
-    return StringUtils.equalsIgnoreCase(sortDirection, SortDirection.ASC.name());
+    if (sortField.contains(SORT_SEPARATOR)) {
+      int directionIndex = sortField.lastIndexOf(SORT_SEPARATOR);
+      String sortDirection = StringUtils.substring(sortField, directionIndex + 1);
+      return StringUtils.equalsIgnoreCase(sortDirection, SortDirection.ASC.name())
+          || StringUtils.startsWithIgnoreCase(SortDirection.ASC.name(), sortDirection);
+    }
+    return StringUtils.equalsIgnoreCase(sortField, SortDirection.ASC.name())
+        || StringUtils.startsWithIgnoreCase(SortDirection.ASC.name(), sortField);
   }
 
+  public static boolean invalidSortField(String sortField, List<String> columns) {
+    String compareSort = extractSortColumn(sortField);
+    return columns.stream().map(column -> extractSortColumn(column))
+        .filter(extractedColumn -> extractedColumn.equalsIgnoreCase(compareSort))
+        .collect(Collectors.toList())
+        .isEmpty();
+  }
 }

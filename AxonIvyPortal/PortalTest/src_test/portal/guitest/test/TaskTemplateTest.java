@@ -20,9 +20,7 @@ import portal.guitest.common.BaseTest;
 import portal.guitest.common.WaitHelper;
 import portal.guitest.page.CaseInformationPage;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NoteHistoryPage;
-import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
@@ -124,13 +122,9 @@ public class TaskTemplateTest extends BaseTest {
   
   @Test
   public void testResetTaskWhenStartSideStep() {
-    createTestDataAndRedirectToHomePage();
+    redirectToRelativeLink(createTestingCaseMapUrl);
     HomePage homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
-    ProcessWidgetPage processWidgetPage = mainMenuPage.selectProcessesMenu();
-    processWidgetPage.enterSearchKeyword("case map");
-    processWidgetPage.startProcess("Case Map: Leave Request");
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.openActionMenu();
     taskTemplatePage.startSideStep();
@@ -183,7 +177,8 @@ public class TaskTemplateTest extends BaseTest {
     redirectToRelativeLink(IFRAME_TASK_URL);
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
-    TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(3);
+    taskWidgetPage.filterTasksBy("Task in IFrame");
+    TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(0);
     taskTemplatePage2.clickOnLogo();
     WaitHelper.assertTrueWithWait(() -> taskTemplatePage2.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
   }
@@ -238,7 +233,8 @@ public class TaskTemplateTest extends BaseTest {
     redirectToRelativeLink(IFRAME_TASK_URL);
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
-    TaskTemplatePage approveTaskPage = taskWidgetPage.startTask(3);
+    taskWidgetPage.filterTasksBy("Task in IFrame");
+    TaskTemplatePage approveTaskPage = taskWidgetPage.startTask(0);
     assertTrue(approveTaskPage.isTextOutIFrameChangedWithSkipTaskList());
   }
 }

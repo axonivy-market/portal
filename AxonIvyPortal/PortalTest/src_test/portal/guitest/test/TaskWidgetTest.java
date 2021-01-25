@@ -243,13 +243,13 @@ public class TaskWidgetTest extends BaseTest {
     assertTrue(StringUtils.equalsIgnoreCase("Maternity Leave Request", taskName));
     // Change to another column - which is not include at compact task list
     taskWidgetPage.sortTaskListByColumn("Name / Description");
+    // Navigate around Portal
+    caseWidgetPage = taskWidgetPage.openCaseList();
     // Back to Dashboard - compact task list will sort by default column
-    taskWidgetPage.clickOnLogo();
+    caseWidgetPage.clickOnLogo();
     homePage = new HomePage();
     taskWidgetPage = homePage.getTaskWidget();
     selectedSortColumn = taskWidgetPage.getSelectedCompactSortLable();
     assertTrue(StringUtils.equalsIgnoreCase("Creation date (Oldest first)", selectedSortColumn));
-    taskName = taskWidgetPage.getCompactTaskCellValue(0);
-    assertTrue(StringUtils.equalsIgnoreCase("Annual Leave Request", taskName));
   }
 }

@@ -774,6 +774,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public String getCompactTaskCellValue(int rowIndex) {
     String taskStartFormat = this.taskWidgetId + ":task-list-scroller:%d:task-item:task-start-item-view:task-start-task-name";
+    waitForElementDisplayed(By.className("task-start-info-task-name"), true);
     return findElementById(String.format(taskStartFormat, rowIndex)).getText();
   }
 

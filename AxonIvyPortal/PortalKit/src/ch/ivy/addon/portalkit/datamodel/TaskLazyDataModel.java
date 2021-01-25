@@ -728,7 +728,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
     if (compactMode) {
       criteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED)));
-      if (!getPortalTaskSort().contains(UserUtils.getSessionTaskSortAttribute())) {
+      if (SortFieldUtil.invalidSortField(UserUtils.getSessionTaskSortAttribute(), getPortalTaskSort())) {
         buildCompactModeTaskSort();
       }
     } else {
