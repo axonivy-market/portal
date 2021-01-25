@@ -233,9 +233,6 @@ body .ui-fieldset.fieldset-no-border {
   margin-right: auto;
   padding-right: 10px;
   padding-left: 10px;
-  font-size: var(--large-font-size);
-  color: var(--task-widget-header-column);
-  font-family: var(--portal-font-family);
 }
 
 .task-widget .in-progress-task-checkbox, .case-widget-container .in-progress-task-checkbox {
@@ -1083,7 +1080,7 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 .compact-processes-container .process-start-list-item-name,
 .compact-default-processes-container .process-start-list-item-name {
   padding-left: 0 !important;
-  width: calc(100% - 55px) !important;
+  width: calc(100% - 75px) !important;
 }
 
 .process-start-list-item-action {
@@ -4665,10 +4662,6 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   display: none;
 }
 
-.express-helper-loading-container .si-lg {
-  font-size: var(--express-helper-loading-container-si-lg-font-size);
-}
-
 body .ui-dialog.ui-widget.import-express-dialog,
 body .ui-dialog.ui-widget.export-express-dialog {
   min-width: 450px;
@@ -4908,7 +4901,6 @@ height:10rem;
 }
 .case-stage-icon{
 font-size:2em;
-color:var(--ivy-primary-color-white);
 width: 100%; 
 height: 100%;
 display: flex;
@@ -4971,7 +4963,6 @@ box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 z-index: 1;
 }
 .side-step-panel .dropdown-content a {
-color: var(--ivy-primary-color-black);
 padding: 12px 16px;
 text-decoration: none;
 display: block;
