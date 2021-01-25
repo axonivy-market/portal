@@ -20,18 +20,16 @@ Each TaskItemDetails contains
 
 |task-standard|
 
-.. important:: All visible widgets will be configured in
-            :ref:`Task Details JSON Configuration File<task-details-json-configuration-file>`.
+.. important:: All visible widgets will be configured :ref:`variables.PORTAL_TASK_DETAILS<task-details-configuration-variable>`.
 
 
-.. _task-details-json-configuration-file:
+.. _task-details-configuration-variable:
 
-Task Details JSON Configuration File
-------------------------------------
+PORTAL_TASK_DETAILS Variable
+----------------------------
 
--  File's name is **PORTAL_TASK_DETAILS.json**.
--  This JSON Configuration File contains settings of all visible widgets on page.
--  Default JSON Configuration File:
+-  This variable contains settings of all visible widgets on task details page.
+-  Default value of variables.PORTAL_TASK_DETAILS:
 
    .. code-block:: html
 
@@ -67,7 +65,7 @@ Task Details JSON Configuration File
 
    ..
 
--  Structure of each widget in JSON Configuration File:
+-  Structure of each widget in variables.PORTAL_TASK_DETAILS:
 
    ``type``: There are 4 types: ``information``, ``document``, ``history``, ``custom``
 
@@ -160,7 +158,7 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
    The ``taskItemDetailCustomPanel1``, ``taskItemDetailCustomPanel2``,
    The ``taskItemDetailCustomPanel3``, ``taskItemDetailCustomPanel4``,
    The ``taskItemDetailCustomPanel5`` and ``taskItemDetailCustomPanel6``
-   will be shown base on values in :ref:`Task Details JSON Configuration File<task-details-json-configuration-file>`.
+   will be shown base on value of :ref:`variables.PORTAL_TASK_DETAILS<task-details-configuration-variable>`.
 
 
 -  Add your custom code into that tag
@@ -271,10 +269,14 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
       </ui:composition>
    ..
 
--  In order to add custom panels, you have to **override file** :ref:`PORTAL_TASK_DETAILS.json<task-details-json-configuration-file>`
-   for **global variable** ``PORTAL_TASK_DETAILS``.
+-  In order to add custom panels, you have to edit value of **variables.PORTAL_TASK_DETAILS** on Cockpit Page.
+   |edit-variable-portal-task-details|
 
-   You can add up to 6 custom widgets. In file :ref:`PORTAL_TASK_DETAILS.json<task-details-json-configuration-file>`:
+   You can add up to 6 custom widgets.
+
+   Each widget must include ``type``, ``id``, ``axisX``, ``axisY``, ``width`` and ``height``.
+
+   Type must be ``custom``.
 
    Id must be one in
    ``custom-widget-1``, ``custom-widget-2``,
@@ -283,9 +285,7 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
 
    Each id ``custom-widget-*`` corresponds to each defined ui ``taskItemDetailCustomPanel*``
 
-   Type must be ``custom``.
-
--  Example PORTAL_TASK_DETAILS.json file for adding 4 custom widgets:
+-  Example value of variables.PORTAL_TASK_DETAILS for adding 4 custom widgets:
 
    .. code-block:: html
 
@@ -353,7 +353,7 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
 
    ..
 
--  After applied above example xhtml code and PORTAL_TASK_DETAILS.json to your custom page, the custom panels
+-  After applied above **example** xhtml code and value of variables.PORTAL_TASK_DETAILS to your custom page, the custom panels
    will display as below
 
    |task-customized-new-style|
@@ -363,5 +363,6 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
 .. |task-customized-top| image:: ../../screenshots/task-detail/customization/task-customized-top.png
 .. |task-customized-bottom| image:: ../../screenshots/task-detail/customization/task-customized-bottom.png
 .. |task-customized-new-style| image:: images/customization/customized-tasks-new-style.png
+.. |edit-variable-portal-task-details| image:: images/customization/edit-variable-portal-task-details.png
 
 
