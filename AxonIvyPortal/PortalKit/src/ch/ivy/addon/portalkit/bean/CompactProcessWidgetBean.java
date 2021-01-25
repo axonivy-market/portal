@@ -251,12 +251,16 @@ private static final long serialVersionUID = -5889375917550618261L;
   }
 
 
-  public void saveNewUserProcess() {
+  public void saveNewUserProcess() throws CloneNotSupportedException {
     editingProcess.setApplicationId(Ivy.request().getApplication().getId());
     editingProcess.setUserId(userId);
     editingProcess.setIndex(userProcesses.size());
 
-    editingProcess = userProcessService.save(editingProcess);
+    // Since 9.2, we will store processId and processType instead of start link and use them to find it's latest link.
+    UserProcess userProcessWithoutLink = editingProcess.clone();
+    userProcessWithoutLink.setLink("");
+
+    editingProcess = userProcessService.save(userProcessWithoutLink);
 
     userProcesses.add(editingProcess);
   }
@@ -340,14 +344,22 @@ private static final long serialVersionUID = -5889375917550618261L;
     return editMode;
   }
 
-  public void saveProcesses() {
+  public void saveProcesses() throws CloneNotSupportedException {
     if (!selectedUserProcesses.isEmpty()) {
       userProcessService.deleteAll(selectedUserProcesses);
     }
     userProcesses.removeAll(selectedUserProcesses);
     setIndex(userProcesses);
 
-    userProcessService.saveAll(userProcesses);
+    // Since 9.2, we will store processId and processType instead of start link and use them to find it's latest link.
+    List<UserProcess> userProcessesWithoutLink = new ArrayList<>();
+    for (UserProcess userProcess : userProcesses) {
+      UserProcess cloneUserProcess = userProcess.clone();
+      cloneUserProcess.setLink("");
+      userProcessesWithoutLink.add(cloneUserProcess);
+    }
+
+    userProcessService.saveAll(userProcessesWithoutLink);
     editMode = false;
   }
 
