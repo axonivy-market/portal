@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -17,15 +18,23 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.collections4.map.HashedMap;
 import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
+import ch.ivy.addon.portalkit.bo.ExternalLink;
+import ch.ivy.addon.portalkit.bo.ExternalLinkProcessItem;
 import ch.ivy.addon.portalkit.bo.GuidePool;
+import ch.ivy.addon.portalkit.bo.IvyProcess;
+import ch.ivy.addon.portalkit.bo.PortalExpressProcess;
+import ch.ivy.addon.portalkit.bo.Process;
 import ch.ivy.addon.portalkit.comparator.UserProcessIndexComparator;
 import ch.ivy.addon.portalkit.dto.DisplayName;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.ivydata.dto.IvyLanguageResultDTO;
+import ch.ivy.addon.portalkit.ivydata.dto.IvyProcessResultDTO;
 import ch.ivy.addon.portalkit.ivydata.service.impl.LanguageService;
+import ch.ivy.addon.portalkit.ivydata.service.impl.ProcessService;
 import ch.ivy.addon.portalkit.jsf.Attrs;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivy.addon.portalkit.service.DummyProcessService;
@@ -37,6 +46,7 @@ import ch.ivy.addon.portalkit.service.UserProcessService;
 import ch.ivy.addon.portalkit.util.IvyExecutor;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
 @ManagedBean
 @ViewScoped
@@ -103,10 +113,75 @@ private static final long serialVersionUID = -5889375917550618261L;
     }
     
     List<UserProcess> processes = userProcessService.findByUserIdInCurrentApplication(userId);
+
+    /*
+     * 1. Update link because since 9.2, saved user favorite processes didn't store this value.
+     * 2. Check if link is broken.
+     */
+    Map<String, Process> ivyProcesses = findProcesses();
+    Map<String, Process> expressProcesses = findExpressProcesses();
+    Map<String, Process> externalLinks = findExternalLink();
+    Process process;
+    for (UserProcess userProcess : processes) {
+      String processId = userProcess.getProcessId();
+      if (StringUtils.isNotBlank(processId)) {
+        switch (userProcess.getProcessType()) {
+          case IVY_PROCESS:
+            process = ivyProcesses.get(processId);
+            break;
+          case EXPRESS_PROCESS:
+            process = expressProcesses.get(processId);
+            break;
+          case EXTERNAL_LINK:
+            process = externalLinks.get(processId);
+            break;
+          default:
+            process = null;
+            break;
+        }
+        userProcess.setLink(process == null ? "" : process.getStartLink());
+      } else {
+        process = null;
+      }
+      userProcess.setBrokenLink(process == null);
+    }
+
     processes.sort(UserProcessIndexComparator.comparatorNullsLast(UserProcess::getIndex));
     removeDeletedExpressWorkflowFromUserProcesses(processes);
     removeDeletedExternalLinkFromUserProcesses(processes);
     return processes;
+  }
+
+  private Map<String, Process> findProcesses() {
+    IvyProcessResultDTO dto = ProcessService.newInstance().findProcesses();
+    List<IWebStartable> processes = dto.getProcesses();
+    Map<String, Process> defaultPortalProcesses = new HashedMap<>();
+    processes.forEach(process -> defaultPortalProcesses.put(process.getId(), new IvyProcess(process)));
+    return defaultPortalProcesses;
+  }
+
+  private Map<String, Process> findExpressProcesses() {
+    List<ExpressProcess> processes = new ArrayList<>();
+    ProcessStartCollector processStartCollector = new ProcessStartCollector();
+    String expressStartLink = processStartCollector.findExpressWorkflowStartLink();
+    if (StringUtils.isNotBlank(expressStartLink)) {
+      List<ExpressProcess> workflows = ExpressServiceRegistry.getProcessService().findReadyToExecuteProcessOrderByName();
+      for (ExpressProcess wf : workflows) {
+        if (PermissionUtils.checkAbleToStartAndAbleToEditExpressWorkflow(wf)) {
+          processes.add(wf);
+        }
+      }
+    }
+    Map<String, Process> defaultPortalProcesses = new HashedMap<>();
+    processes.forEach(process -> defaultPortalProcesses.put(process.getId(), new PortalExpressProcess(process)));
+    return defaultPortalProcesses;
+  }
+
+  private Map<String, Process> findExternalLink() {
+    List<ExternalLink> externalLinks = ExternalLinkService.getInstance().findStartableLink(Ivy.session().getSessionUser().getId());
+    Map<String, Process> defaultPortalProcesses = new HashedMap<>();
+    externalLinks.forEach(externalLink -> defaultPortalProcesses.put(externalLink.getId().toString(), new ExternalLinkProcessItem(externalLink)));
+    return defaultPortalProcesses;
   }
 
   private void setIndex(List<UserProcess> userProcesses) {
@@ -180,7 +255,16 @@ private static final long serialVersionUID = -5889375917550618261L;
     editingProcess.setApplicationId(Ivy.request().getApplication().getId());
     editingProcess.setUserId(userId);
     editingProcess.setIndex(userProcesses.size());
+
+    // Since 9.2, we will store processId and processType instead of start link and use them to find it's latest link.
+    String link = editingProcess.getLink();
+    editingProcess.setLink("");
+
     editingProcess = userProcessService.save(editingProcess);
+
+    // Reset link value before adding to user processes cache
+    editingProcess.setLink(link);
+
     userProcesses.add(editingProcess);
   }
 
