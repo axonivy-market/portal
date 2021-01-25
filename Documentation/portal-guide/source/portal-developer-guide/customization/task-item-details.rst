@@ -25,10 +25,10 @@ Each TaskItemDetails contains
 
 .. _task-details-configuration-variable:
 
-PORTAL_TASK_DETAILS Variable
-----------------------------
+How to configure widgets in task details 
+----------------------------------------
 
--  This variable contains settings of all visible widgets on task details page.
+-  Settings of all visible widgets on task details page are saved on variable **variables.PORTAL_TASK_DETAILS**.
 -  Default value of variables.PORTAL_TASK_DETAILS:
 
    .. code-block:: html
@@ -65,7 +65,7 @@ PORTAL_TASK_DETAILS Variable
 
    ..
 
--  Structure of each widget in variables.PORTAL_TASK_DETAILS:
+-  Structure of each widget in variable **variables.PORTAL_TASK_DETAILS**:
 
    ``type``: There are 4 types: ``information``, ``document``, ``history``, ``custom``
 
@@ -125,7 +125,7 @@ Refer to ``portal-developer-examples`` project for examples.
 .. _customization-task-item-details-how-to-overide-ui-show-hidden-ui:
 
 Show or hide elements
---------------------------------
+---------------------
 
 Refer to the ``ui`` tag list in ``PortalTaskDetails.xhtml`` of
 PortalTemplate. If you want to show or hide any elements on
@@ -269,7 +269,7 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
       </ui:composition>
    ..
 
--  In order to add custom panels, you have to edit value of **variables.PORTAL_TASK_DETAILS** on Cockpit Page.
+-  In order to add custom panels, Cockpit admin must modify value of variable **variables.PORTAL_TASK_DETAILS** on Cockpit Page.
    |edit-variable-portal-task-details|
 
    You can add up to 6 custom widgets.
@@ -285,7 +285,7 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
 
    Each id ``custom-widget-*`` corresponds to each defined ui ``taskItemDetailCustomPanel*``
 
--  Example value of variables.PORTAL_TASK_DETAILS for adding 4 custom widgets:
+-  Example value of variable variables.PORTAL_TASK_DETAILS for adding 4 custom widgets:
 
    .. code-block:: html
 
@@ -353,7 +353,7 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
 
    ..
 
--  After applied above **example** xhtml code and value of variables.PORTAL_TASK_DETAILS to your custom page, the custom panels
+-  After applied above **example** xhtml code and value of variable variables.PORTAL_TASK_DETAILS to your custom page, the custom panels
    will display as below
 
    |task-customized-new-style|
