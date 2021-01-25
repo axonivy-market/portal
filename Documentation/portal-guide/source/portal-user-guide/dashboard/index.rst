@@ -50,6 +50,14 @@ Furthermore, next to the heading you find a link :guilabel:`Show all processes`.
 This quick link routes you the **Full Process List** page of the
 Axon.ivy Portal. Please refer to :ref:`full-process-list` for more detail information.
 
+If there is a red warning icon on the right side of process,
+it indicates that this process link is changed and your favorite process can be incorrect.
+
+|broken-link-process|
+
+In this case, you can delete it by following :ref:`HowTo: Delete a process as a user favorite <howto-delete-a-process-as-a-user-favorite>`
+and re-add correct process by following :ref:`HowTo: Add a process as a user favorite <howto-add-a-process-as-a-user-favorite>`.
+
 .. _howto-add-a-process-as-a-user-favorite:
 
 HowTo: Add a process as a user favorite
@@ -65,12 +73,10 @@ HowTo: Add a process as a user favorite
 
 4. The **Display name** is default process name, to add multilingual for favorite process, use **Add languages** button
 
-5. The **Start link** is automatically filled by the Axon.ivy Portal.
-
-6. You may change the **Icon** for the process by using the link
+5. You may change the **Icon** for the process by using the link
    |change-icon| **Change** and selecting your preferred icon.
 
-7. Confirm your configuration with the button **Add**.
+6. Confirm your configuration with the button **Add**.
 
 |how-to-add-process-favorite|
 
@@ -85,6 +91,8 @@ HowTo: Add a process as a user favorite
       create the "AppInfo/SupportedLanguages" CMS which defines how many
       languages your application supports. See the below "Language
       settings" for more details.
+
+.. _howto-delete-a-process-as-a-user-favorite:
 
 HowTo: Delete a process as a user favorite
 ------------------------------------------
@@ -229,3 +237,4 @@ charts.
 .. |personal-tasks-key-information| image:: ../../screenshots/dashboard/personal-tasks-key-information.png
 .. |dashboard-statistics-section| image:: ../../screenshots/dashboard/statistic-widget.png
 .. |statistics-key-information| image:: ../../screenshots/dashboard/statistics-key-information.png
+.. |broken-link-process| image:: images/broken-link-process.png
