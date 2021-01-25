@@ -302,6 +302,18 @@ function highlightShowMoreTaskHistories() {
   createRedMediumOutline($("[id$=':task-notes:show-more-note-link']"));
 }
 
+function highlightSwitchToEditMode() {
+  createRedMediumOutline($("[id$=':switch-to-edit-mode-button']"));
+}
+
+function highlightSwitchToViewMode() {
+  createRedMediumOutline($("[id$=':switch-to-view-mode-button']"));
+}
+
+function highlightResetToDefault() {
+  createRedMediumOutline($("[id$=':reset-task-details-settings-button']"));
+}
+
 function highlightShowWorkflowEvents() {
   createRedMediumOutline($("a[id$=':task-workflow-event-command']"));
 }
@@ -357,11 +369,11 @@ function highlightCustomCaseDetail() {
 }
 
 function highlightCustomTaskDetail() {
-  var customTop = $('.custom-task-details');
-  appendStepAnnotation(customTop, 1, 10, customTop.width()/2);
+  var customTop = $('.custom-task-details-panel-top');
+  appendStepAnnotation(customTop, 1, -45, customTop.width()/2);
   
   var customBottom = $('.custom-task-details-panel-bottom');
-  appendStepAnnotation(customBottom, 2, 10, customBottom.width()/2);
+  appendStepAnnotation(customBottom, 2, -45, customBottom.width()/2);
 }
 
 function highlightCustomTaskDetailWithNewStyle() {
@@ -393,11 +405,14 @@ function highlightCaseDetailComponents() {
 }
 
 function highlightTaskDetailComponent() {
-  var document = $('#task-detail-template\\:task-detail-document-container');
-  appendStepAnnotation(document, 1, 0, document.width()/2);
+  var information = $('#task-details-information-panel');
+  appendStepAnnotation(information, 1, 0, information.width()/2);
 
-  var histories = $('#task-detail-template\\:task-detail-note-container');
-  appendStepAnnotation(histories, 2, 0, histories.width()/2);
+  var document = $('#task-details-document-panel');
+  appendStepAnnotation(document, 2, 0, document.width()/2);
+
+  var histories = $('#task-details-history-panel');
+  appendStepAnnotation(histories, 3, 0, histories.width()/2);
 }
 
 function highlightUserExampleCard(cardIndex) {
