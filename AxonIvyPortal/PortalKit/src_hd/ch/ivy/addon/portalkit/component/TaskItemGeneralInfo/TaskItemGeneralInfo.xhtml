@@ -21,7 +21,7 @@
   <div class="ui-g-12 u-padding-0">
     <div class="task-detail-title">
       <h:outputText
-        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/CaseStatusInformation/GeneralInformation/generalInformation')}" class="text-ellipsis" />
+        value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/generalInformation')}" class="text-ellipsis" />
     </div>
 
     <div id="general-information" class="ui-g general-information">
@@ -31,7 +31,7 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}" />
         </div>
         <div class="ui-g-12 no-padding-column text-content last-line text-ellipsis">
-          <h:outputText value="#{task.getId()}" />
+          <h:outputText id="task-id" value="#{task.getId()}" />
         </div>
 
       </div>
