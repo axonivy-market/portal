@@ -8,7 +8,7 @@ import ch.ivy.addon.portalkit.persistence.domain.BusinessEntity;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class ExternalLink extends BusinessEntity{
-
+  private long applicationId = Long.MIN_VALUE;
   private String name;
   private String link;
   private Long creatorId;
@@ -94,6 +94,14 @@ public class ExternalLink extends BusinessEntity{
       return false;
     }
     return true;
+  }
+
+  public long getApplicationId() {
+    return applicationId;
+  }
+
+  public void setApplicationId(long applicationId) {
+    this.applicationId = applicationId;
   }
 
 }
