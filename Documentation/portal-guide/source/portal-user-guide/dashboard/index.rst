@@ -51,7 +51,7 @@ This quick link routes you the **Full Process List** page of the
 Axon.ivy Portal. Please refer to :ref:`full-process-list` for more detail information.
 
 If there is a red warning icon on the right side of process,
-it indicates that this process link is changed and your favorite process can be incorrect.
+it indicates that this process link is changed and your favorite process cannot work.
 
 |broken-link-process|
 
