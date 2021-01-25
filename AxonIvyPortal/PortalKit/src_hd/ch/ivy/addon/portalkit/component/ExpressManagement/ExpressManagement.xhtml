@@ -12,7 +12,7 @@
     <div class="ui-g">
       <div class="ui-g-12 TexAlRight u-padding-0">
         <p:commandButton id="import-express-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/importExpress')}" partialSubmit="true"
-          oncomplete="PF('import-express-dialog').show()" update="#{p:component('import-express-dialog')}" />
+          oncomplete="PF('import-express-dialog').show();PF('import-express-dialog').initPosition();" update="#{p:component('import-express-dialog')}" />
         <p:spacer width="10px" />
         <p:commandButton id="export-express-btn" widgetVar="export-express-btn" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/exportExpress')}"
           process="express-workflow-summary-table" partialSubmit="true" oncomplete="PF('export-express-dialog').show()"
@@ -91,10 +91,10 @@
     </f:facet>
   </p:dialog>
 
-  <p:dialog id="import-express-dialog" modal="true" widgetVar="import-express-dialog" draggable="false" closable="false" resizable="false"
+  <p:dialog id="import-express-dialog" modal="true" widgetVar="import-express-dialog" closable="false" resizable="false"
     onShow="PF('import-express-dialog').initPosition();cleanExportMessage();" position="center center" appendTo="@(body)"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/expressManagement/importExpressProcessTitle')}"
-    fitViewport="true" responsive="true" positionType="absolute" closeOnEscape="false"
+    fitViewport="true" responsive="true" closeOnEscape="false"
     styleClass="import-express-dialog">
     <h:form id="import-express-form">
       <h:panelGroup id="express-process-upload-panel" layout="block" styleClass="ui-g">

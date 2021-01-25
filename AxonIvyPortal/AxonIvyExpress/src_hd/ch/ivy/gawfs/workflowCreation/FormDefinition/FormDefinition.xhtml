@@ -20,7 +20,7 @@
     <ui:define name="content">
       <p:messages id="error-messages" showDetail="false" closable="true"/>
       <p:growl id="error-growl" globalOnly="true" showDetail="false" showSummary="true" />
-      <div class="ui-g-12 portal-card-container">
+      <div class="ui-g-12 portal-card-container u-padding-0">
         <!-- DEFINED TASKS -->
         <h:panelGroup id="defined-task-container" layout="block" styleClass="defined-task-container card">
           <c:forEach items="#{data.data.definedTasks}" var="definedTask" varStatus="status">
@@ -46,13 +46,13 @@
       </div>
 
       <!-- CONTENT -->
-      <h:form id="form" styleClass="portal-card-container">
+      <h:form id="form" styleClass="portal-card-container ui-g-12 u-padding-0">
         <h:panelGroup layout="block" rendered="#{data.data.definedTasks.get(data.activeTaskIndex).taskType != 'EMAIL'}">
-          <div class="ui-g-12 u-no-padding-top">
+          <div class="ui-g-12 u-padding-0">
             <ui:include src="FormElementFieldset.xhtml" />
           </div>
 
-          <div class="ui-g-12 u-no-padding-top">
+          <div class="ui-g-12 u-padding-0">
             <ui:include src="DragAndDropFieldset.xhtml" />
           </div>
         </h:panelGroup>
