@@ -2,6 +2,7 @@ package ch.ivy.addon.portal.chat;
 
 import static ch.ivy.addon.portal.chat.ChatReferencesContainer.log;
 import static ch.ivy.addon.portal.chat.ChatReferencesContainer.wf;
+import static ch.ivy.addon.portalkit.constant.UserProperty.PORTAL_CHAT_UNREAD_MESSAGES;
 import static ch.ivy.addon.portalkit.persistence.converter.UserEntityConverter.entitiesToJson;
 
 import java.io.IOException;
@@ -32,7 +33,6 @@ import ch.ivyteam.ivy.workflow.ICase;
 
 public final class ChatMessageManager {
 
-  private static final String PORTAL_CHAT_UNREAD_MESSAGES = "PORTAL_CHAT_UNREAD_MESSAGES";
   private static final String UNDER_SCORE = "_";
   private static final String FILE_NAME_ENCRYPT_ALGORITHM = "MD5";
   private static final String LINE_SEPARATOR = System.getProperty("line.separator");
