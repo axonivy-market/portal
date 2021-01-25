@@ -99,7 +99,8 @@
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" />
       </div>
       <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
-        <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="task-activator" fullname="#{task.getActivator().getDisplayName()}" username="#{task.getActivatorName()}" />
+        <ic:ch.ivy.addon.portalkit.component.ActivatorFullnameDisplay id="task-activator" fullname="#{task.getActivator().getDisplayName()}" username="#{task.getActivatorName()}"
+          activator="#{task.getActivator()}"/>
       </div>
     </div>
 
@@ -108,7 +109,8 @@
         <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/afterEscalation')}" />
       </div>
       <div class="ui-xl-10 ui-lg-8 ui-md-8 ui-sm-7 ui-g-4">
-        <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="task-expiry-activator" fullname="#{task.getExpiryActivator().getDisplayName()}" username="#{task.getExpiryActivatorName()}" />
+        <ic:ch.ivy.addon.portalkit.component.ActivatorFullnameDisplay id="task-expiry-activator" fullname="#{task.getExpiryActivator().getDisplayName()}" username="#{task.getExpiryActivatorName()}"
+          activator="#{task.getExpiryActivator()}" />
       </div>
     </div>
 

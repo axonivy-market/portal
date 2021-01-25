@@ -28,9 +28,10 @@
  */
 
 /* =================== FIELDSET ====================== */
-.fieldset-no-border {
+body .ui-fieldset.fieldset-no-border {
   border: none !important;
   padding: .6em 0;
+  margin: 0;
 }
 
 .fieldset-no-border .ui-fieldset-toggler.ui-icon-minusthick:before {
@@ -4406,6 +4407,7 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
 body .ui-dialog.ui-widget.import-express-dialog,
 body .ui-dialog.ui-widget.export-express-dialog {
   min-width: 450px;
+  max-width: 1100px;
 }
 
 .import-express-dialog .express-import-result {
@@ -4502,4 +4504,41 @@ body .ui-dialog.ui-widget.export-express-dialog {
 /* Fix bug: calendar button jumped when clicked (Edge, Chrome) */
 .ui-fluid .ui-calendar, .ui-fluid .ui-calendar input {
   display: block;
+}
+
+.user-fullname-display .user-of-role {
+  width: 400px;
+  max-height: 450px;
+}
+
+.user-fullname-display .user-data-scroller .ui-datascroller-content.ui-widget-content {
+  overflow: auto;
+  max-height: 300px;
+}
+
+.user-fullname-display .user-data-scroller .ui-datascroller-content .ui-datascroller-item,
+.user-fullname-display .user-name {
+  padding: 4px 7px;
+  padding-left: 0;
+}
+
+.user-fullname-display .user-data-scroller .ui-datascroller-content.ui-widget-content .ui-datascroller-list {
+  padding-top: 4px;
+  margin-left: 15px;
+  list-style-type: disc;
+}
+
+@media screen and (max-width: 40em) {
+  .user-fullname-display,
+  .user-fullname-display a.user-fullname-link {
+    width: 100%;
+    display: inline-block;
+  }
+  .user-fullname-display .user-of-role {
+    width: 85vw;
+    max-height: 320px;
+  }
+  .user-fullname-display .user-data-scroller .ui-datascroller-content.ui-widget-content {
+    max-height: 180px;
+  }
 }

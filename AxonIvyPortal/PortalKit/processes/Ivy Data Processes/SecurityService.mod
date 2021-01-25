@@ -64,6 +64,13 @@ Pt0 @StartSub f51 '' #zField
 Pt0 @PushWFArc f52 '' #zField
 Pt0 @PushWFArc f53 '' #zField
 Pt0 @PushWFArc f54 '' #zField
+Pt0 @EndSub f56 '' #zField
+Pt0 @GridStep f58 '' #zField
+Pt0 @CallSub f60 '' #zField
+Pt0 @PushWFArc f61 '' #zField
+Pt0 @PushWFArc f57 '' #zField
+Pt0 @StartSub f55 '' #zField
+Pt0 @PushWFArc f59 '' #zField
 >Proto Pt0 Pt0 SecurityService #zField
 Pt0 f0 inParamDecl '<String username,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
 Pt0 f0 inParamTable 'out.count=param.count;
@@ -85,9 +92,9 @@ Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f0 80 80 32 32 -87 22 #rect
+Pt0 f0 128 80 32 32 -87 22 #rect
 Pt0 f0 @|StartSubIcon #fIcon
-Pt0 f1 721 81 30 30 0 15 #rect
+Pt0 f1 785 81 30 30 0 15 #rect
 Pt0 f1 @|EndSubIcon #fIcon
 Pt0 f10 actionTable 'out=in;
 ' #txt
@@ -104,7 +111,7 @@ Pt0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f10 160 74 176 44 -81 -8 #rect
+Pt0 f10 224 74 176 44 -81 -8 #rect
 Pt0 f10 @|StepIcon #fIcon
 Pt0 f24 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
 Pt0 f24 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
@@ -121,7 +128,7 @@ Pt0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f24 544 74 112 44 -35 -8 #rect
+Pt0 f24 616 74 112 44 -35 -8 #rect
 Pt0 f24 @|CallSubIcon #fIcon
 Pt0 f20 actionTable 'out=in;
 ' #txt
@@ -140,16 +147,16 @@ Pt0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f20 384 74 112 44 -29 -8 #rect
+Pt0 f20 448 74 112 44 -29 -8 #rect
 Pt0 f20 @|StepIcon #fIcon
 Pt0 f26 expr out #txt
-Pt0 f26 336 96 384 96 #arcP
+Pt0 f26 400 96 448 96 #arcP
 Pt0 f27 expr out #txt
-Pt0 f27 496 96 544 96 #arcP
+Pt0 f27 560 96 616 96 #arcP
 Pt0 f2 expr out #txt
-Pt0 f2 112 96 160 96 #arcP
+Pt0 f2 160 96 224 96 #arcP
 Pt0 f3 expr out #txt
-Pt0 f3 656 96 721 96 #arcP
+Pt0 f3 728 96 785 96 #arcP
 Pt0 f4 inParamDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count> param;' #txt
 Pt0 f4 inParamTable 'out.application=param.application;
 out.count=param.count;
@@ -168,7 +175,7 @@ Pt0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f4 81 561 30 30 -90 19 #rect
+Pt0 f4 129 561 30 30 -90 19 #rect
 Pt0 f4 @|StartSubIcon #fIcon
 Pt0 f5 actionTable 'out=in;
 ' #txt
@@ -188,11 +195,11 @@ Pt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f5 248 554 144 44 -63 -8 #rect
+Pt0 f5 224 554 144 44 -63 -8 #rect
 Pt0 f5 @|StepIcon #fIcon
 Pt0 f6 expr out #txt
-Pt0 f6 111 576 248 576 #arcP
-Pt0 f7 593 561 30 30 0 15 #rect
+Pt0 f6 159 576 224 576 #arcP
+Pt0 f7 785 561 30 30 0 15 #rect
 Pt0 f7 @|EndSubIcon #fIcon
 Pt0 f8 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
 Pt0 f8 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
@@ -209,12 +216,12 @@ Pt0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f8 432 554 112 44 -35 -8 #rect
+Pt0 f8 616 554 112 44 -35 -8 #rect
 Pt0 f8 @|CallSubIcon #fIcon
 Pt0 f9 expr out #txt
-Pt0 f9 544 576 593 576 #arcP
+Pt0 f9 728 576 785 576 #arcP
 Pt0 f11 expr out #txt
-Pt0 f11 392 576 432 576 #arcP
+Pt0 f11 368 576 616 576 #arcP
 Pt0 f12 inParamDecl '<String username,String query,Integer startIndex,Integer count> param;' #txt
 Pt0 f12 inParamTable 'out.count=param.count;
 out.query=param.query;
@@ -233,7 +240,7 @@ Pt0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f12 81 465 30 30 -90 19 #rect
+Pt0 f12 129 465 30 30 -90 19 #rect
 Pt0 f12 @|StartSubIcon #fIcon
 Pt0 f13 actionTable 'out=in;
 ' #txt
@@ -253,7 +260,7 @@ Pt0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f13 376 458 144 44 -63 -8 #rect
+Pt0 f13 432 458 144 44 -63 -8 #rect
 Pt0 f13 @|StepIcon #fIcon
 Pt0 f14 actionTable 'out=in;
 ' #txt
@@ -270,9 +277,9 @@ Pt0 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f14 168 458 176 44 -81 -8 #rect
+Pt0 f14 224 458 176 44 -81 -8 #rect
 Pt0 f14 @|StepIcon #fIcon
-Pt0 f16 729 465 30 30 0 15 #rect
+Pt0 f16 785 465 30 30 0 15 #rect
 Pt0 f16 @|EndSubIcon #fIcon
 Pt0 f17 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
 Pt0 f17 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
@@ -289,16 +296,16 @@ Pt0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f17 552 458 112 44 -35 -8 #rect
+Pt0 f17 616 458 112 44 -35 -8 #rect
 Pt0 f17 @|CallSubIcon #fIcon
 Pt0 f18 expr out #txt
-Pt0 f18 664 480 729 480 #arcP
+Pt0 f18 728 480 785 480 #arcP
 Pt0 f21 expr out #txt
-Pt0 f21 344 480 376 480 #arcP
+Pt0 f21 400 480 432 480 #arcP
 Pt0 f22 expr out #txt
-Pt0 f22 520 480 552 480 #arcP
+Pt0 f22 576 480 616 480 #arcP
 Pt0 f15 expr out #txt
-Pt0 f15 111 480 168 480 #arcP
+Pt0 f15 159 480 224 480 #arcP
 Pt0 f19 inParamDecl '<ch.ivyteam.ivy.application.IApplication application,String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
 Pt0 f19 inParamTable 'out.application=param.application;
 out.count=param.count;
@@ -319,7 +326,7 @@ Pt0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f19 81 177 30 30 -53 20 #rect
+Pt0 f19 129 177 30 30 -53 20 #rect
 Pt0 f19 @|StartSubIcon #fIcon
 Pt0 f25 actionTable 'out=in;
 ' #txt
@@ -338,7 +345,7 @@ Pt0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f25 248 170 112 44 -29 -8 #rect
+Pt0 f25 224 170 112 44 -29 -8 #rect
 Pt0 f25 @|StepIcon #fIcon
 Pt0 f28 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
 Pt0 f28 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
@@ -355,16 +362,16 @@ Pt0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f28 408 170 112 44 -35 -8 #rect
+Pt0 f28 616 170 112 44 -35 -8 #rect
 Pt0 f28 @|CallSubIcon #fIcon
-Pt0 f29 585 177 30 30 0 15 #rect
+Pt0 f29 785 177 30 30 0 15 #rect
 Pt0 f29 @|EndSubIcon #fIcon
 Pt0 f30 expr out #txt
-Pt0 f30 520 192 585 192 #arcP
+Pt0 f30 728 192 785 192 #arcP
 Pt0 f33 expr out #txt
-Pt0 f33 360 192 408 192 #arcP
+Pt0 f33 336 192 616 192 #arcP
 Pt0 f23 expr out #txt
-Pt0 f23 111 192 248 192 #arcP
+Pt0 f23 159 192 224 192 #arcP
 Pt0 f31 actionTable 'out=in;
 ' #txt
 Pt0 f31 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
@@ -382,9 +389,9 @@ Pt0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f31 384 266 112 44 -27 -8 #rect
+Pt0 f31 448 266 112 44 -27 -8 #rect
 Pt0 f31 @|StepIcon #fIcon
-Pt0 f32 721 273 30 30 0 15 #rect
+Pt0 f32 785 273 30 30 0 15 #rect
 Pt0 f32 @|EndSubIcon #fIcon
 Pt0 f34 actionTable 'out=in;
 ' #txt
@@ -401,7 +408,7 @@ Pt0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f34 160 266 176 44 -81 -8 #rect
+Pt0 f34 224 266 176 44 -81 -8 #rect
 Pt0 f34 @|StepIcon #fIcon
 Pt0 f35 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
 Pt0 f35 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
@@ -418,7 +425,7 @@ Pt0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f35 544 266 112 44 -35 -8 #rect
+Pt0 f35 616 266 112 44 -35 -8 #rect
 Pt0 f35 @|CallSubIcon #fIcon
 Pt0 f36 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
 Pt0 f36 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
@@ -435,7 +442,7 @@ Pt0 f36 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f36 408 362 112 44 -35 -8 #rect
+Pt0 f36 616 362 112 44 -35 -8 #rect
 Pt0 f36 @|CallSubIcon #fIcon
 Pt0 f37 actionTable 'out=in;
 ' #txt
@@ -454,9 +461,9 @@ Pt0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f37 248 362 112 44 -27 -8 #rect
+Pt0 f37 224 362 112 44 -27 -8 #rect
 Pt0 f37 @|StepIcon #fIcon
-Pt0 f38 585 369 30 30 0 15 #rect
+Pt0 f38 785 369 30 30 0 15 #rect
 Pt0 f38 @|EndSubIcon #fIcon
 Pt0 f39 inParamDecl '<String username> param;' #txt
 Pt0 f39 inParamTable 'out.username=param.username;
@@ -473,7 +480,7 @@ Pt0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f39 81 273 30 30 -87 22 #rect
+Pt0 f39 129 273 30 30 -87 22 #rect
 Pt0 f39 @|StartSubIcon #fIcon
 Pt0 f40 inParamDecl '<ch.ivyteam.ivy.application.IApplication application> param;' #txt
 Pt0 f40 inParamTable 'out.application=param.application;
@@ -490,22 +497,22 @@ Pt0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f40 81 369 30 30 -53 20 #rect
+Pt0 f40 129 369 30 30 -53 20 #rect
 Pt0 f40 @|StartSubIcon #fIcon
 Pt0 f41 expr out #txt
-Pt0 f41 336 288 384 288 #arcP
+Pt0 f41 400 288 448 288 #arcP
 Pt0 f42 expr out #txt
-Pt0 f42 656 288 721 288 #arcP
+Pt0 f42 728 288 785 288 #arcP
 Pt0 f43 expr out #txt
-Pt0 f43 111 288 160 288 #arcP
+Pt0 f43 159 288 224 288 #arcP
 Pt0 f44 expr out #txt
-Pt0 f44 496 288 544 288 #arcP
+Pt0 f44 560 288 616 288 #arcP
 Pt0 f45 expr out #txt
-Pt0 f45 111 384 248 384 #arcP
+Pt0 f45 159 384 224 384 #arcP
 Pt0 f46 expr out #txt
-Pt0 f46 360 384 408 384 #arcP
+Pt0 f46 336 384 616 384 #arcP
 Pt0 f47 expr out #txt
-Pt0 f47 520 384 585 384 #arcP
+Pt0 f47 728 384 785 384 #arcP
 Pt0 f48 actionTable 'out=in;
 ' #txt
 Pt0 f48 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
@@ -523,7 +530,7 @@ Pt0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f48 240 642 112 44 -27 -8 #rect
+Pt0 f48 224 642 112 44 -27 -8 #rect
 Pt0 f48 @|StepIcon #fIcon
 Pt0 f49 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
 Pt0 f49 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
@@ -540,9 +547,9 @@ Pt0 f49 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f49 400 642 112 44 -35 -8 #rect
+Pt0 f49 616 642 112 44 -35 -8 #rect
 Pt0 f49 @|CallSubIcon #fIcon
-Pt0 f50 577 649 30 30 0 15 #rect
+Pt0 f50 785 649 30 30 0 15 #rect
 Pt0 f50 @|EndSubIcon #fIcon
 Pt0 f51 inParamDecl '<ch.ivyteam.ivy.application.IApplication application> param;' #txt
 Pt0 f51 inParamTable 'out.application=param.application;
@@ -559,14 +566,75 @@ Pt0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Pt0 f51 73 649 30 30 -53 20 #rect
+Pt0 f51 129 649 30 30 -53 20 #rect
 Pt0 f51 @|StartSubIcon #fIcon
 Pt0 f52 expr out #txt
-Pt0 f52 103 664 240 664 #arcP
+Pt0 f52 159 664 224 664 #arcP
 Pt0 f53 expr out #txt
-Pt0 f53 352 664 400 664 #arcP
+Pt0 f53 336 664 616 664 #arcP
 Pt0 f54 expr out #txt
-Pt0 f54 512 664 577 664 #arcP
+Pt0 f54 728 664 785 664 #arcP
+Pt0 f56 785 753 30 30 0 15 #rect
+Pt0 f56 @|EndSubIcon #fIcon
+Pt0 f58 actionTable 'out=in;
+' #txt
+Pt0 f58 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
+import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
+
+IvySecurityResultDTO dto = SecurityService.newInstance().findAllUsersOfRoles(in.application, in.startIndex, in.count, in.fromRoles, in.excludedUsernames);
+out.users = dto.users;
+out.errors = dto.errors;
+' #txt
+Pt0 f58 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find users</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f58 224 746 112 44 -29 -8 #rect
+Pt0 f58 @|StepIcon #fIcon
+Pt0 f60 processCall 'Functional Processes/ErrorHandler:handle(List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException>)' #txt
+Pt0 f60 requestActionDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> exceptions> param;' #txt
+Pt0 f60 requestMappingAction 'param.exceptions=in.errors;
+' #txt
+Pt0 f60 responseActionDecl 'ch.ivyteam.wf.processes.SecurityServiceData out;
+' #txt
+Pt0 f60 responseMappingAction 'out=in;
+' #txt
+Pt0 f60 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>ErrorHandler</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f60 616 746 112 44 -35 -8 #rect
+Pt0 f60 @|CallSubIcon #fIcon
+Pt0 f61 336 768 616 768 #arcP
+Pt0 f57 728 768 785 768 #arcP
+Pt0 f55 inParamDecl '<ch.ivyteam.ivy.application.IApplication application,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
+Pt0 f55 inParamTable 'out.application=param.application;
+out.count=param.count;
+out.excludedUsernames=param.excludedUsernames;
+out.fromRoles=param.fromRoles;
+out.startIndex=param.startIndex;
+' #txt
+Pt0 f55 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.ivydata.exception.PortalIvyDataException> errors,java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> users> result;' #txt
+Pt0 f55 outParamTable 'result.errors=in.errors;
+result.users=in.users;
+' #txt
+Pt0 f55 callSignature findAllUsersOfRoles(ch.ivyteam.ivy.application.IApplication,Integer,Integer,java.util.List<String>,java.util.List<String>) #txt
+Pt0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findAllUsersOfRoles(IApplication,Integer,Integer,List&lt;String&gt;,List&lt;String&gt;)</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f55 129 753 30 30 -67 22 #rect
+Pt0 f55 @|StartSubIcon #fIcon
+Pt0 f59 159 768 224 768 #arcP
 >Proto Pt0 .type ch.ivyteam.wf.processes.SecurityServiceData #txt
 >Proto Pt0 .processKind CALLABLE_SUB #txt
 >Proto Pt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -578,7 +646,7 @@ Pt0 f54 512 664 577 664 #arcP
         <swimlaneLabel></swimlaneLabel>
     </language>
     <swimlaneSize>352</swimlaneSize>
-    <swimlaneSize>304</swimlaneSize>
+    <swimlaneSize>312</swimlaneSize>
     <swimlaneSize>264</swimlaneSize>
     <swimlaneColor gradient="true">-1</swimlaneColor>
     <swimlaneColor gradient="true">-10027162</swimlaneColor>
@@ -641,3 +709,9 @@ Pt0 f49 mainOut f54 tail #connect
 Pt0 f54 head f50 mainIn #connect
 Pt0 f51 mainOut f52 tail #connect
 Pt0 f52 head f48 mainIn #connect
+Pt0 f58 mainOut f61 tail #connect
+Pt0 f61 head f60 mainIn #connect
+Pt0 f60 mainOut f57 tail #connect
+Pt0 f57 head f56 mainIn #connect
+Pt0 f55 mainOut f59 tail #connect
+Pt0 f59 head f58 mainIn #connect

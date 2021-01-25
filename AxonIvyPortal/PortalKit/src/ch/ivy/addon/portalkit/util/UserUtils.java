@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections4.CollectionUtils;
@@ -257,7 +258,17 @@ public class UserUtils {
   public static List<UserDTO> filterOut(List<UserDTO> users, UserDTO excludedUser) {
     return users.stream().filter(user -> !StringUtils.equals(user.getName(), excludedUser.getName())).collect(Collectors.toList());
   }
-  
+
+  public static List<UserDTO> filterOutByKeyword(List<UserDTO> users, String keyword) {
+    return users.stream().filter(filterUserByKeyword(keyword)).collect(Collectors.toList());
+  }
+
+  private static Predicate<? super UserDTO> filterUserByKeyword(String keyword) {
+    return user -> StringUtils.containsIgnoreCase(user.getName(), keyword)
+        || StringUtils.containsIgnoreCase(user.getDisplayName(), keyword)
+        || StringUtils.containsIgnoreCase(user.getMemberName(), keyword);
+  }
+
   public static String getUserName(IUser user) {
     return IvyExecutor.executeAsSystem(() -> {
       return user.getName();
