@@ -104,8 +104,8 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
 
     taskDetails.clickOnSwitchToEditModeButton();
     taskDetails.waitForSwitchToViewModeButtonDisplayed();
-    taskDetails.drapAndDropWidgets();
-    taskDetails.drapAndDropWidgets();
+    taskDetails.drapAndDropWidgets("note", "document");
+    taskDetails.drapAndDropWidgets("document", "note");
     Sleeper.sleep(2000);// wait for focus animation to capture screenshot
     executeDecorateJs("highlightResetToDefault()");
     WebElement resetButton = taskDetails.getResetButtonElement();
