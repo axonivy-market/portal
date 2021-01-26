@@ -213,7 +213,7 @@ public class TaskDetailsPage extends TemplatePage {
   }
   
   public String getTaskResponsible() {
-    return findElementByCssSelector("[id$=':task-activator:user']").getText();
+    return findElementByCssSelector(".role-and-user-information .task-activator").getText();
   }
   
   public String getTaskId() {
