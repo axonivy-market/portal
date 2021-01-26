@@ -110,19 +110,19 @@ public abstract class TemplatePage extends AbstractPage {
   }
 
   public void waitAjaxIndicatorDisappear() {
-    WebElement ajaxIndicatorStartState = findElementById("ajax-indicator:ajax-indicator-ajax-indicator_start");
+    String ajaxId = "ajax-indicator:ajax-indicator-ajax-indicator_start";
     boolean displayed = false;
     try {
-      displayed = ajaxIndicatorStartState.isDisplayed();
+      displayed = findElementById(ajaxId).isDisplayed();
     } catch (Exception e) {
       try {
-        displayed = ajaxIndicatorStartState.isDisplayed();
+        displayed = findElementById(ajaxId).isDisplayed();
       } catch (Exception e1) {
         System.out.println("Cannot check if ajax indicator is displayed");
       }
     }
     if (displayed) {
-      waitForElementDisplayed(ajaxIndicatorStartState, false);
+      waitForElementDisplayed(findElementById(ajaxId), false);
     }
   }
 
