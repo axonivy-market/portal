@@ -247,6 +247,6 @@ public class TaskWidgetTest extends BaseTest {
     homePage = new HomePage();
     taskWidgetPage = homePage.getTaskWidget();
     selectedSortColumn = taskWidgetPage.getSelectedCompactSortLable();
-    assertTrue(StringUtils.equalsIgnoreCase("Creation date (Oldest first)", selectedSortColumn));
+    assertTrue(StringUtils.equalsIgnoreCase("Creation date (Newest first)", selectedSortColumn));
   }
 }
