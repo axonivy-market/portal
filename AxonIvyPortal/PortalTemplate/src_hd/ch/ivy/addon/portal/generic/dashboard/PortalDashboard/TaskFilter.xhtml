@@ -23,7 +23,7 @@
         </div>
         <div class="ui-g-9">
           <p:selectCheckboxMenu id="priorities" value="#{field.userFilterPriorities}" multiple="true" dynamic="true"
-            panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
+            panelStyleClass="task-configuration__selectcheckboxmenu-panel" styleClass="task-configuration__selectcheckboxmenu">
             <f:selectItems value="#{field.userFilterPriorityOptions}" var="priority" itemValue="#{priority}"
               itemLabel="#{dashboardTaskFilterBean.getUserFriendlyTaskPriority(priority)}" />
           </p:selectCheckboxMenu>
@@ -36,7 +36,7 @@
         </div>
         <div class="ui-g-9">
           <p:selectCheckboxMenu id="states" value="#{field.userFilterStates}" multiple="true" filter="true" dynamic="true"
-            filterMatchMode="contains" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu">
+            filterMatchMode="contains" panelStyleClass="task-configuration__selectcheckboxmenu-panel" styleClass="task-configuration__selectcheckboxmenu">
             <f:selectItems value="#{field.userFilterStateOptions}" var="state" itemValue="#{state}"
               itemLabel="#{dashboardTaskFilterBean.getUserFriendlyTaskState(state)}" />
           </p:selectCheckboxMenu>
@@ -71,7 +71,7 @@
             rendered="#{field.filterType eq 'LIKE'}" />
 
           <p:selectCheckboxMenu id="text-field-selection" value="#{field.userFilterList}" multiple="true" filter="true"
-            filterMatchMode="contains" panelStyle="width:300px" styleClass="task-configuration__selectcheckboxmenu"
+            filterMatchMode="contains" panelStyleClass="task-configuration__selectcheckboxmenu-panel" styleClass="task-configuration__selectcheckboxmenu"
             rendered="#{field.filterType eq 'SELECTION'}">
             <f:selectItems value="#{field.userFilterListOptions}" />
           </p:selectCheckboxMenu>
@@ -134,7 +134,7 @@
       <p:overlayPanel id="user-filter-category-panel" for="user-filter-category" appendTo="@(body)"
         styleClass="task-configuration__category-panel" dynamic="true"
         onHide="$(this.targetElement).parents('.task-configuration__category').find('.portal-cancel-button').click();">
-        <p:tree id="task-category-filter-tree" value="#{widget.categoryTree}" var="node" selectionMode="checkbox"
+        <p:tree id="task-category-filter-tree" value="#{widget.categoryTree}" var="node" selectionMode="checkbox" styleClass="category-filter-tree"
           selection="#{widget.categoryNodes}" filterMatchMode="contains" filterBy="#{node}"
           showUnselectableCheckbox="true">
           <p:treeNode>

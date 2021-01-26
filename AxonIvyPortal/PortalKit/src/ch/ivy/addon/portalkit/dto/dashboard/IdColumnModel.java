@@ -14,7 +14,7 @@ public class IdColumnModel extends ColumnModel implements Serializable {
     this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID"));
     this.field = DashboardStandardTaskColumn.ID.getField();
     this.style = defaultIfEmpty(this.style, "width: 120px");
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__id");
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__id u-text-align-center");
   }
   
   @Override
