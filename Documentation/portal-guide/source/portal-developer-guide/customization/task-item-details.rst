@@ -30,7 +30,7 @@ How to configure widgets in task details
 
 -  Settings of all visible widgets on task details page are saved in **Global Variable PORTAL_TASK_DETAILS**.
 -  Cockpit Administrator can configure widgets via **PORTAL_TASK_DETAILS** in Cockpit settings page.
-|edit-variable-portal-task-details|
+   |edit-variable-portal-task-details|
 
 -  Default configuration includes 3 widgets.
 
