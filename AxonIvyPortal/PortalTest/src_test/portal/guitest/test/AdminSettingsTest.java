@@ -63,6 +63,7 @@ public class AdminSettingsTest extends BaseTest {
 	public void testDefaultSortOptionsForTaskList() {
     updatePortalSetting(DEFAULT_SORT_FIELD_OF_TASK_LIST, "PRIORITY");
     updatePortalSetting(DEFAULT_SORT_DIRECTION_OF_TASK_LIST, SortDirection.ASC.name());
+    redirectToRelativeLink(cleanSessionCacheUrl);
 
     createTestingTasks();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
