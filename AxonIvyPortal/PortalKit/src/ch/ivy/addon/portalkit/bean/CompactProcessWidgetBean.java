@@ -251,16 +251,24 @@ private static final long serialVersionUID = -5889375917550618261L;
   }
 
 
-  public void saveNewUserProcess() throws CloneNotSupportedException {
+  public void saveNewUserProcess() {
     editingProcess.setApplicationId(Ivy.request().getApplication().getId());
     editingProcess.setUserId(userId);
     editingProcess.setIndex(userProcesses.size());
 
     // Since 9.2, we will store processId and processType instead of start link and use them to find it's latest link.
-    UserProcess userProcessWithoutLink = editingProcess.clone();
-    userProcessWithoutLink.setLink("");
+    /*
+     * Automatic updating issue: if we clone editingProcess to a new object (cloned object), then set cloned object link to empty and save to database,
+     * after that editingProcess link will be updated to empty automatically.
+     * So that DO NOT use cloning approach.
+     */
+    String link = editingProcess.getLink();
+    editingProcess.setLink("");
 
-    editingProcess = userProcessService.save(userProcessWithoutLink);
+    editingProcess = userProcessService.save(editingProcess);
+
+    // Reset link value before adding to user processes cache
+    editingProcess.setLink(link);
 
     userProcesses.add(editingProcess);
   }
@@ -352,6 +360,9 @@ private static final long serialVersionUID = -5889375917550618261L;
     setIndex(userProcesses);
 
     // Since 9.2, we will store processId and processType instead of start link and use them to find it's latest link.
+    /*
+     * Automatic updating issue: not happen like saveNewUserProcess method, may be because in this method we save a list.
+     */
     List<UserProcess> userProcessesWithoutLink = new ArrayList<>();
     for (UserProcess userProcess : userProcesses) {
       UserProcess cloneUserProcess = userProcess.clone();
