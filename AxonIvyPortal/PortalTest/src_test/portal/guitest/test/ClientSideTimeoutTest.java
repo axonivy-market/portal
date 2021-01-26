@@ -16,6 +16,7 @@ public class ClientSideTimeoutTest extends BaseTest {
   @Override
   @Before
   public void setup() {
+    super.setup();
     setupWithAlternativeLinkAndAccount(HomePage.PORTAL_HOME_PAGE_URL, TestAccount.ADMIN_USER);
   }
   

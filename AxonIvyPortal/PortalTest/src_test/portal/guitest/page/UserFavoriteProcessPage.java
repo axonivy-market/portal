@@ -28,13 +28,11 @@ public class UserFavoriteProcessPage extends TemplatePage {
     waitAjaxIndicatorDisappear();
   }
 
-  @SuppressWarnings("deprecation")
   public void selectProcessByName(String ivyProcessName) {
-    findElementByClassName("ui-autocomplete-dropdown").click();
-    String processSelector = "tr[data-item-label='" + ivyProcessName + "']";
-    waitForElementDisplayed(By.cssSelector(processSelector), true);
+    WaitHelper.typeWithRetry(this, "input[id$='process-widget:new-process-name_input']", ivyProcessName);
+    String processSelector = String.format("tr[data-item-label='%s']", ivyProcessName);
     clickByCssSelector(processSelector);
-    waitAjaxIndicatorDisappear();
+    waitUntilAttributeChanged(By.id("process-widget:process-display-name"), "value", "", DEFAULT_TIMEOUT);
   }
 
   public boolean isIvyProcessByNameSearchable(String ivyProcessName) {
