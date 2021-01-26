@@ -156,32 +156,20 @@ body .ui-icon {
 .ui-fieldset-content table {
   width: 100%; }
 
-body .ui-widget.ui-fieldset .ui-fieldset-legend {
-  padding: 0 10px; }
-
-.ui-fieldset-legend.ui-state-hover {
-  background-color: var(--field-set-legend-hover-color); }
-
-body .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler:hover {
-  background-color: var(--fieldset-togger-hover-background-color); }
-
-body .ui-fieldset .ui-fieldset-legend {
-  color: var(--ui-fiedset-legend-text-color); }
-  body .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler {
-    background-color: var(--field-set-toggler-background-color);
-    color: var(--ui-field-set-toggler-color); }
+.ui-fieldset.fieldset-no-border {
+  border-color: var(--field-set-no-border-color);}
 
 /* Dialog */
 body .ui-dialog .ui-dialog-titlebar {
   border-bottom: 1px solid var(--ivy-primary-color-grey-light);
   padding: 8px 20px;
   color: var(--ui-dialog-title-bar-text-color); }
-  body .ui-dialog .ui-dialog-titlebar .ui-dialog-title {
-    padding-left: 2px;
-    font-size: var(--body-dialog-title-font-size); }
-  body .ui-dialog .ui-dialog-titlebar .ui-dialog-content {
-    font-size: var(--large-font-size);
-    padding: 1rem 2rem 2rem; }
+body .ui-dialog .ui-dialog-titlebar .ui-dialog-title {
+  padding-left: 2px;
+  font-size: var(--body-dialog-title-font-size); }
+body .ui-dialog .ui-dialog-titlebar .ui-dialog-content {
+  font-size: var(--large-font-size);
+  padding: 1rem 2rem 2rem; }
 
 /* Data table */
 body .ui-datatable tbody tr td.ui-editable-column.ui-state-highlight.ui-cell-editing .ui-inputfield {
@@ -546,15 +534,6 @@ a.compact-task-start-link .task-start-list-item {
   font-size: var(--process-icon-font-size);
 }
 
-body .ui-widget.ui-fieldset.process-group.ui-fieldset .ui-fieldset-legend {
-  font-size: var(--large-font-size);
-  padding: 14px 10px 10px 0;
-  margin-left: -1px; }
-
-.process-widget .process-group .ui-fieldset-toggler {
-  background-image: none;
-  text-indent: 0; }
-
 .new-process-dialog .md-inputfield .md-inputwrapper-focus ~ label.new-process-name-label,
 .new-process-dialog .md-inputfield .md-inputwrapper-filled ~ label.new-process-name-label {
   font-size: var(--small-font-size);
@@ -877,15 +856,6 @@ body .ui-datepicker .ui-timepicker-div dl dd {
   margin-top: 30px; }
   body .ui-datepicker .ui-timepicker-div dl dd .ui-slider.ui-slider-horizontal.ui-widget.ui-widget-content {
     margin-right: 10px; }
-
-/*Style for Fieldset --------------------------------------------------------------------------------------*/
-.fieldset-no-border .ui-fieldset-toggler:before {
-  font-size: var(--large-font-size);
-  color: var(--field-set-toggler-color);
-  font-family: var(--icon-font-family); }
-
-body .fieldset-no-border {
-  background-color: var(--field-set-no-border-color); }
 
 /*Style for start Filter Widget--------------------------------------------------------------------------------------*/
 .filter-category-checkbox-tree {

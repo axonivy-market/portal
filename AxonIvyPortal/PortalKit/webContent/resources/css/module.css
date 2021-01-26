@@ -27,27 +27,13 @@
  *
  */
 
-/* =================== FIELDSET ====================== */
+/* =================== PROCESS FIELDSET ====================== */
 body .ui-fieldset.fieldset-no-border {
   border: none !important;
   padding: .6em 0;
   margin: 0;
 }
 
-.fieldset-no-border .ui-fieldset-toggler.ui-icon-minusthick:before {
-  content: "\f0d7";
-}
-
-.fieldset-no-border .ui-fieldset-toggler.ui-icon-plusthick:before {
-  content: "\f0da";
-}
-
-.fieldset-no-border .ui-fieldset-toggler:before {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 3px;
-}
 /* =================== END FIELDSET ====================== */
 .widget-header {
   display: flex;
@@ -931,16 +917,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   opacity: 1;
 }
 
-body .process-widget .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler {
-  width: 20px;
-  height: 20px;
-  padding: 0;
-}
-
-body .process-widget .ui-fieldset .ui-fieldset-legend {
-  line-height: 0.3rem;
-}
-
 .expand-collapse-btns {
   float: left;
 }
@@ -1169,7 +1145,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 
 .process-widget .process-group {
   width: calc(100% - 75px);
-  padding-left: 0;
   float: left;
 }
 
