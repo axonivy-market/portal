@@ -215,8 +215,7 @@ public class ChatTest extends BaseTest {
     ChatPage chatPage = new HomePage().getChat();
     // Create chat group via task
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    int latestTask = isPredifinedGroup ? 0 : taskWidgetPage.countTasks() - 1;
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(latestTask);
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
     taskTemplatePage.clickTaskActionMenu();
 		taskTemplatePage.clickChatGroup(isPredifinedGroup);
 		return chatPage;
