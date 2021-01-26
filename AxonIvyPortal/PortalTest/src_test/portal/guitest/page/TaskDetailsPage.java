@@ -89,7 +89,7 @@ public class TaskDetailsPage extends TemplatePage {
   
   
   public String getTaskResponsible() {
-    return findElementById("task-detail-template:general-information:task-activator:user").getText();
+    return findElementByCssSelector("span[id^='task-detail-template:general-information:task-activator:']").getText();
   }
   
   public String getTaskId() {

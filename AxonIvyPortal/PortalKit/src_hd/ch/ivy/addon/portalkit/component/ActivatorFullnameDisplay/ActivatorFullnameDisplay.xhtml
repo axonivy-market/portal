@@ -18,7 +18,8 @@
 
   <!-- Display User name as text format -->
   <h:panelGroup rendered="#{!renderUserOfRole}">
-    <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText fullname="#{cc.attrs.fullname}" username="#{cc.attrs.username}"
+    <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="#{cc.attrs.textId}-text"
+      fullname="#{cc.attrs.fullname}" username="#{cc.attrs.username}"
       textId="#{cc.attrs.textId}" styleClass="#{cc.attrs.styleClass}"/>
   </h:panelGroup>
 

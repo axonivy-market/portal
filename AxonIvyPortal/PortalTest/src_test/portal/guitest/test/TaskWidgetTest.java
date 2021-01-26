@@ -193,6 +193,7 @@ public class TaskWidgetTest extends BaseTest {
   public void testStartATaskAtHomePage() {
     HomePage homePage = new HomePage();
     String maternityRequest = "Maternity Leave Request";
+    String sickRequest = "Sick Leave Request";
     TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
     //Start first task
     taskWidgetPage.filterTasksBy(maternityRequest);
@@ -205,23 +206,19 @@ public class TaskWidgetTest extends BaseTest {
     assertTrue(taskWidgetPage.isResumedTask(0));
     taskTemplatePage = taskWidgetPage.startTask(0);
     assertEquals(maternityRequest, taskTemplatePage.getTaskName());
-    homePage =taskTemplatePage.clickCancelAndLeftButton();
+    homePage = taskTemplatePage.clickCancelAndLeftButton();
     
-    String sickRequest = "Sick Leave Request";
-    taskWidgetPage = homePage.getTaskWidget();
     //Start second task
+    taskWidgetPage = homePage.getTaskWidget();
     taskWidgetPage.filterTasksBy(sickRequest);
     assertFalse(taskWidgetPage.isResumedTask(0));
-    taskWidgetPage.filterTasksBy("Request");
-    taskTemplatePage = taskWidgetPage.startTask(1);
+    taskTemplatePage = taskWidgetPage.startTask(0);
     homePage = taskTemplatePage.clickCancelAndLeftButton();
     
     // Start second task is resumed
     taskWidgetPage = homePage.getTaskWidget();
-    taskWidgetPage.filterTasksBy(sickRequest);
     assertTrue(taskWidgetPage.isResumedTask(0));
-    taskWidgetPage.filterTasksBy("Request");
-    taskTemplatePage = taskWidgetPage.startTask(1);
+    taskTemplatePage = taskWidgetPage.startTask(0);
     assertEquals(sickRequest, taskTemplatePage.getTaskName());
     taskTemplatePage.clickCancelAndLeftButton();
   }
