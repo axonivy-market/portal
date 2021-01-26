@@ -15,7 +15,7 @@ public class CreatedDateColumnModel extends ColumnModel implements Serializable 
     this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME"));
     this.field = DashboardStandardTaskColumn.CREATED.getField();
     this.style = defaultIfEmpty(this.style, "width: 100px");
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__created-date");
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__created-date u-text-align-center");
     this.format = DashboardColumnFormat.TIMESTAMP;
   }
   

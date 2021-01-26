@@ -65,7 +65,7 @@
                           <ui:include src="TaskFilter.xhtml">
                             <ui:param name="widget" value="#{widget}" />
                             <ui:param name="updateComponent" value="#{component.parent.namingContainer.clientId}:task-component:dashboard-tasks" />
-                            <ui:param name="onCompleteApplyingFilters" value="PF('filter-overlay-panel').hide(); PF('dashboard-tasks-#{widget.id}').filter()" />
+                            <ui:param name="onCompleteApplyingFilters" value="PF('filter-overlay-panel-#{status.index}').hide(); PF('dashboard-tasks-#{widget.id}').filter()" />
                           </ui:include>
                         </p:overlayPanel>
                       </div>
