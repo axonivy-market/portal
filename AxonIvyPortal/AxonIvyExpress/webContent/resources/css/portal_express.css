@@ -2,11 +2,6 @@
   margin-bottom: 30px;
 }
 
-/* Override fieldset */
-.ui-fieldset-legend {
-  padding: 10px !important;
-}
-
 /* WORKFLOW DEFINITION */
 .express-align-bottom-group {
   display: flex !important;
@@ -27,9 +22,6 @@
 }
 
 /* Override fieldset style for express */
-.express-fieldset {
-  width: auto !important;
-}
 
 .express-fieldset-content {
   margin-top: 10px;
@@ -151,15 +143,6 @@
 .assignee-selection-panel .add-assignee-button {
   float: right;
   margin-top: 15px;
-}
-
-.assignee-selection-panel .selected-assignee-panel {
-  padding: .6em 0 !important;
-  cursor: default;
-}
-
-.assignee-selection-panel .selected-assignee-panel .ui-fieldset-legend {
-  margin-left: 1em;
 }
 
 .assignee-selection-panel .selected-assignee-panel .assignee-selection {
@@ -422,16 +405,8 @@ td.email-attachment-text {
 }
 
 .finished-task-label {
-  margin-left: 16px;
+  padding-left: 0;
   margin-bottom: 1em;
-}
-
-.finished-task-fieldset legend {
-  padding: 10px !important;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 25rem;
 }
 
 .finished-task-fieldset .applicant-info-container {
@@ -472,16 +447,6 @@ td.email-attachment-text {
 }
 
 /* Form Creation Tab */
-.create-tabs-field {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-  margin-left: 0;
-  margin-right: 0;
-}
-.create-tabs-field .ui-fieldset-content {
-  width: 100%;
-}
-
 .form-create-tabs {
   border: none !important;
 }
@@ -766,16 +731,6 @@ _:-ms-fullscreen, :root .pe-dynaform-cell.input-text-field {
 
 .express-process-owner {
   padding-top: 0px !important;
-}
-
-body .task-template-content .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler {
-  width: 20px;
-  height: 20px;
-  padding: 0;
-}
-
-body .task-template-content .ui-fieldset .ui-fieldset-legend {
-  line-height: 0.3rem;
 }
 
 .form-definition-table tr:nth-child(2) td.ui-panelgrid-cell:first-child {
