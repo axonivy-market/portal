@@ -13,7 +13,7 @@ public class StartColumnModel extends ColumnModel implements Serializable {
     this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/common/start"));
     this.field = DashboardStandardTaskColumn.START.getField();
     this.style = defaultIfEmpty(this.style, "width: 50px");
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__start");
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__start u-text-align-center");
     this.sortable = false;
   }
 }
