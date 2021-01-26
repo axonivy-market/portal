@@ -19,14 +19,19 @@ public class StateColumnModel extends ColumnModel implements Serializable {
 
   private static final long serialVersionUID = -4315469062114036720L;
   
+  @JsonIgnore
+  private
+  List<TaskState> userFilterStateOptions;
+  
   @Override
   public void initDefaultValue() {
     this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE"));
     this.field = DashboardStandardTaskColumn.STATE.getField();
     this.style = defaultIfEmpty(this.style, "width: 120px");
-    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__state");
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__state u-text-align-center");
     this.fieldStyleClass = defaultIfEmpty(this.fieldStyleClass, "dashboard-tasks__state-text");
     this.format = DashboardColumnFormat.CUSTOM;
+    initUserFilterStateOptions();
   }
   
   @Override
@@ -55,12 +60,11 @@ public class StateColumnModel extends ColumnModel implements Serializable {
   }
   
   @JsonIgnore
-  public List<TaskState> getUserFilterStateOptions() {
-    List<TaskState> options = getStates();
-    if (CollectionUtils.isEmpty(options)) {
-      options = Arrays.asList(TaskState.values()).stream().sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).collect(Collectors.toList());
+  private void initUserFilterStateOptions() {
+    setUserFilterStateOptions(getStates());
+    if (CollectionUtils.isEmpty(getUserFilterStateOptions())) {
+      setUserFilterStateOptions(Arrays.asList(TaskState.values()).stream().sorted((s1, s2) -> StringUtils.compare(s1.toString(), s2.toString())).collect(Collectors.toList()));
     }
-    return options;
   }
   
   @JsonIgnore
@@ -71,5 +75,13 @@ public class StateColumnModel extends ColumnModel implements Serializable {
   @JsonIgnore
   public void setUserFilterStates(List<TaskState> states) {
     this.userFilterList = states.stream().map(TaskState::toString).collect(Collectors.toList());
+  }
+
+  public List<TaskState> getUserFilterStateOptions() {
+    return userFilterStateOptions;
+  }
+
+  public void setUserFilterStateOptions(List<TaskState> userFilterStateOptions) {
+    this.userFilterStateOptions = userFilterStateOptions;
   }
 }
