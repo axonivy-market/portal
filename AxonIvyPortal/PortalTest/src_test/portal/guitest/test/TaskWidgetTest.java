@@ -282,7 +282,7 @@ public class TaskWidgetTest extends BaseTest {
     homePage = new HomePage();
     taskWidgetPage = homePage.getTaskWidget();
     selectedSortColumn = taskWidgetPage.getSelectedCompactSortLable();
-    assertTrue(StringUtils.equalsIgnoreCase("Creation date (Oldest first)", selectedSortColumn));
+    assertTrue(StringUtils.equalsIgnoreCase("Creation date (Newest first)", selectedSortColumn));
     taskName = taskWidgetPage.getCompactTaskCellValue(0);
     assertTrue(StringUtils.equalsIgnoreCase("Annual Leave Request", taskName));
     // Change User sort selection
