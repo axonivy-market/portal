@@ -7,10 +7,12 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
   <cc:attribute name="styleClass" />
+  <cc:attribute name="applyJsonConfigurationFile" default="true"/>
 </cc:interface>
 
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
+  <c:set var="applyJsonConfigurationFile" value="#{cc.attrs.applyJsonConfigurationFile}" />
   <f:event listener="#{logic.initData(task)}" type="preRenderComponent" />
   <h:panelGroup class="task-details-item-note ui-g" id="task-details-item-note" layout="block">
 
@@ -34,7 +36,7 @@
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
           </p:commandLink>
           <p:selectBooleanCheckbox value="#{data.showSystemNotes}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}"
-            rendered="#{data.showSystemNotesChkbox}">
+            rendered="#{data.showSystemNotesChkbox and applyJsonConfigurationFile}">
             <p:ajax update="task-history-content-container" process="@this" partialSubmit="true" listener="#{logic.showHideSystemNotes}" />
           </p:selectBooleanCheckbox>
         </h:panelGroup>
@@ -42,7 +44,8 @@
     </div>
 
     <h:panelGroup id="task-history-content-container" styleClass="ui-g-12 u-padding-0">
-      <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true" pageLinks="3" rows="8" paginatorPosition="top" rendered="#{not empty data.notes}"
+      <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true" pageLinks="3" rows="#{applyJsonConfigurationFile ? 8 : 5}"
+        paginatorPosition="top" rendered="#{not empty data.notes}"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" paginatorAlwaysVisible="false"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">

@@ -1723,12 +1723,21 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   float: left;
 }
 
+.task-detail-general-card {
+  min-height: 610px;
+}
+
 .task-detail-general-card .task-details-action-container {
   text-align: right;
   position: absolute;
   top: -2px;
   right: 0;
   padding: 0;
+}
+
+.task-detail-general-card .task-details-action-container.old-style {
+  display: inline-flex;
+  justify-content: flex-end;
 }
 
 .task-details-action-container.action-container.ui-g-5 {
@@ -4368,16 +4377,33 @@ _:-ms-fullscreen, :root .content-link-history {
   min-height: 890px;
 }
 
+.task-detail-general-card.old-style {
+  padding-bottom: 0px !important;
+  min-height: 720px;
+}
+
 .task-note-component {
   height: 438px;
   width: 100%;
   margin-bottom: 7px;
+  margin-bottom: 10px;
+}
+
+.task-note-component.old-style {
+  height: 350px;
 }
 
 .task-document-component {
   height: 438px;
   width: 100%;
   margin: 0 0 1em 0;
+}
+
+.task-document-component.old-style {
+  height: 350px;
+  margin-top: 10px !important;
+  margin: 0;
+  margin-bottom: 10px
 }
 
 .task-detail-column-title {
@@ -4428,6 +4454,7 @@ _:-ms-fullscreen, :root .content-link-history {
 
 .action-link {
   margin: auto 10px;
+  display: flex;
   align-items: center;
 }
 
