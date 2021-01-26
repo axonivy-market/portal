@@ -41,14 +41,14 @@ public class TaskDetailsPage extends TemplatePage {
   }
 
   public void changePriorityOfTask(int priorityValue) {
-    click(findElementByCssSelector("[id$=':general-information:priority-form:edit-priority-inplace_display']"));
+    findElementByCssSelector("[id$=':general-information:priority-form:edit-priority-inplace_display']").click();
     waitForElementDisplayed(By.cssSelector("[id$=':general-information:priority-form:priority-select-menu_label']"),
         true);
-    click(findElementByCssSelector("[id$=':general-information:priority-form:priority-select-menu_label']"));
+    findElementByCssSelector("[id$=':general-information:priority-form:priority-select-menu_label']").click();
     WebElement prioritySelectElement = findElementByCssSelector(
         String.format("[id$=':general-information:priority-form:priority-select-menu_%d']", priorityValue));
     waitForElementDisplayed(prioritySelectElement, true);
-    click(prioritySelectElement);
+    prioritySelectElement.click();
     clickByCssSelector(
         "[id$=':general-information:priority-form:edit-priority-inplace_editor'] .ui-inplace-save");
     waitForElementDisplayed(By.cssSelector("[id$=':general-information:priority-form:edit-priority-inplace_editor'] .ui-inplace-save"), false);
@@ -372,13 +372,13 @@ public class TaskDetailsPage extends TemplatePage {
     waitForElementDisplayed(By.cssSelector("[id$=':switch-to-view-mode-button']"), true);
   }
 
-  public void drapAndDropWidgets() {
-    waitForElementDisplayed(By.cssSelector("[id$=':task-detail-note-container']"), true);
-    WebElement historyWidget = findElementByCssSelector("[id$=':task-detail-note-container']");
-    waitForElementDisplayed(By.cssSelector("[id$=':task-detail-document-container']"), true);
-    WebElement documentWidget = findElementByCssSelector("[id$=':task-detail-document-container']");
+  public void drapAndDropWidgets(String sourceName, String destinationName) {
+    waitForElementDisplayed(By.cssSelector(String.format("[id$=':task-detail-%s-container']", sourceName)), true);
+    WebElement sourceElement = findElementByCssSelector(String.format("[id$=':task-detail-%s-container']", sourceName));
+    waitForElementDisplayed(By.cssSelector(String.format("[id$=':task-detail-%s-container']", destinationName)), true);
+    WebElement destinationElement = findElementByCssSelector(String.format("[id$=':task-detail-%s-container']", destinationName));
     Actions actions = new Actions(driver);
-    Action moveWidget = actions.dragAndDrop(historyWidget, documentWidget).build();
+    Action moveWidget = actions.dragAndDrop(sourceElement, destinationElement).build();
     moveWidget.perform();
   }
 
