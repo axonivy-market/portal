@@ -1,7 +1,5 @@
 package ch.ivy.addon.portalkit.datamodel;
 
-import static org.apache.commons.lang3.StringUtils.EMPTY;
-
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -352,8 +350,12 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected void buildCriteria() {
     criteria = new TaskSearchCriteria();
     criteria.setIncludedStates(new ArrayList<>(TaskSearchCriteria.STANDARD_STATES));
-    sort(UserUtils.getSessionTaskSortAttribute());
-
+    String sortInCache = UserUtils.getSessionTaskSortAttribute();
+    if (StringUtils.isBlank(sortInCache)) {
+      updateSortCriteria(getDefaultSortField(), isSortedDescendingByDefault(), false);
+    } else {
+      sort(sortInCache);
+    }
     if (shouldSaveAndLoadSessionFilters()) {
       criteria.setKeyword(UserUtils.getSessionTaskKeywordFilterAttribute());
     }
@@ -793,14 +795,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   private void buildCompactModeTaskSort() {
-    String firstSortOption = getFirstPortalTaskSortOption();
-    boolean asc = SortFieldUtil.isAscendingSort(firstSortOption);
-    String sortColumn = SortFieldUtil.extractSortColumn(firstSortOption);
-    updateSortCriteria(sortColumn, !asc, false);
-  }
-
-  private String getFirstPortalTaskSortOption() {
-    return CollectionUtils.isEmpty(getPortalTaskSort()) ? EMPTY : getPortalTaskSort().get(0);
+    updateSortCriteria(TaskSortField.CREATION_TIME.name(), true, false);
   }
 
   protected void setValuesForStateFilter(TaskSearchCriteria criteria, TaskFilterContainer filterContainer) {
@@ -1148,6 +1143,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   public String getSelectedCompactSort() {
+    if (SortFieldUtil.invalidSortField(UserUtils.getSessionTaskSortAttribute(), getPortalTaskSort())) {
+      buildCompactModeTaskSort();
+    }
     return SortFieldUtil.buildSortField(criteria.getSortField(), criteria.isSortDescending());
   }
 
