@@ -141,6 +141,33 @@ public class TaskBean implements Serializable {
         return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM");
     }
   }
+  
+  public String getUserFriendlyTaskStateInCapitalization(TaskState state) {
+    if (state == null) {
+      return StringUtils.EMPTY;
+    }
+    switch (state) {
+      case SUSPENDED:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/SUSPENDED");
+      case CREATED:
+      case RESUMED:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/RESUMED");
+      case DONE:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DONE");
+      case PARKED:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/PARKED");
+      case DESTROYED:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DESTROYED");
+      case DELAYED:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/DELAYED");
+      case READY_FOR_JOIN:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/READY_FOR_JOIN");
+      case ZOMBIE:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/ZOMBIE");
+      default:
+        return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskState/SYSTEM");
+    }
+  }
 
   public String displayCaseName(ITask task) {
     ICase iCase = task.getCase().getBusinessCase();

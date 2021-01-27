@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
+  <cc:attribute name="styleClass" />
+  <cc:attribute name="isWorkingOnTask" type="java.lang.Boolean"/>
+  <cc:attribute name="inFrame" type="java.lang.Boolean" default="false"/>
+  <cc:attribute name="readOnly" type="java.lang.Boolean" default="false"/>
+</cc:interface>
+
+<cc:implementation>
+  <f:event listener="#{logic.initData(cc.attrs.case)}" type="preRenderComponent" />
+
+  <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
+    <div class="task-details-panel-title">
+      <i class="si si-task-list-edit" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader')}
+    </div>
+
+    <div class="ui-g-12 u-padding-0">
+      <p:dataTable id="related-cases" value="#{data.relatedCases}" var="case" paginator="true" rows="5" paginatorPosition="bottom" paginatorAlwaysVisible="false"
+        paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
+        sortBy="#{case.id}" reflow="true" styleClass="related-cases">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortBy="#{case.name}" styleClass="name-column">
+          <h:outputText value="#{case.name}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortBy="#{case.description}" styleClass="description-column">
+          <h:outputText value="#{case.description}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/ID')}" sortBy="#{case.id}" styleClass="id-column">
+          <h:outputText value="#{case.id}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR')}" styleClass="responsible-column"
+          sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(case.creatorUser, case.creatorUserName)}">
+          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(case.creatorUser, case.creatorUserName)}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/OWNER')}" styleClass="owner-column"
+          sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(case.owner, case.ownerName)}"
+          rendered="#{caseBean.isCaseOwnerEnabled()}">
+          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(case.owner, case.ownerName)}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME')}" sortBy="#{case.startTimestamp}" styleClass="created-column">
+          <h:outputText value="#{case.startTimestamp}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+          </h:outputText>
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" sortBy="#{case.endTimestamp}" styleClass="expiry-column">
+          <h:outputText value="#{case.endTimestamp}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+          </h:outputText>
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/STATE')}" 
+          sortBy="#{caseBean.getState(case)}" styleClass="state-column">
+          <h:outputText value="#{caseBean.getState(case)}" 
+            styleClass="case-state #{case.state.toString().toLowerCase()}-case-state" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="more-column">
+          <ic:ch.ivy.addon.portalkit.component.ActionStep id="action-step-component" actionLinkId="action-steps-menu"
+            actionLinkStyleClass="ui-button-text-only" case="#{case}" isAdhocExcluded="true" />
+        </p:column>
+      </p:dataTable>
+    </div>
+  </div>
+</cc:implementation>
+</html>

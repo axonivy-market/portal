@@ -1,0 +1,64 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:cc="http://xmlns.jcp.org/jsf/composite" xmlns:ic="http://ivyteam.ch/jsf/component"
+  xmlns:p="http://primefaces.org/ui" xmlns:pe="http://primefaces.org/ui/extensions"
+  xmlns:c="http://xmlns.jcp.org/jsp/jstl/core" xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<cc:interface componentType="IvyComponent">
+  <cc:attribute name="case" type="ch.ivyteam.ivy.workflow.ICase" />
+  <cc:attribute name="styleClass" />
+  <cc:attribute name="isWorkingOnTask" type="java.lang.Boolean"/>
+  <cc:attribute name="inFrame" type="java.lang.Boolean" default="false"/>
+  <cc:attribute name="readOnly" type="java.lang.Boolean" default="false"/>
+</cc:interface>
+
+<cc:implementation>
+  <f:event listener="#{logic.initData(cc.attrs.case)}" type="preRenderComponent" />
+
+  <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
+    <div class="task-details-panel-title">
+      <i class="si si-task-list-edit" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader')}
+    </div>
+
+    <div class="ui-g-12 u-padding-0">
+      <p:dataTable id="related-tasks" value="#{data.relatedTasks}" var="task" paginator="true" rows="5" paginatorPosition="bottom" paginatorAlwaysVisible="false"
+        paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
+        sortBy="#{task.id}" sortOrder="descending" reflow="true">
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/abbreviation/PRIORITY')}" sortBy="#{task.priority}" styleClass="priority-column">
+          <ui:include src="PriorityCell.xhtml" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortBy="#{task.name}" styleClass="name-column">
+          <h:outputText value="#{task.name}" styleClass="u-truncate-text" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/description')}" sortBy="#{task.description}" styleClass="description-column">
+          <h:outputText value="#{task.description}" styleClass="u-truncate-text" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" styleClass="responsible-column"
+          sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activator.memberName)}">
+          <h:outputText value="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(task.activator, task.activator.memberName)}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ID')}" sortBy="#{task.id}" styleClass="id-column">
+          <h:outputText value="#{task.id}" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/CREATION_TIME')}" sortBy="#{task.startTimestamp}" styleClass="created-column">
+          <h:outputText value="#{task.startTimestamp}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+          </h:outputText>
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/EXPIRY_TIME')}" sortBy="#{task.expiryTimestamp}" styleClass="expiry-column">
+          <h:outputText value="#{task.expiryTimestamp}">
+            <f:convertDateTime pattern="#{dateTimePatternBean.configuredPattern}" />
+          </h:outputText>
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/STATE')}" sortBy="#{taskBean.getUserFriendlyTaskStateInCapitalization(task.state)}" styleClass="state-column">
+          <h:outputText value="#{taskBean.getUserFriendlyTaskStateInCapitalization(task.state)}" 
+            styleClass="task-state #{task.state.toString().toLowerCase()}-task-state" />
+        </p:column>
+        <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}" styleClass="more-column">
+          <ui:include src="TaskAction.xhtml" />
+        </p:column>
+      </p:dataTable>
+    </div>
+  </div>
+</cc:implementation>
+</html>

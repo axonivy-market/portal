@@ -66,14 +66,14 @@
           <!-- Technical cases box -->
           <h:panelGroup id="case-details-technical-case-card" styleClass="card case-related-task-component grid-stack-item-content"
             rendered="#{widget.class.simpleName eq 'CaseDetailsTechnicalCaseWidget'}">
-            <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="technical-cases" case="#{case}"
+            <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedCases id="technical-cases" case="#{case}"
               isWorkingOnTask="#{isWorkingOnTask}" inFrame="#{inFrame}" readOnly="#{readOnly}" />
           </h:panelGroup>
           
           <!-- Related running tasks box -->
           <h:panelGroup id="case-details-related-running-tasks-card" styleClass="card case-related-task-component grid-stack-item-content"
             rendered="#{widget.class.simpleName eq 'CaseDetailsRelatedTaskWidget'}">
-            <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTask id="related-tasks" case="#{case}"
+            <ic:ch.ivy.addon.portalkit.component.CaseItemRelatedTasks id="related-tasks" case="#{case}"
               isWorkingOnTask="#{isWorkingOnTask}" inFrame="#{inFrame}" readOnly="#{readOnly}" />
           </h:panelGroup>
           
