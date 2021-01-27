@@ -833,6 +833,88 @@ span.case-details-document-add-link, span.task-details-document-add-link {
     height: auto;
   }
 }
+
+.case-detail-body .priority-column {
+  text-align: center;
+  width: 80px;
+}
+
+.case-detail-body .name-column {
+  font-weight: bold;
+}
+
+.case-detail-body .description-column {
+  
+}
+
+.case-detail-body .responsible-column, .case-detail-body .owner-column {
+  width: 150px;
+}
+
+.case-detail-body .id-column, .case-detail-body .created-column, .case-detail-body .expiry-column, .case-detail-body .state-column {
+  width: 120px;
+  text-align: center;
+}
+
+.case-detail-body .more-column {
+  width: 245px;
+  text-align: center;
+}
+
+.case-detail-body .related-cases .more-column {
+  width: 120px;
+  text-align: center;
+}
+
+.case-detail-body .priority {
+  font-size: 2rem;
+}
+
+.case-detail-body .low-priority {
+  color: #90DDE9;
+}
+
+.case-detail-body .normal-priority {
+  color: #49BAD6;
+}
+
+.case-detail-body .high-priority {
+  color: #007095;
+}
+
+.case-detail-body .exception-priority {
+  color: #EE4A52;
+}
+
+.case-detail-body .case-state, .case-detail-body .task-state {
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 1.2rem;
+  width: fit-content;
+  padding: 2px 5px;
+  border: 1.5px solid;
+}
+
+.case-detail-body .open-task-state, .case-detail-body .suspended-task-state {
+  background: #DADADA;
+  border-color: #DADADA;
+}
+
+.case-detail-body .running-case-state, .case-detail-body .resumed-task-state {
+  background: #FFE896;
+  border-color: #FFE896;
+}
+
+.case-detail-body .done-case-state, .case-detail-body .done-task-state {
+  background: #D4EBA2;
+  border-color: #D4EBA2;
+}
+
+.case-detail-body .parked-task-state {
+  background: #FCC3C3;
+  border-color: #FCC3C3;
+}
+
 /********************************** END CASE ITEM **********************************/
 
 /********************************** START PROCESSES **********************************/
