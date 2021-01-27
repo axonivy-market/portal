@@ -141,8 +141,8 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/ACTIVATOR')}" />
         </div>
         <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
-          <ic:ch.ivy.addon.portalkit.component.ActivatorFullnameDisplay id="task-activator"
-           activator="#{task.getActivator()}" activatorName="#{task.getActivatorName()}"
+          <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="task-activator"
+           securityMember="#{task.getActivator()}" securityMemberName="#{task.getActivatorName()}"
            styleClass="text-ellipsis task-activator" />
         </div>
       </h:panelGroup>
@@ -154,8 +154,8 @@
             value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/afterEscalation')}" />
         </div>
         <div class="ui-xl-9 ui-lg-8 ui-md-8 ui-sm-8 ui-g-4 u-no-padding-left text-ellipsis">
-          <ic:ch.ivy.addon.portalkit.component.ActivatorFullnameDisplay id="task-expiry-activator"
-            activator="#{task.getExpiryActivator()}" activatorName="#{task.getExpiryActivatorName()}"
+          <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName id="task-expiry-activator"
+            securityMember="#{task.getExpiryActivator()}" securityMemberName="#{task.getExpiryActivatorName()}"
             styleClass="text-ellipsis"/>
         </div>
       </h:panelGroup>
