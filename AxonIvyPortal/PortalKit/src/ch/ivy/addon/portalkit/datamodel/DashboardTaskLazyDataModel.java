@@ -28,7 +28,8 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
   private List<ITask> tasks;
   private CompletableFuture<Void> future;
   private TaskQuery query;
-  
+  private int rowIndex;
+
   public DashboardTaskLazyDataModel() {
     criteria = new DashboardTaskSearchCriteria();
     tasks = new ArrayList<>();
@@ -107,5 +108,37 @@ public class DashboardTaskLazyDataModel extends LazyDataModel<ITask> {
 
   public void setUserFilterCategories(List<String> categories) {
     criteria.setUserFilterCategories(categories);
+  }
+
+  @Override
+  public void setRowIndex(int index) {
+    int idx = index;
+    if (idx >= tasks.size()) {
+      idx = -1;
+    }
+    this.rowIndex = idx;
+  }
+
+  @Override
+  public ITask getRowData() {
+    if (rowIndex >= 0 && rowIndex < tasks.size()) {
+      return tasks.get(rowIndex);
+    } else {
+      return null;
+    }
+  }
+
+  @Override
+  public ITask getRowData(String rowKey) {
+    return tasks.stream().filter(task -> task.getId() == Long.parseLong(rowKey)).findFirst().orElse(null);
+  }
+
+
+  @Override
+  public boolean isRowAvailable() {
+    if (tasks == null) {
+      return false;
+    }
+    return rowIndex >= 0 && rowIndex < tasks.size();
   }
 }
