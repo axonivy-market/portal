@@ -14,7 +14,8 @@
 <cc:implementation>
   <h:panelGroup rendered="#{cc.attrs.dataModel.isSelectedColumn('ACTIVATOR')}">
     <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName textId="#{cc.attrs.componentId}" securityMember="#{cc.attrs.responsible}"
-      securityMemberName="#{cc.attrs.responsibleName}" styleClass="responsible-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}" />
+      securityMemberName="#{cc.attrs.responsibleName}" styleClass="responsible-cell #{cc.attrs.styleClass} #{cc.attrs.responsiveStyleClass}"
+      alwaysShowAsText="true" />
   </h:panelGroup>
 </cc:implementation>
 </html>
