@@ -10,3 +10,9 @@ taskWidget ch.ivy.addon.portalkit.dto.dashboard.TaskDashboardWidget #field
 taskWidget PERSISTENT #fieldModifier
 filteredTasks java.util.List<ch.ivyteam.ivy.workflow.ITask> #field
 filteredTasks PERSISTENT #fieldModifier
+dataModel ch.ivy.addon.portalkit.datamodel.DashboardTaskLazyDataModel #field
+dataModel PERSISTENT #fieldModifier
+currentPortalPage String #field
+currentPortalPage PERSISTENT #fieldModifier
+selectedTask ch.ivyteam.ivy.workflow.ITask #field
+selectedTask PERSISTENT #fieldModifier
