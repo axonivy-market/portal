@@ -603,6 +603,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .action-container, .action-container a.task-action-item, .action-container span.task-action-item {
+  display: flex;
   align-items: center;
 }
 
@@ -1742,7 +1743,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
 
 .task-details-action-container.action-container.ui-g-5 {
   padding: 0;
-  text-align: right;
+  justify-content: flex-end;
 }
 
 .options-panel .option-action-icon {
