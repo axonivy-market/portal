@@ -258,9 +258,7 @@ private static final long serialVersionUID = -5889375917550618261L;
 
     // Since 9.2, we will store processId and processType instead of start link and use them to find it's latest link.
     /*
-     * Automatic updating issue: if we clone editingProcess to a new object (cloned object), then set cloned object link to empty and save to database,
-     * after that editingProcess link will be updated to empty automatically.
-     * So that DO NOT use cloning approach.
+     * Because editingProcess will be updated after saving to database, so that we need to set link value for updated editingProcess
      */
     String link = editingProcess.getLink();
     editingProcess.setLink("");
@@ -360,9 +358,6 @@ private static final long serialVersionUID = -5889375917550618261L;
     setIndex(userProcesses);
 
     // Since 9.2, we will store processId and processType instead of start link and use them to find it's latest link.
-    /*
-     * Automatic updating issue: not happen like saveNewUserProcess method, may be because in this method we save a list.
-     */
     List<UserProcess> userProcessesWithoutLink = new ArrayList<>();
     for (UserProcess userProcess : userProcesses) {
       UserProcess cloneUserProcess = userProcess.clone();
