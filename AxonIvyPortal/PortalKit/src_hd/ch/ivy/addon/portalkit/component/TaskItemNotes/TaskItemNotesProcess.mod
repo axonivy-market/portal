@@ -67,7 +67,8 @@ import ch.ivy.addon.portalkit.util.CaseUtils;
 import ch.ivyteam.ivy.workflow.ICase;
 
 ICase iCase = in.task.getCase().getBusinessCase();
-out.notes = CaseUtils.findNotes(iCase, !out.showSystemNotes);
+boolean showSystemNotes = out.showSystemNotes && out.showSystemNotesChkbox;
+out.notes = CaseUtils.findNotes(iCase, !showSystemNotes);
 ' #txt
 Ts0 f4 security system #txt
 Ts0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
