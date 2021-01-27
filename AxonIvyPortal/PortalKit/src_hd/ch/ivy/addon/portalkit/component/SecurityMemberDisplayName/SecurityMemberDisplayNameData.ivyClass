@@ -1,5 +1,5 @@
-ActivatorFullnameDisplayData #class
-ch.ivy.addon.portalkit.component.ActivatorFullnameDisplay #namespace
+SecurityMemberDisplayNameData #class
+ch.ivy.addon.portalkit.component.SecurityMemberDisplayName #namespace
 memberNames java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> #field
 memberNames PERSISTENT #fieldModifier
 roleName String #field

@@ -4506,39 +4506,38 @@ body .ui-dialog.ui-widget.export-express-dialog {
   display: block;
 }
 
-.user-fullname-display .user-of-role {
+.ui-overlaypanel.user-of-role {
   width: 400px;
   max-height: 450px;
 }
 
-.user-fullname-display .user-data-scroller .ui-datascroller-content.ui-widget-content {
+.ui-overlaypanel.user-of-role .user-data-scroller .ui-datascroller-content.ui-widget-content {
   overflow: auto;
   max-height: 300px;
 }
 
-.user-fullname-display .user-data-scroller .ui-datascroller-content .ui-datascroller-item,
-.user-fullname-display .user-name {
+.ui-overlaypanel.user-of-role .user-data-scroller .ui-datascroller-content .ui-datascroller-item,
+.ui-overlaypanel.user-of-role .user-name {
   padding: 4px 7px;
   padding-left: 0;
 }
 
-.user-fullname-display .user-data-scroller .ui-datascroller-content.ui-widget-content .ui-datascroller-list {
+.ui-overlaypanel.user-of-role .user-data-scroller .ui-datascroller-content.ui-widget-content .ui-datascroller-list {
   padding-top: 4px;
   margin-left: 15px;
   list-style-type: disc;
 }
 
 @media screen and (max-width: 40em) {
-  .user-fullname-display,
-  .user-fullname-display a.user-fullname-link {
+  a.user-fullname-link {
     width: 100%;
     display: inline-block;
   }
-  .user-fullname-display .user-of-role {
+  .ui-overlaypanel.user-of-role {
     width: 85vw;
     max-height: 320px;
   }
-  .user-fullname-display .user-data-scroller .ui-datascroller-content.ui-widget-content {
+  .ui-overlaypanel.user-of-role .user-data-scroller .ui-datascroller-content.ui-widget-content {
     max-height: 180px;
   }
 }

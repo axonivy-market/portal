@@ -6,51 +6,55 @@
 
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="textId" default="user" />
-  <cc:attribute name="username" required="true" />
+  <cc:attribute name="securityMemberName" required="true" />
   <cc:attribute name="fullname" required="true" />
-  <cc:attribute name="activator" type="ch.ivyteam.ivy.security.ISecurityMember" shortDescription="An activator is a user or a role that can start the task" required="true"/>
+  <cc:attribute name="securityMember" type="ch.ivyteam.ivy.security.ISecurityMember" shortDescription="An activator is a user or a role that can start the task" required="true"/>
+  <cc:attribute name="alwaysShowAsText" default="false" shortDescription="To force display the user name with simple text format"/>
   <cc:attribute name="styleClass" />
 </cc:interface>
 
 <cc:implementation>
-  <c:set var="activator" value="#{cc.attrs.activator}" />
-  <c:set var="renderUserOfRole" value="#{data.isShowAllUser and activator != null and !activator.isUser()}"/>
+  <c:set var="alwaysShowAsText" value="#{empty cc.attrs.alwaysShowAsText ? false : cc.attrs.alwaysShowAsText}" />
+  <c:set var="securityMember" value="#{cc.attrs.securityMember}" />
+  <c:set var="renderUserOfRole" value="#{data.isShowAllUser and securityMember != null and !securityMember.isUser()}"/>
 
   <!-- Display User name as text format -->
-  <h:panelGroup rendered="#{!renderUserOfRole}">
+  <h:panelGroup rendered="#{!renderUserOfRole or alwaysShowAsText}">
     <ic:ch.ivy.addon.portalkit.component.UserFullnameDisplayText id="#{cc.attrs.textId}-text"
-      fullname="#{cc.attrs.fullname}" username="#{cc.attrs.username}"
+      fullname="#{cc.attrs.fullname}" username="#{cc.attrs.securityMemberName}"
       textId="#{cc.attrs.textId}" styleClass="#{cc.attrs.styleClass}"/>
   </h:panelGroup>
 
   <!-- Display Role name as link format, click to show all user of this role -->
-  <h:panelGroup rendered="#{renderUserOfRole}" styleClass="user-fullname-display">
+  <h:panelGroup rendered="#{renderUserOfRole and !alwaysShowAsText}">
     <p:commandLink id="#{cc.attrs.textId}-activator" styleClass="#{cc.attrs.styleClass} user-fullname-link"
-      value="#{userFormatBean.format(cc.attrs.fullname, cc.attrs.username)}"
+      value="#{userFormatBean.format(cc.attrs.fullname, cc.attrs.securityMemberName)}"
       update="user-of-role"
-      actionListener="#{logic.loadUsersOfRole(activator.getMemberName())}"
+      actionListener="#{logic.loadUsersOfRole(securityMember.getMemberName())}"
       oncomplete="PF('users-of-role').show('#{component.clientId}')"
       process="@this" immediate="true"/>
     <p:tooltip for="#{cc.attrs.textId}-activator"
-      value="#{userFormatBean.formatWithTip(cc.attrs.fullname, cc.attrs.username)} - #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/userFullnameDisplay/tooltipHelper')}"
+      value="#{userFormatBean.formatWithTip(cc.attrs.fullname, cc.attrs.securityMemberName)} - #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/tooltipHelper')}"
       trackMouse="true" hideEvent="mouseleave click"/>
 
     <p:overlayPanel id="user-of-role" widgetVar="users-of-role"
       showCloseIcon="false"
       styleClass="user-of-role u-padding-0"
       dismissable="true"
-      my="left top" at="left bottom">
+      my="left top" at="left bottom"
+      appendTo="@(body)"
+      dynamic="true">
       <h:form id="user-form" styleClass="ui-g" onsubmit="return false;">
         <h:panelGroup id="user-data-container" styleClass="ui-g-12 u-padding-0">
           <div class="ui-g-12">
-            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/userFullnameDisplay/userOfRoleTitle', [activator.getDisplayName()])}"
+            <h:outputText value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/userOfRoleTitle', [securityMember.getDisplayName()])}"
               styleClass="role-name" />
           </div>
 
           <div class="ui-g-12">
             <ic:ch.ivy.addon.portalkit.component.Filter id="filter-container"
               icon="fa fa-filter"
-              placeholder="Filter by user name"
+              placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/filterByUsername')}"
               styleClass="widget-header-filter-input"
               keywordStoresIn="#{data.keyword}"
               listener="#{logic.filterUserByName(data.keyword)}"
@@ -68,12 +72,12 @@
             <f:facet name="loader">
               <p:link rendered="#{totalMember gt 20}" href="#">
                 <i class="fa fa-angle-double-down u-mar-right-5"/>
-                <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/userFullnameDisplay/loadMore')}</span>
+                <span>#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/loadMore')}</span>
               </p:link>
             </f:facet>
           </p:dataScroller>
           <h:outputText rendered="#{empty data.memberNames}"
-            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/userFullnameDisplay/noUser')}"
+            value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/noUser')}"
             styleClass="ui-g-12"/>
         </h:panelGroup>
       </h:form>
