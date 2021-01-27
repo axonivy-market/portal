@@ -1,7 +1,7 @@
 [Ivy]
 1771F48F5DB4A59C 7.5.0 #module
 >Proto >Proto Collection #zClass
-Ts0 ActivatorFullnameDisplayProcess Big #zClass
+Ts0 SecurityMemberDisplayNameProcess Big #zClass
 Ts0 RD #cInfo
 Ts0 #process
 Ts0 @TextInP .type .type #zField
@@ -28,7 +28,7 @@ Ts0 @PushWFArc f2 '' #zField
 Ts0 @GridStep f15 '' #zField
 Ts0 @PushWFArc f16 '' #zField
 Ts0 @PushWFArc f5 '' #zField
->Proto Ts0 Ts0 ActivatorFullnameDisplayProcess #zField
+>Proto Ts0 Ts0 SecurityMemberDisplayNameProcess #zField
 Ts0 f0 guid 15493AB38F1A359C #txt
 Ts0 f0 method start() #txt
 Ts0 f0 inParameterDecl '<> param;' #txt
@@ -150,7 +150,7 @@ Ts0 f15 actionTable 'out=in;
 Ts0 f15 actionCode 'import ch.ivy.addon.portalkit.dto.UserDTO;
 if (in.memberNames.size() >= 100) {
 	UserDTO user = new UserDTO();
-	user.displayName = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/userFullnameDisplay/filterToSee").concat(" ...");
+	user.displayName = ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/components/SecurityMemberDisplayName/filterToSee").concat(" ...");
 	in.memberNames.add(user);
 }' #txt
 Ts0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -164,7 +164,7 @@ Ts0 f15 464 202 112 44 -51 -8 #rect
 Ts0 f15 @|StepIcon #fIcon
 Ts0 f16 400 224 464 224 #arcP
 Ts0 f5 576 224 635 224 #arcP
->Proto Ts0 .type ch.ivy.addon.portalkit.component.ActivatorFullnameDisplay.ActivatorFullnameDisplayData #txt
+>Proto Ts0 .type ch.ivy.addon.portalkit.component.SecurityMemberDisplayName.SecurityMemberDisplayNameData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
 >Proto Ts0 '' #fIcon
