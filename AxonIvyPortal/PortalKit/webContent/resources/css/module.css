@@ -27,27 +27,13 @@
  *
  */
 
-/* =================== FIELDSET ====================== */
+/* =================== PROCESS FIELDSET ====================== */
 body .ui-fieldset.fieldset-no-border {
   border: none !important;
   padding: .6em 0;
   margin: 0;
 }
 
-.fieldset-no-border .ui-fieldset-toggler.ui-icon-minusthick:before {
-  content: "\f0d7";
-}
-
-.fieldset-no-border .ui-fieldset-toggler.ui-icon-plusthick:before {
-  content: "\f0da";
-}
-
-.fieldset-no-border .ui-fieldset-toggler:before {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 3px;
-}
 /* =================== END FIELDSET ====================== */
 .widget-header {
   display: flex;
@@ -233,9 +219,6 @@ body .ui-fieldset.fieldset-no-border {
   margin-right: auto;
   padding-right: 10px;
   padding-left: 10px;
-  font-size: var(--large-font-size);
-  color: var(--task-widget-header-column);
-  font-family: var(--portal-font-family);
 }
 
 .task-widget .in-progress-task-checkbox, .case-widget-container .in-progress-task-checkbox {
@@ -620,6 +603,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .action-container, .action-container a.task-action-item, .action-container span.task-action-item {
+  display: flex;
   align-items: center;
 }
 
@@ -934,16 +918,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   opacity: 1;
 }
 
-body .process-widget .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler {
-  width: 20px;
-  height: 20px;
-  padding: 0;
-}
-
-body .process-widget .ui-fieldset .ui-fieldset-legend {
-  line-height: 0.3rem;
-}
-
 .expand-collapse-btns {
   float: left;
 }
@@ -1083,7 +1057,7 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 .compact-processes-container .process-start-list-item-name,
 .compact-default-processes-container .process-start-list-item-name {
   padding-left: 0 !important;
-  width: calc(100% - 55px) !important;
+  width: calc(100% - 75px) !important;
 }
 
 .process-start-list-item-action {
@@ -1172,7 +1146,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 
 .process-widget .process-group {
   width: calc(100% - 75px);
-  padding-left: 0;
   float: left;
 }
 
@@ -1751,6 +1724,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   float: left;
 }
 
+.task-detail-general-card {
+  min-height: 610px;
+}
+
 .task-detail-general-card .task-details-action-container {
   text-align: right;
   position: absolute;
@@ -1759,9 +1736,14 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   padding: 0;
 }
 
+.task-detail-general-card .task-details-action-container.old-style {
+  display: inline-flex;
+  justify-content: flex-end;
+}
+
 .task-details-action-container.action-container.ui-g-5 {
   padding: 0;
-  text-align: right;
+  justify-content: flex-end;
 }
 
 .options-panel .option-action-icon {
@@ -4396,16 +4378,33 @@ _:-ms-fullscreen, :root .content-link-history {
   min-height: 890px;
 }
 
+.task-detail-general-card.old-style {
+  padding-bottom: 0px !important;
+  min-height: 720px;
+}
+
 .task-note-component {
   height: 438px;
   width: 100%;
   margin-bottom: 7px;
+  margin-bottom: 10px;
+}
+
+.task-note-component.old-style {
+  height: 350px;
 }
 
 .task-document-component {
   height: 438px;
   width: 100%;
   margin: 0 0 1em 0;
+}
+
+.task-document-component.old-style {
+  height: 350px;
+  margin-top: 10px !important;
+  margin: 0;
+  margin-bottom: 10px
 }
 
 .task-detail-column-title {
@@ -4456,6 +4455,7 @@ _:-ms-fullscreen, :root .content-link-history {
 
 .action-link {
   margin: auto 10px;
+  display: flex;
   align-items: center;
 }
 
@@ -4663,10 +4663,6 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
 .express-helper-loading-container,
 .express-process-upload.ui-fileupload .ui-fileupload-progress {
   display: none;
-}
-
-.express-helper-loading-container .si-lg {
-  font-size: var(--express-helper-loading-container-si-lg-font-size);
 }
 
 body .ui-dialog.ui-widget.import-express-dialog,
@@ -4908,7 +4904,6 @@ height:10rem;
 }
 .case-stage-icon{
 font-size:2em;
-color:var(--ivy-primary-color-white);
 width: 100%; 
 height: 100%;
 display: flex;
@@ -4971,7 +4966,6 @@ box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 z-index: 1;
 }
 .side-step-panel .dropdown-content a {
-color: var(--ivy-primary-color-black);
 padding: 12px 16px;
 text-decoration: none;
 display: block;
@@ -5216,4 +5210,40 @@ body td .si {
 
 .task-detail-description .pointer-event-none {
   pointer-events: none;
+}
+
+.ui-overlaypanel.user-of-role {
+  width: 400px;
+  max-height: 450px;
+}
+
+.ui-overlaypanel.user-of-role .user-data-scroller .ui-datascroller-content.ui-widget-content {
+  overflow: auto;
+  max-height: 300px;
+}
+
+.ui-overlaypanel.user-of-role .user-data-scroller .ui-datascroller-content .ui-datascroller-item,
+.ui-overlaypanel.user-of-role .user-name {
+  padding: 4px 7px;
+  padding-left: 0;
+}
+
+.ui-overlaypanel.user-of-role .user-data-scroller .ui-datascroller-content.ui-widget-content .ui-datascroller-list {
+  padding-top: 4px;
+  margin-left: 15px;
+  list-style-type: disc;
+}
+
+@media screen and (max-width: 40em) {
+  a.user-fullname-link {
+    width: 100%;
+    display: inline-block;
+  }
+  .ui-overlaypanel.user-of-role {
+    width: 85vw;
+    max-height: 320px;
+  }
+  .ui-overlaypanel.user-of-role .user-data-scroller .ui-datascroller-content.ui-widget-content {
+    max-height: 180px;
+  }
 }
