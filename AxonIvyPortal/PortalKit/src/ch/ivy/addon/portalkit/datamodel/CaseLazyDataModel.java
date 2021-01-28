@@ -493,7 +493,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   private String getDefaultSortField() {
     String defaultSortField = UserSettingService.newInstance().getDefaultSortFieldOfCaseList();
-    if (StringUtils.isBlank(defaultSortField)) {
+    if (StringUtils.isBlank(defaultSortField) || UserSettingService.DEFAULT.equals(defaultSortField)) {
       GlobalSettingService globalSettingService = new GlobalSettingService();
       defaultSortField = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_FIELD_OF_CASE_LIST.name());
     }
@@ -502,7 +502,7 @@ public class CaseLazyDataModel extends LazyDataModel<ICase> {
 
   private boolean isSortedDescendingByDefault() {
     String defaultSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfCaseList();
-    if (StringUtils.isBlank(defaultSortDirection)) {
+    if (StringUtils.isBlank(defaultSortDirection) || UserSettingService.DEFAULT.equals(defaultSortDirection)) {
       GlobalSettingService globalSettingService = new GlobalSettingService();
       defaultSortDirection = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_CASE_LIST.name());
     }
