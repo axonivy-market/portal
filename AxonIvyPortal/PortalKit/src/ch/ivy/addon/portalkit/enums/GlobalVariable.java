@@ -50,7 +50,8 @@ public enum GlobalVariable {
   DEFAULT_SORT_DIRECTION_OF_TASK_LIST(GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESC.name(), "defaultSortDirectionOfTaskList", getSortDirections()),
   DEFAULT_SORT_FIELD_OF_CASE_LIST(GlobalVariableType.EXTERNAL_SELECTION, CaseSortField.ID.name(), "defaultSortFieldOfCaseList", getCaseListSortFields()),
   DEFAULT_SORT_DIRECTION_OF_CASE_LIST(GlobalVariableType.EXTERNAL_SELECTION, SortDirection.DESC.name(), "defaultSortDirectionOfCaseList", getSortDirections()),
-  DEFAULT_HOMEPAGE(GlobalVariableType.EXTERNAL_SELECTION, StringUtils.capitalize(HomepageType.DASHBOARD.name().toLowerCase()), "defaultHomepage");
+  DEFAULT_HOMEPAGE(GlobalVariableType.EXTERNAL_SELECTION, StringUtils.capitalize(HomepageType.DASHBOARD.name().toLowerCase()), "defaultHomepage"),
+  DISPLAY_ALL_USERS_OF_TASK_ACTIVATOR(GlobalVariableType.SELECTION, Option.FALSE.toString(), "displayAllUsersOfTaskActivator");
   
   private GlobalVariableType type;
   private String defaultValue;

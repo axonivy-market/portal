@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import ch.ivy.addon.portalkit.enums.SortDirection;
 import portal.guitest.common.BaseTest;
 import portal.guitest.common.SystemProperties;
 import portal.guitest.common.TestAccount;
@@ -61,7 +62,8 @@ public class AdminSettingsTest extends BaseTest {
 	@Test
 	public void testDefaultSortOptionsForTaskList() {
     updatePortalSetting(DEFAULT_SORT_FIELD_OF_TASK_LIST, "PRIORITY");
-    updatePortalSetting(DEFAULT_SORT_DIRECTION_OF_TASK_LIST, "ASCENDING");
+    updatePortalSetting(DEFAULT_SORT_DIRECTION_OF_TASK_LIST, SortDirection.ASC.name());
+    redirectToRelativeLink(cleanSessionCacheUrl);
 
     createTestingTasks();
     TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
@@ -74,7 +76,7 @@ public class AdminSettingsTest extends BaseTest {
 	  public void testDefaultSortOptionsForCaseList() {
 	   redirectToRelativeLink(create12CasesWithCategoryUrl); 
 	   updatePortalSetting(DEFAULT_SORT_FIELD_OF_CASE_LIST, "NAME");
-	   updatePortalSetting(DEFAULT_SORT_DIRECTION_OF_CASE_LIST, "DESCENDING");
+	   updatePortalSetting(DEFAULT_SORT_DIRECTION_OF_CASE_LIST, SortDirection.DESC.name());
 
 	   TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
 	   MainMenuPage mainMenuPage = taskWidgetPage.openMainMenu();
