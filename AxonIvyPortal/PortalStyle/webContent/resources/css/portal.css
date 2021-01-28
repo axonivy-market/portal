@@ -162,14 +162,11 @@ body .ui-icon {
 /* Dialog */
 body .ui-dialog .ui-dialog-titlebar {
   border-bottom: 1px solid var(--ivy-primary-color-grey-light);
-  padding: 8px 20px;
   color: var(--ui-dialog-title-bar-text-color); }
 body .ui-dialog .ui-dialog-titlebar .ui-dialog-title {
-  padding-left: 2px;
   font-size: var(--body-dialog-title-font-size); }
 body .ui-dialog .ui-dialog-titlebar .ui-dialog-content {
-  font-size: var(--large-font-size);
-  padding: 1rem 2rem 2rem; }
+  font-size: var(--large-font-size);}
 
 /* Data table */
 body .ui-datatable tbody tr td.ui-editable-column.ui-state-highlight.ui-cell-editing .ui-inputfield {
