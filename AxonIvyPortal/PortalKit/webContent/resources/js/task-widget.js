@@ -122,7 +122,7 @@ function TaskListToolKit() {
         } else {
           $(taskSortMenu).show();
         }
-        $.each(taskSortMenu.children('a'), function(i, header) {
+        $.each(taskSortMenu.children('a, .js-unsortable-header-cell'), function(i, header) {
           var cell = $(taskEntry).children().get(i);
           $(header).outerWidth($(cell).outerWidth());
         });
