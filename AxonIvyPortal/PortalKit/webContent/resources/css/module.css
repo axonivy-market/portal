@@ -2200,10 +2200,6 @@ _:-ms-fullscreen, :root .additional-case-details-link {
 }
 
 /* Override Primefaces styles */
-.add-new-note-save-command.ui-button {
-  margin-right: 5px;
-}
-
 .icon-selection-dialog-selecting-icon {
   display: inline-flex;
   width: 35px;
@@ -2614,6 +2610,11 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 /******************************** PROJECT INFO DIALOG ******************************/
 .project-info-dialog {
   max-width: 800px;
+}
+
+.project-info-dialog .ui-dialog-titlebar.ui-widget-header {
+  padding-left: 1.5em;
+  padding-right: 1.5em;
 }
 
 @media screen and (max-width: 40em) {
