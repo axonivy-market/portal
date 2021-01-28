@@ -2,8 +2,6 @@ package ch.ivy.addon.portalkit.bean;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -25,12 +23,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import ch.ivy.addon.portalkit.dto.taskdetails.TaskDetails;
 import ch.ivy.addon.portalkit.dto.taskdetails.TaskDetailsWidget;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.enums.PortalLibrary;
-import ch.ivy.addon.portalkit.loader.ResourceLoader;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
-import ch.ivyteam.ivy.application.ILibrary;
 import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivyteam.ivy.globalvars.IGlobalVariableContext;
 
 @ViewScoped
 @ManagedBean
@@ -38,7 +34,7 @@ public class TaskDetailsBean implements Serializable {
 
   private static final long serialVersionUID = 8566646437739271552L;
   private static final String TASK_DETAILS_CONFIGURATION_PROPERTY = "task.details.widgets";
-  private static final String BREAK_LINE_CHARACTERS = "\n";
+  private static final String PORTAL_TASK_DETAILS_GLOBAL_VARIABLE = "PORTAL_TASK_DETAILS";
 
   private TaskDetails configuration;
   private List<TaskDetailsWidget> widgets;
@@ -47,7 +43,7 @@ public class TaskDetailsBean implements Serializable {
   private boolean hasShowNotAvailableData;
   private boolean hasApplyJsonConfigurationFile;
   private boolean hasShowDurationTime;
-  private GlobalSettingService globalSettingService = new GlobalSettingService();;
+  private GlobalSettingService globalSettingService = new GlobalSettingService();
 
   @PostConstruct
   public void init() {
@@ -88,10 +84,7 @@ public class TaskDetailsBean implements Serializable {
   }
 
   private TaskDetails defaultConfiguration() throws IOException {
-    ILibrary portalStyleLib = Ivy.wf().getApplication().findReleasedLibrary(PortalLibrary.PORTAL_STYLE.getValue());
-    ResourceLoader loader = new ResourceLoader(portalStyleLib.getProcessModelVersion());
-    Optional<Path> path = loader.getTaskDetailsWidgetConfiguration();
-    String widgetsJsonData = String.join(BREAK_LINE_CHARACTERS, Files.readAllLines(path.get()));
+    String widgetsJsonData = IGlobalVariableContext.current().get(PORTAL_TASK_DETAILS_GLOBAL_VARIABLE);
     return mapper.readValue(widgetsJsonData, TaskDetails.class);
   }
 

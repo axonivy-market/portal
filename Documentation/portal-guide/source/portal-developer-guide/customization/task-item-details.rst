@@ -6,7 +6,7 @@ Task item details
 TaskItemDetails is a built-in component of Portal which contains the
 role, user, task, case and time information which users can interact with.
 In order to show needed task's information,
-Portal supports overriding concept for TaskItemDetails.
+Portal supports you to override concepts of TaskItemDetails component.
 
 Each TaskItemDetails contains
 
@@ -16,21 +16,23 @@ Each TaskItemDetails contains
 
 -  **Histories** ``3``
 
--  **Custom panels**
+-  **Custom panels (widgets)**
 
 |task-standard|
 
-.. important:: All visible widgets will be configured in
-            :ref:`Task Details JSON Configuration File<task-details-json-configuration-file>`.
+.. important:: All visible widgets will be configured in :ref:`Global Variable PORTAL_TASK_DETAILS<task-details-configuration-variable>`.
 
 
-.. _task-details-json-configuration-file:
+.. _task-details-configuration-variable:
 
-Task Details JSON Configuration File:
----------------------------------------------
+How to configure widgets in task details
+----------------------------------------
 
--  This JSON Configuration File contains settings of all visible widgets on page.
--  Default JSON Configuration File:
+-  Settings of all visible widgets on task details page are saved in **Global Variable PORTAL_TASK_DETAILS**.
+-  Cockpit Administrator can configure widgets via **PORTAL_TASK_DETAILS** in Cockpit settings page.
+   |edit-variable-portal-task-details|
+
+-  Default configuration includes 3 widgets.
 
    .. code-block:: html
 
@@ -66,22 +68,30 @@ Task Details JSON Configuration File:
 
    ..
 
--  Structure of each widget in JSON Configuration File:
+-  Structure of each widget in variable **PORTAL_TASK_DETAILS**:
 
    ``type``: There are 4 types: ``information``, ``document``, ``history``, ``custom``
 
-   ``id``: It's used for detecting custom widgets.
+   ``id``: It's used to detect custom widgets.
 
-   ``axisX``: HTML DOM Style ``top`` will be calculated by fomula ``axisX / 12 * 100%``
+   ``axisX``: HTML DOM Style ``left`` will be calculated by formula ``axisX / 12 * 100%``
 
-   ``axisY``: HTML DOM Style ``left`` will be calculated by fomula ``axisY / 12 * 100%``
+   ``axisY``: HTML DOM Style ``top`` will be calculated by formula ``axisY / 12 * 100%``
 
    ``width``: HTML DOM Style ``width`` will be calculated by formula ``60 * width + 20 * (width - 1)``
 
    ``height``: HTML DOM Style ``height`` will be calculated by formula ``60 * height + 20 * (height - 1)``
 
-.. important:: Please do not change **type** and **id** of widgets.
-            You can change **axisX**, **axisY**, **width** and **height** for updating size and position of widgets.
+   ``styleClass`` (optional): add CSS Classes to HTML DOM
+
+   ``style`` (optional): add inline style to HTML DOM
+
+.. important::
+   -  **Do not change** ``type`` and ``id`` of widgets.
+      You can change ``axisX``, ``axisY``, ``width`` and ``height`` to update size and position of widgets.
+   -  ``axisX``, ``axisY``, ``width`` and ``height`` must be **integers**.
+   -  ``axisX + width`` must **not be larger** than **12**.
+
 
 .. _customization-task-item-details-how-to-overide-ui:
 
@@ -106,41 +116,131 @@ Refer to ``portal-developer-examples`` project for examples.
 4. Use `Axon.ivy HtmlOverride wizard <https://developer.axonivy.com/doc/9.1/designer-guide/how-to/overrides.html?#override-new-wizard>`_ to override ``PortalTaskDetails`` HTML dialog.
 
 5. After previous steps, you can override Task item details UI elements
-   to show or hide elements.
+   to show custom panels, show or hide elements.
 
-   To show or hide elements, please refer to :ref:`Show or hide
+   To **show or hide elements**, refer to :ref:`Show or hide
    elements <customization-task-item-details-how-to-overide-ui-show-hidden-ui>`.
 
-   And to add a new elements, please refer to  :ref:`Add new Custom
-   panel <customization-task-item-details-how-to-overide-ui-custom-body>`
-   code.
+   To **show custom panels (widgets)**, refer to :ref:`Show Custom
+   Panels (Widgets) <customization-task-item-details-how-to-overide-ui-custom-body>`.
 
 .. _customization-task-item-details-how-to-overide-ui-show-hidden-ui:
 
 Show or hide elements
---------------------------------
+---------------------
 
-Refer to the ``ui`` tag list in ``PortalTaskDetails.xhtml`` of
-PortalTemplate. If you want to show or hide any elements on
-TaskItemDetails, you must override value of ``ui:param``
+Refer to list of ``ui:param`` tag in ``PortalTaskDetails.xhtml`` of
+PortalTemplate. If you want to show or hide elements on
+TaskItemDetails, you must override ``ui:param``
 
-List valid ui parameters:
+List of valid ``ui:param``:
 
 -  ``ui:param name="showItemDetailsHeader" value="true"``
 
    To show or hide Task Header, use ``showItemDetailsHeader``. Default value is true.
 
+-  ``ui:param name="showItemDetailsNotes" value="true"``
+
+   To show/hide Histories (Task Notes) component, by default it’s true.
+
+-  ``ui:param name="showItemDetailDocuments" value="true"``
+
+   To show/hide Task Documents component, by default it’s true.
 
 .. _customization-task-item-details-how-to-overide-ui-custom-body:
 
-Add new Custom panel
---------------------
+Show Custom Panels (Widgets)
+----------------------------
 
-Refer to the ``taskItemDetailCustomPanel*`` section in
-``PortalTaskDetails.xhtml`` of PortalTemplate.
+There are **two steps** for adding new custom panels.
 
+1. **Cockpit admin** must configure global variable :ref:`PORTAL_TASK_DETAILS<task-details-configuration-variable>`
+   on Cockpit Page to add custom widgets.
 
--  You need to define the ``ui:define`` with the valid name such as
+   Number of custom widgets can be up to 6.
+
+   Type of custom widget must be ``custom``.
+
+   Id of custom widget must be one in
+   ``custom-widget-1``, ``custom-widget-2``,
+   ``custom-widget-3``, ``custom-widget-4``,
+   ``custom-widget-5`` and ``custom-widget-6``.
+
+   Each id ``custom-widget-*`` corresponds to each defined ui ``taskItemDetailCustomPanel*``
+
+.. _task-details-custom-configuration-variable-example:
+
+-  Example PORTAL_TASK_DETAILS with 4 custom widgets configuration:
+
+   .. code-block:: html
+
+      {
+         "widgets": 
+         [
+            {
+               "type": "information",
+               "id": "information",
+               "axisX": 0,
+               "axisY": 0,
+               "width": 6,
+               "height": 12
+            },
+            {
+               "type": "document",
+               "id": "document",
+               "axisX": 6,
+               "axisY": 0,
+               "width": 6,
+               "height": 6
+            },
+            {
+               "type": "history",
+               "id": "history",
+               "axisX": 6,
+               "axisY": 6,
+               "width": 6,
+               "height": 6
+            },
+            {
+               "type": "custom",
+               "id": "custom-widget-1",
+               "axisX": 0,
+               "axisY": 12,
+               "width": 6,
+               "height": 5
+            },
+            {
+               "type": "custom",
+               "id": "custom-widget-2",
+               "axisX": 6,
+               "axisY": 12,
+               "width": 6,
+               "height": 5
+            },
+            {
+               "type": "custom",
+               "id": "custom-widget-3",
+               "axisX": 0,
+               "axisY": 17,
+               "width": 6,
+               "height": 5
+            },
+            {
+               "type": "custom",
+               "id": "custom-widget-4",
+               "axisX": 6,
+               "axisY": 17,
+               "width": 6,
+               "height": 5
+            }
+         ]
+      }
+
+   ..
+
+2. Refer to the ``taskItemDetailCustomPanel*`` section in ``PortalTaskDetails.xhtml`` of PortalTemplate.
+
+-  We need to define the ``ui:define`` tag with the valid name such as
    ``taskItemDetailCustomPanel1``,
    ``taskItemDetailCustomPanel2``,
    ``taskItemDetailCustomPanel3``,
@@ -148,17 +248,11 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
    ``taskItemDetailCustomPanel5`` and
    ``taskItemDetailCustomPanel6``.
 
-   The ``taskItemDetailCustomPanel1``, ``taskItemDetailCustomPanel2``,
-   The ``taskItemDetailCustomPanel3``, ``taskItemDetailCustomPanel4``,
-   The ``taskItemDetailCustomPanel5`` and ``taskItemDetailCustomPanel6``
-   will be shown base on values in :ref:`Task Details JSON Configuration File<task-details-json-configuration-file>`.
+   The ``taskItemDetailCustomPanel*`` will be displayed
+   base on configured in global variable
+   :ref:`PORTAL_TASK_DETAILS<task-details-configuration-variable>`.
 
-
--  Add your custom code into that tag
-
--  Finally, your custom panel will be displayed on
-   :ref:`TaskItemDetails <customization-task-item-details>`
-   page
+-  Add your custom code into ``<ui:define name="taskItemDetailCustomPanel*"></ui:define>`` tags.
 
 -  Example code for overriding custom panel box of task details:
 
@@ -262,89 +356,8 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
       </ui:composition>
    ..
 
--  You have to overwrite :ref:`task-details.json<task-details-json-configuration-file>` for adding custom panels.
-
-   You can add up to 6 custom widgets. In :ref:`Task Details JSON Configuration File<task-details-json-configuration-file>`:
-
-   Id must be one in
-   ``custom-widget-1``, ``custom-widget-2``,
-   ``custom-widget-3``, ``custom-widget-4``,
-   ``custom-widget-5`` and ``custom-widget-6``.
-
-   Each id ``custom-widget-*`` corresponds to each defined ui ``taskItemDetailCustomPanel*``
-
-   Type must be ``custom``.
-
--  Example Task Details JSON Configuration File:
-
-   .. code-block:: html
-
-      {
-         "widgets": 
-         [
-            {
-               "type": "information",
-               "id": "information",
-               "axisX": 0,
-               "axisY": 0,
-               "width": 6,
-               "height": 12
-            },
-            {
-               "type": "document",
-               "id": "document",
-               "axisX": 6,
-               "axisY": 0,
-               "width": 6,
-               "height": 6
-            },
-            {
-               "type": "history",
-               "id": "history",
-               "axisX": 6,
-               "axisY": 6,
-               "width": 6,
-               "height": 6
-            },
-            {
-               "type": "custom",
-               "id": "custom-widget-1",
-               "axisX": 0,
-               "axisY": 12,
-               "width": 6,
-               "height": 5
-            },
-            {
-               "type": "custom",
-               "id": "custom-widget-2",
-               "axisX": 6,
-               "axisY": 12,
-               "width": 6,
-               "height": 5
-            },
-            {
-               "type": "custom",
-               "id": "custom-widget-3",
-               "axisX": 0,
-               "axisY": 17,
-               "width": 6,
-               "height": 5
-            },
-            {
-               "type": "custom",
-               "id": "custom-widget-4",
-               "axisX": 6,
-               "axisY": 17,
-               "width": 6,
-               "height": 5
-            }
-         ]
-      }
-
-   ..
-
--  After applied above example xhtml code and JSON Configuration File to your custom page, the custom panels
-   will display as below
+-  After applied above **example xhtml code** and **example variable PORTAL_TASK_DETAILS** to your custom page, the custom panels
+   will be displayed as the below image.
 
    |task-customized-new-style|
 
@@ -353,5 +366,6 @@ Refer to the ``taskItemDetailCustomPanel*`` section in
 .. |task-customized-top| image:: ../../screenshots/task-detail/customization/task-customized-top.png
 .. |task-customized-bottom| image:: ../../screenshots/task-detail/customization/task-customized-bottom.png
 .. |task-customized-new-style| image:: images/customization/customized-tasks-new-style.png
+.. |edit-variable-portal-task-details| image:: images/customization/edit-variable-portal-task-details.png
 
 
