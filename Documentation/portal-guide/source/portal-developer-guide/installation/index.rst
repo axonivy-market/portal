@@ -122,6 +122,7 @@ Migrate 9.1 to 9.2
    - Adapt start process signature of ``PasswordService`` in ``ChangePassword.mod`` if you overrode this callable.
    - If you are using ``ProcessStartCollector``, replace constructor ``ProcessStartCollector(application)`` with ``ProcessStartCollector()``.
    - If you have TaskLazyDataModel, CaseLazyDataModel customization, remove ``setInvolvedApplications()`` method, ``setInvolvedUsername`` in search criteria.
+   - Deploy :download:`MigrateConfigurationDataTo9.iar <documents/MigrateConfigurationDataTo9.iar>` project to your ivy application and run it. If you have many applications, just deploy to one application and run it one time.
 
 2. In PortalNavigatorInFrame.java, change the methods from non-static to static.
 
@@ -187,6 +188,11 @@ Migrate 8.x to 9.1
 10. ``TaskTemplate-7`` is removed, change it to ``TaskTemplate-8``. ``TaskTemplate`` is also removed, change it to ``frame-8`` (provided by Ivy).
 
 11. The ``MenuKind`` enum has one more entry: EXTERNAL_LINK, use it if your item is an external link, and use CUSTOM if yours is an internal link.
+
+Migrate 8.x to 9.2
+------------------
+
+You need to do all steps in ``Migrate 8.x to 9.1`` and ``Migrate 9.1 to 9.2``
 
 .. _installation-release-notes:
 
