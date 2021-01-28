@@ -73,6 +73,7 @@ pipeline {
             echo ====================Copy license, configuration files====================
             copy /D/Y ${renamedEngineDir}\\configuration\\*.lic ${engineDir}\\configuration
             copy /D/Y ${renamedEngineDir}\\configuration\\*.yaml ${engineDir}\\configuration
+            xcopy /D/S/Y/I ${renamedEngineDir}\\configuration ${engineDir}\\configuration
           """
           powershell """
             echo "====================Copy applications, misc/iis (for SSO)===================="
