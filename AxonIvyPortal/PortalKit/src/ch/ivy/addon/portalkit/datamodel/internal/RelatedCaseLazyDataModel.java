@@ -9,9 +9,7 @@ import org.primefaces.model.LazyDataModel;
 import org.primefaces.model.SortOrder;
 
 import ch.ivy.addon.portalkit.bean.IvyComponentLogicCaller;
-import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria;
-import ch.ivyteam.ivy.process.call.SubProcessCall;
 import ch.ivyteam.ivy.workflow.CaseState;
 import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.query.CaseQuery;
@@ -29,6 +27,7 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
   public RelatedCaseLazyDataModel() {
     super();
     data = new ArrayList<>();
+    caseWidgetComponentId = "related-cases-widget";
     buildCriteria();
   }
 
@@ -46,13 +45,6 @@ public class RelatedCaseLazyDataModel extends LazyDataModel<ICase> {
   }
 
   protected void buildQueryToSearchCriteria() {
-    if (criteria.getCustomCaseQuery() == null) {
-      CaseQuery customCaseQuery = SubProcessCall.withPath(PortalConstants.BUILD_CASE_QUERY_CALLABLE)
-          .withStartSignature("buildCaseQuery()")
-          .call()
-          .get("caseQuery", CaseQuery.class);
-      criteria.setCustomCaseQuery(customCaseQuery);
-    }
     this.criteria.setFinalCaseQuery(CaseQuery.create());
   }
 
