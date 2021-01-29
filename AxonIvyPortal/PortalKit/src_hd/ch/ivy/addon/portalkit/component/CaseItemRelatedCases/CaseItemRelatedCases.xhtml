@@ -13,15 +13,13 @@
 </cc:interface>
 
 <cc:implementation>
-  <f:event listener="#{logic.initData(cc.attrs.case)}" type="preRenderComponent" />
-
   <div id="#{cc.clientId}" class="case-details-item #{cc.attrs.styleClass}">
     <div class="task-details-panel-title">
       <i class="si si-task-list-edit" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskList/headerTitle/relatedTasksHeader')}
     </div>
 
     <div class="ui-g-12 u-padding-0">
-      <p:dataTable id="related-cases" value="#{data.relatedCases}" var="case" paginator="true" rows="5" paginatorPosition="bottom" paginatorAlwaysVisible="false"
+      <p:dataTable id="related-cases" lazy="true" value="#{data.caseLazyDataModel}" var="case" paginator="true" rows="5" paginatorPosition="bottom" paginatorAlwaysVisible="false"
         paginatorTemplate="{PreviousPageLink} {PageLinks} {NextPageLink} {RowsPerPageDropdown}"
         sortBy="#{case.id}" reflow="true" styleClass="related-cases">
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/name')}" sortBy="#{case.name}" styleClass="name-column">

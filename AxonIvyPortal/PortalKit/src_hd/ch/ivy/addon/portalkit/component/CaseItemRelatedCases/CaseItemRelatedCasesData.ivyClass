@@ -12,3 +12,11 @@ inFrame Boolean #field
 inFrame PERSISTENT #fieldModifier
 caseSearchCriteria ch.ivy.addon.portalkit.ivydata.searchcriteria.CaseSearchCriteria #field
 caseSearchCriteria PERSISTENT #fieldModifier
+startIndex Integer #field
+startIndex PERSISTENT #fieldModifier
+count Integer #field
+count PERSISTENT #fieldModifier
+totalCases Long #field
+totalCases PERSISTENT #fieldModifier
+caseLazyDataModel ch.ivy.addon.portalkit.datamodel.internal.RelatedCaseLazyDataModel #field
+caseLazyDataModel PERSISTENT #fieldModifier
