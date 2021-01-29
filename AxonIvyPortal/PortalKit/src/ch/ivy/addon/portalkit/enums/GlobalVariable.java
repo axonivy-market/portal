@@ -134,7 +134,8 @@ public enum GlobalVariable {
   private static Map<String, String> getTaskListSortFields() {
     Map<String, String> result = new HashMap<>();
     for (TaskSortField sortField : TaskSortField.values()) {
-      if (StringUtils.isNotBlank(sortField.getLabel())) {
+      // Task sort field not available
+      if (StringUtils.isNotBlank(sortField.getLabel()) && sortField != TaskSortField.CATEGORY) {
         result.put(sortField.name(), sortField.getLabel());
       }
     }
@@ -144,7 +145,8 @@ public enum GlobalVariable {
   private static Map<String, String> getCaseListSortFields() {
     Map<String, String> result = new HashMap<>();
     for (CaseSortField sortField : CaseSortField.values()) {
-      if (StringUtils.isNotBlank(sortField.getLabel())) {
+      // Case sort field not available
+      if (StringUtils.isNotBlank(sortField.getLabel()) && sortField != CaseSortField.CATEGORY) {
         result.put(sortField.name(), sortField.getLabel());
       }
     }
