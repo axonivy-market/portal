@@ -4672,6 +4672,12 @@ body .ui-dialog.ui-widget.export-express-dialog {
   max-width: 1000px;
 }
 
+body .ui-dialog.ui-widget.import-express-dialog .ui-dialog-titlebar.ui-widget-header,
+body .ui-dialog.ui-widget.export-express-dialog .ui-dialog-titlebar.ui-widget-header {
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+}
+
 @media screen and (max-width: 40em) {
   body .ui-dialog.ui-widget.import-express-dialog,
   body .ui-dialog.ui-widget.export-express-dialog {
