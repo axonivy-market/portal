@@ -4220,7 +4220,7 @@ _:-ms-fullscreen, :root .content-link-history {
 }
 
 .filter-container .applied-filters-container {
-  width: calc(100% - 150px);
+  width: calc(100% - 154px);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -4228,7 +4228,7 @@ _:-ms-fullscreen, :root .content-link-history {
 
 .task-widget .filter-container .applied-filters-container,
 .case-widget .filter-container .applied-filters-container {
-  width: calc(100% - 490px);
+  width: calc(100% - 494px);
 }
 
 @media (max-width: 991px) {
@@ -4249,6 +4249,11 @@ _:-ms-fullscreen, :root .content-link-history {
     margin-left: auto;
 }
 
+.task-widget .task-list-actions.no-widget-header a,
+.case-widget .case-list-actions.no-widget-header a {
+  margin-top: 0;
+}
+
 .task-widget .task-export-to-excel-form,
 .case-widget .case-export-to-excel-form {
   max-width: 166px;
@@ -4262,18 +4267,24 @@ _:-ms-fullscreen, :root .content-link-history {
 
 .task-widget .task-list-actions a,
 .case-widget .case-list-actions a {
-    margin-top: 24px;
+    margin-top: 22px;
+    padding: 2px 0 0 2px;
     display: block;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
+.back-link-container {
+  position: absolute;
+  padding-top: 0.5em;
+}
+
 /*medium*/
 @media (min-width: 992px) and (max-width: 1599px) {
   .task-widget .filter-container .applied-filters-container,
   .case-widget .filter-container .applied-filters-container {
-    width: calc(100% - 236px);
+    width: calc(100% - 240px);
   }
   .task-widget .task-export-to-excel-form,
   .task-widget .config-columns-button,
