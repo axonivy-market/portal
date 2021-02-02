@@ -41,4 +41,12 @@ public class NoteHistoryPage extends TemplatePage {
     List<WebElement> noteAuthorElements = findListElementsByCssSelector("td.note-history-fullname-column");
     return noteAuthorElements.stream().map(w -> w.getText()).collect(Collectors.toList());
   }
+
+  public void clickOnCheckboxShowSystemNotes() {
+    findElementByCssSelector("[id$=':show-system-notes-checkbox']").click();
+  }
+
+  public void waitForNoteTableDisplayed() {
+    waitForElementDisplayed(By.cssSelector("[id$=':task-note-table']"), true);
+  }
 }

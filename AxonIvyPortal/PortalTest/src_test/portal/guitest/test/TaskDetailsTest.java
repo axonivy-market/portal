@@ -177,8 +177,10 @@ public class TaskDetailsTest extends BaseTest {
     openFirstTaskInTaskList();
     taskDetailsPage.clickOnSwitchToEditModeButton();
     taskDetailsPage.waitForSwitchToViewModeButtonDisplayed();
-    taskDetailsPage.drapAndDropWidgets();
-    taskDetailsPage.drapAndDropWidgets();
+    taskDetailsPage.drapAndDropWidgets("note", "document");
+    taskDetailsPage.drapAndDropWidgets("document", "note");
+    taskDetailsPage.drapAndDropWidgets("note", "document");
+    taskDetailsPage.drapAndDropWidgets("document", "note");
     assertTrue(taskDetailsPage.isResetButtonDisplayed());
   }
 }

@@ -225,7 +225,7 @@ public class ChatAssigneeBean implements Serializable {
       return;
     }
 
-    ICase iCase = task.getCase().ensureBusinessCase();
+    ICase iCase = task.getCase().getBusinessCase();
     GroupChat group = initGroupChat(iCase);
     FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, Ivy.cms()
         .co("/ch.ivy.addon.portalkit.ui.jsf/chat/processChatIsCreated", Arrays.asList(getGroupChatName(group))), null);
