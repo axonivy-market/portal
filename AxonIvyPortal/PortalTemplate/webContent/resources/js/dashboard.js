@@ -33,7 +33,7 @@ function loadGrid() {
 
 function handleFilterCategoryHeight(e) {
   var filterTab = $(document.getElementById(e.id)).find("[id$=':filter-tab']");
-  if (filterTab.get(0).ariaHidden == "false") {
+  if (filterTab.lenght > 0 && filterTab.get(0).ariaHidden == "false") {
     var categoryInfo = filterTab.find(".js-category-filter-info");
     if (categoryInfo.get(0).offsetHeight > 160) {
       $(categoryInfo).toggleClass("minimize-content");
