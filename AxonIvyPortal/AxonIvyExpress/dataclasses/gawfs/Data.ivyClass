@@ -2,6 +2,7 @@ Data #class
 gawfs #namespace
 steps List<String> #field
 steps 'Process Steps for ProcessChain' #fieldComment
+steps PERSISTENT #fieldModifier
 definedTasks List<gawfs.TaskDef> #field
 definedTasks 'List of Tasks for execution' #fieldComment
 definedTasks PERSISTENT #fieldModifier
