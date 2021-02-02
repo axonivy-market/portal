@@ -304,7 +304,9 @@ Us0 f18 712 280 776 280 #arcP
 Us0 f9 888 280 936 280 #arcP
 Us0 f20 actionTable 'out=in;
 ' #txt
-Us0 f20 actionCode 'import org.apache.commons.lang3.StringUtils;
+Us0 f20 actionCode 'import ch.ivy.addon.portalkit.enums.CaseSortField;
+import ch.ivy.addon.portalkit.enums.TaskSortField;
+import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import java.util.Optional;
 import ch.ivy.addon.portalkit.enums.CaseSortField;
@@ -318,7 +320,8 @@ if (in.taskListSortFields == null || in.taskListSortFields.isEmpty()) {
   in.taskListSortFields.add(defaultOption);
 
   for (TaskSortField sortField : TaskSortField.values()) {
-  	if (StringUtils.isNotBlank(sortField.getLabel())) {
+   	// Task category sort not yet available
+  	if (StringUtils.isNotBlank(sortField.getLabel()) && sortField != TaskSortField.CATEGORY) {
   		in.taskListSortFields.add(sortField.name());
   	}
   }
@@ -330,8 +333,10 @@ if (in.caseListSortFields == null || in.caseListSortFields.isEmpty()) {
   in.caseListSortFields = new ArrayList();
   in.caseListSortFields.add(defaultOption);
 
+	
   for (CaseSortField sortField : CaseSortField.values()) {
-    if (StringUtils.isNotBlank(sortField.getLabel())) {
+  	// Case category sort not yet available
+    if (StringUtils.isNotBlank(sortField.getLabel()) && sortField != CaseSortField.CATEGORY) {
   		in.caseListSortFields.add(sortField.name());
   	}
   }

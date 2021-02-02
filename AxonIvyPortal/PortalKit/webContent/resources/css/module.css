@@ -27,26 +27,13 @@
  *
  */
 
-/* =================== FIELDSET ====================== */
-.fieldset-no-border {
+/* =================== PROCESS FIELDSET ====================== */
+body .ui-fieldset.fieldset-no-border {
   border: none !important;
   padding: .6em 0;
+  margin: 0;
 }
 
-.fieldset-no-border .ui-fieldset-toggler.ui-icon-minusthick:before {
-  content: "\f0d7";
-}
-
-.fieldset-no-border .ui-fieldset-toggler.ui-icon-plusthick:before {
-  content: "\f0da";
-}
-
-.fieldset-no-border .ui-fieldset-toggler:before {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 3px;
-}
 /* =================== END FIELDSET ====================== */
 .widget-header {
   display: flex;
@@ -232,9 +219,6 @@
   margin-right: auto;
   padding-right: 10px;
   padding-left: 10px;
-  font-size: var(--large-font-size);
-  color: var(--task-widget-header-column);
-  font-family: var(--portal-font-family);
 }
 
 .task-widget .in-progress-task-checkbox, .case-widget-container .in-progress-task-checkbox {
@@ -619,6 +603,7 @@ span.case-details-document-add-link, span.task-details-document-add-link {
 }
 
 .action-container, .action-container a.task-action-item, .action-container span.task-action-item {
+  display: flex;
   align-items: center;
 }
 
@@ -1007,16 +992,6 @@ span.case-details-document-add-link, span.task-details-document-add-link {
   opacity: 1;
 }
 
-body .process-widget .ui-fieldset .ui-fieldset-legend .ui-fieldset-toggler {
-  width: 20px;
-  height: 20px;
-  padding: 0;
-}
-
-body .process-widget .ui-fieldset .ui-fieldset-legend {
-  line-height: 0.3rem;
-}
-
 .expand-collapse-btns {
   float: left;
 }
@@ -1156,7 +1131,7 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 .compact-processes-container .process-start-list-item-name,
 .compact-default-processes-container .process-start-list-item-name {
   padding-left: 0 !important;
-  width: calc(100% - 55px) !important;
+  width: calc(100% - 75px) !important;
 }
 
 .process-start-list-item-action {
@@ -1245,7 +1220,6 @@ body .process-widget .ui-fieldset .ui-fieldset-legend {
 
 .process-widget .process-group {
   width: calc(100% - 75px);
-  padding-left: 0;
   float: left;
 }
 
@@ -1739,6 +1713,7 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  width:100px;
 }
 
 .task-start-info-header-full-mode {
@@ -1824,6 +1799,10 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   float: left;
 }
 
+.task-detail-general-card {
+  min-height: 610px;
+}
+
 .task-detail-general-card .task-details-action-container {
   text-align: right;
   position: absolute;
@@ -1832,9 +1811,14 @@ _:-ms-input-placeholder, :root a.compact-task-start-link {
   padding: 0;
 }
 
+.task-detail-general-card .task-details-action-container.old-style {
+  display: inline-flex;
+  justify-content: flex-end;
+}
+
 .task-details-action-container.action-container.ui-g-5 {
   padding: 0;
-  text-align: right;
+  justify-content: flex-end;
 }
 
 .options-panel .option-action-icon {
@@ -2286,10 +2270,6 @@ _:-ms-fullscreen, :root .additional-case-details-link {
 }
 
 /* Override Primefaces styles */
-.add-new-note-save-command.ui-button {
-  margin-right: 5px;
-}
-
 .icon-selection-dialog-selecting-icon {
   display: inline-flex;
   width: 35px;
@@ -2700,6 +2680,11 @@ _:-ms-fullscreen, :root .circle-process-chain .circle-vertical-process-step:not(
 /******************************** PROJECT INFO DIALOG ******************************/
 .project-info-dialog {
   max-width: 800px;
+}
+
+.project-info-dialog .ui-dialog-titlebar.ui-widget-header {
+  padding-left: 1.5em;
+  padding-right: 1.5em;
 }
 
 @media screen and (max-width: 40em) {
@@ -4304,7 +4289,7 @@ _:-ms-fullscreen, :root .content-link-history {
 }
 
 .filter-container .applied-filters-container {
-  width: calc(100% - 150px);
+  width: calc(100% - 154px);
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -4312,7 +4297,7 @@ _:-ms-fullscreen, :root .content-link-history {
 
 .task-widget .filter-container .applied-filters-container,
 .case-widget .filter-container .applied-filters-container {
-  width: calc(100% - 490px);
+  width: calc(100% - 494px);
 }
 
 @media (max-width: 991px) {
@@ -4333,6 +4318,11 @@ _:-ms-fullscreen, :root .content-link-history {
     margin-left: auto;
 }
 
+.task-widget .task-list-actions.no-widget-header a,
+.case-widget .case-list-actions.no-widget-header a {
+  margin-top: 0;
+}
+
 .task-widget .task-export-to-excel-form,
 .case-widget .case-export-to-excel-form {
   max-width: 166px;
@@ -4346,18 +4336,24 @@ _:-ms-fullscreen, :root .content-link-history {
 
 .task-widget .task-list-actions a,
 .case-widget .case-list-actions a {
-    margin-top: 24px;
+    margin-top: 22px;
+    padding: 2px 0 0 2px;
     display: block;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
 
+.back-link-container {
+  position: absolute;
+  padding-top: 0.5em;
+}
+
 /*medium*/
 @media (min-width: 992px) and (max-width: 1599px) {
   .task-widget .filter-container .applied-filters-container,
   .case-widget .filter-container .applied-filters-container {
-    width: calc(100% - 236px);
+    width: calc(100% - 240px);
   }
   .task-widget .task-export-to-excel-form,
   .task-widget .config-columns-button,
@@ -4464,16 +4460,33 @@ _:-ms-fullscreen, :root .content-link-history {
   min-height: 890px;
 }
 
+.task-detail-general-card.old-style {
+  padding-bottom: 0px !important;
+  min-height: 720px;
+}
+
 .task-note-component {
   height: 438px;
   width: 100%;
   margin-bottom: 7px;
+  margin-bottom: 10px;
+}
+
+.task-note-component.old-style {
+  height: 350px;
 }
 
 .task-document-component {
   height: 438px;
   width: 100%;
   margin: 0 0 1em 0;
+}
+
+.task-document-component.old-style {
+  height: 350px;
+  margin-top: 10px !important;
+  margin: 0;
+  margin-bottom: 10px
 }
 
 .task-detail-column-title {
@@ -4525,6 +4538,7 @@ _:-ms-fullscreen, :root .content-link-history {
 
 .action-link {
   margin: auto 10px;
+  display: flex;
   align-items: center;
 }
 
@@ -4734,14 +4748,16 @@ body .ui-picklist .ui-picklist-filter-container .ui-icon {
   display: none;
 }
 
-.express-helper-loading-container .si-lg {
-  font-size: var(--express-helper-loading-container-si-lg-font-size);
-}
-
 body .ui-dialog.ui-widget.import-express-dialog,
 body .ui-dialog.ui-widget.export-express-dialog {
   min-width: 450px;
   max-width: 1000px;
+}
+
+body .ui-dialog.ui-widget.import-express-dialog .ui-dialog-titlebar.ui-widget-header,
+body .ui-dialog.ui-widget.export-express-dialog .ui-dialog-titlebar.ui-widget-header {
+  padding-left: 1.5em;
+  padding-right: 1.5em;
 }
 
 @media screen and (max-width: 40em) {
@@ -4977,7 +4993,6 @@ height:10rem;
 }
 .case-stage-icon{
 font-size:2em;
-color:var(--ivy-primary-color-white);
 width: 100%; 
 height: 100%;
 display: flex;
@@ -5040,7 +5055,6 @@ box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 z-index: 1;
 }
 .side-step-panel .dropdown-content a {
-color: var(--ivy-primary-color-black);
 padding: 12px 16px;
 text-decoration: none;
 display: block;
@@ -5265,18 +5279,9 @@ body td .si {
   }
 }
 
-.ui-widget.action-link .si-arrow-down-1 {
-  position: relative;
-  top: 2px;  
-}
-
 /* Fix bug: calendar button jumped when clicked (Edge, Chrome) */
 .ui-fluid .ui-calendar, .ui-fluid .ui-calendar input {
   display: block;
-}
-
-.ivyicon-arrow-down-1 {
-  vertical-align: middle;
 }
 
 .task-item-body-container .card {
@@ -5290,4 +5295,40 @@ body td .si {
 
 .task-detail-description .pointer-event-none {
   pointer-events: none;
+}
+
+.ui-overlaypanel.user-of-role {
+  width: 400px;
+  max-height: 450px;
+}
+
+.ui-overlaypanel.user-of-role .user-data-scroller .ui-datascroller-content.ui-widget-content {
+  overflow: auto;
+  max-height: 300px;
+}
+
+.ui-overlaypanel.user-of-role .user-data-scroller .ui-datascroller-content .ui-datascroller-item,
+.ui-overlaypanel.user-of-role .user-name {
+  padding: 4px 7px;
+  padding-left: 0;
+}
+
+.ui-overlaypanel.user-of-role .user-data-scroller .ui-datascroller-content.ui-widget-content .ui-datascroller-list {
+  padding-top: 4px;
+  margin-left: 15px;
+  list-style-type: disc;
+}
+
+@media screen and (max-width: 40em) {
+  a.user-fullname-link {
+    width: 100%;
+    display: inline-block;
+  }
+  .ui-overlaypanel.user-of-role {
+    width: 85vw;
+    max-height: 320px;
+  }
+  .ui-overlaypanel.user-of-role .user-data-scroller .ui-datascroller-content.ui-widget-content {
+    max-height: 180px;
+  }
 }
