@@ -115,6 +115,8 @@ public class SystemNoteVisibilityTest extends BaseTest {
     
     updatePortalSetting("HIDE_SYSTEM_NOTES_FROM_HISTORY", "false");
     taskDetailsPage = openTaskDetails();
+    taskNoteHistoryPage.clickOnCheckboxShowSystemNotes();
+    taskNoteHistoryPage.waitForNoteTableDisplayed();
     taskNoteAuthors = taskDetailsPage.getTaskNoteAuthors();
     Assert.assertTrue(taskNoteAuthors.contains(SYSTEM_USER_NAME));
     
