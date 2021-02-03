@@ -5,11 +5,11 @@ import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class TaskInforActionService {
+  private DateTimeGlobalSettingService dateTimeGlobalSettingService = new DateTimeGlobalSettingService();
 
   public String prepareChangeDeadlineNoteContent(String fullNameOfUser, String userNameOfUser, Date datetime,
       Long taskId) {
@@ -31,8 +31,7 @@ public class TaskInforActionService {
   }
 
   private String formatDate(Date datetime) {
-    String dateTimePattern =
-        Ivy.cms().findContentObjectValue("/patterns/dateTimePattern", Locale.ENGLISH).getContentAsString();
+    String dateTimePattern = dateTimeGlobalSettingService.getDateTimePattern();
     DateFormat formatter = new SimpleDateFormat(dateTimePattern);
     return formatter.format(datetime);
   }

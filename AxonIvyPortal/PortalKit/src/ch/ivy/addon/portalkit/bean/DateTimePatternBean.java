@@ -31,4 +31,8 @@ public class DateTimePatternBean implements Serializable {
   public String getDateTimePattern() {
     return dateTimePatternService.getDateTimePattern();
   }
+  
+  public String getDateTimestampPattern() {
+    return dateTimePatternService.getDateTimestampPattern();
+  }
 }
