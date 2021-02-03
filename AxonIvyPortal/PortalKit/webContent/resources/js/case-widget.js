@@ -98,7 +98,7 @@ function CaseListToolKit() {
         $(caseSortMenu).show();
       }
 
-      $.each(caseSortMenu.children('a'), function(i, header) {
+      $.each(caseSortMenu.children('a, .js-unsortable-header-cell'), function(i, header) {
         var cell = $(caseEntry).children().get(i);
         $(header).outerWidth($(cell).outerWidth());
       });

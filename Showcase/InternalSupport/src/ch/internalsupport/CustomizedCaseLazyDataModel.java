@@ -18,7 +18,7 @@ public class CustomizedCaseLazyDataModel extends CaseLazyDataModel{
   }
 
   @Override
-  protected void initFilterContainer() {
+  public void initFilterContainer() {
     filterContainer = new CustomizedCaseFilterContainer();
   }
 }

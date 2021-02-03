@@ -64,7 +64,7 @@
           onclick="PF('add-external-link-dialog').hide()" />
         <p:spacer width="15" />
         <p:commandButton id="adding-new-external-link-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}"
-          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
           process="add-external-link-form" actionListener="#{processWidgetBean.createNewExternalLink}"
           update="add-external-link-form #{cc.clientId}:process-list"
           oncomplete="if(!args.validationFailed){PF('add-external-link-dialog').hide();}" />
@@ -77,7 +77,7 @@
     <ui:param name="widgetVar" value="remove-external-link-dialog" />
     <ui:param name="dynamic" value="true"/>
     <ui:param name="appendTo" value="@(body)" />
-    <ui:param name="iconClass" value="icon ivyicon-delete-1" />
+    <ui:param name="iconClass" value="si si-delete-1" />
     <ui:param name="iconStyleClass" value="portal-dialog-error-icon" />
     <ui:param name="headerText" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/processwidget/deleteProcessItemHeader')}" />
     
@@ -95,7 +95,7 @@
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" styleClass="u-mar-right-15" />
         <p:commandButton id="delete-external-link-btn" global="false" process="@this" update="#{cc.clientId}:process-list"
           actionListener="#{processWidgetBean.deleteExternalLink}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/ok')}"
-          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-check-1')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-check-1')}"
           oncomplete="PF('remove-external-link-dialog').hide();" />
       </h:form>
     </ui:define>

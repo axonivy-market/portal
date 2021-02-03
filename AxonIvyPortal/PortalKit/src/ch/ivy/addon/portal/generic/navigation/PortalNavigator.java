@@ -1,6 +1,5 @@
 package ch.ivy.addon.portal.generic.navigation;
 
-import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -11,16 +10,14 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.SessionAttribute;
-import ch.ivy.addon.portalkit.service.exception.PortalException;
-import ch.ivy.addon.portalkit.util.IvyExecutor;
-import ch.ivy.addon.portalkit.util.ProcessStartUtils;
-import ch.ivy.addon.portalkit.util.RequestUtil;
+import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
+import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import ch.ivy.addon.portalkit.util.SecurityServiceUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.request.IHttpRequest;
 import ch.ivyteam.ivy.workflow.StandardProcessType;
 
-public final class PortalNavigator {
+public final class PortalNavigator extends BaseNavigator{
   private static final String PORTAL_PROCESS_START_NAME = "Start Processes/PortalStart/DefaultApplicationHomePage.ivp";
   private static final String PORTAL_DASHBOARD = "Start Processes/PortalStart/DefaultDashboardPage.ivp";
   private static final String PORTAL_PROCESS = "Start Processes/PortalStart/DefaultProcessStartListPage.ivp";
@@ -47,11 +44,6 @@ public final class PortalNavigator {
     return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, PORTAL_DASHBOARD), params);
   }
 
-  private static String getRelativeLink(StandardProcessType standardProcess) {
-    return IvyExecutor.executeAsSystem(() ->
-      Ivy.wf().getStandardProcessImplementation(standardProcess).getLink().getRelative());
-  }
-  
   public static void navigateToPortalLoginPage() {
     IHttpRequest request = (IHttpRequest) Ivy.request();
     String loginPage = getRelativeLink(StandardProcessType.DefaultLoginPage);
@@ -60,7 +52,7 @@ public final class PortalNavigator {
   }
 
   public static String getForgotPasswordUrl() {
-    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(PORTAL_FORGOT_PASSWORD);
+    return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(PORTAL_FORGOT_PASSWORD);
   }
 
 
@@ -72,11 +64,7 @@ public final class PortalNavigator {
   }
 
   public static void redirect(String url) {
-    try {
-      RequestUtil.redirect(url);
-    } catch (IOException ex) {
-      throw new PortalException(ex);
-    }
+    redirectURL(url);
   }
 
   public static String getSubMenuItemUrlOfCurrentApplication(MenuKind menuKind) {
@@ -97,7 +85,7 @@ public final class PortalNavigator {
       default:
         break;
     }
-    return ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(subMenuUrl);
+    return ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(subMenuUrl);
   }
 
   public static void navigateToPortalEndPage(Long taskId) {
@@ -109,7 +97,9 @@ public final class PortalNavigator {
   /**
    * Navigates to PortalEndPage without finishing a task, e.g. clicking on Cancel button then back to previous page:
    * task list or task details or global search NOTES: is only used for the task not started in Portal IFrame
+   * @deprecated Use {@link PortalNavigatorAPI#navigateToPortalEndPage()} instead
    */
+  @Deprecated
   public static void navigateToPortalEndPage() {
     navigateToPortalEndPage(Ivy.wfTask().getId());
   }
@@ -130,6 +120,11 @@ public final class PortalNavigator {
     navigateByKeyword("StatisticPage.ivp", PORTAL_STATISTIC, new HashMap<>());
   }
 
+  /**
+   * Navigate to Portal home
+   * @deprecated Use {@link PortalNavigatorAPI#navigateToPortalHome()} instead
+   */
+  @Deprecated
   public static void navigateToPortalHome() {
     navigateByKeyword("DefaultApplicationHomePage.ivp", PORTAL_PROCESS_START_NAME, new HashMap<>());
   }
@@ -197,17 +192,8 @@ public final class PortalNavigator {
     return buildUrl(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, defaultFriendlyRequestPath), param);
   }
   
-  private static void navigateByKeyword(String keyword, String defaultFriendlyRequestPath, Map<String, String> param) {
-    String customizePortalFriendlyRequestPath = SecurityServiceUtils.findFriendlyRequestPathContainsKeyword(keyword);
-    navigate(StringUtils.defaultIfBlank(customizePortalFriendlyRequestPath, defaultFriendlyRequestPath), param);
-  }
-
-  private static void navigate(String friendlyRequestPath, Map<String, String> params) {
-    redirect(buildUrl(friendlyRequestPath, params));
-  }
-  
   private static String buildUrl(String friendlyRequestPath, Map<String, String> params) {
-    String requestPath = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
+    String requestPath = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath(friendlyRequestPath);
     if (StringUtils.isEmpty(requestPath)) {
       return StringUtils.EMPTY;
     }
