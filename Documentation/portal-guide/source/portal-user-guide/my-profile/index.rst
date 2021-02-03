@@ -106,7 +106,7 @@ Toggle button **Receive daily summary at** allows you to specify the weekdays
 when you receive a summary of all tasks assigned to you or one of your roles.
 
 Date format configuration
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^
 
 This section has available options which help you to format date fields by your selection.
 These are options you can select:
