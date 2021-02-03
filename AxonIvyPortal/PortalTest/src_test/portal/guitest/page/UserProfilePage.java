@@ -182,4 +182,17 @@ public class UserProfilePage extends TemplatePage {
     waitForPageLoaded();
     return new HomePage();
   }
+
+  public void changeDateFormatToPattern(String pattern) {
+    click(By.cssSelector("label[id$=':date-format-selection_label']"));
+    waitForElementDisplayed(By.cssSelector("div[id$=':date-format-selection_panel']"), true);
+    WebElement dateFormatContainer = findElementByCssSelector("ul[id$=':date-format-selection_items']");
+    List<WebElement> dateFormats = dateFormatContainer.findElements(By.cssSelector("li"));
+    for (WebElement dateFormat: dateFormats) {
+      if (dateFormat.getText().indexOf(pattern) > -1) {
+        dateFormat.click();
+        break;
+      }
+    }
+  }
 }

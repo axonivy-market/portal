@@ -18,6 +18,7 @@ import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 
 import ch.ivy.addon.portalkit.bo.ExcelExportSheet;
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivyteam.ivy.scripting.objects.Date;
 import ch.ivyteam.ivy.scripting.objects.DateTime;
 import ch.ivyteam.ivy.scripting.objects.Time;
@@ -27,8 +28,6 @@ public final class ExcelExport
 {
 
   private static final int NUMBER_OF_TRACKED_ROWS_TO_AUTOSIZE_COLUMN = 100;
-
-  private static final int EXCEL_DATETIME_CELL_FORMAT = 0x16;
 
   private static final int EXCEL_TIME_CELL_FORMAT = 0x15;
 
@@ -58,6 +57,8 @@ public final class ExcelExport
 
   private DateFormat dateFormatter;
 
+  private DateTimeGlobalSettingService dateTimeGlobalSettingService = new DateTimeGlobalSettingService();
+
   private ExcelExport()
   {
     this(null);
@@ -77,7 +78,7 @@ public final class ExcelExport
     timeCellStyle = workBook.createCellStyle();
     timeCellStyle.setDataFormat((short) EXCEL_TIME_CELL_FORMAT);
     dateTimeCellStyle = workBook.createCellStyle();
-    dateTimeCellStyle.setDataFormat((short) EXCEL_DATETIME_CELL_FORMAT);
+    dateTimeCellStyle.setDataFormat(getDateFormat());
 
     headerCellStyle = workBook.createCellStyle();
     headerCellStyle.setAlignment(HorizontalAlignment.CENTER);
@@ -89,6 +90,11 @@ public final class ExcelExport
     for (String sheetName : sheetNames) {
       sheets.add(workBook.createSheet(sheetName == null ? DEFAULT_SHEET_NAME : sheetName));
     }
+  }
+
+  private short getDateFormat() {
+    String dateFormat = dateTimeGlobalSettingService.getGlobalSettingPattern();
+    return workBook.createDataFormat().getFormat(dateFormat);
   }
 
   private static SXSSFWorkbook exportListAsExcel(List<ExcelExportSheet> sheets)
