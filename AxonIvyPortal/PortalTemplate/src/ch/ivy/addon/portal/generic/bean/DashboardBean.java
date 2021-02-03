@@ -20,7 +20,6 @@ import javax.faces.context.FacesContext;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.primefaces.event.SelectEvent;
 
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -403,10 +402,6 @@ public class DashboardBean implements Serializable {
 
   public Dashboard getSelectedDashboard() {
     return selectedDashboard;
-  }
-
-  public void onRowSelect(SelectEvent event) {
-    ITask a = (ITask) event.getObject();
   }
 
   public ITask getSelectedTask() {
