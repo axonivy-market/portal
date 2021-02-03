@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.StreamedContent;
@@ -16,6 +15,7 @@ import org.primefaces.model.StreamedContent;
 import ch.ivy.addon.portalkit.bean.CaseBean;
 import ch.ivy.addon.portalkit.bo.ExcelExportSheet;
 import ch.ivy.addon.portalkit.bo.History;
+import ch.ivy.addon.portalkit.service.DateTimeGlobalSettingService;
 import ch.ivy.addon.portalkit.util.ExcelExport;
 import ch.ivy.addon.portalkit.util.SecurityMemberDisplayNameUtils;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -23,7 +23,9 @@ import ch.ivyteam.ivy.workflow.ICase;
 import ch.ivyteam.ivy.workflow.INote;
 
 public class NoteHistoryExporter {
-  
+
+  private DateTimeGlobalSettingService dateTimeGlobalSettingService = new DateTimeGlobalSettingService();
+
   public StreamedContent getStreamedContentOfTaskNoteHistory(List<INote> taskNoteHistory, String fileName) {
     List<List<Object>> rows = generateDataForTaskNoteHistory(taskNoteHistory);
     ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -121,7 +123,7 @@ public class NoteHistoryExporter {
   }
 
   private String formatDate(Date datetime) {
-    String pattern = Ivy.cms().findContentObjectValue("/patterns/dateTimePattern", Locale.ENGLISH).getContentAsString();
+    String pattern = dateTimeGlobalSettingService.getDateTimePattern();
     return new SimpleDateFormat(pattern).format(datetime);
   }
 
