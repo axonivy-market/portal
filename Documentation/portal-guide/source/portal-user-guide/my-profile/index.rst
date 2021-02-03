@@ -3,7 +3,7 @@
 My profile
 **********
 
-Help you adjust your general settings, language and email settings.
+Help you adjust your general settings, language, email settings and date format configuration.
 
 |my-profile-save|
 
@@ -104,5 +104,30 @@ Toggle button **Receive further emails from application** allows you to activate
 
 Toggle button **Receive daily summary at** allows you to specify the weekdays 
 when you receive a summary of all tasks assigned to you or one of your roles.
+
+Date format configuration
+^^^^^^^^^^^^^^^^^^^^^^^
+
+This section has available options which help you to format date fields by your selection.
+These are options you can select:
+
+.. table:: 
+
+   +-----------------------+-----------------------------------------------+
+   | Option                | Description                                   |
+   +=======================+===============================================+
+   | Default               | Default date format will detected by browser's|
+   |                       | locale for your first login.                  |
+   |                       | Example: Default date format is dd/MM/yyyy.   |
+   |                       | Date fields will be displayed as "31/01/2021" |
+   +-----------------------+-----------------------------------------------+
+   | dd.MM.yyyy            | Date fields will be displayed by              |
+   |                       | Day.Month.Year. Example: With this format,    |
+   |                       | date fields will be displayed as "31.01.2021" |
+   +-----------------------+-----------------------------------------------+
+   | MM.dd.yyyy            | Date fields will be displayed by              |
+   |                       | Month.Day.Year. Example: With this format,    |
+   |                       | date fields will be displayed as "01.31.2021" |
+   +-----------------------+-----------------------------------------------+
 
 .. |my-profile-save| image:: ../../screenshots/my-profile/my-profile.png
