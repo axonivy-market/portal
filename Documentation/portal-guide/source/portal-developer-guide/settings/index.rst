@@ -112,6 +112,9 @@ Process developer can set up global settings of Portal in file ``portal_settings
       #SHOW_USER_GUIDE = true
       #SHOW_GLOBAL_SEARCH = true
       #SHOW_BUTTON_ICON = true
+      #SHOW_TASK_DURATION_TIME = true
+      #SHOW_CASE_DURATION_TIME = true
+      #APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS = true
 
 This file already contains list of settings with their default values.
 These settings will be applied once you start Portal.

@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+import ch.ivy.addon.portalkit.util.ExpressManagementUtils;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
 
@@ -19,8 +20,14 @@ public class PortalExpressProcess implements Process {
 
   public PortalExpressProcess(ExpressProcess process) {
     this.process = process;
-    IUser user = Ivy.session().getSecurityContext().users()
-        .find(StringUtils.isNotBlank(process.getProcessOwner()) ? process.getProcessOwner().substring(1) : StringUtils.EMPTY);
+
+    ExpressManagementUtils utils = new ExpressManagementUtils();
+
+    String processOwner = utils.getValidMemberName(process.getProcessOwner());
+    String processOwnerName = StringUtils.isNotBlank(processOwner) ? processOwner.substring(1) : null;
+
+    IUser user = processOwnerName != null ? Ivy.session().getSecurityContext().users().find(processOwnerName) : null;
+
     this.processOwnerDisplayName = Optional.ofNullable(user).map(IUser::getDisplayName).orElse(StringUtils.EMPTY);
   }
 
@@ -31,10 +38,11 @@ public class PortalExpressProcess implements Process {
 
   @Override
   public String getDescription() {
-    return new StringBuilder()
-        .append(process.getProcessDescription())
-        .append(". ")
-        .append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR"))
+    StringBuilder builder = new StringBuilder();
+    if (StringUtils.isNotBlank(process.getProcessDescription())) {
+      builder.append(process.getProcessDescription()).append(". ");
+    }
+    return builder.append(Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/caseList/defaultColumns/CREATOR"))
         .append(": ")
         .append(this.processOwnerDisplayName)
         .toString();
