@@ -40,7 +40,7 @@
     <h:panelGroup class="task-item-body-container task-details-widgets u-padding-0 grid-stack" id="task-details-widgets"
       rendered="#{not readOnly and caseDetailsBean.applyJsonConfigurationFile and not empty caseDetailsBean.widgets}">
       <ui:repeat var="widget" value="#{caseDetailsBean.widgets}" id="widgets">
-        <div id="task-details-#{widget.id}-panel" class="#{widget.styleClass} grid-stack-item" style="#{widget.style}" widget-type="#{widget.class.simpleName}"
+        <div id="case-details-#{widget.id}-panel" class="#{widget.styleClass} grid-stack-item" style="#{widget.style}" widget-type="#{widget.class.simpleName}"
           data-gs-x="#{widget.axisX}" data-gs-y="#{widget.axisY}" data-gs-width="#{widget.width}" data-gs-height="#{widget.height}" data-gs-id="#{widget.id}"
           data-gs-no-resize="#{caseDetailsBean.readOnlyMode}" data-gs-no-move="#{caseDetailsBean.readOnlyMode}">
           <!-- General & description box -->
@@ -76,7 +76,7 @@
               </h:panelGroup>
             </div>
 
-            <h:panelGroup id="task-detail-data-description-container" styleClass="ui-g-12 u-padding-0 grid-stack-item-content">
+            <h:panelGroup id="case-detail-data-description-container" styleClass="ui-g-12 u-padding-0 grid-stack-item-content">
               <ic:ch.ivy.addon.portalkit.component.CaseItemGeneralInformation id="general-information" case="#{case}" />
             </h:panelGroup>
           </h:panelGroup>
@@ -105,6 +105,38 @@
           <h:panelGroup id="history-container" layout="block" styleClass="card case-history-component grid-stack-item-content"
             rendered="#{widget.class.simpleName eq 'CaseDetailsHistoryWidget'}">
             <ic:ch.ivy.addon.portalkit.component.CaseItemHistory id="case-histories" case="#{case}" />
+          </h:panelGroup>
+          
+          <!-- Custom panels -->
+          <h:panelGroup id="case-detail-custom-widget-1"
+            rendered="#{widget.class.simpleName eq 'CaseDetailsCustomWidget' and widget.id eq 'custom-widget-1'}"
+            styleClass="card case-detail-card grid-stack-item-content #{caseDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
+            <cc:renderFacet name="caseItemDetailCustomPanel1" />
+          </h:panelGroup>
+          <h:panelGroup id="case-detail-custom-widget-2"
+            rendered="#{widget.class.simpleName eq 'CaseDetailsCustomWidget' and widget.id eq 'custom-widget-2'}"
+            styleClass="card case-detail-card grid-stack-item-content #{caseDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
+            <cc:renderFacet name="caseItemDetailCustomPanel2" />
+          </h:panelGroup>
+          <h:panelGroup id="case-detail-custom-widget-3"
+            rendered="#{widget.class.simpleName eq 'CaseDetailsCustomWidget' and widget.id eq 'custom-widget-3'}"
+            styleClass="card case-detail-card grid-stack-item-content #{caseDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
+            <cc:renderFacet name="caseItemDetailCustomPanel3" />
+          </h:panelGroup>
+          <h:panelGroup id="case-detail-custom-widget-4"
+            rendered="#{widget.class.simpleName eq 'CaseDetailsCustomWidget' and widget.id eq 'custom-widget-4'}"
+            styleClass="card case-detail-card grid-stack-item-content #{caseDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
+            <cc:renderFacet name="caseItemDetailCustomPanel4" />
+          </h:panelGroup>
+          <h:panelGroup id="case-detail-custom-widget-5"
+            rendered="#{widget.class.simpleName eq 'CaseDetailsCustomWidget' and widget.id eq 'custom-widget-5'}"
+            styleClass="card case-detail-card grid-stack-item-content #{caseDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
+            <cc:renderFacet name="caseItemDetailCustomPanel5" />
+          </h:panelGroup>
+          <h:panelGroup id="case-detail-custom-widget-6"
+            rendered="#{widget.class.simpleName eq 'CaseDetailsCustomWidget' and widget.id eq 'custom-widget-6'}"
+            styleClass="card case-detail-card grid-stack-item-content #{caseDetailsBean.readOnlyMode ? '' : 'moveable-area'}">
+            <cc:renderFacet name="caseItemDetailCustomPanel6" />
           </h:panelGroup>
         </div>
       </ui:repeat>
