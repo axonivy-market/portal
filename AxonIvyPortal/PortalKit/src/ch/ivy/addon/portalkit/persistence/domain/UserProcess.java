@@ -9,20 +9,24 @@ import org.apache.commons.collections4.CollectionUtils;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import ch.ivy.addon.portalkit.dto.DisplayName;
+import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.util.Locales;
 
 
 public class UserProcess extends BusinessEntity implements Cloneable {
   private long applicationId = Long.MIN_VALUE;
   private Long userId;
+  private ProcessType processType;
   private String processName;
   private List<DisplayName> names;
   private String link;
   private String icon;
+  private String processId;
   private String workflowId;
   private Integer index;
   private boolean defaultProcess;
   private boolean isExternalLink;
+  private boolean isBrokenLink = false;
 
   /**
    *  Since 9.1, we use userId to store user process instead of userName.
@@ -67,6 +71,14 @@ public class UserProcess extends BusinessEntity implements Cloneable {
 
   public void setApplicationId(long applicationId) {
     this.applicationId = applicationId;
+  }
+
+  public ProcessType getProcessType() {
+    return processType;
+  }
+
+  public void setProcessType(ProcessType processType) {
+    this.processType = processType;
   }
 
   /**
@@ -123,6 +135,14 @@ public class UserProcess extends BusinessEntity implements Cloneable {
     this.defaultProcess = defaultProcess;
   }
 
+  public String getProcessId() {
+    return processId;
+  }
+
+  public void setProcessId(String processId) {
+    this.processId = processId;
+  }
+
   public String getWorkflowId() {
     return workflowId;
   }
@@ -137,6 +157,14 @@ public class UserProcess extends BusinessEntity implements Cloneable {
 
   public void setExternalLink(boolean isExternalLink) {
     this.isExternalLink = isExternalLink;
+  }
+
+  public boolean isBrokenLink() {
+    return isBrokenLink;
+  }
+
+  public void setBrokenLink(boolean isBrokenLink) {
+    this.isBrokenLink = isBrokenLink;
   }
 
   public Integer getIndex() {

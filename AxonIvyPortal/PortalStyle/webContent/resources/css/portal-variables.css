@@ -31,6 +31,7 @@
   --ivy-portal-blue-light: #90DDE9;
   --ivy-portal-blue-dark: #007095;
   --ivy-portal-color-black: #1B1B1B;
+  --ivy-portal-color-gray-dark: #565656;
 
   --accent-color: var(--ivy-portal-blue-light);
   --accent-text-color: var(--primary-dark-text-color);
@@ -43,6 +44,10 @@
   --header-font-size: 2rem;
   --left-menu-icon-font-size: 1.8rem;  
   --portal-font-family: "Roboto";
+  --portal-icon-font-family: "StreamlineIcons";
+  --portal-icon-font-size: 1em;
+  --portal-icon-line-height: 1;
+  --portal-icon-ui-icon-font-size: 1.8rem;
   --default-font-style: normal;
   --default-font-weight: 400;
   --inplace-edit-icon-font-size: 1.8rem;
@@ -112,9 +117,6 @@
   --command-link-disabled-text-color: var(--ivy-primary-color-grey-medium);
 
   /* Fieldset */
-  --field-set-toggler-color: var(--ivy-primary-color-black);
-  --field-set-legend-hover-color: var(--ivy-primary-color-white);
-  --field-set-toggler-background-color: var(--ivy-primary-color-grey-pale);
   --field-set-no-border-color: transparent;
 
   /* Widget header */
@@ -166,6 +168,20 @@
   --statistic-link-hover-border: var(--ivy-primary-color-grey-light);
   --chart-container-separator-border: 1px solid #F4F4F4;
   --chart-container-separator-border-radius: 0;
+  --chart-label-default-exception-priority-color: var(--ivy-primary-color-white);
+  --chart-label-default-high-priority-color: var(--ivy-primary-color-white);
+  --chart-label-default-normal-priority-color: var(--ivy-primary-color-white);
+  --chart-label-default-low-priority-color: var(--ivy-portal-color-gray-dark);
+  --chart-label-default-created-case-color: var(--ivy-portal-color-gray-dark);
+  --chart-label-default-running-case-color: var(--ivy-primary-color-white);
+  --chart-label-default-done-case-color: var(--ivy-primary-color-white);
+  --chart-label-default-failed-case-color: var(--ivy-primary-color-white);
+  --chart-label-default-elapsed-time-color: var(--ivy-primary-color-white);
+  --chart-label-default-task-expiried-color: var(--ivy-primary-color-white);
+  --chart-label-default-task-today-color: var(--ivy-primary-color-white);
+  --chart-label-default-task-week-color: var(--ivy-primary-color-white);
+  --chart-label-default-task-month-color: var(--ivy-primary-color-white);
+  --chart-label-default-task-year-color: var(--ivy-primary-color-white);
 
   /* Sidebar */
   --sidebar-app-text-color: var(--menuitem-text-color);
@@ -214,6 +230,10 @@
   --process-nav-item-disable-color: hsla(0, 0%, 11%, 0.3);
   --hovered-process-start-list-item-i-con-color: var(--primary-color);
   --hovered-user-process-start-list-item-icon-color: var(--primary-color);
+  --process-warning-icon-color: var(--ivy-tertinary-color-red-medium);
+  --process-warning-icon-font-weight: bold;
+  --process-icon-font-size: 1.5rem;
+
   /* Case Detail */
   --case-related-task-color: var(--ivy-primary-color-black);
   --case-related-task-hover-color: var(--ivy-primary-color-grey-dark);
@@ -357,6 +377,7 @@
   --express-import-paginator-background-color: hsla(180, 1%, 85%,0.5);
   --express-import-paginator-hover-button-background-color: hsla(180, 1%, 85%,0.5);
   --express-import-paginator-text-color: var(--ivy-primary-color-black);
+  --express-helper-loading-container-si-lg-font-size: 1.2em;
   /* Chat */
   --chat-panel-background-color: var(--ivy-primary-color-grey-dark);
   --no-group-chat-color: var(--ivy-primary-color-white);
@@ -403,7 +424,6 @@
   --chat-send-form-icon-color: var(--ivy-primary-color-black);
   /* Icon */
   --icon-font-family: "FontAwesome";
-  --fieldset-togger-hover-background-color: transparent;
   --icon-selection-dialog-border: transparent;
   --icon-selection-dialog-border-hover: var(--ivy-primary-color-black);
   --ui-inplace-background-color: transparent;

@@ -16,6 +16,7 @@ import ch.ivy.addon.portalkit.enums.CaseSortField;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.enums.SortDirection;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
+import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivyteam.ivy.environment.Ivy;
 import ch.ivyteam.ivy.security.IUser;
@@ -25,7 +26,7 @@ import ch.ivyteam.ivy.security.IUser;
 public class UserProfileBean implements Serializable {
   private static final String DEFAULT_OPTION = "/ch.ivy.addon.portalkit.ui.jsf/MyProfile/defaultOption";
   private static final long serialVersionUID = 4952280551311826903L;
-  private static final String DEFAULT = "DEFAULT";
+  private static final String DEFAULT = UserSettingService.DEFAULT;
   
   public void saveHomepage(String homepageName) {
     IUser user = Ivy.session().getSessionUser();

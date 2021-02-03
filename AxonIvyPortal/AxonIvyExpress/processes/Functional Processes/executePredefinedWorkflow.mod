@@ -218,7 +218,6 @@ Bk8 @PushWFArc f6 '' #zField
 Bk8 @PushWFArc f9 '' #zField
 >Proto Bk8 Bk4 BpmnUserTask #zField
 ew0 f1 1137 145 30 30 0 15 #rect
-ew0 f1 @|EndSubIcon #fIcon
 ew0 f9 actionTable 'out=in;
 ' #txt
 ew0 f9 actionCode 'out.actualStepIndex++;
@@ -234,7 +233,6 @@ ew0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f9 470 44 112 44 -36 -8 #rect
-ew0 f9 @|StepIcon #fIcon
 ew0 U21 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -260,7 +258,6 @@ ew0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f0 59 51 30 30 -50 17 #rect
-ew0 f0 @|StartSubIcon #fIcon
 ew0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -271,7 +268,6 @@ ew0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f7 338 146 32 32 12 -27 #rect
-ew0 f7 @|AlternativeIcon #fIcon
 ew0 S11 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -326,7 +322,6 @@ ew0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f16 59 147 30 30 -48 23 #rect
-ew0 f16 @|StartSubIcon #fIcon
 ew0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -337,7 +332,6 @@ ew0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f5 666 146 32 32 -39 18 #rect
-ew0 f5 @|AlternativeIcon #fIcon
 ew0 f13 expr in #txt
 ew0 f13 outCond 'in.currentTask.taskType == ch.ivy.gawfs.enums.TaskType.EMAIL && !in.hasRejectedApprovalTask' #txt
 ew0 f13 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -419,7 +413,6 @@ ew0 f14 1 354 360 #addKink
 ew0 f14 2 682 360 #addKink
 ew0 f14 1 0.5 0 0 #arcLabel
 ew0 f32 627 427 26 26 14 0 #rect
-ew0 f32 @|EndSubIcon #fIcon
 ew0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -430,7 +423,6 @@ ew0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f34 322 426 28 28 -45 -42 #rect
-ew0 f34 @|AlternativeIcon #fIcon
 ew0 f35 inParamDecl '<gawfs.ExecutePredefinedWorkflowData data> param;' #txt
 ew0 f35 inParamTable 'out=param.data;
 ' #txt
@@ -446,9 +438,7 @@ ew0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f35 65 428 26 26 -75 26 #rect
-ew0 f35 @|StartSubIcon #fIcon
 ew0 f36 321 513 30 30 16 0 #rect
-ew0 f36 @|EndIcon #fIcon
 ew0 f26 actionTable 'out=in1;
 ' #txt
 ew0 f26 outLinks "TaskA.ivp" #txt
@@ -471,7 +461,6 @@ ew0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f26 448 424 32 32 -33 -39 #rect
-ew0 f26 @|TaskSwitchIcon #fIcon
 ew0 f21 expr data #txt
 ew0 f21 outCond ivp=="TaskA.ivp" #txt
 ew0 f21 480 440 627 440 #arcP
@@ -484,7 +473,6 @@ ew0 f12 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f12 760 144 32 32 -36 22 #rect
-ew0 f12 @|AlternativeIcon #fIcon
 ew0 f22 expr in #txt
 ew0 f22 outCond 'in.currentTask.taskType == ch.ivy.gawfs.enums.TaskType.FINAL_REVIEW' #txt
 ew0 f22 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -499,7 +487,6 @@ ew0 f22 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ew0 f22 698 162 760 160 #arcP
 ew0 f22 0 0.11363636363636363 0 -10 #arcLabel
 ew0 f23 1040 144 32 32 0 16 #rect
-ew0 f23 @|AlternativeIcon #fIcon
 ew0 f25 986 160 1040 160 #arcP
 ew0 f24 expr in #txt
 ew0 f24 1072 160 1137 160 #arcP
@@ -515,13 +502,14 @@ ew0 f8 792 160 874 160 #arcP
 ew0 f8 0 0.43902439024390244 0 -13 #arcLabel
 ew0 f28 actionTable 'out=in;
 ' #txt
-ew0 f28 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
+ew0 f28 actionCode 'import ch.ivy.addon.portalkit.publicapi.TaskAPI;
+import ch.ivy.addon.portalkit.util.TaskUtils;
 import ch.ivyteam.ivy.workflow.ITask;
 
 if(in.isAdhocProcess){
 	ITask originalTask = ivy.wf.findTask(in.originalTaskId);
 	if(originalTask != null){
-		TaskUtils.removeHidePropertyToDisplayInPortal(originalTask);
+		TaskAPI.removeHidePropertyToDisplayInPortal(originalTask);
 		TaskUtils.resetTask(originalTask);
 	}
 }' #txt
@@ -533,7 +521,6 @@ ew0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f28 840 42 160 44 -74 -8 #rect
-ew0 f28 @|StepIcon #fIcon
 ew0 f29 expr in #txt
 ew0 f29 outCond in.isAdhocProcess #txt
 ew0 f29 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -562,7 +549,6 @@ ew0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f31 152 418 112 44 -45 -8 #rect
-ew0 f31 @|StepIcon #fIcon
 ew0 f33 expr out #txt
 ew0 f33 90 440 152 440 #arcP
 ew0 f19 264 440 322 440 #arcP
@@ -596,9 +582,7 @@ ew0 f38 350 440 448 440 #arcP
 >Proto ew0 0 0 32 24 18 0 #rect
 >Proto ew0 @|BIcon #fIcon
 Bk4 g0 275 51 26 26 21 -3 #rect
-Bk4 g0 @|MIGIcon #fIcon
 Bk4 g1 275 1235 26 26 19 -15 #rect
-Bk4 g1 @|MOGIcon #fIcon
 Bk4 f6 actionTable 'out=in1;
 ' #txt
 Bk4 f6 outLinks "TaskA.ivp" #txt
@@ -624,7 +608,6 @@ Bk4 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 f6 394 506 28 28 21 -17 #rect
-Bk4 f6 @|TaskSwitchSimpleIcon #fIcon
 Bk4 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -635,7 +618,6 @@ Bk4 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 f5 272 640 32 32 -103 -8 #rect
-Bk4 f5 @|AlternativeIcon #fIcon
 Bk4 f14 dialogId ch.ivy.gawfs.workflowExecution.UserTaskForm #txt
 Bk4 f14 startMethod start(gawfs.ExecutePredefinedWorkflowData) #txt
 Bk4 f14 requestActionDecl '<gawfs.ExecutePredefinedWorkflowData executePredefinedWorkflowData> param;' #txt
@@ -655,7 +637,6 @@ Bk4 f14 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 f14 104 762 112 44 -27 -8 #rect
-Bk4 f14 @|UserDialogIcon #fIcon
 Bk4 f16 actionTable 'out=in1;
 ' #txt
 Bk4 f16 outLinks "TaskA.ivp" #txt
@@ -681,7 +662,6 @@ Bk4 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 f16 146 506 28 28 -137 -17 #rect
-Bk4 f16 @|TaskSwitchSimpleIcon #fIcon
 Bk4 f8 expr in #txt
 Bk4 f8 outCond !in.responsible.isUser() #txt
 Bk4 f8 type gawfs.ExecutePredefinedWorkflowData #txt
@@ -723,7 +703,6 @@ Bk4 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 f0 272 456 32 32 14 -27 #rect
-Bk4 f0 @|AlternativeIcon #fIcon
 Bk4 f13 actionTable 'out=in;
 ' #txt
 Bk4 f13 actionCode 'import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
@@ -739,7 +718,6 @@ Bk4 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 f13 232 362 112 44 -44 -8 #rect
-Bk4 f13 @|StepIcon #fIcon
 Bk4 f21 expr out #txt
 Bk4 f21 288 406 288 456 #arcP
 Bk4 f50 expr in #txt
@@ -774,12 +752,10 @@ Bk4 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 f64 232 266 112 44 -28 -8 #rect
-Bk4 f64 @|CallSubIcon #fIcon
 Bk4 f12 expr out #txt
 Bk4 f12 288 310 288 362 #arcP
 Bk4 f12 0 0.42340889686368355 0 0 #arcLabel
 Bk4 f2 272 872 32 32 0 16 #rect
-Bk4 f2 @|AlternativeIcon #fIcon
 Bk4 f57 expr out #txt
 Bk4 f57 160 806 272 888 #arcP
 Bk4 f57 1 160 888 #addKink
@@ -802,7 +778,6 @@ Bk4 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 f4 232 1058 112 44 -26 -8 #rect
-Bk4 f4 @|CallSubIcon #fIcon
 Bk4 f66 expr out #txt
 Bk4 f66 432 806 304 888 #arcP
 Bk4 f66 1 432 888 #addKink
@@ -840,7 +815,6 @@ Bk4 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 f55 376 762 112 44 -39 -8 #rect
-Bk4 f55 @|UserDialogIcon #fIcon
 Bk4 f18 actionTable 'out=in;
 ' #txt
 Bk4 f18 actionCode 'import ch.ivy.addon.portalkit.util.ExecutingExpressProcessUtils;
@@ -854,7 +828,6 @@ Bk4 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 f18 232 962 112 44 -31 -8 #rect
-Bk4 f18 @|StepIcon #fIcon
 Bk4 f19 expr in #txt
 Bk4 f19 288 904 288 962 #arcP
 Bk4 f9 expr out #txt
@@ -874,7 +847,6 @@ Bk4 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 f20 224 1154 128 44 -54 -8 #rect
-Bk4 f20 @|StepIcon #fIcon
 Bk4 f22 expr out #txt
 Bk4 f22 288 1102 288 1154 #arcP
 Bk4 f3 expr out #txt
@@ -892,7 +864,6 @@ Bk4 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 f11 232 170 112 44 -53 -8 #rect
-Bk4 f11 @|StepIcon #fIcon
 Bk4 f17 expr out #txt
 Bk4 f17 288 214 288 266 #arcP
 Bk4 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -903,7 +874,6 @@ Bk4 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 f23 272 112 32 32 -58 -22 #rect
-Bk4 f23 @|AlternativeIcon #fIcon
 Bk4 f24 288 77 288 112 #arcP
 Bk4 f15 expr in #txt
 Bk4 f15 outCond 'in.actualStepIndex != 0' #txt
@@ -931,7 +901,6 @@ Bk4 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 f25 608 186 144 44 -67 -8 #rect
-Bk4 f25 @|StepIcon #fIcon
 Bk4 f29 actionTable 'out=in1;
 ' #txt
 Bk4 f29 outLinks "TaskA.ivp" #txt
@@ -958,7 +927,6 @@ Bk4 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 f29 666 514 28 28 21 -17 #rect
-Bk4 f29 @|TaskSwitchSimpleIcon #fIcon
 Bk4 f31 expr in #txt
 Bk4 f31 outCond ivp=="TaskA.ivp" #txt
 Bk4 f31 680 542 304 656 #arcP
@@ -976,7 +944,6 @@ TaskA.SKIP_TASK_LIST=true
 TaskA.NAM=System\: create task for current user' #txt
 Bk4 f27 template "" #txt
 Bk4 f27 664 272 32 32 0 16 #rect
-Bk4 f27 @|TaskSwitchIcon #fIcon
 Bk4 f32 expr out #txt
 Bk4 f32 var in1 #txt
 Bk4 f32 680 230 680 272 #arcP
@@ -989,7 +956,6 @@ have task?</name>
 </elementInfo>
 ' #txt
 Bk4 f33 664 432 32 32 -101 -44 #rect
-Bk4 f33 @|AlternativeIcon #fIcon
 Bk4 f28 expr in #txt
 Bk4 f28 outCond in.doesCreatorHaveTask #txt
 Bk4 f28 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1002,7 +968,6 @@ Bk4 f28 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Bk4 f28 680 464 680 514 #arcP
 Bk4 f28 0 0.4298245614035088 -16 0 #arcLabel
 Bk4 f35 793 433 30 30 0 15 #rect
-Bk4 f35 @|EndIcon #fIcon
 Bk4 f36 expr in #txt
 Bk4 f36 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1015,8 +980,8 @@ Bk4 f36 696 448 793 448 #arcP
 Bk4 f36 0 0.4845360824742268 0 -8 #arcLabel
 Bk4 f37 actionTable 'out=in;
 ' #txt
-Bk4 f37 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
-TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
+Bk4 f37 actionCode 'import ch.ivy.addon.portalkit.publicapi.TaskAPI;
+TaskAPI.setHidePropertyToHideInPortal(ivy.task);' #txt
 Bk4 f37 security system #txt
 Bk4 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1026,7 +991,6 @@ Bk4 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 f37 624 330 112 44 -47 -8 #rect
-Bk4 f37 @|StepIcon #fIcon
 Bk4 f38 expr data #txt
 Bk4 f38 outCond ivp=="TaskA.ivp" #txt
 Bk4 f38 680 304 680 330 #arcP
@@ -1034,8 +998,8 @@ Bk4 f34 expr out #txt
 Bk4 f34 680 374 680 432 #arcP
 Bk4 f39 actionTable 'out=in;
 ' #txt
-Bk4 f39 actionCode 'import ch.ivy.addon.portalkit.util.TaskUtils;
-TaskUtils.setHidePropertyToHideInPortal(ivy.task);' #txt
+Bk4 f39 actionCode 'import ch.ivy.addon.portalkit.publicapi.TaskAPI;
+TaskAPI.setHidePropertyToHideInPortal(ivy.task);' #txt
 Bk4 f39 security system #txt
 Bk4 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1045,7 +1009,6 @@ Bk4 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 f39 432 266 112 44 -47 -8 #rect
-Bk4 f39 @|StepIcon #fIcon
 Bk4 f40 expr data #txt
 Bk4 f40 outCond ivp=="TaskB.ivp" #txt
 Bk4 f40 664 288 544 288 #arcP
@@ -1059,7 +1022,6 @@ Bk4 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk4 f41 664 112 32 32 -20 -41 #rect
-Bk4 f41 @|AlternativeIcon #fIcon
 Bk4 f42 expr in #txt
 Bk4 f42 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1107,7 +1069,6 @@ who start the process</name>
 </elementInfo>
 ' #txt
 Bk4 f43 922 506 28 28 21 -17 #rect
-Bk4 f43 @|TaskSwitchSimpleIcon #fIcon
 Bk4 f44 expr in #txt
 Bk4 f44 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -1172,7 +1133,6 @@ Bk5 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk5 f28 184 298 160 44 -71 -8 #rect
-Bk5 f28 @|StepIcon #fIcon
 Bk5 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -1181,7 +1141,6 @@ Bk5 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk5 g0 251 19 26 26 17 9 #rect
-Bk5 g0 @|MIGIcon #fIcon
 Bk5 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -1190,9 +1149,7 @@ Bk5 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk5 g1 627 403 26 26 -27 18 #rect
-Bk5 g1 @|MOGIcon #fIcon
 Bk5 g2 51 307 26 26 -4 -48 #rect
-Bk5 g2 @|MIGIcon #fIcon
 Bk5 f10 77 320 184 320 #arcP
 Bk5 f29 expr out #txt
 Bk5 f29 264 236 264 298 #arcP
@@ -1211,7 +1168,6 @@ Bk5 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk5 f5 208 192 112 44 -48 -8 #rect
-Bk5 f5 @|StepIcon #fIcon
 Bk5 f8 actionTable 'out=in;
 ' #txt
 Bk5 f8 actionCode 'import ch.ivy.gawfs.enums.ProcessType;
@@ -1239,7 +1195,6 @@ Bk5 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk5 f8 192 98 144 44 -68 -8 #rect
-Bk5 f8 @|StepIcon #fIcon
 Bk5 f11 actionTable 'out=in;
 ' #txt
 Bk5 f11 actionCode 'import ch.ivy.addon.portalkit.util.PredefinedWorkflowUtils;
@@ -1265,7 +1220,6 @@ Bk5 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk5 f11 376 394 160 44 -70 -8 #rect
-Bk5 f11 @|StepIcon #fIcon
 Bk5 f1 expr out #txt
 Bk5 f1 536 416 627 416 #arcP
 Bk5 f3 expr out #txt
@@ -1278,9 +1232,7 @@ Bk5 f2 1 0.2314443862725309 0 0 #arcLabel
 >Proto Bk1 0 0 32 24 18 0 #rect
 >Proto Bk1 @|BIcon #fIcon
 Bk6 g0 51 179 26 26 0 5 #rect
-Bk6 g0 @|MIGIcon #fIcon
 Bk6 g1 531 179 26 26 -33 5 #rect
-Bk6 g1 @|MOGIcon #fIcon
 Bk6 f3 actionTable 'out=in;
 ' #txt
 Bk6 f3 actionCode 'import ch.ivy.gawfs.mail.InformationMailSender;
@@ -1294,7 +1246,6 @@ Bk6 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk6 f3 216 170 112 44 -28 -8 #rect
-Bk6 f3 @|StepIcon #fIcon
 Bk6 f4 77 192 216 192 #arcP
 Bk6 f0 expr out #txt
 Bk6 f0 328 192 531 192 #arcP
@@ -1321,7 +1272,6 @@ Bk7 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk7 f21 1008 170 128 44 -56 -8 #rect
-Bk7 f21 @|UserDialogIcon #fIcon
 Bk7 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1332,7 +1282,6 @@ Bk7 f33 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk7 f33 672 176 32 32 -65 -35 #rect
-Bk7 f33 @|AlternativeIcon #fIcon
 Bk7 f29 actionTable 'out=in;
 ' #txt
 Bk7 f29 actionCode 'import ch.ivy.addon.portalkit.enums.GlobalVariable;
@@ -1350,7 +1299,6 @@ Bk7 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk7 f29 432 170 176 44 -83 -8 #rect
-Bk7 f29 @|StepIcon #fIcon
 Bk7 f28 actionTable 'out=in;
 ' #txt
 Bk7 f28 actionCode 'import ch.ivy.addon.portalkit.constant.CustomFields;
@@ -1373,7 +1321,6 @@ Bk7 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk7 f28 808 170 112 44 -34 -8 #rect
-Bk7 f28 @|StepIcon #fIcon
 Bk7 f7 actionTable 'out=in1;
 ' #txt
 Bk7 f7 outLinks "TaskA.ivp" #txt
@@ -1399,7 +1346,6 @@ Bk7 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk7 f7 369 177 30 30 -50 17 #rect
-Bk7 f7 @|TaskSwitchSimpleIcon #fIcon
 Bk7 f32 expr in #txt
 Bk7 f32 outCond in.useExpressEndPage #txt
 Bk7 f32 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -1431,7 +1377,6 @@ Bk7 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk7 f24 192 170 112 44 -41 -8 #rect
-Bk7 f24 @|StepIcon #fIcon
 Bk7 f22 expr out #txt
 Bk7 f22 920 192 1008 192 #arcP
 Bk7 f19 expr out #txt
@@ -1464,7 +1409,6 @@ Bk7 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk7 g0 51 179 26 26 0 5 #rect
-Bk7 g0 @|MIGIcon #fIcon
 Bk7 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -1473,16 +1417,13 @@ Bk7 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk7 g1 1187 179 26 26 0 5 #rect
-Bk7 g1 @|MOGIcon #fIcon
 Bk7 f1 expr out #txt
 Bk7 f1 1136 192 1187 192 #arcP
 Bk7 f0 77 192 192 192 #arcP
 >Proto Bk3 0 0 32 24 18 0 #rect
 >Proto Bk3 @|BpmnSendTaskIcon #fIcon
 Bk8 g0 307 51 26 26 21 -3 #rect
-Bk8 g0 @|MIGIcon #fIcon
 Bk8 g1 307 1011 26 26 19 -15 #rect
-Bk8 g1 @|MOGIcon #fIcon
 Bk8 f64 processCall 'Functional Processes/ParallelTasksUtil:splitTasks(Number)' #txt
 Bk8 f64 requestActionDecl '<Number numberOfTasks> param;' #txt
 Bk8 f64 requestMappingAction 'param.numberOfTasks=in.currentTask.getResponsibles().size();
@@ -1502,7 +1443,6 @@ Bk8 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk8 f64 264 120 112 44 -28 -8 #rect
-Bk8 f64 @|CallSubIcon #fIcon
 Bk8 f13 actionTable 'out=in;
 ' #txt
 Bk8 f13 actionCode 'import ch.ivy.addon.portalkit.ivydata.utils.ServiceUtilities;
@@ -1518,7 +1458,6 @@ Bk8 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk8 f13 264 224 112 44 -44 -8 #rect
-Bk8 f13 @|StepIcon #fIcon
 Bk8 f12 expr out #txt
 Bk8 f12 320 164 320 224 #arcP
 Bk8 f12 0 0.42340889686368355 0 0 #arcLabel
@@ -1549,7 +1488,6 @@ Bk8 f18 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk8 f18 212 398 30 30 -135 -9 #rect
-Bk8 f18 @|TaskSwitchSimpleIcon #fIcon
 Bk8 f20 actionTable 'out=in1;
 ' #txt
 Bk8 f20 outLinks "TaskA.ivp" #txt
@@ -1575,9 +1513,7 @@ Bk8 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk8 f20 396 398 30 30 20 -10 #rect
-Bk8 f20 @|TaskSwitchSimpleIcon #fIcon
 Bk8 f22 304 541 32 32 0 16 #rect
-Bk8 f22 @|AlternativeIcon #fIcon
 Bk8 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -1588,7 +1524,6 @@ Bk8 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk8 f0 304 333 32 32 14 -27 #rect
-Bk8 f0 @|AlternativeIcon #fIcon
 Bk8 f4 expr out #txt
 Bk8 f4 320 268 320 333 #arcP
 Bk8 f11 expr in #txt
@@ -1640,7 +1575,6 @@ Bk8 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk8 f1 264 826 112 44 -26 -8 #rect
-Bk8 f1 @|CallSubIcon #fIcon
 Bk8 f10 actionTable 'out=in;
 ' #txt
 Bk8 f10 actionCode 'import gawfs.TaskDef;
@@ -1670,7 +1604,6 @@ Bk8 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk8 f10 264 930 112 44 -39 -8 #rect
-Bk8 f10 @|StepIcon #fIcon
 Bk8 f2 expr out #txt
 Bk8 f2 320 974 320 1011 #arcP
 Bk8 f29 actionTable 'out=in;
@@ -1686,7 +1619,6 @@ Bk8 f29 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk8 f29 264 720 112 44 -31 -8 #rect
-Bk8 f29 @|StepIcon #fIcon
 Bk8 f5 expr out #txt
 Bk8 f5 320 764 320 826 #arcP
 Bk8 f14 expr out #txt
@@ -1713,7 +1645,6 @@ Bk8 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Bk8 f7 264 618 112 44 -39 -8 #rect
-Bk8 f7 @|UserDialogIcon #fIcon
 Bk8 f16 expr in #txt
 Bk8 f16 320 573 320 618 #arcP
 Bk8 f15 expr out #txt

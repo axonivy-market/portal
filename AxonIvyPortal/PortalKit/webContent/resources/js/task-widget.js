@@ -95,7 +95,10 @@ function TaskWidget() {
         $breadCrumbTaskElem.find(".js-count").get(0).innerHTML = " (" + $(".js-hidden-task-count").get(0).innerHTML + ")";
       }
 
-      $(".js-task-count-mobile").get(0).innerHTML = " (" + $(".js-hidden-task-count").get(0).innerHTML + ")";
+      let taskCountMobile = $(".js-task-count-mobile");
+      if (taskCountMobile.length > 0) {
+        taskCountMobile.get(0).innerHTML = " (" + $(".js-hidden-task-count").get(0).innerHTML + ")";
+      }
     }
   };
 }
@@ -122,7 +125,7 @@ function TaskListToolKit() {
         } else {
           $(taskSortMenu).show();
         }
-        $.each(taskSortMenu.children('a'), function(i, header) {
+        $.each(taskSortMenu.children('a, .js-unsortable-header-cell'), function(i, header) {
           var cell = $(taskEntry).children().get(i);
           $(header).outerWidth($(cell).outerWidth());
         });

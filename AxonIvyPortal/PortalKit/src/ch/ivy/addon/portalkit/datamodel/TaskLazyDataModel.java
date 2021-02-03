@@ -23,7 +23,6 @@ import ch.ivy.addon.portalkit.bo.TaskColumnsConfiguration;
 import ch.ivy.addon.portalkit.constant.PortalConstants;
 import ch.ivy.addon.portalkit.enums.FilterType;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
-import ch.ivy.addon.portalkit.enums.SortDirection;
 import ch.ivy.addon.portalkit.enums.TaskAssigneeType;
 import ch.ivy.addon.portalkit.enums.TaskSortField;
 import ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria;
@@ -32,12 +31,13 @@ import ch.ivy.addon.portalkit.service.DummyTaskService;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskColumnsConfigurationService;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
-import ch.ivy.addon.portalkit.taskfilter.DefaultTaskFilterContainer;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilter;
 import ch.ivy.addon.portalkit.taskfilter.TaskFilterContainer;
-import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
-import ch.ivy.addon.portalkit.taskfilter.TaskStateFilter;
+import ch.ivy.addon.portalkit.taskfilter.impl.DefaultTaskFilterContainer;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskStateFilter;
 import ch.ivy.addon.portalkit.util.PermissionUtils;
+import ch.ivy.addon.portalkit.util.SortFieldUtil;
 import ch.ivy.addon.portalkit.util.UserUtils;
 import ch.ivyteam.ivy.business.data.store.BusinessDataInfo;
 import ch.ivyteam.ivy.environment.Ivy;
@@ -48,7 +48,14 @@ import ch.ivyteam.ivy.workflow.TaskState;
 import ch.ivyteam.ivy.workflow.query.TaskQuery;
 import ch.ivyteam.ivy.workflow.query.TaskQuery.IFilterQuery;
 
+/**
+ * Lazy data model for task. Only override method which is mentioned in Portal document
+ *
+ */
 public class TaskLazyDataModel extends LazyDataModel<ITask> {
+  /**
+   * @hidden
+   */
   public static final String DESCRIPTION = "DESCRIPTION";
   
   private static final long serialVersionUID = -6615871274830927272L;
@@ -84,6 +91,10 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected boolean isGuide = true;
   protected List<String> standardSortFields;
 
+  /**
+   * @hidden
+   * @param taskWidgetComponentId
+   */
   public TaskLazyDataModel(String taskWidgetComponentId) {
     super();
     this.taskWidgetComponentId = taskWidgetComponentId;
@@ -114,6 +125,10 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     return filterGroupId == null || filterGroupId.equals(Ivy.request().getProcessModel().getId());
   }
 
+  /**
+   * @hidden
+   * @return default task filter data
+   */
   public TaskFilterData buildDefaultTaskFilterData() {
     if (defaultTaskFilterData == null) {
       defaultTaskFilterData = new TaskFilterData();
@@ -125,10 +140,16 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     return defaultTaskFilterData;
   }
 
+  /**
+   * @hidden
+   */
   public TaskLazyDataModel() {
     this("task-widget");
   }
   
+  /**
+   * @hidden
+   */
   public void updateDisableTaskCount() {
     disableTaskCount = new GlobalSettingService().findGlobalSettingValueAsBoolean(GlobalVariable.DISABLE_TASK_COUNT.toString());
   }
@@ -143,10 +164,14 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * </pre></code>
    * </p>
    */
-  protected void initFilterContainer() {
+  public void initFilterContainer() {
     filterContainer = new DefaultTaskFilterContainer();
   }
 
+  /**
+   * @hidden
+   * @throws ReflectiveOperationException
+   */
   public void initFilters() throws ReflectiveOperationException {
     if (filterContainer == null) {
       updateStateForTaskCriteria();
@@ -174,7 +199,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     }
   }
 
-  public void collectFiltersForDefaultFilterSet() {
+  protected void collectFiltersForDefaultFilterSet() {
     if (defaultTaskFilterData != null && CollectionUtils.isEmpty(defaultTaskFilterData.getFilters())) {
       TaskFilterContainer tempFilterContainer = null;
       tempFilterContainer = ObjectUtils.defaultIfNull(this.filterContainer, new DefaultTaskFilterContainer()); 
@@ -200,7 +225,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     }
   }
 
-  public void checkToApplyDefaultSet() {
+  protected void checkToApplyDefaultSet() {
     if (isSelectedDefaultFilter == null || isSelectedDefaultFilter) {
       try {
         applyFilter(defaultTaskFilterData);
@@ -222,6 +247,10 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     return !isRelatedTaskDisplayed && !isNotKeepFilter;
   }
 
+  /**
+   * @hidden
+   * Lazy load task
+   */
   @Override
   public List<ITask> load(int first, int pageSize, String sortField, SortOrder sortOrder, Map<String, Object> filters) {
     if (isGuide && compactMode) {
@@ -259,10 +288,18 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     return tasks;
   }
   
+  /**
+   * @hidden
+   * @return isGuide
+   */
   public boolean getIsGuide() {
     return isGuide;
   }
   
+  /**
+   * @hidden
+   * @param isGuide
+   */
   public void setIsGuide(boolean isGuide) {
     this.isGuide = isGuide;
   }
@@ -313,8 +350,12 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   protected void buildCriteria() {
     criteria = new TaskSearchCriteria();
     criteria.setIncludedStates(new ArrayList<>(TaskSearchCriteria.STANDARD_STATES));
-    criteria.setSortField(getDefaultSortField());
-    criteria.setSortDescending(isSortedDescendingByDefault());
+    String sortInCache = UserUtils.getSessionTaskSortAttribute();
+    if (StringUtils.isBlank(sortInCache)) {
+      updateSortCriteria(getDefaultSortField(), isSortedDescendingByDefault(), false);
+    } else {
+      sort(sortInCache);
+    }
     if (shouldSaveAndLoadSessionFilters()) {
       criteria.setKeyword(UserUtils.getSessionTaskKeywordFilterAttribute());
     }
@@ -322,7 +363,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   private String getDefaultSortField() {
    String defaultSortField = UserSettingService.newInstance().getDefaultSortFieldOfTaskList();
-   if (StringUtils.isBlank(defaultSortField)) {
+   if (StringUtils.isBlank(defaultSortField) || UserSettingService.DEFAULT.equals(defaultSortField)) {
      GlobalSettingService globalSettingService = new GlobalSettingService();
      defaultSortField = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_FIELD_OF_TASK_LIST.name());
    }
@@ -331,12 +372,12 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
   private boolean isSortedDescendingByDefault() {
     String defaultSortDirection = UserSettingService.newInstance().getDefaultSortDirectionOfTaskList();
-    if (StringUtils.isBlank(defaultSortDirection)) {
+    if (StringUtils.isBlank(defaultSortDirection) || UserSettingService.DEFAULT.equals(defaultSortDirection)) {
       GlobalSettingService globalSettingService = new GlobalSettingService();
       defaultSortDirection = globalSettingService.findGlobalSettingValue(GlobalVariable.DEFAULT_SORT_DIRECTION_OF_TASK_LIST.name());
     }
     
-    return !SortDirection.ASCENDING.name().contentEquals(defaultSortDirection);
+    return !SortFieldUtil.isAscendingSort(defaultSortDirection);
   }
 
   /**
@@ -356,21 +397,41 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * </pre></code>
    * </p>
    * 
-   * @param taskQuery
+   * @param taskQuery task query {@link TaskQuery}
    */
-  protected void extendSort(@SuppressWarnings("unused") TaskQuery taskQuery) {
+  public void extendSort(@SuppressWarnings("unused") TaskQuery taskQuery) {
     // Placeholder for customization
   }
 
+  /**
+   * @hidden
+   * @param sortField
+   * @param sortDescending
+   */
   public void setSortField(String sortField, boolean sortDescending) {
-    criteria.setSortField(sortField);
-    criteria.setSortDescending(sortDescending);
+    updateSortCriteria(sortField, sortDescending, true);
   }
 
+  private void updateSortCriteria(String sortField, boolean sortDescending, boolean updateCache) {
+    criteria.setSortField(sortField);
+    criteria.setSortDescending(sortDescending);
+    if (updateCache) {
+      storeTaskSortIntoSession(sortField, sortDescending);
+    }
+  }
+
+  /**
+   * @hidden
+   * @param category
+   */
   public void setCategory(String category) {
     criteria.setCategory(category);
   }
 
+  /**
+   * @hidden
+   * @param isAdminQuery
+   */
   public void setAdminQuery(boolean isAdminQuery) {
     criteria.extendStatesQueryByPermission(isAdminQuery);
     if (isAdminQuery) {
@@ -379,6 +440,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   /**
+   * @hidden
    * No need since 9.2, always take login username
    * @param involvedUsername
    */
@@ -387,54 +449,105 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     criteria.setInvolvedUsername(involvedUsername);
   }
 
+  /**
+   * @hidden
+   * @param taskId
+   */
   public void setTaskId(Long taskId) {
     criteria.setTaskId(taskId);
     criteria.setIncludedStates(new ArrayList<>());
     criteria.setQueryByTaskId(true);
   }
 
+  /**
+   * @hidden
+   * @param caseId
+   */
   public void setCaseId(Long caseId) {
     criteria.setCaseId(caseId);
   }
 
+  /**
+   * @hidden
+   * @param isQueryByBusinessCaseId
+   */
   public void setQueryByBusinessCaseId(boolean isQueryByBusinessCaseId) {
     criteria.setQueryByBusinessCaseId(isQueryByBusinessCaseId);
   }
 
+  /**
+   * @hidden
+   * @param assigneeType
+   */
   public void setTaskAssigneeType(TaskAssigneeType assigneeType) {
     criteria.setTaskAssigneeType(assigneeType);
   }
 
+  /**
+   * @hidden
+   * @return criteria.getSortField()
+   */
   public String getSortField() {
     return criteria.getSortField();
   }
 
+  /**
+   * @hidden
+   * @return criteria.isSortDescending()
+   */
   public boolean isSortDescending() {
     return criteria.isSortDescending();
   }
 
+  /**
+   * @hidden
+   * @param includedStates
+   */
   public void setIncludedStates(List<TaskState> includedStates) {
     this.criteria.setIncludedStates(includedStates);
     setValuesForStateFilter(this.criteria, this.filterContainer);
   }
 
+  /**
+   * @hidden
+   * @param includedStates task state list
+   */
   public void addIncludedStates(List<TaskState> includedStates) {
     this.criteria.addIncludedStates(includedStates);
     setValuesForStateFilter(this.criteria, this.filterContainer);
   }
 
+  /**
+   * @hidden
+   * Setter for task search criteria
+   * @param criteria
+   */
   public void setCriteria(TaskSearchCriteria criteria) {
     this.criteria = criteria;
   }
 
+  /**
+   * Getter for task search criteria
+   * @return criteria search criteria type {@link TaskSearchCriteria}
+   */
   public TaskSearchCriteria getCriteria() {
     return criteria;
   }
 
+  /**
+   * @hidden
+   * Detect whether task list is in compact mode
+   * @return compactMode
+   */
   public boolean isCompactMode() {
     return compactMode;
   }
 
+  /**
+   * @hidden
+   * Set compact mode. If true also clear selected filter
+   * @param compactMode
+   */
   public void setCompactMode(boolean compactMode) {
     this.compactMode = compactMode;
     if (compactMode) {
@@ -442,48 +555,96 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     }
   }
 
+  /**
+   * @hidden
+   * @return caseName
+   */
   public String getCaseName() {
     return caseName;
   }
 
+  /**
+   * @hidden
+   * @param caseName
+   */
   public void setCaseName(String caseName) {
     this.caseName = caseName;
   }
 
+  /**
+   * @hidden
+   * Return all filters of data model
+   * @return filters
+   */
   public List<TaskFilter> getFilters() {
     return filters;
   }
 
+  /**
+   * @hidden
+   * Return all selected filters of data model
+   * @return selectedFilters
+   */
   public List<TaskFilter> getSelectedFilters() {
     return selectedFilters;
   }
 
+  /**
+   * @hidden
+   * Set selected filters for data model
+   * @param selectedFilters
+   */
   public void setSelectedFilters(List<TaskFilter> selectedFilters) {
     this.selectedFilters = selectedFilters;
   }
 
+  /**
+   * @hidden
+   * Return task filter container
+   * @return filterContainer
+   */
   public TaskFilterContainer getFilterContainer() {
     return filterContainer;
   }
 
+  /**
+   * @hidden
+   * @param filterContainer
+   */
   public void setFilterContainer(TaskFilterContainer filterContainer) {
     this.filterContainer = filterContainer;
   }
 
+  /**
+   * @hidden
+   * @return selectedTaskFilterData
+   */
   public TaskFilterData getSelectedTaskFilterData() {
     return selectedTaskFilterData;
   }
 
+  /**
+   * @hidden
+   * @param selectedTaskFilterData
+   */
   public void setSelectedTaskFilterData(TaskFilterData selectedTaskFilterData) {
     this.selectedTaskFilterData = selectedTaskFilterData;
   }
 
+  /**
+   * @hidden
+   * @param filter
+   */
   public void removeFilter(TaskFilter filter) {
     filter.resetValues();
     selectedFilters.remove(filter);
     resetFilterData();
   }
 
+  /**
+   * @hidden
+   * @throws ReflectiveOperationException
+   */
   public void resetFilters() throws ReflectiveOperationException {
     for (TaskFilter selectedFilter : selectedFilters) {
       selectedFilter.resetValues();
@@ -492,6 +653,11 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     applyFilter(buildDefaultTaskFilterData());
   }
 
+  /**
+   * @hidden
+   * @param filterToBeRemoved
+   * @return is same task filter data
+   */
   public boolean isSameTaskFilterData(TaskFilterData filterToBeRemoved) {
     if (filterToBeRemoved == null || selectedTaskFilterData == null) {
       return false;
@@ -502,6 +668,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   }
 
   /**
+   * @hidden
    * Save all filter settings to business data
    * 
    * @param filterName
@@ -530,7 +697,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   /**
    * Apply filter settings loaded from business data to this {@link #TaskLazyDataModel}
    * 
-   * @param taskFilterData
+   * @param taskFilterData task filter data {@link TaskFilterData}
    * @throws ReflectiveOperationException
    */
   public void applyFilter(TaskFilterData taskFilterData) throws ReflectiveOperationException {
@@ -540,11 +707,18 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     criteria.setKeyword(taskFilterData.getKeyword());
   }
 
+  /**
+   * @hidden
+   * @param event
+   */
   @SuppressWarnings("unchecked")
   public void onFilterChange(ValueChangeEvent event) {
     oldSelectedFilters = (List<TaskFilter>) event.getOldValue();
   }
 
+  /**
+   * @hidden
+   */
   @SuppressWarnings("unchecked")
   public void updateSelectedFilter() {
     List<TaskFilter> toggleFilters = null;
@@ -560,10 +734,16 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     storeTaskFiltersIntoSession();
   }
 
+  /**
+   * @hidden
+   */
   public void onFilterApply() {
     resetFilterData();
   }
   
+  /**
+   * @hidden
+   */
   public void onKeywordChange() {
     resetFilterData();
   }
@@ -575,6 +755,10 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     this.isSelectedDefaultFilter = false;
   }
 
+  /**
+   * @hidden 
+   * @return PermissionUtils.checkReadAllTasksPermission()
+   */
   public boolean hasReadAllTasksPermisson() {
     return PermissionUtils.checkReadAllTasksPermission();
   }
@@ -592,6 +776,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
 
     if (compactMode) {
       criteria.setIncludedStates(new ArrayList<>(Arrays.asList(TaskState.SUSPENDED, TaskState.RESUMED, TaskState.PARKED)));
+      if (SortFieldUtil.invalidSortField(UserUtils.getSessionTaskSortAttribute(), getPortalTaskSort())) {
+        buildCompactModeTaskSort();
+      }
     } else {
       if (filterContainer != null) {
         if (selectedFilters.contains(filterContainer.getStateFilter())) {
@@ -605,6 +792,10 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     TaskQuery taskQuery = buildTaskQuery();
     extendSort(taskQuery);
     criteria.setFinalTaskQuery(taskQuery);
+  }
+
+  private void buildCompactModeTaskSort() {
+    updateSortCriteria(TaskSortField.CREATION_TIME.name(), true, false);
   }
 
   protected void setValuesForStateFilter(TaskSearchCriteria criteria, TaskFilterContainer filterContainer) {
@@ -640,7 +831,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     }
   }
 
-
+  /**
+   * @hidden
+   */
   public void initColumnsConfiguration() {
     if (CollectionUtils.isEmpty(allColumns)) {
       allColumns.addAll(getDefaultColumns());
@@ -666,6 +859,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     setDisableSelectionCheckboxes(isAutoHideColumns);
   }
 
+  /**
+   * @hidden
+   */
   @Override
   public void setRowIndex(int index) {
     int idx = index;
@@ -675,6 +871,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     this.rowIndex = idx;
   }
 
+  /**
+   * @hidden
+   */
   @Override
   public ITask getRowData() {
     if (rowIndex >= 0 && rowIndex < data.size()) {
@@ -684,6 +883,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     }
   }
 
+  /**
+   * @hidden
+   */
   @Override
   public boolean isRowAvailable() {
     if (data == null) {
@@ -708,7 +910,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * 
    * @return default columns
    */
-  protected List<String> getDefaultColumns() {
+  public List<String> getDefaultColumns() {
     return portalDefaultColumns;
   }
 
@@ -721,7 +923,7 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
    * create your own folder column must be the same with sortField
    * </p>
    * 
-   * @param column
+   * @param column column name
    * 
    * @return column label
    */
@@ -729,6 +931,9 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/defaultColumns/" + column);
   }
 
+  /**
+   * @hidden
+   */
   public void saveColumnsConfiguration() {
     // avoid duplicating
     for (String requiredColumn : portalRequiredColumns) {
@@ -769,54 +974,107 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
     }
   }
 
+  /**
+   * @hidden
+   * @param selectedColumns
+   */
   public void setSelectedColumns(List<String> selectedColumns) {
     this.selectedColumns = selectedColumns;
   }
 
+  /**
+   * @hidden
+   * @return selectedColumns
+   */
   public List<String> getSelectedColumns() {
     return selectedColumns;
   }
 
+  /**
+   * @hidden
+   * @return allColumns
+   */
   public List<String> getAllColumns() {
     return allColumns;
   }
 
+  /**
+   * Check if your column is selected
+   * @param column column name
+   * @return is column selected 
+   */
   public boolean isSelectedColumn(String column) {
     return selectedColumns.stream().anyMatch(selectedcolumn -> selectedcolumn.equalsIgnoreCase(column));
   }
 
+  /**
+   * @hidden
+   * @return portalRequiredColumns
+   */
   public List<String> getPortalRequiredColumns() {
     return portalRequiredColumns;
   }
 
+  /**
+   * @hidden
+   * @return isAutoHideColumns
+   */
   public boolean isAutoHideColumns() {
     return isAutoHideColumns;
   }
 
+  /**
+   * @hidden
+   * @param isAutoHideColumns
+   */
   public void setAutoHideColumns(boolean isAutoHideColumns) {
     this.isAutoHideColumns = isAutoHideColumns;
   }
 
+  /**
+   * @hidden
+   * @return isDisableSelectionCheckboxes
+   */
   public boolean isDisableSelectionCheckboxes() {
     return isDisableSelectionCheckboxes;
   }
 
+  /**
+   * @hidden
+   * @param isDisableSelectionCheckboxes
+   */
   public void setDisableSelectionCheckboxes(boolean isDisableSelectionCheckboxes) {
     this.isDisableSelectionCheckboxes = isDisableSelectionCheckboxes;
   }
 
+  /**
+   * @hidden
+   * @return isRelatedTaskDisplayed
+   */
   public boolean isRelatedTaskDisplayed() {
     return isRelatedTaskDisplayed;
   }
 
+  /**
+   * @hidden
+   * @param isRelatedTaskDisplayed
+   */
   public void setRelatedTaskDisplayed(boolean isRelatedTaskDisplayed) {
     this.isRelatedTaskDisplayed = isRelatedTaskDisplayed;
   }
 
+  /**
+   * @hidden
+   * @return isNotKeepFilter
+   */ 
   public boolean isNotKeepFilter() {
     return isNotKeepFilter;
   }
 
+  /**
+   * @hidden
+   * @param isNotKeepFilter
+   */
   public void setNotKeepFilter(boolean isNotKeepFilter) {
     this.isNotKeepFilter = isNotKeepFilter;
     this.selectedTaskFilterData = null;
@@ -863,41 +1121,87 @@ public class TaskLazyDataModel extends LazyDataModel<ITask> {
   public String getSortFieldLabel(String fieldName) {
     return Ivy.cms().co("/ch.ivy.addon.portalkit.ui.jsf/taskList/sortFields/" + fieldName);
   }
+  
 
+  /**
+   * @hidden
+   * @param sortField
+   */
   public void sort(String sortField) {
-    if (StringUtils.isNotBlank(sortField) && sortField.length() > 3) {
-      boolean asc = StringUtils.equalsIgnoreCase("asc", sortField.substring(sortField.length() - 3));
-      String sortColumn = StringUtils.substring(sortField, 0, asc ? sortField.length() - 4 : sortField.length() - 5);
-      if (getDefaultColumns().contains(sortColumn)) {
-        setSortField(sortColumn, !asc);
-      }
+    String sortColumn = SortFieldUtil.extractSortColumn(sortField);
+    if (getDefaultColumns().contains(sortColumn)) {
+      setSortField(sortColumn, !SortFieldUtil.isAscendingSort(sortField));
+      return;
     }
+
+    criteria.setSortField(getDefaultSortField());
+    criteria.setSortDescending(isSortedDescendingByDefault());
   }
 
+  private void storeTaskSortIntoSession(String sortColumn, boolean sortDescending) {
+    UserUtils.setSessionTaskSortAttribute(SortFieldUtil.buildSortField(sortColumn, sortDescending));
+  }
+
+  public String getSelectedCompactSort() {
+    if (SortFieldUtil.invalidSortField(UserUtils.getSessionTaskSortAttribute(), getPortalTaskSort())) {
+      buildCompactModeTaskSort();
+    }
+    return SortFieldUtil.buildSortField(criteria.getSortField(), criteria.isSortDescending());
+  }
+
+  /**
+   * @hidden
+   * @param sortField
+   * @return standardSortFields.contains(sortField)
+   */
   public boolean isSortable(String sortField) {
     return standardSortFields.contains(sortField);
   }
 
+  /**
+   * @hidden
+   * @return disableTaskCount
+   */
   public boolean getDisableTaskCount() {
     return disableTaskCount;
   }
 
+  /**
+   * @hidden
+   * @param disableTaskCount
+   */
   public void setDisableTaskCount(boolean disableTaskCount) {
     this.disableTaskCount = disableTaskCount;
   }
 
+  /**
+   * @hidden
+   * @param defaultTaskFilterData
+   */
   public void setDefaultTaskFilterData(TaskFilterData defaultTaskFilterData) {
     this.defaultTaskFilterData = defaultTaskFilterData;
   }
 
+  /**
+   * @hidden
+   * @return defaultTaskFilterData
+   */
   public TaskFilterData getDefaultTaskFilterData() {
     return defaultTaskFilterData;
   }
 
+  /**
+   * @hidden
+   * @return isSelectedDefaultFilter
+   */
   public boolean isSelectedDefaultFilter() {
     return isSelectedDefaultFilter;
   }
 
+  /**
+   * @hidden
+   * @param isSelectedDefaultFilter
+   */
   public void setSelectedDefaultFilter(boolean isSelectedDefaultFilter) {
     this.isSelectedDefaultFilter = isSelectedDefaultFilter;
   }

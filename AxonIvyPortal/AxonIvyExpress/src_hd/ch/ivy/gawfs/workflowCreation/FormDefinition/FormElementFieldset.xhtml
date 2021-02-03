@@ -4,11 +4,8 @@
   xmlns:jsf="http://xmlns.jcp.org/jsf">
 <h:body>
 
-  <p:fieldset id="create-tabs-field" legend="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/FieldSetFormelements')}" toggleable="true"
-    styleClass="ui-g express-fieldset fieldset-no-border create-tabs-field portal-card-container">
-    <div class="card ui-g-12">
-      <p:tabView id="create-tabs" styleClass="form-create-tabs" activeIndex="#{data.activeTab}" dynamic="false">
-        <p:ajax event="tabChange" resetValues="true" update="create-tabs" />
+      <p:tabView id="create-tabs" styleClass="form-create-tabs" activeIndex="#{data.activeTab}" widgetVar="create-tabs">
+        <p:ajax event="tabChange" resetValues="true" update="create-tabs"/>
 
         <!-- INPUT FIELD TAB -->
         <p:tab title="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputField')}" id="create-input-field-tab">
@@ -62,7 +59,7 @@
 
           <div class="create-form-toolbar">
             <p:commandButton id="add-input-text-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
-              actionListener="#{logic.createInputField()}" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}"
+              actionListener="#{logic.createInputField()}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
               update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-input-field-tab" />
           </div>
         </p:tab>
@@ -114,7 +111,7 @@
 
           <div class="create-form-toolbar">
             <p:commandButton id="add-text-area-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
-              actionListener="#{logic.createInputTextArea}" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}"
+              actionListener="#{logic.createInputTextArea}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
               update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-input-area-tab" />
           </div>
         </p:tab>
@@ -174,7 +171,7 @@
                             <p:outputLabel styleClass="marginTop6" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CheckboxFields')}" />
                           </div>
                           <div class="express-add-option-panel">
-                            <p:commandButton id="add-checkbox-option-btn" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add')}" actionListener="#{data.createManyCheckboxTab.addOption()}"
+                            <p:commandButton id="add-checkbox-option-btn" icon="#{visibilityBean.generateButtonIcon('si si-add')}" actionListener="#{data.createManyCheckboxTab.addOption()}"
                               update="form:create-tabs:many-checkbox-options" process="form:create-tabs:many-checkbox-options" />
                           </div>
                         </div>
@@ -188,7 +185,7 @@
                         placeholder="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/InputCheckbox')}"
                         maxlength="#{ivy.cms.co('/Dialogs/general/maxOptionsLength')}" id="input-checkbox-name" />
                       <div class="available-elements-action-btn">
-                        <p:commandButton icon="icon ivyicon-bin-1" styleClass="placement-form-element-remove-btn"
+                        <p:commandButton icon="si si-bin-1" styleClass="placement-form-element-remove-btn"
                           actionListener="#{data.createManyCheckboxTab.deleteOption(option)}" process="form:create-tabs:many-checkbox-options"
                           update="form:create-tabs:many-checkbox-options" immediate="true" />
                       </div>
@@ -201,7 +198,7 @@
 
           <div class="create-form-toolbar">
             <p:commandButton id="add-checkbox-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
-              actionListener="#{logic.createManyCheckbox}" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}"
+              actionListener="#{logic.createManyCheckbox}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
               update="form:create-tabs:many-checkbox-options form:available-form-elements form:create-tabs"
               process="form:create-tabs:many-checkbox-options form:create-tabs:create-many-checkbox-tab" />
           </div>
@@ -240,7 +237,7 @@
                         <p:outputLabel styleClass="marginTop6" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/OptionboxFields')}" />
                       </div>
                       <div class="express-add-option-panel">
-                        <p:commandButton id="add-radio-option-btn" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add')}" actionListener="#{data.createOneRadioTab.addOption()}"
+                        <p:commandButton id="add-radio-option-btn" icon="#{visibilityBean.generateButtonIcon('si si-add')}" actionListener="#{data.createOneRadioTab.addOption()}"
                           update="form:create-tabs:one-radio-options" process="form:create-tabs:one-radio-options" />
                       </div>
                     </div>
@@ -254,7 +251,7 @@
                     placeholder="Option" required="true" maxlength="#{ivy.cms.co('/Dialogs/general/maxOptionsLength')}" />
                   
                   <div class="available-elements-action-btn">
-                    <p:commandButton icon="icon ivyicon-bin-1" styleClass="placement-form-element-remove-btn"
+                    <p:commandButton icon="si si-bin-1" styleClass="placement-form-element-remove-btn"
                     actionListener="#{data.createOneRadioTab.deleteOption(option)}" process="form:create-tabs:one-radio-options"
                     update="form:create-tabs:one-radio-options" immediate="true" />
                   </div>
@@ -266,7 +263,7 @@
 
           <div class="create-form-toolbar">
             <p:commandButton id="add-radio-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
-              actionListener="#{logic.createOneRadio}" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}"
+              actionListener="#{logic.createOneRadio}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
               update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-one-radio-tab" />
           </div>
         </p:tab>
@@ -319,13 +316,11 @@
 
           <div class="create-form-toolbar">
             <p:commandButton id="add-upload-file-btn" value="#{ivy.cms.co('/Dialogs/workflowCreation/FormDefinition/CreateField')}"
-              actionListener="#{logic.createFileUpload}" icon="#{visibilityBean.generateButtonIcon('icon ivyicon-add-small')}"
+              actionListener="#{logic.createFileUpload}" icon="#{visibilityBean.generateButtonIcon('si si-add-small')}"
               update="form:available-form-elements form:create-tabs" process="form:create-tabs:create-file-upload-tab" />
           </div>
         </p:tab>
 
       </p:tabView>
-    </div>
-  </p:fieldset>
 </h:body>
 </html>

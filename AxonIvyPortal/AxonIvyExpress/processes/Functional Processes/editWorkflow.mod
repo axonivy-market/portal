@@ -110,7 +110,6 @@ ew0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f0 65 249 30 30 -38 17 #rect
-ew0 f0 @|StartSubIcon #fIcon
 ew0 f5 actionTable 'out=in;
 ' #txt
 ew0 f5 actionCode 'if(!in.isAdhocProcess) {
@@ -131,7 +130,6 @@ ew0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f5 312 242 112 44 -25 -8 #rect
-ew0 f5 @|StepIcon #fIcon
 ew0 f7 dialogId ch.ivy.gawfs.workflowCreation.WorkflowDefinition #txt
 ew0 f7 startMethod start(gawfs.Data) #txt
 ew0 f7 requestActionDecl '<gawfs.Data data> param;' #txt
@@ -151,7 +149,6 @@ ew0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f7 568 242 144 44 -68 -8 #rect
-ew0 f7 @|UserDialogIcon #fIcon
 ew0 f9 actionTable 'out=in;
 ' #txt
 ew0 f9 actionCode 'import ch.ivy.gawfs.ExpressProcessUtils;
@@ -168,7 +165,6 @@ ew0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f9 1640 242 160 44 -74 -8 #rect
-ew0 f9 @|StepIcon #fIcon
 ew0 f3 dialogId ch.ivy.gawfs.workflowCreation.FormDefinition #txt
 ew0 f3 startMethod start(gawfs.Data) #txt
 ew0 f3 requestActionDecl '<gawfs.Data data> param;' #txt
@@ -188,11 +184,8 @@ ew0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f3 960 242 176 44 -85 -8 #rect
-ew0 f3 @|UserDialogIcon #fIcon
 ew0 f11 1256 248 32 32 0 16 #rect
-ew0 f11 @|AlternativeIcon #fIcon
 ew0 f13 488 248 32 32 0 16 #rect
-ew0 f13 @|AlternativeIcon #fIcon
 ew0 f14 expr out #txt
 ew0 f14 424 264 488 264 #arcP
 ew0 f8 expr in #txt
@@ -209,7 +202,6 @@ ew0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f16 840 146 112 44 -43 -8 #rect
-ew0 f16 @|StepIcon #fIcon
 ew0 f17 expr in #txt
 ew0 f17 outCond in.backFlag==true #txt
 ew0 f17 1272 248 952 168 #arcP
@@ -230,7 +222,6 @@ for AHWF</name>
 </elementInfo>
 ' #txt
 ew0 f18 1552 248 32 32 -33 -49 #rect
-ew0 f18 @|AlternativeIcon #fIcon
 ew0 f20 processCall 'Functional Processes/executePredefinedWorkflow:call(List<gawfs.TaskDef>,String,String,ch.ivy.gawfs.enums.ProcessType,String,Boolean,Long)' #txt
 ew0 f20 requestActionDecl '<List<gawfs.TaskDef> definedTasks,String processName,String processDescription,ch.ivy.gawfs.enums.ProcessType processType,String processID,Boolean isAdhocProcess,Long originalTaskId> param;' #txt
 ew0 f20 requestMappingAction 'param.definedTasks=in.definedTasks;
@@ -255,7 +246,6 @@ ew0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f20 1968 338 176 44 -84 -8 #rect
-ew0 f20 @|CallSubIcon #fIcon
 ew0 f21 inParamDecl '<String workflowID> param;' #txt
 ew0 f21 inParamTable 'out.processID=param.workflowID;
 ' #txt
@@ -271,11 +261,9 @@ ew0 f21 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f21 65 337 30 30 -35 17 #rect
-ew0 f21 @|StartSubIcon #fIcon
 ew0 f34 368 330 368 286 #arcP
 ew0 f34 0 0.37027027027027026 0 0 #arcLabel
 ew0 f32 2193 249 30 30 0 15 #rect
-ew0 f32 @|EndSubIcon #fIcon
 ew0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
@@ -286,9 +274,7 @@ ew0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f41 776 248 32 32 -31 -33 #rect
-ew0 f41 @|AlternativeIcon #fIcon
 ew0 f43 777 345 30 30 0 15 #rect
-ew0 f43 @|EndIcon #fIcon
 ew0 f44 expr in #txt
 ew0 f44 792 280 792 345 #arcP
 ew0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -301,9 +287,7 @@ ew0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f45 1192 248 32 32 -12 18 #rect
-ew0 f45 @|AlternativeIcon #fIcon
 ew0 f46 1193 313 30 30 0 15 #rect
-ew0 f46 @|EndIcon #fIcon
 ew0 f47 expr in #txt
 ew0 f47 outCond in.discard #txt
 ew0 f47 1208 280 1208 313 #arcP
@@ -333,7 +317,6 @@ ew0 f22 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f22 1328 242 160 44 -73 -8 #rect
-ew0 f22 @|StepIcon #fIcon
 ew0 f26 expr out #txt
 ew0 f26 712 264 776 264 #arcP
 ew0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -346,7 +329,6 @@ ew0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f27 872 248 32 32 -58 -32 #rect
-ew0 f27 @|AlternativeIcon #fIcon
 ew0 f29 expr in #txt
 ew0 f29 outCond !in.discard #txt
 ew0 f29 808 264 872 264 #arcP
@@ -395,7 +377,6 @@ ew0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f28 152 242 112 44 -24 -8 #rect
-ew0 f28 @|StepIcon #fIcon
 ew0 f31 expr out #txt
 ew0 f31 95 264 152 264 #arcP
 ew0 f6 expr out #txt
@@ -410,7 +391,6 @@ ew0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f35 1872 248 32 32 -49 18 #rect
-ew0 f35 @|AlternativeIcon #fIcon
 ew0 f36 expr out #txt
 ew0 f36 1800 264 1872 264 #arcP
 ew0 f37 actionTable 'out=in1;
@@ -438,7 +418,6 @@ progress of workflow</name>
 </elementInfo>
 ' #txt
 ew0 f37 1873 153 30 30 24 -18 #rect
-ew0 f37 @|TaskSwitchSimpleIcon #fIcon
 ew0 f38 expr in #txt
 ew0 f38 outCond !in.readyToExecute #txt
 ew0 f38 type gawfs.Data #txt
@@ -477,7 +456,6 @@ ew0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f1 152 330 112 44 -32 -8 #rect
-ew0 f1 @|StepIcon #fIcon
 ew0 f39 expr out #txt
 ew0 f39 95 352 152 352 #arcP
 ew0 f33 expr out #txt
@@ -493,7 +471,6 @@ ew0 f42 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f42 1480 50 112 44 -38 -8 #rect
-ew0 f42 @|StepIcon #fIcon
 ew0 f49 expr data #txt
 ew0 f49 outCond ivp=="TaskA.ivp" #txt
 ew0 f49 1888 153 1592 72 #arcP
@@ -519,7 +496,6 @@ ew0 f50 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f50 65 57 30 30 -74 26 #rect
-ew0 f50 @|StartSubIcon #fIcon
 ew0 f52 actionTable 'out=in;
 ' #txt
 ew0 f52 actionCode 'import java.util.Arrays;
@@ -537,7 +513,6 @@ ew0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 ew0 f52 152 50 112 44 -51 -8 #rect
-ew0 f52 @|StepIcon #fIcon
 ew0 f53 expr out #txt
 ew0 f53 95 72 152 72 #arcP
 ew0 f53 0 0.9833105470266609 0 0 #arcLabel
@@ -549,18 +524,18 @@ ew0 f54 actionTable 'out=in;
 ew0 f54 actionCode 'import ch.ivy.addon.portalkit.util.AdhocUtils;
 import ch.ivy.addon.portalkit.enums.AdditionalProperty;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.publicapi.TaskAPI;
 import ch.ivyteam.ivy.workflow.ITask;
 
 if(in.isAdhocProcess){
 	ITask originalTask = ivy.wf.findTask(in.originalTaskId);
 	if(originalTask != null){
-		TaskUtils.setHidePropertyToHideInPortal(originalTask);
+		TaskAPI.setHidePropertyToHideInPortal(originalTask);
 		//Mark task as adhoc express
 		originalTask.customFields().stringField(AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString()).set(AdditionalProperty.ORIGINAL_ADHOC_EXPRESS_TASK.toString());
 		originalTask.customFields().stringField(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString()).set(AdditionalProperty.FIRST_TIME_OPEN_ORIGINAL_ADHOC_TASK.toString());
 	}
-	ICase businessCase = originalTask.getCase().ensureBusinessCase();
+	ICase businessCase = originalTask.getCase().getBusinessCase();
 	AdhocUtils.attachToBusinessCase(ivy.case, businessCase.getId());
 }' #txt
 ew0 f54 security system #txt
@@ -573,7 +548,6 @@ attach to business case</name>
 </elementInfo>
 ' #txt
 ew0 f54 1688 338 160 44 -60 -16 #rect
-ew0 f54 @|StepIcon #fIcon
 ew0 f55 expr in #txt
 ew0 f55 outCond 'in.processType == ch.ivy.gawfs.enums.ProcessType.AD_HOC' #txt
 ew0 f55 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -610,7 +584,6 @@ Ct0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct0 f25 152 290 112 44 -48 -8 #rect
-Ct0 f25 @|StepIcon #fIcon
 Ct0 f26 actionTable 'out=in;
 ' #txt
 Ct0 f26 actionCode 'import java.util.ArrayList;
@@ -652,7 +625,6 @@ Ct0 f26 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct0 f26 136 194 144 44 -68 -8 #rect
-Ct0 f26 @|StepIcon #fIcon
 Ct0 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -661,7 +633,6 @@ Ct0 g0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct0 g0 195 91 26 26 0 5 #rect
-Ct0 g0 @|MIGIcon #fIcon
 Ct0 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language lang="en">
@@ -670,7 +641,6 @@ Ct0 g1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ct0 g1 195 403 26 26 0 5 #rect
-Ct0 g1 @|MOGIcon #fIcon
 Ct0 f1 expr out #txt
 Ct0 f1 208 334 208 403 #arcP
 Ct0 f0 208 117 208 194 #arcP

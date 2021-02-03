@@ -29,6 +29,11 @@ Pt0 @PushWFArc f8 '' #zField
 Pt0 @PushWFArc f9 '' #zField
 Pt0 @PushWFArc f11 '' #zField
 Pt0 @PushWFArc f18 '' #zField
+Pt0 @GridStep f0 '' #zField
+Pt0 @StartSub f1 '' #zField
+Pt0 @EndSub f2 '' #zField
+Pt0 @PushWFArc f3 '' #zField
+Pt0 @PushWFArc f10 '' #zField
 >Proto Pt0 Pt0 SecurityService #zField
 Pt0 f4 inParamDecl '<String query,Integer startIndex,Integer count> param;' #txt
 Pt0 f4 inParamTable 'out.count=param.count;
@@ -47,7 +52,6 @@ Pt0 f4 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f4 129 241 30 30 -90 19 #rect
-Pt0 f4 @|StartSubIcon #fIcon
 Pt0 f5 actionTable 'out=in;
 ' #txt
 Pt0 f5 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
@@ -67,11 +71,9 @@ Pt0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f5 392 234 144 44 -63 -8 #rect
-Pt0 f5 @|StepIcon #fIcon
 Pt0 f6 expr out #txt
 Pt0 f6 159 256 392 256 #arcP
 Pt0 f7 641 241 30 30 0 15 #rect
-Pt0 f7 @|EndSubIcon #fIcon
 Pt0 f19 inParamDecl '<String query,Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
 Pt0 f19 inParamTable 'out.count=param.count;
 out.excludedUsernames=param.excludedUsernames;
@@ -91,7 +93,6 @@ Pt0 f19 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f19 129 49 30 30 -53 20 #rect
-Pt0 f19 @|StartSubIcon #fIcon
 Pt0 f25 actionTable 'out=in;
 ' #txt
 Pt0 f25 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
@@ -110,9 +111,7 @@ Pt0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f25 408 42 112 44 -29 -8 #rect
-Pt0 f25 @|StepIcon #fIcon
 Pt0 f29 641 49 30 30 0 15 #rect
-Pt0 f29 @|EndSubIcon #fIcon
 Pt0 f23 expr out #txt
 Pt0 f23 159 64 408 64 #arcP
 Pt0 f37 actionTable 'out=in;
@@ -133,9 +132,7 @@ Pt0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f37 408 138 112 44 -27 -8 #rect
-Pt0 f37 @|StepIcon #fIcon
 Pt0 f38 641 145 30 30 0 15 #rect
-Pt0 f38 @|EndSubIcon #fIcon
 Pt0 f40 inParamDecl '<> param;' #txt
 Pt0 f40 outParamDecl '<java.util.List<ch.ivyteam.ivy.security.IRole> roles> result;' #txt
 Pt0 f40 outParamTable 'result.roles=in.roles;
@@ -149,7 +146,6 @@ Pt0 f40 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f40 129 145 30 30 -53 20 #rect
-Pt0 f40 @|StartSubIcon #fIcon
 Pt0 f45 expr out #txt
 Pt0 f45 159 160 408 160 #arcP
 Pt0 f48 actionTable 'out=in;
@@ -169,9 +165,7 @@ Pt0 f48 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f48 408 330 112 44 -27 -8 #rect
-Pt0 f48 @|StepIcon #fIcon
 Pt0 f50 641 337 30 30 0 15 #rect
-Pt0 f50 @|EndSubIcon #fIcon
 Pt0 f51 inParamDecl '<> param;' #txt
 Pt0 f51 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.dto.RoleDTO> roles> result;' #txt
 Pt0 f51 outParamTable 'result.roles=in.roleDTOs;
@@ -185,13 +179,52 @@ Pt0 f51 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Pt0 f51 129 337 30 30 -53 20 #rect
-Pt0 f51 @|StartSubIcon #fIcon
 Pt0 f52 expr out #txt
 Pt0 f52 159 352 408 352 #arcP
 Pt0 f8 536 256 641 256 #arcP
 Pt0 f9 520 352 641 352 #arcP
 Pt0 f11 520 160 641 160 #arcP
 Pt0 f18 520 64 641 64 #arcP
+Pt0 f0 actionTable 'out=in;
+' #txt
+Pt0 f0 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.SecurityService;
+import ch.ivy.addon.portalkit.ivydata.dto.IvySecurityResultDTO;
+
+IvySecurityResultDTO dto = SecurityService.newInstance().findAllUsersOfRoles(in.startIndex, in.count, in.fromRoles, in.excludedUsernames);
+out.users = dto.users;
+
+' #txt
+Pt0 f0 security system #txt
+Pt0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>Find users of given role</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f0 392 426 144 44 -64 -8 #rect
+Pt0 f1 inParamDecl '<Integer startIndex,Integer count,java.util.List<String> fromRoles,java.util.List<String> excludedUsernames> param;' #txt
+Pt0 f1 inParamTable 'out.count=param.count;
+out.excludedUsernames=param.excludedUsernames;
+out.fromRoles=param.fromRoles;
+out.startIndex=param.startIndex;
+' #txt
+Pt0 f1 outParamDecl '<java.util.List<ch.ivy.addon.portalkit.dto.UserDTO> users> result;' #txt
+Pt0 f1 outParamTable 'result.users=in.users;
+' #txt
+Pt0 f1 callSignature findAllUsersOfRoles(Integer,Integer,java.util.List<String>,java.util.List<String>) #txt
+Pt0 f1 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>findAllUsersOfRoles(Integer,Integer,List&lt;String&gt;,List&lt;String&gt;)</name>
+    </language>
+</elementInfo>
+' #txt
+Pt0 f1 129 433 30 30 -111 20 #rect
+Pt0 f2 641 433 30 30 0 15 #rect
+Pt0 f3 536 448 641 448 #arcP
+Pt0 f10 expr out #txt
+Pt0 f10 159 448 392 448 #arcP
 >Proto Pt0 .type ch.ivyteam.wf.processes.SecurityServiceData #txt
 >Proto Pt0 .processKind CALLABLE_SUB #txt
 >Proto Pt0 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -234,3 +267,7 @@ Pt0 f37 mainOut f11 tail #connect
 Pt0 f11 head f38 mainIn #connect
 Pt0 f25 mainOut f18 tail #connect
 Pt0 f18 head f29 mainIn #connect
+Pt0 f1 mainOut f10 tail #connect
+Pt0 f10 head f0 mainIn #connect
+Pt0 f0 mainOut f3 tail #connect
+Pt0 f3 head f2 mainIn #connect

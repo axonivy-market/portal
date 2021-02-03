@@ -32,12 +32,11 @@ Ls0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f0 81 137 30 30 16 11 #rect
-Ls0 f0 @|StartSubIcon #fIcon
 Ls0 f1 81 361 30 30 0 15 #rect
-Ls0 f1 @|EndSubIcon #fIcon
 Ls0 f3 actionTable 'out=in;
 ' #txt
-Ls0 f3 actionCode 'import ch.ivy.addon.portalkit.service.ProcessStartCollector;
+Ls0 f3 actionCode 'import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
+
 import org.apache.commons.lang3.StringUtils;
 import ch.ivy.addon.portalkit.enums.GlobalVariable;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
@@ -67,8 +66,8 @@ if(PermissionUtils.checkAccessFullStatisticsListPermission()) {
 	}
 }
 
-ProcessStartCollector collector = new ProcessStartCollector(ivy.request.getApplication());
-String userExampleGuideLink = collector.findStartableLinkByUserFriendlyRequestPath("Start Processes/UserExampleGuide/userExampleGuide.ivp");
+
+String userExampleGuideLink = ProcessStartAPI.findStartableLinkByUserFriendlyRequestPath("Start Processes/UserExampleGuide/userExampleGuide.ivp");
 if (!StringUtils.isEmpty(userExampleGuideLink)){	
 	SubMenuItem userExampleGuide = new SubMenuItem();
 	userExampleGuide.setIcon("si si-bulb");
@@ -96,7 +95,6 @@ Ls0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ls0 f3 40 226 112 44 -48 -8 #rect
-Ls0 f3 @|StepIcon #fIcon
 Ls0 f4 expr out #txt
 Ls0 f4 96 167 96 226 #arcP
 Ls0 f2 expr out #txt
@@ -112,7 +110,6 @@ Google: open external link www.google.com.</name>
 </elementInfo>
 ' #txt
 Ls0 f5 248 226 528 44 -257 -16 #rect
-Ls0 f5 @|IBIcon #fIcon
 Ls0 f6 248 248 152 248 #arcP
 >Proto Ls0 .type _com.axonivy.portal.developerexamples.LoadSubMenuItemsOverrideData #txt
 >Proto Ls0 .processKind CALLABLE_SUB #txt

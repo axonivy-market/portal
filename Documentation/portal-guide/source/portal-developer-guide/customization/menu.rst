@@ -31,8 +31,8 @@ process, please take a look on NOTE section of ``LoadSubMenuItems`` in
 PortalTemplate.
 
 .. tip::
-    | For the Label of SubMenuItem, if you want to show it in multilingual correctly, you should create a cms and use ``ApplicationMultiLanguage.getCmsValueByUserLocale`` method.
-    | e.g: ``subMenuItem.setLabel(ApplicationMultiLanguage.getCmsValueByUserLocale<CMS_URI>));``
+    | For the Label of SubMenuItem, if you want to show it in multilingual correctly, you should create a cms and use ``ApplicationMultiLanguageAPI.getCmsValueByUserLocale`` method.
+    | e.g: ``subMenuItem.setLabel(ApplicationMultiLanguageAPI.getCmsValueByUserLocale<CMS_URI>));``
 
 .. |default-menu-items| image:: ../../screenshots/dashboard/expanded-left-menu.png
 .. |load-sub-menu-items-process| image:: images/menu/load-sub-menu-items-process.png

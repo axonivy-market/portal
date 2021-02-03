@@ -49,7 +49,6 @@ Ts0 @PushWFArc f49 '' #zField
 Ts0 @PushWFArc f72 '' #zField
 Ts0 @UdMethod f13 '' #zField
 Ts0 @PushWFArc f15 '' #zField
-Ts0 @PushWFArc f57 '' #zField
 Ts0 @PushWFArc f18 '' #zField
 Ts0 @PushWFArc f63 '' #zField
 Ts0 @GridStep f8 '' #zField
@@ -111,6 +110,9 @@ Ts0 @CallSub f96 '' #zField
 Ts0 @PushWFArc f97 '' #zField
 Ts0 @PushWFArc f98 '' #zField
 Ts0 @PushWFArc f99 '' #zField
+Ts0 @GridStep f100 '' #zField
+Ts0 @PushWFArc f101 '' #zField
+Ts0 @PushWFArc f57 '' #zField
 >Proto Ts0 Ts0 TaskWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
 Ts0 f0 method start(String,ch.ivy.addon.portalkit.datamodel.TaskLazyDataModel,Long) #txt
@@ -150,7 +152,7 @@ Ts0 f23 @|UdEventIcon #fIcon
 Ts0 f24 actionTable 'out=in;
 ' #txt
 Ts0 f24 actionCode 'import ch.ivy.addon.portalkit.service.TaskFilterService;
-import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
 import ch.ivy.addon.portalkit.enums.FilterType;
 TaskFilterService taskFilterService = new TaskFilterService();
 TaskFilterData taskFilterData = in.dataModel.saveFilter(in.filterSetName, in.filterType, in.taskFilterGroupId);
@@ -247,7 +249,7 @@ configuration</name>
 ' #txt
 Ts0 f27 320 66 128 60 -41 -24 #rect
 Ts0 f27 @|StepIcon #fIcon
-Ts0 f3 499 83 26 26 0 12 #rect
+Ts0 f3 659 83 26 26 0 12 #rect
 Ts0 f3 @|UdProcessEndIcon #fIcon
 Ts0 f34 guid 15F5C0F9B77406B4 #txt
 Ts0 f34 method deleteFilter() #txt
@@ -265,7 +267,7 @@ Ts0 f34 @|UdMethodIcon #fIcon
 Ts0 f35 actionTable 'out=in;
 ' #txt
 Ts0 f35 actionCode 'import ch.ivy.addon.portalkit.enums.FilterType;
-import ch.ivy.addon.portalkit.taskfilter.TaskFilterData;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData;
 import ch.ivy.addon.portalkit.service.TaskFilterService;
 TaskFilterService service = new TaskFilterService();
 service.delete(in.taskFilterDataToBeRemoved.getId());
@@ -296,8 +298,8 @@ Ts0 f39 109 576 192 576 #arcP
 Ts0 f40 expr out #txt
 Ts0 f40 304 576 371 576 #arcP
 Ts0 f41 guid 15F5C9F2AA5C9BA1 #txt
-Ts0 f41 method setFilterToBeDeleted(ch.ivy.addon.portalkit.taskfilter.TaskFilterData) #txt
-Ts0 f41 inParameterDecl '<ch.ivy.addon.portalkit.taskfilter.TaskFilterData taskFilterData> param;' #txt
+Ts0 f41 method setFilterToBeDeleted(ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData) #txt
+Ts0 f41 inParameterDecl '<ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData taskFilterData> param;' #txt
 Ts0 f41 inParameterMapAction 'out.taskFilterDataToBeRemoved=param.taskFilterData;
 ' #txt
 Ts0 f41 outParameterDecl '<> result;' #txt
@@ -382,8 +384,8 @@ Ts0 f51 352 368 595 336 #arcP
 Ts0 f51 1 352 336 #addKink
 Ts0 f51 1 0.5061728395061729 0 -11 #arcLabel
 Ts0 f16 guid 15F772190BB92384 #txt
-Ts0 f16 method applyFilter(ch.ivy.addon.portalkit.taskfilter.TaskFilterData) #txt
-Ts0 f16 inParameterDecl '<ch.ivy.addon.portalkit.taskfilter.TaskFilterData taskFilterData> param;' #txt
+Ts0 f16 method applyFilter(ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData) #txt
+Ts0 f16 inParameterDecl '<ch.ivy.addon.portalkit.taskfilter.impl.TaskFilterData taskFilterData> param;' #txt
 Ts0 f16 inParameterMapAction 'out.keyword=param.taskFilterData.keyword;
 ' #txt
 Ts0 f16 inActionCode out.dataModel.applyFilter(param.taskFilterData); #txt
@@ -392,8 +394,6 @@ Ts0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>applyFilter(TaskFilterData)</name>
-        <nameStyle>27,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
@@ -507,8 +507,6 @@ Ts0 f13 83 851 26 26 -61 15 #rect
 Ts0 f13 @|UdMethodIcon #fIcon
 Ts0 f15 expr out #txt
 Ts0 f15 696 864 736 864 #arcP
-Ts0 f57 expr out #txt
-Ts0 f57 448 96 499 96 #arcP
 Ts0 f18 expr out #txt
 Ts0 f18 109 864 172 864 #arcP
 Ts0 f63 expr in #txt
@@ -970,6 +968,25 @@ Ts0 f96 @|CallSubIcon #fIcon
 Ts0 f97 973 96 1048 96 #arcP
 Ts0 f98 1160 96 1216 96 #arcP
 Ts0 f99 1344 96 1427 96 #arcP
+Ts0 f100 actionTable 'out=in;
+' #txt
+Ts0 f100 actionCode '
+if(in.dataModel.compactMode) {
+	in.selectedSort = in.dataModel.getSelectedCompactSort();
+}
+' #txt
+Ts0 f100 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>update sort field</name>
+    </language>
+</elementInfo>
+' #txt
+Ts0 f100 488 74 112 44 -44 -8 #rect
+Ts0 f100 @|StepIcon #fIcon
+Ts0 f101 expr out #txt
+Ts0 f101 448 96 488 96 #arcP
+Ts0 f57 600 96 659 96 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskWidget.TaskWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
@@ -1002,8 +1019,6 @@ Ts0 f54 out f72 tail #connect
 Ts0 f72 head f56 mainIn #connect
 Ts0 f56 mainOut f15 tail #connect
 Ts0 f15 head f59 mainIn #connect
-Ts0 f27 mainOut f57 tail #connect
-Ts0 f57 head f3 mainIn #connect
 Ts0 f13 mainOut f18 tail #connect
 Ts0 f18 head f65 mainIn #connect
 Ts0 f54 out f63 tail #connect
@@ -1062,3 +1077,7 @@ Ts0 f94 mainOut f98 tail #connect
 Ts0 f98 head f96 mainIn #connect
 Ts0 f96 mainOut f99 tail #connect
 Ts0 f99 head f95 mainIn #connect
+Ts0 f27 mainOut f101 tail #connect
+Ts0 f101 head f100 mainIn #connect
+Ts0 f100 mainOut f57 tail #connect
+Ts0 f57 head f3 mainIn #connect

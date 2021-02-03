@@ -64,7 +64,8 @@ public class TaskTemplateIFrameTest extends BaseTest {
     redirectToRelativeLink(IFRAME_TASK_URL);
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
-    TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(1);
+    taskWidgetPage.filterTasksBy("Approve Investment", 1);
+    TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(0);
     taskTemplatePage2.clickOnLogo();
     WaitHelper.assertTrueWithWait(
         () -> taskTemplatePage2.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
@@ -75,7 +76,8 @@ public class TaskTemplateIFrameTest extends BaseTest {
     redirectToRelativeLink(IFRAME_TASK_URL);
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage = taskTemplatePage1.finishCreateInvestmentTask();
-    TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(1);
+    taskWidgetPage.filterTasksBy("Approve Investment", 1);
+    TaskTemplatePage taskTemplatePage2 = taskWidgetPage.startTask(0);
     HomePage homePage = taskTemplatePage2.backToHomeInIFrameApprovalTask();
     WaitHelper
         .assertTrueWithWait(() -> homePage.isElementDisplayed(By.id("task-widget:task-list-link:task-list-link")));
@@ -87,7 +89,8 @@ public class TaskTemplateIFrameTest extends BaseTest {
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage1 = taskTemplatePage1.finishCreateInvestmentTask();
     taskWidgetPage1 = taskWidgetPage1.openTaskList();
-    TaskTemplatePage taskTemplatePage2 = taskWidgetPage1.startTask(1);
+    taskWidgetPage1.filterTasksInExpandedModeBy("Approve Investment", 1);
+    TaskTemplatePage taskTemplatePage2 = taskWidgetPage1.startTask(0);
     TaskWidgetPage taskWidgetPage2 = taskTemplatePage2.finishIFrameReviewTask();
     WaitHelper
         .assertTrueWithWait(() -> taskWidgetPage2.isElementDisplayed(By.cssSelector("[id$='task-config-command']")));
@@ -99,7 +102,8 @@ public class TaskTemplateIFrameTest extends BaseTest {
     TaskTemplatePage taskTemplatePage1 = new TaskTemplatePage();
     TaskWidgetPage taskWidgetPage1 = taskTemplatePage1.finishCreateInvestmentTask();
     taskWidgetPage1 = taskWidgetPage1.openTaskList();
-    TaskTemplatePage taskTemplatePage2 = taskWidgetPage1.startTask(1);
+    taskWidgetPage1.filterTasksInExpandedModeBy("Approve Investment", 1);
+    TaskTemplatePage taskTemplatePage2 = taskWidgetPage1.startTask(0);
     assertEquals("Review Request (Skip Tasklist in IFrame)",
         taskTemplatePage2.getTaskNameOutsideIFrameWithSkipTaskList());
   }
@@ -109,7 +113,8 @@ public class TaskTemplateIFrameTest extends BaseTest {
     redirectToRelativeLink("InternalSupport/15B1EA24CCF377E8/saleAndInform.ivp");
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidget = homePage.openTaskList();
-    TaskTemplatePage startTask = taskWidget.startTask(1);
+    taskWidget.filterTasksInExpandedModeBy("sale department", 1);
+    TaskTemplatePage startTask = taskWidget.startTask(0);
     startTask.openCaseInfo();
     TaskWidgetPage openRelatedTask = startTask.openRelatedTask();
     assertTrue(openRelatedTask.isCategoryColumnDisplayed());
@@ -120,7 +125,8 @@ public class TaskTemplateIFrameTest extends BaseTest {
     redirectToRelativeLink("InternalSupport/15B1EA24CCF377E8/saleAndInform.ivp");
     HomePage homePage = new HomePage();
     TaskWidgetPage taskWidget = homePage.openTaskList();
-    TaskTemplatePage startTask = taskWidget.startTask(1);
+    taskWidget.filterTasksInExpandedModeBy("sale department", 1);
+    TaskTemplatePage startTask = taskWidget.startTask(0);
     startTask.openCaseInfo();
     CaseWidgetPage openRelatedTask = startTask.openRelatedCase();
     assertTrue(openRelatedTask.isCategoryColumnDisplayed());

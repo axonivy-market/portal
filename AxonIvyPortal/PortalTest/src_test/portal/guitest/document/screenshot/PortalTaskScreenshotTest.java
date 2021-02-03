@@ -37,7 +37,7 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   
   @Test
   public void screenshotTaskList() throws IOException {
-    ScreenshotUtil.resizeBrowser(new Dimension(1366, 600));
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
     TaskWidgetPage taskWidgetPage = homePage.openTaskList();
     taskWidgetPage.closeMainMenu();
     Sleeper.sleep(500); // wait for Layout.js renders left menu
@@ -75,38 +75,94 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
   }
   
   @Test
+  public void screenshotBasicTaskDetails() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1200));
+    updatePortalSetting("APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS", "true");
+    TaskWidgetPage taskWidget = homePage.openTaskList();
+    TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
+    taskDetails.waitUtilsTaskDetailsDisplayed();
+
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_FOLDER + "detailed-task-information");
+    executeDecorateJs("highlightTaskDetailComponent()");
+    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-standard");
+  }
+ 
+  @Test
+  public void screenshotActionButtonsOnTaskDetailsWithJsonFile() throws IOException {
+    login(TestAccount.ADMIN_USER);
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1440));
+    updatePortalSetting("APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS", "true");
+    TaskWidgetPage taskWidget = homePage.openTaskList();
+    TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
+    taskDetails.waitUtilsTaskDetailsDisplayed();
+
+    executeDecorateJs("highlightSwitchToEditMode()");
+    WebElement switchToEditMode = taskDetails.getSwitchToEditModeButtonElement();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(switchToEditMode,
+        ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-switch-to-edit-mode", new ScreenshotMargin(100, 200));
+
+    taskDetails.clickOnSwitchToEditModeButton();
+    taskDetails.waitForSwitchToViewModeButtonDisplayed();
+    taskDetails.drapAndDropWidgets("note", "document");
+    taskDetails.drapAndDropWidgets("document", "note");
+    Sleeper.sleep(2000);// wait for focus animation to capture screenshot
+    executeDecorateJs("highlightResetToDefault()");
+    WebElement resetButton = taskDetails.getResetButtonElement();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(resetButton,
+        ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-reset-to-default", new ScreenshotMargin(100, 200));
+
+
+    taskDetails.clickOnResetToDefaultButton();
+    taskDetails.waitForSwitchToViewModeButtonDisplayed();
+    Sleeper.sleep(2000);// wait for focus animation to capture screenshot
+    executeDecorateJs("highlightSwitchToViewMode()");
+    WebElement switchToViewMode = taskDetails.getSwitchToViewModeButtonElement();
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(switchToViewMode,
+        ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-switch-to-view-mode", new ScreenshotMargin(100, 200));
+  }
+
+  @Test
   public void screenshotTaskDetails() throws IOException {
     login(TestAccount.ADMIN_USER);
-    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
+    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1440));
+    updatePortalSetting("APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS", "true");
     TaskWidgetPage taskWidget = homePage.openTaskList();
-    taskWidget.closeMainMenu();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
+    taskDetails.waitUtilsTaskDetailsDisplayed();
+
     WebElement generalInfo = taskDetails.getTaskGeneralInformation();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(generalInfo, ScreenshotUtil.TASK_DETAIL_FOLDER + "detailed-task-information-data-description", new ScreenshotMargin(20));
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(generalInfo,
+        ScreenshotUtil.TASK_DETAIL_FOLDER + "detailed-task-information-data-description", new ScreenshotMargin(10));
     
     taskDetails.openAddNoteDialog();
-    Sleeper.sleep(2000);//wait for focus animation to capture screenshot
+    Sleeper.sleep(2000);// wait for focus animation to capture screenshot
     WebElement addNoteDialog = taskDetails.getAddNoteDialog();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(addNoteDialog, ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-add-note", new ScreenshotMargin(50));
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(addNoteDialog,
+        ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-add-note", new ScreenshotMargin(10));
     taskDetails.addNoteToTaskWithContent("Add a note for this task");
-    
+
     taskDetails.openAddAttachmentDialog();
-    Sleeper.sleep(2000);//wait for focus animation to capture screenshot
+    Sleeper.sleep(2000);// wait for focus animation to capture screenshot
     WebElement addDocument = taskDetails.getAddAttachmentDialog();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(addDocument, ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-upload-document", new ScreenshotMargin(50));
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(addDocument,
+        ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-upload-document", new ScreenshotMargin(10));
     taskDetails.uploadDocument(getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
-    
+
     refreshPage();
     taskDetails.waitUtilsTaskDetailsDisplayed();
     WebElement taskHistories = taskDetails.getTaskHistories();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskHistories, ScreenshotUtil.TASK_DETAIL_FOLDER + "detailed-task-information-note", new ScreenshotMargin(20));
-    
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskHistories,
+        ScreenshotUtil.TASK_DETAIL_FOLDER + "detailed-task-information-note", new ScreenshotMargin(10));
+
     WebElement taskDocument = taskDetails.getTaskAttachment();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskDocument, ScreenshotUtil.TASK_DETAIL_FOLDER + "detailed-task-information-documents", new ScreenshotMargin(20));
-    
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(taskDocument,
+        ScreenshotUtil.TASK_DETAIL_FOLDER + "detailed-task-information-documents", new ScreenshotMargin(10));
+
     taskDetails.clickOnDeleteDocumentIcon(0);
     WebElement deleteDocumentDialog = taskDetails.getDeleteDocumentConfirmDialog();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(deleteDocumentDialog, ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-delete-document", new ScreenshotMargin(100, 150));
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(deleteDocumentDialog,
+        ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-delete-document", new ScreenshotMargin(100, 150));
 
     refreshPage();
     taskDetails.waitUtilsTaskDetailsDisplayed();
@@ -118,45 +174,44 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     taskDetails.waitUtilsTaskDetailsDisplayed();
     taskDetails.openWorkflowEventDialog();
     WebElement workflowEventTable = taskDetails.getWorkflowEventsTable();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(workflowEventTable, ScreenshotUtil.TASK_DETAIL_FOLDER + "workflow-events-table", new ScreenshotMargin(100, 50));
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(workflowEventTable,
+        ScreenshotUtil.TASK_DETAIL_FOLDER + "workflow-events-table", new ScreenshotMargin(100, 50));
   }
   
   @Test
   public void screenshotShowMoreTaskHistories() throws IOException {
-    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
+    ScreenshotUtil.resizeBrowser(new Dimension(2560, 1000));
     login(TestAccount.ADMIN_USER);
     TaskWidgetPage taskWidget = homePage.openTaskList();
-    taskWidget.closeMainMenu();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
+    taskDetails.openAddNoteDialog();
     taskDetails.addNoteToTaskWithContent("Add a note for this task");
+    taskDetails.openAddAttachmentDialog();
     taskDetails.uploadDocument(getAbsolutePathToTestFile("test-no-files-no-js.pdf"));
     refreshPage();
     taskDetails.waitUtilsTaskDetailsDisplayed();
 
+    executeDecorateJs("scrollToBottomOfLayoutContent()");
     executeDecorateJs("highlightShowMoreTaskHistories()");
     WebElement showMoreTaskHistories = taskDetails.getTaskHistories();
-    ScreenshotUtil.captureElementWithMarginOptionScreenshot(showMoreTaskHistories, ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-show-note-details", new ScreenshotMargin(100, 50));
+    ScreenshotUtil.captureElementWithMarginOptionScreenshot(showMoreTaskHistories, ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-show-note-details", new ScreenshotMargin(20));
     taskDetails.clickOnShowMoreHistories();
     Awaitility.await().atMost(new Duration(5, TimeUnit.SECONDS)).until(() -> homePage.countBrowserTab() > 1);
     homePage.switchLastBrowserTab();
     Sleeper.sleep(3000);
     ScreenshotUtil.captureHalfTopPageScreenShot(ScreenshotUtil.TASK_DETAIL_FOLDER + "how-to-export-note-details", new Dimension(SCREENSHOT_WIDTH, 1000));
   }
-  
+
+  @Deprecated
   @Test
   public void screenshotCustomTaskDetails() throws IOException {
-    ScreenshotUtil.resizeBrowser(new Dimension(1366, 1000));
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 1200));
+    updatePortalSetting("APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS", "false");
+    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
+
     TaskWidgetPage taskWidget = homePage.openTaskList();
     TaskDetailsPage taskDetails = taskWidget.openTaskDetails(0);
-    taskDetails.waitUtilsTaskDetailsDisplayed();
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_FOLDER + "detailed-task-information");
-    executeDecorateJs("highlightTaskDetailComponent()");
-    ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-standard");
-    
-    redirectToRelativeLink(HomePage.PORTAL_EXAMPLES_HOME_PAGE_URL);
-    taskWidget = homePage.openTaskList();
-    taskDetails = taskWidget.openTaskDetails(0);
     taskDetails.waitUtilsTaskDetailsDisplayed();
     executeDecorateJs("highlightCustomTaskDetail()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-top");
@@ -164,14 +219,14 @@ public class PortalTaskScreenshotTest extends ScreenshotTest {
     refreshPage();
     taskDetails.waitUtilsTaskDetailsDisplayed();
     executeDecorateJs("scrollToBottomOfLayoutContent()");
-    Sleeper.sleep(500);
+    Sleeper.sleep(2000);// wait for focus animation to capture screenshot
     executeDecorateJs("highlightCustomTaskDetail()");
     ScreenshotUtil.capturePageScreenshot(ScreenshotUtil.TASK_DETAIL_CUSTOMIZATION_FOLDER + "task-customized-bottom");
   }
 
   @Test
   public void screenshotExportToExcel() throws IOException {
-    ScreenshotUtil.resizeBrowser(new Dimension(1366, 600));
+    ScreenshotUtil.resizeBrowser(new Dimension(SCREENSHOT_WIDTH, 800));
     TaskWidgetPage taskWidgetPage = homePage.openTaskList();
     taskWidgetPage.closeMainMenu();
     Sleeper.sleep(500); // wait for Layout.js renders left menu
