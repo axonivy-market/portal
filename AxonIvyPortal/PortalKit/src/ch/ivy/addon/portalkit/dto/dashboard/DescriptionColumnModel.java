@@ -13,6 +13,7 @@ public class DescriptionColumnModel extends ColumnModel implements Serializable 
   public void initDefaultValue() {
     this.header = defaultIfEmpty(this.header, cms("/ch.ivy.addon.portalkit.ui.jsf/common/description"));
     this.field = DashboardStandardTaskColumn.DESCRIPTION.getField();
+    this.styleClass = defaultIfEmpty(this.styleClass, "dashboard-tasks__description u-text-align-center");
     this.sortable = false;
   }
   
