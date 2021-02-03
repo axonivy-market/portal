@@ -23,6 +23,7 @@ import ch.ivy.addon.portalkit.enums.BreadCrumbKind;
 import ch.ivy.addon.portalkit.enums.MenuKind;
 import ch.ivy.addon.portalkit.enums.PortalLibrary;
 import ch.ivy.addon.portalkit.persistence.domain.Application;
+import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
 import ch.ivy.addon.portalkit.service.IvyAdapterService;
 import ch.ivy.addon.portalkit.service.RegisteredApplicationService;
 import ch.ivy.addon.portalkit.util.PrimeFacesUtils;
@@ -124,7 +125,7 @@ public class PortalMenuNavigator {
         PortalNavigator.navigateToPortalTask();
       }
       else if (BreadCrumbKind.HOME.name().equals(destinationPage)) {
-        PortalNavigator.navigateToPortalHome();
+        PortalNavigatorAPI.navigateToPortalHome();
       }
       else {
         redirectToSelectedMenuUrl(params);

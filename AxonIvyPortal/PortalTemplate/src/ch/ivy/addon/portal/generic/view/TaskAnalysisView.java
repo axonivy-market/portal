@@ -2,7 +2,7 @@ package ch.ivy.addon.portal.generic.view;
 
 import org.apache.commons.lang3.StringUtils;
 
-import ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel;
+import ch.ivy.addon.portalkit.datamodel.internal.TaskAnalysisLazyDataModel;
 import ch.ivyteam.ivy.environment.Ivy;
 
 public class TaskAnalysisView {

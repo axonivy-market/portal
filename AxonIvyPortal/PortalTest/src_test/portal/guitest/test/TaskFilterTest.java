@@ -116,7 +116,8 @@ public class TaskFilterTest extends BaseTest {
     taskWidgetPage.saveAdminFilter(filterName);
 
     login(TestAccount.DEMO_USER);
-    mainMenuPage = new MainMenuPage();
+    HomePage homePage = new HomePage();
+    mainMenuPage = homePage.openMainMenu();
     taskWidgetPage = mainMenuPage.openTaskList();
     assertFalse(taskWidgetPage.isExistedFilter(filterName));
   }

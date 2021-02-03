@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import ch.ivy.addon.portalkit.bo.ExpressProcess;
 import ch.ivy.addon.portalkit.bo.ExternalLink;
+import ch.ivy.addon.portalkit.enums.ProcessType;
 import ch.ivy.addon.portalkit.persistence.domain.UserProcess;
 import ch.ivyteam.ivy.workflow.start.IWebStartable;
 
@@ -22,6 +23,8 @@ public class UserProcessMapper {
 
   public static UserProcess toUserProcess(IWebStartable process) {
     UserProcess userProcess = new UserProcess();
+    userProcess.setProcessId(process.getId());
+    userProcess.setProcessType(ProcessType.IVY_PROCESS);
     userProcess.setProcessName(stripHtmlTags(process.getDisplayName()));
     userProcess.setLink(process.getLink().getRelativeEncoded());
     userProcess.setDescription(process.getDescription());
@@ -31,6 +34,8 @@ public class UserProcessMapper {
   public static UserProcess toUserProcess(ExpressProcess expressProcess, String expressStartLink) {
     String startLink = expressStartLink + "?workflowID=" + expressProcess.getId();
     UserProcess userProcess = new UserProcess();
+    userProcess.setProcessId(expressProcess.getId());
+    userProcess.setProcessType(ProcessType.EXPRESS_PROCESS);
     userProcess.setProcessName(stripHtmlTags(expressProcess.getProcessName()));
     userProcess.setLink(startLink);
     userProcess.setWorkflowId(expressProcess.getId());
@@ -40,6 +45,8 @@ public class UserProcessMapper {
 
   public static UserProcess toUserProcess(ExternalLink externalLink) {
     UserProcess userProcess = new UserProcess();
+    userProcess.setProcessId(externalLink.getId().toString());
+    userProcess.setProcessType(ProcessType.EXTERNAL_LINK);
     userProcess.setProcessName(stripHtmlTags(externalLink.getName()));
     userProcess.setUserId(externalLink.getCreatorId());
     userProcess.setLink(externalLink.getLink());
