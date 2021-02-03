@@ -17,6 +17,11 @@ public class UserSettingService {
     return new UserSettingService();
   }
 
+  public void saveDateFormat(String selectedDateFormat) {
+    String dateFormat = StringUtils.equals(selectedDateFormat, DEFAULT) ? getDefaultDateFormat() : selectedDateFormat;
+    getSessionUser().setProperty(UserProperty.DATE_FORMAT, dateFormat);
+  }
+
   public void saveDefaultSortFieldOfTaskList(String fieldName, String sortDirection) {
     IUser user = getSessionUser();
     if (StringUtils.equals(fieldName, DEFAULT)) {
@@ -59,6 +64,14 @@ public class UserSettingService {
     return getUserProperty(UserProperty.DEFAULT_SORT_DIRECTION_OF_CASE_LIST);
   }
   
+  public String getDateFormat() {
+    return getUserProperty(UserProperty.DATE_FORMAT);
+  }
+  
+  public String getDefaultDateFormat() {
+    return getUserProperty(UserProperty.DEFAULT_DATE_FORMAT);
+  }
+
   private String getUserProperty(String property) {
     if (Ivy.session().isSessionUserUnknown()) {
       return StringUtils.EMPTY;
