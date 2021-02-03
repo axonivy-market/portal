@@ -1,5 +1,7 @@
 package ch.ivy.addon.portalkit.ivydata.service.impl;
 
+import static ch.ivy.addon.portalkit.constant.UserProperty.ENABLE_CUSTOM_MAIL;
+
 import java.util.EnumSet;
 
 import ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting;
@@ -14,7 +16,6 @@ import ch.ivyteam.ivy.security.IUserEMailNotificationSettings;
 
 public class EmailSettingService implements IEmailSettingService {
 
-  private static final String ENABLE_CUSTOM_MAIL = "useCustomMails";
   private static final String OLD_VAR_DISABLE_CUSTOM_MAIL = "DisableCustomMails";
 
   private EmailSettingService() {}

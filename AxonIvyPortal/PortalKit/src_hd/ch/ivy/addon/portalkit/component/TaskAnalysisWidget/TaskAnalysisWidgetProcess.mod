@@ -82,8 +82,8 @@ Ts0 @PushWFArc f66 '' #zField
 Ts0 @PushWFArc f67 '' #zField
 >Proto Ts0 Ts0 TaskAnalysisWidgetProcess #zField
 Ts0 f0 guid 14FDF92006C61D35 #txt
-Ts0 f0 method start(ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel,java.lang.Long) #txt
-Ts0 f0 inParameterDecl '<ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel dataModel,Long filterGroupId> param;' #txt
+Ts0 f0 method start(ch.ivy.addon.portalkit.datamodel.internal.TaskAnalysisLazyDataModel,Long) #txt
+Ts0 f0 inParameterDecl '<ch.ivy.addon.portalkit.datamodel.internal.TaskAnalysisLazyDataModel dataModel,Long filterGroupId> param;' #txt
 Ts0 f0 inParameterMapAction 'out.taskFilterGroupId=param.filterGroupId;
 ' #txt
 Ts0 f0 inActionCode 'if (param.#dataModel is initialized){
@@ -94,13 +94,10 @@ Ts0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
     <language>
         <name>start(TaskAnalysisLazyDataModel,Long)</name>
-        <nameStyle>37,5,7
-</nameStyle>
     </language>
 </elementInfo>
 ' #txt
 Ts0 f0 85 53 22 22 -83 20 #rect
-Ts0 f0 @|UdInitIcon #fIcon
 Ts0 f94 guid 153EF14248ECB35E #txt
 Ts0 f94 method findTasks(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria,Integer,Integer) #txt
 Ts0 f94 inParameterDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria criteria,Integer startIndex,Integer count> param;' #txt
@@ -119,7 +116,6 @@ Ts0 f94 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f94 85 149 22 22 -76 10 #rect
-Ts0 f94 @|UdMethodIcon #fIcon
 Ts0 f23 guid 15F5844AD96F4A4C #txt
 Ts0 f23 actionTable 'out=in;
 ' #txt
@@ -133,11 +129,10 @@ Ts0 f23 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f23 67 371 26 26 -26 15 #rect
-Ts0 f23 @|UdEventIcon #fIcon
 Ts0 f24 actionTable 'out=in;
 ' #txt
 Ts0 f24 actionCode 'import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
-import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData;
 import ch.ivy.addon.portalkit.enums.FilterType;
 TaskAnalysisFilterService taskFilterService = new TaskAnalysisFilterService();
 TaskAnalysisFilterData taskFilterData = in.dataModel.saveTaskAnalysisFilter(in.filterSetName, in.filterType, in.taskFilterGroupId);
@@ -160,7 +155,6 @@ Ts0 f24 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f24 408 362 112 44 -36 -8 #rect
-Ts0 f24 @|StepIcon #fIcon
 Ts0 f28 guid 15F5BFFC0DEF027B #txt
 Ts0 f28 actionTable 'out=in;
 ' #txt
@@ -174,9 +168,7 @@ Ts0 f28 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f28 67 467 26 26 -58 15 #rect
-Ts0 f28 @|UdEventIcon #fIcon
 Ts0 f29 587 467 26 26 0 12 #rect
-Ts0 f29 @|UdProcessEndIcon #fIcon
 Ts0 f31 actionTable 'out=in;
 ' #txt
 Ts0 f31 actionCode 'import ch.ivy.addon.portalkit.enums.FilterType;
@@ -192,7 +184,6 @@ Ts0 f31 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f31 408 458 112 44 -28 -8 #rect
-Ts0 f31 @|StepIcon #fIcon
 Ts0 f32 expr out #txt
 Ts0 f32 93 480 408 480 #arcP
 Ts0 f30 expr out #txt
@@ -220,9 +211,7 @@ Ts0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f27 336 40 96 48 -38 -7 #rect
-Ts0 f27 @|StepIcon #fIcon
 Ts0 f3 467 51 26 26 0 12 #rect
-Ts0 f3 @|UdProcessEndIcon #fIcon
 Ts0 f34 guid 15F5C0F9B77406B4 #txt
 Ts0 f34 method deleteFilter() #txt
 Ts0 f34 inParameterDecl '<> param;' #txt
@@ -235,11 +224,10 @@ Ts0 f34 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f34 67 563 26 26 -34 15 #rect
-Ts0 f34 @|UdMethodIcon #fIcon
 Ts0 f35 actionTable 'out=in;
 ' #txt
 Ts0 f35 actionCode 'import ch.ivy.addon.portalkit.enums.FilterType;
-import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData;
 import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
 TaskAnalysisFilterService service = new TaskAnalysisFilterService();
 service.delete(in.taskFilterDataToBeRemoved.getId());
@@ -262,16 +250,14 @@ Ts0 f35 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f35 176 554 112 44 -33 -8 #rect
-Ts0 f35 @|StepIcon #fIcon
 Ts0 f36 387 563 26 26 0 12 #rect
-Ts0 f36 @|UdProcessEndIcon #fIcon
 Ts0 f39 expr out #txt
 Ts0 f39 93 576 176 576 #arcP
 Ts0 f40 expr out #txt
 Ts0 f40 288 576 387 576 #arcP
 Ts0 f41 guid 15F5C9F2AA5C9BA1 #txt
-Ts0 f41 method setFilterToBeDeleted(ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData) #txt
-Ts0 f41 inParameterDecl '<ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData taskFilterData> param;' #txt
+Ts0 f41 method setFilterToBeDeleted(ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData) #txt
+Ts0 f41 inParameterDecl '<ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData taskFilterData> param;' #txt
 Ts0 f41 inParameterMapAction 'out.taskFilterDataToBeRemoved=param.taskFilterData;
 ' #txt
 Ts0 f41 outParameterDecl '<> result;' #txt
@@ -285,9 +271,7 @@ Ts0 f41 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f41 67 659 26 26 -51 14 #rect
-Ts0 f41 @|UdMethodIcon #fIcon
 Ts0 f42 387 659 26 26 0 12 #rect
-Ts0 f42 @|UdProcessEndIcon #fIcon
 Ts0 f43 93 672 387 672 #arcP
 Ts0 f45 actionTable 'out=in;
 ' #txt
@@ -312,7 +296,6 @@ Ts0 f45 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f45 152 362 112 44 -21 -8 #rect
-Ts0 f45 @|StepIcon #fIcon
 Ts0 f46 expr out #txt
 Ts0 f46 93 384 152 384 #arcP
 Ts0 f47 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -326,7 +309,6 @@ existed?</name>
 </elementInfo>
 ' #txt
 Ts0 f47 320 368 32 32 -23 18 #rect
-Ts0 f47 @|AlternativeIcon #fIcon
 Ts0 f48 expr out #txt
 Ts0 f48 264 384 320 384 #arcP
 Ts0 f25 expr in #txt
@@ -342,7 +324,6 @@ Ts0 f25 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 ' #txt
 Ts0 f25 352 384 408 384 #arcP
 Ts0 f50 579 323 26 26 0 12 #rect
-Ts0 f50 @|UdProcessEndIcon #fIcon
 Ts0 f51 expr in #txt
 Ts0 f51 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -357,8 +338,8 @@ Ts0 f51 336 368 579 336 #arcP
 Ts0 f51 1 336 336 #addKink
 Ts0 f51 1 0.3018284624086855 0 0 #arcLabel
 Ts0 f16 guid 15F772190BB92384 #txt
-Ts0 f16 method applyFilter(ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData) #txt
-Ts0 f16 inParameterDecl '<ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData taskFilterData> param;' #txt
+Ts0 f16 method applyFilter(ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData) #txt
+Ts0 f16 inParameterDecl '<ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData taskFilterData> param;' #txt
 Ts0 f16 inActionCode out.dataModel.applyFilter(param.taskFilterData); #txt
 Ts0 f16 outParameterDecl '<> result;' #txt
 Ts0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -371,15 +352,13 @@ Ts0 f16 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f16 67 755 26 26 -28 15 #rect
-Ts0 f16 @|UdMethodIcon #fIcon
 Ts0 f17 387 755 26 26 0 12 #rect
-Ts0 f17 @|UdProcessEndIcon #fIcon
 Ts0 f20 93 768 387 768 #arcP
 Ts0 f57 expr out #txt
 Ts0 f57 432 64 467 64 #arcP
 Ts0 f8 actionTable 'out=in;
 ' #txt
-Ts0 f8 actionCode 'import ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel;
+Ts0 f8 actionCode 'import ch.ivy.addon.portalkit.datamodel.internal.TaskAnalysisLazyDataModel;
 import ch.ivy.addon.portalkit.bean.TaskAnalysisWidgetBean;
 import javax.faces.context.FacesContext;
 
@@ -401,7 +380,6 @@ Ts0 f8 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f8 184 42 112 44 -40 -8 #rect
-Ts0 f8 @|StepIcon #fIcon
 Ts0 f10 expr out #txt
 Ts0 f10 107 64 184 64 #arcP
 Ts0 f1 expr out #txt
@@ -419,15 +397,13 @@ Ts0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f11 67 867 26 26 -63 15 #rect
-Ts0 f11 @|UdEventIcon #fIcon
 Ts0 f4 387 867 26 26 0 12 #rect
-Ts0 f4 @|UdProcessEndIcon #fIcon
 Ts0 f5 actionTable 'out=in;
 ' #txt
-Ts0 f5 actionCode 'import ch.ivy.addon.portalkit.util.ProcessStartUtils;
+Ts0 f5 actionCode 'import ch.ivy.addon.portalkit.publicapi.ProcessStartAPI;
 import javax.faces.context.FacesContext;
 
-String statisticPageUrl = ProcessStartUtils.findRelativeUrlByProcessStartFriendlyRequestPath("Start Processes/PortalStart/StatisticPage.ivp");
+String statisticPageUrl = ProcessStartAPI.findRelativeUrlByProcessStartFriendlyRequestPath("Start Processes/PortalStart/StatisticPage.ivp");
 FacesContext.getCurrentInstance().getExternalContext().redirect(statisticPageUrl);' #txt
 Ts0 f5 security system #txt
 Ts0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -438,7 +414,6 @@ Ts0 f5 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f5 160 858 144 44 -68 -8 #rect
-Ts0 f5 @|StepIcon #fIcon
 Ts0 f6 expr out #txt
 Ts0 f6 93 880 160 880 #arcP
 Ts0 f12 expr out #txt
@@ -461,12 +436,10 @@ Ts0 f13 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f13 67 979 26 26 -46 15 #rect
-Ts0 f13 @|UdMethodIcon #fIcon
 Ts0 f14 763 979 26 26 0 12 #rect
-Ts0 f14 @|UdProcessEndIcon #fIcon
 Ts0 f37 actionTable 'out=in;
 ' #txt
-Ts0 f37 actionCode 'import ch.ivy.addon.portalkit.exporter.TaskAnalysisExporter;
+Ts0 f37 actionCode 'import ch.ivy.addon.portalkit.exporter.internal.TaskAnalysisExporter;
 TaskAnalysisExporter exporter = new TaskAnalysisExporter(in.columnsVisibility);
 in.exportedFile = exporter.getStreamedContent(in.collectedTasksForExporting);
 ' #txt
@@ -479,7 +452,6 @@ Ts0 f37 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f37 560 970 112 44 -32 -8 #rect
-Ts0 f37 @|StepIcon #fIcon
 Ts0 f56 expr out #txt
 Ts0 f56 672 992 763 992 #arcP
 Ts0 f56 0 0.9184538480715879 0 0 #arcLabel
@@ -502,7 +474,6 @@ Ts0 f15 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f15 408 1098 112 44 -26 -8 #rect
-Ts0 f15 @|CallSubIcon #fIcon
 Ts0 f9 processCall 'Ivy Data Processes/TaskService:findTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria,Integer,Integer)' #txt
 Ts0 f9 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria,Integer startIndex,Integer count> param;' #txt
 Ts0 f9 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
@@ -522,11 +493,9 @@ Ts0 f9 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f9 216 138 112 44 -33 -8 #rect
-Ts0 f9 @|CallSubIcon #fIcon
 Ts0 f19 expr out #txt
 Ts0 f19 107 160 216 160 #arcP
 Ts0 f22 403 147 26 26 0 12 #rect
-Ts0 f22 @|UdProcessEndIcon #fIcon
 Ts0 f33 expr out #txt
 Ts0 f33 328 160 403 160 #arcP
 Ts0 f2 guid 1682C611F21483D7 #txt
@@ -545,7 +514,6 @@ Ts0 f2 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f2 83 243 26 26 -89 15 #rect
-Ts0 f2 @|UdMethodIcon #fIcon
 Ts0 f7 processCall 'Ivy Data Processes/TaskService:countTasksByCriteria(ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria)' #txt
 Ts0 f7 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.searchcriteria.TaskSearchCriteria taskSearchCriteria> param;' #txt
 Ts0 f7 requestMappingAction 'param.taskSearchCriteria=in.taskSearchCriteria;
@@ -563,9 +531,7 @@ Ts0 f7 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f7 216 234 112 44 -33 -8 #rect
-Ts0 f7 @|CallSubIcon #fIcon
 Ts0 f38 403 243 26 26 0 12 #rect
-Ts0 f38 @|UdProcessEndIcon #fIcon
 Ts0 f44 expr out #txt
 Ts0 f44 109 256 216 256 #arcP
 Ts0 f49 expr out #txt
@@ -587,7 +553,6 @@ Ts0 f52 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f52 160 970 112 44 -31 -8 #rect
-Ts0 f52 @|CallSubIcon #fIcon
 Ts0 f53 actionTable 'out=in;
 ' #txt
 Ts0 f53 actionCode in.loopCounter++; #txt
@@ -599,9 +564,7 @@ Ts0 f53 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f53 560 1098 112 44 -27 -8 #rect
-Ts0 f53 @|StepIcon #fIcon
 Ts0 f18 448 976 32 32 0 16 #rect
-Ts0 f18 @|AlternativeIcon #fIcon
 Ts0 f59 actionTable 'out=in;
 ' #txt
 Ts0 f59 actionCode 'import java.util.ArrayList;
@@ -616,7 +579,6 @@ Ts0 f59 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f59 304 970 112 44 -21 -8 #rect
-Ts0 f59 @|StepIcon #fIcon
 Ts0 f60 272 992 304 992 #arcP
 Ts0 f58 416 992 448 992 #arcP
 Ts0 f61 expr in #txt
@@ -641,9 +603,7 @@ Ts0 f55 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f55 67 1235 26 26 -47 15 #rect
-Ts0 f55 @|UdMethodIcon #fIcon
 Ts0 f63 371 1235 26 26 0 12 #rect
-Ts0 f63 @|UdProcessEndIcon #fIcon
 Ts0 f64 actionTable 'out=in;
 ' #txt
 Ts0 f64 actionCode 'out.dataModel.selectedTaskAnalysisFilterData = null;
@@ -656,13 +616,11 @@ Ts0 f64 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Ts0 f64 192 1226 112 44 -47 -8 #rect
-Ts0 f64 @|StepIcon #fIcon
 Ts0 f66 93 1248 192 1248 #arcP
 Ts0 f67 304 1248 371 1248 #arcP
 >Proto Ts0 .type ch.ivy.addon.portalkit.component.TaskAnalysisWidget.TaskAnalysisWidgetData #txt
 >Proto Ts0 .processKind HTML_DIALOG #txt
 >Proto Ts0 -8 -8 16 16 16 26 #rect
->Proto Ts0 '' #fIcon
 Ts0 f28 mainOut f32 tail #connect
 Ts0 f32 head f31 mainIn #connect
 Ts0 f31 mainOut f30 tail #connect

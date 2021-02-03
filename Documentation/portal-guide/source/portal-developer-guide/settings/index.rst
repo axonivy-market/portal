@@ -112,6 +112,9 @@ Process developer can set up global settings of Portal in file ``portal_settings
       #SHOW_USER_GUIDE = true
       #SHOW_GLOBAL_SEARCH = true
       #SHOW_BUTTON_ICON = true
+      #SHOW_TASK_DURATION_TIME = true
+      #SHOW_CASE_DURATION_TIME = true
+      #APPLY_JSON_CONFIGURATION_FILE_FOR_TASK_DETAILS = true
 
 This file already contains list of settings with their default values.
 These settings will be applied once you start Portal.
@@ -135,7 +138,7 @@ To configure languages of Portal applications, select ``My profile`` .
 
 Select one in dropdown list of ``Selected language``. After the change is saved, new language will be set for whole application.
 
-   |language-settings|
+|language-settings|
 
 -  For multiple languages, the CMS key ``/AppInfo/SupportedLanguages``
    must exist in your application. This CMS entry is
@@ -155,7 +158,7 @@ Select one in dropdown list of ``Selected language``. After the change is saved,
    -  Import file excel back, then redeploy Portal Style
    -  This is sample how to add new Spanish to portal
 
-      |add-new-language|
+|add-new-language|
 
 Role configuration
 ==================

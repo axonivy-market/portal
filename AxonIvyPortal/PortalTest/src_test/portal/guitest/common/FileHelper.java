@@ -6,5 +6,4 @@ public final class FileHelper {
   public static String getAbsolutePathToTestFile(String fileName) {
     return System.getProperty("user.dir") + "\\resources\\testFile\\" + fileName;
   }
-
 }

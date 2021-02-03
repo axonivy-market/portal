@@ -7,37 +7,45 @@
 <cc:interface componentType="IvyComponent">
   <cc:attribute name="task" type="ch.ivyteam.ivy.workflow.ITask" />
   <cc:attribute name="styleClass" />
+  <cc:attribute name="applyJsonConfigurationFile" default="true"/>
 </cc:interface>
 
 <cc:implementation>
   <c:set var="task" value="#{cc.attrs.task}" />
+  <c:set var="applyJsonConfigurationFile" value="#{cc.attrs.applyJsonConfigurationFile}" />
   <f:event listener="#{logic.initData(task)}" type="preRenderComponent" />
-  <div class="task-details-item-note ui-g">
+  <h:panelGroup class="task-details-item-note ui-g" id="task-details-item-note" layout="block">
 
     <div class="task-detail-section-title ui-g-12">
-      <div class="ui-g-4 u-truncate-text u-padding-0">
-        <i class="icon ivyicon-synchronize-arrow-clock" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/taskNotes')}
+      <div class="ui-g-4 u-truncate-text u-padding-0 task-details-panel-title">
+        <i class="si si-synchronize-arrow-clock" /> #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskInformation/histories')}
+
       </div>
       <div class="task-history-button-container ui-g-8 u-padding-0">
         <h:panelGroup layout="block">
           <p:link id="show-more-note-link" styleClass="task-details-document-add-link note-show-more-link ui-commandlink" target="_blank"
             href="#{caseTaskNoteHistoryBean.getTaskNoteHistoryLink(task)}" rendered="#{caseTaskNoteHistoryBean.showMoreNote}">
-            <span class="icon ivyicon-expand-6 note-show-more-link-icon" />
+            <span class="si si-expand-6 note-show-more-link-icon" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/showMoreBtn')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/more')}</span>
           </p:link>
           <p:commandLink id="add-note-command" styleClass="task-details-document-add-link" rendered="#{caseTaskNoteHistoryBean.showAddNote}"
             oncomplete="PF('#{cc.clientId}:addNewNoteDialog').show()" actionListener="#{data.setTask(task)}">
-            <span class="icon ivyicon-notes-add" />
+            <span class="si si-notes-add" />
             <span class="display-full-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/addNote')}</span>
             <span class="display-short-text">#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/add')}</span>
           </p:commandLink>
+          <p:selectBooleanCheckbox value="#{data.showSystemNotes}" itemLabel="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/showSystemNotes')}"
+            rendered="#{data.showSystemNotesChkbox and applyJsonConfigurationFile}" id="show-system-notes-checkbox">
+            <p:ajax update="task-history-content-container" process="@this" partialSubmit="true" listener="#{logic.showHideSystemNotes}" />
+          </p:selectBooleanCheckbox>
         </h:panelGroup>
       </div>
     </div>
 
     <h:panelGroup id="task-history-content-container" styleClass="ui-g-12 u-padding-0">
-      <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true" pageLinks="3" rows="5" paginatorPosition="top" rendered="#{not empty data.notes}"
+      <p:dataTable value="#{data.notes}" var="note" id="task-note-table" paginator="true" pageLinks="3" rows="#{applyJsonConfigurationFile ? 8 : 5}"
+        paginatorPosition="top" rendered="#{not empty data.notes}"
         emptyMessage="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noRecordsFound')}" paginatorAlwaysVisible="false"
         paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}"
         currentPageReportTemplate="{currentPage} #{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/curentReportOf')} {totalPages}">
@@ -51,7 +59,7 @@
         <p:column headerText="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/noteHistory/author')}" 
           sortBy="#{securityMemberDisplayNameFormatBean.generateBriefDisplayNameForSecurityMember(note.writter, note.writterName)}"
           styleClass="task-document-author u-truncate-text ui-sm-hidden">
-          <i class="icon ivyicon-notes-quill" />
+          <i class="si si-notes-quill" />
           <p:spacer width="5" />
           <ic:ch.ivy.addon.portalkit.component.SecurityMemberDisplayName securityMemberName="#{note.writterName}" securityMember="#{note.writter}" />
         </p:column>
@@ -65,12 +73,12 @@
       </p:dataTable>
 
         <h:panelGroup layout="block" styleClass="ui-g-12 no-item-panel" rendered="#{empty data.notes}">
-          <i class="icon ivyicon-information-circle" />
+          <i class="si si-information-circle" />
           <h:outputText styleClass="no-item-header" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/noNoteAvailable')}" />
           <h:outputText styleClass="no-item-detail" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/pleaseAddNote')}" />
         </h:panelGroup>
     </h:panelGroup>
-  </div>
+  </h:panelGroup>
 
   <p:dialog id="view-note-dialog" widgetVar="#{cc.clientId}:view-note-dialog" closeOnEscape="true" styleClass="task-note-dialog"
     header="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/adminSettings/note')}" appendTo="@(body)" modal="true" resizable="false" dynamic="true"
@@ -79,7 +87,7 @@
       <h:outputText value="#{data.fullNote}" />
     </h:panelGroup>
     <f:facet name="footer">
-      <p:commandButton icon="#{visibilityBean.generateButtonIcon('icon ivyicon-remove')}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button" onclick="PF('#{cc.clientId}:view-note-dialog').hide()" />
+      <p:commandButton icon="#{visibilityBean.generateButtonIcon('si si-remove')}" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/close')}" type="button" onclick="PF('#{cc.clientId}:view-note-dialog').hide()" />
     </f:facet>
   </p:dialog>
 
@@ -94,18 +102,19 @@
           placeholder="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/taskDetails/addNoteHelpText')}" styleClass="note-content-textarea" autoResize="false" />
       </h:panelGroup>
 
-      <h:panelGroup layout="block" styleClass="ui-dialog-footer u-dialog-footer">
+      <h:panelGroup layout="block" styleClass="TexAlRight MarTop10">
         <p:commandLink id="cancel-add-note-command" actionListener="#{data.setNoteContent('')}" global="false"
           value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/cancel')}" process="@this"
           onsuccess="PF('#{cc.clientId}:addNewNoteDialog').hide()" update="task-detail-note-content task-detail-create-note-msg" />
         <p:spacer width="15px" />
         <p:commandButton styleClass="add-new-note-save-command" id="save-add-note-command" value="#{ivy.cms.co('/ch.ivy.addon.portalkit.ui.jsf/common/save')}"
-          icon="#{visibilityBean.generateButtonIcon('icon ivyicon-floppy-disk')}"
+          icon="#{visibilityBean.generateButtonIcon('si si-floppy-disk')}"
           process="task-detail-note-content" update="task-detail-note-content task-detail-create-note-msg #{cc.clientId}:task-history-content-container"
           actionListener="#{logic.createNote()}" oncomplete="if (args &amp;&amp; !args.validationFailed) {PF('#{cc.clientId}:addNewNoteDialog').hide();}" />
       </h:panelGroup>
     </h:form>
   </p:dialog>
-
+  
+  <h:outputScript name="task-item-history.js" library="js" />
 </cc:implementation>
 </html>

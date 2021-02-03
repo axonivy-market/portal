@@ -55,6 +55,7 @@ public class TaskWidgetPage extends TemplatePage {
   }
 
   public TaskDetailsPage openTaskDetails(int index) {
+    waitForElementDisplayed(By.cssSelector("div.js-task-start-list"), true);
     return clickOnTaskEntryInFullMode(index);
   }
 
@@ -205,7 +206,7 @@ public class TaskWidgetPage extends TemplatePage {
   public TaskState getTaskState(int taskRowIndex) {
     WebElement stateCell = findElementById(String.format(TASK_STATE_COMPONENT_ID, taskRowIndex));
     if (stateCell != null) {
-      String stateClass = stateCell.findElement(By.className("icon")).getAttribute(CLASS);
+      String stateClass = stateCell.findElement(By.className("si")).getAttribute(CLASS);
       return TaskState.fromClass(stateClass.substring(stateClass.indexOf("task-state-")));
     }
     return null;
@@ -220,13 +221,6 @@ public class TaskWidgetPage extends TemplatePage {
     return StringUtils.EMPTY;
   }
 
-  public String getExpiryOfTaskAt() {
-    waitForElementDisplayed(By.id("task-detail-template:general-information:expiry-form:edit-inplace_display"), true);
-    WebElement taskExpiry =
-        findElementById("task-detail-template:general-information:expiry-form:edit-inplace_display");
-    return taskExpiry.getText();
-  }
-
   public boolean isTaskPriorityChangeComponentPresented(int index) {
     return isElementPresent(By.id(String.format(
         taskWidgetId + ":task-list-scroller:%d:task-item:general-info:priority-form:edit-priority-inplace", index)));
@@ -237,19 +231,18 @@ public class TaskWidgetPage extends TemplatePage {
         String.format(taskWidgetId + ":task-list-scroller:%d:task-item:task-name-edit-form:task-name-input", index)));
   }
 
-  @SuppressWarnings("deprecation")
   public void changeDescriptionOfTask(String description) {
-    clickByCssSelector("span[id$='task-description-output']");
-    WebElement taskNameInput = findElementByCssSelector("textarea[id$='task-description-input']");
+    clickByCssSelector("div[id$='task-description-output']");
+    WebElement taskNameInput = findElementByCssSelector("textarea[id$=':task-description-input']");
     waitForElementDisplayed(taskNameInput, true);
     taskNameInput.clear();
     taskNameInput.sendKeys(description);
-    clickByCssSelector("span[id$='task-description-inplace_editor']  .ui-inplace-save");
-    waitAjaxIndicatorDisappear();
+    clickByCssSelector("span[id$=':task-description-inplace_editor']  .ui-inplace-save");
+    waitForElementDisplayed(findElementByCssSelector("div[id$='task-description-output']"), true);
   }
 
   public String getTaskDescription() {
-    return findElementByCssSelector("span[id$='task-description-output']").getText();
+    return findElementByCssSelector("div[id$='task-description-output'] .task-detail-description-output").getText();
   }
 
   public String getTaskCategory() {
@@ -560,14 +553,12 @@ public class TaskWidgetPage extends TemplatePage {
     click(findElementByCssSelector(startLinkId));
   }
 
-  @SuppressWarnings("deprecation")
   public void saveFilter(String filterName) {
     openSaveFilterDialog();
     WebElement filterNameInput = findElementById(taskWidgetId + ":filter-save-form:save-filter-set-name-input");
     enterKeys(filterNameInput, filterName);
     click(findElementById(taskWidgetId + ":filter-save-form:filter-save-command"));
-    waitAjaxIndicatorDisappear();
-    ensureNoBackgroundRequest();
+    WaitHelper.assertTrueWithWait(() -> filterName.equals(findElementByCssSelector("a[id$='filter-name']").getText()));
   }
 
   @SuppressWarnings("deprecation")
@@ -591,6 +582,7 @@ public class TaskWidgetPage extends TemplatePage {
 
   public void openSavedFilters(String filterName) {
     click(findElementById("task-widget:filter-selection-form:filter-name"));
+    waitForElementDisplayed(By.cssSelector("span[id$='private-filters']"), true);
     List<WebElement> saveFilters = findListElementsByCssSelector("a[id$='user-defined-filter']");
     for (WebElement filter : saveFilters) {
       if (filter.getText().equals(filterName)) {
@@ -804,10 +796,30 @@ public class TaskWidgetPage extends TemplatePage {
     waitForJQueryAndPrimeFaces(DEFAULT_TIMEOUT);
   }
 
-
   public void openCompactSortMenu() {
     click(By.cssSelector("[id$='sort-task-menu_label']"));
     waitForElementDisplayed(By.cssSelector("div[id$='sort-task-menu_panel']"), true);
+  }
+
+  public void selectCompactSortByName(String sortName, int rowIndex, String expectedValue) {
+    waitForElementDisplayed(By.cssSelector("[id$='sort-task-form:sort-task-menu_items']"), true);
+    String compactSortFormat = "[id$='sort-task-form:sort-task-menu_items'] li[data-label*='%s']";
+    clickByCssSelector(String.format(compactSortFormat, sortName));
+    WaitHelper.assertTrueWithWait(() -> getCompactTaskCellValue(rowIndex).equalsIgnoreCase(expectedValue));
+  }
+
+  public String getCompactTaskCellValue(int rowIndex) {
+    String taskStartFormat = this.taskWidgetId + ":task-list-scroller:%d:task-item:task-start-item-view:task-start-task-name";
+    return findElementById(String.format(taskStartFormat, rowIndex)).getText();
+  }
+
+  public String getSelectedSortColumn() {
+    return findElementByCssSelector(".js-task-widget-sort-menu.full-mode a.ui-commandlink.is-selected").getText();
+  }
+
+  public String getSelectedCompactSortLable() {
+    waitForElementDisplayed(By.id("task-widget:sort-task-form"), true);
+    return findElementByCssSelector("label[id$='task-widget:sort-task-form:sort-task-menu_label']").getText();
   }
 
   @SuppressWarnings("deprecation")
@@ -899,6 +911,12 @@ public class TaskWidgetPage extends TemplatePage {
   }
   
   public boolean isCategoryColumnDisplayed() {
-    return findElementByCssSelector("span[id$=':task-category-cell']").isDisplayed();
+    List<WebElement> taskCategoryCells = findListElementsByCssSelector("span[id$=':task-category-cell']");
+    for (WebElement categoryCell : taskCategoryCells) {
+      if (categoryCell.isDisplayed()) {
+        return true;
+      }
+    }
+    return false;
   }
 }

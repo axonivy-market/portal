@@ -39,9 +39,7 @@ Gs0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Gs0 f0 83 51 26 26 -16 15 #rect
-Gs0 f0 @|UdInitIcon #fIcon
 Gs0 f1 211 51 26 26 0 12 #rect
-Gs0 f1 @|UdProcessEndIcon #fIcon
 Gs0 f2 expr out #txt
 Gs0 f2 109 64 211 64 #arcP
 Gs0 f3 guid 16A7BB547A66A223 #txt
@@ -55,16 +53,16 @@ Gs0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Gs0 f3 83 147 26 26 -15 12 #rect
-Gs0 f3 @|UdEventIcon #fIcon
 Gs0 f4 403 147 26 26 0 12 #rect
-Gs0 f4 @|UdExitEndIcon #fIcon
 Gs0 f6 actionTable 'out=in;
 ' #txt
-Gs0 f6 actionCode 'import javax.faces.context.Flash;
+Gs0 f6 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import javax.faces.context.Flash;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 
-FacesMessage message = new FacesMessage("Task is done successfully");
+FacesMessage message = new FacesMessage("Task is done successfully", ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/linkToCaseDetails", 
+	[PortalNavigator.buildPortalCaseDetailsUrl(ivy.case.getBusinessCase().getId())]));
 FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
 
 Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
@@ -80,15 +78,15 @@ after finish task</name>
 </elementInfo>
 ' #txt
 Gs0 f6 152 138 208 44 -83 -16 #rect
-Gs0 f6 @|StepIcon #fIcon
 Gs0 f7 expr out #txt
 Gs0 f7 109 160 152 160 #arcP
 Gs0 f5 expr out #txt
 Gs0 f5 360 160 403 160 #arcP
 Gs0 f11 actionTable 'out=in;
 ' #txt
-Gs0 f11 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
-PortalNavigator.navigateToPortalEndPage();
+Gs0 f11 actionCode 'import ch.ivy.addon.portalkit.publicapi.PortalNavigatorAPI;
+
+PortalNavigatorAPI.navigateToPortalEndPage();
 ' #txt
 Gs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <elementInfo>
@@ -98,9 +96,7 @@ Gs0 f11 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Gs0 f11 400 234 112 44 -42 -8 #rect
-Gs0 f11 @|StepIcon #fIcon
 Gs0 f8 587 243 26 26 0 12 #rect
-Gs0 f8 @|UdProcessEndIcon #fIcon
 Gs0 f9 expr out #txt
 Gs0 f9 512 256 587 256 #arcP
 Gs0 f10 guid 16F1C655CAA181C1 #txt
@@ -114,14 +110,15 @@ Gs0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Gs0 f10 83 243 26 26 -15 12 #rect
-Gs0 f10 @|UdEventIcon #fIcon
 Gs0 f12 actionTable 'out=in;
 ' #txt
-Gs0 f12 actionCode 'import javax.faces.context.Flash;
+Gs0 f12 actionCode 'import ch.ivy.addon.portal.generic.navigation.PortalNavigator;
+import javax.faces.context.Flash;
 import javax.faces.context.FacesContext;
 import javax.faces.application.FacesMessage;
 
-FacesMessage message = new FacesMessage("You have cancelled and left the task successfully");
+FacesMessage message = new FacesMessage("You have cancelled and left the task successfully", ivy.cms.co("/ch.ivy.addon.portalkit.ui.jsf/common/linkToCaseDetails", 
+	[PortalNavigator.buildPortalCaseDetailsUrl(ivy.case.getBusinessCase().getId())]));
 FacesContext.getCurrentInstance().addMessage("portal-global-growl-message", message);
 
 Flash flash = FacesContext.getCurrentInstance().getExternalContext().getFlash();
@@ -137,14 +134,12 @@ after cancel task</name>
 </elementInfo>
 ' #txt
 Gs0 f12 152 234 208 44 -83 -16 #rect
-Gs0 f12 @|StepIcon #fIcon
 Gs0 f13 expr out #txt
 Gs0 f13 109 256 152 256 #arcP
 Gs0 f14 360 256 400 256 #arcP
 >Proto Gs0 .type com.axonivy.portal.developerexamples.showcase.GlobalGrowl.GlobalGrowlData #txt
 >Proto Gs0 .processKind HTML_DIALOG #txt
 >Proto Gs0 -8 -8 16 16 16 26 #rect
->Proto Gs0 '' #fIcon
 Gs0 f0 mainOut f2 tail #connect
 Gs0 f2 head f1 mainIn #connect
 Gs0 f3 mainOut f7 tail #connect

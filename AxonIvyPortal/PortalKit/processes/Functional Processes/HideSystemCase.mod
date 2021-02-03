@@ -30,31 +30,29 @@ He0 f0 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 He0 f0 81 113 30 30 -36 17 #rect
-He0 f0 @|StartSubIcon #fIcon
 He0 f1 465 113 30 30 0 15 #rect
-He0 f1 @|EndSubIcon #fIcon
 He0 f3 actionTable 'out=in;
 ' #txt
 He0 f3 actionCode 'import ch.ivyteam.ivy.workflow.query.CaseQuery;
 import ch.ivyteam.ivy.workflow.ITask;
-import ch.ivy.addon.portalkit.util.TaskUtils;
+import ch.ivy.addon.portalkit.publicapi.TaskAPI;
 import ch.ivyteam.ivy.workflow.ICase;
-import ch.ivy.addon.portalkit.util.CaseUtils;
+import ch.ivy.addon.portalkit.publicapi.CaseAPI;
 
 ICase selectedCase = in.hideBusinessCase ? ivy.wf.findCase(ivy.case.getBusinessCase().getId()) : ivy.case;
-CaseUtils.setHidePropertyToHideInPortal(selectedCase);
+CaseAPI.setHidePropertyToHideInPortal(selectedCase);
 
 if(selectedCase.isBusinessCase()) {
 	CaseQuery query = CaseQuery.create();
 	query.where().and().isNotBusinessCase().and().businessCaseId().isEqual(selectedCase.getId());
 	List technicalCases = ivy.wf.getCaseQueryExecutor().getResults(query) as List;
 	for(ICase technicalCase : technicalCases) {
-		CaseUtils.setHidePropertyToHideInPortal(technicalCase);
+		CaseAPI.setHidePropertyToHideInPortal(technicalCase);
 	}
 }
 
 for(ITask task : selectedCase.tasks().all()) {
-	TaskUtils.setHidePropertyToHideInPortal(task);
+	TaskAPI.setHidePropertyToHideInPortal(task);
 }' #txt
 He0 f3 security system #txt
 He0 f3 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -68,7 +66,6 @@ and related tasks</name>
 </elementInfo>
 ' #txt
 He0 f3 232 106 128 44 -44 -16 #rect
-He0 f3 @|StepIcon #fIcon
 He0 f5 expr out #txt
 He0 f5 360 128 465 128 #arcP
 He0 f2 expr out #txt

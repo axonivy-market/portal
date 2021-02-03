@@ -11,12 +11,12 @@ import javax.faces.bean.ViewScoped;
 import org.primefaces.event.ToggleEvent;
 import org.primefaces.model.Visibility;
 
-import ch.ivy.addon.portalkit.datamodel.TaskAnalysisLazyDataModel;
+import ch.ivy.addon.portalkit.datamodel.internal.TaskAnalysisLazyDataModel;
 import ch.ivy.addon.portalkit.enums.TaskAndCaseAnalysisColumn;
-import ch.ivy.addon.portalkit.exporter.TaskAnalysisExporter;
+import ch.ivy.addon.portalkit.exporter.Exporter;
 import ch.ivy.addon.portalkit.service.GlobalSettingService;
 import ch.ivy.addon.portalkit.service.TaskAnalysisFilterService;
-import ch.ivy.addon.portalkit.taskfilter.TaskAnalysisFilterData;
+import ch.ivy.addon.portalkit.taskfilter.impl.TaskAnalysisFilterData;
 
 @ManagedBean
 @ViewScoped
@@ -64,7 +64,7 @@ public class TaskAnalysisWidgetBean implements Serializable {
   }
   
   public int getMaxTaskNumberInExcel() {
-    return TaskAnalysisExporter.MAX_TASK_NUMBER_IN_EXCEL;
+    return Exporter.MAX_ROW_NUMBER_IN_EXCEL;
   }
   
   public boolean isCaseOwnerEnabled() {

@@ -3,6 +3,8 @@ package portal.guitest.page;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
+import portal.guitest.common.WaitHelper;
+
 public class MainMenuPage extends TemplatePage {
   
   private static String PROCESS_MENU_ITEM_CSS_SELECTOR = ".layout-menu li[role='menuitem'] a.ripplelink.PROCESS";
@@ -41,16 +43,13 @@ public class MainMenuPage extends TemplatePage {
     return new ProcessWidgetPage();
   }
 
-  @SuppressWarnings("deprecation")
   public TaskWidgetPage selectTaskMenu() {
-    clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.TASK");
-    ensureNoBackgroundRequest();
+    WaitHelper.waitForNavigation(this, () -> clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.TASK"));
     return new TaskWidgetPage();
   }
 
   public StatisticWidgetPage selectStatisticDashboard() {
-    clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.STATISTICS");
-    waitForElementDisplayed(By.className("statistic-dashboard-expand-mode"), true);
+    WaitHelper.waitForNavigation(this, () -> clickByCssSelector(".layout-menu li[role='menuitem'] a.ripplelink.STATISTICS"));
     return new StatisticWidgetPage();
   }
 
@@ -79,7 +78,7 @@ public class MainMenuPage extends TemplatePage {
   }
 
   public HomePage backToHomeByClickOnBreadcrumb() {
-    click(findElementByCssSelector("a.ui-menuitem-link.ui-icon.ui-icon-home"));
+    WaitHelper.waitForNavigation(this, () -> clickByCssSelector("a.ui-icon-home"));
     return new HomePage();
   }
 }

@@ -16,9 +16,7 @@ import com.jayway.awaitility.Duration;
 
 import portal.guitest.common.BaseTest;
 import portal.guitest.page.HomePage;
-import portal.guitest.page.MainMenuPage;
 import portal.guitest.page.NoteHistoryPage;
-import portal.guitest.page.ProcessWidgetPage;
 import portal.guitest.page.TaskDetailsPage;
 import portal.guitest.page.TaskTemplatePage;
 import portal.guitest.page.TaskWidgetPage;
@@ -77,7 +75,7 @@ public class TaskTemplateTest extends BaseTest {
 
     assertTrue(taskTemplatePage.countRelatedTasks() > 0);
     TaskDetailsPage taskDetailsPage = taskTemplatePage.openFirstRelatedTaskInHistoryArea();
-    assertEquals("Annual Leave Request", taskDetailsPage.getTaskNameInDialog());
+    assertEquals("Task: Annual Leave Request", taskDetailsPage.getTaskNameInDialog());
 
     taskDetailsPage.clickBackButton();
     getBrowser().getDriver().switchTo().defaultContent();
@@ -96,7 +94,7 @@ public class TaskTemplateTest extends BaseTest {
     assertTrue(taskWidgetPage.countTasks() > 0);
 
     TaskDetailsPage taskDetailsPage = taskWidgetPage.openTaskDetails(1);
-    assertEquals("Sick Leave Request", taskDetailsPage.getTaskNameInDialog());
+    assertEquals("Task: Sick Leave Request", taskDetailsPage.getTaskNameInDialog());
 
     taskDetailsPage.clickBackButton();
     taskWidgetPage = new TaskWidgetPage();
@@ -142,15 +140,12 @@ public class TaskTemplateTest extends BaseTest {
   
   @Test
   public void testResetTaskWhenStartSideStep() {
-    createTestData();
+    redirectToRelativeLink(createTestingCaseMapUrl);
     HomePage homePage = new HomePage();
-    MainMenuPage mainMenuPage = homePage.openMainMenu();
-    ProcessWidgetPage processWidgetPage = mainMenuPage.selectProcessesMenu();
-    processWidgetPage.enterSearchKeyword("case map");
-    processWidgetPage.startProcess("Case Map: Leave Request");
-    TaskWidgetPage taskWidgetPage = new TaskWidgetPage();
-    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(0);
-    taskTemplatePage.openActionMenu();
+    TaskWidgetPage taskWidgetPage = homePage.getTaskWidget();
+    int latestTask = taskWidgetPage.countTasks() - 1;
+    TaskTemplatePage taskTemplatePage = taskWidgetPage.startTask(latestTask);
+    taskTemplatePage.clickTaskActionMenu();
     taskTemplatePage.startSideStep();
     TaskWidgetPage taskWidget = new TaskWidgetPage();
     taskWidget.expand();
