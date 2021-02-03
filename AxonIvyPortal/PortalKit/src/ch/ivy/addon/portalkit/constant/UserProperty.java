@@ -12,4 +12,6 @@ public class UserProperty {
   public static final String RESET_PASSWORD_TOKEN_EXPIRY = "RESET_PASSWORD_TOKEN_EXPIRY";
   public static final String ENABLE_CUSTOM_MAIL = "useCustomMails";
   public static final String PORTAL_CHAT_UNREAD_MESSAGES = "PORTAL_CHAT_UNREAD_MESSAGES";
+  public static final String DEFAULT_DATE_FORMAT = "DEFAULT_DATE_FORMAT";
+  public static final String DATE_FORMAT = "DATE_FORMAT";
 }

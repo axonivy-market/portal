@@ -41,13 +41,17 @@ Us0 @PushWFArc f24 '' #zField
 Us0 @GridStep f6 '' #zField
 Us0 @PushWFArc f3 '' #zField
 Us0 @GridStep f10 '' #zField
-Us0 @PushWFArc f11 '' #zField
 Us0 @GridStep f17 '' #zField
-Us0 @PushWFArc f18 '' #zField
 Us0 @PushWFArc f9 '' #zField
 Us0 @GridStep f20 '' #zField
 Us0 @PushWFArc f23 '' #zField
 Us0 @PushWFArc f4 '' #zField
+Us0 @GridStep f25 '' #zField
+Us0 @PushWFArc f26 '' #zField
+Us0 @PushWFArc f11 '' #zField
+Us0 @GridStep f27 '' #zField
+Us0 @PushWFArc f29 '' #zField
+Us0 @PushWFArc f18 '' #zField
 >Proto Us0 Us0 UserProfileProcess #zField
 Ct3 @TextInP .type .type #zField
 Ct3 @TextInP .processKind .processKind #zField
@@ -113,7 +117,7 @@ Us0 S10 .xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 Us0 S10 192 258 112 44 -43 -8 #rect
 Us0 S10 @|BIcon #fIcon
 Us0 f1 211 51 26 26 0 12 #rect
-Us0 f8 1107 131 26 26 0 12 #rect
+Us0 f8 1267 131 26 26 0 12 #rect
 Us0 f12 guid 17255599F044D2FD #txt
 Us0 f12 method initSettings() #txt
 Us0 f12 inParameterDecl '<> param;' #txt
@@ -153,7 +157,7 @@ Us0 f39 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 </elementInfo>
 ' #txt
 Us0 f39 376 122 112 44 -44 -8 #rect
-Us0 f42 1107 267 26 26 0 12 #rect
+Us0 f42 1267 267 26 26 0 12 #rect
 Us0 f45 processCall 'Ivy Data Processes/EmailSettingService:saveEmailSetting(ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting)' #txt
 Us0 f45 requestActionDecl '<ch.ivy.addon.portalkit.ivydata.bo.IvyEmailSetting emailSetting> param;' #txt
 Us0 f45 requestMappingAction 'param.emailSetting=in.emailSetting;
@@ -250,8 +254,8 @@ Us0 f6 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 f6 936 258 112 44 -20 -8 #rect
-Us0 f3 1048 280 1107 280 #arcP
+Us0 f6 1096 258 112 44 -20 -8 #rect
+Us0 f3 1208 280 1267 280 #arcP
 Us0 f10 actionTable 'out=in;
 ' #txt
 Us0 f10 actionCode 'import org.apache.commons.lang3.StringUtils;
@@ -285,8 +289,7 @@ Us0 f10 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 f10 728 122 112 44 -48 -8 #rect
-Us0 f11 680 144 728 144 #arcP
+Us0 f10 936 122 112 44 -48 -8 #rect
 Us0 f17 actionTable 'out=in;
 ' #txt
 Us0 f17 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
@@ -299,9 +302,8 @@ Us0 f17 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 f17 776 258 112 44 -42 -8 #rect
-Us0 f18 712 280 776 280 #arcP
-Us0 f9 888 280 936 280 #arcP
+Us0 f17 936 258 112 44 -42 -8 #rect
+Us0 f9 1048 280 1096 280 #arcP
 Us0 f20 actionTable 'out=in;
 ' #txt
 Us0 f20 actionCode 'import ch.ivy.addon.portalkit.enums.CaseSortField;
@@ -350,9 +352,48 @@ Us0 f20 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
     </language>
 </elementInfo>
 ' #txt
-Us0 f20 888 122 112 44 -36 -8 #rect
-Us0 f23 840 144 888 144 #arcP
-Us0 f4 1000 144 1107 144 #arcP
+Us0 f20 1096 122 112 44 -36 -8 #rect
+Us0 f23 1048 144 1096 144 #arcP
+Us0 f4 1208 144 1267 144 #arcP
+Us0 f25 actionTable 'out=in;
+' #txt
+Us0 f25 actionCode 'import ch.ivyteam.ivy.environment.Ivy;
+import ch.ivy.addon.portalkit.util.UserUtils;
+import org.apache.commons.collections.CollectionUtils;
+import java.util.ArrayList;
+
+if (CollectionUtils.isEmpty(in.dateFormats)) {
+  in.dateFormats = new ArrayList();
+  in.dateFormats.add("DEFAULT");
+  in.dateFormats.add(Ivy.cms().co("/patterns/datePattern"));
+  in.dateFormats.add(Ivy.cms().co("/patterns/monthDatePattern"));
+}
+
+in.selectedDateFormat = UserUtils.getSelectedDateFormat(in.dateFormats);' #txt
+Us0 f25 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>init date formats</name>
+    </language>
+</elementInfo>
+' #txt
+Us0 f25 776 122 112 44 -44 -8 #rect
+Us0 f26 680 144 776 144 #arcP
+Us0 f11 888 144 936 144 #arcP
+Us0 f27 actionTable 'out=in;
+' #txt
+Us0 f27 actionCode 'import ch.ivy.addon.portalkit.ivydata.service.impl.UserSettingService;
+UserSettingService.newInstance().saveDateFormat(in.selectedDateFormat);' #txt
+Us0 f27 @C|.xml '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<elementInfo>
+    <language>
+        <name>save date format</name>
+    </language>
+</elementInfo>
+' #txt
+Us0 f27 776 258 112 44 -45 -8 #rect
+Us0 f29 720 280 776 280 #arcP
+Us0 f18 888 280 936 280 #arcP
 >Proto Us0 .type ch.ivy.addon.portal.setting.UserProfile.UserProfileData #txt
 >Proto Us0 .processKind HTML_DIALOG #txt
 >Proto Us0 -8 -8 16 16 16 26 #rect
@@ -544,16 +585,20 @@ Us0 f24 head S40 g0 #connect
 Us0 f39 mainOut f24 tail #connect
 Us0 f6 mainOut f3 tail #connect
 Us0 f3 head f42 mainIn #connect
-Us0 S40 g1 f11 tail #connect
-Us0 f11 head f10 mainIn #connect
-Us0 f28 mainOut f18 tail #connect
-Us0 f18 head f17 mainIn #connect
 Us0 f17 mainOut f9 tail #connect
 Us0 f9 head f6 mainIn #connect
 Us0 f10 mainOut f23 tail #connect
 Us0 f23 head f20 mainIn #connect
 Us0 f20 mainOut f4 tail #connect
 Us0 f4 head f8 mainIn #connect
+Us0 S40 g1 f26 tail #connect
+Us0 f26 head f25 mainIn #connect
+Us0 f25 mainOut f11 tail #connect
+Us0 f11 head f10 mainIn #connect
+Us0 f28 mainOut f29 tail #connect
+Us0 f29 head f27 mainIn #connect
+Us0 f27 mainOut f18 tail #connect
+Us0 f18 head f17 mainIn #connect
 Ct3 g0 m f0 tail #connect
 Ct3 f0 head f11 mainIn #connect
 Ct3 f4 mainOut f1 tail #connect
